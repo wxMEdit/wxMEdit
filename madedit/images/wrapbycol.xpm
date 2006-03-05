@@ -1,0 +1,30 @@
+/* XPM */
+static char *wrapbycol_xpm[] = {
+/* columns rows colors chars-per-pixel */
+"16 15 9 1",
+". c Black",
+"  c None",
+"o c #CCCCCC",
+"# c #4E4E4E",
+"+ c #404040",
+"$ c #5E5E5E",
+"@ c #848484",
+"O c #858585",
+"X c #333333",
+/* pixels */
+" .XXXXXXXXXXXXX ",
+" XoooooooooooooX",
+" XoO+++XoooooooX",
+" XoooooooooooooX",
+" XoooooooooooooX",
+" Xo@+++ooooooooX",
+" XoooooooooooooX",
+" XoooooooooooooX",
+" Xo#XXXXoooooooX",
+" XoooooooooooooX",
+" XoooooooooooooX",
+" Xo$XXXooooooooX",
+" XoooooooooooooX",
+" XoooooooooooooX",
+"  XXXXXXXXXXXXX "
+};

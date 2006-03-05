@@ -1,0 +1,26 @@
+/* XPM */
+static char *findnext_xpm[] = {
+/* columns rows colors chars-per-pixel */
+"16 15 5 1",
+"X c Black",
+"O c #FFFFFF",
+"o c #808080",
+". c #000080",
+"  c None",
+/* pixels */
+"  ...           ",
+"  ...           ",
+"  ...           ",
+"  ...           ",
+"  ...           ",
+".......         ",
+" ..... XX   XX  ",
+"  ...  XX   XX  ",
+"   .  XXXo oXXX ",
+"     XOXXXXXXOXX",
+"     XOXXXoXXOXX",
+"     XXXXXXXXXXX",
+"     XOXX   XXOX",
+"     XOXX   XXOX",
+"     XXXX   XXXX"
+};

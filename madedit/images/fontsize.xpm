@@ -1,0 +1,24 @@
+/* XPM */
+static char *fontsize_xpm[] = {
+/* columns rows colors chars-per-pixel */
+"16 15 3 1",
+"X c Black",
+". c #808080",
+"  c None",
+/* pixels */
+"                ",
+"                ",
+"      .X.X.X.X. ",
+"     .X.      X ",
+"     XXX     XXX",
+"    .XXX.     X ",
+"    XX.XX     X ",
+"   .X. XX.    X ",
+"   XX  .XX    X ",
+"  .XXXXXXX.   X ",
+"  XX    .XX   X ",
+" .X      XX. XXX",
+"XXXX    XXXXX X ",
+"                ",
+"                "
+};

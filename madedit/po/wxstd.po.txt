@@ -1,0 +1,329 @@
+==============================================
+copy below lines to madedit.po
+==============================================
+
+#: ../src/common/fmapbase.cpp:137
+msgid "Unicode 16 bit (UTF-16)"
+msgstr ""
+
+#: ../src/common/fmapbase.cpp:138
+msgid "Unicode 16 bit Big Endian (UTF-16BE)"
+msgstr ""
+
+#: ../src/common/fmapbase.cpp:139
+msgid "Unicode 16 bit Little Endian (UTF-16LE)"
+msgstr ""
+
+#: ../src/common/fmapbase.cpp:140
+msgid "Unicode 32 bit (UTF-32)"
+msgstr ""
+
+#: ../src/common/fmapbase.cpp:141
+msgid "Unicode 32 bit Big Endian (UTF-32BE)"
+msgstr ""
+
+#: ../src/common/fmapbase.cpp:142
+msgid "Unicode 32 bit Little Endian (UTF-32LE)"
+msgstr ""
+
+#: ../src/common/fmapbase.cpp:135
+msgid "Unicode 7 bit (UTF-7)"
+msgstr ""
+
+#: ../src/common/fmapbase.cpp:136
+msgid "Unicode 8 bit (UTF-8)"
+msgstr ""
+
+#: ../src/common/fmapbase.cpp:104
+msgid "Western European (ISO-8859-1)"
+msgstr ""
+
+#: ../src/common/fmapbase.cpp:105
+msgid "Central European (ISO-8859-2)"
+msgstr ""
+
+#: ../src/common/fmapbase.cpp:106
+msgid "Esperanto (ISO-8859-3)"
+msgstr ""
+
+#: ../src/common/fmapbase.cpp:107
+msgid "Baltic (old) (ISO-8859-4)"
+msgstr ""
+
+#: ../src/common/fmapbase.cpp:108
+msgid "Cyrillic (ISO-8859-5)"
+msgstr ""
+
+#: ../src/common/fmapbase.cpp:109
+msgid "Arabic (ISO-8859-6)"
+msgstr ""
+
+#: ../src/common/fmapbase.cpp:110
+msgid "Greek (ISO-8859-7)"
+msgstr ""
+
+#: ../src/common/fmapbase.cpp:111
+msgid "Hebrew (ISO-8859-8)"
+msgstr ""
+
+#: ../src/common/fmapbase.cpp:112
+msgid "Turkish (ISO-8859-9)"
+msgstr ""
+
+#: ../src/common/fmapbase.cpp:113
+msgid "Nordic (ISO-8859-10)"
+msgstr ""
+
+#: ../src/common/fmapbase.cpp:114
+msgid "Thai (ISO-8859-11)"
+msgstr ""
+
+#: ../src/common/fmapbase.cpp:115
+msgid "Indian (ISO-8859-12)"
+msgstr ""
+
+#: ../src/common/fmapbase.cpp:116
+msgid "Baltic (ISO-8859-13)"
+msgstr ""
+
+#: ../src/common/fmapbase.cpp:117
+msgid "Celtic (ISO-8859-14)"
+msgstr ""
+
+#: ../src/common/fmapbase.cpp:118
+msgid "Western European with Euro (ISO-8859-15)"
+msgstr ""
+
+#: ../src/common/fmapbase.cpp:119
+msgid "KOI8-R"
+msgstr ""
+
+#: ../src/common/fmapbase.cpp:120
+msgid "KOI8-U"
+msgstr ""
+
+#: ../src/common/fmapbase.cpp:121
+msgid "Windows Thai (CP 874)"
+msgstr ""
+
+#: ../src/common/fmapbase.cpp:126
+msgid "Windows Central European (CP 1250)"
+msgstr ""
+
+#: ../src/common/fmapbase.cpp:127
+msgid "Windows Cyrillic (CP 1251)"
+msgstr ""
+
+#: ../src/common/fmapbase.cpp:128
+msgid "Windows Western European (CP 1252)"
+msgstr ""
+
+#: ../src/common/fmapbase.cpp:129
+msgid "Windows Greek (CP 1253)"
+msgstr ""
+
+#: ../src/common/fmapbase.cpp:130
+msgid "Windows Turkish (CP 1254)"
+msgstr ""
+
+#: ../src/common/fmapbase.cpp:131
+msgid "Windows Hebrew (CP 1255)"
+msgstr ""
+
+#: ../src/common/fmapbase.cpp:132
+msgid "Windows Arabic (CP 1256)"
+msgstr ""
+
+#: ../src/common/fmapbase.cpp:133
+msgid "Windows Baltic (CP 1257)"
+msgstr ""
+
+#: ../src/common/fmapbase.cpp:122
+msgid "Windows Japanese (CP 932)"
+msgstr ""
+
+#: ../src/common/fmapbase.cpp:123
+msgid "Windows Chinese Simplified (CP 936)"
+msgstr ""
+
+#: ../src/common/fmapbase.cpp:124
+msgid "Windows Korean (CP 949)"
+msgstr ""
+
+#: ../src/common/fmapbase.cpp:125
+msgid "Windows Chinese Traditional (CP 950)"
+msgstr ""
+
+#: ../src/common/fmapbase.cpp:143
+msgid "Extended Unix Codepage for Japanese (EUC-JP)"
+msgstr ""
+
+#: ../src/common/fmapbase.cpp:134
+msgid "Windows/DOS OEM (CP 437)"
+msgstr ""
+
+#: ../src/gtk/fontdlg.cpp:147 ../src/msw/dialog.cpp:194
+#: ../contrib/src/deprecated/proplist.cpp:506
+msgid "OK"
+msgstr ""
+
+#: ../src/generic/choicdgg.cpp:291 ../src/generic/dirdlgg.cpp:114
+#: ../src/generic/numdlgg.cpp:136 ../src/generic/textdlgg.cpp:120
+#: ../src/gtk/fontdlg.cpp:155 ../src/motif/msgdlg.cpp:204
+#: ../contrib/src/deprecated/proplist.cpp:518
+msgid "Cancel"
+msgstr ""
+
+#: ../src/generic/filedlgg.cpp:1316 ../src/gtk/filedlg.cpp:64
+#, c-format
+msgid "File '%s' already exists, do you really want to overwrite it?"
+msgstr ""
+
+#: ../src/common/prntbase.cpp:875 ../src/common/stockitem.cpp:112
+#: ../src/generic/logg.cpp:509 ../src/html/helpfrm.cpp:354
+msgid "&Close"
+msgstr ""
+
+#: ../src/common/prntbase.cpp:910
+msgid "&Goto..."
+msgstr ""
+
+#: ../src/common/prntbase.cpp:851
+msgid "Goto Page"
+msgstr ""
+
+#: ../src/common/prntbase.cpp:846
+#, c-format
+msgid "Enter a page number between %d and %d:"
+msgstr ""
+
+#: ../src/common/prntbase.cpp:313
+msgid "Please wait while printing\n"
+msgstr ""
+
+#: ../src/common/prntbase.cpp:310 ../src/common/prntbase.cpp:531
+msgid "Printing "
+msgstr ""
+
+#: ../src/generic/prntdlgg.cpp:209
+msgid "All"
+msgstr ""
+
+#: ../src/generic/prntdlgg.cpp:892
+msgid "Bottom margin (mm):"
+msgstr ""
+
+#: ../src/generic/prntdlgg.cpp:242
+msgid "Copies:"
+msgstr ""
+
+#: ../src/generic/prntdlgg.cpp:506
+msgid "Default printer"
+msgstr ""
+
+#: ../src/generic/prntdlgg.cpp:233
+msgid "From:"
+msgstr ""
+
+#: ../src/generic/prntdlgg.cpp:609 ../src/generic/prntdlgg.cpp:867
+msgid "Landscape"
+msgstr ""
+
+#: ../src/generic/prntdlgg.cpp:879
+msgid "Left margin (mm):"
+msgstr ""
+
+#: ../src/generic/prntdlgg.cpp:611 ../src/generic/prntdlgg.cpp:868
+msgid "Orientation"
+msgstr ""
+
+#: ../src/generic/prntdlgg.cpp:827
+msgid "Page Setup"
+msgstr ""
+
+#: ../src/generic/prntdlgg.cpp:210
+msgid "Pages"
+msgstr ""
+
+#: ../src/generic/prntdlgg.cpp:800 ../src/generic/prntdlgg.cpp:854
+#: ../src/generic/prntdlgg.cpp:1056
+msgid "Paper Size"
+msgstr ""
+
+#: ../src/generic/prntdlgg.cpp:598 ../src/generic/prntdlgg.cpp:841
+#: ../src/generic/prntdlgg.cpp:1051
+msgid "Paper size"
+msgstr ""
+
+#: ../src/generic/prntdlgg.cpp:608 ../src/generic/prntdlgg.cpp:866
+msgid "Portrait"
+msgstr ""
+
+#: ../src/generic/prntdlgg.cpp:296
+msgid "PostScript file"
+msgstr ""
+
+#: ../src/generic/prntdlgg.cpp:218
+msgid "Print Range"
+msgstr ""
+
+#: ../src/generic/prntdlgg.cpp:445
+msgid "Print Setup"
+msgstr ""
+
+#: ../src/generic/prntdlgg.cpp:617
+msgid "Print in colour"
+msgstr ""
+
+#: ../src/generic/prntdlgg.cpp:626
+msgid "Print spooling"
+msgstr ""
+
+#: ../src/generic/prntdlgg.cpp:179
+msgid "Print to File"
+msgstr ""
+
+#: ../src/generic/prntdlgg.cpp:489
+msgid "Printer"
+msgstr ""
+
+#: ../src/generic/prntdlgg.cpp:629
+msgid "Printer command:"
+msgstr ""
+
+#: ../src/generic/prntdlgg.cpp:174
+msgid "Printer options"
+msgstr ""
+
+#: ../src/generic/prntdlgg.cpp:641
+msgid "Printer options:"
+msgstr ""
+
+#: ../src/generic/prntdlgg.cpp:915
+msgid "Printer..."
+msgstr ""
+
+#: ../src/generic/prntdlgg.cpp:190
+msgid "Printer:"
+msgstr ""
+
+#: ../src/generic/prntdlgg.cpp:891
+msgid "Right margin (mm):"
+msgstr ""
+
+#: ../src/generic/prntdlgg.cpp:182
+msgid "Setup..."
+msgstr ""
+
+#: ../src/generic/prntdlgg.cpp:198
+msgid "Status:"
+msgstr ""
+
+#: ../src/generic/prntdlgg.cpp:237
+msgid "To:"
+msgstr ""
+
+#: ../src/generic/prntdlgg.cpp:880
+msgid "Top margin (mm):"
+msgstr ""
+

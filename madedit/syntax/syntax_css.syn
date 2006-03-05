@@ -1,0 +1,105 @@
+# syntax file of Cascading Style Sheets
+Title=CSS
+CaseSensitive=No
+Delimiter=~`!@#$%^&*()+=|\{}[]:;"',.<>/?
+LineComment=
+BlockComment=/* */
+EscapeChar=
+StringChar=
+DirectiveLeading=
+KeywordPrefix=@
+SpecialWordPrefix=#
+IndentChar={
+UnindentChar=}
+BracePair=( ) [ ] { } /* */
+AutoCompletePair=() [] {}
+
+# System Predefined Color & Style
+TextColor=Black
+TextBgColor=White
+TextStyle=
+
+DelimiterColor=SaddleBrown
+DelimiterBgColor=
+DelimiterStyle=
+
+SpaceColor=Aqua
+SpaceBgColor=
+SpaceStyle=
+
+NumberColor=Blue
+NumberBgColor=
+NumberStyle=
+
+StringColor=Red
+StringBgColor=
+StringStyle=
+
+CommentColor=Teal
+CommentBgColor=
+CommentStyle=
+
+DirectiveColor=Green
+DirectiveBgColor=
+DirectiveStyle=
+
+SpecialWordColor=Maroon
+SpecialWordBgColor=
+SpecialWordStyle=
+
+LineNumberColor=White
+LineNumberBgColor=A0A0A0
+LineNumberStyle=
+
+ActiveLineColor=Fuchsia
+BookmarkColor=C0FFFF
+
+# User Defined Keywords
+[Keywords]
+Color=Black
+BgColor=
+Style=Bold
+InRange=0
+Keyword=a above active address applet array area b base basefont bgsound big blockquote body br cite code dd dfn dir div dl dt em fig first-letter first-line form frame frameset h h1 h2 h3 h4 h5 h6 h7 h8 h9 head hover hr html i img input isindex kbd li link map marquee menu meta nextid nobr noframes note noscript ol option p range root span samp script select sound sqrt style strike strong sup table td textarea th title tr tt u ul var visited wbr
+
+[Properties]
+Color=DarkOrchid
+BgColor=
+Style=Bold
+InRange=0
+Keyword=accelerator azimuth background background-attachment background-color background-image background-position background-position-x background-position-y background-repeat behavior  border border-bottom border-bottom-color border-bottom-style border-bottom-width border-collapse border-color border-left border-left-color border-left-style border-left-width  border-right border-right-color border-right-style border-right-width border-spacing border-style border-top border-top-color border-top-style border-top-width border-width bottom     caption-side clear clip color  content counter-increment counter-reset  cue cue-after cue-before cursor    direction display  elevation empty-cells       filter float  font font-family font-size font-size-adjust  font-stretch font-style font-variant font-weight     height  ime-mode include-source       layer-background-color layer-background-image layout-flow layout-grid layout-grid-char layout-grid-char-spacing  layout-grid-line layout-grid-mode layout-grid-type left letter-spacing  line-break line-height list-style list-style-image list-style-position list-style-type     margin margin-bottom margin-left margin-right margin-top marker-offset marks max-height max-width min-height min-width  -moz-binding -moz-border-radius -moz-border-radius-topleft -moz-border-radius-topright -moz-border-radius-bottomright -moz-border-radius-bottomleft -moz-border-top-colors -moz-border-right-colors -moz-border-bottom-colors -moz-border-left-colors -moz-box-sizing -moz-opacity -moz-outline -moz-outline-color -moz-outline-style -moz-outline-width -moz-user-focus -moz-user-input -moz-user-modify -moz-user-select     orphans  outline outline-color outline-style outline-width  overflow overflow-X overflow-Y     padding padding-bottom padding-left padding-right padding-top  page page-break-after page-break-before page-break-inside pause pause-after pause-before  pitch pitch-range play-during position     quotes -replace  richness right  ruby-align ruby-overhang ruby-position    -set-link-source size speak speak-header speak-numeral speak-punctuation speech-rate stress  scrollbar-arrow-color scrollbar-base-color scrollbar-dark-shadow-color scrollbar-face-color scrollbar-highlight-color scrollbar-shadow-color scrollbar-3d-light-color scrollbar-track-color     table-layout text-align text-align-last text-decoration text-indent  text-justify text-overflow text-shadow text-transform  text-autospace text-kashida-space text-underline-position top     unicode-bidi -use-link-source  vertical-align visibility  voice-family volume    white-space widows width  word-break word-spacing word-wrap writing-mode  z-index zoom 
+
+[Pseudo]
+Color=CornflowerBlue
+BgColor=
+Style=Bold
+InRange=0
+Keyword=link hover active visited first-letter first-line after before print visual aural first left first-child
+
+[Values]
+Color=Blue
+BgColor=
+Style=Bold
+InRange=0
+Keyword=above absolute always armenian auto avoid baseline behind below bidi-override  blink block bold bolder both bottom capitalize caption center center-left center-right child circle cjk-ideographic close-quote  code collapse collapse compact condensed continuous crop cross crosshair dashed decimal decimal-leading-zero default digits  disc dotted double embed e-resize expanded extra-condensed extra-expanded far-left far-right fast female fixed  georgian groove hebrew help hide high hiragana hidden higher hiragana-iroha icon inherit inline inset inside invert inline-table faster  invert italic justify katakana katakana-iroha large larger landscape left left-side leftwards level lighter line-through list-item loud  low lower lowercase lower-greek lower-alpha lower-latin lower-roman ltr male marker medium menu message-box middle mix move ne-resize  no-close-quote none no-open-quote no-repeat normal nowrap n-resize nw-resize oblique once open-quote outset outside overline  pointer portrait pre relative repeat repeat-x repeat-y ridge right rightwards right-side rtl run-in scroll semi-condensed semi-expanded  separate se-resize show silent slow slower small smaller small-caps small-caption side soft solid spell-out square s-resize static status-bar sub super sw-resize  table table-caption table-cell table-column table-column-group table-footer-group table-header-group table-row table-row-group text thick thin  top text-bottom text-top transparent ultra-condensed ultra-expanded underline upper-alpha uppercase upper-latin upper-roman visible wait wider w-resize x-fast x-high x-loud x-low  x-slow x-soft  xx-small x-large xx-small x-small xx-large serif sans-serif cursive fantasy monospace
+
+[Funcs]
+Color=Black
+BgColor=
+Style=Bold
+InRange=0
+Keyword=counter attr url rgb rect
+
+[Units]
+Color=Red
+BgColor=
+Style=Bold
+InRange=0
+Keyword=em ex px in cm mm pt pc mhz khz deg rad gra ms s
+
+[Colors]
+Color=Red
+BgColor=
+Style=
+InRange=0
+Keyword=aqua black blue fuchsia green lime maroon  navy olive purple red silver teal white yellow activeborder activecaption inactivecolor activecolor appworkspace  buttonface buttonhighlight buttonshadow buttontext captiontext graytext gray highlighttext highlight inactiveborder inactivecaptiontext inactivecaption infobackground infotext menu menutext scrollbar threeddarkshadow threedface threedhighlight threedlightshadow threedshadow windowframe windowtext window

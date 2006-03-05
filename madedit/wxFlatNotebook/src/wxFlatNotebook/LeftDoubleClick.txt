@@ -1,0 +1,74 @@
+
+// modified by madedit
+
+/**************************************************************************/
+// add this line to enable DoubleClick on Tab to close it.
+EVT_LEFT_DCLICK(wxPageContainerBase::OnMiddleDown)
+
+/**************************************************************************/
+// set cursors on linux, otherwise it will crash on Debian
+#ifdef __WXGTK__
+#include "dnd_copy.xpm"
+#include "dnd_move.xpm"
+#include "dnd_none.xpm"
+#endif
+
+#ifdef __WXGTK__
+				wxDropSource dragSource(this, wxIcon(dnd_copy_xpm), wxIcon(dnd_move_xpm), wxIcon(dnd_none_xpm));
+#else
+				wxDropSource dragSource(this);
+#endif
+
+/**************************************************************************/
+// fixed move tab
+//in void wxPageContainerBase::MoveTabPage(int nMove, int nMoveTo)
+// replace:
+//else if(nMoveTo < nMove)
+else if(nMoveTo < (int)((wxFlatNotebook *)m_pParent)->m_windows.size())
+
+// comment out:
+//MoveTabPage(nTabPage, GetLastVisibleTab()+1);
+
+/**************************************************************************/
+// fixed crash under win98
+// in wxfnbdroptarget.h:
+
+// add a default constructor of class wxFNBDragInfo
+    wxFNBDragInfo() : m_Container(0), m_PageIndex(0){}
+
+// add a class
+class wxFNBDragInfoDataObject : public wxDataObjectSimple
+{
+public:
+    wxFNBDragInfoDataObject(const wxDataFormat& format):wxDataObjectSimple(format)
+    {}
+
+    wxFNBDragInfo DragInfo;
+
+    wxFNBDragInfo *GetData()
+    {
+        return &DragInfo;
+    }
+
+    // get the size of our data
+    virtual size_t GetDataSize() const
+    { return sizeof(wxFNBDragInfo); }
+
+    // copy our data to the buffer
+    virtual bool GetDataHere(void *buf) const
+    {
+        memcpy(buf, &DragInfo, sizeof(wxFNBDragInfo));
+        return true;
+    }
+
+    // copy data from buffer to our data
+    virtual bool SetData(size_t len, const void *buf)
+    {
+        // don't check the len. Under Win98 the value of 'len' == 0
+        memcpy(&DragInfo, buf, sizeof(wxFNBDragInfo));
+        return true;
+    }
+};
+
+// in wxfnbdroptarget.h & wxflatnotebook.cpp:
+// replace wxCustomDataObject by wxFNBDragInfoDataObject

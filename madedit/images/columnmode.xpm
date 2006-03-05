@@ -1,0 +1,31 @@
+/* XPM */
+static char *columnmode_xpm[] = {
+/* columns rows colors chars-per-pixel */
+"16 15 10 1",
+". c Black",
+"$ c #3C3C3C",
+"  c None",
+"@ c #808080",
+"o c #CCCCCC",
+"# c #373737",
+"O c #404040",
+"+ c #FF0000",
+"X c #333333",
+"% c #C9C9C9",
+/* pixels */
+" .XXXXXXXXXXXXX ",
+" XoooooooooooooX",
+" XoOOOOOOOOOOooX",
+" XoooooooooooooX",
+" Xo+++++oooooooX",
+" Xo+@@@+oooooooX",
+" Xo+...#$$$$$ooX",
+" Xo+@@@+oooooooX",
+" Xo+@@@+oooooooX",
+" Xo+..XXXXXXX%oX",
+" Xo+++++oooooooX",
+" XoooooooooooooX",
+" XoOOXXXXXXXXooX",
+" XoooooooooooooX",
+"  XXXXXXXXXXXXX "
+};

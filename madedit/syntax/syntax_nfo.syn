@@ -1,0 +1,56 @@
+# ASCII Art
+Title=ASCII Art
+CaseSensitive=No
+Delimiter=~`!@#$%^&*()-+=|\{}[]:;"',.<>/?
+LineComment=
+BlockComment=
+EscapeChar=
+StringChar=
+DirectiveLeading=
+KeywordPrefix=
+SpecialWordPrefix=
+IndentChar=
+UnindentChar=
+BracePair=
+# use cp437 to show ASCII characters
+Encoding=CP437
+
+# System Predefined Color & Style
+TextColor=Black
+TextBgColor=White
+TextStyle=
+
+DelimiterColor=SaddleBrown
+DelimiterBgColor=
+DelimiterStyle=
+
+SpaceColor=Aqua
+SpaceBgColor=
+SpaceStyle=
+
+NumberColor=Blue
+NumberBgColor=
+NumberStyle=
+
+StringColor=Red
+StringBgColor=
+StringStyle=
+
+CommentColor=Teal
+CommentBgColor=
+CommentStyle=
+
+DirectiveColor=Green
+DirectiveBgColor=
+DirectiveStyle=
+
+SpecialWordColor=Maroon
+SpecialWordBgColor=
+SpecialWordStyle=
+
+LineNumberColor=White
+LineNumberBgColor=A0A0A0
+LineNumberStyle=
+
+ActiveLineColor=Fuchsia
+BookmarkColor=C0FFFF

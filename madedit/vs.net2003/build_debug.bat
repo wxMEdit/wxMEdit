@@ -1,0 +1,1 @@
+devenv MadEdit.sln /build "Unicode Debug"

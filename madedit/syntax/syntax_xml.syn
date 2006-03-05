@@ -1,0 +1,76 @@
+# syntax file of XML
+Title=XML
+CaseSensitive=No
+Delimiter=~`!@#$%^&*()-+=|\{}[]:;"',.<>/?
+EscapeChar=\
+StringChar="'
+DirectiveLeading=
+KeywordPrefix=
+SpecialWordPrefix=
+IndentChar=
+UnindentChar=
+BracePair=<!-- --> < > ( ) [ ] { }
+AutoCompletePair=<> () [] {} "" ''
+
+# CustomRange=(rangeid) (begin string) (end string) (bgcolor) ...
+CustomRange=1 < > F0F0F0
+
+StringInRange=1
+
+LineComment=
+LineCommentInRange=
+
+BlockComment=<!-- -->
+BlockCommentInRange=0
+
+TextColor=Black
+TextBgColor=White
+TextStyle=
+
+DelimiterColor=SaddleBrown
+DelimiterBgColor=
+DelimiterStyle=
+
+SpaceColor=Aqua
+SpaceBgColor=
+SpaceStyle=
+
+NumberColor=Blue
+NumberBgColor=
+NumberStyle=
+
+StringColor=Red
+StringBgColor=
+StringStyle=
+
+CommentColor=Teal
+CommentBgColor=
+CommentStyle=
+
+DirectiveColor=Green
+DirectiveBgColor=
+DirectiveStyle=
+
+SpecialWordColor=Maroon
+SpecialWordBgColor=
+SpecialWordStyle=
+
+LineNumberColor=White
+LineNumberBgColor=A0A0A0
+LineNumberStyle=
+
+ActiveLineColor=Fuchsia
+BookmarkColor=C0FFFF
+
+[Declearation]
+Color=Black
+Style=Bold
+InRange=1
+Keyword=xml stylesheet version encoding standalone DOCTYPE ENTITY ELEMENT ATTLIST NOTATION
+
+[Keywords]
+Color=Blue
+Style=Bold
+InRange=1
+Keyword=CDATA ID IDREF IDREFS ENTITY ENTITIES NMTOKEN NMTOKENS
+

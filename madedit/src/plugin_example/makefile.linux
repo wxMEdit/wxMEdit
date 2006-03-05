@@ -1,0 +1,28 @@
+
+
+CXX = g++
+
+CXXFLAGS =
+LIBS =
+
+OBJ = plugin.o
+DLL = plugin.so
+
+
+RM = rm -f
+
+.PHONY: all all-before all-after clean clean-custom
+
+all: all-before $(DLL) all-after
+
+
+clean: clean-custom
+	$(RM) $(OBJ) $(DLL)
+
+
+$(DLL): $(OBJ)
+	$(CXX) -shared $(OBJ) $(LIBS) -o $(DLL)
+
+.cpp.o:
+	$(CXX) $(CXXFLAGS) -c $< -o $@
+

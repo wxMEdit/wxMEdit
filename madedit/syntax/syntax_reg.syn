@@ -1,0 +1,63 @@
+# Windows Registry File
+Title=Windows Registry File
+CaseSensitive=No
+Delimiter=~`!@#$%^&*()-+=|\{}[]:;"',.<>/?
+LineComment=;
+BlockComment=
+EscapeChar=
+StringChar="
+DirectiveLeading=
+KeywordPrefix=
+SpecialWordPrefix=%
+IndentChar=
+UnindentChar=
+BracePair=[ ]
+AutoCompletePair=[] ""
+
+CustomRange=1 [ ] F0F0F0
+
+# System Predefined Color & Style
+TextColor=Black
+TextBgColor=White
+TextStyle=
+
+DelimiterColor=SaddleBrown
+DelimiterBgColor=
+DelimiterStyle=
+
+SpaceColor=Aqua
+SpaceBgColor=
+SpaceStyle=
+
+NumberColor=Blue
+NumberBgColor=
+NumberStyle=
+
+StringColor=Red
+StringBgColor=
+StringStyle=
+
+CommentColor=Teal
+CommentBgColor=
+CommentStyle=
+
+DirectiveColor=Green
+DirectiveBgColor=
+DirectiveStyle=
+
+SpecialWordColor=Maroon
+SpecialWordBgColor=
+SpecialWordStyle=
+
+LineNumberColor=White
+LineNumberBgColor=A0A0A0
+LineNumberStyle=
+
+ActiveLineColor=Fuchsia
+BookmarkColor=C0FFFF
+
+[Keywords]
+Color=Black
+Style=Bold
+InRange=0
+Keyword=hex dword

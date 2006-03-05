@@ -1,0 +1,28 @@
+/* XPM */
+static char *nowrap_xpm[] = {
+/* columns rows colors chars-per-pixel */
+"16 15 7 1",
+". c Black",
+"  c None",
+"o c #CCCCCC",
+"O c #737373",
+"+ c #404040",
+"X c #333333",
+"@ c #4A4A4A",
+/* pixels */
+" .XXXXXXXXXXXXX ",
+" XoooooooooooooX",
+" XoO+++++++++XXX",
+" XoooooooooooooX",
+" XoooooooooooooX",
+" XoO@@@@@@@@@XXX",
+" XoooooooooooooX",
+" XoooooooooooooX",
+" XoOXXXXXXXXXXXX",
+" XoooooooooooooX",
+" XoooooooooooooX",
+" XoooooooooooooX",
+" XoooooooooooooX",
+" XoooooooooooooX",
+"  XXXXXXXXXXXXX "
+};

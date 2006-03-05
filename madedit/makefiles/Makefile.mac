@@ -1,0 +1,69 @@
+# Project: MadEdit
+
+CXX  = g++ -DFIXINVERT=0
+CC   = gcc
+
+#WXCONFIG = $(HOME)/wxWidgets/RELEASE/wx-config
+WXCONFIG= $(HOME)/wxWidgets/osx-build/wx-config
+#WXCONFIG = wx-config --unicode=yes
+
+CPPDEPS = -MT$@ -MF$@.d -MD
+
+OBJ  = 	../src/MadEditApp.o ../src/MadEditFrame.o \
+	../src/MadUtils.o ../src/MadPlugin.o \
+	../src/MadOptionsDialog.o ../src/MadAboutDialog.o \
+	../src/MadSearchDialog.o ../src/MadReplaceDialog.o \
+	../src/MadConvEncDialog.o ../src/MadPrintout.o \
+	../src/MadEdit/MadEncoding.o ../src/MadEdit/TradSimp.o \
+	../src/MadEdit/MadEditCommand.o ../src/MadEdit/MadUndo.o \
+	../src/MadEdit/MadSyntax.o ../src/MadEdit/MadLines.o \
+	../src/MadEdit/MadEdit.o \
+	../src/MadEdit/MadEditSearch.o \
+	../src/MadEdit/caret_new.o
+
+LINKOBJ  = $(OBJ)
+
+BOOST_INC = 
+#BOOST_INC = -I$(HOME)/boost
+
+XPRESSIVE_INC = ../xpressive
+#XPRESSIVE_INC = 
+
+LIBS = $(shell $(WXCONFIG) --libs) #$(shell pkg-config --libs gtk+-2.0)
+#LIBS = -pthread -Wl,-O1 -Wl,--enable-new-dtags -Wl,--sort-common $(HOME)/wxWidgets/RELEASE/lib/libwx_gtk2u_core-2.7.a $(HOME)/wxWidgets/RELEASE/lib/libwx_baseu-2.7.a -lgtk-x11-2.0 -lgdk-x11-2.0 -lgdk_pixbuf-2.0 -lpangoxft-1.0 -lpangox-1.0 -lpangoft2-1.0 -lpango-1.0 -lgobject-2.0 -lgmodule-2.0 -lgthread-2.0 -lglib-2.0 -ldl -lm
+
+CXXINCS = -I/Developer/Headers/FlatCarbon $(BOOST_INC) $(XPRESSIVE_INC) $(shell $(WXCONFIG) --cxxflags) #$(shell pkg-config --cflags gtk+-2.0)
+ 
+
+CXXFLAGS = $(CXXINCS) -O3 -fexpensive-optimizations 
+
+BIN  = ../MadEdit
+
+
+RM = rm -f
+
+.PHONY: all all-before all-after clean clean-custom
+
+all: all-before $(BIN) all-after
+
+
+clean: clean-custom
+	${RM} $(OBJ) $(BIN)
+
+cleandep:
+	${RM} ../src/*.d ../src/MadEdit/*.d
+
+cleaninv:
+	${RM}  ../src/MadEdit/MadEdit.o  ../src/MadEdit/caret_new.o
+
+cleanall: clean cleandep
+
+$(BIN): $(OBJ)
+	$(CXX) $(LINKOBJ) -o $(BIN) $(LIBS)
+
+.cpp.o:
+	$(CXX) $(CXXFLAGS) $(CPPDEPS) -c $< -o $@
+
+# Dependencies tracking:
+-include ../src/MadEdit/*.d
+-include ../src/*.d

@@ -1,0 +1,29 @@
+
+
+CXX = cl
+LINK = link
+
+CXXFLAGS = /D"WIN32" /MT /GS /Zc:wchar_t /Wp64 /TP
+LINKFLAGS = /SUBSYSTEM:WINDOWS /NOLOGO /ENTRY:DllMain /INCREMENTAL:NO /OPT:REF /OPT:ICF /MACHINE:X86 /DLL
+LIBS =
+
+OBJ = plugin.obj
+DLL = plugin.dll
+
+
+RM = del /F
+
+all: all-before $(DLL) all-after
+all-before:
+all-after:
+
+clean:
+	$(RM) $(OBJ) $(DLL)
+
+$(DLL): $(OBJ)
+	$(LINK) $(LINKFLAGS) /OUT:$(DLL) $(LIBS) $(OBJ)
+
+plugin.obj: plugin.cpp
+	$(CXX) $(CXXFLAGS) /c /Fo$@ $**
+
+.PHONY: all all-before all-after clean

@@ -1,0 +1,70 @@
+# shell script (sh/ksh/bash)
+Title=Shell Script
+CaseSensitive=No
+Delimiter=~`!@#$%^&*()-+=|\{}[]:;"',.<>/?
+LineComment=#
+BlockComment=
+EscapeChar=\
+StringChar="
+DirectiveLeading=
+KeywordPrefix=
+SpecialWordPrefix=
+IndentChar={
+UnindentChar=}
+BracePair=( ) { } [ ]
+AutoCompletePair=() [] {} ""
+
+# System Predefined Color & Style
+TextColor=Black
+TextBgColor=White
+TextStyle=
+
+DelimiterColor=SaddleBrown
+DelimiterBgColor=
+DelimiterStyle=
+
+SpaceColor=Aqua
+SpaceBgColor=
+SpaceStyle=
+
+NumberColor=Blue
+NumberBgColor=
+NumberStyle=
+
+StringColor=Red
+StringBgColor=
+StringStyle=
+
+CommentColor=Teal
+CommentBgColor=
+CommentStyle=
+
+DirectiveColor=Green
+DirectiveBgColor=
+DirectiveStyle=
+
+SpecialWordColor=Maroon
+SpecialWordBgColor=
+SpecialWordStyle=
+
+LineNumberColor=White
+LineNumberBgColor=A0A0A0
+LineNumberStyle=
+
+ActiveLineColor=Fuchsia
+BookmarkColor=C0FFFF
+
+# User Defined Keywords
+[Keywords]
+Color=Black
+BgColor=
+Style=Bold
+InRange=0
+Keyword=case do done elif else esac fi for if in then until while break continue return eval exec exit test shift unset export readonly read
+
+[Commands]
+Color=Blue
+BgColor=
+Style=Bold
+InRange=0
+Keyword=bg fg jobs suspend kill wait cd chdir pwd ulimit umask trap hash type times set echo getopts login newgrp stop alias select function command fc let print unalias whence history time typeset local source bind builtin compgen complete declare dirs disown enable help logout popd printf pushd shopt

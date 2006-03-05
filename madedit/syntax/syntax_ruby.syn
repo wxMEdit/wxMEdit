@@ -1,0 +1,84 @@
+# Ruby
+Title=Ruby
+CaseSensitive=Yes
+Delimiter=~`!@#$%^&*()-+=|\{}[]:;"',.<>/?
+LineComment=#
+BlockComment= =begin =end
+EscapeChar=\
+StringChar="'
+DirectiveLeading=
+KeywordPrefix=
+SpecialWordPrefix=$
+IndentChar=
+UnindentChar=
+BracePair=( ) { } [ ]
+AutoCompletePair=() [] {} "" ''
+
+# System Predefined Color & Style
+TextColor=Black
+TextBgColor=White
+TextStyle=
+
+DelimiterColor=SaddleBrown
+DelimiterBgColor=
+DelimiterStyle=
+
+SpaceColor=Aqua
+SpaceBgColor=
+SpaceStyle=
+
+NumberColor=Blue
+NumberBgColor=
+NumberStyle=
+
+StringColor=Red
+StringBgColor=
+StringStyle=
+
+CommentColor=Teal
+CommentBgColor=
+CommentStyle=
+
+DirectiveColor=Green
+DirectiveBgColor=
+DirectiveStyle=
+
+SpecialWordColor=Maroon
+SpecialWordBgColor=
+SpecialWordStyle=
+
+LineNumberColor=White
+LineNumberBgColor=A0A0A0
+LineNumberStyle=
+
+ActiveLineColor=Fuchsia
+BookmarkColor=C0FFFF
+
+# User Defined Keywords
+[ReservedWords]
+Color=Black
+BgColor=
+Style=Bold
+InRange=0
+Keyword=__FILE__ __LINE__ alias and begin BEGIN break case class def defined do else elsif end END ensure false for if in module next nil not or redo rescue retry return self super then true undef unless until when while yield
+
+[Constants]
+Color=Blue
+BgColor=
+Style=
+InRange=0
+Keyword=TRUE FALSE NIL STDIN STDOUT STDERR ENV ARGF ARGV DATA RUBY_VERSION RUBY_RELEASE_DATE RUBY_PLATFORM
+
+[Functions]
+Color=Blue
+BgColor=
+Style=Bold
+InRange=0
+Keyword=Array Float Integer String at_exit autoload binding caller catch chop chomp eval exec exit fail fork format gets global_variables gsub iterator lambda load local_variables loop open p print printf proc putc puts raise rand readline readlines require select sleep split sprintf srand sub syscall system test trace_var trap untrace_var
+
+[ClassesModules]
+Color=DarkViolet
+BgColor=
+Style=Bold
+InRange=0
+Keyword=Object Array Data Dir Exception Interrupt NotImplementError SignalException StandardError ArgumentError FloatDomainError IOError EOFError IndexError LoadError LocalJumpError NameError RuntimeError SecurityError SyntaxError SystemCallError Errno E SystemStackError ThreadError TypeError ZeroDivisionError SystemExit fatal Hash IO File MatchingData Module Class Numeric Integer Bignum Fixnum Float Proc Range Regexp String Struct Time NilClass Comparable Enumerable Errno FileTest GC Kernel Marshal Math ObjectSpace Precision Process

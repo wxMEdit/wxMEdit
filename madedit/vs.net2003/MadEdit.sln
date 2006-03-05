@@ -1,0 +1,21 @@
+Microsoft Visual Studio Solution File, Format Version 8.00
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MadEdit", "MadEdit.vcproj", "{FA2A8E06-DD41-44E0-A1CB-02906D4A080E}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfiguration) = preSolution
+		Unicode Debug = Unicode Debug
+		Unicode Release = Unicode Release
+	EndGlobalSection
+	GlobalSection(ProjectConfiguration) = postSolution
+		{FA2A8E06-DD41-44E0-A1CB-02906D4A080E}.Unicode Debug.ActiveCfg = Unicode Debug|Win32
+		{FA2A8E06-DD41-44E0-A1CB-02906D4A080E}.Unicode Debug.Build.0 = Unicode Debug|Win32
+		{FA2A8E06-DD41-44E0-A1CB-02906D4A080E}.Unicode Release.ActiveCfg = Unicode Release|Win32
+		{FA2A8E06-DD41-44E0-A1CB-02906D4A080E}.Unicode Release.Build.0 = Unicode Release|Win32
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal

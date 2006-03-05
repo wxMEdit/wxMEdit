@@ -1,0 +1,63 @@
+# Windows/DOS Batch file
+Title=Batch
+CaseSensitive=No
+Delimiter=~`!@#$%^&*()-+=|\{}[]:;"',.<>/?
+LineComment=REM ::
+BlockComment=
+EscapeChar=
+StringChar="'
+DirectiveLeading=
+KeywordPrefix=
+SpecialWordPrefix=
+IndentChar=
+UnindentChar=
+BracePair=( ) [ ] { }
+AutoCompletePair=() [] {} "" ''
+
+# System Predefined Color & Style
+TextColor=Black
+TextBgColor=White
+TextStyle=
+
+DelimiterColor=SaddleBrown
+DelimiterBgColor=
+DelimiterStyle=
+
+SpaceColor=Aqua
+SpaceBgColor=
+SpaceStyle=
+
+NumberColor=Blue
+NumberBgColor=
+NumberStyle=
+
+StringColor=Red
+StringBgColor=
+StringStyle=
+
+CommentColor=Teal
+CommentBgColor=
+CommentStyle=
+
+DirectiveColor=Green
+DirectiveBgColor=
+DirectiveStyle=
+
+SpecialWordColor=Maroon
+SpecialWordBgColor=
+SpecialWordStyle=
+
+LineNumberColor=White
+LineNumberBgColor=A0A0A0
+LineNumberStyle=
+
+ActiveLineColor=Fuchsia
+BookmarkColor=C0FFFF
+
+# User Defined Keywords
+[Commands]
+Color=Black
+BgColor=
+Style=Bold
+InRange=0
+Keyword=accdate append break buffers call cd chdir chcp copy country ctty date dblspace del device devicehigh dir diskcomp do dos dosshell drivparm erase exist exit expand fasthelp fastopen fcbs files for goto graphics help if in include input install interlnk intersvr keyb lastdrive lfnfor lh loadfix loadhigh lock md mkdir memmaker menucolor menudefault menuitem msav msbackup msd nlsfunc not numlock off on path pause power print prompt qbasic ramdrive rd rmdir ren rename replace restore rmdir set share shell shift stacks strings submenu switches time tree truename type undelete unformat unlock ver verify vol vsafe wait choice cls echo arp atmadm calc cdplayer charmap cleanmgr clipbrd clspack command control cvtaplog defrag directcc drvspace drwatson dvdplay dvdrgn emm386 explorer extrac32 ftp grpconv hh hwinfo ipconfig jview mm2ent mplayer nbtstat net netconn netdde netstat netwatch notepad packager pbrush pidset ping pmres pmts progman regedit rg2catdb route rundll rundll32 scandskw scanregw setdebug setver sigverif sndrec32 sndvol32 smartdrv taskman taskmon telnet tracert tuneup twunk_16 twunk_32 upwizun win wincool winfile winhelp winhlp32 wininit winipcfg winpopup winver wjview write wscript wuauboot wuauclt wupdmgr actmovie addreg autochk awfxex32 carddrv cfgwiz32 cliconfg cmdl32 cmdninst cmmgr32 cmmon32 cmstp conagent dllhost fontreg gdi hidserv icsmgr ieshwiz internat irftp irmon jdbgmgr krnl386 lmscript locproxy locprxy2 mprexe msconfig msgsrv32 mstask mstinit odbcad32 odbcconf printimg protman pstores redir32 regenv32 regsvr32 regwiz rnaapp rpcss rsvp runonce sage spool32 ssdpsrv stimon sucatreg systray tapi16 tapiini tapisrv tapiupr tcmsetup tlocmgr user walign wiaacmgr wmiexe wsasrv cabbit rstrlfn rstrui statemgr stmgr mofcomp smbdpmi unsecapp wbemcntl wbemtest winmgmt attrib chkdsk cscript cvt debug deltree diskcopy doskey edit extract fc fdisk find format iextract label mem mode more move mscdex scandisk scanreg sort start subst sulfnbk sys xcopy xcopy32 errorlevel nul

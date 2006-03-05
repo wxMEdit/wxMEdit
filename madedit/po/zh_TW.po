@@ -1,0 +1,2117 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#: src/MadSearchDialog.cpp:120 src/MadReplaceDialog.cpp:121
+#: src/MadOptionsDialog.cpp:377 src/MadOptionsDialog.cpp:386
+#: src/MadOptionsDialog.cpp:395 src/MadOptionsDialog.cpp:414
+#: src/MadOptionsDialog.cpp:423 src/MadOptionsDialog.cpp:432
+#: src/MadOptionsDialog.cpp:460 src/MadOptionsDialog.cpp:486
+#: src/MadOptionsDialog.cpp:489 src/MadOptionsDialog.cpp:517
+#: src/MadOptionsDialog.cpp:518 src/MadOptionsDialog.cpp:520
+#: src/MadOptionsDialog.cpp:524 src/MadOptionsDialog.cpp:526
+#: src/MadOptionsDialog.cpp:530 src/MadOptionsDialog.cpp:532
+#: src/MadAboutDialog.cpp:59
+msgid ""
+msgstr ""
+"Project-Id-Version: MadEdit 0.1\n"
+"Report-Msgid-Bugs-To: madedit@gmail.com\n"
+"POT-Creation-Date: 2006-03-04 00:07+0800\n"
+"PO-Revision-Date: 2006-02-13 13:21+0800\n"
+"Last-Translator: madedit <madedit@gmail.com>\n"
+"Language-Team: MadEdit <madedit@gmail.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: Chinese\n"
+"X-Poedit-Country: TAIWAN\n"
+"X-Poedit-SourceCharset: utf-8\n"
+
+#: po/wxstd.po.cpp:2
+msgid "Unicode 16 bit (UTF-16)"
+msgstr "Unicode 16 bit (UTF-16)"
+
+#: po/wxstd.po.cpp:3
+msgid "Unicode 16 bit Big Endian (UTF-16BE)"
+msgstr "Unicode 16 bit Big Endian (UTF-16BE)"
+
+#: po/wxstd.po.cpp:4
+msgid "Unicode 16 bit Little Endian (UTF-16LE)"
+msgstr "Unicode 16 bit Little Endian (UTF-16LE)"
+
+#: po/wxstd.po.cpp:5
+msgid "Unicode 32 bit (UTF-32)"
+msgstr "Unicode 32 bit (UTF-32)"
+
+#: po/wxstd.po.cpp:6
+msgid "Unicode 32 bit Big Endian (UTF-32BE)"
+msgstr "Unicode 32 bit Big Endian (UTF-32BE)"
+
+#: po/wxstd.po.cpp:7
+msgid "Unicode 32 bit Little Endian (UTF-32LE)"
+msgstr "Unicode 32 bit Little Endian (UTF-32LE)"
+
+#: po/wxstd.po.cpp:8
+msgid "Unicode 7 bit (UTF-7)"
+msgstr "Unicode 7 bit (UTF-7)"
+
+#: po/wxstd.po.cpp:9
+msgid "Unicode 8 bit (UTF-8)"
+msgstr "Unicode 8 bit (UTF-8)"
+
+#: po/wxstd.po.cpp:10
+msgid "Western European (ISO-8859-1)"
+msgstr "西歐語系 (ISO-8859-1)"
+
+#: po/wxstd.po.cpp:11
+msgid "Central European (ISO-8859-2)"
+msgstr "中歐語系 (ISO-8859-2)"
+
+#: po/wxstd.po.cpp:12
+msgid "Esperanto (ISO-8859-3)"
+msgstr "世界語 (ISO-8859-3)"
+
+#: po/wxstd.po.cpp:13
+msgid "Baltic (old) (ISO-8859-4)"
+msgstr "波羅的海語 (舊的) (ISO-8859-4)"
+
+#: po/wxstd.po.cpp:14
+msgid "Cyrillic (ISO-8859-5)"
+msgstr "斯拉夫語 (ISO-8859-5)"
+
+#: po/wxstd.po.cpp:15
+msgid "Arabic (ISO-8859-6)"
+msgstr "阿拉伯語 (ISO-8859-6)"
+
+#: po/wxstd.po.cpp:16
+msgid "Greek (ISO-8859-7)"
+msgstr "希臘語 (ISO-8859-7)"
+
+#: po/wxstd.po.cpp:17
+msgid "Hebrew (ISO-8859-8)"
+msgstr "希伯來語 (ISO-8859-8)"
+
+#: po/wxstd.po.cpp:18
+msgid "Turkish (ISO-8859-9)"
+msgstr "土耳其語 (ISO-8859-9)"
+
+#: po/wxstd.po.cpp:19
+msgid "Nordic (ISO-8859-10)"
+msgstr "北歐語系 (ISO-8859-10)"
+
+#: po/wxstd.po.cpp:20
+msgid "Thai (ISO-8859-11)"
+msgstr "泰語 (ISO-8859-11)"
+
+#: po/wxstd.po.cpp:21
+msgid "Indian (ISO-8859-12)"
+msgstr "印度語 (ISO-8859-12)"
+
+#: po/wxstd.po.cpp:22
+msgid "Baltic (ISO-8859-13)"
+msgstr "波羅的海語 (ISO-8859-13)"
+
+#: po/wxstd.po.cpp:23
+msgid "Celtic (ISO-8859-14)"
+msgstr "凱爾特語 (ISO-8859-14)"
+
+#: po/wxstd.po.cpp:24
+msgid "Western European with Euro (ISO-8859-15)"
+msgstr "西歐與歐洲 (ISO-8859-15)"
+
+#: po/wxstd.po.cpp:25
+msgid "KOI8-R"
+msgstr "斯拉夫文 (KOI8-R)"
+
+#: po/wxstd.po.cpp:26
+msgid "KOI8-U"
+msgstr "斯拉夫文 (KOI8-U)"
+
+#: po/wxstd.po.cpp:27
+msgid "Windows Thai (CP 874)"
+msgstr "泰文 (CP 874)"
+
+#: po/wxstd.po.cpp:28
+msgid "Windows Central European (CP 1250)"
+msgstr "中歐語系 (CP 1250)"
+
+#: po/wxstd.po.cpp:29
+msgid "Windows Cyrillic (CP 1251)"
+msgstr "斯拉夫文 (CP 1251)"
+
+#: po/wxstd.po.cpp:30
+msgid "Windows Western European (CP 1252)"
+msgstr "西歐語系 (CP 1252)"
+
+#: po/wxstd.po.cpp:31
+msgid "Windows Greek (CP 1253)"
+msgstr "希臘文 (CP 1253)"
+
+#: po/wxstd.po.cpp:32
+msgid "Windows Turkish (CP 1254)"
+msgstr "土耳其文 (CP 1254)"
+
+#: po/wxstd.po.cpp:33
+msgid "Windows Hebrew (CP 1255)"
+msgstr "希伯來文 (CP 1255)"
+
+#: po/wxstd.po.cpp:34
+msgid "Windows Arabic (CP 1256)"
+msgstr "阿拉伯文 (CP 1256)"
+
+#: po/wxstd.po.cpp:35
+msgid "Windows Baltic (CP 1257)"
+msgstr "波羅的海文 (CP 1257)"
+
+#: po/wxstd.po.cpp:36
+msgid "Windows Japanese (CP 932)"
+msgstr "日文 (CP 932)"
+
+#: po/wxstd.po.cpp:37
+msgid "Windows Chinese Simplified (CP 936)"
+msgstr "簡體中文 (CP 936)"
+
+#: po/wxstd.po.cpp:38
+msgid "Windows Korean (CP 949)"
+msgstr "韓文 (CP 949)"
+
+#: po/wxstd.po.cpp:39
+msgid "Windows Chinese Traditional (CP 950)"
+msgstr "繁體中文 (CP 950)"
+
+#: po/wxstd.po.cpp:40
+msgid "Extended Unix Codepage for Japanese (EUC-JP)"
+msgstr "日文 (EUC-JP)"
+
+#: po/wxstd.po.cpp:41
+msgid "Windows/DOS OEM (CP 437)"
+msgstr "Windows/DOS OEM (CP 437)"
+
+#: po/wxstd.po.cpp:42
+msgid "OK"
+msgstr "確定"
+
+#: po/wxstd.po.cpp:43
+msgid "Cancel"
+msgstr "取消"
+
+#: po/wxstd.po.cpp:44
+#, c-format
+msgid "File '%s' already exists, do you really want to overwrite it?"
+msgstr "檔案 '%s' 已存在，是否真要覆寫？"
+
+#: po/wxstd.po.cpp:45
+msgid "&Close"
+msgstr "關閉(&C)"
+
+#: po/wxstd.po.cpp:46
+msgid "&Goto..."
+msgstr "移到(&G)..."
+
+#: po/wxstd.po.cpp:47
+msgid "Goto Page"
+msgstr "移到此頁"
+
+#: po/wxstd.po.cpp:48
+#, c-format
+msgid "Enter a page number between %d and %d:"
+msgstr "請輸入介於 %d 到 %d 之間的頁數："
+
+#: po/wxstd.po.cpp:49
+msgid "Please wait while printing\n"
+msgstr "列印中，請等待\n"
+
+#: po/wxstd.po.cpp:50
+msgid "Printing "
+msgstr "列印"
+
+#: po/wxstd.po.cpp:51
+msgid "All"
+msgstr "全部"
+
+#: po/wxstd.po.cpp:52
+msgid "Bottom margin (mm):"
+msgstr "下邊界(mm)："
+
+#: po/wxstd.po.cpp:53
+msgid "Copies:"
+msgstr "份數："
+
+#: po/wxstd.po.cpp:54
+msgid "Default printer"
+msgstr "預設的印表機"
+
+#: po/wxstd.po.cpp:55
+msgid "From:"
+msgstr "從："
+
+#: po/wxstd.po.cpp:56
+msgid "Landscape"
+msgstr "橫向"
+
+#: po/wxstd.po.cpp:57
+msgid "Left margin (mm):"
+msgstr "左邊界(mm)："
+
+#: po/wxstd.po.cpp:58
+msgid "Orientation"
+msgstr "方向"
+
+#: po/wxstd.po.cpp:59
+msgid "Page Setup"
+msgstr "頁面設定"
+
+#: po/wxstd.po.cpp:60
+msgid "Pages"
+msgstr "頁"
+
+#: po/wxstd.po.cpp:61
+msgid "Paper Size"
+msgstr "紙張尺寸"
+
+#: po/wxstd.po.cpp:62
+msgid "Paper size"
+msgstr "紙張尺寸"
+
+#: po/wxstd.po.cpp:63
+msgid "Portrait"
+msgstr "直向"
+
+#: po/wxstd.po.cpp:64
+msgid "PostScript file"
+msgstr "PostScript 檔案"
+
+#: po/wxstd.po.cpp:65
+msgid "Print Range"
+msgstr "列印範圍"
+
+#: po/wxstd.po.cpp:66
+msgid "Print Setup"
+msgstr "列印設定"
+
+#: po/wxstd.po.cpp:67
+msgid "Print in colour"
+msgstr "彩色列印"
+
+#: po/wxstd.po.cpp:68
+msgid "Print spooling"
+msgstr "列印多工緩衝"
+
+#: po/wxstd.po.cpp:69
+msgid "Print to File"
+msgstr "列印到檔案"
+
+#: po/wxstd.po.cpp:70
+msgid "Printer"
+msgstr "印表機"
+
+#: po/wxstd.po.cpp:71
+msgid "Printer command:"
+msgstr "印表機命令："
+
+#: po/wxstd.po.cpp:72
+msgid "Printer options"
+msgstr "印表機選項"
+
+#: po/wxstd.po.cpp:73
+msgid "Printer options:"
+msgstr "印表機選項："
+
+#: po/wxstd.po.cpp:74
+msgid "Printer..."
+msgstr "印表機..."
+
+#: po/wxstd.po.cpp:75
+msgid "Printer:"
+msgstr "印表機："
+
+#: po/wxstd.po.cpp:76
+msgid "Right margin (mm):"
+msgstr "右邊界(mm)："
+
+#: po/wxstd.po.cpp:77
+msgid "Setup..."
+msgstr "設定..."
+
+#: po/wxstd.po.cpp:78
+msgid "Status:"
+msgstr "狀態："
+
+#: po/wxstd.po.cpp:79
+msgid "To:"
+msgstr "到："
+
+#: po/wxstd.po.cpp:80
+msgid "Top margin (mm):"
+msgstr "上邊界(mm)："
+
+#: src/MadEdit/MadEdit.cpp:10410
+#, c-format
+msgid ""
+"Do you want to continue?\n"
+"The file size is %s bytes.\n"
+"It may take long time and large memories to convert to Text/Column Mode."
+msgstr ""
+"要繼續嗎?\n"
+"這個檔案的長度是 %s 位元組，\n"
+"可能會花很多時間和記憶體在轉換到文字/區塊模式上。"
+
+#: src/MadEdit/MadEdit.cpp:10410
+msgid "Hex Mode to Text/Column Mode"
+msgstr "十六進位模式轉換到文字/區塊模式"
+
+#: src/MadEdit/MadEdit.cpp:12929
+msgid "The input string is not a valid Hex-String:"
+msgstr "這個不是正確的十六進位字串："
+
+#: src/MadEdit/MadEdit.cpp:13386 src/MadEdit/MadEdit.cpp:13455
+#: src/MadEditFrame.cpp:1978
+msgid "The Parent Directory of this file does not exist:"
+msgstr "這個檔案所屬的目錄不存在:"
+
+#: src/MadEdit/MadEdit.cpp:13475
+msgid "Cannot save this file:"
+msgstr "無法儲存這個檔案:"
+
+#: src/MadEdit/MadEdit.cpp:13502
+msgid "Do you want to save this file?"
+msgstr "要儲存這個檔案嗎?"
+
+#: src/MadEdit/MadEdit.cpp:13513
+msgid "Save File As"
+msgstr "另存新檔"
+
+#: src/MadEdit/MadEdit.cpp:13517 src/MadEditFrame.cpp:1546
+msgid "Save File"
+msgstr "儲存檔案"
+
+#: src/MadEdit/MadEdit.cpp:13551
+msgid "Do you want to discard changes?"
+msgstr "要放棄所做的修改嗎?"
+
+#: src/MadEdit/MadEdit.cpp:13585
+msgid "This file has been changed by another application."
+msgstr "這個檔案被其他程式修改過了。"
+
+#: src/MadEdit/MadEdit.cpp:13586
+msgid "Do you want to reload it?"
+msgstr "要重新載入嗎？"
+
+#: src/MadEdit/MadEditSearch.cpp:524 src/MadEdit/MadEditSearch.cpp:737
+#, c-format
+msgid "'%s' is not a valid regular expression."
+msgstr "'%s' 不是正確的正規表示式."
+
+#: src/MadEdit/MadEditSearch.cpp:646
+msgid ""
+"Catched a exception of 'regex_error'.\n"
+"Maybe the regular expression is invalid."
+msgstr ""
+"發生例外狀況： 'regex_error'\n"
+"可能是正規表示式不正確所造成的。"
+
+#: src/MadEdit/MadEditSearch.cpp:773
+#, c-format
+msgid "The format of '%s' is invalid."
+msgstr "'%s' 的格式不正確。"
+
+#: src/MadEditFrame.cpp:342
+msgid "Ln:"
+msgstr "行:"
+
+#: src/MadEditFrame.cpp:345
+msgid "Sub:"
+msgstr "次行:"
+
+#: src/MadEditFrame.cpp:348
+msgid "Col:"
+msgstr "列:"
+
+#: src/MadEditFrame.cpp:349
+msgid "CharPos:"
+msgstr "字元位置:"
+
+#: src/MadEditFrame.cpp:350
+msgid "SelSize:"
+msgstr "選取長度:"
+
+#: src/MadEditFrame.cpp:459
+msgid "ReadOnly"
+msgstr "唯讀"
+
+#: src/MadEditFrame.cpp:469
+msgid "INS"
+msgstr "插入"
+
+#: src/MadEditFrame.cpp:474
+msgid "OVR"
+msgstr "覆寫"
+
+#: src/MadEditFrame.cpp:752
+msgid "&File"
+msgstr "檔案(&F)"
+
+#: src/MadEditFrame.cpp:753
+msgid "&New"
+msgstr "新檔案(&N)"
+
+#: src/MadEditFrame.cpp:753
+msgid "Create a new file"
+msgstr "建立新檔案"
+
+#: src/MadEditFrame.cpp:754
+msgid "&Open..."
+msgstr "開啟檔案(&O)..."
+
+#: src/MadEditFrame.cpp:754
+msgid "Open an existing file"
+msgstr "開啟舊的檔案"
+
+#: src/MadEditFrame.cpp:756
+msgid "&Save"
+msgstr "儲存檔案(&S)"
+
+#: src/MadEditFrame.cpp:756
+msgid "Save the file"
+msgstr "儲存檔案"
+
+#: src/MadEditFrame.cpp:757
+msgid "Save &As..."
+msgstr "另存新檔(&A)..."
+
+#: src/MadEditFrame.cpp:757
+msgid "Save the file with a new name"
+msgstr "儲存為另一個檔案"
+
+#: src/MadEditFrame.cpp:758
+msgid "Sa&ve All"
+msgstr "儲存所有檔案(&V)"
+
+#: src/MadEditFrame.cpp:758
+msgid "Save all files"
+msgstr "儲存全部的檔案"
+
+#: src/MadEditFrame.cpp:760
+msgid "&Reload"
+msgstr "重讀檔案(&R)"
+
+#: src/MadEditFrame.cpp:760
+msgid "Reload the file"
+msgstr "重新載入檔案"
+
+#: src/MadEditFrame.cpp:762
+msgid "&Close File"
+msgstr "關閉檔案(&C)"
+
+#: src/MadEditFrame.cpp:762
+msgid "Close the file"
+msgstr "關閉檔案"
+
+#: src/MadEditFrame.cpp:763
+msgid "C&lose All"
+msgstr "關閉所有檔案(&L)"
+
+#: src/MadEditFrame.cpp:763
+msgid "Close all files"
+msgstr "關閉全部的檔案"
+
+#: src/MadEditFrame.cpp:765
+msgid "Page Set&up..."
+msgstr "頁面設定(&U)..."
+
+#: src/MadEditFrame.cpp:765
+msgid "Setup the pages for printing"
+msgstr "設定列印時的頁面格式"
+
+#: src/MadEditFrame.cpp:766
+msgid "Print Previe&w..."
+msgstr "預覽列印(&W)..."
+
+#: src/MadEditFrame.cpp:766
+msgid "Preview the result of printing"
+msgstr "預先瀏覽列印的結果"
+
+#: src/MadEditFrame.cpp:767
+msgid "&Print..."
+msgstr "列印(&P)..."
+
+#: src/MadEditFrame.cpp:767
+msgid "Print the file"
+msgstr "列印檔案"
+
+#: src/MadEditFrame.cpp:769
+msgid "Recent Files"
+msgstr "最近開啟的檔案"
+
+#: src/MadEditFrame.cpp:771
+msgid "E&xit"
+msgstr "結束(&X)"
+
+#: src/MadEditFrame.cpp:771
+msgid "Quit MadEdit"
+msgstr "離開 MadEdit"
+
+#: src/MadEditFrame.cpp:774
+msgid "&Edit"
+msgstr "編輯(&E)"
+
+#: src/MadEditFrame.cpp:775
+msgid "&Undo"
+msgstr "回復(&U)"
+
+#: src/MadEditFrame.cpp:775
+msgid "Undo the last action"
+msgstr "回復上一個動作"
+
+#: src/MadEditFrame.cpp:777
+msgid "&Redo"
+msgstr "重做(&R)"
+
+#: src/MadEditFrame.cpp:783
+msgid "Redo the previously undone action"
+msgstr "重做之前回復的動作"
+
+#: src/MadEditFrame.cpp:786
+msgid "Cu&t"
+msgstr "剪下(&T)"
+
+#: src/MadEditFrame.cpp:786
+msgid "Cut the selection and put it on the Clipboard"
+msgstr "剪下選取的資料並貼到剪貼簿中"
+
+#: src/MadEditFrame.cpp:787
+msgid "&Copy"
+msgstr "複製(&C)"
+
+#: src/MadEditFrame.cpp:787
+msgid "Copy the selection and put it on the Clipboard"
+msgstr "複製選取的資料到剪貼簿中"
+
+#: src/MadEditFrame.cpp:788
+msgid "&Paste"
+msgstr "貼上(&P)"
+
+#: src/MadEditFrame.cpp:788
+msgid "Insert data from the Clipboard"
+msgstr "將剪貼簿中的資料插入到檔案中"
+
+#: src/MadEditFrame.cpp:789
+msgid "&Delete"
+msgstr "刪除(&D)"
+
+#: src/MadEditFrame.cpp:789
+msgid "Delete data"
+msgstr "刪除資料"
+
+#: src/MadEditFrame.cpp:791
+msgid "Cut L&ine"
+msgstr "剪下整行(&I)"
+
+#: src/MadEditFrame.cpp:791
+msgid "Cut the selected lines and put it on the Clipboard"
+msgstr "剪下選取行並貼到剪貼簿中"
+
+#: src/MadEditFrame.cpp:793
+msgid "Delete &Line"
+msgstr "刪除整行(&L)"
+
+#: src/MadEditFrame.cpp:799
+msgid "Delete the selected lines"
+msgstr "刪除選取行"
+
+#: src/MadEditFrame.cpp:802
+msgid "Select &All"
+msgstr "選取全部(&A)"
+
+#: src/MadEditFrame.cpp:802
+msgid "Select all data"
+msgstr "選取全部的資料"
+
+#: src/MadEditFrame.cpp:804
+msgid "Ad&vanced"
+msgstr "進階(&V)"
+
+#: src/MadEditFrame.cpp:805
+msgid "Copy As &Hex String"
+msgstr "複製為十六進位字串(&H)"
+
+#: src/MadEditFrame.cpp:805
+msgid "Copy the selection as hex-string"
+msgstr "將選取資料複製為十六進位字串"
+
+#: src/MadEditFrame.cpp:806
+msgid "Copy As He&x String with Space"
+msgstr "複製為十六進位字串(含空白字元)(&X)"
+
+#: src/MadEditFrame.cpp:806
+msgid "Copy the selection as hex-string with space"
+msgstr "將選取資料複製為含空白字元的十六進位字串"
+
+#: src/MadEditFrame.cpp:808
+msgid "&Increase Indent"
+msgstr "增加縮排(&I)"
+
+#: src/MadEditFrame.cpp:808
+msgid "Increase the indent of seleted lines"
+msgstr "增加選取行的縮排"
+
+#: src/MadEditFrame.cpp:809
+msgid "&Decrease Indent"
+msgstr "減少縮排(&D)"
+
+#: src/MadEditFrame.cpp:809
+msgid "Decrease the indent of seleted lines"
+msgstr "減少選取行的縮排"
+
+#: src/MadEditFrame.cpp:811
+msgid "&Comment"
+msgstr "註解(&C)"
+
+#: src/MadEditFrame.cpp:811
+msgid "Comment out the selected lines"
+msgstr "註解選取行"
+
+#: src/MadEditFrame.cpp:812
+msgid "&Uncomment"
+msgstr "取消註解(&U)"
+
+#: src/MadEditFrame.cpp:812
+msgid "Uncomment the selected lines"
+msgstr "將選取行的註解取消"
+
+#: src/MadEditFrame.cpp:814
+msgid "To U&pperCase"
+msgstr "轉成大寫(&U)"
+
+#: src/MadEditFrame.cpp:814
+msgid "Convert the selection to uppercase"
+msgstr "將選取的文字轉為大寫"
+
+#: src/MadEditFrame.cpp:815
+msgid "To L&owerCase"
+msgstr "轉成小寫(&O)"
+
+#: src/MadEditFrame.cpp:815
+msgid "Convert the selection to lowercase"
+msgstr "將選取的文字轉為小寫"
+
+#: src/MadEditFrame.cpp:816
+msgid "Inver&t Case"
+msgstr "大小寫互換(&T)"
+
+#: src/MadEditFrame.cpp:816
+msgid "Invert the case of the selection"
+msgstr "將選取文字的大小寫互換"
+
+#: src/MadEditFrame.cpp:822
+msgid "&Search"
+msgstr "搜尋(&S)"
+
+#: src/MadEditFrame.cpp:823
+msgid "&Find..."
+msgstr "尋找(&F)..."
+
+#: src/MadEditFrame.cpp:823
+msgid "Find a string"
+msgstr "尋找字串"
+
+#: src/MadEditFrame.cpp:824 src/MadSearchDialog.cpp:108
+#: src/MadReplaceDialog.cpp:109
+msgid "Find &Next"
+msgstr "找下一個(&N)"
+
+#: src/MadEditFrame.cpp:824
+msgid "Find next occurrence"
+msgstr "到字串下一個出現的地方"
+
+#: src/MadEditFrame.cpp:825 src/MadSearchDialog.cpp:111
+msgid "Find &Previous"
+msgstr "找上一個(&P)"
+
+#: src/MadEditFrame.cpp:825
+msgid "Find previous occurrence"
+msgstr "到字串上一個出現的地方"
+
+#: src/MadEditFrame.cpp:827
+msgid "&Replace..."
+msgstr "取代(&R)..."
+
+#: src/MadEditFrame.cpp:827
+msgid "Replace a string"
+msgstr "取代字串"
+
+#: src/MadEditFrame.cpp:829
+msgid "&Go To Line..."
+msgstr "跳到某行(&G)..."
+
+#: src/MadEditFrame.cpp:829
+msgid "Go to the specified line"
+msgstr "跳到想要的行數"
+
+#: src/MadEditFrame.cpp:830
+msgid "G&o To Position..."
+msgstr "跳到檔案位置(&O)..."
+
+#: src/MadEditFrame.cpp:830
+msgid "Go to the specified position"
+msgstr "跳到想要的位置"
+
+#: src/MadEditFrame.cpp:832
+msgid "Go To L&eft Brace"
+msgstr "跳到左括號(&E)"
+
+#: src/MadEditFrame.cpp:832
+msgid "Go to left brace"
+msgstr "跳到左括號"
+
+#: src/MadEditFrame.cpp:833
+msgid "Go To R&ight Brace"
+msgstr "跳到右括號(&I)"
+
+#: src/MadEditFrame.cpp:833
+msgid "Go to right brace"
+msgstr "跳到右括號"
+
+#: src/MadEditFrame.cpp:836
+msgid "&View"
+msgstr "檢視(&V)"
+
+#: src/MadEditFrame.cpp:837 src/MadEditFrame.cpp:2213
+#: src/MadEditFrame.cpp:2220
+msgid "Encoding: "
+msgstr "編碼: "
+
+#: src/MadEditFrame.cpp:838
+msgid "All Encodings"
+msgstr "所有的編碼"
+
+#: src/MadEditFrame.cpp:840 src/MadEditFrame.cpp:2229
+#: src/MadEditFrame.cpp:2234
+msgid "Syntax Type: "
+msgstr "語法類型: "
+
+#: src/MadEditFrame.cpp:842 src/MadEditFrame.cpp:2246
+#: src/MadEditFrame.cpp:2251
+msgid "Font Name: "
+msgstr "字型名稱: "
+
+#: src/MadEditFrame.cpp:843
+msgid "[@]"
+msgstr ""
+
+#: src/MadEditFrame.cpp:844
+msgid "[ABCDE]"
+msgstr ""
+
+#: src/MadEditFrame.cpp:845
+msgid "[FGHIJ]"
+msgstr ""
+
+#: src/MadEditFrame.cpp:846
+msgid "[KLMNO]"
+msgstr ""
+
+#: src/MadEditFrame.cpp:847
+msgid "[PQRST]"
+msgstr ""
+
+#: src/MadEditFrame.cpp:848
+msgid "[UVWXYZ]"
+msgstr ""
+
+#: src/MadEditFrame.cpp:849
+msgid "[other]"
+msgstr "[其他]"
+
+#: src/MadEditFrame.cpp:851 src/MadEditFrame.cpp:2262
+#: src/MadEditFrame.cpp:2267
+msgid "Font Size: "
+msgstr "字型大小: "
+
+#: src/MadEditFrame.cpp:852
+msgid "Set font point-size"
+msgstr "設定字型大小"
+
+#: src/MadEditFrame.cpp:925
+msgid "Set Font..."
+msgstr "設定字型..."
+
+#: src/MadEditFrame.cpp:925
+msgid "Change font settings"
+msgstr "改變字型設定"
+
+#: src/MadEditFrame.cpp:926
+msgid "&Fixed Width Mode"
+msgstr "固定寬度模式(&F)"
+
+#: src/MadEditFrame.cpp:926
+msgid "Set/Unset the font with Fixed Width"
+msgstr "設定或取消字型為固定的寬度"
+
+#: src/MadEditFrame.cpp:929 src/MadEditFrame.cpp:2286
+#: src/MadEditFrame.cpp:2291
+msgid "Tab Column: "
+msgstr "定位(Tab)字元的長度: "
+
+#: src/MadEditFrame.cpp:930
+msgid "Set column of Tab char"
+msgstr "設定定位(Tab)字元的長度"
+
+#: src/MadEditFrame.cpp:948 src/MadEditFrame.cpp:2300
+#: src/MadEditFrame.cpp:2305
+msgid "Line Spacing: "
+msgstr "行間距: "
+
+#: src/MadEditFrame.cpp:949
+msgid "Set line spacing"
+msgstr "設定行間距"
+
+#: src/MadEditFrame.cpp:982
+msgid "&No Wrap"
+msgstr "不使用折行(&N)"
+
+#: src/MadEditFrame.cpp:982
+msgid "Do not wrap lines"
+msgstr "不要折行"
+
+#: src/MadEditFrame.cpp:983
+msgid "Wrap By &Window"
+msgstr "依視窗寬度折行(&W)"
+
+#: src/MadEditFrame.cpp:983
+msgid "Wrap the lines by the window width"
+msgstr "依視窗的寬度來折行"
+
+#: src/MadEditFrame.cpp:984
+msgid "Wrap By Column"
+msgstr "依最大長度折行"
+
+#: src/MadEditFrame.cpp:984
+msgid "Wrap the lines by the specified Max Columns"
+msgstr "依設定的最大長度來折行"
+
+#: src/MadEditFrame.cpp:986
+msgid "&Display Line Number"
+msgstr "顯示行號(&D)"
+
+#: src/MadEditFrame.cpp:986
+msgid "Display the Line Numbers"
+msgstr "顯示行號"
+
+#: src/MadEditFrame.cpp:987
+msgid "Show End Of Line"
+msgstr "顯示每行結尾符號"
+
+#: src/MadEditFrame.cpp:987
+msgid "Show the sign of EndOfLine"
+msgstr "顯示每行結尾符號"
+
+#: src/MadEditFrame.cpp:988
+msgid "Show Tab Char"
+msgstr "顯示定位(Tab)字元"
+
+#: src/MadEditFrame.cpp:988
+msgid "Show the sign of Tab char"
+msgstr "顯示定位(Tab)字元"
+
+#: src/MadEditFrame.cpp:989
+msgid "Show Space Char"
+msgstr "顯示空白字元"
+
+#: src/MadEditFrame.cpp:989
+msgid "Show the sign of Space char"
+msgstr "顯示空白字元"
+
+#: src/MadEditFrame.cpp:990
+msgid "Mark Active Line"
+msgstr "標示所在行"
+
+#: src/MadEditFrame.cpp:990
+msgid "Mark the current line"
+msgstr "標示所在行"
+
+#: src/MadEditFrame.cpp:991
+msgid "Mark Brace Pair"
+msgstr "標示括號"
+
+#: src/MadEditFrame.cpp:991
+msgid "Mark the BracePair under the caret"
+msgstr "標示游標所在處的括號"
+
+#: src/MadEditFrame.cpp:993
+msgid "&Text Mode"
+msgstr "普通文字模式(&T)"
+
+#: src/MadEditFrame.cpp:993
+msgid "Change the editing mode to Text-Mode"
+msgstr "改變編輯模式為一般文字模式"
+
+#: src/MadEditFrame.cpp:994
+msgid "&Column Mode"
+msgstr "區塊模式(&C)"
+
+#: src/MadEditFrame.cpp:994
+msgid "Change the editing mode to Column-Mode"
+msgstr "改變編輯模式為區塊模式"
+
+#: src/MadEditFrame.cpp:995
+msgid "&Hex Mode"
+msgstr "十六進位模式(&H)"
+
+#: src/MadEditFrame.cpp:995
+msgid "Change the editing mode to Hex-Mode"
+msgstr "改變編輯模式為十六進位模式"
+
+#: src/MadEditFrame.cpp:998
+msgid "&Tools"
+msgstr "工具(&T)"
+
+#: src/MadEditFrame.cpp:999
+msgid "&Options..."
+msgstr "選項(&O)..."
+
+#: src/MadEditFrame.cpp:999
+msgid "Change the configuration"
+msgstr "改變設定"
+
+#: src/MadEditFrame.cpp:1001 src/MadEditFrame.cpp:2382
+msgid "Has Unicode BOM (Byte-Order Mark)"
+msgstr "有 Unicode BOM (Byte-Order Mark)"
+
+#: src/MadEditFrame.cpp:1002
+msgid "Add/Remove BOM"
+msgstr "插入/刪除 BOM"
+
+#: src/MadEditFrame.cpp:1002
+msgid "Add/Remove Unicode BOM"
+msgstr "插入/刪除 Unicode BOM"
+
+#: src/MadEditFrame.cpp:1004 src/MadEditFrame.cpp:2397
+msgid "NewLine Char (File Format): "
+msgstr "換行字元(檔案格式): "
+
+#: src/MadEditFrame.cpp:1005
+msgid "Convert To CRLF/0D0A (&DOS)"
+msgstr "轉換到 CRLF/0D0A (&DOS)"
+
+#: src/MadEditFrame.cpp:1005
+msgid "Convert the file format to DOS format"
+msgstr "轉換檔案格式為 DOS 的格式"
+
+#: src/MadEditFrame.cpp:1006
+msgid "Convert To CR/0D (&MAC)"
+msgstr "轉換到 CR/0D (&MAC)"
+
+#: src/MadEditFrame.cpp:1006
+msgid "Convert the file format to MAC format"
+msgstr "轉換檔案格式為 MAC 的格式"
+
+#: src/MadEditFrame.cpp:1007
+msgid "Convert To LF/0A (&UNIX)"
+msgstr "轉換到 LF/0A (&UNIX)"
+
+#: src/MadEditFrame.cpp:1007
+msgid "Convert the file format to UNIX format"
+msgstr "轉換檔案格式為 UNIX 的格式"
+
+#: src/MadEditFrame.cpp:1008 src/MadEditFrame.cpp:2418
+msgid "Press Enter to Insert NewLine Char: "
+msgstr "按Enter插入的換行字元: "
+
+#: src/MadEditFrame.cpp:1009
+msgid "Insert CRLF/0D0A (&DOS)"
+msgstr "插入 CRLF/0D0A (&DOS)"
+
+#: src/MadEditFrame.cpp:1009
+msgid "Insert CR&LF chars when press Enter key"
+msgstr "按 Enter 鍵時插入 CR&LF 字元"
+
+#: src/MadEditFrame.cpp:1010
+msgid "Insert CR/0D (&MAC)"
+msgstr "插入 CR/0D (&MAC)"
+
+#: src/MadEditFrame.cpp:1010
+msgid "Insert CR char when press Enter key"
+msgstr "按 Enter 鍵時插入 CR 字元"
+
+#: src/MadEditFrame.cpp:1011
+msgid "Insert LF/0A (&UNIX)"
+msgstr "插入 LF/0A (&UNIX)"
+
+#: src/MadEditFrame.cpp:1011
+msgid "Insert LF char when press Enter key"
+msgstr "按 Enter 鍵時插入 LF 字元"
+
+#: src/MadEditFrame.cpp:1014 src/MadEditFrame.cpp:1016
+msgid "Insert &Tab Char"
+msgstr "插入定位(Tab)字元(&T)"
+
+#: src/MadEditFrame.cpp:1014 src/MadEditFrame.cpp:1016
+msgid "Insert a Tab char at current position"
+msgstr "插入定位(Tab)字元到現在的位置"
+
+#: src/MadEditFrame.cpp:1019
+msgid "Convert File &Encoding..."
+msgstr "轉換檔案編碼(&E)..."
+
+#: src/MadEditFrame.cpp:1019
+msgid "Convert to the specified encoding"
+msgstr "轉換到指定的編碼"
+
+#: src/MadEditFrame.cpp:1021
+msgid "Convert &Chinese Char"
+msgstr "轉換中文字元(&C)"
+
+#: src/MadEditFrame.cpp:1022
+msgid "File: Simplified => &Traditional Chinese"
+msgstr "檔案：簡體 => 繁體中文(&T)"
+
+#: src/MadEditFrame.cpp:1022
+msgid ""
+"Convert simplified Chinese chars to traditional Chinese chars in the file"
+msgstr "把檔案中的簡體字轉換成繁體字"
+
+#: src/MadEditFrame.cpp:1023
+msgid "File: Traditional => &Simplified Chinese"
+msgstr "檔案：繁體 => 簡體中文(&S)"
+
+#: src/MadEditFrame.cpp:1023
+msgid ""
+"Convert traditional Chinese chars to simplified Chinese chars in the file"
+msgstr "把檔案中的繁體字轉換成簡體字"
+
+#: src/MadEditFrame.cpp:1025
+msgid "Clipboard: Simplified => T&raditional Chinese"
+msgstr "剪貼簿：簡體 => 繁體中文(&R)"
+
+#: src/MadEditFrame.cpp:1025
+msgid ""
+"Convert simplified Chinese chars to traditional Chinese chars in the "
+"clipboard"
+msgstr "把剪貼簿中的簡體字轉換成繁體字"
+
+#: src/MadEditFrame.cpp:1026
+msgid "Clipboard: Traditional => S&implified Chinese"
+msgstr "剪貼簿：繁體 => 簡體中文(&I)"
+
+#: src/MadEditFrame.cpp:1026
+msgid ""
+"Convert traditional Chinese chars to simplified Chinese chars in the "
+"clipboard"
+msgstr "把剪貼簿中的繁體字轉換成簡體字"
+
+#: src/MadEditFrame.cpp:1029
+msgid "&Window"
+msgstr "視窗(&W)"
+
+#: src/MadEditFrame.cpp:1030
+msgid "&Toggle Window"
+msgstr "跳到上一個視窗(&T)"
+
+#: src/MadEditFrame.cpp:1030
+msgid "Switch to the previous active window"
+msgstr "跳到前一次開啟的視窗"
+
+#: src/MadEditFrame.cpp:1031
+msgid "&Previous Window"
+msgstr "前一個視窗(&P)"
+
+#: src/MadEditFrame.cpp:1031
+msgid "Activate the previous window"
+msgstr "跳到前一個視窗"
+
+#: src/MadEditFrame.cpp:1032
+msgid "&Next Window"
+msgstr "後一個視窗(&T)"
+
+#: src/MadEditFrame.cpp:1032
+msgid "Activate the next window"
+msgstr "跳到後一個視窗"
+
+#: src/MadEditFrame.cpp:1035
+msgid "&Help"
+msgstr "求助(&H)"
+
+#: src/MadEditFrame.cpp:1036
+msgid "&About MadEdit..."
+msgstr "關於 MadEdit (&A)..."
+
+#: src/MadEditFrame.cpp:1040
+msgid "Move caret left one char"
+msgstr "游標向左移動一字元"
+
+#: src/MadEditFrame.cpp:1041
+msgid "Move caret right one char"
+msgstr "游標向右移動一字元"
+
+#: src/MadEditFrame.cpp:1042
+msgid "Move caret up one line"
+msgstr "游標向上移動一行"
+
+#: src/MadEditFrame.cpp:1043
+msgid "Move caret down one line"
+msgstr "游標向下移動一行"
+
+#: src/MadEditFrame.cpp:1044
+msgid "Go to begin of line"
+msgstr "跳到行的開頭"
+
+#: src/MadEditFrame.cpp:1045
+msgid "Go to end of line"
+msgstr "跳到行的結尾"
+
+#: src/MadEditFrame.cpp:1046
+msgid "Go to begin of document"
+msgstr "跳到文件的開頭"
+
+#: src/MadEditFrame.cpp:1047
+msgid "Go to end of document"
+msgstr "跳到文件的結尾"
+
+#: src/MadEditFrame.cpp:1048
+msgid "Go to previous page"
+msgstr "跳到上一頁"
+
+#: src/MadEditFrame.cpp:1049
+msgid "Go to next page"
+msgstr "跳到下一頁"
+
+#: src/MadEditFrame.cpp:1050
+msgid "Go to previous word"
+msgstr "跳到上一個字"
+
+#: src/MadEditFrame.cpp:1051
+msgid "Go to next word"
+msgstr "跳到下一個字"
+
+#: src/MadEditFrame.cpp:1053
+msgid "Move caret left one char and select"
+msgstr "游標向左移動一字元並選取"
+
+#: src/MadEditFrame.cpp:1054
+msgid "Move caret right one char and select"
+msgstr "游標向右移動一字元並選取"
+
+#: src/MadEditFrame.cpp:1055
+msgid "Move caret up one line and select"
+msgstr "游標向上移動一行並選取"
+
+#: src/MadEditFrame.cpp:1056
+msgid "Move caret down one line and select"
+msgstr "游標向下移動一行並選取"
+
+#: src/MadEditFrame.cpp:1057
+msgid "Go to begin of line and select"
+msgstr "跳到行的開頭並選取"
+
+#: src/MadEditFrame.cpp:1058
+msgid "Go to end of line and select"
+msgstr "跳到行的結尾並選取"
+
+#: src/MadEditFrame.cpp:1059
+msgid "Go to begin of document and select"
+msgstr "跳到文件的開頭並選取"
+
+#: src/MadEditFrame.cpp:1060
+msgid "Go to end of document and select"
+msgstr "跳到文件的結尾並選取"
+
+#: src/MadEditFrame.cpp:1061
+msgid "Go to previous page and select"
+msgstr "跳到上一頁並選取"
+
+#: src/MadEditFrame.cpp:1062
+msgid "Go to next page and select"
+msgstr "跳到下一頁並選取"
+
+#: src/MadEditFrame.cpp:1063
+msgid "Go to previous word and select"
+msgstr "跳到上一個字並選取"
+
+#: src/MadEditFrame.cpp:1064
+msgid "Go to next word and select"
+msgstr "跳到下一個字並選取"
+
+#: src/MadEditFrame.cpp:1065
+msgid "Go to left brace and select"
+msgstr "跳到左括號並選取"
+
+#: src/MadEditFrame.cpp:1066
+msgid "Go to right brace and select"
+msgstr "跳到右括號並選取"
+
+#: src/MadEditFrame.cpp:1068
+msgid "Scroll text up one line"
+msgstr "向上捲動一行"
+
+#: src/MadEditFrame.cpp:1069
+msgid "Scroll text down one line"
+msgstr "向下捲動一行"
+
+#: src/MadEditFrame.cpp:1070
+msgid "Scroll text up one page"
+msgstr "向上捲動一頁"
+
+#: src/MadEditFrame.cpp:1071
+msgid "Scroll text down one page"
+msgstr "向下捲動一頁"
+
+#: src/MadEditFrame.cpp:1072
+msgid "Scroll text left"
+msgstr "向左捲動"
+
+#: src/MadEditFrame.cpp:1073
+msgid "Scroll text right"
+msgstr "向右捲動"
+
+#: src/MadEditFrame.cpp:1075
+msgid "Insert one NewLine char"
+msgstr "插入換行字元"
+
+#: src/MadEditFrame.cpp:1076
+msgid "Insert one Tab char or indent lines"
+msgstr "插入定位字元或增加縮排"
+
+#: src/MadEditFrame.cpp:1077
+msgid "Delete one char to the left of the caret"
+msgstr "刪除游標左邊的字元"
+
+#: src/MadEditFrame.cpp:1079
+msgid "Toggle Insert/Overwrite Mode"
+msgstr "切換插入/覆寫模式"
+
+#: src/MadEditFrame.cpp:1205
+msgid "MadEdit"
+msgstr ""
+
+#: src/MadEditFrame.cpp:1544
+msgid "New File"
+msgstr "新增檔案"
+
+#: src/MadEditFrame.cpp:1545 src/MadEditFrame.cpp:2474
+msgid "Open File"
+msgstr "開啟檔案"
+
+#: src/MadEditFrame.cpp:1547
+msgid "Save All Files"
+msgstr "儲存全部的檔案"
+
+#: src/MadEditFrame.cpp:1548
+msgid "Close File"
+msgstr "關閉檔案"
+
+#: src/MadEditFrame.cpp:1549
+msgid "Close All Files"
+msgstr "關閉全部的檔案"
+
+#: src/MadEditFrame.cpp:1551
+msgid "Undo"
+msgstr "回復"
+
+#: src/MadEditFrame.cpp:1552
+msgid "Redo"
+msgstr "重做"
+
+#: src/MadEditFrame.cpp:1554
+msgid "Cut"
+msgstr "剪下"
+
+#: src/MadEditFrame.cpp:1555
+msgid "Copy"
+msgstr "複製"
+
+#: src/MadEditFrame.cpp:1556
+msgid "Paste"
+msgstr "貼上"
+
+#: src/MadEditFrame.cpp:1558
+msgid "Increase Indent"
+msgstr "增加縮排"
+
+#: src/MadEditFrame.cpp:1559
+msgid "Decrease Indent"
+msgstr "減少縮排"
+
+#: src/MadEditFrame.cpp:1561
+msgid "Comment"
+msgstr "註解"
+
+#: src/MadEditFrame.cpp:1562
+msgid "Uncomment"
+msgstr "取消註解"
+
+#: src/MadEditFrame.cpp:1564
+msgid "Find"
+msgstr "尋找"
+
+#: src/MadEditFrame.cpp:1565 src/MadSearchDialog.cpp:253
+msgid "Find Next"
+msgstr "尋找下一個"
+
+#: src/MadEditFrame.cpp:1566 src/MadSearchDialog.cpp:305
+msgid "Find Previous"
+msgstr "尋找上一個"
+
+#: src/MadEditFrame.cpp:1567 src/MadReplaceDialog.cpp:125
+msgid "Replace"
+msgstr "取代"
+
+#: src/MadEditFrame.cpp:1569
+msgid "No Line Wrap"
+msgstr "不要折行"
+
+#: src/MadEditFrame.cpp:1570
+msgid "Wrap Lines by Window"
+msgstr "依視窗折行"
+
+#: src/MadEditFrame.cpp:1571
+msgid "Wrap Lines by Max Columns"
+msgstr "依最大長度折行"
+
+#: src/MadEditFrame.cpp:1573 src/MadOptionsDialog.cpp:330
+msgid "Text Mode"
+msgstr "文字模式"
+
+#: src/MadEditFrame.cpp:1574
+msgid "Column Mode"
+msgstr "區塊模式"
+
+#: src/MadEditFrame.cpp:1575 src/MadOptionsDialog.cpp:349
+msgid "Hex Mode"
+msgstr "十六進位模式"
+
+#: src/MadEditFrame.cpp:1921
+#, c-format
+msgid "NoName%d"
+msgstr "未命名%d"
+
+#: src/MadEditFrame.cpp:1959
+msgid "This is a Directory:"
+msgstr "這是個目錄:"
+
+#: src/MadEditFrame.cpp:1968
+msgid "This file does not exist:"
+msgstr "這個檔案不存在:"
+
+#: src/MadEditFrame.cpp:1986
+msgid "Cannot access this file:"
+msgstr "無法存取這個檔案:"
+
+#: src/MadEditFrame.cpp:2021
+msgid "Cannot load this file:"
+msgstr "無法載入這個檔案:"
+
+#: src/MadEditFrame.cpp:2220 src/MadEditFrame.cpp:2234
+#: src/MadEditFrame.cpp:2251 src/MadEditFrame.cpp:2267
+#: src/MadEditFrame.cpp:2291 src/MadEditFrame.cpp:2305
+#: src/MadEditFrame.cpp:2413 src/MadEditFrame.cpp:2434
+#: src/MadOptionsDialog.cpp:354 src/MadConvEncDialog.cpp:94
+msgid "None"
+msgstr "無"
+
+#: src/MadEditFrame.cpp:2386 src/MadEditFrame.cpp:2392
+msgid "Has No Unicode BOM (Byte-Order Mark)"
+msgstr "沒有 Unicode BOM (Byte-Order Mark)"
+
+#: src/MadEditFrame.cpp:2656
+msgid ""
+"There was a problem previewing.\n"
+"Perhaps your current printer is not set correctly?"
+msgstr ""
+"在預覽列印時發生問題。\n"
+"或許是印表機沒有設定正確？"
+
+#: src/MadEditFrame.cpp:2656
+msgid "Previewing"
+msgstr "預覽列印"
+
+#: src/MadEditFrame.cpp:2685
+msgid ""
+"There was a problem printing.\n"
+"Perhaps your current printer is not set correctly?"
+msgstr ""
+"在列印時發生問題。\n"
+"或許是印表機沒有設定正確？"
+
+#: src/MadEditFrame.cpp:2685
+msgid "Printing"
+msgstr "列印"
+
+#: src/MadEditFrame.cpp:3077
+msgid "Line Number: (you can input HexNumber: 0xNNN)"
+msgstr "行數: (可以輸入16進位數字: 0xNNN)"
+
+#: src/MadEditFrame.cpp:3077
+msgid "Go To Line"
+msgstr "跳到此行"
+
+#: src/MadEditFrame.cpp:3102
+msgid "Position: (you can input HexNumber: 0xNNN)"
+msgstr "檔案位置: (可以輸入16進位數字: 0xNNN)"
+
+#: src/MadEditFrame.cpp:3102
+msgid "Go To Position"
+msgstr "跳到檔案位置"
+
+#: src/MadEditFrame.cpp:3787
+msgid "Press OK to visit our HomePage."
+msgstr "按「確定」可以參觀我們的網頁."
+
+#: src/MadSearchDialog.cpp:93 src/MadReplaceDialog.cpp:94
+msgid "&Case Sensitive"
+msgstr "大小寫視為相異(&C)"
+
+#: src/MadSearchDialog.cpp:93 src/MadReplaceDialog.cpp:94
+msgid "WxCheckBoxCaseSensitive"
+msgstr ""
+
+#: src/MadSearchDialog.cpp:96 src/MadReplaceDialog.cpp:97
+msgid "&Whole Word Only"
+msgstr "搜尋完整單字(&W)"
+
+#: src/MadSearchDialog.cpp:96 src/MadReplaceDialog.cpp:97
+msgid "WxCheckBoxWholeWord"
+msgstr ""
+
+#: src/MadSearchDialog.cpp:99 src/MadReplaceDialog.cpp:100
+msgid "Use Regular E&xpressions"
+msgstr "使用正規表示式(&X)"
+
+#: src/MadSearchDialog.cpp:99 src/MadReplaceDialog.cpp:100
+msgid "WxCheckBoxRegex"
+msgstr ""
+
+#: src/MadSearchDialog.cpp:102 src/MadReplaceDialog.cpp:103
+msgid "Find &Hex String (Example: BE 00 3A or BE003A)"
+msgstr "尋找十六進位字串(例子: BE 00 3A 或 BE003A)(&H)"
+
+#: src/MadSearchDialog.cpp:102 src/MadReplaceDialog.cpp:103
+msgid "WxCheckBoxFindHex"
+msgstr ""
+
+#: src/MadSearchDialog.cpp:108 src/MadReplaceDialog.cpp:109
+msgid "WxButtonFindNext"
+msgstr ""
+
+#: src/MadSearchDialog.cpp:111
+msgid "WxButtonFindPrev"
+msgstr ""
+
+#: src/MadSearchDialog.cpp:114
+msgid "&Replace >>"
+msgstr "取代(&R) >>"
+
+#: src/MadSearchDialog.cpp:114 src/MadReplaceDialog.cpp:112
+msgid "WxButtonReplace"
+msgstr ""
+
+#: src/MadSearchDialog.cpp:117 src/MadReplaceDialog.cpp:118
+msgid "Close"
+msgstr "關閉"
+
+#: src/MadSearchDialog.cpp:117 src/MadReplaceDialog.cpp:118
+msgid "WxButtonClose"
+msgstr ""
+
+#: src/MadSearchDialog.cpp:124
+msgid "Search"
+msgstr "搜尋"
+
+#: src/MadSearchDialog.cpp:145 src/MadReplaceDialog.cpp:148
+msgid "WxBitmapButtonRecentFindText"
+msgstr ""
+
+#: src/MadSearchDialog.cpp:253
+msgid ""
+"Cannot find the matched string.\n"
+"\n"
+"Do you want to find from begin of file?"
+msgstr ""
+"找不到符合的字串。\n"
+"\n"
+"要從檔案的開頭重新找起嗎？"
+
+#: src/MadSearchDialog.cpp:305
+msgid ""
+"Cannot find the matched string.\n"
+"\n"
+"Do you want to find from end of file?"
+msgstr ""
+"找不到符合的字串。\n"
+"\n"
+"要從檔案的結尾重新找起嗎？"
+
+#: src/MadReplaceDialog.cpp:112
+msgid "&Replace"
+msgstr "取代(&R)"
+
+#: src/MadReplaceDialog.cpp:115
+msgid "Replace &All"
+msgstr "取代全部(&A)"
+
+#: src/MadReplaceDialog.cpp:115
+msgid "WxButtonReplaceAll"
+msgstr ""
+
+#: src/MadReplaceDialog.cpp:164
+msgid "WxBitmapButtonRecentReplaceText"
+msgstr ""
+
+#: src/MadReplaceDialog.cpp:407
+msgid ""
+"Cannot find the matched string.\n"
+"Replace is finished."
+msgstr ""
+"找不到符合的字串。\n"
+"「取代」結束。"
+
+#: src/MadReplaceDialog.cpp:457
+msgid "Cannot find any matched string."
+msgstr "找不到符合的字串。"
+
+#: src/MadReplaceDialog.cpp:459
+#, c-format
+msgid "%d string(s) were replaced."
+msgstr "%d 個字串已被取代。"
+
+#: src/MadOptionsDialog.cpp:186 src/MadOptionsDialog.cpp:738
+msgid "System Default"
+msgstr "系統預設"
+
+#: src/MadOptionsDialog.cpp:210
+msgid "General"
+msgstr "一般"
+
+#: src/MadOptionsDialog.cpp:219
+msgid "Single Instance (Must Restart MadEdit)"
+msgstr "只執行MadEdit一次，不要重覆開啟MadEdit (需要重新啟動)"
+
+#: src/MadOptionsDialog.cpp:219
+msgid "WxCheckBoxSingleInstance"
+msgstr ""
+
+#: src/MadOptionsDialog.cpp:222
+msgid "Record Caret Movements in Undo List"
+msgstr "將游標位置記錄到「回復」列表中"
+
+#: src/MadOptionsDialog.cpp:222
+msgid "WxCheckBoxRecordCaretMovements"
+msgstr ""
+
+#: src/MadOptionsDialog.cpp:228 src/MadOptionsDialog.cpp:237
+#: src/MadOptionsDialog.cpp:269 src/MadOptionsDialog.cpp:278
+#: src/MadOptionsDialog.cpp:287 src/MadOptionsDialog.cpp:296
+msgid "0"
+msgstr ""
+
+#: src/MadOptionsDialog.cpp:228
+msgid "WxEditMaxSizeToLoad"
+msgstr ""
+
+#: src/MadOptionsDialog.cpp:231
+msgid "Max File Size to Load into Memory"
+msgstr "將整個檔案載入到記憶體的最大檔案長度，超過時只會載入一部份的資料"
+
+#: src/MadOptionsDialog.cpp:231 src/MadConvEncDialog.cpp:83
+msgid "WxStaticText1"
+msgstr ""
+
+#: src/MadOptionsDialog.cpp:237
+msgid "WxEditMaxTextFileSize"
+msgstr ""
+
+#: src/MadOptionsDialog.cpp:240
+msgid "Max File Size to Load as a Text File"
+msgstr "以文字檔方式開啟的最大檔案長度，超過時以十六進位模式開啟"
+
+#: src/MadOptionsDialog.cpp:240
+msgid "WxStaticText2"
+msgstr ""
+
+#: src/MadOptionsDialog.cpp:247 src/MadConvEncDialog.cpp:87
+msgid "WxComboBoxEncoding"
+msgstr ""
+
+#: src/MadOptionsDialog.cpp:250
+msgid ""
+"Use this Encoding to Create New File or When MadEdit cannot Determine the "
+"Encoding of Old File"
+msgstr "開啟新檔或無法判斷檔案的編碼時，使用此編碼"
+
+#: src/MadOptionsDialog.cpp:250
+msgid "WxStaticText13"
+msgstr ""
+
+#: src/MadOptionsDialog.cpp:256
+msgid "Do Not Save Settings to MadEdit.cfg after MadEdit Finish (Once Only)"
+msgstr "程式結束時不要把選項回存到 MadEdit.cfg (只對這次執行有效)"
+
+#: src/MadOptionsDialog.cpp:256
+msgid "WxCheckBoxDoNotSaveSettings"
+msgstr ""
+
+#: src/MadOptionsDialog.cpp:260
+msgid "Edit"
+msgstr "編輯"
+
+#: src/MadOptionsDialog.cpp:269
+msgid "WxEditMaxLineLength"
+msgstr ""
+
+#: src/MadOptionsDialog.cpp:272
+msgid "Max Line Length before Line-Wrap (Must Restart MadEdit)"
+msgstr "每行最大長度，超過會自動折行(需要重新啟動)"
+
+#: src/MadOptionsDialog.cpp:272
+msgid "WxStaticText3"
+msgstr ""
+
+#: src/MadOptionsDialog.cpp:278
+msgid "WxEditMaxColumns"
+msgstr ""
+
+#: src/MadOptionsDialog.cpp:281
+msgid "Columns of Wrap-By-Column"
+msgstr "依最大長度折行的長度"
+
+#: src/MadOptionsDialog.cpp:281
+msgid "WxStaticText4"
+msgstr ""
+
+#: src/MadOptionsDialog.cpp:287
+msgid "WxEditTabColumns"
+msgstr ""
+
+#: src/MadOptionsDialog.cpp:290
+msgid "Columns of Tab"
+msgstr "定位字元(Tab) 的長度"
+
+#: src/MadOptionsDialog.cpp:290
+msgid "WxStaticText5"
+msgstr ""
+
+#: src/MadOptionsDialog.cpp:296
+msgid "WxEditIndentColumns"
+msgstr ""
+
+#: src/MadOptionsDialog.cpp:299
+msgid "Columns of Indent"
+msgstr "縮排時的長度"
+
+#: src/MadOptionsDialog.cpp:299
+msgid "WxStaticText6"
+msgstr ""
+
+#: src/MadOptionsDialog.cpp:305
+msgid "Insert Space Char Instead of Tab Char"
+msgstr "以空白字元取代定位(Tab)字元"
+
+#: src/MadOptionsDialog.cpp:305
+msgid "WxCheckBoxTabOrSpaces"
+msgstr ""
+
+#: src/MadOptionsDialog.cpp:308
+msgid "Auto Indent"
+msgstr "自動縮排"
+
+#: src/MadOptionsDialog.cpp:308
+msgid "WxCheckBoxAutoIndent"
+msgstr ""
+
+#: src/MadOptionsDialog.cpp:311
+msgid "Auto Complete Character Pair"
+msgstr "自動完成字元配對"
+
+#: src/MadOptionsDialog.cpp:311
+msgid "WxCheckBoxAutoCompletePair"
+msgstr ""
+
+#: src/MadOptionsDialog.cpp:314
+msgid ""
+"Auto Copy the Mouse-Selected Text to Clipboard(Disabled when Pressed Ctrl "
+"Key)"
+msgstr "自動將滑鼠選取的文字複製到剪貼簿中（按著 Ctrl 鍵可取消此功能）"
+
+#: src/MadOptionsDialog.cpp:314
+msgid "WxCheckBoxMouseSelectToCopy"
+msgstr ""
+
+#: src/MadOptionsDialog.cpp:317
+msgid "Paste Text from Clipboard when Press Middle Mouse Button"
+msgstr "按滑鼠中鍵貼上剪貼簿中的文字"
+
+#: src/MadOptionsDialog.cpp:317
+msgid "WxCheckBoxMiddleMouseToPaste"
+msgstr ""
+
+#: src/MadOptionsDialog.cpp:321
+msgid "Print"
+msgstr "列印"
+
+#: src/MadOptionsDialog.cpp:334
+msgid "Print Syntax Highlighter"
+msgstr "印出語法色彩"
+
+#: src/MadOptionsDialog.cpp:334
+msgid "WxCheckBoxPrintSyntax"
+msgstr ""
+
+#: src/MadOptionsDialog.cpp:337
+msgid "Print Line Number"
+msgstr "印出行號"
+
+#: src/MadOptionsDialog.cpp:337
+msgid "WxCheckBoxPrintLineNumber"
+msgstr ""
+
+#: src/MadOptionsDialog.cpp:340
+msgid "Print End of Line"
+msgstr "印出結尾符號"
+
+#: src/MadOptionsDialog.cpp:340
+msgid "WxCheckBoxPrintEndOfLine"
+msgstr ""
+
+#: src/MadOptionsDialog.cpp:343
+msgid "Print Tab Char"
+msgstr "印出定位(Tab)字元"
+
+#: src/MadOptionsDialog.cpp:343
+msgid "WxCheckBoxPrintTabChar"
+msgstr ""
+
+#: src/MadOptionsDialog.cpp:346
+msgid "Print Space Char"
+msgstr "印出空白字元"
+
+#: src/MadOptionsDialog.cpp:346
+msgid "WxCheckBoxPrintSpaceChar"
+msgstr ""
+
+#: src/MadOptionsDialog.cpp:355
+msgid "First Page Only"
+msgstr "只印在第一頁"
+
+#: src/MadOptionsDialog.cpp:356
+msgid "Every Page"
+msgstr "印在每一頁"
+
+#: src/MadOptionsDialog.cpp:357
+msgid "Print Offset Header"
+msgstr "印出 Offset 標頭"
+
+#: src/MadOptionsDialog.cpp:357
+msgid "WxRadioBoxPrintOffset"
+msgstr ""
+
+#: src/MadOptionsDialog.cpp:364
+msgid "Page Header"
+msgstr "頁首"
+
+#: src/MadOptionsDialog.cpp:368
+msgid "Print Page Header"
+msgstr "印出頁首"
+
+#: src/MadOptionsDialog.cpp:368
+msgid "WxCheckBoxPrintPageHeader"
+msgstr ""
+
+#: src/MadOptionsDialog.cpp:374 src/MadOptionsDialog.cpp:411
+msgid "Left:"
+msgstr "左邊："
+
+#: src/MadOptionsDialog.cpp:374
+msgid "WxStaticText7"
+msgstr ""
+
+#: src/MadOptionsDialog.cpp:377
+msgid "WxEditHeaderLeft"
+msgstr ""
+
+#: src/MadOptionsDialog.cpp:380 src/MadOptionsDialog.cpp:389
+#: src/MadOptionsDialog.cpp:398 src/MadOptionsDialog.cpp:417
+#: src/MadOptionsDialog.cpp:426 src/MadOptionsDialog.cpp:435
+msgid ">>"
+msgstr ""
+
+#: src/MadOptionsDialog.cpp:380
+msgid "WxButton1"
+msgstr ""
+
+#: src/MadOptionsDialog.cpp:383 src/MadOptionsDialog.cpp:420
+msgid "Center:"
+msgstr "中間："
+
+#: src/MadOptionsDialog.cpp:383
+msgid "WxStaticText8"
+msgstr ""
+
+#: src/MadOptionsDialog.cpp:386
+msgid "WxEditHeaderCenter"
+msgstr ""
+
+#: src/MadOptionsDialog.cpp:389
+msgid "WxButton2"
+msgstr ""
+
+#: src/MadOptionsDialog.cpp:392 src/MadOptionsDialog.cpp:429
+msgid "Right:"
+msgstr "右邊："
+
+#: src/MadOptionsDialog.cpp:392
+msgid "WxStaticText9"
+msgstr ""
+
+#: src/MadOptionsDialog.cpp:395
+msgid "WxEditHeaderRight"
+msgstr ""
+
+#: src/MadOptionsDialog.cpp:398
+msgid "WxButton3"
+msgstr ""
+
+#: src/MadOptionsDialog.cpp:401
+msgid "Page Footer"
+msgstr "頁尾"
+
+#: src/MadOptionsDialog.cpp:405
+msgid "Print Page Footer"
+msgstr "印出頁尾"
+
+#: src/MadOptionsDialog.cpp:405
+msgid "WxCheckBoxPrintPageFooter"
+msgstr ""
+
+#: src/MadOptionsDialog.cpp:411
+msgid "WxStaticText10"
+msgstr ""
+
+#: src/MadOptionsDialog.cpp:414
+msgid "WxEditFooterLeft"
+msgstr ""
+
+#: src/MadOptionsDialog.cpp:417
+msgid "WxButton4"
+msgstr ""
+
+#: src/MadOptionsDialog.cpp:420
+msgid "WxStaticText11"
+msgstr ""
+
+#: src/MadOptionsDialog.cpp:423
+msgid "WxEditFooterCenter"
+msgstr ""
+
+#: src/MadOptionsDialog.cpp:426
+msgid "WxButton5"
+msgstr ""
+
+#: src/MadOptionsDialog.cpp:429
+msgid "WxStaticText12"
+msgstr ""
+
+#: src/MadOptionsDialog.cpp:432
+msgid "WxEditFooterRight"
+msgstr ""
+
+#: src/MadOptionsDialog.cpp:435
+msgid "WxButton6"
+msgstr ""
+
+#: src/MadOptionsDialog.cpp:439
+msgid "Keys"
+msgstr "按鍵"
+
+#: src/MadOptionsDialog.cpp:457
+msgid "Hint:"
+msgstr "提示："
+
+#: src/MadOptionsDialog.cpp:457
+msgid "WxStaticTextCommandHint"
+msgstr ""
+
+#: src/MadOptionsDialog.cpp:460
+msgid "WxEditCommandHint"
+msgstr ""
+
+#: src/MadOptionsDialog.cpp:470
+msgid "Assigned Keys:"
+msgstr "指定的按鍵："
+
+#: src/MadOptionsDialog.cpp:470
+msgid "WxStaticText14"
+msgstr ""
+
+#: src/MadOptionsDialog.cpp:483
+msgid "New Key:"
+msgstr "新按鍵："
+
+#: src/MadOptionsDialog.cpp:483
+msgid "WxStaticText15"
+msgstr ""
+
+#: src/MadOptionsDialog.cpp:486
+msgid "WxEditKey"
+msgstr ""
+
+#: src/MadOptionsDialog.cpp:489
+msgid "WxEditKeyHint"
+msgstr ""
+
+#: src/MadOptionsDialog.cpp:493
+msgid "<== Add Key"
+msgstr "<== 加入按鍵"
+
+#: src/MadOptionsDialog.cpp:493
+msgid "WxButtonAddKey"
+msgstr ""
+
+#: src/MadOptionsDialog.cpp:496
+msgid "==> Delete Key"
+msgstr "==> 刪除按鍵"
+
+#: src/MadOptionsDialog.cpp:496
+msgid "WxButtonDeleteKey"
+msgstr ""
+
+#: src/MadOptionsDialog.cpp:499
+msgid "Show the Key in Menu"
+msgstr "在選單中顯示此按鍵"
+
+#: src/MadOptionsDialog.cpp:499
+msgid "WxButtonShowInMenu"
+msgstr ""
+
+#: src/MadOptionsDialog.cpp:505
+msgid "Reset All Keys to Default(Must Restart MadEdit)"
+msgstr "還原所有按鍵為原始設定(需要重新啟動)"
+
+#: src/MadOptionsDialog.cpp:505
+msgid "WxCheckBoxResetAllKeys"
+msgstr ""
+
+#: src/MadOptionsDialog.cpp:511 src/MadConvEncDialog.cpp:104
+#: src/MadAboutDialog.cpp:68
+msgid "&OK"
+msgstr "確定(&O)"
+
+#: src/MadOptionsDialog.cpp:511 src/MadConvEncDialog.cpp:104
+#: src/MadAboutDialog.cpp:68
+msgid "WxButtonOK"
+msgstr ""
+
+#: src/MadOptionsDialog.cpp:514 src/MadConvEncDialog.cpp:107
+#: src/MadAboutDialog.cpp:71
+msgid "&Cancel"
+msgstr "取消(&C)"
+
+#: src/MadOptionsDialog.cpp:514 src/MadConvEncDialog.cpp:107
+#: src/MadAboutDialog.cpp:71
+msgid "WxButtonCancel"
+msgstr ""
+
+#: src/MadOptionsDialog.cpp:518
+#, c-format
+msgid "[%f] &File Name"
+msgstr "[%f] 檔案名稱(&F)"
+
+#: src/MadOptionsDialog.cpp:520
+#, c-format
+msgid "[%p] &Path Name"
+msgstr "[%p] 完整路徑名稱(&P)"
+
+#: src/MadOptionsDialog.cpp:524
+#, c-format
+msgid "[%n] Page &Number"
+msgstr "[%n] 頁號(&N)"
+
+#: src/MadOptionsDialog.cpp:526
+#, c-format
+msgid "[%s] Total Page&s"
+msgstr "[%s] 總頁數(&S)"
+
+#: src/MadOptionsDialog.cpp:530
+#, c-format
+msgid "[%d] &Date"
+msgstr "[%d] 日期(&D)"
+
+#: src/MadOptionsDialog.cpp:532
+msgid "[%t] &Time"
+msgstr "[%t] 時間(&T)"
+
+#: src/MadOptionsDialog.cpp:538
+msgid "Options"
+msgstr "選項"
+
+#: src/MadOptionsDialog.cpp:548
+msgid ""
+"Add MadEdit to the RightClickMenu of Explorer(Deselect to Remove the Entry "
+"from Windows Registry)"
+msgstr ""
+"將 MadEdit 加入到檔案總管的右鍵選單中(取消選取會把寫入註冊表中的資訊移除)"
+
+#: src/MadOptionsDialog.cpp:626
+msgid "Commands"
+msgstr "命令"
+
+#: src/MadOptionsDialog.cpp:628
+msgid "Menu"
+msgstr "選單"
+
+#: src/MadOptionsDialog.cpp:629
+msgid "Editor"
+msgstr "編輯器"
+
+#: src/MadOptionsDialog.cpp:905
+#, c-format
+msgid "Invalid value of \"%s\""
+msgstr "\"%s\" 不是正確的設定"
+
+#: src/MadOptionsDialog.cpp:996
+msgid "Cannot assign key to this item"
+msgstr "無法指定按鍵到此項目"
+
+#: src/MadOptionsDialog.cpp:1103
+msgid "This key is not assigned"
+msgstr "這個按鍵尚未指定"
+
+#: src/MadOptionsDialog.cpp:1127
+#, c-format
+msgid "This key is assigned to [%s]"
+msgstr "這個按鍵已指定給 [%s]"
+
+#: src/MadConvEncDialog.cpp:83
+msgid "New Encoding:"
+msgstr "新的編碼："
+
+#: src/MadConvEncDialog.cpp:95
+msgid "Simplified => Traditional Chinese"
+msgstr "簡體 => 繁體中文"
+
+#: src/MadConvEncDialog.cpp:96
+msgid "Traditional => Simplified Chinese"
+msgstr "繁體 => 簡體中文"
+
+#: src/MadConvEncDialog.cpp:97
+msgid "Addtional Option"
+msgstr "額外的選項"
+
+#: src/MadConvEncDialog.cpp:97
+msgid "WxRadioBoxOption"
+msgstr ""
+
+#: src/MadConvEncDialog.cpp:112
+msgid "Convert Encoding"
+msgstr "轉換編碼"
+
+#: src/MadAboutDialog.cpp:59
+msgid "WxMemo1"
+msgstr ""
+
+#: src/MadAboutDialog.cpp:76
+msgid "About MadEdit"
+msgstr "關於 MadEdit"
+
+#~ msgid "&Plugins..."
+#~ msgstr "外掛(&P)..."

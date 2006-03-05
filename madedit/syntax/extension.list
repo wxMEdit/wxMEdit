@@ -1,0 +1,68 @@
+# format: [ext][spaces][syn file]
+
+cfg	syntax_conf.syn
+conf	syntax_conf.syn
+mak	syntax_conf.syn
+list	syntax_conf.syn
+po	syntax_conf.syn
+pot	syntax_conf.syn
+ac	syntax_conf.syn
+am	syntax_conf.syn
+in	syntax_conf.syn
+
+c	syntax_cpp.syn
+cc	syntax_cpp.syn
+cpp	syntax_cpp.syn
+cxx	syntax_cpp.syn
+h	syntax_cpp.syn
+hpp	syntax_cpp.syn
+xpm	syntax_cpp.syn
+xbm	syntax_cpp.syn
+
+htm	syntax_html.syn
+html	syntax_html.syn
+shtm	syntax_html.syn
+shtml	syntax_html.syn
+
+java	syntax_java.syn
+
+diz	syntax_nfo.syn
+nfo	syntax_nfo.syn
+
+pas	syntax_pas.syn
+dpr	syntax_pas.syn
+
+php	syntax_php.syn
+
+sh	syntax_sh.syn
+
+py	syntax_python.syn
+python	syntax_python.syn
+
+pl	syntax_perl.syn
+perl	syntax_perl.syn
+
+awk	syntax_awk.syn
+
+asm	syntax_x86asm.syn
+
+bat	syntax_batch.syn
+cmd	syntax_batch.syn
+
+syn	syntax_syn.syn
+
+rb	syntax_ruby.syn
+rbw	syntax_ruby.syn
+
+diff	syntax_diff.syn
+patch	syntax_diff.syn
+
+js	syntax_javascript.syn
+
+xml	syntax_xml.syn
+
+css	syntax_css.syn
+
+reg	syntax_reg.syn
+inf	syntax_reg.syn
+ini	syntax_reg.syn

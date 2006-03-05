@@ -1,0 +1,28 @@
+
+
+CXX = g++
+
+CXXFLAGS = -DWIN32
+LIBS =
+
+OBJ = plugin.o
+DLL = plugin.dll
+
+
+RM = del /F
+
+.PHONY: all all-before all-after clean clean-custom
+
+all: all-before $(DLL) all-after
+
+
+clean: clean-custom
+	$(RM) $(OBJ) $(DLL)
+
+
+$(DLL): $(OBJ)
+	$(CXX) -shared $(OBJ) $(LIBS) -o $(DLL)
+
+.cpp.o:
+	$(CXX) $(CXXFLAGS) -c $< -o $@
+

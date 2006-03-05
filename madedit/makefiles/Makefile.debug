@@ -1,0 +1,64 @@
+# Project: MadEdit
+
+CXX  = g++ -DFIXINVERT=0
+CC   = gcc
+
+WXCONFIG = wx-config --unicode=yes
+#WXCONFIG = $(HOME)/wxWidgets/DEBUG/wx-config
+
+CPPDEPS = -MT$@ -MF$@.d -MD
+
+OBJ  = 	../src/MadEditApp.o ../src/MadEditFrame.o \
+	../src/MadUtils.o ../src/MadPlugin.o \
+	../src/MadOptionsDialog.o ../src/MadAboutDialog.o \
+	../src/MadSearchDialog.o ../src/MadReplaceDialog.o \
+	../src/MadConvEncDialog.o ../src/MadPrintout.o \
+	../src/MadEdit/MadEncoding.o ../src/MadEdit/TradSimp.o \
+	../src/MadEdit/MadEditCommand.o ../src/MadEdit/MadUndo.o \
+	../src/MadEdit/MadSyntax.o ../src/MadEdit/MadLines.o \
+	../src/MadEdit/MadEdit.o ../src/MadEdit/MadEdit_gtk.o \
+	../src/MadEdit/MadEditSearch.o ../src/MadEdit/clipbrd_gtk.o \
+	../src/MadEdit/caret_new.o
+
+LINKOBJ  = $(OBJ)
+
+BOOST_INC = 
+#BOOST_INC = -I$(HOME)/boost
+
+XPRESSIVE_INC = ../xpressive
+#XPRESSIVE_INC = 
+
+LIBS = $(shell $(WXCONFIG) --libs) #$(shell pkg-config --libs gtk+-2.0)
+
+CXXINCS = $(BOOST_INC) $(XPRESSIVE_INC) $(shell $(WXCONFIG) --cxxflags) $(shell pkg-config --cflags gtk+-2.0) 
+
+CXXFLAGS = $(CXXINCS) -ggdb #-O3 -fexpensive-optimizations 
+
+BIN  = ../madedit
+
+RM = rm -f
+
+.PHONY: all all-before all-after clean clean-custom
+
+all: all-before $(BIN) all-after
+
+clean: clean-custom
+	${RM} $(OBJ) $(BIN)
+
+cleandep:
+	${RM} ../src/*.d ../src/MadEdit/*.d
+
+cleaninv:
+	${RM}  ../src/MadEdit/MadEdit.o  ../src/MadEdit/caret_new.o
+
+cleanall: clean cleandep
+
+$(BIN): $(OBJ)
+	$(CXX) $(LINKOBJ) -o $(BIN) $(LIBS)
+
+.cpp.o:
+	$(CXX) $(CXXFLAGS) $(CPPDEPS) -c $< -o $@
+
+# Dependencies tracking:
+-include ../src/MadEdit/*.d
+-include ../src/*.d

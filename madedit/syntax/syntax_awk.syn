@@ -1,0 +1,63 @@
+# awk
+Title=awk
+CaseSensitive=Yes
+Delimiter=~`!@#$%^&*()-+=|\{}[]:;"',.<>/?
+LineComment=#
+BlockComment=
+EscapeChar=\
+StringChar="'
+DirectiveLeading=
+KeywordPrefix=
+SpecialWordPrefix=
+IndentChar=
+UnindentChar=
+BracePair=( ) { } [ ]
+AutoCompletePair=() [] {} "" ''
+
+# System Predefined Color & Style
+TextColor=Black
+TextBgColor=White
+TextStyle=
+
+DelimiterColor=SaddleBrown
+DelimiterBgColor=
+DelimiterStyle=
+
+SpaceColor=Aqua
+SpaceBgColor=
+SpaceStyle=
+
+NumberColor=Blue
+NumberBgColor=
+NumberStyle=
+
+StringColor=Red
+StringBgColor=
+StringStyle=
+
+CommentColor=Teal
+CommentBgColor=
+CommentStyle=
+
+DirectiveColor=Green
+DirectiveBgColor=
+DirectiveStyle=
+
+SpecialWordColor=Maroon
+SpecialWordBgColor=
+SpecialWordStyle=
+
+LineNumberColor=White
+LineNumberBgColor=A0A0A0
+LineNumberStyle=
+
+ActiveLineColor=Fuchsia
+BookmarkColor=C0FFFF
+
+# User Defined Keywords
+[Keywords]
+Color=Black
+BgColor=
+Style=Bold
+InRange=0
+Keyword=break continue else for function if int while next delete system exit print printf getline atan2 cos sin exp log sqrt int rand srand gsub index length match split sprintf sub substr tolower toupper close BEGIN END ARGC ARGV CONVFMT ENVIRON FILENAME FNR FS NF NR OFS ORS OFMT RLENGTH RS RSTART SUBSEP

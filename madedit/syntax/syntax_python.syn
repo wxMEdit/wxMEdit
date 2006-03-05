@@ -1,0 +1,63 @@
+# Python
+Title=Python
+CaseSensitive=Yes
+Delimiter=~`!@#$%^&*()-+=|\{}[]:;"',.<>/?
+LineComment=#
+BlockComment=
+EscapeChar=\
+StringChar="'
+DirectiveLeading=
+KeywordPrefix=&
+SpecialWordPrefix=
+IndentChar=
+UnindentChar=
+BracePair=( ) { } [ ]
+AutoCompletePair=() [] {} "" ''
+
+# System Predefined Color & Style
+TextColor=Black
+TextBgColor=White
+TextStyle=
+
+DelimiterColor=SaddleBrown
+DelimiterBgColor=
+DelimiterStyle=
+
+SpaceColor=Aqua
+SpaceBgColor=
+SpaceStyle=
+
+NumberColor=Blue
+NumberBgColor=
+NumberStyle=
+
+StringColor=Red
+StringBgColor=
+StringStyle=
+
+CommentColor=Teal
+CommentBgColor=
+CommentStyle=
+
+DirectiveColor=Green
+DirectiveBgColor=
+DirectiveStyle=
+
+SpecialWordColor=Maroon
+SpecialWordBgColor=
+SpecialWordStyle=
+
+LineNumberColor=White
+LineNumberBgColor=A0A0A0
+LineNumberStyle=
+
+ActiveLineColor=Fuchsia
+BookmarkColor=C0FFFF
+
+# User Defined Keywords
+[Keywords]
+Color=Black
+BgColor=
+Style=Bold
+InRange=0
+Keyword=break continue elif else for from if import pass reload return while abs and apply assert buffer callable chr class cmp coerce compile complex def del delattr dir divmod eval exec execfile filter float getattr global globals hasattr hash hex id in input int intern is isinstance issubclass lambda len list locals long map max min not oct open or ord pow print range raw_input reduce repr round setattr slice str tuple type unichr unicode vars xrange zip except finally raise try

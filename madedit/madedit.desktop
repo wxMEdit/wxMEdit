@@ -1,0 +1,12 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=MadEdit
+Comment=Text/Hex Editor
+Comment[zh_CN]=文字及十六进位编辑器
+Comment[zh_TW]=文字及十六進位編輯器
+Exec=madedit %f
+Icon=madedit.xpm
+Terminal=false
+Type=Application
+MimeType=text/plain
+Categories=Application;Utility;TextEditor;

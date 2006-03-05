@@ -1,0 +1,6 @@
+# format: [line (sub)string][spaces][syn file]
+
+bin/sh		syntax_sh.syn
+bin/bash	syntax_sh.syn
+
+?xml		syntax_xml.syn

@@ -1,0 +1,29 @@
+/* XPM */
+static char *hexmode_xpm[] = {
+/* columns rows colors chars-per-pixel */
+"16 15 8 1",
+". c Black",
+"  c None",
+"+ c #727263",
+"o c #CCCCCC",
+"@ c #C7C2C0",
+"O c #0000FF",
+"# c #5F5F62",
+"X c #333333",
+/* pixels */
+" .............. ",
+" XoooOOoooOooooX",
+" XooOooOoOOooooX",
+" XooOooOooOooooX",
+" XooOooOooOooooX",
+" XooOooOooOooooX",
+" XoooOOooOOOoooX",
+" XoooooooooooooX",
+" XOOoO+OOO+OoOOX",
+" XoOoOoOoooOOOoX",
+" XoOOOoOOOooOooX",
+" XoOoOoOo@oOOOoX",
+" XOOoO#OOO+OoOOX",
+" XoooooooooooooX",
+"  XXXXXXXXXXXXX "
+};
