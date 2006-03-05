@@ -330,6 +330,7 @@ void MadSearchDialog::MadSearchDialogKeyDown(wxKeyEvent& event)
         g_SearchDialog->Show(false);
         return;
     case WXK_RETURN:
+    case WXK_NUMPAD_ENTER:
         if((wxButton*)this!=g_SearchDialog->WxButtonFindNext && 
            (wxButton*)this!=g_SearchDialog->WxButtonFindPrev && 
            (wxButton*)this!=g_SearchDialog->WxButtonClose)

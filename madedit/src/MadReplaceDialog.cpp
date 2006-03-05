@@ -299,6 +299,7 @@ void MadReplaceDialog::MadReplaceDialogKeyDown(wxKeyEvent& event)
         g_ReplaceDialog->Show(false);
         return;
     case WXK_RETURN:
+    case WXK_NUMPAD_ENTER:
         if((wxButton*)this!=g_ReplaceDialog->WxButtonFindNext && 
            (wxButton*)this!=g_ReplaceDialog->WxButtonReplace && 
            (wxButton*)this!=g_ReplaceDialog->WxButtonReplaceAll && 
