@@ -1223,7 +1223,7 @@ void MadEditFrame::CreateGUIControls(void)
 
     WxToolBar1 = new wxToolBar(this, ID_WXTOOLBAR1, wxPoint(0,0), wxSize(392,29));
 
-    m_Notebook = new wxFlatNotebook(this, ID_NOTEBOOK, wxPoint(0,29),wxSize(392,320), wxFNB_DEFAULT_STYLE|wxFNB_X_ON_TAB|/*wxFNB_FANCY_TABS|*/wxWANTS_CHARS);
+    m_Notebook = new wxFlatNotebook(this, ID_NOTEBOOK, wxPoint(0,29),wxSize(392,320), wxFNB_DEFAULT_STYLE|wxFNB_X_ON_TAB|wxFNB_DCLICK_CLOSES_TABS|wxWANTS_CHARS);
     m_Notebook->SetActiveTabColour(wxColor(245,245,245));
     m_Notebook->SetNonActiveTabTextColour(wxColor(100,100,100));
     m_Notebook->SetWindowStyleFlag(m_Notebook->GetWindowStyleFlag() & ~wxTAB_TRAVERSAL);
