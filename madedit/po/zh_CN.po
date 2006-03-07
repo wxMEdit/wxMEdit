@@ -17,7 +17,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MadEdit 0.1\n"
 "Report-Msgid-Bugs-To: madedit@gmail.com\n"
-"POT-Creation-Date: 2006-03-04 00:07+0800\n"
+"POT-Creation-Date: 2006-03-07 22:17+0800\n"
 "PO-Revision-Date: 2006-02-13 13:21+0800\n"
 "Last-Translator: madedit <madedit@gmail.com>\n"
 "Language-Team: MadEdit <madedit@gmail.com>\n"
@@ -1558,7 +1558,7 @@ msgstr ""
 msgid "WxBitmapButtonRecentReplaceText"
 msgstr ""
 
-#: src/MadReplaceDialog.cpp:407
+#: src/MadReplaceDialog.cpp:408
 msgid ""
 "Cannot find the matched string.\n"
 "Replace is finished."
@@ -1566,11 +1566,11 @@ msgstr ""
 "找不到符合的字符串。\n"
 "「取代」结束。"
 
-#: src/MadReplaceDialog.cpp:457
+#: src/MadReplaceDialog.cpp:458
 msgid "Cannot find any matched string."
 msgstr "找不到符合的字符串。"
 
-#: src/MadReplaceDialog.cpp:459
+#: src/MadReplaceDialog.cpp:460
 #, c-format
 msgid "%d string(s) were replaced."
 msgstr "%d 个字符串已被取代。"

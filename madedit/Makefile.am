@@ -73,10 +73,6 @@ noinst_HEADERS =	description-pak \
 	src/plugin_example/plugin.cpp \
 	src/plugin_example/vc_cl.bat \
 	src/plugin_example/wxwin16x16.xpm \
-	wxFlatNotebook/src/wxFlatNotebook/dnd_copy.xpm \
-	wxFlatNotebook/src/wxFlatNotebook/dnd_move.xpm \
-	wxFlatNotebook/src/wxFlatNotebook/dnd_none.xpm \
-	wxFlatNotebook/src/wxFlatNotebook/LeftDoubleClick.txt \
 	devcpp/MadEdit.dev \
 	devcpp/MadEdit.layout \
 	devcpp/MadEdit_private.h \
