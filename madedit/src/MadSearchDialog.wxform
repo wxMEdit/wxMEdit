@@ -1,0 +1,383 @@
+object frmNewForm: TfrmNewForm
+  Left = 8
+  Top = 8
+  Width = 514
+  Height = 301
+  BorderIcons = [biSystemMenu, biMinimize]
+  Caption = 'Search'
+  Color = clAppWorkSpace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'MS Sans Serif'
+  Font.Style = []
+  OldCreateOrder = True
+  PopupMenu = MainForm.DesignerPopup
+  Visible = True
+  OnCloseQuery = FormCloseQuery
+  OnCreate = FormCreate
+  OnDestroy = FormDestroy
+  OnKeyDown = FormKeyDown
+  OnResize = NewFormResize
+  Wx_ICON.Data = {07544269746D617000000000}
+  Wx_Name = 'MadSearchDialog'
+  Wx_IDName = 'ID_DIALOG1'
+  Wx_IDValue = 1000
+  Wx_Class = 'wxDialog'
+  Wx_Center = False
+  Wx_Hidden = False
+  Wx_GeneralStyle = []
+  Wx_DialogStyle = [wxCAPTION, wxRESIZE_BORDER, wxSYSTEM_MENU, wxSTAY_ON_TOP, wxCLOSE_BOX]
+  EVT_KEY_DOWN = 'MadSearchDialogKeyDown'
+  EVT_CLOSE = 'MadSearchDialogClose'
+  EVT_ACTIVATE = 'MadSearchDialogActivate'
+  PixelsPerInch = 96
+  TextHeight = 13
+  object WxBoxSizer1: TWxBoxSizer
+    Left = 0
+    Top = 0
+    Width = 506
+    Height = 271
+    Align = alClient
+    TabOrder = 1
+    Wx_Class = 'wxBoxSizer'
+    Wx_ControlOrientation = wxControlVertical
+    Wx_IDName = 'ID_WXBOXSIZER1'
+    Wx_IDValue = 1
+    Wx_StretchFactor = 0
+    Wx_StrechFactor = 0
+    object WxBoxSizer2: TWxBoxSizer
+      Left = 5
+      Top = 5
+      Width = 320
+      Height = 168
+      TabOrder = 0
+      Orientation = wxVertical
+      Wx_Class = 'wxBoxSizer'
+      Wx_ControlOrientation = wxControlHorizontal
+      Wx_HorizontalAlignment = wxSZALIGN_LEFT
+      Wx_IDName = 'ID_WXBOXSIZER2'
+      Wx_IDValue = 2
+      Wx_StretchFactor = 0
+      Wx_StrechFactor = 0
+      Wx_VerticalAlignment = wxSZALIGN_TOP
+      object WxBoxSizer4: TWxBoxSizer
+        Left = 150
+        Top = 5
+        Width = 20
+        Height = 20
+        TabOrder = 1
+        Wx_Class = 'wxBoxSizer'
+        Wx_ControlOrientation = wxControlVertical
+        Wx_HorizontalAlignment = wxSZALIGN_LEFT
+        Wx_IDName = 'ID_WXBOXSIZER4'
+        Wx_IDValue = 15
+        Wx_StretchFactor = 0
+        Wx_StrechFactor = 0
+      end
+      object WxBoxSizer5: TWxBoxSizer
+        Left = 5
+        Top = 35
+        Width = 310
+        Height = 128
+        TabOrder = 0
+        Orientation = wxVertical
+        Wx_Class = 'wxBoxSizer'
+        Wx_ControlOrientation = wxControlVertical
+        Wx_HorizontalAlignment = wxSZALIGN_LEFT
+        Wx_IDName = 'ID_WXBOXSIZER5'
+        Wx_IDValue = 5
+        Wx_StretchFactor = 0
+        Wx_StrechFactor = 0
+        object WxCheckBoxCaseSensitive: TWxCheckBox
+          Left = 5
+          Top = 5
+          Width = 300
+          Height = 22
+          Caption = '&Case Sensitive'
+          TabOrder = 0
+          Wx_BGColor = clBlack
+          Wx_Border = 3
+          Wx_CheckBoxStyle = []
+          Wx_Class = 'wxCheckBox'
+          Wx_ControlOrientation = wxControlVertical
+          Wx_FGColor = clBlack
+          Wx_GeneralStyle = []
+          Wx_Hidden = False
+          Wx_HorizontalAlignment = wxSZALIGN_LEFT
+          Wx_IDName = 'ID_WXCHECKBOXCASESENSITIVE'
+          Wx_IDValue = 6
+          Wx_StrechFactor = 0
+        end
+        object WxCheckBoxWholeWord: TWxCheckBox
+          Left = 5
+          Top = 37
+          Width = 300
+          Height = 22
+          Caption = '&Whole Word Only'
+          TabOrder = 1
+          Wx_BGColor = clBlack
+          Wx_Border = 3
+          Wx_CheckBoxStyle = []
+          Wx_Class = 'wxCheckBox'
+          Wx_ControlOrientation = wxControlVertical
+          Wx_FGColor = clBlack
+          Wx_GeneralStyle = []
+          Wx_Hidden = False
+          Wx_HorizontalAlignment = wxSZALIGN_LEFT
+          Wx_IDName = 'ID_WXCHECKBOXWHOLEWORD'
+          Wx_IDValue = 7
+          Wx_StrechFactor = 0
+        end
+        object WxCheckBoxRegex: TWxCheckBox
+          Left = 5
+          Top = 69
+          Width = 300
+          Height = 22
+          Caption = 'Use Regular E&xpressions'
+          TabOrder = 2
+          Wx_BGColor = clBlack
+          Wx_Border = 3
+          Wx_CheckBoxStyle = []
+          Wx_Class = 'wxCheckBox'
+          Wx_ControlOrientation = wxControlVertical
+          Wx_FGColor = clBlack
+          Wx_GeneralStyle = []
+          Wx_Hidden = False
+          Wx_HorizontalAlignment = wxSZALIGN_LEFT
+          Wx_IDName = 'ID_WXCHECKBOXREGEX'
+          Wx_IDValue = 8
+          Wx_StrechFactor = 0
+        end
+        object WxCheckBoxFindHex: TWxCheckBox
+          Left = 5
+          Top = 101
+          Width = 300
+          Height = 22
+          Caption = 'Find &Hex String (Example: BE 00 3A or BE003A)'
+          TabOrder = 3
+          EVT_CHECKBOX = 'WxCheckBoxFindHexClick'
+          Wx_BGColor = clBlack
+          Wx_Border = 3
+          Wx_CheckBoxStyle = []
+          Wx_Class = 'wxCheckBox'
+          Wx_ControlOrientation = wxControlVertical
+          Wx_FGColor = clBlack
+          Wx_GeneralStyle = []
+          Wx_Hidden = False
+          Wx_HorizontalAlignment = wxSZALIGN_LEFT
+          Wx_IDName = 'ID_WXCHECKBOXFINDHEX'
+          Wx_IDValue = 9
+          Wx_StrechFactor = 0
+        end
+      end
+    end
+    object WxBoxSizer3: TWxBoxSizer
+      Left = 335
+      Top = 13
+      Width = 110
+      Height = 152
+      TabOrder = 1
+      Orientation = wxVertical
+      Wx_Class = 'wxBoxSizer'
+      Wx_ControlOrientation = wxControlHorizontal
+      Wx_IDName = 'ID_WXBOXSIZER3'
+      Wx_IDValue = 3
+      Wx_StretchFactor = 0
+      Wx_StrechFactor = 0
+      Wx_VerticalAlignment = wxSZALIGN_TOP
+      object WxButtonFindNext: TWxButton
+        Left = 5
+        Top = 5
+        Width = 100
+        Height = 28
+        Caption = 'Find &Next'
+        TabOrder = 0
+        EVT_BUTTON = 'WxButtonFindNextClick'
+        Wx_BKColor = clBlack
+        Wx_ButtonStyle = []
+        Wx_Class = 'wxButton'
+        Wx_ControlOrientation = wxControlVertical
+        Wx_Default = False
+        Wx_EventList.Strings = (
+          'EVT_BUTTON:OnClick'
+          'EVT_UPDATE_UI:OnUpdateUI')
+        Wx_FGColor = clBlack
+        Wx_GeneralStyle = []
+        Wx_Hidden = False
+        Wx_IDName = 'ID_WXBUTTONFINDNEXT'
+        Wx_IDValue = 10
+        Wx_StrechFactor = 0
+        Wx_Height = 28
+        Wx_Width = 100
+      end
+      object WxButtonFindPrev: TWxButton
+        Left = 5
+        Top = 43
+        Width = 100
+        Height = 28
+        Caption = 'Find &Previous'
+        TabOrder = 1
+        EVT_BUTTON = 'WxButtonFindPrevClick'
+        Wx_BKColor = clBlack
+        Wx_ButtonStyle = []
+        Wx_Class = 'wxButton'
+        Wx_ControlOrientation = wxControlVertical
+        Wx_Default = False
+        Wx_EventList.Strings = (
+          'EVT_BUTTON:OnClick'
+          'EVT_UPDATE_UI:OnUpdateUI')
+        Wx_FGColor = clBlack
+        Wx_GeneralStyle = []
+        Wx_Hidden = False
+        Wx_IDName = 'ID_WXBUTTONFINDPREV'
+        Wx_IDValue = 11
+        Wx_StrechFactor = 0
+        Wx_Height = 28
+        Wx_Width = 100
+      end
+      object WxButtonReplace: TWxButton
+        Left = 5
+        Top = 81
+        Width = 100
+        Height = 28
+        Caption = '&Replace >>'
+        TabOrder = 2
+        EVT_BUTTON = 'WxButtonReplaceClick'
+        Wx_BKColor = clBlack
+        Wx_ButtonStyle = []
+        Wx_Class = 'wxButton'
+        Wx_ControlOrientation = wxControlVertical
+        Wx_Default = False
+        Wx_EventList.Strings = (
+          'EVT_BUTTON:OnClick'
+          'EVT_UPDATE_UI:OnUpdateUI')
+        Wx_FGColor = clBlack
+        Wx_GeneralStyle = []
+        Wx_Hidden = False
+        Wx_HorizontalAlignment = wxSZALIGN_LEFT
+        Wx_IDName = 'ID_WXBUTTONREPLACE'
+        Wx_IDValue = 12
+        Wx_StrechFactor = 0
+        Wx_Height = 28
+        Wx_Width = 100
+      end
+      object WxButtonClose: TWxButton
+        Left = 10
+        Top = 119
+        Width = 100
+        Height = 28
+        Caption = 'Close'
+        TabOrder = 3
+        EVT_BUTTON = 'WxButtonCloseClick'
+        Wx_BKColor = clBlack
+        Wx_ButtonStyle = []
+        Wx_Class = 'wxButton'
+        Wx_ControlOrientation = wxControlVertical
+        Wx_Default = False
+        Wx_EventList.Strings = (
+          'EVT_BUTTON:OnClick'
+          'EVT_UPDATE_UI:OnUpdateUI')
+        Wx_FGColor = clBlack
+        Wx_GeneralStyle = []
+        Wx_Hidden = False
+        Wx_HorizontalAlignment = wxSZALIGN_LEFT
+        Wx_IDName = 'ID_WXBUTTONCLOSE'
+        Wx_IDValue = 13
+        Wx_StrechFactor = 0
+        Wx_Height = 28
+        Wx_Width = 100
+      end
+    end
+  end
+  object WxPopupMenuRecentFindText: TWxPopupMenu
+    Left = 391
+    Top = 84
+    Width = 28
+    Height = 27
+    TabOrder = 0
+    Glyph.Data = {
+      36090000424D3609000000000000360000002800000018000000180000000100
+      2000000000000009000000000000000000000000000000000000008080000080
+      8000008080000080800000808000008080000080800000808000008080000080
+      8000008080000080800000808000008080000080800000808000008080000080
+      8000008080000080800000808000008080000080800000808000008080000080
+      8000008080000080800000808000008080000080800000808000008080000080
+      8000008080000080800000808000008080000080800000808000000000000000
+      0000008080000080800000808000008080000080800000808000008080000080
+      8000008080000080800000808000008080000080800000808000008080000080
+      8000008080000080800000808000008080000080800000000000FFFFFF00FFFF
+      FF00000000000080800000808000008080000080800000808000008080000080
+      8000008080000080800000808000008080000080800000808000008080000080
+      8000008080000000000000808000008080000080800000000000FFFFFF00FFFF
+      FF00000000000080800000808000008080000080800000808000008080000080
+      8000008080000080800000808000008080000080800000808000008080000080
+      80000080800000000000000000000080800000000000FFFFFF00FFFFFF000000
+      0000008080000080800000808000008080000080800000808000008080000080
+      8000008080000080800000808000008080000080800000808000008080000080
+      80000080800000000000FFFFFF000000000000000000FFFFFF00FFFFFF000000
+      0000008080000080800000808000008080000080800000808000008080000080
+      8000008080000080800000808000008080000080800000808000008080000080
+      80000080800000000000FFFFFF00FFFFFF00FFFFFF00FFFFFF00000000000080
+      8000008080000080800000808000008080000080800000808000008080000080
+      8000008080000080800000808000008080000080800000808000008080000080
+      80000080800000000000FFFFFF00FFFFFF00FFFFFF00FFFFFF00000000000000
+      0000000000000000000000808000008080000080800000808000008080000080
+      8000008080000080800000808000008080000080800000808000008080000080
+      80000080800000000000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+      FF00000000000080800000808000008080000080800000808000008080000080
+      8000008080000080800000808000008080000080800000808000008080000080
+      80000080800000000000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF000000
+      0000008080000080800000808000008080000080800000808000008080000080
+      8000008080000080800080808000000000000000000000000000000000000000
+      00000000000000000000FFFFFF00FFFFFF00FFFFFF00FFFFFF00000000000080
+      8000008080000080800000808000008080000080800000808000008080000080
+      8000008080000080800080808000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+      FF00FFFFFF0000000000FFFFFF00FFFFFF00FFFFFF0000000000008080000080
+      8000008080000080800000808000008080000080800000808000008080000080
+      8000008080000080800080808000FFFFFF008000000080000000800000008000
+      00008000000000000000FFFFFF00FFFFFF000000000000808000008080000080
+      8000008080000080800000808000008080000080800000808000008080000080
+      8000008080000080800080808000800000008000000080000000800000008000
+      00008000000000000000FFFFFF00000000000000000000808000008080000080
+      8000008080000080800000808000008080000080800000808000008080000080
+      800000808000008080008080800080000000FFFFFF00FFFFFF00FFFFFF00FFFF
+      FF00FFFFFF000000000000000000800000000000000000808000008080000080
+      8000008080000080800000808000008080000080800000808000008080000080
+      8000008080000080800080808000800000008000000080000000800000008000
+      0000800000008000000080000000800000000000000000808000008080000080
+      8000008080000080800000808000008080000080800000808000008080000080
+      8000008080000080800080808000FFFFFF008000000080000000800000008000
+      000080000000FFFFFF00FFFFFF00FFFFFF000000000000808000008080000080
+      8000008080000080800000808000008080000080800000808000008080000080
+      8000008080000080800080808000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+      FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF000000000000808000008080000080
+      8000008080000080800000808000008080000080800000808000008080000080
+      8000008080000080800080808000FFFFFF008000000080000000800000008000
+      0000FFFFFF00FFFFFF00FFFFFF00FFFFFF000000000000808000008080000080
+      8000008080000080800000808000008080000080800000808000008080000080
+      8000008080000080800080808000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+      FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF000000000000808000008080000080
+      8000008080000080800000808000008080000080800000808000008080000080
+      8000008080000080800080808000FFFFFF008000000080000000800000008000
+      000080000000FFFFFF00FFFFFF00FFFFFF000000000000808000008080000080
+      8000008080000080800000808000008080000080800000808000008080000080
+      8000008080000080800080808000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+      FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF000000000000808000008080000080
+      8000008080000080800000808000008080000080800000808000008080000080
+      8000008080000080800080808000808080008080800080808000808080008080
+      8000808080008080800080808000808080008080800000808000008080000080
+      8000008080000080800000808000008080000080800000808000008080000080
+      8000008080000080800000808000008080000080800000808000008080000080
+      8000008080000080800000808000008080000080800000808000008080000080
+      8000008080000080800000808000008080000080800000808000}
+    Wx_Class = 'wxMenu'
+    Wx_MenuItems.IsSubMenu = False
+    Wx_MenuItems.Wx_Enabled = True
+    Wx_MenuItems.Wx_Hidden = False
+    Wx_MenuItems.Wx_IDValue = 0
+    Wx_MenuItems.Wx_MenuItemStyle = wxMnuItm_Normal
+    Wx_MenuItems.Wx_Checked = False
+    Wx_MenuItems.Wx_FileHistory = False
+  end
+end

@@ -1,0 +1,2169 @@
+object frmNewForm: TfrmNewForm
+  Left = 8
+  Top = 8
+  Width = 699
+  Height = 444
+  BorderIcons = [biSystemMenu, biMinimize]
+  Caption = 'Options'
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'MS Sans Serif'
+  Font.Style = []
+  OldCreateOrder = True
+  PopupMenu = MainForm.DesignerPopup
+  Visible = True
+  OnCloseQuery = FormCloseQuery
+  OnCreate = FormCreate
+  OnDestroy = FormDestroy
+  OnKeyDown = FormKeyDown
+  OnResize = NewFormResize
+  Wx_ICON.Data = {07544269746D617000000000}
+  Wx_Name = 'MadOptionsDialog'
+  Wx_IDName = 'ID_DIALOG1'
+  Wx_IDValue = 1000
+  Wx_Class = 'wxDialog'
+  Wx_Center = True
+  Wx_Hidden = False
+  Wx_GeneralStyle = []
+  Wx_DialogStyle = [wxCAPTION, wxRESIZE_BORDER, wxSYSTEM_MENU, wxDIALOG_NO_PARENT, wxMAXIMIZE_BOX, wxCLOSE_BOX]
+  EVT_CLOSE = 'MadOptionsDialogClose'
+  EVT_ACTIVATE = 'MadOptionsDialogActivate'
+  PixelsPerInch = 96
+  TextHeight = 13
+  object WxBoxSizer1: TWxBoxSizer
+    Left = 0
+    Top = 0
+    Width = 691
+    Height = 414
+    Align = alClient
+    TabOrder = 0
+    Orientation = wxVertical
+    SpaceValue = 0
+    Wx_Class = 'wxBoxSizer'
+    Wx_ControlOrientation = wxControlVertical
+    Wx_HorizontalAlignment = wxSZALIGN_GROW_HORIZONTAL
+    Wx_IDName = 'ID_WXBOXSIZER1'
+    Wx_IDValue = 1001
+    Wx_StretchFactor = 1
+    Wx_StrechFactor = 1
+    Wx_VerticalAlignment = wxSZALIGN_GROW_VERTICAL
+    object WxNotebook1: TWxNotebook
+      Left = 0
+      Top = 0
+      Width = 681
+      Height = 342
+      ActivePage = WxNoteBookPage1
+      TabIndex = 0
+      TabOrder = 0
+      Wx_Class = 'wxNotebook'
+      Wx_ControlOrientation = wxControlVertical
+      Wx_EventList.Strings = (
+        'EVT_NOTEBOOK_PAGE_CHANGED:OnPageChanged'
+        'EVT_UPDATE_UI:OnUpdateUI'
+        'EVT_NOTEBOOK_PAGE_CHANGING:OnPageChanging')
+      Wx_HorizontalAlignment = wxSZALIGN_GROW_HORIZONTAL
+      Wx_IDName = 'ID_WXNOTEBOOK1'
+      Wx_IDValue = 1002
+      Wx_StrechFactor = 1
+      Wx_StretchFactor = 1
+      Wx_VerticalAlignment = wxSZALIGN_GROW_VERTICAL
+      Wx_Hidden = False
+      Wx_Border = 0
+      Wx_NoteBookStyle = []
+      Wx_GeneralStyle = []
+      object WxNoteBookPage1: TWxNoteBookPage
+        Caption = 'General'
+        Wx_BKColor = clBlack
+        Wx_Border = 0
+        Wx_Class = 'wxPanel'
+        Wx_ControlOrientation = wxControlVertical
+        Wx_Default = False
+        Wx_EventList.Strings = (
+          'EVT_UPDATE_UI:OnUpdateUI')
+        Wx_FGColor = clBlack
+        Wx_GeneralStyle = []
+        Wx_Hidden = False
+        Wx_IDName = 'ID_WXNOTEBOOKPAGE1'
+        Wx_IDValue = 1003
+        Wx_StretchFactor = 1
+        Wx_StrechFactor = 1
+        object WxBoxSizer3: TWxBoxSizer
+          Left = 0
+          Top = 0
+          Width = 673
+          Height = 314
+          Align = alClient
+          TabOrder = 0
+          Orientation = wxVertical
+          SpaceValue = 2
+          Wx_Class = 'wxBoxSizer'
+          Wx_ControlOrientation = wxControlVertical
+          Wx_HorizontalAlignment = wxSZALIGN_GROW_HORIZONTAL
+          Wx_IDName = 'ID_WXBOXSIZER3'
+          Wx_IDValue = 1026
+          Wx_StretchFactor = 1
+          Wx_StrechFactor = 1
+          Wx_VerticalAlignment = wxSZALIGN_GROW_VERTICAL
+          object WxBoxSizer4: TWxBoxSizer
+            Left = 150
+            Top = 2
+            Width = 310
+            Height = 60
+            TabOrder = 0
+            Orientation = wxVertical
+            Wx_Class = 'wxBoxSizer'
+            Wx_ControlOrientation = wxControlVertical
+            Wx_HorizontalAlignment = wxSZALIGN_LEFT
+            Wx_IDName = 'ID_WXBOXSIZER4'
+            Wx_IDValue = 1033
+            Wx_StretchFactor = 0
+            Wx_StrechFactor = 0
+            object WxCheckBoxSingleInstance: TWxCheckBox
+              Left = 5
+              Top = 5
+              Width = 300
+              Height = 20
+              Caption = 'Single Instance (Must Restart MadEdit)'
+              TabOrder = 0
+              Wx_BGColor = clBlack
+              Wx_Border = 2
+              Wx_CheckBoxStyle = []
+              Wx_Class = 'wxCheckBox'
+              Wx_ControlOrientation = wxControlVertical
+              Wx_FGColor = clBlack
+              Wx_GeneralStyle = []
+              Wx_Hidden = False
+              Wx_HorizontalAlignment = wxSZALIGN_LEFT
+              Wx_IDName = 'ID_WXCHECKBOXSINGLEINSTANCE'
+              Wx_IDValue = 1034
+              Wx_StrechFactor = 0
+            end
+            object WxCheckBoxRecordCaretMovements: TWxCheckBox
+              Left = 5
+              Top = 35
+              Width = 300
+              Height = 20
+              Caption = 'Record Caret Movements in Undo List'
+              TabOrder = 1
+              Wx_BGColor = clBlack
+              Wx_Border = 2
+              Wx_CheckBoxStyle = []
+              Wx_Class = 'wxCheckBox'
+              Wx_ControlOrientation = wxControlVertical
+              Wx_FGColor = clBlack
+              Wx_GeneralStyle = []
+              Wx_Hidden = False
+              Wx_HorizontalAlignment = wxSZALIGN_LEFT
+              Wx_IDName = 'ID_WXCHECKBOXRECORDCARETMOVEMENTS'
+              Wx_IDValue = 1037
+              Wx_StrechFactor = 0
+            end
+          end
+          object WxBoxSizer5: TWxBoxSizer
+            Left = 111
+            Top = 66
+            Width = 388
+            Height = 25
+            TabOrder = 1
+            SpaceValue = 2
+            Wx_Class = 'wxBoxSizer'
+            Wx_ControlOrientation = wxControlVertical
+            Wx_HorizontalAlignment = wxSZALIGN_LEFT
+            Wx_IDName = 'ID_WXBOXSIZER5'
+            Wx_IDValue = 1038
+            Wx_StretchFactor = 0
+            Wx_StrechFactor = 0
+            object WxEditMaxSizeToLoad: TWxEdit
+              Left = 2
+              Top = 2
+              Width = 80
+              Height = 21
+              BevelInner = bvNone
+              BevelOuter = bvNone
+              Modified = False
+              TabOrder = 0
+              Text = '0'
+              Wx_BGColor = clBlack
+              Wx_Border = 0
+              Wx_Class = 'wxTextCtrl'
+              Wx_ControlOrientation = wxControlHorizontal
+              Wx_EditStyle = []
+              Wx_FGColor = clBlack
+              Wx_GeneralStyle = []
+              Wx_Hidden = False
+              Wx_IDName = 'ID_WXEDITMAXSIZETOLOAD'
+              Wx_IDValue = 1039
+              Wx_StrechFactor = 0
+              Wx_Validator = 'wxTextValidator(wxFILTER_NUMERIC)'
+              Wx_MaxLength = 0
+            end
+            object WxStaticText1: TWxStaticText
+              Left = 86
+              Top = 4
+              Width = 300
+              Height = 17
+              AutoSize = False
+              Caption = 'Max File Size to Load into Memory'
+              TabOrder = 1
+              Wx_BGColor = clBlack
+              Wx_Class = 'wxStaticText'
+              Wx_ControlOrientation = wxControlHorizontal
+              Wx_FGColor = clBlack
+              Wx_GeneralStyle = []
+              Wx_Hidden = False
+              Wx_IDName = 'ID_WXSTATICTEXT1'
+              Wx_IDValue = 1040
+              Wx_LabelStyle = [wxST_NO_AUTORESIZE]
+              Wx_StrechFactor = 0
+            end
+          end
+          object WxBoxSizer6: TWxBoxSizer
+            Left = 111
+            Top = 95
+            Width = 388
+            Height = 25
+            TabOrder = 2
+            SpaceValue = 2
+            Wx_Class = 'wxBoxSizer'
+            Wx_ControlOrientation = wxControlVertical
+            Wx_HorizontalAlignment = wxSZALIGN_LEFT
+            Wx_IDName = 'ID_WXBOXSIZER6'
+            Wx_IDValue = 1041
+            Wx_StretchFactor = 0
+            Wx_StrechFactor = 0
+            object WxEditMaxTextFileSize: TWxEdit
+              Left = 2
+              Top = 2
+              Width = 80
+              Height = 21
+              BevelInner = bvNone
+              BevelOuter = bvNone
+              Modified = False
+              TabOrder = 0
+              Text = '0'
+              Wx_BGColor = clBlack
+              Wx_Border = 0
+              Wx_Class = 'wxTextCtrl'
+              Wx_ControlOrientation = wxControlHorizontal
+              Wx_EditStyle = []
+              Wx_FGColor = clBlack
+              Wx_GeneralStyle = []
+              Wx_Hidden = False
+              Wx_IDName = 'ID_WXEDITMAXTEXTFILESIZE'
+              Wx_IDValue = 1042
+              Wx_StrechFactor = 0
+              Wx_Validator = 'wxTextValidator(wxFILTER_NUMERIC)'
+              Wx_MaxLength = 0
+            end
+            object WxStaticText2: TWxStaticText
+              Left = 86
+              Top = 4
+              Width = 300
+              Height = 17
+              AutoSize = False
+              Caption = 'Max File Size to Load as a Text File'
+              TabOrder = 1
+              Wx_BGColor = clBlack
+              Wx_Class = 'wxStaticText'
+              Wx_ControlOrientation = wxControlHorizontal
+              Wx_FGColor = clBlack
+              Wx_GeneralStyle = []
+              Wx_Hidden = False
+              Wx_IDName = 'ID_WXSTATICTEXT2'
+              Wx_IDValue = 1043
+              Wx_LabelStyle = [wxST_NO_AUTORESIZE]
+              Wx_StrechFactor = 0
+            end
+          end
+          object WxBoxSizer17: TWxBoxSizer
+            Left = 2
+            Top = 124
+            Width = 607
+            Height = 25
+            TabOrder = 4
+            SpaceValue = 2
+            Wx_Class = 'wxBoxSizer'
+            Wx_ControlOrientation = wxControlVertical
+            Wx_HorizontalAlignment = wxSZALIGN_LEFT
+            Wx_IDName = 'ID_WXBOXSIZER17'
+            Wx_IDValue = 1118
+            Wx_StretchFactor = 0
+            Wx_StrechFactor = 0
+            object WxComboBoxEncoding: TWxComboBox
+              Left = 2
+              Top = 2
+              Width = 130
+              Height = 21
+              ItemHeight = 13
+              TabOrder = 0
+              Text = 'WxComboBoxEncoding'
+              Wx_BGColor = clBlack
+              Wx_Border = 0
+              Wx_Class = 'wxComboBox'
+              Wx_ComboboxStyle = [wxCB_DROPDOWN, wxCB_READONLY]
+              Wx_ControlOrientation = wxControlHorizontal
+              Wx_FGColor = clBlack
+              Wx_GeneralStyle = []
+              Wx_Hidden = False
+              Wx_IDName = 'ID_WXCOMBOBOXENCODING'
+              Wx_IDValue = 1120
+              Wx_StrechFactor = 0
+            end
+            object WxStaticText13: TWxStaticText
+              Left = 136
+              Top = 4
+              Width = 469
+              Height = 17
+              Caption = 
+                'Use this Encoding to Create New File or When MadEdit cannot Dete' +
+                'rmine the Encoding of Old File'
+              TabOrder = 1
+              Wx_BGColor = clBlack
+              Wx_Class = 'wxStaticText'
+              Wx_ControlOrientation = wxControlHorizontal
+              Wx_FGColor = clBlack
+              Wx_GeneralStyle = []
+              Wx_Hidden = False
+              Wx_IDName = 'ID_WXSTATICTEXT13'
+              Wx_IDValue = 1121
+              Wx_LabelStyle = []
+              Wx_StrechFactor = 0
+            end
+          end
+          object WxBoxSizer7: TWxBoxSizer
+            Left = 100
+            Top = 153
+            Width = 410
+            Height = 30
+            TabOrder = 3
+            Orientation = wxVertical
+            Wx_Class = 'wxBoxSizer'
+            Wx_ControlOrientation = wxControlVertical
+            Wx_HorizontalAlignment = wxSZALIGN_LEFT
+            Wx_IDName = 'ID_WXBOXSIZER7'
+            Wx_IDValue = 1044
+            Wx_StretchFactor = 0
+            Wx_StrechFactor = 0
+            object WxCheckBoxDoNotSaveSettings: TWxCheckBox
+              Left = 5
+              Top = 5
+              Width = 400
+              Height = 20
+              Caption = 
+                'Do Not Save Settings to MadEdit.cfg after MadEdit Finish (Once O' +
+                'nly)'
+              TabOrder = 0
+              Wx_BGColor = clBlack
+              Wx_Border = 2
+              Wx_CheckBoxStyle = []
+              Wx_Class = 'wxCheckBox'
+              Wx_ControlOrientation = wxControlHorizontal
+              Wx_FGColor = clBlack
+              Wx_GeneralStyle = []
+              Wx_Hidden = False
+              Wx_HorizontalAlignment = wxSZALIGN_LEFT
+              Wx_IDName = 'ID_WXCHECKBOXDONOTSAVESETTINGS'
+              Wx_IDValue = 1045
+              Wx_StrechFactor = 0
+            end
+          end
+        end
+      end
+      object WxNoteBookPage2: TWxNoteBookPage
+        Caption = 'Edit'
+        Wx_BKColor = clBlack
+        Wx_Class = 'wxPanel'
+        Wx_ControlOrientation = wxControlVertical
+        Wx_Default = False
+        Wx_EventList.Strings = (
+          'EVT_UPDATE_UI:OnUpdateUI')
+        Wx_FGColor = clBlack
+        Wx_GeneralStyle = []
+        Wx_Hidden = False
+        Wx_IDName = 'ID_WXNOTEBOOKPAGE2'
+        Wx_IDValue = 1014
+        Wx_StretchFactor = 1
+        Wx_StrechFactor = 1
+        object WxBoxSizer8: TWxBoxSizer
+          Left = 0
+          Top = 0
+          Width = 673
+          Height = 314
+          Align = alClient
+          TabOrder = 0
+          Orientation = wxVertical
+          SpaceValue = 2
+          Wx_Class = 'wxBoxSizer'
+          Wx_ControlOrientation = wxControlVertical
+          Wx_HorizontalAlignment = wxSZALIGN_GROW_HORIZONTAL
+          Wx_IDName = 'ID_WXBOXSIZER8'
+          Wx_IDValue = 1046
+          Wx_StretchFactor = 1
+          Wx_StrechFactor = 1
+          Wx_VerticalAlignment = wxSZALIGN_GROW_VERTICAL
+          object WxBoxSizer9: TWxBoxSizer
+            Left = 23
+            Top = 2
+            Width = 368
+            Height = 25
+            TabOrder = 0
+            SpaceValue = 2
+            Wx_Class = 'wxBoxSizer'
+            Wx_ControlOrientation = wxControlVertical
+            Wx_HorizontalAlignment = wxSZALIGN_LEFT
+            Wx_IDName = 'ID_WXBOXSIZER9'
+            Wx_IDValue = 1047
+            Wx_StretchFactor = 0
+            Wx_StrechFactor = 0
+            object WxEditMaxLineLength: TWxEdit
+              Left = 2
+              Top = 2
+              Width = 60
+              Height = 21
+              BevelInner = bvNone
+              BevelOuter = bvNone
+              Modified = False
+              TabOrder = 0
+              Text = '0'
+              Wx_BGColor = clBlack
+              Wx_Border = 0
+              Wx_Class = 'wxTextCtrl'
+              Wx_ControlOrientation = wxControlHorizontal
+              Wx_EditStyle = []
+              Wx_FGColor = clBlack
+              Wx_GeneralStyle = []
+              Wx_Hidden = False
+              Wx_IDName = 'ID_WXEDITMAXLINELENGTH'
+              Wx_IDValue = 1049
+              Wx_StrechFactor = 0
+              Wx_Validator = 'wxTextValidator(wxFILTER_NUMERIC)'
+              Wx_MaxLength = 0
+            end
+            object WxStaticText3: TWxStaticText
+              Left = 66
+              Top = 4
+              Width = 300
+              Height = 17
+              AutoSize = False
+              Caption = 'Max Line Length before Line-Wrap (Must Restart MadEdit)'
+              TabOrder = 1
+              Wx_BGColor = clBlack
+              Wx_Class = 'wxStaticText'
+              Wx_ControlOrientation = wxControlHorizontal
+              Wx_FGColor = clBlack
+              Wx_GeneralStyle = []
+              Wx_Hidden = False
+              Wx_IDName = 'ID_WXSTATICTEXT3'
+              Wx_IDValue = 1051
+              Wx_LabelStyle = [wxST_NO_AUTORESIZE]
+              Wx_StrechFactor = 0
+            end
+          end
+          object WxBoxSizer10: TWxBoxSizer
+            Left = 23
+            Top = 31
+            Width = 368
+            Height = 25
+            TabOrder = 1
+            SpaceValue = 2
+            Wx_Class = 'wxBoxSizer'
+            Wx_ControlOrientation = wxControlVertical
+            Wx_HorizontalAlignment = wxSZALIGN_LEFT
+            Wx_IDName = 'ID_WXBOXSIZER10'
+            Wx_IDValue = 1052
+            Wx_StretchFactor = 0
+            Wx_StrechFactor = 0
+            object WxEditMaxColumns: TWxEdit
+              Left = 2
+              Top = 2
+              Width = 60
+              Height = 21
+              BevelInner = bvNone
+              BevelOuter = bvNone
+              Modified = False
+              TabOrder = 0
+              Text = '0'
+              Wx_BGColor = clBlack
+              Wx_Border = 0
+              Wx_Class = 'wxTextCtrl'
+              Wx_ControlOrientation = wxControlHorizontal
+              Wx_EditStyle = []
+              Wx_FGColor = clBlack
+              Wx_GeneralStyle = []
+              Wx_Hidden = False
+              Wx_IDName = 'ID_WXEDITMAXCOLUMNS'
+              Wx_IDValue = 1053
+              Wx_StrechFactor = 0
+              Wx_Validator = 'wxTextValidator(wxFILTER_NUMERIC)'
+              Wx_MaxLength = 0
+            end
+            object WxStaticText4: TWxStaticText
+              Left = 66
+              Top = 4
+              Width = 300
+              Height = 17
+              AutoSize = False
+              Caption = 'Columns of Wrap-By-Column'
+              TabOrder = 1
+              Wx_BGColor = clBlack
+              Wx_Class = 'wxStaticText'
+              Wx_ControlOrientation = wxControlHorizontal
+              Wx_FGColor = clBlack
+              Wx_GeneralStyle = []
+              Wx_Hidden = False
+              Wx_IDName = 'ID_WXSTATICTEXT4'
+              Wx_IDValue = 1054
+              Wx_LabelStyle = [wxST_NO_AUTORESIZE]
+              Wx_StrechFactor = 0
+            end
+          end
+          object WxBoxSizer11: TWxBoxSizer
+            Left = 23
+            Top = 60
+            Width = 368
+            Height = 25
+            TabOrder = 2
+            SpaceValue = 2
+            Wx_Class = 'wxBoxSizer'
+            Wx_ControlOrientation = wxControlVertical
+            Wx_HorizontalAlignment = wxSZALIGN_LEFT
+            Wx_IDName = 'ID_WXBOXSIZER11'
+            Wx_IDValue = 1055
+            Wx_StretchFactor = 0
+            Wx_StrechFactor = 0
+            object WxEditTabColumns: TWxEdit
+              Left = 2
+              Top = 2
+              Width = 60
+              Height = 21
+              BevelInner = bvNone
+              BevelOuter = bvNone
+              Modified = False
+              TabOrder = 0
+              Text = '0'
+              Wx_BGColor = clBlack
+              Wx_Border = 0
+              Wx_Class = 'wxTextCtrl'
+              Wx_ControlOrientation = wxControlHorizontal
+              Wx_EditStyle = []
+              Wx_FGColor = clBlack
+              Wx_GeneralStyle = []
+              Wx_Hidden = False
+              Wx_IDName = 'ID_WXEDITTABCOLUMNS'
+              Wx_IDValue = 1056
+              Wx_StrechFactor = 0
+              Wx_Validator = 'wxTextValidator(wxFILTER_NUMERIC)'
+              Wx_MaxLength = 0
+            end
+            object WxStaticText5: TWxStaticText
+              Left = 66
+              Top = 4
+              Width = 300
+              Height = 17
+              AutoSize = False
+              Caption = 'Columns of Tab'
+              TabOrder = 1
+              Wx_BGColor = clBlack
+              Wx_Class = 'wxStaticText'
+              Wx_ControlOrientation = wxControlHorizontal
+              Wx_FGColor = clBlack
+              Wx_GeneralStyle = []
+              Wx_Hidden = False
+              Wx_IDName = 'ID_WXSTATICTEXT5'
+              Wx_IDValue = 1057
+              Wx_LabelStyle = [wxST_NO_AUTORESIZE]
+              Wx_StrechFactor = 0
+            end
+          end
+          object WxBoxSizer13: TWxBoxSizer
+            Left = 23
+            Top = 89
+            Width = 368
+            Height = 25
+            TabOrder = 4
+            SpaceValue = 2
+            Wx_Class = 'wxBoxSizer'
+            Wx_ControlOrientation = wxControlVertical
+            Wx_HorizontalAlignment = wxSZALIGN_LEFT
+            Wx_IDName = 'ID_WXBOXSIZER13'
+            Wx_IDValue = 1061
+            Wx_StretchFactor = 0
+            Wx_StrechFactor = 0
+            object WxEditIndentColumns: TWxEdit
+              Left = 2
+              Top = 2
+              Width = 60
+              Height = 21
+              BevelInner = bvNone
+              BevelOuter = bvNone
+              Modified = False
+              TabOrder = 0
+              Text = '0'
+              Wx_BGColor = clBlack
+              Wx_Border = 0
+              Wx_Class = 'wxTextCtrl'
+              Wx_ControlOrientation = wxControlHorizontal
+              Wx_EditStyle = []
+              Wx_FGColor = clBlack
+              Wx_GeneralStyle = []
+              Wx_Hidden = False
+              Wx_IDName = 'ID_WXEDITTABCOLUMNS'
+              Wx_IDValue = 1056
+              Wx_StrechFactor = 0
+              Wx_Validator = 'wxTextValidator(wxFILTER_NUMERIC)'
+              Wx_MaxLength = 0
+            end
+            object WxStaticText6: TWxStaticText
+              Left = 66
+              Top = 4
+              Width = 300
+              Height = 17
+              AutoSize = False
+              Caption = 'Columns of Indent'
+              TabOrder = 1
+              Wx_BGColor = clBlack
+              Wx_Class = 'wxStaticText'
+              Wx_ControlOrientation = wxControlHorizontal
+              Wx_FGColor = clBlack
+              Wx_GeneralStyle = []
+              Wx_Hidden = False
+              Wx_IDName = 'ID_WXSTATICTEXT5'
+              Wx_IDValue = 1057
+              Wx_LabelStyle = [wxST_NO_AUTORESIZE]
+              Wx_StrechFactor = 0
+            end
+          end
+          object WxBoxSizer12: TWxBoxSizer
+            Left = 2
+            Top = 118
+            Width = 410
+            Height = 145
+            TabOrder = 3
+            Orientation = wxVertical
+            Wx_Class = 'wxBoxSizer'
+            Wx_ControlOrientation = wxControlVertical
+            Wx_HorizontalAlignment = wxSZALIGN_LEFT
+            Wx_IDName = 'ID_WXBOXSIZER12'
+            Wx_IDValue = 1058
+            Wx_StretchFactor = 0
+            Wx_StrechFactor = 0
+            object WxCheckBoxTabOrSpaces: TWxCheckBox
+              Left = 5
+              Top = 5
+              Width = 400
+              Height = 22
+              Caption = 'Insert Space Char Instead of Tab Char'
+              TabOrder = 0
+              Wx_BGColor = clBlack
+              Wx_Border = 2
+              Wx_CheckBoxStyle = []
+              Wx_Class = 'wxCheckBox'
+              Wx_ControlOrientation = wxControlVertical
+              Wx_FGColor = clBlack
+              Wx_GeneralStyle = []
+              Wx_Hidden = False
+              Wx_HorizontalAlignment = wxSZALIGN_LEFT
+              Wx_IDName = 'ID_WXCHECKBOXTABORSPACES'
+              Wx_IDValue = 1059
+              Wx_StrechFactor = 0
+            end
+            object WxCheckBoxAutoIndent: TWxCheckBox
+              Left = 5
+              Top = 37
+              Width = 400
+              Height = 22
+              Caption = 'Auto Indent'
+              TabOrder = 1
+              Wx_BGColor = clBlack
+              Wx_Border = 2
+              Wx_CheckBoxStyle = []
+              Wx_Class = 'wxCheckBox'
+              Wx_ControlOrientation = wxControlVertical
+              Wx_FGColor = clBlack
+              Wx_GeneralStyle = []
+              Wx_Hidden = False
+              Wx_HorizontalAlignment = wxSZALIGN_LEFT
+              Wx_IDName = 'ID_WXCHECKBOXAUTOINDENT'
+              Wx_IDValue = 1060
+              Wx_StrechFactor = 0
+            end
+            object WxCheckBoxAutoCompletePair: TWxCheckBox
+              Left = 5
+              Top = 69
+              Width = 400
+              Height = 17
+              Caption = 'Auto Complete Character Pair'
+              TabOrder = 4
+              Wx_BGColor = clBlack
+              Wx_Border = 2
+              Wx_CheckBoxStyle = []
+              Wx_Class = 'wxCheckBox'
+              Wx_ControlOrientation = wxControlVertical
+              Wx_FGColor = clBlack
+              Wx_GeneralStyle = []
+              Wx_Hidden = False
+              Wx_HorizontalAlignment = wxSZALIGN_LEFT
+              Wx_IDName = 'ID_WXCHECKBOXAUTOCOMPLETEPAIR'
+              Wx_IDValue = 1154
+              Wx_StrechFactor = 0
+            end
+            object WxCheckBoxMouseSelectToCopy: TWxCheckBox
+              Left = 5
+              Top = 96
+              Width = 400
+              Height = 17
+              Caption = 
+                'Auto Copy the Mouse-Selected Text to Clipboard(Disabled when Pre' +
+                'ssed Ctrl Key)'
+              TabOrder = 2
+              Wx_BGColor = clBlack
+              Wx_Border = 2
+              Wx_CheckBoxStyle = []
+              Wx_Class = 'wxCheckBox'
+              Wx_ControlOrientation = wxControlVertical
+              Wx_FGColor = clBlack
+              Wx_GeneralStyle = []
+              Wx_Hidden = False
+              Wx_HorizontalAlignment = wxSZALIGN_LEFT
+              Wx_IDName = 'ID_WXCHECKBOXMOUSESELECTTOCOPY'
+              Wx_IDValue = 1126
+              Wx_StrechFactor = 0
+            end
+            object WxCheckBoxMiddleMouseToPaste: TWxCheckBox
+              Left = 5
+              Top = 123
+              Width = 400
+              Height = 17
+              Caption = 'Paste Text from Clipboard when Press Middle Mouse Button'
+              TabOrder = 3
+              Wx_BGColor = clBlack
+              Wx_Border = 2
+              Wx_CheckBoxStyle = []
+              Wx_Class = 'wxCheckBox'
+              Wx_ControlOrientation = wxControlVertical
+              Wx_FGColor = clBlack
+              Wx_GeneralStyle = []
+              Wx_Hidden = False
+              Wx_HorizontalAlignment = wxSZALIGN_LEFT
+              Wx_IDName = 'ID_WXCHECKBOXMIDDLEMOUSETOPASTE'
+              Wx_IDValue = 1127
+              Wx_StrechFactor = 0
+            end
+          end
+        end
+      end
+      object WxNoteBookPage3: TWxNoteBookPage
+        Caption = 'Print'
+        Wx_BKColor = clBlack
+        Wx_Class = 'wxPanel'
+        Wx_ControlOrientation = wxControlVertical
+        Wx_Default = False
+        Wx_EventList.Strings = (
+          'EVT_UPDATE_UI:OnUpdateUI')
+        Wx_FGColor = clBlack
+        Wx_GeneralStyle = []
+        Wx_Hidden = False
+        Wx_IDName = 'ID_WXNOTEBOOKPAGE3'
+        Wx_IDValue = 1062
+        Wx_StretchFactor = 1
+        Wx_StrechFactor = 1
+        object WxBoxSizer14: TWxBoxSizer
+          Left = 0
+          Top = 0
+          Width = 673
+          Height = 314
+          Align = alClient
+          TabOrder = 0
+          SpaceValue = 2
+          Wx_Class = 'wxBoxSizer'
+          Wx_ControlOrientation = wxControlVertical
+          Wx_IDName = 'ID_WXBOXSIZER14'
+          Wx_IDValue = 1063
+          Wx_StretchFactor = 1
+          Wx_StrechFactor = 1
+          object WxBoxSizer15: TWxBoxSizer
+            Left = 2
+            Top = 2
+            Width = 170
+            Height = 303
+            TabOrder = 0
+            Orientation = wxVertical
+            SpaceValue = 2
+            Wx_Class = 'wxBoxSizer'
+            Wx_ControlOrientation = wxControlHorizontal
+            Wx_IDName = 'ID_WXBOXSIZER15'
+            Wx_IDValue = 1064
+            Wx_StretchFactor = 0
+            Wx_StrechFactor = 0
+            Wx_VerticalAlignment = wxSZALIGN_TOP
+            object WxStaticBoxSizer1: TWxStaticBoxSizer
+              Left = 2
+              Top = 2
+              Width = 166
+              Height = 141
+              TabOrder = 0
+              Orientation = wxVertical
+              SpaceValue = 4
+              Wx_Caption = 'Text Mode'
+              Wx_Class = 'wxStaticBoxSizer'
+              Wx_ControlOrientation = wxControlVertical
+              Wx_IDName = 'ID_WXSTATICBOXSIZER1'
+              Wx_IDValue = 1083
+              Wx_StrechFactor = 0
+              Wx_VerticalAlignment = wxSZALIGN_TOP
+              object WxCheckBoxPrintSyntax: TWxCheckBox
+                Left = 8
+                Top = 16
+                Width = 150
+                Height = 17
+                Caption = 'Print Syntax Highlighter'
+                TabOrder = 1
+                Wx_BGColor = clBlack
+                Wx_Border = 1
+                Wx_CheckBoxStyle = []
+                Wx_Class = 'wxCheckBox'
+                Wx_ControlOrientation = wxControlVertical
+                Wx_FGColor = clBlack
+                Wx_GeneralStyle = []
+                Wx_Hidden = False
+                Wx_HorizontalAlignment = wxSZALIGN_LEFT
+                Wx_IDName = 'ID_WXCHECKBOXPRINTSYNTAX'
+                Wx_IDValue = 1084
+                Wx_StrechFactor = 0
+              end
+              object WxCheckBoxPrintLineNumber: TWxCheckBox
+                Left = 8
+                Top = 41
+                Width = 150
+                Height = 17
+                Caption = 'Print Line Number'
+                TabOrder = 2
+                Wx_BGColor = clBlack
+                Wx_Border = 1
+                Wx_CheckBoxStyle = []
+                Wx_Class = 'wxCheckBox'
+                Wx_ControlOrientation = wxControlVertical
+                Wx_FGColor = clBlack
+                Wx_GeneralStyle = []
+                Wx_Hidden = False
+                Wx_HorizontalAlignment = wxSZALIGN_LEFT
+                Wx_IDName = 'ID_WXCHECKBOXPRINTLINENUMBER'
+                Wx_IDValue = 1087
+                Wx_StrechFactor = 0
+              end
+              object WxCheckBoxPrintEndOfLine: TWxCheckBox
+                Left = 8
+                Top = 66
+                Width = 150
+                Height = 17
+                Caption = 'Print End of Line'
+                TabOrder = 3
+                Wx_BGColor = clBlack
+                Wx_Border = 1
+                Wx_CheckBoxStyle = []
+                Wx_Class = 'wxCheckBox'
+                Wx_ControlOrientation = wxControlVertical
+                Wx_FGColor = clBlack
+                Wx_GeneralStyle = []
+                Wx_Hidden = False
+                Wx_HorizontalAlignment = wxSZALIGN_LEFT
+                Wx_IDName = 'ID_WXCHECKBOXPRINTENDOFLINE'
+                Wx_IDValue = 1088
+                Wx_StrechFactor = 0
+              end
+              object WxCheckBoxPrintTabChar: TWxCheckBox
+                Left = 8
+                Top = 91
+                Width = 150
+                Height = 17
+                Caption = 'Print Tab Char'
+                TabOrder = 4
+                Wx_BGColor = clBlack
+                Wx_Border = 1
+                Wx_CheckBoxStyle = []
+                Wx_Class = 'wxCheckBox'
+                Wx_ControlOrientation = wxControlVertical
+                Wx_FGColor = clBlack
+                Wx_GeneralStyle = []
+                Wx_Hidden = False
+                Wx_HorizontalAlignment = wxSZALIGN_LEFT
+                Wx_IDName = 'ID_WXCHECKBOXPRINTTABCHAR'
+                Wx_IDValue = 1089
+                Wx_StrechFactor = 0
+              end
+              object WxCheckBoxPrintSpaceChar: TWxCheckBox
+                Left = 8
+                Top = 116
+                Width = 150
+                Height = 17
+                Caption = 'Print Space Char'
+                TabOrder = 5
+                Wx_BGColor = clBlack
+                Wx_Border = 1
+                Wx_CheckBoxStyle = []
+                Wx_Class = 'wxCheckBox'
+                Wx_ControlOrientation = wxControlVertical
+                Wx_FGColor = clBlack
+                Wx_GeneralStyle = []
+                Wx_Hidden = False
+                Wx_HorizontalAlignment = wxSZALIGN_LEFT
+                Wx_IDName = 'ID_WXCHECKBOXPRINTSPACECHAR'
+                Wx_IDValue = 1090
+                Wx_StrechFactor = 0
+              end
+            end
+            object WxStaticBoxSizer2: TWxStaticBoxSizer
+              Left = 2
+              Top = 147
+              Width = 166
+              Height = 154
+              TabOrder = 1
+              SpaceValue = 4
+              Wx_Caption = 'Hex Mode'
+              Wx_Class = 'wxStaticBoxSizer'
+              Wx_ControlOrientation = wxControlVertical
+              Wx_IDName = 'ID_WXSTATICBOXSIZER2'
+              Wx_IDValue = 1085
+              Wx_StrechFactor = 0
+              object WxRadioBoxPrintOffset: TWxRadioBox
+                Left = 8
+                Top = 16
+                Width = 150
+                Height = 130
+                Caption = 'Print Offset Header'
+                Orientation = wxdVertical
+                Items.Strings = (
+                  'None'
+                  'First Page Only'
+                  'Every Page')
+                TabOrder = 1
+                Wx_BGColor = clBlack
+                Wx_Border = 1
+                Wx_Class = 'wxRadioBox'
+                Wx_ControlOrientation = wxControlHorizontal
+                Wx_EventList.Strings = (
+                  'EVT_RADIOBOX:OnClick'
+                  'EVT_UPDATE_UI:OnUpdateUI')
+                Wx_FGColor = clBlack
+                Wx_GeneralStyle = []
+                Wx_HorizontalAlignment = wxSZALIGN_LEFT
+                Wx_IDName = 'ID_WXRADIOBOXPRINTOFFSET'
+                Wx_IDValue = 1091
+                Wx_RadioBoxStyle = wxRA_SPECIFY_COLS
+                Wx_StrechFactor = 1
+                Wx_StretchFactor = 1
+                Wx_Selection = 0
+              end
+            end
+          end
+          object WxBoxSizer16: TWxBoxSizer
+            Left = 176
+            Top = 13
+            Width = 335
+            Height = 280
+            TabOrder = 1
+            Orientation = wxVertical
+            SpaceValue = 2
+            Wx_Class = 'wxBoxSizer'
+            Wx_ControlOrientation = wxControlHorizontal
+            Wx_HorizontalAlignment = wxSZALIGN_LEFT
+            Wx_IDName = 'ID_WXBOXSIZER16'
+            Wx_IDValue = 1066
+            Wx_StretchFactor = 0
+            Wx_StrechFactor = 0
+            Wx_VerticalAlignment = wxSZALIGN_TOP
+            object WxStaticBoxSizer3: TWxStaticBoxSizer
+              Left = 2
+              Top = 2
+              Width = 331
+              Height = 136
+              TabOrder = 0
+              Orientation = wxVertical
+              SpaceValue = 4
+              Wx_Caption = 'Page Header'
+              Wx_Class = 'wxStaticBoxSizer'
+              Wx_ControlOrientation = wxControlVertical
+              Wx_HorizontalAlignment = wxSZALIGN_LEFT
+              Wx_IDName = 'ID_WXSTATICBOXSIZER3'
+              Wx_IDValue = 1092
+              Wx_StrechFactor = 0
+              Wx_VerticalAlignment = wxSZALIGN_TOP
+              object WxCheckBoxPrintPageHeader: TWxCheckBox
+                Left = 90
+                Top = 16
+                Width = 150
+                Height = 17
+                Caption = 'Print Page Header'
+                TabOrder = 1
+                Wx_BGColor = clBlack
+                Wx_Border = 1
+                Wx_CheckBoxStyle = []
+                Wx_Class = 'wxCheckBox'
+                Wx_ControlOrientation = wxControlVertical
+                Wx_FGColor = clBlack
+                Wx_GeneralStyle = []
+                Wx_Hidden = False
+                Wx_HorizontalAlignment = wxSZALIGN_LEFT
+                Wx_IDName = 'ID_WXCHECKBOXPRINTPAGEHEADER'
+                Wx_IDValue = 1093
+                Wx_StrechFactor = 0
+              end
+              object WxFlexGridSizer1: TWxFlexGridSizer
+                Left = 8
+                Top = 41
+                Width = 315
+                Height = 87
+                TabOrder = 2
+                Columns = 3
+                Rows = 3
+                SpaceValue = 2
+                Wx_Class = 'wxFlexGridSizer'
+                Wx_ControlOrientation = wxControlVertical
+                Wx_IDName = 'ID_WXFLEXGRIDSIZER1'
+                Wx_IDValue = 1098
+                Wx_StrechFactor = 0
+                object WxStaticText7: TWxStaticText
+                  Left = 8
+                  Top = 6
+                  Width = 25
+                  Height = 17
+                  Caption = 'Left:'
+                  TabOrder = 0
+                  Wx_BGColor = clBlack
+                  Wx_Border = 2
+                  Wx_Class = 'wxStaticText'
+                  Wx_ControlOrientation = wxControlNone
+                  Wx_FGColor = clBlack
+                  Wx_GeneralStyle = []
+                  Wx_Hidden = False
+                  Wx_HorizontalAlignment = wxSZALIGN_LEFT
+                  Wx_IDName = 'ID_WXSTATICTEXT7'
+                  Wx_IDValue = 1099
+                  Wx_LabelStyle = []
+                  Wx_StrechFactor = 0
+                end
+                object WxEditHeaderLeft: TWxEdit
+                  Left = 44
+                  Top = 4
+                  Width = 240
+                  Height = 21
+                  BevelInner = bvNone
+                  BevelOuter = bvNone
+                  Modified = False
+                  TabOrder = 1
+                  Wx_BGColor = clBlack
+                  Wx_Border = 2
+                  Wx_Class = 'wxTextCtrl'
+                  Wx_ControlOrientation = wxControlNone
+                  Wx_EditStyle = []
+                  Wx_FGColor = clBlack
+                  Wx_GeneralStyle = []
+                  Wx_Hidden = False
+                  Wx_IDName = 'ID_WXEDITHEADERLEFT'
+                  Wx_IDValue = 1100
+                  Wx_StrechFactor = 0
+                  Wx_MaxLength = 0
+                end
+                object WxButton1: TWxButton
+                  Left = 288
+                  Top = 2
+                  Width = 25
+                  Height = 25
+                  Caption = '>>'
+                  TabOrder = 2
+                  Wx_BKColor = clBlack
+                  Wx_Border = 1
+                  Wx_ButtonStyle = []
+                  Wx_Class = 'wxButton'
+                  Wx_ControlOrientation = wxControlNone
+                  Wx_Default = False
+                  Wx_EventList.Strings = (
+                    'EVT_BUTTON:OnClick'
+                    'EVT_UPDATE_UI:OnUpdateUI')
+                  Wx_FGColor = clBlack
+                  Wx_GeneralStyle = []
+                  Wx_Hidden = False
+                  Wx_IDName = 'ID_WXBUTTON1'
+                  Wx_IDValue = 1101
+                  Wx_StrechFactor = 0
+                  Wx_Height = 25
+                  Wx_Width = 25
+                end
+                object WxStaticText8: TWxStaticText
+                  Left = 2
+                  Top = 35
+                  Width = 38
+                  Height = 17
+                  Caption = 'Center:'
+                  TabOrder = 3
+                  Wx_BGColor = clBlack
+                  Wx_Border = 2
+                  Wx_Class = 'wxStaticText'
+                  Wx_ControlOrientation = wxControlNone
+                  Wx_FGColor = clBlack
+                  Wx_GeneralStyle = []
+                  Wx_Hidden = False
+                  Wx_HorizontalAlignment = wxSZALIGN_LEFT
+                  Wx_IDName = 'ID_WXSTATICTEXT8'
+                  Wx_IDValue = 1102
+                  Wx_LabelStyle = []
+                  Wx_StrechFactor = 0
+                end
+                object WxEditHeaderCenter: TWxEdit
+                  Left = 44
+                  Top = 33
+                  Width = 240
+                  Height = 21
+                  BevelInner = bvNone
+                  BevelOuter = bvNone
+                  Modified = False
+                  TabOrder = 4
+                  Wx_BGColor = clBlack
+                  Wx_Border = 2
+                  Wx_Class = 'wxTextCtrl'
+                  Wx_ControlOrientation = wxControlNone
+                  Wx_EditStyle = []
+                  Wx_FGColor = clBlack
+                  Wx_GeneralStyle = []
+                  Wx_Hidden = False
+                  Wx_IDName = 'ID_WXEDITHEADERCENTER'
+                  Wx_IDValue = 1103
+                  Wx_StrechFactor = 0
+                  Wx_MaxLength = 0
+                end
+                object WxButton2: TWxButton
+                  Left = 288
+                  Top = 31
+                  Width = 25
+                  Height = 25
+                  Caption = '>>'
+                  TabOrder = 5
+                  Wx_BKColor = clBlack
+                  Wx_Border = 1
+                  Wx_ButtonStyle = []
+                  Wx_Class = 'wxButton'
+                  Wx_ControlOrientation = wxControlNone
+                  Wx_Default = False
+                  Wx_EventList.Strings = (
+                    'EVT_BUTTON:OnClick'
+                    'EVT_UPDATE_UI:OnUpdateUI')
+                  Wx_FGColor = clBlack
+                  Wx_GeneralStyle = []
+                  Wx_Hidden = False
+                  Wx_IDName = 'ID_WXBUTTON2'
+                  Wx_IDValue = 1104
+                  Wx_StrechFactor = 0
+                  Wx_Height = 25
+                  Wx_Width = 25
+                end
+                object WxStaticText9: TWxStaticText
+                  Left = 5
+                  Top = 64
+                  Width = 32
+                  Height = 17
+                  Caption = 'Right:'
+                  TabOrder = 6
+                  Wx_BGColor = clBlack
+                  Wx_Border = 2
+                  Wx_Class = 'wxStaticText'
+                  Wx_ControlOrientation = wxControlNone
+                  Wx_FGColor = clBlack
+                  Wx_GeneralStyle = []
+                  Wx_Hidden = False
+                  Wx_HorizontalAlignment = wxSZALIGN_LEFT
+                  Wx_IDName = 'ID_WXSTATICTEXT9'
+                  Wx_IDValue = 1105
+                  Wx_LabelStyle = []
+                  Wx_StrechFactor = 0
+                end
+                object WxEditHeaderRight: TWxEdit
+                  Left = 44
+                  Top = 62
+                  Width = 240
+                  Height = 21
+                  BevelInner = bvNone
+                  BevelOuter = bvNone
+                  Modified = False
+                  TabOrder = 7
+                  Wx_BGColor = clBlack
+                  Wx_Border = 2
+                  Wx_Class = 'wxTextCtrl'
+                  Wx_ControlOrientation = wxControlNone
+                  Wx_EditStyle = []
+                  Wx_FGColor = clBlack
+                  Wx_GeneralStyle = []
+                  Wx_Hidden = False
+                  Wx_IDName = 'ID_WXEDITHEADERRIGHT'
+                  Wx_IDValue = 1106
+                  Wx_StrechFactor = 0
+                  Wx_MaxLength = 0
+                end
+                object WxButton3: TWxButton
+                  Left = 288
+                  Top = 60
+                  Width = 25
+                  Height = 25
+                  Caption = '>>'
+                  TabOrder = 8
+                  Wx_BKColor = clBlack
+                  Wx_Border = 1
+                  Wx_ButtonStyle = []
+                  Wx_Class = 'wxButton'
+                  Wx_ControlOrientation = wxControlNone
+                  Wx_Default = False
+                  Wx_EventList.Strings = (
+                    'EVT_BUTTON:OnClick'
+                    'EVT_UPDATE_UI:OnUpdateUI')
+                  Wx_FGColor = clBlack
+                  Wx_GeneralStyle = []
+                  Wx_Hidden = False
+                  Wx_IDName = 'ID_WXBUTTON3'
+                  Wx_IDValue = 1107
+                  Wx_StrechFactor = 0
+                  Wx_Height = 25
+                  Wx_Width = 25
+                end
+              end
+            end
+            object WxStaticBoxSizer4: TWxStaticBoxSizer
+              Left = 2
+              Top = 142
+              Width = 331
+              Height = 136
+              TabOrder = 1
+              Orientation = wxVertical
+              SpaceValue = 4
+              Wx_Caption = 'Page Footer'
+              Wx_Class = 'wxStaticBoxSizer'
+              Wx_ControlOrientation = wxControlVertical
+              Wx_HorizontalAlignment = wxSZALIGN_LEFT
+              Wx_IDName = 'ID_WXSTATICBOXSIZER4'
+              Wx_IDValue = 1096
+              Wx_StrechFactor = 0
+              Wx_VerticalAlignment = wxSZALIGN_TOP
+              object WxCheckBoxPrintPageFooter: TWxCheckBox
+                Left = 90
+                Top = 16
+                Width = 150
+                Height = 17
+                Caption = 'Print Page Footer'
+                TabOrder = 1
+                Wx_BGColor = clBlack
+                Wx_Border = 1
+                Wx_CheckBoxStyle = []
+                Wx_Class = 'wxCheckBox'
+                Wx_ControlOrientation = wxControlVertical
+                Wx_FGColor = clBlack
+                Wx_GeneralStyle = []
+                Wx_Hidden = False
+                Wx_HorizontalAlignment = wxSZALIGN_LEFT
+                Wx_IDName = 'ID_WXCHECKBOXPRINTPAGEFOOTER'
+                Wx_IDValue = 1108
+                Wx_StrechFactor = 0
+              end
+              object WxFlexGridSizer2: TWxFlexGridSizer
+                Left = 8
+                Top = 41
+                Width = 315
+                Height = 87
+                TabOrder = 2
+                Columns = 3
+                Rows = 3
+                SpaceValue = 2
+                Wx_Class = 'wxFlexGridSizer'
+                Wx_ControlOrientation = wxControlVertical
+                Wx_IDName = 'ID_WXFLEXGRIDSIZER2'
+                Wx_IDValue = 1109
+                Wx_StrechFactor = 0
+                object WxStaticText10: TWxStaticText
+                  Left = 8
+                  Top = 6
+                  Width = 25
+                  Height = 17
+                  Caption = 'Left:'
+                  TabOrder = 0
+                  Wx_BGColor = clBlack
+                  Wx_Border = 2
+                  Wx_Class = 'wxStaticText'
+                  Wx_ControlOrientation = wxControlNone
+                  Wx_FGColor = clBlack
+                  Wx_GeneralStyle = []
+                  Wx_Hidden = False
+                  Wx_HorizontalAlignment = wxSZALIGN_LEFT
+                  Wx_IDName = 'ID_WXSTATICTEXT7'
+                  Wx_IDValue = 1099
+                  Wx_LabelStyle = []
+                  Wx_StrechFactor = 0
+                end
+                object WxEditFooterLeft: TWxEdit
+                  Left = 44
+                  Top = 4
+                  Width = 240
+                  Height = 21
+                  BevelInner = bvNone
+                  BevelOuter = bvNone
+                  Modified = False
+                  TabOrder = 1
+                  Wx_BGColor = clBlack
+                  Wx_Border = 2
+                  Wx_Class = 'wxTextCtrl'
+                  Wx_ControlOrientation = wxControlNone
+                  Wx_EditStyle = []
+                  Wx_FGColor = clBlack
+                  Wx_GeneralStyle = []
+                  Wx_Hidden = False
+                  Wx_IDName = 'ID_WXEDITHEADERLEFT'
+                  Wx_IDValue = 1100
+                  Wx_StrechFactor = 0
+                  Wx_MaxLength = 0
+                end
+                object WxButton4: TWxButton
+                  Left = 288
+                  Top = 2
+                  Width = 25
+                  Height = 25
+                  Caption = '>>'
+                  TabOrder = 2
+                  Wx_BKColor = clBlack
+                  Wx_Border = 1
+                  Wx_ButtonStyle = []
+                  Wx_Class = 'wxButton'
+                  Wx_ControlOrientation = wxControlNone
+                  Wx_Default = False
+                  Wx_EventList.Strings = (
+                    'EVT_BUTTON:OnClick'
+                    'EVT_UPDATE_UI:OnUpdateUI')
+                  Wx_FGColor = clBlack
+                  Wx_GeneralStyle = []
+                  Wx_Hidden = False
+                  Wx_IDName = 'ID_WXBUTTON4'
+                  Wx_IDValue = 1109
+                  Wx_StrechFactor = 0
+                  Wx_Height = 25
+                  Wx_Width = 25
+                end
+                object WxStaticText11: TWxStaticText
+                  Left = 2
+                  Top = 35
+                  Width = 38
+                  Height = 17
+                  Caption = 'Center:'
+                  TabOrder = 3
+                  Wx_BGColor = clBlack
+                  Wx_Border = 2
+                  Wx_Class = 'wxStaticText'
+                  Wx_ControlOrientation = wxControlNone
+                  Wx_FGColor = clBlack
+                  Wx_GeneralStyle = []
+                  Wx_Hidden = False
+                  Wx_HorizontalAlignment = wxSZALIGN_LEFT
+                  Wx_IDName = 'ID_WXSTATICTEXT8'
+                  Wx_IDValue = 1102
+                  Wx_LabelStyle = []
+                  Wx_StrechFactor = 0
+                end
+                object WxEditFooterCenter: TWxEdit
+                  Left = 44
+                  Top = 33
+                  Width = 240
+                  Height = 21
+                  BevelInner = bvNone
+                  BevelOuter = bvNone
+                  Modified = False
+                  TabOrder = 4
+                  Wx_BGColor = clBlack
+                  Wx_Border = 2
+                  Wx_Class = 'wxTextCtrl'
+                  Wx_ControlOrientation = wxControlNone
+                  Wx_EditStyle = []
+                  Wx_FGColor = clBlack
+                  Wx_GeneralStyle = []
+                  Wx_Hidden = False
+                  Wx_IDName = 'ID_WXEDITHEADERCENTER'
+                  Wx_IDValue = 1103
+                  Wx_StrechFactor = 0
+                  Wx_MaxLength = 0
+                end
+                object WxButton5: TWxButton
+                  Left = 288
+                  Top = 31
+                  Width = 25
+                  Height = 25
+                  Caption = '>>'
+                  TabOrder = 5
+                  Wx_BKColor = clBlack
+                  Wx_Border = 1
+                  Wx_ButtonStyle = []
+                  Wx_Class = 'wxButton'
+                  Wx_ControlOrientation = wxControlNone
+                  Wx_Default = False
+                  Wx_EventList.Strings = (
+                    'EVT_BUTTON:OnClick'
+                    'EVT_UPDATE_UI:OnUpdateUI')
+                  Wx_FGColor = clBlack
+                  Wx_GeneralStyle = []
+                  Wx_Hidden = False
+                  Wx_IDName = 'ID_WXBUTTON5'
+                  Wx_IDValue = 1110
+                  Wx_StrechFactor = 0
+                  Wx_Height = 25
+                  Wx_Width = 25
+                end
+                object WxStaticText12: TWxStaticText
+                  Left = 5
+                  Top = 64
+                  Width = 32
+                  Height = 17
+                  Caption = 'Right:'
+                  TabOrder = 6
+                  Wx_BGColor = clBlack
+                  Wx_Border = 2
+                  Wx_Class = 'wxStaticText'
+                  Wx_ControlOrientation = wxControlNone
+                  Wx_FGColor = clBlack
+                  Wx_GeneralStyle = []
+                  Wx_Hidden = False
+                  Wx_HorizontalAlignment = wxSZALIGN_LEFT
+                  Wx_IDName = 'ID_WXSTATICTEXT9'
+                  Wx_IDValue = 1105
+                  Wx_LabelStyle = []
+                  Wx_StrechFactor = 0
+                end
+                object WxEditFooterRight: TWxEdit
+                  Left = 44
+                  Top = 62
+                  Width = 240
+                  Height = 21
+                  BevelInner = bvNone
+                  BevelOuter = bvNone
+                  Modified = False
+                  TabOrder = 7
+                  Wx_BGColor = clBlack
+                  Wx_Border = 2
+                  Wx_Class = 'wxTextCtrl'
+                  Wx_ControlOrientation = wxControlNone
+                  Wx_EditStyle = []
+                  Wx_FGColor = clBlack
+                  Wx_GeneralStyle = []
+                  Wx_Hidden = False
+                  Wx_IDName = 'ID_WXEDITHEADERRIGHT'
+                  Wx_IDValue = 1106
+                  Wx_StrechFactor = 0
+                  Wx_MaxLength = 0
+                end
+                object WxButton6: TWxButton
+                  Left = 288
+                  Top = 60
+                  Width = 25
+                  Height = 25
+                  Caption = '>>'
+                  TabOrder = 8
+                  Wx_BKColor = clBlack
+                  Wx_Border = 1
+                  Wx_ButtonStyle = []
+                  Wx_Class = 'wxButton'
+                  Wx_ControlOrientation = wxControlNone
+                  Wx_Default = False
+                  Wx_EventList.Strings = (
+                    'EVT_BUTTON:OnClick'
+                    'EVT_UPDATE_UI:OnUpdateUI')
+                  Wx_FGColor = clBlack
+                  Wx_GeneralStyle = []
+                  Wx_Hidden = False
+                  Wx_IDName = 'ID_WXBUTTON6'
+                  Wx_IDValue = 1111
+                  Wx_StrechFactor = 0
+                  Wx_Height = 25
+                  Wx_Width = 25
+                end
+              end
+            end
+          end
+        end
+      end
+      object WxNoteBookPage4: TWxNoteBookPage
+        Caption = 'Keys'
+        Wx_BKColor = clBlack
+        Wx_Class = 'wxPanel'
+        Wx_ControlOrientation = wxControlVertical
+        Wx_Default = False
+        Wx_EventList.Strings = (
+          'EVT_UPDATE_UI:OnUpdateUI')
+        Wx_FGColor = clBlack
+        Wx_GeneralStyle = []
+        Wx_Hidden = False
+        Wx_IDName = 'ID_WXNOTEBOOKPAGE4'
+        Wx_IDValue = 1122
+        Wx_StretchFactor = 1
+        Wx_StrechFactor = 1
+        object WxBoxSizer18: TWxBoxSizer
+          Left = 0
+          Top = 0
+          Width = 673
+          Height = 314
+          Align = alClient
+          TabOrder = 0
+          SpaceValue = 2
+          Wx_Class = 'wxBoxSizer'
+          Wx_ControlOrientation = wxControlVertical
+          Wx_HorizontalAlignment = wxSZALIGN_GROW_HORIZONTAL
+          Wx_IDName = 'ID_WXBOXSIZER18'
+          Wx_IDValue = 1123
+          Wx_StretchFactor = 1
+          Wx_StrechFactor = 1
+          Wx_VerticalAlignment = wxSZALIGN_GROW_VERTICAL
+          object WxBoxSizer19: TWxBoxSizer
+            Left = 2
+            Top = 9
+            Width = 258
+            Height = 248
+            TabOrder = 0
+            SpaceValue = 4
+            Wx_Class = 'wxBoxSizer'
+            Wx_ControlOrientation = wxControlHorizontal
+            Wx_HorizontalAlignment = wxSZALIGN_LEFT
+            Wx_IDName = 'ID_WXBOXSIZER19'
+            Wx_IDValue = 1124
+            Wx_StretchFactor = 2
+            Wx_StrechFactor = 2
+            Wx_VerticalAlignment = wxSZALIGN_GROW_VERTICAL
+            object WxTreeCtrl1: TWxTreeCtrl
+              Left = 4
+              Top = 4
+              Width = 250
+              Height = 240
+              Indent = 19
+              TabOrder = 0
+              EVT_TREE_SEL_CHANGED = 'WxTreeCtrl1SelChanged'
+              Wx_BGColor = clBlack
+              Wx_Border = 3
+              Wx_Class = 'wxTreeCtrl'
+              Wx_ControlOrientation = wxControlHorizontal
+              Wx_FGColor = clBlack
+              Wx_GeneralStyle = []
+              Wx_Hidden = False
+              Wx_HorizontalAlignment = wxSZALIGN_GROW_HORIZONTAL
+              Wx_IDName = 'ID_WXTREECTRL1'
+              Wx_IDValue = 1125
+              Wx_StrechFactor = 1
+              Wx_StretchFactor = 1
+              Wx_TreeviewStyle = [wxTR_HAS_BUTTONS, wxTR_DEFAULT_STYLE]
+              Wx_VerticalAlignment = wxSZALIGN_GROW_VERTICAL
+            end
+          end
+          object WxBoxSizer20: TWxBoxSizer
+            Left = 264
+            Top = 2
+            Width = 393
+            Height = 262
+            TabOrder = 1
+            Orientation = wxVertical
+            SpaceValue = 2
+            Wx_Class = 'wxBoxSizer'
+            Wx_ControlOrientation = wxControlHorizontal
+            Wx_HorizontalAlignment = wxSZALIGN_GROW_HORIZONTAL
+            Wx_IDName = 'ID_WXBOXSIZER20'
+            Wx_IDValue = 1128
+            Wx_StretchFactor = 3
+            Wx_StrechFactor = 3
+            Wx_VerticalAlignment = wxSZALIGN_GROW_VERTICAL
+            object WxBoxSizer24: TWxBoxSizer
+              Left = 29
+              Top = 2
+              Width = 334
+              Height = 25
+              TabOrder = 1
+              SpaceValue = 2
+              Wx_Class = 'wxBoxSizer'
+              Wx_ControlOrientation = wxControlVertical
+              Wx_HorizontalAlignment = wxSZALIGN_GROW_HORIZONTAL
+              Wx_IDName = 'ID_WXBOXSIZER24'
+              Wx_IDValue = 1139
+              Wx_StretchFactor = 0
+              Wx_StrechFactor = 0
+              Wx_VerticalAlignment = wxSZALIGN_TOP
+              object WxStaticTextCommandHint: TWxStaticText
+                Left = 2
+                Top = 4
+                Width = 26
+                Height = 17
+                Caption = 'Hint:'
+                TabOrder = 0
+                Wx_BGColor = clBlack
+                Wx_Class = 'wxStaticText'
+                Wx_ControlOrientation = wxControlHorizontal
+                Wx_FGColor = clBlack
+                Wx_GeneralStyle = []
+                Wx_Hidden = False
+                Wx_IDName = 'ID_WXSTATICTEXTCOMMANDHINT'
+                Wx_IDValue = 1140
+                Wx_LabelStyle = []
+                Wx_StrechFactor = 0
+              end
+              object WxEditCommandHint: TWxEdit
+                Left = 32
+                Top = 2
+                Width = 300
+                Height = 21
+                BevelInner = bvNone
+                BevelOuter = bvNone
+                Modified = False
+                Color = clBtnFace
+                TabOrder = 1
+                Wx_BGColor = clBlack
+                Wx_Class = 'wxTextCtrl'
+                Wx_ControlOrientation = wxControlHorizontal
+                Wx_EditStyle = [wxTE_READONLY]
+                Wx_FGColor = clBlack
+                Wx_GeneralStyle = []
+                Wx_Hidden = False
+                Wx_HorizontalAlignment = wxSZALIGN_GROW_HORIZONTAL
+                Wx_IDName = 'ID_WXEDITHINT'
+                Wx_IDValue = 1141
+                Wx_StrechFactor = 1
+                Wx_StretchFactor = 1
+                Wx_MaxLength = 0
+                InvisibleBGColorString = 'SYS:wxSYS_COLOUR_BTNFACE'
+              end
+            end
+            object WxBoxSizer21: TWxBoxSizer
+              Left = 2
+              Top = 31
+              Width = 389
+              Height = 229
+              TabOrder = 0
+              SpaceValue = 2
+              Wx_Class = 'wxBoxSizer'
+              Wx_ControlOrientation = wxControlVertical
+              Wx_HorizontalAlignment = wxSZALIGN_GROW_HORIZONTAL
+              Wx_IDName = 'ID_WXBOXSIZER21'
+              Wx_IDValue = 1130
+              Wx_StretchFactor = 1
+              Wx_StrechFactor = 1
+              Wx_VerticalAlignment = wxSZALIGN_GROW_VERTICAL
+              object WxBoxSizer22: TWxBoxSizer
+                Left = 2
+                Top = 2
+                Width = 125
+                Height = 225
+                TabOrder = 0
+                Orientation = wxVertical
+                SpaceValue = 2
+                Wx_Class = 'wxBoxSizer'
+                Wx_ControlOrientation = wxControlHorizontal
+                Wx_HorizontalAlignment = wxSZALIGN_LEFT
+                Wx_IDName = 'ID_WXBOXSIZER22'
+                Wx_IDValue = 1131
+                Wx_StretchFactor = 0
+                Wx_StrechFactor = 0
+                Wx_VerticalAlignment = wxSZALIGN_GROW_VERTICAL
+                object WxStaticText14: TWxStaticText
+                  Left = 24
+                  Top = 2
+                  Width = 76
+                  Height = 17
+                  Caption = 'Assigned Keys:'
+                  TabOrder = 0
+                  Wx_BGColor = clBlack
+                  Wx_Class = 'wxStaticText'
+                  Wx_ControlOrientation = wxControlVertical
+                  Wx_FGColor = clBlack
+                  Wx_GeneralStyle = []
+                  Wx_Hidden = False
+                  Wx_IDName = 'ID_WXSTATICTEXT14'
+                  Wx_IDValue = 1132
+                  Wx_LabelStyle = []
+                  Wx_StrechFactor = 0
+                end
+                object WxListBoxKeys: TWxListBox
+                  Left = 2
+                  Top = 23
+                  Width = 121
+                  Height = 200
+                  ItemHeight = 13
+                  TabOrder = 1
+                  EVT_LISTBOX = 'WxListBoxKeysSelected'
+                  Wx_BGColor = clBlack
+                  Wx_Border = 2
+                  Wx_Class = 'wxListBox'
+                  Wx_ControlOrientation = wxControlVertical
+                  Wx_FGColor = clBlack
+                  Wx_GeneralStyle = []
+                  Wx_Hidden = False
+                  Wx_HorizontalAlignment = wxSZALIGN_LEFT
+                  Wx_IDName = 'ID_WXLISTBOXKEYS'
+                  Wx_IDValue = 1133
+                  Wx_ListboxStyle = []
+                  Wx_ListboxSubStyle = wxLB_SINGLE
+                  Wx_StrechFactor = 1
+                  Wx_StretchFactor = 1
+                  Wx_VerticalAlignment = wxSZALIGN_GROW_VERTICAL
+                end
+              end
+              object WxBoxSizer23: TWxBoxSizer
+                Left = 131
+                Top = 24
+                Width = 256
+                Height = 180
+                TabOrder = 1
+                Orientation = wxVertical
+                SpaceValue = 1
+                Wx_Class = 'wxBoxSizer'
+                Wx_ControlOrientation = wxControlHorizontal
+                Wx_HorizontalAlignment = wxSZALIGN_GROW_HORIZONTAL
+                Wx_IDName = 'ID_WXBOXSIZER23'
+                Wx_IDValue = 1148
+                Wx_StretchFactor = 1
+                Wx_StrechFactor = 1
+                Wx_VerticalAlignment = wxSZALIGN_GROW_VERTICAL
+                object WxBoxSizer25: TWxBoxSizer
+                  Left = 37
+                  Top = 1
+                  Width = 182
+                  Height = 155
+                  TabOrder = 0
+                  Orientation = wxVertical
+                  SpaceValue = 1
+                  Wx_Class = 'wxBoxSizer'
+                  Wx_ControlOrientation = wxControlVertical
+                  Wx_HorizontalAlignment = wxSZALIGN_GROW_HORIZONTAL
+                  Wx_IDName = 'ID_WXBOXSIZER25'
+                  Wx_IDValue = 1149
+                  Wx_StretchFactor = 5
+                  Wx_StrechFactor = 5
+                  object WxStaticText15: TWxStaticText
+                    Left = 66
+                    Top = 1
+                    Width = 50
+                    Height = 17
+                    Caption = 'New Key:'
+                    TabOrder = 0
+                    Wx_BGColor = clBlack
+                    Wx_Class = 'wxStaticText'
+                    Wx_ControlOrientation = wxControlVertical
+                    Wx_FGColor = clBlack
+                    Wx_GeneralStyle = []
+                    Wx_Hidden = False
+                    Wx_HorizontalAlignment = wxSZALIGN_LEFT
+                    Wx_IDName = 'ID_WXSTATICTEXT15'
+                    Wx_IDValue = 1136
+                    Wx_LabelStyle = []
+                    Wx_StrechFactor = 0
+                  end
+                  object WxEditKey: TWxEdit
+                    Left = 1
+                    Top = 20
+                    Width = 180
+                    Height = 21
+                    BevelInner = bvNone
+                    BevelOuter = bvNone
+                    Modified = False
+                    TabOrder = 1
+                    Wx_BGColor = clBlack
+                    Wx_Class = 'KeyTextCtrl'
+                    Wx_ControlOrientation = wxControlVertical
+                    Wx_EditStyle = [wxTE_PROCESS_TAB]
+                    Wx_FGColor = clBlack
+                    Wx_GeneralStyle = [wxWANTS_CHARS]
+                    Wx_Hidden = False
+                    Wx_HorizontalAlignment = wxSZALIGN_LEFT
+                    Wx_IDName = 'ID_WXEDITKEY'
+                    Wx_IDValue = 1137
+                    Wx_StrechFactor = 0
+                    Wx_MaxLength = 0
+                  end
+                  object WxEditKeyHint: TWxEdit
+                    Left = 1
+                    Top = 43
+                    Width = 180
+                    Height = 21
+                    BevelInner = bvNone
+                    BevelOuter = bvNone
+                    Modified = False
+                    Color = clBtnFace
+                    TabOrder = 3
+                    Wx_BGColor = clBlack
+                    Wx_Class = 'wxTextCtrl'
+                    Wx_ControlOrientation = wxControlVertical
+                    Wx_EditStyle = [wxTE_READONLY]
+                    Wx_FGColor = clBlack
+                    Wx_GeneralStyle = []
+                    Wx_Hidden = False
+                    Wx_HorizontalAlignment = wxSZALIGN_GROW_HORIZONTAL
+                    Wx_IDName = 'ID_WXEDITKEYHINT'
+                    Wx_IDValue = 1142
+                    Wx_StrechFactor = 1
+                    Wx_StretchFactor = 1
+                    Wx_MaxLength = 0
+                    Wx_VerticalAlignment = wxSZALIGN_TOP
+                    InvisibleBGColorString = 'SYS:wxSYS_COLOUR_BTNFACE'
+                  end
+                  object WxButtonAddKey: TWxButton
+                    Left = 11
+                    Top = 66
+                    Width = 160
+                    Height = 28
+                    Caption = '<== Add Key'
+                    TabOrder = 2
+                    EVT_BUTTON = 'WxButtonAddKeyClick'
+                    Wx_BKColor = clBlack
+                    Wx_ButtonStyle = []
+                    Wx_Class = 'wxButton'
+                    Wx_ControlOrientation = wxControlVertical
+                    Wx_Default = False
+                    Wx_EventList.Strings = (
+                      'EVT_BUTTON:OnClick'
+                      'EVT_UPDATE_UI:OnUpdateUI')
+                    Wx_FGColor = clBlack
+                    Wx_GeneralStyle = []
+                    Wx_Hidden = False
+                    Wx_HorizontalAlignment = wxSZALIGN_LEFT
+                    Wx_IDName = 'ID_WXBUTTONADDKEY'
+                    Wx_IDValue = 1138
+                    Wx_StrechFactor = 0
+                    Wx_Height = 28
+                    Wx_Width = 160
+                  end
+                  object WxButtonDeleteKey: TWxButton
+                    Left = 11
+                    Top = 96
+                    Width = 160
+                    Height = 28
+                    Caption = '==> Delete Key'
+                    TabOrder = 4
+                    EVT_BUTTON = 'WxButtonDeleteKeyClick'
+                    Wx_BKColor = clBlack
+                    Wx_ButtonStyle = []
+                    Wx_Class = 'wxButton'
+                    Wx_ControlOrientation = wxControlVertical
+                    Wx_Default = False
+                    Wx_EventList.Strings = (
+                      'EVT_BUTTON:OnClick'
+                      'EVT_UPDATE_UI:OnUpdateUI')
+                    Wx_FGColor = clBlack
+                    Wx_GeneralStyle = []
+                    Wx_Hidden = False
+                    Wx_HorizontalAlignment = wxSZALIGN_LEFT
+                    Wx_IDName = 'ID_WXBUTTONDELETEKEY'
+                    Wx_IDValue = 1143
+                    Wx_StrechFactor = 0
+                    Wx_Height = 28
+                    Wx_Width = 160
+                  end
+                  object WxButtonShowInMenu: TWxButton
+                    Left = 11
+                    Top = 126
+                    Width = 160
+                    Height = 28
+                    Caption = 'Show the Key in Menu'
+                    TabOrder = 5
+                    EVT_BUTTON = 'WxButtonShowInMenuClick'
+                    Wx_BKColor = clBlack
+                    Wx_ButtonStyle = []
+                    Wx_Class = 'wxButton'
+                    Wx_ControlOrientation = wxControlVertical
+                    Wx_Default = False
+                    Wx_EventList.Strings = (
+                      'EVT_BUTTON:OnClick'
+                      'EVT_UPDATE_UI:OnUpdateUI')
+                    Wx_FGColor = clBlack
+                    Wx_GeneralStyle = []
+                    Wx_Hidden = False
+                    Wx_HorizontalAlignment = wxSZALIGN_LEFT
+                    Wx_IDName = 'ID_WXBUTTONSHOWINMENU'
+                    Wx_IDValue = 1144
+                    Wx_StrechFactor = 0
+                    Wx_Height = 28
+                    Wx_Width = 160
+                  end
+                end
+                object WxBoxSizer26: TWxBoxSizer
+                  Left = 1
+                  Top = 158
+                  Width = 254
+                  Height = 21
+                  TabOrder = 1
+                  SpaceValue = 2
+                  Wx_Class = 'wxBoxSizer'
+                  Wx_ControlOrientation = wxControlVertical
+                  Wx_HorizontalAlignment = wxSZALIGN_LEFT
+                  Wx_IDName = 'ID_WXBOXSIZER26'
+                  Wx_IDValue = 1150
+                  Wx_StretchFactor = 1
+                  Wx_StrechFactor = 1
+                  Wx_VerticalAlignment = wxSZALIGN_BOTTOM
+                  object WxCheckBoxResetAllKeys: TWxCheckBox
+                    Left = 2
+                    Top = 2
+                    Width = 250
+                    Height = 17
+                    Caption = 'Reset All Keys to Default(Must Restart MadEdit)'
+                    TabOrder = 0
+                    Wx_BGColor = clBlack
+                    Wx_CheckBoxStyle = []
+                    Wx_Class = 'wxCheckBox'
+                    Wx_ControlOrientation = wxControlHorizontal
+                    Wx_FGColor = clBlack
+                    Wx_GeneralStyle = []
+                    Wx_Hidden = False
+                    Wx_HorizontalAlignment = wxSZALIGN_LEFT
+                    Wx_IDName = 'ID_WXCHECKBOXRESETALLKEYS'
+                    Wx_IDValue = 1153
+                    Wx_StrechFactor = 0
+                    Wx_VerticalAlignment = wxSZALIGN_BOTTOM
+                  end
+                end
+              end
+            end
+          end
+        end
+      end
+    end
+    object WxBoxSizer2: TWxBoxSizer
+      Left = 243
+      Top = 342
+      Width = 195
+      Height = 40
+      TabOrder = 1
+      Wx_Class = 'wxBoxSizer'
+      Wx_ControlOrientation = wxControlVertical
+      Wx_IDName = 'ID_WXBOXSIZER2'
+      Wx_IDValue = 1005
+      Wx_StretchFactor = 0
+      Wx_StrechFactor = 0
+      object WxButtonOK: TWxButton
+        Left = 5
+        Top = 5
+        Width = 85
+        Height = 30
+        Caption = '&OK'
+        TabOrder = 0
+        EVT_BUTTON = 'WxButtonOKClick'
+        Wx_BKColor = clBlack
+        Wx_ButtonStyle = []
+        Wx_Class = 'wxButton'
+        Wx_ControlOrientation = wxControlHorizontal
+        Wx_Default = False
+        Wx_EventList.Strings = (
+          'EVT_BUTTON:OnClick'
+          'EVT_UPDATE_UI:OnUpdateUI')
+        Wx_FGColor = clBlack
+        Wx_GeneralStyle = []
+        Wx_Hidden = False
+        Wx_IDName = 'wxID_OK'
+        Wx_IDValue = 1006
+        Wx_StrechFactor = 0
+        Wx_Height = 30
+        Wx_Width = 85
+      end
+      object WxButtonCancel: TWxButton
+        Left = 100
+        Top = 5
+        Width = 90
+        Height = 30
+        Caption = '&Cancel'
+        TabOrder = 1
+        EVT_BUTTON = 'WxButtonCancelClick'
+        Wx_BKColor = clBlack
+        Wx_ButtonStyle = []
+        Wx_Class = 'wxButton'
+        Wx_ControlOrientation = wxControlHorizontal
+        Wx_Default = False
+        Wx_EventList.Strings = (
+          'EVT_BUTTON:OnClick'
+          'EVT_UPDATE_UI:OnUpdateUI')
+        Wx_FGColor = clBlack
+        Wx_GeneralStyle = []
+        Wx_Hidden = False
+        Wx_IDName = 'wxID_CANCEL'
+        Wx_IDValue = 1007
+        Wx_StrechFactor = 0
+        Wx_Height = 30
+        Wx_Width = 90
+      end
+    end
+  end
+  object WxPopupMenu1: TWxPopupMenu
+    Left = 502
+    Top = 346
+    Width = 28
+    Height = 27
+    TabOrder = 1
+    Glyph.Data = {
+      36090000424D3609000000000000360000002800000018000000180000000100
+      2000000000000009000000000000000000000000000000000000008080000080
+      8000008080000080800000808000008080000080800000808000008080000080
+      8000008080000080800000808000008080000080800000808000008080000080
+      8000008080000080800000808000008080000080800000808000008080000080
+      8000008080000080800000808000008080000080800000808000008080000080
+      8000008080000080800000808000008080000080800000808000000000000000
+      0000008080000080800000808000008080000080800000808000008080000080
+      8000008080000080800000808000008080000080800000808000008080000080
+      8000008080000080800000808000008080000080800000000000FFFFFF00FFFF
+      FF00000000000080800000808000008080000080800000808000008080000080
+      8000008080000080800000808000008080000080800000808000008080000080
+      8000008080000000000000808000008080000080800000000000FFFFFF00FFFF
+      FF00000000000080800000808000008080000080800000808000008080000080
+      8000008080000080800000808000008080000080800000808000008080000080
+      80000080800000000000000000000080800000000000FFFFFF00FFFFFF000000
+      0000008080000080800000808000008080000080800000808000008080000080
+      8000008080000080800000808000008080000080800000808000008080000080
+      80000080800000000000FFFFFF000000000000000000FFFFFF00FFFFFF000000
+      0000008080000080800000808000008080000080800000808000008080000080
+      8000008080000080800000808000008080000080800000808000008080000080
+      80000080800000000000FFFFFF00FFFFFF00FFFFFF00FFFFFF00000000000080
+      8000008080000080800000808000008080000080800000808000008080000080
+      8000008080000080800000808000008080000080800000808000008080000080
+      80000080800000000000FFFFFF00FFFFFF00FFFFFF00FFFFFF00000000000000
+      0000000000000000000000808000008080000080800000808000008080000080
+      8000008080000080800000808000008080000080800000808000008080000080
+      80000080800000000000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+      FF00000000000080800000808000008080000080800000808000008080000080
+      8000008080000080800000808000008080000080800000808000008080000080
+      80000080800000000000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF000000
+      0000008080000080800000808000008080000080800000808000008080000080
+      8000008080000080800080808000000000000000000000000000000000000000
+      00000000000000000000FFFFFF00FFFFFF00FFFFFF00FFFFFF00000000000080
+      8000008080000080800000808000008080000080800000808000008080000080
+      8000008080000080800080808000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+      FF00FFFFFF0000000000FFFFFF00FFFFFF00FFFFFF0000000000008080000080
+      8000008080000080800000808000008080000080800000808000008080000080
+      8000008080000080800080808000FFFFFF008000000080000000800000008000
+      00008000000000000000FFFFFF00FFFFFF000000000000808000008080000080
+      8000008080000080800000808000008080000080800000808000008080000080
+      8000008080000080800080808000800000008000000080000000800000008000
+      00008000000000000000FFFFFF00000000000000000000808000008080000080
+      8000008080000080800000808000008080000080800000808000008080000080
+      800000808000008080008080800080000000FFFFFF00FFFFFF00FFFFFF00FFFF
+      FF00FFFFFF000000000000000000800000000000000000808000008080000080
+      8000008080000080800000808000008080000080800000808000008080000080
+      8000008080000080800080808000800000008000000080000000800000008000
+      0000800000008000000080000000800000000000000000808000008080000080
+      8000008080000080800000808000008080000080800000808000008080000080
+      8000008080000080800080808000FFFFFF008000000080000000800000008000
+      000080000000FFFFFF00FFFFFF00FFFFFF000000000000808000008080000080
+      8000008080000080800000808000008080000080800000808000008080000080
+      8000008080000080800080808000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+      FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF000000000000808000008080000080
+      8000008080000080800000808000008080000080800000808000008080000080
+      8000008080000080800080808000FFFFFF008000000080000000800000008000
+      0000FFFFFF00FFFFFF00FFFFFF00FFFFFF000000000000808000008080000080
+      8000008080000080800000808000008080000080800000808000008080000080
+      8000008080000080800080808000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+      FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF000000000000808000008080000080
+      8000008080000080800000808000008080000080800000808000008080000080
+      8000008080000080800080808000FFFFFF008000000080000000800000008000
+      000080000000FFFFFF00FFFFFF00FFFFFF000000000000808000008080000080
+      8000008080000080800000808000008080000080800000808000008080000080
+      8000008080000080800080808000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+      FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF000000000000808000008080000080
+      8000008080000080800000808000008080000080800000808000008080000080
+      8000008080000080800080808000808080008080800080808000808080008080
+      8000808080008080800080808000808080008080800000808000008080000080
+      8000008080000080800000808000008080000080800000808000008080000080
+      8000008080000080800000808000008080000080800000808000008080000080
+      8000008080000080800000808000008080000080800000808000008080000080
+      8000008080000080800000808000008080000080800000808000}
+    Wx_Class = 'wxMenu'
+    Wx_MenuItems.IsSubMenu = False
+    Wx_MenuItems.Wx_Enabled = True
+    Wx_MenuItems.Wx_Hidden = False
+    Wx_MenuItems.Wx_IDValue = 0
+    Wx_MenuItems.Wx_MenuItemStyle = wxMnuItm_Normal
+    Wx_MenuItems.Wx_Checked = False
+    Wx_MenuItems.Wx_FileHistory = False
+    Wx_MenuItems.WxCustomMenuItem = {
+      11000000545778437573746F6D4D656E754974656D5450463018547778437573
+      746F6D4D656E754974656D577261707065720011436172726965642E49735375
+      624D656E750810436172726965642E4556545F4D656E75060E5072696E744D61
+      726B436C69636B12436172726965642E57785F456E61626C6564091143617272
+      6965642E57785F48696464656E0811436172726965642E57785F49444E616D65
+      061549445F4D4E555F4D454E554954454D315F3131313012436172726965642E
+      57785F494456616C7565035E0418436172726965642E57785F4D656E75497465
+      6D5374796C65070F77784D6E7549746D5F4E6F726D616C12436172726965642E
+      57785F43617074696F6E060F5B25665D202646696C65204E616D651243617272
+      6965642E57785F436865636B65640816436172726965642E57585F4249544D41
+      502E446174610A0C00000007544269746D61700000000016436172726965642E
+      57785F46696C65486973746F727908000011000000545778437573746F6D4D65
+      6E754974656D5450463018547778437573746F6D4D656E754974656D57726170
+      7065720011436172726965642E49735375624D656E750810436172726965642E
+      4556545F4D656E75060E5072696E744D61726B436C69636B1243617272696564
+      2E57785F456E61626C65640911436172726965642E57785F48696464656E0811
+      436172726965642E57785F49444E616D65061949445F4D4E555F5F5F505F5F50
+      4154484E414D455F3131313112436172726965642E57785F494456616C756503
+      5F0418436172726965642E57785F4D656E754974656D5374796C65070F77784D
+      6E7549746D5F4E6F726D616C12436172726965642E57785F43617074696F6E06
+      0F5B25705D202650617468204E616D6512436172726965642E57785F43686563
+      6B65640816436172726965642E57585F4249544D41502E446174610A0C000000
+      07544269746D61700000000016436172726965642E57785F46696C6548697374
+      6F727908000011000000545778437573746F6D4D656E754974656D5450463018
+      547778437573746F6D4D656E754974656D577261707065720011436172726965
+      642E49735375624D656E750812436172726965642E57785F456E61626C656409
+      11436172726965642E57785F48696464656E0811436172726965642E57785F49
+      444E616D65061549445F4D4E555F4D454E554954454D335F3131313212436172
+      726965642E57785F494456616C756503580418436172726965642E57785F4D65
+      6E754974656D5374796C65071277784D6E7549746D5F536570617261746F7212
+      436172726965642E57785F43617074696F6E06032D2D2D12436172726965642E
+      57785F436865636B65640816436172726965642E57585F4249544D41502E4461
+      74610A0C00000007544269746D61700000000016436172726965642E57785F46
+      696C65486973746F727908000011000000545778437573746F6D4D656E754974
+      656D5450463018547778437573746F6D4D656E754974656D5772617070657200
+      11436172726965642E49735375624D656E750810436172726965642E4556545F
+      4D656E75060E5072696E744D61726B436C69636B12436172726965642E57785F
+      456E61626C65640911436172726965642E57785F48696464656E081143617272
+      6965642E57785F49444E616D65061B49445F4D4E555F5F5F4E5F504147455F4E
+      554D4245525F3131313312436172726965642E57785F494456616C7565035904
+      18436172726965642E57785F4D656E754974656D5374796C65070F77784D6E75
+      49746D5F4E6F726D616C12436172726965642E57785F43617074696F6E06115B
+      256E5D205061676520264E756D62657212436172726965642E57785F43686563
+      6B65640816436172726965642E57585F4249544D41502E446174610A0C000000
+      07544269746D61700000000016436172726965642E57785F46696C6548697374
+      6F727908000011000000545778437573746F6D4D656E754974656D5450463018
+      547778437573746F6D4D656E754974656D577261707065720011436172726965
+      642E49735375624D656E750810436172726965642E4556545F4D656E75060E50
+      72696E744D61726B436C69636B12436172726965642E57785F456E61626C6564
+      0911436172726965642E57785F48696464656E0811436172726965642E57785F
+      49444E616D65061B49445F4D4E555F5F5F535F5F544F54414C50414745535F31
+      31313412436172726965642E57785F494456616C7565035A0418436172726965
+      642E57785F4D656E754974656D5374796C65070F77784D6E7549746D5F4E6F72
+      6D616C12436172726965642E57785F43617074696F6E06115B25735D20546F74
+      616C2050616765267312436172726965642E57785F436865636B656408164361
+      72726965642E57585F4249544D41502E446174610A0C00000007544269746D61
+      700000000016436172726965642E57785F46696C65486973746F727908000011
+      000000545778437573746F6D4D656E754974656D545046301854777843757374
+      6F6D4D656E754974656D577261707065720011436172726965642E4973537562
+      4D656E750812436172726965642E57785F456E61626C65640911436172726965
+      642E57785F48696464656E0811436172726965642E57785F49444E616D650615
+      49445F4D4E555F4D454E554954454D365F3131313512436172726965642E5778
+      5F494456616C7565035B0418436172726965642E57785F4D656E754974656D53
+      74796C65071277784D6E7549746D5F536570617261746F721243617272696564
+      2E57785F43617074696F6E06032D2D2D12436172726965642E57785F43686563
+      6B65640816436172726965642E57585F4249544D41502E446174610A0C000000
+      07544269746D61700000000016436172726965642E57785F46696C6548697374
+      6F727908000011000000545778437573746F6D4D656E754974656D5450463018
+      547778437573746F6D4D656E754974656D577261707065720011436172726965
+      642E49735375624D656E750810436172726965642E4556545F4D656E75060E50
+      72696E744D61726B436C69636B12436172726965642E57785F456E61626C6564
+      0911436172726965642E57785F48696464656E0811436172726965642E57785F
+      49444E616D65061549445F4D4E555F5F5F445F5F444154455F31313136124361
+      72726965642E57785F494456616C7565035C0418436172726965642E57785F4D
+      656E754974656D5374796C65070F77784D6E7549746D5F4E6F726D616C124361
+      72726965642E57785F43617074696F6E060A5B25645D20264461746512436172
+      726965642E57785F436865636B65640816436172726965642E57585F4249544D
+      41502E446174610A0C00000007544269746D6170000000001643617272696564
+      2E57785F46696C65486973746F727908000011000000545778437573746F6D4D
+      656E754974656D5450463018547778437573746F6D4D656E754974656D577261
+      707065720011436172726965642E49735375624D656E75081043617272696564
+      2E4556545F4D656E75060E5072696E744D61726B436C69636B12436172726965
+      642E57785F456E61626C65640911436172726965642E57785F48696464656E08
+      11436172726965642E57785F49444E616D65061549445F4D4E555F5F5F545F5F
+      54494D455F3131313712436172726965642E57785F494456616C7565035D0418
+      436172726965642E57785F4D656E754974656D5374796C65070F77784D6E7549
+      746D5F4E6F726D616C12436172726965642E57785F43617074696F6E060A5B25
+      745D202654696D6512436172726965642E57785F436865636B65640816436172
+      726965642E57585F4249544D41502E446174610A0C00000007544269746D6170
+      0000000016436172726965642E57785F46696C65486973746F7279080000}
+  end
+end
