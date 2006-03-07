@@ -15,13 +15,6 @@
 #include <wx/tooltip.h>
 #include <wx/tipwin.h>
 
-#ifdef __WXGTK__
-#include "dnd_copy.xpm"
-#include "dnd_move.xpm"
-#include "dnd_none.xpm"
-#endif
-
-
 IMPLEMENT_DYNAMIC_CLASS(wxFlatNotebookEvent, wxNotifyEvent)
 DEFINE_EVENT_TYPE(wxEVT_COMMAND_FLATNOTEBOOK_PAGE_CHANGED)
 DEFINE_EVENT_TYPE(wxEVT_COMMAND_FLATNOTEBOOK_PAGE_CHANGING)
@@ -54,7 +47,7 @@ wxFlatNotebookBase::~wxFlatNotebookBase(void)
 void wxFlatNotebookBase::Init()
 {
 	long style = GetWindowStyleFlag();
-	m_pages->m_colorBorder = style & wxFNB_FANCY_TABS ? m_pages->m_colorTo : wxColour(wxSystemSettings::GetColour(wxSYS_COLOUR_3DFACE));
+	m_pages->m_colorBorder = wxColour(wxSystemSettings::GetColour(wxSYS_COLOUR_BTNSHADOW));
 
 	m_mainSizer = new wxBoxSizer(wxVERTICAL);
 	SetSizer(m_mainSizer);
@@ -428,7 +421,6 @@ void wxFlatNotebookBase::SetWindowStyleFlag(long style)
 	{
 		// For changing the tab position (i.e. placing them top/bottom)
 		// refreshing the tab container is not enough
-		m_pages->m_colorBorder = style & wxFNB_FANCY_TABS ? m_pages->m_colorTo : wxColour(wxSystemSettings::GetColour(wxSYS_COLOUR_3DFACE));
 		SetSelection(m_pages->m_iActivePage);
 	}
 }
@@ -595,11 +587,11 @@ EVT_LEFT_DOWN(wxPageContainerBase::OnLeftDown)
 EVT_LEFT_UP(wxPageContainerBase::OnLeftUp)
 EVT_RIGHT_DOWN(wxPageContainerBase::OnRightDown)
 EVT_MIDDLE_DOWN(wxPageContainerBase::OnMiddleDown)
-EVT_LEFT_DCLICK(wxPageContainerBase::OnMiddleDown)
 EVT_MOTION(wxPageContainerBase::OnMouseMove)
 EVT_ERASE_BACKGROUND(wxPageContainerBase::OnEraseBackground)
 EVT_LEAVE_WINDOW(wxPageContainerBase::OnMouseLeave)
 EVT_ENTER_WINDOW(wxPageContainerBase::OnMouseEnterWindow)
+EVT_LEFT_DCLICK(wxPageContainerBase::OnLeftDClick)
 END_EVENT_TABLE()
 
 wxPageContainerBase::wxPageContainerBase(wxWindow* parent, wxWindowID id, const wxPoint& pos, const wxSize& size, long style)
@@ -619,11 +611,11 @@ wxPageContainerBase::wxPageContainerBase(wxWindow* parent, wxWindowID id, const 
 	m_colorFrom   = wxColor(*wxWHITE);
 	m_activeTabColor = wxColor(*wxWHITE);
 	m_activeTextColor = wxColour(wxSystemSettings::GetColour(wxSYS_COLOUR_BTNTEXT));
+	m_nonActiveTextColor = wxColour(wxSystemSettings::GetColour(wxSYS_COLOUR_BTNSHADOW));
 	m_tabAreaColor = wxSystemSettings::GetColour(wxSYS_COLOUR_BTNFACE);
 
 	wxWindow::Create(parent, id, pos, size, style | wxNO_BORDER | wxNO_FULL_REPAINT_ON_RESIZE);
 
-	m_nonActiveTextColor = wxT("GREY");
 	m_pDropTarget = new wxFNBDropTarget<wxPageContainerBase>(this, &wxPageContainerBase::OnDropTarget);
 	SetDropTarget(m_pDropTarget);
 }
@@ -655,12 +647,16 @@ wxPageContainerBase::~wxPageContainerBase(void)
 void wxPageContainerBase::OnPaint(wxPaintEvent &event)
 {
 	wxBufferedPaintDC dc(this);
+
+#ifndef __WXMAC__ 
+	// Works well on MSW & GTK, however this lines should be skipped on MAC
 	if(m_pagesInfoVec.empty() || m_nFrom >= (int)m_pagesInfoVec.size())
 	{
 		Hide();
 		event.Skip();
 		return;
 	}
+#endif
 
 	// Get the text hight
 	int height, width, tabHeight;
@@ -704,7 +700,10 @@ void wxPageContainerBase::OnPaint(wxPaintEvent &event)
 	if(style & wxFNB_TABS_BORDER_SIMPLE)
 		dc.SetPen(borderPen);
 	else
-		dc.SetPen(*wxTRANSPARENT_PEN);
+	{
+		wxColor pc = HasFlag( wxFNB_VC71 ) ? wxColour(247, 243, 233) : GetBackgroundColour();
+		dc.SetPen( wxPen(pc) );
+	}
 	dc.DrawRectangle(0, 0, size.x, size.y);
 
 	// We always draw the bottom/upper line of the tabs
@@ -726,10 +725,19 @@ void wxPageContainerBase::OnPaint(wxPaintEvent &event)
 		dc.SetPen(borderPen);
 	}
 
+#ifdef __WXMAC__
+	// On MAC, Add these lines so the tab background gets painted
+	if(m_pagesInfoVec.empty() || m_nFrom >= (int)m_pagesInfoVec.size())
+	{
+		Hide();
+		return;
+	} 
+#endif
+
 	// Draw labels
 	int pom;
 	dc.SetFont(boldFont);
-	int posx = ((wxFlatNotebookBase *)m_pParent)->m_nPadding;
+	int posx = ((wxFlatNotebookBase *)m_pParent)->GetPadding();
 	int i = 0;
 
 	// Update all the tabs from 0 to 'm_nFrom' to be non visible
@@ -1051,7 +1059,10 @@ void wxPageContainerBase::AddPage(const wxString& caption, const bool selected, 
 	{
 		m_iActivePage = (int)m_pagesInfoVec.size();
 	}
-	m_pagesInfoVec.push_back(wxPageInfo(caption, imgindex));
+
+	/// Create page info and add it to the vector
+	wxPageInfo pageInfo(caption, imgindex);
+	m_pagesInfoVec.push_back(pageInfo);
 	Refresh();
 }
 
@@ -1535,13 +1546,7 @@ void wxPageContainerBase::DrawLeftArrow(wxDC& dc)
 	arrowBmp.SetMask(new wxMask(arrowBmp, MASK_COLOR));
 
 	// Erase old bitmap
-	wxPen pen = wxPen(style & wxFNB_VC71 ? wxColour(247, 243, 233) : m_tabAreaColor);
-	wxBrush brush = wxBrush(style & wxFNB_VC71 ? wxColour(247, 243, 233) :m_tabAreaColor);
-	pen.SetWidth(1);
-	dc.SetPen(pen);
-	dc.SetBrush(brush);
-
-	dc.DrawRectangle(rect.x, rect.y, rect.width, rect.height);
+	PaintBackground(dc, rect.x, rect.width);
 
 	// Draw the new bitmap
 	dc.DrawBitmap(arrowBmp, btnLeftPos, 5, true);
@@ -1588,13 +1593,7 @@ void wxPageContainerBase::DrawRightArrow(wxDC& dc)
 	arrowBmp.SetMask(new wxMask(arrowBmp, MASK_COLOR));
 
 	// Erase old bitmap
-	wxPen pen = wxPen(style & wxFNB_VC71 ? wxColour(247, 243, 233) : m_tabAreaColor);
-	wxBrush brush = wxBrush(style & wxFNB_VC71 ? wxColour(247, 243, 233) :m_tabAreaColor);
-	pen.SetWidth(1);
-	dc.SetPen(pen);
-	dc.SetBrush(brush);
-
-	dc.DrawRectangle(rect.x, rect.y, rect.width, rect.height);
+	PaintBackground(dc, rect.x, rect.width);
 
 	// Draw the new bitmap
 	dc.DrawBitmap(arrowBmp, btnLeftPos, 5, true);
@@ -1634,15 +1633,29 @@ void wxPageContainerBase::DrawX(wxDC& dc)
 	xbmp.SetMask(new wxMask(xbmp, MASK_COLOR));
 
 	// Erase old bitmap
-	wxPen pen = wxPen(style & wxFNB_VC71 ? wxColour(247, 243, 233) : m_tabAreaColor);
-	wxBrush brush = wxBrush(style & wxFNB_VC71 ? wxColour(247, 243, 233) : m_tabAreaColor);
-	pen.SetWidth(1);
-	dc.SetPen(pen);
-	dc.SetBrush(brush);
-	dc.DrawRectangle(rect.x, rect.y, rect.width, rect.height);
+	PaintBackground(dc, rect.x, rect.width);
 
 	// Draw the new bitmap
 	dc.DrawBitmap(xbmp, btnLeftPos, 5, true);
+}
+
+void wxPageContainerBase::PaintBackground(wxDC& dc, int x, int width)
+{
+	wxPen pen = wxPen( HasFlag(wxFNB_VC71)  ? wxColour(247, 243, 233) : m_tabAreaColor);
+	wxBrush brush = wxBrush( HasFlag(wxFNB_VC71) ? wxColour(247, 243, 233) : m_tabAreaColor);
+	wxRect rect = GetClientRect();
+
+	pen.SetWidth(1);
+	dc.SetPen(pen);
+	dc.SetBrush(brush);
+
+	int yy = HasFlag( wxFNB_TABS_BORDER_SIMPLE ) || HasFlag( wxFNB_BOTTOM ) ? 1 : 0;
+
+	// Incase we use VC71 style, we reduce another 
+	// pixle from the painting
+	int skipedPixles = HasFlag( wxFNB_VC71 ) && !HasFlag(wxFNB_BOTTOM) ? 2 : 0;
+
+	dc.DrawRectangle(x, yy, width, rect.height - 1 - yy - skipedPixles);
 }
 
 void wxPageContainerBase::OnMouseMove(wxMouseEvent& event)
@@ -1720,11 +1733,7 @@ void wxPageContainerBase::OnMouseMove(wxMouseEvent& event)
 				wxFNBDragInfo draginfo(this, tabIdx);
 				wxFNBDragInfoDataObject dataobject(wxDataFormat(wxT("wxFNB")));
 				dataobject.SetData(sizeof(wxFNBDragInfo), &draginfo);
-#ifdef __WXGTK__
-				wxDropSource dragSource(this, wxIcon(dnd_copy_xpm), wxIcon(dnd_move_xpm), wxIcon(dnd_none_xpm));
-#else
 				wxDropSource dragSource(this);
-#endif
 				dragSource.SetData(dataobject);
 				dragSource.DoDragDrop(wxDrag_DefaultMove);
 			}
@@ -1865,13 +1874,10 @@ void wxPageContainerBase::OnMouseLeave(wxMouseEvent& event)
 	m_nTabXButtonStatus = wxFNB_BTN_NONE;
 
 	wxClientDC dc(this);
-	dc.BeginDrawing();
-
 	DrawX(dc);
 	DrawLeftArrow(dc);
 	DrawRightArrow(dc);
 	DrawTabX(dc, m_pagesInfoVec[GetSelection()].GetXRect(), GetSelection());
-	dc.EndDrawing();
 	event.Skip();
 }
 
@@ -1968,9 +1974,9 @@ wxDragResult wxPageContainerBase::OnDropTarget(wxCoord x, wxCoord y, int nTabPag
 			case wxFNB_TAB:
 				MoveTabPage(nTabPage, nIndex);
 				break;
-			//case wxFNB_NOWHERE:
+			case wxFNB_NOWHERE:
 				//MoveTabPage(nTabPage, GetLastVisibleTab()+1);
-				//break;
+				break;
 			default:
 				break;
 			}
@@ -2001,8 +2007,7 @@ void wxPageContainerBase::MoveTabPage(int nMove, int nMoveTo)
 {
 	if(nMove == nMoveTo)
 		return;
-	//else if(nMoveTo < nMove)
-	else if(nMoveTo < (int)((wxFlatNotebookBase *)m_pParent)->m_windows.size())
+	else if(nMoveTo < (int)((wxFlatNotebook *)m_pParent)->m_windows.size())
 		nMoveTo++;
 
 	// Remove the window from the main sizer
@@ -2188,14 +2193,59 @@ void wxPageContainerBase::DrawTabsLine(wxDC& dc, const wxRect& rect)
 	dc.SetBrush(*wxTRANSPARENT_BRUSH);
 	dc.DrawRectangle(clientRect);
 
-	if(!(style & wxFNB_TABS_BORDER_SIMPLE))
+	if( !HasFlag(wxFNB_TABS_BORDER_SIMPLE) )
 	{
-		dc.SetPen(wxPen(m_tabAreaColor));
+		dc.SetPen(wxPen( HasFlag( wxFNB_VC71) ? wxColour(247, 243, 233) : m_tabAreaColor));
 		dc.DrawLine(0, 0, 0, clientRect.height);
 		if(style & wxFNB_BOTTOM)
 			dc.DrawLine(0, clientRect.height - 1, clientRect.width, clientRect.height - 1);
 		else
 			dc.DrawLine(0, 0, clientRect.width, 0);
 		dc.DrawLine(clientRect.width - 1, 0, clientRect.width - 1, clientRect.height);
+	}
+}
+
+bool wxPageContainerBase::HasFlag(int flag)
+{
+	long style = GetParent()->GetWindowStyleFlag();
+	bool res = style & flag ? true : false;
+	return res;
+}
+
+void wxPageContainerBase::ClearFlag(int flag)
+{
+	long style = GetParent()->GetWindowStyleFlag();
+	style &= ~( flag );
+	wxWindowBase::SetWindowStyleFlag(style);
+}
+
+bool wxPageContainerBase::TabHasImage(int tabIdx)
+{
+	if(m_ImageList)
+		return m_pagesInfoVec[tabIdx].GetImageIndex() != -1;
+	return false;
+}
+
+void wxPageContainerBase::OnLeftDClick(wxMouseEvent& event)
+{
+	if(HasFlag(wxFNB_DCLICK_CLOSES_TABS))
+	{
+		wxPageInfo pgInfo;
+		int tabIdx;
+		int where = HitTest(event.GetPosition(), pgInfo, tabIdx);
+		switch(where)
+		{
+		case wxFNB_TAB:
+			{
+				DeletePage((size_t)tabIdx);
+				break;
+			}
+		default:
+			break;
+		}
+	}
+	else
+	{
+		event.Skip();
 	}
 }

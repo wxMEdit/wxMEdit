@@ -76,6 +76,9 @@ typedef std::vector<wxBitmap> wxFlatNotebookImageList;
 /// Note: This style is not supported on VC8 style
 #define wxFNB_X_ON_TAB					512 
 
+/// Style to close tab using double click - styles 1024, 2048 are reserved
+#define wxFNB_DCLICK_CLOSES_TABS		4096
+
 #define VERTICAL_BORDER_PADDING  4
 
 // Button size is a 16x16 xpm bitmap
@@ -111,7 +114,7 @@ public:
 	wxFlatNotebookBase(wxWindow* parent, wxWindowID id = wxID_ANY, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxDefaultSize, long style = 0, const wxString& name = wxT("Flat Notebook"));
 
 	/// Destructor	
-	~wxFlatNotebookBase(void);
+	virtual ~wxFlatNotebookBase(void);
 
 	/// Derived class should override this function to provide the
 	/// appropriate PageManager 
@@ -391,6 +394,9 @@ private:
 	/// Tab 'x' button rectangle
 	wxRect m_xRect;
 
+	/// Tab color
+	wxColor m_color;
+
 public:
 
 	/// Default constructor	
@@ -476,6 +482,18 @@ public:
 
 	/// Get the 'x' button rectangle
 	wxRect& GetXRect() { return m_xRect; }
+
+	/**
+	 *
+	 * \return The tab color
+	 */
+	wxColor GetColor() { return m_color; }
+
+	/**
+	 *
+	 * \param color Tab face color
+	 */
+	void SetColor(wxColor& color) { m_color = color; }
 };
 
 /// Button status
@@ -616,10 +634,23 @@ public:
 	virtual void OnEraseBackground(wxEraseEvent& WXUNUSED(event)) { }
 	virtual void OnMouseLeave(wxMouseEvent& event);
 	virtual void OnMouseEnterWindow(wxMouseEvent& event);
+	virtual void OnLeftDClick(wxMouseEvent &event);
 
 protected:
+	/// Style helper methods
+	bool HasFlag(int flag);
+	void ClearFlag(int flag);
+
+	/// return true if tabIdx has image 
+	bool TabHasImage(int tabIdx);
+
 	/// Check whether the style is set to default
 	virtual bool IsDefaultTabs();
+
+	/// Color the given area from x1 --> x2 with the
+	/// the current style background color, this is helpfull
+	/// when we want to delete a bitmap from that region
+	virtual void PaintBackground(wxDC& dc, int x1, int x2);
 
 	/// Some styles does not allow drawing X on the active tab
 	/// If you dont want to allow it, override this function

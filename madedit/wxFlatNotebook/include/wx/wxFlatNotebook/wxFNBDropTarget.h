@@ -18,11 +18,17 @@ public:
 	\param pageindex - index of dragged page
 	*/
 	wxFNBDragInfo(wxWindow * container, int pageindex) : m_Container(container), m_PageIndex(pageindex){}	
-	wxFNBDragInfo() : m_Container(0), m_PageIndex(0){}
+
+	/**
+	 * \brief default constructor
+	 */
+	wxFNBDragInfo() : m_Container(0), m_PageIndex(0){} 
+
 	/**
 	Returns wxPageContainer object which contains dragged page
 	*/
 	wxWindow * GetContainer() {return m_Container;}
+
 	/**
 	Returns the index of dragged page
 	*/
