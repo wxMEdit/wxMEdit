@@ -609,6 +609,9 @@ void FontWidthManager::Save()
 
 void FontWidthManager::FreeMem()
 {
+    if(FontWidthBuffersVector.size()==0)
+        return;
+
     for(int idx=0;idx<=16;idx++)
     {
         list<FontWidthBuffer>::iterator it=FontWidthBuffersVector[idx].begin();
