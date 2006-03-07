@@ -60,6 +60,13 @@ noinst_HEADERS =	description-pak \
 	README.txt \
 	autogen.sh \
 	chmod_644_all_files.sh \
+	src/MadEditApp.rc \
+	src/MadAboutDialog.wxform \
+	src/MadConvEncDialog.wxform \
+	src/MadEditFrame.wxform \
+	src/MadOptionsDialog.wxform \
+	src/MadReplaceDialog.wxform \
+	src/MadSearchDialog.wxform \
 	src/plugin_example/makefile.linux \
 	src/plugin_example/makefile.mingw32 \
 	src/plugin_example/makefile.vc \
