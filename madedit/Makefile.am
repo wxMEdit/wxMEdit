@@ -145,7 +145,6 @@ noinst_HEADERS =	description-pak \
 	vs.net2003/build_debug.bat \
 	vs.net2003/build_release.bat \
 	vs.net2003/MadEdit.sln \
-	vs.net2003/MadEdit.suo \
 	vs.net2003/MadEdit.vcproj \
 	xpressive/boost/xpressive/basic_regex.hpp \
 	xpressive/boost/xpressive/detail/core/access.hpp \
