@@ -17,7 +17,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: madedit@gmail.com\n"
-"POT-Creation-Date: 2006-03-07 22:17+0800\n"
+"POT-Creation-Date: 2006-03-08 01:40+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -343,7 +343,7 @@ msgstr ""
 msgid "Top margin (mm):"
 msgstr ""
 
-#: src/MadEdit/MadEdit.cpp:10410
+#: src/MadEdit/MadEdit.cpp:10476
 #, c-format
 msgid ""
 "Do you want to continue?\n"
@@ -351,44 +351,44 @@ msgid ""
 "It may take long time and large memories to convert to Text/Column Mode."
 msgstr ""
 
-#: src/MadEdit/MadEdit.cpp:10410
+#: src/MadEdit/MadEdit.cpp:10476
 msgid "Hex Mode to Text/Column Mode"
 msgstr ""
 
-#: src/MadEdit/MadEdit.cpp:12929
+#: src/MadEdit/MadEdit.cpp:12975
 msgid "The input string is not a valid Hex-String:"
 msgstr ""
 
-#: src/MadEdit/MadEdit.cpp:13386 src/MadEdit/MadEdit.cpp:13455
+#: src/MadEdit/MadEdit.cpp:13432 src/MadEdit/MadEdit.cpp:13501
 #: src/MadEditFrame.cpp:1978
 msgid "The Parent Directory of this file does not exist:"
 msgstr ""
 
-#: src/MadEdit/MadEdit.cpp:13475
+#: src/MadEdit/MadEdit.cpp:13521
 msgid "Cannot save this file:"
 msgstr ""
 
-#: src/MadEdit/MadEdit.cpp:13502
+#: src/MadEdit/MadEdit.cpp:13548
 msgid "Do you want to save this file?"
 msgstr ""
 
-#: src/MadEdit/MadEdit.cpp:13513
+#: src/MadEdit/MadEdit.cpp:13559
 msgid "Save File As"
 msgstr ""
 
-#: src/MadEdit/MadEdit.cpp:13517 src/MadEditFrame.cpp:1546
+#: src/MadEdit/MadEdit.cpp:13563 src/MadEditFrame.cpp:1546
 msgid "Save File"
 msgstr ""
 
-#: src/MadEdit/MadEdit.cpp:13551
+#: src/MadEdit/MadEdit.cpp:13597
 msgid "Do you want to discard changes?"
 msgstr ""
 
-#: src/MadEdit/MadEdit.cpp:13585
+#: src/MadEdit/MadEdit.cpp:13631
 msgid "This file has been changed by another application."
 msgstr ""
 
-#: src/MadEdit/MadEdit.cpp:13586
+#: src/MadEdit/MadEdit.cpp:13632
 msgid "Do you want to reload it?"
 msgstr ""
 
@@ -1056,7 +1056,7 @@ msgid "Convert &Chinese Char"
 msgstr ""
 
 #: src/MadEditFrame.cpp:1022
-msgid "File: Simplified => &Traditional Chinese"
+msgid "File: To &Traditional Chinese"
 msgstr ""
 
 #: src/MadEditFrame.cpp:1022
@@ -1065,7 +1065,7 @@ msgid ""
 msgstr ""
 
 #: src/MadEditFrame.cpp:1023
-msgid "File: Traditional => &Simplified Chinese"
+msgid "File: To &Simplified Chinese"
 msgstr ""
 
 #: src/MadEditFrame.cpp:1023
@@ -1074,7 +1074,7 @@ msgid ""
 msgstr ""
 
 #: src/MadEditFrame.cpp:1025
-msgid "Clipboard: Simplified => T&raditional Chinese"
+msgid "Clipboard: To T&raditional Chinese"
 msgstr ""
 
 #: src/MadEditFrame.cpp:1025
@@ -1084,7 +1084,7 @@ msgid ""
 msgstr ""
 
 #: src/MadEditFrame.cpp:1026
-msgid "Clipboard: Traditional => S&implified Chinese"
+msgid "Clipboard: To S&implified Chinese"
 msgstr ""
 
 #: src/MadEditFrame.cpp:1026

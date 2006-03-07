@@ -17,7 +17,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MadEdit 0.1\n"
 "Report-Msgid-Bugs-To: madedit@gmail.com\n"
-"POT-Creation-Date: 2006-03-07 22:17+0800\n"
+"POT-Creation-Date: 2006-03-08 01:40+0800\n"
 "PO-Revision-Date: 2006-02-13 13:21+0800\n"
 "Last-Translator: madedit <madedit@gmail.com>\n"
 "Language-Team: MadEdit <madedit@gmail.com>\n"
@@ -346,7 +346,7 @@ msgstr "到："
 msgid "Top margin (mm):"
 msgstr "上邊界(mm)："
 
-#: src/MadEdit/MadEdit.cpp:10410
+#: src/MadEdit/MadEdit.cpp:10476
 #, c-format
 msgid ""
 "Do you want to continue?\n"
@@ -357,44 +357,44 @@ msgstr ""
 "這個檔案的長度是 %s 位元組，\n"
 "可能會花很多時間和記憶體在轉換到文字/區塊模式上。"
 
-#: src/MadEdit/MadEdit.cpp:10410
+#: src/MadEdit/MadEdit.cpp:10476
 msgid "Hex Mode to Text/Column Mode"
 msgstr "十六進位模式轉換到文字/區塊模式"
 
-#: src/MadEdit/MadEdit.cpp:12929
+#: src/MadEdit/MadEdit.cpp:12975
 msgid "The input string is not a valid Hex-String:"
 msgstr "這個不是正確的十六進位字串："
 
-#: src/MadEdit/MadEdit.cpp:13386 src/MadEdit/MadEdit.cpp:13455
+#: src/MadEdit/MadEdit.cpp:13432 src/MadEdit/MadEdit.cpp:13501
 #: src/MadEditFrame.cpp:1978
 msgid "The Parent Directory of this file does not exist:"
 msgstr "這個檔案所屬的目錄不存在:"
 
-#: src/MadEdit/MadEdit.cpp:13475
+#: src/MadEdit/MadEdit.cpp:13521
 msgid "Cannot save this file:"
 msgstr "無法儲存這個檔案:"
 
-#: src/MadEdit/MadEdit.cpp:13502
+#: src/MadEdit/MadEdit.cpp:13548
 msgid "Do you want to save this file?"
 msgstr "要儲存這個檔案嗎?"
 
-#: src/MadEdit/MadEdit.cpp:13513
+#: src/MadEdit/MadEdit.cpp:13559
 msgid "Save File As"
 msgstr "另存新檔"
 
-#: src/MadEdit/MadEdit.cpp:13517 src/MadEditFrame.cpp:1546
+#: src/MadEdit/MadEdit.cpp:13563 src/MadEditFrame.cpp:1546
 msgid "Save File"
 msgstr "儲存檔案"
 
-#: src/MadEdit/MadEdit.cpp:13551
+#: src/MadEdit/MadEdit.cpp:13597
 msgid "Do you want to discard changes?"
 msgstr "要放棄所做的修改嗎?"
 
-#: src/MadEdit/MadEdit.cpp:13585
+#: src/MadEdit/MadEdit.cpp:13631
 msgid "This file has been changed by another application."
 msgstr "這個檔案被其他程式修改過了。"
 
-#: src/MadEdit/MadEdit.cpp:13586
+#: src/MadEdit/MadEdit.cpp:13632
 msgid "Do you want to reload it?"
 msgstr "要重新載入嗎？"
 
@@ -1064,8 +1064,8 @@ msgid "Convert &Chinese Char"
 msgstr "轉換中文字元(&C)"
 
 #: src/MadEditFrame.cpp:1022
-msgid "File: Simplified => &Traditional Chinese"
-msgstr "檔案：簡體 => 繁體中文(&T)"
+msgid "File: To &Traditional Chinese"
+msgstr "檔案：轉換為繁體中文(&T)"
 
 #: src/MadEditFrame.cpp:1022
 msgid ""
@@ -1073,8 +1073,8 @@ msgid ""
 msgstr "把檔案中的簡體字轉換成繁體字"
 
 #: src/MadEditFrame.cpp:1023
-msgid "File: Traditional => &Simplified Chinese"
-msgstr "檔案：繁體 => 簡體中文(&S)"
+msgid "File: To &Simplified Chinese"
+msgstr "檔案：轉換為簡體中文(&S)"
 
 #: src/MadEditFrame.cpp:1023
 msgid ""
@@ -1082,8 +1082,8 @@ msgid ""
 msgstr "把檔案中的繁體字轉換成簡體字"
 
 #: src/MadEditFrame.cpp:1025
-msgid "Clipboard: Simplified => T&raditional Chinese"
-msgstr "剪貼簿：簡體 => 繁體中文(&R)"
+msgid "Clipboard: To T&raditional Chinese"
+msgstr "剪貼簿：轉換為繁體中文(&R)"
 
 #: src/MadEditFrame.cpp:1025
 msgid ""
@@ -1092,8 +1092,8 @@ msgid ""
 msgstr "把剪貼簿中的簡體字轉換成繁體字"
 
 #: src/MadEditFrame.cpp:1026
-msgid "Clipboard: Traditional => S&implified Chinese"
-msgstr "剪貼簿：繁體 => 簡體中文(&I)"
+msgid "Clipboard: To S&implified Chinese"
+msgstr "剪貼簿：轉換為簡體中文(&I)"
 
 #: src/MadEditFrame.cpp:1026
 msgid ""
