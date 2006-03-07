@@ -572,6 +572,9 @@ wxUint16 *FontWidthManager::GetFontWidths(int index, const wxString &fontname, i
 
 void FontWidthManager::Save()
 {
+    if(FontWidthBuffersVector.size()==0)
+        return;
+
     for(int idx=0;idx<=16;idx++)
     {
         wxString filename(DataDir+wxT("FontWidth"));
