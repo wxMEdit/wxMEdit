@@ -136,7 +136,7 @@ void DeleteConfig()
 
     MadEdit::ms_KeyBindings.FreeCommandTextMap();
 
-    FontWidthManager::SaveToFile(g_MadEditHomeDir+ wxT("FontWidth.dat"));
+    FontWidthManager::Save();
     FontWidthManager::FreeMem();
 
     wxFileConfig::Set(NULL);
@@ -314,7 +314,7 @@ bool MadEditApp::OnInit()
     cfg->Read(wxT("/MadEdit/FontWidthBufferMaxCount"), &FontWidthManager::MaxCount, 10);
     if(FontWidthManager::MaxCount < 4) FontWidthManager::MaxCount=4;
     else if(FontWidthManager::MaxCount>40) FontWidthManager::MaxCount=40;
-    FontWidthManager::LoadFromFile(g_MadEditHomeDir+ wxT("FontWidth.dat"));
+    FontWidthManager::Init(g_MadEditHomeDir);
 
     // load keybindings
     if(cfg->Exists(wxT("/EditKeys")))

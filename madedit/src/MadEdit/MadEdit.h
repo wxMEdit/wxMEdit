@@ -39,9 +39,12 @@ typedef void (*OnToggleWindowPtr)(MadEdit *madedit);
 typedef void (*OnMouseRightUpPtr)(MadEdit *madedit);
 typedef void (*OnActivatePtr)(MadEdit *madedit);
 
-//==================================================
-struct FontWidthManager
+//==============================================================================
+// A Manager of FontWidth Buffer
+//==============================================================================
+class FontWidthManager
 {
+public:
     struct FontWidthBuffer
     {
         wchar_t fontname[128];
@@ -60,19 +63,26 @@ struct FontWidthManager
     };
 
     static int MaxCount;
-    static list<FontWidthBuffer> FontWidthBufferList;
+    static wxString DataDir;
+    typedef list<FontWidthBuffer> FontWidthBuffers;
+    static vector<FontWidthBuffers> FontWidthBuffersVector; //0~16
 
     typedef pair<wxUint16 *, bool> VerifiedFlag;
-    static list<VerifiedFlag> VerifiedFlagList; // indicate FontWidthBuffer is Verified or not
+    static list<VerifiedFlag> VerifiedFlagList; // indicate FontWidthBuffer is verified or not
 
-    static wxUint16 *GetFontWidths(const wxString &fontname, int fontsize);
-    static bool LoadFromFile(const wxString &filename);
-    static void SaveToFile(const wxString &filename);
+private:
+    static bool VerifyFontWidths(wxUint16 *widths, const wxString &fontname, int fontsize);
+    static void ClearBuffer_1_16(const wxString &fontname, int fontsize); //clear FontWidthBuffersVector[1~16] with the same name,size
+    static bool LoadFromFile(const wxString &filename, FontWidthBuffers &fwbuffers, bool verify);
+
+public:
+    static void Init(const wxString &datadir); // where to load data file
+    static wxUint16 *GetFontWidths(int index, const wxString &fontname, int fontsize);
+    static void Save(); // save all FontWidthBuffer to file in datadir
     static void FreeMem();
 };
 
 //==================================================
-
 enum MadWordWrapMode
 { wwmNoWrap, wwmWrapByWindow, wwmWrapByColumn };
 
@@ -87,24 +97,24 @@ enum MadNewLineType
 
 enum MadConvertEncodingFlag
 { cefNone, cefSimp2TradChinese, cefTrad2SimpChinese };
-//==================================================
 
+//==================================================
 typedef std::basic_string<ucs4_t> ucs4string;
 
 class MadMouseMotionTimer;
 
 struct MadCaretPos
 {
-    wxFileOffset pos;           // position of whole file
-    int rowid;               // row-id. of whole file
+    wxFileOffset pos;     // position of whole file
+    int rowid;            // row-id. of whole file
 
-    wxFileOffset linepos;       // position of this line
-    MadLineIterator iter;       // line iterator
-    int lineid;              // id. of iterator in m_Lines->m_LineList
-    int subrowid;            // sub row-id. in this line
+    wxFileOffset linepos; // position of this line
+    MadLineIterator iter; // line iterator
+    int lineid;           // id. of iterator in m_Lines->m_LineList
+    int subrowid;         // sub row-id. in this line
 
     int xpos;
-    int extraspaces;         // in ColumnMode ,used when caret beyond EndOfLine/Row
+    int extraspaces;      // in ColumnMode ,use it when caret beyond EndOfLine/Row
 
     // begin must be m_Lines->m_LineList.begin()
     void Reset(const MadLineIterator & begin)
@@ -141,7 +151,7 @@ struct UCIterator;
 enum MadSearchResult 
 { SR_EXPR_ERROR=-2, SR_YES=-1, SR_NO=0 };  // returned state of Search & Replace
 
-#define MadEditSuperClass wxWindow//wxScrolledWindow//wxPanel//wxControl//
+#define MadEditSuperClass wxWindow //wxScrolledWindow//wxPanel//wxControl//
 
 class MadEdit: public MadEditSuperClass
 {
@@ -208,7 +218,7 @@ private:
     int             m_HexFontHeight;
     int             m_HexFontMaxDigitWidth;
 
-    wxUint16        *m_TextFontWidths, *m_HexFontWidths;
+    wxUint16        *m_TextFontWidths[17], *m_HexFontWidths[17];
 
     bool            m_SingleLineMode;
     bool            m_StorePropertiesToGlobalConfig;
@@ -818,7 +828,7 @@ private: // Printing functions
     int m_PrintTotalHexLineCount;
     MadEdit *m_PrintHexEdit;    // use a temporary MadEdit to print Hex-Data
 
-public:
+public: // printing functions
     void BeginPrint(const wxRect &printRect);
     int  GetPageCount() { return m_PrintPageCount; }
     bool PrintPage(wxDC *dc, int pageNum);

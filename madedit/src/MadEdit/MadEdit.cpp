@@ -230,7 +230,6 @@ END_EVENT_TABLE()
 
 
 #if defined(__WXGTK20__)
-
 void GTK2_DrawText(wxMemoryDC *dc, MadEncoding *encoding, const int *widths,
               const wxString &text, wxCoord x, wxCoord y )
 {
@@ -300,7 +299,6 @@ void GTK2_DrawText(wxMemoryDC *dc, MadEncoding *encoding, const int *widths,
     dc->CalcBoundingBox (x + w, y + h);
     dc->CalcBoundingBox (x, y);
 }
-
 #endif
 
 
@@ -341,134 +339,104 @@ wxString FixUTF8ToWCS(const wxString &str)
 }
 
 //==============================================================================
-// A Manager of FontWidth-Buffer.
-//==============================================================================
 int FontWidthManager::MaxCount=10;
-list<FontWidthManager::FontWidthBuffer> FontWidthManager::FontWidthBufferList;
-list<pair<wxUint16 *, bool> > FontWidthManager::VerifiedFlagList;
+wxString FontWidthManager::DataDir;
+vector<FontWidthManager::FontWidthBuffers> FontWidthManager::FontWidthBuffersVector;
+list<FontWidthManager::VerifiedFlag> FontWidthManager::VerifiedFlagList;
 
-wxUint16 *FontWidthManager::GetFontWidths(const wxString &fontname, int fontsize)
+bool FontWidthManager::VerifyFontWidths(wxUint16 *widths, const wxString &fontname, int fontsize)
 {
+    // check the VerifiedFlag
     wxMemoryDC dc;
-    list<FontWidthBuffer>::iterator it=FontWidthBufferList.begin();
-    wxUint16 *wid;
-    while(it != FontWidthBufferList.end())
+    list<VerifiedFlag>::iterator vfit=VerifiedFlagList.begin();
+    list<VerifiedFlag>::iterator vfend=VerifiedFlagList.end();
+    while(vfit!=vfend)
     {
-        if(it->fontsize==fontsize && it->fontname==fontname)
+        if(vfit->first==widths && vfit->second==false)
         {
-            wid=it->widths;
+            vfit->second=true;
 
-            // check the VerifiedFlag
-            list<VerifiedFlag>::iterator vfit=VerifiedFlagList.begin();
-            list<VerifiedFlag>::iterator vfend=VerifiedFlagList.end();
-            while(vfit!=vfend)
+            // test the font width is the same or not
+            wxFont *pf=wxTheFontList->FindOrCreateFont(//fwbuf.fontsize, font.GetFamily(), font.GetStyle(), font.GetWeight(), font.GetUnderlined(), fwbuf.fontname);
+                fontsize, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL, false, fontname);
+
+            dc.SetFont(*pf);
+
+            int w,h;
+            wxString text(wxT('A'));
+            wxChar wc;
+
+            for(wc=0x20; wc<=0x7E; wc++)
             {
-                if(vfit->first==wid && vfit->second==false)
+                text.SetChar(0, wc);
+                dc.GetTextExtent(text, &w, &h);
+
+                if(widths[wc] != 0)
                 {
-                    vfit->second=true;
-
-                    // test the font width is the same or not
-                    wxFont *pf=wxTheFontList->FindOrCreateFont(//fwbuf.fontsize, font.GetFamily(), font.GetStyle(), font.GetWeight(), font.GetUnderlined(), fwbuf.fontname);
-                        fontsize, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL, false, fontname);
-
-                    dc.SetFont(*pf);
-
-                    bool ok=true;
-                    int w,h;
-                    wxString text(wxT('A'));
-                    wxChar wc;
-
-                    for(wc=0x20; wc<=0x7E; wc++)
+                    if(widths[wc] != w)// not match
                     {
-                        text.SetChar(0, wc);
-                        dc.GetTextExtent(text, &w, &h);
-
-                        if(wid[wc] != 0)
-                        {
-                            if(wid[wc] != w)// not match
-                            {
-                                ok=false;
-                                break;
-                            }
-                        }
-                        else
-                        {
-                            wid[wc]=w;
-                        }
+                        return false;
                     }
-
-                    if(ok)
-                    {
-                        wxChar wcs[]={0x0400, 0x0600, 0x3040, 0x3400, 0x4E00, 0x9F8D, 0xAC00};
-                        const int count=sizeof(wcs)/sizeof(wxChar);
-                        for(int idx=0; idx<count; idx++)
-                        {
-                            wc=wcs[idx];
-                            text.SetChar(0, wc);
-                            dc.GetTextExtent(text, &w, &h);
-
-                            if(wid[wc] != 0)
-                            {
-                                if(wid[wc] != w)// not match
-                                {
-                                    ok=false;
-                                    break;
-                                }
-                            }
-                            else
-                            {
-                                wid[wc]=w;
-                            }
-                        }
-                    }
-
-                    if(!ok)
-                    {
-                        // reset font widths
-                        memset(wid, 0, sizeof(wxUint16)*65536);
-#ifdef __WXGTK__
-                        std::wcout<<fontname.c_str()<<wxT(", ")<<fontsize <<wxT(" : FontWidth does not match\n");
-#else
-                        //wxLogMessage(wxString()<<fontname<<wxT(", ")<<fontsize <<wxT(" : FontWidth does not match"));
-#endif
-                    }
-
-                    break;
                 }
-
-                ++vfit;
+                else
+                {
+                    widths[wc]=w;
+                }
             }
 
-            if(it!=FontWidthBufferList.begin())   // move it to front
+            wxChar wcs[]={0x0400, 0x0600, 0x3040, 0x3400, 0x4E00, 0x9F8D, 0xAC00};
+            const int count=sizeof(wcs)/sizeof(wxChar);
+            for(int idx=0; idx<count; idx++)
             {
-                FontWidthBufferList.push_front(*it);
-                FontWidthBufferList.erase(it);
+                wc=wcs[idx];
+                text.SetChar(0, wc);
+                dc.GetTextExtent(text, &w, &h);
+
+                if(widths[wc] != 0)
+                {
+                    if(widths[wc] != w)// not match
+                    {
+                        return false;
+                    }
+                }
+                else
+                {
+                    widths[wc]=w;
+                }
             }
 
-            return wid;
+            break;
         }
-        ++it;
+
+        ++vfit;
     }
 
-    int idx=int(FontWidthBufferList.size());
-    if(idx>=MaxCount)
-    {
-        wid=FontWidthBufferList.back().widths;
-        FontWidthBufferList.pop_back();
-    }
-    else
-    {
-       wid=new wxUint16[65536];
-    }
-
-    FontWidthBufferList.push_front(FontWidthBuffer(fontname, fontsize, wid));
-
-    memset(wid, 0, sizeof(wxUint16)*65536);
-
-    return wid;
+    return true;
 }
 
-bool FontWidthManager::LoadFromFile(const wxString &filename)
+void FontWidthManager::ClearBuffer_1_16(const wxString &fontname, int fontsize)
+{
+    vector<FontWidthBuffers>::iterator vecit=FontWidthBuffersVector.begin();
+    vector<FontWidthBuffers>::iterator vecitend=FontWidthBuffersVector.end();
+
+    while(vecit != vecitend)
+    {
+        list<FontWidthBuffer>::iterator it=vecit->begin();
+        list<FontWidthBuffer>::iterator itend=vecit->end();
+        while(it != itend)
+        {
+            if(it->fontsize==fontsize && it->fontname==fontname)
+            {
+                memset(it->widths, 0, sizeof(wxUint16)*65536);
+                break;
+            }
+            ++it;
+        }
+        ++vecit;
+    }
+}
+
+bool FontWidthManager::LoadFromFile(const wxString &filename, FontWidthBuffers &fwbuffers, bool verify)
 {
     if(!wxFileExists(filename))
         return true;
@@ -497,8 +465,11 @@ bool FontWidthManager::LoadFromFile(const wxString &filename)
 
                 if(file.Read(fwbuf.widths, sizeof(wxUint16)*65536) == sizeof(wxUint16)*65536)
                 {
-                    FontWidthBufferList.push_back(fwbuf);
-                    VerifiedFlagList.push_back(VerifiedFlag(fwbuf.widths, false));
+                    fwbuffers.push_back(fwbuf);
+                    if(verify)
+                    {
+                        VerifiedFlagList.push_back(VerifiedFlag(fwbuf.widths, false));
+                    }
                 }
                 else
                 {
@@ -519,42 +490,135 @@ bool FontWidthManager::LoadFromFile(const wxString &filename)
     return true;
 }
 
-void FontWidthManager::SaveToFile(const wxString &filename)
+void FontWidthManager::Init(const wxString &datadir)
 {
-    if(FontWidthBufferList.size()==0)
-        return;
+    DataDir=datadir;
+    FontWidthBuffersVector.resize(17); // 0~16 : U+0000 ~ U+10FFFF
+}
 
-    if(wxFileExists(filename))
+wxUint16 *FontWidthManager::GetFontWidths(int index, const wxString &fontname, int fontsize)
+{
+    wxASSERT(index>=0 && index<=16);
+
+    FontWidthBuffers &fwbuffers=FontWidthBuffersVector[index];
+
+    if(fwbuffers.size()==0)
     {
-        wxRemoveFile(filename);
+        wxString fname(wxT("FontWidth"));
+        if(index>0) fname<<index;
+        LoadFromFile(DataDir +fname +wxT(".dat"), fwbuffers, index==0);
     }
 
-    wxFile file(filename.c_str(), wxFile::write);
-
-    if(file.IsOpened())
+    list<FontWidthBuffer>::iterator it=fwbuffers.begin();
+    list<FontWidthBuffer>::iterator itend=fwbuffers.end();
+    wxUint16 *wid;
+    while(it != itend)
     {
-        list<FontWidthBuffer>::iterator it=FontWidthBufferList.begin();
-        int i=0;
-        while(it != FontWidthBufferList.end() && i<MaxCount)
+        if(it->fontsize==fontsize && it->fontname==fontname)
         {
-            file.Write( &(*it), sizeof(FontWidthBuffer) );
-            file.Write( it->widths, sizeof(wxUint16)*65536 );
-            ++it;
-            ++i;
+            wid=it->widths;
+
+            if(index==0 && VerifyFontWidths(wid, fontname, fontsize)==false)
+            {
+#ifdef __WXGTK__
+                std::wcout<<fontname.c_str()<<wxT(", ")<<fontsize <<wxT(" : FontWidth does not match\n");
+#else
+                //wxLogMessage(wxString()<<fontname<<wxT(", ")<<fontsize <<wxT(" : FontWidth does not match"));
+#endif
+
+                // reset font widths
+                memset(wid, 0, sizeof(wxUint16)*65536);
+                ClearBuffer_1_16(fontname, fontsize);
+
+                // delete 1~16 datafile
+                for(int i=1;i<=16;i++)
+                {
+                    wxString filename(DataDir+wxT("FontWidth"));
+                    filename<<i <<wxT(".dat");
+                    if(wxFileExists(filename))
+                    {
+                        wxRemoveFile(filename);
+                    }
+                }
+            }
+
+            if(it != fwbuffers.begin())   // move it to front
+            {
+                fwbuffers.push_front(*it);
+                fwbuffers.erase(it);
+            }
+
+            return wid;
+        }
+        ++it;
+    }
+
+    int idx=int(fwbuffers.size());
+    if(idx>=MaxCount)
+    {
+        wid=fwbuffers.back().widths;
+        fwbuffers.pop_back();
+    }
+    else
+    {
+       wid=new wxUint16[65536];
+    }
+
+    memset(wid, 0, sizeof(wxUint16)*65536);
+    fwbuffers.push_front(FontWidthBuffer(fontname, fontsize, wid));
+
+    return wid;
+}
+
+void FontWidthManager::Save()
+{
+    for(int idx=0;idx<=16;idx++)
+    {
+        wxString filename(DataDir+wxT("FontWidth"));
+        if(idx>0) filename<<idx;
+        filename<<wxT(".dat");
+
+        if(FontWidthBuffersVector[idx].size()>0)
+        {
+            //if(wxFileExists(filename))
+            //{
+                //wxRemoveFile(filename);
+            //}
+
+            wxFile file(filename.c_str(), wxFile::write);
+
+            if(file.IsOpened())
+            {
+                list<FontWidthBuffer>::iterator it=FontWidthBuffersVector[idx].begin();
+                list<FontWidthBuffer>::iterator itend=FontWidthBuffersVector[idx].end();
+                int i=0;
+                while(it != itend && i<MaxCount)
+                {
+                    file.Write( &(*it), sizeof(FontWidthBuffer) );
+                    file.Write( it->widths, sizeof(wxUint16)*65536 );
+                    ++it;
+                    ++i;
+                }
+            }
         }
     }
 }
 
 void FontWidthManager::FreeMem()
 {
-    list<FontWidthBuffer>::iterator it=FontWidthBufferList.begin();
-    while(it != FontWidthBufferList.end())
+    for(int idx=0;idx<=16;idx++)
     {
-        delete []it->widths;
-        ++it;
+        list<FontWidthBuffer>::iterator it=FontWidthBuffersVector[idx].begin();
+        list<FontWidthBuffer>::iterator itend=FontWidthBuffersVector[idx].end();
+        while(it != itend)
+        {
+            delete []it->widths;
+            ++it;
+        }
+        FontWidthBuffersVector[idx].clear();
     }
 
-    FontWidthBufferList.clear();
+    FontWidthBuffersVector.clear();
 }
 
 //==================================================
@@ -710,8 +774,8 @@ MadEdit::MadEdit(wxWindow* parent, wxWindowID id, const wxPoint& pos, const wxSi
     m_OnActivate=NULL;
 
     // set fonts
-    m_TextFontWidths = NULL;
-    m_HexFontWidths = NULL;
+    memset(m_TextFontWidths, 0, sizeof(m_TextFontWidths));
+    memset(m_HexFontWidths, 0, sizeof(m_HexFontWidths));
 
     wxString fontname;
     int fontsize;
@@ -2278,7 +2342,7 @@ void MadEdit::PaintHexLines(wxDC *dc, wxRect &rect, int toprow, int rowcount, bo
             MadUCPair & ucp = m_ActiveRowUChars.back();
             //if(ucp.first <= 0x20 || ucp.first == 0xFEFF)
                 //m_WordBuffer[idx++] = '.';
-            if(ucp.first == 0xFEFF)
+            if(ucp.first == 0xFEFF || ucp.first == 0x9)
                 m_WordBuffer[idx++] = ' ';
             else
                 m_WordBuffer[idx++] = ucp.first;
@@ -10152,7 +10216,8 @@ void MadEdit::SetTextFont(const wxString &name, int size, bool forceReset)
         m_TextFont=wxTheFontList->FindOrCreateFont(size, //font.GetFamily(), font.GetStyle(), font.GetWeight(), font.GetUnderlined(), name);
             wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL, false, name);
 
-        m_TextFontWidths=FontWidthManager::GetFontWidths(name, size);
+        memset(m_TextFontWidths, 0, sizeof(m_TextFontWidths));
+        m_TextFontWidths[0] = FontWidthManager::GetFontWidths(0, name, size);
 
         if(m_StorePropertiesToGlobalConfig)
         {
@@ -10285,7 +10350,8 @@ void MadEdit::SetHexFont(const wxString &name, int size, bool forceReset)
         m_HexFont=wxTheFontList->FindOrCreateFont(size, //font.GetFamily(), font.GetStyle(), font.GetWeight(), font.GetUnderlined(), name);
             wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL, false, name);
 
-        m_HexFontWidths=FontWidthManager::GetFontWidths(name, size);
+        memset(m_HexFontWidths, 0, sizeof(m_HexFontWidths));
+        m_HexFontWidths[0]=FontWidthManager::GetFontWidths(0, name, size);
 
         if(m_StorePropertiesToGlobalConfig)
         {
@@ -11134,58 +11200,46 @@ int MadEdit::GetMaxWordWrapWidth()
 
 int MadEdit::GetUCharWidth(ucs4_t uc)
 {
-    wxUint16 w16, *pw16;
-    wxChar wcs[3];
+    if(uc>0x10FFFF || uc<0) uc='?';
 
-    if(uc>0x10FFFF) uc='?';
-
-    if(uc<0x10000)
+    register int idx=uc>>16;
+    wxUint16 *widths=m_TextFontWidths[idx];
+    if(widths==NULL)
     {
-        if(uc<0) uc='?';
-
-        if((w16=m_TextFontWidths[uc])!=0)
-        {
-            if(m_FixedWidthMode)
-            {
-                if(!HexPrinting() && w16 > (m_TextFontAveCharWidth+(m_TextFontAveCharWidth>>2)))
-                {
-                    return m_TextFontAveCharWidth<<1;
-                }
-                else
-                {
-                    return m_TextFontAveCharWidth;
-                }
-            }
-            return w16;
-        }
-
-        pw16 = &m_TextFontWidths[uc];
-
-        wcs[0] = wxChar(uc);
-        wcs[1] = 0;
+        widths=m_TextFontWidths[idx]=FontWidthManager::GetFontWidths(idx, m_TextFont->GetFaceName(), m_TextFont->GetPointSize());
     }
-    else
+
+    idx=uc&0xFFFF;
+    int w;
+    wxUint16 *pw16=widths+idx;
+    if((w=*pw16) == 0)
     {
-        pw16 = &w16;
+        wxChar wcs[3];
 
 #ifdef __WXMSW__
-        m_Encoding->UCS4toUTF16LE_U10000(uc, (wxByte*)wcs);
-        wcs[2] = 0;
+        if(uc<0x10000)
+        {
+            wcs[0] = wxChar(uc);
+            wcs[1] = 0;
+        }
+        else
+        {
+            m_Encoding->UCS4toUTF16LE_U10000(uc, (wxByte*)wcs);
+            wcs[2] = 0;
+        }
 #else
         wcs[0] = uc;
         wcs[1] = 0;
 #endif
+
+        int h;
+        GetTextExtent(wcs, &w, &h, NULL, NULL, m_TextFont);
+        if(w<=0)
+        {
+            w=m_TextFontWidths[0][0x20];
+        }
+        *pw16=w;
     }
-
-    int w=0, h;
-    GetTextExtent(wcs, &w, &h, NULL, NULL, m_TextFont);
-
-    if(w==0)
-    {
-        w=m_TextFontWidths[0x20];
-    }
-
-    *pw16 = w;
 
     if(m_FixedWidthMode)
     {
@@ -11204,55 +11258,47 @@ int MadEdit::GetUCharWidth(ucs4_t uc)
 
 int MadEdit::GetHexUCharWidth(ucs4_t uc)
 {
-    wxUint16 w16, *pw16;
+    if(uc>0x10FFFF || uc<0) uc='?';
 
-    if(uc>0x10FFFF) uc='?';
-
-    wxChar wcs[3];
-
-    if(uc<0x10000)
+    register int idx=uc>>16;
+    wxUint16 *widths=m_HexFontWidths[idx];
+    if(widths==NULL)
     {
-        if(uc<0) uc='?';
-
-        if((w16=m_HexFontWidths[uc])!=0)
-            return w16;
-
-        pw16 = &m_HexFontWidths[uc];
-
-        wcs[0] = wxChar(uc);
-        wcs[1] = 0;
+        widths=m_HexFontWidths[idx]=FontWidthManager::GetFontWidths(idx, m_HexFont->GetFaceName(), m_HexFont->GetPointSize());
     }
-    else
+
+    idx=uc&0xFFFF;
+    int w;
+    wxUint16 *pw16=widths+idx;
+    if((w=*pw16) == 0)
     {
-        pw16 = &w16;
+        wxChar wcs[3];
 
 #ifdef __WXMSW__
-        m_Encoding->UCS4toUTF16LE_U10000(uc, (wxByte*)wcs);
-        wcs[2] = 0;
+        if(uc<0x10000)
+        {
+            wcs[0] = wxChar(uc);
+            wcs[1] = 0;
+        }
+        else
+        {
+            m_Encoding->UCS4toUTF16LE_U10000(uc, (wxByte*)wcs);
+            wcs[2] = 0;
+        }
 #else
         wcs[0] = uc;
         wcs[1] = 0;
 #endif
+
+        int h;
+        GetTextExtent(wcs, &w, &h, NULL, NULL, m_HexFont);
+        if(w<=0)
+        {
+            w=m_HexFontWidths[0][0x20];
+        }
+        *pw16=w;
     }
 
-    int w=0, h;
-    GetTextExtent(wcs, &w, &h, NULL, NULL, m_HexFont);
-
-    if(w==0)
-    {
-        w=m_HexFontWidths[0x20];
-    }
-
-    /***
-    if(m_FixedWidthMode)
-    {
-        if(w > (m_TextFontAveCharWidth+(m_TextFontAveCharWidth>>2)))
-            return m_TextFontAveCharWidth<<1;
-        return m_TextFontAveCharWidth;
-    }
-    ***/
-
-    *pw16 = w;
     return w;
 }
 
