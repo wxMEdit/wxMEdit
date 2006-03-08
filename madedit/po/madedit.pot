@@ -2,7 +2,7 @@
 # This file is put in the public domain.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
-#: src/MadSearchDialog.cpp:120 src/MadReplaceDialog.cpp:121
+#: src/MadSearchDialog.cpp:123 src/MadReplaceDialog.cpp:124
 #: src/MadOptionsDialog.cpp:377 src/MadOptionsDialog.cpp:386
 #: src/MadOptionsDialog.cpp:395 src/MadOptionsDialog.cpp:414
 #: src/MadOptionsDialog.cpp:423 src/MadOptionsDialog.cpp:432
@@ -17,7 +17,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: madedit@gmail.com\n"
-"POT-Creation-Date: 2006-03-08 01:40+0800\n"
+"POT-Creation-Date: 2006-03-08 22:04+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -343,7 +343,7 @@ msgstr ""
 msgid "Top margin (mm):"
 msgstr ""
 
-#: src/MadEdit/MadEdit.cpp:10476
+#: src/MadEdit/MadEdit.cpp:10482
 #, c-format
 msgid ""
 "Do you want to continue?\n"
@@ -351,44 +351,44 @@ msgid ""
 "It may take long time and large memories to convert to Text/Column Mode."
 msgstr ""
 
-#: src/MadEdit/MadEdit.cpp:10476
+#: src/MadEdit/MadEdit.cpp:10482
 msgid "Hex Mode to Text/Column Mode"
 msgstr ""
 
-#: src/MadEdit/MadEdit.cpp:12975
+#: src/MadEdit/MadEdit.cpp:12981
 msgid "The input string is not a valid Hex-String:"
 msgstr ""
 
-#: src/MadEdit/MadEdit.cpp:13432 src/MadEdit/MadEdit.cpp:13501
+#: src/MadEdit/MadEdit.cpp:13438 src/MadEdit/MadEdit.cpp:13507
 #: src/MadEditFrame.cpp:1978
 msgid "The Parent Directory of this file does not exist:"
 msgstr ""
 
-#: src/MadEdit/MadEdit.cpp:13521
+#: src/MadEdit/MadEdit.cpp:13527
 msgid "Cannot save this file:"
 msgstr ""
 
-#: src/MadEdit/MadEdit.cpp:13548
+#: src/MadEdit/MadEdit.cpp:13554
 msgid "Do you want to save this file?"
 msgstr ""
 
-#: src/MadEdit/MadEdit.cpp:13559
+#: src/MadEdit/MadEdit.cpp:13565
 msgid "Save File As"
 msgstr ""
 
-#: src/MadEdit/MadEdit.cpp:13563 src/MadEditFrame.cpp:1546
+#: src/MadEdit/MadEdit.cpp:13569 src/MadEditFrame.cpp:1546
 msgid "Save File"
 msgstr ""
 
-#: src/MadEdit/MadEdit.cpp:13597
+#: src/MadEdit/MadEdit.cpp:13603
 msgid "Do you want to discard changes?"
 msgstr ""
 
-#: src/MadEdit/MadEdit.cpp:13631
+#: src/MadEdit/MadEdit.cpp:13637
 msgid "This file has been changed by another application."
 msgstr ""
 
-#: src/MadEdit/MadEdit.cpp:13632
+#: src/MadEdit/MadEdit.cpp:13638
 msgid "Do you want to reload it?"
 msgstr ""
 
@@ -708,8 +708,8 @@ msgstr ""
 msgid "Find a string"
 msgstr ""
 
-#: src/MadEditFrame.cpp:824 src/MadSearchDialog.cpp:108
-#: src/MadReplaceDialog.cpp:109
+#: src/MadEditFrame.cpp:824 src/MadSearchDialog.cpp:111
+#: src/MadReplaceDialog.cpp:112
 msgid "Find &Next"
 msgstr ""
 
@@ -717,7 +717,7 @@ msgstr ""
 msgid "Find next occurrence"
 msgstr ""
 
-#: src/MadEditFrame.cpp:825 src/MadSearchDialog.cpp:111
+#: src/MadEditFrame.cpp:825 src/MadSearchDialog.cpp:114
 msgid "Find &Previous"
 msgstr ""
 
@@ -1337,15 +1337,15 @@ msgstr ""
 msgid "Find"
 msgstr ""
 
-#: src/MadEditFrame.cpp:1565 src/MadSearchDialog.cpp:253
+#: src/MadEditFrame.cpp:1565 src/MadSearchDialog.cpp:258
 msgid "Find Next"
 msgstr ""
 
-#: src/MadEditFrame.cpp:1566 src/MadSearchDialog.cpp:305
+#: src/MadEditFrame.cpp:1566 src/MadSearchDialog.cpp:313
 msgid "Find Previous"
 msgstr ""
 
-#: src/MadEditFrame.cpp:1567 src/MadReplaceDialog.cpp:125
+#: src/MadEditFrame.cpp:1567 src/MadReplaceDialog.cpp:128
 msgid "Replace"
 msgstr ""
 
@@ -1447,110 +1447,118 @@ msgid "Press OK to visit our HomePage."
 msgstr ""
 
 #: src/MadSearchDialog.cpp:93 src/MadReplaceDialog.cpp:94
-msgid "&Case Sensitive"
+msgid "&Move Focus to Editor Window"
 msgstr ""
 
 #: src/MadSearchDialog.cpp:93 src/MadReplaceDialog.cpp:94
+msgid "WxCheckBoxMoveFocus"
+msgstr ""
+
+#: src/MadSearchDialog.cpp:96 src/MadReplaceDialog.cpp:97
+msgid "&Case Sensitive"
+msgstr ""
+
+#: src/MadSearchDialog.cpp:96 src/MadReplaceDialog.cpp:97
 msgid "WxCheckBoxCaseSensitive"
 msgstr ""
 
-#: src/MadSearchDialog.cpp:96 src/MadReplaceDialog.cpp:97
+#: src/MadSearchDialog.cpp:99 src/MadReplaceDialog.cpp:100
 msgid "&Whole Word Only"
 msgstr ""
 
-#: src/MadSearchDialog.cpp:96 src/MadReplaceDialog.cpp:97
+#: src/MadSearchDialog.cpp:99 src/MadReplaceDialog.cpp:100
 msgid "WxCheckBoxWholeWord"
 msgstr ""
 
-#: src/MadSearchDialog.cpp:99 src/MadReplaceDialog.cpp:100
+#: src/MadSearchDialog.cpp:102 src/MadReplaceDialog.cpp:103
 msgid "Use Regular E&xpressions"
 msgstr ""
 
-#: src/MadSearchDialog.cpp:99 src/MadReplaceDialog.cpp:100
+#: src/MadSearchDialog.cpp:102 src/MadReplaceDialog.cpp:103
 msgid "WxCheckBoxRegex"
 msgstr ""
 
-#: src/MadSearchDialog.cpp:102 src/MadReplaceDialog.cpp:103
+#: src/MadSearchDialog.cpp:105 src/MadReplaceDialog.cpp:106
 msgid "Find &Hex String (Example: BE 00 3A or BE003A)"
 msgstr ""
 
-#: src/MadSearchDialog.cpp:102 src/MadReplaceDialog.cpp:103
+#: src/MadSearchDialog.cpp:105 src/MadReplaceDialog.cpp:106
 msgid "WxCheckBoxFindHex"
 msgstr ""
 
-#: src/MadSearchDialog.cpp:108 src/MadReplaceDialog.cpp:109
+#: src/MadSearchDialog.cpp:111 src/MadReplaceDialog.cpp:112
 msgid "WxButtonFindNext"
 msgstr ""
 
-#: src/MadSearchDialog.cpp:111
+#: src/MadSearchDialog.cpp:114
 msgid "WxButtonFindPrev"
 msgstr ""
 
-#: src/MadSearchDialog.cpp:114
+#: src/MadSearchDialog.cpp:117
 msgid "&Replace >>"
 msgstr ""
 
-#: src/MadSearchDialog.cpp:114 src/MadReplaceDialog.cpp:112
+#: src/MadSearchDialog.cpp:117 src/MadReplaceDialog.cpp:115
 msgid "WxButtonReplace"
 msgstr ""
 
-#: src/MadSearchDialog.cpp:117 src/MadReplaceDialog.cpp:118
+#: src/MadSearchDialog.cpp:120 src/MadReplaceDialog.cpp:121
 msgid "Close"
 msgstr ""
 
-#: src/MadSearchDialog.cpp:117 src/MadReplaceDialog.cpp:118
+#: src/MadSearchDialog.cpp:120 src/MadReplaceDialog.cpp:121
 msgid "WxButtonClose"
 msgstr ""
 
-#: src/MadSearchDialog.cpp:124
+#: src/MadSearchDialog.cpp:127
 msgid "Search"
 msgstr ""
 
-#: src/MadSearchDialog.cpp:145 src/MadReplaceDialog.cpp:148
+#: src/MadSearchDialog.cpp:148 src/MadReplaceDialog.cpp:151
 msgid "WxBitmapButtonRecentFindText"
 msgstr ""
 
-#: src/MadSearchDialog.cpp:253
+#: src/MadSearchDialog.cpp:258
 msgid ""
 "Cannot find the matched string.\n"
 "\n"
 "Do you want to find from begin of file?"
 msgstr ""
 
-#: src/MadSearchDialog.cpp:305
+#: src/MadSearchDialog.cpp:313
 msgid ""
 "Cannot find the matched string.\n"
 "\n"
 "Do you want to find from end of file?"
 msgstr ""
 
-#: src/MadReplaceDialog.cpp:112
+#: src/MadReplaceDialog.cpp:115
 msgid "&Replace"
 msgstr ""
 
-#: src/MadReplaceDialog.cpp:115
+#: src/MadReplaceDialog.cpp:118
 msgid "Replace &All"
 msgstr ""
 
-#: src/MadReplaceDialog.cpp:115
+#: src/MadReplaceDialog.cpp:118
 msgid "WxButtonReplaceAll"
 msgstr ""
 
-#: src/MadReplaceDialog.cpp:164
+#: src/MadReplaceDialog.cpp:167
 msgid "WxBitmapButtonRecentReplaceText"
 msgstr ""
 
-#: src/MadReplaceDialog.cpp:408
+#: src/MadReplaceDialog.cpp:414
 msgid ""
 "Cannot find the matched string.\n"
 "Replace is finished."
 msgstr ""
 
-#: src/MadReplaceDialog.cpp:458
+#: src/MadReplaceDialog.cpp:464
 msgid "Cannot find any matched string."
 msgstr ""
 
-#: src/MadReplaceDialog.cpp:460
+#: src/MadReplaceDialog.cpp:466
 #, c-format
 msgid "%d string(s) were replaced."
 msgstr ""
