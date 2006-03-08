@@ -156,18 +156,18 @@ public:
         return m_SystemAttributes + ae;
     }
 
-    bool IsSpace(wchar_t wc)
+    bool IsSpace(ucs4_t uc)
     {
-        return (wc == 0x20 || (wc <= 0x0D && wc >= 0x09));
+        return (uc == 0x20 || (uc <= 0x0D && uc >= 0x09));
     }
 
-    bool IsDelimiter(wchar_t wc)
+    bool IsDelimiter(ucs4_t uc)
     {
-        return (wc < 0x100 && m_Delimiter.Find(wc)>=0);
+        return (uc < 0x100 && m_Delimiter.Find(uc)>=0);
     }
-    bool IsNotDelimiter(wchar_t wc)
+    bool IsNotDelimiter(ucs4_t uc)
     {
-        return (wc < 0x100 && m_Delimiter.Find(wc)<0 && !IsSpace(wc));
+        return (uc < 0x100 && m_Delimiter.Find(uc)<0 && !IsSpace(uc));
     }
 
     void SetAttributes(wxByte rangeid, MadAttributeElement ae)
