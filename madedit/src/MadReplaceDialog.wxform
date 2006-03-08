@@ -2,7 +2,7 @@ object frmNewForm: TfrmNewForm
   Left = 8
   Top = 8
   Width = 514
-  Height = 255
+  Height = 271
   BorderIcons = [biSystemMenu, biMinimize]
   Caption = 'Replace'
   Color = clBtnFace
@@ -37,7 +37,7 @@ object frmNewForm: TfrmNewForm
     Left = 0
     Top = 0
     Width = 506
-    Height = 225
+    Height = 241
     Align = alClient
     TabOrder = 1
     Wx_Class = 'wxBoxSizer'
@@ -50,7 +50,7 @@ object frmNewForm: TfrmNewForm
       Left = 5
       Top = 5
       Width = 320
-      Height = 198
+      Height = 230
       TabOrder = 0
       Orientation = wxVertical
       Wx_Class = 'wxBoxSizer'
@@ -95,7 +95,7 @@ object frmNewForm: TfrmNewForm
         Left = 5
         Top = 65
         Width = 310
-        Height = 128
+        Height = 160
         TabOrder = 2
         Orientation = wxVertical
         Wx_Class = 'wxBoxSizer'
@@ -105,9 +105,29 @@ object frmNewForm: TfrmNewForm
         Wx_IDValue = 1020
         Wx_StretchFactor = 0
         Wx_StrechFactor = 0
-        object WxCheckBoxCaseSensitive: TWxCheckBox
+        object WxCheckBoxMoveFocus: TWxCheckBox
           Left = 5
           Top = 5
+          Width = 300
+          Height = 22
+          Caption = '&Move Focus to Editor Window'
+          TabOrder = 4
+          Wx_BGColor = clBlack
+          Wx_Border = 3
+          Wx_CheckBoxStyle = []
+          Wx_Class = 'wxCheckBox'
+          Wx_ControlOrientation = wxControlVertical
+          Wx_FGColor = clBlack
+          Wx_GeneralStyle = []
+          Wx_Hidden = False
+          Wx_HorizontalAlignment = wxSZALIGN_LEFT
+          Wx_IDName = 'ID_WXCHECKBOXMOVEFOCUS'
+          Wx_IDValue = 1029
+          Wx_StrechFactor = 0
+        end
+        object WxCheckBoxCaseSensitive: TWxCheckBox
+          Left = 5
+          Top = 37
           Width = 300
           Height = 22
           Caption = '&Case Sensitive'
@@ -127,7 +147,7 @@ object frmNewForm: TfrmNewForm
         end
         object WxCheckBoxWholeWord: TWxCheckBox
           Left = 5
-          Top = 37
+          Top = 69
           Width = 300
           Height = 22
           Caption = '&Whole Word Only'
@@ -147,7 +167,7 @@ object frmNewForm: TfrmNewForm
         end
         object WxCheckBoxRegex: TWxCheckBox
           Left = 5
-          Top = 69
+          Top = 101
           Width = 300
           Height = 22
           Caption = 'Use Regular E&xpressions'
@@ -167,7 +187,7 @@ object frmNewForm: TfrmNewForm
         end
         object WxCheckBoxFindHex: TWxCheckBox
           Left = 5
-          Top = 101
+          Top = 133
           Width = 300
           Height = 22
           Caption = 'Find &Hex String (Example: BE 00 3A or BE003A)'
@@ -190,7 +210,7 @@ object frmNewForm: TfrmNewForm
     end
     object WxBoxSizer3: TWxBoxSizer
       Left = 335
-      Top = 28
+      Top = 44
       Width = 110
       Height = 152
       TabOrder = 1
@@ -281,7 +301,7 @@ object frmNewForm: TfrmNewForm
         Wx_Width = 100
       end
       object WxButtonClose: TWxButton
-        Left = 10
+        Left = 5
         Top = 119
         Width = 100
         Height = 28

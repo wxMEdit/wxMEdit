@@ -61,6 +61,7 @@ public:
 		wxCheckBox *WxCheckBoxRegex;
 		wxCheckBox *WxCheckBoxWholeWord;
 		wxCheckBox *WxCheckBoxCaseSensitive;
+		wxCheckBox *WxCheckBoxMoveFocus;
 		wxBoxSizer *WxBoxSizer5;
 		wxBoxSizer *WxBoxSizer4;
 		wxBoxSizer *WxBoxSizer2;
@@ -82,6 +83,7 @@ public:
 			ID_WXCHECKBOXREGEX = 8,
 			ID_WXCHECKBOXWHOLEWORD = 7,
 			ID_WXCHECKBOXCASESENSITIVE = 6,
+			ID_WXCHECKBOXMOVEFOCUS = 16,
 ////GUI Enum Control ID End
             ID_MADEDIT=1500,
             ID_RECENTFINDTEXT1=1501,

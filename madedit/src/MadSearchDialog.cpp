@@ -90,16 +90,19 @@ void MadSearchDialog::CreateGUIControls(void)
 	wxBoxSizer* WxBoxSizer5 = new wxBoxSizer(wxVERTICAL);
 	WxBoxSizer2->Add(WxBoxSizer5,0,wxALIGN_LEFT | wxALL,5);
 
-	WxCheckBoxCaseSensitive = new wxCheckBox(this, ID_WXCHECKBOXCASESENSITIVE, _("&Case Sensitive"), wxPoint(5,5), wxSize(300,22), 0, wxDefaultValidator, _("WxCheckBoxCaseSensitive"));
+	WxCheckBoxMoveFocus = new wxCheckBox(this, ID_WXCHECKBOXMOVEFOCUS, _("&Move Focus to Editor Window"), wxPoint(5,5), wxSize(300,22), 0, wxDefaultValidator, _("WxCheckBoxMoveFocus"));
+	WxBoxSizer5->Add(WxCheckBoxMoveFocus,0,wxALIGN_LEFT | wxALL,3);
+
+	WxCheckBoxCaseSensitive = new wxCheckBox(this, ID_WXCHECKBOXCASESENSITIVE, _("&Case Sensitive"), wxPoint(5,37), wxSize(300,22), 0, wxDefaultValidator, _("WxCheckBoxCaseSensitive"));
 	WxBoxSizer5->Add(WxCheckBoxCaseSensitive,0,wxALIGN_LEFT | wxALL,3);
 
-	WxCheckBoxWholeWord = new wxCheckBox(this, ID_WXCHECKBOXWHOLEWORD, _("&Whole Word Only"), wxPoint(5,37), wxSize(300,22), 0, wxDefaultValidator, _("WxCheckBoxWholeWord"));
+	WxCheckBoxWholeWord = new wxCheckBox(this, ID_WXCHECKBOXWHOLEWORD, _("&Whole Word Only"), wxPoint(5,69), wxSize(300,22), 0, wxDefaultValidator, _("WxCheckBoxWholeWord"));
 	WxBoxSizer5->Add(WxCheckBoxWholeWord,0,wxALIGN_LEFT | wxALL,3);
 
-	WxCheckBoxRegex = new wxCheckBox(this, ID_WXCHECKBOXREGEX, _("Use Regular E&xpressions"), wxPoint(5,69), wxSize(300,22), 0, wxDefaultValidator, _("WxCheckBoxRegex"));
+	WxCheckBoxRegex = new wxCheckBox(this, ID_WXCHECKBOXREGEX, _("Use Regular E&xpressions"), wxPoint(5,101), wxSize(300,22), 0, wxDefaultValidator, _("WxCheckBoxRegex"));
 	WxBoxSizer5->Add(WxCheckBoxRegex,0,wxALIGN_LEFT | wxALL,3);
 
-	WxCheckBoxFindHex = new wxCheckBox(this, ID_WXCHECKBOXFINDHEX, _("Find &Hex String (Example: BE 00 3A or BE003A)"), wxPoint(5,101), wxSize(300,22), 0, wxDefaultValidator, _("WxCheckBoxFindHex"));
+	WxCheckBoxFindHex = new wxCheckBox(this, ID_WXCHECKBOXFINDHEX, _("Find &Hex String (Example: BE 00 3A or BE003A)"), wxPoint(5,133), wxSize(300,22), 0, wxDefaultValidator, _("WxCheckBoxFindHex"));
 	WxBoxSizer5->Add(WxCheckBoxFindHex,0,wxALIGN_LEFT | wxALL,3);
 
 	wxBoxSizer* WxBoxSizer3 = new wxBoxSizer(wxVERTICAL);
@@ -114,7 +117,7 @@ void MadSearchDialog::CreateGUIControls(void)
 	WxButtonReplace = new wxButton(this, ID_WXBUTTONREPLACE, _("&Replace >>"), wxPoint(5,81), wxSize(100,28), 0, wxDefaultValidator, _("WxButtonReplace"));
 	WxBoxSizer3->Add(WxButtonReplace,0,wxALIGN_LEFT | wxALL,5);
 
-	WxButtonClose = new wxButton(this, ID_WXBUTTONCLOSE, _("Close"), wxPoint(10,119), wxSize(100,28), 0, wxDefaultValidator, _("WxButtonClose"));
+	WxButtonClose = new wxButton(this, ID_WXBUTTONCLOSE, _("Close"), wxPoint(5,119), wxSize(100,28), 0, wxDefaultValidator, _("WxButtonClose"));
 	WxBoxSizer3->Add(WxButtonClose,0,wxALIGN_LEFT | wxALL,5);
 
 	WxPopupMenuRecentFindText = new wxMenu(_("")  );
@@ -146,6 +149,7 @@ void MadSearchDialog::CreateGUIControls(void)
 	WxBoxSizer4->Add(WxBitmapButtonRecentFindText,0,wxALIGN_CENTER_HORIZONTAL | wxALL,0);
 
     // resize checkbox
+    ResizeItem(WxBoxSizer5, WxCheckBoxMoveFocus, 25, 4);
     ResizeItem(WxBoxSizer5, WxCheckBoxCaseSensitive, 25, 4);
     ResizeItem(WxBoxSizer5, WxCheckBoxWholeWord, 25, 4);
     ResizeItem(WxBoxSizer5, WxCheckBoxRegex, 25, 4);
@@ -155,6 +159,7 @@ void MadSearchDialog::CreateGUIControls(void)
 
     // connect to KeyDown event handler
     m_FindText->Connect(wxEVT_KEY_DOWN, wxKeyEventHandler(MadSearchDialog::MadSearchDialogKeyDown));
+    WxCheckBoxMoveFocus->Connect(wxEVT_KEY_DOWN, wxKeyEventHandler(MadSearchDialog::MadSearchDialogKeyDown));
     WxCheckBoxCaseSensitive->Connect(wxEVT_KEY_DOWN, wxKeyEventHandler(MadSearchDialog::MadSearchDialogKeyDown));
     WxCheckBoxWholeWord->Connect(wxEVT_KEY_DOWN, wxKeyEventHandler(MadSearchDialog::MadSearchDialogKeyDown));
     WxCheckBoxRegex->Connect(wxEVT_KEY_DOWN, wxKeyEventHandler(MadSearchDialog::MadSearchDialogKeyDown));
@@ -258,8 +263,11 @@ void MadSearchDialog::WxButtonFindNextClick(wxCommandEvent& event)
         }
     }
     
-    ((wxFrame*)wxTheApp->GetTopWindow())->Raise();
-    g_ActiveMadEdit->SetFocus();
+    if(WxCheckBoxMoveFocus->GetValue())
+    {
+        ((wxFrame*)wxTheApp->GetTopWindow())->Raise();
+        g_ActiveMadEdit->SetFocus();
+    }
     
 }
 
@@ -310,8 +318,11 @@ void MadSearchDialog::WxButtonFindPrevClick(wxCommandEvent& event)
         }
     }
     
-    ((wxFrame*)wxTheApp->GetTopWindow())->Raise();
-    g_ActiveMadEdit->SetFocus();
+    if(WxCheckBoxMoveFocus->GetValue())
+    {
+        ((wxFrame*)wxTheApp->GetTopWindow())->Raise();
+        g_ActiveMadEdit->SetFocus();
+    }
 }
 
 
@@ -429,11 +440,14 @@ void MadSearchDialog::MadSearchDialogActivate(wxActivateEvent& event)
     if(event.GetActive())
 	{
         bool bb;
-        m_Config->Read(wxT("/MadEdit/SearchWholeWord"), &bb, false);
-        WxCheckBoxWholeWord->SetValue(bb);
+        m_Config->Read(wxT("/MadEdit/SearchMoveFocus"), &bb, false);
+        WxCheckBoxMoveFocus->SetValue(bb);
 
         m_Config->Read(wxT("/MadEdit/SearchCaseSensitive"), &bb, false);
         WxCheckBoxCaseSensitive->SetValue(bb);
+
+        m_Config->Read(wxT("/MadEdit/SearchWholeWord"), &bb, false);
+        WxCheckBoxWholeWord->SetValue(bb);
 
         m_Config->Read(wxT("/MadEdit/SearchRegex"), &bb, false);
         WxCheckBoxRegex->SetValue(bb);
@@ -443,8 +457,9 @@ void MadSearchDialog::MadSearchDialogActivate(wxActivateEvent& event)
     }
     else
     {
-        m_Config->Write(wxT("/MadEdit/SearchWholeWord"), WxCheckBoxWholeWord->GetValue());
+        m_Config->Write(wxT("/MadEdit/SearchMoveFocus"), WxCheckBoxMoveFocus->GetValue());
         m_Config->Write(wxT("/MadEdit/SearchCaseSensitive"), WxCheckBoxCaseSensitive->GetValue());
+        m_Config->Write(wxT("/MadEdit/SearchWholeWord"), WxCheckBoxWholeWord->GetValue());
         m_Config->Write(wxT("/MadEdit/SearchRegex"), WxCheckBoxRegex->GetValue());
         m_Config->Write(wxT("/MadEdit/SearchHex"), WxCheckBoxFindHex->GetValue());
     }
