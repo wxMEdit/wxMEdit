@@ -677,7 +677,7 @@ MadEdit::MadEdit(wxWindow* parent, wxWindowID id, const wxPoint& pos, const wxSi
     SetCaret(caret);
     //caret->Show();    // first Show() in OnPaint()
 
-    m_Config->Read(wxT("MaxLineLength"), &m_MaxLineLength, 8192);
+    m_Config->Read(wxT("MaxLineLength"), &m_MaxLineLength, 4096);
     if(m_MaxLineLength<80) m_MaxLineLength=80;
 
     m_WordBuffer = new ucs4_t[m_MaxLineLength+1];
@@ -3643,10 +3643,16 @@ void MadEdit::SelectWordFromCaretPos(wxString *ws)
     }
     else                          //TextMode
     {
+        //may select whole line
+        //startpos = m_CaretPos.pos - m_CaretPos.linepos +
+                   //m_CaretPos.iter->m_RowIndices[0].m_Start; // exclude BOM
+        //endpos = m_Lines->m_Size;
+        
+        //select wrapped-line only
         startpos = m_CaretPos.pos - m_CaretPos.linepos +
-                   m_CaretPos.iter->m_RowIndices[0].m_Start; // exclude BOM
-
-        endpos = m_Lines->m_Size;
+                   m_CaretPos.iter->m_RowIndices[m_CaretPos.subrowid].m_Start; // exclude BOM
+        endpos = m_CaretPos.pos - m_CaretPos.linepos +
+                 m_CaretPos.iter->m_RowIndices[m_CaretPos.subrowid+1].m_Start;
     }
 
     // now startpos is the begin of line

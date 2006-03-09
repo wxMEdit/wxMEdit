@@ -1277,6 +1277,11 @@ int MadSyntax::NextWord(int &wordwidth)
                     nw_ucqueue.pop_back();
                     --ucsize;
                 }
+
+                if(ucsize >= size_t(nw_MadEdit->m_MaxLineLength))
+                {
+                    break;
+                }
             }
 
             if(nw_FirstIndex >= ucsize)
