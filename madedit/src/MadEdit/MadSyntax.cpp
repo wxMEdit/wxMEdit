@@ -1090,6 +1090,7 @@ void MadSyntax::InitNextWord2(MadLineIterator &lit, size_t row)
     nw_LineWidth = 0;
     nw_FirstIndex = 0;
     nw_RestCount = 0;
+    nw_MaxLength = lit->m_RowIndices[row+1].m_Start - nw_RowIndexIter->m_Start;
 
     nw_EndOfLine = false;
     if(nw_RowIndexIter->m_Width == 0)
@@ -1278,7 +1279,7 @@ int MadSyntax::NextWord(int &wordwidth)
                     --ucsize;
                 }
 
-                if(ucsize >= size_t(nw_MadEdit->m_MaxLineLength))
+                if(ucsize >= nw_MaxLength)
                 {
                     break;
                 }

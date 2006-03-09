@@ -232,6 +232,7 @@ private: // for NextWord()
     int nw_LineWidth;
     size_t nw_FirstIndex;
     size_t nw_RestCount;
+    size_t nw_MaxLength;
     MadUCQueue nw_ucqueue;
 
     bool nw_EndOfLine;
