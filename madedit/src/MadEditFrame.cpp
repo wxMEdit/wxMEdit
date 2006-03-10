@@ -125,7 +125,7 @@
 #define Mad_16x15_xpm_idx (hexmode_xpm_idx+1)
 
 
-wxString g_MadEdit_Version(wxT("MadEdit v0.2.2 Beta"));
+wxString g_MadEdit_Version(wxT("MadEdit v0.2.3 Beta"));
 wxString g_MadEdit_URL(wxT("http://madedit.sourceforge.net"));
 
 
