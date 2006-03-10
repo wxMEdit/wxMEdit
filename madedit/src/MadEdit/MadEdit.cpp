@@ -6951,7 +6951,7 @@ void MadEdit::ProcessCommand(MadEditCommand command)
         break;
     case ecScrollLeft:
         {
-            --m_DrawingXPos;
+            m_DrawingXPos-=25;
             UpdateScrollBarPos();
 
             m_RepaintAll = true;
@@ -6962,7 +6962,7 @@ void MadEdit::ProcessCommand(MadEditCommand command)
         break;
     case ecScrollRight:
         {
-            ++m_DrawingXPos;
+            m_DrawingXPos+=25;
             UpdateScrollBarPos();
 
             m_RepaintAll = true;
