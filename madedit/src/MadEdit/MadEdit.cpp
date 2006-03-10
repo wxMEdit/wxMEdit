@@ -10248,12 +10248,10 @@ void MadEdit::SetTextFont(const wxString &name, int size, bool forceReset)
         {
             MadEditSuperClass::SetFont(*m_TextFont);
             m_TextFontHeight=GetCharHeight();
-            m_TextFontAveCharWidth=GetCharWidth();
+            m_TextFontAveCharWidth=GetUCharWidth(0x20);//GetCharWidth();
 
             bool ofwm=m_FixedWidthMode;
             m_FixedWidthMode=false; // avoid effecting on GetUCharWidth();
-
-            GetUCharWidth(0x20);
 
             int w;
             m_TextFontMaxDigitWidth=GetUCharWidth('0');
@@ -11343,7 +11341,7 @@ void MadEdit::GetCaretPos(int &line, int &subrow, wxFileOffset &column)
     {
         column=m_CaretPos.linepos;
     }
-    else if(m_FixedWidthMode || GetUCharWidth('W')==m_TextFontAveCharWidth)
+    else if(m_FixedWidthMode || GetUCharWidth('W')==GetUCharWidth('i'))//m_TextFontAveCharWidth)
     {
         column=((m_CaretPos.xpos+m_TextFontAveCharWidth-1)/m_TextFontAveCharWidth)+1;
     }
