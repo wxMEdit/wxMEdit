@@ -297,7 +297,9 @@ void MadEncoding::InitEncodings()
             }
             else
             {
+#ifndef __WXMAC__
                 ignore= ! wxFontMapper::Get()->IsEncodingAvailable(enc);
+#endif
             }
         }
 

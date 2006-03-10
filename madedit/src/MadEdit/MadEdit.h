@@ -20,6 +20,7 @@
 #endif
 
 #include <wx/confbase.h>
+#include <string>
 
 #include "MadLines.h"
 #include "MadEditCommand.h"
