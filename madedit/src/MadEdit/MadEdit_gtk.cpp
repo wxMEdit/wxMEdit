@@ -8,7 +8,7 @@
 #ifdef __WXGTK__
 
 #include "MadEdit.h"
-#include "wx/gtk/private.h"
+#include <wx/gtk/private.h>
 #include <gdk/gdk.h>
 #include <gdk/gdkx.h>
 #include <gdk/gdkprivate.h>
