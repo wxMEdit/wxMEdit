@@ -490,7 +490,7 @@ protected:
     void DoMouseRightUp();
     void DoActivate();
 
-#if 0 //def __WXMSW__
+#ifdef __WXMSW__
     WXLRESULT MSWWindowProc(WXUINT message, WXWPARAM wParam, WXLPARAM lParam);
 #endif
 

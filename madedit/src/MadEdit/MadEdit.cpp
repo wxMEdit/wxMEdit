@@ -9911,21 +9911,78 @@ void MadEdit::DoActivate()
         m_OnActivate(this);
 }
 
-#if 0 //def __WXMSW__
+#ifdef __WXMSW__
 WXLRESULT MadEdit::MSWWindowProc(WXUINT message, WXWPARAM wParam, WXLPARAM lParam)
 {
     switch(message)
     {
-     case WM_CUT:
+    case WM_CUT:
         CutToClipboard();
         return TRUE;
-     case WM_COPY:
+    case WM_COPY:
         CopyToClipboard();
         return TRUE;
-     case WM_PASTE:
+    case WM_PASTE:
         PasteFromClipboard();
         return TRUE;
-     }
+
+    case WM_NCPAINT: // for dr.eye's Text-Receiving
+        {
+            DWORD dw = GetRegionData(*((HRGN*)&wParam), 0, NULL);
+            if(dw)
+            {
+                static DWORD rgnsize = 0;
+                static RGNDATA *prgn = NULL;
+                if(dw > rgnsize)
+                {
+                    rgnsize = dw;
+                    if(prgn) delete prgn;
+                    prgn = (RGNDATA *) new wxByte[dw];
+                }
+                GetRegionData(*((HRGN*)&wParam), dw, prgn);
+                RECT rc=prgn->rdh.rcBound;
+                //((wxFrame*)wxTheApp->GetTopWindow())->SetTitle(wxString::Format(wxT("%d %d %d %d"), r.left, r.top, r.right, r.bottom));
+                int x=rc.left;
+                int y=rc.top;
+                int h=rc.bottom-y;
+                ScreenToClient(&x, &y);
+                
+                if(x>=0 && y>=0 && h>0 && h<=16)
+                {
+                    bool paint=false;
+                    int row = y / m_RowHeight;
+                    if(m_EditMode != emHexMode)
+                    {
+                        if(row <= m_VisibleRowCount && (m_TopRow + row) < int(m_Lines->m_RowCount))
+                            paint = true;
+                    }
+                    else
+                    {
+                        if(row > 0 && row-1 <= GetVisibleHexRowCount())
+                            paint = true;
+                    }
+                    
+                    if(paint)
+                    {
+                        wxClientDC dc(this);
+                        wxRect rect(0,row * m_RowHeight, m_ClientWidth,m_RowHeight);
+                        if(m_EditMode != emHexMode)
+                        {
+                            PaintTextLines(&dc, rect, m_TopRow+row, 1, m_Syntax->GetAttributes(aeText)->bgcolor);
+                        }
+                        else
+                        {
+                            PaintHexLines(&dc, rect, m_TopRow+row-1, 1, false);
+                        }
+                        //m_RepaintAll=true;
+                        //Refresh(false);
+
+                        return TRUE;
+                    }
+                }
+            }
+        }
+    }
 
     return MadEditSuperClass::MSWWindowProc(message, wParam, lParam);
 }
