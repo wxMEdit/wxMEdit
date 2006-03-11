@@ -7,6 +7,8 @@
 
 #ifdef __WXGTK__
 
+#include "MadEdit.h"
+#include "wx/gtk/private.h"
 #include <gdk/gdk.h>
 #include <gdk/gdkx.h>
 #include <gdk/gdkprivate.h>
@@ -14,19 +16,20 @@
 #include <gdk/gdkkeysyms.h>
 #include <glib-object.h>
 
-#include "MadEdit.h"
-
 
 // source code from:
 /////////////////////////////////////////////////////////////////////////////
 // Name:        gtk/window.cpp
 // Purpose:
 // Author:      Robert Roebling
-// Id:          $Id: window.cpp,v 1.570 2006/02/09 03:53:16 VZ Exp $
+// Id:          $Id: window.cpp,v 1.583 2006/03/09 13:36:53 VZ Exp $
 // Copyright:   (c) 1998 Robert Roebling, Julian Smart
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////
 
+//-----------------------------------------------------------------------------
+// debug
+//-----------------------------------------------------------------------------
 
 #ifdef __WXDEBUG__
 
@@ -39,8 +42,6 @@
 #define DEBUG_MAIN_THREAD
 #endif // Debug
 
-extern void wxapp_install_idle_handler();
-extern bool g_isIdle;
 extern bool g_blockEventsOnDrag;
 
 //-----------------------------------------------------------------------------
@@ -353,10 +354,6 @@ static void wxFillOtherKeyEventFields(wxKeyEvent& event,
     event.m_rawFlags = 0;
 #if wxUSE_UNICODE
     event.m_uniChar = gdk_keyval_to_unicode(gdk_event->keyval);
-    if ( gdk_event->type == GDK_KEY_PRESS ||  gdk_event->type == GDK_KEY_RELEASE )
-    {
-        event.m_uniChar = toupper(event.m_uniChar);
-    }
 #endif
     wxGetMousePosition( &x, &y );
     win->ScreenToClient( &x, &y );
@@ -464,6 +461,12 @@ wxTranslateGTKKeyEventToWx(wxKeyEvent& event,
     wxFillOtherKeyEventFields(event, win, gdk_event);
 
     event.m_keyCode = key_code;
+#if wxUSE_UNICODE
+    if ( gdk_event->type == GDK_KEY_PRESS ||  gdk_event->type == GDK_KEY_RELEASE )
+    {
+        event.m_uniChar = key_code;
+    }
+#endif
 
     return true;
 }
@@ -486,9 +489,10 @@ struct wxGtkIMData
 };
 
 extern "C" {
-static gint gtk_window_key_press_callback( GtkWidget *widget,
-                                           GdkEventKey *gdk_event,
-                                           wxWindow *win )
+static gboolean
+gtk_window_key_press_callback( GtkWidget *widget,
+                               GdkEventKey *gdk_event,
+                               wxWindow *win )
 {
     DEBUG_MAIN_THREAD
 
@@ -698,10 +702,15 @@ static gint gtk_window_key_press_callback( GtkWidget *widget,
 }
 }
 
+//-----------------------------------------------------------------------------
+// "key_release_event" from any window
+//-----------------------------------------------------------------------------
+
 extern "C" {
-static gint gtk_window_key_release_callback( GtkWidget *widget,
-                                             GdkEventKey *gdk_event,
-                                             wxWindowGTK *win )
+static gboolean
+gtk_window_key_release_callback( GtkWidget *widget,
+                                 GdkEventKey *gdk_event,
+                                 wxWindowGTK *win )
 {
     DEBUG_MAIN_THREAD
 

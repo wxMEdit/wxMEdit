@@ -8,7 +8,7 @@
 // Name:        gtk/clipbrd.cpp
 // Purpose:
 // Author:      Robert Roebling
-// Id:          $Id: clipbrd.cpp,v 1.64 2006/01/22 23:28:53 MR Exp $
+// Id:          $Id: clipbrd.cpp,v 1.65 2006/02/24 16:55:03 MR Exp $
 // Copyright:   (c) 1998 Robert Roebling
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////
