@@ -1716,7 +1716,7 @@ WXLRESULT MadEditFrame::MSWWindowProc(WXUINT message, WXWPARAM wParam, WXLPARAM 
     {
     case WM_COPYDATA:
         {
-            COPYDATASTRUCT *pcds=(COPYDATASTRUCT*)lParam;
+            COPYDATASTRUCT *pcds=*((COPYDATASTRUCT**)&lParam);
             OnReceiveMessage((wxChar*)pcds->lpData, pcds->cbData);
         }
         return TRUE;
