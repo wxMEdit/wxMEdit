@@ -29,6 +29,7 @@ madedit_SOURCES =	src/MadAboutDialog.cpp \
 	src/MadEdit/clipbrd_gtk.h \
 	src/MadEdit/MadEdit.cpp \
 	src/MadEdit/MadEdit.h \
+	src/MadEdit/MadEditAdvanced.cpp \
 	src/MadEdit/MadEditCommand.cpp \
 	src/MadEdit/MadEditCommand.h \
 	src/MadEdit/MadEditSearch.cpp \

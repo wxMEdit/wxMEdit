@@ -14,7 +14,7 @@ OBJ  = ./Release/MadEditFrame.obj ./Release/MadEditApp.obj \
        ./Release/MadEditSearch.obj ./Release/MadReplaceDialog.obj \
        ./Release/MadAboutDialog.obj ./Release/MadPrintout.obj \
        ./Release/TradSimp.obj ./Release/MadConvEncDialog.obj \
-       ./Release/wxFlatNotebook.obj $(RES)
+       ./Release/wxFlatNotebook.obj ./Release/MadEditAdvanced.obj $(RES)
 
 LINKOBJ  = ./Release/MadEditFrame.obj ./Release/MadEditApp.obj \
         ./Release/MadEdit.obj ./Release/MadEncoding.obj \
@@ -25,7 +25,7 @@ LINKOBJ  = ./Release/MadEditFrame.obj ./Release/MadEditApp.obj \
         ./Release/MadEditSearch.obj ./Release/MadReplaceDialog.obj \
         ./Release/MadAboutDialog.obj ./Release/MadPrintout.obj \
         ./Release/TradSimp.obj ./Release/MadConvEncDialog.obj \
-        ./Release/wxFlatNotebook.obj $(RES)
+        ./Release/wxFlatNotebook.obj ./Release/MadEditAdvanced.obj $(RES)
 
 LIBS =  -L"N:/wxWidgets/lib/gcc_lib" -L"../libunicows" -mwindows -lwxmsw27u_core -lwxbase27u -lunicows -lkernel32 -luser32 -lgdi32 -lcomdlg32 -lwinspool -lwinmm -lshell32 -lcomctl32 -lole32 -loleaut32 -luuid -lrpcrt4 -ladvapi32 -lwsock32 -lodbc32 -lopengl32  -s 
 INCS =  -I"N:/wxWidgets/include"  -I"N:/wxWidgets/lib/gcc_lib/mswu"  -I"N:/boost"  -I"../wxFlatNotebook/include" 
@@ -105,6 +105,9 @@ $(BIN): $(OBJ)
 
 ./Release/wxFlatNotebook.obj: ../wxFlatNotebook/src/wxFlatNotebook/wxFlatNotebook.cpp
 	$(CPP) -c ../wxFlatNotebook/src/wxFlatNotebook/wxFlatNotebook.cpp -o ./Release/wxFlatNotebook.obj $(CXXFLAGS)
+
+./Release/MadEditAdvanced.obj: ../src/MadEdit/MadEditAdvanced.cpp
+	$(CPP) -c ../src/MadEdit/MadEditAdvanced.cpp -o ./Release/MadEditAdvanced.obj $(CXXFLAGS)
 
 ./Release/MadEdit_private.res: ../devcpp/MadEdit_private.rc 
 	$(WINDRES) -i ../devcpp/MadEdit_private.rc --input-format=rc -o ./Release/MadEdit_private.res -O coff  --include-dir N:/WXWIDG~1/include

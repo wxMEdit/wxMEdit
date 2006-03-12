@@ -1,7 +1,7 @@
 [Project]
 FileName=MadEdit.dev
 Name=MadEdit
-UnitCount=44
+UnitCount=45
 Type=0
 Ver=1
 ObjFiles=
@@ -478,6 +478,16 @@ BuildCmd=
 FileName=..\wxFlatNotebook\src\wxFlatNotebook\wxFlatNotebook.cpp
 CompileCpp=1
 Folder=
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit45]
+FileName=..\src\MadEdit\MadEditAdvanced.cpp
+CompileCpp=1
+Folder=MadEdit
 Compile=1
 Link=1
 Priority=1000

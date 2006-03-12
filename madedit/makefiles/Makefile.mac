@@ -17,7 +17,7 @@ OBJ  = 	../src/MadEditApp.o ../src/MadEditFrame.o \
 	../src/MadEdit/MadEncoding.o ../src/MadEdit/TradSimp.o \
 	../src/MadEdit/MadEditCommand.o ../src/MadEdit/MadUndo.o \
 	../src/MadEdit/MadSyntax.o ../src/MadEdit/MadLines.o \
-	../src/MadEdit/MadEdit.o \
+	../src/MadEdit/MadEdit.o ../src/MadEdit/MadEditAdvanced.o \
 	../src/MadEdit/MadEditSearch.o \
 	../src/MadEdit/caret_new.o
 
