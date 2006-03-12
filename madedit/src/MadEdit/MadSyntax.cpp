@@ -1279,7 +1279,7 @@ int MadSyntax::NextWord(int &wordwidth)
                     --ucsize;
                 }
 
-                if(ucsize >= nw_MaxLength)
+                if(m_CheckState==false && ucsize>=nw_MaxLength)
                 {
                     break;
                 }
@@ -1980,6 +1980,12 @@ int MadSyntax::NextWord(int &wordwidth)
         if((++nw_RowIndexIter)->m_Width == 0)
         {
             nw_EndOfLine = true;
+        }
+        else
+        {
+            MadRowIndexIterator nextit=nw_RowIndexIter;
+            ++nextit;
+            nw_MaxLength = nextit->m_Start - nw_RowIndexIter->m_Start;
         }
     }
 
