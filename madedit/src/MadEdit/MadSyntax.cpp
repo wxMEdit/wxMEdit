@@ -1045,13 +1045,23 @@ void MadSyntax::InitNextWord2(MadLineIterator &lit, size_t row)
     nw_CommentUntilEOL = false;
     nw_IsDirective = false;
     nw_BeginOfLine = (row==0);
-
     nw_CurrentBgColor = m_SystemAttributes[aeText].bgcolor;
+
+    nw_RowIndexIter = lit->m_RowIndices.begin();
+    std::advance(nw_RowIndexIter, row);
+    nw_MadLines->InitNextUChar(lit, nw_RowIndexIter->m_Start);
+
+    nw_NotSpaceCount = 0;
+    nw_LineWidth = 0;
+    nw_FirstIndex = 0;
+    nw_RestCount = 0;
+    nw_MaxLength = lit->m_RowIndices[row+1].m_Start - nw_RowIndexIter->m_Start;
 
     if(m_CheckState)
     {
-        MadLineState &state = lit->m_State;
+        ++nw_MaxLength;
 
+        MadLineState &state = lit->m_State;
         nw_State.blkcmtid = state.CommentId;
         nw_ContainCommentOff = (state.CommentOff!=0);
 
@@ -1077,20 +1087,7 @@ void MadSyntax::InitNextWord2(MadLineIterator &lit, size_t row)
             nw_IsDirective = true;
         }
     }
-
-    nw_NotSpaceCount = 0;
-
     nw_NextState = nw_State;
-
-    nw_RowIndexIter = lit->m_RowIndices.begin();
-    std::advance(nw_RowIndexIter, row);
-
-    nw_MadLines->InitNextUChar(lit, nw_RowIndexIter->m_Start);
-
-    nw_LineWidth = 0;
-    nw_FirstIndex = 0;
-    nw_RestCount = 0;
-    nw_MaxLength = lit->m_RowIndices[row+1].m_Start - nw_RowIndexIter->m_Start;
 
     nw_EndOfLine = false;
     if(nw_RowIndexIter->m_Width == 0)
@@ -1279,7 +1276,7 @@ int MadSyntax::NextWord(int &wordwidth)
                     --ucsize;
                 }
 
-                if(m_CheckState==false && ucsize>=nw_MaxLength)
+                if(ucsize>=nw_MaxLength)
                 {
                     break;
                 }
@@ -1986,6 +1983,10 @@ int MadSyntax::NextWord(int &wordwidth)
             MadRowIndexIterator nextit=nw_RowIndexIter;
             ++nextit;
             nw_MaxLength = nextit->m_Start - nw_RowIndexIter->m_Start;
+            if(m_CheckState)
+            {
+                ++nw_MaxLength;
+            }
         }
     }
 
