@@ -13,6 +13,15 @@
 #define WXFLATNOTEBOOK_H
 
 #include <wx/wx.h>
+#include <wx/dynarray.h>
+
+#ifdef WXMAKINGDLL_FNB
+#    define WXDLLIMPEXP_FNB WXEXPORT
+#elif defined(WXUSINGDLL)
+#    define WXDLLIMPEXP_FNB WXIMPORT
+#else /* not making nor using DLL */
+#    define WXDLLIMPEXP_FNB
+#endif // WXMAKINGDLL_FNB
 
 #ifdef __VISUALC__
 #pragma warning( push )
@@ -40,6 +49,7 @@ class wxPageContainerBase;
 
 typedef std::vector<wxBitmap> wxFlatNotebookImageList;
 
+WX_DECLARE_USER_EXPORTED_OBJARRAY(wxWindow*, wxWindowPtrArray, WXDLLIMPEXP_FNB);
 
 ///  wxFlatNotebookBase styles
 #define wxFNB_DEFAULT_STYLE				wxFNB_MOUSE_MIDDLE_CLOSES_TABS
@@ -93,7 +103,7 @@ class wxMenu;
 * \brief Nice cross-platform flat notebook with X-button :)
 */
 
-class wxFlatNotebookBase : public wxPanel
+class WXDLLIMPEXP_FNB wxFlatNotebookBase : public wxPanel
 {
 private:
 	friend class wxPageContainerBase;
@@ -353,7 +363,7 @@ private:
 	wxBoxSizer* m_mainSizer;
 	
 	/// vector of all the windows associated with the notebook pages.
-	std::vector<wxWindow*> m_windows;
+	wxWindowPtrArray m_windows;
 	wxFNBDropTarget<wxFlatNotebookBase> *m_pDropTarget;
 	int m_nFrom;
 	int m_nPadding;
@@ -366,7 +376,7 @@ private:
 /**
 * \brief Contains parameters of notebook page
 */
-class wxPageInfo
+class WXDLLIMPEXP_FNB wxPageInfo
 {
 private:
 	// Members
@@ -496,6 +506,8 @@ public:
 	void SetColor(wxColor& color) { m_color = color; }
 };
 
+WX_DECLARE_USER_EXPORTED_OBJARRAY(wxPageInfo, wxPageInfoArray, WXDLLIMPEXP_FNB);
+
 /// Button status
 enum
 {
@@ -518,7 +530,7 @@ enum
 /**
 * \brief Notebook page
 */
-class wxPageContainerBase : public wxPanel
+class WXDLLIMPEXP_FNB wxPageContainerBase : public wxPanel
 {
 protected:
 
@@ -746,7 +758,7 @@ protected:
 
 protected:
 
-	std::vector<wxPageInfo> m_pagesInfoVec;
+	wxPageInfoArray m_pagesInfoVec;
 	int m_iActivePage;
 	int m_nFrom;
 	
@@ -775,7 +787,7 @@ protected:
 /**
 * \brief Holds information about events associated with wxFlatNotebookBase objects
 */
-class wxFlatNotebookEvent : public wxNotifyEvent 
+class WXDLLIMPEXP_FNB wxFlatNotebookEvent : public wxNotifyEvent 
 {
 	DECLARE_DYNAMIC_CLASS(wxFlatNotebookEvent)
 	size_t sel, oldsel;
@@ -813,7 +825,7 @@ public:
 //
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-class wxFlatNotebook : public wxFlatNotebookBase 
+class WXDLLIMPEXP_FNB wxFlatNotebook : public wxFlatNotebookBase 
 {
 public:
 	/**
@@ -838,14 +850,12 @@ public:
 	  {}
 };
 
-#define wxFN_IMPEXP
-
 BEGIN_DECLARE_EVENT_TYPES()
-    DECLARE_EXPORTED_EVENT_TYPE(wxFN_IMPEXP, wxEVT_COMMAND_FLATNOTEBOOK_PAGE_CHANGED, 50000)
-    DECLARE_EXPORTED_EVENT_TYPE(wxFN_IMPEXP, wxEVT_COMMAND_FLATNOTEBOOK_PAGE_CHANGING, 50001)
-    DECLARE_EXPORTED_EVENT_TYPE(wxFN_IMPEXP, wxEVT_COMMAND_FLATNOTEBOOK_PAGE_CLOSING, 50002)
-    DECLARE_EXPORTED_EVENT_TYPE(wxFN_IMPEXP, wxEVT_COMMAND_FLATNOTEBOOK_CONTEXT_MENU, 50003)
-	DECLARE_EXPORTED_EVENT_TYPE(wxFN_IMPEXP, wxEVT_COMMAND_FLATNOTEBOOK_PAGE_CLOSED, 50004)
+    DECLARE_EXPORTED_EVENT_TYPE(WXDLLIMPEXP_FNB, wxEVT_COMMAND_FLATNOTEBOOK_PAGE_CHANGED, 50000)
+    DECLARE_EXPORTED_EVENT_TYPE(WXDLLIMPEXP_FNB, wxEVT_COMMAND_FLATNOTEBOOK_PAGE_CHANGING, 50001)
+    DECLARE_EXPORTED_EVENT_TYPE(WXDLLIMPEXP_FNB, wxEVT_COMMAND_FLATNOTEBOOK_PAGE_CLOSING, 50002)
+    DECLARE_EXPORTED_EVENT_TYPE(WXDLLIMPEXP_FNB, wxEVT_COMMAND_FLATNOTEBOOK_CONTEXT_MENU, 50003)
+	DECLARE_EXPORTED_EVENT_TYPE(WXDLLIMPEXP_FNB, wxEVT_COMMAND_FLATNOTEBOOK_PAGE_CLOSED, 50004)
 END_DECLARE_EVENT_TYPES()
 
 typedef void (wxEvtHandler::*wxFlatNotebookEventFunction)(wxFlatNotebookEvent&);

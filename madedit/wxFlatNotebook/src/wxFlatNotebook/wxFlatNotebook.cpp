@@ -14,6 +14,7 @@
 #include <algorithm>
 #include <wx/tooltip.h>
 #include <wx/tipwin.h>
+#include <wx/arrimpl.cpp>
 
 IMPLEMENT_DYNAMIC_CLASS(wxFlatNotebookEvent, wxNotifyEvent)
 DEFINE_EVENT_TYPE(wxEVT_COMMAND_FLATNOTEBOOK_PAGE_CHANGED)
@@ -23,6 +24,9 @@ DEFINE_EVENT_TYPE(wxEVT_COMMAND_FLATNOTEBOOK_CONTEXT_MENU)
 DEFINE_EVENT_TYPE(wxEVT_COMMAND_FLATNOTEBOOK_PAGE_CLOSED)
 
 IMPLEMENT_DYNAMIC_CLASS(wxFlatNotebookBase, wxPanel)
+
+WX_DEFINE_OBJARRAY(wxPageInfoArray)
+WX_DEFINE_OBJARRAY(wxWindowPtrArray)
 
 BEGIN_EVENT_TABLE(wxFlatNotebookBase, wxPanel)
 EVT_NAVIGATION_KEY(wxFlatNotebookBase::OnNavigationKey)
@@ -103,7 +107,7 @@ void wxFlatNotebookBase::AddPage(wxWindow* window, const wxString& caption, cons
 		m_pages->Show();
 
 	m_pages->AddPage(caption, bSelected, imgindex);
-	m_windows.push_back(window);
+	m_windows.Add(window);
 
 	Freeze();
 
@@ -161,20 +165,19 @@ bool wxFlatNotebookBase::InsertPage(size_t index, wxWindow* page, const wxString
 		AddPage(page, text, select, imgindex);
 		return true;
 	}
-	index = std::min((unsigned int)index, (unsigned int)m_windows.size());
+	index = std::min((unsigned int)index, (unsigned int)m_windows.GetCount());
 	// Insert tab
 	bool bSelected = select || m_windows.empty();
 	int curSel = m_pages->GetSelection();
 
-	if(index <= m_windows.size())
+	if(index <= m_windows.GetCount())
 	{
-		std::vector<wxWindow*>::iterator iter = m_windows.begin() + index;
-		m_windows.insert(iter, page);
+		m_windows.Insert(page, index);
 		wxLogTrace(wxTraceMask(), _("New page inserted. Index = %i"), index);
 	}
 	else
 	{		
-		m_windows.push_back(page);
+		m_windows.Add(page);
 		wxLogTrace(wxTraceMask(), _("New page appended. Index = %i"), index);
 	}
 	m_pages->InsertPage(index, page, text, bSelected, imgindex);
@@ -207,11 +210,11 @@ bool wxFlatNotebookBase::InsertPage(size_t index, wxWindow* page, const wxString
 
 void wxFlatNotebookBase::SetSelection(size_t page)
 {
-	if(page >= m_windows.size())
+	if(page >= m_windows.GetCount())
 		return;
 
 	// Support for disabed tabs
-	if(!m_pages->GetEnabled(page) && m_windows.size() > 1 && !m_bForceSelection)
+	if(!m_pages->GetEnabled(page) && m_windows.GetCount() > 1 && !m_bForceSelection)
 		return;
 
 	int curSel = m_pages->GetSelection();
@@ -245,7 +248,7 @@ void wxFlatNotebookBase::SetSelection(size_t page)
 
 void wxFlatNotebookBase::DeletePage(size_t page)
 {
-	if(page >= m_windows.size())
+	if(page >= m_windows.GetCount())
 		return;
 
 	// Fire a closing event
@@ -271,9 +274,7 @@ void wxFlatNotebookBase::DeletePage(size_t page)
 	}
 
 	// Remove it from the array as well
-	std::vector<wxWindow*>::iterator iter = std::find(m_windows.begin(), m_windows.end(), pageRemoved);
-	if(iter != m_windows.end())
-		m_windows.erase(iter);
+	m_windows.RemoveAt(page);
 
 	// Now we can destroy it; in wxWidgets use Destroy instead of delete
 	pageRemoved->Destroy();
@@ -296,14 +297,13 @@ bool wxFlatNotebookBase::DeleteAllPages()
 		return false;
 
 	Freeze();
-	std::vector<wxWindow*>::iterator iter = m_windows.begin();
-	for(; iter != m_windows.end(); iter++)
+	int i = 0;
+	for(; i<(int)m_windows.GetCount(); i++)
 	{
-		delete (*iter);
+		delete m_windows[i];
 	}
 
-	m_windows.clear();
-
+	m_windows.Clear();
 	Thaw();
 
 	// Clear the container of the tabs as well
@@ -322,7 +322,7 @@ wxWindow* wxFlatNotebookBase::GetCurrentPage() const
 
 wxWindow* wxFlatNotebookBase::GetPage(size_t page) const
 {
-	if(page >= m_windows.size())
+	if(page >= m_windows.GetCount())
 		return NULL;
 
 	return m_windows[page];
@@ -330,7 +330,7 @@ wxWindow* wxFlatNotebookBase::GetPage(size_t page) const
 
 int wxFlatNotebookBase::GetPageIndex(wxWindow* win) const
 {
-	for (size_t i = 0; i < m_windows.size(); ++i)
+	for (size_t i = 0; i < m_windows.GetCount(); ++i)
 	{
 		if (m_windows[i] == win)
 			return (int)i;
@@ -373,14 +373,14 @@ void wxFlatNotebookBase::OnNavigationKey(wxNavigationKeyEvent& event)
 
 bool wxFlatNotebookBase::GetPageShapeAngle(int page_index, unsigned int * result)
 {
-	if(page_index < 0 || page_index >= (int)m_pages->m_pagesInfoVec.size()) return false;
+	if(page_index < 0 || page_index >= (int)m_pages->m_pagesInfoVec.GetCount()) return false;
 	*result = m_pages->m_pagesInfoVec[page_index].GetTabAngle();
 	return true;
 }
 
 void wxFlatNotebookBase::SetPageShapeAngle(int page_index, unsigned int angle)
 {
-	if(page_index < 0 || page_index >= (int)m_pages->m_pagesInfoVec.size()) return;
+	if(page_index < 0 || page_index >= (int)m_pages->m_pagesInfoVec.GetCount()) return;
 	if(angle > 15) return;
 
 	m_pages->m_pagesInfoVec[page_index].SetTabAngle(angle);
@@ -389,7 +389,7 @@ void wxFlatNotebookBase::SetPageShapeAngle(int page_index, unsigned int angle)
 void wxFlatNotebookBase::SetAllPagesShapeAngle(unsigned int angle)
 {
 	if(angle > 15) return;
-	for(unsigned int i = 0; i < m_pages->m_pagesInfoVec.size(); i++)
+	for(unsigned int i = 0; i < m_pages->m_pagesInfoVec.GetCount(); i++)
 	{
 		m_pages->m_pagesInfoVec[i].SetTabAngle(angle);
 	}
@@ -427,7 +427,7 @@ void wxFlatNotebookBase::SetWindowStyleFlag(long style)
 
 bool wxFlatNotebookBase::RemovePage(size_t page)
 {
-	if(page >= m_windows.size())
+	if(page >= m_windows.GetCount())
 		return false;
 
 	// Fire a closing event
@@ -453,10 +453,7 @@ bool wxFlatNotebookBase::RemovePage(size_t page)
 	}
 
 	// Remove it from the array as well
-	std::vector<wxWindow*>::iterator iter = std::find(m_windows.begin(), m_windows.end(), pageRemoved);
-	if(iter != m_windows.end())
-		m_windows.erase(iter);
-
+	m_windows.RemoveAt(page);
 	Thaw();
 
 	m_pages->DoDeletePage(page);
@@ -537,7 +534,7 @@ bool wxFlatNotebookBase::GetEnabled(size_t page)
 
 void wxFlatNotebookBase::Enable(size_t page, bool enabled)
 {
-	if(page >= m_windows.size())
+	if(page >= m_windows.GetCount())
 		return;
 
 	m_windows[page]->Enable(enabled);
@@ -650,7 +647,7 @@ void wxPageContainerBase::OnPaint(wxPaintEvent &event)
 
 #ifndef __WXMAC__ 
 	// Works well on MSW & GTK, however this lines should be skipped on MAC
-	if(m_pagesInfoVec.empty() || m_nFrom >= (int)m_pagesInfoVec.size())
+	if(m_pagesInfoVec.empty() || m_nFrom >= (int)m_pagesInfoVec.GetCount())
 	{
 		Hide();
 		event.Skip();
@@ -727,7 +724,7 @@ void wxPageContainerBase::OnPaint(wxPaintEvent &event)
 
 #ifdef __WXMAC__
 	// On MAC, Add these lines so the tab background gets painted
-	if(m_pagesInfoVec.empty() || m_nFrom >= (int)m_pagesInfoVec.size())
+	if(m_pagesInfoVec.empty() || m_nFrom >= (int)m_pagesInfoVec.GetCount())
 	{
 		Hide();
 		return;
@@ -755,7 +752,7 @@ void wxPageContainerBase::OnPaint(wxPaintEvent &event)
 		tabHeight = (style & wxFNB_BOTTOM) ? tabHeight - 2 :  tabHeight;
 
 	// Draw the visible tabs
-	for(i=m_nFrom; i<(int)m_pagesInfoVec.size(); i++) 
+	for(i=m_nFrom; i<(int)m_pagesInfoVec.GetCount(); i++) 
 	{
 		if(style != wxFNB_VC71)
 			shapePoints = (int)(tabHeight*tan((double)m_pagesInfoVec[i].GetTabAngle()/180.0*M_PI));
@@ -887,7 +884,7 @@ void wxPageContainerBase::OnPaint(wxPaintEvent &event)
 	}
 
 	// Update all tabs that can not fit into the screen as non-visible
-	for(; i<(int)m_pagesInfoVec.size(); i++)
+	for(; i<(int)m_pagesInfoVec.GetCount(); i++)
 	{
 		m_pagesInfoVec[i].SetPosition(wxPoint(-1, -1));
 		m_pagesInfoVec[i].GetRegion().Clear();
@@ -1057,12 +1054,12 @@ void wxPageContainerBase::AddPage(const wxString& caption, const bool selected, 
 {
 	if(selected)
 	{
-		m_iActivePage = (int)m_pagesInfoVec.size();
+		m_iActivePage = (int)m_pagesInfoVec.GetCount();
 	}
 
 	/// Create page info and add it to the vector
 	wxPageInfo pageInfo(caption, imgindex);
-	m_pagesInfoVec.push_back(pageInfo);
+	m_pagesInfoVec.Add(pageInfo);
 	Refresh();
 }
 
@@ -1070,10 +1067,9 @@ bool wxPageContainerBase::InsertPage(size_t index, wxWindow* /*page*/, const wxS
 {
 	if(select)
 	{
-		m_iActivePage = (int)m_pagesInfoVec.size();
+		m_iActivePage = (int)m_pagesInfoVec.GetCount();
 	}
-	std::vector<wxPageInfo>::iterator iter = m_pagesInfoVec.begin() + index;
-	m_pagesInfoVec.insert(iter, wxPageInfo(text, imgindex));
+	m_pagesInfoVec.Insert(wxPageInfo(text, imgindex), index);
 	Refresh();
 	return true;
 }
@@ -1239,7 +1235,7 @@ void wxPageContainerBase::OnLeftUp(wxMouseEvent& event)
 		}
 	case wxFNB_RIGHT_ARROW:
 		{
-			if(m_nFrom >= (int)m_pagesInfoVec.size() - 1)
+			if(m_nFrom >= (int)m_pagesInfoVec.GetCount() - 1)
 				break;
 
 			// Make sure that the button was pressed before 
@@ -1250,7 +1246,7 @@ void wxPageContainerBase::OnLeftUp(wxMouseEvent& event)
 
 			// Check if the right most tab is visible, if it is
 			// don't rotate right anymore
-			if(m_pagesInfoVec[m_pagesInfoVec.size()-1].GetPosition() != wxPoint(-1, -1))
+			if(m_pagesInfoVec[m_pagesInfoVec.GetCount()-1].GetPosition() != wxPoint(-1, -1))
 				break;
 
 			int lastVisibleTab = GetLastVisibleTab();
@@ -1323,7 +1319,7 @@ int wxPageContainerBase::HitTest(const wxPoint& pt, wxPageInfo& pageInfo, int &t
 
 	// Test whether a left click was made on a tab
 	bool bFoundMatch = false;
-	for(size_t cur=m_nFrom; cur<m_pagesInfoVec.size(); cur++)
+	for(size_t cur=m_nFrom; cur<m_pagesInfoVec.GetCount(); cur++)
 	{
 		wxPageInfo pgInfo = m_pagesInfoVec[cur];
 		if(pgInfo.GetPosition() == wxPoint(-1, -1))
@@ -1378,7 +1374,7 @@ void wxPageContainerBase::DoSetSelection(size_t page)
 		return;
 	}
 
-	if(page < m_pagesInfoVec.size())
+	if(page < m_pagesInfoVec.GetCount())
 	{
 		//! fix for tabfocus
 		wxWindow* da_page = ((wxFlatNotebookBase *)m_pParent)->GetPage(page);
@@ -1388,7 +1384,7 @@ void wxPageContainerBase::DoSetSelection(size_t page)
 
 	if(!IsTabVisible(page))
 	{
-		if(page == m_pagesInfoVec.size() - 1)
+		if(page == m_pagesInfoVec.GetCount() - 1)
 		{
 			// Incase the added tab is last, 
 			// the function IsTabVisible() will always return false
@@ -1429,10 +1425,7 @@ void wxPageContainerBase::DoDeletePage(size_t page)
 {
 	// Remove the page from the vector
 	wxFlatNotebookBase* book = (wxFlatNotebookBase*)GetParent();
-	std::vector<wxPageInfo>::iterator iter = m_pagesInfoVec.begin();
-	std::vector<wxPageInfo>::iterator endIter = m_pagesInfoVec.end();
-
-	m_pagesInfoVec.erase(iter + page);
+	m_pagesInfoVec.RemoveAt(page);
 	
 	// Thanks to Yiaanis AKA Mandrav
 	if (m_iActivePage >= (int)page)
@@ -1464,7 +1457,7 @@ void wxPageContainerBase::DeleteAllPages()
 {
 	m_iActivePage = -1;
 	m_nFrom = 0;
-	m_pagesInfoVec.clear();
+	m_pagesInfoVec.Clear();
 
 	// Erase the page container drawings
 	wxClientDC dc(this);
@@ -1585,7 +1578,7 @@ void wxPageContainerBase::DrawRightArrow(wxDC& dc)
 
 	// Check if the right most tab is visible, if it is
 	// don't rotate right anymore
-	if(m_pagesInfoVec[m_pagesInfoVec.size()-1].GetPosition() != wxPoint(-1, -1))
+	if(m_pagesInfoVec[m_pagesInfoVec.GetCount()-1].GetPosition() != wxPoint(-1, -1))
 	{
 		arrowBmp = wxBitmap(FNB::right_arrow_disabled_xpm);
 	}
@@ -1772,7 +1765,7 @@ void wxPageContainerBase::OnMouseMove(wxMouseEvent& event)
 int wxPageContainerBase::GetLastVisibleTab()
 {
 	int i;
-	for(i=m_nFrom; i<(int)m_pagesInfoVec.size(); i++)
+	for(i=m_nFrom; i<(int)m_pagesInfoVec.GetCount(); i++)
 	{
 		if(m_pagesInfoVec[i].GetPosition() == wxPoint(-1, -1))
 			break;
@@ -1877,7 +1870,8 @@ void wxPageContainerBase::OnMouseLeave(wxMouseEvent& event)
 	DrawX(dc);
 	DrawLeftArrow(dc);
 	DrawRightArrow(dc);
-	DrawTabX(dc, m_pagesInfoVec[GetSelection()].GetXRect(), GetSelection());
+	if(GetSelection() != -1)
+		DrawTabX(dc, m_pagesInfoVec[GetSelection()].GetXRect(), GetSelection());
 	event.Skip();
 }
 
@@ -1894,9 +1888,12 @@ void wxPageContainerBase::OnMouseEnterWindow(wxMouseEvent& event)
 void wxPageContainerBase::ShowTabTooltip(int tabIdx)
 {
 	wxWindow *pWindow = ((wxFlatNotebookBase *)m_pParent)->GetPage(tabIdx);
-	wxToolTip *pToolTip = pWindow->GetToolTip();
-	if(pToolTip && pToolTip->GetWindow() == pWindow)
-		SetToolTip(pToolTip->GetTip());
+	if( pWindow )
+	{
+		wxToolTip *pToolTip = pWindow->GetToolTip();
+		if(pToolTip && pToolTip->GetWindow() == pWindow)
+			SetToolTip(pToolTip->GetTip());
+	}
 }
 
 void wxPageContainerBase::FillGradientColor(wxBufferedDC& dc, const wxRect& rect)
@@ -1934,7 +1931,7 @@ void wxPageContainerBase::FillGradientColor(wxBufferedDC& dc, const wxRect& rect
 
 void wxPageContainerBase::SetPageImageIndex(size_t page, int imgindex)
 {
-	if(page < m_pagesInfoVec.size())
+	if(page < m_pagesInfoVec.GetCount())
 	{
 		m_pagesInfoVec[page].SetImageIndex(imgindex);
 		Refresh();
@@ -1943,7 +1940,7 @@ void wxPageContainerBase::SetPageImageIndex(size_t page, int imgindex)
 
 int wxPageContainerBase::GetPageImageIndex(size_t page)
 {
-	if(page < m_pagesInfoVec.size())
+	if(page < m_pagesInfoVec.GetCount())
 	{
 		return m_pagesInfoVec[page].GetImageIndex();
 	}
@@ -1975,8 +1972,6 @@ wxDragResult wxPageContainerBase::OnDropTarget(wxCoord x, wxCoord y, int nTabPag
 				MoveTabPage(nTabPage, nIndex);
 				break;
 			case wxFNB_NOWHERE:
-				//MoveTabPage(nTabPage, GetLastVisibleTab()+1);
-				break;
 			default:
 				break;
 			}
@@ -2007,7 +2002,7 @@ void wxPageContainerBase::MoveTabPage(int nMove, int nMoveTo)
 {
 	if(nMove == nMoveTo)
 		return;
-	else if(nMoveTo < (int)((wxFlatNotebook *)m_pParent)->m_windows.size())
+	else if(nMoveTo < (int)((wxFlatNotebook *)m_pParent)->m_windows.GetCount())
 		nMoveTo++;
 
 	// Remove the window from the main sizer
@@ -2016,12 +2011,13 @@ void wxPageContainerBase::MoveTabPage(int nMove, int nMoveTo)
 	((wxFlatNotebookBase *)m_pParent)->m_windows[nCurSel]->Hide();
 
 	wxWindow *pWindow = ((wxFlatNotebookBase *)m_pParent)->m_windows[nMove];
-	((wxFlatNotebookBase *)m_pParent)->m_windows.erase(((wxFlatNotebookBase *)m_pParent)->m_windows.begin() + nMove);
-	((wxFlatNotebookBase *)m_pParent)->m_windows.insert(((wxFlatNotebookBase *)m_pParent)->m_windows.begin() + nMoveTo - 1, pWindow);
+	((wxFlatNotebookBase *)m_pParent)->m_windows.RemoveAt(nMove);
+	((wxFlatNotebookBase *)m_pParent)->m_windows.Insert(pWindow, nMoveTo-1);
 
 	wxPageInfo pgInfo = m_pagesInfoVec[nMove];
-	m_pagesInfoVec.erase(m_pagesInfoVec.begin() + nMove);
-	m_pagesInfoVec.insert(m_pagesInfoVec.begin() + nMoveTo - 1, pgInfo);
+
+	m_pagesInfoVec.RemoveAt( nMove );
+	m_pagesInfoVec.Insert(pgInfo, nMoveTo - 1);
 
 	// Add the page according to the style
 	wxBoxSizer* pSizer = ((wxFlatNotebookBase *)m_pParent)->m_mainSizer;
@@ -2095,7 +2091,7 @@ bool wxPageContainerBase::CanFitToScreen(size_t page)
 
 	if(m_nFrom >= 0)
 	{
-		for(int i=m_nFrom; i<(int)m_pagesInfoVec.size(); i++)
+		for(int i=m_nFrom; i<(int)m_pagesInfoVec.GetCount(); i++)
 		{
 			if(m_pagesInfoVec[i].GetPosition() == wxPoint(-1, -1))
 				break;
@@ -2115,7 +2111,7 @@ int wxPageContainerBase::GetNumOfVisibleTabs()
 {
 	int i=m_nFrom;
 	int counter = 0;
-	for(; i<(int)m_pagesInfoVec.size(); i++, ++counter)
+	for(; i<(int)m_pagesInfoVec.GetCount(); i++, ++counter)
 	{
 		if(m_pagesInfoVec[i].GetPosition() == wxPoint(-1, -1))
 			break;
@@ -2125,14 +2121,14 @@ int wxPageContainerBase::GetNumOfVisibleTabs()
 
 bool wxPageContainerBase::GetEnabled(size_t page)
 {
-	if(page >= m_pagesInfoVec.size())
+	if(page >= m_pagesInfoVec.GetCount())
 		return true;	// Seems strange, but this is the default
 	return m_pagesInfoVec[page].GetEnabled();
 }
 
 void wxPageContainerBase::Enable(size_t page, bool enabled)
 {
-	if(page >= m_pagesInfoVec.size())
+	if(page >= m_pagesInfoVec.GetCount())
 		return ;
 	return m_pagesInfoVec[page].Enable(enabled);
 }
