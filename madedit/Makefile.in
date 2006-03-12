@@ -66,7 +66,8 @@ am_madedit_OBJECTS = madedit-MadAboutDialog.$(OBJEXT) \
 	madedit-MadReplaceDialog.$(OBJEXT) \
 	madedit-MadSearchDialog.$(OBJEXT) madedit-MadUtils.$(OBJEXT) \
 	madedit-caret_new.$(OBJEXT) madedit-clipbrd_gtk.$(OBJEXT) \
-	madedit-MadEdit.$(OBJEXT) madedit-MadEditCommand.$(OBJEXT) \
+	madedit-MadEdit.$(OBJEXT) madedit-MadEditAdvanced.$(OBJEXT) \
+	madedit-MadEditCommand.$(OBJEXT) \
 	madedit-MadEditSearch.$(OBJEXT) madedit-MadEdit_gtk.$(OBJEXT) \
 	madedit-MadEncoding.$(OBJEXT) madedit-MadLines.$(OBJEXT) \
 	madedit-MadSyntax.$(OBJEXT) madedit-MadUndo.$(OBJEXT) \
@@ -277,6 +278,7 @@ madedit_SOURCES = src/MadAboutDialog.cpp \
 	src/MadEdit/clipbrd_gtk.h \
 	src/MadEdit/MadEdit.cpp \
 	src/MadEdit/MadEdit.h \
+	src/MadEdit/MadEditAdvanced.cpp \
 	src/MadEdit/MadEditCommand.cpp \
 	src/MadEdit/MadEditCommand.h \
 	src/MadEdit/MadEditSearch.cpp \
@@ -620,6 +622,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/madedit-MadAboutDialog.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/madedit-MadConvEncDialog.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/madedit-MadEdit.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/madedit-MadEditAdvanced.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/madedit-MadEditApp.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/madedit-MadEditCommand.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/madedit-MadEditFrame.Po@am__quote@
@@ -835,6 +838,20 @@ madedit-MadEdit.obj: src/MadEdit/MadEdit.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/MadEdit/MadEdit.cpp' object='madedit-MadEdit.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(madedit_CXXFLAGS) $(CXXFLAGS) -c -o madedit-MadEdit.obj `if test -f 'src/MadEdit/MadEdit.cpp'; then $(CYGPATH_W) 'src/MadEdit/MadEdit.cpp'; else $(CYGPATH_W) '$(srcdir)/src/MadEdit/MadEdit.cpp'; fi`
+
+madedit-MadEditAdvanced.o: src/MadEdit/MadEditAdvanced.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(madedit_CXXFLAGS) $(CXXFLAGS) -MT madedit-MadEditAdvanced.o -MD -MP -MF "$(DEPDIR)/madedit-MadEditAdvanced.Tpo" -c -o madedit-MadEditAdvanced.o `test -f 'src/MadEdit/MadEditAdvanced.cpp' || echo '$(srcdir)/'`src/MadEdit/MadEditAdvanced.cpp; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/madedit-MadEditAdvanced.Tpo" "$(DEPDIR)/madedit-MadEditAdvanced.Po"; else rm -f "$(DEPDIR)/madedit-MadEditAdvanced.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/MadEdit/MadEditAdvanced.cpp' object='madedit-MadEditAdvanced.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(madedit_CXXFLAGS) $(CXXFLAGS) -c -o madedit-MadEditAdvanced.o `test -f 'src/MadEdit/MadEditAdvanced.cpp' || echo '$(srcdir)/'`src/MadEdit/MadEditAdvanced.cpp
+
+madedit-MadEditAdvanced.obj: src/MadEdit/MadEditAdvanced.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(madedit_CXXFLAGS) $(CXXFLAGS) -MT madedit-MadEditAdvanced.obj -MD -MP -MF "$(DEPDIR)/madedit-MadEditAdvanced.Tpo" -c -o madedit-MadEditAdvanced.obj `if test -f 'src/MadEdit/MadEditAdvanced.cpp'; then $(CYGPATH_W) 'src/MadEdit/MadEditAdvanced.cpp'; else $(CYGPATH_W) '$(srcdir)/src/MadEdit/MadEditAdvanced.cpp'; fi`; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/madedit-MadEditAdvanced.Tpo" "$(DEPDIR)/madedit-MadEditAdvanced.Po"; else rm -f "$(DEPDIR)/madedit-MadEditAdvanced.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/MadEdit/MadEditAdvanced.cpp' object='madedit-MadEditAdvanced.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(madedit_CXXFLAGS) $(CXXFLAGS) -c -o madedit-MadEditAdvanced.obj `if test -f 'src/MadEdit/MadEditAdvanced.cpp'; then $(CYGPATH_W) 'src/MadEdit/MadEditAdvanced.cpp'; else $(CYGPATH_W) '$(srcdir)/src/MadEdit/MadEditAdvanced.cpp'; fi`
 
 madedit-MadEditCommand.o: src/MadEdit/MadEditCommand.cpp
 @am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(madedit_CXXFLAGS) $(CXXFLAGS) -MT madedit-MadEditCommand.o -MD -MP -MF "$(DEPDIR)/madedit-MadEditCommand.Tpo" -c -o madedit-MadEditCommand.o `test -f 'src/MadEdit/MadEditCommand.cpp' || echo '$(srcdir)/'`src/MadEdit/MadEditCommand.cpp; \
