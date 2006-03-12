@@ -2346,9 +2346,7 @@ void MadEdit::PaintHexLines(wxDC *dc, wxRect &rect, int toprow, int rowcount, bo
                 break;
 
             MadUCPair & ucp = m_ActiveRowUChars.back();
-            //if(ucp.first <= 0x20 || ucp.first == 0xFEFF)
-                //m_WordBuffer[idx++] = '.';
-            if(ucp.first == 0xFEFF || ucp.first == 0x9)
+            if(ucp.first == 0xFEFF || ucp.first == 0x9 || ucp.first == 0)
                 m_WordBuffer[idx++] = ' ';
             else
                 m_WordBuffer[idx++] = ucp.first;
