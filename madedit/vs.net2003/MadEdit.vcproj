@@ -164,6 +164,9 @@
 					RelativePath="..\src\MadEdit\MadEdit.cpp">
 				</File>
 				<File
+					RelativePath="..\src\MadEdit\MadEditAdvanced.cpp">
+				</File>
+				<File
 					RelativePath="..\src\MadEdit\MadEditCommand.cpp">
 				</File>
 				<File
