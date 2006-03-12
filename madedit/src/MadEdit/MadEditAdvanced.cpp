@@ -12,6 +12,7 @@
 #define new new(_NORMAL_BLOCK ,__FILE__, __LINE__)
 #endif
 
+//==============================================================================
 void MadEdit::ToUpperCase()
 {
     if(IsReadOnly() || !m_Selection)
@@ -146,7 +147,37 @@ void MadEdit::ToFullWidth()
 {
 }
 
-void MadEdit::WordCount(int &wordCount, int &charCount, int &spaceCount, int &halfWidthCount, int &fullWidthCount, wxArrayString *details)
+//==============================================================================
+// Unicode-4.1 Blocks (from: http://www.unicode.org/Public/UNIDATA/Blocks.txt)
+
+struct UnicodeBlock
+{
+    ucs4_t       begin;
+    ucs4_t       end;
+    bool         alphabet;
+    ucs4_t       *delimiters;
+    const wxChar *description;
+};
+
+ucs4_t U0000_Delimiters[]={0};
+
+
+// do not use wxGetTranslation() now
+#undef _
+#define _(s)    wxT(s)
+
+UnicodeBlock UnicodeBlocks[]=
+{
+    {0x0000, 0x007F, true, U0000_Delimiters, _("Basic Latin") },
+
+};
+
+// restore the definition of _(s)
+#undef _
+#define _(s)    wxGetTranslation(_T(s))
+
+
+void MadEdit::WordCount(bool selection, int &wordCount, int &charCount, int &spaceCount, int &halfWidthCount, int &fullWidthCount, wxArrayString *details)
 {
     
 }
