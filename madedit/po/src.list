@@ -2,6 +2,7 @@
 ../src/MadEdit/caret_new.h
 ../src/MadEdit/MadEdit.cpp
 ../src/MadEdit/MadEdit.h
+../src/MadEdit/MadEditAdvanced.cpp
 ../src/MadEdit/MadEditSearch.cpp
 ../src/MadEdit/MadEditCommand.cpp
 ../src/MadEdit/MadEditCommand.h
