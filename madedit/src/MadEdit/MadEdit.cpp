@@ -9942,10 +9942,10 @@ WXLRESULT MadEdit::MSWWindowProc(WXUINT message, WXWPARAM wParam, WXLPARAM lPara
                 //((wxFrame*)wxTheApp->GetTopWindow())->SetTitle(wxString::Format(wxT("%d %d %d %d"), r.left, r.top, r.right, r.bottom));
                 int x=rc.left;
                 int y=rc.top;
-                int h=rc.bottom-y;
+                int h=rc.bottom-y, w=rc.right-x;
                 ScreenToClient(&x, &y);
                 
-                if(x>=0 && y>=0 && h>0 && h<=16)
+                if(x>=0 && y>=0 && w>0 && w<16 && h>0 && h<16)
                 {
                     bool paint=false;
                     int row = y / m_RowHeight;
