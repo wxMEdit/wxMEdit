@@ -497,7 +497,7 @@ BuildCmd=
 [Unit46]
 FileName=..\src\MadWordCountDialog.h
 CompileCpp=1
-Folder=MadEdit
+Folder=
 Compile=1
 Link=1
 Priority=1000
@@ -507,7 +507,7 @@ BuildCmd=
 [Unit47]
 FileName=..\src\MadWordCountDialog.cpp
 CompileCpp=1
-Folder=MadEdit
+Folder=
 Compile=1
 Link=1
 Priority=1000
@@ -516,7 +516,7 @@ BuildCmd=
 
 [Unit48]
 FileName=..\src\MadWordCountDialog.wxform
-Folder=MadEdit
+Folder=
 Compile=0
 Link=0
 Priority=1000
