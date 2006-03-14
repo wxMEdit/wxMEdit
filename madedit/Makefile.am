@@ -22,6 +22,8 @@ madedit_SOURCES =	src/MadAboutDialog.cpp \
 	src/MadSearchDialog.h \
 	src/MadUtils.cpp \
 	src/MadUtils.h \
+	src/MadWordCountDialog.cpp \
+	src/MadWordCountDialog.h \
 	src/plugin.h \
 	src/MadEdit/caret_new.cpp \
 	src/MadEdit/caret_new.h \
@@ -68,6 +70,7 @@ noinst_HEADERS =	description-pak \
 	src/MadOptionsDialog.wxform \
 	src/MadReplaceDialog.wxform \
 	src/MadSearchDialog.wxform \
+	src/MadWordCountDialog.wxform \
 	src/plugin_example/makefile.linux \
 	src/plugin_example/makefile.mingw32 \
 	src/plugin_example/makefile.vc \

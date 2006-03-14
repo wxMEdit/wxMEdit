@@ -31,6 +31,8 @@ src/MadOptionsDialog.cpp
 src/MadOptionsDialog.h
 src/MadConvEncDialog.cpp
 src/MadConvEncDialog.h
+src/MadWordCountDialog.cpp
+src/MadWordCountDialog.h
 src/MadAboutDialog.cpp
 src/MadAboutDialog.h
 src/MadPlugin.cpp
