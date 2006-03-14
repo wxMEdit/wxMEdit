@@ -779,8 +779,9 @@ public:
     // return wxID_YES(Saved), wxID_NO(Not Saved), or wxID_CANCEL
     int Save(bool ask, const wxString &title, bool saveas);
 
-    void WordCount(bool selection, int &wordCount, int &charCount, int &spaceCount, 
-                   int &halfWidthCount, int &fullWidthCount, wxArrayString *detail);
+    void WordCount(bool selection, int &wordCount, int &charCount, int &spaceCount,
+                   int &halfWidthCount, int &fullWidthCount, int &lineCount,
+                   wxArrayString *detail);
 
     void SetOnSelectionChanged(OnSelectionChangedPtr func)
     {

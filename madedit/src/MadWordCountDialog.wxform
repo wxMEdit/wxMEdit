@@ -1,8 +1,8 @@
 object frmNewForm: TfrmNewForm
   Left = 8
   Top = 8
-  Width = 348
-  Height = 382
+  Width = 464
+  Height = 453
   BorderIcons = [biSystemMenu, biMinimize]
   Caption = 'Word Count'
   Color = clBtnFace
@@ -34,8 +34,8 @@ object frmNewForm: TfrmNewForm
   object WxBoxSizer1: TWxBoxSizer
     Left = 0
     Top = 0
-    Width = 340
-    Height = 352
+    Width = 456
+    Height = 423
     Align = alClient
     TabOrder = 0
     Orientation = wxVertical
@@ -46,12 +46,12 @@ object frmNewForm: TfrmNewForm
     Wx_StretchFactor = 0
     Wx_StrechFactor = 0
     object WxFlexGridSizer1: TWxFlexGridSizer
-      Left = 77
+      Left = 137
       Top = 5
       Width = 176
-      Height = 125
+      Height = 150
       TabOrder = 0
-      ColumnSpacing = 60
+      ColumnSpacing = 150
       Rows = 5
       SpaceValue = 4
       Wx_Class = 'wxFlexGridSizer'
@@ -249,10 +249,48 @@ object frmNewForm: TfrmNewForm
         Wx_LabelStyle = []
         Wx_StrechFactor = 0
       end
+      object WxStaticText7: TWxStaticText
+        Left = 49
+        Top = 129
+        Width = 29
+        Height = 17
+        Caption = 'Lines'
+        TabOrder = 10
+        Wx_BGColor = clBlack
+        Wx_Class = 'wxStaticText'
+        Wx_ControlOrientation = wxControlNone
+        Wx_FGColor = clBlack
+        Wx_GeneralStyle = []
+        Wx_Hidden = False
+        Wx_HorizontalAlignment = wxSZALIGN_LEFT
+        Wx_IDName = 'ID_WXSTATICTEXT7'
+        Wx_IDValue = 1021
+        Wx_LabelStyle = []
+        Wx_StrechFactor = 0
+      end
+      object WxStaticTextLineCount: TWxStaticText
+        Left = 132
+        Top = 129
+        Width = 40
+        Height = 17
+        Caption = '999999'
+        TabOrder = 11
+        Wx_BGColor = clBlack
+        Wx_Class = 'wxStaticText'
+        Wx_ControlOrientation = wxControlNone
+        Wx_FGColor = clBlack
+        Wx_GeneralStyle = []
+        Wx_Hidden = False
+        Wx_HorizontalAlignment = wxSZALIGN_RIGHT
+        Wx_IDName = 'ID_WXSTATICTEXTLINECOUNT'
+        Wx_IDValue = 1022
+        Wx_LabelStyle = []
+        Wx_StrechFactor = 0
+      end
     end
     object WxStaticLine1: TWxStaticLine
-      Left = 90
-      Top = 140
+      Left = 150
+      Top = 165
       Width = 150
       Height = 7
       TabOrder = 1
@@ -271,8 +309,8 @@ object frmNewForm: TfrmNewForm
       LastOrientation = wxLI_HORIZONTAL
     end
     object WxStaticText6: TWxStaticText
-      Left = 87
-      Top = 157
+      Left = 147
+      Top = 182
       Width = 155
       Height = 17
       Caption = 'Detail Information of Characters:'
@@ -291,9 +329,9 @@ object frmNewForm: TfrmNewForm
     end
     object WxMemo1: TWxMemo
       Left = 5
-      Top = 184
-      Width = 320
-      Height = 89
+      Top = 209
+      Width = 440
+      Height = 160
       BevelInner = bvNone
       BevelOuter = bvNone
       TabOrder = 3
@@ -313,8 +351,8 @@ object frmNewForm: TfrmNewForm
       Wx_VerticalAlignment = wxSZALIGN_GROW_VERTICAL
     end
     object WxButton1: TWxButton
-      Left = 127
-      Top = 283
+      Left = 187
+      Top = 379
       Width = 75
       Height = 30
       Caption = '&Close'

@@ -54,6 +54,8 @@ class MadWordCountDialog : public wxDialog
 		//Do not add custom control declarations
 		//wxDev-C++ will remove them. Add custom code after the block.
 		////GUI Control Declaration Start
+		wxStaticText *WxStaticTextLineCount;
+		wxStaticText *WxStaticText7;
 		wxButton *WxButton1;
 		wxTextCtrl *WxMemo1;
 		wxStaticText *WxStaticText6;
@@ -80,6 +82,8 @@ class MadWordCountDialog : public wxDialog
 		enum
 		{
 			////GUI Enum Control ID Start
+			ID_WXSTATICTEXTLINECOUNT = 1022,
+			ID_WXSTATICTEXT7 = 1021,
 			ID_WXMEMO1 = 1019,
 			ID_WXSTATICTEXT6 = 1018,
 			ID_WXSTATICLINE1 = 1017,

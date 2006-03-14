@@ -62,7 +62,7 @@ void MadWordCountDialog::CreateGUIControls(void)
 	this->SetSizer(WxBoxSizer1);
 	this->SetAutoLayout(TRUE);
 
-	wxFlexGridSizer* WxFlexGridSizer1 = new wxFlexGridSizer(5,2,0,60);
+	wxFlexGridSizer* WxFlexGridSizer1 = new wxFlexGridSizer(5,2,0,150);
 	WxBoxSizer1->Add(WxFlexGridSizer1,0,wxALIGN_CENTER_HORIZONTAL | wxALL,4);
 
 	WxStaticText1 = new wxStaticText(this, ID_WXSTATICTEXT1, _("Words"), wxPoint(46,4), wxSize(35,17), 0, _("WxStaticText1"));
@@ -95,20 +95,26 @@ void MadWordCountDialog::CreateGUIControls(void)
 	WxStaticTextFullwidthCount = new wxStaticText(this, ID_WXSTATICTEXTFULLWIDTHCOUNT, _("999999"), wxPoint(132,104), wxSize(40,17), 0, _("WxStaticTextFullwidthCount"));
 	WxFlexGridSizer1->Add(WxStaticTextFullwidthCount,0,wxALIGN_RIGHT | wxALIGN_CENTER_VERTICAL | wxALL,5);
 
-	WxStaticLine1 = new wxStaticLine(this, ID_WXSTATICLINE1, wxPoint(90,140), wxSize(150,-1), wxLI_HORIZONTAL);
+	WxStaticLine1 = new wxStaticLine(this, ID_WXSTATICLINE1, wxPoint(150,165), wxSize(150,-1), wxLI_HORIZONTAL);
 	WxBoxSizer1->Add(WxStaticLine1,0,wxGROW | wxALL,2);
 
-	WxStaticText6 = new wxStaticText(this, ID_WXSTATICTEXT6, _("Detail Information of Characters:"), wxPoint(87,157), wxSize(155,17), 0, _("WxStaticText6"));
+	WxStaticText6 = new wxStaticText(this, ID_WXSTATICTEXT6, _("Detail Information of Characters:"), wxPoint(147,182), wxSize(155,17), 0, _("WxStaticText6"));
 	WxBoxSizer1->Add(WxStaticText6,0,wxALIGN_CENTER_HORIZONTAL | wxALL,2);
 
-	WxMemo1 = new wxTextCtrl(this, ID_WXMEMO1, _(""), wxPoint(5,184), wxSize(320,89), wxTE_READONLY | wxTE_DONTWRAP | wxTE_MULTILINE, wxDefaultValidator, _("WxMemo1"));
+	WxMemo1 = new wxTextCtrl(this, ID_WXMEMO1, _(""), wxPoint(5,209), wxSize(440,160), wxTE_READONLY | wxTE_DONTWRAP | wxTE_MULTILINE, wxDefaultValidator, _("WxMemo1"));
 	WxMemo1->SetMaxLength(0);
 	WxMemo1->SetFocus();
 	WxMemo1->SetInsertionPointEnd();
 	WxBoxSizer1->Add(WxMemo1,1,wxGROW | wxALL,4);
 
-	WxButton1 = new wxButton(this, wxID_OK, _("&Close"), wxPoint(127,283), wxSize(75,30), 0, wxDefaultValidator, _("WxButton1"));
+	WxButton1 = new wxButton(this, wxID_OK, _("&Close"), wxPoint(187,379), wxSize(75,30), 0, wxDefaultValidator, _("WxButton1"));
 	WxBoxSizer1->Add(WxButton1,0,wxALIGN_CENTER_HORIZONTAL | wxALL,5);
+
+	WxStaticText7 = new wxStaticText(this, ID_WXSTATICTEXT7, _("Lines"), wxPoint(49,129), wxSize(29,17), 0, _("WxStaticText7"));
+	WxFlexGridSizer1->Add(WxStaticText7,0,wxALIGN_LEFT | wxALIGN_CENTER_VERTICAL | wxALL,5);
+
+	WxStaticTextLineCount = new wxStaticText(this, ID_WXSTATICTEXTLINECOUNT, _("999999"), wxPoint(132,129), wxSize(40,17), 0, _("WxStaticTextLineCount"));
+	WxFlexGridSizer1->Add(WxStaticTextLineCount,0,wxALIGN_RIGHT | wxALIGN_CENTER_VERTICAL | wxALL,5);
 
 	GetSizer()->Fit(this);
 	GetSizer()->SetSizeHints(this);
@@ -119,15 +125,21 @@ void MadWordCountDialog::CreateGUIControls(void)
 	////GUI Items Creation End
 
     extern MadEdit *g_ActiveMadEdit;
-    int words, chars, spaces, halfwidths, fullwidths;
+    int words, chars, spaces, lines, halfwidths, fullwidths;
     wxArrayString detail;
-    g_ActiveMadEdit->WordCount(g_ActiveMadEdit->IsSelected(), words, chars, spaces, halfwidths, fullwidths, &detail);
+    g_ActiveMadEdit->WordCount(g_ActiveMadEdit->IsSelected(), words, chars, spaces, halfwidths, fullwidths, lines, &detail);
 
+    if(g_ActiveMadEdit->IsSelected())
+    {
+        this->SetTitle(_("Word Count (Selected Text)"));
+    }
+    
     WxStaticTextWordCount->SetLabel(wxString()<<words);
     WxStaticTextCharCount->SetLabel(wxString()<<chars);
     WxStaticTextSpaceCount->SetLabel(wxString()<<(chars+spaces));
     WxStaticTextHalfwidthCount->SetLabel(wxString()<<halfwidths);
     WxStaticTextFullwidthCount->SetLabel(wxString()<<fullwidths);
+    WxStaticTextLineCount->SetLabel(wxString()<<lines);
     wxString str;
     for(size_t i=0;i<detail.Count();i++)
     {
@@ -140,11 +152,13 @@ void MadWordCountDialog::CreateGUIControls(void)
     ResizeItem(WxBoxSizer1, WxStaticText3, 2, 2);
     ResizeItem(WxBoxSizer1, WxStaticText4, 2, 2);
     ResizeItem(WxBoxSizer1, WxStaticText5, 2, 2);
+    ResizeItem(WxBoxSizer1, WxStaticText7, 2, 2);
     ResizeItem(WxBoxSizer1, WxStaticTextWordCount, 2, 2);
     ResizeItem(WxBoxSizer1, WxStaticTextCharCount, 2, 2);
     ResizeItem(WxBoxSizer1, WxStaticTextSpaceCount, 2, 2);
     ResizeItem(WxBoxSizer1, WxStaticTextHalfwidthCount, 2, 2);
     ResizeItem(WxBoxSizer1, WxStaticTextFullwidthCount, 2, 2);
+    ResizeItem(WxBoxSizer1, WxStaticTextLineCount, 2, 2);
 
     ResizeItem(WxBoxSizer1, WxStaticText6, 2, 2);
 }

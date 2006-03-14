@@ -727,7 +727,9 @@ inline bool IsDelimiter(ucs4_t uc) // include space char
     return ((uc<=0x20 && uc>=0) || uc==0x3000);
 }
 
-void MadEdit::WordCount(bool selection, int &wordCount, int &charCount, int &spaceCount, int &halfWidthCount, int &fullWidthCount, wxArrayString *detail)
+void MadEdit::WordCount(bool selection, int &wordCount, int &charCount, int &spaceCount,
+                        int &halfWidthCount, int &fullWidthCount, int &lineCount,
+                        wxArrayString *detail)
 {
     wordCount=charCount=spaceCount=halfWidthCount=fullWidthCount=0;
 
@@ -738,6 +740,7 @@ void MadEdit::WordCount(bool selection, int &wordCount, int &charCount, int &spa
     wxFileOffset linepos, nowpos, endpos;
     if(selection && m_Selection)
     {
+        lineCount=m_SelectionEnd->lineid - m_SelectionBegin->lineid +1;
         lit=m_SelectionBegin->iter;
         linepos=m_SelectionBegin->linepos;
         nowpos=m_SelectionBegin->pos;
@@ -745,6 +748,7 @@ void MadEdit::WordCount(bool selection, int &wordCount, int &charCount, int &spa
     }
     else
     {
+        lineCount=(int)m_Lines->m_LineCount;
         lit=m_Lines->m_LineList.begin();
         linepos=0;
         nowpos=0;
@@ -755,16 +759,23 @@ void MadEdit::WordCount(bool selection, int &wordCount, int &charCount, int &spa
     MadLines::NextUCharFuncPtr NextUChar=m_Lines->NextUChar;
     MadUCQueue ucqueue;
     m_Lines->InitNextUChar(lit, linepos);
-    int idx, previdx=-1;
+    int idx, previdx=-1, count=0;
     ucs2_t *half=GetHalfwidthTable();
     ucs2_t *full=GetFullwidthTable();
 
     while(nowpos < endpos)
     {
+        if(++count >= 1024)
+        {
+            ucqueue.clear();
+            count=0;
+        }
+
         if(!(m_Lines->*NextUChar)(ucqueue))
         {
             ++lit;
             m_Lines->InitNextUChar(lit, 0);
+            (m_Lines->*NextUChar)(ucqueue);
         }
         MadUCPair &ucp=ucqueue.back();
         nowpos+=ucp.second;
