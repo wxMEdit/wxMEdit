@@ -843,7 +843,7 @@ void MadEdit::WordCount(bool selection, int &wordCount, int &charCount, int &spa
     }
     if(counts[UnicodeBlocksCount]>0)
     {
-        detail->Add(wxString::Format(wxT("%d\t ? - ? %s"), counts[idx], _("Invalid Unicode characters")));
+        detail->Add(wxString::Format(wxT("%d\t ? - ? %s"), counts[idx], _("Invalid Unicode Characters")));
     }
 }
 
