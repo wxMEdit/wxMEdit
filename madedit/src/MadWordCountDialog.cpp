@@ -95,13 +95,19 @@ void MadWordCountDialog::CreateGUIControls(void)
 	WxStaticTextFullwidthCount = new wxStaticText(this, ID_WXSTATICTEXTFULLWIDTHCOUNT, _("999999"), wxPoint(132,104), wxSize(40,17), 0, _("WxStaticTextFullwidthCount"));
 	WxFlexGridSizer1->Add(WxStaticTextFullwidthCount,0,wxALIGN_RIGHT | wxALIGN_CENTER_VERTICAL | wxALL,5);
 
+	WxStaticText7 = new wxStaticText(this, ID_WXSTATICTEXT7, _("Lines"), wxPoint(49,129), wxSize(29,17), 0, _("WxStaticText7"));
+	WxFlexGridSizer1->Add(WxStaticText7,0,wxALIGN_LEFT | wxALIGN_CENTER_VERTICAL | wxALL,5);
+
+	WxStaticTextLineCount = new wxStaticText(this, ID_WXSTATICTEXTLINECOUNT, _("999999"), wxPoint(132,129), wxSize(40,17), 0, _("WxStaticTextLineCount"));
+	WxFlexGridSizer1->Add(WxStaticTextLineCount,0,wxALIGN_RIGHT | wxALIGN_CENTER_VERTICAL | wxALL,5);
+
 	WxStaticLine1 = new wxStaticLine(this, ID_WXSTATICLINE1, wxPoint(150,165), wxSize(150,-1), wxLI_HORIZONTAL);
 	WxBoxSizer1->Add(WxStaticLine1,0,wxGROW | wxALL,2);
 
 	WxStaticText6 = new wxStaticText(this, ID_WXSTATICTEXT6, _("Detail Information of Characters:"), wxPoint(147,182), wxSize(155,17), 0, _("WxStaticText6"));
 	WxBoxSizer1->Add(WxStaticText6,0,wxALIGN_CENTER_HORIZONTAL | wxALL,2);
 
-	WxMemo1 = new wxTextCtrl(this, ID_WXMEMO1, _(""), wxPoint(5,209), wxSize(440,160), wxTE_READONLY | wxTE_DONTWRAP | wxTE_MULTILINE, wxDefaultValidator, _("WxMemo1"));
+	WxMemo1 = new wxTextCtrl(this, ID_WXMEMO1, _(""), wxPoint(5,209), wxSize(440,160), wxTE_DONTWRAP | wxTE_MULTILINE, wxDefaultValidator, _("WxMemo1"));
 	WxMemo1->SetMaxLength(0);
 	WxMemo1->SetFocus();
 	WxMemo1->SetInsertionPointEnd();
@@ -109,12 +115,6 @@ void MadWordCountDialog::CreateGUIControls(void)
 
 	WxButton1 = new wxButton(this, wxID_OK, _("&Close"), wxPoint(187,379), wxSize(75,30), 0, wxDefaultValidator, _("WxButton1"));
 	WxBoxSizer1->Add(WxButton1,0,wxALIGN_CENTER_HORIZONTAL | wxALL,5);
-
-	WxStaticText7 = new wxStaticText(this, ID_WXSTATICTEXT7, _("Lines"), wxPoint(49,129), wxSize(29,17), 0, _("WxStaticText7"));
-	WxFlexGridSizer1->Add(WxStaticText7,0,wxALIGN_LEFT | wxALIGN_CENTER_VERTICAL | wxALL,5);
-
-	WxStaticTextLineCount = new wxStaticText(this, ID_WXSTATICTEXTLINECOUNT, _("999999"), wxPoint(132,129), wxSize(40,17), 0, _("WxStaticTextLineCount"));
-	WxFlexGridSizer1->Add(WxStaticTextLineCount,0,wxALIGN_RIGHT | wxALIGN_CENTER_VERTICAL | wxALL,5);
 
 	GetSizer()->Fit(this);
 	GetSizer()->SetSizeHints(this);

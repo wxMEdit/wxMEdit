@@ -334,12 +334,13 @@ object frmNewForm: TfrmNewForm
       Height = 160
       BevelInner = bvNone
       BevelOuter = bvNone
+      ScrollBars = ssVertical
       TabOrder = 3
       Wx_BGColor = clBlack
       Wx_Border = 4
       Wx_Class = 'wxTextCtrl'
       Wx_ControlOrientation = wxControlVertical
-      Wx_EditStyle = [wxTE_READONLY, wxTE_DONTWRAP, wxTE_MULTILINE]
+      Wx_EditStyle = [wxTE_DONTWRAP, wxTE_MULTILINE]
       Wx_FGColor = clBlack
       Wx_GeneralStyle = []
       Wx_HorizontalAlignment = wxSZALIGN_GROW_HORIZONTAL
