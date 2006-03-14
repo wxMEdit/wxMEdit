@@ -155,6 +155,9 @@
 				RelativePath="..\src\MadUtils.cpp">
 			</File>
 			<File
+				RelativePath="..\src\MadWordCountDialog.cpp">
+			</File>
+			<File
 				RelativePath="..\wxFlatNotebook\src\wxFlatNotebook\wxFlatNotebook.cpp">
 			</File>
 			<Filter
@@ -219,6 +222,9 @@
 			</File>
 			<File
 				RelativePath="..\src\MadUtils.h">
+			</File>
+			<File
+				RelativePath="..\src\MadWordCountDialog.h">
 			</File>
 			<File
 				RelativePath="..\src\plugin.h">
