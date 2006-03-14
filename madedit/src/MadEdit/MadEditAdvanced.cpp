@@ -564,7 +564,7 @@ const UnicodeBlock UnicodeBlocks[]=
     { 0x0F00, 0x0FFF, true, false, _("Tibetan") },
     { 0x1000, 0x109F, true, false, _("Myanmar") },
     { 0x10A0, 0x10FF, true, false, _("Georgian") },
-    { 0x1100, 0x11FF, true, false, _("Hangul Jamo") },
+    { 0x1100, 0x11FF, false, true, _("Hangul Jamo") },
     { 0x1200, 0x137F, true, false, _("Ethiopic") },
     { 0x1380, 0x139F, true, false, _("Ethiopic Supplement") },
     { 0x13A0, 0x13FF, true, false, _("Cherokee") },
