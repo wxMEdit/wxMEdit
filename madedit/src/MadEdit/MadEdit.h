@@ -780,7 +780,7 @@ public:
     int Save(bool ask, const wxString &title, bool saveas);
 
     void WordCount(bool selection, int &wordCount, int &charCount, int &spaceCount, 
-                   int &halfWidthCount, int &fullWidthCount, wxArrayString *details);
+                   int &halfWidthCount, int &fullWidthCount, wxArrayString *detail);
 
     void SetOnSelectionChanged(OnSelectionChangedPtr func)
     {

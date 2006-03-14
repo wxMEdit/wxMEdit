@@ -14,6 +14,7 @@
 #include "MadReplaceDialog.h"
 #include "MadOptionsDialog.h"
 #include "MadConvEncDialog.h"
+#include "MadWordCountDialog.h"
 #include "MadAboutDialog.h"
 #include "MadPrintout.h"
 #include "MadUtils.h"
@@ -639,6 +640,7 @@ BEGIN_EVENT_TABLE(MadEditFrame,wxFrame)
 	EVT_UPDATE_UI(menuConvertEncoding, MadEditFrame::OnUpdateUI_MenuToolsConvertEncoding)
 	EVT_UPDATE_UI(menuSimp2TradChinese, MadEditFrame::OnUpdateUI_MenuToolsConvertEncoding)
 	EVT_UPDATE_UI(menuTrad2SimpChinese, MadEditFrame::OnUpdateUI_MenuToolsConvertEncoding)
+	EVT_UPDATE_UI(menuWordCount, MadEditFrame::OnUpdateUI_MenuFile_CheckCount)
 	// window
 	EVT_UPDATE_UI(menuToggleWindow, MadEditFrame::OnUpdateUI_MenuWindow_CheckCount)
 	EVT_UPDATE_UI(menuNextWindow, MadEditFrame::OnUpdateUI_MenuWindow_CheckCount)
@@ -726,6 +728,7 @@ BEGIN_EVENT_TABLE(MadEditFrame,wxFrame)
 	EVT_MENU(menuTrad2SimpChinese, MadEditFrame::OnToolsTrad2SimpChinese)
 	EVT_MENU(menuSimp2TradClipboard, MadEditFrame::OnToolsSimp2TradClipboard)
 	EVT_MENU(menuTrad2SimpClipboard, MadEditFrame::OnToolsTrad2SimpClipboard)
+	EVT_MENU(menuWordCount, MadEditFrame::OnToolsWordCount)
 	// window
 	EVT_MENU(menuToggleWindow, MadEditFrame::OnWindowToggleWindow)
 	EVT_MENU(menuNextWindow, MadEditFrame::OnWindowNextWindow)
@@ -814,9 +817,9 @@ CommandData CommandTable[]=
     { ecToUpperCase,    2, menuToUpperCase,              wxT("menuToUpperCase"),              _("To U&pperCase"),                  wxT("Ctrl-U"),       wxITEM_NORMAL,    -1,                0,                     _("Convert the selection to uppercase")},
     { ecToLowerCase,    2, menuToLowerCase,              wxT("menuToLowerCase"),              _("To L&owerCase"),                  wxT("Ctrl-Shift-U"), wxITEM_NORMAL,    -1,                0,                     _("Convert the selection to lowercase")},
     { ecInvertCase ,    2, menuInvertCase ,              wxT("menuInvertCase") ,              _("Inver&t Case"),                   wxT("Ctrl-Alt-U"),   wxITEM_NORMAL,    -1,                0,                     _("Invert the case of the selection")},
-    //{ 0,                2, 0,                            0,                                   0,                                   0,                   wxITEM_SEPARATOR, -1,                0,                     0},
-    //{ ecToHalfWidth,    2, menuToHalfWidth,              wxT("menuToHalfWidth"),              _("To H&alf-Width"),                 wxT(""),             wxITEM_NORMAL,    -1,                0,                     _("Convert the selection to half-width char")},
-    //{ ecToFullWidth,    2, menuToFullWidth,              wxT("menuToFullWidth"),              _("To &Full-Width"),                 wxT(""),             wxITEM_NORMAL,    -1,                0,                     _("Convert the selection to full-width char")},
+    { 0,                2, 0,                            0,                                   0,                                   0,                   wxITEM_SEPARATOR, -1,                0,                     0},
+    { ecToHalfWidth,    2, menuToHalfWidth,              wxT("menuToHalfWidth"),              _("To H&alfwidth"),                  wxT(""),             wxITEM_NORMAL,    -1,                0,                     _("Convert the selection to halfwidth")},
+    { ecToFullWidth,    2, menuToFullWidth,              wxT("menuToFullWidth"),              _("To &Fullwidth"),                  wxT(""),             wxITEM_NORMAL,    -1,                0,                     _("Convert the selection to fullwidth")},
 
     // Search
     { 0, 0, 0, 0, _("&Search"), 0, wxITEM_NORMAL, 0, &g_Menu_Search, 0},
@@ -1019,11 +1022,13 @@ CommandData CommandTable[]=
     { 0,               1, menuConvertEncoding,    wxT("menuConvertEncoding"),    _("Convert File &Encoding..."),                     0,             wxITEM_NORMAL,    -1, 0,                                _("Convert to the specified encoding")},
     { 0,               1, 0,                      0,                             0,                                                  0,             wxITEM_SEPARATOR, -1, 0,                                0},
     { 0,               1, menuConvertChineseChar, wxT("menuConvertChineseChar"), _("Convert &Chinese Char"),                         0,             wxITEM_NORMAL,    -1, &g_Menu_Tools_ConvertChineseChar, 0},
-    { 0,               2, menuSimp2TradChinese,   wxT("menuSimp2TradChinese"),   _("File: To &Traditional Chinese"),      0,             wxITEM_NORMAL,    -1, 0,                                _("Convert simplified Chinese chars to traditional Chinese chars in the file")},
-    { 0,               2, menuTrad2SimpChinese,   wxT("menuTrad2SimpChinese"),   _("File: To &Simplified Chinese"),      0,             wxITEM_NORMAL,    -1, 0,                                _("Convert traditional Chinese chars to simplified Chinese chars in the file")},
+    { 0,               2, menuSimp2TradChinese,   wxT("menuSimp2TradChinese"),   _("File: To &Traditional Chinese"),                 0,             wxITEM_NORMAL,    -1, 0,                                _("Convert simplified Chinese chars to traditional Chinese chars in the file")},
+    { 0,               2, menuTrad2SimpChinese,   wxT("menuTrad2SimpChinese"),   _("File: To &Simplified Chinese"),                  0,             wxITEM_NORMAL,    -1, 0,                                _("Convert traditional Chinese chars to simplified Chinese chars in the file")},
     { 0,               2, 0,                      0,                             0,                                                  0,             wxITEM_SEPARATOR, -1, 0,                                0},
-    { 0,               2, menuSimp2TradClipboard, wxT("menuSimp2TradClipboard"), _("Clipboard: To T&raditional Chinese"), 0,             wxITEM_NORMAL,    -1, 0,                                _("Convert simplified Chinese chars to traditional Chinese chars in the clipboard")},
-    { 0,               2, menuTrad2SimpClipboard, wxT("menuTrad2SimpClipboard"), _("Clipboard: To S&implified Chinese"), 0,             wxITEM_NORMAL,    -1, 0,                                _("Convert traditional Chinese chars to simplified Chinese chars in the clipboard")},
+    { 0,               2, menuSimp2TradClipboard, wxT("menuSimp2TradClipboard"), _("Clipboard: To T&raditional Chinese"),            0,             wxITEM_NORMAL,    -1, 0,                                _("Convert simplified Chinese chars to traditional Chinese chars in the clipboard")},
+    { 0,               2, menuTrad2SimpClipboard, wxT("menuTrad2SimpClipboard"), _("Clipboard: To S&implified Chinese"),             0,             wxITEM_NORMAL,    -1, 0,                                _("Convert traditional Chinese chars to simplified Chinese chars in the clipboard")},
+    { 0,               1, 0,                      0,                             0,                                                  0,             wxITEM_SEPARATOR, -1, 0,                                0},
+    { 0,               1, menuWordCount,          wxT("menuWordCount"),          _("&Word Count"),                                   0,             wxITEM_NORMAL,    -1, 0,                                _("Count the words and chars of the file or selection")},
 
     // Window
     { 0, 0, 0, 0, _("&Window"), 0, wxITEM_NORMAL, 0, &g_Menu_Window, 0},
@@ -2858,8 +2863,7 @@ void MadEditFrame::OnEditToFullWidth(wxCommandEvent& event)
 
 void MadEditFrame::OnSearchFind(wxCommandEvent& event)
 {
-    if(g_ActiveMadEdit==NULL)
-        return;
+    if(g_ActiveMadEdit==NULL) return;
 
     if(g_SearchDialog==NULL)
     {
@@ -2923,8 +2927,7 @@ void MadEditFrame::OnSearchFind(wxCommandEvent& event)
 
 void MadEditFrame::OnSearchFindNext(wxCommandEvent& event)
 {
-    if(g_ActiveMadEdit==NULL)
-        return;
+    if(g_ActiveMadEdit==NULL) return;
 
     if(g_SearchDialog==NULL)
     {
@@ -2963,8 +2966,7 @@ void MadEditFrame::OnSearchFindNext(wxCommandEvent& event)
 
 void MadEditFrame::OnSearchFindPrevious(wxCommandEvent& event)
 {
-    if(g_ActiveMadEdit==NULL)
-        return;
+    if(g_ActiveMadEdit==NULL) return;
 
     if(g_SearchDialog==NULL)
     {
@@ -3003,8 +3005,7 @@ void MadEditFrame::OnSearchFindPrevious(wxCommandEvent& event)
 
 void MadEditFrame::OnSearchReplace(wxCommandEvent& event)
 {
-    if(g_ActiveMadEdit==NULL)
-        return;
+    if(g_ActiveMadEdit==NULL) return;
 
     if(g_SearchDialog==NULL)
     {
@@ -3070,8 +3071,7 @@ void MadEditFrame::OnSearchReplace(wxCommandEvent& event)
 
 void MadEditFrame::OnSearchGoToLine(wxCommandEvent& event)
 {
-    if(g_ActiveMadEdit==NULL)
-        return;
+    if(g_ActiveMadEdit==NULL) return;
 
     static wxString defstr;
     wxString str=wxGetTextFromUser(_("Line Number: (you can input HexNumber: 0xNNN)"), _("Go To Line"), defstr);
@@ -3095,8 +3095,7 @@ void MadEditFrame::OnSearchGoToLine(wxCommandEvent& event)
 
 void MadEditFrame::OnSearchGoToPosition(wxCommandEvent& event)
 {
-    if(g_ActiveMadEdit==NULL)
-        return;
+    if(g_ActiveMadEdit==NULL) return;
 
     static wxString defstr;
     wxString str=wxGetTextFromUser(_("Position: (you can input HexNumber: 0xNNN)"), _("Go To Position"), defstr);
@@ -3114,15 +3113,13 @@ void MadEditFrame::OnSearchGoToPosition(wxCommandEvent& event)
 
 void MadEditFrame::OnSearchGoToLeftBrace(wxCommandEvent& event)
 {
-    if(g_ActiveMadEdit==NULL)
-        return;
+    if(g_ActiveMadEdit==NULL) return;
 
     g_ActiveMadEdit->GoToLeftBrace();
 }
 void MadEditFrame::OnSearchGoToRightBrace(wxCommandEvent& event)
 {
-    if(g_ActiveMadEdit==NULL)
-        return;
+    if(g_ActiveMadEdit==NULL) return;
 
     g_ActiveMadEdit->GoToRightBrace();
 }
@@ -3130,8 +3127,7 @@ void MadEditFrame::OnSearchGoToRightBrace(wxCommandEvent& event)
 
 void MadEditFrame::OnViewEncoding(wxCommandEvent& event)
 {
-    if(g_ActiveMadEdit==NULL)
-        return;
+    if(g_ActiveMadEdit==NULL) return;
 
     int idx=event.GetId()-menuEncoding1;
     wxString enc=MadEncoding::GetEncodingName(idx);
@@ -3147,8 +3143,7 @@ void MadEditFrame::OnViewEncoding(wxCommandEvent& event)
 
 void MadEditFrame::OnViewRecentEncoding(wxCommandEvent& event)
 {
-    if(g_ActiveMadEdit==NULL)
-        return;
+    if(g_ActiveMadEdit==NULL) return;
 
     int idx=event.GetId()-menuRecentEncoding1;
     wxString str=m_RecentEncodings->GetHistoryFile(idx);
@@ -3174,8 +3169,7 @@ void MadEditFrame::OnViewRecentEncoding(wxCommandEvent& event)
 
 void MadEditFrame::OnViewSyntax(wxCommandEvent& event)
 {
-    if(g_ActiveMadEdit==NULL)
-        return;
+    if(g_ActiveMadEdit==NULL) return;
 
     int idx=event.GetId()-menuSyntax1;
     wxString title=MadSyntax::GetSyntaxTitle(idx);
@@ -3184,8 +3178,7 @@ void MadEditFrame::OnViewSyntax(wxCommandEvent& event)
 
 void MadEditFrame::OnViewFontName(wxCommandEvent& event)
 {
-    if(g_ActiveMadEdit==NULL)
-        return;
+    if(g_ActiveMadEdit==NULL) return;
 
     int idx=event.GetId()-menuFontName1;
     wxString fn;
@@ -3200,8 +3193,7 @@ void MadEditFrame::OnViewFontName(wxCommandEvent& event)
 
 void MadEditFrame::OnViewRecentFont(wxCommandEvent& event)
 {
-    if(g_ActiveMadEdit==NULL)
-        return;
+    if(g_ActiveMadEdit==NULL) return;
 
     int idx=event.GetId()-menuRecentFont1;
     wxString fontname=m_RecentFonts->GetHistoryFile(idx);
@@ -3218,8 +3210,7 @@ void MadEditFrame::OnViewRecentFont(wxCommandEvent& event)
 
 void MadEditFrame::OnViewFontSize(wxCommandEvent& event)
 {
-    if(g_ActiveMadEdit==NULL)
-        return;
+    if(g_ActiveMadEdit==NULL) return;
 
     wxString fn;
     int fs;
@@ -3232,8 +3223,7 @@ void MadEditFrame::OnViewFontSize(wxCommandEvent& event)
 
 void MadEditFrame::OnViewSetFont(wxCommandEvent& event)
 {
-    if(g_ActiveMadEdit==NULL)
-        return;
+    if(g_ActiveMadEdit==NULL) return;
 
     wxFont font=wxGetFontFromUser(this, g_ActiveMadEdit->GetFont());
     if(font.Ok())
@@ -3246,16 +3236,14 @@ void MadEditFrame::OnViewSetFont(wxCommandEvent& event)
 
 void MadEditFrame::OnViewFixedWidthMode(wxCommandEvent& event)
 {
-    if(g_ActiveMadEdit==NULL)
-        return;
+    if(g_ActiveMadEdit==NULL) return;
 
     g_ActiveMadEdit->SetFixedWidthMode(event.IsChecked());
 }
 
 void MadEditFrame::OnViewTabColumn(wxCommandEvent& event)
 {
-    if(g_ActiveMadEdit==NULL)
-        return;
+    if(g_ActiveMadEdit==NULL) return;
 
     int col=event.GetId()-menuTabColumn1 +1;
     g_ActiveMadEdit->SetTabColumns(col);
@@ -3263,8 +3251,7 @@ void MadEditFrame::OnViewTabColumn(wxCommandEvent& event)
 
 void MadEditFrame::OnViewLineSpacing(wxCommandEvent& event)
 {
-    if(g_ActiveMadEdit==NULL)
-        return;
+    if(g_ActiveMadEdit==NULL) return;
 
     int ls=(event.GetId()-menuLineSpacing100)*5 + 100;
     g_ActiveMadEdit->SetLineSpacing(ls);
@@ -3272,87 +3259,75 @@ void MadEditFrame::OnViewLineSpacing(wxCommandEvent& event)
 
 void MadEditFrame::OnViewNoWrap(wxCommandEvent& event)
 {
-    if(g_ActiveMadEdit==NULL)
-        return;
+    if(g_ActiveMadEdit==NULL) return;
 
     g_ActiveMadEdit->SetWordWrapMode(wwmNoWrap);
 }
 void MadEditFrame::OnViewWrapByWindow(wxCommandEvent& event)
 {
-    if(g_ActiveMadEdit==NULL)
-        return;
+    if(g_ActiveMadEdit==NULL) return;
 
     g_ActiveMadEdit->SetWordWrapMode(wwmWrapByWindow);
 }
 void MadEditFrame::OnViewWrapByColumn(wxCommandEvent& event)
 {
-    if(g_ActiveMadEdit==NULL)
-        return;
+    if(g_ActiveMadEdit==NULL) return;
 
     g_ActiveMadEdit->SetWordWrapMode(wwmWrapByColumn);
 }
 
 void MadEditFrame::OnViewDisplayLineNumber(wxCommandEvent& event)
 {
-    if(g_ActiveMadEdit==NULL)
-        return;
+    if(g_ActiveMadEdit==NULL) return;
 
     g_ActiveMadEdit->SetDisplayLineNumber(event.IsChecked());
 }
 void MadEditFrame::OnViewShowEndOfLine(wxCommandEvent& event)
 {
-    if(g_ActiveMadEdit==NULL)
-        return;
+    if(g_ActiveMadEdit==NULL) return;
 
     g_ActiveMadEdit->SetShowEndOfLine(event.IsChecked());
 }
 void MadEditFrame::OnViewShowTabChar(wxCommandEvent& event)
 {
-    if(g_ActiveMadEdit==NULL)
-        return;
+    if(g_ActiveMadEdit==NULL) return;
 
     g_ActiveMadEdit->SetShowTabChar(event.IsChecked());
 }
 void MadEditFrame::OnViewShowSpaceChar(wxCommandEvent& event)
 {
-    if(g_ActiveMadEdit==NULL)
-        return;
+    if(g_ActiveMadEdit==NULL) return;
 
     g_ActiveMadEdit->SetShowSpaceChar(event.IsChecked());
 }
 void MadEditFrame::OnViewMarkActiveLine(wxCommandEvent& event)
 {
-    if(g_ActiveMadEdit==NULL)
-        return;
+    if(g_ActiveMadEdit==NULL) return;
 
     g_ActiveMadEdit->SetMarkActiveLine(event.IsChecked());
 }
 void MadEditFrame::OnViewMarkBracePair(wxCommandEvent& event)
 {
-    if(g_ActiveMadEdit==NULL)
-        return;
+    if(g_ActiveMadEdit==NULL) return;
 
     g_ActiveMadEdit->SetMarkBracePair(event.IsChecked());
 }
 
 void MadEditFrame::OnViewTextMode(wxCommandEvent& event)
 {
-    if(g_ActiveMadEdit==NULL)
-        return;
+    if(g_ActiveMadEdit==NULL) return;
 
     g_ActiveMadEdit->SetEditMode(emTextMode);
 }
 void MadEditFrame::OnViewColumnMode(wxCommandEvent& event)
 {
-    if(g_ActiveMadEdit==NULL)
-        return;
+    if(g_ActiveMadEdit==NULL) return;
 
     g_ActiveMadEdit->SetEditMode(emColumnMode);
 }
 void MadEditFrame::OnViewHexMode(wxCommandEvent& event)
 {
-    if(g_ActiveMadEdit==NULL)
-        return;
+    if(g_ActiveMadEdit==NULL) return;
 
     g_ActiveMadEdit->SetEditMode(emHexMode);
 }
@@ -3599,66 +3574,57 @@ void MadEditFrame::OnToolsOptions(wxCommandEvent& event)
 
 void MadEditFrame::OnToolsToggleBOM(wxCommandEvent& event)
 {
-    if(g_ActiveMadEdit==NULL)
-        return;
+    if(g_ActiveMadEdit==NULL) return;
 
     g_ActiveMadEdit->ToggleBOM();
 }
 void MadEditFrame::OnToolsConvertToDOS(wxCommandEvent& event)
 {
-    if(g_ActiveMadEdit==NULL)
-        return;
+    if(g_ActiveMadEdit==NULL) return;
 
     g_ActiveMadEdit->ConvertNewLineType(nltDOS);
 }
 void MadEditFrame::OnToolsConvertToMAC(wxCommandEvent& event)
 {
-    if(g_ActiveMadEdit==NULL)
-        return;
+    if(g_ActiveMadEdit==NULL) return;
 
     g_ActiveMadEdit->ConvertNewLineType(nltMAC);
 }
 void MadEditFrame::OnToolsConvertToUNIX(wxCommandEvent& event)
 {
-    if(g_ActiveMadEdit==NULL)
-        return;
+    if(g_ActiveMadEdit==NULL) return;
 
     g_ActiveMadEdit->ConvertNewLineType(nltUNIX);
 }
 
 void MadEditFrame::OnToolsInsertDOS(wxCommandEvent& event)
 {
-    if(g_ActiveMadEdit==NULL)
-        return;
+    if(g_ActiveMadEdit==NULL) return;
 
     g_ActiveMadEdit->SetInsertNewLineType(nltDOS);
 }
 void MadEditFrame::OnToolsInsertMAC(wxCommandEvent& event)
 {
-    if(g_ActiveMadEdit==NULL)
-        return;
+    if(g_ActiveMadEdit==NULL) return;
 
     g_ActiveMadEdit->SetInsertNewLineType(nltMAC);
 }
 void MadEditFrame::OnToolsInsertUNIX(wxCommandEvent& event)
 {
-    if(g_ActiveMadEdit==NULL)
-        return;
+    if(g_ActiveMadEdit==NULL) return;
 
     g_ActiveMadEdit->SetInsertNewLineType(nltUNIX);
 }
 void MadEditFrame::OnToolsInsertTabChar(wxCommandEvent& event)
 {
-    if(g_ActiveMadEdit==NULL)
-        return;
+    if(g_ActiveMadEdit==NULL) return;
 
     g_ActiveMadEdit->InsertTabChar();
 }
 
 void MadEditFrame::OnToolsConvertEncoding(wxCommandEvent& event)
 {
-    if(g_ActiveMadEdit==NULL)
-        return;
+    if(g_ActiveMadEdit==NULL) return;
 
     if(g_ConvEncDialog==NULL) g_ConvEncDialog=new MadConvEncDialog(this, -1);
 
@@ -3679,16 +3645,14 @@ void MadEditFrame::OnToolsConvertEncoding(wxCommandEvent& event)
 
 void MadEditFrame::OnToolsSimp2TradChinese(wxCommandEvent& event)
 {
-    if(g_ActiveMadEdit==NULL)
-        return;
+    if(g_ActiveMadEdit==NULL) return;
 
     g_ActiveMadEdit->ConvertChinese(cefSimp2TradChinese);
 }
 
 void MadEditFrame::OnToolsTrad2SimpChinese(wxCommandEvent& event)
 {
-    if(g_ActiveMadEdit==NULL)
-        return;
+    if(g_ActiveMadEdit==NULL) return;
 
     g_ActiveMadEdit->ConvertChinese(cefTrad2SimpChinese);
 }
@@ -3701,6 +3665,14 @@ void MadEditFrame::OnToolsSimp2TradClipboard(wxCommandEvent& event)
 void MadEditFrame::OnToolsTrad2SimpClipboard(wxCommandEvent& event)
 {
     ConvertChineseInClipboard(true);
+}
+
+void MadEditFrame::OnToolsWordCount(wxCommandEvent& event)
+{
+    if(g_ActiveMadEdit==NULL) return;
+
+    MadWordCountDialog dialog(this, -1);
+    dialog.ShowModal();
 }
 
 void MadEditFrame::OnWindowToggleWindow(wxCommandEvent& event)

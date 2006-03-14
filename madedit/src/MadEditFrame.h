@@ -231,6 +231,7 @@ public:
     void OnToolsTrad2SimpChinese(wxCommandEvent& event);
     void OnToolsSimp2TradClipboard(wxCommandEvent& event);
     void OnToolsTrad2SimpClipboard(wxCommandEvent& event);
+    void OnToolsWordCount(wxCommandEvent& event);
 
     void OnWindowToggleWindow(wxCommandEvent& event);
     void OnWindowPreviousWindow(wxCommandEvent& event);
@@ -402,6 +403,7 @@ enum { // menu id
     menuTrad2SimpChinese,
     menuSimp2TradClipboard,
     menuTrad2SimpClipboard,
+    menuWordCount,
 
     // window
     menuToggleWindow,
