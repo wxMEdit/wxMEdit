@@ -532,7 +532,7 @@ struct UnicodeBlock
 #define _(s)    wxT(s)
 const UnicodeBlock UnicodeBlocks[]=
 {
-    { 0x0000, 0x001F, false, false, _("Controls") },
+    { 0x0000, 0x001F, false, false, _("Control Characters") },
     { 0x0020, 0x007F, true, false, _("Basic Latin") },
     { 0x0080, 0x00FF, true, false, _("Latin-1 Supplement") },
     { 0x0100, 0x017F, true, false, _("Latin Extended-A") },
@@ -794,7 +794,7 @@ void MadEdit::WordCount(bool selection, int &wordCount, int &charCount, int &spa
         }
         else if(idx<UnicodeBlocksCount)
         {
-            if(idx==previdx && UnicodeBlocks[idx].is_alphabet)
+            if(previdx>=0 && previdx<UnicodeBlocksCount && UnicodeBlocks[previdx].is_alphabet && UnicodeBlocks[idx].is_alphabet)
             {
                 ++charCount;
             }
