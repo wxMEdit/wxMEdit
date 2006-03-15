@@ -816,16 +816,21 @@ void MadKeyBindings::LoadFromConfig(wxConfigBase *config)
     }
 }
 
-void MadKeyBindings::SaveToConfig(wxConfigBase *config, wxString path)
+void MadKeyBindings::SaveToConfig(wxConfigBase *config)
 {
-    size_t len=path.Len();
-    if(len==0 || path[len-1]!=wxT('/')) path+=wxT('/');
-
+    wxArrayString keys;
+    wxString key;
+    long idx=0;
+    bool kcont=config->GetNextEntry(key, idx);
+    while(kcont)
+    {
+        keys.Add(key);
+        kcont=config->GetNextEntry(key, idx);
+    }
+    
     MadKeyBindingsMap::iterator it=m_KeyBindings->begin();
-
     MadEditCommand cmd;
     MadEditShortCut sc;
-
     while(it!=m_KeyBindings->end())
     {
         sc=it->first;
@@ -834,10 +839,23 @@ void MadKeyBindings::SaveToConfig(wxConfigBase *config, wxString path)
         wxString text=CommandToText(cmd);
         if(!text.IsEmpty())
         {
-            config->Write(path + ShortCutToString(sc), text);
+            key=ShortCutToString(sc);
+            config->Write(key, text);
+            
+            int idx=keys.Index(key.c_str(), false);
+            if(idx>=0)
+            {
+                keys.RemoveAt(idx);
+            }
         }
 
         ++it;
+    }
+    
+    // delete non-used keys
+    for(size_t i=0; i<keys.GetCount(); i++)
+    {
+        config->DeleteEntry(keys[i]);
     }
 }
 

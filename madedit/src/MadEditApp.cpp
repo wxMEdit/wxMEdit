@@ -122,10 +122,8 @@ void DeleteConfig()
         if(g_ResetAllKeys==false)
         {
             // save MadEdit::KeyBindings
-            cfg->SetPath(wxT("/"));
-            cfg->RenameGroup(wxT("EditKeys"), wxT("EditKeys_old"));
-            MadEdit::ms_KeyBindings.SaveToConfig(cfg, wxT("/EditKeys/"));
-            cfg->DeleteGroup(wxT("/EditKeys_old"));
+            cfg->SetPath(wxT("/EditKeys"));
+            MadEdit::ms_KeyBindings.SaveToConfig(cfg);
         }
         else
         {
