@@ -12,12 +12,12 @@
 #: src/MadOptionsDialog.cpp:518 src/MadOptionsDialog.cpp:520
 #: src/MadOptionsDialog.cpp:524 src/MadOptionsDialog.cpp:526
 #: src/MadOptionsDialog.cpp:530 src/MadOptionsDialog.cpp:532
-#: src/MadWordCountDialog.cpp:104 src/MadAboutDialog.cpp:59
+#: src/MadWordCountDialog.cpp:110 src/MadAboutDialog.cpp:59
 msgid ""
 msgstr ""
 "Project-Id-Version: MadEdit 0.1\n"
 "Report-Msgid-Bugs-To: madedit@gmail.com\n"
-"POT-Creation-Date: 2006-03-14 22:05+0800\n"
+"POT-Creation-Date: 2006-03-15 12:30+0800\n"
 "PO-Revision-Date: 2006-02-13 13:21+0800\n"
 "Last-Translator: madedit <madedit@gmail.com>\n"
 "Language-Team: MadEdit <madedit@gmail.com>\n"
@@ -201,7 +201,7 @@ msgstr "取消"
 msgid "File '%s' already exists, do you really want to overwrite it?"
 msgstr "檔案 '%s' 已存在，是否真要覆寫？"
 
-#: po/wxstd.po.cpp:45 src/MadWordCountDialog.cpp:110
+#: po/wxstd.po.cpp:45 src/MadWordCountDialog.cpp:116
 msgid "&Close"
 msgstr "關閉(&C)"
 
@@ -399,7 +399,7 @@ msgid "Do you want to reload it?"
 msgstr "要重新載入嗎？"
 
 #: src/MadEdit/MadEditAdvanced.cpp:535
-msgid "Controls"
+msgid "Control Characters"
 msgstr ""
 
 #: src/MadEdit/MadEditAdvanced.cpp:536
@@ -2320,7 +2320,7 @@ msgstr ""
 msgid "Columns of Indent"
 msgstr "縮排時的長度"
 
-#: src/MadOptionsDialog.cpp:299 src/MadWordCountDialog.cpp:101
+#: src/MadOptionsDialog.cpp:299 src/MadWordCountDialog.cpp:107
 msgid "WxStaticText6"
 msgstr ""
 
@@ -2442,7 +2442,7 @@ msgstr ""
 msgid "Left:"
 msgstr "左邊："
 
-#: src/MadOptionsDialog.cpp:374 src/MadWordCountDialog.cpp:113
+#: src/MadOptionsDialog.cpp:374 src/MadWordCountDialog.cpp:98
 msgid "WxStaticText7"
 msgstr ""
 
@@ -2456,7 +2456,7 @@ msgstr ""
 msgid ">>"
 msgstr ""
 
-#: src/MadOptionsDialog.cpp:380 src/MadWordCountDialog.cpp:110
+#: src/MadOptionsDialog.cpp:380 src/MadWordCountDialog.cpp:116
 msgid "WxButton1"
 msgstr ""
 
@@ -2732,7 +2732,7 @@ msgstr "字數"
 
 #: src/MadWordCountDialog.cpp:71 src/MadWordCountDialog.cpp:77
 #: src/MadWordCountDialog.cpp:83 src/MadWordCountDialog.cpp:89
-#: src/MadWordCountDialog.cpp:95 src/MadWordCountDialog.cpp:116
+#: src/MadWordCountDialog.cpp:95 src/MadWordCountDialog.cpp:101
 msgid "999999"
 msgstr ""
 
@@ -2772,20 +2772,20 @@ msgstr "全形字"
 msgid "WxStaticTextFullwidthCount"
 msgstr ""
 
-#: src/MadWordCountDialog.cpp:101
-msgid "Detail Information of Characters:"
-msgstr "所有字元的詳細資料"
-
-#: src/MadWordCountDialog.cpp:104 src/MadAboutDialog.cpp:59
-msgid "WxMemo1"
-msgstr ""
-
-#: src/MadWordCountDialog.cpp:113
+#: src/MadWordCountDialog.cpp:98
 msgid "Lines"
 msgstr "行數"
 
-#: src/MadWordCountDialog.cpp:116
+#: src/MadWordCountDialog.cpp:101
 msgid "WxStaticTextLineCount"
+msgstr ""
+
+#: src/MadWordCountDialog.cpp:107
+msgid "Detail Information of Characters:"
+msgstr "所有字元的詳細資料："
+
+#: src/MadWordCountDialog.cpp:110 src/MadAboutDialog.cpp:59
+msgid "WxMemo1"
 msgstr ""
 
 #: src/MadWordCountDialog.cpp:121
