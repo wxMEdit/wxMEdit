@@ -576,14 +576,14 @@ void MadOptionsDialog::CreateGUIControls(void)
     int strx=0, stry=0;
     wxString str=WxRadioBoxPrintOffset->GetLabel();
     WxRadioBoxPrintOffset->GetTextExtent(str, &strx, &stry);
-    for(int i=0;i<WxRadioBoxPrintOffset->GetCount();i++)
+    for(size_t i=0;i<WxRadioBoxPrintOffset->GetCount();i++)
     {
         int x;
         str=WxRadioBoxPrintOffset->GetString(i);
         WxRadioBoxPrintOffset->GetTextExtent(str, &x, &stry);
         if(x>strx) strx=x;
     }
-    stry = (stry *(WxRadioBoxPrintOffset->GetCount()+2))*4/3;
+    stry = (stry *((int)WxRadioBoxPrintOffset->GetCount()+2))*4/3;
     WxRadioBoxPrintOffset->SetSize(strx+=25, stry);
     WxStaticBoxSizer2->SetItemMinSize(WxRadioBoxPrintOffset, strx, stry);
     

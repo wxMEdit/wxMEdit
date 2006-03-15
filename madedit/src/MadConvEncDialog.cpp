@@ -123,14 +123,14 @@ void MadConvEncDialog::CreateGUIControls(void)
 	int strx=0, stry=0;
     wxString str=WxRadioBoxOption->GetLabel();
     WxRadioBoxOption->GetTextExtent(str, &strx, &stry);
-    for(int i=0;i<WxRadioBoxOption->GetCount();i++)
+    for(size_t i=0;i<WxRadioBoxOption->GetCount();i++)
     {
         int x;
         str=WxRadioBoxOption->GetString(i);
         WxRadioBoxOption->GetTextExtent(str, &x, &stry);
         if(x>strx) strx=x;
     }
-    stry = (stry *(WxRadioBoxOption->GetCount()+2))*4/3;
+    stry = (stry *((int)WxRadioBoxOption->GetCount()+2))*4/3;
     WxRadioBoxOption->SetSize(strx+=35, stry);
     WxBoxSizer3->SetItemMinSize(WxRadioBoxOption, strx, stry);
     
