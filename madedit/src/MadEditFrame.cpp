@@ -3493,7 +3493,6 @@ void MadEditFrame::OnToolsOptions(wxCommandEvent& event)
         // apply the changed keybindings
         if(g_OptionsDialog->ChangedTreeItemDataList.size()!=0)
         {
-            m_Config->DeleteGroup(wxT("/EditKeys"));
             m_Config->SetPath(wxT("/MenuKeys"));
             list<TreeItemData*> MenuList;
 
@@ -3592,7 +3591,6 @@ void MadEditFrame::OnToolsOptions(wxCommandEvent& event)
         }
 
         m_Config->SetPath(oldpath);
-
     }
 }
 
