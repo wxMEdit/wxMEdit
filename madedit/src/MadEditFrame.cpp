@@ -588,6 +588,8 @@ BEGIN_EVENT_TABLE(MadEditFrame,wxFrame)
 	EVT_UPDATE_UI(menuCutLine, MadEditFrame::OnUpdateUI_MenuEditDeleteLine)
 	EVT_UPDATE_UI(menuDeleteLine, MadEditFrame::OnUpdateUI_MenuEditDeleteLine)
 	EVT_UPDATE_UI(menuSelectAll, MadEditFrame::OnUpdateUI_Menu_CheckSize)
+	EVT_UPDATE_UI(menuInsertTabChar, MadEditFrame::OnUpdateUI_MenuEditInsertTabChar)
+	EVT_UPDATE_UI(menuInsertDateTime, MadEditFrame::OnUpdateUI_MenuEditInsertDateTime)
 	EVT_UPDATE_UI(menuCopyAsHexString, MadEditFrame::OnUpdateUI_MenuEditCopyAsHexString)
 	EVT_UPDATE_UI(menuCopyAsHexStringWithSpace, MadEditFrame::OnUpdateUI_MenuEditCopyAsHexString)
 	EVT_UPDATE_UI(menuIncreaseIndent, MadEditFrame::OnUpdateUI_MenuIndent)
@@ -636,7 +638,6 @@ BEGIN_EVENT_TABLE(MadEditFrame,wxFrame)
 	EVT_UPDATE_UI(menuConvertToDOS, MadEditFrame::OnUpdateUI_MenuToolsConvertNL)
 	EVT_UPDATE_UI(menuConvertToMAC, MadEditFrame::OnUpdateUI_MenuToolsConvertNL)
 	EVT_UPDATE_UI(menuConvertToUNIX, MadEditFrame::OnUpdateUI_MenuToolsConvertNL)
-	EVT_UPDATE_UI(menuInsertTabChar, MadEditFrame::OnUpdateUI_MenuToolsInsertTabChar)
 	EVT_UPDATE_UI(menuConvertEncoding, MadEditFrame::OnUpdateUI_MenuToolsConvertEncoding)
 	EVT_UPDATE_UI(menuSimp2TradChinese, MadEditFrame::OnUpdateUI_MenuToolsConvertEncoding)
 	EVT_UPDATE_UI(menuTrad2SimpChinese, MadEditFrame::OnUpdateUI_MenuToolsConvertEncoding)
@@ -669,6 +670,8 @@ BEGIN_EVENT_TABLE(MadEditFrame,wxFrame)
 	EVT_MENU(menuCutLine, MadEditFrame::OnEditCutLine)
 	EVT_MENU(menuDeleteLine, MadEditFrame::OnEditDeleteLine)
 	EVT_MENU(menuSelectAll, MadEditFrame::OnEditSelectAll)
+	EVT_MENU(menuInsertTabChar, MadEditFrame::OnEditInsertTabChar)
+	EVT_MENU(menuInsertDateTime, MadEditFrame::OnEditInsertDateTime)
 	EVT_MENU(menuCopyAsHexString, MadEditFrame::OnEditCopyAsHexString)
 	EVT_MENU(menuCopyAsHexStringWithSpace, MadEditFrame::OnEditCopyAsHexStringWithSpace)
 	EVT_MENU(menuIncreaseIndent, MadEditFrame::OnEditIncIndent)
@@ -722,7 +725,6 @@ BEGIN_EVENT_TABLE(MadEditFrame,wxFrame)
 	EVT_MENU(menuInsertDOS, MadEditFrame::OnToolsInsertDOS)
 	EVT_MENU(menuInsertMAC, MadEditFrame::OnToolsInsertMAC)
 	EVT_MENU(menuInsertUNIX, MadEditFrame::OnToolsInsertUNIX)
-	EVT_MENU(menuInsertTabChar, MadEditFrame::OnToolsInsertTabChar)
 	EVT_MENU(menuConvertEncoding, MadEditFrame::OnToolsConvertEncoding)
 	EVT_MENU(menuSimp2TradChinese, MadEditFrame::OnToolsSimp2TradChinese)
 	EVT_MENU(menuTrad2SimpChinese, MadEditFrame::OnToolsTrad2SimpChinese)
@@ -803,6 +805,17 @@ CommandData CommandTable[]=
 
     { 0,                1, 0,                            0,                                   0,                                   0,                   wxITEM_SEPARATOR, -1,                0,                     0},
     { ecSelectAll,      1, menuSelectAll,                wxT("menuSelectAll"),                _("Select &All"),                    wxT("Ctrl-A"),       wxITEM_NORMAL,    -1,                0,                     _("Select all data")},
+    { 0,                1, 0,                            0,                                   0,                                   0,                   wxITEM_SEPARATOR, -1,                0,                     0},
+
+    { ecInsertTabChar,  1, menuInsertTabChar,            wxT("menuInsertTabChar"),            _("Insert Ta&b Char"),               
+#ifdef __WXMSW__
+                                                                                                                                   wxT("Ctrl-~"),
+#else
+                                                                                                                                   wxT("Ctrl-`"),
+#endif
+                                                                                                                                                        wxITEM_NORMAL,    -1,                0,                     _("Insert a Tab char at current position")},
+
+    { ecInsertDateTime, 1, menuInsertDateTime,           wxT("menuInsertDateTime"),           _("Insert Dat&e and Time"),          wxT("F7"),           wxITEM_NORMAL,    -1,                0,                     _("Insert date and time at current position")},
     { 0,                1, 0,                            0,                                   0,                                   0,                   wxITEM_SEPARATOR, -1,                0,                     0},
     { 0,                1, menuAdvanced,                 wxT("menuAdvanced"),                 _("Ad&vanced"),                      0,                   wxITEM_NORMAL,    -1,                &g_Menu_Edit_Advanced, 0},
     { 0,                2, menuCopyAsHexString,          wxT("menuCopyAsHexString"),          _("Copy As &Hex String"),            wxT(""),             wxITEM_NORMAL,    -1,                0,                     _("Copy the selection as hex-string")},
@@ -1013,12 +1026,6 @@ CommandData CommandTable[]=
     { 0,               2, menuInsertMAC,          wxT("menuInsertMAC"),          _("Insert CR/0D (&MAC)"),                           wxT(""),       wxITEM_NORMAL,    -1, 0,                                _("Insert CR char when press Enter key")},
     { 0,               2, menuInsertUNIX,         wxT("menuInsertUNIX"),         _("Insert LF/0A (&UNIX)"),                          wxT(""),       wxITEM_NORMAL,    -1, 0,                                _("Insert LF char when press Enter key")},
     { 0,               1, 0,                      0,                             0,                                                  0,             wxITEM_SEPARATOR, -1, 0,                                0},
-#ifdef __WXMSW__
-    { ecInsertTabChar, 1, menuInsertTabChar,      wxT("menuInsertTabChar"),      _("Insert &Tab Char"),                              wxT("Ctrl-~"), wxITEM_NORMAL,    -1, 0,                                _("Insert a Tab char at current position")},
-#else
-    { ecInsertTabChar, 1, menuInsertTabChar,      wxT("menuInsertTabChar"),      _("Insert &Tab Char"),                              wxT("Ctrl-`"), wxITEM_NORMAL,    -1, 0,                                _("Insert a Tab char at current position")},
-#endif
-    { 0,               1, 0,                      0,                             0,                                                  0,             wxITEM_SEPARATOR, -1, 0,                                0},
     { 0,               1, menuConvertEncoding,    wxT("menuConvertEncoding"),    _("Convert File &Encoding..."),                     0,             wxITEM_NORMAL,    -1, 0,                                _("Convert to the specified encoding")},
     { 0,               1, 0,                      0,                             0,                                                  0,             wxITEM_SEPARATOR, -1, 0,                                0},
     { 0,               1, menuConvertChineseChar, wxT("menuConvertChineseChar"), _("Convert &Chinese Char"),                         0,             wxITEM_NORMAL,    -1, &g_Menu_Tools_ConvertChineseChar, 0},
@@ -1077,9 +1084,10 @@ CommandData CommandTable[]=
     { ecScrollLeft,     -1, 0, 0, 0, 0, wxITEM_NORMAL , -1, 0, _("Scroll text left")},
     { ecScrollRight,    -1, 0, 0, 0, 0, wxITEM_NORMAL , -1, 0, _("Scroll text right")},
 
-    { ecReturn,    -1, 0, 0, 0, 0, wxITEM_NORMAL , -1, 0, _("Insert one NewLine char")},
-    { ecTab,       -1, 0, 0, 0, 0, wxITEM_NORMAL , -1, 0, _("Insert one Tab char or indent lines")},
-    { ecBackSpace, -1, 0, 0, 0, 0, wxITEM_NORMAL , -1, 0, _("Delete one char to the left of the caret")},
+    { ecReturn,         -1, 0, 0, 0, 0, wxITEM_NORMAL , -1, 0, _("Insert one NewLine char")},
+    { ecReturnNoIndent, -1, 0, 0, 0, 0, wxITEM_NORMAL , -1, 0, _("Insert one NewLine char without indentation")},
+    { ecTab,            -1, 0, 0, 0, 0, wxITEM_NORMAL , -1, 0, _("Insert one Tab char or indent lines")},
+    { ecBackSpace,      -1, 0, 0, 0, 0, wxITEM_NORMAL , -1, 0, _("Delete one char to the left of the caret")},
 
     { ecToggleInsertMode, -1, 0, 0, 0, 0, wxITEM_NORMAL , -1, 0, _("Toggle Insert/Overwrite Mode")},
 
@@ -2182,6 +2190,15 @@ void MadEditFrame::OnUpdateUI_MenuEditDeleteLine(wxUpdateUIEvent& event)
     event.Enable(g_ActiveMadEdit && g_ActiveMadEdit->GetEditMode()!=emHexMode);
 }
 
+void MadEditFrame::OnUpdateUI_MenuEditInsertTabChar(wxUpdateUIEvent& event)
+{
+    event.Enable(g_ActiveMadEdit!=NULL && g_ActiveMadEdit->GetEditMode()!=emHexMode);
+}
+void MadEditFrame::OnUpdateUI_MenuEditInsertDateTime(wxUpdateUIEvent& event)
+{
+    event.Enable(g_ActiveMadEdit!=NULL && g_ActiveMadEdit->GetEditMode()!=emHexMode);
+}
+
 void MadEditFrame::OnUpdateUI_MenuEditCopyAsHexString(wxUpdateUIEvent& event)
 {
     event.Enable(g_ActiveMadEdit && //g_ActiveMadEdit->GetEditMode()==emHexMode &&
@@ -2443,11 +2460,6 @@ void MadEditFrame::OnUpdateUI_MenuToolsInsertNewLineChar(wxUpdateUIEvent& event)
 void MadEditFrame::OnUpdateUI_MenuToolsConvertNL(wxUpdateUIEvent& event)
 {
     event.Enable(g_ActiveMadEdit!=NULL && !g_ActiveMadEdit->IsReadOnly());
-}
-
-void MadEditFrame::OnUpdateUI_MenuToolsInsertTabChar(wxUpdateUIEvent& event)
-{
-    event.Enable(g_ActiveMadEdit!=NULL && g_ActiveMadEdit->GetEditMode()!=emHexMode);
 }
 
 void MadEditFrame::OnUpdateUI_MenuToolsConvertEncoding(wxUpdateUIEvent& event)
@@ -2806,6 +2818,18 @@ void MadEditFrame::OnEditDeleteLine(wxCommandEvent& event)
 void MadEditFrame::OnEditSelectAll(wxCommandEvent& event)
 {
     if(g_ActiveMadEdit) g_ActiveMadEdit->SelectAll();
+}
+
+void MadEditFrame::OnEditInsertTabChar(wxCommandEvent& event)
+{
+    if(g_ActiveMadEdit==NULL) return;
+    g_ActiveMadEdit->InsertTabChar();
+}
+
+void MadEditFrame::OnEditInsertDateTime(wxCommandEvent& event)
+{
+    if(g_ActiveMadEdit==NULL) return;
+    g_ActiveMadEdit->InsertDateTime();
 }
 
 void MadEditFrame::OnEditCopyAsHexString(wxCommandEvent& event)
@@ -3615,12 +3639,7 @@ void MadEditFrame::OnToolsInsertUNIX(wxCommandEvent& event)
 
     g_ActiveMadEdit->SetInsertNewLineType(nltUNIX);
 }
-void MadEditFrame::OnToolsInsertTabChar(wxCommandEvent& event)
-{
-    if(g_ActiveMadEdit==NULL) return;
 
-    g_ActiveMadEdit->InsertTabChar();
-}
 
 void MadEditFrame::OnToolsConvertEncoding(wxCommandEvent& event)
 {

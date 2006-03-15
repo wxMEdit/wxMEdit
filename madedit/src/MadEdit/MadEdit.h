@@ -710,6 +710,7 @@ public:
     void CutLine() { ProcessCommand(ecCutLine); }
     void DeleteLine() { ProcessCommand(ecDeleteLine); }
     void InsertTabChar() { ProcessCommand(ecInsertTabChar); }
+    void InsertDateTime() { ProcessCommand(ecInsertDateTime); }
 
     void IncreaseDecreaseIndent(bool incIndent);
     bool HasLineComment() { return !m_Syntax->m_LineComment.empty(); }

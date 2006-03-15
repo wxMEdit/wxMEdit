@@ -113,6 +113,9 @@ public:
     void OnUpdateUI_MenuEditPaste(wxUpdateUIEvent& event);
     void OnUpdateUI_Menu_CheckSize(wxUpdateUIEvent& event);
     void OnUpdateUI_MenuEditDeleteLine(wxUpdateUIEvent& event);
+    void OnUpdateUI_MenuEditInsertTabChar(wxUpdateUIEvent& event);
+    void OnUpdateUI_MenuEditInsertDateTime(wxUpdateUIEvent& event);
+
     void OnUpdateUI_MenuEditCopyAsHexString(wxUpdateUIEvent& event);
     void OnUpdateUI_MenuIndent(wxUpdateUIEvent& event);
     void OnUpdateUI_MenuComment(wxUpdateUIEvent& event);
@@ -145,7 +148,6 @@ public:
     void OnUpdateUI_MenuToolsNewLineChar(wxUpdateUIEvent& event);
     void OnUpdateUI_MenuToolsInsertNewLineChar(wxUpdateUIEvent& event);
     void OnUpdateUI_MenuToolsConvertNL(wxUpdateUIEvent& event);
-    void OnUpdateUI_MenuToolsInsertTabChar(wxUpdateUIEvent& event);
     void OnUpdateUI_MenuToolsConvertEncoding(wxUpdateUIEvent& event);
 
     void OnUpdateUI_MenuWindow_CheckCount(wxUpdateUIEvent& event);
@@ -173,6 +175,8 @@ public:
     void OnEditCutLine(wxCommandEvent& event);
     void OnEditDeleteLine(wxCommandEvent& event);
     void OnEditSelectAll(wxCommandEvent& event);
+    void OnEditInsertTabChar(wxCommandEvent& event);
+    void OnEditInsertDateTime(wxCommandEvent& event);
     void OnEditCopyAsHexString(wxCommandEvent& event);
     void OnEditCopyAsHexStringWithSpace(wxCommandEvent& event);
     void OnEditIncIndent(wxCommandEvent& event);
@@ -225,7 +229,6 @@ public:
     void OnToolsInsertDOS(wxCommandEvent& event);
     void OnToolsInsertMAC(wxCommandEvent& event);
     void OnToolsInsertUNIX(wxCommandEvent& event);
-    void OnToolsInsertTabChar(wxCommandEvent& event);
     void OnToolsConvertEncoding(wxCommandEvent& event);
     void OnToolsSimp2TradChinese(wxCommandEvent& event);
     void OnToolsTrad2SimpChinese(wxCommandEvent& event);
@@ -305,6 +308,8 @@ enum { // menu id
     // edit
     menuCutLine,
     menuDeleteLine,
+    menuInsertTabChar,
+    menuInsertDateTime,
     menuAdvanced,
     menuCopyAsHexString,
     menuCopyAsHexStringWithSpace,
@@ -396,7 +401,6 @@ enum { // menu id
     menuInsertDOS,
     menuInsertMAC,
     menuInsertUNIX,
-    menuInsertTabChar,
     menuConvertEncoding,
     menuConvertChineseChar,
     menuSimp2TradChinese,

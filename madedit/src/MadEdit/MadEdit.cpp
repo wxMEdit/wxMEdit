@@ -7700,6 +7700,7 @@ void MadEdit::ProcessCommand(MadEditCommand command)
                     break;
 
                 case ecReturn:
+                case ecReturnNoIndent:
                     if(!IsReadOnly() && !m_SingleLineMode)
                     {
                         if(m_Selection && m_EditMode == emColumnMode)
@@ -7733,7 +7734,7 @@ void MadEdit::ProcessCommand(MadEditCommand command)
                                 break;
                             }
 
-                            if(m_AutoIndent)
+                            if(m_AutoIndent && command==ecReturn)
                             {
                                 bool prevline=false;
 
@@ -8318,8 +8319,18 @@ void MadEdit::ProcessCommand(MadEditCommand command)
                 case ecToggleInsertMode:
                     SetInsertMode(!m_InsertMode);
                     break;
-                }
 
+                case ecInsertDateTime:
+                    if(!IsReadOnly())
+                    {
+                        wxDateTime now = wxDateTime::Now();
+                        wxString text = now.FormatDate() + wxT(' ') + now.FormatTime();
+                        vector<ucs4_t> ucs;
+                        TranslateText(text.c_str(), text.Len(), &ucs, true);
+                        InsertString(&(*ucs.begin()), ucs.size(), false, true, false);
+                    }
+                    break;
+                }
 
             if(bSel)
             {

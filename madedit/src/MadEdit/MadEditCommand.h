@@ -64,7 +64,7 @@ enum //MadEditCommand
     ecScrollPageUp, ecScrollPageDown,
     ecScrollLeft, ecScrollRight,
 
-    ecReturn,
+    ecReturn, ecReturnNoIndent,
     ecTab,
     ecInsertTabChar, // useful when set InsertSpacesIsteadOfTab=true but want to insert a actual Tab char
     ecDelete,
@@ -87,8 +87,8 @@ enum //MadEditCommand
     ecComment, ecUncomment,
 
     ecToUpperCase, ecToLowerCase, ecInvertCase,
-
     ecToHalfWidth, ecToFullWidth,
+    ecInsertDateTime,
 
     ecMouseNotify // just a notification for MouseEvent
 };

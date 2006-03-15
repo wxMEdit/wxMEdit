@@ -70,6 +70,7 @@ void MadKeyBindings::InitCommandTextMap()
     INSERT_COMMANDTEXT(ecSelectAll);
 
     INSERT_COMMANDTEXT(ecReturn);
+    INSERT_COMMANDTEXT(ecReturnNoIndent);
     INSERT_COMMANDTEXT(ecTab);
     INSERT_COMMANDTEXT(ecInsertTabChar);
     INSERT_COMMANDTEXT(ecToggleWindow);
@@ -107,6 +108,8 @@ void MadKeyBindings::InitCommandTextMap()
 
     INSERT_COMMANDTEXT(ecToHalfWidth);
     INSERT_COMMANDTEXT(ecToFullWidth);
+
+    INSERT_COMMANDTEXT(ecInsertDateTime);
 }
 
 void MadKeyBindings::FreeCommandTextMap()
@@ -667,6 +670,10 @@ void MadKeyBindings::AddDefaultBindings(bool overwrite)
 
     Add(ShortCut(wxACCEL_NORMAL, WXK_RETURN),       ecReturn, overwrite);
     Add(ShortCut(wxACCEL_NORMAL, WXK_NUMPAD_ENTER), ecReturn, overwrite);
+
+    Add(ShortCut(wxACCEL_SHIFT, WXK_RETURN),       ecReturnNoIndent, overwrite);
+    Add(ShortCut(wxACCEL_SHIFT, WXK_NUMPAD_ENTER), ecReturnNoIndent, overwrite);
+
     Add(ShortCut(wxACCEL_NORMAL, WXK_TAB),          ecTab, overwrite);
     Add(ShortCut(wxACCEL_CTRL, WXK_TAB),            ecToggleWindow, overwrite);
     Add(ShortCut(wxACCEL_CTRL | wxACCEL_SHIFT, WXK_TAB),            ecToggleWindow, overwrite);
@@ -716,6 +723,8 @@ void MadKeyBindings::AddDefaultBindings(bool overwrite)
     Add(ShortCut(wxACCEL_CTRL, 'U'), ecToUpperCase, overwrite);
     Add(ShortCut(wxACCEL_CTRL | wxACCEL_SHIFT, 'U'), ecToLowerCase, overwrite);
     Add(ShortCut(wxACCEL_CTRL | wxACCEL_ALT  , 'U'), ecInvertCase, overwrite);
+
+    Add(ShortCut(wxACCEL_NORMAL, WXK_F7), ecInsertDateTime, overwrite);
 
     //ecToHalfWidth
     //ecToFullWidth
