@@ -109,8 +109,8 @@ BEGIN_EVENT_TABLE(MadOptionsDialog,wxDialog)
 	EVT_MENU(ID_MNU___S__TOTALPAGES_1114 , MadOptionsDialog::PrintMarkClick)
 	EVT_MENU(ID_MNU___D__DATE_1116 , MadOptionsDialog::PrintMarkClick)
 	EVT_MENU(ID_MNU___T__TIME_1117 , MadOptionsDialog::PrintMarkClick)
-	EVT_BUTTON(wxID_CANCEL,MadOptionsDialog::WxButtonCancelClick)
-	EVT_BUTTON(wxID_OK,MadOptionsDialog::WxButtonOKClick)
+	EVT_BUTTON(ID_WXBUTTONCANCEL,MadOptionsDialog::WxButtonCancelClick)
+	EVT_BUTTON(ID_WXBUTTONOK,MadOptionsDialog::WxButtonOKClick)
 	EVT_BUTTON(ID_WXBUTTONSHOWINMENU,MadOptionsDialog::WxButtonShowInMenuClick)
 	EVT_BUTTON(ID_WXBUTTONDELETEKEY,MadOptionsDialog::WxButtonDeleteKeyClick)
 	EVT_BUTTON(ID_WXBUTTONADDKEY,MadOptionsDialog::WxButtonAddKeyClick)
@@ -254,7 +254,7 @@ void MadOptionsDialog::CreateGUIControls(void)
 	WxBoxSizer3->Add(WxBoxSizer7,0,wxALIGN_LEFT | wxALL,5);
 
 	WxCheckBoxDoNotSaveSettings = new wxCheckBox(WxNoteBookPage1, ID_WXCHECKBOXDONOTSAVESETTINGS, _("Do Not Save Settings to MadEdit.cfg after MadEdit Finish (Once Only)"), wxPoint(5,5), wxSize(400,20), 0, wxDefaultValidator, _("WxCheckBoxDoNotSaveSettings"));
-	WxBoxSizer7->Add(WxCheckBoxDoNotSaveSettings,0,wxALIGN_CENTER_VERTICAL | wxALL,2);
+	WxBoxSizer7->Add(WxCheckBoxDoNotSaveSettings,0,wxALIGN_LEFT | wxALL,2);
 
 	WxNoteBookPage2 = new wxPanel(WxNotebook1, ID_WXNOTEBOOKPAGE2, wxPoint(4,24), wxSize(673,314));
 	WxNotebook1->AddPage(WxNoteBookPage2, _("Edit"));
@@ -508,10 +508,10 @@ void MadOptionsDialog::CreateGUIControls(void)
 	wxBoxSizer* WxBoxSizer2 = new wxBoxSizer(wxHORIZONTAL);
 	WxBoxSizer1->Add(WxBoxSizer2,0,wxALIGN_CENTER_HORIZONTAL | wxALL,5);
 
-	WxButtonOK = new wxButton(this, wxID_OK, _("&OK"), wxPoint(5,5), wxSize(85,30), 0, wxDefaultValidator, _("WxButtonOK"));
+	WxButtonOK = new wxButton(this, ID_WXBUTTONOK, _("&OK"), wxPoint(5,5), wxSize(85,30), 0, wxDefaultValidator, _("WxButtonOK"));
 	WxBoxSizer2->Add(WxButtonOK,0,wxALIGN_CENTER_VERTICAL | wxALL,5);
 
-	WxButtonCancel = new wxButton(this, wxID_CANCEL, _("&Cancel"), wxPoint(100,5), wxSize(90,30), 0, wxDefaultValidator, _("WxButtonCancel"));
+	WxButtonCancel = new wxButton(this, ID_WXBUTTONCANCEL, _("&Cancel"), wxPoint(100,5), wxSize(90,30), 0, wxDefaultValidator, _("WxButtonCancel"));
 	WxBoxSizer2->Add(WxButtonCancel,0,wxALIGN_CENTER_VERTICAL | wxALL,5);
 
 	WxPopupMenu1 = new wxMenu(_("")  );
