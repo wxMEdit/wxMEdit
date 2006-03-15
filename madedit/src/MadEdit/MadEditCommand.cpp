@@ -599,6 +599,7 @@ MadKeyBindings::MadKeyBindings()
         InitCommandTextMap();
 
     m_KeyBindings=new MadKeyBindingsMap();
+    m_VerifyFunc=NULL;
 }
 
 MadKeyBindings::~MadKeyBindings()
@@ -607,8 +608,10 @@ MadKeyBindings::~MadKeyBindings()
     delete m_KeyBindings;
 }
 
-void MadKeyBindings::AddDefaultBindings(bool overwrite)
+void MadKeyBindings::AddDefaultBindings(bool overwrite, VerifyFuncPtr func)
 {
+    VerifyFuncPtr oldfunc=m_VerifyFunc;
+    m_VerifyFunc=func;
 
     Add(ShortCut(wxACCEL_NORMAL, WXK_LEFT),     ecLeft, overwrite);
     Add(ShortCut(wxACCEL_NORMAL, WXK_RIGHT),    ecRight, overwrite);
@@ -729,6 +732,7 @@ void MadKeyBindings::AddDefaultBindings(bool overwrite)
     //ecToHalfWidth
     //ecToFullWidth
 
+    m_VerifyFunc=oldfunc;
 }
 
 void MadKeyBindings::Remove(MadEditCommand cmd)

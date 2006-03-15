@@ -142,6 +142,19 @@ void DeleteConfig()
     wxFileConfig::Set(NULL);
 }
 
+bool VerifyEditKey(const wxString &key, const wxString &cmd)
+{
+    wxConfigBase *config=wxConfigBase::Get(false);
+    wxString menu;
+    if(config->Read(wxString(wxT("/MenuKeys/"))+key, &menu)==false) 
+        return true;
+
+    if(cmd.Right(cmd.Len()-2) == menu.Right(menu.Len()-4))
+        return true;
+
+    return false;
+}
+
 bool MadEditApp::OnInit()
 {
     wxFileName filename(GetExecutablePath());
@@ -321,10 +334,12 @@ bool MadEditApp::OnInit()
     {
         cfg->SetPath(wxT("/EditKeys"));
         MadEdit::ms_KeyBindings.LoadFromConfig(cfg);
+
+        MadEdit::ms_KeyBindings.AddDefaultBindings(false, &VerifyEditKey);
     }
     else
     {
-        MadEdit::ms_KeyBindings.AddDefaultBindings(true);
+        MadEdit::ms_KeyBindings.AddDefaultBindings(true, NULL);
     }
 
 

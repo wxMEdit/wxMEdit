@@ -142,15 +142,17 @@ wxString ShortCutToString(MadEditShortCut shortcut);
 
 //---------------------------------------------------------------------------
 
-
 class wxConfigBase;
+
+typedef bool (*VerifyFuncPtr)(const wxString &key, const wxString &cmd);
 
 class MadKeyBindings
 {
 private:
-    MadKeyBindingsMap *m_KeyBindings;
     static MadCommandTextMap *ms_CommandTextMap;
     static MadTextCommandMap *ms_TextCommandMap;
+    MadKeyBindingsMap *m_KeyBindings;
+    VerifyFuncPtr m_VerifyFunc;
 
 public:
     static void InitCommandTextMap();
@@ -161,11 +163,25 @@ public:
     MadKeyBindings();
     ~MadKeyBindings();
 
-    void AddDefaultBindings(bool overwrite);
+    void AddDefaultBindings(bool overwrite, VerifyFuncPtr func);
     void Add(MadEditShortCut shortcut, MadEditCommand cmd, bool overwrite)
     {
-        if(overwrite || m_KeyBindings->find(shortcut)==m_KeyBindings->end())
+        if(overwrite)
+        {
             m_KeyBindings->insert(MadKeyBindingsMap::value_type(shortcut, cmd));
+        }
+        else if(m_KeyBindings->find(shortcut)==m_KeyBindings->end())
+        {
+            bool add=true;
+            if(m_VerifyFunc!=NULL)
+            {
+                add=m_VerifyFunc(ShortCutToString(shortcut), CommandToText(cmd));
+            }
+            if(add)
+            {
+                m_KeyBindings->insert(MadKeyBindingsMap::value_type(shortcut, cmd));
+            }
+        }
     }
     void Remove(MadEditCommand cmd); // remove all keys of cmd
 
