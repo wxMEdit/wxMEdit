@@ -816,8 +816,11 @@ void MadKeyBindings::LoadFromConfig(wxConfigBase *config)
     }
 }
 
-void MadKeyBindings::SaveToConfig(wxConfigBase *config)
+void MadKeyBindings::SaveToConfig(wxConfigBase *config, wxString path)
 {
+    size_t len=path.Len();
+    if(len==0 || path[len-1]!=wxT('/')) path+=wxT('/');
+
     MadKeyBindingsMap::iterator it=m_KeyBindings->begin();
 
     MadEditCommand cmd;
@@ -831,7 +834,7 @@ void MadKeyBindings::SaveToConfig(wxConfigBase *config)
         wxString text=CommandToText(cmd);
         if(!text.IsEmpty())
         {
-            config->Write(ShortCutToString(sc), text);
+            config->Write(path + ShortCutToString(sc), text);
         }
 
         ++it;

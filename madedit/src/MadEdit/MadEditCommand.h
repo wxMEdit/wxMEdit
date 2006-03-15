@@ -190,7 +190,7 @@ public:
 
     // must config->SetPath() before call those two
     void LoadFromConfig(wxConfigBase *config);
-    void SaveToConfig(wxConfigBase *config);
+    void SaveToConfig(wxConfigBase *config, wxString path);
 };
 
 #endif
