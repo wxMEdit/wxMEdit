@@ -8,7 +8,7 @@
 #ifdef __WXGTK__
 
 #include "MadEdit.h"
-#include <wx/gtk/private.h>
+//#include <wx/gtk/private.h> // wxGTK-2.6.3 above
 #include <gdk/gdk.h>
 #include <gdk/gdkx.h>
 #include <gdk/gdkprivate.h>
@@ -42,6 +42,8 @@
 #define DEBUG_MAIN_THREAD
 #endif // Debug
 
+extern void wxapp_install_idle_handler();
+extern bool g_isIdle;
 extern bool g_blockEventsOnDrag;
 
 //-----------------------------------------------------------------------------
