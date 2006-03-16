@@ -5117,9 +5117,12 @@ void MadEdit::InsertColumnString(const ucs4_t *ucs, size_t count, int linecount,
                         m_SelectionPos1.pos=insud->m_Pos+insud->m_Size;
                     }
                 }
+                if(bSelText && lines==1)
+                {
+                    selcaretpos=insud->m_Pos+insud->m_Size;
+                }
             }
-
-            if(bSelText && lines==1)
+            else if(bSelText && lines==1)
             {
                 int sw=GetUCharWidth(0x20);
                 int xpos1=m_SelLeftXPos, xpos2=m_SelRightXPos;
