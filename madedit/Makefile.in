@@ -310,6 +310,11 @@ noinst_HEADERS = description-pak \
 	README.txt \
 	autogen.sh \
 	chmod_644_all_files.sh \
+	debian/changelog \
+	debian/control \
+	debian/copyright \
+	debian/menu \
+	debian/rules \
 	src/MadEditApp.rc \
 	src/MadAboutDialog.wxform \
 	src/MadConvEncDialog.wxform \
@@ -1168,7 +1173,7 @@ distclean-tags:
 distdir: $(DISTFILES)
 	$(am__remove_distdir)
 	mkdir $(distdir)
-	$(mkdir_p) $(distdir)/devcpp $(distdir)/image2xpm $(distdir)/images $(distdir)/libunicows $(distdir)/makefiles $(distdir)/po $(distdir)/src $(distdir)/src/plugin_example $(distdir)/vs.net2003 $(distdir)/xpressive $(distdir)/xpressive/boost/xpressive $(distdir)/xpressive/boost/xpressive/detail $(distdir)/xpressive/boost/xpressive/detail/core $(distdir)/xpressive/boost/xpressive/detail/core/matcher $(distdir)/xpressive/boost/xpressive/detail/dynamic $(distdir)/xpressive/boost/xpressive/detail/static $(distdir)/xpressive/boost/xpressive/detail/static/productions $(distdir)/xpressive/boost/xpressive/detail/utility $(distdir)/xpressive/boost/xpressive/detail/utility/chset $(distdir)/xpressive/boost/xpressive/proto $(distdir)/xpressive/boost/xpressive/proto/compiler $(distdir)/xpressive/boost/xpressive/traits $(distdir)/xpressive/boost/xpressive/traits/detail
+	$(mkdir_p) $(distdir)/debian $(distdir)/devcpp $(distdir)/image2xpm $(distdir)/images $(distdir)/libunicows $(distdir)/makefiles $(distdir)/po $(distdir)/src $(distdir)/src/plugin_example $(distdir)/vs.net2003 $(distdir)/xpressive $(distdir)/xpressive/boost/xpressive $(distdir)/xpressive/boost/xpressive/detail $(distdir)/xpressive/boost/xpressive/detail/core $(distdir)/xpressive/boost/xpressive/detail/core/matcher $(distdir)/xpressive/boost/xpressive/detail/dynamic $(distdir)/xpressive/boost/xpressive/detail/static $(distdir)/xpressive/boost/xpressive/detail/static/productions $(distdir)/xpressive/boost/xpressive/detail/utility $(distdir)/xpressive/boost/xpressive/detail/utility/chset $(distdir)/xpressive/boost/xpressive/proto $(distdir)/xpressive/boost/xpressive/proto/compiler $(distdir)/xpressive/boost/xpressive/traits $(distdir)/xpressive/boost/xpressive/traits/detail
 	@srcdirstrip=`echo "$(srcdir)" | sed 's|.|.|g'`; \
 	topsrcdirstrip=`echo "$(top_srcdir)" | sed 's|.|.|g'`; \
 	list='$(DISTFILES)'; for file in $$list; do \

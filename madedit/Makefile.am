@@ -63,6 +63,11 @@ noinst_HEADERS =	description-pak \
 	README.txt \
 	autogen.sh \
 	chmod_644_all_files.sh \
+	debian/changelog \
+	debian/control \
+	debian/copyright \
+	debian/menu \
+	debian/rules \
 	src/MadEditApp.rc \
 	src/MadAboutDialog.wxform \
 	src/MadConvEncDialog.wxform \
