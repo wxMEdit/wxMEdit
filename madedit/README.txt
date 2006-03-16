@@ -1,5 +1,5 @@
 			=======================
-			  MadEdit v0.2.2 Beta
+			  MadEdit v0.2.3 Beta
 			=======================
 About:
 -----
@@ -32,9 +32,10 @@ B. MS Windows (__WXMSW__):
       3. Boost.Xpressive latest version
       4. libunicows: it's optional under WinNT/XP, but required under Win98
 
-P.S. If you use CVS version of Boost, Boost.Xpressive has been included in the CVS HEAD, 
-     or you must get 'xpressive.zip' at:
-     http://www.boost-consulting.com/vault/index.php?directory=Strings%20-%20Text%20Processing
+P.S.: If you use CVS version of Boost, Boost.Xpressive has been included in the CVS HEAD, 
+      or you must get 'xpressive.zip' at:
+      http://www.boost-consulting.com/vault/index.php?directory=Strings%20-%20Text%20Processing
+P.S.2: Since MadEdit v0.2.2, Xpressive is attached in MadEdit sources package.
 
 Syntax files, Locale files and Settings:
 ---------------------------------------
@@ -61,6 +62,16 @@ Syntax files, Locale files and Settings:
 
 ChangeLog:
 ----------
+v0.2.3:
+1.improved the loading speed for the files contain U+10000~U+10FFFF widechars.
+2.improved the repaint speed when the lines are very long(>1MB).
+3.added ToHalfWidth, ToFullWidth functions.
+4.added WordCount function.
+5.added InsertDataTime function.
+6.added ecReturnNoIndent(Shift-Enter) to insert NewLine char without indentation.
+7.now 'ESC' key can be used in custom keybindings.
+8.some minor changes.
+
 v0.2.2:
 1.fixed that menu icons will cause crash under Win98.
 2.fixed that input incorrect CJK chars under Win98.

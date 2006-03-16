@@ -2,7 +2,7 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.59)
-AC_INIT([madedit], [0.2.2], [madedit@gmail.com])
+AC_INIT([madedit], [0.2.3], [madedit@gmail.com])
 AC_CONFIG_SRCDIR([src/MadEditApp.cpp])
 AC_CONFIG_HEADER([config.h])
 AC_PREFIX_DEFAULT([/usr])
