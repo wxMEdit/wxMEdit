@@ -4,3 +4,5 @@ bin/sh		syntax_sh.syn
 bin/bash	syntax_sh.syn
 
 ?xml		syntax_xml.syn
+
+bin/make	syntax_conf.syn
