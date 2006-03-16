@@ -17,7 +17,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: madedit@gmail.com\n"
-"POT-Creation-Date: 2006-03-15 16:07+0800\n"
+"POT-Creation-Date: 2006-03-16 17:21+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -343,7 +343,7 @@ msgstr ""
 msgid "Top margin (mm):"
 msgstr ""
 
-#: src/MadEdit/MadEdit.cpp:10552
+#: src/MadEdit/MadEdit.cpp:10555
 #, c-format
 msgid ""
 "Do you want to continue?\n"
@@ -351,44 +351,44 @@ msgid ""
 "It may take long time and large memories to convert to Text/Column Mode."
 msgstr ""
 
-#: src/MadEdit/MadEdit.cpp:10552
+#: src/MadEdit/MadEdit.cpp:10555
 msgid "Hex Mode to Text/Column Mode"
 msgstr ""
 
-#: src/MadEdit/MadEdit.cpp:12917
+#: src/MadEdit/MadEdit.cpp:12920
 msgid "The input string is not a valid Hex-String:"
 msgstr ""
 
-#: src/MadEdit/MadEdit.cpp:13374 src/MadEdit/MadEdit.cpp:13443
+#: src/MadEdit/MadEdit.cpp:13377 src/MadEdit/MadEdit.cpp:13446
 #: src/MadEditFrame.cpp:1991
 msgid "The Parent Directory of this file does not exist:"
 msgstr ""
 
-#: src/MadEdit/MadEdit.cpp:13463
+#: src/MadEdit/MadEdit.cpp:13466
 msgid "Cannot save this file:"
 msgstr ""
 
-#: src/MadEdit/MadEdit.cpp:13490
+#: src/MadEdit/MadEdit.cpp:13493
 msgid "Do you want to save this file?"
 msgstr ""
 
-#: src/MadEdit/MadEdit.cpp:13501
+#: src/MadEdit/MadEdit.cpp:13504
 msgid "Save File As"
 msgstr ""
 
-#: src/MadEdit/MadEdit.cpp:13505 src/MadEditFrame.cpp:1559
+#: src/MadEdit/MadEdit.cpp:13508 src/MadEditFrame.cpp:1559
 msgid "Save File"
 msgstr ""
 
-#: src/MadEdit/MadEdit.cpp:13539
+#: src/MadEdit/MadEdit.cpp:13542
 msgid "Do you want to discard changes?"
 msgstr ""
 
-#: src/MadEdit/MadEdit.cpp:13573
+#: src/MadEdit/MadEdit.cpp:13576
 msgid "This file has been changed by another application."
 msgstr ""
 
-#: src/MadEdit/MadEdit.cpp:13574
+#: src/MadEdit/MadEdit.cpp:13577
 msgid "Do you want to reload it?"
 msgstr ""
 
@@ -2066,7 +2066,7 @@ msgstr ""
 msgid "Go To Position"
 msgstr ""
 
-#: src/MadEditFrame.cpp:3778
+#: src/MadEditFrame.cpp:3776
 msgid "Press OK to visit our HomePage."
 msgstr ""
 

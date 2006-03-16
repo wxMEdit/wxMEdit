@@ -17,7 +17,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MadEdit 0.1\n"
 "Report-Msgid-Bugs-To: madedit@gmail.com\n"
-"POT-Creation-Date: 2006-03-15 16:07+0800\n"
+"POT-Creation-Date: 2006-03-16 17:21+0800\n"
 "PO-Revision-Date: 2006-02-13 13:21+0800\n"
 "Last-Translator: madedit <madedit@gmail.com>\n"
 "Language-Team: MadEdit <madedit@gmail.com>\n"
@@ -346,7 +346,7 @@ msgstr "到："
 msgid "Top margin (mm):"
 msgstr "上邊界(mm)："
 
-#: src/MadEdit/MadEdit.cpp:10552
+#: src/MadEdit/MadEdit.cpp:10555
 #, c-format
 msgid ""
 "Do you want to continue?\n"
@@ -357,44 +357,44 @@ msgstr ""
 "這個檔案的長度是 %s 位元組，\n"
 "可能會花很多時間和記憶體在轉換到文字/區塊模式上。"
 
-#: src/MadEdit/MadEdit.cpp:10552
+#: src/MadEdit/MadEdit.cpp:10555
 msgid "Hex Mode to Text/Column Mode"
 msgstr "十六進位模式轉換到文字/區塊模式"
 
-#: src/MadEdit/MadEdit.cpp:12917
+#: src/MadEdit/MadEdit.cpp:12920
 msgid "The input string is not a valid Hex-String:"
 msgstr "這個不是正確的十六進位字串："
 
-#: src/MadEdit/MadEdit.cpp:13374 src/MadEdit/MadEdit.cpp:13443
+#: src/MadEdit/MadEdit.cpp:13377 src/MadEdit/MadEdit.cpp:13446
 #: src/MadEditFrame.cpp:1991
 msgid "The Parent Directory of this file does not exist:"
 msgstr "這個檔案所屬的目錄不存在:"
 
-#: src/MadEdit/MadEdit.cpp:13463
+#: src/MadEdit/MadEdit.cpp:13466
 msgid "Cannot save this file:"
 msgstr "無法儲存這個檔案:"
 
-#: src/MadEdit/MadEdit.cpp:13490
+#: src/MadEdit/MadEdit.cpp:13493
 msgid "Do you want to save this file?"
 msgstr "要儲存這個檔案嗎?"
 
-#: src/MadEdit/MadEdit.cpp:13501
+#: src/MadEdit/MadEdit.cpp:13504
 msgid "Save File As"
 msgstr "另存新檔"
 
-#: src/MadEdit/MadEdit.cpp:13505 src/MadEditFrame.cpp:1559
+#: src/MadEdit/MadEdit.cpp:13508 src/MadEditFrame.cpp:1559
 msgid "Save File"
 msgstr "儲存檔案"
 
-#: src/MadEdit/MadEdit.cpp:13539
+#: src/MadEdit/MadEdit.cpp:13542
 msgid "Do you want to discard changes?"
 msgstr "要放棄所做的修改嗎?"
 
-#: src/MadEdit/MadEdit.cpp:13573
+#: src/MadEdit/MadEdit.cpp:13576
 msgid "This file has been changed by another application."
 msgstr "這個檔案被其他程式修改過了。"
 
-#: src/MadEdit/MadEdit.cpp:13574
+#: src/MadEdit/MadEdit.cpp:13577
 msgid "Do you want to reload it?"
 msgstr "要重新載入嗎？"
 
@@ -2078,7 +2078,7 @@ msgstr "檔案位置: (可以輸入16進位數字: 0xNNN)"
 msgid "Go To Position"
 msgstr "跳到檔案位置"
 
-#: src/MadEditFrame.cpp:3778
+#: src/MadEditFrame.cpp:3776
 msgid "Press OK to visit our HomePage."
 msgstr "按「確定」可以參觀我們的網頁."
 
