@@ -29,9 +29,15 @@ LINKOBJ  = ./Release/MadEditFrame.obj ./Release/MadEditApp.obj \
         ./Release/wxFlatNotebook.obj ./Release/MadEditAdvanced.obj \
         ./Release/MadWordCountDialog.obj $(RES)
 
-LIBS =  -L"N:/wxWidgets/lib/gcc_lib" -L"../libunicows" -mwindows -lwxmsw27u_core -lwxbase27u -lunicows -lkernel32 -luser32 -lgdi32 -lcomdlg32 -lwinspool -lwinmm -lshell32 -lcomctl32 -lole32 -loleaut32 -luuid -lrpcrt4 -ladvapi32 -lwsock32 -lodbc32 -lopengl32  -s 
-INCS =  -I"N:/wxWidgets/include"  -I"N:/wxWidgets/lib/gcc_lib/mswu"  -I"N:/boost"  -I"../wxFlatNotebook/include" 
-CXXINCS =  -I"N:/wxWidgets/include"  -I"N:/wxWidgets/lib/gcc_lib/mswu"  -I"N:/boost"  -I"../wxFlatNotebook/include" 
+WX_DIR = N:/wxWidgets
+BOOST_DIR = N:/boost
+#XPRESSIVE_DIR = N:/boost
+XPRESSIVE_DIR = ../xpressive
+
+LIBS =  -L$(WX_DIR)/lib/gcc_lib -L"../libunicows" -mwindows -lwxmsw27u_core -lwxbase27u -lunicows -lkernel32 -luser32 -lgdi32 -lcomdlg32 -lwinspool -lwinmm -lshell32 -lcomctl32 -lole32 -loleaut32 -luuid -lrpcrt4 -ladvapi32 -lwsock32 -lodbc32 -lopengl32  -s 
+INCS =  -I$(WX_DIR)/include  -I$(WX_DIR)/lib/gcc_lib/mswu  -I$(BOOST_DIR)  -I$(XPRESSIVE_DIR)  -I"../wxFlatNotebook/include" 
+CXXINCS =  -I$(WX_DIR)/include  -I$(WX_DIR)/lib/gcc_lib/mswu  -I$(BOOST_DIR)  -I$(XPRESSIVE_DIR)  -I"../wxFlatNotebook/include" 
+
 BIN  = Release/MadEdit.exe
 CXXFLAGS = $(CXXINCS) -D_UNICODE -D__WXMSW__ -D__GNUWIN32__ -D__WIN95__ -DWIN32   -O2
 CFLAGS = $(INCS) -fno-rtti -fno-exceptions -fno-pcc-struct-return -fstrict-aliasing -Wall -fvtable-thunks -D__WXMSW__ -D__GNUWIN32__ -D__WIN95__   -O2
@@ -115,4 +121,4 @@ $(BIN): $(OBJ)
 	$(CPP) -c ../src/MadWordCountDialog.cpp -o ./Release/MadWordCountDialog.obj $(CXXFLAGS)
 
 ./Release/MadEdit_private.res: ../devcpp/MadEdit_private.rc 
-	$(WINDRES) -i ../devcpp/MadEdit_private.rc --input-format=rc -o ./Release/MadEdit_private.res -O coff  --include-dir N:/WXWIDG~1/include
+	$(WINDRES) -i ../devcpp/MadEdit_private.rc --input-format=rc -o ./Release/MadEdit_private.res -O coff  --include-dir $(WX_DIR)/include
