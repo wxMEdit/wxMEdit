@@ -727,6 +727,18 @@ inline bool IsDelimiter(ucs4_t uc) // include space char
     return ((uc<=0x20 && uc>=0) || uc==0x3000);
 }
 
+wxString PrefixString(int i)
+{
+    int count=1;
+    while(i>=10)
+    {
+        i/=10;
+        ++count;
+    }
+    if(count>=8) return wxEmptyString;
+    return wxString(wxT('_'), 8-count);
+}
+
 void MadEdit::WordCount(bool selection, int &wordCount, int &charCount, int &spaceCount,
                         int &halfWidthCount, int &fullWidthCount, int &lineCount,
                         wxArrayString *detail)
@@ -836,14 +848,14 @@ void MadEdit::WordCount(bool selection, int &wordCount, int &charCount, int &spa
         {
             if(counts[idx]>0)
             {
-                detail->Add(wxString::Format(wxT("%d\t U+%04X - U+%04X: %s"), 
-                    counts[idx], UnicodeBlocks[idx].begin, UnicodeBlocks[idx].end, wxGetTranslation(UnicodeBlocks[idx].description)));
+                detail->Add(wxString::Format(wxT("%s %d    U+%04X - U+%04X: %s"), PrefixString(counts[idx]).c_str(), counts[idx],
+                    UnicodeBlocks[idx].begin, UnicodeBlocks[idx].end, wxGetTranslation(UnicodeBlocks[idx].description)));
             }
         }
     }
     if(counts[UnicodeBlocksCount]>0)
     {
-        detail->Add(wxString::Format(wxT("%d\t ? - ? %s"), counts[idx], _("Invalid Unicode Characters")));
+        detail->Add(wxString::Format(wxT("%s %d    ? - ? %s"), PrefixString(counts[idx]).c_str(), counts[idx], _("Invalid Unicode Characters")));
     }
 }
 
