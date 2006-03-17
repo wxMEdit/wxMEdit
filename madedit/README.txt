@@ -1,5 +1,5 @@
 			=======================
-			  MadEdit v0.2.3 Beta
+			  MadEdit v0.2.4 Beta
 			=======================
 About:
 -----
@@ -62,6 +62,9 @@ Syntax files, Locale files and Settings:
 
 ChangeLog:
 ----------
+v0.2.4:
+
+
 v0.2.3:
 1.improved the loading speed for the files contain U+10000~U+10FFFF widechars.
 2.improved the repaint speed when the lines are very long(>1MB).
@@ -180,7 +183,7 @@ MadEdit is released under the GNU General Public License.
 
 Auther:
 ------
-madedit <madedit@gmail.com>
+Alston Chen <madedit@gmail.com>
 
 
 Links:
