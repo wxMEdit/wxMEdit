@@ -3561,6 +3561,9 @@ void MadEditFrame::OnToolsOptions(wxCommandEvent& event)
             // change the menukey
             tidit=MenuList.begin();
             tiditend=MenuList.end();
+#ifdef __WXMSW__
+            bool bHasMenuIcon = (wxGetOsVersion()!=wxWIN95); // fixed win98 will crash if menuitem has icon
+#endif
             while(tidit!=tiditend)
             {
                 TreeItemData *tid = *tidit;
@@ -3581,6 +3584,9 @@ void MadEditFrame::OnToolsOptions(wxCommandEvent& event)
                 // change the menu key
                 wxMenuItem *mit=WxMenuBar1->FindItem(cd->menu_id);
                 mit->SetText(mit->GetLabel()+ newkey);
+#ifdef __WXMSW__
+                if(bHasMenuIcon)
+#endif
                 if(cd->image_idx >= 0 && cd->kind==wxITEM_NORMAL)
                 {
                     mit->SetBitmap(m_ImageList->GetBitmap(cd->image_idx));
