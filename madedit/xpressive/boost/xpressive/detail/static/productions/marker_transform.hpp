@@ -11,10 +11,10 @@
 #include <boost/mpl/bool.hpp>
 #include <boost/xpressive/detail/detail_fwd.hpp>
 #include <boost/xpressive/proto/proto.hpp>
+#include <boost/xpressive/proto/compiler/transform.hpp>
 
 namespace boost { namespace xpressive { namespace detail
 {
-
     ///////////////////////////////////////////////////////////////////////////////
     // is_marker
     template<typename Op>
@@ -22,41 +22,22 @@ namespace boost { namespace xpressive { namespace detail
       : mpl::false_
     {};
 
+    // (s1= ...) is a marker
     template<typename Op>
-    struct is_marker
-    <
-        proto::binary_op
-        <
-            proto::unary_op<mark_begin_matcher, proto::noop_tag>
-          , Op
-          , proto::right_shift_tag
-        >
-    >
+    struct is_marker<proto::binary_op<mark_tag, Op, proto::assign_tag> >
       : mpl::true_
     {};
 
     ///////////////////////////////////////////////////////////////////////////////
-    // mark_number
-    template<typename Op, typename Visitor>
-    int mark_number
-    (
-        proto::binary_op
-        <
-            proto::unary_op<mark_begin_matcher, proto::noop_tag>
-          , Op
-          , proto::right_shift_tag
-        > const &op
-      , Visitor &
-    )
+    // is_marker_predicate
+    struct is_marker_predicate
     {
-        return proto::arg(proto::left(op)).mark_number_;
-    }
-
-    template<typename Arg, typename Visitor>
-    int mark_number(Arg const &, Visitor &visitor)
-    {
-        return visitor.get_hidden_mark();
-    }
+        template<typename Op, typename, typename>
+        struct apply
+          : is_marker<Op>
+        {
+        };
+    };
 
     ///////////////////////////////////////////////////////////////////////////////
     // marker_transform
@@ -81,10 +62,30 @@ namespace boost { namespace xpressive { namespace detail
 
         template<typename Op, typename State, typename Visitor>
         static typename apply<Op, State, Visitor>::type
-        call(Op const &op, State const &, Visitor &, int mark_nbr = -1)
+        call(Op const &op, State const &, Visitor &visitor, int mark_nbr = 0)
         {
+            // if we're inserting a mark, and we're not being told the mark number,
+            // we're inserting a hidden mark ... so grab the next hidden mark number.
+            if(0 == mark_nbr)
+            {
+                mark_nbr = visitor.get_hidden_mark();
+            }
+
             return proto::noop(mark_begin_matcher(mark_nbr))
                 >> (op >> proto::noop(mark_end_matcher(mark_nbr)));
+        }
+    };
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // marker_assign_transform
+    struct marker_assign_transform
+      : proto::compose_transforms<proto::right_transform, marker_transform>
+    {
+        template<typename Op, typename State, typename Visitor>
+        static typename apply<Op, State, Visitor>::type
+        call(Op const &op, State const &state, Visitor &visitor)
+        {
+            return marker_transform::call(proto::right(op), state, visitor, proto::arg(proto::left(op)).mark_number_);
         }
     };
 

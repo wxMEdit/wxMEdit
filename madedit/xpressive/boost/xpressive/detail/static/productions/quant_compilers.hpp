@@ -9,83 +9,57 @@
 #define BOOST_XPRESSIVE_DETAIL_STATIC_PRODUCTIONS_QUANT_COMPILERS_HPP_EAN_10_04_2005
 
 #include <limits.h>
-#include <boost/mpl/bool.hpp>
-#include <boost/mpl/assert.hpp>
 #include <boost/xpressive/proto/proto.hpp>
 #include <boost/xpressive/proto/compiler/branch.hpp>
 #include <boost/xpressive/proto/compiler/transform.hpp>
 #include <boost/xpressive/proto/compiler/conditional.hpp>
 #include <boost/xpressive/detail/static/productions/quant_traits.hpp>
 #include <boost/xpressive/detail/static/productions/quant_transforms.hpp>
-#include <boost/xpressive/detail/static/productions/independent_compiler.hpp>
+#include <boost/xpressive/detail/static/productions/marker_transform.hpp>
 #include <boost/xpressive/detail/static/productions/domain_tags.hpp>
 
 namespace boost { namespace xpressive { namespace detail
 {
 
-    template<bool Greedy = true, uint_t Min = 1, uint_t Max = UINT_MAX-1>
-    struct plus_compiler
-      : proto::conditional_compiler
-        <
-            use_simple_repeat_predicate
-          , proto::branch_compiler<simple_repeat_branch<Greedy, Min, Max>, ind_tag>
-          , proto::transform_compiler<plus_transform<Greedy, Min, Max>, seq_tag>
-        >
-    {
-    };
-
-    template<bool Greedy = true, uint_t Max = UINT_MAX-1>
-    struct star_compiler
-      : proto::conditional_compiler
-        <
-            use_simple_repeat_predicate
-          , proto::branch_compiler<simple_repeat_branch<Greedy, 0, Max>, ind_tag>
-          , proto::transform_compiler<star_transform<Greedy, Max>, seq_tag>
-        >
-    {
-    };
-
-    template<bool Greedy = true>
-    struct optional_compiler
-      : proto::transform_compiler<optional_transform<Greedy>, seq_tag>
-    {
-    };
+    typedef proto::unary_op<epsilon_matcher, proto::noop_tag> nil_op;
 
     ///////////////////////////////////////////////////////////////////////////////
     // generic_quant_compiler
     template<bool Greedy, uint_t Min, uint_t Max>
     struct generic_quant_compiler
-      : plus_compiler<Greedy, Min, Max>
+      : proto::conditional_compiler
+        <
+            use_simple_repeat_predicate
+          , proto::branch_compiler<simple_repeat_branch<Greedy, Min, Max>, ind_tag>
+          , proto::transform_compiler
+            <
+                proto::compose_transforms
+                <
+                    proto::arg_transform
+                  , repeater_if_transform<Greedy, Min, Max>
+                >
+              , seq_tag
+            >
+        >
     {
     };
 
-    template<bool Greedy, uint_t Max>
-    struct generic_quant_compiler<Greedy, 0, Max>
-      : star_compiler<Greedy, Max>
-    {
-    };
-
-    template<bool Greedy>
-    struct generic_quant_compiler<Greedy, 0, 1>
-      : optional_compiler<Greedy>
-    {
-    };
-
-    template<bool Greedy>
-    struct generic_quant_compiler<Greedy, 1, 1>
-      : proto::transform_compiler<proto::arg_transform, seq_tag>
-    {
-    };
-
+    // degenerate case, foo{0,0} becomes nil
     template<bool Greedy>
     struct generic_quant_compiler<Greedy, 0, 0>
-      : proto::transform_compiler<epsilon_transform, seq_tag>
+      : proto::transform_compiler<proto::always_transform<nil_op>, seq_tag>
+    {
+    };
+
+    // degenerate case, foo{1,1} becomes foo
+    template<bool Greedy>
+    struct generic_quant_compiler<Greedy, 1, 1>
+      : proto::transform_compiler<proto::identity_transform, seq_tag>
     {
     };
 
     ///////////////////////////////////////////////////////////////////////////////
     // non_greedy_compiler
-    //
     struct non_greedy_compiler
     {
         template<typename Op, typename State, typename Visitor>
@@ -130,21 +104,21 @@ namespace boost { namespace proto
     // production for one or more quant
     template<>
     struct compiler<unary_plus_tag, xpressive::detail::seq_tag, void>
-      : xpressive::detail::plus_compiler<>
+      : xpressive::detail::generic_quant_compiler<true, 1, UINT_MAX-1>
     {
     };
 
     // production for zero or more quant
     template<>
     struct compiler<unary_star_tag, xpressive::detail::seq_tag, void>
-      : xpressive::detail::star_compiler<>
+      : xpressive::detail::generic_quant_compiler<true, 0, UINT_MAX-1>
     {
     };
 
     // production for optional
     template<>
     struct compiler<logical_not_tag, xpressive::detail::seq_tag, void>
-      : xpressive::detail::optional_compiler<>
+      : xpressive::detail::generic_quant_compiler<true, 0, 1>
     {
     };
 
@@ -163,6 +137,5 @@ namespace boost { namespace proto
     };
 
 }}
-
 
 #endif

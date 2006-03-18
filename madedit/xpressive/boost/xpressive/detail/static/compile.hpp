@@ -59,8 +59,9 @@ namespace boost { namespace xpressive { namespace detail
     {
         // use default traits
         typedef typename iterator_value<BidiIter>::type char_type;
-        typedef regex_traits<char_type> traits_type;
-        static_compile_impl2(xpr, impl, traits_type());
+        typedef typename default_regex_traits<char_type>::type traits_type;
+        traits_type traits;
+        static_compile_impl2(xpr, impl, traits);
     }
 
     ///////////////////////////////////////////////////////////////////////////////

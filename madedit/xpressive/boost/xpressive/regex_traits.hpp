@@ -18,9 +18,9 @@
 #include <boost/xpressive/detail/detail_fwd.hpp>
 
 #ifdef BOOST_XPRESSIVE_USE_C_TRAITS
-# include "./traits/c_regex_traits.hpp"
+# include <boost/xpressive/traits/c_regex_traits.hpp>
 #else
-# include "./traits/cpp_regex_traits.hpp"
+# include <boost/xpressive/traits/cpp_regex_traits.hpp>
 #endif
 
 namespace boost { namespace xpressive

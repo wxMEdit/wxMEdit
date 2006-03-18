@@ -83,6 +83,24 @@ namespace boost { namespace proto
     };
 
     ///////////////////////////////////////////////////////////////////////////////
+    // identity_transform
+    //   pass through without doing a transform
+    struct identity_transform
+    {
+        template<typename Op, typename, typename>
+        struct apply
+        {
+            typedef Op type;
+        };
+
+        template<typename Op, typename State, typename Visitor>
+        static Op const &call(Op const &op, State const &, Visitor &)
+        {
+            return op;
+        }
+    };
+
+    ///////////////////////////////////////////////////////////////////////////////
     // arg_transform
     struct arg_transform
     {
@@ -178,6 +196,55 @@ namespace boost { namespace proto
         call(Op const &op, State const &state, Visitor &visitor)
         {
             return Second::call(First::call(op, state, visitor), state, visitor);
+        }
+    };
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // conditional_transform
+    //   Conditionally execute a transform
+    template<typename Predicate, typename IfTransform, typename ElseTransform>
+    struct conditional_transform
+    {
+        template<typename Op, typename State, typename Visitor>
+        struct apply
+        {
+            typedef typename boost::mpl::if_
+            <
+                typename Predicate::BOOST_NESTED_TEMPLATE apply<Op, State, Visitor>::type
+              , IfTransform
+              , ElseTransform
+            >::type transform_type;
+
+            typedef typename transform_type::BOOST_NESTED_TEMPLATE apply
+            <
+                Op
+              , State
+              , Visitor
+            >::type type;
+        };
+
+        template<typename Op, typename State, typename Visitor>
+        static typename apply<Op, State, Visitor>::type
+        call(Op const &op, State const &state, Visitor &visitor)
+        {
+            return apply<Op, State, Visitor>::transform_type::call(op, state, visitor);
+        }
+    };
+
+    template<typename Always>
+    struct always_transform
+    {
+        template<typename, typename, typename>
+        struct apply
+        {
+            typedef Always type;
+        };
+
+        template<typename Op, typename State, typename Visitor>
+        static Always
+        call(Op const &, State const &, Visitor &)
+        {
+            return Always();
         }
     };
 

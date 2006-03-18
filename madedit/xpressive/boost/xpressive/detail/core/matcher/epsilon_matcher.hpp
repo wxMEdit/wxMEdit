@@ -37,7 +37,7 @@ namespace boost { namespace xpressive { namespace detail
     // epsilon_mark_matcher
     //
     struct epsilon_mark_matcher
-      : quant_style_assertion
+      : quant_style<quant_none, mpl::size_t<0>, mpl::false_>
     {
         int mark_number_; // signed because it could be negative
 

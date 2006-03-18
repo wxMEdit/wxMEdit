@@ -102,12 +102,12 @@ namespace boost { namespace proto
     BOOST_PP_REPEAT_FROM_TO(1, BOOST_PP_INC(BOOST_PROTO_MAX_ARITY), BOOST_PROTO_FUN_OP, _)
 
 #define BOOST_PROTO_FUN_OP(z, n, _)                                                             \
-    template<BOOST_PP_ENUM_PARAMS(n, typename A)>                                               \
-    nary_op<Op BOOST_PP_ENUM_TRAILING_PARAMS(n, A)>                                             \
-    operator ()(BOOST_PP_ENUM_BINARY_PARAMS(n, A, const &a)) const                              \
+    template<BOOST_PP_ENUM_PARAMS_Z(z, n, typename A)>                                          \
+    nary_op<Op BOOST_PP_ENUM_TRAILING_PARAMS_Z(z, n, A)>                                        \
+    operator ()(BOOST_PP_ENUM_BINARY_PARAMS_Z(z, n, A, const &a)) const                         \
     {                                                                                           \
-        return nary_op<Op BOOST_PP_ENUM_TRAILING_PARAMS(n, A)>                                  \
-            (this->cast() BOOST_PP_ENUM_TRAILING_PARAMS(n, a));                                 \
+        return nary_op<Op BOOST_PP_ENUM_TRAILING_PARAMS_Z(z, n, A)>                             \
+            (this->cast() BOOST_PP_ENUM_TRAILING_PARAMS_Z(z, n, a));                            \
     }
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -203,9 +203,9 @@ namespace boost { namespace proto
     #define BOOST_PROTO_NARY_OP_CTOR(z, n, _)                                                   \
         nary_op(                                                                                \
             typename call_traits<Fun>::param_type fun                                           \
-            BOOST_PP_ENUM_TRAILING_BINARY_PARAMS(n, typename call_traits<A, >::param_type a))   \
+            BOOST_PP_ENUM_TRAILING_BINARY_PARAMS_Z(z, n, typename call_traits<A, >::param_type a))\
           : functor(fun)                                                                        \
-          , args(BOOST_PP_ENUM_PARAMS(n, a))                                                    \
+          , args(BOOST_PP_ENUM_PARAMS_Z(z, n, a))                                               \
         {}
 
         BOOST_PP_REPEAT(BOOST_PP_INC(BOOST_PROTO_MAX_ARITY), BOOST_PROTO_NARY_OP_CTOR, _)

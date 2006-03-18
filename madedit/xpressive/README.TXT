@@ -1,5 +1,5 @@
 
-xpressive 0.9.8g : Advanced Regular Expression Library
+xpressive 1.0.0 : Advanced Regular Expression Library
 ===================================================
 by Eric Niebler
 ---------------
@@ -8,7 +8,7 @@ by Eric Niebler
 Copyright
 =========
 
-Copyright 2004 Eric Niebler. Distributed under the Boost
+Copyright 2006 Eric Niebler. Distributed under the Boost
 Software License, Version 1.0. (See accompanying file
 LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
 
@@ -47,7 +47,7 @@ Contact
 
 Any questions about xpressive should be sent to eric@boost-consulting.com
 
-Last Modified: February 17, 2006
+Last Modified: March 16, 2006
 
 --
 Eric Niebler
