@@ -1059,8 +1059,6 @@ void MadSyntax::InitNextWord2(MadLineIterator &lit, size_t row)
 
     if(m_CheckState)
     {
-        ++nw_MaxLength;
-
         MadLineState &state = lit->m_State;
         nw_State.blkcmtid = state.CommentId;
         nw_ContainCommentOff = (state.CommentOff!=0);
@@ -1259,7 +1257,7 @@ int MadSyntax::NextWord(int &wordwidth)
 
         nw_RestCount += nw_FirstIndex;
 
-        for(;;)
+        do
         {
             if(nw_EndOfLine == false)
             {
@@ -1274,11 +1272,6 @@ int MadSyntax::NextWord(int &wordwidth)
                 {
                     nw_ucqueue.pop_back();
                     --ucsize;
-                }
-
-                if(ucsize>=nw_MaxLength)
-                {
-                    break;
                 }
             }
 
@@ -1322,22 +1315,6 @@ int MadSyntax::NextWord(int &wordwidth)
                         // check String Off
                         if(nw_State.stringid != 0)
                         {
-                            //if(firstuc == nw_EscapeChar)
-                            //{
-                                //(nw_MadLines->*(nw_MadLines->NextUChar))(nw_ucqueue);
-                                //idx = (int)nw_FirstIndex + 1;
-                                //if(nw_ucqueue.size() > (size_t) idx)
-                                //{
-                                    //ucs4_t c = nw_ucqueue[idx].first;
-                                    //if(c == nw_EscapeChar || c == nw_StringChar)
-                                    //{
-                                        //++nw_FirstIndex;
-                                        //++nw_RestCount;
-                                    //}
-                                //}
-                                //goto _NEXTUCHAR_;
-                            //}
-
                             if(firstuc == nw_StringChar)
                             {
                                 nw_NextState.stringid = 0;
@@ -1510,6 +1487,7 @@ int MadSyntax::NextWord(int &wordwidth)
             ++nw_RestCount;
             nw_BeginOfLine=false;
         }
+        while(nw_RestCount < nw_MaxLength);
     }
 
     wxASSERT(nw_RestCount != 0);
@@ -1690,85 +1668,85 @@ int MadSyntax::NextWord(int &wordwidth)
             vector < MadSyntaxKeyword >::iterator kend = m_CustomKeyword.end();
             bool bIsKeyword = false;
 
-            if(m_CaseSensitive)
+            if(nw_MaxKeywordLen!=0)
             {
-                while(kit != kend)
+                if(m_CaseSensitive)
                 {
-                    if(IsInRange(nw_State.rangeid, kit->m_InRange))
-                    {
-                        if(idx<=(int)nw_MaxKeywordLen)
-                        {
-                            MadKeywordSet::iterator it = kit->m_Keywords.end();
 #ifdef __WXMSW__
-                            for(int i=0;i<idx;i++)
-                            {
-                                if(nw_Word[i]<0x10000)
-                                {
-                                    nw_WCWord[i]=nw_Word[i];
-                                }
-                                else
-                                {
-                                    nw_WCWord[i]=0xFFFF;    //to surrogates????
-                                }
-                            }
-                            nw_WCWord[idx]=0;
-                            it = kit->m_Keywords.find(nw_WCWord);
-#else
-                            it = kit->m_Keywords.find(nw_Word);
-#endif
-                            if(it != kit->m_Keywords.end())
-                            {
-                                bIsKeyword = true;
-                                break;
-                            }
+                    for(int i=0;i<idx;i++)
+                    {
+                        if(nw_Word[i]<0x10000)
+                        {
+                            nw_WCWord[i]=nw_Word[i];
                         }
-
+                        else
+                        {
+                            nw_WCWord[i]=0xFFFF;    //to surrogates????
+                        }
                     }
-                    ++kit;
+                    nw_WCWord[idx]=0;
+                    wxString tmp(nw_WCWord);
+#else
+                    wxString tmp(nw_Word);
+#endif
+                    while(kit != kend)
+                    {
+                        if(IsInRange(nw_State.rangeid, kit->m_InRange))
+                        {
+                            if(idx<=(int)nw_MaxKeywordLen)
+                            {
+                                MadKeywordSet::iterator it = kit->m_Keywords.find(tmp);
+                                if(it != kit->m_Keywords.end())
+                                {
+                                    bIsKeyword = true;
+                                    break;
+                                }
+                            }
+
+                        }
+                        ++kit;
+                    }
                 }
-            }
-            else
-            {
-                while(kit != kend)
+                else
                 {
-                    if(IsInRange(nw_State.rangeid, kit->m_InRange))
+    #ifdef __WXMSW__
+                    for(int i=0;i<idx;i++)
                     {
-                        if(idx<=(int)nw_MaxKeywordLen)
+                        if(nw_Word[i]<0x10000)
                         {
-                            MadKeywordSet::iterator it = kit->m_Keywords.end();
-#ifdef __WXMSW__
-                            for(int i=0;i<idx;i++)
-                            {
-                                if(nw_Word[i]<0x10000)
-                                {
-                                    if(nw_Word[i]<=wxT('Z') && nw_Word[i]>=wxT('A'))
-                                        nw_WCWord[i]=nw_Word[i]|0x20;
-                                    else
-                                        nw_WCWord[i]=nw_Word[i];
-                                }
-                                else
-                                {
-                                    nw_WCWord[i]=0xFFFF;    //to surrogates????
-                                }
-                            }
-                            nw_WCWord[idx]=0;
-                            wxString tmp(nw_WCWord);
-#else
-                            wxString tmp(nw_Word);
-                            tmp.MakeLower();
-#endif
-                            it = kit->m_Keywords.find(tmp);
-
-
-                            if(it != kit->m_Keywords.end())
-                            {
-                                bIsKeyword = true;
-                                break;
-                            }
+                            if(nw_Word[i]<=wxT('Z') && nw_Word[i]>=wxT('A'))
+                                nw_WCWord[i]=nw_Word[i]|0x20;
+                            else
+                                nw_WCWord[i]=nw_Word[i];
                         }
-
+                        else
+                        {
+                            nw_WCWord[i]=0xFFFF;    //to surrogates????
+                        }
                     }
-                    ++kit;
+                    nw_WCWord[idx]=0;
+                    wxString tmp(nw_WCWord);
+    #else
+                    wxString tmp(nw_Word);
+                    tmp.MakeLower();
+    #endif
+                    while(kit != kend)
+                    {
+                        if(IsInRange(nw_State.rangeid, kit->m_InRange))
+                        {
+                            if(idx<=(int)nw_MaxKeywordLen)
+                            {
+                                MadKeywordSet::iterator it = kit->m_Keywords.find(tmp);
+                                if(it != kit->m_Keywords.end())
+                                {
+                                    bIsKeyword = true;
+                                    break;
+                                }
+                            }
+
+                        }
+                        ++kit;
+                    }
                 }
             }
 
@@ -1816,7 +1794,7 @@ int MadSyntax::NextWord(int &wordwidth)
             nw_Word[idx] = 0;
 
         }
-        else                                                // for Keywords
+        else // for Keywords
         {
             // get full word
             do
@@ -1840,83 +1818,84 @@ int MadSyntax::NextWord(int &wordwidth)
             vector < MadSyntaxKeyword >::iterator kend = m_CustomKeyword.end();
             bool bIsKeyword = false;
 
-            if(m_CaseSensitive)
+            if(nw_MaxKeywordLen > 0)
             {
-                while(kit != kend)
+                if(m_CaseSensitive)
                 {
-                    if(IsInRange(nw_State.rangeid, kit->m_InRange))
-                    {
-                        if(idx<=(int)nw_MaxKeywordLen)
-                        {
-                            MadKeywordSet::iterator it = kit->m_Keywords.end();
 #ifdef __WXMSW__
-                            for(int i=0;i<idx;i++)
-                            {
-                                if(nw_Word[i]<0x10000)
-                                {
-                                    nw_WCWord[i]=nw_Word[i];
-                                }
-                                else
-                                {
-                                    nw_WCWord[i]=0xFFFF;    //to surrogates????
-                                }
-                            }
-                            nw_WCWord[idx]=0;
-                            it = kit->m_Keywords.find(nw_WCWord);
-#else
-                            it = kit->m_Keywords.find(nw_Word);
-#endif
-                            if(it != kit->m_Keywords.end())
-                            {
-                                bIsKeyword = true;
-                                break;
-                            }
+                    for(int i=0;i<idx;i++)
+                    {
+                        if(nw_Word[i]<0x10000)
+                        {
+                            nw_WCWord[i]=nw_Word[i];
                         }
-
+                        else
+                        {
+                            nw_WCWord[i]=0xFFFF;    //to surrogates????
+                        }
                     }
-                    ++kit;
+                    nw_WCWord[idx]=0;
+                    wxString tmp(nw_WCWord);
+#else
+                    wxString tmp(nw_Word);
+#endif
+                    while(kit != kend)
+                    {
+                        if(IsInRange(nw_State.rangeid, kit->m_InRange))
+                        {
+                            if(idx<=(int)nw_MaxKeywordLen)
+                            {
+                                MadKeywordSet::iterator it = kit->m_Keywords.find(tmp);
+                                if(it != kit->m_Keywords.end())
+                                {
+                                    bIsKeyword = true;
+                                    break;
+                                }
+                            }
+
+                        }
+                        ++kit;
+                    }
                 }
-            }
-            else
-            {
-                while(kit != kend)
+                else
                 {
-                    if(IsInRange(nw_State.rangeid, kit->m_InRange))
-                    {
-                        if(idx<=(int)nw_MaxKeywordLen)
-                        {
-                            MadKeywordSet::iterator it = kit->m_Keywords.end();
 #ifdef __WXMSW__
-                            for(int i=0;i<idx;i++)
-                            {
-                                if(nw_Word[i]<0x10000)
-                                {
-                                    if(nw_Word[i]<=wxT('Z') && nw_Word[i]>=wxT('A'))
-                                        nw_WCWord[i]=nw_Word[i]|0x20;
-                                    else
-                                        nw_WCWord[i]=nw_Word[i];
-                                }
-                                else
-                                {
-                                    nw_WCWord[i]=0xFFFF;    //to surrogates????
-                                }
-                            }
-                            nw_WCWord[idx]=0;
-                            wxString tmp(nw_WCWord);
-#else
-                            wxString tmp(nw_Word);
-                            tmp.MakeLower();
-#endif
-                            it = kit->m_Keywords.find(tmp);
-
-                            if(it != kit->m_Keywords.end())
-                            {
-                                bIsKeyword = true;
-                                break;
-                            }
+                    for(int i=0;i<idx;i++)
+                    {
+                        if(nw_Word[i]<0x10000)
+                        {
+                            if(nw_Word[i]<=wxT('Z') && nw_Word[i]>=wxT('A'))
+                                nw_WCWord[i]=nw_Word[i]|0x20;
+                            else
+                                nw_WCWord[i]=nw_Word[i];
+                        }
+                        else
+                        {
+                            nw_WCWord[i]=0xFFFF;    //to surrogates????
                         }
                     }
-                    ++kit;
+                    nw_WCWord[idx]=0;
+                    wxString tmp(nw_WCWord);
+#else
+                    wxString tmp(nw_Word);
+                    tmp.MakeLower();
+#endif
+                    while(kit != kend)
+                    {
+                        if(IsInRange(nw_State.rangeid, kit->m_InRange))
+                        {
+                            if(idx<=(int)nw_MaxKeywordLen)
+                            {
+                                MadKeywordSet::iterator it = kit->m_Keywords.find(tmp);
+                                if(it != kit->m_Keywords.end())
+                                {
+                                    bIsKeyword = true;
+                                    break;
+                                }
+                            }
+                        }
+                        ++kit;
+                    }
                 }
             }
 
@@ -1957,7 +1936,6 @@ int MadSyntax::NextWord(int &wordwidth)
     //if(nw_RowIndexIter->m_Width < nw_LineWidth)
     //    nw_LineWidth += 0;
 
-
     wordwidth = nw_LineWidth - old_line_width;
 
     if(nw_RestCount == 0)
@@ -1983,10 +1961,6 @@ int MadSyntax::NextWord(int &wordwidth)
             MadRowIndexIterator nextit=nw_RowIndexIter;
             ++nextit;
             nw_MaxLength = nextit->m_Start - nw_RowIndexIter->m_Start;
-            if(m_CheckState)
-            {
-                ++nw_MaxLength;
-            }
         }
     }
 
