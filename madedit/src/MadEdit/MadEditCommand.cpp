@@ -699,6 +699,7 @@ void MadKeyBindings::AddDefaultBindings(bool overwrite, VerifyFuncPtr func)
     Add(ShortCut(wxACCEL_CTRL, 'X'),            ecCut, overwrite);
     Add(ShortCut(wxACCEL_SHIFT, WXK_DELETE),    ecCut, overwrite);
     Add(ShortCut(wxACCEL_CTRL, 'C'),            ecCopy, overwrite);
+    Add(ShortCut(wxACCEL_CTRL, WXK_INSERT),     ecCopy, overwrite);
     Add(ShortCut(wxACCEL_CTRL, 'V'),            ecPaste, overwrite);
     Add(ShortCut(wxACCEL_SHIFT, WXK_INSERT),    ecPaste, overwrite);
 
