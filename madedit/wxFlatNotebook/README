@@ -1,0 +1,111 @@
+wxFlatNotebook - This class represents a flat notebook control for the 
+wxWidgets C++ GUI frame work, which manages multiple windows with associated tabs using different styles
+
+============
+BUILD INFO:
+============
+
+To build using MSVC 7.1 - Simply open the soltuion file wxFlatNotebook.sln - and build 
+
+To build using g++ compiler on Linux,
+
+# cd contrib/build/wxFlatNotebook
+# make clean
+# make 
+
+This will create both the library and the wxFlatNotebookTest executable
+
+To build in debug mode:
+
+# cd contrib/build/wxFlatNotebook
+# make clean
+# make type=debug 
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+VERSIONS:
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+===========================================
+Version 0.9
+===========================================
+
+Release date: 05/01/2006
+
+
+===========================================
+Version 1.0 First stable version, please report any bugs to Eran Ifrah at:
+===========================================
+eranif@bezeqint.net
+
+or the wxForum at the 'the Code Dump' Forum
+
+Enjoy,
+Eran
+
+===========================================
+Version 1.1, Updated at 1/11/2006 9:40PM:
+===========================================
+
+This release contains minor bug fixes, plus introducing the following new features:
+
+- Darg and Drop of tabs is now enabled between different Notebooks
+- User can now disable a tab - a disabled tab will block the following operations on it:
+	+ No Right click menu
+	+ The window itself is disabled (Not only the tab)
+	+ User can not select this tab
+	+ User can not drag this tab
+	+ User can not use navigation keys (Ctrl+Tabs / Ctrl+Shift+Tab) to reach this tab
+	However, user can still close this tab using the 'X' button.
+
+Thanks to all contributors (espcially T-Rex)
+
+Eran
+
+
+======================================================
+Version 1.2 Updated at: 1/25/2006 11:11PM
+======================================================
+
+Fixed following bugs / features were added:
+
++ Tested on Linux (Fedora Core 4) - makefile is now provided !
++ Fixed bug that causes focus lost when using tab+ctrl
++ Added a style to disable the drag and drop 
++ Flickering of buttons was reduced significally
++ Buttons (Left, Right, X) now has nice effects when pressed, hover, clicked
++ Buttons area is now used better - when hiding buttons, more place is left for drawing tabs
++ Notebook style now uses wxWindowBase flag rather then keeping its own member, this allows applying regular style (e.g. wxSIMPLE_BORDER) to the notebook
++ wxFNB_TABS_BORDER_SIMPLE was added and now replacing the wxFNB_BORDER - this flag draw a gentle border around the page container
++ When no tabs in the notebook, the background colour is now set to wxSYS_COLOUR_APPWORKSPACE - this gives more MDI look and feel on Windows
++ Fixed tabs drawing glitches - more space between the images and the text and the tab borders
++ Code clean up - especially the OnPaint() function
+
+======================================================
+Version 1.3 Updated at: 3/1/2006 11:15PM
+======================================================
+
+Fixed following bugs / features were added:
+
+Features:
+--------
+
++ Changed the buttons ( <>x buttons ) coloring to be more XP look 
++ An option to remove the border around the tab area
++ Set/Get colors of the following:
+  - Active tab text
+  - Non-Active text
+  - Tab area colors
+  - Active tab color
++ New option introduced to add 'X' button on active tab
++ New event is now fired after page is being closed wxEVT_COMMAND_FLATNOTEBOOK_PAGE_CLOSED - 
+  this allow the application to preform some cleanup after closure of page
++ An option to disable a tab - a tab can now be disabled, which means it will not receive any event, user can not select 
+  it nor navigate to it (using Ctrl+Tab/Tab)
+  
+  
+Bugs:
+----
++ Fixed minor drawing issues
++ Fixed bug that when closing the a tab using the mouse middle button, the page was set to active and only then closed.
++ Fixed bug that the old selection value in the event when closing a page was incorrect
