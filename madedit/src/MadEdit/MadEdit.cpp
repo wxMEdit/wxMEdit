@@ -9174,7 +9174,7 @@ void MadEdit::OnMouseMotion(wxMouseEvent &evt)
 
         if(!m_MouseMotionTimer->IsRunning())
         {
-            m_MouseMotionTimer->Start(100);
+            m_MouseMotionTimer->Start(125);
         }
 
         if(m_EditMode != emHexMode)
