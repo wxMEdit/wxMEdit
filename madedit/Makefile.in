@@ -540,7 +540,6 @@ noinst_HEADERS = description-pak \
 DOMAIN = madedit
 podir = $(top_srcdir)/po
 LINGUAS = @ALL_LINGUAS@
-ACLOCAL_AMFLAGS = -I m4
 all: config.h
 	$(MAKE) $(AM_MAKEFLAGS) all-recursive
 
@@ -1429,6 +1428,8 @@ loc:
 			echo "installing $(podir)/$$lang.gmo as $$dir/$(DOMAIN).mo"; \
 		fi; \
 	done
+
+#ACLOCAL_AMFLAGS = -I m4
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.
 .NOEXPORT:
