@@ -50,7 +50,6 @@ wxFlatNotebookBase::~wxFlatNotebookBase(void)
 
 void wxFlatNotebookBase::Init()
 {
-	long style = GetWindowStyleFlag();
 	m_pages->m_colorBorder = wxColour(wxSystemSettings::GetColour(wxSYS_COLOUR_BTNSHADOW));
 
 	m_mainSizer = new wxBoxSizer(wxVERTICAL);
@@ -165,7 +164,7 @@ bool wxFlatNotebookBase::InsertPage(size_t index, wxWindow* page, const wxString
 		AddPage(page, text, select, imgindex);
 		return true;
 	}
-	index = std::min((unsigned int)index, (unsigned int)m_windows.GetCount());
+	index = FNB_MIN((unsigned int)index, (unsigned int)m_windows.GetCount());
 	// Insert tab
 	bool bSelected = select || m_windows.empty();
 	int curSel = m_pages->GetSelection();
@@ -577,7 +576,7 @@ const wxColour& wxFlatNotebookBase::GetActiveTabColour()
 //
 ///////////////////////////////////////////////////////////////////////////////////////////
 
-BEGIN_EVENT_TABLE(wxPageContainerBase, wxControl)
+BEGIN_EVENT_TABLE(wxPageContainerBase, wxPanel)
 EVT_PAINT(wxPageContainerBase::OnPaint)
 EVT_SIZE(wxPageContainerBase::OnSize)
 EVT_LEFT_DOWN(wxPageContainerBase::OnLeftDown)
@@ -689,7 +688,7 @@ void wxPageContainerBase::OnPaint(wxPaintEvent &event)
 	wxSize size = GetSize();
 
 	// Background
-	dc.SetTextBackground(style & wxFNB_VC71 ? wxColour(247, 243, 233) : GetBackgroundColour());
+    dc.SetTextBackground((style & wxFNB_VC71 ? wxColour(247, 243, 233) : GetBackgroundColour()));
 	dc.SetTextForeground(m_activeTextColor);
 	dc.SetBrush(backBrush);
 
@@ -821,11 +820,11 @@ void wxPageContainerBase::OnPaint(wxPaintEvent &event)
 
 		// Draw the tab
 		if(style & wxFNB_FANCY_TABS)
-			DrawFancyTab(dc, posx, i, hasImage, tabWidth, tabHeight);
+			DrawFancyTab(dc, posx, i, tabWidth, tabHeight);
 		else if(style & wxFNB_VC71)
-			DrawVC71Tab(dc, posx, i, hasImage, tabWidth, tabHeight);
+			DrawVC71Tab(dc, posx, i, tabWidth, tabHeight);
 		else
-			DrawStandardTab(dc, posx, i, hasImage, tabWidth, tabHeight);
+			DrawStandardTab(dc, posx, i, tabWidth, tabHeight);
 
 
 		// Text drawing offset from the left border of the 
@@ -837,6 +836,11 @@ void wxPageContainerBase::OnPaint(wxPaintEvent &event)
 			textOffset = ((wxFlatNotebookBase *)m_pParent)->m_nPadding * 2 + 16 + shapePoints / 2 ; 
 		else
 			textOffset = ((wxFlatNotebookBase *)m_pParent)->m_nPadding + shapePoints / 2 ;
+
+		/// After several testing, it seems that we can draw
+		/// the text 2 pixles to the right - this is done only
+		/// for the standard tabs
+		if( !(HasFlag(wxFNB_VC71) || HasFlag(wxFNB_FANCY_TABS)) ) textOffset += 2;
 
 		if(i != GetSelection())
 		{
@@ -901,7 +905,6 @@ void wxPageContainerBase::OnPaint(wxPaintEvent &event)
 void wxPageContainerBase::DrawFancyTab(wxBufferedPaintDC& dc,
 								   const int& posx, 
 								   const int &tabIdx, 
-								   const bool &hasImage, 
 								   const int &tabWidth, 
 								   const int &tabHeight)
 {
@@ -911,7 +914,14 @@ void wxPageContainerBase::DrawFancyTab(wxBufferedPaintDC& dc,
 	wxPen pen = (tabIdx==GetSelection()) ? wxPen(m_colorBorder) : wxPen(wxSystemSettings::GetColour(wxSYS_COLOUR_3DFACE));
 	long style = GetParent()->GetWindowStyleFlag();
 	dc.SetPen(pen);
-	dc.SetBrush((tabIdx==GetSelection()) ? wxBrush(wxSystemSettings::GetColour(wxSYS_COLOUR_3DFACE)) : wxBrush(wxColour(247, 243, 233)));
+
+	wxBrush br;
+	if( tabIdx==GetSelection() ) 
+		br = wxBrush(wxSystemSettings::GetColour(wxSYS_COLOUR_3DFACE));
+	else
+		br = wxBrush(wxColour(247, 243, 233));
+
+    dc.SetBrush( br );
 	if(tabIdx == GetSelection())
 	{
 		int posy = (style & wxFNB_BOTTOM) ? 0 : VERTICAL_BORDER_PADDING;
@@ -938,7 +948,6 @@ void wxPageContainerBase::DrawFancyTab(wxBufferedPaintDC& dc,
 void wxPageContainerBase::DrawVC71Tab(wxBufferedPaintDC& dc, 
 								  const int& posx, 
 								  const int &tabIdx, 
-								  const bool &hasImage, 
 								  const int &tabWidth, 
 								  const int &tabHeight)
 {
@@ -947,7 +956,7 @@ void wxPageContainerBase::DrawVC71Tab(wxBufferedPaintDC& dc,
 	long style = GetParent()->GetWindowStyleFlag();
 
 	dc.SetPen((tabIdx==GetSelection()) ? wxPen(wxSystemSettings::GetColour(wxSYS_COLOUR_3DFACE)) : borderPen);
-	dc.SetBrush((tabIdx==GetSelection()) ? wxBrush(wxSystemSettings::GetColour(wxSYS_COLOUR_3DFACE)) : wxBrush(wxColour(247, 243, 233)));
+    dc.SetBrush(((tabIdx==GetSelection()) ? wxBrush(wxSystemSettings::GetColour(wxSYS_COLOUR_3DFACE)) : wxBrush(wxColour(247, 243, 233))));
 
 	if(tabIdx == GetSelection())
 	{
@@ -987,7 +996,6 @@ void wxPageContainerBase::DrawVC71Tab(wxBufferedPaintDC& dc,
 void wxPageContainerBase::DrawStandardTab(wxBufferedPaintDC& dc, 
 									  const int& posx, 
 									  const int &tabIdx, 
-									  const bool &hasImage, 
 									  const int &tabWidth, 
 									  const int &tabHeight)
 {
@@ -1011,7 +1019,7 @@ void wxPageContainerBase::DrawStandardTab(wxBufferedPaintDC& dc,
 	tabPoints[4].x = tabPoints[3].x+2;
 	tabPoints[4].y = (style & wxFNB_BOTTOM) ? tabHeight - (VERTICAL_BORDER_PADDING+2) : (VERTICAL_BORDER_PADDING+2);
 
-	tabPoints[5].x = posx+tabWidth;
+	tabPoints[5].x = tabPoints[4].x+(tabHeight-2)*tan((double)m_pagesInfoVec[tabIdx].GetTabAngle()/180.0*M_PI);
 	tabPoints[5].y = (style & wxFNB_BOTTOM) ? 0 : tabHeight;
 
 	tabPoints[6].x = tabPoints[0].x;

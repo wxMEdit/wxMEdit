@@ -60,7 +60,7 @@ public:
     }
 
     // copy data from buffer to our data
-    virtual bool SetData(size_t len, const void *buf)
+    virtual bool SetData(size_t WXUNUSED(len), const void *buf)
     {
         // don't check the len. Under Win98 the value of 'len' == 0
         memcpy(&DragInfo, buf, sizeof(wxFNBDragInfo));
@@ -103,7 +103,7 @@ public:
 	\param y - Y-coordinate
 	\param def - Result of drag-n-drop operation
 	*/
-    virtual wxDragResult OnData(wxCoord x, wxCoord y, wxDragResult def)
+    virtual wxDragResult OnData(wxCoord x, wxCoord y, wxDragResult WXUNUSED(def))
 	{		
 		GetData();
 		wxFNBDragInfo * draginfo = (wxFNBDragInfo *)m_DataObject->GetData();

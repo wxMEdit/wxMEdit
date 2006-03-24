@@ -47,6 +47,9 @@ class wxPageContainerBase;
 #endif
 
 
+// Since some compiler complains about std::min, we define our own macro
+#define FNB_MIN(a, b) ((a > b) ? b : a)
+
 typedef std::vector<wxBitmap> wxFlatNotebookImageList;
 
 WX_DECLARE_USER_EXPORTED_OBJARRAY(wxWindow*, wxWindowPtrArray, WXDLLIMPEXP_FNB);
@@ -452,7 +455,7 @@ public:
 	/**	
 	\param value - new tab header inclination angle
 	*/
-	void SetTabAngle(unsigned int value) {m_TabAngle = std::min((unsigned int)(45), (unsigned int)(value));}
+	void SetTabAngle(unsigned int value) {m_TabAngle = FNB_MIN((unsigned int)(45), (unsigned int)(value));}
 
 	/// Returns an inclination of tab header borders
 	unsigned int GetTabAngle() {return m_TabAngle;}
@@ -746,9 +749,9 @@ protected:
 	virtual void DrawTabsLine(wxDC& dc, const wxRect& rect);
 
 	// Functions
-	void DrawVC71Tab(wxBufferedPaintDC& dc, const int& posx, const int &tabIdx, const bool& hasImage, const int &tabWidth, const int &tabHeight);
-	void DrawFancyTab(wxBufferedPaintDC& dc, const int& posx, const int &tabIdx, const bool& hasImage, const int &tabWidth, const int &tabHeight);
-	void DrawStandardTab(wxBufferedPaintDC& dc, const int& posx, const int &tabIdx, const bool& hasImage, const int &tabWidth, const int &tabHeight);
+	void DrawVC71Tab(wxBufferedPaintDC& dc, const int& posx, const int &tabIdx, const int &tabWidth, const int &tabHeight);
+	void DrawFancyTab(wxBufferedPaintDC& dc, const int& posx, const int &tabIdx, const int &tabWidth, const int &tabHeight);
+	void DrawStandardTab(wxBufferedPaintDC& dc, const int& posx, const int &tabIdx, const int &tabWidth, const int &tabHeight);
 
 	// Navigation buttons position
 	int GetLeftButtonPos();
