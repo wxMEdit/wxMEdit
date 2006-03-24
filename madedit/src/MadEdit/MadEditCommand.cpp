@@ -479,12 +479,12 @@ wxString ShortCutToString(MadEditShortCut shortcut)
         case WXK_SCROLL:
             text << wxT("SCROLL_LOCK");
             break;
-        case WXK_PAGEUP:
-            text << wxT("PAGEUP");
-            break;
-        case WXK_PAGEDOWN:
-            text << wxT("PAGEDOWN");
-            break;
+        //case WXK_PAGEUP: == WXK_PRIOR
+            //text << wxT("PAGEUP");
+            //break;
+        //case WXK_PAGEDOWN: == WXK_NEXT
+            //text << wxT("PAGEDOWN");
+            //break;
         case WXK_NUMPAD_SPACE:
             text << wxT("KP_SPACE");
             break;
@@ -509,17 +509,17 @@ wxString ShortCutToString(MadEditShortCut shortcut)
         case WXK_NUMPAD_DOWN:
             text << wxT("KP_DOWN");
             break;
-        case WXK_NUMPAD_PRIOR:
-            text << wxT("KP_PRIOR");
-            break;
+        //case WXK_NUMPAD_PRIOR: == WXK_NUMPAD_PAGEUP
+            //text << wxT("KP_PRIOR");
+            //break;
         case WXK_NUMPAD_PAGEUP:
-            text << wxT("KP_PAGEUP");
+            text << wxT("KP_PGUP");
             break;
-        case WXK_NUMPAD_NEXT:
-            text << wxT("KP_NEXT:");
-            break;
+        //case WXK_NUMPAD_NEXT: == WXK_NUMPAD_PAGEDOWN
+            //text << wxT("KP_NEXT");
+            //break;
         case WXK_NUMPAD_PAGEDOWN:
-            text << wxT("KP_PAGEDOWN");
+            text << wxT("KP_PGDN");
             break;
         case WXK_NUMPAD_END:
             text << wxT("KP_END");
