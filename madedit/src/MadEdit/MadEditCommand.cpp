@@ -513,13 +513,13 @@ wxString ShortCutToString(MadEditShortCut shortcut)
             //text << wxT("KP_PRIOR");
             //break;
         case WXK_NUMPAD_PAGEUP:
-            text << wxT("KP_PGUP");
+            text << wxT("KP_PAGEUP");
             break;
         //case WXK_NUMPAD_NEXT: == WXK_NUMPAD_PAGEDOWN
             //text << wxT("KP_NEXT");
             //break;
         case WXK_NUMPAD_PAGEDOWN:
-            text << wxT("KP_PGDN");
+            text << wxT("KP_PAGEDOWN");
             break;
         case WXK_NUMPAD_END:
             text << wxT("KP_END");
