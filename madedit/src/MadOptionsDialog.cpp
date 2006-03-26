@@ -177,23 +177,6 @@ wxString FilterChar(const wxChar *ws)
 
 void MadOptionsDialog::CreateGUIControls(void)
 {
-    // declare ArrayString here
-    wxArrayString arrayStringFor_WxRadioBoxPrintOffset;
-    wxArrayString arrayStringFor_WxComboBoxEncoding;
-    wxArrayString arrayStringFor_WxListBoxKeys;
-    
-    // append Encodings to arrayStringFor_WxComboBoxEncoding
-    wxString systemenc(_("System Default"));
-    arrayStringFor_WxComboBoxEncoding.Add(systemenc);
-    size_t cnt=MadEncoding::GetEncodingsCount();
-    for(size_t i=0;i<cnt;i++)
-    {
-        arrayStringFor_WxComboBoxEncoding.Add(MadEncoding::GetEncodingName(i));//enc+des);
-    }
-    
-    // define below used "wxArrayString" to nothing
-    #define wxArrayString 
-    
     //Do not add custom Code here
     //wx-devcpp designer will remove them.
     //Add the custom code before or after the Blocks
@@ -541,7 +524,13 @@ void MadOptionsDialog::CreateGUIControls(void)
 	
     ////GUI Items Creation End
 
-    #undef wxArrayString 
+    wxString systemenc(_("System Default"));
+    WxComboBoxEncoding->Append(systemenc);
+    size_t cnt=MadEncoding::GetEncodingsCount();
+    for(size_t i=0;i<cnt;i++)
+    {
+        WxComboBoxEncoding->Append(MadEncoding::GetEncodingName(i));//enc+des);
+    }
     WxComboBoxEncoding->SetValue(systemenc);
 
 #ifdef __WXMSW__

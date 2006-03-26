@@ -53,21 +53,6 @@ static void ResizeItem(wxBoxSizer* sizer, wxWindow *item, int ax, int ay)
 
 void MadConvEncDialog::CreateGUIControls(void)
 {
-    // declare ArrayString here
-    wxArrayString arrayStringFor_WxComboBoxEncoding;
-    wxArrayString arrayStringFor_WxRadioBoxOption;
-    
-    // append Encodings to arrayStringFor_WxComboBoxEncoding
-    size_t cnt=MadEncoding::GetEncodingsCount();
-    for(size_t i=0;i<cnt;i++)
-    {
-        arrayStringFor_WxComboBoxEncoding.Add(MadEncoding::GetEncodingName(i));//enc+des);
-    }
-    
-    // define below used "wxArrayString" to nothing
-    #define wxArrayString 
-
-
     //Do not add custom code here
 	//wxDev-C++ designer will remove them.
 	//Add the custom code before or after the blocks
@@ -114,13 +99,17 @@ void MadConvEncDialog::CreateGUIControls(void)
 	this->SetIcon(wxNullIcon);
 	
 	////GUI Items Creation End
-	
-	#undef wxArrayString
-	WxComboBoxEncoding->SetValue(arrayStringFor_WxComboBoxEncoding[0]);
-	
-	ResizeItem(WxBoxSizer2, WxStaticText1, 2, 2);
-	
-	int strx=0, stry=0;
+
+    size_t cnt=MadEncoding::GetEncodingsCount();
+    for(size_t i=0;i<cnt;i++)
+    {
+        WxComboBoxEncoding->Append(MadEncoding::GetEncodingName(i));//enc+des);
+    }
+    WxComboBoxEncoding->SetValue(MadEncoding::GetEncodingName(0));
+
+    ResizeItem(WxBoxSizer2, WxStaticText1, 2, 2);
+
+    int strx=0, stry=0;
     wxString str=WxRadioBoxOption->GetLabel();
     WxRadioBoxOption->GetTextExtent(str, &strx, &stry);
     for(size_t i=0;i<WxRadioBoxOption->GetCount();i++)
