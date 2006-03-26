@@ -126,7 +126,7 @@ void MadConvEncDialog::CreateGUIControls(void)
     for(size_t i=0;i<WxRadioBoxOption->GetCount();i++)
     {
         int x;
-        str=WxRadioBoxOption->GetString(i);
+        str=WxRadioBoxOption->GetString((unsigned int)i);
         WxRadioBoxOption->GetTextExtent(str, &x, &stry);
         if(x>strx) strx=x;
     }

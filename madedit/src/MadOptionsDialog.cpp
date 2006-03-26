@@ -579,7 +579,7 @@ void MadOptionsDialog::CreateGUIControls(void)
     for(size_t i=0;i<WxRadioBoxPrintOffset->GetCount();i++)
     {
         int x;
-        str=WxRadioBoxPrintOffset->GetString(i);
+        str=WxRadioBoxPrintOffset->GetString((unsigned int)i);
         WxRadioBoxPrintOffset->GetTextExtent(str, &x, &stry);
         if(x>strx) strx=x;
     }
