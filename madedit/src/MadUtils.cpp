@@ -19,153 +19,164 @@
 #include <Processes.h>
 #endif
 
+#include "MadUtils.h"
+
+HtmlColor HtmlColorTable[]=
+{
+    { wxT("AliceBlue"),            240,248,255 },
+    { wxT("AntiqueWhite"),         250,235,215 },
+    { wxT("Aqua"),                 0,255,255 },
+    { wxT("Aquamarine"),           127,255,212 },
+    { wxT("Azure"),                240,255,255 },
+    { wxT("Beige"),                245,245,220 },
+    { wxT("Bisque"),               255,228,196 },
+    { wxT("Black"),                0,0,0 },
+    { wxT("BlanchedAlmond"),       255,235,205 },
+    { wxT("Blue"),                 0,0,255 },
+    { wxT("BlueViolet"),           138,43,226 },
+    { wxT("Brown"),                165,42,42 },
+    { wxT("BurlyWood"),            222,184,135 },
+    { wxT("CadetBlue"),            95,158,160 },
+    { wxT("Chartreuse"),           127,255,0 },
+    { wxT("Chocolate"),            210,105,30 },
+    { wxT("Coral"),                255,127,80 },
+    { wxT("CornflowerBlue"),       100,149,237 },
+    { wxT("Cornsilk"),             255,248,220 },
+    { wxT("Crimson"),              237,164,61 },
+    { wxT("Cyan"),                 0,255,255 },
+    { wxT("DarkBlue"),             0,0,139 },
+    { wxT("DarkCyan"),             0,139,139 },
+    { wxT("DarkGoldenRod"),        184,134,11 },
+    { wxT("DarkGray"),             167,167,167 },
+    { wxT("DarkGreen"),            0,100,0 },
+    { wxT("DarkKhaki"),            189,183,107 },
+    { wxT("DarkMagenta"),          139,0,139 },
+    { wxT("DarkOliveGreen"),       85,107,47 },
+    { wxT("DarkOrchid"),           153,50,204 },
+    { wxT("DarkRed"),              139,0,0 },
+    { wxT("DarkSalmon"),           233,150,122 },
+    { wxT("DarkSeaGreen"),         143,188,143 },
+    { wxT("DarkSlateBlue"),        72,61,139 },
+    { wxT("DarkSlateGray"),        47,79,79 },
+    { wxT("DarkTurquoise"),        0,206,209 },
+    { wxT("DarkViolet"),           148,0,211 },
+    { wxT("Darkorange"),           255,140,0 },
+    { wxT("DeepPink"),             255,20,147 },
+    { wxT("DeepSkyBlue"),          0,191,255 },
+    { wxT("DimGray"),              105,105,105 },
+    { wxT("DodgerBlue"),           30,144,255 },
+    { wxT("Feldspar"),             209,146,117 },
+    { wxT("FireBrick"),            178,34,34 },
+    { wxT("FloralWhite"),          255,250,240 },
+    { wxT("ForestGreen"),          34,139,34 },
+    { wxT("Fuchsia"),              255,0,255 },
+    { wxT("Gainsboro"),            220,220,220 },
+    { wxT("GhostWhite"),           248,248,255 },
+    { wxT("Gold"),                 255,215,0 },
+    { wxT("GoldenRod"),            218,165,32 },
+    { wxT("Gray"),                 190,190,190 },
+    { wxT("Green"),                0,128,0 },
+    { wxT("GreenYellow"),          173,255,47 },
+    { wxT("HoneyDew"),             240,255,240 },
+    { wxT("HotPink"),              255,105,180 },
+    { wxT("IndianRed"),            205,92,92 },
+    { wxT("Indigo"),               75,0,130 },
+    { wxT("Ivory"),                255,255,240 },
+    { wxT("Khaki"),                240,230,140 },
+    { wxT("Lavender"),             230,230,250 },
+    { wxT("LavenderBlush"),        255,240,245 },
+    { wxT("LawnGreen"),            124,252,0 },
+    { wxT("LemonChiffon"),         255,250,205 },
+    { wxT("LightBlue"),            173,216,230 },
+    { wxT("LightCoral"),           240,128,128 },
+    { wxT("LightCyan"),            224,255,255 },
+    { wxT("LightGoldenRodYellow"), 250,250,210 },
+    { wxT("LightGreen"),           144,238,144 },
+    { wxT("LightGrey"),            211,211,211 },
+    { wxT("LightPink"),            255,182,193 },
+    { wxT("LightSalmon"),          255,160,122 },
+    { wxT("LightSeaGreen"),        32,178,170 },
+    { wxT("LightSkyBlue"),         135,206,250 },
+    { wxT("LightSlateBlue"),       132,112,255 },
+    { wxT("LightSlateGray"),       119,136,153 },
+    { wxT("LightSteelBlue"),       176,196,222 },
+    { wxT("LightYellow"),          255,255,224 },
+    { wxT("Lime"),                 0,255,0 },
+    { wxT("LimeGreen"),            50,205,50 },
+    { wxT("Linen"),                250,240,230 },
+    { wxT("Magenta"),              255,0,255 },
+    { wxT("Maroon"),               128,0,0 },
+    { wxT("MediumAquaMarine"),     102,205,170 },
+    { wxT("MediumBlue"),           0,0,205 },
+    { wxT("MediumOrchid"),         186,85,211 },
+    { wxT("MediumPurple"),         147,112,219 },
+    { wxT("MediumSeaGreen"),       60,179,113 },
+    { wxT("MediumSlateBlue"),      123,104,238 },
+    { wxT("MediumSpringGreen"),    0,250,154 },
+    { wxT("MediumTurquoise"),      72,209,204 },
+    { wxT("MediumVioletRed"),      199,21,133 },
+    { wxT("MidnightBlue"),         25,25,112 },
+    { wxT("MintCream"),            245,255,250 },
+    { wxT("MistyRose"),            255,228,225 },
+    { wxT("Moccasin"),             255,228,181 },
+    { wxT("NavajoWhite"),          255,222,173 },
+    { wxT("Navy"),                 0,0,128 },
+    { wxT("OldLace"),              253,245,230 },
+    { wxT("Olive"),                128,128,0 },
+    { wxT("OliveDrab"),            107,142,35 },
+    { wxT("Orange"),               255,165,0 },
+    { wxT("OrangeRed"),            255,69,0 },
+    { wxT("Orchid"),               218,112,214 },
+    { wxT("PaleGoldenRod"),        238,232,170 },
+    { wxT("PaleGreen"),            152,251,152 },
+    { wxT("PaleTurquoise"),        175,238,238 },
+    { wxT("PaleVioletRed"),        219,112,147 },
+    { wxT("PapayaWhip"),           255,239,213 },
+    { wxT("PeachPuff"),            255,218,185 },
+    { wxT("Peru"),                 205,133,63 },
+    { wxT("Pink"),                 255,192,203 },
+    { wxT("Plum"),                 221,160,221 },
+    { wxT("PowderBlue"),           176,224,230 },
+    { wxT("Purple"),               128,0,128 },
+    { wxT("Red"),                  255,0,0 },
+    { wxT("RosyBrown"),            188,143,143 },
+    { wxT("RoyalBlue"),            65,105,225 },
+    { wxT("SaddleBrown"),          139,69,19 },
+    { wxT("Salmon"),               250,128,114 },
+    { wxT("SandyBrown"),           244,164,96 },
+    { wxT("SeaGreen"),             46,139,87 },
+    { wxT("SeaShell"),             255,245,238 },
+    { wxT("Sienna"),               160,82,45 },
+    { wxT("Silver"),               192,192,192 },
+    { wxT("SkyBlue"),              135,206,235 },
+    { wxT("SlateBlue"),            106,90,205 },
+    { wxT("SlateGray"),            112,128,144 },
+    { wxT("Snow"),                 255,250,250 },
+    { wxT("SpringGreen"),          0,255,127 },
+    { wxT("SteelBlue"),            70,130,180 },
+    { wxT("Tan"),                  210,180,140 },
+    { wxT("Teal"),                 0,128,128 },
+    { wxT("Thistle"),              216,191,216 },
+    { wxT("Tomato"),               255,99,71 },
+    { wxT("Turquoise"),            64,224,208 },
+    { wxT("Violet"),               238,130,238 },
+    { wxT("VioletRed"),            208,32,144 },
+    { wxT("Wheat"),                245,222,179 },
+    { wxT("White"),                255,255,255 },
+    { wxT("WhiteSmoke"),           245,245,245 },
+    { wxT("Yellow"),               255,255,0 },
+    { wxT("YellowGreen"),          154,205,50 }
+};
+const int HtmlColorTableCount= sizeof(HtmlColorTable) / sizeof(HtmlColor);
+
 void SetHtmlColors()
 {
-    // add colors same with html color
-    wxTheColourDatabase->AddColour(wxT("AliceBlue"),            wxColor(240,248,255));
-    wxTheColourDatabase->AddColour(wxT("AntiqueWhite"),         wxColor(250,235,215));
-    wxTheColourDatabase->AddColour(wxT("Aqua"),                 wxColor(0,255,255));
-    wxTheColourDatabase->AddColour(wxT("Aquamarine"),           wxColor(127,255,212));
-    wxTheColourDatabase->AddColour(wxT("Azure"),                wxColor(240,255,255));
-    wxTheColourDatabase->AddColour(wxT("Beige"),                wxColor(245,245,220));
-    wxTheColourDatabase->AddColour(wxT("Bisque"),               wxColor(255,228,196));
-    wxTheColourDatabase->AddColour(wxT("Black"),                wxColor(0,0,0));
-    wxTheColourDatabase->AddColour(wxT("BlanchedAlmond"),       wxColor(255,235,205));
-    wxTheColourDatabase->AddColour(wxT("Blue"),                 wxColor(0,0,255));
-    wxTheColourDatabase->AddColour(wxT("BlueViolet"),           wxColor(138,43,226));
-    wxTheColourDatabase->AddColour(wxT("Brown"),                wxColor(165,42,42));
-    wxTheColourDatabase->AddColour(wxT("BurlyWood"),            wxColor(222,184,135));
-    wxTheColourDatabase->AddColour(wxT("CadetBlue"),            wxColor(95,158,160));
-    wxTheColourDatabase->AddColour(wxT("Chartreuse"),           wxColor(127,255,0));
-    wxTheColourDatabase->AddColour(wxT("Chocolate"),            wxColor(210,105,30));
-    wxTheColourDatabase->AddColour(wxT("Coral"),                wxColor(255,127,80));
-    wxTheColourDatabase->AddColour(wxT("CornflowerBlue"),       wxColor(100,149,237));
-    wxTheColourDatabase->AddColour(wxT("Cornsilk"),             wxColor(255,248,220));
-    wxTheColourDatabase->AddColour(wxT("Crimson"),              wxColor(237,164,61));
-    wxTheColourDatabase->AddColour(wxT("Cyan"),                 wxColor(0,255,255));
-    wxTheColourDatabase->AddColour(wxT("DarkBlue"),             wxColor(0,0,139));
-    wxTheColourDatabase->AddColour(wxT("DarkCyan"),             wxColor(0,139,139));
-    wxTheColourDatabase->AddColour(wxT("DarkGoldenRod"),        wxColor(184,134,11));
-    wxTheColourDatabase->AddColour(wxT("DarkGray"),             wxColor(167,167,167));
-    wxTheColourDatabase->AddColour(wxT("DarkGreen"),            wxColor(0,100,0));
-    wxTheColourDatabase->AddColour(wxT("DarkKhaki"),            wxColor(189,183,107));
-    wxTheColourDatabase->AddColour(wxT("DarkMagenta"),          wxColor(139,0,139));
-    wxTheColourDatabase->AddColour(wxT("DarkOliveGreen"),       wxColor(85,107,47));
-    wxTheColourDatabase->AddColour(wxT("DarkOrchid"),           wxColor(153,50,204));
-    wxTheColourDatabase->AddColour(wxT("DarkRed"),              wxColor(139,0,0));
-    wxTheColourDatabase->AddColour(wxT("DarkSalmon"),           wxColor(233,150,122));
-    wxTheColourDatabase->AddColour(wxT("DarkSeaGreen"),         wxColor(143,188,143));
-    wxTheColourDatabase->AddColour(wxT("DarkSlateBlue"),        wxColor(72,61,139));
-    wxTheColourDatabase->AddColour(wxT("DarkSlateGray"),        wxColor(47,79,79));
-    wxTheColourDatabase->AddColour(wxT("DarkTurquoise"),        wxColor(0,206,209));
-    wxTheColourDatabase->AddColour(wxT("DarkViolet"),           wxColor(148,0,211));
-    wxTheColourDatabase->AddColour(wxT("Darkorange"),           wxColor(255,140,0));
-    wxTheColourDatabase->AddColour(wxT("DeepPink"),             wxColor(255,20,147));
-    wxTheColourDatabase->AddColour(wxT("DeepSkyBlue"),          wxColor(0,191,255));
-    wxTheColourDatabase->AddColour(wxT("DimGray"),              wxColor(105,105,105));
-    wxTheColourDatabase->AddColour(wxT("DodgerBlue"),           wxColor(30,144,255));
-    wxTheColourDatabase->AddColour(wxT("Feldspar"),             wxColor(209,146,117));
-    wxTheColourDatabase->AddColour(wxT("FireBrick"),            wxColor(178,34,34));
-    wxTheColourDatabase->AddColour(wxT("FloralWhite"),          wxColor(255,250,240));
-    wxTheColourDatabase->AddColour(wxT("ForestGreen"),          wxColor(34,139,34));
-    wxTheColourDatabase->AddColour(wxT("Fuchsia"),              wxColor(255,0,255));
-    wxTheColourDatabase->AddColour(wxT("Gainsboro"),            wxColor(220,220,220));
-    wxTheColourDatabase->AddColour(wxT("GhostWhite"),           wxColor(248,248,255));
-    wxTheColourDatabase->AddColour(wxT("Gold"),                 wxColor(255,215,0));
-    wxTheColourDatabase->AddColour(wxT("GoldenRod"),            wxColor(218,165,32));
-    wxTheColourDatabase->AddColour(wxT("Gray"),                 wxColor(190,190,190));
-    wxTheColourDatabase->AddColour(wxT("Green"),                wxColor(0,128,0));
-    wxTheColourDatabase->AddColour(wxT("GreenYellow"),          wxColor(173,255,47));
-    wxTheColourDatabase->AddColour(wxT("HoneyDew"),             wxColor(240,255,240));
-    wxTheColourDatabase->AddColour(wxT("HotPink"),              wxColor(255,105,180));
-    wxTheColourDatabase->AddColour(wxT("IndianRed"),            wxColor(205,92,92));
-    wxTheColourDatabase->AddColour(wxT("Indigo"),               wxColor(75,0,130));
-    wxTheColourDatabase->AddColour(wxT("Ivory"),                wxColor(255,255,240));
-    wxTheColourDatabase->AddColour(wxT("Khaki"),                wxColor(240,230,140));
-    wxTheColourDatabase->AddColour(wxT("Lavender"),             wxColor(230,230,250));
-    wxTheColourDatabase->AddColour(wxT("LavenderBlush"),        wxColor(255,240,245));
-    wxTheColourDatabase->AddColour(wxT("LawnGreen"),            wxColor(124,252,0));
-    wxTheColourDatabase->AddColour(wxT("LemonChiffon"),         wxColor(255,250,205));
-    wxTheColourDatabase->AddColour(wxT("LightBlue"),            wxColor(173,216,230));
-    wxTheColourDatabase->AddColour(wxT("LightCoral"),           wxColor(240,128,128));
-    wxTheColourDatabase->AddColour(wxT("LightCyan"),            wxColor(224,255,255));
-    wxTheColourDatabase->AddColour(wxT("LightGoldenRodYellow"), wxColor(250,250,210));
-    wxTheColourDatabase->AddColour(wxT("LightGreen"),           wxColor(144,238,144));
-    wxTheColourDatabase->AddColour(wxT("LightGrey"),            wxColor(211,211,211));
-    wxTheColourDatabase->AddColour(wxT("LightPink"),            wxColor(255,182,193));
-    wxTheColourDatabase->AddColour(wxT("LightSalmon"),          wxColor(255,160,122));
-    wxTheColourDatabase->AddColour(wxT("LightSeaGreen"),        wxColor(32,178,170));
-    wxTheColourDatabase->AddColour(wxT("LightSkyBlue"),         wxColor(135,206,250));
-    wxTheColourDatabase->AddColour(wxT("LightSlateBlue"),       wxColor(132,112,255));
-    wxTheColourDatabase->AddColour(wxT("LightSlateGray"),       wxColor(119,136,153));
-    wxTheColourDatabase->AddColour(wxT("LightSteelBlue"),       wxColor(176,196,222));
-    wxTheColourDatabase->AddColour(wxT("LightYellow"),          wxColor(255,255,224));
-    wxTheColourDatabase->AddColour(wxT("Lime"),                 wxColor(0,255,0));
-    wxTheColourDatabase->AddColour(wxT("LimeGreen"),            wxColor(50,205,50));
-    wxTheColourDatabase->AddColour(wxT("Linen"),                wxColor(250,240,230));
-    wxTheColourDatabase->AddColour(wxT("Magenta"),              wxColor(255,0,255));
-    wxTheColourDatabase->AddColour(wxT("Maroon"),               wxColor(128,0,0));
-    wxTheColourDatabase->AddColour(wxT("MediumAquaMarine"),     wxColor(102,205,170));
-    wxTheColourDatabase->AddColour(wxT("MediumBlue"),           wxColor(0,0,205));
-    wxTheColourDatabase->AddColour(wxT("MediumOrchid"),         wxColor(186,85,211));
-    wxTheColourDatabase->AddColour(wxT("MediumPurple"),         wxColor(147,112,219));
-    wxTheColourDatabase->AddColour(wxT("MediumSeaGreen"),       wxColor(60,179,113));
-    wxTheColourDatabase->AddColour(wxT("MediumSlateBlue"),      wxColor(123,104,238));
-    wxTheColourDatabase->AddColour(wxT("MediumSpringGreen"),    wxColor(0,250,154));
-    wxTheColourDatabase->AddColour(wxT("MediumTurquoise"),      wxColor(72,209,204));
-    wxTheColourDatabase->AddColour(wxT("MediumVioletRed"),      wxColor(199,21,133));
-    wxTheColourDatabase->AddColour(wxT("MidnightBlue"),         wxColor(25,25,112));
-    wxTheColourDatabase->AddColour(wxT("MintCream"),            wxColor(245,255,250));
-    wxTheColourDatabase->AddColour(wxT("MistyRose"),            wxColor(255,228,225));
-    wxTheColourDatabase->AddColour(wxT("Moccasin"),             wxColor(255,228,181));
-    wxTheColourDatabase->AddColour(wxT("NavajoWhite"),          wxColor(255,222,173));
-    wxTheColourDatabase->AddColour(wxT("Navy"),                 wxColor(0,0,128));
-    wxTheColourDatabase->AddColour(wxT("OldLace"),              wxColor(253,245,230));
-    wxTheColourDatabase->AddColour(wxT("Olive"),                wxColor(128,128,0));
-    wxTheColourDatabase->AddColour(wxT("OliveDrab"),            wxColor(107,142,35));
-    wxTheColourDatabase->AddColour(wxT("Orange"),               wxColor(255,165,0));
-    wxTheColourDatabase->AddColour(wxT("OrangeRed"),            wxColor(255,69,0));
-    wxTheColourDatabase->AddColour(wxT("Orchid"),               wxColor(218,112,214));
-    wxTheColourDatabase->AddColour(wxT("PaleGoldenRod"),        wxColor(238,232,170));
-    wxTheColourDatabase->AddColour(wxT("PaleGreen"),            wxColor(152,251,152));
-    wxTheColourDatabase->AddColour(wxT("PaleTurquoise"),        wxColor(175,238,238));
-    wxTheColourDatabase->AddColour(wxT("PaleVioletRed"),        wxColor(219,112,147));
-    wxTheColourDatabase->AddColour(wxT("PapayaWhip"),           wxColor(255,239,213));
-    wxTheColourDatabase->AddColour(wxT("PeachPuff"),            wxColor(255,218,185));
-    wxTheColourDatabase->AddColour(wxT("Peru"),                 wxColor(205,133,63));
-    wxTheColourDatabase->AddColour(wxT("Pink"),                 wxColor(255,192,203));
-    wxTheColourDatabase->AddColour(wxT("Plum"),                 wxColor(221,160,221));
-    wxTheColourDatabase->AddColour(wxT("PowderBlue"),           wxColor(176,224,230));
-    wxTheColourDatabase->AddColour(wxT("Purple"),               wxColor(128,0,128));
-    wxTheColourDatabase->AddColour(wxT("Red"),                  wxColor(255,0,0));
-    wxTheColourDatabase->AddColour(wxT("RosyBrown"),            wxColor(188,143,143));
-    wxTheColourDatabase->AddColour(wxT("RoyalBlue"),            wxColor(65,105,225));
-    wxTheColourDatabase->AddColour(wxT("SaddleBrown"),          wxColor(139,69,19));
-    wxTheColourDatabase->AddColour(wxT("Salmon"),               wxColor(250,128,114));
-    wxTheColourDatabase->AddColour(wxT("SandyBrown"),           wxColor(244,164,96));
-    wxTheColourDatabase->AddColour(wxT("SeaGreen"),             wxColor(46,139,87));
-    wxTheColourDatabase->AddColour(wxT("SeaShell"),             wxColor(255,245,238));
-    wxTheColourDatabase->AddColour(wxT("Sienna"),               wxColor(160,82,45));
-    wxTheColourDatabase->AddColour(wxT("Silver"),               wxColor(192,192,192));
-    wxTheColourDatabase->AddColour(wxT("SkyBlue"),              wxColor(135,206,235));
-    wxTheColourDatabase->AddColour(wxT("SlateBlue"),            wxColor(106,90,205));
-    wxTheColourDatabase->AddColour(wxT("SlateGray"),            wxColor(112,128,144));
-    wxTheColourDatabase->AddColour(wxT("Snow"),                 wxColor(255,250,250));
-    wxTheColourDatabase->AddColour(wxT("SpringGreen"),          wxColor(0,255,127));
-    wxTheColourDatabase->AddColour(wxT("SteelBlue"),            wxColor(70,130,180));
-    wxTheColourDatabase->AddColour(wxT("Tan"),                  wxColor(210,180,140));
-    wxTheColourDatabase->AddColour(wxT("Teal"),                 wxColor(0,128,128));
-    wxTheColourDatabase->AddColour(wxT("Thistle"),              wxColor(216,191,216));
-    wxTheColourDatabase->AddColour(wxT("Tomato"),               wxColor(255,99,71));
-    wxTheColourDatabase->AddColour(wxT("Turquoise"),            wxColor(64,224,208));
-    wxTheColourDatabase->AddColour(wxT("Violet"),               wxColor(238,130,238));
-    wxTheColourDatabase->AddColour(wxT("VioletRed"),            wxColor(208,32,144));
-    wxTheColourDatabase->AddColour(wxT("Wheat"),                wxColor(245,222,179));
-    wxTheColourDatabase->AddColour(wxT("White"),                wxColor(255,255,255));
-    wxTheColourDatabase->AddColour(wxT("WhiteSmoke"),           wxColor(245,245,245));
-    wxTheColourDatabase->AddColour(wxT("Yellow"),               wxColor(255,255,0));
-    wxTheColourDatabase->AddColour(wxT("YellowGreen"),          wxColor(154,205,50));
-
+    wxColourDatabase *cdb=wxTheColourDatabase;
+    HtmlColor *hc=HtmlColorTable;
+    for(int i=0; i<HtmlColorTableCount; ++i, ++hc)
+    {
+        cdb->AddColour(hc->name, wxColor(hc->red, hc->green, hc->blue));
+    }
 }
 
 wxString GetExecutablePath()
