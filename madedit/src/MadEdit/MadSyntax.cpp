@@ -653,7 +653,9 @@ void MadSyntax::ParseSyntax(const wxString &filename)
 
 #ifdef __WXMSW__
     if(nw_MaxKeywordLen)
-        nw_WCWord=new wchar_t[nw_MaxKeywordLen*2+1];
+    {
+        nw_WCWord=new wxChar[nw_MaxKeywordLen+32];
+    }
 #endif
 
 
@@ -800,14 +802,6 @@ void MadSyntax::Reset()
 
     nw_MaxKeywordLen=0;
 
-#ifdef __WXMSW__
-    if(nw_WCWord!=NULL)
-    {
-        delete []nw_WCWord;
-        nw_WCWord=NULL;
-    }
-#endif
-
     // default Text color bgcolor
     MadAttributes *pat = m_SystemAttributes;
 
@@ -830,6 +824,15 @@ void MadSyntax::Reset()
         pat->style=fsNone;
         pat++;
     }
+
+
+#ifdef __WXMSW__
+    if(nw_WCWord!=NULL)
+    {
+        delete []nw_WCWord;
+        nw_WCWord=NULL;
+    }
+#endif
 
 }
 
