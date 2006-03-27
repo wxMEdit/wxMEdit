@@ -67,6 +67,7 @@ public:
         g_OptionsDialog->SetWindowStyleFlag(g_OptionsDialog->GetWindowStyleFlag() & ~wxTAB_TRAVERSAL);
         g_OptionsDialog->WxNotebook1->SetWindowStyleFlag(g_OptionsDialog->WxNotebook1->GetWindowStyleFlag() & ~wxTAB_TRAVERSAL);
         g_OptionsDialog->WxNoteBookPage4->SetWindowStyleFlag(g_OptionsDialog->WxNoteBookPage4->GetWindowStyleFlag() & ~wxTAB_TRAVERSAL);
+        g_OptionsDialog->WxButtonCancel->SetId(MadOptionsDialog::ID_WXBUTTONCANCEL);
         evt.Skip();
     }
     void OnKillFocus(wxFocusEvent &evt)
@@ -74,6 +75,7 @@ public:
         g_OptionsDialog->SetWindowStyleFlag(g_OptionsDialog->GetWindowStyleFlag() | wxTAB_TRAVERSAL);
         g_OptionsDialog->WxNotebook1->SetWindowStyleFlag(g_OptionsDialog->WxNotebook1->GetWindowStyleFlag() | wxTAB_TRAVERSAL);
         g_OptionsDialog->WxNoteBookPage4->SetWindowStyleFlag(g_OptionsDialog->WxNoteBookPage4->GetWindowStyleFlag() | wxTAB_TRAVERSAL);
+        g_OptionsDialog->WxButtonCancel->SetId(wxID_CANCEL);
         evt.Skip();
     }
 };
@@ -99,6 +101,7 @@ BEGIN_EVENT_TABLE(MadOptionsDialog,wxDialog)
 	EVT_BUTTON(ID_WXBUTTON4,MadOptionsDialog::PrintMarkButtonClick)
 	EVT_BUTTON(ID_WXBUTTON5,MadOptionsDialog::PrintMarkButtonClick)
 	EVT_BUTTON(ID_WXBUTTON6,MadOptionsDialog::PrintMarkButtonClick)
+	EVT_BUTTON(wxID_CANCEL,MadOptionsDialog::WxButtonCancelClick)
 	////Manual Code End
 	
 	EVT_CLOSE(MadOptionsDialog::MadOptionsDialogClose)
@@ -673,6 +676,7 @@ void MadOptionsDialog::CreateGUIControls(void)
     }
     while(cd->command > 0);
 
+    WxButtonCancel->SetId(wxID_CANCEL);
 }
 
 void MadOptionsDialog::MadOptionsDialogClose(wxCloseEvent& event)
