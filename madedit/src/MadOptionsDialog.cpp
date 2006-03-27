@@ -881,8 +881,12 @@ void MadOptionsDialog::MadOptionsDialogActivate(wxActivateEvent& event)
         WxListBoxKeys->Clear();
         UpdateKeyHint();
 
-
         cfg->SetPath(oldpath);
+
+        if(FindFocus()==NULL)
+        {
+            WxButtonCancel->SetFocus();
+        }
     }
     
     event.Skip();
