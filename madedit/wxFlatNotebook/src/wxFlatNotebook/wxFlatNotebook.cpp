@@ -1729,6 +1729,8 @@ void wxPageContainerBase::OnMouseMove(wxMouseEvent& event)
 				// Set the cursor to be 'No-entry'
 				::wxSetCursor(wxCURSOR_NO_ENTRY);
 			}
+
+			// Support for drag and drop
 			if(event.LeftIsDown() && !(style & wxFNB_NODRAG))
 			{
 				wxFNBDragInfo draginfo(this, tabIdx);
@@ -1980,6 +1982,10 @@ wxDragResult wxPageContainerBase::OnDropTarget(wxCoord x, wxCoord y, int nTabPag
 				MoveTabPage(nTabPage, nIndex);
 				break;
 			case wxFNB_NOWHERE:
+				{
+
+				}
+				break;
 			default:
 				break;
 			}
@@ -2010,9 +2016,11 @@ void wxPageContainerBase::MoveTabPage(int nMove, int nMoveTo)
 {
 	if(nMove == nMoveTo)
 		return;
+
 	else if(nMoveTo < (int)((wxFlatNotebook *)m_pParent)->m_windows.GetCount())
 		nMoveTo++;
 
+	m_pParent->Freeze();
 	// Remove the window from the main sizer
 	int nCurSel = ((wxFlatNotebookBase *)m_pParent)->m_pages->GetSelection();
 	((wxFlatNotebookBase *)m_pParent)->m_mainSizer->Detach(((wxFlatNotebookBase *)m_pParent)->m_windows[nCurSel]);
@@ -2047,6 +2055,7 @@ void wxPageContainerBase::MoveTabPage(int nMove, int nMoveTo)
 	m_iActivePage = nMoveTo-1;
 	DoSetSelection(m_iActivePage);
 	Refresh();
+	m_pParent->Thaw();
 }
 
 bool wxPageContainerBase::CanFitToScreen(size_t page)
