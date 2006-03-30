@@ -75,13 +75,35 @@ class wxFileConfig;
 
 class MadSyntax
 {
+private: // syntax files manager
+    static wxString s_AttributeFilePath;
+    static bool s_Loaded;
+    static void LoadSyntaxFiles();
+public:
+    static void SetAttributeFilePath(const wxString &path) // where to load/save .clr files
+    {
+        s_AttributeFilePath=path;
+    }
+    static void AddSyntaxFilesPath(const wxString &path);
+    static size_t GetSyntaxCount();
+    static wxString GetSyntaxTitle(size_t index); //index must < GetSyntaxCount()
+    static wxString GetSyntaxFile(size_t index); //index must < GetSyntaxCount()
+    static wxString GetSyntaxFileByTitle(const wxString &title);
+    static wxString GetAttributeFileByTitle(const wxString &title);
+
+    // if title was not found it will return a default MadSyntax obj
+    static MadSyntax* GetSyntaxByTitle(const wxString &title);
+
+    // below functions will return NULL if not found
+    static MadSyntax* GetSyntaxByExt(const wxString &ext);
+    static MadSyntax* GetSyntaxByFirstLine(wxByte *data, int size);
+    static MadSyntax* GetSyntaxByFileName(const wxString &filename);
+
 private:
     friend class MadEdit;
     friend class MadLines;
-
     MadAttributes m_SystemAttributes[aeNone];
 
-private:
     void  ParseSyntax(const wxString &filename);
     MadAttributes *GetAttributes(const wxString &name);
     MadSyntaxKeyword *GetCustomKeyword(const wxString &name);
@@ -114,31 +136,15 @@ public:
     vector < int >      m_LineCommentInRange;
     vector < std::vector < int > >m_BlockCommentInRange;
 
-    bool                m_LineCommentAtBOL;     // for diff/patch syntax
+    bool                m_LineCommentAtBOL; // for diff/patch syntax
     bool                m_DirectiveLeadingAtBOL;
 
-    vector < MadSyntaxRange > m_CustomRange;    // user defined ranges
+    vector < MadSyntaxRange > m_CustomRange; // user defined ranges
     vector < wxString >       m_RangeBeginString;
 
-    vector < MadSyntaxKeyword > m_CustomKeyword;        // user defined keywords
+    vector < MadSyntaxKeyword > m_CustomKeyword; // user defined keywords
 
     bool m_CheckState;
-
-private:    // syntax files manager
-    static bool s_Loaded;
-    static void LoadSyntaxFiles();
-public:
-    static void AddSyntaxFilesPath(const wxString &path);
-    static size_t GetSyntaxCount();
-    static wxString GetSyntaxTitle(size_t index); //index must < GetSyntaxCount()
-
-    // if title was not found it will return a default MadSyntax obj
-    static MadSyntax* GetSyntaxByTitle(const wxString &title);
-
-    // below functions will return NULL if not found
-    static MadSyntax* GetSyntaxByExt(const wxString &ext);
-    static MadSyntax* GetSyntaxByFirstLine(wxByte *data, int size);
-    static MadSyntax* GetSyntaxByFileName(const wxString &filename);
 
 public:
     MadSyntax(const wxString &filename);
@@ -147,6 +153,9 @@ public:
 
     void LoadFromFile(const wxString &filename);
     void Reset();
+    void LoadAttributes(const wxString &file = wxEmptyString); // if file IsEmpty, load from default .att file
+    void SaveAttributes(const wxString &file = wxEmptyString); // if file IsEmpty, save to default .att file
+    void AssignAttributes(MadSyntax *syn); // assign attributes from syn
 
     bool IsInRange(int range, vector < int >&InRangeVector);
     MadSyntaxRange *GetSyntaxRange(int rangeid);
@@ -155,6 +164,7 @@ public:
     {
         return m_SystemAttributes + ae;
     }
+    static wxString GetAttributeName(MadAttributeElement ae);
 
     bool IsSpace(ucs4_t uc)
     {
@@ -183,7 +193,6 @@ private: // for Printing
     vector < MadAttributes > m_CustomKeywordColor;
     void BeginPrint(bool printSyntax);
     void EndPrint();
-
 
 private: // for NextWord()
     MadLines    *nw_MadLines;

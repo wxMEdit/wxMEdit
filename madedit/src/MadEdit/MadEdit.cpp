@@ -10030,6 +10030,16 @@ void MadEdit::SetSyntax(const wxString &title)
     }
 }
 
+void MadEdit::ApplySyntaxAttributes(MadSyntax *syn, bool matchTitle)
+{
+    if(!matchTitle || syn->m_Title==m_Syntax->m_Title)
+    {
+        m_Syntax->AssignAttributes(syn);
+        m_RepaintAll = true;
+        Refresh(false);
+    }
+}
+
 void MadEdit::SetEncoding(const wxString &encname)
 {
     if(encname.Lower() != m_Encoding->GetName().Lower())

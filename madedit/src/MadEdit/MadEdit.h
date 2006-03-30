@@ -506,6 +506,7 @@ public:
 
     void SetSyntax(const wxString &title);
     wxString GetSyntaxTitle() { return m_Syntax->m_Title; }
+    void ApplySyntaxAttributes(MadSyntax *syn, bool matchTitle);
 
     void SetEncoding(const wxString &encname);
     wxString GetEncodingName() { return m_Encoding->GetName(); }

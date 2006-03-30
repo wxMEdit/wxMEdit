@@ -13,6 +13,7 @@
 #include <wx/tokenzr.h>
 #include <wx/dir.h>
 #include <wx/textfile.h>
+#include <wx/filename.h>
 
 
 #ifdef _DEBUG
@@ -20,10 +21,12 @@
 #define new new(_NORMAL_BLOCK ,__FILE__, __LINE__)
 #endif
 
+extern wxString g_MadEditHomeDir;
+
 
 wxChar *SystemAttributesName[] = {
-    wxT("text"), wxT("delimiter"), wxT("space"), wxT("number"), wxT("string"), wxT("comment"),
-    wxT("directive"), wxT("specialword"), wxT("linenumber"), wxT("activeline"), wxT("bookmark"),
+    wxT("Text"), wxT("Delimiter"), wxT("Space"), wxT("Number"), wxT("String"), wxT("Comment"),
+    wxT("Directive"), wxT("SpecialWord"), wxT("LineNumber"), wxT("ActiveLine"), wxT("Bookmark"),
 };
 
 wxChar *SystemAttributesColor[]= {
@@ -50,18 +53,6 @@ StringMap g_ExtSynfileMap;
 StringMap g_FirstlineSynfileMap;
 StringMap g_FilenameSynfileMap;
 
-
-wxString GetSynfileByTitle(const wxString &title)
-{
-    for(size_t i=0;i<g_TitleSynfileTable.size();i++)
-    {
-        if(g_TitleSynfileTable[i].first==title)
-        {
-            return g_TitleSynfileTable[i].second;
-        }
-    }
-    return wxEmptyString;
-}
 
 void LoadListFile(const wxString &listfile, StringMap &map, bool noCase)
 {
@@ -103,6 +94,7 @@ void LoadListFile(const wxString &listfile, StringMap &map, bool noCase)
     }
 }
 
+wxString MadSyntax::s_AttributeFilePath;
 bool MadSyntax::s_Loaded=false;
 
 void MadSyntax::LoadSyntaxFiles()
@@ -223,11 +215,51 @@ wxString MadSyntax::GetSyntaxTitle(size_t index)
     return wxEmptyString;
 }
 
+wxString MadSyntax::GetSyntaxFile(size_t index)
+{
+    if(!s_Loaded) LoadSyntaxFiles();
+
+    if(index<g_TitleSynfileTable.size())
+    {
+        return g_TitleSynfileTable[index].second;
+    }
+    return wxEmptyString;
+}
+
+wxString MadSyntax::GetSyntaxFileByTitle(const wxString &title)
+{
+    if(!s_Loaded) LoadSyntaxFiles();
+
+    for(size_t i=0;i<g_TitleSynfileTable.size();i++)
+    {
+        if(g_TitleSynfileTable[i].first==title)
+        {
+            return g_TitleSynfileTable[i].second;
+        }
+    }
+    return wxEmptyString;
+}
+
+wxString MadSyntax::GetAttributeFileByTitle(const wxString &title)
+{
+    wxString file=GetSyntaxFileByTitle(title);
+    if(file.IsEmpty())
+    {
+        file=s_AttributeFilePath +wxT("temp.att");
+    }
+    else
+    {
+        wxFileName fn(file);
+        file=s_AttributeFilePath +fn.GetName() +wxT(".att");
+    }
+    return file;
+}
+
 MadSyntax* MadSyntax::GetSyntaxByTitle(const wxString &title)
 {
     if(!s_Loaded) LoadSyntaxFiles();
 
-    wxString synfile=GetSynfileByTitle(title);
+    wxString synfile=GetSyntaxFileByTitle(title);
     if(wxFileExists(synfile))
     {
         return new MadSyntax(synfile);
@@ -336,6 +368,11 @@ MadSyntax::MadSyntax(const wxString &filename)
     nw_WCWord=NULL;
 #endif
     LoadFromFile(filename);
+    wxFileName fn(filename);
+    if(fn.GetExt().CmpNoCase(wxT("syn"))==0)
+    {
+        LoadAttributes();
+    }
 }
 
 MadSyntax::MadSyntax()
@@ -344,6 +381,7 @@ MadSyntax::MadSyntax()
     nw_WCWord=NULL;
 #endif
     Reset();    // use default attributes
+    LoadAttributes();
 }
 
 MadSyntax::~MadSyntax()
@@ -840,7 +878,7 @@ MadAttributes *MadSyntax::GetAttributes(const wxString &name)
 {
     for(int i = 0; i < aeNone; i++)
     {
-        if(name == SystemAttributesName[i])
+        if(name.CmpNoCase(SystemAttributesName[i])==0)
             return &m_SystemAttributes[i];
     }
     return NULL;
@@ -950,6 +988,11 @@ MadSyntaxRange *MadSyntax::GetSyntaxRange(int rangeid)
         while(it != m_CustomRange.end());
     }
     return NULL;
+}
+
+wxString MadSyntax::GetAttributeName(MadAttributeElement ae)
+{
+    return wxString(SystemAttributesName[ae]);
 }
 
 void MadSyntax::SetAttributes(wxByte rangeid, MadAttributes *attr)
@@ -2042,3 +2085,121 @@ void MadSyntax::EndPrint()
     }
 }
 
+void MadSyntax::LoadAttributes(const wxString &file)
+{
+    wxString attfile=file;
+    if(attfile.IsEmpty())
+    {
+        attfile=GetAttributeFileByTitle(m_Title);
+    }
+    if(wxFileExists(attfile))
+    {
+        MadSyntax *att=new MadSyntax(attfile);
+        AssignAttributes(att);
+        delete att;
+    }
+}
+
+wxString GetColorName(wxColour &c)
+{
+    if(!c.Ok() || c==wxNullColour) return wxEmptyString;
+    
+    wxString name=wxTheColourDatabase->FindName(c);
+    if(name.IsEmpty())
+    {
+        name.Printf(wxT("%02X%02X%02X"), c.Red(), c.Green(), c.Blue());
+    }
+    return name;
+}
+wxString GetStyleString(MadFontStyles s)
+{
+    wxString str;
+    if((s&fsBold)!=0) str+=wxT(" Bold");
+    if((s&fsItalic)!=0) str+=wxT(" Italic");
+    if((s&fsUnderline)!=0) str+=wxT(" Underline");
+    return str;
+}
+
+void MadSyntax::SaveAttributes(const wxString &file)
+{
+    wxString attfile=file;
+    if(attfile.IsEmpty())
+    {
+        attfile=GetAttributeFileByTitle(m_Title);
+    }
+    wxFileName fn(attfile);
+    wxString dir=fn.GetPath(wxPATH_GET_VOLUME );
+    if(!wxDirExists(dir))
+    {
+        wxMkdir(dir);
+    }
+
+    wxFileConfig syn(wxEmptyString,wxEmptyString,attfile,wxEmptyString,wxCONFIG_USE_RELATIVE_PATH|wxCONFIG_USE_NO_ESCAPE_CHARACTERS);
+
+    // write custom ranges
+    wxString str, value;
+    size_t i;
+    for(i=0; i<m_CustomRange.size(); i++)
+    {
+        wxString s, cname;
+        cname=GetColorName(m_CustomRange[i].bgcolor);
+        s.Printf(wxT(" %d b%d e%d %s"), i+1, i+1, i+1, cname.c_str());
+        str+=s;
+    }
+    syn.Write(wxT("/CustomRange"), str);
+
+    // write system attributes
+    for(i=aeText; i<aeActiveLine; ++i)
+    {
+        str.Printf(wxT("/%sColor"), SystemAttributesName[i]);
+        value.Printf(wxT("%s"), GetColorName(m_SystemAttributes[i].color).c_str());
+        syn.Write(str, value);
+        str.Printf(wxT("/%sBgColor"), SystemAttributesName[i]);
+        value.Printf(wxT("%s"), GetColorName(m_SystemAttributes[i].bgcolor).c_str());
+        syn.Write(str, value);
+        str.Printf(wxT("/%sStyle"), SystemAttributesName[i]);
+        value.Printf(wxT("%s"), GetStyleString(m_SystemAttributes[i].style).c_str());
+        syn.Write(str, value);
+    }
+    str.Printf(wxT("/%sColor"), SystemAttributesName[aeActiveLine]);
+    value.Printf(wxT("%s"), GetColorName(m_SystemAttributes[aeActiveLine].color).c_str());
+    syn.Write(str, value);
+    str.Printf(wxT("/%sColor"), SystemAttributesName[aeBookmark]);
+    value.Printf(wxT("%s"), GetColorName(m_SystemAttributes[aeBookmark].color).c_str());
+    syn.Write(str, value);
+
+    // write custom keywords
+    for(i=0; i<m_CustomKeyword.size(); i++)
+    {
+        str.Printf(wxT("/Keyword%d/Color"), i+1);
+        value.Printf(wxT("%s"), GetColorName(m_CustomKeyword[i].m_Attr.color).c_str());
+        syn.Write(str, value);
+        str.Printf(wxT("/Keyword%d/BgColor"), i+1);
+        value.Printf(wxT("%s"), GetColorName(m_CustomKeyword[i].m_Attr.bgcolor).c_str());
+        syn.Write(str, value);
+        str.Printf(wxT("/Keyword%d/Style"), i+1);
+        value.Printf(wxT("%s"), GetStyleString(m_CustomKeyword[i].m_Attr.style).c_str());
+        syn.Write(str, value);
+    }
+}
+
+void MadSyntax::AssignAttributes(MadSyntax *syn)
+{
+    size_t i;
+    for(i=0; i<m_CustomRange.size() && i<syn->m_CustomRange.size(); i++)
+    {
+        m_CustomRange[i].bgcolor = syn->m_CustomRange[i].bgcolor;
+    }
+    for(i=aeText; i<aeNone; ++i)
+    {
+        m_SystemAttributes[i].color = syn->m_SystemAttributes[i].color;
+        m_SystemAttributes[i].bgcolor = syn->m_SystemAttributes[i].bgcolor;
+        m_SystemAttributes[i].style = syn->m_SystemAttributes[i].style;
+    }
+    for(i=0; i<m_CustomKeyword.size() && i<syn->m_CustomKeyword.size(); i++)
+    {
+        m_CustomKeyword[i].m_Attr.color = syn->m_CustomKeyword[i].m_Attr.color;
+        m_CustomKeyword[i].m_Attr.bgcolor = syn->m_CustomKeyword[i].m_Attr.bgcolor;
+        m_CustomKeyword[i].m_Attr.style = syn->m_CustomKeyword[i].m_Attr.style;
+    }
+}

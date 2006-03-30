@@ -222,6 +222,7 @@ public:
     void OnViewHexMode(wxCommandEvent& event);
 
     void OnToolsOptions(wxCommandEvent& event);
+    void OnToolsHighlighting(wxCommandEvent& event);
     void OnToolsToggleBOM(wxCommandEvent& event);
     void OnToolsConvertToDOS(wxCommandEvent& event);
     void OnToolsConvertToMAC(wxCommandEvent& event);
@@ -390,6 +391,7 @@ enum { // menu id
 
     // tools
     menuOptions,
+    menuHighlighting,
     menuPlugins,
     menuByteOrderMark,
     menuToggleBOM,

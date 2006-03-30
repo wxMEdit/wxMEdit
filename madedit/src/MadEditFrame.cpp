@@ -13,6 +13,7 @@
 #include "MadSearchDialog.h"
 #include "MadReplaceDialog.h"
 #include "MadOptionsDialog.h"
+#include "MadHighlightingDialog.h"
 #include "MadConvEncDialog.h"
 #include "MadWordCountDialog.h"
 #include "MadAboutDialog.h"
@@ -319,6 +320,15 @@ bool GetActiveMadEditPathNameOrTitle(wxString &name)
     return true;
 }
 
+void ApplySyntaxAttributes(MadSyntax *syn)
+{
+    int count=int(g_MainFrame->m_Notebook->GetPageCount());
+    for(int id=0;id<count;id++)
+    {
+        MadEdit *me=(MadEdit*)g_MainFrame->m_Notebook->GetPage(id);
+        me->ApplySyntaxAttributes(syn, true);
+    }
+}
 
 void OnEditSelectionChanged(MadEdit *madedit)
 {
@@ -718,6 +728,7 @@ BEGIN_EVENT_TABLE(MadEditFrame,wxFrame)
 	EVT_MENU(menuHexMode, MadEditFrame::OnViewHexMode)
 	// tools
 	EVT_MENU(menuOptions, MadEditFrame::OnToolsOptions)
+	EVT_MENU(menuHighlighting, MadEditFrame::OnToolsHighlighting)
 	EVT_MENU(menuToggleBOM, MadEditFrame::OnToolsToggleBOM)
 	EVT_MENU(menuConvertToDOS, MadEditFrame::OnToolsConvertToDOS)
 	EVT_MENU(menuConvertToMAC, MadEditFrame::OnToolsConvertToMAC)
@@ -755,14 +766,14 @@ CommandData CommandTable[]=
 {
     // file
     { 0, 0, 0, 0, _("&File"), 0, wxITEM_NORMAL, 0, &g_Menu_File, 0},
-    { 0, 1, menuNew,          wxT("menuNew"),          _("&New"),              wxT("Ctrl-N"),       wxITEM_NORMAL,    new_xpm_idx,       0,                        _("Create a new file")},
-    { 0, 1, menuOpen,         wxT("menuOpen"),         _("&Open..."),          wxT("Ctrl-O"),       wxITEM_NORMAL,    fileopen_xpm_idx,  0,                        _("Open an existing file")},
+    { 0, 1, menuNew,          wxT("menuNew"),          _("&New File"),         wxT("Ctrl-N"),       wxITEM_NORMAL,    new_xpm_idx,       0,                        _("Create a new file")},
+    { 0, 1, menuOpen,         wxT("menuOpen"),         _("&Open File..."),     wxT("Ctrl-O"),       wxITEM_NORMAL,    fileopen_xpm_idx,  0,                        _("Open an existing file")},
     { 0, 1, 0,                0,                       0,                      0,                   wxITEM_SEPARATOR, -1,                0,                        0},
-    { 0, 1, menuSave,         wxT("menuSave"),         _("&Save"),             wxT("Ctrl-S"),       wxITEM_NORMAL,    filesave_xpm_idx,  0,                        _("Save the file")},
+    { 0, 1, menuSave,         wxT("menuSave"),         _("&Save File"),        wxT("Ctrl-S"),       wxITEM_NORMAL,    filesave_xpm_idx,  0,                        _("Save the file")},
     { 0, 1, menuSaveAs,       wxT("menuSaveAs"),       _("Save &As..."),       wxT(""),             wxITEM_NORMAL,    -1,                0,                        _("Save the file with a new name")},
     { 0, 1, menuSaveAll,      wxT("menuSaveAll"),      _("Sa&ve All"),         wxT("Ctrl-Shift-S"), wxITEM_NORMAL,    saveall_xpm_idx,   0,                        _("Save all files")},
     { 0, 1, 0,                0,                       0,                      0,                   wxITEM_SEPARATOR, -1,                0,                        0},
-    { 0, 1, menuReload,       wxT("menuReload"),       _("&Reload"),           wxT("Ctrl-R"),       wxITEM_NORMAL,    -1,                0,                        _("Reload the file")},
+    { 0, 1, menuReload,       wxT("menuReload"),       _("&Reload File"),      wxT("Ctrl-R"),       wxITEM_NORMAL,    -1,                0,                        _("Reload the file")},
     { 0, 1, 0,                0,                       0,                      0,                   wxITEM_SEPARATOR, -1,                0,                        0},
     { 0, 1, menuClose,        wxT("menuClose"),        _("&Close File"),       wxT("Ctrl-F4"),      wxITEM_NORMAL,    fileclose_xpm_idx, 0,                        _("Close the file")},
     { 0, 1, menuCloseAll,     wxT("menuCloseAll"),     _("C&lose All"),        wxT(""),             wxITEM_NORMAL,    closeall_xpm_idx,  0,                        _("Close all files")},
@@ -1013,6 +1024,7 @@ CommandData CommandTable[]=
     // Tools
     { 0, 0, 0, 0, _("&Tools"), 0, wxITEM_NORMAL, 0, &g_Menu_Tools, 0},
     { 0,               1, menuOptions,            wxT("menuOptions"),            _("&Options..."),                                   wxT(""),       wxITEM_NORMAL,    -1, 0,                                _("Change the configuration")},
+    { 0,               1, menuHighlighting,       wxT("menuHighlighting"),       _("&Syntax Highlighting Settings..."),              wxT(""),       wxITEM_NORMAL,    -1, 0,                                _("Change syntax highlighting settings")},
     { 0,               1, 0,                      0,                             0,                                                  0,             wxITEM_SEPARATOR, -1, 0,                                0},
     { 0,               1, menuByteOrderMark,      wxT("menuByteOrderMark"),      _("Has Unicode BOM (Byte-Order Mark)"),             0,             wxITEM_NORMAL,    -1, &g_Menu_Tools_BOM,                0},
     { 0,               2, menuToggleBOM,          wxT("menuToggleBOM"),          _("Add/Remove BOM"),                                wxT(""),       wxITEM_NORMAL,    -1, 0,                                _("Add/Remove Unicode BOM")},
@@ -1164,17 +1176,18 @@ MadEditFrame::MadEditFrame( wxWindow *parent, wxWindowID id, const wxString &tit
 
     MadEncoding::InitEncodings();
 
+    MadSyntax::SetAttributeFilePath(g_MadEditHomeDir + wxT("syntax/"));
+
 #if defined(__WXMSW__)
     MadSyntax::AddSyntaxFilesPath(g_MadEditAppDir + wxT("syntax/"));
 #elif defined(__WXGTK__) // linux
     MadSyntax::AddSyntaxFilesPath(g_MadEditAppDir + wxT("syntax/"));
     MadSyntax::AddSyntaxFilesPath(g_MadEditHomeDir + wxT("syntax/"));
-#   if defined (DATA_DIR)
+    #if defined (DATA_DIR)
     MadSyntax::AddSyntaxFilesPath(wxT(DATA_DIR"/madedit/syntax/"));
-#   else
+    #else
     MadSyntax::AddSyntaxFilesPath(wxT("/usr/share/madedit/syntax/"));
-#   endif
-
+    #endif
 #else // other platform
     MadSyntax::AddSyntaxFilesPath(g_MadEditAppDir + wxT("syntax/"));
 #endif
@@ -2464,7 +2477,8 @@ void MadEditFrame::OnUpdateUI_MenuToolsConvertNL(wxUpdateUIEvent& event)
 
 void MadEditFrame::OnUpdateUI_MenuToolsConvertEncoding(wxUpdateUIEvent& event)
 {
-    event.Enable(g_ActiveMadEdit!=NULL && g_ActiveMadEdit->IsTextFile());
+    event.Enable(g_ActiveMadEdit!=NULL && 
+        !g_ActiveMadEdit->IsReadOnly() && g_ActiveMadEdit->IsTextFile());
 }
 
 void MadEditFrame::OnUpdateUI_MenuWindow_CheckCount(wxUpdateUIEvent& event)
@@ -3598,6 +3612,15 @@ void MadEditFrame::OnToolsOptions(wxCommandEvent& event)
 
         m_Config->SetPath(oldpath);
     }
+}
+
+void MadEditFrame::OnToolsHighlighting(wxCommandEvent& event)
+{
+    if(g_HighlightingDialog==NULL) g_HighlightingDialog=new MadHighlightingDialog(this, -1);
+
+    g_HighlightingDialog->m_InitSetting=true;
+    int id=g_HighlightingDialog->ShowModal();
+    g_HighlightingDialog->FreeSyntax(id!=wxID_OK); // press cancel to restore the syntax
 }
 
 void MadEditFrame::OnToolsToggleBOM(wxCommandEvent& event)
