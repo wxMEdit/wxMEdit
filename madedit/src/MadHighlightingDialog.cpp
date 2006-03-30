@@ -434,7 +434,7 @@ void MadHighlightingDialog::WxListBoxSyntaxSelected(wxCommandEvent& event)
     WxListCtrlKeyword->Thaw();
 
     g_Index=-1;
-    wxListEvent event;
+    wxListEvent event(0);
     event.m_itemIndex=0;
     WxListCtrlKeywordSelected(event);
 }
