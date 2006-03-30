@@ -73,6 +73,33 @@ wxColour GetColourFromUser(const wxColour& colInit, const wxString& caption)
     return colRet;
 }
 
+void SetItemColour(wxListCtrl *listctrl, long item, const wxColour& fc, const wxColour& bc)
+{
+    wxListItem it;
+    it.SetId(item);
+    listctrl->GetItem(it);
+    it.SetTextColour(fc);
+    it.SetBackgroundColour(bc);
+    listctrl->SetItem(it);
+}
+
+void SetItemTextColour(wxListCtrl *listctrl, long item, const wxColour& fc)
+{
+    wxListItem it;
+    it.SetId(item);
+    listctrl->GetItem(it);
+    it.SetTextColour(fc);
+    listctrl->SetItem(it);
+}
+void SetItemBackgroundColour(wxListCtrl *listctrl, long item, const wxColour& bc)
+{
+    wxListItem it;
+    it.SetId(item);
+    listctrl->GetItem(it);
+    it.SetBackgroundColour(bc);
+    listctrl->SetItem(it);
+}
+
 wxFont GetItemFont(wxListCtrl *listctrl, long item)
 {
     wxListItem it;
@@ -80,8 +107,7 @@ wxFont GetItemFont(wxListCtrl *listctrl, long item)
     listctrl->GetItem(it);
     return it.GetFont();
 }
-
-void SetItemFont(wxListCtrl *listctrl, long item, wxFont &font)
+void SetItemFont(wxListCtrl *listctrl, long item, const wxFont &font)
 {
     wxListItem it;
     it.SetId(item);
@@ -370,20 +396,17 @@ void MadHighlightingDialog::WxListBoxSyntaxSelected(wxCommandEvent& event)
     for(int ae=aeText; ae<aeNone; ae++)
     {
         long item = WxListCtrlKeyword->InsertItem(index++, MadSyntax::GetAttributeName((MadAttributeElement)ae));
-        long data = (long)g_KeywordInfoTable.size();
         MadAttributes *attr = g_Syntax->GetAttributes((MadAttributeElement)ae);
         int kind=kindSysAttr1;
         if(ae==aeActiveLine || ae==aeBookmark) kind=kindSysAttr2;
         g_KeywordInfoTable.push_back(KeywordInfo(kind, attr, NULL));
-        WxListCtrlKeyword->SetItemData(item, data);
 
         if(ae==aeText)
         {
             WxListCtrlKeyword->SetBackgroundColour(attr->bgcolor);
         }
 
-        WxListCtrlKeyword->SetItemTextColour(item, attr->color);
-        WxListCtrlKeyword->SetItemBackgroundColour(item, attr->bgcolor);
+        SetItemColour(WxListCtrlKeyword, item, attr->color, attr->bgcolor);
         wxFont font=GetItemFont(WxListCtrlKeyword, item);
         if(attr->style!=fsNone)
         {
@@ -401,25 +424,19 @@ void MadHighlightingDialog::WxListBoxSyntaxSelected(wxCommandEvent& event)
         wxString text;
         text.Printf(wxT("Range %s %s"), g_Syntax->m_CustomRange[i].begin.c_str(), g_Syntax->m_CustomRange[i].end.c_str());
         long item = WxListCtrlKeyword->InsertItem(index++, text);
-        long data = (long)g_KeywordInfoTable.size();
         wxColour *bg = &(g_Syntax->m_CustomRange[i].bgcolor);
         g_KeywordInfoTable.push_back( KeywordInfo(kindRange, NULL, bg) );
-        WxListCtrlKeyword->SetItemData(item, data);
-        WxListCtrlKeyword->SetItemTextColour(item, g_KeywordInfoTable[0].attr->color);
-        WxListCtrlKeyword->SetItemBackgroundColour(item, *bg);
+        SetItemColour(WxListCtrlKeyword, item, g_KeywordInfoTable[0].attr->color, *bg);
     }
     
     // custom keywords
     for(i=0; i<g_Syntax->m_CustomKeyword.size(); ++i)
     {
         long item = WxListCtrlKeyword->InsertItem(index++, g_Syntax->m_CustomKeyword[i].m_Name);
-        long data = (long)g_KeywordInfoTable.size();
         MadAttributes *attr = &(g_Syntax->m_CustomKeyword[i].m_Attr);
         g_KeywordInfoTable.push_back(KeywordInfo(kindKeyword, attr, NULL));
-        WxListCtrlKeyword->SetItemData(item, data);
 
-        WxListCtrlKeyword->SetItemTextColour(item, attr->color);
-        WxListCtrlKeyword->SetItemBackgroundColour(item, attr->bgcolor);
+        SetItemColour(WxListCtrlKeyword, item, attr->color, attr->bgcolor);
         wxFont font=GetItemFont(WxListCtrlKeyword, item);
         if(attr->style!=fsNone)
         {
@@ -488,7 +505,7 @@ void MadHighlightingDialog::SetPanelBC(const wxColor &color)
 void MadHighlightingDialog::WxListCtrlKeywordSelected(wxListEvent& event)
 {
     long oldIndex=g_Index;
-    g_Index = WxListCtrlKeyword->GetItemData(event.m_itemIndex);
+    g_Index = event.m_itemIndex;
 
     WxListCtrlKeyword->Freeze();
     WxListCtrlFC->Freeze();
@@ -514,20 +531,15 @@ void MadHighlightingDialog::WxListCtrlKeywordSelected(wxListEvent& event)
     KeywordInfo &kinfo=g_KeywordInfoTable[g_Index];
     if(g_Index==0) // set (Automatic) colors
     {
-        WxListCtrlFC->SetItemTextColour(0, kinfo.attr->color);
-        //WxListCtrlFC->SetItemBackgroundColour(0, kinfo.attr->bgcolor);
-        //WxListCtrlFC->SetBackgroundColour(kinfo.attr->bgcolor);
-        //WxListCtrlFC->Refresh();
-        
-        WxListCtrlBC->SetItemBackgroundColour(0, kinfo.attr->bgcolor);
+        SetItemTextColour(WxListCtrlFC, 0, kinfo.attr->color);
         int c = (kinfo.attr->bgcolor.Red()+kinfo.attr->bgcolor.Green()+kinfo.attr->bgcolor.Blue())/3;
         if(c >= 128)
         {
-            WxListCtrlBC->SetItemTextColour(0, *wxBLACK);
+            SetItemColour(WxListCtrlBC, 0, *wxBLACK, kinfo.attr->bgcolor);
         }
         else
         {
-            WxListCtrlBC->SetItemTextColour(0, *wxWHITE);
+            SetItemColour(WxListCtrlBC, 0, *wxWHITE, kinfo.attr->bgcolor);
         }
     }
 
@@ -583,7 +595,7 @@ void MadHighlightingDialog::WxListCtrlKeywordSelected(wxListEvent& event)
     }
     if(bgc==wxNullColour) bgc=g_KeywordInfoTable[0].attr->bgcolor;
     WxListCtrlFC->SetBackgroundColour(bgc);
-    WxListCtrlFC->SetItemBackgroundColour(0, bgc);
+    SetItemBackgroundColour(WxListCtrlFC, 0, bgc);
     this->Layout();
 
     WxListCtrlKeyword->SetItemState(event.m_itemIndex, 0, wxLIST_STATE_SELECTED);
@@ -775,7 +787,7 @@ void MadHighlightingDialog::SetAttrFC(const wxColor &color, const wxString &colo
     KeywordInfo &kinfo=g_KeywordInfoTable[g_Index];
     if(g_Index==0)
     {
-        WxListCtrlFC->SetItemTextColour(0, color);
+        SetItemTextColour(WxListCtrlFC, 0, color);
         kinfo.attr->color=color;
     }
     else
@@ -798,7 +810,7 @@ void MadHighlightingDialog::SetAttrBC(const wxColor &color, const wxString &colo
     KeywordInfo &kinfo=g_KeywordInfoTable[g_Index];
     if(g_Index==0)
     {
-        WxListCtrlBC->SetItemBackgroundColour(0, color);
+        SetItemBackgroundColour(WxListCtrlBC, 0, color);
         WxListCtrlKeyword->SetBackgroundColour(color);
         kinfo.attr->bgcolor=color;
     }
@@ -819,7 +831,7 @@ void MadHighlightingDialog::SetAttrBC(const wxColor &color, const wxString &colo
     }
     RepaintKeyword();
 
-    WxListCtrlFC->SetItemBackgroundColour(0, color);
+    SetItemBackgroundColour(WxListCtrlFC, 0, color);
     WxListCtrlFC->SetBackgroundColour(color);
     WxListCtrlFC->Refresh();
 }
@@ -850,8 +862,7 @@ void MadHighlightingDialog::RepaintKeyword()
         }
         if(fc==wxNullColour) fc=fc0;
         if(bc==wxNullColour) bc=bc0;
-        WxListCtrlKeyword->SetItemTextColour(idx, fc);
-        WxListCtrlKeyword->SetItemBackgroundColour(idx, bc);
+        SetItemColour(WxListCtrlKeyword, idx, fc, bc);
         ++idx;
     }
     while(++it != itend);
