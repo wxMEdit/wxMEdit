@@ -10035,6 +10035,11 @@ void MadEdit::ApplySyntaxAttributes(MadSyntax *syn, bool matchTitle)
     if(!matchTitle || syn->m_Title==m_Syntax->m_Title)
     {
         m_Syntax->AssignAttributes(syn);
+        if(m_EditMode==emHexMode && m_HexDigitBitmap)
+        {
+            delete m_HexDigitBitmap;
+            m_HexDigitBitmap=NULL;
+        }
         m_RepaintAll = true;
         Refresh(false);
     }
@@ -10458,9 +10463,6 @@ void MadEdit::SetHexFont(const wxString &name, int size, bool forceReset)
 
         if(m_EditMode==emHexMode)
         {
-            //wxClientDC dc(this);
-            //dc.SetFont(*m_HexFont);
-
             MadEditSuperClass::SetFont(*m_HexFont);
             m_HexFontHeight=GetCharHeight();
 
