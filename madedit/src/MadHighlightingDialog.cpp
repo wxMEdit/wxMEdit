@@ -73,6 +73,23 @@ wxColour GetColourFromUser(const wxColour& colInit, const wxString& caption)
     return colRet;
 }
 
+wxFont GetItemFont(wxListCtrl *listctrl, long item)
+{
+    wxListItem it;
+    it.SetId(item);
+    listctrl->GetItem(it);
+    return it.GetFont();
+}
+
+void SetItemFont(wxListCtrl *listctrl, long item, wxFont &font)
+{
+    wxListItem it;
+    it.SetId(item);
+    listctrl->GetItem(it);
+    it.SetFont(font);
+    listctrl->SetItem(it);
+}
+
 //----------------------------------------------------------------------------
 // MadHighlightingDialog
 //----------------------------------------------------------------------------
@@ -367,13 +384,13 @@ void MadHighlightingDialog::WxListBoxSyntaxSelected(wxCommandEvent& event)
 
         WxListCtrlKeyword->SetItemTextColour(item, attr->color);
         WxListCtrlKeyword->SetItemBackgroundColour(item, attr->bgcolor);
-        wxFont font=WxListCtrlKeyword->GetItemFont(item);
+        wxFont font=GetItemFont(WxListCtrlKeyword, item);
         if(attr->style!=fsNone)
         {
             if(attr->style&fsBold) font.SetWeight(wxFONTWEIGHT_BOLD);
             if(attr->style&fsItalic) font.SetStyle(wxFONTSTYLE_ITALIC);
             if(attr->style&fsUnderline) font.SetUnderlined(true);
-            WxListCtrlKeyword->SetItemFont(item, font);
+            SetItemFont(WxListCtrlKeyword, item, font);
         }
     }
     
@@ -403,13 +420,13 @@ void MadHighlightingDialog::WxListBoxSyntaxSelected(wxCommandEvent& event)
 
         WxListCtrlKeyword->SetItemTextColour(item, attr->color);
         WxListCtrlKeyword->SetItemBackgroundColour(item, attr->bgcolor);
-        wxFont font=WxListCtrlKeyword->GetItemFont(item);
+        wxFont font=GetItemFont(WxListCtrlKeyword, item);
         if(attr->style!=fsNone)
         {
             if(attr->style&fsBold) font.SetWeight(wxFONTWEIGHT_BOLD);
             if(attr->style&fsItalic) font.SetStyle(wxFONTSTYLE_ITALIC);
             if(attr->style&fsUnderline) font.SetUnderlined(true);
-            WxListCtrlKeyword->SetItemFont(item, font);
+            SetItemFont(WxListCtrlKeyword, item, font);
         }
     }
 
@@ -617,7 +634,7 @@ void MadHighlightingDialog::WxListCtrlBCSelected(wxListEvent& event)
  */
 void MadHighlightingDialog::WxCheckBoxBoldClick(wxCommandEvent& event)
 {
-    wxFont font=WxListCtrlKeyword->GetItemFont(g_Index);
+    wxFont font=GetItemFont(WxListCtrlKeyword, g_Index);
     if(event.IsChecked()) 
     {
         g_KeywordInfoTable[g_Index].attr->style |= fsBold;
@@ -628,7 +645,7 @@ void MadHighlightingDialog::WxCheckBoxBoldClick(wxCommandEvent& event)
         g_KeywordInfoTable[g_Index].attr->style &= (~fsBold);
         font.SetWeight(wxFONTWEIGHT_NORMAL);
     }
-    WxListCtrlKeyword->SetItemFont(g_Index, font);
+    SetItemFont(WxListCtrlKeyword, g_Index, font);
     WxListCtrlKeyword->SetColumnWidth(0, wxLIST_AUTOSIZE);
     SetToModifiedSyntax(g_Syntax);
 }
@@ -638,7 +655,7 @@ void MadHighlightingDialog::WxCheckBoxBoldClick(wxCommandEvent& event)
  */
 void MadHighlightingDialog::WxCheckBoxItalicClick(wxCommandEvent& event)
 {
-    wxFont font=WxListCtrlKeyword->GetItemFont(g_Index);
+    wxFont font=GetItemFont(WxListCtrlKeyword, g_Index);
     if(event.IsChecked()) 
     {
         g_KeywordInfoTable[g_Index].attr->style |= fsItalic;
@@ -649,7 +666,7 @@ void MadHighlightingDialog::WxCheckBoxItalicClick(wxCommandEvent& event)
         g_KeywordInfoTable[g_Index].attr->style &= (~fsItalic);
         font.SetStyle(wxFONTSTYLE_NORMAL);
     }
-    WxListCtrlKeyword->SetItemFont(g_Index, font);
+    SetItemFont(WxListCtrlKeyword, g_Index, font);
     WxListCtrlKeyword->SetColumnWidth(0, wxLIST_AUTOSIZE);
     SetToModifiedSyntax(g_Syntax);
 }
@@ -659,7 +676,7 @@ void MadHighlightingDialog::WxCheckBoxItalicClick(wxCommandEvent& event)
  */
 void MadHighlightingDialog::WxCheckBoxUnderlineClick(wxCommandEvent& event)
 {
-    wxFont font=WxListCtrlKeyword->GetItemFont(g_Index);
+    wxFont font=GetItemFont(WxListCtrlKeyword, g_Index);
     if(event.IsChecked()) 
     {
         g_KeywordInfoTable[g_Index].attr->style |= fsUnderline;
@@ -670,7 +687,7 @@ void MadHighlightingDialog::WxCheckBoxUnderlineClick(wxCommandEvent& event)
         g_KeywordInfoTable[g_Index].attr->style &= (~fsUnderline);
         font.SetUnderlined(false);
     }
-    WxListCtrlKeyword->SetItemFont(g_Index, font);
+    SetItemFont(WxListCtrlKeyword, g_Index, font);
     WxListCtrlKeyword->SetColumnWidth(0, wxLIST_AUTOSIZE);
     SetToModifiedSyntax(g_Syntax);
 }
