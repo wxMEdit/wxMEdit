@@ -11,6 +11,8 @@ madedit_SOURCES =	src/MadAboutDialog.cpp \
 	src/MadEditApp.h \
 	src/MadEditFrame.cpp \
 	src/MadEditFrame.h \
+	src/MadHighlightingDialog.cpp \
+	src/MadHighlightingDialog.h \
 	src/MadOptionsDialog.cpp \
 	src/MadOptionsDialog.h \
 	src/MadPlugin.cpp \
@@ -72,6 +74,7 @@ noinst_HEADERS =	description-pak \
 	src/MadAboutDialog.wxform \
 	src/MadConvEncDialog.wxform \
 	src/MadEditFrame.wxform \
+	src/MadHighlightingDialog.wxform \
 	src/MadOptionsDialog.wxform \
 	src/MadReplaceDialog.wxform \
 	src/MadSearchDialog.wxform \

@@ -137,6 +137,9 @@
 				RelativePath="..\src\MadEditFrame.cpp">
 			</File>
 			<File
+				RelativePath="..\src\MadHighlightingDialog.cpp">
+			</File>
+			<File
 				RelativePath="..\src\MadOptionsDialog.cpp">
 			</File>
 			<File
@@ -207,6 +210,9 @@
 			</File>
 			<File
 				RelativePath="..\src\MadEditFrame.h">
+			</File>
+			<File
+				RelativePath="..\src\MadHighlightingDialog.h">
 			</File>
 			<File
 				RelativePath="..\src\MadOptionsDialog.h">
