@@ -21,6 +21,8 @@
 ../src/MadEditApp.h
 ../src/MadEditFrame.cpp
 ../src/MadEditFrame.h
+../src/MadHighlightingDialog.cpp
+../src/MadHighlightingDialog.h
 ../src/MadSearchDialog.cpp
 ../src/MadSearchDialog.h
 ../src/MadReplaceDialog.cpp
