@@ -375,13 +375,13 @@ MadSyntax::MadSyntax(const wxString &filename)
     }
 }
 
-MadSyntax::MadSyntax()
+MadSyntax::MadSyntax(bool loadAttr)
 {
 #ifdef __WXMSW__
     nw_WCWord=NULL;
 #endif
     Reset();    // use default attributes
-    LoadAttributes();
+    if(loadAttr) LoadAttributes();
 }
 
 MadSyntax::~MadSyntax()

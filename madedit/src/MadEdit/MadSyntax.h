@@ -148,7 +148,7 @@ public:
 
 public:
     MadSyntax(const wxString &filename);
-    MadSyntax();
+    MadSyntax(bool loadAttr = true);
     ~MadSyntax();
 
     void LoadFromFile(const wxString &filename);
