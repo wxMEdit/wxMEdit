@@ -3618,7 +3618,14 @@ void MadEditFrame::OnToolsHighlighting(wxCommandEvent& event)
 {
     if(g_HighlightingDialog==NULL) g_HighlightingDialog=new MadHighlightingDialog(this, -1);
 
-    g_HighlightingDialog->m_InitSetting=true;
+    if(g_ActiveMadEdit)
+    {
+        g_HighlightingDialog->m_InitSetting=g_ActiveMadEdit->GetSyntaxTitle();
+    }
+    else
+    {
+        g_HighlightingDialog->m_InitSetting=wxT("XXX");
+    }
     int id=g_HighlightingDialog->ShowModal();
     g_HighlightingDialog->FreeSyntax(id!=wxID_OK); // press cancel to restore the syntax
 }

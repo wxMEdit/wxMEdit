@@ -147,7 +147,7 @@ MadHighlightingDialog::MadHighlightingDialog(wxWindow *parent, wxWindowID id, co
 : wxDialog(parent, id, title, position, size, style)
 {
     m_Syntax=NULL;
-    m_InitSetting=true;
+    m_InitSetting.Empty();
     CreateGUIControls();
 }
 
@@ -741,18 +741,23 @@ void MadHighlightingDialog::WxButtonBCClick(wxCommandEvent& event)
  */
 void MadHighlightingDialog::MadHighlightingDialogActivate(wxActivateEvent& event)
 {
-    if(m_InitSetting && event.GetActive())
+    if(!m_InitSetting.IsEmpty() && event.GetActive())
     {
-        m_InitSetting=false;
         g_Index=-1;
 
-        int i=WxListBoxSyntax->GetSelection();
-        if(i==wxNOT_FOUND) i=0;
+        int i=WxListBoxSyntax->FindString(m_InitSetting);
+        if(i==wxNOT_FOUND)
+        {
+            i=WxListBoxSyntax->GetSelection();
+            if(i==wxNOT_FOUND) i=0;
+        }
         WxListBoxSyntax->SetSelection(i);
 
         wxCommandEvent e;
         e.SetInt(i);
         WxListBoxSyntaxSelected(e);
+
+        m_InitSetting.Empty();
     }
 }
 

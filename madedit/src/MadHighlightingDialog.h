@@ -143,7 +143,7 @@ class MadHighlightingDialog : public wxDialog
 		MadSyntax *m_Syntax;
 		vector<MadSyntax*> m_ModifiedSyntax;
 	public:
-		bool m_InitSetting;
+		wxString m_InitSetting; // the init title of madsyntax
 		MadSyntax *GetSyntax(const wxString &title);
 		void SetToModifiedSyntax(MadSyntax *syn);
 		void SetAttrFC(const wxColor &color, const wxString &colorname);
