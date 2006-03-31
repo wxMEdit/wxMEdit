@@ -758,7 +758,7 @@ object frmNewForm: TfrmNewForm
           Wx_Height = 27
           Wx_Width = 90
         end
-        object WxButton1: TWxButton
+        object WxButtonCancel: TWxButton
           Left = 105
           Top = 5
           Width = 90

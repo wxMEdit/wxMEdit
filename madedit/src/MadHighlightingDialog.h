@@ -63,7 +63,7 @@ class MadHighlightingDialog : public wxDialog
 		//Do not add custom control declarations
 		//wxDev-C++ will remove them. Add custom code after the block.
 		////GUI Control Declaration Start
-		wxButton *WxButton1;
+		wxButton *WxButtonCancel;
 		wxButton *WxButtonClose;
 		wxBoxSizer *WxBoxSizer7;
 		wxButton *WxButtonBC;

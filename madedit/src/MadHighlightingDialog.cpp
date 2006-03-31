@@ -289,8 +289,8 @@ void MadHighlightingDialog::CreateGUIControls(void)
 	WxButtonClose = new wxButton(this, wxID_OK, _("&OK"), wxPoint(5,5), wxSize(90,27), 0, wxDefaultValidator, _("WxButtonClose"));
 	WxBoxSizer7->Add(WxButtonClose,0,wxALIGN_CENTER_VERTICAL | wxALL,3);
 
-	WxButton1 = new wxButton(this, wxID_CANCEL, _("&Cancel"), wxPoint(105,5), wxSize(90,27), 0, wxDefaultValidator, _("WxButton1"));
-	WxBoxSizer7->Add(WxButton1,0,wxALIGN_CENTER_VERTICAL | wxALL,3);
+	WxButtonCancel = new wxButton(this, wxID_CANCEL, _("&Cancel"), wxPoint(105,5), wxSize(90,27), 0, wxDefaultValidator, _("WxButtonCancel"));
+	WxBoxSizer7->Add(WxButtonCancel,0,wxALIGN_CENTER_VERTICAL | wxALL,3);
 
 	GetSizer()->Fit(this);
 	GetSizer()->SetSizeHints(this);
@@ -758,6 +758,11 @@ void MadHighlightingDialog::MadHighlightingDialogActivate(wxActivateEvent& event
         WxListBoxSyntaxSelected(e);
 
         m_InitSetting.Empty();
+
+        if(FindFocus()==NULL)
+        {
+            WxButtonCancel->SetFocus();
+        }
     }
 }
 

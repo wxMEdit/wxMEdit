@@ -1250,18 +1250,18 @@ void MadEditFrame::CreateGUIControls(void)
     WxToolBar1 = new wxToolBar(this, ID_WXTOOLBAR1, wxPoint(0,0), wxSize(392,29));
 
     m_Notebook = new wxFlatNotebook(this, ID_NOTEBOOK, wxPoint(0,29),wxSize(392,320), wxFNB_DEFAULT_STYLE|wxFNB_X_ON_TAB|wxFNB_DCLICK_CLOSES_TABS|wxWANTS_CHARS);
-    m_Notebook->SetActiveTabColour(wxColor(245,245,245));
+    //m_Notebook->SetActiveTabColour(wxColor(245,245,245));
     m_Notebook->SetNonActiveTabTextColour(wxColor(100,100,100));
     m_Notebook->SetWindowStyleFlag(m_Notebook->GetWindowStyleFlag() & ~wxTAB_TRAVERSAL);
     m_Notebook->SetDropTarget(new DnDFile());
 
     WxMenuBar1 =  new wxMenuBar();
-	this->SetMenuBar(WxMenuBar1);
+    this->SetMenuBar(WxMenuBar1);
 
-	WxToolBar1->Realize();
-	this->SetToolBar(WxToolBar1);
-	this->SetStatusBar(WxStatusBar1);
-	this->SetTitle(wxT("MadEdit\x3000"));
+    WxToolBar1->Realize();
+    this->SetToolBar(WxToolBar1);
+    this->SetStatusBar(WxStatusBar1);
+    this->SetTitle(wxT("MadEdit\x3000"));
 
 #if !defined(__WXMSW__) //&& !defined(__WXPM__)
     SetIcon(wxIcon(Mad_xpm));
@@ -1537,7 +1537,7 @@ void MadEditFrame::CreateGUIControls(void)
     /*** /
     // load plugins
     wxPluginLibrary *lib = wxPluginManager::LoadLibrary(wxT("./plugin"));
-	if(lib)
+    if(lib)
     {
         wxLogWarning(wxString::Format(wxT("Loaded [ %s ]\n"), wxT("plugin")));
                           //wxString(path + filename).c_str()));
@@ -1746,7 +1746,7 @@ WXLRESULT MadEditFrame::MSWWindowProc(WXUINT message, WXWPARAM wParam, WXLPARAM 
             OnReceiveMessage((wxChar*)pcds->lpData, pcds->cbData);
         }
         return TRUE;
-	}
+    }
 
     return wxFrame::MSWWindowProc(message, wParam, lParam);
 }
@@ -1936,7 +1936,7 @@ wxString MadEditFrame::GetMenuKey(const wxString &menuid, const wxString &defaul
 
 int MadEditFrame::OpenedFileCount()
 {
-	return m_Notebook->GetPageCount();
+    return m_Notebook->GetPageCount();
 }
 
 void MadEditFrame::OpenFile(const wxString &filename, bool mustExist)
