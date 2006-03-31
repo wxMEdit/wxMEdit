@@ -1106,13 +1106,6 @@ void MadSyntax::InitNextWord2(MadLineIterator &lit, size_t row)
     if(m_CheckState)
     {
         MadLineState &state = lit->m_State;
-        nw_State.blkcmtid = state.CommentId;
-        nw_ContainCommentOff = (state.CommentOff!=0);
-
-        if((nw_State.stringid = state.StringId) != 0)
-        {
-            nw_StringChar = m_StringChar[nw_State.stringid-1];
-        }
 
         nw_SynRange = 0;
         if((nw_State.rangeid = state.RangeId) != 0)
@@ -1120,6 +1113,25 @@ void MadSyntax::InitNextWord2(MadLineIterator &lit, size_t row)
             nw_SynRange = GetSyntaxRange(nw_State.rangeid);
             nw_CurrentBgColor = nw_SynRange->bgcolor;
         }
+
+        if((nw_State.blkcmtid = state.CommentId) != 0)
+        {
+            if(m_SystemAttributes[aeComment].bgcolor != wxNullColour)
+            {
+                nw_CurrentBgColor = m_SystemAttributes[aeComment].bgcolor;
+            }
+        }
+        nw_ContainCommentOff = (state.CommentOff!=0);
+
+        if((nw_State.stringid = state.StringId) != 0)
+        {
+            nw_StringChar = m_StringChar[nw_State.stringid-1];
+            if(m_SystemAttributes[aeString].bgcolor != wxNullColour)
+            {
+                nw_CurrentBgColor = m_SystemAttributes[aeString].bgcolor;
+            }
+        }
+
 
         if((nw_State.linecmt = state.LineComment) !=0)
         {
@@ -1986,7 +1998,9 @@ int MadSyntax::NextWord(int &wordwidth)
 
     if(nw_RestCount == 0)
     {
-        if(nw_NextState.rangeid != nw_State.rangeid)
+        if(nw_NextState.rangeid != nw_State.rangeid ||
+            nw_NextState.blkcmtid != nw_State.blkcmtid ||
+            nw_NextState.stringid != nw_State.stringid)
         {   // reset bgcolor
             nw_CurrentBgColor = m_SystemAttributes[aeText].bgcolor;
         }
