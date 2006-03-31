@@ -15,6 +15,10 @@
 #include <wx/wx.h>
 #include <wx/dynarray.h>
 
+#ifdef WXMAKINGDLL_WXFLATNOTEBOOK
+    #define WXMAKINGDLL_FNB
+#endif
+
 #ifdef WXMAKINGDLL_FNB
 #    define WXDLLIMPEXP_FNB WXEXPORT
 #elif defined(WXUSINGDLL)
@@ -27,8 +31,6 @@
 #pragma warning( push )
 #pragma warning(disable: 4702)
 #endif
-
-#include <vector>
 
 #ifdef __VISUALC__
 #pragma warning(pop)
@@ -46,12 +48,15 @@ class wxPageContainerBase;
 #define M_PI 3.14159265358979
 #endif
 
+#ifndef wxFNB_HEIGHT_SPACER
+#define wxFNB_HEIGHT_SPACER 10
+#endif
+
 
 // Since some compiler complains about std::min, we define our own macro
 #define FNB_MIN(a, b) ((a > b) ? b : a)
 
-typedef std::vector<wxBitmap> wxFlatNotebookImageList;
-
+WX_DECLARE_USER_EXPORTED_OBJARRAY(wxBitmap, wxFlatNotebookImageList, WXDLLIMPEXP_FNB);
 WX_DECLARE_USER_EXPORTED_OBJARRAY(wxWindow*, wxWindowPtrArray, WXDLLIMPEXP_FNB);
 
 ///  wxFlatNotebookBase styles
@@ -662,10 +667,8 @@ protected:
 	/// Check whether the style is set to default
 	virtual bool IsDefaultTabs();
 
-	/// Color the given area from x1 --> x2 with the
-	/// the current style background color, this is helpfull
-	/// when we want to delete a bitmap from that region
-	virtual void PaintBackground(wxDC& dc, int x1, int x2);
+	/// Return the color of the single line border
+	virtual wxColor GetSingleLineBorderColor();
 
 	/// Some styles does not allow drawing X on the active tab
 	/// If you dont want to allow it, override this function
@@ -746,7 +749,7 @@ protected:
 	virtual bool CanFitToScreen(size_t page);
 
 	/// Draw a bottom line for the tabs area
-	virtual void DrawTabsLine(wxDC& dc, const wxRect& rect);
+	virtual void DrawTabsLine(wxDC& dc);
 
 	// Functions
 	void DrawVC71Tab(wxBufferedPaintDC& dc, const int& posx, const int &tabIdx, const int &tabWidth, const int &tabHeight);
@@ -785,6 +788,10 @@ protected:
 
 	/// holds the button id in case a left click is done on one of them
     int m_nLeftClickZone;
+
+	// A bitmap that holds the background of the
+	// x button which is drawn on a tab
+	wxBitmap m_tabXBgBmp, m_xBgBmp, m_leftBgBmp, m_rightBgBmp;
 };
 
 /**
@@ -1249,81 +1256,6 @@ namespace FNB
 	};
 
 	const int tab_x_size = 9;
-
-	/* XPM */
-	static char *tab_x_button_pressed_xpm[] = {
-		/* width height num_colors chars_per_pixel */
-		"     9     9        8            1",
-			/* colors */
-			"` c #4766e0",
-			". c #9e9ede",
-			"# c #555555",
-			"a c #000000",
-			"b c #000000",
-			"c c #000000",
-			"d c #000000",
-			"e c #000000",
-			/* pixels */
-			"`````````",
-			"`.......`",
-			"`.......`",
-			"`..#...#`",
-			"`...#.#.`",
-			"`....#..`",
-			"`...#.#.`",
-			"`..#...#`",
-			"`````````"
-	};
-
-	/* XPM */
-	static char *tab_x_button_xpm[] = {
-		/* width height num_colors chars_per_pixel */
-		"     9     9        8            1",
-			/* colors */
-			"` c #555555",
-			". c #FFFFFF",
-			"# c #000000",
-			"a c #000000",
-			"b c #000000",
-			"c c #000000",
-			"d c #000000",
-			"e c #000000",
-			/* pixels */
-			"`````````",
-			"`.......`",
-			"`.`...`.`",
-			"`..`.`..`",
-			"`...`...`",
-			"`..`.`..`",
-			"`.`...`.`",
-			"`.......`",
-			"`````````"
-	};
-
-	/* XPM */
-	static char *tab_x_button_hilite_xpm[] = {
-		/* width height num_colors chars_per_pixel */
-		"     9     9        8            1",
-			/* colors */
-			"` c #4766e0",
-			". c #c9dafb",
-			"# c #000000",
-			"a c #000000",
-			"b c #000000",
-			"c c #000000",
-			"d c #000000",
-			"e c #000000",
-			/* pixels */
-			"`````````",
-			"`.......`",
-			"`.#...#.`",
-			"`..#.#..`",
-			"`...#...`",
-			"`..#.#..`",
-			"`.#...#.`",
-			"`.......`",
-			"`````````"
-	};
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
