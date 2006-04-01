@@ -132,7 +132,7 @@ object frmNewForm: TfrmNewForm
             Wx_LabelStyle = []
             Wx_StrechFactor = 0
           end
-          object WxComboBox1: TWxComboBox
+          object WxComboBoxSchema: TWxComboBox
             Left = 58
             Top = 4
             Width = 145
@@ -147,7 +147,7 @@ object frmNewForm: TfrmNewForm
             Wx_FGColor = clBlack
             Wx_GeneralStyle = []
             Wx_Hidden = False
-            Wx_IDName = 'ID_WXCOMBOBOX1'
+            Wx_IDName = 'ID_WXCOMBOBOXSCHEMA'
             Wx_IDValue = 1010
             Wx_StrechFactor = 0
           end
@@ -191,6 +191,7 @@ object frmNewForm: TfrmNewForm
             Height = 25
             Caption = '&Load'
             TabOrder = 1
+            EVT_BUTTON = 'WxButtonLoadClick'
             Wx_BKColor = clBlack
             Wx_Border = 2
             Wx_ButtonStyle = []
@@ -216,6 +217,7 @@ object frmNewForm: TfrmNewForm
             Height = 25
             Caption = '&Save'
             TabOrder = 0
+            EVT_BUTTON = 'WxButtonSaveClick'
             Wx_BKColor = clBlack
             Wx_Border = 2
             Wx_ButtonStyle = []
@@ -241,6 +243,7 @@ object frmNewForm: TfrmNewForm
             Height = 25
             Caption = '&Delete'
             TabOrder = 2
+            EVT_BUTTON = 'WxButtonDeleteClick'
             Wx_BKColor = clBlack
             Wx_Border = 2
             Wx_ButtonStyle = []
@@ -715,7 +718,7 @@ object frmNewForm: TfrmNewForm
                 Wx_IDName = 'ID_WXBUTTONBC'
                 Wx_IDValue = 1042
                 Wx_StrechFactor = 0
-                Wx_Height = 25
+                Wx_Height = 28
                 Wx_Width = 90
               end
             end

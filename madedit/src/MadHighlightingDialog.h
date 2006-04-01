@@ -94,7 +94,7 @@ class MadHighlightingDialog : public wxDialog
 		wxButton *WxButtonLoad;
 		wxBoxSizer *WxBoxSizer6;
 		wxStaticText *WxStaticText2;
-		wxComboBox *WxComboBox1;
+		wxComboBox *WxComboBoxSchema;
 		wxStaticText *WxStaticText1;
 		wxBoxSizer *WxBoxSizer4;
 		wxBoxSizer *WxBoxSizer3;
@@ -132,7 +132,7 @@ class MadHighlightingDialog : public wxDialog
 			ID_WXBUTTONSAVE = 1014,
 			ID_WXBUTTONLOAD = 1015,
 			ID_WXSTATICTEXT2 = 1017,
-			ID_WXCOMBOBOX1 = 1010,
+			ID_WXCOMBOBOXSCHEMA = 1010,
 			ID_WXSTATICTEXT1 = 1009,
 			ID_WXLISTBOXSYNTAX = 1021,
 			////GUI Enum Control ID End
@@ -165,6 +165,9 @@ class MadHighlightingDialog : public wxDialog
 		void WxButtonFCClick(wxCommandEvent& event);
 		void WxButtonBCClick(wxCommandEvent& event);
 		void MadHighlightingDialogActivate(wxActivateEvent& event);
+		void WxButtonLoadClick(wxCommandEvent& event);
+		void WxButtonSaveClick(wxCommandEvent& event);
+		void WxButtonDeleteClick(wxCommandEvent& event);
 };
 
 extern MadHighlightingDialog *g_HighlightingDialog;
