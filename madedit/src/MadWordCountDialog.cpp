@@ -113,7 +113,7 @@ void MadWordCountDialog::CreateGUIControls(void)
 	WxMemo1->SetInsertionPointEnd();
 	WxBoxSizer1->Add(WxMemo1,1,wxGROW | wxALL,4);
 
-	WxButton1 = new wxButton(this, wxID_OK, _("&Close"), wxPoint(187,379), wxSize(75,30), 0, wxDefaultValidator, _("WxButton1"));
+	WxButton1 = new wxButton(this, wxID_CANCEL, _("&Close"), wxPoint(187,379), wxSize(75,30), 0, wxDefaultValidator, _("WxButton1"));
 	WxBoxSizer1->Add(WxButton1,0,wxALIGN_CENTER_HORIZONTAL | wxALL,5);
 
 	GetSizer()->Fit(this);

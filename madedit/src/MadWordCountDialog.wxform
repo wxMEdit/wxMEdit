@@ -369,7 +369,7 @@ object frmNewForm: TfrmNewForm
       Wx_FGColor = clBlack
       Wx_GeneralStyle = []
       Wx_Hidden = False
-      Wx_IDName = 'wxID_OK'
+      Wx_IDName = 'wxID_CANCEL'
       Wx_IDValue = 1020
       Wx_StrechFactor = 0
       Wx_Height = 30
