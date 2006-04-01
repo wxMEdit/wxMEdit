@@ -510,7 +510,7 @@ bool MadSyntax::SaveSchema(const wxString &schname, MadSyntax *syn)
         delete sch;
     }
 
-    if(!wxFileExists(name)) return false;
+    if(!wxFileExists(schfile)) return false;
     return true;
 }
 
