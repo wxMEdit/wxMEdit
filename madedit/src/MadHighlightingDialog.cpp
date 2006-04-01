@@ -39,7 +39,7 @@ vector<KeywordInfo> g_KeywordInfoTable;
 long g_Index=-1;
 MadSyntax *g_Syntax=NULL;
 wxColourDialog *g_ColourDialog=NULL;
-
+int g_DefaultFontSize;
 
 wxColour GetColourFromUser(const wxColour& colInit, const wxString& caption)
 {
@@ -115,11 +115,12 @@ wxFont GetItemFont(wxListCtrl *listctrl, long item)
     listctrl->GetItem(it);
     return it.GetFont();
 }
-void SetItemFont(wxListCtrl *listctrl, long item, const wxFont &font)
+void SetItemFont(wxListCtrl *listctrl, long item, wxFont &font)
 {
     wxListItem it;
     it.SetId(item);
     listctrl->GetItem(it);
+    font.SetPointSize(g_DefaultFontSize);
     it.SetFont(font);
     listctrl->SetItem(it);
 }
@@ -343,6 +344,7 @@ void MadHighlightingDialog::CreateGUIControls(void)
         }
     }
 
+    g_DefaultFontSize=WxListCtrlKeyword->GetFont().GetPointSize();
     WxListCtrlKeyword->InsertColumn(0, wxT("first column"));
 
     // build color list
