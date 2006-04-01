@@ -40,11 +40,14 @@ const wxString MadPlainTextTitle(wxT("Plain Text"));
 
 vector<wxString> g_SynPaths;
 
-typedef vector< pair<wxString, wxString> > StringPairTable;
-typedef vector< pair<wxString, wxString> >::iterator StringPairIterator;
+typedef deque< pair<wxString, wxString> > StringPairTable;
+typedef deque< pair<wxString, wxString> >::iterator StringPairIterator;
 
 // synfile of g_TitleSynfileTable is full path
 StringPairTable g_TitleSynfileTable;
+
+// color schema files table (filename[*], fullpath)
+StringPairTable g_NameSchfileTable;
 
 WX_DECLARE_HASH_MAP( wxString, wxString, wxStringHash, wxStringEqual, StringMap );
 
@@ -177,17 +180,48 @@ void MadSyntax::LoadSyntaxFiles()
             cont = dir.GetNext(&filename);
         }
 
+        // load color schema files
+        cont=dir.GetFirst(&filename, wxT("*.sch"), wxDIR_FILES);
+        static int front=0, back=0;
+        while(cont)
+        {
+            filename=g_SynPaths[i]+filename;
+            wxFileName fn(filename);
+            wxString name=fn.GetName();
+            StringPairIterator it=g_NameSchfileTable.begin()+front;
+#ifdef __WXMSW__
+            if(filename.Upper().Find(s_AttributeFilePath.Upper().c_str())<0)
+#else
+            if(filename.Find(s_AttributeFilePath.c_str())<0)
+#endif
+            {
+                name+=wxT('*');
+                ++front;
+            }
+            else
+            {
+                it+=back;
+                ++back;
+            }
+            g_NameSchfileTable.insert(it, pair<wxString, wxString>(name, filename));
+
+            cont = dir.GetNext(&filename);
+        }
+
 
         LoadListFile(g_SynPaths[i]+wxT("extension.list"), g_ExtSynfileMap, true);
         LoadListFile(g_SynPaths[i]+wxT("firstline.list"), g_FirstlineSynfileMap, false);
         LoadListFile(g_SynPaths[i]+wxT("filename.list"),  g_FilenameSynfileMap, true);
     }
 
-    // check "Plain Text" was added or add it
+    // make sure "Plain Text" was added, otherwise add it
     if(g_TitleSynfileTable.size()==0 || g_TitleSynfileTable[0].first!=MadPlainTextTitle)
     {
         g_TitleSynfileTable.insert(g_TitleSynfileTable.begin(), pair<wxString, wxString>(MadPlainTextTitle, wxEmptyString));
     }
+
+    // add "Default*" to the g_NameSchfileTable
+    g_NameSchfileTable.push_front(pair<wxString, wxString>(wxT("Default*"), wxEmptyString));
 
     s_Loaded=true;
 }
@@ -360,16 +394,149 @@ MadSyntax* MadSyntax::GetSyntaxByFileName(const wxString &filename)
     return NULL;
 }
 
+size_t MadSyntax::GetSchemaCount()
+{
+    if(!s_Loaded) LoadSyntaxFiles();
+
+    return g_NameSchfileTable.size();
+}
+wxString MadSyntax::GetSchemaName(size_t index)
+{
+    if(!s_Loaded) LoadSyntaxFiles();
+
+    if(index<g_NameSchfileTable.size())
+    {
+        return g_NameSchfileTable[index].first;
+    }
+    return wxEmptyString;
+}
+
+wxString MadSyntax::GetSchemaFileByName(const wxString &schname, MadSyntax *default_syn, bool &star)
+{
+    if(!s_Loaded) LoadSyntaxFiles();
+
+    wxString name=schname;
+    if(name.Right(1)==wxT('*')) name=schname.Left(schname.Len()-1);
+
+    if(name==wxT("Default"))
+    {
+        star=true;
+        if(default_syn) return GetSyntaxFileByTitle(default_syn->m_Title);
+        return wxEmptyString;
+    }
+
+    for(size_t i=0; i<g_NameSchfileTable.size(); i++)
+    {
+        wxFileName fn(g_NameSchfileTable[i].second);
+        wxString n=fn.GetName();
+        if(n==name) 
+        {
+            star= (g_NameSchfileTable[i].first.Last()==wxT('*'));
+            return g_NameSchfileTable[i].second;
+        }
+    }
+    star=false;
+    return wxEmptyString;
+}
+
+bool MadSyntax::LoadSchema(const wxString &schname, MadSyntax *syn)
+{
+    bool star;
+    wxString schfile=GetSchemaFileByName(schname, syn, star);
+
+    if(schfile.IsEmpty() || !wxFileExists(schfile)) return false;
+
+    MadSyntax *sch=new MadSyntax(schfile, false);
+    syn->AssignAttributes(sch);
+    delete sch;
+    return true;
+}
+
+bool MadSyntax::SaveSchema(const wxString &schname, MadSyntax *syn)
+{
+    wxASSERT(syn!=NULL);
+
+    wxString name=schname;
+    if(name.Right(1)==wxT('*')) name=schname.Left(schname.Len()-1);
+
+    bool star;
+    wxString schfile=GetSchemaFileByName(name, syn, star);
+
+    if(star || name.IsEmpty()) return false;
+
+    if(schfile.IsEmpty() || !wxFileExists(schfile))
+    {
+        MadSyntax *sch=new MadSyntax(false);
+        size_t i;
+        
+        MadSyntaxRange ra;
+        ra.bgcolor=*wxWHITE;
+        for(i=sch->m_CustomRange.size(); i<5; i++)
+        {
+            sch->m_CustomRange.push_back(ra);
+        }
+        
+        MadSyntaxKeyword ke;
+        ke.m_Attr.color=*wxBLACK;
+        ke.m_Attr.bgcolor=*wxWHITE;
+        ke.m_Attr.style=fsNone;
+        for(i=sch->m_CustomKeyword.size(); i<10; i++)
+        {
+            sch->m_CustomKeyword.push_back(ke);
+        }
+        
+        sch->AssignAttributes(syn);
+        if(schfile.IsEmpty())
+        {
+            schfile = s_AttributeFilePath +name +wxT(".sch");
+            g_NameSchfileTable.push_back(pair<wxString, wxString>(name, schfile));
+        }
+        sch->SaveAttributes(schfile);
+        delete sch;
+    }
+    else
+    {
+        MadSyntax *sch=new MadSyntax(schfile, false);
+        sch->AssignAttributes(syn);
+        sch->SaveAttributes(schfile);
+        delete sch;
+    }
+
+    if(!wxFileExists(name)) return false;
+    return true;
+}
+
+bool MadSyntax::DeleteSchema(const wxString &schname)
+{
+    bool star;
+    wxString schfile=GetSchemaFileByName(schname, NULL, star);
+
+    if(star || schfile.IsEmpty()) return false;
+
+    StringPairIterator it=g_NameSchfileTable.begin();
+    do
+    {
+        if(it->second == schfile)
+        {
+            g_NameSchfileTable.erase(it);
+            break;
+        }
+    }while(++it != g_NameSchfileTable.end());
+
+    wxRemoveFile(schfile);
+    return true;
+}
+
 //========================================================
 
-MadSyntax::MadSyntax(const wxString &filename)
+MadSyntax::MadSyntax(const wxString &filename, bool loadAttr)
 {
 #ifdef __WXMSW__
     nw_WCWord=NULL;
 #endif
     LoadFromFile(filename);
     wxFileName fn(filename);
-    if(fn.GetExt().CmpNoCase(wxT("syn"))==0)
+    if(loadAttr && fn.GetExt().CmpNoCase(wxT("syn"))==0)
     {
         LoadAttributes();
     }

@@ -99,6 +99,14 @@ public:
     static MadSyntax* GetSyntaxByFirstLine(wxByte *data, int size);
     static MadSyntax* GetSyntaxByFileName(const wxString &filename);
 
+    // .sch files management functions
+    static size_t GetSchemaCount();
+    static wxString GetSchemaName(size_t index);
+    static wxString GetSchemaFileByName(const wxString &schname, MadSyntax *default_syn, bool &star);
+    static bool LoadSchema(const wxString &schname, MadSyntax *syn); // apply schema to syn
+    static bool SaveSchema(const wxString &schname, MadSyntax *syn); // save schma from syn
+    static bool DeleteSchema(const wxString &schname);
+
 private:
     friend class MadEdit;
     friend class MadLines;
@@ -147,7 +155,7 @@ public:
     bool m_CheckState;
 
 public:
-    MadSyntax(const wxString &filename);
+    MadSyntax(const wxString &filename, bool loadAttr = true);
     MadSyntax(bool loadAttr = true);
     ~MadSyntax();
 
