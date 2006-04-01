@@ -48,13 +48,14 @@ object frmNewForm: TfrmNewForm
     Wx_StrechFactor = 0
     object WxListBoxSyntax: TWxListBox
       Left = 3
-      Top = 40
+      Top = 19
       Width = 145
       Height = 380
       ItemHeight = 13
       TabOrder = 1
       EVT_LISTBOX = 'WxListBoxSyntaxSelected'
       Wx_BGColor = clBlack
+      Wx_Border = 4
       Wx_Class = 'wxListBox'
       Wx_ControlOrientation = wxControlHorizontal
       Wx_FGColor = clBlack
@@ -72,11 +73,11 @@ object frmNewForm: TfrmNewForm
     object WxBoxSizer2: TWxBoxSizer
       Left = 154
       Top = 3
-      Width = 496
-      Height = 454
+      Width = 488
+      Height = 412
       TabOrder = 0
       Orientation = wxVertical
-      SpaceValue = 2
+      SpaceValue = 0
       Wx_Class = 'wxBoxSizer'
       Wx_ControlOrientation = wxControlHorizontal
       Wx_HorizontalAlignment = wxSZALIGN_GROW_HORIZONTAL
@@ -86,8 +87,8 @@ object frmNewForm: TfrmNewForm
       Wx_StrechFactor = 3
       Wx_VerticalAlignment = wxSZALIGN_GROW_VERTICAL
       object WxBoxSizer3: TWxBoxSizer
-        Left = 36
-        Top = 2
+        Left = 32
+        Top = 0
         Width = 424
         Height = 58
         TabOrder = 0
@@ -120,7 +121,7 @@ object frmNewForm: TfrmNewForm
             Caption = 'Schema:'
             TabOrder = 0
             Wx_BGColor = clBlack
-            Wx_Border = 4
+            Wx_Border = 3
             Wx_Class = 'wxStaticText'
             Wx_ControlOrientation = wxControlHorizontal
             Wx_FGColor = clBlack
@@ -139,7 +140,7 @@ object frmNewForm: TfrmNewForm
             ItemHeight = 13
             TabOrder = 1
             Wx_BGColor = clBlack
-            Wx_Border = 4
+            Wx_Border = 3
             Wx_Class = 'wxComboBox'
             Wx_ComboboxStyle = []
             Wx_ControlOrientation = wxControlHorizontal
@@ -158,7 +159,7 @@ object frmNewForm: TfrmNewForm
             Caption = 'You cannot modify the schemas with * sign.'
             TabOrder = 2
             Wx_BGColor = clBlack
-            Wx_Border = 4
+            Wx_Border = 3
             Wx_Class = 'wxStaticText'
             Wx_ControlOrientation = wxControlHorizontal
             Wx_FGColor = clBlack
@@ -261,8 +262,8 @@ object frmNewForm: TfrmNewForm
         end
       end
       object WxStaticLine1: TWxStaticLine
-        Left = 173
-        Top = 64
+        Left = 169
+        Top = 58
         Width = 150
         Height = 7
         TabOrder = 1
@@ -281,10 +282,10 @@ object frmNewForm: TfrmNewForm
         LastOrientation = wxLI_HORIZONTAL
       end
       object WxBoxSizer5: TWxBoxSizer
-        Left = 2
-        Top = 75
-        Width = 492
-        Height = 336
+        Left = 0
+        Top = 65
+        Width = 488
+        Height = 316
         TabOrder = 2
         SpaceValue = 0
         Wx_Class = 'wxBoxSizer'
@@ -297,7 +298,7 @@ object frmNewForm: TfrmNewForm
         Wx_VerticalAlignment = wxSZALIGN_GROW_VERTICAL
         object WxListCtrlKeyword: TWxListCtrl
           Left = 0
-          Top = 38
+          Top = 28
           Width = 145
           Height = 259
           Columns = <>
@@ -321,8 +322,8 @@ object frmNewForm: TfrmNewForm
         object WxBoxSizer8: TWxBoxSizer
           Left = 145
           Top = 0
-          Width = 347
-          Height = 336
+          Width = 343
+          Height = 316
           TabOrder = 0
           Orientation = wxVertical
           SpaceValue = 0
@@ -335,7 +336,7 @@ object frmNewForm: TfrmNewForm
           Wx_StrechFactor = 2
           Wx_VerticalAlignment = wxSZALIGN_GROW_VERTICAL
           object WxBoxSizer9: TWxBoxSizer
-            Left = 123
+            Left = 121
             Top = 0
             Width = 101
             Height = 63
@@ -414,7 +415,7 @@ object frmNewForm: TfrmNewForm
             end
           end
           object WxStaticLine3: TWxStaticLine
-            Left = 98
+            Left = 96
             Top = 63
             Width = 150
             Height = 7
@@ -436,8 +437,8 @@ object frmNewForm: TfrmNewForm
           object WxBoxSizer10: TWxBoxSizer
             Left = 0
             Top = 70
-            Width = 347
-            Height = 266
+            Width = 343
+            Height = 246
             TabOrder = 1
             SpaceValue = 2
             Wx_Class = 'wxBoxSizer'
@@ -450,12 +451,12 @@ object frmNewForm: TfrmNewForm
             Wx_VerticalAlignment = wxSZALIGN_GROW_VERTICAL
             object WxBoxSizer11: TWxBoxSizer
               Left = 2
-              Top = 2
-              Width = 166
-              Height = 262
+              Top = 3
+              Width = 164
+              Height = 239
               TabOrder = 0
               Orientation = wxVertical
-              SpaceValue = 3
+              SpaceValue = 2
               Wx_Class = 'wxBoxSizer'
               Wx_ControlOrientation = wxControlHorizontal
               Wx_HorizontalAlignment = wxSZALIGN_GROW_HORIZONTAL
@@ -465,8 +466,8 @@ object frmNewForm: TfrmNewForm
               Wx_StrechFactor = 1
               Wx_VerticalAlignment = wxSZALIGN_GROW_VERTICAL
               object WxStaticText3: TWxStaticText
-                Left = 27
-                Top = 3
+                Left = 26
+                Top = 2
                 Width = 111
                 Height = 17
                 Caption = 'Foreground/Text Color'
@@ -484,8 +485,8 @@ object frmNewForm: TfrmNewForm
                 Wx_StrechFactor = 0
               end
               object WxStaticTextFCName: TWxStaticText
-                Left = 28
-                Top = 26
+                Left = 27
+                Top = 23
                 Width = 109
                 Height = 17
                 Alignment = taCenter
@@ -504,13 +505,13 @@ object frmNewForm: TfrmNewForm
                 Wx_StrechFactor = 0
               end
               object WxPanelFC: TWxPanel
-                Left = 40
-                Top = 49
+                Left = 39
+                Top = 44
                 Width = 85
                 Height = 20
                 TabOrder = 2
                 Wx_BKColor = clBlack
-                Wx_Border = 3
+                Wx_Border = 2
                 Wx_Class = 'wxPanel'
                 Wx_ControlOrientation = wxControlVertical
                 Wx_Default = False
@@ -524,10 +525,10 @@ object frmNewForm: TfrmNewForm
                 Wx_StrechFactor = 0
               end
               object WxListCtrlFC: TWxListCtrl
-                Left = 3
-                Top = 75
+                Left = 2
+                Top = 68
                 Width = 160
-                Height = 150
+                Height = 140
                 Columns = <>
                 TabOrder = 3
                 ViewStyle = vsReport
@@ -547,10 +548,10 @@ object frmNewForm: TfrmNewForm
                 Wx_VerticalAlignment = wxSZALIGN_GROW_VERTICAL
               end
               object WxButtonFC: TWxButton
-                Left = 38
-                Top = 231
+                Left = 37
+                Top = 212
                 Width = 90
-                Height = 28
+                Height = 25
                 Caption = 'Other Color'
                 TabOrder = 4
                 EVT_BUTTON = 'WxButtonFCClick'
@@ -569,13 +570,13 @@ object frmNewForm: TfrmNewForm
                 Wx_IDName = 'ID_WXBUTTONFC'
                 Wx_IDValue = 1036
                 Wx_StrechFactor = 0
-                Wx_Height = 28
+                Wx_Height = 25
                 Wx_Width = 90
               end
             end
             object WxStaticLine2: TWxStaticLine
-              Left = 172
-              Top = 58
+              Left = 170
+              Top = 48
               Width = 3
               Height = 150
               TabOrder = 2
@@ -594,13 +595,13 @@ object frmNewForm: TfrmNewForm
               LastOrientation = wxLI_VERTICAL
             end
             object WxBoxSizer12: TWxBoxSizer
-              Left = 179
+              Left = 177
               Top = 2
-              Width = 166
-              Height = 262
+              Width = 164
+              Height = 242
               TabOrder = 1
               Orientation = wxVertical
-              SpaceValue = 3
+              SpaceValue = 2
               Wx_Class = 'wxBoxSizer'
               Wx_ControlOrientation = wxControlHorizontal
               Wx_HorizontalAlignment = wxSZALIGN_GROW_HORIZONTAL
@@ -610,8 +611,8 @@ object frmNewForm: TfrmNewForm
               Wx_StrechFactor = 1
               Wx_VerticalAlignment = wxSZALIGN_GROW_VERTICAL
               object WxStaticText4: TWxStaticText
-                Left = 38
-                Top = 3
+                Left = 37
+                Top = 2
                 Width = 89
                 Height = 17
                 Caption = 'Background Color'
@@ -629,8 +630,8 @@ object frmNewForm: TfrmNewForm
                 Wx_StrechFactor = 0
               end
               object WxStaticTextBCName: TWxStaticText
-                Left = 28
-                Top = 26
+                Left = 27
+                Top = 23
                 Width = 110
                 Height = 17
                 Alignment = taCenter
@@ -649,13 +650,13 @@ object frmNewForm: TfrmNewForm
                 Wx_StrechFactor = 0
               end
               object WxPanelBC: TWxPanel
-                Left = 40
-                Top = 49
+                Left = 39
+                Top = 44
                 Width = 85
                 Height = 20
                 TabOrder = 2
                 Wx_BKColor = clBlack
-                Wx_Border = 3
+                Wx_Border = 2
                 Wx_Class = 'wxPanel'
                 Wx_ControlOrientation = wxControlVertical
                 Wx_Default = False
@@ -669,10 +670,10 @@ object frmNewForm: TfrmNewForm
                 Wx_StrechFactor = 0
               end
               object WxListCtrlBC: TWxListCtrl
-                Left = 3
-                Top = 75
+                Left = 2
+                Top = 68
                 Width = 160
-                Height = 150
+                Height = 140
                 Columns = <>
                 TabOrder = 3
                 ViewStyle = vsReport
@@ -692,8 +693,8 @@ object frmNewForm: TfrmNewForm
                 Wx_VerticalAlignment = wxSZALIGN_GROW_VERTICAL
               end
               object WxButtonBC: TWxButton
-                Left = 38
-                Top = 231
+                Left = 37
+                Top = 212
                 Width = 90
                 Height = 28
                 Caption = 'Other Color'
@@ -714,7 +715,7 @@ object frmNewForm: TfrmNewForm
                 Wx_IDName = 'ID_WXBUTTONBC'
                 Wx_IDValue = 1042
                 Wx_StrechFactor = 0
-                Wx_Height = 28
+                Wx_Height = 25
                 Wx_Width = 90
               end
             end
@@ -722,11 +723,12 @@ object frmNewForm: TfrmNewForm
         end
       end
       object WxBoxSizer7: TWxBoxSizer
-        Left = 148
-        Top = 415
-        Width = 200
-        Height = 37
+        Left = 150
+        Top = 381
+        Width = 188
+        Height = 31
         TabOrder = 3
+        SpaceValue = 2
         Wx_Class = 'wxBoxSizer'
         Wx_ControlOrientation = wxControlVertical
         Wx_IDName = 'ID_WXBOXSIZER7'
@@ -734,8 +736,8 @@ object frmNewForm: TfrmNewForm
         Wx_StretchFactor = 0
         Wx_StrechFactor = 0
         object WxButtonClose: TWxButton
-          Left = 5
-          Top = 5
+          Left = 2
+          Top = 2
           Width = 90
           Height = 27
           Caption = '&OK'
@@ -759,8 +761,8 @@ object frmNewForm: TfrmNewForm
           Wx_Width = 90
         end
         object WxButtonCancel: TWxButton
-          Left = 105
-          Top = 5
+          Left = 96
+          Top = 2
           Width = 90
           Height = 27
           Caption = '&Cancel'

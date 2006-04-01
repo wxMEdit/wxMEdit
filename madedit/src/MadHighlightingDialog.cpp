@@ -180,11 +180,11 @@ void MadHighlightingDialog::CreateGUIControls(void)
 	this->SetAutoLayout(TRUE);
 
 	wxArrayString arrayStringFor_WxListBoxSyntax;
-	WxListBoxSyntax = new wxListBox(this, ID_WXLISTBOXSYNTAX, wxPoint(3,40), wxSize(145,380), arrayStringFor_WxListBoxSyntax, wxLB_SINGLE | wxLB_HSCROLL);
-	WxBoxSizer1->Add(WxListBoxSyntax,1,wxGROW | wxALL,5);
+	WxListBoxSyntax = new wxListBox(this, ID_WXLISTBOXSYNTAX, wxPoint(3,19), wxSize(145,380), arrayStringFor_WxListBoxSyntax, wxLB_SINGLE | wxLB_HSCROLL);
+	WxBoxSizer1->Add(WxListBoxSyntax,1,wxGROW | wxALL,4);
 
 	wxBoxSizer* WxBoxSizer2 = new wxBoxSizer(wxVERTICAL);
-	WxBoxSizer1->Add(WxBoxSizer2,3,wxGROW | wxALL,2);
+	WxBoxSizer1->Add(WxBoxSizer2,3,wxGROW | wxALL,0);
 
 	wxBoxSizer* WxBoxSizer3 = new wxBoxSizer(wxVERTICAL);
 	WxBoxSizer2->Add(WxBoxSizer3,0,wxALIGN_CENTER_HORIZONTAL | wxALL,0);
@@ -193,14 +193,14 @@ void MadHighlightingDialog::CreateGUIControls(void)
 	WxBoxSizer3->Add(WxBoxSizer4,0,wxALIGN_CENTER_HORIZONTAL | wxALL,4);
 
 	WxStaticText1 = new wxStaticText(this, ID_WXSTATICTEXT1, _("Schema:"), wxPoint(4,6), wxSize(46,17), 0, _("WxStaticText1"));
-	WxBoxSizer4->Add(WxStaticText1,0,wxALIGN_CENTER_VERTICAL | wxALL,4);
+	WxBoxSizer4->Add(WxStaticText1,0,wxALIGN_CENTER_VERTICAL | wxALL,3);
 
 	wxArrayString arrayStringFor_WxComboBox1;
 	WxComboBox1 = new wxComboBox(this, ID_WXCOMBOBOX1, _(""), wxPoint(58,4), wxSize(145,21), arrayStringFor_WxComboBox1, 0, wxDefaultValidator, _("WxComboBox1"));
-	WxBoxSizer4->Add(WxComboBox1,0,wxALIGN_CENTER_VERTICAL | wxALL,4);
+	WxBoxSizer4->Add(WxComboBox1,0,wxALIGN_CENTER_VERTICAL | wxALL,3);
 
 	WxStaticText2 = new wxStaticText(this, ID_WXSTATICTEXT2, _("You cannot modify the schemas with * sign."), wxPoint(211,6), wxSize(209,17), 0, _("WxStaticText2"));
-	WxBoxSizer4->Add(WxStaticText2,0,wxALIGN_CENTER_VERTICAL | wxALL,4);
+	WxBoxSizer4->Add(WxStaticText2,0,wxALIGN_CENTER_VERTICAL | wxALL,3);
 
 	wxBoxSizer* WxBoxSizer6 = new wxBoxSizer(wxHORIZONTAL);
 	WxBoxSizer3->Add(WxBoxSizer6,0,wxALIGN_CENTER_HORIZONTAL | wxALL,2);
@@ -214,13 +214,13 @@ void MadHighlightingDialog::CreateGUIControls(void)
 	WxButtonDelete = new wxButton(this, ID_WXBUTTONDELETE, _("&Delete"), wxPoint(160,2), wxSize(75,25), 0, wxDefaultValidator, _("WxButtonDelete"));
 	WxBoxSizer6->Add(WxButtonDelete,0,wxALIGN_CENTER_VERTICAL | wxALL,2);
 
-	WxStaticLine1 = new wxStaticLine(this, ID_WXSTATICLINE1, wxPoint(173,64), wxSize(150,-1), wxLI_HORIZONTAL);
+	WxStaticLine1 = new wxStaticLine(this, ID_WXSTATICLINE1, wxPoint(169,58), wxSize(150,-1), wxLI_HORIZONTAL);
 	WxBoxSizer2->Add(WxStaticLine1,0,wxGROW | wxALL,1);
 
 	wxBoxSizer* WxBoxSizer5 = new wxBoxSizer(wxHORIZONTAL);
 	WxBoxSizer2->Add(WxBoxSizer5,1,wxGROW | wxALL,0);
 
-	WxListCtrlKeyword = new wxListCtrl(this, ID_WXLISTCTRLKEYWORD, wxPoint(0,38), wxSize(145,259), wxLC_REPORT  | wxLC_NO_HEADER | wxLC_SINGLE_SEL);
+	WxListCtrlKeyword = new wxListCtrl(this, ID_WXLISTCTRLKEYWORD, wxPoint(0,28), wxSize(145,259), wxLC_REPORT  | wxLC_NO_HEADER | wxLC_SINGLE_SEL);
 	WxBoxSizer5->Add(WxListCtrlKeyword,1,wxGROW | wxALL,2);
 
 	wxBoxSizer* WxBoxSizer8 = new wxBoxSizer(wxVERTICAL);
@@ -238,58 +238,58 @@ void MadHighlightingDialog::CreateGUIControls(void)
 	WxCheckBoxUnderline = new wxCheckBox(this, ID_WXCHECKBOXUNDERLINE, _("Underline"), wxPoint(2,44), wxSize(97,17), 0, wxDefaultValidator, _("WxCheckBoxUnderline"));
 	WxBoxSizer9->Add(WxCheckBoxUnderline,0,wxALIGN_LEFT | wxALL,2);
 
-	WxStaticLine3 = new wxStaticLine(this, ID_WXSTATICLINE3, wxPoint(98,63), wxSize(150,-1), wxLI_HORIZONTAL);
+	WxStaticLine3 = new wxStaticLine(this, ID_WXSTATICLINE3, wxPoint(96,63), wxSize(150,-1), wxLI_HORIZONTAL);
 	WxBoxSizer8->Add(WxStaticLine3,0,wxGROW | wxALL,1);
 
 	wxBoxSizer* WxBoxSizer10 = new wxBoxSizer(wxHORIZONTAL);
 	WxBoxSizer8->Add(WxBoxSizer10,1,wxGROW | wxALL,2);
 
 	wxBoxSizer* WxBoxSizer11 = new wxBoxSizer(wxVERTICAL);
-	WxBoxSizer10->Add(WxBoxSizer11,1,wxGROW | wxALL,3);
+	WxBoxSizer10->Add(WxBoxSizer11,1,wxGROW | wxALL,2);
 
-	WxStaticText3 = new wxStaticText(this, ID_WXSTATICTEXT3, _("Foreground/Text Color"), wxPoint(27,3), wxSize(111,17), 0, _("WxStaticText3"));
+	WxStaticText3 = new wxStaticText(this, ID_WXSTATICTEXT3, _("Foreground/Text Color"), wxPoint(26,2), wxSize(111,17), 0, _("WxStaticText3"));
 	WxBoxSizer11->Add(WxStaticText3,0,wxALIGN_CENTER_HORIZONTAL | wxALL,3);
 
-	WxStaticTextFCName = new wxStaticText(this, ID_WXSTATICTEXTFCNAME, _("WxStaticTextFCName"), wxPoint(28,26), wxSize(109,17), wxALIGN_CENTRE, _("WxStaticTextFCName"));
+	WxStaticTextFCName = new wxStaticText(this, ID_WXSTATICTEXTFCNAME, _("WxStaticTextFCName"), wxPoint(27,23), wxSize(109,17), wxALIGN_CENTRE, _("WxStaticTextFCName"));
 	WxBoxSizer11->Add(WxStaticTextFCName,0,wxALIGN_CENTER_HORIZONTAL | wxALL,3);
 
-	WxPanelFC = new wxPanel(this, ID_WXPANELFC, wxPoint(40,49), wxSize(85,20), wxSIMPLE_BORDER);
-	WxBoxSizer11->Add(WxPanelFC,0,wxALIGN_CENTER_HORIZONTAL | wxALL,3);
+	WxPanelFC = new wxPanel(this, ID_WXPANELFC, wxPoint(39,44), wxSize(85,20), wxSIMPLE_BORDER);
+	WxBoxSizer11->Add(WxPanelFC,0,wxALIGN_CENTER_HORIZONTAL | wxALL,2);
 
-	WxListCtrlFC = new wxListCtrl(this, ID_WXLISTCTRLFC, wxPoint(3,75), wxSize(160,150), wxLC_REPORT  | wxLC_NO_HEADER | wxLC_SINGLE_SEL);
+	WxListCtrlFC = new wxListCtrl(this, ID_WXLISTCTRLFC, wxPoint(2,68), wxSize(160,140), wxLC_REPORT  | wxLC_NO_HEADER | wxLC_SINGLE_SEL);
 	WxBoxSizer11->Add(WxListCtrlFC,1,wxGROW | wxALL,2);
 
-	WxButtonFC = new wxButton(this, ID_WXBUTTONFC, _("Other Color"), wxPoint(38,231), wxSize(90,28), 0, wxDefaultValidator, _("WxButtonFC"));
+	WxButtonFC = new wxButton(this, ID_WXBUTTONFC, _("Other Color"), wxPoint(37,212), wxSize(90,25), 0, wxDefaultValidator, _("WxButtonFC"));
 	WxBoxSizer11->Add(WxButtonFC,0,wxALIGN_CENTER_HORIZONTAL | wxALL,2);
 
-	WxStaticLine2 = new wxStaticLine(this, ID_WXSTATICLINE2, wxPoint(172,58), wxSize(-1,150), wxLI_VERTICAL);
+	WxStaticLine2 = new wxStaticLine(this, ID_WXSTATICLINE2, wxPoint(170,48), wxSize(-1,150), wxLI_VERTICAL);
 	WxBoxSizer10->Add(WxStaticLine2,0,wxGROW | wxALL,1);
 
 	wxBoxSizer* WxBoxSizer12 = new wxBoxSizer(wxVERTICAL);
-	WxBoxSizer10->Add(WxBoxSizer12,1,wxGROW | wxALL,3);
+	WxBoxSizer10->Add(WxBoxSizer12,1,wxGROW | wxALL,2);
 
-	WxStaticText4 = new wxStaticText(this, ID_WXSTATICTEXT4, _("Background Color"), wxPoint(38,3), wxSize(89,17), 0, _("WxStaticText4"));
+	WxStaticText4 = new wxStaticText(this, ID_WXSTATICTEXT4, _("Background Color"), wxPoint(37,2), wxSize(89,17), 0, _("WxStaticText4"));
 	WxBoxSizer12->Add(WxStaticText4,0,wxALIGN_CENTER_HORIZONTAL | wxALL,3);
 
-	WxStaticTextBCName = new wxStaticText(this, ID_WXSTATICTEXTBCNAME, _("WxStaticTextBCName"), wxPoint(28,26), wxSize(110,17), wxALIGN_CENTRE, _("WxStaticTextBCName"));
+	WxStaticTextBCName = new wxStaticText(this, ID_WXSTATICTEXTBCNAME, _("WxStaticTextBCName"), wxPoint(27,23), wxSize(110,17), wxALIGN_CENTRE, _("WxStaticTextBCName"));
 	WxBoxSizer12->Add(WxStaticTextBCName,0,wxALIGN_CENTER_HORIZONTAL | wxALL,3);
 
-	WxPanelBC = new wxPanel(this, ID_WXPANELBC, wxPoint(40,49), wxSize(85,20), wxSIMPLE_BORDER);
-	WxBoxSizer12->Add(WxPanelBC,0,wxALIGN_CENTER_HORIZONTAL | wxALL,3);
+	WxPanelBC = new wxPanel(this, ID_WXPANELBC, wxPoint(39,44), wxSize(85,20), wxSIMPLE_BORDER);
+	WxBoxSizer12->Add(WxPanelBC,0,wxALIGN_CENTER_HORIZONTAL | wxALL,2);
 
-	WxListCtrlBC = new wxListCtrl(this, ID_WXLISTCTRLBC, wxPoint(3,75), wxSize(160,150), wxLC_REPORT  | wxLC_NO_HEADER | wxLC_SINGLE_SEL);
+	WxListCtrlBC = new wxListCtrl(this, ID_WXLISTCTRLBC, wxPoint(2,68), wxSize(160,140), wxLC_REPORT  | wxLC_NO_HEADER | wxLC_SINGLE_SEL);
 	WxBoxSizer12->Add(WxListCtrlBC,1,wxGROW | wxALL,2);
 
-	WxButtonBC = new wxButton(this, ID_WXBUTTONBC, _("Other Color"), wxPoint(38,231), wxSize(90,28), 0, wxDefaultValidator, _("WxButtonBC"));
+	WxButtonBC = new wxButton(this, ID_WXBUTTONBC, _("Other Color"), wxPoint(37,212), wxSize(90,25), 0, wxDefaultValidator, _("WxButtonBC"));
 	WxBoxSizer12->Add(WxButtonBC,0,wxALIGN_CENTER_HORIZONTAL | wxALL,2);
 
 	wxBoxSizer* WxBoxSizer7 = new wxBoxSizer(wxHORIZONTAL);
-	WxBoxSizer2->Add(WxBoxSizer7,0,wxALIGN_CENTER_HORIZONTAL | wxALL,5);
+	WxBoxSizer2->Add(WxBoxSizer7,0,wxALIGN_CENTER_HORIZONTAL | wxALL,2);
 
-	WxButtonClose = new wxButton(this, wxID_OK, _("&OK"), wxPoint(5,5), wxSize(90,27), 0, wxDefaultValidator, _("WxButtonClose"));
+	WxButtonClose = new wxButton(this, wxID_OK, _("&OK"), wxPoint(2,2), wxSize(90,27), 0, wxDefaultValidator, _("WxButtonClose"));
 	WxBoxSizer7->Add(WxButtonClose,0,wxALIGN_CENTER_VERTICAL | wxALL,3);
 
-	WxButtonCancel = new wxButton(this, wxID_CANCEL, _("&Cancel"), wxPoint(105,5), wxSize(90,27), 0, wxDefaultValidator, _("WxButtonCancel"));
+	WxButtonCancel = new wxButton(this, wxID_CANCEL, _("&Cancel"), wxPoint(96,2), wxSize(90,27), 0, wxDefaultValidator, _("WxButtonCancel"));
 	WxBoxSizer7->Add(WxButtonCancel,0,wxALIGN_CENTER_VERTICAL | wxALL,3);
 
 	GetSizer()->Fit(this);
