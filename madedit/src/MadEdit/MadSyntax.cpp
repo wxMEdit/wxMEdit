@@ -444,6 +444,14 @@ bool MadSyntax::LoadSchema(const wxString &schname, MadSyntax *syn)
     bool star;
     wxString schfile=GetSchemaFileByName(schname, syn, star);
 
+    if(schfile.IsEmpty() && syn->m_Title==MadPlainTextTitle)
+    {
+        MadSyntax *sch=new MadSyntax(false);
+        syn->AssignAttributes(sch);
+        delete sch;
+        return true;
+    }
+
     if(schfile.IsEmpty() || !wxFileExists(schfile)) return false;
 
     MadSyntax *sch=new MadSyntax(schfile, false);

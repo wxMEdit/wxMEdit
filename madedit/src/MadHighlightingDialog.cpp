@@ -987,6 +987,6 @@ void MadHighlightingDialog::WxButtonDeleteClick(wxCommandEvent& event)
     }
     else
     {
-        wxMessageBox(_("You cannot delete this schema."), wxT("MadEdit"), wxICON_WARNING|wxOK);
+        wxMessageBox(_("Cannot delete this schema."), wxT("MadEdit"), wxICON_WARNING|wxOK);
     }
 }
