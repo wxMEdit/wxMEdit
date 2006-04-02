@@ -446,10 +446,13 @@ bool MadSyntax::LoadSchema(const wxString &schname, MadSyntax *syn)
 
     if(schfile.IsEmpty() && syn->m_Title==MadPlainTextTitle)
     {
-        MadSyntax *sch=new MadSyntax(false);
-        syn->AssignAttributes(sch);
-        delete sch;
-        return true;
+        if(schname==wxT("Default*") || schname==wxT("Default"))
+        {
+            MadSyntax *sch=new MadSyntax(false);
+            syn->AssignAttributes(sch);
+            delete sch;
+            return true;
+        }
     }
 
     if(schfile.IsEmpty() || !wxFileExists(schfile)) return false;
@@ -486,7 +489,7 @@ bool MadSyntax::SaveSchema(const wxString &schname, MadSyntax *syn)
         
         MadSyntaxKeyword ke;
         ke.m_Attr.color=*wxBLACK;
-        ke.m_Attr.bgcolor=*wxWHITE;
+        ke.m_Attr.bgcolor=wxNullColour;
         ke.m_Attr.style=fsNone;
         for(i=sch->m_CustomKeyword.size(); i<10; i++)
         {
@@ -872,15 +875,12 @@ void MadSyntax::ParseSyntax(const wxString &filename)
 #endif
 
 
-    /***
     if(m_SystemAttributes[aeText].color==wxNullColour ||
         m_SystemAttributes[aeText].bgcolor==wxNullColour)
     {
         m_SystemAttributes[aeText].color=*wxBLACK;
         m_SystemAttributes[aeText].bgcolor=*wxWHITE;
     }
-    ***/
-
 
     vector < MadSyntaxKeyword >::iterator kit = m_CustomKeyword.begin();
     vector < MadSyntaxKeyword >::iterator kend = m_CustomKeyword.end();
