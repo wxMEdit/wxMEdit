@@ -23,6 +23,8 @@ src/MadEditApp.cpp
 src/MadEditApp.h
 src/MadEditFrame.cpp
 src/MadEditFrame.h
+src/MadFindInFilesDialog.cpp
+src/MadFindInFilesDialog.h
 src/MadHighlightingDialog.cpp
 src/MadHighlightingDialog.h
 src/MadSearchDialog.cpp
