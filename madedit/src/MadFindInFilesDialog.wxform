@@ -1,8 +1,8 @@
 object frmNewForm: TfrmNewForm
   Left = 8
   Top = 8
-  Width = 514
-  Height = 397
+  Width = 804
+  Height = 559
   BorderIcons = [biSystemMenu, biMinimize]
   Caption = 'Find/Replace In Files'
   Color = clBtnFace
@@ -34,34 +34,36 @@ object frmNewForm: TfrmNewForm
   object WxBoxSizer1: TWxBoxSizer
     Left = 0
     Top = 0
-    Width = 506
-    Height = 367
+    Width = 796
+    Height = 529
     Align = alClient
     TabOrder = 0
     Orientation = wxVertical
     Wx_Class = 'wxBoxSizer'
     Wx_ControlOrientation = wxControlVertical
+    Wx_HorizontalAlignment = wxSZALIGN_GROW_HORIZONTAL
     Wx_IDName = 'ID_WXBOXSIZER1'
     Wx_IDValue = 1001
-    Wx_StretchFactor = 0
-    Wx_StrechFactor = 0
+    Wx_StretchFactor = 1
+    Wx_StrechFactor = 1
     object WxBoxSizer2: TWxBoxSizer
-      Left = 5
+      Left = 24
       Top = 5
-      Width = 450
-      Height = 208
+      Width = 430
+      Height = 198
       TabOrder = 0
+      SpaceValue = 0
       Wx_Class = 'wxBoxSizer'
       Wx_ControlOrientation = wxControlVertical
       Wx_HorizontalAlignment = wxSZALIGN_GROW_HORIZONTAL
       Wx_IDName = 'ID_WXBOXSIZER2'
       Wx_IDValue = 1002
-      Wx_StretchFactor = 1
-      Wx_StrechFactor = 1
+      Wx_StretchFactor = 0
+      Wx_StrechFactor = 0
       Wx_VerticalAlignment = wxSZALIGN_TOP
       object WxBoxSizer4: TWxBoxSizer
-        Left = 5
-        Top = 5
+        Left = 0
+        Top = 0
         Width = 320
         Height = 198
         TabOrder = 0
@@ -71,8 +73,8 @@ object frmNewForm: TfrmNewForm
         Wx_HorizontalAlignment = wxSZALIGN_GROW_HORIZONTAL
         Wx_IDName = 'ID_WXBOXSIZER4'
         Wx_IDValue = 1004
-        Wx_StretchFactor = 1
-        Wx_StrechFactor = 1
+        Wx_StretchFactor = 0
+        Wx_StrechFactor = 0
         Wx_VerticalAlignment = wxSZALIGN_TOP
         object WxBoxSizer6: TWxBoxSizer
           Left = 150
@@ -114,8 +116,8 @@ object frmNewForm: TfrmNewForm
           Wx_HorizontalAlignment = wxSZALIGN_LEFT
           Wx_IDName = 'ID_WXBOXSIZER8'
           Wx_IDValue = 1008
-          Wx_StretchFactor = 1
-          Wx_StrechFactor = 1
+          Wx_StretchFactor = 0
+          Wx_StrechFactor = 0
           object WxCheckBoxCaseSensitive: TWxCheckBox
             Left = 5
             Top = 5
@@ -200,8 +202,8 @@ object frmNewForm: TfrmNewForm
         end
       end
       object WxBoxSizer5: TWxBoxSizer
-        Left = 335
-        Top = 47
+        Left = 320
+        Top = 42
         Width = 110
         Height = 114
         TabOrder = 1
@@ -292,18 +294,305 @@ object frmNewForm: TfrmNewForm
         end
       end
     end
+    object WxStaticLine1: TWxStaticLine
+      Left = 164
+      Top = 213
+      Width = 150
+      Height = 7
+      TabOrder = 3
+      Wx_BGColor = clBlack
+      Wx_Border = 2
+      Wx_Class = 'wxStaticLine'
+      Wx_ControlOrientation = wxControlVertical
+      Wx_FGColor = clBlack
+      Wx_GeneralStyle = []
+      Wx_HorizontalAlignment = wxSZALIGN_GROW_HORIZONTAL
+      Wx_IDName = 'ID_WXSTATICLINE1'
+      Wx_IDValue = 1029
+      Wx_StrechFactor = 0
+      Wx_VerticalAlignment = wxSZALIGN_TOP
+      Wx_LIOrientation = wxLI_HORIZONTAL
+      Wx_Length = 150
+      LastOrientation = wxLI_HORIZONTAL
+    end
     object WxBoxSizer3: TWxBoxSizer
-      Left = 220
-      Top = 223
-      Width = 20
-      Height = 20
+      Left = 5
+      Top = 230
+      Width = 468
+      Height = 103
       TabOrder = 1
+      Orientation = wxVertical
+      SpaceValue = 0
       Wx_Class = 'wxBoxSizer'
       Wx_ControlOrientation = wxControlVertical
+      Wx_HorizontalAlignment = wxSZALIGN_GROW_HORIZONTAL
       Wx_IDName = 'ID_WXBOXSIZER3'
       Wx_IDValue = 1003
       Wx_StretchFactor = 0
       Wx_StrechFactor = 0
+      Wx_VerticalAlignment = wxSZALIGN_TOP
+      object WxRadioButton1: TWxRadioButton
+        Left = 177
+        Top = 0
+        Width = 113
+        Height = 20
+        Caption = 'In The Opened Files'
+        TabOrder = 0
+        Wx_BGColor = clBlack
+        Wx_Border = 3
+        Wx_Class = 'wxRadioButton'
+        Wx_ControlOrientation = wxControlVertical
+        Wx_FGColor = clBlack
+        Wx_GeneralStyle = []
+        Wx_HorizontalAlignment = wxSZALIGN_LEFT
+        Wx_IDName = 'ID_WXRADIOBUTTON1'
+        Wx_IDValue = 1031
+        Wx_RadioButtonStyle = []
+        Wx_StrechFactor = 0
+        Wx_VerticalAlignment = wxSZALIGN_TOP
+      end
+      object WxFlexGridSizer1: TWxFlexGridSizer
+        Left = 0
+        Top = 20
+        Width = 468
+        Height = 63
+        TabOrder = 1
+        Columns = 3
+        Rows = 4
+        SpaceValue = 0
+        Wx_Class = 'wxFlexGridSizer'
+        Wx_ControlOrientation = wxControlVertical
+        Wx_HorizontalAlignment = wxSZALIGN_GROW_HORIZONTAL
+        Wx_IDName = 'ID_WXFLEXGRIDSIZER1'
+        Wx_IDValue = 1032
+        Wx_StrechFactor = 0
+        Wx_VerticalAlignment = wxSZALIGN_TOP
+        object WxRadioButton2: TWxRadioButton
+          Left = 0
+          Top = 0
+          Width = 113
+          Height = 20
+          Caption = 'Selected Directory:'
+          TabOrder = 0
+          Wx_BGColor = clBlack
+          Wx_Border = 3
+          Wx_Class = 'wxRadioButton'
+          Wx_ControlOrientation = wxControlNone
+          Wx_FGColor = clBlack
+          Wx_GeneralStyle = []
+          Wx_HorizontalAlignment = wxSZALIGN_LEFT
+          Wx_IDName = 'ID_WXRADIOBUTTON2'
+          Wx_IDValue = 1033
+          Wx_RadioButtonStyle = []
+          Wx_StrechFactor = 0
+        end
+        object WxComboBoxDir: TWxComboBox
+          Left = 113
+          Top = 0
+          Width = 330
+          Height = 21
+          ItemHeight = 13
+          TabOrder = 1
+          Wx_BGColor = clBlack
+          Wx_Border = 3
+          Wx_Class = 'wxComboBox'
+          Wx_ComboboxStyle = []
+          Wx_ControlOrientation = wxControlNone
+          Wx_FGColor = clBlack
+          Wx_GeneralStyle = []
+          Wx_Hidden = False
+          Wx_IDName = 'ID_WXCOMBOBOXDIR'
+          Wx_IDValue = 1034
+          Wx_StrechFactor = 0
+        end
+        object WxButtonDir: TWxButton
+          Left = 443
+          Top = 0
+          Width = 25
+          Height = 21
+          Caption = '...'
+          TabOrder = 2
+          Wx_BKColor = clBlack
+          Wx_Border = 3
+          Wx_ButtonStyle = []
+          Wx_Class = 'wxButton'
+          Wx_ControlOrientation = wxControlNone
+          Wx_Default = False
+          Wx_EventList.Strings = (
+            'EVT_BUTTON:OnClick'
+            'EVT_UPDATE_UI:OnUpdateUI')
+          Wx_FGColor = clBlack
+          Wx_GeneralStyle = []
+          Wx_Hidden = False
+          Wx_IDName = 'ID_WXBUTTONDIR'
+          Wx_IDValue = 1035
+          Wx_StrechFactor = 0
+          Wx_Height = 21
+          Wx_Width = 25
+        end
+        object WxStaticText1: TWxStaticText
+          Left = 30
+          Top = 21
+          Width = 53
+          Height = 20
+          Caption = 'File Filters:'
+          TabOrder = 3
+          Wx_BGColor = clBlack
+          Wx_Border = 3
+          Wx_Class = 'wxStaticText'
+          Wx_ControlOrientation = wxControlNone
+          Wx_FGColor = clBlack
+          Wx_GeneralStyle = []
+          Wx_Hidden = False
+          Wx_HorizontalAlignment = wxSZALIGN_RIGHT
+          Wx_IDName = 'ID_WXSTATICTEXT1'
+          Wx_IDValue = 1036
+          Wx_LabelStyle = []
+          Wx_StrechFactor = 0
+        end
+        object WxComboBoxFilter: TWxComboBox
+          Left = 113
+          Top = 21
+          Width = 330
+          Height = 21
+          ItemHeight = 13
+          TabOrder = 4
+          Wx_BGColor = clBlack
+          Wx_Border = 3
+          Wx_Class = 'wxComboBox'
+          Wx_ComboboxStyle = []
+          Wx_ControlOrientation = wxControlNone
+          Wx_FGColor = clBlack
+          Wx_GeneralStyle = []
+          Wx_Hidden = False
+          Wx_IDName = 'ID_WXCOMBOBOXFILTER'
+          Wx_IDValue = 1037
+          Wx_StrechFactor = 0
+        end
+        object WxStaticText2: TWxStaticText
+          Left = 453
+          Top = 29
+          Width = 4
+          Height = 4
+          TabOrder = 5
+          Wx_BGColor = clBlack
+          Wx_Border = 3
+          Wx_Class = 'wxStaticText'
+          Wx_ControlOrientation = wxControlNone
+          Wx_FGColor = clBlack
+          Wx_GeneralStyle = []
+          Wx_Hidden = False
+          Wx_IDName = 'ID_WXSTATICTEXT2'
+          Wx_IDValue = 1040
+          Wx_LabelStyle = []
+          Wx_StrechFactor = 0
+        end
+        object WxStaticText3: TWxStaticText
+          Left = 21
+          Top = 42
+          Width = 71
+          Height = 20
+          Caption = 'File Encoding:'
+          TabOrder = 6
+          Wx_BGColor = clBlack
+          Wx_Border = 3
+          Wx_Class = 'wxStaticText'
+          Wx_ControlOrientation = wxControlNone
+          Wx_FGColor = clBlack
+          Wx_GeneralStyle = []
+          Wx_Hidden = False
+          Wx_HorizontalAlignment = wxSZALIGN_RIGHT
+          Wx_IDName = 'ID_WXSTATICTEXT3'
+          Wx_IDValue = 1041
+          Wx_LabelStyle = []
+          Wx_StrechFactor = 0
+        end
+        object WxComboBoxEncoding: TWxComboBox
+          Left = 178
+          Top = 42
+          Width = 200
+          Height = 21
+          ItemHeight = 13
+          TabOrder = 7
+          Wx_BGColor = clBlack
+          Wx_Border = 3
+          Wx_Class = 'wxComboBox'
+          Wx_ComboboxStyle = [wxCB_DROPDOWN, wxCB_READONLY]
+          Wx_ControlOrientation = wxControlNone
+          Wx_FGColor = clBlack
+          Wx_GeneralStyle = []
+          Wx_Hidden = False
+          Wx_HorizontalAlignment = wxSZALIGN_LEFT
+          Wx_IDName = 'ID_WXCOMBOBOXENCODING'
+          Wx_IDValue = 1042
+          Wx_StrechFactor = 0
+        end
+      end
+      object WxCheckBoxSubDir: TWxCheckBox
+        Left = 84
+        Top = 83
+        Width = 300
+        Height = 20
+        Caption = 'Include Subdirectories'
+        TabOrder = 2
+        Wx_BGColor = clBlack
+        Wx_Border = 3
+        Wx_CheckBoxStyle = []
+        Wx_Class = 'wxCheckBox'
+        Wx_ControlOrientation = wxControlVertical
+        Wx_FGColor = clBlack
+        Wx_GeneralStyle = []
+        Wx_Hidden = False
+        Wx_HorizontalAlignment = wxSZALIGN_LEFT
+        Wx_IDName = 'ID_WXCHECKBOXSUBDIR'
+        Wx_IDValue = 1038
+        Wx_StrechFactor = 0
+        Wx_VerticalAlignment = wxSZALIGN_TOP
+      end
+    end
+    object WxStaticLine2: TWxStaticLine
+      Left = 164
+      Top = 343
+      Width = 150
+      Height = 7
+      TabOrder = 4
+      Wx_BGColor = clBlack
+      Wx_Border = 2
+      Wx_Class = 'wxStaticLine'
+      Wx_ControlOrientation = wxControlVertical
+      Wx_FGColor = clBlack
+      Wx_GeneralStyle = []
+      Wx_HorizontalAlignment = wxSZALIGN_GROW_HORIZONTAL
+      Wx_IDName = 'ID_WXSTATICLINE2'
+      Wx_IDValue = 1030
+      Wx_StrechFactor = 0
+      Wx_VerticalAlignment = wxSZALIGN_TOP
+      Wx_LIOrientation = wxLI_HORIZONTAL
+      Wx_Length = 150
+      LastOrientation = wxLI_HORIZONTAL
+    end
+    object WxListBox1: TWxListBox
+      Left = 178
+      Top = 360
+      Width = 121
+      Height = 160
+      ItemHeight = 13
+      TabOrder = 2
+      Wx_BGColor = clBlack
+      Wx_Border = 2
+      Wx_Class = 'wxListBox'
+      Wx_ControlOrientation = wxControlVertical
+      Wx_FGColor = clBlack
+      Wx_GeneralStyle = []
+      Wx_Hidden = False
+      Wx_HorizontalAlignment = wxSZALIGN_GROW_HORIZONTAL
+      Wx_IDName = 'ID_WXLISTBOX1'
+      Wx_IDValue = 1028
+      Wx_ListboxStyle = []
+      Wx_ListboxSubStyle = wxLB_SINGLE
+      Wx_StrechFactor = 1
+      Wx_StretchFactor = 1
+      Wx_VerticalAlignment = wxSZALIGN_GROW_VERTICAL
     end
   end
 end

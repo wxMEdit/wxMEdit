@@ -22,6 +22,11 @@
 //Do not add custom headers
 //wxDev-C++ designer will remove them
 ////Header Include Start
+#include <wx/listbox.h>
+#include <wx/stattext.h>
+#include <wx/combobox.h>
+#include <wx/radiobut.h>
+#include <wx/statline.h>
 #include <wx/button.h>
 #include <wx/checkbox.h>
 ////Header Include End
@@ -57,7 +62,21 @@ class MadFindInFilesDialog : public wxDialog
 		//Do not add custom control declarations
 		//wxDev-C++ will remove them. Add custom code after the block.
 		////GUI Control Declaration Start
+		wxListBox *WxListBox1;
+		wxStaticLine *WxStaticLine2;
+		wxCheckBox *WxCheckBoxSubDir;
+		wxComboBox *WxComboBoxEncoding;
+		wxStaticText *WxStaticText3;
+		wxStaticText *WxStaticText2;
+		wxComboBox *WxComboBoxFilter;
+		wxStaticText *WxStaticText1;
+		wxButton *WxButtonDir;
+		wxComboBox *WxComboBoxDir;
+		wxRadioButton *WxRadioButton2;
+		wxFlexGridSizer *WxFlexGridSizer1;
+		wxRadioButton *WxRadioButton1;
 		wxBoxSizer *WxBoxSizer3;
+		wxStaticLine *WxStaticLine1;
 		wxButton *WxButtonClose;
 		wxButton *WxButtonReplace;
 		wxButton *WxButtonFind;
@@ -82,6 +101,19 @@ class MadFindInFilesDialog : public wxDialog
 		enum
 		{
 			////GUI Enum Control ID Start
+			ID_WXLISTBOX1 = 1028,
+			ID_WXSTATICLINE2 = 1030,
+			ID_WXCHECKBOXSUBDIR = 1038,
+			ID_WXCOMBOBOXENCODING = 1042,
+			ID_WXSTATICTEXT3 = 1041,
+			ID_WXSTATICTEXT2 = 1040,
+			ID_WXCOMBOBOXFILTER = 1037,
+			ID_WXSTATICTEXT1 = 1036,
+			ID_WXBUTTONDIR = 1035,
+			ID_WXCOMBOBOXDIR = 1034,
+			ID_WXRADIOBUTTON2 = 1033,
+			ID_WXRADIOBUTTON1 = 1031,
+			ID_WXSTATICLINE1 = 1029,
 			ID_WXBUTTONREPLACE = 1023,
 			ID_WXBUTTONFIND = 1022,
 			ID_WXCHECKBOXFINDHEX = 1018,

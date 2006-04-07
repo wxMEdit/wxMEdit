@@ -72,10 +72,10 @@ void MadFindInFilesDialog::CreateGUIControls(void)
 	this->SetAutoLayout(TRUE);
 
 	wxBoxSizer* WxBoxSizer2 = new wxBoxSizer(wxHORIZONTAL);
-	WxBoxSizer1->Add(WxBoxSizer2,1,wxGROW | wxALL,5);
+	WxBoxSizer1->Add(WxBoxSizer2,0,wxGROW | wxALL,0);
 
 	wxBoxSizer* WxBoxSizer4 = new wxBoxSizer(wxVERTICAL);
-	WxBoxSizer2->Add(WxBoxSizer4,1,wxALIGN_TOP | wxALL,5);
+	WxBoxSizer2->Add(WxBoxSizer4,0,wxALIGN_TOP | wxALL,5);
 
 	wxBoxSizer* WxBoxSizer6 = new wxBoxSizer(wxHORIZONTAL);
 	WxBoxSizer4->Add(WxBoxSizer6,0,wxALIGN_LEFT | wxALL,5);
@@ -84,7 +84,7 @@ void MadFindInFilesDialog::CreateGUIControls(void)
 	WxBoxSizer4->Add(WxBoxSizer7,0,wxALIGN_LEFT | wxALL,5);
 
 	wxBoxSizer* WxBoxSizer8 = new wxBoxSizer(wxVERTICAL);
-	WxBoxSizer4->Add(WxBoxSizer8,1,wxALIGN_LEFT | wxALL,5);
+	WxBoxSizer4->Add(WxBoxSizer8,0,wxALIGN_LEFT | wxALL,5);
 
 	WxCheckBoxCaseSensitive = new wxCheckBox(this, ID_WXCHECKBOXCASESENSITIVE, _("&Case Sensitive"), wxPoint(5,5), wxSize(300,22), 0, wxDefaultValidator, _("WxCheckBoxCaseSensitive"));
 	WxBoxSizer8->Add(WxCheckBoxCaseSensitive,0,wxALIGN_LEFT | wxALL,3);
@@ -110,8 +110,54 @@ void MadFindInFilesDialog::CreateGUIControls(void)
 	WxButtonClose = new wxButton(this, wxID_CANCEL, _("Close"), wxPoint(5,81), wxSize(100,28), 0, wxDefaultValidator, _("WxButtonClose"));
 	WxBoxSizer5->Add(WxButtonClose,0,wxALIGN_LEFT | wxALL,5);
 
-	wxBoxSizer* WxBoxSizer3 = new wxBoxSizer(wxHORIZONTAL);
-	WxBoxSizer1->Add(WxBoxSizer3,0,wxALIGN_CENTER_HORIZONTAL | wxALL,5);
+	WxStaticLine1 = new wxStaticLine(this, ID_WXSTATICLINE1, wxPoint(164,213), wxSize(150,-1), wxLI_HORIZONTAL);
+	WxBoxSizer1->Add(WxStaticLine1,0,wxGROW | wxALL,2);
+
+	wxBoxSizer* WxBoxSizer3 = new wxBoxSizer(wxVERTICAL);
+	WxBoxSizer1->Add(WxBoxSizer3,0,wxGROW | wxALL,0);
+
+	WxRadioButton1 = new wxRadioButton(this, ID_WXRADIOBUTTON1, _("In The Opened Files"), wxPoint(177,0), wxSize(113,20), 0, wxDefaultValidator, _("WxRadioButton1"));
+	WxBoxSizer3->Add(WxRadioButton1,0,wxALIGN_LEFT | wxALL,3);
+
+	wxFlexGridSizer* WxFlexGridSizer1 = new wxFlexGridSizer(4,3,0,0);
+	WxBoxSizer3->Add(WxFlexGridSizer1,0,wxGROW | wxALL,0);
+
+	WxRadioButton2 = new wxRadioButton(this, ID_WXRADIOBUTTON2, _("Selected Directory:"), wxPoint(0,0), wxSize(113,20), 0, wxDefaultValidator, _("WxRadioButton2"));
+	WxFlexGridSizer1->Add(WxRadioButton2,0,wxALIGN_LEFT | wxALIGN_CENTER_VERTICAL | wxALL,3);
+
+	wxArrayString arrayStringFor_WxComboBoxDir;
+	WxComboBoxDir = new wxComboBox(this, ID_WXCOMBOBOXDIR, _(""), wxPoint(113,0), wxSize(330,21), arrayStringFor_WxComboBoxDir, 0, wxDefaultValidator, _("WxComboBoxDir"));
+	WxFlexGridSizer1->Add(WxComboBoxDir,0,wxALIGN_CENTER_HORIZONTAL | wxALIGN_CENTER_VERTICAL | wxALL,3);
+
+	WxButtonDir = new wxButton(this, ID_WXBUTTONDIR, _("..."), wxPoint(443,0), wxSize(25,21), 0, wxDefaultValidator, _("WxButtonDir"));
+	WxFlexGridSizer1->Add(WxButtonDir,0,wxALIGN_CENTER_HORIZONTAL | wxALIGN_CENTER_VERTICAL | wxALL,3);
+
+	WxStaticText1 = new wxStaticText(this, ID_WXSTATICTEXT1, _("File Filters:"), wxPoint(30,21), wxSize(53,20), 0, _("WxStaticText1"));
+	WxFlexGridSizer1->Add(WxStaticText1,0,wxALIGN_RIGHT | wxALIGN_CENTER_VERTICAL | wxALL,3);
+
+	wxArrayString arrayStringFor_WxComboBoxFilter;
+	WxComboBoxFilter = new wxComboBox(this, ID_WXCOMBOBOXFILTER, _(""), wxPoint(113,21), wxSize(330,21), arrayStringFor_WxComboBoxFilter, 0, wxDefaultValidator, _("WxComboBoxFilter"));
+	WxFlexGridSizer1->Add(WxComboBoxFilter,0,wxALIGN_CENTER_HORIZONTAL | wxALIGN_CENTER_VERTICAL | wxALL,3);
+
+	WxStaticText2 = new wxStaticText(this, ID_WXSTATICTEXT2, _(""), wxPoint(453,29), wxSize(4,4), 0, _("WxStaticText2"));
+	WxFlexGridSizer1->Add(WxStaticText2,0,wxALIGN_CENTER_HORIZONTAL | wxALIGN_CENTER_VERTICAL | wxALL,3);
+
+	WxStaticText3 = new wxStaticText(this, ID_WXSTATICTEXT3, _("File Encoding:"), wxPoint(21,42), wxSize(71,20), 0, _("WxStaticText3"));
+	WxFlexGridSizer1->Add(WxStaticText3,0,wxALIGN_RIGHT | wxALIGN_CENTER_VERTICAL | wxALL,3);
+
+	wxArrayString arrayStringFor_WxComboBoxEncoding;
+	WxComboBoxEncoding = new wxComboBox(this, ID_WXCOMBOBOXENCODING, _(""), wxPoint(178,42), wxSize(200,21), arrayStringFor_WxComboBoxEncoding, wxCB_DROPDOWN | wxCB_READONLY, wxDefaultValidator, _("WxComboBoxEncoding"));
+	WxFlexGridSizer1->Add(WxComboBoxEncoding,0,wxALIGN_LEFT | wxALIGN_CENTER_VERTICAL | wxALL,3);
+
+	WxCheckBoxSubDir = new wxCheckBox(this, ID_WXCHECKBOXSUBDIR, _("Include Subdirectories"), wxPoint(84,83), wxSize(300,20), 0, wxDefaultValidator, _("WxCheckBoxSubDir"));
+	WxBoxSizer3->Add(WxCheckBoxSubDir,0,wxALIGN_LEFT | wxALL,3);
+
+	WxStaticLine2 = new wxStaticLine(this, ID_WXSTATICLINE2, wxPoint(164,343), wxSize(150,-1), wxLI_HORIZONTAL);
+	WxBoxSizer1->Add(WxStaticLine2,0,wxGROW | wxALL,2);
+
+	wxArrayString arrayStringFor_WxListBox1;
+	WxListBox1 = new wxListBox(this, ID_WXLISTBOX1, wxPoint(178,360), wxSize(121,160), arrayStringFor_WxListBox1, wxLB_SINGLE);
+	WxBoxSizer1->Add(WxListBox1,1,wxGROW | wxALL,2);
 
 	GetSizer()->Fit(this);
 	GetSizer()->SetSizeHints(this);
@@ -161,6 +207,12 @@ void MadFindInFilesDialog::CreateGUIControls(void)
     ResizeItem(WxBoxSizer8, WxCheckBoxWholeWord, 25, 4);
     ResizeItem(WxBoxSizer8, WxCheckBoxRegex, 25, 4);
     ResizeItem(WxBoxSizer8, WxCheckBoxFindHex, 25, 4);
+
+    ResizeItem(WxBoxSizer3, WxRadioButton1, 25, 4);
+    ResizeItem(WxBoxSizer3, WxRadioButton2, 25, 4);
+    ResizeItem(WxBoxSizer3, WxStaticText1, 2, 2);
+    ResizeItem(WxBoxSizer3, WxStaticText3, 2, 2);
+    ResizeItem(WxBoxSizer3, WxCheckBoxSubDir, 25, 4);
 
     GetSizer()->Fit(this);
     
