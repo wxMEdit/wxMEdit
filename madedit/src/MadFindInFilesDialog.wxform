@@ -203,7 +203,7 @@ object frmNewForm: TfrmNewForm
             Left = 5
             Top = 133
             Width = 300
-            Height = 17
+            Height = 22
             Caption = 'List the Found/Replaced Files Only'
             TabOrder = 4
             Wx_BGColor = clBlack
@@ -339,7 +339,7 @@ object frmNewForm: TfrmNewForm
       Left = 5
       Top = 257
       Width = 468
-      Height = 103
+      Height = 105
       TabOrder = 1
       Orientation = wxVertical
       SpaceValue = 0
@@ -375,7 +375,7 @@ object frmNewForm: TfrmNewForm
         Left = 0
         Top = 20
         Width = 468
-        Height = 63
+        Height = 65
         TabOrder = 1
         Columns = 3
         Rows = 4
@@ -389,7 +389,7 @@ object frmNewForm: TfrmNewForm
         Wx_VerticalAlignment = wxSZALIGN_TOP
         object WxRadioButtonDir: TWxRadioButton
           Left = 0
-          Top = 0
+          Top = 1
           Width = 113
           Height = 20
           Caption = 'Selected Directory:'
@@ -408,7 +408,7 @@ object frmNewForm: TfrmNewForm
         end
         object WxComboBoxDir: TWxComboBox
           Left = 113
-          Top = 0
+          Top = 1
           Width = 330
           Height = 21
           ItemHeight = 13
@@ -429,7 +429,7 @@ object frmNewForm: TfrmNewForm
           Left = 443
           Top = 0
           Width = 25
-          Height = 21
+          Height = 23
           Caption = '...'
           TabOrder = 2
           Wx_BKColor = clBlack
@@ -452,7 +452,7 @@ object frmNewForm: TfrmNewForm
         end
         object WxStaticText1: TWxStaticText
           Left = 30
-          Top = 21
+          Top = 23
           Width = 53
           Height = 20
           Caption = 'File Filters:'
@@ -472,7 +472,7 @@ object frmNewForm: TfrmNewForm
         end
         object WxComboBoxFilter: TWxComboBox
           Left = 113
-          Top = 21
+          Top = 23
           Width = 330
           Height = 21
           ItemHeight = 13
@@ -491,7 +491,7 @@ object frmNewForm: TfrmNewForm
         end
         object WxStaticText2: TWxStaticText
           Left = 453
-          Top = 29
+          Top = 31
           Width = 4
           Height = 4
           TabOrder = 5
@@ -509,7 +509,7 @@ object frmNewForm: TfrmNewForm
         end
         object WxStaticText3: TWxStaticText
           Left = 21
-          Top = 42
+          Top = 44
           Width = 71
           Height = 20
           Caption = 'File Encoding:'
@@ -529,7 +529,7 @@ object frmNewForm: TfrmNewForm
         end
         object WxComboBoxEncoding: TWxComboBox
           Left = 178
-          Top = 42
+          Top = 44
           Width = 200
           Height = 21
           ItemHeight = 13
@@ -550,7 +550,7 @@ object frmNewForm: TfrmNewForm
       end
       object WxCheckBoxSubDir: TWxCheckBox
         Left = 84
-        Top = 83
+        Top = 85
         Width = 300
         Height = 20
         Caption = 'Include Subdirectories'
@@ -572,7 +572,7 @@ object frmNewForm: TfrmNewForm
     end
     object WxStaticLine2: TWxStaticLine
       Left = 164
-      Top = 370
+      Top = 372
       Width = 150
       Height = 7
       TabOrder = 4
@@ -593,7 +593,7 @@ object frmNewForm: TfrmNewForm
     end
     object WxListBoxFiles: TWxListBox
       Left = 178
-      Top = 387
+      Top = 389
       Width = 121
       Height = 160
       ItemHeight = 13
