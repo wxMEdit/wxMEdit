@@ -12,6 +12,7 @@
 #include "MadEditFrame.h"
 #include "MadSearchDialog.h"
 #include "MadReplaceDialog.h"
+#include "MadFindInFilesDialog.h"
 #include "MadOptionsDialog.h"
 #include "MadHighlightingDialog.h"
 #include "MadConvEncDialog.h"
@@ -699,6 +700,7 @@ BEGIN_EVENT_TABLE(MadEditFrame,wxFrame)
 	EVT_MENU(menuFindNext, MadEditFrame::OnSearchFindNext)
 	EVT_MENU(menuFindPrevious, MadEditFrame::OnSearchFindPrevious)
 	EVT_MENU(menuReplace, MadEditFrame::OnSearchReplace)
+	EVT_MENU(menuFindInFiles, MadEditFrame::OnSearchFindInFiles)
 	EVT_MENU(menuGoToLine, MadEditFrame::OnSearchGoToLine)
 	EVT_MENU(menuGoToPosition, MadEditFrame::OnSearchGoToPosition)
 	EVT_MENU(menuLeftBrace, MadEditFrame::OnSearchGoToLeftBrace)
@@ -847,17 +849,19 @@ CommandData CommandTable[]=
 
     // Search
     { 0, 0, 0, 0, _("&Search"), 0, wxITEM_NORMAL, 0, &g_Menu_Search, 0},
-    { 0,            1, menuFind,         wxT("menuFind"),         _("&Find..."),           wxT("Ctrl-F"),       wxITEM_NORMAL,    find_xpm_idx,     0, _("Find a string")},
-    { 0,            1, menuFindNext,     wxT("menuFindNext"),     _("Find &Next"),         wxT("F3"),           wxITEM_NORMAL,    findnext_xpm_idx, 0, _("Find next occurrence")},
-    { 0,            1, menuFindPrevious, wxT("menuFindPrevious"), _("Find &Previous"),     wxT("Ctrl-F3"),      wxITEM_NORMAL,    findprev_xpm_idx, 0, _("Find previous occurrence")},
-    { 0,            1, 0,                0,                       0,                       0,                   wxITEM_SEPARATOR, -1,               0, 0},
-    { 0,            1, menuReplace,      wxT("menuReplace"),      _("&Replace..."),        wxT("Ctrl-H"),       wxITEM_NORMAL,    replace_xpm_idx,  0, _("Replace a string")},
-    { 0,            1, 0,                0,                       0,                       0,                   wxITEM_SEPARATOR, -1,               0, 0},
-    { 0,            1, menuGoToLine,     wxT("menuGoToLine"),     _("&Go To Line..."),     wxT("Ctrl-G"),       wxITEM_NORMAL,    -1,               0, _("Go to the specified line")},
-    { 0,            1, menuGoToPosition, wxT("menuGoToPosition"), _("G&o To Position..."), wxT("Ctrl-Shift-G"), wxITEM_NORMAL,    -1,               0, _("Go to the specified position")},
-    { 0,            1, 0,                0,                       0,                       0,                   wxITEM_SEPARATOR, -1,               0, 0},
-    { ecLeftBrace,  1, menuLeftBrace,    wxT("menuLeftBrace"),    _("Go To L&eft Brace"),  wxT("Ctrl-["),       wxITEM_NORMAL,    -1,               0, _("Go to left brace")},
-    { ecRightBrace, 1, menuRightBrace,   wxT("menuRightBrace"),   _("Go To R&ight Brace"), wxT("Ctrl-]"),       wxITEM_NORMAL,    -1,               0, _("Go to right brace")},
+    { 0,            1, menuFind,         wxT("menuFind"),         _("&Find..."),                  wxT("Ctrl-F"),       wxITEM_NORMAL,    find_xpm_idx,     0, _("Find a string")},
+    { 0,            1, menuFindNext,     wxT("menuFindNext"),     _("Find &Next"),                wxT("F3"),           wxITEM_NORMAL,    findnext_xpm_idx, 0, _("Find next occurrence")},
+    { 0,            1, menuFindPrevious, wxT("menuFindPrevious"), _("Find &Previous"),            wxT("Ctrl-F3"),      wxITEM_NORMAL,    findprev_xpm_idx, 0, _("Find previous occurrence")},
+    { 0,            1, 0,                0,                       0,                              0,                   wxITEM_SEPARATOR, -1,               0, 0},
+    { 0,            1, menuReplace,      wxT("menuReplace"),      _("&Replace..."),               wxT("Ctrl-H"),       wxITEM_NORMAL,    replace_xpm_idx,  0, _("Replace a string")},
+    { 0,            1, 0,                0,                       0,                              0,                   wxITEM_SEPARATOR, -1,               0, 0},
+    { 0,            1, menuFindInFiles,  wxT("menuFindInFiles"),  _("Fin&d/Replace In Files..."), wxT("Ctrl-Shift-F"), wxITEM_NORMAL,    -1,               0, _("Find or replace a string in files")},
+    { 0,            1, 0,                0,                       0,                              0,                   wxITEM_SEPARATOR, -1,               0, 0},
+    { 0,            1, menuGoToLine,     wxT("menuGoToLine"),     _("&Go To Line..."),            wxT("Ctrl-G"),       wxITEM_NORMAL,    -1,               0, _("Go to the specified line")},
+    { 0,            1, menuGoToPosition, wxT("menuGoToPosition"), _("G&o To Position..."),        wxT("Ctrl-Shift-G"), wxITEM_NORMAL,    -1,               0, _("Go to the specified position")},
+    { 0,            1, 0,                0,                       0,                              0,                   wxITEM_SEPARATOR, -1,               0, 0},
+    { ecLeftBrace,  1, menuLeftBrace,    wxT("menuLeftBrace"),    _("Go To L&eft Brace"),         wxT("Ctrl-["),       wxITEM_NORMAL,    -1,               0, _("Go to left brace")},
+    { ecRightBrace, 1, menuRightBrace,   wxT("menuRightBrace"),   _("Go To R&ight Brace"),        wxT("Ctrl-]"),       wxITEM_NORMAL,    -1,               0, _("Go to right brace")},
     
     // View
     { 0, 0, 0, 0, _("&View"), 0, wxITEM_NORMAL, 0, &g_Menu_View, 0},
@@ -1012,7 +1016,7 @@ CommandData CommandTable[]=
     { 0,              1, 0,                     0,                            0,                         0,                   wxITEM_SEPARATOR, -1,                 0,                         0},
     { 0,              1, menuDisplayLineNumber, wxT("menuDisplayLineNumber"), _("&Display Line Number"), wxT("Ctrl-Alt-D"),   wxITEM_CHECK,     -1,                 0,                         _("Display the Line Numbers")},
     { 0,              1, menuShowEndOfLine,     wxT("menuShowEndOfLine"),     _("Show End Of Line"),     wxT(""),             wxITEM_CHECK,     -1,                 0,                         _("Show the sign of EndOfLine")},
-    { 0,              1, menuShowTabChar,       wxT("menuShowTabChar"),       _("Show Tab Char"),        wxT(""),             wxITEM_CHECK,     -1,                 0,                         _("Show the sign of Tab char")},
+    { 0,              1, menuShowTabChar,       wxT("menuShowTabChar"),       _("Show Tab Char"),        wxT("Ctrl-Alt-T"),   wxITEM_CHECK,     -1,                 0,                         _("Show the sign of Tab char")},
     { 0,              1, menuShowSpaceChar,     wxT("menuShowSpaceChar"),     _("Show Space Char"),      wxT("Ctrl-Alt-S"),   wxITEM_CHECK,     -1,                 0,                         _("Show the sign of Space char")},
     { 0,              1, menuMarkActiveLine,    wxT("menuMarkActiveLine"),    _("Mark Active Line"),     wxT(""),             wxITEM_CHECK,     -1,                 0,                         _("Mark the current line")},
     { 0,              1, menuMarkBracePair,     wxT("menuMarkBracePair"),     _("Mark Brace Pair"),      wxT(""),             wxITEM_CHECK,     -1,                 0,                         _("Mark the BracePair under the caret")},
@@ -3104,7 +3108,15 @@ void MadEditFrame::OnSearchReplace(wxCommandEvent& event)
 
     g_ReplaceDialog->m_FindText->SelectAll();
     g_ReplaceDialog->m_FindText->SetFocus();
+}
 
+void MadEditFrame::OnSearchFindInFiles(wxCommandEvent& event)
+{
+    if(g_FindInFilesDialog==NULL) g_FindInFilesDialog=new MadFindInFilesDialog(this, -1);
+
+    g_FindInFilesDialog->Show();
+    g_FindInFilesDialog->SetFocus();
+    g_FindInFilesDialog->Raise();
 }
 
 void MadEditFrame::OnSearchGoToLine(wxCommandEvent& event)

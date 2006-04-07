@@ -193,6 +193,7 @@ public:
     void OnSearchFindNext(wxCommandEvent& event);
     void OnSearchFindPrevious(wxCommandEvent& event);
     void OnSearchReplace(wxCommandEvent& event);
+    void OnSearchFindInFiles(wxCommandEvent& event);
     void OnSearchGoToLine(wxCommandEvent& event);
     void OnSearchGoToPosition(wxCommandEvent& event);
     void OnSearchGoToLeftBrace(wxCommandEvent& event);
@@ -327,6 +328,7 @@ enum { // menu id
     // search
     menuFindNext,
     menuFindPrevious,
+    menuFindInFiles,
     menuGoToLine,
     menuGoToPosition,
     menuLeftBrace,

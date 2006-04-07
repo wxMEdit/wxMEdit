@@ -202,6 +202,16 @@ void MadFindInFilesDialog::CreateGUIControls(void)
     WxBitmapButtonRecentReplaceText = new wxBitmapButton(this, ID_WXBITMAPBUTTONRECENTREPLACETEXT, WxBitmapButtonRecentFindText_BITMAP, wxPoint(0,0), wxSize(bh,bh), wxBU_AUTODRAW, wxDefaultValidator, _("WxBitmapButtonRecentReplaceText"));
     WxBoxSizer7->Add(WxBitmapButtonRecentReplaceText,0,wxALIGN_CENTER_HORIZONTAL | wxALL,0);
 
+    // build encoding list
+    wxString systemenc(_("System Default"));
+    WxComboBoxEncoding->Append(systemenc);
+    size_t cnt=MadEncoding::GetEncodingsCount();
+    for(size_t i=0;i<cnt;i++)
+    {
+        WxComboBoxEncoding->Append(MadEncoding::GetEncodingName(i));//enc+des);
+    }
+    WxComboBoxEncoding->SetValue(systemenc);
+    
     // resize checkbox
     ResizeItem(WxBoxSizer8, WxCheckBoxCaseSensitive, 25, 4);
     ResizeItem(WxBoxSizer8, WxCheckBoxWholeWord, 25, 4);
