@@ -3117,6 +3117,14 @@ void MadEditFrame::OnSearchFindInFiles(wxCommandEvent& event)
     g_FindInFilesDialog->Show();
     g_FindInFilesDialog->SetFocus();
     g_FindInFilesDialog->Raise();
+
+    wxString fname;
+    int fsize;
+    g_FindInFilesDialog->m_FindText->GetFont(fname, fsize);
+    g_FindInFilesDialog->m_FindText->SetFont(fname, 14);
+    g_FindInFilesDialog->m_ReplaceText->SetFont(fname, 14);
+
+    
 }
 
 void MadEditFrame::OnSearchGoToLine(wxCommandEvent& event)

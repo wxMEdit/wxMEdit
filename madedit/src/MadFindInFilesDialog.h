@@ -62,7 +62,6 @@ class MadFindInFilesDialog : public wxDialog
 		//Do not add custom control declarations
 		//wxDev-C++ will remove them. Add custom code after the block.
 		////GUI Control Declaration Start
-		wxCheckBox *WxCheckBoxListFile;
 		wxListBox *WxListBoxFiles;
 		wxStaticLine *WxStaticLine2;
 		wxCheckBox *WxCheckBoxSubDir;
@@ -82,6 +81,7 @@ class MadFindInFilesDialog : public wxDialog
 		wxButton *WxButtonReplace;
 		wxButton *WxButtonFind;
 		wxBoxSizer *WxBoxSizer5;
+		wxCheckBox *WxCheckBoxListFile;
 		wxCheckBox *WxCheckBoxFindHex;
 		wxCheckBox *WxCheckBoxRegex;
 		wxCheckBox *WxCheckBoxWholeWord;
@@ -102,7 +102,6 @@ class MadFindInFilesDialog : public wxDialog
 		enum
 		{
 			////GUI Enum Control ID Start
-			ID_WXCHECKBOXLISTFILE = 1043,
 			ID_WXLISTBOXFILES = 1028,
 			ID_WXSTATICLINE2 = 1030,
 			ID_WXCHECKBOXSUBDIR = 1038,
@@ -118,6 +117,7 @@ class MadFindInFilesDialog : public wxDialog
 			ID_WXSTATICLINE1 = 1029,
 			ID_WXBUTTONREPLACE = 1023,
 			ID_WXBUTTONFIND = 1022,
+			ID_WXCHECKBOXLISTFILE = 1043,
 			ID_WXCHECKBOXFINDHEX = 1018,
 			ID_WXCHECKBOXREGEX = 1017,
 			ID_WXCHECKBOXWHOLEWORD = 1016,
@@ -145,6 +145,7 @@ class MadFindInFilesDialog : public wxDialog
 		void WxCheckBoxFindHexClick(wxCommandEvent& event);
 		void WxButtonFindClick(wxCommandEvent& event);
 		void WxButtonReplaceClick(wxCommandEvent& event);
+		void WxButtonDirClick(wxCommandEvent& event);
 };
 
 extern MadFindInFilesDialog *g_FindInFilesDialog;

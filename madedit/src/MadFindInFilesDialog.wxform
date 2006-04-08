@@ -47,10 +47,10 @@ object frmNewForm: TfrmNewForm
     Wx_StretchFactor = 1
     Wx_StrechFactor = 1
     object WxBoxSizer2: TWxBoxSizer
-      Left = 24
+      Left = 26
       Top = 5
       Width = 430
-      Height = 225
+      Height = 230
       TabOrder = 0
       SpaceValue = 0
       Wx_Class = 'wxBoxSizer'
@@ -65,7 +65,7 @@ object frmNewForm: TfrmNewForm
         Left = 0
         Top = 0
         Width = 320
-        Height = 225
+        Height = 230
         TabOrder = 0
         Orientation = wxVertical
         Wx_Class = 'wxBoxSizer'
@@ -108,7 +108,7 @@ object frmNewForm: TfrmNewForm
           Left = 5
           Top = 65
           Width = 310
-          Height = 155
+          Height = 160
           TabOrder = 2
           Orientation = wxVertical
           Wx_Class = 'wxBoxSizer'
@@ -223,7 +223,7 @@ object frmNewForm: TfrmNewForm
       end
       object WxBoxSizer5: TWxBoxSizer
         Left = 320
-        Top = 55
+        Top = 58
         Width = 110
         Height = 114
         TabOrder = 1
@@ -315,8 +315,8 @@ object frmNewForm: TfrmNewForm
       end
     end
     object WxStaticLine1: TWxStaticLine
-      Left = 164
-      Top = 240
+      Left = 166
+      Top = 245
       Width = 150
       Height = 7
       TabOrder = 3
@@ -337,8 +337,8 @@ object frmNewForm: TfrmNewForm
     end
     object WxBoxSizer3: TWxBoxSizer
       Left = 5
-      Top = 257
-      Width = 468
+      Top = 262
+      Width = 473
       Height = 105
       TabOrder = 1
       Orientation = wxVertical
@@ -352,7 +352,7 @@ object frmNewForm: TfrmNewForm
       Wx_StrechFactor = 0
       Wx_VerticalAlignment = wxSZALIGN_TOP
       object WxRadioButtonOpenedFiles: TWxRadioButton
-        Left = 177
+        Left = 180
         Top = 0
         Width = 113
         Height = 20
@@ -374,7 +374,7 @@ object frmNewForm: TfrmNewForm
       object WxFlexGridSizer1: TWxFlexGridSizer
         Left = 0
         Top = 20
-        Width = 468
+        Width = 473
         Height = 65
         TabOrder = 1
         Columns = 3
@@ -428,10 +428,11 @@ object frmNewForm: TfrmNewForm
         object WxButtonDir: TWxButton
           Left = 443
           Top = 0
-          Width = 25
+          Width = 30
           Height = 23
           Caption = '...'
           TabOrder = 2
+          EVT_BUTTON = 'WxButtonDirClick'
           Wx_BKColor = clBlack
           Wx_Border = 3
           Wx_ButtonStyle = []
@@ -448,13 +449,13 @@ object frmNewForm: TfrmNewForm
           Wx_IDValue = 1035
           Wx_StrechFactor = 0
           Wx_Height = 23
-          Wx_Width = 25
+          Wx_Width = 30
         end
         object WxStaticText1: TWxStaticText
           Left = 30
-          Top = 23
+          Top = 25
           Width = 53
-          Height = 20
+          Height = 17
           Caption = 'File Filters:'
           TabOrder = 3
           Wx_BGColor = clBlack
@@ -490,7 +491,7 @@ object frmNewForm: TfrmNewForm
           Wx_StrechFactor = 0
         end
         object WxStaticText2: TWxStaticText
-          Left = 453
+          Left = 456
           Top = 31
           Width = 4
           Height = 4
@@ -509,9 +510,9 @@ object frmNewForm: TfrmNewForm
         end
         object WxStaticText3: TWxStaticText
           Left = 21
-          Top = 44
+          Top = 46
           Width = 71
-          Height = 20
+          Height = 17
           Caption = 'File Encoding:'
           TabOrder = 6
           Wx_BGColor = clBlack
@@ -549,7 +550,7 @@ object frmNewForm: TfrmNewForm
         end
       end
       object WxCheckBoxSubDir: TWxCheckBox
-        Left = 84
+        Left = 86
         Top = 85
         Width = 300
         Height = 20
@@ -571,8 +572,8 @@ object frmNewForm: TfrmNewForm
       end
     end
     object WxStaticLine2: TWxStaticLine
-      Left = 164
-      Top = 372
+      Left = 166
+      Top = 377
       Width = 150
       Height = 7
       TabOrder = 4
@@ -592,8 +593,8 @@ object frmNewForm: TfrmNewForm
       LastOrientation = wxLI_HORIZONTAL
     end
     object WxListBoxFiles: TWxListBox
-      Left = 178
-      Top = 389
+      Left = 181
+      Top = 394
       Width = 121
       Height = 160
       ItemHeight = 13
