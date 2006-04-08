@@ -81,7 +81,7 @@ class MadFindInFilesDialog : public wxDialog
 		wxButton *WxButtonReplace;
 		wxButton *WxButtonFind;
 		wxBoxSizer *WxBoxSizer5;
-		wxCheckBox *WxCheckBoxListFile;
+		wxCheckBox *WxCheckBoxListFileOnly;
 		wxCheckBox *WxCheckBoxFindHex;
 		wxCheckBox *WxCheckBoxRegex;
 		wxCheckBox *WxCheckBoxWholeWord;
@@ -117,7 +117,7 @@ class MadFindInFilesDialog : public wxDialog
 			ID_WXSTATICLINE1 = 1029,
 			ID_WXBUTTONREPLACE = 1023,
 			ID_WXBUTTONFIND = 1022,
-			ID_WXCHECKBOXLISTFILE = 1043,
+			ID_WXCHECKBOXLISTFILEONLY = 1043,
 			ID_WXCHECKBOXFINDHEX = 1018,
 			ID_WXCHECKBOXREGEX = 1017,
 			ID_WXCHECKBOXWHOLEWORD = 1016,
@@ -138,7 +138,13 @@ class MadFindInFilesDialog : public wxDialog
 	public:
 		MadEdit *m_FindText, *m_ReplaceText;
 		wxBitmapButton *WxBitmapButtonRecentFindText, *WxBitmapButtonRecentReplaceText;
-		wxFileHistory *m_RecentReplaceText;
+		wxFileHistory *m_RecentFindDir;
+		wxFileHistory *m_RecentFindFilter;
+		void UpdateCheckBoxByCBHex(bool check);
+		void WxBitmapButtonRecentFindTextClick(wxCommandEvent& event);
+		void WxBitmapButtonRecentReplaceTextClick(wxCommandEvent& event);
+		void OnRecentFindText(wxCommandEvent& event);
+		void OnRecentReplaceText(wxCommandEvent& event);
 	public:
 		void MadFindInFilesDialogClose(wxCloseEvent& event);
 		void CreateGUIControls(void);
@@ -146,6 +152,7 @@ class MadFindInFilesDialog : public wxDialog
 		void WxButtonFindClick(wxCommandEvent& event);
 		void WxButtonReplaceClick(wxCommandEvent& event);
 		void WxButtonDirClick(wxCommandEvent& event);
+		void MadFindInFilesDialogActivate(wxActivateEvent& event);
 };
 
 extern MadFindInFilesDialog *g_FindInFilesDialog;

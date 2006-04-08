@@ -7,6 +7,8 @@
 
 #include "MadFindInFilesDialog.h"
 
+#include "MadReplaceDialog.h"
+#include "MadSearchDialog.h"
 #include "MadEdit/MadEdit.h"
 #include <wx/progdlg.h>
 
@@ -29,9 +31,14 @@ list<wxString> g_FileNameList; // the filenames matched the filename filter
 ////Event Table Start
 BEGIN_EVENT_TABLE(MadFindInFilesDialog,wxDialog)
 	////Manual Code Start
+	EVT_BUTTON(ID_WXBITMAPBUTTONRECENTFINDTEXT, MadFindInFilesDialog::WxBitmapButtonRecentFindTextClick)
+	EVT_BUTTON(ID_WXBITMAPBUTTONRECENTREPLACETEXT, MadFindInFilesDialog::WxBitmapButtonRecentReplaceTextClick)
+	EVT_MENU_RANGE(ID_RECENTFINDTEXT1, ID_RECENTFINDTEXT20, MadFindInFilesDialog::OnRecentFindText)
+	EVT_MENU_RANGE(ID_RECENTREPLACETEXT1, ID_RECENTREPLACETEXT20, MadFindInFilesDialog::OnRecentReplaceText)
 	////Manual Code End
 	
 	EVT_CLOSE(MadFindInFilesDialog::MadFindInFilesDialogClose)
+	EVT_ACTIVATE(MadFindInFilesDialog::MadFindInFilesDialogActivate)
 	EVT_BUTTON(ID_WXBUTTONDIR,MadFindInFilesDialog::WxButtonDirClick)
 	EVT_BUTTON(ID_WXBUTTONREPLACE,MadFindInFilesDialog::WxButtonReplaceClick)
 	EVT_BUTTON(ID_WXBUTTONFIND,MadFindInFilesDialog::WxButtonFindClick)
@@ -99,8 +106,8 @@ void MadFindInFilesDialog::CreateGUIControls(void)
 	WxCheckBoxFindHex = new wxCheckBox(this, ID_WXCHECKBOXFINDHEX, _("Find &Hex String (Example: BE 00 3A or BE003A)"), wxPoint(5,101), wxSize(300,22), 0, wxDefaultValidator, _("WxCheckBoxFindHex"));
 	WxBoxSizer8->Add(WxCheckBoxFindHex,0,wxALIGN_LEFT | wxALL,3);
 
-	WxCheckBoxListFile = new wxCheckBox(this, ID_WXCHECKBOXLISTFILE, _("List the Found/Replaced Files Only"), wxPoint(5,133), wxSize(300,22), 0, wxDefaultValidator, _("WxCheckBoxListFile"));
-	WxBoxSizer8->Add(WxCheckBoxListFile,0,wxALIGN_LEFT | wxALL,3);
+	WxCheckBoxListFileOnly = new wxCheckBox(this, ID_WXCHECKBOXLISTFILEONLY, _("List the Found/Replaced Files Only"), wxPoint(5,133), wxSize(300,22), 0, wxDefaultValidator, _("WxCheckBoxListFileOnly"));
+	WxBoxSizer8->Add(WxCheckBoxListFileOnly,0,wxALIGN_LEFT | wxALL,3);
 
 	wxBoxSizer* WxBoxSizer5 = new wxBoxSizer(wxVERTICAL);
 	WxBoxSizer2->Add(WxBoxSizer5,0,wxALIGN_TOP | wxALL,5);
@@ -182,17 +189,17 @@ void MadFindInFilesDialog::CreateGUIControls(void)
     m_FindText->SetRecordCaretMovements(false);
     m_FindText->SetInsertSpacesInsteadOfTab(false);
     m_FindText->SetWantTab(false);
-    
+
     WxBoxSizer6->Add(m_FindText,0,wxALIGN_CENTER_HORIZONTAL | wxALL,0);
     WxBoxSizer6->SetItemMinSize(m_FindText, 400, bh);
-    
+
     wxBitmap WxBitmapButtonRecentFindText_BITMAP (down_xpm);
 	WxBitmapButtonRecentFindText = new wxBitmapButton(this, ID_WXBITMAPBUTTONRECENTFINDTEXT, WxBitmapButtonRecentFindText_BITMAP, wxPoint(0,0), wxSize(bh,bh), wxBU_AUTODRAW, wxDefaultValidator, _("WxBitmapButtonRecentFindText"));
     WxBoxSizer6->Add(WxBitmapButtonRecentFindText,0,wxALIGN_CENTER_HORIZONTAL | wxALL,0);
 
     // replace
     WxButtonReplace->GetSize(&bw, &bh);
-    
+
     m_ReplaceText=new MadEdit(this, ID_MADEDIT2, wxPoint(0, 0), wxSize(400, bh));
     m_ReplaceText->SetSingleLineMode(true);
     m_ReplaceText->SetEncoding(wxT("UTF-32LE"));
@@ -202,7 +209,7 @@ void MadFindInFilesDialog::CreateGUIControls(void)
     m_ReplaceText->SetWantTab(false);
     WxBoxSizer7->Add(m_ReplaceText,0,wxALIGN_CENTER_HORIZONTAL | wxALL,0);
     WxBoxSizer7->SetItemMinSize(m_ReplaceText, 400, bh);
-    
+
     WxBitmapButtonRecentReplaceText = new wxBitmapButton(this, ID_WXBITMAPBUTTONRECENTREPLACETEXT, WxBitmapButtonRecentFindText_BITMAP, wxPoint(0,0), wxSize(bh,bh), wxBU_AUTODRAW, wxDefaultValidator, _("WxBitmapButtonRecentReplaceText"));
     WxBoxSizer7->Add(WxBitmapButtonRecentReplaceText,0,wxALIGN_CENTER_HORIZONTAL | wxALL,0);
 
@@ -215,13 +222,41 @@ void MadFindInFilesDialog::CreateGUIControls(void)
         WxComboBoxEncoding->Append(MadEncoding::GetEncodingName(i));//enc+des);
     }
     WxComboBoxEncoding->SetValue(systemenc);
-    
+
+    //
+    m_RecentFindDir = new wxFileHistory();
+    m_RecentFindFilter = new wxFileHistory();
+    wxConfigBase *m_Config=wxConfigBase::Get(false);
+    wxString oldpath=m_Config->GetPath();
+    m_Config->SetPath(wxT("/RecentFindDir"));
+    m_RecentFindDir->Load(*m_Config);
+    m_Config->SetPath(wxT("/RecentFindFilter"));
+    m_RecentFindFilter->Load(*m_Config);
+    m_Config->SetPath(oldpath);
+
+    if(m_RecentFindDir->GetCount()>0)
+    {
+        wxString text=m_RecentFindDir->GetHistoryFile(0);
+        if(!text.IsEmpty())
+        {
+            WxComboBoxDir->SetValue(text);
+        }
+    }
+    if(m_RecentFindFilter->GetCount()>0)
+    {
+        wxString text=m_RecentFindFilter->GetHistoryFile(0);
+        if(!text.IsEmpty())
+        {
+            WxComboBoxFilter->SetValue(text);
+        }
+    }
+
     // resize checkbox
     ResizeItem(WxBoxSizer8, WxCheckBoxCaseSensitive, 25, 4);
     ResizeItem(WxBoxSizer8, WxCheckBoxWholeWord, 25, 4);
     ResizeItem(WxBoxSizer8, WxCheckBoxRegex, 25, 4);
     ResizeItem(WxBoxSizer8, WxCheckBoxFindHex, 25, 4);
-    ResizeItem(WxBoxSizer8, WxCheckBoxListFile, 25, 4);
+    ResizeItem(WxBoxSizer8, WxCheckBoxListFileOnly, 25, 4);
 
     ResizeItem(WxBoxSizer3, WxRadioButtonOpenedFiles, 25, 4);
     ResizeItem(WxBoxSizer3, WxRadioButtonDir, 25, 4);
@@ -230,7 +265,6 @@ void MadFindInFilesDialog::CreateGUIControls(void)
     ResizeItem(WxBoxSizer3, WxCheckBoxSubDir, 25, 4);
 
     GetSizer()->Fit(this);
-    
 
     WxButtonClose->SetFocus();
 }
@@ -243,18 +277,65 @@ void MadFindInFilesDialog::MadFindInFilesDialogClose(wxCloseEvent& event)
         Show(false);
         return;
     }
-    
+
     g_FindInFilesDialog=NULL;
     Destroy();
 }
 
+void MadFindInFilesDialog::UpdateCheckBoxByCBHex(bool check)
+{
+    if(WxCheckBoxFindHex->IsShown() && check)
+    {
+        WxCheckBoxCaseSensitive->Disable();
+        WxCheckBoxWholeWord->Disable();
+        WxCheckBoxRegex->Disable();
+    }
+    else
+    {
+        WxCheckBoxCaseSensitive->Enable();
+        WxCheckBoxWholeWord->Enable();
+        WxCheckBoxRegex->Enable();
+    }
+}
+
+void MadFindInFilesDialog::WxBitmapButtonRecentFindTextClick(wxCommandEvent& event)
+{
+    PopupMenu(g_SearchDialog->WxPopupMenuRecentFindText);
+}
+
+void MadFindInFilesDialog::WxBitmapButtonRecentReplaceTextClick(wxCommandEvent& event)
+{
+    PopupMenu(g_ReplaceDialog->WxPopupMenuRecentReplaceText);
+}
+
+void MadFindInFilesDialog::OnRecentFindText(wxCommandEvent& event)
+{
+    int idx=event.GetId()-ID_RECENTFINDTEXT1;
+    wxString text=g_SearchDialog->m_RecentFindText->GetHistoryFile(idx);
+    if(!text.IsEmpty())
+    {
+        m_FindText->SetText(text);
+        m_FindText->SetFocus();
+    }
+}
+
+void MadFindInFilesDialog::OnRecentReplaceText(wxCommandEvent& event)
+{
+    int idx=event.GetId()-ID_RECENTREPLACETEXT1;
+    wxString text=g_ReplaceDialog->m_RecentReplaceText->GetHistoryFile(idx);
+    if(!text.IsEmpty())
+    {
+        m_ReplaceText->SetText(text);
+        m_ReplaceText->SetFocus();
+    }
+}
 
 /*
  * WxCheckBoxFindHexClick
  */
 void MadFindInFilesDialog::WxCheckBoxFindHexClick(wxCommandEvent& event)
 {
-	// insert your code here
+    UpdateCheckBoxByCBHex(event.IsChecked());
 }
 
 /*
@@ -262,6 +343,9 @@ void MadFindInFilesDialog::WxCheckBoxFindHexClick(wxCommandEvent& event)
  */
 void MadFindInFilesDialog::WxButtonFindClick(wxCommandEvent& event)
 {
+    
+    
+    
     int max=10;
     wxProgressDialog dialog(_T("Progress dialog example"),
                             _T("An informative message"),
@@ -296,7 +380,6 @@ void MadFindInFilesDialog::WxButtonFindClick(wxCommandEvent& event)
  */
 void MadFindInFilesDialog::WxButtonReplaceClick(wxCommandEvent& event)
 {
-	// insert your code here
 }
 
 /*
@@ -311,4 +394,58 @@ void MadFindInFilesDialog::WxButtonDirClick(wxCommandEvent& event)
     {
         WxComboBoxDir->SetValue(dlg.GetPath());
     }
+}
+
+/*
+ * MadFindInFilesDialogActivate
+ */
+void MadFindInFilesDialog::MadFindInFilesDialogActivate(wxActivateEvent& event)
+{
+    wxConfigBase *m_Config=wxConfigBase::Get(false);
+    wxString oldpath=m_Config->GetPath();
+
+    if(event.GetActive())
+    {
+        bool bb;
+        m_Config->Read(wxT("/MadEdit/SearchCaseSensitive"), &bb, false);
+        WxCheckBoxCaseSensitive->SetValue(bb);
+
+        m_Config->Read(wxT("/MadEdit/SearchWholeWord"), &bb, false);
+        WxCheckBoxWholeWord->SetValue(bb);
+
+        m_Config->Read(wxT("/MadEdit/SearchRegex"), &bb, false);
+        WxCheckBoxRegex->SetValue(bb);
+
+        m_Config->Read(wxT("/MadEdit/SearchHex"), &bb, false);
+        WxCheckBoxFindHex->SetValue(bb);
+        UpdateCheckBoxByCBHex(bb);
+
+        m_Config->Read(wxT("/MadEdit/SearchListFileOnly"), &bb, false);
+        WxCheckBoxListFileOnly->SetValue(bb);
+
+        m_Config->Read(wxT("/MadEdit/FindListFileOnly"), &bb, false);
+        WxCheckBoxListFileOnly->SetValue(bb);
+
+        m_Config->Read(wxT("/MadEdit/FindOpenedFiles"), &bb, true);
+        WxRadioButtonOpenedFiles->SetValue(bb);
+
+        m_Config->Read(wxT("/MadEdit/FindDir"), &bb, false);
+        WxRadioButtonDir->SetValue(bb);
+
+        m_Config->Read(wxT("/MadEdit/FindSubDir"), &bb, true);
+        WxCheckBoxSubDir->SetValue(bb);
+    }
+    else
+    {
+        m_Config->Write(wxT("/MadEdit/SearchCaseSensitive"), WxCheckBoxCaseSensitive->GetValue());
+        m_Config->Write(wxT("/MadEdit/SearchWholeWord"), WxCheckBoxWholeWord->GetValue());
+        m_Config->Write(wxT("/MadEdit/SearchRegex"), WxCheckBoxRegex->GetValue());
+        m_Config->Write(wxT("/MadEdit/SearchHex"), WxCheckBoxFindHex->GetValue());
+        m_Config->Write(wxT("/MadEdit/FindListFileOnly"), WxCheckBoxListFileOnly->GetValue());
+        m_Config->Write(wxT("/MadEdit/FindOpenedFiles"), WxRadioButtonOpenedFiles->GetValue());
+        m_Config->Write(wxT("/MadEdit/FindDir"), WxRadioButtonDir->GetValue());
+        m_Config->Write(wxT("/MadEdit/FindSubDir"), WxCheckBoxSubDir->GetValue());
+    }
+
+    m_Config->SetPath(oldpath);
 }

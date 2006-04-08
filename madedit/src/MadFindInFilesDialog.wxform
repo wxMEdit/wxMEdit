@@ -29,6 +29,7 @@ object frmNewForm: TfrmNewForm
   Wx_GeneralStyle = []
   Wx_DialogStyle = [wxCAPTION, wxRESIZE_BORDER, wxSYSTEM_MENU, wxSTAY_ON_TOP, wxDIALOG_NO_PARENT, wxCLOSE_BOX]
   EVT_CLOSE = 'MadFindInFilesDialogClose'
+  EVT_ACTIVATE = 'MadFindInFilesDialogActivate'
   PixelsPerInch = 96
   TextHeight = 13
   object WxBoxSizer1: TWxBoxSizer
@@ -199,7 +200,7 @@ object frmNewForm: TfrmNewForm
             Wx_IDValue = 1018
             Wx_StrechFactor = 0
           end
-          object WxCheckBoxListFile: TWxCheckBox
+          object WxCheckBoxListFileOnly: TWxCheckBox
             Left = 5
             Top = 133
             Width = 300
@@ -215,7 +216,7 @@ object frmNewForm: TfrmNewForm
             Wx_GeneralStyle = []
             Wx_Hidden = False
             Wx_HorizontalAlignment = wxSZALIGN_LEFT
-            Wx_IDName = 'ID_WXCHECKBOXLISTFILE'
+            Wx_IDName = 'ID_WXCHECKBOXLISTFILEONLY'
             Wx_IDValue = 1043
             Wx_StrechFactor = 0
           end
