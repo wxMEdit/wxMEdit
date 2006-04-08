@@ -148,7 +148,7 @@ void MadReplaceDialog::CreateGUIControls(void)
     WxBoxSizer4->SetItemMinSize(m_FindText, 400, bh);
     
     wxBitmap WxBitmapButtonRecentFindText_BITMAP (down_xpm);
-	WxBitmapButtonRecentFindText = new wxBitmapButton(this, ID_WXBITMAPBUTTONRECENTFINDTEXT, WxBitmapButtonRecentFindText_BITMAP, wxPoint(0,0), wxSize(bh,bh), wxBU_AUTODRAW, wxDefaultValidator, _("WxBitmapButtonRecentFindText"));
+    WxBitmapButtonRecentFindText = new wxBitmapButton(this, ID_WXBITMAPBUTTONRECENTFINDTEXT, WxBitmapButtonRecentFindText_BITMAP, wxPoint(0,0), wxSize(bh,bh), wxBU_AUTODRAW, wxDefaultValidator, _("WxBitmapButtonRecentFindText"));
     WxBoxSizer4->Add(WxBitmapButtonRecentFindText,0,wxALIGN_CENTER_HORIZONTAL | wxALL,0);
 
     // replace
@@ -242,7 +242,7 @@ void MadReplaceDialog::MadReplaceDialogClose(wxCloseEvent& event)
  */
 void MadReplaceDialog::WxButtonCloseClick(wxCommandEvent& event)
 {
-	Show(false);
+    Show(false);
 }
 
 /*
@@ -269,16 +269,16 @@ void MadReplaceDialog::WxButtonFindNextClick(wxCommandEvent& event)
 void MadReplaceDialog::UpdateCheckBoxByCBHex(bool check)
 {
     if(WxCheckBoxFindHex->IsShown() && check)
-	{
-        WxCheckBoxCaseSensitive->Show(false);
-        WxCheckBoxWholeWord->Show(false);
-        WxCheckBoxRegex->Show(false);
+    {
+        WxCheckBoxCaseSensitive->Disable();
+        WxCheckBoxWholeWord->Disable();
+        WxCheckBoxRegex->Disable();
     }
     else
     {
-        WxCheckBoxCaseSensitive->Show(true);
-        WxCheckBoxWholeWord->Show(true);
-        WxCheckBoxRegex->Show(true);
+        WxCheckBoxCaseSensitive->Enable();
+        WxCheckBoxWholeWord->Enable();
+        WxCheckBoxRegex->Enable();
     }
 }
 
@@ -287,7 +287,7 @@ void MadReplaceDialog::UpdateCheckBoxByCBHex(bool check)
  */
 void MadReplaceDialog::WxCheckBoxFindHexClick(wxCommandEvent& event)
 {
-	UpdateCheckBoxByCBHex(event.IsChecked());
+    UpdateCheckBoxByCBHex(event.IsChecked());
 }
 
 /*
@@ -295,7 +295,7 @@ void MadReplaceDialog::WxCheckBoxFindHexClick(wxCommandEvent& event)
  */
 void MadReplaceDialog::MadReplaceDialogKeyDown(wxKeyEvent& event)
 {
-	int key=event.GetKeyCode();
+    int key=event.GetKeyCode();
     
     //g_SearchDialog->SetTitle(wxString()<<key);
     
@@ -376,8 +376,8 @@ void MadReplaceDialog::OnRecentReplaceText(wxCommandEvent& event)
  */
 void MadReplaceDialog::WxButtonReplaceClick(wxCommandEvent& event)
 {
-	extern MadEdit *g_ActiveMadEdit;
-	
+    extern MadEdit *g_ActiveMadEdit;
+
     if(g_ActiveMadEdit==NULL)
         return;
     
@@ -424,8 +424,8 @@ void MadReplaceDialog::WxButtonReplaceClick(wxCommandEvent& event)
  */
 void MadReplaceDialog::WxButtonReplaceAllClick(wxCommandEvent& event)
 {
-	extern MadEdit *g_ActiveMadEdit;
-	
+    extern MadEdit *g_ActiveMadEdit;
+
     if(g_ActiveMadEdit==NULL)
         return;
     
@@ -478,11 +478,11 @@ void MadReplaceDialog::WxButtonReplaceAllClick(wxCommandEvent& event)
  */
 void MadReplaceDialog::MadReplaceDialogActivate(wxActivateEvent& event)
 {
-	wxConfigBase *m_Config=wxConfigBase::Get(false);
+    wxConfigBase *m_Config=wxConfigBase::Get(false);
     wxString oldpath=m_Config->GetPath();
 
     if(event.GetActive())
-	{
+    {
         bool bb;
         m_Config->Read(wxT("/MadEdit/SearchMoveFocus"), &bb, false);
         WxCheckBoxMoveFocus->SetValue(bb);
@@ -498,6 +498,7 @@ void MadReplaceDialog::MadReplaceDialogActivate(wxActivateEvent& event)
 
         m_Config->Read(wxT("/MadEdit/SearchHex"), &bb, false);
         WxCheckBoxFindHex->SetValue(bb);
+        UpdateCheckBoxByCBHex(bb);
     }
     else
     {

@@ -145,8 +145,8 @@ void MadSearchDialog::CreateGUIControls(void)
     WxBoxSizer4->SetItemMinSize(m_FindText, 400, bh);
     
     wxBitmap WxBitmapButtonRecentFindText_BITMAP (down_xpm);
-	WxBitmapButtonRecentFindText = new wxBitmapButton(this, ID_WXBITMAPBUTTONRECENTFINDTEXT, WxBitmapButtonRecentFindText_BITMAP, wxPoint(0,0), wxSize(bh,bh), wxBU_AUTODRAW, wxDefaultValidator, _("WxBitmapButtonRecentFindText"));	
-	WxBoxSizer4->Add(WxBitmapButtonRecentFindText,0,wxALIGN_CENTER_HORIZONTAL | wxALL,0);
+    WxBitmapButtonRecentFindText = new wxBitmapButton(this, ID_WXBITMAPBUTTONRECENTFINDTEXT, WxBitmapButtonRecentFindText_BITMAP, wxPoint(0,0), wxSize(bh,bh), wxBU_AUTODRAW, wxDefaultValidator, _("WxBitmapButtonRecentFindText"));	
+    WxBoxSizer4->Add(WxBitmapButtonRecentFindText,0,wxALIGN_CENTER_HORIZONTAL | wxALL,0);
 
     // resize checkbox
     ResizeItem(WxBoxSizer5, WxCheckBoxMoveFocus, 25, 4);
@@ -179,7 +179,6 @@ void MadSearchDialog::CreateGUIControls(void)
     m_RecentFindText->Load(*m_Config);
     m_Config->SetPath(oldpath);
 
-    
     if(m_RecentFindText->GetCount()>0)
     {
         wxString text=m_RecentFindText->GetHistoryFile(0);
@@ -214,7 +213,7 @@ void MadSearchDialog::MadSearchDialogClose(wxCloseEvent& event)
  */
 void MadSearchDialog::WxButtonCloseClick(wxCommandEvent& event)
 {
-	Show(false);
+    Show(false);
 }
 
 /*
@@ -223,7 +222,7 @@ void MadSearchDialog::WxButtonCloseClick(wxCommandEvent& event)
 void MadSearchDialog::WxButtonFindNextClick(wxCommandEvent& event)
 {   
     extern MadEdit *g_ActiveMadEdit;
-	
+
     if(g_ActiveMadEdit==NULL)
         return;
     
@@ -276,8 +275,8 @@ void MadSearchDialog::WxButtonFindNextClick(wxCommandEvent& event)
  */
 void MadSearchDialog::WxButtonFindPrevClick(wxCommandEvent& event)
 {
-	extern MadEdit *g_ActiveMadEdit;
-	
+    extern MadEdit *g_ActiveMadEdit;
+
     if(g_ActiveMadEdit==NULL)
         return;
     
@@ -383,7 +382,7 @@ void MadSearchDialog::MadSearchDialogKeyDown(wxKeyEvent& event)
         return; // no skip
     }
     
-	event.Skip();
+    event.Skip();
 }
 
 /*
@@ -391,7 +390,7 @@ void MadSearchDialog::MadSearchDialogKeyDown(wxKeyEvent& event)
  */
 void MadSearchDialog::WxBitmapButtonRecentFindTextClick(wxCommandEvent& event)
 {
-	PopupMenu(WxPopupMenuRecentFindText);
+    PopupMenu(WxPopupMenuRecentFindText);
 }
 
 void MadSearchDialog::OnRecentFindText(wxCommandEvent& event)
@@ -408,16 +407,16 @@ void MadSearchDialog::OnRecentFindText(wxCommandEvent& event)
 void MadSearchDialog::UpdateCheckBoxByCBHex(bool check)
 {
     if(WxCheckBoxFindHex->IsShown() && check)
-	{
-        WxCheckBoxCaseSensitive->Show(false);
-        WxCheckBoxWholeWord->Show(false);
-        WxCheckBoxRegex->Show(false);
+    {
+        WxCheckBoxCaseSensitive->Disable();
+        WxCheckBoxWholeWord->Disable();
+        WxCheckBoxRegex->Disable();
     }
     else
     {
-        WxCheckBoxCaseSensitive->Show(true);
-        WxCheckBoxWholeWord->Show(true);
-        WxCheckBoxRegex->Show(true);
+        WxCheckBoxCaseSensitive->Enable();
+        WxCheckBoxWholeWord->Enable();
+        WxCheckBoxRegex->Enable();
     }
 }
 
@@ -426,7 +425,7 @@ void MadSearchDialog::UpdateCheckBoxByCBHex(bool check)
  */
 void MadSearchDialog::WxCheckBoxFindHexClick(wxCommandEvent& event)
 {
-	UpdateCheckBoxByCBHex(event.IsChecked());
+    UpdateCheckBoxByCBHex(event.IsChecked());
 }
 
 /*
@@ -438,7 +437,7 @@ void MadSearchDialog::MadSearchDialogActivate(wxActivateEvent& event)
     wxString oldpath=m_Config->GetPath();
 
     if(event.GetActive())
-	{
+    {
         bool bb;
         m_Config->Read(wxT("/MadEdit/SearchMoveFocus"), &bb, false);
         WxCheckBoxMoveFocus->SetValue(bb);
@@ -454,6 +453,7 @@ void MadSearchDialog::MadSearchDialogActivate(wxActivateEvent& event)
 
         m_Config->Read(wxT("/MadEdit/SearchHex"), &bb, false);
         WxCheckBoxFindHex->SetValue(bb);
+        UpdateCheckBoxByCBHex(bb);
     }
     else
     {
@@ -473,7 +473,7 @@ void MadSearchDialog::MadSearchDialogActivate(wxActivateEvent& event)
  */
 void MadSearchDialog::WxButtonReplaceClick(wxCommandEvent& event)
 {
-	wxString fname;
+    wxString fname;
     int fsize;
     m_FindText->GetFont(fname, fsize);
     g_ReplaceDialog->m_FindText->SetFont(fname, 14);

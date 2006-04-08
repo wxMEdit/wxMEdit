@@ -1665,16 +1665,22 @@ void MadEditFrame::MadEditFrameClose(wxCloseEvent& event)
     if(g_SearchDialog!=NULL)
     {
         g_SearchDialog->Show(false);
-
         m_Config->SetPath(wxT("/RecentFindText"));
         g_SearchDialog->m_RecentFindText->Save(*m_Config);
     }
     if(g_ReplaceDialog!=NULL)
     {
         g_ReplaceDialog->Show(false);
-
         m_Config->SetPath(wxT("/RecentReplaceText"));
         g_ReplaceDialog->m_RecentReplaceText->Save(*m_Config);
+    }
+    if(g_FindInFilesDialog!=NULL)
+    {
+        g_FindInFilesDialog->Show(false);
+        m_Config->SetPath(wxT("/RecentFindDir"));
+        g_FindInFilesDialog->m_RecentFindDir->Save(*m_Config);
+        m_Config->SetPath(wxT("/RecentFindFilter"));
+        g_FindInFilesDialog->m_RecentFindFilter->Save(*m_Config);
     }
 
     delete m_RecentFiles;
@@ -1730,6 +1736,10 @@ void MadEditFrame::MadEditFrameKeyDown(wxKeyEvent& event)
         if(g_ReplaceDialog && g_ReplaceDialog->IsShown())
         {
             g_ReplaceDialog->Show(false);
+        }
+        if(g_FindInFilesDialog && g_FindInFilesDialog->IsShown())
+        {
+            g_FindInFilesDialog->Show(false);
         }
 
         break;
@@ -3112,7 +3122,18 @@ void MadEditFrame::OnSearchReplace(wxCommandEvent& event)
 
 void MadEditFrame::OnSearchFindInFiles(wxCommandEvent& event)
 {
-    if(g_FindInFilesDialog==NULL) g_FindInFilesDialog=new MadFindInFilesDialog(this, -1);
+    if(g_SearchDialog==NULL)
+    {
+        g_SearchDialog=new MadSearchDialog(this, -1);
+    }
+    if(g_ReplaceDialog==NULL)
+    {
+        g_ReplaceDialog=new MadReplaceDialog(this, -1);
+    }
+    if(g_FindInFilesDialog==NULL)
+    {
+        g_FindInFilesDialog=new MadFindInFilesDialog(this, -1);
+    }
 
     g_FindInFilesDialog->Show();
     g_FindInFilesDialog->SetFocus();
@@ -3120,7 +3141,8 @@ void MadEditFrame::OnSearchFindInFiles(wxCommandEvent& event)
 
     wxString fname;
     int fsize;
-    g_FindInFilesDialog->m_FindText->GetFont(fname, fsize);
+    if(g_ActiveMadEdit) g_ActiveMadEdit->GetFont(fname, fsize);
+    else g_FindInFilesDialog->m_FindText->GetFont(fname, fsize);
     g_FindInFilesDialog->m_FindText->SetFont(fname, 14);
     g_FindInFilesDialog->m_ReplaceText->SetFont(fname, 14);
 
@@ -3648,6 +3670,11 @@ void MadEditFrame::OnToolsHighlighting(wxCommandEvent& event)
     }
     int id=g_HighlightingDialog->ShowModal();
     g_HighlightingDialog->FreeSyntax(id!=wxID_OK); // press cancel to restore the syntax
+
+    if(g_ActiveMadEdit)
+    {
+        g_ActiveMadEdit->SetFocus();
+    }
 }
 
 void MadEditFrame::OnToolsToggleBOM(wxCommandEvent& event)
