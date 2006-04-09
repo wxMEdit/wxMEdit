@@ -6,11 +6,15 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 #include "MadFindInFilesDialog.h"
-
+#include "MadEditFrame.h"
 #include "MadReplaceDialog.h"
 #include "MadSearchDialog.h"
 #include "MadEdit/MadEdit.h"
+#include <wx/wxFlatNotebook/wxFlatNotebook.h>
+
 #include <wx/progdlg.h>
+#include <wx/dir.h>
+#include <wx/tokenzr.h>
 
 //Do not add custom headers
 //wxDev-C++ designer will remove them
@@ -20,8 +24,6 @@
 #include "../images/down.xpm"
 
 MadFindInFilesDialog *g_FindInFilesDialog=NULL;
-
-list<wxString> g_FileNameList; // the filenames matched the filename filter
 
 //----------------------------------------------------------------------------
 // MadFindInFilesDialog
@@ -234,21 +236,21 @@ void MadFindInFilesDialog::CreateGUIControls(void)
     m_RecentFindFilter->Load(*m_Config);
     m_Config->SetPath(oldpath);
 
-    if(m_RecentFindDir->GetCount()>0)
+    size_t count=m_RecentFindDir->GetCount();
+    if(count>0)
     {
         wxString text=m_RecentFindDir->GetHistoryFile(0);
-        if(!text.IsEmpty())
-        {
-            WxComboBoxDir->SetValue(text);
-        }
+        WxComboBoxDir->SetValue(text);
+        WxComboBoxDir->Append(text);
+        for(size_t i=1; i<count; ++i) WxComboBoxDir->Append(m_RecentFindDir->GetHistoryFile(i));
     }
-    if(m_RecentFindFilter->GetCount()>0)
+    count=m_RecentFindFilter->GetCount();
+    if(count>0)
     {
         wxString text=m_RecentFindFilter->GetHistoryFile(0);
-        if(!text.IsEmpty())
-        {
-            WxComboBoxFilter->SetValue(text);
-        }
+        WxComboBoxFilter->SetValue(text);
+        WxComboBoxFilter->Append(text);
+        for(size_t i=1; i<count; ++i) WxComboBoxFilter->Append(m_RecentFindFilter->GetHistoryFile(i));
     }
 
     // resize checkbox
@@ -343,36 +345,7 @@ void MadFindInFilesDialog::WxCheckBoxFindHexClick(wxCommandEvent& event)
  */
 void MadFindInFilesDialog::WxButtonFindClick(wxCommandEvent& event)
 {
-    
-    
-    
-    int max=10;
-    wxProgressDialog dialog(_T("Progress dialog example"),
-                            _T("An informative message"),
-                            max,    // range
-                            this,   // parent
-                            wxPD_CAN_ABORT |
-                            wxPD_AUTO_HIDE |
-                            wxPD_APP_MODAL);
-
-
-    bool cont = true;
-    for ( int i = 0; i <= max && cont; i++ )
-    {
-        wxSleep(1);
-        if ( i == max )
-        {
-            cont = dialog.Update(i, _T("That's all, folks!"));
-        }
-        else if ( i == max / 2 )
-        {
-            cont = dialog.Update(i, _T("Only a half left (very long message)!"));
-        }
-        else
-        {
-            cont = dialog.Update(i);
-        }
-    }
+    FindReplaceInFiles(false);
 }
 
 /*
@@ -380,6 +353,7 @@ void MadFindInFilesDialog::WxButtonFindClick(wxCommandEvent& event)
  */
 void MadFindInFilesDialog::WxButtonReplaceClick(wxCommandEvent& event)
 {
+    FindReplaceInFiles(true);
 }
 
 /*
@@ -448,4 +422,126 @@ void MadFindInFilesDialog::MadFindInFilesDialogActivate(wxActivateEvent& event)
     }
 
     m_Config->SetPath(oldpath);
+}
+
+//=========================================================
+
+wxProgressDialog *g_ProgressDialog=NULL;
+bool g_Continue;
+list<wxString> g_FileNameList; // the filenames matched the filename filter
+
+class DirTraverser : public wxDirTraverser
+{
+public:
+    virtual wxDirTraverseResult OnFile(const wxString& filename)
+    {
+        g_FileNameList.push_back(filename);
+        g_Continue=g_ProgressDialog->Update(0);
+        if(g_Continue) return wxDIR_CONTINUE;
+        return wxDIR_STOP;
+    }
+    virtual wxDirTraverseResult OnDir(const wxString& WXUNUSED(dirname))
+    {
+        return wxDIR_CONTINUE;
+    }
+};
+
+void MadFindInFilesDialog::FindReplaceInFiles(bool bReplace)
+{
+    const int max=1000;
+    g_ProgressDialog=new wxProgressDialog(_("Find/Replace In Files"),
+                            _("Find the files which are matched the filters..."),
+                            max,    // range
+                            this,   // parent
+                            wxPD_CAN_ABORT |
+                            wxPD_AUTO_HIDE |
+                            wxPD_APP_MODAL);
+
+    WxListBoxFiles->Clear();
+
+    size_t totalfiles;
+    if(WxRadioButtonOpenedFiles->GetValue())
+    {
+        totalfiles=g_MainFrame->m_Notebook->GetPageCount();
+    }
+    else
+    {
+        // test the existence of the dir
+        wxString str=WxComboBoxDir->GetValue();
+        if(!wxDirExists(str))
+        {
+            g_ProgressDialog->Update(max);
+            delete g_ProgressDialog;
+            wxMessageBox(_T("The selected directory does not exist."), wxT("MadEdit"), wxOK|wxICON_ERROR);
+            return;
+        }
+        m_RecentFindDir->AddFileToHistory(str);
+        if(WxComboBoxDir->GetCount()==0 || WxComboBoxDir->GetString(0)!=str)
+        {
+            WxComboBoxDir->Insert(str, 0);
+        }
+        
+        // get the filename filters
+        str=WxComboBoxFilter->GetValue();
+        wxStringTokenizer tkz(str, wxT(" \t;"));
+        vector<wxString> filters;
+        wxString tok;
+        for(;;)
+        {
+            tok=tkz.GetNextToken();
+            if(tok.IsEmpty()) break;
+            filters.push_back(tok);
+        }
+        if(!filters.empty())
+        {
+            m_RecentFindFilter->AddFileToHistory(str);
+            if(WxComboBoxFilter->GetCount()==0 || WxComboBoxFilter->GetString(0)!=str)
+            {
+                WxComboBoxFilter->Insert(str, 0);
+            }
+        }
+
+        // get the files matched the filters
+        g_FileNameList.clear();
+
+        DirTraverser traverser;
+        wxDir dir(WxComboBoxDir->GetValue());
+        int flags=wxDIR_FILES|wxDIR_HIDDEN;
+        if(WxCheckBoxSubDir->GetValue()) flags|=wxDIR_DIRS;
+
+        if(filters.empty())
+        {
+            dir.Traverse(traverser, wxEmptyString, flags);
+        }
+        else
+        {
+            for(size_t i=0; i<filters.size(); i++)
+            {
+                dir.Traverse(traverser, filters[i], flags);
+            }
+        }
+        
+        totalfiles=g_FileNameList.size();
+    }
+
+    if(!g_Continue)
+    {
+        g_ProgressDialog->Update(max);
+        delete g_ProgressDialog;
+        g_FileNameList.clear();
+        return;
+    }
+
+    wxString fmt(_("Processing %d of %d files..."));
+    bool cont = true;
+    for ( size_t i = 1; i <= totalfiles && cont; i++ )
+    {
+        int idx = int(i*max / totalfiles);
+        cont = g_ProgressDialog->Update(idx, wxString::Format(fmt, i, totalfiles));
+        
+        wxMilliSleep(100);
+    }
+
+    delete g_ProgressDialog;
+    g_FileNameList.clear();
 }

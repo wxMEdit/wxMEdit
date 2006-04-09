@@ -145,6 +145,7 @@ class MadFindInFilesDialog : public wxDialog
 		void WxBitmapButtonRecentReplaceTextClick(wxCommandEvent& event);
 		void OnRecentFindText(wxCommandEvent& event);
 		void OnRecentReplaceText(wxCommandEvent& event);
+		void FindReplaceInFiles(bool bReplace);//false: find; true: replace
 	public:
 		void MadFindInFilesDialogClose(wxCloseEvent& event);
 		void CreateGUIControls(void);
