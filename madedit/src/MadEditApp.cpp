@@ -164,7 +164,7 @@ bool MadEditApp::OnInit()
 #ifdef __WXMSW__
     g_MadEditHomeDir=g_MadEditAppDir;
 #else //linux: ~/.madedit
-    g_MadEditHomeDir=wxStandardPaths::Get().GetUserDataDir()+wxFileName::GetPathSeparator();
+    g_MadEditHomeDir=wxStandardPaths::Get().GetUserDataDir() +wxFILE_SEP_PATH;
     if(!wxDirExists(g_MadEditHomeDir))
     {
         wxLogNull nolog; // no error message
