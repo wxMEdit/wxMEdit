@@ -6210,6 +6210,7 @@ void MadEdit::OverwriteDataSingle(vector<wxFileOffset> &del_bpos, vector<wxFileO
             if(*ins_len_it != 0)
             {
                 UCStoBlock(*ins_ucs_it, *ins_len_it, blk);
+                *ins_len_it = blk.m_Size-oldblksize; // get byte-length of ucs
             }
             ++ins_ucs_it;
         }
@@ -6352,6 +6353,7 @@ void MadEdit::OverwriteDataMulti(vector<wxFileOffset> &del_bpos, vector<wxFileOf
             if(*--ins_len_it != 0)
             {
                 UCStoBlock(*ins_ucs_it, *ins_len_it, blk);
+                *ins_len_it = blk.m_Size; // get byte-length of ucs
             }
         }
         else
@@ -12417,7 +12419,7 @@ void MadEdit::Undo()
     {
         bool oldrcm=m_RecordCaretMovements;
         m_RecordCaretMovements=false;
-        GoToPosition(undo->m_CaretPosBefore);
+        SetCaretPosition(undo->m_CaretPosBefore);
         m_RecordCaretMovements=oldrcm;
         return;
     }
@@ -12548,7 +12550,7 @@ void MadEdit::Redo()
     {
         bool oldrcm=m_RecordCaretMovements;
         m_RecordCaretMovements=false;
-        GoToPosition(redo->m_CaretPosAfter);
+        SetCaretPosition(redo->m_CaretPosAfter);
         m_RecordCaretMovements=oldrcm;
         return;
     }
@@ -12720,7 +12722,7 @@ void MadEdit::GoToLine(int line)
 
 }
 
-void MadEdit::GoToPosition(wxFileOffset pos)
+void MadEdit::SetCaretPosition(wxFileOffset pos, wxFileOffset selbeg, wxFileOffset selend)
 {
     wxFileOffset oldCaretPos=m_CaretPos.pos;
 
@@ -12730,9 +12732,7 @@ void MadEdit::GoToPosition(wxFileOffset pos)
     m_CaretPos.pos=pos;
 
     m_UpdateValidPos=-1;
-
     UpdateCaretByPos(m_CaretPos, m_ActiveRowUChars, m_ActiveRowWidths, m_CaretRowUCharPos);
-
     m_UpdateValidPos=0;
 
     AppearCaret();
@@ -12747,6 +12747,17 @@ void MadEdit::GoToPosition(wxFileOffset pos)
             UpdateTextAreaXPos();
             m_LastTextAreaXPos = m_TextAreaXPos;
         }
+    }
+
+    // update selection pos
+    if(selbeg > m_Lines->m_Size) selbeg=m_Lines->m_Size;
+    if(selend > m_Lines->m_Size) selend=m_Lines->m_Size;
+    if(selbeg>=0 && selend>=0 && selbeg!=selend)
+    {
+        m_SelectionPos1.pos = selbeg;
+        m_SelectionPos2.pos = selend;
+        m_Selection=true;
+        UpdateSelectionPos();
     }
 
     m_RepaintAll=true;
@@ -13241,7 +13252,8 @@ bool MadEdit::ReplaceHex(const wxString &expr, const wxString &fmt)
 
 
 int MadEdit::ReplaceTextAll(const wxString &expr, const wxString &fmt,
-                    bool bRegex, bool bCaseSensitive, bool bWholeWord)
+    bool bRegex, bool bCaseSensitive, bool bWholeWord,
+    vector<wxFileOffset> *pbegpos, vector<wxFileOffset> *pendpos)
 {
     if(expr.Len()==0)
         return 0;
@@ -13249,7 +13261,6 @@ int MadEdit::ReplaceTextAll(const wxString &expr, const wxString &fmt,
     vector<wxFileOffset> del_bpos;
     vector<wxFileOffset> del_epos;
     vector<const ucs4_t*> ins_ucs;
-    //vector<wxByte*> ins_data;
     vector<wxFileOffset> ins_len;
 
     list<ucs4string> outs;
@@ -13305,7 +13316,7 @@ int MadEdit::ReplaceTextAll(const wxString &expr, const wxString &fmt,
     if(count>0)
     {
         wxFileOffset size=del_epos.back() - del_bpos.front();
-        if(size <= 2*1024*1024 || (multi>=40 && size<= 10*1024*1024))
+        if((size <= 2*1024*1024) || (multi>=40 && size<= 10*1024*1024))
         {
             OverwriteDataSingle(del_bpos, del_epos, &ins_ucs, NULL, ins_len);
         }
@@ -13313,12 +13324,31 @@ int MadEdit::ReplaceTextAll(const wxString &expr, const wxString &fmt,
         {
             OverwriteDataMulti(del_bpos, del_epos, &ins_ucs, NULL, ins_len);
         }
+
+        if(pbegpos!=0 && pendpos!=0)
+        {
+            pbegpos->resize(count);
+            pendpos->resize(count);
+
+            wxFileOffset diff=0, b, e, l;
+            for(int i=0; i<count; i++)
+            {
+                b = del_bpos[i];
+                e = del_epos[i];
+                l = ins_len[i];
+                size = b + diff;
+                (*pbegpos)[i] = size;
+                (*pendpos)[i] = size + l;
+                diff += (l - (e - b));
+            }
+        }
     }
 
     return count;
 }
 
-int MadEdit::ReplaceHexAll(const wxString &expr, const wxString &fmt)
+int MadEdit::ReplaceHexAll(const wxString &expr, const wxString &fmt,
+    vector<wxFileOffset> *pbegpos, vector<wxFileOffset> *pendpos)
 {
     if(expr.Len()==0)
         return 0;
@@ -13331,7 +13361,6 @@ int MadEdit::ReplaceHexAll(const wxString &expr, const wxString &fmt)
 
     vector<wxFileOffset> del_bpos;
     vector<wxFileOffset> del_epos;
-    //vector<ucs4_t*> ins_ucs;
     vector<wxByte*> ins_data;
     vector<wxFileOffset> ins_len;
 
@@ -13367,7 +13396,7 @@ int MadEdit::ReplaceHexAll(const wxString &expr, const wxString &fmt)
     if(count>0)
     {
         wxFileOffset size=del_epos.back() - del_bpos.front();
-        if(IsTextFile() && (size <= 2*1024*1024 || (multi>=40 && size<= 10*1024*1024)))
+        if(IsTextFile() && ((size <= 2*1024*1024) || (multi>=40 && size<= 10*1024*1024)))
         {
             OverwriteDataSingle(del_bpos, del_epos, NULL, &ins_data, ins_len);
         }
@@ -13375,11 +13404,106 @@ int MadEdit::ReplaceHexAll(const wxString &expr, const wxString &fmt)
         {
             OverwriteDataMulti(del_bpos, del_epos, NULL, &ins_data, ins_len);
         }
+
+        if(pbegpos!=0 && pendpos!=0)
+        {
+            pbegpos->resize(count);
+            pendpos->resize(count);
+
+            wxFileOffset diff=0, b, e, l;
+            for(int i=0; i<count; i++)
+            {
+                b = del_bpos[i];
+                e = del_epos[i];
+                l = ins_len[i];
+                size = b + diff;
+                (*pbegpos)[i] = size;
+                (*pendpos)[i] = size + l;
+                diff += (l - (e - b));
+            }
+        }
     }
 
     return count;
 }
 
+int MadEdit::FindTextAll(const wxString &expr,
+                         bool bRegex, bool bCaseSensitive, bool bWholeWord, bool bFirstOnly,
+                         vector<wxFileOffset> *pbegpos, vector<wxFileOffset> *pendpos)
+{
+    if(expr.Len()==0)
+        return 0;
+
+    MadCaretPos bpos, epos, endpos;
+
+    bpos.iter=m_Lines->m_LineList.begin();
+    bpos.pos=bpos.iter->m_RowIndices[0].m_Start;
+    if(m_CaretPos.pos < bpos.pos || m_EditMode==emHexMode)
+    {
+        bpos.pos=0;
+    }
+    bpos.linepos=bpos.pos;
+
+    epos.pos=m_Lines->m_Size;
+    epos.iter=m_Lines->m_LineList.end();
+    --epos.iter;
+    epos.linepos=epos.iter->m_Size;
+
+    endpos=epos;
+    int count=0;
+    int state;
+
+    while((state=Search(bpos, epos, expr, bRegex, bCaseSensitive, bWholeWord))==SR_YES)
+    {
+        if(pbegpos) pbegpos->push_back(bpos.pos);
+        if(pendpos) pendpos->push_back(epos.pos);
+        ++count;
+        if(bFirstOnly) break;
+
+        bpos=epos;
+        epos=endpos;
+    }
+
+    if(state==SR_EXPR_ERROR) return SR_EXPR_ERROR;
+
+    return count;
+}
+
+int MadEdit::FindHexAll(const wxString &expr, bool bFirstOnly,
+                        vector<wxFileOffset> *pbegpos, vector<wxFileOffset> *pendpos)
+{
+    if(expr.Len()==0)
+        return 0;
+
+    vector<wxByte> hex;
+    if(!StringToHex(expr, hex)) return SR_EXPR_ERROR;
+
+    MadCaretPos bpos, epos, endpos;
+    bpos.pos=0;
+    bpos.iter=m_Lines->m_LineList.begin();
+    bpos.linepos=0;
+
+    epos.pos=m_Lines->m_Size;
+    epos.iter=m_Lines->m_LineList.end();
+    --epos.iter;
+    epos.linepos=epos.iter->m_Size;
+
+    endpos=epos;
+    int count=0;
+
+    while(SearchHex(bpos, epos, &(*hex.begin()), hex.size())==SR_YES)
+    {
+        if(pbegpos) pbegpos->push_back(bpos.pos);
+        if(pendpos) pendpos->push_back(epos.pos);
+        ++count;
+        if(bFirstOnly) break;
+
+        bpos=epos;
+        epos=endpos;
+    }
+
+    return count;
+}
 
 bool MadEdit::LoadFromFile(const wxString &filename)
 {

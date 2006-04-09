@@ -3186,7 +3186,7 @@ void MadEditFrame::OnSearchGoToPosition(wxCommandEvent& event)
         wxInt64 pos;
         if(StrToInt64(str, pos))
         {
-            g_ActiveMadEdit->GoToPosition(pos);
+            g_ActiveMadEdit->SetCaretPosition(pos);
         }
     }
 }
