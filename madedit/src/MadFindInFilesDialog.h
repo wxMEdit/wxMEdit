@@ -78,6 +78,7 @@ class MadFindInFilesDialog : public wxDialog
 		wxBoxSizer *WxBoxSizer3;
 		wxStaticLine *WxStaticLine1;
 		wxButton *WxButtonClose;
+		wxCheckBox *WxCheckBoxNoReplace;
 		wxButton *WxButtonReplace;
 		wxButton *WxButtonFind;
 		wxBoxSizer *WxBoxSizer5;
@@ -115,6 +116,7 @@ class MadFindInFilesDialog : public wxDialog
 			ID_WXRADIOBUTTONDIR = 1033,
 			ID_WXRADIOBUTTONOPENEDFILES = 1031,
 			ID_WXSTATICLINE1 = 1029,
+			ID_WXCHECKBOXNOREPLACE = 1044,
 			ID_WXBUTTONREPLACE = 1023,
 			ID_WXBUTTONFIND = 1022,
 			ID_WXCHECKBOXLISTFILEONLY = 1043,
@@ -154,6 +156,8 @@ class MadFindInFilesDialog : public wxDialog
 		void WxButtonReplaceClick(wxCommandEvent& event);
 		void WxButtonDirClick(wxCommandEvent& event);
 		void MadFindInFilesDialogActivate(wxActivateEvent& event);
+		void WxCheckBoxNoReplaceClick(wxCommandEvent& event);
+		void WxListBoxFilesDoubleClicked(wxCommandEvent& event);
 };
 
 extern MadFindInFilesDialog *g_FindInFilesDialog;
