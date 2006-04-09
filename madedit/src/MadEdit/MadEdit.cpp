@@ -11803,7 +11803,7 @@ void MadEdit::SetText(wxString &ws)
     DoSelectionChanged();
 }
 
-bool MadEdit::GetLine(wxString &ws, int line, bool ignoreBOM, size_t maxlen)
+bool MadEdit::GetLine(wxString &ws, int line, size_t maxlen, bool ignoreBOM)
 {
     wxFileOffset pos = 0;
     MadUCQueue ucqueue;
@@ -11862,6 +11862,20 @@ bool MadEdit::GetLine(wxString &ws, int line, bool ignoreBOM, size_t maxlen)
 
     if((m_Lines->*NextUChar)(ucqueue)) return false;
     return true;
+}
+
+int MadEdit::GetLineByPos(const wxFileOffset &pos)
+{
+    wxFileOffset p=pos;
+    if(p<0) p=0;
+    else if(p > m_Lines->m_Size) p=m_Lines->m_Size;
+
+    MadLineIterator lit;
+    int rid;
+    m_UpdateValidPos=-1;
+    int line=GetLineByPos(lit, p, rid);
+    m_UpdateValidPos=0;
+    return line;
 }
 
 void MadEdit::GetSelHexString(wxString &ws, bool withSpace)

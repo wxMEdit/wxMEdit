@@ -709,7 +709,8 @@ public:
 
     // line: zero based
     // return true for full line, false for partial line
-    bool GetLine(wxString &ws, int line, bool ignoreBOM = true, size_t maxlen = 0);
+    bool GetLine(wxString &ws, int line, size_t maxlen = 0, bool ignoreBOM = true);
+    int GetLineByPos(const wxFileOffset &pos);
 
     void GetSelHexString(wxString &ws, bool withSpace);
 
