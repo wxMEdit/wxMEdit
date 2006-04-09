@@ -346,7 +346,13 @@ void OnEditSelectionChanged(MadEdit *madedit)
 
         int line,subrow;
         wxFileOffset col;
-        madedit->GetCaretPos(line,subrow,col);
+        madedit->GetCaretPosition(line,subrow,col);
+        if(madedit->GetEditMode()!=emHexMode)
+        {
+            ++line;
+            ++col;
+        }
+
         wxString s1=FormatThousands(wxString::Format(wxT("%d"), line));
         wxString s2=FormatThousands(wxString::Format(wxT("%u"), madedit->GetLineCount()));
         wxString s4=FormatThousands(wxLongLong(col).ToString());
