@@ -2810,7 +2810,7 @@ void MadLines::Append(const MadLineIterator &lit1, const MadLineIterator &lit2)
 
 //===========================================================================
 
-bool MadLines::LoadFromFile(const wxString &filename)
+bool MadLines::LoadFromFile(const wxString &filename, const wxString &encoding)
 {
     MadFileData *fd = new MadFileData(filename);
 
@@ -2856,7 +2856,14 @@ bool MadLines::LoadFromFile(const wxString &filename)
         s = m_FileData->m_Size;
 
     wxString defaultenc;
-    m_MadEdit->m_Config->Read(wxT("/MadEdit/DefaultEncoding"), &defaultenc);
+    if(encoding.IsEmpty())
+    {
+        m_MadEdit->m_Config->Read(wxT("/MadEdit/DefaultEncoding"), &defaultenc);
+    }
+    else
+    {
+        defaultenc = encoding;
+    }
 
     if(s == 0)
     {

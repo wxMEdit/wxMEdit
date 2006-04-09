@@ -370,7 +370,7 @@ public:
     MadLines(MadEdit *madedit);
     ~MadLines();
 
-    bool LoadFromFile(const wxString &filename);
+    bool LoadFromFile(const wxString &filename, const wxString &encoding = wxEmptyString);
     bool SaveToFile(const wxString &filename, const wxString &tempdir);
     wxFileOffset GetSize() { return m_Size; }
 

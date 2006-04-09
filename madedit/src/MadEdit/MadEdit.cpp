@@ -13567,7 +13567,7 @@ int MadEdit::FindHexAll(const wxString &expr, bool bFirstOnly,
     return count;
 }
 
-bool MadEdit::LoadFromFile(const wxString &filename)
+bool MadEdit::LoadFromFile(const wxString &filename, const wxString &encoding)
 {
     wxFileName fn(filename);
     if(MadDirExists(fn.GetPath(wxPATH_GET_VOLUME))==0)
@@ -13576,7 +13576,7 @@ bool MadEdit::LoadFromFile(const wxString &filename)
         return false;
     }
 
-    if(m_Lines->LoadFromFile(filename)==false)
+    if(m_Lines->LoadFromFile(filename, encoding)==false)
         return false;
 
     m_UndoBuffer->Clear();

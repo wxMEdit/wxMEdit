@@ -789,7 +789,7 @@ public:
     int FindHexAll(const wxString &expr, bool bFirstOnly,
                    vector<wxFileOffset> *pbegpos, vector<wxFileOffset> *pendpos);
 
-    bool LoadFromFile(const wxString &filename);
+    bool LoadFromFile(const wxString &filename, const wxString &encoding = wxEmptyString);
     bool SaveToFile(const wxString &filename);
     bool Reload();
     // if the file is modified by another app, reload it.
