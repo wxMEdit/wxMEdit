@@ -10334,10 +10334,11 @@ void MadEdit::SetTextFont(const wxString &name, int size, bool forceReset)
         {
             MadEditSuperClass::SetFont(*m_TextFont);
             m_TextFontHeight=GetCharHeight();
-            m_TextFontAveCharWidth=GetUCharWidth(0x20);//GetCharWidth();
 
             bool ofwm=m_FixedWidthMode;
             m_FixedWidthMode=false; // avoid effecting on GetUCharWidth();
+
+            m_TextFontAveCharWidth=GetUCharWidth(0x20);//GetCharWidth();
 
             int w;
             m_TextFontMaxDigitWidth=GetUCharWidth('0');
@@ -11415,9 +11416,9 @@ int MadEdit::GetUCharType(ucs4_t uc)
     return 8;
 }
 
-void MadEdit::GetCaretPos(int &line, int &subrow, wxFileOffset &column)
+void MadEdit::GetCaretPosition(int &line, int &subrow, wxFileOffset &column)
 {
-    line = m_CaretPos.lineid+1;
+    line = m_CaretPos.lineid;
     subrow=m_CaretPos.subrowid;
 
     if(m_EditMode==emHexMode)
@@ -11426,11 +11427,11 @@ void MadEdit::GetCaretPos(int &line, int &subrow, wxFileOffset &column)
     }
     else if(m_FixedWidthMode || GetUCharWidth('W')==GetUCharWidth('i'))//m_TextFontAveCharWidth)
     {
-        column=((m_CaretPos.xpos+m_TextFontAveCharWidth-1)/m_TextFontAveCharWidth)+1;
+        column=((m_CaretPos.xpos+m_TextFontAveCharWidth-1)/m_TextFontAveCharWidth);
     }
     else
     {
-        column=m_CaretRowUCharPos+m_CaretPos.extraspaces+1;
+        column=m_CaretRowUCharPos+m_CaretPos.extraspaces;
     }
 }
 
@@ -11800,6 +11801,67 @@ void MadEdit::SetText(wxString &ws)
 
     DoStatusChanged();
     DoSelectionChanged();
+}
+
+bool MadEdit::GetLine(wxString &ws, int line, bool ignoreBOM, size_t maxlen)
+{
+    wxFileOffset pos = 0;
+    MadUCQueue ucqueue;
+
+    MadLineIterator lit = m_Lines->m_LineList.begin();
+
+    if(line==0) // if first line has BOM, we will ignore it
+    {
+        if(ignoreBOM) pos = lit->m_RowIndices.front().m_Start;
+    }
+    else
+    {
+        if(line >= int(m_Lines->m_LineCount)) return true;
+
+        for(int i=0; i<line; ++i)
+        {
+            ++lit;
+        }
+    }
+
+    if(pos >= m_Lines->m_Size)
+        return true;
+
+    if(maxlen==0) maxlen=size_t(-1);
+
+    MadLines::NextUCharFuncPtr NextUChar=m_Lines->NextUChar;
+    m_Lines->InitNextUChar(lit, pos);
+    do
+    {
+        if(!(m_Lines->*NextUChar)(ucqueue))
+        {
+            return true;
+        }
+
+        ucs4_t uc=ucqueue.back().first;
+        if(uc==0x0D || uc==0x0A) 
+            return true;
+
+#ifdef __WXMSW__
+        if(uc>=0x10000)
+        {
+            wchar_t wbuf[2];
+            m_Encoding->UCS4toUTF16LE_U10000(uc, (wxByte*)wbuf);
+            ws<<wbuf[0];
+            ws<<wbuf[1];
+        }
+        else
+        {
+            ws<<wxChar(uc);
+        }
+#else
+        ws<<wxChar(uc);
+#endif
+    }
+    while(ws.Len() < maxlen);
+
+    if((m_Lines->*NextUChar)(ucqueue)) return false;
+    return true;
 }
 
 void MadEdit::GetSelHexString(wxString &ws, bool withSpace)

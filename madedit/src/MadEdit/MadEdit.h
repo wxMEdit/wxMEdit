@@ -652,7 +652,8 @@ public:
     int GetHexUCharWidth(ucs4_t uc);
     int GetUCharType(ucs4_t uc);
 
-    void GetCaretPos(int &line, int &subrow, wxFileOffset &column);
+    // all are zero-based
+    void GetCaretPosition(int &line, int &subrow, wxFileOffset &column);
 
     wxString GetFileName() { return m_Lines->m_Name; }
     wxFileOffset GetCharPosition() { return m_CaretPos.pos; }
@@ -703,8 +704,12 @@ public:
     bool IsTextFile() { return m_Lines->m_MaxLineWidth>=0; }
 
     void GetSelText(wxString &ws);
-    void GetText(wxString &ws, bool ignoreBOM);
+    void GetText(wxString &ws, bool ignoreBOM = true);
     void SetText(wxString &ws);
+
+    // line: zero based
+    // return true for full line, false for partial line
+    bool GetLine(wxString &ws, int line, bool ignoreBOM = true, size_t maxlen = 0);
 
     void GetSelHexString(wxString &ws, bool withSpace);
 
