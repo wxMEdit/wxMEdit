@@ -127,7 +127,7 @@ object frmNewForm: TfrmNewForm
             Caption = '&Case Sensitive'
             TabOrder = 0
             Wx_BGColor = clBlack
-            Wx_Border = 3
+            Wx_Border = 2
             Wx_CheckBoxStyle = []
             Wx_Class = 'wxCheckBox'
             Wx_ControlOrientation = wxControlVertical
@@ -147,7 +147,7 @@ object frmNewForm: TfrmNewForm
             Caption = '&Whole Word Only'
             TabOrder = 1
             Wx_BGColor = clBlack
-            Wx_Border = 3
+            Wx_Border = 2
             Wx_CheckBoxStyle = []
             Wx_Class = 'wxCheckBox'
             Wx_ControlOrientation = wxControlVertical
@@ -167,7 +167,7 @@ object frmNewForm: TfrmNewForm
             Caption = 'Use Regular E&xpressions'
             TabOrder = 2
             Wx_BGColor = clBlack
-            Wx_Border = 3
+            Wx_Border = 2
             Wx_CheckBoxStyle = []
             Wx_Class = 'wxCheckBox'
             Wx_ControlOrientation = wxControlVertical
@@ -188,7 +188,7 @@ object frmNewForm: TfrmNewForm
             TabOrder = 3
             EVT_CHECKBOX = 'WxCheckBoxFindHexClick'
             Wx_BGColor = clBlack
-            Wx_Border = 3
+            Wx_Border = 2
             Wx_CheckBoxStyle = []
             Wx_Class = 'wxCheckBox'
             Wx_ControlOrientation = wxControlVertical
@@ -208,7 +208,7 @@ object frmNewForm: TfrmNewForm
             Caption = '&List the First Found Item Only'
             TabOrder = 4
             Wx_BGColor = clBlack
-            Wx_Border = 3
+            Wx_Border = 2
             Wx_CheckBoxStyle = []
             Wx_Class = 'wxCheckBox'
             Wx_ControlOrientation = wxControlVertical
@@ -292,7 +292,7 @@ object frmNewForm: TfrmNewForm
           Left = 5
           Top = 81
           Width = 100
-          Height = 17
+          Height = 22
           Caption = '&No '#39'Replace'#39
           TabOrder = 3
           EVT_CHECKBOX = 'WxCheckBoxNoReplaceClick'
@@ -379,7 +379,7 @@ object frmNewForm: TfrmNewForm
         Caption = 'Opened Files in Editor'
         TabOrder = 0
         Wx_BGColor = clBlack
-        Wx_Border = 3
+        Wx_Border = 2
         Wx_Class = 'wxRadioButton'
         Wx_ControlOrientation = wxControlVertical
         Wx_FGColor = clBlack
@@ -415,7 +415,7 @@ object frmNewForm: TfrmNewForm
           Caption = 'Selected Directory:'
           TabOrder = 0
           Wx_BGColor = clBlack
-          Wx_Border = 3
+          Wx_Border = 2
           Wx_Class = 'wxRadioButton'
           Wx_ControlOrientation = wxControlNone
           Wx_FGColor = clBlack
@@ -434,7 +434,7 @@ object frmNewForm: TfrmNewForm
           ItemHeight = 13
           TabOrder = 1
           Wx_BGColor = clBlack
-          Wx_Border = 3
+          Wx_Border = 2
           Wx_Class = 'wxComboBox'
           Wx_ComboboxStyle = []
           Wx_ControlOrientation = wxControlNone
@@ -454,7 +454,7 @@ object frmNewForm: TfrmNewForm
           TabOrder = 2
           EVT_BUTTON = 'WxButtonDirClick'
           Wx_BKColor = clBlack
-          Wx_Border = 3
+          Wx_Border = 2
           Wx_ButtonStyle = []
           Wx_Class = 'wxButton'
           Wx_ControlOrientation = wxControlNone
@@ -479,7 +479,7 @@ object frmNewForm: TfrmNewForm
           Caption = 'File Filters:'
           TabOrder = 3
           Wx_BGColor = clBlack
-          Wx_Border = 3
+          Wx_Border = 2
           Wx_Class = 'wxStaticText'
           Wx_ControlOrientation = wxControlNone
           Wx_FGColor = clBlack
@@ -499,7 +499,7 @@ object frmNewForm: TfrmNewForm
           ItemHeight = 13
           TabOrder = 4
           Wx_BGColor = clBlack
-          Wx_Border = 3
+          Wx_Border = 2
           Wx_Class = 'wxComboBox'
           Wx_ComboboxStyle = []
           Wx_ControlOrientation = wxControlNone
@@ -517,7 +517,7 @@ object frmNewForm: TfrmNewForm
           Height = 4
           TabOrder = 5
           Wx_BGColor = clBlack
-          Wx_Border = 3
+          Wx_Border = 2
           Wx_Class = 'wxStaticText'
           Wx_ControlOrientation = wxControlNone
           Wx_FGColor = clBlack
@@ -536,7 +536,7 @@ object frmNewForm: TfrmNewForm
           Caption = 'File Encoding:'
           TabOrder = 6
           Wx_BGColor = clBlack
-          Wx_Border = 3
+          Wx_Border = 2
           Wx_Class = 'wxStaticText'
           Wx_ControlOrientation = wxControlNone
           Wx_FGColor = clBlack
@@ -556,7 +556,7 @@ object frmNewForm: TfrmNewForm
           ItemHeight = 13
           TabOrder = 7
           Wx_BGColor = clBlack
-          Wx_Border = 3
+          Wx_Border = 2
           Wx_Class = 'wxComboBox'
           Wx_ComboboxStyle = [wxCB_DROPDOWN, wxCB_READONLY]
           Wx_ControlOrientation = wxControlNone
@@ -577,7 +577,7 @@ object frmNewForm: TfrmNewForm
         Caption = 'Include Subdirectories'
         TabOrder = 2
         Wx_BGColor = clBlack
-        Wx_Border = 3
+        Wx_Border = 2
         Wx_CheckBoxStyle = []
         Wx_Class = 'wxCheckBox'
         Wx_ControlOrientation = wxControlVertical
@@ -616,7 +616,7 @@ object frmNewForm: TfrmNewForm
       Left = 122
       Top = 394
       Width = 238
-      Height = 160
+      Height = 130
       ItemHeight = 13
       TabOrder = 2
       EVT_LISTBOX_DCLICK = 'WxListBoxFilesDoubleClicked'

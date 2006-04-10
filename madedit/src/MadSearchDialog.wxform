@@ -1,4 +1,4 @@
-object frmNewForm_1: TfrmNewForm
+object frmNewForm: TfrmNewForm
   Left = 8
   Top = 8
   Width = 514
@@ -97,7 +97,7 @@ object frmNewForm_1: TfrmNewForm
           Caption = '&Move Focus to Editor Window'
           TabOrder = 4
           Wx_BGColor = clBlack
-          Wx_Border = 3
+          Wx_Border = 2
           Wx_CheckBoxStyle = []
           Wx_Class = 'wxCheckBox'
           Wx_ControlOrientation = wxControlVertical
@@ -117,7 +117,7 @@ object frmNewForm_1: TfrmNewForm
           Caption = '&Case Sensitive'
           TabOrder = 0
           Wx_BGColor = clBlack
-          Wx_Border = 3
+          Wx_Border = 2
           Wx_CheckBoxStyle = []
           Wx_Class = 'wxCheckBox'
           Wx_ControlOrientation = wxControlVertical
@@ -137,7 +137,7 @@ object frmNewForm_1: TfrmNewForm
           Caption = '&Whole Word Only'
           TabOrder = 1
           Wx_BGColor = clBlack
-          Wx_Border = 3
+          Wx_Border = 2
           Wx_CheckBoxStyle = []
           Wx_Class = 'wxCheckBox'
           Wx_ControlOrientation = wxControlVertical
@@ -157,7 +157,7 @@ object frmNewForm_1: TfrmNewForm
           Caption = 'Use Regular E&xpressions'
           TabOrder = 2
           Wx_BGColor = clBlack
-          Wx_Border = 3
+          Wx_Border = 2
           Wx_CheckBoxStyle = []
           Wx_Class = 'wxCheckBox'
           Wx_ControlOrientation = wxControlVertical
@@ -178,7 +178,7 @@ object frmNewForm_1: TfrmNewForm
           TabOrder = 3
           EVT_CHECKBOX = 'WxCheckBoxFindHexClick'
           Wx_BGColor = clBlack
-          Wx_Border = 3
+          Wx_Border = 2
           Wx_CheckBoxStyle = []
           Wx_Class = 'wxCheckBox'
           Wx_ControlOrientation = wxControlVertical
