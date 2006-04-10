@@ -135,7 +135,7 @@ void MadFindInFilesDialog::CreateGUIControls(void)
 	wxBoxSizer* WxBoxSizer3 = new wxBoxSizer(wxVERTICAL);
 	WxBoxSizer1->Add(WxBoxSizer3,0,wxGROW | wxALL,0);
 
-	WxRadioButtonOpenedFiles = new wxRadioButton(this, ID_WXRADIOBUTTONOPENEDFILES, _("Opened Files"), wxPoint(180,0), wxSize(113,20), 0, wxDefaultValidator, _("WxRadioButtonOpenedFiles"));
+	WxRadioButtonOpenedFiles = new wxRadioButton(this, ID_WXRADIOBUTTONOPENEDFILES, _("Opened Files in Editor"), wxPoint(180,0), wxSize(113,20), 0, wxDefaultValidator, _("WxRadioButtonOpenedFiles"));
 	WxBoxSizer3->Add(WxRadioButtonOpenedFiles,0,wxALIGN_LEFT | wxALL,3);
 
 	wxFlexGridSizer* WxFlexGridSizer1 = new wxFlexGridSizer(4,3,0,0);

@@ -376,7 +376,7 @@ object frmNewForm: TfrmNewForm
         Top = 0
         Width = 113
         Height = 20
-        Caption = 'Opened Files'
+        Caption = 'Opened Files in Editor'
         TabOrder = 0
         Wx_BGColor = clBlack
         Wx_Border = 3
