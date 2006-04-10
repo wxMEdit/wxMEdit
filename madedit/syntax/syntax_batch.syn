@@ -1,5 +1,5 @@
 # Windows/DOS Batch file
-Title=Batch
+Title=DOS Batch
 CaseSensitive=No
 Delimiter=~`!@#$%^&*()-+=|\{}[]:;"',.<>/?
 LineComment=REM ::
@@ -43,7 +43,7 @@ DirectiveColor=Green
 DirectiveBgColor=
 DirectiveStyle=
 
-SpecialWordColor=Maroon
+SpecialWordColor=Navy
 SpecialWordBgColor=
 SpecialWordStyle=
 
@@ -55,7 +55,7 @@ ActiveLineColor=Fuchsia
 BookmarkColor=C0FFFF
 
 # User Defined Keywords
-[Commands]
+[1.Commands]
 Color=Black
 BgColor=
 Style=Bold

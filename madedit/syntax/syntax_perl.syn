@@ -43,7 +43,7 @@ DirectiveColor=Green
 DirectiveBgColor=
 DirectiveStyle=
 
-SpecialWordColor=Maroon
+SpecialWordColor=Navy
 SpecialWordBgColor=
 SpecialWordStyle=
 
@@ -55,36 +55,36 @@ ActiveLineColor=Fuchsia
 BookmarkColor=C0FFFF
 
 # User Defined Keywords
-[Keywords]
+[1.Keywords]
 Color=Black
 BgColor=
 Style=Bold
 InRange=0
 Keyword=else elsif for foreach if unless until while do and cmp eq gt le lt ne not or next last continue redo reset goto abs accept alarm atan2 bind chdir chmod chomp chop chown chr close closedir connect cos crypt dbmclose dbmopen defined delete dump each eof eval exec exists exp fileno flock fork format formline getc getlogin glob gmtime grep hex index int ioctl join keys kill lc length link listen localtime log lstat map mkdir msgctl msgget new no oct open opendir ord pack pipe pop pos printf push qw qq rand read readdir readlink recv ref rename reverse rewinddir rmdir seek seekdir select send shift sin sleep sort splice split sprintf sqrt srand stat strict substr symlink syscall sysopen sysread system syswrite tell telldir tie tied time times truncate uc umask undef unlink unpack unshift untie utime values vec wait warn write bless ucfirst lcfirst rindex waitpid croak carp confess cluck die exit print return sub my use local package our scalar import require constant
 
-[Keywords1]
-Color=Red
+[2.Keywords1]
+Color=Blue
 BgColor=
 Style=Bold
 InRange=0
 Keyword=STDIN STDOUT STDERR __END__ __DATA__ __PACKAGE__ __WARN__ __DIE__ __FILE__ __LINE__ DESTROY UNIVERSAL BEGIN END INIT CHECK SUPER CORE
 
-[Functions]
-Color=Blue
+[3.Functions]
+Color=ForestGreen
 BgColor=
 Style=Bold
 InRange=0
 Keyword=param redirect header append param_fetch fetch start_html end_html Accept raw_cookie user_agent path_info path_translated remote_host script_name referer auth_type server_name virtual_host server_port server_software remote_user user_name request_method content_type http mail to data datasend dataend quit Fcntl Net CGI
 
-[Parameters]
-Color=DarkViolet
+[4.Parameters]
+Color=DarkOrchid
 BgColor=
 Style=Bold
 InRange=0
 Keyword=name value path domain expires secure defaults type status charset attachment cookie title author base target meta style BGCOLOR lang uri nph any compile nosticky no_xhtml newstyle_urls oldstyle_urls autoload no_debug debug private_tempfiles standard all cgi form html2 html3 netscape html LOCK_SH LOCK_EX SMTP Cookie
 
-[Environment]
-Color=DarkViolet
+[5.Environment]
+Color=CornflowerBlue
 BgColor=
 Style=Bold
 InRange=0

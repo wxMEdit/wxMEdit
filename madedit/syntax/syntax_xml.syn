@@ -1,4 +1,4 @@
-# syntax file of XML
+# XML
 Title=XML
 CaseSensitive=No
 Delimiter=~`!@#$%^&*()-+=|\{}[]:;"',.<>/?
@@ -51,7 +51,7 @@ DirectiveColor=Green
 DirectiveBgColor=
 DirectiveStyle=
 
-SpecialWordColor=Maroon
+SpecialWordColor=Navy
 SpecialWordBgColor=
 SpecialWordStyle=
 
@@ -62,13 +62,13 @@ LineNumberStyle=
 ActiveLineColor=Fuchsia
 BookmarkColor=C0FFFF
 
-[Declearation]
+[1.Declearation]
 Color=Black
 Style=Bold
 InRange=1
 Keyword=xml stylesheet version encoding standalone DOCTYPE ENTITY ELEMENT ATTLIST NOTATION
 
-[Keywords]
+[2.Keywords]
 Color=Blue
 Style=Bold
 InRange=1

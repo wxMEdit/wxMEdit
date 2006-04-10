@@ -43,7 +43,7 @@ DirectiveColor=Green
 DirectiveBgColor=
 DirectiveStyle=
 
-SpecialWordColor=Maroon
+SpecialWordColor=Navy
 SpecialWordBgColor=
 SpecialWordStyle=
 
@@ -55,29 +55,29 @@ ActiveLineColor=Fuchsia
 BookmarkColor=C0FFFF
 
 # User Defined Keywords
-[ReservedWords]
+[1.ReservedWords]
 Color=Black
 BgColor=
 Style=Bold
 InRange=0
 Keyword=__FILE__ __LINE__ alias and begin BEGIN break case class def defined do else elsif end END ensure false for if in module next nil not or redo rescue retry return self super then true undef unless until when while yield
 
-[Constants]
+[2.Constants]
 Color=Blue
 BgColor=
-Style=
+Style=Bold
 InRange=0
 Keyword=TRUE FALSE NIL STDIN STDOUT STDERR ENV ARGF ARGV DATA RUBY_VERSION RUBY_RELEASE_DATE RUBY_PLATFORM
 
-[Functions]
-Color=Blue
+[3.Functions]
+Color=ForestGreen
 BgColor=
 Style=Bold
 InRange=0
 Keyword=Array Float Integer String at_exit autoload binding caller catch chop chomp eval exec exit fail fork format gets global_variables gsub iterator lambda load local_variables loop open p print printf proc putc puts raise rand readline readlines require select sleep split sprintf srand sub syscall system test trace_var trap untrace_var
 
-[ClassesModules]
-Color=DarkViolet
+[4.ClassesModules]
+Color=DarkOrchid
 BgColor=
 Style=Bold
 InRange=0

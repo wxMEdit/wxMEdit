@@ -43,7 +43,7 @@ DirectiveColor=Green
 DirectiveBgColor=
 DirectiveStyle=
 
-SpecialWordColor=Maroon
+SpecialWordColor=Navy
 SpecialWordBgColor=
 SpecialWordStyle=
 
@@ -55,7 +55,7 @@ ActiveLineColor=Fuchsia
 BookmarkColor=C0FFFF
 
 # User Defined Keywords
-[Keywords]
+[1.Keywords]
 Color=Black
 BgColor=
 Style=Bold

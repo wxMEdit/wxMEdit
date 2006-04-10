@@ -66,3 +66,6 @@ css	syntax_css.syn
 reg	syntax_reg.syn
 inf	syntax_reg.syn
 ini	syntax_reg.syn
+
+jsp	syntax_jsp.syn
+tag	syntax_jsp.syn

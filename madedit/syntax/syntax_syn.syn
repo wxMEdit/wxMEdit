@@ -1,4 +1,4 @@
-# SyntaxFile of MadEdit SyntaxFile
+# MadEdit SyntaxFile
 Title=MadEdit Syntax
 CaseSensitive=No
 Delimiter=~`!@#$%^&*()-+=|\{}[]:;"',.<>/?
@@ -43,7 +43,7 @@ DirectiveColor=Green
 DirectiveBgColor=
 DirectiveStyle=
 
-SpecialWordColor=Maroon
+SpecialWordColor=Navy
 SpecialWordBgColor=
 SpecialWordStyle=
 
@@ -55,19 +55,19 @@ ActiveLineColor=Fuchsia
 BookmarkColor=C0FFFF
 
 # User Defined Keywords
-[Commands]
+[1.Commands]
 Color=Black
 Style=Bold
 InRange=0
 Keyword=Title CaseSensitive Delimiter LineComment BlockComment EscapeChar StringChar DirectiveLeading KeywordPrefix SpecialWordPrefix IndentChar UnindentChar BracePair AutoCompletePair CustomRange Encoding Color BgColor Style InRange Keyword LineCommentAtBOL DirectiveLeadingAtBOL
 
-[Attributes]
+[2.Attributes]
 Color=Black
 Style=Bold
 InRange=0
 Keyword=TextColor TextBgColor TextStyle TextInRange DelimiterColor DelimiterBgColor DelimiterStyle DelimiterInRange SpaceColor SpaceBgColor SpaceStyle SpaceInRange NumberColor NumberBgColor NumberStyle NumberInRange StringColor StringBgColor StringStyle StringInRange CommentColor CommentBgColor CommentStyle CommentInRange DirectiveColor DirectiveBgColor DirectiveStyle DirectiveInRange SpecialWordColor SpecialWordBgColor SpecialWordStyle SpecialWordInRange LineNumberColor LineNumberBgColor LineNumberStyle LineNumberInRange ActiveLineColor BookmarkColor LineCommentInRange BlockCommentInRange
 
-[Constans]
+[3.Constans]
 Color=Red
 Style=
 InRange=0

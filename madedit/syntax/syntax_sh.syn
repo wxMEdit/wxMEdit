@@ -1,5 +1,5 @@
 # shell script (sh/ksh/bash)
-Title=Shell Script
+Title=UNIX Shell Script
 CaseSensitive=No
 Delimiter=~`!@#$%^&*()-+=|\{}[]:;"',.<>/?
 LineComment=#
@@ -43,7 +43,7 @@ DirectiveColor=Green
 DirectiveBgColor=
 DirectiveStyle=
 
-SpecialWordColor=Maroon
+SpecialWordColor=Navy
 SpecialWordBgColor=
 SpecialWordStyle=
 
@@ -55,14 +55,14 @@ ActiveLineColor=Fuchsia
 BookmarkColor=C0FFFF
 
 # User Defined Keywords
-[Keywords]
+[1.Keywords]
 Color=Black
 BgColor=
 Style=Bold
 InRange=0
 Keyword=case do done elif else esac fi for if in then until while break continue return eval exec exit test shift unset export readonly read
 
-[Commands]
+[2.Commands]
 Color=Blue
 BgColor=
 Style=Bold
