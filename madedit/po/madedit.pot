@@ -20,7 +20,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: madedit@gmail.com\n"
-"POT-Creation-Date: 2006-04-10 11:06+0800\n"
+"POT-Creation-Date: 2006-04-10 11:17+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2130,7 +2130,7 @@ msgid "WxCheckBoxFindHex"
 msgstr ""
 
 #: src/MadFindInFilesDialog.cpp:114
-msgid "&List the First Item Only"
+msgid "&List the First Found Item Only"
 msgstr ""
 
 #: src/MadFindInFilesDialog.cpp:114

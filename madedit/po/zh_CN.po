@@ -20,7 +20,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MadEdit 0.1\n"
 "Report-Msgid-Bugs-To: madedit@gmail.com\n"
-"POT-Creation-Date: 2006-04-10 11:06+0800\n"
+"POT-Creation-Date: 2006-04-10 11:17+0800\n"
 "PO-Revision-Date: 2006-02-13 13:21+0800\n"
 "Last-Translator: madedit <madedit@gmail.com>\n"
 "Language-Team: MadEdit <madedit@gmail.com>\n"
@@ -2142,8 +2142,8 @@ msgid "WxCheckBoxFindHex"
 msgstr ""
 
 #: src/MadFindInFilesDialog.cpp:114
-msgid "&List the First Item Only"
-msgstr ""
+msgid "&List the First Found Item Only"
+msgstr "只列出第一个找到的项目(&L)"
 
 #: src/MadFindInFilesDialog.cpp:114
 msgid "WxCheckBoxListFirstOnly"
@@ -2278,7 +2278,7 @@ msgstr "选择目录"
 #: src/MadFindInFilesDialog.cpp:516
 #, c-format
 msgid "Found %d file(s) matched the filters..."
-msgstr "找到 %d 个文件符合筛选条件..."
+msgstr "找到 %d 个符合筛选条件的文件..."
 
 #: src/MadFindInFilesDialog.cpp:603
 #, c-format
@@ -3052,9 +3052,6 @@ msgstr "计算字数 (所选取的文字)"
 #: src/MadAboutDialog.cpp:76
 msgid "About MadEdit"
 msgstr "关于 MadEdit"
-
-#~ msgid "&List the First Found Item Only"
-#~ msgstr "只列出第一个找到的项目(&L)"
 
 #~ msgid "&Plugins..."
 #~ msgstr "外挂(&P)..."
