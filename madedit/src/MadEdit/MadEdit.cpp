@@ -11672,7 +11672,7 @@ void MadEdit::GetText(wxString &ws, bool ignoreBOM)
     while(pos < m_Lines->m_Size);
 }
 
-void MadEdit::SetText(wxString &ws)
+void MadEdit::SetText(const wxString &ws)
 {
     MadLineIterator lit;
     size_t size = ws.Len();

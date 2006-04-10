@@ -705,7 +705,7 @@ public:
 
     void GetSelText(wxString &ws);
     void GetText(wxString &ws, bool ignoreBOM = true);
-    void SetText(wxString &ws);
+    void SetText(const wxString &ws);
 
     // line: zero based
     // return true for full line, false for partial line
