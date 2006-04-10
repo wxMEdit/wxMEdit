@@ -67,6 +67,7 @@ class MadConvFileName : public wxMBConv
 public:
     virtual size_t MB2WC(wchar_t *outputBuf, const char *psz, size_t outputSize) const;
     virtual size_t WC2MB(char *outputBuf, const wchar_t *psz, size_t outputSize) const;
+    virtual wxMBConv *Clone() const { return new MadConvFileName; }
 };
 #endif
 
