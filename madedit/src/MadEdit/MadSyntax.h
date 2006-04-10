@@ -58,8 +58,9 @@ struct MadSyntaxKeyword
     MadAttributes m_Attr;
     vector < int > m_InRange;
     MadKeywordSet m_Keywords;
+    bool m_CaseSensitive;
 
-    MadSyntaxKeyword()
+    MadSyntaxKeyword() : m_CaseSensitive(false)
     {}
 };
 
@@ -208,9 +209,6 @@ private: // for NextWord()
     MadEncoding *nw_Encoding;
     ucs4_t      *nw_Word;
     int         *nw_Widths;
-#ifdef __WXMSW__
-    wchar_t     *nw_WCWord;
-#endif
     wxString    nw_FontName;
     int         nw_FontSize;
     int         nw_FontFamily;

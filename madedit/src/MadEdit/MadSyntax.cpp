@@ -542,9 +542,6 @@ bool MadSyntax::DeleteSchema(const wxString &schname)
 
 MadSyntax::MadSyntax(const wxString &filename, bool loadAttr)
 {
-#ifdef __WXMSW__
-    nw_WCWord=NULL;
-#endif
     LoadFromFile(filename);
     wxFileName fn(filename);
     if(loadAttr && fn.GetExt().CmpNoCase(wxT("syn"))==0)
@@ -555,9 +552,6 @@ MadSyntax::MadSyntax(const wxString &filename, bool loadAttr)
 
 MadSyntax::MadSyntax(bool loadAttr)
 {
-#ifdef __WXMSW__
-    nw_WCWord=NULL;
-#endif
     Reset();    // use default attributes
     if(loadAttr) LoadAttributes();
 }
@@ -814,6 +808,7 @@ void MadSyntax::ParseSyntax(const wxString &filename)
     {
         //wxLogMessage(entry);
         MadSyntaxKeyword *ck = GetCustomKeyword(group);
+        ck->m_CaseSensitive = m_CaseSensitive;
 
         syn.SetPath(wxString(wxT('/'))+group);
         idx=0;
@@ -837,6 +832,12 @@ void MadSyntax::ParseSyntax(const wxString &filename)
             {
                 SetInRange(value, ck->m_InRange);
             }
+            else if(entry == wxT("casesensitive"))
+            {
+                value.MakeLower();
+                if(value==wxT("yes")) ck->m_CaseSensitive=true;
+                else if(value==wxT("no")) ck->m_CaseSensitive=false;
+            }
             else if(entry == wxT("keyword"))
             {
                 wxStringTokenizer tkz(value);
@@ -848,7 +849,7 @@ void MadSyntax::ParseSyntax(const wxString &filename)
                         nw_MaxKeywordLen=kwlen;
                     }
 
-                    if(!m_CaseSensitive)
+                    if(!ck->m_CaseSensitive)
                         kw.MakeLower();
 
                     ck->m_Keywords.insert(kw);
@@ -866,14 +867,6 @@ void MadSyntax::ParseSyntax(const wxString &filename)
     }
 
     // syn loaded, begin post-processing
-
-#ifdef __WXMSW__
-    if(nw_MaxKeywordLen)
-    {
-        nw_WCWord=new wxChar[nw_MaxKeywordLen+32];
-    }
-#endif
-
 
     if(m_SystemAttributes[aeText].color==wxNullColour ||
         m_SystemAttributes[aeText].bgcolor==wxNullColour)
@@ -1037,16 +1030,6 @@ void MadSyntax::Reset()
         pat->style=fsNone;
         pat++;
     }
-
-
-#ifdef __WXMSW__
-    if(nw_WCWord!=NULL)
-    {
-        delete []nw_WCWord;
-        nw_WCWord=NULL;
-    }
-#endif
-
 }
 
 MadAttributes *MadSyntax::GetAttributes(const wxString &name)
@@ -1901,86 +1884,52 @@ int MadSyntax::NextWord(int &wordwidth)
             vector < MadSyntaxKeyword >::iterator kend = m_CustomKeyword.end();
             bool bIsKeyword = false;
 
-            if(nw_MaxKeywordLen!=0)
+            if(nw_MaxKeywordLen != 0 && idx <= (int)nw_MaxKeywordLen && kit != kend)
             {
-                if(m_CaseSensitive)
+                wxString strorg, strlower;
+                strorg.Alloc(idx);
+                strlower.Alloc(idx);
+
+                ucs4_t *puc=nw_Word;
+                for(int i=0; i<idx; ++i)
                 {
+                    ucs4_t uc = *puc++;
 #ifdef __WXMSW__
-                    for(int i=0;i<idx;i++)
-                    {
-                        if(nw_Word[i]<0x10000)
-                        {
-                            nw_WCWord[i]=nw_Word[i];
-                        }
-                        else
-                        {
-                            nw_WCWord[i]=0xFFFF;    //to surrogates????
-                        }
-                    }
-                    nw_WCWord[idx]=0;
-                    wxString tmp(nw_WCWord);
-#else
-                    wxString tmp(nw_Word);
+                    if(uc < 0x10000)
 #endif
-                    while(kit != kend)
                     {
-                        if(IsInRange(nw_State.rangeid, kit->m_InRange))
-                        {
-                            if(idx<=(int)nw_MaxKeywordLen)
-                            {
-                                MadKeywordSet::iterator it = kit->m_Keywords.find(tmp);
-                                if(it != kit->m_Keywords.end())
-                                {
-                                    bIsKeyword = true;
-                                    break;
-                                }
-                            }
+                        strorg += wxChar(uc);
 
-                        }
-                        ++kit;
-                    }
-                }
-                else
-                {
-    #ifdef __WXMSW__
-                    for(int i=0;i<idx;i++)
-                    {
-                        if(nw_Word[i]<0x10000)
-                        {
-                            if(nw_Word[i]<=wxT('Z') && nw_Word[i]>=wxT('A'))
-                                nw_WCWord[i]=nw_Word[i]|0x20;
-                            else
-                                nw_WCWord[i]=nw_Word[i];
-                        }
+                        if(uc<=wxT('Z') && uc>=wxT('A'))
+                            strlower += wxChar(uc|0x20);
                         else
-                        {
-                            nw_WCWord[i]=0xFFFF;    //to surrogates????
-                        }
+                            strlower += wxChar(uc);
                     }
-                    nw_WCWord[idx]=0;
-                    wxString tmp(nw_WCWord);
-    #else
-                    wxString tmp(nw_Word);
-                    tmp.MakeLower();
-    #endif
-                    while(kit != kend)
+#ifdef __WXMSW__
+                    else
                     {
-                        if(IsInRange(nw_State.rangeid, kit->m_InRange))
-                        {
-                            if(idx<=(int)nw_MaxKeywordLen)
-                            {
-                                MadKeywordSet::iterator it = kit->m_Keywords.find(tmp);
-                                if(it != kit->m_Keywords.end())
-                                {
-                                    bIsKeyword = true;
-                                    break;
-                                }
-                            }
+                        //to surrogates????
+                        strorg += wxChar(0xFFFF);
+                        strlower += wxChar(0xFFFF);
+                    }
+#endif
+                }
 
+                MadKeywordSet::iterator it;
+                do
+                {
+                    if(IsInRange(nw_State.rangeid, kit->m_InRange))
+                    {
+                        if(kit->m_CaseSensitive) it = kit->m_Keywords.find(strorg);
+                        else                     it = kit->m_Keywords.find(strlower);
+                        if(it != kit->m_Keywords.end())
+                        {
+                            bIsKeyword = true;
+                            break;
                         }
-                        ++kit;
                     }
                 }
+                while(++kit != kend);
             }
 
             if(bIsKeyword)
@@ -2051,85 +2000,52 @@ int MadSyntax::NextWord(int &wordwidth)
             vector < MadSyntaxKeyword >::iterator kend = m_CustomKeyword.end();
             bool bIsKeyword = false;
 
-            if(nw_MaxKeywordLen > 0)
+            if(nw_MaxKeywordLen != 0 && idx <= (int)nw_MaxKeywordLen && kit != kend)
             {
-                if(m_CaseSensitive)
-                {
-#ifdef __WXMSW__
-                    for(int i=0;i<idx;i++)
-                    {
-                        if(nw_Word[i]<0x10000)
-                        {
-                            nw_WCWord[i]=nw_Word[i];
-                        }
-                        else
-                        {
-                            nw_WCWord[i]=0xFFFF;    //to surrogates????
-                        }
-                    }
-                    nw_WCWord[idx]=0;
-                    wxString tmp(nw_WCWord);
-#else
-                    wxString tmp(nw_Word);
-#endif
-                    while(kit != kend)
-                    {
-                        if(IsInRange(nw_State.rangeid, kit->m_InRange))
-                        {
-                            if(idx<=(int)nw_MaxKeywordLen)
-                            {
-                                MadKeywordSet::iterator it = kit->m_Keywords.find(tmp);
-                                if(it != kit->m_Keywords.end())
-                                {
-                                    bIsKeyword = true;
-                                    break;
-                                }
-                            }
+                wxString strorg, strlower;
+                strorg.Alloc(idx);
+                strlower.Alloc(idx);
 
-                        }
-                        ++kit;
-                    }
-                }
-                else
+                ucs4_t *puc=nw_Word;
+                for(int i=0; i<idx; ++i)
                 {
+                    ucs4_t uc = *puc++;
 #ifdef __WXMSW__
-                    for(int i=0;i<idx;i++)
-                    {
-                        if(nw_Word[i]<0x10000)
-                        {
-                            if(nw_Word[i]<=wxT('Z') && nw_Word[i]>=wxT('A'))
-                                nw_WCWord[i]=nw_Word[i]|0x20;
-                            else
-                                nw_WCWord[i]=nw_Word[i];
-                        }
-                        else
-                        {
-                            nw_WCWord[i]=0xFFFF;    //to surrogates????
-                        }
-                    }
-                    nw_WCWord[idx]=0;
-                    wxString tmp(nw_WCWord);
-#else
-                    wxString tmp(nw_Word);
-                    tmp.MakeLower();
+                    if(uc < 0x10000)
 #endif
-                    while(kit != kend)
                     {
-                        if(IsInRange(nw_State.rangeid, kit->m_InRange))
+                        strorg += wxChar(uc);
+
+                        if(uc<=wxT('Z') && uc>=wxT('A'))
+                            strlower += wxChar(uc|0x20);
+                        else
+                            strlower += wxChar(uc);
+                    }
+#ifdef __WXMSW__
+                    else
+                    {
+                        //to surrogates????
+                        strorg += wxChar(0xFFFF);
+                        strlower += wxChar(0xFFFF);
+                    }
+#endif
+                }
+
+                MadKeywordSet::iterator it;
+                do
+                {
+                    if(IsInRange(nw_State.rangeid, kit->m_InRange))
+                    {
+                        if(kit->m_CaseSensitive) it = kit->m_Keywords.find(strorg);
+                        else                     it = kit->m_Keywords.find(strlower);
+                        if(it != kit->m_Keywords.end())
                         {
-                            if(idx<=(int)nw_MaxKeywordLen)
-                            {
-                                MadKeywordSet::iterator it = kit->m_Keywords.find(tmp);
-                                if(it != kit->m_Keywords.end())
-                                {
-                                    bIsKeyword = true;
-                                    break;
-                                }
-                            }
+                            bIsKeyword = true;
+                            break;
                         }
-                        ++kit;
                     }
                 }
+                while(++kit != kend);
             }
 
             if(bIsKeyword)
