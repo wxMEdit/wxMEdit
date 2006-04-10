@@ -52,7 +52,7 @@ WX_DECLARE_HASH_SET( wxString, wxStringHash, wxStringEqual, MadMenuTextSet );
 
 class wxFlatNotebook;
 class wxFlatNotebookEvent;
-
+class MadEdit;
 
 class MadEditFrame : public wxFrame
 {
@@ -247,10 +247,12 @@ public:
 private:
     bool m_PageClosing; // prevent from reentry of CloseFile(), OnNotebookPageClosing()
 public:
-	int OpenedFileCount();
+    int OpenedFileCount();
     void OpenFile(const wxString &filename, bool mustExist); // if filename is empty, open a new file
     void CloseAllFiles(bool force);
-	void MadEditFrameKeyDown(wxKeyEvent& event);
+    void MadEditFrameKeyDown(wxKeyEvent& event);
+    void SetPageFocus(int pageId);
+    MadEdit *GetEditByFileName(const wxString &filename, int &id);
 
 protected:
     void MadEditFrameClose(wxCloseEvent& event);

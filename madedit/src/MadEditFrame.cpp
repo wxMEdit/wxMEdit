@@ -1754,6 +1754,44 @@ void MadEditFrame::MadEditFrameKeyDown(wxKeyEvent& event)
     event.Skip();
 }
 
+void MadEditFrame::SetPageFocus(int pageId)
+{
+    int selid=m_Notebook->GetSelection();
+    if(pageId!=selid && pageId>=0 && pageId<int(m_Notebook->GetPageCount()))
+    {
+        m_Notebook->SetSelection(pageId);
+
+        MadEdit *cme=(MadEdit*)m_Notebook->GetCurrentPage();
+        if(cme!=g_ActiveMadEdit)
+        {
+            wxFlatNotebookEvent event(wxEVT_COMMAND_FLATNOTEBOOK_PAGE_CHANGED, m_Notebook->GetId());
+            event.SetSelection(pageId);
+            event.SetOldSelection(selid);
+            OnNotebookPageChanged(event);
+        }
+    }
+}
+
+MadEdit *MadEditFrame::GetEditByFileName(const wxString &filename, int &id)
+{
+    int count=int(m_Notebook->GetPageCount());
+    wxString fn;
+    for(id=0; id<count; id++)
+    {
+        MadEdit *me=(MadEdit*)m_Notebook->GetPage(id);
+        fn = me->GetFileName();
+#ifdef __WXMSW__
+        if(fn.Lower()==filename.Lower())
+#else
+        if(fn==filename)
+#endif
+        {
+            return me;
+        }
+    }
+    id=-1;
+    return NULL;
+}
 
 #ifdef __WXMSW__
 WXLRESULT MadEditFrame::MSWWindowProc(WXUINT message, WXWPARAM wParam, WXLPARAM lParam)
