@@ -63,7 +63,7 @@ InRange=0
 Keyword=case do done elif else esac fi for if in then until while break continue return eval exec exit test shift unset export readonly read
 
 [2.Commands]
-Color=Blue
+Color=DarkBlue
 BgColor=
 Style=Bold
 InRange=0

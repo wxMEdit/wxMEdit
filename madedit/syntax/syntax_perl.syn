@@ -63,7 +63,7 @@ InRange=0
 Keyword=else elsif for foreach if unless until while do and cmp eq gt le lt ne not or next last continue redo reset goto abs accept alarm atan2 bind chdir chmod chomp chop chown chr close closedir connect cos crypt dbmclose dbmopen defined delete dump each eof eval exec exists exp fileno flock fork format formline getc getlogin glob gmtime grep hex index int ioctl join keys kill lc length link listen localtime log lstat map mkdir msgctl msgget new no oct open opendir ord pack pipe pop pos printf push qw qq rand read readdir readlink recv ref rename reverse rewinddir rmdir seek seekdir select send shift sin sleep sort splice split sprintf sqrt srand stat strict substr symlink syscall sysopen sysread system syswrite tell telldir tie tied time times truncate uc umask undef unlink unpack unshift untie utime values vec wait warn write bless ucfirst lcfirst rindex waitpid croak carp confess cluck die exit print return sub my use local package our scalar import require constant
 
 [2.Keywords1]
-Color=Blue
+Color=DarkBlue
 BgColor=
 Style=Bold
 InRange=0

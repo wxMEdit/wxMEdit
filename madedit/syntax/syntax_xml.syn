@@ -69,7 +69,7 @@ InRange=1
 Keyword=xml stylesheet version encoding standalone DOCTYPE ENTITY ELEMENT ATTLIST NOTATION
 
 [2.Keywords]
-Color=Blue
+Color=DarkBlue
 Style=Bold
 InRange=1
 Keyword=CDATA ID IDREF IDREFS ENTITY ENTITIES NMTOKEN NMTOKENS

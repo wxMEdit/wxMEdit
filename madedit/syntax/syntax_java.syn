@@ -63,7 +63,7 @@ InRange=0
 Keyword=abstract break byte boolean catch case class char continue default double do else extends false final float for finally if import implements int interface instanceof long length native new null package private protected public return switch synchronized short static super try true this throw throws threadsafe transient void while
 
 [2.Classes]
-Color=Blue
+Color=DarkBlue
 BgColor=
 Style=Bold
 InRange=0

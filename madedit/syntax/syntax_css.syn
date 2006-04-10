@@ -63,7 +63,7 @@ InRange=0
 Keyword=a above active address applet array area b base basefont bgsound big blockquote body br cite code dd dfn dir div dl dt em fig first-letter first-line form frame frameset h h1 h2 h3 h4 h5 h6 h7 h8 h9 head hover hr html i img input isindex kbd li link map marquee menu meta nextid nobr noframes note noscript ol option p range root span samp script select sound sqrt style strike strong sup table td textarea th title tr tt u ul var visited wbr
 
 [2.Properties]
-Color=Blue
+Color=DarkBlue
 BgColor=
 Style=Bold
 InRange=0
@@ -100,6 +100,6 @@ Keyword=em ex px in cm mm pt pc mhz khz deg rad gra ms s
 [7.Colors]
 Color=Blue
 BgColor=
-Style=Bold
+Style=
 InRange=0
 Keyword=aqua black blue fuchsia green lime maroon  navy olive purple red silver teal white yellow activeborder activecaption inactivecolor activecolor appworkspace  buttonface buttonhighlight buttonshadow buttontext captiontext graytext gray highlighttext highlight inactiveborder inactivecaptiontext inactivecaption infobackground infotext menu menutext scrollbar threeddarkshadow threedface threedhighlight threedlightshadow threedshadow windowframe windowtext window

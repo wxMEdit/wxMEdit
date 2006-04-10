@@ -63,7 +63,7 @@ InRange=0
 Keyword=integer byte word boolean true false single double array asm begin case class const onstructor destructor dispinterface do downto else end except exit exports file finalization finally for function goto if implementation inherited initialization inline interface label library nil object of out packed procedure program property raise record repeat resourcestring result self set string then threadvar to try type unit until uses var while with
 
 [2.Directives]
-Color=Blue
+Color=DarkBlue
 BgColor=
 Style=Bold
 InRange=0
