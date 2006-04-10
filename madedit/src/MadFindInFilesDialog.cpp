@@ -753,6 +753,7 @@ void MadFindInFilesDialog::FindReplaceInFiles(bool bReplace)
                         WxListBoxFiles->Append(fmt, new CaretPosData(expr, pid, begpos[idx], endpos[idx]));
                     }
                     while(++idx < count);
+                    WxListBoxFiles->Append(wxT("--------------------------------------------------"));
                     WxListBoxFiles->Thaw();
                 }
             }
