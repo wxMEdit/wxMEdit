@@ -3,9 +3,9 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
-#: src/MadFindInFilesDialog.cpp:148 src/MadFindInFilesDialog.cpp:158
-#: src/MadFindInFilesDialog.cpp:161 src/MadFindInFilesDialog.cpp:168
-#: src/MadHighlightingDialog.cpp:211 src/MadSearchDialog.cpp:123
+#: src/MadFindInFilesDialog.cpp:159 src/MadFindInFilesDialog.cpp:169
+#: src/MadFindInFilesDialog.cpp:172 src/MadFindInFilesDialog.cpp:179
+#: src/MadHighlightingDialog.cpp:218 src/MadSearchDialog.cpp:123
 #: src/MadReplaceDialog.cpp:124 src/MadOptionsDialog.cpp:363
 #: src/MadOptionsDialog.cpp:372 src/MadOptionsDialog.cpp:381
 #: src/MadOptionsDialog.cpp:400 src/MadOptionsDialog.cpp:409
@@ -14,13 +14,13 @@
 #: src/MadOptionsDialog.cpp:503 src/MadOptionsDialog.cpp:504
 #: src/MadOptionsDialog.cpp:506 src/MadOptionsDialog.cpp:510
 #: src/MadOptionsDialog.cpp:512 src/MadOptionsDialog.cpp:516
-#: src/MadOptionsDialog.cpp:518 src/MadWordCountDialog.cpp:110
+#: src/MadOptionsDialog.cpp:518 src/MadWordCountDialog.cpp:117
 #: src/MadAboutDialog.cpp:59
 msgid ""
 msgstr ""
 "Project-Id-Version: MadEdit 0.1\n"
 "Report-Msgid-Bugs-To: madedit@gmail.com\n"
-"POT-Creation-Date: 2006-04-10 11:17+0800\n"
+"POT-Creation-Date: 2006-04-10 21:15+0800\n"
 "PO-Revision-Date: 2006-02-13 13:21+0800\n"
 "Last-Translator: madedit <madedit@gmail.com>\n"
 "Language-Team: MadEdit <madedit@gmail.com>\n"
@@ -204,7 +204,7 @@ msgstr "取消"
 msgid "File '%s' already exists, do you really want to overwrite it?"
 msgstr "文件 '%s' 已存在，是否真要覆写？"
 
-#: po/wxstd.po.cpp:45 src/MadWordCountDialog.cpp:116
+#: po/wxstd.po.cpp:45 src/MadWordCountDialog.cpp:123
 msgid "&Close"
 msgstr "关闭(&C)"
 
@@ -1187,7 +1187,7 @@ msgstr "贴上(&P)"
 msgid "Insert data from the Clipboard"
 msgstr "将剪贴簿中的数据插入到文件中"
 
-#: src/MadEditFrame.cpp:813 src/MadHighlightingDialog.cpp:226
+#: src/MadEditFrame.cpp:813 src/MadHighlightingDialog.cpp:233
 msgid "&Delete"
 msgstr "删除(&D)"
 
@@ -2101,321 +2101,321 @@ msgstr "跳到文件位置"
 msgid "Press OK to visit our HomePage."
 msgstr "按「确定」可以参观我们的网页."
 
-#: src/MadFindInFilesDialog.cpp:102 src/MadSearchDialog.cpp:96
+#: src/MadFindInFilesDialog.cpp:113 src/MadSearchDialog.cpp:96
 #: src/MadReplaceDialog.cpp:97
 msgid "&Case Sensitive"
 msgstr "大小写视为相异(&C)"
 
-#: src/MadFindInFilesDialog.cpp:102 src/MadSearchDialog.cpp:96
+#: src/MadFindInFilesDialog.cpp:113 src/MadSearchDialog.cpp:96
 #: src/MadReplaceDialog.cpp:97
 msgid "WxCheckBoxCaseSensitive"
 msgstr ""
 
-#: src/MadFindInFilesDialog.cpp:105 src/MadSearchDialog.cpp:99
+#: src/MadFindInFilesDialog.cpp:116 src/MadSearchDialog.cpp:99
 #: src/MadReplaceDialog.cpp:100
 msgid "&Whole Word Only"
 msgstr "搜寻完整单字(&W)"
 
-#: src/MadFindInFilesDialog.cpp:105 src/MadSearchDialog.cpp:99
+#: src/MadFindInFilesDialog.cpp:116 src/MadSearchDialog.cpp:99
 #: src/MadReplaceDialog.cpp:100
 msgid "WxCheckBoxWholeWord"
 msgstr ""
 
-#: src/MadFindInFilesDialog.cpp:108 src/MadSearchDialog.cpp:102
+#: src/MadFindInFilesDialog.cpp:119 src/MadSearchDialog.cpp:102
 #: src/MadReplaceDialog.cpp:103
 msgid "Use Regular E&xpressions"
 msgstr "使用正规表示式(&X)"
 
-#: src/MadFindInFilesDialog.cpp:108 src/MadSearchDialog.cpp:102
+#: src/MadFindInFilesDialog.cpp:119 src/MadSearchDialog.cpp:102
 #: src/MadReplaceDialog.cpp:103
 msgid "WxCheckBoxRegex"
 msgstr ""
 
-#: src/MadFindInFilesDialog.cpp:111 src/MadSearchDialog.cpp:105
+#: src/MadFindInFilesDialog.cpp:122 src/MadSearchDialog.cpp:105
 #: src/MadReplaceDialog.cpp:106
 msgid "Find &Hex String (Example: BE 00 3A or BE003A)"
 msgstr "寻找十六进制字符串(例子: BE 00 3A 或 BE003A)(&H)"
 
-#: src/MadFindInFilesDialog.cpp:111 src/MadSearchDialog.cpp:105
+#: src/MadFindInFilesDialog.cpp:122 src/MadSearchDialog.cpp:105
 #: src/MadReplaceDialog.cpp:106
 msgid "WxCheckBoxFindHex"
 msgstr ""
 
-#: src/MadFindInFilesDialog.cpp:114
+#: src/MadFindInFilesDialog.cpp:125
 msgid "&List the First Found Item Only"
 msgstr "只列出第一个找到的项目(&L)"
 
-#: src/MadFindInFilesDialog.cpp:114
+#: src/MadFindInFilesDialog.cpp:125
 msgid "WxCheckBoxListFirstOnly"
 msgstr ""
 
-#: src/MadFindInFilesDialog.cpp:120
+#: src/MadFindInFilesDialog.cpp:131
 msgid "&Find"
 msgstr "寻找(&F)"
 
-#: src/MadFindInFilesDialog.cpp:120
+#: src/MadFindInFilesDialog.cpp:131
 msgid "WxButtonFind"
 msgstr ""
 
-#: src/MadFindInFilesDialog.cpp:123 src/MadReplaceDialog.cpp:115
+#: src/MadFindInFilesDialog.cpp:134 src/MadReplaceDialog.cpp:115
 msgid "&Replace"
 msgstr "取代(&R)"
 
-#: src/MadFindInFilesDialog.cpp:123 src/MadSearchDialog.cpp:117
+#: src/MadFindInFilesDialog.cpp:134 src/MadSearchDialog.cpp:117
 #: src/MadReplaceDialog.cpp:115
 msgid "WxButtonReplace"
 msgstr ""
 
-#: src/MadFindInFilesDialog.cpp:126
+#: src/MadFindInFilesDialog.cpp:137
 msgid "&No 'Replace'"
 msgstr "禁用'取代'(&N)"
 
-#: src/MadFindInFilesDialog.cpp:126
+#: src/MadFindInFilesDialog.cpp:137
 msgid "WxCheckBoxNoReplace"
 msgstr ""
 
-#: src/MadFindInFilesDialog.cpp:129 src/MadSearchDialog.cpp:120
+#: src/MadFindInFilesDialog.cpp:140 src/MadSearchDialog.cpp:120
 #: src/MadReplaceDialog.cpp:121
 msgid "Close"
 msgstr "关闭"
 
-#: src/MadFindInFilesDialog.cpp:129 src/MadHighlightingDialog.cpp:301
+#: src/MadFindInFilesDialog.cpp:140 src/MadHighlightingDialog.cpp:308
 #: src/MadSearchDialog.cpp:120 src/MadReplaceDialog.cpp:121
 msgid "WxButtonClose"
 msgstr ""
 
-#: src/MadFindInFilesDialog.cpp:138
+#: src/MadFindInFilesDialog.cpp:149
 msgid "Opened Files in Editor"
 msgstr "在编辑器中开启的文件"
 
-#: src/MadFindInFilesDialog.cpp:138
+#: src/MadFindInFilesDialog.cpp:149
 msgid "WxRadioButtonOpenedFiles"
 msgstr ""
 
-#: src/MadFindInFilesDialog.cpp:144
+#: src/MadFindInFilesDialog.cpp:155
 msgid "Selected Directory:"
 msgstr "选择的目录:"
 
-#: src/MadFindInFilesDialog.cpp:144
+#: src/MadFindInFilesDialog.cpp:155
 msgid "WxRadioButtonDir"
 msgstr ""
 
-#: src/MadFindInFilesDialog.cpp:148
+#: src/MadFindInFilesDialog.cpp:159
 msgid "WxComboBoxDir"
 msgstr ""
 
-#: src/MadFindInFilesDialog.cpp:151
+#: src/MadFindInFilesDialog.cpp:162
 msgid "..."
 msgstr "..."
 
-#: src/MadFindInFilesDialog.cpp:151
+#: src/MadFindInFilesDialog.cpp:162
 msgid "WxButtonDir"
 msgstr ""
 
-#: src/MadFindInFilesDialog.cpp:154
+#: src/MadFindInFilesDialog.cpp:165
 msgid "File Filters:"
 msgstr "文件筛选条件:"
 
-#: src/MadFindInFilesDialog.cpp:154 src/MadHighlightingDialog.cpp:207
+#: src/MadFindInFilesDialog.cpp:165 src/MadHighlightingDialog.cpp:214
 #: src/MadOptionsDialog.cpp:217 src/MadConvEncDialog.cpp:68
-#: src/MadWordCountDialog.cpp:68
+#: src/MadWordCountDialog.cpp:75
 msgid "WxStaticText1"
 msgstr ""
 
-#: src/MadFindInFilesDialog.cpp:158
+#: src/MadFindInFilesDialog.cpp:169
 msgid "WxComboBoxFilter"
 msgstr ""
 
-#: src/MadFindInFilesDialog.cpp:161 src/MadHighlightingDialog.cpp:214
-#: src/MadOptionsDialog.cpp:226 src/MadWordCountDialog.cpp:74
+#: src/MadFindInFilesDialog.cpp:172 src/MadHighlightingDialog.cpp:221
+#: src/MadOptionsDialog.cpp:226 src/MadWordCountDialog.cpp:81
 msgid "WxStaticText2"
 msgstr ""
 
-#: src/MadFindInFilesDialog.cpp:164
+#: src/MadFindInFilesDialog.cpp:175
 msgid "File Encoding:"
 msgstr "文件编码:"
 
-#: src/MadFindInFilesDialog.cpp:164 src/MadHighlightingDialog.cpp:262
-#: src/MadOptionsDialog.cpp:258 src/MadWordCountDialog.cpp:80
+#: src/MadFindInFilesDialog.cpp:175 src/MadHighlightingDialog.cpp:269
+#: src/MadOptionsDialog.cpp:258 src/MadWordCountDialog.cpp:87
 msgid "WxStaticText3"
 msgstr ""
 
-#: src/MadFindInFilesDialog.cpp:168 src/MadOptionsDialog.cpp:233
+#: src/MadFindInFilesDialog.cpp:179 src/MadOptionsDialog.cpp:233
 #: src/MadConvEncDialog.cpp:72
 msgid "WxComboBoxEncoding"
 msgstr ""
 
-#: src/MadFindInFilesDialog.cpp:171
+#: src/MadFindInFilesDialog.cpp:182
 msgid "Include Subdirectories"
 msgstr "包含子目录"
 
-#: src/MadFindInFilesDialog.cpp:171
+#: src/MadFindInFilesDialog.cpp:182
 msgid "WxCheckBoxSubDir"
 msgstr ""
 
-#: src/MadFindInFilesDialog.cpp:183
+#: src/MadFindInFilesDialog.cpp:194
 msgid "Find/Replace In Files"
 msgstr "多重文件寻找/取代"
 
-#: src/MadFindInFilesDialog.cpp:205 src/MadSearchDialog.cpp:148
+#: src/MadFindInFilesDialog.cpp:216 src/MadSearchDialog.cpp:148
 #: src/MadReplaceDialog.cpp:151
 msgid "WxBitmapButtonRecentFindText"
 msgstr ""
 
-#: src/MadFindInFilesDialog.cpp:221 src/MadReplaceDialog.cpp:167
+#: src/MadFindInFilesDialog.cpp:232 src/MadReplaceDialog.cpp:167
 msgid "WxBitmapButtonRecentReplaceText"
 msgstr ""
 
-#: src/MadFindInFilesDialog.cpp:225 src/MadOptionsDialog.cpp:530
+#: src/MadFindInFilesDialog.cpp:236 src/MadOptionsDialog.cpp:530
 #: src/MadOptionsDialog.cpp:731
 msgid "System Default"
 msgstr "系统预设"
 
-#: src/MadFindInFilesDialog.cpp:401
+#: src/MadFindInFilesDialog.cpp:412
 msgid "Choose a directory"
 msgstr "选择目录"
 
-#: src/MadFindInFilesDialog.cpp:516
+#: src/MadFindInFilesDialog.cpp:527
 #, c-format
 msgid "Found %d file(s) matched the filters..."
 msgstr "找到 %d 个符合筛选条件的文件..."
 
-#: src/MadFindInFilesDialog.cpp:603
+#: src/MadFindInFilesDialog.cpp:615
 #, c-format
 msgid "Processing %d of %d files..."
 msgstr "第 %d 个文件处理中(共有 %d 个)... "
 
-#: src/MadFindInFilesDialog.cpp:725
+#: src/MadFindInFilesDialog.cpp:744
 #, c-format
 msgid ": Line(%d): "
 msgstr ": 行(%d): "
 
-#: src/MadFindInFilesDialog.cpp:729
+#: src/MadFindInFilesDialog.cpp:748
 #, c-format
 msgid ": Offset(%s): "
 msgstr ": 位置(%s): "
 
-#: src/MadFindInFilesDialog.cpp:730
+#: src/MadFindInFilesDialog.cpp:749
 msgid "Binary file matches"
 msgstr "这是二进制数据档"
 
-#: src/MadHighlightingDialog.cpp:207
+#: src/MadHighlightingDialog.cpp:214
 msgid "Schema:"
 msgstr "配色："
 
-#: src/MadHighlightingDialog.cpp:211
+#: src/MadHighlightingDialog.cpp:218
 msgid "WxComboBoxSchema"
 msgstr ""
 
-#: src/MadHighlightingDialog.cpp:214
+#: src/MadHighlightingDialog.cpp:221
 msgid "You cannot modify the schemas with * sign."
 msgstr "不能修改标示着 * 符号的配色"
 
-#: src/MadHighlightingDialog.cpp:220
+#: src/MadHighlightingDialog.cpp:227
 msgid "&Load"
 msgstr "载入(&L)"
 
-#: src/MadHighlightingDialog.cpp:220
+#: src/MadHighlightingDialog.cpp:227
 msgid "WxButtonLoad"
 msgstr ""
 
-#: src/MadHighlightingDialog.cpp:223
+#: src/MadHighlightingDialog.cpp:230
 msgid "&Save"
 msgstr "储存(&S)"
 
-#: src/MadHighlightingDialog.cpp:223
+#: src/MadHighlightingDialog.cpp:230
 msgid "WxButtonSave"
 msgstr ""
 
-#: src/MadHighlightingDialog.cpp:226
+#: src/MadHighlightingDialog.cpp:233
 msgid "WxButtonDelete"
 msgstr ""
 
-#: src/MadHighlightingDialog.cpp:244
+#: src/MadHighlightingDialog.cpp:251
 msgid "Bold"
 msgstr "粗体"
 
-#: src/MadHighlightingDialog.cpp:244
+#: src/MadHighlightingDialog.cpp:251
 msgid "WxCheckBoxBold"
 msgstr ""
 
-#: src/MadHighlightingDialog.cpp:247
+#: src/MadHighlightingDialog.cpp:254
 msgid "Italic"
 msgstr "斜体"
 
-#: src/MadHighlightingDialog.cpp:247
+#: src/MadHighlightingDialog.cpp:254
 msgid "WxCheckBoxItalic"
 msgstr ""
 
-#: src/MadHighlightingDialog.cpp:250
+#: src/MadHighlightingDialog.cpp:257
 msgid "Underline"
 msgstr "下划线"
 
-#: src/MadHighlightingDialog.cpp:250
+#: src/MadHighlightingDialog.cpp:257
 msgid "WxCheckBoxUnderline"
 msgstr ""
 
-#: src/MadHighlightingDialog.cpp:262
+#: src/MadHighlightingDialog.cpp:269
 msgid "Foreground/Text Color"
 msgstr "前景或字体颜色"
 
-#: src/MadHighlightingDialog.cpp:265
+#: src/MadHighlightingDialog.cpp:272
 msgid "WxStaticTextFCName"
 msgstr ""
 
-#: src/MadHighlightingDialog.cpp:274 src/MadHighlightingDialog.cpp:295
+#: src/MadHighlightingDialog.cpp:281 src/MadHighlightingDialog.cpp:302
 msgid "Other Color"
 msgstr "其他颜色"
 
-#: src/MadHighlightingDialog.cpp:274
+#: src/MadHighlightingDialog.cpp:281
 msgid "WxButtonFC"
 msgstr ""
 
-#: src/MadHighlightingDialog.cpp:283
+#: src/MadHighlightingDialog.cpp:290
 msgid "Background Color"
 msgstr "背景颜色"
 
-#: src/MadHighlightingDialog.cpp:283 src/MadOptionsDialog.cpp:267
-#: src/MadWordCountDialog.cpp:86
+#: src/MadHighlightingDialog.cpp:290 src/MadOptionsDialog.cpp:267
+#: src/MadWordCountDialog.cpp:93
 msgid "WxStaticText4"
 msgstr ""
 
-#: src/MadHighlightingDialog.cpp:286
+#: src/MadHighlightingDialog.cpp:293
 msgid "WxStaticTextBCName"
 msgstr ""
 
-#: src/MadHighlightingDialog.cpp:295
+#: src/MadHighlightingDialog.cpp:302
 msgid "WxButtonBC"
 msgstr ""
 
-#: src/MadHighlightingDialog.cpp:301 src/MadOptionsDialog.cpp:497
+#: src/MadHighlightingDialog.cpp:308 src/MadOptionsDialog.cpp:497
 #: src/MadConvEncDialog.cpp:89 src/MadAboutDialog.cpp:68
 msgid "&OK"
 msgstr "确定(&O)"
 
-#: src/MadHighlightingDialog.cpp:304 src/MadOptionsDialog.cpp:500
+#: src/MadHighlightingDialog.cpp:311 src/MadOptionsDialog.cpp:500
 #: src/MadConvEncDialog.cpp:92 src/MadAboutDialog.cpp:71
 msgid "&Cancel"
 msgstr "取消(&C)"
 
-#: src/MadHighlightingDialog.cpp:304 src/MadOptionsDialog.cpp:500
+#: src/MadHighlightingDialog.cpp:311 src/MadOptionsDialog.cpp:500
 #: src/MadConvEncDialog.cpp:92 src/MadAboutDialog.cpp:71
 msgid "WxButtonCancel"
 msgstr ""
 
-#: src/MadHighlightingDialog.cpp:309
+#: src/MadHighlightingDialog.cpp:316
 msgid "Syntax Highlighting Settings"
 msgstr "语法高亮设定"
 
-#: src/MadHighlightingDialog.cpp:947
+#: src/MadHighlightingDialog.cpp:954
 msgid "Cannot load this schema."
 msgstr "无法加载这个配色。"
 
-#: src/MadHighlightingDialog.cpp:970
+#: src/MadHighlightingDialog.cpp:977
 msgid "Cannot save to the schema."
 msgstr "无法储存这个配色。"
 
-#: src/MadHighlightingDialog.cpp:992
+#: src/MadHighlightingDialog.cpp:999
 msgid "Cannot delete this schema."
 msgstr "无法删除这个配色。"
 
@@ -2576,7 +2576,7 @@ msgstr ""
 msgid "Columns of Tab"
 msgstr "定位字符(Tab) 的长度"
 
-#: src/MadOptionsDialog.cpp:276 src/MadWordCountDialog.cpp:92
+#: src/MadOptionsDialog.cpp:276 src/MadWordCountDialog.cpp:99
 msgid "WxStaticText5"
 msgstr ""
 
@@ -2588,7 +2588,7 @@ msgstr ""
 msgid "Columns of Indent"
 msgstr "缩排时的长度"
 
-#: src/MadOptionsDialog.cpp:285 src/MadWordCountDialog.cpp:107
+#: src/MadOptionsDialog.cpp:285 src/MadWordCountDialog.cpp:114
 msgid "WxStaticText6"
 msgstr ""
 
@@ -2710,7 +2710,7 @@ msgstr ""
 msgid "Left:"
 msgstr "左边："
 
-#: src/MadOptionsDialog.cpp:360 src/MadWordCountDialog.cpp:98
+#: src/MadOptionsDialog.cpp:360 src/MadWordCountDialog.cpp:105
 msgid "WxStaticText7"
 msgstr ""
 
@@ -2724,7 +2724,7 @@ msgstr ""
 msgid ">>"
 msgstr ""
 
-#: src/MadOptionsDialog.cpp:366 src/MadWordCountDialog.cpp:116
+#: src/MadOptionsDialog.cpp:366 src/MadWordCountDialog.cpp:123
 msgid "WxButton1"
 msgstr ""
 
@@ -2979,73 +2979,73 @@ msgstr ""
 msgid "Convert Encoding"
 msgstr "转换编码"
 
-#: src/MadWordCountDialog.cpp:68
+#: src/MadWordCountDialog.cpp:75
 msgid "Words"
 msgstr "字数"
 
-#: src/MadWordCountDialog.cpp:71 src/MadWordCountDialog.cpp:77
-#: src/MadWordCountDialog.cpp:83 src/MadWordCountDialog.cpp:89
-#: src/MadWordCountDialog.cpp:95 src/MadWordCountDialog.cpp:101
+#: src/MadWordCountDialog.cpp:78 src/MadWordCountDialog.cpp:84
+#: src/MadWordCountDialog.cpp:90 src/MadWordCountDialog.cpp:96
+#: src/MadWordCountDialog.cpp:102 src/MadWordCountDialog.cpp:108
 msgid "999999"
 msgstr ""
 
-#: src/MadWordCountDialog.cpp:71
+#: src/MadWordCountDialog.cpp:78
 msgid "WxStaticTextWordCount"
 msgstr ""
 
-#: src/MadWordCountDialog.cpp:74
+#: src/MadWordCountDialog.cpp:81
 msgid "Characters (no spaces)"
 msgstr "字符数（不含空白）"
 
-#: src/MadWordCountDialog.cpp:77
+#: src/MadWordCountDialog.cpp:84
 msgid "WxStaticTextCharCount"
 msgstr ""
 
-#: src/MadWordCountDialog.cpp:80
+#: src/MadWordCountDialog.cpp:87
 msgid "Characters (with spaces)"
 msgstr "字符数（包含空白）"
 
-#: src/MadWordCountDialog.cpp:83
+#: src/MadWordCountDialog.cpp:90
 msgid "WxStaticTextSpaceCount"
 msgstr ""
 
-#: src/MadWordCountDialog.cpp:86
+#: src/MadWordCountDialog.cpp:93
 msgid "Halfwidth Words"
 msgstr "半角字"
 
-#: src/MadWordCountDialog.cpp:89
+#: src/MadWordCountDialog.cpp:96
 msgid "WxStaticTextHalfwidthCount"
 msgstr ""
 
-#: src/MadWordCountDialog.cpp:92
+#: src/MadWordCountDialog.cpp:99
 msgid "Fullwidth Words"
 msgstr "全角字"
 
-#: src/MadWordCountDialog.cpp:95
+#: src/MadWordCountDialog.cpp:102
 msgid "WxStaticTextFullwidthCount"
 msgstr ""
 
-#: src/MadWordCountDialog.cpp:98
+#: src/MadWordCountDialog.cpp:105
 msgid "Lines"
 msgstr "行数"
 
-#: src/MadWordCountDialog.cpp:101
+#: src/MadWordCountDialog.cpp:108
 msgid "WxStaticTextLineCount"
 msgstr ""
 
-#: src/MadWordCountDialog.cpp:107
+#: src/MadWordCountDialog.cpp:114
 msgid "Detail Information of Characters:"
 msgstr "所有字符的详细数据："
 
-#: src/MadWordCountDialog.cpp:110 src/MadAboutDialog.cpp:59
+#: src/MadWordCountDialog.cpp:117 src/MadAboutDialog.cpp:59
 msgid "WxMemo1"
 msgstr ""
 
-#: src/MadWordCountDialog.cpp:121
+#: src/MadWordCountDialog.cpp:128
 msgid "Word Count"
 msgstr "计算字数"
 
-#: src/MadWordCountDialog.cpp:134
+#: src/MadWordCountDialog.cpp:141
 msgid "Word Count (Selected Text)"
 msgstr "计算字数 (所选取的文字)"
 
