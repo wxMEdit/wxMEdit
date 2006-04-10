@@ -514,7 +514,7 @@ void MadFindInFilesDialog::FindReplaceInFiles(bool bReplace)
 
     const int max=1000;
     fmtmsg1 = _("Found %d file(s) matched the filters...");
-    fmtmsg1 += wxT("\n                                   ");
+    fmtmsg1 += wxT("                                        \n");
     wxProgressDialog dialog(this->GetTitle(),
                             wxString::Format(fmtmsg1, 0),
                             max,    // range
@@ -646,7 +646,6 @@ void MadFindInFilesDialog::FindReplaceInFiles(bool bReplace)
                 cont = dialog.Update(idx, str);
             }
 
-            
             // get all matched data in madedit
             begpos.clear();
             endpos.clear();
