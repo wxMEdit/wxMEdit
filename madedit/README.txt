@@ -63,7 +63,9 @@ Syntax files, Locale files and Settings:
 ChangeLog:
 ----------
 v0.2.4:
-
+1.added custom Syntax Highlighting settings.
+2.added Find/Replace In Files function.
+3.some minor changes.
 
 v0.2.3:
 1.improved the loading speed for the files contain U+10000~U+10FFFF widechars.
