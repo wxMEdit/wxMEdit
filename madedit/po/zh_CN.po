@@ -2186,7 +2186,7 @@ msgstr ""
 
 #: src/MadFindInFilesDialog.cpp:138
 msgid "Opened Files in Editor"
-msgstr "已在编辑器中开启的文件"
+msgstr "在编辑器中开启的文件"
 
 #: src/MadFindInFilesDialog.cpp:138
 msgid "WxRadioButtonOpenedFiles"
