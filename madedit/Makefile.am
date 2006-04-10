@@ -67,6 +67,8 @@ noinst_HEADERS =	description-pak \
 	README.txt \
 	autogen.sh \
 	chmod_644_all_files.sh \
+	madedit.spec \
+	madedit-static.spec \
 	debian/changelog \
 	debian/control \
 	debian/copyright \
