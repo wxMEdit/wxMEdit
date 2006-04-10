@@ -205,7 +205,7 @@ object frmNewForm: TfrmNewForm
             Top = 133
             Width = 300
             Height = 22
-            Caption = '&List the First Item Only'
+            Caption = '&List the First Found Item Only'
             TabOrder = 4
             Wx_BGColor = clBlack
             Wx_Border = 3
