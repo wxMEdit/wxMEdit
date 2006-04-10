@@ -82,7 +82,7 @@ class MadFindInFilesDialog : public wxDialog
 		wxButton *WxButtonReplace;
 		wxButton *WxButtonFind;
 		wxBoxSizer *WxBoxSizer5;
-		wxCheckBox *WxCheckBoxListFileOnly;
+		wxCheckBox *WxCheckBoxListFirstOnly;
 		wxCheckBox *WxCheckBoxFindHex;
 		wxCheckBox *WxCheckBoxRegex;
 		wxCheckBox *WxCheckBoxWholeWord;
@@ -119,7 +119,7 @@ class MadFindInFilesDialog : public wxDialog
 			ID_WXCHECKBOXNOREPLACE = 1044,
 			ID_WXBUTTONREPLACE = 1023,
 			ID_WXBUTTONFIND = 1022,
-			ID_WXCHECKBOXLISTFILEONLY = 1043,
+			ID_WXCHECKBOXLISTFIRSTONLY = 1043,
 			ID_WXCHECKBOXFINDHEX = 1018,
 			ID_WXCHECKBOXREGEX = 1017,
 			ID_WXCHECKBOXWHOLEWORD = 1016,

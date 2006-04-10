@@ -200,12 +200,12 @@ object frmNewForm: TfrmNewForm
             Wx_IDValue = 1018
             Wx_StrechFactor = 0
           end
-          object WxCheckBoxListFileOnly: TWxCheckBox
+          object WxCheckBoxListFirstOnly: TWxCheckBox
             Left = 5
             Top = 133
             Width = 300
             Height = 22
-            Caption = '&List First Item in the Found/Replaced Files Only'
+            Caption = '&List the First Item Only'
             TabOrder = 4
             Wx_BGColor = clBlack
             Wx_Border = 3
@@ -216,7 +216,7 @@ object frmNewForm: TfrmNewForm
             Wx_GeneralStyle = []
             Wx_Hidden = False
             Wx_HorizontalAlignment = wxSZALIGN_LEFT
-            Wx_IDName = 'ID_WXCHECKBOXLISTFILEONLY'
+            Wx_IDName = 'ID_WXCHECKBOXLISTFIRSTONLY'
             Wx_IDValue = 1043
             Wx_StrechFactor = 0
           end
