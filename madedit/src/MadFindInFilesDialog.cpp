@@ -514,6 +514,7 @@ void MadFindInFilesDialog::FindReplaceInFiles(bool bReplace)
 
     const int max=1000;
     fmtmsg1 = _("Found %d file(s) matched the filters...");
+    fmtmsg1 += wxT("\n                                   ");
     wxProgressDialog dialog(this->GetTitle(),
                             wxString::Format(fmtmsg1, 0),
                             max,    // range
@@ -606,15 +607,6 @@ void MadFindInFilesDialog::FindReplaceInFiles(bool bReplace)
         bool cont = true;
         for(size_t i = 0; i < totalfiles && cont; i++)
         {
-            wxLongLong t=wxGetLocalTimeMillis();
-            wxLongLong delta=t-g_Time;
-            if(delta.ToLong()>=200)
-            {
-                g_Time=t;
-                int idx = int(i*max / totalfiles);
-                cont = dialog.Update(idx, wxString::Format(fmt, i, totalfiles));
-            }
-
             // prepare madedit
             if(WxRadioButtonOpenedFiles->GetValue())
             {
@@ -638,6 +630,23 @@ void MadFindInFilesDialog::FindReplaceInFiles(bool bReplace)
                 ++fnit;
             }
 
+            wxLongLong t=wxGetLocalTimeMillis();
+            wxLongLong delta=t-g_Time;
+            if(delta.ToLong()>=200)
+            {
+                g_Time=t;
+                int idx = int(i*max / totalfiles);
+                wxString str=wxString::Format(fmt, i, totalfiles);
+                wxString fn=madedit->GetFileName();
+                if(!fn.IsEmpty())
+                {
+                    str+= wxT('\n');
+                    str+=fn;
+                }
+                cont = dialog.Update(idx, str);
+            }
+
+            
             // get all matched data in madedit
             begpos.clear();
             endpos.clear();
