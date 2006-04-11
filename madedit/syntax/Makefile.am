@@ -3,6 +3,9 @@ syntaxdir = $(pkgdatadir)/syntax
 syntax_DATA =	extension.list \
 	filename.list \
 	firstline.list \
+	Dark.sch \
+	DarkBlue.sch \
+	Gray.sch \
 	syntax_awk.syn \
 	syntax_batch.syn \
 	syntax_conf.syn \
