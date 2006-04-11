@@ -467,7 +467,7 @@ void MadHighlightingDialog::WxListBoxSyntaxSelected(wxCommandEvent& event)
         SetItemFont(WxListCtrlKeyword, item, font);
     }
 
-    WxListCtrlKeyword->SetColumnWidth( 0, wxLIST_AUTOSIZE );
+    WxListCtrlKeyword->SetColumnWidth( 0, WxListCtrlKeyword->GetSize().x - 8);
     WxListCtrlKeyword->Thaw();
 
     g_Index=-1;
@@ -545,7 +545,7 @@ void MadHighlightingDialog::WxListCtrlKeywordSelected(wxListEvent& event)
         str = WxListCtrlKeyword->GetItemText(g_Index);
         WxListCtrlKeyword->SetItemText(g_Index, wxString(wxT('*'))+str);
 
-        WxListCtrlKeyword->SetColumnWidth(0, wxLIST_AUTOSIZE);
+        WxListCtrlKeyword->SetColumnWidth(0, WxListCtrlKeyword->GetSize().x - 8);
     }
 
     KeywordInfo &kinfo=g_KeywordInfoTable[g_Index];
@@ -677,7 +677,7 @@ void MadHighlightingDialog::WxCheckBoxBoldClick(wxCommandEvent& event)
     }
     SetFontStyle(font, g_KeywordInfoTable[g_Index].attr->style);
     SetItemFont(WxListCtrlKeyword, g_Index, font);
-    WxListCtrlKeyword->SetColumnWidth(0, wxLIST_AUTOSIZE);
+    WxListCtrlKeyword->SetColumnWidth(0, WxListCtrlKeyword->GetSize().x - 8);
     SetToModifiedSyntax(g_Syntax);
 }
 
@@ -697,7 +697,7 @@ void MadHighlightingDialog::WxCheckBoxItalicClick(wxCommandEvent& event)
     }
     SetFontStyle(font, g_KeywordInfoTable[g_Index].attr->style);
     SetItemFont(WxListCtrlKeyword, g_Index, font);
-    WxListCtrlKeyword->SetColumnWidth(0, wxLIST_AUTOSIZE);
+    WxListCtrlKeyword->SetColumnWidth(0, WxListCtrlKeyword->GetSize().x - 8);
     SetToModifiedSyntax(g_Syntax);
 }
 
@@ -717,7 +717,7 @@ void MadHighlightingDialog::WxCheckBoxUnderlineClick(wxCommandEvent& event)
     }
     SetFontStyle(font, g_KeywordInfoTable[g_Index].attr->style);
     SetItemFont(WxListCtrlKeyword, g_Index, font);
-    WxListCtrlKeyword->SetColumnWidth(0, wxLIST_AUTOSIZE);
+    WxListCtrlKeyword->SetColumnWidth(0, WxListCtrlKeyword->GetSize().x - 8);
     SetToModifiedSyntax(g_Syntax);
 }
 
@@ -897,7 +897,7 @@ void MadHighlightingDialog::RepaintKeyword()
         ++idx;
     }
     while(++it != itend);
-    WxListCtrlKeyword->SetColumnWidth(0, wxLIST_AUTOSIZE);
+    WxListCtrlKeyword->SetColumnWidth(0, WxListCtrlKeyword->GetSize().x - 8);
     WxListCtrlKeyword->Thaw();
 }
 
