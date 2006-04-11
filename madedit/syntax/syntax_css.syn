@@ -98,7 +98,7 @@ InRange=0
 Keyword=em ex px in cm mm pt pc mhz khz deg rad gra ms s
 
 [7.Colors]
-Color=Blue
+Color=Red
 BgColor=
 Style=
 InRange=0

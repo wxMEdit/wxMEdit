@@ -50,6 +50,8 @@ bat	syntax_batch.syn
 cmd	syntax_batch.syn
 
 syn	syntax_syn.syn
+sch	syntax_syn.syn
+att	syntax_syn.syn
 
 rb	syntax_ruby.syn
 rbw	syntax_ruby.syn

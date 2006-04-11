@@ -79,7 +79,7 @@ InRange=1
 Keyword=DOCTYPE a abbr acronym address applet area b base basefont bdo big blockquote body br button caption center cite code col colgroup dd del dir div dfn dl dt em fieldset font form frame frameset h1 h2 h3 h4 h5 h6 h7 h8 h9 head hr html i iframe img input ins isindex kbd label legend li link map menu meta noframes noscript object ol optgroup option p aram pre q s samp script select small span strike strong style sub sup table tbody td textarea tfoot th thead title tr tt u ul var xmp
 
 [7.Attributes]
-Color=Blue
+Color=Red
 Style=
 InRange=1
 Keyword=abbr accept accesskey action align alink alt pplicationname archive axis background behavior below bgcolor bgproperties border bordercolor bordercolordark bordercolorlight borderstyle caption cellpadding cellspacing char charoff charset checked cite class classid clear code codebase codetype color cols colspan compact content coords data datetime declare defer dir direction disabled dynsrc enctype equiv face for frame frameborder framespacing gutter headers height href hreflang hspace http icon id ismap label language leftmargin link longdesc loop lowsrc marginheight marginwidth maximizebutton maxlength media method methods minimizebutton multiple name nohref noresize noshade nowrap object onabort onblur onchange onclick ondblclick onfocus onkeydown onkeypress onkeyup onload onmousedown onmousemove onmouseout onmouseover onmouseup onreset onselect onsubmit onunload profile prompt readonly rel rev rows rowspan rules runat scheme scope scrollamount scrolldelay scrolling selected shape showintaskbar singleinstance size span src standby start style summary sysmenu tabindex target text title topmargin type url urn usemap valign value valuetype version vlink vrml vspace width windowstate wrap
