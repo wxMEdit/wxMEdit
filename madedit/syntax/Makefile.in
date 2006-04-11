@@ -192,6 +192,9 @@ syntaxdir = $(pkgdatadir)/syntax
 syntax_DATA = extension.list \
 	filename.list \
 	firstline.list \
+	Dark.sch \
+	DarkBlue.sch \
+	Gray.sch \
 	syntax_awk.syn \
 	syntax_batch.syn \
 	syntax_conf.syn \
@@ -214,8 +217,7 @@ syntax_DATA = extension.list \
 	syntax_syn.syn \
 	syntax_txt.syn \
 	syntax_x86asm.syn \
-	syntax_xml.syn \
-	_COLOR_.html
+	syntax_xml.syn
 
 EXTRA_DIST = $(syntax_DATA)
 all: all-am

@@ -28,7 +28,6 @@ syntax_DATA =	extension.list \
 	syntax_syn.syn \
 	syntax_txt.syn \
 	syntax_x86asm.syn \
-	syntax_xml.syn \
-	_COLOR_.html
+	syntax_xml.syn
 
 EXTRA_DIST = $(syntax_DATA)
