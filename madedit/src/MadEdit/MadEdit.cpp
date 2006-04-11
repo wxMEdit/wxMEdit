@@ -9833,6 +9833,7 @@ void MadEdit::OnPaint(wxPaintEvent &evt)
                     // first line: aeText hexdigit
                     memdc.DrawRectangle(0, 0, m_HexFontMaxDigitWidth*17, m_RowHeight);
                     m_Syntax->nw_Color=m_Syntax->GetAttributes(aeText)->color;
+                    memdc.SetTextForeground(m_Syntax->nw_Color);
                     PaintText(&memdc, 0, 0, &HexHeader[60], m_WidthBuffer, 17, 0, 9999999);
 
                     // second line: aeLineNumberArea hexdigit
@@ -9840,7 +9841,6 @@ void MadEdit::OnPaint(wxPaintEvent &evt)
                     memdc.SetPen(*wxThePenList->FindOrCreatePen(m_Syntax->nw_BgColor, 1, wxSOLID));
                     memdc.SetBrush(*wxTheBrushList->FindOrCreateBrush(m_Syntax->nw_BgColor));
                     memdc.DrawRectangle(0, m_RowHeight, m_HexFontMaxDigitWidth*76, m_RowHeight*2);
-
                     memdc.SetTextForeground(m_Syntax->nw_Color);
                     PaintText(&memdc, 0, m_RowHeight, &HexHeader[60], m_WidthBuffer, 18, 0, 9999999);
 
