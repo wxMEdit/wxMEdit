@@ -496,7 +496,7 @@ bool MadSyntax::SaveSchema(const wxString &schname, MadSyntax *syn)
             sch->m_CustomKeyword.push_back(ke);
         }
         
-        sch->AssignAttributes(syn);
+        sch->AssignAttributes(syn, true);
         if(schfile.IsEmpty())
         {
             schfile = s_AttributeFilePath +name +wxT(".sch");
@@ -508,7 +508,7 @@ bool MadSyntax::SaveSchema(const wxString &schname, MadSyntax *syn)
     else
     {
         MadSyntax *sch=new MadSyntax(schfile, false);
-        sch->AssignAttributes(syn);
+        sch->AssignAttributes(syn, true);
         sch->SaveAttributes(schfile);
         delete sch;
     }
@@ -2322,23 +2322,45 @@ void MadSyntax::SaveAttributes(const wxString &file)
     }
 }
 
-void MadSyntax::AssignAttributes(MadSyntax *syn)
+void MadSyntax::AssignAttributes(MadSyntax *syn, bool add)
 {
     size_t i;
     for(i=0; i<m_CustomRange.size() && i<syn->m_CustomRange.size(); i++)
     {
         m_CustomRange[i].bgcolor = syn->m_CustomRange[i].bgcolor;
     }
+    if(add)
+    {
+        for(; i<syn->m_CustomRange.size(); i++)
+        {
+            MadSyntaxRange ra;
+            ra.bgcolor = syn->m_CustomRange[i].bgcolor;
+            m_CustomRange.push_back(ra);
+        }
+    }
+
     for(i=aeText; i<aeNone; ++i)
     {
         m_SystemAttributes[i].color = syn->m_SystemAttributes[i].color;
         m_SystemAttributes[i].bgcolor = syn->m_SystemAttributes[i].bgcolor;
         m_SystemAttributes[i].style = syn->m_SystemAttributes[i].style;
     }
+
     for(i=0; i<m_CustomKeyword.size() && i<syn->m_CustomKeyword.size(); i++)
     {
         m_CustomKeyword[i].m_Attr.color = syn->m_CustomKeyword[i].m_Attr.color;
         m_CustomKeyword[i].m_Attr.bgcolor = syn->m_CustomKeyword[i].m_Attr.bgcolor;
         m_CustomKeyword[i].m_Attr.style = syn->m_CustomKeyword[i].m_Attr.style;
+    }
+    if(add)
+    {
+        for(; i<syn->m_CustomKeyword.size(); i++)
+        {
+            MadSyntaxKeyword ke;
+            ke.m_Attr.color  = syn->m_CustomKeyword[i].m_Attr.color;
+            ke.m_Attr.bgcolor = syn->m_CustomKeyword[i].m_Attr.bgcolor;
+            ke.m_Attr.style = syn->m_CustomKeyword[i].m_Attr.style;
+            m_CustomKeyword.push_back(ke);
+        }
     }
 }

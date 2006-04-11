@@ -178,7 +178,7 @@ public:
     void Reset();
     void LoadAttributes(const wxString &file = wxEmptyString); // if file IsEmpty, load from default .att file
     void SaveAttributes(const wxString &file = wxEmptyString); // if file IsEmpty, save to default .att file
-    void AssignAttributes(MadSyntax *syn); // assign attributes from syn
+    void AssignAttributes(MadSyntax *syn, bool add = false); // assign attributes from syn
 
     bool IsInRange(int range, vector < int >&InRangeVector);
     MadSyntaxRange *GetSyntaxRange(int rangeid);
