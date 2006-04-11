@@ -1153,73 +1153,38 @@ wxString MadSyntax::GetAttributeName(MadAttributeElement ae)
     return wxString(SystemAttributesName[ae]);
 }
 
-void MadSyntax::SetAttributes(wxByte rangeid, MadAttributes *attr)
+void MadSyntax::SetAttributes(MadAttributes *attr)
 {
-    MadSyntaxRange *srange = GetSyntaxRange(rangeid);
-    nw_BgColor = attr->bgcolor;
-    /*
     if(attr == m_SystemAttributes + aeText)
     {
-        if(srange && srange->bgcolor != wxNullColour)
-        {
-            nw_BgColor = srange->bgcolor;
-        }
+        nw_BgColor = nw_CurrentBgColor;
     }
-    else if(nw_BgColor == wxNullColour)
+    else 
     {
-        if(srange) nw_BgColor = srange->bgcolor;
-        if(nw_BgColor == wxNullColour)
-            nw_BgColor = m_SystemAttributes[aeText].bgcolor;
+        nw_BgColor = attr->bgcolor;
     }
-    */
-
-    bool rangecolor= ((attr == m_SystemAttributes + aeString) ||
-        (attr == m_SystemAttributes + aeComment) ||
-        (attr == m_SystemAttributes + aeDirective));
-
-    if(rangecolor && attr->bgcolor!=wxNullColour)
-    {
-        nw_CurrentBgColor = attr->bgcolor;
-    }
-    else if(srange && srange->bgcolor!=wxNullColour)
-    {
-        nw_CurrentBgColor = srange->bgcolor;
-        if(attr == m_SystemAttributes + aeText)
-        {
-            nw_BgColor = nw_CurrentBgColor;
-        }
-    }
-    else if(rangecolor)
-    {
-        nw_CurrentBgColor = m_SystemAttributes[aeText].bgcolor;
-    }
-
     if(nw_BgColor==wxNullColour)
     {
         nw_BgColor = nw_CurrentBgColor;
     }
-
 
     if((nw_Color = attr->color) == wxNullColour)
     {
         nw_Color = m_SystemAttributes[aeText].color;
     }
 
-
-    wxFontWeight fw=wxFONTWEIGHT_NORMAL;
-    if((attr->style&fsBold)!=0)
-        fw=wxFONTWEIGHT_BOLD;
-
-    wxFontStyle fs=wxFONTSTYLE_NORMAL;
-    if((attr->style&fsItalic)!=0)
-        fs=wxFONTSTYLE_ITALIC;
-
-    bool fu = ((attr->style&fsUnderline)!=0);
-
     //if((attr->style&fsStrikeOut)!=0)
-
-    nw_Font=wxTheFontList->FindOrCreateFont(nw_FontSize, nw_FontFamily, fs, fw, fu, nw_FontName);
-
+    
+    if( attr != &m_SystemAttributes[aeSpace] &&
+        attr != &m_SystemAttributes[aeActiveLine] &&
+        attr != &m_SystemAttributes[aeBookmark] )
+    {
+        nw_Font=wxTheFontList->FindOrCreateFont(nw_FontSize, nw_FontFamily,
+            (attr->style&fsItalic) == 0 ? wxFONTSTYLE_NORMAL : wxFONTSTYLE_ITALIC, 
+            (attr->style&fsBold) == 0 ? wxFONTWEIGHT_NORMAL : wxFONTWEIGHT_BOLD,
+            (attr->style&fsUnderline) != 0,
+            nw_FontName);
+    }
 }
 
 
@@ -1247,9 +1212,8 @@ void MadSyntax::InitNextWord2(MadLineIterator &lit, size_t row)
     nw_State.Reset();
 
     nw_CommentUntilEOL = false;
-    nw_IsDirective = false;
     nw_BeginOfLine = (row==0);
-    nw_CurrentBgColor = m_SystemAttributes[aeText].bgcolor;
+    nw_CurrentBgColor = m_SystemAttributes[aeText].bgcolor; // set bgcolor for empty lines
 
     nw_RowIndexIter = lit->m_RowIndices.begin();
     std::advance(nw_RowIndexIter, row);
@@ -1269,14 +1233,14 @@ void MadSyntax::InitNextWord2(MadLineIterator &lit, size_t row)
         if((nw_State.rangeid = state.RangeId) != 0)
         {
             nw_SynRange = GetSyntaxRange(nw_State.rangeid);
-            nw_CurrentBgColor = nw_SynRange->bgcolor;
+            nw_CurrentBgColor = nw_SynRange->bgcolor; // set bgcolor for empty lines
         }
 
         if((nw_State.blkcmtid = state.CommentId) != 0)
         {
             if(m_SystemAttributes[aeComment].bgcolor != wxNullColour)
             {
-                nw_CurrentBgColor = m_SystemAttributes[aeComment].bgcolor;
+                nw_CurrentBgColor = m_SystemAttributes[aeComment].bgcolor; // set bgcolor for empty lines
             }
         }
         nw_ContainCommentOff = (state.CommentOff!=0);
@@ -1286,20 +1250,16 @@ void MadSyntax::InitNextWord2(MadLineIterator &lit, size_t row)
             nw_StringChar = m_StringChar[nw_State.stringid-1];
             if(m_SystemAttributes[aeString].bgcolor != wxNullColour)
             {
-                nw_CurrentBgColor = m_SystemAttributes[aeString].bgcolor;
+                nw_CurrentBgColor = m_SystemAttributes[aeString].bgcolor; // set bgcolor for empty lines
             }
         }
-
 
         if((nw_State.linecmt = state.LineComment) !=0)
         {
             nw_CommentUntilEOL = true;
         }
 
-        if((nw_State.directive = state.Directive) != 0)
-        {
-            nw_IsDirective = true;
-        }
+        nw_State.directive = state.Directive;
     }
     nw_NextState = nw_State;
 
@@ -1589,8 +1549,17 @@ int MadSyntax::NextWord(int &wordwidth)
                             {
                                 if(m_DirectiveLeading.Find(firstuc) >= 0)
                                 {
-                                    nw_IsDirective = true;
-                                    goto _NEXTUCHAR_;
+                                    nw_NextState.directive=1;
+                                    nw_FirstIndex += 1;
+
+                                    if(nw_RestCount == 0)
+                                    {
+                                        nw_State = nw_NextState;
+                                        nw_RestCount = nw_FirstIndex;
+                                        continue;
+                                    }
+
+                                    break;
                                 }
                             }
                         }
@@ -1711,6 +1680,44 @@ int MadSyntax::NextWord(int &wordwidth)
 
     nw_BeginOfLine=false;
 
+    // set current bgcolor by state
+    bool setbgcolor=false;
+    if(nw_State.blkcmtid!=0 || nw_State.linecmt!=0)
+    {
+        nw_CurrentBgColor = m_SystemAttributes[aeComment].bgcolor;
+        if(nw_CurrentBgColor!=wxNullColour) setbgcolor=true;
+    }
+    if(setbgcolor==false)
+    {
+        if(nw_State.directive)
+        {
+            nw_CurrentBgColor = m_SystemAttributes[aeDirective].bgcolor;
+            if(nw_CurrentBgColor!=wxNullColour) setbgcolor=true;
+        }
+        else if(nw_State.stringid!=0)
+        {
+            nw_CurrentBgColor = m_SystemAttributes[aeString].bgcolor;
+            if(nw_CurrentBgColor!=wxNullColour) setbgcolor=true;
+        }
+    }
+    if(setbgcolor==false)
+    {
+        if(nw_State.rangeid!=0)
+        {
+            MadSyntaxRange * r=GetSyntaxRange(nw_State.rangeid);
+            nw_CurrentBgColor = r->bgcolor;
+            //if(nw_CurrentBgColor==wxNullColour)
+            //{
+                //nw_CurrentBgColor = m_SystemAttributes[aeText].bgcolor;
+            //}
+        }
+        else
+        {
+            nw_CurrentBgColor = m_SystemAttributes[aeText].bgcolor;
+        }
+    }
+
+
     // now the nw_ucqueue is the wanted Word
     // calc the width/length/type and return the word
 
@@ -1721,7 +1728,7 @@ int MadSyntax::NextWord(int &wordwidth)
     ucs4_t uc = nw_ucqueue.front().first;
     if(IsSpace(uc))
     {
-        SetAttributes(nw_State.rangeid, aeSpace);
+        SetAttributes(aeSpace);
 
         do
         {
@@ -1751,7 +1758,7 @@ int MadSyntax::NextWord(int &wordwidth)
     }
     else if(nw_State.blkcmtid != 0 || nw_State.linecmt != 0)
     {
-        SetAttributes(nw_State.rangeid, aeComment);
+        SetAttributes(aeComment);
 
         do
         {
@@ -1770,9 +1777,9 @@ int MadSyntax::NextWord(int &wordwidth)
         nw_Word[idx] = 0;
 
     }
-    else if(nw_IsDirective)
+    else if(nw_State.directive)
     {
-        SetAttributes(nw_State.rangeid, aeDirective);
+        SetAttributes(aeDirective);
 
         do
         {
@@ -1793,7 +1800,7 @@ int MadSyntax::NextWord(int &wordwidth)
     }
     else if(nw_State.stringid != 0)
     {
-        SetAttributes(nw_State.rangeid, aeString);
+        SetAttributes(aeString);
 
         do
         {
@@ -1817,7 +1824,7 @@ int MadSyntax::NextWord(int &wordwidth)
 
         if(uc >= '0' && uc <= '9')
         {
-            SetAttributes(nw_State.rangeid, aeNumber);
+            SetAttributes(aeNumber);
 
             do
             {
@@ -1838,7 +1845,7 @@ int MadSyntax::NextWord(int &wordwidth)
         }
         else if(m_SpecialWordPrefix.Find(uc)>=0)
         {
-            SetAttributes(nw_State.rangeid, aeSpecialWord);
+            SetAttributes(aeSpecialWord);
 
             do
             {
@@ -1934,7 +1941,7 @@ int MadSyntax::NextWord(int &wordwidth)
 
             if(bIsKeyword)
             {
-                SetAttributes(nw_State.rangeid, &(kit->m_Attr));
+                SetAttributes(&(kit->m_Attr));
                 int i = 0;
                 while(i < idx)
                 {
@@ -1944,7 +1951,7 @@ int MadSyntax::NextWord(int &wordwidth)
             }
             else
             {
-                SetAttributes(nw_State.rangeid, aeDelimiter);
+                SetAttributes(aeDelimiter);
                 idx = 1;
                 nw_Word[1] = 0;
                 nw_ucqueue.pop_front();
@@ -1956,7 +1963,7 @@ int MadSyntax::NextWord(int &wordwidth)
         }
         else if(IsDelimiter(uc))
         {
-            SetAttributes(nw_State.rangeid, aeDelimiter);
+            SetAttributes(aeDelimiter);
 
             do
             {
@@ -2050,18 +2057,18 @@ int MadSyntax::NextWord(int &wordwidth)
 
             if(bIsKeyword)
             {
-                SetAttributes(nw_State.rangeid, &(kit->m_Attr));
+                SetAttributes(&(kit->m_Attr));
             }
             else
             {
-                SetAttributes(nw_State.rangeid, aeText);
+                SetAttributes(aeText);
             }
         }
 
     }
     else                                                    // Text
     {
-        SetAttributes(nw_State.rangeid, aeText);
+        SetAttributes(aeText);
 
         do
         {
@@ -2089,11 +2096,38 @@ int MadSyntax::NextWord(int &wordwidth)
 
     if(nw_RestCount == 0)
     {
-        if(nw_NextState.rangeid != nw_State.rangeid ||
-            nw_NextState.blkcmtid != nw_State.blkcmtid ||
-            nw_NextState.stringid != nw_State.stringid)
-        {   // reset bgcolor
+        // reset bgcolor
+        if(nw_NextState.rangeid != nw_State.rangeid)
+        {
             nw_CurrentBgColor = m_SystemAttributes[aeText].bgcolor;
+        }
+        else if(nw_NextState.blkcmtid != nw_State.blkcmtid ||
+                nw_NextState.stringid != nw_State.stringid )
+        {
+            if(nw_NextState.directive!=0)
+            {
+                nw_CurrentBgColor = m_SystemAttributes[aeDirective].bgcolor;
+                if(nw_CurrentBgColor==wxNullColour)
+                {
+                    nw_CurrentBgColor = m_SystemAttributes[aeText].bgcolor;
+                }
+            }
+            else
+            {
+                if(nw_NextState.rangeid!=0)
+                {
+                    MadSyntaxRange * r=GetSyntaxRange(nw_NextState.rangeid);
+                    nw_CurrentBgColor = r->bgcolor;
+                    //if(nw_CurrentBgColor==wxNullColour)
+                    //{
+                        //nw_CurrentBgColor = m_SystemAttributes[aeText].bgcolor;
+                    //}
+                }
+                else
+                {
+                    nw_CurrentBgColor = m_SystemAttributes[aeText].bgcolor;
+                }
+            }
         }
 
         nw_State = nw_NextState;
@@ -2276,13 +2310,13 @@ void MadSyntax::SaveAttributes(const wxString &file)
     // write custom keywords
     for(i=0; i<m_CustomKeyword.size(); i++)
     {
-        str.Printf(wxT("/Keyword%d/Color"), i+1);
+        str.Printf(wxT("/%x.Keyword/Color"), i+1);
         value.Printf(wxT("%s"), GetColorName(m_CustomKeyword[i].m_Attr.color).c_str());
         syn.Write(str, value);
-        str.Printf(wxT("/Keyword%d/BgColor"), i+1);
+        str.Printf(wxT("/%x.Keyword/BgColor"), i+1);
         value.Printf(wxT("%s"), GetColorName(m_CustomKeyword[i].m_Attr.bgcolor).c_str());
         syn.Write(str, value);
-        str.Printf(wxT("/Keyword%d/Style"), i+1);
+        str.Printf(wxT("/%x.Keyword/Style"), i+1);
         value.Printf(wxT("%s"), GetStyleString(m_CustomKeyword[i].m_Attr.style).c_str());
         syn.Write(str, value);
     }

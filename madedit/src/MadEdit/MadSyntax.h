@@ -70,6 +70,20 @@ enum MadAttributeElement
     aeSpecialWord, aeLineNumber, aeActiveLine, aeBookmark, aeNone
 };
 
+struct MadState
+{
+    wxByte rangeid;
+    wxByte blkcmtid;
+    wxByte linecmt;
+    wxByte stringid;
+    wxByte directive;
+    void Reset()
+    {
+        rangeid=blkcmtid=stringid=linecmt=directive=0;
+    }
+};
+
+
 class MadEdit;
 class MadEncoding;
 class wxFileConfig;
@@ -189,19 +203,11 @@ public:
         return (uc < 0x100 && m_Delimiter.Find(uc)<0 && !IsSpace(uc));
     }
 
-    void SetAttributes(wxByte rangeid, MadAttributeElement ae)
+    void SetAttributes(MadAttributeElement ae)
     {
-        SetAttributes(rangeid, m_SystemAttributes+ae);
+        SetAttributes(m_SystemAttributes+ae);
     }
-    void SetAttributes(wxByte rangeid, MadAttributes *attr);
-
-private: // for Printing
-    bool m_PrintSyntax;
-    MadAttributes m_old_SystemAttributes[aeNone];
-    vector < wxColour > m_CustomRangeBgColor;
-    vector < MadAttributes > m_CustomKeywordColor;
-    void BeginPrint(bool printSyntax);
-    void EndPrint();
+    void SetAttributes(MadAttributes *attr);
 
 private: // for NextWord()
     MadLines    *nw_MadLines;
@@ -215,24 +221,9 @@ private: // for NextWord()
 
     size_t      nw_MaxKeywordLen;
 
-    struct MadState
-    {
-        wxByte rangeid;
-        wxByte blkcmtid;
-        wxByte stringid;
-        wxByte linecmt;
-        wxByte directive;
-
-        void Reset()
-        {
-            rangeid=blkcmtid=stringid=linecmt=directive=0;
-        }
-    };
-
     MadState nw_State, nw_NextState;
 
     size_t nw_NotSpaceCount;
-    bool nw_IsDirective;
     bool nw_ContainCommentOff;
     bool nw_CommentUntilEOL;
     bool nw_BeginOfLine;
@@ -273,6 +264,14 @@ public:
 
     // return wordlength
     int NextWord(int &wordwidth);
+
+private: // for Printing
+    bool m_PrintSyntax;
+    MadAttributes m_old_SystemAttributes[aeNone];
+    vector < wxColour > m_CustomRangeBgColor;
+    vector < MadAttributes > m_CustomKeywordColor;
+    void BeginPrint(bool printSyntax);
+    void EndPrint();
 
 };
 

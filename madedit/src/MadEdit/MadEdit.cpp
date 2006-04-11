@@ -1984,7 +1984,7 @@ void MadEdit::PaintTextLines(wxDC *dc, const wxRect &rect, int toprow, int rowco
             // show end of line
             if(m_Syntax->nw_EndOfLine && left < maxright && m_ShowEndOfLine)
             {
-                m_Syntax->SetAttributes(m_Syntax->nw_State.rangeid, aeSpace);
+                m_Syntax->SetAttributes(aeSpace);
 
                 int w = GetUCharWidth(0x20);   //FFontAveCharWidth;
 
@@ -2082,7 +2082,7 @@ void MadEdit::PaintTextLines(wxDC *dc, const wxRect &rect, int toprow, int rowco
 
             if(m_DisplayLineNumber)
             {
-                m_Syntax->SetAttributes(0, aeLineNumber);
+                m_Syntax->SetAttributes(aeLineNumber);
 
                 // paint bg
                 if(m_Syntax->nw_BgColor != bgcolor)
@@ -2189,7 +2189,7 @@ void MadEdit::PaintHexLines(wxDC *dc, wxRect &rect, int toprow, int rowcount, bo
     for(int i = 0; i < 76; i++)
         m_WidthBuffer[i] = m_HexFontMaxDigitWidth;
 
-    m_Syntax->SetAttributes(0, aeText);
+    m_Syntax->SetAttributes(aeText);
     dc->SetTextForeground(m_Syntax->nw_Color);
     dc->SetFont(*m_HexFont);
 
@@ -9836,7 +9836,7 @@ void MadEdit::OnPaint(wxPaintEvent &evt)
                     PaintText(&memdc, 0, 0, &HexHeader[60], m_WidthBuffer, 17, 0, 9999999);
 
                     // second line: aeLineNumberArea hexdigit
-                    m_Syntax->SetAttributes(0, aeLineNumber);
+                    m_Syntax->SetAttributes(aeLineNumber);
                     memdc.SetPen(*wxThePenList->FindOrCreatePen(m_Syntax->nw_BgColor, 1, wxSOLID));
                     memdc.SetBrush(*wxTheBrushList->FindOrCreateBrush(m_Syntax->nw_BgColor));
                     memdc.DrawRectangle(0, m_RowHeight, m_HexFontMaxDigitWidth*76, m_RowHeight*2);
