@@ -1,3 +1,12 @@
+madedit (0.2.4-1) unstable; urgency=low
+
+  1.added custom Syntax Highlighting settings.
+  2.added Find/Replace In Files function.
+  3.some minor changes.
+
+ -- Alston Chen <madedit@gmail.com>  Tue, 11 Apr 2006 22:04:42 +0800
+
+
 madedit (0.2.3-1) unstable; urgency=low
 
   * Initial release

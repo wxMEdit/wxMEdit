@@ -1,3 +1,10 @@
+2006-04-11  Alston Chen  <madedit@gmail.com>
+
+	1.added custom Syntax Highlighting settings.
+	2.added Find/Replace In Files function.
+	3.some minor changes.
+
+
 2006-02-26  gettextize  <bug-gnu-gettext@gnu.org>
 
 	* Makefile.am (ACLOCAL_AMFLAGS): New variable.
