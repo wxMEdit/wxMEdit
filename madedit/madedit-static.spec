@@ -1,4 +1,4 @@
-%define release 1
+%define release 2
 %define prefix /usr
 %define name madedit
 %define version 0.2.4

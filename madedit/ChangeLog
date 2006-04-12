@@ -1,3 +1,8 @@
+2006-04-12  Alston Chen  <madedit@gmail.com>
+
+	1.fixed that lost the last byte of clipboard data (Linux version only).
+
+
 2006-04-11  Alston Chen  <madedit@gmail.com>
 
 	1.added custom Syntax Highlighting settings.

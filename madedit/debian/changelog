@@ -1,3 +1,10 @@
+madedit (0.2.4-2) unstable; urgency=low
+
+  1.fixed that lost the last byte of clipboard data (Linux version only).
+
+ -- Alston Chen <madedit@gmail.com>  Wed, 12 Apr 2006 04:05:40 +0800
+
+
 madedit (0.2.4-1) unstable; urgency=low
 
   1.added custom Syntax Highlighting settings.

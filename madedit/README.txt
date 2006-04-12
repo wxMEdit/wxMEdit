@@ -62,6 +62,9 @@ Syntax files, Locale files and Settings:
 
 ChangeLog:
 ----------
+v0.2.4-2:
+1.fixed that lost the last byte of clipboard data (Linux version only).
+
 v0.2.4:
 1.added custom Syntax Highlighting settings.
 2.added Find/Replace In Files function.
