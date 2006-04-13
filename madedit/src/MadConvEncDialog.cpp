@@ -7,6 +7,7 @@
 
 #include "MadConvEncDialog.h"
 #include "MadEdit/MadEncoding.h"
+#include <wx/config.h>
 
 //Do not add custom headers
 //wxDev-C++ designer will remove them
@@ -105,7 +106,12 @@ void MadConvEncDialog::CreateGUIControls(void)
     {
         WxComboBoxEncoding->Append(MadEncoding::GetEncodingName(i));//enc+des);
     }
-    WxComboBoxEncoding->SetValue(MadEncoding::GetEncodingName(0));
+    wxString convenc=MadEncoding::GetEncodingName(0);
+    wxConfigBase *cfg=wxConfigBase::Get(false);
+    wxString oldpath=cfg->GetPath();
+    cfg->Read(wxT("/MadEdit/ConvertEncoding"), &convenc);
+    cfg->SetPath(oldpath);
+    WxComboBoxEncoding->SetValue(convenc);
 
     ResizeItem(WxBoxSizer2, WxStaticText1, 2, 2);
 
