@@ -1893,10 +1893,7 @@ int MadSyntax::NextWord(int &wordwidth)
 
             if(nw_MaxKeywordLen != 0 && idx <= (int)nw_MaxKeywordLen && kit != kend)
             {
-                wxString strorg, strlower;
-                strorg.Alloc(idx);
-                strlower.Alloc(idx);
-
+                wxString strorg(wxT(' '), idx), strlower(wxT(' '), idx);
                 ucs4_t *puc=nw_Word;
                 for(int i=0; i<idx; ++i)
                 {
@@ -1905,19 +1902,19 @@ int MadSyntax::NextWord(int &wordwidth)
                     if(uc < 0x10000)
 #endif
                     {
-                        strorg += wxChar(uc);
+                        strorg[i] = wxChar(uc);
 
                         if(uc<=wxT('Z') && uc>=wxT('A'))
-                            strlower += wxChar(uc|0x20);
+                            strlower[i] = wxChar(uc|0x20);
                         else
-                            strlower += wxChar(uc);
+                            strlower[i] = wxChar(uc);
                     }
 #ifdef __WXMSW__
                     else
                     {
                         //to surrogates????
-                        strorg += wxChar(0xFFFF);
-                        strlower += wxChar(0xFFFF);
+                        strorg[i] = wxChar(0xFFFF);
+                        strlower[i] = wxChar(0xFFFF);
                     }
 #endif
                 }
@@ -2009,10 +2006,7 @@ int MadSyntax::NextWord(int &wordwidth)
 
             if(nw_MaxKeywordLen != 0 && idx <= (int)nw_MaxKeywordLen && kit != kend)
             {
-                wxString strorg, strlower;
-                strorg.Alloc(idx);
-                strlower.Alloc(idx);
-
+                wxString strorg(wxT(' '), idx), strlower(wxT(' '), idx);
                 ucs4_t *puc=nw_Word;
                 for(int i=0; i<idx; ++i)
                 {
@@ -2021,19 +2015,19 @@ int MadSyntax::NextWord(int &wordwidth)
                     if(uc < 0x10000)
 #endif
                     {
-                        strorg += wxChar(uc);
+                        strorg[i] = wxChar(uc);
 
                         if(uc<=wxT('Z') && uc>=wxT('A'))
-                            strlower += wxChar(uc|0x20);
+                            strlower[i] = wxChar(uc|0x20);
                         else
-                            strlower += wxChar(uc);
+                            strlower[i] = wxChar(uc);
                     }
 #ifdef __WXMSW__
                     else
                     {
                         //to surrogates????
-                        strorg += wxChar(0xFFFF);
-                        strlower += wxChar(0xFFFF);
+                        strorg[i] = wxChar(0xFFFF);
+                        strlower[i] = wxChar(0xFFFF);
                     }
 #endif
                 }
