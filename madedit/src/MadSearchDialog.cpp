@@ -141,9 +141,11 @@ void MadSearchDialog::CreateGUIControls(void)
     m_FindText->SetRecordCaretMovements(false);
     m_FindText->SetInsertSpacesInsteadOfTab(false);
     m_FindText->SetWantTab(false);
+    m_FindText->LoadDefaultSyntaxSchema();
+
     WxBoxSizer4->Add(m_FindText,0,wxALIGN_CENTER_HORIZONTAL | wxALL,0);
     WxBoxSizer4->SetItemMinSize(m_FindText, 400, bh);
-    
+
     wxBitmap WxBitmapButtonRecentFindText_BITMAP (down_xpm);
     WxBitmapButtonRecentFindText = new wxBitmapButton(this, ID_WXBITMAPBUTTONRECENTFINDTEXT, WxBitmapButtonRecentFindText_BITMAP, wxPoint(0,0), wxSize(bh,bh), wxBU_AUTODRAW, wxDefaultValidator, _("WxBitmapButtonRecentFindText"));	
     WxBoxSizer4->Add(WxBitmapButtonRecentFindText,0,wxALIGN_CENTER_HORIZONTAL | wxALL,0);

@@ -208,6 +208,7 @@ void MadFindInFilesDialog::CreateGUIControls(void)
     m_FindText->SetRecordCaretMovements(false);
     m_FindText->SetInsertSpacesInsteadOfTab(false);
     m_FindText->SetWantTab(false);
+    m_FindText->LoadDefaultSyntaxSchema();
 
     WxBoxSizer6->Add(m_FindText,0,wxALIGN_CENTER_HORIZONTAL | wxALL,0);
     WxBoxSizer6->SetItemMinSize(m_FindText, 400, bh);
@@ -226,6 +227,8 @@ void MadFindInFilesDialog::CreateGUIControls(void)
     m_ReplaceText->SetRecordCaretMovements(false);
     m_ReplaceText->SetInsertSpacesInsteadOfTab(false);
     m_ReplaceText->SetWantTab(false);
+    m_ReplaceText->LoadDefaultSyntaxSchema();
+
     WxBoxSizer7->Add(m_ReplaceText,0,wxALIGN_CENTER_HORIZONTAL | wxALL,0);
     WxBoxSizer7->SetItemMinSize(m_ReplaceText, 400, bh);
 

@@ -143,10 +143,11 @@ void MadReplaceDialog::CreateGUIControls(void)
     m_FindText->SetRecordCaretMovements(false);
     m_FindText->SetInsertSpacesInsteadOfTab(false);
     m_FindText->SetWantTab(false);
-    
+    m_FindText->LoadDefaultSyntaxSchema();
+
     WxBoxSizer4->Add(m_FindText,0,wxALIGN_CENTER_HORIZONTAL | wxALL,0);
     WxBoxSizer4->SetItemMinSize(m_FindText, 400, bh);
-    
+
     wxBitmap WxBitmapButtonRecentFindText_BITMAP (down_xpm);
     WxBitmapButtonRecentFindText = new wxBitmapButton(this, ID_WXBITMAPBUTTONRECENTFINDTEXT, WxBitmapButtonRecentFindText_BITMAP, wxPoint(0,0), wxSize(bh,bh), wxBU_AUTODRAW, wxDefaultValidator, _("WxBitmapButtonRecentFindText"));
     WxBoxSizer4->Add(WxBitmapButtonRecentFindText,0,wxALIGN_CENTER_HORIZONTAL | wxALL,0);
@@ -161,6 +162,8 @@ void MadReplaceDialog::CreateGUIControls(void)
     m_ReplaceText->SetRecordCaretMovements(false);
     m_ReplaceText->SetInsertSpacesInsteadOfTab(false);
     m_ReplaceText->SetWantTab(false);
+    m_ReplaceText->LoadDefaultSyntaxSchema();
+
     WxBoxSizer5->Add(m_ReplaceText,0,wxALIGN_CENTER_HORIZONTAL | wxALL,0);
     WxBoxSizer5->SetItemMinSize(m_ReplaceText, 400, bh);
     
