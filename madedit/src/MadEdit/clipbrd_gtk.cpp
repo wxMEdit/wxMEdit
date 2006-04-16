@@ -8,7 +8,7 @@
 // Name:        gtk/clipbrd.cpp
 // Purpose:
 // Author:      Robert Roebling
-// Id:          $Id: clipbrd.cpp,v 1.69 2006/04/06 12:06:37 MR Exp $
+// Id:          $Id: clipbrd.cpp,v 1.70 2006/04/15 09:56:21 SN Exp $
 // Copyright:   (c) 1998 Robert Roebling
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////
@@ -320,7 +320,7 @@ selection_handler( GtkWidget *WXUNUSED(widget),
     // It shall return the time which was used to set the data.
     if (selection_data->target == g_timestampAtom)
     {
-        uint timestamp = GPOINTER_TO_UINT (signal_data);
+        guint timestamp = GPOINTER_TO_UINT (signal_data);
         gtk_selection_data_set(selection_data,
                                GDK_SELECTION_TYPE_INTEGER,
                                32,
