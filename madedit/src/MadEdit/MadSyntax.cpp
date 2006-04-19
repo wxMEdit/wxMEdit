@@ -46,7 +46,7 @@ typedef deque< pair<wxString, wxString> >::iterator StringPairIterator;
 // synfile of g_TitleSynfileTable is full path
 StringPairTable g_TitleSynfileTable;
 
-// color schema files table (filename[*], fullpath)
+// syntax scheme files table (filename[*], fullpath)
 StringPairTable g_NameSchfileTable;
 
 WX_DECLARE_HASH_MAP( wxString, wxString, wxStringHash, wxStringEqual, StringMap );
@@ -180,7 +180,7 @@ void MadSyntax::LoadSyntaxFiles()
             cont = dir.GetNext(&filename);
         }
 
-        // load color schema files
+        // load syntax scheme files
         cont=dir.GetFirst(&filename, wxT("*.sch"), wxDIR_FILES);
         static int front=0, back=0;
         while(cont)
@@ -394,13 +394,13 @@ MadSyntax* MadSyntax::GetSyntaxByFileName(const wxString &filename)
     return NULL;
 }
 
-size_t MadSyntax::GetSchemaCount()
+size_t MadSyntax::GetSchemeCount()
 {
     if(!s_Loaded) LoadSyntaxFiles();
 
     return g_NameSchfileTable.size();
 }
-wxString MadSyntax::GetSchemaName(size_t index)
+wxString MadSyntax::GetSchemeName(size_t index)
 {
     if(!s_Loaded) LoadSyntaxFiles();
 
@@ -411,7 +411,7 @@ wxString MadSyntax::GetSchemaName(size_t index)
     return wxEmptyString;
 }
 
-wxString MadSyntax::GetSchemaFileByName(const wxString &schname, MadSyntax *default_syn, bool &star)
+wxString MadSyntax::GetSchemeFileByName(const wxString &schname, MadSyntax *default_syn, bool &star)
 {
     if(!s_Loaded) LoadSyntaxFiles();
 
@@ -439,10 +439,10 @@ wxString MadSyntax::GetSchemaFileByName(const wxString &schname, MadSyntax *defa
     return wxEmptyString;
 }
 
-bool MadSyntax::LoadSchema(const wxString &schname, MadSyntax *syn)
+bool MadSyntax::LoadScheme(const wxString &schname, MadSyntax *syn)
 {
     bool star;
-    wxString schfile=GetSchemaFileByName(schname, syn, star);
+    wxString schfile=GetSchemeFileByName(schname, syn, star);
 
     if(schfile.IsEmpty() && syn->m_Title==MadPlainTextTitle)
     {
@@ -463,7 +463,7 @@ bool MadSyntax::LoadSchema(const wxString &schname, MadSyntax *syn)
     return true;
 }
 
-bool MadSyntax::SaveSchema(const wxString &schname, MadSyntax *syn)
+bool MadSyntax::SaveScheme(const wxString &schname, MadSyntax *syn)
 {
     wxASSERT(syn!=NULL);
 
@@ -471,7 +471,7 @@ bool MadSyntax::SaveSchema(const wxString &schname, MadSyntax *syn)
     if(name.Right(1)==wxT('*')) name=schname.Left(schname.Len()-1);
 
     bool star;
-    wxString schfile=GetSchemaFileByName(name, syn, star);
+    wxString schfile=GetSchemeFileByName(name, syn, star);
 
     if(star || name.IsEmpty()) return false;
 
@@ -517,10 +517,10 @@ bool MadSyntax::SaveSchema(const wxString &schname, MadSyntax *syn)
     return true;
 }
 
-bool MadSyntax::DeleteSchema(const wxString &schname)
+bool MadSyntax::DeleteScheme(const wxString &schname)
 {
     bool star;
-    wxString schfile=GetSchemaFileByName(schname, NULL, star);
+    wxString schfile=GetSchemeFileByName(schname, NULL, star);
 
     if(star || schfile.IsEmpty()) return false;
 

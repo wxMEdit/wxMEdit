@@ -211,14 +211,14 @@ void MadHighlightingDialog::CreateGUIControls(void)
 	wxBoxSizer* WxBoxSizer4 = new wxBoxSizer(wxHORIZONTAL);
 	WxBoxSizer3->Add(WxBoxSizer4,0,wxALIGN_CENTER_HORIZONTAL | wxALL,4);
 
-	WxStaticText1 = new wxStaticText(this, ID_WXSTATICTEXT1, _("Schema:"), wxPoint(4,6), wxSize(46,17), 0, _("WxStaticText1"));
+	WxStaticText1 = new wxStaticText(this, ID_WXSTATICTEXT1, _("Scheme:"), wxPoint(4,6), wxSize(46,17), 0, _("WxStaticText1"));
 	WxBoxSizer4->Add(WxStaticText1,0,wxALIGN_CENTER_VERTICAL | wxALL,3);
 
-	wxArrayString arrayStringFor_WxComboBoxSchema;
-	WxComboBoxSchema = new wxComboBox(this, ID_WXCOMBOBOXSCHEMA, _(""), wxPoint(58,4), wxSize(145,21), arrayStringFor_WxComboBoxSchema, 0, wxDefaultValidator, _("WxComboBoxSchema"));
-	WxBoxSizer4->Add(WxComboBoxSchema,0,wxALIGN_CENTER_VERTICAL | wxALL,3);
+	wxArrayString arrayStringFor_WxComboBoxScheme;
+	WxComboBoxScheme = new wxComboBox(this, ID_WXCOMBOBOXSCHEME, _(""), wxPoint(58,4), wxSize(145,21), arrayStringFor_WxComboBoxScheme, 0, wxDefaultValidator, _("WxComboBoxScheme"));
+	WxBoxSizer4->Add(WxComboBoxScheme,0,wxALIGN_CENTER_VERTICAL | wxALL,3);
 
-	WxStaticText2 = new wxStaticText(this, ID_WXSTATICTEXT2, _("You cannot modify the schemas with * sign."), wxPoint(211,6), wxSize(209,17), 0, _("WxStaticText2"));
+	WxStaticText2 = new wxStaticText(this, ID_WXSTATICTEXT2, _("You cannot modify the scheme with * sign."), wxPoint(211,6), wxSize(204,17), 0, _("WxStaticText2"));
 	WxBoxSizer4->Add(WxStaticText2,0,wxALIGN_CENTER_VERTICAL | wxALL,3);
 
 	wxBoxSizer* WxBoxSizer6 = new wxBoxSizer(wxHORIZONTAL);
@@ -332,13 +332,13 @@ void MadHighlightingDialog::CreateGUIControls(void)
     ResizeItem(WxBoxSizer12, WxStaticText4, 2, 2);
     ResizeItem(WxBoxSizer12, WxStaticTextBCName, 2, 2);
 
-    {   // build schema list
-        size_t cnt=MadSyntax::GetSchemaCount();
+    {   // build scheme list
+        size_t cnt=MadSyntax::GetSchemeCount();
         for(size_t i=0;i<cnt;i++)
         {
-            wxString name=MadSyntax::GetSchemaName(i);
-            WxComboBoxSchema->Append(name);
-            if(i==0) WxComboBoxSchema->SetValue(name);
+            wxString name=MadSyntax::GetSchemeName(i);
+            WxComboBoxScheme->Append(name);
+            if(i==0) WxComboBoxScheme->SetValue(name);
         }
     }
 
@@ -939,7 +939,7 @@ void MadHighlightingDialog::FreeSyntax(bool restore)
  */
 void MadHighlightingDialog::WxButtonLoadClick(wxCommandEvent& event)
 {
-    if(MadSyntax::LoadSchema(WxComboBoxSchema->GetValue(), g_Syntax))
+    if(MadSyntax::LoadScheme(WxComboBoxScheme->GetValue(), g_Syntax))
     {
         WxListCtrlKeyword->SetBackgroundColour(g_KeywordInfoTable[0].attr->bgcolor);
         RepaintKeyword();
@@ -951,7 +951,7 @@ void MadHighlightingDialog::WxButtonLoadClick(wxCommandEvent& event)
     }
     else
     {
-        wxMessageBox(_("Cannot load this schema."), wxT("MadEdit"), wxICON_WARNING|wxOK);
+        wxMessageBox(_("Cannot load this scheme."), wxT("MadEdit"), wxICON_WARNING|wxOK);
     }
 }
 
@@ -960,21 +960,21 @@ void MadHighlightingDialog::WxButtonLoadClick(wxCommandEvent& event)
  */
 void MadHighlightingDialog::WxButtonSaveClick(wxCommandEvent& event)
 {
-    wxString schname = WxComboBoxSchema->GetValue();
-    if(MadSyntax::SaveSchema(schname, g_Syntax))
+    wxString schname = WxComboBoxScheme->GetValue();
+    if(MadSyntax::SaveScheme(schname, g_Syntax))
     {
-        WxComboBoxSchema->Clear();
-        size_t cnt=MadSyntax::GetSchemaCount();
+        WxComboBoxScheme->Clear();
+        size_t cnt=MadSyntax::GetSchemeCount();
         for(size_t i=0;i<cnt;i++)
         {
-            wxString name=MadSyntax::GetSchemaName(i);
-            WxComboBoxSchema->Append(name);
+            wxString name=MadSyntax::GetSchemeName(i);
+            WxComboBoxScheme->Append(name);
         }
-        WxComboBoxSchema->SetValue(schname);
+        WxComboBoxScheme->SetValue(schname);
     }
     else
     {
-        wxMessageBox(_("Cannot save to the schema."), wxT("MadEdit"), wxICON_WARNING|wxOK);
+        wxMessageBox(_("Cannot save to the scheme."), wxT("MadEdit"), wxICON_WARNING|wxOK);
     }
 }
 
@@ -983,19 +983,19 @@ void MadHighlightingDialog::WxButtonSaveClick(wxCommandEvent& event)
  */
 void MadHighlightingDialog::WxButtonDeleteClick(wxCommandEvent& event)
 {
-    if(MadSyntax::DeleteSchema(WxComboBoxSchema->GetValue()))
+    if(MadSyntax::DeleteScheme(WxComboBoxScheme->GetValue()))
     {
-        WxComboBoxSchema->Clear();
-        size_t cnt=MadSyntax::GetSchemaCount();
+        WxComboBoxScheme->Clear();
+        size_t cnt=MadSyntax::GetSchemeCount();
         for(size_t i=0;i<cnt;i++)
         {
-            wxString name=MadSyntax::GetSchemaName(i);
-            WxComboBoxSchema->Append(name);
-            if(i==0) WxComboBoxSchema->SetValue(name);
+            wxString name=MadSyntax::GetSchemeName(i);
+            WxComboBoxScheme->Append(name);
+            if(i==0) WxComboBoxScheme->SetValue(name);
         }
     }
     else
     {
-        wxMessageBox(_("Cannot delete this schema."), wxT("MadEdit"), wxICON_WARNING|wxOK);
+        wxMessageBox(_("Cannot delete this scheme."), wxT("MadEdit"), wxICON_WARNING|wxOK);
     }
 }

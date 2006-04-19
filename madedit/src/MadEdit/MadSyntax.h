@@ -115,12 +115,12 @@ public:
     static MadSyntax* GetSyntaxByFileName(const wxString &filename);
 
     // .sch files management functions
-    static size_t GetSchemaCount();
-    static wxString GetSchemaName(size_t index);
-    static wxString GetSchemaFileByName(const wxString &schname, MadSyntax *default_syn, bool &star);
-    static bool LoadSchema(const wxString &schname, MadSyntax *syn); // apply schema to syn
-    static bool SaveSchema(const wxString &schname, MadSyntax *syn); // save schma from syn
-    static bool DeleteSchema(const wxString &schname);
+    static size_t GetSchemeCount();
+    static wxString GetSchemeName(size_t index);
+    static wxString GetSchemeFileByName(const wxString &schname, MadSyntax *default_syn, bool &star);
+    static bool LoadScheme(const wxString &schname, MadSyntax *syn); // apply scheme to syn
+    static bool SaveScheme(const wxString &schname, MadSyntax *syn); // save schma from syn
+    static bool DeleteScheme(const wxString &schname);
 
 private:
     friend class MadEdit;

@@ -56,7 +56,7 @@ class MadHighlightingDialog : public wxDialog
 		DECLARE_EVENT_TABLE();
 		
 	public:
-		MadHighlightingDialog(wxWindow *parent, wxWindowID id = 1, const wxString &title = wxT("Syntax Highlighting Schema"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxDefaultSize, long style = MadHighlightingDialog_STYLE);
+		MadHighlightingDialog(wxWindow *parent, wxWindowID id = 1, const wxString &title = wxT("Syntax Highlighting Settings"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxDefaultSize, long style = MadHighlightingDialog_STYLE);
 		virtual ~MadHighlightingDialog();
 	
 	public:
@@ -94,7 +94,7 @@ class MadHighlightingDialog : public wxDialog
 		wxButton *WxButtonLoad;
 		wxBoxSizer *WxBoxSizer6;
 		wxStaticText *WxStaticText2;
-		wxComboBox *WxComboBoxSchema;
+		wxComboBox *WxComboBoxScheme;
 		wxStaticText *WxStaticText1;
 		wxBoxSizer *WxBoxSizer4;
 		wxBoxSizer *WxBoxSizer3;
@@ -132,7 +132,7 @@ class MadHighlightingDialog : public wxDialog
 			ID_WXBUTTONSAVE = 1014,
 			ID_WXBUTTONLOAD = 1015,
 			ID_WXSTATICTEXT2 = 1017,
-			ID_WXCOMBOBOXSCHEMA = 1010,
+			ID_WXCOMBOBOXSCHEME = 1010,
 			ID_WXSTATICTEXT1 = 1009,
 			ID_WXLISTBOXSYNTAX = 1021,
 			////GUI Enum Control ID End

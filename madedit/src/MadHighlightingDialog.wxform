@@ -87,9 +87,9 @@ object frmNewForm: TfrmNewForm
       Wx_StrechFactor = 3
       Wx_VerticalAlignment = wxSZALIGN_GROW_VERTICAL
       object WxBoxSizer3: TWxBoxSizer
-        Left = 32
+        Left = 34
         Top = 0
-        Width = 424
+        Width = 419
         Height = 58
         TabOrder = 0
         Orientation = wxVertical
@@ -103,7 +103,7 @@ object frmNewForm: TfrmNewForm
         object WxBoxSizer4: TWxBoxSizer
           Left = 0
           Top = 0
-          Width = 424
+          Width = 419
           Height = 29
           TabOrder = 0
           SpaceValue = 4
@@ -118,7 +118,7 @@ object frmNewForm: TfrmNewForm
             Top = 6
             Width = 46
             Height = 17
-            Caption = 'Schema:'
+            Caption = 'Scheme:'
             TabOrder = 0
             Wx_BGColor = clBlack
             Wx_Border = 3
@@ -132,7 +132,7 @@ object frmNewForm: TfrmNewForm
             Wx_LabelStyle = []
             Wx_StrechFactor = 0
           end
-          object WxComboBoxSchema: TWxComboBox
+          object WxComboBoxScheme: TWxComboBox
             Left = 58
             Top = 4
             Width = 145
@@ -147,16 +147,16 @@ object frmNewForm: TfrmNewForm
             Wx_FGColor = clBlack
             Wx_GeneralStyle = []
             Wx_Hidden = False
-            Wx_IDName = 'ID_WXCOMBOBOXSCHEMA'
+            Wx_IDName = 'ID_WXCOMBOBOXSCHEME'
             Wx_IDValue = 1010
             Wx_StrechFactor = 0
           end
           object WxStaticText2: TWxStaticText
             Left = 211
             Top = 6
-            Width = 209
+            Width = 204
             Height = 17
-            Caption = 'You cannot modify the schemas with * sign.'
+            Caption = 'You cannot modify the scheme with * sign.'
             TabOrder = 2
             Wx_BGColor = clBlack
             Wx_Border = 3
@@ -172,7 +172,7 @@ object frmNewForm: TfrmNewForm
           end
         end
         object WxBoxSizer6: TWxBoxSizer
-          Left = 93
+          Left = 91
           Top = 29
           Width = 237
           Height = 29
