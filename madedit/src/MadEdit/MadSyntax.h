@@ -119,7 +119,7 @@ public:
     static wxString GetSchemeName(size_t index);
     static wxString GetSchemeFileByName(const wxString &schname, MadSyntax *default_syn, bool &star);
     static bool LoadScheme(const wxString &schname, MadSyntax *syn); // apply scheme to syn
-    static bool SaveScheme(const wxString &schname, MadSyntax *syn); // save schma from syn
+    static bool SaveScheme(const wxString &schname, MadSyntax *syn); // save scheme from syn
     static bool DeleteScheme(const wxString &schname);
 
 private:
