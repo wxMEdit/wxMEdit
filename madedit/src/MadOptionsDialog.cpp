@@ -66,7 +66,7 @@ public:
     void OnSetFocus(wxFocusEvent &evt)
     {   // for getting Ctrl-Tab
         g_OptionsDialog->SetWindowStyleFlag(g_OptionsDialog->GetWindowStyleFlag() & ~wxTAB_TRAVERSAL);
-        g_OptionsDialog->WxNotebook1->SetWindowStyleFlag(g_OptionsDialog->WxNotebook1->GetWindowStyleFlag() & ~wxTAB_TRAVERSAL);
+        g_OptionsDialog->WxNotebook1->wxPanel::SetWindowStyleFlag(g_OptionsDialog->WxNotebook1->GetWindowStyleFlag() & ~wxTAB_TRAVERSAL);
         g_OptionsDialog->WxNoteBookPage4->SetWindowStyleFlag(g_OptionsDialog->WxNoteBookPage4->GetWindowStyleFlag() & ~wxTAB_TRAVERSAL);
         g_OptionsDialog->WxButtonCancel->SetId(MadOptionsDialog::ID_WXBUTTONCANCEL);
         evt.Skip();
@@ -74,7 +74,7 @@ public:
     void OnKillFocus(wxFocusEvent &evt)
     {   // restore wxTAB_TRAVERSAL
         g_OptionsDialog->SetWindowStyleFlag(g_OptionsDialog->GetWindowStyleFlag() | wxTAB_TRAVERSAL);
-        g_OptionsDialog->WxNotebook1->SetWindowStyleFlag(g_OptionsDialog->WxNotebook1->GetWindowStyleFlag() | wxTAB_TRAVERSAL);
+        g_OptionsDialog->WxNotebook1->wxPanel::SetWindowStyleFlag(g_OptionsDialog->WxNotebook1->GetWindowStyleFlag() | wxTAB_TRAVERSAL);
         g_OptionsDialog->WxNoteBookPage4->SetWindowStyleFlag(g_OptionsDialog->WxNoteBookPage4->GetWindowStyleFlag() | wxTAB_TRAVERSAL);
         g_OptionsDialog->WxButtonCancel->SetId(wxID_CANCEL);
         evt.Skip();
@@ -528,9 +528,6 @@ void MadOptionsDialog::CreateGUIControls(void)
 	
     ////GUI Items Creation End
 
-    WxNotebook1->SetBackgroundColour(WxButtonOK->GetBackgroundColour());
-    WxNotebook1->SetWindowStyleFlag(WxNotebook1->GetWindowStyleFlag()|wxFNB_NO_X_BUTTON);
-
     wxString systemenc(_("System Default"));
     WxComboBoxEncoding->Append(systemenc);
     size_t cnt=MadEncoding::GetEncodingsCount();
@@ -679,6 +676,9 @@ void MadOptionsDialog::CreateGUIControls(void)
         cd++;
     }
     while(cd->command > 0);
+
+    WxNotebook1->SetBackgroundColour(WxButtonOK->GetBackgroundColour());
+    WxNotebook1->wxPanel::SetWindowStyleFlag(WxNotebook1->GetWindowStyleFlag()|wxFNB_NO_X_BUTTON);
 
     WxButtonCancel->SetId(wxID_CANCEL);
 }
