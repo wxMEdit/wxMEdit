@@ -61,7 +61,7 @@ public:
 };
 
 class KeyTextCtrl;
-
+class wxFlatNotebook;
 
 class MadOptionsDialog : public wxDialog
 {
@@ -176,7 +176,7 @@ public:
 		wxBoxSizer *WxBoxSizer4;
 		wxBoxSizer *WxBoxSizer3;
 		wxPanel *WxNoteBookPage1;
-		wxNotebook *WxNotebook1;
+		wxFlatNotebook *WxNotebook1;
 		wxBoxSizer *WxBoxSizer1;
   ////GUI Control Declaration End
 

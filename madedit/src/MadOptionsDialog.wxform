@@ -57,7 +57,7 @@ object frmNewForm: TfrmNewForm
       ActivePage = WxNoteBookPage1
       TabIndex = 0
       TabOrder = 0
-      Wx_Class = 'wxNotebook'
+      Wx_Class = 'wxFlatNotebook'
       Wx_ControlOrientation = wxControlVertical
       Wx_EventList.Strings = (
         'EVT_NOTEBOOK_PAGE_CHANGED:OnPageChanged'

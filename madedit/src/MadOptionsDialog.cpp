@@ -13,6 +13,7 @@
 #include "MadEdit/MadEdit.h"
 #include "MadEditFrame.h"
 #include "MadUtils.h"
+#include <wx/wxFlatNotebook/wxFlatNotebook.h>
 
 //Do not add custom headers.
 //wx-dvcpp designer will remove them
@@ -189,7 +190,7 @@ void MadOptionsDialog::CreateGUIControls(void)
 	this->SetSizer(WxBoxSizer1);
 	this->SetAutoLayout(TRUE);
 
-	WxNotebook1 = new wxNotebook(this, ID_WXNOTEBOOK1, wxPoint(0,0),wxSize(681,342));
+	WxNotebook1 = new wxFlatNotebook(this, ID_WXNOTEBOOK1, wxPoint(0,0),wxSize(681,342));
 	WxBoxSizer1->Add(WxNotebook1,1,wxGROW | wxALL,0);
 
 	WxNoteBookPage1 = new wxPanel(WxNotebook1, ID_WXNOTEBOOKPAGE1, wxPoint(4,24), wxSize(673,314));
@@ -526,6 +527,9 @@ void MadOptionsDialog::CreateGUIControls(void)
 	this->SetIcon(wxNullIcon);
 	
     ////GUI Items Creation End
+
+    WxNotebook1->SetBackgroundColour(WxButtonOK->GetBackgroundColour());
+    WxNotebook1->SetWindowStyleFlag(WxNotebook1->GetWindowStyleFlag()|wxFNB_NO_X_BUTTON);
 
     wxString systemenc(_("System Default"));
     WxComboBoxEncoding->Append(systemenc);
