@@ -29,6 +29,10 @@
 #include <wx/fileconf.h>
 #include <wx/hashset.h>
 #include <wx/imaglist.h>
+#include <wx/treectrl.h>
+
+#include <manager.h> // wxAUI
+
 
 ////Dialog Style Start
 #undef MadEditFrame_STYLE
@@ -83,7 +87,9 @@ public:
 			ID_WXSTATUSBAR1 = 1003,
 ////GUI Enum Control ID End
 
-    ID_NOTEBOOK = 1080, // for wxFlatNotebook m_Notebook
+    ID_NOTEBOOK, // for wxFlatNotebook m_Notebook
+    ID_OUTPUTNOTEBOOK,
+    ID_FINDINFILESRESULTS,
 
     ID_DUMMY_VALUE_ //Dont Delete this DummyValue
    }; //End of Enum
@@ -100,6 +106,10 @@ public:
     wxFileHistory *m_RecentFiles;
     wxFileHistory *m_RecentEncodings;
     wxFileHistory *m_RecentFonts;
+
+    wxFrameManager m_FrameManager; // wxAUI
+    wxFlatNotebook *m_OutputNotebook; //
+    wxTreeCtrl *m_FindInFilesResults;
 
     void OnUpdateUI_MenuFile_CheckCount(wxUpdateUIEvent& event);
     void OnUpdateUI_MenuFileReload(wxUpdateUIEvent& event);

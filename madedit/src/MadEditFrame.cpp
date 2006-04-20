@@ -22,6 +22,7 @@
 #include "MadUtils.h"
 #include "MadCommand.h"
 #include "plugin.h"
+#include <wx/wxFlatNotebook/wxFlatNotebook.h>
 
 #include <deque>
 #include <wx/app.h>
@@ -35,8 +36,6 @@
 #include <wx/dnd.h>
 #include <wx/printdlg.h>
 #include <wx/config.h>
-
-#include <wx/wxFlatNotebook/wxFlatNotebook.h>
 
 
 //Do not add custom headers.
@@ -128,13 +127,11 @@
 #define Mad_16x15_xpm_idx (hexmode_xpm_idx+1)
 
 
-wxString g_MadEdit_Version(wxT("MadEdit v0.2.4 Beta"));
+wxString g_MadEdit_Version(wxT("MadEdit v0.2.5 Beta"));
 wxString g_MadEdit_URL(wxT("http://madedit.sourceforge.net"));
 
 
 extern wxString g_MadEditAppDir, g_MadEditHomeDir;
-bool g_FrameInitiated=false;
-
 bool g_UpdateWindowUI=false;
 
 MadEditFrame *g_MainFrame=NULL;
@@ -498,12 +495,12 @@ void OnEditStatusChanged(MadEdit *madedit)
 
             if(g_SearchDialog!=NULL)
             {
-                g_SearchDialog->WxCheckBoxFindHex->Show(madedit->GetEditMode()==emHexMode);
+                //g_SearchDialog->WxCheckBoxFindHex->Show(madedit->GetEditMode()==emHexMode);
                 g_SearchDialog->UpdateCheckBoxByCBHex(g_SearchDialog->WxCheckBoxFindHex->GetValue());
             }
             if(g_ReplaceDialog!=NULL)
             {
-                g_ReplaceDialog->WxCheckBoxFindHex->Show(madedit->GetEditMode()==emHexMode);
+                //g_ReplaceDialog->WxCheckBoxFindHex->Show(madedit->GetEditMode()==emHexMode);
                 g_ReplaceDialog->UpdateCheckBoxByCBHex(g_ReplaceDialog->WxCheckBoxFindHex->GetValue());
             }
         }
@@ -1021,7 +1018,7 @@ CommandData CommandTable[]=
     { ecWrapByColumn, 1, menuWrapByColumn,      wxT("menuWrapByColumn"),      _("Wrap By Column"),       wxT("Ctrl-E"),       wxITEM_CHECK,     wrapbycol_xpm_idx,  0,                         _("Wrap the lines by the specified Max Columns")},
     { 0,              1, 0,                     0,                            0,                         0,                   wxITEM_SEPARATOR, -1,                 0,                         0},
     { 0,              1, menuDisplayLineNumber, wxT("menuDisplayLineNumber"), _("&Display Line Number"), wxT("Ctrl-Alt-D"),   wxITEM_CHECK,     -1,                 0,                         _("Display the Line Numbers")},
-    { 0,              1, menuShowEndOfLine,     wxT("menuShowEndOfLine"),     _("Show End Of Line"),     wxT(""),             wxITEM_CHECK,     -1,                 0,                         _("Show the sign of EndOfLine")},
+    { 0,              1, menuShowEndOfLine,     wxT("menuShowEndOfLine"),     _("Show End Of Line"),     wxT("Ctrl-Alt-L"),   wxITEM_CHECK,     -1,                 0,                         _("Show the sign of EndOfLine")},
     { 0,              1, menuShowTabChar,       wxT("menuShowTabChar"),       _("Show Tab Char"),        wxT("Ctrl-Alt-T"),   wxITEM_CHECK,     -1,                 0,                         _("Show the sign of Tab char")},
     { 0,              1, menuShowSpaceChar,     wxT("menuShowSpaceChar"),     _("Show Space Char"),      wxT("Ctrl-Alt-S"),   wxITEM_CHECK,     -1,                 0,                         _("Show the sign of Space char")},
     { 0,              1, menuMarkActiveLine,    wxT("menuMarkActiveLine"),    _("Mark Active Line"),     wxT(""),             wxITEM_CHECK,     -1,                 0,                         _("Mark the current line")},
@@ -1213,7 +1210,6 @@ MadEditFrame::MadEditFrame( wxWindow *parent, wxWindowID id, const wxString &tit
 
     m_PageClosing=false;
     g_MainFrame=this;
-    g_FrameInitiated=true;
 }
 
 MadEditFrame::~MadEditFrame()
@@ -1499,23 +1495,6 @@ void MadEditFrame::CreateGUIControls(void)
         }
     }
 
-    /*
-    {
-        for(int i=1;i<=99;i++)
-        {
-            g_Menu_View_FontSize->Append(menuFontSize1 +i-1, wxString::Format(wxT(" %d "), i));
-        }
-    }
-    */
-    /*
-    {
-        for(int i=100;i<=250;i+=5)
-        {
-            g_Menu_View_LineSpacing->Append(menuLineSpacing100+((i-100)/5), wxString::Format(wxT("%d%%"), i));
-        }
-    }
-    */
-
 
     /***/
     m_RecentFiles=new wxFileHistory();
@@ -1544,7 +1523,7 @@ void MadEditFrame::CreateGUIControls(void)
 
 
 
-    /*** /
+    /*
     // load plugins
     wxPluginLibrary *lib = wxPluginManager::LoadLibrary(wxT("./plugin"));
     if(lib)
@@ -1572,7 +1551,7 @@ void MadEditFrame::CreateGUIControls(void)
             }
         }
     }
-    /***/
+    */
 
 
     //WxToolBar1
@@ -1614,6 +1593,19 @@ void MadEditFrame::CreateGUIControls(void)
     //WxToolBar1->EnableTool(wxID_NEW, false);
     //WxToolBar1->ToggleTool(wxID_NEW, true);
 
+
+    // output window
+    m_OutputNotebook = new wxFlatNotebook(this, ID_OUTPUTNOTEBOOK, wxDefaultPosition, wxDefaultSize, wxFNB_DEFAULT_STYLE|wxFNB_NO_X_BUTTON|wxFNB_BOTTOM);
+    m_FindInFilesResults = new wxTreeCtrl(m_OutputNotebook, ID_FINDINFILESRESULTS, wxDefaultPosition, wxDefaultSize);//, wxTR_HAS_BUTTONS | wxTR_DEFAULT_STYLE);
+    m_OutputNotebook->AddPage(m_FindInFilesResults, _T("Find/Replace in Files Results"));
+
+    // wxAUI
+    m_FrameManager.SetFrame(this);
+    m_FrameManager.SetFlags(m_FrameManager.GetFlags() | wxAUI_MGR_ALLOW_ACTIVE_PANE);
+    m_FrameManager.AddPane(m_Notebook, wxCENTER);
+    m_FrameManager.AddPane(m_OutputNotebook, wxBOTTOM, _T("Output Window"));
+    m_FrameManager.GetPane(m_OutputNotebook).Show(false);
+    m_FrameManager.Update();
 }
 
 #ifndef __WXMSW__
@@ -1710,6 +1702,8 @@ void MadEditFrame::MadEditFrameClose(wxCloseEvent& event)
 
     extern void DeleteConfig();
     DeleteConfig();
+
+    m_FrameManager.UnInit();
 
 #ifndef __WXMSW__
     // it will crash randomly under linux.
@@ -1907,9 +1901,7 @@ void MadEditFrame::OnNotebookPageClosed(wxFlatNotebookEvent& event)
 
 void MadEditFrame::OnSize(wxSizeEvent &evt)
 {
-    //if(!g_FrameInitiated) return;
     evt.Skip();
-
 
     int width0= GetClientSize().GetWidth() - g_StatusWidth_1_6;
     if(width0<0) width0=0;
@@ -2979,7 +2971,7 @@ void MadEditFrame::OnSearchFind(wxCommandEvent& event)
     wxString fname;
     int fsize;
 
-    g_SearchDialog->WxCheckBoxFindHex->Show(g_ActiveMadEdit->GetEditMode()==emHexMode);
+    //g_SearchDialog->WxCheckBoxFindHex->Show(g_ActiveMadEdit->GetEditMode()==emHexMode);
     g_SearchDialog->UpdateCheckBoxByCBHex(g_SearchDialog->WxCheckBoxFindHex->GetValue());
 
     g_ActiveMadEdit->GetFont(fname, fsize);
@@ -2989,7 +2981,7 @@ void MadEditFrame::OnSearchFind(wxCommandEvent& event)
     {
         if(g_ActiveMadEdit->GetSelectionSize()<=10240)
         {
-            if(g_SearchDialog->WxCheckBoxFindHex->IsShown() && g_SearchDialog->WxCheckBoxFindHex->GetValue())
+            if(/*g_SearchDialog->WxCheckBoxFindHex->IsShown() &&*/ g_SearchDialog->WxCheckBoxFindHex->GetValue())
             {
                 wxString ws;
                 g_ActiveMadEdit->GetSelHexString(ws, true);
@@ -3006,7 +2998,7 @@ void MadEditFrame::OnSearchFind(wxCommandEvent& event)
     else
     {
         if(g_SearchDialog->WxCheckBoxRegex->GetValue()==false &&
-            !(g_SearchDialog->WxCheckBoxFindHex->IsShown() && g_SearchDialog->WxCheckBoxFindHex->GetValue()) )
+            !(/*g_SearchDialog->WxCheckBoxFindHex->IsShown() &&*/ g_SearchDialog->WxCheckBoxFindHex->GetValue()) )
         {
             wxString ws;
             g_ActiveMadEdit->GetWordFromCaretPos(ws);
@@ -3034,14 +3026,14 @@ void MadEditFrame::OnSearchFindNext(wxCommandEvent& event)
         g_ReplaceDialog=new MadReplaceDialog(this, -1);
     }
 
-    g_SearchDialog->WxCheckBoxFindHex->Show(g_ActiveMadEdit->GetEditMode()==emHexMode);
+    //g_SearchDialog->WxCheckBoxFindHex->Show(g_ActiveMadEdit->GetEditMode()==emHexMode);
     g_SearchDialog->UpdateCheckBoxByCBHex(g_SearchDialog->WxCheckBoxFindHex->GetValue());
 
     if(g_ActiveMadEdit->IsSelected())
     {
         if(g_ActiveMadEdit->GetSelectionSize()<=10240)
         {
-            if(g_SearchDialog->WxCheckBoxFindHex->IsShown() && g_SearchDialog->WxCheckBoxFindHex->GetValue())
+            if(/*g_SearchDialog->WxCheckBoxFindHex->IsShown() &&*/ g_SearchDialog->WxCheckBoxFindHex->GetValue())
             {
                 wxString ws;
                 g_ActiveMadEdit->GetSelHexString(ws, true);
@@ -3073,14 +3065,14 @@ void MadEditFrame::OnSearchFindPrevious(wxCommandEvent& event)
         g_ReplaceDialog=new MadReplaceDialog(this, -1);
     }
 
-    g_SearchDialog->WxCheckBoxFindHex->Show(g_ActiveMadEdit->GetEditMode()==emHexMode);
+    //g_SearchDialog->WxCheckBoxFindHex->Show(g_ActiveMadEdit->GetEditMode()==emHexMode);
     g_SearchDialog->UpdateCheckBoxByCBHex(g_SearchDialog->WxCheckBoxFindHex->GetValue());
 
     if(g_ActiveMadEdit->IsSelected())
     {
         if(g_ActiveMadEdit->GetSelectionSize()<=10240)
         {
-            if(g_SearchDialog->WxCheckBoxFindHex->IsShown() && g_SearchDialog->WxCheckBoxFindHex->GetValue())
+            if(/*g_SearchDialog->WxCheckBoxFindHex->IsShown() &&*/ g_SearchDialog->WxCheckBoxFindHex->GetValue())
             {
                 wxString ws;
                 g_ActiveMadEdit->GetSelHexString(ws, true);
@@ -3121,7 +3113,7 @@ void MadEditFrame::OnSearchReplace(wxCommandEvent& event)
     wxString fname;
     int fsize;
 
-    g_ReplaceDialog->WxCheckBoxFindHex->Show(g_ActiveMadEdit->GetEditMode()==emHexMode);
+    //g_ReplaceDialog->WxCheckBoxFindHex->Show(g_ActiveMadEdit->GetEditMode()==emHexMode);
     g_ReplaceDialog->UpdateCheckBoxByCBHex(g_ReplaceDialog->WxCheckBoxFindHex->GetValue());
 
     g_ActiveMadEdit->GetFont(fname, fsize);
@@ -3132,7 +3124,7 @@ void MadEditFrame::OnSearchReplace(wxCommandEvent& event)
     {
         if(g_ActiveMadEdit->GetSelectionSize()<=10240)
         {
-            if(g_ReplaceDialog->WxCheckBoxFindHex->IsShown() && g_ReplaceDialog->WxCheckBoxFindHex->GetValue())
+            if(/*g_ReplaceDialog->WxCheckBoxFindHex->IsShown() &&*/ g_ReplaceDialog->WxCheckBoxFindHex->GetValue())
             {
                 wxString ws;
                 g_ActiveMadEdit->GetSelHexString(ws, true);
@@ -3149,7 +3141,7 @@ void MadEditFrame::OnSearchReplace(wxCommandEvent& event)
     else
     {
         if(g_ReplaceDialog->WxCheckBoxRegex->GetValue()==false &&
-            !(g_ReplaceDialog->WxCheckBoxFindHex->IsShown() && g_ReplaceDialog->WxCheckBoxFindHex->GetValue()) )
+            !(/*g_ReplaceDialog->WxCheckBoxFindHex->IsShown() &&*/ g_ReplaceDialog->WxCheckBoxFindHex->GetValue()) )
         {
             wxString ws;
             g_ActiveMadEdit->GetWordFromCaretPos(ws);
@@ -3938,5 +3930,8 @@ void MadEditFrame::OnHelpAbout(wxCommandEvent& event)
         wxLaunchDefaultBrowser(g_MadEdit_URL);
 #endif
     }
+    
+    m_FrameManager.GetPane(m_OutputNotebook).Show();
+    m_FrameManager.Update();
 }
 
