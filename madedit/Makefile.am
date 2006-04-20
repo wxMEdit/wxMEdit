@@ -53,7 +53,9 @@ madedit_SOURCES =	src/MadAboutDialog.cpp \
 	src/MadEdit/ucs4_t.h \
 	wxFlatNotebook/src/wxFlatNotebook/wxFlatNotebook.cpp \
 	wxFlatNotebook/include/wx/wxFlatNotebook/wxFlatNotebook.h \
-	wxFlatNotebook/include/wx/wxFlatNotebook/wxFNBDropTarget.h
+	wxFlatNotebook/include/wx/wxFlatNotebook/wxFNBDropTarget.h \
+	wxAUI/include/manager.cpp \
+	wxAUI/src/manager.cpp
 
 pixmapsdir = $(datadir)/pixmaps
 pixmaps_DATA = madedit.xpm
@@ -91,6 +93,9 @@ noinst_HEADERS =	description-pak \
 	src/plugin_example/vc_cl.bat \
 	src/plugin_example/wxwin16x16.xpm \
 	wxFlatNotebook/README \
+	wxAUI/COPYING.LIB \
+	wxAUI/LICENCE.txt \
+	wxAUI/README.txt \
 	devcpp/MadEdit.dev \
 	devcpp/MadEdit.layout \
 	devcpp/MadEdit_private.h \

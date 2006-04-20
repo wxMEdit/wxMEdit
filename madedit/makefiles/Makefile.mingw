@@ -16,7 +16,7 @@ OBJ  = ./Release/MadEditFrame.obj ./Release/MadEditApp.obj \
        ./Release/TradSimp.obj ./Release/MadConvEncDialog.obj \
        ./Release/wxFlatNotebook.obj ./Release/MadEditAdvanced.obj \
        ./Release/MadWordCountDialog.obj ./Release/MadHighlightingDialog.obj \
-       ./Release/MadFindInFilesDialog.obj $(RES)
+       ./Release/MadFindInFilesDialog.obj ./Release/manager.obj $(RES)
 
 LINKOBJ  = ./Release/MadEditFrame.obj ./Release/MadEditApp.obj \
         ./Release/MadEdit.obj ./Release/MadEncoding.obj \
@@ -29,7 +29,7 @@ LINKOBJ  = ./Release/MadEditFrame.obj ./Release/MadEditApp.obj \
         ./Release/TradSimp.obj ./Release/MadConvEncDialog.obj \
         ./Release/wxFlatNotebook.obj ./Release/MadEditAdvanced.obj \
         ./Release/MadWordCountDialog.obj ./Release/MadHighlightingDialog.obj \
-        ./Release/MadFindInFilesDialog.obj $(RES)
+        ./Release/MadFindInFilesDialog.obj ./Release/manager.obj $(RES)
 
 WX_DIR = N:/wxWidgets
 BOOST_DIR = N:/boost
@@ -127,6 +127,9 @@ $(BIN): $(OBJ)
 
 ./Release/MadFindInFilesDialog.obj: ../src/MadFindInFilesDialog.cpp
 	$(CPP) -c ../src/MadFindInFilesDialog.cpp -o ./Release/MadFindInFilesDialog.obj $(CXXFLAGS)
+
+./Release/manager.obj: ../wxAUI/src/manager.cpp
+	$(CPP) -c ../wxAUI/src/manager.cpp -o ./Release/manager.obj $(CXXFLAGS)
 
 ./Release/MadEdit_private.res: ../devcpp/MadEdit_private.rc 
 	$(WINDRES) -i ../devcpp/MadEdit_private.rc --input-format=rc -o ./Release/MadEdit_private.res -O coff  --include-dir $(WX_DIR)/include

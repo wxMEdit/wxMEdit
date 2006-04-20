@@ -20,7 +20,9 @@ OBJ  = 	../src/MadEditApp.o ../src/MadEditFrame.o \
 	../src/MadEdit/MadSyntax.o ../src/MadEdit/MadLines.o \
 	../src/MadEdit/MadEdit.o ../src/MadEdit/MadEdit_gtk.o \
 	../src/MadEdit/MadEditSearch.o ../src/MadEdit/clipbrd_gtk.o \
-	../src/MadEdit/caret_new.o ../src/MadEdit/MadEditAdvanced.o
+	../src/MadEdit/caret_new.o ../src/MadEdit/MadEditAdvanced.o \
+	../wxFlatNotebook/src/wxFlatNotebook/wxFlatNotebook.o \
+	../wxAUI/src/manager.o
 
 LINKOBJ  = $(OBJ)
 
