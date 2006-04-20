@@ -1,7 +1,7 @@
 SUBDIRS = syntax po
 
 bin_PROGRAMS = madedit
-madedit_CXXFLAGS = -I$(top_srcdir)/wxFlatNotebook/include -DDATA_DIR=\"${datadir}\" 
+madedit_CXXFLAGS = -I$(top_srcdir)/wxFlatNotebook/include -I$(top_srcdir)/wxAUI/include -DDATA_DIR=\"${datadir}\" 
 madedit_SOURCES =	src/MadAboutDialog.cpp \
 	src/MadAboutDialog.h \
 	src/MadCommand.h \
