@@ -318,7 +318,7 @@ void MadFindInFilesDialog::MadFindInFilesDialogClose(wxCloseEvent& event)
 
 void MadFindInFilesDialog::UpdateCheckBoxByCBHex(bool check)
 {
-    if(WxCheckBoxFindHex->IsShown() && check)
+    if(/*WxCheckBoxFindHex->IsShown() &&*/ check)
     {
         WxCheckBoxCaseSensitive->Disable();
         WxCheckBoxWholeWord->Disable();

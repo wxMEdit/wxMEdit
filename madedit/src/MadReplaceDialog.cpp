@@ -258,7 +258,7 @@ void MadReplaceDialog::WxButtonFindNextClick(wxCommandEvent& event)
     g_SearchDialog->WxCheckBoxWholeWord->SetValue(WxCheckBoxWholeWord->GetValue());
     g_SearchDialog->WxCheckBoxRegex->SetValue(WxCheckBoxRegex->GetValue());
     g_SearchDialog->WxCheckBoxFindHex->SetValue(WxCheckBoxFindHex->GetValue());
-    g_SearchDialog->WxCheckBoxFindHex->Show(WxCheckBoxFindHex->IsShown());
+    //g_SearchDialog->WxCheckBoxFindHex->Show(WxCheckBoxFindHex->IsShown());
     g_SearchDialog->UpdateCheckBoxByCBHex(g_SearchDialog->WxCheckBoxFindHex->GetValue());
     
     wxString text;
@@ -271,7 +271,7 @@ void MadReplaceDialog::WxButtonFindNextClick(wxCommandEvent& event)
 
 void MadReplaceDialog::UpdateCheckBoxByCBHex(bool check)
 {
-    if(WxCheckBoxFindHex->IsShown() && check)
+    if(/*WxCheckBoxFindHex->IsShown() &&*/ check)
     {
         WxCheckBoxCaseSensitive->Disable();
         WxCheckBoxWholeWord->Disable();
@@ -400,7 +400,7 @@ void MadReplaceDialog::WxButtonReplaceClick(wxCommandEvent& event)
         }
         
         bool ok=true;
-        if(WxCheckBoxFindHex->IsShown() && WxCheckBoxFindHex->GetValue())
+        if(/*WxCheckBoxFindHex->IsShown() &&*/ WxCheckBoxFindHex->GetValue())
         {
             ok=g_ActiveMadEdit->ReplaceHex(text, reptext);
         }
@@ -448,7 +448,7 @@ void MadReplaceDialog::WxButtonReplaceAllClick(wxCommandEvent& event)
         }
         
         int count=0;
-        if(WxCheckBoxFindHex->IsShown() && WxCheckBoxFindHex->GetValue())
+        if(/*WxCheckBoxFindHex->IsShown() &&*/ WxCheckBoxFindHex->GetValue())
         {
             count=g_ActiveMadEdit->ReplaceHexAll(text, reptext);
         }
