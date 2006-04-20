@@ -54,7 +54,7 @@ madedit_SOURCES =	src/MadAboutDialog.cpp \
 	wxFlatNotebook/src/wxFlatNotebook/wxFlatNotebook.cpp \
 	wxFlatNotebook/include/wx/wxFlatNotebook/wxFlatNotebook.h \
 	wxFlatNotebook/include/wx/wxFlatNotebook/wxFNBDropTarget.h \
-	wxAUI/include/manager.cpp \
+	wxAUI/include/manager.h \
 	wxAUI/src/manager.cpp
 
 pixmapsdir = $(datadir)/pixmaps
