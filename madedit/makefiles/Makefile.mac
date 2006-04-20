@@ -1,29 +1,25 @@
 # Project: MadEdit
 
-CXX  = g++ -DFIXINVERT=0
+CXX  = g++
 CC   = gcc
 
-#WXCONFIG = $(HOME)/wxWidgets/RELEASE/wx-config
-WXCONFIG= $(HOME)/wxWidgets/osx-build/wx-config
+WXCONFIG = $(HOME)/wxWidgets/RELEASE/wx-config
 #WXCONFIG = wx-config --unicode=yes
 
-CPPDEPS = -MT$@ -MF$@.d -MD
+OBJ  = ./Release/MadEditFrame.o ./Release/MadEditApp.o \
+       ./Release/MadEdit.o ./Release/MadEncoding.o \
+       ./Release/MadLines.o ./Release/MadSyntax.o \
+       ./Release/MadUndo.o ./Release/MadPlugin.o \
+       ./Release/MadUtils.o ./Release/MadEditCommand.o \
+       ./Release/MadSearchDialog.o ./Release/MadOptionsDialog.o \
+       ./Release/MadEditSearch.o ./Release/MadReplaceDialog.o \
+       ./Release/MadAboutDialog.o ./Release/MadPrintout.o \
+       ./Release/TradSimp.o ./Release/MadConvEncDialog.o \
+       ./Release/wxFlatNotebook.o ./Release/MadEditAdvanced.o \
+       ./Release/MadWordCountDialog.o ./Release/MadHighlightingDialog.o \
+       ./Release/MadFindInFilesDialog.o ./Release/manager.o \
+       ./Release/caret_new.o
 
-OBJ  = 	../src/MadEditApp.o ../src/MadEditFrame.o \
-	../src/MadUtils.o ../src/MadPlugin.o \
-	../src/MadOptionsDialog.o ../src/MadAboutDialog.o \
-	../src/MadSearchDialog.o ../src/MadReplaceDialog.o \
-	../src/MadConvEncDialog.o ../src/MadWordCountDialog.o \
-	../src/MadHighlightingDialog.o ../src/MadPrintout.o \
-	../src/MadFindInFilesDialog.o \
-	../src/MadEdit/MadEncoding.o ../src/MadEdit/TradSimp.o \
-	../src/MadEdit/MadEditCommand.o ../src/MadEdit/MadUndo.o \
-	../src/MadEdit/MadSyntax.o ../src/MadEdit/MadLines.o \
-	../src/MadEdit/MadEdit.o \
-	../src/MadEdit/MadEditSearch.o \
-	../src/MadEdit/caret_new.o ../src/MadEdit/MadEditAdvanced.o \
-	../wxFlatNotebook/src/wxFlatNotebook/wxFlatNotebook.o \
-	../wxAUI/src/manager.o
 
 LINKOBJ  = $(OBJ)
 
@@ -40,9 +36,9 @@ LIBS = $(shell $(WXCONFIG) --libs) #$(shell pkg-config --libs gtk+-2.0)
 
 CXXINCS = -I/Developer/Headers/FlatCarbon $(BOOST_INC) $(XPRESSIVE_INC) $(ADDINC) $(shell $(WXCONFIG) --cxxflags) #$(shell pkg-config --cflags gtk+-2.0)
  
-CXXFLAGS = $(CXXINCS) -O3 -fexpensive-optimizations 
+CXXFLAGS = $(CXXINCS) -O2 #-O3 -fexpensive-optimizations 
 
-BIN  = ../MadEdit
+BIN  = ./Release/MadEdit
 
 
 RM = rm -f
@@ -55,20 +51,80 @@ all: all-before $(BIN) all-after
 clean: clean-custom
 	${RM} $(OBJ) $(BIN)
 
-cleandep:
-	${RM} ../src/*.d ../src/MadEdit/*.d
-
-cleaninv:
-	${RM}  ../src/MadEdit/MadEdit.o  ../src/MadEdit/caret_new.o
-
-cleanall: clean cleandep
-
 $(BIN): $(OBJ)
-	$(CXX) $(LINKOBJ) -o $(BIN) $(LIBS)
+	$(CXX) $(LINKOBJ) -o "Release/MadEdit.exe" $(LIBS)
 
-.cpp.o:
-	$(CXX) $(CXXFLAGS) $(CPPDEPS) -c $< -o $@
+./Release/MadEditFrame.o: ../src/MadEditFrame.cpp
+	$(CXX) -c ../src/MadEditFrame.cpp -o ./Release/MadEditFrame.o $(CXXFLAGS)
 
-# Dependencies tracking:
--include ../src/MadEdit/*.d
--include ../src/*.d
+./Release/MadEditApp.o: ../src/MadEditApp.cpp
+	$(CXX) -c ../src/MadEditApp.cpp -o ./Release/MadEditApp.o $(CXXFLAGS)
+
+./Release/MadEdit.o: ../src/MadEdit/MadEdit.cpp
+	$(CXX) -c ../src/MadEdit/MadEdit.cpp -o ./Release/MadEdit.o $(CXXFLAGS)
+
+./Release/MadEncoding.o: ../src/MadEdit/MadEncoding.cpp
+	$(CXX) -c ../src/MadEdit/MadEncoding.cpp -o ./Release/MadEncoding.o $(CXXFLAGS)
+
+./Release/MadLines.o: ../src/MadEdit/MadLines.cpp
+	$(CXX) -c ../src/MadEdit/MadLines.cpp -o ./Release/MadLines.o $(CXXFLAGS)
+
+./Release/MadSyntax.o: ../src/MadEdit/MadSyntax.cpp
+	$(CXX) -c ../src/MadEdit/MadSyntax.cpp -o ./Release/MadSyntax.o $(CXXFLAGS)
+
+./Release/MadUndo.o: ../src/MadEdit/MadUndo.cpp
+	$(CXX) -c ../src/MadEdit/MadUndo.cpp -o ./Release/MadUndo.o $(CXXFLAGS)
+
+./Release/MadPlugin.o: ../src/MadPlugin.cpp
+	$(CXX) -c ../src/MadPlugin.cpp -o ./Release/MadPlugin.o $(CXXFLAGS)
+
+./Release/MadUtils.o: ../src/MadUtils.cpp
+	$(CXX) -c ../src/MadUtils.cpp -o ./Release/MadUtils.o $(CXXFLAGS)
+
+./Release/MadEditCommand.o: ../src/MadEdit/MadEditCommand.cpp
+	$(CXX) -c ../src/MadEdit/MadEditCommand.cpp -o ./Release/MadEditCommand.o $(CXXFLAGS)
+
+./Release/MadSearchDialog.o: ../src/MadSearchDialog.cpp
+	$(CXX) -c ../src/MadSearchDialog.cpp -o ./Release/MadSearchDialog.o $(CXXFLAGS)
+
+./Release/MadOptionsDialog.o: ../src/MadOptionsDialog.cpp
+	$(CXX) -c ../src/MadOptionsDialog.cpp -o ./Release/MadOptionsDialog.o $(CXXFLAGS)
+
+./Release/MadEditSearch.o: ../src/MadEdit/MadEditSearch.cpp
+	$(CXX) -c ../src/MadEdit/MadEditSearch.cpp -o ./Release/MadEditSearch.o $(CXXFLAGS)
+
+./Release/MadReplaceDialog.o: ../src/MadReplaceDialog.cpp
+	$(CXX) -c ../src/MadReplaceDialog.cpp -o ./Release/MadReplaceDialog.o $(CXXFLAGS)
+
+./Release/MadAboutDialog.o: ../src/MadAboutDialog.cpp
+	$(CXX) -c ../src/MadAboutDialog.cpp -o ./Release/MadAboutDialog.o $(CXXFLAGS)
+
+./Release/MadPrintout.o: ../src/MadPrintout.cpp
+	$(CXX) -c ../src/MadPrintout.cpp -o ./Release/MadPrintout.o $(CXXFLAGS)
+
+./Release/TradSimp.o: ../src/MadEdit/TradSimp.cpp
+	$(CXX) -c ../src/MadEdit/TradSimp.cpp -o ./Release/TradSimp.o $(CXXFLAGS)
+
+./Release/MadConvEncDialog.o: ../src/MadConvEncDialog.cpp
+	$(CXX) -c ../src/MadConvEncDialog.cpp -o ./Release/MadConvEncDialog.o $(CXXFLAGS)
+
+./Release/wxFlatNotebook.o: ../wxFlatNotebook/src/wxFlatNotebook/wxFlatNotebook.cpp
+	$(CXX) -c ../wxFlatNotebook/src/wxFlatNotebook/wxFlatNotebook.cpp -o ./Release/wxFlatNotebook.o $(CXXFLAGS)
+
+./Release/MadEditAdvanced.o: ../src/MadEdit/MadEditAdvanced.cpp
+	$(CXX) -c ../src/MadEdit/MadEditAdvanced.cpp -o ./Release/MadEditAdvanced.o $(CXXFLAGS)
+
+./Release/MadWordCountDialog.o: ../src/MadWordCountDialog.cpp
+	$(CXX) -c ../src/MadWordCountDialog.cpp -o ./Release/MadWordCountDialog.o $(CXXFLAGS)
+
+./Release/MadHighlightingDialog.o: ../src/MadHighlightingDialog.cpp
+	$(CXX) -c ../src/MadHighlightingDialog.cpp -o ./Release/MadHighlightingDialog.o $(CXXFLAGS)
+
+./Release/MadFindInFilesDialog.o: ../src/MadFindInFilesDialog.cpp
+	$(CXX) -c ../src/MadFindInFilesDialog.cpp -o ./Release/MadFindInFilesDialog.o $(CXXFLAGS)
+
+./Release/manager.o: ../wxAUI/src/manager.cpp
+	$(CXX) -c ../wxAUI/src/manager.cpp -o ./Release/manager.o $(CXXFLAGS)
+
+./Release/caret_new.o: ../src/MadEdit/caret_new.cpp
+	$(CXX) -c ../src/MadEdit/caret_new.cpp -o ./Release/caret_new.o $(CXXFLAGS)

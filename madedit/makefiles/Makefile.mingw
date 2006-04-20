@@ -18,18 +18,7 @@ OBJ  = ./Release/MadEditFrame.obj ./Release/MadEditApp.obj \
        ./Release/MadWordCountDialog.obj ./Release/MadHighlightingDialog.obj \
        ./Release/MadFindInFilesDialog.obj ./Release/manager.obj $(RES)
 
-LINKOBJ  = ./Release/MadEditFrame.obj ./Release/MadEditApp.obj \
-        ./Release/MadEdit.obj ./Release/MadEncoding.obj \
-        ./Release/MadLines.obj ./Release/MadSyntax.obj \
-        ./Release/MadUndo.obj ./Release/MadPlugin.obj \
-        ./Release/MadUtils.obj ./Release/MadEditCommand.obj \
-        ./Release/MadSearchDialog.obj ./Release/MadOptionsDialog.obj \
-        ./Release/MadEditSearch.obj ./Release/MadReplaceDialog.obj \
-        ./Release/MadAboutDialog.obj ./Release/MadPrintout.obj \
-        ./Release/TradSimp.obj ./Release/MadConvEncDialog.obj \
-        ./Release/wxFlatNotebook.obj ./Release/MadEditAdvanced.obj \
-        ./Release/MadWordCountDialog.obj ./Release/MadHighlightingDialog.obj \
-        ./Release/MadFindInFilesDialog.obj ./Release/manager.obj $(RES)
+LINKOBJ = $(OBJ)
 
 WX_DIR = N:/wxWidgets
 BOOST_DIR = N:/boost
@@ -57,7 +46,7 @@ clean:
 	$(RM) $(OBJ) $(BIN)
 
 $(BIN): $(OBJ)
-	$(CPP) $(LINKOBJ) -o "Release\MadEdit.exe" $(LIBS)
+	$(CPP) $(LINKOBJ) -o "./Release/MadEdit.exe" $(LIBS)
 
 ./Release/MadEditFrame.obj: ../src/MadEditFrame.cpp
 	$(CPP) -c ../src/MadEditFrame.cpp -o ./Release/MadEditFrame.obj $(CXXFLAGS)
