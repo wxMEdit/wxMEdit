@@ -47,6 +47,8 @@ RM = rm -f
 
 all: all-before $(BIN) all-after
 
+all-before:
+	mkdir -p Release
 
 clean: clean-custom
 	${RM} $(OBJ) $(BIN)
