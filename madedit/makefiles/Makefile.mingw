@@ -37,8 +37,8 @@ BOOST_DIR = N:/boost
 XPRESSIVE_DIR = ../xpressive
 
 LIBS =  -L$(WX_DIR)/lib/gcc_lib -L"../libunicows" -mwindows -lwxmsw27u_core -lwxbase27u -lunicows -lkernel32 -luser32 -lgdi32 -lcomdlg32 -lwinspool -lwinmm -lshell32 -lcomctl32 -lole32 -loleaut32 -luuid -lrpcrt4 -ladvapi32 -lwsock32 -lodbc32 -lopengl32  -s 
-INCS =  -I$(WX_DIR)/include  -I$(WX_DIR)/lib/gcc_lib/mswu  -I$(BOOST_DIR)  -I$(XPRESSIVE_DIR)  -I"../wxFlatNotebook/include" 
-CXXINCS =  -I$(WX_DIR)/include  -I$(WX_DIR)/lib/gcc_lib/mswu  -I$(BOOST_DIR)  -I$(XPRESSIVE_DIR)  -I"../wxFlatNotebook/include" 
+INCS =  -I$(WX_DIR)/include  -I$(WX_DIR)/lib/gcc_lib/mswu  -I$(BOOST_DIR)  -I$(XPRESSIVE_DIR)  -I"../wxFlatNotebook/include" -I"../wxAUI/include" 
+CXXINCS =  -I$(WX_DIR)/include  -I$(WX_DIR)/lib/gcc_lib/mswu  -I$(BOOST_DIR)  -I$(XPRESSIVE_DIR)  -I"../wxFlatNotebook/include" -I"../wxAUI/include" 
 
 BIN  = Release/MadEdit.exe
 CXXFLAGS = $(CXXINCS) -D_UNICODE -D__WXMSW__ -D__GNUWIN32__ -D__WIN95__ -DWIN32   -O2
