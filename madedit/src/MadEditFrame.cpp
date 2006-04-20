@@ -575,7 +575,7 @@ public:
   ////Event Table Start
 BEGIN_EVENT_TABLE(MadEditFrame,wxFrame)
 	////Manual Code Start
-	EVT_SIZE(MadEditFrame::OnSize)
+	//EVT_SIZE(MadEditFrame::OnSize)
 	EVT_FLATNOTEBOOK_PAGE_CHANGED(ID_NOTEBOOK, MadEditFrame::OnNotebookPageChanged)
 	EVT_FLATNOTEBOOK_PAGE_CLOSING(ID_NOTEBOOK, MadEditFrame::OnNotebookPageClosing)
 	EVT_FLATNOTEBOOK_PAGE_CLOSED(ID_NOTEBOOK, MadEditFrame::OnNotebookPageClosed)
@@ -1595,8 +1595,8 @@ void MadEditFrame::CreateGUIControls(void)
 
 
     // output window
-    m_OutputNotebook = new wxFlatNotebook(this, ID_OUTPUTNOTEBOOK, wxDefaultPosition, wxDefaultSize, wxFNB_DEFAULT_STYLE|wxFNB_NO_X_BUTTON|wxFNB_BOTTOM);
-    m_FindInFilesResults = new wxTreeCtrl(m_OutputNotebook, ID_FINDINFILESRESULTS, wxDefaultPosition, wxDefaultSize);//, wxTR_HAS_BUTTONS | wxTR_DEFAULT_STYLE);
+    m_OutputNotebook = new wxFlatNotebook(this, ID_OUTPUTNOTEBOOK, wxDefaultPosition, wxSize(250,150), wxFNB_DEFAULT_STYLE|wxFNB_NO_X_BUTTON|wxFNB_BOTTOM);
+    m_FindInFilesResults = new wxTreeCtrl(m_OutputNotebook, ID_FINDINFILESRESULTS, wxDefaultPosition, wxSize(250,150));//, wxTR_HAS_BUTTONS | wxTR_DEFAULT_STYLE);
     m_OutputNotebook->AddPage(m_FindInFilesResults, _T("Find/Replace in Files Results"));
 
     // wxAUI
@@ -1606,6 +1606,9 @@ void MadEditFrame::CreateGUIControls(void)
     m_FrameManager.AddPane(m_OutputNotebook, wxBOTTOM, _T("Output Window"));
     m_FrameManager.GetPane(m_OutputNotebook).Show(false);
     m_FrameManager.Update();
+
+    // fixed for using wxAUI
+    WxStatusBar1->Connect(wxEVT_SIZE, wxSizeEventHandler(MadEditFrame::OnSize));
 }
 
 #ifndef __WXMSW__
@@ -1903,14 +1906,13 @@ void MadEditFrame::OnSize(wxSizeEvent &evt)
 {
     evt.Skip();
 
-    int width0= GetClientSize().GetWidth() - g_StatusWidth_1_6;
+    int width0= g_MainFrame->GetClientSize().GetWidth() - g_StatusWidth_1_6;
     if(width0<0) width0=0;
     g_StatusWidths[0]= width0;
-    WxStatusBar1->SetFieldsCount(7, g_StatusWidths);
+    g_MainFrame->WxStatusBar1->SetFieldsCount(7, g_StatusWidths);
 
     //static int n=0;
-    //SetTitle(wxString::Format(wxT("%d %d %d"), n++,GetClientSize().GetWidth(), width0));
-
+    //g_MainFrame->SetTitle(wxString::Format(wxT("%d %d %d"), n++, g_MainFrame->GetClientSize().GetWidth(), width0));
 }
 
 //void MadEditFrame::OnChar(wxKeyEvent& evt)
