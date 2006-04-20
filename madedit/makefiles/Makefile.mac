@@ -29,7 +29,7 @@ BOOST_INC =
 XPRESSIVE_INC = -I../xpressive
 #XPRESSIVE_INC = 
 
-ADDINC = -I../wxFlatNotebook/include/wx/wxFlatNotebook -I../wxAUI/include
+ADDINC = -I../wxFlatNotebook/include -I../wxAUI/include
 
 LIBS = $(shell $(WXCONFIG) --libs) #$(shell pkg-config --libs gtk+-2.0)
 #LIBS = -pthread -Wl,-O1 -Wl,--enable-new-dtags -Wl,--sort-common $(HOME)/wxWidgets/RELEASE/lib/libwx_gtk2u_core-2.7.a $(HOME)/wxWidgets/RELEASE/lib/libwx_baseu-2.7.a -lgtk-x11-2.0 -lgdk-x11-2.0 -lgdk_pixbuf-2.0 -lpangoxft-1.0 -lpangox-1.0 -lpangoft2-1.0 -lpango-1.0 -lgobject-2.0 -lgmodule-2.0 -lgthread-2.0 -lglib-2.0 -ldl -lm

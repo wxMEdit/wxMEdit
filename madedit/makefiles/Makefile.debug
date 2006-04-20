@@ -32,7 +32,7 @@ BOOST_INC =
 XPRESSIVE_INC = -I../xpressive
 #XPRESSIVE_INC = 
 
-ADDINC = -I../wxFlatNotebook/include/wx/wxFlatNotebook -I../wxAUI/include
+ADDINC = -I../wxFlatNotebook/include -I../wxAUI/include
 
 LIBS = $(shell $(WXCONFIG) --libs) #$(shell pkg-config --libs gtk+-2.0)
 
