@@ -13684,6 +13684,7 @@ bool MadEdit::SaveToFile(const wxString &filename)
 
     m_SavePoint = m_UndoBuffer->GetPrevUndo();
     m_Modified=false;
+    wxLogNull nolog;
     m_ModificationTime = wxFileModificationTime(filename);
     m_ReadOnly=false;
     DoStatusChanged();
@@ -13772,6 +13773,7 @@ bool MadEdit::ReloadByModificationTime()
 {
     if(m_Lines->m_Name.IsEmpty()) return false;
 
+    wxLogNull nolog;
     time_t modtime=wxFileModificationTime(m_Lines->m_Name);
 
     if(modtime==0) // the file has been deleted

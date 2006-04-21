@@ -38,6 +38,7 @@ bool g_MB2WC_check_dir_filename=false;//check dir, filename separately
 int MadFileNameIsUTF8(const wxString& filename)
 {
     g_WC2MB_2_utf8=false;
+    wxLogNull nolog;
     if(wxFileModificationTime(filename)!=0)
     {
         return -1;//libc or under win32
