@@ -1594,17 +1594,17 @@ void MadEditFrame::CreateGUIControls(void)
     //WxToolBar1->ToggleTool(wxID_NEW, true);
 
 
-    // output window
-    m_OutputNotebook = new wxFlatNotebook(this, ID_OUTPUTNOTEBOOK, wxDefaultPosition, wxSize(250,150), wxFNB_DEFAULT_STYLE|wxFNB_NO_X_BUTTON|wxFNB_BOTTOM);
-    m_FindInFilesResults = new wxTreeCtrl(m_OutputNotebook, ID_FINDINFILESRESULTS, wxDefaultPosition, wxSize(250,150));//, wxTR_HAS_BUTTONS | wxTR_DEFAULT_STYLE);
-    m_OutputNotebook->AddPage(m_FindInFilesResults, _T("Find/Replace in Files Results"));
+    // information window
+    m_InfoNotebook = new wxFlatNotebook(this, ID_OUTPUTNOTEBOOK, wxDefaultPosition, wxSize(300,130), wxFNB_DEFAULT_STYLE|wxFNB_NO_X_BUTTON|wxFNB_BOTTOM);
+    m_FindInFilesResults = new wxTreeCtrl(m_InfoNotebook, ID_FINDINFILESRESULTS, wxDefaultPosition, wxSize(300,4));//, wxTR_HAS_BUTTONS | wxTR_DEFAULT_STYLE);
+    m_InfoNotebook->AddPage(m_FindInFilesResults, _T("Find/Replace in Files Results"));
 
     // wxAUI
     m_FrameManager.SetFrame(this);
     m_FrameManager.SetFlags(m_FrameManager.GetFlags() | wxAUI_MGR_ALLOW_ACTIVE_PANE);
     m_FrameManager.AddPane(m_Notebook, wxCENTER);
-    m_FrameManager.AddPane(m_OutputNotebook, wxBOTTOM, _T("Output Window"));
-    m_FrameManager.GetPane(m_OutputNotebook).Show(false);
+    m_FrameManager.AddPane(m_InfoNotebook, wxBOTTOM, _T("Information Window"));
+    m_FrameManager.GetPane(m_InfoNotebook).Show(false);
     m_FrameManager.Update();
 
     // fixed for using wxAUI
@@ -3933,7 +3933,7 @@ void MadEditFrame::OnHelpAbout(wxCommandEvent& event)
 #endif
     }
     
-    m_FrameManager.GetPane(m_OutputNotebook).Show();
+    m_FrameManager.GetPane(m_InfoNotebook).Show();
     m_FrameManager.Update();
 }
 

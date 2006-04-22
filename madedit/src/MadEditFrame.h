@@ -108,7 +108,7 @@ public:
     wxFileHistory *m_RecentFonts;
 
     wxFrameManager m_FrameManager; // wxAUI
-    wxFlatNotebook *m_OutputNotebook; //
+    wxFlatNotebook *m_InfoNotebook; //
     wxTreeCtrl *m_FindInFilesResults;
 
     void OnUpdateUI_MenuFile_CheckCount(wxUpdateUIEvent& event);
