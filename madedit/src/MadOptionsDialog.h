@@ -24,10 +24,10 @@
 #include <wx/treectrl.h>
 #include <wx/button.h>
 #include <wx/statbox.h>
-#include <wx/combobox.h>
-#include <wx/stattext.h>
 #include <wx/textctrl.h>
 #include <wx/checkbox.h>
+#include <wx/stattext.h>
+#include <wx/combobox.h>
 #include <wx/panel.h>
 #include <wx/notebook.h>
 ////Header Include End
@@ -174,6 +174,9 @@ public:
 		wxCheckBox *WxCheckBoxRecordCaretMovements;
 		wxCheckBox *WxCheckBoxSingleInstance;
 		wxBoxSizer *WxBoxSizer4;
+		wxStaticText *WxStaticText16;
+		wxComboBox *WxComboBoxLanguage;
+		wxBoxSizer *WxBoxSizer27;
 		wxBoxSizer *WxBoxSizer3;
 		wxPanel *WxNoteBookPage1;
 		wxFlatNotebook *WxNotebook1;
@@ -256,6 +259,8 @@ public:
 			ID_WXEDITMAXSIZETOLOAD = 1039,
 			ID_WXCHECKBOXRECORDCARETMOVEMENTS = 1037,
 			ID_WXCHECKBOXSINGLEINSTANCE = 1034,
+			ID_WXSTATICTEXT16 = 1157,
+			ID_WXCOMBOBOXLANGUAGE = 1156,
 			ID_WXNOTEBOOKPAGE1 = 1003,
 			ID_WXNOTEBOOK1 = 1002,
 ////GUI Enum Control ID End

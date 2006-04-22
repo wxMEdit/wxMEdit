@@ -22,6 +22,9 @@
 
 MadOptionsDialog *g_OptionsDialog=NULL;
 
+extern wxChar *g_LanguageString[];
+extern const size_t g_LanguageCount;
+
 TreeItemData *g_SelectedCommandItem=NULL;
 int g_SelectedKeyId=-1;
 TreeItemData *g_CommandItemOfNewKey=NULL;
@@ -200,6 +203,16 @@ void MadOptionsDialog::CreateGUIControls(void)
 	WxNoteBookPage1->SetSizer(WxBoxSizer3);
 	WxNoteBookPage1->SetAutoLayout(TRUE);
 
+	wxBoxSizer* WxBoxSizer27 = new wxBoxSizer(wxHORIZONTAL);
+	WxBoxSizer3->Add(WxBoxSizer27,0,wxALIGN_LEFT | wxALL,2);
+
+	wxArrayString arrayStringFor_WxComboBoxLanguage;
+	WxComboBoxLanguage = new wxComboBox(WxNoteBookPage1, ID_WXCOMBOBOXLANGUAGE, _(""), wxPoint(2,2), wxSize(140,21), arrayStringFor_WxComboBoxLanguage, wxCB_DROPDOWN | wxCB_READONLY, wxDefaultValidator, _("WxComboBoxLanguage"));
+	WxBoxSizer27->Add(WxComboBoxLanguage,0,wxALIGN_CENTER_VERTICAL | wxALL,0);
+
+	WxStaticText16 = new wxStaticText(WxNoteBookPage1, ID_WXSTATICTEXT16, _("Language of User Interface (Must Restart MadEdit)"), wxPoint(146,4), wxSize(245,17), 0, _("WxStaticText16"));
+	WxBoxSizer27->Add(WxStaticText16,0,wxALIGN_CENTER_VERTICAL | wxALL,5);
+
 	wxBoxSizer* WxBoxSizer4 = new wxBoxSizer(wxVERTICAL);
 	WxBoxSizer3->Add(WxBoxSizer4,0,wxALIGN_LEFT | wxALL,5);
 
@@ -231,16 +244,16 @@ void MadOptionsDialog::CreateGUIControls(void)
 	WxBoxSizer3->Add(WxBoxSizer17,0,wxALIGN_LEFT | wxALL,2);
 
 	wxArrayString arrayStringFor_WxComboBoxEncoding;
-	WxComboBoxEncoding = new wxComboBox(WxNoteBookPage1, ID_WXCOMBOBOXENCODING, _("WxComboBoxEncoding"), wxPoint(2,2), wxSize(130,21), arrayStringFor_WxComboBoxEncoding, wxCB_DROPDOWN | wxCB_READONLY, wxDefaultValidator, _("WxComboBoxEncoding"));
+	WxComboBoxEncoding = new wxComboBox(WxNoteBookPage1, ID_WXCOMBOBOXENCODING, _(""), wxPoint(2,2), wxSize(140,21), arrayStringFor_WxComboBoxEncoding, wxCB_DROPDOWN | wxCB_READONLY, wxDefaultValidator, _("WxComboBoxEncoding"));
 	WxBoxSizer17->Add(WxComboBoxEncoding,0,wxALIGN_CENTER_VERTICAL | wxALL,0);
 
-	WxStaticText13 = new wxStaticText(WxNoteBookPage1, ID_WXSTATICTEXT13, _("Use this Encoding to Create New File or When MadEdit cannot Determine the Encoding of Old File"), wxPoint(136,4), wxSize(469,17), 0, _("WxStaticText13"));
+	WxStaticText13 = new wxStaticText(WxNoteBookPage1, ID_WXSTATICTEXT13, _("Use this Encoding to Create New File or When MadEdit cannot Determine the Encoding of Old File"), wxPoint(146,4), wxSize(469,17), 0, _("WxStaticText13"));
 	WxBoxSizer17->Add(WxStaticText13,0,wxALIGN_CENTER_VERTICAL | wxALL,5);
 
 	wxBoxSizer* WxBoxSizer7 = new wxBoxSizer(wxVERTICAL);
 	WxBoxSizer3->Add(WxBoxSizer7,0,wxALIGN_LEFT | wxALL,5);
 
-	WxCheckBoxDoNotSaveSettings = new wxCheckBox(WxNoteBookPage1, ID_WXCHECKBOXDONOTSAVESETTINGS, _("Do Not Save Settings to MadEdit.cfg after MadEdit Finish (Once Only)"), wxPoint(5,5), wxSize(400,20), 0, wxDefaultValidator, _("WxCheckBoxDoNotSaveSettings"));
+	WxCheckBoxDoNotSaveSettings = new wxCheckBox(WxNoteBookPage1, ID_WXCHECKBOXDONOTSAVESETTINGS, _("Do Not Save Settings to MadEdit.cfg when MadEdit Closed (This Session Only)"), wxPoint(5,5), wxSize(400,20), 0, wxDefaultValidator, _("WxCheckBoxDoNotSaveSettings"));
 	WxBoxSizer7->Add(WxCheckBoxDoNotSaveSettings,0,wxALIGN_LEFT | wxALL,2);
 
 	WxNoteBookPage2 = new wxPanel(WxNotebook1, ID_WXNOTEBOOKPAGE2, wxPoint(4,24), wxSize(673,314));
@@ -531,11 +544,18 @@ void MadOptionsDialog::CreateGUIControls(void)
     wxString systemenc(_("System Default"));
     WxComboBoxEncoding->Append(systemenc);
     size_t cnt=MadEncoding::GetEncodingsCount();
-    for(size_t i=0;i<cnt;i++)
+    size_t i;
+    for(i=0; i<cnt; i++)
     {
         WxComboBoxEncoding->Append(MadEncoding::GetEncodingName(i));//enc+des);
     }
     WxComboBoxEncoding->SetValue(systemenc);
+
+    for(i=0; i<g_LanguageCount; i++)
+    {
+        WxComboBoxLanguage->Append(wxString(g_LanguageString[i]));
+    }
+    WxComboBoxLanguage->SetValue(wxString(g_LanguageString[0]));
 
 #ifdef __WXMSW__
     WxCheckBoxRightClickMenu = new wxCheckBox(WxNoteBookPage1, -1, _("Add MadEdit to the RightClickMenu of Explorer(Deselect to Remove the Entry from Windows Registry)"), wxPoint(5,5), wxSize(400,20), 0, wxDefaultValidator, _T("WxCheckBoxRightClickMenu"));
@@ -543,6 +563,7 @@ void MadOptionsDialog::CreateGUIControls(void)
     ResizeItem(WxBoxSizer7, WxCheckBoxRightClickMenu, 25, 4);
 #endif
 
+    ResizeItem(WxBoxSizer27, WxStaticText16, 2, 2);
     ResizeItem(WxBoxSizer4, WxCheckBoxSingleInstance, 25, 4);
     ResizeItem(WxBoxSizer4, WxCheckBoxRecordCaretMovements, 25, 4);
     ResizeItem(WxBoxSizer5, WxStaticText1, 2, 2);
@@ -569,7 +590,7 @@ void MadOptionsDialog::CreateGUIControls(void)
     int strx=0, stry=0;
     wxString str=WxRadioBoxPrintOffset->GetLabel();
     WxRadioBoxPrintOffset->GetTextExtent(str, &strx, &stry);
-    for(size_t i=0;i<WxRadioBoxPrintOffset->GetCount();i++)
+    for(i=0;i<WxRadioBoxPrintOffset->GetCount();i++)
     {
         int x;
         str=WxRadioBoxPrintOffset->GetString((unsigned int)i);
@@ -720,6 +741,10 @@ void MadOptionsDialog::MadOptionsDialogActivate(wxActivateEvent& event)
         wxString ss;
         
         // General page
+        ss=g_LanguageString[0];
+        cfg->Read(wxT("Language"), &ss);
+        WxComboBoxLanguage->SetValue(ss);
+
         cfg->Read(wxT("SingleInstance"), &bb);
         WxCheckBoxSingleInstance->SetValue(bb);
         

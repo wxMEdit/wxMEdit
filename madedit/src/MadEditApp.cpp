@@ -36,6 +36,21 @@ wxString g_MadEditConfigName;
 bool g_DoNotSaveSettings=false;
 bool g_ResetAllKeys=false;
 
+wxChar *g_LanguageString[]=
+{
+    wxT("System Default"),
+    wxT("Traditional Chinese"),
+    wxT("Simplified Chinese"),
+    wxT("Italian"),
+};
+int g_LanguageValue[]=
+{
+    wxLANGUAGE_DEFAULT,
+    wxLANGUAGE_CHINESE_TRADITIONAL,
+    wxLANGUAGE_CHINESE_SIMPLIFIED,
+    wxLANGUAGE_ITALIAN,
+};
+extern const size_t g_LanguageCount = sizeof(g_LanguageValue)/sizeof(int);
 
 #ifdef __WXGTK__
 
@@ -281,7 +296,23 @@ bool MadEditApp::OnInit()
 
 
     // init locale
-    g_Locale.Init();
+    wxString strlang;
+    cfg->Read(wxT("/MadEdit/Language"), &strlang);
+    int lang=g_LanguageValue[0];
+    if(!strlang.IsEmpty())
+    {
+        strlang.MakeLower();
+        for(size_t idx=1; idx<g_LanguageCount; idx++)
+        {
+            if(strlang == wxString(g_LanguageString[idx]).Lower())
+            {
+                lang=g_LanguageValue[idx];
+                break;
+            }
+        }
+    }
+
+    g_Locale.Init(lang);
     g_Locale.AddCatalogLookupPathPrefix(wxT("./locale/"));
     g_Locale.AddCatalogLookupPathPrefix(g_MadEditAppDir+wxT("locale/"));
 #ifndef __WXMSW__

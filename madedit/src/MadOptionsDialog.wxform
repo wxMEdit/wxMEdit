@@ -106,9 +106,61 @@ object frmNewForm: TfrmNewForm
           Wx_StretchFactor = 1
           Wx_StrechFactor = 1
           Wx_VerticalAlignment = wxSZALIGN_GROW_VERTICAL
-          object WxBoxSizer4: TWxBoxSizer
-            Left = 150
+          object WxBoxSizer27: TWxBoxSizer
+            Left = 114
             Top = 2
+            Width = 393
+            Height = 25
+            TabOrder = 5
+            SpaceValue = 2
+            Wx_Class = 'wxBoxSizer'
+            Wx_ControlOrientation = wxControlVertical
+            Wx_HorizontalAlignment = wxSZALIGN_LEFT
+            Wx_IDName = 'ID_WXBOXSIZER27'
+            Wx_IDValue = 1155
+            Wx_StretchFactor = 0
+            Wx_StrechFactor = 0
+            object WxComboBoxLanguage: TWxComboBox
+              Left = 2
+              Top = 2
+              Width = 140
+              Height = 21
+              ItemHeight = 13
+              TabOrder = 0
+              Wx_BGColor = clBlack
+              Wx_Border = 0
+              Wx_Class = 'wxComboBox'
+              Wx_ComboboxStyle = [wxCB_DROPDOWN, wxCB_READONLY]
+              Wx_ControlOrientation = wxControlHorizontal
+              Wx_FGColor = clBlack
+              Wx_GeneralStyle = []
+              Wx_Hidden = False
+              Wx_IDName = 'ID_WXCOMBOBOXLANGUAGE'
+              Wx_IDValue = 1156
+              Wx_StrechFactor = 0
+            end
+            object WxStaticText16: TWxStaticText
+              Left = 146
+              Top = 4
+              Width = 245
+              Height = 17
+              Caption = 'Language of User Interface (Must Restart MadEdit)'
+              TabOrder = 1
+              Wx_BGColor = clBlack
+              Wx_Class = 'wxStaticText'
+              Wx_ControlOrientation = wxControlHorizontal
+              Wx_FGColor = clBlack
+              Wx_GeneralStyle = []
+              Wx_Hidden = False
+              Wx_IDName = 'ID_WXSTATICTEXT16'
+              Wx_IDValue = 1157
+              Wx_LabelStyle = []
+              Wx_StrechFactor = 0
+            end
+          end
+          object WxBoxSizer4: TWxBoxSizer
+            Left = 155
+            Top = 31
             Width = 310
             Height = 60
             TabOrder = 0
@@ -162,8 +214,8 @@ object frmNewForm: TfrmNewForm
             end
           end
           object WxBoxSizer5: TWxBoxSizer
-            Left = 111
-            Top = 66
+            Left = 116
+            Top = 95
             Width = 388
             Height = 25
             TabOrder = 1
@@ -220,8 +272,8 @@ object frmNewForm: TfrmNewForm
             end
           end
           object WxBoxSizer6: TWxBoxSizer
-            Left = 111
-            Top = 95
+            Left = 116
+            Top = 124
             Width = 388
             Height = 25
             TabOrder = 2
@@ -279,8 +331,8 @@ object frmNewForm: TfrmNewForm
           end
           object WxBoxSizer17: TWxBoxSizer
             Left = 2
-            Top = 124
-            Width = 607
+            Top = 153
+            Width = 617
             Height = 25
             TabOrder = 4
             SpaceValue = 2
@@ -294,11 +346,10 @@ object frmNewForm: TfrmNewForm
             object WxComboBoxEncoding: TWxComboBox
               Left = 2
               Top = 2
-              Width = 130
+              Width = 140
               Height = 21
               ItemHeight = 13
               TabOrder = 0
-              Text = 'WxComboBoxEncoding'
               Wx_BGColor = clBlack
               Wx_Border = 0
               Wx_Class = 'wxComboBox'
@@ -312,7 +363,7 @@ object frmNewForm: TfrmNewForm
               Wx_StrechFactor = 0
             end
             object WxStaticText13: TWxStaticText
-              Left = 136
+              Left = 146
               Top = 4
               Width = 469
               Height = 17
@@ -333,8 +384,8 @@ object frmNewForm: TfrmNewForm
             end
           end
           object WxBoxSizer7: TWxBoxSizer
-            Left = 100
-            Top = 153
+            Left = 105
+            Top = 182
             Width = 410
             Height = 30
             TabOrder = 3
@@ -352,8 +403,8 @@ object frmNewForm: TfrmNewForm
               Width = 400
               Height = 20
               Caption = 
-                'Do Not Save Settings to MadEdit.cfg after MadEdit Finish (Once O' +
-                'nly)'
+                'Do Not Save Settings to MadEdit.cfg when MadEdit Closed (This Se' +
+                'ssion Only)'
               TabOrder = 0
               Wx_BGColor = clBlack
               Wx_Border = 2

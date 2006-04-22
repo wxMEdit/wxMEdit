@@ -3465,6 +3465,7 @@ void MadEditFrame::OnToolsOptions(wxCommandEvent& event)
         bool rcm, isiot, ai, acp, msc, mmp;
         wxString mc, tc, ic;
 
+        m_Config->Write(wxT("Language"), g_OptionsDialog->WxComboBoxLanguage->GetValue());
         m_Config->Write(wxT("SingleInstance"), g_OptionsDialog->WxCheckBoxSingleInstance->GetValue());
 
         rcm=g_OptionsDialog->WxCheckBoxRecordCaretMovements->GetValue();
