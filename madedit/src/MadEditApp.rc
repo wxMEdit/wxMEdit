@@ -1,2 +1,3 @@
 appicon ICON "../images/Mad.ico"
+appicon2 ICON "../images/Mad2.ico"
 #include <wx/msw/wx.rc>
