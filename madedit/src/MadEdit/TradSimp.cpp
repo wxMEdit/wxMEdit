@@ -5712,7 +5712,7 @@ void ConvertChineseInClipboard(bool bTrad2Simp)
 {
     if(wxTheClipboard->Open())
     {
-        if(wxTheClipboard->IsSupported(wxDF_TEXT))
+        if(wxTheClipboard->IsSupported(wxDF_TEXT) || wxTheClipboard->IsSupported(wxDF_UNICODETEXT))
         {
             wxTextDataObject data;
             wxTheClipboard->GetData( data );

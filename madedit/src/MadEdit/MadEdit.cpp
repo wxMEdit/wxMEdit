@@ -3971,7 +3971,7 @@ int MadEdit::GetTextFromClipboard(vector <ucs4_t> *ucs)
     int linecount=0;
     if(wxTheClipboard->Open())
     {
-        if(wxTheClipboard->IsSupported(wxDF_TEXT))
+        if(wxTheClipboard->IsSupported(wxDF_UNICODETEXT))
         {
             wxTextDataObject data;
             wxTheClipboard->GetData( data );
@@ -12471,11 +12471,30 @@ void MadEdit::PasteFromClipboard()
 bool MadEdit::CanPaste()
 {
     bool can=false;
-    if (wxTheClipboard->Open())
+    if(wxTheClipboard->Open())
     {
-        if (wxTheClipboard->IsSupported(wxDF_TEXT))
+        if(wxTheClipboard->IsSupported(wxDF_TEXT) || wxTheClipboard->IsSupported(wxDF_UNICODETEXT))
         {
             can=true;
+        }
+        else 
+        {
+            if(m_EditMode==emHexMode)
+            {
+                MadHexDataObject hexdata;
+                if(wxTheClipboard->IsSupported( hexdata.GetFormat() ))
+                {
+                    can=true;
+                }
+            }
+            else if(m_EditMode==emColumnMode)
+            {
+                MadColumnDataObject coldata;
+                if(wxTheClipboard->IsSupported( coldata.GetFormat() ))
+                {
+                    can=true;
+                }
+            }
         }
 
         wxTheClipboard->Close();
