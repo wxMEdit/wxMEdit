@@ -22,8 +22,8 @@ msgstr ""
 "Project-Id-Version: MadEdit 0.1\n"
 "Report-Msgid-Bugs-To: madedit@gmail.com\n"
 "POT-Creation-Date: 2006-04-22 20:33+0800\n"
-"PO-Revision-Date: 2006-02-13 13:21+0800\n"
-"Last-Translator: madedit <madedit@gmail.com>\n"
+"PO-Revision-Date: 2006-04-23 00:28+0800\n"
+"Last-Translator: madedit\n"
 "Language-Team: MadEdit <madedit@gmail.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -1430,27 +1430,27 @@ msgstr "字型名称: "
 
 #: src/MadEditFrame.cpp:877
 msgid "[@]"
-msgstr ""
+msgstr "[@]"
 
 #: src/MadEditFrame.cpp:878
 msgid "[ABCDE]"
-msgstr ""
+msgstr "[ABCDE]"
 
 #: src/MadEditFrame.cpp:879
 msgid "[FGHIJ]"
-msgstr ""
+msgstr "[FGHIJ]"
 
 #: src/MadEditFrame.cpp:880
 msgid "[KLMNO]"
-msgstr ""
+msgstr "[KLMNO]"
 
 #: src/MadEditFrame.cpp:881
 msgid "[PQRST]"
-msgstr ""
+msgstr "[PQRST]"
 
 #: src/MadEditFrame.cpp:882
 msgid "[UVWXYZ]"
-msgstr ""
+msgstr "[UVWXYZ]"
 
 #: src/MadEditFrame.cpp:883
 msgid "[other]"
@@ -1927,7 +1927,7 @@ msgstr "切换插入/覆写模式"
 
 #: src/MadEditFrame.cpp:1237
 msgid "MadEdit"
-msgstr ""
+msgstr "MadEdit"
 
 #: src/MadEditFrame.cpp:1559
 msgid "New File"
@@ -2110,7 +2110,7 @@ msgstr "大小写视为相异(&C)"
 #: src/MadFindInFilesDialog.cpp:113 src/MadSearchDialog.cpp:96
 #: src/MadReplaceDialog.cpp:97
 msgid "WxCheckBoxCaseSensitive"
-msgstr ""
+msgstr "WxCheckBoxCaseSensitive"
 
 #: src/MadFindInFilesDialog.cpp:116 src/MadSearchDialog.cpp:99
 #: src/MadReplaceDialog.cpp:100
@@ -2120,7 +2120,7 @@ msgstr "搜寻完整单字(&W)"
 #: src/MadFindInFilesDialog.cpp:116 src/MadSearchDialog.cpp:99
 #: src/MadReplaceDialog.cpp:100
 msgid "WxCheckBoxWholeWord"
-msgstr ""
+msgstr "WxCheckBoxWholeWord"
 
 #: src/MadFindInFilesDialog.cpp:119 src/MadSearchDialog.cpp:102
 #: src/MadReplaceDialog.cpp:103
@@ -2130,7 +2130,7 @@ msgstr "使用正规表示式(&X)"
 #: src/MadFindInFilesDialog.cpp:119 src/MadSearchDialog.cpp:102
 #: src/MadReplaceDialog.cpp:103
 msgid "WxCheckBoxRegex"
-msgstr ""
+msgstr "WxCheckBoxRegex"
 
 #: src/MadFindInFilesDialog.cpp:122 src/MadSearchDialog.cpp:105
 #: src/MadReplaceDialog.cpp:106
@@ -2140,7 +2140,7 @@ msgstr "寻找十六进制字符串(例子: BE 00 3A 或 BE003A)(&H)"
 #: src/MadFindInFilesDialog.cpp:122 src/MadSearchDialog.cpp:105
 #: src/MadReplaceDialog.cpp:106
 msgid "WxCheckBoxFindHex"
-msgstr ""
+msgstr "WxCheckBoxFindHex"
 
 #: src/MadFindInFilesDialog.cpp:125
 msgid "&List the First Found Item Only"
@@ -2148,7 +2148,7 @@ msgstr "只列出第一个找到的项目(&L)"
 
 #: src/MadFindInFilesDialog.cpp:125
 msgid "WxCheckBoxListFirstOnly"
-msgstr ""
+msgstr "WxCheckBoxListFirstOnly"
 
 #: src/MadFindInFilesDialog.cpp:131
 msgid "&Find"
@@ -2156,7 +2156,7 @@ msgstr "寻找(&F)"
 
 #: src/MadFindInFilesDialog.cpp:131
 msgid "WxButtonFind"
-msgstr ""
+msgstr "WxButtonFind"
 
 #: src/MadFindInFilesDialog.cpp:134 src/MadReplaceDialog.cpp:115
 msgid "&Replace"
@@ -2165,7 +2165,7 @@ msgstr "取代(&R)"
 #: src/MadFindInFilesDialog.cpp:134 src/MadSearchDialog.cpp:117
 #: src/MadReplaceDialog.cpp:115
 msgid "WxButtonReplace"
-msgstr ""
+msgstr "WxButtonReplace"
 
 #: src/MadFindInFilesDialog.cpp:137
 msgid "&No 'Replace'"
@@ -2173,7 +2173,7 @@ msgstr "禁用'取代'(&N)"
 
 #: src/MadFindInFilesDialog.cpp:137
 msgid "WxCheckBoxNoReplace"
-msgstr ""
+msgstr "WxCheckBoxNoReplace"
 
 #: src/MadFindInFilesDialog.cpp:140 src/MadSearchDialog.cpp:120
 #: src/MadReplaceDialog.cpp:121
@@ -2183,7 +2183,7 @@ msgstr "关闭"
 #: src/MadFindInFilesDialog.cpp:140 src/MadHighlightingDialog.cpp:308
 #: src/MadSearchDialog.cpp:120 src/MadReplaceDialog.cpp:121
 msgid "WxButtonClose"
-msgstr ""
+msgstr "WxButtonClose"
 
 #: src/MadFindInFilesDialog.cpp:149
 msgid "Opened Files in Editor"
@@ -2191,7 +2191,7 @@ msgstr "在编辑器中开启的文件"
 
 #: src/MadFindInFilesDialog.cpp:149
 msgid "WxRadioButtonOpenedFiles"
-msgstr ""
+msgstr "WxRadioButtonOpenedFiles"
 
 #: src/MadFindInFilesDialog.cpp:155
 msgid "Selected Directory:"
@@ -2199,11 +2199,11 @@ msgstr "选择的目录:"
 
 #: src/MadFindInFilesDialog.cpp:155
 msgid "WxRadioButtonDir"
-msgstr ""
+msgstr "WxRadioButtonDir"
 
 #: src/MadFindInFilesDialog.cpp:159
 msgid "WxComboBoxDir"
-msgstr ""
+msgstr "WxComboBoxDir"
 
 #: src/MadFindInFilesDialog.cpp:162
 msgid "..."
@@ -2211,7 +2211,7 @@ msgstr "..."
 
 #: src/MadFindInFilesDialog.cpp:162
 msgid "WxButtonDir"
-msgstr ""
+msgstr "WxButtonDir"
 
 #: src/MadFindInFilesDialog.cpp:165
 msgid "File Filters:"
@@ -2221,16 +2221,16 @@ msgstr "文件筛选条件:"
 #: src/MadOptionsDialog.cpp:231 src/MadConvEncDialog.cpp:69
 #: src/MadWordCountDialog.cpp:75
 msgid "WxStaticText1"
-msgstr ""
+msgstr "WxStaticText1"
 
 #: src/MadFindInFilesDialog.cpp:169
 msgid "WxComboBoxFilter"
-msgstr ""
+msgstr "WxComboBoxFilter"
 
 #: src/MadFindInFilesDialog.cpp:172 src/MadHighlightingDialog.cpp:221
 #: src/MadOptionsDialog.cpp:240 src/MadWordCountDialog.cpp:81
 msgid "WxStaticText2"
-msgstr ""
+msgstr "WxStaticText2"
 
 #: src/MadFindInFilesDialog.cpp:175
 msgid "File Encoding:"
@@ -2239,12 +2239,12 @@ msgstr "文件编码:"
 #: src/MadFindInFilesDialog.cpp:175 src/MadHighlightingDialog.cpp:269
 #: src/MadOptionsDialog.cpp:272 src/MadWordCountDialog.cpp:87
 msgid "WxStaticText3"
-msgstr ""
+msgstr "WxStaticText3"
 
 #: src/MadFindInFilesDialog.cpp:179 src/MadOptionsDialog.cpp:247
 #: src/MadConvEncDialog.cpp:73
 msgid "WxComboBoxEncoding"
-msgstr ""
+msgstr "WxComboBoxEncoding"
 
 #: src/MadFindInFilesDialog.cpp:182
 msgid "Include Subdirectories"
@@ -2252,7 +2252,7 @@ msgstr "包含子目录"
 
 #: src/MadFindInFilesDialog.cpp:182
 msgid "WxCheckBoxSubDir"
-msgstr ""
+msgstr "WxCheckBoxSubDir"
 
 #: src/MadFindInFilesDialog.cpp:194
 msgid "Find/Replace In Files"
@@ -2261,11 +2261,11 @@ msgstr "多重文件寻找/取代"
 #: src/MadFindInFilesDialog.cpp:217 src/MadSearchDialog.cpp:150
 #: src/MadReplaceDialog.cpp:152
 msgid "WxBitmapButtonRecentFindText"
-msgstr ""
+msgstr "WxBitmapButtonRecentFindText"
 
 #: src/MadFindInFilesDialog.cpp:235 src/MadReplaceDialog.cpp:170
 msgid "WxBitmapButtonRecentReplaceText"
-msgstr ""
+msgstr "WxBitmapButtonRecentReplaceText"
 
 #: src/MadFindInFilesDialog.cpp:239 src/MadOptionsDialog.cpp:544
 #: src/MadOptionsDialog.cpp:760
@@ -2306,7 +2306,7 @@ msgstr "配色："
 
 #: src/MadHighlightingDialog.cpp:218
 msgid "WxComboBoxScheme"
-msgstr ""
+msgstr "WxComboBoxScheme"
 
 #: src/MadHighlightingDialog.cpp:221
 msgid "You cannot modify the scheme with * sign."
@@ -2318,7 +2318,7 @@ msgstr "载入(&L)"
 
 #: src/MadHighlightingDialog.cpp:227
 msgid "WxButtonLoad"
-msgstr ""
+msgstr "WxButtonLoad"
 
 #: src/MadHighlightingDialog.cpp:230
 msgid "&Save"
@@ -2326,11 +2326,11 @@ msgstr "储存(&S)"
 
 #: src/MadHighlightingDialog.cpp:230
 msgid "WxButtonSave"
-msgstr ""
+msgstr "WxButtonSave"
 
 #: src/MadHighlightingDialog.cpp:233
 msgid "WxButtonDelete"
-msgstr ""
+msgstr "WxButtonDelete"
 
 #: src/MadHighlightingDialog.cpp:251
 msgid "Bold"
@@ -2338,7 +2338,7 @@ msgstr "粗体"
 
 #: src/MadHighlightingDialog.cpp:251
 msgid "WxCheckBoxBold"
-msgstr ""
+msgstr "WxCheckBoxBold"
 
 #: src/MadHighlightingDialog.cpp:254
 msgid "Italic"
@@ -2346,7 +2346,7 @@ msgstr "斜体"
 
 #: src/MadHighlightingDialog.cpp:254
 msgid "WxCheckBoxItalic"
-msgstr ""
+msgstr "WxCheckBoxItalic"
 
 #: src/MadHighlightingDialog.cpp:257
 msgid "Underline"
@@ -2354,7 +2354,7 @@ msgstr "下划线"
 
 #: src/MadHighlightingDialog.cpp:257
 msgid "WxCheckBoxUnderline"
-msgstr ""
+msgstr "WxCheckBoxUnderline"
 
 #: src/MadHighlightingDialog.cpp:269
 msgid "Foreground/Text Color"
@@ -2362,7 +2362,7 @@ msgstr "前景或字体颜色"
 
 #: src/MadHighlightingDialog.cpp:272
 msgid "WxStaticTextFCName"
-msgstr ""
+msgstr "WxStaticTextFCName"
 
 #: src/MadHighlightingDialog.cpp:281 src/MadHighlightingDialog.cpp:302
 msgid "Other Color"
@@ -2370,7 +2370,7 @@ msgstr "其他颜色"
 
 #: src/MadHighlightingDialog.cpp:281
 msgid "WxButtonFC"
-msgstr ""
+msgstr "WxButtonFC"
 
 #: src/MadHighlightingDialog.cpp:290
 msgid "Background Color"
@@ -2379,15 +2379,15 @@ msgstr "背景颜色"
 #: src/MadHighlightingDialog.cpp:290 src/MadOptionsDialog.cpp:281
 #: src/MadWordCountDialog.cpp:93
 msgid "WxStaticText4"
-msgstr ""
+msgstr "WxStaticText4"
 
 #: src/MadHighlightingDialog.cpp:293
 msgid "WxStaticTextBCName"
-msgstr ""
+msgstr "WxStaticTextBCName"
 
 #: src/MadHighlightingDialog.cpp:302
 msgid "WxButtonBC"
-msgstr ""
+msgstr "WxButtonBC"
 
 #: src/MadHighlightingDialog.cpp:308 src/MadOptionsDialog.cpp:511
 #: src/MadConvEncDialog.cpp:90 src/MadAboutDialog.cpp:68
@@ -2402,7 +2402,7 @@ msgstr "取消(&C)"
 #: src/MadHighlightingDialog.cpp:311 src/MadOptionsDialog.cpp:514
 #: src/MadConvEncDialog.cpp:93 src/MadAboutDialog.cpp:71
 msgid "WxButtonCancel"
-msgstr ""
+msgstr "WxButtonCancel"
 
 #: src/MadHighlightingDialog.cpp:316
 msgid "Syntax Highlighting Settings"
@@ -2426,15 +2426,15 @@ msgstr "将输入焦点移动到编辑器窗口(&M)"
 
 #: src/MadSearchDialog.cpp:93 src/MadReplaceDialog.cpp:94
 msgid "WxCheckBoxMoveFocus"
-msgstr ""
+msgstr "WxCheckBoxMoveFocus"
 
 #: src/MadSearchDialog.cpp:111 src/MadReplaceDialog.cpp:112
 msgid "WxButtonFindNext"
-msgstr ""
+msgstr "WxButtonFindNext"
 
 #: src/MadSearchDialog.cpp:114
 msgid "WxButtonFindPrev"
-msgstr ""
+msgstr "WxButtonFindPrev"
 
 #: src/MadSearchDialog.cpp:117
 msgid "&Replace >>"
@@ -2470,7 +2470,7 @@ msgstr "取代全部(&A)"
 
 #: src/MadReplaceDialog.cpp:118
 msgid "WxButtonReplaceAll"
-msgstr ""
+msgstr "WxButtonReplaceAll"
 
 #: src/MadReplaceDialog.cpp:417
 msgid ""
@@ -2495,7 +2495,7 @@ msgstr "一般"
 
 #: src/MadOptionsDialog.cpp:210
 msgid "WxComboBoxLanguage"
-msgstr ""
+msgstr "WxComboBoxLanguage"
 
 #: src/MadOptionsDialog.cpp:213
 msgid "Language of User Interface (Must Restart MadEdit)"
@@ -2503,7 +2503,7 @@ msgstr ""
 
 #: src/MadOptionsDialog.cpp:213
 msgid "WxStaticText16"
-msgstr ""
+msgstr "WxStaticText16"
 
 #: src/MadOptionsDialog.cpp:219
 msgid "Single Instance (Must Restart MadEdit)"
@@ -2511,7 +2511,7 @@ msgstr "只执行MadEdit一次，不要重复开启MadEdit (需要重新启动)"
 
 #: src/MadOptionsDialog.cpp:219
 msgid "WxCheckBoxSingleInstance"
-msgstr ""
+msgstr "WxCheckBoxSingleInstance"
 
 #: src/MadOptionsDialog.cpp:222
 msgid "Record Caret Movements in Undo List"
@@ -2519,17 +2519,17 @@ msgstr "将光标位置记录到「回复」列表中"
 
 #: src/MadOptionsDialog.cpp:222
 msgid "WxCheckBoxRecordCaretMovements"
-msgstr ""
+msgstr "WxCheckBoxRecordCaretMovements"
 
 #: src/MadOptionsDialog.cpp:228 src/MadOptionsDialog.cpp:237
 #: src/MadOptionsDialog.cpp:269 src/MadOptionsDialog.cpp:278
 #: src/MadOptionsDialog.cpp:287 src/MadOptionsDialog.cpp:296
 msgid "0"
-msgstr ""
+msgstr "0"
 
 #: src/MadOptionsDialog.cpp:228
 msgid "WxEditMaxSizeToLoad"
-msgstr ""
+msgstr "WxEditMaxSizeToLoad"
 
 #: src/MadOptionsDialog.cpp:231
 msgid "Max File Size to Load into Memory"
@@ -2537,7 +2537,7 @@ msgstr "将整个文件加载到内存的最大文件长度，超过时只会加
 
 #: src/MadOptionsDialog.cpp:237
 msgid "WxEditMaxTextFileSize"
-msgstr ""
+msgstr "WxEditMaxTextFileSize"
 
 #: src/MadOptionsDialog.cpp:240
 msgid "Max File Size to Load as a Text File"
@@ -2551,7 +2551,7 @@ msgstr "开启新文件或无法判断文件的编码时，使用此编码"
 
 #: src/MadOptionsDialog.cpp:250
 msgid "WxStaticText13"
-msgstr ""
+msgstr "WxStaticText13"
 
 #: src/MadOptionsDialog.cpp:256
 msgid ""
@@ -2560,7 +2560,7 @@ msgstr "程序结束时不要把选项回存到 MadEdit.cfg (只对这次执行�
 
 #: src/MadOptionsDialog.cpp:256
 msgid "WxCheckBoxDoNotSaveSettings"
-msgstr ""
+msgstr "WxCheckBoxDoNotSaveSettings"
 
 #: src/MadOptionsDialog.cpp:260
 msgid "Edit"
@@ -2568,7 +2568,7 @@ msgstr "编辑"
 
 #: src/MadOptionsDialog.cpp:269
 msgid "WxEditMaxLineLength"
-msgstr ""
+msgstr "WxEditMaxLineLength"
 
 #: src/MadOptionsDialog.cpp:272
 msgid "Max Line Length before Line-Wrap (Must Restart MadEdit)"
@@ -2576,7 +2576,7 @@ msgstr "每行最大长度，超过会自动折行(需要重新启动)"
 
 #: src/MadOptionsDialog.cpp:278
 msgid "WxEditMaxColumns"
-msgstr ""
+msgstr "WxEditMaxColumns"
 
 #: src/MadOptionsDialog.cpp:281
 msgid "Columns of Wrap-By-Column"
@@ -2584,7 +2584,7 @@ msgstr "依最大长度折行的长度"
 
 #: src/MadOptionsDialog.cpp:287
 msgid "WxEditTabColumns"
-msgstr ""
+msgstr "WxEditTabColumns"
 
 #: src/MadOptionsDialog.cpp:290
 msgid "Columns of Tab"
@@ -2592,11 +2592,11 @@ msgstr "定位字符(Tab) 的长度"
 
 #: src/MadOptionsDialog.cpp:290 src/MadWordCountDialog.cpp:99
 msgid "WxStaticText5"
-msgstr ""
+msgstr "WxStaticText5"
 
 #: src/MadOptionsDialog.cpp:296
 msgid "WxEditIndentColumns"
-msgstr ""
+msgstr "WxEditIndentColumns"
 
 #: src/MadOptionsDialog.cpp:299
 msgid "Columns of Indent"
@@ -2604,7 +2604,7 @@ msgstr "缩排时的长度"
 
 #: src/MadOptionsDialog.cpp:299 src/MadWordCountDialog.cpp:114
 msgid "WxStaticText6"
-msgstr ""
+msgstr "WxStaticText6"
 
 #: src/MadOptionsDialog.cpp:305
 msgid "Insert Space Char Instead of Tab Char"
@@ -2612,7 +2612,7 @@ msgstr "以空格符取代定位(Tab)字符"
 
 #: src/MadOptionsDialog.cpp:305
 msgid "WxCheckBoxTabOrSpaces"
-msgstr ""
+msgstr "WxCheckBoxTabOrSpaces"
 
 #: src/MadOptionsDialog.cpp:308
 msgid "Auto Indent"
@@ -2620,7 +2620,7 @@ msgstr "自动缩排"
 
 #: src/MadOptionsDialog.cpp:308
 msgid "WxCheckBoxAutoIndent"
-msgstr ""
+msgstr "WxCheckBoxAutoIndent"
 
 #: src/MadOptionsDialog.cpp:311
 msgid "Auto Complete Character Pair"
@@ -2628,7 +2628,7 @@ msgstr "自动完成字符配对"
 
 #: src/MadOptionsDialog.cpp:311
 msgid "WxCheckBoxAutoCompletePair"
-msgstr ""
+msgstr "WxCheckBoxAutoCompletePair"
 
 #: src/MadOptionsDialog.cpp:314
 msgid ""
@@ -2638,7 +2638,7 @@ msgstr "自动将鼠标选取的文字复制到剪贴簿中（按着 Ctrl 键可
 
 #: src/MadOptionsDialog.cpp:314
 msgid "WxCheckBoxMouseSelectToCopy"
-msgstr ""
+msgstr "WxCheckBoxMouseSelectToCopy"
 
 #: src/MadOptionsDialog.cpp:317
 msgid "Paste Text from Clipboard when Press Middle Mouse Button"
@@ -2646,7 +2646,7 @@ msgstr "按鼠标中键贴上剪贴簿中的文字"
 
 #: src/MadOptionsDialog.cpp:317
 msgid "WxCheckBoxMiddleMouseToPaste"
-msgstr ""
+msgstr "WxCheckBoxMiddleMouseToPaste"
 
 #: src/MadOptionsDialog.cpp:321
 msgid "Print"
@@ -2658,7 +2658,7 @@ msgstr "印出语法色彩"
 
 #: src/MadOptionsDialog.cpp:334
 msgid "WxCheckBoxPrintSyntax"
-msgstr ""
+msgstr "WxCheckBoxPrintSyntax"
 
 #: src/MadOptionsDialog.cpp:337
 msgid "Print Line Number"
@@ -2666,7 +2666,7 @@ msgstr "印出行号"
 
 #: src/MadOptionsDialog.cpp:337
 msgid "WxCheckBoxPrintLineNumber"
-msgstr ""
+msgstr "WxCheckBoxPrintLineNumber"
 
 #: src/MadOptionsDialog.cpp:340
 msgid "Print End of Line"
@@ -2674,7 +2674,7 @@ msgstr "印出结尾符号"
 
 #: src/MadOptionsDialog.cpp:340
 msgid "WxCheckBoxPrintEndOfLine"
-msgstr ""
+msgstr "WxCheckBoxPrintEndOfLine"
 
 #: src/MadOptionsDialog.cpp:343
 msgid "Print Tab Char"
@@ -2682,7 +2682,7 @@ msgstr "印出定位(Tab)字符"
 
 #: src/MadOptionsDialog.cpp:343
 msgid "WxCheckBoxPrintTabChar"
-msgstr ""
+msgstr "WxCheckBoxPrintTabChar"
 
 #: src/MadOptionsDialog.cpp:346
 msgid "Print Space Char"
@@ -2690,7 +2690,7 @@ msgstr "印出空格符"
 
 #: src/MadOptionsDialog.cpp:346
 msgid "WxCheckBoxPrintSpaceChar"
-msgstr ""
+msgstr "WxCheckBoxPrintSpaceChar"
 
 #: src/MadOptionsDialog.cpp:355
 msgid "First Page Only"
@@ -2706,7 +2706,7 @@ msgstr "印出 Offset 标头"
 
 #: src/MadOptionsDialog.cpp:357
 msgid "WxRadioBoxPrintOffset"
-msgstr ""
+msgstr "WxRadioBoxPrintOffset"
 
 #: src/MadOptionsDialog.cpp:364
 msgid "Page Header"
@@ -2718,7 +2718,7 @@ msgstr "印出页首"
 
 #: src/MadOptionsDialog.cpp:368
 msgid "WxCheckBoxPrintPageHeader"
-msgstr ""
+msgstr "WxCheckBoxPrintPageHeader"
 
 #: src/MadOptionsDialog.cpp:374 src/MadOptionsDialog.cpp:411
 msgid "Left:"
@@ -2726,21 +2726,21 @@ msgstr "左边："
 
 #: src/MadOptionsDialog.cpp:374 src/MadWordCountDialog.cpp:105
 msgid "WxStaticText7"
-msgstr ""
+msgstr "WxStaticText7"
 
 #: src/MadOptionsDialog.cpp:377
 msgid "WxEditHeaderLeft"
-msgstr ""
+msgstr "WxEditHeaderLeft"
 
 #: src/MadOptionsDialog.cpp:380 src/MadOptionsDialog.cpp:389
 #: src/MadOptionsDialog.cpp:398 src/MadOptionsDialog.cpp:417
 #: src/MadOptionsDialog.cpp:426 src/MadOptionsDialog.cpp:435
 msgid ">>"
-msgstr ""
+msgstr ">>"
 
 #: src/MadOptionsDialog.cpp:380 src/MadWordCountDialog.cpp:123
 msgid "WxButton1"
-msgstr ""
+msgstr "WxButton1"
 
 #: src/MadOptionsDialog.cpp:383 src/MadOptionsDialog.cpp:420
 msgid "Center:"
@@ -2748,15 +2748,15 @@ msgstr "中间："
 
 #: src/MadOptionsDialog.cpp:383
 msgid "WxStaticText8"
-msgstr ""
+msgstr "WxStaticText8"
 
 #: src/MadOptionsDialog.cpp:386
 msgid "WxEditHeaderCenter"
-msgstr ""
+msgstr "WxEditHeaderCenter"
 
 #: src/MadOptionsDialog.cpp:389
 msgid "WxButton2"
-msgstr ""
+msgstr "WxButton2"
 
 #: src/MadOptionsDialog.cpp:392 src/MadOptionsDialog.cpp:429
 msgid "Right:"
@@ -2764,15 +2764,15 @@ msgstr "右边："
 
 #: src/MadOptionsDialog.cpp:392
 msgid "WxStaticText9"
-msgstr ""
+msgstr "WxStaticText9"
 
 #: src/MadOptionsDialog.cpp:395
 msgid "WxEditHeaderRight"
-msgstr ""
+msgstr "WxEditHeaderRight"
 
 #: src/MadOptionsDialog.cpp:398
 msgid "WxButton3"
-msgstr ""
+msgstr "WxButton3"
 
 #: src/MadOptionsDialog.cpp:401
 msgid "Page Footer"
@@ -2784,43 +2784,43 @@ msgstr "印出页尾"
 
 #: src/MadOptionsDialog.cpp:405
 msgid "WxCheckBoxPrintPageFooter"
-msgstr ""
+msgstr "WxCheckBoxPrintPageFooter"
 
 #: src/MadOptionsDialog.cpp:411
 msgid "WxStaticText10"
-msgstr ""
+msgstr "WxStaticText10"
 
 #: src/MadOptionsDialog.cpp:414
 msgid "WxEditFooterLeft"
-msgstr ""
+msgstr "WxEditFooterLeft"
 
 #: src/MadOptionsDialog.cpp:417
 msgid "WxButton4"
-msgstr ""
+msgstr "WxButton4"
 
 #: src/MadOptionsDialog.cpp:420
 msgid "WxStaticText11"
-msgstr ""
+msgstr "WxStaticText11"
 
 #: src/MadOptionsDialog.cpp:423
 msgid "WxEditFooterCenter"
-msgstr ""
+msgstr "WxEditFooterCenter"
 
 #: src/MadOptionsDialog.cpp:426
 msgid "WxButton5"
-msgstr ""
+msgstr "WxButton5"
 
 #: src/MadOptionsDialog.cpp:429
 msgid "WxStaticText12"
-msgstr ""
+msgstr "WxStaticText12"
 
 #: src/MadOptionsDialog.cpp:432
 msgid "WxEditFooterRight"
-msgstr ""
+msgstr "WxEditFooterRight"
 
 #: src/MadOptionsDialog.cpp:435
 msgid "WxButton6"
-msgstr ""
+msgstr "WxButton6"
 
 #: src/MadOptionsDialog.cpp:439
 msgid "Keys"
@@ -2832,11 +2832,11 @@ msgstr "提示："
 
 #: src/MadOptionsDialog.cpp:457
 msgid "WxStaticTextCommandHint"
-msgstr ""
+msgstr "WxStaticTextCommandHint"
 
 #: src/MadOptionsDialog.cpp:460
 msgid "WxEditCommandHint"
-msgstr ""
+msgstr "WxEditCommandHint"
 
 #: src/MadOptionsDialog.cpp:470
 msgid "Assigned Keys:"
@@ -2844,7 +2844,7 @@ msgstr "指定的按键："
 
 #: src/MadOptionsDialog.cpp:470
 msgid "WxStaticText14"
-msgstr ""
+msgstr "WxStaticText14"
 
 #: src/MadOptionsDialog.cpp:483
 msgid "New Key:"
@@ -2852,15 +2852,15 @@ msgstr "新按键："
 
 #: src/MadOptionsDialog.cpp:483
 msgid "WxStaticText15"
-msgstr ""
+msgstr "WxStaticText15"
 
 #: src/MadOptionsDialog.cpp:486
 msgid "WxEditKey"
-msgstr ""
+msgstr "WxEditKey"
 
 #: src/MadOptionsDialog.cpp:489
 msgid "WxEditKeyHint"
-msgstr ""
+msgstr "WxEditKeyHint"
 
 #: src/MadOptionsDialog.cpp:493
 msgid "<== Add Key"
@@ -2868,7 +2868,7 @@ msgstr "<== 加入按键"
 
 #: src/MadOptionsDialog.cpp:493
 msgid "WxButtonAddKey"
-msgstr ""
+msgstr "WxButtonAddKey"
 
 #: src/MadOptionsDialog.cpp:496
 msgid "==> Delete Key"
@@ -2876,7 +2876,7 @@ msgstr "==> 删除按键"
 
 #: src/MadOptionsDialog.cpp:496
 msgid "WxButtonDeleteKey"
-msgstr ""
+msgstr "WxButtonDeleteKey"
 
 #: src/MadOptionsDialog.cpp:499
 msgid "Show the Key in Menu"
@@ -2884,7 +2884,7 @@ msgstr "在菜单中显示此按键"
 
 #: src/MadOptionsDialog.cpp:499
 msgid "WxButtonShowInMenu"
-msgstr ""
+msgstr "WxButtonShowInMenu"
 
 #: src/MadOptionsDialog.cpp:505
 msgid "Reset All Keys to Default(Must Restart MadEdit)"
@@ -2892,12 +2892,12 @@ msgstr "还原所有按键为原始设定(需要重新启动)"
 
 #: src/MadOptionsDialog.cpp:505
 msgid "WxCheckBoxResetAllKeys"
-msgstr ""
+msgstr "WxCheckBoxResetAllKeys"
 
 #: src/MadOptionsDialog.cpp:511 src/MadConvEncDialog.cpp:90
 #: src/MadAboutDialog.cpp:68
 msgid "WxButtonOK"
-msgstr ""
+msgstr "WxButtonOK"
 
 #: src/MadOptionsDialog.cpp:518
 #, c-format
@@ -2987,7 +2987,7 @@ msgstr "额外的选项"
 
 #: src/MadConvEncDialog.cpp:83
 msgid "WxRadioBoxOption"
-msgstr ""
+msgstr "WxRadioBoxOption"
 
 #: src/MadConvEncDialog.cpp:98
 msgid "Convert Encoding"
@@ -3001,11 +3001,11 @@ msgstr "字数"
 #: src/MadWordCountDialog.cpp:90 src/MadWordCountDialog.cpp:96
 #: src/MadWordCountDialog.cpp:102 src/MadWordCountDialog.cpp:108
 msgid "999999"
-msgstr ""
+msgstr "999999"
 
 #: src/MadWordCountDialog.cpp:78
 msgid "WxStaticTextWordCount"
-msgstr ""
+msgstr "WxStaticTextWordCount"
 
 #: src/MadWordCountDialog.cpp:81
 msgid "Characters (no spaces)"
@@ -3013,7 +3013,7 @@ msgstr "字符数（不含空白）"
 
 #: src/MadWordCountDialog.cpp:84
 msgid "WxStaticTextCharCount"
-msgstr ""
+msgstr "WxStaticTextCharCount"
 
 #: src/MadWordCountDialog.cpp:87
 msgid "Characters (with spaces)"
@@ -3021,7 +3021,7 @@ msgstr "字符数（包含空白）"
 
 #: src/MadWordCountDialog.cpp:90
 msgid "WxStaticTextSpaceCount"
-msgstr ""
+msgstr "WxStaticTextSpaceCount"
 
 #: src/MadWordCountDialog.cpp:93
 msgid "Halfwidth Words"
@@ -3029,7 +3029,7 @@ msgstr "半角字"
 
 #: src/MadWordCountDialog.cpp:96
 msgid "WxStaticTextHalfwidthCount"
-msgstr ""
+msgstr "WxStaticTextHalfwidthCount"
 
 #: src/MadWordCountDialog.cpp:99
 msgid "Fullwidth Words"
@@ -3037,7 +3037,7 @@ msgstr "全角字"
 
 #: src/MadWordCountDialog.cpp:102
 msgid "WxStaticTextFullwidthCount"
-msgstr ""
+msgstr "WxStaticTextFullwidthCount"
 
 #: src/MadWordCountDialog.cpp:105
 msgid "Lines"
@@ -3045,7 +3045,7 @@ msgstr "行数"
 
 #: src/MadWordCountDialog.cpp:108
 msgid "WxStaticTextLineCount"
-msgstr ""
+msgstr "WxStaticTextLineCount"
 
 #: src/MadWordCountDialog.cpp:114
 msgid "Detail Information of Characters:"
@@ -3053,7 +3053,7 @@ msgstr "所有字符的详细数据："
 
 #: src/MadWordCountDialog.cpp:117 src/MadAboutDialog.cpp:59
 msgid "WxMemo1"
-msgstr ""
+msgstr "WxMemo1"
 
 #: src/MadWordCountDialog.cpp:128
 msgid "Word Count"
