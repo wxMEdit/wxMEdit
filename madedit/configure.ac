@@ -2,14 +2,14 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.59)
-AC_INIT([madedit], [0.2.4], [madedit@gmail.com])
+AC_INIT([madedit], [0.2.5], [madedit@gmail.com])
 AC_CONFIG_SRCDIR([src/MadEditApp.cpp])
 AC_CONFIG_HEADER([config.h])
 AC_PREFIX_DEFAULT([/usr])
 
 AM_INIT_AUTOMAKE
 
-ALL_LINGUAS="zh_CN zh_TW"
+ALL_LINGUAS="it_IT zh_CN zh_TW"
 AM_GNU_GETTEXT
 AC_SUBST(ALL_LINGUAS)
 

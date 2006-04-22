@@ -380,6 +380,7 @@ noinst_HEADERS = description-pak \
 	images/hexmode.xpm \
 	images/indent.xpm \
 	images/Mad.ico \
+	images/Mad2.ico \
 	images/Mad.xpm \
 	images/Mad_16x15.xpm \
 	images/new.xpm \
