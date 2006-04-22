@@ -1,5 +1,5 @@
 			=======================
-			  MadEdit v0.2.4 Beta
+			  MadEdit v0.2.5 Beta
 			=======================
 About:
 -----
@@ -62,6 +62,8 @@ Syntax files, Locale files and Settings:
 
 ChangeLog:
 ----------
+v0.2.5:
+
 v0.2.4-2:
 1.fixed that lost the last byte of clipboard data (Linux version only).
 
@@ -186,7 +188,7 @@ License:
 MadEdit is released under the GNU General Public License.
 
 
-Auther:
+Author:
 ------
 Alston Chen <madedit@gmail.com>
 
