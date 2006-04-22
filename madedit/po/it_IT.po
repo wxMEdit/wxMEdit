@@ -2300,15 +2300,15 @@ msgstr "Files Binari trovati"
 
 #: src/MadHighlightingDialog.cpp:214
 msgid "Scheme:"
-msgstr ""
+msgstr "Scheme:"
 
 #: src/MadHighlightingDialog.cpp:218
 msgid "WxComboBoxScheme"
-msgstr ""
+msgstr "WxComboBoxScheme"
 
 #: src/MadHighlightingDialog.cpp:221
 msgid "You cannot modify the scheme with * sign."
-msgstr ""
+msgstr "Gli Schemi contenenti * non sono modificabili."
 
 #: src/MadHighlightingDialog.cpp:227
 msgid "&Load"
@@ -2408,15 +2408,15 @@ msgstr "Impostazioni Evidenziazione Sintassi"
 
 #: src/MadHighlightingDialog.cpp:954
 msgid "Cannot load this scheme."
-msgstr ""
+msgstr "Non posso caricare questo Scheme."
 
 #: src/MadHighlightingDialog.cpp:977
 msgid "Cannot save to the scheme."
-msgstr ""
+msgstr "Non possosalvare questo Scheme."
 
 #: src/MadHighlightingDialog.cpp:999
 msgid "Cannot delete this scheme."
-msgstr ""
+msgstr "Non posso eliminare questo Scheme."
 
 #: src/MadSearchDialog.cpp:93 src/MadReplaceDialog.cpp:94
 msgid "&Move Focus to Editor Window"
@@ -3072,21 +3072,3 @@ msgstr "Conteggio Parole (Testo Selezionato)"
 #: src/MadAboutDialog.cpp:76
 msgid "About MadEdit"
 msgstr "A proposito di MadEdit..."
-
-#~ msgid "Schema:"
-#~ msgstr "Schema:"
-
-#~ msgid "WxComboBoxSchema"
-#~ msgstr "WxComboBoxSchema"
-
-#~ msgid "You cannot modify the schemas with * sign."
-#~ msgstr "Gli Schemi contenenti * non sono modificabili. "
-
-#~ msgid "Cannot load this schema."
-#~ msgstr "Non posso caricare questo Schema."
-
-#~ msgid "Cannot save to the schema."
-#~ msgstr "Non possosalvare questo Schema."
-
-#~ msgid "Cannot delete this schema."
-#~ msgstr "Non posso eliminare questo Schema."
