@@ -1,7 +1,5 @@
-
-// madedit: fixed co-exist of normal Clipboard and PrimarySelection under GTK
-// patched from wx-gtk-clipbrd.patch:
 // Fixes primary selection problem in wxClipboard under Gtk
+// patched from wx-gtk-clipbrd.patch:
 // http://sourceforge.net/tracker/index.php?func=detail&aid=1280049&group_id=9863&atid=309863
 
 /////////////////////////////////////////////////////////////////////////////
@@ -26,11 +24,10 @@
 #include <wx/utils.h>
 #include <wx/log.h>
 
+//[mad]#include "wx/gtk/private.h"
 #include <glib.h>
 #include <gdk/gdk.h>
 #include <gtk/gtk.h>
-
-
 class _wxGtkString_
 {
 public:
@@ -46,7 +43,6 @@ private:
 
     DECLARE_NO_COPY_CLASS(_wxGtkString_)
 };
-
 
 
 //-----------------------------------------------------------------------------
@@ -232,32 +228,26 @@ selection_clear_clip( GtkWidget *WXUNUSED(widget), GdkEventSelection *event )
     {
         wxTheClipboard->m_ownsPrimarySelection = FALSE;
 
-//madedit
-        if (wxTheClipboard->m_primarySelectionData)
-        {
-            wxLogTrace(TRACE_CLIPBOARD, wxT("Primary selection will get cleared" ));
-
-            delete wxTheClipboard->m_primarySelectionData;
-            wxTheClipboard->m_primarySelectionData = (wxDataObject*) NULL;
-        }
-//madedit
-
+        if (wxTheClipboard->m_primarySelectionData)                                 //[mad]
+        {                                                                           //[mad]
+            wxLogTrace(TRACE_CLIPBOARD, wxT("Primary selection will get cleared" ));//[mad]
+                                                                                    //[mad]
+            delete wxTheClipboard->m_primarySelectionData;                          //[mad]
+            wxTheClipboard->m_primarySelectionData = (wxDataObject*) NULL;          //[mad]
+        }                                                                           //[mad]
     }
     else
     if (event->selection == g_clipboardAtom)
     {
         wxTheClipboard->m_ownsClipboard = FALSE;
 
-//madedit
-        if (wxTheClipboard->m_clipboardData)
-        {
-            wxLogTrace(TRACE_CLIPBOARD, wxT("Clipboard will get cleared" ));
-
-            delete wxTheClipboard->m_clipboardData;
-            wxTheClipboard->m_clipboardData = (wxDataObject*)NULL;
-        }
-//madedit
-
+        if (wxTheClipboard->m_clipboardData)                                //[mad]
+        {                                                                   //[mad]
+            wxLogTrace(TRACE_CLIPBOARD, wxT("Clipboard will get cleared" ));//[mad]
+                                                                            //[mad]
+            delete wxTheClipboard->m_clipboardData;                         //[mad]
+            wxTheClipboard->m_clipboardData = (wxDataObject*)NULL;          //[mad]
+        }                                                                   //[mad]
     }
     else
     {
@@ -265,21 +255,32 @@ selection_clear_clip( GtkWidget *WXUNUSED(widget), GdkEventSelection *event )
         return FALSE;
     }
 
-#if 0
-//madedit
     if ((!wxTheClipboard->m_ownsPrimarySelection) &&
         (!wxTheClipboard->m_ownsClipboard))
     {
         /* the clipboard is no longer in our hands. we can the delete clipboard data. */
-        if (wxTheClipboard->m_data)
-        {
-            wxLogTrace(TRACE_CLIPBOARD, wxT("wxClipboard will get cleared" ));
-
-            delete wxTheClipboard->m_data;
-            wxTheClipboard->m_data = (wxDataObject*) NULL;
-        }
+        //[mad]if (wxTheClipboard->m_data)
+        //[mad]{
+        //[mad]    wxLogTrace(TRACE_CLIPBOARD, wxT("wxClipboard will get cleared" ));
+        //[mad]
+        //[mad]    delete wxTheClipboard->m_data;
+        //[mad]    wxTheClipboard->m_data = (wxDataObject*) NULL;
+        //[mad]}
+        if (wxTheClipboard->m_clipboardData)                                //[mad]
+        {                                                                   //[mad]
+            wxLogTrace(TRACE_CLIPBOARD, wxT("Clipboard will get cleared" ));//[mad]
+                                                                            //[mad]
+            delete wxTheClipboard->m_clipboardData;                         //[mad]
+            wxTheClipboard->m_clipboardData = (wxDataObject*)NULL;          //[mad]
+        }                                                                   //[mad]
+        if (wxTheClipboard->m_primarySelectionData)                                 //[mad]
+        {                                                                           //[mad]
+            wxLogTrace(TRACE_CLIPBOARD, wxT("Primary selection will get cleared" ));//[mad]
+                                                                                    //[mad]
+            delete wxTheClipboard->m_primarySelectionData;                          //[mad]
+            wxTheClipboard->m_primarySelectionData = (wxDataObject*) NULL;          //[mad]
+        }                                                                           //[mad]
     }
-#endif
 
     wxTheClipboard->m_waiting = FALSE;
     return TRUE;
@@ -300,19 +301,16 @@ selection_handler( GtkWidget *WXUNUSED(widget),
 {
     if (!wxTheClipboard) return;
 
-    
-    
-//madedit    if (!wxTheClipboard->m_data) return;
-    wxDataObject *data;
+    //[mad]if (!wxTheClipboard->m_data) return;
+    wxDataObject *data;//[mad]
 
-//madedit    wxDataObject *data = wxTheClipboard->m_data;
-    if (selection_data->selection == GDK_SELECTION_PRIMARY)
-        data = wxTheClipboard->m_primarySelectionData;
-    else
-        data = wxTheClipboard->m_clipboardData;
-
-    if (!data) return;
-//madedit
+    //[mad]wxDataObject *data = wxTheClipboard->m_data;
+    if (selection_data->selection == GDK_SELECTION_PRIMARY)//[mad]
+        data = wxTheClipboard->m_primarySelectionData;     //[mad]
+    else                                                   //[mad]
+        data = wxTheClipboard->m_clipboardData;            //[mad]
+                                                           //[mad]
+    if (!data) return;                                     //[mad]
 
     // ICCCM says that TIMESTAMP is a required atom.
     // In particular, it satisfies Klipper, which polls
@@ -394,10 +392,9 @@ wxClipboardGtk::wxClipboardGtk()
     m_ownsClipboard = FALSE;
     m_ownsPrimarySelection = FALSE;
 
-//madedit   m_data = (wxDataObject*) NULL;
-    m_primarySelectionData = (wxDataObject*) NULL;
-    m_clipboardData = (wxDataObject*) NULL;
-
+    //[mad]m_data = (wxDataObject*) NULL;
+    m_primarySelectionData = (wxDataObject*) NULL;//[mad]
+    m_clipboardData = (wxDataObject*) NULL;       //[mad]
     m_receivedData = (wxDataObject*) NULL;
 
     /* we use m_targetsWidget to query what formats are available */
@@ -431,9 +428,9 @@ wxClipboardGtk::wxClipboardGtk()
 
 wxClipboardGtk::~wxClipboardGtk()
 {
-    m_usePrimary = false;
-    Clear();
-    m_usePrimary = true;
+    m_usePrimary = false;//[mad]
+    Clear();             //[mad]
+    m_usePrimary = true; //[mad]
     Clear();
 
     if (m_clipboardWidget) gtk_widget_destroy( m_clipboardWidget );
@@ -442,10 +439,9 @@ wxClipboardGtk::~wxClipboardGtk()
 
 void wxClipboardGtk::Clear()
 {
-//madedit    if (m_data)
-    if (((m_usePrimary) && (m_primarySelectionData)) ||
-            ((!m_usePrimary) && (m_clipboardData)))
-
+    //[mad]if (m_data)
+    if (((m_usePrimary) && (m_primarySelectionData)) ||//[mad]
+            ((!m_usePrimary) && (m_clipboardData)))    //[mad]
     {
 #if wxUSE_THREADS
         /* disable GUI threads */
@@ -453,49 +449,42 @@ void wxClipboardGtk::Clear()
 
         //  As we have data we also own the clipboard. Once we no longer own
         //  it, clear_selection is called which will set m_data to zero
-
-//madedit        if (gdk_selection_owner_get( g_clipboardAtom ) == m_clipboardWidget->window)
-        // it, clear_selection is called which will set m_clipboardData or
-        // m_primarySelectionData to zero.
-        if ((m_usePrimary) && (m_primarySelectionData))
+        
+        if ((!m_usePrimary) && (m_clipboardData))//[mad]
+        {                                        //[mad]
+        if (gdk_selection_owner_get( g_clipboardAtom ) == m_clipboardWidget->window)
         {
-            if (gdk_selection_owner_get( GDK_SELECTION_PRIMARY ) == m_clipboardWidget->window)
+            m_waiting = TRUE;
 
-            {
-                m_waiting = TRUE;
-
-//madedit            gtk_selection_owner_set( (GtkWidget*) NULL, g_clipboardAtom,
-                gtk_selection_owner_set( (GtkWidget*) NULL, GDK_SELECTION_PRIMARY,
+            gtk_selection_owner_set( (GtkWidget*) NULL, g_clipboardAtom,
                                      (guint32) GDK_CURRENT_TIME );
 
-                while (m_waiting) gtk_main_iteration();
-            }
-
-//madedit        if (gdk_selection_owner_get( GDK_SELECTION_PRIMARY ) == m_clipboardWidget->window)
-            delete m_primarySelectionData;
-            m_primarySelectionData = (wxDataObject*) NULL;
+            while (m_waiting) gtk_main_iteration();
         }
+        delete m_clipboardData;                //[mad]
+        m_clipboardData = (wxDataObject*) NULL;//[mad]
+        }                                      //[mad]
 
-        if ((!m_usePrimary) && (m_clipboardData))
+        if ((m_usePrimary) && (m_primarySelectionData))//[mad]
+        {                                              //[mad]
+        if (gdk_selection_owner_get( GDK_SELECTION_PRIMARY ) == m_clipboardWidget->window)
         {
-            if (gdk_selection_owner_get( g_clipboardAtom ) == m_clipboardWidget->window)
-            {
-                m_waiting = TRUE;
+            m_waiting = TRUE;
 
-//madedit            gtk_selection_owner_set( (GtkWidget*) NULL, GDK_SELECTION_PRIMARY,
-                gtk_selection_owner_set( (GtkWidget*) NULL, g_clipboardAtom,
+            gtk_selection_owner_set( (GtkWidget*) NULL, GDK_SELECTION_PRIMARY,
                                      (guint32) GDK_CURRENT_TIME );
 
-                while (m_waiting) gtk_main_iteration();
-            }
-
-        //if (m_data)
-        //{
-            //delete m_data;
-            //m_data = (wxDataObject*) NULL;
-            delete m_clipboardData;
-            m_clipboardData = (wxDataObject*) NULL;
+            while (m_waiting) gtk_main_iteration();
         }
+        delete m_primarySelectionData;                //[mad]
+        m_primarySelectionData = (wxDataObject*) NULL;//[mad]
+        }                                             //[mad]
+
+        //[mad]if (m_data)
+        //[mad]{
+        //[mad]    delete m_data;
+        //[mad]    m_data = (wxDataObject*) NULL;
+        //[mad]}
 
 #if wxUSE_THREADS
         /* re-enable GUI threads */
@@ -535,11 +524,11 @@ bool wxClipboardGtk::AddData( wxDataObject *data )
     // we can only store one wxDataObject
     Clear();
 
-//madedit    m_data = data;
+    //[mad]m_data = data;
 
     // get formats from wxDataObjects
-//madedit    wxDataFormat *array = new wxDataFormat[ m_data->GetFormatCount() ];
-//madedit    m_data->GetAllFormats( array );
+    //[mad]wxDataFormat *array = new wxDataFormat[ m_data->GetFormatCount() ];
+    //[mad]m_data->GetAllFormats( array );
     wxDataFormat *array = new wxDataFormat[ data->GetFormatCount() ];
     data->GetAllFormats( array );
 
@@ -553,12 +542,11 @@ bool wxClipboardGtk::AddData( wxDataObject *data )
                               g_timestampAtom,
                               0 );
 
-
-//madedit    for (size_t i = 0; i < m_data->GetFormatCount(); i++)
-    for (size_t i = 0; i < data->GetFormatCount(); i++)
+    //[mad]for (size_t i = 0; i < m_data->GetFormatCount(); i++)
+    for (size_t i = 0; i < data->GetFormatCount(); i++)//[mad]
     {
         wxLogTrace( TRACE_CLIPBOARD,
-                    wxT("wxClipboardGtk now supports atom %s"),
+                    wxT("wxClipboardGtk now supports atom %s"), //[mad]
                     array[i].GetId().c_str() );
 
 //        printf( "added %s\n",
@@ -586,15 +574,15 @@ bool wxClipboardGtk::AddData( wxDataObject *data )
                                          (guint32) GDK_CURRENT_TIME ));
 
     if (m_usePrimary)
-    {
-        m_primarySelectionData = data;
-        m_ownsPrimarySelection = res;
-    }
+    {                                    //[mad]
+        m_primarySelectionData = data;   //[mad]
+        m_ownsPrimarySelection = res;    //[mad]
+    }                                    //[mad]
     else
-    {
-        m_clipboardData = data;
-        m_ownsClipboard = res;
-    }
+    {                                    //[mad]
+        m_clipboardData = data;          //[mad]
+        m_ownsClipboard = res;           //[mad]
+    }                                    //[mad]
 
 #if wxUSE_THREADS
     /* re-enable GUI threads */
@@ -767,10 +755,8 @@ wxClipboardGtk *GetClipboardGtk()
 }
 
 
-
 #endif
   // wxUSE_CLIPBOARD
 
 #endif
   // __WXGTK__
-

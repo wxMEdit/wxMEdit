@@ -1,7 +1,5 @@
-
-// madedit: fixed co-exist of normal Clipboard and PrimarySelection under GTK
-// patched from wx-gtk-clipbrd.patch:
 // Fixes primary selection problem in wxClipboard under Gtk
+// patched from wx-gtk-clipbrd.patch:
 // http://sourceforge.net/tracker/index.php?func=detail&aid=1280049&group_id=9863&atid=309863
 
 /////////////////////////////////////////////////////////////////////////////
@@ -28,10 +26,10 @@
 #include <wx/clipbrd.h>
 
 // ----------------------------------------------------------------------------
-// wxClipboard
+// wxClipboardGtk
 // ----------------------------------------------------------------------------
 
-class wxClipboardGtk : public wxClipboardBase
+class WXDLLIMPEXP_CORE wxClipboardGtk : public wxClipboardBase
 {
 public:
     wxClipboardGtk();
@@ -70,10 +68,9 @@ public:
     bool              m_open;
     bool              m_ownsClipboard;
     bool              m_ownsPrimarySelection;
-//madedit    wxDataObject     *m_data;
-    wxDataObject     *m_clipboardData;
-    wxDataObject     *m_primarySelectionData;
-//madedit
+    //[Mad]wxDataObject     *m_data;
+    wxDataObject     *m_clipboardData;//[Mad]
+    wxDataObject     *m_primarySelectionData;//[Mad]
 
     GtkWidget        *m_clipboardWidget;  /* for getting and offering data */
     GtkWidget        *m_targetsWidget;    /* for getting list of supported formats */
@@ -90,8 +87,9 @@ private:
 
 
 extern wxClipboardGtk *GetClipboardGtk();
-
+#ifdef wxTheClipboard
 #undef wxTheClipboard
+#endif
 #define wxTheClipboard GetClipboardGtk()
 
 
@@ -99,7 +97,7 @@ extern wxClipboardGtk *GetClipboardGtk();
    // wxUSE_CLIPBOARD
 
 #endif
-    // __GTKCLIPBOARDH__
+    // _CLIPBRD_GTK_H_
 
 #endif
     // __WXGTK__

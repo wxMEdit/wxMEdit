@@ -134,6 +134,8 @@ public:
     bool GetColumnData(wxString &str, int &linecount)
     {
         char *buf=&(*data.begin());
+        if(buf==NULL) return false;
+
         linecount=*((int*)buf);
         buf+=sizeof(int);
         str=(wxChar*)buf;
@@ -167,7 +169,10 @@ public:
 
     bool GetHexData(void *buf)
     {
-        memcpy(buf, &(*data.begin()), data.size());
+        void *ptr=&(*data.begin());
+        if(ptr==NULL) return false;
+
+        memcpy(buf, ptr, data.size());
         return true;
     }
 
@@ -3992,9 +3997,10 @@ int MadEdit::GetColumnDataFromClipboard(vector <ucs4_t> *ucs)
             wxTheClipboard->GetData( coldata );
 
             wxString str;
-            coldata.GetColumnData(str, linecount);
-
-            TranslateText(str.c_str(), str.Len(), ucs, false);
+            if(coldata.GetColumnData(str, linecount))
+            {
+                TranslateText(str.c_str(), str.Len(), ucs, false);
+            }
         }
         wxTheClipboard->Close();
     }
@@ -4041,9 +4047,11 @@ void MadEdit::GetHexDataFromClipboard(vector <char> *cs)
             wxTheClipboard->GetData( hexdata );
 
             size_t size=hexdata.GetHexDataSize();
-
             cs->resize(size);
-            hexdata.GetHexData( &(*cs->begin()) );
+            if(size)
+            {
+                hexdata.GetHexData( &(*cs->begin()) );
+            }
         }
         wxTheClipboard->Close();
     }
