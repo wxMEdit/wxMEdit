@@ -133,9 +133,8 @@ public:
 
     bool GetColumnData(wxString &str, int &linecount)
     {
+        if(data.size()==0) return false;
         char *buf=&(*data.begin());
-        if(buf==NULL) return false;
-
         linecount=*((int*)buf);
         buf+=sizeof(int);
         str=(wxChar*)buf;
@@ -169,10 +168,8 @@ public:
 
     bool GetHexData(void *buf)
     {
-        void *ptr=&(*data.begin());
-        if(ptr==NULL) return false;
-
-        memcpy(buf, ptr, data.size());
+        if(data.size()==0) return false;
+        memcpy(buf, &(*data.begin()), data.size());
         return true;
     }
 
