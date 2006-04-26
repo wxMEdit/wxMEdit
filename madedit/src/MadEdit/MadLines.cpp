@@ -1992,7 +1992,7 @@ MadLineState MadLines::Reformat(MadLineIterator iter)
                                                 }
                                                 else
                                                 {
-                                                    // range-off mark may be after linecomment (ex: javascript)
+                                                    // range-off mark may be beyond linecomment (ex: javascript)
                                                     eatUCharCount = length;
                                                 }
                                                 state.LineComment = index;

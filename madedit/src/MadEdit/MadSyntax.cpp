@@ -1564,38 +1564,6 @@ int MadSyntax::NextWord(int &wordwidth)
                             }
                         }
 
-                        // check Line Comment On
-                        if(!m_LineCommentAtBOL||nw_BeginOfLine)
-                        {
-                            if(!m_LineComment.empty())
-                            {
-                                idx =(this->*FindString)(nw_ucqueue, nw_FirstIndex,
-                                    m_LineComment.begin(), m_LineComment.end(), strlen);
-                                if(idx != 0)
-                                {
-                                    if(IsInRange(nw_State.rangeid, m_LineCommentInRange))
-                                    {
-                                        // range-off mark may be after linecomment (ex: javascript)
-                                        if(nw_State.rangeid==0)
-                                        {
-                                            nw_CommentUntilEOL = true;
-                                        }
-                                        nw_NextState.linecmt = idx;
-                                        nw_FirstIndex += strlen;
-
-                                        if(nw_RestCount == 0)
-                                        {
-                                            nw_State = nw_NextState;
-                                            nw_RestCount = nw_FirstIndex;
-                                            continue;
-                                        }
-
-                                        break;
-                                    }
-                                }
-                            }
-                        }
-
                         // check Block Comment On
                         if(!m_BlockCommentOn.empty())
                         {
@@ -1617,6 +1585,38 @@ int MadSyntax::NextWord(int &wordwidth)
                                     }
 
                                     break;
+                                }
+                            }
+                        }
+
+                        // check Line Comment On
+                        if(!m_LineCommentAtBOL||nw_BeginOfLine)
+                        {
+                            if(!m_LineComment.empty())
+                            {
+                                idx =(this->*FindString)(nw_ucqueue, nw_FirstIndex,
+                                    m_LineComment.begin(), m_LineComment.end(), strlen);
+                                if(idx != 0)
+                                {
+                                    if(IsInRange(nw_State.rangeid, m_LineCommentInRange))
+                                    {
+                                        // range-off mark may be beyond linecomment (ex: javascript)
+                                        if(nw_State.rangeid==0)
+                                        {
+                                            nw_CommentUntilEOL = true;
+                                        }
+                                        nw_NextState.linecmt = idx;
+                                        nw_FirstIndex += strlen;
+
+                                        if(nw_RestCount == 0)
+                                        {
+                                            nw_State = nw_NextState;
+                                            nw_RestCount = nw_FirstIndex;
+                                            continue;
+                                        }
+
+                                        break;
+                                    }
                                 }
                             }
                         }
