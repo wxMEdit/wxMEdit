@@ -71,3 +71,5 @@ ini	syntax_reg.syn
 
 jsp	syntax_jsp.syn
 tag	syntax_jsp.syn
+
+lua syntax_lua.syn

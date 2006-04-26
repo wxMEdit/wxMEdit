@@ -1,0 +1,79 @@
+# Lua
+Title=Lua
+CaseSensitive=Yes
+Delimiter=~`!@#$%^&*()-+=|\{}[]:;"',.<>/?
+LineComment= --
+BlockComment= --[[ ]]  --[=[ ]=]  --[==[ ]==]  --[===[ ]===]  --[====[ ]====]
+EscapeChar=\
+StringChar="'
+DirectiveLeading=
+KeywordPrefix=
+SpecialWordPrefix=
+IndentChar={
+UnindentChar=}
+BracePair=--[[ ]]  --[=[ ]=]  ( ) [ ] { } 
+AutoCompletePair=() [] {} "" ''
+
+
+# System Predefined Color & Style
+TextColor=Black
+TextBgColor=White
+TextStyle=
+
+DelimiterColor=SaddleBrown
+DelimiterBgColor=
+DelimiterStyle=
+
+SpaceColor=Aqua
+SpaceBgColor=
+SpaceStyle=
+
+NumberColor=Blue
+NumberBgColor=
+NumberStyle=
+
+StringColor=Red
+StringBgColor=
+StringStyle=
+
+CommentColor=Teal
+CommentBgColor=
+CommentStyle=
+
+DirectiveColor=Green
+DirectiveBgColor=
+DirectiveStyle=
+
+SpecialWordColor=Navy
+SpecialWordBgColor=
+SpecialWordStyle=
+
+LineNumberColor=White
+LineNumberBgColor=A0A0A0
+LineNumberStyle=
+
+ActiveLineColor=Fuchsia
+BookmarkColor=C0FFFF
+
+# User Defined Keywords
+[1.Keywords]
+Color=Black
+BgColor=
+Style=Bold
+InRange=0
+Keyword=and break do else elseif end false for function if in local nil not or repeat return then true until while
+
+[2.Libraries]
+Color=DarkBlue
+BgColor=
+Style=Bold
+InRange=0
+Keyword=coroutine module package string table math io file os debug
+
+[3.Functions]
+Color=ForestGreen
+BgColor=
+Style=Bold
+InRange=0
+Keyword=assert collectgarbage dofile error _G getfenv getmetatable ipairs load loadfile loadfile loadstring next pairs pcall print rawequal rawget rawset select setfenv setmetatable tonumber tostring type unpack _VERSION xpcall 	create resume running status wrap yield 	require cpath loaded loadlib path preload seeall 	byte char dump find format gmatch gsub len lower match rep reverse sub upper 	concat insert maxn remove sort 	abs acos asin atan atan2 ceil cos cosh deg exp floor fmod frexp ldexp log log10 max min modf pow rad random randomseed sin sinh sqrt tan tanh pi huge 	close flush input lines open output popen read tmpfile type write 	close flush lines read seek setvbuf write 	clock date difftime execute exit getenv remove rename setlocale time tmpname 	debug getfenv gethook getinfo getlocal getmetatable getregistry getupvalue setfenv sethook setlocal setmetatable setupvalue traceback 
+

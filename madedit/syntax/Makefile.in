@@ -206,6 +206,7 @@ syntax_DATA = extension.list \
 	syntax_javascript.syn \
 	syntax_js_html.syn \
 	syntax_jsp.syn \
+	syntax_lua.syn \
 	syntax_nfo.syn \
 	syntax_pas.syn \
 	syntax_perl.syn \
