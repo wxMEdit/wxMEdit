@@ -48,13 +48,13 @@ RM = rm -f
 all: all-before $(BIN) all-after
 
 all-before:
-	mkdir -p Release
+	mkdir -p Release/MadEdit.app/Contents/MacOS
 
 clean: clean-custom
 	${RM} $(OBJ) $(BIN)
 
 $(BIN): $(OBJ)
-	$(CXX) $(LINKOBJ) -o "Release/MadEdit.exe" $(LIBS)
+	$(CXX) $(LINKOBJ) -o $(BIN) $(LIBS)
 
 ./Release/MadEditFrame.o: ../src/MadEditFrame.cpp
 	$(CXX) -c ../src/MadEditFrame.cpp -o ./Release/MadEditFrame.o $(CXXFLAGS)
