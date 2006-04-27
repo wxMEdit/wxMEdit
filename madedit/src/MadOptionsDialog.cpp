@@ -698,6 +698,7 @@ void MadOptionsDialog::CreateGUIControls(void)
     }
     while(cd->command > 0);
 
+    WxNotebook1->SetNonActiveTabTextColour(wxColor(100,100,100));
     WxNotebook1->SetBackgroundColour(WxButtonOK->GetBackgroundColour());
     WxNotebook1->wxPanel::SetWindowStyleFlag(WxNotebook1->GetWindowStyleFlag()|wxFNB_NO_X_BUTTON);
 

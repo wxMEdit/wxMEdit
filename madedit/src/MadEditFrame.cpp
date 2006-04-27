@@ -1596,6 +1596,7 @@ void MadEditFrame::CreateGUIControls(void)
 
     // information window
     m_InfoNotebook = new wxFlatNotebook(this, ID_OUTPUTNOTEBOOK, wxDefaultPosition, wxSize(300,130), wxFNB_DEFAULT_STYLE|wxFNB_NO_X_BUTTON|wxFNB_BOTTOM);
+    m_InfoNotebook->SetNonActiveTabTextColour(wxColor(100,100,100));
     m_FindInFilesResults = new wxTreeCtrl(m_InfoNotebook, ID_FINDINFILESRESULTS, wxDefaultPosition, wxSize(300,4));//, wxTR_HAS_BUTTONS | wxTR_DEFAULT_STYLE);
     m_InfoNotebook->AddPage(m_FindInFilesResults, _T("Find/Replace in Files Results"));
 
