@@ -11,9 +11,11 @@ KeywordPrefix=
 SpecialWordPrefix=
 IndentChar={
 UnindentChar=}
-BracePair=--[[ ]]  --[=[ ]=]  ( ) [ ] { } 
+BracePair=--[[ ]]  --[=[ ]=]  [[ ]]  ( ) [ ] { } 
 AutoCompletePair=() [] {} "" ''
 
+# for long string
+CustomRange=1 [[ ]] F8F8F8
 
 # System Predefined Color & Style
 TextColor=Black
