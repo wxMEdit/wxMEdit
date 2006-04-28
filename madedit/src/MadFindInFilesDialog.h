@@ -64,9 +64,15 @@ class MadFindInFilesDialog : public wxDialog
 		wxCheckBox *WxCheckBoxSubDir;
 		wxComboBox *WxComboBoxEncoding;
 		wxStaticText *WxStaticText3;
+		wxStaticText *WxStaticText7;
+		wxStaticText *WxStaticText6;
+		wxComboBox *WxComboBoxExclude;
+		wxStaticText *WxStaticText4;
+		wxStaticText *WxStaticText5;
 		wxStaticText *WxStaticText2;
 		wxComboBox *WxComboBoxFilter;
 		wxStaticText *WxStaticText1;
+		wxButton *WxButtonActiveDir;
 		wxButton *WxButtonDir;
 		wxComboBox *WxComboBoxDir;
 		wxRadioButton *WxRadioButtonDir;
@@ -75,7 +81,7 @@ class MadFindInFilesDialog : public wxDialog
 		wxBoxSizer *WxBoxSizer3;
 		wxStaticLine *WxStaticLine1;
 		wxButton *WxButtonClose;
-		wxCheckBox *WxCheckBoxNoReplace;
+		wxCheckBox *WxCheckBoxEnableReplace;
 		wxButton *WxButtonReplace;
 		wxButton *WxButtonFind;
 		wxBoxSizer *WxBoxSizer5;
@@ -103,15 +109,21 @@ class MadFindInFilesDialog : public wxDialog
 			ID_WXCHECKBOXSUBDIR = 1038,
 			ID_WXCOMBOBOXENCODING = 1042,
 			ID_WXSTATICTEXT3 = 1041,
+			ID_WXSTATICTEXT7 = 1049,
+			ID_WXSTATICTEXT6 = 1048,
+			ID_WXCOMBOBOXEXCLUDE = 1050,
+			ID_WXSTATICTEXT4 = 1046,
+			ID_WXSTATICTEXT5 = 1047,
 			ID_WXSTATICTEXT2 = 1040,
 			ID_WXCOMBOBOXFILTER = 1037,
 			ID_WXSTATICTEXT1 = 1036,
+			ID_WXBUTTONACTIVEDIR = 1045,
 			ID_WXBUTTONDIR = 1035,
 			ID_WXCOMBOBOXDIR = 1034,
 			ID_WXRADIOBUTTONDIR = 1033,
 			ID_WXRADIOBUTTONOPENEDFILES = 1031,
 			ID_WXSTATICLINE1 = 1029,
-			ID_WXCHECKBOXNOREPLACE = 1044,
+			ID_WXCHECKBOXENABLEREPLACE = 1044,
 			ID_WXBUTTONREPLACE = 1023,
 			ID_WXBUTTONFIND = 1022,
 			ID_WXCHECKBOXLISTFIRSTONLY = 1043,
@@ -136,7 +148,7 @@ class MadFindInFilesDialog : public wxDialog
 		MadEdit *m_FindText, *m_ReplaceText;
 		wxBitmapButton *WxBitmapButtonRecentFindText, *WxBitmapButtonRecentReplaceText;
 		wxFileHistory *m_RecentFindDir;
-		wxFileHistory *m_RecentFindFilter;
+		wxFileHistory *m_RecentFindFilter, *m_RecentFindExclude;
 		void UpdateCheckBoxByCBHex(bool check);
 		void WxBitmapButtonRecentFindTextClick(wxCommandEvent& event);
 		void WxBitmapButtonRecentReplaceTextClick(wxCommandEvent& event);
@@ -151,7 +163,8 @@ class MadFindInFilesDialog : public wxDialog
 		void WxButtonReplaceClick(wxCommandEvent& event);
 		void WxButtonDirClick(wxCommandEvent& event);
 		void MadFindInFilesDialogActivate(wxActivateEvent& event);
-		void WxCheckBoxNoReplaceClick(wxCommandEvent& event);
+		void WxCheckBoxEnableReplaceClick(wxCommandEvent& event);
+		void WxButtonActiveDirClick(wxCommandEvent& event);
 };
 
 extern MadFindInFilesDialog *g_FindInFilesDialog;
