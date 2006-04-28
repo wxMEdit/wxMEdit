@@ -1700,6 +1700,8 @@ void MadEditFrame::MadEditFrameClose(wxCloseEvent& event)
         g_FindInFilesDialog->m_RecentFindDir->Save(*m_Config);
         m_Config->SetPath(wxT("/RecentFindFilter"));
         g_FindInFilesDialog->m_RecentFindFilter->Save(*m_Config);
+        m_Config->SetPath(wxT("/RecentFindExcludeFilter"));
+        g_FindInFilesDialog->m_RecentFindExclude->Save(*m_Config);
     }
 
     delete m_RecentFiles;
@@ -3309,6 +3311,25 @@ void MadEditFrame::OnSearchFindInFiles(wxCommandEvent& event)
     else g_FindInFilesDialog->m_FindText->GetFont(fname, fsize);
     g_FindInFilesDialog->m_FindText->SetFont(fname, 14);
     g_FindInFilesDialog->m_ReplaceText->SetFont(fname, 14);
+
+    if(g_ActiveMadEdit && g_ActiveMadEdit->IsSelected())
+    {
+        if(g_ActiveMadEdit->GetSelectionSize()<=10240)
+        {
+            if(/*g_FindInFilesDialog->WxCheckBoxFindHex->IsShown() &&*/ g_FindInFilesDialog->WxCheckBoxFindHex->GetValue())
+            {
+                wxString ws;
+                g_ActiveMadEdit->GetSelHexString(ws, true);
+                g_FindInFilesDialog->m_FindText->SetText(ws);
+            }
+            else if(g_FindInFilesDialog->WxCheckBoxRegex->GetValue()==false)
+            {
+                wxString ws;
+                g_ActiveMadEdit->GetSelText(ws);
+                g_FindInFilesDialog->m_FindText->SetText(ws);
+            }
+        }
+    }
 }
 
 void MadEditFrame::OnSearchShowFindInFilesResults(wxCommandEvent& event)
