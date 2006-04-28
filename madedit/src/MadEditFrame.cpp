@@ -181,6 +181,16 @@ int g_StatusWidths[7]={ 0, 220, 235, 135, 155, 65, (40 + 0)};
 wxAcceleratorEntry g_AccelFindNext, g_AccelFindPrev;
 //---------------------------------------------------------------------------
 
+// for FindInFilesResults
+class CaretPosData: public wxTreeItemData
+{
+public:
+    wxString filename;
+    int pageid; // >=0 for 'NoName'
+    wxFileOffset bpos, epos;
+    CaretPosData(const wxString &fn, int pid, const wxFileOffset &b, wxFileOffset &e)
+        : filename(fn), pageid(pid), bpos(b), epos(e) {}
+};
 
 
 //---------------------------------------------------------------------------
@@ -704,6 +714,7 @@ BEGIN_EVENT_TABLE(MadEditFrame,wxFrame)
 	EVT_MENU(menuFindPrevious, MadEditFrame::OnSearchFindPrevious)
 	EVT_MENU(menuReplace, MadEditFrame::OnSearchReplace)
 	EVT_MENU(menuFindInFiles, MadEditFrame::OnSearchFindInFiles)
+	EVT_MENU(menuShowFindInFilesResults, MadEditFrame::OnSearchShowFindInFilesResults)
 	EVT_MENU(menuGoToLine, MadEditFrame::OnSearchGoToLine)
 	EVT_MENU(menuGoToPosition, MadEditFrame::OnSearchGoToPosition)
 	EVT_MENU(menuLeftBrace, MadEditFrame::OnSearchGoToLeftBrace)
@@ -852,19 +863,20 @@ CommandData CommandTable[]=
 
     // Search
     { 0, 0, 0, 0, _("&Search"), 0, wxITEM_NORMAL, 0, &g_Menu_Search, 0},
-    { 0,            1, menuFind,         wxT("menuFind"),         _("&Find..."),                  wxT("Ctrl-F"),       wxITEM_NORMAL,    find_xpm_idx,     0, _("Find a string")},
-    { 0,            1, menuFindNext,     wxT("menuFindNext"),     _("Find &Next"),                wxT("F3"),           wxITEM_NORMAL,    findnext_xpm_idx, 0, _("Find next occurrence")},
-    { 0,            1, menuFindPrevious, wxT("menuFindPrevious"), _("Find &Previous"),            wxT("Ctrl-F3"),      wxITEM_NORMAL,    findprev_xpm_idx, 0, _("Find previous occurrence")},
-    { 0,            1, 0,                0,                       0,                              0,                   wxITEM_SEPARATOR, -1,               0, 0},
-    { 0,            1, menuReplace,      wxT("menuReplace"),      _("&Replace..."),               wxT("Ctrl-H"),       wxITEM_NORMAL,    replace_xpm_idx,  0, _("Replace a string")},
-    { 0,            1, 0,                0,                       0,                              0,                   wxITEM_SEPARATOR, -1,               0, 0},
-    { 0,            1, menuFindInFiles,  wxT("menuFindInFiles"),  _("Fin&d/Replace In Files..."), wxT("Ctrl-Shift-F"), wxITEM_NORMAL,    -1,               0, _("Find or replace a string in files")},
-    { 0,            1, 0,                0,                       0,                              0,                   wxITEM_SEPARATOR, -1,               0, 0},
-    { 0,            1, menuGoToLine,     wxT("menuGoToLine"),     _("&Go To Line..."),            wxT("Ctrl-G"),       wxITEM_NORMAL,    -1,               0, _("Go to the specified line")},
-    { 0,            1, menuGoToPosition, wxT("menuGoToPosition"), _("G&o To Position..."),        wxT("Ctrl-Shift-G"), wxITEM_NORMAL,    -1,               0, _("Go to the specified position")},
-    { 0,            1, 0,                0,                       0,                              0,                   wxITEM_SEPARATOR, -1,               0, 0},
-    { ecLeftBrace,  1, menuLeftBrace,    wxT("menuLeftBrace"),    _("Go To L&eft Brace"),         wxT("Ctrl-["),       wxITEM_NORMAL,    -1,               0, _("Go to left brace")},
-    { ecRightBrace, 1, menuRightBrace,   wxT("menuRightBrace"),   _("Go To R&ight Brace"),        wxT("Ctrl-]"),       wxITEM_NORMAL,    -1,               0, _("Go to right brace")},
+    { 0,            1, menuFind,                   wxT("menuFind"),                   _("&Find..."),                                        wxT("Ctrl-F"),       wxITEM_NORMAL,    find_xpm_idx,     0, _("Find a string")},
+    { 0,            1, menuFindNext,               wxT("menuFindNext"),               _("Find &Next"),                                      wxT("F3"),           wxITEM_NORMAL,    findnext_xpm_idx, 0, _("Find next occurrence")},
+    { 0,            1, menuFindPrevious,           wxT("menuFindPrevious"),           _("Find &Previous"),                                  wxT("Ctrl-F3"),      wxITEM_NORMAL,    findprev_xpm_idx, 0, _("Find previous occurrence")},
+    { 0,            1, 0,                          0,                                 0,                                                    0,                   wxITEM_SEPARATOR, -1,               0, 0},
+    { 0,            1, menuReplace,                wxT("menuReplace"),                _("&Replace..."),                                     wxT("Ctrl-H"),       wxITEM_NORMAL,    replace_xpm_idx,  0, _("Replace a string")},
+    { 0,            1, 0,                          0,                                 0,                                                    0,                   wxITEM_SEPARATOR, -1,               0, 0},
+    { 0,            1, menuFindInFiles,            wxT("menuFindInFiles"),            _("Fin&d/Replace in Files..."),                       wxT("Ctrl-Shift-F"), wxITEM_NORMAL,    -1,               0, _("Find or replace a string in files")},
+    { 0,            1, menuShowFindInFilesResults, wxT("menuShowFindInFilesResults"), _("&Show/Hide the Results of Find/Replace in Files"), wxT("Ctrl-Shift-R"), wxITEM_NORMAL,    -1,               0, _("Show or hide the results of find or replace a string in files")},
+    { 0,            1, 0,                          0,                                 0,                                                    0,                   wxITEM_SEPARATOR, -1,               0, 0},
+    { 0,            1, menuGoToLine,               wxT("menuGoToLine"),               _("&Go To Line..."),                                  wxT("Ctrl-G"),       wxITEM_NORMAL,    -1,               0, _("Go to the specified line")},
+    { 0,            1, menuGoToPosition,           wxT("menuGoToPosition"),           _("G&o To Position..."),                              wxT("Ctrl-Shift-G"), wxITEM_NORMAL,    -1,               0, _("Go to the specified position")},
+    { 0,            1, 0,                          0,                                 0,                                                    0,                   wxITEM_SEPARATOR, -1,               0, 0},
+    { ecLeftBrace,  1, menuLeftBrace,              wxT("menuLeftBrace"),              _("Go To L&eft Brace"),                               wxT("Ctrl-["),       wxITEM_NORMAL,    -1,               0, _("Go to left brace")},
+    { ecRightBrace, 1, menuRightBrace,             wxT("menuRightBrace"),             _("Go To R&ight Brace"),                              wxT("Ctrl-]"),       wxITEM_NORMAL,    -1,               0, _("Go to right brace")},
     
     // View
     { 0, 0, 0, 0, _("&View"), 0, wxITEM_NORMAL, 0, &g_Menu_View, 0},
@@ -1597,7 +1609,11 @@ void MadEditFrame::CreateGUIControls(void)
     // information window
     m_InfoNotebook = new wxFlatNotebook(this, ID_OUTPUTNOTEBOOK, wxDefaultPosition, wxSize(300,130), wxFNB_DEFAULT_STYLE|wxFNB_NO_X_BUTTON|wxFNB_BOTTOM);
     m_InfoNotebook->SetNonActiveTabTextColour(wxColor(100,100,100));
-    m_FindInFilesResults = new wxTreeCtrl(m_InfoNotebook, ID_FINDINFILESRESULTS, wxDefaultPosition, wxSize(300,4));//, wxTR_HAS_BUTTONS | wxTR_DEFAULT_STYLE);
+
+    m_FindInFilesResults = new wxTreeCtrl(m_InfoNotebook, ID_FINDINFILESRESULTS, wxDefaultPosition, wxSize(300,4), wxTR_DEFAULT_STYLE|wxTR_HIDE_ROOT);
+    m_FindInFilesResults->AddRoot(wxT("Root"));
+    m_FindInFilesResults->Connect(wxEVT_LEFT_DCLICK, wxMouseEventHandler(MadEditFrame::OnFindInFilesResultsDClick));
+
     m_InfoNotebook->AddPage(m_FindInFilesResults, _T("Find/Replace in Files Results"));
 
     // wxAUI
@@ -1982,6 +1998,105 @@ wxString MadEditFrame::GetMenuKey(const wxString &menuid, const wxString &defaul
     m_KeyMenuMap->insert(MadKeyMenuMap::value_type(defaultkey, menuid));
 
     return wxString(wxT("\t"))+defaultkey;
+}
+
+void MadEditFrame::OnFindInFilesResultsDClick(wxMouseEvent& event)
+{
+    MadEdit *madedit=NULL;
+    int flags;
+    wxTreeItemId id = g_MainFrame->m_FindInFilesResults->HitTest(event.GetPosition(), flags);
+    if(id.IsOk())
+    {
+        CaretPosData *cpdata = (CaretPosData*)g_MainFrame->m_FindInFilesResults->GetItemData(id);
+        if(cpdata)
+        {
+            int count = int(g_MainFrame->m_Notebook->GetPageCount());
+            if(cpdata->pageid>=0 && cpdata->pageid<count)
+            {
+                wxString title=g_MainFrame->m_Notebook->GetPageText(cpdata->pageid);
+                if(title[title.Len()-1]==wxT('*'))
+                    title.Truncate(title.Len()-1);
+                if(title==cpdata->filename)
+                {
+                    g_MainFrame->SetPageFocus(cpdata->pageid);
+                    madedit = g_ActiveMadEdit;
+                }
+            }
+
+            if(madedit==NULL && wxFileExists(cpdata->filename))
+            {
+                g_MainFrame->OpenFile(cpdata->filename, true);
+
+#ifdef __WXMSW__
+                if(g_ActiveMadEdit->GetFileName().Lower()==cpdata->filename.Lower())
+#else
+                if(g_ActiveMadEdit->GetFileName()==cpdata->filename)
+#endif
+                {
+                    madedit = g_ActiveMadEdit;
+                }
+            }
+
+            if(madedit)
+            {
+                madedit->SetCaretPosition(cpdata->epos, cpdata->bpos, cpdata->epos);
+                madedit->SetFocus();
+            }
+        }
+    }
+
+    if(madedit==NULL) event.Skip();
+}
+
+void MadEditFrame::ResetFindInFilesResults()
+{
+    m_FindInFilesResults->DeleteAllItems();
+    m_FindInFilesResults->AddRoot(wxT("Root"));
+}
+
+void MadEditFrame::AddItemToFindInFilesResults(const wxString &text, size_t index, const wxString &filename, int pageid, const wxFileOffset &begpos, wxFileOffset &endpos)
+{
+    static wxTreeItemId fileid;
+
+    if(index==0)
+    {
+        if(m_FindInFilesResults->GetChildrenCount(m_FindInFilesResults->GetRootItem(), false)==0)
+        {
+            fileid = m_FindInFilesResults->AppendItem(m_FindInFilesResults->GetRootItem(), filename);
+        }
+        else
+        {
+            // sort the results
+            wxTreeItemIdValue cookie;
+            wxTreeItemId id=m_FindInFilesResults->GetFirstChild(m_FindInFilesResults->GetRootItem(), cookie);
+            size_t before=0;
+            while(id.IsOk())
+            {
+                wxString idname=m_FindInFilesResults->GetItemText(id);
+#ifdef __WXMSW__
+                if(filename.Lower() < idname.Lower())
+#else
+                if(filename < idname)
+#endif
+                {
+                    break;
+                }
+                id=m_FindInFilesResults->GetNextChild(m_FindInFilesResults->GetRootItem(), cookie);
+                ++before;
+            }
+
+            if(!id.IsOk()) // append item
+            {
+                fileid = m_FindInFilesResults->AppendItem(m_FindInFilesResults->GetRootItem(), filename);
+            }
+            else // insert item
+            {
+                fileid = m_FindInFilesResults->InsertItem(m_FindInFilesResults->GetRootItem(), before, filename);
+            }
+        }
+    }
+    
+    m_FindInFilesResults->AppendItem(fileid, text, -1, -1, new CaretPosData(filename, pageid, begpos, endpos));
 }
 
 
@@ -3184,8 +3299,19 @@ void MadEditFrame::OnSearchFindInFiles(wxCommandEvent& event)
     else g_FindInFilesDialog->m_FindText->GetFont(fname, fsize);
     g_FindInFilesDialog->m_FindText->SetFont(fname, 14);
     g_FindInFilesDialog->m_ReplaceText->SetFont(fname, 14);
+}
 
-    
+void MadEditFrame::OnSearchShowFindInFilesResults(wxCommandEvent& event)
+{
+    if(m_FrameManager.GetPane(m_InfoNotebook).IsShown())
+    {
+        m_FrameManager.GetPane(m_InfoNotebook).Hide();
+    }
+    else
+    {
+        m_FrameManager.GetPane(m_InfoNotebook).Show();
+    }
+    m_FrameManager.Update();
 }
 
 void MadEditFrame::OnSearchGoToLine(wxCommandEvent& event)
@@ -3934,8 +4060,5 @@ void MadEditFrame::OnHelpAbout(wxCommandEvent& event)
         wxLaunchDefaultBrowser(g_MadEdit_URL);
 #endif
     }
-    
-    m_FrameManager.GetPane(m_InfoNotebook).Show();
-    m_FrameManager.Update();
 }
 

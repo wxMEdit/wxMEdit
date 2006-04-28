@@ -48,8 +48,6 @@ BEGIN_EVENT_TABLE(MadFindInFilesDialog,wxDialog)
 	
 	EVT_CLOSE(MadFindInFilesDialog::MadFindInFilesDialogClose)
 	EVT_ACTIVATE(MadFindInFilesDialog::MadFindInFilesDialogActivate)
-	
-	EVT_LISTBOX_DCLICK(ID_WXLISTBOXFILES,MadFindInFilesDialog::WxListBoxFilesDoubleClicked)
 	EVT_BUTTON(ID_WXBUTTONDIR,MadFindInFilesDialog::WxButtonDirClick)
 	EVT_CHECKBOX(ID_WXCHECKBOXNOREPLACE,MadFindInFilesDialog::WxCheckBoxNoReplaceClick)
 	EVT_BUTTON(ID_WXBUTTONREPLACE,MadFindInFilesDialog::WxButtonReplaceClick)
@@ -137,7 +135,7 @@ void MadFindInFilesDialog::CreateGUIControls(void)
 	WxCheckBoxNoReplace = new wxCheckBox(this, ID_WXCHECKBOXNOREPLACE, _("&No 'Replace'"), wxPoint(5,81), wxSize(100,22), 0, wxDefaultValidator, _("WxCheckBoxNoReplace"));
 	WxBoxSizer5->Add(WxCheckBoxNoReplace,0,wxALIGN_CENTER_HORIZONTAL | wxALL,5);
 
-	WxButtonClose = new wxButton(this, wxID_CANCEL, _("Close"), wxPoint(5,108), wxSize(100,28), 0, wxDefaultValidator, _("WxButtonClose"));
+	WxButtonClose = new wxButton(this, wxID_CANCEL, _("Close"), wxPoint(5,113), wxSize(100,28), 0, wxDefaultValidator, _("WxButtonClose"));
 	WxBoxSizer5->Add(WxButtonClose,0,wxALIGN_LEFT | wxALL,5);
 
 	WxStaticLine1 = new wxStaticLine(this, ID_WXSTATICLINE1, wxPoint(166,245), wxSize(150,-1), wxLI_HORIZONTAL);
@@ -181,13 +179,6 @@ void MadFindInFilesDialog::CreateGUIControls(void)
 
 	WxCheckBoxSubDir = new wxCheckBox(this, ID_WXCHECKBOXSUBDIR, _("Include Subdirectories"), wxPoint(86,85), wxSize(300,20), 0, wxDefaultValidator, _("WxCheckBoxSubDir"));
 	WxBoxSizer3->Add(WxCheckBoxSubDir,0,wxALIGN_LEFT | wxALL,2);
-
-	WxStaticLine2 = new wxStaticLine(this, ID_WXSTATICLINE2, wxPoint(166,377), wxSize(150,-1), wxLI_HORIZONTAL);
-	WxBoxSizer1->Add(WxStaticLine2,0,wxGROW | wxALL,2);
-
-	wxArrayString arrayStringFor_WxListBoxFiles;
-	WxListBoxFiles = new wxListBox(this, ID_WXLISTBOXFILES, wxPoint(122,394), wxSize(238,130), arrayStringFor_WxListBoxFiles, wxLB_SINGLE | wxLB_HSCROLL);
-	WxBoxSizer1->Add(WxListBoxFiles,1,wxGROW | wxALL,2);
 
 	GetSizer()->Fit(this);
 	GetSizer()->SetSizeHints(this);
@@ -483,7 +474,9 @@ bool g_Continue;
 wxLongLong g_Time;
 
 wxString fmtmsg1;
-list<wxString> g_FileNameList; // the filenames matched the filename filter
+
+WX_DECLARE_HASH_SET( wxString, wxStringHash, wxStringEqual, MadFileNameList );
+MadFileNameList g_FileNameList; // the filenames matched the filename filter
 
 
 class DirTraverser : public wxDirTraverser
@@ -503,7 +496,10 @@ public:
     }
     virtual wxDirTraverseResult OnFile(const wxString& filename)
     {
-        g_FileNameList.push_back(filename);
+        if(g_FileNameList.find(filename) == g_FileNameList.end())
+        {
+            g_FileNameList.insert(filename);
+        }
         return Continue();
     }
     virtual wxDirTraverseResult OnDir(const wxString& WXUNUSED(dirname))
@@ -538,7 +534,10 @@ void MadFindInFilesDialog::FindReplaceInFiles(bool bReplace)
                             wxPD_APP_MODAL);
     g_ProgressDialog=&dialog;
 
-    WxListBoxFiles->Clear();
+    g_MainFrame->ResetFindInFilesResults();
+    g_MainFrame->m_FrameManager.GetPane(g_MainFrame->m_InfoNotebook).Show();
+    g_MainFrame->m_FrameManager.Update();
+
     g_Continue=true;
     g_Time=wxGetLocalTimeMillis();
 
@@ -614,10 +613,10 @@ void MadFindInFilesDialog::FindReplaceInFiles(bool bReplace)
             madedit=tempedit=new MadEdit(this, -1, wxPoint(-999,-999));
             tempedit->SetStorePropertiesToGlobalConfig(false);
         }
-        
+
         wxString fmt(_("Processing %d of %d files..."));
         vector<wxFileOffset> begpos, endpos;
-        list<wxString>::iterator fnit=g_FileNameList.begin();
+        MadFileNameList::iterator fnit=g_FileNameList.begin();
         bool cont = true;
         for(size_t i = 0; i < totalfiles && cont; i++)
         {
@@ -732,7 +731,7 @@ void MadFindInFilesDialog::FindReplaceInFiles(bool bReplace)
                     if(WxCheckBoxListFirstOnly->GetValue()) count=1;
                     int line=-1, oldline;
                     wxString linetext, loc;
-                    WxListBoxFiles->Freeze();
+                    g_MainFrame->m_FindInFilesResults->Freeze();
                     do
                     {
                         if(madedit->IsTextFile())
@@ -744,20 +743,19 @@ void MadFindInFilesDialog::FindReplaceInFiles(bool bReplace)
                                 linetext.Empty();
                                 madedit->GetLine(linetext, line, 512);
                             }
-                            loc.Printf(_(": Line(%d): "), line+1);
+                            loc.Printf(_("Line(%d): "), line+1);
                         }
                         else
                         {
-                            loc.Printf(_(": Offset(%s): "), wxLongLong(begpos[idx]).ToString().c_str());
+                            loc.Printf(_("Offset(%s): "), wxLongLong(begpos[idx]).ToString().c_str());
                             linetext = _("Binary file matches");
                         }
 
-                        fmt = expr +loc +linetext;
-                        WxListBoxFiles->Append(fmt, new CaretPosData(expr, pid, begpos[idx], endpos[idx]));
+                        fmt = loc +linetext;
+                        g_MainFrame->AddItemToFindInFilesResults(fmt, idx, expr, pid, begpos[idx], endpos[idx]);
                     }
                     while(++idx < count);
-                    WxListBoxFiles->Append(wxT("--------------------------------------------------"));
-                    WxListBoxFiles->Thaw();
+                    g_MainFrame->m_FindInFilesResults->Thaw();
                 }
             }
         }
@@ -776,49 +774,4 @@ void MadFindInFilesDialog::FindReplaceInFiles(bool bReplace)
 void MadFindInFilesDialog::WxCheckBoxNoReplaceClick(wxCommandEvent& event)
 {
     WxButtonReplace->Enable(!event.IsChecked());
-}
-
-/*
- * WxListBoxFilesDoubleClicked
- */
-void MadFindInFilesDialog::WxListBoxFilesDoubleClicked(wxCommandEvent& event)
-{
-    int id=event.GetSelection();
-    CaretPosData *cpdata = (CaretPosData*)WxListBoxFiles->GetClientObject(id);
-    if(cpdata)
-    {
-        extern MadEdit *g_ActiveMadEdit;
-
-        MadEdit *madedit=NULL;
-        int count = int(g_MainFrame->m_Notebook->GetPageCount());
-        if(cpdata->pageid>=0 && cpdata->pageid<count)
-        {
-            wxString title=g_MainFrame->m_Notebook->GetPageText(cpdata->pageid);
-            if(title[title.Len()-1]==wxT('*'))
-                title.Truncate(title.Len()-1);
-            if(title==cpdata->filename)
-            {
-                g_MainFrame->SetPageFocus(cpdata->pageid);
-                madedit = g_ActiveMadEdit;
-            }
-        }
-        else
-        {
-            g_MainFrame->OpenFile(cpdata->filename, true);
-
-#ifdef __WXMSW__
-            if(g_ActiveMadEdit->GetFileName().Lower()==cpdata->filename.Lower())
-#else
-            if(g_ActiveMadEdit->GetFileName()==cpdata->filename)
-#endif
-            {
-                madedit = g_ActiveMadEdit;
-            }
-        }
-
-        if(madedit)
-        {
-            madedit->SetCaretPosition(cpdata->epos, cpdata->bpos, cpdata->epos);
-        }
-    }
 }

@@ -22,7 +22,6 @@
 //Do not add custom headers
 //wxDev-C++ designer will remove them
 ////Header Include Start
-#include <wx/listbox.h>
 #include <wx/stattext.h>
 #include <wx/combobox.h>
 #include <wx/radiobut.h>
@@ -62,8 +61,6 @@ class MadFindInFilesDialog : public wxDialog
 		//Do not add custom control declarations
 		//wxDev-C++ will remove them. Add custom code after the block.
 		////GUI Control Declaration Start
-		wxListBox *WxListBoxFiles;
-		wxStaticLine *WxStaticLine2;
 		wxCheckBox *WxCheckBoxSubDir;
 		wxComboBox *WxComboBoxEncoding;
 		wxStaticText *WxStaticText3;
@@ -103,8 +100,6 @@ class MadFindInFilesDialog : public wxDialog
 		enum
 		{
 			////GUI Enum Control ID Start
-			ID_WXLISTBOXFILES = 1028,
-			ID_WXSTATICLINE2 = 1030,
 			ID_WXCHECKBOXSUBDIR = 1038,
 			ID_WXCOMBOBOXENCODING = 1042,
 			ID_WXSTATICTEXT3 = 1041,
@@ -157,7 +152,6 @@ class MadFindInFilesDialog : public wxDialog
 		void WxButtonDirClick(wxCommandEvent& event);
 		void MadFindInFilesDialogActivate(wxActivateEvent& event);
 		void WxCheckBoxNoReplaceClick(wxCommandEvent& event);
-		void WxListBoxFilesDoubleClicked(wxCommandEvent& event);
 };
 
 extern MadFindInFilesDialog *g_FindInFilesDialog;

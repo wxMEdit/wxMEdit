@@ -204,6 +204,7 @@ public:
     void OnSearchFindPrevious(wxCommandEvent& event);
     void OnSearchReplace(wxCommandEvent& event);
     void OnSearchFindInFiles(wxCommandEvent& event);
+    void OnSearchShowFindInFilesResults(wxCommandEvent& event);
     void OnSearchGoToLine(wxCommandEvent& event);
     void OnSearchGoToPosition(wxCommandEvent& event);
     void OnSearchGoToLeftBrace(wxCommandEvent& event);
@@ -286,9 +287,15 @@ protected:
     void LoadMenuKeys(wxConfigBase *config);
     wxString GetMenuKey(const wxString &menuid, const wxString &defaultkey);
 
+    void OnFindInFilesResultsDClick(wxMouseEvent& event);
+
 #ifdef __WXMSW__
-	WXLRESULT MSWWindowProc(WXUINT message, WXWPARAM wParam, WXLPARAM lParam);
+    WXLRESULT MSWWindowProc(WXUINT message, WXWPARAM wParam, WXLPARAM lParam);
 #endif
+
+public:
+    void ResetFindInFilesResults();
+    void AddItemToFindInFilesResults(const wxString &text, size_t index, const wxString &filename, int pageid, const wxFileOffset &begpos, wxFileOffset &endpos);
 
 };
 
@@ -341,6 +348,7 @@ enum { // menu id
     menuFindNext,
     menuFindPrevious,
     menuFindInFiles,
+    menuShowFindInFilesResults,
     menuGoToLine,
     menuGoToPosition,
     menuLeftBrace,

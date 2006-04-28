@@ -1,8 +1,8 @@
 object frmNewForm: TfrmNewForm
   Left = 8
   Top = 8
-  Width = 804
-  Height = 595
+  Width = 561
+  Height = 441
   BorderIcons = [biSystemMenu, biMinimize]
   Caption = 'Find/Replace In Files'
   Color = clBtnFace
@@ -35,8 +35,8 @@ object frmNewForm: TfrmNewForm
   object WxBoxSizer1: TWxBoxSizer
     Left = 0
     Top = 0
-    Width = 796
-    Height = 565
+    Width = 553
+    Height = 411
     Align = alClient
     TabOrder = 0
     Orientation = wxVertical
@@ -224,9 +224,9 @@ object frmNewForm: TfrmNewForm
       end
       object WxBoxSizer5: TWxBoxSizer
         Left = 320
-        Top = 44
+        Top = 42
         Width = 110
-        Height = 141
+        Height = 146
         TabOrder = 1
         Orientation = wxVertical
         Wx_Class = 'wxBoxSizer'
@@ -309,7 +309,7 @@ object frmNewForm: TfrmNewForm
         end
         object WxButtonClose: TWxButton
           Left = 5
-          Top = 108
+          Top = 113
           Width = 100
           Height = 28
           Caption = 'Close'
@@ -339,7 +339,7 @@ object frmNewForm: TfrmNewForm
       Top = 245
       Width = 150
       Height = 7
-      TabOrder = 3
+      TabOrder = 2
       Wx_BGColor = clBlack
       Wx_Border = 2
       Wx_Class = 'wxStaticLine'
@@ -590,51 +590,6 @@ object frmNewForm: TfrmNewForm
         Wx_StrechFactor = 0
         Wx_VerticalAlignment = wxSZALIGN_TOP
       end
-    end
-    object WxStaticLine2: TWxStaticLine
-      Left = 166
-      Top = 377
-      Width = 150
-      Height = 7
-      TabOrder = 4
-      Wx_BGColor = clBlack
-      Wx_Border = 2
-      Wx_Class = 'wxStaticLine'
-      Wx_ControlOrientation = wxControlVertical
-      Wx_FGColor = clBlack
-      Wx_GeneralStyle = []
-      Wx_HorizontalAlignment = wxSZALIGN_GROW_HORIZONTAL
-      Wx_IDName = 'ID_WXSTATICLINE2'
-      Wx_IDValue = 1030
-      Wx_StrechFactor = 0
-      Wx_VerticalAlignment = wxSZALIGN_TOP
-      Wx_LIOrientation = wxLI_HORIZONTAL
-      Wx_Length = 150
-      LastOrientation = wxLI_HORIZONTAL
-    end
-    object WxListBoxFiles: TWxListBox
-      Left = 122
-      Top = 394
-      Width = 238
-      Height = 130
-      ItemHeight = 13
-      TabOrder = 2
-      EVT_LISTBOX_DCLICK = 'WxListBoxFilesDoubleClicked'
-      Wx_BGColor = clBlack
-      Wx_Border = 2
-      Wx_Class = 'wxListBox'
-      Wx_ControlOrientation = wxControlVertical
-      Wx_FGColor = clBlack
-      Wx_GeneralStyle = []
-      Wx_Hidden = False
-      Wx_HorizontalAlignment = wxSZALIGN_GROW_HORIZONTAL
-      Wx_IDName = 'ID_WXLISTBOXFILES'
-      Wx_IDValue = 1028
-      Wx_ListboxStyle = [wxLB_HSCROLL]
-      Wx_ListboxSubStyle = wxLB_SINGLE
-      Wx_StrechFactor = 1
-      Wx_StretchFactor = 1
-      Wx_VerticalAlignment = wxSZALIGN_GROW_VERTICAL
     end
   end
 end
