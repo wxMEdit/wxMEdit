@@ -553,7 +553,7 @@ void MadFindInFilesDialog::FindReplaceInFiles(bool bReplace)
         if(!wxDirExists(str))
         {
             dialog.Update(max);
-            wxMessageBox(_T("The selected directory does not exist."), wxT("MadEdit"), wxOK|wxICON_ERROR);
+            wxMessageBox(_("The selected directory does not exist."), wxT("MadEdit"), wxOK|wxICON_ERROR);
             return;
         }
         m_RecentFindDir->AddFileToHistory(str);

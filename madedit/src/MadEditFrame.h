@@ -287,6 +287,7 @@ protected:
     void LoadMenuKeys(wxConfigBase *config);
     wxString GetMenuKey(const wxString &menuid, const wxString &defaultkey);
 
+    void OnFindInFilesResultsSize(wxSizeEvent &evt);
     void OnFindInFilesResultsDClick(wxMouseEvent& event);
 
 #ifdef __WXMSW__

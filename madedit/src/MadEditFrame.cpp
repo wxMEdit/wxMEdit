@@ -1614,13 +1614,14 @@ void MadEditFrame::CreateGUIControls(void)
     m_FindInFilesResults->AddRoot(wxT("Root"));
     m_FindInFilesResults->Connect(wxEVT_LEFT_DCLICK, wxMouseEventHandler(MadEditFrame::OnFindInFilesResultsDClick));
 
-    m_InfoNotebook->AddPage(m_FindInFilesResults, _T("Find/Replace in Files Results"));
+    m_InfoNotebook->AddPage(m_FindInFilesResults, _("Find/Replace in Files Results"));
+    m_InfoNotebook->Connect(wxEVT_SIZE, wxSizeEventHandler(MadEditFrame::OnFindInFilesResultsSize));
 
     // wxAUI
     m_FrameManager.SetFrame(this);
     m_FrameManager.SetFlags(m_FrameManager.GetFlags() | wxAUI_MGR_ALLOW_ACTIVE_PANE);
     m_FrameManager.AddPane(m_Notebook, wxCENTER);
-    m_FrameManager.AddPane(m_InfoNotebook, wxBOTTOM, _T("Information Window"));
+    m_FrameManager.AddPane(m_InfoNotebook, wxBOTTOM, _("Information Window"));
     m_FrameManager.GetPane(m_InfoNotebook).Show(false);
     m_FrameManager.Update();
 
@@ -1998,6 +1999,15 @@ wxString MadEditFrame::GetMenuKey(const wxString &menuid, const wxString &defaul
     m_KeyMenuMap->insert(MadKeyMenuMap::value_type(defaultkey, menuid));
 
     return wxString(wxT("\t"))+defaultkey;
+}
+
+void MadEditFrame::OnFindInFilesResultsSize(wxSizeEvent &evt)
+{
+    if(g_MainFrame->m_FrameManager.GetPane(g_MainFrame->m_InfoNotebook).IsShown())
+    {
+        g_MainFrame->m_FrameManager.GetPane(g_MainFrame->m_InfoNotebook).BestSize(g_MainFrame->m_InfoNotebook->GetSize());
+    }
+    evt.Skip();
 }
 
 void MadEditFrame::OnFindInFilesResultsDClick(wxMouseEvent& event)
