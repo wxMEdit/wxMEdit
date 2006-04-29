@@ -2159,9 +2159,9 @@ wxSizer* wxFrameManager::LayoutAll(wxPaneInfoArray& panes,
 
             // new dock's size may not be more than 1/3 of the frame size
             if (dock.IsHorizontal())
-                size = wxMin(size, cli_size.y/3);
+                size = wxMin(size, cli_size.y*3/4);
                  else
-                size = wxMin(size, cli_size.x/3);
+                size = wxMin(size, cli_size.x*3/4);
 
             if (size < 10)
                 size = 10;
