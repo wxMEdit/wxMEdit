@@ -688,8 +688,11 @@ void MadFindInFilesDialog::FindReplaceInFiles(bool bReplace)
         MadEdit *madedit, *tempedit=NULL;
         if(WxRadioButtonDir->GetValue())
         {
-            madedit=tempedit=new MadEdit(this, -1, wxPoint(-999,-999));
+            madedit=tempedit=new MadEdit(this, -1, wxPoint(-1024,-1024));
+            tempedit->StopRepaint();
             tempedit->SetStorePropertiesToGlobalConfig(false);
+            tempedit->SetFixedWidthMode(false);
+            tempedit->SetWordWrapMode(wwmNoWrap);
         }
 
         wxString fmt(_("Processing %d of %d files..."));

@@ -506,6 +506,13 @@ public:
     {
         m_StorePropertiesToGlobalConfig=value;
     }
+
+    void StopRepaint()
+    {
+        m_Printing=true;
+        m_LastPaintBitmap=-1;
+    }
+
     void ProcessCommand(MadEditCommand command);
 
     void SetSyntax(const wxString &title);
