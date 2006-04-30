@@ -295,12 +295,12 @@ void MadEncoding::InitEncodings()
             {
                 ignore= (testwc!=TestEncoding(name.c_str(), enc, testmb));
             }
+#ifdef __WXMSW__
             else
             {
-#ifndef __WXMAC__
                 ignore= ! wxFontMapper::Get()->IsEncodingAvailable(enc);
-#endif
             }
+#endif
         }
 
         if(!ignore)
