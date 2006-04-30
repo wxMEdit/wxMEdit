@@ -872,6 +872,7 @@ void MadOptionsDialog::MadOptionsDialogActivate(wxActivateEvent& event)
         wxTreeItemId selid=WxTreeCtrl1->GetSelection();
         if(selid.IsOk())
         {
+            WxTreeCtrl1->Unselect();
             WxTreeCtrl1->SelectItem(selid, true);
         }
 
