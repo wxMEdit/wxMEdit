@@ -851,11 +851,7 @@ void MadOptionsDialog::MadOptionsDialogActivate(wxActivateEvent& event)
         WxCheckBoxResetAllKeys->SetValue(g_ResetAllKeys);
 
         ChangedTreeItemDataList.clear();
-        //ChangedKeys.Clear();
 
-        MadCommandKeysList cklist;
-        MadEdit::ms_KeyBindings.BuildCommandKeysList(cklist);
-        
         // get all keys of each command and srore them in TreeItemDataList
         list<TreeItemData*>::iterator tidit=TreeItemDataList.begin();
         list<TreeItemData*>::iterator tiditend=TreeItemDataList.end();
@@ -863,45 +859,7 @@ void MadOptionsDialog::MadOptionsDialogActivate(wxActivateEvent& event)
         {
             CommandData *cd=(*tidit)->cmddata;
             (*tidit)->keys.Clear();
-            
-            // get keys from menuitem
-            if(cd->menu_id>0)
-            {
-                MadMenuKeyMap::iterator mkit=g_MainFrame->m_MenuKeyMap->find(cd->menuid_name);
-                if(mkit != g_MainFrame->m_MenuKeyMap->end())
-                {
-                    (*tidit)->keys.Add(mkit->second);
-                }
-            }
-            
-            // get keys from editor
-            if(cd->command>0)
-            {
-                MadCommandKeysList::iterator ckit=FindCmdKeys(cd->command, cklist);
-                if(ckit!=cklist.end())
-                {
-                    if((*tidit)->keys.IsEmpty())
-                    {
-                        (*tidit)->keys = ckit->keys;
-                    }
-                    else
-                    {
-                        wxString k = (*tidit)->keys[0];
-                        k.MakeLower();
-
-                        size_t count=ckit->keys.GetCount();
-                        size_t idx=0;
-                        for(;idx<count;idx++)
-                        {
-                            wxString &key=ckit->keys[idx];
-                            if(k != key.Lower())
-                            {
-                                (*tidit)->keys.Add(key);
-                            }
-                        }
-                    }
-                }
-            }
+            MadEdit::ms_KeyBindings.GetKeys(cd->menu_id, cd->command, (*tidit)->keys);
         }
         while(++tidit != tiditend);
 
@@ -910,6 +868,12 @@ void MadOptionsDialog::MadOptionsDialogActivate(wxActivateEvent& event)
         WxEditCommandHint->Clear();
         WxListBoxKeys->Clear();
         UpdateKeyHint();
+
+        wxTreeItemId selid=WxTreeCtrl1->GetSelection();
+        if(selid.IsOk())
+        {
+            WxTreeCtrl1->SelectItem(selid, true);
+        }
 
         cfg->SetPath(oldpath);
 
@@ -1102,16 +1066,6 @@ bool MadOptionsDialog::FindItemInList(TreeItemData* tid, const list<TreeItemData
     return false;
 }
 
-/*
-void MadOptionsDialog::AddKeyToChangedKeys(const wxString &key)
-{
-    if(ChangedKeys.Index(key.c_str(), false) < 0)
-    {
-        ChangedKeys.Add(key);
-    }
-}
-*/
-
 void MadOptionsDialog::UpdateKeyHint()
 {
     wxString scstr=WxEditKey->GetValue();
@@ -1186,18 +1140,8 @@ void MadOptionsDialog::WxButtonAddKeyClick(wxCommandEvent& event)
             }
         }
 
-        //AddKeyToChangedKeys(key);
-
-        if(g_SelectedCommandItem->keys.IsEmpty() || g_SelectedCommandItem->cmddata->command > 0)
-        {
-            // add the key to g_SelectedCommandItem
-            g_SelectedCommandItem->keys.Add(key);
-        }
-        else
-        {
-            // replace keys[0] with key
-            g_SelectedCommandItem->keys[0]=key;
-        }
+        // add the key to g_SelectedCommandItem
+        g_SelectedCommandItem->keys.Add(key);
 
         WxListBoxKeys->Set(g_SelectedCommandItem->keys);
         if(FindItemInList(g_SelectedCommandItem, ChangedTreeItemDataList)==false)
@@ -1217,8 +1161,6 @@ void MadOptionsDialog::WxButtonDeleteKeyClick(wxCommandEvent& event)
 {
     if(g_SelectedCommandItem!=NULL && g_SelectedKeyId >= 0)
     {
-        //AddKeyToChangedKeys(g_SelectedCommandItem->keys[g_SelectedKeyId]);
-
         g_SelectedCommandItem->keys.RemoveAt(g_SelectedKeyId);
 
         WxListBoxKeys->Set(g_SelectedCommandItem->keys);
@@ -1241,10 +1183,7 @@ void MadOptionsDialog::WxButtonShowInMenuClick(wxCommandEvent& event)
     if(g_SelectedCommandItem!=NULL && g_SelectedCommandItem->cmddata->menu_id>0 && g_SelectedKeyId > 0)
     {
         wxString key=g_SelectedCommandItem->keys[g_SelectedKeyId];
-        
-        //AddKeyToChangedKeys(key);
-        //AddKeyToChangedKeys(g_SelectedCommandItem->keys[0]);
-        
+
         g_SelectedCommandItem->keys.RemoveAt(g_SelectedKeyId);
         g_SelectedCommandItem->keys.Insert(key, 0);
 

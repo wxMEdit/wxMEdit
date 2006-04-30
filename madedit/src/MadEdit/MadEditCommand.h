@@ -21,7 +21,10 @@
 
 #include <wx/accel.h>
 #include <wx/hashmap.h>
+#include <wx/hashset.h>
+#include <vector>
 #include <list>
+using std::vector;
 using std::list;
 
 enum //MadEditCommand
@@ -103,12 +106,6 @@ typedef int MadEditCommand;
 
 
 WX_DECLARE_HASH_MAP( MadEditShortCut,
-                     MadEditCommand,
-                     wxIntegerHash,
-                     wxIntegerEqual,
-                     MadKeyBindingsMap );
-
-WX_DECLARE_HASH_MAP( MadEditShortCut,
                      wxString,
                      wxIntegerHash,
                      wxIntegerEqual,
@@ -120,15 +117,81 @@ WX_DECLARE_HASH_MAP( wxString,
                      wxStringEqual,
                      MadTextCommandMap );
 
+WX_DECLARE_HASH_MAP( int,             // menuid
+                     MadEditShortCut,
+                     wxIntegerHash,
+                     wxIntegerEqual,
+                     MadMenuCommandMap );
+
 //---------------------------------------------------------------------------
 
-struct MadCommandKeys
+WX_DECLARE_HASH_SET( MadEditShortCut, wxIntegerHash, wxIntegerEqual, MadShortCutSet );
+
+struct MadKeyBinding
 {
-    MadEditCommand cmd;
-    wxArrayString keys;
+    int             menuid;
+    MadEditCommand  editcmd;
+
+    MadEditShortCut firstsc;
+    MadShortCutSet  shortcuts; // the rest shortcuts
+
+    MadKeyBinding(): menuid(0), editcmd(0), firstsc(0) {}
+
+    void Add(int mid, MadEditCommand cmd, MadEditShortCut sc)
+    {
+        if(mid!=0) menuid=mid;
+        if(cmd!=0) editcmd=cmd;
+        if(firstsc==0) firstsc=sc;
+        else shortcuts.insert(sc);
+    }
+    void AddFirst(int mid, MadEditCommand cmd, MadEditShortCut sc)
+    {
+        if(mid!=0) menuid=mid;
+        if(cmd!=0) editcmd=cmd;
+        if(firstsc==0) firstsc=sc;
+        else if(firstsc!=sc)
+        {
+            shortcuts.insert(firstsc);
+            firstsc=sc;
+        }
+    }
+
+    void RemoveShortCut(MadEditShortCut sc)
+    {
+        if(firstsc!=0)
+        {
+            if(firstsc==sc)
+            {
+                if(shortcuts.begin() != shortcuts.end())
+                {
+                    firstsc = *shortcuts.begin();
+                    shortcuts.erase(shortcuts.begin());
+                }
+                else
+                {
+                    firstsc = 0;
+                }
+            }
+            else
+            {
+                shortcuts.erase(sc);
+            }
+        }
+    }
+
+    bool HasShortCut(MadEditShortCut sc)
+    {
+        return (sc==firstsc) || (shortcuts.find(sc)!=shortcuts.end()) ;
+    }
 };
-typedef list<MadCommandKeys> MadCommandKeysList;
-extern MadCommandKeysList::iterator FindCmdKeys(MadEditCommand cmd, MadCommandKeysList &list);
+
+typedef list<MadKeyBinding*> MadKeyBindingList;
+
+WX_DECLARE_HASH_MAP( int,               // menuid or editcmd or shortcut
+                     MadKeyBinding*,
+                     wxIntegerHash,
+                     wxIntegerEqual,
+                     MadKeyBindingMap );
 
 //---------------------------------------------------------------------------
 
@@ -144,46 +207,114 @@ wxString ShortCutToString(MadEditShortCut shortcut);
 
 class wxConfigBase;
 
-typedef bool (*VerifyFuncPtr)(const wxString &key, const wxString &cmd);
-
 class MadKeyBindings
 {
 private:
+    // editcommand
     static MadCommandTextMap *ms_CommandTextMap;
     static MadTextCommandMap *ms_TextCommandMap;
-    MadKeyBindingsMap *m_KeyBindings;
-    VerifyFuncPtr m_VerifyFunc;
+    // menuid
+    static MadCommandTextMap *ms_MenuIdTextMap;
+    static MadTextCommandMap *ms_TextMenuIdMap;
+    static MadMenuCommandMap *ms_MenuIdCommandMap;
+
+    MadKeyBindingList *m_KeyBindings;
+    MadKeyBindingMap *m_MenuIdMap;
+    MadKeyBindingMap *m_EditCommandMap;
+    MadKeyBindingMap *m_ShortCutMap;
 
 public:
     static void InitCommandTextMap();
     static void FreeCommandTextMap();
+
     static wxString CommandToText(MadEditCommand cmd);
+    static wxString MenuIdToText(int menuid);
+    static int TextToMenuId(const wxString &text);
+
+    static void AddMenuTextCommand(int menuid, const wxString &text, MadEditCommand cmd);
+    static MadEditCommand GetCommandFromMenuId(int menuid);
 
 public:
     MadKeyBindings();
     ~MadKeyBindings();
 
-    void AddDefaultBindings(bool overwrite, VerifyFuncPtr func);
-    void Add(MadEditShortCut shortcut, MadEditCommand cmd, bool overwrite)
+    void AddDefaultBindings(bool overwrite);
+    void Add(MadEditShortCut shortcut, bool first, int menuid, bool overwrite)
     {
+        MadKeyBindingMap::iterator scit = m_ShortCutMap->find(shortcut);
+        if(scit == m_ShortCutMap->end())
+        {
+            overwrite=true;
+        }
+        else if(overwrite)
+        {
+            //remove old corelation
+            scit->second->RemoveShortCut(shortcut);
+        }
         if(overwrite)
         {
-            m_KeyBindings->insert(MadKeyBindingsMap::value_type(shortcut, cmd));
-        }
-        else if(m_KeyBindings->find(shortcut)==m_KeyBindings->end())
-        {
-            bool add=true;
-            if(m_VerifyFunc!=NULL)
+            MadKeyBinding *kb;
+            MadKeyBindingMap::iterator mit = m_MenuIdMap->find(menuid);
+            if(mit != m_MenuIdMap->end())
             {
-                add=m_VerifyFunc(ShortCutToString(shortcut), CommandToText(cmd));
+                kb = mit->second;
             }
-            if(add)
+            else
             {
-                m_KeyBindings->insert(MadKeyBindingsMap::value_type(shortcut, cmd));
+                kb = new MadKeyBinding;
+                m_KeyBindings->push_back(kb);
             }
+
+            MadEditCommand cmd = GetCommandFromMenuId(menuid);
+            if(first) kb->AddFirst(menuid, cmd, shortcut);
+            else      kb->Add(menuid, cmd, shortcut);
+
+            m_MenuIdMap->insert(MadKeyBindingMap::value_type(menuid, kb));
+            if(cmd!=0) m_EditCommandMap->insert(MadKeyBindingMap::value_type(cmd, kb));
+            m_ShortCutMap->insert(MadKeyBindingMap::value_type(shortcut, kb));
         }
     }
-    void Remove(MadEditCommand cmd); // remove all keys of cmd
+    void Add(MadEditShortCut shortcut, MadEditCommand cmd, bool overwrite)
+    {
+        MadKeyBindingMap::iterator scit = m_ShortCutMap->find(shortcut);
+        if(scit == m_ShortCutMap->end())
+        {
+            overwrite=true;
+        }
+        else if(overwrite)
+        {
+            //remove old corelation
+            scit->second->RemoveShortCut(shortcut);
+        }
+        if(overwrite)
+        {
+            MadKeyBinding *kb=NULL;
+            MadKeyBindingMap::iterator ecit = m_EditCommandMap->find(cmd);
+            if(ecit != m_EditCommandMap->end())
+            {
+                kb = ecit->second;
+            }
+            else
+            {
+                kb = new MadKeyBinding;
+                m_KeyBindings->push_back(kb);
+            }
+
+            kb->Add(0, cmd, shortcut);
+            m_EditCommandMap->insert(MadKeyBindingMap::value_type(cmd, kb));
+            m_ShortCutMap->insert(MadKeyBindingMap::value_type(shortcut, kb));
+        }
+    }
+
+    void RemoveByCommand(MadEditCommand cmd); // remove all keys of cmd
+    void RemoveByMenuId(int menuid); // remove all keys of menuid
+
+    wxString GetKeyByMenuText(const wxString &text);
+    bool KeyIsAssigned(const wxString &key);
+    void GetKeys(int menuid, MadEditCommand editcmd, wxArrayString &keys);
+
+    // for menuid only
+    void BuildAccelEntries(bool includeFirstSC, vector<wxAcceleratorEntry> &entries);
 
     bool IsEmpty()
     {
@@ -196,17 +327,19 @@ public:
     }
     MadEditCommand FindCommand(MadEditShortCut shortcut)
     {
-        MadKeyBindingsMap::iterator it = m_KeyBindings->find(shortcut);
-        if(it != m_KeyBindings->end())
-            return it->second;
+        MadKeyBindingMap::iterator scit = m_ShortCutMap->find(shortcut);
+        if(scit != m_ShortCutMap->end())
+        {
+            return scit->second->editcmd;
+        }
         return ecNone;
     }
-    
-    void BuildCommandKeysList(MadCommandKeysList &list);
 
-    // must config->SetPath() before call those two
+    // must config->SetPath() before call those functions
     void LoadFromConfig(wxConfigBase *config);
-    void SaveToConfig(wxConfigBase *config);
+
+    void LoadFromConfig_New(wxConfigBase *config);
+    void SaveToConfig_New(wxConfigBase *config);
 };
 
 #endif

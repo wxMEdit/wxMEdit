@@ -8,6 +8,7 @@
 #include "MadEditCommand.h"
 
 #include <wx/confbase.h>
+#include <wx/tokenzr.h>
 
 #ifdef _DEBUG
 #include <crtdbg.h>
@@ -18,7 +19,9 @@
 
 MadCommandTextMap *MadKeyBindings::ms_CommandTextMap=NULL;
 MadTextCommandMap *MadKeyBindings::ms_TextCommandMap=NULL;
-
+MadCommandTextMap *MadKeyBindings::ms_MenuIdTextMap=NULL;
+MadTextCommandMap *MadKeyBindings::ms_TextMenuIdMap=NULL;
+MadMenuCommandMap *MadKeyBindings::ms_MenuIdCommandMap=NULL;
 
 #define INSERT_COMMANDTEXT(cmd) \
     ms_CommandTextMap->insert(MadCommandTextMap::value_type(cmd, wxT(#cmd)));\
@@ -28,6 +31,9 @@ void MadKeyBindings::InitCommandTextMap()
 {
     ms_CommandTextMap = new MadCommandTextMap();
     ms_TextCommandMap = new MadTextCommandMap();
+    ms_MenuIdTextMap = new MadCommandTextMap();
+    ms_TextMenuIdMap = new MadTextCommandMap();
+    ms_MenuIdCommandMap = new MadMenuCommandMap();
 
     INSERT_COMMANDTEXT(ecLeft);
     INSERT_COMMANDTEXT(ecUp);
@@ -116,18 +122,61 @@ void MadKeyBindings::FreeCommandTextMap()
 {
     ms_CommandTextMap->clear();
     ms_TextCommandMap->clear();
+    ms_MenuIdTextMap->clear();
+    ms_TextMenuIdMap->clear();
+    ms_MenuIdCommandMap->clear();
     delete ms_CommandTextMap;
     delete ms_TextCommandMap;
+    delete ms_MenuIdTextMap;
+    delete ms_TextMenuIdMap;
+    delete ms_MenuIdCommandMap;
 }
 
 wxString MadKeyBindings::CommandToText(MadEditCommand cmd)
 {
     MadCommandTextMap::iterator textit;
-    if((textit=ms_CommandTextMap->find(cmd))!=ms_CommandTextMap->end())
+    if((textit=ms_CommandTextMap->find(cmd)) != ms_CommandTextMap->end())
     {
         return textit->second;
     }
     return wxEmptyString;
+}
+
+wxString MadKeyBindings::MenuIdToText(int menuid)
+{
+    MadCommandTextMap::iterator textit;
+    if((textit=ms_MenuIdTextMap->find(menuid)) != ms_MenuIdTextMap->end())
+    {
+        return textit->second;
+    }
+    return wxEmptyString;
+}
+
+int MadKeyBindings::TextToMenuId(const wxString &text)
+{
+    MadTextCommandMap::iterator it;
+    if((it=ms_TextMenuIdMap->find(text)) != ms_TextMenuIdMap->end())
+    {
+        return it->second;
+    }
+    return 0;
+}
+
+void MadKeyBindings::AddMenuTextCommand(int menuid, const wxString &text, MadEditCommand cmd)
+{
+    ms_MenuIdTextMap->insert(MadCommandTextMap::value_type(menuid, text));
+    ms_TextMenuIdMap->insert(MadTextCommandMap::value_type(text, menuid));
+    ms_MenuIdCommandMap->insert(MadMenuCommandMap::value_type(menuid, cmd));
+}
+
+MadEditCommand MadKeyBindings::GetCommandFromMenuId(int menuid)
+{
+    MadMenuCommandMap::iterator it=ms_MenuIdCommandMap->find(menuid);
+    if(it != ms_MenuIdCommandMap->end())
+    {
+        return it->second;
+    }
+    return 0;
 }
 
 //---------------------------------------------------------------------------
@@ -598,21 +647,29 @@ MadKeyBindings::MadKeyBindings()
     if(ms_CommandTextMap==NULL)
         InitCommandTextMap();
 
-    m_KeyBindings=new MadKeyBindingsMap();
-    m_VerifyFunc=NULL;
+    m_KeyBindings=new MadKeyBindingList();
+    m_MenuIdMap=new MadKeyBindingMap;
+    m_EditCommandMap=new MadKeyBindingMap;
+    m_ShortCutMap=new MadKeyBindingMap;
 }
 
 MadKeyBindings::~MadKeyBindings()
 {
+    MadKeyBindingList::iterator it=m_KeyBindings->begin();
+    while(it != m_KeyBindings->end())
+    { 
+        delete *it;
+        ++it;
+    }
     m_KeyBindings->clear();
     delete m_KeyBindings;
+    delete m_MenuIdMap;
+    delete m_EditCommandMap;
+    delete m_ShortCutMap;
 }
 
-void MadKeyBindings::AddDefaultBindings(bool overwrite, VerifyFuncPtr func)
+void MadKeyBindings::AddDefaultBindings(bool overwrite)
 {
-    VerifyFuncPtr oldfunc=m_VerifyFunc;
-    m_VerifyFunc=func;
-
     Add(ShortCut(wxACCEL_NORMAL, WXK_LEFT),     ecLeft, overwrite);
     Add(ShortCut(wxACCEL_NORMAL, WXK_RIGHT),    ecRight, overwrite);
     Add(ShortCut(wxACCEL_NORMAL, WXK_UP),       ecUp, overwrite);
@@ -732,65 +789,171 @@ void MadKeyBindings::AddDefaultBindings(bool overwrite, VerifyFuncPtr func)
 
     //ecToHalfWidth
     //ecToFullWidth
-
-    m_VerifyFunc=oldfunc;
 }
 
-void MadKeyBindings::Remove(MadEditCommand cmd)
+void MadKeyBindings::RemoveByCommand(MadEditCommand cmd)
 {
-    MadKeyBindingsMap::iterator it=m_KeyBindings->begin();
-    MadKeyBindingsMap::iterator itend=m_KeyBindings->end();
-    
-    list<MadKeyBindingsMap::iterator> eraselist;
+    MadKeyBindingMap::iterator ecit = m_EditCommandMap->find(cmd);
+    if(ecit==m_EditCommandMap->end()) return;
+
+    MadKeyBinding *kb = ecit->second;
+
+    MadKeyBindingList::iterator it=m_KeyBindings->begin();
+    MadKeyBindingList::iterator itend=m_KeyBindings->end();
     while(it!=itend)
     {
-        if(it->second == cmd)
+        if(*it == kb)
         {
-            eraselist.push_back(it);
+            m_KeyBindings->erase(it);
+            break;
         }
         ++it;
     }
-    
-    list<MadKeyBindingsMap::iterator>::iterator eit=eraselist.begin();
-    while(eit != eraselist.end())
+
+    m_EditCommandMap->erase(cmd);
+    if(kb->menuid!=0) m_MenuIdMap->erase(kb->menuid);
+
+    if(kb->firstsc!=0)
     {
-        m_KeyBindings->erase(*eit);
-        ++eit;
+        m_ShortCutMap->erase(kb->firstsc);
+
+        MadShortCutSet::iterator sit=kb->shortcuts.begin();
+        MadShortCutSet::iterator sitend=kb->shortcuts.end();
+        while(sit!=sitend)
+        {
+            m_ShortCutMap->erase(*sit);
+            ++sit;
+        }
     }
+    delete kb;
 }
 
-MadCommandKeysList::iterator FindCmdKeys(MadEditCommand cmd, MadCommandKeysList &list)
+void MadKeyBindings::RemoveByMenuId(int menuid)
 {
-    MadCommandKeysList::iterator it=list.begin();
-    while(it!=list.end())
+    MadKeyBindingMap::iterator mit = m_MenuIdMap->find(menuid);
+    if(mit==m_MenuIdMap->end()) return;
+
+    MadKeyBinding *kb = mit->second;
+
+    MadKeyBindingList::iterator it=m_KeyBindings->begin();
+    MadKeyBindingList::iterator itend=m_KeyBindings->end();
+    while(it!=itend)
     {
-        if(it->cmd==cmd)
+        if(*it == kb)
         {
-            return it;
+            m_KeyBindings->erase(it);
+            break;
         }
         ++it;
     }
-    return list.end();
+
+    m_MenuIdMap->erase(menuid);
+    if(kb->editcmd!=0) m_EditCommandMap->erase(kb->editcmd);
+
+    if(kb->firstsc!=0)
+    {
+        m_ShortCutMap->erase(kb->firstsc);
+
+        MadShortCutSet::iterator sit=kb->shortcuts.begin();
+        MadShortCutSet::iterator sitend=kb->shortcuts.end();
+        while(sit!=sitend)
+        {
+            m_ShortCutMap->erase(*sit);
+            ++sit;
+        }
+    }
+    delete kb;
 }
 
-void MadKeyBindings::BuildCommandKeysList(MadCommandKeysList &list)
+wxString MadKeyBindings::GetKeyByMenuText(const wxString &text)
 {
-    MadKeyBindingsMap::iterator it=m_KeyBindings->begin();
-    MadKeyBindingsMap::iterator itend=m_KeyBindings->end();
-    
-    while(it!=itend)
+    int menuid=TextToMenuId(text);
+    if(menuid!=0)
     {
-        MadCommandKeysList::iterator ckit=FindCmdKeys(it->second, list);
-        if(ckit==list.end())
+        MadKeyBindingMap::iterator mit = m_MenuIdMap->find(menuid);
+        if(mit != m_MenuIdMap->end())
         {
-            MadCommandKeys ck;
-            ck.cmd=it->second;
-            ck.keys.Add(ShortCutToString(it->first));
-            list.push_back(ck);
+            MadKeyBinding *kb=mit->second;
+            if(kb->firstsc != 0)
+            {
+                return ShortCutToString(kb->firstsc);
+            }
         }
-        else // already build
+    }
+    return wxEmptyString;
+}
+
+bool MadKeyBindings::KeyIsAssigned(const wxString &key)
+{
+    MadEditShortCut sc=StringToShortCut(key);
+    if(sc != 0)
+    {
+        MadKeyBindingMap::iterator scit = m_ShortCutMap->find(sc);
+        if(scit != m_ShortCutMap->end())
         {
-            ckit->keys.Add(ShortCutToString(it->first));
+            return true;
+        }
+    }
+    return false;
+}
+
+void MadKeyBindings::GetKeys(int menuid, MadEditCommand editcmd, wxArrayString &keys)
+{
+    MadKeyBinding *kb=NULL;
+    if(menuid!=0)
+    {
+        MadKeyBindingMap::iterator mit = m_MenuIdMap->find(menuid);
+        if(mit != m_MenuIdMap->end())
+        {
+            kb = mit->second;
+        }
+    }
+    else if(editcmd!=0)
+    {
+        MadKeyBindingMap::iterator ecit = m_EditCommandMap->find(editcmd);
+        if(ecit != m_EditCommandMap->end())
+        {
+            kb = ecit->second;
+        }
+    }
+    if(kb!=NULL && kb->firstsc!=0)
+    {
+        wxString key=ShortCutToString(kb->firstsc);
+        if(!key.IsEmpty()) keys.Add(key);
+
+        MadShortCutSet::iterator sit=kb->shortcuts.begin();
+        MadShortCutSet::iterator sitend=kb->shortcuts.end();
+        while(sit!=sitend)
+        {
+            key=ShortCutToString(*sit);
+            if(!key.IsEmpty()) keys.Add(key);
+            ++sit;
+        }
+    }
+}
+
+void MadKeyBindings::BuildAccelEntries(bool includeFirstSC, vector<wxAcceleratorEntry> &entries)
+{
+    MadKeyBindingList::iterator it=m_KeyBindings->begin();
+    while(it!=m_KeyBindings->end())
+    {
+        MadKeyBinding *kb = (*it);
+        MadEditShortCut sc = kb->firstsc;
+        if(kb->menuid!=0 && kb->editcmd==0 && sc!=0)
+        {
+            if(includeFirstSC)
+            {
+                entries.push_back(wxAcceleratorEntry( sc>>16, sc&0xFFFF, kb->menuid ));
+            }
+
+            MadShortCutSet::iterator sit=kb->shortcuts.begin();
+            MadShortCutSet::iterator sitend=kb->shortcuts.end();
+            while(sit!=sitend)
+            {
+                sc = *sit;
+                entries.push_back(wxAcceleratorEntry( sc>>16, sc&0xFFFF, kb->menuid ));
+                ++sit;
+            }
         }
 
         ++it;
@@ -821,8 +984,55 @@ void MadKeyBindings::LoadFromConfig(wxConfigBase *config)
     }
 }
 
-void MadKeyBindings::SaveToConfig(wxConfigBase *config)
+void MadKeyBindings::LoadFromConfig_New(wxConfigBase *config)
 {
+    MadEditShortCut sc;
+    MadTextCommandMap::iterator tcit;
+
+    wxString key, text;
+    long idx=0;
+    bool first;
+    bool kcont=config->GetNextEntry(key, idx);
+    while(kcont)
+    {
+        config->Read(key, &text);
+
+        if((sc=StringToShortCut(key))!=0)
+        {
+            first=false;
+            wxStringTokenizer tkz(text);
+            text=tkz.GetNextToken();
+            while(!text.IsEmpty())
+            {
+                if(text[0]==wxT('*'))
+                {
+                    first=true;
+                }
+                else if(text[0]==wxT('m'))// menuXXX
+                {
+                    if((tcit=ms_TextMenuIdMap->find(text))!=ms_TextMenuIdMap->end())
+                    {
+                        Add(sc, first, tcit->second, true);
+                    }
+                }
+                else if(text[0]==wxT('e'))// ecXXX
+                {
+                    if((tcit=ms_TextCommandMap->find(text))!=ms_TextCommandMap->end())
+                    {
+                        Add(sc, tcit->second, true);
+                    }
+                }
+                text=tkz.GetNextToken();
+            }
+        }
+
+        kcont=config->GetNextEntry(key, idx);
+    }
+}
+
+void MadKeyBindings::SaveToConfig_New(wxConfigBase *config)
+{
+    // record all keys in config
     wxArrayString keys;
     wxString key;
     long idx=0;
@@ -833,31 +1043,51 @@ void MadKeyBindings::SaveToConfig(wxConfigBase *config)
         kcont=config->GetNextEntry(key, idx);
     }
     
-    MadKeyBindingsMap::iterator it=m_KeyBindings->begin();
-    MadEditCommand cmd;
-    MadEditShortCut sc;
+    MadKeyBindingList::iterator it=m_KeyBindings->begin();
     while(it!=m_KeyBindings->end())
     {
-        sc=it->first;
-        cmd=it->second;
+        MadKeyBinding *kb= (*it);
 
-        wxString text=CommandToText(cmd);
-        if(!text.IsEmpty())
+        wxString text;
+        if(kb->menuid != 0)
         {
-            key=ShortCutToString(sc);
-            config->Write(key, text);
-            
-            int idx=keys.Index(key.c_str(), false);
-            if(idx>=0)
+            text = wxT(' ');
+            text += MenuIdToText(kb->menuid);
+        }
+        if(kb->editcmd != 0)
+        {
+            wxString s = CommandToText(kb->editcmd);
+            if(!s.IsEmpty())
             {
-                keys.RemoveAt(idx);
+                text += wxT(' ');
+                text += s;
+            }
+        }
+
+        if(!text.IsEmpty() && kb->firstsc!=0)
+        {
+            key=ShortCutToString(kb->firstsc);
+            config->Write(key, wxString(wxT(" *"))+text);
+
+            int idx=keys.Index(key.c_str(), false);
+            if(idx>=0) { keys.RemoveAt(idx); }
+
+            MadShortCutSet::iterator sit=kb->shortcuts.begin();
+            MadShortCutSet::iterator sitend=kb->shortcuts.end();
+            while(sit!=sitend)
+            {
+                key=ShortCutToString(*sit);
+                config->Write(key, text);
+                int idx=keys.Index(key.c_str(), false);
+                if(idx>=0) { keys.RemoveAt(idx); }
+                ++sit;
             }
         }
 
         ++it;
     }
-    
-    // delete non-used keys
+
+    //delete unused keys
     for(size_t i=0; i<keys.GetCount(); i++)
     {
         config->DeleteEntry(keys[i]);

@@ -39,20 +39,6 @@
 #define MadEditFrame_STYLE wxCAPTION | wxRESIZE_BORDER | wxSYSTEM_MENU | wxMINIMIZE_BOX | wxMAXIMIZE_BOX | wxCLOSE_BOX
 ////Dialog Style End
 
-WX_DECLARE_HASH_MAP( wxString,      // menu id text
-                     wxString,      // key
-                     wxStringHash,
-                     wxStringEqual,
-                     MadMenuKeyMap );
-WX_DECLARE_HASH_MAP( wxString,      // key
-                     wxString,      // menu id text
-                     wxStringHash,
-                     wxStringEqual,
-                     MadKeyMenuMap );
-
-// menu id text
-WX_DECLARE_HASH_SET( wxString, wxStringHash, wxStringEqual, MadMenuTextSet );
-
 
 class wxFlatNotebook;
 class wxFlatNotebookEvent;
@@ -95,10 +81,6 @@ public:
    }; //End of Enum
 
 public:
-    MadMenuKeyMap  *m_MenuKeyMap;
-    MadKeyMenuMap  *m_KeyMenuMap;
-    MadMenuTextSet *m_MenuTextSet;
-
     wxFlatNotebook *m_Notebook;
     int           m_NewFileCount;
     wxConfigBase  *m_Config;
@@ -264,6 +246,7 @@ public:
     void MadEditFrameKeyDown(wxKeyEvent& event);
     void SetPageFocus(int pageId);
     MadEdit *GetEditByFileName(const wxString &filename, int &id);
+    void ResetAcceleratorTable();
 
 protected:
     void MadEditFrameClose(wxCloseEvent& event);
@@ -285,7 +268,7 @@ protected:
     bool QueryCloseAllFiles();
 
     void LoadMenuKeys(wxConfigBase *config);
-    wxString GetMenuKey(const wxString &menuid, const wxString &defaultkey);
+    wxString GetMenuKey(const wxString &menu, const wxString &defaultkey);
 
     void OnFindInFilesResultsSize(wxSizeEvent &evt);
     void OnFindInFilesResultsDClick(wxMouseEvent& event);

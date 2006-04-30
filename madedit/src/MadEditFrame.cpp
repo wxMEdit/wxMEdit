@@ -6,6 +6,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 #include "MadEdit/MadEdit.h"
+#include "MadEdit/MadEditCommand.h"
 #include "MadEdit/MadEncoding.h"
 #include "MadEdit/MadSyntax.h"
 #include "MadEdit/TradSimp.h"
@@ -1185,14 +1186,7 @@ MadEditFrame::MadEditFrame( wxWindow *parent, wxWindowID id, const wxString &tit
     */
 
     m_NewFileCount=0;
-
     m_Config=wxConfigBase::Get(false);
-
-    m_MenuKeyMap=new MadMenuKeyMap;
-    m_KeyMenuMap=new MadKeyMenuMap;
-    m_MenuTextSet=new MadMenuTextSet;
-
-
     MadEncoding::InitEncodings();
 
     MadSyntax::SetAttributeFilePath(g_MadEditHomeDir + wxT("syntax/"));
@@ -1287,21 +1281,27 @@ void MadEditFrame::CreateGUIControls(void)
     SetIcon(wxIcon(wxT("appicon")));
 #endif
 
-    // load m_MenuTextSet
+    // load MenuText
     {
         CommandData *cd = &CommandTable[0];
         do
         {
             if(cd->menuid_name!=0)
             {
-                m_MenuTextSet->insert(cd->menuid_name);
+                MadKeyBindings::AddMenuTextCommand(cd->menu_id, wxString(cd->menuid_name), cd->command);
             }
             ++cd;
         }while(cd->menu_level >= 0);
     }
 
     // load keybindings
-    if(m_Config->Exists(wxT("/MenuKeys")))
+    if(m_Config->Exists(wxT("/KeyBindings")))
+    {
+        m_Config->SetPath(wxT("/KeyBindings"));
+        MadEdit::ms_KeyBindings.LoadFromConfig_New(m_Config);
+        MadEdit::ms_KeyBindings.AddDefaultBindings(false);
+    }
+    else if(m_Config->Exists(wxT("/MenuKeys")))
     {
         m_Config->SetPath(wxT("/MenuKeys"));
         LoadMenuKeys(m_Config);
@@ -1506,6 +1506,20 @@ void MadEditFrame::CreateGUIControls(void)
             menu->Append(menuFontName1 + int(i), name);
         }
     }
+
+    if(!m_Config->Exists(wxT("/KeyBindings")))
+    {
+        if(m_Config->Exists(wxT("/EditKeys")))
+        {
+            m_Config->SetPath(wxT("/EditKeys"));
+            MadEdit::ms_KeyBindings.LoadFromConfig(m_Config);
+        }
+        else
+        {
+            MadEdit::ms_KeyBindings.AddDefaultBindings(true);
+        }
+    }
+    ResetAcceleratorTable();
 
 
     /***/
@@ -1712,9 +1726,6 @@ void MadEditFrame::MadEditFrameClose(wxCloseEvent& event)
     m_RecentFonts=NULL;
 
     delete m_ImageList;
-    delete m_MenuKeyMap;
-    delete m_KeyMenuMap;
-    delete m_MenuTextSet;
 
     MadEncoding::FreeEncodings();
 
@@ -1808,6 +1819,17 @@ MadEdit *MadEditFrame::GetEditByFileName(const wxString &filename, int &id)
     }
     id=-1;
     return NULL;
+}
+
+void MadEditFrame::ResetAcceleratorTable()
+{
+    vector<wxAcceleratorEntry> entries;
+    MadEdit::ms_KeyBindings.BuildAccelEntries(true, entries);
+    if(entries.size()>0)
+    {
+        wxAcceleratorTable accel(int(entries.size()), &(*entries.begin()));
+        this->SetAcceleratorTable(accel);
+    }
 }
 
 #ifdef __WXMSW__
@@ -1956,37 +1978,29 @@ void MadEditFrame::OnActivate(wxActivateEvent &evt)
 void MadEditFrame::LoadMenuKeys(wxConfigBase *config)
 {
     wxString key, menu;
-    MadMenuTextSet::iterator notfound=m_MenuTextSet->end();
     long idx=0;
     bool kcont=config->GetNextEntry(key, idx);
     while(kcont)
     {
         config->Read(key, &menu);
 
-        if(m_MenuTextSet->find(menu) != notfound)
+        int menuid=MadKeyBindings::TextToMenuId(menu);
+        MadEditShortCut sc=StringToShortCut(key);
+        if(menuid!=0 && sc!=0)
         {
-            m_MenuKeyMap->insert(MadMenuKeyMap::value_type(menu, key));
-            m_KeyMenuMap->insert(MadKeyMenuMap::value_type(key, menu));
+            MadEdit::ms_KeyBindings.Add(sc, true, menuid, true);
         }
 
         kcont=config->GetNextEntry(key, idx);
     }
 }
 
-wxString MadEditFrame::GetMenuKey(const wxString &menuid, const wxString &defaultkey)
+wxString MadEditFrame::GetMenuKey(const wxString &menu, const wxString &defaultkey)
 {
-    MadMenuKeyMap::iterator mkit=m_MenuKeyMap->find(menuid);
-
-    if(mkit != m_MenuKeyMap->end())
+    wxString key = MadEdit::ms_KeyBindings.GetKeyByMenuText(menu);
+    if(!key.IsEmpty())
     {
-        return wxString(wxT("\t"))+mkit->second;
-    }
-
-    // check the defaultkey is applied to other menuitem or not
-    MadKeyMenuMap::iterator kmit=m_KeyMenuMap->find(defaultkey);
-    if(kmit != m_KeyMenuMap->end())
-    {
-        return wxEmptyString;
+        return wxString(wxT("\t"))+key;
     }
 
     // defaultkey is empty
@@ -1995,10 +2009,19 @@ wxString MadEditFrame::GetMenuKey(const wxString &menuid, const wxString &defaul
         return wxEmptyString;
     }
 
-    // the defaultkey doesn't apply yet, write to config
-    m_Config->Write(defaultkey, menuid);
-    m_MenuKeyMap->insert(MadMenuKeyMap::value_type(menuid, defaultkey));
-    m_KeyMenuMap->insert(MadKeyMenuMap::value_type(defaultkey, menuid));
+    // check the defaultkey is applied to other menuitem or not
+    if(MadEdit::ms_KeyBindings.KeyIsAssigned(defaultkey))
+    {
+        return wxEmptyString;
+    }
+
+    // the defaultkey doesn't apply yet, add it
+    int menuid=MadKeyBindings::TextToMenuId(menu);
+    MadEditShortCut sc=StringToShortCut(defaultkey);
+    if(menuid!=0 && sc!=0)
+    {
+        MadEdit::ms_KeyBindings.Add(sc, true, menuid, true);
+    }
 
     return wxString(wxT("\t"))+defaultkey;
 }
@@ -3330,6 +3353,8 @@ void MadEditFrame::OnSearchFindInFiles(wxCommandEvent& event)
             }
         }
     }
+    g_FindInFilesDialog->m_FindText->SelectAll();
+    g_FindInFilesDialog->m_FindText->SetFocus();
 }
 
 void MadEditFrame::OnSearchShowFindInFilesResults(wxCommandEvent& event)
@@ -3746,9 +3771,7 @@ void MadEditFrame::OnToolsOptions(wxCommandEvent& event)
         // apply the changed keybindings
         if(g_OptionsDialog->ChangedTreeItemDataList.size()!=0)
         {
-            m_Config->SetPath(wxT("/MenuKeys"));
-            list<TreeItemData*> MenuList;
-
+            list<TreeItemData*> ChangedMenuList;
             list<TreeItemData*>::iterator tidit=g_OptionsDialog->ChangedTreeItemDataList.begin();
             list<TreeItemData*>::iterator tiditend=g_OptionsDialog->ChangedTreeItemDataList.end();
 
@@ -3761,11 +3784,8 @@ void MadEditFrame::OnToolsOptions(wxCommandEvent& event)
                 if(cd->menu_id > 0)
                 {
                     wxString menukey, newkey;
-                    MadMenuKeyMap::iterator it=m_MenuKeyMap->find(wxString(cd->menuid_name));
-                    if(it!=m_MenuKeyMap->end())
-                    {
-                        menukey=it->second;
-                    }
+
+                    menukey=MadEdit::ms_KeyBindings.GetKeyByMenuText(cd->menuid_name);
                     if(!tid->keys.IsEmpty())
                     {
                         newkey=tid->keys[0];
@@ -3773,22 +3793,15 @@ void MadEditFrame::OnToolsOptions(wxCommandEvent& event)
                     
                     if(menukey.Lower() != newkey.Lower())
                     {
-                        if(!menukey.IsEmpty())
-                        {
-                            m_Config->DeleteEntry(menukey);
-                            m_KeyMenuMap->erase(menukey);
-                            m_MenuKeyMap->erase(it);
-                        }
-                        
-                        // add to MenuList to modify menukey later
-                        MenuList.push_back(tid);
+                        // add it to ChangedMenuList for modifying menukey later
+                        ChangedMenuList.push_back(tid);
                     }
-                }
 
-                // delete the keys of changed comnnad
-                if(cd->command > 0)
+                    MadEdit::ms_KeyBindings.RemoveByMenuId(cd->menu_id);
+                }
+                else if(cd->command > 0) // delete the keys of changed comnnad
                 {
-                    MadEdit::ms_KeyBindings.Remove(cd->command);
+                    MadEdit::ms_KeyBindings.RemoveByCommand(cd->command);
                 }
                 
                 ++tidit;
@@ -3800,7 +3813,15 @@ void MadEditFrame::OnToolsOptions(wxCommandEvent& event)
             {
                 TreeItemData *tid = *tidit;
                 CommandData *cd = tid->cmddata;
-                if(cd->command > 0)
+                if(cd->menu_id > 0)
+                {
+                    size_t idx=0, count=tid->keys.GetCount();
+                    for(;idx<count;idx++)
+                    {
+                        MadEdit::ms_KeyBindings.Add(StringToShortCut(tid->keys[idx]), idx==0, cd->menu_id, true);
+                    }
+                }
+                else if(cd->command > 0)
                 {
                     size_t idx=0, count=tid->keys.GetCount();
                     for(;idx<count;idx++)
@@ -3812,8 +3833,8 @@ void MadEditFrame::OnToolsOptions(wxCommandEvent& event)
             }
 
             // change the menukey
-            tidit=MenuList.begin();
-            tiditend=MenuList.end();
+            tidit=ChangedMenuList.begin();
+            tiditend=ChangedMenuList.end();
 #ifdef __WXMSW__
             bool bHasMenuIcon = (wxGetOsVersion()!=wxWIN95); // fixed win98 will crash if menuitem has icon
 #endif
@@ -3826,11 +3847,6 @@ void MadEditFrame::OnToolsOptions(wxCommandEvent& event)
                 if(!tid->keys.IsEmpty())
                 {
                     newkey=tid->keys[0];
-
-                    m_Config->Write(newkey, cd->menuid_name);
-                    m_MenuKeyMap->insert(MadMenuKeyMap::value_type(cd->menuid_name, newkey));
-                    m_KeyMenuMap->insert(MadKeyMenuMap::value_type(newkey, cd->menuid_name));
-
                     newkey = wxString(wxT('\t'))+newkey;
                 }
 
@@ -3847,6 +3863,8 @@ void MadEditFrame::OnToolsOptions(wxCommandEvent& event)
 
                 ++tidit;
             }
+
+            ResetAcceleratorTable();
         }
 
         m_Config->SetPath(oldpath);

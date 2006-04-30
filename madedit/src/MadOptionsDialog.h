@@ -272,11 +272,9 @@ public:
     int LocID;
     list<TreeItemData*> TreeItemDataList; // list of all TreeItemData
     list<TreeItemData*> ChangedTreeItemDataList;
-    //wxArrayString ChangedKeys;
     
     TreeItemData* FindKeyInList(const wxString &key); // find key in TreeItemDataList
     bool FindItemInList(TreeItemData* tid, const list<TreeItemData*> &tlist);
-    //void AddKeyToChangedKeys(const wxString &key);
     void UpdateKeyHint();
 
 #ifdef __WXMSW__

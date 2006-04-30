@@ -137,14 +137,15 @@ void DeleteConfig()
         if(g_ResetAllKeys==false)
         {
             // save MadEdit::KeyBindings
-            cfg->SetPath(wxT("/EditKeys"));
-            MadEdit::ms_KeyBindings.SaveToConfig(cfg);
+            cfg->SetPath(wxT("/KeyBindings"));
+            MadEdit::ms_KeyBindings.SaveToConfig_New(cfg);
         }
         else
         {
-            cfg->DeleteGroup(wxT("/EditKeys"));
-            cfg->DeleteGroup(wxT("/MenuKeys"));
+            cfg->DeleteGroup(wxT("/KeyBindings"));
         }
+        cfg->DeleteGroup(wxT("/EditKeys"));
+        cfg->DeleteGroup(wxT("/MenuKeys"));
 
         delete cfg;
     }
@@ -155,19 +156,6 @@ void DeleteConfig()
     FontWidthManager::FreeMem();
 
     wxFileConfig::Set(NULL);
-}
-
-bool VerifyEditKey(const wxString &key, const wxString &cmd)
-{
-    wxConfigBase *config=wxConfigBase::Get(false);
-    wxString menu;
-    if(config->Read(wxString(wxT("/MenuKeys/"))+key, &menu)==false) 
-        return true;
-
-    if(cmd.Right(cmd.Len()-2) == menu.Right(menu.Len()-4))
-        return true;
-
-    return false;
 }
 
 bool MadEditApp::OnInit()
@@ -359,19 +347,6 @@ bool MadEditApp::OnInit()
     if(FontWidthManager::MaxCount < 4) FontWidthManager::MaxCount=4;
     else if(FontWidthManager::MaxCount>40) FontWidthManager::MaxCount=40;
     FontWidthManager::Init(g_MadEditHomeDir);
-
-    // load keybindings
-    if(cfg->Exists(wxT("/EditKeys")))
-    {
-        cfg->SetPath(wxT("/EditKeys"));
-        MadEdit::ms_KeyBindings.LoadFromConfig(cfg);
-
-        MadEdit::ms_KeyBindings.AddDefaultBindings(false, &VerifyEditKey);
-    }
-    else
-    {
-        MadEdit::ms_KeyBindings.AddDefaultBindings(true, NULL);
-    }
 
 
     // create the main frame
