@@ -448,7 +448,7 @@ void OnEditStatusChanged(MadEdit *madedit)
         {
             if(filename.IsEmpty())
                 filename=title;
-            g_MainFrame->SetTitle(wxString(wxT("MadEdit - ["))+ filename +wxString(wxT("]\x3000")));
+            g_MainFrame->SetTitle(wxString(wxT("MadEdit - ["))+ filename +wxString(wxT("] ")));
 
             wxString enc=madedit->GetEncodingName();
             if(madedit->HasBOM())
@@ -1273,7 +1273,7 @@ void MadEditFrame::CreateGUIControls(void)
     WxToolBar1->Realize();
     this->SetToolBar(WxToolBar1);
     this->SetStatusBar(WxStatusBar1);
-    this->SetTitle(wxT("MadEdit\x3000"));
+    this->SetTitle(wxT("MadEdit "));
 
 #if !defined(__WXMSW__) //&& !defined(__WXPM__)
     SetIcon(wxIcon(Mad_xpm));
@@ -1878,7 +1878,7 @@ void MadEditFrame::OnNotebookPageChanged(wxFlatNotebookEvent& event)
         if(g_ActiveMadEdit->IsModified() && title[title.Len()-1]!=wxT('*'))
             title += wxT('*');
 
-        SetTitle(wxString(wxT("MadEdit - ["))+ title +wxString(wxT("]\x3000")));
+        SetTitle(wxString(wxT("MadEdit - ["))+ title +wxString(wxT("] ")));
 
         OnEditSelectionChanged(g_ActiveMadEdit);
         OnEditStatusChanged(g_ActiveMadEdit);
@@ -1890,7 +1890,7 @@ void MadEditFrame::OnNotebookPageChanged(wxFlatNotebookEvent& event)
     }
     else
     {
-        SetTitle(wxString(wxT("MadEdit\x3000")));
+        SetTitle(wxString(wxT("MadEdit ")));
     }
 
     g_UpdateWindowUI=true;
@@ -1916,7 +1916,7 @@ void MadEditFrame::OnNotebookPageClosed(wxFlatNotebookEvent& event)
     if(m_Notebook->GetPageCount()==0)
     {
         g_ActiveMadEdit=NULL;
-        SetTitle(wxString(wxT("MadEdit\x3000")));
+        SetTitle(wxString(wxT("MadEdit ")));
         OnEditSelectionChanged(NULL);
         OnEditStatusChanged(NULL);
     }
@@ -1938,7 +1938,7 @@ void MadEditFrame::OnNotebookPageClosed(wxFlatNotebookEvent& event)
             if(g_ActiveMadEdit->IsModified() && title[title.Len()-1]!=wxT('*'))
                 title += wxT('*');
 
-            SetTitle(wxString(wxT("MadEdit - ["))+ title +wxString(wxT("]\x3000")));
+            SetTitle(wxString(wxT("MadEdit - ["))+ title +wxString(wxT("] ")));
         }
         g_ActiveMadEdit->ReloadByModificationTime();
     }
@@ -2281,7 +2281,7 @@ void MadEditFrame::OpenFile(const wxString &filename, bool mustExist)
     if(g_ActiveMadEdit->IsModified() && title[title.Len()-1]!=wxT('*'))
         title += wxT('*');
 
-    SetTitle(wxString(wxT("MadEdit - ["))+ title +wxString(wxT("]\x3000")));
+    SetTitle(wxString(wxT("MadEdit - ["))+ title +wxString(wxT("] ")));
 
     g_UpdateWindowUI=true;
 }
@@ -2838,7 +2838,7 @@ void MadEditFrame::OnFileCloseAll(wxCommandEvent& event)
         m_PageClosing=false;
 
         g_ActiveMadEdit=NULL;
-        SetTitle(wxString(wxT("MadEdit\x3000")));
+        SetTitle(wxString(wxT("MadEdit ")));
         OnEditSelectionChanged(NULL);
         OnEditStatusChanged(NULL);
 

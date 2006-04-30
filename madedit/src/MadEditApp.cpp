@@ -216,7 +216,7 @@ bool MadEditApp::OnInit()
                 {
                     int len = ::GetWindowText(prevapp, title, 256);
                     bool name_ok=false;
-                    if(len>=8 && title[len-1]==0x3000)    // last wchar is 0x3000?
+                    if(len>=8 && title[len-1]==wxT(' '))    // last wchar is space?
                     {
                         title[7]=0;
                         if(lstrcmp(title, wxT("MadEdit"))==0) // compare first 7 wchars
