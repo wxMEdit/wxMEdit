@@ -1621,7 +1621,8 @@ void MadEditFrame::CreateGUIControls(void)
 
 
     // information window
-    m_InfoNotebook = new wxFlatNotebook(this, ID_OUTPUTNOTEBOOK, wxDefaultPosition, wxSize(300,130), wxFNB_DEFAULT_STYLE|wxFNB_NO_X_BUTTON|wxFNB_BOTTOM);
+    wxSize nbsize(300,130);
+    m_InfoNotebook = new wxFlatNotebook(this, ID_OUTPUTNOTEBOOK, wxDefaultPosition, nbsize, wxFNB_DEFAULT_STYLE|wxFNB_NO_X_BUTTON|wxFNB_BOTTOM);
     m_InfoNotebook->SetNonActiveTabTextColour(wxColor(100,100,100));
 
     m_FindInFilesResults = new wxTreeCtrl(m_InfoNotebook, ID_FINDINFILESRESULTS, wxDefaultPosition, wxSize(300,4), wxTR_DEFAULT_STYLE|wxTR_HIDE_ROOT);
@@ -1636,7 +1637,7 @@ void MadEditFrame::CreateGUIControls(void)
     m_FrameManager.SetFlags(m_FrameManager.GetFlags() | wxAUI_MGR_ALLOW_ACTIVE_PANE);
     m_FrameManager.AddPane(m_Notebook, wxCENTER);
     m_FrameManager.AddPane(m_InfoNotebook, wxBOTTOM, _("Information Window"));
-    m_FrameManager.GetPane(m_InfoNotebook).Show(false);
+    m_FrameManager.GetPane(m_InfoNotebook).Show(false).FloatingSize(nbsize);
     m_FrameManager.Update();
 
     // fixed for using wxAUI
@@ -2028,9 +2029,46 @@ wxString MadEditFrame::GetMenuKey(const wxString &menu, const wxString &defaultk
 
 void MadEditFrame::OnFindInFilesResultsSize(wxSizeEvent &evt)
 {
-    if(g_MainFrame->m_FrameManager.GetPane(g_MainFrame->m_InfoNotebook).IsShown())
+    wxPaneInfo &pinfo=g_MainFrame->m_FrameManager.GetPane(g_MainFrame->m_InfoNotebook);
+    if(pinfo.IsOk())// && pinfo.IsShown())
     {
-        g_MainFrame->m_FrameManager.GetPane(g_MainFrame->m_InfoNotebook).BestSize(g_MainFrame->m_InfoNotebook->GetSize());
+        wxSize size;
+        if(pinfo.IsDocked())
+        {
+            size=g_MainFrame->m_InfoNotebook->GetSize();
+        }
+        else 
+        {
+            if(pinfo.frame != NULL)
+            {
+                size=pinfo.frame->GetSize();
+            }
+            else
+            {
+                size.x=0;
+            }
+        }
+
+        if(size.x>16 && size.y>16)
+        {
+            if(pinfo.IsDocked())
+            {
+                if(pinfo.dock_direction==wxAUI_DOCK_TOP || pinfo.dock_direction==wxAUI_DOCK_BOTTOM)
+                {
+                    pinfo.floating_size.y = size.y;
+                    pinfo.best_size.y = size.y;
+                }
+                else
+                {
+                    pinfo.floating_size.x = size.x;
+                    pinfo.best_size.x = size.x;
+                }
+            }
+            else //IsFloating()
+            {
+                pinfo.BestSize(size);
+            }
+        }
     }
     evt.Skip();
 }
