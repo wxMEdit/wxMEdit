@@ -53,7 +53,7 @@ Color=BLACK
 BgColor=
 Style=Bold
 [7.Keyword]
-Color=Red
+Color=SlateGray
 BgColor=
 Style=
 [8.Keyword]

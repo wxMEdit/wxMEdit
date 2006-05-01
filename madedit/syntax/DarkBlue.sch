@@ -53,7 +53,7 @@ Color=GOLD
 BgColor=
 Style= Bold
 [7.Keyword]
-Color=RED
+Color=Turquoise
 BgColor=
 Style=
 [8.Keyword]
