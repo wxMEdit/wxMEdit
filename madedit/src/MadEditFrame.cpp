@@ -2423,12 +2423,14 @@ void MadEditFrame::OnUpdateUI_MenuEditCopyAsHexString(wxUpdateUIEvent& event)
 
 void MadEditFrame::OnUpdateUI_MenuIndent(wxUpdateUIEvent& event)
 {
-    event.Enable(g_ActiveMadEdit && !g_ActiveMadEdit->IsReadOnly());
+    event.Enable(g_ActiveMadEdit && !g_ActiveMadEdit->IsReadOnly() &&
+        g_ActiveMadEdit->GetEditMode()!=emHexMode );
 }
 
 void MadEditFrame::OnUpdateUI_MenuComment(wxUpdateUIEvent& event)
 {
-    event.Enable(g_ActiveMadEdit && !g_ActiveMadEdit->IsReadOnly() && g_ActiveMadEdit->HasLineComment());
+    event.Enable(g_ActiveMadEdit && !g_ActiveMadEdit->IsReadOnly() &&
+        g_ActiveMadEdit->HasLineComment() && g_ActiveMadEdit->GetEditMode()!=emHexMode );
 }
 
 void MadEditFrame::OnUpdateUI_MenuSearchGoTo(wxUpdateUIEvent& event)
