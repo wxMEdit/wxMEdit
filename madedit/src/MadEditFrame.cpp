@@ -1630,7 +1630,7 @@ void MadEditFrame::CreateGUIControls(void)
     m_FindInFilesResults->Connect(wxEVT_LEFT_DCLICK, wxMouseEventHandler(MadEditFrame::OnFindInFilesResultsDClick));
 
     m_InfoNotebook->AddPage(m_FindInFilesResults, _("Find/Replace in Files Results"));
-    m_InfoNotebook->Connect(wxEVT_SIZE, wxSizeEventHandler(MadEditFrame::OnFindInFilesResultsSize));
+    m_InfoNotebook->Connect(wxEVT_SIZE, wxSizeEventHandler(MadEditFrame::OnInfoNotebookSize));
 
     // wxAUI
     m_FrameManager.SetFrame(this);
@@ -2027,7 +2027,7 @@ wxString MadEditFrame::GetMenuKey(const wxString &menu, const wxString &defaultk
     return wxString(wxT("\t"))+defaultkey;
 }
 
-void MadEditFrame::OnFindInFilesResultsSize(wxSizeEvent &evt)
+void MadEditFrame::OnInfoNotebookSize(wxSizeEvent &evt)
 {
     wxPaneInfo &pinfo=g_MainFrame->m_FrameManager.GetPane(g_MainFrame->m_InfoNotebook);
     if(pinfo.IsOk())// && pinfo.IsShown())
