@@ -281,7 +281,7 @@ void MadEncoding::InitEncodings()
                 testmb[0]=0xf0;
                 MSW_GET_FONT_NAME(wxT("874"), fontname);
             }
-            else if(name==wxT("default"))   // no needed
+            else if(name==wxT("default") || name==_("default"))   // unneeded
             {
                 ignore=true;
                 dotest=false;
