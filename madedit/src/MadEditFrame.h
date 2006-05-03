@@ -108,6 +108,8 @@ public:
     void OnUpdateUI_MenuEditInsertTabChar(wxUpdateUIEvent& event);
     void OnUpdateUI_MenuEditInsertDateTime(wxUpdateUIEvent& event);
 
+    void OnUpdateUI_Menu_CheckTextFile(wxUpdateUIEvent& event);
+
     void OnUpdateUI_MenuEditCopyAsHexString(wxUpdateUIEvent& event);
     void OnUpdateUI_MenuIndent(wxUpdateUIEvent& event);
     void OnUpdateUI_MenuComment(wxUpdateUIEvent& event);
@@ -169,6 +171,12 @@ public:
     void OnEditSelectAll(wxCommandEvent& event);
     void OnEditInsertTabChar(wxCommandEvent& event);
     void OnEditInsertDateTime(wxCommandEvent& event);
+
+    void OnEditSortAscending(wxCommandEvent& event);
+    void OnEditSortDescending(wxCommandEvent& event);
+    void OnEditSortByOptions(wxCommandEvent& event);
+    void OnEditSortOptions(wxCommandEvent& event);
+
     void OnEditCopyAsHexString(wxCommandEvent& event);
     void OnEditCopyAsHexStringWithSpace(wxCommandEvent& event);
     void OnEditIncIndent(wxCommandEvent& event);
@@ -180,6 +188,7 @@ public:
     void OnEditInvertCase(wxCommandEvent& event);
     void OnEditToHalfWidth(wxCommandEvent& event);
     void OnEditToFullWidth(wxCommandEvent& event);
+    void OnEditTrimTrailingSpaces(wxCommandEvent& event);
 
     void OnSearchFind(wxCommandEvent& event);
     void OnSearchFindNext(wxCommandEvent& event);
@@ -315,6 +324,11 @@ enum { // menu id
     menuDeleteLine,
     menuInsertTabChar,
     menuInsertDateTime,
+    menuSort,
+    menuSortAscending,
+    menuSortDescending,
+    menuSortByOptions,
+    menuSortOptions,
     menuAdvanced,
     menuCopyAsHexString,
     menuCopyAsHexStringWithSpace,
@@ -327,6 +341,7 @@ enum { // menu id
     menuInvertCase,
     menuToHalfWidth,
     menuToFullWidth,
+    menuTrimTrailingSpaces,
 
     // search
     menuFindNext,
