@@ -263,13 +263,12 @@ void MadSearchDialog::WxButtonFindNextClick(wxCommandEvent& event)
             fromBegin=true;
         }
     }
-    
+
     if(WxCheckBoxMoveFocus->GetValue())
     {
         ((wxFrame*)wxTheApp->GetTopWindow())->Raise();
         g_ActiveMadEdit->SetFocus();
     }
-    
 }
 
 /*

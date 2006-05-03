@@ -412,12 +412,23 @@ void MadReplaceDialog::WxButtonReplaceClick(wxCommandEvent& event)
                 WxCheckBoxWholeWord->GetValue());
         }
 
-        if(ok && !g_ActiveMadEdit->IsSelected())
+        if(ok)
         {
-            wxMessageDialog dlg(this, _("Cannot find the matched string.\nReplace is finished."), wxT("MadEdit"));
-            dlg.ShowModal();
-            
-            m_FindText->SetFocus();
+            if(!g_ActiveMadEdit->IsSelected()) // not found
+            {
+                wxMessageDialog dlg(this, _("Cannot find the matched string.\nReplace is finished."), wxT("MadEdit"));
+                dlg.ShowModal();
+                
+                m_FindText->SetFocus();
+            }
+            else
+            {
+                if(WxCheckBoxMoveFocus->GetValue())
+                {
+                    ((wxFrame*)wxTheApp->GetTopWindow())->Raise();
+                    g_ActiveMadEdit->SetFocus();
+                }
+            }
         }
     }
 }
