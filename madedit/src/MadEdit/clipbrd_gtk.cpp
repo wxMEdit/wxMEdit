@@ -247,7 +247,7 @@ selection_clear_clip( GtkWidget *WXUNUSED(widget), GdkEventSelection *event )
     }
     else
     {
-        wxTheclipboard->m_waiting = false;
+        wxTheClipboard->m_waiting = false;
         return FALSE;
     }
 
@@ -278,7 +278,7 @@ selection_clear_clip( GtkWidget *WXUNUSED(widget), GdkEventSelection *event )
         }                                                                           //[mad]
     }
 
-    wxTheclipboard->m_waiting = false;
+    wxTheClipboard->m_waiting = false;
     return TRUE;
 }
 }
