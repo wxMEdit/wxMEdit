@@ -11503,6 +11503,19 @@ wxFileOffset MadEdit::GetSelectionSize()
     return m_SelectionEnd->pos - m_SelectionBegin->pos;
 }
 
+void MadEdit::GetSelectionLineId(int &beginline, int &endline)
+{
+    if(!m_Selection)
+    {
+        beginline = endline = -1;
+    }
+    else
+    {
+        beginline = m_SelectionBegin->lineid;
+        endline = m_SelectionEnd->lineid;
+    }
+}
+
 void MadEdit::ConvertNewLineType(MadNewLineType type)
 {
     if(IsReadOnly() || !IsTextFile())

@@ -99,6 +99,11 @@ enum MadNewLineType
 enum MadConvertEncodingFlag
 { cefNone, cefSimp2TradChinese, cefTrad2SimpChinese };
 
+// flags for SortLines
+typedef int MadSortFlags;
+enum
+{ sfAscending=0, sfDescending=1, sfCaseSensitive=2, sfRemoveDuplicate=4, sfNumericSort=8 };
+
 //==================================================
 typedef std::basic_string<ucs4_t> ucs4string;
 
@@ -670,6 +675,9 @@ public:
     bool IsSelected() { return m_Selection; }
     wxFileOffset GetSelectionSize();
 
+    // return -1 for no selection
+    void GetSelectionLineId(int &beginline, int &endline);
+
     int GetLineCount() { return int(m_Lines->m_LineCount); }
 
     void ConvertNewLineType(MadNewLineType type);
@@ -740,6 +748,11 @@ public:
     void InvertCase();
     void ToHalfWidth();
     void ToFullWidth();
+
+    void TrimTrailingSpaces();
+
+    // startline<0 : sort all lines; otherwise sort [beginline, endline]
+    void SortLines(MadSortFlags flags, int beginline, int endline);
 
     void SelectAll();
     void CutToClipboard();

@@ -6,6 +6,8 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 #include "MadEdit.h"
+#include <algorithm>
+#include <vector>
 
 #ifdef _DEBUG
 #include <crtdbg.h>
@@ -857,5 +859,534 @@ void MadEdit::WordCount(bool selection, int &wordCount, int &charCount, int &spa
     {
         detail->Add(wxString::Format(wxT("%s %d    ? - ? %s"), PrefixString(counts[idx]).c_str(), counts[idx], _("Invalid Unicode Characters")));
     }
+}
+
+void MadEdit::TrimTrailingSpaces()
+{
+    if(IsReadOnly() || m_EditMode==emHexMode)
+        return;
+
+    // use Regular Expressions to trim all trailing spaces
+    ReplaceTextAll(wxT("[ \t]+(\r|\n|$)"), wxT("$1"), true, true, false);
+}
+
+
+//==============================================================================
+struct SortLineData
+{
+    static bool s_casesensitive;
+    static bool s_numeric;
+    static MadLines *s_lines;
+    static MadLines::NextUCharFuncPtr s_NextUChar;
+
+    MadLineIterator lit;
+    int lineid;
+    MadUCQueue ucq;
+    // for numeric sorting. int_begin=-1 indicates invalid number
+    int int_begin, int_len, frac_begin, frac_len; 
+    bool negative;
+
+    SortLineData(const MadLineIterator& l, int id);
+    bool Equal(const SortLineData *data);
+};
+bool SortLineData::s_casesensitive=false;
+bool SortLineData::s_numeric=false;
+MadLines *SortLineData::s_lines=NULL;
+MadLines::NextUCharFuncPtr SortLineData::s_NextUChar=NULL;
+
+SortLineData::SortLineData(const MadLineIterator& l, int id)
+    : lit(l), lineid(id), int_begin(-1), frac_begin(-1), negative(false)
+{
+    enum { NUM_SIGN, NUM_INT, NUM_FRAC ,NUM_END};
+    int numstep=NUM_SIGN;
+    int num_idx=0;
+
+    s_lines->InitNextUChar(lit, lit->m_RowIndices[0].m_Start);
+    ucs4_t uc;
+    while((s_lines->*s_NextUChar)(ucq)) // get line content
+    {
+        if( (uc=ucq.back().first)==0x0D || uc==0x0A)
+        {
+            ucq.pop_back();
+            break;
+        }
+
+        if(!s_casesensitive) // ignore case
+        {
+            if(uc<0x10000 && uc>=0)
+            {
+                ucq.back().first=towlower(wchar_t(uc));
+            }
+        }
+
+        if(s_numeric && numstep!=NUM_END)
+        {
+            if(numstep==NUM_SIGN)
+            {
+                switch(uc)
+                {
+                case ' ':
+                case '\t':
+                    break;
+                case '-':
+                    negative=true;
+                    ++numstep;
+                    break;
+                case '+':
+                    ++numstep;
+                    break;
+                case '.':
+                    numstep=NUM_FRAC;
+                    break;
+                default:
+                    if(uc>='0' && uc<='9')
+                    {
+                        int_begin=num_idx;
+                        int_len=1;
+                        ++numstep;
+                    }
+                    else
+                    {
+                        numstep=NUM_END; // invalid number format
+                    }
+                    break;
+                }
+            }
+            else if(numstep==NUM_INT)
+            {
+                switch(uc)
+                {
+                case '.':
+                    ++numstep;
+                    break;
+                default:
+                    if(uc>='0' && uc<='9')
+                    {
+                        if(int_begin==-1) 
+                        {
+                            int_begin=num_idx;
+                            int_len=1;
+                        }
+                        else
+                        {
+                            ++int_len;
+                        }
+                    }
+                    else
+                    {
+                        numstep=NUM_END; // invalid number format
+                    }
+                    break;
+                }
+            }
+            else //if(numstep==NUM_FRAC)
+            {
+                if(uc>='0' && uc<='9')
+                {
+                    if(int_begin==-1) 
+                    {
+                        int_begin=0;
+                        int_len=0;
+                    }
+                    if(frac_begin==-1)
+                    {
+                        frac_begin=num_idx;
+                        frac_len=1;
+                    }
+                    else
+                    {
+                        ++frac_len;
+                    }
+                }
+                else
+                {
+                    numstep=NUM_END; // invalid number format
+                }
+            }
+            ++num_idx;
+        }
+    }
+
+    if(s_numeric) //post processing
+    {
+        if(int_begin>=0 && int_len>0) // trim leading '0'
+        {
+            do
+            {
+                if(ucq[int_begin].first!='0')
+                {
+                    break;
+                }
+                ++int_begin;
+            }
+            while(--int_len > 0);
+        }
+        if(frac_begin>=0) // trim trailing '0'
+        {
+            do
+            {
+                if(ucq[frac_begin+frac_len-1].first!='0')
+                {
+                    break;
+                }
+            }
+            while(--frac_len > 0);
+            if(frac_len==0)
+            {
+                frac_begin=-1;
+            }
+        }
+    }
+}
+
+bool SortLineData::Equal(const SortLineData *data)
+{
+    size_t count = ucq.size();
+    const MadUCQueue &ucq2=data->ucq;
+    if(count != ucq2.size()) return false;
+    if(count == 0) return true;
+
+    size_t i=0;
+    do
+    {
+        if(ucq[i].first != ucq2[i].first) return false;
+    }
+    while(++i < count);
+    return true;
+}
+
+
+// for std::sort()
+struct SortLineIterator
+{
+    static bool s_numeric;
+    SortLineData *data;
+
+    SortLineIterator() :data(NULL) {}
+    SortLineIterator(SortLineData *d) :data(d) {}
+
+    bool operator<(const SortLineIterator& it) const
+    {
+        if(s_numeric) // compare number
+        {
+            if(data->int_begin>=0)
+            {
+                if(it.data->int_begin < 0) return true;
+                
+                if(data->negative && !it.data->negative) return true;
+                if(!data->negative && it.data->negative) return false;
+
+                const SortLineData *data1, *data2;
+                if(data->negative)
+                {
+                    data1 = it.data;
+                    data2 = this->data;
+                }
+                else
+                {
+                    data1 = this->data;
+                    data2 = it.data;
+                }
+
+                // compare integer
+                if(data1->int_len < data2->int_len) return true;
+                if(data1->int_len > data2->int_len) return false;
+
+                //int_len == it.int_len
+                const MadUCQueue &it1ucq = data1->ucq;
+                const MadUCQueue &it2ucq = data2->ucq;
+                if(data1->int_len > 0)
+                {
+                    const int it1beg=data1->int_begin;
+                    const int it2beg=data2->int_begin;
+                    int i=0;
+                    do
+                    {
+                        const ucs4_t uc1 = it1ucq[it1beg+i].first;
+                        const ucs4_t uc2 = it2ucq[it2beg+i].first;
+                        if(uc1 < uc2) return true;
+                        if(uc1 > uc2) return false;
+                    }
+                    while(++i < data1->int_len);
+                }
+
+                // compare fraction
+                const int it1beg=data1->frac_begin;
+                const int it2beg=data2->frac_begin;
+                if(it2beg < 0) return false;
+                if(it1beg < 0) return true;
+
+                const int it1len=data1->frac_len;
+                const int it2len=data2->frac_len;
+                int i=0;
+                do
+                {
+                    const ucs4_t uc1 = it1ucq[it1beg+i].first;
+                    const ucs4_t uc2 = it2ucq[it2beg+i].first;
+                    if(uc1 < uc2) return true;
+                    if(uc1 > uc2) return false;
+                    ++i;
+                }
+                while(i<it1len && i<it2len);
+
+                if(it1len < it2len) return true;
+            }
+        }
+        else // compare string
+        {
+            const MadUCQueue &ucq1 = data->ucq;
+            const MadUCQueue &ucq2 = it.data->ucq;
+            const size_t len1 = ucq1.size();
+            const size_t len2 = ucq2.size();
+
+            if(len1==0) return true;
+            if(len2==0) return false;
+
+            size_t i = 0;
+            do
+            {
+                if(ucq1[i].first < ucq2[i].first) return true;
+                if(ucq1[i].first > ucq2[i].first) return false;
+                ++i;
+            }
+            while(i<len1 && i<len2);
+
+            if(len1 < len2) return true;
+        }
+        return false;
+    }
+};
+bool SortLineIterator::s_numeric=false;
+
+void MadEdit::SortLines(MadSortFlags flags, int beginline, int endline)
+{
+    if(IsReadOnly() || m_EditMode==emHexMode)
+        return;
+
+    int maxline=int(m_Lines->m_LineCount) - 1;
+    MadLineIterator lit = m_Lines->m_LineList.end();
+    --lit;
+    if(lit->m_Size == 0) --maxline; // the last line is empty
+    
+    if(beginline<0) // sort all lines
+    {
+        beginline=0;
+        endline=maxline;
+    }
+    else
+    {
+        if(beginline>maxline) beginline=maxline;
+        if(endline>maxline) endline=maxline;
+    }
+    if(endline-beginline <= 0) return; // it's unneeded to sort
+
+    bool oldModified = m_Modified;
+
+    bool bDescending = (flags&sfDescending)!=0;
+    bool bRemoveDup = (flags&sfRemoveDuplicate)!=0;
+    SortLineData::s_casesensitive = (flags&sfCaseSensitive)!=0;
+    SortLineData::s_numeric = (flags&sfNumericSort)!=0;
+    SortLineIterator::s_numeric = SortLineData::s_numeric;
+
+    SortLineData::s_lines=m_Lines;
+    SortLineData::s_NextUChar=m_Lines->NextUChar;
+
+    std::list<SortLineData*> datalist;
+    std::vector<SortLineIterator> lines;
+
+    wxFileOffset pos=0, delsize=0;
+
+    lit = m_Lines->m_LineList.begin();
+    int i=0;
+    while(i<beginline) // ignore preceding lines
+    {
+        pos += lit->m_Size;
+        ++lit;
+        ++i;
+    }
+
+    if(i==0) // ignore BOM
+    {
+        pos = lit->m_RowIndices[0].m_Start;
+        delsize = -pos;
+    }
+
+    for(;;) // prepare for data & calc delsize
+    {
+        SortLineData *d = new SortLineData(lit, i);
+        datalist.push_back(d);
+        lines.push_back(SortLineIterator(d));
+        delsize += lit->m_Size;
+        if(++i > endline)
+        {
+            delsize -= lit->m_NewLineSize; // ignore newline char of last line
+            break;
+        }
+
+        ++lit;
+    }
+
+    // sort lines
+    std::sort(lines.begin(), lines.end());
+
+    // put the sorted lines to MemData
+    MadBlock blk(m_Lines->m_MemData, m_Lines->m_MemData->m_Size, 0);
+
+    vector<wxByte> buffervector;
+    wxByte *buf=NULL;
+
+    std::vector<SortLineIterator>::iterator slit = lines.begin();
+    std::vector<SortLineIterator>::iterator slitend = lines.end();
+    std::vector<SortLineIterator>::reverse_iterator slrit = lines.rbegin();
+    std::vector<SortLineIterator>::reverse_iterator slritend = lines.rend();
+    SortLineData *dupdata=NULL;
+    do
+    {
+        SortLineData *data=NULL;
+        if(bDescending)
+        {
+            data = slrit->data;
+        }
+        else
+        {
+            data = slit->data;
+        }
+        ++slrit;
+        ++slit;
+
+        if(bRemoveDup)
+        {
+            if(dupdata!=NULL && dupdata->Equal(data))
+            {
+                dupdata = data;
+                data = NULL;
+            }
+            else
+            {
+                dupdata = data;
+            }
+        }
+
+        if(data != NULL)
+        {
+            lit = data->lit;
+            wxFileOffset spos = lit->m_RowIndices[0].m_Start;
+            size_t size= lit->m_Size - spos;
+
+            if(slit == slitend) // ignore newline char of last line
+            {
+                size -= lit->m_NewLineSize;
+            }
+
+            if(size>0)
+            {
+                if(buffervector.size()<size)
+                {
+                    buffervector.resize(size);
+                    buf=&(*buffervector.begin());
+                }
+                lit->Get(spos, buf, size);
+                m_Lines->m_MemData->Put(buf, size); // put line text (include newline char)
+                blk.m_Size+=size;
+            }
+
+            if(lit->m_NewLineSize == 0 && slit != slitend) //append a newline char
+            {
+                ucs4_t newline[2]={ 0x0D, 0x0A };
+                switch(m_InsertNewLineType)
+                {
+                case nltDOS:
+#ifdef __WXMSW__
+                case nltDefault:
+#endif
+                    UCStoBlock(newline, 2, blk);
+                    break;
+                case nltMAC:
+                    UCStoBlock(newline, 1, blk);
+                    break;
+                case nltUNIX:
+#ifndef __WXMSW__
+                case nltDefault:
+#endif
+                    UCStoBlock(newline+1, 1, blk);
+                    break;
+                }
+            }
+        }
+
+    }
+    while(slit != slitend);
+
+    // free all data in datalist
+    std::list<SortLineData*>::iterator dit=datalist.begin();
+    do
+    {
+        delete (*dit);
+    }
+    while(++dit != datalist.end());
+
+    // 
+    MadOverwriteUndoData *oudata = new MadOverwriteUndoData();
+    oudata->m_Pos = pos;
+    oudata->m_DelSize = delsize;
+    oudata->m_InsSize = blk.m_Size;
+    oudata->m_InsData.push_back(blk);
+
+    lit = DeleteInsertData( oudata->m_Pos,
+                            oudata->m_DelSize, &oudata->m_DelData,
+                            oudata->m_InsSize, &oudata->m_InsData);
+    
+    MadUndo *undo = m_UndoBuffer->Add();
+
+    if(m_CaretPos.pos > m_Lines->m_Size) m_CaretPos.pos = m_Lines->m_Size;
+    undo->m_CaretPosBefore=m_CaretPos.pos;
+    undo->m_CaretPosAfter=m_CaretPos.pos;
+
+    undo->m_Undos.push_back(oudata);
+
+    bool sc= (oldModified==false);
+    m_Modified = true;
+    m_Selection = false;
+    m_RepaintAll = true;
+    Refresh(false);
+
+    if(IsTextFile())
+    {
+        m_Lines->Reformat(lit, lit);
+
+        //m_CaretPos.pos = undo->m_CaretPosAfter;
+        UpdateCaretByPos(m_CaretPos, m_ActiveRowUChars, m_ActiveRowWidths, m_CaretRowUCharPos);
+
+        AppearCaret();
+        UpdateScrollBarPos();
+
+        if(m_EditMode == emHexMode)
+        {
+            if(!m_CaretAtHexArea)
+            {
+                UpdateTextAreaXPos();
+                m_LastTextAreaXPos = m_TextAreaXPos;
+            }
+        }
+    }
+    else
+    {
+        //m_CaretPos.pos = undo->m_CaretPosAfter;
+        m_CaretPos.linepos = m_CaretPos.pos;
+
+        AppearCaret();
+        UpdateScrollBarPos();
+
+        if(!m_CaretAtHexArea)
+        {
+            UpdateTextAreaXPos();
+            m_LastTextAreaXPos = m_TextAreaXPos;
+        }
+    }
+
+    m_LastCaretXPos = m_CaretPos.xpos;
+
+    DoSelectionChanged();
+    if(sc) DoStatusChanged();
 }
 
