@@ -1056,16 +1056,16 @@ bool SortLineData::Equal(const SortLineData *data)
 }
 
 
-// for std::sort()
-struct SortLineIterator
+// it's LessThan Comparable. For std::sort().
+struct SortLineComp
 {
     static bool s_numeric;
     SortLineData *data;
 
-    SortLineIterator() :data(NULL) {}
-    SortLineIterator(SortLineData *d) :data(d) {}
+    SortLineComp() :data(NULL) {}
+    SortLineComp(SortLineData *d) :data(d) {}
 
-    bool operator<(const SortLineIterator& it) const
+    bool operator<(const SortLineComp& it) const
     {
         if(s_numeric) // compare number
         {
@@ -1156,7 +1156,7 @@ struct SortLineIterator
         return false;
     }
 };
-bool SortLineIterator::s_numeric=false;
+bool SortLineComp::s_numeric=false;
 
 void MadEdit::SortLines(MadSortFlags flags, int beginline, int endline)
 {
@@ -1186,13 +1186,13 @@ void MadEdit::SortLines(MadSortFlags flags, int beginline, int endline)
     bool bRemoveDup = (flags&sfRemoveDuplicate)!=0;
     SortLineData::s_casesensitive = (flags&sfCaseSensitive)!=0;
     SortLineData::s_numeric = (flags&sfNumericSort)!=0;
-    SortLineIterator::s_numeric = SortLineData::s_numeric;
+    SortLineComp::s_numeric = SortLineData::s_numeric;
 
     SortLineData::s_lines=m_Lines;
     SortLineData::s_NextUChar=m_Lines->NextUChar;
 
     std::list<SortLineData*> datalist;
-    std::vector<SortLineIterator> lines;
+    std::vector<SortLineComp> lines;
 
     wxFileOffset pos=0, delsize=0;
 
@@ -1215,7 +1215,7 @@ void MadEdit::SortLines(MadSortFlags flags, int beginline, int endline)
     {
         SortLineData *d = new SortLineData(lit, i);
         datalist.push_back(d);
-        lines.push_back(SortLineIterator(d));
+        lines.push_back(SortLineComp(d));
         delsize += lit->m_Size;
         if(++i > endline)
         {
@@ -1235,10 +1235,10 @@ void MadEdit::SortLines(MadSortFlags flags, int beginline, int endline)
     vector<wxByte> buffervector;
     wxByte *buf=NULL;
 
-    std::vector<SortLineIterator>::iterator slit = lines.begin();
-    std::vector<SortLineIterator>::iterator slitend = lines.end();
-    std::vector<SortLineIterator>::reverse_iterator slrit = lines.rbegin();
-    std::vector<SortLineIterator>::reverse_iterator slritend = lines.rend();
+    std::vector<SortLineComp>::iterator slit = lines.begin();
+    std::vector<SortLineComp>::iterator slitend = lines.end();
+    std::vector<SortLineComp>::reverse_iterator slrit = lines.rbegin();
+    std::vector<SortLineComp>::reverse_iterator slritend = lines.rend();
     SortLineData *dupdata=NULL;
     do
     {
