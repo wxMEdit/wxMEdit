@@ -1,0 +1,193 @@
+object frmNewForm: TfrmNewForm
+  Left = 8
+  Top = 8
+  Width = 320
+  Height = 334
+  BorderIcons = [biSystemMenu, biMinimize]
+  Caption = 'Sort Options'
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'MS Sans Serif'
+  Font.Style = []
+  OldCreateOrder = True
+  PopupMenu = MainForm.DesignerPopup
+  Visible = True
+  OnCloseQuery = FormCloseQuery
+  OnCreate = FormCreate
+  OnDestroy = FormDestroy
+  OnKeyDown = FormKeyDown
+  OnResize = NewFormResize
+  Wx_ICON.Data = {07544269746D617000000000}
+  Wx_Name = 'MadSortDialog'
+  Wx_IDName = 'ID_DIALOG1'
+  Wx_IDValue = 1000
+  Wx_Class = 'wxDialog'
+  Wx_Center = True
+  Wx_Hidden = False
+  Wx_GeneralStyle = []
+  Wx_DialogStyle = [wxCAPTION, wxRESIZE_BORDER, wxSYSTEM_MENU, wxSTAY_ON_TOP, wxDIALOG_NO_PARENT, wxCLOSE_BOX]
+  EVT_CLOSE = 'MadSortDialogClose'
+  PixelsPerInch = 96
+  TextHeight = 13
+  object WxBoxSizer1: TWxBoxSizer
+    Left = 0
+    Top = 0
+    Width = 312
+    Height = 304
+    Align = alClient
+    TabOrder = 0
+    Orientation = wxVertical
+    Wx_Class = 'wxBoxSizer'
+    Wx_ControlOrientation = wxControlVertical
+    Wx_IDName = 'ID_WXBOXSIZER1'
+    Wx_IDValue = 1002
+    Wx_StretchFactor = 0
+    Wx_StrechFactor = 0
+    object WxRadioBoxOrder: TWxRadioBox
+      Left = 30
+      Top = 5
+      Width = 150
+      Height = 75
+      Caption = 'Sort Order'
+      Orientation = wxdVertical
+      Items.Strings = (
+        '&Ascending'
+        '&Descending')
+      TabOrder = 0
+      Wx_BGColor = clBlack
+      Wx_Class = 'wxRadioBox'
+      Wx_ControlOrientation = wxControlVertical
+      Wx_EventList.Strings = (
+        'EVT_RADIOBOX:OnClick'
+        'EVT_UPDATE_UI:OnUpdateUI')
+      Wx_FGColor = clBlack
+      Wx_GeneralStyle = []
+      Wx_HorizontalAlignment = wxSZALIGN_LEFT
+      Wx_IDName = 'ID_WXRADIOBOXORDER'
+      Wx_IDValue = 1003
+      Wx_RadioBoxStyle = wxRA_SPECIFY_COLS
+      Wx_StrechFactor = 0
+      Wx_Selection = 0
+    end
+    object WxCheckBoxCase: TWxCheckBox
+      Left = 30
+      Top = 90
+      Width = 150
+      Height = 20
+      Caption = '&Case Sensitive'
+      TabOrder = 1
+      Wx_BGColor = clBlack
+      Wx_CheckBoxStyle = []
+      Wx_Class = 'wxCheckBox'
+      Wx_ControlOrientation = wxControlVertical
+      Wx_FGColor = clBlack
+      Wx_GeneralStyle = []
+      Wx_Hidden = False
+      Wx_HorizontalAlignment = wxSZALIGN_LEFT
+      Wx_IDName = 'ID_WXCHECKBOXCASE'
+      Wx_IDValue = 1004
+      Wx_StrechFactor = 0
+    end
+    object WxCheckBoxNumeric: TWxCheckBox
+      Left = 30
+      Top = 120
+      Width = 150
+      Height = 20
+      Caption = '&Numeric Sort'
+      TabOrder = 2
+      Wx_BGColor = clBlack
+      Wx_CheckBoxStyle = []
+      Wx_Class = 'wxCheckBox'
+      Wx_ControlOrientation = wxControlVertical
+      Wx_FGColor = clBlack
+      Wx_GeneralStyle = []
+      Wx_Hidden = False
+      Wx_HorizontalAlignment = wxSZALIGN_LEFT
+      Wx_IDName = 'ID_WXCHECKBOXNUMERIC'
+      Wx_IDValue = 1006
+      Wx_StrechFactor = 0
+    end
+    object WxCheckBoxRemoveDup: TWxCheckBox
+      Left = 30
+      Top = 150
+      Width = 150
+      Height = 20
+      Caption = '&Remove Duplicates'
+      TabOrder = 3
+      Wx_BGColor = clBlack
+      Wx_CheckBoxStyle = []
+      Wx_Class = 'wxCheckBox'
+      Wx_ControlOrientation = wxControlVertical
+      Wx_FGColor = clBlack
+      Wx_GeneralStyle = []
+      Wx_Hidden = False
+      Wx_HorizontalAlignment = wxSZALIGN_LEFT
+      Wx_IDName = 'ID_WXCHECKBOXREMOVEDUP'
+      Wx_IDValue = 1007
+      Wx_StrechFactor = 0
+    end
+    object WxBoxSizer2: TWxBoxSizer
+      Left = 5
+      Top = 180
+      Width = 200
+      Height = 40
+      TabOrder = 4
+      Wx_Class = 'wxBoxSizer'
+      Wx_ControlOrientation = wxControlVertical
+      Wx_IDName = 'ID_WXBOXSIZER2'
+      Wx_IDValue = 1008
+      Wx_StretchFactor = 0
+      Wx_StrechFactor = 0
+      object WxButtonSort: TWxButton
+        Left = 5
+        Top = 5
+        Width = 90
+        Height = 30
+        Caption = '&Sort'
+        TabOrder = 0
+        Wx_BKColor = clBlack
+        Wx_ButtonStyle = []
+        Wx_Class = 'wxButton'
+        Wx_ControlOrientation = wxControlHorizontal
+        Wx_Default = False
+        Wx_EventList.Strings = (
+          'EVT_BUTTON:OnClick'
+          'EVT_UPDATE_UI:OnUpdateUI')
+        Wx_FGColor = clBlack
+        Wx_GeneralStyle = []
+        Wx_Hidden = False
+        Wx_IDName = 'wxID_OK'
+        Wx_IDValue = 1009
+        Wx_StrechFactor = 0
+        Wx_Height = 30
+        Wx_Width = 90
+      end
+      object WxButtonCancel: TWxButton
+        Left = 105
+        Top = 5
+        Width = 90
+        Height = 30
+        Caption = 'Cancel'
+        TabOrder = 1
+        Wx_BKColor = clBlack
+        Wx_ButtonStyle = []
+        Wx_Class = 'wxButton'
+        Wx_ControlOrientation = wxControlHorizontal
+        Wx_Default = False
+        Wx_EventList.Strings = (
+          'EVT_BUTTON:OnClick'
+          'EVT_UPDATE_UI:OnUpdateUI')
+        Wx_FGColor = clBlack
+        Wx_GeneralStyle = []
+        Wx_Hidden = False
+        Wx_IDName = 'wxID_CANCEL'
+        Wx_IDValue = 1010
+        Wx_StrechFactor = 0
+        Wx_Height = 30
+        Wx_Width = 90
+      end
+    end
+  end
+end
