@@ -854,7 +854,7 @@ object frmNewForm: TfrmNewForm
               Top = 125
               Width = 480
               Height = 20
-              Caption = 'Paste Text from Clipboard when Press Middle Mouse Button'
+              Caption = 'Paste Text from Clipboard when Pressing Middle Mouse Button'
               TabOrder = 2
               Wx_BGColor = clBlack
               Wx_Border = 2
