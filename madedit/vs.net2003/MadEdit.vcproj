@@ -158,6 +158,9 @@
 				RelativePath="..\src\MadSearchDialog.cpp">
 			</File>
 			<File
+				RelativePath="..\src\MadSortDialog.cpp">
+			</File>
+			<File
 				RelativePath="..\src\MadUtils.cpp">
 			</File>
 			<File
@@ -234,6 +237,9 @@
 			</File>
 			<File
 				RelativePath="..\src\MadSearchDialog.h">
+			</File>
+			<File
+				RelativePath="..\src\MadSortDialog.h">
 			</File>
 			<File
 				RelativePath="..\src\MadUtils.h">
