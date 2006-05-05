@@ -24,6 +24,7 @@
 #include <wx/treectrl.h>
 #include <wx/button.h>
 #include <wx/statbox.h>
+#include <wx/radiobut.h>
 #include <wx/textctrl.h>
 #include <wx/checkbox.h>
 #include <wx/stattext.h>
@@ -141,7 +142,11 @@ public:
 		wxBoxSizer *WxBoxSizer14;
 		wxPanel *WxNoteBookPage3;
 		wxCheckBox *WxCheckBoxMiddleMouseToPaste;
+		wxStaticText *WxStaticText17;
+		wxRadioButton *WxRadioButtonDisable;
+		wxRadioButton *WxRadioButtonEnable;
 		wxCheckBox *WxCheckBoxMouseSelectToCopy;
+		wxBoxSizer *WxBoxSizer28;
 		wxCheckBox *WxCheckBoxAutoCompletePair;
 		wxCheckBox *WxCheckBoxAutoIndent;
 		wxCheckBox *WxCheckBoxTabOrSpaces;
@@ -239,7 +244,10 @@ public:
 			ID_WXCHECKBOXPRINTSYNTAX = 1084,
 			ID_WXNOTEBOOKPAGE3 = 1062,
 			ID_WXCHECKBOXMIDDLEMOUSETOPASTE = 1127,
-			ID_WXCHECKBOXMOUSESELECTTOCOPY = 1126,
+			ID_WXSTATICTEXT17 = 1162,
+			ID_WXRADIOBUTTONDISABLE = 1161,
+			ID_WXRADIOBUTTONENABLE = 1160,
+			ID_WXCHECKBOXMOUSESELECTTOCOPY = 1159,
 			ID_WXCHECKBOXAUTOCOMPLETEPAIR = 1154,
 			ID_WXCHECKBOXAUTOINDENT = 1060,
 			ID_WXCHECKBOXTABORSPACES = 1059,

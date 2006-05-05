@@ -291,6 +291,7 @@ private:
     MadMouseMotionTimer *m_MouseMotionTimer;
 
     bool            m_MouseSelectToCopy;
+    bool            m_MouseSelectToCopyWithCtrlKey; // enable or disable when pressing Ctrl key
     bool            m_MiddleMouseToPaste;
 
     wxBitmap        *m_HexDigitBitmap;
@@ -653,6 +654,8 @@ public:
 
     bool GetMouseSelectToCopy() { return m_MouseSelectToCopy; }
     void SetMouseSelectToCopy(bool value) { m_MouseSelectToCopy=value; }
+    bool GetMouseSelectToCopyWithCtrlKey() { return m_MouseSelectToCopyWithCtrlKey; }
+    void SetMouseSelectToCopyWithCtrlKey(bool value) { m_MouseSelectToCopyWithCtrlKey=value; }
 
     bool GetMiddleMouseToPaste() { return m_MiddleMouseToPaste; }
     void SetMiddleMouseToPaste(bool value) { m_MiddleMouseToPaste=value; }

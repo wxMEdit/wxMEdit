@@ -302,19 +302,31 @@ void MadOptionsDialog::CreateGUIControls(void)
 	wxBoxSizer* WxBoxSizer12 = new wxBoxSizer(wxVERTICAL);
 	WxBoxSizer8->Add(WxBoxSizer12,0,wxALIGN_LEFT | wxALL,5);
 
-	WxCheckBoxTabOrSpaces = new wxCheckBox(WxNoteBookPage2, ID_WXCHECKBOXTABORSPACES, _("Insert Space Char Instead of Tab Char"), wxPoint(5,5), wxSize(400,22), 0, wxDefaultValidator, _("WxCheckBoxTabOrSpaces"));
+	WxCheckBoxTabOrSpaces = new wxCheckBox(WxNoteBookPage2, ID_WXCHECKBOXTABORSPACES, _("Insert Space Char Instead of Tab Char"), wxPoint(22,5), wxSize(480,20), 0, wxDefaultValidator, _("WxCheckBoxTabOrSpaces"));
 	WxBoxSizer12->Add(WxCheckBoxTabOrSpaces,0,wxALIGN_LEFT | wxALL,2);
 
-	WxCheckBoxAutoIndent = new wxCheckBox(WxNoteBookPage2, ID_WXCHECKBOXAUTOINDENT, _("Auto Indent"), wxPoint(5,37), wxSize(400,22), 0, wxDefaultValidator, _("WxCheckBoxAutoIndent"));
+	WxCheckBoxAutoIndent = new wxCheckBox(WxNoteBookPage2, ID_WXCHECKBOXAUTOINDENT, _("Auto Indent"), wxPoint(22,35), wxSize(480,20), 0, wxDefaultValidator, _("WxCheckBoxAutoIndent"));
 	WxBoxSizer12->Add(WxCheckBoxAutoIndent,0,wxALIGN_LEFT | wxALL,2);
 
-	WxCheckBoxAutoCompletePair = new wxCheckBox(WxNoteBookPage2, ID_WXCHECKBOXAUTOCOMPLETEPAIR, _("Auto Complete Character Pair"), wxPoint(5,69), wxSize(400,17), 0, wxDefaultValidator, _("WxCheckBoxAutoCompletePair"));
+	WxCheckBoxAutoCompletePair = new wxCheckBox(WxNoteBookPage2, ID_WXCHECKBOXAUTOCOMPLETEPAIR, _("Auto Complete Character Pair"), wxPoint(22,65), wxSize(480,20), 0, wxDefaultValidator, _("WxCheckBoxAutoCompletePair"));
 	WxBoxSizer12->Add(WxCheckBoxAutoCompletePair,0,wxALIGN_LEFT | wxALL,2);
 
-	WxCheckBoxMouseSelectToCopy = new wxCheckBox(WxNoteBookPage2, ID_WXCHECKBOXMOUSESELECTTOCOPY, _("Auto Copy the Mouse-Selected Text to Clipboard(Disabled when Pressed Ctrl Key)"), wxPoint(5,96), wxSize(400,17), 0, wxDefaultValidator, _("WxCheckBoxMouseSelectToCopy"));
-	WxBoxSizer12->Add(WxCheckBoxMouseSelectToCopy,0,wxALIGN_LEFT | wxALL,2);
+	wxBoxSizer* WxBoxSizer28 = new wxBoxSizer(wxHORIZONTAL);
+	WxBoxSizer12->Add(WxBoxSizer28,0,wxALIGN_LEFT | wxALL,0);
 
-	WxCheckBoxMiddleMouseToPaste = new wxCheckBox(WxNoteBookPage2, ID_WXCHECKBOXMIDDLEMOUSETOPASTE, _("Paste Text from Clipboard when Press Middle Mouse Button"), wxPoint(5,123), wxSize(400,17), 0, wxDefaultValidator, _("WxCheckBoxMiddleMouseToPaste"));
+	WxCheckBoxMouseSelectToCopy = new wxCheckBox(WxNoteBookPage2, ID_WXCHECKBOXMOUSESELECTTOCOPY, _("Auto Copy the Mouse-Selected Text to Clipboard  ("), wxPoint(0,0), wxSize(260,20), 0, wxDefaultValidator, _("WxCheckBoxMouseSelectToCopy"));
+	WxBoxSizer28->Add(WxCheckBoxMouseSelectToCopy,0,wxALIGN_CENTER_VERTICAL | wxALL,2);
+
+	WxRadioButtonEnable = new wxRadioButton(WxNoteBookPage2, ID_WXRADIOBUTTONENABLE, _("Enable"), wxPoint(260,0), wxSize(70,20), 0, wxDefaultValidator, _("WxRadioButtonEnable"));
+	WxBoxSizer28->Add(WxRadioButtonEnable,0,wxALIGN_CENTER_VERTICAL | wxALL,2);
+
+	WxRadioButtonDisable = new wxRadioButton(WxNoteBookPage2, ID_WXRADIOBUTTONDISABLE, _("Disable"), wxPoint(330,0), wxSize(70,20), 0, wxDefaultValidator, _("WxRadioButtonDisable"));
+	WxBoxSizer28->Add(WxRadioButtonDisable,0,wxALIGN_CENTER_VERTICAL | wxALL,2);
+
+	WxStaticText17 = new wxStaticText(WxNoteBookPage2, ID_WXSTATICTEXT17, _("when Pressing Ctrl Key)"), wxPoint(400,1), wxSize(115,17), 0, _("WxStaticText17"));
+	WxBoxSizer28->Add(WxStaticText17,0,wxALIGN_CENTER_VERTICAL | wxALL,2);
+
+	WxCheckBoxMiddleMouseToPaste = new wxCheckBox(WxNoteBookPage2, ID_WXCHECKBOXMIDDLEMOUSETOPASTE, _("Paste Text from Clipboard when Press Middle Mouse Button"), wxPoint(22,125), wxSize(480,20), 0, wxDefaultValidator, _("WxCheckBoxMiddleMouseToPaste"));
 	WxBoxSizer12->Add(WxCheckBoxMiddleMouseToPaste,0,wxALIGN_LEFT | wxALL,2);
 
 	WxNoteBookPage3 = new wxPanel(WxNotebook1, ID_WXNOTEBOOKPAGE3, wxPoint(4,24), wxSize(673,314));
@@ -578,7 +590,10 @@ void MadOptionsDialog::CreateGUIControls(void)
     ResizeItem(WxBoxSizer12, WxCheckBoxTabOrSpaces, 25, 4);
     ResizeItem(WxBoxSizer12, WxCheckBoxAutoIndent, 25, 4);
     ResizeItem(WxBoxSizer12, WxCheckBoxAutoCompletePair, 25, 4);
-    ResizeItem(WxBoxSizer12, WxCheckBoxMouseSelectToCopy, 25, 4);
+    ResizeItem(WxBoxSizer28, WxCheckBoxMouseSelectToCopy, 25, 4);
+    ResizeItem(WxBoxSizer28, WxRadioButtonEnable, 25, 4);
+    ResizeItem(WxBoxSizer28, WxRadioButtonDisable, 25, 4);
+    ResizeItem(WxBoxSizer28, WxStaticText17, 2, 2);
     ResizeItem(WxBoxSizer12, WxCheckBoxMiddleMouseToPaste, 25, 4);
     
     ResizeItem(WxStaticBoxSizer1, WxCheckBoxPrintSyntax, 25, 4);
@@ -800,6 +815,10 @@ void MadOptionsDialog::MadOptionsDialogActivate(wxActivateEvent& event)
         
         cfg->Read(wxT("MouseSelectToCopy"), &bb);
         WxCheckBoxMouseSelectToCopy->SetValue(bb);
+
+        cfg->Read(wxT("MouseSelectToCopyWithCtrlKey"), &bb);
+        WxRadioButtonEnable->SetValue(bb);
+        WxRadioButtonDisable->SetValue(!bb);
 
         cfg->Read(wxT("MiddleMouseToPaste"), &bb);
         WxCheckBoxMiddleMouseToPaste->SetValue(bb);

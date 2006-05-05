@@ -766,7 +766,12 @@ MadEdit::MadEdit(wxWindow* parent, wxWindowID id, const wxPoint& pos, const wxSi
     m_MouseAtHexTextArea=false;
     m_MouseMotionTimer=new MadMouseMotionTimer(this);
 
-    m_Config->Read(wxT("MouseSelectToCopy"), &m_MouseSelectToCopy, false);
+    m_Config->Read(wxT("MouseSelectToCopy"), &m_MouseSelectToCopy, true);
+#if defined(__WXGTK__)
+    m_Config->Read(wxT("MouseSelectToCopyWithCtrlKey"), &m_MouseSelectToCopyWithCtrlKey, false);
+#else
+    m_Config->Read(wxT("MouseSelectToCopyWithCtrlKey"), &m_MouseSelectToCopyWithCtrlKey, true);
+#endif
     m_Config->Read(wxT("MiddleMouseToPaste"), &m_MiddleMouseToPaste, true);
 
     m_HexTopRow = size_t(-1);
@@ -9092,11 +9097,15 @@ void MadEdit::OnMouseLeftUp(wxMouseEvent &evt)
         ReleaseMouse();
     }
 
-    if(m_MouseSelectToCopy && evt.ControlDown()==false)
+    if(m_MouseSelectToCopy)
     {
-        wxTheClipboard->UsePrimarySelection(true);
-        CopyToClipboard();
-        wxTheClipboard->UsePrimarySelection(false);
+        if( (evt.ControlDown() && m_MouseSelectToCopyWithCtrlKey) ||
+            (!evt.ControlDown() && !m_MouseSelectToCopyWithCtrlKey) )
+        {
+            wxTheClipboard->UsePrimarySelection(true);
+            CopyToClipboard();
+            wxTheClipboard->UsePrimarySelection(false);
+        }
     }
 
     evt.Skip();

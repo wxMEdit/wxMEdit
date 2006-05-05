@@ -3749,7 +3749,7 @@ void MadEditFrame::OnToolsOptions(wxCommandEvent& event)
         wxString oldpath=m_Config->GetPath();
         m_Config->SetPath(wxT("/MadEdit"));
 
-        bool rcm, isiot, ai, acp, msc, mmp;
+        bool rcm, isiot, ai, acp, msc, mscck, mmp;
         wxString mc, tc, ic;
 
         m_Config->Write(wxT("Language"), g_OptionsDialog->WxComboBoxLanguage->GetValue());
@@ -3802,6 +3802,9 @@ void MadEditFrame::OnToolsOptions(wxCommandEvent& event)
 
         msc=g_OptionsDialog->WxCheckBoxMouseSelectToCopy->GetValue();
         m_Config->Write(wxT("MouseSelectToCopy"), msc);
+
+        mscck=g_OptionsDialog->WxRadioButtonEnable->GetValue();
+        m_Config->Write(wxT("MouseSelectToCopyWithCtrlKey"), mscck);
 
         mmp=g_OptionsDialog->WxCheckBoxMiddleMouseToPaste->GetValue();
         m_Config->Write(wxT("MiddleMouseToPaste"), mmp);
@@ -3861,6 +3864,7 @@ void MadEditFrame::OnToolsOptions(wxCommandEvent& event)
             madedit->SetAutoIndent(ai);
             madedit->SetAutoCompletePair(acp);
             madedit->SetMouseSelectToCopy(msc);
+            madedit->SetMouseSelectToCopyWithCtrlKey(mscck);
             madedit->SetMiddleMouseToPaste(mmp);
             long lo;
             if(mc.ToLong(&lo)) madedit->SetMaxColumns(lo);

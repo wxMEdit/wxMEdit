@@ -54,8 +54,8 @@ object frmNewForm: TfrmNewForm
       Top = 0
       Width = 681
       Height = 342
-      ActivePage = WxNoteBookPage1
-      TabIndex = 0
+      ActivePage = WxNoteBookPage2
+      TabIndex = 1
       TabOrder = 0
       Wx_Class = 'wxFlatNotebook'
       Wx_ControlOrientation = wxControlVertical
@@ -455,7 +455,7 @@ object frmNewForm: TfrmNewForm
           Wx_StrechFactor = 1
           Wx_VerticalAlignment = wxSZALIGN_GROW_VERTICAL
           object WxBoxSizer9: TWxBoxSizer
-            Left = 23
+            Left = 80
             Top = 2
             Width = 368
             Height = 25
@@ -513,7 +513,7 @@ object frmNewForm: TfrmNewForm
             end
           end
           object WxBoxSizer10: TWxBoxSizer
-            Left = 23
+            Left = 80
             Top = 31
             Width = 368
             Height = 25
@@ -571,7 +571,7 @@ object frmNewForm: TfrmNewForm
             end
           end
           object WxBoxSizer11: TWxBoxSizer
-            Left = 23
+            Left = 80
             Top = 60
             Width = 368
             Height = 25
@@ -629,7 +629,7 @@ object frmNewForm: TfrmNewForm
             end
           end
           object WxBoxSizer13: TWxBoxSizer
-            Left = 23
+            Left = 80
             Top = 89
             Width = 368
             Height = 25
@@ -689,8 +689,8 @@ object frmNewForm: TfrmNewForm
           object WxBoxSizer12: TWxBoxSizer
             Left = 2
             Top = 118
-            Width = 410
-            Height = 145
+            Width = 525
+            Height = 150
             TabOrder = 3
             Orientation = wxVertical
             Wx_Class = 'wxBoxSizer'
@@ -701,10 +701,10 @@ object frmNewForm: TfrmNewForm
             Wx_StretchFactor = 0
             Wx_StrechFactor = 0
             object WxCheckBoxTabOrSpaces: TWxCheckBox
-              Left = 5
+              Left = 22
               Top = 5
-              Width = 400
-              Height = 22
+              Width = 480
+              Height = 20
               Caption = 'Insert Space Char Instead of Tab Char'
               TabOrder = 0
               Wx_BGColor = clBlack
@@ -721,10 +721,10 @@ object frmNewForm: TfrmNewForm
               Wx_StrechFactor = 0
             end
             object WxCheckBoxAutoIndent: TWxCheckBox
-              Left = 5
-              Top = 37
-              Width = 400
-              Height = 22
+              Left = 22
+              Top = 35
+              Width = 480
+              Height = 20
               Caption = 'Auto Indent'
               TabOrder = 1
               Wx_BGColor = clBlack
@@ -741,12 +741,12 @@ object frmNewForm: TfrmNewForm
               Wx_StrechFactor = 0
             end
             object WxCheckBoxAutoCompletePair: TWxCheckBox
-              Left = 5
-              Top = 69
-              Width = 400
-              Height = 17
+              Left = 22
+              Top = 65
+              Width = 480
+              Height = 20
               Caption = 'Auto Complete Character Pair'
-              TabOrder = 4
+              TabOrder = 3
               Wx_BGColor = clBlack
               Wx_Border = 2
               Wx_CheckBoxStyle = []
@@ -760,35 +760,102 @@ object frmNewForm: TfrmNewForm
               Wx_IDValue = 1154
               Wx_StrechFactor = 0
             end
-            object WxCheckBoxMouseSelectToCopy: TWxCheckBox
+            object WxBoxSizer28: TWxBoxSizer
               Left = 5
-              Top = 96
-              Width = 400
-              Height = 17
-              Caption = 
-                'Auto Copy the Mouse-Selected Text to Clipboard(Disabled when Pre' +
-                'ssed Ctrl Key)'
-              TabOrder = 2
-              Wx_BGColor = clBlack
-              Wx_Border = 2
-              Wx_CheckBoxStyle = []
-              Wx_Class = 'wxCheckBox'
+              Top = 95
+              Width = 515
+              Height = 20
+              TabOrder = 4
+              SpaceValue = 0
+              Wx_Class = 'wxBoxSizer'
               Wx_ControlOrientation = wxControlVertical
-              Wx_FGColor = clBlack
-              Wx_GeneralStyle = []
-              Wx_Hidden = False
               Wx_HorizontalAlignment = wxSZALIGN_LEFT
-              Wx_IDName = 'ID_WXCHECKBOXMOUSESELECTTOCOPY'
-              Wx_IDValue = 1126
+              Wx_IDName = 'ID_WXBOXSIZER28'
+              Wx_IDValue = 1158
+              Wx_StretchFactor = 0
               Wx_StrechFactor = 0
+              object WxCheckBoxMouseSelectToCopy: TWxCheckBox
+                Left = 0
+                Top = 0
+                Width = 260
+                Height = 20
+                Caption = 'Auto Copy the Mouse-Selected Text to Clipboard  ('
+                TabOrder = 0
+                Wx_BGColor = clBlack
+                Wx_Border = 2
+                Wx_CheckBoxStyle = []
+                Wx_Class = 'wxCheckBox'
+                Wx_ControlOrientation = wxControlHorizontal
+                Wx_FGColor = clBlack
+                Wx_GeneralStyle = []
+                Wx_Hidden = False
+                Wx_IDName = 'ID_WXCHECKBOXMOUSESELECTTOCOPY'
+                Wx_IDValue = 1159
+                Wx_StrechFactor = 0
+              end
+              object WxRadioButtonEnable: TWxRadioButton
+                Left = 260
+                Top = 0
+                Width = 70
+                Height = 20
+                Caption = 'Enable'
+                TabOrder = 1
+                Wx_BGColor = clBlack
+                Wx_Border = 2
+                Wx_Class = 'wxRadioButton'
+                Wx_ControlOrientation = wxControlHorizontal
+                Wx_FGColor = clBlack
+                Wx_GeneralStyle = []
+                Wx_IDName = 'ID_WXRADIOBUTTONENABLE'
+                Wx_IDValue = 1160
+                Wx_RadioButtonStyle = []
+                Wx_StrechFactor = 0
+              end
+              object WxRadioButtonDisable: TWxRadioButton
+                Left = 330
+                Top = 0
+                Width = 70
+                Height = 20
+                Caption = 'Disable'
+                TabOrder = 2
+                Wx_BGColor = clBlack
+                Wx_Border = 2
+                Wx_Class = 'wxRadioButton'
+                Wx_ControlOrientation = wxControlHorizontal
+                Wx_FGColor = clBlack
+                Wx_GeneralStyle = []
+                Wx_IDName = 'ID_WXRADIOBUTTONDISABLE'
+                Wx_IDValue = 1161
+                Wx_RadioButtonStyle = []
+                Wx_StrechFactor = 0
+              end
+              object WxStaticText17: TWxStaticText
+                Left = 400
+                Top = 1
+                Width = 115
+                Height = 17
+                Caption = 'when Pressing Ctrl Key)'
+                TabOrder = 3
+                Wx_BGColor = clBlack
+                Wx_Border = 2
+                Wx_Class = 'wxStaticText'
+                Wx_ControlOrientation = wxControlHorizontal
+                Wx_FGColor = clBlack
+                Wx_GeneralStyle = []
+                Wx_Hidden = False
+                Wx_IDName = 'ID_WXSTATICTEXT17'
+                Wx_IDValue = 1162
+                Wx_LabelStyle = []
+                Wx_StrechFactor = 0
+              end
             end
             object WxCheckBoxMiddleMouseToPaste: TWxCheckBox
-              Left = 5
-              Top = 123
-              Width = 400
-              Height = 17
+              Left = 22
+              Top = 125
+              Width = 480
+              Height = 20
               Caption = 'Paste Text from Clipboard when Press Middle Mouse Button'
-              TabOrder = 3
+              TabOrder = 2
               Wx_BGColor = clBlack
               Wx_Border = 2
               Wx_CheckBoxStyle = []
