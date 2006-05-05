@@ -27,6 +27,8 @@
 ../src/MadHighlightingDialog.h
 ../src/MadSearchDialog.cpp
 ../src/MadSearchDialog.h
+../src/MadSortDialog.cpp
+../src/MadSortDialog.h
 ../src/MadReplaceDialog.cpp
 ../src/MadReplaceDialog.h
 ../src/MadOptionsDialog.cpp

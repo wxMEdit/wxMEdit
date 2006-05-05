@@ -129,7 +129,7 @@ AC_DEFUN([AM_GNU_GETTEXT],
   gt_INTL_MACOSX
 
   dnl Set USE_NLS.
-  AM_NLS
+  AC_REQUIRE([AM_NLS])
 
   ifelse(gt_included_intl, yes, [
     BUILD_INCLUDED_LIBINTL=no

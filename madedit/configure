@@ -9403,19 +9403,6 @@ _ACEOF
 
 
 
-  echo "$as_me:$LINENO: checking whether NLS is requested" >&5
-echo $ECHO_N "checking whether NLS is requested... $ECHO_C" >&6
-    # Check whether --enable-nls or --disable-nls was given.
-if test "${enable_nls+set}" = set; then
-  enableval="$enable_nls"
-  USE_NLS=$enableval
-else
-  USE_NLS=yes
-fi;
-  echo "$as_me:$LINENO: result: $USE_NLS" >&5
-echo "${ECHO_T}$USE_NLS" >&6
-
-
 
 
     BUILD_INCLUDED_LIBINTL=no
