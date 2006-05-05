@@ -39,15 +39,15 @@ bool g_ResetAllKeys=false;
 wxChar *g_LanguageString[]=
 {
     wxT("System Default"),
-    wxT("Traditional Chinese"),
-    wxT("Simplified Chinese"),
+    wxT("Chinese Simplified"),
+    wxT("Chinese Traditional"),
     wxT("Italian"),
 };
 int g_LanguageValue[]=
 {
     wxLANGUAGE_DEFAULT,
-    wxLANGUAGE_CHINESE_TRADITIONAL,
     wxLANGUAGE_CHINESE_SIMPLIFIED,
+    wxLANGUAGE_CHINESE_TRADITIONAL,
     wxLANGUAGE_ITALIAN,
 };
 extern const size_t g_LanguageCount = sizeof(g_LanguageValue)/sizeof(int);
