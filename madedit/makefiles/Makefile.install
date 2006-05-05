@@ -5,8 +5,9 @@
 bindir = $(prefix_dir)/usr/bin
 icon_dir = $(prefix_dir)/usr/share/pixmaps
 app_dir = $(prefix_dir)/usr/share/applications
-mo_zh_TW_dir = $(prefix_dir)/usr/share/locale/zh_TW/LC_MESSAGES
+mo_it_IT_dir = $(prefix_dir)/usr/share/locale/it_IT/LC_MESSAGES
 mo_zh_CN_dir = $(prefix_dir)/usr/share/locale/zh_CN/LC_MESSAGES
+mo_zh_TW_dir = $(prefix_dir)/usr/share/locale/zh_TW/LC_MESSAGES
 data_dir = $(prefix_dir)/usr/share/madedit
 
 INSTALL = /usr/bin/install
@@ -23,10 +24,12 @@ install:
 	$(INSTALL_DATA) madedit.xpm $(icon_dir)
 	$(MKDIR) $(app_dir)
 	$(INSTALL_DATA) madedit.desktop $(app_dir)
-	$(MKDIR) $(mo_zh_TW_dir)
-	$(INSTALL_DATA) locale/zh_TW/madedit.mo $(mo_zh_TW_dir)
+	$(MKDIR) $(mo_it_IT_dir)
+	$(INSTALL_DATA) locale/it_IT/madedit.mo $(mo_it_IT_dir)
 	$(MKDIR) $(mo_zh_CN_dir)
 	$(INSTALL_DATA) locale/zh_CN/madedit.mo $(mo_zh_CN_dir)
+	$(MKDIR) $(mo_zh_TW_dir)
+	$(INSTALL_DATA) locale/zh_TW/madedit.mo $(mo_zh_TW_dir)
 	$(MKDIR) $(data_dir)/syntax
 	$(INSTALL_DATA) syntax/* $(data_dir)/syntax
 
@@ -34,6 +37,7 @@ uninstall:
 	rm -f $(bindir)/madedit
 	rm -f $(icon_dir)/madedit.xpm
 	rm -f $(app_dir)/madedit.desktop
-	rm -f $(mo_zh_TW_dir)/madedit.mo
+	rm -f $(mo_it_IT_dir)/madedit.mo
 	rm -f $(mo_zh_CN_dir)/madedit.mo
+	rm -f $(mo_zh_TW_dir)/madedit.mo
 	rm -f -r $(data_dir)

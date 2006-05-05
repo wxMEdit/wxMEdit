@@ -14,7 +14,7 @@ OBJ  = 	../src/MadEditApp.o ../src/MadEditFrame.o \
 	../src/MadSearchDialog.o ../src/MadReplaceDialog.o \
 	../src/MadConvEncDialog.o ../src/MadWordCountDialog.o \
 	../src/MadHighlightingDialog.o ../src/MadPrintout.o \
-	../src/MadFindInFilesDialog.o \
+	../src/MadFindInFilesDialog.o ../src/MadSortDialog.o \
 	../src/MadEdit/MadEncoding.o ../src/MadEdit/TradSimp.o \
 	../src/MadEdit/MadEditCommand.o ../src/MadEdit/MadUndo.o \
 	../src/MadEdit/MadSyntax.o ../src/MadEdit/MadLines.o \

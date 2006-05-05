@@ -18,7 +18,7 @@ OBJ  = ./Release/MadEditFrame.o ./Release/MadEditApp.o \
        ./Release/wxFlatNotebook.o ./Release/MadEditAdvanced.o \
        ./Release/MadWordCountDialog.o ./Release/MadHighlightingDialog.o \
        ./Release/MadFindInFilesDialog.o ./Release/manager.o \
-       ./Release/caret_new.o
+       ./Release/caret_new.o ./Release/MadSortDialog.o
 
 
 LINKOBJ  = $(OBJ)
@@ -130,3 +130,6 @@ $(BIN): $(OBJ)
 
 ./Release/caret_new.o: ../src/MadEdit/caret_new.cpp
 	$(CXX) -c ../src/MadEdit/caret_new.cpp -o ./Release/caret_new.o $(CXXFLAGS)
+
+./Release/MadSortDialog.o: ../src/MadSortDialog.cpp
+	$(CXX) -c ../src/MadSortDialog.cpp -o ./Release/MadSortDialog.o $(CXXFLAGS)
