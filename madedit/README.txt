@@ -11,7 +11,7 @@ In HexMode, MadEdit can open large files which size is up to 32GB (INT_MAX*16).
 
 Supported Platforms:
 -------------------
-A. Linux (__WXGTK__):
+A. Linux, FreeBSD, and Unix-like OS (__WXGTK__):
    a. GNU C++ 3.x/4.x:
       Required Libraries to compile:
       1. wxWidgets-2.6.1 or higher with Unicode enabled
@@ -63,6 +63,17 @@ Syntax files, Locale files and Settings:
 ChangeLog:
 ----------
 v0.2.5:
+1.fixed crashes when copying and pasting data between TextMode and ColumnMode under Linux.
+2.added a dockable Information Window for listing the results of FindInFiles.
+3.added Exclude Filters in FindInFiles dialog.
+4.added a button ("<<") to get the path of the editing document in FindInFiles dialog.
+5.added support for multiple shortcuts on all menu and editor commands.
+6.added support for Mouse-Over-Get-Word of StarDict under Win32.
+7.added Trim Trialing Spaces function.
+8.added Sort Lines function.
+9.added a new option to temporary disable or enable MouseSelectToCopy function when pressing Ctrl key.
+10.added a new option to choose the Language of UI.
+11.added Italian language. Thank Contardi Angelo for the translations.
 
 v0.2.4-2:
 1.fixed that lost the last byte of clipboard data (Linux version only).
