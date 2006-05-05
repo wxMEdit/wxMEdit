@@ -738,6 +738,7 @@ void MadFindInFilesDialog::FindReplaceInFiles(bool bReplace)
                     str+=fn;
                 }
                 cont = dialog.Update(idx, str);
+                if(!cont) break;
             }
 
             // get all matched data in madedit
