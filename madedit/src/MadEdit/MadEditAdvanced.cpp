@@ -1194,7 +1194,7 @@ void MadEdit::SortLines(MadSortFlags flags, int beginline, int endline)
     std::list<SortLineData*> datalist;
     std::vector<SortLineComp> lines;
 
-    wxFileOffset pos=0, delsize=0;
+    wxFileOffset pos=0, delsize=0, lastNewLineSize;
 
     lit = m_Lines->m_LineList.begin();
     int i=0;
@@ -1219,7 +1219,8 @@ void MadEdit::SortLines(MadSortFlags flags, int beginline, int endline)
         delsize += lit->m_Size;
         if(++i > endline)
         {
-            delsize -= lit->m_NewLineSize; // ignore newline char of last line
+            lastNewLineSize = lit->m_NewLineSize;
+            delsize -= lastNewLineSize; // ignore newline char of last line
             break;
         }
 
@@ -1260,6 +1261,10 @@ void MadEdit::SortLines(MadSortFlags flags, int beginline, int endline)
             {
                 dupdata = data;
                 data = NULL;
+                if(slit == slitend)
+                {
+                    delsize += lastNewLineSize; // delete last newner char
+                }
             }
             else
             {
