@@ -174,6 +174,8 @@ public:
 
     void OnEditSortAscending(wxCommandEvent& event);
     void OnEditSortDescending(wxCommandEvent& event);
+    void OnEditSortAscendingCase(wxCommandEvent& event);
+    void OnEditSortDescendingCase(wxCommandEvent& event);
     void OnEditSortByOptions(wxCommandEvent& event);
     void OnEditSortOptions(wxCommandEvent& event);
 
@@ -327,6 +329,8 @@ enum { // menu id
     menuSort,
     menuSortAscending,
     menuSortDescending,
+    menuSortAscendingCase,
+    menuSortDescendingCase,
     menuSortByOptions,
     menuSortOptions,
     menuAdvanced,

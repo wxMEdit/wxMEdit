@@ -18,6 +18,7 @@
 #include "MadHighlightingDialog.h"
 #include "MadConvEncDialog.h"
 #include "MadWordCountDialog.h"
+#include "MadSortDialog.h"
 #include "MadAboutDialog.h"
 #include "MadPrintout.h"
 #include "MadUtils.h"
@@ -618,6 +619,8 @@ BEGIN_EVENT_TABLE(MadEditFrame,wxFrame)
 	EVT_UPDATE_UI(menuInsertDateTime, MadEditFrame::OnUpdateUI_MenuEditInsertDateTime)
 	EVT_UPDATE_UI(menuSortAscending, MadEditFrame::OnUpdateUI_Menu_CheckTextFile)
 	EVT_UPDATE_UI(menuSortDescending, MadEditFrame::OnUpdateUI_Menu_CheckTextFile)
+	EVT_UPDATE_UI(menuSortAscendingCase, MadEditFrame::OnUpdateUI_Menu_CheckTextFile)
+	EVT_UPDATE_UI(menuSortDescendingCase, MadEditFrame::OnUpdateUI_Menu_CheckTextFile)
 	EVT_UPDATE_UI(menuSortByOptions, MadEditFrame::OnUpdateUI_Menu_CheckTextFile)
 	EVT_UPDATE_UI(menuCopyAsHexString, MadEditFrame::OnUpdateUI_MenuEditCopyAsHexString)
 	EVT_UPDATE_UI(menuCopyAsHexStringWithSpace, MadEditFrame::OnUpdateUI_MenuEditCopyAsHexString)
@@ -704,6 +707,8 @@ BEGIN_EVENT_TABLE(MadEditFrame,wxFrame)
 	EVT_MENU(menuInsertDateTime, MadEditFrame::OnEditInsertDateTime)
 	EVT_MENU(menuSortAscending, MadEditFrame::OnEditSortAscending)
 	EVT_MENU(menuSortDescending, MadEditFrame::OnEditSortDescending)
+	EVT_MENU(menuSortAscendingCase, MadEditFrame::OnEditSortAscendingCase)
+	EVT_MENU(menuSortDescendingCase, MadEditFrame::OnEditSortDescendingCase)
 	EVT_MENU(menuSortByOptions, MadEditFrame::OnEditSortByOptions)
 	EVT_MENU(menuSortOptions, MadEditFrame::OnEditSortOptions)
 	EVT_MENU(menuCopyAsHexString, MadEditFrame::OnEditCopyAsHexString)
@@ -815,71 +820,74 @@ CommandData CommandTable[]=
 
     // Edit
     { 0, 0, 0, 0, _("&Edit"), 0, wxITEM_NORMAL, 0, &g_Menu_Edit, 0},
-    { ecUndo,           1, menuUndo,                     wxT("menuUndo"),                     _("&Undo"),                           wxT("Ctrl-Z"),       wxITEM_NORMAL,    undo_xpm_idx,      0,                     _("Undo the last action")},
+    { ecUndo,           1, menuUndo,                     wxT("menuUndo"),                     _("&Undo"),                                   wxT("Ctrl-Z"),       wxITEM_NORMAL,    undo_xpm_idx,      0,                     _("Undo the last action")},
 
-    { ecRedo,           1, menuRedo,                     wxT("menuRedo"),                     _("&Redo"),                           
+    { ecRedo,           1, menuRedo,                     wxT("menuRedo"),                     _("&Redo"),                                   
 #ifdef __WXMSW__
-                                                                                                                                    wxT("Ctrl-Y"),
+                                                                                                                                            wxT("Ctrl-Y"),
 #else
-                                                                                                                                    wxT("Ctrl-Shift-Z"),
+                                                                                                                                            wxT("Ctrl-Shift-Z"),
 #endif
-                                                                                                                                                         wxITEM_NORMAL,    redo_xpm_idx,      0,                     _("Redo the previously undone action")},
+                                                                                                                                                                 wxITEM_NORMAL,    redo_xpm_idx,      0,                     _("Redo the previously undone action")},
 
-    { 0,                1, 0,                            0,                                   0,                                    0,                   wxITEM_SEPARATOR, -1,                0,                     0},
-    { ecCut,            1, menuCut,                      wxT("menuCut"),                      _("Cu&t"),                            wxT("Ctrl-X"),       wxITEM_NORMAL,    cut_xpm_idx,       0,                     _("Cut the selection and put it on the Clipboard")},
-    { ecCopy,           1, menuCopy,                     wxT("menuCopy"),                     _("&Copy"),                           wxT("Ctrl-C"),       wxITEM_NORMAL,    copy_xpm_idx,      0,                     _("Copy the selection and put it on the Clipboard")},
-    { ecPaste,          1, menuPaste,                    wxT("menuPaste"),                    _("&Paste"),                          wxT("Ctrl-V"),       wxITEM_NORMAL,    paste_xpm_idx,     0,                     _("Insert data from the Clipboard")},
-    { ecDelete,         1, menuDelete,                   wxT("menuDelete"),                   _("&Delete"),                         wxT("DEL"),          wxITEM_NORMAL,    -1,                0,                     _("Delete data")},
-    { 0,                1, 0,                            0,                                   0,                                    0,                   wxITEM_SEPARATOR, -1,                0,                     0},
-    { ecCutLine,        1, menuCutLine,                  wxT("menuCutLine"),                  _("Cut L&ine"),                       wxT("Ctrl-Shift-L"), wxITEM_NORMAL,    -1,                0,                     _("Cut the selected lines and put it on the Clipboard")},
+    { 0,                1, 0,                            0,                                   0,                                            0,                   wxITEM_SEPARATOR, -1,                0,                     0},
+    { ecCut,            1, menuCut,                      wxT("menuCut"),                      _("Cu&t"),                                    wxT("Ctrl-X"),       wxITEM_NORMAL,    cut_xpm_idx,       0,                     _("Cut the selection and put it on the Clipboard")},
+    { ecCopy,           1, menuCopy,                     wxT("menuCopy"),                     _("&Copy"),                                   wxT("Ctrl-C"),       wxITEM_NORMAL,    copy_xpm_idx,      0,                     _("Copy the selection and put it on the Clipboard")},
+    { ecPaste,          1, menuPaste,                    wxT("menuPaste"),                    _("&Paste"),                                  wxT("Ctrl-V"),       wxITEM_NORMAL,    paste_xpm_idx,     0,                     _("Insert data from the Clipboard")},
+    { ecDelete,         1, menuDelete,                   wxT("menuDelete"),                   _("&Delete"),                                 wxT("DEL"),          wxITEM_NORMAL,    -1,                0,                     _("Delete data")},
+    { 0,                1, 0,                            0,                                   0,                                            0,                   wxITEM_SEPARATOR, -1,                0,                     0},
+    { ecCutLine,        1, menuCutLine,                  wxT("menuCutLine"),                  _("Cut L&ine"),                               wxT("Ctrl-Shift-L"), wxITEM_NORMAL,    -1,                0,                     _("Cut the selected lines and put it on the Clipboard")},
 
-    { ecDeleteLine,     1, menuDeleteLine,               wxT("menuDeleteLine"),               _("Delete &Line"),                    
+    { ecDeleteLine,     1, menuDeleteLine,               wxT("menuDeleteLine"),               _("Delete &Line"),                            
 #ifdef __WXMSW__
-                                                                                                                                    wxT("Ctrl-L"),
+                                                                                                                                            wxT("Ctrl-L"),
 #else
-                                                                                                                                    wxT("Ctrl-Y"),
+                                                                                                                                            wxT("Ctrl-Y"),
 #endif
-                                                                                                                                                         wxITEM_NORMAL,    -1,                0,                     _("Delete the selected lines")},
+                                                                                                                                                                 wxITEM_NORMAL,    -1,                0,                     _("Delete the selected lines")},
 
-    { 0,                1, 0,                            0,                                   0,                                    0,                   wxITEM_SEPARATOR, -1,                0,                     0},
-    { ecSelectAll,      1, menuSelectAll,                wxT("menuSelectAll"),                _("Select &All"),                     wxT("Ctrl-A"),       wxITEM_NORMAL,    -1,                0,                     _("Select all data")},
-    { 0,                1, 0,                            0,                                   0,                                    0,                   wxITEM_SEPARATOR, -1,                0,                     0},
+    { 0,                1, 0,                            0,                                   0,                                            0,                   wxITEM_SEPARATOR, -1,                0,                     0},
+    { ecSelectAll,      1, menuSelectAll,                wxT("menuSelectAll"),                _("Select &All"),                             wxT("Ctrl-A"),       wxITEM_NORMAL,    -1,                0,                     _("Select all data")},
+    { 0,                1, 0,                            0,                                   0,                                            0,                   wxITEM_SEPARATOR, -1,                0,                     0},
 
-    { ecInsertTabChar,  1, menuInsertTabChar,            wxT("menuInsertTabChar"),            _("Insert Ta&b Char"),                
+    { ecInsertTabChar,  1, menuInsertTabChar,            wxT("menuInsertTabChar"),            _("Insert Ta&b Char"),                        
 #ifdef __WXMSW__
-                                                                                                                                    wxT("Ctrl-~"),
+                                                                                                                                            wxT("Ctrl-~"),
 #else
-                                                                                                                                    wxT("Ctrl-`"),
+                                                                                                                                            wxT("Ctrl-`"),
 #endif
-                                                                                                                                                        wxITEM_NORMAL,    -1,                0,                     _("Insert a Tab char at current position")},
+                                                                                                                                                                 wxITEM_NORMAL,    -1,                0,                     _("Insert a Tab char at current position")},
 
-    { ecInsertDateTime, 1, menuInsertDateTime,           wxT("menuInsertDateTime"),           _("Insert Dat&e and Time"),           wxT("F7"),           wxITEM_NORMAL,    -1,                0,                     _("Insert date and time at current position")},
-    { 0,                1, 0,                            0,                                   0,                                    0,                   wxITEM_SEPARATOR, -1,                0,                     0},
-    { 0,                1, menuAdvanced,                 wxT("menuAdvanced"),                 _("Ad&vanced"),                       0,                   wxITEM_NORMAL,    -1,                &g_Menu_Edit_Advanced, 0},
-    { 0,                2, menuCopyAsHexString,          wxT("menuCopyAsHexString"),          _("Copy As &Hex String"),             wxT(""),             wxITEM_NORMAL,    -1,                0,                     _("Copy the selection as hex-string")},
-    { 0,                2, menuCopyAsHexStringWithSpace, wxT("menuCopyAsHexStringWithSpace"), _("Copy As He&x String with Space"),  wxT(""),             wxITEM_NORMAL,    -1,                0,                     _("Copy the selection as hex-string with space")},
-    { 0,                2, 0,                            0,                                   0,                                    0,                   wxITEM_SEPARATOR, -1,                0,                     0},
-    { ecIncreaseIndent, 2, menuIncreaseIndent,           wxT("menuIncreaseIndent"),           _("&Increase Indent"),                wxT(""),             wxITEM_NORMAL,    indent_xpm_idx,    0,                     _("Increase the indent of seleted lines")},
-    { ecDecreaseIndent, 2, menuDecreaseIndent,           wxT("menuDecreaseIndent"),           _("&Decrease Indent"),                wxT("Shift-TAB"),    wxITEM_NORMAL,    unindent_xpm_idx,  0,                     _("Decrease the indent of seleted lines")},
-    { 0,                2, 0,                            0,                                   0,                                    0,                   wxITEM_SEPARATOR, -1,                0,                     0},
-    { ecComment,        2, menuComment,                  wxT("menuComment"),                  _("&Comment"),                        wxT("Ctrl-M"),       wxITEM_NORMAL,    comment_xpm_idx,   0,                     _("Comment out the selected lines")},
-    { ecUncomment,      2, menuUncomment,                wxT("menuUncomment"),                _("&Uncomment"),                      wxT("Ctrl-Shift-M"), wxITEM_NORMAL,    uncomment_xpm_idx, 0,                     _("Uncomment the selected lines")},
-    { 0,                2, 0,                            0,                                   0,                                    0,                   wxITEM_SEPARATOR, -1,                0,                     0},
-    { ecToUpperCase,    2, menuToUpperCase,              wxT("menuToUpperCase"),              _("To U&pperCase"),                   wxT("Ctrl-U"),       wxITEM_NORMAL,    -1,                0,                     _("Convert the selection to uppercase")},
-    { ecToLowerCase,    2, menuToLowerCase,              wxT("menuToLowerCase"),              _("To L&owerCase"),                   wxT("Ctrl-Shift-U"), wxITEM_NORMAL,    -1,                0,                     _("Convert the selection to lowercase")},
-    { ecInvertCase ,    2, menuInvertCase ,              wxT("menuInvertCase") ,              _("Inver&t Case"),                    wxT("Ctrl-Alt-U"),   wxITEM_NORMAL,    -1,                0,                     _("Invert the case of the selection")},
-    { 0,                2, 0,                            0,                                   0,                                    0,                   wxITEM_SEPARATOR, -1,                0,                     0},
-    { ecToHalfWidth,    2, menuToHalfWidth,              wxT("menuToHalfWidth"),              _("To H&alfwidth"),                   wxT(""),             wxITEM_NORMAL,    -1,                0,                     _("Convert the selection to halfwidth")},
-    { ecToFullWidth,    2, menuToFullWidth,              wxT("menuToFullWidth"),              _("To &Fullwidth"),                   wxT(""),             wxITEM_NORMAL,    -1,                0,                     _("Convert the selection to fullwidth")},
-    { 0,                2, 0,                            0,                                   0,                                    0,                   wxITEM_SEPARATOR, -1,                0,                     0},
-    { 0,                2, menuTrimTrailingSpaces,       wxT("menuTrimTrailingSpaces"),       _("Tri&m Trailing Spaces"),           wxT(""),             wxITEM_NORMAL,    -1,                0,                     _("Trim trailing spaces at the end of lines")},
-    { 0,                1, 0,                            0,                                   0,                                    0,                   wxITEM_SEPARATOR, -1,                0,                     0},
-    { 0,                1, menuSort,                     wxT("menuSort"),                     _("&Sort"),                           0,                   wxITEM_NORMAL,    -1,                &g_Menu_Edit_Sort,     0},
-    { 0,                2, menuSortAscending,            wxT("menuSortAscending"),            _("Sort Lines in &Ascending Order"),  wxT(""),             wxITEM_NORMAL,    -1,                0,                     _("Sort the selected or all lines in ascending order")},
-    { 0,                2, menuSortDescending,           wxT("menuSortDescending"),           _("Sort Lines in &Descending Order"), wxT(""),             wxITEM_NORMAL,    -1,                0,                     _("Sort the selected or all lines in descending order")},
-    { 0,                2, 0,                            0,                                   0,                                    0,                   wxITEM_SEPARATOR, -1,                0,                     0},
-    { 0,                2, menuSortByOptions,            wxT("menuSortByOptions"),            _("Sort Lines by &Current Options"),  wxT(""),             wxITEM_NORMAL,    -1,                0,                     _("Sort the selected or all lines by using current options")},
-    { 0,                2, menuSortOptions,              wxT("menuSortOptions"),              _("Sort &Options..."),                wxT(""),             wxITEM_NORMAL,    -1,                0,                     _("Set the sort options")},
+    { ecInsertDateTime, 1, menuInsertDateTime,           wxT("menuInsertDateTime"),           _("Insert Dat&e and Time"),                   wxT("F7"),           wxITEM_NORMAL,    -1,                0,                     _("Insert date and time at current position")},
+    { 0,                1, 0,                            0,                                   0,                                            0,                   wxITEM_SEPARATOR, -1,                0,                     0},
+    { 0,                1, menuAdvanced,                 wxT("menuAdvanced"),                 _("Ad&vanced"),                               0,                   wxITEM_NORMAL,    -1,                &g_Menu_Edit_Advanced, 0},
+    { 0,                2, menuCopyAsHexString,          wxT("menuCopyAsHexString"),          _("Copy As &Hex String"),                     wxT(""),             wxITEM_NORMAL,    -1,                0,                     _("Copy the selection as hex-string")},
+    { 0,                2, menuCopyAsHexStringWithSpace, wxT("menuCopyAsHexStringWithSpace"), _("Copy As He&x String with Space"),          wxT(""),             wxITEM_NORMAL,    -1,                0,                     _("Copy the selection as hex-string with space")},
+    { 0,                2, 0,                            0,                                   0,                                            0,                   wxITEM_SEPARATOR, -1,                0,                     0},
+    { ecIncreaseIndent, 2, menuIncreaseIndent,           wxT("menuIncreaseIndent"),           _("&Increase Indent"),                        wxT(""),             wxITEM_NORMAL,    indent_xpm_idx,    0,                     _("Increase the indent of seleted lines")},
+    { ecDecreaseIndent, 2, menuDecreaseIndent,           wxT("menuDecreaseIndent"),           _("&Decrease Indent"),                        wxT("Shift-TAB"),    wxITEM_NORMAL,    unindent_xpm_idx,  0,                     _("Decrease the indent of seleted lines")},
+    { 0,                2, 0,                            0,                                   0,                                            0,                   wxITEM_SEPARATOR, -1,                0,                     0},
+    { ecComment,        2, menuComment,                  wxT("menuComment"),                  _("&Comment"),                                wxT("Ctrl-M"),       wxITEM_NORMAL,    comment_xpm_idx,   0,                     _("Comment out the selected lines")},
+    { ecUncomment,      2, menuUncomment,                wxT("menuUncomment"),                _("&Uncomment"),                              wxT("Ctrl-Shift-M"), wxITEM_NORMAL,    uncomment_xpm_idx, 0,                     _("Uncomment the selected lines")},
+    { 0,                2, 0,                            0,                                   0,                                            0,                   wxITEM_SEPARATOR, -1,                0,                     0},
+    { ecToUpperCase,    2, menuToUpperCase,              wxT("menuToUpperCase"),              _("To U&pperCase"),                           wxT("Ctrl-U"),       wxITEM_NORMAL,    -1,                0,                     _("Convert the selection to uppercase")},
+    { ecToLowerCase,    2, menuToLowerCase,              wxT("menuToLowerCase"),              _("To L&owerCase"),                           wxT("Ctrl-Shift-U"), wxITEM_NORMAL,    -1,                0,                     _("Convert the selection to lowercase")},
+    { ecInvertCase ,    2, menuInvertCase ,              wxT("menuInvertCase") ,              _("Inver&t Case"),                            wxT("Ctrl-Alt-U"),   wxITEM_NORMAL,    -1,                0,                     _("Invert the case of the selection")},
+    { 0,                2, 0,                            0,                                   0,                                            0,                   wxITEM_SEPARATOR, -1,                0,                     0},
+    { ecToHalfWidth,    2, menuToHalfWidth,              wxT("menuToHalfWidth"),              _("To H&alfwidth"),                           wxT(""),             wxITEM_NORMAL,    -1,                0,                     _("Convert the selection to halfwidth")},
+    { ecToFullWidth,    2, menuToFullWidth,              wxT("menuToFullWidth"),              _("To &Fullwidth"),                           wxT(""),             wxITEM_NORMAL,    -1,                0,                     _("Convert the selection to fullwidth")},
+    { 0,                2, 0,                            0,                                   0,                                            0,                   wxITEM_SEPARATOR, -1,                0,                     0},
+    { 0,                2, menuTrimTrailingSpaces,       wxT("menuTrimTrailingSpaces"),       _("Tri&m Trailing Spaces"),                   wxT(""),             wxITEM_NORMAL,    -1,                0,                     _("Trim trailing spaces at the end of lines")},
+    { 0,                1, 0,                            0,                                   0,                                            0,                   wxITEM_SEPARATOR, -1,                0,                     0},
+    { 0,                1, menuSort,                     wxT("menuSort"),                     _("&Sort"),                                   0,                   wxITEM_NORMAL,    -1,                &g_Menu_Edit_Sort,     0},
+    { 0,                2, menuSortAscending,            wxT("menuSortAscending"),            _("Sort Lines (&Ascending)"),                 wxT(""),             wxITEM_NORMAL,    -1,                0,                     _("Sort the selected or all lines in ascending order")},
+    { 0,                2, menuSortDescending,           wxT("menuSortDescending"),           _("Sort Lines (&Descending)"),                wxT(""),             wxITEM_NORMAL,    -1,                0,                     _("Sort the selected or all lines in descending order")},
+    { 0,                2, 0,                            0,                                   0,                                            0,                   wxITEM_SEPARATOR, -1,                0,                     0},
+    { 0,                2, menuSortAscendingCase,        wxT("menuSortAscendingCase"),        _("Sort Lines (A&scending, CaseSensitive)"),  wxT(""),             wxITEM_NORMAL,    -1,                0,                     _("Sort lines in ascending order and with case-sensitive")},
+    { 0,                2, menuSortDescendingCase,       wxT("menuSortDescendingCase"),       _("Sort Lines (D&escending, CaseSensitive)"), wxT(""),             wxITEM_NORMAL,    -1,                0,                     _("Sort lines in descending order and with case-sensitive")},
+    { 0,                2, 0,                            0,                                   0,                                            0,                   wxITEM_SEPARATOR, -1,                0,                     0},
+    { 0,                2, menuSortByOptions,            wxT("menuSortByOptions"),            _("Sort Lines by &Current Options"),          wxT(""),             wxITEM_NORMAL,    -1,                0,                     _("Sort the selected or all lines by using current options")},
+    { 0,                2, menuSortOptions,              wxT("menuSortOptions"),              _("Sort &Options..."),                        wxT(""),             wxITEM_NORMAL,    -1,                0,                     _("Set the sort options")},
 
     // Search
     { 0, 0, 0, 0, _("&Search"), 0, wxITEM_NORMAL, 0, &g_Menu_Search, 0},
@@ -3134,18 +3142,101 @@ void MadEditFrame::OnEditSortDescending(wxCommandEvent& event)
     }
 }
 
-void MadEditFrame::OnEditSortByOptions(wxCommandEvent& event)
+void MadEditFrame::OnEditSortAscendingCase(wxCommandEvent& event)
 {
     if(g_ActiveMadEdit && g_ActiveMadEdit->GetEditMode()!=emHexMode)
     {
         int begin, end;
         g_ActiveMadEdit->GetSelectionLineId(begin, end);
-        g_ActiveMadEdit->SortLines(sfAscending|sfNumericSort, begin, end);
+        g_ActiveMadEdit->SortLines(sfAscending|sfCaseSensitive, begin, end);
+    }
+}
+
+void MadEditFrame::OnEditSortDescendingCase(wxCommandEvent& event)
+{
+    if(g_ActiveMadEdit && g_ActiveMadEdit->GetEditMode()!=emHexMode)
+    {
+        int begin, end;
+        g_ActiveMadEdit->GetSelectionLineId(begin, end);
+        g_ActiveMadEdit->SortLines(sfDescending|sfCaseSensitive, begin, end);
+    }
+}
+
+void MadEditFrame::OnEditSortByOptions(wxCommandEvent& event)
+{
+    if(g_ActiveMadEdit && g_ActiveMadEdit->GetEditMode()!=emHexMode)
+    {
+        wxString oldpath=m_Config->GetPath();
+        m_Config->SetPath(wxT("/MadEdit"));
+
+        int order;
+        bool cs, num, rem;
+        m_Config->Read(wxT("SortOrder"), &order, sfAscending);
+        m_Config->Read(wxT("SortCaseSensitive"), &cs, false);
+        m_Config->Read(wxT("SortNumeric"), &num, false);
+        m_Config->Read(wxT("SortRemoveDup"), &rem, false);
+        m_Config->SetPath(oldpath);
+
+        MadSortFlags flags = order | 
+            (cs ? sfCaseSensitive : 0) |
+            (num ? sfNumericSort : 0) |
+            (rem ? sfRemoveDuplicate : 0) ;
+
+        int begin, end;
+        g_ActiveMadEdit->GetSelectionLineId(begin, end);
+
+        g_ActiveMadEdit->SortLines(flags, begin, end);
     }
 }
 
 void MadEditFrame::OnEditSortOptions(wxCommandEvent& event)
 {
+    if(g_ActiveMadEdit==NULL || g_ActiveMadEdit->GetEditMode()==emHexMode)
+        return;
+
+    MadSortDialog dialog(this, -1);
+    
+    wxString oldpath=m_Config->GetPath();
+    m_Config->SetPath(wxT("/MadEdit"));
+
+    int order;
+    bool cs, num, rem;
+    m_Config->Read(wxT("SortOrder"), &order, sfAscending);
+    dialog.WxRadioBoxOrder->SetSelection(order);
+
+    m_Config->Read(wxT("SortCaseSensitive"), &cs, false);
+    dialog.WxCheckBoxCase->SetValue(cs);
+
+    m_Config->Read(wxT("SortNumeric"), &num, false);
+    dialog.WxCheckBoxNumeric->SetValue(num);
+
+    m_Config->Read(wxT("SortRemoveDup"), &rem, false);
+    dialog.WxCheckBoxRemoveDup->SetValue(rem);
+
+    if(dialog.ShowModal()==wxID_OK)
+    {
+        order = dialog.WxRadioBoxOrder->GetSelection();
+        cs = dialog.WxCheckBoxCase->GetValue();
+        num = dialog.WxCheckBoxNumeric->GetValue();
+        rem = dialog.WxCheckBoxRemoveDup->GetValue();
+
+        m_Config->Write(wxT("SortOrder"), order);
+        m_Config->Write(wxT("SortCaseSensitive"), cs);
+        m_Config->Write(wxT("SortNumeric"), num);
+        m_Config->Write(wxT("SortRemoveDup"), rem);
+
+        int flags = order | 
+            (cs ? sfCaseSensitive : 0) |
+            (num ? sfNumericSort : 0) |
+            (rem ? sfRemoveDuplicate : 0) ;
+
+        int begin, end;
+        g_ActiveMadEdit->GetSelectionLineId(begin, end);
+
+        g_ActiveMadEdit->SortLines(flags, begin, end);
+    }
+
+    m_Config->SetPath(oldpath);
 }
 
 void MadEditFrame::OnEditCopyAsHexString(wxCommandEvent& event)
