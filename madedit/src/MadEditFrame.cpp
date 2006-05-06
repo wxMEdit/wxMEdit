@@ -1649,11 +1649,14 @@ void MadEditFrame::CreateGUIControls(void)
 
 
     // information window
-    wxSize nbsize(300,130);
+    int infoW = 300, infoH = 130;
+    m_Config->Read(wxT("/MadEdit/InfoWindowWidth"), &infoW);
+    m_Config->Read(wxT("/MadEdit/InfoWindowHeight"), &infoH);
+    wxSize nbsize(infoW, infoH);
     m_InfoNotebook = new wxFlatNotebook(this, ID_OUTPUTNOTEBOOK, wxDefaultPosition, nbsize, wxFNB_DEFAULT_STYLE|wxFNB_NO_X_BUTTON|wxFNB_BOTTOM);
     m_InfoNotebook->SetNonActiveTabTextColour(wxColor(100,100,100));
 
-    m_FindInFilesResults = new wxTreeCtrl(m_InfoNotebook, ID_FINDINFILESRESULTS, wxDefaultPosition, wxSize(300,4), wxTR_DEFAULT_STYLE|wxTR_HIDE_ROOT);
+    m_FindInFilesResults = new wxTreeCtrl(m_InfoNotebook, ID_FINDINFILESRESULTS, wxDefaultPosition, wxSize(infoW,4), wxTR_DEFAULT_STYLE|wxTR_HIDE_ROOT);
     m_FindInFilesResults->AddRoot(wxT("Root"));
     m_FindInFilesResults->Connect(wxEVT_LEFT_DCLICK, wxMouseEventHandler(MadEditFrame::OnFindInFilesResultsDClick));
 
@@ -2085,16 +2088,20 @@ void MadEditFrame::OnInfoNotebookSize(wxSizeEvent &evt)
                 {
                     pinfo.floating_size.y = size.y;
                     pinfo.best_size.y = size.y;
+                    g_MainFrame->m_Config->Write(wxT("/MadEdit/InfoWindowHeight"), size.y);
                 }
                 else
                 {
                     pinfo.floating_size.x = size.x;
                     pinfo.best_size.x = size.x;
+                    g_MainFrame->m_Config->Write(wxT("/MadEdit/InfoWindowWidth"), size.x);
                 }
             }
             else //IsFloating()
             {
                 pinfo.BestSize(size);
+                g_MainFrame->m_Config->Write(wxT("/MadEdit/InfoWindowWidth"), size.x);
+                g_MainFrame->m_Config->Write(wxT("/MadEdit/InfoWindowHeight"), size.y);
             }
         }
     }
