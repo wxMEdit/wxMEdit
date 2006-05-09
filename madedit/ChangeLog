@@ -1,3 +1,19 @@
+2006-05-08  Alston Chen  <madedit@gmail.com>
+
+	1.fixed crashes when copying and pasting data between TextMode and ColumnMode under Linux.
+	2.fixed sometimes crashes when using FindInFiles function under Linux.
+	3.added a dockable Information Window for listing the results of FindInFiles.
+	4.added Exclude Filters in FindInFiles dialog.
+	5.added a button ("<<") to get the path of the editing document in FindInFiles dialog.
+	6.added support for multiple shortcuts on all menu and editor commands.
+	7.added support for Mouse-Over-Get-Word of StarDict under Win32.
+	8.added Trim Trialing Spaces function.
+	9.added Sort Lines function.
+	10.added a new option to temporary disable or enable MouseSelectToCopy function when pressing Ctrl key.
+	11.added a new option to choose the Language of UI.
+	12.added Italian language. Thank Contardi Angelo for the translations.
+
+
 2006-04-12  Alston Chen  <madedit@gmail.com>
 
 	1.fixed that lost the last byte of clipboard data (Linux version only).
