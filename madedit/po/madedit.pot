@@ -23,7 +23,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: madedit@gmail.com\n"
-"POT-Creation-Date: 2006-05-05 19:13+0800\n"
+"POT-Creation-Date: 2006-05-09 11:37+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -366,7 +366,7 @@ msgid "The input string is not a valid Hex-String:"
 msgstr ""
 
 #: src/MadEdit/MadEdit.cpp:13686 src/MadEdit/MadEdit.cpp:13755
-#: src/MadEditFrame.cpp:2273
+#: src/MadEditFrame.cpp:2295
 msgid "The Parent Directory of this file does not exist:"
 msgstr ""
 
@@ -382,7 +382,7 @@ msgstr ""
 msgid "Save File As"
 msgstr ""
 
-#: src/MadEdit/MadEdit.cpp:13818 src/MadEditFrame.cpp:1615
+#: src/MadEdit/MadEdit.cpp:13818 src/MadEditFrame.cpp:1630
 msgid "Save File"
 msgstr ""
 
@@ -1471,8 +1471,8 @@ msgstr ""
 msgid "&View"
 msgstr ""
 
-#: src/MadEditFrame.cpp:911 src/MadEditFrame.cpp:2524
-#: src/MadEditFrame.cpp:2531
+#: src/MadEditFrame.cpp:911 src/MadEditFrame.cpp:2546
+#: src/MadEditFrame.cpp:2553
 msgid "Encoding: "
 msgstr ""
 
@@ -1480,13 +1480,13 @@ msgstr ""
 msgid "All Encodings"
 msgstr ""
 
-#: src/MadEditFrame.cpp:914 src/MadEditFrame.cpp:2540
-#: src/MadEditFrame.cpp:2545
+#: src/MadEditFrame.cpp:914 src/MadEditFrame.cpp:2562
+#: src/MadEditFrame.cpp:2567
 msgid "Syntax Type: "
 msgstr ""
 
-#: src/MadEditFrame.cpp:916 src/MadEditFrame.cpp:2557
-#: src/MadEditFrame.cpp:2562
+#: src/MadEditFrame.cpp:916 src/MadEditFrame.cpp:2579
+#: src/MadEditFrame.cpp:2584
 msgid "Font Name: "
 msgstr ""
 
@@ -1518,8 +1518,8 @@ msgstr ""
 msgid "[other]"
 msgstr ""
 
-#: src/MadEditFrame.cpp:925 src/MadEditFrame.cpp:2573
-#: src/MadEditFrame.cpp:2578
+#: src/MadEditFrame.cpp:925 src/MadEditFrame.cpp:2595
+#: src/MadEditFrame.cpp:2600
 msgid "Font Size: "
 msgstr ""
 
@@ -1543,8 +1543,8 @@ msgstr ""
 msgid "Set/Unset the font with Fixed Width"
 msgstr ""
 
-#: src/MadEditFrame.cpp:1003 src/MadEditFrame.cpp:2597
-#: src/MadEditFrame.cpp:2602
+#: src/MadEditFrame.cpp:1003 src/MadEditFrame.cpp:2619
+#: src/MadEditFrame.cpp:2624
 msgid "Tab Column: "
 msgstr ""
 
@@ -1552,8 +1552,8 @@ msgstr ""
 msgid "Set column of Tab char"
 msgstr ""
 
-#: src/MadEditFrame.cpp:1022 src/MadEditFrame.cpp:2611
-#: src/MadEditFrame.cpp:2616
+#: src/MadEditFrame.cpp:1022 src/MadEditFrame.cpp:2633
+#: src/MadEditFrame.cpp:2638
 msgid "Line Spacing: "
 msgstr ""
 
@@ -1677,7 +1677,7 @@ msgstr ""
 msgid "Change syntax highlighting settings"
 msgstr ""
 
-#: src/MadEditFrame.cpp:1076 src/MadEditFrame.cpp:2693
+#: src/MadEditFrame.cpp:1076 src/MadEditFrame.cpp:2715
 msgid "Has Unicode BOM (Byte-Order Mark)"
 msgstr ""
 
@@ -1689,7 +1689,7 @@ msgstr ""
 msgid "Add/Remove Unicode BOM"
 msgstr ""
 
-#: src/MadEditFrame.cpp:1079 src/MadEditFrame.cpp:2708
+#: src/MadEditFrame.cpp:1079 src/MadEditFrame.cpp:2730
 msgid "NewLine Char (File Format): "
 msgstr ""
 
@@ -1717,7 +1717,7 @@ msgstr ""
 msgid "Convert the file format to UNIX format"
 msgstr ""
 
-#: src/MadEditFrame.cpp:1083 src/MadEditFrame.cpp:2729
+#: src/MadEditFrame.cpp:1083 src/MadEditFrame.cpp:2751
 msgid "Press Enter to Insert NewLine Char: "
 msgstr ""
 
@@ -1987,184 +1987,184 @@ msgstr ""
 msgid "Toggle Insert/Overwrite Mode"
 msgstr ""
 
-#: src/MadEditFrame.cpp:1270
+#: src/MadEditFrame.cpp:1285
 msgid "MadEdit"
 msgstr ""
 
-#: src/MadEditFrame.cpp:1613
+#: src/MadEditFrame.cpp:1628
 msgid "New File"
 msgstr ""
 
-#: src/MadEditFrame.cpp:1614 src/MadEditFrame.cpp:2781
+#: src/MadEditFrame.cpp:1629 src/MadEditFrame.cpp:2803
 msgid "Open File"
 msgstr ""
 
-#: src/MadEditFrame.cpp:1616
+#: src/MadEditFrame.cpp:1631
 msgid "Save All Files"
 msgstr ""
 
-#: src/MadEditFrame.cpp:1617
+#: src/MadEditFrame.cpp:1632
 msgid "Close File"
 msgstr ""
 
-#: src/MadEditFrame.cpp:1618
+#: src/MadEditFrame.cpp:1633
 msgid "Close All Files"
 msgstr ""
 
-#: src/MadEditFrame.cpp:1620
+#: src/MadEditFrame.cpp:1635
 msgid "Undo"
 msgstr ""
 
-#: src/MadEditFrame.cpp:1621
+#: src/MadEditFrame.cpp:1636
 msgid "Redo"
 msgstr ""
 
-#: src/MadEditFrame.cpp:1623
+#: src/MadEditFrame.cpp:1638
 msgid "Cut"
 msgstr ""
 
-#: src/MadEditFrame.cpp:1624
+#: src/MadEditFrame.cpp:1639
 msgid "Copy"
 msgstr ""
 
-#: src/MadEditFrame.cpp:1625
+#: src/MadEditFrame.cpp:1640
 msgid "Paste"
 msgstr ""
 
-#: src/MadEditFrame.cpp:1627
+#: src/MadEditFrame.cpp:1642
 msgid "Increase Indent"
 msgstr ""
 
-#: src/MadEditFrame.cpp:1628
+#: src/MadEditFrame.cpp:1643
 msgid "Decrease Indent"
 msgstr ""
 
-#: src/MadEditFrame.cpp:1630
+#: src/MadEditFrame.cpp:1645
 msgid "Comment"
 msgstr ""
 
-#: src/MadEditFrame.cpp:1631
+#: src/MadEditFrame.cpp:1646
 msgid "Uncomment"
 msgstr ""
 
-#: src/MadEditFrame.cpp:1633
+#: src/MadEditFrame.cpp:1648
 msgid "Find"
 msgstr ""
 
-#: src/MadEditFrame.cpp:1634 src/MadSearchDialog.cpp:259
+#: src/MadEditFrame.cpp:1649 src/MadSearchDialog.cpp:259
 msgid "Find Next"
 msgstr ""
 
-#: src/MadEditFrame.cpp:1635 src/MadSearchDialog.cpp:313
+#: src/MadEditFrame.cpp:1650 src/MadSearchDialog.cpp:313
 msgid "Find Previous"
 msgstr ""
 
-#: src/MadEditFrame.cpp:1636 src/MadReplaceDialog.cpp:128
+#: src/MadEditFrame.cpp:1651 src/MadReplaceDialog.cpp:128
 msgid "Replace"
 msgstr ""
 
-#: src/MadEditFrame.cpp:1638
+#: src/MadEditFrame.cpp:1653
 msgid "No Line Wrap"
 msgstr ""
 
-#: src/MadEditFrame.cpp:1639
+#: src/MadEditFrame.cpp:1654
 msgid "Wrap Lines by Window"
 msgstr ""
 
-#: src/MadEditFrame.cpp:1640
+#: src/MadEditFrame.cpp:1655
 msgid "Wrap Lines by Max Columns"
 msgstr ""
 
-#: src/MadEditFrame.cpp:1642 src/MadOptionsDialog.cpp:342
+#: src/MadEditFrame.cpp:1657 src/MadOptionsDialog.cpp:342
 msgid "Text Mode"
 msgstr ""
 
-#: src/MadEditFrame.cpp:1643
+#: src/MadEditFrame.cpp:1658
 msgid "Column Mode"
 msgstr ""
 
-#: src/MadEditFrame.cpp:1644 src/MadOptionsDialog.cpp:361
+#: src/MadEditFrame.cpp:1659 src/MadOptionsDialog.cpp:361
 msgid "Hex Mode"
 msgstr ""
 
-#: src/MadEditFrame.cpp:1660
+#: src/MadEditFrame.cpp:1678
 msgid "Find/Replace in Files Results"
 msgstr ""
 
-#: src/MadEditFrame.cpp:1667
+#: src/MadEditFrame.cpp:1685
 msgid "Information Window"
 msgstr ""
 
-#: src/MadEditFrame.cpp:2216
+#: src/MadEditFrame.cpp:2238
 #, c-format
 msgid "NoName%d"
 msgstr ""
 
-#: src/MadEditFrame.cpp:2254
+#: src/MadEditFrame.cpp:2276
 msgid "This is a Directory:"
 msgstr ""
 
-#: src/MadEditFrame.cpp:2263
+#: src/MadEditFrame.cpp:2285
 msgid "This file does not exist:"
 msgstr ""
 
-#: src/MadEditFrame.cpp:2281
+#: src/MadEditFrame.cpp:2303
 msgid "Cannot access this file:"
 msgstr ""
 
-#: src/MadEditFrame.cpp:2316
+#: src/MadEditFrame.cpp:2338
 msgid "Cannot load this file:"
 msgstr ""
 
-#: src/MadEditFrame.cpp:2531 src/MadEditFrame.cpp:2545
-#: src/MadEditFrame.cpp:2562 src/MadEditFrame.cpp:2578
-#: src/MadEditFrame.cpp:2602 src/MadEditFrame.cpp:2616
-#: src/MadEditFrame.cpp:2724 src/MadEditFrame.cpp:2745
+#: src/MadEditFrame.cpp:2553 src/MadEditFrame.cpp:2567
+#: src/MadEditFrame.cpp:2584 src/MadEditFrame.cpp:2600
+#: src/MadEditFrame.cpp:2624 src/MadEditFrame.cpp:2638
+#: src/MadEditFrame.cpp:2746 src/MadEditFrame.cpp:2767
 #: src/MadOptionsDialog.cpp:366 src/MadConvEncDialog.cpp:80
 msgid "None"
 msgstr ""
 
-#: src/MadEditFrame.cpp:2697 src/MadEditFrame.cpp:2703
+#: src/MadEditFrame.cpp:2719 src/MadEditFrame.cpp:2725
 msgid "Has No Unicode BOM (Byte-Order Mark)"
 msgstr ""
 
-#: src/MadEditFrame.cpp:2963
+#: src/MadEditFrame.cpp:2993
 msgid ""
 "There was a problem previewing.\n"
 "Perhaps your current printer is not set correctly?"
 msgstr ""
 
-#: src/MadEditFrame.cpp:2963
+#: src/MadEditFrame.cpp:2993
 msgid "Previewing"
 msgstr ""
 
-#: src/MadEditFrame.cpp:2992
+#: src/MadEditFrame.cpp:3022
 msgid ""
 "There was a problem printing.\n"
 "Perhaps your current printer is not set correctly?"
 msgstr ""
 
-#: src/MadEditFrame.cpp:2992
+#: src/MadEditFrame.cpp:3022
 msgid "Printing"
 msgstr ""
 
-#: src/MadEditFrame.cpp:3573
+#: src/MadEditFrame.cpp:3603
 msgid "Line Number: (you can input HexNumber: 0xNNN)"
 msgstr ""
 
-#: src/MadEditFrame.cpp:3573
+#: src/MadEditFrame.cpp:3603
 msgid "Go To Line"
 msgstr ""
 
-#: src/MadEditFrame.cpp:3597
+#: src/MadEditFrame.cpp:3627
 msgid "Position: (you can input HexNumber: 0xNNN)"
 msgstr ""
 
-#: src/MadEditFrame.cpp:3597
+#: src/MadEditFrame.cpp:3627
 msgid "Go To Position"
 msgstr ""
 
-#: src/MadEditFrame.cpp:4277
+#: src/MadEditFrame.cpp:4307
 msgid "Press OK to visit our HomePage."
 msgstr ""
 
@@ -2392,17 +2392,17 @@ msgstr ""
 msgid "Processing %d of %d files..."
 msgstr ""
 
-#: src/MadFindInFilesDialog.cpp:827
+#: src/MadFindInFilesDialog.cpp:828
 #, c-format
 msgid "Line(%d): "
 msgstr ""
 
-#: src/MadFindInFilesDialog.cpp:831
+#: src/MadFindInFilesDialog.cpp:832
 #, c-format
 msgid "Offset(%s): "
 msgstr ""
 
-#: src/MadFindInFilesDialog.cpp:832
+#: src/MadFindInFilesDialog.cpp:833
 msgid "Binary file matches"
 msgstr ""
 

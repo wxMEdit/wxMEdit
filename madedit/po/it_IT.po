@@ -16,10 +16,10 @@
 #: src/MadAboutDialog.cpp:59
 msgid ""
 msgstr ""
-"Project-Id-Version: MadEdit 0.2.4\n"
+"Project-Id-Version: MadEdit 0.2.5\n"
 "Report-Msgid-Bugs-To: madedit@gmail.com\n"
-"POT-Creation-Date: 2006-05-05 19:13+0800\n"
-"PO-Revision-Date: 2006-04-14 16:17+0100\n"
+"POT-Creation-Date: 2006-05-09 11:37+0800\n"
+"PO-Revision-Date: 2006-05-09 12:03+0100\n"
 "Last-Translator: Angelo Contardi <angelo.contardi@italtel.it>\n"
 "Language-Team: Angelo Contardi <angelo.contardi@italtel.it>\n"
 "MIME-Version: 1.0\n"
@@ -367,7 +367,7 @@ msgid "The input string is not a valid Hex-String:"
 msgstr "La Stringa fornita non è una Stringa Esadecimale valida:"
 
 #: src/MadEdit/MadEdit.cpp:13686 src/MadEdit/MadEdit.cpp:13755
-#: src/MadEditFrame.cpp:2273
+#: src/MadEditFrame.cpp:2295
 msgid "The Parent Directory of this file does not exist:"
 msgstr "Non esiste la Cartella Superiore del File:"
 
@@ -383,7 +383,7 @@ msgstr "Vuoi salvare questo File?"
 msgid "Save File As"
 msgstr "Salva come..."
 
-#: src/MadEdit/MadEdit.cpp:13818 src/MadEditFrame.cpp:1615
+#: src/MadEdit/MadEdit.cpp:13818 src/MadEditFrame.cpp:1630
 msgid "Save File"
 msgstr "Salva"
 
@@ -753,7 +753,7 @@ msgstr ""
 
 #: src/MadEdit/MadEditAdvanced.cpp:625
 msgid "CJK Symbols and Punctuation"
-msgstr ""
+msgstr "Simboli e Punteggiatura CJK"
 
 #: src/MadEdit/MadEditAdvanced.cpp:626
 msgid "Hiragana"
@@ -793,7 +793,7 @@ msgstr "Comprendenti Lettere e Mesi CJK"
 
 #: src/MadEdit/MadEditAdvanced.cpp:635
 msgid "CJK Compatibility"
-msgstr ""
+msgstr "Compatibilità CJK"
 
 #: src/MadEdit/MadEditAdvanced.cpp:636
 msgid "CJK Unified Ideographs Extension A"
@@ -1010,9 +1010,8 @@ msgid "Ln:"
 msgstr "Linea: "
 
 #: src/MadEditFrame.cpp:373
-#, fuzzy
 msgid "Sub:"
-msgstr "Sub: "
+msgstr "Parte: "
 
 #: src/MadEditFrame.cpp:376
 msgid "Col:"
@@ -1328,63 +1327,67 @@ msgstr "Converte la Selezione in Full-Width"
 
 #: src/MadEditFrame.cpp:880
 msgid "Tri&m Trailing Spaces"
-msgstr ""
+msgstr "Elimina Spazi &Finali"
 
 #: src/MadEditFrame.cpp:880
 msgid "Trim trailing spaces at the end of lines"
-msgstr ""
+msgstr "Elimina gli Spazi a Fine Linea"
 
 #: src/MadEditFrame.cpp:882 src/MadSortDialog.cpp:82
 msgid "&Sort"
-msgstr ""
+msgstr "&Ordina"
 
 #: src/MadEditFrame.cpp:883
 msgid "Sort Lines (&Ascending)"
-msgstr ""
+msgstr "Ordina Linee (&Ascendente)"
 
 #: src/MadEditFrame.cpp:883
 msgid "Sort the selected or all lines in ascending order"
-msgstr ""
+msgstr "Ordina le Linee Selezionate in Modalità Ascendente"
 
 #: src/MadEditFrame.cpp:884
 msgid "Sort Lines (&Descending)"
-msgstr ""
+msgstr "Ordina Linee (&Discendente)"
 
 #: src/MadEditFrame.cpp:884
 msgid "Sort the selected or all lines in descending order"
-msgstr ""
+msgstr "Ordina le Linee Selezionate in Modalità Discendente"
 
 #: src/MadEditFrame.cpp:886
 msgid "Sort Lines (A&scending, CaseSensitive)"
-msgstr ""
+msgstr "Ordina Linee (Ascendente, MAIUSCOLE/minuscole)"
 
 #: src/MadEditFrame.cpp:886
 msgid "Sort lines in ascending order and with case-sensitive"
 msgstr ""
+"Ordina le Linee Selezionate in Modalità Ascendente, considerando MAIUSCOLE/"
+"minuscole"
 
 #: src/MadEditFrame.cpp:887
 msgid "Sort Lines (D&escending, CaseSensitive)"
-msgstr ""
+msgstr "Ordina Linee (Discendente, MAIUSCOLE/minuscole)"
 
 #: src/MadEditFrame.cpp:887
 msgid "Sort lines in descending order and with case-sensitive"
 msgstr ""
+"Ordina le Linee Selezionate in Modalità Discendente, considerando MAIUSCOLE/"
+"minuscole"
 
 #: src/MadEditFrame.cpp:889
 msgid "Sort Lines by &Current Options"
-msgstr ""
+msgstr "Ordina Linee (Opzioni Ordinamento Impostate)"
 
 #: src/MadEditFrame.cpp:889
 msgid "Sort the selected or all lines by using current options"
-msgstr ""
+msgstr "Ordina le Linee Selezionate, come specificato in Opzioni Ordinamento"
 
 #: src/MadEditFrame.cpp:890
 msgid "Sort &Options..."
-msgstr ""
+msgstr "Opzioni &Ordinamento..."
 
 #: src/MadEditFrame.cpp:890
 msgid "Set the sort options"
-msgstr ""
+msgstr "Imposta le Opzioni Ordinamento"
 
 #: src/MadEditFrame.cpp:893
 msgid "&Search"
@@ -1433,11 +1436,11 @@ msgstr "Trova e sostituisce Stringhe nei Files"
 
 #: src/MadEditFrame.cpp:901
 msgid "&Show/Hide the Results of Find/Replace in Files"
-msgstr ""
+msgstr "&Mostra/Nascondi Risultati di Trova/Sostituisci nei Files"
 
 #: src/MadEditFrame.cpp:901
 msgid "Show or hide the results of find or replace a string in files"
-msgstr ""
+msgstr "Mostra o Nasconde i Risultati di Trova/Sostituisci nei Files"
 
 #: src/MadEditFrame.cpp:903
 msgid "&Go To Line..."
@@ -1475,8 +1478,8 @@ msgstr "Va alla Parentesi Destra"
 msgid "&View"
 msgstr "&Visualizza"
 
-#: src/MadEditFrame.cpp:911 src/MadEditFrame.cpp:2524
-#: src/MadEditFrame.cpp:2531
+#: src/MadEditFrame.cpp:911 src/MadEditFrame.cpp:2546
+#: src/MadEditFrame.cpp:2553
 msgid "Encoding: "
 msgstr "Codifica Caratteri (CodePage): "
 
@@ -1484,13 +1487,13 @@ msgstr "Codifica Caratteri (CodePage): "
 msgid "All Encodings"
 msgstr "Tutte le Codifiche"
 
-#: src/MadEditFrame.cpp:914 src/MadEditFrame.cpp:2540
-#: src/MadEditFrame.cpp:2545
+#: src/MadEditFrame.cpp:914 src/MadEditFrame.cpp:2562
+#: src/MadEditFrame.cpp:2567
 msgid "Syntax Type: "
 msgstr "Evidenziazione Sintassi: "
 
-#: src/MadEditFrame.cpp:916 src/MadEditFrame.cpp:2557
-#: src/MadEditFrame.cpp:2562
+#: src/MadEditFrame.cpp:916 src/MadEditFrame.cpp:2579
+#: src/MadEditFrame.cpp:2584
 msgid "Font Name: "
 msgstr "Tipo Carattere: "
 
@@ -1522,8 +1525,8 @@ msgstr "[UVWXYZ]"
 msgid "[other]"
 msgstr "[altro]"
 
-#: src/MadEditFrame.cpp:925 src/MadEditFrame.cpp:2573
-#: src/MadEditFrame.cpp:2578
+#: src/MadEditFrame.cpp:925 src/MadEditFrame.cpp:2595
+#: src/MadEditFrame.cpp:2600
 msgid "Font Size: "
 msgstr "Dimensione Carattere: "
 
@@ -1547,8 +1550,8 @@ msgstr "&Modalità Ampiezza Fissa"
 msgid "Set/Unset the font with Fixed Width"
 msgstr "Attiva/Disattiva la Modalità ad Ampiezza Fissa"
 
-#: src/MadEditFrame.cpp:1003 src/MadEditFrame.cpp:2597
-#: src/MadEditFrame.cpp:2602
+#: src/MadEditFrame.cpp:1003 src/MadEditFrame.cpp:2619
+#: src/MadEditFrame.cpp:2624
 msgid "Tab Column: "
 msgstr "Tabulazione: "
 
@@ -1556,8 +1559,8 @@ msgstr "Tabulazione: "
 msgid "Set column of Tab char"
 msgstr "Imposta l'ampiezza della Tabulazione"
 
-#: src/MadEditFrame.cpp:1022 src/MadEditFrame.cpp:2611
-#: src/MadEditFrame.cpp:2616
+#: src/MadEditFrame.cpp:1022 src/MadEditFrame.cpp:2633
+#: src/MadEditFrame.cpp:2638
 msgid "Line Spacing: "
 msgstr "Interlinea: "
 
@@ -1571,7 +1574,7 @@ msgstr "&Disabilita Accapo Automatico"
 
 #: src/MadEditFrame.cpp:1056
 msgid "Do not wrap lines"
-msgstr "Disabilita Accapo automatico"
+msgstr "Disabilita Accapo Automatico"
 
 #: src/MadEditFrame.cpp:1057
 msgid "Wrap By &Window"
@@ -1681,7 +1684,7 @@ msgstr "&Evidenziazione Sintassi..."
 msgid "Change syntax highlighting settings"
 msgstr "Personalizza l'Evidenziazione Sintattica"
 
-#: src/MadEditFrame.cpp:1076 src/MadEditFrame.cpp:2693
+#: src/MadEditFrame.cpp:1076 src/MadEditFrame.cpp:2715
 msgid "Has Unicode BOM (Byte-Order Mark)"
 msgstr "BOM Unicode presente (Byte-Order Mark)"
 
@@ -1693,7 +1696,7 @@ msgstr "Aggiungi/Elimina BOM"
 msgid "Add/Remove Unicode BOM"
 msgstr "Aggiunge/Rimuove BOM Unicode "
 
-#: src/MadEditFrame.cpp:1079 src/MadEditFrame.cpp:2708
+#: src/MadEditFrame.cpp:1079 src/MadEditFrame.cpp:2730
 msgid "NewLine Char (File Format): "
 msgstr "Converti Fine Linea (Formato File): "
 
@@ -1721,7 +1724,7 @@ msgstr "in LF/0A (&UNIX)"
 msgid "Convert the file format to UNIX format"
 msgstr "Converte il File in Formato UNIX"
 
-#: src/MadEditFrame.cpp:1083 src/MadEditFrame.cpp:2729
+#: src/MadEditFrame.cpp:1083 src/MadEditFrame.cpp:2751
 msgid "Press Enter to Insert NewLine Char: "
 msgstr "Usa Fine Linea: "
 
@@ -1993,148 +1996,148 @@ msgstr "Elimina il Carattere a Sinistra del Cursore"
 msgid "Toggle Insert/Overwrite Mode"
 msgstr "Commuta Modalità Inserimento/Sovrascrittura"
 
-#: src/MadEditFrame.cpp:1270
+#: src/MadEditFrame.cpp:1285
 msgid "MadEdit"
 msgstr "MadEdit"
 
-#: src/MadEditFrame.cpp:1613
+#: src/MadEditFrame.cpp:1628
 msgid "New File"
 msgstr "Nuovo"
 
-#: src/MadEditFrame.cpp:1614 src/MadEditFrame.cpp:2781
+#: src/MadEditFrame.cpp:1629 src/MadEditFrame.cpp:2803
 msgid "Open File"
 msgstr "Apri..."
 
-#: src/MadEditFrame.cpp:1616
+#: src/MadEditFrame.cpp:1631
 msgid "Save All Files"
 msgstr "Salva Tutti"
 
-#: src/MadEditFrame.cpp:1617
+#: src/MadEditFrame.cpp:1632
 msgid "Close File"
 msgstr "Chiudi"
 
-#: src/MadEditFrame.cpp:1618
+#: src/MadEditFrame.cpp:1633
 msgid "Close All Files"
 msgstr "Chiudi Tutti"
 
-#: src/MadEditFrame.cpp:1620
+#: src/MadEditFrame.cpp:1635
 msgid "Undo"
 msgstr "Annulla"
 
-#: src/MadEditFrame.cpp:1621
+#: src/MadEditFrame.cpp:1636
 msgid "Redo"
 msgstr "Ripristina"
 
-#: src/MadEditFrame.cpp:1623
+#: src/MadEditFrame.cpp:1638
 msgid "Cut"
 msgstr "Taglia"
 
-#: src/MadEditFrame.cpp:1624
+#: src/MadEditFrame.cpp:1639
 msgid "Copy"
 msgstr "Copia"
 
-#: src/MadEditFrame.cpp:1625
+#: src/MadEditFrame.cpp:1640
 msgid "Paste"
 msgstr "Incolla"
 
-#: src/MadEditFrame.cpp:1627
+#: src/MadEditFrame.cpp:1642
 msgid "Increase Indent"
 msgstr "Aumenta Indentazione"
 
-#: src/MadEditFrame.cpp:1628
+#: src/MadEditFrame.cpp:1643
 msgid "Decrease Indent"
 msgstr "Diminuisci Indentazione"
 
-#: src/MadEditFrame.cpp:1630
+#: src/MadEditFrame.cpp:1645
 msgid "Comment"
 msgstr "Commenta"
 
-#: src/MadEditFrame.cpp:1631
+#: src/MadEditFrame.cpp:1646
 msgid "Uncomment"
 msgstr "Scommenta"
 
-#: src/MadEditFrame.cpp:1633
+#: src/MadEditFrame.cpp:1648
 msgid "Find"
 msgstr "Trova"
 
-#: src/MadEditFrame.cpp:1634 src/MadSearchDialog.cpp:259
+#: src/MadEditFrame.cpp:1649 src/MadSearchDialog.cpp:259
 msgid "Find Next"
 msgstr "Trova Successivo"
 
-#: src/MadEditFrame.cpp:1635 src/MadSearchDialog.cpp:313
+#: src/MadEditFrame.cpp:1650 src/MadSearchDialog.cpp:313
 msgid "Find Previous"
 msgstr "Trova Precedente"
 
-#: src/MadEditFrame.cpp:1636 src/MadReplaceDialog.cpp:128
+#: src/MadEditFrame.cpp:1651 src/MadReplaceDialog.cpp:128
 msgid "Replace"
 msgstr "Sostituisci"
 
-#: src/MadEditFrame.cpp:1638
+#: src/MadEditFrame.cpp:1653
 msgid "No Line Wrap"
 msgstr "Disabilita Accapo Automatico"
 
-#: src/MadEditFrame.cpp:1639
+#: src/MadEditFrame.cpp:1654
 msgid "Wrap Lines by Window"
 msgstr "Accapo alla Finestra"
 
-#: src/MadEditFrame.cpp:1640
+#: src/MadEditFrame.cpp:1655
 msgid "Wrap Lines by Max Columns"
 msgstr "Accapo alla Colonna"
 
-#: src/MadEditFrame.cpp:1642 src/MadOptionsDialog.cpp:342
+#: src/MadEditFrame.cpp:1657 src/MadOptionsDialog.cpp:342
 msgid "Text Mode"
 msgstr "Modalità Testuale"
 
-#: src/MadEditFrame.cpp:1643
+#: src/MadEditFrame.cpp:1658
 msgid "Column Mode"
 msgstr "Modalità Colonna"
 
-#: src/MadEditFrame.cpp:1644 src/MadOptionsDialog.cpp:361
+#: src/MadEditFrame.cpp:1659 src/MadOptionsDialog.cpp:361
 msgid "Hex Mode"
 msgstr "Modalità Esadecimale"
 
-#: src/MadEditFrame.cpp:1660
+#: src/MadEditFrame.cpp:1678
 msgid "Find/Replace in Files Results"
-msgstr ""
+msgstr "Risultati di Trova/Sostituisci nei Files"
 
-#: src/MadEditFrame.cpp:1667
+#: src/MadEditFrame.cpp:1685
 msgid "Information Window"
-msgstr ""
+msgstr "Finestra Informativa"
 
-#: src/MadEditFrame.cpp:2216
+#: src/MadEditFrame.cpp:2238
 #, c-format
 msgid "NoName%d"
 msgstr "Nuovo%d"
 
-#: src/MadEditFrame.cpp:2254
+#: src/MadEditFrame.cpp:2276
 msgid "This is a Directory:"
 msgstr "Questa è una Cartella:"
 
-#: src/MadEditFrame.cpp:2263
+#: src/MadEditFrame.cpp:2285
 msgid "This file does not exist:"
 msgstr "Questo File non esiste:"
 
-#: src/MadEditFrame.cpp:2281
+#: src/MadEditFrame.cpp:2303
 msgid "Cannot access this file:"
 msgstr "Non posso accedere al File:"
 
-#: src/MadEditFrame.cpp:2316
+#: src/MadEditFrame.cpp:2338
 msgid "Cannot load this file:"
 msgstr "Non posso caricare il File:"
 
-#: src/MadEditFrame.cpp:2531 src/MadEditFrame.cpp:2545
-#: src/MadEditFrame.cpp:2562 src/MadEditFrame.cpp:2578
-#: src/MadEditFrame.cpp:2602 src/MadEditFrame.cpp:2616
-#: src/MadEditFrame.cpp:2724 src/MadEditFrame.cpp:2745
+#: src/MadEditFrame.cpp:2553 src/MadEditFrame.cpp:2567
+#: src/MadEditFrame.cpp:2584 src/MadEditFrame.cpp:2600
+#: src/MadEditFrame.cpp:2624 src/MadEditFrame.cpp:2638
+#: src/MadEditFrame.cpp:2746 src/MadEditFrame.cpp:2767
 #: src/MadOptionsDialog.cpp:366 src/MadConvEncDialog.cpp:80
 msgid "None"
 msgstr "Nessuna"
 
-#: src/MadEditFrame.cpp:2697 src/MadEditFrame.cpp:2703
+#: src/MadEditFrame.cpp:2719 src/MadEditFrame.cpp:2725
 msgid "Has No Unicode BOM (Byte-Order Mark)"
 msgstr "BOM Unicode assente (Byte-Order Mark)"
 
-#: src/MadEditFrame.cpp:2963
+#: src/MadEditFrame.cpp:2993
 msgid ""
 "There was a problem previewing.\n"
 "Perhaps your current printer is not set correctly?"
@@ -2142,11 +2145,11 @@ msgstr ""
 "Si è verificato un problema durante la creazione dell'Anteprima.\n"
 "Hai predisposto correttamente la Stampante?"
 
-#: src/MadEditFrame.cpp:2963
+#: src/MadEditFrame.cpp:2993
 msgid "Previewing"
 msgstr "Creazione Anteprima in corso"
 
-#: src/MadEditFrame.cpp:2992
+#: src/MadEditFrame.cpp:3022
 msgid ""
 "There was a problem printing.\n"
 "Perhaps your current printer is not set correctly?"
@@ -2154,27 +2157,27 @@ msgstr ""
 "Si è verificato un problema durante la Stampa.\n"
 "Hai predisposto correttamente la Stampante?"
 
-#: src/MadEditFrame.cpp:2992
+#: src/MadEditFrame.cpp:3022
 msgid "Printing"
 msgstr "Stampa in corso"
 
-#: src/MadEditFrame.cpp:3573
+#: src/MadEditFrame.cpp:3603
 msgid "Line Number: (you can input HexNumber: 0xNNN)"
 msgstr "Numero Linea: (anche in Esadecimale: 0xNNN)"
 
-#: src/MadEditFrame.cpp:3573
+#: src/MadEditFrame.cpp:3603
 msgid "Go To Line"
 msgstr "Va alla Linea"
 
-#: src/MadEditFrame.cpp:3597
+#: src/MadEditFrame.cpp:3627
 msgid "Position: (you can input HexNumber: 0xNNN)"
 msgstr "Posizione: (anche in Esadecimale: 0xNNN)"
 
-#: src/MadEditFrame.cpp:3597
+#: src/MadEditFrame.cpp:3627
 msgid "Go To Position"
 msgstr "Va alla Posizione"
 
-#: src/MadEditFrame.cpp:4277
+#: src/MadEditFrame.cpp:4307
 msgid "Press OK to visit our HomePage."
 msgstr "Premi OK per visitare il Sito."
 
@@ -2245,11 +2248,11 @@ msgstr "WxButtonReplace"
 
 #: src/MadFindInFilesDialog.cpp:138
 msgid "&Enable Replace"
-msgstr ""
+msgstr "Abilita &Sostituzione"
 
 #: src/MadFindInFilesDialog.cpp:138
 msgid "WxCheckBoxEnableReplace"
-msgstr ""
+msgstr "WxCheckBoxEnableReplace"
 
 #: src/MadFindInFilesDialog.cpp:141 src/MadSearchDialog.cpp:120
 #: src/MadReplaceDialog.cpp:121
@@ -2291,15 +2294,15 @@ msgstr "WxButtonDir"
 
 #: src/MadFindInFilesDialog.cpp:166
 msgid "<<"
-msgstr ""
+msgstr "<<"
 
 #: src/MadFindInFilesDialog.cpp:166
 msgid "WxButtonActiveDir"
-msgstr ""
+msgstr "WxButtonActiveDir"
 
 #: src/MadFindInFilesDialog.cpp:169
 msgid "File Filters:"
-msgstr "Filtri dei Files:"
+msgstr "Includi i Files:"
 
 #: src/MadFindInFilesDialog.cpp:169 src/MadHighlightingDialog.cpp:214
 #: src/MadOptionsDialog.cpp:231 src/MadConvEncDialog.cpp:69
@@ -2323,7 +2326,7 @@ msgstr "WxStaticText5"
 
 #: src/MadFindInFilesDialog.cpp:182
 msgid "Exclude Filters:"
-msgstr ""
+msgstr "Escludi i Files:"
 
 #: src/MadFindInFilesDialog.cpp:182 src/MadHighlightingDialog.cpp:290
 #: src/MadOptionsDialog.cpp:281 src/MadWordCountDialog.cpp:93
@@ -2332,7 +2335,7 @@ msgstr "WxStaticText4"
 
 #: src/MadFindInFilesDialog.cpp:186
 msgid "WxComboBoxExclude"
-msgstr ""
+msgstr "WxComboBoxExclude"
 
 #: src/MadFindInFilesDialog.cpp:189 src/MadOptionsDialog.cpp:299
 #: src/MadWordCountDialog.cpp:114
@@ -2395,24 +2398,24 @@ msgstr "%d File(s) corrispondenti al Filtro(i) impostato(i)..."
 
 #: src/MadFindInFilesDialog.cpp:610
 msgid "The selected directory does not exist."
-msgstr ""
+msgstr "La Cartella Selezionata non esiste."
 
 #: src/MadFindInFilesDialog.cpp:698
 #, c-format
 msgid "Processing %d of %d files..."
 msgstr "Elaborazione %d di %d Files..."
 
-#: src/MadFindInFilesDialog.cpp:827
+#: src/MadFindInFilesDialog.cpp:828
 #, c-format
 msgid "Line(%d): "
 msgstr "Linea(%d): "
 
-#: src/MadFindInFilesDialog.cpp:831
+#: src/MadFindInFilesDialog.cpp:832
 #, c-format
 msgid "Offset(%s): "
 msgstr "Spiazzamento(%s): "
 
-#: src/MadFindInFilesDialog.cpp:832
+#: src/MadFindInFilesDialog.cpp:833
 msgid "Binary file matches"
 msgstr "Files Binari trovati"
 
@@ -2564,7 +2567,7 @@ msgid ""
 msgstr ""
 "Nessuna Stringa trovata.\n"
 "\n"
-"Voui ripartire da Inizio File?"
+"Vuoi ripartire da Inizio File?"
 
 #: src/MadSearchDialog.cpp:313
 msgid ""
@@ -2574,51 +2577,51 @@ msgid ""
 msgstr ""
 "Nessuna Stringa trovata.\n"
 "\n"
-"Voui ripartire da Fine File?"
+"Vuoi ripartire da Fine File?"
 
 #: src/MadSortDialog.cpp:64
 msgid "&Ascending"
-msgstr ""
+msgstr "&Ascendente"
 
 #: src/MadSortDialog.cpp:65
 msgid "&Descending"
-msgstr ""
+msgstr "&Discendente"
 
 #: src/MadSortDialog.cpp:66
 msgid "Sort Order"
-msgstr ""
+msgstr "Modalità Ordinamento"
 
 #: src/MadSortDialog.cpp:66
 msgid "WxRadioBoxOrder"
-msgstr ""
+msgstr "WxRadioBoxOrder"
 
 #: src/MadSortDialog.cpp:70
 msgid "WxCheckBoxCase"
-msgstr ""
+msgstr "WxCheckBoxCase"
 
 #: src/MadSortDialog.cpp:73
 msgid "&Numeric Sort"
-msgstr ""
+msgstr "&Numerico"
 
 #: src/MadSortDialog.cpp:73
 msgid "WxCheckBoxNumeric"
-msgstr ""
+msgstr "WxCheckBoxNumeric"
 
 #: src/MadSortDialog.cpp:76
 msgid "&Remove Duplicates"
-msgstr ""
+msgstr "&Elimina Duplicati"
 
 #: src/MadSortDialog.cpp:76
 msgid "WxCheckBoxRemoveDup"
-msgstr ""
+msgstr "WxCheckBoxRemoveDup"
 
 #: src/MadSortDialog.cpp:82
 msgid "WxButtonSort"
-msgstr ""
+msgstr "WxButtonSort"
 
 #: src/MadSortDialog.cpp:90
 msgid "Sort Options"
-msgstr ""
+msgstr "Opzioni Ordinamento"
 
 #: src/MadReplaceDialog.cpp:118
 msgid "Replace &All"
@@ -2651,15 +2654,15 @@ msgstr "Generali"
 
 #: src/MadOptionsDialog.cpp:210
 msgid "WxComboBoxLanguage"
-msgstr ""
+msgstr "WxComboBoxLanguage"
 
 #: src/MadOptionsDialog.cpp:213
 msgid "Language of User Interface (Must Restart MadEdit)"
-msgstr ""
+msgstr "Linguaggio Interfaccia (Riavviare MadEdit)"
 
 #: src/MadOptionsDialog.cpp:213
 msgid "WxStaticText16"
-msgstr ""
+msgstr "WxStaticText16"
 
 #: src/MadOptionsDialog.cpp:219
 msgid "Single Instance (Must Restart MadEdit)"
@@ -2717,7 +2720,8 @@ msgstr "WxStaticText13"
 msgid ""
 "Do Not Save Settings to MadEdit.cfg when MadEdit Closed (This Session Only)"
 msgstr ""
-"Non Salvare le Impostazioni in MadEdit.cfg a Fine Sessione (solo una volta)"
+"DisabilitazioneTEMPORANEA (solo Sessione Corrente) del Salvataggio "
+"Automatico di Fine Sessione delle Impostazioni (File MadEdit.cfg)"
 
 #: src/MadOptionsDialog.cpp:256
 msgid "WxCheckBoxDoNotSaveSettings"
@@ -2787,7 +2791,7 @@ msgstr "WxCheckBoxAutoCompletePair"
 
 #: src/MadOptionsDialog.cpp:317
 msgid "Auto Copy the Mouse-Selected Text to Clipboard  ("
-msgstr ""
+msgstr "Copia Automatica in Appunti del Testo Selezionato con Mouse ("
 
 #: src/MadOptionsDialog.cpp:317
 msgid "WxCheckBoxMouseSelectToCopy"
@@ -2795,27 +2799,27 @@ msgstr "WxCheckBoxMouseSelectToCopy"
 
 #: src/MadOptionsDialog.cpp:320
 msgid "Enable"
-msgstr ""
+msgstr "Abilita"
 
 #: src/MadOptionsDialog.cpp:320
 msgid "WxRadioButtonEnable"
-msgstr ""
+msgstr "WxRadioButtonEnable"
 
 #: src/MadOptionsDialog.cpp:323
 msgid "Disable"
-msgstr ""
+msgstr "Disabilita"
 
 #: src/MadOptionsDialog.cpp:323
 msgid "WxRadioButtonDisable"
-msgstr ""
+msgstr "WxRadioButtonDisable"
 
 #: src/MadOptionsDialog.cpp:326
 msgid "when Pressing Ctrl Key)"
-msgstr ""
+msgstr "premendo il Tasto Ctrl)"
 
 #: src/MadOptionsDialog.cpp:326
 msgid "WxStaticText17"
-msgstr ""
+msgstr "WxStaticText17"
 
 #: src/MadOptionsDialog.cpp:329
 msgid "Paste Text from Clipboard when Pressing Middle Mouse Button"
