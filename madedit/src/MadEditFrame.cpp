@@ -1167,6 +1167,20 @@ void LoadDefaultSettings(wxConfigBase *m_Config)
     bool tempbool;
     wxString tempstr;
 
+    long orien;
+    m_Config->Read(wxT("PageOrientation"), &orien, wxPORTRAIT);
+    g_PageSetupData->GetPrintData().SetOrientation(orien);
+
+    wxSize psize=g_PageSetupData->GetPaperSize();
+    m_Config->Read(wxT("PagePaperSizeW"), &psize.x);
+    m_Config->Read(wxT("PagePaperSizeH"), &psize.y);
+    if(orien!=wxPORTRAIT)
+    {
+        long tmp=psize.x;
+        psize.x=psize.y;
+        psize.y=tmp;
+    }
+    g_PageSetupData->SetPaperSize(psize);
 
     m_Config->Read(wxT("PageLeftMargin"), &x, 20);
     m_Config->Read(wxT("PageTopMargin"), &y, 30);
@@ -1174,6 +1188,7 @@ void LoadDefaultSettings(wxConfigBase *m_Config)
     m_Config->Read(wxT("PageRightMargin"), &x, 20);
     m_Config->Read(wxT("PageBottomMargin"), &y, 30);
     g_PageSetupData->SetMarginBottomRight(wxPoint(x,y));
+
 
     m_Config->Read(wxT("PrintSyntax"), &tempbool, false);
     m_Config->Read(wxT("PrintLineNumber"), &tempbool, true);
@@ -2936,9 +2951,17 @@ void MadEditFrame::OnFilePageSetup(wxCommandEvent& event)
     {
         //(*g_PrintData) = pageSetupDialog.GetPageSetupData().GetPrintData();
         (*g_PageSetupData) = pageSetupDialog.GetPageSetupData();
+        //g_PageSetupData->SetPrintData( pageSetupDialog.GetPageSetupData().GetPrintData() );
 
         wxString oldpath=m_Config->GetPath();
         m_Config->SetPath(wxT("/MadEdit"));
+
+        m_Config->Write(wxT("PageOrientation"), g_PageSetupData->GetPrintData().GetOrientation());
+
+        //((wxFrame*)wxTheApp->GetTopWindow())->SetTitle(wxString::Format(wxT("%d"), g_PageSetupData->GetPaperId()));
+        wxSize size=g_PageSetupData->GetPaperSize();
+        m_Config->Write(wxT("PagePaperSizeW"), size.x);
+        m_Config->Write(wxT("PagePaperSizeH"), size.y);
 
         wxPoint p=g_PageSetupData->GetMarginTopLeft();
         m_Config->Write(wxT("PageLeftMargin"), p.x);
