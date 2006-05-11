@@ -771,6 +771,7 @@ void MadKeyBindings::AddDefaultBindings(bool overwrite)
     Add(ShortCut(wxACCEL_CTRL, 'E'), ecWrapByColumn, overwrite);
 
     Add(ShortCut(wxACCEL_CTRL, 'Z'),                 ecUndo, overwrite);
+    Add(ShortCut(wxACCEL_ALT, WXK_BACK),             ecUndo, overwrite);
     Add(ShortCut(wxACCEL_CTRL | wxACCEL_SHIFT, 'Z'), ecRedo, overwrite);
 #ifdef __WXMSW__
     Add(ShortCut(wxACCEL_CTRL, 'Y'),                 ecRedo, overwrite);
@@ -1004,22 +1005,23 @@ void MadKeyBindings::LoadFromConfig_New(wxConfigBase *config)
             text=tkz.GetNextToken();
             while(!text.IsEmpty())
             {
-                if(text[0]==wxT('*'))
+                const wxChar ch = text[0];
+                if(ch == wxT('*'))
                 {
                     first=true;
                 }
-                else if(text[0]==wxT('m'))// menuXXX
+                else if(ch == wxT('m'))// menuXXX
                 {
                     if((tcit=ms_TextMenuIdMap->find(text))!=ms_TextMenuIdMap->end())
                     {
                         Add(sc, first, tcit->second, true);
                     }
                 }
-                else if(text[0]==wxT('e'))// ecXXX
+                else if(ch == wxT('e'))// ecXXX
                 {
                     if((tcit=ms_TextCommandMap->find(text))!=ms_TextCommandMap->end())
                     {
-                        Add(sc, tcit->second, true);
+                        Add(sc, tcit->second, true, first);
                     }
                 }
                 text=tkz.GetNextToken();
