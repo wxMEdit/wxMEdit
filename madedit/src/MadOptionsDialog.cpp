@@ -997,6 +997,7 @@ void MadOptionsDialog::PrintMarkClick(wxCommandEvent& event)
 void MadOptionsDialog::WxTreeCtrl1SelChanged(wxTreeEvent& event)
 {
     wxTreeItemId id=event.GetItem();
+    if(!id.IsOk()) return;
     
     g_SelectedCommandItem=(TreeItemData*)WxTreeCtrl1->GetItemData(id);
     g_SelectedKeyId=-1;
