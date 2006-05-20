@@ -72,13 +72,13 @@ public:
     static list<VerifiedFlag> VerifiedFlagList; // indicate FontWidthBuffer is verified or not
 
 private:
-    static bool VerifyFontWidths(wxUint16 *widths, const wxString &fontname, int fontsize);
+    static bool VerifyFontWidths(wxUint16 *widths, const wxString &fontname, int fontsize, wxWindow *win);
     static void ClearBuffer_1_16(const wxString &fontname, int fontsize); //clear FontWidthBuffersVector[1~16] with the same name,size
     static bool LoadFromFile(const wxString &filename, FontWidthBuffers &fwbuffers, bool verify);
 
 public:
     static void Init(const wxString &datadir); // where to load data file
-    static wxUint16 *GetFontWidths(int index, const wxString &fontname, int fontsize);
+    static wxUint16 *GetFontWidths(int index, const wxString &fontname, int fontsize, wxWindow *win);
     static void Save(); // save all FontWidthBuffer to file in datadir
     static void FreeMem();
 };

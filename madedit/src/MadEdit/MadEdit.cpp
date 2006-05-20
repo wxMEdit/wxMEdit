@@ -346,10 +346,9 @@ wxString FontWidthManager::DataDir;
 vector<FontWidthManager::FontWidthBuffers> FontWidthManager::FontWidthBuffersVector;
 list<FontWidthManager::VerifiedFlag> FontWidthManager::VerifiedFlagList;
 
-bool FontWidthManager::VerifyFontWidths(wxUint16 *widths, const wxString &fontname, int fontsize)
+bool FontWidthManager::VerifyFontWidths(wxUint16 *widths, const wxString &fontname, int fontsize, wxWindow *win)
 {
     // check the VerifiedFlag
-    wxMemoryDC dc;
     list<VerifiedFlag>::iterator vfit=VerifiedFlagList.begin();
     list<VerifiedFlag>::iterator vfend=VerifiedFlagList.end();
     while(vfit!=vfend)
@@ -362,8 +361,6 @@ bool FontWidthManager::VerifyFontWidths(wxUint16 *widths, const wxString &fontna
             wxFont *pf=wxTheFontList->FindOrCreateFont(//fwbuf.fontsize, font.GetFamily(), font.GetStyle(), font.GetWeight(), font.GetUnderlined(), fwbuf.fontname);
                 fontsize, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL, false, fontname);
 
-            dc.SetFont(*pf);
-
             int w,h;
             wxString text(wxT('A'));
             wxChar wc;
@@ -371,7 +368,7 @@ bool FontWidthManager::VerifyFontWidths(wxUint16 *widths, const wxString &fontna
             for(wc=0x20; wc<=0x7E; wc++)
             {
                 text.SetChar(0, wc);
-                dc.GetTextExtent(text, &w, &h);
+                win->GetTextExtent(text, &w, &h, NULL, NULL, pf);
 
                 if(widths[wc] != 0)
                 {
@@ -392,7 +389,7 @@ bool FontWidthManager::VerifyFontWidths(wxUint16 *widths, const wxString &fontna
             {
                 wc=wcs[idx];
                 text.SetChar(0, wc);
-                dc.GetTextExtent(text, &w, &h);
+                win->GetTextExtent(text, &w, &h, NULL, NULL, pf);
 
                 if(widths[wc] != 0)
                 {
@@ -498,7 +495,7 @@ void FontWidthManager::Init(const wxString &datadir)
     FontWidthBuffersVector.resize(17); // 0~16 : U+0000 ~ U+10FFFF
 }
 
-wxUint16 *FontWidthManager::GetFontWidths(int index, const wxString &fontname, int fontsize)
+wxUint16 *FontWidthManager::GetFontWidths(int index, const wxString &fontname, int fontsize, wxWindow *win)
 {
     wxASSERT(index>=0 && index<=16);
 
@@ -520,7 +517,7 @@ wxUint16 *FontWidthManager::GetFontWidths(int index, const wxString &fontname, i
         {
             wid=it->widths;
 
-            if(index==0 && VerifyFontWidths(wid, fontname, fontsize)==false)
+            if(index==0 && VerifyFontWidths(wid, fontname, fontsize, win)==false)
             {
 #ifdef __WXGTK__
                 std::wcout<<fontname.c_str()<<wxT(", ")<<fontsize <<wxT(" : FontWidth does not match\n");
@@ -10380,7 +10377,7 @@ void MadEdit::SetTextFont(const wxString &name, int size, bool forceReset)
             wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL, false, name);
 
         memset(m_TextFontWidths, 0, sizeof(m_TextFontWidths));
-        m_TextFontWidths[0] = FontWidthManager::GetFontWidths(0, name, size);
+        m_TextFontWidths[0] = FontWidthManager::GetFontWidths(0, name, size, this);
 
         if(m_StorePropertiesToGlobalConfig)
         {
@@ -10513,7 +10510,7 @@ void MadEdit::SetHexFont(const wxString &name, int size, bool forceReset)
             wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL, false, name);
 
         memset(m_HexFontWidths, 0, sizeof(m_HexFontWidths));
-        m_HexFontWidths[0]=FontWidthManager::GetFontWidths(0, name, size);
+        m_HexFontWidths[0]=FontWidthManager::GetFontWidths(0, name, size, this);
 
         if(m_StorePropertiesToGlobalConfig)
         {
@@ -11365,7 +11362,7 @@ int MadEdit::GetUCharWidth(ucs4_t uc)
     wxUint16 *widths=m_TextFontWidths[idx];
     if(widths==NULL)
     {
-        widths=m_TextFontWidths[idx]=FontWidthManager::GetFontWidths(idx, m_TextFont->GetFaceName(), m_TextFont->GetPointSize());
+        widths=m_TextFontWidths[idx]=FontWidthManager::GetFontWidths(idx, m_TextFont->GetFaceName(), m_TextFont->GetPointSize(), this);
     }
 
     idx=uc&0xFFFF;
@@ -11423,7 +11420,7 @@ int MadEdit::GetHexUCharWidth(ucs4_t uc)
     wxUint16 *widths=m_HexFontWidths[idx];
     if(widths==NULL)
     {
-        widths=m_HexFontWidths[idx]=FontWidthManager::GetFontWidths(idx, m_HexFont->GetFaceName(), m_HexFont->GetPointSize());
+        widths=m_HexFontWidths[idx]=FontWidthManager::GetFontWidths(idx, m_HexFont->GetFaceName(), m_HexFont->GetPointSize(), this);
     }
 
     idx=uc&0xFFFF;
