@@ -167,9 +167,6 @@
 				RelativePath="..\src\MadWordCountDialog.cpp">
 			</File>
 			<File
-				RelativePath="..\wxAUI\src\manager.cpp">
-			</File>
-			<File
 				RelativePath="..\wxFlatNotebook\src\wxFlatNotebook\wxFlatNotebook.cpp">
 			</File>
 			<Filter
@@ -201,6 +198,25 @@
 				</File>
 				<File
 					RelativePath="..\src\MadEdit\TradSimp.cpp">
+				</File>
+			</Filter>
+			<Filter
+				Name="wxAUI"
+				Filter="">
+				<File
+					RelativePath="..\wxAUI\src\auibook.cpp">
+				</File>
+				<File
+					RelativePath="..\wxAUI\src\dockart.cpp">
+				</File>
+				<File
+					RelativePath="..\wxAUI\src\floatpane.cpp">
+				</File>
+				<File
+					RelativePath="..\wxAUI\src\framemanager.cpp">
+				</File>
+				<File
+					RelativePath="..\wxAUI\src\tabmdi.cpp">
 				</File>
 			</Filter>
 		</Filter>
@@ -248,9 +264,6 @@
 				RelativePath="..\src\MadWordCountDialog.h">
 			</File>
 			<File
-				RelativePath="..\wxAUI\include\manager.h">
-			</File>
-			<File
 				RelativePath="..\src\plugin.h">
 			</File>
 			<Filter
@@ -279,6 +292,28 @@
 				</File>
 				<File
 					RelativePath="..\src\MadEdit\ucs4_t.h">
+				</File>
+			</Filter>
+			<Filter
+				Name="wxAUI"
+				Filter="">
+				<File
+					RelativePath="..\wxAUI\include\aui.h">
+				</File>
+				<File
+					RelativePath="..\wxAUI\include\auibook.h">
+				</File>
+				<File
+					RelativePath="..\wxAUI\include\dockart.h">
+				</File>
+				<File
+					RelativePath="..\wxAUI\include\floatpane.h">
+				</File>
+				<File
+					RelativePath="..\wxAUI\include\framemanager.h">
+				</File>
+				<File
+					RelativePath="..\wxAUI\include\tabmdi.h">
 				</File>
 			</Filter>
 		</Filter>
