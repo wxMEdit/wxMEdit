@@ -129,7 +129,7 @@
 #define Mad_16x15_xpm_idx (hexmode_xpm_idx+1)
 
 
-wxString g_MadEdit_Version(wxT("MadEdit v0.2.5 Beta"));
+wxString g_MadEdit_Version(wxT("MadEdit v0.2.6 Beta"));
 wxString g_MadEdit_URL(wxT("http://madedit.sourceforge.net"));
 
 
@@ -1679,7 +1679,7 @@ void MadEditFrame::CreateGUIControls(void)
     m_InfoNotebook->Connect(wxEVT_SIZE, wxSizeEventHandler(MadEditFrame::OnInfoNotebookSize));
 
     // wxAUI
-    m_FrameManager.SetFrame(this);
+    m_FrameManager.SetManagedWindow(this);
     m_FrameManager.SetFlags(m_FrameManager.GetFlags() | wxAUI_MGR_ALLOW_ACTIVE_PANE);
     m_FrameManager.AddPane(m_Notebook, wxCENTER);
     m_FrameManager.AddPane(m_InfoNotebook, wxBOTTOM, _("Information Window"));
