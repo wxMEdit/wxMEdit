@@ -1,3 +1,10 @@
+madedit (0.2.6-1) unstable; urgency=low
+
+  1.
+
+ -- Alston Chen <madedit@gmail.com>  Wed, 26 Jul 2006 14:26:54 +0800
+
+
 madedit (0.2.5-1) unstable; urgency=low
 
   1.fixed crashes when copying and pasting data between TextMode and ColumnMode under Linux.

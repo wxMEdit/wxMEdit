@@ -56,8 +56,17 @@ madedit_SOURCES =	src/MadAboutDialog.cpp \
 	wxFlatNotebook/src/wxFlatNotebook/wxFlatNotebook.cpp \
 	wxFlatNotebook/include/wx/wxFlatNotebook/wxFlatNotebook.h \
 	wxFlatNotebook/include/wx/wxFlatNotebook/wxFNBDropTarget.h \
-	wxAUI/include/manager.h \
-	wxAUI/src/manager.cpp
+	wxAUI/include/aui.h \
+	wxAUI/include/auibook.h \
+	wxAUI/include/dockart.h \
+	wxAUI/include/floatpane.h \
+	wxAUI/include/framemanager.h \
+	wxAUI/include/tabmdi.h \
+	wxAUI/src/auibook.cpp \
+	wxAUI/src/dockart.cpp \
+	wxAUI/src/floatpane.cpp \
+	wxAUI/src/framemanager.cpp \
+	wxAUI/src/tabmdi.cpp
 
 pixmapsdir = $(datadir)/pixmaps
 pixmaps_DATA = madedit.xpm
@@ -163,7 +172,7 @@ noinst_HEADERS =	description-pak \
 	makefiles/zcfg_wx_debug.sh \
 	makefiles/zcfg_wx_release.sh \
 	makefiles/zcfg_madedit_release.sh \
-    po/madedit.pot \
+	po/madedit.pot \
 	po/src.list \
 	po/wxstd.po.txt \
 	po/wxstd.po.cpp \
