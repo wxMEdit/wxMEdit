@@ -17,8 +17,9 @@ OBJ  = ./Release/MadEditFrame.o ./Release/MadEditApp.o \
        ./Release/TradSimp.o ./Release/MadConvEncDialog.o \
        ./Release/wxFlatNotebook.o ./Release/MadEditAdvanced.o \
        ./Release/MadWordCountDialog.o ./Release/MadHighlightingDialog.o \
-       ./Release/MadFindInFilesDialog.o ./Release/manager.o \
-       ./Release/caret_new.o ./Release/MadSortDialog.o
+       ./Release/MadFindInFilesDialog.o ./Release/caret_new.o ./Release/MadSortDialog.o \
+       ./Release/tabmdi.o ./Release/auibook.o ./Release/dockart.o \
+       ./Release/floatpane.o ./Release/framemanager.o
 
 
 LINKOBJ  = $(OBJ)
@@ -125,11 +126,23 @@ $(BIN): $(OBJ)
 ./Release/MadFindInFilesDialog.o: ../src/MadFindInFilesDialog.cpp
 	$(CXX) -c ../src/MadFindInFilesDialog.cpp -o ./Release/MadFindInFilesDialog.o $(CXXFLAGS)
 
-./Release/manager.o: ../wxAUI/src/manager.cpp
-	$(CXX) -c ../wxAUI/src/manager.cpp -o ./Release/manager.o $(CXXFLAGS)
-
 ./Release/caret_new.o: ../src/MadEdit/caret_new.cpp
 	$(CXX) -c ../src/MadEdit/caret_new.cpp -o ./Release/caret_new.o $(CXXFLAGS)
 
 ./Release/MadSortDialog.o: ../src/MadSortDialog.cpp
 	$(CXX) -c ../src/MadSortDialog.cpp -o ./Release/MadSortDialog.o $(CXXFLAGS)
+
+./Release/tabmdi.o: ../wxAUI/src/tabmdi.cpp
+	$(CXX) -c ../wxAUI/src/tabmdi.cpp -o ./Release/tabmdi.o $(CXXFLAGS)
+
+./Release/auibook.o: ../wxAUI/src/auibook.cpp
+	$(CXX) -c ../wxAUI/src/auibook.cpp -o ./Release/auibook.o $(CXXFLAGS)
+
+./Release/dockart.o: ../wxAUI/src/dockart.cpp
+	$(CXX) -c ../wxAUI/src/dockart.cpp -o ./Release/dockart.o $(CXXFLAGS)
+
+./Release/floatpane.o: ../wxAUI/src/floatpane.cpp
+	$(CXX) -c ../wxAUI/src/floatpane.cpp -o ./Release/floatpane.o $(CXXFLAGS)
+
+./Release/framemanager.o: ../wxAUI/src/framemanager.cpp
+	$(CXX) -c ../wxAUI/src/framemanager.cpp -o ./Release/framemanager.o $(CXXFLAGS)

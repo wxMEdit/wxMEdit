@@ -16,8 +16,10 @@ OBJ  = ./Release/MadEditFrame.obj ./Release/MadEditApp.obj \
        ./Release/TradSimp.obj ./Release/MadConvEncDialog.obj \
        ./Release/wxFlatNotebook.obj ./Release/MadEditAdvanced.obj \
        ./Release/MadWordCountDialog.obj ./Release/MadHighlightingDialog.obj \
-       ./Release/MadFindInFilesDialog.obj ./Release/manager.obj \
-       ./Release/MadSortDialog.obj $(RES)
+       ./Release/MadFindInFilesDialog.obj ./Release/MadSortDialog.obj \
+       ./Release/tabmdi.obj ./Release/auibook.obj ./Release/dockart.obj \
+       ./Release/floatpane.obj ./Release/framemanager.obj \
+       $(RES)
 
 LINKOBJ = $(OBJ)
 
@@ -118,11 +120,23 @@ $(BIN): $(OBJ)
 ./Release/MadFindInFilesDialog.obj: ../src/MadFindInFilesDialog.cpp
 	$(CPP) -c ../src/MadFindInFilesDialog.cpp -o ./Release/MadFindInFilesDialog.obj $(CXXFLAGS)
 
-./Release/manager.obj: ../wxAUI/src/manager.cpp
-	$(CPP) -c ../wxAUI/src/manager.cpp -o ./Release/manager.obj $(CXXFLAGS)
-
 ./Release/MadSortDialog.obj: ../src/MadSortDialog.cpp
 	$(CPP) -c ../src/MadSortDialog.cpp -o ./Release/MadSortDialog.obj $(CXXFLAGS)
+
+./Release/tabmdi.obj: ../wxAUI/src/tabmdi.cpp
+	$(CPP) -c ../wxAUI/src/tabmdi.cpp -o ./Release/tabmdi.obj $(CXXFLAGS)
+
+./Release/auibook.obj: ../wxAUI/src/auibook.cpp
+	$(CPP) -c ../wxAUI/src/auibook.cpp -o ./Release/auibook.obj $(CXXFLAGS)
+
+./Release/dockart.obj: ../wxAUI/src/dockart.cpp
+	$(CPP) -c ../wxAUI/src/dockart.cpp -o ./Release/dockart.obj $(CXXFLAGS)
+
+./Release/floatpane.obj: ../wxAUI/src/floatpane.cpp
+	$(CPP) -c ../wxAUI/src/floatpane.cpp -o ./Release/floatpane.obj $(CXXFLAGS)
+
+./Release/framemanager.obj: ../wxAUI/src/framemanager.cpp
+	$(CPP) -c ../wxAUI/src/framemanager.cpp -o ./Release/framemanager.obj $(CXXFLAGS)
 
 ./Release/MadEdit_private.res: ../devcpp/MadEdit_private.rc 
 	$(WINDRES) -i ../devcpp/MadEdit_private.rc --input-format=rc -o ./Release/MadEdit_private.res -O coff  --include-dir $(WX_DIR)/include
