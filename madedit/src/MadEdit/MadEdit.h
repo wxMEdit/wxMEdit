@@ -137,7 +137,7 @@ struct MadCaretPos
         extraspaces = 0;
     }
 
-    /** /
+    /*
     void operator=(const MadCaretPos &cp)
     {
         pos = cp.pos;
@@ -149,7 +149,7 @@ struct MadCaretPos
         xpos = cp.xpos;
         extraspaces = cp.extraspaces;
     }
-    /***/
+    */
 
 };
 

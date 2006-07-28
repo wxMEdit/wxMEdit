@@ -506,6 +506,8 @@ void MadEncoding::Create(size_t idx)
             m_Info->m_LeadByte_Table=m_LeadByte_Table;
 
             break;
+        default:
+            break;
         }
     }
 

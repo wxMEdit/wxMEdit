@@ -47,7 +47,7 @@ bool Search(Iter &begin, Iter &end, const char_type *wanted, size_t count, bool 
 {
     wxASSERT(count != 0);
 
-    int idx=0;
+    size_t idx=0;
     Iter beginpos;
     char_type c1, c2;
 
@@ -366,7 +366,7 @@ struct UCIterator   // ucs4_t widechar iterator
 
         ++ucqidx;
 
-        if(ucqidx == (*ucqueue).size())
+        if(ucqidx == (int)(*ucqueue).size())
         {
             wxASSERT(pos <= s_endpos);
 

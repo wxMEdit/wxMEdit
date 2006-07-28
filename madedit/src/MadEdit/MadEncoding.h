@@ -39,7 +39,7 @@ struct MadEncodingInfo
     wxByte         *m_LeadByte_Table;    // DBCS Lead-Byte table
 
     MadEncodingInfo(wxFontEncoding e, const wxString &n, const wxString &de, MadEncodingType t, const wxString &fn)
-        :m_Encoding(e), m_Name(n), m_Description(de), m_Type(t), m_FontName(fn),
+        :m_Encoding(e), m_Name(n), m_Description(de), m_FontName(fn), m_Type(t),
         m_CSConv(NULL), m_MBtoWC_Table(NULL), m_WCtoMB_Table(NULL), m_LeadByte_Table(NULL)
     {
     }

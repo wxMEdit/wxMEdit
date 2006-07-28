@@ -479,6 +479,8 @@ void OnEditStatusChanged(MadEdit *madedit)
                     enc += xmac;
                 }
                 break;
+            default:
+                break;
             }
             g_StatusBar->SetStatusText(enc, 4);
             
@@ -2737,6 +2739,7 @@ void MadEditFrame::OnUpdateUI_MenuToolsNewLineChar(wxUpdateUIEvent& event)
         case nltDOS:  text += wxT("CRLF/0D0A (DOS)"); break;
         case nltUNIX: text += wxT("LF/0A (UNIX)"); break;
         case nltMAC:  text += wxT("CR/0D (MAC)"); break;
+        default: break;
         }
         event.SetText(text);
     }
@@ -2758,6 +2761,7 @@ void MadEditFrame::OnUpdateUI_MenuToolsInsertNewLineChar(wxUpdateUIEvent& event)
         case nltDOS:  text += wxT("CRLF/0D0A (DOS)"); break;
         case nltUNIX: text += wxT("LF/0A (UNIX)"); break;
         case nltMAC:  text += wxT("CR/0D (MAC)"); break;
+        default: break;
         }
         event.SetText(text);
     }
@@ -3039,7 +3043,7 @@ public:
         const wxPoint& pos = wxPoint(10,10),//wxDefaultPosition,
         const wxSize& size = wxSize(1, 1),//wxDefaultSize,
         long style = wxDIALOG_NO_PARENT)
-        : m_Printed(false), wxDialog(parent, id, title, pos, size, style) { }
+        : wxDialog(parent, id, title, pos, size, style), m_Printed(false) { }
     virtual ~TempPrintDialog() { }
 
     void OnPaint(wxPaintEvent &evt);

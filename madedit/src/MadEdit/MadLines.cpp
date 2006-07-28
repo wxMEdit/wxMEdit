@@ -1472,7 +1472,7 @@ int MadLines::FindStringCase(MadUCQueue &ucqueue, MadStringIterator begin,
         const wchar_t *cstr = begin->c_str();
         len = begin->Length();
 
-        if(firstuc == cstr[0])
+        if(firstuc == (ucs4_t)cstr[0])
         {
             if(len == 1) return idx;
 
@@ -1489,7 +1489,7 @@ int MadLines::FindStringCase(MadUCQueue &ucqueue, MadStringIterator begin,
                     uc = ucqueue.back().first;
                     bNotNewLine = (uc != 0x0D && uc != 0x0A);
                 }
-                while(bNextUC && bNotNewLine && (++ucsize) < len && uc == cstr[ucsize - 1]);
+                while(bNextUC && bNotNewLine && (++ucsize) < len && uc == (ucs4_t)cstr[ucsize - 1]);
             }
 
             if(bNextUC && ucsize >= len)
@@ -1500,7 +1500,7 @@ int MadLines::FindStringCase(MadUCQueue &ucqueue, MadStringIterator begin,
                     ++it;
                     while(*(++cstr) != 0)
                     {
-                        if(*cstr != it->first) break;
+                        if((ucs4_t)*cstr != it->first) break;
                         ++it;
                     }
                     if(*cstr == 0) return idx;
@@ -1536,7 +1536,7 @@ int MadLines::FindStringNoCase(MadUCQueue &ucqueue, MadStringIterator begin,
         const wchar_t *cstr = begin->c_str();
         len = begin->Length();
 
-        if(firstuc == cstr[0])
+        if(firstuc == (ucs4_t)cstr[0])
         {
             if(len == 1) return idx;
 
@@ -1561,7 +1561,7 @@ int MadLines::FindStringNoCase(MadUCQueue &ucqueue, MadStringIterator begin,
                     }
                     bNotNewLine = (uc != 0x0D && uc != 0x0A);
                 }
-                while(bNextUC && bNotNewLine && (++ucsize) < len && uc == cstr[ucsize - 1]);
+                while(bNextUC && bNotNewLine && (++ucsize) < len && uc == (ucs4_t)cstr[ucsize - 1]);
             }
 
             if(bNextUC && ucsize >= len)
@@ -1578,7 +1578,7 @@ int MadLines::FindStringNoCase(MadUCQueue &ucqueue, MadStringIterator begin,
                             uc |= 0x20; // to lower case
                         }
 
-                        if(*cstr != uc) break;
+                        if((ucs4_t)*cstr != uc) break;
                         ++it;
                     }
                     if(*cstr == 0) return idx;
@@ -1652,6 +1652,7 @@ MadLineState MadLines::Reformat(MadLineIterator iter)
             ucqueue.pop_front();
             (this->*NextUChar)(ucqueue);
         }
+    default: break;
     }
 
     ucs4_t firstuc, lastuc, prevuc;
@@ -2458,7 +2459,7 @@ void MadLines::RecountLineWidth(void)
 
     BracePairIndex *bpi;
     vector <BracePairIndex>::iterator bpit, bpitend;
-    size_t bracepos, bracelen, bracemaxlen;
+    size_t bracepos, bracelen=0, bracemaxlen=0;
     wxUint16 *bracewidth=NULL;
     vector<int*> bracexpos_thisrow;
 

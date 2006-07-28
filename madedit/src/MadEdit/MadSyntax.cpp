@@ -1140,7 +1140,7 @@ MadSyntaxRange *MadSyntax::GetSyntaxRange(int rangeid)
         vector < MadSyntaxRange >::iterator it = m_CustomRange.begin();
         do
         {
-            if(it->id == rangeid) return &(*it);
+            if((int)it->id == rangeid) return &(*it);
             ++it;
         }
         while(it != m_CustomRange.end());
@@ -1297,7 +1297,7 @@ int MadSyntax::FindStringCase(MadUCQueue & ucqueue, size_t first,
         const wchar_t *cstr = begin->c_str();
         len = begin->size();
 
-        if(firstuc == cstr[0])
+        if(firstuc == (ucs4_t)cstr[0])
         {
             if(len == 1) return idx;
 
@@ -1314,7 +1314,7 @@ int MadSyntax::FindStringCase(MadUCQueue & ucqueue, size_t first,
                     bNotNewLine = (uc != 0x0D && uc != 0x0A);
                 }
                 while(bNextUC && bNotNewLine && (++ucsize) < len
-                            && uc == cstr[ucsize - 1]);
+                            && uc == (ucs4_t)cstr[ucsize - 1]);
 
             if(bNextUC && ucsize >= len)
                 if(bNotNewLine || ucsize > len)
@@ -1323,7 +1323,7 @@ int MadSyntax::FindStringCase(MadUCQueue & ucqueue, size_t first,
                     std::advance(it, first + 1);
                     while(*(++cstr) != 0)
                     {
-                        if(*cstr != it->first)
+                        if((ucs4_t)*cstr != it->first)
                             break;
                         ++it;
                     }
@@ -1360,7 +1360,7 @@ int MadSyntax::FindStringNoCase(MadUCQueue & ucqueue, size_t first,
         const wchar_t *cstr = begin->c_str();
         len = begin->size();
 
-        if(firstuc == cstr[0])
+        if(firstuc == (ucs4_t)cstr[0])
         {
             if(len == 1) return idx;
 
@@ -1386,7 +1386,7 @@ int MadSyntax::FindStringNoCase(MadUCQueue & ucqueue, size_t first,
                     bNotNewLine = (uc != 0x0D && uc != 0x0A);
                 }
                 while(bNextUC && bNotNewLine && (++ucsize) < len
-                            && uc == cstr[ucsize - 1]);
+                            && uc == (ucs4_t)cstr[ucsize - 1]);
 
             if(bNextUC && ucsize >= len)
                 if(bNotNewLine || ucsize > len)
@@ -1401,7 +1401,7 @@ int MadSyntax::FindStringNoCase(MadUCQueue & ucqueue, size_t first,
                             uc |= 0x20; // to lower case
                         }
 
-                        if(*cstr != uc)
+                        if((ucs4_t)*cstr != uc)
                             break;
                         ++it;
                     }
@@ -1904,7 +1904,7 @@ int MadSyntax::NextWord(int &wordwidth)
                     {
                         strorg[i] = wxChar(uc);
 
-                        if(uc<=wxT('Z') && uc>=wxT('A'))
+                        if(uc<=(ucs4_t)wxT('Z') && uc>=(ucs4_t)wxT('A'))
                             strlower[i] = wxChar(uc|0x20);
                         else
                             strlower[i] = wxChar(uc);
@@ -2017,7 +2017,7 @@ int MadSyntax::NextWord(int &wordwidth)
                     {
                         strorg[i] = wxChar(uc);
 
-                        if(uc<=wxT('Z') && uc>=wxT('A'))
+                        if(uc<=(ucs4_t)wxT('Z') && uc>=(ucs4_t)wxT('A'))
                             strlower[i] = wxChar(uc|0x20);
                         else
                             strlower[i] = wxChar(uc);

@@ -773,7 +773,7 @@ void MadEdit::WordCount(bool selection, int &wordCount, int &charCount, int &spa
     MadLines::NextUCharFuncPtr NextUChar=m_Lines->NextUChar;
     MadUCQueue ucqueue;
     m_Lines->InitNextUChar(lit, linepos);
-    int idx, previdx=-1, count=0;
+    int idx=0, previdx=-1, count=0;
     ucs2_t *half=GetHalfwidthTable();
     ucs2_t *full=GetFullwidthTable();
 

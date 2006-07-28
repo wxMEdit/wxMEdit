@@ -100,7 +100,7 @@ private:
 
 public:
     MadMemData();
-    ~MadMemData();
+    virtual ~MadMemData();
 
     virtual wxByte Get(const wxFileOffset &pos);
     virtual void Get(const wxFileOffset &pos, wxByte *buffer, size_t size);
@@ -127,7 +127,7 @@ private:
 
 public:
     MadFileData(const wxString &name);
-    ~MadFileData();
+    virtual ~MadFileData();
     virtual wxByte Get(const wxFileOffset &pos);
     virtual void Get(const wxFileOffset &pos, wxByte *buffer, size_t size);
 
