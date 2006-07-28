@@ -1680,7 +1680,6 @@ void MadEdit::PaintText(wxDC *dc, int x, int y, const ucs4_t *text, const int *w
         int wcount=0, wcstart=0;
         int nowright=x;
         int nowleft=x;
-        int leftidx=0;
         bool nowleftend=false;
 
         wxString str;
@@ -3871,7 +3870,7 @@ bool MadEdit::PutHexDataToClipboard(const char *cs, size_t length)
 // return linecount
 int MadEdit::TranslateText(const wxChar *pwcs, size_t count, vector<ucs4_t> *ucs, bool passNewLine)
 {
-    ucs4_t uc,uc1;
+    ucs4_t uc;
     size_t i=0;
 
     int linecount=0;
@@ -3884,7 +3883,7 @@ int MadEdit::TranslateText(const wxChar *pwcs, size_t count, vector<ucs4_t> *ucs
 #ifdef __WXMSW__
         if(uc>=0xD800 && uc<=0xDBFF && i<count)
         {
-            uc1=*pwcs;
+            ucs4_t uc1=*pwcs;
             if(uc1>=0xDC00 && uc1<=0xDFFF)
             {
                 ++pwcs;
