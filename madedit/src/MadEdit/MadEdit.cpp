@@ -958,7 +958,7 @@ int MadEdit::GetLineByRow(MadLineIterator &lit, wxFileOffset &pos, int &rowid)
 int MadEdit::GetLineByPos(MadLineIterator &lit, wxFileOffset &pos, int &rowid)
 {
     int lineid;
-    wxFileOffset pos0, size, oldpos=pos;
+    wxFileOffset pos0, size;
 
     // begin <= pos <= validpos
     if(pos <= m_ValidPos_pos)
@@ -1496,7 +1496,7 @@ void MadEdit::InvertRectManual(wxDC *dc, int x, int y, int w, int h)
     int* pold=(int*)olddata;
     int* pnew=(int*)newdata;
 
-    if(size >= sizeof(int)*8)
+    if(size >= int(sizeof(int)*8))
     {
         do
         {
@@ -1508,15 +1508,15 @@ void MadEdit::InvertRectManual(wxDC *dc, int x, int y, int w, int h)
             (*pnew++)= ~(*pold++);
             (*pnew++)= ~(*pold++);
             (*pnew++)= ~(*pold++);
-        }while((size -= sizeof(int)*8) >= sizeof(int)*8);
+        }while((size -= sizeof(int)*8) >= int(sizeof(int)*8));
     }
 
-    if(size >= sizeof(int))
+    if(size >= int(sizeof(int)))
     {
         do
         {
             (*pnew++)= ~(*pold++);
-        }while((size -= sizeof(int)) >= sizeof(int));
+        }while((size -= sizeof(int)) >= int(sizeof(int)));
     }
 
     if(size>0)
@@ -1619,7 +1619,6 @@ void MadEdit::PaintText(wxDC *dc, int x, int y, const ucs4_t *text, const int *w
     int wcount=0, wcstart=0;
     int nowright=x;
     int nowleft=x;
-    int leftidx=0;
     bool nowleftend=false;
     wxChar wcbuf2[2];
     for(int i=0; i<count && nowright<maxright; i++, pwc++, pwcw++, wcount++)
@@ -1969,7 +1968,7 @@ void MadEdit::PaintTextLines(wxDC *dc, const wxRect &rect, int toprow, int rowco
                 // ignore the text outside the rect
                 if(left > maxright)
                 {
-                    if(subrowid + 1 == lineiter->RowCount())
+                    if(subrowid + 1 == int(lineiter->RowCount()))
                     {
                         m_Syntax->nw_EndOfLine = true;
                         break;
@@ -5234,7 +5233,7 @@ void MadEdit::InsertColumnString(const ucs4_t *ucs, size_t count, int linecount,
 
             if(subrowid != -1)
             {
-                if(++subrowid == lit->RowCount())
+                if(++subrowid == int(lit->RowCount()))
                 {
                     pos += lit->m_Size;
                     ++lit;
@@ -5352,7 +5351,7 @@ void MadEdit::InsertColumnString(const ucs4_t *ucs, size_t count, int linecount,
             else
             {
                 // to next row
-                if(++subrowid == rowcount)
+                if(++subrowid == int(rowcount))
                 {
                     pos += lit->m_Size;
                     ++lit;
@@ -6624,7 +6623,7 @@ void MadEdit::FindRightBrace(int &rowid, MadLineIterator lit, wxFileOffset linep
             {
                 // to next line
                 rowid += int(lit->RowCount());
-                if(rowid == m_Lines->m_RowCount) // at end of file
+                if(rowid == int(m_Lines->m_RowCount)) // at end of file
                 {
                     rowid=-1;
                     return;
@@ -6765,9 +6764,9 @@ void MadEdit::FindBracePairUnderCaretPos()
         int srid=m_CaretPos.subrowid+1;
         if(linepos >= lit->m_RowIndices[srid].m_Start) // to next row
         {
-            if(srid == lit->RowCount())
+            if(srid == int(lit->RowCount()))
             {
-                if(m_CaretPos.lineid==m_Lines->m_LineCount-1) // at end of file
+                if(m_CaretPos.lineid == int(m_Lines->m_LineCount-1)) // at end of file
                 {
                     m_RightBrace_rowid=-1;
                     return;
@@ -7170,7 +7169,7 @@ void MadEdit::ProcessCommand(MadEditCommand command)
                         m_CaretPos= *m_SelectionEnd;
                         UpdateCaret(m_CaretPos, m_ActiveRowUChars, m_ActiveRowWidths, m_CaretRowUCharPos);
                     }
-                    else if(m_CaretRowUCharPos == m_ActiveRowUChars.size()) // at end-of-row
+                    else if(m_CaretRowUCharPos == int(m_ActiveRowUChars.size())) // at end-of-row
                     {
                         if(m_EditMode == emTextMode)
                         {
@@ -7327,7 +7326,7 @@ void MadEdit::ProcessCommand(MadEditCommand command)
                             ++charpos;
                         }
 
-                        if(charpos == m_ActiveRowUChars.size() && charpos != 0)
+                        if(charpos == int(m_ActiveRowUChars.size()) && charpos != 0)
                         {
                             charpos = 0;
                             xpos = 0;
@@ -7905,7 +7904,7 @@ void MadEdit::ProcessCommand(MadEditCommand command)
                         {
                             if(m_EditMode==emColumnMode && GetSelectionSize()==0)
                             {
-                                if(m_CaretRowUCharPos == m_ActiveRowUChars.size()) // at end-of-row
+                                if(m_CaretRowUCharPos == int(m_ActiveRowUChars.size())) // at end-of-row
                                 {
                                     if(m_CaretPos.xpos < m_MaxColumnRowWidth)
                                     {
@@ -7972,7 +7971,7 @@ void MadEdit::ProcessCommand(MadEditCommand command)
                                 {
                                     // ColumnMode & beyond EOL
                                     if(m_CaretPos.extraspaces != 0
-                                        && m_CaretPos.subrowid == m_CaretPos.iter->RowCount() - 1)
+                                        && m_CaretPos.subrowid == int(m_CaretPos.iter->RowCount()-1))
                                     {
                                         MadOverwriteUndoData *oudata = new MadOverwriteUndoData();
 
@@ -8098,7 +8097,7 @@ void MadEdit::ProcessCommand(MadEditCommand command)
 
                         m_SelectionEnd->extraspaces=0;
                         m_SelectionEnd->xpos=0;
-                        if(m_SelectionEnd->subrowid==m_SelectionEnd->iter->RowCount()-1) // at last subrow
+                        if(m_SelectionEnd->subrowid == int(m_SelectionEnd->iter->RowCount()-1)) // at last subrow
                         {
                             size=m_SelectionEnd->iter->m_Size - m_SelectionEnd->linepos;
                             m_SelectionEnd->linepos+=size;
@@ -8369,9 +8368,9 @@ void MadEdit::ProcessCommand(MadEditCommand command)
             {
                 if(m_CaretAtHexArea)
                 {
-                    if((command >= wxT('0') && command <= '9') ||
-                        (command >= wxT('a') && command <= 'f') ||
-                        (command >= wxT('A') && command <= 'F'))
+                    if((command >= ucs4_t('0') && command <= ucs4_t('9')) ||
+                        (command >= ucs4_t('a') && command <= ucs4_t('f')) ||
+                        (command >= ucs4_t('A') && command <= ucs4_t('F')))
                     {
                         int hc = command;
                         if(hc > '9')
@@ -8575,9 +8574,8 @@ void MadEdit::ProcessCommand(MadEditCommand command)
                         else
                         {
                             int subrow1 = m_CaretPos.subrowid + 1;
-                            if(subrow1 != m_CaretPos.iter->RowCount()
-                                && m_CaretPos.iter->m_RowIndices[subrow1].m_Start ==
-                                m_CaretPos.linepos)
+                            if(subrow1 != int(m_CaretPos.iter->RowCount())
+                                && m_CaretPos.iter->m_RowIndices[subrow1].m_Start == m_CaretPos.linepos)
                             {
                                 m_CaretPos.subrowid = subrow1;
                                 ++m_CaretPos.rowid;
@@ -8949,7 +8947,7 @@ void MadEdit::OnKeyDown(wxKeyEvent& evt)
         ProcessCommand(cmd);
 
 #ifdef __WXMSW__
-        if(key==evt.GetUnicodeKey())
+        if(key == int(evt.GetUnicodeKey()))
 #endif
             return;
     }
@@ -10167,6 +10165,7 @@ void MadEdit::ConvertEncoding(const wxString &newenc, MadConvertEncodingFlag fla
         case cefSimp2TradChinese:
             ConvertChinese(flag);
             break;
+        default: break;
         }
         return;
     }
@@ -10216,6 +10215,7 @@ void MadEdit::ConvertEncoding(const wxString &newenc, MadConvertEncodingFlag fla
             delete []str;
         }
         break;
+    default: break;
     }
 
     m_LoadingFile=true; // don't reformat
@@ -11348,6 +11348,7 @@ int MadEdit::GetMaxWordWrapWidth()
     case wwmWrapByColumn:
         maxwidth = m_MaxColumns * m_TextFontAveCharWidth;
         break;
+    default: break;
     }
     if(maxwidth < 8 * m_TextFontAveCharWidth)
         return 8 * m_TextFontAveCharWidth;
@@ -11547,6 +11548,7 @@ void MadEdit::ConvertNewLineType(MadNewLineType type)
     case nltUNIX:
         UCStoBlock(newline+1, 1, newline_blk);
         break;
+    default: break;
     }
 
     wxByte newlinedata[16];
