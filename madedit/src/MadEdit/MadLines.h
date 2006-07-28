@@ -77,6 +77,7 @@ class MadInData
 protected:
     wxFileOffset m_Size;
 public:
+    virtual ~MadInData() {}
     virtual wxByte Get(const wxFileOffset &pos) = 0;
     virtual void Get(const wxFileOffset &pos, wxByte *buffer, size_t size) = 0;
     wxFileOffset GetSize() { return m_Size; }
@@ -85,6 +86,7 @@ public:
 class MadOutData
 {
 public:
+    virtual ~MadOutData() {}
     virtual wxFileOffset Put(wxByte *buffer, size_t size) = 0;
 };
 
