@@ -56,12 +56,12 @@ madedit_SOURCES =	src/MadAboutDialog.cpp \
 	wxFlatNotebook/src/wxFlatNotebook/wxFlatNotebook.cpp \
 	wxFlatNotebook/include/wx/wxFlatNotebook/wxFlatNotebook.h \
 	wxFlatNotebook/include/wx/wxFlatNotebook/wxFNBDropTarget.h \
-	wxAUI/include/aui.h \
-	wxAUI/include/auibook.h \
-	wxAUI/include/dockart.h \
-	wxAUI/include/floatpane.h \
-	wxAUI/include/framemanager.h \
-	wxAUI/include/tabmdi.h \
+	wxAUI/include/wx/aui/aui.h \
+	wxAUI/include/wx/aui/auibook.h \
+	wxAUI/include/wx/aui/dockart.h \
+	wxAUI/include/wx/aui/floatpane.h \
+	wxAUI/include/wx/aui/framemanager.h \
+	wxAUI/include/wx/aui/tabmdi.h \
 	wxAUI/src/auibook.cpp \
 	wxAUI/src/dockart.cpp \
 	wxAUI/src/floatpane.cpp \
