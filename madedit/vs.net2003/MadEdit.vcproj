@@ -298,22 +298,22 @@
 				Name="wxAUI"
 				Filter="">
 				<File
-					RelativePath="..\wxAUI\include\aui.h">
+					RelativePath="..\wxAUI\include\wx\aui\aui.h">
 				</File>
 				<File
-					RelativePath="..\wxAUI\include\auibook.h">
+					RelativePath="..\wxAUI\include\wx\aui\auibook.h">
 				</File>
 				<File
-					RelativePath="..\wxAUI\include\dockart.h">
+					RelativePath="..\wxAUI\include\wx\aui\dockart.h">
 				</File>
 				<File
-					RelativePath="..\wxAUI\include\floatpane.h">
+					RelativePath="..\wxAUI\include\wx\aui\floatpane.h">
 				</File>
 				<File
-					RelativePath="..\wxAUI\include\framemanager.h">
+					RelativePath="..\wxAUI\include\wx\aui\framemanager.h">
 				</File>
 				<File
-					RelativePath="..\wxAUI\include\tabmdi.h">
+					RelativePath="..\wxAUI\include\wx\aui\tabmdi.h">
 				</File>
 			</Filter>
 		</Filter>

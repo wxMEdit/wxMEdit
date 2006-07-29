@@ -663,7 +663,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit63]
-FileName=..\wxAUI\include\tabmdi.h
+FileName=..\wxAUI\include\wx\aui\tabmdi.h
 CompileCpp=1
 Folder=wxAUI
 Compile=1
@@ -673,7 +673,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit64]
-FileName=..\wxAUI\include\aui.h
+FileName=..\wxAUI\include\wx\aui\aui.h
 CompileCpp=1
 Folder=wxAUI
 Compile=1
@@ -683,7 +683,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit65]
-FileName=..\wxAUI\include\auibook.h
+FileName=..\wxAUI\include\wx\aui\auibook.h
 CompileCpp=1
 Folder=wxAUI
 Compile=1
@@ -693,7 +693,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit66]
-FileName=..\wxAUI\include\dockart.h
+FileName=..\wxAUI\include\wx\aui\dockart.h
 CompileCpp=1
 Folder=wxAUI
 Compile=1
@@ -703,7 +703,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit67]
-FileName=..\wxAUI\include\floatpane.h
+FileName=..\wxAUI\include\wx\aui\floatpane.h
 CompileCpp=1
 Folder=wxAUI
 Compile=1
@@ -713,7 +713,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit68]
-FileName=..\wxAUI\include\framemanager.h
+FileName=..\wxAUI\include\wx\aui\framemanager.h
 CompileCpp=1
 Folder=wxAUI
 Compile=1
