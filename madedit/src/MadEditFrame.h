@@ -31,7 +31,7 @@
 #include <wx/imaglist.h>
 #include <wx/treectrl.h>
 
-#include <aui.h> // wxAUI
+#include <wx/aui/aui.h> // wxAUI
 
 
 ////Dialog Style Start
