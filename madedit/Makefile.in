@@ -260,7 +260,7 @@ sharedstatedir = @sharedstatedir@
 sysconfdir = @sysconfdir@
 target_alias = @target_alias@
 SUBDIRS = syntax po
-madedit_CXXFLAGS = -I$(top_srcdir)/wxFlatNotebook/include -I$(top_srcdir)/wxAUI/include -DDATA_DIR=\"${datadir}\" 
+madedit_CXXFLAGS = -I$(top_srcdir)/wxFlatNotebook/include -I$(top_srcdir)/wxAUI/include -DwxUSE_AUI=1 -DWXDLLIMPEXP_AUI= -DDATA_DIR=\"${datadir}\" 
 madedit_SOURCES = src/MadAboutDialog.cpp \
 	src/MadAboutDialog.h \
 	src/MadCommand.h \
