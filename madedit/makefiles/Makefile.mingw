@@ -33,8 +33,8 @@ INCS =  -I$(WX_DIR)/include  -I$(WX_DIR)/lib/gcc_lib/mswu  -I$(BOOST_DIR)  -I$(X
 CXXINCS =  -I$(WX_DIR)/include  -I$(WX_DIR)/lib/gcc_lib/mswu  -I$(BOOST_DIR)  -I$(XPRESSIVE_DIR)  -I"../wxFlatNotebook/include" -I"../wxAUI/include" 
 
 BIN  = Release/MadEdit.exe
-CXXFLAGS = $(CXXINCS) -D_UNICODE -D__WXMSW__ -D__GNUWIN32__ -D__WIN95__ -DWIN32   -O2
-CFLAGS = $(INCS) -fno-rtti -fno-exceptions -fno-pcc-struct-return -fstrict-aliasing -Wall -fvtable-thunks -D__WXMSW__ -D__GNUWIN32__ -D__WIN95__   -O2
+CXXFLAGS = $(CXXINCS) -D_UNICODE -D__WXMSW__ -D__GNUWIN32__ -D__WIN95__ -DWIN32 -DwxUSE_AUI=1 -DWXDLLIMPEXP_AUI= -O2
+CFLAGS = $(INCS) -fno-rtti -fno-exceptions -fno-pcc-struct-return -fstrict-aliasing -Wall -fvtable-thunks -D__WXMSW__ -D__GNUWIN32__ -D__WIN95__ -DwxUSE_AUI=1 -DWXDLLIMPEXP_AUI= -O2
 RM = rm -f
 
 .PHONY: all all-before all-after clean clean-custom

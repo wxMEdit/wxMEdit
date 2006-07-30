@@ -39,7 +39,7 @@ LIBS = $(shell $(WXCONFIG) --libs) #$(shell pkg-config --libs gtk+-2.0)
 
 CXXINCS = $(BOOST_INC) $(XPRESSIVE_INC) $(ADDINC) $(shell $(WXCONFIG) --cxxflags) $(shell pkg-config --cflags gtk+-2.0) 
 
-CXXFLAGS = $(CXXINCS) -ggdb #-O3 -fexpensive-optimizations 
+CXXFLAGS = $(CXXINCS) -DwxUSE_AUI=1 -DWXDLLIMPEXP_AUI= -ggdb #-O3 -fexpensive-optimizations 
 
 BIN  = ../madedit
 

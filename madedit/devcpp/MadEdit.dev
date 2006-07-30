@@ -3,15 +3,15 @@ FileName=MadEdit.dev
 Name=MadEdit
 UnitCount=68
 Type=0
-Ver=2
+Ver=1
 ObjFiles=
 Includes=N:\wxWidgets\include;N:\wxWidgets\lib\gcc_lib\mswu;N:\boost;..\wxFlatNotebook\include;..\wxAUI\include
 Libs=N:\wxWidgets\lib\gcc_lib;..\libunicows
 PrivateResource=MadEdit_private.rc
 ResourceIncludes=N:\wxWidgets\include
 MakeIncludes=
-Compiler=-fno-rtti_@@_-fno-exceptions_@@_-fno-pcc-struct-return_@@_-fstrict-aliasing_@@_-Wall_@@_-fvtable-thunks_@@_-D__WXMSW___@@_-D__GNUWIN32___@@_-D__WIN95___@@_
-CppCompiler=-D_UNICODE_@@_-D__WXMSW___@@_-D__GNUWIN32___@@_-D__WIN95___@@_-DWIN32_@@_
+Compiler=-fno-rtti_@@_-fno-exceptions_@@_-fno-pcc-struct-return_@@_-fstrict-aliasing_@@_-Wall_@@_-fvtable-thunks_@@_-D__WXMSW___@@_-D__GNUWIN32___@@_-D__WIN95___@@_-DwxUSE_AUI=1_@@_-DWXDLLIMPEXP_AUI=_@@_
+CppCompiler=-D_UNICODE_@@_-D__WXMSW___@@_-D__GNUWIN32___@@_-D__WIN95___@@_-DWIN32_@@_-DwxUSE_AUI=1_@@_-DWXDLLIMPEXP_AUI=_@@_
 Linker=-lwxmsw27u_core_@@_-lwxbase27u_@@_-lunicows_@@_-lkernel32_@@_-luser32_@@_-lgdi32_@@_-lcomdlg32_@@_-lwinspool_@@_-lwinmm_@@_-lshell32_@@_-lcomctl32_@@_-lole32_@@_-loleaut32_@@_-luuid_@@_-lrpcrt4_@@_-ladvapi32_@@_-lwsock32_@@_-lodbc32_@@_-lopengl32_@@_
 IsCpp=1
 Icon=
@@ -87,6 +87,7 @@ ProductName=
 ProductVersion=
 AutoIncBuildNrOnRebuild=0
 AutoIncBuildNrOnCompile=0
+AutoIncBuildNr=0
 
 [Unit3]
 FileName=..\src\MadEditFrame.wxform
