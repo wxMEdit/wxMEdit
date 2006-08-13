@@ -793,7 +793,7 @@ bool IsTextUTF32LE(wxByte *text, int size)
     {
         ucs4=wxINT32_SWAP_ON_BE(*p);
 
-        if(ucs4<=7 || (ucs4<=0x10&&ucs4>=0x0e) || ucs4>0x10FFFF) return false;
+        if(ucs4<=0 || ucs4>0x10FFFF) return false;
     }
 
     return true;
@@ -814,7 +814,7 @@ bool IsTextUTF32BE(wxByte *text, int size)
     {
         ucs4=wxINT32_SWAP_ON_LE(*p);
 
-        if(ucs4<=7 || (ucs4<=0x10&&ucs4>=0x0e) || ucs4>0x10FFFF) return false;
+        if(ucs4<=0 || ucs4>0x10FFFF) return false;
     }
 
     return true;
@@ -825,18 +825,17 @@ bool IsTextUTF16LE(wxByte *text, int size)
 {
     if(size >= 2)
     {
-        if(text[0] == 0xFF && text[1] == 0xFE)
+        if(text[0] == 0xFF && text[1] == 0xFE) // check BOM
         {
-            if(size >= 4 && text[2] == 0 && text[3] == 0) // utf32le
+            if(size >= 4 && text[2] == 0 && text[3] == 0) // utf32le BOM
             {
                 return false;
             }
-
             return true;
         }
 
         if(text[1] == 0xFF && text[0] == 0xFE)      // big-endian
-        return false;
+            return false;
 
         bool ok = false;
         bool highsurrogate = false;
@@ -844,13 +843,11 @@ bool IsTextUTF16LE(wxByte *text, int size)
         size = size & 0x1FFFFFFE;   // to even
         while(size > 0)
         {
-            if(text[1] == 0)          //wc<=0x0008
+            if(text[1] == 0)
             {
-                if(text[0] <= 0x10 && (text[0] <= 7 || text[0] >= 0x0E))
+                if(text[0] == 0)
                     return false;
-                if((text[0] >= 9 && text[0] <= 0x0D)
-                    || (text[0] >= 0x20 && text[0] <= 0x7E))
-                    ok = true;
+                ok = true;
             }
             else if(text[1] >= 0xD8 && text[1] <= 0xDB)
             {
@@ -884,13 +881,11 @@ bool IsTextUTF16BE(wxByte *text, int size)
     size = size & 0x1FFFFFFE;     // to even
     while(size > 0)
     {
-        if(text[0] == 0)            //wc<=0x0008
+        if(text[0] == 0)
         {
-            wxByte b = text[1];
-            if(b <= 0x10 && (b <= 7 || b >= 0x0E))
+            if(text[1] == 0)
                 return false;
-            if((b >= 9 && b <= 0x0D) || (b >= 0x20 && b <= 0x7E))
-                ok = true;
+            ok = true;
         }
         else if(text[0] >= 0xD8 && text[0] <= 0xDB)
         {
@@ -928,7 +923,7 @@ bool IsTextUTF8(wxByte *text, int size)
     {
         if(text[i] < 0x80)          // 1 byte
         {
-            if(text[i] <= 0x10 && (text[i] <= 7 || text[i] >= 0x0E))
+            if(text[i] == 0)
                 return false;
             ++i;
         }
@@ -987,7 +982,7 @@ bool IsBinaryData(wxByte *data, int size)
     while(i < size)
     {
         b = data[i];
-        if(b <= 0x10 && (b <= 7 || b >= 0x0E))
+        if(b == 0)
             return true;
         i++;
     }
