@@ -434,10 +434,10 @@ noinst_HEADERS = description-pak \
 	po/wxstd.po.cpp \
 	po/xgettext.bat \
 	po/xgettext_join.bat \
-	vs.net2003/build_debug.bat \
-	vs.net2003/build_release.bat \
-	vs.net2003/MadEdit.sln \
-	vs.net2003/MadEdit.vcproj \
+	vc71/build_debug.bat \
+	vc71/build_release.bat \
+	vc71/MadEdit.sln \
+	vc71/MadEdit.vcproj \
 	xpressive/boost/xpressive/basic_regex.hpp \
 	xpressive/boost/xpressive/detail/core/access.hpp \
 	xpressive/boost/xpressive/detail/core/action.hpp \
@@ -1328,7 +1328,7 @@ distclean-tags:
 distdir: $(DISTFILES)
 	$(am__remove_distdir)
 	mkdir $(distdir)
-	$(mkdir_p) $(distdir)/debian $(distdir)/devcpp $(distdir)/image2xpm $(distdir)/images $(distdir)/libunicows $(distdir)/makefiles $(distdir)/po $(distdir)/src $(distdir)/src/plugin_example $(distdir)/vs.net2003 $(distdir)/wxAUI $(distdir)/wxFlatNotebook $(distdir)/xpressive $(distdir)/xpressive/boost/xpressive $(distdir)/xpressive/boost/xpressive/detail $(distdir)/xpressive/boost/xpressive/detail/core $(distdir)/xpressive/boost/xpressive/detail/core/matcher $(distdir)/xpressive/boost/xpressive/detail/dynamic $(distdir)/xpressive/boost/xpressive/detail/static $(distdir)/xpressive/boost/xpressive/detail/static/productions $(distdir)/xpressive/boost/xpressive/detail/utility $(distdir)/xpressive/boost/xpressive/detail/utility/chset $(distdir)/xpressive/boost/xpressive/proto $(distdir)/xpressive/boost/xpressive/proto/compiler $(distdir)/xpressive/boost/xpressive/traits $(distdir)/xpressive/boost/xpressive/traits/detail
+	$(mkdir_p) $(distdir)/debian $(distdir)/devcpp $(distdir)/image2xpm $(distdir)/images $(distdir)/libunicows $(distdir)/makefiles $(distdir)/po $(distdir)/src $(distdir)/src/plugin_example $(distdir)/vc71 $(distdir)/wxAUI $(distdir)/wxFlatNotebook $(distdir)/xpressive $(distdir)/xpressive/boost/xpressive $(distdir)/xpressive/boost/xpressive/detail $(distdir)/xpressive/boost/xpressive/detail/core $(distdir)/xpressive/boost/xpressive/detail/core/matcher $(distdir)/xpressive/boost/xpressive/detail/dynamic $(distdir)/xpressive/boost/xpressive/detail/static $(distdir)/xpressive/boost/xpressive/detail/static/productions $(distdir)/xpressive/boost/xpressive/detail/utility $(distdir)/xpressive/boost/xpressive/detail/utility/chset $(distdir)/xpressive/boost/xpressive/proto $(distdir)/xpressive/boost/xpressive/proto/compiler $(distdir)/xpressive/boost/xpressive/traits $(distdir)/xpressive/boost/xpressive/traits/detail
 	@srcdirstrip=`echo "$(srcdir)" | sed 's|.|.|g'`; \
 	topsrcdirstrip=`echo "$(top_srcdir)" | sed 's|.|.|g'`; \
 	list='$(DISTFILES)'; for file in $$list; do \

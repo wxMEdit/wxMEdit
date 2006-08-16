@@ -178,10 +178,10 @@ noinst_HEADERS =	description-pak \
 	po/wxstd.po.cpp \
 	po/xgettext.bat \
 	po/xgettext_join.bat \
-	vs.net2003/build_debug.bat \
-	vs.net2003/build_release.bat \
-	vs.net2003/MadEdit.sln \
-	vs.net2003/MadEdit.vcproj \
+	vc71/build_debug.bat \
+	vc71/build_release.bat \
+	vc71/MadEdit.sln \
+	vc71/MadEdit.vcproj \
 	xpressive/boost/xpressive/basic_regex.hpp \
 	xpressive/boost/xpressive/detail/core/access.hpp \
 	xpressive/boost/xpressive/detail/core/action.hpp \
