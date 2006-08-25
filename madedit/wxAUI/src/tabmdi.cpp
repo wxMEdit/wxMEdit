@@ -1,10 +1,10 @@
 /////////////////////////////////////////////////////////////////////////////
-// Name:        src/generic/tabmdi.cpp
+// Name:        src/aui/tabmdi.cpp
 // Purpose:     Generic MDI (Multiple Document Interface) classes
 // Author:      Hans Van Leemputten
 // Modified by: Benjamin I. Williams / Kirix Corporation
 // Created:     29/07/2002
-// RCS-ID:      $Id: tabmdi.cpp,v 1.5 2006/07/24 08:40:08 BIW Exp $
+// RCS-ID:      $Id: tabmdi.cpp,v 1.8 2006/08/18 08:05:37 CE Exp $
 // Copyright:   (c) Hans Van Leemputten
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////
@@ -24,6 +24,7 @@
     #pragma hdrstop
 #endif
 
+#if wxUSE_AUI
 #if wxUSE_MDI
 
 #include "wx/aui/tabmdi.h"
@@ -546,9 +547,14 @@ void wxTabMDIChildFrame::DoShow(bool show)
     wxWindow::Show(show);
 }
 
-void wxTabMDIChildFrame::DoSetSize(int x, int y, int width, int height, int WXUNUSED(sizeFlags))
+void wxTabMDIChildFrame::DoSetSize(int x, int y, int width, int height, int sizeFlags)
 {
     m_mdi_newrect = wxRect(x, y, width, height);
+#ifdef __WXGTK__
+    wxPanel::DoSetSize(x,y,width, height, sizeFlags);
+#else
+    wxUnusedVar(sizeFlags);
+#endif
 }
 
 void wxTabMDIChildFrame::DoMoveWindow(int x, int y, int width, int height)
@@ -675,4 +681,5 @@ void wxTabMDIClientWindow::OnSize(wxSizeEvent& evt)
         ((wxTabMDIChildFrame *)GetPage(pos))->ApplyMDIChildFrameRect();
 }
 
+#endif //wxUSE_AUI
 #endif // wxUSE_MDI

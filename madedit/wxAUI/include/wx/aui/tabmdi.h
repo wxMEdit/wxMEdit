@@ -4,13 +4,15 @@
 // Author:      Hans Van Leemputten
 // Modified by: Benjamin I. Williams / Kirix Corporation
 // Created:     29/07/2002
-// RCS-ID:      $Id: tabmdi.h,v 1.4 2006/07/25 10:31:38 ABX Exp $
+// RCS-ID:      $Id: tabmdi.h,v 1.6 2006/08/18 08:05:41 CE Exp $
 // Copyright:   (c) Hans Van Leemputten
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////
 
 #ifndef _WX_AUITABMDI_H_
 #define _WX_AUITABMDI_H_
+
+#if wxUSE_AUI
 
 // ----------------------------------------------------------------------------
 // headers
@@ -25,9 +27,9 @@
 // classes
 //-----------------------------------------------------------------------------
 
-class WXDLLEXPORT wxTabMDIParentFrame;
-class WXDLLEXPORT wxTabMDIClientWindow;
-class WXDLLEXPORT wxTabMDIChildFrame;
+class WXDLLIMPEXP_AUI wxTabMDIParentFrame;
+class WXDLLIMPEXP_AUI wxTabMDIClientWindow;
+class WXDLLIMPEXP_AUI wxTabMDIChildFrame;
 
 //-----------------------------------------------------------------------------
 // wxTabMDIParentFrame
@@ -248,5 +250,6 @@ private:
     DECLARE_DYNAMIC_CLASS(wxTabMDIClientWindow)
     DECLARE_EVENT_TABLE()
 };
+#endif // wxUSE_AUI
 
 #endif // _WX_AUITABMDI_H_

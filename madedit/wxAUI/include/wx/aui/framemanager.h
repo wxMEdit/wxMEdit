@@ -4,7 +4,7 @@
 // Author:      Benjamin I. Williams
 // Modified by:
 // Created:     2005-05-17
-// RCS-ID:      $Id: framemanager.h,v 1.21 2006/07/25 13:16:37 AMB Exp $
+// RCS-ID:      $Id: framemanager.h,v 1.23 2006/08/24 19:35:46 MW Exp $
 // Copyright:   (C) Copyright 2005, Kirix Corporation, All Rights Reserved.
 // Licence:     wxWindows Library Licence, Version 3.1
 ///////////////////////////////////////////////////////////////////////////////
@@ -113,8 +113,8 @@ WX_DECLARE_USER_EXPORTED_OBJARRAY(wxDockInfo, wxDockInfoArray, WXDLLIMPEXP_AUI);
 WX_DECLARE_USER_EXPORTED_OBJARRAY(wxDockUIPart, wxDockUIPartArray, WXDLLIMPEXP_AUI);
 WX_DECLARE_USER_EXPORTED_OBJARRAY(wxPaneButton, wxPaneButtonArray, WXDLLIMPEXP_AUI);
 WX_DECLARE_USER_EXPORTED_OBJARRAY(wxPaneInfo, wxPaneInfoArray, WXDLLIMPEXP_AUI);
-WX_DEFINE_ARRAY_PTR(wxPaneInfo*, wxPaneInfoPtrArray);
-WX_DEFINE_ARRAY_PTR(wxDockInfo*, wxDockInfoPtrArray);
+WX_DEFINE_USER_EXPORTED_ARRAY_PTR(wxPaneInfo*, wxPaneInfoPtrArray, class WXDLLIMPEXP_AUI);
+WX_DEFINE_USER_EXPORTED_ARRAY_PTR(wxDockInfo*, wxDockInfoPtrArray, class WXDLLIMPEXP_AUI);
 #endif // SWIG
 
 extern WXDLLIMPEXP_AUI wxDockInfo wxNullDockInfo;
@@ -492,8 +492,8 @@ protected:
     wxDockUIPart* GetPanePart(wxWindow* pane);
     int GetDockPixelOffset(wxPaneInfo& test);
     void OnFloatingPaneMoveStart(wxWindow* window);
-    void OnFloatingPaneMoving(wxWindow* window);
-    void OnFloatingPaneMoved(wxWindow* window);
+    void OnFloatingPaneMoving(wxWindow* window, wxDirection dir );
+    void OnFloatingPaneMoved(wxWindow* window, wxDirection dir);
     void OnFloatingPaneActivated(wxWindow* window);
     void OnFloatingPaneClosed(wxWindow* window, wxCloseEvent& evt);
     void OnFloatingPaneResized(wxWindow* window, const wxSize& size);

@@ -4,7 +4,7 @@
 // Author:      Benjamin I. Williams
 // Modified by:
 // Created:     2005-05-17
-// RCS-ID:      $Id: framemanager.cpp,v 1.44 2006/07/25 13:16:41 AMB Exp $
+// RCS-ID:      $Id: framemanager.cpp,v 1.54 2006/08/24 14:33:43 ABX Exp $
 // Copyright:   (C) Copyright 2005-2006, Kirix Corporation, All Rights Reserved
 // Licence:     wxWindows Library Licence, Version 3.1
 ///////////////////////////////////////////////////////////////////////////////
@@ -80,11 +80,14 @@ public:
         m_Amount=0;
         m_MaxWidth=0;
         m_MaxHeight=0;
+        m_lastWidth=0;
+        m_lastHeight=0;
 #ifdef __WXGTK__
         m_CanSetShape = false; // have to wait for window create event on GTK
 #else
         m_CanSetShape = true;
 #endif
+        m_Region = wxRegion(0, 0, 0, 0);
         SetTransparent(0);
     }
 
@@ -95,28 +98,24 @@ public:
             int w=100; // some defaults
             int h=100;
             GetClientSize(&w, &h);
-            if ((alpha != m_Amount) || (m_MaxWidth<w) | (m_MaxHeight<h))
+
+            m_MaxWidth = w;
+            m_MaxHeight = h;
+            m_Amount = alpha;
+            m_Region.Clear();
+//            m_Region.Union(0, 0, 1, m_MaxWidth);
+            if (m_Amount)
             {
-                // Make the region at least double the height and width so we don't have
-                // to rebuild if the size changes.
-                m_MaxWidth=w*2;
-                m_MaxHeight=h*2;
-                m_Amount = alpha;
-                m_Region.Clear();
-//                m_Region.Union(0, 0, 1, m_MaxWidth);
-                if (m_Amount)
+                for (int y=0; y<m_MaxHeight; y++)
                 {
-                    for (int y=0; y<m_MaxHeight; y++)
-                    {
-                        // Reverse the order of the bottom 4 bits
-                        int j=((y&8)?1:0)|((y&4)?2:0)|((y&2)?4:0)|((y&1)?8:0);
-                        if ((j*16+8)<m_Amount)
-                            m_Region.Union(0, y, m_MaxWidth, 1);
-                    }
+                    // Reverse the order of the bottom 4 bits
+                    int j=((y&8)?1:0)|((y&4)?2:0)|((y&2)?4:0)|((y&1)?8:0);
+                    if ((j*16+8)<m_Amount)
+                        m_Region.Union(0, y, m_MaxWidth, 1);
                 }
-                SetShape(m_Region);
-                Refresh();
             }
+            SetShape(m_Region);
+            Refresh();
         }
         return true;
     }
@@ -125,7 +124,14 @@ public:
     {
         wxPaintDC dc(this);
 
+        if (m_Region.IsEmpty())
+            return;
+
+#ifdef __WXMAC__
+        dc.SetBrush(wxColour(128, 192, 255));
+#else
         dc.SetBrush(wxSystemSettings::GetColour(wxSYS_COLOUR_ACTIVECAPTION));
+#endif
         dc.SetPen(*wxTRANSPARENT_PEN);
 
         wxRegionIterator upd(GetUpdateRegion()); // get the update rect list
@@ -143,11 +149,32 @@ public:
     void OnWindowCreate(wxWindowCreateEvent& WXUNUSED(event)) {m_CanSetShape=true; SetTransparent(0);}
 #endif
 
+    void OnSize(wxSizeEvent& event)
+    {
+        // We sometimes get surplus size events
+        if ((event.GetSize().GetWidth() == m_lastWidth) &&
+            (event.GetSize().GetHeight() == m_lastHeight))
+        {
+            event.Skip();
+            return;
+        }
+        m_lastWidth = event.GetSize().GetWidth();
+        m_lastHeight = event.GetSize().GetHeight();
+
+        SetTransparent(m_Amount);
+        m_Region.Intersect(0, 0, event.GetSize().GetWidth(),
+                           event.GetSize().GetHeight());
+        SetShape(m_Region);
+        Refresh();
+        event.Skip();
+    }
+
 private:
-    int m_Amount;
+    wxByte m_Amount;
     int m_MaxWidth;
     int m_MaxHeight;
     bool m_CanSetShape;
+    int m_lastWidth,m_lastHeight;
 
     wxRegion m_Region;
 
@@ -160,6 +187,7 @@ IMPLEMENT_DYNAMIC_CLASS( wxPseudoTransparentFrame, wxFrame )
 
 BEGIN_EVENT_TABLE(wxPseudoTransparentFrame, wxFrame)
     EVT_PAINT(wxPseudoTransparentFrame::OnPaint)
+    EVT_SIZE(wxPseudoTransparentFrame::OnSize)
 #ifdef __WXGTK__
     EVT_WINDOW_CREATE(wxPseudoTransparentFrame::OnWindowCreate)
 #endif
@@ -369,16 +397,16 @@ static wxPaneInfo* FindPaneInDock(const wxDockInfo& dock, wxWindow* window)
 }
 
 // RemovePaneFromDocks() removes a pane window from all docks
-// with a possible exception specified by parameter "except"
+// with a possible exception specified by parameter "ex_cept"
 static void RemovePaneFromDocks(wxDockInfoArray& docks,
                                 wxPaneInfo& pane,
-                                wxDockInfo* except = NULL)
+                                wxDockInfo* ex_cept  = NULL  )
 {
     int i, dock_count;
     for (i = 0, dock_count = docks.GetCount(); i < dock_count; ++i)
     {
         wxDockInfo& d = docks.Item(i);
-        if (&d == except)
+        if (&d == ex_cept)
             continue;
         wxPaneInfo* pi = FindPaneInDock(d, pane.window);
         if (pi)
@@ -611,8 +639,7 @@ void wxFrameManager::SetManagedWindow(wxWindow* frame)
     // frame activated and highlighted as such...
     m_hint_wnd = new wxMiniFrame(m_frame, wxID_ANY, wxEmptyString, wxDefaultPosition, wxSize(1,1),
                                  wxFRAME_FLOAT_ON_PARENT
-                                 | wxFRAME_TOOL_WINDOW
-                                 | wxCAPTION );
+                                 | wxFRAME_TOOL_WINDOW );
 
     // Can't set the bg colour of a Frame in wxMac
     wxPanel* p = new wxPanel(m_hint_wnd);
@@ -876,7 +903,9 @@ bool wxFrameManager::DetachPane(wxWindow* window)
 
                 // reduce flicker
                 p.window->SetSize(1,1);
-                p.frame->Show(false);
+
+                if (p.frame->IsShown())
+                    p.frame->Show(false);
 
                 // reparent to m_frame and destroy the pane
                 p.window->Reparent(m_frame);
@@ -977,10 +1006,10 @@ void wxFrameManager::LoadPaneInfo(wxString pane_part, wxPaneInfo &pane)
         val_name.Trim(false);
         value.Trim(true);
         value.Trim(false);
-    
+
         if (val_name.empty())
             break;
-    
+
         if (val_name == wxT("name"))
             pane.name = value;
         else if (val_name == wxT("caption"))
@@ -1682,9 +1711,9 @@ wxSizer* wxFrameManager::LayoutAll(wxPaneInfoArray& panes,
 
             // new dock's size may not be more than 1/3 of the frame size
             if (dock.IsHorizontal())
-                size = wxMin(size, cli_size.y*3/4);//madedit:3/4
+                size = wxMin(size, cli_size.y/3);
                  else
-                size = wxMin(size, cli_size.x*3/4);//madedit:3/4
+                size = wxMin(size, cli_size.x/3);
 
             if (size < 10)
                 size = 10;
@@ -1945,7 +1974,9 @@ void wxFrameManager::Update()
 
             // reduce flicker
             p.window->SetSize(1,1);
-            p.frame->Show(false);
+
+            if (p.frame->IsShown())
+                p.frame->Show(false);
 
             // reparent to m_frame and destroy the pane
             p.window->Reparent(m_frame);
@@ -1987,10 +2018,8 @@ void wxFrameManager::Update()
                 frame->SetPaneWindow(p);
                 p.frame = frame;
 
-                if (p.IsShown())
-                {
+                if (p.IsShown() && !frame->IsShown())
                     frame->Show();
-                }
             }
              else
             {
@@ -2004,12 +2033,14 @@ void wxFrameManager::Update()
                     //p.frame->Move(p.floating_pos.x, p.floating_pos.y);
                 }
 
-                 p.frame->Show(p.IsShown());
+                if (p.frame->IsShown() != p.IsShown())
+                    p.frame->Show(p.IsShown());
             }
         }
          else
         {
-            p.window->Show(p.IsShown());
+            if (p.window->IsShown() != p.IsShown())
+                p.window->Show(p.IsShown());
         }
 
         // if "active panes" are no longer allowed, clear
@@ -2638,6 +2669,8 @@ void wxFrameManager::ShowHint(const wxRect& rect)
             )
             m_hint_fadeamt = 0;
 
+        m_hint_wnd->SetSize(rect);
+
         if (! m_hint_wnd->IsShown())
             m_hint_wnd->Show();
 
@@ -2652,7 +2685,6 @@ void wxFrameManager::ShowHint(const wxRect& rect)
         if (m_hint_wnd->IsKindOf(CLASSINFO(wxPseudoTransparentFrame)))
             ((wxPseudoTransparentFrame *)m_hint_wnd)->SetTransparent(m_hint_fadeamt);
 #endif
-        m_hint_wnd->SetSize(rect);
         m_hint_wnd->Raise();
 
 
@@ -2723,7 +2755,8 @@ void wxFrameManager::HideHint()
     // hides a transparent window hint, if there is one
     if (m_hint_wnd)
     {
-        m_hint_wnd->Show(false);
+        if (m_hint_wnd->IsShown())
+            m_hint_wnd->Show(false);
 #if wxCHECK_VERSION(2,7,0)
         m_hint_wnd->SetTransparent(0);
 #else
@@ -2841,13 +2874,48 @@ void wxFrameManager::OnFloatingPaneMoveStart(wxWindow* wnd)
 #endif
 }
 
-void wxFrameManager::OnFloatingPaneMoving(wxWindow* wnd)
+void wxFrameManager::OnFloatingPaneMoving(wxWindow* wnd, wxDirection dir)
 {
     // try to find the pane
     wxPaneInfo& pane = GetPane(wnd);
     wxASSERT_MSG(pane.IsOk(), wxT("Pane window not found"));
 
     wxPoint pt = ::wxGetMousePosition();
+
+#if 0
+    // Adapt pt to direction
+    if (dir == wxNORTH)
+    {
+        // move to pane's upper border
+        wxPoint pos( 0,0 );
+        pos = wnd->ClientToScreen( pos );
+        pt.y = pos.y;
+        // and some more pixels for the title bar
+        pt.y -= 5;
+    } else
+    if (dir == wxWEST)
+    {
+        // move to pane's left border
+        wxPoint pos( 0,0 );
+        pos = wnd->ClientToScreen( pos );
+        pt.x = pos.x;
+    } else
+    if (dir == wxEAST)
+    {
+        // move to pane's right border
+        wxPoint pos( wnd->GetSize().x, 0 );
+        pos = wnd->ClientToScreen( pos );
+        pt.x = pos.x;
+    } else
+    if (dir == wxSOUTH)
+    {
+        // move to pane's bottom border
+        wxPoint pos( 0, wnd->GetSize().y );
+        pos = wnd->ClientToScreen( pos );
+        pt.y = pos.y;
+    }
+#endif
+
     wxPoint client_pt = m_frame->ScreenToClient(pt);
 
     // calculate the offset from the upper left-hand corner
@@ -2907,13 +2975,48 @@ void wxFrameManager::OnFloatingPaneMoving(wxWindow* wnd)
     m_frame->Update();
 }
 
-void wxFrameManager::OnFloatingPaneMoved(wxWindow* wnd)
+void wxFrameManager::OnFloatingPaneMoved(wxWindow* wnd, wxDirection dir)
 {
     // try to find the pane
     wxPaneInfo& pane = GetPane(wnd);
     wxASSERT_MSG(pane.IsOk(), wxT("Pane window not found"));
 
     wxPoint pt = ::wxGetMousePosition();
+
+#if 0
+    // Adapt pt to direction
+    if (dir == wxNORTH)
+    {
+        // move to pane's upper border
+        wxPoint pos( 0,0 );
+        pos = wnd->ClientToScreen( pos );
+        pt.y = pos.y;
+        // and some more pixels for the title bar
+        pt.y -= 10;
+    } else
+    if (dir == wxWEST)
+    {
+        // move to pane's left border
+        wxPoint pos( 0,0 );
+        pos = wnd->ClientToScreen( pos );
+        pt.x = pos.x;
+    } else
+    if (dir == wxEAST)
+    {
+        // move to pane's right border
+        wxPoint pos( wnd->GetSize().x, 0 );
+        pos = wnd->ClientToScreen( pos );
+        pt.x = pos.x;
+    } else
+    if (dir == wxSOUTH)
+    {
+        // move to pane's bottom border
+        wxPoint pos( 0, wnd->GetSize().y );
+        pos = wnd->ClientToScreen( pos );
+        pt.y = pos.y;
+    }
+#endif
+
     wxPoint client_pt = m_frame->ScreenToClient(pt);
 
     // calculate the offset from the upper left-hand corner
@@ -2979,7 +3082,8 @@ void wxFrameManager::OnFloatingPaneClosed(wxWindow* wnd, wxCloseEvent& evt)
     {
         // reparent the pane window back to us and
         // prepare the frame window for destruction
-        pane.window->Show(false);
+        if (pane.window->IsShown())
+            pane.window->Show(false);
         pane.window->Reparent(m_frame);
         pane.frame = NULL;
         pane.Hide();
@@ -3113,13 +3217,14 @@ void wxFrameManager::OnEraseBackground(wxEraseEvent& event)
 #endif
 }
 
-void wxFrameManager::OnSize(wxSizeEvent& WXUNUSED(event))
+void wxFrameManager::OnSize(wxSizeEvent& event)
 {
     if (m_frame)
     {
         DoFrameLayout();
         Repaint();
     }
+    event.Skip();
 }
 
 

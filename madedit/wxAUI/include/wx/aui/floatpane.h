@@ -4,7 +4,7 @@
 // Author:      Benjamin I. Williams
 // Modified by:
 // Created:     2005-05-17
-// RCS-ID:      $Id: floatpane.h,v 1.5 2006/07/07 17:53:17 RD Exp $
+// RCS-ID:      $Id: floatpane.h,v 1.7 2006/08/23 14:02:53 RR Exp $
 // Copyright:   (C) Copyright 2005, Kirix Corporation, All Rights Reserved.
 // Licence:     wxWindows Library Licence, Version 3.1
 ///////////////////////////////////////////////////////////////////////////////
@@ -22,7 +22,7 @@
 
 #include "wx/frame.h"
 
-#if defined( __WXMSW__ ) || defined( __WXMAC__ )
+#if defined( __WXMSW__ ) || defined( __WXMAC__ ) ||  defined( __WXGTK__ )
 #include "wx/minifram.h"
 #define wxFloatingPaneBaseClass wxMiniFrame
 #else
@@ -45,7 +45,7 @@ private:
     void OnMoveEvent(wxMoveEvent& event);
     void OnIdle(wxIdleEvent& event);
     void OnMoveStart();
-    void OnMoving(const wxRect& window_rect);
+    void OnMoving(const wxRect& window_rect, wxDirection dir);
     void OnMoveFinished();
     void OnActivate(wxActivateEvent& event);
     static bool isMouseDown();
@@ -53,7 +53,10 @@ private:
     wxWindow* m_pane_window;    // pane window being managed
     bool m_moving;
     wxRect m_last_rect;
+    wxRect m_last2_rect;
+    wxRect m_last3_rect;
     wxSize m_last_size;
+    wxDirection m_lastDirection;
 
     wxFrameManager* m_owner_mgr;
     wxFrameManager m_mgr;
