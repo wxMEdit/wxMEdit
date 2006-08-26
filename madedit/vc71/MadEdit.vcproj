@@ -19,7 +19,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="\wxWidgets\lib\vc_lib\mswu;\wxWidgets\include;\boost;..\wxFlatNotebook\include;..\wxAUI\include"
+				AdditionalIncludeDirectories="..\wxAUI\include;..\wxFlatNotebook\include;\wxWidgets\lib\vc_lib\mswud;\wxWidgets\include;\boost"
 				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;wxUSE_AUI=1;WXDLLIMPEXP_AUI="
 				MinimalRebuild="TRUE"
 				BasicRuntimeChecks="3"
@@ -36,8 +36,8 @@
 				Name="VCLinkerTool"
 				AdditionalDependencies="wxmsw27ud_core.lib wxbase27ud.lib unicows.lib comctl32.lib uuid.lib rpcrt4.lib"
 				OutputFile="$(OutDir)/MadEdit.exe"
-				LinkIncremental="2"
-				AdditionalLibraryDirectories="\wxWidgets\lib\vc_lib;..\libunicows;..\vld"
+				LinkIncremental="1"
+				AdditionalLibraryDirectories="\wxWidgets\lib\vc_lib;..\libunicows"
 				GenerateDebugInformation="TRUE"
 				SubSystem="2"
 				TargetMachine="1"/>
@@ -73,7 +73,7 @@
 				Name="VCCLCompilerTool"
 				GlobalOptimizations="TRUE"
 				FavorSizeOrSpeed="1"
-				AdditionalIncludeDirectories="\wxWidgets\lib\vc_lib\mswu;\wxWidgets\include;\boost;..\wxFlatNotebook\include;..\wxAUI\include"
+				AdditionalIncludeDirectories="..\wxAUI\include;..\wxFlatNotebook\include;\wxWidgets\lib\vc_lib\mswu;\wxWidgets\include;\boost"
 				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;wxUSE_AUI=1;WXDLLIMPEXP_AUI="
 				RuntimeLibrary="0"
 				TreatWChar_tAsBuiltInType="TRUE"
