@@ -83,34 +83,7 @@ struct MadUndo
         :m_CaretPosBefore(caretPosBefore), m_CaretPosAfter(caretPosAfter)
     {}
 
-    ~MadUndo()
-    {
-        if(m_Undos.size())
-        {
-            MadUndoDataIterator it = m_Undos.begin();
-            do
-            {
-                switch((*it)->m_Type)
-                {
-                case udtInsert:
-                    ((MadInsertUndoData*)(*it))->m_Data.clear();
-                    break;
-                case udtDelete:
-                    ((MadDeleteUndoData*)(*it))->m_Data.clear();
-                    break;
-                case udtOverwrite:
-                    ((MadOverwriteUndoData*)(*it))->m_DelData.clear();
-                    ((MadOverwriteUndoData*)(*it))->m_InsData.clear();
-                    break;
-                }
-
-                delete *it;
-            }
-            while(++it != m_Undos.end());
-
-            m_Undos.clear();
-        }
-    }
+    ~MadUndo();
 };
 
 typedef list < MadUndo > MadUndoList;

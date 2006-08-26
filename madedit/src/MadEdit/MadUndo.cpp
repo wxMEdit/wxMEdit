@@ -14,6 +14,47 @@
 #endif
 
 
+MadUndo::~MadUndo()
+{
+    if(m_Undos.size())
+    {
+        MadUndoDataIterator it = m_Undos.begin();
+        do
+        {
+			MadUndoData *pud = *it;
+            switch(pud->m_Type)
+            {
+            case udtInsert:
+				{
+					MadInsertUndoData *pd = (MadInsertUndoData*)pud;
+					//pd->m_Data.clear();
+					delete pd;
+				}
+                break;
+            case udtDelete:
+				{
+					MadDeleteUndoData *pd = (MadDeleteUndoData*)pud;
+					//pd->m_Data.clear();
+					delete pd;
+				}
+                break;
+            case udtOverwrite:
+				{
+					MadOverwriteUndoData *pd = (MadOverwriteUndoData*)pud;
+					//pd->m_DelData.clear();
+					//pd->m_InsData.clear();
+					delete pd;
+				}
+                break;
+            }
+        }
+        while(++it != m_Undos.end());
+
+        //m_Undos.clear();
+    }
+}
+
+
 MadUndoBuffer::MadUndoBuffer()
 {
     m_CurrentUndo = m_UndoList.begin();
@@ -43,7 +84,8 @@ MadUndo *MadUndoBuffer::Add()
 {
     ClearTillEnd();
 
-    m_UndoList.push_back( MadUndo() );
+	static MadUndo undo;
+    m_UndoList.push_back(undo);
     return &m_UndoList.back();
 }
 
