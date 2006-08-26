@@ -293,13 +293,14 @@ void GTK2_DrawText(wxMemoryDC *dc, MadEncoding *encoding, const int *widths,
         pango_layout_set_attributes(dc->m_layout, NULL);
     }
 
-
+    /*
     double sx, sy;
     dc->GetUserScale(&sx, &sy);
     w = wxCoord(w / sx);
     h = wxCoord(h / sy);
     dc->CalcBoundingBox (x + w, y + h);
     dc->CalcBoundingBox (x, y);
+    */
 }
 #endif
 
