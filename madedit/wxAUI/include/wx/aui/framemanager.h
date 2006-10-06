@@ -4,7 +4,7 @@
 // Author:      Benjamin I. Williams
 // Modified by:
 // Created:     2005-05-17
-// RCS-ID:      $Id: framemanager.h,v 1.23 2006/08/24 19:35:46 MW Exp $
+// RCS-ID:      $Id: framemanager.h,v 1.24 2006/08/27 15:19:39 RR Exp $
 // Copyright:   (C) Copyright 2005, Kirix Corporation, All Rights Reserved.
 // Licence:     wxWindows Library Licence, Version 3.1
 ///////////////////////////////////////////////////////////////////////////////
@@ -555,6 +555,8 @@ protected:
     wxDockUIPart* m_action_part; // ptr to the part the action happened to
     wxWindow* m_action_window;   // action frame or window (NULL if none)
     wxRect m_action_hintrect;    // hint rectangle for the action
+    bool m_skipping;
+    wxRect m_last_rect;
     wxDockUIPart* m_hover_button;// button uipart being hovered over
     wxRect m_last_hint;          // last hint rectangle
     wxPoint m_last_mouse_move;   // last mouse move position (see OnMotion)

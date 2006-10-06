@@ -4,7 +4,7 @@
 // Author:      Benjamin I. Williams
 // Modified by:
 // Created:     2005-05-17
-// RCS-ID:      $Id: framemanager.cpp,v 1.54 2006/08/24 14:33:43 ABX Exp $
+// RCS-ID:      $Id: framemanager.cpp,v 1.63 2006/09/27 11:57:12 ABX Exp $
 // Copyright:   (C) Copyright 2005-2006, Kirix Corporation, All Rights Reserved
 // Licence:     wxWindows Library Licence, Version 3.1
 ///////////////////////////////////////////////////////////////////////////////
@@ -30,6 +30,7 @@
 #include "wx/aui/floatpane.h"
 
 #ifndef WX_PRECOMP
+    #include "wx/panel.h"
     #include "wx/settings.h"
     #include "wx/app.h"
     #include "wx/dcclient.h"
@@ -480,6 +481,7 @@ wxFrameManager::wxFrameManager(wxWindow* managed_wnd, unsigned int flags)
     m_art = new wxDefaultDockArt;
     m_hint_wnd = NULL;
     m_flags = flags;
+    m_skipping = false;
 
     if (managed_wnd)
     {
@@ -560,7 +562,7 @@ wxDockUIPart* wxFrameManager::HitTest(int x, int y)
             continue;
 
         // if the point is inside the rectangle, we have a hit
-        if (item->rect.Inside(x,y))
+        if (item->rect.Contains(x,y))
             result = item;
     }
 
@@ -2312,11 +2314,7 @@ bool wxFrameManager::DoDrop(wxDockInfoArray& docks,
     if (pt.x < layer_insert_offset &&
         pt.x > layer_insert_offset-auiLayerInsertPixels)
     {
-        int new_layer = wxMax(wxMax(GetMaxLayer(docks, wxAUI_DOCK_LEFT),
-                                    GetMaxLayer(docks, wxAUI_DOCK_BOTTOM)),
-                                    GetMaxLayer(docks, wxAUI_DOCK_TOP)) + 1;
         drop.Dock().Left().
-             Layer(new_layer).
              Row(0).
              Position(pt.y - GetDockPixelOffset(drop) - offset.y);
         return ProcessDockResult(target, drop);
@@ -2324,11 +2322,7 @@ bool wxFrameManager::DoDrop(wxDockInfoArray& docks,
     else if (pt.y < layer_insert_offset &&
              pt.y > layer_insert_offset-auiLayerInsertPixels)
     {
-        int new_layer = wxMax(wxMax(GetMaxLayer(docks, wxAUI_DOCK_TOP),
-                                    GetMaxLayer(docks, wxAUI_DOCK_LEFT)),
-                                    GetMaxLayer(docks, wxAUI_DOCK_RIGHT)) + 1;
         drop.Dock().Top().
-             Layer(new_layer).
              Row(0).
              Position(pt.x - GetDockPixelOffset(drop) - offset.x);
         return ProcessDockResult(target, drop);
@@ -2336,11 +2330,7 @@ bool wxFrameManager::DoDrop(wxDockInfoArray& docks,
     else if (pt.x >= cli_size.x - layer_insert_offset &&
              pt.x < cli_size.x - layer_insert_offset + auiLayerInsertPixels)
     {
-        int new_layer = wxMax(wxMax(GetMaxLayer(docks, wxAUI_DOCK_RIGHT),
-                                    GetMaxLayer(docks, wxAUI_DOCK_TOP)),
-                                    GetMaxLayer(docks, wxAUI_DOCK_BOTTOM)) + 1;
         drop.Dock().Right().
-             Layer(new_layer).
              Row(0).
              Position(pt.y - GetDockPixelOffset(drop) - offset.y);
         return ProcessDockResult(target, drop);
@@ -2348,16 +2338,16 @@ bool wxFrameManager::DoDrop(wxDockInfoArray& docks,
     else if (pt.y >= cli_size.y - layer_insert_offset &&
              pt.y < cli_size.y - layer_insert_offset + auiLayerInsertPixels)
     {
-        int new_layer = wxMax(wxMax(GetMaxLayer(docks, wxAUI_DOCK_BOTTOM),
-                                    GetMaxLayer(docks, wxAUI_DOCK_LEFT)),
-                                    GetMaxLayer(docks, wxAUI_DOCK_RIGHT)) + 1;
+        int new_layer = wxMax( wxMax( GetMaxLayer(docks, wxAUI_DOCK_BOTTOM),
+                                      GetMaxLayer(docks, wxAUI_DOCK_LEFT)),
+                                      GetMaxLayer(docks, wxAUI_DOCK_RIGHT)) + 1;
+
         drop.Dock().Bottom().
              Layer(new_layer).
              Row(0).
              Position(pt.x - GetDockPixelOffset(drop) - offset.x);
         return ProcessDockResult(target, drop);
     }
-
 
     wxDockUIPart* part = HitTest(pt.x, pt.y);
 
@@ -2366,7 +2356,6 @@ bool wxFrameManager::DoDrop(wxDockInfoArray& docks,
     {
         if (!part || !part->dock)
             return false;
-
 
         // calculate the offset from where the dock begins
         // to the point where the user dropped the pane
@@ -2382,15 +2371,38 @@ bool wxFrameManager::DoDrop(wxDockInfoArray& docks,
         // should float if being dragged over center pane windows
         if (!part->dock->fixed || part->dock->dock_direction == wxAUI_DOCK_CENTER)
         {
-            if ((m_flags & wxAUI_MGR_ALLOW_FLOATING) &&
+            if (m_last_rect.IsEmpty() || m_last_rect.Contains(pt.x, pt.y ))
+            {
+                m_skipping = true;
+            }
+            else
+            {
+                if ((m_flags & wxAUI_MGR_ALLOW_FLOATING) &&
                    (drop.IsFloatable() ||
                     (part->dock->dock_direction != wxAUI_DOCK_CENTER &&
                      part->dock->dock_direction != wxAUI_DOCK_NONE)))
-            {
-                drop.Float();
+                {
+                    drop.Float();
+                }
+
+                m_skipping = false;
+
+                return ProcessDockResult(target, drop);
             }
 
+            drop.Position(pt.x - GetDockPixelOffset(drop) - offset.x);
+
             return ProcessDockResult(target, drop);
+        }
+        else
+        {
+            m_skipping = false;
+        }
+
+        if (!m_skipping)
+        {
+            m_last_rect = part->dock->rect;
+            m_last_rect.Inflate( 15, 15 );
         }
 
         drop.Dock().
@@ -2400,15 +2412,26 @@ bool wxFrameManager::DoDrop(wxDockInfoArray& docks,
              Position(dock_drop_offset);
 
         if ((
-            ((pt.y < part->dock->rect.y + 2) && part->dock->IsHorizontal()) ||
-            ((pt.x < part->dock->rect.x + 2) && part->dock->IsVertical())
+            ((pt.y < part->dock->rect.y + 1) && part->dock->IsHorizontal()) ||
+            ((pt.x < part->dock->rect.x + 1) && part->dock->IsVertical())
             ) && part->dock->panes.GetCount() > 1)
         {
-            int row = drop.dock_row;
-            DoInsertDockRow(panes, part->dock->dock_direction,
-                            part->dock->dock_layer,
-                            part->dock->dock_row);
-            drop.dock_row = row;
+            if ((part->dock->dock_direction == wxAUI_DOCK_TOP) ||
+                (part->dock->dock_direction == wxAUI_DOCK_LEFT))
+            {
+                int row = drop.dock_row;
+                DoInsertDockRow(panes, part->dock->dock_direction,
+                                part->dock->dock_layer,
+                                part->dock->dock_row);
+                drop.dock_row = row;
+            }
+            else
+            {
+                DoInsertDockRow(panes, part->dock->dock_direction,
+                                part->dock->dock_layer,
+                                part->dock->dock_row+1);
+                drop.dock_row = part->dock->dock_row+1;
+            }
         }
 
         if ((
@@ -2416,10 +2439,22 @@ bool wxFrameManager::DoDrop(wxDockInfoArray& docks,
             ((pt.x > part->dock->rect.x + part->dock->rect.width - 2 ) && part->dock->IsVertical())
             ) && part->dock->panes.GetCount() > 1)
         {
-            DoInsertDockRow(panes, part->dock->dock_direction,
-                            part->dock->dock_layer,
-                            part->dock->dock_row+1);
-            drop.dock_row = part->dock->dock_row+1;
+            if ((part->dock->dock_direction == wxAUI_DOCK_TOP) ||
+                (part->dock->dock_direction == wxAUI_DOCK_LEFT))
+            {
+                DoInsertDockRow(panes, part->dock->dock_direction,
+                                part->dock->dock_layer,
+                                part->dock->dock_row+1);
+                drop.dock_row = part->dock->dock_row+1;
+            }
+            else
+            {
+                int row = drop.dock_row;
+                DoInsertDockRow(panes, part->dock->dock_direction,
+                                part->dock->dock_layer,
+                                part->dock->dock_row);
+                drop.dock_row = row;
+            }
         }
 
         return ProcessDockResult(target, drop);
@@ -2914,6 +2949,8 @@ void wxFrameManager::OnFloatingPaneMoving(wxWindow* wnd, wxDirection dir)
         pos = wnd->ClientToScreen( pos );
         pt.y = pos.y;
     }
+#else
+    wxUnusedVar(dir);
 #endif
 
     wxPoint client_pt = m_frame->ScreenToClient(pt);
@@ -3015,6 +3052,8 @@ void wxFrameManager::OnFloatingPaneMoved(wxWindow* wnd, wxDirection dir)
         pos = wnd->ClientToScreen( pos );
         pt.y = pos.y;
     }
+#else
+    wxUnusedVar(dir);
 #endif
 
     wxPoint client_pt = m_frame->ScreenToClient(pt);
@@ -3129,22 +3168,22 @@ void wxFrameManager::OnRender(wxFrameManagerEvent& evt)
         {
             case wxDockUIPart::typeDockSizer:
             case wxDockUIPart::typePaneSizer:
-                m_art->DrawSash(*dc, part.orientation, part.rect);
+                m_art->DrawSash(*dc, m_frame, part.orientation, part.rect);
                 break;
             case wxDockUIPart::typeBackground:
-                m_art->DrawBackground(*dc, part.orientation, part.rect);
+                m_art->DrawBackground(*dc, m_frame, part.orientation, part.rect);
                 break;
             case wxDockUIPart::typeCaption:
-                m_art->DrawCaption(*dc, part.pane->caption, part.rect, *part.pane);
+                m_art->DrawCaption(*dc, m_frame, part.pane->caption, part.rect, *part.pane);
                 break;
             case wxDockUIPart::typeGripper:
-                m_art->DrawGripper(*dc, part.rect, *part.pane);
+                m_art->DrawGripper(*dc, m_frame, part.rect, *part.pane);
                 break;
             case wxDockUIPart::typePaneBorder:
-                m_art->DrawBorder(*dc, part.rect, *part.pane);
+                m_art->DrawBorder(*dc, m_frame, part.rect, *part.pane);
                 break;
             case wxDockUIPart::typePaneButton:
-                m_art->DrawPaneButton(*dc, part.button->button_id,
+                m_art->DrawPaneButton(*dc, m_frame, part.button->button_id,
                         wxAUI_BUTTON_STATE_NORMAL, part.rect, *part.pane);
                 break;
         }
@@ -3295,7 +3334,7 @@ void wxFrameManager::UpdateButtonOnScreen(wxDockUIPart* button_ui_part,
     if (pt.x != 0 || pt.y != 0)
         cdc.SetDeviceOrigin(pt.x, pt.y);
 
-    m_art->DrawPaneButton(cdc,
+    m_art->DrawPaneButton(cdc, m_frame,
               button_ui_part->button->button_id,
               state,
               button_ui_part->rect,

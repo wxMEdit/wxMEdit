@@ -4,7 +4,7 @@
 // Author:      Benjamin I. Williams
 // Modified by:
 // Created:     2005-05-17
-// RCS-ID:      $Id: dockart.h,v 1.4 2006/07/07 17:53:17 RD Exp $
+// RCS-ID:      $Id: dockart.h,v 1.5 2006/09/02 12:37:25 RR Exp $
 // Copyright:   (C) Copyright 2005, Kirix Corporation, All Rights Reserved.
 // Licence:     wxWindows Library Licence, Version 3.1
 ///////////////////////////////////////////////////////////////////////////////
@@ -46,27 +46,33 @@ public:
     void SetColor(int id, const wxColour& color) { SetColour(id, color); }
 
     virtual void DrawSash(wxDC& dc,
+                          wxWindow *window,
                           int orientation,
                           const wxRect& rect) = 0;
 
     virtual void DrawBackground(wxDC& dc,
+                          wxWindow *window,
                           int orientation,
                           const wxRect& rect) = 0;
 
     virtual void DrawCaption(wxDC& dc,
+                          wxWindow *window,
                           const wxString& text,
                           const wxRect& rect,
                           wxPaneInfo& pane) = 0;
 
     virtual void DrawGripper(wxDC& dc,
+                          wxWindow *window,
                           const wxRect& rect,
                           wxPaneInfo& pane) = 0;
 
     virtual void DrawBorder(wxDC& dc,
+                          wxWindow *window,
                           const wxRect& rect,
                           wxPaneInfo& pane) = 0;
 
     virtual void DrawPaneButton(wxDC& dc,
+                          wxWindow *window,
                           int button,
                           int button_state,
                           const wxRect& rect,
@@ -92,27 +98,33 @@ public:
     wxFont GetFont(int id);
 
     void DrawSash(wxDC& dc,
+                  wxWindow *window,
                   int orientation,
                   const wxRect& rect);
 
     void DrawBackground(wxDC& dc,
+                  wxWindow *window,
                   int orientation,
                   const wxRect& rect);
 
     void DrawCaption(wxDC& dc,
+                  wxWindow *window,
                   const wxString& text,
                   const wxRect& rect,
                   wxPaneInfo& pane);
 
     void DrawGripper(wxDC& dc,
+                  wxWindow *window,
                   const wxRect& rect,
                   wxPaneInfo& pane);
 
     void DrawBorder(wxDC& dc,
+                  wxWindow *window,
                   const wxRect& rect,
                   wxPaneInfo& pane);
 
     void DrawPaneButton(wxDC& dc,
+                  wxWindow *window,
                   int button,
                   int button_state,
                   const wxRect& rect,

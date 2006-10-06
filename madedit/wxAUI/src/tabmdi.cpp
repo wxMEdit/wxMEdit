@@ -4,7 +4,7 @@
 // Author:      Hans Van Leemputten
 // Modified by: Benjamin I. Williams / Kirix Corporation
 // Created:     29/07/2002
-// RCS-ID:      $Id: tabmdi.cpp,v 1.8 2006/08/18 08:05:37 CE Exp $
+// RCS-ID:      $Id: tabmdi.cpp,v 1.9 2006/09/03 12:22:41 RR Exp $
 // Copyright:   (c) Hans Van Leemputten
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////
@@ -161,7 +161,7 @@ void wxTabMDIParentFrame::SetChildMenuBar(wxTabMDIChildFrame* pChild)
     {
         if (pChild->GetMenuBar() == NULL)
             return;
-            
+
         // Do we need to save the current bar?
         if (m_pMyMenuBar == NULL)
             m_pMyMenuBar = GetMenuBar();
@@ -283,7 +283,7 @@ void wxTabMDIParentFrame::AddWindowMenu(wxMenuBar *pMenuBar)
 {
     if (pMenuBar && m_pWindowMenu)
     {
-        int pos = pMenuBar->FindMenu(wxGetStockLabel(wxID_HELP,false));
+        int pos = pMenuBar->FindMenu(wxGetStockLabel(wxID_HELP,wxSTOCK_NOFLAGS));
         if (pos == wxNOT_FOUND)
             pMenuBar->Append(m_pWindowMenu, _("&Window"));
              else

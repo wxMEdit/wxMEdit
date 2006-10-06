@@ -4,7 +4,7 @@
 // Author:      Benjamin I. Williams
 // Modified by:
 // Created:     2005-05-17
-// RCS-ID:      $Id: floatpane.h,v 1.7 2006/08/23 14:02:53 RR Exp $
+// RCS-ID:      $Id: floatpane.h,v 1.8 2006/09/05 20:45:15 VZ Exp $
 // Copyright:   (C) Copyright 2005, Kirix Corporation, All Rights Reserved.
 // Licence:     wxWindows Library Licence, Version 3.1
 ///////////////////////////////////////////////////////////////////////////////
@@ -37,7 +37,7 @@ public:
                    const wxPaneInfo& pane,
                    wxWindowID id = wxID_ANY
                    );
-    ~wxFloatingPane();
+    virtual ~wxFloatingPane();
     void SetPaneWindow(const wxPaneInfo& pane);
 private:
     void OnSize(wxSizeEvent& event);

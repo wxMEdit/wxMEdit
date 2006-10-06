@@ -74,8 +74,8 @@ static wxBitmap BitmapFromBits(const unsigned char bits[], int w, int h,
                                const wxColour& color)
 {
     wxImage img = wxBitmap((const char*)bits, w, h).ConvertToImage();
-    img.Replace(255,255,255,123,123,123);
-    img.Replace(0,0,0,color.Red(),color.Green(),color.Blue());
+    img.Replace(0,0,0,123,123,123);
+    img.Replace(255,255,255,color.Red(),color.Green(),color.Blue());
     img.SetMaskColour(123,123,123);
     return wxBitmap(img);
 }
@@ -500,7 +500,7 @@ void wxAuiTabContainer::Render(wxDC* raw_dc)
 // true if a tab was hit, otherwise false
 bool wxAuiTabContainer::TabHitTest(int x, int y, wxWindow** hit) const
 {
-    if (!m_rect.Inside(x,y))
+    if (!m_rect.Contains(x,y))
         return false;
 
     size_t i, page_count = m_pages.GetCount();
@@ -508,7 +508,7 @@ bool wxAuiTabContainer::TabHitTest(int x, int y, wxWindow** hit) const
     for (i = 0; i < page_count; ++i)
     {
         wxAuiNotebookPage& page = m_pages.Item(i);
-        if (page.rect.Inside(x,y))
+        if (page.rect.Contains(x,y))
         {
             *hit = page.window;
             return true;
@@ -523,7 +523,7 @@ bool wxAuiTabContainer::TabHitTest(int x, int y, wxWindow** hit) const
 bool wxAuiTabContainer::ButtonHitTest(int x, int y,
                                       wxAuiTabContainerButton** hit) const
 {
-    if (!m_rect.Inside(x,y))
+    if (!m_rect.Contains(x,y))
         return false;
 
     size_t i, button_count = m_buttons.GetCount();
@@ -531,7 +531,7 @@ bool wxAuiTabContainer::ButtonHitTest(int x, int y,
     for (i = 0; i < button_count; ++i)
     {
         wxAuiTabContainerButton& button = m_buttons.Item(i);
-        if (button.rect.Inside(x,y))
+        if (button.rect.Contains(x,y))
         {
             *hit = &button;
             return true;
@@ -618,10 +618,22 @@ wxAuiTabCtrl::wxAuiTabCtrl(wxWindow* parent,
     m_hover_button = NULL;
 
     // FIXME: copied from dockart-- needs to put in a common place
+#if defined( __WXMAC__ )
+     static unsigned char close_bits[]={
+         0xFF, 0xFF, 0xFF, 0xFF, 0x0F, 0xFE, 0x03, 0xF8, 0x01, 0xF0, 0x19, 0xF3,
+         0xB8, 0xE3, 0xF0, 0xE1, 0xE0, 0xE0, 0xF0, 0xE1, 0xB8, 0xE3, 0x19, 0xF3,
+         0x01, 0xF0, 0x03, 0xF8, 0x0F, 0xFE, 0xFF, 0xFF };
+#elif defined( __WXGTK__)
+    static unsigned char close_bits[]={
+         0xff, 0xff, 0xff, 0xff, 0x07, 0xf0, 0xfb, 0xef, 0xdb, 0xed, 0x8b, 0xe8,
+         0x1b, 0xec, 0x3b, 0xee, 0x1b, 0xec, 0x8b, 0xe8, 0xdb, 0xed, 0xfb, 0xef,
+         0x07, 0xf0, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff };
+#else
     static unsigned char close_bits[]={
         0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xef,0xfb,0xcf,0xf9,
         0x9f,0xfc,0x3f,0xfe,0x3f,0xfe,0x9f,0xfc,0xcf,0xf9,0xef,0xfb,
         0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff};
+#endif
 
     AddButton(101, BitmapFromBits(close_bits, 16, 16, *wxBLACK));
 }
@@ -1443,7 +1455,7 @@ wxAuiTabCtrl* wxAuiMultiNotebook::GetTabCtrlFromPoint(const wxPoint& pt)
             continue;
 
         wxTabFrame* tabframe = (wxTabFrame*)all_panes.Item(i).window;
-        if (tabframe->m_tab_rect.Inside(pt))
+        if (tabframe->m_tab_rect.Contains(pt))
             return tabframe->m_tabs;
     }
 

@@ -4,7 +4,7 @@
 // Author:      Benjamin I. Williams
 // Modified by:
 // Created:     2005-05-17
-// RCS-ID:      $Id: dockart.cpp,v 1.9 2006/08/24 09:54:36 RR Exp $
+// RCS-ID:      $Id: dockart.cpp,v 1.11 2006/09/04 18:48:53 ABX Exp $
 // Copyright:   (C) Copyright 2005-2006, Kirix Corporation, All Rights Reserved
 // Licence:     wxWindows Library Licence, Version 3.1
 ///////////////////////////////////////////////////////////////////////////////
@@ -37,6 +37,13 @@
 #ifdef __WXMAC__
 #include "wx/mac/private.h"
 #endif
+
+#ifdef __WXGTK__
+#include <gtk/gtk.h>
+#include "wx/gtk/win_gtk.h"
+#include "wx/renderer.h"
+#endif
+
 
 // -- wxDefaultDockArt class implementation --
 
@@ -198,10 +205,12 @@ wxDefaultDockArt::wxDefaultDockArt()
     m_active_pin_bitmap = BitmapFromBits(pin_bits, 16, 16, m_active_caption_text_colour);
 
     // default metric values
-#ifdef __WXMAC__
+#if defined(__WXMAC__)
     SInt32 height;
     GetThemeMetric( kThemeMetricSmallPaneSplitterHeight , &height );
     m_sash_size = height;
+#elif defined(__WXGTK__)
+    m_sash_size = wxRendererNative::Get().GetSplitterParams(NULL).widthSash;
 #else
     m_sash_size = 4;
 #endif
@@ -297,9 +306,9 @@ wxFont wxDefaultDockArt::GetFont(int id)
     return wxNullFont;
 }
 
-void wxDefaultDockArt::DrawSash(wxDC& dc, int, const wxRect& rect)
+void wxDefaultDockArt::DrawSash(wxDC& dc, wxWindow *window, int orientation, const wxRect& rect)
 {
-#ifdef __WXMAC__
+#if defined(__WXMAC__)
     HIRect splitterRect = CGRectMake( rect.x , rect.y , rect.width , rect.height );
     CGContextRef cgContext ;
 #if wxMAC_USE_CORE_GRAPHICS
@@ -323,7 +332,48 @@ void wxDefaultDockArt::DrawSash(wxDC& dc, int, const wxRect& rect)
     QDEndCGContext( (CGrafPtr) dc.m_macPort , &cgContext ) ;
 #endif
 
+#elif defined(__WXGTK__)
+
+    GdkRectangle gdk_rect;
+    if (orientation == wxVERTICAL )
+    {
+        gdk_rect.x = rect.x;
+        gdk_rect.y = rect.y;
+        gdk_rect.width = m_sash_size;
+        gdk_rect.height = rect.height;
+    }
+    else
+    {
+        gdk_rect.x = rect.x;
+        gdk_rect.y = rect.y;
+        gdk_rect.width = rect.width;
+        gdk_rect.height = m_sash_size;
+    }
+
+    if (!window) return;
+    if (!window->m_wxwindow) return;
+    if (!GTK_PIZZA(window->m_wxwindow)->bin_window) return;
+
+    gtk_paint_handle
+    (
+        window->m_wxwindow->style,
+        GTK_PIZZA(window->m_wxwindow)->bin_window,
+        // flags & wxCONTROL_CURRENT ? GTK_STATE_PRELIGHT : GTK_STATE_NORMAL,
+        GTK_STATE_NORMAL,
+        GTK_SHADOW_NONE,
+        NULL /* no clipping */,
+        window->m_wxwindow,
+        "paned",
+        rect.x,
+        rect.y,
+        rect.width,
+        rect.height,
+        (orientation == wxVERTICAL) ? GTK_ORIENTATION_VERTICAL : GTK_ORIENTATION_HORIZONTAL
+    );
+
 #else
+    wxUnusedVar(window);
+    wxUnusedVar(orientation);
     dc.SetPen(*wxTRANSPARENT_PEN);
     dc.SetBrush(m_sash_brush);
     dc.DrawRectangle(rect.x, rect.y, rect.width, rect.height);
@@ -331,7 +381,7 @@ void wxDefaultDockArt::DrawSash(wxDC& dc, int, const wxRect& rect)
 }
 
 
-void wxDefaultDockArt::DrawBackground(wxDC& dc, int, const wxRect& rect)
+void wxDefaultDockArt::DrawBackground(wxDC& dc, wxWindow *WXUNUSED(window), int, const wxRect& rect)
 {
     dc.SetPen(*wxTRANSPARENT_PEN);
 #ifdef __WXMAC__
@@ -344,7 +394,7 @@ void wxDefaultDockArt::DrawBackground(wxDC& dc, int, const wxRect& rect)
     dc.DrawRectangle(rect.x, rect.y, rect.width, rect.height);
 }
 
-void wxDefaultDockArt::DrawBorder(wxDC& dc, const wxRect& _rect,
+void wxDefaultDockArt::DrawBorder(wxDC& dc, wxWindow *WXUNUSED(window), const wxRect& _rect,
                                   wxPaneInfo& pane)
 {
     dc.SetPen(m_border_pen);
@@ -426,7 +476,7 @@ void wxDefaultDockArt::DrawCaptionBackground(wxDC& dc, const wxRect& rect, bool 
 }
 
 
-void wxDefaultDockArt::DrawCaption(wxDC& dc,
+void wxDefaultDockArt::DrawCaption(wxDC& dc, wxWindow *WXUNUSED(window),
                                    const wxString& text,
                                    const wxRect& rect,
                                    wxPaneInfo& pane)
@@ -451,7 +501,7 @@ void wxDefaultDockArt::DrawCaption(wxDC& dc,
     dc.DestroyClippingRegion();
 }
 
-void wxDefaultDockArt::DrawGripper(wxDC& dc,
+void wxDefaultDockArt::DrawGripper(wxDC& dc, wxWindow *WXUNUSED(window),
                                    const wxRect& rect,
                                    wxPaneInfo& pane)
 {
@@ -502,7 +552,7 @@ void wxDefaultDockArt::DrawGripper(wxDC& dc,
     }
 }
 
-void wxDefaultDockArt::DrawPaneButton(wxDC& dc,
+void wxDefaultDockArt::DrawPaneButton(wxDC& dc, wxWindow *WXUNUSED(window),
                                       int button,
                                       int button_state,
                                       const wxRect& _rect,
