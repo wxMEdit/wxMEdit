@@ -9,7 +9,7 @@ KeywordPrefix=
 SpecialWordPrefix=$&
 IndentChar={
 UnindentChar=}
-BracePair=<? ?> ( ) [ ] { }
+BracePair=<? ?> /* */ ( ) [ ] { }
 AutoCompletePair=() [] {} "" ''
 
 # CustomRange=(rangeid) (begin string) (end string) (bgcolor) ...
