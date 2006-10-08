@@ -19,10 +19,10 @@
 
 // source code from:
 /////////////////////////////////////////////////////////////////////////////
-// Name:        gtk/window.cpp
+// Name:        src/gtk/window.cpp
 // Purpose:
 // Author:      Robert Roebling
-// Id:          $Id: window.cpp,v 1.583 2006/03/09 13:36:53 VZ Exp $
+// Id:          $Id: window.cpp,v 1.664 2006/09/19 10:22:20 RR Exp $
 // Copyright:   (c) 1998 Robert Roebling, Julian Smart
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////
@@ -49,6 +49,18 @@ extern bool g_blockEventsOnDrag;
 //-----------------------------------------------------------------------------
 // "key_press_event" from any window
 //-----------------------------------------------------------------------------
+
+// These are used when transforming Ctrl-alpha to ascii values 1-26
+inline bool wxIsLowerChar(int code)
+{
+    return (code >= 'a' && code <= 'z' );
+}
+
+inline bool wxIsUpperChar(int code)
+{
+    return (code >= 'A' && code <= 'Z' );
+}
+
 
 // set WXTRACE to this to see the key event codes on the console
 #define TRACE_KEYS  _T("keyevent")
@@ -171,11 +183,11 @@ static long wxTranslateKeySymToWXKey(KeySym keysym, bool isChar)
             break;
 
         case GDK_Prior:     // == GDK_Page_Up
-            key_code = WXK_PRIOR;
+            key_code = WXK_PAGEUP;
             break;
 
         case GDK_Next:      // == GDK_Page_Down
-            key_code = WXK_NEXT;
+            key_code = WXK_PAGEDOWN;
             break;
 
         case GDK_End:
@@ -254,11 +266,11 @@ static long wxTranslateKeySymToWXKey(KeySym keysym, bool isChar)
             break;
 
         case GDK_KP_Prior: // == GDK_KP_Page_Up
-            key_code = isChar ? WXK_PRIOR : WXK_NUMPAD_PRIOR;
+            key_code = isChar ? WXK_PAGEUP : WXK_NUMPAD_PAGEUP;
             break;
 
         case GDK_KP_Next: // == GDK_KP_Page_Down
-            key_code = isChar ? WXK_NEXT : WXK_NUMPAD_NEXT;
+            key_code = isChar ? WXK_PAGEDOWN : WXK_NUMPAD_PAGEDOWN;
             break;
 
         case GDK_KP_End:
@@ -486,7 +498,7 @@ struct wxGtkIMData
     }
     ~wxGtkIMData()
     {
-        g_object_unref(context);
+        g_object_unref (context);
     }
 };
 
@@ -498,8 +510,7 @@ gtk_window_key_press_callback( GtkWidget *widget,
 {
     DEBUG_MAIN_THREAD
 
-    if (g_isIdle)
-        wxapp_install_idle_handler();
+    // don't need to install idle handler, its done from "event" signal
 
     if (!win->m_hasVMT)
         return FALSE;
@@ -540,12 +551,12 @@ gtk_window_key_press_callback( GtkWidget *widget,
         if (intercepted_by_IM)
         {
             wxLogTrace(TRACE_KEYS, _T("Key event intercepted by IM"));
-            return true;
+            return TRUE;
         }
     }
 
     if (return_after_IM)
-        return false;
+        return FALSE;
 
 
     // madedit: fixed that keyevent should be processed by IM first
@@ -603,13 +614,17 @@ gtk_window_key_press_callback( GtkWidget *widget,
 
             // To conform to the docs we need to translate Ctrl-alpha
             // characters to values in the range 1-26.
-            if (event.ControlDown() && key_code >= 'a' && key_code <= 'z' )
+            if ( event.ControlDown() &&
+                 ( wxIsLowerChar(key_code) || wxIsUpperChar(key_code) ))
             {
-                event.m_keyCode = key_code - 'a' + 1;
+                if ( wxIsLowerChar(key_code) )
+                    event.m_keyCode = key_code - 'a' + 1;
+                if ( wxIsUpperChar(key_code) )
+                    event.m_keyCode = key_code - 'A' + 1;
 #if wxUSE_UNICODE
                 event.m_uniChar = event.m_keyCode;
 #endif
-            }               
+            }
 
             // Implement OnCharHook by checking ancestor top level windows
             wxWindow *parent = win;
@@ -628,10 +643,6 @@ gtk_window_key_press_callback( GtkWidget *widget,
             }
         }
     }
-
-
-
-
 
     // win is a control: tab can be propagated up
     if ( !ret &&
@@ -657,52 +668,11 @@ gtk_window_key_press_callback( GtkWidget *widget,
         ret = win->GetParent()->GetEventHandler()->ProcessEvent( new_event );
     }
 
-    // generate wxID_CANCEL if <esc> has been pressed (typically in dialogs)
-    if ( !ret &&
-         (gdk_event->keyval == GDK_Escape) )
-    {
-        // however only do it if we have a Cancel button in the dialog,
-        // otherwise the user code may get confused by the events from a
-        // non-existing button and, worse, a wxButton might get button event
-        // from another button which is not really expected
-        wxWindow *winForCancel = win,
-                 *btnCancel = NULL;
-        while ( winForCancel )
-        {
-            btnCancel = winForCancel->FindWindow(wxID_CANCEL);
-            if ( btnCancel )
-            {
-                // found a cancel button
-                break;
-            }
-
-            if ( winForCancel->IsTopLevel() )
-            {
-                // no need to look further
-                break;
-            }
-
-            // maybe our parent has a cancel button?
-            winForCancel = winForCancel->GetParent();
-        }
-
-        if ( btnCancel )
-        {
-            wxCommandEvent eventClick(wxEVT_COMMAND_BUTTON_CLICKED, wxID_CANCEL);
-            eventClick.SetEventObject(btnCancel);
-            ret = btnCancel->GetEventHandler()->ProcessEvent(eventClick);
-        }
-    }
-
-    if (ret)
-    {
-        g_signal_stop_emission_by_name (widget, "key_press_event");
-        return TRUE;
-    }
-
-    return FALSE;
+    return ret;
 }
 }
+
+
 
 //-----------------------------------------------------------------------------
 // "key_release_event" from any window
@@ -716,8 +686,7 @@ gtk_window_key_release_callback( GtkWidget *widget,
 {
     DEBUG_MAIN_THREAD
 
-    if (g_isIdle)
-        wxapp_install_idle_handler();
+    // don't need to install idle handler, its done from "event" signal
 
     if (!win->m_hasVMT)
         return FALSE;
@@ -732,13 +701,12 @@ gtk_window_key_release_callback( GtkWidget *widget,
         return FALSE;
     }
 
-    if ( !win->GetEventHandler()->ProcessEvent( event ) )
-        return FALSE;
+    //[mad]return win->GTKProcessEvent(event);
+    return win->GetEventHandler()->ProcessEvent(event);
+}
+}
 
-    g_signal_stop_emission_by_name (widget, "key_release_event");
-    return TRUE;
-}
-}
+
 
 void MadEdit::ConnectToFixedKeyPressHandler()
 {
