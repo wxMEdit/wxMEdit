@@ -283,7 +283,7 @@ void wxTabMDIParentFrame::AddWindowMenu(wxMenuBar *pMenuBar)
 {
     if (pMenuBar && m_pWindowMenu)
     {
-        int pos = pMenuBar->FindMenu(wxGetStockLabel(wxID_HELP,wxSTOCK_NOFLAGS));
+        int pos = pMenuBar->FindMenu(wxGetStockLabel(wxID_HELP,0));
         if (pos == wxNOT_FOUND)
             pMenuBar->Append(m_pWindowMenu, _("&Window"));
              else
