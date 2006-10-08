@@ -6,7 +6,7 @@
 // Name:        src/gtk/clipbrd.cpp
 // Purpose:
 // Author:      Robert Roebling
-// Id:          $Id: clipbrd.cpp,v 1.72 2006/05/02 10:38:37 ABX Exp $
+// Id:          $Id: clipbrd.cpp,v 1.73 2006/07/27 12:56:59 ABX Exp $
 // Copyright:   (c) 1998 Robert Roebling
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////
@@ -23,9 +23,8 @@
 #ifndef WX_PRECOMP
     #include <wx/log.h>
     #include <wx/utils.h>
+    #include <wx/dataobj.h>
 #endif
-
-#include <wx/dataobj.h>
 
 //[mad]#include "wx/gtk/private.h"
 #include <glib.h>

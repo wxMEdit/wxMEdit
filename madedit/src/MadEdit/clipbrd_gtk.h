@@ -6,17 +6,15 @@
 // Name:        clipboard.h
 // Purpose:
 // Author:      Robert Roebling
-// Id:          $Id: clipbrd.h,v 1.22 2005/09/23 12:49:14 MR Exp $
+// Id:          $Id: clipbrd.h,v 1.24 2006/09/05 20:45:29 VZ Exp $
 // Copyright:   (c) 1998 Robert Roebling
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////
 
 #ifdef __WXGTK__
 
-#ifndef _CLIPBRD_GTK_H_
-#define _CLIPBRD_GTK_H_
-
-#if wxUSE_CLIPBOARD
+#ifndef _WX_GTK_CLIPBOARD_GTK_H_
+#define _WX_GTK_CLIPBOARD_GTK_H_
 
 #include <wx/object.h>
 #include <wx/list.h>
@@ -33,7 +31,7 @@ class WXDLLIMPEXP_CORE wxClipboardGtk : public wxClipboardBase
 {
 public:
     wxClipboardGtk();
-    ~wxClipboardGtk();
+    virtual ~wxClipboardGtk();
 
     // open the clipboard before SetData() and GetData()
     virtual bool Open();
@@ -93,11 +91,6 @@ extern wxClipboardGtk *GetClipboardGtk();
 #define wxTheClipboard GetClipboardGtk()
 
 
-#endif
-   // wxUSE_CLIPBOARD
+#endif // _WX_GTK_CLIPBOARD_GTK_H_
 
-#endif
-    // _CLIPBRD_GTK_H_
-
-#endif
-    // __WXGTK__
+#endif // __WXGTK__
