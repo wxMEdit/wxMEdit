@@ -321,9 +321,9 @@ void image2xpmFrm::WxButton2Click(wxCommandEvent& event)
         }
 
         wxString s1, s2;
-        s1.Printf( _T("// %s.%s %dx%d"), name.c_str(), extension.c_str(), g_Image.GetWidth(), g_Image.GetHeight());
+        s1.Printf( _T("// %s.%s %d x %d"), name.c_str(), extension.c_str(), g_Image.GetWidth(), g_Image.GetHeight());
         alpha.AddLine(s1);
-        s1.Printf( _T("unsigned char %s_alpha[]={"), name.c_str());
+        s1.Printf( _T("unsigned char %s_alpha[] = {"), name.c_str());
         alpha.AddLine(s1);
 
         unsigned char *adata = g_Image.GetAlpha();
