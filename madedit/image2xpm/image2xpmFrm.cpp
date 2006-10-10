@@ -8,6 +8,7 @@
 
 #include <wx/image.h>
 #include <wx/filename.h>
+#include <wx/textfile.h>
 
 #include "image2xpmFrm.h"
 //Do not add custom headers.
@@ -207,8 +208,8 @@ void image2xpmFrm::WxButton2Click(wxCommandEvent& event)
     if ( savefilename.empty() )
         return;
 
-    wxString extension;
-    wxFileName::SplitPath(savefilename, NULL, NULL, &extension);
+    wxString name, extension;
+    wxFileName::SplitPath(savefilename, NULL, &name, &extension);
 
     bool saved = false;
     if ( extension == _T("bpp") )
@@ -308,5 +309,38 @@ void image2xpmFrm::WxButton2Click(wxCommandEvent& event)
         g_Image.SaveFile(savefilename);
     }	
 	
-	
+    // save Alpha Channel data as text file like xpm format for C/C++.
+    if(g_Image.HasAlpha())
+    {
+        wxString alphaname = savefilename + _T(".alpha");
+        wxTextFile alpha;
+        if( alpha.Create(alphaname) == false )
+        {
+            alpha.Open(alphaname);
+            alpha.Clear(); // clear all data
+        }
+
+        wxString s1, s2;
+        s1.Printf( _T("// %s.%s %dx%d"), name.c_str(), extension.c_str(), g_Image.GetWidth(), g_Image.GetHeight());
+        alpha.AddLine(s1);
+        s1.Printf( _T("unsigned char %s_alpha[]={"), name.c_str());
+        alpha.AddLine(s1);
+
+        unsigned char *adata = g_Image.GetAlpha();
+
+        for(int y=0; y<g_Image.GetHeight(); ++y)
+        {
+            s1.Empty();
+            for(int x=0; x<g_Image.GetWidth(); ++x, ++adata)
+            {
+                s2.Printf( _T("%3d, "), *adata);
+                s1 += s2;
+            }
+            alpha.AddLine(s1);
+        }
+
+        alpha.AddLine(wxString(_T("};")));
+        alpha.Write();
+    }
+
 }
