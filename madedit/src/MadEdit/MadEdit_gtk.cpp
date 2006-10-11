@@ -27,6 +27,10 @@
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////
 
+extern bool g_isIdle;
+extern bool g_blockEventsOnDrag;
+extern bool g_mainThreadLocked;
+
 //-----------------------------------------------------------------------------
 // debug
 //-----------------------------------------------------------------------------
@@ -41,10 +45,6 @@
 #else
 #define DEBUG_MAIN_THREAD
 #endif // Debug
-
-extern void wxapp_install_idle_handler();
-extern bool g_isIdle;
-extern bool g_blockEventsOnDrag;
 
 //-----------------------------------------------------------------------------
 // "key_press_event" from any window
