@@ -64,6 +64,7 @@ const ucs4_t HexHeader[78] =
     '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F', '|', ':'
 };
 
+static wxCursor ArrowCursor, IBeamCursor;
 
 inline ucs4_t ToHex(int d)// 0 <= d <= 15
 {
@@ -638,8 +639,14 @@ MadEdit::MadEdit(wxWindow* parent, wxWindowID id, const wxPoint& pos, const wxSi
     m_VScrollBar->GetSize(&m_VSBWidth, &m_VSBHeight);
     m_HScrollBar->GetSize(&m_HSBWidth, &m_HSBHeight);
 
-    m_VScrollBar->SetCursor(wxCursor(wxCURSOR_ARROW));
-    m_HScrollBar->SetCursor(wxCursor(wxCURSOR_ARROW));
+    if(!ArrowCursor.Ok())
+    {
+        ArrowCursor = wxCursor(wxCURSOR_ARROW);
+        IBeamCursor = wxCursor(wxCURSOR_IBEAM);
+    }
+
+    m_VScrollBar->SetCursor(ArrowCursor);
+    m_HScrollBar->SetCursor(ArrowCursor);
 
 
     m_ClientWidth=m_ClientHeight=0;
@@ -9154,22 +9161,22 @@ void MadEdit::OnMouseMotion(wxMouseEvent &evt)
     {
         if(evt.m_x > m_LineNumberAreaWidth && evt.m_x <= m_ClientWidth && evt.m_y<=m_ClientHeight)
         {
-            SetCursor(wxCursor(wxCURSOR_IBEAM));
+            SetCursor(IBeamCursor);
         }
         else
         {
-            SetCursor(wxCursor(wxCURSOR_ARROW));
+            SetCursor(ArrowCursor);
         }
     }
     else
     {
         if((evt.m_x + m_DrawingXPos) > (9 * m_HexFontMaxDigitWidth) && evt.m_x <= m_ClientWidth && evt.m_y > m_RowHeight && evt.m_y<=m_ClientHeight)
         {
-            SetCursor(wxCursor(wxCURSOR_IBEAM));
+            SetCursor(IBeamCursor);
         }
         else
         {
-            SetCursor(wxCursor(wxCURSOR_ARROW));
+            SetCursor(ArrowCursor);
         }
     }
 
@@ -9552,7 +9559,7 @@ void MadEdit::OnMouseWheel(wxMouseEvent &evt)
 
 void MadEdit::OnMouseLeaveWindow(wxMouseEvent &evt)
 {
-    SetCursor(wxCursor(wxCURSOR_ARROW));
+    SetCursor(wxNullCursor); // reset to default
     evt.Skip();
 }
 
