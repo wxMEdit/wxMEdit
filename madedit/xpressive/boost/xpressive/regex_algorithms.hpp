@@ -392,8 +392,8 @@ inline bool regex_search
 /// and uses i to enumerate through all of the matches m of type match_results\< BidiIter \> that
 /// occur within the sequence [begin, end). If no such matches are found and !(flags \& format_no_copy)
 /// then calls std::copy(begin, end, out). Otherwise, for each match found, if !(flags \& format_no_copy)
-/// calls std::copy(m.prefix().first, m.prefix().last, out), and then calls m.format(out, fmt, flags).
-/// Finally if !(flags \& format_no_copy) calls std::copy(last_m.suffix().first, last_m.suffix().last, out)
+/// calls std::copy(m.prefix().first, m.prefix().second, out), and then calls m.format(out, fmt, flags).
+/// Finally if !(flags \& format_no_copy) calls std::copy(last_m.suffix().first, last_m.suffix().second, out)
 /// where last_m is a copy of the last match found. If flags \& format_first_only is non-zero then only
 /// the first match found is replaced.
 ///

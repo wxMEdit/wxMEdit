@@ -44,7 +44,7 @@ namespace boost { namespace xpressive
 struct regex_error
   : std::runtime_error
 {
-    /// Constructs an object of class bad_expression.
+    /// Constructs an object of class regex_error.
     /// \param code The error_type this regex_error represents.
     /// \post code() == code
     explicit regex_error(regex_constants::error_type code, char const *str = "")

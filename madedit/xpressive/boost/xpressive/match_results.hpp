@@ -212,6 +212,7 @@ public:
     }
 
     /// \overload
+    ///
     const_reference operator [](detail::mark_tag const &mark) const
     {
         return this->sub_matches_[ detail::get_mark_number(mark) ];
@@ -449,6 +450,13 @@ private:
         this->suffix_.first = (*this)[ 0 ].second;
         this->suffix_.second = end;
         this->suffix_.matched = this->suffix_.first != this->suffix_.second;
+
+        typename nested_results_type::iterator ibegin = this->nested_results_.begin();
+        typename nested_results_type::iterator iend = this->nested_results_.end();
+        for( ; ibegin != iend; ++ibegin )
+        {
+            ibegin->set_prefix_suffix_(begin, end);
+        }
     }
 
     /// INTERNAL ONLY
@@ -461,6 +469,13 @@ private:
     void set_base_(BidiIter base)
     {
         this->base_ = base;
+
+        typename nested_results_type::iterator ibegin = this->nested_results_.begin();
+        typename nested_results_type::iterator iend = this->nested_results_.end();
+        for( ; ibegin != iend; ++ibegin )
+        {
+            ibegin->set_base_(base);
+        }
     }
 
     regex_id_type regex_id_;

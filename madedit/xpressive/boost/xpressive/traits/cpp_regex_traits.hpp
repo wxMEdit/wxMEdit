@@ -169,7 +169,7 @@ namespace detail
       , mask_cast<std::ctype_base::xdigit>::value
     };
 
-    inline int log2(umaskex_t i)
+    inline int mylog2(umaskex_t i)
     {
         return "\0\0\1\0\2\0\0\0\3"[i & 0xf]
              + "\0\4\5\0\6\0\0\0\7"[(i & 0xf0) >> 04]
@@ -206,7 +206,7 @@ namespace detail
             umaskex_t tmp = mask & ~non_std_ctype_masks;
             for(umaskex_t i; 0 != (i = (tmp & (~tmp+1))); tmp &= ~i)
             {
-                std::ctype_base::mask m = (std::ctype_base::mask)(umask_t)std_masks[log2(i)];
+                std::ctype_base::mask m = (std::ctype_base::mask)(umask_t)std_masks[mylog2(i)];
                 if(ct.is(m, ch))
                 {
                     return true;

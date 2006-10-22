@@ -1,5 +1,5 @@
 
-xpressive 1.0.0 : Advanced Regular Expression Library
+xpressive 1.0.1 : Advanced Regular Expression Library
 ===================================================
 by Eric Niebler
 ---------------
@@ -47,7 +47,7 @@ Contact
 
 Any questions about xpressive should be sent to eric@boost-consulting.com
 
-Last Modified: March 16, 2006
+Last Modified: October 13, 2006
 
 --
 Eric Niebler
