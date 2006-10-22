@@ -4,7 +4,7 @@
 // Author:      Benjamin I. Williams
 // Modified by:
 // Created:     2005-05-17
-// RCS-ID:      $Id: floatpane.h,v 1.8 2006/09/05 20:45:15 VZ Exp $
+// RCS-ID:      $Id: floatpane.h,v 1.9 2006/10/16 20:36:02 RR Exp $
 // Copyright:   (C) Copyright 2005, Kirix Corporation, All Rights Reserved.
 // Licence:     wxWindows Library Licence, Version 3.1
 ///////////////////////////////////////////////////////////////////////////////
@@ -35,18 +35,24 @@ public:
     wxFloatingPane(wxWindow* parent,
                    wxFrameManager* owner_mgr,
                    const wxPaneInfo& pane,
-                   wxWindowID id = wxID_ANY
+                   wxWindowID id = wxID_ANY,
+                   long style = wxRESIZE_BORDER | wxSYSTEM_MENU | wxCAPTION |
+                                wxFRAME_NO_TASKBAR | wxFRAME_FLOAT_ON_PARENT | 
+                                wxCLIP_CHILDREN
                    );
     virtual ~wxFloatingPane();
     void SetPaneWindow(const wxPaneInfo& pane);
+    
+protected:
+    virtual void OnMoveStart();
+    virtual void OnMoving(const wxRect& window_rect, wxDirection dir);
+    virtual void OnMoveFinished();
+    
 private:
     void OnSize(wxSizeEvent& event);
     void OnClose(wxCloseEvent& event);
     void OnMoveEvent(wxMoveEvent& event);
     void OnIdle(wxIdleEvent& event);
-    void OnMoveStart();
-    void OnMoving(const wxRect& window_rect, wxDirection dir);
-    void OnMoveFinished();
     void OnActivate(wxActivateEvent& event);
     static bool isMouseDown();
 private:

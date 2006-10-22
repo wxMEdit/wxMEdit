@@ -4,7 +4,7 @@
 // Author:      Benjamin I. Williams
 // Modified by:
 // Created:     2005-05-17
-// RCS-ID:      $Id: framemanager.h,v 1.24 2006/08/27 15:19:39 RR Exp $
+// RCS-ID:      $Id: framemanager.h,v 1.27 2006/10/16 20:56:58 RD Exp $
 // Copyright:   (C) Copyright 2005, Kirix Corporation, All Rights Reserved.
 // Licence:     wxWindows Library Licence, Version 3.1
 ///////////////////////////////////////////////////////////////////////////////
@@ -218,6 +218,7 @@ public:
     bool IsRightDockable() const { return HasFlag(optionRightDockable); }
     bool IsFloatable() const { return HasFlag(optionFloatable); }
     bool IsMovable() const { return HasFlag(optionMovable); }
+    bool IsDestroyOnClose() const { return HasFlag(optionDestroyOnClose); }
     bool HasCaption() const { return HasFlag(optionCaption); }
     bool HasGripper() const { return HasFlag(optionGripper); }
     bool HasBorder() const { return HasFlag(optionPaneBorder); }
@@ -382,7 +383,7 @@ public:
 
 
 
-
+class WXDLLIMPEXP_AUI wxFloatingPane;
 
 class WXDLLIMPEXP_AUI wxFrameManager : public wxEvtHandler
 {
@@ -427,6 +428,8 @@ public:
                  int insert_level = wxAUI_INSERT_PANE);
 
     bool DetachPane(wxWindow* window);
+    
+    void ClosePane(wxPaneInfo& pane_info);
 
     wxString SavePaneInfo(wxPaneInfo& pane);
     void LoadPaneInfo(wxString pane_part, wxPaneInfo &pane);
@@ -440,6 +443,7 @@ public:
 
 
 public:
+    virtual wxFloatingPane * CreateFloatingFrame(wxWindow* parent, const wxPaneInfo& p);
 
     void DrawHintRect(wxWindow* pane_window,
                        const wxPoint& pt,

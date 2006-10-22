@@ -4,7 +4,7 @@
 // Author:      Benjamin I. Williams
 // Modified by:
 // Created:     2005-05-17
-// RCS-ID:      $Id: dockart.cpp,v 1.11 2006/09/04 18:48:53 ABX Exp $
+// RCS-ID:      $Id: dockart.cpp,v 1.14 2006/10/21 12:33:31 SC Exp $
 // Copyright:   (C) Copyright 2005-2006, Kirix Corporation, All Rights Reserved
 // Licence:     wxWindows Library Licence, Version 3.1
 ///////////////////////////////////////////////////////////////////////////////
@@ -36,6 +36,7 @@
 
 #ifdef __WXMAC__
 #include "wx/mac/private.h"
+#include "wx/graphics.h"
 #endif
 
 #ifdef __WXGTK__
@@ -312,7 +313,7 @@ void wxDefaultDockArt::DrawSash(wxDC& dc, wxWindow *window, int orientation, con
     HIRect splitterRect = CGRectMake( rect.x , rect.y , rect.width , rect.height );
     CGContextRef cgContext ;
 #if wxMAC_USE_CORE_GRAPHICS
-    cgContext = ((wxMacCGContext*)(dc.GetGraphicContext()))->GetNativeContext() ;
+    cgContext = (CGContextRef) dc.GetGraphicsContext()->GetNativeContext() ;
 #else
     Rect bounds ;
     GetPortBounds( (CGrafPtr) dc.m_macPort , &bounds ) ;

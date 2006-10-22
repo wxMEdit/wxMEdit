@@ -4,7 +4,7 @@
 // Author:      Benjamin I. Williams
 // Modified by:
 // Created:     2005-05-17
-// RCS-ID:      $Id: floatpane.cpp,v 1.12 2006/08/23 11:17:04 RR Exp $
+// RCS-ID:      $Id: floatpane.cpp,v 1.13 2006/10/16 20:36:11 RR Exp $
 // Copyright:   (C) Copyright 2005-2006, Kirix Corporation, All Rights Reserved
 // Licence:     wxWindows Library Licence, Version 3.1
 ///////////////////////////////////////////////////////////////////////////////
@@ -37,13 +37,15 @@ IMPLEMENT_CLASS( wxFloatingPane, wxFloatingPaneBaseClass )
 wxFloatingPane::wxFloatingPane(wxWindow* parent,
                 wxFrameManager* owner_mgr,
                 const wxPaneInfo& pane,
-                wxWindowID id /*= wxID_ANY*/)
+                wxWindowID id /*= wxID_ANY*/,
+                long style /*=wxRESIZE_BORDER | wxSYSTEM_MENU | wxCAPTION |
+                              wxFRAME_NO_TASKBAR | wxFRAME_FLOAT_ON_PARENT | 
+                              wxCLIP_CHILDREN
+                           */)
                 : wxFloatingPaneBaseClass(parent, id, wxEmptyString,
                         pane.floating_pos, pane.floating_size,
-                        wxRESIZE_BORDER | wxSYSTEM_MENU | wxCAPTION |
+                        style | 
                         (pane.HasCloseButton()?wxCLOSE_BOX:0) |
-                        wxFRAME_NO_TASKBAR |
-                        wxFRAME_FLOAT_ON_PARENT | wxCLIP_CHILDREN |
                         (pane.IsFixed()?0:wxRESIZE_BORDER)
                         )
 {

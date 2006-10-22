@@ -4,7 +4,7 @@
 // Author:      Benjamin I. Williams
 // Modified by:
 // Created:     2005-05-17
-// RCS-ID:      $Id: framemanager.cpp,v 1.63 2006/09/27 11:57:12 ABX Exp $
+// RCS-ID:      $Id: framemanager.cpp,v 1.65 2006/10/16 20:36:11 RR Exp $
 // Copyright:   (C) Copyright 2005-2006, Kirix Corporation, All Rights Reserved
 // Licence:     wxWindows Library Licence, Version 3.1
 ///////////////////////////////////////////////////////////////////////////////
@@ -494,6 +494,12 @@ wxFrameManager::~wxFrameManager()
     delete m_art;
 }
 
+// Creates a floating frame for the windows
+wxFloatingPane * wxFrameManager::CreateFloatingFrame(wxWindow* parent, const wxPaneInfo& p)
+{
+    return new wxFloatingPane(parent, this, p);
+}
+
 // GetPane() looks up a wxPaneInfo structure based
 // on the supplied window pointer.  Upon failure, GetPane()
 // returns an empty wxPaneInfo, a condition which can be checked
@@ -940,6 +946,40 @@ bool wxFrameManager::DetachPane(wxWindow* window)
     return false;
 }
 
+// ClosePane() destroys or hides the pane depending on its
+// flags
+void wxFrameManager::ClosePane(wxPaneInfo& pane_info)
+{
+    // first, hide the window
+    if (pane_info.window && pane_info.window->IsShown()) {
+        pane_info.window->Show(false);
+    }
+
+    // make sure that we are the parent of this window
+    if(pane_info.window && pane_info.window->GetParent() != m_frame) {
+        pane_info.window->Reparent(m_frame);
+    }
+
+    // if we have a frame, destroy it
+    if(pane_info.frame) {
+        pane_info.frame->Destroy();
+        pane_info.frame = NULL;
+    }
+
+    // now we need to either destroy or hide the pane
+    if(pane_info.IsDestroyOnClose()) 
+    {
+        wxWindow * window = pane_info.window;
+        DetachPane(window);
+        if(window) {
+            window->Destroy();
+        }
+    } 
+    else 
+    {
+        pane_info.Hide();
+    }
+}
 
 // EscapeDelimiters() changes ";" into "\;" and "|" into "\|"
 // in the input string.  This is an internal functions which is
@@ -2004,9 +2044,7 @@ void wxFrameManager::Update()
             {
                 // we need to create a frame for this
                 // pane, which has recently been floated
-                wxFloatingPane* frame = new wxFloatingPane(m_frame,
-                                                  this,
-                                                  p);
+                wxFloatingPane* frame = CreateFloatingFrame(m_frame, p);
 
 #if wxCHECK_VERSION(2,7,0)
                 // on MSW and Mac, if the owner desires transparent dragging, and
@@ -3117,15 +3155,9 @@ void wxFrameManager::OnFloatingPaneClosed(wxWindow* wnd, wxCloseEvent& evt)
         evt.Veto();
         return;
     }
-     else
+     else 
     {
-        // reparent the pane window back to us and
-        // prepare the frame window for destruction
-        if (pane.window->IsShown())
-            pane.window->Show(false);
-        pane.window->Reparent(m_frame);
-        pane.frame = NULL;
-        pane.Hide();
+        ClosePane(pane);
     }
 }
 
@@ -3860,7 +3892,7 @@ void wxFrameManager::OnPaneButton(wxFrameManagerEvent& evt)
 
         if (!e.GetVeto())
         {
-            pane.Hide();
+            ClosePane(pane);
             Update();
         }
     }
