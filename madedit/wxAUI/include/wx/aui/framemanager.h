@@ -4,7 +4,7 @@
 // Author:      Benjamin I. Williams
 // Modified by:
 // Created:     2005-05-17
-// RCS-ID:      $Id: framemanager.h,v 1.27 2006/10/16 20:56:58 RD Exp $
+// RCS-ID:      $Id: framemanager.h,v 1.28 2006/10/26 13:20:10 BIW Exp $
 // Copyright:   (C) Copyright 2005, Kirix Corporation, All Rights Reserved.
 // Licence:     wxWindows Library Licence, Version 3.1
 ///////////////////////////////////////////////////////////////////////////////
@@ -39,22 +39,21 @@ enum wxFrameManagerDock
 
 enum wxFrameManagerOption
 {
-    wxAUI_MGR_ALLOW_FLOATING        = 1 << 0,
-    wxAUI_MGR_ALLOW_ACTIVE_PANE     = 1 << 1,
-    wxAUI_MGR_TRANSPARENT_DRAG      = 1 << 2,
-    wxAUI_MGR_TRANSPARENT_HINT      = 1 << 3,
-    wxAUI_MGR_TRANSPARENT_HINT_FADE = 1 << 4,
-    // The venetian blind effect is ONLY used when the wxAUI_MGR_TRANSPARENT_HINT has been used, but
-    // at runtime we determine we cannot use transparency (because, for instance, the OS does not support it).
-    // setting this flag drops back in such circumstances (only) to the behaviour without wxAUI_MGR_TRANSPARENT_HINT
-    wxAUI_MGR_DISABLE_VENETIAN_BLINDS = 1 << 5,
-    wxAUI_MGR_DISABLE_VENETIAN_BLINDS_FADE = 1 << 6,
+    wxAUI_MGR_ALLOW_FLOATING           = 1 << 0,
+    wxAUI_MGR_ALLOW_ACTIVE_PANE        = 1 << 1,
+    wxAUI_MGR_TRANSPARENT_DRAG         = 1 << 2,
+    wxAUI_MGR_TRANSPARENT_HINT         = 1 << 3,
+    wxAUI_MGR_VENETIAN_BLINDS_HINT     = 1 << 4,
+    wxAUI_MGR_RECTANGLE_HINT           = 1 << 5,
+    wxAUI_MGR_HINT_FADE                = 1 << 6,
+    wxAUI_MGR_NO_VENETIAN_BLINDS_FADE  = 1 << 7,
 
     wxAUI_MGR_DEFAULT = wxAUI_MGR_ALLOW_FLOATING |
                         wxAUI_MGR_TRANSPARENT_HINT |
-                        wxAUI_MGR_TRANSPARENT_HINT_FADE |
-                        wxAUI_MGR_DISABLE_VENETIAN_BLINDS_FADE
+                        wxAUI_MGR_HINT_FADE |
+                        wxAUI_MGR_NO_VENETIAN_BLINDS_FADE
 };
+
 
 enum wxPaneDockArtSetting
 {
@@ -443,11 +442,11 @@ public:
 
 
 public:
-    virtual wxFloatingPane * CreateFloatingFrame(wxWindow* parent, const wxPaneInfo& p);
+    virtual wxFloatingPane* CreateFloatingFrame(wxWindow* parent, const wxPaneInfo& p);
 
     void DrawHintRect(wxWindow* pane_window,
-                       const wxPoint& pt,
-                       const wxPoint& offset);
+                      const wxPoint& pt,
+                      const wxPoint& offset);
     virtual void ShowHint(const wxRect& rect);
     virtual void HideHint();
 
@@ -461,7 +460,7 @@ public:
     
 protected:
 
-
+    void UpdateHintWindowConfig();
     
     void DoFrameLayout();
 
