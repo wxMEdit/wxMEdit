@@ -54,7 +54,15 @@ madedit_SOURCES =	src/MadAboutDialog.cpp \
 	src/MadEdit/TradSimp.cpp \
 	src/MadEdit/TradSimp.h \
 	src/MadEdit/ucs4_t.h \
+	wxFlatNotebook/src/wxFlatNotebook/fnb_resources.cpp \
+	wxFlatNotebook/src/wxFlatNotebook/popup_dlg.cpp \
+	wxFlatNotebook/src/wxFlatNotebook/renderer.cpp \
 	wxFlatNotebook/src/wxFlatNotebook/wxFlatNotebook.cpp \
+	wxFlatNotebook/include/wx/wxFlatNotebook/fnb_resources.h \
+	wxFlatNotebook/include/wx/wxFlatNotebook/popup_dlg.h \
+	wxFlatNotebook/include/wx/wxFlatNotebook/renderer.h \
+	wxFlatNotebook/include/wx/wxFlatNotebook/singleton.h \
+	wxFlatNotebook/include/wx/wxFlatNotebook/smart_ptr.h \
 	wxFlatNotebook/include/wx/wxFlatNotebook/wxFlatNotebook.h \
 	wxFlatNotebook/include/wx/wxFlatNotebook/wxFNBDropTarget.h \
 	wxAUI/include/wx/aui/aui.h \
@@ -165,8 +173,6 @@ noinst_HEADERS =	description-pak \
 	libunicows/libunicows.a \
 	libunicows/README.txt \
 	libunicows/unicows.lib \
-	makefiles/Makefile.debug \
-	makefiles/Makefile.linux \
 	makefiles/Makefile.mac \
 	makefiles/Makefile.mingw \
 	makefiles/Makefile.install \
