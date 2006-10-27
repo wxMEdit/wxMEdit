@@ -19,7 +19,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="..\wxAUI\include;..\wxFlatNotebook\include;\wxWidgets\lib\vc_lib\mswud;\wxWidgets\include;\boost"
+				AdditionalIncludeDirectories="..\wxAUI\include;..\wxFlatNotebook\include;$(WXWIN)\lib\vc_lib\mswud;$(WXWIN)\include;\boost"
 				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;wxUSE_AUI=1;WXDLLIMPEXP_AUI="
 				MinimalRebuild="TRUE"
 				BasicRuntimeChecks="3"
@@ -37,7 +37,7 @@
 				AdditionalDependencies="wxmsw27ud_core.lib wxbase27ud.lib unicows.lib comctl32.lib uuid.lib rpcrt4.lib User32.Lib Gdi32.Lib Shell32.Lib AdvAPI32.Lib Ole32.Lib OleAut32.Lib ComDlg32.Lib"
 				OutputFile="$(OutDir)/MadEdit.exe"
 				LinkIncremental="1"
-				AdditionalLibraryDirectories="\wxWidgets\lib\vc_lib;..\libunicows"
+				AdditionalLibraryDirectories="$(WXWIN)\lib\vc_lib;..\libunicows"
 				GenerateDebugInformation="TRUE"
 				SubSystem="2"
 				TargetMachine="1"/>
@@ -51,7 +51,7 @@
 				Name="VCPreLinkEventTool"/>
 			<Tool
 				Name="VCResourceCompilerTool"
-				AdditionalIncludeDirectories="\wxWidgets\include"/>
+				AdditionalIncludeDirectories="$(WXWIN)\include"/>
 			<Tool
 				Name="VCWebServiceProxyGeneratorTool"/>
 			<Tool
@@ -73,7 +73,7 @@
 				Name="VCCLCompilerTool"
 				GlobalOptimizations="TRUE"
 				FavorSizeOrSpeed="1"
-				AdditionalIncludeDirectories="..\wxAUI\include;..\wxFlatNotebook\include;\wxWidgets\lib\vc_lib\mswu;\wxWidgets\include;\boost"
+				AdditionalIncludeDirectories="..\wxAUI\include;..\wxFlatNotebook\include;$(WXWIN)\lib\vc_lib\mswu;$(WXWIN)\include;\boost"
 				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;wxUSE_AUI=1;WXDLLIMPEXP_AUI="
 				RuntimeLibrary="0"
 				TreatWChar_tAsBuiltInType="TRUE"
@@ -88,7 +88,7 @@
 				AdditionalDependencies="wxmsw27u_core.lib wxbase27u.lib unicows.lib comctl32.lib User32.Lib Gdi32.Lib Shell32.Lib AdvAPI32.Lib Ole32.Lib OleAut32.Lib ComDlg32.Lib"
 				OutputFile="$(OutDir)/MadEdit.exe"
 				LinkIncremental="1"
-				AdditionalLibraryDirectories="\wxWidgets\lib\vc_lib;..\libunicows"
+				AdditionalLibraryDirectories="$(WXWIN)\lib\vc_lib;..\libunicows"
 				GenerateDebugInformation="TRUE"
 				SubSystem="2"
 				OptimizeReferences="2"
@@ -104,7 +104,7 @@
 				Name="VCPreLinkEventTool"/>
 			<Tool
 				Name="VCResourceCompilerTool"
-				AdditionalIncludeDirectories="\wxWidgets\include"/>
+				AdditionalIncludeDirectories="$(WXWIN)\include"/>
 			<Tool
 				Name="VCWebServiceProxyGeneratorTool"/>
 			<Tool
@@ -166,9 +166,6 @@
 			<File
 				RelativePath="..\src\MadWordCountDialog.cpp">
 			</File>
-			<File
-				RelativePath="..\wxFlatNotebook\src\wxFlatNotebook\wxFlatNotebook.cpp">
-			</File>
 			<Filter
 				Name="MadEdit"
 				Filter="">
@@ -219,6 +216,22 @@
 					RelativePath="..\wxAUI\src\tabmdi.cpp">
 				</File>
 			</Filter>
+			<Filter
+				Name="wxFlatNotebook"
+				Filter="">
+				<File
+					RelativePath="..\wxFlatNotebook\src\wxFlatNotebook\fnb_resources.cpp">
+				</File>
+				<File
+					RelativePath="..\wxFlatNotebook\src\wxFlatNotebook\popup_dlg.cpp">
+				</File>
+				<File
+					RelativePath="..\wxFlatNotebook\src\wxFlatNotebook\renderer.cpp">
+				</File>
+				<File
+					RelativePath="..\wxFlatNotebook\src\wxFlatNotebook\wxFlatNotebook.cpp">
+				</File>
+			</Filter>
 		</Filter>
 		<Filter
 			Name="Header Files"
@@ -263,9 +276,6 @@
 			<File
 				RelativePath="..\src\MadWordCountDialog.h">
 			</File>
-			<File
-				RelativePath="..\src\plugin.h">
-			</File>
 			<Filter
 				Name="MadEdit"
 				Filter="">
@@ -286,6 +296,9 @@
 				</File>
 				<File
 					RelativePath="..\src\MadEdit\MadUndo.h">
+				</File>
+				<File
+					RelativePath="..\src\plugin.h">
 				</File>
 				<File
 					RelativePath="..\src\MadEdit\TradSimp.h">

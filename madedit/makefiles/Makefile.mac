@@ -6,20 +6,39 @@ CC   = gcc
 WXCONFIG = $(HOME)/wxWidgets/RELEASE/wx-config
 #WXCONFIG = wx-config --unicode=yes
 
-OBJ  = ./Release/MadEditFrame.o ./Release/MadEditApp.o \
-       ./Release/MadEdit.o ./Release/MadEncoding.o \
-       ./Release/MadLines.o ./Release/MadSyntax.o \
-       ./Release/MadUndo.o ./Release/MadPlugin.o \
-       ./Release/MadUtils.o ./Release/MadEditCommand.o \
-       ./Release/MadSearchDialog.o ./Release/MadOptionsDialog.o \
-       ./Release/MadEditSearch.o ./Release/MadReplaceDialog.o \
-       ./Release/MadAboutDialog.o ./Release/MadPrintout.o \
-       ./Release/TradSimp.o ./Release/MadConvEncDialog.o \
-       ./Release/wxFlatNotebook.o ./Release/MadEditAdvanced.o \
-       ./Release/MadWordCountDialog.o ./Release/MadHighlightingDialog.o \
-       ./Release/MadFindInFilesDialog.o ./Release/caret_new.o ./Release/MadSortDialog.o \
-       ./Release/tabmdi.o ./Release/auibook.o ./Release/dockart.o \
-       ./Release/floatpane.o ./Release/framemanager.o
+OBJ  = ./Release/MadEditFrame.o \
+       ./Release/MadEditApp.o \
+       ./Release/MadEdit.o \
+       ./Release/MadEncoding.o \
+       ./Release/MadLines.o \
+       ./Release/MadSyntax.o \
+       ./Release/MadUndo.o \
+       ./Release/MadPlugin.o \
+       ./Release/MadUtils.o \
+       ./Release/MadEditCommand.o \
+       ./Release/MadSearchDialog.o \
+       ./Release/MadOptionsDialog.o \
+       ./Release/MadEditSearch.o \
+       ./Release/MadReplaceDialog.o \
+       ./Release/MadAboutDialog.o \
+       ./Release/MadPrintout.o \
+       ./Release/TradSimp.o \
+       ./Release/MadConvEncDialog.o \
+       ./Release/fnb_resources.o \
+       ./Release/popup_dlg.o \
+       ./Release/renderer.o \
+       ./Release/wxFlatNotebook.o \
+       ./Release/MadEditAdvanced.o \
+       ./Release/MadWordCountDialog.o \
+       ./Release/MadHighlightingDialog.o \
+       ./Release/MadFindInFilesDialog.o \
+       ./Release/caret_new.o \
+       ./Release/MadSortDialog.o \
+       ./Release/tabmdi.o \
+       ./Release/auibook.o \
+       ./Release/dockart.o \
+       ./Release/floatpane.o \
+       ./Release/framemanager.o
 
 
 LINKOBJ  = $(OBJ)
@@ -110,6 +129,15 @@ $(BIN): $(OBJ)
 
 ./Release/MadConvEncDialog.o: ../src/MadConvEncDialog.cpp
 	$(CXX) -c ../src/MadConvEncDialog.cpp -o ./Release/MadConvEncDialog.o $(CXXFLAGS)
+
+./Release/fnb_resources.o: ../wxFlatNotebook/src/wxFlatNotebook/fnb_resources.cpp
+	$(CXX) -c ../wxFlatNotebook/src/wxFlatNotebook/fnb_resources.cpp -o ./Release/fnb_resources.o $(CXXFLAGS)
+
+./Release/popup_dlg.o: ../wxFlatNotebook/src/wxFlatNotebook/popup_dlg.cpp
+	$(CXX) -c ../wxFlatNotebook/src/wxFlatNotebook/popup_dlg.cpp -o ./Release/popup_dlg.o $(CXXFLAGS)
+
+./Release/renderer.o: ../wxFlatNotebook/src/wxFlatNotebook/renderer.cpp
+	$(CXX) -c ../wxFlatNotebook/src/wxFlatNotebook/renderer.cpp -o ./Release/renderer.o $(CXXFLAGS)
 
 ./Release/wxFlatNotebook.o: ../wxFlatNotebook/src/wxFlatNotebook/wxFlatNotebook.cpp
 	$(CXX) -c ../wxFlatNotebook/src/wxFlatNotebook/wxFlatNotebook.cpp -o ./Release/wxFlatNotebook.o $(CXXFLAGS)

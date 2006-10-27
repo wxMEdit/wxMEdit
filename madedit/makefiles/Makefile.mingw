@@ -5,32 +5,50 @@ CPP  = g++.exe
 CC   = gcc.exe
 WINDRES = windres.exe
 RES  = ./Release/MadEdit_private.res
-OBJ  = ./Release/MadEditFrame.obj ./Release/MadEditApp.obj \
-       ./Release/MadEdit.obj ./Release/MadEncoding.obj \
-       ./Release/MadLines.obj ./Release/MadSyntax.obj \
-       ./Release/MadUndo.obj ./Release/MadPlugin.obj \
-       ./Release/MadUtils.obj ./Release/MadEditCommand.obj \
-       ./Release/MadSearchDialog.obj ./Release/MadOptionsDialog.obj \
-       ./Release/MadEditSearch.obj ./Release/MadReplaceDialog.obj \
-       ./Release/MadAboutDialog.obj ./Release/MadPrintout.obj \
-       ./Release/TradSimp.obj ./Release/MadConvEncDialog.obj \
-       ./Release/wxFlatNotebook.obj ./Release/MadEditAdvanced.obj \
-       ./Release/MadWordCountDialog.obj ./Release/MadHighlightingDialog.obj \
-       ./Release/MadFindInFilesDialog.obj ./Release/MadSortDialog.obj \
-       ./Release/tabmdi.obj ./Release/auibook.obj ./Release/dockart.obj \
-       ./Release/floatpane.obj ./Release/framemanager.obj \
+OBJ  = ./Release/MadEditFrame.obj \
+       ./Release/MadEditApp.obj \
+       ./Release/MadEdit.obj \
+       ./Release/MadEncoding.obj \
+       ./Release/MadLines.obj \
+       ./Release/MadSyntax.obj \
+       ./Release/MadUndo.obj \
+       ./Release/MadPlugin.obj \
+       ./Release/MadUtils.obj \
+       ./Release/MadEditCommand.obj \
+       ./Release/MadSearchDialog.obj \
+       ./Release/MadOptionsDialog.obj \
+       ./Release/MadEditSearch.obj \
+       ./Release/MadReplaceDialog.obj \
+       ./Release/MadAboutDialog.obj \
+       ./Release/MadPrintout.obj \
+       ./Release/TradSimp.obj \
+       ./Release/MadConvEncDialog.obj \
+       ./Release/fnb_resources.obj \
+       ./Release/popup_dlg.obj \
+       ./Release/renderer.obj \
+       ./Release/wxFlatNotebook.obj \
+       ./Release/MadEditAdvanced.obj \
+       ./Release/MadWordCountDialog.obj \
+       ./Release/MadHighlightingDialog.obj \
+       ./Release/MadFindInFilesDialog.obj \
+       ./Release/MadSortDialog.obj \
+       ./Release/tabmdi.obj \
+       ./Release/auibook.obj \
+       ./Release/dockart.obj \
+       ./Release/floatpane.ob \
+       ./Release/framemanager.obj \
        $(RES)
 
 LINKOBJ = $(OBJ)
 
-WX_DIR = N:/wxWidgets
+WXWIN = N:/wxWidgets
 BOOST_DIR = N:/boost
 #XPRESSIVE_DIR = N:/boost
 XPRESSIVE_DIR = ../xpressive
 
-LIBS =  -L$(WX_DIR)/lib/gcc_lib -L"../libunicows" -mwindows -lwxmsw27u_core -lwxbase27u -lunicows -lkernel32 -luser32 -lgdi32 -lcomdlg32 -lwinspool -lwinmm -lshell32 -lcomctl32 -lole32 -loleaut32 -luuid -lrpcrt4 -ladvapi32 -lwsock32 -lodbc32 -lopengl32  -s 
-INCS =  -I$(WX_DIR)/include  -I$(WX_DIR)/lib/gcc_lib/mswu  -I$(BOOST_DIR)  -I$(XPRESSIVE_DIR)  -I"../wxFlatNotebook/include" -I"../wxAUI/include" 
-CXXINCS =  -I$(WX_DIR)/include  -I$(WX_DIR)/lib/gcc_lib/mswu  -I$(BOOST_DIR)  -I$(XPRESSIVE_DIR)  -I"../wxFlatNotebook/include" -I"../wxAUI/include" 
+LIBS =  -L$(WXWIN)/lib/gcc_lib -L"../libunicows" -mwindows -lwxmsw27u_core -lwxbase27u -lunicows -lkernel32 -luser32 -lgdi32 -lcomdlg32 -lwinspool -lwinmm -lshell32 -lcomctl32 -lole32 -loleaut32 -luuid -lrpcrt4 -ladvapi32 -lwsock32 -lodbc32 -lopengl32  -s 
+INCS =  -I$(WXWIN)/include  -I$(WXWIN)/lib/gcc_lib/mswu  -I$(BOOST_DIR)  -I$(XPRESSIVE_DIR)  -I"../wxFlatNotebook/include" -I"../wxAUI/include" 
+CXXINCS =  -I$(WXWIN)/include  -I$(WXWIN)/lib/gcc_lib/mswu  -I$(BOOST_DIR)  -I$(XPRESSIVE_DIR)  -I"../wxFlatNotebook/include" -I"../wxAUI/include" 
 
 BIN  = Release/MadEdit.exe
 CXXFLAGS = $(CXXINCS) -D_UNICODE -D__WXMSW__ -D__GNUWIN32__ -D__WIN95__ -DWIN32 -DwxUSE_AUI=1 -DWXDLLIMPEXP_AUI= -O2
@@ -105,6 +123,15 @@ $(BIN): $(OBJ)
 ./Release/MadConvEncDialog.obj: ../src/MadConvEncDialog.cpp
 	$(CPP) -c ../src/MadConvEncDialog.cpp -o ./Release/MadConvEncDialog.obj $(CXXFLAGS)
 
+./Release/fnb_resources.obj: ../wxFlatNotebook/src/wxFlatNotebook/fnb_resources.cpp
+	$(CPP) -c ../wxFlatNotebook/src/wxFlatNotebook/fnb_resources.cpp -o ./Release/fnb_resources.obj $(CXXFLAGS)
+
+./Release/popup_dlg.obj: ../wxFlatNotebook/src/wxFlatNotebook/popup_dlg.cpp
+	$(CPP) -c ../wxFlatNotebook/src/wxFlatNotebook/popup_dlg.cpp -o ./Release/popup_dlg.obj $(CXXFLAGS)
+
+./Release/renderer.obj: ../wxFlatNotebook/src/wxFlatNotebook/renderer.cpp
+	$(CPP) -c ../wxFlatNotebook/src/wxFlatNotebook/renderer.cpp -o ./Release/renderer.obj $(CXXFLAGS)
+
 ./Release/wxFlatNotebook.obj: ../wxFlatNotebook/src/wxFlatNotebook/wxFlatNotebook.cpp
 	$(CPP) -c ../wxFlatNotebook/src/wxFlatNotebook/wxFlatNotebook.cpp -o ./Release/wxFlatNotebook.obj $(CXXFLAGS)
 
@@ -139,4 +166,4 @@ $(BIN): $(OBJ)
 	$(CPP) -c ../wxAUI/src/framemanager.cpp -o ./Release/framemanager.obj $(CXXFLAGS)
 
 ./Release/MadEdit_private.res: ../devcpp/MadEdit_private.rc 
-	$(WINDRES) -i ../devcpp/MadEdit_private.rc --input-format=rc -o ./Release/MadEdit_private.res -O coff  --include-dir $(WX_DIR)/include
+	$(WINDRES) -i ../devcpp/MadEdit_private.rc --input-format=rc -o ./Release/MadEdit_private.res -O coff  --include-dir $(WXWIN)/include
