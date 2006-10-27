@@ -11,15 +11,9 @@ To build using g++ compiler on Linux,
 
 # cd contrib/build/wxFlatNotebook
 # make clean
-# make 
+# make type=[release | debug ]
 
 This will create both the library and the wxFlatNotebookTest executable
-
-To build in debug mode:
-
-# cd contrib/build/wxFlatNotebook
-# make clean
-# make type=debug 
 
 
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -109,3 +103,66 @@ Bugs:
 + Fixed minor drawing issues
 + Fixed bug that when closing the a tab using the mouse middle button, the page was set to active and only then closed.
 + Fixed bug that the old selection value in the event when closing a page was incorrect
+
+
+
+======================================================
+Version 1.5  9/13/2006 7:40PM
+======================================================
+
+Features:
+
++ New style added - VC8 style, with curved tabs 
+  The new style has the following features
+	- Background of tab area can be painted in gradient
+	- Colourful tabs - a random gentle colour is generated for each new tab (very cool :))
+	
+	Note: that the new tab DOES NOT support 'X' button on the tab
+
++ Build for DLL debug/release was fixed (on windows)
++ Makefile for Linux is now more generic using wx-config tool
++ Several drawing issues were fixed
++ Tabs now has an extra line that separate them from the page
+
+========================================================
+Version 2.0 
+========================================================
+
+ - Code refactoring: 
+   + remove wxStyledNotebook class, the same functionality now exist under wxFlatNotebook
+   + All drawing was moved to renderers (wxFlatNotebook.cpp file is now cleaned from drawing)
+   + Now using smart_ptr & singleton template classes where ever possible
+   
+ - Added smart tabbing style with new and easy way to select tabs (request #1527285)
+   Once this style is enabled, pressing Ctrl+[Shift]+T will popup a dialog with all the open tabs, another Ctrl+[Shift]+T will run throw the 
+   dialog list, until the Ctrl key is released.
+   
+ - Added new styles:
+   wxFNB_SMART_TABS - which enables the above feature
+   wxFNB_DROPDOWN_TABS_LIST - which replaces the '<>' (left, right arrows buttons) with a drop down list (popup menu) with all the open tabs
+   this feature is similar to VS8 tabs styles.
+   
+- Fixed a bug in SetSelection - in case that the navigation buttons were hidden, and the selection was not visible, it did not ensure that it will be visible
+
+========================================================
+Version 2.1
+========================================================
+
+This version is released shortly after 2.0 since v2.0 contained many code changes, I expected feedback from user
+which came ... (as expected)
+
+So, the following changes fixes applies to v2.1:
+
+- 'x' button on tabs with VS8 style
+- dropping page on foreign notebook that does not have image list, while the page does have caused a crash 
+- Drawing problems with VS71 & Fancy style when selecting the bottoms tabs
+- DeletePage, RemovePage now accepts second argument to allow user to disable page closing events
+- Page changing events are now fired from SetSelection, to fix a problem where only mouse left click allowed users to handle the page changes event (e.g. Ctrl + T did not fire page changes event ... )
+- If no right click menu is provided, an event wxEVT_COMMAND_FLATNOTEBOOK_CONTEXT_MENU is fired (a bug that existed preveneted this event to be fired)
+- wxFNB_ALLOW_FOREIGN_DND style added (check the demo)
+- All xpm files are now located on a single resource file
+- the smart tabbing dialog icon, was replaced from PNG to XPM.
+
+
+Have fun !
+Eran

@@ -1,4 +1,4 @@
-#ifndef _WX_FNB_DROP_TARGET_H
+#ifndef _WX_FNB_DROP_TARGET_H 
 #define _WX_FNB_DROP_TARGET_H
 
 #include <wx/wx.h>
@@ -115,4 +115,47 @@ public:
 	}
 };
 
+/**
+ * \ingroup wxFlatNotebook
+ * This class represents a source for a drag and drop operation
+ * We override wxDropSource class to provide user with a feedback
+ *
+ * \version 1.0
+ * first version
+ *
+ * \date 10-11-2006
+ *
+ * \author Eran
+ */
+class wxFNBDropSource : public wxDropSource 
+{
+	wxWindow* m_win;
+public:
+	/**
+	 * Parameterized constructor
+	 * \param win 
+	 * \param iconCopy 
+	 * \param iconMove 
+	 * \param iconNone 
+	 */
+	wxFNBDropSource(wxWindow* win = NULL)
+	: wxDropSource(win)
+		, m_win( win )
+	{
+	}
+
+	/**
+	 * Destructor
+	 */
+	virtual ~wxFNBDropSource()
+	{
+	}
+
+	/**
+	 * give some custom UI feedback during the drag and drop operation in this function. It is called on each mouse move, so your implementation must not be too slow
+	 * \param effect The effect to implement. One of wxDragCopy, wxDragMove, wxDragLink and wxDragNone
+	 * \return 
+	 */
+	virtual bool GiveFeedback(wxDragResult effect);
+};
 #endif
