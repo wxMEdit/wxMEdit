@@ -4,7 +4,7 @@
 // Author:      Benjamin I. Williams
 // Modified by:
 // Created:     2005-05-17
-// RCS-ID:      $Id: floatpane.cpp,v 1.13 2006/10/16 20:36:11 RR Exp $
+// RCS-ID:      $Id: floatpane.cpp,v 1.22 2006/11/17 13:07:01 BIW Exp $
 // Copyright:   (C) Copyright 2005-2006, Kirix Corporation, All Rights Reserved
 // Licence:     wxWindows Library Licence, Version 3.1
 ///////////////////////////////////////////////////////////////////////////////
@@ -32,40 +32,60 @@
 #ifndef WX_PRECOMP
 #endif
 
-IMPLEMENT_CLASS( wxFloatingPane, wxFloatingPaneBaseClass )
+#ifdef __WXMSW__
+#include "wx/msw/private.h"
+#endif
 
-wxFloatingPane::wxFloatingPane(wxWindow* parent,
-                wxFrameManager* owner_mgr,
-                const wxPaneInfo& pane,
+IMPLEMENT_CLASS(wxAuiFloatingFrame, wxAuiFloatingFrameBaseClass)
+
+wxAuiFloatingFrame::wxAuiFloatingFrame(wxWindow* parent,
+                wxAuiManager* owner_mgr,
+                const wxAuiPaneInfo& pane,
                 wxWindowID id /*= wxID_ANY*/,
                 long style /*=wxRESIZE_BORDER | wxSYSTEM_MENU | wxCAPTION |
                               wxFRAME_NO_TASKBAR | wxFRAME_FLOAT_ON_PARENT | 
                               wxCLIP_CHILDREN
                            */)
-                : wxFloatingPaneBaseClass(parent, id, wxEmptyString,
+                : wxAuiFloatingFrameBaseClass(parent, id, wxEmptyString,
                         pane.floating_pos, pane.floating_size,
                         style | 
                         (pane.HasCloseButton()?wxCLOSE_BOX:0) |
+                        (pane.HasMaximizeButton()?wxMAXIMIZE_BOX:0) |
                         (pane.IsFixed()?0:wxRESIZE_BORDER)
                         )
 {
     m_owner_mgr = owner_mgr;
     m_moving = false;
     m_mgr.SetManagedWindow(this);
+    m_solid_drag = true;
+    
+    // find out if the system supports solid window drag.
+    // on non-msw systems, this is assumed to be the case
+#ifdef __WXMSW__
+    BOOL b = TRUE;
+    SystemParametersInfo(38 /*SPI_GETDRAGFULLWINDOWS*/, 0, &b, 0);
+    m_solid_drag = b ? true : false;
+#endif
+    
     SetExtraStyle(wxWS_EX_PROCESS_IDLE);
 }
 
-wxFloatingPane::~wxFloatingPane()
+wxAuiFloatingFrame::~wxAuiFloatingFrame()
 {
+    // if we do not do this, then we can crash...
+    if(m_owner_mgr && m_owner_mgr->m_action_window == this)
+    {
+        m_owner_mgr->m_action_window = NULL;
+    }
     m_mgr.UnInit();
 }
 
-void wxFloatingPane::SetPaneWindow(const wxPaneInfo& pane)
+void wxAuiFloatingFrame::SetPaneWindow(const wxAuiPaneInfo& pane)
 {
     m_pane_window = pane.window;
     m_pane_window->Reparent(this);
 
-    wxPaneInfo contained_pane = pane;
+    wxAuiPaneInfo contained_pane = pane;
     contained_pane.Dock().Center().Show().
                     CaptionVisible(false).
                     PaneBorder(false).
@@ -103,29 +123,49 @@ void wxFloatingPane::SetPaneWindow(const wxPaneInfo& pane)
         if (pane.HasGripper())
         {
             if (pane.HasGripperTop())
-                size.y += m_owner_mgr->m_art->GetMetric(wxAUI_ART_GRIPPER_SIZE);
+                size.y += m_owner_mgr->m_art->GetMetric(wxAUI_DOCKART_GRIPPER_SIZE);
             else
-                size.x += m_owner_mgr->m_art->GetMetric(wxAUI_ART_GRIPPER_SIZE);
+                size.x += m_owner_mgr->m_art->GetMetric(wxAUI_DOCKART_GRIPPER_SIZE);
         }
 
         SetClientSize(size);
     }
 }
 
-void wxFloatingPane::OnSize(wxSizeEvent& event)
+wxAuiManager* wxAuiFloatingFrame::GetOwnerManager() const
+{
+    return m_owner_mgr;
+}
+
+
+void wxAuiFloatingFrame::OnSize(wxSizeEvent& event)
 {
     m_owner_mgr->OnFloatingPaneResized(m_pane_window, event.GetSize());
 }
 
-void wxFloatingPane::OnClose(wxCloseEvent& evt)
+void wxAuiFloatingFrame::OnClose(wxCloseEvent& evt)
 {
     m_owner_mgr->OnFloatingPaneClosed(m_pane_window, evt);
     if (!evt.GetVeto())
         Destroy();
 }
 
-void wxFloatingPane::OnMoveEvent(wxMoveEvent& event)
+void wxAuiFloatingFrame::OnMoveEvent(wxMoveEvent& event)
 {
+    if (!m_solid_drag)
+    {
+        // systems without solid window dragging need to be
+        // handled slightly differently, due to the lack of
+        // the constant stream of EVT_MOVING events
+        if (!isMouseDown())
+            return;
+        OnMoveStart();
+        OnMoving(event.GetRect(), wxNORTH);
+        m_moving = true;
+        return;
+    }
+    
+    
     wxRect win_rect = GetRect();
 
     if (win_rect == m_last_rect)
@@ -194,10 +234,10 @@ void wxFloatingPane::OnMoveEvent(wxMoveEvent& event)
     if (m_last3_rect.IsEmpty())
         return;
         
-    OnMoving(event.GetRect(), dir );
+    OnMoving(event.GetRect(), dir);
 }
 
-void wxFloatingPane::OnIdle(wxIdleEvent& event)
+void wxAuiFloatingFrame::OnIdle(wxIdleEvent& event)
 {
     if (m_moving)
     {
@@ -206,33 +246,33 @@ void wxFloatingPane::OnIdle(wxIdleEvent& event)
             m_moving = false;
             OnMoveFinished();
         }
-            else
+         else
         {
             event.RequestMore();
         }
     }
 }
 
-void wxFloatingPane::OnMoveStart()
+void wxAuiFloatingFrame::OnMoveStart()
 {
     // notify the owner manager that the pane has started to move
     m_owner_mgr->OnFloatingPaneMoveStart(m_pane_window);
 }
 
-void wxFloatingPane::OnMoving(const wxRect& WXUNUSED(window_rect), wxDirection dir)
+void wxAuiFloatingFrame::OnMoving(const wxRect& WXUNUSED(window_rect), wxDirection dir)
 {
     // notify the owner manager that the pane is moving
     m_owner_mgr->OnFloatingPaneMoving(m_pane_window, dir);
     m_lastDirection = dir;
 }
 
-void wxFloatingPane::OnMoveFinished()
+void wxAuiFloatingFrame::OnMoveFinished()
 {
     // notify the owner manager that the pane has finished moving
     m_owner_mgr->OnFloatingPaneMoved(m_pane_window, m_lastDirection);
 }
 
-void wxFloatingPane::OnActivate(wxActivateEvent& event)
+void wxAuiFloatingFrame::OnActivate(wxActivateEvent& event)
 {
     if (event.GetActive())
     {
@@ -244,19 +284,19 @@ void wxFloatingPane::OnActivate(wxActivateEvent& event)
 // (independant of having a wxMouseEvent handy) - utimately a better
 // mechanism for this should be found (possibly by adding the
 // functionality to wxWidgets itself)
-bool wxFloatingPane::isMouseDown()
+bool wxAuiFloatingFrame::isMouseDown()
 {
     return wxGetMouseState().LeftDown();
 }
 
 
-BEGIN_EVENT_TABLE(wxFloatingPane, wxFloatingPaneBaseClass)
-    EVT_SIZE(wxFloatingPane::OnSize)
-    EVT_MOVE(wxFloatingPane::OnMoveEvent)
-    EVT_MOVING(wxFloatingPane::OnMoveEvent)
-    EVT_CLOSE(wxFloatingPane::OnClose)
-    EVT_IDLE(wxFloatingPane::OnIdle)
-    EVT_ACTIVATE(wxFloatingPane::OnActivate)
+BEGIN_EVENT_TABLE(wxAuiFloatingFrame, wxAuiFloatingFrameBaseClass)
+    EVT_SIZE(wxAuiFloatingFrame::OnSize)
+    EVT_MOVE(wxAuiFloatingFrame::OnMoveEvent)
+    EVT_MOVING(wxAuiFloatingFrame::OnMoveEvent)
+    EVT_CLOSE(wxAuiFloatingFrame::OnClose)
+    EVT_IDLE(wxAuiFloatingFrame::OnIdle)
+    EVT_ACTIVATE(wxAuiFloatingFrame::OnActivate)
 END_EVENT_TABLE()
 
 

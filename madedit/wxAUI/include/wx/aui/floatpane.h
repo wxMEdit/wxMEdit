@@ -4,7 +4,7 @@
 // Author:      Benjamin I. Williams
 // Modified by:
 // Created:     2005-05-17
-// RCS-ID:      $Id: floatpane.h,v 1.9 2006/10/16 20:36:02 RR Exp $
+// RCS-ID:      $Id: floatpane.h,v 1.13 2006/11/17 13:06:56 BIW Exp $
 // Copyright:   (C) Copyright 2005, Kirix Corporation, All Rights Reserved.
 // Licence:     wxWindows Library Licence, Version 3.1
 ///////////////////////////////////////////////////////////////////////////////
@@ -24,24 +24,25 @@
 
 #if defined( __WXMSW__ ) || defined( __WXMAC__ ) ||  defined( __WXGTK__ )
 #include "wx/minifram.h"
-#define wxFloatingPaneBaseClass wxMiniFrame
+#define wxAuiFloatingFrameBaseClass wxMiniFrame
 #else
-#define wxFloatingPaneBaseClass wxFrame
+#define wxAuiFloatingFrameBaseClass wxFrame
 #endif
 
-class WXDLLIMPEXP_AUI wxFloatingPane : public wxFloatingPaneBaseClass
+class WXDLLIMPEXP_AUI wxAuiFloatingFrame : public wxAuiFloatingFrameBaseClass
 {
 public:
-    wxFloatingPane(wxWindow* parent,
-                   wxFrameManager* owner_mgr,
-                   const wxPaneInfo& pane,
+    wxAuiFloatingFrame(wxWindow* parent,
+                   wxAuiManager* owner_mgr,
+                   const wxAuiPaneInfo& pane,
                    wxWindowID id = wxID_ANY,
                    long style = wxRESIZE_BORDER | wxSYSTEM_MENU | wxCAPTION |
                                 wxFRAME_NO_TASKBAR | wxFRAME_FLOAT_ON_PARENT | 
                                 wxCLIP_CHILDREN
                    );
-    virtual ~wxFloatingPane();
-    void SetPaneWindow(const wxPaneInfo& pane);
+    virtual ~wxAuiFloatingFrame();
+    void SetPaneWindow(const wxAuiPaneInfo& pane);
+    wxAuiManager* GetOwnerManager() const;
     
 protected:
     virtual void OnMoveStart();
@@ -55,8 +56,10 @@ private:
     void OnIdle(wxIdleEvent& event);
     void OnActivate(wxActivateEvent& event);
     static bool isMouseDown();
+    
 private:
     wxWindow* m_pane_window;    // pane window being managed
+    bool m_solid_drag;          // true if system uses solid window drag
     bool m_moving;
     wxRect m_last_rect;
     wxRect m_last2_rect;
@@ -64,12 +67,12 @@ private:
     wxSize m_last_size;
     wxDirection m_lastDirection;
 
-    wxFrameManager* m_owner_mgr;
-    wxFrameManager m_mgr;
+    wxAuiManager* m_owner_mgr;
+    wxAuiManager m_mgr;
 
 #ifndef SWIG
     DECLARE_EVENT_TABLE()
-    DECLARE_CLASS(wxFloatingPaneBaseClass)
+    DECLARE_CLASS(wxAuiFloatingFrame)
 #endif // SWIG
 };
 

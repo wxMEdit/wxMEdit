@@ -1681,12 +1681,12 @@ void MadEditFrame::CreateGUIControls(void)
     m_InfoNotebook->Connect(wxEVT_SIZE, wxSizeEventHandler(MadEditFrame::OnInfoNotebookSize));
 
     // wxAUI
-    m_FrameManager.SetManagedWindow(this);
-    m_FrameManager.SetFlags(m_FrameManager.GetFlags() | wxAUI_MGR_ALLOW_ACTIVE_PANE);
-    m_FrameManager.AddPane(m_Notebook, wxCENTER);
-    m_FrameManager.AddPane(m_InfoNotebook, wxBOTTOM, _("Information Window"));
-    m_FrameManager.GetPane(m_InfoNotebook).Show(false).FloatingSize(nbsize);
-    m_FrameManager.Update();
+    m_AuiManager.SetManagedWindow(this);
+    m_AuiManager.SetFlags(m_AuiManager.GetFlags() | wxAUI_MGR_ALLOW_ACTIVE_PANE);
+    m_AuiManager.AddPane(m_Notebook, wxCENTER);
+    m_AuiManager.AddPane(m_InfoNotebook, wxBOTTOM, _("Information Window"));
+    m_AuiManager.GetPane(m_InfoNotebook).Show(false).FloatingSize(nbsize);
+    m_AuiManager.Update();
 
     // fixed for using wxAUI
     WxStatusBar1->Connect(wxEVT_SIZE, wxSizeEventHandler(MadEditFrame::OnSize));
@@ -1786,7 +1786,7 @@ void MadEditFrame::MadEditFrameClose(wxCloseEvent& event)
     extern void DeleteConfig();
     DeleteConfig();
 
-    m_FrameManager.UnInit();
+    m_AuiManager.UnInit();
 
 #ifndef __WXMSW__
     // it will crash randomly under linux.
@@ -2077,7 +2077,7 @@ wxString MadEditFrame::GetMenuKey(const wxString &menu, const wxString &defaultk
 
 void MadEditFrame::OnInfoNotebookSize(wxSizeEvent &evt)
 {
-    wxPaneInfo &pinfo=g_MainFrame->m_FrameManager.GetPane(g_MainFrame->m_InfoNotebook);
+    wxAuiPaneInfo &pinfo=g_MainFrame->m_AuiManager.GetPane(g_MainFrame->m_InfoNotebook);
     if(pinfo.IsOk())// && pinfo.IsShown())
     {
         wxSize size;
@@ -3588,15 +3588,15 @@ void MadEditFrame::OnSearchFindInFiles(wxCommandEvent& event)
 
 void MadEditFrame::OnSearchShowFindInFilesResults(wxCommandEvent& event)
 {
-    if(m_FrameManager.GetPane(m_InfoNotebook).IsShown())
+    if(m_AuiManager.GetPane(m_InfoNotebook).IsShown())
     {
-        m_FrameManager.GetPane(m_InfoNotebook).Hide();
+        m_AuiManager.GetPane(m_InfoNotebook).Hide();
     }
     else
     {
-        m_FrameManager.GetPane(m_InfoNotebook).Show();
+        m_AuiManager.GetPane(m_InfoNotebook).Show();
     }
-    m_FrameManager.Update();
+    m_AuiManager.Update();
 }
 
 void MadEditFrame::OnSearchGoToLine(wxCommandEvent& event)

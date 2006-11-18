@@ -4,7 +4,7 @@
 // Author:      Benjamin I. Williams
 // Modified by:
 // Created:     2005-05-17
-// RCS-ID:      $Id: dockart.h,v 1.5 2006/09/02 12:37:25 RR Exp $
+// RCS-ID:      $Id: dockart.h,v 1.9 2006/11/07 10:29:02 BIW Exp $
 // Copyright:   (C) Copyright 2005, Kirix Corporation, All Rights Reserved.
 // Licence:     wxWindows Library Licence, Version 3.1
 ///////////////////////////////////////////////////////////////////////////////
@@ -29,12 +29,12 @@
 // functionality to the wxAui dock manager.  This allows the dock
 // manager to have plugable look-and-feels
 
-class WXDLLIMPEXP_AUI wxDockArt
+class WXDLLIMPEXP_AUI wxAuiDockArt
 {
 public:
 
-    wxDockArt() { }
-    virtual ~wxDockArt() { }
+    wxAuiDockArt() { }
+    virtual ~wxAuiDockArt() { }
 
     virtual int GetMetric(int id) = 0;
     virtual void SetMetric(int id, int new_val) = 0;
@@ -46,49 +46,49 @@ public:
     void SetColor(int id, const wxColour& color) { SetColour(id, color); }
 
     virtual void DrawSash(wxDC& dc,
-                          wxWindow *window,
+                          wxWindow* window,
                           int orientation,
                           const wxRect& rect) = 0;
 
     virtual void DrawBackground(wxDC& dc,
-                          wxWindow *window,
+                          wxWindow* window,
                           int orientation,
                           const wxRect& rect) = 0;
 
     virtual void DrawCaption(wxDC& dc,
-                          wxWindow *window,
+                          wxWindow* window,
                           const wxString& text,
                           const wxRect& rect,
-                          wxPaneInfo& pane) = 0;
+                          wxAuiPaneInfo& pane) = 0;
 
     virtual void DrawGripper(wxDC& dc,
-                          wxWindow *window,
+                          wxWindow* window,
                           const wxRect& rect,
-                          wxPaneInfo& pane) = 0;
+                          wxAuiPaneInfo& pane) = 0;
 
     virtual void DrawBorder(wxDC& dc,
-                          wxWindow *window,
+                          wxWindow* window,
                           const wxRect& rect,
-                          wxPaneInfo& pane) = 0;
+                          wxAuiPaneInfo& pane) = 0;
 
     virtual void DrawPaneButton(wxDC& dc,
-                          wxWindow *window,
+                          wxWindow* window,
                           int button,
                           int button_state,
                           const wxRect& rect,
-                          wxPaneInfo& pane) = 0;
+                          wxAuiPaneInfo& pane) = 0;
 };
 
 
-// this is the default art provider for wxFrameManager.  Dock art
+// this is the default art provider for wxAuiManager.  Dock art
 // can be customized by creating a class derived from this one,
 // or replacing this class entirely
 
-class WXDLLIMPEXP_AUI wxDefaultDockArt : public wxDockArt
+class WXDLLIMPEXP_AUI wxAuiDefaultDockArt : public wxAuiDockArt
 {
 public:
 
-    wxDefaultDockArt();
+    wxAuiDefaultDockArt();
 
     int GetMetric(int metric_id);
     void SetMetric(int metric_id, int new_val);
@@ -111,24 +111,24 @@ public:
                   wxWindow *window,
                   const wxString& text,
                   const wxRect& rect,
-                  wxPaneInfo& pane);
+                  wxAuiPaneInfo& pane);
 
     void DrawGripper(wxDC& dc,
                   wxWindow *window,
                   const wxRect& rect,
-                  wxPaneInfo& pane);
+                  wxAuiPaneInfo& pane);
 
     void DrawBorder(wxDC& dc,
                   wxWindow *window,
                   const wxRect& rect,
-                  wxPaneInfo& pane);
+                  wxAuiPaneInfo& pane);
 
     void DrawPaneButton(wxDC& dc,
                   wxWindow *window,
                   int button,
                   int button_state,
                   const wxRect& rect,
-                  wxPaneInfo& pane);
+                  wxAuiPaneInfo& pane);
 
 protected:
 
@@ -143,11 +143,16 @@ protected:
     wxFont m_caption_font;
     wxBitmap m_inactive_close_bitmap;
     wxBitmap m_inactive_pin_bitmap;
+    wxBitmap m_inactive_maximize_bitmap;
+    wxBitmap m_inactive_restore_bitmap;
     wxBitmap m_active_close_bitmap;
     wxBitmap m_active_pin_bitmap;
+    wxBitmap m_active_maximize_bitmap;
+    wxBitmap m_active_restore_bitmap;
     wxPen m_gripper_pen1;
     wxPen m_gripper_pen2;
     wxPen m_gripper_pen3;
+    wxColour m_base_colour;
     wxColour m_active_caption_colour;
     wxColour m_active_caption_gradient_colour;
     wxColour m_active_caption_text_colour;

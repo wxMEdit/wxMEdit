@@ -589,8 +589,8 @@ void MadFindInFilesDialog::FindReplaceInFiles(bool bReplace)
     g_ProgressDialog=&dialog;
 
     g_MainFrame->ResetFindInFilesResults();
-    g_MainFrame->m_FrameManager.GetPane(g_MainFrame->m_InfoNotebook).Show();
-    g_MainFrame->m_FrameManager.Update();
+    g_MainFrame->m_AuiManager.GetPane(g_MainFrame->m_InfoNotebook).Show();
+    g_MainFrame->m_AuiManager.Update();
 
     g_Continue=true;
     g_Time=wxGetLocalTimeMillis();

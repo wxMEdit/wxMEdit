@@ -4,7 +4,7 @@
 // Author:      Benjamin I. Williams
 // Modified by:
 // Created:     2005-05-17
-// RCS-ID:      $Id: dockart.cpp,v 1.14 2006/10/21 12:33:31 SC Exp $
+// RCS-ID:      $Id: dockart.cpp,v 1.29 2006/11/17 21:49:20 BIW Exp $
 // Copyright:   (C) Copyright 2005-2006, Kirix Corporation, All Rights Reserved
 // Licence:     wxWindows Library Licence, Version 3.1
 ///////////////////////////////////////////////////////////////////////////////
@@ -46,27 +46,68 @@
 #endif
 
 
-// -- wxDefaultDockArt class implementation --
+// -- wxAuiDefaultDockArt class implementation --
 
-// wxDefaultDockArt is an art provider class which does all of the drawing for
-// wxFrameManager.  This allows the library caller to customize the dock art
+// wxAuiDefaultDockArt is an art provider class which does all of the drawing for
+// wxAuiManager.  This allows the library caller to customize the dock art
 // (probably by deriving from this class), or to completely replace all drawing
 // with custom dock art (probably by writing a new stand-alone class derived
-// from the wxDockArt base class). The active dock art class can be set via
-// wxFrameManager::SetDockArt()
+// from the wxAuiDockArt base class). The active dock art class can be set via
+// wxAuiManager::SetDockArt()
 
 
-// StepColour() it a utility function that simply darkens
-// or lightens a color, based on the specified percentage
-static wxColor StepColour(const wxColor& c, int percent)
+// wxAuiBlendColour is used by wxAuiStepColour
+double wxAuiBlendColour(double fg, double bg, double alpha)
 {
-    int r = c.Red(), g = c.Green(), b = c.Blue();
-    return wxColour((unsigned char)wxMin((r*percent)/100,255),
-                    (unsigned char)wxMin((g*percent)/100,255),
-                    (unsigned char)wxMin((b*percent)/100,255));
+    double result = bg + (alpha * (fg - bg));
+    if (result < 0.0)
+        result = 0.0;
+    if (result > 255)
+        result = 255;
+    return result;
 }
 
-static wxColor LightContrastColour(const wxColour& c)
+// wxAuiStepColour() it a utility function that simply darkens
+// or lightens a color, based on the specified percentage
+// ialpha of 0 would be completely black, 100 completely white
+// an ialpha of 100 returns the same colour
+wxColor wxAuiStepColour(const wxColor& c, int ialpha)
+{
+    if (ialpha == 100)
+        return c;
+        
+    double r = c.Red(), g = c.Green(), b = c.Blue();
+    double bg;
+    
+    // ialpha is 0..200 where 0 is completely black
+    // and 200 is completely white and 100 is the same
+    // convert that to normal alpha 0.0 - 1.0
+    ialpha = wxMin(ialpha, 200);
+    ialpha = wxMax(ialpha, 0);
+    double alpha = ((double)(ialpha - 100.0))/100.0;
+    
+    if (ialpha > 100)
+    {
+        // blend with white
+        bg = 255.0;
+        alpha = 1.0 - alpha;  // 0 = transparent fg; 1 = opaque fg
+    }
+     else
+    {
+        // blend with black
+        bg = 0.0;
+        alpha = 1.0 + alpha;  // 0 = transparent fg; 1 = opaque fg
+    }
+    
+    r = wxAuiBlendColour(r, bg, alpha);
+    g = wxAuiBlendColour(g, bg, alpha);
+    b = wxAuiBlendColour(b, bg, alpha);
+    
+    return wxColour((int)r, (int)g, (int)b);
+}
+
+
+wxColor wxAuiLightContrastColour(const wxColour& c)
 {
     int amount = 120;
 
@@ -75,13 +116,13 @@ static wxColor LightContrastColour(const wxColour& c)
     if (c.Red() < 128 && c.Green() < 128 && c.Blue() < 128)
         amount = 160;
 
-    return StepColour(c, amount);
+    return wxAuiStepColour(c, amount);
 }
 
-// BitmapFromBits() is a utility function that creates a
+// wxAuiBitmapFromBits() is a utility function that creates a
 // masked bitmap from raw bits (XBM format)
-static wxBitmap BitmapFromBits(const unsigned char bits[], int w, int h,
-                               const wxColour& color)
+wxBitmap wxAuiBitmapFromBits(const unsigned char bits[], int w, int h,
+                             const wxColour& color)
 {
     wxImage img = wxBitmap((const char*)bits, w, h).ConvertToImage();
     img.Replace(0,0,0,123,123,123);
@@ -89,7 +130,7 @@ static wxBitmap BitmapFromBits(const unsigned char bits[], int w, int h,
     img.SetMaskColour(123,123,123);
     return wxBitmap(img);
 }
-
+                             
 
 static void DrawGradientRectangle(wxDC& dc,
                                   const wxRect& rect,
@@ -109,9 +150,12 @@ static void DrawGradientRectangle(wxDC& dc,
 
     for (int i = 0; i <= high; ++i)
     {
-        int r = start_color.Red() +  ((i*rd*100)/high)/100;
-        int g = start_color.Green() + ((i*gd*100)/high)/100;
-        int b = start_color.Blue() + ((i*bd*100)/high)/100;
+        int r,g,b;
+        
+        
+        r = start_color.Red() + ((i*rd*100)/high)/100;
+        g = start_color.Green() + ((i*gd*100)/high)/100;
+        b = start_color.Blue() + ((i*bd*100)/high)/100;
 
         wxPen p(wxColor((unsigned char)r,
                         (unsigned char)g,
@@ -123,30 +167,67 @@ static void DrawGradientRectangle(wxDC& dc,
              else
             dc.DrawLine(rect.x+i, rect.y, rect.x+i, rect.y+rect.height);
     }
-
 }
 
-wxDefaultDockArt::wxDefaultDockArt()
+wxString wxAuiChopText(wxDC& dc, const wxString& text, int max_size)
+{
+    wxCoord x,y;
+    
+    // first check if the text fits with no problems
+    dc.GetTextExtent(text, &x, &y);
+    if (x <= max_size)
+        return text;
+        
+    size_t i, len = text.Length();
+    size_t last_good_length = 0;
+    for (i = 0; i < len; ++i)
+    {
+        wxString s = text.Left(i);
+        s += wxT("...");
+        
+        dc.GetTextExtent(s, &x, &y);
+        if (x > max_size)
+            break;
+        
+        last_good_length = i;
+    }
+
+    wxString ret = text.Left(last_good_length);
+    ret += wxT("...");
+    return ret;
+}
+
+wxAuiDefaultDockArt::wxAuiDefaultDockArt()
 {
 #ifdef __WXMAC__
     wxBrush toolbarbrush;
     toolbarbrush.MacSetTheme( kThemeBrushToolbarBackground );
-    wxColor base_color = toolbarbrush.GetColour();
+    wxColor base_colour = toolbarbrush.GetColour();
 #else
-    wxColor base_color = wxSystemSettings::GetColour(wxSYS_COLOUR_3DFACE);
+    wxColor base_colour = wxSystemSettings::GetColour(wxSYS_COLOUR_3DFACE);
 #endif
 
-    wxColor darker1_color = StepColour(base_color, 85);
-    wxColor darker2_color = StepColour(base_color, 70);
-    wxColor darker3_color = StepColour(base_color, 60);
-    wxColor darker4_color = StepColour(base_color, 50);
-    wxColor darker5_color = StepColour(base_color, 40);
+    // the base_colour is too pale to use as our base colour,
+    // so darken it a bit --
+    if ((255-base_colour.Red()) +
+        (255-base_colour.Green()) +
+        (255-base_colour.Blue()) < 60)
+    {
+        base_colour = wxAuiStepColour(base_colour, 92);
+    }
+    
+    m_base_colour = base_colour;
+    wxColor darker1_colour = wxAuiStepColour(base_colour, 85);
+    wxColor darker2_colour = wxAuiStepColour(base_colour, 75);
+    wxColor darker3_colour = wxAuiStepColour(base_colour, 60);
+    wxColor darker4_colour = wxAuiStepColour(base_colour, 50);
+    wxColor darker5_colour = wxAuiStepColour(base_colour, 40);
 
-    m_active_caption_colour = LightContrastColour(wxSystemSettings::GetColour(wxSYS_COLOUR_HIGHLIGHT));
-    m_active_caption_gradient_colour = wxSystemSettings::GetColour(wxSYS_COLOUR_HIGHLIGHT);
+    m_active_caption_colour = wxSystemSettings::GetColour(wxSYS_COLOUR_HIGHLIGHT);
+    m_active_caption_gradient_colour = wxAuiLightContrastColour(wxSystemSettings::GetColour(wxSYS_COLOUR_HIGHLIGHT));
     m_active_caption_text_colour = wxSystemSettings::GetColour(wxSYS_COLOUR_HIGHLIGHTTEXT);
-    m_inactive_caption_colour = StepColour(darker1_color, 80);
-    m_inactive_caption_gradient_colour = darker1_color;
+    m_inactive_caption_colour = darker1_colour;
+    m_inactive_caption_gradient_colour = wxAuiStepColour(base_colour, 97);
     m_inactive_caption_text_colour = *wxBLACK;
 
 #ifdef __WXMAC__
@@ -154,13 +235,13 @@ wxDefaultDockArt::wxDefaultDockArt()
     m_background_brush = toolbarbrush;
     m_gripper_brush = toolbarbrush;
 #else
-    m_sash_brush = wxBrush(base_color);
-    m_background_brush = wxBrush(base_color);
-    m_gripper_brush = wxBrush(base_color);
+    m_sash_brush = wxBrush(base_colour);
+    m_background_brush = wxBrush(base_colour);
+    m_gripper_brush = wxBrush(base_colour);
 #endif
-    m_border_pen = wxPen(darker2_color);
-    m_gripper_pen1 = wxPen(darker5_color);
-    m_gripper_pen2 = wxPen(darker3_color);
+    m_border_pen = wxPen(darker2_colour);
+    m_gripper_pen1 = wxPen(darker5_colour);
+    m_gripper_pen2 = wxPen(darker3_colour);
     m_gripper_pen3 = *wxWHITE_PEN;
 
 #ifdef __WXMAC__
@@ -175,35 +256,59 @@ wxDefaultDockArt::wxDefaultDockArt()
          0xFF, 0xFF, 0xFF, 0xFF, 0x0F, 0xFE, 0x03, 0xF8, 0x01, 0xF0, 0x19, 0xF3,
          0xB8, 0xE3, 0xF0, 0xE1, 0xE0, 0xE0, 0xF0, 0xE1, 0xB8, 0xE3, 0x19, 0xF3,
          0x01, 0xF0, 0x03, 0xF8, 0x0F, 0xFE, 0xFF, 0xFF };
-#elif defined( __WXGTK__)
-    static unsigned char close_bits[]={
-         0xff, 0xff, 0xff, 0xff, 0x07, 0xf0, 0xfb, 0xef, 0xdb, 0xed, 0x8b, 0xe8,
-         0x1b, 0xec, 0x3b, 0xee, 0x1b, 0xec, 0x8b, 0xe8, 0xdb, 0xed, 0xfb, 0xef,
-         0x07, 0xf0, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff };
+#elif defined( __WXGTK__) 	 
+     static unsigned char close_bits[]={ 	 
+         0xff, 0xff, 0xff, 0xff, 0x07, 0xf0, 0xfb, 0xef, 0xdb, 0xed, 0x8b, 0xe8, 	 
+         0x1b, 0xec, 0x3b, 0xee, 0x1b, 0xec, 0x8b, 0xe8, 0xdb, 0xed, 0xfb, 0xef, 	 
+         0x07, 0xf0, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff }; 	 
 #else
     static unsigned char close_bits[]={
-        0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xef,0xfb,0xcf,0xf9,
-        0x9f,0xfc,0x3f,0xfe,0x3f,0xfe,0x9f,0xfc,0xcf,0xf9,0xef,0xfb,
-        0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff};
+         0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xe7, 0xf3, 0xcf, 0xf9,
+         0x9f, 0xfc, 0x3f, 0xfe, 0x3f, 0xfe, 0x9f, 0xfc, 0xcf, 0xf9, 0xe7, 0xf3,
+         0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff};
 #endif
 
+    static unsigned char maximize_bits[] = {
+        0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0x07, 0xf0, 0xf7, 0xf7, 0x07, 0xf0,
+        0xf7, 0xf7, 0xf7, 0xf7, 0xf7, 0xf7, 0xf7, 0xf7, 0xf7, 0xf7, 0x07, 0xf0,
+        0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff};
+
+    static unsigned char restore_bits[]={
+        0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0x1f, 0xf0, 0x1f, 0xf0, 0xdf, 0xf7,
+        0x07, 0xf4, 0x07, 0xf4, 0xf7, 0xf5, 0xf7, 0xf1, 0xf7, 0xfd, 0xf7, 0xfd,
+        0x07, 0xfc, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff};
+        
     static unsigned char pin_bits[]={
         0xff,0xff,0xff,0xff,0xff,0xff,0x1f,0xfc,0xdf,0xfc,0xdf,0xfc,
         0xdf,0xfc,0xdf,0xfc,0xdf,0xfc,0x0f,0xf8,0x7f,0xff,0x7f,0xff,
         0x7f,0xff,0xff,0xff,0xff,0xff,0xff,0xff};
 
 #ifdef __WXMAC__
-    m_inactive_close_bitmap = BitmapFromBits(close_bits, 16, 16, *wxWHITE);
+    m_inactive_close_bitmap = wxAuiBitmapFromBits(close_bits, 16, 16, *wxWHITE);
+    m_active_close_bitmap = wxAuiBitmapFromBits(close_bits, 16, 16, *wxWHITE );
 #else
-    m_inactive_close_bitmap = BitmapFromBits(close_bits, 16, 16, m_inactive_caption_text_colour);
+    m_inactive_close_bitmap = wxAuiBitmapFromBits(close_bits, 16, 16, m_inactive_caption_text_colour);
+    m_active_close_bitmap = wxAuiBitmapFromBits(close_bits, 16, 16, m_active_caption_text_colour);
 #endif
-    m_inactive_pin_bitmap = BitmapFromBits(pin_bits, 16, 16, m_inactive_caption_text_colour);
+
 #ifdef __WXMAC__
-    m_active_close_bitmap = BitmapFromBits(close_bits, 16, 16, *wxWHITE );
+    m_inactive_maximize_bitmap = wxAuiBitmapFromBits(maximize_bits, 16, 16, *wxWHITE);
+    m_active_maximize_bitmap = wxAuiBitmapFromBits(maximize_bits, 16, 16, *wxWHITE );
 #else
-    m_active_close_bitmap = BitmapFromBits(close_bits, 16, 16, m_active_caption_text_colour);
+    m_inactive_maximize_bitmap = wxAuiBitmapFromBits(maximize_bits, 16, 16, m_inactive_caption_text_colour);
+    m_active_maximize_bitmap = wxAuiBitmapFromBits(maximize_bits, 16, 16, m_active_caption_text_colour);
 #endif
-    m_active_pin_bitmap = BitmapFromBits(pin_bits, 16, 16, m_active_caption_text_colour);
+
+#ifdef __WXMAC__
+    m_inactive_restore_bitmap = wxAuiBitmapFromBits(restore_bits, 16, 16, *wxWHITE);
+    m_active_restore_bitmap = wxAuiBitmapFromBits(restore_bits, 16, 16, *wxWHITE );
+#else
+    m_inactive_restore_bitmap = wxAuiBitmapFromBits(restore_bits, 16, 16, m_inactive_caption_text_colour);
+    m_active_restore_bitmap = wxAuiBitmapFromBits(restore_bits, 16, 16, m_active_caption_text_colour);
+#endif
+
+    m_inactive_pin_bitmap = wxAuiBitmapFromBits(pin_bits, 16, 16, m_inactive_caption_text_colour);
+    m_active_pin_bitmap = wxAuiBitmapFromBits(pin_bits, 16, 16, m_active_caption_text_colour);
 
     // default metric values
 #if defined(__WXMAC__)
@@ -222,92 +327,92 @@ wxDefaultDockArt::wxDefaultDockArt()
     m_gradient_type = wxAUI_GRADIENT_VERTICAL;
 }
 
-int wxDefaultDockArt::GetMetric(int id)
+int wxAuiDefaultDockArt::GetMetric(int id)
 {
     switch (id)
     {
-        case wxAUI_ART_SASH_SIZE:          return m_sash_size;
-        case wxAUI_ART_CAPTION_SIZE:       return m_caption_size;
-        case wxAUI_ART_GRIPPER_SIZE:       return m_gripper_size;
-        case wxAUI_ART_PANE_BORDER_SIZE:   return m_border_size;
-        case wxAUI_ART_PANE_BUTTON_SIZE:   return m_button_size;
-        case wxAUI_ART_GRADIENT_TYPE:      return m_gradient_type;
+        case wxAUI_DOCKART_SASH_SIZE:          return m_sash_size;
+        case wxAUI_DOCKART_CAPTION_SIZE:       return m_caption_size;
+        case wxAUI_DOCKART_GRIPPER_SIZE:       return m_gripper_size;
+        case wxAUI_DOCKART_PANE_BORDER_SIZE:   return m_border_size;
+        case wxAUI_DOCKART_PANE_BUTTON_SIZE:   return m_button_size;
+        case wxAUI_DOCKART_GRADIENT_TYPE:      return m_gradient_type;
         default: wxFAIL_MSG(wxT("Invalid Metric Ordinal")); break;
     }
 
     return 0;
 }
 
-void wxDefaultDockArt::SetMetric(int id, int new_val)
+void wxAuiDefaultDockArt::SetMetric(int id, int new_val)
 {
     switch (id)
     {
-        case wxAUI_ART_SASH_SIZE:          m_sash_size = new_val; break;
-        case wxAUI_ART_CAPTION_SIZE:       m_caption_size = new_val; break;
-        case wxAUI_ART_GRIPPER_SIZE:       m_gripper_size = new_val; break;
-        case wxAUI_ART_PANE_BORDER_SIZE:   m_border_size = new_val; break;
-        case wxAUI_ART_PANE_BUTTON_SIZE:   m_button_size = new_val; break;
-        case wxAUI_ART_GRADIENT_TYPE:      m_gradient_type = new_val; break;
+        case wxAUI_DOCKART_SASH_SIZE:          m_sash_size = new_val; break;
+        case wxAUI_DOCKART_CAPTION_SIZE:       m_caption_size = new_val; break;
+        case wxAUI_DOCKART_GRIPPER_SIZE:       m_gripper_size = new_val; break;
+        case wxAUI_DOCKART_PANE_BORDER_SIZE:   m_border_size = new_val; break;
+        case wxAUI_DOCKART_PANE_BUTTON_SIZE:   m_button_size = new_val; break;
+        case wxAUI_DOCKART_GRADIENT_TYPE:      m_gradient_type = new_val; break;
         default: wxFAIL_MSG(wxT("Invalid Metric Ordinal")); break;
     }
 }
 
-wxColour wxDefaultDockArt::GetColour(int id)
+wxColour wxAuiDefaultDockArt::GetColour(int id)
 {
     switch (id)
     {
-        case wxAUI_ART_BACKGROUND_COLOUR:                return m_background_brush.GetColour();
-        case wxAUI_ART_SASH_COLOUR:                      return m_sash_brush.GetColour();
-        case wxAUI_ART_INACTIVE_CAPTION_COLOUR:          return m_inactive_caption_colour;
-        case wxAUI_ART_INACTIVE_CAPTION_GRADIENT_COLOUR: return m_inactive_caption_gradient_colour;
-        case wxAUI_ART_INACTIVE_CAPTION_TEXT_COLOUR:     return m_inactive_caption_text_colour;
-        case wxAUI_ART_ACTIVE_CAPTION_COLOUR:            return m_active_caption_colour;
-        case wxAUI_ART_ACTIVE_CAPTION_GRADIENT_COLOUR:   return m_active_caption_gradient_colour;
-        case wxAUI_ART_ACTIVE_CAPTION_TEXT_COLOUR:       return m_active_caption_text_colour;
-        case wxAUI_ART_BORDER_COLOUR:                    return m_border_pen.GetColour();
-        case wxAUI_ART_GRIPPER_COLOUR:                   return m_gripper_brush.GetColour();
+        case wxAUI_DOCKART_BACKGROUND_COLOUR:                return m_background_brush.GetColour();
+        case wxAUI_DOCKART_SASH_COLOUR:                      return m_sash_brush.GetColour();
+        case wxAUI_DOCKART_INACTIVE_CAPTION_COLOUR:          return m_inactive_caption_colour;
+        case wxAUI_DOCKART_INACTIVE_CAPTION_GRADIENT_COLOUR: return m_inactive_caption_gradient_colour;
+        case wxAUI_DOCKART_INACTIVE_CAPTION_TEXT_COLOUR:     return m_inactive_caption_text_colour;
+        case wxAUI_DOCKART_ACTIVE_CAPTION_COLOUR:            return m_active_caption_colour;
+        case wxAUI_DOCKART_ACTIVE_CAPTION_GRADIENT_COLOUR:   return m_active_caption_gradient_colour;
+        case wxAUI_DOCKART_ACTIVE_CAPTION_TEXT_COLOUR:       return m_active_caption_text_colour;
+        case wxAUI_DOCKART_BORDER_COLOUR:                    return m_border_pen.GetColour();
+        case wxAUI_DOCKART_GRIPPER_COLOUR:                   return m_gripper_brush.GetColour();
         default: wxFAIL_MSG(wxT("Invalid Metric Ordinal")); break;
     }
 
     return wxColour();
 }
 
-void wxDefaultDockArt::SetColour(int id, const wxColor& colour)
+void wxAuiDefaultDockArt::SetColour(int id, const wxColor& colour)
 {
     switch (id)
     {
-        case wxAUI_ART_BACKGROUND_COLOUR:                m_background_brush.SetColour(colour); break;
-        case wxAUI_ART_SASH_COLOUR:                      m_sash_brush.SetColour(colour); break;
-        case wxAUI_ART_INACTIVE_CAPTION_COLOUR:          m_inactive_caption_colour = colour; break;
-        case wxAUI_ART_INACTIVE_CAPTION_GRADIENT_COLOUR: m_inactive_caption_gradient_colour = colour; break;
-        case wxAUI_ART_INACTIVE_CAPTION_TEXT_COLOUR:     m_inactive_caption_text_colour = colour; break;
-        case wxAUI_ART_ACTIVE_CAPTION_COLOUR:            m_active_caption_colour = colour; break;
-        case wxAUI_ART_ACTIVE_CAPTION_GRADIENT_COLOUR:   m_active_caption_gradient_colour = colour; break;
-        case wxAUI_ART_ACTIVE_CAPTION_TEXT_COLOUR:       m_active_caption_text_colour = colour; break;
-        case wxAUI_ART_BORDER_COLOUR:                    m_border_pen.SetColour(colour); break;
-        case wxAUI_ART_GRIPPER_COLOUR:
+        case wxAUI_DOCKART_BACKGROUND_COLOUR:                m_background_brush.SetColour(colour); break;
+        case wxAUI_DOCKART_SASH_COLOUR:                      m_sash_brush.SetColour(colour); break;
+        case wxAUI_DOCKART_INACTIVE_CAPTION_COLOUR:          m_inactive_caption_colour = colour; break;
+        case wxAUI_DOCKART_INACTIVE_CAPTION_GRADIENT_COLOUR: m_inactive_caption_gradient_colour = colour; break;
+        case wxAUI_DOCKART_INACTIVE_CAPTION_TEXT_COLOUR:     m_inactive_caption_text_colour = colour; break;
+        case wxAUI_DOCKART_ACTIVE_CAPTION_COLOUR:            m_active_caption_colour = colour; break;
+        case wxAUI_DOCKART_ACTIVE_CAPTION_GRADIENT_COLOUR:   m_active_caption_gradient_colour = colour; break;
+        case wxAUI_DOCKART_ACTIVE_CAPTION_TEXT_COLOUR:       m_active_caption_text_colour = colour; break;
+        case wxAUI_DOCKART_BORDER_COLOUR:                    m_border_pen.SetColour(colour); break;
+        case wxAUI_DOCKART_GRIPPER_COLOUR:
             m_gripper_brush.SetColour(colour);
-            m_gripper_pen1.SetColour(StepColour(colour, 40));
-            m_gripper_pen2.SetColour(StepColour(colour, 60));
+            m_gripper_pen1.SetColour(wxAuiStepColour(colour, 40));
+            m_gripper_pen2.SetColour(wxAuiStepColour(colour, 60));
             break;
         default: wxFAIL_MSG(wxT("Invalid Metric Ordinal")); break;
     }
 }
 
-void wxDefaultDockArt::SetFont(int id, const wxFont& font)
+void wxAuiDefaultDockArt::SetFont(int id, const wxFont& font)
 {
-    if (id == wxAUI_ART_CAPTION_FONT)
+    if (id == wxAUI_DOCKART_CAPTION_FONT)
         m_caption_font = font;
 }
 
-wxFont wxDefaultDockArt::GetFont(int id)
+wxFont wxAuiDefaultDockArt::GetFont(int id)
 {
-    if (id == wxAUI_ART_CAPTION_FONT)
+    if (id == wxAUI_DOCKART_CAPTION_FONT)
         return m_caption_font;
     return wxNullFont;
 }
 
-void wxDefaultDockArt::DrawSash(wxDC& dc, wxWindow *window, int orientation, const wxRect& rect)
+void wxAuiDefaultDockArt::DrawSash(wxDC& dc, wxWindow *window, int orientation, const wxRect& rect)
 {
 #if defined(__WXMAC__)
     HIRect splitterRect = CGRectMake( rect.x , rect.y , rect.width , rect.height );
@@ -334,6 +439,10 @@ void wxDefaultDockArt::DrawSash(wxDC& dc, wxWindow *window, int orientation, con
 #endif
 
 #elif defined(__WXGTK__)
+    // clear out the rectangle first
+    dc.SetPen(*wxTRANSPARENT_PEN);
+    dc.SetBrush(m_sash_brush);
+    dc.DrawRectangle(rect.x, rect.y, rect.width, rect.height);
 
     GdkRectangle gdk_rect;
     if (orientation == wxVERTICAL )
@@ -382,7 +491,7 @@ void wxDefaultDockArt::DrawSash(wxDC& dc, wxWindow *window, int orientation, con
 }
 
 
-void wxDefaultDockArt::DrawBackground(wxDC& dc, wxWindow *WXUNUSED(window), int, const wxRect& rect)
+void wxAuiDefaultDockArt::DrawBackground(wxDC& dc, wxWindow *WXUNUSED(window), int, const wxRect& rect)
 {
     dc.SetPen(*wxTRANSPARENT_PEN);
 #ifdef __WXMAC__
@@ -395,14 +504,14 @@ void wxDefaultDockArt::DrawBackground(wxDC& dc, wxWindow *WXUNUSED(window), int,
     dc.DrawRectangle(rect.x, rect.y, rect.width, rect.height);
 }
 
-void wxDefaultDockArt::DrawBorder(wxDC& dc, wxWindow *WXUNUSED(window), const wxRect& _rect,
-                                  wxPaneInfo& pane)
+void wxAuiDefaultDockArt::DrawBorder(wxDC& dc, wxWindow *WXUNUSED(window), const wxRect& _rect,
+                                  wxAuiPaneInfo& pane)
 {
     dc.SetPen(m_border_pen);
     dc.SetBrush(*wxTRANSPARENT_BRUSH);
 
     wxRect rect = _rect;
-    int i, border_width = GetMetric(wxAUI_ART_PANE_BORDER_SIZE);
+    int i, border_width = GetMetric(wxAUI_DOCKART_PANE_BORDER_SIZE);
 
     if (pane.IsToolbar())
     {
@@ -430,7 +539,7 @@ void wxDefaultDockArt::DrawBorder(wxDC& dc, wxWindow *WXUNUSED(window), const wx
 }
 
 
-void wxDefaultDockArt::DrawCaptionBackground(wxDC& dc, const wxRect& rect, bool active)
+void wxAuiDefaultDockArt::DrawCaptionBackground(wxDC& dc, const wxRect& rect, bool active)
 {
     if (m_gradient_type == wxAUI_GRADIENT_NONE)
     {
@@ -448,25 +557,27 @@ void wxDefaultDockArt::DrawCaptionBackground(wxDC& dc, const wxRect& rect, bool 
             // on mac the gradients are expected to become darker from the top
 #ifdef __WXMAC__
             DrawGradientRectangle(dc, rect,
-                                 m_active_caption_gradient_colour,
                                  m_active_caption_colour,
+                                 m_active_caption_gradient_colour,
                                  m_gradient_type);
 #else
+            // on other platforms, active gradients become lighter at the top
             DrawGradientRectangle(dc, rect,
-                                 m_active_caption_colour,
                                  m_active_caption_gradient_colour,
+                                 m_active_caption_colour,
                                  m_gradient_type);
 #endif
         }
          else
         {
-            // on mac the gradients are expected to become darker from the top
 #ifdef __WXMAC__
+            // on mac the gradients are expected to become darker from the top
             DrawGradientRectangle(dc, rect,
                                  m_inactive_caption_gradient_colour,
                                  m_inactive_caption_colour,
                                  m_gradient_type);
 #else
+            // on other platforms, inactive gradients become lighter at the bottom
             DrawGradientRectangle(dc, rect,
                                  m_inactive_caption_colour,
                                  m_inactive_caption_gradient_colour,
@@ -477,18 +588,18 @@ void wxDefaultDockArt::DrawCaptionBackground(wxDC& dc, const wxRect& rect, bool 
 }
 
 
-void wxDefaultDockArt::DrawCaption(wxDC& dc, wxWindow *WXUNUSED(window),
+void wxAuiDefaultDockArt::DrawCaption(wxDC& dc, wxWindow *WXUNUSED(window),
                                    const wxString& text,
                                    const wxRect& rect,
-                                   wxPaneInfo& pane)
+                                   wxAuiPaneInfo& pane)
 {
     dc.SetPen(*wxTRANSPARENT_PEN);
     dc.SetFont(m_caption_font);
 
     DrawCaptionBackground(dc, rect,
-                          (pane.state & wxPaneInfo::optionActive)?true:false);
+                          (pane.state & wxAuiPaneInfo::optionActive)?true:false);
 
-    if (pane.state & wxPaneInfo::optionActive)
+    if (pane.state & wxAuiPaneInfo::optionActive)
         dc.SetTextForeground(m_active_caption_text_colour);
     else
         dc.SetTextForeground(m_inactive_caption_text_colour);
@@ -497,14 +608,26 @@ void wxDefaultDockArt::DrawCaption(wxDC& dc, wxWindow *WXUNUSED(window),
     wxCoord w,h;
     dc.GetTextExtent(wxT("ABCDEFHXfgkj"), &w, &h);
 
-    dc.SetClippingRegion(rect);
-    dc.DrawText(text, rect.x+3, rect.y+(rect.height/2)-(h/2)-1);
+    wxRect clip_rect = rect;
+    clip_rect.width -= 3; // text offset
+    clip_rect.width -= 2; // button padding
+    if (pane.HasCloseButton())
+        clip_rect.width -= m_button_size;
+    if (pane.HasPinButton())
+        clip_rect.width -= m_button_size;    
+    if (pane.HasMaximizeButton())
+        clip_rect.width -= m_button_size;    
+
+    wxString draw_text = wxAuiChopText(dc, text, clip_rect.width);
+
+    dc.SetClippingRegion(clip_rect);
+    dc.DrawText(draw_text, rect.x+3, rect.y+(rect.height/2)-(h/2)-1);
     dc.DestroyClippingRegion();
 }
 
-void wxDefaultDockArt::DrawGripper(wxDC& dc, wxWindow *WXUNUSED(window),
+void wxAuiDefaultDockArt::DrawGripper(wxDC& dc, wxWindow *WXUNUSED(window),
                                    const wxRect& rect,
-                                   wxPaneInfo& pane)
+                                   wxAuiPaneInfo& pane)
 {
     dc.SetPen(*wxTRANSPARENT_PEN);
     dc.SetBrush(m_gripper_brush);
@@ -553,13 +676,53 @@ void wxDefaultDockArt::DrawGripper(wxDC& dc, wxWindow *WXUNUSED(window),
     }
 }
 
-void wxDefaultDockArt::DrawPaneButton(wxDC& dc, wxWindow *WXUNUSED(window),
+void wxAuiDefaultDockArt::DrawPaneButton(wxDC& dc, wxWindow *WXUNUSED(window),
                                       int button,
                                       int button_state,
                                       const wxRect& _rect,
-                                      wxPaneInfo& pane)
+                                      wxAuiPaneInfo& pane)
 {
+    wxBitmap bmp;
+    switch (button)
+    {
+        default:
+        case wxAUI_BUTTON_CLOSE:
+            if (pane.state & wxAuiPaneInfo::optionActive)
+                bmp = m_active_close_bitmap;
+                 else
+                bmp = m_inactive_close_bitmap;
+            break;
+        case wxAUI_BUTTON_PIN:
+            if (pane.state & wxAuiPaneInfo::optionActive)
+                bmp = m_active_pin_bitmap;
+                 else
+                bmp = m_inactive_pin_bitmap;
+            break;
+        case wxAUI_BUTTON_MAXIMIZE_RESTORE:
+            if (pane.IsMaximized())
+            {
+                if (pane.state & wxAuiPaneInfo::optionActive)
+                    bmp = m_active_restore_bitmap;
+                     else
+                    bmp = m_inactive_restore_bitmap;
+            }
+             else
+            {
+                if (pane.state & wxAuiPaneInfo::optionActive)
+                    bmp = m_active_maximize_bitmap;
+                     else
+                    bmp = m_inactive_maximize_bitmap;
+            }
+            break;
+    }
+
+
     wxRect rect = _rect;
+
+    int old_y = rect.y;
+    rect.y = rect.y + (rect.height/2) - (bmp.GetHeight()/2);
+    rect.height = old_y + rect.height - rect.y - 1;
+
 
     if (button_state == wxAUI_BUTTON_STATE_PRESSED)
     {
@@ -570,38 +733,21 @@ void wxDefaultDockArt::DrawPaneButton(wxDC& dc, wxWindow *WXUNUSED(window),
     if (button_state == wxAUI_BUTTON_STATE_HOVER ||
         button_state == wxAUI_BUTTON_STATE_PRESSED)
     {
-        if (pane.state & wxPaneInfo::optionActive)
+        if (pane.state & wxAuiPaneInfo::optionActive)
         {
-            dc.SetBrush(wxBrush(StepColour(m_active_caption_colour, 120)));
-            dc.SetPen(wxPen(StepColour(m_active_caption_colour, 70)));
+            dc.SetBrush(wxBrush(wxAuiStepColour(m_active_caption_colour, 120)));
+            dc.SetPen(wxPen(wxAuiStepColour(m_active_caption_colour, 70)));
         }
          else
         {
-            dc.SetBrush(wxBrush(StepColour(m_inactive_caption_colour, 120)));
-            dc.SetPen(wxPen(StepColour(m_inactive_caption_colour, 70)));
+            dc.SetBrush(wxBrush(wxAuiStepColour(m_inactive_caption_colour, 120)));
+            dc.SetPen(wxPen(wxAuiStepColour(m_inactive_caption_colour, 70)));
         }
 
         // draw the background behind the button
         dc.DrawRectangle(rect.x, rect.y, 15, 15);
     }
 
-    wxBitmap bmp;
-    switch (button)
-    {
-        default:
-        case wxPaneInfo::buttonClose:
-            if (pane.state & wxPaneInfo::optionActive)
-                bmp = m_active_close_bitmap;
-                 else
-                bmp = m_inactive_close_bitmap;
-            break;
-        case wxPaneInfo::buttonPin:
-            if (pane.state & wxPaneInfo::optionActive)
-                bmp = m_active_pin_bitmap;
-                 else
-                bmp = m_inactive_pin_bitmap;
-            break;
-    }
 
     // draw the button itself
     dc.DrawBitmap(bmp, rect.x, rect.y, true);

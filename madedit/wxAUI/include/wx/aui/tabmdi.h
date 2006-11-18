@@ -4,7 +4,7 @@
 // Author:      Hans Van Leemputten
 // Modified by: Benjamin I. Williams / Kirix Corporation
 // Created:     29/07/2002
-// RCS-ID:      $Id: tabmdi.h,v 1.6 2006/08/18 08:05:41 CE Exp $
+// RCS-ID:      $Id: tabmdi.h,v 1.14 2006/11/10 08:10:54 BIW Exp $
 // Copyright:   (c) Hans Van Leemputten
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////
@@ -21,25 +21,26 @@
 #include "wx/frame.h"
 #include "wx/panel.h"
 #include "wx/notebook.h"
+#include "wx/icon.h"
 #include "wx/aui/auibook.h"
 
 //-----------------------------------------------------------------------------
 // classes
 //-----------------------------------------------------------------------------
 
-class WXDLLIMPEXP_AUI wxTabMDIParentFrame;
-class WXDLLIMPEXP_AUI wxTabMDIClientWindow;
-class WXDLLIMPEXP_AUI wxTabMDIChildFrame;
+class WXDLLIMPEXP_AUI wxAuiMDIParentFrame;
+class WXDLLIMPEXP_AUI wxAuiMDIClientWindow;
+class WXDLLIMPEXP_AUI wxAuiMDIChildFrame;
 
 //-----------------------------------------------------------------------------
-// wxTabMDIParentFrame
+// wxAuiMDIParentFrame
 //-----------------------------------------------------------------------------
 
-class WXDLLIMPEXP_AUI wxTabMDIParentFrame : public wxFrame
+class WXDLLIMPEXP_AUI wxAuiMDIParentFrame : public wxFrame
 {
 public:
-    wxTabMDIParentFrame();
-    wxTabMDIParentFrame(wxWindow *parent,
+    wxAuiMDIParentFrame();
+    wxAuiMDIParentFrame(wxWindow *parent,
                         wxWindowID winid,
                         const wxString& title,
                         const wxPoint& pos = wxDefaultPosition,
@@ -47,7 +48,7 @@ public:
                         long style = wxDEFAULT_FRAME_STYLE | wxVSCROLL | wxHSCROLL,
                         const wxString& name = wxFrameNameStr);
 
-    ~wxTabMDIParentFrame();
+    ~wxAuiMDIParentFrame();
 
     bool Create(wxWindow *parent,
                 wxWindowID winid,
@@ -57,6 +58,10 @@ public:
                 long style = wxDEFAULT_FRAME_STYLE | wxVSCROLL | wxHSCROLL,
                 const wxString& name = wxFrameNameStr );
 
+    void SetArtProvider(wxAuiTabArt* provider);
+    wxAuiTabArt* GetArtProvider();
+    wxAuiNotebook* GetNotebook() const;
+    
 #if wxUSE_MENUS
     wxMenu* GetWindowMenu() const { return m_pWindowMenu; };
     void SetWindowMenu(wxMenu* pMenu);
@@ -64,15 +69,15 @@ public:
     virtual void SetMenuBar(wxMenuBar *pMenuBar);
 #endif // wxUSE_MENUS
 
-    void SetChildMenuBar(wxTabMDIChildFrame *pChild);
+    void SetChildMenuBar(wxAuiMDIChildFrame *pChild);
 
     virtual bool ProcessEvent(wxEvent& event);
 
-    wxTabMDIChildFrame *GetActiveChild() const;
-    inline void SetActiveChild(wxTabMDIChildFrame* pChildFrame);
+    wxAuiMDIChildFrame *GetActiveChild() const;
+    inline void SetActiveChild(wxAuiMDIChildFrame* pChildFrame);
 
-    wxTabMDIClientWindow *GetClientWindow() const;
-    virtual wxTabMDIClientWindow *OnCreateClient();
+    wxAuiMDIClientWindow *GetClientWindow() const;
+    virtual wxAuiMDIClientWindow *OnCreateClient();
 
     virtual void Cascade() { /* Has no effect */ }
     virtual void Tile(wxOrientation WXUNUSED(orient) = wxHORIZONTAL) { }
@@ -81,8 +86,9 @@ public:
     virtual void ActivatePrevious();
 
 protected:
-    wxTabMDIClientWindow   *m_pClientWindow;
-    wxTabMDIChildFrame     *m_pActiveChild;
+    wxAuiMDIClientWindow*   m_pClientWindow;
+    wxAuiMDIChildFrame*     m_pActiveChild;
+    wxEvent*                m_pLastEvt;
 
 #if wxUSE_MENUS
     wxMenu              *m_pWindowMenu;
@@ -103,18 +109,18 @@ protected:
 
 private:
     DECLARE_EVENT_TABLE()
-    DECLARE_DYNAMIC_CLASS(wxTabMDIParentFrame)
+    DECLARE_DYNAMIC_CLASS(wxAuiMDIParentFrame)
 };
 
 //-----------------------------------------------------------------------------
-// wxTabMDIChildFrame
+// wxAuiMDIChildFrame
 //-----------------------------------------------------------------------------
 
-class WXDLLIMPEXP_AUI wxTabMDIChildFrame : public wxPanel
+class WXDLLIMPEXP_AUI wxAuiMDIChildFrame : public wxPanel
 {
 public:
-    wxTabMDIChildFrame();
-    wxTabMDIChildFrame(wxTabMDIParentFrame *parent,
+    wxAuiMDIChildFrame();
+    wxAuiMDIChildFrame(wxAuiMDIParentFrame *parent,
                        wxWindowID winid,
                        const wxString& title,
                        const wxPoint& pos = wxDefaultPosition,
@@ -122,8 +128,8 @@ public:
                        long style = wxDEFAULT_FRAME_STYLE,
                        const wxString& name = wxFrameNameStr);
 
-    virtual ~wxTabMDIChildFrame();
-    bool Create(wxTabMDIParentFrame *parent,
+    virtual ~wxAuiMDIChildFrame();
+    bool Create(wxAuiMDIParentFrame *parent,
                 wxWindowID winid,
                 const wxString& title,
                 const wxPoint& pos = wxDefaultPosition,
@@ -138,6 +144,12 @@ public:
 
     virtual void SetTitle(const wxString& title);
     virtual wxString GetTitle() const;
+
+    virtual void SetIcons(const wxIconBundle& icons);
+    virtual const wxIconBundle& GetIcons() const;
+    
+    virtual void SetIcon(const wxIcon& icon);
+    virtual const wxIcon& GetIcon() const;
 
     virtual void Activate();
     virtual bool Destroy();
@@ -171,9 +183,6 @@ public:
     virtual wxToolBar *GetToolBar() const { return (wxToolBar*)NULL; }
 #endif
 
-    // no icon
-    void SetIcon(const wxIcon& WXUNUSED(icon)) { }
-    void SetIcons(const wxIconBundle& WXUNUSED(icons)) { }
 
     // no maximize etc
     virtual void Maximize(bool WXUNUSED(maximize) = true) { /* Has no effect */ }
@@ -190,22 +199,11 @@ public:
     void OnActivate(wxActivateEvent& evt);
     void OnCloseWindow(wxCloseEvent& evt);
 
-    void SetMDIParentFrame(wxTabMDIParentFrame* parent);
-    wxTabMDIParentFrame* GetMDIParentFrame() const;
-
-protected:
-    wxTabMDIParentFrame *m_pMDIParentFrame;
-    wxRect            m_mdi_newrect;
-    wxRect            m_mdi_currect;
-    wxString          m_title;
-
-#if wxUSE_MENUS
-    wxMenuBar        *m_pMenuBar;
-#endif // wxUSE_MENUS
-
+    void SetMDIParentFrame(wxAuiMDIParentFrame* parent);
+    wxAuiMDIParentFrame* GetMDIParentFrame() const;
+    
 protected:
     void Init();
-
     virtual bool Show(bool show = true);
     virtual void DoSetSize(int x, int y, int width, int height, int size_flags);
     virtual void DoMoveWindow(int x, int y, int width, int height);
@@ -217,25 +215,40 @@ public:
     void ApplyMDIChildFrameRect();
     void DoShow(bool show);
 
+protected:
+    wxAuiMDIParentFrame* m_pMDIParentFrame;
+    wxRect m_mdi_newrect;
+    wxRect m_mdi_currect;
+    wxString m_title;
+    wxIcon m_icon;
+    wxIconBundle m_icon_bundle;
+    bool m_activate_on_create;
+
+#if wxUSE_MENUS
+    wxMenuBar* m_pMenuBar;
+#endif // wxUSE_MENUS
+
+
+
 private:
-    DECLARE_DYNAMIC_CLASS(wxTabMDIChildFrame)
+    DECLARE_DYNAMIC_CLASS(wxAuiMDIChildFrame)
     DECLARE_EVENT_TABLE()
 
-    friend class wxTabMDIClientWindow;
+    friend class wxAuiMDIClientWindow;
 };
 
 //-----------------------------------------------------------------------------
-// wxTabMDIClientWindow
+// wxAuiMDIClientWindow
 //-----------------------------------------------------------------------------
 
-class WXDLLIMPEXP_AUI wxTabMDIClientWindow : public wxAuiMultiNotebook
+class WXDLLIMPEXP_AUI wxAuiMDIClientWindow : public wxAuiNotebook
 {
 public:
-    wxTabMDIClientWindow();
-    wxTabMDIClientWindow(wxTabMDIParentFrame *parent, long style = 0);
-    ~wxTabMDIClientWindow();
+    wxAuiMDIClientWindow();
+    wxAuiMDIClientWindow(wxAuiMDIParentFrame *parent, long style = 0);
+    ~wxAuiMDIClientWindow();
 
-    virtual bool CreateClient(wxTabMDIParentFrame *parent,
+    virtual bool CreateClient(wxAuiMDIParentFrame *parent,
                               long style = wxVSCROLL | wxHSCROLL);
 
     virtual int SetSelection(size_t page);
@@ -243,11 +256,12 @@ public:
 protected:
 
     void PageChanged(int old_selection, int new_selection);
-    void OnPageChanged(wxAuiNotebookEvent& event);
+    void OnPageClose(wxAuiNotebookEvent& evt);
+    void OnPageChanged(wxAuiNotebookEvent& evt);
     void OnSize(wxSizeEvent& evt);
 
 private:
-    DECLARE_DYNAMIC_CLASS(wxTabMDIClientWindow)
+    DECLARE_DYNAMIC_CLASS(wxAuiMDIClientWindow)
     DECLARE_EVENT_TABLE()
 };
 #endif // wxUSE_AUI

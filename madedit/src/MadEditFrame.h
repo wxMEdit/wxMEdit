@@ -89,7 +89,7 @@ public:
     wxFileHistory *m_RecentEncodings;
     wxFileHistory *m_RecentFonts;
 
-    wxFrameManager m_FrameManager; // wxAUI
+    wxAuiManager m_AuiManager; // wxAUI
     wxFlatNotebook *m_InfoNotebook; //
     wxTreeCtrl *m_FindInFilesResults;
 
