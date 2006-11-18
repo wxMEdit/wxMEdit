@@ -128,7 +128,8 @@ public:
 	\param selected - determines if new page should be selected automatically
 	\param imgindex - page image index
 	*/
-	void AddPage(wxWindow* windows, const wxString& caption, const bool selected = false, const int imgindex = -1);
+	bool AddPage(wxWindow* windows, const wxString& caption, const bool selected = false, const int imgindex = -1);
+
 	/// Inserts new notebook page
 	/**
 	\param index - page index
@@ -580,7 +581,7 @@ public:
 	\param selected - determines if new page should be selected automatically
 	\param imgindex - page image index
 	*/
-	virtual void AddPage(const wxString& caption, const bool selected = false, const int imgindex = -1);
+	virtual bool AddPage(const wxString& caption, const bool selected = false, const int imgindex = -1);
 
 	/// Inserts new notebook page
 	/**

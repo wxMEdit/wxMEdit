@@ -411,15 +411,17 @@ int wxFNBRenderer::CalcTabWidth(wxWindow *pageContainer, int tabIdx, int tabHeig
 	wxBitmap bmp(10, 10);
 	dc.SelectObject(bmp);
 
-	wxFont boldFont = wxSystemSettings::GetFont(wxSYS_DEFAULT_GUI_FONT);
+	wxFont normalFont = wxSystemSettings::GetFont(wxSYS_DEFAULT_GUI_FONT);
+	wxFont boldFont(normalFont);
 	boldFont.SetWeight(wxFONTWEIGHT_BOLD);
 
 	if( pc->IsDefaultTabs() )
 		shapePoints = (int)(tabHeight*tan((double)pc->GetPageInfoVector()[tabIdx].GetTabAngle()/180.0*M_PI));
 
-	// Calculate the text length using the bold font, so when selecting a tab
-	// its width will not change
-	dc.SetFont(boldFont);
+	if(pc->GetSelection() == tabIdx)
+		dc.SetFont(boldFont);
+	else
+		dc.SetFont(normalFont);
 	dc.GetTextExtent(pc->GetPageText(tabIdx), &width, &pom);
 
 	// Set a minimum size to a tab

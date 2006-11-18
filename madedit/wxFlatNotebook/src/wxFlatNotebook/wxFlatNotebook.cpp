@@ -153,55 +153,9 @@ int wxFlatNotebook::GetPreviousSelection() const
 	return m_pages->m_iPreviousActivePage;
 }
 
-void wxFlatNotebook::AddPage(wxWindow* window, const wxString& caption, const bool selected, const int imgindex)
+bool wxFlatNotebook::AddPage(wxWindow* window, const wxString& caption, const bool selected, const int imgindex)
 {
-	// sanity check
-	if (!window)
-		return;
-
-	// reparent the window to us
-	window->Reparent(this);
-
-	// Add tab
-	bool bSelected = selected || m_windows.empty();
-	int curSel = m_pages->GetSelection();
-
-	if( !m_pages->IsShown() )
-		m_pages->Show();
-
-	m_pages->AddPage(caption, bSelected, imgindex);
-	m_windows.Add(window);
-
-	Freeze();
-
-	// Check if a new selection was made
-	if(bSelected)
-	{
-		if(curSel >= 0)
-		{
-			// Remove the window from the main sizer
-			m_mainSizer->Detach(m_windows[curSel]);
-			m_windows[curSel]->Hide();
-		}
-		if(m_windowStyle & wxFNB_BOTTOM)
-		{
-			m_mainSizer->Insert(0, window, 1, wxEXPAND);
-		}
-		else
-		{
-			// We leave a space of 1 pixel around the window
-			m_mainSizer->Add(window, 1, wxEXPAND);
-		}
-	}
-	else
-	{
-		// Hide the page
-		window->Hide();
-	}
-	m_mainSizer->Layout();
-	Thaw();
-	Refresh();
-
+	return InsertPage(m_windows.GetCount(), window, caption, selected, imgindex);
 }
 
 void wxFlatNotebook::SetImageList(wxFlatNotebookImageList * imglist)
@@ -223,11 +177,9 @@ bool wxFlatNotebook::InsertPage(size_t index, wxWindow* page, const wxString& te
 	// reparent the window to us
 	page->Reparent(this);
 
-	if(m_windows.empty())
-	{
-		AddPage(page, text, select, imgindex);
-		return true;
-	}
+	if( !m_pages->IsShown() )
+		m_pages->Show();
+
 	index = FNB_MIN((unsigned int)index, (unsigned int)m_windows.GetCount());
 	// Insert tab
 	bool bSelected = select || m_windows.empty();
@@ -243,7 +195,10 @@ bool wxFlatNotebook::InsertPage(size_t index, wxWindow* page, const wxString& te
 		m_windows.Add(page);
 		wxLogTrace(wxTraceMask(), wxT("New page appended. Index = %i"), index);
 	}
-	m_pages->InsertPage(index, page, text, bSelected, imgindex);
+
+	if( !m_pages->InsertPage(index, page, text, bSelected, imgindex) )
+		return false;
+
 	if((int)index <= curSel) curSel++;
 
 	Freeze();
@@ -264,8 +219,8 @@ bool wxFlatNotebook::InsertPage(size_t index, wxWindow* page, const wxString& te
 		// Hide the page
 		page->Hide();
 	}
-	Thaw();
 	m_mainSizer->Layout();
+	Thaw();
 	Refresh();
 
 	return true;
@@ -784,7 +739,7 @@ void wxPageContainer::OnPaint(wxPaintEvent & event)
 	render->DrawTabs(this, dc, event);
 }
 
-void wxPageContainer::AddPage(const wxString& caption, const bool selected, const int imgindex)
+bool wxPageContainer::AddPage(const wxString& caption, const bool selected, const int imgindex)
 {
 	if(selected)
 	{
@@ -794,10 +749,9 @@ void wxPageContainer::AddPage(const wxString& caption, const bool selected, cons
 
 	/// Create page info and add it to the vector
 	wxPageInfo pageInfo(caption, imgindex);
-//	pageInfo.SetPosition(wxPoint(1, 1));
-
 	m_pagesInfoVec.Add(pageInfo);
 	Refresh();
+	return true;
 }
 
 bool wxPageContainer::InsertPage(size_t index, wxWindow* /*page*/, const wxString& text, bool select, const int imgindex)
@@ -1416,8 +1370,7 @@ int wxPageContainer::GetNumTabsCanScrollLeft()
 	// Reserved area for the buttons (<>x)
 	wxRect rect = GetClientRect();
 	int clientWidth = rect.width;
-	int posx = ((wxFlatNotebook *)m_pParent)->m_nPadding, numTabs = 0, pom = 0, width, shapePoints,
-		height, tabHeight, tabWidth;
+	int posx = ((wxFlatNotebook *)m_pParent)->m_nPadding, numTabs = 0, tabHeight, tabWidth;
 
 	wxClientDC dc(this);
 
@@ -1426,46 +1379,12 @@ int wxPageContainer::GetNumTabsCanScrollLeft()
 		return 0;
 
 	long style = GetParent()->GetWindowStyleFlag();
-
 	wxFNBRendererPtr render = wxFNBRendererMgrST::Get()->GetRenderer(style);
+
+	tabHeight = render->CalcTabHeight(this);
 	for(i=m_nFrom; i>=0; i--)
 	{
-		wxFont boldFont = wxSystemSettings::GetFont(wxSYS_DEFAULT_GUI_FONT);
-		boldFont.SetWeight(wxFONTWEIGHT_BOLD);
-		dc.SetFont(boldFont);
-
-		wxString stam = wxT("Tp");	// Temp data to get the text height;
-		dc.GetTextExtent(stam, &width, &height);
-
-		tabHeight = height + wxFNB_HEIGHT_SPACER; // We use 6 pixels as padding
-		if(style & wxFNB_VC71)
-			tabHeight = (style & wxFNB_BOTTOM) ? tabHeight - 4 :  tabHeight;
-		else if(style & wxFNB_FANCY_TABS)
-			tabHeight = (style & wxFNB_BOTTOM) ? tabHeight - 3 :  tabHeight;
-
-		dc.GetTextExtent(GetPageText(i), &width, &pom);
-		if(style != wxFNB_VC71)
-			shapePoints = (int)(tabHeight*tan((double)m_pagesInfoVec[i].GetTabAngle()/180.0*M_PI));
-		else
-			shapePoints = 0;
-
-		tabWidth = ((wxFlatNotebook *)m_pParent)->m_nPadding * 2 + width;
-		if(!(style & wxFNB_VC71))
-			// Default style
-			tabWidth += 2 * shapePoints;
-
-		bool hasImage = (m_ImageList != NULL && m_pagesInfoVec[i].GetImageIndex() != -1);
-
-		// For VC71 style, we only add the icon size (16 pixels)
-		if(hasImage)
-		{
-			if( !IsDefaultTabs() )
-				tabWidth += (16 + ((wxFlatNotebook*)m_pParent)->m_nPadding);
-			else
-				// Default style
-				tabWidth += (16 + ((wxFlatNotebook*)m_pParent)->m_nPadding) + shapePoints / 2;
-		}
-
+		tabWidth = render->CalcTabWidth(this, i, tabHeight);
 		if(posx + tabWidth + render->GetButtonsAreaLength(this) >= clientWidth)
 			break;
 
@@ -1751,25 +1670,27 @@ bool wxPageContainer::TabHasImage(int tabIdx)
 
 void wxPageContainer::OnLeftDClick(wxMouseEvent& event)
 {
-	if(HasFlag(wxFNB_DCLICK_CLOSES_TABS))
+	wxPageInfo pgInfo;
+	int tabIdx;
+	int where = HitTest(event.GetPosition(), pgInfo, tabIdx);
+	switch(where)
 	{
-		wxPageInfo pgInfo;
-		int tabIdx;
-		int where = HitTest(event.GetPosition(), pgInfo, tabIdx);
-		switch(where)
+	case wxFNB_TAB:
+		if(HasFlag(wxFNB_DCLICK_CLOSES_TABS))
 		{
-		case wxFNB_TAB:
 			{
 				DeletePage((size_t)tabIdx);
 				break;
 			}
-		default:
+		}
+	case wxFNB_X:
+		{
+			OnLeftDown(event);
 			break;
 		}
-	}
-	else
-	{
+	default:
 		event.Skip();
+		break;
 	}
 }
 
