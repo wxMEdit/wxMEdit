@@ -252,41 +252,48 @@ void GTK2_DrawText(wxMemoryDC *dc, MadEncoding *encoding, const int *widths,
     wxFont font=dc->GetFont();
     bool underlined = font.Ok() && font.GetUnderlined();
 
+    const wxCharBuffer data_utf8 = wxConvUTF8.cWX2MB( text );
+    size_t datalen_utf8 = strlen(data_utf8);
 
-    const wxChar *pwc=text.c_str();
-    size_t wclen=text.Length();
+    pango_layout_set_text( dc->m_layout, (const char*) data_utf8, datalen_utf8);
 
-    wxByte data[8];
-    size_t datalen;
-    int x1=x, y1=y;
-    for(size_t i=0;i<wclen;i++, pwc++, widths++)
+    if (underlined)
     {
-        datalen=encoding->UCS4toUTF8(*pwc, data);
-
-        wxASSERT(datalen!=0);
-
-        pango_layout_set_text( dc->m_layout, (const char*) data, datalen);
-
-        if (underlined)
-        {
-            PangoAttrList *attrs = pango_attr_list_new();
-            PangoAttribute *a = pango_attr_underline_new(PANGO_UNDERLINE_SINGLE);
-            a->start_index = 0;
-            a->end_index = datalen;
-            pango_attr_list_insert(attrs, a);
-            pango_layout_set_attributes(dc->m_layout, attrs);
-            pango_attr_list_unref(attrs);
-        }
-
-        // Draw layout.
-        gdk_draw_layout( dc->m_window, dc->m_textGC, x1, y1, dc->m_layout );
-        x1+= *widths;
+        PangoAttrList *attrs = pango_attr_list_new();
+        PangoAttribute *a = pango_attr_underline_new(PANGO_UNDERLINE_SINGLE);
+        a->start_index = 0;
+        a->end_index = datalen_utf8;
+        pango_attr_list_insert(attrs, a);
+        pango_layout_set_attributes(dc->m_layout, attrs);
+        pango_attr_list_unref(attrs);
     }
 
+    GSList *run = NULL;
+    PangoGlyphItem *gi;
+    PangoGlyphString *gs;
+
+    PangoLayoutLine* ll = pango_layout_get_line(dc->m_layout, 0);
+    run = ll->runs;
+    for (; run != NULL; run = g_slist_next (run))
+    {
+        gi = (PangoGlyphItem *)run->data;
+        gs = gi->glyphs;
+        gint count = gs->num_glyphs;
+        for(gint i=0; i<count; ++i)
+        {
+            gs->glyphs[i].geometry.width = (*widths) * PANGO_SCALE; // set char width
+            ++widths;
+        }
+    }
+
+    gdk_draw_layout( dc->m_window, dc->m_textGC, x, y, dc->m_layout );
+
+    /*
     int w,h;
     w=x1-x;
     int tmpw;
     pango_layout_get_pixel_size( dc->m_layout, &tmpw, &h );
+    */
 
     if (underlined)
     {
