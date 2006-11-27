@@ -40,11 +40,9 @@ object frmNewForm: TfrmNewForm
     TabOrder = 0
     Orientation = wxVertical
     Wx_Class = 'wxBoxSizer'
-    Wx_ControlOrientation = wxControlVertical
     Wx_IDName = 'ID_WXBOXSIZER1'
     Wx_IDValue = 1002
     Wx_StretchFactor = 0
-    Wx_StrechFactor = 0
     object WxFlexGridSizer1: TWxFlexGridSizer
       Left = 137
       Top = 5
@@ -53,12 +51,10 @@ object frmNewForm: TfrmNewForm
       TabOrder = 0
       ColumnSpacing = 150
       Rows = 5
-      SpaceValue = 4
+      Wx_Border = 4
       Wx_Class = 'wxFlexGridSizer'
-      Wx_ControlOrientation = wxControlVertical
       Wx_IDName = 'ID_WXFLEXGRIDSIZER1'
       Wx_IDValue = 1003
-      Wx_StrechFactor = 0
       object WxStaticText1: TWxStaticText
         Left = 46
         Top = 4
@@ -68,15 +64,12 @@ object frmNewForm: TfrmNewForm
         TabOrder = 0
         Wx_BGColor = clBlack
         Wx_Class = 'wxStaticText'
-        Wx_ControlOrientation = wxControlNone
         Wx_FGColor = clBlack
         Wx_GeneralStyle = []
         Wx_Hidden = False
-        Wx_HorizontalAlignment = wxSZALIGN_LEFT
         Wx_IDName = 'ID_WXSTATICTEXT1'
         Wx_IDValue = 1004
         Wx_LabelStyle = []
-        Wx_StrechFactor = 0
       end
       object WxStaticTextWordCount: TWxStaticText
         Left = 132
@@ -87,15 +80,12 @@ object frmNewForm: TfrmNewForm
         TabOrder = 1
         Wx_BGColor = clBlack
         Wx_Class = 'wxStaticText'
-        Wx_ControlOrientation = wxControlNone
         Wx_FGColor = clBlack
         Wx_GeneralStyle = []
         Wx_Hidden = False
-        Wx_HorizontalAlignment = wxSZALIGN_RIGHT
         Wx_IDName = 'ID_WXSTATICTEXTWORDCOUNT'
         Wx_IDValue = 1005
         Wx_LabelStyle = []
-        Wx_StrechFactor = 0
       end
       object WxStaticText2: TWxStaticText
         Left = 7
@@ -106,15 +96,12 @@ object frmNewForm: TfrmNewForm
         TabOrder = 2
         Wx_BGColor = clBlack
         Wx_Class = 'wxStaticText'
-        Wx_ControlOrientation = wxControlNone
         Wx_FGColor = clBlack
         Wx_GeneralStyle = []
         Wx_Hidden = False
-        Wx_HorizontalAlignment = wxSZALIGN_LEFT
         Wx_IDName = 'ID_WXSTATICTEXT2'
         Wx_IDValue = 1006
         Wx_LabelStyle = []
-        Wx_StrechFactor = 0
       end
       object WxStaticTextCharCount: TWxStaticText
         Left = 132
@@ -125,15 +112,12 @@ object frmNewForm: TfrmNewForm
         TabOrder = 3
         Wx_BGColor = clBlack
         Wx_Class = 'wxStaticText'
-        Wx_ControlOrientation = wxControlNone
         Wx_FGColor = clBlack
         Wx_GeneralStyle = []
         Wx_Hidden = False
-        Wx_HorizontalAlignment = wxSZALIGN_RIGHT
         Wx_IDName = 'ID_WXSTATICTEXTCHARCOUNT'
         Wx_IDValue = 1007
         Wx_LabelStyle = []
-        Wx_StrechFactor = 0
       end
       object WxStaticText3: TWxStaticText
         Left = 4
@@ -144,15 +128,12 @@ object frmNewForm: TfrmNewForm
         TabOrder = 4
         Wx_BGColor = clBlack
         Wx_Class = 'wxStaticText'
-        Wx_ControlOrientation = wxControlNone
         Wx_FGColor = clBlack
         Wx_GeneralStyle = []
         Wx_Hidden = False
-        Wx_HorizontalAlignment = wxSZALIGN_LEFT
         Wx_IDName = 'ID_WXSTATICTEXT3'
         Wx_IDValue = 1008
         Wx_LabelStyle = []
-        Wx_StrechFactor = 0
       end
       object WxStaticTextSpaceCount: TWxStaticText
         Left = 132
@@ -163,15 +144,12 @@ object frmNewForm: TfrmNewForm
         TabOrder = 5
         Wx_BGColor = clBlack
         Wx_Class = 'wxStaticText'
-        Wx_ControlOrientation = wxControlNone
         Wx_FGColor = clBlack
         Wx_GeneralStyle = []
         Wx_Hidden = False
-        Wx_HorizontalAlignment = wxSZALIGN_RIGHT
         Wx_IDName = 'ID_WXSTATICTEXTSPACECOUNT'
         Wx_IDValue = 1009
         Wx_LabelStyle = []
-        Wx_StrechFactor = 0
       end
       object WxStaticText4: TWxStaticText
         Left = 23
@@ -182,15 +160,12 @@ object frmNewForm: TfrmNewForm
         TabOrder = 6
         Wx_BGColor = clBlack
         Wx_Class = 'wxStaticText'
-        Wx_ControlOrientation = wxControlNone
         Wx_FGColor = clBlack
         Wx_GeneralStyle = []
         Wx_Hidden = False
-        Wx_HorizontalAlignment = wxSZALIGN_LEFT
         Wx_IDName = 'ID_WXSTATICTEXT4'
         Wx_IDValue = 1010
         Wx_LabelStyle = []
-        Wx_StrechFactor = 0
       end
       object WxStaticTextHalfwidthCount: TWxStaticText
         Left = 132
@@ -201,15 +176,12 @@ object frmNewForm: TfrmNewForm
         TabOrder = 7
         Wx_BGColor = clBlack
         Wx_Class = 'wxStaticText'
-        Wx_ControlOrientation = wxControlNone
         Wx_FGColor = clBlack
         Wx_GeneralStyle = []
         Wx_Hidden = False
-        Wx_HorizontalAlignment = wxSZALIGN_RIGHT
         Wx_IDName = 'ID_WXSTATICTEXTHALFWIDTHCOUNT'
         Wx_IDValue = 1011
         Wx_LabelStyle = []
-        Wx_StrechFactor = 0
       end
       object WxStaticText5: TWxStaticText
         Left = 24
@@ -220,15 +192,12 @@ object frmNewForm: TfrmNewForm
         TabOrder = 8
         Wx_BGColor = clBlack
         Wx_Class = 'wxStaticText'
-        Wx_ControlOrientation = wxControlNone
         Wx_FGColor = clBlack
         Wx_GeneralStyle = []
         Wx_Hidden = False
-        Wx_HorizontalAlignment = wxSZALIGN_LEFT
         Wx_IDName = 'ID_WXSTATICTEXT5'
         Wx_IDValue = 1012
         Wx_LabelStyle = []
-        Wx_StrechFactor = 0
       end
       object WxStaticTextFullwidthCount: TWxStaticText
         Left = 132
@@ -239,15 +208,12 @@ object frmNewForm: TfrmNewForm
         TabOrder = 9
         Wx_BGColor = clBlack
         Wx_Class = 'wxStaticText'
-        Wx_ControlOrientation = wxControlNone
         Wx_FGColor = clBlack
         Wx_GeneralStyle = []
         Wx_Hidden = False
-        Wx_HorizontalAlignment = wxSZALIGN_RIGHT
         Wx_IDName = 'ID_WXSTATICTEXTFULLWIDTHCOUNT'
         Wx_IDValue = 1013
         Wx_LabelStyle = []
-        Wx_StrechFactor = 0
       end
       object WxStaticText7: TWxStaticText
         Left = 49
@@ -258,15 +224,12 @@ object frmNewForm: TfrmNewForm
         TabOrder = 10
         Wx_BGColor = clBlack
         Wx_Class = 'wxStaticText'
-        Wx_ControlOrientation = wxControlNone
         Wx_FGColor = clBlack
         Wx_GeneralStyle = []
         Wx_Hidden = False
-        Wx_HorizontalAlignment = wxSZALIGN_LEFT
         Wx_IDName = 'ID_WXSTATICTEXT7'
         Wx_IDValue = 1021
         Wx_LabelStyle = []
-        Wx_StrechFactor = 0
       end
       object WxStaticTextLineCount: TWxStaticText
         Left = 132
@@ -277,15 +240,12 @@ object frmNewForm: TfrmNewForm
         TabOrder = 11
         Wx_BGColor = clBlack
         Wx_Class = 'wxStaticText'
-        Wx_ControlOrientation = wxControlNone
         Wx_FGColor = clBlack
         Wx_GeneralStyle = []
         Wx_Hidden = False
-        Wx_HorizontalAlignment = wxSZALIGN_RIGHT
         Wx_IDName = 'ID_WXSTATICTEXTLINECOUNT'
         Wx_IDValue = 1022
         Wx_LabelStyle = []
-        Wx_StrechFactor = 0
       end
     end
     object WxStaticLine1: TWxStaticLine
@@ -297,13 +257,10 @@ object frmNewForm: TfrmNewForm
       Wx_BGColor = clBlack
       Wx_Border = 2
       Wx_Class = 'wxStaticLine'
-      Wx_ControlOrientation = wxControlVertical
       Wx_FGColor = clBlack
       Wx_GeneralStyle = []
-      Wx_HorizontalAlignment = wxSZALIGN_GROW_HORIZONTAL
       Wx_IDName = 'ID_WXSTATICLINE1'
       Wx_IDValue = 1017
-      Wx_StrechFactor = 0
       Wx_LIOrientation = wxLI_HORIZONTAL
       Wx_Length = 150
       LastOrientation = wxLI_HORIZONTAL
@@ -318,14 +275,12 @@ object frmNewForm: TfrmNewForm
       Wx_BGColor = clBlack
       Wx_Border = 2
       Wx_Class = 'wxStaticText'
-      Wx_ControlOrientation = wxControlVertical
       Wx_FGColor = clBlack
       Wx_GeneralStyle = []
       Wx_Hidden = False
       Wx_IDName = 'ID_WXSTATICTEXT6'
       Wx_IDValue = 1018
       Wx_LabelStyle = []
-      Wx_StrechFactor = 0
     end
     object WxMemo1: TWxMemo
       Left = 5
@@ -339,17 +294,13 @@ object frmNewForm: TfrmNewForm
       Wx_BGColor = clBlack
       Wx_Border = 4
       Wx_Class = 'wxTextCtrl'
-      Wx_ControlOrientation = wxControlVertical
       Wx_EditStyle = [wxTE_DONTWRAP, wxTE_MULTILINE]
       Wx_FGColor = clBlack
       Wx_GeneralStyle = []
-      Wx_HorizontalAlignment = wxSZALIGN_GROW_HORIZONTAL
       Wx_IDName = 'ID_WXMEMO1'
       Wx_IDValue = 1019
-      Wx_StrechFactor = 1
       Wx_StretchFactor = 1
       Wx_MaxLength = 0
-      Wx_VerticalAlignment = wxSZALIGN_GROW_VERTICAL
     end
     object WxButton1: TWxButton
       Left = 187
@@ -361,7 +312,6 @@ object frmNewForm: TfrmNewForm
       Wx_BKColor = clBlack
       Wx_ButtonStyle = []
       Wx_Class = 'wxButton'
-      Wx_ControlOrientation = wxControlVertical
       Wx_Default = False
       Wx_EventList.Strings = (
         'EVT_BUTTON:OnClick'
@@ -371,7 +321,6 @@ object frmNewForm: TfrmNewForm
       Wx_Hidden = False
       Wx_IDName = 'wxID_CANCEL'
       Wx_IDValue = 1020
-      Wx_StrechFactor = 0
       Wx_Height = 30
       Wx_Width = 75
     end

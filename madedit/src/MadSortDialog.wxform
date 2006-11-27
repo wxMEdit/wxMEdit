@@ -40,11 +40,9 @@ object frmNewForm: TfrmNewForm
     TabOrder = 0
     Orientation = wxVertical
     Wx_Class = 'wxBoxSizer'
-    Wx_ControlOrientation = wxControlVertical
     Wx_IDName = 'ID_WXBOXSIZER1'
     Wx_IDValue = 1002
     Wx_StretchFactor = 0
-    Wx_StrechFactor = 0
     object WxRadioBoxOrder: TWxRadioBox
       Left = 30
       Top = 5
@@ -58,17 +56,14 @@ object frmNewForm: TfrmNewForm
       TabOrder = 0
       Wx_BGColor = clBlack
       Wx_Class = 'wxRadioBox'
-      Wx_ControlOrientation = wxControlVertical
       Wx_EventList.Strings = (
         'EVT_RADIOBOX:OnClick'
         'EVT_UPDATE_UI:OnUpdateUI')
       Wx_FGColor = clBlack
       Wx_GeneralStyle = []
-      Wx_HorizontalAlignment = wxSZALIGN_LEFT
       Wx_IDName = 'ID_WXRADIOBOXORDER'
       Wx_IDValue = 1003
       Wx_RadioBoxStyle = wxRA_SPECIFY_COLS
-      Wx_StrechFactor = 0
       Wx_Selection = 0
     end
     object WxCheckBoxCase: TWxCheckBox
@@ -81,14 +76,11 @@ object frmNewForm: TfrmNewForm
       Wx_BGColor = clBlack
       Wx_CheckBoxStyle = []
       Wx_Class = 'wxCheckBox'
-      Wx_ControlOrientation = wxControlVertical
       Wx_FGColor = clBlack
       Wx_GeneralStyle = []
       Wx_Hidden = False
-      Wx_HorizontalAlignment = wxSZALIGN_LEFT
       Wx_IDName = 'ID_WXCHECKBOXCASE'
       Wx_IDValue = 1004
-      Wx_StrechFactor = 0
     end
     object WxCheckBoxNumeric: TWxCheckBox
       Left = 30
@@ -100,14 +92,11 @@ object frmNewForm: TfrmNewForm
       Wx_BGColor = clBlack
       Wx_CheckBoxStyle = []
       Wx_Class = 'wxCheckBox'
-      Wx_ControlOrientation = wxControlVertical
       Wx_FGColor = clBlack
       Wx_GeneralStyle = []
       Wx_Hidden = False
-      Wx_HorizontalAlignment = wxSZALIGN_LEFT
       Wx_IDName = 'ID_WXCHECKBOXNUMERIC'
       Wx_IDValue = 1006
-      Wx_StrechFactor = 0
     end
     object WxCheckBoxRemoveDup: TWxCheckBox
       Left = 30
@@ -119,14 +108,11 @@ object frmNewForm: TfrmNewForm
       Wx_BGColor = clBlack
       Wx_CheckBoxStyle = []
       Wx_Class = 'wxCheckBox'
-      Wx_ControlOrientation = wxControlVertical
       Wx_FGColor = clBlack
       Wx_GeneralStyle = []
       Wx_Hidden = False
-      Wx_HorizontalAlignment = wxSZALIGN_LEFT
       Wx_IDName = 'ID_WXCHECKBOXREMOVEDUP'
       Wx_IDValue = 1007
-      Wx_StrechFactor = 0
     end
     object WxBoxSizer2: TWxBoxSizer
       Left = 5
@@ -135,11 +121,9 @@ object frmNewForm: TfrmNewForm
       Height = 40
       TabOrder = 4
       Wx_Class = 'wxBoxSizer'
-      Wx_ControlOrientation = wxControlVertical
       Wx_IDName = 'ID_WXBOXSIZER2'
       Wx_IDValue = 1008
       Wx_StretchFactor = 0
-      Wx_StrechFactor = 0
       object WxButtonSort: TWxButton
         Left = 5
         Top = 5
@@ -150,7 +134,6 @@ object frmNewForm: TfrmNewForm
         Wx_BKColor = clBlack
         Wx_ButtonStyle = []
         Wx_Class = 'wxButton'
-        Wx_ControlOrientation = wxControlHorizontal
         Wx_Default = False
         Wx_EventList.Strings = (
           'EVT_BUTTON:OnClick'
@@ -160,7 +143,6 @@ object frmNewForm: TfrmNewForm
         Wx_Hidden = False
         Wx_IDName = 'wxID_OK'
         Wx_IDValue = 1009
-        Wx_StrechFactor = 0
         Wx_Height = 30
         Wx_Width = 90
       end
@@ -174,7 +156,6 @@ object frmNewForm: TfrmNewForm
         Wx_BKColor = clBlack
         Wx_ButtonStyle = []
         Wx_Class = 'wxButton'
-        Wx_ControlOrientation = wxControlHorizontal
         Wx_Default = False
         Wx_EventList.Strings = (
           'EVT_BUTTON:OnClick'
@@ -184,7 +165,6 @@ object frmNewForm: TfrmNewForm
         Wx_Hidden = False
         Wx_IDName = 'wxID_CANCEL'
         Wx_IDValue = 1010
-        Wx_StrechFactor = 0
         Wx_Height = 30
         Wx_Width = 90
       end

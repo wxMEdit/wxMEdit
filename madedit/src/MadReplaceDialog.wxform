@@ -41,11 +41,9 @@ object frmNewForm: TfrmNewForm
     Align = alClient
     TabOrder = 1
     Wx_Class = 'wxBoxSizer'
-    Wx_ControlOrientation = wxControlVertical
     Wx_IDName = 'ID_WXBOXSIZER1'
     Wx_IDValue = 1015
     Wx_StretchFactor = 0
-    Wx_StrechFactor = 0
     object WxBoxSizer2: TWxBoxSizer
       Left = 5
       Top = 5
@@ -54,13 +52,9 @@ object frmNewForm: TfrmNewForm
       TabOrder = 0
       Orientation = wxVertical
       Wx_Class = 'wxBoxSizer'
-      Wx_ControlOrientation = wxControlHorizontal
-      Wx_HorizontalAlignment = wxSZALIGN_LEFT
       Wx_IDName = 'ID_WXBOXSIZER2'
       Wx_IDValue = 1016
       Wx_StretchFactor = 0
-      Wx_StrechFactor = 0
-      Wx_VerticalAlignment = wxSZALIGN_TOP
       object WxBoxSizer4: TWxBoxSizer
         Left = 150
         Top = 5
@@ -68,13 +62,9 @@ object frmNewForm: TfrmNewForm
         Height = 20
         TabOrder = 0
         Wx_Class = 'wxBoxSizer'
-        Wx_ControlOrientation = wxControlVertical
-        Wx_HorizontalAlignment = wxSZALIGN_LEFT
         Wx_IDName = 'ID_WXBOXSIZER4'
         Wx_IDValue = 1018
         Wx_StretchFactor = 0
-        Wx_StrechFactor = 0
-        Wx_VerticalAlignment = wxSZALIGN_TOP
       end
       object WxBoxSizer5: TWxBoxSizer
         Left = 150
@@ -83,13 +73,9 @@ object frmNewForm: TfrmNewForm
         Height = 20
         TabOrder = 1
         Wx_Class = 'wxBoxSizer'
-        Wx_ControlOrientation = wxControlVertical
-        Wx_HorizontalAlignment = wxSZALIGN_LEFT
         Wx_IDName = 'ID_WXBOXSIZER5'
         Wx_IDValue = 1019
         Wx_StretchFactor = 0
-        Wx_StrechFactor = 0
-        Wx_VerticalAlignment = wxSZALIGN_TOP
       end
       object WxBoxSizer6: TWxBoxSizer
         Left = 5
@@ -99,12 +85,9 @@ object frmNewForm: TfrmNewForm
         TabOrder = 2
         Orientation = wxVertical
         Wx_Class = 'wxBoxSizer'
-        Wx_ControlOrientation = wxControlVertical
-        Wx_HorizontalAlignment = wxSZALIGN_LEFT
         Wx_IDName = 'ID_WXBOXSIZER6'
         Wx_IDValue = 1020
         Wx_StretchFactor = 0
-        Wx_StrechFactor = 0
         object WxCheckBoxMoveFocus: TWxCheckBox
           Left = 5
           Top = 5
@@ -116,14 +99,11 @@ object frmNewForm: TfrmNewForm
           Wx_Border = 2
           Wx_CheckBoxStyle = []
           Wx_Class = 'wxCheckBox'
-          Wx_ControlOrientation = wxControlVertical
           Wx_FGColor = clBlack
           Wx_GeneralStyle = []
           Wx_Hidden = False
-          Wx_HorizontalAlignment = wxSZALIGN_LEFT
           Wx_IDName = 'ID_WXCHECKBOXMOVEFOCUS'
           Wx_IDValue = 1029
-          Wx_StrechFactor = 0
         end
         object WxCheckBoxCaseSensitive: TWxCheckBox
           Left = 5
@@ -136,14 +116,11 @@ object frmNewForm: TfrmNewForm
           Wx_Border = 2
           Wx_CheckBoxStyle = []
           Wx_Class = 'wxCheckBox'
-          Wx_ControlOrientation = wxControlVertical
           Wx_FGColor = clBlack
           Wx_GeneralStyle = []
           Wx_Hidden = False
-          Wx_HorizontalAlignment = wxSZALIGN_LEFT
           Wx_IDName = 'ID_WXCHECKBOXCASESENSITIVE'
           Wx_IDValue = 1021
-          Wx_StrechFactor = 0
         end
         object WxCheckBoxWholeWord: TWxCheckBox
           Left = 5
@@ -156,14 +133,11 @@ object frmNewForm: TfrmNewForm
           Wx_Border = 2
           Wx_CheckBoxStyle = []
           Wx_Class = 'wxCheckBox'
-          Wx_ControlOrientation = wxControlVertical
           Wx_FGColor = clBlack
           Wx_GeneralStyle = []
           Wx_Hidden = False
-          Wx_HorizontalAlignment = wxSZALIGN_LEFT
           Wx_IDName = 'ID_WXCHECKBOXWHOLEWORD'
           Wx_IDValue = 1022
-          Wx_StrechFactor = 0
         end
         object WxCheckBoxRegex: TWxCheckBox
           Left = 5
@@ -176,14 +150,11 @@ object frmNewForm: TfrmNewForm
           Wx_Border = 2
           Wx_CheckBoxStyle = []
           Wx_Class = 'wxCheckBox'
-          Wx_ControlOrientation = wxControlVertical
           Wx_FGColor = clBlack
           Wx_GeneralStyle = []
           Wx_Hidden = False
-          Wx_HorizontalAlignment = wxSZALIGN_LEFT
           Wx_IDName = 'ID_WXCHECKBOXREGEX'
           Wx_IDValue = 1023
-          Wx_StrechFactor = 0
         end
         object WxCheckBoxFindHex: TWxCheckBox
           Left = 5
@@ -197,14 +168,11 @@ object frmNewForm: TfrmNewForm
           Wx_Border = 2
           Wx_CheckBoxStyle = []
           Wx_Class = 'wxCheckBox'
-          Wx_ControlOrientation = wxControlVertical
           Wx_FGColor = clBlack
           Wx_GeneralStyle = []
           Wx_Hidden = False
-          Wx_HorizontalAlignment = wxSZALIGN_LEFT
           Wx_IDName = 'ID_WXCHECKBOXFINDHEX'
           Wx_IDValue = 1024
-          Wx_StrechFactor = 0
         end
       end
     end
@@ -216,12 +184,9 @@ object frmNewForm: TfrmNewForm
       TabOrder = 1
       Orientation = wxVertical
       Wx_Class = 'wxBoxSizer'
-      Wx_ControlOrientation = wxControlHorizontal
       Wx_IDName = 'ID_WXBOXSIZER3'
       Wx_IDValue = 1017
       Wx_StretchFactor = 0
-      Wx_StrechFactor = 0
-      Wx_VerticalAlignment = wxSZALIGN_TOP
       object WxButtonFindNext: TWxButton
         Left = 5
         Top = 5
@@ -233,7 +198,6 @@ object frmNewForm: TfrmNewForm
         Wx_BKColor = clBlack
         Wx_ButtonStyle = []
         Wx_Class = 'wxButton'
-        Wx_ControlOrientation = wxControlVertical
         Wx_Default = False
         Wx_EventList.Strings = (
           'EVT_BUTTON:OnClick'
@@ -241,10 +205,8 @@ object frmNewForm: TfrmNewForm
         Wx_FGColor = clBlack
         Wx_GeneralStyle = []
         Wx_Hidden = False
-        Wx_HorizontalAlignment = wxSZALIGN_LEFT
         Wx_IDName = 'ID_WXBUTTONFINDNEXT'
         Wx_IDValue = 1025
-        Wx_StrechFactor = 0
         Wx_Height = 28
         Wx_Width = 100
       end
@@ -259,7 +221,6 @@ object frmNewForm: TfrmNewForm
         Wx_BKColor = clBlack
         Wx_ButtonStyle = []
         Wx_Class = 'wxButton'
-        Wx_ControlOrientation = wxControlVertical
         Wx_Default = False
         Wx_EventList.Strings = (
           'EVT_BUTTON:OnClick'
@@ -267,10 +228,8 @@ object frmNewForm: TfrmNewForm
         Wx_FGColor = clBlack
         Wx_GeneralStyle = []
         Wx_Hidden = False
-        Wx_HorizontalAlignment = wxSZALIGN_LEFT
         Wx_IDName = 'ID_WXBUTTONREPLACE'
         Wx_IDValue = 1026
-        Wx_StrechFactor = 0
         Wx_Height = 28
         Wx_Width = 100
       end
@@ -285,7 +244,6 @@ object frmNewForm: TfrmNewForm
         Wx_BKColor = clBlack
         Wx_ButtonStyle = []
         Wx_Class = 'wxButton'
-        Wx_ControlOrientation = wxControlVertical
         Wx_Default = False
         Wx_EventList.Strings = (
           'EVT_BUTTON:OnClick'
@@ -293,10 +251,8 @@ object frmNewForm: TfrmNewForm
         Wx_FGColor = clBlack
         Wx_GeneralStyle = []
         Wx_Hidden = False
-        Wx_HorizontalAlignment = wxSZALIGN_LEFT
         Wx_IDName = 'ID_WXBUTTONREPLACEALL'
         Wx_IDValue = 1027
-        Wx_StrechFactor = 0
         Wx_Height = 28
         Wx_Width = 100
       end
@@ -311,7 +267,6 @@ object frmNewForm: TfrmNewForm
         Wx_BKColor = clBlack
         Wx_ButtonStyle = []
         Wx_Class = 'wxButton'
-        Wx_ControlOrientation = wxControlVertical
         Wx_Default = False
         Wx_EventList.Strings = (
           'EVT_BUTTON:OnClick'
@@ -319,10 +274,8 @@ object frmNewForm: TfrmNewForm
         Wx_FGColor = clBlack
         Wx_GeneralStyle = []
         Wx_Hidden = False
-        Wx_HorizontalAlignment = wxSZALIGN_LEFT
         Wx_IDName = 'ID_WXBUTTONCLOSE'
         Wx_IDValue = 1028
-        Wx_StrechFactor = 0
         Wx_Height = 28
         Wx_Width = 100
       end

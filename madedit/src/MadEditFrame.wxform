@@ -41,12 +41,10 @@ object frmNewForm: TfrmNewForm
     Panels = <>
     SimplePanel = False
     Wx_Class = 'wxStatusBar'
-    Wx_ControlOrientation = wxControlVertical
     Wx_IDName = 'ID_WXSTATUSBAR1'
     Wx_IDValue = 1003
     Wx_StatusbarStyleSet = []
     Wx_GeneralStyle = []
-    Wx_StrechFactor = 0
     Wx_Hidden = False
     Wx_Enabled = True
     Wx_Border = 0
@@ -61,7 +59,6 @@ object frmNewForm: TfrmNewForm
     ParentColor = False
     TabOrder = 2
     Wx_Class = 'wxToolBar'
-    Wx_ControlOrientation = wxControlVertical
     Wx_EventList.Strings = (
       'EVT_TOOL:OnTool'
       'EVT_MENU:OnMenu'
@@ -72,7 +69,6 @@ object frmNewForm: TfrmNewForm
     Wx_GeneralStyle = []
     Wx_IDName = 'ID_WXTOOLBAR1'
     Wx_IDValue = 1005
-    Wx_StrechFactor = 0
     Wx_Hidden = False
     Wx_Border = 0
   end
