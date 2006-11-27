@@ -242,8 +242,8 @@ void GTK2_DrawText(wxMemoryDC *dc, MadEncoding *encoding, const int *widths,
     if (text.empty()) return;
 
 
-    //x = dc->XLOG2DEV(x);
-    //y = dc->YLOG2DEV(y);
+    x = dc->XLOG2DEV(x);
+    y = dc->YLOG2DEV(y);
 
     wxCHECK_RET( dc->m_context, wxT("no Pango context") );
     wxCHECK_RET( dc->m_layout, wxT("no Pango layout") );
@@ -268,7 +268,7 @@ void GTK2_DrawText(wxMemoryDC *dc, MadEncoding *encoding, const int *widths,
         pango_attr_list_unref(attrs);
     }
 
-    GSList *run = NULL;
+    GSList *run;
     PangoGlyphItem *gi;
     PangoGlyphString *gs;
 
@@ -286,7 +286,59 @@ void GTK2_DrawText(wxMemoryDC *dc, MadEncoding *encoding, const int *widths,
         }
     }
 
-    gdk_draw_layout( dc->m_window, dc->m_textGC, x, y, dc->m_layout );
+    //gdk_draw_layout( dc->m_window, dc->m_textGC, x, y, dc->m_layout );
+    double sx,sy;
+    dc->GetUserScale(&sx, &sy);
+    if (fabs(sy - 1.0) > 0.00001)
+    {
+         // If there is a user or actually any scale applied to
+         // the device context, scale the font.
+
+         // scale font description
+         gint oldSize = pango_font_description_get_size( dc->m_fontdesc );
+         double size = oldSize;
+         size = size * sy;
+         pango_font_description_set_size( dc->m_fontdesc, (gint)size );
+
+         // actually apply scaled font
+         pango_layout_set_font_description( dc->m_layout, dc->m_fontdesc );
+
+         //pango_layout_get_pixel_size( dc->m_layout, &w, &h );
+         //if ( m_backgroundMode == wxSOLID )
+         //{
+            //gdk_gc_set_foreground(m_textGC, m_textBackgroundColour.GetColor());
+            //gdk_draw_rectangle(m_window, m_textGC, TRUE, x, y, w, h);
+            //gdk_gc_set_foreground(m_textGC, m_textForegroundColour.GetColor());
+         //}
+
+         // Draw layout.
+         //if (m_owner && m_owner->GetLayoutDirection() == wxLayout_RightToLeft)
+             //gdk_draw_layout( m_window, m_textGC, x-w, y, m_layout );
+         //else
+             gdk_draw_layout( dc->m_window, dc->m_textGC, x, y, dc->m_layout );
+
+         // reset unscaled size
+         pango_font_description_set_size( dc->m_fontdesc, oldSize );
+
+         // actually apply unscaled font
+         pango_layout_set_font_description( dc->m_layout, dc->m_fontdesc );
+    }
+    else
+    {
+        //pango_layout_get_pixel_size( dc->m_layout, &w, &h );
+        //if ( m_backgroundMode == wxSOLID )
+        //{
+            //gdk_gc_set_foreground(m_textGC, m_textBackgroundColour.GetColor());
+            //gdk_draw_rectangle(m_window, m_textGC, TRUE, x, y, w, h);
+            //gdk_gc_set_foreground(m_textGC, m_textForegroundColour.GetColor());
+        //}
+        
+        // Draw layout.
+        //if (m_owner && m_owner->GetLayoutDirection() == wxLayout_RightToLeft)
+            //gdk_draw_layout( m_window, m_textGC, x-w, y, m_layout );
+        //else
+            gdk_draw_layout( dc->m_window, dc->m_textGC, x, y, dc->m_layout );
+    }
 
     /*
     int w,h;
