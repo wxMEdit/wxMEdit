@@ -132,10 +132,10 @@ END_EVENT_TABLE()
 MadOptionsDialog::MadOptionsDialog( wxWindow *parent, wxWindowID id, const wxString &title, const wxPoint &position, const wxSize& size, long style )
     : wxDialog( parent, id, title, position, size, style)
 {
-    CreateGUIControls();
-    
     InitOptions=false;
     LocID=0;
+
+    CreateGUIControls();    
 }
 
 MadOptionsDialog::~MadOptionsDialog() 
@@ -189,367 +189,355 @@ void MadOptionsDialog::CreateGUIControls(void)
     //Add the custom code before or after the Blocks
     ////GUI Items Creation Start
 
-	wxBoxSizer* WxBoxSizer1 = new wxBoxSizer(wxVERTICAL);
+	WxBoxSizer1 = new wxBoxSizer(wxVERTICAL);
 	this->SetSizer(WxBoxSizer1);
-	this->SetAutoLayout(TRUE);
+	this->SetAutoLayout(true);
 
 	WxNotebook1 = new wxFlatNotebook(this, ID_WXNOTEBOOK1, wxPoint(0,0),wxSize(681,342));
-	WxBoxSizer1->Add(WxNotebook1,1,wxGROW | wxALL,0);
+	WxBoxSizer1->Add(WxNotebook1,1,wxEXPAND | wxALL,0);
 
 	WxNoteBookPage1 = new wxPanel(WxNotebook1, ID_WXNOTEBOOKPAGE1, wxPoint(4,24), wxSize(673,314));
 	WxNotebook1->AddPage(WxNoteBookPage1, _("General"));
 
-	wxBoxSizer* WxBoxSizer3 = new wxBoxSizer(wxVERTICAL);
+	WxBoxSizer3 = new wxBoxSizer(wxVERTICAL);
 	WxNoteBookPage1->SetSizer(WxBoxSizer3);
-	WxNoteBookPage1->SetAutoLayout(TRUE);
+	WxNoteBookPage1->SetAutoLayout(true);
 
-	wxBoxSizer* WxBoxSizer27 = new wxBoxSizer(wxHORIZONTAL);
-	WxBoxSizer3->Add(WxBoxSizer27,0,wxALIGN_LEFT | wxALL,2);
+	WxBoxSizer27 = new wxBoxSizer(wxHORIZONTAL);
+	WxBoxSizer3->Add(WxBoxSizer27, 0, wxALIGN_LEFT | wxALL, 2);
 
 	wxArrayString arrayStringFor_WxComboBoxLanguage;
-	WxComboBoxLanguage = new wxComboBox(WxNoteBookPage1, ID_WXCOMBOBOXLANGUAGE, _(""), wxPoint(2,2), wxSize(140,21), arrayStringFor_WxComboBoxLanguage, wxCB_DROPDOWN | wxCB_READONLY, wxDefaultValidator, _("WxComboBoxLanguage"));
-	WxBoxSizer27->Add(WxComboBoxLanguage,0,wxALIGN_CENTER_VERTICAL | wxALL,0);
+	WxComboBoxLanguage = new wxComboBox(WxNoteBookPage1, ID_WXCOMBOBOXLANGUAGE, _(""), wxPoint(0,3), wxSize(140,21), arrayStringFor_WxComboBoxLanguage, wxCB_DROPDOWN | wxCB_READONLY, wxDefaultValidator, _("WxComboBoxLanguage"));
+	WxBoxSizer27->Add(WxComboBoxLanguage,0,wxALIGN_LEFT | wxALL,0);
 
-	WxStaticText16 = new wxStaticText(WxNoteBookPage1, ID_WXSTATICTEXT16, _("Language of User Interface (Must Restart MadEdit)"), wxPoint(146,4), wxSize(245,17), 0, _("WxStaticText16"));
-	WxBoxSizer27->Add(WxStaticText16,0,wxALIGN_CENTER_VERTICAL | wxALL,5);
+	WxStaticText16 = new wxStaticText(WxNoteBookPage1, ID_WXSTATICTEXT16, _("Language of User Interface (Must Restart MadEdit)"), wxPoint(145,5), wxDefaultSize, 0, _("WxStaticText16"));
+	WxBoxSizer27->Add(WxStaticText16,0,wxALIGN_LEFT | wxALL,5);
 
-	wxBoxSizer* WxBoxSizer4 = new wxBoxSizer(wxVERTICAL);
-	WxBoxSizer3->Add(WxBoxSizer4,0,wxALIGN_LEFT | wxALL,5);
+	WxBoxSizer4 = new wxBoxSizer(wxVERTICAL);
+	WxBoxSizer3->Add(WxBoxSizer4, 0, wxALIGN_LEFT | wxALL, 5);
 
-	WxCheckBoxSingleInstance = new wxCheckBox(WxNoteBookPage1, ID_WXCHECKBOXSINGLEINSTANCE, _("Single Instance (Must Restart MadEdit)"), wxPoint(5,5), wxSize(300,20), 0, wxDefaultValidator, _("WxCheckBoxSingleInstance"));
+	WxCheckBoxSingleInstance = new wxCheckBox(WxNoteBookPage1, ID_WXCHECKBOXSINGLEINSTANCE, _("Single Instance (Must Restart MadEdit)"), wxPoint(2,2), wxSize(300,20), 0, wxDefaultValidator, _("WxCheckBoxSingleInstance"));
 	WxBoxSizer4->Add(WxCheckBoxSingleInstance,0,wxALIGN_LEFT | wxALL,2);
 
-	WxCheckBoxRecordCaretMovements = new wxCheckBox(WxNoteBookPage1, ID_WXCHECKBOXRECORDCARETMOVEMENTS, _("Record Caret Movements in Undo List"), wxPoint(5,35), wxSize(300,20), 0, wxDefaultValidator, _("WxCheckBoxRecordCaretMovements"));
+	WxCheckBoxRecordCaretMovements = new wxCheckBox(WxNoteBookPage1, ID_WXCHECKBOXRECORDCARETMOVEMENTS, _("Record Caret Movements in Undo List"), wxPoint(2,26), wxSize(300,20), 0, wxDefaultValidator, _("WxCheckBoxRecordCaretMovements"));
 	WxBoxSizer4->Add(WxCheckBoxRecordCaretMovements,0,wxALIGN_LEFT | wxALL,2);
 
-	wxBoxSizer* WxBoxSizer5 = new wxBoxSizer(wxHORIZONTAL);
-	WxBoxSizer3->Add(WxBoxSizer5,0,wxALIGN_LEFT | wxALL,2);
+	WxBoxSizer5 = new wxBoxSizer(wxHORIZONTAL);
+	WxBoxSizer3->Add(WxBoxSizer5, 0, wxALIGN_LEFT | wxALL, 2);
 
-	WxEditMaxSizeToLoad = new wxTextCtrl(WxNoteBookPage1, ID_WXEDITMAXSIZETOLOAD, _("0"), wxPoint(2,2), wxSize(80,21), 0, wxTextValidator(wxFILTER_NUMERIC), _("WxEditMaxSizeToLoad"));
-	WxBoxSizer5->Add(WxEditMaxSizeToLoad,0,wxALIGN_CENTER_VERTICAL | wxALL,0);
+	WxEditMaxSizeToLoad = new wxTextCtrl(WxNoteBookPage1, ID_WXEDITMAXSIZETOLOAD, _("0"), wxPoint(0,3), wxSize(80,21), 0, wxTextValidator(wxFILTER_NUMERIC), _("WxEditMaxSizeToLoad"));
+	WxBoxSizer5->Add(WxEditMaxSizeToLoad,0,wxALIGN_LEFT | wxALL,0);
 
-	WxStaticText1 = new wxStaticText(WxNoteBookPage1, ID_WXSTATICTEXT1, _("Max File Size to Load into Memory"), wxPoint(86,4), wxSize(300,17), wxST_NO_AUTORESIZE, _("WxStaticText1"));
-	WxBoxSizer5->Add(WxStaticText1,0,wxALIGN_CENTER_VERTICAL | wxALL,5);
+	WxStaticText1 = new wxStaticText(WxNoteBookPage1, ID_WXSTATICTEXT1, _("Max File Size to Load into Memory"), wxPoint(85,5), wxSize(300, 17), wxST_NO_AUTORESIZE, _("WxStaticText1"));
+	WxBoxSizer5->Add(WxStaticText1,0,wxALIGN_LEFT | wxALL,5);
 
-	wxBoxSizer* WxBoxSizer6 = new wxBoxSizer(wxHORIZONTAL);
-	WxBoxSizer3->Add(WxBoxSizer6,0,wxALIGN_LEFT | wxALL,2);
+	WxBoxSizer6 = new wxBoxSizer(wxHORIZONTAL);
+	WxBoxSizer3->Add(WxBoxSizer6, 0, wxALIGN_LEFT | wxALL, 2);
 
-	WxEditMaxTextFileSize = new wxTextCtrl(WxNoteBookPage1, ID_WXEDITMAXTEXTFILESIZE, _("0"), wxPoint(2,2), wxSize(80,21), 0, wxTextValidator(wxFILTER_NUMERIC), _("WxEditMaxTextFileSize"));
-	WxBoxSizer6->Add(WxEditMaxTextFileSize,0,wxALIGN_CENTER_VERTICAL | wxALL,0);
+	WxEditMaxTextFileSize = new wxTextCtrl(WxNoteBookPage1, ID_WXEDITMAXTEXTFILESIZE, _("0"), wxPoint(0,3), wxSize(80,21), 0, wxTextValidator(wxFILTER_NUMERIC), _("WxEditMaxTextFileSize"));
+	WxBoxSizer6->Add(WxEditMaxTextFileSize,0,wxALIGN_LEFT | wxALL,0);
 
-	WxStaticText2 = new wxStaticText(WxNoteBookPage1, ID_WXSTATICTEXT2, _("Max File Size to Load as a Text File"), wxPoint(86,4), wxSize(300,17), wxST_NO_AUTORESIZE, _("WxStaticText2"));
-	WxBoxSizer6->Add(WxStaticText2,0,wxALIGN_CENTER_VERTICAL | wxALL,5);
+	WxStaticText2 = new wxStaticText(WxNoteBookPage1, ID_WXSTATICTEXT2, _("Max File Size to Load as a Text File"), wxPoint(85,5), wxSize(300, 17), wxST_NO_AUTORESIZE, _("WxStaticText2"));
+	WxBoxSizer6->Add(WxStaticText2,0,wxALIGN_LEFT | wxALL,5);
 
-	wxBoxSizer* WxBoxSizer17 = new wxBoxSizer(wxHORIZONTAL);
-	WxBoxSizer3->Add(WxBoxSizer17,0,wxALIGN_LEFT | wxALL,2);
+	WxBoxSizer17 = new wxBoxSizer(wxHORIZONTAL);
+	WxBoxSizer3->Add(WxBoxSizer17, 0, wxALIGN_LEFT | wxALL, 2);
 
 	wxArrayString arrayStringFor_WxComboBoxEncoding;
-	WxComboBoxEncoding = new wxComboBox(WxNoteBookPage1, ID_WXCOMBOBOXENCODING, _(""), wxPoint(2,2), wxSize(140,21), arrayStringFor_WxComboBoxEncoding, wxCB_DROPDOWN | wxCB_READONLY, wxDefaultValidator, _("WxComboBoxEncoding"));
-	WxBoxSizer17->Add(WxComboBoxEncoding,0,wxALIGN_CENTER_VERTICAL | wxALL,0);
+	WxComboBoxEncoding = new wxComboBox(WxNoteBookPage1, ID_WXCOMBOBOXENCODING, _(""), wxPoint(0,3), wxSize(140,21), arrayStringFor_WxComboBoxEncoding, wxCB_DROPDOWN | wxCB_READONLY, wxDefaultValidator, _("WxComboBoxEncoding"));
+	WxBoxSizer17->Add(WxComboBoxEncoding,0,wxALIGN_LEFT | wxALL,0);
 
-	WxStaticText13 = new wxStaticText(WxNoteBookPage1, ID_WXSTATICTEXT13, _("Use this Encoding to Create New File or When MadEdit cannot Determine the Encoding of Old File"), wxPoint(146,4), wxSize(469,17), 0, _("WxStaticText13"));
-	WxBoxSizer17->Add(WxStaticText13,0,wxALIGN_CENTER_VERTICAL | wxALL,5);
+	WxStaticText13 = new wxStaticText(WxNoteBookPage1, ID_WXSTATICTEXT13, _("Use this Encoding to Create New File or When MadEdit cannot Determine the Encoding of Old File"), wxPoint(145,5), wxDefaultSize, 0, _("WxStaticText13"));
+	WxBoxSizer17->Add(WxStaticText13,0,wxALIGN_LEFT | wxALL,5);
 
-	wxBoxSizer* WxBoxSizer7 = new wxBoxSizer(wxVERTICAL);
-	WxBoxSizer3->Add(WxBoxSizer7,0,wxALIGN_LEFT | wxALL,5);
+	WxBoxSizer7 = new wxBoxSizer(wxVERTICAL);
+	WxBoxSizer3->Add(WxBoxSizer7, 0, wxALIGN_LEFT | wxALL, 5);
 
-	WxCheckBoxDoNotSaveSettings = new wxCheckBox(WxNoteBookPage1, ID_WXCHECKBOXDONOTSAVESETTINGS, _("Do Not Save Settings to MadEdit.cfg when MadEdit Closed (This Session Only)"), wxPoint(5,5), wxSize(400,20), 0, wxDefaultValidator, _("WxCheckBoxDoNotSaveSettings"));
+	WxCheckBoxDoNotSaveSettings = new wxCheckBox(WxNoteBookPage1, ID_WXCHECKBOXDONOTSAVESETTINGS, _("Do Not Save Settings to MadEdit.cfg when MadEdit Closed (This Session Only)"), wxPoint(2,2), wxSize(400,20), 0, wxDefaultValidator, _("WxCheckBoxDoNotSaveSettings"));
 	WxBoxSizer7->Add(WxCheckBoxDoNotSaveSettings,0,wxALIGN_LEFT | wxALL,2);
 
 	WxNoteBookPage2 = new wxPanel(WxNotebook1, ID_WXNOTEBOOKPAGE2, wxPoint(4,24), wxSize(673,314));
 	WxNotebook1->AddPage(WxNoteBookPage2, _("Edit"));
 
-	wxBoxSizer* WxBoxSizer8 = new wxBoxSizer(wxVERTICAL);
+	WxBoxSizer8 = new wxBoxSizer(wxVERTICAL);
 	WxNoteBookPage2->SetSizer(WxBoxSizer8);
-	WxNoteBookPage2->SetAutoLayout(TRUE);
+	WxNoteBookPage2->SetAutoLayout(true);
 
-	wxBoxSizer* WxBoxSizer9 = new wxBoxSizer(wxHORIZONTAL);
-	WxBoxSizer8->Add(WxBoxSizer9,0,wxALIGN_LEFT | wxALL,2);
+	WxBoxSizer9 = new wxBoxSizer(wxHORIZONTAL);
+	WxBoxSizer8->Add(WxBoxSizer9, 0, wxALIGN_LEFT | wxALL, 2);
 
-	WxEditMaxLineLength = new wxTextCtrl(WxNoteBookPage2, ID_WXEDITMAXLINELENGTH, _("0"), wxPoint(2,2), wxSize(60,21), 0, wxTextValidator(wxFILTER_NUMERIC), _("WxEditMaxLineLength"));
-	WxBoxSizer9->Add(WxEditMaxLineLength,0,wxALIGN_CENTER_VERTICAL | wxALL,0);
+	WxEditMaxLineLength = new wxTextCtrl(WxNoteBookPage2, ID_WXEDITMAXLINELENGTH, _("0"), wxPoint(0,3), wxSize(60,21), 0, wxTextValidator(wxFILTER_NUMERIC), _("WxEditMaxLineLength"));
+	WxBoxSizer9->Add(WxEditMaxLineLength,0,wxALIGN_LEFT | wxALL,0);
 
-	WxStaticText3 = new wxStaticText(WxNoteBookPage2, ID_WXSTATICTEXT3, _("Max Line Length before Line-Wrap (Must Restart MadEdit)"), wxPoint(66,4), wxSize(300,17), wxST_NO_AUTORESIZE, _("WxStaticText3"));
-	WxBoxSizer9->Add(WxStaticText3,0,wxALIGN_CENTER_VERTICAL | wxALL,5);
+	WxStaticText3 = new wxStaticText(WxNoteBookPage2, ID_WXSTATICTEXT3, _("Max Line Length before Line-Wrap (Must Restart MadEdit)"), wxPoint(65,5), wxSize(300, 17), wxST_NO_AUTORESIZE, _("WxStaticText3"));
+	WxBoxSizer9->Add(WxStaticText3,0,wxALIGN_LEFT | wxALL,5);
 
-	wxBoxSizer* WxBoxSizer10 = new wxBoxSizer(wxHORIZONTAL);
-	WxBoxSizer8->Add(WxBoxSizer10,0,wxALIGN_LEFT | wxALL,2);
+	WxBoxSizer10 = new wxBoxSizer(wxHORIZONTAL);
+	WxBoxSizer8->Add(WxBoxSizer10, 0, wxALIGN_LEFT | wxALL, 2);
 
-	WxEditMaxColumns = new wxTextCtrl(WxNoteBookPage2, ID_WXEDITMAXCOLUMNS, _("0"), wxPoint(2,2), wxSize(60,21), 0, wxTextValidator(wxFILTER_NUMERIC), _("WxEditMaxColumns"));
-	WxBoxSizer10->Add(WxEditMaxColumns,0,wxALIGN_CENTER_VERTICAL | wxALL,0);
+	WxEditMaxColumns = new wxTextCtrl(WxNoteBookPage2, ID_WXEDITMAXCOLUMNS, _("0"), wxPoint(0,3), wxSize(60,21), 0, wxTextValidator(wxFILTER_NUMERIC), _("WxEditMaxColumns"));
+	WxBoxSizer10->Add(WxEditMaxColumns,0,wxALIGN_LEFT | wxALL,0);
 
-	WxStaticText4 = new wxStaticText(WxNoteBookPage2, ID_WXSTATICTEXT4, _("Columns of Wrap-By-Column"), wxPoint(66,4), wxSize(300,17), wxST_NO_AUTORESIZE, _("WxStaticText4"));
-	WxBoxSizer10->Add(WxStaticText4,0,wxALIGN_CENTER_VERTICAL | wxALL,5);
+	WxStaticText4 = new wxStaticText(WxNoteBookPage2, ID_WXSTATICTEXT4, _("Columns of Wrap-By-Column"), wxPoint(65,5), wxSize(300, 17), wxST_NO_AUTORESIZE, _("WxStaticText4"));
+	WxBoxSizer10->Add(WxStaticText4,0,wxALIGN_LEFT | wxALL,5);
 
-	wxBoxSizer* WxBoxSizer11 = new wxBoxSizer(wxHORIZONTAL);
-	WxBoxSizer8->Add(WxBoxSizer11,0,wxALIGN_LEFT | wxALL,2);
+	WxBoxSizer11 = new wxBoxSizer(wxHORIZONTAL);
+	WxBoxSizer8->Add(WxBoxSizer11, 0, wxALIGN_LEFT | wxALL, 2);
 
-	WxEditTabColumns = new wxTextCtrl(WxNoteBookPage2, ID_WXEDITTABCOLUMNS, _("0"), wxPoint(2,2), wxSize(60,21), 0, wxTextValidator(wxFILTER_NUMERIC), _("WxEditTabColumns"));
-	WxBoxSizer11->Add(WxEditTabColumns,0,wxALIGN_CENTER_VERTICAL | wxALL,0);
+	WxEditTabColumns = new wxTextCtrl(WxNoteBookPage2, ID_WXEDITTABCOLUMNS, _("0"), wxPoint(0,3), wxSize(60,21), 0, wxTextValidator(wxFILTER_NUMERIC), _("WxEditTabColumns"));
+	WxBoxSizer11->Add(WxEditTabColumns,0,wxALIGN_LEFT | wxALL,0);
 
-	WxStaticText5 = new wxStaticText(WxNoteBookPage2, ID_WXSTATICTEXT5, _("Columns of Tab"), wxPoint(66,4), wxSize(300,17), wxST_NO_AUTORESIZE, _("WxStaticText5"));
-	WxBoxSizer11->Add(WxStaticText5,0,wxALIGN_CENTER_VERTICAL | wxALL,5);
+	WxStaticText5 = new wxStaticText(WxNoteBookPage2, ID_WXSTATICTEXT5, _("Columns of Tab"), wxPoint(65,5), wxSize(300, 17), wxST_NO_AUTORESIZE, _("WxStaticText5"));
+	WxBoxSizer11->Add(WxStaticText5,0,wxALIGN_LEFT | wxALL,5);
 
-	wxBoxSizer* WxBoxSizer13 = new wxBoxSizer(wxHORIZONTAL);
-	WxBoxSizer8->Add(WxBoxSizer13,0,wxALIGN_LEFT | wxALL,2);
+	WxBoxSizer13 = new wxBoxSizer(wxHORIZONTAL);
+	WxBoxSizer8->Add(WxBoxSizer13, 0, wxALIGN_LEFT | wxALL, 2);
 
-	WxEditIndentColumns = new wxTextCtrl(WxNoteBookPage2, ID_WXEDITTABCOLUMNS, _("0"), wxPoint(2,2), wxSize(60,21), 0, wxTextValidator(wxFILTER_NUMERIC), _("WxEditIndentColumns"));
-	WxBoxSizer13->Add(WxEditIndentColumns,0,wxALIGN_CENTER_VERTICAL | wxALL,0);
+	WxEditIndentColumns = new wxTextCtrl(WxNoteBookPage2, ID_WXEDITTABCOLUMNS, _("0"), wxPoint(0,3), wxSize(60,21), 0, wxTextValidator(wxFILTER_NUMERIC), _("WxEditIndentColumns"));
+	WxBoxSizer13->Add(WxEditIndentColumns,0,wxALIGN_LEFT | wxALL,0);
 
-	WxStaticText6 = new wxStaticText(WxNoteBookPage2, ID_WXSTATICTEXT5, _("Columns of Indent"), wxPoint(66,4), wxSize(300,17), wxST_NO_AUTORESIZE, _("WxStaticText6"));
-	WxBoxSizer13->Add(WxStaticText6,0,wxALIGN_CENTER_VERTICAL | wxALL,5);
+	WxStaticText6 = new wxStaticText(WxNoteBookPage2, ID_WXSTATICTEXT5, _("Columns of Indent"), wxPoint(65,5), wxSize(300, 17), wxST_NO_AUTORESIZE, _("WxStaticText6"));
+	WxBoxSizer13->Add(WxStaticText6,0,wxALIGN_LEFT | wxALL,5);
 
-	wxBoxSizer* WxBoxSizer12 = new wxBoxSizer(wxVERTICAL);
-	WxBoxSizer8->Add(WxBoxSizer12,0,wxALIGN_LEFT | wxALL,5);
+	WxBoxSizer12 = new wxBoxSizer(wxVERTICAL);
+	WxBoxSizer8->Add(WxBoxSizer12, 0, wxALIGN_LEFT | wxALL, 5);
 
-	WxCheckBoxTabOrSpaces = new wxCheckBox(WxNoteBookPage2, ID_WXCHECKBOXTABORSPACES, _("Insert Space Char Instead of Tab Char"), wxPoint(22,5), wxSize(480,20), 0, wxDefaultValidator, _("WxCheckBoxTabOrSpaces"));
+	WxCheckBoxTabOrSpaces = new wxCheckBox(WxNoteBookPage2, ID_WXCHECKBOXTABORSPACES, _("Insert Space Char Instead of Tab Char"), wxPoint(25,2), wxSize(480,20), 0, wxDefaultValidator, _("WxCheckBoxTabOrSpaces"));
 	WxBoxSizer12->Add(WxCheckBoxTabOrSpaces,0,wxALIGN_LEFT | wxALL,2);
 
-	WxCheckBoxAutoIndent = new wxCheckBox(WxNoteBookPage2, ID_WXCHECKBOXAUTOINDENT, _("Auto Indent"), wxPoint(22,35), wxSize(480,20), 0, wxDefaultValidator, _("WxCheckBoxAutoIndent"));
+	WxCheckBoxAutoIndent = new wxCheckBox(WxNoteBookPage2, ID_WXCHECKBOXAUTOINDENT, _("Auto Indent"), wxPoint(25,26), wxSize(480,20), 0, wxDefaultValidator, _("WxCheckBoxAutoIndent"));
 	WxBoxSizer12->Add(WxCheckBoxAutoIndent,0,wxALIGN_LEFT | wxALL,2);
 
-	WxCheckBoxAutoCompletePair = new wxCheckBox(WxNoteBookPage2, ID_WXCHECKBOXAUTOCOMPLETEPAIR, _("Auto Complete Character Pair"), wxPoint(22,65), wxSize(480,20), 0, wxDefaultValidator, _("WxCheckBoxAutoCompletePair"));
+	WxCheckBoxAutoCompletePair = new wxCheckBox(WxNoteBookPage2, ID_WXCHECKBOXAUTOCOMPLETEPAIR, _("Auto Complete Character Pair"), wxPoint(25,50), wxSize(480,20), 0, wxDefaultValidator, _("WxCheckBoxAutoCompletePair"));
 	WxBoxSizer12->Add(WxCheckBoxAutoCompletePair,0,wxALIGN_LEFT | wxALL,2);
 
-	wxBoxSizer* WxBoxSizer28 = new wxBoxSizer(wxHORIZONTAL);
-	WxBoxSizer12->Add(WxBoxSizer28,0,wxALIGN_LEFT | wxALL,0);
+	WxBoxSizer28 = new wxBoxSizer(wxHORIZONTAL);
+	WxBoxSizer12->Add(WxBoxSizer28, 0, wxALIGN_LEFT | wxALL, 0);
 
-	WxCheckBoxMouseSelectToCopy = new wxCheckBox(WxNoteBookPage2, ID_WXCHECKBOXMOUSESELECTTOCOPY, _("Auto Copy the Mouse-Selected Text to Clipboard  ("), wxPoint(0,0), wxSize(260,20), 0, wxDefaultValidator, _("WxCheckBoxMouseSelectToCopy"));
-	WxBoxSizer28->Add(WxCheckBoxMouseSelectToCopy,0,wxALIGN_CENTER_VERTICAL | wxALL,2);
+	WxCheckBoxMouseSelectToCopy = new wxCheckBox(WxNoteBookPage2, ID_WXCHECKBOXMOUSESELECTTOCOPY, _("Auto Copy the Mouse-Selected Text to Clipboard  ("), wxPoint(2,2), wxSize(260,20), 0, wxDefaultValidator, _("WxCheckBoxMouseSelectToCopy"));
+	WxBoxSizer28->Add(WxCheckBoxMouseSelectToCopy,0,wxALIGN_LEFT | wxALL,2);
 
-	WxRadioButtonEnable = new wxRadioButton(WxNoteBookPage2, ID_WXRADIOBUTTONENABLE, _("Enable"), wxPoint(260,0), wxSize(70,20), 0, wxDefaultValidator, _("WxRadioButtonEnable"));
-	WxBoxSizer28->Add(WxRadioButtonEnable,0,wxALIGN_CENTER_VERTICAL | wxALL,2);
+	WxRadioButtonEnable = new wxRadioButton(WxNoteBookPage2, ID_WXRADIOBUTTONENABLE, _("Enable"), wxPoint(266,2), wxSize(70,20), 0, wxDefaultValidator, _("WxRadioButtonEnable"));
+	WxBoxSizer28->Add(WxRadioButtonEnable,0,wxALIGN_LEFT | wxALL,2);
 
-	WxRadioButtonDisable = new wxRadioButton(WxNoteBookPage2, ID_WXRADIOBUTTONDISABLE, _("Disable"), wxPoint(330,0), wxSize(70,20), 0, wxDefaultValidator, _("WxRadioButtonDisable"));
-	WxBoxSizer28->Add(WxRadioButtonDisable,0,wxALIGN_CENTER_VERTICAL | wxALL,2);
+	WxRadioButtonDisable = new wxRadioButton(WxNoteBookPage2, ID_WXRADIOBUTTONDISABLE, _("Disable"), wxPoint(340,2), wxSize(70,20), 0, wxDefaultValidator, _("WxRadioButtonDisable"));
+	WxBoxSizer28->Add(WxRadioButtonDisable,0,wxALIGN_LEFT | wxALL,2);
 
-	WxStaticText17 = new wxStaticText(WxNoteBookPage2, ID_WXSTATICTEXT17, _("when Pressing Ctrl Key)"), wxPoint(400,1), wxSize(115,17), 0, _("WxStaticText17"));
-	WxBoxSizer28->Add(WxStaticText17,0,wxALIGN_CENTER_VERTICAL | wxALL,2);
+	WxStaticText17 = new wxStaticText(WxNoteBookPage2, ID_WXSTATICTEXT17, _("when Pressing Ctrl Key)"), wxPoint(414,3), wxDefaultSize, 0, _("WxStaticText17"));
+	WxBoxSizer28->Add(WxStaticText17,0,wxALIGN_LEFT | wxALL,2);
 
-	WxCheckBoxMiddleMouseToPaste = new wxCheckBox(WxNoteBookPage2, ID_WXCHECKBOXMIDDLEMOUSETOPASTE, _("Paste Text from Clipboard when Pressing Middle Mouse Button"), wxPoint(22,125), wxSize(480,20), 0, wxDefaultValidator, _("WxCheckBoxMiddleMouseToPaste"));
+	WxCheckBoxMiddleMouseToPaste = new wxCheckBox(WxNoteBookPage2, ID_WXCHECKBOXMIDDLEMOUSETOPASTE, _("Paste Text from Clipboard when Pressing Middle Mouse Button"), wxPoint(25,98), wxSize(480,20), 0, wxDefaultValidator, _("WxCheckBoxMiddleMouseToPaste"));
 	WxBoxSizer12->Add(WxCheckBoxMiddleMouseToPaste,0,wxALIGN_LEFT | wxALL,2);
 
 	WxNoteBookPage3 = new wxPanel(WxNotebook1, ID_WXNOTEBOOKPAGE3, wxPoint(4,24), wxSize(673,314));
 	WxNotebook1->AddPage(WxNoteBookPage3, _("Print"));
 
-	wxBoxSizer* WxBoxSizer14 = new wxBoxSizer(wxHORIZONTAL);
+	WxBoxSizer14 = new wxBoxSizer(wxHORIZONTAL);
 	WxNoteBookPage3->SetSizer(WxBoxSizer14);
-	WxNoteBookPage3->SetAutoLayout(TRUE);
+	WxNoteBookPage3->SetAutoLayout(true);
 
-	wxBoxSizer* WxBoxSizer15 = new wxBoxSizer(wxVERTICAL);
-	WxBoxSizer14->Add(WxBoxSizer15,0,wxALIGN_TOP | wxALL,2);
+	WxBoxSizer15 = new wxBoxSizer(wxVERTICAL);
+	WxBoxSizer14->Add(WxBoxSizer15, 0, wxALIGN_LEFT | wxALL, 2);
 
 	wxStaticBox* WxStaticBoxSizer1_StaticBoxObj = new wxStaticBox(WxNoteBookPage3, wxID_ANY, _("Text Mode"));
-	wxStaticBoxSizer* WxStaticBoxSizer1 = new wxStaticBoxSizer(WxStaticBoxSizer1_StaticBoxObj,wxVERTICAL);
-	WxBoxSizer15->Add(WxStaticBoxSizer1,0,wxALIGN_CENTER_HORIZONTAL | wxALL,4);
+	WxStaticBoxSizer1 = new wxStaticBoxSizer(WxStaticBoxSizer1_StaticBoxObj, wxVERTICAL);
+	WxBoxSizer15->Add(WxStaticBoxSizer1, 0, wxALIGN_LEFT | wxALL, 4);
 
-	WxCheckBoxPrintSyntax = new wxCheckBox(WxNoteBookPage3, ID_WXCHECKBOXPRINTSYNTAX, _("Print Syntax Highlighter"), wxPoint(8,16), wxSize(150,17), 0, wxDefaultValidator, _("WxCheckBoxPrintSyntax"));
+	WxCheckBoxPrintSyntax = new wxCheckBox(WxNoteBookPage3, ID_WXCHECKBOXPRINTSYNTAX, _("Print Syntax Highlighter"), wxPoint(6,16), wxSize(150,17), 0, wxDefaultValidator, _("WxCheckBoxPrintSyntax"));
 	WxStaticBoxSizer1->Add(WxCheckBoxPrintSyntax,0,wxALIGN_LEFT | wxALL,1);
 
-	WxCheckBoxPrintLineNumber = new wxCheckBox(WxNoteBookPage3, ID_WXCHECKBOXPRINTLINENUMBER, _("Print Line Number"), wxPoint(8,41), wxSize(150,17), 0, wxDefaultValidator, _("WxCheckBoxPrintLineNumber"));
+	WxCheckBoxPrintLineNumber = new wxCheckBox(WxNoteBookPage3, ID_WXCHECKBOXPRINTLINENUMBER, _("Print Line Number"), wxPoint(6,35), wxSize(150,17), 0, wxDefaultValidator, _("WxCheckBoxPrintLineNumber"));
 	WxStaticBoxSizer1->Add(WxCheckBoxPrintLineNumber,0,wxALIGN_LEFT | wxALL,1);
 
-	WxCheckBoxPrintEndOfLine = new wxCheckBox(WxNoteBookPage3, ID_WXCHECKBOXPRINTENDOFLINE, _("Print End of Line"), wxPoint(8,66), wxSize(150,17), 0, wxDefaultValidator, _("WxCheckBoxPrintEndOfLine"));
+	WxCheckBoxPrintEndOfLine = new wxCheckBox(WxNoteBookPage3, ID_WXCHECKBOXPRINTENDOFLINE, _("Print End of Line"), wxPoint(6,54), wxSize(150,17), 0, wxDefaultValidator, _("WxCheckBoxPrintEndOfLine"));
 	WxStaticBoxSizer1->Add(WxCheckBoxPrintEndOfLine,0,wxALIGN_LEFT | wxALL,1);
 
-	WxCheckBoxPrintTabChar = new wxCheckBox(WxNoteBookPage3, ID_WXCHECKBOXPRINTTABCHAR, _("Print Tab Char"), wxPoint(8,91), wxSize(150,17), 0, wxDefaultValidator, _("WxCheckBoxPrintTabChar"));
+	WxCheckBoxPrintTabChar = new wxCheckBox(WxNoteBookPage3, ID_WXCHECKBOXPRINTTABCHAR, _("Print Tab Char"), wxPoint(6,73), wxSize(150,17), 0, wxDefaultValidator, _("WxCheckBoxPrintTabChar"));
 	WxStaticBoxSizer1->Add(WxCheckBoxPrintTabChar,0,wxALIGN_LEFT | wxALL,1);
 
-	WxCheckBoxPrintSpaceChar = new wxCheckBox(WxNoteBookPage3, ID_WXCHECKBOXPRINTSPACECHAR, _("Print Space Char"), wxPoint(8,116), wxSize(150,17), 0, wxDefaultValidator, _("WxCheckBoxPrintSpaceChar"));
+	WxCheckBoxPrintSpaceChar = new wxCheckBox(WxNoteBookPage3, ID_WXCHECKBOXPRINTSPACECHAR, _("Print Space Char"), wxPoint(6,92), wxSize(150,17), 0, wxDefaultValidator, _("WxCheckBoxPrintSpaceChar"));
 	WxStaticBoxSizer1->Add(WxCheckBoxPrintSpaceChar,0,wxALIGN_LEFT | wxALL,1);
 
 	wxStaticBox* WxStaticBoxSizer2_StaticBoxObj = new wxStaticBox(WxNoteBookPage3, wxID_ANY, _("Hex Mode"));
-	wxStaticBoxSizer* WxStaticBoxSizer2 = new wxStaticBoxSizer(WxStaticBoxSizer2_StaticBoxObj,wxHORIZONTAL);
-	WxBoxSizer15->Add(WxStaticBoxSizer2,0,wxALIGN_CENTER_HORIZONTAL | wxALL,4);
+	WxStaticBoxSizer2 = new wxStaticBoxSizer(WxStaticBoxSizer2_StaticBoxObj, wxHORIZONTAL);
+	WxBoxSizer15->Add(WxStaticBoxSizer2, 0, wxALIGN_LEFT | wxALL, 4);
 
 	wxArrayString arrayStringFor_WxRadioBoxPrintOffset;
 	arrayStringFor_WxRadioBoxPrintOffset.Add(_("None"));
 	arrayStringFor_WxRadioBoxPrintOffset.Add(_("First Page Only"));
 	arrayStringFor_WxRadioBoxPrintOffset.Add(_("Every Page"));
-	WxRadioBoxPrintOffset = new wxRadioBox(WxNoteBookPage3, ID_WXRADIOBOXPRINTOFFSET, _("Print Offset Header"), wxPoint(8,16), wxSize(150,130), arrayStringFor_WxRadioBoxPrintOffset, 1, wxRA_SPECIFY_COLS, wxDefaultValidator, _("WxRadioBoxPrintOffset"));
+	WxRadioBoxPrintOffset = new wxRadioBox(WxNoteBookPage3, ID_WXRADIOBOXPRINTOFFSET, _("Print Offset Header"), wxPoint(6,16), wxSize(150,130), arrayStringFor_WxRadioBoxPrintOffset, 1, wxRA_SPECIFY_COLS, wxDefaultValidator, _("WxRadioBoxPrintOffset"));
 	WxRadioBoxPrintOffset->SetSelection(0);
-	WxStaticBoxSizer2->Add(WxRadioBoxPrintOffset,1,wxALIGN_CENTER_VERTICAL | wxALL,1);
+	WxStaticBoxSizer2->Add(WxRadioBoxPrintOffset,1,wxALIGN_LEFT | wxALL,1);
 
-	wxBoxSizer* WxBoxSizer16 = new wxBoxSizer(wxVERTICAL);
-	WxBoxSizer14->Add(WxBoxSizer16,0,wxALIGN_TOP | wxALL,2);
+	WxBoxSizer16 = new wxBoxSizer(wxVERTICAL);
+	WxBoxSizer14->Add(WxBoxSizer16, 1, wxEXPAND | wxALL, 2);
 
 	wxStaticBox* WxStaticBoxSizer3_StaticBoxObj = new wxStaticBox(WxNoteBookPage3, wxID_ANY, _("Page Header"));
-	wxStaticBoxSizer* WxStaticBoxSizer3 = new wxStaticBoxSizer(WxStaticBoxSizer3_StaticBoxObj,wxVERTICAL);
-	WxBoxSizer16->Add(WxStaticBoxSizer3,0,wxALIGN_LEFT | wxALL,4);
+	WxStaticBoxSizer3 = new wxStaticBoxSizer(WxStaticBoxSizer3_StaticBoxObj, wxVERTICAL);
+	WxBoxSizer16->Add(WxStaticBoxSizer3, 1, wxEXPAND | wxALL, 4);
 
-	WxCheckBoxPrintPageHeader = new wxCheckBox(WxNoteBookPage3, ID_WXCHECKBOXPRINTPAGEHEADER, _("Print Page Header"), wxPoint(90,16), wxSize(150,17), 0, wxDefaultValidator, _("WxCheckBoxPrintPageHeader"));
+	WxCheckBoxPrintPageHeader = new wxCheckBox(WxNoteBookPage3, ID_WXCHECKBOXPRINTPAGEHEADER, _("Print Page Header"), wxPoint(86,16), wxSize(150,17), 0, wxDefaultValidator, _("WxCheckBoxPrintPageHeader"));
 	WxStaticBoxSizer3->Add(WxCheckBoxPrintPageHeader,0,wxALIGN_LEFT | wxALL,1);
 
-	wxFlexGridSizer* WxFlexGridSizer1 = new wxFlexGridSizer(3,3,0,0);
-	WxStaticBoxSizer3->Add(WxFlexGridSizer1,0,wxALIGN_CENTER_HORIZONTAL | wxALL,2);
+	WxFlexGridSizer1 = new wxFlexGridSizer(3, 3, 0, 0);
+	WxStaticBoxSizer3->Add(WxFlexGridSizer1, 1, wxEXPAND | wxALL, 2);
 
-	WxStaticText7 = new wxStaticText(WxNoteBookPage3, ID_WXSTATICTEXT7, _("Left:"), wxPoint(8,6), wxSize(25,17), 0, _("WxStaticText7"));
-	WxFlexGridSizer1->Add(WxStaticText7,0,wxALIGN_LEFT | wxALIGN_CENTER_VERTICAL | wxALL,2);
+	WxStaticText7 = new wxStaticText(WxNoteBookPage3, ID_WXSTATICTEXT7, _("Left:"), wxPoint(8,5), wxDefaultSize, 0, _("WxStaticText7"));
+	WxFlexGridSizer1->Add(WxStaticText7,0,wxALIGN_RIGHT | wxALL,2);
 
-	WxEditHeaderLeft = new wxTextCtrl(WxNoteBookPage3, ID_WXEDITHEADERLEFT, _(""), wxPoint(44,4), wxSize(240,21), 0, wxDefaultValidator, _("WxEditHeaderLeft"));
-	WxFlexGridSizer1->Add(WxEditHeaderLeft,0,wxALIGN_CENTER_HORIZONTAL | wxALIGN_CENTER_VERTICAL | wxALL,2);
+	WxEditHeaderLeft = new wxTextCtrl(WxNoteBookPage3, ID_WXEDITHEADERLEFT, _(""), wxPoint(44,3), wxSize(240,21), 0, wxDefaultValidator, _("WxEditHeaderLeft"));
+	WxFlexGridSizer1->Add(WxEditHeaderLeft,1,wxEXPAND | wxALL,2);
 
-	WxButton1 = new wxButton(WxNoteBookPage3, ID_WXBUTTON1, _(">>"), wxPoint(288,2), wxSize(25,25), 0, wxDefaultValidator, _("WxButton1"));
-	WxFlexGridSizer1->Add(WxButton1,0,wxALIGN_CENTER_HORIZONTAL | wxALIGN_CENTER_VERTICAL | wxALL,1);
+	WxButton1 = new wxButton(WxNoteBookPage3, ID_WXBUTTON1, _(">>"), wxPoint(287,1), wxSize(25,25), 0, wxDefaultValidator, _("WxButton1"));
+	WxFlexGridSizer1->Add(WxButton1,0,wxALIGN_LEFT | wxALL,1);
 
-	WxStaticText8 = new wxStaticText(WxNoteBookPage3, ID_WXSTATICTEXT8, _("Center:"), wxPoint(2,35), wxSize(38,17), 0, _("WxStaticText8"));
-	WxFlexGridSizer1->Add(WxStaticText8,0,wxALIGN_LEFT | wxALIGN_CENTER_VERTICAL | wxALL,2);
+	WxStaticText8 = new wxStaticText(WxNoteBookPage3, ID_WXSTATICTEXT8, _("Center:"), wxPoint(2,32), wxDefaultSize, 0, _("WxStaticText8"));
+	WxFlexGridSizer1->Add(WxStaticText8,0,wxALIGN_RIGHT | wxALL,2);
 
-	WxEditHeaderCenter = new wxTextCtrl(WxNoteBookPage3, ID_WXEDITHEADERCENTER, _(""), wxPoint(44,33), wxSize(240,21), 0, wxDefaultValidator, _("WxEditHeaderCenter"));
-	WxFlexGridSizer1->Add(WxEditHeaderCenter,0,wxALIGN_CENTER_HORIZONTAL | wxALIGN_CENTER_VERTICAL | wxALL,2);
+	WxEditHeaderCenter = new wxTextCtrl(WxNoteBookPage3, ID_WXEDITHEADERCENTER, _(""), wxPoint(44,30), wxSize(240,21), 0, wxDefaultValidator, _("WxEditHeaderCenter"));
+	WxFlexGridSizer1->Add(WxEditHeaderCenter,1,wxEXPAND | wxALL,2);
 
-	WxButton2 = new wxButton(WxNoteBookPage3, ID_WXBUTTON2, _(">>"), wxPoint(288,31), wxSize(25,25), 0, wxDefaultValidator, _("WxButton2"));
-	WxFlexGridSizer1->Add(WxButton2,0,wxALIGN_CENTER_HORIZONTAL | wxALIGN_CENTER_VERTICAL | wxALL,1);
+	WxButton2 = new wxButton(WxNoteBookPage3, ID_WXBUTTON2, _(">>"), wxPoint(287,28), wxSize(25,25), 0, wxDefaultValidator, _("WxButton2"));
+	WxFlexGridSizer1->Add(WxButton2,0,wxALIGN_LEFT | wxALL,1);
 
-	WxStaticText9 = new wxStaticText(WxNoteBookPage3, ID_WXSTATICTEXT9, _("Right:"), wxPoint(5,64), wxSize(32,17), 0, _("WxStaticText9"));
-	WxFlexGridSizer1->Add(WxStaticText9,0,wxALIGN_LEFT | wxALIGN_CENTER_VERTICAL | wxALL,2);
+	WxStaticText9 = new wxStaticText(WxNoteBookPage3, ID_WXSTATICTEXT9, _("Right:"), wxPoint(5,59), wxDefaultSize, 0, _("WxStaticText9"));
+	WxFlexGridSizer1->Add(WxStaticText9,0,wxALIGN_RIGHT | wxALL,2);
 
-	WxEditHeaderRight = new wxTextCtrl(WxNoteBookPage3, ID_WXEDITHEADERRIGHT, _(""), wxPoint(44,62), wxSize(240,21), 0, wxDefaultValidator, _("WxEditHeaderRight"));
-	WxFlexGridSizer1->Add(WxEditHeaderRight,0,wxALIGN_CENTER_HORIZONTAL | wxALIGN_CENTER_VERTICAL | wxALL,2);
+	WxEditHeaderRight = new wxTextCtrl(WxNoteBookPage3, ID_WXEDITHEADERRIGHT, _(""), wxPoint(44,57), wxSize(240,21), 0, wxDefaultValidator, _("WxEditHeaderRight"));
+	WxFlexGridSizer1->Add(WxEditHeaderRight,1,wxEXPAND | wxALL,2);
 
-	WxButton3 = new wxButton(WxNoteBookPage3, ID_WXBUTTON3, _(">>"), wxPoint(288,60), wxSize(25,25), 0, wxDefaultValidator, _("WxButton3"));
-	WxFlexGridSizer1->Add(WxButton3,0,wxALIGN_CENTER_HORIZONTAL | wxALIGN_CENTER_VERTICAL | wxALL,1);
+	WxButton3 = new wxButton(WxNoteBookPage3, ID_WXBUTTON3, _(">>"), wxPoint(287,55), wxSize(25,25), 0, wxDefaultValidator, _("WxButton3"));
+	WxFlexGridSizer1->Add(WxButton3,0,wxALIGN_LEFT | wxALL,1);
 
 	wxStaticBox* WxStaticBoxSizer4_StaticBoxObj = new wxStaticBox(WxNoteBookPage3, wxID_ANY, _("Page Footer"));
-	wxStaticBoxSizer* WxStaticBoxSizer4 = new wxStaticBoxSizer(WxStaticBoxSizer4_StaticBoxObj,wxVERTICAL);
-	WxBoxSizer16->Add(WxStaticBoxSizer4,0,wxALIGN_LEFT | wxALL,4);
+	WxStaticBoxSizer4 = new wxStaticBoxSizer(WxStaticBoxSizer4_StaticBoxObj, wxVERTICAL);
+	WxBoxSizer16->Add(WxStaticBoxSizer4, 1, wxEXPAND | wxALL, 4);
 
-	WxCheckBoxPrintPageFooter = new wxCheckBox(WxNoteBookPage3, ID_WXCHECKBOXPRINTPAGEFOOTER, _("Print Page Footer"), wxPoint(90,16), wxSize(150,17), 0, wxDefaultValidator, _("WxCheckBoxPrintPageFooter"));
+	WxCheckBoxPrintPageFooter = new wxCheckBox(WxNoteBookPage3, ID_WXCHECKBOXPRINTPAGEFOOTER, _("Print Page Footer"), wxPoint(86,16), wxSize(150,17), 0, wxDefaultValidator, _("WxCheckBoxPrintPageFooter"));
 	WxStaticBoxSizer4->Add(WxCheckBoxPrintPageFooter,0,wxALIGN_LEFT | wxALL,1);
 
-	wxFlexGridSizer* WxFlexGridSizer2 = new wxFlexGridSizer(3,3,0,0);
-	WxStaticBoxSizer4->Add(WxFlexGridSizer2,0,wxALIGN_CENTER_HORIZONTAL | wxALL,2);
+	WxFlexGridSizer2 = new wxFlexGridSizer(3, 3, 0, 0);
+	WxStaticBoxSizer4->Add(WxFlexGridSizer2, 1, wxEXPAND | wxALL, 2);
 
-	WxStaticText10 = new wxStaticText(WxNoteBookPage3, ID_WXSTATICTEXT7, _("Left:"), wxPoint(8,6), wxSize(25,17), 0, _("WxStaticText10"));
-	WxFlexGridSizer2->Add(WxStaticText10,0,wxALIGN_LEFT | wxALIGN_CENTER_VERTICAL | wxALL,2);
+	WxStaticText10 = new wxStaticText(WxNoteBookPage3, ID_WXSTATICTEXT7, _("Left:"), wxPoint(8,5), wxDefaultSize, 0, _("WxStaticText10"));
+	WxFlexGridSizer2->Add(WxStaticText10,0,wxALIGN_RIGHT | wxALL,2);
 
-	WxEditFooterLeft = new wxTextCtrl(WxNoteBookPage3, ID_WXEDITHEADERLEFT, _(""), wxPoint(44,4), wxSize(240,21), 0, wxDefaultValidator, _("WxEditFooterLeft"));
-	WxFlexGridSizer2->Add(WxEditFooterLeft,0,wxALIGN_CENTER_HORIZONTAL | wxALIGN_CENTER_VERTICAL | wxALL,2);
+	WxEditFooterLeft = new wxTextCtrl(WxNoteBookPage3, ID_WXEDITHEADERLEFT, _(""), wxPoint(44,3), wxSize(240,21), 0, wxDefaultValidator, _("WxEditFooterLeft"));
+	WxFlexGridSizer2->Add(WxEditFooterLeft,1,wxEXPAND | wxALL,2);
 
-	WxButton4 = new wxButton(WxNoteBookPage3, ID_WXBUTTON4, _(">>"), wxPoint(288,2), wxSize(25,25), 0, wxDefaultValidator, _("WxButton4"));
-	WxFlexGridSizer2->Add(WxButton4,0,wxALIGN_CENTER_HORIZONTAL | wxALIGN_CENTER_VERTICAL | wxALL,1);
+	WxButton4 = new wxButton(WxNoteBookPage3, ID_WXBUTTON4, _(">>"), wxPoint(287,1), wxSize(25,25), 0, wxDefaultValidator, _("WxButton4"));
+	WxFlexGridSizer2->Add(WxButton4,0,wxALIGN_LEFT | wxALL,1);
 
-	WxStaticText11 = new wxStaticText(WxNoteBookPage3, ID_WXSTATICTEXT8, _("Center:"), wxPoint(2,35), wxSize(38,17), 0, _("WxStaticText11"));
-	WxFlexGridSizer2->Add(WxStaticText11,0,wxALIGN_LEFT | wxALIGN_CENTER_VERTICAL | wxALL,2);
+	WxStaticText11 = new wxStaticText(WxNoteBookPage3, ID_WXSTATICTEXT8, _("Center:"), wxPoint(2,32), wxDefaultSize, 0, _("WxStaticText11"));
+	WxFlexGridSizer2->Add(WxStaticText11,0,wxALIGN_RIGHT | wxALL,2);
 
-	WxEditFooterCenter = new wxTextCtrl(WxNoteBookPage3, ID_WXEDITHEADERCENTER, _(""), wxPoint(44,33), wxSize(240,21), 0, wxDefaultValidator, _("WxEditFooterCenter"));
-	WxFlexGridSizer2->Add(WxEditFooterCenter,0,wxALIGN_CENTER_HORIZONTAL | wxALIGN_CENTER_VERTICAL | wxALL,2);
+	WxEditFooterCenter = new wxTextCtrl(WxNoteBookPage3, ID_WXEDITHEADERCENTER, _(""), wxPoint(44,30), wxSize(240,21), 0, wxDefaultValidator, _("WxEditFooterCenter"));
+	WxFlexGridSizer2->Add(WxEditFooterCenter,1,wxEXPAND | wxALL,2);
 
-	WxButton5 = new wxButton(WxNoteBookPage3, ID_WXBUTTON5, _(">>"), wxPoint(288,31), wxSize(25,25), 0, wxDefaultValidator, _("WxButton5"));
-	WxFlexGridSizer2->Add(WxButton5,0,wxALIGN_CENTER_HORIZONTAL | wxALIGN_CENTER_VERTICAL | wxALL,1);
+	WxButton5 = new wxButton(WxNoteBookPage3, ID_WXBUTTON5, _(">>"), wxPoint(287,28), wxSize(25,25), 0, wxDefaultValidator, _("WxButton5"));
+	WxFlexGridSizer2->Add(WxButton5,0,wxALIGN_LEFT | wxALL,1);
 
-	WxStaticText12 = new wxStaticText(WxNoteBookPage3, ID_WXSTATICTEXT9, _("Right:"), wxPoint(5,64), wxSize(32,17), 0, _("WxStaticText12"));
-	WxFlexGridSizer2->Add(WxStaticText12,0,wxALIGN_LEFT | wxALIGN_CENTER_VERTICAL | wxALL,2);
+	WxStaticText12 = new wxStaticText(WxNoteBookPage3, ID_WXSTATICTEXT9, _("Right:"), wxPoint(5,59), wxDefaultSize, 0, _("WxStaticText12"));
+	WxFlexGridSizer2->Add(WxStaticText12,0,wxALIGN_RIGHT | wxALL,2);
 
-	WxEditFooterRight = new wxTextCtrl(WxNoteBookPage3, ID_WXEDITHEADERRIGHT, _(""), wxPoint(44,62), wxSize(240,21), 0, wxDefaultValidator, _("WxEditFooterRight"));
-	WxFlexGridSizer2->Add(WxEditFooterRight,0,wxALIGN_CENTER_HORIZONTAL | wxALIGN_CENTER_VERTICAL | wxALL,2);
+	WxEditFooterRight = new wxTextCtrl(WxNoteBookPage3, ID_WXEDITHEADERRIGHT, _(""), wxPoint(44,57), wxSize(240,21), 0, wxDefaultValidator, _("WxEditFooterRight"));
+	WxFlexGridSizer2->Add(WxEditFooterRight,1,wxEXPAND | wxALL,2);
 
-	WxButton6 = new wxButton(WxNoteBookPage3, ID_WXBUTTON6, _(">>"), wxPoint(288,60), wxSize(25,25), 0, wxDefaultValidator, _("WxButton6"));
-	WxFlexGridSizer2->Add(WxButton6,0,wxALIGN_CENTER_HORIZONTAL | wxALIGN_CENTER_VERTICAL | wxALL,1);
+	WxButton6 = new wxButton(WxNoteBookPage3, ID_WXBUTTON6, _(">>"), wxPoint(287,55), wxSize(25,25), 0, wxDefaultValidator, _("WxButton6"));
+	WxFlexGridSizer2->Add(WxButton6,0,wxALIGN_LEFT | wxALL,1);
 
 	WxNoteBookPage4 = new wxPanel(WxNotebook1, ID_WXNOTEBOOKPAGE4, wxPoint(4,24), wxSize(673,314));
 	WxNotebook1->AddPage(WxNoteBookPage4, _("Keys"));
 
-	wxBoxSizer* WxBoxSizer18 = new wxBoxSizer(wxHORIZONTAL);
+	WxBoxSizer18 = new wxBoxSizer(wxHORIZONTAL);
 	WxNoteBookPage4->SetSizer(WxBoxSizer18);
-	WxNoteBookPage4->SetAutoLayout(TRUE);
+	WxNoteBookPage4->SetAutoLayout(true);
 
-	wxBoxSizer* WxBoxSizer19 = new wxBoxSizer(wxHORIZONTAL);
-	WxBoxSizer18->Add(WxBoxSizer19,2,wxGROW | wxALL,4);
+	WxBoxSizer19 = new wxBoxSizer(wxHORIZONTAL);
+	WxBoxSizer18->Add(WxBoxSizer19, 2, wxEXPAND | wxALL, 4);
 
-	WxTreeCtrl1 = new wxTreeCtrl(WxNoteBookPage4, ID_WXTREECTRL1, wxPoint(4,4), wxSize(250,240), wxTR_HAS_BUTTONS | wxTR_DEFAULT_STYLE);
-	WxBoxSizer19->Add(WxTreeCtrl1,1,wxGROW | wxALL,3);
+	WxTreeCtrl1 = new wxTreeCtrl(WxNoteBookPage4, ID_WXTREECTRL1, wxPoint(3,3), wxSize(250,240), wxTR_HAS_BUTTONS | wxTR_DEFAULT_STYLE);
+	WxBoxSizer19->Add(WxTreeCtrl1,1,wxEXPAND | wxALL,3);
 
-	wxBoxSizer* WxBoxSizer20 = new wxBoxSizer(wxVERTICAL);
-	WxBoxSizer18->Add(WxBoxSizer20,3,wxGROW | wxALL,2);
+	WxBoxSizer20 = new wxBoxSizer(wxVERTICAL);
+	WxBoxSizer18->Add(WxBoxSizer20, 3, wxEXPAND | wxALL, 2);
 
-	wxBoxSizer* WxBoxSizer24 = new wxBoxSizer(wxHORIZONTAL);
-	WxBoxSizer20->Add(WxBoxSizer24,0,wxGROW | wxALL,2);
+	WxBoxSizer24 = new wxBoxSizer(wxHORIZONTAL);
+	WxBoxSizer20->Add(WxBoxSizer24, 0, wxEXPAND | wxALL, 2);
 
-	WxStaticTextCommandHint = new wxStaticText(WxNoteBookPage4, ID_WXSTATICTEXTCOMMANDHINT, _("Hint:"), wxPoint(2,4), wxSize(26,17), 0, _("WxStaticTextCommandHint"));
-	WxBoxSizer24->Add(WxStaticTextCommandHint,0,wxALIGN_CENTER_VERTICAL | wxALL,5);
+	WxStaticTextCommandHint = new wxStaticText(WxNoteBookPage4, ID_WXSTATICTEXTCOMMANDHINT, _("Hint:"), wxPoint(5,7), wxDefaultSize, 0, _("WxStaticTextCommandHint"));
+	WxBoxSizer24->Add(WxStaticTextCommandHint,0,wxALIGN_LEFT | wxALL,5);
 
-	WxEditCommandHint = new wxTextCtrl(WxNoteBookPage4, ID_WXEDITHINT, _(""), wxPoint(32,2), wxSize(300,21), wxTE_READONLY, wxDefaultValidator, _("WxEditCommandHint"));
+	WxEditCommandHint = new wxTextCtrl(WxNoteBookPage4, ID_WXEDITHINT, _(""), wxPoint(41,5), wxSize(300,21), wxTE_READONLY, wxDefaultValidator, _("WxEditCommandHint"));
 	WxEditCommandHint->SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_BTNFACE));
-	WxBoxSizer24->Add(WxEditCommandHint,1,wxALIGN_CENTER_VERTICAL | wxALL,5);
+	WxBoxSizer24->Add(WxEditCommandHint,1,wxEXPAND | wxALL,5);
 
-	wxBoxSizer* WxBoxSizer21 = new wxBoxSizer(wxHORIZONTAL);
-	WxBoxSizer20->Add(WxBoxSizer21,1,wxGROW | wxALL,2);
+	WxBoxSizer21 = new wxBoxSizer(wxHORIZONTAL);
+	WxBoxSizer20->Add(WxBoxSizer21, 1, wxEXPAND | wxALL, 2);
 
-	wxBoxSizer* WxBoxSizer22 = new wxBoxSizer(wxVERTICAL);
-	WxBoxSizer21->Add(WxBoxSizer22,0,wxGROW | wxALL,2);
+	WxBoxSizer22 = new wxBoxSizer(wxVERTICAL);
+	WxBoxSizer21->Add(WxBoxSizer22, 0, wxEXPAND | wxALL, 2);
 
-	WxStaticText14 = new wxStaticText(WxNoteBookPage4, ID_WXSTATICTEXT14, _("Assigned Keys:"), wxPoint(24,2), wxSize(76,17), 0, _("WxStaticText14"));
-	WxBoxSizer22->Add(WxStaticText14,0,wxALIGN_CENTER_HORIZONTAL | wxALL,5);
+	WxStaticText14 = new wxStaticText(WxNoteBookPage4, ID_WXSTATICTEXT14, _("Assigned Keys:"), wxPoint(34,5), wxDefaultSize, 0, _("WxStaticText14"));
+	WxBoxSizer22->Add(WxStaticText14,0,wxALIGN_LEFT | wxALL,5);
 
 	wxArrayString arrayStringFor_WxListBoxKeys;
-	WxListBoxKeys = new wxListBox(WxNoteBookPage4, ID_WXLISTBOXKEYS, wxPoint(2,23), wxSize(121,200), arrayStringFor_WxListBoxKeys, wxLB_SINGLE);
-	WxBoxSizer22->Add(WxListBoxKeys,1,wxALIGN_LEFT | wxALL,2);
+	WxListBoxKeys = new wxListBox(WxNoteBookPage4, ID_WXLISTBOXKEYS, wxPoint(2,29), wxSize(140,200), arrayStringFor_WxListBoxKeys, wxLB_SINGLE);
+	WxBoxSizer22->Add(WxListBoxKeys,1,wxEXPAND | wxALL,2);
 
-	wxBoxSizer* WxBoxSizer23 = new wxBoxSizer(wxVERTICAL);
-	WxBoxSizer21->Add(WxBoxSizer23,1,wxGROW | wxALL,1);
+	WxBoxSizer25 = new wxBoxSizer(wxVERTICAL);
+	WxBoxSizer21->Add(WxBoxSizer25, 5, wxEXPAND | wxALL, 1);
 
-	wxBoxSizer* WxBoxSizer25 = new wxBoxSizer(wxVERTICAL);
-	WxBoxSizer23->Add(WxBoxSizer25,5,wxGROW | wxALL,1);
-
-	WxStaticText15 = new wxStaticText(WxNoteBookPage4, ID_WXSTATICTEXT15, _("New Key:"), wxPoint(66,1), wxSize(50,17), 0, _("WxStaticText15"));
+	WxStaticText15 = new wxStaticText(WxNoteBookPage4, ID_WXSTATICTEXT15, _("New Key:"), wxPoint(70,5), wxDefaultSize, 0, _("WxStaticText15"));
 	WxBoxSizer25->Add(WxStaticText15,0,wxALIGN_LEFT | wxALL,5);
 
-	WxEditKey = new KeyTextCtrl(WxNoteBookPage4, ID_WXEDITKEY, _(""), wxPoint(1,20), wxSize(180,21), wxWANTS_CHARS | wxTE_PROCESS_TAB, wxDefaultValidator, _("WxEditKey"));
-	WxBoxSizer25->Add(WxEditKey,0,wxALIGN_LEFT | wxALL,5);
+	WxEditKey = new KeyTextCtrl(WxNoteBookPage4, ID_WXEDITKEY, _(""), wxPoint(5,32), wxSize(180,21), wxWANTS_CHARS | wxTE_PROCESS_TAB, wxDefaultValidator, _("WxEditKey"));
+	WxBoxSizer25->Add(WxEditKey,0,wxEXPAND | wxALL,5);
 
-	WxEditKeyHint = new wxTextCtrl(WxNoteBookPage4, ID_WXEDITKEYHINT, _(""), wxPoint(1,43), wxSize(180,21), wxTE_READONLY, wxDefaultValidator, _("WxEditKeyHint"));
+	WxEditKeyHint = new wxTextCtrl(WxNoteBookPage4, ID_WXEDITKEYHINT, _(""), wxPoint(5,63), wxSize(180,21), wxTE_READONLY, wxDefaultValidator, _("WxEditKeyHint"));
 	WxEditKeyHint->SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_BTNFACE));
-	WxBoxSizer25->Add(WxEditKeyHint,1,wxGROW | wxALL,5);
+	WxBoxSizer25->Add(WxEditKeyHint,1,wxEXPAND | wxALL,5);
 
-	WxButtonAddKey = new wxButton(WxNoteBookPage4, ID_WXBUTTONADDKEY, _("<== Add Key"), wxPoint(11,66), wxSize(160,28), 0, wxDefaultValidator, _("WxButtonAddKey"));
+	WxButtonAddKey = new wxButton(WxNoteBookPage4, ID_WXBUTTONADDKEY, _("<== Add Key"), wxPoint(15,94), wxSize(160,28), 0, wxDefaultValidator, _("WxButtonAddKey"));
 	WxBoxSizer25->Add(WxButtonAddKey,0,wxALIGN_LEFT | wxALL,5);
 
-	WxButtonDeleteKey = new wxButton(WxNoteBookPage4, ID_WXBUTTONDELETEKEY, _("==> Delete Key"), wxPoint(11,96), wxSize(160,28), 0, wxDefaultValidator, _("WxButtonDeleteKey"));
+	WxButtonDeleteKey = new wxButton(WxNoteBookPage4, ID_WXBUTTONDELETEKEY, _("==> Delete Key"), wxPoint(15,132), wxSize(160,28), 0, wxDefaultValidator, _("WxButtonDeleteKey"));
 	WxBoxSizer25->Add(WxButtonDeleteKey,0,wxALIGN_LEFT | wxALL,5);
 
-	WxButtonShowInMenu = new wxButton(WxNoteBookPage4, ID_WXBUTTONSHOWINMENU, _("Show the Key in Menu"), wxPoint(11,126), wxSize(160,28), 0, wxDefaultValidator, _("WxButtonShowInMenu"));
+	WxButtonShowInMenu = new wxButton(WxNoteBookPage4, ID_WXBUTTONSHOWINMENU, _("Show the Key in Menu"), wxPoint(15,170), wxSize(160,28), 0, wxDefaultValidator, _("WxButtonShowInMenu"));
 	WxBoxSizer25->Add(WxButtonShowInMenu,0,wxALIGN_LEFT | wxALL,5);
 
-	wxBoxSizer* WxBoxSizer26 = new wxBoxSizer(wxHORIZONTAL);
-	WxBoxSizer23->Add(WxBoxSizer26,1,wxALIGN_LEFT | wxALL,2);
+	WxBoxSizer26 = new wxBoxSizer(wxHORIZONTAL);
+	WxBoxSizer20->Add(WxBoxSizer26, 0, wxALIGN_LEFT | wxALL, 2);
 
-	WxCheckBoxResetAllKeys = new wxCheckBox(WxNoteBookPage4, ID_WXCHECKBOXRESETALLKEYS, _("Reset All Keys to Default(Must Restart MadEdit)"), wxPoint(2,2), wxSize(250,17), 0, wxDefaultValidator, _("WxCheckBoxResetAllKeys"));
-	WxBoxSizer26->Add(WxCheckBoxResetAllKeys,0,wxALIGN_BOTTOM | wxALL,5);
+	WxCheckBoxResetAllKeys = new wxCheckBox(WxNoteBookPage4, ID_WXCHECKBOXRESETALLKEYS, _("Reset All Keys to Default(Must Restart MadEdit)"), wxPoint(5,5), wxSize(250,17), 0, wxDefaultValidator, _("WxCheckBoxResetAllKeys"));
+	WxBoxSizer26->Add(WxCheckBoxResetAllKeys,0,wxALIGN_LEFT | wxALL,5);
 
-	wxBoxSizer* WxBoxSizer2 = new wxBoxSizer(wxHORIZONTAL);
-	WxBoxSizer1->Add(WxBoxSizer2,0,wxALIGN_CENTER_HORIZONTAL | wxALL,5);
+	WxBoxSizer2 = new wxBoxSizer(wxHORIZONTAL);
+	WxBoxSizer1->Add(WxBoxSizer2, 0, wxALIGN_CENTER | wxALL, 5);
 
 	WxButtonOK = new wxButton(this, ID_WXBUTTONOK, _("&OK"), wxPoint(5,5), wxSize(85,30), 0, wxDefaultValidator, _("WxButtonOK"));
-	WxBoxSizer2->Add(WxButtonOK,0,wxALIGN_CENTER_VERTICAL | wxALL,5);
+	WxBoxSizer2->Add(WxButtonOK,0,wxALIGN_CENTER | wxALL,5);
 
 	WxButtonCancel = new wxButton(this, ID_WXBUTTONCANCEL, _("&Cancel"), wxPoint(100,5), wxSize(90,30), 0, wxDefaultValidator, _("WxButtonCancel"));
-	WxBoxSizer2->Add(WxButtonCancel,0,wxALIGN_CENTER_VERTICAL | wxALL,5);
+	WxBoxSizer2->Add(WxButtonCancel,0,wxALIGN_CENTER | wxALL,5);
 
-	WxPopupMenu1 = new wxMenu(_("")  );
-	WxPopupMenu1->Append(ID_MNU_MENUITEM1_1110, _("[%f] &File Name"), _(""), wxITEM_NORMAL);
-	
+	WxPopupMenu1 = new wxMenu(_(""));WxPopupMenu1->Append(ID_MNU_MENUITEM1_1110, _("[%f] &File Name"), _(""), wxITEM_NORMAL);
 	WxPopupMenu1->Append(ID_MNU___P__PATHNAME_1111, _("[%p] &Path Name"), _(""), wxITEM_NORMAL);
-	
 	WxPopupMenu1->AppendSeparator();
-	
 	WxPopupMenu1->Append(ID_MNU___N_PAGE_NUMBER_1113, _("[%n] Page &Number"), _(""), wxITEM_NORMAL);
-	
 	WxPopupMenu1->Append(ID_MNU___S__TOTALPAGES_1114, _("[%s] Total Page&s"), _(""), wxITEM_NORMAL);
-	
 	WxPopupMenu1->AppendSeparator();
-	
 	WxPopupMenu1->Append(ID_MNU___D__DATE_1116, _("[%d] &Date"), _(""), wxITEM_NORMAL);
-	
 	WxPopupMenu1->Append(ID_MNU___T__TIME_1117, _("[%t] &Time"), _(""), wxITEM_NORMAL);
-	
-	
 
+	SetTitle(_("Options"));
+	SetIcon(wxNullIcon);
+	
 	GetSizer()->Fit(this);
 	GetSizer()->SetSizeHints(this);
-	this->SetTitle(_("Options"));
-	this->Center();
-	this->SetIcon(wxNullIcon);
+	Center();
 	
     ////GUI Items Creation End
 
@@ -568,12 +556,6 @@ void MadOptionsDialog::CreateGUIControls(void)
         WxComboBoxLanguage->Append(wxString(g_LanguageString[i]));
     }
     WxComboBoxLanguage->SetValue(wxString(g_LanguageString[0]));
-
-#ifdef __WXMSW__
-    WxCheckBoxRightClickMenu = new wxCheckBox(WxNoteBookPage1, -1, _("Add MadEdit to the RightClickMenu of Explorer(Deselect to Remove the Entry from Windows Registry)"), wxPoint(5,5), wxSize(400,20), 0, wxDefaultValidator, _T("WxCheckBoxRightClickMenu"));
-    WxBoxSizer7->Add(WxCheckBoxRightClickMenu,0,wxALIGN_CENTER_VERTICAL | wxALL,2);
-    ResizeItem(WxBoxSizer7, WxCheckBoxRightClickMenu, 25, 4);
-#endif
 
     ResizeItem(WxBoxSizer27, WxStaticText16, 2, 2);
     ResizeItem(WxBoxSizer4, WxCheckBoxSingleInstance, 25, 4);
@@ -637,7 +619,16 @@ void MadOptionsDialog::CreateGUIControls(void)
     ResizeItem(WxBoxSizer24, WxStaticTextCommandHint, 2, 2);
     
     ResizeItem(WxBoxSizer26, WxCheckBoxResetAllKeys, 25, 4);
-    
+
+
+#ifdef __WXMSW__
+    WxCheckBoxRightClickMenu = new wxCheckBox(WxNoteBookPage1, -1, _("Add MadEdit to the RightClickMenu of Explorer(Deselect to Remove the Entry from Windows Registry)"), wxPoint(5,5), wxSize(400,20), 0, wxDefaultValidator, _T("WxCheckBoxRightClickMenu"));
+    WxBoxSizer7->Add(WxCheckBoxRightClickMenu,0,wxALIGN_LEFT | wxALL,2);
+    ResizeItem(WxBoxSizer7, WxCheckBoxRightClickMenu, 25, 4);
+#endif
+
+
+
     int x, y;
     WxButton1->GetSize(&x, &y);
     wxPoint pos=WxButton1->GetPosition();

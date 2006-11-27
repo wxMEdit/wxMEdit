@@ -31,6 +31,7 @@
 #include <wx/combobox.h>
 #include <wx/panel.h>
 #include <wx/notebook.h>
+#include <wx/sizer.h>
 ////Header Include End
 
 #include <wx/dialog.h>
@@ -92,7 +93,6 @@ public:
 		KeyTextCtrl *WxEditKey;
 		wxStaticText *WxStaticText15;
 		wxBoxSizer *WxBoxSizer25;
-		wxBoxSizer *WxBoxSizer23;
 		wxListBox *WxListBoxKeys;
 		wxStaticText *WxStaticText14;
 		wxBoxSizer *WxBoxSizer22;
@@ -198,14 +198,14 @@ public:
     //Try copy pasting the below block in your old Form header Files.
 	enum {
 ////GUI Enum Control ID Start
-			ID_MNU_MENUITEM1_1110 = 1118 ,
-			ID_MNU___P__PATHNAME_1111 = 1119 ,
-			ID_MNU_MENUITEM3_1112 = 1112 ,
-			ID_MNU___N_PAGE_NUMBER_1113 = 1113 ,
-			ID_MNU___S__TOTALPAGES_1114 = 1114 ,
-			ID_MNU_MENUITEM6_1115 = 1115 ,
-			ID_MNU___D__DATE_1116 = 1116 ,
-			ID_MNU___T__TIME_1117 = 1117 ,
+			ID_MNU_MENUITEM1_1110 = 1118,
+			ID_MNU___P__PATHNAME_1111 = 1119,
+			ID_MNU_MENUITEM3_1112 = 1112,
+			ID_MNU___N_PAGE_NUMBER_1113 = 1113,
+			ID_MNU___S__TOTALPAGES_1114 = 1114,
+			ID_MNU_MENUITEM6_1115 = 1115,
+			ID_MNU___D__DATE_1116 = 1116,
+			ID_MNU___T__TIME_1117 = 1117,
 			
 			ID_WXBUTTONCANCEL = 1007,
 			ID_WXBUTTONOK = 1006,
