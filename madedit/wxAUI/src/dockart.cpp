@@ -4,7 +4,7 @@
 // Author:      Benjamin I. Williams
 // Modified by:
 // Created:     2005-05-17
-// RCS-ID:      $Id: dockart.cpp,v 1.29 2006/11/17 21:49:20 BIW Exp $
+// RCS-ID:      $Id: dockart.cpp,v 1.31 2006/11/21 16:37:36 BIW Exp $
 // Copyright:   (C) Copyright 2005-2006, Kirix Corporation, All Rights Reserved
 // Licence:     wxWindows Library Licence, Version 3.1
 ///////////////////////////////////////////////////////////////////////////////
@@ -153,9 +153,9 @@ static void DrawGradientRectangle(wxDC& dc,
         int r,g,b;
         
         
-        r = start_color.Red() + ((i*rd*100)/high)/100;
-        g = start_color.Green() + ((i*gd*100)/high)/100;
-        b = start_color.Blue() + ((i*bd*100)/high)/100;
+        r = start_color.Red() + (high <= 0 ? 0 : (((i*rd*100)/high)/100));
+        g = start_color.Green() + (high <= 0 ? 0 : (((i*gd*100)/high)/100));
+        b = start_color.Blue() + (high <= 0 ? 0 : (((i*bd*100)/high)/100));
 
         wxPen p(wxColor((unsigned char)r,
                         (unsigned char)g,

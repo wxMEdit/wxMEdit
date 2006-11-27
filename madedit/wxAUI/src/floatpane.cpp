@@ -4,7 +4,7 @@
 // Author:      Benjamin I. Williams
 // Modified by:
 // Created:     2005-05-17
-// RCS-ID:      $Id: floatpane.cpp,v 1.22 2006/11/17 13:07:01 BIW Exp $
+// RCS-ID:      $Id: floatpane.cpp,v 1.24 2006/11/23 18:24:11 BIW Exp $
 // Copyright:   (C) Copyright 2005-2006, Kirix Corporation, All Rights Reserved
 // Licence:     wxWindows Library Licence, Version 3.1
 ///////////////////////////////////////////////////////////////////////////////
@@ -92,6 +92,19 @@ void wxAuiFloatingFrame::SetPaneWindow(const wxAuiPaneInfo& pane)
                     Layer(0).Row(0).Position(0);
 
     // Carry over the minimum size
+    wxSize pane_min_size = pane.window->GetMinSize();
+    
+    // if the frame window's max size is greater than the min size
+    // then set the max size to the min size as well
+    wxSize cur_max_size = GetMaxSize();
+    if (cur_max_size.IsFullySpecified() &&
+          (cur_max_size.x < pane.min_size.x ||
+           cur_max_size.y < pane.min_size.y)
+       )
+    {
+        SetMaxSize(pane_min_size);
+    }
+    
     SetMinSize(pane.window->GetMinSize());
 
     m_mgr.AddPane(m_pane_window, contained_pane);

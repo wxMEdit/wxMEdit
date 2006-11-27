@@ -4,7 +4,7 @@
 // Author:      Benjamin I. Williams
 // Modified by:
 // Created:     2005-05-17
-// RCS-ID:      $Id: framemanager.h,v 1.38 2006/11/17 13:06:56 BIW Exp $
+// RCS-ID:      $Id: framemanager.h,v 1.44 2006/11/23 18:24:15 BIW Exp $
 // Copyright:   (C) Copyright 2005, Kirix Corporation, All Rights Reserved.
 // Licence:     wxWindows Library Licence, Version 3.1
 ///////////////////////////////////////////////////////////////////////////////
@@ -299,9 +299,6 @@ public:
     wxAuiPaneInfo& Floatable(bool b = true) { return SetFlag(optionFloatable, b); }
     wxAuiPaneInfo& Movable(bool b = true) { return SetFlag(optionMovable, b); }
 
-    wxAuiPaneInfo& SaveHidden() { return SetFlag(optionSavedHidden, HasFlag(optionHidden)); }
-    wxAuiPaneInfo& RestoreHidden() { return SetFlag(optionHidden, HasFlag(optionSavedHidden)); }
-
     wxAuiPaneInfo& Dockable(bool b = true)
     {
         return TopDockable(b).BottomDockable(b).LeftDockable(b).RightDockable(b);
@@ -353,6 +350,12 @@ public:
     
 public:
 
+    // NOTE: You can add and subtract flags from this list,
+    // but do not change the values of the flags, because
+    // they are stored in a binary integer format in the 
+    // perspective string.  If you really need to change the
+    // values around, you'll have to ensure backwards-compatibility
+    // in the perspective loading code.
     enum wxAuiPaneState
     {
         optionFloating        = 1 << 0,
@@ -372,15 +375,17 @@ public:
         optionActive          = 1 << 14,
         optionGripperTop      = 1 << 15,
         optionMaximized       = 1 << 16,
-        optionSavedHidden     = 1 << 17,
 
-        buttonClose           = 1 << 24,
-        buttonMaximize        = 1 << 25,
-        buttonMinimize        = 1 << 26,
-        buttonPin             = 1 << 27,
-        buttonCustom1         = 1 << 28,
-        buttonCustom2         = 1 << 29,
-        buttonCustom3         = 1 << 30,
+        buttonClose           = 1 << 21,
+        buttonMaximize        = 1 << 22,
+        buttonMinimize        = 1 << 23,
+        buttonPin             = 1 << 24,
+        
+        buttonCustom1         = 1 << 26,
+        buttonCustom2         = 1 << 27,
+        buttonCustom3         = 1 << 28,
+        
+        savedHiddenState      = 1 << 30, // used internally
         actionPane            = 1 << 31  // used internally
     };
 
@@ -460,31 +465,38 @@ public:
 
     bool DetachPane(wxWindow* window);
     
+    void Update();
+
+    wxString SavePaneInfo(wxAuiPaneInfo& pane);
+    void LoadPaneInfo(wxString pane_part, wxAuiPaneInfo &pane);
+    wxString SavePerspective();
+    bool LoadPerspective(const wxString& perspective, bool update = true);
+
+    void SetDockSizeConstraint(double width_pct, double height_pct);
+    void GetDockSizeConstraint(double* width_pct, double* height_pct) const;
+    
     void ClosePane(wxAuiPaneInfo& pane_info);
     void MaximizePane(wxAuiPaneInfo& pane_info);
     void RestorePane(wxAuiPaneInfo& pane_info);
     void RestoreMaximizedPane();
 
-    wxString SavePaneInfo(wxAuiPaneInfo& pane);
-    void LoadPaneInfo(wxString pane_part, wxAuiPaneInfo &pane);
-
-    wxString SavePerspective();
-
-    bool LoadPerspective(const wxString& perspective,
-                 bool update = true);
-
-    void Update();
-
 public:
+
     virtual wxAuiFloatingFrame* CreateFloatingFrame(wxWindow* parent, const wxAuiPaneInfo& p);
 
-    wxRect CalculateHintRect(wxWindow* pane_window,
-                             const wxPoint& pt,
-                             const wxPoint& offset);
+    void StartPaneDrag(
+                 wxWindow* pane_window,
+                 const wxPoint& offset);
+
+    wxRect CalculateHintRect(
+                 wxWindow* pane_window,
+                 const wxPoint& pt,
+                 const wxPoint& offset);
                       
-    void DrawHintRect(wxWindow* pane_window,
-                      const wxPoint& pt,
-                      const wxPoint& offset);
+    void DrawHintRect(
+                 wxWindow* pane_window,
+                 const wxPoint& pt,
+                 const wxPoint& offset);
                       
     virtual void ShowHint(const wxRect& rect);
     virtual void HideHint();
@@ -528,8 +540,6 @@ protected:
                 const wxPoint& pt,
                 const wxPoint& action_offset = wxPoint(0,0));
 
-    wxAuiPaneInfo& LookupPane(wxWindow* window);
-    wxAuiPaneInfo& LookupPane(const wxString& name);
     wxAuiDockUIPart* HitTest(int x, int y);
     wxAuiDockUIPart* GetPanePart(wxWindow* pane);
     int GetDockPixelOffset(wxAuiPaneInfo& test);
@@ -598,17 +608,22 @@ protected:
     wxAuiDockUIPart* m_action_part; // ptr to the part the action happened to
     wxWindow* m_action_window;   // action frame or window (NULL if none)
     wxRect m_action_hintrect;    // hint rectangle for the action
-    bool m_skipping;
-    bool m_has_maximized;
     wxRect m_last_rect;
     wxAuiDockUIPart* m_hover_button;// button uipart being hovered over
     wxRect m_last_hint;          // last hint rectangle
     wxPoint m_last_mouse_move;   // last mouse move position (see OnMotion)
+    bool m_skipping;
+    bool m_has_maximized;
+
+    double m_dock_constraint_x;  // 0.0 .. 1.0; max pct of window width a dock can consume
+    double m_dock_constraint_y;  // 0.0 .. 1.0; max pct of window height a dock can consume
 
     wxFrame* m_hint_wnd;         // transparent hint window, if supported by platform
     wxTimer m_hint_fadetimer;    // transparent fade timer
     wxByte m_hint_fadeamt;       // transparent fade amount
     wxByte m_hint_fademax;       // maximum value of hint fade
+    
+    void* m_reserved;
 
 #ifndef SWIG
     DECLARE_EVENT_TABLE()
@@ -688,6 +703,7 @@ public:
         resizable = true;
         fixed = false;
         toolbar = false;
+        reserved1 = false;
     }
 
 #ifndef SWIG
@@ -703,6 +719,7 @@ public:
         toolbar = c.toolbar;
         panes = c.panes;
         rect = c.rect;
+        reserved1 = c.reserved1;
     }
 
     wxAuiDockInfo& operator=(const wxAuiDockInfo& c)
@@ -717,6 +734,7 @@ public:
         toolbar = c.toolbar;
         panes = c.panes;
         rect = c.rect;
+        reserved1 = c.reserved1;
         return *this;
     }
 #endif // SWIG
@@ -739,6 +757,7 @@ public:
     bool toolbar;             // flag indicating dock contains only toolbars
     bool fixed;               // flag indicating that the dock operates on
                               // absolute coordinates as opposed to proportional
+    bool reserved1;
 };
 
 
@@ -781,12 +800,12 @@ public:
 // wx event machinery
 
 BEGIN_DECLARE_EVENT_TYPES()
-    DECLARE_EXPORTED_EVENT_TYPE(WXDLLIMPEXP_AUI, wxEVT_AUI_PANEBUTTON, 0)
-    DECLARE_EXPORTED_EVENT_TYPE(WXDLLIMPEXP_AUI, wxEVT_AUI_PANECLOSE, 0)
-    DECLARE_EXPORTED_EVENT_TYPE(WXDLLIMPEXP_AUI, wxEVT_AUI_PANEMAXIMIZE, 0)
-    DECLARE_EXPORTED_EVENT_TYPE(WXDLLIMPEXP_AUI, wxEVT_AUI_PANERESTORE, 0)
+    DECLARE_EXPORTED_EVENT_TYPE(WXDLLIMPEXP_AUI, wxEVT_AUI_PANE_BUTTON, 0)
+    DECLARE_EXPORTED_EVENT_TYPE(WXDLLIMPEXP_AUI, wxEVT_AUI_PANE_CLOSE, 0)
+    DECLARE_EXPORTED_EVENT_TYPE(WXDLLIMPEXP_AUI, wxEVT_AUI_PANE_MAXIMIZE, 0)
+    DECLARE_EXPORTED_EVENT_TYPE(WXDLLIMPEXP_AUI, wxEVT_AUI_PANE_RESTORE, 0)
     DECLARE_EXPORTED_EVENT_TYPE(WXDLLIMPEXP_AUI, wxEVT_AUI_RENDER, 0)
-    DECLARE_EXPORTED_EVENT_TYPE(WXDLLIMPEXP_AUI, wxEVT_AUI_FINDMANAGER, 0)
+    DECLARE_EXPORTED_EVENT_TYPE(WXDLLIMPEXP_AUI, wxEVT_AUI_FIND_MANAGER, 0)
 END_DECLARE_EVENT_TYPES()
 
 typedef void (wxEvtHandler::*wxAuiManagerEventFunction)(wxAuiManagerEvent&);
@@ -794,35 +813,35 @@ typedef void (wxEvtHandler::*wxAuiManagerEventFunction)(wxAuiManagerEvent&);
 #define wxAuiManagerEventHandler(func) \
     (wxObjectEventFunction)(wxEventFunction)wxStaticCastEvent(wxAuiManagerEventFunction, &func)
 
-#define EVT_AUI_PANEBUTTON(func) \
-   wx__DECLARE_EVT0(wxEVT_AUI_PANEBUTTON, wxAuiManagerEventHandler(func))
-#define EVT_AUI_PANECLOSE(func) \
-   wx__DECLARE_EVT0(wxEVT_AUI_PANECLOSE, wxAuiManagerEventHandler(func))
-#define EVT_AUI_PANEMAXIMIZE(func) \
-   wx__DECLARE_EVT0(wxEVT_AUI_PANEMAXIMIZE, wxAuiManagerEventHandler(func))
-#define EVT_AUI_PANERESTORE(func) \
-   wx__DECLARE_EVT0(wxEVT_AUI_PANERESTORE, wxAuiManagerEventHandler(func))
+#define EVT_AUI_PANE_BUTTON(func) \
+   wx__DECLARE_EVT0(wxEVT_AUI_PANE_BUTTON, wxAuiManagerEventHandler(func))
+#define EVT_AUI_PANE_CLOSE(func) \
+   wx__DECLARE_EVT0(wxEVT_AUI_PANE_CLOSE, wxAuiManagerEventHandler(func))
+#define EVT_AUI_PANE_MAXIMIZE(func) \
+   wx__DECLARE_EVT0(wxEVT_AUI_PANE_MAXIMIZE, wxAuiManagerEventHandler(func))
+#define EVT_AUI_PANE_RESTORE(func) \
+   wx__DECLARE_EVT0(wxEVT_AUI_PANE_RESTORE, wxAuiManagerEventHandler(func))
 #define EVT_AUI_RENDER(func) \
    wx__DECLARE_EVT0(wxEVT_AUI_RENDER, wxAuiManagerEventHandler(func))
-#define EVT_AUI_FINDMANAGER(func) \
-   wx__DECLARE_EVT0(wxEVT_AUI_FINDMANAGER, wxAuiManagerEventHandler(func))
+#define EVT_AUI_FIND_MANAGER(func) \
+   wx__DECLARE_EVT0(wxEVT_AUI_FIND_MANAGER, wxAuiManagerEventHandler(func))
 
 #else
 
-%constant wxEventType wxEVT_AUI_PANEBUTTON;
-%constant wxEventType wxEVT_AUI_PANECLOSE;
-%constant wxEventType wxEVT_AUI_PANEMAXIMIZE;
-%constant wxEventType wxEVT_AUI_PANERESTORE;
+%constant wxEventType wxEVT_AUI_PANE_BUTTON;
+%constant wxEventType wxEVT_AUI_PANE_CLOSE;
+%constant wxEventType wxEVT_AUI_PANE_MAXIMIZE;
+%constant wxEventType wxEVT_AUI_PANE_RESTORE;
 %constant wxEventType wxEVT_AUI_RENDER;
-%constant wxEventType wxEVT_AUI_FINDMANAGER;
+%constant wxEventType wxEVT_AUI_FIND_MANAGER;
 
 %pythoncode {
-    EVT_AUI_PANEBUTTON = wx.PyEventBinder( wxEVT_AUI_PANEBUTTON )
-    EVT_AUI_PANECLOSE = wx.PyEventBinder( wxEVT_AUI_PANECLOSE )
-    EVT_AUI_PANEMAXIMIZE = wx.PyEventBinder( wxEVT_AUI_PANEMAXIMIZE )
-    EVT_AUI_PANERESTORE = wx.PyEventBinder( wxEVT_AUI_PANERESTORE )
+    EVT_AUI_PANE_BUTTON = wx.PyEventBinder( wxEVT_AUI_PANE_BUTTON )
+    EVT_AUI_PANE_CLOSE = wx.PyEventBinder( wxEVT_AUI_PANE_CLOSE )
+    EVT_AUI_PANE_MAXIMIZE = wx.PyEventBinder( wxEVT_AUI_PANE_MAXIMIZE )
+    EVT_AUI_PANE_RESTORE = wx.PyEventBinder( wxEVT_AUI_PANE_RESTORE )
     EVT_AUI_RENDER = wx.PyEventBinder( wxEVT_AUI_RENDER )
-    EVT_AUI_FINDMANAGER = wx.PyEventBinder( wxEVT_AUI_FINDMANAGER )
+    EVT_AUI_FIND_MANAGER = wx.PyEventBinder( wxEVT_AUI_FIND_MANAGER )
 }
 #endif // SWIG
 
