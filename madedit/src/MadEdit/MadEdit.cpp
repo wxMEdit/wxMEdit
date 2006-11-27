@@ -242,8 +242,8 @@ void GTK2_DrawText(wxMemoryDC *dc, MadEncoding *encoding, const int *widths,
     if (text.empty()) return;
 
 
-    x = dc->XLOG2DEV(x);
-    y = dc->YLOG2DEV(y);
+    x = dc->LogicalToDeviceX(x);//XLOG2DEV(x);
+    y = dc->LogicalToDeviceY(y);//YLOG2DEV(y);
 
     wxCHECK_RET( dc->m_context, wxT("no Pango context") );
     wxCHECK_RET( dc->m_layout, wxT("no Pango layout") );
