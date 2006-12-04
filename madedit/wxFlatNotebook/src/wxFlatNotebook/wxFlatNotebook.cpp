@@ -73,18 +73,14 @@ EVT_NAVIGATION_KEY(wxFlatNotebook::OnNavigationKey)
 END_EVENT_TABLE()
 
 wxFlatNotebook::wxFlatNotebook(wxWindow* parent, wxWindowID id, const wxPoint& pos, const wxSize& size, long style, const wxString& name)
-: m_popupWin(NULL)
-, m_sendPageChangeEvent(true)
 {
-	m_bForceSelection = false;
-	m_nPadding = 6;
-	m_nFrom = 0;
-	style |= wxTAB_TRAVERSAL;
-	m_pages = NULL;
-	wxPanel::Create(parent, id, pos, size, style, name);
-
-	m_pages = new wxPageContainer(this, wxID_ANY, wxDefaultPosition, wxDefaultSize, style);
 	Init();
+	Create(parent, id, pos, size, style, name);
+}
+
+void wxFlatNotebook::CleanUp ()
+{
+    wxFNBRendererMgrST::Free();
 }
 
 wxFlatNotebook::~wxFlatNotebook(void)
@@ -93,6 +89,24 @@ wxFlatNotebook::~wxFlatNotebook(void)
 
 void wxFlatNotebook::Init()
 {
+    m_popupWin = NULL;
+    m_sendPageChangeEvent = true;
+	m_bForceSelection = false;
+	m_nPadding = 6;
+	m_nFrom = 0;
+	m_pages = NULL;
+
+	m_mainSizer = new wxBoxSizer(wxVERTICAL);
+	SetSizer(m_mainSizer);
+}
+
+bool wxFlatNotebook::Create(wxWindow* parent, wxWindowID id, const wxPoint& pos, const wxSize& size,
+                             long style, const wxString& name)
+{
+	style |= wxTAB_TRAVERSAL;
+	wxPanel::Create(parent, id, pos, size, style, name);
+
+	m_pages = new wxPageContainer(this, wxID_ANY, wxDefaultPosition, wxDefaultSize, style);
 	m_pages->m_colorBorder = wxColour(wxSystemSettings::GetColour(wxSYS_COLOUR_BTNSHADOW));
 
 	m_mainSizer = new wxBoxSizer(wxVERTICAL);
@@ -136,6 +150,7 @@ void wxFlatNotebook::Init()
 	m_pages->m_nFrom = m_nFrom;
 	m_pDropTarget = new wxFNBDropTarget<wxFlatNotebook>(this, &wxFlatNotebook::OnDropTarget);
 	SetDropTarget(m_pDropTarget);
+	return true;
 }
 
 void wxFlatNotebook::SetActiveTabTextColour(const wxColour& textColour)
@@ -244,6 +259,7 @@ void wxFlatNotebook::SetSelection(size_t page)
 		event.SetSelection( (int)page );
 		event.SetOldSelection( oldSelection );
 		event.SetEventObject( this );
+		GetEventHandler()->ProcessEvent(event);
 
 		if( !event.IsAllowed() )
 		{
@@ -1167,12 +1183,32 @@ void wxPageContainer::DoDeletePage(size_t page)
 	wxFlatNotebook* book = (wxFlatNotebook*)GetParent();
 	m_pagesInfoVec.RemoveAt(page);
 
-	// Thanks to Yiaanis AKA Mandrav
-	if (m_iActivePage >= (int)page)
+	// Armel Asselin's patch
+	int newActivePageIndex = m_iActivePage, newPreviousPageIndex = m_iPreviousActivePage;
+	// if the "previous page" is after the deleted page, decrement the index
+	if (m_iPreviousActivePage > (int)page)
 	{
-		m_iActivePage--;
-		m_iPreviousActivePage = -1;
+		newPreviousPageIndex = m_iPreviousActivePage-1;
 	}
+	else if (m_iPreviousActivePage == (int)page)
+	{
+		newPreviousPageIndex = -1;
+	}
+	
+	// same thing with the active page
+	if (m_iActivePage > (int)page || (int)page >= m_pagesInfoVec.Count())
+	{
+		newActivePageIndex = m_iActivePage-1;
+	}
+	else if (m_iActivePage == (int)page)
+	{
+		newActivePageIndex = newPreviousPageIndex;
+ 	}
+
+	m_iActivePage = newActivePageIndex;
+	m_iPreviousActivePage = newPreviousPageIndex;
+	if (m_iActivePage == m_iPreviousActivePage)
+		m_iPreviousActivePage = -1;
 
 	// The delete page was the last first on the array,
 	// but the book still has more pages, so we set the
@@ -1591,7 +1627,7 @@ void wxPageContainer::MoveTabPage(int nMove, int nMoveTo)
 	m_iActivePage = nMoveTo-1;
 	m_iPreviousActivePage = -1;
 	DoSetSelection(m_iActivePage);
-	Refresh();
+//	Refresh();
 	m_pParent->Thaw();
 }
 
@@ -1678,16 +1714,14 @@ void wxPageContainer::OnLeftDClick(wxMouseEvent& event)
 	case wxFNB_TAB:
 		if(HasFlag(wxFNB_DCLICK_CLOSES_TABS))
 		{
-			{
-				DeletePage((size_t)tabIdx);
-				break;
-			}
+			DeletePage((size_t)tabIdx);
 		}
+		break;
 	case wxFNB_X:
 		{
 			OnLeftDown(event);
-			break;
 		}
+		break;
 	default:
 		event.Skip();
 		break;

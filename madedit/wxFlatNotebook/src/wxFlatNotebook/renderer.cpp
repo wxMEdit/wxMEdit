@@ -3,6 +3,12 @@
 #include <wx/wxFlatNotebook/fnb_resources.h>
 #include <wx/image.h>
 
+#ifdef DEVELOPMENT
+# define FNB_LOG_MSG( msg ) { wxString logmsg; logmsg << msg; wxLogMessage( logmsg ); }
+#else
+# define FNB_LOG_MSG( msg ) { wxString logmsg; logmsg << msg; }
+#endif
+
 wxFNBRenderer::wxFNBRenderer()
 : m_tabXBgBmp(16, 16)
 , m_xBgBmp(16, 14)
@@ -205,7 +211,7 @@ void wxFNBRenderer::DrawDropDownArrow(wxWindow* pageContainer, wxDC& dc)
 	xbmp.SetMask(new wxMask(xbmp, MASK_COLOR));
 	// erase old bitmap
 	int posx = GetDropArrowButtonPos( pc );
-	dc.DrawBitmap(m_xBgBmp, posx, 6);
+	dc.DrawBitmap(m_rightBgBmp, posx, 6);
 
 	// Draw the new bitmap
 	dc.DrawBitmap(xbmp, posx, 6, true);
