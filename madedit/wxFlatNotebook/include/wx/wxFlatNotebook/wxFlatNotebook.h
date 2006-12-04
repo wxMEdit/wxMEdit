@@ -100,7 +100,8 @@ private:
 public:
 
 	///Default constructor
-	wxFlatNotebook() : m_popupWin(NULL) {}
+	wxFlatNotebook() 
+	{ Init(); }
 
 	/// Parametrized constructor
 	/**
@@ -113,14 +114,26 @@ public:
 	*/
 	wxFlatNotebook(wxWindow* parent, wxWindowID id = wxID_ANY, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxDefaultSize, long style = 0, const wxString& name = wxT("Flat Notebook"));
 
+	/** 
+	 * See wxFlatNotebook constructor
+	 */
+	bool Create(wxWindow* parent, wxWindowID id = wxID_ANY, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxDefaultSize, long style = 0, const wxString& name = wxT("Flat Notebook"));
+
 	/// Destructor
 	virtual ~wxFlatNotebook(void);
 
-	/// Advances the selection
 	/**
-	\param bForward - if set to true then selection should be advanced forward otherwise - backward
-	*/
+     * Cleans up all the optimization structures held globally
+     *
+	 */
+    static void CleanUp ();
+
+	/**
+	 * Advance the current selection
+	 *\param bForward - if set to true then selection should be advanced forward otherwise - backward
+	 */
 	void AdvanceSelection(bool bForward);
+
 	/// Apends new notebook page
 	/**
 	\param windows - window to be appended
