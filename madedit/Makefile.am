@@ -58,6 +58,7 @@ madedit_SOURCES =	src/MadAboutDialog.cpp \
 	wxFlatNotebook/src/wxFlatNotebook/popup_dlg.cpp \
 	wxFlatNotebook/src/wxFlatNotebook/renderer.cpp \
 	wxFlatNotebook/src/wxFlatNotebook/wxFlatNotebook.cpp \
+	wxFlatNotebook/src/wxFlatNotebook/xh_fnb.cpp \
 	wxFlatNotebook/include/wx/wxFlatNotebook/fnb_resources.h \
 	wxFlatNotebook/include/wx/wxFlatNotebook/popup_dlg.h \
 	wxFlatNotebook/include/wx/wxFlatNotebook/renderer.h \
@@ -65,6 +66,7 @@ madedit_SOURCES =	src/MadAboutDialog.cpp \
 	wxFlatNotebook/include/wx/wxFlatNotebook/smart_ptr.h \
 	wxFlatNotebook/include/wx/wxFlatNotebook/wxFlatNotebook.h \
 	wxFlatNotebook/include/wx/wxFlatNotebook/wxFNBDropTarget.h \
+	wxFlatNotebook/include/wx/wxFlatNotebook/xh_fnb.h \
 	wxAUI/include/wx/aui/aui.h \
 	wxAUI/include/wx/aui/auibook.h \
 	wxAUI/include/wx/aui/dockart.h \

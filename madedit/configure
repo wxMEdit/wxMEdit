@@ -892,10 +892,10 @@ Optional Packages:
   --with-included-gettext use the GNU gettext library included here
   --with-libintl-prefix[=DIR]  search for libintl in DIR/include and DIR/lib
   --without-libintl-prefix     don't search for libintl in includedir and libdir
-  --with-boost=PATH       use additional Boost library path,
-                          otherwise use system include path
   --with-xpressive=PATH   use additional Boost.Xpressive library path,
                           otherwise use default path "$(top_srcdir)/xpressive"
+  --with-boost=PATH       use additional Boost library path,
+                          otherwise use system include path
   --with-wxdir=PATH       Use uninstalled version of wxWidgets in PATH
   --with-wx-config=CONFIG wx-config script to use (optional)
   --with-wx-prefix=PREFIX Prefix where wxWidgets is installed (optional)
@@ -10965,14 +10965,6 @@ fi
     LIBS="$LIBS $glib_gtk2_LIBS"
 fi
 
-# option for additional Boost lib
-
-# Check whether --with-boost or --without-boost was given.
-if test "${with_boost+set}" = set; then
-  withval="$with_boost"
-  CXXFLAGS="$CXXFLAGS -I$withval"
-fi;
-
 # option for additional Xpressive lib
 
 # Check whether --with-xpressive or --without-xpressive was given.
@@ -10981,6 +10973,14 @@ if test "${with_xpressive+set}" = set; then
   CXXFLAGS="$CXXFLAGS -I$withval"
 else
   CXXFLAGS="$CXXFLAGS -I\$(top_srcdir)/xpressive"
+fi;
+
+# option for additional Boost lib
+
+# Check whether --with-boost or --without-boost was given.
+if test "${with_boost+set}" = set; then
+  withval="$with_boost"
+  CXXFLAGS="$CXXFLAGS -I$withval"
 fi;
 
 

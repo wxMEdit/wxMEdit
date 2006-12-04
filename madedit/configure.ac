@@ -41,18 +41,18 @@ if test "x$IS_MACOS" == "x"; then
     LIBS="$LIBS $glib_gtk2_LIBS"
 fi
 
-# option for additional Boost lib
-AC_ARG_WITH(boost, 
-    [  --with-boost=PATH       use additional Boost library path,
-                          otherwise use system include path],
-    [CXXFLAGS="$CXXFLAGS -I$withval"])
-
 # option for additional Xpressive lib
 AC_ARG_WITH(xpressive, 
     [  --with-xpressive=PATH   use additional Boost.Xpressive library path,
                           otherwise use default path "$(top_srcdir)/xpressive"],
     [CXXFLAGS="$CXXFLAGS -I$withval"],
     [CXXFLAGS="$CXXFLAGS -I\$(top_srcdir)/xpressive"])
+
+# option for additional Boost lib
+AC_ARG_WITH(boost, 
+    [  --with-boost=PATH       use additional Boost library path,
+                          otherwise use system include path],
+    [CXXFLAGS="$CXXFLAGS -I$withval"])
 
 
 # Checks for wxWidgets library

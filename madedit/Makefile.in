@@ -79,9 +79,10 @@ am_madedit_OBJECTS = madedit-MadAboutDialog.$(OBJEXT) \
 	madedit-MadSyntax.$(OBJEXT) madedit-MadUndo.$(OBJEXT) \
 	madedit-TradSimp.$(OBJEXT) madedit-fnb_resources.$(OBJEXT) \
 	madedit-popup_dlg.$(OBJEXT) madedit-renderer.$(OBJEXT) \
-	madedit-wxFlatNotebook.$(OBJEXT) madedit-auibook.$(OBJEXT) \
-	madedit-dockart.$(OBJEXT) madedit-floatpane.$(OBJEXT) \
-	madedit-framemanager.$(OBJEXT) madedit-tabmdi.$(OBJEXT)
+	madedit-wxFlatNotebook.$(OBJEXT) madedit-xh_fnb.$(OBJEXT) \
+	madedit-auibook.$(OBJEXT) madedit-dockart.$(OBJEXT) \
+	madedit-floatpane.$(OBJEXT) madedit-framemanager.$(OBJEXT) \
+	madedit-tabmdi.$(OBJEXT)
 madedit_OBJECTS = $(am_madedit_OBJECTS)
 madedit_LDADD = $(LDADD)
 DEFAULT_INCLUDES = -I. -I$(srcdir) -I.
@@ -318,6 +319,7 @@ madedit_SOURCES = src/MadAboutDialog.cpp \
 	wxFlatNotebook/src/wxFlatNotebook/popup_dlg.cpp \
 	wxFlatNotebook/src/wxFlatNotebook/renderer.cpp \
 	wxFlatNotebook/src/wxFlatNotebook/wxFlatNotebook.cpp \
+	wxFlatNotebook/src/wxFlatNotebook/xh_fnb.cpp \
 	wxFlatNotebook/include/wx/wxFlatNotebook/fnb_resources.h \
 	wxFlatNotebook/include/wx/wxFlatNotebook/popup_dlg.h \
 	wxFlatNotebook/include/wx/wxFlatNotebook/renderer.h \
@@ -325,6 +327,7 @@ madedit_SOURCES = src/MadAboutDialog.cpp \
 	wxFlatNotebook/include/wx/wxFlatNotebook/smart_ptr.h \
 	wxFlatNotebook/include/wx/wxFlatNotebook/wxFlatNotebook.h \
 	wxFlatNotebook/include/wx/wxFlatNotebook/wxFNBDropTarget.h \
+	wxFlatNotebook/include/wx/wxFlatNotebook/xh_fnb.h \
 	wxAUI/include/wx/aui/aui.h \
 	wxAUI/include/wx/aui/auibook.h \
 	wxAUI/include/wx/aui/dockart.h \
@@ -706,6 +709,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/madedit-renderer.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/madedit-tabmdi.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/madedit-wxFlatNotebook.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/madedit-xh_fnb.Po@am__quote@
 
 .cpp.o:
 @am__fastdepCXX_TRUE@	if $(CXXCOMPILE) -MT $@ -MD -MP -MF "$(DEPDIR)/$*.Tpo" -c -o $@ $<; \
@@ -1140,6 +1144,20 @@ madedit-wxFlatNotebook.obj: wxFlatNotebook/src/wxFlatNotebook/wxFlatNotebook.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='wxFlatNotebook/src/wxFlatNotebook/wxFlatNotebook.cpp' object='madedit-wxFlatNotebook.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(madedit_CXXFLAGS) $(CXXFLAGS) -c -o madedit-wxFlatNotebook.obj `if test -f 'wxFlatNotebook/src/wxFlatNotebook/wxFlatNotebook.cpp'; then $(CYGPATH_W) 'wxFlatNotebook/src/wxFlatNotebook/wxFlatNotebook.cpp'; else $(CYGPATH_W) '$(srcdir)/wxFlatNotebook/src/wxFlatNotebook/wxFlatNotebook.cpp'; fi`
+
+madedit-xh_fnb.o: wxFlatNotebook/src/wxFlatNotebook/xh_fnb.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(madedit_CXXFLAGS) $(CXXFLAGS) -MT madedit-xh_fnb.o -MD -MP -MF "$(DEPDIR)/madedit-xh_fnb.Tpo" -c -o madedit-xh_fnb.o `test -f 'wxFlatNotebook/src/wxFlatNotebook/xh_fnb.cpp' || echo '$(srcdir)/'`wxFlatNotebook/src/wxFlatNotebook/xh_fnb.cpp; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/madedit-xh_fnb.Tpo" "$(DEPDIR)/madedit-xh_fnb.Po"; else rm -f "$(DEPDIR)/madedit-xh_fnb.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='wxFlatNotebook/src/wxFlatNotebook/xh_fnb.cpp' object='madedit-xh_fnb.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(madedit_CXXFLAGS) $(CXXFLAGS) -c -o madedit-xh_fnb.o `test -f 'wxFlatNotebook/src/wxFlatNotebook/xh_fnb.cpp' || echo '$(srcdir)/'`wxFlatNotebook/src/wxFlatNotebook/xh_fnb.cpp
+
+madedit-xh_fnb.obj: wxFlatNotebook/src/wxFlatNotebook/xh_fnb.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(madedit_CXXFLAGS) $(CXXFLAGS) -MT madedit-xh_fnb.obj -MD -MP -MF "$(DEPDIR)/madedit-xh_fnb.Tpo" -c -o madedit-xh_fnb.obj `if test -f 'wxFlatNotebook/src/wxFlatNotebook/xh_fnb.cpp'; then $(CYGPATH_W) 'wxFlatNotebook/src/wxFlatNotebook/xh_fnb.cpp'; else $(CYGPATH_W) '$(srcdir)/wxFlatNotebook/src/wxFlatNotebook/xh_fnb.cpp'; fi`; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/madedit-xh_fnb.Tpo" "$(DEPDIR)/madedit-xh_fnb.Po"; else rm -f "$(DEPDIR)/madedit-xh_fnb.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='wxFlatNotebook/src/wxFlatNotebook/xh_fnb.cpp' object='madedit-xh_fnb.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(madedit_CXXFLAGS) $(CXXFLAGS) -c -o madedit-xh_fnb.obj `if test -f 'wxFlatNotebook/src/wxFlatNotebook/xh_fnb.cpp'; then $(CYGPATH_W) 'wxFlatNotebook/src/wxFlatNotebook/xh_fnb.cpp'; else $(CYGPATH_W) '$(srcdir)/wxFlatNotebook/src/wxFlatNotebook/xh_fnb.cpp'; fi`
 
 madedit-auibook.o: wxAUI/src/auibook.cpp
 @am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(madedit_CXXFLAGS) $(CXXFLAGS) -MT madedit-auibook.o -MD -MP -MF "$(DEPDIR)/madedit-auibook.Tpo" -c -o madedit-auibook.o `test -f 'wxAUI/src/auibook.cpp' || echo '$(srcdir)/'`wxAUI/src/auibook.cpp; \
