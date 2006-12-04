@@ -591,6 +591,7 @@ public:
 BEGIN_EVENT_TABLE(MadEditFrame,wxFrame)
 	////Manual Code Start
 	//EVT_SIZE(MadEditFrame::OnSize)
+	EVT_FLATNOTEBOOK_PAGE_CHANGING(ID_NOTEBOOK, MadEditFrame::OnNotebookPageChanging)
 	EVT_FLATNOTEBOOK_PAGE_CHANGED(ID_NOTEBOOK, MadEditFrame::OnNotebookPageChanged)
 	EVT_FLATNOTEBOOK_PAGE_CLOSING(ID_NOTEBOOK, MadEditFrame::OnNotebookPageClosing)
 	EVT_FLATNOTEBOOK_PAGE_CLOSED(ID_NOTEBOOK, MadEditFrame::OnNotebookPageClosed)
@@ -1844,6 +1845,7 @@ void MadEditFrame::SetPageFocus(int pageId)
             wxFlatNotebookEvent event(wxEVT_COMMAND_FLATNOTEBOOK_PAGE_CHANGED, m_Notebook->GetId());
             event.SetSelection(pageId);
             event.SetOldSelection(selid);
+            event.SetEventObject(this);
             OnNotebookPageChanged(event);
         }
     }
@@ -1899,16 +1901,25 @@ WXLRESULT MadEditFrame::MSWWindowProc(WXUINT message, WXWPARAM wParam, WXLPARAM 
 #endif
 
 
+void MadEditFrame::OnNotebookPageChanging(wxFlatNotebookEvent& event)
+{
+	g_PrevPageID = event.GetOldSelection();
+}
+
 void MadEditFrame::OnNotebookPageChanged(wxFlatNotebookEvent& event)
 {
     g_ActiveMadEdit=(MadEdit*)m_Notebook->GetCurrentPage();
 
     int now=event.GetSelection();
-    int old=event.GetOldSelection();
+    int old=m_Notebook->GetPreviousSelection();
+    if(event.GetEventObject()==this)
+    {
+        old=event.GetOldSelection();
+    }
 
     //wxLogDebug(wxT("curr :%d,  prev: %d"), now, old);
 
-    if(old!=now)// in wxGTK, old==now, bug?
+    if(old!=now && old>=0)// in wxGTK, old==now, bug?
     {
         g_PrevPageID=old;
     }
@@ -2263,6 +2274,7 @@ void MadEditFrame::OpenFile(const wxString &filename, bool mustExist)
                     wxFlatNotebookEvent event(wxEVT_COMMAND_FLATNOTEBOOK_PAGE_CHANGED, m_Notebook->GetId());
                     event.SetSelection(m_Notebook->GetSelection());
                     event.SetOldSelection(selid);
+                    event.SetEventObject(this);
                     OnNotebookPageChanged(event);
                 }
                 
@@ -2426,6 +2438,7 @@ bool MadEditFrame::QueryCloseAllFiles()
                     wxFlatNotebookEvent event(wxEVT_COMMAND_FLATNOTEBOOK_PAGE_CHANGED, m_Notebook->GetId());
                     event.SetSelection(id);
                     event.SetOldSelection(sid);
+                    event.SetEventObject(this);
                     OnNotebookPageChanged(event);
                 }
                 
@@ -2888,6 +2901,7 @@ void MadEditFrame::OnFileSaveAll(wxCommandEvent& event)
                         wxFlatNotebookEvent event(wxEVT_COMMAND_FLATNOTEBOOK_PAGE_CHANGED, m_Notebook->GetId());
                         event.SetSelection(id);
                         event.SetOldSelection(sid);
+                        event.SetEventObject(this);
                         OnNotebookPageChanged(event);
                     }
 
@@ -4256,6 +4270,7 @@ void MadEditFrame::OnWindowToggleWindow(wxCommandEvent& event)
         wxFlatNotebookEvent event(wxEVT_COMMAND_FLATNOTEBOOK_PAGE_CHANGED, m_Notebook->GetId());
         event.SetSelection(m_Notebook->GetSelection());
         event.SetOldSelection(g_PrevPageID);
+        event.SetEventObject(this);
         OnNotebookPageChanged(event);
     }
 
@@ -4277,6 +4292,7 @@ void MadEditFrame::OnWindowPreviousWindow(wxCommandEvent& event)
         wxFlatNotebookEvent event(wxEVT_COMMAND_FLATNOTEBOOK_PAGE_CHANGED, m_Notebook->GetId());
         event.SetSelection(m_Notebook->GetSelection());
         event.SetOldSelection(g_PrevPageID);
+        event.SetEventObject(this);
         OnNotebookPageChanged(event);
     }
 
@@ -4297,6 +4313,7 @@ void MadEditFrame::OnWindowNextWindow(wxCommandEvent& event)
         wxFlatNotebookEvent event(wxEVT_COMMAND_FLATNOTEBOOK_PAGE_CHANGED, m_Notebook->GetId());
         event.SetSelection(m_Notebook->GetSelection());
         event.SetOldSelection(g_PrevPageID);
+        event.SetEventObject(this);
         OnNotebookPageChanged(event);
     }
 

@@ -267,6 +267,7 @@ protected:
     virtual void OnInternalIdle();
 #endif
 
+	void OnNotebookPageChanging(wxFlatNotebookEvent& event);
     void OnNotebookPageChanged(wxFlatNotebookEvent& event);
     void OnNotebookPageClosing(wxFlatNotebookEvent& event);
     void OnNotebookPageClosed(wxFlatNotebookEvent& event);
