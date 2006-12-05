@@ -3001,9 +3001,9 @@ void MadEditFrame::OnFilePrintPreview(wxCommandEvent& event)
 
     wxPrintPreview *preview = new wxPrintPreview(new MadPrintout, new MadPrintout, &printDialogData);
 
-#ifdef __WXMSW__
-    preview->SetZoom(30);
-#endif
+//#ifdef __WXMSW__
+    //preview->SetZoom(30);
+//#endif
 
     if (!preview->Ok())
     {
