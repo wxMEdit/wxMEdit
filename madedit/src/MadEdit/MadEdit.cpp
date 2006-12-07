@@ -223,6 +223,7 @@ BEGIN_EVENT_TABLE(MadEdit, MadEditSuperClass)
     EVT_COMMAND_SCROLL(ID_VSCROLLBAR, MadEdit::OnVScroll)
     EVT_COMMAND_SCROLL(ID_HSCROLLBAR, MadEdit::OnHScroll)
     EVT_MOUSEWHEEL(MadEdit::OnMouseWheel)
+    EVT_ENTER_WINDOW(MadEdit::OnMouseEnterWindow)
     EVT_LEAVE_WINDOW(MadEdit::OnMouseLeaveWindow)
 
     EVT_ERASE_BACKGROUND(MadEdit::OnEraseBackground)
@@ -689,9 +690,13 @@ void FontWidthManager::FreeMem()
 
 //==================================================
 
+int MadEdit::ms_Count = 0;
+
 MadEdit::MadEdit(wxWindow* parent, wxWindowID id, const wxPoint& pos, const wxSize& size, long style)
     :MadEditSuperClass(parent,id,pos,size,style)//wxWANTS_CHARS|wxSIMPLE_BORDER)//|style|wxTAB_TRAVERSAL)
 {
+    ++ms_Count;
+
     m_VScrollBar=new wxScrollBar(this, ID_VSCROLLBAR, wxDefaultPosition, wxDefaultSize, wxSB_VERTICAL);
     m_HScrollBar=new wxScrollBar(this, ID_HSCROLLBAR, wxDefaultPosition, wxDefaultSize, wxSB_HORIZONTAL);
 
@@ -892,6 +897,12 @@ MadEdit::MadEdit(wxWindow* parent, wxWindowID id, const wxPoint& pos, const wxSi
 
 MadEdit::~MadEdit()
 {
+    --ms_Count;
+    if(ms_Count==0)
+    {
+        wxSetCursor(wxNullCursor); // reset to default
+    }
+
     delete m_Lines;
     delete m_Encoding;
     delete m_Syntax;
@@ -9216,29 +9227,7 @@ void MadEdit::OnMouseMotion(wxMouseEvent &evt)
         m_LeftClickY=evt.m_y;
     }
 
-    if(m_EditMode != emHexMode)
-    {
-        if(evt.m_x > m_LineNumberAreaWidth && evt.m_x <= m_ClientWidth && evt.m_y<=m_ClientHeight)
-        {
-            SetCursor(IBeamCursor);
-        }
-        else
-        {
-            SetCursor(ArrowCursor);
-        }
-    }
-    else
-    {
-        if((evt.m_x + m_DrawingXPos) > (9 * m_HexFontMaxDigitWidth) && evt.m_x <= m_ClientWidth && evt.m_y > m_RowHeight && evt.m_y<=m_ClientHeight)
-        {
-            SetCursor(IBeamCursor);
-        }
-        else
-        {
-            SetCursor(ArrowCursor);
-        }
-    }
-
+    UpdateCursor(evt.m_x, evt.m_y);
 
     if(m_MouseLeftDown)
     {
@@ -9616,10 +9605,46 @@ void MadEdit::OnMouseWheel(wxMouseEvent &evt)
     //evt.Skip();
 }
 
+void MadEdit::OnMouseEnterWindow(wxMouseEvent &evt)
+{
+    UpdateCursor(evt.m_x, evt.m_y);
+    evt.Skip();
+}
+
 void MadEdit::OnMouseLeaveWindow(wxMouseEvent &evt)
 {
-    SetCursor(wxNullCursor); // reset to default
+    wxSetCursor(wxNullCursor); // reset to default
     evt.Skip();
+}
+
+void MadEdit::UpdateCursor(int mouse_x, int mouse_y)
+{
+    if(m_EditMode != emHexMode)
+    {
+        if(mouse_x > m_LineNumberAreaWidth && mouse_x <= m_ClientWidth && mouse_y<=m_ClientHeight)
+        {
+            wxSetCursor(IBeamCursor);
+            SetCursor(IBeamCursor);
+        }
+        else
+        {
+            wxSetCursor(ArrowCursor);
+            SetCursor(ArrowCursor);
+        }
+    }
+    else
+    {
+        if((mouse_x + m_DrawingXPos) > (9 * m_HexFontMaxDigitWidth) && mouse_x <= m_ClientWidth && mouse_y > m_RowHeight && mouse_y<=m_ClientHeight)
+        {
+            wxSetCursor(IBeamCursor);
+            SetCursor(IBeamCursor);
+        }
+        else
+        {
+            wxSetCursor(ArrowCursor);
+            SetCursor(ArrowCursor);
+        }
+    }
 }
 
 void MadEdit::OnEraseBackground(wxEraseEvent &evt)

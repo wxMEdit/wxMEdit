@@ -171,6 +171,8 @@ private:
     friend class MadLines;
     friend class MadMouseMotionTimer;
 
+    static int      ms_Count; // the count of MadEdit
+
     wxScrollBar     *m_VScrollBar, *m_HScrollBar;
     int             m_VSBWidth, m_VSBHeight, m_HSBWidth, m_HSBHeight;
     int             m_ClientWidth, m_ClientHeight; // client size exclude scrollbar
@@ -467,6 +469,9 @@ protected:
     void FindRightBrace(/*IN_OUT*/int &rowid, MadLineIterator lit, wxFileOffset linepos, BracePairIndex &bpi);
     void FindBracePairUnderCaretPos();
 
+private:
+    void UpdateCursor(int mouse_x, int mouse_y);
+
 protected:
     void OnChar(wxKeyEvent &evt);
     void OnKeyDown(wxKeyEvent &evt);
@@ -485,6 +490,7 @@ protected:
     void OnVScroll(wxScrollEvent &evt);
     void OnHScroll(wxScrollEvent &evt);
     void OnMouseWheel(wxMouseEvent &evt);
+    void OnMouseEnterWindow(wxMouseEvent &evt);
     void OnMouseLeaveWindow(wxMouseEvent &evt);
 
     void OnEraseBackground(wxEraseEvent &evt);
