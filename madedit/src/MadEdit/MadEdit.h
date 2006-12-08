@@ -469,7 +469,7 @@ protected:
     void FindRightBrace(/*IN_OUT*/int &rowid, MadLineIterator lit, wxFileOffset linepos, BracePairIndex &bpi);
     void FindBracePairUnderCaretPos();
 
-private:
+    // update mouse cursor by the mouse position
     void UpdateCursor(int mouse_x, int mouse_y);
 
 protected:
