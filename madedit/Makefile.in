@@ -82,7 +82,27 @@ am_madedit_OBJECTS = madedit-MadAboutDialog.$(OBJEXT) \
 	madedit-wxFlatNotebook.$(OBJEXT) madedit-xh_fnb.$(OBJEXT) \
 	madedit-auibook.$(OBJEXT) madedit-dockart.$(OBJEXT) \
 	madedit-floatpane.$(OBJEXT) madedit-framemanager.$(OBJEXT) \
-	madedit-tabmdi.$(OBJEXT)
+	madedit-tabmdi.$(OBJEXT) madedit-CharDistribution.$(OBJEXT) \
+	madedit-JpCntx.$(OBJEXT) madedit-LangBulgarianModel.$(OBJEXT) \
+	madedit-LangCyrillicModel.$(OBJEXT) \
+	madedit-LangGreekModel.$(OBJEXT) \
+	madedit-LangHebrewModel.$(OBJEXT) \
+	madedit-LangHungarianModel.$(OBJEXT) \
+	madedit-LangThaiModel.$(OBJEXT) madedit-nsBig5Prober.$(OBJEXT) \
+	madedit-nsCharSetProber.$(OBJEXT) \
+	madedit-nsEscCharsetProber.$(OBJEXT) madedit-nsEscSM.$(OBJEXT) \
+	madedit-nsEUCJPProber.$(OBJEXT) \
+	madedit-nsEUCKRProber.$(OBJEXT) \
+	madedit-nsEUCTWProber.$(OBJEXT) \
+	madedit-nsGB2312Prober.$(OBJEXT) \
+	madedit-nsHebrewProber.$(OBJEXT) \
+	madedit-nsLatin1Prober.$(OBJEXT) \
+	madedit-nsMBCSGroupProber.$(OBJEXT) madedit-nsMBCSSM.$(OBJEXT) \
+	madedit-nsSBCharSetProber.$(OBJEXT) \
+	madedit-nsSBCSGroupProber.$(OBJEXT) \
+	madedit-nsSJISProber.$(OBJEXT) \
+	madedit-nsUniversalDetector.$(OBJEXT) \
+	madedit-nsUTF8Prober.$(OBJEXT) madedit-impl.$(OBJEXT)
 madedit_OBJECTS = $(am_madedit_OBJECTS)
 madedit_LDADD = $(LDADD)
 DEFAULT_INCLUDES = -I. -I$(srcdir) -I.
@@ -262,7 +282,7 @@ sharedstatedir = @sharedstatedir@
 sysconfdir = @sysconfdir@
 target_alias = @target_alias@
 SUBDIRS = syntax po
-INCLUDES = -I$(top_srcdir)/wxFlatNotebook/include -I$(top_srcdir)/wxAUI/include
+INCLUDES = -I$(top_srcdir)/wxFlatNotebook/include -I$(top_srcdir)/wxAUI/include -I$(top_srcdir)/charset-detector/include -I$(top_srcdir)/charset-detector/src -I$(top_srcdir)/charset-detector/src/tables
 madedit_CXXFLAGS = -DwxUSE_AUI=1 -DWXDLLIMPEXP_AUI= -DDATA_DIR=\"${datadir}\"
 madedit_SOURCES = src/MadAboutDialog.cpp \
 	src/MadAboutDialog.h \
@@ -338,7 +358,55 @@ madedit_SOURCES = src/MadAboutDialog.cpp \
 	wxAUI/src/dockart.cpp \
 	wxAUI/src/floatpane.cpp \
 	wxAUI/src/framemanager.cpp \
-	wxAUI/src/tabmdi.cpp
+	wxAUI/src/tabmdi.cpp \
+	charset-detector/src/CharDistribution.cpp \
+	charset-detector/src/CharDistribution.h \
+	charset-detector/src/JpCntx.cpp \
+	charset-detector/src/JpCntx.h \
+	charset-detector/src/LangBulgarianModel.cpp \
+	charset-detector/src/LangCyrillicModel.cpp \
+	charset-detector/src/LangGreekModel.cpp \
+	charset-detector/src/LangHebrewModel.cpp \
+	charset-detector/src/LangHungarianModel.cpp \
+	charset-detector/src/LangThaiModel.cpp \
+	charset-detector/src/nsBig5Prober.cpp \
+	charset-detector/src/nsBig5Prober.h \
+	charset-detector/src/nsCharSetProber.cpp \
+	charset-detector/src/nsCharSetProber.h \
+	charset-detector/src/nsCodingStateMachine.h \
+	charset-detector/src/nscore.h \
+	charset-detector/src/nsEscCharsetProber.cpp \
+	charset-detector/src/nsEscCharsetProber.h \
+	charset-detector/src/nsEscSM.cpp \
+	charset-detector/src/nsEUCJPProber.cpp \
+	charset-detector/src/nsEUCJPProber.h \
+	charset-detector/src/nsEUCKRProber.cpp \
+	charset-detector/src/nsEUCKRProber.h \
+	charset-detector/src/nsEUCTWProber.cpp \
+	charset-detector/src/nsEUCTWProber.h \
+	charset-detector/src/nsGB2312Prober.cpp \
+	charset-detector/src/nsGB2312Prober.h \
+	charset-detector/src/nsHebrewProber.cpp \
+	charset-detector/src/nsHebrewProber.h \
+	charset-detector/src/nsLatin1Prober.cpp \
+	charset-detector/src/nsLatin1Prober.h \
+	charset-detector/src/nsMBCSGroupProber.cpp \
+	charset-detector/src/nsMBCSGroupProber.h \
+	charset-detector/src/nsMBCSSM.cpp \
+	charset-detector/src/nsPkgInt.h \
+	charset-detector/src/nsSBCharSetProber.cpp \
+	charset-detector/src/nsSBCharSetProber.h \
+	charset-detector/src/nsSBCSGroupProber.cpp \
+	charset-detector/src/nsSBCSGroupProber.h \
+	charset-detector/src/nsSJISProber.cpp \
+	charset-detector/src/nsSJISProber.h \
+	charset-detector/src/nsUniversalDetector.cpp \
+	charset-detector/src/nsUniversalDetector.h \
+	charset-detector/src/nsUTF8Prober.cpp \
+	charset-detector/src/nsUTF8Prober.h \
+	charset-detector/src/prmem.h \
+	charset-detector/src/entry/impl.cpp \
+	charset-detector/include/chardetect.h
 
 pixmapsdir = $(datadir)/pixmaps
 pixmaps_DATA = madedit.xpm
@@ -581,7 +649,19 @@ noinst_HEADERS = description-pak \
 	xpressive/boost/xpressive/xpressive_static.hpp \
 	xpressive/boost/xpressive/xpressive_typeof.hpp \
 	xpressive/LICENSE_1_0.txt \
-	xpressive/README.TXT
+	xpressive/README.TXT \
+	charset-detector/Makefile \
+	charset-detector/MPL-1.1.txt \
+	charset-detector/README \
+	charset-detector/test/Makefile \
+	charset-detector/test/test-chardetect.c \
+	charset-detector/src/Makefile \
+	charset-detector/src/tables/Big5Freq.tab \
+	charset-detector/src/tables/EUCKRFreq.tab \
+	charset-detector/src/tables/EUCTWFreq.tab \
+	charset-detector/src/tables/GB2312Freq.tab \
+	charset-detector/src/tables/JISFreq.tab \
+	charset-detector/src/entry/export-symbol.list
 
 DOMAIN = madedit
 podir = $(top_srcdir)/po
@@ -674,6 +754,14 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/madedit-CharDistribution.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/madedit-JpCntx.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/madedit-LangBulgarianModel.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/madedit-LangCyrillicModel.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/madedit-LangGreekModel.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/madedit-LangHebrewModel.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/madedit-LangHungarianModel.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/madedit-LangThaiModel.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/madedit-MadAboutDialog.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/madedit-MadConvEncDialog.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/madedit-MadEdit.Po@am__quote@
@@ -705,6 +793,24 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/madedit-floatpane.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/madedit-fnb_resources.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/madedit-framemanager.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/madedit-impl.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/madedit-nsBig5Prober.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/madedit-nsCharSetProber.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/madedit-nsEUCJPProber.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/madedit-nsEUCKRProber.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/madedit-nsEUCTWProber.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/madedit-nsEscCharsetProber.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/madedit-nsEscSM.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/madedit-nsGB2312Prober.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/madedit-nsHebrewProber.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/madedit-nsLatin1Prober.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/madedit-nsMBCSGroupProber.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/madedit-nsMBCSSM.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/madedit-nsSBCSGroupProber.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/madedit-nsSBCharSetProber.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/madedit-nsSJISProber.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/madedit-nsUTF8Prober.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/madedit-nsUniversalDetector.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/madedit-popup_dlg.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/madedit-renderer.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/madedit-tabmdi.Po@am__quote@
@@ -1228,6 +1334,370 @@ madedit-tabmdi.obj: wxAUI/src/tabmdi.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='wxAUI/src/tabmdi.cpp' object='madedit-tabmdi.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(madedit_CXXFLAGS) $(CXXFLAGS) -c -o madedit-tabmdi.obj `if test -f 'wxAUI/src/tabmdi.cpp'; then $(CYGPATH_W) 'wxAUI/src/tabmdi.cpp'; else $(CYGPATH_W) '$(srcdir)/wxAUI/src/tabmdi.cpp'; fi`
+
+madedit-CharDistribution.o: charset-detector/src/CharDistribution.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(madedit_CXXFLAGS) $(CXXFLAGS) -MT madedit-CharDistribution.o -MD -MP -MF "$(DEPDIR)/madedit-CharDistribution.Tpo" -c -o madedit-CharDistribution.o `test -f 'charset-detector/src/CharDistribution.cpp' || echo '$(srcdir)/'`charset-detector/src/CharDistribution.cpp; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/madedit-CharDistribution.Tpo" "$(DEPDIR)/madedit-CharDistribution.Po"; else rm -f "$(DEPDIR)/madedit-CharDistribution.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='charset-detector/src/CharDistribution.cpp' object='madedit-CharDistribution.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(madedit_CXXFLAGS) $(CXXFLAGS) -c -o madedit-CharDistribution.o `test -f 'charset-detector/src/CharDistribution.cpp' || echo '$(srcdir)/'`charset-detector/src/CharDistribution.cpp
+
+madedit-CharDistribution.obj: charset-detector/src/CharDistribution.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(madedit_CXXFLAGS) $(CXXFLAGS) -MT madedit-CharDistribution.obj -MD -MP -MF "$(DEPDIR)/madedit-CharDistribution.Tpo" -c -o madedit-CharDistribution.obj `if test -f 'charset-detector/src/CharDistribution.cpp'; then $(CYGPATH_W) 'charset-detector/src/CharDistribution.cpp'; else $(CYGPATH_W) '$(srcdir)/charset-detector/src/CharDistribution.cpp'; fi`; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/madedit-CharDistribution.Tpo" "$(DEPDIR)/madedit-CharDistribution.Po"; else rm -f "$(DEPDIR)/madedit-CharDistribution.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='charset-detector/src/CharDistribution.cpp' object='madedit-CharDistribution.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(madedit_CXXFLAGS) $(CXXFLAGS) -c -o madedit-CharDistribution.obj `if test -f 'charset-detector/src/CharDistribution.cpp'; then $(CYGPATH_W) 'charset-detector/src/CharDistribution.cpp'; else $(CYGPATH_W) '$(srcdir)/charset-detector/src/CharDistribution.cpp'; fi`
+
+madedit-JpCntx.o: charset-detector/src/JpCntx.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(madedit_CXXFLAGS) $(CXXFLAGS) -MT madedit-JpCntx.o -MD -MP -MF "$(DEPDIR)/madedit-JpCntx.Tpo" -c -o madedit-JpCntx.o `test -f 'charset-detector/src/JpCntx.cpp' || echo '$(srcdir)/'`charset-detector/src/JpCntx.cpp; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/madedit-JpCntx.Tpo" "$(DEPDIR)/madedit-JpCntx.Po"; else rm -f "$(DEPDIR)/madedit-JpCntx.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='charset-detector/src/JpCntx.cpp' object='madedit-JpCntx.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(madedit_CXXFLAGS) $(CXXFLAGS) -c -o madedit-JpCntx.o `test -f 'charset-detector/src/JpCntx.cpp' || echo '$(srcdir)/'`charset-detector/src/JpCntx.cpp
+
+madedit-JpCntx.obj: charset-detector/src/JpCntx.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(madedit_CXXFLAGS) $(CXXFLAGS) -MT madedit-JpCntx.obj -MD -MP -MF "$(DEPDIR)/madedit-JpCntx.Tpo" -c -o madedit-JpCntx.obj `if test -f 'charset-detector/src/JpCntx.cpp'; then $(CYGPATH_W) 'charset-detector/src/JpCntx.cpp'; else $(CYGPATH_W) '$(srcdir)/charset-detector/src/JpCntx.cpp'; fi`; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/madedit-JpCntx.Tpo" "$(DEPDIR)/madedit-JpCntx.Po"; else rm -f "$(DEPDIR)/madedit-JpCntx.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='charset-detector/src/JpCntx.cpp' object='madedit-JpCntx.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(madedit_CXXFLAGS) $(CXXFLAGS) -c -o madedit-JpCntx.obj `if test -f 'charset-detector/src/JpCntx.cpp'; then $(CYGPATH_W) 'charset-detector/src/JpCntx.cpp'; else $(CYGPATH_W) '$(srcdir)/charset-detector/src/JpCntx.cpp'; fi`
+
+madedit-LangBulgarianModel.o: charset-detector/src/LangBulgarianModel.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(madedit_CXXFLAGS) $(CXXFLAGS) -MT madedit-LangBulgarianModel.o -MD -MP -MF "$(DEPDIR)/madedit-LangBulgarianModel.Tpo" -c -o madedit-LangBulgarianModel.o `test -f 'charset-detector/src/LangBulgarianModel.cpp' || echo '$(srcdir)/'`charset-detector/src/LangBulgarianModel.cpp; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/madedit-LangBulgarianModel.Tpo" "$(DEPDIR)/madedit-LangBulgarianModel.Po"; else rm -f "$(DEPDIR)/madedit-LangBulgarianModel.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='charset-detector/src/LangBulgarianModel.cpp' object='madedit-LangBulgarianModel.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(madedit_CXXFLAGS) $(CXXFLAGS) -c -o madedit-LangBulgarianModel.o `test -f 'charset-detector/src/LangBulgarianModel.cpp' || echo '$(srcdir)/'`charset-detector/src/LangBulgarianModel.cpp
+
+madedit-LangBulgarianModel.obj: charset-detector/src/LangBulgarianModel.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(madedit_CXXFLAGS) $(CXXFLAGS) -MT madedit-LangBulgarianModel.obj -MD -MP -MF "$(DEPDIR)/madedit-LangBulgarianModel.Tpo" -c -o madedit-LangBulgarianModel.obj `if test -f 'charset-detector/src/LangBulgarianModel.cpp'; then $(CYGPATH_W) 'charset-detector/src/LangBulgarianModel.cpp'; else $(CYGPATH_W) '$(srcdir)/charset-detector/src/LangBulgarianModel.cpp'; fi`; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/madedit-LangBulgarianModel.Tpo" "$(DEPDIR)/madedit-LangBulgarianModel.Po"; else rm -f "$(DEPDIR)/madedit-LangBulgarianModel.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='charset-detector/src/LangBulgarianModel.cpp' object='madedit-LangBulgarianModel.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(madedit_CXXFLAGS) $(CXXFLAGS) -c -o madedit-LangBulgarianModel.obj `if test -f 'charset-detector/src/LangBulgarianModel.cpp'; then $(CYGPATH_W) 'charset-detector/src/LangBulgarianModel.cpp'; else $(CYGPATH_W) '$(srcdir)/charset-detector/src/LangBulgarianModel.cpp'; fi`
+
+madedit-LangCyrillicModel.o: charset-detector/src/LangCyrillicModel.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(madedit_CXXFLAGS) $(CXXFLAGS) -MT madedit-LangCyrillicModel.o -MD -MP -MF "$(DEPDIR)/madedit-LangCyrillicModel.Tpo" -c -o madedit-LangCyrillicModel.o `test -f 'charset-detector/src/LangCyrillicModel.cpp' || echo '$(srcdir)/'`charset-detector/src/LangCyrillicModel.cpp; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/madedit-LangCyrillicModel.Tpo" "$(DEPDIR)/madedit-LangCyrillicModel.Po"; else rm -f "$(DEPDIR)/madedit-LangCyrillicModel.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='charset-detector/src/LangCyrillicModel.cpp' object='madedit-LangCyrillicModel.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(madedit_CXXFLAGS) $(CXXFLAGS) -c -o madedit-LangCyrillicModel.o `test -f 'charset-detector/src/LangCyrillicModel.cpp' || echo '$(srcdir)/'`charset-detector/src/LangCyrillicModel.cpp
+
+madedit-LangCyrillicModel.obj: charset-detector/src/LangCyrillicModel.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(madedit_CXXFLAGS) $(CXXFLAGS) -MT madedit-LangCyrillicModel.obj -MD -MP -MF "$(DEPDIR)/madedit-LangCyrillicModel.Tpo" -c -o madedit-LangCyrillicModel.obj `if test -f 'charset-detector/src/LangCyrillicModel.cpp'; then $(CYGPATH_W) 'charset-detector/src/LangCyrillicModel.cpp'; else $(CYGPATH_W) '$(srcdir)/charset-detector/src/LangCyrillicModel.cpp'; fi`; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/madedit-LangCyrillicModel.Tpo" "$(DEPDIR)/madedit-LangCyrillicModel.Po"; else rm -f "$(DEPDIR)/madedit-LangCyrillicModel.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='charset-detector/src/LangCyrillicModel.cpp' object='madedit-LangCyrillicModel.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(madedit_CXXFLAGS) $(CXXFLAGS) -c -o madedit-LangCyrillicModel.obj `if test -f 'charset-detector/src/LangCyrillicModel.cpp'; then $(CYGPATH_W) 'charset-detector/src/LangCyrillicModel.cpp'; else $(CYGPATH_W) '$(srcdir)/charset-detector/src/LangCyrillicModel.cpp'; fi`
+
+madedit-LangGreekModel.o: charset-detector/src/LangGreekModel.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(madedit_CXXFLAGS) $(CXXFLAGS) -MT madedit-LangGreekModel.o -MD -MP -MF "$(DEPDIR)/madedit-LangGreekModel.Tpo" -c -o madedit-LangGreekModel.o `test -f 'charset-detector/src/LangGreekModel.cpp' || echo '$(srcdir)/'`charset-detector/src/LangGreekModel.cpp; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/madedit-LangGreekModel.Tpo" "$(DEPDIR)/madedit-LangGreekModel.Po"; else rm -f "$(DEPDIR)/madedit-LangGreekModel.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='charset-detector/src/LangGreekModel.cpp' object='madedit-LangGreekModel.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(madedit_CXXFLAGS) $(CXXFLAGS) -c -o madedit-LangGreekModel.o `test -f 'charset-detector/src/LangGreekModel.cpp' || echo '$(srcdir)/'`charset-detector/src/LangGreekModel.cpp
+
+madedit-LangGreekModel.obj: charset-detector/src/LangGreekModel.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(madedit_CXXFLAGS) $(CXXFLAGS) -MT madedit-LangGreekModel.obj -MD -MP -MF "$(DEPDIR)/madedit-LangGreekModel.Tpo" -c -o madedit-LangGreekModel.obj `if test -f 'charset-detector/src/LangGreekModel.cpp'; then $(CYGPATH_W) 'charset-detector/src/LangGreekModel.cpp'; else $(CYGPATH_W) '$(srcdir)/charset-detector/src/LangGreekModel.cpp'; fi`; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/madedit-LangGreekModel.Tpo" "$(DEPDIR)/madedit-LangGreekModel.Po"; else rm -f "$(DEPDIR)/madedit-LangGreekModel.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='charset-detector/src/LangGreekModel.cpp' object='madedit-LangGreekModel.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(madedit_CXXFLAGS) $(CXXFLAGS) -c -o madedit-LangGreekModel.obj `if test -f 'charset-detector/src/LangGreekModel.cpp'; then $(CYGPATH_W) 'charset-detector/src/LangGreekModel.cpp'; else $(CYGPATH_W) '$(srcdir)/charset-detector/src/LangGreekModel.cpp'; fi`
+
+madedit-LangHebrewModel.o: charset-detector/src/LangHebrewModel.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(madedit_CXXFLAGS) $(CXXFLAGS) -MT madedit-LangHebrewModel.o -MD -MP -MF "$(DEPDIR)/madedit-LangHebrewModel.Tpo" -c -o madedit-LangHebrewModel.o `test -f 'charset-detector/src/LangHebrewModel.cpp' || echo '$(srcdir)/'`charset-detector/src/LangHebrewModel.cpp; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/madedit-LangHebrewModel.Tpo" "$(DEPDIR)/madedit-LangHebrewModel.Po"; else rm -f "$(DEPDIR)/madedit-LangHebrewModel.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='charset-detector/src/LangHebrewModel.cpp' object='madedit-LangHebrewModel.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(madedit_CXXFLAGS) $(CXXFLAGS) -c -o madedit-LangHebrewModel.o `test -f 'charset-detector/src/LangHebrewModel.cpp' || echo '$(srcdir)/'`charset-detector/src/LangHebrewModel.cpp
+
+madedit-LangHebrewModel.obj: charset-detector/src/LangHebrewModel.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(madedit_CXXFLAGS) $(CXXFLAGS) -MT madedit-LangHebrewModel.obj -MD -MP -MF "$(DEPDIR)/madedit-LangHebrewModel.Tpo" -c -o madedit-LangHebrewModel.obj `if test -f 'charset-detector/src/LangHebrewModel.cpp'; then $(CYGPATH_W) 'charset-detector/src/LangHebrewModel.cpp'; else $(CYGPATH_W) '$(srcdir)/charset-detector/src/LangHebrewModel.cpp'; fi`; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/madedit-LangHebrewModel.Tpo" "$(DEPDIR)/madedit-LangHebrewModel.Po"; else rm -f "$(DEPDIR)/madedit-LangHebrewModel.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='charset-detector/src/LangHebrewModel.cpp' object='madedit-LangHebrewModel.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(madedit_CXXFLAGS) $(CXXFLAGS) -c -o madedit-LangHebrewModel.obj `if test -f 'charset-detector/src/LangHebrewModel.cpp'; then $(CYGPATH_W) 'charset-detector/src/LangHebrewModel.cpp'; else $(CYGPATH_W) '$(srcdir)/charset-detector/src/LangHebrewModel.cpp'; fi`
+
+madedit-LangHungarianModel.o: charset-detector/src/LangHungarianModel.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(madedit_CXXFLAGS) $(CXXFLAGS) -MT madedit-LangHungarianModel.o -MD -MP -MF "$(DEPDIR)/madedit-LangHungarianModel.Tpo" -c -o madedit-LangHungarianModel.o `test -f 'charset-detector/src/LangHungarianModel.cpp' || echo '$(srcdir)/'`charset-detector/src/LangHungarianModel.cpp; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/madedit-LangHungarianModel.Tpo" "$(DEPDIR)/madedit-LangHungarianModel.Po"; else rm -f "$(DEPDIR)/madedit-LangHungarianModel.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='charset-detector/src/LangHungarianModel.cpp' object='madedit-LangHungarianModel.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(madedit_CXXFLAGS) $(CXXFLAGS) -c -o madedit-LangHungarianModel.o `test -f 'charset-detector/src/LangHungarianModel.cpp' || echo '$(srcdir)/'`charset-detector/src/LangHungarianModel.cpp
+
+madedit-LangHungarianModel.obj: charset-detector/src/LangHungarianModel.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(madedit_CXXFLAGS) $(CXXFLAGS) -MT madedit-LangHungarianModel.obj -MD -MP -MF "$(DEPDIR)/madedit-LangHungarianModel.Tpo" -c -o madedit-LangHungarianModel.obj `if test -f 'charset-detector/src/LangHungarianModel.cpp'; then $(CYGPATH_W) 'charset-detector/src/LangHungarianModel.cpp'; else $(CYGPATH_W) '$(srcdir)/charset-detector/src/LangHungarianModel.cpp'; fi`; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/madedit-LangHungarianModel.Tpo" "$(DEPDIR)/madedit-LangHungarianModel.Po"; else rm -f "$(DEPDIR)/madedit-LangHungarianModel.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='charset-detector/src/LangHungarianModel.cpp' object='madedit-LangHungarianModel.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(madedit_CXXFLAGS) $(CXXFLAGS) -c -o madedit-LangHungarianModel.obj `if test -f 'charset-detector/src/LangHungarianModel.cpp'; then $(CYGPATH_W) 'charset-detector/src/LangHungarianModel.cpp'; else $(CYGPATH_W) '$(srcdir)/charset-detector/src/LangHungarianModel.cpp'; fi`
+
+madedit-LangThaiModel.o: charset-detector/src/LangThaiModel.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(madedit_CXXFLAGS) $(CXXFLAGS) -MT madedit-LangThaiModel.o -MD -MP -MF "$(DEPDIR)/madedit-LangThaiModel.Tpo" -c -o madedit-LangThaiModel.o `test -f 'charset-detector/src/LangThaiModel.cpp' || echo '$(srcdir)/'`charset-detector/src/LangThaiModel.cpp; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/madedit-LangThaiModel.Tpo" "$(DEPDIR)/madedit-LangThaiModel.Po"; else rm -f "$(DEPDIR)/madedit-LangThaiModel.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='charset-detector/src/LangThaiModel.cpp' object='madedit-LangThaiModel.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(madedit_CXXFLAGS) $(CXXFLAGS) -c -o madedit-LangThaiModel.o `test -f 'charset-detector/src/LangThaiModel.cpp' || echo '$(srcdir)/'`charset-detector/src/LangThaiModel.cpp
+
+madedit-LangThaiModel.obj: charset-detector/src/LangThaiModel.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(madedit_CXXFLAGS) $(CXXFLAGS) -MT madedit-LangThaiModel.obj -MD -MP -MF "$(DEPDIR)/madedit-LangThaiModel.Tpo" -c -o madedit-LangThaiModel.obj `if test -f 'charset-detector/src/LangThaiModel.cpp'; then $(CYGPATH_W) 'charset-detector/src/LangThaiModel.cpp'; else $(CYGPATH_W) '$(srcdir)/charset-detector/src/LangThaiModel.cpp'; fi`; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/madedit-LangThaiModel.Tpo" "$(DEPDIR)/madedit-LangThaiModel.Po"; else rm -f "$(DEPDIR)/madedit-LangThaiModel.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='charset-detector/src/LangThaiModel.cpp' object='madedit-LangThaiModel.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(madedit_CXXFLAGS) $(CXXFLAGS) -c -o madedit-LangThaiModel.obj `if test -f 'charset-detector/src/LangThaiModel.cpp'; then $(CYGPATH_W) 'charset-detector/src/LangThaiModel.cpp'; else $(CYGPATH_W) '$(srcdir)/charset-detector/src/LangThaiModel.cpp'; fi`
+
+madedit-nsBig5Prober.o: charset-detector/src/nsBig5Prober.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(madedit_CXXFLAGS) $(CXXFLAGS) -MT madedit-nsBig5Prober.o -MD -MP -MF "$(DEPDIR)/madedit-nsBig5Prober.Tpo" -c -o madedit-nsBig5Prober.o `test -f 'charset-detector/src/nsBig5Prober.cpp' || echo '$(srcdir)/'`charset-detector/src/nsBig5Prober.cpp; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/madedit-nsBig5Prober.Tpo" "$(DEPDIR)/madedit-nsBig5Prober.Po"; else rm -f "$(DEPDIR)/madedit-nsBig5Prober.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='charset-detector/src/nsBig5Prober.cpp' object='madedit-nsBig5Prober.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(madedit_CXXFLAGS) $(CXXFLAGS) -c -o madedit-nsBig5Prober.o `test -f 'charset-detector/src/nsBig5Prober.cpp' || echo '$(srcdir)/'`charset-detector/src/nsBig5Prober.cpp
+
+madedit-nsBig5Prober.obj: charset-detector/src/nsBig5Prober.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(madedit_CXXFLAGS) $(CXXFLAGS) -MT madedit-nsBig5Prober.obj -MD -MP -MF "$(DEPDIR)/madedit-nsBig5Prober.Tpo" -c -o madedit-nsBig5Prober.obj `if test -f 'charset-detector/src/nsBig5Prober.cpp'; then $(CYGPATH_W) 'charset-detector/src/nsBig5Prober.cpp'; else $(CYGPATH_W) '$(srcdir)/charset-detector/src/nsBig5Prober.cpp'; fi`; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/madedit-nsBig5Prober.Tpo" "$(DEPDIR)/madedit-nsBig5Prober.Po"; else rm -f "$(DEPDIR)/madedit-nsBig5Prober.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='charset-detector/src/nsBig5Prober.cpp' object='madedit-nsBig5Prober.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(madedit_CXXFLAGS) $(CXXFLAGS) -c -o madedit-nsBig5Prober.obj `if test -f 'charset-detector/src/nsBig5Prober.cpp'; then $(CYGPATH_W) 'charset-detector/src/nsBig5Prober.cpp'; else $(CYGPATH_W) '$(srcdir)/charset-detector/src/nsBig5Prober.cpp'; fi`
+
+madedit-nsCharSetProber.o: charset-detector/src/nsCharSetProber.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(madedit_CXXFLAGS) $(CXXFLAGS) -MT madedit-nsCharSetProber.o -MD -MP -MF "$(DEPDIR)/madedit-nsCharSetProber.Tpo" -c -o madedit-nsCharSetProber.o `test -f 'charset-detector/src/nsCharSetProber.cpp' || echo '$(srcdir)/'`charset-detector/src/nsCharSetProber.cpp; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/madedit-nsCharSetProber.Tpo" "$(DEPDIR)/madedit-nsCharSetProber.Po"; else rm -f "$(DEPDIR)/madedit-nsCharSetProber.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='charset-detector/src/nsCharSetProber.cpp' object='madedit-nsCharSetProber.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(madedit_CXXFLAGS) $(CXXFLAGS) -c -o madedit-nsCharSetProber.o `test -f 'charset-detector/src/nsCharSetProber.cpp' || echo '$(srcdir)/'`charset-detector/src/nsCharSetProber.cpp
+
+madedit-nsCharSetProber.obj: charset-detector/src/nsCharSetProber.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(madedit_CXXFLAGS) $(CXXFLAGS) -MT madedit-nsCharSetProber.obj -MD -MP -MF "$(DEPDIR)/madedit-nsCharSetProber.Tpo" -c -o madedit-nsCharSetProber.obj `if test -f 'charset-detector/src/nsCharSetProber.cpp'; then $(CYGPATH_W) 'charset-detector/src/nsCharSetProber.cpp'; else $(CYGPATH_W) '$(srcdir)/charset-detector/src/nsCharSetProber.cpp'; fi`; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/madedit-nsCharSetProber.Tpo" "$(DEPDIR)/madedit-nsCharSetProber.Po"; else rm -f "$(DEPDIR)/madedit-nsCharSetProber.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='charset-detector/src/nsCharSetProber.cpp' object='madedit-nsCharSetProber.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(madedit_CXXFLAGS) $(CXXFLAGS) -c -o madedit-nsCharSetProber.obj `if test -f 'charset-detector/src/nsCharSetProber.cpp'; then $(CYGPATH_W) 'charset-detector/src/nsCharSetProber.cpp'; else $(CYGPATH_W) '$(srcdir)/charset-detector/src/nsCharSetProber.cpp'; fi`
+
+madedit-nsEscCharsetProber.o: charset-detector/src/nsEscCharsetProber.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(madedit_CXXFLAGS) $(CXXFLAGS) -MT madedit-nsEscCharsetProber.o -MD -MP -MF "$(DEPDIR)/madedit-nsEscCharsetProber.Tpo" -c -o madedit-nsEscCharsetProber.o `test -f 'charset-detector/src/nsEscCharsetProber.cpp' || echo '$(srcdir)/'`charset-detector/src/nsEscCharsetProber.cpp; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/madedit-nsEscCharsetProber.Tpo" "$(DEPDIR)/madedit-nsEscCharsetProber.Po"; else rm -f "$(DEPDIR)/madedit-nsEscCharsetProber.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='charset-detector/src/nsEscCharsetProber.cpp' object='madedit-nsEscCharsetProber.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(madedit_CXXFLAGS) $(CXXFLAGS) -c -o madedit-nsEscCharsetProber.o `test -f 'charset-detector/src/nsEscCharsetProber.cpp' || echo '$(srcdir)/'`charset-detector/src/nsEscCharsetProber.cpp
+
+madedit-nsEscCharsetProber.obj: charset-detector/src/nsEscCharsetProber.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(madedit_CXXFLAGS) $(CXXFLAGS) -MT madedit-nsEscCharsetProber.obj -MD -MP -MF "$(DEPDIR)/madedit-nsEscCharsetProber.Tpo" -c -o madedit-nsEscCharsetProber.obj `if test -f 'charset-detector/src/nsEscCharsetProber.cpp'; then $(CYGPATH_W) 'charset-detector/src/nsEscCharsetProber.cpp'; else $(CYGPATH_W) '$(srcdir)/charset-detector/src/nsEscCharsetProber.cpp'; fi`; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/madedit-nsEscCharsetProber.Tpo" "$(DEPDIR)/madedit-nsEscCharsetProber.Po"; else rm -f "$(DEPDIR)/madedit-nsEscCharsetProber.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='charset-detector/src/nsEscCharsetProber.cpp' object='madedit-nsEscCharsetProber.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(madedit_CXXFLAGS) $(CXXFLAGS) -c -o madedit-nsEscCharsetProber.obj `if test -f 'charset-detector/src/nsEscCharsetProber.cpp'; then $(CYGPATH_W) 'charset-detector/src/nsEscCharsetProber.cpp'; else $(CYGPATH_W) '$(srcdir)/charset-detector/src/nsEscCharsetProber.cpp'; fi`
+
+madedit-nsEscSM.o: charset-detector/src/nsEscSM.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(madedit_CXXFLAGS) $(CXXFLAGS) -MT madedit-nsEscSM.o -MD -MP -MF "$(DEPDIR)/madedit-nsEscSM.Tpo" -c -o madedit-nsEscSM.o `test -f 'charset-detector/src/nsEscSM.cpp' || echo '$(srcdir)/'`charset-detector/src/nsEscSM.cpp; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/madedit-nsEscSM.Tpo" "$(DEPDIR)/madedit-nsEscSM.Po"; else rm -f "$(DEPDIR)/madedit-nsEscSM.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='charset-detector/src/nsEscSM.cpp' object='madedit-nsEscSM.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(madedit_CXXFLAGS) $(CXXFLAGS) -c -o madedit-nsEscSM.o `test -f 'charset-detector/src/nsEscSM.cpp' || echo '$(srcdir)/'`charset-detector/src/nsEscSM.cpp
+
+madedit-nsEscSM.obj: charset-detector/src/nsEscSM.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(madedit_CXXFLAGS) $(CXXFLAGS) -MT madedit-nsEscSM.obj -MD -MP -MF "$(DEPDIR)/madedit-nsEscSM.Tpo" -c -o madedit-nsEscSM.obj `if test -f 'charset-detector/src/nsEscSM.cpp'; then $(CYGPATH_W) 'charset-detector/src/nsEscSM.cpp'; else $(CYGPATH_W) '$(srcdir)/charset-detector/src/nsEscSM.cpp'; fi`; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/madedit-nsEscSM.Tpo" "$(DEPDIR)/madedit-nsEscSM.Po"; else rm -f "$(DEPDIR)/madedit-nsEscSM.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='charset-detector/src/nsEscSM.cpp' object='madedit-nsEscSM.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(madedit_CXXFLAGS) $(CXXFLAGS) -c -o madedit-nsEscSM.obj `if test -f 'charset-detector/src/nsEscSM.cpp'; then $(CYGPATH_W) 'charset-detector/src/nsEscSM.cpp'; else $(CYGPATH_W) '$(srcdir)/charset-detector/src/nsEscSM.cpp'; fi`
+
+madedit-nsEUCJPProber.o: charset-detector/src/nsEUCJPProber.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(madedit_CXXFLAGS) $(CXXFLAGS) -MT madedit-nsEUCJPProber.o -MD -MP -MF "$(DEPDIR)/madedit-nsEUCJPProber.Tpo" -c -o madedit-nsEUCJPProber.o `test -f 'charset-detector/src/nsEUCJPProber.cpp' || echo '$(srcdir)/'`charset-detector/src/nsEUCJPProber.cpp; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/madedit-nsEUCJPProber.Tpo" "$(DEPDIR)/madedit-nsEUCJPProber.Po"; else rm -f "$(DEPDIR)/madedit-nsEUCJPProber.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='charset-detector/src/nsEUCJPProber.cpp' object='madedit-nsEUCJPProber.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(madedit_CXXFLAGS) $(CXXFLAGS) -c -o madedit-nsEUCJPProber.o `test -f 'charset-detector/src/nsEUCJPProber.cpp' || echo '$(srcdir)/'`charset-detector/src/nsEUCJPProber.cpp
+
+madedit-nsEUCJPProber.obj: charset-detector/src/nsEUCJPProber.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(madedit_CXXFLAGS) $(CXXFLAGS) -MT madedit-nsEUCJPProber.obj -MD -MP -MF "$(DEPDIR)/madedit-nsEUCJPProber.Tpo" -c -o madedit-nsEUCJPProber.obj `if test -f 'charset-detector/src/nsEUCJPProber.cpp'; then $(CYGPATH_W) 'charset-detector/src/nsEUCJPProber.cpp'; else $(CYGPATH_W) '$(srcdir)/charset-detector/src/nsEUCJPProber.cpp'; fi`; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/madedit-nsEUCJPProber.Tpo" "$(DEPDIR)/madedit-nsEUCJPProber.Po"; else rm -f "$(DEPDIR)/madedit-nsEUCJPProber.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='charset-detector/src/nsEUCJPProber.cpp' object='madedit-nsEUCJPProber.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(madedit_CXXFLAGS) $(CXXFLAGS) -c -o madedit-nsEUCJPProber.obj `if test -f 'charset-detector/src/nsEUCJPProber.cpp'; then $(CYGPATH_W) 'charset-detector/src/nsEUCJPProber.cpp'; else $(CYGPATH_W) '$(srcdir)/charset-detector/src/nsEUCJPProber.cpp'; fi`
+
+madedit-nsEUCKRProber.o: charset-detector/src/nsEUCKRProber.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(madedit_CXXFLAGS) $(CXXFLAGS) -MT madedit-nsEUCKRProber.o -MD -MP -MF "$(DEPDIR)/madedit-nsEUCKRProber.Tpo" -c -o madedit-nsEUCKRProber.o `test -f 'charset-detector/src/nsEUCKRProber.cpp' || echo '$(srcdir)/'`charset-detector/src/nsEUCKRProber.cpp; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/madedit-nsEUCKRProber.Tpo" "$(DEPDIR)/madedit-nsEUCKRProber.Po"; else rm -f "$(DEPDIR)/madedit-nsEUCKRProber.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='charset-detector/src/nsEUCKRProber.cpp' object='madedit-nsEUCKRProber.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(madedit_CXXFLAGS) $(CXXFLAGS) -c -o madedit-nsEUCKRProber.o `test -f 'charset-detector/src/nsEUCKRProber.cpp' || echo '$(srcdir)/'`charset-detector/src/nsEUCKRProber.cpp
+
+madedit-nsEUCKRProber.obj: charset-detector/src/nsEUCKRProber.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(madedit_CXXFLAGS) $(CXXFLAGS) -MT madedit-nsEUCKRProber.obj -MD -MP -MF "$(DEPDIR)/madedit-nsEUCKRProber.Tpo" -c -o madedit-nsEUCKRProber.obj `if test -f 'charset-detector/src/nsEUCKRProber.cpp'; then $(CYGPATH_W) 'charset-detector/src/nsEUCKRProber.cpp'; else $(CYGPATH_W) '$(srcdir)/charset-detector/src/nsEUCKRProber.cpp'; fi`; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/madedit-nsEUCKRProber.Tpo" "$(DEPDIR)/madedit-nsEUCKRProber.Po"; else rm -f "$(DEPDIR)/madedit-nsEUCKRProber.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='charset-detector/src/nsEUCKRProber.cpp' object='madedit-nsEUCKRProber.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(madedit_CXXFLAGS) $(CXXFLAGS) -c -o madedit-nsEUCKRProber.obj `if test -f 'charset-detector/src/nsEUCKRProber.cpp'; then $(CYGPATH_W) 'charset-detector/src/nsEUCKRProber.cpp'; else $(CYGPATH_W) '$(srcdir)/charset-detector/src/nsEUCKRProber.cpp'; fi`
+
+madedit-nsEUCTWProber.o: charset-detector/src/nsEUCTWProber.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(madedit_CXXFLAGS) $(CXXFLAGS) -MT madedit-nsEUCTWProber.o -MD -MP -MF "$(DEPDIR)/madedit-nsEUCTWProber.Tpo" -c -o madedit-nsEUCTWProber.o `test -f 'charset-detector/src/nsEUCTWProber.cpp' || echo '$(srcdir)/'`charset-detector/src/nsEUCTWProber.cpp; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/madedit-nsEUCTWProber.Tpo" "$(DEPDIR)/madedit-nsEUCTWProber.Po"; else rm -f "$(DEPDIR)/madedit-nsEUCTWProber.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='charset-detector/src/nsEUCTWProber.cpp' object='madedit-nsEUCTWProber.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(madedit_CXXFLAGS) $(CXXFLAGS) -c -o madedit-nsEUCTWProber.o `test -f 'charset-detector/src/nsEUCTWProber.cpp' || echo '$(srcdir)/'`charset-detector/src/nsEUCTWProber.cpp
+
+madedit-nsEUCTWProber.obj: charset-detector/src/nsEUCTWProber.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(madedit_CXXFLAGS) $(CXXFLAGS) -MT madedit-nsEUCTWProber.obj -MD -MP -MF "$(DEPDIR)/madedit-nsEUCTWProber.Tpo" -c -o madedit-nsEUCTWProber.obj `if test -f 'charset-detector/src/nsEUCTWProber.cpp'; then $(CYGPATH_W) 'charset-detector/src/nsEUCTWProber.cpp'; else $(CYGPATH_W) '$(srcdir)/charset-detector/src/nsEUCTWProber.cpp'; fi`; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/madedit-nsEUCTWProber.Tpo" "$(DEPDIR)/madedit-nsEUCTWProber.Po"; else rm -f "$(DEPDIR)/madedit-nsEUCTWProber.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='charset-detector/src/nsEUCTWProber.cpp' object='madedit-nsEUCTWProber.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(madedit_CXXFLAGS) $(CXXFLAGS) -c -o madedit-nsEUCTWProber.obj `if test -f 'charset-detector/src/nsEUCTWProber.cpp'; then $(CYGPATH_W) 'charset-detector/src/nsEUCTWProber.cpp'; else $(CYGPATH_W) '$(srcdir)/charset-detector/src/nsEUCTWProber.cpp'; fi`
+
+madedit-nsGB2312Prober.o: charset-detector/src/nsGB2312Prober.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(madedit_CXXFLAGS) $(CXXFLAGS) -MT madedit-nsGB2312Prober.o -MD -MP -MF "$(DEPDIR)/madedit-nsGB2312Prober.Tpo" -c -o madedit-nsGB2312Prober.o `test -f 'charset-detector/src/nsGB2312Prober.cpp' || echo '$(srcdir)/'`charset-detector/src/nsGB2312Prober.cpp; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/madedit-nsGB2312Prober.Tpo" "$(DEPDIR)/madedit-nsGB2312Prober.Po"; else rm -f "$(DEPDIR)/madedit-nsGB2312Prober.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='charset-detector/src/nsGB2312Prober.cpp' object='madedit-nsGB2312Prober.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(madedit_CXXFLAGS) $(CXXFLAGS) -c -o madedit-nsGB2312Prober.o `test -f 'charset-detector/src/nsGB2312Prober.cpp' || echo '$(srcdir)/'`charset-detector/src/nsGB2312Prober.cpp
+
+madedit-nsGB2312Prober.obj: charset-detector/src/nsGB2312Prober.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(madedit_CXXFLAGS) $(CXXFLAGS) -MT madedit-nsGB2312Prober.obj -MD -MP -MF "$(DEPDIR)/madedit-nsGB2312Prober.Tpo" -c -o madedit-nsGB2312Prober.obj `if test -f 'charset-detector/src/nsGB2312Prober.cpp'; then $(CYGPATH_W) 'charset-detector/src/nsGB2312Prober.cpp'; else $(CYGPATH_W) '$(srcdir)/charset-detector/src/nsGB2312Prober.cpp'; fi`; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/madedit-nsGB2312Prober.Tpo" "$(DEPDIR)/madedit-nsGB2312Prober.Po"; else rm -f "$(DEPDIR)/madedit-nsGB2312Prober.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='charset-detector/src/nsGB2312Prober.cpp' object='madedit-nsGB2312Prober.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(madedit_CXXFLAGS) $(CXXFLAGS) -c -o madedit-nsGB2312Prober.obj `if test -f 'charset-detector/src/nsGB2312Prober.cpp'; then $(CYGPATH_W) 'charset-detector/src/nsGB2312Prober.cpp'; else $(CYGPATH_W) '$(srcdir)/charset-detector/src/nsGB2312Prober.cpp'; fi`
+
+madedit-nsHebrewProber.o: charset-detector/src/nsHebrewProber.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(madedit_CXXFLAGS) $(CXXFLAGS) -MT madedit-nsHebrewProber.o -MD -MP -MF "$(DEPDIR)/madedit-nsHebrewProber.Tpo" -c -o madedit-nsHebrewProber.o `test -f 'charset-detector/src/nsHebrewProber.cpp' || echo '$(srcdir)/'`charset-detector/src/nsHebrewProber.cpp; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/madedit-nsHebrewProber.Tpo" "$(DEPDIR)/madedit-nsHebrewProber.Po"; else rm -f "$(DEPDIR)/madedit-nsHebrewProber.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='charset-detector/src/nsHebrewProber.cpp' object='madedit-nsHebrewProber.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(madedit_CXXFLAGS) $(CXXFLAGS) -c -o madedit-nsHebrewProber.o `test -f 'charset-detector/src/nsHebrewProber.cpp' || echo '$(srcdir)/'`charset-detector/src/nsHebrewProber.cpp
+
+madedit-nsHebrewProber.obj: charset-detector/src/nsHebrewProber.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(madedit_CXXFLAGS) $(CXXFLAGS) -MT madedit-nsHebrewProber.obj -MD -MP -MF "$(DEPDIR)/madedit-nsHebrewProber.Tpo" -c -o madedit-nsHebrewProber.obj `if test -f 'charset-detector/src/nsHebrewProber.cpp'; then $(CYGPATH_W) 'charset-detector/src/nsHebrewProber.cpp'; else $(CYGPATH_W) '$(srcdir)/charset-detector/src/nsHebrewProber.cpp'; fi`; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/madedit-nsHebrewProber.Tpo" "$(DEPDIR)/madedit-nsHebrewProber.Po"; else rm -f "$(DEPDIR)/madedit-nsHebrewProber.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='charset-detector/src/nsHebrewProber.cpp' object='madedit-nsHebrewProber.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(madedit_CXXFLAGS) $(CXXFLAGS) -c -o madedit-nsHebrewProber.obj `if test -f 'charset-detector/src/nsHebrewProber.cpp'; then $(CYGPATH_W) 'charset-detector/src/nsHebrewProber.cpp'; else $(CYGPATH_W) '$(srcdir)/charset-detector/src/nsHebrewProber.cpp'; fi`
+
+madedit-nsLatin1Prober.o: charset-detector/src/nsLatin1Prober.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(madedit_CXXFLAGS) $(CXXFLAGS) -MT madedit-nsLatin1Prober.o -MD -MP -MF "$(DEPDIR)/madedit-nsLatin1Prober.Tpo" -c -o madedit-nsLatin1Prober.o `test -f 'charset-detector/src/nsLatin1Prober.cpp' || echo '$(srcdir)/'`charset-detector/src/nsLatin1Prober.cpp; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/madedit-nsLatin1Prober.Tpo" "$(DEPDIR)/madedit-nsLatin1Prober.Po"; else rm -f "$(DEPDIR)/madedit-nsLatin1Prober.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='charset-detector/src/nsLatin1Prober.cpp' object='madedit-nsLatin1Prober.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(madedit_CXXFLAGS) $(CXXFLAGS) -c -o madedit-nsLatin1Prober.o `test -f 'charset-detector/src/nsLatin1Prober.cpp' || echo '$(srcdir)/'`charset-detector/src/nsLatin1Prober.cpp
+
+madedit-nsLatin1Prober.obj: charset-detector/src/nsLatin1Prober.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(madedit_CXXFLAGS) $(CXXFLAGS) -MT madedit-nsLatin1Prober.obj -MD -MP -MF "$(DEPDIR)/madedit-nsLatin1Prober.Tpo" -c -o madedit-nsLatin1Prober.obj `if test -f 'charset-detector/src/nsLatin1Prober.cpp'; then $(CYGPATH_W) 'charset-detector/src/nsLatin1Prober.cpp'; else $(CYGPATH_W) '$(srcdir)/charset-detector/src/nsLatin1Prober.cpp'; fi`; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/madedit-nsLatin1Prober.Tpo" "$(DEPDIR)/madedit-nsLatin1Prober.Po"; else rm -f "$(DEPDIR)/madedit-nsLatin1Prober.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='charset-detector/src/nsLatin1Prober.cpp' object='madedit-nsLatin1Prober.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(madedit_CXXFLAGS) $(CXXFLAGS) -c -o madedit-nsLatin1Prober.obj `if test -f 'charset-detector/src/nsLatin1Prober.cpp'; then $(CYGPATH_W) 'charset-detector/src/nsLatin1Prober.cpp'; else $(CYGPATH_W) '$(srcdir)/charset-detector/src/nsLatin1Prober.cpp'; fi`
+
+madedit-nsMBCSGroupProber.o: charset-detector/src/nsMBCSGroupProber.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(madedit_CXXFLAGS) $(CXXFLAGS) -MT madedit-nsMBCSGroupProber.o -MD -MP -MF "$(DEPDIR)/madedit-nsMBCSGroupProber.Tpo" -c -o madedit-nsMBCSGroupProber.o `test -f 'charset-detector/src/nsMBCSGroupProber.cpp' || echo '$(srcdir)/'`charset-detector/src/nsMBCSGroupProber.cpp; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/madedit-nsMBCSGroupProber.Tpo" "$(DEPDIR)/madedit-nsMBCSGroupProber.Po"; else rm -f "$(DEPDIR)/madedit-nsMBCSGroupProber.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='charset-detector/src/nsMBCSGroupProber.cpp' object='madedit-nsMBCSGroupProber.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(madedit_CXXFLAGS) $(CXXFLAGS) -c -o madedit-nsMBCSGroupProber.o `test -f 'charset-detector/src/nsMBCSGroupProber.cpp' || echo '$(srcdir)/'`charset-detector/src/nsMBCSGroupProber.cpp
+
+madedit-nsMBCSGroupProber.obj: charset-detector/src/nsMBCSGroupProber.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(madedit_CXXFLAGS) $(CXXFLAGS) -MT madedit-nsMBCSGroupProber.obj -MD -MP -MF "$(DEPDIR)/madedit-nsMBCSGroupProber.Tpo" -c -o madedit-nsMBCSGroupProber.obj `if test -f 'charset-detector/src/nsMBCSGroupProber.cpp'; then $(CYGPATH_W) 'charset-detector/src/nsMBCSGroupProber.cpp'; else $(CYGPATH_W) '$(srcdir)/charset-detector/src/nsMBCSGroupProber.cpp'; fi`; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/madedit-nsMBCSGroupProber.Tpo" "$(DEPDIR)/madedit-nsMBCSGroupProber.Po"; else rm -f "$(DEPDIR)/madedit-nsMBCSGroupProber.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='charset-detector/src/nsMBCSGroupProber.cpp' object='madedit-nsMBCSGroupProber.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(madedit_CXXFLAGS) $(CXXFLAGS) -c -o madedit-nsMBCSGroupProber.obj `if test -f 'charset-detector/src/nsMBCSGroupProber.cpp'; then $(CYGPATH_W) 'charset-detector/src/nsMBCSGroupProber.cpp'; else $(CYGPATH_W) '$(srcdir)/charset-detector/src/nsMBCSGroupProber.cpp'; fi`
+
+madedit-nsMBCSSM.o: charset-detector/src/nsMBCSSM.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(madedit_CXXFLAGS) $(CXXFLAGS) -MT madedit-nsMBCSSM.o -MD -MP -MF "$(DEPDIR)/madedit-nsMBCSSM.Tpo" -c -o madedit-nsMBCSSM.o `test -f 'charset-detector/src/nsMBCSSM.cpp' || echo '$(srcdir)/'`charset-detector/src/nsMBCSSM.cpp; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/madedit-nsMBCSSM.Tpo" "$(DEPDIR)/madedit-nsMBCSSM.Po"; else rm -f "$(DEPDIR)/madedit-nsMBCSSM.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='charset-detector/src/nsMBCSSM.cpp' object='madedit-nsMBCSSM.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(madedit_CXXFLAGS) $(CXXFLAGS) -c -o madedit-nsMBCSSM.o `test -f 'charset-detector/src/nsMBCSSM.cpp' || echo '$(srcdir)/'`charset-detector/src/nsMBCSSM.cpp
+
+madedit-nsMBCSSM.obj: charset-detector/src/nsMBCSSM.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(madedit_CXXFLAGS) $(CXXFLAGS) -MT madedit-nsMBCSSM.obj -MD -MP -MF "$(DEPDIR)/madedit-nsMBCSSM.Tpo" -c -o madedit-nsMBCSSM.obj `if test -f 'charset-detector/src/nsMBCSSM.cpp'; then $(CYGPATH_W) 'charset-detector/src/nsMBCSSM.cpp'; else $(CYGPATH_W) '$(srcdir)/charset-detector/src/nsMBCSSM.cpp'; fi`; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/madedit-nsMBCSSM.Tpo" "$(DEPDIR)/madedit-nsMBCSSM.Po"; else rm -f "$(DEPDIR)/madedit-nsMBCSSM.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='charset-detector/src/nsMBCSSM.cpp' object='madedit-nsMBCSSM.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(madedit_CXXFLAGS) $(CXXFLAGS) -c -o madedit-nsMBCSSM.obj `if test -f 'charset-detector/src/nsMBCSSM.cpp'; then $(CYGPATH_W) 'charset-detector/src/nsMBCSSM.cpp'; else $(CYGPATH_W) '$(srcdir)/charset-detector/src/nsMBCSSM.cpp'; fi`
+
+madedit-nsSBCharSetProber.o: charset-detector/src/nsSBCharSetProber.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(madedit_CXXFLAGS) $(CXXFLAGS) -MT madedit-nsSBCharSetProber.o -MD -MP -MF "$(DEPDIR)/madedit-nsSBCharSetProber.Tpo" -c -o madedit-nsSBCharSetProber.o `test -f 'charset-detector/src/nsSBCharSetProber.cpp' || echo '$(srcdir)/'`charset-detector/src/nsSBCharSetProber.cpp; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/madedit-nsSBCharSetProber.Tpo" "$(DEPDIR)/madedit-nsSBCharSetProber.Po"; else rm -f "$(DEPDIR)/madedit-nsSBCharSetProber.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='charset-detector/src/nsSBCharSetProber.cpp' object='madedit-nsSBCharSetProber.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(madedit_CXXFLAGS) $(CXXFLAGS) -c -o madedit-nsSBCharSetProber.o `test -f 'charset-detector/src/nsSBCharSetProber.cpp' || echo '$(srcdir)/'`charset-detector/src/nsSBCharSetProber.cpp
+
+madedit-nsSBCharSetProber.obj: charset-detector/src/nsSBCharSetProber.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(madedit_CXXFLAGS) $(CXXFLAGS) -MT madedit-nsSBCharSetProber.obj -MD -MP -MF "$(DEPDIR)/madedit-nsSBCharSetProber.Tpo" -c -o madedit-nsSBCharSetProber.obj `if test -f 'charset-detector/src/nsSBCharSetProber.cpp'; then $(CYGPATH_W) 'charset-detector/src/nsSBCharSetProber.cpp'; else $(CYGPATH_W) '$(srcdir)/charset-detector/src/nsSBCharSetProber.cpp'; fi`; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/madedit-nsSBCharSetProber.Tpo" "$(DEPDIR)/madedit-nsSBCharSetProber.Po"; else rm -f "$(DEPDIR)/madedit-nsSBCharSetProber.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='charset-detector/src/nsSBCharSetProber.cpp' object='madedit-nsSBCharSetProber.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(madedit_CXXFLAGS) $(CXXFLAGS) -c -o madedit-nsSBCharSetProber.obj `if test -f 'charset-detector/src/nsSBCharSetProber.cpp'; then $(CYGPATH_W) 'charset-detector/src/nsSBCharSetProber.cpp'; else $(CYGPATH_W) '$(srcdir)/charset-detector/src/nsSBCharSetProber.cpp'; fi`
+
+madedit-nsSBCSGroupProber.o: charset-detector/src/nsSBCSGroupProber.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(madedit_CXXFLAGS) $(CXXFLAGS) -MT madedit-nsSBCSGroupProber.o -MD -MP -MF "$(DEPDIR)/madedit-nsSBCSGroupProber.Tpo" -c -o madedit-nsSBCSGroupProber.o `test -f 'charset-detector/src/nsSBCSGroupProber.cpp' || echo '$(srcdir)/'`charset-detector/src/nsSBCSGroupProber.cpp; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/madedit-nsSBCSGroupProber.Tpo" "$(DEPDIR)/madedit-nsSBCSGroupProber.Po"; else rm -f "$(DEPDIR)/madedit-nsSBCSGroupProber.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='charset-detector/src/nsSBCSGroupProber.cpp' object='madedit-nsSBCSGroupProber.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(madedit_CXXFLAGS) $(CXXFLAGS) -c -o madedit-nsSBCSGroupProber.o `test -f 'charset-detector/src/nsSBCSGroupProber.cpp' || echo '$(srcdir)/'`charset-detector/src/nsSBCSGroupProber.cpp
+
+madedit-nsSBCSGroupProber.obj: charset-detector/src/nsSBCSGroupProber.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(madedit_CXXFLAGS) $(CXXFLAGS) -MT madedit-nsSBCSGroupProber.obj -MD -MP -MF "$(DEPDIR)/madedit-nsSBCSGroupProber.Tpo" -c -o madedit-nsSBCSGroupProber.obj `if test -f 'charset-detector/src/nsSBCSGroupProber.cpp'; then $(CYGPATH_W) 'charset-detector/src/nsSBCSGroupProber.cpp'; else $(CYGPATH_W) '$(srcdir)/charset-detector/src/nsSBCSGroupProber.cpp'; fi`; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/madedit-nsSBCSGroupProber.Tpo" "$(DEPDIR)/madedit-nsSBCSGroupProber.Po"; else rm -f "$(DEPDIR)/madedit-nsSBCSGroupProber.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='charset-detector/src/nsSBCSGroupProber.cpp' object='madedit-nsSBCSGroupProber.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(madedit_CXXFLAGS) $(CXXFLAGS) -c -o madedit-nsSBCSGroupProber.obj `if test -f 'charset-detector/src/nsSBCSGroupProber.cpp'; then $(CYGPATH_W) 'charset-detector/src/nsSBCSGroupProber.cpp'; else $(CYGPATH_W) '$(srcdir)/charset-detector/src/nsSBCSGroupProber.cpp'; fi`
+
+madedit-nsSJISProber.o: charset-detector/src/nsSJISProber.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(madedit_CXXFLAGS) $(CXXFLAGS) -MT madedit-nsSJISProber.o -MD -MP -MF "$(DEPDIR)/madedit-nsSJISProber.Tpo" -c -o madedit-nsSJISProber.o `test -f 'charset-detector/src/nsSJISProber.cpp' || echo '$(srcdir)/'`charset-detector/src/nsSJISProber.cpp; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/madedit-nsSJISProber.Tpo" "$(DEPDIR)/madedit-nsSJISProber.Po"; else rm -f "$(DEPDIR)/madedit-nsSJISProber.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='charset-detector/src/nsSJISProber.cpp' object='madedit-nsSJISProber.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(madedit_CXXFLAGS) $(CXXFLAGS) -c -o madedit-nsSJISProber.o `test -f 'charset-detector/src/nsSJISProber.cpp' || echo '$(srcdir)/'`charset-detector/src/nsSJISProber.cpp
+
+madedit-nsSJISProber.obj: charset-detector/src/nsSJISProber.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(madedit_CXXFLAGS) $(CXXFLAGS) -MT madedit-nsSJISProber.obj -MD -MP -MF "$(DEPDIR)/madedit-nsSJISProber.Tpo" -c -o madedit-nsSJISProber.obj `if test -f 'charset-detector/src/nsSJISProber.cpp'; then $(CYGPATH_W) 'charset-detector/src/nsSJISProber.cpp'; else $(CYGPATH_W) '$(srcdir)/charset-detector/src/nsSJISProber.cpp'; fi`; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/madedit-nsSJISProber.Tpo" "$(DEPDIR)/madedit-nsSJISProber.Po"; else rm -f "$(DEPDIR)/madedit-nsSJISProber.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='charset-detector/src/nsSJISProber.cpp' object='madedit-nsSJISProber.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(madedit_CXXFLAGS) $(CXXFLAGS) -c -o madedit-nsSJISProber.obj `if test -f 'charset-detector/src/nsSJISProber.cpp'; then $(CYGPATH_W) 'charset-detector/src/nsSJISProber.cpp'; else $(CYGPATH_W) '$(srcdir)/charset-detector/src/nsSJISProber.cpp'; fi`
+
+madedit-nsUniversalDetector.o: charset-detector/src/nsUniversalDetector.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(madedit_CXXFLAGS) $(CXXFLAGS) -MT madedit-nsUniversalDetector.o -MD -MP -MF "$(DEPDIR)/madedit-nsUniversalDetector.Tpo" -c -o madedit-nsUniversalDetector.o `test -f 'charset-detector/src/nsUniversalDetector.cpp' || echo '$(srcdir)/'`charset-detector/src/nsUniversalDetector.cpp; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/madedit-nsUniversalDetector.Tpo" "$(DEPDIR)/madedit-nsUniversalDetector.Po"; else rm -f "$(DEPDIR)/madedit-nsUniversalDetector.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='charset-detector/src/nsUniversalDetector.cpp' object='madedit-nsUniversalDetector.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(madedit_CXXFLAGS) $(CXXFLAGS) -c -o madedit-nsUniversalDetector.o `test -f 'charset-detector/src/nsUniversalDetector.cpp' || echo '$(srcdir)/'`charset-detector/src/nsUniversalDetector.cpp
+
+madedit-nsUniversalDetector.obj: charset-detector/src/nsUniversalDetector.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(madedit_CXXFLAGS) $(CXXFLAGS) -MT madedit-nsUniversalDetector.obj -MD -MP -MF "$(DEPDIR)/madedit-nsUniversalDetector.Tpo" -c -o madedit-nsUniversalDetector.obj `if test -f 'charset-detector/src/nsUniversalDetector.cpp'; then $(CYGPATH_W) 'charset-detector/src/nsUniversalDetector.cpp'; else $(CYGPATH_W) '$(srcdir)/charset-detector/src/nsUniversalDetector.cpp'; fi`; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/madedit-nsUniversalDetector.Tpo" "$(DEPDIR)/madedit-nsUniversalDetector.Po"; else rm -f "$(DEPDIR)/madedit-nsUniversalDetector.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='charset-detector/src/nsUniversalDetector.cpp' object='madedit-nsUniversalDetector.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(madedit_CXXFLAGS) $(CXXFLAGS) -c -o madedit-nsUniversalDetector.obj `if test -f 'charset-detector/src/nsUniversalDetector.cpp'; then $(CYGPATH_W) 'charset-detector/src/nsUniversalDetector.cpp'; else $(CYGPATH_W) '$(srcdir)/charset-detector/src/nsUniversalDetector.cpp'; fi`
+
+madedit-nsUTF8Prober.o: charset-detector/src/nsUTF8Prober.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(madedit_CXXFLAGS) $(CXXFLAGS) -MT madedit-nsUTF8Prober.o -MD -MP -MF "$(DEPDIR)/madedit-nsUTF8Prober.Tpo" -c -o madedit-nsUTF8Prober.o `test -f 'charset-detector/src/nsUTF8Prober.cpp' || echo '$(srcdir)/'`charset-detector/src/nsUTF8Prober.cpp; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/madedit-nsUTF8Prober.Tpo" "$(DEPDIR)/madedit-nsUTF8Prober.Po"; else rm -f "$(DEPDIR)/madedit-nsUTF8Prober.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='charset-detector/src/nsUTF8Prober.cpp' object='madedit-nsUTF8Prober.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(madedit_CXXFLAGS) $(CXXFLAGS) -c -o madedit-nsUTF8Prober.o `test -f 'charset-detector/src/nsUTF8Prober.cpp' || echo '$(srcdir)/'`charset-detector/src/nsUTF8Prober.cpp
+
+madedit-nsUTF8Prober.obj: charset-detector/src/nsUTF8Prober.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(madedit_CXXFLAGS) $(CXXFLAGS) -MT madedit-nsUTF8Prober.obj -MD -MP -MF "$(DEPDIR)/madedit-nsUTF8Prober.Tpo" -c -o madedit-nsUTF8Prober.obj `if test -f 'charset-detector/src/nsUTF8Prober.cpp'; then $(CYGPATH_W) 'charset-detector/src/nsUTF8Prober.cpp'; else $(CYGPATH_W) '$(srcdir)/charset-detector/src/nsUTF8Prober.cpp'; fi`; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/madedit-nsUTF8Prober.Tpo" "$(DEPDIR)/madedit-nsUTF8Prober.Po"; else rm -f "$(DEPDIR)/madedit-nsUTF8Prober.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='charset-detector/src/nsUTF8Prober.cpp' object='madedit-nsUTF8Prober.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(madedit_CXXFLAGS) $(CXXFLAGS) -c -o madedit-nsUTF8Prober.obj `if test -f 'charset-detector/src/nsUTF8Prober.cpp'; then $(CYGPATH_W) 'charset-detector/src/nsUTF8Prober.cpp'; else $(CYGPATH_W) '$(srcdir)/charset-detector/src/nsUTF8Prober.cpp'; fi`
+
+madedit-impl.o: charset-detector/src/entry/impl.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(madedit_CXXFLAGS) $(CXXFLAGS) -MT madedit-impl.o -MD -MP -MF "$(DEPDIR)/madedit-impl.Tpo" -c -o madedit-impl.o `test -f 'charset-detector/src/entry/impl.cpp' || echo '$(srcdir)/'`charset-detector/src/entry/impl.cpp; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/madedit-impl.Tpo" "$(DEPDIR)/madedit-impl.Po"; else rm -f "$(DEPDIR)/madedit-impl.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='charset-detector/src/entry/impl.cpp' object='madedit-impl.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(madedit_CXXFLAGS) $(CXXFLAGS) -c -o madedit-impl.o `test -f 'charset-detector/src/entry/impl.cpp' || echo '$(srcdir)/'`charset-detector/src/entry/impl.cpp
+
+madedit-impl.obj: charset-detector/src/entry/impl.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(madedit_CXXFLAGS) $(CXXFLAGS) -MT madedit-impl.obj -MD -MP -MF "$(DEPDIR)/madedit-impl.Tpo" -c -o madedit-impl.obj `if test -f 'charset-detector/src/entry/impl.cpp'; then $(CYGPATH_W) 'charset-detector/src/entry/impl.cpp'; else $(CYGPATH_W) '$(srcdir)/charset-detector/src/entry/impl.cpp'; fi`; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/madedit-impl.Tpo" "$(DEPDIR)/madedit-impl.Po"; else rm -f "$(DEPDIR)/madedit-impl.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='charset-detector/src/entry/impl.cpp' object='madedit-impl.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(madedit_CXXFLAGS) $(CXXFLAGS) -c -o madedit-impl.obj `if test -f 'charset-detector/src/entry/impl.cpp'; then $(CYGPATH_W) 'charset-detector/src/entry/impl.cpp'; else $(CYGPATH_W) '$(srcdir)/charset-detector/src/entry/impl.cpp'; fi`
 uninstall-info-am:
 install-appDATA: $(app_DATA)
 	@$(NORMAL_INSTALL)
@@ -1399,7 +1869,7 @@ distclean-tags:
 distdir: $(DISTFILES)
 	$(am__remove_distdir)
 	mkdir $(distdir)
-	$(mkdir_p) $(distdir)/debian $(distdir)/devcpp $(distdir)/image2xpm $(distdir)/images $(distdir)/libunicows $(distdir)/makefiles $(distdir)/po $(distdir)/src $(distdir)/src/plugin_example $(distdir)/vc71 $(distdir)/wxAUI $(distdir)/wxFlatNotebook $(distdir)/xpressive $(distdir)/xpressive/boost/xpressive $(distdir)/xpressive/boost/xpressive/detail $(distdir)/xpressive/boost/xpressive/detail/core $(distdir)/xpressive/boost/xpressive/detail/core/matcher $(distdir)/xpressive/boost/xpressive/detail/dynamic $(distdir)/xpressive/boost/xpressive/detail/static $(distdir)/xpressive/boost/xpressive/detail/static/productions $(distdir)/xpressive/boost/xpressive/detail/utility $(distdir)/xpressive/boost/xpressive/detail/utility/chset $(distdir)/xpressive/boost/xpressive/proto $(distdir)/xpressive/boost/xpressive/proto/compiler $(distdir)/xpressive/boost/xpressive/traits $(distdir)/xpressive/boost/xpressive/traits/detail
+	$(mkdir_p) $(distdir)/charset-detector $(distdir)/charset-detector/src $(distdir)/charset-detector/src/entry $(distdir)/charset-detector/src/tables $(distdir)/charset-detector/test $(distdir)/debian $(distdir)/devcpp $(distdir)/image2xpm $(distdir)/images $(distdir)/libunicows $(distdir)/makefiles $(distdir)/po $(distdir)/src $(distdir)/src/plugin_example $(distdir)/vc71 $(distdir)/wxAUI $(distdir)/wxFlatNotebook $(distdir)/xpressive $(distdir)/xpressive/boost/xpressive $(distdir)/xpressive/boost/xpressive/detail $(distdir)/xpressive/boost/xpressive/detail/core $(distdir)/xpressive/boost/xpressive/detail/core/matcher $(distdir)/xpressive/boost/xpressive/detail/dynamic $(distdir)/xpressive/boost/xpressive/detail/static $(distdir)/xpressive/boost/xpressive/detail/static/productions $(distdir)/xpressive/boost/xpressive/detail/utility $(distdir)/xpressive/boost/xpressive/detail/utility/chset $(distdir)/xpressive/boost/xpressive/proto $(distdir)/xpressive/boost/xpressive/proto/compiler $(distdir)/xpressive/boost/xpressive/traits $(distdir)/xpressive/boost/xpressive/traits/detail
 	@srcdirstrip=`echo "$(srcdir)" | sed 's|.|.|g'`; \
 	topsrcdirstrip=`echo "$(top_srcdir)" | sed 's|.|.|g'`; \
 	list='$(DISTFILES)'; for file in $$list; do \

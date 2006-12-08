@@ -1,7 +1,7 @@
 SUBDIRS = syntax po
 
 bin_PROGRAMS = madedit
-INCLUDES = -I$(top_srcdir)/wxFlatNotebook/include -I$(top_srcdir)/wxAUI/include
+INCLUDES = -I$(top_srcdir)/wxFlatNotebook/include -I$(top_srcdir)/wxAUI/include -I$(top_srcdir)/charset-detector/include -I$(top_srcdir)/charset-detector/src -I$(top_srcdir)/charset-detector/src/tables
 madedit_CXXFLAGS = -DwxUSE_AUI=1 -DWXDLLIMPEXP_AUI= -DDATA_DIR=\"${datadir}\"
 madedit_SOURCES =	src/MadAboutDialog.cpp \
 	src/MadAboutDialog.h \
@@ -77,7 +77,55 @@ madedit_SOURCES =	src/MadAboutDialog.cpp \
 	wxAUI/src/dockart.cpp \
 	wxAUI/src/floatpane.cpp \
 	wxAUI/src/framemanager.cpp \
-	wxAUI/src/tabmdi.cpp
+	wxAUI/src/tabmdi.cpp \
+	charset-detector/src/CharDistribution.cpp \
+	charset-detector/src/CharDistribution.h \
+	charset-detector/src/JpCntx.cpp \
+	charset-detector/src/JpCntx.h \
+	charset-detector/src/LangBulgarianModel.cpp \
+	charset-detector/src/LangCyrillicModel.cpp \
+	charset-detector/src/LangGreekModel.cpp \
+	charset-detector/src/LangHebrewModel.cpp \
+	charset-detector/src/LangHungarianModel.cpp \
+	charset-detector/src/LangThaiModel.cpp \
+	charset-detector/src/nsBig5Prober.cpp \
+	charset-detector/src/nsBig5Prober.h \
+	charset-detector/src/nsCharSetProber.cpp \
+	charset-detector/src/nsCharSetProber.h \
+	charset-detector/src/nsCodingStateMachine.h \
+	charset-detector/src/nscore.h \
+	charset-detector/src/nsEscCharsetProber.cpp \
+	charset-detector/src/nsEscCharsetProber.h \
+	charset-detector/src/nsEscSM.cpp \
+	charset-detector/src/nsEUCJPProber.cpp \
+	charset-detector/src/nsEUCJPProber.h \
+	charset-detector/src/nsEUCKRProber.cpp \
+	charset-detector/src/nsEUCKRProber.h \
+	charset-detector/src/nsEUCTWProber.cpp \
+	charset-detector/src/nsEUCTWProber.h \
+	charset-detector/src/nsGB2312Prober.cpp \
+	charset-detector/src/nsGB2312Prober.h \
+	charset-detector/src/nsHebrewProber.cpp \
+	charset-detector/src/nsHebrewProber.h \
+	charset-detector/src/nsLatin1Prober.cpp \
+	charset-detector/src/nsLatin1Prober.h \
+	charset-detector/src/nsMBCSGroupProber.cpp \
+	charset-detector/src/nsMBCSGroupProber.h \
+	charset-detector/src/nsMBCSSM.cpp \
+	charset-detector/src/nsPkgInt.h \
+	charset-detector/src/nsSBCharSetProber.cpp \
+	charset-detector/src/nsSBCharSetProber.h \
+	charset-detector/src/nsSBCSGroupProber.cpp \
+	charset-detector/src/nsSBCSGroupProber.h \
+	charset-detector/src/nsSJISProber.cpp \
+	charset-detector/src/nsSJISProber.h \
+	charset-detector/src/nsUniversalDetector.cpp \
+	charset-detector/src/nsUniversalDetector.h \
+	charset-detector/src/nsUTF8Prober.cpp \
+	charset-detector/src/nsUTF8Prober.h \
+	charset-detector/src/prmem.h \
+	charset-detector/src/entry/impl.cpp \
+	charset-detector/include/chardetect.h
 
 pixmapsdir = $(datadir)/pixmaps
 pixmaps_DATA = madedit.xpm
@@ -323,7 +371,19 @@ noinst_HEADERS =	description-pak \
 	xpressive/boost/xpressive/xpressive_static.hpp \
 	xpressive/boost/xpressive/xpressive_typeof.hpp \
 	xpressive/LICENSE_1_0.txt \
-	xpressive/README.TXT
+	xpressive/README.TXT \
+	charset-detector/Makefile \
+	charset-detector/MPL-1.1.txt \
+	charset-detector/README \
+	charset-detector/test/Makefile \
+	charset-detector/test/test-chardetect.c \
+	charset-detector/src/Makefile \
+	charset-detector/src/tables/Big5Freq.tab \
+	charset-detector/src/tables/EUCKRFreq.tab \
+	charset-detector/src/tables/EUCTWFreq.tab \
+	charset-detector/src/tables/GB2312Freq.tab \
+	charset-detector/src/tables/JISFreq.tab \
+	charset-detector/src/entry/export-symbol.list
 
 
 DOMAIN = madedit
