@@ -19,7 +19,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="..\wxAUI\include;..\wxFlatNotebook\include;$(WXWIN)\lib\vc_lib\mswud;$(WXWIN)\include;\boost"
+				AdditionalIncludeDirectories="..\wxAUI\include;..\wxFlatNotebook\include;$(WXWIN)\lib\vc_lib\mswud;$(WXWIN)\include;\boost;..\charset-detector\include;..\charset-detector\src;..\charset-detector\src\tables"
 				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;wxUSE_AUI=1;WXDLLIMPEXP_AUI="
 				MinimalRebuild="TRUE"
 				BasicRuntimeChecks="3"
@@ -73,7 +73,7 @@
 				Name="VCCLCompilerTool"
 				GlobalOptimizations="TRUE"
 				FavorSizeOrSpeed="1"
-				AdditionalIncludeDirectories="..\wxAUI\include;..\wxFlatNotebook\include;$(WXWIN)\lib\vc_lib\mswu;$(WXWIN)\include;\boost"
+				AdditionalIncludeDirectories="..\wxAUI\include;..\wxFlatNotebook\include;$(WXWIN)\lib\vc_lib\mswu;$(WXWIN)\include;\boost;..\charset-detector\include;..\charset-detector\src;..\charset-detector\src\tables"
 				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;wxUSE_AUI=1;WXDLLIMPEXP_AUI="
 				RuntimeLibrary="0"
 				TreatWChar_tAsBuiltInType="TRUE"
@@ -232,6 +232,88 @@
 					RelativePath="..\wxFlatNotebook\src\wxFlatNotebook\wxFlatNotebook.cpp">
 				</File>
 			</Filter>
+			<Filter
+				Name="charset-detector"
+				Filter="">
+				<File
+					RelativePath="..\charset-detector\src\CharDistribution.cpp">
+				</File>
+				<File
+					RelativePath="..\charset-detector\src\entry\impl.cpp">
+				</File>
+				<File
+					RelativePath="..\charset-detector\src\JpCntx.cpp">
+				</File>
+				<File
+					RelativePath="..\charset-detector\src\LangBulgarianModel.cpp">
+				</File>
+				<File
+					RelativePath="..\charset-detector\src\LangCyrillicModel.cpp">
+				</File>
+				<File
+					RelativePath="..\charset-detector\src\LangGreekModel.cpp">
+				</File>
+				<File
+					RelativePath="..\charset-detector\src\LangHebrewModel.cpp">
+				</File>
+				<File
+					RelativePath="..\charset-detector\src\LangHungarianModel.cpp">
+				</File>
+				<File
+					RelativePath="..\charset-detector\src\LangThaiModel.cpp">
+				</File>
+				<File
+					RelativePath="..\charset-detector\src\nsBig5Prober.cpp">
+				</File>
+				<File
+					RelativePath="..\charset-detector\src\nsCharSetProber.cpp">
+				</File>
+				<File
+					RelativePath="..\charset-detector\src\nsEscCharsetProber.cpp">
+				</File>
+				<File
+					RelativePath="..\charset-detector\src\nsEscSM.cpp">
+				</File>
+				<File
+					RelativePath="..\charset-detector\src\nsEUCJPProber.cpp">
+				</File>
+				<File
+					RelativePath="..\charset-detector\src\nsEUCKRProber.cpp">
+				</File>
+				<File
+					RelativePath="..\charset-detector\src\nsEUCTWProber.cpp">
+				</File>
+				<File
+					RelativePath="..\charset-detector\src\nsGB2312Prober.cpp">
+				</File>
+				<File
+					RelativePath="..\charset-detector\src\nsHebrewProber.cpp">
+				</File>
+				<File
+					RelativePath="..\charset-detector\src\nsLatin1Prober.cpp">
+				</File>
+				<File
+					RelativePath="..\charset-detector\src\nsMBCSGroupProber.cpp">
+				</File>
+				<File
+					RelativePath="..\charset-detector\src\nsMBCSSM.cpp">
+				</File>
+				<File
+					RelativePath="..\charset-detector\src\nsSBCharSetProber.cpp">
+				</File>
+				<File
+					RelativePath="..\charset-detector\src\nsSBCSGroupProber.cpp">
+				</File>
+				<File
+					RelativePath="..\charset-detector\src\nsSJISProber.cpp">
+				</File>
+				<File
+					RelativePath="..\charset-detector\src\nsUniversalDetector.cpp">
+				</File>
+				<File
+					RelativePath="..\charset-detector\src\nsUTF8Prober.cpp">
+				</File>
+			</Filter>
 		</Filter>
 		<Filter
 			Name="Header Files"
@@ -327,6 +409,13 @@
 				</File>
 				<File
 					RelativePath="..\wxAUI\include\wx\aui\tabmdi.h">
+				</File>
+			</Filter>
+			<Filter
+				Name="charset-detector"
+				Filter="">
+				<File
+					RelativePath="..\charset-detector\include\chardetect.h">
 				</File>
 			</Filter>
 		</Filter>
