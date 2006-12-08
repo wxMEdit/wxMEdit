@@ -6,6 +6,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 #include "MadEncoding.h"
+#include "chardetect.h"
 #include <wx/config.h>
 #include <vector>
 using std::vector;
@@ -1170,4 +1171,78 @@ void DetectJapaneseEncoding(const wxByte *text, int count, wxFontEncoding &enc)
 
     if (xenc != 0)
         enc = xenc;
+}
+
+void DetectEncoding(const wxByte *text, int count, wxFontEncoding &enc)
+{
+    chardet_t det = NULL;
+    char encoding_name[CHARDET_MAX_ENCODING_NAME];
+
+    chardet_create(&det);
+    chardet_handle_data(det, (const char*)text, count);
+    chardet_data_end(det);
+    chardet_get_charset(det, encoding_name, CHARDET_MAX_ENCODING_NAME);
+    chardet_destroy(det);
+
+    wxString name(encoding_name, wxConvLocal), rest;
+    name.MakeUpper();
+    long value;
+
+    if(name.StartsWith(wxT("ISO-8859-"), &rest))
+    {
+        if(rest.ToLong(&value))
+        {
+            enc = wxFontEncoding( long(wxFONTENCODING_ISO8859_1) - 1 + value );
+        }
+    }
+    else if(name.StartsWith(wxT("WINDOWS-125"), &rest))
+    {
+        if(rest.ToLong(&value))
+        {
+            if(value==2)//1252 or ?
+            {
+                wxFontEncoding def=wxFONTENCODING_DEFAULT;
+                if(enc==wxFONTENCODING_CP950 || wxFONTENCODING_CP936)
+                {
+                    DetectChineseEncoding(text, count, def);
+                    if(def != wxFONTENCODING_DEFAULT)
+                    {
+                        value=-1;
+                        enc = def;
+                    }
+                }
+            }
+
+            if(value>=0)
+            {
+                enc = wxFontEncoding( long(wxFONTENCODING_CP1250) + value );
+            }
+        }
+    }
+    else if(name.IsSameAs(wxT("BIG5")))
+    {
+        enc = wxFONTENCODING_CP950;
+    }
+    else if(name.IsSameAs(wxT("GB2312"))
+         || name.IsSameAs(wxT("GB18030"))
+         || name.IsSameAs(wxT("HZ-GB-2312")))
+    {
+        enc = wxFONTENCODING_CP936;
+    }
+    else if(name.IsSameAs(wxT("SHIFT_JIS")))
+    {
+        enc = wxFONTENCODING_CP932;
+    }
+    else if(name.IsSameAs(wxT("EUC-JP")))
+    {
+        enc = wxFONTENCODING_EUC_JP;
+    }
+    else if(name.IsSameAs(wxT("EUC-KR")))
+    {
+        enc = wxFONTENCODING_CP949;
+    }
+    else if(name.IsSameAs(wxT("KOI8-R")))
+    {
+        enc = wxFONTENCODING_KOI8;
+    }
 }

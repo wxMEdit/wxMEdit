@@ -1,0 +1,6 @@
+chardet_create
+chardet_destroy
+chardet_handle_data
+chardet_data_end
+chardet_reset
+chardet_get_charset

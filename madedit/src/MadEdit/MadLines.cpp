@@ -2851,9 +2851,10 @@ bool MadLines::LoadFromFile(const wxString &filename, const wxString &encoding)
     if(m_MadEdit->m_EditMode == emHexMode)
         m_MadEdit->SetEditMode(emTextMode);
 
+    const int max_detecting_size = 8192;
     int s;
-    if(m_FileData->m_Size > 4096)
-        s = 4096;
+    if(m_FileData->m_Size > max_detecting_size)
+        s = max_detecting_size;
     else
         s = m_FileData->m_Size;
 
@@ -3046,6 +3047,7 @@ bool MadLines::LoadFromFile(const wxString &filename, const wxString &encoding)
                 enc=MadEncoding::NameToEncoding(defaultenc);
             }
 
+            /* old method to detect encoding
             bool detectchinese=false;
             bool detectjapanese=false;
 
@@ -3072,6 +3074,10 @@ bool MadLines::LoadFromFile(const wxString &filename, const wxString &encoding)
             {
                 DetectJapaneseEncoding(buf, s, enc);
             }
+            */
+
+            // use charset-detector
+            DetectEncoding(buf, s, enc);
 
             m_MadEdit->SetEncoding(MadEncoding::EncodingToName(enc));
         }

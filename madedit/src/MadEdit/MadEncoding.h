@@ -112,5 +112,6 @@ bool IsTextUTF8(wxByte *text, int size);
 bool IsBinaryData(wxByte *data, int size);
 void DetectChineseEncoding(const wxByte *text, int count, wxFontEncoding &enc);
 void DetectJapaneseEncoding(const wxByte *text, int count, wxFontEncoding &enc);
+void DetectEncoding(const wxByte *text, int count, wxFontEncoding &enc);
 
 #endif

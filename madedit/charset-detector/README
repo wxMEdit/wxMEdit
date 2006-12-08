@@ -1,0 +1,24 @@
+Universal Character Set Detector C Library
+
+
+1. What is it?
+
+A port to C of "universalchardet", that is the encoding detector
+library of Mozilla.
+
+The original code of universalchardet is available at
+http://lxr.mozilla.org/seamonkey/source/extensions/universalchardet/
+
+
+2. API
+
+See universalchardet.h.
+
+
+3. License
+
+The library is subject to the Mozilla Public License Version 1.1.
+Alternatively, the library may be used under the terms of either
+the GNU General Public License Version 2 or later, or the GNU
+Lesser General Public License 2.1 or later.
+
