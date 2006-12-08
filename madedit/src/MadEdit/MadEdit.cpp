@@ -9613,7 +9613,15 @@ void MadEdit::OnMouseEnterWindow(wxMouseEvent &evt)
 
 void MadEdit::OnMouseLeaveWindow(wxMouseEvent &evt)
 {
-    wxSetCursor(wxNullCursor); // reset to default
+    wxSize sz = GetClientSize();
+    if(evt.m_x>=sz.x || evt.m_y>=sz.y)
+    {
+        wxSetCursor(wxNullCursor); // reset to default
+    }
+    else
+    {
+        wxSetCursor(ArrowCursor); // scrollbar
+    }
     evt.Skip();
 }
 
