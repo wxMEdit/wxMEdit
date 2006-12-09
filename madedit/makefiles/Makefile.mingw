@@ -35,8 +35,37 @@ OBJ  = ./Release/MadEditFrame.obj \
        ./Release/tabmdi.obj \
        ./Release/auibook.obj \
        ./Release/dockart.obj \
-       ./Release/floatpane.ob \
+       ./Release/floatpane.obj \
        ./Release/framemanager.obj \
+       ./Release/renderer.obj \
+       ./Release/fnb_resources.obj \
+       ./Release/popup_dlg.obj \
+       ./Release/impl.obj \
+       ./Release/CharDistribution.obj \
+       ./Release/JpCntx.obj \
+       ./Release/LangBulgarianModel.obj \
+       ./Release/LangCyrillicModel.obj \
+       ./Release/LangGreekModel.obj \
+       ./Release/LangHebrewModel.obj \
+       ./Release/LangHungarianModel.obj \
+       ./Release/LangThaiModel.obj \
+       ./Release/nsBig5Prober.obj \
+       ./Release/nsCharSetProber.obj \
+       ./Release/nsEscCharsetProber.obj \
+       ./Release/nsEscSM.obj \
+       ./Release/nsEUCJPProber.obj \
+       ./Release/nsEUCKRProber.obj \
+       ./Release/nsEUCTWProber.obj \
+       ./Release/nsGB2312Prober.obj \
+       ./Release/nsHebrewProber.obj \
+       ./Release/nsLatin1Prober.obj \
+       ./Release/nsMBCSGroupProber.obj \
+       ./Release/nsMBCSSM.obj \
+       ./Release/nsSBCharSetProber.obj \
+       ./Release/nsSBCSGroupProber.obj \
+       ./Release/nsSJISProber.obj \
+       ./Release/nsUniversalDetector.obj \
+       ./Release/nsUTF8Prober.obj \
        $(RES)
 
 LINKOBJ = $(OBJ)
@@ -46,8 +75,8 @@ BOOST_DIR = N:/boost
 #XPRESSIVE_DIR = N:/boost
 XPRESSIVE_DIR = ../xpressive
 
-LIBS =  -L$(WXWIN)/lib/gcc_lib -L"../libunicows" -mwindows -lwxmsw27u_core -lwxbase27u -lunicows -lkernel32 -luser32 -lgdi32 -lcomdlg32 -lwinspool -lwinmm -lshell32 -lcomctl32 -lole32 -loleaut32 -luuid -lrpcrt4 -ladvapi32 -lwsock32 -lodbc32 -lopengl32  -s 
-INCS =  -I$(WXWIN)/include  -I$(WXWIN)/lib/gcc_lib/mswu  -I$(BOOST_DIR)  -I$(XPRESSIVE_DIR)  -I"../wxFlatNotebook/include" -I"../wxAUI/include" 
+LIBS =  -L$(WXWIN)/lib/gcc_lib -L"../libunicows" -mwindows -lwxmsw28u_core -lwxbase28u -lunicows -lkernel32 -luser32 -lgdi32 -lcomdlg32 -lwinspool -lwinmm -lshell32 -lcomctl32 -lole32 -loleaut32 -luuid -lrpcrt4 -ladvapi32 -lwsock32 -lodbc32 -lopengl32  -s 
+INCS =  -I$(WXWIN)/include  -I$(WXWIN)/lib/gcc_lib/mswu  -I$(BOOST_DIR)  -I$(XPRESSIVE_DIR)  -I"../wxFlatNotebook/include" -I"../wxAUI/include" -I"../charset-detector/include" -I"../charset-detector/src" -I"../charset-detector/src/tables"
 CXXINCS =  -I$(WXWIN)/include  -I$(WXWIN)/lib/gcc_lib/mswu  -I$(BOOST_DIR)  -I$(XPRESSIVE_DIR)  -I"../wxFlatNotebook/include" -I"../wxAUI/include" 
 
 BIN  = Release/MadEdit.exe
@@ -164,6 +193,93 @@ $(BIN): $(OBJ)
 
 ./Release/framemanager.obj: ../wxAUI/src/framemanager.cpp
 	$(CPP) -c ../wxAUI/src/framemanager.cpp -o ./Release/framemanager.obj $(CXXFLAGS)
+
+./Release/renderer.obj: ../wxFlatNotebook/src/wxFlatNotebook/renderer.cpp
+	$(CPP) -c ../wxFlatNotebook/src/wxFlatNotebook/renderer.cpp -o ./Release/renderer.obj $(CXXFLAGS)
+
+./Release/fnb_resources.obj: ../wxFlatNotebook/src/wxFlatNotebook/fnb_resources.cpp
+	$(CPP) -c ../wxFlatNotebook/src/wxFlatNotebook/fnb_resources.cpp -o ./Release/fnb_resources.obj $(CXXFLAGS)
+
+./Release/popup_dlg.obj: ../wxFlatNotebook/src/wxFlatNotebook/popup_dlg.cpp
+	$(CPP) -c ../wxFlatNotebook/src/wxFlatNotebook/popup_dlg.cpp -o ./Release/popup_dlg.obj $(CXXFLAGS)
+
+./Release/impl.obj: ../charset-detector/src/entry/impl.cpp
+	$(CPP) -c ../charset-detector/src/entry/impl.cpp -o ./Release/impl.obj $(CXXFLAGS)
+
+./Release/CharDistribution.obj: ../charset-detector/src/CharDistribution.cpp ../charset-detector/src/CharDistribution.h ../charset-detector/src/nscore.h
+	$(CPP) -c ../charset-detector/src/CharDistribution.cpp -o ./Release/CharDistribution.obj $(CXXFLAGS)
+
+./Release/JpCntx.obj: ../charset-detector/src/JpCntx.cpp ../charset-detector/src/nscore.h ../charset-detector/src/JpCntx.h ../charset-detector/src/nscore.h
+	$(CPP) -c ../charset-detector/src/JpCntx.cpp -o ./Release/JpCntx.obj $(CXXFLAGS)
+
+./Release/LangBulgarianModel.obj: ../charset-detector/src/LangBulgarianModel.cpp ../charset-detector/src/nsSBCharSetProber.h ../charset-detector/src/nsCharSetProber.h ../charset-detector/src/nscore.h
+	$(CPP) -c ../charset-detector/src/LangBulgarianModel.cpp -o ./Release/LangBulgarianModel.obj $(CXXFLAGS)
+
+./Release/LangCyrillicModel.obj: ../charset-detector/src/LangCyrillicModel.cpp ../charset-detector/src/nsSBCharSetProber.h ../charset-detector/src/nsCharSetProber.h ../charset-detector/src/nscore.h
+	$(CPP) -c ../charset-detector/src/LangCyrillicModel.cpp -o ./Release/LangCyrillicModel.obj $(CXXFLAGS)
+
+./Release/LangGreekModel.obj: ../charset-detector/src/LangGreekModel.cpp ../charset-detector/src/nsSBCharSetProber.h ../charset-detector/src/nsCharSetProber.h ../charset-detector/src/nscore.h
+	$(CPP) -c ../charset-detector/src/LangGreekModel.cpp -o ./Release/LangGreekModel.obj $(CXXFLAGS)
+
+./Release/LangHebrewModel.obj: ../charset-detector/src/LangHebrewModel.cpp ../charset-detector/src/nsSBCharSetProber.h ../charset-detector/src/nsCharSetProber.h ../charset-detector/src/nscore.h
+	$(CPP) -c ../charset-detector/src/LangHebrewModel.cpp -o ./Release/LangHebrewModel.obj $(CXXFLAGS)
+
+./Release/LangHungarianModel.obj: ../charset-detector/src/LangHungarianModel.cpp ../charset-detector/src/nsSBCharSetProber.h ../charset-detector/src/nsCharSetProber.h ../charset-detector/src/nscore.h
+	$(CPP) -c ../charset-detector/src/LangHungarianModel.cpp -o ./Release/LangHungarianModel.obj $(CXXFLAGS)
+
+./Release/LangThaiModel.obj: ../charset-detector/src/LangThaiModel.cpp ../charset-detector/src/nsSBCharSetProber.h ../charset-detector/src/nsCharSetProber.h ../charset-detector/src/nscore.h
+	$(CPP) -c ../charset-detector/src/LangThaiModel.cpp -o ./Release/LangThaiModel.obj $(CXXFLAGS)
+
+./Release/nsBig5Prober.obj: ../charset-detector/src/nsBig5Prober.cpp ../charset-detector/src/nsBig5Prober.h ../charset-detector/src/nsCharSetProber.h ../charset-detector/src/nscore.h ../charset-detector/src/nsCodingStateMachine.h ../charset-detector/src/nsPkgInt.h ../charset-detector/src/nscore.h ../charset-detector/src/CharDistribution.h ../charset-detector/src/nscore.h
+	$(CPP) -c ../charset-detector/src/nsBig5Prober.cpp -o ./Release/nsBig5Prober.obj $(CXXFLAGS)
+
+./Release/nsCharSetProber.obj: ../charset-detector/src/nsCharSetProber.cpp ../charset-detector/src/nsCharSetProber.h ../charset-detector/src/nscore.h ../charset-detector/src/prmem.h
+	$(CPP) -c ../charset-detector/src/nsCharSetProber.cpp -o ./Release/nsCharSetProber.obj $(CXXFLAGS)
+
+./Release/nsEscCharsetProber.obj: ../charset-detector/src/nsEscCharsetProber.cpp ../charset-detector/src/nsEscCharsetProber.h ../charset-detector/src/nsCharSetProber.h ../charset-detector/src/nscore.h ../charset-detector/src/nsCodingStateMachine.h ../charset-detector/src/nsPkgInt.h ../charset-detector/src/nscore.h
+	$(CPP) -c ../charset-detector/src/nsEscCharsetProber.cpp -o ./Release/nsEscCharsetProber.obj $(CXXFLAGS)
+
+./Release/nsEscSM.obj: ../charset-detector/src/nsEscSM.cpp ../charset-detector/src/nsCodingStateMachine.h ../charset-detector/src/nsPkgInt.h ../charset-detector/src/nscore.h
+	$(CPP) -c ../charset-detector/src/nsEscSM.cpp -o ./Release/nsEscSM.obj $(CXXFLAGS)
+
+./Release/nsEUCJPProber.obj: ../charset-detector/src/nsEUCJPProber.cpp ../charset-detector/src/nsEUCJPProber.h ../charset-detector/src/nsCharSetProber.h ../charset-detector/src/nscore.h ../charset-detector/src/nsCodingStateMachine.h ../charset-detector/src/nsPkgInt.h ../charset-detector/src/nscore.h ../charset-detector/src/JpCntx.h ../charset-detector/src/nscore.h ../charset-detector/src/CharDistribution.h ../charset-detector/src/nscore.h
+	$(CPP) -c ../charset-detector/src/nsEUCJPProber.cpp -o ./Release/nsEUCJPProber.obj $(CXXFLAGS)
+
+./Release/nsEUCKRProber.obj: ../charset-detector/src/nsEUCKRProber.cpp ../charset-detector/src/nsEUCKRProber.h ../charset-detector/src/nsCharSetProber.h ../charset-detector/src/nscore.h ../charset-detector/src/nsCodingStateMachine.h ../charset-detector/src/nsPkgInt.h ../charset-detector/src/nscore.h ../charset-detector/src/CharDistribution.h ../charset-detector/src/nscore.h
+	$(CPP) -c ../charset-detector/src/nsEUCKRProber.cpp -o ./Release/nsEUCKRProber.obj $(CXXFLAGS)
+
+./Release/nsEUCTWProber.obj: ../charset-detector/src/nsEUCTWProber.cpp ../charset-detector/src/nsEUCTWProber.h ../charset-detector/src/nsCharSetProber.h ../charset-detector/src/nscore.h ../charset-detector/src/nsCodingStateMachine.h ../charset-detector/src/nsPkgInt.h ../charset-detector/src/nscore.h ../charset-detector/src/CharDistribution.h ../charset-detector/src/nscore.h
+	$(CPP) -c ../charset-detector/src/nsEUCTWProber.cpp -o ./Release/nsEUCTWProber.obj $(CXXFLAGS)
+
+./Release/nsGB2312Prober.obj: ../charset-detector/src/nsGB2312Prober.cpp ../charset-detector/src/nsGB2312Prober.h ../charset-detector/src/nsCharSetProber.h ../charset-detector/src/nscore.h ../charset-detector/src/nsCodingStateMachine.h ../charset-detector/src/nsPkgInt.h ../charset-detector/src/nscore.h ../charset-detector/src/CharDistribution.h ../charset-detector/src/nscore.h
+	$(CPP) -c ../charset-detector/src/nsGB2312Prober.cpp -o ./Release/nsGB2312Prober.obj $(CXXFLAGS)
+
+./Release/nsHebrewProber.obj: ../charset-detector/src/nsHebrewProber.cpp ../charset-detector/src/nsHebrewProber.h ../charset-detector/src/nsSBCharSetProber.h ../charset-detector/src/nsCharSetProber.h ../charset-detector/src/nscore.h
+	$(CPP) -c ../charset-detector/src/nsHebrewProber.cpp -o ./Release/nsHebrewProber.obj $(CXXFLAGS)
+
+./Release/nsLatin1Prober.obj: ../charset-detector/src/nsLatin1Prober.cpp ../charset-detector/src/nsLatin1Prober.h ../charset-detector/src/nsCharSetProber.h ../charset-detector/src/nscore.h ../charset-detector/src/prmem.h
+	$(CPP) -c ../charset-detector/src/nsLatin1Prober.cpp -o ./Release/nsLatin1Prober.obj $(CXXFLAGS)
+
+./Release/nsMBCSGroupProber.obj: ../charset-detector/src/nsMBCSGroupProber.cpp ../charset-detector/src/prmem.h ../charset-detector/src/nsMBCSGroupProber.h ../charset-detector/src/nsSJISProber.h ../charset-detector/src/nsCharSetProber.h ../charset-detector/src/nscore.h ../charset-detector/src/nsCodingStateMachine.h ../charset-detector/src/nsPkgInt.h ../charset-detector/src/nscore.h ../charset-detector/src/JpCntx.h ../charset-detector/src/nscore.h ../charset-detector/src/CharDistribution.h ../charset-detector/src/nscore.h ../charset-detector/src/nsUTF8Prober.h ../charset-detector/src/nsCharSetProber.h ../charset-detector/src/nsCodingStateMachine.h ../charset-detector/src/nsEUCJPProber.h ../charset-detector/src/nsCharSetProber.h ../charset-detector/src/nsCodingStateMachine.h ../charset-detector/src/JpCntx.h ../charset-detector/src/CharDistribution.h ../charset-detector/src/nsGB2312Prober.h ../charset-detector/src/nsCharSetProber.h ../charset-detector/src/nsCodingStateMachine.h ../charset-detector/src/CharDistribution.h ../charset-detector/src/nsEUCKRProber.h ../charset-detector/src/nsCharSetProber.h ../charset-detector/src/nsCodingStateMachine.h ../charset-detector/src/CharDistribution.h ../charset-detector/src/nsBig5Prober.h ../charset-detector/src/nsCharSetProber.h ../charset-detector/src/nsCodingStateMachine.h ../charset-detector/src/CharDistribution.h ../charset-detector/src/nsEUCTWProber.h ../charset-detector/src/nsCharSetProber.h ../charset-detector/src/nsCodingStateMachine.h ../charset-detector/src/CharDistribution.h
+	$(CPP) -c ../charset-detector/src/nsMBCSGroupProber.cpp -o ./Release/nsMBCSGroupProber.obj $(CXXFLAGS)
+
+./Release/nsMBCSSM.obj: ../charset-detector/src/nsMBCSSM.cpp ../charset-detector/src/nsCodingStateMachine.h ../charset-detector/src/nsPkgInt.h ../charset-detector/src/nscore.h
+	$(CPP) -c ../charset-detector/src/nsMBCSSM.cpp -o ./Release/nsMBCSSM.obj $(CXXFLAGS)
+
+./Release/nsSBCharSetProber.obj: ../charset-detector/src/nsSBCharSetProber.cpp ../charset-detector/src/nsSBCharSetProber.h ../charset-detector/src/nsCharSetProber.h ../charset-detector/src/nscore.h
+	$(CPP) -c ../charset-detector/src/nsSBCharSetProber.cpp -o ./Release/nsSBCharSetProber.obj $(CXXFLAGS)
+
+./Release/nsSBCSGroupProber.obj: ../charset-detector/src/nsSBCSGroupProber.cpp ../charset-detector/src/prmem.h ../charset-detector/src/nsSBCharSetProber.h ../charset-detector/src/nsCharSetProber.h ../charset-detector/src/nscore.h ../charset-detector/src/nsSBCSGroupProber.h ../charset-detector/src/nsHebrewProber.h ../charset-detector/src/nsSBCharSetProber.h
+	$(CPP) -c ../charset-detector/src/nsSBCSGroupProber.cpp -o ./Release/nsSBCSGroupProber.obj $(CXXFLAGS)
+
+./Release/nsSJISProber.obj: ../charset-detector/src/nsSJISProber.cpp ../charset-detector/src/nsSJISProber.h ../charset-detector/src/nsCharSetProber.h ../charset-detector/src/nscore.h ../charset-detector/src/nsCodingStateMachine.h ../charset-detector/src/nsPkgInt.h ../charset-detector/src/nscore.h ../charset-detector/src/JpCntx.h ../charset-detector/src/nscore.h ../charset-detector/src/CharDistribution.h ../charset-detector/src/nscore.h
+	$(CPP) -c ../charset-detector/src/nsSJISProber.cpp -o ./Release/nsSJISProber.obj $(CXXFLAGS)
+
+./Release/nsUniversalDetector.obj: ../charset-detector/src/nsUniversalDetector.cpp ../charset-detector/src/nscore.h ../charset-detector/src/nsUniversalDetector.h ../charset-detector/src/nsMBCSGroupProber.h ../charset-detector/src/nsSJISProber.h ../charset-detector/src/nsCharSetProber.h ../charset-detector/src/nscore.h ../charset-detector/src/nsCodingStateMachine.h ../charset-detector/src/nsPkgInt.h ../charset-detector/src/nscore.h ../charset-detector/src/JpCntx.h ../charset-detector/src/nscore.h ../charset-detector/src/CharDistribution.h ../charset-detector/src/nscore.h ../charset-detector/src/nsUTF8Prober.h ../charset-detector/src/nsCharSetProber.h ../charset-detector/src/nsCodingStateMachine.h ../charset-detector/src/nsEUCJPProber.h ../charset-detector/src/nsCharSetProber.h ../charset-detector/src/nsCodingStateMachine.h ../charset-detector/src/JpCntx.h ../charset-detector/src/CharDistribution.h ../charset-detector/src/nsGB2312Prober.h ../charset-detector/src/nsCharSetProber.h ../charset-detector/src/nsCodingStateMachine.h ../charset-detector/src/CharDistribution.h ../charset-detector/src/nsEUCKRProber.h ../charset-detector/src/nsCharSetProber.h ../charset-detector/src/nsCodingStateMachine.h ../charset-detector/src/CharDistribution.h ../charset-detector/src/nsBig5Prober.h ../charset-detector/src/nsCharSetProber.h ../charset-detector/src/nsCodingStateMachine.h ../charset-detector/src/CharDistribution.h ../charset-detector/src/nsEUCTWProber.h ../charset-detector/src/nsCharSetProber.h ../charset-detector/src/nsCodingStateMachine.h ../charset-detector/src/CharDistribution.h ../charset-detector/src/nsSBCSGroupProber.h ../charset-detector/src/nsEscCharsetProber.h ../charset-detector/src/nsCharSetProber.h ../charset-detector/src/nsCodingStateMachine.h ../charset-detector/src/nsLatin1Prober.h ../charset-detector/src/nsCharSetProber.h
+	$(CPP) -c ../charset-detector/src/nsUniversalDetector.cpp -o ./Release/nsUniversalDetector.obj $(CXXFLAGS)
+
+./Release/nsUTF8Prober.obj: ../charset-detector/src/nsUTF8Prober.cpp ../charset-detector/src/nsUTF8Prober.h ../charset-detector/src/nsCharSetProber.h ../charset-detector/src/nscore.h ../charset-detector/src/nsCodingStateMachine.h ../charset-detector/src/nsPkgInt.h ../charset-detector/src/nscore.h
+	$(CPP) -c ../charset-detector/src/nsUTF8Prober.cpp -o ./Release/nsUTF8Prober.obj $(CXXFLAGS)
 
 ./Release/MadEdit_private.res: ../devcpp/MadEdit_private.rc 
 	$(WINDRES) -i ../devcpp/MadEdit_private.rc --input-format=rc -o ./Release/MadEdit_private.res -O coff  --include-dir $(WXWIN)/include
