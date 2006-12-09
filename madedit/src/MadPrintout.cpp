@@ -263,33 +263,31 @@ void MadPrintout::CalcPrintInfo(wxPageSetupData *pPageSetupData, double &xScale,
     int dcw, dch;
     dc->GetSize(&dcw, &dch);
     
-    wxSize papersize=pPageSetupData->GetPaperSize();
+    int pagesize_x, pagesize_y;
+    GetPageSizeMM(&pagesize_x, &pagesize_y);
     wxPoint pttl=pPageSetupData->GetMarginTopLeft();
     wxPoint ptbr=pPageSetupData->GetMarginBottomRight();
 
-    //int px, py;
-    //GetPPIPrinter(&px, &py);
     int sx, sy;
     GetPPIScreen(&sx, &sy);
 
-    // papersize: convert mm to pixel
-    xScale = double(papersize.x)/25.4 * double(sx);
-    yScale = double(papersize.y)/25.4 * double(sy);
+    // pagesize: convert mm to pixel
+    double px = double(pagesize_x)/25.4 * double(sx);
+    double py = double(pagesize_y)/25.4 * double(sy);
 
-    // calc paintRect
-    double top    = double(pttl.y)/double(papersize.y);
-    double left   = double(pttl.x)/double(papersize.x);
-    double bottom = double(ptbr.y)/double(papersize.y);
-    double right  = double(ptbr.x)/double(papersize.x);
+    // calc paintRect scale
+    double top    = double(pttl.y)/double(pagesize_y);
+    double left   = double(pttl.x)/double(pagesize_x);
+    double bottom = double(ptbr.y)/double(pagesize_y);
+    double right  = double(ptbr.x)/double(pagesize_x);
     
-    // convert to pixel-size
-    paintRect.x = int(left * xScale);
-    paintRect.y = int(top  * yScale);
-    paintRect.width  = int(xScale) - int(right * xScale) - paintRect.x;
-    paintRect.height = int(yScale) - int(bottom * yScale) - paintRect.y;
-
+    // calc the pixel-size of paintRect
+    paintRect.x = int(left * px);
+    paintRect.y = int(top  * py);
+    paintRect.width  = int(px) - int(right * px) - paintRect.x;
+    paintRect.height = int(py) - int(bottom * py) - paintRect.y;
 
     // calc scaling factor
-    xScale = double(dcw) / xScale;
-    yScale = double(dch) / yScale;
+    xScale = double(dcw) / px;
+    yScale = double(dch) / py;
 }
