@@ -398,6 +398,7 @@ public:
     int GetIdxFromWindow(wxWindow* page) const;
     size_t GetPageCount() const;
     wxAuiNotebookPage& GetPage(size_t idx);
+    const wxAuiNotebookPage& GetPage(size_t idx) const;
     wxAuiNotebookPageArray& GetPages();
     void SetNormalFont(const wxFont& normal_font);
     void SetSelectedFont(const wxFont& selected_font);
@@ -493,7 +494,14 @@ public:
                 const wxPoint& pos = wxDefaultPosition,
                 const wxSize& size = wxDefaultSize,
                 long style = 0);
-
+                
+    void SetWindowStyleFlag(long style);
+    void SetArtProvider(wxAuiTabArt* art);
+    wxAuiTabArt* GetArtProvider() const;
+    
+    virtual void SetUniformBitmapSize(const wxSize& size);
+    virtual void SetTabCtrlHeight(int height);
+ 
     bool AddPage(wxWindow* page,
                  const wxString& caption,
                  bool select = false,
@@ -508,23 +516,21 @@ public:
     bool DeletePage(size_t page);
     bool RemovePage(size_t page);
     
-    void SetWindowStyleFlag(long style);
-
-    bool SetPageText(size_t page, const wxString& text);
-    bool SetPageBitmap(size_t page, const wxBitmap& bitmap);
-    size_t SetSelection(size_t new_page);
-    int GetSelection() const;
     size_t GetPageCount() const;
     wxWindow* GetPage(size_t page_idx) const;
-
     int GetPageIndex(wxWindow* page_wnd) const;
 
-    void SetArtProvider(wxAuiTabArt* art);
-    wxAuiTabArt* GetArtProvider() const;
-    
-    virtual void SetUniformBitmapSize(const wxSize& size);
-    virtual void SetTabCtrlHeight(int height);
-    
+    bool SetPageText(size_t page, const wxString& text);
+    wxString GetPageText(size_t page_idx) const;
+
+    bool SetPageBitmap(size_t page, const wxBitmap& bitmap);
+    wxBitmap GetPageBitmap(size_t page_idx) const;
+
+    size_t SetSelection(size_t new_page);
+    int GetSelection() const;
+
+    virtual void Split(size_t page, int direction);
+   
 protected:
 
     // these can be overridden

@@ -4,7 +4,7 @@
 // Author:      Benjamin I. Williams
 // Modified by:
 // Created:     2005-05-17
-// RCS-ID:      $Id: dockart.cpp,v 1.31 2006/11/21 16:37:36 BIW Exp $
+// RCS-ID:      $Id: dockart.cpp,v 1.32 2006/11/27 09:21:08 ABX Exp $
 // Copyright:   (C) Copyright 2005-2006, Kirix Corporation, All Rights Reserved
 // Licence:     wxWindows Library Licence, Version 3.1
 ///////////////////////////////////////////////////////////////////////////////
@@ -103,7 +103,7 @@ wxColor wxAuiStepColour(const wxColor& c, int ialpha)
     g = wxAuiBlendColour(g, bg, alpha);
     b = wxAuiBlendColour(b, bg, alpha);
     
-    return wxColour((int)r, (int)g, (int)b);
+    return wxColour((unsigned char)r, (unsigned char)g, (unsigned char)b);
 }
 
 

@@ -4,7 +4,7 @@
 // Author:      Hans Van Leemputten
 // Modified by: Benjamin I. Williams / Kirix Corporation
 // Created:     29/07/2002
-// RCS-ID:      $Id: tabmdi.cpp,v 1.22 2006/11/17 11:28:17 BIW Exp $
+// RCS-ID:      $Id: tabmdi.cpp,v 1.23 2006/11/28 15:25:59 BIW Exp $
 // Copyright:   (c) Hans Van Leemputten
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////
@@ -353,6 +353,26 @@ void wxAuiMDIParentFrame::DoGetClientSize(int* width, int* height) const
 {
     wxFrame::DoGetClientSize(width, height);
 }
+
+void wxAuiMDIParentFrame::Tile(wxOrientation orient)
+{
+    wxAuiMDIClientWindow* client_window = GetClientWindow();
+    wxASSERT_MSG(client_window, wxT("Missing MDI Client Window"));
+    
+    int cur_idx = client_window->GetSelection();
+    if (cur_idx == -1)
+        return;
+        
+    if (orient == wxVERTICAL)
+    {
+        client_window->Split(cur_idx, wxLEFT);
+    }
+     else if (orient == wxHORIZONTAL)
+    {
+        client_window->Split(cur_idx, wxTOP);
+    }
+}
+
 
 //-----------------------------------------------------------------------------
 // wxAuiMDIChildFrame

@@ -4,7 +4,7 @@
 // Author:      Hans Van Leemputten
 // Modified by: Benjamin I. Williams / Kirix Corporation
 // Created:     29/07/2002
-// RCS-ID:      $Id: tabmdi.h,v 1.14 2006/11/10 08:10:54 BIW Exp $
+// RCS-ID:      $Id: tabmdi.h,v 1.15 2006/11/28 15:25:51 BIW Exp $
 // Copyright:   (c) Hans Van Leemputten
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////
@@ -80,7 +80,7 @@ public:
     virtual wxAuiMDIClientWindow *OnCreateClient();
 
     virtual void Cascade() { /* Has no effect */ }
-    virtual void Tile(wxOrientation WXUNUSED(orient) = wxHORIZONTAL) { }
+    virtual void Tile(wxOrientation orient = wxHORIZONTAL);
     virtual void ArrangeIcons() { /* Has no effect */ }
     virtual void ActivateNext();
     virtual void ActivatePrevious();
