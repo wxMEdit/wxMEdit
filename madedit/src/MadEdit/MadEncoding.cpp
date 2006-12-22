@@ -1219,6 +1219,23 @@ void DetectEncoding(const wxByte *text, int count, wxFontEncoding &enc)
             }
         }
     }
+    else if(name.StartsWith(wxT("UTF-"), &rest))
+    {
+        if(rest[0] == wxT('8'))
+        {
+            enc = wxFONTENCODING_UTF8;
+        }
+        else if(rest[0] == wxT('1')) // 16BE/LE
+        {
+            if(rest[2] == wxT('B')) enc = wxFONTENCODING_UTF16BE;
+            else                    enc = wxFONTENCODING_UTF16LE;
+        }
+        else // 32BE/LE
+        {
+            if(rest[2] == wxT('B')) enc = wxFONTENCODING_UTF32BE;
+            else                    enc = wxFONTENCODING_UTF32LE;
+        }
+    }
     else if(name.IsSameAs(wxT("BIG5")))
     {
         enc = wxFONTENCODING_CP950;
