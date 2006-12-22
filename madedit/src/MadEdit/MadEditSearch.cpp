@@ -42,56 +42,173 @@ inline wxByte xtolower(wxByte ch)
     return ch;
 }
 
-template <typename char_type, typename Iter>
-bool Search(Iter &begin, Iter &end, const char_type *wanted, size_t count, bool bCaseSensitive)
+template <typename char_type>
+bool IsTheSame(const char_type *s1, const char_type *s2, int len)
 {
-    wxASSERT(count != 0);
+    while(--len >= 0)
+    {
+        if(*s1++ != *s2++) return false;
+    }
+    return true;
+}
 
-    size_t idx=0;
-    Iter beginpos;
-    char_type c1, c2;
+class JumpTable_Hex
+{
+private:
+    int m_Table[256];
+    std::basic_string<wxByte> m_Pattern;
+public:
+    void Build(const wxByte* pat, size_t len)
+    {
+        if(m_Pattern.length()==len && IsTheSame(m_Pattern.c_str(), pat, (int)len)) return;
+        m_Pattern.assign(pat, len);
+        for(size_t i=0; i<256; ++i) m_Table[i] = (int)len+1;
+        for(size_t i=0; i<len; ++i) m_Table[pat[i]] = (int)(len-i);
+    }
+    int GetValue(const wxByte ch) const
+    {
+        return m_Table[ch];
+    }
+};
 
-    while(begin != end)
+WX_DECLARE_HASH_MAP( unsigned int, int, wxIntegerHash, wxIntegerEqual, UCS4_Map );
+class JumpTable_UCS4
+{
+private:
+    int m_UCS2_Table[65536];
+    UCS4_Map m_Table;
+    ucs4string m_Pattern;
+    int m_Len_1;
+public:
+    void Build(const ucs4_t* pat, size_t len)
+    {
+        if(m_Pattern.length()==len && IsTheSame(m_Pattern.c_str(), pat, (int)len)) return;
+        m_Pattern.assign(pat, len);
+
+        const int len1 = m_Len_1 = (int)len+1;
+        int *ptab = m_UCS2_Table;
+        for(size_t i=0;i<65536; ++i, ++ptab) *ptab = len1;
+
+        m_Table.clear();
+        const ucs4_t* p = pat;
+        for(size_t i=0; i<len; ++i, ++p)
+        {
+            const unsigned int idx = (unsigned int)(*p);
+            if(idx <= 0xFFFF)
+            {
+                m_UCS2_Table[idx] = (int)(len-i);
+            }
+            else
+            {
+                m_Table[idx] = (int)(len-i);
+            }
+        }
+    }
+    int GetValue(const ucs4_t ch) const
+    {
+        if(ch <= 0xFFFF && ch >= 0)
+        {
+            return m_UCS2_Table[(unsigned int)ch];
+        }
+
+        UCS4_Map::const_iterator it = m_Table.find((unsigned int)ch);
+        if(it==m_Table.end()) return m_Len_1;
+        return it->second;
+    }
+};
+
+template <typename char_type, typename CharIter, typename JumpTable>
+bool Search(CharIter &begin, CharIter &end,
+    const char_type *pattern, size_t pat_len,
+    const JumpTable &jump_table, bool bCaseSensitive)
+    // if(bCaseSensitive==false) the content of 'pattern' must be lower case!!!
+{
+    wxASSERT(pat_len != 0);
+
+    if(begin == end) return false;
+
+    register size_t idx=0;
+    register const char_type *p = pattern;
+    CharIter beginpos;
+    register char_type c1;
+
+    for(;;)
     {
         c1 = *begin;
-        c2 = wanted[idx];
-
         if(bCaseSensitive==false)
         {
             c1=xtolower(c1);
-            c2=xtolower(c2);
         }
 
-        if(c1 == c2)
+        if(c1 == *p)
         {
             if(idx==0)
             {
                 beginpos = begin;
             }
             ++idx;
+            ++p;
 
-            if(idx==count) // found whole wanted data
+            if(idx==pat_len) // found
             {
                 end = begin;
                 ++end;
                 begin = beginpos;
                 return true;
             }
+
+            // compare next char
+            if(++begin == end)
+                return false;
         }
-        else // c1 != c2
+        else // c1 != *p
         {
-            if(idx!=0)
+            // jump by the jump_table
+            CharIter it = begin;
+            int i = (int)(pat_len - idx);
+            do
             {
+                if(++it == end)
+                    return false;
+            }
+            while(--i > 0);
+
+            c1 = *it;
+            if(bCaseSensitive==false)
+            {
+                c1=xtolower(c1);
+            }
+
+            register int jv = jump_table.GetValue(c1);
+            if(jv >= (int)pat_len)
+            {
+                begin = it;
+                jv -= (int)pat_len;
                 idx = 0;
+                p = pattern;
+            }
+            else if(idx != 0)
+            {
                 begin = beginpos;
+                idx = 0;
+                p = pattern;
+            }
+
+            if(jv > 0)
+            {
+                do
+                {
+                    if(++begin == end)
+                        return false;
+                }
+                while(--jv > 0);
             }
         }
-
-        ++begin;
     }
 
     return false;
 }
+
 
 
 #ifdef __WXMSW__
@@ -499,15 +616,23 @@ MadSearchResult MadEdit::Search(/*IN_OUT*/MadCaretPos &beginpos, /*IN_OUT*/MadCa
         opt = opt | regex_constants::icase;
     }
 
+    const wxString *text_ptr = &text;
+    if(!bCaseSensitive)
+    {
+        static wxString text_lower;
+        text_lower = text.Lower();
+        text_ptr = &text_lower;
+    }
+
 #ifdef __WXMSW__
     vector<ucs4_t> ucs;
-    TranslateText(text.c_str(), text.Len(), &ucs, true);
+    TranslateText(text_ptr->c_str(), text_ptr->Len(), &ucs, true);
     ucs4_t *puc=&(*ucs.begin());
     size_t len=ucs.size();
     ucs4string exprstr(puc, puc+len);
 #else
-    const ucs4_t *puc=text.c_str();
-    size_t len=text.Len();
+    const ucs4_t *puc=text_ptr->c_str();
+    size_t len=text_ptr->Len();
     ucs4string exprstr(puc, puc+len);
 #endif
 
@@ -537,6 +662,9 @@ MadSearchResult MadEdit::Search(/*IN_OUT*/MadCaretPos &beginpos, /*IN_OUT*/MadCa
     match_results < UCIterator > what;
     bool found;
 
+    static JumpTable_UCS4 jtab;
+    jtab.Build(puc, len);
+
     try
     {
         for(;;)
@@ -549,7 +677,7 @@ MadSearchResult MadEdit::Search(/*IN_OUT*/MadCaretPos &beginpos, /*IN_OUT*/MadCa
             {
                 fbegin=start;
                 fend=end;
-                found=::Search(fbegin, fend, puc, len, bCaseSensitive);
+                found=::Search(fbegin, fend, puc, len, jtab, bCaseSensitive);
             }
 
             if(!found) break;
@@ -929,7 +1057,10 @@ MadSearchResult MadEdit::SearchHex(/*IN_OUT*/MadCaretPos &beginpos, /*IN_OUT*/Ma
     ByteIterator start(beginpos.pos, beginpos.iter, beginpos.linepos);
     ByteIterator end(endpos.pos, endpos.iter, endpos.linepos);
 
-    if(::Search(start, end, hex, count, true))
+    static JumpTable_Hex jtab;
+    jtab.Build(hex, count);
+
+    if(::Search(start, end, hex, count, jtab, true))
     {
         beginpos.pos = start.pos;
         beginpos.iter= start.lit;
