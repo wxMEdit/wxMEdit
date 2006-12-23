@@ -1198,6 +1198,8 @@ void MadSyntax::InitNextWord1(MadLines *madlines, ucs4_t *word, int *widths, con
     nw_FontName=fontname;
     nw_FontSize=fontsize;
     nw_FontFamily=fontfamily;
+    nw_Font=wxTheFontList->FindOrCreateFont(nw_FontSize, nw_FontFamily,
+        wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL, false, nw_FontName);
 
     if(m_CaseSensitive)
         FindString=&MadSyntax::FindStringCase;
