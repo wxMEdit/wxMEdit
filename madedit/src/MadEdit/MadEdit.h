@@ -315,6 +315,7 @@ private:
 
     bool            m_LoadingFile;
     bool            m_Painted;
+    bool            m_UseDefaultSyntax; // a speed-up flag for FindInFiles
 
     OnSelectionChangedPtr m_OnSelectionChanged;
     OnStatusChangedPtr    m_OnStatusChanged;
@@ -857,6 +858,8 @@ public:
     {
         m_OnActivate=func;
     }
+
+    void UseDefaultSyntax(bool value) { m_UseDefaultSyntax = value; }
 
 private: // Printing functions
     int m_Printing;     // 0: no, <0: Text, >0: Hex

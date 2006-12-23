@@ -2960,17 +2960,26 @@ bool MadLines::LoadFromFile(const wxString &filename, const wxString &encoding)
     // reload syntax
     delete m_Syntax;
 
-    wxFileName fn(filename);
-    m_Syntax = MadSyntax::GetSyntaxByExt(fn.GetExt());
-    if(m_Syntax==NULL)
+    if(m_MadEdit->m_UseDefaultSyntax)
     {
-        m_Syntax = MadSyntax::GetSyntaxByFirstLine(buf, s);
+        m_Syntax = new MadSyntax(false);
+        m_Syntax->m_Delimiter.Empty();
+        m_Syntax->m_CaseSensitive = true;
+    }
+    else
+    {
+        wxFileName fn(filename);
+        m_Syntax = MadSyntax::GetSyntaxByExt(fn.GetExt());
         if(m_Syntax==NULL)
         {
-            m_Syntax = MadSyntax::GetSyntaxByFileName(fn.GetName());
+            m_Syntax = MadSyntax::GetSyntaxByFirstLine(buf, s);
             if(m_Syntax==NULL)
             {
-                m_Syntax = MadSyntax::GetSyntaxByTitle(MadPlainTextTitle);
+                m_Syntax = MadSyntax::GetSyntaxByFileName(fn.GetName());
+                if(m_Syntax==NULL)
+                {
+                    m_Syntax = MadSyntax::GetSyntaxByTitle(MadPlainTextTitle);
+                }
             }
         }
     }

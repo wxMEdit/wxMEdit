@@ -693,6 +693,7 @@ void MadFindInFilesDialog::FindReplaceInFiles(bool bReplace)
             tempedit->SetStorePropertiesToGlobalConfig(false);
             tempedit->SetFixedWidthMode(false);
             tempedit->SetWordWrapMode(wwmNoWrap);
+            tempedit->UseDefaultSyntax(true);
         }
 
         wxString fmt(_("Processing %d of %d files..."));
