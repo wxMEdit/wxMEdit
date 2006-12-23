@@ -2963,7 +2963,10 @@ bool MadLines::LoadFromFile(const wxString &filename, const wxString &encoding)
     if(m_MadEdit->m_UseDefaultSyntax)
     {
         m_Syntax = new MadSyntax(false);
-        m_Syntax->m_Delimiter.Empty();
+        if(m_MadEdit->m_SearchWholeWord==false)
+        {
+            m_Syntax->m_Delimiter.Empty();
+        }
         m_Syntax->m_CaseSensitive = true;
     }
     else

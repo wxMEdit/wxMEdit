@@ -885,6 +885,7 @@ MadEdit::MadEdit(wxWindow* parent, wxWindowID id, const wxPoint& pos, const wxSi
     m_LastPaintBitmap=-1;
 
     m_UseDefaultSyntax=false;
+    m_SearchWholeWord=false;
 
 #ifdef __WXMSW__
     m_IsWin98 = (wxGetOsVersion()==wxWIN95);

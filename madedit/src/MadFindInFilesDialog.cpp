@@ -576,6 +576,10 @@ void MadFindInFilesDialog::FindReplaceInFiles(bool bReplace)
 {
     //wxLogNull nolog;
 
+#ifdef SHOW_RESULT_COUNT
+    int ResultCount=0;
+#endif
+
     const int max=1000;
     fmtmsg1 = _("Found %d file(s) matched the filters...");
     fmtmsg1 += wxT("                                        \n");
@@ -693,7 +697,7 @@ void MadFindInFilesDialog::FindReplaceInFiles(bool bReplace)
             tempedit->SetStorePropertiesToGlobalConfig(false);
             tempedit->SetFixedWidthMode(false);
             tempedit->SetWordWrapMode(wwmNoWrap);
-            tempedit->UseDefaultSyntax(true);
+            tempedit->SetSearchOptions(true, WxCheckBoxWholeWord->GetValue());
         }
 
         wxString fmt(_("Processing %d of %d files..."));
@@ -836,6 +840,9 @@ void MadFindInFilesDialog::FindReplaceInFiles(bool bReplace)
 
                         fmt = loc +linetext;
                         g_MainFrame->AddItemToFindInFilesResults(fmt, idx, expr, pid, begpos[idx], endpos[idx]);
+#ifdef SHOW_RESULT_COUNT
+                        ++ResultCount;
+#endif
                     }
                     while(++idx < count);
                     g_MainFrame->m_FindInFilesResults->Thaw();
@@ -849,6 +856,12 @@ void MadFindInFilesDialog::FindReplaceInFiles(bool bReplace)
     dialog.Update(max);
     g_ProgressDialog=NULL;
     g_FileNameList.clear();
+
+#ifdef SHOW_RESULT_COUNT
+    wxString smsg;
+    smsg.Printf(_("%d results"), ResultCount);
+    wxMessageBox(smsg.c_str(), wxT("MadEdit"), wxOK);
+#endif
 }
 
 /*
