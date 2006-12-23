@@ -23,9 +23,6 @@ OBJ  = ./Release/MadEditFrame.obj \
        ./Release/MadPrintout.obj \
        ./Release/TradSimp.obj \
        ./Release/MadConvEncDialog.obj \
-       ./Release/fnb_resources.obj \
-       ./Release/popup_dlg.obj \
-       ./Release/renderer.obj \
        ./Release/wxFlatNotebook.obj \
        ./Release/MadEditAdvanced.obj \
        ./Release/MadWordCountDialog.obj \
@@ -71,17 +68,15 @@ OBJ  = ./Release/MadEditFrame.obj \
 LINKOBJ = $(OBJ)
 
 WXWIN = N:/wxWidgets
-BOOST_DIR = N:/boost
 #XPRESSIVE_DIR = N:/boost
 XPRESSIVE_DIR = ../xpressive
+BOOST_DIR = N:/boost
 
 LIBS =  -L$(WXWIN)/lib/gcc_lib -L"../libunicows" -mwindows -lwxmsw28u_core -lwxbase28u -lunicows -lkernel32 -luser32 -lgdi32 -lcomdlg32 -lwinspool -lwinmm -lshell32 -lcomctl32 -lole32 -loleaut32 -luuid -lrpcrt4 -ladvapi32 -lwsock32 -lodbc32 -lopengl32  -s 
-INCS =  -I$(WXWIN)/include  -I$(WXWIN)/lib/gcc_lib/mswu  -I$(BOOST_DIR)  -I$(XPRESSIVE_DIR)  -I"../wxFlatNotebook/include" -I"../wxAUI/include" -I"../charset-detector/include" -I"../charset-detector/src" -I"../charset-detector/src/tables"
-CXXINCS =  -I$(WXWIN)/include  -I$(WXWIN)/lib/gcc_lib/mswu  -I$(BOOST_DIR)  -I$(XPRESSIVE_DIR)  -I"../wxFlatNotebook/include" -I"../wxAUI/include" 
+CXXINCS =  -I$(WXWIN)/include  -I$(WXWIN)/lib/gcc_lib/mswu  -I$(XPRESSIVE_DIR)  -I$(BOOST_DIR)  -I"../wxFlatNotebook/include" -I"../wxAUI/include" -I"../charset-detector/include" -I"../charset-detector/src" -I"../charset-detector/src/tables"
 
 BIN  = Release/MadEdit.exe
 CXXFLAGS = $(CXXINCS) -D_UNICODE -D__WXMSW__ -D__GNUWIN32__ -D__WIN95__ -DWIN32 -DwxUSE_AUI=1 -DWXDLLIMPEXP_AUI= -O2
-CFLAGS = $(INCS) -fno-rtti -fno-exceptions -fno-pcc-struct-return -fstrict-aliasing -Wall -fvtable-thunks -D__WXMSW__ -D__GNUWIN32__ -D__WIN95__ -DwxUSE_AUI=1 -DWXDLLIMPEXP_AUI= -O2
 RM = rm -f
 
 .PHONY: all all-before all-after clean clean-custom
@@ -151,15 +146,6 @@ $(BIN): $(OBJ)
 
 ./Release/MadConvEncDialog.obj: ../src/MadConvEncDialog.cpp
 	$(CPP) -c ../src/MadConvEncDialog.cpp -o ./Release/MadConvEncDialog.obj $(CXXFLAGS)
-
-./Release/fnb_resources.obj: ../wxFlatNotebook/src/wxFlatNotebook/fnb_resources.cpp
-	$(CPP) -c ../wxFlatNotebook/src/wxFlatNotebook/fnb_resources.cpp -o ./Release/fnb_resources.obj $(CXXFLAGS)
-
-./Release/popup_dlg.obj: ../wxFlatNotebook/src/wxFlatNotebook/popup_dlg.cpp
-	$(CPP) -c ../wxFlatNotebook/src/wxFlatNotebook/popup_dlg.cpp -o ./Release/popup_dlg.obj $(CXXFLAGS)
-
-./Release/renderer.obj: ../wxFlatNotebook/src/wxFlatNotebook/renderer.cpp
-	$(CPP) -c ../wxFlatNotebook/src/wxFlatNotebook/renderer.cpp -o ./Release/renderer.obj $(CXXFLAGS)
 
 ./Release/wxFlatNotebook.obj: ../wxFlatNotebook/src/wxFlatNotebook/wxFlatNotebook.cpp
 	$(CPP) -c ../wxFlatNotebook/src/wxFlatNotebook/wxFlatNotebook.cpp -o ./Release/wxFlatNotebook.obj $(CXXFLAGS)
