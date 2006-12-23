@@ -2429,7 +2429,11 @@ void MadEdit::PaintHexLines(wxDC *dc, wxRect &rect, int toprow, int rowcount, bo
                 break;
 
             MadUCPair & ucp = m_ActiveRowUChars.back();
-            if(ucp.first == 0xFEFF || ucp.first == 0x9 || ucp.first == 0)
+            if(ucp.first == 0xFEFF || ucp.first == 0x9 || ucp.first == 0
+#ifdef __WXGTK__
+                || ucp.first == 0x0A || ucp.first == 0x0D
+#endif
+                )
                 m_WordBuffer[idx++] = ' ';
             else
                 m_WordBuffer[idx++] = ucp.first;
