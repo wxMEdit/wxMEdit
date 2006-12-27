@@ -1684,6 +1684,7 @@ void MadEditFrame::CreateGUIControls(void)
     // wxAUI
     m_AuiManager.SetManagedWindow(this);
     m_AuiManager.SetFlags(m_AuiManager.GetFlags() | wxAUI_MGR_ALLOW_ACTIVE_PANE);
+    m_AuiManager.SetDockSizeConstraint(0.75, 0.75);
     m_AuiManager.AddPane(m_Notebook, wxCENTER);
     m_AuiManager.AddPane(m_InfoNotebook, wxBOTTOM, _("Information Window"));
     m_AuiManager.GetPane(m_InfoNotebook).Show(false).FloatingSize(nbsize);
