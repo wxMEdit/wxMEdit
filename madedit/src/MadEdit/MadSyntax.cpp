@@ -1875,7 +1875,7 @@ int MadSyntax::NextWord(int &wordwidth)
             do
             {
                 nw_Word[idx] = uc;
-                //nw_ucqueue.pop_front();
+                //nw_ucqueue.pop_front(); // cannot pop here
 
                 width = nw_MadEdit->GetUCharWidth(uc);
                 nw_Widths[idx] = width;
@@ -1884,7 +1884,7 @@ int MadSyntax::NextWord(int &wordwidth)
                 --nw_FirstIndex;
             }
             while(--nw_RestCount && nw_LineWidth < nw_RowIndexIter->m_Width
-                        && (uc = nw_ucqueue.front().first) < 0x100 && !IsSpace(uc));
+                        && (uc = nw_ucqueue[idx].first) < 0x100 && IsNotDelimiter(uc));
 
             nw_Word[idx] = 0;
 
