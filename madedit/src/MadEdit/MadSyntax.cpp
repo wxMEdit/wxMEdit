@@ -1977,6 +1977,7 @@ int MadSyntax::NextWord(int &wordwidth)
             }
             while(--nw_RestCount && nw_LineWidth < nw_RowIndexIter->m_Width
                         && IsDelimiter(uc = nw_ucqueue.front().first)
+                        && m_KeywordPrefix.Find(uc) < 0
                         && m_SpecialWordPrefix.Find(uc) < 0);
 
             nw_Word[idx] = 0;
