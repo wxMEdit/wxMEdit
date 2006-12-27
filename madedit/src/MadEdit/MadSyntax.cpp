@@ -1288,8 +1288,7 @@ int MadSyntax::FindStringCase(MadUCQueue & ucqueue, size_t first,
                         size_t & len)
 {
     int idx = 1;
-    bool bNextUC, bNotNewLine;
-    ucs4_t uc, firstuc = ucqueue[first].first;
+    ucs4_t firstuc = ucqueue[first].first;
     size_t ucsize = ucqueue.size() - first;
 
     wxASSERT(ucsize > 0);
@@ -1303,35 +1302,23 @@ int MadSyntax::FindStringCase(MadUCQueue & ucqueue, size_t first,
         {
             if(len == 1) return idx;
 
-            uc = ucqueue.back().first;
+            if(ucsize < len)
+            {
+                while( (nw_MadLines->*(nw_MadLines->NextUChar))(ucqueue) && (++ucsize) < len )
+                    /*do nothing*/;
+            }
 
-            bNextUC = true;
-            bNotNewLine = (uc != 0x0D && uc != 0x0A);
-
-            if(ucsize < len && bNotNewLine)
-                do
+            if(ucsize >= len)
+            {
+                deque < MadUCPair >::iterator it = ucqueue.begin();
+                std::advance(it, first + 1);
+                while(*(++cstr) != 0)
                 {
-                    bNextUC = (nw_MadLines->*(nw_MadLines->NextUChar))(ucqueue);
-                    uc = ucqueue.back().first;
-                    bNotNewLine = (uc != 0x0D && uc != 0x0A);
+                    if((ucs4_t)*cstr != it->first) break;
+                    ++it;
                 }
-                while(bNextUC && bNotNewLine && (++ucsize) < len
-                            && uc == (ucs4_t)cstr[ucsize - 1]);
-
-            if(bNextUC && ucsize >= len)
-                if(bNotNewLine || ucsize > len)
-                {
-                    deque < MadUCPair >::iterator it = ucqueue.begin();
-                    std::advance(it, first + 1);
-                    while(*(++cstr) != 0)
-                    {
-                        if((ucs4_t)*cstr != it->first)
-                            break;
-                        ++it;
-                    }
-                    if(*cstr == 0)
-                        return idx;
-                }
+                if(*cstr == 0) return idx;
+            }
         }
 
         ++idx;
@@ -1346,12 +1333,11 @@ int MadSyntax::FindStringNoCase(MadUCQueue & ucqueue, size_t first,
                    size_t & len)
 {
     int idx = 1;
-    bool bNextUC, bNotNewLine;
     ucs4_t uc, firstuc = ucqueue[first].first;
 
     if(firstuc>='A' && firstuc<='Z')
     {
-        firstuc |= 0x20;    // to lower case
+        firstuc |= 0x20; // to lower case
     }
 
     size_t ucsize = ucqueue.size() - first;
@@ -1366,50 +1352,29 @@ int MadSyntax::FindStringNoCase(MadUCQueue & ucqueue, size_t first,
         {
             if(len == 1) return idx;
 
-            uc = ucqueue.back().first;
-            if(uc>='A' && uc<='Z')
+            if(ucsize < len)
             {
-                uc |= 0x20; // to lower case
+                while( (nw_MadLines->*(nw_MadLines->NextUChar))(ucqueue) && (++ucsize) < len )
+                    /*do nothing*/;
             }
 
-            bNextUC = true;
-            bNotNewLine = (uc != 0x0D && uc != 0x0A);
-
-            if(ucsize < len && bNotNewLine)
-                do
+            if(ucsize >= len)
+            {
+                deque < MadUCPair >::iterator it = ucqueue.begin();
+                std::advance(it, first + 1);
+                while(*(++cstr) != 0)
                 {
-                    bNextUC = (nw_MadLines->*(nw_MadLines->NextUChar))(ucqueue);
-                    uc = ucqueue.back().first;
+                    uc = it->first;
                     if(uc>='A' && uc<='Z')
                     {
                         uc |= 0x20; // to lower case
                     }
 
-                    bNotNewLine = (uc != 0x0D && uc != 0x0A);
+                    if((ucs4_t)*cstr != uc) break;
+                    ++it;
                 }
-                while(bNextUC && bNotNewLine && (++ucsize) < len
-                            && uc == (ucs4_t)cstr[ucsize - 1]);
-
-            if(bNextUC && ucsize >= len)
-                if(bNotNewLine || ucsize > len)
-                {
-                    deque < MadUCPair >::iterator it = ucqueue.begin();
-                    std::advance(it, first + 1);
-                    while(*(++cstr) != 0)
-                    {
-                        uc = it->first;
-                        if(uc>='A' && uc<='Z')
-                        {
-                            uc |= 0x20; // to lower case
-                        }
-
-                        if((ucs4_t)*cstr != uc)
-                            break;
-                        ++it;
-                    }
-                    if(*cstr == 0)
-                        return idx;
-                }
+                if(*cstr == 0) return idx;
+            }
         }
 
         ++idx;

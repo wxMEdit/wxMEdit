@@ -1464,8 +1464,7 @@ int MadLines::FindStringCase(MadUCQueue &ucqueue, MadStringIterator begin,
     wxASSERT(!ucqueue.empty());
 
     int idx = 1;
-    bool bNextUC, bNotNewLine;
-    ucs4_t uc, firstuc = ucqueue.front().first;
+    ucs4_t firstuc = ucqueue.front().first;
     size_t ucsize = ucqueue.size();
     do
     {
@@ -1476,35 +1475,21 @@ int MadLines::FindStringCase(MadUCQueue &ucqueue, MadStringIterator begin,
         {
             if(len == 1) return idx;
 
-            uc = ucqueue[ucsize-1].first;
-
-            bNextUC = true;
-            bNotNewLine = (uc != 0x0D && uc != 0x0A);
-
-            if(ucsize < len && bNotNewLine)
+            if(ucsize < len)
             {
-                do
-                {
-                    bNextUC = (this->*NextUChar)(ucqueue);
-                    uc = ucqueue.back().first;
-                    bNotNewLine = (uc != 0x0D && uc != 0x0A);
-                }
-                while(bNextUC && bNotNewLine && (++ucsize) < len && uc == (ucs4_t)cstr[ucsize - 1]);
+                while( (this->*NextUChar)(ucqueue) && (++ucsize) < len) /*do nothing*/;
             }
 
-            if(bNextUC && ucsize >= len)
+            if(ucsize >= len)
             {
-                if(bNotNewLine || ucsize > len)
+                deque < MadUCPair >::iterator it = ucqueue.begin();
+                ++it;
+                while(*(++cstr) != 0)
                 {
-                    deque < MadUCPair >::iterator it = ucqueue.begin();
+                    if((ucs4_t)*cstr != it->first) break;
                     ++it;
-                    while(*(++cstr) != 0)
-                    {
-                        if((ucs4_t)*cstr != it->first) break;
-                        ++it;
-                    }
-                    if(*cstr == 0) return idx;
                 }
+                if(*cstr == 0) return idx;
             }
         }
 
@@ -1522,12 +1507,11 @@ int MadLines::FindStringNoCase(MadUCQueue &ucqueue, MadStringIterator begin,
     wxASSERT(!ucqueue.empty());
 
     int idx = 1;
-    bool bNextUC, bNotNewLine;
     ucs4_t uc, firstuc = ucqueue.front().first;
 
     if(firstuc>='A' && firstuc<='Z')
     {
-        firstuc |= 0x20;    // to lower case
+        firstuc |= 0x20; // to lower case
     }
 
     size_t ucsize = ucqueue.size();
@@ -1540,49 +1524,27 @@ int MadLines::FindStringNoCase(MadUCQueue &ucqueue, MadStringIterator begin,
         {
             if(len == 1) return idx;
 
-            uc = ucqueue[ucsize-1].first;
-            if(uc>='A' && uc<='Z')
+            if(ucsize < len)
             {
-                uc |= 0x20; // to lower case
+                while( (this->*NextUChar)(ucqueue) && (++ucsize) < len) /*do nothing*/;
             }
 
-            bNextUC = true;
-            bNotNewLine = (uc != 0x0D && uc != 0x0A);
-
-            if(ucsize < len && bNotNewLine)
+            if(ucsize >= len)
             {
-                do
+                deque < MadUCPair >::iterator it = ucqueue.begin();
+                ++it;
+                while(*(++cstr) != 0)
                 {
-                    bNextUC = (this->*NextUChar)(ucqueue);
-                    uc = ucqueue.back().first;
+                    uc=it->first;
                     if(uc>='A' && uc<='Z')
                     {
                         uc |= 0x20; // to lower case
                     }
-                    bNotNewLine = (uc != 0x0D && uc != 0x0A);
-                }
-                while(bNextUC && bNotNewLine && (++ucsize) < len && uc == (ucs4_t)cstr[ucsize - 1]);
-            }
 
-            if(bNextUC && ucsize >= len)
-            {
-                if(bNotNewLine || ucsize > len)
-                {
-                    deque < MadUCPair >::iterator it = ucqueue.begin();
+                    if((ucs4_t)*cstr != uc) break;
                     ++it;
-                    while(*(++cstr) != 0)
-                    {
-                        uc=it->first;
-                        if(uc>='A' && uc<='Z')
-                        {
-                            uc |= 0x20; // to lower case
-                        }
-
-                        if((ucs4_t)*cstr != uc) break;
-                        ++it;
-                    }
-                    if(*cstr == 0) return idx;
                 }
+                if(*cstr == 0) return idx;
             }
         }
 
