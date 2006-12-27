@@ -49,7 +49,7 @@ int g_LanguageValue[]=
     wxLANGUAGE_DEFAULT,
     wxLANGUAGE_CHINESE_SIMPLIFIED,
     wxLANGUAGE_CHINESE_TRADITIONAL,
-    wxLANGUAGE_ENGLISH,
+    wxLANGUAGE_ENGLISH_US,
     wxLANGUAGE_ITALIAN,
 };
 extern const size_t g_LanguageCount = sizeof(g_LanguageValue)/sizeof(int);
