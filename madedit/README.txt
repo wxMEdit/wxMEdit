@@ -1,5 +1,5 @@
 			=======================
-			  MadEdit v0.2.5 Beta
+			  MadEdit v0.2.6 Beta
 			=======================
 About:
 -----
@@ -62,6 +62,15 @@ Syntax files, Locale files and Settings:
 
 ChangeLog:
 ----------
+v0.2.6:
+1.improved the redraw speed under Linux (wxGTK).
+2.added charset-detector, a port to C of "universalchardet", for detecting the encoding of files.
+  Thanks Jserv (http://blog.linux.org.tw/~jserv/archives/001672.html).
+3.improved the speed of FindInFiles function.
+4.fixed crashing bug when opening a file begins with a 0x0b/0x0c character.
+5.added new syntax files for Fortran, TeX/LaTeX, Squirrel, C#, Visual Basic, ASP(VBScript).
+6.many misc changes and bug-fixes.
+
 v0.2.5:
 1.fixed crashes when copying and pasting data between TextMode and ColumnMode under Linux.
 2.fixed sometimes crashes when using FindInFiles function under Linux.

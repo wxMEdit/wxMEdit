@@ -1,9 +1,15 @@
 madedit (0.2.6-1) unstable; urgency=low
 
-  1.
+  1.improved the redraw speed under Linux (wxGTK).
+  2.added charset-detector, a port to C of "universalchardet", for detecting the encoding of files.
+    Thanks Jserv (http://blog.linux.org.tw/~jserv/archives/001672.html).
+  3.improved the speed of FindInFiles function.
+  4.fixed crashing bug when opening a file begins with a 0x0b/0x0c character.
+  5.added new syntax files for Fortran, TeX/LaTeX, Squirrel, C#, Visual Basic, ASP(VBScript).
+  6.many misc changes and bug-fixes.
 
- -- Alston Chen <madedit@gmail.com>  Wed, 26 Jul 2006 14:26:54 +0800
 
+ -- Alston Chen <madedit@gmail.com>  Wed, 27 Dec 2006 17:03:43 +0800
 
 madedit (0.2.5-1) unstable; urgency=low
 

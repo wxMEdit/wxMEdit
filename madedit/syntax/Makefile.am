@@ -29,6 +29,12 @@ syntax_DATA =	extension.list \
 	syntax_syn.syn \
 	syntax_txt.syn \
 	syntax_x86asm.syn \
-	syntax_xml.syn
+	syntax_xml.syn \
+	syntax_fortran.syn \
+	syntax_visualbasic.syn \
+	syntax_squirrel.syn \
+	syntax_latex.syn \
+	syntax_csharp.syn \
+	syntax_vbscript_asp.syn
 
 EXTRA_DIST = $(syntax_DATA)
