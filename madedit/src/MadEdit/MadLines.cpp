@@ -1476,7 +1476,7 @@ int MadLines::FindStringCase(MadUCQueue &ucqueue, MadStringIterator begin,
         {
             if(len == 1) return idx;
 
-            uc = ucqueue.back().first;
+            uc = ucqueue[ucsize-1].first;
 
             bNextUC = true;
             bNotNewLine = (uc != 0x0D && uc != 0x0A);
@@ -1540,7 +1540,7 @@ int MadLines::FindStringNoCase(MadUCQueue &ucqueue, MadStringIterator begin,
         {
             if(len == 1) return idx;
 
-            uc = ucqueue.back().first;
+            uc = ucqueue[ucsize-1].first;
             if(uc>='A' && uc<='Z')
             {
                 uc |= 0x20; // to lower case
