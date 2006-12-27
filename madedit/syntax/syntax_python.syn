@@ -7,7 +7,7 @@ BlockComment=
 EscapeChar=\
 StringChar="'
 DirectiveLeading=
-KeywordPrefix=&
+KeywordPrefix=
 SpecialWordPrefix=
 IndentChar=
 UnindentChar=
@@ -60,4 +60,45 @@ Color=Black
 BgColor=
 Style=Bold
 InRange=0
-Keyword=break continue elif else for from if import pass reload return while abs and apply assert buffer callable chr class cmp coerce compile complex def del delattr dir divmod eval exec execfile filter float getattr global globals hasattr hash hex id in input int intern is isinstance issubclass lambda len list locals long map max min not oct open or ord pow print range raw_input reduce repr round setattr slice str tuple type unichr unicode vars xrange zip except finally raise try
+Keyword=and as assert break class continue def del elif else except exec finally for from global if import in is lambda not or object pass print raise range return try while yield
+
+[2.Functions]
+Color=DarkBlue
+Style=Bold
+InRange=0
+Keyword=__import__ abs apply basestring bool buffer callable chr classmethod cmp coerce compile complex delattr dict dir divmod enumerate eval execfile Ellipsis file filter float frozenset False getattr globals group hasattr hash help hex id input int intern isinstance issubclass iter joinfields len list local long map match max min None NotImplemented oct open ord pow property raw_input reduce reload repr round search set setattr slice sorted str splitfields tuple type True unichr unicode vars xrange zip
+
+[3.Methods]
+Color=ForestGreen
+Style=Bold
+InRange=0
+Keyword=__abs__ __add__ __and__ __call__ __cmp__ __coerce__ __contains__ __del__ __delattr__ __delitem__ __delslice__ __div__ __divmod__ __eq__ __float__ __floordiv__  __ge__ __getattribute__ __getitem__ __getnewargs__ __getslice__ __gt__ __hash__ __hex__ __iadd__ __iand__ __idiv__ __ilshift__ __imod__ __imul__ __init__ __int__ __invert__ __ior__ __ipow__ __irshift__ __isub__ __iter__ __ixor__ __le__ __len__ __long__ __lshift__ __lt__ __mod__ __mul__ __ne__ __neg__ __nonzero__ __oct__ __or__ __pos__ __pow__ __radd__ __rand__ __rdiv__ __rdivmod__ __reduce__ __reduce_ex__ __repr__ __reserved__ __rfloordiv__ __rlshift__ __rmod__ __rmul__ __ror__ __rpow__ __rlshift__ __rrshift__ __rshift__ __rsub__ __rtruediv__ __rxor__  __setattr__ __setitem__ __setslice__ __str__ __sub__ __xor__ add append capitalize center clear close conjugate copy count decode difference discard Decimal encode endswith expandtabs extend find flush fileno fromkeys get getcontext has_key index insert intersection intersection_update isalnum isalpha isatty isdigit islower isspace issubset issuperset istitle isupper items iteritems iterkeys itervalues join keys ljust lower lstrip next pop popitem read readline readlines remove replace reverse rfind rindex rjust rsplit rstrip seek setdefault sort split splitlines startswith strip swapcase symmetric_difference symmetric_difference_update tell title translate truncate union update upper values write writelines zfill
+
+
+[4.Attributes]
+Color=DarkOrchid
+BgColor=
+Style=Bold
+InRange=0
+Keyword=__author__ __bases__ __class__ __dict__ __doc__ __email__ __methods__ __members__ __name__ __slots__ __version__
+
+[5.Exceptions]
+Color=CornflowerBlue
+BgColor=
+Style=Bold
+InRange=0
+Keyword=ArithmeticError AssertionError AttributeError DeprecationWarning EnvironmentError EOFError Exception FloatingPointError FutureWarning ImportError IndentationError IndexError IOError  KeyboardInterrupt KeyError LookupError MemoryError NameError NotImplementedError OSError OverflowWarning OverflowError PendingDeprecationWarning ReferenceError RuntimeError RuntimeWarning StandardError StopIteration SyntaxError SyntaxWarning SystemError SystemExit TabError TypeError UnboundLocalError UnicodeError UnicodeDecodeError UnicodeEncodeError UnicodeTranslateError UserWarning ValueError Warning WindowsError ZeroDivisionError
+
+[6.Common Libs]
+Color=Red
+BgColor=
+Style=Bold
+InRange=0
+Keyword=__builtin__ __future__ __main__ aepack aetools aetypes aifc al anydbm applesingle atexit array asyncore asynchat audioop autoGIL AL AST  base64 binascii binhex bisect bsddb buildtools bz2 BaseHTTPServer Bastion calendar cd cfmfile cgi cgitb chunk cmath cmd code codecs codeop collections colorsys commands compileall cookielib copy_reg cPickle cStringIO csv curses Carbon CGIHTTPServer ColorPicker Complex ConfigParser Cookie datetime dbhash decimal difflib dircache dircmp dis distutils dl doctest dospath dumbdbm dummy_thread dummy_threading DEVICE DocXMLRPCServer emacs email encodings errno exceptions EasyDialogs fcntl filecmp fileinput findertools fl flp fm fmt fnmatch formatter fpectl fpformat ftplib FL FrameWork gc gdbm gensuitemodule getopt getpass gettext gl glob gopherlib grep gzip GL heapq hmac hotshot htmlentitydefs htmllib httplib HTMLParser ic icopen ihooks imaplib imageop imghdr imp imputil inspect itertools jpeg keyword linecache locale lockfile logging mac macerrors macfs macostools macpath macresource macurl2path mailbox mailcap marshal md5 mhlib mimetools mimetypes mimify mmap multifile mutex math MacOS MimeWriter MiniAEFrame netrc new newdir ni nis nntplib nsremote ntpath nturl2path operator optparse os ossaudiodev parser pdb pgdb pickle pickletools pipes pkgutil platform poly popen2 poplib posixfile posixpath pprint profile pstats py_compile pyclbr pydoc pyexpat pythonprefs Para PixMapWrapper quietconsole quopri Queue rand random re regex regsub resource rexec rfc822 rgbimg rlcompleter robotparser rotor sched select sets sgmllib sha shelve shlex shutil signal site smtpd smtplib sndhdr snmp socket stat statcache statvfs string stringprep struct subprocess sunau symbol sys syslog ScrolledText SimpleHTTPServer SimpleXMLRPCServer StringIO SocketServer tabnanny tarfile tb telnetlib tempfile termios test textwrap thread threading time timeit toaiff token tokenize traceback tty turtle types tzparse TERMIOS Tix Tkinter unicodedata unittest urllib urllib2 urlparse user util uu UserDict UserList UserString videoreader warnings waste wave weakref webbrowser whatsound whichdb whrandom winsound xdrlib xml xmllib xmlpackage xmlrpclib zipfile zlib zmod
+
+[7.Others]
+Color=Red
+BgColor=
+Style=
+InRange=0
+Keyword=array cls fnmatch struct self

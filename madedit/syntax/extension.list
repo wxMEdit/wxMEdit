@@ -73,3 +73,25 @@ jsp	syntax_jsp.syn
 tag	syntax_jsp.syn
 
 lua syntax_lua.syn
+
+nut syntax_squirrel.syn
+
+f90 syntax_fortran.syn
+f77 syntax_fortran.syn
+for syntax_fortran.syn
+ftn syntax_fortran.syn
+#f syntax_fortran.syn
+
+cs syntax_csharp.syn
+
+lat syntax_latex.syn
+tex syntax_latex.syn
+lex syntax_latex.syn
+
+bas syntax_visualbasic.syn
+frm syntax_visualbasic.syn
+cls syntax_visualbasic.syn
+vbs syntax_visualbasic.syn
+
+asp syntax_vbscript_asp.syn
+inc syntax_vbscript_asp.syn

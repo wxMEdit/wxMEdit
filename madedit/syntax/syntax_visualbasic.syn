@@ -1,0 +1,92 @@
+# Visual Basic
+Title=Visual Basic
+CaseSensitive=No
+Delimiter=~`!@#$%^&*()-+=|\{}[]:;"',.<>/?
+LineComment='
+BlockComment=
+EscapeChar=\
+StringChar="
+DirectiveLeading=
+KeywordPrefix=
+SpecialWordPrefix=
+IndentChar=
+UnindentChar=
+BracePair=( ) [ ] { }
+AutoCompletePair=() [] {} ""
+
+
+# System Predefined Color & Style
+TextColor=Black
+TextBgColor=White
+TextStyle=
+
+DelimiterColor=SaddleBrown
+DelimiterBgColor=
+DelimiterStyle=
+
+SpaceColor=Aqua
+SpaceBgColor=
+SpaceStyle=
+
+NumberColor=Blue
+NumberBgColor=
+NumberStyle=
+
+StringColor=Red
+StringBgColor=
+StringStyle=
+
+CommentColor=Teal
+CommentBgColor=
+CommentStyle=
+
+DirectiveColor=Green
+DirectiveBgColor=
+DirectiveStyle=
+
+SpecialWordColor=Navy
+SpecialWordBgColor=
+SpecialWordStyle=
+
+LineNumberColor=White
+LineNumberBgColor=A0A0A0
+LineNumberStyle=
+
+ActiveLineColor=Fuchsia
+BookmarkColor=C0FFFF
+
+# User Defined Keywords
+[1.Keywords]
+Color=Black
+BgColor=
+Style=Bold
+InRange=0
+Keyword=As Binary ByRef ByVal Date Else Empty Error False For Friend Get Input Is Len Let Lock Me Mid New Next Nothing Null On Options Optional ParamArray Print Private Property Public Resume Seek Set Static Step Then Time To True WithEvents AddressOf And Eqv Imp Is Like Mod Not Or Xor Integer Long String Byte Boolean Currency Double Single Variant
+
+[2.Statements]
+Color=DarkBlue
+BgColor=
+Style=Bold
+InRange=0
+Keyword=AppActivate Alias Base Beep Call ChDir Close Const Compare Case Date Declare Deftype DeleteSetting Dim Do End Enum Erase Error Event Exit Erase Else Explicit FileCopy For Function Get GoSub GoTo If Implements Input Kill Let Line Load Lock LSet Input Loop Lib Mid MkDir Next Name On Open Option Print Private Public Put RaiseEvent Randomize ReDim Reset Resume RmDir RSet SavePicture SaveSettings Seek Select SendKeys Set SetAttr Static Stop Sub Then Time Type Unload While Wend Width Write
+
+[3.Functions]
+Color=ForestGreen
+BgColor=
+Style=Bold
+InRange=0
+Keyword=Abs Array Asc AscB AscW Atn Avg CBool CByte CCur CDate CDbl Cdec Choose Chr ChrB ChrW CInt CLng Command Cos Count CreateObject CSng CStr CurDir CVar CVDate CVErr Date DateAdd DateDiff DatePart DateSerial DateValue Day DDB Dir DoEvents Environ EOF Error Exp FileAttr FileDateTime FileLen Fix Format FreeFile FV GetAllStrings GetAttr GetAutoServerSettings GetObject GetSetting Hex Hour IIf IMEStatus Input InputB InputBox InStr InstB Int IPmt IsArray IsDate IsEmpty IsError IsMissing IsNull IsNumeric IsObject LBound LCase Left LeftB Len LenB LoadPicture Loc LOF Log LTrim Max Mid MidB Min Minute MIRR Month MsgBox Now NPer NPV Oct Partition Pmt PPmt PV QBColor Rate RGB Right RightB Rnd RTrim Second Seek Sgn Shell Sin SLN Space Spc Sqr StDev StDevP Str StrComp StrConv String Switch Sum SYD Tab Tan Time Timer TimeSerial TimeValue Trim TypeName UBound UCase  Val Var VarP VarType Weekday Year
+
+[4.Methods]
+Color=DarkOrchid
+BgColor=
+Style=Bold
+InRange=0
+Keyword=Accept Activate Add AddCustom AddFile AddFromFile AddFromTemplate AddItem AddNew AddToAddInToolbar AddToolboxProgID Append AppendChunk Arrange Assert AsyncRead BatchUpdate BeginTrans Bind Cancel CancelAsyncRead CancelBatch CancelUpdate CanPropertyChange CaptureImage CellText CellValue Circle Clear ClearFields ClearSel ClearSelCols Clone Close Cls ColContaining  ColumnSize CommitTrans CompactDatabase Compose Connect Copy CopyQueryDef CreateDatabase CreateDragImage CreateEmbed CreateField CreateGroup CreateIndex CreateLink  CreatePreparedStatement CreatePropery CreateQuery CreateQueryDef CreateRelation CreateTableDef CreateUser CreateWorkspace Customize Delete DeleteColumnLabels DeleteColumns DeleteRowLabels DeleteRows DoVerb Drag Draw Edit EditCopy EditPaste EndDoc EnsureVisible EstablishConnection Execute ExtractIcon Fetch FetchVerbs Files FillCache Find FindFirst FindItem FindLast FindNext FindPrevious Forward GetBookmark GetChunk GetClipString GetData GetFirstVisible GetFormat GetHeader GetLineFromChar GetNumTicks GetRows GetSelectedPart GetText GetVisibleCount GoBack GoForward Hide HitTest HoldFields Idle InitializeLabels InsertColumnLabels InsertColumns InsertObjDlg InsertRowLabels InsertRows Item KillDoc Layout Line LinkExecute LinkPoke LinkRequest LinkSend Listen LoadFile LoadResData LoadResPicture LoadResString LogEvent MakeCompileFile MakeReplica MoreResults Move MoveData MoveFirst MoveLast MoveNext MovePrevious NavigateTo NewPage NewPassword NextRecordset OLEDrag OnAddinsUpdate OnConnection OnDisconnection OnStartupComplete Open OpenConnection OpenDatabase OpenQueryDef OpenRecordset OpenResultset OpenURL Overlay PaintPicture Paste PastSpecialDlg PeekData Play Point PopulatePartial PopupMenu Print PrintForm PropertyChanged PSet Quit Raise RandomDataFill RandomFillColumns RandomFillRows rdoCreateEnvironment rdoRegisterDataSource ReadFromFile ReadProperty Rebind ReFill Refresh RefreshLink RegisterDatabase  Reload Remove RemoveAddInFromToolbar RemoveItem Render RepairDatabase Reply ReplyAll Requery ResetCustom ResetCustomLabel ResolveName RestoreToolbar Resync Rollback  RollbackTrans RowBookmark RowContaining RowTop Save SaveAs SaveFile SaveToFile SaveToolbar SaveToOle1File Scale ScaleX ScaleY Scroll Select SelectAll SelectPart SelPrint Send SendData Set SetAutoServerSettings SetData  SetFocus SetOption SetSize SetText SetViewport Show ShowColor ShowFont ShowHelp ShowOpen ShowPrinter ShowSave ShowWhatsThis SignOff SignOn Size Span SplitContaining  StartLabelEdit StartLogging Stop Synchronize TextHeight TextWidth ToDefaults TwipsToChartPart TypeByChartType Update UpdateControls UpdateRecord UpdateRow Upto WhatsThisMode WriteProperty ZOrder
+
+[5.Events]
+Color=CornflowerBlue
+BgColor=
+Style=Bold
+InRange=0
+Keyword=AccessKeyPress AfterAddFile AfterChangeFileName AfterCloseFile AfterColEdit AfterColUpdate AfterDelete AfterInsert AfterLabelEdit AfterRemoveFile AfterUpdate AfterWriteFile  AmbienChanged ApplyChanges Associate AsyncReadComplete AxisActivated AxisLabelActivated AxisLabelSelected AxisLabelUpdated AxisSelected AxisTitleActivated AxisTitleSelected  AxisTitleUpdated AxisUpdated BeforeClick BeforeColEdit BeforeColUpdate BeforeConnect BeforeDelete BeforeInsert BeforeLabelEdit BeforeLoadFile BeforeUpdate ButtonClick ButtonCompleted ButtonGotFocus  ButtonLostFocus Change ChartActivated ChartSelected ChartUpdated Click ColEdit Collapse ColResize ColumnClick Compare ConfigChageCancelled ConfigChanged ConnectionRequest DataArrival DataChanged DataUpdated DblClick Deactivate DeviceArrival DeviceOtherEvent DeviceQueryRemove DeviceQueryRemoveFailed DeviceRemoveComplete DeviceRemovePending  DevModeChange Disconnect DisplayChanged Dissociate DoGetNewFileName Done DonePainting DownClick DragDrop DragOver DropDown EditProperty EnterCell EnterFocus Event ExitFocus Expand FootnoteActivated FootnoteSelected FootnoteUpdated GotFocus HeadClick InfoMessage Initialize IniProperties ItemActivated ItemAdded ItemCheck ItemClick ItemReloaded ItemRemoved ItemRenamed ItemSeletected KeyDown KeyPress KeyUp LeaveCell LegendActivated LegendSelected LegendUpdated LinkClose LinkError LinkNotify LinkOpen Load LostFocus MouseDown MouseMove MouseUp NodeClick ObjectMove OLECompleteDrag OLEDragDrop OLEDragOver OLEGiveFeedback OLESetData OLEStartDrag OnAddNew OnComm Paint PanelClick PanelDblClick PathChange PatternChange PlotActivated PlotSelected PlotUpdated PointActivated PointLabelActivated PointLabelSelected PointLabelUpdated  PointSelected PointUpdated PowerQuerySuspend PowerResume PowerStatusChanged PowerSuspend QueryChangeConfig QueryComplete QueryCompleted QueryTimeout QueryUnload ReadProperties Reposition RequestChangeFileName RequestWriteFile Resize ResultsChanged RowColChange RowCurrencyChange RowResize RowStatusChanged SelChange SelectionChanged SendComplete SendProgress SeriesActivated SeriesSelected SeriesUpdated SettingChanged SplitChange StateChanged StatusUpdate SysColorsChanged Terminate TimeChanged TitleActivated TitleSelected TitleActivated UnboundAddData UnboundDeleteRow UnboundGetRelativeBookmark UnboundReadData UnboundWriteData Unload UpClick Updated Validate ValidationError WillAssociate WillChangeData WillDissociate WillExecute WillUpdateRows WithEvents WriteProperties

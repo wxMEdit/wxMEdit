@@ -1,0 +1,64 @@
+# C#
+Title=C#
+CaseSensitive=Yes
+Delimiter=~`!@#$%^&*()-+=|\{}[]:;"',.<>/?
+LineComment=//
+BlockComment=/* */
+EscapeChar=\
+StringChar="'
+DirectiveLeading=#
+KeywordPrefix=
+SpecialWordPrefix=
+IndentChar={:
+UnindentChar=}
+BracePair=( ) [ ] { } /* */
+AutoCompletePair=() [] {} "" ''
+
+
+# System Predefined Color & Style
+TextColor=Black
+TextBgColor=White
+TextStyle=
+
+DelimiterColor=SaddleBrown
+DelimiterBgColor=
+DelimiterStyle=
+
+SpaceColor=Aqua
+SpaceBgColor=
+SpaceStyle=
+
+NumberColor=Blue
+NumberBgColor=
+NumberStyle=
+
+StringColor=Red
+StringBgColor=
+StringStyle=
+
+CommentColor=Teal
+CommentBgColor=
+CommentStyle=
+
+DirectiveColor=Green
+DirectiveBgColor=
+DirectiveStyle=
+
+SpecialWordColor=Navy
+SpecialWordBgColor=
+SpecialWordStyle=
+
+LineNumberColor=White
+LineNumberBgColor=A0A0A0
+LineNumberStyle=
+
+ActiveLineColor=Fuchsia
+BookmarkColor=C0FFFF
+
+# User Defined Keywords
+[1.Keywords]
+Color=Black
+BgColor=
+Style=Bold
+InRange=0
+Keyword=abstract as base bool break byte case catch char checked class const continue decimal default delegate do double else enum event explicit extern false finally fixed float for foreach goto if implicit in int interface internal is lock long namespace new null object operator out override params private protected public readonly ref return sbyte sealed short sizeof stackalloc static string struct switch this throw true try typeof uint ulong unchecked unsafe ushort using virtual volatile void while

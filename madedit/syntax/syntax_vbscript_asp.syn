@@ -1,0 +1,115 @@
+# ASP(VBScript)
+Title=ASP(VBScript)
+CaseSensitive=No
+Delimiter=~`!@#$%^&*()-+=|\{}[]:;"',.<>/?
+EscapeChar=\
+StringChar="
+DirectiveLeading=
+KeywordPrefix=
+SpecialWordPrefix=$&
+IndentChar=
+UnindentChar=
+BracePair=<!-- --> <% %> ( ) [ ] { }
+AutoCompletePair=() [] {} ""
+
+# CustomRange=(rangeid) (begin string) (end string) (bgcolor) ...
+CustomRange=1 <% %> F8F8F8 2 < > E8E8E8
+
+StringInRange=1 2
+
+LineComment=' REM
+LineCommentInRange=1
+
+BlockComment=<!-- -->
+BlockCommentInRange=0
+
+TextColor=Black
+TextBgColor=White
+TextStyle=
+
+DelimiterColor=SaddleBrown
+DelimiterBgColor=
+DelimiterStyle=
+
+SpaceColor=Aqua
+SpaceBgColor=
+SpaceStyle=
+
+NumberColor=Blue
+NumberBgColor=
+NumberStyle=
+
+StringColor=Red
+StringBgColor=
+StringStyle=
+
+CommentColor=Teal
+CommentBgColor=
+CommentStyle=
+
+DirectiveColor=Green
+DirectiveBgColor=
+DirectiveStyle=
+
+SpecialWordColor=Navy
+SpecialWordBgColor=
+SpecialWordStyle=
+
+LineNumberColor=White
+LineNumberBgColor=A0A0A0
+LineNumberStyle=
+
+ActiveLineColor=Fuchsia
+BookmarkColor=C0FFFF
+
+[1.VBScript_Statements]
+Color=Black
+Style=Bold
+InRange=1
+Keyword=Call Case Class Const Dim Do Else ElseIf End Erase Error Execute Exit Explicit For ForEach Function Get If Let Loop Next On Option Private Property Public Set Randomize ReDim Rem Resume Select Set Sub Then Wend While With And Eqv Imp In Is Mod Not Or Xor
+
+[2.VBScript_Functions]
+Color=DarkBlue
+Style=Bold
+InRange=1
+Keyword=Abs Array Asc Atn Avg CBool CByte CCur CDate CDbl Chr CInt CLng Cos CSng CStr Date DateAdd DateDiff DatePart DateSerial DateValue Day Eval Exp Filter Fix FormatCurrency FormatDateTime FormatNumber FormatPercent GetObject GetRef Hex Hour InputBox InStr InstrRev Int IsArray IsDate IsEmpty IsNull IsNumeric IsObject Join LBound LCase Left Len LoadPicture Log LTrim Mid Minute Month MonthName MsgBox Now Oct Replace RGB Right Rnd Round RTrim ScriptEngine ScriptEngineBuildVersion ScriptEngineMajorVersion ScriptEngineMinorVersion Second Sgn Sin Space Split Sqr StrComp String StrReverse Tan Time Timer TimeSerial TimeValue Trim TypeName UBound UCase VarType Weekday WeekdayName Year
+
+[3.VBScript_Objects]
+Color=ForestGreen
+Style=Bold
+InRange=1
+Keyword=Application Dictionary Err FileSystemObject Match Matches ObjectContext RegExp Request Response Scripting Server Session
+
+[4.VBScript_Misc]
+Color=DarkOrchid
+Style=
+InRange=1
+Keyword=Abandon AddHeader AppendToLog BinaryRead BinaryWrite Buffer CacheControl Charset Clear ClientCertificate Close CodePage Contents ContentType Cookies CreateObject Description Expires ExpiresAbsolute Fields FirstIndex Flush Form Global HelpContext HelpFile HTMLEncode IgnoreCase Initialize IsClientConnected LCID Length Lock MapPath Number OnEnd OnStart OnTransactionCommit OnTransactionAbort Open Pattern Pics QueryString Raise Redirect ScriptTimeout ServerVariables SessionID SetComplete SetAbort Source StaticObjects Status Terminate Test Timeout TotalBytes Unlock URLEncode Value Write
+
+[5.VBScript_Constants]
+Color=CornflowerBlue
+BgColor=
+Style=Bold
+InRange=1
+Keyword=vbBlack vbBlue vbCyan vbGreen vbMagenta vbRed vbWhite vbYellow vbBinaryCompare vbTextCompare vbSunday vbMonday vbTuesday vbWednesday vbThursday vbFriday vbSaturday vbUseSystem vbUseSystemDayOfWeek vbFirstJan1 vbFirstFourDays vbFirstFullWeek vbGeneralDate vbLongDate vbShortDate vbLongTime vbShortTime vbObjectError vbOKOnly vbOKCancel vbAbortRetryIgnore vbYesNoCancel vbYesNo vbRetryCancel vbCritical vbQuestion vbExclamation vbInformation vbDefaultButton1 vbDefaultButton2 vbDefaultButton3 vbDefaultButton4 vbApplicationModal vbSystemModal vbCr vbCrLf vbFormFeed vbLf vbNewLine vbNullChar vbNullString vbTab vbVerticalTab vbUseDefault vbTrue vbFalse
+
+[6.HTML_Tags]
+Color=Black
+Style=Bold
+InRange=2
+CaseSensitive=No
+Keyword=DOCTYPE a abbr acronym address applet area b base basefont bdo big blockquote body br button caption center cite code col colgroup dd del dir div dfn dl dt em fieldset font form frame frameset h1 h2 h3 h4 h5 h6 h7 h8 h9 head hr html i iframe img input ins isindex kbd label legend li link map menu meta noframes noscript object ol optgroup option p aram pre q s samp script select small span strike strong style sub sup table tbody td textarea tfoot th thead title tr tt u ul var xmp
+
+[7.HTML_Attributes]
+Color=SlateGray
+Style=
+InRange=2
+CaseSensitive=No
+Keyword=abbr accept accesskey action align alink alt pplicationname archive axis background behavior below bgcolor bgproperties border bordercolor bordercolordark bordercolorlight borderstyle caption cellpadding cellspacing char charoff charset checked cite class classid clear code codebase codetype color cols colspan compact content coords data datetime declare defer dir direction disabled dynsrc enctype equiv face for frame frameborder framespacing gutter headers height href hreflang hspace http icon id ismap label language leftmargin link longdesc loop lowsrc marginheight marginwidth maximizebutton maxlength media method methods minimizebutton multiple name nohref noresize noshade nowrap object onabort onblur onchange onclick ondblclick onfocus onkeydown onkeypress onkeyup onload onmousedown onmousemove onmouseout onmouseover onmouseup onreset onselect onsubmit onunload profile prompt readonly rel rev rows rowspan rules runat scheme scope scrollamount scrolldelay scrolling selected shape showintaskbar singleinstance size span src standby start style summary sysmenu tabindex target text title topmargin type url urn usemap valign value valuetype version vlink vrml vspace width windowstate wrap
+
+[8.HTML_Constants]
+Color=Indigo
+Style=Bold
+InRange=2
+CaseSensitive=No
+Keyword=aqua black blue fuchsia gray green lime maroon navy olive purple red silver teal white yellow top bottom middle left right center _blank hidden public

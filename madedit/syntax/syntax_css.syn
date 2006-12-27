@@ -7,7 +7,7 @@ BlockComment=/* */
 EscapeChar=
 StringChar=
 DirectiveLeading=
-KeywordPrefix=@
+KeywordPrefix=
 SpecialWordPrefix=#
 IndentChar={
 UnindentChar=}
@@ -60,7 +60,7 @@ Color=Black
 BgColor=
 Style=Bold
 InRange=0
-Keyword=a above active address applet array area b base basefont bgsound big blockquote body br cite code dd dfn dir div dl dt em fig first-letter first-line form frame frameset h h1 h2 h3 h4 h5 h6 h7 h8 h9 head hover hr html i img input isindex kbd li link map marquee menu meta nextid nobr noframes note noscript ol option p range root span samp script select sound sqrt style strike strong sup table td textarea th title tr tt u ul var visited wbr
+Keyword=a above active address applet array area b base basefont bgsound big blockquote body br cite code dd dfn dir div dl dt em fig first-letter first-line form frame frameset h h1 h2 h3 h4 h5 h6 h7 h8 h9 head hover hr html i img input isindex kbd li link map marquee menu meta nextid nobr noframes note noscript ol option p range root span samp script select sound sqrt style strike strong sup table td textarea th title tr tt u ul var visited wbr yes
 
 [2.Properties]
 Color=DarkBlue
