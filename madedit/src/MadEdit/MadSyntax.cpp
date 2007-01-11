@@ -1310,7 +1310,7 @@ int MadSyntax::FindStringCase(MadUCQueue & ucqueue, size_t first,
 
             if(ucsize >= len)
             {
-                deque < MadUCPair >::iterator it = ucqueue.begin();
+                MadUCQueueIterator it = ucqueue.begin();
                 std::advance(it, first + 1);
                 while(*(++cstr) != 0)
                 {
@@ -1360,7 +1360,7 @@ int MadSyntax::FindStringNoCase(MadUCQueue & ucqueue, size_t first,
 
             if(ucsize >= len)
             {
-                deque < MadUCPair >::iterator it = ucqueue.begin();
+                MadUCQueueIterator it = ucqueue.begin();
                 std::advance(it, first + 1);
                 while(*(++cstr) != 0)
                 {

@@ -26,7 +26,6 @@
 #include "plugin.h"
 #include <wx/wxFlatNotebook/wxFlatNotebook.h>
 
-#include <deque>
 #include <wx/app.h>
 //#include <wx/dynload.h>
 #include <wx/tokenzr.h>

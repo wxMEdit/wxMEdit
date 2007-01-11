@@ -1482,7 +1482,7 @@ int MadLines::FindStringCase(MadUCQueue &ucqueue, MadStringIterator begin,
 
             if(ucsize >= len)
             {
-                deque < MadUCPair >::iterator it = ucqueue.begin();
+                MadUCQueueIterator it = ucqueue.begin();
                 ++it;
                 while(*(++cstr) != 0)
                 {
@@ -1531,7 +1531,7 @@ int MadLines::FindStringNoCase(MadUCQueue &ucqueue, MadStringIterator begin,
 
             if(ucsize >= len)
             {
-                deque < MadUCPair >::iterator it = ucqueue.begin();
+                MadUCQueueIterator it = ucqueue.begin();
                 ++it;
                 while(*(++cstr) != 0)
                 {

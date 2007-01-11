@@ -32,6 +32,7 @@ using std::deque;
 using std::pair;
 
 #include "ucs4_t.h"
+#include "MadDeque.hpp"
 
 //===========================================================================
 // MadFileNameIsUTF8, MadDirExists, MadConvFileName_WC2MB_UseLibc
@@ -311,10 +312,13 @@ struct MadLine
 
 //==================================================
 
-typedef list <MadLine>::iterator    MadLineIterator;
-typedef pair <ucs4_t, short int>    MadUCPair;        // ucs4char, uc_len
-typedef deque <MadUCPair>           MadUCQueue;
-typedef vector <wxString>::iterator MadStringIterator;
+typedef list<MadLine>::iterator         MadLineIterator;
+typedef pair<ucs4_t, short int>         MadUCPair;  // ucs4char, uc_len
+//typedef deque<MadUCPair>             MadUCQueue;
+//typedef deque<MadUCPair>::iterator   MadUCQueueIterator;
+typedef MadDeque<MadUCPair>             MadUCQueue;
+typedef MadDeque<MadUCPair>::iterator   MadUCQueueIterator;
+typedef vector<wxString>::iterator      MadStringIterator;
 
 class MadEdit;
 class MadSyntax;
