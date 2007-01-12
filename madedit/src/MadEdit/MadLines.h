@@ -313,7 +313,7 @@ struct MadLine
 //==================================================
 
 typedef list<MadLine>::iterator         MadLineIterator;
-typedef pair<ucs4_t, short int>         MadUCPair;  // ucs4char, uc_len
+typedef pair<ucs4_t, int>               MadUCPair;  // ucs4char, uc_len
 //typedef deque<MadUCPair>             MadUCQueue;
 //typedef deque<MadUCPair>::iterator   MadUCQueueIterator;
 typedef MadDeque<MadUCPair>             MadUCQueue;

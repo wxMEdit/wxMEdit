@@ -271,6 +271,7 @@ public:
     bool operator==(const MadDeque& d) const
     {
         if(m_size != d.m_size) return false;
+        if(m_size == 0) return true;
 
         iterator it0 = begin(), it0end = end();
         iterator it1 = d.begin();
