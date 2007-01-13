@@ -2813,7 +2813,7 @@ bool MadLines::LoadFromFile(const wxString &filename, const wxString &encoding)
     if(m_MadEdit->m_EditMode == emHexMode)
         m_MadEdit->SetEditMode(emTextMode);
 
-    const int max_detecting_size = 8192;
+    const int max_detecting_size = 4096;
     int s;
     if(m_FileData->m_Size > max_detecting_size)
         s = max_detecting_size;

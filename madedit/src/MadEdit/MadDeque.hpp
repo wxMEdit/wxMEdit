@@ -107,8 +107,7 @@ public:
         // pre-increment operator
         iterator& operator++()
         {
-            ++ptr;
-            if(ptr == buf->end)
+            if(++ptr == buf->end)
             {
                 if(buf->next == NULL)
                 {
