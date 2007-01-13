@@ -2,7 +2,9 @@
 
 bin/sh		syntax_sh.syn
 bin/bash	syntax_sh.syn
-
 ?xml		syntax_xml.syn
-
 bin/make	syntax_conf.syn
+bin/awk		syntax_awk.syn
+bin/perl	syntax_perl.syn
+bin/python	syntax_python.syn
+bin/ruby	syntax_ruby.syn

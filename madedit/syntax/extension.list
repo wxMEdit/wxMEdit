@@ -95,3 +95,5 @@ vbs syntax_visualbasic.syn
 
 asp syntax_vbscript_asp.syn
 inc syntax_vbscript_asp.syn
+
+as syntax_angelscript.syn
