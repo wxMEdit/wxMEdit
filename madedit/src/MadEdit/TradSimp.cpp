@@ -5693,7 +5693,7 @@ int ConvertChinese(const wxChar *in, wxChar *out, size_t count, bool bTrad2Simp)
     for(size_t i=0; i<count; ++i, ++in, ++out)
     {
         const wxChar wc = *in;
-        if(table[ wc ] != 0)
+        if(wc >= 0 && wc < 65536 && table[ wc ] != 0)
         {
             *out = table[ wc ];
             ++converted;
