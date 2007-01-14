@@ -22,7 +22,7 @@
 // Name:        src/gtk/window.cpp
 // Purpose:
 // Author:      Robert Roebling
-// Id:          $Id: window.cpp,v 1.664 2006/09/19 10:22:20 RR Exp $
+// Id:          $Id: window.cpp,v 1.680 2006/12/03 13:59:40 VZ Exp $
 // Copyright:   (c) 1998 Robert Roebling, Julian Smart
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////
