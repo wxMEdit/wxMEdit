@@ -317,6 +317,7 @@ madedit_SOURCES = src/MadAboutDialog.cpp \
 	src/MadEdit/caret_new.h \
 	src/MadEdit/clipbrd_gtk.cpp \
 	src/MadEdit/clipbrd_gtk.h \
+	src/MadEdit/MadDeque.hpp \
 	src/MadEdit/MadEdit.cpp \
 	src/MadEdit/MadEdit.h \
 	src/MadEdit/MadEditAdvanced.cpp \

@@ -35,6 +35,7 @@ syntax_DATA =	extension.list \
 	syntax_squirrel.syn \
 	syntax_latex.syn \
 	syntax_csharp.syn \
-	syntax_vbscript_asp.syn
+	syntax_vbscript_asp.syn \
+	syntax_angelscript.syn
 
 EXTRA_DIST = $(syntax_DATA)
