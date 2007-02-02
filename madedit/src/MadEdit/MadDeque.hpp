@@ -222,6 +222,21 @@ private:
         return ptr + (count - index);
     }
 
+private:
+    void init(const MadDeque& d)
+    {
+        clear(); // destroy old T
+        if(!d.empty())
+        {
+            iterator it = d.begin(), itend = d.end();
+            do
+            {
+                this->push_back(*it);
+            }
+            while(++it != itend);
+        }
+    }
+
 public:
     MadDeque() :
         m_size(0),
@@ -238,7 +253,7 @@ public:
         m_begin_iterator(iterator(m_first_buffer, m_first_buffer->begin)),
         m_end_iterator(m_begin_iterator)
     {
-        this->operator=(d);
+        init(d);
     }
     ~MadDeque()
     {
@@ -252,18 +267,7 @@ public:
 
     MadDeque& operator=(const MadDeque& d)
     {
-        clear(); // destroy old T
-
-        if(!d.empty())
-        {
-            iterator it = d.begin(), itend = d.end();
-            do
-            {
-                this->push_back(*it);
-            }
-            while(++it != itend);
-        }
-
+        init(d);
         return *this;
     }
 
