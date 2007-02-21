@@ -18,10 +18,12 @@
 #include <wx/arrimpl.cpp>
 
 
-#if !wxCHECK_VERSION(2,8,0)
-    #define Contains Inside
+#if wxCHECK_VERSION(2,8,0)
+    #define Contains_ Contains
+#else
+    #define Contains_ Inside
 #endif
-#define Contains_ Contains
+
 
 #ifdef DEVELOPMENT
 # define FNB_LOG_MSG( msg ) { wxString logmsg; logmsg << msg; wxLogMessage( logmsg ); }
@@ -1039,7 +1041,7 @@ int wxPageContainer::HitTest(const wxPoint& pt, wxPageInfo& pageInfo, int &tabId
 	}
 
 	rect = wxRect(btnXPos, 8, 16, 16);
-	if(rect.Contains(pt))
+	if(rect.Contains_(pt))
 	{
 		return (style & wxFNB_NO_X_BUTTON) ? wxFNB_NOWHERE : wxFNB_X;
 	}
@@ -1048,18 +1050,18 @@ int wxPageContainer::HitTest(const wxPoint& pt, wxPageInfo& pageInfo, int &tabId
 	if( style & wxFNB_DROPDOWN_TABS_LIST )
 	{
 		rect = wxRect(render->GetDropArrowButtonPos( this ), 8, 16, 16);
-		if( rect.Contains(pt) )
+		if( rect.Contains_(pt) )
 			return wxFNB_DROP_DOWN_ARROW;
 	}
 
-	if(rect.Contains(pt))
+	if(rect.Contains_(pt))
 	{
 		return (style & wxFNB_NO_NAV_BUTTONS) ? wxFNB_NOWHERE : wxFNB_RIGHT_ARROW;
 	}
 
 
 	rect = wxRect(btnLeftPos, 8, 16, 16);
-	if(rect.Contains(pt))
+	if(rect.Contains_(pt))
 	{
 		return (style & wxFNB_NO_NAV_BUTTONS) ? wxFNB_NOWHERE : wxFNB_LEFT_ARROW;
 	}
@@ -1076,7 +1078,7 @@ int wxPageContainer::HitTest(const wxPoint& pt, wxPageInfo& pageInfo, int &tabId
 		if(style & wxFNB_X_ON_TAB && (int)cur == GetSelection())
 		{
 			// 'x' button exists on a tab
-			if(m_pagesInfoVec[cur].GetXRect().Contains(pt))
+			if(m_pagesInfoVec[cur].GetXRect().Contains_(pt))
 			{
 				pageInfo = pgInfo;
 				tabIdx = (int)cur;
@@ -1086,7 +1088,7 @@ int wxPageContainer::HitTest(const wxPoint& pt, wxPageInfo& pageInfo, int &tabId
 
 		if(style & wxFNB_VC8)
 		{
-			if(m_pagesInfoVec[cur].GetRegion().Contains_(pt) == wxInRegion)
+			if(m_pagesInfoVec[cur].GetRegion().Contains(pt) == wxInRegion)
 			{
 				if(bFoundMatch || (int)cur == GetSelection())
 				{
@@ -1104,7 +1106,7 @@ int wxPageContainer::HitTest(const wxPoint& pt, wxPageInfo& pageInfo, int &tabId
 
 			wxRect tabRect = wxRect(pgInfo.GetPosition().x, pgInfo.GetPosition().y, 
 				pgInfo.GetSize().x, pgInfo.GetSize().y);
-			if(tabRect.Contains(pt))
+			if(tabRect.Contains_(pt))
 			{
 				// We have a match
 				pageInfo = pgInfo;
