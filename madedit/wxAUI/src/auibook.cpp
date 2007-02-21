@@ -54,6 +54,11 @@ IMPLEMENT_CLASS(wxAuiTabCtrl, wxControl)
 IMPLEMENT_DYNAMIC_CLASS(wxAuiNotebookEvent, wxEvent)
 
 
+#if !wxCHECK_VERSION(2,8,0)
+    #define Contains Inside
+#endif
+
+
 //==============================================================================
 void GradientFillLinear(wxDC &dc,   const wxRect& rect,
                                     const wxColour& initialColour,
@@ -1924,7 +1929,7 @@ void wxAuiTabContainer::Render(wxDC* raw_dc, wxWindow* wnd)
 // true if a tab was hit, otherwise false
 bool wxAuiTabContainer::TabHitTest(int x, int y, wxWindow** hit) const
 {
-    if (!m_rect.Inside(x,y))
+    if (!m_rect.Contains(x,y))
         return false;
 
     wxAuiTabContainerButton* btn = NULL;
@@ -1939,7 +1944,7 @@ bool wxAuiTabContainer::TabHitTest(int x, int y, wxWindow** hit) const
     for (i = m_tab_offset; i < page_count; ++i)
     {
         wxAuiNotebookPage& page = m_pages.Item(i);
-        if (page.rect.Inside(x,y))
+        if (page.rect.Contains(x,y))
         {
             if (hit)
                 *hit = page.window;
@@ -1955,7 +1960,7 @@ bool wxAuiTabContainer::TabHitTest(int x, int y, wxWindow** hit) const
 bool wxAuiTabContainer::ButtonHitTest(int x, int y,
                                       wxAuiTabContainerButton** hit) const
 {
-    if (!m_rect.Inside(x,y))
+    if (!m_rect.Contains(x,y))
         return false;
 
     size_t i, button_count;
@@ -1965,7 +1970,7 @@ bool wxAuiTabContainer::ButtonHitTest(int x, int y,
     for (i = 0; i < button_count; ++i)
     {
         wxAuiTabContainerButton& button = m_buttons.Item(i);
-        if (button.rect.Inside(x,y) &&
+        if (button.rect.Contains(x,y) &&
             !(button.cur_state & (wxAUI_BUTTON_STATE_HIDDEN |
                                    wxAUI_BUTTON_STATE_DISABLED)))
         {
@@ -1979,7 +1984,7 @@ bool wxAuiTabContainer::ButtonHitTest(int x, int y,
     for (i = 0; i < button_count; ++i)
     {
         wxAuiTabContainerButton& button = m_tab_close_buttons.Item(i);
-        if (button.rect.Inside(x,y) &&
+        if (button.rect.Contains(x,y) &&
             !(button.cur_state & (wxAUI_BUTTON_STATE_HIDDEN |
                                    wxAUI_BUTTON_STATE_DISABLED)))
         {
@@ -3546,7 +3551,7 @@ wxAuiTabCtrl* wxAuiNotebook::GetTabCtrlFromPoint(const wxPoint& pt)
             continue;
 
         wxTabFrame* tabframe = (wxTabFrame*)all_panes.Item(i).window;
-        if (tabframe->m_tab_rect.Inside(pt))
+        if (tabframe->m_tab_rect.Contains(pt))
             return tabframe->m_tabs;
     }
 

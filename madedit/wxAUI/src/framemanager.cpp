@@ -70,6 +70,10 @@ IMPLEMENT_DYNAMIC_CLASS(wxAuiManagerEvent, wxEvent)
 IMPLEMENT_CLASS(wxAuiManager, wxEvtHandler)
 
 
+#if !wxCHECK_VERSION(2,8,0)
+    #define Contains Inside
+#endif
+
 
 const int auiToolBarLayer = 10;
 
@@ -589,7 +593,7 @@ wxAuiDockUIPart* wxAuiManager::HitTest(int x, int y)
             continue;
 
         // if the point is inside the rectangle, we have a hit
-        if (item->rect.Inside(x,y))
+        if (item->rect.Contains(x,y))
             result = item;
     }
 
@@ -2724,7 +2728,7 @@ bool wxAuiManager::DoDrop(wxAuiDockInfoArray& docks,
         // should float if being dragged over center pane windows
         if (!part->dock->fixed || part->dock->dock_direction == wxAUI_DOCK_CENTER)
         {
-            if (m_last_rect.IsEmpty() || m_last_rect.Inside(pt.x, pt.y ))
+            if (m_last_rect.IsEmpty() || m_last_rect.Contains(pt.x, pt.y ))
             {
                 m_skipping = true;
             }
