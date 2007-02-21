@@ -13932,7 +13932,13 @@ int MadEdit::Save(bool ask, const wxString &title, bool saveas) // return YES, N
 
         if(saveas || m_Lines->m_Name.IsEmpty())  // choose a file to save
         {
-            wxFileDialog dlg(this, dlgtitle, wxEmptyString, filename, wxFileSelectorDefaultWildcardStr, wxFD_SAVE|wxFD_OVERWRITE_PROMPT );
+            wxFileDialog dlg(this, dlgtitle, wxEmptyString, filename, wxFileSelectorDefaultWildcardStr,
+#if wxCHECK_VERSION(2,8,0)
+            wxFD_SAVE|wxFD_OVERWRITE_PROMPT );
+#else
+            wxSAVE|wxOVERWRITE_PROMPT );
+#endif
+
             dlg.SetReturnCode(wxID_OK);
 
             ret=dlg.ShowModal();

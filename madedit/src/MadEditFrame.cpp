@@ -2822,7 +2822,12 @@ void MadEditFrame::OnFileOpen(wxCommandEvent& event)
         dir=filename.GetPath(wxPATH_GET_VOLUME|wxPATH_GET_SEPARATOR);
     }
 
-    wxFileDialog dlg(this, _("Open File"), dir, wxEmptyString, wxFileSelectorDefaultWildcardStr, wxFD_OPEN|wxFD_MULTIPLE );
+    wxFileDialog dlg(this, _("Open File"), dir, wxEmptyString, wxFileSelectorDefaultWildcardStr,
+#if wxCHECK_VERSION(2,8,0)
+    wxFD_OPEN|wxFD_MULTIPLE );
+#else
+    wxOPEN|wxMULTIPLE );
+#endif
 
     if (dlg.ShowModal()==wxID_OK)
     {
