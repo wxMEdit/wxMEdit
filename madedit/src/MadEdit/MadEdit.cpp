@@ -888,7 +888,7 @@ MadEdit::MadEdit(wxWindow* parent, wxWindowID id, const wxPoint& pos, const wxSi
     m_SearchWholeWord=false;
 
 #ifdef __WXMSW__
-    m_IsWin98 = (wxGetOsVersion()==wxWIN95);
+    m_IsWin98 = (wxGetOsVersion()==wxOS_WINDOWS_9X);
     m_Win98LeadByte=-1;
     m_ProcessWin98LeadByte=true;
 #endif
@@ -8965,8 +8965,17 @@ void MadEdit::OnChar(wxKeyEvent& evt)
                 {
                     if(enc->IsLeadByte(wxByte(ucs4)))
                     {
-                        m_Win98LeadByte=ucs4;
-                        processed=true;
+                        wxByte db[2]={ucs4, 0}; // is valid single byte char
+                        ucs4_t uc=enc->DBtoUCS4(db);
+                        if(uc != 0)
+                        {
+                            ucs4 = uc;
+                        }
+                        else
+                        {
+                            m_Win98LeadByte=ucs4;
+                            processed=true;
+                        }
                     }
                 }
             }
@@ -13925,7 +13934,7 @@ int MadEdit::Save(bool ask, const wxString &title, bool saveas) // return YES, N
 
         if(saveas || m_Lines->m_Name.IsEmpty())  // choose a file to save
         {
-            wxFileDialog dlg(this, dlgtitle, wxEmptyString, filename, wxFileSelectorDefaultWildcardStr, wxSAVE|wxOVERWRITE_PROMPT );
+            wxFileDialog dlg(this, dlgtitle, wxEmptyString, filename, wxFileSelectorDefaultWildcardStr, wxFD_SAVE|wxFD_OVERWRITE_PROMPT );
             dlg.SetReturnCode(wxID_OK);
 
             ret=dlg.ShowModal();

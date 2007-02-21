@@ -127,6 +127,11 @@
 #include "../images/Mad_16x15.xpm"
 #define Mad_16x15_xpm_idx (hexmode_xpm_idx+1)
 
+#if wxCHECK_VERSION(2,7,0)
+    #define GetAccelFromString(x) wxAcceleratorEntry::Create(x)
+#else
+    #define GetAccelFromString(x) wxGetAccelFromString(x)
+#endif
 
 wxString g_MadEdit_Version(wxT("MadEdit v0.2.6 Beta"));
 wxString g_MadEdit_URL(wxT("http://madedit.sourceforge.net"));
@@ -1435,7 +1440,7 @@ void MadEditFrame::CreateGUIControls(void)
     list<wxMenu*> menu_stack;
     CommandData *cd = &CommandTable[0];
 #ifdef __WXMSW__
-    bool bHasMenuIcon = (wxGetOsVersion()!=wxWIN95); // fixed win98 will crash if menuitem has icon
+    bool bHasMenuIcon = (wxGetOsVersion()!=wxOS_WINDOWS_9X); // fixed win98 will crash if menuitem has icon
 #endif
     do
     {
@@ -1488,13 +1493,13 @@ void MadEditFrame::CreateGUIControls(void)
     g_AccelFindNext.Set(0, 0, 0, 0);
     g_AccelFindPrev.Set(0, 0, 0, 0);
 
-    wxAcceleratorEntry *ent=wxGetAccelFromString(g_Menu_Search->GetLabel(menuFindNext));
+    wxAcceleratorEntry *ent=GetAccelFromString(g_Menu_Search->GetLabel(menuFindNext));
     if(ent!=NULL)
     {
         g_AccelFindNext=*ent;
         delete ent;
     }
-    ent=wxGetAccelFromString(g_Menu_Search->GetLabel(menuFindPrevious));
+    ent=GetAccelFromString(g_Menu_Search->GetLabel(menuFindPrevious));
     if(ent!=NULL)
     {
         g_AccelFindPrev=*ent;
@@ -2817,7 +2822,7 @@ void MadEditFrame::OnFileOpen(wxCommandEvent& event)
         dir=filename.GetPath(wxPATH_GET_VOLUME|wxPATH_GET_SEPARATOR);
     }
 
-    wxFileDialog dlg(this, _("Open File"), dir, wxEmptyString, wxFileSelectorDefaultWildcardStr, wxOPEN|wxMULTIPLE );
+    wxFileDialog dlg(this, _("Open File"), dir, wxEmptyString, wxFileSelectorDefaultWildcardStr, wxFD_OPEN|wxFD_MULTIPLE );
 
     if (dlg.ShowModal()==wxID_OK)
     {
@@ -4084,7 +4089,7 @@ void MadEditFrame::OnToolsOptions(wxCommandEvent& event)
             tidit=ChangedMenuList.begin();
             tiditend=ChangedMenuList.end();
 #ifdef __WXMSW__
-            bool bHasMenuIcon = (wxGetOsVersion()!=wxWIN95); // fixed win98 will crash if menuitem has icon
+            bool bHasMenuIcon = (wxGetOsVersion()!=wxOS_WINDOWS_9X); // fixed win98 will crash if menuitem has icon
 #endif
             while(tidit!=tiditend)
             {

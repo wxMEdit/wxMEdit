@@ -1005,12 +1005,19 @@ bool MadLines::NextUChar_DBCS(MadUCQueue &ucqueue)
         LoadNewBuffer();
     }
 
+    ucs4_t uc;
+    wxByte *ptr = m_NextUChar_Buffer+m_NextUChar_BufferStart;
     if(rest>1)
     {
-        ucs4_t uc;
-        if((uc=m_Encoding->DBtoUCS4(m_NextUChar_Buffer+m_NextUChar_BufferStart))==0)// not a valid db-char
+        if((uc=m_Encoding->DBtoUCS4(ptr)) == 0)// not a valid db-char
         {
-            ucqueue.push_back(MadUCPair(m_NextUChar_Buffer[m_NextUChar_BufferStart], 1));
+            wxByte db[2] = {*ptr, 0}; // re-check by first byte
+            if((uc=m_Encoding->DBtoUCS4(db)) == 0)
+            {
+                uc = *ptr;
+            }
+
+            ucqueue.push_back(MadUCPair(uc, 1));
             m_NextUChar_Pos++;
             m_NextUChar_BufferStart++;
             m_NextUChar_BufferSize--;
@@ -1024,7 +1031,12 @@ bool MadLines::NextUChar_DBCS(MadUCQueue &ucqueue)
         return true;
     }
 
-    ucqueue.push_back(MadUCPair(m_NextUChar_Buffer[m_NextUChar_BufferStart], 1));
+    wxByte db[2] = {*ptr, 0}; // re-check by first byte
+    if((uc=m_Encoding->DBtoUCS4(db)) == 0)
+    {
+        uc = *ptr;
+    }
+    ucqueue.push_back(MadUCPair(uc, 1));
     m_NextUChar_Pos++;
     m_NextUChar_BufferStart++;
     m_NextUChar_BufferSize--;

@@ -17,6 +17,13 @@
 
 //---------------------------------------------------------------------------
 
+#if !wxCHECK_VERSION(2,7,0)
+    #define WXK_PAGEUP          WXK_PRIOR
+    #define WXK_PAGEDOWN        WXK_NEXT
+    #define WXK_NUMPAD_PAGEUP   WXK_NUMPAD_PRIOR
+    #define WXK_NUMPAD_PAGEDOWN WXK_NUMPAD_NEXT
+#endif
+
 MadCommandTextMap *MadKeyBindings::ms_CommandTextMap=NULL;
 MadTextCommandMap *MadKeyBindings::ms_TextCommandMap=NULL;
 MadCommandTextMap *MadKeyBindings::ms_MenuIdTextMap=NULL;
@@ -263,10 +270,6 @@ MadEditShortCut StringToShortCut(const wxString &text)
                         keyCode = WXK_INSERT;
                     else if ( current == wxT("ENTER") || current == wxT("RETURN") )
                         keyCode = WXK_RETURN;
-                    else if ( current == wxT("PGUP") )
-                        keyCode = WXK_PRIOR;
-                    else if ( current == wxT("PGDN") )
-                        keyCode = WXK_NEXT;
                     else if ( current == wxT("LEFT") )
                         keyCode = WXK_LEFT;
                     else if ( current == wxT("RIGHT") )
@@ -319,9 +322,9 @@ MadEditShortCut StringToShortCut(const wxString &text)
                         keyCode = WXK_NUMLOCK;
                     else if ( current == wxT("SCROLL_LOCK") )
                         keyCode = WXK_SCROLL;
-                    else if ( current == wxT("PAGEUP") )
+                    else if ( current == wxT("PGUP") )
                         keyCode = WXK_PAGEUP;
-                    else if ( current == wxT("PAGEDOWN") )
+                    else if ( current == wxT("PGDN") )
                         keyCode = WXK_PAGEDOWN;
                     else if ( current == wxT("KP_SPACE") )
                         keyCode = WXK_NUMPAD_SPACE;
@@ -339,13 +342,9 @@ MadEditShortCut StringToShortCut(const wxString &text)
                         keyCode = WXK_NUMPAD_RIGHT;
                     else if ( current == wxT("KP_DOWN") )
                         keyCode = WXK_NUMPAD_DOWN;
-                    else if ( current == wxT("KP_PRIOR") )
-                        keyCode = WXK_NUMPAD_PRIOR;
-                    else if ( current == wxT("KP_PAGEUP") )
+                    else if ( current == wxT("KP_PGUP") )
                         keyCode = WXK_NUMPAD_PAGEUP;
-                    else if ( current == wxT("KP_NEXT;") )
-                        keyCode = WXK_NUMPAD_NEXT;
-                    else if ( current == wxT("KP_PAGEDOWN") )
+                    else if ( current == wxT("KP_PGDN") )
                         keyCode = WXK_NUMPAD_PAGEDOWN;
                     else if ( current == wxT("KP_END") )
                         keyCode = WXK_NUMPAD_END;
@@ -444,12 +443,6 @@ wxString ShortCutToString(MadEditShortCut shortcut)
         case WXK_RETURN:
             text << wxT("ENTER");;
             break;
-        case WXK_PRIOR:
-            text << wxT("PGUP");
-            break;
-        case WXK_NEXT:
-            text << wxT("PGDN");
-            break;
         case WXK_LEFT:
             text << wxT("LEFT");
             break;
@@ -528,12 +521,12 @@ wxString ShortCutToString(MadEditShortCut shortcut)
         case WXK_SCROLL:
             text << wxT("SCROLL_LOCK");
             break;
-        //case WXK_PAGEUP: == WXK_PRIOR
-            //text << wxT("PAGEUP");
-            //break;
-        //case WXK_PAGEDOWN: == WXK_NEXT
-            //text << wxT("PAGEDOWN");
-            //break;
+        case WXK_PAGEUP:
+            text << wxT("PGUP");
+            break;
+        case WXK_PAGEDOWN:
+            text << wxT("PGDN");
+            break;
         case WXK_NUMPAD_SPACE:
             text << wxT("KP_SPACE");
             break;
@@ -558,17 +551,11 @@ wxString ShortCutToString(MadEditShortCut shortcut)
         case WXK_NUMPAD_DOWN:
             text << wxT("KP_DOWN");
             break;
-        //case WXK_NUMPAD_PRIOR: == WXK_NUMPAD_PAGEUP
-            //text << wxT("KP_PRIOR");
-            //break;
         case WXK_NUMPAD_PAGEUP:
-            text << wxT("KP_PAGEUP");
+            text << wxT("KP_PGUP");
             break;
-        //case WXK_NUMPAD_NEXT: == WXK_NUMPAD_PAGEDOWN
-            //text << wxT("KP_NEXT");
-            //break;
         case WXK_NUMPAD_PAGEDOWN:
-            text << wxT("KP_PAGEDOWN");
+            text << wxT("KP_PGDN");
             break;
         case WXK_NUMPAD_END:
             text << wxT("KP_END");
@@ -678,8 +665,8 @@ void MadKeyBindings::AddDefaultBindings(bool overwrite)
     Add(ShortCut(wxACCEL_NORMAL, WXK_END),      ecEndLine, overwrite);
     Add(ShortCut(wxACCEL_CTRL,   WXK_HOME),     ecBeginDoc, overwrite);
     Add(ShortCut(wxACCEL_CTRL,   WXK_END),      ecEndDoc, overwrite);
-    Add(ShortCut(wxACCEL_NORMAL, WXK_PRIOR),    ecPrevPage, overwrite);
-    Add(ShortCut(wxACCEL_NORMAL, WXK_NEXT),     ecNextPage, overwrite);
+    Add(ShortCut(wxACCEL_NORMAL, WXK_PAGEUP),   ecPrevPage, overwrite);
+    Add(ShortCut(wxACCEL_NORMAL, WXK_PAGEDOWN), ecNextPage, overwrite);
     Add(ShortCut(wxACCEL_CTRL,   WXK_LEFT),     ecPrevWord, overwrite);
     Add(ShortCut(wxACCEL_CTRL,   WXK_RIGHT),    ecNextWord, overwrite);
     Add(ShortCut(wxACCEL_CTRL,   '['),          ecLeftBrace, overwrite);
@@ -693,8 +680,8 @@ void MadKeyBindings::AddDefaultBindings(bool overwrite)
     Add(ShortCut(wxACCEL_SHIFT, WXK_END),   ecSelEndLine, overwrite);
     Add(ShortCut(wxACCEL_CTRL | wxACCEL_SHIFT, WXK_HOME),   ecSelBeginDoc, overwrite);
     Add(ShortCut(wxACCEL_CTRL | wxACCEL_SHIFT, WXK_END),    ecSelEndDoc, overwrite);
-    Add(ShortCut(wxACCEL_SHIFT, WXK_PRIOR),                 ecSelPrevPage, overwrite);
-    Add(ShortCut(wxACCEL_SHIFT, WXK_NEXT),                  ecSelNextPage, overwrite);
+    Add(ShortCut(wxACCEL_SHIFT, WXK_PAGEUP),                ecSelPrevPage, overwrite);
+    Add(ShortCut(wxACCEL_SHIFT, WXK_PAGEDOWN),              ecSelNextPage, overwrite);
     Add(ShortCut(wxACCEL_CTRL | wxACCEL_SHIFT, WXK_LEFT),   ecSelPrevWord, overwrite);
     Add(ShortCut(wxACCEL_CTRL | wxACCEL_SHIFT, WXK_RIGHT),  ecSelNextWord, overwrite);
     Add(ShortCut(wxACCEL_CTRL | wxACCEL_SHIFT, '['),        ecSelLeftBrace, overwrite);
@@ -711,16 +698,16 @@ void MadKeyBindings::AddDefaultBindings(bool overwrite)
     Add(ShortCut(wxACCEL_CTRL | wxACCEL_ALT, WXK_UP),       ecScrollLineUp, overwrite);
     Add(ShortCut(wxACCEL_CTRL | wxACCEL_ALT, WXK_DOWN),     ecScrollLineDown, overwrite);
 
-    Add(ShortCut(wxACCEL_CTRL, WXK_PRIOR),                  ecScrollPageUp, overwrite);
-    Add(ShortCut(wxACCEL_CTRL, WXK_NEXT),                   ecScrollPageDown, overwrite);
-    Add(ShortCut(wxACCEL_CTRL | wxACCEL_SHIFT, WXK_PRIOR),  ecScrollPageUp, overwrite);
-    Add(ShortCut(wxACCEL_CTRL | wxACCEL_SHIFT, WXK_NEXT),   ecScrollPageDown, overwrite);
-    Add(ShortCut(wxACCEL_ALT, WXK_PRIOR),                   ecScrollPageUp, overwrite);
-    Add(ShortCut(wxACCEL_ALT, WXK_NEXT),                    ecScrollPageDown, overwrite);
-    Add(ShortCut(wxACCEL_ALT | wxACCEL_SHIFT, WXK_PRIOR),   ecScrollPageUp, overwrite);
-    Add(ShortCut(wxACCEL_ALT | wxACCEL_SHIFT, WXK_NEXT),    ecScrollPageDown, overwrite);
-    Add(ShortCut(wxACCEL_CTRL | wxACCEL_ALT, WXK_PRIOR),    ecScrollPageUp, overwrite);
-    Add(ShortCut(wxACCEL_CTRL | wxACCEL_ALT, WXK_NEXT),     ecScrollPageDown, overwrite);
+    Add(ShortCut(wxACCEL_CTRL, WXK_PAGEUP),                   ecScrollPageUp, overwrite);
+    Add(ShortCut(wxACCEL_CTRL, WXK_PAGEDOWN),                 ecScrollPageDown, overwrite);
+    Add(ShortCut(wxACCEL_CTRL | wxACCEL_SHIFT, WXK_PAGEUP),   ecScrollPageUp, overwrite);
+    Add(ShortCut(wxACCEL_CTRL | wxACCEL_SHIFT, WXK_PAGEDOWN), ecScrollPageDown, overwrite);
+    Add(ShortCut(wxACCEL_ALT, WXK_PAGEUP),                    ecScrollPageUp, overwrite);
+    Add(ShortCut(wxACCEL_ALT, WXK_PAGEDOWN),                  ecScrollPageDown, overwrite);
+    Add(ShortCut(wxACCEL_ALT | wxACCEL_SHIFT, WXK_PAGEUP),    ecScrollPageUp, overwrite);
+    Add(ShortCut(wxACCEL_ALT | wxACCEL_SHIFT, WXK_PAGEDOWN),  ecScrollPageDown, overwrite);
+    Add(ShortCut(wxACCEL_CTRL | wxACCEL_ALT, WXK_PAGEUP),     ecScrollPageUp, overwrite);
+    Add(ShortCut(wxACCEL_CTRL | wxACCEL_ALT, WXK_PAGEDOWN),   ecScrollPageDown, overwrite);
 
     Add(ShortCut(wxACCEL_ALT | wxACCEL_SHIFT, WXK_LEFT),    ecScrollLeft, overwrite);
     Add(ShortCut(wxACCEL_ALT | wxACCEL_SHIFT, WXK_RIGHT),   ecScrollRight, overwrite);
