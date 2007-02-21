@@ -8963,19 +8963,17 @@ void MadEdit::OnChar(wxKeyEvent& evt)
                 }
                 if(!processed)
                 {
-                    if(enc->IsLeadByte(wxByte(ucs4)))
+                    wxByte db[2]={ucs4, 0};
+                    ucs4_t uc=enc->DBtoUCS4(db);
+                    if(uc != 0) // is a valid single-byte char
                     {
-                        wxByte db[2]={ucs4, 0}; // is valid single byte char
-                        ucs4_t uc=enc->DBtoUCS4(db);
-                        if(uc != 0)
-                        {
-                            ucs4 = uc;
-                        }
-                        else
-                        {
-                            m_Win98LeadByte=ucs4;
-                            processed=true;
-                        }
+                        ProcessCommand(uc);
+                        processed=true;
+                    }
+                    else if(enc->IsLeadByte(wxByte(ucs4)))
+                    {
+                        m_Win98LeadByte=ucs4;
+                        processed=true;
                     }
                 }
             }

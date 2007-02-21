@@ -740,7 +740,7 @@ ucs4_t MadEncoding::SBtoUCS4(wxByte b1)    // Single-Byte to UCS4
 // return 0 if it is not a valid DB char
 ucs4_t MadEncoding::DBtoUCS4(wxByte *buf)    // Double-Byte to UCS4
 {
-    if(m_LeadByte_Table[ buf[0] ]==0)
+    if(m_LeadByte_Table[ buf[0] ] == 0)
         IsLeadByte(buf[0]);
 
     register unsigned int w = (((unsigned int)buf[0]) << 8) | buf[1];
@@ -754,7 +754,20 @@ bool MadEncoding::IsLeadByte(wxByte byte)
         wxWord db= ((wxWord)byte)<<8 ;
         wxByte dbs[4]={byte,0,0,0};
         wchar_t wc[4];
-        for(int i=0; i<=0xFF; i++, dbs[1]++, db++)
+
+        // check first byte
+        if(m_CSConv->MB2WC(wc,(char*)dbs,4)==1)
+        {
+            m_MBtoWC_Table[ db++ ] = wc[0];
+            m_WCtoMB_Table[ wc[0] ] = db;
+        }
+        else
+        {
+            m_MBtoWC_Table[ db++ ] = 0;
+        }
+
+        ++dbs[1];
+        for(int i=1; i<=0xFF; ++i, ++dbs[1], ++db)
         {
             if(m_CSConv->MB2WC(wc,(char*)dbs,4)==1)
             {
@@ -769,7 +782,10 @@ bool MadEncoding::IsLeadByte(wxByte byte)
         }
 
         if(m_LeadByte_Table[byte]==0)
+        {
             m_LeadByte_Table[byte]=0xFF;
+            return false;
+        }
     }
 
     return m_LeadByte_Table[byte]==1;
