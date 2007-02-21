@@ -21,7 +21,7 @@
 #if !wxCHECK_VERSION(2,8,0)
     #define Contains Inside
 #endif
-
+#define Contains_ Contains
 
 #ifdef DEVELOPMENT
 # define FNB_LOG_MSG( msg ) { wxString logmsg; logmsg << msg; wxLogMessage( logmsg ); }
@@ -1086,7 +1086,7 @@ int wxPageContainer::HitTest(const wxPoint& pt, wxPageInfo& pageInfo, int &tabId
 
 		if(style & wxFNB_VC8)
 		{
-			if(m_pagesInfoVec[cur].GetRegion().Contains(pt) == wxInRegion)
+			if(m_pagesInfoVec[cur].GetRegion().Contains_(pt) == wxInRegion)
 			{
 				if(bFoundMatch || (int)cur == GetSelection())
 				{
