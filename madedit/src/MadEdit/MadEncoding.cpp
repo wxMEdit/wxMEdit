@@ -758,16 +758,17 @@ bool MadEncoding::IsLeadByte(wxByte byte)
         // check first byte
         if(m_CSConv->MB2WC(wc,(char*)dbs,4)==1)
         {
-            m_MBtoWC_Table[ db++ ] = wc[0];
+            m_MBtoWC_Table[ db ] = wc[0];
             m_WCtoMB_Table[ wc[0] ] = db;
         }
         else
         {
-            m_MBtoWC_Table[ db++ ] = 0;
+            m_MBtoWC_Table[ db ] = 0;
         }
 
+        ++db;
         ++dbs[1];
-        for(int i=1; i<=0xFF; ++i, ++dbs[1], ++db)
+        for(int i=1; i<=0xFF; ++i, ++db, ++dbs[1])
         {
             if(m_CSConv->MB2WC(wc,(char*)dbs,4)==1)
             {
