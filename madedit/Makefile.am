@@ -39,7 +39,7 @@ madedit_SOURCES =	src/MadAboutDialog.cpp \
 	src/MadEdit/MadDeque.hpp \
 	src/MadEdit/MadEdit.cpp \
 	src/MadEdit/MadEdit.h \
-	src/MadEdit/MadDeque.h \
+	src/MadEdit/MadDeque.hpp \
 	src/MadEdit/MadEditAdvanced.cpp \
 	src/MadEdit/MadEditCommand.cpp \
 	src/MadEdit/MadEditCommand.h \
