@@ -11367,7 +11367,11 @@ void MadEdit::DisplayCaret(bool moveonly)
             xpos>=m_LineNumberAreaWidth && xpos<m_ClientWidth && ypos>=0 && ypos<m_ClientHeight)
         {
             caret->Move(xpos, ypos);
-
+#ifdef __WXGTK__
+            extern GtkIMContext *GetWindowIMContext(wxWindow *win);
+            GdkRectangle rect={xpos, ypos+m_TextFontHeight, 0, 0};
+            gtk_im_context_set_cursor_location(GetWindowIMContext(this), &rect);
+#endif
             if(!moveonly)
             {
                 if(!caret->IsVisible())
@@ -11397,7 +11401,14 @@ void MadEdit::DisplayCaret(bool moveonly)
                 xpos = m_TextAreaXPos;
             }
 
-            caret->Move(xpos - m_DrawingXPos, (int)(row - m_TopRow + 1) * m_RowHeight);
+            xpos -= m_DrawingXPos;
+            int ypos = (int)(row - m_TopRow + 1) * m_RowHeight;
+            caret->Move(xpos, ypos);
+#ifdef __WXGTK__
+            extern GtkIMContext *GetWindowIMContext(wxWindow *win);
+            GdkRectangle rect={xpos, ypos+m_RowHeight, 0, 0};
+            gtk_im_context_set_cursor_location(GetWindowIMContext(this), &rect);
+#endif
 
             if(!moveonly)
             {

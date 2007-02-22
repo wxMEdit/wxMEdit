@@ -741,4 +741,10 @@ void MadEdit::ConnectToFixedKeyPressHandler()
     g_signal_connect (connect_widget, "key_release_event", G_CALLBACK (gtk_window_key_release_callback), this);
 }
 
+
+GtkIMContext *GetWindowIMContext(wxWindow *win)
+{
+    return win->m_imData->context;
+}
+
 #endif // __WXGTK__
