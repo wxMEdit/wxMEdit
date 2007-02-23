@@ -147,6 +147,10 @@ noinst_HEADERS =	description-pak \
 	debian/copyright \
 	debian/menu \
 	debian/rules \
+	freebsd/pkg-comment \
+	freebsd/pkg-descr \
+	freebsd/pkg-plist \
+	freebsd/pkgcreate.txt \
 	src/MadEditApp.rc \
 	src/MadAboutDialog.wxform \
 	src/MadConvEncDialog.wxform \

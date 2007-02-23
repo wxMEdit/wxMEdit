@@ -425,6 +425,10 @@ noinst_HEADERS = description-pak \
 	debian/copyright \
 	debian/menu \
 	debian/rules \
+	freebsd/pkg-comment \
+	freebsd/pkg-descr \
+	freebsd/pkg-plist \
+	freebsd/pkgcreate.txt \
 	src/MadEditApp.rc \
 	src/MadAboutDialog.wxform \
 	src/MadConvEncDialog.wxform \
@@ -1870,7 +1874,7 @@ distclean-tags:
 distdir: $(DISTFILES)
 	$(am__remove_distdir)
 	mkdir $(distdir)
-	$(mkdir_p) $(distdir)/charset-detector $(distdir)/charset-detector/src $(distdir)/charset-detector/src/entry $(distdir)/charset-detector/src/tables $(distdir)/charset-detector/test $(distdir)/debian $(distdir)/devcpp $(distdir)/image2xpm $(distdir)/images $(distdir)/libunicows $(distdir)/makefiles $(distdir)/po $(distdir)/src $(distdir)/src/plugin_example $(distdir)/vc71 $(distdir)/wxAUI $(distdir)/wxFlatNotebook $(distdir)/xpressive $(distdir)/xpressive/boost/xpressive $(distdir)/xpressive/boost/xpressive/detail $(distdir)/xpressive/boost/xpressive/detail/core $(distdir)/xpressive/boost/xpressive/detail/core/matcher $(distdir)/xpressive/boost/xpressive/detail/dynamic $(distdir)/xpressive/boost/xpressive/detail/static $(distdir)/xpressive/boost/xpressive/detail/static/productions $(distdir)/xpressive/boost/xpressive/detail/utility $(distdir)/xpressive/boost/xpressive/detail/utility/chset $(distdir)/xpressive/boost/xpressive/proto $(distdir)/xpressive/boost/xpressive/proto/compiler $(distdir)/xpressive/boost/xpressive/traits $(distdir)/xpressive/boost/xpressive/traits/detail
+	$(mkdir_p) $(distdir)/charset-detector $(distdir)/charset-detector/src $(distdir)/charset-detector/src/entry $(distdir)/charset-detector/src/tables $(distdir)/charset-detector/test $(distdir)/debian $(distdir)/devcpp $(distdir)/freebsd $(distdir)/image2xpm $(distdir)/images $(distdir)/libunicows $(distdir)/makefiles $(distdir)/po $(distdir)/src $(distdir)/src/plugin_example $(distdir)/vc71 $(distdir)/wxAUI $(distdir)/wxFlatNotebook $(distdir)/xpressive $(distdir)/xpressive/boost/xpressive $(distdir)/xpressive/boost/xpressive/detail $(distdir)/xpressive/boost/xpressive/detail/core $(distdir)/xpressive/boost/xpressive/detail/core/matcher $(distdir)/xpressive/boost/xpressive/detail/dynamic $(distdir)/xpressive/boost/xpressive/detail/static $(distdir)/xpressive/boost/xpressive/detail/static/productions $(distdir)/xpressive/boost/xpressive/detail/utility $(distdir)/xpressive/boost/xpressive/detail/utility/chset $(distdir)/xpressive/boost/xpressive/proto $(distdir)/xpressive/boost/xpressive/proto/compiler $(distdir)/xpressive/boost/xpressive/traits $(distdir)/xpressive/boost/xpressive/traits/detail
 	@srcdirstrip=`echo "$(srcdir)" | sed 's|.|.|g'`; \
 	topsrcdirstrip=`echo "$(top_srcdir)" | sed 's|.|.|g'`; \
 	list='$(DISTFILES)'; for file in $$list; do \
