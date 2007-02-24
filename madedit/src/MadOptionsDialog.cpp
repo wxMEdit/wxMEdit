@@ -158,9 +158,7 @@ END_EVENT_TABLE()
 MadOptionsDialog::MadOptionsDialog( wxWindow *parent, wxWindowID id, const wxString &title, const wxPoint &position, const wxSize& size, long style )
     : wxDialog( parent, id, title, position, size, style)
 {
-    InitOptions=false;
-    LocID=0;
-
+    ButtonID=0;
     CreateGUIControls();    
 }
 
@@ -803,174 +801,180 @@ void MadOptionsDialog::MadOptionsDialogClose(wxCloseEvent& event)
  */
 void MadOptionsDialog::MadOptionsDialogActivate(wxActivateEvent& event)
 {
-	if(InitOptions && event.GetActive())
-	{
-        InitOptions=false;
-        SetReturnCode(wxID_CANCEL);
-        
-        // load options
-        wxConfigBase *cfg=wxConfigBase::Get(false);
-        wxString oldpath=cfg->GetPath();
-        cfg->SetPath(wxT("/MadEdit"));
-        
-        long ll;
-        bool bb;
-        wxString ss;
-        
-        // General page
-        ss=g_LanguageString[0];
-        cfg->Read(wxT("Language"), &ss);
-        WxComboBoxLanguage->SetValue(ss);
-
-        cfg->Read(wxT("SingleInstance"), &bb);
-        WxCheckBoxSingleInstance->SetValue(bb);
-        
-        cfg->Read(wxT("RecordCaretMovements"), &bb);
-        WxCheckBoxRecordCaretMovements->SetValue(bb);
-        
-        cfg->Read(wxT("MaxSizeToLoad"), &ll);
-        WxEditMaxSizeToLoad->SetValue(wxString()<<ll);
-        
-        cfg->Read(wxT("MaxTextFileSize"), &ll);
-        WxEditMaxTextFileSize->SetValue(wxString()<<ll);
-        
-        ss=_("System Default");
-        cfg->Read(wxT("DefaultEncoding"), &ss);
-        WxComboBoxEncoding->SetValue(ss);
-
-#ifdef __WXMSW__
-        wxRegKey *pRegKey = new wxRegKey(wxT("HKEY_CLASSES_ROOT\\*\\shell\\MadEdit\\command"));
-        if(pRegKey->Exists())
-        {
-            wxString str;
-            if(pRegKey->QueryValue(NULL, str))
-            {
-                wxString exepath=GetExecutablePath();
-                WxCheckBoxRightClickMenu->SetValue( str.Upper().Find(exepath.Upper())>=0 );
-            }
-        }
-        delete pRegKey;
-#endif
-
-        // Edit page
-        cfg->Read(wxT("MaxLineLength"), &ll);
-        WxEditMaxLineLength->SetValue(wxString()<<ll);
-        
-        cfg->Read(wxT("MaxColumns"), &ll);
-        WxEditMaxColumns->SetValue(wxString()<<ll);
-        
-        cfg->Read(wxT("TabColumns"), &ll);
-        WxEditTabColumns->SetValue(wxString()<<ll);
-        
-        cfg->Read(wxT("IndentColumns"), &ll);
-        WxEditIndentColumns->SetValue(wxString()<<ll);
-        
-        cfg->Read(wxT("DateTimeFormat"), &ss, wxT("%c"));
-        WxEditDateTime->SetValue(ss);
-        
-        cfg->Read(wxT("DateTimeInEnglish"), &bb, false);
-        WxCheckBoxDateTimeInEnglish->SetValue(bb);
-        
-        cfg->Read(wxT("InsertSpacesInsteadOfTab"), &bb);
-        WxCheckBoxTabOrSpaces->SetValue(bb);
-        
-        cfg->Read(wxT("AutoIndent"), &bb);
-        WxCheckBoxAutoIndent->SetValue(bb);
-        
-        cfg->Read(wxT("AutoCompletePair"), &bb);
-        WxCheckBoxAutoCompletePair->SetValue(bb);
-        
-        cfg->Read(wxT("MouseSelectToCopy"), &bb);
-        WxCheckBoxMouseSelectToCopy->SetValue(bb);
-
-        cfg->Read(wxT("MouseSelectToCopyWithCtrlKey"), &bb);
-        WxRadioButtonEnable->SetValue(bb);
-        WxRadioButtonDisable->SetValue(!bb);
-
-        cfg->Read(wxT("MiddleMouseToPaste"), &bb);
-        WxCheckBoxMiddleMouseToPaste->SetValue(bb);
-
-        extern bool g_DoNotSaveSettings;
-        WxCheckBoxDoNotSaveSettings->SetValue(g_DoNotSaveSettings);
-        
-        // Print page
-        cfg->Read(wxT("PrintSyntax"), &bb);
-        WxCheckBoxPrintSyntax->SetValue(bb);
-        
-        cfg->Read(wxT("PrintLineNumber"), &bb);
-        WxCheckBoxPrintLineNumber->SetValue(bb);
-        
-        cfg->Read(wxT("PrintEndOfLine"), &bb);
-        WxCheckBoxPrintEndOfLine->SetValue(bb);
-        
-        cfg->Read(wxT("PrintTabChar"), &bb);
-        WxCheckBoxPrintTabChar->SetValue(bb);
-        
-        cfg->Read(wxT("PrintSpaceChar"), &bb);
-        WxCheckBoxPrintSpaceChar->SetValue(bb);
-
-        cfg->Read(wxT("PrintOffsetHeader"), &ll);
-        WxRadioBoxPrintOffset->SetSelection(ll);
-
-        cfg->Read(wxT("PrintPageHeader"), &bb);
-        WxCheckBoxPrintPageHeader->SetValue(bb);
-        
-        cfg->Read(wxT("PageHeaderLeft"), &ss);
-        WxEditHeaderLeft->SetValue(ss);
-        cfg->Read(wxT("PageHeaderCenter"), &ss);
-        WxEditHeaderCenter->SetValue(ss);
-        cfg->Read(wxT("PageHeaderRight"), &ss);
-        WxEditHeaderRight->SetValue(ss);
-
-        cfg->Read(wxT("PrintPageFooter"), &bb);
-        WxCheckBoxPrintPageFooter->SetValue(bb);
-        
-        cfg->Read(wxT("PageFooterLeft"), &ss);
-        WxEditFooterLeft->SetValue(ss);
-        cfg->Read(wxT("PageFooterCenter"), &ss);
-        WxEditFooterCenter->SetValue(ss);
-        cfg->Read(wxT("PageFooterRight"), &ss);
-        WxEditFooterRight->SetValue(ss);
-
-
-        extern bool g_ResetAllKeys;
-        WxCheckBoxResetAllKeys->SetValue(g_ResetAllKeys);
-
-        ChangedTreeItemDataList.clear();
-
-        // get all keys of each command and srore them in TreeItemDataList
-        list<TreeItemData*>::iterator tidit=TreeItemDataList.begin();
-        list<TreeItemData*>::iterator tiditend=TreeItemDataList.end();
-        do
-        {
-            CommandData *cd=(*tidit)->cmddata;
-            (*tidit)->keys.Clear();
-            MadEdit::ms_KeyBindings.GetKeys(cd->menu_id, cd->command, (*tidit)->keys);
-        }
-        while(++tidit != tiditend);
-
-        g_SelectedCommandItem=NULL;
-        g_SelectedKeyId=-1;
-        WxEditCommandHint->Clear();
-        WxListBoxKeys->Clear();
-        UpdateKeyHint();
-
-        wxTreeItemId selid=WxTreeCtrl1->GetSelection();
-        if(selid.IsOk())
-        {
-            WxTreeCtrl1->Unselect();
-            WxTreeCtrl1->SelectItem(selid, true);
-        }
-
-        cfg->SetPath(oldpath);
-
+    if(event.GetActive())
+    {
         if(FindFocus()==NULL)
         {
+            SetReturnCode(wxID_CANCEL);
             WxButtonCancel->SetFocus();
         }
+#ifndef __WXMSW__
+        // workaround the FlatNotebook sometimes will be empty under wxGTK
+        WxNotebook1->Hide();
+        WxNotebook1->Show();
+#endif
     }
     
     event.Skip();
+}
+
+void MadOptionsDialog::LoadOptions(void)
+{
+    wxConfigBase *cfg=wxConfigBase::Get(false);
+    wxString oldpath=cfg->GetPath();
+    cfg->SetPath(wxT("/MadEdit"));
+    
+    long ll;
+    bool bb;
+    wxString ss;
+    
+    // General page
+    ss=g_LanguageString[0];
+    cfg->Read(wxT("Language"), &ss);
+    WxComboBoxLanguage->SetValue(ss);
+
+    cfg->Read(wxT("SingleInstance"), &bb);
+    WxCheckBoxSingleInstance->SetValue(bb);
+    
+    cfg->Read(wxT("RecordCaretMovements"), &bb);
+    WxCheckBoxRecordCaretMovements->SetValue(bb);
+    
+    cfg->Read(wxT("MaxSizeToLoad"), &ll);
+    WxEditMaxSizeToLoad->SetValue(wxString()<<ll);
+    
+    cfg->Read(wxT("MaxTextFileSize"), &ll);
+    WxEditMaxTextFileSize->SetValue(wxString()<<ll);
+    
+    ss=_("System Default");
+    cfg->Read(wxT("DefaultEncoding"), &ss);
+    WxComboBoxEncoding->SetValue(ss);
+
+#ifdef __WXMSW__
+    wxRegKey *pRegKey = new wxRegKey(wxT("HKEY_CLASSES_ROOT\\*\\shell\\MadEdit\\command"));
+    if(pRegKey->Exists())
+    {
+        wxString str;
+        if(pRegKey->QueryValue(NULL, str))
+        {
+            wxString exepath=GetExecutablePath();
+            WxCheckBoxRightClickMenu->SetValue( str.Upper().Find(exepath.Upper())>=0 );
+        }
+    }
+    delete pRegKey;
+#endif
+
+    // Edit page
+    cfg->Read(wxT("MaxLineLength"), &ll);
+    WxEditMaxLineLength->SetValue(wxString()<<ll);
+    
+    cfg->Read(wxT("MaxColumns"), &ll);
+    WxEditMaxColumns->SetValue(wxString()<<ll);
+    
+    cfg->Read(wxT("TabColumns"), &ll);
+    WxEditTabColumns->SetValue(wxString()<<ll);
+    
+    cfg->Read(wxT("IndentColumns"), &ll);
+    WxEditIndentColumns->SetValue(wxString()<<ll);
+    
+    cfg->Read(wxT("DateTimeFormat"), &ss, wxT("%c"));
+    WxEditDateTime->SetValue(ss);
+    
+    cfg->Read(wxT("DateTimeInEnglish"), &bb, false);
+    WxCheckBoxDateTimeInEnglish->SetValue(bb);
+    
+    cfg->Read(wxT("InsertSpacesInsteadOfTab"), &bb);
+    WxCheckBoxTabOrSpaces->SetValue(bb);
+    
+    cfg->Read(wxT("AutoIndent"), &bb);
+    WxCheckBoxAutoIndent->SetValue(bb);
+    
+    cfg->Read(wxT("AutoCompletePair"), &bb);
+    WxCheckBoxAutoCompletePair->SetValue(bb);
+    
+    cfg->Read(wxT("MouseSelectToCopy"), &bb);
+    WxCheckBoxMouseSelectToCopy->SetValue(bb);
+
+    cfg->Read(wxT("MouseSelectToCopyWithCtrlKey"), &bb);
+    WxRadioButtonEnable->SetValue(bb);
+    WxRadioButtonDisable->SetValue(!bb);
+
+    cfg->Read(wxT("MiddleMouseToPaste"), &bb);
+    WxCheckBoxMiddleMouseToPaste->SetValue(bb);
+
+    extern bool g_DoNotSaveSettings;
+    WxCheckBoxDoNotSaveSettings->SetValue(g_DoNotSaveSettings);
+    
+    // Print page
+    cfg->Read(wxT("PrintSyntax"), &bb);
+    WxCheckBoxPrintSyntax->SetValue(bb);
+    
+    cfg->Read(wxT("PrintLineNumber"), &bb);
+    WxCheckBoxPrintLineNumber->SetValue(bb);
+    
+    cfg->Read(wxT("PrintEndOfLine"), &bb);
+    WxCheckBoxPrintEndOfLine->SetValue(bb);
+    
+    cfg->Read(wxT("PrintTabChar"), &bb);
+    WxCheckBoxPrintTabChar->SetValue(bb);
+    
+    cfg->Read(wxT("PrintSpaceChar"), &bb);
+    WxCheckBoxPrintSpaceChar->SetValue(bb);
+
+    cfg->Read(wxT("PrintOffsetHeader"), &ll);
+    WxRadioBoxPrintOffset->SetSelection(ll);
+
+    cfg->Read(wxT("PrintPageHeader"), &bb);
+    WxCheckBoxPrintPageHeader->SetValue(bb);
+    
+    cfg->Read(wxT("PageHeaderLeft"), &ss);
+    WxEditHeaderLeft->SetValue(ss);
+    cfg->Read(wxT("PageHeaderCenter"), &ss);
+    WxEditHeaderCenter->SetValue(ss);
+    cfg->Read(wxT("PageHeaderRight"), &ss);
+    WxEditHeaderRight->SetValue(ss);
+
+    cfg->Read(wxT("PrintPageFooter"), &bb);
+    WxCheckBoxPrintPageFooter->SetValue(bb);
+    
+    cfg->Read(wxT("PageFooterLeft"), &ss);
+    WxEditFooterLeft->SetValue(ss);
+    cfg->Read(wxT("PageFooterCenter"), &ss);
+    WxEditFooterCenter->SetValue(ss);
+    cfg->Read(wxT("PageFooterRight"), &ss);
+    WxEditFooterRight->SetValue(ss);
+
+
+    extern bool g_ResetAllKeys;
+    WxCheckBoxResetAllKeys->SetValue(g_ResetAllKeys);
+
+    ChangedTreeItemDataList.clear();
+
+    // get all keys of each command and srore them in TreeItemDataList
+    list<TreeItemData*>::iterator tidit=TreeItemDataList.begin();
+    list<TreeItemData*>::iterator tiditend=TreeItemDataList.end();
+    do
+    {
+        CommandData *cd=(*tidit)->cmddata;
+        (*tidit)->keys.Clear();
+        MadEdit::ms_KeyBindings.GetKeys(cd->menu_id, cd->command, (*tidit)->keys);
+    }
+    while(++tidit != tiditend);
+
+    g_SelectedCommandItem=NULL;
+    g_SelectedKeyId=-1;
+    WxEditCommandHint->Clear();
+    WxListBoxKeys->Clear();
+    UpdateKeyHint();
+
+    wxTreeItemId selid=WxTreeCtrl1->GetSelection();
+    if(selid.IsOk())
+    {
+        WxTreeCtrl1->Unselect();
+        WxTreeCtrl1->SelectItem(selid, true);
+    }
+
+    cfg->SetPath(oldpath);
+
 }
 
 /*
@@ -1031,7 +1035,7 @@ void MadOptionsDialog::WxButtonCancelClick(wxCommandEvent& event)
 
 void MadOptionsDialog::PrintMarkButtonClick(wxCommandEvent& event)
 {
-    LocID=event.GetId();
+    ButtonID=event.GetId();
     PopupMenu(WxPopupMenuPrintMark);
 }
 
@@ -1039,7 +1043,7 @@ void MadOptionsDialog::PrintMarkClick(wxCommandEvent& event)
 {
     wxString str=WxPopupMenuPrintMark->GetLabel(event.GetId());
     wxTextCtrl *edit=NULL;
-    switch(LocID)
+    switch(ButtonID)
     {
     case ID_WXBUTTON1: edit=WxEditHeaderLeft; break;
     case ID_WXBUTTON2: edit=WxEditHeaderCenter; break;
@@ -1054,7 +1058,7 @@ void MadOptionsDialog::PrintMarkClick(wxCommandEvent& event)
         wxString text=edit->GetValue();
         edit->SetValue(text+ str.Mid(1, 2));
     }
-    LocID=0;
+    ButtonID=0;
 }
 
 

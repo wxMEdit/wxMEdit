@@ -3891,8 +3891,7 @@ void MadEditFrame::OnToolsOptions(wxCommandEvent& event)
 {
     if(g_OptionsDialog==NULL) g_OptionsDialog=new MadOptionsDialog(this, -1);
 
-    this->SetFocus();//fixed that OptionsDialog doesn't be active
-    g_OptionsDialog->InitOptions=true;
+    g_OptionsDialog->LoadOptions();
     if(g_OptionsDialog->ShowModal()==wxID_OK)
     {
         // save options

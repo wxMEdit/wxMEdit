@@ -312,8 +312,7 @@ public:
    }; //End of Enum
 
 public:
-    bool InitOptions;
-    int LocID;
+    int ButtonID;
     list<TreeItemData*> TreeItemDataList; // list of all TreeItemData
     list<TreeItemData*> ChangedTreeItemDataList;
     
@@ -329,6 +328,7 @@ public:
     void MadOptionsDialogClose(wxCloseEvent& event);
     void CreateGUIControls(void);
 	void MadOptionsDialogActivate(wxActivateEvent& event);
+	void LoadOptions(void);
 	void WxButtonOKClick(wxCommandEvent& event);
 	void WxButtonCancelClick(wxCommandEvent& event);
 	void PrintMarkClick(wxCommandEvent& event);
