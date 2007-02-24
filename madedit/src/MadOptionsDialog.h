@@ -22,9 +22,9 @@
 #include <wx/menu.h>
 #include <wx/listbox.h>
 #include <wx/treectrl.h>
-#include <wx/button.h>
 #include <wx/statbox.h>
 #include <wx/radiobut.h>
+#include <wx/button.h>
 #include <wx/textctrl.h>
 #include <wx/checkbox.h>
 #include <wx/stattext.h>
@@ -80,7 +80,8 @@ public:
   //wx-devcpp will remove them. Try adding the custom code 
   //after the block.
   ////GUI Control Declaration Start
-		wxMenu *WxPopupMenu1;
+		wxMenu *WxPopupMenuPrintMark;
+		wxMenu *WxPopupMenuDateTimeMark;
 		wxButton *WxButtonCancel;
 		wxButton *WxButtonOK;
 		wxBoxSizer *WxBoxSizer2;
@@ -151,6 +152,11 @@ public:
 		wxCheckBox *WxCheckBoxAutoIndent;
 		wxCheckBox *WxCheckBoxTabOrSpaces;
 		wxBoxSizer *WxBoxSizer12;
+		wxCheckBox *WxCheckBoxDateTimeInEnglish;
+		wxButton *WxButtonDateTime;
+		wxStaticText *WxStaticTextDateTime;
+		wxTextCtrl *WxEditDateTime;
+		wxBoxSizer *WxBoxSizer23;
 		wxStaticText *WxStaticText6;
 		wxTextCtrl *WxEditIndentColumns;
 		wxBoxSizer *WxBoxSizer13;
@@ -207,6 +213,32 @@ public:
 			ID_MNU___D__DATE_1116 = 1116,
 			ID_MNU___T__TIME_1117 = 1117,
 			
+			ID_MNU___Y__M__D_I__M__S_P_2007_02_2408_30_55AM_1191 = 1191,
+			ID_MNU___D__M__Y_24_02_2007_1192 = 1192,
+			ID_MNU___A__D_B_Y_H__M__S_Z_RFC822TIMESTAMP_1195 = 1195,
+			ID_MNU_MENUITEM1_1170 = 1170,
+			ID_MNU___A_FULLWEEKDAYNAME_1171 = 1171,
+			ID_MNU___B_ABBREVIATEDMONTHNAME_1172 = 1172,
+			ID_MNU___B_FULLMONTHNAME_1173 = 1173,
+			ID_MNU___C_DATEANDTIMEREPRESENTATIONAPPROPRIATEFORLOCALE_1174 = 1174,
+			ID_MNU___D_DAYOFMONTHASDECIMALNUMBER_01_31__1175 = 1175,
+			ID_MNU___H_HOURIN24_HOURFORMAT_00_23__1176 = 1176,
+			ID_MNU___I_HOURIN12_HOURFORMAT_01_12__1177 = 1177,
+			ID_MNU___J_DAYOFYEARASDECIMALNUMBER_001_366__1178 = 1178,
+			ID_MNU___M_MONTHASDECIMALNUMBER_01_12__1179 = 1179,
+			ID_MNU___M_MINUTEASDECIMALNUMBER_00_59__1180 = 1180,
+			ID_MNU___P_CURRENTLOCALESA_M__P_M_INDICATORFOR12_HOURCLOCK_1181 = 1181,
+			ID_MNU___S_SECONDASDECIMALNUMBER_00_59__1182 = 1182,
+			ID_MNU___U_WEEKOFYEARASDECIMALNUMBER_WITHSUNDAYASFIRSTDAYOFWEEK_00_53__1183 = 1183,
+			ID_MNU___W_WEEKDAYASDECIMALNUMBER_0_6_SUNDAYIS0__1184 = 1184,
+			ID_MNU___W_WEEKOFYEARASDECIMALNUMBER_WITHMONDAYASFIRSTDAYOFWEEK_00_53__1185 = 1185,
+			ID_MNU___X_DATEREPRESENTATIONFORCURRENTLOCALE_1186 = 1186,
+			ID_MNU___X_TIMEREPRESENTATIONFORCURRENTLOCALE_1187 = 1187,
+			ID_MNU___Y_YEARWITHOUTCENTURY_ASDECIMALNUMBER_00_99__1188 = 1188,
+			ID_MNU___Y_YEARWITHCENTURY_ASDECIMALNUMBER_1189 = 1189,
+			ID_MNU___Z_TIME_ZONENAME_1193 = 1193,
+			ID_MNU___Z_TIME_ZONEABBREVIATION_1194 = 1194,
+			
 			ID_WXBUTTONCANCEL = 1007,
 			ID_WXBUTTONOK = 1006,
 			ID_WXCHECKBOXRESETALLKEYS = 1153,
@@ -251,6 +283,10 @@ public:
 			ID_WXCHECKBOXAUTOCOMPLETEPAIR = 1154,
 			ID_WXCHECKBOXAUTOINDENT = 1060,
 			ID_WXCHECKBOXTABORSPACES = 1059,
+			ID_WXCHECKBOXDATETIMEINENGLISH = 1169,
+			ID_WXBUTTONDATETIME = 1167,
+			ID_WXSTATICTEXTDATETIME = 1168,
+			ID_WXEDITDATETIME = 1166,
 			ID_WXSTATICTEXT5 = 1057,
 			ID_WXEDITTABCOLUMNS = 1056,
 			ID_WXSTATICTEXT4 = 1054,
@@ -297,11 +333,13 @@ public:
 	void WxButtonCancelClick(wxCommandEvent& event);
 	void PrintMarkClick(wxCommandEvent& event);
 	void PrintMarkButtonClick(wxCommandEvent& event);
+	void DateTimeMarkClick(wxCommandEvent& event);
 	
 	void WxTreeCtrl1SelChanged(wxTreeEvent& event);
 	void WxButtonAddKeyClick(wxCommandEvent& event);
 	void WxListBoxKeysSelected(wxCommandEvent& event);
 	void WxButtonDeleteKeyClick(wxCommandEvent& event);
+	void WxButtonDateTimeClick(wxCommandEvent& event);
 	void WxButtonShowInMenuClick(wxCommandEvent& event);
 };
 

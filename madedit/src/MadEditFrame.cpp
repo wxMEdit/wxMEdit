@@ -3941,6 +3941,9 @@ void MadEditFrame::OnToolsOptions(wxCommandEvent& event)
         ic=g_OptionsDialog->WxEditIndentColumns->GetValue();
         m_Config->Write(wxT("IndentColumns"), ic);
 
+        m_Config->Write(wxT("DateTimeFormat"), g_OptionsDialog->WxEditDateTime->GetValue());
+        m_Config->Write(wxT("DateTimeInEnglish"), g_OptionsDialog->WxCheckBoxDateTimeInEnglish->GetValue());
+
         isiot=g_OptionsDialog->WxCheckBoxTabOrSpaces->GetValue();
         m_Config->Write(wxT("InsertSpacesInsteadOfTab"), isiot);
 

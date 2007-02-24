@@ -116,6 +116,31 @@ BEGIN_EVENT_TABLE(MadOptionsDialog,wxDialog)
 	EVT_MENU(ID_MNU___S__TOTALPAGES_1114 , MadOptionsDialog::PrintMarkClick)
 	EVT_MENU(ID_MNU___D__DATE_1116 , MadOptionsDialog::PrintMarkClick)
 	EVT_MENU(ID_MNU___T__TIME_1117 , MadOptionsDialog::PrintMarkClick)
+	EVT_MENU(ID_MNU___Y__M__D_I__M__S_P_2007_02_2408_30_55AM_1191 , MadOptionsDialog::DateTimeMarkClick)
+	EVT_MENU(ID_MNU___D__M__Y_24_02_2007_1192 , MadOptionsDialog::DateTimeMarkClick)
+	EVT_MENU(ID_MNU___A__D_B_Y_H__M__S_Z_RFC822TIMESTAMP_1195 , MadOptionsDialog::DateTimeMarkClick)
+	EVT_MENU(ID_MNU_MENUITEM1_1170 , MadOptionsDialog::DateTimeMarkClick)
+	EVT_MENU(ID_MNU___A_FULLWEEKDAYNAME_1171 , MadOptionsDialog::DateTimeMarkClick)
+	EVT_MENU(ID_MNU___B_ABBREVIATEDMONTHNAME_1172 , MadOptionsDialog::DateTimeMarkClick)
+	EVT_MENU(ID_MNU___B_FULLMONTHNAME_1173 , MadOptionsDialog::DateTimeMarkClick)
+	EVT_MENU(ID_MNU___C_DATEANDTIMEREPRESENTATIONAPPROPRIATEFORLOCALE_1174 , MadOptionsDialog::DateTimeMarkClick)
+	EVT_MENU(ID_MNU___D_DAYOFMONTHASDECIMALNUMBER_01_31__1175 , MadOptionsDialog::DateTimeMarkClick)
+	EVT_MENU(ID_MNU___H_HOURIN24_HOURFORMAT_00_23__1176 , MadOptionsDialog::DateTimeMarkClick)
+	EVT_MENU(ID_MNU___I_HOURIN12_HOURFORMAT_01_12__1177 , MadOptionsDialog::DateTimeMarkClick)
+	EVT_MENU(ID_MNU___J_DAYOFYEARASDECIMALNUMBER_001_366__1178 , MadOptionsDialog::DateTimeMarkClick)
+	EVT_MENU(ID_MNU___M_MONTHASDECIMALNUMBER_01_12__1179 , MadOptionsDialog::DateTimeMarkClick)
+	EVT_MENU(ID_MNU___M_MINUTEASDECIMALNUMBER_00_59__1180 , MadOptionsDialog::DateTimeMarkClick)
+	EVT_MENU(ID_MNU___P_CURRENTLOCALESA_M__P_M_INDICATORFOR12_HOURCLOCK_1181 , MadOptionsDialog::DateTimeMarkClick)
+	EVT_MENU(ID_MNU___S_SECONDASDECIMALNUMBER_00_59__1182 , MadOptionsDialog::DateTimeMarkClick)
+	EVT_MENU(ID_MNU___U_WEEKOFYEARASDECIMALNUMBER_WITHSUNDAYASFIRSTDAYOFWEEK_00_53__1183 , MadOptionsDialog::DateTimeMarkClick)
+	EVT_MENU(ID_MNU___W_WEEKDAYASDECIMALNUMBER_0_6_SUNDAYIS0__1184 , MadOptionsDialog::DateTimeMarkClick)
+	EVT_MENU(ID_MNU___W_WEEKOFYEARASDECIMALNUMBER_WITHMONDAYASFIRSTDAYOFWEEK_00_53__1185 , MadOptionsDialog::DateTimeMarkClick)
+	EVT_MENU(ID_MNU___X_DATEREPRESENTATIONFORCURRENTLOCALE_1186 , MadOptionsDialog::DateTimeMarkClick)
+	EVT_MENU(ID_MNU___X_TIMEREPRESENTATIONFORCURRENTLOCALE_1187 , MadOptionsDialog::DateTimeMarkClick)
+	EVT_MENU(ID_MNU___Y_YEARWITHOUTCENTURY_ASDECIMALNUMBER_00_99__1188 , MadOptionsDialog::DateTimeMarkClick)
+	EVT_MENU(ID_MNU___Y_YEARWITHCENTURY_ASDECIMALNUMBER_1189 , MadOptionsDialog::DateTimeMarkClick)
+	EVT_MENU(ID_MNU___Z_TIME_ZONENAME_1193 , MadOptionsDialog::DateTimeMarkClick)
+	EVT_MENU(ID_MNU___Z_TIME_ZONEABBREVIATION_1194 , MadOptionsDialog::DateTimeMarkClick)
 	EVT_BUTTON(ID_WXBUTTONCANCEL,MadOptionsDialog::WxButtonCancelClick)
 	EVT_BUTTON(ID_WXBUTTONOK,MadOptionsDialog::WxButtonOKClick)
 	EVT_BUTTON(ID_WXBUTTONSHOWINMENU,MadOptionsDialog::WxButtonShowInMenuClick)
@@ -124,6 +149,7 @@ BEGIN_EVENT_TABLE(MadOptionsDialog,wxDialog)
 	EVT_LISTBOX(ID_WXLISTBOXKEYS,MadOptionsDialog::WxListBoxKeysSelected)
 	
 	EVT_TREE_SEL_CHANGED(ID_WXTREECTRL1,MadOptionsDialog::WxTreeCtrl1SelChanged)
+	EVT_BUTTON(ID_WXBUTTONDATETIME,MadOptionsDialog::WxButtonDateTimeClick)
 END_EVENT_TABLE()
     ////Event Table End
 
@@ -140,7 +166,7 @@ MadOptionsDialog::MadOptionsDialog( wxWindow *parent, wxWindowID id, const wxStr
 
 MadOptionsDialog::~MadOptionsDialog() 
 {
-    delete WxPopupMenu1;
+    delete WxPopupMenuPrintMark;
 } 
 
 static int gs_MinX=0;
@@ -298,6 +324,21 @@ void MadOptionsDialog::CreateGUIControls(void)
 
 	WxStaticText6 = new wxStaticText(WxNoteBookPage2, ID_WXSTATICTEXT5, _("Columns of Indent"), wxPoint(65,5), wxSize(300, 17), wxST_NO_AUTORESIZE, _("WxStaticText6"));
 	WxBoxSizer13->Add(WxStaticText6,0,wxALIGN_LEFT | wxALL,5);
+
+	WxBoxSizer23 = new wxBoxSizer(wxHORIZONTAL);
+	WxBoxSizer8->Add(WxBoxSizer23, 0, wxALIGN_LEFT | wxALL, 2);
+
+	WxEditDateTime = new wxTextCtrl(WxNoteBookPage2, ID_WXEDITDATETIME, _(""), wxPoint(0,3), wxSize(160,21), 0, wxDefaultValidator, _("WxEditDateTime"));
+	WxBoxSizer23->Add(WxEditDateTime,0,wxALIGN_LEFT | wxALL,0);
+
+	WxStaticTextDateTime = new wxStaticText(WxNoteBookPage2, ID_WXSTATICTEXTDATETIME, _("Format of Date/Time"), wxPoint(165,5), wxDefaultSize, 0, _("WxStaticTextDateTime"));
+	WxBoxSizer23->Add(WxStaticTextDateTime,0,wxALIGN_CENTER | wxALL,5);
+
+	WxButtonDateTime = new wxButton(WxNoteBookPage2, ID_WXBUTTONDATETIME, _(">>"), wxPoint(273,1), wxSize(25,25), 0, wxDefaultValidator, _("WxButtonDateTime"));
+	WxBoxSizer23->Add(WxButtonDateTime,0,wxALIGN_LEFT | wxALL,1);
+
+	WxCheckBoxDateTimeInEnglish = new wxCheckBox(WxNoteBookPage2, ID_WXCHECKBOXDATETIMEINENGLISH, _("Use English Instead of Current Locale"), wxPoint(301,3), wxSize(200,20), 0, wxDefaultValidator, _("WxCheckBoxDateTimeInEnglish"));
+	WxBoxSizer23->Add(WxCheckBoxDateTimeInEnglish,0,wxALIGN_LEFT | wxALL,2);
 
 	WxBoxSizer12 = new wxBoxSizer(wxVERTICAL);
 	WxBoxSizer8->Add(WxBoxSizer12, 0, wxALIGN_LEFT | wxALL, 5);
@@ -523,14 +564,41 @@ void MadOptionsDialog::CreateGUIControls(void)
 	WxButtonCancel = new wxButton(this, ID_WXBUTTONCANCEL, _("&Cancel"), wxPoint(100,5), wxSize(90,30), 0, wxDefaultValidator, _("WxButtonCancel"));
 	WxBoxSizer2->Add(WxButtonCancel,0,wxALIGN_CENTER | wxALL,5);
 
-	WxPopupMenu1 = new wxMenu(_(""));WxPopupMenu1->Append(ID_MNU_MENUITEM1_1110, _("[%f] &File Name"), _(""), wxITEM_NORMAL);
-	WxPopupMenu1->Append(ID_MNU___P__PATHNAME_1111, _("[%p] &Path Name"), _(""), wxITEM_NORMAL);
-	WxPopupMenu1->AppendSeparator();
-	WxPopupMenu1->Append(ID_MNU___N_PAGE_NUMBER_1113, _("[%n] Page &Number"), _(""), wxITEM_NORMAL);
-	WxPopupMenu1->Append(ID_MNU___S__TOTALPAGES_1114, _("[%s] Total Page&s"), _(""), wxITEM_NORMAL);
-	WxPopupMenu1->AppendSeparator();
-	WxPopupMenu1->Append(ID_MNU___D__DATE_1116, _("[%d] &Date"), _(""), wxITEM_NORMAL);
-	WxPopupMenu1->Append(ID_MNU___T__TIME_1117, _("[%t] &Time"), _(""), wxITEM_NORMAL);
+	WxPopupMenuDateTimeMark = new wxMenu(_(""));WxPopupMenuDateTimeMark->Append(ID_MNU___Y__M__D_I__M__S_P_2007_02_2408_30_55AM_1191, _("[%Y/%m/%d %I:%M:%S %p] 2007/02/24 08:30:55 AM"), _(""), wxITEM_NORMAL);
+	WxPopupMenuDateTimeMark->Append(ID_MNU___D__M__Y_24_02_2007_1192, _("[%d/%m/%Y] 24/02/2007"), _(""), wxITEM_NORMAL);
+	WxPopupMenuDateTimeMark->Append(ID_MNU___A__D_B_Y_H__M__S_Z_RFC822TIMESTAMP_1195, _("[%a, %d %b %Y %H:%M:%S %z] RFC822 timestamp"), _(""), wxITEM_NORMAL);
+	WxPopupMenuDateTimeMark->AppendSeparator();
+	WxPopupMenuDateTimeMark->Append(ID_MNU_MENUITEM1_1170, _("[%a] Abbreviated weekday name"), _(""), wxITEM_NORMAL);
+	WxPopupMenuDateTimeMark->Append(ID_MNU___A_FULLWEEKDAYNAME_1171, _("[%A] Full weekday name"), _(""), wxITEM_NORMAL);
+	WxPopupMenuDateTimeMark->Append(ID_MNU___B_ABBREVIATEDMONTHNAME_1172, _("[%b] Abbreviated month name"), _(""), wxITEM_NORMAL);
+	WxPopupMenuDateTimeMark->Append(ID_MNU___B_FULLMONTHNAME_1173, _("[%B] Full month name"), _(""), wxITEM_NORMAL);
+	WxPopupMenuDateTimeMark->Append(ID_MNU___C_DATEANDTIMEREPRESENTATIONAPPROPRIATEFORLOCALE_1174, _("[%c] Date and time representation appropriate for locale"), _(""), wxITEM_NORMAL);
+	WxPopupMenuDateTimeMark->Append(ID_MNU___D_DAYOFMONTHASDECIMALNUMBER_01_31__1175, _("[%d] Day of month as decimal number (01 - 31)"), _(""), wxITEM_NORMAL);
+	WxPopupMenuDateTimeMark->Append(ID_MNU___H_HOURIN24_HOURFORMAT_00_23__1176, _("[%H] Hour in 24-hour format (00 - 23)"), _(""), wxITEM_NORMAL);
+	WxPopupMenuDateTimeMark->Append(ID_MNU___I_HOURIN12_HOURFORMAT_01_12__1177, _("[%I] Hour in 12-hour format (01 - 12)"), _(""), wxITEM_NORMAL);
+	WxPopupMenuDateTimeMark->Append(ID_MNU___J_DAYOFYEARASDECIMALNUMBER_001_366__1178, _("[%j] Day of year as decimal number (001 - 366)"), _(""), wxITEM_NORMAL);
+	WxPopupMenuDateTimeMark->Append(ID_MNU___M_MONTHASDECIMALNUMBER_01_12__1179, _("[%m] Month as decimal number (01 - 12)"), _(""), wxITEM_NORMAL);
+	WxPopupMenuDateTimeMark->Append(ID_MNU___M_MINUTEASDECIMALNUMBER_00_59__1180, _("[%M] Minute as decimal number (00 - 59)"), _(""), wxITEM_NORMAL);
+	WxPopupMenuDateTimeMark->Append(ID_MNU___P_CURRENTLOCALESA_M__P_M_INDICATORFOR12_HOURCLOCK_1181, _("[%p] Current locale's A.M./P.M. indicator for 12-hour clock"), _(""), wxITEM_NORMAL);
+	WxPopupMenuDateTimeMark->Append(ID_MNU___S_SECONDASDECIMALNUMBER_00_59__1182, _("[%S] Second as decimal number (00 - 59)"), _(""), wxITEM_NORMAL);
+	WxPopupMenuDateTimeMark->Append(ID_MNU___U_WEEKOFYEARASDECIMALNUMBER_WITHSUNDAYASFIRSTDAYOFWEEK_00_53__1183, _("[%U] Week of year as decimal number, with Sunday as first day of week (00 - 53)"), _(""), wxITEM_NORMAL);
+	WxPopupMenuDateTimeMark->Append(ID_MNU___W_WEEKDAYASDECIMALNUMBER_0_6_SUNDAYIS0__1184, _("[%w] Weekday as decimal number (0 - 6; Sunday is 0)"), _(""), wxITEM_NORMAL);
+	WxPopupMenuDateTimeMark->Append(ID_MNU___W_WEEKOFYEARASDECIMALNUMBER_WITHMONDAYASFIRSTDAYOFWEEK_00_53__1185, _("[%W] Week of year as decimal number, with Monday as first day of week (00 - 53)"), _(""), wxITEM_NORMAL);
+	WxPopupMenuDateTimeMark->Append(ID_MNU___X_DATEREPRESENTATIONFORCURRENTLOCALE_1186, _("[%x] Date representation for current locale"), _(""), wxITEM_NORMAL);
+	WxPopupMenuDateTimeMark->Append(ID_MNU___X_TIMEREPRESENTATIONFORCURRENTLOCALE_1187, _("[%X] Time representation for current locale"), _(""), wxITEM_NORMAL);
+	WxPopupMenuDateTimeMark->Append(ID_MNU___Y_YEARWITHOUTCENTURY_ASDECIMALNUMBER_00_99__1188, _("[%y] Year without century, as decimal number (00 - 99)"), _(""), wxITEM_NORMAL);
+	WxPopupMenuDateTimeMark->Append(ID_MNU___Y_YEARWITHCENTURY_ASDECIMALNUMBER_1189, _("[%Y] Year with century, as decimal number"), _(""), wxITEM_NORMAL);
+	WxPopupMenuDateTimeMark->Append(ID_MNU___Z_TIME_ZONENAME_1193, _("[%z] Time-zone name"), _(""), wxITEM_NORMAL);
+	WxPopupMenuDateTimeMark->Append(ID_MNU___Z_TIME_ZONEABBREVIATION_1194, _("[%Z] Time-zone abbreviation"), _(""), wxITEM_NORMAL);
+
+	WxPopupMenuPrintMark = new wxMenu(_(""));WxPopupMenuPrintMark->Append(ID_MNU_MENUITEM1_1110, _("[%f] &File Name"), _(""), wxITEM_NORMAL);
+	WxPopupMenuPrintMark->Append(ID_MNU___P__PATHNAME_1111, _("[%p] &Path Name"), _(""), wxITEM_NORMAL);
+	WxPopupMenuPrintMark->AppendSeparator();
+	WxPopupMenuPrintMark->Append(ID_MNU___N_PAGE_NUMBER_1113, _("[%n] Page &Number"), _(""), wxITEM_NORMAL);
+	WxPopupMenuPrintMark->Append(ID_MNU___S__TOTALPAGES_1114, _("[%s] Total Page&s"), _(""), wxITEM_NORMAL);
+	WxPopupMenuPrintMark->AppendSeparator();
+	WxPopupMenuPrintMark->Append(ID_MNU___D__DATE_1116, _("[%d] &Date"), _(""), wxITEM_NORMAL);
+	WxPopupMenuPrintMark->Append(ID_MNU___T__TIME_1117, _("[%t] &Time"), _(""), wxITEM_NORMAL);
 
 	SetTitle(_("Options"));
 	SetIcon(wxNullIcon);
@@ -577,6 +645,8 @@ void MadOptionsDialog::CreateGUIControls(void)
     ResizeItem(WxBoxSizer28, WxRadioButtonDisable, 25, 4);
     ResizeItem(WxBoxSizer28, WxStaticText17, 2, 2);
     ResizeItem(WxBoxSizer12, WxCheckBoxMiddleMouseToPaste, 25, 4);
+    ResizeItem(WxBoxSizer23, WxStaticTextDateTime, 2, 2);
+    ResizeItem(WxBoxSizer23, WxCheckBoxDateTimeInEnglish, 25, 4);
     
     ResizeItem(WxStaticBoxSizer1, WxCheckBoxPrintSyntax, 25, 4);
     ResizeItem(WxStaticBoxSizer1, WxCheckBoxPrintLineNumber, 25, 4);
@@ -795,6 +865,12 @@ void MadOptionsDialog::MadOptionsDialogActivate(wxActivateEvent& event)
         cfg->Read(wxT("IndentColumns"), &ll);
         WxEditIndentColumns->SetValue(wxString()<<ll);
         
+        cfg->Read(wxT("DateTimeFormat"), &ss, wxT("%c"));
+        WxEditDateTime->SetValue(ss);
+        
+        cfg->Read(wxT("DateTimeInEnglish"), &bb, false);
+        WxCheckBoxDateTimeInEnglish->SetValue(bb);
+        
         cfg->Read(wxT("InsertSpacesInsteadOfTab"), &bb);
         WxCheckBoxTabOrSpaces->SetValue(bb);
         
@@ -956,12 +1032,12 @@ void MadOptionsDialog::WxButtonCancelClick(wxCommandEvent& event)
 void MadOptionsDialog::PrintMarkButtonClick(wxCommandEvent& event)
 {
     LocID=event.GetId();
-    PopupMenu(WxPopupMenu1);
+    PopupMenu(WxPopupMenuPrintMark);
 }
 
 void MadOptionsDialog::PrintMarkClick(wxCommandEvent& event)
 {
-    wxString str=WxPopupMenu1->GetLabel(event.GetId());
+    wxString str=WxPopupMenuPrintMark->GetLabel(event.GetId());
     wxTextCtrl *edit=NULL;
     switch(LocID)
     {
@@ -1209,3 +1285,24 @@ void MadOptionsDialog::WxButtonShowInMenuClick(wxCommandEvent& event)
     }
 }
 
+
+/*
+ * WxButtonDateTimeClick
+ */
+void MadOptionsDialog::WxButtonDateTimeClick(wxCommandEvent& event)
+{
+    PopupMenu(WxPopupMenuDateTimeMark);
+}
+
+void MadOptionsDialog::DateTimeMarkClick(wxCommandEvent& event)
+{
+    wxString str=WxPopupMenuDateTimeMark->GetLabel(event.GetId());
+    int pos=str.Find(wxT(']'));
+    if(pos != wxNOT_FOUND && str[0]==wxT('['))
+    {
+        str = str.Mid(1, pos-1);
+    }
+
+    wxString text=WxEditDateTime->GetValue();
+    WxEditDateTime->SetValue(text+str);
+}

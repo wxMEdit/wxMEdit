@@ -8418,11 +8418,31 @@ void MadEdit::ProcessCommand(MadEditCommand command)
                 case ecInsertDateTime:
                     if(!IsReadOnly())
                     {
-                        wxDateTime now = wxDateTime::Now();
-                        wxString text = now.FormatDate() + wxT(' ') + now.FormatTime();
-                        vector<ucs4_t> ucs;
-                        TranslateText(text.c_str(), text.Len(), &ucs, true);
-                        InsertString(&(*ucs.begin()), ucs.size(), false, true, false);
+                        wxString fmt;
+                        m_Config->Read(wxT("/MadEdit/DateTimeFormat"), &fmt, wxT("%c"));
+                        if(!fmt.IsEmpty())
+                        {
+                            char oldlocale[256];
+                            bool inEnglish=false;
+                            m_Config->Read(wxT("/MadEdit/DateTimeInEnglish"), &inEnglish);
+                            if(inEnglish)
+                            {
+                                strcpy(oldlocale, setlocale( LC_TIME, NULL ));
+                                setlocale( LC_TIME, "C" );
+                            }
+
+                            wxDateTime now = wxDateTime::Now();
+                            wxString text = now.Format(fmt.c_str());
+
+                            if(inEnglish)
+                            {
+                                setlocale( LC_TIME, oldlocale );
+                            }
+
+                            vector<ucs4_t> ucs;
+                            TranslateText(text.c_str(), text.Len(), &ucs, true);
+                            InsertString(&(*ucs.begin()), ucs.size(), false, true, false);
+                        }
                     }
                     break;
                 }
