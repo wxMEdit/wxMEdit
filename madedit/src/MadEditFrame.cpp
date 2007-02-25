@@ -2538,7 +2538,13 @@ void MadEditFrame::OpenFile(const wxString &filename, bool mustExist)
         {
             // add filename, fontname, and encoding to recentlist
             m_RecentFiles->AddFileToHistory(filename);
-            madedit->SetCaretPosition(g_FileCaretPosManager.GetPos(filename));
+
+            bool rcp;
+            m_Config->Read(wxT("/MadEdit/RestoreCaretPos"), &rcp, true);
+            if(rcp)
+            {
+                madedit->SetCaretPosition(g_FileCaretPosManager.GetPos(filename));
+            }
         }
     }
     wxString str;
