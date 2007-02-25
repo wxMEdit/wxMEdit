@@ -285,8 +285,10 @@ public:
             int p=text.Find(wxT("|"));
             if(p!=wxNOT_FOUND)
             {
-                if(text.Left(p).ToLongLong(&fpdata.pos))
+                wxInt64 i64;
+                if(StrToInt64(text.Left(p), i64))
                 {
+                    fpdata.pos = i64;
                     fpdata.name = text.Right(text.Len() - (p+1));
                     fpdata.hash = wxStringHash::wxCharStringHash(fpdata.name);
                     files.push_back(fpdata);
