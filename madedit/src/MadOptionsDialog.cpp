@@ -234,16 +234,16 @@ void MadOptionsDialog::CreateGUIControls(void)
 	WxComboBoxLanguage = new wxComboBox(WxNoteBookPage1, ID_WXCOMBOBOXLANGUAGE, _(""), wxPoint(0,3), wxSize(140,21), arrayStringFor_WxComboBoxLanguage, wxCB_DROPDOWN | wxCB_READONLY, wxDefaultValidator, _("WxComboBoxLanguage"));
 	WxBoxSizer27->Add(WxComboBoxLanguage,0,wxALIGN_LEFT | wxALL,0);
 
-	WxStaticText16 = new wxStaticText(WxNoteBookPage1, ID_WXSTATICTEXT16, _("Language of User Interface (Must Restart MadEdit)"), wxPoint(145,5), wxDefaultSize, 0, _("WxStaticText16"));
+	WxStaticText16 = new wxStaticText(WxNoteBookPage1, ID_WXSTATICTEXT16, _("Language of User Interface (must restart MadEdit)"), wxPoint(145,5), wxDefaultSize, 0, _("WxStaticText16"));
 	WxBoxSizer27->Add(WxStaticText16,0,wxALIGN_LEFT | wxALL,5);
 
 	WxBoxSizer4 = new wxBoxSizer(wxVERTICAL);
 	WxBoxSizer3->Add(WxBoxSizer4, 0, wxALIGN_LEFT | wxALL, 5);
 
-	WxCheckBoxSingleInstance = new wxCheckBox(WxNoteBookPage1, ID_WXCHECKBOXSINGLEINSTANCE, _("Single Instance (Must Restart MadEdit)"), wxPoint(2,2), wxSize(300,20), 0, wxDefaultValidator, _("WxCheckBoxSingleInstance"));
+	WxCheckBoxSingleInstance = new wxCheckBox(WxNoteBookPage1, ID_WXCHECKBOXSINGLEINSTANCE, _("Single Instance (must restart MadEdit)"), wxPoint(2,2), wxSize(300,20), 0, wxDefaultValidator, _("WxCheckBoxSingleInstance"));
 	WxBoxSizer4->Add(WxCheckBoxSingleInstance,0,wxALIGN_LEFT | wxALL,2);
 
-	WxCheckBoxRecordCaretMovements = new wxCheckBox(WxNoteBookPage1, ID_WXCHECKBOXRECORDCARETMOVEMENTS, _("Record Caret Movements in Undo List"), wxPoint(2,26), wxSize(300,20), 0, wxDefaultValidator, _("WxCheckBoxRecordCaretMovements"));
+	WxCheckBoxRecordCaretMovements = new wxCheckBox(WxNoteBookPage1, ID_WXCHECKBOXRECORDCARETMOVEMENTS, _("Record caret movements in undo list"), wxPoint(2,26), wxSize(300,20), 0, wxDefaultValidator, _("WxCheckBoxRecordCaretMovements"));
 	WxBoxSizer4->Add(WxCheckBoxRecordCaretMovements,0,wxALIGN_LEFT | wxALL,2);
 
 	WxBoxSizer5 = new wxBoxSizer(wxHORIZONTAL);
@@ -252,7 +252,7 @@ void MadOptionsDialog::CreateGUIControls(void)
 	WxEditMaxSizeToLoad = new wxTextCtrl(WxNoteBookPage1, ID_WXEDITMAXSIZETOLOAD, _("0"), wxPoint(0,3), wxSize(80,21), 0, wxTextValidator(wxFILTER_NUMERIC), _("WxEditMaxSizeToLoad"));
 	WxBoxSizer5->Add(WxEditMaxSizeToLoad,0,wxALIGN_LEFT | wxALL,0);
 
-	WxStaticText1 = new wxStaticText(WxNoteBookPage1, ID_WXSTATICTEXT1, _("Max File Size to Load into Memory"), wxPoint(85,5), wxSize(300, 17), wxST_NO_AUTORESIZE, _("WxStaticText1"));
+	WxStaticText1 = new wxStaticText(WxNoteBookPage1, ID_WXSTATICTEXT1, _("Max file size to load whole file into memory"), wxPoint(85,5), wxSize(300, 17), wxST_NO_AUTORESIZE, _("WxStaticText1"));
 	WxBoxSizer5->Add(WxStaticText1,0,wxALIGN_LEFT | wxALL,5);
 
 	WxBoxSizer6 = new wxBoxSizer(wxHORIZONTAL);
@@ -261,7 +261,7 @@ void MadOptionsDialog::CreateGUIControls(void)
 	WxEditMaxTextFileSize = new wxTextCtrl(WxNoteBookPage1, ID_WXEDITMAXTEXTFILESIZE, _("0"), wxPoint(0,3), wxSize(80,21), 0, wxTextValidator(wxFILTER_NUMERIC), _("WxEditMaxTextFileSize"));
 	WxBoxSizer6->Add(WxEditMaxTextFileSize,0,wxALIGN_LEFT | wxALL,0);
 
-	WxStaticText2 = new wxStaticText(WxNoteBookPage1, ID_WXSTATICTEXT2, _("Max File Size to Load as a Text File"), wxPoint(85,5), wxSize(300, 17), wxST_NO_AUTORESIZE, _("WxStaticText2"));
+	WxStaticText2 = new wxStaticText(WxNoteBookPage1, ID_WXSTATICTEXT2, _("Max file size to load as a text file"), wxPoint(85,5), wxSize(300, 17), wxST_NO_AUTORESIZE, _("WxStaticText2"));
 	WxBoxSizer6->Add(WxStaticText2,0,wxALIGN_LEFT | wxALL,5);
 
 	WxBoxSizer17 = new wxBoxSizer(wxHORIZONTAL);
@@ -271,19 +271,19 @@ void MadOptionsDialog::CreateGUIControls(void)
 	WxComboBoxEncoding = new wxComboBox(WxNoteBookPage1, ID_WXCOMBOBOXENCODING, _(""), wxPoint(0,3), wxSize(140,21), arrayStringFor_WxComboBoxEncoding, wxCB_DROPDOWN | wxCB_READONLY, wxDefaultValidator, _("WxComboBoxEncoding"));
 	WxBoxSizer17->Add(WxComboBoxEncoding,0,wxALIGN_LEFT | wxALL,0);
 
-	WxStaticText13 = new wxStaticText(WxNoteBookPage1, ID_WXSTATICTEXT13, _("Use this Encoding to Create New File or When MadEdit cannot Determine the Encoding of Old File"), wxPoint(145,5), wxDefaultSize, 0, _("WxStaticText13"));
+	WxStaticText13 = new wxStaticText(WxNoteBookPage1, ID_WXSTATICTEXT13, _("Use this encoding to create new file or when MadEdit cannot determine the encoding of old file"), wxPoint(145,5), wxDefaultSize, 0, _("WxStaticText13"));
 	WxBoxSizer17->Add(WxStaticText13,0,wxALIGN_LEFT | wxALL,5);
 
 	WxBoxSizer7 = new wxBoxSizer(wxVERTICAL);
 	WxBoxSizer3->Add(WxBoxSizer7, 0, wxALIGN_LEFT | wxALL, 5);
 
-	WxCheckBoxReloadFiles = new wxCheckBox(WxNoteBookPage1, ID_WXCHECKBOXRELOADFILES, _("Reload Files Previously Open on Startup"), wxPoint(2,2), wxSize(400,20), 0, wxDefaultValidator, _("WxCheckBoxReloadFiles"));
+	WxCheckBoxReloadFiles = new wxCheckBox(WxNoteBookPage1, ID_WXCHECKBOXRELOADFILES, _("Reload files previously open on startup"), wxPoint(2,2), wxSize(400,20), 0, wxDefaultValidator, _("WxCheckBoxReloadFiles"));
 	WxBoxSizer7->Add(WxCheckBoxReloadFiles,0,wxALIGN_LEFT | wxALL,2);
 
-	WxCheckBoxRestoreCaretPos = new wxCheckBox(WxNoteBookPage1, ID_WXCHECKBOXRESTORECARETPOS, _("Restore Previous Caret Position  When Files Are Opened"), wxPoint(2,26), wxSize(400,20), 0, wxDefaultValidator, _("WxCheckBoxRestoreCaretPos"));
+	WxCheckBoxRestoreCaretPos = new wxCheckBox(WxNoteBookPage1, ID_WXCHECKBOXRESTORECARETPOS, _("Restore previous caret position  when files are opened"), wxPoint(2,26), wxSize(400,20), 0, wxDefaultValidator, _("WxCheckBoxRestoreCaretPos"));
 	WxBoxSizer7->Add(WxCheckBoxRestoreCaretPos,0,wxALIGN_LEFT | wxALL,2);
 
-	WxCheckBoxDoNotSaveSettings = new wxCheckBox(WxNoteBookPage1, ID_WXCHECKBOXDONOTSAVESETTINGS, _("Do Not Save Settings to MadEdit.cfg when MadEdit Closed (This Session Only)"), wxPoint(2,50), wxSize(400,20), 0, wxDefaultValidator, _("WxCheckBoxDoNotSaveSettings"));
+	WxCheckBoxDoNotSaveSettings = new wxCheckBox(WxNoteBookPage1, ID_WXCHECKBOXDONOTSAVESETTINGS, _("Do not save settings to MadEdit.cfg when MadEdit closed (this session only)"), wxPoint(2,50), wxSize(400,20), 0, wxDefaultValidator, _("WxCheckBoxDoNotSaveSettings"));
 	WxBoxSizer7->Add(WxCheckBoxDoNotSaveSettings,0,wxALIGN_LEFT | wxALL,2);
 
 	WxNoteBookPage2 = new wxPanel(WxNotebook1, ID_WXNOTEBOOKPAGE2, wxPoint(4,24), wxSize(673,314));
@@ -299,7 +299,7 @@ void MadOptionsDialog::CreateGUIControls(void)
 	WxEditMaxLineLength = new wxTextCtrl(WxNoteBookPage2, ID_WXEDITMAXLINELENGTH, _("0"), wxPoint(0,3), wxSize(60,21), 0, wxTextValidator(wxFILTER_NUMERIC), _("WxEditMaxLineLength"));
 	WxBoxSizer9->Add(WxEditMaxLineLength,0,wxALIGN_LEFT | wxALL,0);
 
-	WxStaticText3 = new wxStaticText(WxNoteBookPage2, ID_WXSTATICTEXT3, _("Max Line Length before Line-Wrap (Must Restart MadEdit)"), wxPoint(65,5), wxSize(300, 17), wxST_NO_AUTORESIZE, _("WxStaticText3"));
+	WxStaticText3 = new wxStaticText(WxNoteBookPage2, ID_WXSTATICTEXT3, _("Max line length before Line-Wrap (must restart MadEdit)"), wxPoint(65,5), wxSize(300, 17), wxST_NO_AUTORESIZE, _("WxStaticText3"));
 	WxBoxSizer9->Add(WxStaticText3,0,wxALIGN_LEFT | wxALL,5);
 
 	WxBoxSizer10 = new wxBoxSizer(wxHORIZONTAL);
@@ -341,25 +341,25 @@ void MadOptionsDialog::CreateGUIControls(void)
 	WxButtonDateTime = new wxButton(WxNoteBookPage2, ID_WXBUTTONDATETIME, _(">>"), wxPoint(273,1), wxSize(25,25), 0, wxDefaultValidator, _("WxButtonDateTime"));
 	WxBoxSizer23->Add(WxButtonDateTime,0,wxALIGN_LEFT | wxALL,1);
 
-	WxCheckBoxDateTimeInEnglish = new wxCheckBox(WxNoteBookPage2, ID_WXCHECKBOXDATETIMEINENGLISH, _("Use English Instead of Current Locale"), wxPoint(301,3), wxSize(200,20), 0, wxDefaultValidator, _("WxCheckBoxDateTimeInEnglish"));
+	WxCheckBoxDateTimeInEnglish = new wxCheckBox(WxNoteBookPage2, ID_WXCHECKBOXDATETIMEINENGLISH, _("Use English Instead of current locale"), wxPoint(301,3), wxSize(200,20), 0, wxDefaultValidator, _("WxCheckBoxDateTimeInEnglish"));
 	WxBoxSizer23->Add(WxCheckBoxDateTimeInEnglish,0,wxALIGN_LEFT | wxALL,2);
 
 	WxBoxSizer12 = new wxBoxSizer(wxVERTICAL);
 	WxBoxSizer8->Add(WxBoxSizer12, 0, wxALIGN_LEFT | wxALL, 5);
 
-	WxCheckBoxTabOrSpaces = new wxCheckBox(WxNoteBookPage2, ID_WXCHECKBOXTABORSPACES, _("Insert Space Char Instead of Tab Char"), wxPoint(25,2), wxSize(480,20), 0, wxDefaultValidator, _("WxCheckBoxTabOrSpaces"));
+	WxCheckBoxTabOrSpaces = new wxCheckBox(WxNoteBookPage2, ID_WXCHECKBOXTABORSPACES, _("Insert Space char instead of Tab char"), wxPoint(24,2), wxSize(480,20), 0, wxDefaultValidator, _("WxCheckBoxTabOrSpaces"));
 	WxBoxSizer12->Add(WxCheckBoxTabOrSpaces,0,wxALIGN_LEFT | wxALL,2);
 
-	WxCheckBoxAutoIndent = new wxCheckBox(WxNoteBookPage2, ID_WXCHECKBOXAUTOINDENT, _("Auto Indent"), wxPoint(25,26), wxSize(480,20), 0, wxDefaultValidator, _("WxCheckBoxAutoIndent"));
+	WxCheckBoxAutoIndent = new wxCheckBox(WxNoteBookPage2, ID_WXCHECKBOXAUTOINDENT, _("Auto Indent"), wxPoint(24,26), wxSize(480,20), 0, wxDefaultValidator, _("WxCheckBoxAutoIndent"));
 	WxBoxSizer12->Add(WxCheckBoxAutoIndent,0,wxALIGN_LEFT | wxALL,2);
 
-	WxCheckBoxAutoCompletePair = new wxCheckBox(WxNoteBookPage2, ID_WXCHECKBOXAUTOCOMPLETEPAIR, _("Auto Complete Character Pair"), wxPoint(25,50), wxSize(480,20), 0, wxDefaultValidator, _("WxCheckBoxAutoCompletePair"));
+	WxCheckBoxAutoCompletePair = new wxCheckBox(WxNoteBookPage2, ID_WXCHECKBOXAUTOCOMPLETEPAIR, _("Auto complete character pair"), wxPoint(24,50), wxSize(480,20), 0, wxDefaultValidator, _("WxCheckBoxAutoCompletePair"));
 	WxBoxSizer12->Add(WxCheckBoxAutoCompletePair,0,wxALIGN_LEFT | wxALL,2);
 
 	WxBoxSizer28 = new wxBoxSizer(wxHORIZONTAL);
 	WxBoxSizer12->Add(WxBoxSizer28, 0, wxALIGN_LEFT | wxALL, 0);
 
-	WxCheckBoxMouseSelectToCopy = new wxCheckBox(WxNoteBookPage2, ID_WXCHECKBOXMOUSESELECTTOCOPY, _("Auto Copy the Mouse-Selected Text to Clipboard  ("), wxPoint(2,2), wxSize(260,20), 0, wxDefaultValidator, _("WxCheckBoxMouseSelectToCopy"));
+	WxCheckBoxMouseSelectToCopy = new wxCheckBox(WxNoteBookPage2, ID_WXCHECKBOXMOUSESELECTTOCOPY, _("Auto copy the mouse-selected text to clipboard  ("), wxPoint(2,2), wxSize(260,20), 0, wxDefaultValidator, _("WxCheckBoxMouseSelectToCopy"));
 	WxBoxSizer28->Add(WxCheckBoxMouseSelectToCopy,0,wxALIGN_LEFT | wxALL,2);
 
 	WxRadioButtonEnable = new wxRadioButton(WxNoteBookPage2, ID_WXRADIOBUTTONENABLE, _("Enable"), wxPoint(266,2), wxSize(70,20), 0, wxDefaultValidator, _("WxRadioButtonEnable"));
@@ -368,10 +368,10 @@ void MadOptionsDialog::CreateGUIControls(void)
 	WxRadioButtonDisable = new wxRadioButton(WxNoteBookPage2, ID_WXRADIOBUTTONDISABLE, _("Disable"), wxPoint(340,2), wxSize(70,20), 0, wxDefaultValidator, _("WxRadioButtonDisable"));
 	WxBoxSizer28->Add(WxRadioButtonDisable,0,wxALIGN_LEFT | wxALL,2);
 
-	WxStaticText17 = new wxStaticText(WxNoteBookPage2, ID_WXSTATICTEXT17, _("when Pressing Ctrl Key)"), wxPoint(414,3), wxDefaultSize, 0, _("WxStaticText17"));
+	WxStaticText17 = new wxStaticText(WxNoteBookPage2, ID_WXSTATICTEXT17, _("when pressing Ctrl key)"), wxPoint(414,3), wxDefaultSize, 0, _("WxStaticText17"));
 	WxBoxSizer28->Add(WxStaticText17,0,wxALIGN_LEFT | wxALL,2);
 
-	WxCheckBoxMiddleMouseToPaste = new wxCheckBox(WxNoteBookPage2, ID_WXCHECKBOXMIDDLEMOUSETOPASTE, _("Paste Text from Clipboard when Pressing Middle Mouse Button"), wxPoint(25,98), wxSize(480,20), 0, wxDefaultValidator, _("WxCheckBoxMiddleMouseToPaste"));
+	WxCheckBoxMiddleMouseToPaste = new wxCheckBox(WxNoteBookPage2, ID_WXCHECKBOXMIDDLEMOUSETOPASTE, _("Paste text from clipboard when pressing middle mouse button"), wxPoint(24,98), wxSize(480,20), 0, wxDefaultValidator, _("WxCheckBoxMiddleMouseToPaste"));
 	WxBoxSizer12->Add(WxCheckBoxMiddleMouseToPaste,0,wxALIGN_LEFT | wxALL,2);
 
 	WxNoteBookPage3 = new wxPanel(WxNotebook1, ID_WXNOTEBOOKPAGE3, wxPoint(4,24), wxSize(673,314));
@@ -556,7 +556,7 @@ void MadOptionsDialog::CreateGUIControls(void)
 	WxBoxSizer26 = new wxBoxSizer(wxHORIZONTAL);
 	WxBoxSizer20->Add(WxBoxSizer26, 0, wxALIGN_LEFT | wxALL, 2);
 
-	WxCheckBoxResetAllKeys = new wxCheckBox(WxNoteBookPage4, ID_WXCHECKBOXRESETALLKEYS, _("Reset All Keys to Default(Must Restart MadEdit)"), wxPoint(5,5), wxSize(250,17), 0, wxDefaultValidator, _("WxCheckBoxResetAllKeys"));
+	WxCheckBoxResetAllKeys = new wxCheckBox(WxNoteBookPage4, ID_WXCHECKBOXRESETALLKEYS, _("Reset all keys to default (must restart MadEdit)"), wxPoint(5,5), wxSize(250,17), 0, wxDefaultValidator, _("WxCheckBoxResetAllKeys"));
 	WxBoxSizer26->Add(WxCheckBoxResetAllKeys,0,wxALIGN_LEFT | wxALL,5);
 
 	WxBoxSizer2 = new wxBoxSizer(wxHORIZONTAL);

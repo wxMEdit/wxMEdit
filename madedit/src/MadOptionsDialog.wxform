@@ -102,9 +102,9 @@ object frmNewForm: TfrmNewForm
           Wx_Border = 2
           Wx_StretchFactor = 1
           object WxBoxSizer27: TWxBoxSizer
-            Left = 114
+            Left = 108
             Top = 2
-            Width = 395
+            Width = 389
             Height = 27
             TabOrder = 5
             Wx_Class = 'wxBoxSizer'
@@ -136,9 +136,9 @@ object frmNewForm: TfrmNewForm
             object WxStaticText16: TWxStaticText
               Left = 145
               Top = 5
-              Width = 245
+              Width = 239
               Height = 17
-              Caption = 'Language of User Interface (Must Restart MadEdit)'
+              Caption = 'Language of User Interface (must restart MadEdit)'
               TabOrder = 1
               Wx_BGColor = clBlack
               Wx_Class = 'wxStaticText'
@@ -153,7 +153,7 @@ object frmNewForm: TfrmNewForm
             end
           end
           object WxBoxSizer4: TWxBoxSizer
-            Left = 159
+            Left = 150
             Top = 36
             Width = 304
             Height = 48
@@ -169,7 +169,7 @@ object frmNewForm: TfrmNewForm
               Top = 2
               Width = 300
               Height = 20
-              Caption = 'Single Instance (Must Restart MadEdit)'
+              Caption = 'Single Instance (must restart MadEdit)'
               TabOrder = 0
               Wx_BGColor = clBlack
               Wx_CheckBoxStyle = []
@@ -188,7 +188,7 @@ object frmNewForm: TfrmNewForm
               Top = 26
               Width = 300
               Height = 20
-              Caption = 'Record Caret Movements in Undo List'
+              Caption = 'Record caret movements in undo list'
               TabOrder = 1
               Wx_BGColor = clBlack
               Wx_CheckBoxStyle = []
@@ -204,7 +204,7 @@ object frmNewForm: TfrmNewForm
             end
           end
           object WxBoxSizer5: TWxBoxSizer
-            Left = 116
+            Left = 107
             Top = 91
             Width = 390
             Height = 27
@@ -246,7 +246,7 @@ object frmNewForm: TfrmNewForm
               Width = 300
               Height = 17
               AutoSize = False
-              Caption = 'Max File Size to Load into Memory'
+              Caption = 'Max file size to load whole file into memory'
               TabOrder = 1
               Wx_BGColor = clBlack
               Wx_Class = 'wxStaticText'
@@ -261,7 +261,7 @@ object frmNewForm: TfrmNewForm
             end
           end
           object WxBoxSizer6: TWxBoxSizer
-            Left = 116
+            Left = 107
             Top = 122
             Width = 390
             Height = 27
@@ -303,7 +303,7 @@ object frmNewForm: TfrmNewForm
               Width = 300
               Height = 17
               AutoSize = False
-              Caption = 'Max File Size to Load as a Text File'
+              Caption = 'Max file size to load as a text file'
               TabOrder = 1
               Wx_BGColor = clBlack
               Wx_Class = 'wxStaticText'
@@ -320,7 +320,7 @@ object frmNewForm: TfrmNewForm
           object WxBoxSizer17: TWxBoxSizer
             Left = 2
             Top = 153
-            Width = 619
+            Width = 601
             Height = 27
             TabOrder = 4
             Wx_Class = 'wxBoxSizer'
@@ -352,11 +352,11 @@ object frmNewForm: TfrmNewForm
             object WxStaticText13: TWxStaticText
               Left = 145
               Top = 5
-              Width = 469
+              Width = 451
               Height = 17
               Caption = 
-                'Use this Encoding to Create New File or When MadEdit cannot Dete' +
-                'rmine the Encoding of Old File'
+                'Use this encoding to create new file or when MadEdit cannot dete' +
+                'rmine the encoding of old file'
               TabOrder = 1
               Wx_BGColor = clBlack
               Wx_Class = 'wxStaticText'
@@ -371,7 +371,7 @@ object frmNewForm: TfrmNewForm
             end
           end
           object WxBoxSizer7: TWxBoxSizer
-            Left = 109
+            Left = 100
             Top = 187
             Width = 404
             Height = 72
@@ -387,7 +387,7 @@ object frmNewForm: TfrmNewForm
               Top = 2
               Width = 400
               Height = 20
-              Caption = 'Reload Files Previously Open on Startup'
+              Caption = 'Reload files previously open on startup'
               TabOrder = 1
               Wx_BGColor = clBlack
               Wx_CheckBoxStyle = []
@@ -406,7 +406,7 @@ object frmNewForm: TfrmNewForm
               Top = 26
               Width = 400
               Height = 20
-              Caption = 'Restore Previous Caret Position  When Files Are Opened'
+              Caption = 'Restore previous caret position  when files are opened'
               TabOrder = 2
               Wx_BGColor = clBlack
               Wx_CheckBoxStyle = []
@@ -426,8 +426,8 @@ object frmNewForm: TfrmNewForm
               Width = 400
               Height = 20
               Caption = 
-                'Do Not Save Settings to MadEdit.cfg when MadEdit Closed (This Se' +
-                'ssion Only)'
+                'Do not save settings to MadEdit.cfg when MadEdit closed (this se' +
+                'ssion only)'
               TabOrder = 0
               Wx_BGColor = clBlack
               Wx_CheckBoxStyle = []
@@ -473,7 +473,7 @@ object frmNewForm: TfrmNewForm
           Wx_Border = 2
           Wx_StretchFactor = 1
           object WxBoxSizer9: TWxBoxSizer
-            Left = 85
+            Left = 84
             Top = 2
             Width = 370
             Height = 27
@@ -515,7 +515,7 @@ object frmNewForm: TfrmNewForm
               Width = 300
               Height = 17
               AutoSize = False
-              Caption = 'Max Line Length before Line-Wrap (Must Restart MadEdit)'
+              Caption = 'Max line length before Line-Wrap (must restart MadEdit)'
               TabOrder = 1
               Wx_BGColor = clBlack
               Wx_Class = 'wxStaticText'
@@ -530,7 +530,7 @@ object frmNewForm: TfrmNewForm
             end
           end
           object WxBoxSizer10: TWxBoxSizer
-            Left = 85
+            Left = 84
             Top = 33
             Width = 370
             Height = 27
@@ -587,7 +587,7 @@ object frmNewForm: TfrmNewForm
             end
           end
           object WxBoxSizer11: TWxBoxSizer
-            Left = 85
+            Left = 84
             Top = 64
             Width = 370
             Height = 27
@@ -644,7 +644,7 @@ object frmNewForm: TfrmNewForm
             end
           end
           object WxBoxSizer13: TWxBoxSizer
-            Left = 85
+            Left = 84
             Top = 95
             Width = 370
             Height = 27
@@ -701,7 +701,7 @@ object frmNewForm: TfrmNewForm
             end
           end
           object WxBoxSizer23: TWxBoxSizer
-            Left = 19
+            Left = 18
             Top = 126
             Width = 503
             Height = 27
@@ -783,7 +783,7 @@ object frmNewForm: TfrmNewForm
               Top = 3
               Width = 200
               Height = 20
-              Caption = 'Use English Instead of Current Locale'
+              Caption = 'Use English Instead of current locale'
               TabOrder = 3
               Wx_BGColor = clBlack
               Wx_CheckBoxStyle = []
@@ -801,7 +801,7 @@ object frmNewForm: TfrmNewForm
           object WxBoxSizer12: TWxBoxSizer
             Left = 5
             Top = 160
-            Width = 531
+            Width = 529
             Height = 120
             TabOrder = 3
             Orientation = wxVertical
@@ -811,11 +811,11 @@ object frmNewForm: TfrmNewForm
             Wx_IDValue = 1058
             Wx_Alignment = wxALIGN_LEFT
             object WxCheckBoxTabOrSpaces: TWxCheckBox
-              Left = 25
+              Left = 24
               Top = 2
               Width = 480
               Height = 20
-              Caption = 'Insert Space Char Instead of Tab Char'
+              Caption = 'Insert Space char instead of Tab char'
               TabOrder = 0
               Wx_BGColor = clBlack
               Wx_CheckBoxStyle = []
@@ -830,7 +830,7 @@ object frmNewForm: TfrmNewForm
               Wx_Alignment = wxALIGN_LEFT
             end
             object WxCheckBoxAutoIndent: TWxCheckBox
-              Left = 25
+              Left = 24
               Top = 26
               Width = 480
               Height = 20
@@ -849,11 +849,11 @@ object frmNewForm: TfrmNewForm
               Wx_Alignment = wxALIGN_LEFT
             end
             object WxCheckBoxAutoCompletePair: TWxCheckBox
-              Left = 25
+              Left = 24
               Top = 50
               Width = 480
               Height = 20
-              Caption = 'Auto Complete Character Pair'
+              Caption = 'Auto complete character pair'
               TabOrder = 3
               Wx_BGColor = clBlack
               Wx_CheckBoxStyle = []
@@ -870,7 +870,7 @@ object frmNewForm: TfrmNewForm
             object WxBoxSizer28: TWxBoxSizer
               Left = 0
               Top = 72
-              Width = 531
+              Width = 529
               Height = 24
               TabOrder = 4
               Wx_Class = 'wxBoxSizer'
@@ -884,7 +884,7 @@ object frmNewForm: TfrmNewForm
                 Top = 2
                 Width = 260
                 Height = 20
-                Caption = 'Auto Copy the Mouse-Selected Text to Clipboard  ('
+                Caption = 'Auto copy the mouse-selected text to clipboard  ('
                 TabOrder = 0
                 Wx_BGColor = clBlack
                 Wx_CheckBoxStyle = []
@@ -937,9 +937,9 @@ object frmNewForm: TfrmNewForm
               object WxStaticText17: TWxStaticText
                 Left = 414
                 Top = 3
-                Width = 115
+                Width = 113
                 Height = 17
-                Caption = 'when Pressing Ctrl Key)'
+                Caption = 'when pressing Ctrl key)'
                 TabOrder = 3
                 Wx_BGColor = clBlack
                 Wx_Class = 'wxStaticText'
@@ -955,11 +955,11 @@ object frmNewForm: TfrmNewForm
               end
             end
             object WxCheckBoxMiddleMouseToPaste: TWxCheckBox
-              Left = 25
+              Left = 24
               Top = 98
               Width = 480
               Height = 20
-              Caption = 'Paste Text from Clipboard when Pressing Middle Mouse Button'
+              Caption = 'Paste text from clipboard when pressing middle mouse button'
               TabOrder = 2
               Wx_BGColor = clBlack
               Wx_CheckBoxStyle = []
@@ -2068,7 +2068,7 @@ object frmNewForm: TfrmNewForm
                 Top = 5
                 Width = 250
                 Height = 17
-                Caption = 'Reset All Keys to Default(Must Restart MadEdit)'
+                Caption = 'Reset all keys to default (must restart MadEdit)'
                 TabOrder = 0
                 Wx_BGColor = clBlack
                 Wx_CheckBoxStyle = []
