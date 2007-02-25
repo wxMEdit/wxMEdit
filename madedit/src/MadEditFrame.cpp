@@ -3964,6 +3964,9 @@ void MadEditFrame::OnToolsOptions(wxCommandEvent& event)
         extern bool g_DoNotSaveSettings;
         g_DoNotSaveSettings=g_OptionsDialog->WxCheckBoxDoNotSaveSettings->GetValue();
 
+        m_Config->Write(wxT("ReloadFiles"), g_OptionsDialog->WxCheckBoxReloadFiles->GetValue());
+        m_Config->Write(wxT("RestoreCaretPos"), g_OptionsDialog->WxCheckBoxRestoreCaretPos->GetValue());
+
 
         bool bb;
         long ll;

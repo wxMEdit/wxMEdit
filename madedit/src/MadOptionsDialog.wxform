@@ -55,8 +55,8 @@ object frmNewForm: TfrmNewForm
       Top = 0
       Width = 681
       Height = 342
-      ActivePage = WxNoteBookPage2
-      TabIndex = 1
+      ActivePage = WxNoteBookPage1
+      TabIndex = 0
       TabOrder = 0
       Wx_Class = 'wxFlatNotebook'
       Wx_ControlOrientation = wxControlVertical
@@ -374,7 +374,7 @@ object frmNewForm: TfrmNewForm
             Left = 109
             Top = 187
             Width = 404
-            Height = 24
+            Height = 72
             TabOrder = 3
             Orientation = wxVertical
             Wx_Class = 'wxBoxSizer'
@@ -382,9 +382,47 @@ object frmNewForm: TfrmNewForm
             Wx_IDName = 'ID_WXBOXSIZER7'
             Wx_IDValue = 1044
             Wx_Alignment = wxALIGN_LEFT
-            object WxCheckBoxDoNotSaveSettings: TWxCheckBox
+            object WxCheckBoxReloadFiles: TWxCheckBox
               Left = 2
               Top = 2
+              Width = 400
+              Height = 20
+              Caption = 'Reload Files Previously Open on Startup'
+              TabOrder = 1
+              Wx_BGColor = clBlack
+              Wx_CheckBoxStyle = []
+              Wx_Class = 'wxCheckBox'
+              Wx_ControlOrientation = wxControlVertical
+              Wx_FGColor = clBlack
+              Wx_GeneralStyle = []
+              Wx_Hidden = False
+              Wx_IDName = 'ID_WXCHECKBOXRELOADFILES'
+              Wx_IDValue = 1197
+              Wx_Border = 2
+              Wx_Alignment = wxALIGN_LEFT
+            end
+            object WxCheckBoxRestoreCaretPos: TWxCheckBox
+              Left = 2
+              Top = 26
+              Width = 400
+              Height = 20
+              Caption = 'Restore Previous Caret Position  When Files Are Opened'
+              TabOrder = 2
+              Wx_BGColor = clBlack
+              Wx_CheckBoxStyle = []
+              Wx_Class = 'wxCheckBox'
+              Wx_ControlOrientation = wxControlVertical
+              Wx_FGColor = clBlack
+              Wx_GeneralStyle = []
+              Wx_Hidden = False
+              Wx_IDName = 'ID_WXCHECKBOXRESTORECARETPOS'
+              Wx_IDValue = 1198
+              Wx_Border = 2
+              Wx_Alignment = wxALIGN_LEFT
+            end
+            object WxCheckBoxDoNotSaveSettings: TWxCheckBox
+              Left = 2
+              Top = 50
               Width = 400
               Height = 20
               Caption = 
