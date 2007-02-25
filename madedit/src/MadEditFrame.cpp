@@ -1726,6 +1726,44 @@ void MadEditFrame::MadEditFrameClose(wxCloseEvent& event)
     }
 
 
+    // save ReloadFilesList
+    wxString files;
+    int count=int(m_Notebook->GetPageCount());
+    bool bb;
+    m_Config->Read(wxT("ReloadFiles"), &bb);
+    if(bb && count>0)
+    {
+        int id=0, selid=0, sid=0;
+        MadEdit *madedit;
+        wxString name;
+        do
+        {
+            madedit = (MadEdit*)m_Notebook->GetPage(id);
+            name = madedit->GetFileName();
+            if(!name.IsEmpty())
+            {
+                files += name;
+                files += wxT('|');
+                if(id == m_Notebook->GetSelection())
+                {
+                    selid = sid;
+                }
+                ++sid;
+            }
+        }
+        while(++id < count);
+        
+        if(!files.IsEmpty())
+        {
+            name.Empty();
+            name << selid;
+            name += wxT('|');
+            files = name + files;
+        }
+    }
+    m_Config->Write(wxT("/MadEdit/ReloadFilesList"), files );
+
+
 #ifdef __WXMSW__
     int style=::GetWindowLong((HWND)GetHWND(), GWL_STYLE);
     m_Config->Write(wxT("/MadEdit/WindowMaximize"), (style&WS_MAXIMIZE)!=0 );
