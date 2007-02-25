@@ -379,17 +379,11 @@ bool MadEditApp::OnInit()
 #endif
 
     // reload files previously opened
-    long selid=0;
     wxString files;
     cfg->Read(wxT("/MadEdit/ReloadFilesList"), &files);
     if(!files.IsEmpty())
     {
-        int pos = files.Find(wxT('|'));
-        if(pos!=wxNOT_FOUND)
-        {
-            files.Left(pos).ToLong(&selid);
-            filenames = files.Right(files.Len()-(pos+1)) + filenames;
-        }
+        filenames = files + filenames;
     }
 
     if(!filenames.IsEmpty())
@@ -401,10 +395,6 @@ bool MadEditApp::OnInit()
     if(myFrame->OpenedFileCount()==0)
     {
         myFrame->OpenFile(wxEmptyString, false);
-    }
-    else
-    {
-        myFrame->SetPageFocus(selid);
     }
 
     return TRUE;

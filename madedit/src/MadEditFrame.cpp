@@ -1872,9 +1872,9 @@ void MadEditFrame::MadEditFrameClose(wxCloseEvent& event)
     m_Config->Read(wxT("ReloadFiles"), &bb);
     if(bb && count>0)
     {
-        int id=0, selid=0, sid=0;
+        int id=0;
         MadEdit *madedit;
-        wxString name;
+        wxString name, selname;
         do
         {
             madedit = (MadEdit*)m_Notebook->GetPage(id);
@@ -1885,19 +1885,16 @@ void MadEditFrame::MadEditFrameClose(wxCloseEvent& event)
                 files += wxT('|');
                 if(id == m_Notebook->GetSelection())
                 {
-                    selid = sid;
+                    selname = name;
                 }
-                ++sid;
             }
         }
         while(++id < count);
         
-        if(!files.IsEmpty())
+        if(!files.IsEmpty() && !selname.IsEmpty())
         {
-            name.Empty();
-            name << selid;
-            name += wxT('|');
-            files = name + files;
+            selname += wxT('|'); // append selname to activate it
+            files += selname;
         }
     }
     m_Config->Write(wxT("/MadEdit/ReloadFilesList"), files );
