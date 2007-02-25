@@ -133,6 +133,7 @@
     #define GetAccelFromString(x) wxGetAccelFromString(x)
 #endif
 
+
 wxString g_MadEdit_Version(wxT("MadEdit v0.2.6 Beta"));
 wxString g_MadEdit_URL(wxT("http://madedit.sourceforge.net"));
 
@@ -186,6 +187,143 @@ int g_StatusWidths[7]={ 0, 220, 235, 135, 155, 65, (40 + 0)};
 #endif
 
 wxAcceleratorEntry g_AccelFindNext, g_AccelFindPrev;
+
+//---------------------------------------------------------------------------
+
+// for RestoreCaretPos
+class FileCaretPosManager
+{
+    static const int MAX_COUNT = 25;
+
+    struct FilePosData
+    {
+        wxString name;
+        wxFileOffset pos;
+        unsigned long hash; // hash value of filename
+        FilePosData(const wxString &n, const wxLongLong_t& p, unsigned long h)
+            : name(n), pos(p), hash(h)
+        {}
+        FilePosData() {}
+    };
+    std::list<FilePosData> files;
+
+public:
+    void Add(const wxString &name, const wxFileOffset &pos)
+    {
+#ifdef __WXMSW__
+        wxString name0(name.Upper());
+#else
+        const wxString &name0 = name;
+#endif
+        unsigned long hash = wxStringHash::wxCharStringHash(name0);
+        if(files.size()==0)
+        {
+            files.push_back(FilePosData(name0, pos, hash));
+        }
+        else
+        {
+            std::list<FilePosData>::iterator it = files.begin();
+            std::list<FilePosData>::iterator itend = files.end();
+            do
+            {
+                if(it->hash == hash && it->name == name0)
+                {
+                    break;
+                }
+            }
+            while(++it != itend);
+
+            if(it == itend)
+            {
+                files.push_front(FilePosData(name0, pos, hash));
+            }
+            else
+            {
+                it->pos = pos;
+                files.push_front(*it);
+                files.erase(it);
+            }
+        }
+        if(files.size()>MAX_COUNT)
+        {
+            files.pop_back();
+        }
+    }
+    void Add(MadEdit *madedit)
+    {
+        if(madedit==NULL) return;
+
+        wxString name=madedit->GetFileName();
+        if(!name.IsEmpty())
+        {
+            wxFileOffset pos=madedit->GetCharPosition();
+            Add(name, pos);
+        }
+    }
+    void Save(wxConfigBase *cfg)
+    {
+        std::list<FilePosData>::iterator it = files.begin();
+        wxString entry(wxT("file")), text;
+        int idx=0, count=int(files.size());
+        while(idx < count)
+        {
+            text = wxLongLong(it->pos).ToString();
+            text += wxT("|");
+            text += it->name;
+            cfg->Write(entry + (wxString()<<(idx+1)), text);
+            ++idx;
+            ++it;
+        }
+    }
+    void Load(wxConfigBase *cfg)
+    {
+        FilePosData fpdata;
+        wxString entry(wxT("file")), text;
+        int idx=1;
+        while(cfg->Read(entry + (wxString()<<idx), &text))
+        {
+            int p=text.Find(wxT("|"));
+            if(p!=wxNOT_FOUND)
+            {
+                if(text.Left(p).ToLongLong(&fpdata.pos))
+                {
+                    fpdata.name = text.Right(text.Len() - (p+1));
+                    fpdata.hash = wxStringHash::wxCharStringHash(fpdata.name);
+                    files.push_back(fpdata);
+                }
+            }
+            ++idx;
+        }
+    }
+    wxFileOffset GetPos(const wxString &name)
+    {
+#ifdef __WXMSW__
+        wxString name0(name.Upper());
+#else
+        const wxString &name0 = name;
+#endif
+        unsigned long hash = wxStringHash::wxCharStringHash(name0);
+        wxFileOffset pos=0;
+        if(files.size()!=0)
+        {
+            std::list<FilePosData>::iterator it = files.begin();
+            std::list<FilePosData>::iterator itend = files.end();
+            do
+            {
+                if(it->hash == hash && it->name == name0)
+                {
+                    pos = it->pos;
+                    break;
+                }
+            }
+            while(++it != itend);
+        }
+        return pos;
+    }
+};
+FileCaretPosManager g_FileCaretPosManager;
+
+
 //---------------------------------------------------------------------------
 
 // for FindInFilesResults
@@ -199,9 +337,7 @@ public:
         : filename(fn), pageid(pid), bpos(b), epos(e) {}
 };
 
-
 //---------------------------------------------------------------------------
-
 
 #ifndef __WXMSW__   // for Linux filename checking/converting
 MadConvFileName MadConvFileNameObj;
@@ -1214,6 +1350,9 @@ void LoadDefaultSettings(wxConfigBase *m_Config)
     m_Config->Read(wxT("PageFooterLeft"), &tempstr, wxEmptyString);
     m_Config->Read(wxT("PageFooterCenter"), &tempstr, wxEmptyString);
     m_Config->Read(wxT("PageFooterRight"), &tempstr, wxT("%d %t"));
+
+    m_Config->SetPath(wxT("/FileCaretPos"));
+    g_FileCaretPosManager.Load(m_Config);
 }
 
 
@@ -1729,7 +1868,7 @@ void MadEditFrame::MadEditFrameClose(wxCloseEvent& event)
     // save ReloadFilesList
     wxString files;
     int count=int(m_Notebook->GetPageCount());
-    bool bb;
+    bool bb=true;
     m_Config->Read(wxT("ReloadFiles"), &bb);
     if(bb && count>0)
     {
@@ -1763,6 +1902,8 @@ void MadEditFrame::MadEditFrameClose(wxCloseEvent& event)
     }
     m_Config->Write(wxT("/MadEdit/ReloadFilesList"), files );
 
+    m_Config->SetPath(wxT("/FileCaretPos"));
+    g_FileCaretPosManager.Save(m_Config);
 
 #ifdef __WXMSW__
     int style=::GetWindowLong((HWND)GetHWND(), GWL_STYLE);
@@ -2398,6 +2539,7 @@ void MadEditFrame::OpenFile(const wxString &filename, bool mustExist)
         {
             // add filename, fontname, and encoding to recentlist
             m_RecentFiles->AddFileToHistory(filename);
+            madedit->SetCaretPosition(g_FileCaretPosManager.GetPos(filename));
         }
     }
     wxString str;
@@ -2444,6 +2586,8 @@ bool MadEditFrame::QueryCloseFile(int idx)
     if(madedit->Save(true, name, false)==wxID_CANCEL)
         return false;
 
+    g_FileCaretPosManager.Add(madedit);
+
     return true;
 }
 
@@ -2463,6 +2607,7 @@ bool MadEditFrame::QueryCloseAllFiles()
         if(madedit->Save(true, name, false)==wxID_CANCEL)
             return false;
     }
+    g_FileCaretPosManager.Add(madedit);
 
     int count=int(m_Notebook->GetPageCount());
     int id=0, sid=selid;
@@ -2494,6 +2639,7 @@ bool MadEditFrame::QueryCloseAllFiles()
                 
                 sid=id;
             }
+            g_FileCaretPosManager.Add(madedit);
         }
     }
     while(++id<count);

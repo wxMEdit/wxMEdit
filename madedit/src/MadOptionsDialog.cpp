@@ -912,10 +912,10 @@ void MadOptionsDialog::LoadOptions(void)
     extern bool g_DoNotSaveSettings;
     WxCheckBoxDoNotSaveSettings->SetValue(g_DoNotSaveSettings);
 
-    cfg->Read(wxT("ReloadFiles"), &bb);
+    cfg->Read(wxT("ReloadFiles"), &bb, true);
     WxCheckBoxReloadFiles->SetValue(bb);
 
-    cfg->Read(wxT("RestoreCaretPos"), &bb);
+    cfg->Read(wxT("RestoreCaretPos"), &bb, true);
     WxCheckBoxRestoreCaretPos->SetValue(bb);
 
     // Print page
