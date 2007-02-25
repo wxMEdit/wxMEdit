@@ -110,6 +110,12 @@ BEGIN_EVENT_TABLE(MadOptionsDialog,wxDialog)
 	
 	EVT_CLOSE(MadOptionsDialog::MadOptionsDialogClose)
 	EVT_ACTIVATE(MadOptionsDialog::MadOptionsDialogActivate)
+	EVT_MENU(ID_MNU_MENUITEM1_1110 , MadOptionsDialog::PrintMarkClick)
+	EVT_MENU(ID_MNU___P__PATHNAME_1111 , MadOptionsDialog::PrintMarkClick)
+	EVT_MENU(ID_MNU___N_PAGE_NUMBER_1113 , MadOptionsDialog::PrintMarkClick)
+	EVT_MENU(ID_MNU___S__TOTALPAGES_1114 , MadOptionsDialog::PrintMarkClick)
+	EVT_MENU(ID_MNU___D__DATE_1116 , MadOptionsDialog::PrintMarkClick)
+	EVT_MENU(ID_MNU___T__TIME_1117 , MadOptionsDialog::PrintMarkClick)
 	EVT_MENU(ID_MNU___Y__M__D_I__M__S_P_2007_02_2408_30_55AM_1191 , MadOptionsDialog::DateTimeMarkClick)
 	EVT_MENU(ID_MNU___D__M__Y_24_02_2007_1192 , MadOptionsDialog::DateTimeMarkClick)
 	EVT_MENU(ID_MNU___A__D_B_Y_H__M__S_Z_RFC822TIMESTAMP_1195 , MadOptionsDialog::DateTimeMarkClick)
@@ -135,12 +141,6 @@ BEGIN_EVENT_TABLE(MadOptionsDialog,wxDialog)
 	EVT_MENU(ID_MNU___Y_YEARWITHCENTURY_ASDECIMALNUMBER_1189 , MadOptionsDialog::DateTimeMarkClick)
 	EVT_MENU(ID_MNU___Z_TIME_ZONENAME_1193 , MadOptionsDialog::DateTimeMarkClick)
 	EVT_MENU(ID_MNU___Z_TIME_ZONEABBREVIATION_1194 , MadOptionsDialog::DateTimeMarkClick)
-	EVT_MENU(ID_MNU_MENUITEM1_1110 , MadOptionsDialog::PrintMarkClick)
-	EVT_MENU(ID_MNU___P__PATHNAME_1111 , MadOptionsDialog::PrintMarkClick)
-	EVT_MENU(ID_MNU___N_PAGE_NUMBER_1113 , MadOptionsDialog::PrintMarkClick)
-	EVT_MENU(ID_MNU___S__TOTALPAGES_1114 , MadOptionsDialog::PrintMarkClick)
-	EVT_MENU(ID_MNU___D__DATE_1116 , MadOptionsDialog::PrintMarkClick)
-	EVT_MENU(ID_MNU___T__TIME_1117 , MadOptionsDialog::PrintMarkClick)
 	EVT_BUTTON(ID_WXBUTTONCANCEL,MadOptionsDialog::WxButtonCancelClick)
 	EVT_BUTTON(ID_WXBUTTONOK,MadOptionsDialog::WxButtonOKClick)
 	EVT_BUTTON(ID_WXBUTTONSHOWINMENU,MadOptionsDialog::WxButtonShowInMenuClick)
@@ -280,7 +280,7 @@ void MadOptionsDialog::CreateGUIControls(void)
 	WxCheckBoxReloadFiles = new wxCheckBox(WxNoteBookPage1, ID_WXCHECKBOXRELOADFILES, _("Reload files previously open on startup"), wxPoint(2,2), wxSize(400,20), 0, wxDefaultValidator, _("WxCheckBoxReloadFiles"));
 	WxBoxSizer7->Add(WxCheckBoxReloadFiles,0,wxALIGN_LEFT | wxALL,2);
 
-	WxCheckBoxRestoreCaretPos = new wxCheckBox(WxNoteBookPage1, ID_WXCHECKBOXRESTORECARETPOS, _("Restore previous caret position  when files are opened"), wxPoint(2,26), wxSize(400,20), 0, wxDefaultValidator, _("WxCheckBoxRestoreCaretPos"));
+	WxCheckBoxRestoreCaretPos = new wxCheckBox(WxNoteBookPage1, ID_WXCHECKBOXRESTORECARETPOS, _("Restore previous caret position when files are opened"), wxPoint(2,26), wxSize(400,20), 0, wxDefaultValidator, _("WxCheckBoxRestoreCaretPos"));
 	WxBoxSizer7->Add(WxCheckBoxRestoreCaretPos,0,wxALIGN_LEFT | wxALL,2);
 
 	WxCheckBoxDoNotSaveSettings = new wxCheckBox(WxNoteBookPage1, ID_WXCHECKBOXDONOTSAVESETTINGS, _("Do not save settings to MadEdit.cfg when MadEdit closed (this session only)"), wxPoint(2,50), wxSize(400,20), 0, wxDefaultValidator, _("WxCheckBoxDoNotSaveSettings"));
@@ -341,7 +341,7 @@ void MadOptionsDialog::CreateGUIControls(void)
 	WxButtonDateTime = new wxButton(WxNoteBookPage2, ID_WXBUTTONDATETIME, _(">>"), wxPoint(273,1), wxSize(25,25), 0, wxDefaultValidator, _("WxButtonDateTime"));
 	WxBoxSizer23->Add(WxButtonDateTime,0,wxALIGN_LEFT | wxALL,1);
 
-	WxCheckBoxDateTimeInEnglish = new wxCheckBox(WxNoteBookPage2, ID_WXCHECKBOXDATETIMEINENGLISH, _("Use English Instead of current locale"), wxPoint(301,3), wxSize(200,20), 0, wxDefaultValidator, _("WxCheckBoxDateTimeInEnglish"));
+	WxCheckBoxDateTimeInEnglish = new wxCheckBox(WxNoteBookPage2, ID_WXCHECKBOXDATETIMEINENGLISH, _("Use English instead of current locale"), wxPoint(301,3), wxSize(200,20), 0, wxDefaultValidator, _("WxCheckBoxDateTimeInEnglish"));
 	WxBoxSizer23->Add(WxCheckBoxDateTimeInEnglish,0,wxALIGN_LEFT | wxALL,2);
 
 	WxBoxSizer12 = new wxBoxSizer(wxVERTICAL);
@@ -568,15 +568,6 @@ void MadOptionsDialog::CreateGUIControls(void)
 	WxButtonCancel = new wxButton(this, ID_WXBUTTONCANCEL, _("&Cancel"), wxPoint(100,5), wxSize(90,30), 0, wxDefaultValidator, _("WxButtonCancel"));
 	WxBoxSizer2->Add(WxButtonCancel,0,wxALIGN_CENTER | wxALL,5);
 
-	WxPopupMenuPrintMark = new wxMenu(_(""));WxPopupMenuPrintMark->Append(ID_MNU_MENUITEM1_1110, _("[%f] &File Name"), _(""), wxITEM_NORMAL);
-	WxPopupMenuPrintMark->Append(ID_MNU___P__PATHNAME_1111, _("[%p] &Path Name"), _(""), wxITEM_NORMAL);
-	WxPopupMenuPrintMark->AppendSeparator();
-	WxPopupMenuPrintMark->Append(ID_MNU___N_PAGE_NUMBER_1113, _("[%n] Page &Number"), _(""), wxITEM_NORMAL);
-	WxPopupMenuPrintMark->Append(ID_MNU___S__TOTALPAGES_1114, _("[%s] Total Page&s"), _(""), wxITEM_NORMAL);
-	WxPopupMenuPrintMark->AppendSeparator();
-	WxPopupMenuPrintMark->Append(ID_MNU___D__DATE_1116, _("[%d] &Date"), _(""), wxITEM_NORMAL);
-	WxPopupMenuPrintMark->Append(ID_MNU___T__TIME_1117, _("[%t] &Time"), _(""), wxITEM_NORMAL);
-
 	WxPopupMenuDateTimeMark = new wxMenu(_(""));WxPopupMenuDateTimeMark->Append(ID_MNU___Y__M__D_I__M__S_P_2007_02_2408_30_55AM_1191, _("[%Y/%m/%d %I:%M:%S %p] 2007/02/24 08:30:55 AM"), _(""), wxITEM_NORMAL);
 	WxPopupMenuDateTimeMark->Append(ID_MNU___D__M__Y_24_02_2007_1192, _("[%d/%m/%Y] 24/02/2007"), _(""), wxITEM_NORMAL);
 	WxPopupMenuDateTimeMark->Append(ID_MNU___A__D_B_Y_H__M__S_Z_RFC822TIMESTAMP_1195, _("[%a, %d %b %Y %H:%M:%S %z] RFC822 timestamp"), _(""), wxITEM_NORMAL);
@@ -603,6 +594,15 @@ void MadOptionsDialog::CreateGUIControls(void)
 	WxPopupMenuDateTimeMark->Append(ID_MNU___Y_YEARWITHCENTURY_ASDECIMALNUMBER_1189, _("[%Y] Year with century, as decimal number"), _(""), wxITEM_NORMAL);
 	WxPopupMenuDateTimeMark->Append(ID_MNU___Z_TIME_ZONENAME_1193, _("[%z] Time-zone name"), _(""), wxITEM_NORMAL);
 	WxPopupMenuDateTimeMark->Append(ID_MNU___Z_TIME_ZONEABBREVIATION_1194, _("[%Z] Time-zone abbreviation"), _(""), wxITEM_NORMAL);
+
+	WxPopupMenuPrintMark = new wxMenu(_(""));WxPopupMenuPrintMark->Append(ID_MNU_MENUITEM1_1110, _("[%f] &File Name"), _(""), wxITEM_NORMAL);
+	WxPopupMenuPrintMark->Append(ID_MNU___P__PATHNAME_1111, _("[%p] &Path Name"), _(""), wxITEM_NORMAL);
+	WxPopupMenuPrintMark->AppendSeparator();
+	WxPopupMenuPrintMark->Append(ID_MNU___N_PAGE_NUMBER_1113, _("[%n] Page &Number"), _(""), wxITEM_NORMAL);
+	WxPopupMenuPrintMark->Append(ID_MNU___S__TOTALPAGES_1114, _("[%s] Total Page&s"), _(""), wxITEM_NORMAL);
+	WxPopupMenuPrintMark->AppendSeparator();
+	WxPopupMenuPrintMark->Append(ID_MNU___D__DATE_1116, _("[%d] &Date"), _(""), wxITEM_NORMAL);
+	WxPopupMenuPrintMark->Append(ID_MNU___T__TIME_1117, _("[%t] &Time"), _(""), wxITEM_NORMAL);
 
 	SetTitle(_("Options"));
 	SetIcon(wxNullIcon);

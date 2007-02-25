@@ -406,7 +406,7 @@ object frmNewForm: TfrmNewForm
               Top = 26
               Width = 400
               Height = 20
-              Caption = 'Restore previous caret position  when files are opened'
+              Caption = 'Restore previous caret position when files are opened'
               TabOrder = 2
               Wx_BGColor = clBlack
               Wx_CheckBoxStyle = []
@@ -783,7 +783,7 @@ object frmNewForm: TfrmNewForm
               Top = 3
               Width = 200
               Height = 20
-              Caption = 'Use English Instead of current locale'
+              Caption = 'Use English instead of current locale'
               TabOrder = 3
               Wx_BGColor = clBlack
               Wx_CheckBoxStyle = []

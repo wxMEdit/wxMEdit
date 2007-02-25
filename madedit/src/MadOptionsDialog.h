@@ -80,8 +80,8 @@ public:
   //wx-devcpp will remove them. Try adding the custom code 
   //after the block.
   ////GUI Control Declaration Start
-		wxMenu *WxPopupMenuDateTimeMark;
 		wxMenu *WxPopupMenuPrintMark;
+		wxMenu *WxPopupMenuDateTimeMark;
 		wxButton *WxButtonCancel;
 		wxButton *WxButtonOK;
 		wxBoxSizer *WxBoxSizer2;
@@ -206,6 +206,15 @@ public:
     //Try copy pasting the below block in your old Form header Files.
 	enum {
 ////GUI Enum Control ID Start
+			ID_MNU_MENUITEM1_1110 = 1118,
+			ID_MNU___P__PATHNAME_1111 = 1119,
+			ID_MNU_MENUITEM3_1112 = 1112,
+			ID_MNU___N_PAGE_NUMBER_1113 = 1113,
+			ID_MNU___S__TOTALPAGES_1114 = 1114,
+			ID_MNU_MENUITEM6_1115 = 1115,
+			ID_MNU___D__DATE_1116 = 1116,
+			ID_MNU___T__TIME_1117 = 1117,
+			
 			ID_MNU___Y__M__D_I__M__S_P_2007_02_2408_30_55AM_1191 = 1191,
 			ID_MNU___D__M__Y_24_02_2007_1192 = 1192,
 			ID_MNU___A__D_B_Y_H__M__S_Z_RFC822TIMESTAMP_1195 = 1195,
@@ -231,15 +240,6 @@ public:
 			ID_MNU___Y_YEARWITHCENTURY_ASDECIMALNUMBER_1189 = 1189,
 			ID_MNU___Z_TIME_ZONENAME_1193 = 1193,
 			ID_MNU___Z_TIME_ZONEABBREVIATION_1194 = 1194,
-			
-			ID_MNU_MENUITEM1_1110 = 1118,
-			ID_MNU___P__PATHNAME_1111 = 1119,
-			ID_MNU_MENUITEM3_1112 = 1112,
-			ID_MNU___N_PAGE_NUMBER_1113 = 1113,
-			ID_MNU___S__TOTALPAGES_1114 = 1114,
-			ID_MNU_MENUITEM6_1115 = 1115,
-			ID_MNU___D__DATE_1116 = 1116,
-			ID_MNU___T__TIME_1117 = 1117,
 			
 			ID_WXBUTTONCANCEL = 1007,
 			ID_WXBUTTONOK = 1006,
