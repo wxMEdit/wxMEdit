@@ -420,9 +420,9 @@ protected:
 
     void HexModeToTextMode(MadEditMode mode);
 
-    void AppearCaret();         // make the caret showing within the client area
+    void AppearCaret(bool middle = false); // make the caret showing within the client area
     void ShowCaret(bool show);
-    void DisplayCaret(bool moveonly);        // show caret immediately
+    void DisplayCaret(bool moveonly); // show caret immediately
 
     void CopyFileDataToMem(MadBlockIterator begin, MadBlockIterator end);
     MadLineIterator DeleteInsertData(wxFileOffset pos,

@@ -11255,13 +11255,18 @@ void MadEdit::SetCaretType(MadCaretType type)
 }
 
 
-void MadEdit::AppearCaret()
+void MadEdit::AppearCaret(bool middle)
 {
     if(m_EditMode != emHexMode)
     {
         if(m_CaretPos.rowid < m_TopRow)
         {
             m_TopRow = m_CaretPos.rowid;
+            if(middle)
+            {
+                m_TopRow -= (m_CompleteRowCount/2);
+                if(m_TopRow < 0) m_TopRow = 0;
+            }
             m_RepaintAll = true;
             Refresh(false);
         }
@@ -11269,8 +11274,8 @@ void MadEdit::AppearCaret()
         {
             if(m_CaretPos.rowid >= (m_TopRow + m_CompleteRowCount))
             {
-
-                m_TopRow = m_CaretPos.rowid - m_CompleteRowCount + 1;
+                if(middle) m_TopRow = m_CaretPos.rowid - (m_CompleteRowCount/2);
+                else       m_TopRow = m_CaretPos.rowid - m_CompleteRowCount + 1;
                 m_RepaintAll = true;
                 Refresh(false);
             }
@@ -13021,7 +13026,7 @@ void MadEdit::GoToLine(int line)
         }
     }
 
-    AppearCaret();
+    AppearCaret(true);
     UpdateScrollBarPos();
 
     m_LastTextAreaXPos=m_TextAreaXPos;
@@ -13051,7 +13056,7 @@ void MadEdit::SetCaretPosition(wxFileOffset pos, wxFileOffset selbeg, wxFileOffs
     UpdateCaretByPos(m_CaretPos, m_ActiveRowUChars, m_ActiveRowWidths, m_CaretRowUCharPos);
     m_UpdateValidPos=0;
 
-    AppearCaret();
+    AppearCaret(true);
     UpdateScrollBarPos();
 
     m_LastCaretXPos=m_CaretPos.xpos;
