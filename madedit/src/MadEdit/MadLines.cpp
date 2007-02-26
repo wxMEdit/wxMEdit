@@ -1682,7 +1682,12 @@ MadLineState MadLines::Reformat(MadLineIterator iter)
                         state.Directive = 0;
                     }
 
-                    if(NextUCharIs0x0A()) // DOS newline chars
+                    if(ucqueue.size()>1 && ucqueue[1].first==0x0A) // DOS newline chars
+                    {
+                        m_MadEdit->m_NewLineType = nltDOS;
+                        iter->m_NewLineSize = ucqueue[1].second;
+                    }
+                    else if(NextUCharIs0x0A()) // DOS newline chars
                     {
                         (this->*NextUChar)(ucqueue);
                         m_MadEdit->m_NewLineType = nltDOS;
