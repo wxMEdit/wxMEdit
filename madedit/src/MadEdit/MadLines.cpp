@@ -1491,6 +1491,17 @@ int MadLines::FindStringCase(MadUCQueue &ucqueue, MadStringIterator begin,
     int idx = 1;
     ucs4_t firstuc = ucqueue.front().first;
     size_t ucsize = ucqueue.size();
+    bool noNewLine = true;
+    if(ucsize > 1)
+    {
+        register ucs4_t uc = ucqueue.back().first;
+        if(uc==0x0D || uc==0x0A)
+        {
+            noNewLine = false;
+            --ucsize; // exclude NewLine char
+        }
+    }
+
     do
     {
         const wchar_t *cstr = begin->c_str();
@@ -1500,9 +1511,18 @@ int MadLines::FindStringCase(MadUCQueue &ucqueue, MadStringIterator begin,
         {
             if(len == 1) return idx;
 
-            if(ucsize < len)
+            if(ucsize < len && noNewLine)
             {
-                while( (this->*NextUChar)(ucqueue) && (++ucsize) < len) /*do nothing*/;
+                while( (this->*NextUChar)(ucqueue) )
+                {
+                    register ucs4_t uc = ucqueue.back().first;
+                    if(uc==0x0D || uc==0x0A)
+                    {
+                        noNewLine = false;
+                        break;
+                    }
+                    if((++ucsize) >= len) break;
+                }
             }
 
             if(ucsize >= len)
@@ -1540,6 +1560,17 @@ int MadLines::FindStringNoCase(MadUCQueue &ucqueue, MadStringIterator begin,
     }
 
     size_t ucsize = ucqueue.size();
+    bool noNewLine = true;
+    if(ucsize > 1)
+    {
+        register ucs4_t uc = ucqueue.back().first;
+        if(uc==0x0D || uc==0x0A)
+        {
+            noNewLine = false;
+            --ucsize; // exclude NewLine char
+        }
+    }
+
     do
     {
         const wchar_t *cstr = begin->c_str();
@@ -1549,9 +1580,18 @@ int MadLines::FindStringNoCase(MadUCQueue &ucqueue, MadStringIterator begin,
         {
             if(len == 1) return idx;
 
-            if(ucsize < len)
+            if(ucsize < len && noNewLine)
             {
-                while( (this->*NextUChar)(ucqueue) && (++ucsize) < len) /*do nothing*/;
+                while( (this->*NextUChar)(ucqueue) )
+                {
+                    register ucs4_t uc = ucqueue.back().first;
+                    if(uc==0x0D || uc==0x0A)
+                    {
+                        noNewLine = false;
+                        break;
+                    }
+                    if((++ucsize) >= len) break;
+                }
             }
 
             if(ucsize >= len)
@@ -1689,18 +1729,21 @@ MadLineState MadLines::Reformat(MadLineIterator iter)
                 firstuclen = ucp.second;
                 if(firstuc == 0x0D)
                 {
+                    wxASSERT(ucqueue.size() == 1);
+
                     if(prevuc != m_Syntax->nw_EscapeChar)
                     {
                         state.LineComment = 0;
                         state.Directive = 0;
                     }
 
-                    if(ucqueue.size()>1 && ucqueue[1].first==0x0A) // DOS newline chars
-                    {
-                        m_MadEdit->m_NewLineType = nltDOS;
-                        iter->m_NewLineSize = ucqueue[1].second;
-                    }
-                    else if(NextUCharIs0x0A()) // DOS newline chars
+                    //if(ucqueue.size()>1 && ucqueue[1].first==0x0A) // DOS newline chars
+                    //{
+                        //m_MadEdit->m_NewLineType = nltDOS;
+                        //iter->m_NewLineSize = ucqueue[1].second;
+                    //}
+                    //else 
+                    if(NextUCharIs0x0A()) // DOS newline chars
                     {
                         (this->*NextUChar)(ucqueue);
                         m_MadEdit->m_NewLineType = nltDOS;
@@ -1715,7 +1758,6 @@ MadLineState MadLines::Reformat(MadLineIterator iter)
                     }
 
                     iter->m_NewLineSize += (wxByte)firstuclen;
-
                     ucqueue.clear();
 
                     break;
@@ -1736,7 +1778,6 @@ MadLineState MadLines::Reformat(MadLineIterator iter)
                     }
 
                     iter->m_NewLineSize = (wxByte)firstuclen;
-
                     ucqueue.clear();
 
                     break;
