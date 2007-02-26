@@ -195,7 +195,8 @@ private:
     wxBitmap        *m_ClientBitmap, *m_MarkBitmap;
     int             m_LastPaintBitmap;// 0:client, 1:mark
 
-    wxPoint         m_SpacePoints[4], m_EOLPoints[4];
+    wxPoint         m_SpacePoints[4], m_EOFPoints[4];
+    wxPoint         m_CR_Points[10], m_LF_Points[10], m_CRLF_Points[10];
 
     MadCaretPos     m_CaretPos;
     MadUCQueue      m_ActiveRowUChars;  // ucs4 char cache of active row

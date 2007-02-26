@@ -418,6 +418,10 @@ private:  // NextUChar()
 
 public:
     void SetEncoding(MadEncoding *encoding);
+
+    // if no newline return 0 ; else return 0x0D or 0x0A or 0x0D+0x0A (=0x17)
+    ucs4_t GetNewLine(const MadLineIterator &iter);
+
     void InitNextUChar(const MadLineIterator &iter, const wxFileOffset pos);
 
     typedef bool (MadLines::*NextUCharFuncPtr)(MadUCQueue & ucqueue);

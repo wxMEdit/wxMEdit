@@ -918,6 +918,19 @@ void MadLines::SetEncoding(MadEncoding *encoding)
     }
 }
 
+ucs4_t MadLines::GetNewLine(const MadLineIterator &iter)
+{
+    if(iter->m_NewLineSize == 0) return 0;
+
+    InitNextUChar(iter, iter->m_Size - iter->m_NewLineSize);
+    MadUCQueue ucq;
+    (this->*NextUChar)(ucq);
+    (this->*NextUChar)(ucq);
+
+    if(ucq.size()==2) return 0x0D+0x0A;
+    return ucq.front().first;
+}
+
 void MadLines::LoadNewBuffer()
 {
     if(m_NextUChar_BufferSize!=0) // move rest data to begin of buffer

@@ -2082,7 +2082,22 @@ void MadEdit::PaintTextLines(wxDC *dc, const wxRect &rect, int toprow, int rowco
 
                 dc->SetPen(*wxThePenList->FindOrCreatePen(m_Syntax->nw_Color, 1, wxSOLID));
 
-                dc->DrawLines(4, m_EOLPoints, left, text_top);
+                switch(m_Lines->GetNewLine(lineiter))
+                {
+                case 0:
+                    dc->DrawLines(4, m_EOFPoints, left, text_top);
+                    break;
+                case 0x0D:
+                    dc->DrawLines(8, m_CR_Points, left, text_top);
+                    break;
+                case 0x0A:
+                    dc->DrawLines(6, m_LF_Points, left, text_top);
+                    break;
+                case 0x0D+0x0A:
+                    dc->DrawLines(9, m_CRLF_Points, left, text_top);
+                    break;
+                }
+
                 left += w;
             }
 
@@ -10584,7 +10599,7 @@ void MadEdit::SetTextFont(const wxString &name, int size, bool forceReset)
                 name, size, m_TextFont->GetFamily());
 
 
-            // prepare m_SpacePoints, m_EOLPoints
+            // prepare m_SpacePoints, m_EOFPoints
             const int cw = GetUCharWidth(0x20);   //FFontAveCharWidth;
             {
                 const int t1 = m_TextFontHeight / 5;
@@ -10603,14 +10618,69 @@ void MadEdit::SetTextFont(const wxString &name, int size, bool forceReset)
                 const int t1 = m_TextFontHeight / 5;
                 const int x = cw - 1;
                 int y = t1 + 1;
-                m_EOLPoints[0].x = x;
-                m_EOLPoints[0].y = y;
-                m_EOLPoints[1].x = x;
-                m_EOLPoints[1].y = y += (m_TextFontHeight - (t1 << 1));
-                m_EOLPoints[2].x = x - (cw - 3);
-                m_EOLPoints[2].y = y;
-                m_EOLPoints[3].x = x;
-                m_EOLPoints[3].y = y - ((t1 * 3) >> 1);
+                m_EOFPoints[0].x = x;
+                m_EOFPoints[0].y = y;
+                m_EOFPoints[1].x = x;
+                m_EOFPoints[1].y = y += (m_TextFontHeight - (t1 << 1));
+                m_EOFPoints[2].x = x - (cw - 3);
+                m_EOFPoints[2].y = y;
+                m_EOFPoints[3].x = x;
+                m_EOFPoints[3].y = y - ((t1 * 3) >> 1);
+            }
+            //m_CR_Points[], m_LF_Points[], m_CRLF_Points[];
+            {
+                const int t1 = m_TextFontHeight / 5;
+                const int cw3=cw/3;
+                const int x = 1;
+                const int d = 2;
+                m_CR_Points[0].x = cw3;
+                m_CR_Points[0].y = m_TextFontHeight-t1+1;
+                m_CR_Points[1].x = x;
+                m_CR_Points[1].y = m_TextFontHeight-t1+1;
+                m_CR_Points[2].x = x;
+                m_CR_Points[2].y = t1;
+                m_CR_Points[3].x = cw-d;
+                m_CR_Points[3].y = t1;
+                m_CR_Points[4].x = cw-d;
+                m_CR_Points[4].y = m_TextFontHeight/2;
+                m_CR_Points[5].x = cw3;
+                m_CR_Points[5].y = m_TextFontHeight/2;
+                m_CR_Points[6].x = cw-d;
+                m_CR_Points[6].y = m_TextFontHeight-t1+2;
+                m_CR_Points[7].x = cw-d;
+                m_CR_Points[7].y = m_TextFontHeight*3/4;
+
+                m_LF_Points[0].x = cw3;
+                m_LF_Points[0].y = m_TextFontHeight-t1+1;
+                m_LF_Points[1].x = x;
+                m_LF_Points[1].y = m_TextFontHeight-t1+1;
+                m_LF_Points[2].x = x;
+                m_LF_Points[2].y = t1;
+                m_LF_Points[3].x = cw-d;
+                m_LF_Points[3].y = m_TextFontHeight-t1+2;
+                m_LF_Points[4].x = cw-d;
+                m_LF_Points[4].y = t1;
+                m_LF_Points[5].x = cw/2;
+                m_LF_Points[5].y = t1;
+
+                m_CRLF_Points[0].x = cw3;
+                m_CRLF_Points[0].y = m_TextFontHeight-t1+1;
+                m_CRLF_Points[1].x = x;
+                m_CRLF_Points[1].y = m_TextFontHeight-t1+1;
+                m_CRLF_Points[2].x = x;
+                m_CRLF_Points[2].y = t1;
+                m_CRLF_Points[3].x = cw-d;
+                m_CRLF_Points[3].y = t1;
+                m_CRLF_Points[4].x = cw-d;
+                m_CRLF_Points[4].y = t1*2;
+                m_CRLF_Points[5].x = x;//cw3;
+                m_CRLF_Points[5].y = t1*2;
+                m_CRLF_Points[6].x = cw-d;
+                m_CRLF_Points[6].y = t1*3;
+                m_CRLF_Points[7].x = cw-d;
+                m_CRLF_Points[7].y = m_TextFontHeight-t1+1;
+                m_CRLF_Points[8].x = x;
+                m_CRLF_Points[8].y = t1*3+1;
             }
 
             UpdateAppearance();
@@ -11784,13 +11854,9 @@ void MadEdit::ConvertNewLineType(MadNewLineType type)
     {
         m_Selection=false;
         m_RepaintSelection=true;
-        Refresh(false);
     }
-    if(m_EditMode==emHexMode)
-    {
-        m_RepaintAll=true;
-        Refresh(false);
-    }
+    m_RepaintAll=true;
+    Refresh(false);
 
     ReformatAll();
 
