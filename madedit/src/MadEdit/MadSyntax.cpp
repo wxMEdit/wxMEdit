@@ -1061,13 +1061,20 @@ MadSyntaxKeyword *MadSyntax::GetCustomKeyword(const wxString &name)
 
 void MadSyntax::SetColor(const wxString &value, wxColour &c)
 {
-    c=wxTheColourDatabase->Find(value);
-    if(!c.Ok() && !value.IsEmpty())
+    if(value.Upper()==wxT("NONE"))
     {
-        unsigned long ul;
-        if(value.ToULong(&ul,16))
+        c=wxNullColour;
+    }
+    else
+    {
+        c=wxTheColourDatabase->Find(value);
+        if(!c.Ok() && !value.IsEmpty())
         {
-            c.Set((ul>>16)&0xFF, (ul>>8)&0xFF, ul&0xFF);
+            unsigned long ul;
+            if(value.ToULong(&ul,16))
+            {
+                c.Set((ul>>16)&0xFF, (ul>>8)&0xFF, ul&0xFF);
+            }
         }
     }
 }
@@ -1236,6 +1243,10 @@ void MadSyntax::InitNextWord2(MadLineIterator &lit, size_t row)
         {
             nw_SynRange = GetSyntaxRange(nw_State.rangeid);
             nw_CurrentBgColor = nw_SynRange->bgcolor; // set bgcolor for empty lines
+            if(nw_CurrentBgColor==wxNullColour)
+            {
+                nw_CurrentBgColor = m_SystemAttributes[aeText].bgcolor;
+            }
         }
 
         if((nw_State.blkcmtid = state.CommentId) != 0)
@@ -1673,10 +1684,10 @@ int MadSyntax::NextWord(int &wordwidth)
         {
             MadSyntaxRange * r=GetSyntaxRange(nw_State.rangeid);
             nw_CurrentBgColor = r->bgcolor;
-            //if(nw_CurrentBgColor==wxNullColour)
-            //{
-                //nw_CurrentBgColor = m_SystemAttributes[aeText].bgcolor;
-            //}
+            if(nw_CurrentBgColor==wxNullColour)
+            {
+                nw_CurrentBgColor = m_SystemAttributes[aeText].bgcolor;
+            }
         }
         else
         {
@@ -2080,10 +2091,10 @@ int MadSyntax::NextWord(int &wordwidth)
                 {
                     MadSyntaxRange * r=GetSyntaxRange(nw_NextState.rangeid);
                     nw_CurrentBgColor = r->bgcolor;
-                    //if(nw_CurrentBgColor==wxNullColour)
-                    //{
-                        //nw_CurrentBgColor = m_SystemAttributes[aeText].bgcolor;
-                    //}
+                    if(nw_CurrentBgColor==wxNullColour)
+                    {
+                        nw_CurrentBgColor = m_SystemAttributes[aeText].bgcolor;
+                    }
                 }
                 else
                 {
@@ -2203,7 +2214,7 @@ void MadSyntax::LoadAttributes(const wxString &file)
 
 wxString GetColorName(wxColour &c)
 {
-    if(!c.Ok() || c==wxNullColour) return wxEmptyString;
+    if(!c.Ok() || c==wxNullColour) return wxString(wxT("None"));
     
     wxString name=wxTheColourDatabase->FindName(c);
     if(name.IsEmpty())

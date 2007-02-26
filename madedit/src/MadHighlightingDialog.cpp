@@ -852,7 +852,8 @@ void MadHighlightingDialog::SetAttrBC(const wxColor &color, const wxString &colo
             else                              kinfo.attr->bgcolor=color;
             break;
         case kindRange:
-            *kinfo.range_bgcolor=color;
+            if(colorname==wxT("(Automatic)")) *kinfo.range_bgcolor=wxNullColour;
+            else                              *kinfo.range_bgcolor=color;
             break;
         }
     }
