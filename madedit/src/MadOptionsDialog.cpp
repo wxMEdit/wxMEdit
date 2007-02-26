@@ -816,7 +816,7 @@ void MadOptionsDialog::MadOptionsDialogActivate(wxActivateEvent& event)
             SetReturnCode(wxID_CANCEL);
             WxButtonCancel->SetFocus();
         }
-#ifndef __WXMSW__
+#ifdef __WXGTK__
         // workaround the FlatNotebook sometimes will be empty under wxGTK
         WxNotebook1->Hide();
         WxNotebook1->Show();

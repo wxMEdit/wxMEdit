@@ -193,7 +193,7 @@ wxAcceleratorEntry g_AccelFindNext, g_AccelFindPrev;
 // for RestoreCaretPos
 class FileCaretPosManager
 {
-    static const int MAX_COUNT = 25;
+    int max_count;
 
     struct FilePosData
     {
@@ -208,6 +208,8 @@ class FileCaretPosManager
     std::list<FilePosData> files;
 
 public:
+    FileCaretPosManager() : max_count(25) {}
+
     void Add(const wxString &name, const wxFileOffset &pos)
     {
 #ifdef __WXMSW__
@@ -244,7 +246,7 @@ public:
                 files.erase(it);
             }
         }
-        if(files.size()>MAX_COUNT)
+        if(int(files.size()) > max_count)
         {
             files.pop_back();
         }
@@ -262,6 +264,8 @@ public:
     }
     void Save(wxConfigBase *cfg)
     {
+        cfg->Write(wxT("MaxCount"), max_count);
+
         std::list<FilePosData>::iterator it = files.begin();
         wxString entry(wxT("file")), text;
         int idx=0, count=int(files.size());
@@ -277,10 +281,12 @@ public:
     }
     void Load(wxConfigBase *cfg)
     {
+        cfg->Read(wxT("MaxCount"), &max_count);
+
         FilePosData fpdata;
         wxString entry(wxT("file")), text;
         int idx=1;
-        while(cfg->Read(entry + (wxString()<<idx), &text))
+        while(idx<=max_count && cfg->Read(entry + (wxString()<<idx), &text))
         {
             int p=text.Find(wxT("|"));
             if(p!=wxNOT_FOUND)
