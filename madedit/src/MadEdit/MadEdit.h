@@ -426,9 +426,12 @@ protected:
     void DisplayCaret(bool moveonly); // show caret immediately
 
     void CopyFileDataToMem(MadBlockIterator begin, MadBlockIterator end);
+
+    // return the line-iterator and and lineid (if it is not NULL) by the pos
     MadLineIterator DeleteInsertData(wxFileOffset pos,
                                      wxFileOffset delsize, /*OUT*/ MadBlockVector *deldata,
-                                     wxFileOffset inssize, /*IN*/  MadBlockVector *insdata );
+                                     wxFileOffset inssize, /*IN*/  MadBlockVector *insdata,
+                                     /*OUT*/ int *lineid = NULL);
 
     void UCStoBlock(const ucs4_t *ucs, size_t count, MadBlock & block);
     void InsertString(const ucs4_t *ucs, size_t count, bool bColumnEditing, bool moveCaret, bool bSelText);

@@ -4227,7 +4227,8 @@ void MadEdit::CopyFileDataToMem(MadBlockIterator begin, MadBlockIterator end)
 
 MadLineIterator MadEdit::DeleteInsertData(wxFileOffset pos,
                                           wxFileOffset delsize, /*OUT*/ MadBlockVector *deldata,
-                                          wxFileOffset inssize, /*IN*/  MadBlockVector *insdata )
+                                          wxFileOffset inssize, /*IN*/  MadBlockVector *insdata,
+                                          int *lineid)
 {
     MadLineIterator lit;
     wxFileOffset bpos=pos;
@@ -4235,7 +4236,8 @@ MadLineIterator MadEdit::DeleteInsertData(wxFileOffset pos,
 
     m_UpdateValidPos = 1;   // update if pos < oldpos
 
-    GetLineByPos(lit, bpos, tmp_rowid);
+    int lid = GetLineByPos(lit, bpos, tmp_rowid);
+    if(lineid != NULL) *lineid = lid;
 
     m_UpdateValidPos = 0;
 
@@ -12818,8 +12820,7 @@ void MadEdit::Undo()
     MadUndoDataRvsIterator itend = undo->m_Undos.rend();
 
     MadLineIterator lit, litfirst, litlast;
-    wxFileOffset fpos = 0x0FFFFFFFFFFFFFFFLL;
-    wxFileOffset lpos = -1;
+    int lineid, fid = INT_MAX, lid = -1;
 
     do
     {
@@ -12829,33 +12830,34 @@ void MadEdit::Undo()
         case udtInsert:
             {
                 MadInsertUndoData *iudata = (MadInsertUndoData *) (*it);
-                lit = DeleteInsertData(pos, iudata->m_Size, NULL, 0, NULL);
+                lit = DeleteInsertData(pos, iudata->m_Size, NULL, 0, NULL, &lineid);
             }
             break;
         case udtDelete:
             {
                 MadDeleteUndoData *dudata = (MadDeleteUndoData *) (*it);
-                lit = DeleteInsertData(pos, 0, NULL, dudata->m_Size, &dudata->m_Data);
+                lit = DeleteInsertData(pos, 0, NULL, dudata->m_Size, &dudata->m_Data, &lineid);
             }
             break;
         case udtOverwrite:
             {
                 MadOverwriteUndoData *oudata = (MadOverwriteUndoData *) (*it);
                 lit = DeleteInsertData(pos, oudata->m_InsSize, NULL,
-                                            oudata->m_DelSize, &oudata->m_DelData);
+                                            oudata->m_DelSize, &oudata->m_DelData,
+                                            &lineid);
             }
             break;
         }
 
-        if(pos < fpos)
+        if(lineid < fid)
         {
-            fpos = pos;
+            fid = lineid;
             litfirst = lit;
         }
 
-        if(pos > lpos)
+        if(lineid > lid)
         {
-            lpos = pos;
+            lid = lineid;
             litlast = lit;
         }
     }
@@ -12869,7 +12871,7 @@ void MadEdit::Undo()
         UpdateCaretByPos(m_CaretPos, m_ActiveRowUChars, m_ActiveRowWidths, m_CaretRowUCharPos);
 
         if(m_EditMode != emTextMode || m_Selection || oldrows != m_Lines->m_RowCount
-            || oldlines != m_Lines->m_LineCount || count > 1 || lpos<m_CaretPos.pos-m_CaretPos.linepos)
+            || oldlines != m_Lines->m_LineCount || count > 1 || lid < m_CaretPos.lineid)
         {
             m_RepaintAll = true;
         }
@@ -12949,8 +12951,7 @@ void MadEdit::Redo()
     MadUndoDataIterator itend = redo->m_Undos.end();
 
     MadLineIterator lit, litfirst, litlast;
-    wxFileOffset fpos = 0x0FFFFFFFFFFFFFFFLL;
-    wxFileOffset lpos = -1;
+    int lineid, fid = INT_MAX, lid = -1;
 
     do
     {
@@ -12960,33 +12961,34 @@ void MadEdit::Redo()
         case udtInsert:
             {
                 MadInsertUndoData *iudata = (MadInsertUndoData *) (*it);
-                lit = DeleteInsertData(pos, 0, NULL, iudata->m_Size, &iudata->m_Data);
+                lit = DeleteInsertData(pos, 0, NULL, iudata->m_Size, &iudata->m_Data, &lineid);
             }
             break;
         case udtDelete:
             {
                 MadDeleteUndoData *dudata = (MadDeleteUndoData *) (*it);
-                lit = DeleteInsertData(pos, dudata->m_Size, NULL, 0, NULL);
+                lit = DeleteInsertData(pos, dudata->m_Size, NULL, 0, NULL, &lineid);
             }
             break;
         case udtOverwrite:
             {
                 MadOverwriteUndoData *oudata = (MadOverwriteUndoData *) (*it);
                 lit = DeleteInsertData(pos, oudata->m_DelSize, NULL,
-                                            oudata->m_InsSize, &oudata->m_InsData);
+                                            oudata->m_InsSize, &oudata->m_InsData,
+                                            &lineid);
             }
             break;
         }
 
-        if(pos < fpos)
+        if(lineid < fid)
         {
-            fpos = pos;
+            fid = lineid;
             litfirst = lit;
         }
 
-        if(pos > lpos)
+        if(lineid > lid)
         {
-            lpos = pos;
+            lid = lineid;
             litlast = lit;
         }
     }
@@ -13000,7 +13002,7 @@ void MadEdit::Redo()
         UpdateCaretByPos(m_CaretPos, m_ActiveRowUChars, m_ActiveRowWidths, m_CaretRowUCharPos);
 
         if(m_EditMode != emTextMode || m_Selection || oldrows != m_Lines->m_RowCount
-            || oldlines != m_Lines->m_LineCount || count > 1 || lpos<m_CaretPos.pos-m_CaretPos.linepos)
+            || oldlines != m_Lines->m_LineCount || count > 1 || lid < m_CaretPos.lineid)
         {
             m_RepaintAll = true;
         }
