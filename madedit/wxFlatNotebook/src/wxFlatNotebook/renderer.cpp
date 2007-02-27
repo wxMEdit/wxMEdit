@@ -1611,16 +1611,16 @@ int wxFNBRendererVC8::GetEndX(const wxPoint tabPoints[], const int &y, long styl
 	if(!match)
 		return tabPoints[3].x;
 
+	// Vertical line
+	if(x1 == x2)
+		return (int)x1;
+
 	// According to the equation y = ax + b => x = (y-b)/a
 	// We know the first 2 points
 	double a = (y2 - y1) / (x2 - x1);
 	double b = y1 - ((y2 - y1) / (x2 - x1)) * x1;
 
 	if(a == 0) 
-		return (int)x1;
-
-	// Vertical line
-	if(x1 == x2)
 		return (int)x1;
 
 	double x = (y - b) / a;
