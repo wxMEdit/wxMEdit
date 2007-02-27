@@ -1,5 +1,5 @@
 			=======================
-			  MadEdit v0.2.6 Beta
+			  MadEdit v0.2.7 Beta
 			=======================
 About:
 -----
@@ -62,6 +62,16 @@ Syntax files, Locale files and Settings:
 
 ChangeLog:
 ----------
+v0.2.7:
+1.fixed that ISO-8859-7 charset doesn't available under Win32.
+2.fixed that incorrectly handle Japanese halfwidth characters in Shift-JIS charset.
+3.supported XIM Over-The-Spot feature under Linux/FreeBSD(wxGTK).
+4.added options to set Date/Time format.
+5.added a option to reload files previously open on startup.
+6.added a option to restore previous caret position when files are opened.
+7.fixed a crashing bug that incorrectly detect MAC/DOS new-line char on HTML/PHP files.
+8.changed for showing CR, LF, CRLF and EOF in different marks.
+
 v0.2.6:
 1.improved the redraw speed under Linux (wxGTK).
 2.added charset-detector, a port to C of "universalchardet", for detecting the encoding of files.

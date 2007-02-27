@@ -1,7 +1,7 @@
 %define release 1
 %define prefix /usr
 %define name madedit
-%define version 0.2.6
+%define version 0.2.7
 
 
 Summary: madedit : GTK+2 based text/hex editor
