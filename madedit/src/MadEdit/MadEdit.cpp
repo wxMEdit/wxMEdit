@@ -1965,7 +1965,7 @@ void MadEdit::PaintTextLines(wxDC *dc, const wxRect &rect, int toprow, int rowco
                                     {
                                         if(m_ShowSpaceChar)
                                         {
-                                            dc->DrawLines(4, m_SpacePoints, x0, text_top);
+                                            dc->DrawLines(4, m_Space_Points, x0, text_top);
                                         }
                                     }
                                     else            // 0x09 Tab
@@ -2085,7 +2085,7 @@ void MadEdit::PaintTextLines(wxDC *dc, const wxRect &rect, int toprow, int rowco
                 switch(m_Lines->GetNewLine(lineiter))
                 {
                 case 0:
-                    dc->DrawLines(4, m_EOFPoints, left, text_top);
+                    dc->DrawLines(4, m_EOF_Points, left, text_top);
                     break;
                 case 0x0D:
                     dc->DrawLines(8, m_CR_Points, left, text_top);
@@ -10599,39 +10599,39 @@ void MadEdit::SetTextFont(const wxString &name, int size, bool forceReset)
                 name, size, m_TextFont->GetFamily());
 
 
-            // prepare m_SpacePoints, m_EOFPoints
+            // prepare m_Space_Points, m_EOF_Points
             const int cw = GetUCharWidth(0x20);   //FFontAveCharWidth;
             {
                 const int t1 = m_TextFontHeight / 5;
                 const int y = 1 + m_TextFontHeight - t1;
                 const int x = 1;
-                m_SpacePoints[0].x = x;
-                m_SpacePoints[0].y = y;
-                m_SpacePoints[1].x = x + cw - 3;
-                m_SpacePoints[1].y = y;
-                m_SpacePoints[2].x = x + (cw >> 1) - 1;
-                m_SpacePoints[2].y = y - t1;
-                m_SpacePoints[3].x = x;
-                m_SpacePoints[3].y = y;
+                m_Space_Points[0].x = x;
+                m_Space_Points[0].y = y;
+                m_Space_Points[1].x = x + cw - 3;
+                m_Space_Points[1].y = y;
+                m_Space_Points[2].x = x + (cw >> 1) - 1;
+                m_Space_Points[2].y = y - t1;
+                m_Space_Points[3].x = x;
+                m_Space_Points[3].y = y;
             }
             {
                 const int t1 = m_TextFontHeight / 5;
                 const int x = cw - 1;
                 int y = t1 + 1;
-                m_EOFPoints[0].x = x;
-                m_EOFPoints[0].y = y;
-                m_EOFPoints[1].x = x;
-                m_EOFPoints[1].y = y += (m_TextFontHeight - (t1 << 1));
-                m_EOFPoints[2].x = x - (cw - 3);
-                m_EOFPoints[2].y = y;
-                m_EOFPoints[3].x = x;
-                m_EOFPoints[3].y = y - ((t1 * 3) >> 1);
+                m_EOF_Points[0].x = x;
+                m_EOF_Points[0].y = y;
+                m_EOF_Points[1].x = x;
+                m_EOF_Points[1].y = y += (m_TextFontHeight - (t1 << 1));
+                m_EOF_Points[2].x = x - (cw - 3);
+                m_EOF_Points[2].y = y;
+                m_EOF_Points[3].x = x;
+                m_EOF_Points[3].y = y - ((t1 * 3) >> 1);
             }
             //m_CR_Points[], m_LF_Points[], m_CRLF_Points[];
             {
                 const int t1 = m_TextFontHeight / 5;
                 const int cw3=cw/3;
-                const int x = 1;
+                const int x = cw/5;
                 const int d = 2;
                 m_CR_Points[0].x = cw3;
                 m_CR_Points[0].y = m_TextFontHeight-t1+1;
