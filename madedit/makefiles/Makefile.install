@@ -1,16 +1,17 @@
 # Project: MadEdit
 # This Makefile is just for installing binary MadEdit and the data files.
 
-#prefix_dir = ./test
-bindir = $(prefix_dir)/usr/bin
-icon_dir = $(prefix_dir)/usr/share/pixmaps
-app_dir = $(prefix_dir)/usr/share/applications
-mo_it_IT_dir = $(prefix_dir)/usr/share/locale/it_IT/LC_MESSAGES
-mo_zh_CN_dir = $(prefix_dir)/usr/share/locale/zh_CN/LC_MESSAGES
-mo_zh_TW_dir = $(prefix_dir)/usr/share/locale/zh_TW/LC_MESSAGES
-data_dir = $(prefix_dir)/usr/share/madedit
+prefix_dir = /usr
 
-INSTALL = /usr/bin/install
+bindir = $(prefix_dir)/bin
+icon_dir = $(prefix_dir)/share/pixmaps
+app_dir = $(prefix_dir)/share/applications
+mo_it_IT_dir = $(prefix_dir)/share/locale/it_IT/LC_MESSAGES
+mo_zh_CN_dir = $(prefix_dir)/share/locale/zh_CN/LC_MESSAGES
+mo_zh_TW_dir = $(prefix_dir)/share/locale/zh_TW/LC_MESSAGES
+data_dir = $(prefix_dir)/share/madedit
+
+INSTALL = $(prefix_dir)/bin/install
 INSTALL_PROGRAM = $(INSTALL) -c
 INSTALL_DATA = $(INSTALL) -c -m 644
 MKDIR = $(INSTALL) -d
