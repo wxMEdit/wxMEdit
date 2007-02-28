@@ -35,7 +35,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MadEdit 0.2.7\n"
 "Report-Msgid-Bugs-To: madedit@gmail.com\n"
-"POT-Creation-Date: 2007-02-27 21:34+0800\n"
+"POT-Creation-Date: 2007-02-28 03:14+0800\n"
 "PO-Revision-Date: 2006-05-05 19:36+0800\n"
 "Last-Translator: madedit\n"
 "Language-Team: MadEdit <madedit@gmail.com>\n"
@@ -364,7 +364,7 @@ msgstr "到："
 msgid "Top margin (mm):"
 msgstr "上邊界(mm)："
 
-#: src/MadEdit/MadEdit.cpp:10835
+#: src/MadEdit/MadEdit.cpp:10837
 #, c-format
 msgid ""
 "Do you want to continue?\n"
@@ -375,44 +375,44 @@ msgstr ""
 "這個檔案的長度是 %s 位元組，\n"
 "可能會花很多時間和記憶體在轉換到文字/區塊模式上。"
 
-#: src/MadEdit/MadEdit.cpp:10835
+#: src/MadEdit/MadEdit.cpp:10837
 msgid "Hex Mode to Text/Column Mode"
 msgstr "十六進位模式轉換到文字/區塊模式"
 
-#: src/MadEdit/MadEdit.cpp:13330
+#: src/MadEdit/MadEdit.cpp:13332
 msgid "The input string is not a valid Hex-String:"
 msgstr "這個不是正確的十六進位字串："
 
-#: src/MadEdit/MadEdit.cpp:13900 src/MadEdit/MadEdit.cpp:13969
+#: src/MadEdit/MadEdit.cpp:13902 src/MadEdit/MadEdit.cpp:13971
 #: src/MadEditFrame.cpp:2498
 msgid "The Parent Directory of this file does not exist:"
 msgstr "這個檔案所屬的目錄不存在:"
 
-#: src/MadEdit/MadEdit.cpp:13989
+#: src/MadEdit/MadEdit.cpp:13991
 msgid "Cannot save this file:"
 msgstr "無法儲存這個檔案:"
 
-#: src/MadEdit/MadEdit.cpp:14017
+#: src/MadEdit/MadEdit.cpp:14019
 msgid "Do you want to save this file?"
 msgstr "要儲存這個檔案嗎?"
 
-#: src/MadEdit/MadEdit.cpp:14028
+#: src/MadEdit/MadEdit.cpp:14030
 msgid "Save File As"
 msgstr "另存新檔"
 
-#: src/MadEdit/MadEdit.cpp:14032 src/MadEditFrame.cpp:1784
+#: src/MadEdit/MadEdit.cpp:14034 src/MadEditFrame.cpp:1784
 msgid "Save File"
 msgstr "儲存檔案"
 
-#: src/MadEdit/MadEdit.cpp:14072
+#: src/MadEdit/MadEdit.cpp:14074
 msgid "Do you want to discard changes?"
 msgstr "要放棄所做的修改嗎?"
 
-#: src/MadEdit/MadEdit.cpp:14107
+#: src/MadEdit/MadEdit.cpp:14109
 msgid "This file has been changed by another application."
 msgstr "這個檔案被其他程式修改過了。"
 
-#: src/MadEdit/MadEdit.cpp:14108
+#: src/MadEdit/MadEdit.cpp:14110
 msgid "Do you want to reload it?"
 msgstr "要重新載入嗎？"
 

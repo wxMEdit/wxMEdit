@@ -35,7 +35,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MadEdit 0.2.7\n"
 "Report-Msgid-Bugs-To: madedit@gmail.com\n"
-"POT-Creation-Date: 2007-02-27 21:34+0800\n"
+"POT-Creation-Date: 2007-02-28 03:14+0800\n"
 "PO-Revision-Date: 2006-06-23 22:58+0800\n"
 "Last-Translator: \n"
 "Language-Team: MadEdit <madedit@gmail.com>\n"
@@ -364,7 +364,7 @@ msgstr "到："
 msgid "Top margin (mm):"
 msgstr "上边界(mm)："
 
-#: src/MadEdit/MadEdit.cpp:10835
+#: src/MadEdit/MadEdit.cpp:10837
 #, c-format
 msgid ""
 "Do you want to continue?\n"
@@ -375,44 +375,44 @@ msgstr ""
 "这个文件的长度是 %s 字节，\n"
 "可能会花很多时间和内存在转换到文字/列块模式上。"
 
-#: src/MadEdit/MadEdit.cpp:10835
+#: src/MadEdit/MadEdit.cpp:10837
 msgid "Hex Mode to Text/Column Mode"
 msgstr "十六进制模式转换到文字/列块模式"
 
-#: src/MadEdit/MadEdit.cpp:13330
+#: src/MadEdit/MadEdit.cpp:13332
 msgid "The input string is not a valid Hex-String:"
 msgstr "这个不是正确的十六进制字符串："
 
-#: src/MadEdit/MadEdit.cpp:13900 src/MadEdit/MadEdit.cpp:13969
+#: src/MadEdit/MadEdit.cpp:13902 src/MadEdit/MadEdit.cpp:13971
 #: src/MadEditFrame.cpp:2498
 msgid "The Parent Directory of this file does not exist:"
 msgstr "这个文件所属的目录不存在:"
 
-#: src/MadEdit/MadEdit.cpp:13989
+#: src/MadEdit/MadEdit.cpp:13991
 msgid "Cannot save this file:"
 msgstr "无法保存这个文件:"
 
-#: src/MadEdit/MadEdit.cpp:14017
+#: src/MadEdit/MadEdit.cpp:14019
 msgid "Do you want to save this file?"
 msgstr "要保存这个文件吗?"
 
-#: src/MadEdit/MadEdit.cpp:14028
+#: src/MadEdit/MadEdit.cpp:14030
 msgid "Save File As"
 msgstr "另存为"
 
-#: src/MadEdit/MadEdit.cpp:14032 src/MadEditFrame.cpp:1784
+#: src/MadEdit/MadEdit.cpp:14034 src/MadEditFrame.cpp:1784
 msgid "Save File"
 msgstr "保存文件"
 
-#: src/MadEdit/MadEdit.cpp:14072
+#: src/MadEdit/MadEdit.cpp:14074
 msgid "Do you want to discard changes?"
 msgstr "要放弃所做的修改吗?"
 
-#: src/MadEdit/MadEdit.cpp:14107
+#: src/MadEdit/MadEdit.cpp:14109
 msgid "This file has been changed by another application."
 msgstr "这个文件被其它程序修改过了。"
 
-#: src/MadEdit/MadEdit.cpp:14108
+#: src/MadEdit/MadEdit.cpp:14110
 msgid "Do you want to reload it?"
 msgstr "要重新加载吗？"
 
