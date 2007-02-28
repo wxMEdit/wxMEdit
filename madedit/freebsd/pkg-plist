@@ -9,6 +9,7 @@ share/madedit/syntax/extension.list
 share/madedit/syntax/filename.list
 share/madedit/syntax/firstline.list
 share/madedit/syntax/Gray.sch
+share/madedit/syntax/syntax_actionscript.syn
 share/madedit/syntax/syntax_angelscript.syn
 share/madedit/syntax/syntax_awk.syn
 share/madedit/syntax/syntax_batch.syn
