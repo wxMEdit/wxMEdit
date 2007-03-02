@@ -549,7 +549,7 @@ void wxAuiDefaultTabArt::DrawTab(wxDC& dc,
         wxColor top_color = m_base_colour;
         wxColor bottom_color = wxAuiStepColour(top_color, 160);
         GradientFillLinear(dc, r, bottom_color, top_color, wxNORTH);
-        
+
         r.y += r.height;
         r.y--;
 

@@ -4,7 +4,7 @@
 // Author:      Benjamin I. Williams
 // Modified by:
 // Created:     2005-05-17
-// RCS-ID:      $Id: framemanager.cpp,v 1.101 2006/11/23 18:24:11 BIW Exp $
+// RCS-ID:      $Id: framemanager.cpp,v 1.102 2006/12/24 12:16:28 VZ Exp $
 // Copyright:   (C) Copyright 2005-2006, Kirix Corporation, All Rights Reserved
 // Licence:     wxWindows Library Licence, Version 3.1
 ///////////////////////////////////////////////////////////////////////////////
@@ -3272,6 +3272,12 @@ wxRect wxAuiManager::CalculateHintRect(wxWindow* pane_window,
 
     // actually show the hint rectangle on the screen
     m_frame->ClientToScreen(&rect.x, &rect.y);
+
+    if ( m_frame->GetLayoutDirection() == wxLayout_RightToLeft )
+    {
+        // Mirror rectangle in RTL mode
+        rect.x -= rect.GetWidth();
+    }
 
     return rect;
 }

@@ -4,7 +4,7 @@
 // Author:      Hans Van Leemputten
 // Modified by: Benjamin I. Williams / Kirix Corporation
 // Created:     29/07/2002
-// RCS-ID:      $Id: tabmdi.h,v 1.15 2006/11/28 15:25:51 BIW Exp $
+// RCS-ID:      $Id: tabmdi.h,v 1.16 2007/01/01 19:49:04 PC Exp $
 // Copyright:   (c) Hans Van Leemputten
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////
@@ -74,7 +74,7 @@ public:
     virtual bool ProcessEvent(wxEvent& event);
 
     wxAuiMDIChildFrame *GetActiveChild() const;
-    inline void SetActiveChild(wxAuiMDIChildFrame* pChildFrame);
+    void SetActiveChild(wxAuiMDIChildFrame* pChildFrame);
 
     wxAuiMDIClientWindow *GetClientWindow() const;
     virtual wxAuiMDIClientWindow *OnCreateClient();
