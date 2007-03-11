@@ -28,7 +28,7 @@ private:
         buffer* next;
         buffer(MadDeque<T> *d) :
             mdeque(d),
-            begin((T*)new char[N * sizeof(T)]),
+            begin( (T*) operator new(N * sizeof(T)) ),
             end(begin + N),
             prev(NULL),
             next(NULL)
@@ -36,7 +36,7 @@ private:
         }
         ~buffer()
         {
-            delete[] (char*)begin;
+            operator delete(begin);
         }
     };
 
