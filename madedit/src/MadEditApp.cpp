@@ -39,10 +39,10 @@ bool g_ResetAllKeys=false;
 wxChar *g_LanguageString[]=
 {
     wxT("System Default"),
-    wxT("Chinese Simplified"),
-    wxT("Chinese Traditional"),
+    wxT("\u7B80\u4F53\u4E2D\u6587(Chinese Simplified)"),
+    wxT("\u7E41\u9AD4\u4E2D\u6587(Chinese Traditional)"),
     wxT("English"),
-    wxT("Italian"),
+    wxT("Italiano(Italian)"),
 };
 int g_LanguageValue[]=
 {
@@ -245,7 +245,7 @@ bool MadEditApp::OnInit()
                 { 
                     (ULONG_PTR)prevapp, 
                     DWORD((filenames.length()+1)*sizeof(wxChar)), 
-                    (PVOID)filenames.c_str() 
+                    (PVOID)(const wxChar*)filenames.c_str()
                 };
 
                 ::SendMessage(prevapp, WM_COPYDATA, 0, (LPARAM) &cds);

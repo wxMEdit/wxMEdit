@@ -125,7 +125,8 @@ wxString TranslatePrintMark(const wxString &text, int pageNum)
     {
         if(text[i]==wxT('%') && (i+1)<count)
         {
-            switch(text[++i])
+            const wxChar wc=text[++i];
+            switch(wc)
             {
             case wxT('f'):
                 if(GetActiveMadEditPathNameOrTitle(name))

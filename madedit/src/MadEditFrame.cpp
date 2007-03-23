@@ -3603,7 +3603,7 @@ void MadEditFrame::OnSearchFind(wxCommandEvent& event)
         {
             wxString ws;
             g_ActiveMadEdit->GetWordFromCaretPos(ws);
-            if(!ws.IsEmpty() && ws[0]>0x20)
+            if(!ws.IsEmpty() && ws[0]>wxChar(0x20))
             {
                 g_SearchDialog->m_FindText->SetText(ws);
             }
@@ -3746,7 +3746,7 @@ void MadEditFrame::OnSearchReplace(wxCommandEvent& event)
         {
             wxString ws;
             g_ActiveMadEdit->GetWordFromCaretPos(ws);
-            if(!ws.IsEmpty() && ws[0]>0x20)
+            if(!ws.IsEmpty() && ws[0]>wxChar(0x20))
             {
                 g_ReplaceDialog->m_FindText->SetText(ws);
             }
