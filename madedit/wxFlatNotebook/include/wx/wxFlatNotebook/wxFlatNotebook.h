@@ -95,7 +95,7 @@ WX_DECLARE_USER_EXPORTED_OBJARRAY(wxWindow*, wxWindowPtrArray, WXDLLIMPEXP_FNB);
 class WXDLLIMPEXP_FNB wxFlatNotebook : public wxPanel
 {
 private:
-	friend class wxPageContainer;
+//	friend class wxPageContainer;
 
 public:
 
@@ -367,6 +367,13 @@ public:
 	* \return padding in pixels
 	*/
 	int GetPadding() { return m_nPadding; }
+
+	// Setters / Getters
+	void SetForceSelection(bool force) { m_bForceSelection = force; }
+	bool GetForceSelection() { return m_bForceSelection; }
+	wxWindowPtrArray& GetWindows() { return m_windows; }
+	wxPageContainer *GetPages() { return m_pages; }
+	wxBoxSizer* GetMainSizer() { return m_mainSizer; }
 
 protected:
 	/// Initialization function, called internally
@@ -810,6 +817,7 @@ protected:
 	/// Drop target for enabling drag'n'drop of tabs
 	wxFNBDropTarget<wxPageContainer> *m_pDropTarget;
 
+private:
 	/// Pointer to the parent window
 	wxWindow *m_pParent;
 

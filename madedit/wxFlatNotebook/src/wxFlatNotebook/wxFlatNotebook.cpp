@@ -1230,9 +1230,9 @@ void wxPageContainer::DoDeletePage(size_t page)
 	// Refresh the tabs
 	if(m_iActivePage >= 0)
 	{
-		book->m_bForceSelection = true;
+		book->SetForceSelection(true);
 		book->SetSelection(m_iActivePage);
-		book->m_bForceSelection = false;
+		book->SetForceSelection(false);
 	}
 
 	if(m_pagesInfoVec.empty())
@@ -1414,7 +1414,7 @@ int wxPageContainer::GetNumTabsCanScrollLeft()
 	// Reserved area for the buttons (<>x)
 	wxRect rect = GetClientRect();
 	int clientWidth = rect.width;
-	int posx = ((wxFlatNotebook *)m_pParent)->m_nPadding, numTabs = 0, tabHeight, tabWidth;
+	int posx = ((wxFlatNotebook *)m_pParent)->GetPadding(), numTabs = 0, tabHeight, tabWidth;
 
 	wxClientDC dc(this);
 
@@ -1597,18 +1597,18 @@ void wxPageContainer::MoveTabPage(int nMove, int nMoveTo)
 	if(nMove == nMoveTo)
 		return;
 
-	else if(nMoveTo < (int)((wxFlatNotebook *)m_pParent)->m_windows.GetCount())
+	else if(nMoveTo < (int)((wxFlatNotebook *)m_pParent)->GetWindows().GetCount())
 		nMoveTo++;
 
 	m_pParent->Freeze();
 	// Remove the window from the main sizer
-	int nCurSel = ((wxFlatNotebook *)m_pParent)->m_pages->GetSelection();
-	((wxFlatNotebook *)m_pParent)->m_mainSizer->Detach(((wxFlatNotebook *)m_pParent)->m_windows[nCurSel]);
-	((wxFlatNotebook *)m_pParent)->m_windows[nCurSel]->Hide();
+	int nCurSel = ((wxFlatNotebook *)m_pParent)->GetPages()->GetSelection();
+	((wxFlatNotebook *)m_pParent)->GetMainSizer()->Detach(((wxFlatNotebook *)m_pParent)->GetWindows().Item(nCurSel));
+	((wxFlatNotebook *)m_pParent)->GetWindows().Item(nCurSel)->Hide();
 
-	wxWindow *pWindow = ((wxFlatNotebook *)m_pParent)->m_windows[nMove];
-	((wxFlatNotebook *)m_pParent)->m_windows.RemoveAt(nMove);
-	((wxFlatNotebook *)m_pParent)->m_windows.Insert(pWindow, nMoveTo-1);
+	wxWindow *pWindow = ((wxFlatNotebook *)m_pParent)->GetWindows().Item(nMove);
+	((wxFlatNotebook *)m_pParent)->GetWindows().RemoveAt(nMove);
+	((wxFlatNotebook *)m_pParent)->GetWindows().Insert(pWindow, nMoveTo-1);
 
 	wxPageInfo pgInfo = m_pagesInfoVec[nMove];
 
@@ -1616,7 +1616,7 @@ void wxPageContainer::MoveTabPage(int nMove, int nMoveTo)
 	m_pagesInfoVec.Insert(pgInfo, nMoveTo - 1);
 
 	// Add the page according to the style
-	wxBoxSizer* pSizer = ((wxFlatNotebook *)m_pParent)->m_mainSizer;
+	wxBoxSizer* pSizer = ((wxFlatNotebook *)m_pParent)->GetMainSizer();
 	long style = GetParent()->GetWindowStyleFlag();
 
 
