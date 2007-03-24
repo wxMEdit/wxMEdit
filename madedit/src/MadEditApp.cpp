@@ -250,6 +250,7 @@ bool MadEditApp::OnInit()
 
                 ::SendMessage(prevapp, WM_COPYDATA, 0, (LPARAM) &cds);
 
+                g_DoNotSaveSettings = true;
                 DeleteConfig();
                 return false;
             }
@@ -262,6 +263,7 @@ bool MadEditApp::OnInit()
         {
             send_message(madedit_win, filenames.c_str(), filenames.length()+1);
 
+            g_DoNotSaveSettings = true;
             DeleteConfig();
             return false;
         }

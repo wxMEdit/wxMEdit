@@ -1583,7 +1583,6 @@ void MadEditFrame::CreateGUIControls(void)
     g_Menu_View_Font6 = new wxMenu(0);
 
 
-    m_Config->SetPath(wxT("/MenuKeys"));
     list<wxMenu*> menu_stack;
     CommandData *cd = &CommandTable[0];
 #ifdef __WXMSW__
