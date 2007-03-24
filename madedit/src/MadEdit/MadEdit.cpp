@@ -4565,7 +4565,7 @@ void MadEdit::UCStoBlock(const ucs4_t *ucs, size_t count, MadBlock & block)
         if(size == 0)               // the uc not support in current encoding
         {
             b = unitext;
-            size = 7;
+            size = 6;
 
             (m_Encoding->*UCS4toMultiByte)(wxT('U'), unitext);
             (m_Encoding->*UCS4toMultiByte)(wxT('+'), unitext+1);
@@ -4577,14 +4577,14 @@ void MadEdit::UCStoBlock(const ucs4_t *ucs, size_t count, MadBlock & block)
 
             if(uc>=0x100000)
             {
-                size=9;
+                size=8;
                 idx=4;
                 (m_Encoding->*UCS4toMultiByte)(ToHex((uc >> 20) & 0xF), unitext+ 2);
                 (m_Encoding->*UCS4toMultiByte)(ToHex((uc >> 16) & 0xF), unitext+ 3);
             }
             else if(uc>=0x10000)
             {
-                size=8;
+                size=7;
                 idx=3;
                 (m_Encoding->*UCS4toMultiByte)(ToHex((uc >> 16) & 0xF), unitext+ 2);
             }
@@ -4593,7 +4593,6 @@ void MadEdit::UCStoBlock(const ucs4_t *ucs, size_t count, MadBlock & block)
             (m_Encoding->*UCS4toMultiByte)(ToHex((uc >> 8) & 0xF), unitext+ (idx++));
             (m_Encoding->*UCS4toMultiByte)(ToHex((uc >> 4) & 0xF), unitext+ (idx++));
             (m_Encoding->*UCS4toMultiByte)(ToHex(uc & 0xF), unitext+ (idx++));
-            (m_Encoding->*UCS4toMultiByte)(wxT('.'), unitext+ (idx++));
 
         }
 
