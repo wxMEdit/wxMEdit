@@ -59,45 +59,50 @@ void MadConvEncDialog::CreateGUIControls(void)
 	//Add the custom code before or after the blocks
 	////GUI Items Creation Start
 
-	wxBoxSizer* WxBoxSizer1 = new wxBoxSizer(wxVERTICAL);
+	WxBoxSizer1 = new wxBoxSizer(wxVERTICAL);
 	this->SetSizer(WxBoxSizer1);
-	this->SetAutoLayout(TRUE);
+	this->SetAutoLayout(true);
 
-	wxBoxSizer* WxBoxSizer2 = new wxBoxSizer(wxHORIZONTAL);
-	WxBoxSizer1->Add(WxBoxSizer2,0,wxALIGN_CENTER_HORIZONTAL | wxALL,5);
+	WxBoxSizer2 = new wxBoxSizer(wxHORIZONTAL);
+	WxBoxSizer1->Add(WxBoxSizer2, 0, wxALIGN_CENTER | wxALL, 5);
 
-	WxStaticText1 = new wxStaticText(this, ID_WXSTATICTEXT1, _("New Encoding:"), wxPoint(5,7), wxSize(77,17), 0, _("WxStaticText1"));
-	WxBoxSizer2->Add(WxStaticText1,0,wxALIGN_CENTER_VERTICAL | wxALL,5);
+	WxStaticText1 = new wxStaticText(this, ID_WXSTATICTEXT1, _("New Encoding:"), wxPoint(5,7), wxDefaultSize, 0, _("WxStaticText1"));
+	WxBoxSizer2->Add(WxStaticText1,0,wxALIGN_CENTER | wxALL,5);
 
 	wxArrayString arrayStringFor_WxComboBoxEncoding;
 	WxComboBoxEncoding = new wxComboBox(this, ID_WXCOMBOBOXENCODING, _("WxComboBoxEncoding"), wxPoint(92,5), wxSize(150,21), arrayStringFor_WxComboBoxEncoding, wxCB_DROPDOWN | wxCB_READONLY, wxDefaultValidator, _("WxComboBoxEncoding"));
-	WxBoxSizer2->Add(WxComboBoxEncoding,0,wxALIGN_CENTER_VERTICAL | wxALL,5);
+	WxBoxSizer2->Add(WxComboBoxEncoding,0,wxALIGN_CENTER | wxALL,5);
 
-	wxBoxSizer* WxBoxSizer3 = new wxBoxSizer(wxHORIZONTAL);
-	WxBoxSizer1->Add(WxBoxSizer3,0,wxALIGN_CENTER_HORIZONTAL | wxALL,5);
+	WxBoxSizer3 = new wxBoxSizer(wxHORIZONTAL);
+	WxBoxSizer1->Add(WxBoxSizer3, 0, wxALIGN_CENTER | wxALL, 5);
 
 	wxArrayString arrayStringFor_WxRadioBoxOption;
 	arrayStringFor_WxRadioBoxOption.Add(_("None"));
-	arrayStringFor_WxRadioBoxOption.Add(_("Simplified => Traditional Chinese"));
-	arrayStringFor_WxRadioBoxOption.Add(_("Traditional => Simplified Chinese"));
-	WxRadioBoxOption = new wxRadioBox(this, ID_WXRADIOBOXOPTION, _("Addtional Option"), wxPoint(5,5), wxSize(250,105), arrayStringFor_WxRadioBoxOption, 1, wxRA_SPECIFY_COLS, wxDefaultValidator, _("WxRadioBoxOption"));
+	arrayStringFor_WxRadioBoxOption.Add(_("Simplified Chinese => Traditional Chinese"));
+	arrayStringFor_WxRadioBoxOption.Add(_("Traditional Chinese => Simplified Chinese"));
+	arrayStringFor_WxRadioBoxOption.Add(_("Japanese Kanji => Traditional Chinese"));
+	arrayStringFor_WxRadioBoxOption.Add(_("Japanese Kanji => Simplified Chinese"));
+	arrayStringFor_WxRadioBoxOption.Add(_("Chinese => Japanese Kanji"));
+	WxRadioBoxOption = new wxRadioBox(this, ID_WXRADIOBOXOPTION, _("Addtional Option"), wxPoint(5,5), wxSize(250,155), arrayStringFor_WxRadioBoxOption, 1, wxRA_SPECIFY_COLS, wxDefaultValidator, _("WxRadioBoxOption"));
 	WxRadioBoxOption->SetSelection(0);
-	WxBoxSizer3->Add(WxRadioBoxOption,0,wxALIGN_CENTER_VERTICAL | wxALL,5);
+	WxBoxSizer3->Add(WxRadioBoxOption,0,wxALIGN_CENTER | wxALL,5);
 
-	wxBoxSizer* WxBoxSizer4 = new wxBoxSizer(wxHORIZONTAL);
-	WxBoxSizer1->Add(WxBoxSizer4,0,wxALIGN_CENTER_HORIZONTAL | wxALL,5);
+	WxBoxSizer4 = new wxBoxSizer(wxHORIZONTAL);
+	WxBoxSizer1->Add(WxBoxSizer4, 0, wxALIGN_CENTER | wxALL, 5);
 
 	WxButtonOK = new wxButton(this, wxID_OK, _("&OK"), wxPoint(5,5), wxSize(91,30), 0, wxDefaultValidator, _("WxButtonOK"));
-	WxBoxSizer4->Add(WxButtonOK,0,wxALIGN_CENTER_VERTICAL | wxALL,5);
+	WxBoxSizer4->Add(WxButtonOK,0,wxALIGN_CENTER | wxALL,5);
 
 	WxButtonCancel = new wxButton(this, wxID_CANCEL, _("&Cancel"), wxPoint(106,5), wxSize(90,30), 0, wxDefaultValidator, _("WxButtonCancel"));
-	WxBoxSizer4->Add(WxButtonCancel,0,wxALIGN_CENTER_VERTICAL | wxALL,5);
+	WxBoxSizer4->Add(WxButtonCancel,0,wxALIGN_CENTER | wxALL,5);
 
+	SetTitle(_("Convert Encoding"));
+	SetIcon(wxNullIcon);
+	
+	GetSizer()->Layout();
 	GetSizer()->Fit(this);
 	GetSizer()->SetSizeHints(this);
-	this->SetTitle(_("Convert Encoding"));
-	this->Center();
-	this->SetIcon(wxNullIcon);
+	Center();
 	
 	////GUI Items Creation End
 

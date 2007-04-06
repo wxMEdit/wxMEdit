@@ -10300,6 +10300,22 @@ void MadEdit::SetEncoding(const wxString &encname)
     }
 }
 
+wxString *ConvertTextToNewString(const wxString& text, MadConvertChineseFlag flag)
+{
+    wxString *ptext=NULL;
+    if(text.Len()!=0)
+    {
+        wxChar *str=new wxChar[text.Len()];
+        int count=::ConvertChinese(text.c_str(), str, text.Len(), flag);
+        if(count>0)
+        {
+            ptext=new wxString(str, text.Len());
+        }
+        delete []str;
+    }
+    return ptext;
+}
+
 void MadEdit::ConvertEncoding(const wxString &newenc, MadConvertEncodingFlag flag)
 {
     if(IsReadOnly() || !IsTextFile()) 
@@ -10310,8 +10326,11 @@ void MadEdit::ConvertEncoding(const wxString &newenc, MadConvertEncodingFlag fla
     {
         switch(flag)
         {
-        case cefTrad2SimpChinese:
-        case cefSimp2TradChinese:
+        case cefTC2SC:
+        case cefSC2TC:
+        case cefJK2TC:
+        case cefJK2SC:
+        case cefC2JK:
             ConvertChinese(flag);
             break;
         default: break;
@@ -10334,48 +10353,37 @@ void MadEdit::ConvertEncoding(const wxString &newenc, MadConvertEncodingFlag fla
         ignoreBOM=false;
     }
 
-    wxString text;
-    wxString *ptext=&text;
+    wxString text, *ptext=NULL;
     GetText(text, ignoreBOM);
 
-    switch(flag)
+    if(flag != cefNone)
     {
-    case cefTrad2SimpChinese:
-        if(text.Len()!=0)
+        MadConvertEncodingFlag cefs[]=
+            { cefSC2TC, cefTC2SC, cefJK2TC, cefJK2SC, cefC2JK };
+        MadConvertChineseFlag ccfs[]=
+            { ccfTrad2Simp, ccfSimp2Trad, ccfKanji2Trad, ccfKanji2Simp, ccfChinese2Kanji };
+        for(int i=0; i<sizeof(cefs)/sizeof(cefs[0]); ++i)
         {
-            wxChar *str=new wxChar[text.Len()];
-            int count=::ConvertChinese(text.c_str(), str, text.Len(), true);
-            if(count>0)
+            if(flag==cefs[i])
             {
-                ptext=new wxString(str, text.Len());
+                ptext=ConvertTextToNewString(text, ccfs[i]);
+                break;
             }
-            delete []str;
         }
-        break;
-    case cefSimp2TradChinese:
-        if(text.Len()!=0)
-        {
-            wxChar *str=new wxChar[text.Len()];
-            int count=::ConvertChinese(text.c_str(), str, text.Len(), false);
-            if(count>0)
-            {
-                ptext=new wxString(str, text.Len());
-            }
-            delete []str;
-        }
-        break;
-    default: break;
     }
 
     m_LoadingFile=true; // don't reformat
     SetEncoding(newenc);
     m_LoadingFile=false;
 
-    SetText(*ptext);
-
-    if(ptext != &text)
+    if(ptext)
     {
+        SetText(*ptext);
         delete ptext;
+    }
+    else
+    {
+        SetText(text);
     }
 
     RestorePosition(caretpos, toprow);
@@ -10392,25 +10400,20 @@ void MadEdit::ConvertChinese(MadConvertEncodingFlag flag)
     wxString text, *ptext=NULL;
     GetText(text, false);
 
-    if(flag==cefTrad2SimpChinese)
+    if(flag != cefNone)
     {
-        wxChar *str=new wxChar[text.Len()];
-        int count=::ConvertChinese(text.c_str(), str, text.Len(), true);
-        if(count>0)
+        MadConvertEncodingFlag cefs[]=
+            { cefSC2TC, cefTC2SC, cefJK2TC, cefJK2SC, cefC2JK };
+        MadConvertChineseFlag ccfs[]=
+            { ccfTrad2Simp, ccfSimp2Trad, ccfKanji2Trad, ccfKanji2Simp, ccfChinese2Kanji };
+        for(int i=0; i<sizeof(cefs)/sizeof(cefs[0]); ++i)
         {
-            ptext=new wxString(str, text.Len());
+            if(flag==cefs[i])
+            {
+                ptext=ConvertTextToNewString(text, ccfs[i]);
+                break;
+            }
         }
-        delete []str;
-    }
-    else if(flag==cefSimp2TradChinese)
-    {
-        wxChar *str=new wxChar[text.Len()];
-        int count=::ConvertChinese(text.c_str(), str, text.Len(), false);
-        if(count>0)
-        {
-            ptext=new wxString(str, text.Len());
-        }
-        delete []str;
     }
 
     if(ptext!=NULL)

@@ -97,7 +97,14 @@ enum MadNewLineType
 { nltDefault /*Depends on Platform*/, nltDOS /*0D0A*/ , nltUNIX /*0A*/ , nltMAC /*0D*/  };
 
 enum MadConvertEncodingFlag
-{ cefNone, cefSimp2TradChinese, cefTrad2SimpChinese };
+{
+  cefNone,
+  cefSC2TC, // Simplified Chinese  ==> Traditional Chinese
+  cefTC2SC, // Traditional Chinese ==> Simplified Chinese
+  cefJK2TC, // Japanese Kanji      ==> Traditional Chinese
+  cefJK2SC, // Japanese Kanji      ==> Simplified Chinese
+  cefC2JK   // Trad&Simp Chinese   ==> Japanese Kanji
+};
 
 // flags for SortLines
 typedef int MadSortFlags;
@@ -545,7 +552,7 @@ public:
     wxString GetEncodingDescription() { return m_Encoding->GetDescription(); }
     MadEncodingType GetEncodingType() { return m_Encoding->GetType(); }
     void ConvertEncoding(const wxString &newenc, MadConvertEncodingFlag flag);
-    void ConvertChinese(MadConvertEncodingFlag flag);// must be cefTrad2SimpChinese or cefSimp2TradChinese
+    void ConvertChinese(MadConvertEncodingFlag flag);
 
     bool GetRecordCaretMovements() { return m_RecordCaretMovements; }
     void SetRecordCaretMovements(bool value);

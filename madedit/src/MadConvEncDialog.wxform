@@ -1,10 +1,11 @@
 object frmNewForm: TfrmNewForm
   Left = 8
   Top = 8
-  Width = 320
-  Height = 334
+  AutoScroll = False
   BorderIcons = [biSystemMenu, biMinimize]
   Caption = 'Convert Encoding'
+  ClientHeight = 304
+  ClientWidth = 312
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -19,6 +20,7 @@ object frmNewForm: TfrmNewForm
   OnDestroy = FormDestroy
   OnKeyDown = FormKeyDown
   OnResize = NewFormResize
+  EVT_CLOSE = 'MadConvEncDialogClose'
   Wx_ICON.Data = {07544269746D617000000000}
   Wx_Name = 'MadConvEncDialog'
   Wx_IDName = 'ID_DIALOG1'
@@ -26,9 +28,11 @@ object frmNewForm: TfrmNewForm
   Wx_Class = 'wxDialog'
   Wx_Center = True
   Wx_Hidden = False
+  Wx_SizeToContents = True
   Wx_GeneralStyle = []
   Wx_DialogStyle = [wxCAPTION, wxRESIZE_BORDER, wxSYSTEM_MENU, wxSTAY_ON_TOP, wxDIALOG_NO_PARENT, wxCLOSE_BOX]
-  EVT_CLOSE = 'MadConvEncDialogClose'
+  Wx_Border = 0
+  Wx_BorderAlignment = []
   PixelsPerInch = 96
   TextHeight = 13
   object WxBoxSizer1: TWxBoxSizer
@@ -40,9 +44,9 @@ object frmNewForm: TfrmNewForm
     TabOrder = 0
     Orientation = wxVertical
     Wx_Class = 'wxBoxSizer'
+    Wx_ControlOrientation = wxControlVertical
     Wx_IDName = 'ID_WXBOXSIZER1'
     Wx_IDValue = 1001
-    Wx_StretchFactor = 0
     object WxBoxSizer2: TWxBoxSizer
       Left = 11
       Top = 5
@@ -50,9 +54,9 @@ object frmNewForm: TfrmNewForm
       Height = 31
       TabOrder = 0
       Wx_Class = 'wxBoxSizer'
+      Wx_ControlOrientation = wxControlVertical
       Wx_IDName = 'ID_WXBOXSIZER2'
       Wx_IDValue = 1002
-      Wx_StretchFactor = 0
       object WxStaticText1: TWxStaticText
         Left = 5
         Top = 7
@@ -62,6 +66,7 @@ object frmNewForm: TfrmNewForm
         TabOrder = 0
         Wx_BGColor = clBlack
         Wx_Class = 'wxStaticText'
+        Wx_ControlOrientation = wxControlVertical
         Wx_FGColor = clBlack
         Wx_GeneralStyle = []
         Wx_Hidden = False
@@ -80,6 +85,8 @@ object frmNewForm: TfrmNewForm
         Wx_BGColor = clBlack
         Wx_Class = 'wxComboBox'
         Wx_ComboboxStyle = [wxCB_DROPDOWN, wxCB_READONLY]
+        Wx_EditStyle = []
+        Wx_ControlOrientation = wxControlVertical
         Wx_FGColor = clBlack
         Wx_GeneralStyle = []
         Wx_Hidden = False
@@ -91,26 +98,30 @@ object frmNewForm: TfrmNewForm
       Left = 5
       Top = 46
       Width = 260
-      Height = 115
+      Height = 165
       TabOrder = 1
       Wx_Class = 'wxBoxSizer'
+      Wx_ControlOrientation = wxControlVertical
       Wx_IDName = 'ID_WXBOXSIZER3'
       Wx_IDValue = 1005
-      Wx_StretchFactor = 0
       object WxRadioBoxOption: TWxRadioBox
         Left = 5
         Top = 5
         Width = 250
-        Height = 105
+        Height = 155
         Caption = 'Addtional Option'
         Orientation = wxdVertical
         Items.Strings = (
           'None'
-          'Simplified => Traditional Chinese'
-          'Traditional => Simplified Chinese')
+          'Simplified Chinese => Traditional Chinese'
+          'Traditional Chinese => Simplified Chinese'
+          'Japanese Kanji => Traditional Chinese'
+          'Japanese Kanji => Simplified Chinese'
+          'Chinese => Japanese Kanji')
         TabOrder = 0
         Wx_BGColor = clBlack
         Wx_Class = 'wxRadioBox'
+        Wx_ControlOrientation = wxControlVertical
         Wx_EventList.Strings = (
           'EVT_RADIOBOX:OnClick'
           'EVT_UPDATE_UI:OnUpdateUI')
@@ -124,14 +135,14 @@ object frmNewForm: TfrmNewForm
     end
     object WxBoxSizer4: TWxBoxSizer
       Left = 34
-      Top = 171
+      Top = 221
       Width = 201
       Height = 40
       TabOrder = 2
       Wx_Class = 'wxBoxSizer'
+      Wx_ControlOrientation = wxControlVertical
       Wx_IDName = 'ID_WXBOXSIZER4'
       Wx_IDValue = 1007
-      Wx_StretchFactor = 0
       object WxButtonOK: TWxButton
         Left = 5
         Top = 5
@@ -142,6 +153,7 @@ object frmNewForm: TfrmNewForm
         Wx_BKColor = clBlack
         Wx_ButtonStyle = []
         Wx_Class = 'wxButton'
+        Wx_ControlOrientation = wxControlVertical
         Wx_Default = False
         Wx_EventList.Strings = (
           'EVT_BUTTON:OnClick'
@@ -164,6 +176,7 @@ object frmNewForm: TfrmNewForm
         Wx_BKColor = clBlack
         Wx_ButtonStyle = []
         Wx_Class = 'wxButton'
+        Wx_ControlOrientation = wxControlVertical
         Wx_Default = False
         Wx_EventList.Strings = (
           'EVT_BUTTON:OnClick'

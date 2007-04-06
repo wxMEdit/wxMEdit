@@ -4423,24 +4423,24 @@ void MadEditFrame::OnToolsSimp2TradChinese(wxCommandEvent& event)
 {
     if(g_ActiveMadEdit==NULL) return;
 
-    g_ActiveMadEdit->ConvertChinese(cefSimp2TradChinese);
+    g_ActiveMadEdit->ConvertChinese(cefSC2TC);
 }
 
 void MadEditFrame::OnToolsTrad2SimpChinese(wxCommandEvent& event)
 {
     if(g_ActiveMadEdit==NULL) return;
 
-    g_ActiveMadEdit->ConvertChinese(cefTrad2SimpChinese);
+    g_ActiveMadEdit->ConvertChinese(cefTC2SC);
 }
 
 void MadEditFrame::OnToolsSimp2TradClipboard(wxCommandEvent& event)
 {
-    ConvertChineseInClipboard(false);
+    ConvertChineseInClipboard(ccfSimp2Trad);
 }
 
 void MadEditFrame::OnToolsTrad2SimpClipboard(wxCommandEvent& event)
 {
-    ConvertChineseInClipboard(true);
+    ConvertChineseInClipboard(ccfTrad2Simp);
 }
 
 void MadEditFrame::OnToolsWordCount(wxCommandEvent& event)
