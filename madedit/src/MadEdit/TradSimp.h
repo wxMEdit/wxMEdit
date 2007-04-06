@@ -15,7 +15,7 @@
 // Kanji: Chinese characters used in Japanese form of writing
 enum MadConvertChineseFlag
 { 
-    ccfTrad2Simp, ccfSimp2Trad,
+    ccfSimp2Trad, ccfTrad2Simp,
     ccfKanji2Trad, ccfKanji2Simp,
     ccfChinese2Kanji,
 };

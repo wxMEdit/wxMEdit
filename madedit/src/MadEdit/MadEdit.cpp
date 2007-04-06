@@ -10361,7 +10361,7 @@ void MadEdit::ConvertEncoding(const wxString &newenc, MadConvertEncodingFlag fla
         MadConvertEncodingFlag cefs[]=
             { cefSC2TC, cefTC2SC, cefJK2TC, cefJK2SC, cefC2JK };
         MadConvertChineseFlag ccfs[]=
-            { ccfTrad2Simp, ccfSimp2Trad, ccfKanji2Trad, ccfKanji2Simp, ccfChinese2Kanji };
+            { ccfSimp2Trad, ccfTrad2Simp, ccfKanji2Trad, ccfKanji2Simp, ccfChinese2Kanji };
         for(int i=0; i<sizeof(cefs)/sizeof(cefs[0]); ++i)
         {
             if(flag==cefs[i])
@@ -10405,7 +10405,7 @@ void MadEdit::ConvertChinese(MadConvertEncodingFlag flag)
         MadConvertEncodingFlag cefs[]=
             { cefSC2TC, cefTC2SC, cefJK2TC, cefJK2SC, cefC2JK };
         MadConvertChineseFlag ccfs[]=
-            { ccfTrad2Simp, ccfSimp2Trad, ccfKanji2Trad, ccfKanji2Simp, ccfChinese2Kanji };
+            { ccfSimp2Trad, ccfTrad2Simp, ccfKanji2Trad, ccfKanji2Simp, ccfChinese2Kanji };
         for(int i=0; i<sizeof(cefs)/sizeof(cefs[0]); ++i)
         {
             if(flag==cefs[i])
