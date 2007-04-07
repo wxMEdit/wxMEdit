@@ -238,8 +238,14 @@ public:
     void OnToolsConvertEncoding(wxCommandEvent& event);
     void OnToolsSimp2TradChinese(wxCommandEvent& event);
     void OnToolsTrad2SimpChinese(wxCommandEvent& event);
+    void OnToolsKanji2TradChinese(wxCommandEvent& event);
+    void OnToolsKanji2SimpChinese(wxCommandEvent& event);
+    void OnToolsChinese2Kanji(wxCommandEvent& event);
     void OnToolsSimp2TradClipboard(wxCommandEvent& event);
     void OnToolsTrad2SimpClipboard(wxCommandEvent& event);
+    void OnToolsKanji2TradClipboard(wxCommandEvent& event);
+    void OnToolsKanji2SimpClipboard(wxCommandEvent& event);
+    void OnToolsChinese2KanjiClipboard(wxCommandEvent& event);
     void OnToolsWordCount(wxCommandEvent& event);
 
     void OnWindowToggleWindow(wxCommandEvent& event);
@@ -433,8 +439,14 @@ enum { // menu id
     menuConvertChineseChar,
     menuSimp2TradChinese,
     menuTrad2SimpChinese,
+    menuKanji2TradChinese,
+    menuKanji2SimpChinese,
+    menuChinese2Kanji,
     menuSimp2TradClipboard,
     menuTrad2SimpClipboard,
+    menuKanji2TradClipboard,
+    menuKanji2SimpClipboard,
+    menuChinese2KanjiClipboard,
     menuWordCount,
 
     // window

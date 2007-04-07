@@ -825,6 +825,9 @@ BEGIN_EVENT_TABLE(MadEditFrame,wxFrame)
 	EVT_UPDATE_UI(menuConvertEncoding, MadEditFrame::OnUpdateUI_MenuToolsConvertEncoding)
 	EVT_UPDATE_UI(menuSimp2TradChinese, MadEditFrame::OnUpdateUI_MenuToolsConvertEncoding)
 	EVT_UPDATE_UI(menuTrad2SimpChinese, MadEditFrame::OnUpdateUI_MenuToolsConvertEncoding)
+	EVT_UPDATE_UI(menuKanji2TradChinese, MadEditFrame::OnUpdateUI_MenuToolsConvertEncoding)
+	EVT_UPDATE_UI(menuKanji2SimpChinese, MadEditFrame::OnUpdateUI_MenuToolsConvertEncoding)
+	EVT_UPDATE_UI(menuChinese2Kanji, MadEditFrame::OnUpdateUI_MenuToolsConvertEncoding)
 	EVT_UPDATE_UI(menuWordCount, MadEditFrame::OnUpdateUI_MenuFile_CheckCount)
 	// window
 	EVT_UPDATE_UI(menuToggleWindow, MadEditFrame::OnUpdateUI_MenuWindow_CheckCount)
@@ -922,8 +925,14 @@ BEGIN_EVENT_TABLE(MadEditFrame,wxFrame)
 	EVT_MENU(menuConvertEncoding, MadEditFrame::OnToolsConvertEncoding)
 	EVT_MENU(menuSimp2TradChinese, MadEditFrame::OnToolsSimp2TradChinese)
 	EVT_MENU(menuTrad2SimpChinese, MadEditFrame::OnToolsTrad2SimpChinese)
+	EVT_MENU(menuKanji2TradChinese, MadEditFrame::OnToolsKanji2TradChinese)
+	EVT_MENU(menuKanji2SimpChinese, MadEditFrame::OnToolsKanji2SimpChinese)
+	EVT_MENU(menuChinese2Kanji, MadEditFrame::OnToolsChinese2Kanji)
 	EVT_MENU(menuSimp2TradClipboard, MadEditFrame::OnToolsSimp2TradClipboard)
 	EVT_MENU(menuTrad2SimpClipboard, MadEditFrame::OnToolsTrad2SimpClipboard)
+	EVT_MENU(menuKanji2TradClipboard, MadEditFrame::OnToolsKanji2TradClipboard)
+	EVT_MENU(menuKanji2SimpClipboard, MadEditFrame::OnToolsKanji2SimpClipboard)
+	EVT_MENU(menuChinese2KanjiClipboard, MadEditFrame::OnToolsChinese2KanjiClipboard)
 	EVT_MENU(menuWordCount, MadEditFrame::OnToolsWordCount)
 	// window
 	EVT_MENU(menuToggleWindow, MadEditFrame::OnWindowToggleWindow)
@@ -1238,12 +1247,18 @@ CommandData CommandTable[]=
     { 0,               1, 0,                      0,                             0,                                                  0,             wxITEM_SEPARATOR, -1, 0,                                0},
     { 0,               1, menuConvertEncoding,    wxT("menuConvertEncoding"),    _("Convert File &Encoding..."),                     0,             wxITEM_NORMAL,    -1, 0,                                _("Convert to the specified encoding")},
     { 0,               1, 0,                      0,                             0,                                                  0,             wxITEM_SEPARATOR, -1, 0,                                0},
-    { 0,               1, menuConvertChineseChar, wxT("menuConvertChineseChar"), _("Convert &Chinese Char"),                         0,             wxITEM_NORMAL,    -1, &g_Menu_Tools_ConvertChineseChar, 0},
-    { 0,               2, menuSimp2TradChinese,   wxT("menuSimp2TradChinese"),   _("File: To &Traditional Chinese"),                 0,             wxITEM_NORMAL,    -1, 0,                                _("Convert simplified Chinese chars to traditional Chinese chars in the file")},
-    { 0,               2, menuTrad2SimpChinese,   wxT("menuTrad2SimpChinese"),   _("File: To &Simplified Chinese"),                  0,             wxITEM_NORMAL,    -1, 0,                                _("Convert traditional Chinese chars to simplified Chinese chars in the file")},
-    { 0,               2, 0,                      0,                             0,                                                  0,             wxITEM_SEPARATOR, -1, 0,                                0},
-    { 0,               2, menuSimp2TradClipboard, wxT("menuSimp2TradClipboard"), _("Clipboard: To T&raditional Chinese"),            0,             wxITEM_NORMAL,    -1, 0,                                _("Convert simplified Chinese chars to traditional Chinese chars in the clipboard")},
-    { 0,               2, menuTrad2SimpClipboard, wxT("menuTrad2SimpClipboard"), _("Clipboard: To S&implified Chinese"),             0,             wxITEM_NORMAL,    -1, 0,                                _("Convert traditional Chinese chars to simplified Chinese chars in the clipboard")},
+    { 0,               1, menuConvertChineseChar,     wxT("menuConvertChineseChar"),     _("Convert &Chinese Char"),                                 0,             wxITEM_NORMAL,    -1, &g_Menu_Tools_ConvertChineseChar, 0},
+    { 0,               2, menuSimp2TradChinese,       wxT("menuSimp2TradChinese"),       _("File: Simplified Chinese to &Traditional Chinese"),      0,             wxITEM_NORMAL,    -1, 0,                                _("Convert simplified Chinese chars to traditional Chinese chars in the file")},
+    { 0,               2, menuTrad2SimpChinese,       wxT("menuTrad2SimpChinese"),       _("File: Traditional Chinese to &Simplified Chinese"),      0,             wxITEM_NORMAL,    -1, 0,                                _("Convert traditional Chinese chars to simplified Chinese chars in the file")},
+    { 0,               2, menuKanji2TradChinese,      wxT("menuKanji2TradChinese"),      _("File: Japanese Kanji to Tr&aditional Chinese"),          0,             wxITEM_NORMAL,    -1, 0,                                _("Convert Japanese Kanji to traditional Chinese chars in the file")},
+    { 0,               2, menuKanji2SimpChinese,      wxT("menuKanji2SimpChinese"),      _("File: Japanese Kanji to Si&mplified Chinese"),           0,             wxITEM_NORMAL,    -1, 0,                                _("Convert Japanese Kanji to simplified Chinese chars in the file")},
+    { 0,               2, menuChinese2Kanji,          wxT("menuChinese2Kanji"),          _("File: Chinese To &Japanese Kanji"),                      0,             wxITEM_NORMAL,    -1, 0,                                _("Convert Chinese chars to Japanese Kanji in the file")},
+    { 0,               2, 0,                          0,                                 0,                                                          0,             wxITEM_SEPARATOR, -1, 0,                                0},
+    { 0,               2, menuSimp2TradClipboard,     wxT("menuSimp2TradClipboard"),     _("Clipboard: Simplified Chinese to T&raditional Chinese"), 0,             wxITEM_NORMAL,    -1, 0,                                _("Convert simplified Chinese chars to traditional Chinese chars in the clipboard")},
+    { 0,               2, menuTrad2SimpClipboard,     wxT("menuTrad2SimpClipboard"),     _("Clipboard: Traditional Chinese to S&implified Chinese"), 0,             wxITEM_NORMAL,    -1, 0,                                _("Convert traditional Chinese chars to simplified Chinese chars in the clipboard")},
+    { 0,               2, menuKanji2TradClipboard,    wxT("menuKanji2TradClipboard"),    _("Clipboard: Japanese Kanji to Tra&ditional Chinese"),     0,             wxITEM_NORMAL,    -1, 0,                                _("Convert Japanese Kanji to traditional Chinese chars in the clipboard")},
+    { 0,               2, menuKanji2SimpClipboard,    wxT("menuKanji2SimpClipboard"),    _("Clipboard: Japanese Kanji to Sim&plified Chinese"),      0,             wxITEM_NORMAL,    -1, 0,                                _("Convert Japanese Kanji to simplified Chinese chars in the clipboard")},
+    { 0,               2, menuChinese2KanjiClipboard, wxT("menuChinese2KanjiClipboard"), _("Clipboard: Chinese To Japanese &Kanji"),                 0,             wxITEM_NORMAL,    -1, 0,                                _("Convert Chinese chars to Japanese Kanji in the clipboard")},
     { 0,               1, 0,                      0,                             0,                                                  0,             wxITEM_SEPARATOR, -1, 0,                                0},
     { 0,               1, menuWordCount,          wxT("menuWordCount"),          _("&Word Count"),                                   0,             wxITEM_NORMAL,    -1, 0,                                _("Count the words and chars of the file or selection")},
 
@@ -4422,15 +4437,31 @@ void MadEditFrame::OnToolsConvertEncoding(wxCommandEvent& event)
 void MadEditFrame::OnToolsSimp2TradChinese(wxCommandEvent& event)
 {
     if(g_ActiveMadEdit==NULL) return;
-
     g_ActiveMadEdit->ConvertChinese(cefSC2TC);
 }
 
 void MadEditFrame::OnToolsTrad2SimpChinese(wxCommandEvent& event)
 {
     if(g_ActiveMadEdit==NULL) return;
-
     g_ActiveMadEdit->ConvertChinese(cefTC2SC);
+}
+
+void MadEditFrame::OnToolsKanji2TradChinese(wxCommandEvent& event)
+{
+    if(g_ActiveMadEdit==NULL) return;
+    g_ActiveMadEdit->ConvertChinese(cefJK2TC);
+}
+
+void MadEditFrame::OnToolsKanji2SimpChinese(wxCommandEvent& event)
+{
+    if(g_ActiveMadEdit==NULL) return;
+    g_ActiveMadEdit->ConvertChinese(cefJK2SC);
+}
+
+void MadEditFrame::OnToolsChinese2Kanji(wxCommandEvent& event)
+{
+    if(g_ActiveMadEdit==NULL) return;
+    g_ActiveMadEdit->ConvertChinese(cefC2JK);
 }
 
 void MadEditFrame::OnToolsSimp2TradClipboard(wxCommandEvent& event)
@@ -4441,6 +4472,21 @@ void MadEditFrame::OnToolsSimp2TradClipboard(wxCommandEvent& event)
 void MadEditFrame::OnToolsTrad2SimpClipboard(wxCommandEvent& event)
 {
     ConvertChineseInClipboard(ccfTrad2Simp);
+}
+
+void MadEditFrame::OnToolsKanji2TradClipboard(wxCommandEvent& event)
+{
+    ConvertChineseInClipboard(ccfKanji2Trad);
+}
+
+void MadEditFrame::OnToolsKanji2SimpClipboard(wxCommandEvent& event)
+{
+    ConvertChineseInClipboard(ccfKanji2Simp);
+}
+
+void MadEditFrame::OnToolsChinese2KanjiClipboard(wxCommandEvent& event)
+{
+    ConvertChineseInClipboard(ccfChinese2Kanji);
 }
 
 void MadEditFrame::OnToolsWordCount(wxCommandEvent& event)
