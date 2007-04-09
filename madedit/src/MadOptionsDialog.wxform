@@ -4,7 +4,7 @@ object frmNewForm: TfrmNewForm
   AutoScroll = False
   BorderIcons = [biSystemMenu, biMinimize]
   Caption = 'Options'
-  ClientHeight = 414
+  ClientHeight = 420
   ClientWidth = 691
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -18,7 +18,6 @@ object frmNewForm: TfrmNewForm
   OnCloseQuery = FormCloseQuery
   OnCreate = FormCreate
   OnDestroy = FormDestroy
-  OnKeyDown = FormKeyDown
   OnResize = NewFormResize
   EVT_CLOSE = 'MadOptionsDialogClose'
   EVT_ACTIVATE = 'MadOptionsDialogActivate'
@@ -27,9 +26,9 @@ object frmNewForm: TfrmNewForm
   Wx_IDName = 'ID_DIALOG1'
   Wx_IDValue = 1000
   Wx_Class = 'wxDialog'
-  Wx_Center = True
+  Wx_Center = False
   Wx_Hidden = False
-  Wx_SizeToContents = True
+  Wx_SizeToContents = False
   Wx_GeneralStyle = []
   Wx_DialogStyle = [wxCAPTION, wxRESIZE_BORDER, wxSYSTEM_MENU, wxDIALOG_NO_PARENT, wxMAXIMIZE_BOX, wxCLOSE_BOX]
   Wx_Border = 0
@@ -40,7 +39,7 @@ object frmNewForm: TfrmNewForm
     Left = 0
     Top = 0
     Width = 691
-    Height = 414
+    Height = 420
     Align = alClient
     TabOrder = 0
     Orientation = wxVertical
@@ -55,10 +54,10 @@ object frmNewForm: TfrmNewForm
       Top = 0
       Width = 681
       Height = 342
-      ActivePage = WxNoteBookPage1
-      TabIndex = 0
+      ActivePage = WxNoteBookPage3
+      TabIndex = 2
       TabOrder = 0
-      Wx_Class = 'wxFlatNotebook'
+      Wx_Class = 'wxAuiNotebook'
       Wx_ControlOrientation = wxControlVertical
       Wx_EventList.Strings = (
         'EVT_NOTEBOOK_PAGE_CHANGED:OnPageChanged'
@@ -70,7 +69,7 @@ object frmNewForm: TfrmNewForm
       Wx_NoteBookStyle = []
       Wx_GeneralStyle = []
       Wx_Border = 0
-      Wx_Alignment = wxEXPAND
+      Wx_Alignment = [wxEXPAND]
       Wx_StretchFactor = 1
       object WxNoteBookPage1: TWxNoteBookPage
         Caption = 'General'
@@ -100,6 +99,7 @@ object frmNewForm: TfrmNewForm
           Wx_IDName = 'ID_WXBOXSIZER3'
           Wx_IDValue = 1026
           Wx_Border = 2
+          Wx_Alignment = [wxEXPAND]
           Wx_StretchFactor = 1
           object WxBoxSizer27: TWxBoxSizer
             Left = 108
@@ -112,7 +112,7 @@ object frmNewForm: TfrmNewForm
             Wx_IDName = 'ID_WXBOXSIZER27'
             Wx_IDValue = 1155
             Wx_Border = 2
-            Wx_Alignment = wxALIGN_LEFT
+            Wx_Alignment = [wxALIGN_LEFT]
             object WxComboBoxLanguage: TWxComboBox
               Left = 0
               Top = 3
@@ -131,7 +131,7 @@ object frmNewForm: TfrmNewForm
               Wx_IDName = 'ID_WXCOMBOBOXLANGUAGE'
               Wx_IDValue = 1156
               Wx_Border = 0
-              Wx_Alignment = wxALIGN_LEFT
+              Wx_Alignment = [wxALIGN_LEFT]
             end
             object WxStaticText16: TWxStaticText
               Left = 145
@@ -149,7 +149,7 @@ object frmNewForm: TfrmNewForm
               Wx_IDName = 'ID_WXSTATICTEXT16'
               Wx_IDValue = 1157
               Wx_LabelStyle = []
-              Wx_Alignment = wxALIGN_LEFT
+              Wx_Alignment = [wxALIGN_LEFT]
             end
           end
           object WxBoxSizer4: TWxBoxSizer
@@ -163,7 +163,7 @@ object frmNewForm: TfrmNewForm
             Wx_ControlOrientation = wxControlVertical
             Wx_IDName = 'ID_WXBOXSIZER4'
             Wx_IDValue = 1033
-            Wx_Alignment = wxALIGN_LEFT
+            Wx_Alignment = [wxALIGN_LEFT]
             object WxCheckBoxSingleInstance: TWxCheckBox
               Left = 2
               Top = 2
@@ -181,7 +181,7 @@ object frmNewForm: TfrmNewForm
               Wx_IDName = 'ID_WXCHECKBOXSINGLEINSTANCE'
               Wx_IDValue = 1034
               Wx_Border = 2
-              Wx_Alignment = wxALIGN_LEFT
+              Wx_Alignment = [wxALIGN_LEFT]
             end
             object WxCheckBoxRecordCaretMovements: TWxCheckBox
               Left = 2
@@ -200,7 +200,7 @@ object frmNewForm: TfrmNewForm
               Wx_IDName = 'ID_WXCHECKBOXRECORDCARETMOVEMENTS'
               Wx_IDValue = 1037
               Wx_Border = 2
-              Wx_Alignment = wxALIGN_LEFT
+              Wx_Alignment = [wxALIGN_LEFT]
             end
           end
           object WxBoxSizer5: TWxBoxSizer
@@ -214,7 +214,7 @@ object frmNewForm: TfrmNewForm
             Wx_IDName = 'ID_WXBOXSIZER5'
             Wx_IDValue = 1038
             Wx_Border = 2
-            Wx_Alignment = wxALIGN_LEFT
+            Wx_Alignment = [wxALIGN_LEFT]
             object WxEditMaxSizeToLoad: TWxEdit
               Left = 0
               Top = 3
@@ -236,7 +236,7 @@ object frmNewForm: TfrmNewForm
               Wx_IDName = 'ID_WXEDITMAXSIZETOLOAD'
               Wx_IDValue = 1039
               Wx_Validator = 'wxTextValidator(wxFILTER_NUMERIC)'
-              Wx_Alignment = wxALIGN_LEFT
+              Wx_Alignment = [wxALIGN_LEFT]
               Wx_Border = 0
               Wx_MaxLength = 0
             end
@@ -257,7 +257,7 @@ object frmNewForm: TfrmNewForm
               Wx_IDName = 'ID_WXSTATICTEXT1'
               Wx_IDValue = 1040
               Wx_LabelStyle = [wxST_NO_AUTORESIZE]
-              Wx_Alignment = wxALIGN_LEFT
+              Wx_Alignment = [wxALIGN_LEFT]
             end
           end
           object WxBoxSizer6: TWxBoxSizer
@@ -271,7 +271,7 @@ object frmNewForm: TfrmNewForm
             Wx_IDName = 'ID_WXBOXSIZER6'
             Wx_IDValue = 1041
             Wx_Border = 2
-            Wx_Alignment = wxALIGN_LEFT
+            Wx_Alignment = [wxALIGN_LEFT]
             object WxEditMaxTextFileSize: TWxEdit
               Left = 0
               Top = 3
@@ -293,7 +293,7 @@ object frmNewForm: TfrmNewForm
               Wx_IDName = 'ID_WXEDITMAXTEXTFILESIZE'
               Wx_IDValue = 1042
               Wx_Validator = 'wxTextValidator(wxFILTER_NUMERIC)'
-              Wx_Alignment = wxALIGN_LEFT
+              Wx_Alignment = [wxALIGN_LEFT]
               Wx_Border = 0
               Wx_MaxLength = 0
             end
@@ -314,7 +314,7 @@ object frmNewForm: TfrmNewForm
               Wx_IDName = 'ID_WXSTATICTEXT2'
               Wx_IDValue = 1043
               Wx_LabelStyle = [wxST_NO_AUTORESIZE]
-              Wx_Alignment = wxALIGN_LEFT
+              Wx_Alignment = [wxALIGN_LEFT]
             end
           end
           object WxBoxSizer17: TWxBoxSizer
@@ -328,7 +328,7 @@ object frmNewForm: TfrmNewForm
             Wx_IDName = 'ID_WXBOXSIZER17'
             Wx_IDValue = 1118
             Wx_Border = 2
-            Wx_Alignment = wxALIGN_LEFT
+            Wx_Alignment = [wxALIGN_LEFT]
             object WxComboBoxEncoding: TWxComboBox
               Left = 0
               Top = 3
@@ -347,7 +347,7 @@ object frmNewForm: TfrmNewForm
               Wx_IDName = 'ID_WXCOMBOBOXENCODING'
               Wx_IDValue = 1120
               Wx_Border = 0
-              Wx_Alignment = wxALIGN_LEFT
+              Wx_Alignment = [wxALIGN_LEFT]
             end
             object WxStaticText13: TWxStaticText
               Left = 145
@@ -367,7 +367,7 @@ object frmNewForm: TfrmNewForm
               Wx_IDName = 'ID_WXSTATICTEXT13'
               Wx_IDValue = 1121
               Wx_LabelStyle = []
-              Wx_Alignment = wxALIGN_LEFT
+              Wx_Alignment = [wxALIGN_LEFT]
             end
           end
           object WxBoxSizer7: TWxBoxSizer
@@ -381,7 +381,7 @@ object frmNewForm: TfrmNewForm
             Wx_ControlOrientation = wxControlVertical
             Wx_IDName = 'ID_WXBOXSIZER7'
             Wx_IDValue = 1044
-            Wx_Alignment = wxALIGN_LEFT
+            Wx_Alignment = [wxALIGN_LEFT]
             object WxCheckBoxReloadFiles: TWxCheckBox
               Left = 2
               Top = 2
@@ -399,7 +399,7 @@ object frmNewForm: TfrmNewForm
               Wx_IDName = 'ID_WXCHECKBOXRELOADFILES'
               Wx_IDValue = 1197
               Wx_Border = 2
-              Wx_Alignment = wxALIGN_LEFT
+              Wx_Alignment = [wxALIGN_LEFT]
             end
             object WxCheckBoxRestoreCaretPos: TWxCheckBox
               Left = 2
@@ -418,7 +418,7 @@ object frmNewForm: TfrmNewForm
               Wx_IDName = 'ID_WXCHECKBOXRESTORECARETPOS'
               Wx_IDValue = 1198
               Wx_Border = 2
-              Wx_Alignment = wxALIGN_LEFT
+              Wx_Alignment = [wxALIGN_LEFT]
             end
             object WxCheckBoxDoNotSaveSettings: TWxCheckBox
               Left = 2
@@ -439,7 +439,7 @@ object frmNewForm: TfrmNewForm
               Wx_IDName = 'ID_WXCHECKBOXDONOTSAVESETTINGS'
               Wx_IDValue = 1045
               Wx_Border = 2
-              Wx_Alignment = wxALIGN_LEFT
+              Wx_Alignment = [wxALIGN_LEFT]
             end
           end
         end
@@ -471,6 +471,7 @@ object frmNewForm: TfrmNewForm
           Wx_IDName = 'ID_WXBOXSIZER8'
           Wx_IDValue = 1046
           Wx_Border = 2
+          Wx_Alignment = [wxEXPAND]
           Wx_StretchFactor = 1
           object WxBoxSizer9: TWxBoxSizer
             Left = 84
@@ -483,7 +484,7 @@ object frmNewForm: TfrmNewForm
             Wx_IDName = 'ID_WXBOXSIZER9'
             Wx_IDValue = 1047
             Wx_Border = 2
-            Wx_Alignment = wxALIGN_LEFT
+            Wx_Alignment = [wxALIGN_LEFT]
             object WxEditMaxLineLength: TWxEdit
               Left = 0
               Top = 3
@@ -505,7 +506,7 @@ object frmNewForm: TfrmNewForm
               Wx_IDName = 'ID_WXEDITMAXLINELENGTH'
               Wx_IDValue = 1049
               Wx_Validator = 'wxTextValidator(wxFILTER_NUMERIC)'
-              Wx_Alignment = wxALIGN_LEFT
+              Wx_Alignment = [wxALIGN_LEFT]
               Wx_Border = 0
               Wx_MaxLength = 0
             end
@@ -526,7 +527,7 @@ object frmNewForm: TfrmNewForm
               Wx_IDName = 'ID_WXSTATICTEXT3'
               Wx_IDValue = 1051
               Wx_LabelStyle = [wxST_NO_AUTORESIZE]
-              Wx_Alignment = wxALIGN_LEFT
+              Wx_Alignment = [wxALIGN_LEFT]
             end
           end
           object WxBoxSizer10: TWxBoxSizer
@@ -540,7 +541,7 @@ object frmNewForm: TfrmNewForm
             Wx_IDName = 'ID_WXBOXSIZER10'
             Wx_IDValue = 1052
             Wx_Border = 2
-            Wx_Alignment = wxALIGN_LEFT
+            Wx_Alignment = [wxALIGN_LEFT]
             object WxEditMaxColumns: TWxEdit
               Left = 0
               Top = 3
@@ -562,7 +563,7 @@ object frmNewForm: TfrmNewForm
               Wx_IDName = 'ID_WXEDITMAXCOLUMNS'
               Wx_IDValue = 1053
               Wx_Validator = 'wxTextValidator(wxFILTER_NUMERIC)'
-              Wx_Alignment = wxALIGN_LEFT
+              Wx_Alignment = [wxALIGN_LEFT]
               Wx_Border = 0
               Wx_MaxLength = 0
             end
@@ -583,7 +584,7 @@ object frmNewForm: TfrmNewForm
               Wx_IDName = 'ID_WXSTATICTEXT4'
               Wx_IDValue = 1054
               Wx_LabelStyle = [wxST_NO_AUTORESIZE]
-              Wx_Alignment = wxALIGN_LEFT
+              Wx_Alignment = [wxALIGN_LEFT]
             end
           end
           object WxBoxSizer11: TWxBoxSizer
@@ -597,7 +598,7 @@ object frmNewForm: TfrmNewForm
             Wx_IDName = 'ID_WXBOXSIZER11'
             Wx_IDValue = 1055
             Wx_Border = 2
-            Wx_Alignment = wxALIGN_LEFT
+            Wx_Alignment = [wxALIGN_LEFT]
             object WxEditTabColumns: TWxEdit
               Left = 0
               Top = 3
@@ -619,7 +620,7 @@ object frmNewForm: TfrmNewForm
               Wx_IDName = 'ID_WXEDITTABCOLUMNS'
               Wx_IDValue = 1056
               Wx_Validator = 'wxTextValidator(wxFILTER_NUMERIC)'
-              Wx_Alignment = wxALIGN_LEFT
+              Wx_Alignment = [wxALIGN_LEFT]
               Wx_Border = 0
               Wx_MaxLength = 0
             end
@@ -640,7 +641,7 @@ object frmNewForm: TfrmNewForm
               Wx_IDName = 'ID_WXSTATICTEXT5'
               Wx_IDValue = 1057
               Wx_LabelStyle = [wxST_NO_AUTORESIZE]
-              Wx_Alignment = wxALIGN_LEFT
+              Wx_Alignment = [wxALIGN_LEFT]
             end
           end
           object WxBoxSizer13: TWxBoxSizer
@@ -654,7 +655,7 @@ object frmNewForm: TfrmNewForm
             Wx_IDName = 'ID_WXBOXSIZER13'
             Wx_IDValue = 1061
             Wx_Border = 2
-            Wx_Alignment = wxALIGN_LEFT
+            Wx_Alignment = [wxALIGN_LEFT]
             object WxEditIndentColumns: TWxEdit
               Left = 0
               Top = 3
@@ -676,7 +677,7 @@ object frmNewForm: TfrmNewForm
               Wx_IDName = 'ID_WXEDITTABCOLUMNS'
               Wx_IDValue = 1056
               Wx_Validator = 'wxTextValidator(wxFILTER_NUMERIC)'
-              Wx_Alignment = wxALIGN_LEFT
+              Wx_Alignment = [wxALIGN_LEFT]
               Wx_Border = 0
               Wx_MaxLength = 0
             end
@@ -697,7 +698,7 @@ object frmNewForm: TfrmNewForm
               Wx_IDName = 'ID_WXSTATICTEXT5'
               Wx_IDValue = 1057
               Wx_LabelStyle = [wxST_NO_AUTORESIZE]
-              Wx_Alignment = wxALIGN_LEFT
+              Wx_Alignment = [wxALIGN_LEFT]
             end
           end
           object WxBoxSizer23: TWxBoxSizer
@@ -711,7 +712,7 @@ object frmNewForm: TfrmNewForm
             Wx_IDName = 'ID_WXBOXSIZER23'
             Wx_IDValue = 1165
             Wx_Border = 2
-            Wx_Alignment = wxALIGN_LEFT
+            Wx_Alignment = [wxALIGN_LEFT]
             object WxEditDateTime: TWxEdit
               Left = 0
               Top = 3
@@ -731,7 +732,7 @@ object frmNewForm: TfrmNewForm
               Wx_Hidden = False
               Wx_IDName = 'ID_WXEDITDATETIME'
               Wx_IDValue = 1166
-              Wx_Alignment = wxALIGN_LEFT
+              Wx_Alignment = [wxALIGN_LEFT]
               Wx_Border = 0
               Wx_MaxLength = 0
             end
@@ -776,7 +777,7 @@ object frmNewForm: TfrmNewForm
               Wx_Height = 25
               Wx_Width = 25
               Wx_Border = 1
-              Wx_Alignment = wxALIGN_LEFT
+              Wx_Alignment = [wxALIGN_LEFT]
             end
             object WxCheckBoxDateTimeInEnglish: TWxCheckBox
               Left = 301
@@ -795,7 +796,7 @@ object frmNewForm: TfrmNewForm
               Wx_IDName = 'ID_WXCHECKBOXDATETIMEINENGLISH'
               Wx_IDValue = 1169
               Wx_Border = 2
-              Wx_Alignment = wxALIGN_LEFT
+              Wx_Alignment = [wxALIGN_LEFT]
             end
           end
           object WxBoxSizer12: TWxBoxSizer
@@ -809,7 +810,7 @@ object frmNewForm: TfrmNewForm
             Wx_ControlOrientation = wxControlVertical
             Wx_IDName = 'ID_WXBOXSIZER12'
             Wx_IDValue = 1058
-            Wx_Alignment = wxALIGN_LEFT
+            Wx_Alignment = [wxALIGN_LEFT]
             object WxCheckBoxTabOrSpaces: TWxCheckBox
               Left = 24
               Top = 2
@@ -827,7 +828,7 @@ object frmNewForm: TfrmNewForm
               Wx_IDName = 'ID_WXCHECKBOXTABORSPACES'
               Wx_IDValue = 1059
               Wx_Border = 2
-              Wx_Alignment = wxALIGN_LEFT
+              Wx_Alignment = [wxALIGN_LEFT]
             end
             object WxCheckBoxAutoIndent: TWxCheckBox
               Left = 24
@@ -846,7 +847,7 @@ object frmNewForm: TfrmNewForm
               Wx_IDName = 'ID_WXCHECKBOXAUTOINDENT'
               Wx_IDValue = 1060
               Wx_Border = 2
-              Wx_Alignment = wxALIGN_LEFT
+              Wx_Alignment = [wxALIGN_LEFT]
             end
             object WxCheckBoxAutoCompletePair: TWxCheckBox
               Left = 24
@@ -865,7 +866,7 @@ object frmNewForm: TfrmNewForm
               Wx_IDName = 'ID_WXCHECKBOXAUTOCOMPLETEPAIR'
               Wx_IDValue = 1154
               Wx_Border = 2
-              Wx_Alignment = wxALIGN_LEFT
+              Wx_Alignment = [wxALIGN_LEFT]
             end
             object WxBoxSizer28: TWxBoxSizer
               Left = 0
@@ -878,7 +879,7 @@ object frmNewForm: TfrmNewForm
               Wx_IDName = 'ID_WXBOXSIZER28'
               Wx_IDValue = 1158
               Wx_Border = 0
-              Wx_Alignment = wxALIGN_LEFT
+              Wx_Alignment = [wxALIGN_LEFT]
               object WxCheckBoxMouseSelectToCopy: TWxCheckBox
                 Left = 2
                 Top = 2
@@ -896,7 +897,7 @@ object frmNewForm: TfrmNewForm
                 Wx_IDName = 'ID_WXCHECKBOXMOUSESELECTTOCOPY'
                 Wx_IDValue = 1159
                 Wx_Border = 2
-                Wx_Alignment = wxALIGN_LEFT
+                Wx_Alignment = [wxALIGN_LEFT]
               end
               object WxRadioButtonEnable: TWxRadioButton
                 Left = 266
@@ -914,7 +915,7 @@ object frmNewForm: TfrmNewForm
                 Wx_IDValue = 1160
                 Wx_RadioButtonStyle = []
                 Wx_Border = 2
-                Wx_Alignment = wxALIGN_LEFT
+                Wx_Alignment = [wxALIGN_LEFT]
               end
               object WxRadioButtonDisable: TWxRadioButton
                 Left = 340
@@ -932,7 +933,7 @@ object frmNewForm: TfrmNewForm
                 Wx_IDValue = 1161
                 Wx_RadioButtonStyle = []
                 Wx_Border = 2
-                Wx_Alignment = wxALIGN_LEFT
+                Wx_Alignment = [wxALIGN_LEFT]
               end
               object WxStaticText17: TWxStaticText
                 Left = 414
@@ -951,7 +952,7 @@ object frmNewForm: TfrmNewForm
                 Wx_IDValue = 1162
                 Wx_LabelStyle = []
                 Wx_Border = 2
-                Wx_Alignment = wxALIGN_LEFT
+                Wx_Alignment = [wxALIGN_LEFT]
               end
             end
             object WxCheckBoxMiddleMouseToPaste: TWxCheckBox
@@ -971,7 +972,7 @@ object frmNewForm: TfrmNewForm
               Wx_IDName = 'ID_WXCHECKBOXMIDDLEMOUSETOPASTE'
               Wx_IDValue = 1127
               Wx_Border = 2
-              Wx_Alignment = wxALIGN_LEFT
+              Wx_Alignment = [wxALIGN_LEFT]
             end
           end
         end
@@ -1002,6 +1003,7 @@ object frmNewForm: TfrmNewForm
           Wx_IDName = 'ID_WXBOXSIZER14'
           Wx_IDValue = 1063
           Wx_Border = 2
+          Wx_Alignment = [wxEXPAND]
           Wx_StretchFactor = 1
           object WxBoxSizer15: TWxBoxSizer
             Left = 2
@@ -1015,7 +1017,7 @@ object frmNewForm: TfrmNewForm
             Wx_IDName = 'ID_WXBOXSIZER15'
             Wx_IDValue = 1064
             Wx_Border = 2
-            Wx_Alignment = wxALIGN_LEFT
+            Wx_Alignment = [wxALIGN_LEFT]
             object WxStaticBoxSizer1: TWxStaticBoxSizer
               Left = 4
               Top = 4
@@ -1029,7 +1031,7 @@ object frmNewForm: TfrmNewForm
               Wx_IDName = 'ID_WXSTATICBOXSIZER1'
               Wx_IDValue = 1083
               Wx_Border = 4
-              Wx_Alignment = wxALIGN_LEFT
+              Wx_Alignment = [wxALIGN_LEFT]
               object WxCheckBoxPrintSyntax: TWxCheckBox
                 Left = 6
                 Top = 16
@@ -1047,7 +1049,7 @@ object frmNewForm: TfrmNewForm
                 Wx_IDName = 'ID_WXCHECKBOXPRINTSYNTAX'
                 Wx_IDValue = 1084
                 Wx_Border = 1
-                Wx_Alignment = wxALIGN_LEFT
+                Wx_Alignment = [wxALIGN_LEFT]
               end
               object WxCheckBoxPrintLineNumber: TWxCheckBox
                 Left = 6
@@ -1066,7 +1068,7 @@ object frmNewForm: TfrmNewForm
                 Wx_IDName = 'ID_WXCHECKBOXPRINTLINENUMBER'
                 Wx_IDValue = 1087
                 Wx_Border = 1
-                Wx_Alignment = wxALIGN_LEFT
+                Wx_Alignment = [wxALIGN_LEFT]
               end
               object WxCheckBoxPrintEndOfLine: TWxCheckBox
                 Left = 6
@@ -1085,7 +1087,7 @@ object frmNewForm: TfrmNewForm
                 Wx_IDName = 'ID_WXCHECKBOXPRINTENDOFLINE'
                 Wx_IDValue = 1088
                 Wx_Border = 1
-                Wx_Alignment = wxALIGN_LEFT
+                Wx_Alignment = [wxALIGN_LEFT]
               end
               object WxCheckBoxPrintTabChar: TWxCheckBox
                 Left = 6
@@ -1104,7 +1106,7 @@ object frmNewForm: TfrmNewForm
                 Wx_IDName = 'ID_WXCHECKBOXPRINTTABCHAR'
                 Wx_IDValue = 1089
                 Wx_Border = 1
-                Wx_Alignment = wxALIGN_LEFT
+                Wx_Alignment = [wxALIGN_LEFT]
               end
               object WxCheckBoxPrintSpaceChar: TWxCheckBox
                 Left = 6
@@ -1123,7 +1125,7 @@ object frmNewForm: TfrmNewForm
                 Wx_IDName = 'ID_WXCHECKBOXPRINTSPACECHAR'
                 Wx_IDValue = 1090
                 Wx_Border = 1
-                Wx_Alignment = wxALIGN_LEFT
+                Wx_Alignment = [wxALIGN_LEFT]
               end
             end
             object WxStaticBoxSizer2: TWxStaticBoxSizer
@@ -1138,7 +1140,7 @@ object frmNewForm: TfrmNewForm
               Wx_IDName = 'ID_WXSTATICBOXSIZER2'
               Wx_IDValue = 1085
               Wx_Border = 4
-              Wx_Alignment = wxALIGN_LEFT
+              Wx_Alignment = [wxALIGN_LEFT]
               object WxRadioBoxPrintOffset: TWxRadioBox
                 Left = 6
                 Top = 16
@@ -1164,7 +1166,7 @@ object frmNewForm: TfrmNewForm
                 Wx_RadioBoxStyle = wxRA_SPECIFY_COLS
                 Wx_Selection = 0
                 Wx_Border = 1
-                Wx_Alignment = wxALIGN_LEFT
+                Wx_Alignment = [wxALIGN_LEFT]
                 Wx_StretchFactor = 1
               end
             end
@@ -1181,7 +1183,7 @@ object frmNewForm: TfrmNewForm
             Wx_IDName = 'ID_WXBOXSIZER16'
             Wx_IDValue = 1066
             Wx_Border = 2
-            Wx_Alignment = wxEXPAND
+            Wx_Alignment = [wxEXPAND]
             Wx_StretchFactor = 1
             object WxStaticBoxSizer3: TWxStaticBoxSizer
               Left = 4
@@ -1196,7 +1198,7 @@ object frmNewForm: TfrmNewForm
               Wx_IDName = 'ID_WXSTATICBOXSIZER3'
               Wx_IDValue = 1092
               Wx_Border = 4
-              Wx_Alignment = wxEXPAND
+              Wx_Alignment = [wxEXPAND]
               Wx_StretchFactor = 1
               object WxCheckBoxPrintPageHeader: TWxCheckBox
                 Left = 86
@@ -1215,7 +1217,7 @@ object frmNewForm: TfrmNewForm
                 Wx_IDName = 'ID_WXCHECKBOXPRINTPAGEHEADER'
                 Wx_IDValue = 1093
                 Wx_Border = 1
-                Wx_Alignment = wxALIGN_LEFT
+                Wx_Alignment = [wxALIGN_LEFT]
               end
               object WxFlexGridSizer1: TWxFlexGridSizer
                 Left = 5
@@ -1224,13 +1226,12 @@ object frmNewForm: TfrmNewForm
                 Height = 81
                 TabOrder = 2
                 Columns = 3
-                Rows = 3
                 Wx_Class = 'wxFlexGridSizer'
                 Wx_ControlOrientation = wxControlVertical
                 Wx_IDName = 'ID_WXFLEXGRIDSIZER1'
                 Wx_IDValue = 1098
                 Wx_Border = 2
-                Wx_Alignment = wxEXPAND
+                Wx_Alignment = [wxEXPAND]
                 Wx_StretchFactor = 1
                 object WxStaticText7: TWxStaticText
                   Left = 8
@@ -1249,7 +1250,7 @@ object frmNewForm: TfrmNewForm
                   Wx_IDValue = 1099
                   Wx_LabelStyle = []
                   Wx_Border = 2
-                  Wx_Alignment = wxALIGN_RIGHT
+                  Wx_Alignment = [wxALIGN_RIGHT]
                 end
                 object WxEditHeaderLeft: TWxEdit
                   Left = 44
@@ -1270,8 +1271,7 @@ object frmNewForm: TfrmNewForm
                   Wx_Hidden = False
                   Wx_IDName = 'ID_WXEDITHEADERLEFT'
                   Wx_IDValue = 1100
-                  Wx_Alignment = wxEXPAND
-                  Wx_StretchFactor = 1
+                  Wx_Alignment = []
                   Wx_Border = 2
                   Wx_MaxLength = 0
                 end
@@ -1298,7 +1298,7 @@ object frmNewForm: TfrmNewForm
                   Wx_Height = 25
                   Wx_Width = 25
                   Wx_Border = 1
-                  Wx_Alignment = wxALIGN_LEFT
+                  Wx_Alignment = [wxALIGN_LEFT]
                 end
                 object WxStaticText8: TWxStaticText
                   Left = 2
@@ -1317,11 +1317,11 @@ object frmNewForm: TfrmNewForm
                   Wx_IDValue = 1102
                   Wx_LabelStyle = []
                   Wx_Border = 2
-                  Wx_Alignment = wxALIGN_RIGHT
+                  Wx_Alignment = [wxALIGN_RIGHT]
                 end
                 object WxEditHeaderCenter: TWxEdit
-                  Left = 44
-                  Top = 30
+                  Left = 38
+                  Top = 25
                   Width = 240
                   Height = 21
                   BevelInner = bvNone
@@ -1338,8 +1338,7 @@ object frmNewForm: TfrmNewForm
                   Wx_Hidden = False
                   Wx_IDName = 'ID_WXEDITHEADERCENTER'
                   Wx_IDValue = 1103
-                  Wx_Alignment = wxEXPAND
-                  Wx_StretchFactor = 1
+                  Wx_Alignment = []
                   Wx_Border = 2
                   Wx_MaxLength = 0
                 end
@@ -1366,7 +1365,7 @@ object frmNewForm: TfrmNewForm
                   Wx_Height = 25
                   Wx_Width = 25
                   Wx_Border = 1
-                  Wx_Alignment = wxALIGN_LEFT
+                  Wx_Alignment = [wxALIGN_LEFT]
                 end
                 object WxStaticText9: TWxStaticText
                   Left = 5
@@ -1385,7 +1384,7 @@ object frmNewForm: TfrmNewForm
                   Wx_IDValue = 1105
                   Wx_LabelStyle = []
                   Wx_Border = 2
-                  Wx_Alignment = wxALIGN_RIGHT
+                  Wx_Alignment = [wxALIGN_RIGHT]
                 end
                 object WxEditHeaderRight: TWxEdit
                   Left = 44
@@ -1406,8 +1405,7 @@ object frmNewForm: TfrmNewForm
                   Wx_Hidden = False
                   Wx_IDName = 'ID_WXEDITHEADERRIGHT'
                   Wx_IDValue = 1106
-                  Wx_Alignment = wxEXPAND
-                  Wx_StretchFactor = 1
+                  Wx_Alignment = []
                   Wx_Border = 2
                   Wx_MaxLength = 0
                 end
@@ -1434,7 +1432,7 @@ object frmNewForm: TfrmNewForm
                   Wx_Height = 25
                   Wx_Width = 25
                   Wx_Border = 1
-                  Wx_Alignment = wxALIGN_LEFT
+                  Wx_Alignment = [wxALIGN_LEFT]
                 end
               end
             end
@@ -1451,7 +1449,7 @@ object frmNewForm: TfrmNewForm
               Wx_IDName = 'ID_WXSTATICBOXSIZER4'
               Wx_IDValue = 1096
               Wx_Border = 4
-              Wx_Alignment = wxEXPAND
+              Wx_Alignment = [wxEXPAND]
               Wx_StretchFactor = 1
               object WxCheckBoxPrintPageFooter: TWxCheckBox
                 Left = 86
@@ -1470,7 +1468,7 @@ object frmNewForm: TfrmNewForm
                 Wx_IDName = 'ID_WXCHECKBOXPRINTPAGEFOOTER'
                 Wx_IDValue = 1108
                 Wx_Border = 1
-                Wx_Alignment = wxALIGN_LEFT
+                Wx_Alignment = [wxALIGN_LEFT]
               end
               object WxFlexGridSizer2: TWxFlexGridSizer
                 Left = 5
@@ -1479,13 +1477,12 @@ object frmNewForm: TfrmNewForm
                 Height = 81
                 TabOrder = 2
                 Columns = 3
-                Rows = 3
                 Wx_Class = 'wxFlexGridSizer'
                 Wx_ControlOrientation = wxControlVertical
                 Wx_IDName = 'ID_WXFLEXGRIDSIZER2'
                 Wx_IDValue = 1109
                 Wx_Border = 2
-                Wx_Alignment = wxEXPAND
+                Wx_Alignment = [wxEXPAND]
                 Wx_StretchFactor = 1
                 object WxStaticText10: TWxStaticText
                   Left = 8
@@ -1504,7 +1501,7 @@ object frmNewForm: TfrmNewForm
                   Wx_IDValue = 1099
                   Wx_LabelStyle = []
                   Wx_Border = 2
-                  Wx_Alignment = wxALIGN_RIGHT
+                  Wx_Alignment = [wxALIGN_RIGHT]
                 end
                 object WxEditFooterLeft: TWxEdit
                   Left = 44
@@ -1525,8 +1522,7 @@ object frmNewForm: TfrmNewForm
                   Wx_Hidden = False
                   Wx_IDName = 'ID_WXEDITHEADERLEFT'
                   Wx_IDValue = 1100
-                  Wx_Alignment = wxEXPAND
-                  Wx_StretchFactor = 1
+                  Wx_Alignment = []
                   Wx_Border = 2
                   Wx_MaxLength = 0
                 end
@@ -1553,7 +1549,7 @@ object frmNewForm: TfrmNewForm
                   Wx_Height = 25
                   Wx_Width = 25
                   Wx_Border = 1
-                  Wx_Alignment = wxALIGN_LEFT
+                  Wx_Alignment = [wxALIGN_LEFT]
                 end
                 object WxStaticText11: TWxStaticText
                   Left = 2
@@ -1572,7 +1568,7 @@ object frmNewForm: TfrmNewForm
                   Wx_IDValue = 1102
                   Wx_LabelStyle = []
                   Wx_Border = 2
-                  Wx_Alignment = wxALIGN_RIGHT
+                  Wx_Alignment = [wxALIGN_RIGHT]
                 end
                 object WxEditFooterCenter: TWxEdit
                   Left = 44
@@ -1593,8 +1589,7 @@ object frmNewForm: TfrmNewForm
                   Wx_Hidden = False
                   Wx_IDName = 'ID_WXEDITHEADERCENTER'
                   Wx_IDValue = 1103
-                  Wx_Alignment = wxEXPAND
-                  Wx_StretchFactor = 1
+                  Wx_Alignment = []
                   Wx_Border = 2
                   Wx_MaxLength = 0
                 end
@@ -1621,7 +1616,7 @@ object frmNewForm: TfrmNewForm
                   Wx_Height = 25
                   Wx_Width = 25
                   Wx_Border = 1
-                  Wx_Alignment = wxALIGN_LEFT
+                  Wx_Alignment = [wxALIGN_LEFT]
                 end
                 object WxStaticText12: TWxStaticText
                   Left = 5
@@ -1640,7 +1635,7 @@ object frmNewForm: TfrmNewForm
                   Wx_IDValue = 1105
                   Wx_LabelStyle = []
                   Wx_Border = 2
-                  Wx_Alignment = wxALIGN_RIGHT
+                  Wx_Alignment = [wxALIGN_RIGHT]
                 end
                 object WxEditFooterRight: TWxEdit
                   Left = 44
@@ -1661,8 +1656,7 @@ object frmNewForm: TfrmNewForm
                   Wx_Hidden = False
                   Wx_IDName = 'ID_WXEDITHEADERRIGHT'
                   Wx_IDValue = 1106
-                  Wx_Alignment = wxEXPAND
-                  Wx_StretchFactor = 1
+                  Wx_Alignment = []
                   Wx_Border = 2
                   Wx_MaxLength = 0
                 end
@@ -1689,7 +1683,7 @@ object frmNewForm: TfrmNewForm
                   Wx_Height = 25
                   Wx_Width = 25
                   Wx_Border = 1
-                  Wx_Alignment = wxALIGN_LEFT
+                  Wx_Alignment = [wxALIGN_LEFT]
                 end
               end
             end
@@ -1722,6 +1716,7 @@ object frmNewForm: TfrmNewForm
           Wx_IDName = 'ID_WXBOXSIZER18'
           Wx_IDValue = 1123
           Wx_Border = 2
+          Wx_Alignment = [wxEXPAND]
           Wx_StretchFactor = 1
           object WxBoxSizer19: TWxBoxSizer
             Left = 4
@@ -1734,7 +1729,7 @@ object frmNewForm: TfrmNewForm
             Wx_IDName = 'ID_WXBOXSIZER19'
             Wx_IDValue = 1124
             Wx_Border = 4
-            Wx_Alignment = wxEXPAND
+            Wx_Alignment = [wxEXPAND]
             Wx_StretchFactor = 2
             object WxTreeCtrl1: TWxTreeCtrl
               Left = 3
@@ -1754,7 +1749,7 @@ object frmNewForm: TfrmNewForm
               Wx_IDValue = 1125
               Wx_TreeviewStyle = [wxTR_HAS_BUTTONS, wxTR_DEFAULT_STYLE]
               Wx_Border = 3
-              Wx_Alignment = wxEXPAND
+              Wx_Alignment = [wxEXPAND]
               Wx_StretchFactor = 1
             end
           end
@@ -1770,7 +1765,7 @@ object frmNewForm: TfrmNewForm
             Wx_IDName = 'ID_WXBOXSIZER20'
             Wx_IDValue = 1128
             Wx_Border = 2
-            Wx_Alignment = wxEXPAND
+            Wx_Alignment = [wxEXPAND]
             Wx_StretchFactor = 3
             object WxBoxSizer24: TWxBoxSizer
               Left = 2
@@ -1783,7 +1778,7 @@ object frmNewForm: TfrmNewForm
               Wx_IDName = 'ID_WXBOXSIZER24'
               Wx_IDValue = 1139
               Wx_Border = 2
-              Wx_Alignment = wxEXPAND
+              Wx_Alignment = [wxEXPAND]
               object WxStaticTextCommandHint: TWxStaticText
                 Left = 5
                 Top = 7
@@ -1800,7 +1795,7 @@ object frmNewForm: TfrmNewForm
                 Wx_IDName = 'ID_WXSTATICTEXTCOMMANDHINT'
                 Wx_IDValue = 1140
                 Wx_LabelStyle = []
-                Wx_Alignment = wxALIGN_LEFT
+                Wx_Alignment = [wxALIGN_LEFT]
               end
               object WxEditCommandHint: TWxEdit
                 Left = 41
@@ -1822,7 +1817,7 @@ object frmNewForm: TfrmNewForm
                 Wx_Hidden = False
                 Wx_IDName = 'ID_WXEDITHINT'
                 Wx_IDValue = 1141
-                Wx_Alignment = wxEXPAND
+                Wx_Alignment = [wxEXPAND]
                 Wx_StretchFactor = 1
                 Wx_MaxLength = 0
                 InvisibleBGColorString = 'SYS:wxSYS_COLOUR_BTNFACE'
@@ -1839,7 +1834,7 @@ object frmNewForm: TfrmNewForm
               Wx_IDName = 'ID_WXBOXSIZER21'
               Wx_IDValue = 1130
               Wx_Border = 2
-              Wx_Alignment = wxEXPAND
+              Wx_Alignment = [wxEXPAND]
               Wx_StretchFactor = 1
               object WxBoxSizer22: TWxBoxSizer
                 Left = 2
@@ -1853,7 +1848,7 @@ object frmNewForm: TfrmNewForm
                 Wx_IDName = 'ID_WXBOXSIZER22'
                 Wx_IDValue = 1131
                 Wx_Border = 2
-                Wx_Alignment = wxEXPAND
+                Wx_Alignment = [wxEXPAND]
                 object WxStaticText14: TWxStaticText
                   Left = 34
                   Top = 5
@@ -1870,7 +1865,7 @@ object frmNewForm: TfrmNewForm
                   Wx_IDName = 'ID_WXSTATICTEXT14'
                   Wx_IDValue = 1132
                   Wx_LabelStyle = []
-                  Wx_Alignment = wxALIGN_LEFT
+                  Wx_Alignment = [wxALIGN_LEFT]
                 end
                 object WxListBoxKeys: TWxListBox
                   Left = 2
@@ -1891,7 +1886,7 @@ object frmNewForm: TfrmNewForm
                   Wx_ListboxStyle = []
                   Wx_ListboxSubStyle = wxLB_SINGLE
                   Wx_Border = 2
-                  Wx_Alignment = wxEXPAND
+                  Wx_Alignment = [wxEXPAND]
                   Wx_StretchFactor = 1
                 end
               end
@@ -1907,7 +1902,7 @@ object frmNewForm: TfrmNewForm
                 Wx_IDName = 'ID_WXBOXSIZER25'
                 Wx_IDValue = 1164
                 Wx_Border = 1
-                Wx_Alignment = wxEXPAND
+                Wx_Alignment = [wxEXPAND]
                 Wx_StretchFactor = 5
                 object WxStaticText15: TWxStaticText
                   Left = 70
@@ -1925,7 +1920,7 @@ object frmNewForm: TfrmNewForm
                   Wx_IDName = 'ID_WXSTATICTEXT15'
                   Wx_IDValue = 1136
                   Wx_LabelStyle = []
-                  Wx_Alignment = wxALIGN_LEFT
+                  Wx_Alignment = [wxALIGN_LEFT]
                 end
                 object WxEditKey: TWxEdit
                   Left = 5
@@ -1946,7 +1941,7 @@ object frmNewForm: TfrmNewForm
                   Wx_Hidden = False
                   Wx_IDName = 'ID_WXEDITKEY'
                   Wx_IDValue = 1137
-                  Wx_Alignment = wxEXPAND
+                  Wx_Alignment = [wxEXPAND]
                   Wx_MaxLength = 0
                 end
                 object WxEditKeyHint: TWxEdit
@@ -1969,7 +1964,7 @@ object frmNewForm: TfrmNewForm
                   Wx_Hidden = False
                   Wx_IDName = 'ID_WXEDITKEYHINT'
                   Wx_IDValue = 1142
-                  Wx_Alignment = wxEXPAND
+                  Wx_Alignment = [wxEXPAND]
                   Wx_StretchFactor = 1
                   Wx_MaxLength = 0
                   InvisibleBGColorString = 'SYS:wxSYS_COLOUR_BTNFACE'
@@ -1997,7 +1992,7 @@ object frmNewForm: TfrmNewForm
                   Wx_IDValue = 1138
                   Wx_Height = 28
                   Wx_Width = 160
-                  Wx_Alignment = wxALIGN_LEFT
+                  Wx_Alignment = [wxALIGN_LEFT]
                 end
                 object WxButtonDeleteKey: TWxButton
                   Left = 15
@@ -2022,7 +2017,7 @@ object frmNewForm: TfrmNewForm
                   Wx_IDValue = 1143
                   Wx_Height = 28
                   Wx_Width = 160
-                  Wx_Alignment = wxALIGN_LEFT
+                  Wx_Alignment = [wxALIGN_LEFT]
                 end
                 object WxButtonShowInMenu: TWxButton
                   Left = 15
@@ -2047,7 +2042,7 @@ object frmNewForm: TfrmNewForm
                   Wx_IDValue = 1144
                   Wx_Height = 28
                   Wx_Width = 160
-                  Wx_Alignment = wxALIGN_LEFT
+                  Wx_Alignment = [wxALIGN_LEFT]
                 end
               end
             end
@@ -2062,7 +2057,7 @@ object frmNewForm: TfrmNewForm
               Wx_IDName = 'ID_WXBOXSIZER26'
               Wx_IDValue = 1163
               Wx_Border = 2
-              Wx_Alignment = wxALIGN_LEFT
+              Wx_Alignment = [wxALIGN_LEFT]
               object WxCheckBoxResetAllKeys: TWxCheckBox
                 Left = 5
                 Top = 5
@@ -2079,7 +2074,7 @@ object frmNewForm: TfrmNewForm
                 Wx_Hidden = False
                 Wx_IDName = 'ID_WXCHECKBOXRESETALLKEYS'
                 Wx_IDValue = 1153
-                Wx_Alignment = wxALIGN_LEFT
+                Wx_Alignment = [wxALIGN_LEFT]
               end
             end
           end

@@ -22,7 +22,7 @@
 #include <wx/menu.h>
 #include <wx/listbox.h>
 #include <wx/treectrl.h>
-#include <wx/statbox.h>
+#include <wx/radiobox.h>
 #include <wx/radiobut.h>
 #include <wx/button.h>
 #include <wx/textctrl.h>
@@ -63,7 +63,7 @@ public:
 };
 
 class KeyTextCtrl;
-class wxFlatNotebook;
+class wxAuiNotebook;
 
 class MadOptionsDialog : public wxDialog
 {
@@ -192,7 +192,7 @@ public:
 		wxBoxSizer *WxBoxSizer27;
 		wxBoxSizer *WxBoxSizer3;
 		wxPanel *WxNoteBookPage1;
-		wxFlatNotebook *WxNotebook1;
+		wxAuiNotebook *WxNotebook1;
 		wxBoxSizer *WxBoxSizer1;
   ////GUI Control Declaration End
 

@@ -13,7 +13,7 @@
 #include "MadEdit/MadEdit.h"
 #include "MadEditFrame.h"
 #include "MadUtils.h"
-#include <wx/wxFlatNotebook/wxFlatNotebook.h>
+#include "wx/aui/auibook.h"
 
 //Do not add custom headers.
 //wx-dvcpp designer will remove them
@@ -44,7 +44,7 @@ public:
                :wxTextCtrl(parent, id, value, pos, size, style, validator, name)
     {
     }
-    
+
     void OnKeyDown(wxKeyEvent& evt)
     {
         int flags=wxACCEL_NORMAL;
@@ -53,10 +53,10 @@ public:
         if(evt.ControlDown()) flags|=wxACCEL_CTRL;
         if(evt.AltDown())     flags|=wxACCEL_ALT;
         if(evt.ShiftDown())   flags|=wxACCEL_SHIFT;
-        
+
         MadEditShortCut sc=ShortCut(flags, key);
         static MadEditShortCut prevsc=0;
-        
+
         if(sc==prevsc) return;
         prevsc=sc;
 
@@ -69,7 +69,7 @@ public:
     void OnSetFocus(wxFocusEvent &evt)
     {   // for getting Ctrl-Tab
         g_OptionsDialog->SetWindowStyleFlag(g_OptionsDialog->GetWindowStyleFlag() & ~wxTAB_TRAVERSAL);
-        g_OptionsDialog->WxNotebook1->wxPanel::SetWindowStyleFlag(g_OptionsDialog->WxNotebook1->GetWindowStyleFlag() & ~wxTAB_TRAVERSAL);
+        g_OptionsDialog->WxNotebook1->wxControl::SetWindowStyleFlag(g_OptionsDialog->WxNotebook1->wxControl::GetWindowStyleFlag() & ~wxTAB_TRAVERSAL);
         g_OptionsDialog->WxNoteBookPage4->SetWindowStyleFlag(g_OptionsDialog->WxNoteBookPage4->GetWindowStyleFlag() & ~wxTAB_TRAVERSAL);
         g_OptionsDialog->WxButtonCancel->SetId(MadOptionsDialog::ID_WXBUTTONCANCEL);
         evt.Skip();
@@ -77,7 +77,7 @@ public:
     void OnKillFocus(wxFocusEvent &evt)
     {   // restore wxTAB_TRAVERSAL
         g_OptionsDialog->SetWindowStyleFlag(g_OptionsDialog->GetWindowStyleFlag() | wxTAB_TRAVERSAL);
-        g_OptionsDialog->WxNotebook1->wxPanel::SetWindowStyleFlag(g_OptionsDialog->WxNotebook1->GetWindowStyleFlag() | wxTAB_TRAVERSAL);
+        g_OptionsDialog->WxNotebook1->wxControl::SetWindowStyleFlag(g_OptionsDialog->WxNotebook1->wxControl::GetWindowStyleFlag() | wxTAB_TRAVERSAL);
         g_OptionsDialog->WxNoteBookPage4->SetWindowStyleFlag(g_OptionsDialog->WxNoteBookPage4->GetWindowStyleFlag() | wxTAB_TRAVERSAL);
         g_OptionsDialog->WxButtonCancel->SetId(wxID_CANCEL);
         evt.Skip();
@@ -95,7 +95,7 @@ END_EVENT_TABLE()
 // MadOptionsDialog
 //----------------------------------------------------------------------------
      //Add Custom Events only in the appropriate Block.
-    // Code added in  other places will be removed by wx-dvcpp 
+    // Code added in  other places will be removed by wx-dvcpp
     ////Event Table Start
 BEGIN_EVENT_TABLE(MadOptionsDialog,wxDialog)
 	////Manual Code Start
@@ -107,7 +107,7 @@ BEGIN_EVENT_TABLE(MadOptionsDialog,wxDialog)
 	EVT_BUTTON(ID_WXBUTTON6,MadOptionsDialog::PrintMarkButtonClick)
 	EVT_BUTTON(wxID_CANCEL,MadOptionsDialog::WxButtonCancelClick)
 	////Manual Code End
-	
+
 	EVT_CLOSE(MadOptionsDialog::MadOptionsDialogClose)
 	EVT_ACTIVATE(MadOptionsDialog::MadOptionsDialogActivate)
 	EVT_MENU(ID_MNU_MENUITEM1_1110 , MadOptionsDialog::PrintMarkClick)
@@ -147,7 +147,7 @@ BEGIN_EVENT_TABLE(MadOptionsDialog,wxDialog)
 	EVT_BUTTON(ID_WXBUTTONDELETEKEY,MadOptionsDialog::WxButtonDeleteKeyClick)
 	EVT_BUTTON(ID_WXBUTTONADDKEY,MadOptionsDialog::WxButtonAddKeyClick)
 	EVT_LISTBOX(ID_WXLISTBOXKEYS,MadOptionsDialog::WxListBoxKeysSelected)
-	
+
 	EVT_TREE_SEL_CHANGED(ID_WXTREECTRL1,MadOptionsDialog::WxTreeCtrl1SelChanged)
 	EVT_BUTTON(ID_WXBUTTONDATETIME,MadOptionsDialog::WxButtonDateTimeClick)
 END_EVENT_TABLE()
@@ -159,15 +159,13 @@ MadOptionsDialog::MadOptionsDialog( wxWindow *parent, wxWindowID id, const wxStr
     : wxDialog( parent, id, title, position, size, style)
 {
     ButtonID=0;
-    CreateGUIControls();    
+    CreateGUIControls();
 }
 
-MadOptionsDialog::~MadOptionsDialog() 
+MadOptionsDialog::~MadOptionsDialog()
 {
     delete WxPopupMenuPrintMark;
-} 
-
-static int gs_MinX=0;
+}
 
 static void ResizeItem(wxSizer* sizer, wxWindow *item, int ax, int ay)
 {
@@ -183,9 +181,12 @@ static void ResizeItem(wxSizer* sizer, wxWindow *item, int ax, int ay)
     }
     item->SetSize(x+=ax, y+=ay);
     sizer->SetItemMinSize(item, x, y);
-    
-    wxPoint pos=item->GetPosition();
-    if(pos.x + x > gs_MinX) gs_MinX = pos.x + x;
+}
+
+inline void UpdateSize(wxSize &s1, const wxSize &s2)
+{
+    if(s2.x > s1.x) s1.x=s2.x;
+    if(s2.y > s1.y) s1.y=s2.y;
 }
 
 // filter '&' and '.'
@@ -217,7 +218,7 @@ void MadOptionsDialog::CreateGUIControls(void)
 	this->SetSizer(WxBoxSizer1);
 	this->SetAutoLayout(true);
 
-	WxNotebook1 = new wxFlatNotebook(this, ID_WXNOTEBOOK1, wxPoint(0,0),wxSize(681,342));
+	WxNotebook1 = new wxAuiNotebook(this, ID_WXNOTEBOOK1, wxPoint(0,0),wxSize(681,342));
 	WxBoxSizer1->Add(WxNotebook1,1,wxEXPAND | wxALL,0);
 
 	WxNoteBookPage1 = new wxPanel(WxNotebook1, ID_WXNOTEBOOKPAGE1, wxPoint(4,24), wxSize(673,314));
@@ -425,14 +426,14 @@ void MadOptionsDialog::CreateGUIControls(void)
 	WxCheckBoxPrintPageHeader = new wxCheckBox(WxNoteBookPage3, ID_WXCHECKBOXPRINTPAGEHEADER, _("Print Page Header"), wxPoint(86,16), wxSize(150,17), 0, wxDefaultValidator, _("WxCheckBoxPrintPageHeader"));
 	WxStaticBoxSizer3->Add(WxCheckBoxPrintPageHeader,0,wxALIGN_LEFT | wxALL,1);
 
-	WxFlexGridSizer1 = new wxFlexGridSizer(3, 3, 0, 0);
+	WxFlexGridSizer1 = new wxFlexGridSizer(0, 3, 0, 0);
 	WxStaticBoxSizer3->Add(WxFlexGridSizer1, 1, wxEXPAND | wxALL, 2);
 
 	WxStaticText7 = new wxStaticText(WxNoteBookPage3, ID_WXSTATICTEXT7, _("Left:"), wxPoint(8,5), wxDefaultSize, 0, _("WxStaticText7"));
 	WxFlexGridSizer1->Add(WxStaticText7,0,wxALIGN_RIGHT | wxALL,2);
 
 	WxEditHeaderLeft = new wxTextCtrl(WxNoteBookPage3, ID_WXEDITHEADERLEFT, _(""), wxPoint(44,3), wxSize(240,21), 0, wxDefaultValidator, _("WxEditHeaderLeft"));
-	WxFlexGridSizer1->Add(WxEditHeaderLeft,1,wxEXPAND | wxALL,2);
+	WxFlexGridSizer1->Add(WxEditHeaderLeft,0,0 | wxALL,2);
 
 	WxButton1 = new wxButton(WxNoteBookPage3, ID_WXBUTTON1, _(">>"), wxPoint(287,1), wxSize(25,25), 0, wxDefaultValidator, _("WxButton1"));
 	WxFlexGridSizer1->Add(WxButton1,0,wxALIGN_LEFT | wxALL,1);
@@ -440,8 +441,8 @@ void MadOptionsDialog::CreateGUIControls(void)
 	WxStaticText8 = new wxStaticText(WxNoteBookPage3, ID_WXSTATICTEXT8, _("Center:"), wxPoint(2,32), wxDefaultSize, 0, _("WxStaticText8"));
 	WxFlexGridSizer1->Add(WxStaticText8,0,wxALIGN_RIGHT | wxALL,2);
 
-	WxEditHeaderCenter = new wxTextCtrl(WxNoteBookPage3, ID_WXEDITHEADERCENTER, _(""), wxPoint(44,30), wxSize(240,21), 0, wxDefaultValidator, _("WxEditHeaderCenter"));
-	WxFlexGridSizer1->Add(WxEditHeaderCenter,1,wxEXPAND | wxALL,2);
+	WxEditHeaderCenter = new wxTextCtrl(WxNoteBookPage3, ID_WXEDITHEADERCENTER, _(""), wxPoint(38,25), wxSize(240,21), 0, wxDefaultValidator, _("WxEditHeaderCenter"));
+	WxFlexGridSizer1->Add(WxEditHeaderCenter,0,0 | wxALL,2);
 
 	WxButton2 = new wxButton(WxNoteBookPage3, ID_WXBUTTON2, _(">>"), wxPoint(287,28), wxSize(25,25), 0, wxDefaultValidator, _("WxButton2"));
 	WxFlexGridSizer1->Add(WxButton2,0,wxALIGN_LEFT | wxALL,1);
@@ -450,7 +451,7 @@ void MadOptionsDialog::CreateGUIControls(void)
 	WxFlexGridSizer1->Add(WxStaticText9,0,wxALIGN_RIGHT | wxALL,2);
 
 	WxEditHeaderRight = new wxTextCtrl(WxNoteBookPage3, ID_WXEDITHEADERRIGHT, _(""), wxPoint(44,57), wxSize(240,21), 0, wxDefaultValidator, _("WxEditHeaderRight"));
-	WxFlexGridSizer1->Add(WxEditHeaderRight,1,wxEXPAND | wxALL,2);
+	WxFlexGridSizer1->Add(WxEditHeaderRight,0,0 | wxALL,2);
 
 	WxButton3 = new wxButton(WxNoteBookPage3, ID_WXBUTTON3, _(">>"), wxPoint(287,55), wxSize(25,25), 0, wxDefaultValidator, _("WxButton3"));
 	WxFlexGridSizer1->Add(WxButton3,0,wxALIGN_LEFT | wxALL,1);
@@ -462,14 +463,14 @@ void MadOptionsDialog::CreateGUIControls(void)
 	WxCheckBoxPrintPageFooter = new wxCheckBox(WxNoteBookPage3, ID_WXCHECKBOXPRINTPAGEFOOTER, _("Print Page Footer"), wxPoint(86,16), wxSize(150,17), 0, wxDefaultValidator, _("WxCheckBoxPrintPageFooter"));
 	WxStaticBoxSizer4->Add(WxCheckBoxPrintPageFooter,0,wxALIGN_LEFT | wxALL,1);
 
-	WxFlexGridSizer2 = new wxFlexGridSizer(3, 3, 0, 0);
+	WxFlexGridSizer2 = new wxFlexGridSizer(0, 3, 0, 0);
 	WxStaticBoxSizer4->Add(WxFlexGridSizer2, 1, wxEXPAND | wxALL, 2);
 
 	WxStaticText10 = new wxStaticText(WxNoteBookPage3, ID_WXSTATICTEXT7, _("Left:"), wxPoint(8,5), wxDefaultSize, 0, _("WxStaticText10"));
 	WxFlexGridSizer2->Add(WxStaticText10,0,wxALIGN_RIGHT | wxALL,2);
 
 	WxEditFooterLeft = new wxTextCtrl(WxNoteBookPage3, ID_WXEDITHEADERLEFT, _(""), wxPoint(44,3), wxSize(240,21), 0, wxDefaultValidator, _("WxEditFooterLeft"));
-	WxFlexGridSizer2->Add(WxEditFooterLeft,1,wxEXPAND | wxALL,2);
+	WxFlexGridSizer2->Add(WxEditFooterLeft,0,0 | wxALL,2);
 
 	WxButton4 = new wxButton(WxNoteBookPage3, ID_WXBUTTON4, _(">>"), wxPoint(287,1), wxSize(25,25), 0, wxDefaultValidator, _("WxButton4"));
 	WxFlexGridSizer2->Add(WxButton4,0,wxALIGN_LEFT | wxALL,1);
@@ -478,7 +479,7 @@ void MadOptionsDialog::CreateGUIControls(void)
 	WxFlexGridSizer2->Add(WxStaticText11,0,wxALIGN_RIGHT | wxALL,2);
 
 	WxEditFooterCenter = new wxTextCtrl(WxNoteBookPage3, ID_WXEDITHEADERCENTER, _(""), wxPoint(44,30), wxSize(240,21), 0, wxDefaultValidator, _("WxEditFooterCenter"));
-	WxFlexGridSizer2->Add(WxEditFooterCenter,1,wxEXPAND | wxALL,2);
+	WxFlexGridSizer2->Add(WxEditFooterCenter,0,0 | wxALL,2);
 
 	WxButton5 = new wxButton(WxNoteBookPage3, ID_WXBUTTON5, _(">>"), wxPoint(287,28), wxSize(25,25), 0, wxDefaultValidator, _("WxButton5"));
 	WxFlexGridSizer2->Add(WxButton5,0,wxALIGN_LEFT | wxALL,1);
@@ -487,7 +488,7 @@ void MadOptionsDialog::CreateGUIControls(void)
 	WxFlexGridSizer2->Add(WxStaticText12,0,wxALIGN_RIGHT | wxALL,2);
 
 	WxEditFooterRight = new wxTextCtrl(WxNoteBookPage3, ID_WXEDITHEADERRIGHT, _(""), wxPoint(44,57), wxSize(240,21), 0, wxDefaultValidator, _("WxEditFooterRight"));
-	WxFlexGridSizer2->Add(WxEditFooterRight,1,wxEXPAND | wxALL,2);
+	WxFlexGridSizer2->Add(WxEditFooterRight,0,0 | wxALL,2);
 
 	WxButton6 = new wxButton(WxNoteBookPage3, ID_WXBUTTON6, _(">>"), wxPoint(287,55), wxSize(25,25), 0, wxDefaultValidator, _("WxButton6"));
 	WxFlexGridSizer2->Add(WxButton6,0,wxALIGN_LEFT | wxALL,1);
@@ -606,11 +607,10 @@ void MadOptionsDialog::CreateGUIControls(void)
 
 	SetTitle(_("Options"));
 	SetIcon(wxNullIcon);
-	
+
+	GetSizer()->Layout();
 	GetSizer()->Fit(this);
-	GetSizer()->SetSizeHints(this);
-	Center();
-	
+
     ////GUI Items Creation End
 
     wxString systemenc(_("System Default"));
@@ -638,7 +638,7 @@ void MadOptionsDialog::CreateGUIControls(void)
     ResizeItem(WxBoxSizer7, WxCheckBoxReloadFiles, 25, 4);
     ResizeItem(WxBoxSizer7, WxCheckBoxRestoreCaretPos, 25, 4);
     ResizeItem(WxBoxSizer17, WxStaticText13, 2, 2);
-    
+
     ResizeItem(WxBoxSizer9, WxStaticText3, 2, 2);
     ResizeItem(WxBoxSizer10, WxStaticText4, 2, 2);
     ResizeItem(WxBoxSizer11, WxStaticText5, 2, 2);
@@ -653,13 +653,13 @@ void MadOptionsDialog::CreateGUIControls(void)
     ResizeItem(WxBoxSizer12, WxCheckBoxMiddleMouseToPaste, 25, 4);
     ResizeItem(WxBoxSizer23, WxStaticTextDateTime, 2, 2);
     ResizeItem(WxBoxSizer23, WxCheckBoxDateTimeInEnglish, 25, 4);
-    
+
     ResizeItem(WxStaticBoxSizer1, WxCheckBoxPrintSyntax, 25, 4);
     ResizeItem(WxStaticBoxSizer1, WxCheckBoxPrintLineNumber, 25, 4);
     ResizeItem(WxStaticBoxSizer1, WxCheckBoxPrintEndOfLine, 25, 4);
     ResizeItem(WxStaticBoxSizer1, WxCheckBoxPrintTabChar, 25, 4);
     ResizeItem(WxStaticBoxSizer1, WxCheckBoxPrintSpaceChar, 25, 4);
-    
+
     int strx=0, stry=0;
     wxString str=WxRadioBoxPrintOffset->GetLabel();
     WxRadioBoxPrintOffset->GetTextExtent(str, &strx, &stry);
@@ -673,7 +673,7 @@ void MadOptionsDialog::CreateGUIControls(void)
     stry = (stry *((int)WxRadioBoxPrintOffset->GetCount()+2))*4/3;
     WxRadioBoxPrintOffset->SetSize(strx+=25, stry);
     WxStaticBoxSizer2->SetItemMinSize(WxRadioBoxPrintOffset, strx, stry);
-    
+
     ResizeItem(WxStaticBoxSizer3, WxCheckBoxPrintPageHeader, 25, 4);
     ResizeItem(WxStaticBoxSizer3, WxStaticText7, 2, 2);
     ResizeItem(WxStaticBoxSizer3, WxStaticText8, 2, 2);
@@ -681,7 +681,7 @@ void MadOptionsDialog::CreateGUIControls(void)
     ResizeItem(WxStaticBoxSizer3, WxEditHeaderLeft, 0, 2);
     ResizeItem(WxStaticBoxSizer3, WxEditHeaderCenter, 0, 2);
     ResizeItem(WxStaticBoxSizer3, WxEditHeaderRight, 0, 2);
-    
+
     ResizeItem(WxStaticBoxSizer4, WxCheckBoxPrintPageFooter, 25, 4);
     ResizeItem(WxStaticBoxSizer4, WxStaticText10, 2, 2);
     ResizeItem(WxStaticBoxSizer4, WxStaticText11, 2, 2);
@@ -693,7 +693,7 @@ void MadOptionsDialog::CreateGUIControls(void)
     ResizeItem(WxBoxSizer22, WxStaticText14, 2, 2);
     ResizeItem(WxBoxSizer25, WxStaticText15, 2, 2);
     ResizeItem(WxBoxSizer24, WxStaticTextCommandHint, 2, 2);
-    
+
     ResizeItem(WxBoxSizer26, WxCheckBoxResetAllKeys, 25, 4);
 
 
@@ -703,20 +703,23 @@ void MadOptionsDialog::CreateGUIControls(void)
     ResizeItem(WxBoxSizer7, WxCheckBoxRightClickMenu, 25, 4);
 #endif
 
+    wxSize size=WxBoxSizer1->GetMinSize();
+    wxSize size1=WxBoxSizer3->GetMinSize();
+    wxSize size2=WxBoxSizer8->GetMinSize();
+    wxSize size3=WxBoxSizer14->GetMinSize();
+    wxSize size4=WxBoxSizer18->GetMinSize();
 
+    UpdateSize(size, size1);
+    UpdateSize(size, size2);
+    UpdateSize(size, size3);
+    UpdateSize(size, size4);
 
-    int x, y;
-    WxButton1->GetSize(&x, &y);
-    wxPoint pos=WxButton1->GetPosition();
-    if(pos.x + x > gs_MinX) gs_MinX = pos.x + x;
-    
-    // set size of Sizer1
-    wxSize size=WxBoxSizer1->GetSize();
-    if(size.x > gs_MinX) gs_MinX=size.x;
-    WxBoxSizer1->SetMinSize(gs_MinX+10, size.y);
-    
-    GetSizer()->Fit(this);
-    
+    wxSize size5=WxBoxSizer2->GetMinSize();
+    size.y += (size5.y + 30);
+
+    this->SetClientSize(size);
+    Center();
+
     // build Command Tree
     WxTreeCtrl1->SetImageList(g_MainFrame->m_ImageList);
     wxTreeItemId root=WxTreeCtrl1->AddRoot(_("Commands"));
@@ -780,9 +783,7 @@ void MadOptionsDialog::CreateGUIControls(void)
     }
     while(cd->command > 0);
 
-    WxNotebook1->SetNonActiveTabTextColour(wxColor(100,100,100));
-    WxNotebook1->SetBackgroundColour(WxButtonOK->GetBackgroundColour());
-    WxNotebook1->wxPanel::SetWindowStyleFlag(WxNotebook1->GetWindowStyleFlag()|wxFNB_NO_X_BUTTON);
+    WxNotebook1->SetWindowStyleFlag(wxAUI_NB_TOP|wxAUI_NB_TAB_MOVE);
 
     WxButtonCancel->SetId(wxID_CANCEL);
 }
@@ -791,18 +792,18 @@ void MadOptionsDialog::MadOptionsDialogClose(wxCloseEvent& event)
 {
     // --> Don't use Close with a wxDialog,
     // use Destroy instead.
-    
+
     if(event.CanVeto())
     {
         event.Veto();
         Show(false);
         return;
     }
-    
+
     g_OptionsDialog=NULL;
     Destroy();
 }
- 
+
 
 /*
  * MadOptionsDialogActivate
@@ -816,13 +817,8 @@ void MadOptionsDialog::MadOptionsDialogActivate(wxActivateEvent& event)
             SetReturnCode(wxID_CANCEL);
             WxButtonCancel->SetFocus();
         }
-#ifdef __WXGTK__
-        // workaround the FlatNotebook sometimes will be empty under wxGTK
-        WxNotebook1->Hide();
-        WxNotebook1->Show();
-#endif
     }
-    
+
     event.Skip();
 }
 
@@ -831,11 +827,11 @@ void MadOptionsDialog::LoadOptions(void)
     wxConfigBase *cfg=wxConfigBase::Get(false);
     wxString oldpath=cfg->GetPath();
     cfg->SetPath(wxT("/MadEdit"));
-    
+
     long ll;
     bool bb;
     wxString ss;
-    
+
     // General page
     ss=g_LanguageString[0];
     cfg->Read(wxT("Language"), &ss);
@@ -843,16 +839,16 @@ void MadOptionsDialog::LoadOptions(void)
 
     cfg->Read(wxT("SingleInstance"), &bb);
     WxCheckBoxSingleInstance->SetValue(bb);
-    
+
     cfg->Read(wxT("RecordCaretMovements"), &bb);
     WxCheckBoxRecordCaretMovements->SetValue(bb);
-    
+
     cfg->Read(wxT("MaxSizeToLoad"), &ll);
     WxEditMaxSizeToLoad->SetValue(wxString()<<ll);
-    
+
     cfg->Read(wxT("MaxTextFileSize"), &ll);
     WxEditMaxTextFileSize->SetValue(wxString()<<ll);
-    
+
     ss=_("System Default");
     cfg->Read(wxT("DefaultEncoding"), &ss);
     WxComboBoxEncoding->SetValue(ss);
@@ -874,31 +870,31 @@ void MadOptionsDialog::LoadOptions(void)
     // Edit page
     cfg->Read(wxT("MaxLineLength"), &ll);
     WxEditMaxLineLength->SetValue(wxString()<<ll);
-    
+
     cfg->Read(wxT("MaxColumns"), &ll);
     WxEditMaxColumns->SetValue(wxString()<<ll);
-    
+
     cfg->Read(wxT("TabColumns"), &ll);
     WxEditTabColumns->SetValue(wxString()<<ll);
-    
+
     cfg->Read(wxT("IndentColumns"), &ll);
     WxEditIndentColumns->SetValue(wxString()<<ll);
-    
+
     cfg->Read(wxT("DateTimeFormat"), &ss, wxT("%c"));
     WxEditDateTime->SetValue(ss);
-    
+
     cfg->Read(wxT("DateTimeInEnglish"), &bb, false);
     WxCheckBoxDateTimeInEnglish->SetValue(bb);
-    
+
     cfg->Read(wxT("InsertSpacesInsteadOfTab"), &bb);
     WxCheckBoxTabOrSpaces->SetValue(bb);
-    
+
     cfg->Read(wxT("AutoIndent"), &bb);
     WxCheckBoxAutoIndent->SetValue(bb);
-    
+
     cfg->Read(wxT("AutoCompletePair"), &bb);
     WxCheckBoxAutoCompletePair->SetValue(bb);
-    
+
     cfg->Read(wxT("MouseSelectToCopy"), &bb);
     WxCheckBoxMouseSelectToCopy->SetValue(bb);
 
@@ -921,16 +917,16 @@ void MadOptionsDialog::LoadOptions(void)
     // Print page
     cfg->Read(wxT("PrintSyntax"), &bb);
     WxCheckBoxPrintSyntax->SetValue(bb);
-    
+
     cfg->Read(wxT("PrintLineNumber"), &bb);
     WxCheckBoxPrintLineNumber->SetValue(bb);
-    
+
     cfg->Read(wxT("PrintEndOfLine"), &bb);
     WxCheckBoxPrintEndOfLine->SetValue(bb);
-    
+
     cfg->Read(wxT("PrintTabChar"), &bb);
     WxCheckBoxPrintTabChar->SetValue(bb);
-    
+
     cfg->Read(wxT("PrintSpaceChar"), &bb);
     WxCheckBoxPrintSpaceChar->SetValue(bb);
 
@@ -939,7 +935,7 @@ void MadOptionsDialog::LoadOptions(void)
 
     cfg->Read(wxT("PrintPageHeader"), &bb);
     WxCheckBoxPrintPageHeader->SetValue(bb);
-    
+
     cfg->Read(wxT("PageHeaderLeft"), &ss);
     WxEditHeaderLeft->SetValue(ss);
     cfg->Read(wxT("PageHeaderCenter"), &ss);
@@ -949,7 +945,7 @@ void MadOptionsDialog::LoadOptions(void)
 
     cfg->Read(wxT("PrintPageFooter"), &bb);
     WxCheckBoxPrintPageFooter->SetValue(bb);
-    
+
     cfg->Read(wxT("PageFooterLeft"), &ss);
     WxEditFooterLeft->SetValue(ss);
     cfg->Read(wxT("PageFooterCenter"), &ss);
@@ -1066,7 +1062,7 @@ void MadOptionsDialog::PrintMarkClick(wxCommandEvent& event)
     case ID_WXBUTTON5: edit=WxEditFooterCenter; break;
     case ID_WXBUTTON6: edit=WxEditFooterRight; break;
     }
-    
+
     if(edit!=NULL && str[0]==wxT('[') && str[3]==wxT(']'))
     {
         wxString text=edit->GetValue();
@@ -1083,10 +1079,10 @@ void MadOptionsDialog::WxTreeCtrl1SelChanged(wxTreeEvent& event)
 {
     wxTreeItemId id=event.GetItem();
     if(!id.IsOk()) return;
-    
+
     g_SelectedCommandItem=(TreeItemData*)WxTreeCtrl1->GetItemData(id);
     g_SelectedKeyId=-1;
-    
+
     if(g_SelectedCommandItem==NULL)
     {
         WxListBoxKeys->Clear();
@@ -1114,7 +1110,7 @@ void MadOptionsDialog::WxTreeCtrl1SelChanged(wxTreeEvent& event)
         }
         hint+= wxT("] ");
         hint+= wxString(wxGetTranslation(g_SelectedCommandItem->cmddata->hint));
-        
+
         WxEditCommandHint->SetValue(hint);
     }
 }
@@ -1150,7 +1146,7 @@ TreeItemData* MadOptionsDialog::FindKeyInList(const wxString &key)
                 }
             }
         }
-        
+
         ++tidit;
     }
     return NULL;
@@ -1193,7 +1189,7 @@ void MadOptionsDialog::UpdateKeyHint()
         {
             g_CommandItemOfNewKey=tid;
             wxString cmd;
-            
+
             if(tid->cmddata->menuid_name > 0)
             {
                 cmd+= wxString(tid->cmddata->menuid_name);
@@ -1210,7 +1206,7 @@ void MadOptionsDialog::UpdateKeyHint()
                     cmd+= text;
                 }
             }
-            
+
             wxString str=wxString::Format(_("This key is assigned to [%s]"), cmd.c_str());
             g_OptionsDialog->WxEditKeyHint->SetValue(str);
         }
