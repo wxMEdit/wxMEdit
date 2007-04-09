@@ -10,7 +10,6 @@
 #include "MadReplaceDialog.h"
 #include "MadSearchDialog.h"
 #include "MadEdit/MadEdit.h"
-#include <wx/wxFlatNotebook/wxFlatNotebook.h>
 
 #include <wx/progdlg.h>
 #include <wx/dir.h>

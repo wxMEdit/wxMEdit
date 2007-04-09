@@ -783,7 +783,7 @@ void MadOptionsDialog::CreateGUIControls(void)
     }
     while(cd->command > 0);
 
-    WxNotebook1->SetWindowStyleFlag(wxAUI_NB_TOP|wxAUI_NB_TAB_MOVE);
+    WxNotebook1->SetWindowStyleFlag(wxAUI_NB_TOP|wxAUI_NB_TAB_MOVE|wxAUI_NB_SCROLL_BUTTONS);
 
     WxButtonCancel->SetId(wxID_CANCEL);
 }

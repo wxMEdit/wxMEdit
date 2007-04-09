@@ -1,10 +1,11 @@
 object frmNewForm: TfrmNewForm
   Left = 8
   Top = 8
-  Width = 400
-  Height = 400
+  AutoScroll = False
   BorderIcons = [biSystemMenu, biMinimize]
   Caption = 'MadEdit'
+  ClientHeight = 370
+  ClientWidth = 392
   Color = clAppWorkSpace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -19,6 +20,8 @@ object frmNewForm: TfrmNewForm
   OnDestroy = FormDestroy
   OnKeyDown = FormKeyDown
   OnResize = NewFormResize
+  EVT_KEY_DOWN = 'MadEditFrameKeyDown'
+  EVT_CLOSE = 'MadEditFrameClose'
   Wx_ICON.Data = {07544269746D617000000000}
   Wx_Name = 'MadEditFrame'
   Wx_IDName = 'ID_DIALOG1'
@@ -26,11 +29,12 @@ object frmNewForm: TfrmNewForm
   Wx_Class = 'wxFrame'
   Wx_Center = True
   Wx_Hidden = False
+  Wx_SizeToContents = True
   Wx_GeneralStyle = []
   Wx_DialogStyle = [wxCAPTION, wxRESIZE_BORDER, wxSYSTEM_MENU, wxMINIMIZE_BOX, wxMAXIMIZE_BOX, wxCLOSE_BOX]
   Wx_DesignerType = dtWxFrame
-  EVT_KEY_DOWN = 'MadEditFrameKeyDown'
-  EVT_CLOSE = 'MadEditFrameClose'
+  Wx_Border = 0
+  Wx_BorderAlignment = []
   PixelsPerInch = 96
   TextHeight = 13
   object WxStatusBar1: TWxStatusBar
@@ -41,6 +45,7 @@ object frmNewForm: TfrmNewForm
     Panels = <>
     SimplePanel = False
     Wx_Class = 'wxStatusBar'
+    Wx_ControlOrientation = wxControlVertical
     Wx_IDName = 'ID_WXSTATUSBAR1'
     Wx_IDValue = 1003
     Wx_StatusbarStyleSet = []
@@ -59,6 +64,7 @@ object frmNewForm: TfrmNewForm
     ParentColor = False
     TabOrder = 2
     Wx_Class = 'wxToolBar'
+    Wx_ControlOrientation = wxControlVertical
     Wx_EventList.Strings = (
       'EVT_TOOL:OnTool'
       'EVT_MENU:OnMenu'

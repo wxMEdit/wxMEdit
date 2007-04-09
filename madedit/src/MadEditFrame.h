@@ -40,8 +40,8 @@
 ////Dialog Style End
 
 
-class wxFlatNotebook;
-class wxFlatNotebookEvent;
+class wxAuiNotebook;
+class wxAuiNotebookEvent;
 class MadEdit;
 
 class MadEditFrame : public wxFrame
@@ -73,7 +73,7 @@ public:
 			ID_WXSTATUSBAR1 = 1003,
 ////GUI Enum Control ID End
 
-    ID_NOTEBOOK, // for wxFlatNotebook m_Notebook
+    ID_NOTEBOOK, // for wxAuiNotebook m_Notebook
     ID_OUTPUTNOTEBOOK,
     ID_FINDINFILESRESULTS,
 
@@ -81,7 +81,7 @@ public:
    }; //End of Enum
 
 public:
-    wxFlatNotebook *m_Notebook;
+    wxAuiNotebook *m_Notebook;
     int           m_NewFileCount;
     wxConfigBase  *m_Config;
     wxImageList   *m_ImageList;
@@ -90,7 +90,7 @@ public:
     wxFileHistory *m_RecentFonts;
 
     wxAuiManager m_AuiManager; // wxAUI
-    wxFlatNotebook *m_InfoNotebook; //
+    wxAuiNotebook *m_InfoNotebook; //
     wxTreeCtrl *m_FindInFilesResults;
 
     void OnUpdateUI_MenuFile_CheckCount(wxUpdateUIEvent& event);
@@ -273,10 +273,10 @@ protected:
     virtual void OnInternalIdle();
 #endif
 
-	void OnNotebookPageChanging(wxFlatNotebookEvent& event);
-    void OnNotebookPageChanged(wxFlatNotebookEvent& event);
-    void OnNotebookPageClosing(wxFlatNotebookEvent& event);
-    void OnNotebookPageClosed(wxFlatNotebookEvent& event);
+	void OnNotebookPageChanging(wxAuiNotebookEvent& event);
+    void OnNotebookPageChanged(wxAuiNotebookEvent& event);
+    void OnNotebookPageClosing(wxAuiNotebookEvent& event);
+    void OnNotebookPageClosed(bool bZeroPage=false);//wxAuiNotebookEvent& event); //wxAUI doesn't support this event
 
     void OnSize(wxSizeEvent &evt);
     //void OnChar(wxKeyEvent& evt);

@@ -24,7 +24,7 @@
 #include "MadUtils.h"
 #include "MadCommand.h"
 #include "plugin.h"
-#include <wx/wxFlatNotebook/wxFlatNotebook.h>
+#include "wx/aui/auibook.h"
 
 #include <wx/app.h>
 //#include <wx/dynload.h>
@@ -465,6 +465,23 @@ int GetIdByEdit(MadEdit *edit)
     return g_MainFrame->m_Notebook->GetPageIndex(edit);
 }
 
+void AdvanceSelection(wxAuiNotebook *nb, bool bForword)
+{
+    int count = (int)nb->GetPageCount();
+    if(count <= 1) return;
+
+    int sel = nb->GetSelection();
+    if(bForword)
+    {
+        if(++sel >= count) sel = 0;
+    }
+    else
+    {
+        if(--sel < 0) sel = count-1;
+    }
+    nb->SetSelection(sel);
+}
+
 // return true for name; false for title
 bool GetActiveMadEditPathNameOrTitle(wxString &name)
 {
@@ -631,7 +648,7 @@ void OnEditStatusChanged(MadEdit *madedit)
                 break;
             }
             g_StatusBar->SetStatusText(enc, 4);
-            
+
             if(madedit->IsReadOnly())
             {
                 static wxString rostr(_("ReadOnly"));
@@ -739,12 +756,11 @@ public:
 BEGIN_EVENT_TABLE(MadEditFrame,wxFrame)
 	////Manual Code Start
 	//EVT_SIZE(MadEditFrame::OnSize)
-	EVT_FLATNOTEBOOK_PAGE_CHANGING(ID_NOTEBOOK, MadEditFrame::OnNotebookPageChanging)
-	EVT_FLATNOTEBOOK_PAGE_CHANGED(ID_NOTEBOOK, MadEditFrame::OnNotebookPageChanged)
-	EVT_FLATNOTEBOOK_PAGE_CLOSING(ID_NOTEBOOK, MadEditFrame::OnNotebookPageClosing)
-	EVT_FLATNOTEBOOK_PAGE_CLOSED(ID_NOTEBOOK, MadEditFrame::OnNotebookPageClosed)
+	EVT_AUINOTEBOOK_PAGE_CHANGING(ID_NOTEBOOK, MadEditFrame::OnNotebookPageChanging)
+	EVT_AUINOTEBOOK_PAGE_CHANGED(ID_NOTEBOOK, MadEditFrame::OnNotebookPageChanged)
+	EVT_AUINOTEBOOK_PAGE_CLOSE(ID_NOTEBOOK, MadEditFrame::OnNotebookPageClosing)
+	//EVT_AUINOTEBOOK_PAGE_CLOSE(ID_NOTEBOOK, MadEditFrame::OnNotebookPageClosed)
 	//EVT_CHAR(MadEditFrame::OnChar)
-
 	// file
 	EVT_ACTIVATE(MadEditFrame::OnActivate)
 	EVT_UPDATE_UI(menuSave, MadEditFrame::OnUpdateUI_MenuFile_CheckCount)
@@ -877,7 +893,6 @@ BEGIN_EVENT_TABLE(MadEditFrame,wxFrame)
 	EVT_MENU(menuToHalfWidth, MadEditFrame::OnEditToHalfWidth)
 	EVT_MENU(menuToFullWidth, MadEditFrame::OnEditToFullWidth)
 	EVT_MENU(menuTrimTrailingSpaces, MadEditFrame::OnEditTrimTrailingSpaces)
-
 	// search
 	EVT_MENU(menuFind, MadEditFrame::OnSearchFind)
 	EVT_MENU(menuFindNext, MadEditFrame::OnSearchFindNext)
@@ -941,7 +956,7 @@ BEGIN_EVENT_TABLE(MadEditFrame,wxFrame)
 	// help
 	EVT_MENU(menuAbout, MadEditFrame::OnHelpAbout)
 	////Manual Code End
-	
+
 	EVT_CLOSE(MadEditFrame::MadEditFrameClose)
 	EVT_KEY_DOWN(MadEditFrame::MadEditFrameKeyDown)
 END_EVENT_TABLE()
@@ -982,7 +997,7 @@ CommandData CommandTable[]=
     { 0, 0, 0, 0, _("&Edit"), 0, wxITEM_NORMAL, 0, &g_Menu_Edit, 0},
     { ecUndo,           1, menuUndo,                     wxT("menuUndo"),                     _("&Undo"),                                   wxT("Ctrl-Z"),       wxITEM_NORMAL,    undo_xpm_idx,      0,                     _("Undo the last action")},
 
-    { ecRedo,           1, menuRedo,                     wxT("menuRedo"),                     _("&Redo"),                                   
+    { ecRedo,           1, menuRedo,                     wxT("menuRedo"),                     _("&Redo"),
 #ifdef __WXMSW__
                                                                                                                                             wxT("Ctrl-Y"),
 #else
@@ -998,7 +1013,7 @@ CommandData CommandTable[]=
     { 0,                1, 0,                            0,                                   0,                                            0,                   wxITEM_SEPARATOR, -1,                0,                     0},
     { ecCutLine,        1, menuCutLine,                  wxT("menuCutLine"),                  _("Cut L&ine"),                               wxT("Ctrl-Shift-L"), wxITEM_NORMAL,    -1,                0,                     _("Cut the selected lines and put it on the Clipboard")},
 
-    { ecDeleteLine,     1, menuDeleteLine,               wxT("menuDeleteLine"),               _("Delete &Line"),                            
+    { ecDeleteLine,     1, menuDeleteLine,               wxT("menuDeleteLine"),               _("Delete &Line"),
 #ifdef __WXMSW__
                                                                                                                                             wxT("Ctrl-L"),
 #else
@@ -1010,7 +1025,7 @@ CommandData CommandTable[]=
     { ecSelectAll,      1, menuSelectAll,                wxT("menuSelectAll"),                _("Select &All"),                             wxT("Ctrl-A"),       wxITEM_NORMAL,    -1,                0,                     _("Select all data")},
     { 0,                1, 0,                            0,                                   0,                                            0,                   wxITEM_SEPARATOR, -1,                0,                     0},
 
-    { ecInsertTabChar,  1, menuInsertTabChar,            wxT("menuInsertTabChar"),            _("Insert Ta&b Char"),                        
+    { ecInsertTabChar,  1, menuInsertTabChar,            wxT("menuInsertTabChar"),            _("Insert Ta&b Char"),
 #ifdef __WXMSW__
                                                                                                                                             wxT("Ctrl-~"),
 #else
@@ -1065,7 +1080,7 @@ CommandData CommandTable[]=
     { 0,            1, 0,                          0,                                 0,                                                    0,                   wxITEM_SEPARATOR, -1,               0, 0},
     { ecLeftBrace,  1, menuLeftBrace,              wxT("menuLeftBrace"),              _("Go To L&eft Brace"),                               wxT("Ctrl-["),       wxITEM_NORMAL,    -1,               0, _("Go to left brace")},
     { ecRightBrace, 1, menuRightBrace,             wxT("menuRightBrace"),             _("Go To R&ight Brace"),                              wxT("Ctrl-]"),       wxITEM_NORMAL,    -1,               0, _("Go to right brace")},
-    
+
     // View
     { 0, 0, 0, 0, _("&View"), 0, wxITEM_NORMAL, 0, &g_Menu_View, 0},
     { 0,            1, menuEncoding,          wxT("menuEncoding"),          _("Encoding: "),           0,                   wxITEM_NORMAL,    -1,                 &g_Menu_View_Encoding,     0},
@@ -1155,7 +1170,7 @@ CommandData CommandTable[]=
     { 0,            2, menuFontSize1+69,      wxT("menuFontSize70"),        wxT(" 70 "),               0,                   wxITEM_NORMAL,    -1,                 0,                         wxT("Set font point-size")},
     { 0,            2, menuFontSize1+70,      wxT("menuFontSize71"),        wxT(" 71 "),               0,                   wxITEM_NORMAL,    -1,                 0,                         wxT("Set font point-size")},
     { 0,            2, menuFontSize1+71,      wxT("menuFontSize72"),        wxT(" 72 "),               0,                   wxITEM_NORMAL,    -1,                 0,                         wxT("Set font point-size")},
-    
+
     { 0,            1, menuSetFont,           wxT("menuSetFont"),           _("Set Font..."),          wxT(""),             wxITEM_NORMAL,    font_xpm_idx,       0,                         _("Change font settings")},
     { 0,            1, menuFixedWidthMode,    wxT("menuFixedWidthMode"),    _("&Fixed Width Mode"),    wxT("Ctrl-Alt-F"),   wxITEM_CHECK,     -1,                 0,                         _("Set/Unset the font with Fixed Width")},
 
@@ -1445,16 +1460,16 @@ void MadEditFrame::CreateGUIControls(void)
 
 	WxToolBar1 = new wxToolBar(this, ID_WXTOOLBAR1, wxPoint(0,0), wxSize(392,29));
 
-	WxMenuBar1 =  new wxMenuBar();
+	WxMenuBar1 = new wxMenuBar();
 
 	WxToolBar1->Realize();
-	this->SetToolBar(WxToolBar1);
-	this->SetStatusBar(WxStatusBar1);
-	this->SetSize(8,8,400,400);
-	this->SetTitle(_("MadEdit"));
-	this->Center();
-	this->SetIcon(wxNullIcon);
-	
+	SetToolBar(WxToolBar1);
+	SetStatusBar(WxStatusBar1);
+	SetTitle(_("MadEdit"));
+	SetIcon(wxNullIcon);
+	SetSize(8,8,400,400);
+	Center();
+
     ////GUI Items Creation End
 #endif
 
@@ -1472,11 +1487,10 @@ void MadEditFrame::CreateGUIControls(void)
 
     WxToolBar1 = new wxToolBar(this, ID_WXTOOLBAR1, wxPoint(0,0), wxSize(392,29));
 
-    m_Notebook = new wxFlatNotebook(this, ID_NOTEBOOK, wxPoint(0,29),wxSize(392,320), wxFNB_VC8|wxFNB_MOUSE_MIDDLE_CLOSES_TABS|wxFNB_X_ON_TAB|wxFNB_DCLICK_CLOSES_TABS|wxWANTS_CHARS);
-    //m_Notebook->SetActiveTabColour(wxColor(245,245,245));
-    m_Notebook->SetNonActiveTabTextColour(wxColor(100,100,100));
-    m_Notebook->SetWindowStyleFlag(m_Notebook->GetWindowStyleFlag() & ~wxTAB_TRAVERSAL);
+    m_Notebook = new wxAuiNotebook(this, ID_NOTEBOOK, wxPoint(0,29),wxSize(392,320), wxWANTS_CHARS |wxAUI_NB_TOP|wxAUI_NB_TAB_SPLIT|wxAUI_NB_TAB_MOVE|wxAUI_NB_SCROLL_BUTTONS|wxAUI_NB_WINDOWLIST_BUTTON|wxAUI_NB_CLOSE_ON_ALL_TABS);
+    m_Notebook->wxControl::SetWindowStyleFlag(m_Notebook->wxControl::GetWindowStyleFlag() & ~wxTAB_TRAVERSAL);
     m_Notebook->SetDropTarget(new DnDFile());
+    m_Notebook->SetArtProvider(new wxAuiSimpleTabArt);
 
     WxMenuBar1 =  new wxMenuBar();
     this->SetMenuBar(WxMenuBar1);
@@ -1836,8 +1850,7 @@ void MadEditFrame::CreateGUIControls(void)
     m_Config->Read(wxT("/MadEdit/InfoWindowWidth"), &infoW);
     m_Config->Read(wxT("/MadEdit/InfoWindowHeight"), &infoH);
     wxSize nbsize(infoW, infoH);
-    m_InfoNotebook = new wxFlatNotebook(this, ID_OUTPUTNOTEBOOK, wxDefaultPosition, nbsize, wxFNB_DEFAULT_STYLE|wxFNB_NO_X_BUTTON|wxFNB_BOTTOM);
-    m_InfoNotebook->SetNonActiveTabTextColour(wxColor(100,100,100));
+    m_InfoNotebook = new wxAuiNotebook(this, ID_OUTPUTNOTEBOOK, wxDefaultPosition, nbsize, wxAUI_NB_TOP|wxAUI_NB_SCROLL_BUTTONS);
 
     m_FindInFilesResults = new wxTreeCtrl(m_InfoNotebook, ID_FINDINFILESRESULTS, wxDefaultPosition, wxSize(infoW,4), wxTR_DEFAULT_STYLE|wxTR_HIDE_ROOT);
     m_FindInFilesResults->AddRoot(wxT("Root"));
@@ -1912,7 +1925,7 @@ void MadEditFrame::MadEditFrameClose(wxCloseEvent& event)
             }
         }
         while(++id < count);
-        
+
         if(!files.IsEmpty() && !selname.IsEmpty())
         {
             selname += wxT('|'); // append selname to activate it
@@ -2042,10 +2055,10 @@ void MadEditFrame::SetPageFocus(int pageId)
     {
         m_Notebook->SetSelection(pageId);
 
-        MadEdit *cme=(MadEdit*)m_Notebook->GetCurrentPage();
+        MadEdit *cme=(MadEdit*)m_Notebook->GetPage(m_Notebook->GetSelection());
         if(cme!=g_ActiveMadEdit)
         {
-            wxFlatNotebookEvent event(wxEVT_COMMAND_FLATNOTEBOOK_PAGE_CHANGED, m_Notebook->GetId());
+            wxAuiNotebookEvent event(wxEVT_COMMAND_AUINOTEBOOK_PAGE_CHANGED, m_Notebook->GetId());
             event.SetSelection(pageId);
             event.SetOldSelection(selid);
             event.SetEventObject(this);
@@ -2104,17 +2117,17 @@ WXLRESULT MadEditFrame::MSWWindowProc(WXUINT message, WXWPARAM wParam, WXLPARAM 
 #endif
 
 
-void MadEditFrame::OnNotebookPageChanging(wxFlatNotebookEvent& event)
+void MadEditFrame::OnNotebookPageChanging(wxAuiNotebookEvent& event)
 {
 	g_PrevPageID = event.GetOldSelection();
 }
 
-void MadEditFrame::OnNotebookPageChanged(wxFlatNotebookEvent& event)
+void MadEditFrame::OnNotebookPageChanged(wxAuiNotebookEvent& event)
 {
-    g_ActiveMadEdit=(MadEdit*)m_Notebook->GetCurrentPage();
+    g_ActiveMadEdit=(MadEdit*)m_Notebook->GetPage(m_Notebook->GetSelection());
 
     int now=event.GetSelection();
-    int old=m_Notebook->GetPreviousSelection();
+    int old=event.GetOldSelection();
     if(event.GetEventObject()==this)
     {
         old=event.GetOldSelection();
@@ -2122,7 +2135,7 @@ void MadEditFrame::OnNotebookPageChanged(wxFlatNotebookEvent& event)
 
     //wxLogDebug(wxT("curr :%d,  prev: %d"), now, old);
 
-    if(old!=now && old>=0)// in wxGTK, old==now, bug?
+    if(old!=now && old>=0)
     {
         g_PrevPageID=old;
     }
@@ -2159,24 +2172,31 @@ void MadEditFrame::OnNotebookPageChanged(wxFlatNotebookEvent& event)
     g_UpdateWindowUI=true;
 }
 
-void MadEditFrame::OnNotebookPageClosing(wxFlatNotebookEvent& event)
+void MadEditFrame::OnNotebookPageClosing(wxAuiNotebookEvent& event)
 {
     if(m_PageClosing)
     {
         return;
     }
-    
+
     m_PageClosing=true;
     if(QueryCloseFile(event.GetSelection())==false)
     {
         event.Veto();
     }
+    else
+    {
+        if(m_Notebook->GetPageCount()==1) //close last file
+        {
+            OnNotebookPageClosed(true);
+        }
+    }
     m_PageClosing=false;
 }
 
-void MadEditFrame::OnNotebookPageClosed(wxFlatNotebookEvent& event)
+void MadEditFrame::OnNotebookPageClosed(bool bZeroPage)
 {
-    if(m_Notebook->GetPageCount()==0)
+    if(bZeroPage || m_Notebook->GetPageCount()==0)
     {
         g_ActiveMadEdit=NULL;
         SetTitle(wxString(wxT("MadEdit ")));
@@ -2185,7 +2205,7 @@ void MadEditFrame::OnNotebookPageClosed(wxFlatNotebookEvent& event)
     }
     else
     {
-        MadEdit *madedit=(MadEdit*)m_Notebook->GetCurrentPage();
+        MadEdit *madedit=(MadEdit*)m_Notebook->GetPage(m_Notebook->GetSelection());
         if(g_ActiveMadEdit != madedit)
         {
             g_ActiveMadEdit=madedit;
@@ -2299,7 +2319,7 @@ void MadEditFrame::OnInfoNotebookSize(wxSizeEvent &evt)
         {
             size=g_MainFrame->m_InfoNotebook->GetSize();
         }
-        else 
+        else
         {
             if(pinfo.frame != NULL)
             {
@@ -2434,7 +2454,7 @@ void MadEditFrame::AddItemToFindInFilesResults(const wxString &text, size_t inde
             }
         }
     }
-    
+
     m_FindInFilesResults->AppendItem(fileid, text, -1, -1, new CaretPosData(filename, pageid, begpos, endpos));
 }
 
@@ -2443,7 +2463,7 @@ void MadEditFrame::AddItemToFindInFilesResults(const wxString &text, size_t inde
 
 int MadEditFrame::OpenedFileCount()
 {
-    return m_Notebook->GetPageCount();
+    return (int)m_Notebook->GetPageCount();
 }
 
 void MadEditFrame::OpenFile(const wxString &filename, bool mustExist)
@@ -2463,24 +2483,24 @@ void MadEditFrame::OpenFile(const wxString &filename, bool mustExist)
         {
             MadEdit *me=(MadEdit*)m_Notebook->GetPage(id);
 #ifdef __WXMSW__
-            if(me->GetFileName().Lower()==filename.Lower()) 
+            if(me->GetFileName().Lower()==filename.Lower())
 #else
-            if(me->GetFileName()==filename) 
+            if(me->GetFileName()==filename)
 #endif
             {   // YES, it's opened. Activate it.
                 g_CheckModTimeForReload=false;
                 m_Notebook->SetSelection(id);
-                
-                MadEdit *madedit=(MadEdit*)m_Notebook->GetCurrentPage();
+
+                MadEdit *madedit=(MadEdit*)m_Notebook->GetPage(m_Notebook->GetSelection());
                 if(madedit!=g_ActiveMadEdit)
                 {
-                    wxFlatNotebookEvent event(wxEVT_COMMAND_FLATNOTEBOOK_PAGE_CHANGED, m_Notebook->GetId());
+                    wxAuiNotebookEvent event(wxEVT_COMMAND_AUINOTEBOOK_PAGE_CHANGED, m_Notebook->GetId());
                     event.SetSelection(m_Notebook->GetSelection());
                     event.SetOldSelection(selid);
                     event.SetEventObject(this);
                     OnNotebookPageChanged(event);
                 }
-                
+
                 g_CheckModTimeForReload=true;
                 g_ActiveMadEdit->ReloadByModificationTime();
                 m_RecentFiles->AddFileToHistory(filename);  // bring the filename to top of list
@@ -2618,6 +2638,8 @@ bool MadEditFrame::QueryCloseFile(int idx)
 
 bool MadEditFrame::QueryCloseAllFiles()
 {
+    if(m_Notebook->GetPageCount()==0) return true;
+
     int selid=m_Notebook->GetSelection();
     if(selid==-1) return true;
 
@@ -2644,24 +2666,24 @@ bool MadEditFrame::QueryCloseAllFiles()
             if(madedit->IsModified())
             {
                 m_Notebook->SetSelection(id);
-                
-                MadEdit *cme=(MadEdit*)m_Notebook->GetCurrentPage();
+
+                MadEdit *cme=(MadEdit*)m_Notebook->GetPage(m_Notebook->GetSelection());
                 if(cme!=g_ActiveMadEdit)
                 {
-                    wxFlatNotebookEvent event(wxEVT_COMMAND_FLATNOTEBOOK_PAGE_CHANGED, m_Notebook->GetId());
+                    wxAuiNotebookEvent event(wxEVT_COMMAND_AUINOTEBOOK_PAGE_CHANGED, m_Notebook->GetId());
                     event.SetSelection(id);
                     event.SetOldSelection(sid);
                     event.SetEventObject(this);
                     OnNotebookPageChanged(event);
                 }
-                
+
                 name=m_Notebook->GetPageText(id);
                 if(name[name.Len()-1]==wxT('*'))
                     name.Truncate(name.Len()-1);
 
                 if(madedit->Save(true, name, false)==wxID_CANCEL)
                     return false;
-                
+
                 sid=id;
             }
             g_FileCaretPosManager.Add(madedit);
@@ -3006,7 +3028,7 @@ void MadEditFrame::OnUpdateUI_MenuToolsConvertNL(wxUpdateUIEvent& event)
 
 void MadEditFrame::OnUpdateUI_MenuToolsConvertEncoding(wxUpdateUIEvent& event)
 {
-    event.Enable(g_ActiveMadEdit!=NULL && 
+    event.Enable(g_ActiveMadEdit!=NULL &&
         !g_ActiveMadEdit->IsReadOnly() && g_ActiveMadEdit->IsTextFile());
 }
 
@@ -3113,11 +3135,11 @@ void MadEditFrame::OnFileSaveAll(wxCommandEvent& event)
                 if(madedit->GetFileName().IsEmpty())
                 {
                     m_Notebook->SetSelection(id);
-            
-                    MadEdit *cme=(MadEdit*)m_Notebook->GetCurrentPage();
+
+                    MadEdit *cme=(MadEdit*)m_Notebook->GetPage(m_Notebook->GetSelection());
                     if(cme!=g_ActiveMadEdit)
                     {
-                        wxFlatNotebookEvent event(wxEVT_COMMAND_FLATNOTEBOOK_PAGE_CHANGED, m_Notebook->GetId());
+                        wxAuiNotebookEvent event(wxEVT_COMMAND_AUINOTEBOOK_PAGE_CHANGED, m_Notebook->GetId());
                         event.SetSelection(id);
                         event.SetOldSelection(sid);
                         event.SetEventObject(this);
@@ -3131,7 +3153,7 @@ void MadEditFrame::OnFileSaveAll(wxCommandEvent& event)
 
                 if(madedit->Save(false, name, false)==wxID_CANCEL)
                     return;
-                    
+
                 sid=id;
             }
         }
@@ -3155,6 +3177,7 @@ void MadEditFrame::OnFileClose(wxCommandEvent& event)
         m_PageClosing=true;
         g_CheckModTimeForReload=false;
         m_Notebook->DeletePage(idx);
+        if(m_Notebook->GetPageCount()==0) OnNotebookPageClosed();
         g_CheckModTimeForReload=true;
         m_PageClosing=false;
         g_UpdateWindowUI=true;
@@ -3166,7 +3189,11 @@ void MadEditFrame::OnFileCloseAll(wxCommandEvent& event)
     if(QueryCloseAllFiles())
     {
         m_PageClosing=true;
-        m_Notebook->DeleteAllPages();
+        //m_Notebook->DeleteAllPages();
+        while(m_Notebook->GetPageCount()!=0)
+        {
+            m_Notebook->DeletePage(0);
+        }
         m_PageClosing=false;
 
         g_ActiveMadEdit=NULL;
@@ -3444,7 +3471,7 @@ void MadEditFrame::OnEditSortByOptions(wxCommandEvent& event)
         m_Config->Read(wxT("SortRemoveDup"), &rem, false);
         m_Config->SetPath(oldpath);
 
-        MadSortFlags flags = order | 
+        MadSortFlags flags = order |
             (cs ? sfCaseSensitive : 0) |
             (num ? sfNumericSort : 0) |
             (rem ? sfRemoveDuplicate : 0) ;
@@ -3462,7 +3489,7 @@ void MadEditFrame::OnEditSortOptions(wxCommandEvent& event)
         return;
 
     MadSortDialog dialog(this, -1);
-    
+
     wxString oldpath=m_Config->GetPath();
     m_Config->SetPath(wxT("/MadEdit"));
 
@@ -3492,7 +3519,7 @@ void MadEditFrame::OnEditSortOptions(wxCommandEvent& event)
         m_Config->Write(wxT("SortNumeric"), num);
         m_Config->Write(wxT("SortRemoveDup"), rem);
 
-        int flags = order | 
+        int flags = order |
             (cs ? sfCaseSensitive : 0) |
             (num ? sfNumericSort : 0) |
             (rem ? sfRemoveDuplicate : 0) ;
@@ -4120,7 +4147,7 @@ void MadEditFrame::OnToolsOptions(wxCommandEvent& event)
 
         m_Config->Write(wxT("MaxTextFileSize"), g_OptionsDialog->WxEditMaxTextFileSize->GetValue());
         m_Config->Write(wxT("DefaultEncoding"), g_OptionsDialog->WxComboBoxEncoding->GetValue());
-        
+
 #ifdef __WXMSW__
         if(g_OptionsDialog->WxCheckBoxRightClickMenu->GetValue())
         {
@@ -4251,7 +4278,7 @@ void MadEditFrame::OnToolsOptions(wxCommandEvent& event)
             {
                 TreeItemData *tid = *tidit;
                 CommandData *cd = tid->cmddata;
-                
+
                 // remove key of changed menu
                 if(cd->menu_id > 0)
                 {
@@ -4262,7 +4289,7 @@ void MadEditFrame::OnToolsOptions(wxCommandEvent& event)
                     {
                         newkey=tid->keys[0];
                     }
-                    
+
                     if(menukey.Lower() != newkey.Lower())
                     {
                         // add it to ChangedMenuList for modifying menukey later
@@ -4275,7 +4302,7 @@ void MadEditFrame::OnToolsOptions(wxCommandEvent& event)
                 {
                     MadEdit::ms_KeyBindings.RemoveByCommand(cd->command);
                 }
-                
+
                 ++tidit;
             }
 
@@ -4417,14 +4444,14 @@ void MadEditFrame::OnToolsConvertEncoding(wxCommandEvent& event)
 
     if(g_ConvEncDialog->ShowModal()==wxID_OK)
     {
-        g_ActiveMadEdit->ConvertEncoding(g_ConvEncDialog->WxComboBoxEncoding->GetValue(), 
+        g_ActiveMadEdit->ConvertEncoding(g_ConvEncDialog->WxComboBoxEncoding->GetValue(),
                                          MadConvertEncodingFlag(g_ConvEncDialog->WxRadioBoxOption->GetSelection()));
         wxString oldpath=m_Config->GetPath();
         m_Config->SetPath(wxT("/MadEdit"));
         m_Config->Write(wxT("/MadEdit/ConvertEncoding"), g_ConvEncDialog->WxComboBoxEncoding->GetValue());
         m_Config->SetPath(oldpath);
 
-        wxString str=wxString(wxT('['))+ g_ActiveMadEdit->GetEncodingName() + wxT("] ")+ 
+        wxString str=wxString(wxT('['))+ g_ActiveMadEdit->GetEncodingName() + wxT("] ")+
                      wxGetTranslation(g_ActiveMadEdit->GetEncodingDescription().c_str());
         m_RecentEncodings->AddFileToHistory(str);
 
@@ -4516,13 +4543,13 @@ void MadEditFrame::OnWindowToggleWindow(wxCommandEvent& event)
     else
     {
         g_PrevPageID=selid;
-        m_Notebook->AdvanceSelection(true);
+        AdvanceSelection(m_Notebook, true);
     }
 
-    MadEdit *madedit=(MadEdit*)m_Notebook->GetCurrentPage();
+    MadEdit *madedit=(MadEdit*)m_Notebook->GetPage(m_Notebook->GetSelection());
     if(madedit!=g_ActiveMadEdit)
     {
-        wxFlatNotebookEvent event(wxEVT_COMMAND_FLATNOTEBOOK_PAGE_CHANGED, m_Notebook->GetId());
+        wxAuiNotebookEvent event(wxEVT_COMMAND_AUINOTEBOOK_PAGE_CHANGED, m_Notebook->GetId());
         event.SetSelection(m_Notebook->GetSelection());
         event.SetOldSelection(g_PrevPageID);
         event.SetEventObject(this);
@@ -4539,12 +4566,12 @@ void MadEditFrame::OnWindowPreviousWindow(wxCommandEvent& event)
 
     g_PrevPageID=m_Notebook->GetSelection();
     g_CheckModTimeForReload=false;
-    m_Notebook->AdvanceSelection(false);
+    AdvanceSelection(m_Notebook, false);
 
-    MadEdit *madedit=(MadEdit*)m_Notebook->GetCurrentPage();
+    MadEdit *madedit=(MadEdit*)m_Notebook->GetPage(m_Notebook->GetSelection());
     if(madedit!=g_ActiveMadEdit)
     {
-        wxFlatNotebookEvent event(wxEVT_COMMAND_FLATNOTEBOOK_PAGE_CHANGED, m_Notebook->GetId());
+        wxAuiNotebookEvent event(wxEVT_COMMAND_AUINOTEBOOK_PAGE_CHANGED, m_Notebook->GetId());
         event.SetSelection(m_Notebook->GetSelection());
         event.SetOldSelection(g_PrevPageID);
         event.SetEventObject(this);
@@ -4560,12 +4587,12 @@ void MadEditFrame::OnWindowNextWindow(wxCommandEvent& event)
 
     g_PrevPageID=m_Notebook->GetSelection();
     g_CheckModTimeForReload=false;
-    m_Notebook->AdvanceSelection(true);
+    AdvanceSelection(m_Notebook, true);
 
-    MadEdit *madedit=(MadEdit*)m_Notebook->GetCurrentPage();
+    MadEdit *madedit=(MadEdit*)m_Notebook->GetPage(m_Notebook->GetSelection());
     if(madedit!=g_ActiveMadEdit)
     {
-        wxFlatNotebookEvent event(wxEVT_COMMAND_FLATNOTEBOOK_PAGE_CHANGED, m_Notebook->GetId());
+        wxAuiNotebookEvent event(wxEVT_COMMAND_AUINOTEBOOK_PAGE_CHANGED, m_Notebook->GetId());
         event.SetSelection(m_Notebook->GetSelection());
         event.SetOldSelection(g_PrevPageID);
         event.SetEventObject(this);
@@ -4587,7 +4614,7 @@ void MadEditFrame::OnHelpAbout(wxCommandEvent& event)
     {
 #ifdef __WXGTK__
         const wxChar *browsers[]=
-        { 
+        {
             wxT("/usr/bin/firefox"),
             wxT("/usr/bin/mozilla"),
             wxT("/usr/kde/3.5/bin/konqueror"),
@@ -4602,7 +4629,7 @@ void MadEditFrame::OnHelpAbout(wxCommandEvent& event)
             if(wxFileExists(wxString(browsers[idx])))
                 break;
         }while(++idx < count);
-        
+
         if(idx < count)
         {
             wxExecute(wxString(browsers[idx]) +wxT(' ') +g_MadEdit_URL);
