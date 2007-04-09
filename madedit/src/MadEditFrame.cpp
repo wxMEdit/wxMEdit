@@ -453,7 +453,8 @@ public:
             int idx;
             if(FindTab(page.window, &ctrl, &idx))
             {
-                wxPoint pt = ctrl->GetScreenPosition();
+                wxPoint pt = ctrl->GetPosition();
+                pt = ctrl->ClientToScreen(pt);
                 it = pages_list.begin();
                 size_t j=0;
                 for(; j<pages_list.size(); ++j, ++it)
