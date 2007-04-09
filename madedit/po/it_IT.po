@@ -35,7 +35,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MadEdit 0.2.7\n"
 "Report-Msgid-Bugs-To: madedit@gmail.com\n"
-"POT-Creation-Date: 2007-04-10 00:30+0800\n"
+"POT-Creation-Date: 2007-04-10 02:16+0800\n"
 "PO-Revision-Date: 2007-02-27 12:31+0100\n"
 "Last-Translator: Angelo Contardi <angelo.contardi@italtel.it>\n"
 "Language-Team: Angelo Contardi <angelo.contardi@italtel.it>\n"
@@ -1782,9 +1782,8 @@ msgid "Convert &Chinese Char"
 msgstr "Converti Caratteri &Cinesi"
 
 #: src/MadEditFrame.cpp:1411
-#, fuzzy
 msgid "File: Simplified Chinese to &Traditional Chinese"
-msgstr "Semplificato => Cinese Tradizionale"
+msgstr ""
 
 #: src/MadEditFrame.cpp:1411
 msgid ""
@@ -1792,9 +1791,8 @@ msgid ""
 msgstr "Converte i caratteri in Cinese Semplificato in Cinese Tradizionale"
 
 #: src/MadEditFrame.cpp:1412
-#, fuzzy
 msgid "File: Traditional Chinese to &Simplified Chinese"
-msgstr "Tradizionale => Cinese Semplificato"
+msgstr ""
 
 #: src/MadEditFrame.cpp:1412
 msgid ""
@@ -1802,38 +1800,32 @@ msgid ""
 msgstr "Converte i caratteri in Cinese Tradizionale in Cinese Semplificato"
 
 #: src/MadEditFrame.cpp:1413
-#, fuzzy
 msgid "File: Japanese Kanji to Tr&aditional Chinese"
-msgstr "nel File: in Cinese &Tradizionale"
+msgstr ""
 
 #: src/MadEditFrame.cpp:1413
-#, fuzzy
 msgid "Convert Japanese Kanji to traditional Chinese chars in the file"
-msgstr "Converte i caratteri in Cinese Semplificato in Cinese Tradizionale"
+msgstr ""
 
 #: src/MadEditFrame.cpp:1414
-#, fuzzy
 msgid "File: Japanese Kanji to Si&mplified Chinese"
-msgstr "nel File: in Cinese &Semplificato"
+msgstr ""
 
 #: src/MadEditFrame.cpp:1414
-#, fuzzy
 msgid "Convert Japanese Kanji to simplified Chinese chars in the file"
-msgstr "Converte i caratteri in Cinese Tradizionale in Cinese Semplificato"
+msgstr ""
 
 #: src/MadEditFrame.cpp:1415
 msgid "File: Chinese to &Japanese Kanji"
 msgstr ""
 
 #: src/MadEditFrame.cpp:1415
-#, fuzzy
 msgid "Convert Chinese chars to Japanese Kanji in the file"
-msgstr "Converte i caratteri in Cinese Semplificato in Cinese Tradizionale"
+msgstr ""
 
 #: src/MadEditFrame.cpp:1417
-#, fuzzy
 msgid "Clipboard: Simplified Chinese to T&raditional Chinese"
-msgstr "in Appunti: in Cinese &Tradizionale"
+msgstr ""
 
 #: src/MadEditFrame.cpp:1417
 msgid ""
@@ -1843,9 +1835,8 @@ msgstr ""
 "Converte i caratteri in Cinese Semplificato in Appunti in Cinese Tradizionale"
 
 #: src/MadEditFrame.cpp:1418
-#, fuzzy
 msgid "Clipboard: Traditional Chinese to S&implified Chinese"
-msgstr "in Appunti: in Cinese &Semplificato"
+msgstr ""
 
 #: src/MadEditFrame.cpp:1418
 msgid ""
@@ -1855,36 +1846,28 @@ msgstr ""
 "Converte i caratteri in Cinese Tradizionale in Appunti in Cinese Semplificato"
 
 #: src/MadEditFrame.cpp:1419
-#, fuzzy
 msgid "Clipboard: Japanese Kanji to Tra&ditional Chinese"
-msgstr "in Appunti: in Cinese &Tradizionale"
+msgstr ""
 
 #: src/MadEditFrame.cpp:1419
-#, fuzzy
 msgid "Convert Japanese Kanji to traditional Chinese chars in the clipboard"
 msgstr ""
-"Converte i caratteri in Cinese Semplificato in Appunti in Cinese Tradizionale"
 
 #: src/MadEditFrame.cpp:1420
-#, fuzzy
 msgid "Clipboard: Japanese Kanji to Sim&plified Chinese"
-msgstr "in Appunti: in Cinese &Semplificato"
+msgstr ""
 
 #: src/MadEditFrame.cpp:1420
-#, fuzzy
 msgid "Convert Japanese Kanji to simplified Chinese chars in the clipboard"
 msgstr ""
-"Converte i caratteri in Cinese Tradizionale in Appunti in Cinese Semplificato"
 
 #: src/MadEditFrame.cpp:1421
 msgid "Clipboard: Chinese to Japanese &Kanji"
 msgstr ""
 
 #: src/MadEditFrame.cpp:1421
-#, fuzzy
 msgid "Convert Chinese chars to Japanese Kanji in the clipboard"
 msgstr ""
-"Converte i caratteri in Cinese Semplificato in Appunti in Cinese Tradizionale"
 
 #: src/MadEditFrame.cpp:1423
 msgid "&Word Count"
@@ -3398,24 +3381,20 @@ msgid "New Encoding:"
 msgstr "Nuova Codifica:"
 
 #: src/MadConvEncDialog.cpp:81
-#, fuzzy
 msgid "Simplified Chinese => Traditional Chinese"
-msgstr "Semplificato => Cinese Tradizionale"
+msgstr ""
 
 #: src/MadConvEncDialog.cpp:82
-#, fuzzy
 msgid "Traditional Chinese => Simplified Chinese"
-msgstr "Tradizionale => Cinese Semplificato"
+msgstr ""
 
 #: src/MadConvEncDialog.cpp:83
-#, fuzzy
 msgid "Japanese Kanji => Traditional Chinese"
-msgstr "Semplificato => Cinese Tradizionale"
+msgstr ""
 
 #: src/MadConvEncDialog.cpp:84
-#, fuzzy
 msgid "Japanese Kanji => Simplified Chinese"
-msgstr "Tradizionale => Cinese Semplificato"
+msgstr ""
 
 #: src/MadConvEncDialog.cpp:85
 msgid "Chinese => Japanese Kanji"

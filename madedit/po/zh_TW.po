@@ -35,7 +35,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MadEdit 0.2.7\n"
 "Report-Msgid-Bugs-To: madedit@gmail.com\n"
-"POT-Creation-Date: 2007-04-10 00:30+0800\n"
+"POT-Creation-Date: 2007-04-10 02:16+0800\n"
 "PO-Revision-Date: 2006-05-05 19:36+0800\n"
 "Last-Translator: madedit\n"
 "Language-Team: MadEdit <madedit@gmail.com>\n"
@@ -1778,9 +1778,8 @@ msgid "Convert &Chinese Char"
 msgstr "轉換中文字元(&C)"
 
 #: src/MadEditFrame.cpp:1411
-#, fuzzy
 msgid "File: Simplified Chinese to &Traditional Chinese"
-msgstr "簡體 => 繁體中文"
+msgstr "檔案：簡體中文 => 繁體中文(&T)"
 
 #: src/MadEditFrame.cpp:1411
 msgid ""
@@ -1788,9 +1787,8 @@ msgid ""
 msgstr "把檔案中的簡體字轉換成繁體字"
 
 #: src/MadEditFrame.cpp:1412
-#, fuzzy
 msgid "File: Traditional Chinese to &Simplified Chinese"
-msgstr "繁體 => 簡體中文"
+msgstr "檔案：繁體中文 => 簡體中文(&S)"
 
 #: src/MadEditFrame.cpp:1412
 msgid ""
@@ -1798,38 +1796,32 @@ msgid ""
 msgstr "把檔案中的繁體字轉換成簡體字"
 
 #: src/MadEditFrame.cpp:1413
-#, fuzzy
 msgid "File: Japanese Kanji to Tr&aditional Chinese"
-msgstr "檔案：轉換為繁體中文(&T)"
+msgstr "檔案：日文漢字 => 繁體中文(&A)"
 
 #: src/MadEditFrame.cpp:1413
-#, fuzzy
 msgid "Convert Japanese Kanji to traditional Chinese chars in the file"
-msgstr "把檔案中的簡體字轉換成繁體字"
+msgstr "把檔案中的日文漢字轉換成繁體字"
 
 #: src/MadEditFrame.cpp:1414
-#, fuzzy
 msgid "File: Japanese Kanji to Si&mplified Chinese"
-msgstr "檔案：轉換為簡體中文(&S)"
+msgstr "檔案：日文漢字 => 簡體中文(&M)"
 
 #: src/MadEditFrame.cpp:1414
-#, fuzzy
 msgid "Convert Japanese Kanji to simplified Chinese chars in the file"
-msgstr "把檔案中的繁體字轉換成簡體字"
+msgstr "把檔案中的日文漢字轉換成簡體字"
 
 #: src/MadEditFrame.cpp:1415
 msgid "File: Chinese to &Japanese Kanji"
-msgstr ""
+msgstr "檔案：中文字 => 日文漢字(&J)"
 
 #: src/MadEditFrame.cpp:1415
-#, fuzzy
 msgid "Convert Chinese chars to Japanese Kanji in the file"
-msgstr "把檔案中的簡體字轉換成繁體字"
+msgstr "把檔案中的中文字轉換成日文漢字"
 
 #: src/MadEditFrame.cpp:1417
-#, fuzzy
 msgid "Clipboard: Simplified Chinese to T&raditional Chinese"
-msgstr "剪貼簿：轉換為繁體中文(&R)"
+msgstr "剪貼簿：簡體中文 => 繁體中文(&R)"
 
 #: src/MadEditFrame.cpp:1417
 msgid ""
@@ -1838,9 +1830,8 @@ msgid ""
 msgstr "把剪貼簿中的簡體字轉換成繁體字"
 
 #: src/MadEditFrame.cpp:1418
-#, fuzzy
 msgid "Clipboard: Traditional Chinese to S&implified Chinese"
-msgstr "剪貼簿：轉換為簡體中文(&I)"
+msgstr "剪貼簿：繁體中文 => 簡體中文(&I)"
 
 #: src/MadEditFrame.cpp:1418
 msgid ""
@@ -1849,33 +1840,28 @@ msgid ""
 msgstr "把剪貼簿中的繁體字轉換成簡體字"
 
 #: src/MadEditFrame.cpp:1419
-#, fuzzy
 msgid "Clipboard: Japanese Kanji to Tra&ditional Chinese"
-msgstr "剪貼簿：轉換為繁體中文(&R)"
+msgstr "剪貼簿：日文漢字 => 繁體中文(&D)"
 
 #: src/MadEditFrame.cpp:1419
-#, fuzzy
 msgid "Convert Japanese Kanji to traditional Chinese chars in the clipboard"
-msgstr "把剪貼簿中的簡體字轉換成繁體字"
+msgstr "把剪貼簿中的日文漢字轉換成繁體字"
 
 #: src/MadEditFrame.cpp:1420
-#, fuzzy
 msgid "Clipboard: Japanese Kanji to Sim&plified Chinese"
-msgstr "剪貼簿：轉換為簡體中文(&I)"
+msgstr "剪貼簿：日文漢字 => 簡體中文(&P)"
 
 #: src/MadEditFrame.cpp:1420
-#, fuzzy
 msgid "Convert Japanese Kanji to simplified Chinese chars in the clipboard"
-msgstr "把剪貼簿中的繁體字轉換成簡體字"
+msgstr "把剪貼簿中的日文漢字轉換成簡體字"
 
 #: src/MadEditFrame.cpp:1421
 msgid "Clipboard: Chinese to Japanese &Kanji"
-msgstr ""
+msgstr "剪貼簿：中文字 => 日文漢字(&K)"
 
 #: src/MadEditFrame.cpp:1421
-#, fuzzy
 msgid "Convert Chinese chars to Japanese Kanji in the clipboard"
-msgstr "把剪貼簿中的簡體字轉換成繁體字"
+msgstr "把剪貼簿中的中文字轉換成日文漢字"
 
 #: src/MadEditFrame.cpp:1423
 msgid "&Word Count"
@@ -3375,28 +3361,24 @@ msgid "New Encoding:"
 msgstr "新的編碼："
 
 #: src/MadConvEncDialog.cpp:81
-#, fuzzy
 msgid "Simplified Chinese => Traditional Chinese"
-msgstr "簡體 => 繁體中文"
+msgstr "簡體中文 => 繁體中文"
 
 #: src/MadConvEncDialog.cpp:82
-#, fuzzy
 msgid "Traditional Chinese => Simplified Chinese"
-msgstr "繁體 => 簡體中文"
+msgstr "繁體中文 => 簡體中文"
 
 #: src/MadConvEncDialog.cpp:83
-#, fuzzy
 msgid "Japanese Kanji => Traditional Chinese"
-msgstr "簡體 => 繁體中文"
+msgstr "日文漢字 => 繁體中文"
 
 #: src/MadConvEncDialog.cpp:84
-#, fuzzy
 msgid "Japanese Kanji => Simplified Chinese"
-msgstr "繁體 => 簡體中文"
+msgstr "日文漢字 => 簡體中文"
 
 #: src/MadConvEncDialog.cpp:85
 msgid "Chinese => Japanese Kanji"
-msgstr ""
+msgstr "中文字 => 日文漢字"
 
 #: src/MadConvEncDialog.cpp:86
 msgid "Addtional Option"
