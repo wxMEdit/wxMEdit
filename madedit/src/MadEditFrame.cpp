@@ -540,8 +540,32 @@ public:
         SetSelection(GetPageIndex(it->madedit));
     }
 
-};
+    void ConnectMouseClick()
+    {
+        if(GetPageCount()!=0)
+        {
+            wxAuiTabCtrl *ctrl=GetActiveTabCtrl();
+            ctrl->Connect(wxEVT_LEFT_DCLICK, wxObjectEventFunction(wxMadAuiNotebook::OnMouseClick));
+            ctrl->Connect(wxEVT_MIDDLE_UP, wxObjectEventFunction(wxMadAuiNotebook::OnMouseClick));
+        }
+    }
 
+protected:
+    void OnMouseClick(wxMouseEvent &evt)
+    {
+        //wxString s;
+        //s.Printf(L"%d %d", evt.m_x, evt.m_y);
+        //((wxTopLevelWindow*)g_MainFrame)->SetLabel(s);
+
+        wxAuiTabCtrl *ctrl = (wxAuiTabCtrl*)evt.GetEventObject();
+        wxWindow *win;
+        if(ctrl->TabHitTest(evt.m_x, evt.m_y, &win))
+        {
+            g_MainFrame->CloseFile(g_MainFrame->m_Notebook->GetPageIndex(win));
+        }
+    }
+
+};
 
 
 void OnReceiveMessage(const wchar_t *msg, size_t size)
@@ -624,6 +648,8 @@ void ApplySyntaxAttributes(MadSyntax *syn)
 
 void OnEditSelectionChanged(MadEdit *madedit)
 {
+    g_MainFrame->m_Notebook->ConnectMouseClick();
+
     if(madedit==NULL)
     {
         g_StatusBar->SetStatusText(wxEmptyString, 1);
@@ -680,6 +706,8 @@ void OnEditSelectionChanged(MadEdit *madedit)
 
 void OnEditStatusChanged(MadEdit *madedit)
 {
+    g_MainFrame->m_Notebook->ConnectMouseClick();
+
     if(madedit==NULL)
     {
         g_StatusBar->SetStatusText(wxEmptyString, 4);
@@ -1603,12 +1631,12 @@ void MadEditFrame::CreateGUIControls(void)
 
     WxToolBar1 = new wxToolBar(this, ID_WXTOOLBAR1, wxPoint(0,0), wxSize(392,29));
 
-    m_Notebook = new wxMadAuiNotebook(this, ID_NOTEBOOK, wxPoint(0,29),wxSize(392,320), wxWANTS_CHARS |wxAUI_NB_TOP|wxAUI_NB_TAB_SPLIT|wxAUI_NB_TAB_MOVE|wxAUI_NB_SCROLL_BUTTONS|wxAUI_NB_WINDOWLIST_BUTTON|wxAUI_NB_CLOSE_ON_ALL_TABS);
+    m_Notebook = new wxMadAuiNotebook(this, ID_NOTEBOOK, wxPoint(0,29),wxSize(392,320), wxWANTS_CHARS |wxAUI_NB_TOP|wxAUI_NB_TAB_SPLIT|wxAUI_NB_TAB_MOVE|wxAUI_NB_SCROLL_BUTTONS|wxAUI_NB_WINDOWLIST_BUTTON|wxAUI_NB_CLOSE_ON_ACTIVE_TAB);
     m_Notebook->wxControl::SetWindowStyleFlag(m_Notebook->wxControl::GetWindowStyleFlag() & ~wxTAB_TRAVERSAL);
     m_Notebook->SetDropTarget(new DnDFile());
     m_Notebook->SetArtProvider(new wxAuiSimpleTabArt);
 
-    WxMenuBar1 =  new wxMenuBar();
+    WxMenuBar1 = new wxMenuBar();
     this->SetMenuBar(WxMenuBar1);
 
     WxToolBar1->Realize();
@@ -2718,6 +2746,20 @@ void MadEditFrame::OpenFile(const wxString &filename, bool mustExist)
     g_UpdateWindowUI=true;
 }
 
+void MadEditFrame::CloseFile(int pageId)
+{
+    if(QueryCloseFile(pageId))
+    {
+        m_PageClosing=true;
+        g_CheckModTimeForReload=false;
+        m_Notebook->DeletePage(pageId);
+        if(m_Notebook->GetPageCount()==0) OnNotebookPageClosed();
+        g_CheckModTimeForReload=true;
+        m_PageClosing=false;
+        g_UpdateWindowUI=true;
+    }
+}
+
 bool MadEditFrame::QueryCloseFile(int idx)
 {
     MadEdit *madedit=(MadEdit*)m_Notebook->GetPage(idx);
@@ -3272,16 +3314,7 @@ void MadEditFrame::OnFileReload(wxCommandEvent& event)
 void MadEditFrame::OnFileClose(wxCommandEvent& event)
 {
     int idx=m_Notebook->GetSelection();
-    if(QueryCloseFile(idx))
-    {
-        m_PageClosing=true;
-        g_CheckModTimeForReload=false;
-        m_Notebook->DeletePage(idx);
-        if(m_Notebook->GetPageCount()==0) OnNotebookPageClosed();
-        g_CheckModTimeForReload=true;
-        m_PageClosing=false;
-        g_UpdateWindowUI=true;
-    }
+    CloseFile(idx);
 }
 
 void MadEditFrame::OnFileCloseAll(wxCommandEvent& event)
