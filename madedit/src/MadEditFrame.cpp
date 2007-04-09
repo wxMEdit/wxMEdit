@@ -545,8 +545,8 @@ public:
         if(GetPageCount()!=0)
         {
             wxAuiTabCtrl *ctrl=GetActiveTabCtrl();
-            ctrl->Connect(wxEVT_LEFT_DCLICK, wxObjectEventFunction(wxMadAuiNotebook::OnMouseClick));
-            ctrl->Connect(wxEVT_MIDDLE_UP, wxObjectEventFunction(wxMadAuiNotebook::OnMouseClick));
+            ctrl->Connect(wxEVT_LEFT_DCLICK, wxMouseEventHandler(wxMadAuiNotebook::OnMouseClick));
+            ctrl->Connect(wxEVT_MIDDLE_UP, wxMouseEventHandler(wxMadAuiNotebook::OnMouseClick));
         }
     }
 
