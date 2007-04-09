@@ -1,7 +1,7 @@
 SUBDIRS = syntax po
 
 bin_PROGRAMS = madedit
-INCLUDES = -I$(top_srcdir)/wxFlatNotebook/include -I$(top_srcdir)/wxAUI/include -I$(top_srcdir)/charset-detector/include -I$(top_srcdir)/charset-detector/src -I$(top_srcdir)/charset-detector/src/tables
+INCLUDES = -I$(top_srcdir)/wxAUI/include -I$(top_srcdir)/charset-detector/include -I$(top_srcdir)/charset-detector/src -I$(top_srcdir)/charset-detector/src/tables
 madedit_CXXFLAGS = -DwxUSE_AUI=1 -DWXDLLIMPEXP_AUI= -DDATA_DIR=\"${datadir}\"
 madedit_SOURCES =	src/MadAboutDialog.cpp \
 	src/MadAboutDialog.h \
@@ -55,19 +55,6 @@ madedit_SOURCES =	src/MadAboutDialog.cpp \
 	src/MadEdit/TradSimp.cpp \
 	src/MadEdit/TradSimp.h \
 	src/MadEdit/ucs4_t.h \
-	wxFlatNotebook/src/wxFlatNotebook/fnb_resources.cpp \
-	wxFlatNotebook/src/wxFlatNotebook/popup_dlg.cpp \
-	wxFlatNotebook/src/wxFlatNotebook/renderer.cpp \
-	wxFlatNotebook/src/wxFlatNotebook/wxFlatNotebook.cpp \
-	wxFlatNotebook/src/wxFlatNotebook/xh_fnb.cpp \
-	wxFlatNotebook/include/wx/wxFlatNotebook/fnb_resources.h \
-	wxFlatNotebook/include/wx/wxFlatNotebook/popup_dlg.h \
-	wxFlatNotebook/include/wx/wxFlatNotebook/renderer.h \
-	wxFlatNotebook/include/wx/wxFlatNotebook/singleton.h \
-	wxFlatNotebook/include/wx/wxFlatNotebook/smart_ptr.h \
-	wxFlatNotebook/include/wx/wxFlatNotebook/wxFlatNotebook.h \
-	wxFlatNotebook/include/wx/wxFlatNotebook/wxFNBDropTarget.h \
-	wxFlatNotebook/include/wx/wxFlatNotebook/xh_fnb.h \
 	wxAUI/include/wx/aui/aui.h \
 	wxAUI/include/wx/aui/auibook.h \
 	wxAUI/include/wx/aui/dockart.h \
@@ -134,7 +121,7 @@ pixmaps_DATA = madedit.xpm
 appdir = $(datadir)/applications
 app_DATA = madedit.desktop
 
-EXTRA_DIST = $(pixmaps_DATA) $(app_DATA)
+EXTRA_DIST = m4/ChangeLog  $(pixmaps_DATA) $(app_DATA)
 
 noinst_HEADERS =	description-pak \
 	README.txt \
@@ -151,6 +138,15 @@ noinst_HEADERS =	description-pak \
 	freebsd/pkg-descr \
 	freebsd/pkg-plist \
 	freebsd/pkgcreate.txt \
+	m4/gettext.m4 \
+	m4/iconv.m4 \
+	m4/lib-ld.m4 \
+	m4/lib-link.m4 \
+	m4/lib-prefix.m4 \
+	m4/nls.m4 \
+	m4/po.m4 \
+	m4/progtest.m4 \
+	m4/ChangeLog \
 	src/MadEditApp.rc \
 	src/MadAboutDialog.wxform \
 	src/MadConvEncDialog.wxform \
@@ -168,7 +164,6 @@ noinst_HEADERS =	description-pak \
 	src/plugin_example/plugin.cpp \
 	src/plugin_example/vc_cl.bat \
 	src/plugin_example/wxwin16x16.xpm \
-	wxFlatNotebook/README \
 	wxAUI/COPYING.LIB \
 	wxAUI/LICENCE.txt \
 	wxAUI/README.txt \

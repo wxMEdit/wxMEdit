@@ -1,3 +1,8 @@
+2007-04-10  gettextize  <bug-gnu-gettext@gnu.org>
+
+	* Makefile.am (ACLOCAL_AMFLAGS): New variable.
+	(EXTRA_DIST): Add m4/ChangeLog.
+
 2006-05-08  Alston Chen  <madedit@gmail.com>
 
 	1.fixed crashes when copying and pasting data between TextMode and ColumnMode under Linux.
