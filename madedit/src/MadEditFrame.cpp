@@ -410,6 +410,139 @@ public:
 
 //---------------------------------------------------------------------------
 
+class wxMadAuiNotebook : public wxAuiNotebook
+{
+public:
+    wxMadAuiNotebook() : wxAuiNotebook() {}
+
+    wxMadAuiNotebook(wxWindow* parent,
+                  wxWindowID id = wxID_ANY,
+                  const wxPoint& pos = wxDefaultPosition,
+                  const wxSize& size = wxDefaultSize,
+                  long style = wxAUI_NB_DEFAULT_STYLE)
+                  : wxAuiNotebook(parent, id, pos, size, style)
+    {
+    }
+
+    virtual ~wxMadAuiNotebook() {}
+
+    struct PageData
+    {
+        int x, y, idx;
+        MadEdit *madedit;
+        PageData() {}
+        PageData(int xx, int yy, int ii, MadEdit *mm)
+            : x(xx), y(yy), idx(ii), madedit(mm)
+        {}
+    };
+
+    list<PageData> GetPagesList()
+    {
+        wxAuiNotebookPageArray& pages = m_tabs.GetPages();
+        size_t i, page_count = pages.GetCount();
+
+        list<PageData> pages_list;
+        list<PageData>::iterator it;
+
+        for (i = 0; i < page_count; ++i)
+        {
+            wxAuiNotebookPage& page = pages.Item(i);
+            MadEdit *madedit = (MadEdit*)page.window;
+
+            wxAuiTabCtrl *ctrl;
+            int idx;
+            if(FindTab(page.window, &ctrl, &idx))
+            {
+                wxPoint pt = ctrl->GetScreenPosition();
+                it = pages_list.begin();
+                size_t j=0;
+                for(; j<pages_list.size(); ++j, ++it)
+                {
+                    PageData &pd = *it;
+                    if(pt.y < pd.y)
+                    {
+                        break;
+                    }
+                    else if(pt.y==pd.y)
+                    {
+                        if(pt.x<pd.x)
+                        {
+                            break;
+                        }
+                        else if(pt.x==pd.x)
+                        {
+                            if(idx<pd.idx)
+                            {
+                                break;
+                            }
+                        }
+                    }
+                }
+
+                pages_list.insert(it, PageData(pt.x, pt.y, idx, madedit));
+            }
+        }
+
+        return pages_list;
+    }
+
+    int GetFilesList(wxString &files)
+    {
+        int count = 0;
+        list<PageData> pages_list = GetPagesList();
+        size_t page_count = pages_list.size();
+        list<PageData>::iterator it = pages_list.begin();
+        for (size_t i = 0; i < page_count; ++i, ++it)
+        {
+            wxString name(it->madedit->GetFileName());
+            if(!name.IsEmpty())
+            {
+                files += name;
+                files += wxT('|');
+                ++count;
+            }
+        }
+        return count;
+    }
+
+    struct FunctorA
+    {
+        MadEdit *madedit;
+        bool operator()(PageData &pd)
+        {
+            return madedit == pd.madedit;
+        }
+    };
+
+    void AdvanceSelection(bool bForward)
+    {
+        int count = (int)GetPageCount();
+        if(count <= 1) return;
+
+        list<PageData> pages_list = GetPagesList();
+        wxWindow* win = GetPage(GetSelection());
+
+        FunctorA fa;
+        fa.madedit = (MadEdit*)win;
+        list<PageData>::iterator it = find_if(pages_list.begin(), pages_list.end(), fa);
+
+        wxASSERT(it != pages_list.end());
+
+        if(bForward)
+        {
+            if(++it == pages_list.end()) it=pages_list.begin();
+        }
+        else
+        {
+            if(it==pages_list.begin()) it=pages_list.end();
+            --it;
+        }
+        SetSelection(GetPageIndex(it->madedit));
+    }
+
+};
+
+
 
 void OnReceiveMessage(const wchar_t *msg, size_t size)
 {
@@ -463,23 +596,6 @@ void OnReceiveMessage(const wchar_t *msg, size_t size)
 int GetIdByEdit(MadEdit *edit)
 {
     return g_MainFrame->m_Notebook->GetPageIndex(edit);
-}
-
-void AdvanceSelection(wxAuiNotebook *nb, bool bForword)
-{
-    int count = (int)nb->GetPageCount();
-    if(count <= 1) return;
-
-    int sel = nb->GetSelection();
-    if(bForword)
-    {
-        if(++sel >= count) sel = 0;
-    }
-    else
-    {
-        if(--sel < 0) sel = count-1;
-    }
-    nb->SetSelection(sel);
 }
 
 // return true for name; false for title
@@ -1487,7 +1603,7 @@ void MadEditFrame::CreateGUIControls(void)
 
     WxToolBar1 = new wxToolBar(this, ID_WXTOOLBAR1, wxPoint(0,0), wxSize(392,29));
 
-    m_Notebook = new wxAuiNotebook(this, ID_NOTEBOOK, wxPoint(0,29),wxSize(392,320), wxWANTS_CHARS |wxAUI_NB_TOP|wxAUI_NB_TAB_SPLIT|wxAUI_NB_TAB_MOVE|wxAUI_NB_SCROLL_BUTTONS|wxAUI_NB_WINDOWLIST_BUTTON|wxAUI_NB_CLOSE_ON_ALL_TABS);
+    m_Notebook = new wxMadAuiNotebook(this, ID_NOTEBOOK, wxPoint(0,29),wxSize(392,320), wxWANTS_CHARS |wxAUI_NB_TOP|wxAUI_NB_TAB_SPLIT|wxAUI_NB_TAB_MOVE|wxAUI_NB_SCROLL_BUTTONS|wxAUI_NB_WINDOWLIST_BUTTON|wxAUI_NB_CLOSE_ON_ALL_TABS);
     m_Notebook->wxControl::SetWindowStyleFlag(m_Notebook->wxControl::GetWindowStyleFlag() & ~wxTAB_TRAVERSAL);
     m_Notebook->SetDropTarget(new DnDFile());
     m_Notebook->SetArtProvider(new wxAuiSimpleTabArt);
@@ -1907,29 +2023,13 @@ void MadEditFrame::MadEditFrameClose(wxCloseEvent& event)
     m_Config->Read(wxT("ReloadFiles"), &bb);
     if(bb && count>0)
     {
-        int id=0;
-        MadEdit *madedit;
-        wxString name, selname;
-        do
-        {
-            madedit = (MadEdit*)m_Notebook->GetPage(id);
-            name = madedit->GetFileName();
-            if(!name.IsEmpty())
-            {
-                files += name;
-                files += wxT('|');
-                if(id == m_Notebook->GetSelection())
-                {
-                    selname = name;
-                }
-            }
-        }
-        while(++id < count);
+        count = m_Notebook->GetFilesList(files);
 
-        if(!files.IsEmpty() && !selname.IsEmpty())
+        wxString selname = g_ActiveMadEdit->GetFileName();
+        if(count!=1 && !selname.IsEmpty())
         {
-            selname += wxT('|'); // append selname to activate it
-            files += selname;
+            files += selname; // append selname to activate it
+            files += wxT('|');
         }
     }
     m_Config->Write(wxT("/MadEdit/ReloadFilesList"), files );
@@ -4543,7 +4643,7 @@ void MadEditFrame::OnWindowToggleWindow(wxCommandEvent& event)
     else
     {
         g_PrevPageID=selid;
-        AdvanceSelection(m_Notebook, true);
+        m_Notebook->AdvanceSelection(true);
     }
 
     MadEdit *madedit=(MadEdit*)m_Notebook->GetPage(m_Notebook->GetSelection());
@@ -4566,7 +4666,7 @@ void MadEditFrame::OnWindowPreviousWindow(wxCommandEvent& event)
 
     g_PrevPageID=m_Notebook->GetSelection();
     g_CheckModTimeForReload=false;
-    AdvanceSelection(m_Notebook, false);
+    m_Notebook->AdvanceSelection(false);
 
     MadEdit *madedit=(MadEdit*)m_Notebook->GetPage(m_Notebook->GetSelection());
     if(madedit!=g_ActiveMadEdit)
@@ -4587,7 +4687,7 @@ void MadEditFrame::OnWindowNextWindow(wxCommandEvent& event)
 
     g_PrevPageID=m_Notebook->GetSelection();
     g_CheckModTimeForReload=false;
-    AdvanceSelection(m_Notebook, true);
+    m_Notebook->AdvanceSelection(true);
 
     MadEdit *madedit=(MadEdit*)m_Notebook->GetPage(m_Notebook->GetSelection());
     if(madedit!=g_ActiveMadEdit)

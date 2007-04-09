@@ -40,7 +40,7 @@
 ////Dialog Style End
 
 
-class wxAuiNotebook;
+class wxMadAuiNotebook;
 class wxAuiNotebookEvent;
 class MadEdit;
 
@@ -81,7 +81,7 @@ public:
    }; //End of Enum
 
 public:
-    wxAuiNotebook *m_Notebook;
+    wxMadAuiNotebook *m_Notebook;
     int           m_NewFileCount;
     wxConfigBase  *m_Config;
     wxImageList   *m_ImageList;

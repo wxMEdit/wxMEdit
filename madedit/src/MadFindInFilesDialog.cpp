@@ -601,7 +601,7 @@ void MadFindInFilesDialog::FindReplaceInFiles(bool bReplace)
     size_t totalfiles;
     if(WxRadioButtonOpenedFiles->GetValue())
     {
-        totalfiles=g_MainFrame->m_Notebook->GetPageCount();
+        totalfiles= ((wxAuiNotebook*)g_MainFrame->m_Notebook)->GetPageCount();
     }
     else
     {
@@ -708,7 +708,7 @@ void MadFindInFilesDialog::FindReplaceInFiles(bool bReplace)
             // prepare madedit
             if(WxRadioButtonOpenedFiles->GetValue())
             {
-                madedit=(MadEdit*)g_MainFrame->m_Notebook->GetPage(i);
+                madedit=(MadEdit*) ((wxAuiNotebook*)g_MainFrame->m_Notebook)->GetPage(i);
             }
             else
             {
@@ -770,7 +770,7 @@ void MadFindInFilesDialog::FindReplaceInFiles(bool bReplace)
                 if(ok<0) break;
 
                 expr=madedit->GetFileName();
-                int id = g_MainFrame->m_Notebook->GetPageIndex(madedit);
+                int id = ((wxAuiNotebook*)g_MainFrame->m_Notebook)->GetPageIndex(madedit);
                 if(madedit->IsModified() && !expr.IsEmpty() && id<0)
                 {
                     madedit->SaveToFile(expr);
@@ -803,10 +803,10 @@ void MadFindInFilesDialog::FindReplaceInFiles(bool bReplace)
                 expr=madedit->GetFileName();
                 if(expr.IsEmpty())
                 {
-                    pid=g_MainFrame->m_Notebook->GetPageIndex(madedit);
+                    pid=((wxAuiNotebook*)g_MainFrame->m_Notebook)->GetPageIndex(madedit);
                     if(pid>=0)
                     {
-                        expr=g_MainFrame->m_Notebook->GetPageText(pid);
+                        expr=((wxAuiNotebook*)g_MainFrame->m_Notebook)->GetPageText(pid);
                         if(expr[expr.Len()-1]==wxT('*'))
                             expr.Truncate(expr.Len()-1);
                     }
