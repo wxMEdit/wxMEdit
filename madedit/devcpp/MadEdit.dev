@@ -1,11 +1,11 @@
 [Project]
 FileName=MadEdit.dev
 Name=MadEdit
-UnitCount=126
+UnitCount=115
 Type=0
 Ver=3
 IsCpp=1
-Folders=charset-detector,MadEdit,wxAUI,wxFlatNotebook
+Folders=charset-detector,MadEdit,wxAUI
 CommandLine=
 CompilerSettings=0000000000010000000100
 PchHead=-1
@@ -460,16 +460,6 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit44]
-FileName=..\wxFlatNotebook\src\wxFlatNotebook\wxFlatNotebook.cpp
-CompileCpp=1
-Folder=wxFlatNotebook
-Compile=1
-Link=1
-Priority=1000
-OverrideBuildCmd=0
-BuildCmd=
-
-[Unit45]
 FileName=..\src\MadEdit\MadEditAdvanced.cpp
 CompileCpp=1
 Folder=MadEdit
@@ -479,7 +469,7 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit46]
+[Unit45]
 FileName=..\src\MadWordCountDialog.h
 CompileCpp=1
 Folder=
@@ -489,7 +479,7 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit47]
+[Unit46]
 FileName=..\src\MadWordCountDialog.cpp
 CompileCpp=1
 Folder=
@@ -499,8 +489,9 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit48]
+[Unit47]
 FileName=..\src\MadWordCountDialog.wxform
+CompileCpp=1
 Folder=
 Compile=0
 Link=0
@@ -508,17 +499,17 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit49]
+[Unit48]
 FileName=..\src\MadHighlightingDialog.h
-CompileCpp=1
 Folder=
 Compile=1
 Link=1
 Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
+CompileCpp=1
 
-[Unit50]
+[Unit49]
 FileName=..\src\MadHighlightingDialog.cpp
 CompileCpp=1
 Folder=
@@ -528,8 +519,9 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit51]
+[Unit50]
 FileName=..\src\MadHighlightingDialog.wxform
+CompileCpp=1
 Folder=
 Compile=0
 Link=0
@@ -537,17 +529,17 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit52]
+[Unit51]
 FileName=..\src\MadFindInFilesDialog.h
-CompileCpp=1
 Folder=
 Compile=1
 Link=1
 Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
+CompileCpp=1
 
-[Unit53]
+[Unit52]
 FileName=..\src\MadFindInFilesDialog.cpp
 CompileCpp=1
 Folder=
@@ -557,8 +549,9 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit54]
+[Unit53]
 FileName=..\src\MadFindInFilesDialog.wxform
+CompileCpp=1
 Folder=
 Compile=0
 Link=0
@@ -566,17 +559,17 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit55]
+[Unit54]
 FileName=..\src\MadSortDialog.h
-CompileCpp=1
 Folder=
 Compile=1
 Link=1
 Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
+CompileCpp=1
 
-[Unit56]
+[Unit55]
 FileName=..\src\MadSortDialog.cpp
 CompileCpp=1
 Folder=
@@ -586,7 +579,7 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit57]
+[Unit56]
 FileName=..\src\MadSortDialog.wxform
 CompileCpp=1
 Folder=
@@ -596,8 +589,18 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit58]
+[Unit57]
 FileName=..\wxAUI\src\tabmdi.cpp
+CompileCpp=1
+Folder=wxAUI
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit58]
+FileName=..\wxAUI\src\auibook.cpp
 Folder=wxAUI
 Compile=1
 Link=1
@@ -607,16 +610,6 @@ BuildCmd=
 CompileCpp=1
 
 [Unit59]
-FileName=..\wxAUI\src\auibook.cpp
-CompileCpp=1
-Folder=wxAUI
-Compile=1
-Link=1
-Priority=1000
-OverrideBuildCmd=0
-BuildCmd=
-
-[Unit60]
 FileName=..\wxAUI\src\dockart.cpp
 CompileCpp=1
 Folder=wxAUI
@@ -626,7 +619,7 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit61]
+[Unit60]
 FileName=..\wxAUI\src\floatpane.cpp
 CompileCpp=1
 Folder=wxAUI
@@ -636,7 +629,7 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit62]
+[Unit61]
 FileName=..\wxAUI\src\framemanager.cpp
 CompileCpp=1
 Folder=wxAUI
@@ -646,7 +639,7 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit63]
+[Unit62]
 FileName=..\wxAUI\include\wx\aui\tabmdi.h
 CompileCpp=1
 Folder=wxAUI
@@ -656,7 +649,7 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit64]
+[Unit63]
 FileName=..\wxAUI\include\wx\aui\aui.h
 CompileCpp=1
 Folder=wxAUI
@@ -666,7 +659,7 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit65]
+[Unit64]
 FileName=..\wxAUI\include\wx\aui\auibook.h
 CompileCpp=1
 Folder=wxAUI
@@ -676,7 +669,7 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit66]
+[Unit65]
 FileName=..\wxAUI\include\wx\aui\dockart.h
 CompileCpp=1
 Folder=wxAUI
@@ -686,7 +679,7 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit67]
+[Unit66]
 FileName=..\wxAUI\include\wx\aui\floatpane.h
 CompileCpp=1
 Folder=wxAUI
@@ -696,10 +689,20 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit68]
+[Unit67]
 FileName=..\wxAUI\include\wx\aui\framemanager.h
 CompileCpp=1
 Folder=wxAUI
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit68]
+FileName=..\charset-detector\include\chardetect.h
+CompileCpp=1
+Folder=charset-detector
 Compile=1
 Link=1
 Priority=1000
@@ -710,7 +713,7 @@ BuildCmd=
 ProfileName=Default Profile
 Type=0
 ObjFiles=
-Includes=N:\wxWidgets\lib\gcc_lib\mswu;..\wxFlatNotebook\include;..\wxAUI\include;N:\wxWidgets\include;N:\boost;..\charset-detector\include;..\charset-detector\src;..\charset-detector\src\tables
+Includes=N:\wxWidgets\lib\gcc_lib\mswu;..\wxAUI\include;N:\wxWidgets\include;N:\boost;..\charset-detector\include;..\charset-detector\src;..\charset-detector\src\tables
 Libs=N:\wxWidgets\lib\gcc_lib;..\libunicows
 PrivateResource=
 ResourceIncludes=N:\wxWidgets\include
@@ -735,116 +738,6 @@ CompilerSet=0
 compilerType=0
 
 [Unit69]
-FileName=..\wxFlatNotebook\src\wxFlatNotebook\renderer.cpp
-CompileCpp=1
-Folder=wxFlatNotebook
-Compile=1
-Link=1
-Priority=1000
-OverrideBuildCmd=0
-BuildCmd=
-
-[Unit70]
-FileName=..\wxFlatNotebook\src\wxFlatNotebook\fnb_resources.cpp
-CompileCpp=1
-Folder=wxFlatNotebook
-Compile=1
-Link=1
-Priority=1000
-OverrideBuildCmd=0
-BuildCmd=
-
-[Unit71]
-FileName=..\wxFlatNotebook\src\wxFlatNotebook\popup_dlg.cpp
-CompileCpp=1
-Folder=wxFlatNotebook
-Compile=1
-Link=1
-Priority=1000
-OverrideBuildCmd=0
-BuildCmd=
-
-[Unit72]
-FileName=..\wxFlatNotebook\include\wx\wxFlatNotebook\wxFNBDropTarget.h
-CompileCpp=1
-Folder=wxFlatNotebook
-Compile=1
-Link=1
-Priority=1000
-OverrideBuildCmd=0
-BuildCmd=
-
-[Unit73]
-FileName=..\wxFlatNotebook\include\wx\wxFlatNotebook\fnb_resources.h
-CompileCpp=1
-Folder=wxFlatNotebook
-Compile=1
-Link=1
-Priority=1000
-OverrideBuildCmd=0
-BuildCmd=
-
-[Unit74]
-FileName=..\wxFlatNotebook\include\wx\wxFlatNotebook\popup_dlg.h
-CompileCpp=1
-Folder=wxFlatNotebook
-Compile=1
-Link=1
-Priority=1000
-OverrideBuildCmd=0
-BuildCmd=
-
-[Unit75]
-FileName=..\wxFlatNotebook\include\wx\wxFlatNotebook\renderer.h
-CompileCpp=1
-Folder=wxFlatNotebook
-Compile=1
-Link=1
-Priority=1000
-OverrideBuildCmd=0
-BuildCmd=
-
-[Unit76]
-FileName=..\wxFlatNotebook\include\wx\wxFlatNotebook\singleton.h
-CompileCpp=1
-Folder=wxFlatNotebook
-Compile=1
-Link=1
-Priority=1000
-OverrideBuildCmd=0
-BuildCmd=
-
-[Unit77]
-FileName=..\wxFlatNotebook\include\wx\wxFlatNotebook\smart_ptr.h
-CompileCpp=1
-Folder=wxFlatNotebook
-Compile=1
-Link=1
-Priority=1000
-OverrideBuildCmd=0
-BuildCmd=
-
-[Unit78]
-FileName=..\wxFlatNotebook\include\wx\wxFlatNotebook\wxFlatNotebook.h
-CompileCpp=1
-Folder=wxFlatNotebook
-Compile=1
-Link=1
-Priority=1000
-OverrideBuildCmd=0
-BuildCmd=
-
-[Unit79]
-FileName=..\charset-detector\include\chardetect.h
-CompileCpp=1
-Folder=charset-detector
-Compile=1
-Link=1
-Priority=1000
-OverrideBuildCmd=0
-BuildCmd=
-
-[Unit80]
 FileName=..\charset-detector\src\entry\impl.cpp
 CompileCpp=1
 Folder=charset-detector
@@ -854,7 +747,7 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit81]
+[Unit70]
 FileName=..\charset-detector\src\prmem.h
 CompileCpp=1
 Folder=charset-detector
@@ -864,7 +757,7 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit82]
+[Unit71]
 FileName=..\charset-detector\src\CharDistribution.cpp
 CompileCpp=1
 Folder=charset-detector
@@ -874,7 +767,7 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit83]
+[Unit72]
 FileName=..\charset-detector\src\CharDistribution.h
 CompileCpp=1
 Folder=charset-detector
@@ -884,7 +777,7 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit84]
+[Unit73]
 FileName=..\charset-detector\src\JpCntx.cpp
 CompileCpp=1
 Folder=charset-detector
@@ -894,7 +787,7 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit85]
+[Unit74]
 FileName=..\charset-detector\src\JpCntx.h
 CompileCpp=1
 Folder=charset-detector
@@ -904,7 +797,7 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit86]
+[Unit75]
 FileName=..\charset-detector\src\LangBulgarianModel.cpp
 CompileCpp=1
 Folder=charset-detector
@@ -914,7 +807,7 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit87]
+[Unit76]
 FileName=..\charset-detector\src\LangCyrillicModel.cpp
 CompileCpp=1
 Folder=charset-detector
@@ -924,7 +817,7 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit88]
+[Unit77]
 FileName=..\charset-detector\src\LangGreekModel.cpp
 CompileCpp=1
 Folder=charset-detector
@@ -934,7 +827,7 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit89]
+[Unit78]
 FileName=..\charset-detector\src\LangHebrewModel.cpp
 CompileCpp=1
 Folder=charset-detector
@@ -944,7 +837,7 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit90]
+[Unit79]
 FileName=..\charset-detector\src\LangHungarianModel.cpp
 CompileCpp=1
 Folder=charset-detector
@@ -954,7 +847,7 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit91]
+[Unit80]
 FileName=..\charset-detector\src\LangThaiModel.cpp
 CompileCpp=1
 Folder=charset-detector
@@ -964,7 +857,7 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit92]
+[Unit81]
 FileName=..\charset-detector\src\nsBig5Prober.cpp
 CompileCpp=1
 Folder=charset-detector
@@ -974,7 +867,7 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit93]
+[Unit82]
 FileName=..\charset-detector\src\nsBig5Prober.h
 CompileCpp=1
 Folder=charset-detector
@@ -984,7 +877,7 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit94]
+[Unit83]
 FileName=..\charset-detector\src\nsCharSetProber.cpp
 CompileCpp=1
 Folder=charset-detector
@@ -994,7 +887,7 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit95]
+[Unit84]
 FileName=..\charset-detector\src\nsCharSetProber.h
 CompileCpp=1
 Folder=charset-detector
@@ -1004,7 +897,7 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit96]
+[Unit85]
 FileName=..\charset-detector\src\nsCodingStateMachine.h
 CompileCpp=1
 Folder=charset-detector
@@ -1014,7 +907,7 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit97]
+[Unit86]
 FileName=..\charset-detector\src\nscore.h
 CompileCpp=1
 Folder=charset-detector
@@ -1024,7 +917,7 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit98]
+[Unit87]
 FileName=..\charset-detector\src\nsEscCharsetProber.cpp
 CompileCpp=1
 Folder=charset-detector
@@ -1034,7 +927,7 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit99]
+[Unit88]
 FileName=..\charset-detector\src\nsEscCharsetProber.h
 CompileCpp=1
 Folder=charset-detector
@@ -1044,7 +937,7 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit100]
+[Unit89]
 FileName=..\charset-detector\src\nsEscSM.cpp
 CompileCpp=1
 Folder=charset-detector
@@ -1054,7 +947,7 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit101]
+[Unit90]
 FileName=..\charset-detector\src\nsEUCJPProber.cpp
 CompileCpp=1
 Folder=charset-detector
@@ -1064,7 +957,7 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit102]
+[Unit91]
 FileName=..\charset-detector\src\nsEUCJPProber.h
 CompileCpp=1
 Folder=charset-detector
@@ -1074,7 +967,7 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit103]
+[Unit92]
 FileName=..\charset-detector\src\nsEUCKRProber.cpp
 CompileCpp=1
 Folder=charset-detector
@@ -1084,7 +977,7 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit104]
+[Unit93]
 FileName=..\charset-detector\src\nsEUCKRProber.h
 CompileCpp=1
 Folder=charset-detector
@@ -1094,7 +987,7 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit105]
+[Unit94]
 FileName=..\charset-detector\src\nsEUCTWProber.cpp
 CompileCpp=1
 Folder=charset-detector
@@ -1104,7 +997,7 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit106]
+[Unit95]
 FileName=..\charset-detector\src\nsEUCTWProber.h
 CompileCpp=1
 Folder=charset-detector
@@ -1114,7 +1007,7 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit107]
+[Unit96]
 FileName=..\charset-detector\src\nsGB2312Prober.cpp
 CompileCpp=1
 Folder=charset-detector
@@ -1124,7 +1017,7 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit108]
+[Unit97]
 FileName=..\charset-detector\src\nsGB2312Prober.h
 CompileCpp=1
 Folder=charset-detector
@@ -1134,7 +1027,7 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit109]
+[Unit98]
 FileName=..\charset-detector\src\nsHebrewProber.cpp
 CompileCpp=1
 Folder=charset-detector
@@ -1144,7 +1037,7 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit110]
+[Unit99]
 FileName=..\charset-detector\src\nsHebrewProber.h
 CompileCpp=1
 Folder=charset-detector
@@ -1154,7 +1047,7 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit111]
+[Unit100]
 FileName=..\charset-detector\src\nsLatin1Prober.cpp
 CompileCpp=1
 Folder=charset-detector
@@ -1164,7 +1057,7 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit112]
+[Unit101]
 FileName=..\charset-detector\src\nsLatin1Prober.h
 CompileCpp=1
 Folder=charset-detector
@@ -1174,7 +1067,7 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit113]
+[Unit102]
 FileName=..\charset-detector\src\nsMBCSGroupProber.cpp
 CompileCpp=1
 Folder=charset-detector
@@ -1184,7 +1077,7 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit114]
+[Unit103]
 FileName=..\charset-detector\src\nsMBCSGroupProber.h
 CompileCpp=1
 Folder=charset-detector
@@ -1194,8 +1087,118 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit115]
+[Unit104]
 FileName=..\charset-detector\src\nsMBCSSM.cpp
+CompileCpp=1
+Folder=charset-detector
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit105]
+FileName=..\charset-detector\src\nsPkgInt.h
+CompileCpp=1
+Folder=charset-detector
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit106]
+FileName=..\charset-detector\src\nsSBCharSetProber.cpp
+CompileCpp=1
+Folder=charset-detector
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit107]
+FileName=..\charset-detector\src\nsSBCharSetProber.h
+CompileCpp=1
+Folder=charset-detector
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit108]
+FileName=..\charset-detector\src\nsSBCSGroupProber.cpp
+CompileCpp=1
+Folder=charset-detector
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit109]
+FileName=..\charset-detector\src\nsSBCSGroupProber.h
+CompileCpp=1
+Folder=charset-detector
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit110]
+FileName=..\charset-detector\src\nsSJISProber.cpp
+CompileCpp=1
+Folder=charset-detector
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit111]
+FileName=..\charset-detector\src\nsSJISProber.h
+CompileCpp=1
+Folder=charset-detector
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit112]
+FileName=..\charset-detector\src\nsUniversalDetector.cpp
+CompileCpp=1
+Folder=charset-detector
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit113]
+FileName=..\charset-detector\src\nsUniversalDetector.h
+CompileCpp=1
+Folder=charset-detector
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit114]
+FileName=..\charset-detector\src\nsUTF8Prober.cpp
+CompileCpp=1
+Folder=charset-detector
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit115]
+FileName=..\charset-detector\src\nsUTF8Prober.h
 CompileCpp=1
 Folder=charset-detector
 Compile=1
