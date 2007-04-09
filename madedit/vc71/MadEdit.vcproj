@@ -19,7 +19,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="..\wxAUI\include;..\wxFlatNotebook\include;$(WXWIN)\lib\vc_lib\mswud;$(WXWIN)\include;\boost;..\charset-detector\include;..\charset-detector\src;..\charset-detector\src\tables"
+				AdditionalIncludeDirectories="..\wxAUI\include;$(WXWIN)\lib\vc_lib\mswud;$(WXWIN)\include;\boost;..\charset-detector\include;..\charset-detector\src;..\charset-detector\src\tables"
 				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;wxUSE_AUI=1;WXDLLIMPEXP_AUI="
 				MinimalRebuild="TRUE"
 				BasicRuntimeChecks="3"
@@ -33,7 +33,7 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="wxmsw29ud_core.lib wxbase29ud.lib unicows.lib comctl32.lib uuid.lib rpcrt4.lib User32.Lib Gdi32.Lib Shell32.Lib AdvAPI32.Lib Ole32.Lib OleAut32.Lib ComDlg32.Lib"
+				AdditionalDependencies="wxmsw28ud_core.lib wxbase28ud.lib unicows.lib comctl32.lib uuid.lib rpcrt4.lib User32.Lib Gdi32.Lib Shell32.Lib AdvAPI32.Lib Ole32.Lib OleAut32.Lib ComDlg32.Lib"
 				OutputFile="$(OutDir)/MadEdit.exe"
 				LinkIncremental="1"
 				AdditionalLibraryDirectories="$(WXWIN)\lib\vc_lib;..\libunicows"
@@ -72,7 +72,7 @@
 				Name="VCCLCompilerTool"
 				GlobalOptimizations="TRUE"
 				FavorSizeOrSpeed="1"
-				AdditionalIncludeDirectories="..\wxAUI\include;..\wxFlatNotebook\include;$(WXWIN)\lib\vc_lib\mswu;$(WXWIN)\include;\boost;..\charset-detector\include;..\charset-detector\src;..\charset-detector\src\tables"
+				AdditionalIncludeDirectories="..\wxAUI\include;$(WXWIN)\lib\vc_lib\mswu;$(WXWIN)\include;\boost;..\charset-detector\include;..\charset-detector\src;..\charset-detector\src\tables"
 				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;wxUSE_AUI=1;WXDLLIMPEXP_AUI="
 				RuntimeLibrary="0"
 				UsePrecompiledHeader="0"
@@ -83,7 +83,7 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="wxmsw29u_core.lib wxbase29u.lib unicows.lib comctl32.lib User32.Lib Gdi32.Lib Shell32.Lib AdvAPI32.Lib Ole32.Lib OleAut32.Lib ComDlg32.Lib"
+				AdditionalDependencies="wxmsw28u_core.lib wxbase28u.lib unicows.lib comctl32.lib User32.Lib Gdi32.Lib Shell32.Lib AdvAPI32.Lib Ole32.Lib OleAut32.Lib ComDlg32.Lib"
 				OutputFile="$(OutDir)/MadEdit.exe"
 				LinkIncremental="1"
 				AdditionalLibraryDirectories="$(WXWIN)\lib\vc_lib;..\libunicows"
@@ -212,22 +212,6 @@
 				</File>
 				<File
 					RelativePath="..\wxAUI\src\tabmdi.cpp">
-				</File>
-			</Filter>
-			<Filter
-				Name="wxFlatNotebook"
-				Filter="">
-				<File
-					RelativePath="..\wxFlatNotebook\src\wxFlatNotebook\fnb_resources.cpp">
-				</File>
-				<File
-					RelativePath="..\wxFlatNotebook\src\wxFlatNotebook\popup_dlg.cpp">
-				</File>
-				<File
-					RelativePath="..\wxFlatNotebook\src\wxFlatNotebook\renderer.cpp">
-				</File>
-				<File
-					RelativePath="..\wxFlatNotebook\src\wxFlatNotebook\wxFlatNotebook.cpp">
 				</File>
 			</Filter>
 			<Filter
