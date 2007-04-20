@@ -4,7 +4,7 @@
 // Author:      Hans Van Leemputten
 // Modified by: Benjamin I. Williams / Kirix Corporation
 // Created:     29/07/2002
-// RCS-ID:      $Id: tabmdi.h,v 1.16 2007/01/01 19:49:04 PC Exp $
+// RCS-ID:      $Id: tabmdi.h,v 1.17 2007/04/14 09:58:13 VS Exp $
 // Copyright:   (c) Hans Van Leemputten
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////
@@ -63,7 +63,7 @@ public:
     wxAuiNotebook* GetNotebook() const;
     
 #if wxUSE_MENUS
-    wxMenu* GetWindowMenu() const { return m_pWindowMenu; };
+    wxMenu* GetWindowMenu() const { return m_pWindowMenu; }
     void SetWindowMenu(wxMenu* pMenu);
 
     virtual void SetMenuBar(wxMenuBar *pMenuBar);

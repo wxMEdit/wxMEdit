@@ -4,7 +4,7 @@
 // Author:      Benjamin I. Williams
 // Modified by:
 // Created:     2005-05-17
-// RCS-ID:      $Id: framemanager.cpp,v 1.102 2006/12/24 12:16:28 VZ Exp $
+// RCS-ID:      $Id: framemanager.cpp,v 1.103 2007/04/20 09:03:43 BIW Exp $
 // Copyright:   (C) Copyright 2005-2006, Kirix Corporation, All Rights Reserved
 // Licence:     wxWindows Library Licence, Version 3.1
 ///////////////////////////////////////////////////////////////////////////////
@@ -1872,7 +1872,19 @@ wxSizer* wxAuiManager::LayoutAll(wxAuiPaneInfoArray& panes,
 
     // empty all docks out
     for (i = 0, dock_count = docks.GetCount(); i < dock_count; ++i)
-        docks.Item(i).panes.Empty();
+    {
+        wxAuiDockInfo& dock = docks.Item(i);
+        
+        // empty out all panes, as they will be readded below
+        dock.panes.Empty();
+        
+        if (dock.fixed)
+        {
+            // always reset fixed docks' sizes, because
+            // the contained windows may have been resized
+            dock.size = 0;
+        }
+    }
 
 
     // iterate through all known panes, filing each
