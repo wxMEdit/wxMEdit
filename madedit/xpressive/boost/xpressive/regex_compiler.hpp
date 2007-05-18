@@ -530,7 +530,7 @@ private:
             int mark_nbr = detail::toi(tmp, end, this->rxtraits(), 10, 999);
 
             // If the resulting number could conceivably be a backref, then it is.
-            if(10 > mark_nbr || mark_nbr < static_cast<int>(this->mark_count_))
+            if(10 > mark_nbr || mark_nbr <= static_cast<int>(this->mark_count_))
             {
                 begin = tmp;
                 escape_value esc = {0, mark_nbr, 0, detail::escape_mark};
