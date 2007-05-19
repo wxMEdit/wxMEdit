@@ -4,7 +4,7 @@
 // Author:      Benjamin I. Williams
 // Modified by:
 // Created:     2005-05-17
-// RCS-ID:      $Id: dockart.cpp,v 1.32 2006/11/27 09:21:08 ABX Exp $
+// RCS-ID:      $Id: dockart.cpp,v 1.33 2007/03/19 14:52:48 BIW Exp $
 // Copyright:   (C) Copyright 2005-2006, Kirix Corporation, All Rights Reserved
 // Licence:     wxWindows Library Licence, Version 3.1
 ///////////////////////////////////////////////////////////////////////////////
@@ -683,6 +683,8 @@ void wxAuiDefaultDockArt::DrawPaneButton(wxDC& dc, wxWindow *WXUNUSED(window),
                                       wxAuiPaneInfo& pane)
 {
     wxBitmap bmp;
+	if (!(&pane))
+		return;
     switch (button)
     {
         default:

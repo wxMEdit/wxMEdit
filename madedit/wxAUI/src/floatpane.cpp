@@ -4,7 +4,7 @@
 // Author:      Benjamin I. Williams
 // Modified by:
 // Created:     2005-05-17
-// RCS-ID:      $Id: floatpane.cpp,v 1.24 2006/11/23 18:24:11 BIW Exp $
+// RCS-ID:      $Id: floatpane.cpp,v 1.25 2007/05/05 19:41:49 RR Exp $
 // Copyright:   (C) Copyright 2005-2006, Kirix Corporation, All Rights Reserved
 // Licence:     wxWindows Library Licence, Version 3.1
 ///////////////////////////////////////////////////////////////////////////////
@@ -159,8 +159,10 @@ void wxAuiFloatingFrame::OnSize(wxSizeEvent& event)
 void wxAuiFloatingFrame::OnClose(wxCloseEvent& evt)
 {
     m_owner_mgr->OnFloatingPaneClosed(m_pane_window, evt);
-    if (!evt.GetVeto())
+    if (!evt.GetVeto()) {
+	m_mgr.DetachPane(m_pane_window);
         Destroy();
+    }
 }
 
 void wxAuiFloatingFrame::OnMoveEvent(wxMoveEvent& event)
