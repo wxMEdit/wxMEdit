@@ -259,30 +259,32 @@ struct ucs4_regex_traits: public null_regex_traits<ucs4_t>
 {
     typedef ucs4_t char_type;
     typedef detail::umaskex_t char_class_type;
+    typedef ucs4string string_type;
+    typedef std::locale locale_type; 
 
     template<typename char_type2>
-    char_type2 tolower(char_type2 ch) const
+    static char_type2 tolower(char_type2 ch)
     {
         if(ch<0 || ch>0xFFFF) return ch;
         return towlower(wchar_t(ch));
     }
-    wchar_t tolower(wchar_t ch) const
+    static wchar_t tolower(wchar_t ch)
     {
         return towlower(ch);
     }
 
     template<typename char_type2>
-    char_type2 toupper(char_type2 ch) const
+    static char_type2 toupper(char_type2 ch)
     {
         if(ch<0 || ch>0xFFFF) return ch;
         return towupper(wchar_t(ch));
     }
-    wchar_t toupper(wchar_t ch) const
+    static wchar_t toupper(wchar_t ch)
     {
         return towupper(ch);
     }
 
-    char_type widen(char ch) const
+    static char_type widen(char ch)
     {
         return char_type(ch);
     }
