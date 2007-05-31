@@ -216,6 +216,16 @@ bool Search(CharIter &begin, CharIter &end,
 namespace boost { namespace xpressive { namespace detail
 {
 
+#if BOOST_VERSION >= 103500
+
+template<>
+struct string_type<ucs4_t>  // defined in xpressive/detail/detail_fwd.hpp
+{
+    typedef ucs4string type;
+};
+
+#else
+
 template<char Ch, wchar_t Wch>
 struct char_literal<ucs4_t, Ch, Wch>
 {
@@ -225,6 +235,8 @@ struct char_literal<ucs4_t, Ch, Wch>
 #ifndef BOOST_NO_INCLASS_MEMBER_INITIALIZATION
 template<char Ch, wchar_t Wch>
 ucs4_t const char_literal<ucs4_t, Ch, Wch>::value;
+#endif
+
 #endif
 
 template<>
@@ -605,8 +617,6 @@ wxFileOffset UCIterator::s_endpos=0;
 list<UCQueueSet> UCIterator::s_ucqueues;
 
 
-typedef basic_regex<UCIterator> ucs4regex;
-
 MadSearchResult MadEdit::Search(/*IN_OUT*/MadCaretPos &beginpos, /*IN_OUT*/MadCaretPos &endpos,
     const wxString &text, bool bRegex, bool bCaseSensitive, bool bWholeWord)
 {
@@ -640,7 +650,8 @@ MadSearchResult MadEdit::Search(/*IN_OUT*/MadCaretPos &beginpos, /*IN_OUT*/MadCa
 #endif
 
     regex_compiler<UCIterator, ucs4_regex_traits > ucs4comp;
-    ucs4regex expression;
+    basic_regex<UCIterator> expression;
+
     if(bRegex)
     {
         try
@@ -855,10 +866,10 @@ MadSearchResult MadEdit::Replace(ucs4string &out, const MadCaretPos &beginpos, c
     ucs4string exprstr(puc, puc+expr.Len());
 #endif
 
-    typedef ucs4string::const_iterator iterator;
-    regex_compiler<iterator, ucs4_regex_traits > ucs4comp;
+    typedef ucs4string::const_iterator ucs4iter;
+    regex_compiler<ucs4iter, ucs4_regex_traits > ucs4comp;
+    basic_regex<ucs4iter> expression;
 
-    basic_regex<iterator> expression;
     try
     {
         expression = ucs4comp.compile(exprstr, opt);
