@@ -38,6 +38,7 @@
 #include <wx/printdlg.h>
 #include <wx/config.h>
 
+#include <algorithm>
 
 //Do not add custom headers.
 //wx-dvcpp designer will remove them
@@ -525,7 +526,7 @@ public:
 
         FunctorA fa;
         fa.madedit = (MadEdit*)win;
-        list<PageData>::iterator it = find_if(pages_list.begin(), pages_list.end(), fa);
+        list<PageData>::iterator it = std::find_if(pages_list.begin(), pages_list.end(), fa);
 
         wxASSERT(it != pages_list.end());
 
