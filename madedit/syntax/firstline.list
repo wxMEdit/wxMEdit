@@ -8,3 +8,7 @@ bin/awk		syntax_awk.syn
 bin/perl	syntax_perl.syn
 bin/python	syntax_python.syn
 bin/ruby	syntax_ruby.syn
+
+<!DOCTYPE	syntax_html.syn
+<html		syntax_html.syn
+<HTML		syntax_html.syn
