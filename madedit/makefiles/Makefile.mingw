@@ -69,7 +69,7 @@ XPRESSIVE_DIR = ../xpressive
 BOOST_DIR = N:/boost
 
 LIBS =  -L$(WXWIN)/lib/gcc_lib -L"../libunicows" -mwindows -lwxmsw28u_core -lwxbase28u -lunicows -lkernel32 -luser32 -lgdi32 -lcomdlg32 -lwinspool -lwinmm -lshell32 -lcomctl32 -lole32 -loleaut32 -luuid -lrpcrt4 -ladvapi32 -lwsock32 -lodbc32 -lopengl32  -s 
-CXXINCS =  -I$(WXWIN)/include  -I$(WXWIN)/lib/gcc_lib/mswu  -I$(XPRESSIVE_DIR)  -I$(BOOST_DIR)  -I"../wxAUI/include" -I"../charset-detector/include" -I"../charset-detector/src" -I"../charset-detector/src/tables"
+CXXINCS =  -I$(XPRESSIVE_DIR) -I$(BOOST_DIR) -I"../wxAUI/include" -I"../charset-detector/include" -I"../charset-detector/src" -I"../charset-detector/src/tables" -I$(WXWIN)/include  -I$(WXWIN)/lib/gcc_lib/mswu
 
 BIN  = Release/MadEdit.exe
 CXXFLAGS = $(CXXINCS) -D_UNICODE -D__WXMSW__ -D__GNUWIN32__ -D__WIN95__ -DWIN32 -DwxUSE_AUI=1 -DWXDLLIMPEXP_AUI= -O2

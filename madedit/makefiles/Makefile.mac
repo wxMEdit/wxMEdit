@@ -75,7 +75,7 @@ ADDINC = -I../wxAUI/include -I../charset-detector/include -I../charset-detector/
 LIBS = $(shell $(WXCONFIG) --libs core,base) #$(shell pkg-config --libs gtk+-2.0)
 #LIBS = -pthread -Wl,-O1 -Wl,--enable-new-dtags -Wl,--sort-common $(HOME)/wxWidgets/RELEASE/lib/libwx_gtk2u_core-2.7.a $(HOME)/wxWidgets/RELEASE/lib/libwx_baseu-2.7.a -lgtk-x11-2.0 -lgdk-x11-2.0 -lgdk_pixbuf-2.0 -lpangoxft-1.0 -lpangox-1.0 -lpangoft2-1.0 -lpango-1.0 -lgobject-2.0 -lgmodule-2.0 -lgthread-2.0 -lglib-2.0 -ldl -lm
 
-CXXINCS = -I/Developer/Headers/FlatCarbon $(BOOST_INC) $(XPRESSIVE_INC) $(ADDINC) $(shell $(WXCONFIG) --cxxflags) #$(shell pkg-config --cflags gtk+-2.0)
+CXXINCS = -I/Developer/Headers/FlatCarbon $(XPRESSIVE_INC) $(BOOST_INC) $(ADDINC) $(shell $(WXCONFIG) --cxxflags) #$(shell pkg-config --cflags gtk+-2.0)
  
 CXXFLAGS = $(CXXINCS) -DwxUSE_AUI=1 -DWXDLLIMPEXP_AUI= -O2 #-O3 -fexpensive-optimizations 
 
