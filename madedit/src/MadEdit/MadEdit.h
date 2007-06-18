@@ -778,6 +778,11 @@ public:
     // startline<0 : sort all lines; otherwise sort [beginline, endline]
     void SortLines(MadSortFlags flags, int beginline, int endline);
 
+    // convert WordWraps to NewLine-chars in the SelText or whole file
+    void ConvertWordWrapToNewLine();
+    // convert NewLine-chars to WordWraps in the SelText
+    void ConvertNewLineToWordWrap();
+
     void SelectAll();
     void CutToClipboard();
     void CopyToClipboard();

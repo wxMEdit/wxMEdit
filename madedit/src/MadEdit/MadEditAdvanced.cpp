@@ -23,7 +23,7 @@ void MadEdit::ToUpperCase()
     wxString text;
     GetSelText(text);
     bool modified=false;
-    
+
     size_t i=0, count=text.Len();
     while(i<count)
     {
@@ -36,12 +36,12 @@ void MadEdit::ToUpperCase()
         }
         ++i;
     }
-    
+
     if(modified)
     {
         vector<ucs4_t> ucs;
         TranslateText(text.c_str(), text.Len(), &ucs, true);
-        
+
         if(m_EditMode==emColumnMode)
         {
             int colcount = m_SelectionEnd->rowid - m_SelectionBegin->rowid + 1;
@@ -62,7 +62,7 @@ void MadEdit::ToLowerCase()
     wxString text;
     GetSelText(text);
     bool modified=false;
-    
+
     size_t i=0, count=text.Len();
     while(i<count)
     {
@@ -75,12 +75,12 @@ void MadEdit::ToLowerCase()
         }
         ++i;
     }
-    
+
     if(modified)
     {
         vector<ucs4_t> ucs;
         TranslateText(text.c_str(), text.Len(), &ucs, true);
-        
+
         if(m_EditMode==emColumnMode)
         {
             int colcount = m_SelectionEnd->rowid - m_SelectionBegin->rowid + 1;
@@ -101,7 +101,7 @@ void MadEdit::InvertCase()
     wxString text;
     GetSelText(text);
     bool modified=false;
-    
+
     size_t i=0, count=text.Len();
     while(i<count)
     {
@@ -115,7 +115,7 @@ void MadEdit::InvertCase()
         {
             nc=towlower(c);
         }
-        
+
         if(nc != c)
         {
             text.SetChar(i, nc);
@@ -123,12 +123,12 @@ void MadEdit::InvertCase()
         }
         ++i;
     }
-    
+
     if(modified)
     {
         vector<ucs4_t> ucs;
         TranslateText(text.c_str(), text.Len(), &ucs, true);
-        
+
         if(m_EditMode==emColumnMode)
         {
             int colcount = m_SelectionEnd->rowid - m_SelectionBegin->rowid + 1;
@@ -447,7 +447,7 @@ void MadEdit::ToHalfWidth()
     wxString text;
     GetSelText(text);
     bool modified=false;
-    
+
     size_t i=0, count=text.Len();
     while(i<count)
     {
@@ -460,12 +460,12 @@ void MadEdit::ToHalfWidth()
         }
         ++i;
     }
-    
+
     if(modified)
     {
         vector<ucs4_t> ucs;
         TranslateText(text.c_str(), text.Len(), &ucs, true);
-        
+
         if(m_EditMode==emColumnMode)
         {
             int colcount = m_SelectionEnd->rowid - m_SelectionBegin->rowid + 1;
@@ -486,7 +486,7 @@ void MadEdit::ToFullWidth()
     wxString text;
     GetSelText(text);
     bool modified=false;
-    
+
     size_t i=0, count=text.Len();
     while(i<count)
     {
@@ -499,12 +499,12 @@ void MadEdit::ToFullWidth()
         }
         ++i;
     }
-    
+
     if(modified)
     {
         vector<ucs4_t> ucs;
         TranslateText(text.c_str(), text.Len(), &ucs, true);
-        
+
         if(m_EditMode==emColumnMode)
         {
             int colcount = m_SelectionEnd->rowid - m_SelectionBegin->rowid + 1;
@@ -833,7 +833,7 @@ void MadEdit::WordCount(bool selection, int &wordCount, int &charCount, int &spa
                 }
                 if(!tested)
                 {
-                    if(UnicodeBlocks[idx].is_fullwidth) 
+                    if(UnicodeBlocks[idx].is_fullwidth)
                         ++fullWidthCount;
                     else
                         ++halfWidthCount;
@@ -843,7 +843,7 @@ void MadEdit::WordCount(bool selection, int &wordCount, int &charCount, int &spa
 
         previdx=idx;
     }
-    
+
     if(detail!=NULL)
     {
         for(idx=0;idx<UnicodeBlocksCount;++idx)
@@ -883,7 +883,7 @@ struct SortLineData
     int lineid;
     MadUCQueue ucq;
     // for numeric sorting. int_begin=-1 indicates invalid number
-    int int_begin, int_len, frac_begin, frac_len; 
+    int int_begin, int_len, frac_begin, frac_len;
     bool negative;
 
     SortLineData(const MadLineIterator& l, int id);
@@ -962,7 +962,7 @@ SortLineData::SortLineData(const MadLineIterator& l, int id)
                 default:
                     if(uc>='0' && uc<='9')
                     {
-                        if(int_begin==-1) 
+                        if(int_begin==-1)
                         {
                             int_begin=num_idx;
                             int_len=1;
@@ -983,7 +983,7 @@ SortLineData::SortLineData(const MadLineIterator& l, int id)
             {
                 if(uc>='0' && uc<='9')
                 {
-                    if(int_begin==-1) 
+                    if(int_begin==-1)
                     {
                         int_begin=0;
                         int_len=0;
@@ -1072,7 +1072,7 @@ struct SortLineComp
             if(data->int_begin>=0)
             {
                 if(it.data->int_begin < 0) return true;
-                
+
                 if(data->negative && !it.data->negative) return true;
                 if(!data->negative && it.data->negative) return false;
 
@@ -1167,7 +1167,7 @@ void MadEdit::SortLines(MadSortFlags flags, int beginline, int endline)
     MadLineIterator lit = m_Lines->m_LineList.end();
     --lit;
     if(lit->m_Size == 0) --maxline; // the last line is empty
-    
+
     if(beginline<0) // sort all lines
     {
         beginline=0;
@@ -1330,7 +1330,7 @@ void MadEdit::SortLines(MadSortFlags flags, int beginline, int endline)
     }
     while(++dit != datalist.end());
 
-    // 
+    //
     MadOverwriteUndoData *oudata = new MadOverwriteUndoData();
     oudata->m_Pos = pos;
     oudata->m_DelSize = delsize;
@@ -1340,7 +1340,7 @@ void MadEdit::SortLines(MadSortFlags flags, int beginline, int endline)
     lit = DeleteInsertData( oudata->m_Pos,
                             oudata->m_DelSize, &oudata->m_DelData,
                             oudata->m_InsSize, &oudata->m_InsData);
-    
+
     MadUndo *undo = m_UndoBuffer->Add();
 
     if(m_CaretPos.pos > m_Lines->m_Size) m_CaretPos.pos = m_Lines->m_Size;
@@ -1395,3 +1395,93 @@ void MadEdit::SortLines(MadSortFlags flags, int beginline, int endline)
     if(sc) DoStatusChanged();
 }
 
+void MadEdit::ConvertWordWrapToNewLine()
+{
+    if(IsReadOnly() || GetEditMode()==emHexMode || m_Lines->m_LineCount==m_Lines->m_RowCount)
+        return;
+
+    wxFileOffset begpos = 0, endpos = GetFileSize();
+    if(IsSelected())
+    {
+        begpos = m_SelectionBegin->pos;
+        endpos = m_SelectionEnd->pos;
+    }
+    wxFileOffset pos = begpos;
+    MadLineIterator lit;
+    int rowid;
+    GetLineByPos(lit, pos, rowid); // get first line we want to process
+
+    vector<wxFileOffset> del_pos;
+    do
+    {
+        if(lit->RowCount() > 1) // there are wrapped-lines
+        {
+            MadRowIndexIterator rit = lit->m_RowIndices.begin();
+            ++rit;
+            MadRowIndexIterator ritend = lit->m_RowIndices.end();
+            --ritend;
+            wxFileOffset p;
+            while(rit!=ritend && (p=pos+rit->m_Start) <= endpos)
+            {
+                if(p >= begpos) del_pos.push_back(p);
+                ++rit;
+            }
+
+        }
+        pos += lit->m_Size;
+        ++lit;
+    }
+    while(pos < endpos);
+
+    if(del_pos.size()==0) return; // there is no wrapped-line
+
+    MadBlock blk(m_Lines->m_MemData, -1, 0);
+    ucs4_t newline[2]={ 0x0D, 0x0A };
+    switch(m_InsertNewLineType)
+    {
+    case nltDOS:
+#ifdef __WXMSW__
+    case nltDefault:
+#endif
+        UCStoBlock(newline, 2, blk);
+        break;
+    case nltMAC:
+        UCStoBlock(newline, 1, blk);
+        break;
+    case nltUNIX:
+#ifndef __WXMSW__
+    case nltDefault:
+#endif
+        UCStoBlock(newline+1, 1, blk);
+        break;
+    }
+
+    vector<wxByte> newlinedata;
+    newlinedata.resize(blk.m_Size);
+    wxByte *buf = &(*newlinedata.begin());
+    blk.Get(0, buf, blk.m_Size);
+
+    vector<wxByte*> ins_data;
+    vector<wxFileOffset> ins_len;
+    size_t count = del_pos.size();
+    do
+    {
+        ins_data.push_back(buf);
+        ins_len.push_back(blk.m_Size);
+    }
+    while(--count > 0);
+
+    wxFileOffset size=del_pos.back() - del_pos.front();
+    if((size <= 2*1024*1024) || (del_pos.size()>=40 && size<= 10*1024*1024))
+    {
+        OverwriteDataSingle(del_pos, del_pos, NULL, &ins_data, ins_len);
+    }
+    else
+    {
+        OverwriteDataMulti(del_pos, del_pos, NULL, &ins_data, ins_len);
+    }
+}
+
+void MadEdit::ConvertNewLineToWordWrap()
+{
+}

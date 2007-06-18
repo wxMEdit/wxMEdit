@@ -6420,6 +6420,7 @@ void MadEdit::OverwriteDataSingle(vector<wxFileOffset> &del_bpos, vector<wxFileO
         DisplayCaret(true);
 }
 
+// overwrite data in multiple Undos
 void MadEdit::OverwriteDataMulti(vector<wxFileOffset> &del_bpos, vector<wxFileOffset> &del_epos,
                          vector<const ucs4_t*> *ins_ucs, vector<wxByte*> *ins_data,
                          vector<wxFileOffset> &ins_len)
