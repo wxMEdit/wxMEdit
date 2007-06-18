@@ -331,12 +331,21 @@ MadSyntax* MadSyntax::GetSyntaxByExt(const wxString &ext)
 MadSyntax* MadSyntax::GetSyntaxByFirstLine(wxByte *data, int size)
 {
     wxString line;
-    while(size>0 && *data!=0x0D && *data!=0x0A && *data!=0)
+    wxChar ch;
+    // get first non-empty line
+    do
     {
-        line<<wxChar(*data);
+        while(size>0 && (ch=wxChar(*data))!=0x0D && ch!=0x0A && ch!=0)
+        {
+            line<<ch;
+            ++data;
+            --size;
+        }
         ++data;
         --size;
+        line.Trim(false);
     }
+    while(line.IsEmpty() && size>0 && ch!=0);
 
     wxString synfile;
 
