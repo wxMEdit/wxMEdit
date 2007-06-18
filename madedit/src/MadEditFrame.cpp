@@ -941,6 +941,8 @@ BEGIN_EVENT_TABLE(MadEditFrame,wxFrame)
 	EVT_UPDATE_UI(menuDecreaseIndent, MadEditFrame::OnUpdateUI_MenuIndent)
 	EVT_UPDATE_UI(menuComment, MadEditFrame::OnUpdateUI_MenuComment)
 	EVT_UPDATE_UI(menuUncomment, MadEditFrame::OnUpdateUI_MenuComment)
+	EVT_UPDATE_UI(menuWordWrapToNewLine, MadEditFrame::OnUpdateUI_Menu_CheckSize)
+	EVT_UPDATE_UI(menuNewLineToWordWrap, MadEditFrame::OnUpdateUI_Menu_CheckSize)
 	EVT_UPDATE_UI(menuToUpperCase, MadEditFrame::OnUpdateUI_MenuEdit_CheckSelSize)
 	EVT_UPDATE_UI(menuToLowerCase, MadEditFrame::OnUpdateUI_MenuEdit_CheckSelSize)
 	EVT_UPDATE_UI(menuInvertCase , MadEditFrame::OnUpdateUI_MenuEdit_CheckSelSize)
@@ -1033,6 +1035,8 @@ BEGIN_EVENT_TABLE(MadEditFrame,wxFrame)
 	EVT_MENU(menuDecreaseIndent, MadEditFrame::OnEditDecIndent)
 	EVT_MENU(menuComment, MadEditFrame::OnEditComment)
 	EVT_MENU(menuUncomment, MadEditFrame::OnEditUncomment)
+	EVT_MENU(menuWordWrapToNewLine, MadEditFrame::OnEditWordWrapToNewLine)
+	EVT_MENU(menuNewLineToWordWrap, MadEditFrame::OnEditNewLineToWordWrap)
 	EVT_MENU(menuToUpperCase, MadEditFrame::OnEditToUpperCase)
 	EVT_MENU(menuToLowerCase, MadEditFrame::OnEditToLowerCase)
 	EVT_MENU(menuInvertCase , MadEditFrame::OnEditInvertCase)
@@ -1190,6 +1194,9 @@ CommandData CommandTable[]=
     { 0,                2, 0,                            0,                                   0,                                            0,                   wxITEM_SEPARATOR, -1,                0,                     0},
     { ecComment,        2, menuComment,                  wxT("menuComment"),                  _("&Comment"),                                wxT("Ctrl-M"),       wxITEM_NORMAL,    comment_xpm_idx,   0,                     _("Comment out the selected lines")},
     { ecUncomment,      2, menuUncomment,                wxT("menuUncomment"),                _("&Uncomment"),                              wxT("Ctrl-Shift-M"), wxITEM_NORMAL,    uncomment_xpm_idx, 0,                     _("Uncomment the selected lines")},
+    { 0,                2, 0,                            0,                                   0,                                            0,                   wxITEM_SEPARATOR, -1,                0,                     0},
+    { 0,                2, menuWordWrapToNewLine,        wxT("menuWordWrapToNewLine"),        _("WordWraps To NewLine Chars"),              wxT(""),             wxITEM_NORMAL,    -1,                0,                     _("Convert WordWraps to NewLine chars in the file or selection")},
+    { 0,                2, menuNewLineToWordWrap,        wxT("menuNewLineToWordWrap"),        _("NewLines Char To WordWraps"),              wxT(""),             wxITEM_NORMAL,    -1,                0,                     _("Convert NewLine chars to WordWraps in the selection")},
     { 0,                2, 0,                            0,                                   0,                                            0,                   wxITEM_SEPARATOR, -1,                0,                     0},
     { ecToUpperCase,    2, menuToUpperCase,              wxT("menuToUpperCase"),              _("To U&pperCase"),                           wxT("Ctrl-U"),       wxITEM_NORMAL,    -1,                0,                     _("Convert the selection to uppercase")},
     { ecToLowerCase,    2, menuToLowerCase,              wxT("menuToLowerCase"),              _("To L&owerCase"),                           wxT("Ctrl-Shift-U"), wxITEM_NORMAL,    -1,                0,                     _("Convert the selection to lowercase")},
@@ -3693,6 +3700,15 @@ void MadEditFrame::OnEditComment(wxCommandEvent& event)
 void MadEditFrame::OnEditUncomment(wxCommandEvent& event)
 {
     if(g_ActiveMadEdit) g_ActiveMadEdit->CommentUncomment(false);
+}
+
+void MadEditFrame::OnEditWordWrapToNewLine(wxCommandEvent& event)
+{
+    if(g_ActiveMadEdit) g_ActiveMadEdit->ConvertWordWrapToNewLine();
+}
+void MadEditFrame::OnEditNewLineToWordWrap(wxCommandEvent& event)
+{
+    if(g_ActiveMadEdit) g_ActiveMadEdit->ConvertNewLineToWordWrap();
 }
 
 void MadEditFrame::OnEditToUpperCase(wxCommandEvent& event)

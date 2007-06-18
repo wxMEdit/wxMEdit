@@ -185,6 +185,8 @@ public:
     void OnEditDecIndent(wxCommandEvent& event);
     void OnEditComment(wxCommandEvent& event);
     void OnEditUncomment(wxCommandEvent& event);
+    void OnEditWordWrapToNewLine(wxCommandEvent& event);
+    void OnEditNewLineToWordWrap(wxCommandEvent& event);
     void OnEditToUpperCase(wxCommandEvent& event);
     void OnEditToLowerCase(wxCommandEvent& event);
     void OnEditInvertCase(wxCommandEvent& event);
@@ -348,6 +350,8 @@ enum { // menu id
     menuDecreaseIndent,
     menuComment,
     menuUncomment,
+    menuWordWrapToNewLine,
+    menuNewLineToWordWrap,
     menuToUpperCase,
     menuToLowerCase,
     menuInvertCase,
