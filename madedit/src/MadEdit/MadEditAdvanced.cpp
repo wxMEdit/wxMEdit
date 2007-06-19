@@ -1426,7 +1426,6 @@ void MadEdit::ConvertWordWrapToNewLine()
                 if(p >= begpos) del_pos.push_back(p);
                 ++rit;
             }
-
         }
         pos += lit->m_Size;
         ++lit;
@@ -1484,4 +1483,53 @@ void MadEdit::ConvertWordWrapToNewLine()
 
 void MadEdit::ConvertNewLineToWordWrap()
 {
+    if(IsReadOnly() || GetEditMode()==emHexMode || !IsSelected())
+        return;
+
+    wxFileOffset begpos = m_SelectionBegin->pos, endpos = m_SelectionEnd->pos;
+    wxFileOffset pos = begpos, pos1;
+    MadLineIterator lit, lit1;
+    int rowid;
+    GetLineByPos(lit, pos, rowid); // get first line we want to process
+
+    lit1 = lit;
+    if(++lit1 == m_Lines->m_LineList.end()) return;
+    pos1 = pos+lit->m_Size;
+
+    vector<wxFileOffset> del_bpos, del_epos;
+    while(pos1 <= endpos && lit1 != m_Lines->m_LineList.end())
+    {
+        if(lit->m_Size!=lit->m_NewLineSize && lit1->m_Size!=lit1->m_NewLineSize)
+        {
+            del_bpos.push_back(pos1-lit->m_NewLineSize);
+            del_epos.push_back(pos1);
+        }
+
+        pos = pos1;
+        pos1 += lit1->m_Size;
+        ++lit;
+        ++lit1;
+    }
+
+    if(del_bpos.size()==0) return;
+
+    vector<wxByte*> ins_data;
+    vector<wxFileOffset> ins_len;
+    size_t count = del_bpos.size();
+    do
+    {
+        ins_data.push_back(0);
+        ins_len.push_back(0);
+    }
+    while(--count > 0);
+
+    wxFileOffset size=del_epos.back() - del_bpos.front();
+    if((size <= 2*1024*1024) || (del_bpos.size()>=40 && size<= 10*1024*1024))
+    {
+        OverwriteDataSingle(del_bpos, del_epos, NULL, &ins_data, ins_len);
+    }
+    else
+    {
+        OverwriteDataMulti(del_bpos, del_epos, NULL, &ins_data, ins_len);
+    }
 }
