@@ -152,6 +152,8 @@ private:
     iterator m_begin_iterator, m_end_iterator;
 
 private:
+    friend struct iterator;
+
     // buffer methods
     void add_buffer_back()
     {
