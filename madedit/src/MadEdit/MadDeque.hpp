@@ -144,6 +144,14 @@ public:
             --(*this);
             return it;
         }
+
+        iterator operator+(difference_type off)
+        {
+            iterator it = *this;
+            if(off>=0) it += off;
+            else       it -= (-off);
+            return it;
+        }
     };
 
 private:
@@ -151,8 +159,8 @@ private:
     buffer *m_first_buffer, *m_last_buffer;
     iterator m_begin_iterator, m_end_iterator;
 
-private:
-    friend struct iterator;
+public:
+    //friend struct iterator;
 
     // buffer methods
     void add_buffer_back()
