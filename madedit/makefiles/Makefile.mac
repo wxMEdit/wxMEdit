@@ -25,6 +25,7 @@ OBJ  = ./Release/MadEditFrame.o \
        ./Release/TradSimp.o \
        ./Release/MadConvEncDialog.o \
        ./Release/MadEditAdvanced.o \
+       ./Release/MadEditBasic.o \
        ./Release/MadWordCountDialog.o \
        ./Release/MadHighlightingDialog.o \
        ./Release/MadFindInFilesDialog.o \
@@ -153,6 +154,9 @@ $(BIN): $(OBJ)
 
 ./Release/MadEditAdvanced.o: ../src/MadEdit/MadEditAdvanced.cpp
 	$(CXX) -c ../src/MadEdit/MadEditAdvanced.cpp -o ./Release/MadEditAdvanced.o $(CXXFLAGS)
+
+./Release/MadEditBasic.o: ../src/MadEdit/MadEditBasic.cpp
+	$(CXX) -c ../src/MadEdit/MadEditBasic.cpp -o ./Release/MadEditBasic.o $(CXXFLAGS)
 
 ./Release/MadWordCountDialog.o: ../src/MadWordCountDialog.cpp
 	$(CXX) -c ../src/MadWordCountDialog.cpp -o ./Release/MadWordCountDialog.o $(CXXFLAGS)
