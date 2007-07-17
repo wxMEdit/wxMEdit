@@ -161,7 +161,7 @@ struct MadCaretPos
 };
 
 struct UCIterator;
-enum MadSearchResult 
+enum MadSearchResult
 { SR_EXPR_ERROR=-2, SR_YES=-1, SR_NO=0 };  // returned state of Search & Replace
 
 #define MadEditSuperClass wxWindow //wxScrolledWindow//wxPanel//wxControl//
@@ -473,9 +473,9 @@ protected:
                              vector<const ucs4_t*> *ins_ucs, vector<wxByte*> *ins_data,
                              vector<wxFileOffset> &ins_len);
 
-    void OverwriteDataMulti(vector<wxFileOffset> &del_bpos, vector<wxFileOffset> &del_epos,
-                            vector<const ucs4_t*> *ins_ucs, vector<wxByte*> *ins_data,
-                            vector<wxFileOffset> &ins_len);
+    void OverwriteDataMultiple(vector<wxFileOffset> &del_bpos, vector<wxFileOffset> &del_epos,
+                               vector<const ucs4_t*> *ins_ucs, vector<wxByte*> *ins_data,
+                               vector<wxFileOffset> &ins_len);
 
     // FindLeft/RightBrace()
     // IN: rowid of begin of lit
@@ -486,6 +486,9 @@ protected:
 
     // update mouse cursor by the mouse position
     void UpdateCursor(int mouse_x, int mouse_y);
+
+    int CalcLineNumberAreaWidth(MadLineIterator lit, int lineid, int rowid, int toprow, int rowcount);
+    int GetLineNumberAreaWidth(int number);
 
 protected:
     void OnChar(wxKeyEvent &evt);
@@ -542,6 +545,7 @@ public:
 
     void ProcessCommand(MadEditCommand command);
 
+public: // basic functions
     void SetSyntax(const wxString &title);
     wxString GetSyntaxTitle() { return m_Syntax->m_Title; }
     void ApplySyntaxAttributes(MadSyntax *syn, bool matchTitle);
@@ -551,17 +555,9 @@ public:
     wxString GetEncodingName() { return m_Encoding->GetName(); }
     wxString GetEncodingDescription() { return m_Encoding->GetDescription(); }
     MadEncodingType GetEncodingType() { return m_Encoding->GetType(); }
-    void ConvertEncoding(const wxString &newenc, MadConvertEncodingFlag flag);
-    void ConvertChinese(MadConvertEncodingFlag flag);
 
     bool GetRecordCaretMovements() { return m_RecordCaretMovements; }
     void SetRecordCaretMovements(bool value);
-
-    bool HasBOM()
-    {
-        return m_Lines->m_LineList.begin()->m_RowIndices[0].m_Start != 0;
-    }
-    void ToggleBOM();
 
     void SetTextFont(const wxString &name, int size, bool forceReset);
     void SetHexFont(const wxString &name, int size, bool forceReset);
@@ -681,10 +677,7 @@ public:
     bool GetMiddleMouseToPaste() { return m_MiddleMouseToPaste; }
     void SetMiddleMouseToPaste(bool value) { m_MiddleMouseToPaste=value; }
 
-    int CalcLineNumberAreaWidth(MadLineIterator lit, int lineid, int rowid, int toprow, int rowcount);
-    int GetLineNumberAreaWidth(int number);
     int GetMaxWordWrapWidth();
-
     int GetUCharWidth(ucs4_t uc);
     int GetHexUCharWidth(ucs4_t uc);
     int GetUCharType(ucs4_t uc);
@@ -763,32 +756,11 @@ public:
     void InsertTabChar() { ProcessCommand(ecInsertTabChar); }
     void InsertDateTime() { ProcessCommand(ecInsertDateTime); }
 
-    void IncreaseDecreaseIndent(bool incIndent);
-    bool HasLineComment() { return !m_Syntax->m_LineComment.empty(); }
-    void CommentUncomment(bool comment);
-
-    void ToUpperCase();
-    void ToLowerCase();
-    void InvertCase();
-    void ToHalfWidth();
-    void ToFullWidth();
-
-    void TrimTrailingSpaces();
-
-    // startline<0 : sort all lines; otherwise sort [beginline, endline]
-    void SortLines(MadSortFlags flags, int beginline, int endline);
-
-    // convert WordWraps to NewLine-chars in the SelText or whole file
-    void ConvertWordWrapToNewLine();
-    // convert NewLine-chars to WordWraps in the SelText
-    void ConvertNewLineToWordWrap();
-
     void SelectAll();
     void CutToClipboard();
     void CopyToClipboard();
     void PasteFromClipboard();
     bool CanPaste();
-    void CopyAsHexString(bool withSpace);
 
     bool CanUndo()
     {
@@ -853,10 +825,44 @@ public:
     // return wxID_YES(Saved), wxID_NO(Not Saved), or wxID_CANCEL
     int Save(bool ask, const wxString &title, bool saveas);
 
+public: // advanced functions
+    void ConvertEncoding(const wxString &newenc, MadConvertEncodingFlag flag);
+    void ConvertChinese(MadConvertEncodingFlag flag);
+
+    bool HasBOM()
+    {
+        return m_Lines->m_LineList.begin()->m_RowIndices[0].m_Start != 0;
+    }
+    void ToggleBOM();
+
+    void IncreaseDecreaseIndent(bool incIndent);
+    bool HasLineComment() { return !m_Syntax->m_LineComment.empty(); }
+    void CommentUncomment(bool comment);
+
+    void ToUpperCase();
+    void ToLowerCase();
+    void InvertCase();
+    void ToHalfWidth();
+    void ToFullWidth();
+
+    void TrimTrailingSpaces();
+
+    // startline<0 : sort all lines; otherwise sort [beginline, endline]
+    void SortLines(MadSortFlags flags, int beginline, int endline);
+
+    // convert WordWraps to NewLine-chars in the SelText or whole file
+    void ConvertWordWrapToNewLine();
+    // convert NewLine-chars to WordWraps in the SelText
+    void ConvertNewLineToWordWrap();
+
+    void CopyAsHexString(bool withSpace);
+
+
     void WordCount(bool selection, int &wordCount, int &charCount, int &spaceCount,
                    int &halfWidthCount, int &fullWidthCount, int &lineCount,
                    wxArrayString *detail);
 
+public:
     void SetOnSelectionChanged(OnSelectionChangedPtr func)
     {
         m_OnSelectionChanged=func;
@@ -925,6 +931,24 @@ public: // fix wxDC.Blit(wxINVERT) not work on some old versions of VMWare
     void InvertRectNormal(wxDC *dc, int x, int y, int w, int h);
     void InvertRectManual(wxDC *dc, int x, int y, int w, int h);
 
+public: // utility functions
+
+    ucs4_t ToHex(int d)// 0 <= d <= 15
+    {
+        if(d < 10)
+            return '0' + d;
+        return 'A' + d - 10;
+    }
+
+    int FromHex(wxChar c)
+    {
+        if(c>='0' && c<='9') return c-'0';
+        if(c>='A' && c<='F') return c-'A'+10;
+        if(c>='a' && c<='f') return c-'a'+10;
+        return -1;
+    }
+
+    bool StringToHex(wxString ws, vector<wxByte> &hex);
 };
 
 wxString FixUTF8ToWCS(const wxString &str);
