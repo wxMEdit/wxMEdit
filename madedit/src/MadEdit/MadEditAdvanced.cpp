@@ -8,6 +8,7 @@
 #include "MadEdit.h"
 #include <algorithm>
 #include <vector>
+using std::vector;
 
 #ifdef _DEBUG
 #include <crtdbg.h>
@@ -1246,7 +1247,7 @@ void MadEdit::SortLines(MadSortFlags flags, int beginline, int endline)
         SortLineData *data=NULL;
         if(bDescending)
         {
-            data = slrit->data;
+            data = (*slrit).data;
         }
         else
         {
