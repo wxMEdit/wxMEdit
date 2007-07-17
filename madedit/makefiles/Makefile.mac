@@ -77,7 +77,7 @@ LIBS = $(shell $(WXCONFIG) --libs core,base) #$(shell pkg-config --libs gtk+-2.0
 
 CXXINCS = -I/Developer/Headers/FlatCarbon $(XPRESSIVE_INC) $(BOOST_INC) $(ADDINC) $(shell $(WXCONFIG) --cxxflags) #$(shell pkg-config --cflags gtk+-2.0)
  
-CXXFLAGS = $(CXXINCS) -DwxUSE_AUI=1 -DWXDLLIMPEXP_AUI= -O2 #-O3 -fexpensive-optimizations 
+CXXFLAGS = $(CXXINCS) -DwxUSE_AUI=1 -DWXDLLIMPEXP_AUI= -DWXDLLIMPEXP_FWD_AUI= -O2 #-O3 -fexpensive-optimizations 
 
 BIN  = ./Release/MadEdit
 
