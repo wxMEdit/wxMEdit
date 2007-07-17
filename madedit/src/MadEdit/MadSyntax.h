@@ -23,6 +23,9 @@
 #include <wx/colour.h>
 #include <wx/string.h>
 
+#include <vector>
+using std::vector;
+
 #include "ucs4_t.h"
 #include "MadLines.h"
 
