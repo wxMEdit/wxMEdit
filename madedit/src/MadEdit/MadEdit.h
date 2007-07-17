@@ -928,5 +928,6 @@ public: // fix wxDC.Blit(wxINVERT) not work on some old versions of VMWare
 };
 
 wxString FixUTF8ToWCS(const wxString &str);
+wxString FormatThousands(const wxString& s);
 
 #endif
