@@ -446,9 +446,9 @@ public:
 
     ~wxAuiTabCtrl();
 
-#if wxABI_VERSION >= 20805
+//#if wxABI_VERSION >= 20805
     bool IsDragging() const { return m_is_dragging; }
-#endif
+//#endif
 
 protected:
 
