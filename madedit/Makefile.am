@@ -40,6 +40,7 @@ madedit_SOURCES =	src/MadAboutDialog.cpp \
 	src/MadEdit/MadEdit.cpp \
 	src/MadEdit/MadEdit.h \
 	src/MadEdit/MadEditAdvanced.cpp \
+	src/MadEdit/MadEditBasic.cpp \
 	src/MadEdit/MadEditCommand.cpp \
 	src/MadEdit/MadEditCommand.h \
 	src/MadEdit/MadEditSearch.cpp \
