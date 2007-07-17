@@ -4,7 +4,7 @@
 // Author:      Hans Van Leemputten
 // Modified by: Benjamin I. Williams / Kirix Corporation
 // Created:     29/07/2002
-// RCS-ID:      $Id: tabmdi.h,v 1.17 2007/04/14 09:58:13 VS Exp $
+// RCS-ID:      $Id: tabmdi.h 47254 2007-07-09 10:09:52Z VS $
 // Copyright:   (c) Hans Van Leemputten
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////
@@ -28,9 +28,9 @@
 // classes
 //-----------------------------------------------------------------------------
 
-class WXDLLIMPEXP_AUI wxAuiMDIParentFrame;
-class WXDLLIMPEXP_AUI wxAuiMDIClientWindow;
-class WXDLLIMPEXP_AUI wxAuiMDIChildFrame;
+class WXDLLIMPEXP_FWD_AUI wxAuiMDIParentFrame;
+class WXDLLIMPEXP_FWD_AUI wxAuiMDIClientWindow;
+class WXDLLIMPEXP_FWD_AUI wxAuiMDIChildFrame;
 
 //-----------------------------------------------------------------------------
 // wxAuiMDIParentFrame
@@ -154,6 +154,8 @@ public:
     virtual void Activate();
     virtual bool Destroy();
 
+    virtual bool Show(bool show = true);
+
 #if wxUSE_STATUSBAR
     // no status bars
     virtual wxStatusBar* CreateStatusBar(int WXUNUSED(number) = 1,
@@ -204,7 +206,6 @@ public:
     
 protected:
     void Init();
-    virtual bool Show(bool show = true);
     virtual void DoSetSize(int x, int y, int width, int height, int size_flags);
     virtual void DoMoveWindow(int x, int y, int width, int height);
 

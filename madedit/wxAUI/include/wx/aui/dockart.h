@@ -4,7 +4,7 @@
 // Author:      Benjamin I. Williams
 // Modified by:
 // Created:     2005-05-17
-// RCS-ID:      $Id: dockart.h,v 1.9 2006/11/07 10:29:02 BIW Exp $
+// RCS-ID:      $Id: dockart.h 43154 2006-11-07 10:29:02Z BIW $
 // Copyright:   (C) Copyright 2005, Kirix Corporation, All Rights Reserved.
 // Licence:     wxWindows Library Licence, Version 3.1
 ///////////////////////////////////////////////////////////////////////////////

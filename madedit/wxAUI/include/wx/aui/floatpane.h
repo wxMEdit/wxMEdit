@@ -4,7 +4,7 @@
 // Author:      Benjamin I. Williams
 // Modified by:
 // Created:     2005-05-17
-// RCS-ID:      $Id: floatpane.h,v 1.13 2006/11/17 13:06:56 BIW Exp $
+// RCS-ID:      $Id: floatpane.h 43467 2006-11-17 13:07:01Z BIW $
 // Copyright:   (C) Copyright 2005, Kirix Corporation, All Rights Reserved.
 // Licence:     wxWindows Library Licence, Version 3.1
 ///////////////////////////////////////////////////////////////////////////////

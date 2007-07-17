@@ -4,7 +4,7 @@
 // Author:      Benjamin I. Williams
 // Modified by:
 // Created:     2005-05-17
-// RCS-ID:      $Id: aui.h,v 1.8 2006/07/22 13:14:07 BIW Exp $
+// RCS-ID:      $Id: aui.h 40232 2006-07-22 13:14:07Z BIW $
 // Copyright:   (C) Copyright 2005, Kirix Corporation, All Rights Reserved.
 // Licence:     wxWindows Library Licence, Version 3.1
 ///////////////////////////////////////////////////////////////////////////////

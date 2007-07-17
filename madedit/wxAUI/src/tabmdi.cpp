@@ -4,7 +4,7 @@
 // Author:      Hans Van Leemputten
 // Modified by: Benjamin I. Williams / Kirix Corporation
 // Created:     29/07/2002
-// RCS-ID:      $Id: tabmdi.cpp,v 1.25 2007/03/07 22:59:11 VZ Exp $
+// RCS-ID:      $Id: tabmdi.cpp 47122 2007-07-04 20:54:36Z PC $
 // Copyright:   (c) Hans Van Leemputten
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////
@@ -177,12 +177,15 @@ void wxAuiMDIParentFrame::SetChildMenuBar(wxAuiMDIChildFrame* pChild)
     if (!pChild)
     {
         // No Child, set Our menu bar back.
-        SetMenuBar(m_pMyMenuBar);
+        if (m_pMyMenuBar)
+            SetMenuBar(m_pMyMenuBar);
+        else
+            SetMenuBar(GetMenuBar());
 
         // Make sure we know our menu bar is in use
         m_pMyMenuBar = NULL;
     }
-     else
+    else
     {
         if (pChild->GetMenuBar() == NULL)
             return;
@@ -311,7 +314,7 @@ void wxAuiMDIParentFrame::AddWindowMenu(wxMenuBar *pMenuBar)
         int pos = pMenuBar->FindMenu(wxGetStockLabel(wxID_HELP,0));
         if (pos == wxNOT_FOUND)
             pMenuBar->Append(m_pWindowMenu, _("&Window"));
-             else
+        else
             pMenuBar->Insert(pos, m_pWindowMenu, _("&Window"));
     }
 }
@@ -363,7 +366,7 @@ void wxAuiMDIParentFrame::Tile(wxOrientation orient)
     {
         client_window->Split(cur_idx, wxLEFT);
     }
-     else if (orient == wxHORIZONTAL)
+    else if (orient == wxHORIZONTAL)
     {
         client_window->Split(cur_idx, wxTOP);
     }
@@ -443,10 +446,10 @@ bool wxAuiMDIChildFrame::Create(wxAuiMDIParentFrame* parent,
 
     // create the window off-screen to prevent flicker
     wxPanel::Create(pClientWindow,
-		    id,
-		    wxPoint(cli_size.x+1, cli_size.y+1),
-		    size,
-		    wxNO_BORDER, name);
+                    id,
+                    wxPoint(cli_size.x+1, cli_size.y+1),
+                    size,
+                    wxNO_BORDER, name);
 
     DoShow(false);
 
