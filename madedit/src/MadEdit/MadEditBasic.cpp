@@ -25,6 +25,86 @@ extern const ucs4_t HexHeader[];
 
 //==============================================================================
 
+const int CR_Points_Count = 37;
+const int CR_Points[CR_Points_Count+1][2]=
+{
+    { 215,  65 },
+    { 237,  97 },
+    { 237, 195 },
+    { 215, 324 },
+    { 194, 420 },
+    { 172, 486 },
+    { 129, 582 },
+    {  86, 647 },
+    {  43, 679 },
+    {  21, 679 },
+    {   0, 647 },
+    {   0, 544 },
+    {  21, 387 },
+    {  43, 290 },
+    {  64, 227 },
+    { 108, 128 },
+    { 150,  65 },
+    { 193,  33 },
+    { 258,   0 },
+    { 345,   0 },
+    { 388,  33 },
+    { 410,  66 },
+    { 431, 129 },
+    { 431, 227 },
+    { 409, 292 },
+    { 388, 323 },
+    { 344, 356 },
+    { 280, 356 },
+    { 215, 324 },
+    { 238, 358 },
+    { 258, 418 },
+    { 258, 582 },
+    { 280, 647 },
+    { 323, 679 },
+    { 366, 647 },
+    { 386, 617 },
+    { 430, 518 },
+    { 431, 779 }     // max value
+};
+
+const int LF_Points_Count = 28;
+const int LF_Points[LF_Points_Count+1][2]=
+{
+    {  64, 226 },
+    {  21, 193 },
+    {   0, 130 },
+    {   0,  96 },
+    {  22,  32 },
+    {  65,   0 },
+    {  86,   0 },
+    { 130,  33 },
+    { 151,  97 },
+    { 151, 165 },
+    { 108, 450 },
+    {  65, 678 },
+    { 108, 450 },
+    { 216,  64 },
+    { 236,  34 },
+    { 280,   0 },
+    { 324,   0 },
+    { 367,  33 },
+    { 388,  97 },
+    { 388, 166 },
+    { 367, 317 },
+    { 324, 550 },
+    { 324, 646 },
+    { 345, 679 },
+    { 367, 679 },
+    { 410, 646 },
+    { 432, 613 },
+    { 473, 518 },
+    { 473, 779 } // max value
+};
+
+const int CRLF_Points_Count = CR_Points_Count + LF_Points_Count;
+
+
 void MadEdit::SetSyntax(const wxString &title)
 {
     if(m_Syntax->m_Title != title)
@@ -147,7 +227,7 @@ void MadEdit::SetTextFont(const wxString &name, int size, bool forceReset)
             m_Config->SetPath(oldpath);
         }
 
-        
+
         if(m_EditMode==emHexMode)
         {
             m_DoRecountLineWidth=true;
@@ -242,57 +322,37 @@ void MadEdit::SetTextFont(const wxString &name, int size, bool forceReset)
             //m_CR_Points[], m_LF_Points[], m_CRLF_Points[];
             {
                 const int t1 = m_TextFontHeight / 5;
-                const int cw3=cw/3;
                 const int x = cw/5;
-                const int d = 2;
-                m_CR_Points[0].x = cw3;
-                m_CR_Points[0].y = m_TextFontHeight-t1+1;
-                m_CR_Points[1].x = x;
-                m_CR_Points[1].y = m_TextFontHeight-t1+1;
-                m_CR_Points[2].x = x;
-                m_CR_Points[2].y = t1;
-                m_CR_Points[3].x = cw-d;
-                m_CR_Points[3].y = t1;
-                m_CR_Points[4].x = cw-d;
-                m_CR_Points[4].y = m_TextFontHeight/2;
-                m_CR_Points[5].x = cw3;
-                m_CR_Points[5].y = m_TextFontHeight/2;
-                m_CR_Points[6].x = cw-d;
-                m_CR_Points[6].y = m_TextFontHeight-t1+2;
-                m_CR_Points[7].x = cw-d;
-                m_CR_Points[7].y = m_TextFontHeight*3/4;
 
-                m_LF_Points[0].x = cw3;
-                m_LF_Points[0].y = m_TextFontHeight-t1+1;
-                m_LF_Points[1].x = x;
-                m_LF_Points[1].y = m_TextFontHeight-t1+1;
-                m_LF_Points[2].x = x;
-                m_LF_Points[2].y = t1;
-                m_LF_Points[3].x = cw-d;
-                m_LF_Points[3].y = m_TextFontHeight-t1+2;
-                m_LF_Points[4].x = cw-d;
-                m_LF_Points[4].y = t1;
-                m_LF_Points[5].x = cw/2;
-                m_LF_Points[5].y = t1;
-
-                m_CRLF_Points[0].x = cw3;
-                m_CRLF_Points[0].y = m_TextFontHeight-t1+1;
-                m_CRLF_Points[1].x = x;
-                m_CRLF_Points[1].y = m_TextFontHeight-t1+1;
-                m_CRLF_Points[2].x = x;
-                m_CRLF_Points[2].y = t1;
-                m_CRLF_Points[3].x = cw-d;
-                m_CRLF_Points[3].y = t1;
-                m_CRLF_Points[4].x = cw-d;
-                m_CRLF_Points[4].y = t1*2;
-                m_CRLF_Points[5].x = x;//cw3;
-                m_CRLF_Points[5].y = t1*2;
-                m_CRLF_Points[6].x = cw-d;
-                m_CRLF_Points[6].y = t1*3;
-                m_CRLF_Points[7].x = cw-d;
-                m_CRLF_Points[7].y = m_TextFontHeight-t1+1;
-                m_CRLF_Points[8].x = x;
-                m_CRLF_Points[8].y = t1*3+1;
+                m_CR_Points_Count = CR_Points_Count;
+                m_LF_Points_Count = LF_Points_Count;
+                m_CRLF_Points_Count = CRLF_Points_Count;
+                {
+                    const int maxX = CR_Points[CR_Points_Count][0] * 7;
+                    const int maxY = CR_Points[CR_Points_Count][1] * 7;
+                    for(int i=0; i< CR_Points_Count; ++i)
+                    {
+                        int tx = CR_Points[i][0]*cw*5 / maxX;
+                        int ty = CR_Points[i][1]*m_TextFontHeight*5 / maxY;
+                        m_CR_Points[i].x = tx + x;
+                        m_CR_Points[i].y = ty + t1;
+                        m_CRLF_Points[i].x = tx + x;
+                        m_CRLF_Points[i].y = ty/2 + t1;
+                    }
+                }
+                {
+                    const int maxX = LF_Points[LF_Points_Count][0] * 7;
+                    const int maxY = LF_Points[LF_Points_Count][1] * 7;
+                    for(int i=0; i< LF_Points_Count; ++i)
+                    {
+                        int tx = LF_Points[i][0]*cw*5 / maxX;
+                        int ty = LF_Points[i][1]*m_TextFontHeight*5 / maxY;
+                        m_LF_Points[i].x = tx + x ;
+                        m_LF_Points[i].y = ty + t1;
+                        m_CRLF_Points[i+CR_Points_Count].x = tx + x;
+                        m_CRLF_Points[i+CR_Points_Count].y = ty/2 + m_TextFontHeight/2 + 1;
+                    }
+                }
             }
 
             UpdateAppearance();
@@ -454,7 +514,7 @@ void MadEdit::HexModeToTextMode(MadEditMode mode)
             m_TopRow = m_TextTopRow;
             m_EditMode = mode;
             m_RepaintAll = true;
-            
+
             SetTextFont(m_TextFont->GetFaceName(), m_TextFont->GetPointSize(), true);
             UpdateAppearance();
 
@@ -1212,7 +1272,7 @@ bool MadEdit::GetLine(wxString &ws, int line, size_t maxlen, bool ignoreBOM)
         }
 
         ucs4_t uc=ucqueue.back().first;
-        if(uc==0x0D || uc==0x0A) 
+        if(uc==0x0D || uc==0x0A)
             return true;
 
 #ifdef __WXMSW__
