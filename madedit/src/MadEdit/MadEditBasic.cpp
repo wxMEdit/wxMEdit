@@ -25,6 +25,7 @@ extern const ucs4_t HexHeader[];
 
 //==============================================================================
 
+/*
 const int CR_Points_Count = 37;
 const int CR_Points[CR_Points_Count+1][2]=
 {
@@ -103,7 +104,71 @@ const int LF_Points[LF_Points_Count+1][2]=
 };
 
 const int CRLF_Points_Count = CR_Points_Count + LF_Points_Count;
+*/
 
+const int CR_Points2_Count = 14;
+const int CR_Points2[CR_Points2_Count+1][2]=
+{
+    {   0,   0 },
+    {   0, 601 },
+    { 255, 348 },
+    { 255, 819 },
+    {  79, 644 },
+    {  56, 667 },
+    { 278, 999 },
+    { 502, 664 },
+    { 479, 641 },
+    { 304, 818 },
+    { 304, 270 },
+    { 281, 247 },
+    {  70, 457 },
+    {  70,   0 },
+    { 600, 999 }     // max value
+};
+
+const int LF_Points2_Count = 14;
+const int LF_Points2[LF_Points2_Count+1][2]=
+{
+    { 255, 273 },
+    { 255, 819 },
+    {  79, 644 },
+    {  56, 667 },
+    { 278, 999 },
+    { 502, 664 },
+    { 479, 641 },
+    { 304, 818 },
+    { 304, 345 },
+    { 558, 559 },
+    { 558,   0 },
+    { 488,   0 },
+    { 488, 454 },
+    { 281, 247 },
+    { 600, 999 } // max value
+};
+
+const int CRLF_Points2_Count = 18;
+const int CRLF_Points2[CRLF_Points2_Count+1][2]=
+{
+    {   0,   0 },
+    {   0, 601 },
+    { 255, 348 },
+    { 255, 819 },
+    {  79, 644 },
+    {  56, 667 },
+    { 278, 999 },
+    { 502, 664 },
+    { 479, 641 },
+    { 304, 818 },
+    { 304, 345 },
+    { 558, 559 },
+    { 558,   0 },
+    { 488,   0 },
+    { 488, 454 },
+    { 281, 247 },
+    {  70, 457 },
+    {  70,   0 },
+    { 600, 999 } // max value
+};
 
 void MadEdit::SetSyntax(const wxString &title)
 {
@@ -296,13 +361,13 @@ void MadEdit::SetTextFont(const wxString &name, int size, bool forceReset)
             {
                 const int t1 = m_TextFontHeight / 5;
                 const int y = 1 + m_TextFontHeight - t1;
-                const int x = 1;
+                const int x = cw / 4;
                 m_Space_Points[0].x = x;
                 m_Space_Points[0].y = y;
-                m_Space_Points[1].x = x + cw - 3;
+                m_Space_Points[1].x = 3 * x;
                 m_Space_Points[1].y = y;
-                m_Space_Points[2].x = x + (cw >> 1) - 1;
-                m_Space_Points[2].y = y - t1;
+                m_Space_Points[2].x = cw >> 1;
+                m_Space_Points[2].y = y - m_TextFontHeight/6;
                 m_Space_Points[3].x = x;
                 m_Space_Points[3].y = y;
             }
@@ -316,14 +381,17 @@ void MadEdit::SetTextFont(const wxString &name, int size, bool forceReset)
                 m_EOF_Points[1].y = y += (m_TextFontHeight - (t1 << 1));
                 m_EOF_Points[2].x = x - (cw - 3);
                 m_EOF_Points[2].y = y;
-                m_EOF_Points[3].x = x;
-                m_EOF_Points[3].y = y - ((t1 * 3) >> 1);
+                m_EOF_Points[3].x = cw / 2;
+                m_EOF_Points[3].y = y - (m_TextFontHeight  / 6 );
+                m_EOF_Points[4].x = cw / 2;
+                m_EOF_Points[4].y = y;
             }
             //m_CR_Points[], m_LF_Points[], m_CRLF_Points[];
             {
                 const int t1 = m_TextFontHeight / 5;
                 const int x = cw/5;
 
+/*
                 m_CR_Points_Count = CR_Points_Count;
                 m_LF_Points_Count = LF_Points_Count;
                 m_CRLF_Points_Count = CRLF_Points_Count;
@@ -351,6 +419,43 @@ void MadEdit::SetTextFont(const wxString &name, int size, bool forceReset)
                         m_LF_Points[i].y = ty + t1;
                         m_CRLF_Points[i+CR_Points_Count].x = tx + x;
                         m_CRLF_Points[i+CR_Points_Count].y = ty/2 + m_TextFontHeight/2 + 1;
+                    }
+                }
+*/
+                m_CR_Points_Count = CR_Points2_Count;
+                m_LF_Points_Count = LF_Points2_Count;
+                m_CRLF_Points_Count = CRLF_Points2_Count;
+                {
+                    const int maxX = CR_Points2[CR_Points2_Count][0] * 7;
+                    const int maxY = CR_Points2[CR_Points2_Count][1] * 7;
+                    for(int i=0; i< CR_Points2_Count; ++i)
+                    {
+                        int tx = CR_Points2[i][0]*cw*5 / maxX;
+                        int ty = CR_Points2[i][1]*m_TextFontHeight*5 / maxY;
+                        m_CR_Points[i].x = tx + x;
+                        m_CR_Points[i].y = ty + t1;
+                    }
+                }
+                {
+                    const int maxX = LF_Points2[LF_Points2_Count][0] * 7;
+                    const int maxY = LF_Points2[LF_Points2_Count][1] * 7;
+                    for(int i=0; i< LF_Points2_Count; ++i)
+                    {
+                        int tx = LF_Points2[i][0]*cw*5 / maxX;
+                        int ty = LF_Points2[i][1]*m_TextFontHeight*5 / maxY;
+                        m_LF_Points[i].x = tx + x;
+                        m_LF_Points[i].y = ty + t1;
+                    }
+                }
+                {
+                    const int maxX = CRLF_Points2[CRLF_Points2_Count][0] * 7;
+                    const int maxY = CRLF_Points2[CRLF_Points2_Count][1] * 7;
+                    for(int i=0; i< CRLF_Points2_Count; ++i)
+                    {
+                        int tx = CRLF_Points2[i][0]*cw*5 / maxX;
+                        int ty = CRLF_Points2[i][1]*m_TextFontHeight*5 / maxY;
+                        m_CRLF_Points[i].x = tx + x;
+                        m_CRLF_Points[i].y = ty + t1;
                     }
                 }
             }

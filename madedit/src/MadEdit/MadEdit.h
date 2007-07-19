@@ -202,8 +202,8 @@ private:
     wxBitmap        *m_ClientBitmap, *m_MarkBitmap;
     int             m_LastPaintBitmap;// 0:client, 1:mark
 
-    wxPoint         m_Space_Points[4], m_EOF_Points[4];
-    wxPoint         m_CR_Points[50], m_LF_Points[50], m_CRLF_Points[100];
+    wxPoint         m_Space_Points[4], m_EOF_Points[5];
+    wxPoint         m_CR_Points[40], m_LF_Points[40], m_CRLF_Points[80];
     int             m_CR_Points_Count, m_LF_Points_Count, m_CRLF_Points_Count;
 
 
