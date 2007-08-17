@@ -4,7 +4,7 @@
 // Author:      Benjamin I. Williams
 // Modified by:
 // Created:     2005-05-17
-// RCS-ID:      $Id: framemanager.cpp 47122 2007-07-04 20:54:36Z PC $
+// RCS-ID:      $Id: framemanager.cpp 47973 2007-08-09 15:08:50Z JS $
 // Copyright:   (C) Copyright 2005-2006, Kirix Corporation, All Rights Reserved
 // Licence:     wxWindows Library Licence, Version 3.1
 ///////////////////////////////////////////////////////////////////////////////
@@ -74,7 +74,6 @@ IMPLEMENT_CLASS(wxAuiManager, wxEvtHandler)
 #if !wxCHECK_VERSION(2,8,0)
     #define Contains Inside
 #endif
-
 
 const int auiToolBarLayer = 10;
 
@@ -929,7 +928,8 @@ bool wxAuiManager::AddPane(wxWindow* window, const wxAuiPaneInfo& pane_info)
             // I believe this to be the correct action, until
             // wxToolBar::GetBestSize() is fixed.  Is this assumption
             // correct?
-            pinfo.best_size.y++;
+            // commented out by JACS 2007-9-08 after having added a pixel in wxMSW's wxToolBar::DoGetBestSize()
+            // pinfo.best_size.y++;
         }
 
         if (pinfo.min_size != wxDefaultSize)
