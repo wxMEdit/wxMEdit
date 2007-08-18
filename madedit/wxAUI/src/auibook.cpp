@@ -37,6 +37,11 @@
 #include "wx/mac/carbon/private.h"
 #endif
 
+#ifdef __WXGTK__
+#include <gtk/gtk.h>
+#include "wx/gtk/win_gtk.h"
+#endif
+
 #include "wx/arrimpl.cpp"
 WX_DEFINE_OBJARRAY(wxAuiNotebookPageArray)
 WX_DEFINE_OBJARRAY(wxAuiTabContainerButtonArray)
