@@ -4,7 +4,7 @@
 // Author:      Benjamin I. Williams
 // Modified by:
 // Created:     2005-05-17
-// RCS-ID:      $Id: framemanager.cpp 47973 2007-08-09 15:08:50Z JS $
+// RCS-ID:      $Id: framemanager.cpp 48277 2007-08-21 11:15:09Z JS $
 // Copyright:   (C) Copyright 2005-2006, Kirix Corporation, All Rights Reserved
 // Licence:     wxWindows Library Licence, Version 3.1
 ///////////////////////////////////////////////////////////////////////////////
@@ -530,6 +530,13 @@ wxAuiFloatingFrame* wxAuiManager::CreateFloatingFrame(wxWindow* parent,
                                                       const wxAuiPaneInfo& pane_info)
 {
     return new wxAuiFloatingFrame(parent, this, pane_info);
+}
+
+bool wxAuiManager::CanDockPanel(const wxAuiPaneInfo & WXUNUSED(p))
+{
+    // if a key modifier is pressed while dragging the frame,
+    // don't dock the window
+    return !(wxGetKeyState(WXK_CONTROL) || wxGetKeyState(WXK_ALT));
 }
 
 // GetPane() looks up a wxAuiPaneInfo structure based
@@ -2381,7 +2388,7 @@ void wxAuiManager::Update()
             {
                 // frame already exists, make sure it's position
                 // and size reflect the information in wxAuiPaneInfo
-                if (p.frame->GetPosition() != p.floating_pos)
+                if ((p.frame->GetPosition() != p.floating_pos) || (p.frame->GetSize() != p.floating_size))
                 {
                     p.frame->SetSize(p.floating_pos.x, p.floating_pos.y,
                                      p.floating_size.x, p.floating_size.y,
@@ -3418,7 +3425,7 @@ void wxAuiManager::OnFloatingPaneMoving(wxWindow* wnd, wxDirection dir)
 
     // if a key modifier is pressed while dragging the frame,
     // don't dock the window
-    if (wxGetKeyState(WXK_CONTROL) || wxGetKeyState(WXK_ALT))
+    if (!CanDockPanel(pane))
     {
         HideHint();
         return;
@@ -3493,7 +3500,7 @@ void wxAuiManager::OnFloatingPaneMoved(wxWindow* wnd, wxDirection dir)
 
     // if a key modifier is pressed while dragging the frame,
     // don't dock the window
-    if (!wxGetKeyState(WXK_CONTROL) && !wxGetKeyState(WXK_ALT))
+    if (CanDockPanel(pane))
     {
         // do the drop calculation
         DoDrop(m_docks, m_panes, pane, client_pt, action_offset);
@@ -3558,11 +3565,8 @@ void wxAuiManager::OnFloatingPaneClosed(wxWindow* wnd, wxCloseEvent& evt)
 
 void wxAuiManager::OnFloatingPaneActivated(wxWindow* wnd)
 {
-    if (GetFlags() & wxAUI_MGR_ALLOW_ACTIVE_PANE)
+    if ((GetFlags() & wxAUI_MGR_ALLOW_ACTIVE_PANE) && GetPane(wnd).IsOk())
     {
-        // try to find the pane
-        wxASSERT_MSG(GetPane(wnd).IsOk(), wxT("Pane window not found"));
-
         SetActivePane(m_panes, wnd);
         Repaint();
     }
@@ -3589,8 +3593,8 @@ void wxAuiManager::OnRender(wxAuiManagerEvent& evt)
     {
         wxAuiDockUIPart& part = m_uiparts.Item(i);
 
-        // don't draw hidden pane items
-        if (part.sizer_item && !part.sizer_item->IsShown())
+        // don't draw hidden pane items or items that aren't windows
+        if (part.sizer_item && ((!part.sizer_item->IsWindow() && !part.sizer_item->IsSpacer() && !part.sizer_item->IsSizer()) || !part.sizer_item->IsShown()))
             continue;
 
         switch (part.type)
@@ -3870,15 +3874,15 @@ void wxAuiManager::OnLeftDown(wxMouseEvent& event)
 
 
 
-            if (part->dock && part->dock->dock_direction == wxAUI_DOCK_CENTER)
-                return;
-
             if (GetFlags() & wxAUI_MGR_ALLOW_ACTIVE_PANE)
             {
                 // set the caption as active
                 SetActivePane(m_panes, part->pane->window);
                 Repaint();
             }
+
+            if (part->dock && part->dock->dock_direction == wxAUI_DOCK_CENTER)
+                return;
 
             m_action = actionClickCaption;
             m_action_part = part;
