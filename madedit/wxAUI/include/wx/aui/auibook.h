@@ -25,6 +25,7 @@
 #include "wx/aui/dockart.h"
 #include "wx/aui/floatpane.h"
 #include "wx/control.h"
+#include "wx/containr.h"
 
 
 class wxAuiNotebook;

@@ -233,7 +233,13 @@ static void DrawFocusRect(wxWindow* win, wxDC& dc, const wxRect& rect, int flags
     ::DrawFocusRect(GetHdcOf(dc), &rc);
 
 #elif defined(__WXGTK20__)
+
+#if wxCHECK_VERSION(2,8,0)
     GdkWindow* gdk_window = dc.GetGDKWindow();
+#else
+    wxWindowDC* wdc = dynamic_cast<wxWindowDC*>(&dc);
+    GdkWindow* gdk_window = wdc->m_window;
+#endif
     wxASSERT_MSG( gdk_window,
                   wxT("cannot draw focus rectangle on wxDC of this type") );
 
@@ -2985,7 +2991,11 @@ BEGIN_EVENT_TABLE(wxAuiNotebook, wxControl)
 #endif
 END_EVENT_TABLE()
 
+#if wxCHECK_VERSION(2,8,0)
 WX_DELEGATE_TO_CONTROL_CONTAINER(wxAuiNotebook, wxControl)
+#else
+WX_DELEGATE_TO_CONTROL_CONTAINER(wxAuiNotebook)
+#endif
 
 wxAuiNotebook::wxAuiNotebook()
 {
@@ -3587,7 +3597,11 @@ size_t wxAuiNotebook::SetSelection(size_t new_page)
 
             // Set the focus to the page if we're not currently focused on the tab.
             // This is Firefox-like behaviour.
+#if wxCHECK_VERSION(2,8,0)
             if (wnd->IsShownOnScreen() && FindFocus() != ctrl)
+#else
+            if (wnd->IsShown() && FindFocus() != ctrl)
+#endif
                 wnd->SetFocus();
 
             return old_curpage;
