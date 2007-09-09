@@ -4592,6 +4592,7 @@ void MadEditFrame::OnToolsConvertEncoding(wxCommandEvent& event)
     if(g_ActiveMadEdit==NULL) return;
 
     if(g_ConvEncDialog==NULL) g_ConvEncDialog=new MadConvEncDialog(this, -1);
+    else g_ConvEncDialog->Reset(); // a workaround for resetting g_ConvEncDialog->m_oldFocus
 
     if(g_ConvEncDialog->ShowModal()==wxID_OK)
     {
