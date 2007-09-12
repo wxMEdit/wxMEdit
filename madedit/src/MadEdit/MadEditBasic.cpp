@@ -25,100 +25,56 @@ extern const ucs4_t HexHeader[];
 
 //==============================================================================
 
-/*
-const int CR_Points_Count = 37;
+const int CR_Points_Count = 5;
 const int CR_Points[CR_Points_Count+1][2]=
 {
-    { 215,  65 },
-    { 237,  97 },
-    { 237, 195 },
-    { 215, 324 },
-    { 194, 420 },
-    { 172, 486 },
-    { 129, 582 },
-    {  86, 647 },
-    {  43, 679 },
-    {  21, 679 },
-    {   0, 647 },
-    {   0, 544 },
-    {  21, 387 },
-    {  43, 290 },
-    {  64, 227 },
-    { 108, 128 },
-    { 150,  65 },
-    { 193,  33 },
-    { 258,   0 },
-    { 345,   0 },
-    { 388,  33 },
-    { 410,  66 },
-    { 431, 129 },
-    { 431, 227 },
-    { 409, 292 },
-    { 388, 323 },
-    { 344, 356 },
-    { 280, 356 },
-    { 215, 324 },
-    { 238, 358 },
-    { 258, 418 },
-    { 258, 582 },
-    { 280, 647 },
-    { 323, 679 },
-    { 366, 647 },
-    { 386, 617 },
-    { 430, 518 },
-    { 431, 779 }     // max value
+    {   0,   0 },
+    { 400,   0 },
+    { 400, 999 },
+    { 101, 700 },
+    { 400, 700 },
+    { 600, 999 }     // max value
 };
 
-const int LF_Points_Count = 28;
+const int LF_Points_Count = 5;
 const int LF_Points[LF_Points_Count+1][2]=
 {
-    {  64, 226 },
-    {  21, 193 },
-    {   0, 130 },
-    {   0,  96 },
-    {  22,  32 },
-    {  65,   0 },
-    {  86,   0 },
-    { 130,  33 },
-    { 151,  97 },
-    { 151, 165 },
-    { 108, 450 },
-    {  65, 678 },
-    { 108, 450 },
-    { 216,  64 },
-    { 236,  34 },
-    { 280,   0 },
-    { 324,   0 },
-    { 367,  33 },
-    { 388,  97 },
-    { 388, 166 },
-    { 367, 317 },
-    { 324, 550 },
-    { 324, 646 },
-    { 345, 679 },
-    { 367, 679 },
-    { 410, 646 },
-    { 432, 613 },
-    { 473, 518 },
-    { 473, 779 } // max value
+    { 578,   0 },
+    { 178,   0 },
+    { 178, 999 },
+    { 477, 700 },
+    { 178, 700 },
+    { 600, 999 } // max value
 };
 
-const int CRLF_Points_Count = CR_Points_Count + LF_Points_Count;
-*/
+const int CRLF_Points_Count = 8;
+const int CRLF_Points[CRLF_Points_Count+1][2]=
+{
+    {   0,   0 },
+    { 560,   0 },
+    { 300,   0 },
+    { 300, 700 },
+    {  76, 700 },
+    { 300, 999 },
+    { 524, 700 },
+    { 300, 700 },
+    { 600, 999 } // max value
+};
 
+/*
 const int CR_Points2_Count = 14;
 const int CR_Points2[CR_Points2_Count+1][2]=
 {
     {   0,   0 },
     {   0, 601 },
     { 255, 348 },
-    { 255, 819 },
+    { 255, 850 },
     {  79, 644 },
     {  56, 667 },
     { 278, 999 },
     { 502, 664 },
     { 479, 641 },
-    { 304, 818 },
+    { 304, 850 },
     { 304, 270 },
     { 281, 247 },
     {  70, 457 },
@@ -130,13 +86,13 @@ const int LF_Points2_Count = 14;
 const int LF_Points2[LF_Points2_Count+1][2]=
 {
     { 255, 273 },
-    { 255, 819 },
+    { 255, 850 },
     {  79, 644 },
     {  56, 667 },
     { 278, 999 },
     { 502, 664 },
     { 479, 641 },
-    { 304, 818 },
+    { 304, 850 },
     { 304, 345 },
     { 558, 559 },
     { 558,   0 },
@@ -152,13 +108,13 @@ const int CRLF_Points2[CRLF_Points2_Count+1][2]=
     {   0,   0 },
     {   0, 601 },
     { 255, 348 },
-    { 255, 819 },
+    { 255, 850 },
     {  79, 644 },
     {  56, 667 },
     { 278, 999 },
     { 502, 664 },
     { 479, 641 },
-    { 304, 818 },
+    { 304, 850 },
     { 304, 345 },
     { 558, 559 },
     { 558,   0 },
@@ -169,6 +125,7 @@ const int CRLF_Points2[CRLF_Points2_Count+1][2]=
     {  70,   0 },
     { 600, 999 } // max value
 };
+*/
 
 void MadEdit::SetSyntax(const wxString &title)
 {
@@ -391,7 +348,6 @@ void MadEdit::SetTextFont(const wxString &name, int size, bool forceReset)
                 const int t1 = m_TextFontHeight / 5;
                 const int x = cw/5;
 
-/*
                 m_CR_Points_Count = CR_Points_Count;
                 m_LF_Points_Count = LF_Points_Count;
                 m_CRLF_Points_Count = CRLF_Points_Count;
@@ -404,8 +360,6 @@ void MadEdit::SetTextFont(const wxString &name, int size, bool forceReset)
                         int ty = CR_Points[i][1]*m_TextFontHeight*5 / maxY;
                         m_CR_Points[i].x = tx + x;
                         m_CR_Points[i].y = ty + t1;
-                        m_CRLF_Points[i].x = tx + x;
-                        m_CRLF_Points[i].y = ty/2 + t1;
                     }
                 }
                 {
@@ -417,11 +371,21 @@ void MadEdit::SetTextFont(const wxString &name, int size, bool forceReset)
                         int ty = LF_Points[i][1]*m_TextFontHeight*5 / maxY;
                         m_LF_Points[i].x = tx + x ;
                         m_LF_Points[i].y = ty + t1;
-                        m_CRLF_Points[i+CR_Points_Count].x = tx + x;
-                        m_CRLF_Points[i+CR_Points_Count].y = ty/2 + m_TextFontHeight/2 + 1;
                     }
                 }
-*/
+                {
+                    const int maxX = CRLF_Points[CRLF_Points_Count][0] * 7;
+                    const int maxY = CRLF_Points[CRLF_Points_Count][1] * 7;
+                    for(int i=0; i< CRLF_Points_Count; ++i)
+                    {
+                        int tx = CRLF_Points[i][0]*cw*5 / maxX;
+                        int ty = CRLF_Points[i][1]*m_TextFontHeight*5 / maxY;
+                        m_CRLF_Points[i].x = tx + x ;
+                        m_CRLF_Points[i].y = ty + t1;
+                    }
+                }
+
+                /*
                 m_CR_Points_Count = CR_Points2_Count;
                 m_LF_Points_Count = LF_Points2_Count;
                 m_CRLF_Points_Count = CRLF_Points2_Count;
@@ -458,6 +422,7 @@ void MadEdit::SetTextFont(const wxString &name, int size, bool forceReset)
                         m_CRLF_Points[i].y = ty + t1;
                     }
                 }
+                */
             }
 
             UpdateAppearance();
@@ -1564,7 +1529,7 @@ void MadEdit::CopyToClipboard()
         {
             if(lpos < lit->m_Size)
             {
-                data.push_back(lit->Get(lpos++));
+                data += lit->Get(lpos++);
                 ++pos;
             }
             else

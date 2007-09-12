@@ -2110,17 +2110,18 @@ void MadEdit::PaintTextLines(wxDC *dc, const wxRect &rect, int toprow, int rowco
                     dc->DrawLines(5, m_EOF_Points, left, text_top);
                     break;
                 case 0x0D:
-                    //dc->DrawLines(m_CR_Points_Count, m_CR_Points, left, text_top);
-                    dc->DrawPolygon(m_CR_Points_Count, m_CR_Points, left, text_top );
+                    dc->DrawLines(m_CR_Points_Count, m_CR_Points, left, text_top);
+                    //dc->DrawPolygon(m_CR_Points_Count, m_CR_Points, left, text_top );
                     break;
                 case 0x0A:
-                    //dc->DrawLines(m_LF_Points_Count, m_LF_Points, left, text_top);
-                    dc->DrawPolygon(m_LF_Points_Count, m_LF_Points, left, text_top );
+                    dc->DrawLines(m_LF_Points_Count, m_LF_Points, left, text_top);
+                    //dc->DrawPolygon(m_LF_Points_Count, m_LF_Points, left, text_top );
                     break;
                 case 0x0D+0x0A:
+                    dc->DrawLines(m_CRLF_Points_Count, m_CRLF_Points, left, text_top);
                     //dc->DrawLines(m_CR_Points_Count, m_CRLF_Points, left, text_top);
                     //dc->DrawLines(m_LF_Points_Count, m_CRLF_Points+m_CR_Points_Count, left, text_top);
-                    dc->DrawPolygon(m_CRLF_Points_Count, m_CRLF_Points, left, text_top );
+                    //dc->DrawPolygon(m_CRLF_Points_Count, m_CRLF_Points, left, text_top );
                     break;
                 }
 
