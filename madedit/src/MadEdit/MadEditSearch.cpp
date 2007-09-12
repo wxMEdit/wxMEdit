@@ -817,12 +817,12 @@ ucs4string ConvertEscape(const ucs4string &str)
             else
             {
                 esc = detail::parse_escape(begin, end, ucs4traits);
-                out.push_back(esc.ch_);
+                out += esc.ch_;
             }
         }
         else
         {
-            out.push_back(*begin);
+            out += *begin;
             ++begin;
         }
     }
@@ -844,7 +844,7 @@ MadSearchResult MadEdit::Replace(ucs4string &out, const MadCaretPos &beginpos, c
 
         for(size_t i=0, size=ucs.size(); i<size; i++)
         {
-            out.push_back( ucs[i] );
+            out += ucs[i] ;
         }
 
         return SR_YES;
@@ -901,7 +901,7 @@ MadSearchResult MadEdit::Replace(ucs4string &out, const MadCaretPos &beginpos, c
     //std::copy(first, last, oi);
     while(begin!=end)
     {
-        str.push_back(*begin);
+        str += *begin;
         ++begin;
     }
 
