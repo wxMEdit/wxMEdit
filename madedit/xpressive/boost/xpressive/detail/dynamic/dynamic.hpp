@@ -130,7 +130,7 @@ struct dynamic_xpression
 
     bool is_quantifiable() const
     {
-        return quant_type<Matcher>::value != (int)quant_none;
+        return quant_type<Matcher>::value != (int)quant_none || this->next_ != get_invalid_xpression<BidiIter>();
     }
 
 private:
@@ -316,16 +316,16 @@ struct matcher_wrapper
 template<typename Matcher, typename BidiIter>
 inline sequence<BidiIter> dynamic_xpression<Matcher, BidiIter>::quantify_
 (
-    quant_spec const &
-  , std::size_t &
-  , sequence<BidiIter>
+    quant_spec const &spec
+  , std::size_t &hidden_mark_count
+  , sequence<BidiIter> seq
   , mpl::int_<quant_none>
-  , alternates_factory<BidiIter> const &
+  , alternates_factory<BidiIter> const &factory
   , void const *
 ) const
 {
-    BOOST_ASSERT(false); // should never get here
-    throw regex_error(regex_constants::error_badrepeat, "expression cannot be quantified");
+    BOOST_ASSERT(this->next_ != get_invalid_xpression<BidiIter>());
+    return this->quantify_(spec, hidden_mark_count, seq, mpl::int_<quant_variable_width>(), factory, this);
 }
 
 //   fixed-width matchers
