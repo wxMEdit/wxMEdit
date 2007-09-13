@@ -39,7 +39,7 @@ LeftChar=1
 [Editor_1]
 Open=0
 Top=0
-CursorCol=27
+CursorCol=1
 CursorRow=1484
 TopLine=1451
 LeftChar=1
@@ -308,12 +308,16 @@ LeftChar=1
 [Editor_44]
 Open=0
 Top=0
+CursorCol=1
+CursorRow=1
+TopLine=1
+LeftChar=1
 [Editor_45]
 Open=0
 Top=0
 CursorCol=1
-CursorRow=1
-TopLine=1
+CursorRow=16
+TopLine=147
 LeftChar=1
 [Editor_46]
 Open=0

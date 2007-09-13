@@ -14,10 +14,8 @@ object frmNewForm: TfrmNewForm
   OldCreateOrder = True
   PopupMenu = MainForm.DesignerPopup
   Visible = True
-  OnCloseQuery = FormCloseQuery
   OnCreate = FormCreate
   OnDestroy = FormDestroy
-  OnKeyDown = FormKeyDown
   OnResize = NewFormResize
   Wx_ICON.Data = {07544269746D617000000000}
   Wx_Name = 'MadFindInFilesDialog'
@@ -337,7 +335,6 @@ object frmNewForm: TfrmNewForm
         Height = 86
         TabOrder = 1
         Columns = 4
-        Rows = 4
         Wx_Border = 0
         Wx_Class = 'wxFlexGridSizer'
         Wx_IDName = 'ID_WXFLEXGRIDSIZER1'

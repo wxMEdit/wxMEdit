@@ -14,10 +14,8 @@ object frmNewForm: TfrmNewForm
   OldCreateOrder = True
   PopupMenu = MainForm.DesignerPopup
   Visible = True
-  OnCloseQuery = FormCloseQuery
   OnCreate = FormCreate
   OnDestroy = FormDestroy
-  OnKeyDown = FormKeyDown
   OnResize = NewFormResize
   Wx_ICON.Data = {07544269746D617000000000}
   Wx_Name = 'MadWordCountDialog'
@@ -50,7 +48,6 @@ object frmNewForm: TfrmNewForm
       Height = 150
       TabOrder = 0
       ColumnSpacing = 150
-      Rows = 5
       Wx_Border = 4
       Wx_Class = 'wxFlexGridSizer'
       Wx_IDName = 'ID_WXFLEXGRIDSIZER1'
