@@ -2221,10 +2221,10 @@ MadSearchResult MadEdit::FindTextNext(const wxString &text, bool bRegex, bool bC
     {
         bpos.Reset(m_Lines->m_LineList.begin());
     }
-    else if(m_Selection)
-    {
-        bpos=*m_SelectionEnd;
-    }
+    //else if(m_Selection)
+    //{
+    //	bpos=*m_SelectionEnd;
+    //}
     else
     {
         bpos=m_CaretPos;
@@ -2255,10 +2255,10 @@ MadSearchResult MadEdit::FindTextPrevious(const wxString &text, bool bRegex, boo
         epos.linepos=epos.iter->m_Size;
         epos.pos=m_Lines->m_Size;
     }
-    else if(m_Selection)
-    {
-        epos=*m_SelectionBegin;
-    }
+    //else if(m_Selection)
+    //{
+    //    epos=*m_SelectionBegin;
+    //}
     else
     {
         epos=m_CaretPos;
@@ -2332,7 +2332,7 @@ MadSearchResult MadEdit::FindTextPrevious(const wxString &text, bool bRegex, boo
             }
             while(Search(bpos1, epos1, text, bRegex, bCaseSensitive, bWholeWord));
 
-            SetSelection(bp.pos, ep.pos);
+            SetSelection(bp.pos, ep.pos, true);
             return SR_YES;
         }
 
@@ -2537,7 +2537,7 @@ MadSearchResult MadEdit::FindHexPrevious(const wxString &hexstr, bool bFromDocEn
             }
             while(SearchHex(bpos1, epos1, &(*hex.begin()), hex.size()));
 
-            SetSelection(bp.pos, ep.pos);
+            SetSelection(bp.pos, ep.pos, true);
             return SR_YES;
         }
 

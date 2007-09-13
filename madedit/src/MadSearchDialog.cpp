@@ -237,9 +237,10 @@ void MadSearchDialog::WxButtonFindNextClick(wxCommandEvent& event)
 
         MadSearchResult sr;
         bool fromBegin=false;
+        wxFileOffset selend = g_ActiveMadEdit->GetSelectionEndPos();
         for(;;)
         {
-            if(/*WxCheckBoxFindHex->IsShown() &&*/ WxCheckBoxFindHex->GetValue())
+            if(WxCheckBoxFindHex->GetValue())
             {
                 sr=g_ActiveMadEdit->FindHexNext(text, fromBegin);
             }
@@ -252,11 +253,16 @@ void MadSearchDialog::WxButtonFindNextClick(wxCommandEvent& event)
                     fromBegin);
             }
 
-            if(sr!=SR_NO)
+            if(sr != SR_NO)
             {
+                if(sr == SR_YES && g_ActiveMadEdit->GetCharPosition() == selend)
+                {
+                    selend = -1;
+                    continue;
+                }
                 break;
             }
-            if(wxCANCEL==wxMessageBox(_("Cannot find the matched string.\n\nDo you want to find from begin of file?"), _("Find Next"), wxOK|wxCANCEL|wxICON_QUESTION ))
+            if(wxCANCEL == wxMessageBox(_("Cannot find the matched string.\n\nDo you want to find from begin of file?"), _("Find Next"), wxOK|wxCANCEL|wxICON_QUESTION ))
             {
                 break;
             }
@@ -290,10 +296,10 @@ void MadSearchDialog::WxButtonFindPrevClick(wxCommandEvent& event)
         
         MadSearchResult sr;
         bool fromEnd=false;
-        
+        wxFileOffset selbeg = g_ActiveMadEdit->GetSelectionBeginPos();
         for(;;)
         {
-            if(/*WxCheckBoxFindHex->IsShown() &&*/ WxCheckBoxFindHex->GetValue())
+            if(WxCheckBoxFindHex->GetValue())
             {
                 sr=g_ActiveMadEdit->FindHexPrevious(text, fromEnd);
             }
@@ -308,6 +314,11 @@ void MadSearchDialog::WxButtonFindPrevClick(wxCommandEvent& event)
 
             if(sr!=SR_NO)
             {
+                if(sr == SR_YES && g_ActiveMadEdit->GetCharPosition() == selbeg)
+                {
+                    selbeg = -1;
+                    continue;
+                }
                 break;
             }
             if(wxCANCEL==wxMessageBox(_("Cannot find the matched string.\n\nDo you want to find from end of file?"), _("Find Previous"), wxOK|wxCANCEL|wxICON_QUESTION ))

@@ -408,7 +408,7 @@ protected:
     void BeginUpdateSelection();
     void EndUpdateSelection(bool bSelection);
 
-    void SetSelection(wxFileOffset beginpos, wxFileOffset endpos);
+    void SetSelection(wxFileOffset beginpos, wxFileOffset endpos, bool bCaretAtBeginPos = false);
 
     wxFileOffset GetColumnSelection(wxString *ws);
 
@@ -693,6 +693,8 @@ public: // basic functions
 
     bool IsSelected() { return m_Selection; }
     wxFileOffset GetSelectionSize();
+    wxFileOffset GetSelectionBeginPos() { return m_Selection ? m_SelectionBegin->pos : -1; }
+    wxFileOffset GetSelectionEndPos() { return m_Selection ? m_SelectionEnd->pos : -1; }
 
     // return -1 for no selection
     void GetSelectionLineId(int &beginline, int &endline);

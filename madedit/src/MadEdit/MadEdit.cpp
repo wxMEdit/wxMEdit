@@ -3477,12 +3477,24 @@ void MadEdit::EndUpdateSelection(bool bSelection)
     }
 }
 
-void MadEdit::SetSelection(wxFileOffset beginpos, wxFileOffset endpos)
+void MadEdit::SetSelection(wxFileOffset beginpos, wxFileOffset endpos, bool bCaretAtBeginPos)
 {
     wxFileOffset oldCaretPos=m_CaretPos.pos;
 
-    m_SelectionPos1.pos = beginpos;
-    m_SelectionPos2.pos = endpos;
+    if(bCaretAtBeginPos)
+    {
+        m_SelectionPos1.pos = endpos;
+        m_SelectionPos2.pos = beginpos;
+        m_SelectionBegin = &m_SelectionPos2;
+        m_SelectionEnd = &m_SelectionPos1;
+    }
+    else
+    {
+        m_SelectionPos1.pos = beginpos;
+        m_SelectionPos2.pos = endpos;
+        m_SelectionBegin = &m_SelectionPos1;
+        m_SelectionEnd = &m_SelectionPos2;
+    }
 
     if(IsTextFile())
     {
@@ -3498,8 +3510,8 @@ void MadEdit::SetSelection(wxFileOffset beginpos, wxFileOffset endpos)
     }
     else
     {
-        m_SelectionPos1.linepos = beginpos;
-        m_SelectionPos2.linepos = endpos;
+        m_SelectionPos1.linepos = m_SelectionPos1.pos;
+        m_SelectionPos2.linepos = m_SelectionPos2.pos;
     }
 
     if(m_Selection || m_EditMode == emHexMode)
@@ -3515,8 +3527,6 @@ void MadEdit::SetSelection(wxFileOffset beginpos, wxFileOffset endpos)
         m_Selection = true;
         m_RepaintSelection = true;
 
-        m_SelectionBegin = &m_SelectionPos1;
-        m_SelectionEnd = &m_SelectionPos2;
         m_SelFirstRow = m_SelectionBegin->rowid;
         m_SelLastRow = m_SelectionEnd->rowid;
 
@@ -3537,13 +3547,24 @@ void MadEdit::SetSelection(wxFileOffset beginpos, wxFileOffset endpos)
 
     if(IsTextFile())
     {
-        m_CaretPos=m_SelectionPos2;
+        if(bCaretAtBeginPos)
+            m_CaretPos = *m_SelectionBegin;
+        else
+            m_CaretPos = *m_SelectionEnd;
         UpdateCaret(m_CaretPos, m_ActiveRowUChars, m_ActiveRowWidths, m_CaretRowUCharPos);
     }
     else
     {
-        m_CaretPos.pos = endpos;
-        m_CaretPos.linepos = endpos;
+        if(bCaretAtBeginPos)
+        {
+            m_CaretPos.pos = beginpos;
+            m_CaretPos.linepos = beginpos;
+        }
+        else
+        {
+            m_CaretPos.pos = endpos;
+            m_CaretPos.linepos = endpos;
+        }
     }
 
     AppearCaret();
@@ -4674,7 +4695,7 @@ void MadEdit::UCStoBlock(const ucs4_t *ucs, size_t count, MadBlock & block)
 
 void MadEdit::InsertString(const ucs4_t *ucs, size_t count, bool bColumnEditing, bool moveCaret, bool bSelText)
 {
-    if(IsReadOnly() || (m_EditMode == emHexMode && m_CaretAtHexArea))
+    if(IsReadOnly())// || (m_EditMode == emHexMode && m_CaretAtHexArea))
         return;
 
     bool oldModified=m_Modified;
