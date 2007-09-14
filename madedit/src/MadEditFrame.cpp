@@ -135,7 +135,7 @@
 #endif
 
 
-wxString g_MadEdit_Version(wxT("MadEdit v0.2.7 Beta"));
+wxString g_MadEdit_Version(wxT("MadEdit v0.2.8 Beta"));
 wxString g_MadEdit_URL(wxT("http://madedit.sourceforge.net"));
 
 
@@ -2641,6 +2641,7 @@ void MadEditFrame::OpenFile(const wxString &filename, bool mustExist)
                 g_CheckModTimeForReload=true;
                 g_ActiveMadEdit->ReloadByModificationTime();
                 m_RecentFiles->AddFileToHistory(filename);  // bring the filename to top of list
+                g_ActiveMadEdit->SetFocus();
                 return;
             }
         }
