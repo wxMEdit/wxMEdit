@@ -24,7 +24,8 @@
 ////Header Include Start
 #include <wx/button.h>
 #include <wx/checkbox.h>
-#include <wx/statbox.h>
+#include <wx/radiobox.h>
+#include <wx/sizer.h>
 ////Header Include End
 
 //Compatibility for 2.4 code

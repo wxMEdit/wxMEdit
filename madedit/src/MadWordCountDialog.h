@@ -26,6 +26,7 @@
 #include <wx/textctrl.h>
 #include <wx/statline.h>
 #include <wx/stattext.h>
+#include <wx/sizer.h>
 ////Header Include End
 
 //Compatibility for 2.4 code

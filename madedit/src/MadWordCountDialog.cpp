@@ -65,69 +65,71 @@ void MadWordCountDialog::CreateGUIControls(void)
 	//Add the custom code before or after the blocks
 	////GUI Items Creation Start
 
-	wxBoxSizer* WxBoxSizer1 = new wxBoxSizer(wxVERTICAL);
+	WxBoxSizer1 = new wxBoxSizer(wxVERTICAL);
 	this->SetSizer(WxBoxSizer1);
-	this->SetAutoLayout(TRUE);
+	this->SetAutoLayout(true);
 
-	wxFlexGridSizer* WxFlexGridSizer1 = new wxFlexGridSizer(5,2,0,150);
-	WxBoxSizer1->Add(WxFlexGridSizer1,0,wxALIGN_CENTER_HORIZONTAL | wxALL,4);
+	WxFlexGridSizer1 = new wxFlexGridSizer(0, 2, 0, 150);
+	WxBoxSizer1->Add(WxFlexGridSizer1, 0, wxALIGN_CENTER | wxALL, 4);
 
-	WxStaticText1 = new wxStaticText(this, ID_WXSTATICTEXT1, _("Words"), wxPoint(46,4), wxSize(35,17), 0, _("WxStaticText1"));
-	WxFlexGridSizer1->Add(WxStaticText1,0,wxALIGN_LEFT | wxALIGN_CENTER_VERTICAL | wxALL,5);
+	WxStaticText1 = new wxStaticText(this, ID_WXSTATICTEXT1, _("Words"), wxPoint(47,5), wxDefaultSize, 0, _("WxStaticText1"));
+	WxFlexGridSizer1->Add(WxStaticText1,0,wxALIGN_LEFT | wxALL,5);
 
-	WxStaticTextWordCount = new wxStaticText(this, ID_WXSTATICTEXTWORDCOUNT, _("999999"), wxPoint(132,4), wxSize(40,17), 0, _("WxStaticTextWordCount"));
-	WxFlexGridSizer1->Add(WxStaticTextWordCount,0,wxALIGN_RIGHT | wxALIGN_CENTER_VERTICAL | wxALL,5);
+	WxStaticTextWordCount = new wxStaticText(this, ID_WXSTATICTEXTWORDCOUNT, _("999999"), wxPoint(285,5), wxDefaultSize, 0, _("WxStaticTextWordCount"));
+	WxFlexGridSizer1->Add(WxStaticTextWordCount,0,wxALIGN_RIGHT | wxALL,5);
 
-	WxStaticText2 = new wxStaticText(this, ID_WXSTATICTEXT2, _("Characters (no spaces)"), wxPoint(7,29), wxSize(113,17), 0, _("WxStaticText2"));
-	WxFlexGridSizer1->Add(WxStaticText2,0,wxALIGN_LEFT | wxALIGN_CENTER_VERTICAL | wxALL,5);
+	WxStaticText2 = new wxStaticText(this, ID_WXSTATICTEXT2, _("Characters (no spaces)"), wxPoint(8,32), wxDefaultSize, 0, _("WxStaticText2"));
+	WxFlexGridSizer1->Add(WxStaticText2,0,wxALIGN_LEFT | wxALL,5);
 
-	WxStaticTextCharCount = new wxStaticText(this, ID_WXSTATICTEXTCHARCOUNT, _("999999"), wxPoint(132,29), wxSize(40,17), 0, _("WxStaticTextCharCount"));
-	WxFlexGridSizer1->Add(WxStaticTextCharCount,0,wxALIGN_RIGHT | wxALIGN_CENTER_VERTICAL | wxALL,5);
+	WxStaticTextCharCount = new wxStaticText(this, ID_WXSTATICTEXTCHARCOUNT, _("999999"), wxPoint(285,32), wxDefaultSize, 0, _("WxStaticTextCharCount"));
+	WxFlexGridSizer1->Add(WxStaticTextCharCount,0,wxALIGN_RIGHT | wxALL,5);
 
-	WxStaticText3 = new wxStaticText(this, ID_WXSTATICTEXT3, _("Characters (with spaces)"), wxPoint(4,54), wxSize(120,17), 0, _("WxStaticText3"));
-	WxFlexGridSizer1->Add(WxStaticText3,0,wxALIGN_LEFT | wxALIGN_CENTER_VERTICAL | wxALL,5);
+	WxStaticText3 = new wxStaticText(this, ID_WXSTATICTEXT3, _("Characters (with spaces)"), wxPoint(5,59), wxDefaultSize, 0, _("WxStaticText3"));
+	WxFlexGridSizer1->Add(WxStaticText3,0,wxALIGN_LEFT | wxALL,5);
 
-	WxStaticTextSpaceCount = new wxStaticText(this, ID_WXSTATICTEXTSPACECOUNT, _("999999"), wxPoint(132,54), wxSize(40,17), 0, _("WxStaticTextSpaceCount"));
-	WxFlexGridSizer1->Add(WxStaticTextSpaceCount,0,wxALIGN_RIGHT | wxALIGN_CENTER_VERTICAL | wxALL,5);
+	WxStaticTextSpaceCount = new wxStaticText(this, ID_WXSTATICTEXTSPACECOUNT, _("999999"), wxPoint(285,59), wxDefaultSize, 0, _("WxStaticTextSpaceCount"));
+	WxFlexGridSizer1->Add(WxStaticTextSpaceCount,0,wxALIGN_RIGHT | wxALL,5);
 
-	WxStaticText4 = new wxStaticText(this, ID_WXSTATICTEXT4, _("Halfwidth Words"), wxPoint(23,79), wxSize(82,17), 0, _("WxStaticText4"));
-	WxFlexGridSizer1->Add(WxStaticText4,0,wxALIGN_LEFT | wxALIGN_CENTER_VERTICAL | wxALL,5);
+	WxStaticText4 = new wxStaticText(this, ID_WXSTATICTEXT4, _("Halfwidth Words"), wxPoint(24,86), wxDefaultSize, 0, _("WxStaticText4"));
+	WxFlexGridSizer1->Add(WxStaticText4,0,wxALIGN_LEFT | wxALL,5);
 
-	WxStaticTextHalfwidthCount = new wxStaticText(this, ID_WXSTATICTEXTHALFWIDTHCOUNT, _("999999"), wxPoint(132,79), wxSize(40,17), 0, _("WxStaticTextHalfwidthCount"));
-	WxFlexGridSizer1->Add(WxStaticTextHalfwidthCount,0,wxALIGN_RIGHT | wxALIGN_CENTER_VERTICAL | wxALL,5);
+	WxStaticTextHalfwidthCount = new wxStaticText(this, ID_WXSTATICTEXTHALFWIDTHCOUNT, _("999999"), wxPoint(285,86), wxDefaultSize, 0, _("WxStaticTextHalfwidthCount"));
+	WxFlexGridSizer1->Add(WxStaticTextHalfwidthCount,0,wxALIGN_RIGHT | wxALL,5);
 
-	WxStaticText5 = new wxStaticText(this, ID_WXSTATICTEXT5, _("Fullwidth Words"), wxPoint(24,104), wxSize(79,17), 0, _("WxStaticText5"));
-	WxFlexGridSizer1->Add(WxStaticText5,0,wxALIGN_LEFT | wxALIGN_CENTER_VERTICAL | wxALL,5);
+	WxStaticText5 = new wxStaticText(this, ID_WXSTATICTEXT5, _("Fullwidth Words"), wxPoint(25,113), wxDefaultSize, 0, _("WxStaticText5"));
+	WxFlexGridSizer1->Add(WxStaticText5,0,wxALIGN_LEFT | wxALL,5);
 
-	WxStaticTextFullwidthCount = new wxStaticText(this, ID_WXSTATICTEXTFULLWIDTHCOUNT, _("999999"), wxPoint(132,104), wxSize(40,17), 0, _("WxStaticTextFullwidthCount"));
-	WxFlexGridSizer1->Add(WxStaticTextFullwidthCount,0,wxALIGN_RIGHT | wxALIGN_CENTER_VERTICAL | wxALL,5);
+	WxStaticTextFullwidthCount = new wxStaticText(this, ID_WXSTATICTEXTFULLWIDTHCOUNT, _("999999"), wxPoint(285,113), wxDefaultSize, 0, _("WxStaticTextFullwidthCount"));
+	WxFlexGridSizer1->Add(WxStaticTextFullwidthCount,0,wxALIGN_RIGHT | wxALL,5);
 
-	WxStaticText7 = new wxStaticText(this, ID_WXSTATICTEXT7, _("Lines"), wxPoint(49,129), wxSize(29,17), 0, _("WxStaticText7"));
-	WxFlexGridSizer1->Add(WxStaticText7,0,wxALIGN_LEFT | wxALIGN_CENTER_VERTICAL | wxALL,5);
+	WxStaticText7 = new wxStaticText(this, ID_WXSTATICTEXT7, _("Lines"), wxPoint(50,140), wxDefaultSize, 0, _("WxStaticText7"));
+	WxFlexGridSizer1->Add(WxStaticText7,0,wxALIGN_LEFT | wxALL,5);
 
-	WxStaticTextLineCount = new wxStaticText(this, ID_WXSTATICTEXTLINECOUNT, _("999999"), wxPoint(132,129), wxSize(40,17), 0, _("WxStaticTextLineCount"));
-	WxFlexGridSizer1->Add(WxStaticTextLineCount,0,wxALIGN_RIGHT | wxALIGN_CENTER_VERTICAL | wxALL,5);
+	WxStaticTextLineCount = new wxStaticText(this, ID_WXSTATICTEXTLINECOUNT, _("999999"), wxPoint(285,140), wxDefaultSize, 0, _("WxStaticTextLineCount"));
+	WxFlexGridSizer1->Add(WxStaticTextLineCount,0,wxALIGN_RIGHT | wxALL,5);
 
-	WxStaticLine1 = new wxStaticLine(this, ID_WXSTATICLINE1, wxPoint(150,165), wxSize(150,-1), wxLI_HORIZONTAL);
-	WxBoxSizer1->Add(WxStaticLine1,0,wxGROW | wxALL,2);
+	WxStaticLine1 = new wxStaticLine(this, ID_WXSTATICLINE1, wxPoint(149,172), wxSize(150,-1), wxLI_HORIZONTAL);
+	WxBoxSizer1->Add(WxStaticLine1,0,wxEXPAND | wxALL,2);
 
-	WxStaticText6 = new wxStaticText(this, ID_WXSTATICTEXT6, _("Detail Information of Characters:"), wxPoint(147,182), wxSize(155,17), 0, _("WxStaticText6"));
-	WxBoxSizer1->Add(WxStaticText6,0,wxALIGN_CENTER_HORIZONTAL | wxALL,2);
+	WxStaticText6 = new wxStaticText(this, ID_WXSTATICTEXT6, _("Detail Information of Characters:"), wxPoint(146,183), wxDefaultSize, 0, _("WxStaticText6"));
+	WxBoxSizer1->Add(WxStaticText6,0,wxALIGN_CENTER | wxALL,2);
 
-	WxMemo1 = new wxTextCtrl(this, ID_WXMEMO1, _(""), wxPoint(5,209), wxSize(440,160), wxTE_DONTWRAP | wxTE_MULTILINE, wxDefaultValidator, _("WxMemo1"));
+	WxMemo1 = new wxTextCtrl(this, ID_WXMEMO1, _(""), wxPoint(4,206), wxSize(440,160), wxTE_DONTWRAP | wxTE_MULTILINE, wxDefaultValidator, _("WxMemo1"));
 	WxMemo1->SetMaxLength(0);
 	WxMemo1->SetFocus();
 	WxMemo1->SetInsertionPointEnd();
-	WxBoxSizer1->Add(WxMemo1,1,wxGROW | wxALL,4);
+	WxBoxSizer1->Add(WxMemo1,1,wxALIGN_CENTER | wxEXPAND | wxALL,4);
 
-	WxButton1 = new wxButton(this, wxID_CANCEL, _("&Close"), wxPoint(187,379), wxSize(75,30), 0, wxDefaultValidator, _("WxButton1"));
-	WxBoxSizer1->Add(WxButton1,0,wxALIGN_CENTER_HORIZONTAL | wxALL,5);
+	WxButton1 = new wxButton(this, wxID_CANCEL, _("&Close"), wxPoint(218,376), wxSize(75,30), 0, wxDefaultValidator, _("WxButton1"));
+	WxBoxSizer1->Add(WxButton1,0,wxALIGN_CENTER | wxALL,5);
 
+	SetTitle(_("Word Count"));
+	SetIcon(wxNullIcon);
+	
+	GetSizer()->Layout();
 	GetSizer()->Fit(this);
 	GetSizer()->SetSizeHints(this);
-	this->SetTitle(_("Word Count"));
-	this->Center();
-	this->SetIcon(wxNullIcon);
+	Center();
 	
 	////GUI Items Creation End
 

@@ -1,10 +1,11 @@
 object frmNewForm: TfrmNewForm
   Left = 8
   Top = 8
-  Width = 320
-  Height = 334
+  AutoScroll = False
   BorderIcons = [biSystemMenu, biMinimize]
   Caption = 'Sort Options'
+  ClientHeight = 302
+  ClientWidth = 312
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -19,6 +20,7 @@ object frmNewForm: TfrmNewForm
   OnDestroy = FormDestroy
   OnKeyDown = FormKeyDown
   OnResize = NewFormResize
+  EVT_CLOSE = 'MadSortDialogClose'
   Wx_ICON.Data = {07544269746D617000000000}
   Wx_Name = 'MadSortDialog'
   Wx_IDName = 'ID_DIALOG1'
@@ -26,23 +28,25 @@ object frmNewForm: TfrmNewForm
   Wx_Class = 'wxDialog'
   Wx_Center = True
   Wx_Hidden = False
+  Wx_SizeToContents = True
   Wx_GeneralStyle = []
   Wx_DialogStyle = [wxCAPTION, wxRESIZE_BORDER, wxSYSTEM_MENU, wxSTAY_ON_TOP, wxDIALOG_NO_PARENT, wxCLOSE_BOX]
-  EVT_CLOSE = 'MadSortDialogClose'
+  Wx_Border = 0
+  Wx_BorderAlignment = []
   PixelsPerInch = 96
   TextHeight = 13
   object WxBoxSizer1: TWxBoxSizer
     Left = 0
     Top = 0
     Width = 312
-    Height = 304
+    Height = 302
     Align = alClient
     TabOrder = 0
     Orientation = wxVertical
     Wx_Class = 'wxBoxSizer'
+    Wx_ControlOrientation = wxControlVertical
     Wx_IDName = 'ID_WXBOXSIZER1'
     Wx_IDValue = 1002
-    Wx_StretchFactor = 0
     object WxRadioBoxOrder: TWxRadioBox
       Left = 30
       Top = 5
@@ -56,6 +60,7 @@ object frmNewForm: TfrmNewForm
       TabOrder = 0
       Wx_BGColor = clBlack
       Wx_Class = 'wxRadioBox'
+      Wx_ControlOrientation = wxControlVertical
       Wx_EventList.Strings = (
         'EVT_RADIOBOX:OnClick'
         'EVT_UPDATE_UI:OnUpdateUI')
@@ -65,6 +70,7 @@ object frmNewForm: TfrmNewForm
       Wx_IDValue = 1003
       Wx_RadioBoxStyle = wxRA_SPECIFY_COLS
       Wx_Selection = 0
+      Wx_Alignment = [wxALIGN_LEFT]
     end
     object WxCheckBoxCase: TWxCheckBox
       Left = 30
@@ -76,11 +82,13 @@ object frmNewForm: TfrmNewForm
       Wx_BGColor = clBlack
       Wx_CheckBoxStyle = []
       Wx_Class = 'wxCheckBox'
+      Wx_ControlOrientation = wxControlVertical
       Wx_FGColor = clBlack
       Wx_GeneralStyle = []
       Wx_Hidden = False
       Wx_IDName = 'ID_WXCHECKBOXCASE'
       Wx_IDValue = 1004
+      Wx_Alignment = [wxALIGN_LEFT]
     end
     object WxCheckBoxNumeric: TWxCheckBox
       Left = 30
@@ -92,11 +100,13 @@ object frmNewForm: TfrmNewForm
       Wx_BGColor = clBlack
       Wx_CheckBoxStyle = []
       Wx_Class = 'wxCheckBox'
+      Wx_ControlOrientation = wxControlVertical
       Wx_FGColor = clBlack
       Wx_GeneralStyle = []
       Wx_Hidden = False
       Wx_IDName = 'ID_WXCHECKBOXNUMERIC'
       Wx_IDValue = 1006
+      Wx_Alignment = [wxALIGN_LEFT]
     end
     object WxCheckBoxRemoveDup: TWxCheckBox
       Left = 30
@@ -108,11 +118,13 @@ object frmNewForm: TfrmNewForm
       Wx_BGColor = clBlack
       Wx_CheckBoxStyle = []
       Wx_Class = 'wxCheckBox'
+      Wx_ControlOrientation = wxControlVertical
       Wx_FGColor = clBlack
       Wx_GeneralStyle = []
       Wx_Hidden = False
       Wx_IDName = 'ID_WXCHECKBOXREMOVEDUP'
       Wx_IDValue = 1007
+      Wx_Alignment = [wxALIGN_LEFT]
     end
     object WxBoxSizer2: TWxBoxSizer
       Left = 5
@@ -121,9 +133,10 @@ object frmNewForm: TfrmNewForm
       Height = 40
       TabOrder = 4
       Wx_Class = 'wxBoxSizer'
+      Wx_ControlOrientation = wxControlVertical
       Wx_IDName = 'ID_WXBOXSIZER2'
       Wx_IDValue = 1008
-      Wx_StretchFactor = 0
+      Wx_Alignment = [wxALIGN_LEFT]
       object WxButtonSort: TWxButton
         Left = 5
         Top = 5
@@ -134,6 +147,7 @@ object frmNewForm: TfrmNewForm
         Wx_BKColor = clBlack
         Wx_ButtonStyle = []
         Wx_Class = 'wxButton'
+        Wx_ControlOrientation = wxControlVertical
         Wx_Default = False
         Wx_EventList.Strings = (
           'EVT_BUTTON:OnClick'
@@ -156,6 +170,7 @@ object frmNewForm: TfrmNewForm
         Wx_BKColor = clBlack
         Wx_ButtonStyle = []
         Wx_Class = 'wxButton'
+        Wx_ControlOrientation = wxControlVertical
         Wx_Default = False
         Wx_EventList.Strings = (
           'EVT_BUTTON:OnClick'

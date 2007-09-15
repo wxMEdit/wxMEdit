@@ -56,9 +56,9 @@ void MadSortDialog::CreateGUIControls(void)
 	//Add the custom code before or after the blocks
 	////GUI Items Creation Start
 
-	wxBoxSizer* WxBoxSizer1 = new wxBoxSizer(wxVERTICAL);
+	WxBoxSizer1 = new wxBoxSizer(wxVERTICAL);
 	this->SetSizer(WxBoxSizer1);
-	this->SetAutoLayout(TRUE);
+	this->SetAutoLayout(true);
 
 	wxArrayString arrayStringFor_WxRadioBoxOrder;
 	arrayStringFor_WxRadioBoxOrder.Add(_("&Ascending"));
@@ -76,20 +76,22 @@ void MadSortDialog::CreateGUIControls(void)
 	WxCheckBoxRemoveDup = new wxCheckBox(this, ID_WXCHECKBOXREMOVEDUP, _("&Remove Duplicates"), wxPoint(30,150), wxSize(150,20), 0, wxDefaultValidator, _("WxCheckBoxRemoveDup"));
 	WxBoxSizer1->Add(WxCheckBoxRemoveDup,0,wxALIGN_LEFT | wxALL,5);
 
-	wxBoxSizer* WxBoxSizer2 = new wxBoxSizer(wxHORIZONTAL);
-	WxBoxSizer1->Add(WxBoxSizer2,0,wxALIGN_CENTER_HORIZONTAL | wxALL,5);
+	WxBoxSizer2 = new wxBoxSizer(wxHORIZONTAL);
+	WxBoxSizer1->Add(WxBoxSizer2, 0, wxALIGN_LEFT | wxALL, 5);
 
 	WxButtonSort = new wxButton(this, wxID_OK, _("&Sort"), wxPoint(5,5), wxSize(90,30), 0, wxDefaultValidator, _("WxButtonSort"));
-	WxBoxSizer2->Add(WxButtonSort,0,wxALIGN_CENTER_VERTICAL | wxALL,5);
+	WxBoxSizer2->Add(WxButtonSort,0,wxALIGN_CENTER | wxALL,5);
 
 	WxButtonCancel = new wxButton(this, wxID_CANCEL, _("Cancel"), wxPoint(105,5), wxSize(90,30), 0, wxDefaultValidator, _("WxButtonCancel"));
-	WxBoxSizer2->Add(WxButtonCancel,0,wxALIGN_CENTER_VERTICAL | wxALL,5);
+	WxBoxSizer2->Add(WxButtonCancel,0,wxALIGN_CENTER | wxALL,5);
 
+	SetTitle(_("Sort Options"));
+	SetIcon(wxNullIcon);
+	
+	GetSizer()->Layout();
 	GetSizer()->Fit(this);
 	GetSizer()->SetSizeHints(this);
-	this->SetTitle(_("Sort Options"));
-	this->Center();
-	this->SetIcon(wxNullIcon);
+	Center();
 	
 	////GUI Items Creation End
 
