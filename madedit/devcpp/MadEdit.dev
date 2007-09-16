@@ -1,7 +1,7 @@
 [Project]
 FileName=MadEdit.dev
 Name=MadEdit
-UnitCount=115
+UnitCount=118
 Type=0
 Ver=3
 IsCpp=1
@@ -1207,30 +1207,10 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit116]
-FileName=..\charset-detector\src\nsPkgInt.h
-CompileCpp=1
-Folder=charset-detector
-Compile=1
-Link=1
-Priority=1000
-OverrideBuildCmd=0
-BuildCmd=
-
 [Unit117]
-FileName=..\charset-detector\src\nsSBCharSetProber.cpp
+FileName=..\src\MadFileAssociationDialog.cpp
 CompileCpp=1
-Folder=charset-detector
-Compile=1
-Link=1
-Priority=1000
-OverrideBuildCmd=0
-BuildCmd=
-
-[Unit118]
-FileName=..\charset-detector\src\nsSBCharSetProber.h
-CompileCpp=1
-Folder=charset-detector
+Folder=
 Compile=1
 Link=1
 Priority=1000
@@ -1238,9 +1218,9 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit119]
-FileName=..\charset-detector\src\nsSBCSGroupProber.cpp
+FileName=..\src\MadFileAssociationDialog.h
 CompileCpp=1
-Folder=charset-detector
+Folder=MadEdit
 Compile=1
 Link=1
 Priority=1000
@@ -1248,9 +1228,9 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit120]
-FileName=..\charset-detector\src\nsSBCSGroupProber.h
+FileName=..\src\MadFileAssociationDialog.cpp
 CompileCpp=1
-Folder=charset-detector
+Folder=MadEdit
 Compile=1
 Link=1
 Priority=1000
@@ -1258,11 +1238,11 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit121]
-FileName=..\charset-detector\src\nsSJISProber.cpp
+FileName=..\src\MadFileAssociationDialog.wxform
 CompileCpp=1
-Folder=charset-detector
-Compile=1
-Link=1
+Folder=MadEdit
+Compile=0
+Link=0
 Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
@@ -1313,6 +1293,25 @@ CompileCpp=1
 Folder=charset-detector
 Compile=1
 Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit116]
+FileName=..\src\MadFileAssociationDialog.h
+CompileCpp=1
+Folder=
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit118]
+FileName=..\src\MadFileAssociationDialog.wxform
+Folder=
+Compile=0
+Link=0
 Priority=1000
 OverrideBuildCmd=0
 BuildCmd=

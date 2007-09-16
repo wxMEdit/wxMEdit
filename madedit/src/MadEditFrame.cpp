@@ -16,6 +16,9 @@
 #include "MadFindInFilesDialog.h"
 #include "MadOptionsDialog.h"
 #include "MadHighlightingDialog.h"
+#ifdef __WXMSW__
+#include "MadFileAssociationDialog.h"
+#endif
 #include "MadConvEncDialog.h"
 #include "MadWordCountDialog.h"
 #include "MadSortDialog.h"
@@ -1080,6 +1083,9 @@ BEGIN_EVENT_TABLE(MadEditFrame,wxFrame)
 	// tools
 	EVT_MENU(menuOptions, MadEditFrame::OnToolsOptions)
 	EVT_MENU(menuHighlighting, MadEditFrame::OnToolsHighlighting)
+#ifdef __WXMSW__
+	EVT_MENU(menuFileAssociation, MadEditFrame::OnToolsFileAssociation)
+#endif
 	EVT_MENU(menuToggleBOM, MadEditFrame::OnToolsToggleBOM)
 	EVT_MENU(menuConvertToDOS, MadEditFrame::OnToolsConvertToDOS)
 	EVT_MENU(menuConvertToMAC, MadEditFrame::OnToolsConvertToMAC)
@@ -1400,6 +1406,9 @@ CommandData CommandTable[]=
     { 0, 0, 0, 0, _("&Tools"), 0, wxITEM_NORMAL, 0, &g_Menu_Tools, 0},
     { 0,               1, menuOptions,            wxT("menuOptions"),            _("&Options..."),                                   wxT(""),       wxITEM_NORMAL,    -1, 0,                                _("Change the configuration")},
     { 0,               1, menuHighlighting,       wxT("menuHighlighting"),       _("&Syntax Highlighting Settings..."),              wxT(""),       wxITEM_NORMAL,    -1, 0,                                _("Change syntax highlighting settings")},
+#ifdef __WXMSW__
+    { 0,               1, menuFileAssociation,    wxT("menuFileAssociation"),    _("&File Type Associations..."),                    wxT(""),       wxITEM_NORMAL,    -1, 0,                                _("Change file type associations")},
+#endif
     { 0,               1, 0,                      0,                             0,                                                  0,             wxITEM_SEPARATOR, -1, 0,                                0},
     { 0,               1, menuByteOrderMark,      wxT("menuByteOrderMark"),      _("Has Unicode BOM (Byte-Order Mark)"),             0,             wxITEM_NORMAL,    -1, &g_Menu_Tools_BOM,                0},
     { 0,               2, menuToggleBOM,          wxT("menuToggleBOM"),          _("Add/Remove BOM"),                                wxT(""),       wxITEM_NORMAL,    -1, 0,                                _("Add/Remove Unicode BOM")},
@@ -4542,6 +4551,14 @@ void MadEditFrame::OnToolsHighlighting(wxCommandEvent& event)
         g_ActiveMadEdit->SetFocus();
     }
 }
+
+#ifdef __WXMSW__
+void MadEditFrame::OnToolsFileAssociation(wxCommandEvent& event)
+{
+    MadFileAssociationDialog fadialog(this, -1);
+    fadialog.ShowModal();
+}
+#endif
 
 void MadEditFrame::OnToolsToggleBOM(wxCommandEvent& event)
 {

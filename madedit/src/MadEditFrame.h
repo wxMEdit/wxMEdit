@@ -230,6 +230,9 @@ public:
 
     void OnToolsOptions(wxCommandEvent& event);
     void OnToolsHighlighting(wxCommandEvent& event);
+#ifdef __WXMSW__
+    void OnToolsFileAssociation(wxCommandEvent& event);
+#endif
     void OnToolsToggleBOM(wxCommandEvent& event);
     void OnToolsConvertToDOS(wxCommandEvent& event);
     void OnToolsConvertToMAC(wxCommandEvent& event);
@@ -429,6 +432,9 @@ enum { // menu id
     // tools
     menuOptions,
     menuHighlighting,
+#ifdef __WXMSW__
+    menuFileAssociation,
+#endif
     menuPlugins,
     menuByteOrderMark,
     menuToggleBOM,

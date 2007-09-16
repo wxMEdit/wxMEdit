@@ -134,6 +134,9 @@
 				RelativePath="..\src\MadEditFrame.cpp">
 			</File>
 			<File
+				RelativePath="..\src\MadFileAssociationDialog.cpp">
+			</File>
+			<File
 				RelativePath="..\src\MadFindInFilesDialog.cpp">
 			</File>
 			<File
@@ -314,6 +317,9 @@
 			</File>
 			<File
 				RelativePath="..\src\MadEditFrame.h">
+			</File>
+			<File
+				RelativePath="..\src\MadFileAssociationDialog.h">
 			</File>
 			<File
 				RelativePath="..\src\MadFindInFilesDialog.h">

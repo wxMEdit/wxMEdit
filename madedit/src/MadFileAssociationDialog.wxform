@@ -1,0 +1,348 @@
+object frmNewForm: TfrmNewForm
+  Left = 8
+  Top = 8
+  AutoScroll = False
+  BorderIcons = [biSystemMenu, biMinimize]
+  Caption = 'File Type Associations'
+  ClientHeight = 396
+  ClientWidth = 562
+  Color = clBtnFace
+  Font.Charset = ANSI_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'MS Sans Serif'
+  Font.Style = []
+  OldCreateOrder = True
+  PopupMenu = MainForm.DesignerPopup
+  Visible = True
+  OnCloseQuery = FormCloseQuery
+  OnCreate = FormCreate
+  OnDestroy = FormDestroy
+  OnResize = FormResize
+  EVT_CLOSE = 'OnClose'
+  Wx_ICON.Data = {07544269746D617000000000}
+  Wx_Name = 'MadFileAssociationDialog'
+  Wx_IDName = 'ID_DIALOG1'
+  Wx_IDValue = 1000
+  Wx_Class = 'wxDialog'
+  Wx_Center = True
+  Wx_Hidden = False
+  Wx_SizeToContents = True
+  Wx_GeneralStyle = []
+  Wx_DialogStyle = [wxCAPTION, wxRESIZE_BORDER, wxSYSTEM_MENU, wxSTAY_ON_TOP, wxDIALOG_NO_PARENT, wxMAXIMIZE_BOX, wxCLOSE_BOX]
+  Wx_Border = 0
+  Wx_BorderAlignment = []
+  PixelsPerInch = 96
+  TextHeight = 13
+  object WxBoxSizer1: TWxBoxSizer
+    Left = 0
+    Top = 0
+    Width = 562
+    Height = 396
+    Align = alClient
+    TabOrder = 0
+    Orientation = wxVertical
+    Wx_Class = 'wxBoxSizer'
+    Wx_ControlOrientation = wxControlVertical
+    Wx_IDName = 'ID_WXBOXSIZER1'
+    Wx_IDValue = 1001
+    object WxBoxSizer2: TWxBoxSizer
+      Left = 5
+      Top = 6
+      Width = 402
+      Height = 297
+      TabOrder = 0
+      Orientation = wxVertical
+      Wx_Class = 'wxBoxSizer'
+      Wx_ControlOrientation = wxControlVertical
+      Wx_IDName = 'ID_WXBOXSIZER2'
+      Wx_IDValue = 1002
+      object WxBoxSizer4: TWxBoxSizer
+        Left = 0
+        Top = 0
+        Width = 402
+        Height = 247
+        TabOrder = 0
+        Wx_Class = 'wxBoxSizer'
+        Wx_ControlOrientation = wxControlVertical
+        Wx_IDName = 'ID_WXBOXSIZER4'
+        Wx_IDValue = 1007
+        Wx_Border = 0
+        object WxBoxSizer6: TWxBoxSizer
+          Left = 5
+          Top = 5
+          Width = 131
+          Height = 237
+          TabOrder = 0
+          Orientation = wxVertical
+          Wx_Class = 'wxBoxSizer'
+          Wx_ControlOrientation = wxControlVertical
+          Wx_IDName = 'ID_WXBOXSIZER6'
+          Wx_IDValue = 1009
+          object WxStaticText1: TWxStaticText
+            Left = 10
+            Top = 5
+            Width = 110
+            Height = 17
+            Caption = 'Associated File Types:'
+            TabOrder = 0
+            Wx_BGColor = clBlack
+            Wx_Class = 'wxStaticText'
+            Wx_ControlOrientation = wxControlVertical
+            Wx_FGColor = clBlack
+            Wx_GeneralStyle = []
+            Wx_Hidden = False
+            Wx_IDName = 'ID_WXSTATICTEXT1'
+            Wx_IDValue = 1012
+            Wx_LabelStyle = []
+          end
+          object WxListBoxAssociated: TWxListBox
+            Left = 5
+            Top = 32
+            Width = 121
+            Height = 200
+            ItemHeight = 13
+            TabOrder = 1
+            EVT_LISTBOX_DCLICK = 'WxListBoxAssociatedDoubleClicked'
+            Wx_BGColor = clBlack
+            Wx_Class = 'wxListBox'
+            Wx_ControlOrientation = wxControlVertical
+            Wx_FGColor = clBlack
+            Wx_GeneralStyle = []
+            Wx_Hidden = False
+            Wx_IDName = 'ID_WXLISTBOXASSOCIATED'
+            Wx_IDValue = 1013
+            Wx_ListboxStyle = []
+            Wx_ListboxSubStyle = wxLB_EXTENDED
+          end
+        end
+        object WxBoxSizer7: TWxBoxSizer
+          Left = 146
+          Top = 83
+          Width = 110
+          Height = 80
+          TabOrder = 1
+          Orientation = wxVertical
+          Wx_Class = 'wxBoxSizer'
+          Wx_ControlOrientation = wxControlVertical
+          Wx_IDName = 'ID_WXBOXSIZER7'
+          Wx_IDValue = 1010
+          object WxButtonAdd: TWxButton
+            Left = 5
+            Top = 5
+            Width = 100
+            Height = 30
+            Caption = '<- Add'
+            TabOrder = 0
+            EVT_BUTTON = 'WxButtonAddClick'
+            Wx_BKColor = clBlack
+            Wx_ButtonStyle = []
+            Wx_Class = 'wxButton'
+            Wx_ControlOrientation = wxControlVertical
+            Wx_Default = False
+            Wx_EventList.Strings = (
+              'EVT_BUTTON:OnClick'
+              'EVT_UPDATE_UI:OnUpdateUI')
+            Wx_FGColor = clBlack
+            Wx_GeneralStyle = []
+            Wx_Hidden = False
+            Wx_IDName = 'ID_WXBUTTONADD'
+            Wx_IDValue = 1016
+            Wx_Height = 30
+            Wx_Width = 100
+          end
+          object WxButtonRemove: TWxButton
+            Left = 5
+            Top = 45
+            Width = 100
+            Height = 30
+            Caption = 'Remove ->'
+            TabOrder = 1
+            EVT_BUTTON = 'WxButtonRemoveClick'
+            Wx_BKColor = clBlack
+            Wx_ButtonStyle = []
+            Wx_Class = 'wxButton'
+            Wx_ControlOrientation = wxControlVertical
+            Wx_Default = False
+            Wx_EventList.Strings = (
+              'EVT_BUTTON:OnClick'
+              'EVT_UPDATE_UI:OnUpdateUI')
+            Wx_FGColor = clBlack
+            Wx_GeneralStyle = []
+            Wx_Hidden = False
+            Wx_IDName = 'ID_WXBUTTONREMOVE'
+            Wx_IDValue = 1017
+            Wx_Height = 30
+            Wx_Width = 100
+          end
+        end
+        object WxBoxSizer8: TWxBoxSizer
+          Left = 266
+          Top = 5
+          Width = 131
+          Height = 237
+          TabOrder = 2
+          Orientation = wxVertical
+          Wx_Class = 'wxBoxSizer'
+          Wx_ControlOrientation = wxControlVertical
+          Wx_IDName = 'ID_WXBOXSIZER8'
+          Wx_IDValue = 1011
+          object WxStaticText2: TWxStaticText
+            Left = 11
+            Top = 5
+            Width = 109
+            Height = 17
+            Caption = 'Predefined File Types:'
+            TabOrder = 0
+            Wx_BGColor = clBlack
+            Wx_Class = 'wxStaticText'
+            Wx_ControlOrientation = wxControlVertical
+            Wx_FGColor = clBlack
+            Wx_GeneralStyle = []
+            Wx_Hidden = False
+            Wx_IDName = 'ID_WXSTATICTEXT2'
+            Wx_IDValue = 1014
+            Wx_LabelStyle = []
+          end
+          object WxListBoxPredefined: TWxListBox
+            Left = 5
+            Top = 32
+            Width = 121
+            Height = 200
+            ItemHeight = 13
+            TabOrder = 1
+            EVT_LISTBOX_DCLICK = 'WxListBoxPredefinedDoubleClicked'
+            Wx_BGColor = clBlack
+            Wx_Class = 'wxListBox'
+            Wx_ControlOrientation = wxControlVertical
+            Wx_FGColor = clBlack
+            Wx_GeneralStyle = []
+            Wx_Hidden = False
+            Wx_IDName = 'ID_WXLISTBOXPREDEFINED'
+            Wx_IDValue = 1015
+            Wx_ListboxStyle = []
+            Wx_ListboxSubStyle = wxLB_EXTENDED
+          end
+        end
+      end
+      object WxBoxSizer5: TWxBoxSizer
+        Left = 43
+        Top = 252
+        Width = 316
+        Height = 40
+        TabOrder = 1
+        Wx_Class = 'wxBoxSizer'
+        Wx_ControlOrientation = wxControlVertical
+        Wx_IDName = 'ID_WXBOXSIZER5'
+        Wx_IDValue = 1008
+        Wx_Alignment = [wxALIGN_LEFT]
+        object WxEditCustomType: TWxEdit
+          Left = 5
+          Top = 7
+          Width = 121
+          Height = 25
+          BevelInner = bvNone
+          BevelOuter = bvNone
+          Modified = False
+          AutoSize = False
+          TabOrder = 0
+          Wx_BGColor = clBlack
+          Wx_Class = 'wxTextCtrl'
+          Wx_ControlOrientation = wxControlVertical
+          Wx_EditStyle = []
+          Wx_FGColor = clBlack
+          Wx_GeneralStyle = []
+          Wx_Hidden = False
+          Wx_IDName = 'ID_WXEDITCUSTOMTYPE'
+          Wx_IDValue = 1018
+          Wx_Alignment = [wxALIGN_LEFT]
+          Wx_MaxLength = 0
+        end
+        object WxButtonAddCustom: TWxButton
+          Left = 136
+          Top = 5
+          Width = 175
+          Height = 30
+          Caption = '<- Add Custom File Type'
+          TabOrder = 1
+          EVT_BUTTON = 'WxButtonAddCustomClick'
+          Wx_BKColor = clBlack
+          Wx_ButtonStyle = []
+          Wx_Class = 'wxButton'
+          Wx_ControlOrientation = wxControlVertical
+          Wx_Default = False
+          Wx_EventList.Strings = (
+            'EVT_BUTTON:OnClick'
+            'EVT_UPDATE_UI:OnUpdateUI')
+          Wx_FGColor = clBlack
+          Wx_GeneralStyle = []
+          Wx_Hidden = False
+          Wx_IDName = 'ID_WXBUTTONADDCUSTOM'
+          Wx_IDValue = 1020
+          Wx_Height = 30
+          Wx_Width = 175
+          Wx_Alignment = [wxALIGN_LEFT]
+        end
+      end
+    end
+    object WxBoxSizer3: TWxBoxSizer
+      Left = 108
+      Top = 312
+      Width = 195
+      Height = 40
+      TabOrder = 1
+      Wx_Class = 'wxBoxSizer'
+      Wx_ControlOrientation = wxControlVertical
+      Wx_IDName = 'ID_WXBOXSIZER3'
+      Wx_IDValue = 1003
+      object WxButtonOK: TWxButton
+        Left = 5
+        Top = 5
+        Width = 85
+        Height = 30
+        Caption = '&OK'
+        TabOrder = 0
+        EVT_BUTTON = 'WxButtonOKClick'
+        Wx_BKColor = clBlack
+        Wx_ButtonStyle = []
+        Wx_Class = 'wxButton'
+        Wx_ControlOrientation = wxControlVertical
+        Wx_Default = False
+        Wx_EventList.Strings = (
+          'EVT_BUTTON:OnClick'
+          'EVT_UPDATE_UI:OnUpdateUI')
+        Wx_FGColor = clBlack
+        Wx_GeneralStyle = []
+        Wx_Hidden = False
+        Wx_IDName = 'ID_WXBUTTONOK'
+        Wx_IDValue = 1005
+        Wx_Height = 30
+        Wx_Width = 85
+      end
+      object WxButtonCancel: TWxButton
+        Left = 100
+        Top = 5
+        Width = 90
+        Height = 30
+        Caption = '&Cancel'
+        TabOrder = 1
+        EVT_BUTTON = 'WxButtonCancelClick'
+        Wx_BKColor = clBlack
+        Wx_ButtonStyle = []
+        Wx_Class = 'wxButton'
+        Wx_ControlOrientation = wxControlVertical
+        Wx_Default = False
+        Wx_EventList.Strings = (
+          'EVT_BUTTON:OnClick'
+          'EVT_UPDATE_UI:OnUpdateUI')
+        Wx_FGColor = clBlack
+        Wx_GeneralStyle = []
+        Wx_Hidden = False
+        Wx_IDName = 'ID_WXBUTTONCANCEL'
+        Wx_IDValue = 1006
+        Wx_Height = 30
+        Wx_Width = 90
+      end
+    end
+  end
+end
