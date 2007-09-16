@@ -87,34 +87,45 @@ const int g_PredefinedTypes_Count = sizeof(g_PredefinedTypes) / sizeof(g_Predefi
 
 bool DetectType(wxString type)
 {
+    wxString value;
     wxRegKey *pRegKey = new wxRegKey(wxString(wxT("HKEY_CLASSES_ROOT\\")) + type);
-    if(pRegKey->Exists())
+    if(pRegKey->Exists()) pRegKey->QueryValue(NULL, value);
+    delete pRegKey;
+
+    if(!value.IsEmpty())
     {
-        wxString str;
-        if(pRegKey->QueryValue(NULL, str))
+        pRegKey = new wxRegKey(wxString(wxT("HKEY_CLASSES_ROOT\\"))
+                               + value
+                               + wxString(wxT("\\shell\\open\\command")));
+        value.Empty();
+        if(pRegKey->Exists()) pRegKey->QueryValue(NULL, value);
+        delete pRegKey;
+
+        wxString exepath = GetExecutablePath();
+        if(value.Upper().Find(exepath.Upper()) >= 0 )
         {
-            wxString value(wxT("MadEdit"));
-            value += type;
-            if(str == value)
-            {
-                delete pRegKey;
-                return true;
-            }
+            return true;
         }
     }
-    delete pRegKey;
+
     return false;
 }
 
 void AddType(wxString type)
 {
+    wxString value;
     wxRegKey *pRegKey = new wxRegKey(wxString(wxT("HKEY_CLASSES_ROOT\\")) + type);
-    pRegKey->Create();
-    pRegKey->SetValue(NULL, wxString(wxT("MadEdit"))+type);
+    if(!pRegKey->Exists()) pRegKey->Create();
+    else pRegKey->QueryValue(NULL, value);
+    if(value.IsEmpty())
+    {
+        value = wxString(wxT("MadEdit")) + type;
+        pRegKey->SetValue(NULL, value);
+    }
     delete pRegKey;
 
-    wxString name(wxT("HKEY_CLASSES_ROOT\\MadEdit"));
-    name += type;
+    wxString name(wxT("HKEY_CLASSES_ROOT\\"));
+    name += value;
     name += wxT("\\shell\\open\\command");
     pRegKey = new wxRegKey(name);
     pRegKey->Create();
@@ -122,8 +133,8 @@ void AddType(wxString type)
     pRegKey->SetValue(NULL, wxString(wxT('"'))+exepath+wxString(wxT("\" \"%1\"")));
     delete pRegKey;
 
-    name = wxT("HKEY_CLASSES_ROOT\\MadEdit");
-    name += type;
+    name = wxT("HKEY_CLASSES_ROOT\\");
+    name += value;
     name += wxT("\\DefaultIcon");
     pRegKey = new wxRegKey(name);
     pRegKey->Create();
@@ -133,14 +144,42 @@ void AddType(wxString type)
 
 void RemoveType(wxString type)
 {
-    if(!type.IsEmpty())
+    if(type.IsEmpty()) return;
+
+    wxString value;
+    wxString madedit_type = wxString(wxT("MadEdit")) + type;
+
+    wxRegKey *pRegKey = new wxRegKey(wxString(wxT("HKEY_CLASSES_ROOT\\")) + type);
+    if(pRegKey->Exists()) pRegKey->QueryValue(NULL, value);
+    if(!value.IsEmpty())
     {
-        wxRegKey *pRegKey = new wxRegKey(wxString(wxT("HKEY_CLASSES_ROOT\\")) + type);
-        pRegKey->DeleteSelf();
+        if(value == madedit_type)
+        {
+            pRegKey->DeleteSelf();
+        }
+    }
+    delete pRegKey;
+
+    if(value.IsEmpty()) return;
+
+    if(value == madedit_type)
+    {
+        pRegKey = new wxRegKey(wxString(wxT("HKEY_CLASSES_ROOT\\")) + value);
+        if(pRegKey->Exists()) pRegKey->DeleteSelf();
+        delete pRegKey;
+    }
+    else
+    {
+        pRegKey = new wxRegKey(wxString(wxT("HKEY_CLASSES_ROOT\\"))
+                               + value
+                               + wxString(wxT("\\shell\\open\\command")));
+        if(pRegKey->Exists()) pRegKey->DeleteSelf();
         delete pRegKey;
 
-        pRegKey = new wxRegKey(wxString(wxT("HKEY_CLASSES_ROOT\\MadEdit")) + type);
-        pRegKey->DeleteSelf();
+        pRegKey = new wxRegKey(wxString(wxT("HKEY_CLASSES_ROOT\\"))
+                               + value
+                               + wxString(wxT("\\DefaultIcon")));
+        if(pRegKey->Exists()) pRegKey->DeleteSelf();
         delete pRegKey;
     }
 }
@@ -342,6 +381,9 @@ void MadFileAssociationDialog::CreateGUIControls()
     WxListBoxPredefined->Set(as_predefined);
 
     cfg->SetPath(oldpath);
+
+    SetDefaultItem(WxButtonCancel);
+    WxButtonCancel->SetFocus();
 }
 
 void MadFileAssociationDialog::OnClose(wxCloseEvent& /*event*/)
