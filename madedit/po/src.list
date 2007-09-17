@@ -21,6 +21,8 @@
 ../src/MadEditApp.h
 ../src/MadEditFrame.cpp
 ../src/MadEditFrame.h
+../src/MadFileAssociationDialog.cpp
+../src/MadFileAssociationDialog.h
 ../src/MadFindInFilesDialog.cpp
 ../src/MadFindInFilesDialog.h
 ../src/MadHighlightingDialog.cpp
