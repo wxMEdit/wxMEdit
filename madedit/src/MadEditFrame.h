@@ -275,10 +275,6 @@ protected:
     void MadEditFrameClose(wxCloseEvent& event);
     void CreateGUIControls(void);
 
-#ifndef __WXMSW__
-    virtual void OnInternalIdle();
-#endif
-
 	void OnNotebookPageChanging(wxAuiNotebookEvent& event);
     void OnNotebookPageChanged(wxAuiNotebookEvent& event);
     void OnNotebookPageClosing(wxAuiNotebookEvent& event);

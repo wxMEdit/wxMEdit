@@ -143,7 +143,6 @@ wxString g_MadEdit_URL(wxT("http://madedit.sourceforge.net"));
 
 
 extern wxString g_MadEditAppDir, g_MadEditHomeDir;
-bool g_UpdateWindowUI=false;
 
 MadEditFrame *g_MainFrame=NULL;
 MadEdit *g_ActiveMadEdit=NULL;
@@ -2034,19 +2033,6 @@ void MadEditFrame::CreateGUIControls(void)
     WxStatusBar1->Connect(wxEVT_SIZE, wxSizeEventHandler(MadEditFrame::OnSize));
 }
 
-#ifndef __WXMSW__
-void MadEditFrame::OnInternalIdle()
-{
-    wxFrame::OnInternalIdle();
-
-    if(m_RecentFiles!=NULL && g_UpdateWindowUI)
-    {
-        UpdateMenus();
-        g_UpdateWindowUI=false;
-    }
-}
-#endif
-
 void MadEditFrame::MadEditFrameClose(wxCloseEvent& event)
 {
     // --> Don't use Close with a Frame,
@@ -2314,8 +2300,6 @@ void MadEditFrame::OnNotebookPageChanged(wxAuiNotebookEvent& event)
     {
         SetTitle(wxString(wxT("MadEdit ")));
     }
-
-    g_UpdateWindowUI=true;
 }
 
 void MadEditFrame::OnNotebookPageClosing(wxAuiNotebookEvent& event)
@@ -2761,8 +2745,6 @@ void MadEditFrame::OpenFile(const wxString &filename, bool mustExist)
         title += wxT('*');
 
     SetTitle(wxString(wxT("MadEdit - ["))+ title +wxString(wxT("] ")));
-
-    g_UpdateWindowUI=true;
 }
 
 void MadEditFrame::CloseFile(int pageId)
@@ -2775,7 +2757,6 @@ void MadEditFrame::CloseFile(int pageId)
         if(m_Notebook->GetPageCount()==0) OnNotebookPageClosed();
         g_CheckModTimeForReload=true;
         m_PageClosing=false;
-        g_UpdateWindowUI=true;
     }
 }
 
@@ -3352,8 +3333,6 @@ void MadEditFrame::OnFileCloseAll(wxCommandEvent& event)
         SetTitle(wxString(wxT("MadEdit ")));
         OnEditSelectionChanged(NULL);
         OnEditStatusChanged(NULL);
-
-        g_UpdateWindowUI=true;
     }
 }
 
