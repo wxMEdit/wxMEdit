@@ -4,7 +4,7 @@
 // Author:      Benjamin I. Williams
 // Modified by:
 // Created:     2005-05-17
-// RCS-ID:      $Id: framemanager.cpp 48277 2007-08-21 11:15:09Z JS $
+// RCS-ID:      $Id: framemanager.cpp 48743 2007-09-17 09:28:28Z JS $
 // Copyright:   (C) Copyright 2005-2006, Kirix Corporation, All Rights Reserved
 // Licence:     wxWindows Library Licence, Version 3.1
 ///////////////////////////////////////////////////////////////////////////////
@@ -3820,8 +3820,9 @@ void wxAuiManager::OnLeftDown(wxMouseEvent& event)
         if (part->type == wxAuiDockUIPart::typeDockSizer ||
             part->type == wxAuiDockUIPart::typePaneSizer)
         {
-            if (part->dock && part->dock->dock_direction == wxAUI_DOCK_CENTER)
-                return;
+            // Removing this restriction so that a centre pane can be resized
+            //if (part->dock && part->dock->dock_direction == wxAUI_DOCK_CENTER)
+            //    return;
 
             // a dock may not be resized if it has a single
             // pane which is not resizable
