@@ -1572,7 +1572,7 @@ int MadSyntax::NextWord(int &wordwidth)
                         {
                             if(nw_NotSpaceCount == 1 && !m_DirectiveLeading.IsEmpty())
                             {
-                                if(m_DirectiveLeading.Find(firstuc) >= 0)
+                                if(m_DirectiveLeading.Find(wxChar(firstuc)) >= 0)
                                 {
                                     nw_NextState.directive=1;
                                     nw_FirstIndex += 1;
@@ -1650,7 +1650,7 @@ int MadSyntax::NextWord(int &wordwidth)
                         if(!m_StringChar.IsEmpty()
                              && IsInRange(nw_State.rangeid, m_StringInRange))
                         {
-                            if((idx = m_StringChar.Find(firstuc)+1) > 0)
+                            if((idx = m_StringChar.Find(wxChar(firstuc))+1) > 0)
                             {
                                 nw_NextState.stringid = idx;
                                 nw_StringChar = firstuc;
@@ -1868,7 +1868,7 @@ int MadSyntax::NextWord(int &wordwidth)
             nw_Word[idx] = 0;
 
         }
-        else if(m_SpecialWordPrefix.Find(uc)>=0)
+        else if(m_SpecialWordPrefix.Find(wxChar(uc))>=0)
         {
             SetAttributes(aeSpecialWord);
 
@@ -1889,7 +1889,7 @@ int MadSyntax::NextWord(int &wordwidth)
             nw_Word[idx] = 0;
 
         }
-        else if(m_KeywordPrefix.Find(uc)>=0)
+        else if(m_KeywordPrefix.Find(wxChar(uc))>=0)
         {
             size_t old_firstindex = nw_FirstIndex;
             size_t old_rest_count = nw_RestCount;
@@ -2000,8 +2000,8 @@ int MadSyntax::NextWord(int &wordwidth)
             }
             while(--nw_RestCount && nw_LineWidth < nw_RowIndexIter->m_Width
                         && IsDelimiter(uc = nw_ucqueue.front().first)
-                        && m_KeywordPrefix.Find(uc) < 0
-                        && m_SpecialWordPrefix.Find(uc) < 0);
+                        && m_KeywordPrefix.Find(wxChar(uc)) < 0
+                        && m_SpecialWordPrefix.Find(wxChar(uc)) < 0);
 
             nw_Word[idx] = 0;
 

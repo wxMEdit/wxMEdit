@@ -199,11 +199,11 @@ public:
 
     bool IsDelimiter(ucs4_t uc)
     {
-        return (uc < 0x100 && m_Delimiter.Find(uc)>=0);
+        return (uc < 0x100 && m_Delimiter.Find(wxChar(uc))>=0);
     }
     bool IsNotDelimiter(ucs4_t uc)
     {
-        return (uc < 0x100 && m_Delimiter.Find(uc)<0 && !IsSpace(uc));
+        return (uc < 0x100 && m_Delimiter.Find(wxChar(uc))<0 && !IsSpace(uc));
     }
 
     void SetAttributes(MadAttributeElement ae)

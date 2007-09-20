@@ -89,7 +89,7 @@ bool DetectType(wxString type)
 {
     wxString value;
     wxRegKey *pRegKey = new wxRegKey(wxString(wxT("HKEY_CLASSES_ROOT\\")) + type);
-    if(pRegKey->Exists()) pRegKey->QueryValue(NULL, value);
+    if(pRegKey->Exists()) pRegKey->QueryValue(wxEmptyString, value);
     delete pRegKey;
 
     if(!value.IsEmpty())
@@ -98,7 +98,7 @@ bool DetectType(wxString type)
                                + value
                                + wxString(wxT("\\shell\\open\\command")));
         value.Empty();
-        if(pRegKey->Exists()) pRegKey->QueryValue(NULL, value);
+        if(pRegKey->Exists()) pRegKey->QueryValue(wxEmptyString, value);
         delete pRegKey;
 
         wxString exepath = GetExecutablePath();
@@ -116,11 +116,11 @@ void AddType(wxString type)
     wxString value;
     wxRegKey *pRegKey = new wxRegKey(wxString(wxT("HKEY_CLASSES_ROOT\\")) + type);
     if(!pRegKey->Exists()) pRegKey->Create();
-    else pRegKey->QueryValue(NULL, value);
+    else pRegKey->QueryValue(wxEmptyString, value);
     if(value.IsEmpty())
     {
         value = wxString(wxT("MadEdit")) + type;
-        pRegKey->SetValue(NULL, value);
+        pRegKey->SetValue(wxEmptyString, value);
     }
     delete pRegKey;
 
@@ -130,7 +130,7 @@ void AddType(wxString type)
     pRegKey = new wxRegKey(name);
     pRegKey->Create();
     wxString exepath=GetExecutablePath();
-    pRegKey->SetValue(NULL, wxString(wxT('"'))+exepath+wxString(wxT("\" \"%1\"")));
+    pRegKey->SetValue(wxEmptyString, wxString(wxT('"'))+exepath+wxString(wxT("\" \"%1\"")));
     delete pRegKey;
 
     name = wxT("HKEY_CLASSES_ROOT\\");
@@ -138,7 +138,7 @@ void AddType(wxString type)
     name += wxT("\\DefaultIcon");
     pRegKey = new wxRegKey(name);
     pRegKey->Create();
-    pRegKey->SetValue(NULL, exepath);// + wxString(wxT(",1")));
+    pRegKey->SetValue(wxEmptyString, exepath);// + wxString(wxT(",1")));
     delete pRegKey;
 }
 
@@ -150,7 +150,7 @@ void RemoveType(wxString type)
     wxString madedit_type = wxString(wxT("MadEdit")) + type;
 
     wxRegKey *pRegKey = new wxRegKey(wxString(wxT("HKEY_CLASSES_ROOT\\")) + type);
-    if(pRegKey->Exists()) pRegKey->QueryValue(NULL, value);
+    if(pRegKey->Exists()) pRegKey->QueryValue(wxEmptyString, value);
     if(!value.IsEmpty())
     {
         if(value == madedit_type)

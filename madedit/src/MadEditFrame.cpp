@@ -4294,7 +4294,7 @@ void MadEditFrame::OnToolsOptions(wxCommandEvent& event)
             wxRegKey *pRegKey = new wxRegKey(wxT("HKEY_CLASSES_ROOT\\*\\shell\\MadEdit\\command"));
             pRegKey->Create();
             wxString exepath=GetExecutablePath();
-            pRegKey->SetValue(NULL, wxString(wxT('"'))+exepath+wxString(wxT("\" \"%1\"")));
+            pRegKey->SetValue(wxEmptyString, wxString(wxT('"'))+exepath+wxString(wxT("\" \"%1\"")));
             delete pRegKey;
         }
         else

@@ -858,7 +858,7 @@ void MadOptionsDialog::LoadOptions(void)
     if(pRegKey->Exists())
     {
         wxString str;
-        if(pRegKey->QueryValue(NULL, str))
+        if(pRegKey->QueryValue(wxEmptyString, str))
         {
             wxString exepath=GetExecutablePath();
             WxCheckBoxRightClickMenu->SetValue( str.Upper().Find(exepath.Upper())>=0 );

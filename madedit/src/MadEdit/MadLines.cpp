@@ -1954,7 +1954,7 @@ MadLineState MadLines::Reformat(MadLineIterator iter)
                                         //goto _NOCHECK_;
                                     //}
 
-                                    if(m_Syntax->m_StringChar.Find(firstuc)+1 == state.StringId)
+                                    if(m_Syntax->m_StringChar.Find(wxChar(firstuc))+1 == state.StringId)
                                     {
                                         state.StringId = 0;
                                         //eatUCharCount=1;
@@ -1966,7 +1966,7 @@ MadLineState MadLines::Reformat(MadLineIterator iter)
                                 // check string on
                                 if(!m_Syntax->m_StringChar.IsEmpty() && m_Syntax->IsInRange(state.RangeId, m_Syntax->m_StringInRange))
                                 {
-                                    if((index = m_Syntax->m_StringChar.Find(firstuc)+1) != 0)
+                                    if((index = m_Syntax->m_StringChar.Find(wxChar(firstuc))+1) != 0)
                                     {
                                         state.StringId = index;
                                         //eatUCharCount=1;
@@ -1980,7 +1980,7 @@ MadLineState MadLines::Reformat(MadLineIterator iter)
                                 {
                                     if(notSpaceCount==1 && !m_Syntax->m_DirectiveLeading.IsEmpty())
                                     {
-                                        if((index = m_Syntax->m_DirectiveLeading.Find(firstuc)+1) != 0)
+                                        if((index = m_Syntax->m_DirectiveLeading.Find(wxChar(firstuc))+1) != 0)
                                         {
                                             state.Directive = index;
                                             //eatUCharCount=1;

@@ -5676,7 +5676,7 @@ void MadEdit::GetIndentSpaces(int lineid, MadLineIterator lit, vector <ucs4_t> &
             ucqueue.pop_back();
         }
 
-        if(ucqueue.size()>0 && m_Syntax->m_IndentChar.Find(ucqueue.back().first)>=0)
+        if(ucqueue.size()>0 && m_Syntax->m_IndentChar.Find(wxChar(ucqueue.back().first))>=0)
         {
             if(unindentChar==false)
             {
@@ -7191,7 +7191,7 @@ void MadEdit::ProcessCommand(MadEditCommand command)
                 
                 // check for AutoCompletePair
                 int idx;
-                if(m_AutoCompletePair && m_EditMode==emTextMode && (idx=m_Syntax->m_AutoCompleteLeftChar.Find(uc))>=0)
+                if(m_AutoCompletePair && m_EditMode==emTextMode && (idx=m_Syntax->m_AutoCompleteLeftChar.Find(wxChar(uc)))>=0)
                 {
                     // insert the AutoCompleteLeftChar
                     InsertString(&uc, 1, true, true, false); 
@@ -7224,7 +7224,7 @@ void MadEdit::ProcessCommand(MadEditCommand command)
                     bool inserted=false;
 
                     // check for m_UnindentChar
-                    if(m_EditMode==emTextMode && (idx=m_Syntax->m_UnindentChar.Find(uc))>=0)
+                    if(m_EditMode==emTextMode && (idx=m_Syntax->m_UnindentChar.Find(wxChar(uc)))>=0)
                     {
                         // check if the chars before uc are all spaces
                         MadCaretPos *sbeg;
@@ -7972,7 +7972,7 @@ void MadEdit::ProcessCommand(MadEditCommand command)
                                 }
 
                                 bool unindentChar=false;
-                                if(ucqueue.size()>0 && m_Syntax->m_UnindentChar.Find(uc)>=0)
+                                if(ucqueue.size()>0 && m_Syntax->m_UnindentChar.Find(wxChar(uc))>=0)
                                 {
                                     unindentChar=true;
                                 }
