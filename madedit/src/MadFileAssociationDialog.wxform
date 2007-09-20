@@ -48,7 +48,7 @@ object frmNewForm: TfrmNewForm
     Wx_IDValue = 1001
     object WxBoxSizer2: TWxBoxSizer
       Left = 5
-      Top = 6
+      Top = 5
       Width = 402
       Height = 297
       TabOrder = 0
@@ -240,7 +240,7 @@ object frmNewForm: TfrmNewForm
           Left = 5
           Top = 7
           Width = 121
-          Height = 25
+          Height = 30
           BevelInner = bvNone
           BevelOuter = bvNone
           Modified = False
@@ -326,7 +326,6 @@ object frmNewForm: TfrmNewForm
         Height = 30
         Caption = '&Cancel'
         TabOrder = 1
-        EVT_BUTTON = 'WxButtonCancelClick'
         Wx_BKColor = clBlack
         Wx_ButtonStyle = []
         Wx_Class = 'wxButton'
@@ -338,7 +337,7 @@ object frmNewForm: TfrmNewForm
         Wx_FGColor = clBlack
         Wx_GeneralStyle = []
         Wx_Hidden = False
-        Wx_IDName = 'ID_WXBUTTONCANCEL'
+        Wx_IDName = 'wxID_CANCEL'
         Wx_IDValue = 1006
         Wx_Height = 30
         Wx_Width = 90

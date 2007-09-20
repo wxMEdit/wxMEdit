@@ -258,16 +258,15 @@ void AddTypeToPredefined(wxListBox *WxListBoxAssociated,
 BEGIN_EVENT_TABLE(MadFileAssociationDialog,wxDialog)
 	////Manual Code Start
 	////Manual Code End
-
+	
 	EVT_CLOSE(MadFileAssociationDialog::OnClose)
-	EVT_BUTTON(ID_WXBUTTONCANCEL,MadFileAssociationDialog::WxButtonCancelClick)
 	EVT_BUTTON(ID_WXBUTTONOK,MadFileAssociationDialog::WxButtonOKClick)
 	EVT_BUTTON(ID_WXBUTTONADDCUSTOM,MadFileAssociationDialog::WxButtonAddCustomClick)
-
+	
 	EVT_LISTBOX_DCLICK(ID_WXLISTBOXPREDEFINED,MadFileAssociationDialog::WxListBoxPredefinedDoubleClicked)
 	EVT_BUTTON(ID_WXBUTTONREMOVE,MadFileAssociationDialog::WxButtonRemoveClick)
 	EVT_BUTTON(ID_WXBUTTONADD,MadFileAssociationDialog::WxButtonAddClick)
-
+	
 	EVT_LISTBOX_DCLICK(ID_WXLISTBOXASSOCIATED,MadFileAssociationDialog::WxListBoxAssociatedDoubleClicked)
 END_EVENT_TABLE()
 ////Event Table End
@@ -280,6 +279,16 @@ MadFileAssociationDialog::MadFileAssociationDialog(wxWindow *parent, wxWindowID 
 
 MadFileAssociationDialog::~MadFileAssociationDialog()
 {
+}
+
+
+static void ResizeItem(wxBoxSizer* sizer, wxWindow *item, int ax, int ay)
+{
+    int x, y;
+    wxString str=item->GetLabel();
+    item->GetTextExtent(str, &x, &y);
+    item->SetSize(x+=ax, y+=ay);
+    sizer->SetItemMinSize(item, x, y);
 }
 
 void MadFileAssociationDialog::CreateGUIControls()
@@ -332,7 +341,7 @@ void MadFileAssociationDialog::CreateGUIControls()
 	WxBoxSizer5 = new wxBoxSizer(wxHORIZONTAL);
 	WxBoxSizer2->Add(WxBoxSizer5, 0, wxALIGN_LEFT | wxALL, 5);
 
-	WxEditCustomType = new wxTextCtrl(this, ID_WXEDITCUSTOMTYPE, _(""), wxPoint(5,7), wxSize(121,25), 0, wxDefaultValidator, _("WxEditCustomType"));
+	WxEditCustomType = new wxTextCtrl(this, ID_WXEDITCUSTOMTYPE, _(""), wxPoint(5,7), wxSize(121,30), 0, wxDefaultValidator, _("WxEditCustomType"));
 	WxBoxSizer5->Add(WxEditCustomType,0,wxALIGN_LEFT | wxALL,5);
 
 	WxButtonAddCustom = new wxButton(this, ID_WXBUTTONADDCUSTOM, _("<- Add Custom File Type"), wxPoint(136,5), wxSize(175,30), 0, wxDefaultValidator, _("WxButtonAddCustom"));
@@ -344,17 +353,17 @@ void MadFileAssociationDialog::CreateGUIControls()
 	WxButtonOK = new wxButton(this, ID_WXBUTTONOK, _("&OK"), wxPoint(5,5), wxSize(85,30), 0, wxDefaultValidator, _("WxButtonOK"));
 	WxBoxSizer3->Add(WxButtonOK,0,wxALIGN_CENTER | wxALL,5);
 
-	WxButtonCancel = new wxButton(this, ID_WXBUTTONCANCEL, _("&Cancel"), wxPoint(100,5), wxSize(90,30), 0, wxDefaultValidator, _("WxButtonCancel"));
+	WxButtonCancel = new wxButton(this, wxID_CANCEL, _("&Cancel"), wxPoint(100,5), wxSize(90,30), 0, wxDefaultValidator, _("WxButtonCancel"));
 	WxBoxSizer3->Add(WxButtonCancel,0,wxALIGN_CENTER | wxALL,5);
 
 	SetTitle(_("File Type Associations"));
 	SetIcon(wxNullIcon);
-
+	
 	GetSizer()->Layout();
 	GetSizer()->Fit(this);
 	GetSizer()->SetSizeHints(this);
 	Center();
-
+	
 	////GUI Items Creation End
 
     wxArrayString as_predefined(g_PredefinedTypes_Count, g_PredefinedTypes);
@@ -382,13 +391,18 @@ void MadFileAssociationDialog::CreateGUIControls()
 
     cfg->SetPath(oldpath);
 
+
+    ResizeItem(WxBoxSizer6, WxStaticText1, 2, 2);
+    ResizeItem(WxBoxSizer8, WxStaticText2, 2, 2);
+
+
     SetDefaultItem(WxButtonCancel);
     WxButtonCancel->SetFocus();
 }
 
 void MadFileAssociationDialog::OnClose(wxCloseEvent& /*event*/)
 {
-	Destroy();
+    Destroy();
 }
 
 
@@ -474,11 +488,6 @@ void MadFileAssociationDialog::WxButtonOKClick(wxCommandEvent& event)
 
     cfg->SetPath(oldpath);
 
-    Close();
-}
-
-void MadFileAssociationDialog::WxButtonCancelClick(wxCommandEvent& event)
-{
     Close();
 }
 

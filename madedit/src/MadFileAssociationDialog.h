@@ -51,7 +51,6 @@ class MadFileAssociationDialog : public wxDialog
 		void WxButtonRemoveClick(wxCommandEvent& event);
 		void WxButtonAddCustomClick(wxCommandEvent& event);
 		void WxButtonOKClick(wxCommandEvent& event);
-		void WxButtonCancelClick(wxCommandEvent& event);
 
 	private:
 		//Do not add custom control declarations between
@@ -86,7 +85,6 @@ class MadFileAssociationDialog : public wxDialog
 		enum
 		{
 			////GUI Enum Control ID Start
-			ID_WXBUTTONCANCEL = 1006,
 			ID_WXBUTTONOK = 1005,
 			ID_WXBUTTONADDCUSTOM = 1020,
 			ID_WXEDITCUSTOMTYPE = 1018,
