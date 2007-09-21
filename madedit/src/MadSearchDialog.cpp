@@ -37,8 +37,10 @@ BEGIN_EVENT_TABLE(MadSearchDialog,wxDialog)
 	EVT_ACTIVATE(MadSearchDialog::MadSearchDialogActivate)
 	EVT_BUTTON(ID_WXBUTTONCLOSE,MadSearchDialog::WxButtonCloseClick)
 	EVT_BUTTON(ID_WXBUTTONREPLACE,MadSearchDialog::WxButtonReplaceClick)
+	EVT_BUTTON(ID_WXBUTTONCOUNT,MadSearchDialog::WxButtonCountClick)
 	EVT_BUTTON(ID_WXBUTTONFINDPREV,MadSearchDialog::WxButtonFindPrevClick)
 	EVT_BUTTON(ID_WXBUTTONFINDNEXT,MadSearchDialog::WxButtonFindNextClick)
+	EVT_CHECKBOX(ID_WXCHECKBOXSEARCHINSELECTION,MadSearchDialog::WxCheckBoxSearchInSelectionClick)
 	EVT_CHECKBOX(ID_WXCHECKBOXFINDHEX,MadSearchDialog::WxCheckBoxFindHexClick)
 END_EVENT_TABLE()
     ////Event Table End
@@ -77,55 +79,78 @@ void MadSearchDialog::CreateGUIControls(void)
     //Add the custom code before or after the Blocks
     ////GUI Items Creation Start
 
-	wxBoxSizer* WxBoxSizer1 = new wxBoxSizer(wxHORIZONTAL);
+	WxBoxSizer1 = new wxBoxSizer(wxHORIZONTAL);
 	this->SetSizer(WxBoxSizer1);
-	this->SetAutoLayout(TRUE);
+	this->SetAutoLayout(true);
 
-	wxBoxSizer* WxBoxSizer2 = new wxBoxSizer(wxVERTICAL);
-	WxBoxSizer1->Add(WxBoxSizer2,0,wxALIGN_TOP | wxALL,5);
+	WxBoxSizer2 = new wxBoxSizer(wxVERTICAL);
+	WxBoxSizer1->Add(WxBoxSizer2, 0, wxALIGN_CENTER | wxALL, 0);
 
-	wxBoxSizer* WxBoxSizer4 = new wxBoxSizer(wxHORIZONTAL);
-	WxBoxSizer2->Add(WxBoxSizer4,0,wxALIGN_LEFT | wxALL,5);
+	WxBoxSizer4 = new wxBoxSizer(wxHORIZONTAL);
+	WxBoxSizer2->Add(WxBoxSizer4, 0, wxALIGN_CENTER | wxALL, 0);
 
-	wxBoxSizer* WxBoxSizer5 = new wxBoxSizer(wxVERTICAL);
-	WxBoxSizer2->Add(WxBoxSizer5,0,wxALIGN_LEFT | wxALL,5);
+	WxBoxSizer5 = new wxBoxSizer(wxVERTICAL);
+	WxBoxSizer2->Add(WxBoxSizer5, 0, wxALIGN_LEFT | wxALIGN_TOP | wxALL, 0);
 
-	WxCheckBoxMoveFocus = new wxCheckBox(this, ID_WXCHECKBOXMOVEFOCUS, _("&Move Focus to Editor Window"), wxPoint(5,5), wxSize(300,22), 0, wxDefaultValidator, _("WxCheckBoxMoveFocus"));
+	WxCheckBoxMoveFocus = new wxCheckBox(this, ID_WXCHECKBOXMOVEFOCUS, _("&Move Focus to Editor Window"), wxPoint(25,2), wxSize(300,22), 0, wxDefaultValidator, _("WxCheckBoxMoveFocus"));
 	WxBoxSizer5->Add(WxCheckBoxMoveFocus,0,wxALIGN_LEFT | wxALL,2);
 
-	WxCheckBoxCaseSensitive = new wxCheckBox(this, ID_WXCHECKBOXCASESENSITIVE, _("&Case Sensitive"), wxPoint(5,37), wxSize(300,22), 0, wxDefaultValidator, _("WxCheckBoxCaseSensitive"));
+	WxCheckBoxCaseSensitive = new wxCheckBox(this, ID_WXCHECKBOXCASESENSITIVE, _("&Case Sensitive"), wxPoint(25,28), wxSize(300,22), 0, wxDefaultValidator, _("WxCheckBoxCaseSensitive"));
 	WxBoxSizer5->Add(WxCheckBoxCaseSensitive,0,wxALIGN_LEFT | wxALL,2);
 
-	WxCheckBoxWholeWord = new wxCheckBox(this, ID_WXCHECKBOXWHOLEWORD, _("&Whole Word Only"), wxPoint(5,69), wxSize(300,22), 0, wxDefaultValidator, _("WxCheckBoxWholeWord"));
+	WxCheckBoxWholeWord = new wxCheckBox(this, ID_WXCHECKBOXWHOLEWORD, _("&Whole Word Only"), wxPoint(25,54), wxSize(300,22), 0, wxDefaultValidator, _("WxCheckBoxWholeWord"));
 	WxBoxSizer5->Add(WxCheckBoxWholeWord,0,wxALIGN_LEFT | wxALL,2);
 
-	WxCheckBoxRegex = new wxCheckBox(this, ID_WXCHECKBOXREGEX, _("Use Regular E&xpressions"), wxPoint(5,101), wxSize(300,22), 0, wxDefaultValidator, _("WxCheckBoxRegex"));
+	WxCheckBoxRegex = new wxCheckBox(this, ID_WXCHECKBOXREGEX, _("Use Regular E&xpressions"), wxPoint(25,80), wxSize(300,22), 0, wxDefaultValidator, _("WxCheckBoxRegex"));
 	WxBoxSizer5->Add(WxCheckBoxRegex,0,wxALIGN_LEFT | wxALL,2);
 
-	WxCheckBoxFindHex = new wxCheckBox(this, ID_WXCHECKBOXFINDHEX, _("Find &Hex String (Example: BE 00 3A or BE003A)"), wxPoint(5,133), wxSize(300,22), 0, wxDefaultValidator, _("WxCheckBoxFindHex"));
+	WxCheckBoxFindHex = new wxCheckBox(this, ID_WXCHECKBOXFINDHEX, _("Find &Hex String (Example: BE 00 3A or BE003A)"), wxPoint(25,106), wxSize(300,22), 0, wxDefaultValidator, _("WxCheckBoxFindHex"));
 	WxBoxSizer5->Add(WxCheckBoxFindHex,0,wxALIGN_LEFT | wxALL,2);
 
-	wxBoxSizer* WxBoxSizer3 = new wxBoxSizer(wxVERTICAL);
-	WxBoxSizer1->Add(WxBoxSizer3,0,wxALIGN_TOP | wxALL,5);
+	WxBoxSizer6 = new wxBoxSizer(wxHORIZONTAL);
+	WxBoxSizer5->Add(WxBoxSizer6, 0, wxALIGN_LEFT | wxALL, 0);
 
-	WxButtonFindNext = new wxButton(this, ID_WXBUTTONFINDNEXT, _("Find &Next"), wxPoint(5,5), wxSize(100,28), 0, wxDefaultValidator, _("WxButtonFindNext"));
-	WxBoxSizer3->Add(WxButtonFindNext,0,wxALIGN_CENTER_HORIZONTAL | wxALL,5);
+	WxCheckBoxSearchInSelection = new wxCheckBox(this, ID_WXCHECKBOXSEARCHINSELECTION, _("&Search In Selection"), wxPoint(2,2), wxSize(120,22), 0, wxDefaultValidator, _("WxCheckBoxSearchInSelection"));
+	WxBoxSizer6->Add(WxCheckBoxSearchInSelection,0,wxALIGN_LEFT | wxALL,2);
 
-	WxButtonFindPrev = new wxButton(this, ID_WXBUTTONFINDPREV, _("Find &Previous"), wxPoint(5,43), wxSize(100,28), 0, wxDefaultValidator, _("WxButtonFindPrev"));
-	WxBoxSizer3->Add(WxButtonFindPrev,0,wxALIGN_CENTER_HORIZONTAL | wxALL,5);
+	WxStaticTextFrom = new wxStaticText(this, ID_WXSTATICTEXTFROM, _("From:"), wxPoint(126,4), wxDefaultSize, 0, _("WxStaticTextFrom"));
+	WxBoxSizer6->Add(WxStaticTextFrom,0,wxALIGN_LEFT | wxALIGN_CENTER_VERTICAL | wxALL,2);
 
-	WxButtonReplace = new wxButton(this, ID_WXBUTTONREPLACE, _("&Replace >>"), wxPoint(5,81), wxSize(100,28), 0, wxDefaultValidator, _("WxButtonReplace"));
-	WxBoxSizer3->Add(WxButtonReplace,0,wxALIGN_LEFT | wxALL,5);
+	WxEditFrom = new wxTextCtrl(this, ID_WXEDITFROM, _(""), wxPoint(160,2), wxSize(80,22), 0, wxDefaultValidator, _("WxEditFrom"));
+	WxBoxSizer6->Add(WxEditFrom,0,wxALIGN_LEFT | wxALL,2);
 
-	WxButtonClose = new wxButton(this, ID_WXBUTTONCLOSE, _("Close"), wxPoint(5,119), wxSize(100,28), 0, wxDefaultValidator, _("WxButtonClose"));
-	WxBoxSizer3->Add(WxButtonClose,0,wxALIGN_LEFT | wxALL,5);
+	WxStaticTextTo = new wxStaticText(this, ID_WXSTATICTEXTTO, _("To:"), wxPoint(244,4), wxDefaultSize, 0, _("WxStaticTextTo"));
+	WxBoxSizer6->Add(WxStaticTextTo,0,wxALIGN_LEFT | wxALIGN_CENTER_VERTICAL | wxALL,2);
 
-	WxPopupMenuRecentFindText = new wxMenu(_("")  );
+	WxEditTo = new wxTextCtrl(this, ID_WXEDITTO, _(""), wxPoint(268,2), wxSize(80,22), 0, wxDefaultValidator, _("WxEditTo"));
+	WxBoxSizer6->Add(WxEditTo,0,wxALIGN_LEFT | wxALL,2);
 
+	WxBoxSizer3 = new wxBoxSizer(wxVERTICAL);
+	WxBoxSizer1->Add(WxBoxSizer3, 0, wxALIGN_TOP | wxALL, 0);
+
+	WxButtonFindNext = new wxButton(this, ID_WXBUTTONFINDNEXT, _("Find &Next"), wxPoint(2,2), wxSize(100,28), 0, wxDefaultValidator, _("WxButtonFindNext"));
+	WxBoxSizer3->Add(WxButtonFindNext,0,wxALIGN_CENTER | wxALL,2);
+
+	WxButtonFindPrev = new wxButton(this, ID_WXBUTTONFINDPREV, _("Find &Previous"), wxPoint(2,34), wxSize(100,28), 0, wxDefaultValidator, _("WxButtonFindPrev"));
+	WxBoxSizer3->Add(WxButtonFindPrev,0,wxALIGN_CENTER | wxALL,2);
+
+	WxButtonCount = new wxButton(this, ID_WXBUTTONCOUNT, _("C&ount"), wxPoint(2,66), wxSize(100,28), 0, wxDefaultValidator, _("WxButtonCount"));
+	WxBoxSizer3->Add(WxButtonCount,0,wxALIGN_CENTER | wxALL,2);
+
+	WxButtonReplace = new wxButton(this, ID_WXBUTTONREPLACE, _("&Replace >>"), wxPoint(2,98), wxSize(100,28), 0, wxDefaultValidator, _("WxButtonReplace"));
+	WxBoxSizer3->Add(WxButtonReplace,0,wxALIGN_CENTER | wxALL,2);
+
+	WxButtonClose = new wxButton(this, ID_WXBUTTONCLOSE, _("Close"), wxPoint(2,130), wxSize(100,28), 0, wxDefaultValidator, _("WxButtonClose"));
+	WxBoxSizer3->Add(WxButtonClose,0,wxALIGN_CENTER | wxALL,2);
+
+	WxPopupMenuRecentFindText = new wxMenu(_(""));
+
+	SetTitle(_("Search"));
+	SetIcon(wxNullIcon);
+	
+	GetSizer()->Layout();
 	GetSizer()->Fit(this);
 	GetSizer()->SetSizeHints(this);
-	this->SetTitle(_("Search"));
-	this->SetIcon(wxNullIcon);
 	
     ////GUI Items Creation End
 
@@ -143,12 +168,12 @@ void MadSearchDialog::CreateGUIControls(void)
     m_FindText->SetWantTab(false);
     m_FindText->LoadDefaultSyntaxScheme();
 
-    WxBoxSizer4->Add(m_FindText,0,wxALIGN_CENTER_HORIZONTAL | wxALL,0);
+    WxBoxSizer4->Add(m_FindText,0,wxALIGN_CENTER_HORIZONTAL | wxALL,2);
     WxBoxSizer4->SetItemMinSize(m_FindText, 400, bh);
 
     wxBitmap WxBitmapButtonRecentFindText_BITMAP (down_xpm);
     WxBitmapButtonRecentFindText = new wxBitmapButton(this, ID_WXBITMAPBUTTONRECENTFINDTEXT, WxBitmapButtonRecentFindText_BITMAP, wxPoint(0,0), wxSize(bh,bh), wxBU_AUTODRAW, wxDefaultValidator, _("WxBitmapButtonRecentFindText"));	
-    WxBoxSizer4->Add(WxBitmapButtonRecentFindText,0,wxALIGN_CENTER_HORIZONTAL | wxALL,0);
+    WxBoxSizer4->Add(WxBitmapButtonRecentFindText,0,wxALIGN_CENTER_HORIZONTAL | wxALL,2);
 
     // resize checkbox
     ResizeItem(WxBoxSizer5, WxCheckBoxMoveFocus, 25, 4);
@@ -508,3 +533,29 @@ void MadSearchDialog::WxButtonReplaceClick(wxCommandEvent& event)
     
 }
 
+void MadSearchDialog::UpdateSearchInSelection(bool check)
+{
+    WxEditFrom->Enable(check);
+    WxEditTo->Enable(check);
+
+    extern MadEdit *g_ActiveMadEdit;
+    if(check && g_ActiveMadEdit!=NULL)
+    {
+        WxEditFrom->SetValue(wxLongLong(g_ActiveMadEdit->GetSelectionBeginPos()).ToString());
+        WxEditTo->SetValue(wxLongLong(g_ActiveMadEdit->GetSelectionEndPos()).ToString());
+    }
+}
+
+
+void MadSearchDialog::WxCheckBoxSearchInSelectionClick(wxCommandEvent& event)
+{
+    UpdateSearchInSelection(event.IsChecked());
+}
+
+/*
+ * WxButtonCountClick
+ */
+void MadSearchDialog::WxButtonCountClick(wxCommandEvent& event)
+{
+	// insert your code here
+}

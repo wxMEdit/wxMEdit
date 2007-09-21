@@ -21,7 +21,10 @@
 ////Header Include Start
 #include <wx/menu.h>
 #include <wx/button.h>
+#include <wx/textctrl.h>
+#include <wx/stattext.h>
 #include <wx/checkbox.h>
+#include <wx/sizer.h>
 ////Header Include End
 
 #include <wx/dialog.h>
@@ -54,9 +57,16 @@ public:
 		wxMenu *WxPopupMenuRecentFindText;
 		wxButton *WxButtonClose;
 		wxButton *WxButtonReplace;
+		wxButton *WxButtonCount;
 		wxButton *WxButtonFindPrev;
 		wxButton *WxButtonFindNext;
 		wxBoxSizer *WxBoxSizer3;
+		wxTextCtrl *WxEditTo;
+		wxStaticText *WxStaticTextTo;
+		wxTextCtrl *WxEditFrom;
+		wxStaticText *WxStaticTextFrom;
+		wxCheckBox *WxCheckBoxSearchInSelection;
+		wxBoxSizer *WxBoxSizer6;
 		wxCheckBox *WxCheckBoxFindHex;
 		wxCheckBox *WxCheckBoxRegex;
 		wxCheckBox *WxCheckBoxWholeWord;
@@ -77,8 +87,14 @@ public:
 ////GUI Enum Control ID Start
 			ID_WXBUTTONCLOSE = 13,
 			ID_WXBUTTONREPLACE = 12,
+			ID_WXBUTTONCOUNT = 23,
 			ID_WXBUTTONFINDPREV = 11,
 			ID_WXBUTTONFINDNEXT = 10,
+			ID_WXEDITTO = 22,
+			ID_WXSTATICTEXTTO = 21,
+			ID_WXEDITFROM = 20,
+			ID_WXSTATICTEXTFROM = 19,
+			ID_WXCHECKBOXSEARCHINSELECTION = 18,
 			ID_WXCHECKBOXFINDHEX = 9,
 			ID_WXCHECKBOXREGEX = 8,
 			ID_WXCHECKBOXWHOLEWORD = 7,
@@ -109,9 +125,13 @@ public:
 	void WxButtonFindPrevClick(wxCommandEvent& event);
 
     void UpdateCheckBoxByCBHex(bool check);
-	void WxCheckBoxFindHexClick(wxCommandEvent& event);
-	void MadSearchDialogActivate(wxActivateEvent& event);
-	void WxButtonReplaceClick(wxCommandEvent& event);
+    void UpdateSearchInSelection(bool check);
+
+    void WxCheckBoxFindHexClick(wxCommandEvent& event);
+    void MadSearchDialogActivate(wxActivateEvent& event);
+    void WxButtonReplaceClick(wxCommandEvent& event);
+    void WxCheckBoxSearchInSelectionClick(wxCommandEvent& event);
+    void WxButtonCountClick(wxCommandEvent& event);
 };
 
 extern MadSearchDialog *g_SearchDialog;

@@ -28,6 +28,7 @@
 #include <wx/statline.h>
 #include <wx/button.h>
 #include <wx/checkbox.h>
+#include <wx/sizer.h>
 ////Header Include End
 
 #include <wx/docview.h>
