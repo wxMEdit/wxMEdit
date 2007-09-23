@@ -261,7 +261,7 @@ public:
         wxString name=madedit->GetFileName();
         if(!name.IsEmpty())
         {
-            wxFileOffset pos=madedit->GetCharPosition();
+            wxFileOffset pos=madedit->GetCaretPosition();
             Add(name, pos);
         }
     }
@@ -697,7 +697,7 @@ void OnEditSelectionChanged(MadEdit *madedit)
         text += (sepstr3+colstr+s4);
         g_StatusBar->SetStatusText(text, 1);
 
-        s1=FormatThousands(wxLongLong(madedit->GetCharPosition()).ToString());
+        s1=FormatThousands(wxLongLong(madedit->GetCaretPosition()).ToString());
         s2=FormatThousands(wxLongLong(madedit->GetFileSize()).ToString());
         g_StatusBar->SetStatusText(fpstr+s1+sepstr+s2, 2);
 

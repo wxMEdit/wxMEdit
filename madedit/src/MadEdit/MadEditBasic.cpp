@@ -2213,27 +2213,37 @@ void MadEdit::RestorePosition(wxFileOffset pos, int toprow)
 
 /************** Find/Replace functions ****************/
 
-MadSearchResult MadEdit::FindTextNext(const wxString &text, bool bRegex, bool bCaseSensitive, bool bWholeWord, bool bFromDocBegin)
+MadSearchResult MadEdit::FindTextNext(const wxString &text,
+                bool bRegex, bool bCaseSensitive, bool bWholeWord,
+                wxFileOffset rangeFrom, wxFileOffset rangeTo)
 {
     MadCaretPos bpos, epos;
+    MadUCQueue ucharQueue;
+    vector<int> widthArray;
+    int tmp;
 
-    if(bFromDocBegin)
-    {
-        bpos.Reset(m_Lines->m_LineList.begin());
-    }
-    //else if(m_Selection)
-    //{
-    //	bpos=*m_SelectionEnd;
-    //}
-    else
+    if(rangeFrom == -1)
     {
         bpos=m_CaretPos;
     }
+    else
+    {
+        bpos.pos = rangeFrom;
+        UpdateCaretByPos(bpos, ucharQueue, widthArray, tmp);
+    }
 
-    epos.iter=m_Lines->m_LineList.end();
-    --epos.iter;
-    epos.linepos=epos.iter->m_Size;
-    epos.pos=m_Lines->m_Size;
+    if(rangeTo == -1)
+    {
+        epos.iter=m_Lines->m_LineList.end();
+        --epos.iter;
+        epos.linepos=epos.iter->m_Size;
+        epos.pos=m_Lines->m_Size;
+    }
+    else
+    {
+        epos.pos = rangeTo;
+        UpdateCaretByPos(epos, ucharQueue, widthArray, tmp);
+    }
 
     MadSearchResult state=Search(bpos, epos, text, bRegex, bCaseSensitive, bWholeWord);
     if(state==SR_YES)
@@ -2244,25 +2254,28 @@ MadSearchResult MadEdit::FindTextNext(const wxString &text, bool bRegex, bool bC
     return state;
 }
 
-MadSearchResult MadEdit::FindTextPrevious(const wxString &text, bool bRegex, bool bCaseSensitive, bool bWholeWord, bool bFromDocEnd)
+MadSearchResult MadEdit::FindTextPrevious(const wxString &text,
+                bool bRegex, bool bCaseSensitive, bool bWholeWord,
+                wxFileOffset rangeFrom, wxFileOffset rangeTo)
 {
     MadCaretPos bpos, epos;
 
-    if(bFromDocEnd)
-    {
-        epos.iter=m_Lines->m_LineList.end();
-        --epos.iter;
-        epos.linepos=epos.iter->m_Size;
-        epos.pos=m_Lines->m_Size;
-    }
-    //else if(m_Selection)
-    //{
-    //    epos=*m_SelectionBegin;
-    //}
-    else
+    if(rangeFrom == -1)
     {
         epos=m_CaretPos;
     }
+    else
+    {
+        MadUCQueue ucharQueue;
+        vector<int> widthArray;
+        int tmp;
+        epos.pos = rangeFrom;
+        UpdateCaretByPos(epos, ucharQueue, widthArray, tmp);
+    }
+
+    if(rangeTo < 0) rangeTo = 0;
+
+    if(epos.pos <= rangeTo) return SR_NO;
 
     size_t searchsize= 50 * 1024;
     if(searchsize< text.Len()*8) searchsize=text.Len()*8;
@@ -2272,9 +2285,9 @@ MadSearchResult MadEdit::FindTextPrevious(const wxString &text, bool bRegex, boo
     for(;;)
     {
         startpos -= searchsize;
-        if(startpos<0)
+        if(startpos<rangeTo)
         {
-            startpos=0;
+            startpos=rangeTo;
         }
         else
         {
@@ -2337,7 +2350,7 @@ MadSearchResult MadEdit::FindTextPrevious(const wxString &text, bool bRegex, boo
         }
 
         // not found
-        if(startpos==0) break;
+        if(startpos<=rangeTo) break;
 
         epos=bpos;
         size_t s=text.Len()*4;
@@ -2420,33 +2433,40 @@ bool MadEdit::StringToHex(wxString ws, vector<wxByte> &hex)
     return true;
 }
 
-MadSearchResult MadEdit::FindHexNext(const wxString &hexstr, bool bFromDocBegin)
+MadSearchResult MadEdit::FindHexNext(const wxString &hexstr,
+                                     wxFileOffset rangeFrom, wxFileOffset rangeTo)
 {
     vector<wxByte> hex;
     if(!StringToHex(hexstr, hex))
         return SR_EXPR_ERROR;
 
     MadCaretPos bpos, epos;
+    MadUCQueue ucharQueue;
+    vector<int> widthArray;
+    int tmp;
 
-    if(bFromDocBegin)
-    {
-        bpos.iter=m_Lines->m_LineList.begin();
-        bpos.linepos=0;
-        bpos.pos=0;
-    }
-    else if(m_Selection)
-    {
-        bpos=*m_SelectionEnd;
-    }
-    else
+    if(rangeFrom == -1)
     {
         bpos=m_CaretPos;
     }
+    else
+    {
+        bpos.pos = rangeFrom;
+        UpdateCaretByPos(bpos, ucharQueue, widthArray, tmp);
+    }
 
-    epos.iter=m_Lines->m_LineList.end();
-    --epos.iter;
-    epos.linepos=epos.iter->m_Size;
-    epos.pos=m_Lines->m_Size;
+    if(rangeTo == -1)
+    {
+        epos.iter=m_Lines->m_LineList.end();
+        --epos.iter;
+        epos.linepos=epos.iter->m_Size;
+        epos.pos=m_Lines->m_Size;
+    }
+    else
+    {
+        epos.pos = rangeTo;
+        UpdateCaretByPos(epos, ucharQueue, widthArray, tmp);
+    }
 
     if(SR_YES==SearchHex(bpos, epos, &(*hex.begin()), hex.size()))
     {
@@ -2457,7 +2477,8 @@ MadSearchResult MadEdit::FindHexNext(const wxString &hexstr, bool bFromDocBegin)
     return SR_NO;
 }
 
-MadSearchResult MadEdit::FindHexPrevious(const wxString &hexstr, bool bFromDocEnd)
+MadSearchResult MadEdit::FindHexPrevious(const wxString &hexstr,
+                                         wxFileOffset rangeFrom, wxFileOffset rangeTo)
 {
     vector<wxByte> hex;
     if(!StringToHex(hexstr, hex))
@@ -2465,21 +2486,22 @@ MadSearchResult MadEdit::FindHexPrevious(const wxString &hexstr, bool bFromDocEn
 
     MadCaretPos bpos, epos;
 
-    if(bFromDocEnd)
-    {
-        epos.iter=m_Lines->m_LineList.end();
-        --epos.iter;
-        epos.linepos=epos.iter->m_Size;
-        epos.pos=m_Lines->m_Size;
-    }
-    else if(m_Selection)
-    {
-        epos=*m_SelectionBegin;
-    }
-    else
+    if(rangeFrom == -1)
     {
         epos=m_CaretPos;
     }
+    else
+    {
+        MadUCQueue ucharQueue;
+        vector<int> widthArray;
+        int tmp;
+        epos.pos = rangeFrom;
+        UpdateCaretByPos(epos, ucharQueue, widthArray, tmp);
+    }
+
+    if(rangeTo < 0) rangeTo = 0;
+
+    if(rangeFrom <= rangeTo) return SR_NO;
 
     size_t searchsize= 50 * 1024;
     if(searchsize< hexstr.Len()*8) searchsize=hexstr.Len()*8;
@@ -2489,9 +2511,9 @@ MadSearchResult MadEdit::FindHexPrevious(const wxString &hexstr, bool bFromDocEn
     for(;;)
     {
         startpos -= searchsize;
-        if(startpos<0)
+        if(startpos<rangeTo)
         {
-            startpos=0;
+            startpos=rangeTo;
         }
         else
         {
@@ -2542,7 +2564,7 @@ MadSearchResult MadEdit::FindHexPrevious(const wxString &hexstr, bool bFromDocEn
         }
 
         // not found
-        if(startpos==0) break;
+        if(startpos<=rangeTo) break;
 
         epos=bpos;
         size_t s=hexstr.Len()*4;
@@ -3391,3 +3413,75 @@ bool MadEdit::PrintPage(wxDC *dc, int pageNum)
     return true;
 }
 
+wxString FormatThousands(const wxString& s) 
+{ 
+    /* 
+    // example: 
+    int mynumber = 12345678; 
+    wxString s = wxString::Format("%d", mynumber); // format the integer to string 
+    s = FormatThousands(s); // add separators 
+    // s now contains "12,345,678" or "12.345.678" according to locale. 
+    */
+
+    static wxString thousandssep = wxT(","); 
+    static struct lconv *loc = 0; 
+    if (!loc) { 
+        loc = localeconv(); 
+        if (loc && loc->thousands_sep && loc->thousands_sep[0]) 
+        {
+#if wxUSE_UNICODE
+            thousandssep = wxString(loc->thousands_sep, wxConvLibc);
+#else
+            thousandssep = loc->thousands_sep;
+#endif
+        }
+    } 
+
+    wxString in = s, out; 
+    while (in.Length() > 3) { 
+            out.Prepend(thousandssep + in.Right(3)); 
+            in.RemoveLast(3); 
+    } 
+    if (!in.IsEmpty()) 
+            out.Prepend(in); 
+    return out; 
+}
+
+bool StrToInt64(wxString str, wxInt64 &i64)
+{
+    str.Trim(false);
+    str.Trim(true);
+
+    int base=10;
+    str.MakeLower();
+    if(str.Left(2)==wxT("0x")) 
+    {
+        base=16;
+        str=str.Right(str.Len()-2);
+    }
+
+    bool ok=false;
+    size_t i=0,len=str.Len();
+    i64=0;
+    while(i<len)
+    {
+        wxChar c=str[i];
+        if(c<='9' && c>='0')
+        {
+            i64= (i64*base) + (c-'0');
+        }
+        else if(base==16 && c>='a' && c<='f')
+        {
+            i64= (i64*16) + (c-'a'+10);
+        }
+        else
+        {
+            return false;
+        }
+
+        ok=true;
+        ++i;
+    }
+
+    return ok;
+}

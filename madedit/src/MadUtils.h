@@ -22,6 +22,5 @@ extern const int HtmlColorTableCount;
 
 extern void SetHtmlColors();
 extern wxString GetExecutablePath();
-extern bool StrToInt64(wxString str, wxInt64 &i64);
 
 #endif

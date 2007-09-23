@@ -686,9 +686,9 @@ public: // basic functions
 
     // all are zero-based
     void GetCaretPosition(int &line, int &subrow, wxFileOffset &column);
+    wxFileOffset GetCaretPosition() { return m_CaretPos.pos; }
 
     wxString GetFileName() { return m_Lines->m_Name; }
-    wxFileOffset GetCharPosition() { return m_CaretPos.pos; }
     wxFileOffset GetFileSize() { return m_Lines->m_Size; }
 
     bool IsSelected() { return m_Selection; }
@@ -784,15 +784,23 @@ public: // basic functions
     void GoToLeftBrace() { ProcessCommand(ecLeftBrace); }
     void GoToRightBrace() { ProcessCommand(ecRightBrace); }
 
-    // search from caretpos or SelectionEnd if IsSelected().
-    MadSearchResult FindTextNext(const wxString &text, bool bRegex, bool bCaseSensitive, bool bWholeWord, bool bFromDocBegin);
-    // search from caretpos or SelectionBegin if IsSelected().
-    MadSearchResult FindTextPrevious(const wxString &text, bool bRegex, bool bCaseSensitive, bool bWholeWord, bool bFromDocEnd);
+    // search in [rangeFrom, rangeTo], default in [CaretPos, EndOfDoc]
+    MadSearchResult FindTextNext(const wxString &text,
+                bool bRegex, bool bCaseSensitive, bool bWholeWord,
+                wxFileOffset rangeFrom = -1, wxFileOffset rangeTo = -1);
+    // search in [rangeFrom, rangeTo], rangeFrom > rangeTo, default in [CaretPos, BeginOfDoc]
+    MadSearchResult FindTextPrevious(const wxString &text,
+                bool bRegex, bool bCaseSensitive, bool bWholeWord,
+                wxFileOffset rangeFrom = -1, wxFileOffset rangeTo = -1);
 
-    // search from caretpos or SelectionEnd if IsSelected().
-    MadSearchResult FindHexNext(const wxString &hexstr, bool bFromDocBegin);
-    // search from caretpos or SelectionBegin if IsSelected().
-    MadSearchResult FindHexPrevious(const wxString &hexstr, bool bFromDocEnd);
+    // search in [rangeFrom, rangeTo], default in [CaretPos, EndOfDoc]
+    MadSearchResult FindHexNext(const wxString &hexstr,
+                                wxFileOffset rangeFrom = -1,
+                                wxFileOffset rangeTo = -1);
+    // search in [rangeFrom, rangeTo], rangeFrom > rangeTo, default in [CaretPos, BeginOfDoc]
+    MadSearchResult FindHexPrevious(const wxString &hexstr,
+                                wxFileOffset rangeFrom = -1,
+                                wxFileOffset rangeTo = -1);
 
     // replace the selected text that must match expr
     bool ReplaceText(const wxString &expr, const wxString &fmt,
@@ -957,5 +965,6 @@ public: // utility functions
 
 wxString FixUTF8ToWCS(const wxString &str);
 wxString FormatThousands(const wxString& s);
+bool StrToInt64(wxString str, wxInt64 &i64);
 
 #endif

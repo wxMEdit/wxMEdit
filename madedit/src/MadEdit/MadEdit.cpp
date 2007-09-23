@@ -53,41 +53,6 @@ using std::list;
 #endif
 
 
-wxString FormatThousands(const wxString& s) 
-{ 
-    /* 
-    // example: 
-    int mynumber = 12345678; 
-    wxString s = wxString::Format("%d", mynumber); // format the integer to string 
-    s = FormatThousands(s); // add separators 
-    // s now contains "12,345,678" or "12.345.678" according to locale. 
-    */
-
-    static wxString thousandssep = wxT(","); 
-    static struct lconv *loc = 0; 
-    if (!loc) { 
-        loc = localeconv(); 
-        if (loc && loc->thousands_sep && loc->thousands_sep[0]) 
-        {
-#if wxUSE_UNICODE
-            thousandssep = wxString(loc->thousands_sep, wxConvLibc);
-#else
-            thousandssep = loc->thousands_sep;
-#endif
-        }
-    } 
-
-    wxString in = s, out; 
-    while (in.Length() > 3) { 
-            out.Prepend(thousandssep + in.Right(3)); 
-            in.RemoveLast(3); 
-    } 
-    if (!in.IsEmpty()) 
-            out.Prepend(in); 
-    return out; 
-}
-
-
 MadKeyBindings MadEdit::ms_KeyBindings;
 
 const int HexModeMaxColumns = 78;
