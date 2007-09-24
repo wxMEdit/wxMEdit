@@ -2222,17 +2222,18 @@ MadSearchResult MadEdit::FindTextNext(const wxString &text,
     vector<int> widthArray;
     int tmp;
 
-    if(rangeFrom == -1)
+    if(rangeFrom < 0)
     {
         bpos=m_CaretPos;
     }
     else
     {
+        if(rangeFrom > GetFileSize()) rangeFrom = GetFileSize();
         bpos.pos = rangeFrom;
         UpdateCaretByPos(bpos, ucharQueue, widthArray, tmp);
     }
 
-    if(rangeTo == -1)
+    if(rangeTo < 0)
     {
         epos.iter=m_Lines->m_LineList.end();
         --epos.iter;
@@ -2241,6 +2242,7 @@ MadSearchResult MadEdit::FindTextNext(const wxString &text,
     }
     else
     {
+        if(rangeTo > GetFileSize()) rangeTo = GetFileSize();
         epos.pos = rangeTo;
         UpdateCaretByPos(epos, ucharQueue, widthArray, tmp);
     }
@@ -2260,7 +2262,7 @@ MadSearchResult MadEdit::FindTextPrevious(const wxString &text,
 {
     MadCaretPos bpos, epos;
 
-    if(rangeFrom == -1)
+    if(rangeFrom < 0)
     {
         epos=m_CaretPos;
     }
@@ -2269,11 +2271,13 @@ MadSearchResult MadEdit::FindTextPrevious(const wxString &text,
         MadUCQueue ucharQueue;
         vector<int> widthArray;
         int tmp;
+        if(rangeFrom > GetFileSize()) rangeFrom = GetFileSize();
         epos.pos = rangeFrom;
         UpdateCaretByPos(epos, ucharQueue, widthArray, tmp);
     }
 
     if(rangeTo < 0) rangeTo = 0;
+    else if(rangeTo > GetFileSize()) rangeTo = GetFileSize();
 
     if(epos.pos <= rangeTo) return SR_NO;
 
@@ -2445,17 +2449,18 @@ MadSearchResult MadEdit::FindHexNext(const wxString &hexstr,
     vector<int> widthArray;
     int tmp;
 
-    if(rangeFrom == -1)
+    if(rangeFrom < 0)
     {
         bpos=m_CaretPos;
     }
     else
     {
+        if(rangeFrom > GetFileSize()) rangeFrom = GetFileSize();
         bpos.pos = rangeFrom;
         UpdateCaretByPos(bpos, ucharQueue, widthArray, tmp);
     }
 
-    if(rangeTo == -1)
+    if(rangeTo < 0)
     {
         epos.iter=m_Lines->m_LineList.end();
         --epos.iter;
@@ -2464,6 +2469,7 @@ MadSearchResult MadEdit::FindHexNext(const wxString &hexstr,
     }
     else
     {
+        if(rangeTo > GetFileSize()) rangeTo = GetFileSize();
         epos.pos = rangeTo;
         UpdateCaretByPos(epos, ucharQueue, widthArray, tmp);
     }
@@ -2486,7 +2492,7 @@ MadSearchResult MadEdit::FindHexPrevious(const wxString &hexstr,
 
     MadCaretPos bpos, epos;
 
-    if(rangeFrom == -1)
+    if(rangeFrom < 0)
     {
         epos=m_CaretPos;
     }
@@ -2495,13 +2501,15 @@ MadSearchResult MadEdit::FindHexPrevious(const wxString &hexstr,
         MadUCQueue ucharQueue;
         vector<int> widthArray;
         int tmp;
+        if(rangeFrom > GetFileSize()) rangeFrom = GetFileSize();
         epos.pos = rangeFrom;
         UpdateCaretByPos(epos, ucharQueue, widthArray, tmp);
     }
 
     if(rangeTo < 0) rangeTo = 0;
+    else if(rangeTo > GetFileSize()) rangeTo = GetFileSize();
 
-    if(rangeFrom <= rangeTo) return SR_NO;
+    if(epos.pos <= rangeTo) return SR_NO;
 
     size_t searchsize= 50 * 1024;
     if(searchsize< hexstr.Len()*8) searchsize=hexstr.Len()*8;

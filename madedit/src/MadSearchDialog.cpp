@@ -186,15 +186,19 @@ void MadSearchDialog::CreateGUIControls(void)
 
     // connect to KeyDown event handler
     m_FindText->Connect(wxEVT_KEY_DOWN, wxKeyEventHandler(MadSearchDialog::MadSearchDialogKeyDown));
+    WxBitmapButtonRecentFindText->Connect(wxEVT_KEY_DOWN, wxKeyEventHandler(MadSearchDialog::MadSearchDialogKeyDown));
     WxCheckBoxMoveFocus->Connect(wxEVT_KEY_DOWN, wxKeyEventHandler(MadSearchDialog::MadSearchDialogKeyDown));
     WxCheckBoxCaseSensitive->Connect(wxEVT_KEY_DOWN, wxKeyEventHandler(MadSearchDialog::MadSearchDialogKeyDown));
     WxCheckBoxWholeWord->Connect(wxEVT_KEY_DOWN, wxKeyEventHandler(MadSearchDialog::MadSearchDialogKeyDown));
     WxCheckBoxRegex->Connect(wxEVT_KEY_DOWN, wxKeyEventHandler(MadSearchDialog::MadSearchDialogKeyDown));
+    WxCheckBoxFindHex->Connect(wxEVT_KEY_DOWN, wxKeyEventHandler(MadSearchDialog::MadSearchDialogKeyDown));
+    WxCheckBoxSearchInSelection->Connect(wxEVT_KEY_DOWN, wxKeyEventHandler(MadSearchDialog::MadSearchDialogKeyDown));
+    WxEditFrom->Connect(wxEVT_KEY_DOWN, wxKeyEventHandler(MadSearchDialog::MadSearchDialogKeyDown));
+    WxEditTo->Connect(wxEVT_KEY_DOWN, wxKeyEventHandler(MadSearchDialog::MadSearchDialogKeyDown));
     WxButtonFindNext->Connect(wxEVT_KEY_DOWN, wxKeyEventHandler(MadSearchDialog::MadSearchDialogKeyDown));
     WxButtonFindPrev->Connect(wxEVT_KEY_DOWN, wxKeyEventHandler(MadSearchDialog::MadSearchDialogKeyDown));
+    WxButtonCount->Connect(wxEVT_KEY_DOWN, wxKeyEventHandler(MadSearchDialog::MadSearchDialogKeyDown));
     WxButtonClose->Connect(wxEVT_KEY_DOWN, wxKeyEventHandler(MadSearchDialog::MadSearchDialogKeyDown));
-    WxBitmapButtonRecentFindText->Connect(wxEVT_KEY_DOWN, wxKeyEventHandler(MadSearchDialog::MadSearchDialogKeyDown));
-    WxCheckBoxFindHex->Connect(wxEVT_KEY_DOWN, wxKeyEventHandler(MadSearchDialog::MadSearchDialogKeyDown));
 
 
     m_RecentFindText=new wxFileHistory(20, ID_RECENTFINDTEXT1);
@@ -269,12 +273,12 @@ void MadSearchDialog::WxButtonFindNextClick(wxCommandEvent& event)
         {
             if(!StrToInt64(WxEditFrom->GetValue(), from))
             {
-                wxMessageBox(_("The position of 'From' is incorrect."), wxT("MadEdit"), wxOK|wxICON_ERROR);
+                wxMessageBox(_("The value of 'From' is incorrect."), wxT("MadEdit"), wxOK|wxICON_WARNING);
                 return;
             }
             if(!StrToInt64(WxEditTo->GetValue(), to))
             {
-                wxMessageBox(_("The position of 'To' is incorrect."), wxT("MadEdit"), wxOK|wxICON_ERROR);
+                wxMessageBox(_("The value of 'To' is incorrect."), wxT("MadEdit"), wxOK|wxICON_WARNING);
                 return;
             }
 
@@ -356,12 +360,12 @@ void MadSearchDialog::WxButtonFindPrevClick(wxCommandEvent& event)
         {
             if(!StrToInt64(WxEditFrom->GetValue(), from))
             {
-                wxMessageBox(_("The position of 'From' is incorrect."), wxT("MadEdit"), wxOK|wxICON_ERROR);
+                wxMessageBox(_("The value of 'From' is incorrect."), wxT("MadEdit"), wxOK|wxICON_WARNING);
                 return;
             }
             if(!StrToInt64(WxEditTo->GetValue(), to))
             {
-                wxMessageBox(_("The position of 'To' is incorrect."), wxT("MadEdit"), wxOK|wxICON_ERROR);
+                wxMessageBox(_("The value of 'To' is incorrect."), wxT("MadEdit"), wxOK|wxICON_WARNING);
                 return;
             }
 
