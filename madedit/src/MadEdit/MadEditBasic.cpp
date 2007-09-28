@@ -2445,9 +2445,6 @@ MadSearchResult MadEdit::FindHexNext(const wxString &hexstr,
         return SR_EXPR_ERROR;
 
     MadCaretPos bpos, epos;
-    MadUCQueue ucharQueue;
-    vector<int> widthArray;
-    int tmp;
 
     if(rangeFrom < 0)
     {
@@ -2457,7 +2454,9 @@ MadSearchResult MadEdit::FindHexNext(const wxString &hexstr,
     {
         if(rangeFrom > GetFileSize()) rangeFrom = GetFileSize();
         bpos.pos = rangeFrom;
-        UpdateCaretByPos(bpos, ucharQueue, widthArray, tmp);
+        bpos.linepos = rangeFrom;
+        GetLineByPos(bpos.iter, bpos.linepos, bpos.rowid);
+        bpos.linepos = rangeFrom - bpos.linepos;
     }
 
     if(rangeTo < 0)
@@ -2471,7 +2470,9 @@ MadSearchResult MadEdit::FindHexNext(const wxString &hexstr,
     {
         if(rangeTo > GetFileSize()) rangeTo = GetFileSize();
         epos.pos = rangeTo;
-        UpdateCaretByPos(epos, ucharQueue, widthArray, tmp);
+        epos.linepos = rangeTo;
+        GetLineByPos(epos.iter, epos.linepos, epos.rowid);
+        epos.linepos = rangeTo - epos.linepos;
     }
 
     if(SR_YES==SearchHex(bpos, epos, &(*hex.begin()), hex.size()))
@@ -2498,12 +2499,11 @@ MadSearchResult MadEdit::FindHexPrevious(const wxString &hexstr,
     }
     else
     {
-        MadUCQueue ucharQueue;
-        vector<int> widthArray;
-        int tmp;
         if(rangeFrom > GetFileSize()) rangeFrom = GetFileSize();
         epos.pos = rangeFrom;
-        UpdateCaretByPos(epos, ucharQueue, widthArray, tmp);
+        epos.linepos = rangeFrom;
+        GetLineByPos(epos.iter, epos.linepos, epos.rowid);
+        epos.linepos = rangeFrom - epos.linepos;
     }
 
     if(rangeTo < 0) rangeTo = 0;
@@ -2900,25 +2900,52 @@ int MadEdit::ReplaceHexAll(const wxString &expr, const wxString &fmt,
 
 int MadEdit::FindTextAll(const wxString &expr,
                          bool bRegex, bool bCaseSensitive, bool bWholeWord, bool bFirstOnly,
-                         vector<wxFileOffset> *pbegpos, vector<wxFileOffset> *pendpos)
+                         vector<wxFileOffset> *pbegpos, vector<wxFileOffset> *pendpos,
+                         wxFileOffset rangeFrom, wxFileOffset rangeTo)
 {
     if(expr.Len()==0)
         return 0;
 
     MadCaretPos bpos, epos, endpos;
 
-    bpos.iter=m_Lines->m_LineList.begin();
-    bpos.pos=bpos.iter->m_RowIndices[0].m_Start;
-    if(m_CaretPos.pos < bpos.pos || m_EditMode==emHexMode)
+    if(rangeFrom <= 0)
     {
-        bpos.pos=0;
+        bpos.iter=m_Lines->m_LineList.begin();
+        bpos.pos=bpos.iter->m_RowIndices[0].m_Start;
+        if(m_CaretPos.pos < bpos.pos || m_EditMode==emHexMode)
+        {
+            bpos.pos=0;
+        }
+        bpos.linepos=bpos.pos;
     }
-    bpos.linepos=bpos.pos;
+    else
+    {
+        MadUCQueue ucharQueue;
+        vector<int> widthArray;
+        int tmp;
+        if(rangeFrom > GetFileSize()) rangeFrom = GetFileSize();
+        bpos.pos = rangeFrom;
+        UpdateCaretByPos(bpos, ucharQueue, widthArray, tmp);
+    }
 
-    epos.pos=m_Lines->m_Size;
-    epos.iter=m_Lines->m_LineList.end();
-    --epos.iter;
-    epos.linepos=epos.iter->m_Size;
+    if(rangeTo < 0)
+    {
+        epos.pos=m_Lines->m_Size;
+        epos.iter=m_Lines->m_LineList.end();
+        --epos.iter;
+        epos.linepos=epos.iter->m_Size;
+    }
+    else
+    {
+        MadUCQueue ucharQueue;
+        vector<int> widthArray;
+        int tmp;
+        if(rangeTo > GetFileSize()) rangeTo = GetFileSize();
+        epos.pos = rangeTo;
+        UpdateCaretByPos(epos, ucharQueue, widthArray, tmp);
+    }
+
+    if(bpos.pos >= epos.pos) return 0;
 
     endpos=epos;
     int count=0;
@@ -2941,7 +2968,8 @@ int MadEdit::FindTextAll(const wxString &expr,
 }
 
 int MadEdit::FindHexAll(const wxString &expr, bool bFirstOnly,
-                        vector<wxFileOffset> *pbegpos, vector<wxFileOffset> *pendpos)
+                        vector<wxFileOffset> *pbegpos, vector<wxFileOffset> *pendpos,
+                        wxFileOffset rangeFrom, wxFileOffset rangeTo)
 {
     if(expr.Len()==0)
         return 0;
@@ -2950,14 +2978,39 @@ int MadEdit::FindHexAll(const wxString &expr, bool bFirstOnly,
     if(!StringToHex(expr, hex)) return SR_EXPR_ERROR;
 
     MadCaretPos bpos, epos, endpos;
-    bpos.pos=0;
-    bpos.iter=m_Lines->m_LineList.begin();
-    bpos.linepos=0;
 
-    epos.pos=m_Lines->m_Size;
-    epos.iter=m_Lines->m_LineList.end();
-    --epos.iter;
-    epos.linepos=epos.iter->m_Size;
+    if(rangeFrom <= 0)
+    {
+        bpos.pos=0;
+        bpos.iter=m_Lines->m_LineList.begin();
+        bpos.linepos=0;
+    }
+    else
+    {
+        if(rangeFrom > GetFileSize()) rangeFrom = GetFileSize();
+        bpos.pos = rangeFrom;
+        bpos.linepos = rangeFrom;
+        GetLineByPos(bpos.iter, bpos.linepos, bpos.rowid);
+        bpos.linepos = rangeFrom - bpos.linepos;
+    }
+
+    if(rangeTo < 0)
+    {
+        epos.pos=m_Lines->m_Size;
+        epos.iter=m_Lines->m_LineList.end();
+        --epos.iter;
+        epos.linepos=epos.iter->m_Size;
+    }
+    else
+    {
+        if(rangeTo > GetFileSize()) rangeTo = GetFileSize();
+        epos.pos = rangeTo;
+        epos.linepos = rangeTo;
+        GetLineByPos(epos.iter, epos.linepos, epos.rowid);
+        epos.linepos = rangeTo - epos.linepos;
+    }
+
+    if(bpos.pos >= epos.pos) return 0;
 
     endpos=epos;
     int count=0;

@@ -809,20 +809,20 @@ public: // basic functions
 
     // return the replaced count or SR_EXPR_ERROR
     int ReplaceTextAll(const wxString &expr, const wxString &fmt,
-                       bool bRegex, bool bCaseSensitive, bool bWholeWord,
-                       vector<wxFileOffset> *pbegpos=NULL,
-                       vector<wxFileOffset> *pendpos=NULL);
+            bool bRegex, bool bCaseSensitive, bool bWholeWord,
+            vector<wxFileOffset> *pbegpos = NULL, vector<wxFileOffset> *pendpos = NULL);
     int ReplaceHexAll(const wxString &expr, const wxString &fmt,
-                      vector<wxFileOffset> *pbegpos=NULL,
-                      vector<wxFileOffset> *pendpos=NULL);
+            vector<wxFileOffset> *pbegpos = NULL, vector<wxFileOffset> *pendpos = NULL);
 
     // list the matched data to pbegpos & pendpos
     // return the found count or SR_EXPR_ERROR
     int FindTextAll(const wxString &expr,
                     bool bRegex, bool bCaseSensitive, bool bWholeWord, bool bFirstOnly,
-                    vector<wxFileOffset> *pbegpos, vector<wxFileOffset> *pendpos);
+                    vector<wxFileOffset> *pbegpos, vector<wxFileOffset> *pendpos,
+                    wxFileOffset rangeFrom = -1, wxFileOffset rangeTo = -1);
     int FindHexAll(const wxString &expr, bool bFirstOnly,
-                   vector<wxFileOffset> *pbegpos, vector<wxFileOffset> *pendpos);
+                   vector<wxFileOffset> *pbegpos, vector<wxFileOffset> *pendpos,
+                   wxFileOffset rangeFrom = -1, wxFileOffset rangeTo = -1);
 
     bool LoadFromFile(const wxString &filename, const wxString &encoding = wxEmptyString);
     bool SaveToFile(const wxString &filename);

@@ -198,7 +198,7 @@ object frmNewForm: TfrmNewForm
             Top = 2
             Width = 120
             Height = 22
-            Caption = '&Search In Selection'
+            Caption = 'Search In &Selection'
             TabOrder = 0
             EVT_CHECKBOX = 'WxCheckBoxSearchInSelectionClick'
             Wx_BGColor = clBlack
