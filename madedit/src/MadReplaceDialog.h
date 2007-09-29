@@ -19,6 +19,8 @@
 //Do not add custom headers.
 //wx-dvcpp designer will remove them
 ////Header Include Start
+#include <wx/textctrl.h>
+#include <wx/stattext.h>
 #include <wx/menu.h>
 #include <wx/button.h>
 #include <wx/checkbox.h>
@@ -59,6 +61,12 @@ public:
   //wx-devcpp will remove them. Try adding the custom code 
   //after the block.
   ////GUI Control Declaration Start
+		wxTextCtrl *WxEditTo;
+		wxStaticText *WxStaticTextTo;
+		wxTextCtrl *WxEditFrom;
+		wxStaticText *WxStaticTextFrom;
+		wxCheckBox *WxCheckBoxSearchInSelection;
+		wxBoxSizer *WxBoxSizer7;
 		wxMenu *WxPopupMenuRecentReplaceText;
 		wxButton *WxButtonClose;
 		wxButton *WxButtonReplaceAll;
@@ -87,6 +95,11 @@ public:
     //Try copy pasting the below block in your old Form header Files.
 	enum {
 ////GUI Enum Control ID Start
+			ID_WXEDITTO = 22,
+			ID_WXSTATICTEXTTO = 21,
+			ID_WXEDITFROM = 20,
+			ID_WXSTATICTEXTFROM = 19,
+			ID_WXCHECKBOXSEARCHINSELECTION = 18,
 			ID_WXBUTTONCLOSE = 1028,
 			ID_WXBUTTONREPLACEALL = 1027,
 			ID_WXBUTTONREPLACE = 1026,
@@ -119,8 +132,10 @@ public:
 
     void WxButtonCloseClick(wxCommandEvent& event);
     void WxButtonFindNextClick(wxCommandEvent& event);
-    
+
+    void ReadWriteSettings(bool bRead);
     void UpdateCheckBoxByCBHex(bool check);
+    void UpdateSearchInSelection(bool check);
 	void WxCheckBoxFindHexClick(wxCommandEvent& event);
 	
     void MadReplaceDialogKeyDown(wxKeyEvent& event);
@@ -133,6 +148,7 @@ public:
 	void WxButtonReplaceClick(wxCommandEvent& event);
 	void MadReplaceDialogActivate(wxActivateEvent& event);
 	void WxButtonReplaceAllClick(wxCommandEvent& event);
+	void WxCheckBoxSearchInSelectionClick(wxCommandEvent& event);
 };
 
 extern MadReplaceDialog *g_ReplaceDialog;

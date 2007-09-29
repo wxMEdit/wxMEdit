@@ -237,14 +237,6 @@ void MadSearchDialog::MadSearchDialogClose(wxCloseEvent& event)
         return;
     }
 
-    // reset SearchInSelection
-    wxConfigBase *m_Config=wxConfigBase::Get(false);
-    wxString oldpath=m_Config->GetPath();
-    m_Config->Write(wxT("/MadEdit/SearchInSelection"), false);
-    m_Config->Write(wxT("/MadEdit/SearchFrom"), wxEmptyString);
-    m_Config->Write(wxT("/MadEdit/SearchTo"), wxEmptyString);
-    m_Config->SetPath(oldpath);
-
     g_SearchDialog=NULL;
     Destroy();
 }
@@ -295,7 +287,7 @@ void MadSearchDialog::WxButtonFindNextClick(wxCommandEvent& event)
 
             rangeTo = to;
             wxFileOffset caretpos = g_ActiveMadEdit->GetCaretPosition();
-            if(from == g_ActiveMadEdit->GetSelectionBeginPos() && caretpos == rangeTo)
+            if(caretpos <= from || caretpos >= to)
                 rangeFrom = from;
         }
 
@@ -382,7 +374,7 @@ void MadSearchDialog::WxButtonFindPrevClick(wxCommandEvent& event)
 
             rangeFrom = from;
             wxFileOffset caretpos = g_ActiveMadEdit->GetCaretPosition();
-            if(to == g_ActiveMadEdit->GetSelectionEndPos() && caretpos == rangeFrom)
+            if(caretpos <= from || caretpos >= to)
                 rangeTo = to;
         }
 
@@ -512,39 +504,12 @@ void MadSearchDialog::OnRecentFindText(wxCommandEvent& event)
     }
 }
 
-void MadSearchDialog::UpdateCheckBoxByCBHex(bool check)
-{
-    if(/*WxCheckBoxFindHex->IsShown() &&*/ check)
-    {
-        WxCheckBoxCaseSensitive->Disable();
-        WxCheckBoxWholeWord->Disable();
-        WxCheckBoxRegex->Disable();
-    }
-    else
-    {
-        WxCheckBoxCaseSensitive->Enable();
-        WxCheckBoxWholeWord->Enable();
-        WxCheckBoxRegex->Enable();
-    }
-}
-
-/*
- * WxCheckBoxFindHexClick
- */
-void MadSearchDialog::WxCheckBoxFindHexClick(wxCommandEvent& event)
-{
-    UpdateCheckBoxByCBHex(event.IsChecked());
-}
-
-/*
- * MadSearchDialogActivate
- */
-void MadSearchDialog::MadSearchDialogActivate(wxActivateEvent& event)
+void MadSearchDialog::ReadWriteSettings(bool bRead)
 {
     wxConfigBase *m_Config=wxConfigBase::Get(false);
     wxString oldpath=m_Config->GetPath();
 
-    if(event.GetActive())
+    if(bRead)
     {
         bool bb;
         m_Config->Read(wxT("/MadEdit/SearchMoveFocus"), &bb, false);
@@ -589,6 +554,38 @@ void MadSearchDialog::MadSearchDialogActivate(wxActivateEvent& event)
     m_Config->SetPath(oldpath);
 }
 
+void MadSearchDialog::UpdateCheckBoxByCBHex(bool check)
+{
+    if(check)
+    {
+        WxCheckBoxCaseSensitive->Disable();
+        WxCheckBoxWholeWord->Disable();
+        WxCheckBoxRegex->Disable();
+    }
+    else
+    {
+        WxCheckBoxCaseSensitive->Enable();
+        WxCheckBoxWholeWord->Enable();
+        WxCheckBoxRegex->Enable();
+    }
+}
+
+/*
+ * WxCheckBoxFindHexClick
+ */
+void MadSearchDialog::WxCheckBoxFindHexClick(wxCommandEvent& event)
+{
+    UpdateCheckBoxByCBHex(event.IsChecked());
+}
+
+/*
+ * MadSearchDialogActivate
+ */
+void MadSearchDialog::MadSearchDialogActivate(wxActivateEvent& event)
+{
+    ReadWriteSettings(event.GetActive());
+}
+
 
 /*
  * WxButtonReplaceClick
@@ -610,7 +607,6 @@ void MadSearchDialog::WxButtonReplaceClick(wxCommandEvent& event)
     g_ReplaceDialog->SetFocus();
     g_ReplaceDialog->Raise();
 
-    //g_ReplaceDialog->WxCheckBoxFindHex->Show(WxCheckBoxFindHex->IsShown());
     g_ReplaceDialog->UpdateCheckBoxByCBHex(g_ReplaceDialog->WxCheckBoxFindHex->GetValue());
 
     g_ReplaceDialog->m_FindText->SelectAll();
@@ -686,11 +682,11 @@ void MadSearchDialog::WxButtonCountClick(wxCommandEvent& event)
                 rangeFrom, rangeTo);
         }
     }
-    
+
     if(count >= 0)
     {
         wxString msg;
-        msg.Printf(_("\"%s\" was found %d times."), text.c_str(), count);
+        msg.Printf(_("'%s' was found %d times."), text.c_str(), count);
         wxMessageBox(msg, wxT("MadEdit"), wxOK);
     }
 }

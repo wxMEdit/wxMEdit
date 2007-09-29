@@ -51,8 +51,8 @@ object frmNewForm_1: TfrmNewForm
     object WxBoxSizer2: TWxBoxSizer
       Left = 0
       Top = 0
-      Width = 304
-      Height = 162
+      Width = 350
+      Height = 196
       TabOrder = 0
       Orientation = wxVertical
       Wx_Class = 'wxBoxSizer'
@@ -61,7 +61,7 @@ object frmNewForm_1: TfrmNewForm
       Wx_IDValue = 1016
       Wx_Border = 0
       object WxBoxSizer4: TWxBoxSizer
-        Left = 142
+        Left = 165
         Top = 0
         Width = 20
         Height = 20
@@ -73,7 +73,7 @@ object frmNewForm_1: TfrmNewForm
         Wx_Border = 0
       end
       object WxBoxSizer5: TWxBoxSizer
-        Left = 142
+        Left = 165
         Top = 20
         Width = 20
         Height = 20
@@ -87,8 +87,8 @@ object frmNewForm_1: TfrmNewForm
       object WxBoxSizer6: TWxBoxSizer
         Left = 0
         Top = 40
-        Width = 304
-        Height = 128
+        Width = 350
+        Height = 156
         TabOrder = 2
         Orientation = wxVertical
         Wx_Class = 'wxBoxSizer'
@@ -98,7 +98,7 @@ object frmNewForm_1: TfrmNewForm
         Wx_Border = 0
         Wx_Alignment = [wxALIGN_TOP, wxALIGN_LEFT]
         object WxCheckBoxMoveFocus: TWxCheckBox
-          Left = 2
+          Left = 25
           Top = 2
           Width = 300
           Height = 22
@@ -117,7 +117,7 @@ object frmNewForm_1: TfrmNewForm
           Wx_Alignment = [wxALIGN_LEFT]
         end
         object WxCheckBoxCaseSensitive: TWxCheckBox
-          Left = 2
+          Left = 25
           Top = 28
           Width = 300
           Height = 22
@@ -136,7 +136,7 @@ object frmNewForm_1: TfrmNewForm
           Wx_Alignment = [wxALIGN_LEFT]
         end
         object WxCheckBoxWholeWord: TWxCheckBox
-          Left = 2
+          Left = 25
           Top = 54
           Width = 300
           Height = 22
@@ -155,7 +155,7 @@ object frmNewForm_1: TfrmNewForm
           Wx_Alignment = [wxALIGN_LEFT]
         end
         object WxCheckBoxRegex: TWxCheckBox
-          Left = 2
+          Left = 25
           Top = 80
           Width = 300
           Height = 22
@@ -174,8 +174,8 @@ object frmNewForm_1: TfrmNewForm
           Wx_Alignment = [wxALIGN_LEFT]
         end
         object WxCheckBoxFindHex: TWxCheckBox
-          Left = 2
-          Top = 105
+          Left = 25
+          Top = 106
           Width = 300
           Height = 22
           Caption = 'Find &Hex String (Example: BE 00 3A or BE003A)'
@@ -193,11 +193,128 @@ object frmNewForm_1: TfrmNewForm
           Wx_Border = 2
           Wx_Alignment = [wxALIGN_LEFT]
         end
+        object WxBoxSizer7: TWxBoxSizer
+          Left = 0
+          Top = 130
+          Width = 350
+          Height = 26
+          TabOrder = 5
+          Wx_Class = 'wxBoxSizer'
+          Wx_ControlOrientation = wxControlVertical
+          Wx_IDName = 'ID_WXBOXSIZER7'
+          Wx_IDValue = 1030
+          Wx_Border = 0
+          Wx_Alignment = [wxALIGN_LEFT]
+          object WxCheckBoxSearchInSelection: TWxCheckBox
+            Left = 2
+            Top = 2
+            Width = 120
+            Height = 22
+            Caption = 'Search In &Selection'
+            TabOrder = 0
+            EVT_CHECKBOX = 'WxCheckBoxSearchInSelectionClick'
+            Wx_BGColor = clBlack
+            Wx_CheckBoxStyle = []
+            Wx_Class = 'wxCheckBox'
+            Wx_ControlOrientation = wxControlVertical
+            Wx_FGColor = clBlack
+            Wx_GeneralStyle = []
+            Wx_Hidden = False
+            Wx_IDName = 'ID_WXCHECKBOXSEARCHINSELECTION'
+            Wx_IDValue = 18
+            Wx_Border = 2
+            Wx_Alignment = [wxALIGN_LEFT]
+          end
+          object WxStaticTextFrom: TWxStaticText
+            Left = 126
+            Top = 4
+            Width = 30
+            Height = 17
+            Caption = 'From:'
+            TabOrder = 1
+            Wx_BGColor = clBlack
+            Wx_Class = 'wxStaticText'
+            Wx_ControlOrientation = wxControlVertical
+            Wx_FGColor = clBlack
+            Wx_GeneralStyle = []
+            Wx_Hidden = False
+            Wx_IDName = 'ID_WXSTATICTEXTFROM'
+            Wx_IDValue = 19
+            Wx_LabelStyle = []
+            Wx_Border = 2
+            Wx_Alignment = [wxALIGN_LEFT, wxALIGN_CENTER_VERTICAL]
+          end
+          object WxEditFrom: TWxEdit
+            Left = 160
+            Top = 2
+            Width = 80
+            Height = 22
+            BevelInner = bvNone
+            BevelOuter = bvNone
+            Modified = False
+            AutoSize = False
+            TabOrder = 2
+            Wx_BGColor = clBlack
+            Wx_Class = 'wxTextCtrl'
+            Wx_ControlOrientation = wxControlVertical
+            Wx_EditStyle = []
+            Wx_FGColor = clBlack
+            Wx_GeneralStyle = []
+            Wx_Hidden = False
+            Wx_IDName = 'ID_WXEDITFROM'
+            Wx_IDValue = 20
+            Wx_Alignment = [wxALIGN_LEFT]
+            Wx_Border = 2
+            Wx_MaxLength = 0
+          end
+          object WxStaticTextTo: TWxStaticText
+            Left = 244
+            Top = 4
+            Width = 20
+            Height = 17
+            Caption = 'To:'
+            TabOrder = 3
+            Wx_BGColor = clBlack
+            Wx_Class = 'wxStaticText'
+            Wx_ControlOrientation = wxControlVertical
+            Wx_FGColor = clBlack
+            Wx_GeneralStyle = []
+            Wx_Hidden = False
+            Wx_IDName = 'ID_WXSTATICTEXTTO'
+            Wx_IDValue = 21
+            Wx_LabelStyle = []
+            Wx_Border = 2
+            Wx_Alignment = [wxALIGN_LEFT, wxALIGN_CENTER_VERTICAL]
+          end
+          object WxEditTo: TWxEdit
+            Left = 268
+            Top = 2
+            Width = 80
+            Height = 22
+            BevelInner = bvNone
+            BevelOuter = bvNone
+            Modified = False
+            AutoSize = False
+            TabOrder = 4
+            Wx_BGColor = clBlack
+            Wx_Class = 'wxTextCtrl'
+            Wx_ControlOrientation = wxControlVertical
+            Wx_EditStyle = []
+            Wx_FGColor = clBlack
+            Wx_GeneralStyle = []
+            Wx_Hidden = False
+            Wx_IDName = 'ID_WXEDITTO'
+            Wx_IDValue = 22
+            Wx_Alignment = [wxALIGN_LEFT]
+            Wx_Border = 2
+            Wx_MaxLength = 0
+          end
+        end
       end
     end
     object WxBoxSizer3: TWxBoxSizer
-      Left = 302
-      Top = 16
+      Left = 350
+      Top = 34
       Width = 104
       Height = 128
       TabOrder = 1

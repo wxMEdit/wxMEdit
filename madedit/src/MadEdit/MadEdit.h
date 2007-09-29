@@ -161,8 +161,20 @@ struct MadCaretPos
 };
 
 struct UCIterator;
+
+// returned state of Search & Replace
 enum MadSearchResult
-{ SR_EXPR_ERROR=-2, SR_YES=-1, SR_NO=0 };  // returned state of Search & Replace
+{ SR_EXPR_ERROR=-2, SR_YES=-1, SR_NO=0 };
+
+enum MadReplaceResult
+{
+    RR_EXPR_ERROR=-1,
+    RR_NREP_NNEXT=0, // not replaced, not found next
+    RR_REP_NNEXT=1,  // replaced, not found next
+    RR_NREP_NEXT=2,  // not replaced, found next
+    RR_REP_NEXT=3    // replaced, found next
+};
+
 
 #define MadEditSuperClass wxWindow //wxScrolledWindow//wxPanel//wxControl//
 
@@ -803,16 +815,20 @@ public: // basic functions
                                 wxFileOffset rangeTo = -1);
 
     // replace the selected text that must match expr
-    bool ReplaceText(const wxString &expr, const wxString &fmt,
-                     bool bRegex, bool bCaseSensitive, bool bWholeWord);
-    bool ReplaceHex(const wxString &expr, const wxString &fmt);
+    MadReplaceResult ReplaceText(const wxString &expr, const wxString &fmt,
+                                 bool bRegex, bool bCaseSensitive, bool bWholeWord,
+                                 wxFileOffset rangeFrom = -1, wxFileOffset rangeTo = -1);
+    MadReplaceResult ReplaceHex(const wxString &expr, const wxString &fmt,
+                                wxFileOffset rangeFrom = -1, wxFileOffset rangeTo = -1);
 
     // return the replaced count or SR_EXPR_ERROR
     int ReplaceTextAll(const wxString &expr, const wxString &fmt,
             bool bRegex, bool bCaseSensitive, bool bWholeWord,
-            vector<wxFileOffset> *pbegpos = NULL, vector<wxFileOffset> *pendpos = NULL);
+            vector<wxFileOffset> *pbegpos = NULL, vector<wxFileOffset> *pendpos = NULL,
+            wxFileOffset rangeFrom = -1, wxFileOffset rangeTo = -1);
     int ReplaceHexAll(const wxString &expr, const wxString &fmt,
-            vector<wxFileOffset> *pbegpos = NULL, vector<wxFileOffset> *pendpos = NULL);
+            vector<wxFileOffset> *pbegpos = NULL, vector<wxFileOffset> *pendpos = NULL,
+            wxFileOffset rangeFrom = -1, wxFileOffset rangeTo = -1);
 
     // list the matched data to pbegpos & pendpos
     // return the found count or SR_EXPR_ERROR

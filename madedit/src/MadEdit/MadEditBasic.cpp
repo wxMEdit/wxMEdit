@@ -2608,11 +2608,12 @@ MadSearchResult MadEdit::FindHexPrevious(const wxString &hexstr,
     return SR_NO;
 }
 
-bool MadEdit::ReplaceText(const wxString &expr, const wxString &fmt,
-                          bool bRegex, bool bCaseSensitive, bool bWholeWord)
+MadReplaceResult MadEdit::ReplaceText(const wxString &expr, const wxString &fmt,
+                                      bool bRegex, bool bCaseSensitive, bool bWholeWord,
+                                      wxFileOffset rangeFrom, wxFileOffset rangeTo)
 {
     if(expr.Len()==0)
-        return true;
+        return RR_NREP_NNEXT;
 
     bool selok=false;
 
@@ -2625,7 +2626,7 @@ bool MadEdit::ReplaceText(const wxString &expr, const wxString &fmt,
 
         if(state==SR_EXPR_ERROR)
         {
-            return false;
+            return RR_EXPR_ERROR;
         }
 
         if(state==SR_YES)
@@ -2639,7 +2640,12 @@ bool MadEdit::ReplaceText(const wxString &expr, const wxString &fmt,
 
     if(!selok)  // just find next
     {
-        return SR_EXPR_ERROR!=FindTextNext(expr, bRegex, bCaseSensitive, bWholeWord, false);
+        switch(FindTextNext(expr, bRegex, bCaseSensitive, bWholeWord, rangeFrom, rangeTo))
+        {
+        case SR_EXPR_ERROR: return RR_EXPR_ERROR;
+        case SR_YES:        return RR_NREP_NEXT;
+        case SR_NO:         return RR_NREP_NNEXT;
+        }
     }
 
     ucs4string out;
@@ -2649,7 +2655,7 @@ bool MadEdit::ReplaceText(const wxString &expr, const wxString &fmt,
 
     if(state==SR_EXPR_ERROR)
     {
-        return false;
+        return RR_EXPR_ERROR;
     }
 
     if(out.length()==0)
@@ -2661,23 +2667,25 @@ bool MadEdit::ReplaceText(const wxString &expr, const wxString &fmt,
         InsertString(out.c_str(), out.length(), false, true, false);
     }
 
-    FindTextNext(expr, bRegex, bCaseSensitive, bWholeWord, false);
+    if(SR_NO==FindTextNext(expr, bRegex, bCaseSensitive, bWholeWord, -1, rangeTo))
+        return RR_REP_NNEXT;
 
-    return true;
+    return RR_REP_NEXT;
 }
 
-bool MadEdit::ReplaceHex(const wxString &expr, const wxString &fmt)
+MadReplaceResult MadEdit::ReplaceHex(const wxString &expr, const wxString &fmt,
+                                     wxFileOffset rangeFrom, wxFileOffset rangeTo)
 {
     if(expr.Len()==0)
-        return true;
+        return RR_NREP_NNEXT;
 
     bool selok=false;
 
     vector<wxByte> hex;
-    if(!StringToHex(expr, hex)) return false;
+    if(!StringToHex(expr, hex)) return RR_EXPR_ERROR;
 
     vector<wxByte> fmthex;
-    if(!StringToHex(fmt, fmthex)) return false;
+    if(!StringToHex(fmt, fmthex)) return RR_EXPR_ERROR;
 
 
     MadCaretPos bpos=*m_SelectionBegin;
@@ -2689,7 +2697,7 @@ bool MadEdit::ReplaceHex(const wxString &expr, const wxString &fmt)
 
         if(state==SR_EXPR_ERROR)
         {
-            return false;
+            return RR_EXPR_ERROR;
         }
 
         if(state==SR_YES)
@@ -2703,8 +2711,12 @@ bool MadEdit::ReplaceHex(const wxString &expr, const wxString &fmt)
 
     if(!selok)  // just find next
     {
-        FindHexNext(expr, false);
-        return true;
+        switch(FindHexNext(expr, rangeFrom, rangeTo))
+        {
+        case SR_EXPR_ERROR: return RR_EXPR_ERROR;
+        case SR_YES:        return RR_NREP_NEXT;
+        case SR_NO:         return RR_NREP_NNEXT;
+        }
     }
 
     if(fmthex.size()==0)
@@ -2716,15 +2728,17 @@ bool MadEdit::ReplaceHex(const wxString &expr, const wxString &fmt)
         InsertHexData(&(*fmthex.begin()), fmthex.size());
     }
 
-    FindHexNext(expr, false);
+    if(SR_NO==FindHexNext(expr, -1, rangeTo))
+        return RR_REP_NNEXT;
 
-    return true;
+    return RR_REP_NEXT;
 }
 
 
 int MadEdit::ReplaceTextAll(const wxString &expr, const wxString &fmt,
     bool bRegex, bool bCaseSensitive, bool bWholeWord,
-    vector<wxFileOffset> *pbegpos, vector<wxFileOffset> *pendpos)
+    vector<wxFileOffset> *pbegpos, vector<wxFileOffset> *pendpos,
+    wxFileOffset rangeFrom, wxFileOffset rangeTo)
 {
     if(expr.Len()==0)
         return 0;
@@ -2738,18 +2752,44 @@ int MadEdit::ReplaceTextAll(const wxString &expr, const wxString &fmt,
 
     MadCaretPos bpos, epos, endpos;
 
-    bpos.iter=m_Lines->m_LineList.begin();
-    bpos.pos=bpos.iter->m_RowIndices[0].m_Start;
-    if(m_CaretPos.pos < bpos.pos || m_EditMode==emHexMode)
+    if(rangeFrom <= 0)
     {
-        bpos.pos=0;
+        bpos.iter=m_Lines->m_LineList.begin();
+        bpos.pos=bpos.iter->m_RowIndices[0].m_Start;
+        if(m_CaretPos.pos < bpos.pos || m_EditMode==emHexMode)
+        {
+            bpos.pos=0;
+        }
+        bpos.linepos=bpos.pos;
     }
-    bpos.linepos=bpos.pos;
+    else
+    {
+        MadUCQueue ucharQueue;
+        vector<int> widthArray;
+        int tmp;
+        if(rangeFrom > GetFileSize()) rangeFrom = GetFileSize();
+        bpos.pos = rangeFrom;
+        UpdateCaretByPos(bpos, ucharQueue, widthArray, tmp);
+    }
 
-    epos.pos=m_Lines->m_Size;
-    epos.iter=m_Lines->m_LineList.end();
-    --epos.iter;
-    epos.linepos=epos.iter->m_Size;
+    if(rangeTo < 0)
+    {
+        epos.pos=m_Lines->m_Size;
+        epos.iter=m_Lines->m_LineList.end();
+        --epos.iter;
+        epos.linepos=epos.iter->m_Size;
+    }
+    else
+    {
+        MadUCQueue ucharQueue;
+        vector<int> widthArray;
+        int tmp;
+        if(rangeTo > GetFileSize()) rangeTo = GetFileSize();
+        epos.pos = rangeTo;
+        UpdateCaretByPos(epos, ucharQueue, widthArray, tmp);
+    }
+
+    if(bpos.pos >= epos.pos) return 0;
 
     endpos=epos;
     int multi=0;
@@ -2819,7 +2859,8 @@ int MadEdit::ReplaceTextAll(const wxString &expr, const wxString &fmt,
 }
 
 int MadEdit::ReplaceHexAll(const wxString &expr, const wxString &fmt,
-    vector<wxFileOffset> *pbegpos, vector<wxFileOffset> *pendpos)
+    vector<wxFileOffset> *pbegpos, vector<wxFileOffset> *pendpos,
+    wxFileOffset rangeFrom, wxFileOffset rangeTo)
 {
     if(expr.Len()==0)
         return 0;
@@ -2836,14 +2877,39 @@ int MadEdit::ReplaceHexAll(const wxString &expr, const wxString &fmt,
     vector<wxFileOffset> ins_len;
 
     MadCaretPos bpos, epos, endpos;
-    bpos.pos=0;
-    bpos.iter=m_Lines->m_LineList.begin();
-    bpos.linepos=0;
 
-    epos.pos=m_Lines->m_Size;
-    epos.iter=m_Lines->m_LineList.end();
-    --epos.iter;
-    epos.linepos=epos.iter->m_Size;
+    if(rangeFrom <= 0)
+    {
+        bpos.pos=0;
+        bpos.iter=m_Lines->m_LineList.begin();
+        bpos.linepos=0;
+    }
+    else
+    {
+        if(rangeFrom > GetFileSize()) rangeFrom = GetFileSize();
+        bpos.pos = rangeFrom;
+        bpos.linepos = rangeFrom;
+        GetLineByPos(bpos.iter, bpos.linepos, bpos.rowid);
+        bpos.linepos = rangeFrom - bpos.linepos;
+    }
+
+    if(rangeTo < 0)
+    {
+        epos.pos=m_Lines->m_Size;
+        epos.iter=m_Lines->m_LineList.end();
+        --epos.iter;
+        epos.linepos=epos.iter->m_Size;
+    }
+    else
+    {
+        if(rangeTo > GetFileSize()) rangeTo = GetFileSize();
+        epos.pos = rangeTo;
+        epos.linepos = rangeTo;
+        GetLineByPos(epos.iter, epos.linepos, epos.rowid);
+        epos.linepos = rangeTo - epos.linepos;
+    }
+
+    if(bpos.pos >= epos.pos) return 0;
 
     endpos=epos;
     int multi=0;

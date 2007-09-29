@@ -124,6 +124,7 @@ public:
 	void OnRecentFindText(wxCommandEvent& event);
 	void WxButtonFindPrevClick(wxCommandEvent& event);
 
+    void ReadWriteSettings(bool bRead);
     void UpdateCheckBoxByCBHex(bool check);
     void UpdateSearchInSelection(bool check);
 
