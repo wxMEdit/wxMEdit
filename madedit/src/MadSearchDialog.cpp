@@ -287,7 +287,7 @@ void MadSearchDialog::WxButtonFindNextClick(wxCommandEvent& event)
 
             rangeTo = to;
             wxFileOffset caretpos = g_ActiveMadEdit->GetCaretPosition();
-            if(caretpos <= from || caretpos >= to)
+            if(caretpos <= from || caretpos > to)
                 rangeFrom = from;
         }
 
@@ -374,7 +374,7 @@ void MadSearchDialog::WxButtonFindPrevClick(wxCommandEvent& event)
 
             rangeFrom = from;
             wxFileOffset caretpos = g_ActiveMadEdit->GetCaretPosition();
-            if(caretpos <= from || caretpos >= to)
+            if(caretpos < from || caretpos >= to)
                 rangeTo = to;
         }
 

@@ -489,7 +489,7 @@ void MadReplaceDialog::WxButtonReplaceClick(wxCommandEvent& event)
 
             rangeTo = to;
             wxFileOffset caretpos = g_ActiveMadEdit->GetCaretPosition();
-            if(caretpos <= from || caretpos >= to)
+            if(caretpos <= from || caretpos > to)
                 rangeFrom = from;
         }
 
