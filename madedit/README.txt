@@ -1,6 +1,6 @@
-			=======================
-			  MadEdit v0.2.7 Beta
-			=======================
+			=================================
+			  MadEdit v0.2.8 Beta
+			=================================
 About:
 -----
 MadEdit is a cross-platform Text/Hex Editor written in C++ & wxWidgets.
@@ -62,6 +62,17 @@ Syntax files, Locale files and Settings:
 
 ChangeLog:
 ----------
+v0.2.8:
+1.added Japanese Kanji supporting for converting Chinese characters.
+2.added the function to split window into multiple Tab Controls (by using wxAuiNotebook)
+  ScreenShot: http://madedit.sourceforge.net/screenshot06.png
+3.added the function to convert between WordWraps and NewLine chars.
+4.added File Type Associations Dialog under win32.
+5.added Search-In-Selection function when searching and replaceing.
+6.added Count function in SearchDialog.
+7.fixed that cannot replace text in Hex-Mode.
+8.some bug-fixes and changes.
+
 v0.2.7:
 1.fixed that ISO-8859-7 charset doesn't available under Win32.
 2.fixed that incorrectly handle Japanese halfwidth characters in Shift-JIS charset.

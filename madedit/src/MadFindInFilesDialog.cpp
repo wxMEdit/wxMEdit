@@ -250,7 +250,7 @@ void MadFindInFilesDialog::CreateGUIControls(void)
     WxBoxSizer7->Add(WxBitmapButtonRecentReplaceText,0,wxALIGN_CENTER_HORIZONTAL | wxALL,2);
 
     // build encoding list
-    wxString systemenc(_("System Default"));
+    wxString systemenc(_("Automatic Detect"));
     WxComboBoxEncoding->Append(systemenc);
     size_t cnt=MadEncoding::GetEncodingsCount();
     for(size_t i=0;i<cnt;i++)

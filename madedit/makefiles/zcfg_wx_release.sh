@@ -1,5 +1,5 @@
 # command line for configure of wxWidgets under linux
-../configure --disable-shared --disable-debug --enable-unicode --enable-stl --with-gnomeprint=yes --with-libpng=no --with-libjpeg=no --with-libtiff=no --with-regex=no --with-expat=no --with-zlib=no
+../configure --without-subdirs --disable-shared --disable-debug --enable-unicode --enable-stl --with-gnomeprint=yes --with-libpng=no --with-libjpeg=no --with-libtiff=no --with-regex=no --with-expat=no --with-zlib=no
 #--with-expat=builtin
 
 # for Makefile
