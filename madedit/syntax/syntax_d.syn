@@ -1,0 +1,64 @@
+# D
+Title=D
+CaseSensitive=Yes
+Delimiter=~`!@#$%^&*()-+=|\{}[]:;"',.<>/?
+LineComment=//
+BlockComment=/* */ /+ +/
+EscapeChar=\
+StringChar="'`
+DirectiveLeading=#
+KeywordPrefix=#
+SpecialWordPrefix=
+IndentChar={:
+UnindentChar=}
+BracePair=( ) [ ] { } /* */ /+ +/
+AutoCompletePair=() [] {} "" '' ``
+
+
+# System Predefined Color & Style
+TextColor=Black
+TextBgColor=White
+TextStyle=
+
+DelimiterColor=SaddleBrown
+DelimiterBgColor=
+DelimiterStyle=
+
+SpaceColor=Aqua
+SpaceBgColor=
+SpaceStyle=
+
+NumberColor=Blue
+NumberBgColor=
+NumberStyle=
+
+StringColor=Red
+StringBgColor=
+StringStyle=
+
+CommentColor=Teal
+CommentBgColor=
+CommentStyle=
+
+DirectiveColor=Green
+DirectiveBgColor=
+DirectiveStyle=
+
+SpecialWordColor=Navy
+SpecialWordBgColor=
+SpecialWordStyle=
+
+LineNumberColor=White
+LineNumberBgColor=A0A0A0
+LineNumberStyle=
+
+ActiveLineColor=Fuchsia
+BookmarkColor=C0FFFF
+
+# User Defined Keywords
+[1.Keywords]
+Color=Black
+BgColor=
+Style=Bold
+InRange=0
+Keyword=abstract alias align asm assert auto  body bool break byte  case cast catch cdouble cent cfloat char class const continue creal  dchar debug default delegate delete deprecated do double  else enum export extern  false final finally float for foreach foreach_reverse function  goto  idouble if ifloat import in inout int interface invariant ireal is  lazy long  macro mixin module  new null  out override  package pragma private protected public  real ref return  scope short static struct super switch synchronized  template this throw true try typedef typeid typeof  ubyte ucent uint ulong union unittest ushort  version void volatile  wchar while with #line __FILE__ __LINE__ __DATE__ __TIME__ __TIMESTAMP__

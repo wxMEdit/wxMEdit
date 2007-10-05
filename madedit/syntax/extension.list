@@ -98,3 +98,7 @@ inc syntax_vbscript_asp.syn
 
 #as syntax_angelscript.syn
 as syntax_actionscript.syn
+
+d	syntax_d.syn
+
+sql	syntax_sql.syn
