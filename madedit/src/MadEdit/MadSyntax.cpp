@@ -2344,6 +2344,8 @@ void MadSyntax::SaveAttributes(const wxString &file)
 
 void MadSyntax::AssignAttributes(MadSyntax *syn, bool add)
 {
+    if(this == syn) return;
+
     size_t i;
     for(i=0; i<m_CustomRange.size() && i<syn->m_CustomRange.size(); i++)
     {
