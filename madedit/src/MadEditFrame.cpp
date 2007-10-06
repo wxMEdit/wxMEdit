@@ -4155,12 +4155,44 @@ void MadEditFrame::OnViewSetFont(wxCommandEvent& event)
 {
     if(g_ActiveMadEdit==NULL) return;
 
-    wxFont font=wxGetFontFromUser(this, g_ActiveMadEdit->GetFont());
+    wxFontData data;
+    wxFont font = g_ActiveMadEdit->GetFont();
+
+    MadSyntax* syn = g_ActiveMadEdit->GetSyntax();
+    MadAttributes* attr = syn->GetAttributes(aeText);
+    data.SetColour(attr->color);
+
+    if((attr->style&fsItalic) != 0) font.SetStyle(wxFONTSTYLE_ITALIC);
+    if((attr->style&fsBold) != 0) font.SetWeight(wxFONTWEIGHT_BOLD);
+    font.SetUnderlined((attr->style&fsUnderline) != 0);
+
     if(font.Ok())
     {
-        wxString fn=FixUTF8ToWCS(font.GetFaceName());
-        g_ActiveMadEdit->SetFont(fn, font.GetPointSize());
-        m_RecentFonts->AddFileToHistory(fn);
+        data.SetInitialFont(font);
+    }
+
+    wxFontDialog dialog(this, data);
+    if (dialog.ShowModal() == wxID_OK)
+    {
+        const wxFontData &fd = dialog.GetFontData();
+        font = fd.GetChosenFont();
+        if(font.Ok())
+        {
+            wxString fn=FixUTF8ToWCS(font.GetFaceName());
+            g_ActiveMadEdit->SetFont(fn, font.GetPointSize());
+            m_RecentFonts->AddFileToHistory(fn);
+        }
+
+        attr->color = fd.GetColour();
+
+        MadFontStyles style = fsNone;
+        if(font.GetWeight()==wxFONTWEIGHT_BOLD) style |= fsBold;
+        if(font.GetStyle()==wxFONTSTYLE_ITALIC) style |= fsItalic;
+        if(font.GetUnderlined()) style |= fsUnderline;
+        attr->style = style;
+
+        ApplySyntaxAttributes(syn);
+        syn->SaveAttributes();
     }
 }
 
