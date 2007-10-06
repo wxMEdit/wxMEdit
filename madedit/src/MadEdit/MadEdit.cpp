@@ -4599,7 +4599,7 @@ void MadEdit::UCStoBlock(const ucs4_t *ucs, size_t count, MadBlock & block)
 
     ucs4_t uc;
     size_t size, idx;
-    wxByte mb[4], unitext[10];              // U+XXXXXX.
+    wxByte mb[4], unitext[12]; // utf16: U+XXXX or utf32: U+XXXXXXXX
     wxByte *b;
     MadEncoding::UCS4toMultiByteFuncPtr UCS4toMultiByte=m_Encoding->UCS4toMultiByte;
 
@@ -4608,31 +4608,29 @@ void MadEdit::UCStoBlock(const ucs4_t *ucs, size_t count, MadBlock & block)
         size = (m_Encoding->*UCS4toMultiByte)(*ucs, mb);
         b = mb;
 
-        if(size == 0)               // the uc not support in current encoding
+        if(size == 0)               // the uc is not supported in current encoding
         {
             b = unitext;
-            size = 6;
 
             (m_Encoding->*UCS4toMultiByte)(wxT('U'), unitext);
             (m_Encoding->*UCS4toMultiByte)(wxT('+'), unitext+1);
 
-            idx=2;
             uc = *ucs;
-
             wxASSERT(uc>=0 && uc<=0x10FFFF);
 
-            if(uc>=0x100000)
+            if(uc<=0xFFFF)
             {
-                size=8;
-                idx=4;
-                (m_Encoding->*UCS4toMultiByte)(ToHex((uc >> 20) & 0xF), unitext+ 2);
-                (m_Encoding->*UCS4toMultiByte)(ToHex((uc >> 16) & 0xF), unitext+ 3);
+                size = 6;
+                idx=2;
             }
-            else if(uc>=0x10000)
+            else //if(uc>=0x10000)
             {
-                size=7;
-                idx=3;
-                (m_Encoding->*UCS4toMultiByte)(ToHex((uc >> 16) & 0xF), unitext+ 2);
+                (m_Encoding->*UCS4toMultiByte)(wxT('0'), unitext+2);
+                (m_Encoding->*UCS4toMultiByte)(wxT('0'), unitext+3);
+                (m_Encoding->*UCS4toMultiByte)(ToHex((uc >> 20) & 0xF), unitext+ 4);
+                (m_Encoding->*UCS4toMultiByte)(ToHex((uc >> 16) & 0xF), unitext+ 5);
+                size=10;
+                idx=6;
             }
 
             (m_Encoding->*UCS4toMultiByte)(ToHex((uc >> 12) & 0xF), unitext+ (idx++));
@@ -8004,7 +8002,8 @@ void MadEdit::ProcessCommand(MadEditCommand command)
                         else if(m_InsertSpacesInsteadOfTab)
                         {
                             int tabwidth = m_TabColumns * GetUCharWidth(0x20);
-                            tabwidth -= (m_CaretPos.xpos % tabwidth);
+                            if(m_Selection) tabwidth -= (m_SelectionBegin->xpos % tabwidth);
+                            else tabwidth -= (m_CaretPos.xpos % tabwidth);
                             int spaces=tabwidth/GetUCharWidth(0x20);
                             if(spaces==0) spaces=m_TabColumns;
 
