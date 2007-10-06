@@ -947,7 +947,9 @@ BEGIN_EVENT_TABLE(MadEditFrame,wxFrame)
 	EVT_UPDATE_UI(menuToLowerCase, MadEditFrame::OnUpdateUI_MenuEdit_CheckSelSize)
 	EVT_UPDATE_UI(menuInvertCase , MadEditFrame::OnUpdateUI_MenuEdit_CheckSelSize)
 	EVT_UPDATE_UI(menuToHalfWidth, MadEditFrame::OnUpdateUI_MenuEdit_CheckSelSize)
+	EVT_UPDATE_UI(menuToHalfWidthByOptions, MadEditFrame::OnUpdateUI_MenuEdit_CheckSelSize)
 	EVT_UPDATE_UI(menuToFullWidth, MadEditFrame::OnUpdateUI_MenuEdit_CheckSelSize)
+	EVT_UPDATE_UI(menuToFullWidthByOptions, MadEditFrame::OnUpdateUI_MenuEdit_CheckSelSize)
 	EVT_UPDATE_UI(menuTrimTrailingSpaces, MadEditFrame::OnUpdateUI_Menu_CheckTextFile)
 	// search
 	EVT_UPDATE_UI(menuFind, MadEditFrame::OnUpdateUI_MenuFile_CheckCount)
@@ -1041,7 +1043,9 @@ BEGIN_EVENT_TABLE(MadEditFrame,wxFrame)
 	EVT_MENU(menuToLowerCase, MadEditFrame::OnEditToLowerCase)
 	EVT_MENU(menuInvertCase , MadEditFrame::OnEditInvertCase)
 	EVT_MENU(menuToHalfWidth, MadEditFrame::OnEditToHalfWidth)
+	EVT_MENU(menuToHalfWidthByOptions, MadEditFrame::OnEditToHalfWidthByOptions)
 	EVT_MENU(menuToFullWidth, MadEditFrame::OnEditToFullWidth)
+	EVT_MENU(menuToFullWidthByOptions, MadEditFrame::OnEditToFullWidthByOptions)
 	EVT_MENU(menuTrimTrailingSpaces, MadEditFrame::OnEditTrimTrailingSpaces)
 	// search
 	EVT_MENU(menuFind, MadEditFrame::OnSearchFind)
@@ -1206,7 +1210,9 @@ CommandData CommandTable[]=
     { ecInvertCase ,    2, menuInvertCase ,              wxT("menuInvertCase") ,              _("Inver&t Case"),                            wxT("Ctrl-Alt-U"),   wxITEM_NORMAL,    -1,                0,                     _("Invert the case of the selection")},
     { 0,                2, 0,                            0,                                   0,                                            0,                   wxITEM_SEPARATOR, -1,                0,                     0},
     { ecToHalfWidth,    2, menuToHalfWidth,              wxT("menuToHalfWidth"),              _("To H&alfwidth"),                           wxT(""),             wxITEM_NORMAL,    -1,                0,                     _("Convert the selection to halfwidth")},
+    { 0            ,    2, menuToHalfWidthByOptions,     wxT("menuToHalfWidthByOptions"),     _("To Halfwidth by Options..."),              wxT(""),             wxITEM_NORMAL,    -1,                0,                     _("Convert the selection to halfwidth by options")},
     { ecToFullWidth,    2, menuToFullWidth,              wxT("menuToFullWidth"),              _("To &Fullwidth"),                           wxT(""),             wxITEM_NORMAL,    -1,                0,                     _("Convert the selection to fullwidth")},
+    { 0            ,    2, menuToFullWidthByOptions,     wxT("menuToFullWidthByOptions"),     _("To Fullwidth by Options..."),              wxT(""),             wxITEM_NORMAL,    -1,                0,                     _("Convert the selection to fullwidth by options")},
     { 0,                2, 0,                            0,                                   0,                                            0,                   wxITEM_SEPARATOR, -1,                0,                     0},
     { 0,                2, menuTrimTrailingSpaces,       wxT("menuTrimTrailingSpaces"),       _("Tri&m Trailing Spaces"),                   wxT(""),             wxITEM_NORMAL,    -1,                0,                     _("Trim trailing spaces at the end of lines")},
     { 0,                1, 0,                            0,                                   0,                                            0,                   wxITEM_SEPARATOR, -1,                0,                     0},
@@ -1251,7 +1257,7 @@ CommandData CommandTable[]=
     { 0,            2, menuFont3,             wxT("menuFont3"),             _("[KLMNO]"),              0,                   wxITEM_NORMAL,    -1,                 &g_Menu_View_Font3,        0},
     { 0,            2, menuFont4,             wxT("menuFont4"),             _("[PQRST]"),              0,                   wxITEM_NORMAL,    -1,                 &g_Menu_View_Font4,        0},
     { 0,            2, menuFont5,             wxT("menuFont5"),             _("[UVWXYZ]"),             0,                   wxITEM_NORMAL,    -1,                 &g_Menu_View_Font5,        0},
-    { 0,            2, menuFont6,             wxT("menuFont6"),              _("[other]"),             0,                   wxITEM_NORMAL,    -1,                 &g_Menu_View_Font6,        0},
+    { 0,            2, menuFont6,             wxT("menuFont6"),             _("[other]"),              0,                   wxITEM_NORMAL,    -1,                 &g_Menu_View_Font6,        0},
 
     { 0,            1, menuFontSize,          wxT("menuFontSize"),          _("Font Size: "),          0,                   wxITEM_NORMAL,    fontsize_xpm_idx,   &g_Menu_View_FontSize,     0},
     { 0,            2, menuFontSize1,         wxT("menuFontSize1"),         wxT(" 1 "),                0,                   wxITEM_NORMAL,    -1,                 0,                         _("Set font point-size")},
@@ -3724,10 +3730,85 @@ void MadEditFrame::OnEditToHalfWidth(wxCommandEvent& event)
     if(g_ActiveMadEdit) g_ActiveMadEdit->ToHalfWidth();
 }
 
+void MadEditFrame::OnEditToHalfWidthByOptions(wxCommandEvent& event)
+{
+    if(g_ActiveMadEdit == NULL) return;
+
+    static wxArrayInt selections;
+    static inited = false;
+    if(!inited)
+    {
+        selections.Add(0);
+        selections.Add(1);
+        selections.Add(2);
+        selections.Add(3);
+        inited = true;
+    }
+
+    wxString choices[4] = { _("ASCII characters"), _("Japanese characters"),
+                            _("Korean characters"), _("other characters") }; 
+    size_t sels = wxGetMultipleChoices(selections,
+        _("Choose the characters you want to convert:"), _("To Halfwidth by Options..."),
+        4, choices, this );
+
+    if(sels > 0)
+    {
+        bool ascii=false, japanese=false, korean=false, other=false;
+        for(size_t i=0; i<sels; i++)
+        {
+            switch(selections[i])
+            {
+            case 0: ascii = true; break;
+            case 1: japanese = true; break;
+            case 2: korean = true; break;
+            case 3: other = true; break;
+            }
+        }
+        g_ActiveMadEdit->ToHalfWidth(ascii, japanese, korean, other);
+    }
+}
+
 void MadEditFrame::OnEditToFullWidth(wxCommandEvent& event)
 {
     if(g_ActiveMadEdit) g_ActiveMadEdit->ToFullWidth();
 }
+
+void MadEditFrame::OnEditToFullWidthByOptions(wxCommandEvent& event)
+{
+    if(g_ActiveMadEdit == NULL) return;
+
+    static wxArrayInt selections;
+    static inited = false;
+    if(!inited)
+    {
+        selections.Add(0);
+        selections.Add(1);
+        selections.Add(2);
+        selections.Add(3);
+        inited = true;
+    }
+
+    wxString choices[4] = { _("ASCII characters"), _("Japanese characters"),
+                            _("Korean characters"), _("other characters") }; 
+    size_t sels = wxGetMultipleChoices(selections,
+        _("Choose the characters you want to convert:"), _("To Fullwidth by Options..."),
+        4, choices, this );
+
+    if(sels > 0)
+    {
+        bool ascii=false, japanese=false, korean=false, other=false;
+        for(size_t i=0; i<sels; i++)
+        {
+            switch(selections[i])
+            {
+            case 0: ascii = true; break;
+            case 1: japanese = true; break;
+            case 2: korean = true; break;
+            case 3: other = true; break;
+            }
+        }
+        g_ActiveMadEdit->ToFullWidth(ascii, japanese, korean, other);
+    }}
 
 void MadEditFrame::OnEditTrimTrailingSpaces(wxCommandEvent& event)
 {

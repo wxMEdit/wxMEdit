@@ -869,7 +869,7 @@ void MadEdit::InvertCase()
 
 //==============================================================================
 // data are from http://zh.wikipedia.org/wiki/%E5%85%A8%E5%BD%A2
-ucs2_t Halfwidth_Fullwidth_Table[]=
+ucs2_t ASCII_Halfwidth_Fullwidth_Table[]=
 {
     //halfwidth, fullwidth,
     //ASCII char
@@ -968,6 +968,11 @@ ucs2_t Halfwidth_Fullwidth_Table[]=
     0x007C, 0xFF5C,
     0x007D, 0xFF5D,
     0x007E, 0xFF5E,
+    0
+};
+ucs2_t Japanese_Halfwidth_Fullwidth_Table[]=
+{
+    //halfwidth, fullwidth,
     //Japanese char
     0xFF61, 0x3002,
     0xFF62, 0x300C,
@@ -1032,6 +1037,11 @@ ucs2_t Halfwidth_Fullwidth_Table[]=
     0xFF9D, 0x30F3,
     0xFF9E, 0x309B,
     0xFF9F, 0x309C,
+    0
+};
+ucs2_t Korean_Halfwidth_Fullwidth_Table[]=
+{
+    //halfwidth, fullwidth,
     //Korean char
     0xFFA0, 0x3164,
     0xFFA1, 0x3131,
@@ -1085,6 +1095,11 @@ ucs2_t Halfwidth_Fullwidth_Table[]=
     0xFFDA, 0x3161,
     0xFFDB, 0x3162,
     0xFFDC, 0x3163,
+    0
+};
+ucs2_t Other_Halfwidth_Fullwidth_Table[]=
+{
+    //halfwidth, fullwidth,
     //other1
     0x2985, 0xFF5F,
     0x2986, 0xFF60,
@@ -1106,47 +1121,63 @@ ucs2_t Halfwidth_Fullwidth_Table[]=
     0
 };
 
-ucs2_t *GetHalfwidthTable()
+void InitHalfwidthTable(ucs2_t *Halfwidth_Table, ucs2_t *hftable)
+{
+    do
+    {
+        Halfwidth_Table[*hftable] = *(hftable+1);
+        hftable+=2;
+    }
+    while(*hftable != 0);
+}
+void InitFullwidthTable(ucs2_t *Fullwidth_Table, ucs2_t *hftable)
+{
+    do
+    {
+        Fullwidth_Table[*(hftable+1)] = *hftable;
+        hftable+=2;
+    }
+    while(*hftable != 0);
+}
+
+ucs2_t *GetHalfwidthTable(bool ascii, bool japanese, bool korean, bool other)
 {
     static ucs2_t *Halfwidth_Table=NULL; // halfwidth-char to fullwidth-char table
 
     if(Halfwidth_Table==NULL)
     {
         Halfwidth_Table=new ucs2_t[65536];
-        memset(Halfwidth_Table, 0, sizeof(ucs2_t)*65536);
-        ucs2_t *p=Halfwidth_Fullwidth_Table;
-        do
-        {
-            Halfwidth_Table[*p] = *(p+1);
-            p+=2;
-        }
-        while(*p != 0);
     }
+    memset(Halfwidth_Table, 0, sizeof(ucs2_t)*65536);
+
+    if(ascii)    InitHalfwidthTable(Halfwidth_Table, ASCII_Halfwidth_Fullwidth_Table);
+    if(japanese) InitHalfwidthTable(Halfwidth_Table, Japanese_Halfwidth_Fullwidth_Table);
+    if(korean)   InitHalfwidthTable(Halfwidth_Table, Korean_Halfwidth_Fullwidth_Table);
+    if(other)    InitHalfwidthTable(Halfwidth_Table, Other_Halfwidth_Fullwidth_Table);
+
     return Halfwidth_Table;
 }
 
-ucs2_t *GetFullwidthTable()
+ucs2_t *GetFullwidthTable(bool ascii, bool japanese, bool korean, bool other)
 {
     static ucs2_t *Fullwidth_Table=NULL; // fullwidth-char to halfwidth-char table
 
     if(Fullwidth_Table==NULL)
     {
         Fullwidth_Table=new ucs2_t[65536];
-        memset(Fullwidth_Table, 0, sizeof(ucs2_t)*65536);
-        ucs2_t *p=Halfwidth_Fullwidth_Table;
-        do
-        {
-            Fullwidth_Table[*(p+1)] = *p;
-            p+=2;
-        }
-        while(*p != 0);
     }
+    memset(Fullwidth_Table, 0, sizeof(ucs2_t)*65536);
+
+    if(ascii)    InitFullwidthTable(Fullwidth_Table, ASCII_Halfwidth_Fullwidth_Table);
+    if(japanese) InitFullwidthTable(Fullwidth_Table, Japanese_Halfwidth_Fullwidth_Table);
+    if(korean)   InitFullwidthTable(Fullwidth_Table, Korean_Halfwidth_Fullwidth_Table);
+    if(other)    InitFullwidthTable(Fullwidth_Table, Other_Halfwidth_Fullwidth_Table);
+
     return Fullwidth_Table;
 }
 
-inline ucs4_t tohalfwidth(ucs4_t uc)
+inline ucs4_t tohalfwidth(ucs4_t uc, ucs2_t *full)
 {
-    ucs2_t *full=GetFullwidthTable();
     if(uc<=0xFFFF)
     {
         ucs2_t hw=full[uc];
@@ -1154,9 +1185,8 @@ inline ucs4_t tohalfwidth(ucs4_t uc)
     }
     return uc;
 }
-inline ucs4_t tofullwidth(ucs4_t uc)
+inline ucs4_t tofullwidth(ucs4_t uc, ucs2_t *half)
 {
-    ucs2_t *half=GetHalfwidthTable();
     if(uc<=0xFFFF)
     {
         ucs2_t fw=half[uc];
@@ -1165,7 +1195,7 @@ inline ucs4_t tofullwidth(ucs4_t uc)
     return uc;
 }
 
-void MadEdit::ToHalfWidth()
+void MadEdit::ToHalfWidth(bool ascii, bool japanese, bool korean, bool other)
 {
     if(IsReadOnly() || !m_Selection)
         return;
@@ -1173,12 +1203,13 @@ void MadEdit::ToHalfWidth()
     wxString text;
     GetSelText(text);
     bool modified=false;
+    ucs2_t *full_table=GetFullwidthTable(ascii, japanese, korean, other);
 
     size_t i=0, count=text.Len();
     while(i<count)
     {
         ucs4_t c=text[i];
-        ucs4_t nc=tohalfwidth(c);
+        ucs4_t nc=tohalfwidth(c, full_table);
         if(nc != c)
         {
             text.SetChar(i, nc);
@@ -1204,7 +1235,7 @@ void MadEdit::ToHalfWidth()
     }
 }
 
-void MadEdit::ToFullWidth()
+void MadEdit::ToFullWidth(bool ascii, bool japanese, bool korean, bool other)
 {
     if(IsReadOnly() || !m_Selection)
         return;
@@ -1212,12 +1243,13 @@ void MadEdit::ToFullWidth()
     wxString text;
     GetSelText(text);
     bool modified=false;
+    ucs2_t *half_table = GetHalfwidthTable(ascii, japanese, korean, other);
 
     size_t i=0, count=text.Len();
     while(i<count)
     {
         ucs4_t c=text[i];
-        ucs4_t nc=tofullwidth(c);
+        ucs4_t nc=tofullwidth(c, half_table);
         if(nc != c)
         {
             text.SetChar(i, nc);
@@ -1500,8 +1532,8 @@ void MadEdit::WordCount(bool selection, int &wordCount, int &charCount, int &spa
     MadUCQueue ucqueue;
     m_Lines->InitNextUChar(lit, linepos);
     int idx=0, previdx=-1, count=0;
-    ucs2_t *half=GetHalfwidthTable();
-    ucs2_t *full=GetFullwidthTable();
+    ucs2_t *half=GetHalfwidthTable(true, true, true, true);
+    ucs2_t *full=GetFullwidthTable(true, true, true, true);
 
     while(nowpos < endpos)
     {

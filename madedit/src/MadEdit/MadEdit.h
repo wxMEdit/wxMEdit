@@ -561,6 +561,7 @@ public:
 
 public: // basic functions
     void SetSyntax(const wxString &title);
+    MadSyntax* GetSyntax() { return m_Syntax; }
     wxString GetSyntaxTitle() { return m_Syntax->m_Title; }
     void ApplySyntaxAttributes(MadSyntax *syn, bool matchTitle);
     void LoadDefaultSyntaxScheme() { MadSyntax::LoadScheme(wxT("Default"), m_Syntax); }
@@ -870,8 +871,8 @@ public: // advanced functions
     void ToUpperCase();
     void ToLowerCase();
     void InvertCase();
-    void ToHalfWidth();
-    void ToFullWidth();
+    void ToHalfWidth(bool ascii=true, bool japanese=true, bool korean=true, bool other=true);
+    void ToFullWidth(bool ascii=true, bool japanese=true, bool korean=true, bool other=true);
 
     void TrimTrailingSpaces();
 

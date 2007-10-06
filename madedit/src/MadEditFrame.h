@@ -191,7 +191,9 @@ public:
     void OnEditToLowerCase(wxCommandEvent& event);
     void OnEditInvertCase(wxCommandEvent& event);
     void OnEditToHalfWidth(wxCommandEvent& event);
+    void OnEditToHalfWidthByOptions(wxCommandEvent& event);
     void OnEditToFullWidth(wxCommandEvent& event);
+    void OnEditToFullWidthByOptions(wxCommandEvent& event);
     void OnEditTrimTrailingSpaces(wxCommandEvent& event);
 
     void OnSearchFind(wxCommandEvent& event);
@@ -355,7 +357,9 @@ enum { // menu id
     menuToLowerCase,
     menuInvertCase,
     menuToHalfWidth,
+    menuToHalfWidthByOptions,
     menuToFullWidth,
+    menuToFullWidthByOptions,
     menuTrimTrailingSpaces,
 
     // search
