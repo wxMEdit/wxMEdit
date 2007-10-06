@@ -102,3 +102,11 @@ as syntax_actionscript.syn
 d	syntax_d.syn
 
 sql	syntax_sql.syn
+
+v	syntax_verilog.syn
+vl	syntax_verilog.syn
+vmd	syntax_verilog.syn
+
+vhd	syntax_vhdl.syn
+vho	syntax_vhdl.syn
+vhdl	syntax_vhdl.syn

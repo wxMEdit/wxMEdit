@@ -1,0 +1,84 @@
+# VHDL
+Title=VHDL
+CaseSensitive=No
+Delimiter=~`!@#$%^&*()-+=|\{}[]:;"',.<>/?
+LineComment=--
+BlockComment=
+EscapeChar=
+StringChar="
+DirectiveLeading=
+KeywordPrefix=
+SpecialWordPrefix=
+IndentChar=
+UnindentChar=
+BracePair=( ) { } [ ]
+AutoCompletePair=() [] {} ""
+
+# System Predefined Color & Style
+TextColor=Black
+TextBgColor=White
+TextStyle=
+
+DelimiterColor=SaddleBrown
+DelimiterBgColor=
+DelimiterStyle=
+
+SpaceColor=Aqua
+SpaceBgColor=
+SpaceStyle=
+
+NumberColor=Blue
+NumberBgColor=
+NumberStyle=
+
+StringColor=Red
+StringBgColor=
+StringStyle=
+
+CommentColor=Teal
+CommentBgColor=
+CommentStyle=
+
+DirectiveColor=Green
+DirectiveBgColor=
+DirectiveStyle=
+
+SpecialWordColor=Navy
+SpecialWordBgColor=
+SpecialWordStyle=
+
+LineNumberColor=White
+LineNumberBgColor=A0A0A0
+LineNumberStyle=
+
+ActiveLineColor=Fuchsia
+BookmarkColor=C0FFFF
+
+# User Defined Keywords
+[1.ReservedWords]
+Color=Black
+BgColor=
+Style=Bold
+InRange=0
+Keyword=abs access after alias all and architecture array assert attribute begin block body buffer bus case component configuration constant disconnect downto else elsif end entity exit file for function generate generic group guarded if impure in inertial inout is label library linkage literal loop map mod  nand new next nor not null of on open or others out package port postponed procedure process pure range record register reject rem report return rol ror select severity signal shared sla sll sra srl subtype then to transport type  unaffected untis until use variable wait when while with  xnor xor
+
+[2.Attributes]
+Color=DarkBlue
+BgColor=
+Style=Bold
+InRange=0
+Keyword=active ascending ascending base delayed driving driving_value event falling_edge high image instance_name last_active last_event last_value left leftof length low path_name pos pred quiet reverse_range right rightof rising_edge simple_name stable succ transaction val value
+
+[3.Types]
+Color=ForestGreen
+BgColor=
+Style=Bold
+InRange=0
+Keyword=bit bit_vector boolean character integer line natural positive real signed std_logic std_logic_vector string text time unsigned
+
+[4.Procedures]
+Color=DarkOrchid
+BgColor=
+Style=Bold
+InRange=0
+Keyword=endfile file_close file_open read readline write writeline

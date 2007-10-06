@@ -62,3 +62,10 @@ BgColor=
 Style=Bold
 InRange=0
 Keyword=abstract alias align asm assert auto  body bool break byte  case cast catch cdouble cent cfloat char class const continue creal  dchar debug default delegate delete deprecated do double  else enum export extern  false final finally float for foreach foreach_reverse function  goto  idouble if ifloat import in inout int interface invariant ireal is  lazy long  macro mixin module  new null  out override  package pragma private protected public  real ref return  scope short static struct super switch synchronized  template this throw true try typedef typeid typeof  ubyte ucent uint ulong union unittest ushort  version void volatile  wchar while with #line __FILE__ __LINE__ __DATE__ __TIME__ __TIMESTAMP__
+
+[2.Operators]
+Color=DarkBlue
+BgColor=
+Style=Bold
+InRange=0
+Keyword=opAdd opAdd_r opAddAssign opAnd opAnd_r opAndAssign opAssign opAssign opCall opCast opCat opCat_r opCatAssign opCmp opCom opDiv opDiv_r opDivAssign opEquals opIn opIn_r opIndex opIndexAssign opMod opMod_r opModAssign opMul opMul_r opMulAssign opNeg opOr opOr_r opOrAssign opPos opPostDec opPostInc opShl opShl_r opShlAssign opShr opShr_r opShrAssign opSlice opSliceAssign opSub opSub_r opSubAssign opUShr opUShr_r opUShrAssign opXor opXor_r opXorAssign
