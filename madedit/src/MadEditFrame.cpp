@@ -3742,7 +3742,7 @@ void MadEditFrame::OnEditToHalfWidthByOptions(wxCommandEvent& event)
     if(g_ActiveMadEdit == NULL) return;
 
     static wxArrayInt selections;
-    static inited = false;
+    static bool inited = false;
     if(!inited)
     {
         selections.Add(0);
