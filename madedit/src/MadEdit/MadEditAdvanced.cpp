@@ -2491,4 +2491,170 @@ void MadEdit::ConvertSpaceToTab()
 
 void MadEdit::ConvertTabToSpace()
 {
+    if(IsReadOnly() || GetEditMode()==emHexMode || !IsSelected())
+        return;
+
+    vector < ucs4_t > newtext;
+    bool modified = false;
+
+    size_t firstrow = m_SelectionBegin->rowid;
+    size_t subrowid = m_SelectionBegin->subrowid;
+    MadLineIterator lit = m_SelectionBegin->iter;
+    wxFileOffset pos = m_SelectionBegin->pos - m_SelectionBegin->linepos;
+
+    const size_t lastrow = m_SelectionEnd->rowid;
+    const int RowCount = int(lastrow - firstrow + 1);
+
+    MadUCQueue ucqueue;
+    MadLines::NextUCharFuncPtr NextUChar=m_Lines->NextUChar;
+    for(;;)
+    {
+        int rowwidth = lit->m_RowIndices[subrowid].m_Width;
+        int nowxpos = 0;
+        int xpos1, xpos2;
+
+        if(GetEditMode() == emColumnMode)
+        {
+            xpos1 = m_SelLeftXPos;
+            xpos2 = m_SelRightXPos;
+        }
+        else
+        {
+            if(RowCount == 1) // one row only
+            {
+                xpos1 = m_SelectionBegin->xpos;
+                xpos2 = m_SelectionEnd->xpos;
+            }
+            else
+            {
+                if(firstrow == m_SelectionBegin->rowid) // first row
+                {
+                    xpos1 = m_SelectionBegin->xpos;
+                    xpos2 = rowwidth;
+                }
+                else if(firstrow == lastrow) // last line
+                {
+                    xpos1 = 0;
+                    xpos2 = m_SelectionEnd->xpos;
+                }
+                else // middle line
+                {
+                    xpos1 = 0;
+                    xpos2 = rowwidth;
+                }
+            }
+        }
+
+        if(xpos1 < rowwidth)
+        {
+            wxFileOffset rowpos = lit->m_RowIndices[subrowid].m_Start;
+            wxFileOffset rowendpos = lit->m_RowIndices[subrowid + 1].m_Start;
+
+            m_Lines->InitNextUChar(lit, rowpos);
+            do
+            {
+                int uc = 0x0D;
+                if((m_Lines->*NextUChar)(ucqueue))
+                    uc = ucqueue.back().first;
+
+                if(uc == 0x0D || uc == 0x0A)    // EOL
+                {
+                    break;
+                }
+
+                int ucwidth = GetUCharWidth(uc);
+                if(uc == 0x09)
+                {
+                    int tabwidth = m_TabColumns * GetUCharWidth(0x20);
+                    ucwidth = rowwidth - nowxpos;
+                    tabwidth -= (nowxpos % tabwidth);
+                    if(tabwidth < ucwidth)
+                        ucwidth = tabwidth;
+                }
+                nowxpos += ucwidth;
+
+                int uchw = ucwidth >> 1;
+                if(xpos1 > uchw)
+                {
+                    rowpos += ucqueue.back().second;
+                    xpos1 -= ucwidth;
+                    xpos2 -= ucwidth;
+                }
+                else
+                {
+                    xpos1 = 0;
+                    if(xpos2 > uchw)
+                    {
+                        if(uc == 0x09)
+                        {
+                            int sw = GetUCharWidth(0x20);
+                            int space_count = ucwidth / sw;
+                            if(space_count*sw < ucwidth) ++space_count;
+                            ucwidth = space_count * sw;
+
+                            do
+                            {
+                                newtext.push_back(0x20);
+                            }
+                            while(--space_count > 0);
+                            modified = true;
+                        }
+                        else
+                        {
+                            newtext.push_back(uc);
+                        }
+
+                        xpos2 -= ucwidth;
+                    }
+                    else
+                        xpos2 = 0;
+                }
+            }
+            while(xpos2 > 0 && rowpos < rowendpos);
+        }
+
+        // add newline
+        if(GetEditMode() == emColumnMode)
+        {
+#ifdef __WXMSW__
+            newtext.push_back(0x0D);
+#endif
+            newtext.push_back(0x0A);
+        }
+        else
+        {
+            if(firstrow != lastrow)
+                switch(m_Lines->GetNewLine(lit))
+                {
+                case 0x0D: newtext.push_back(0x0D); break;
+                case 0x0A: newtext.push_back(0x0A); break;
+                case 0x0D+0x0A:
+                    newtext.push_back(0x0D);
+                    newtext.push_back(0x0A);
+                    break;
+                }
+        }
+
+        if(firstrow == lastrow)
+            break;
+
+        ++firstrow;
+        ucqueue.clear();
+
+        // to next row, line
+        if(++subrowid == lit->RowCount())
+        {
+            pos += lit->m_Size;
+            ++lit;
+            subrowid = 0;
+        }
+    }
+
+    if(modified)
+    {
+        if(GetEditMode()==emColumnMode)
+            InsertColumnString(&(*newtext.begin()), newtext.size(), RowCount, false, true);
+        else
+            InsertString(&(*newtext.begin()), newtext.size(), false, false, true);
+    }
 }
