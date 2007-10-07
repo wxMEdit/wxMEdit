@@ -194,6 +194,8 @@ public:
     void OnEditToHalfWidthByOptions(wxCommandEvent& event);
     void OnEditToFullWidth(wxCommandEvent& event);
     void OnEditToFullWidthByOptions(wxCommandEvent& event);
+    void OnEditTabToSpace(wxCommandEvent& event);
+    void OnEditSpaceToTab(wxCommandEvent& event);
     void OnEditTrimTrailingSpaces(wxCommandEvent& event);
 
     void OnSearchFind(wxCommandEvent& event);
@@ -360,6 +362,8 @@ enum { // menu id
     menuToHalfWidthByOptions,
     menuToFullWidth,
     menuToFullWidthByOptions,
+    menuTabToSpace,
+    menuSpaceToTab,
     menuTrimTrailingSpaces,
 
     // search
