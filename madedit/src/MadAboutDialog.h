@@ -22,6 +22,7 @@
 #include <wx/button.h>
 #include <wx/textctrl.h>
 #include <wx/statbmp.h>
+#include <wx/sizer.h>
 ////Header Include End
 
 #include <wx/dialog.h>
@@ -58,7 +59,9 @@ public:
 		wxButton *WxButtonOK;
 		wxBoxSizer *WxBoxSizer3;
 		wxTextCtrl *WxMemo1;
+		wxStaticBitmap *WxStaticBitmap2;
 		wxStaticBitmap *WxStaticBitmap1;
+		wxBoxSizer *WxBoxSizer4;
 		wxBoxSizer *WxBoxSizer2;
 		wxBoxSizer *WxBoxSizer1;
   ////GUI Control Declaration End
@@ -74,7 +77,8 @@ public:
 	enum {
 ////GUI Enum Control ID Start
 			ID_WXMEMO1 = 1011,
-			ID_WXSTATICBITMAP1 = 1010,
+			ID_WXSTATICBITMAP2 = 1015,
+			ID_WXSTATICBITMAP1 = 1016,
 ////GUI Enum Control ID End
    ID_DUMMY_VALUE_ //Dont Delete this DummyValue
    }; //End of Enum

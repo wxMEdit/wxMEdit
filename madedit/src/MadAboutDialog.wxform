@@ -1,10 +1,11 @@
 object frmNewForm: TfrmNewForm
   Left = 8
   Top = 8
-  Width = 439
-  Height = 254
+  AutoScroll = False
   BorderIcons = [biSystemMenu, biMinimize]
   Caption = 'About MadEdit'
+  ClientHeight = 222
+  ClientWidth = 431
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -19,6 +20,7 @@ object frmNewForm: TfrmNewForm
   OnDestroy = FormDestroy
   OnKeyDown = FormKeyDown
   OnResize = NewFormResize
+  EVT_CLOSE = 'MadAboutDialogClose'
   Wx_ICON.Data = {07544269746D617000000000}
   Wx_Name = 'MadAboutDialog'
   Wx_IDName = 'ID_DIALOG1'
@@ -26,89 +28,121 @@ object frmNewForm: TfrmNewForm
   Wx_Class = 'wxDialog'
   Wx_Center = True
   Wx_Hidden = False
+  Wx_SizeToContents = True
   Wx_GeneralStyle = []
   Wx_DialogStyle = [wxCAPTION, wxSYSTEM_MENU, wxDIALOG_NO_PARENT, wxCLOSE_BOX]
-  EVT_CLOSE = 'MadAboutDialogClose'
+  Wx_Border = 0
+  Wx_BorderAlignment = []
   PixelsPerInch = 96
   TextHeight = 13
   object WxBoxSizer1: TWxBoxSizer
     Left = 0
     Top = 0
     Width = 431
-    Height = 224
+    Height = 222
     Align = alClient
     TabOrder = 0
     Orientation = wxVertical
-    Wx_Border = 0
     Wx_Class = 'wxBoxSizer'
+    Wx_ControlOrientation = wxControlVertical
     Wx_IDName = 'ID_WXBOXSIZER1'
     Wx_IDValue = 1007
-    Wx_StretchFactor = 0
+    Wx_Border = 0
     object WxBoxSizer2: TWxBoxSizer
-      Left = 0
-      Top = 0
-      Width = 394
-      Height = 156
+      Left = 3
+      Top = 3
+      Width = 422
+      Height = 154
       TabOrder = 0
-      Wx_Border = 3
       Wx_Class = 'wxBoxSizer'
+      Wx_ControlOrientation = wxControlVertical
       Wx_IDName = 'ID_WXBOXSIZER2'
       Wx_IDValue = 1008
-      Wx_StretchFactor = 0
-      object WxStaticBitmap1: TWxStaticBitmap
-        Left = 3
-        Top = 54
-        Width = 48
-        Height = 48
-        TabOrder = 0
-        Picture.Data = {07544269746D617000000000}
-        Wx_Class = 'wxStaticBitmap'
-        Wx_Enabled = False
-        Wx_GeneralStyle = []
-        Wx_IDName = 'ID_WXSTATICBITMAP1'
-        Wx_IDValue = 1010
+      Wx_Border = 3
+      object WxBoxSizer4: TWxBoxSizer
+        Left = 5
+        Top = 19
+        Width = 58
+        Height = 116
+        TabOrder = 1
+        Orientation = wxVertical
+        Wx_Class = 'wxBoxSizer'
+        Wx_ControlOrientation = wxControlVertical
+        Wx_IDName = 'ID_WXBOXSIZER4'
+        Wx_IDValue = 1014
+        Wx_Alignment = [wxALIGN_TOP]
+        object WxStaticBitmap1: TWxStaticBitmap
+          Left = 5
+          Top = 5
+          Width = 48
+          Height = 48
+          TabOrder = 1
+          Picture.Data = {07544269746D617000000000}
+          Wx_Class = 'wxStaticBitmap'
+          Wx_ControlOrientation = wxControlVertical
+          Wx_Enabled = False
+          Wx_GeneralStyle = []
+          Wx_IDName = 'ID_WXSTATICBITMAP1'
+          Wx_IDValue = 1016
+        end
+        object WxStaticBitmap2: TWxStaticBitmap
+          Left = 5
+          Top = 63
+          Width = 48
+          Height = 48
+          TabOrder = 0
+          Picture.Data = {07544269746D617000000000}
+          Wx_Class = 'wxStaticBitmap'
+          Wx_ControlOrientation = wxControlVertical
+          Wx_Enabled = False
+          Wx_GeneralStyle = []
+          Wx_IDName = 'ID_WXSTATICBITMAP2'
+          Wx_IDValue = 1015
+        end
       end
       object WxMemo1: TWxMemo
-        Left = 41
-        Top = 3
+        Left = 70
+        Top = 2
         Width = 350
         Height = 150
         BevelInner = bvNone
         BevelOuter = bvNone
-        TabOrder = 1
+        ScrollBars = ssVertical
+        TabOrder = 0
         Wx_BGColor = clBlack
-        Wx_Border = 2
         Wx_Class = 'wxTextCtrl'
+        Wx_ControlOrientation = wxControlVertical
         Wx_EditStyle = [wxTE_READONLY, wxTE_AUTO_URL, wxTE_MULTILINE]
         Wx_FGColor = clBlack
         Wx_GeneralStyle = []
         Wx_IDName = 'ID_WXMEMO1'
         Wx_IDValue = 1011
         Wx_MaxLength = 0
+        Wx_Border = 2
       end
     end
     object WxBoxSizer3: TWxBoxSizer
-      Left = 101
-      Top = 156
-      Width = 192
-      Height = 36
+      Left = 116
+      Top = 163
+      Width = 196
+      Height = 38
       TabOrder = 1
-      Wx_Border = 3
       Wx_Class = 'wxBoxSizer'
+      Wx_ControlOrientation = wxControlVertical
       Wx_IDName = 'ID_WXBOXSIZER3'
       Wx_IDValue = 1009
-      Wx_StretchFactor = 0
+      Wx_Border = 3
       object WxButtonOK: TWxButton
-        Left = 3
-        Top = 3
+        Left = 4
+        Top = 4
         Width = 90
         Height = 30
         Caption = '&OK'
         TabOrder = 0
         Wx_BKColor = clBlack
-        Wx_Border = 4
         Wx_ButtonStyle = []
         Wx_Class = 'wxButton'
+        Wx_ControlOrientation = wxControlVertical
         Wx_Default = False
         Wx_EventList.Strings = (
           'EVT_BUTTON:OnClick'
@@ -120,18 +154,19 @@ object frmNewForm: TfrmNewForm
         Wx_IDValue = 1012
         Wx_Height = 30
         Wx_Width = 90
+        Wx_Border = 4
       end
       object WxButtonCancel: TWxButton
-        Left = 99
-        Top = 3
+        Left = 102
+        Top = 4
         Width = 90
         Height = 30
         Caption = '&Cancel'
         TabOrder = 1
         Wx_BKColor = clBlack
-        Wx_Border = 4
         Wx_ButtonStyle = []
         Wx_Class = 'wxButton'
+        Wx_ControlOrientation = wxControlVertical
         Wx_Default = False
         Wx_EventList.Strings = (
           'EVT_BUTTON:OnClick'
@@ -143,6 +178,7 @@ object frmNewForm: TfrmNewForm
         Wx_IDValue = 1013
         Wx_Height = 30
         Wx_Width = 90
+        Wx_Border = 4
       end
     end
   end

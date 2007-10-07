@@ -146,7 +146,7 @@ void AddType(wxString type)
     name += wxT("\\DefaultIcon");
     pRegKey = new wxRegKey(name);
     pRegKey->Create();
-    pRegKey->SetValue(wxEmptyString, exepath);// + wxString(wxT(",1")));
+    pRegKey->SetValue(wxEmptyString, exepath + wxString(wxT(",1")));
     delete pRegKey;
 }
 
