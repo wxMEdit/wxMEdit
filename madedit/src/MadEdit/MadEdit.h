@@ -884,6 +884,9 @@ public: // advanced functions
     // convert NewLine-chars to WordWraps in the SelText
     void ConvertNewLineToWordWrap();
 
+    void ConvertSpaceToTab();
+    void ConvertTabToSpace();
+
     void CopyAsHexString(bool withSpace);
 
 
