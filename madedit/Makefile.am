@@ -152,6 +152,9 @@ noinst_HEADERS =	description-pak \
 	src/MadAboutDialog.wxform \
 	src/MadConvEncDialog.wxform \
 	src/MadEditFrame.wxform \
+	src/MadFileAssociationDialog.cpp \
+	src/MadFileAssociationDialog.h \
+	src/MadFileAssociationDialog.wxform \
 	src/MadFindInFilesDialog.wxform \
 	src/MadHighlightingDialog.wxform \
 	src/MadOptionsDialog.wxform \
@@ -204,6 +207,7 @@ noinst_HEADERS =	description-pak \
 	images/Mad.ico \
 	images/Mad2.ico \
 	images/Mad.xpm \
+	images/Mad2.xpm \
 	images/Mad_16x15.xpm \
 	images/new.xpm \
 	images/nowrap.xpm \

@@ -58,6 +58,7 @@
 
 #if !defined(__WXMSW__) && !defined(__WXPM__)
 #   include "../images/Mad.xpm"
+#   include "../images/Mad2.xpm"
 #endif
 
 #include "../images/null.xpm"
@@ -1673,7 +1674,7 @@ void MadEditFrame::CreateGUIControls(void)
     this->SetTitle(wxT("MadEdit "));
 
 #if !defined(__WXMSW__) //&& !defined(__WXPM__)
-    SetIcon(wxIcon(Mad_xpm));
+    SetIcon(wxIcon(Mad2_xpm));
 #else // __MSW__
     SetIcon(wxIcon(wxT("appicon")));
 #endif

@@ -15,6 +15,7 @@ syntax_DATA =	extension.list \
 	syntax_csharp.syn \
 	syntax_css.syn \
 	syntax_diff.syn \
+	syntax_d.syn \
 	syntax_fortran.syn \
 	syntax_html.syn \
 	syntax_javascript.syn \
@@ -31,11 +32,14 @@ syntax_DATA =	extension.list \
 	syntax_reg.syn \
 	syntax_ruby.syn \
 	syntax_sh.syn \
+	syntax_sql.syn \
 	syntax_squirrel.syn \
 	syntax_syn.syn \
 	syntax_txt.syn \
 	syntax_vbscript_asp.syn \
 	syntax_visualbasic.syn \
+	syntax_verilog.syn \
+	syntax_vhdl.syn \
 	syntax_x86asm.syn \
 	syntax_xml.syn
 
