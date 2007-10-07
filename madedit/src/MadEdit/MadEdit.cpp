@@ -3567,24 +3567,7 @@ wxFileOffset MadEdit::GetColumnSelection(wxString *ws)
 
     size_t lastrow = m_SelectionEnd->rowid;
 
-    //const int sw = GetUCharWidth(0x20);
     MadUCQueue ucqueue;
-
-    /*
-    int bytesOfSpaceChar=1;
-    switch(m_Encoding->GetType())
-    {
-    case etUTF16LE:
-    case etUTF16BE:
-        bytesOfSpaceChar=2;
-        break;
-    case etUTF32LE:
-    case etUTF32BE:
-        bytesOfSpaceChar=4;
-        break;
-    }
-    */
-
     MadLines::NextUCharFuncPtr NextUChar=m_Lines->NextUChar;
 
     for(;;)
@@ -3598,7 +3581,6 @@ wxFileOffset MadEdit::GetColumnSelection(wxString *ws)
             wxFileOffset rowendpos = lit->m_RowIndices[subrowid + 1].m_Start;
 
             m_Lines->InitNextUChar(lit, rowpos);
-
             do
             {
                 int uc = 0x0D;
@@ -3664,43 +3646,8 @@ wxFileOffset MadEdit::GetColumnSelection(wxString *ws)
 
         }
 
-        /*
-        int spaces1 = 0;
-        if(xpos1 > 0)
-        {
-            spaces1 = xpos1 / sw;
-            xpos1 -= spaces1 * sw;
-            if(xpos1 > (sw >> 1))
-            {
-                ++spaces1;
-            }
-        }
-
-        int spaces2 = 0;
-        if(xpos2 > 0)
-        {
-            spaces2 = xpos2 / sw;
-            xpos2 -= spaces2 * sw;
-            if(xpos2 > (sw >> 1))
-            {
-                ++spaces2;
-            }
-        }
-        */
-
         if(ws)
         {
-            // add spaces
-            //if(spaces1 < spaces2)
-            //{
-                //int s1 = spaces1;
-                //do
-                //{
-                    //(*ws)<<wxChar(0x20);
-                //}
-                //while(++s1 < spaces2);
-            //}
-
             // add newline
 #ifdef __WXMSW__
             (*ws)<<wxChar(0x0D);
@@ -3708,26 +3655,18 @@ wxFileOffset MadEdit::GetColumnSelection(wxString *ws)
             (*ws)<<wxChar(0x0A);
         }
 
-        //selsize += ((spaces2-spaces1)*bytesOfSpaceChar);
-
         if(firstrow == lastrow)
             break;
 
         ++firstrow;
 
-        // to next line
-        if(subrowid == lit->RowCount() - 1)
+        // to next row, line
+        if(++subrowid == lit->RowCount())
         {
             pos += lit->m_Size;
             ++lit;
             subrowid = 0;
         }
-        else
-        // to next row
-        {
-            ++subrowid;
-        }
-
     }
 
     return selsize;
