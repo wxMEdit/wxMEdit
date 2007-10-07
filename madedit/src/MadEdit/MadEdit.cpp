@@ -3569,7 +3569,6 @@ wxFileOffset MadEdit::GetColumnSelection(wxString *ws)
 
     MadUCQueue ucqueue;
     MadLines::NextUCharFuncPtr NextUChar=m_Lines->NextUChar;
-
     for(;;)
     {
         int rowwidth = lit->m_RowIndices[subrowid].m_Width;
@@ -3585,7 +3584,7 @@ wxFileOffset MadEdit::GetColumnSelection(wxString *ws)
             {
                 int uc = 0x0D;
                 if((m_Lines->*NextUChar)(ucqueue))
-                uc = ucqueue.back().first;
+                    uc = ucqueue.back().first;
 
                 if(uc == 0x0D || uc == 0x0A)    // EOL
                 {
@@ -3659,6 +3658,7 @@ wxFileOffset MadEdit::GetColumnSelection(wxString *ws)
             break;
 
         ++firstrow;
+        ucqueue.clear();
 
         // to next row, line
         if(++subrowid == lit->RowCount())
