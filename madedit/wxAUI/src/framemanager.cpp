@@ -4,7 +4,7 @@
 // Author:      Benjamin I. Williams
 // Modified by:
 // Created:     2005-05-17
-// RCS-ID:      $Id: framemanager.cpp 48743 2007-09-17 09:28:28Z JS $
+// RCS-ID:      $Id: framemanager.cpp 49062 2007-10-06 09:02:24Z JS $
 // Copyright:   (C) Copyright 2005-2006, Kirix Corporation, All Rights Reserved
 // Licence:     wxWindows Library Licence, Version 3.1
 ///////////////////////////////////////////////////////////////////////////////
@@ -2298,6 +2298,8 @@ void wxAuiManager::GetDockSizeConstraint(double* width_pct, double* height_pct) 
 
 void wxAuiManager::Update()
 {
+    m_hover_button = NULL;
+
     wxSizer* sizer;
     int i, pane_count = m_panes.GetCount();
 
@@ -4338,7 +4340,8 @@ void wxAuiManager::OnChildFocus(wxChildFocusEvent& event)
     // active panes are allowed by the owner)
     if (GetFlags() & wxAUI_MGR_ALLOW_ACTIVE_PANE)
     {
-        if (GetPane(event.GetWindow()).IsOk())
+        wxAuiPaneInfo& pane = GetPane(event.GetWindow());
+        if (pane.IsOk() && (pane.state & wxAuiPaneInfo::optionActive) == 0)
         {
             SetActivePane(m_panes, event.GetWindow());
             m_frame->Refresh();
