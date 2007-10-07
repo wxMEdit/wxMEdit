@@ -2298,183 +2298,183 @@ void MadEdit::ConvertSpaceToTab()
         return;
 
     vector < ucs4_t > newtext;
+    bool modified = false;
 
-    MadLines::NextUCharFuncPtr NextUChar=m_Lines->NextUChar;
+    size_t firstrow = m_SelectionBegin->rowid;
+    size_t subrowid = m_SelectionBegin->subrowid;
+    MadLineIterator lit = m_SelectionBegin->iter;
+    wxFileOffset pos = m_SelectionBegin->pos - m_SelectionBegin->linepos;
+
+    const size_t lastrow = m_SelectionEnd->rowid;
+    const int RowCount = int(lastrow - firstrow + 1);
+
     MadUCQueue ucqueue;
-    MadLineIterator lit = lit = m_SelectionBegin->iter;
-
-    int xmin, xmax;
-    if(GetEditMode()==emColumnMode)
+    MadLines::NextUCharFuncPtr NextUChar=m_Lines->NextUChar;
+    for(;;)
     {
-        if(m_SelectionBegin->xpos < m_SelectionEnd->xpos)
+        int rowwidth = lit->m_RowIndices[subrowid].m_Width;
+        int nowxpos = 0;
+        int xpos1, xpos2;
+
+        if(GetEditMode() == emColumnMode)
         {
-            xmin = m_SelectionBegin->xpos;
-            xmax = m_SelectionEnd->xpos;
+            xpos1 = m_SelLeftXPos;
+            xpos2 = m_SelRightXPos;
         }
         else
         {
-            xmin = m_SelectionEnd->xpos;
-            xmax = m_SelectionBegin->xpos;
-        }
-    }
-
-    bool modified = false;
-    int subrowid = m_SelectionBegin->subrowid;
-
-    const int TabStop = m_TabColumns * GetUCharWidth(0x20);
-    const int RowCount = m_SelectionEnd->rowid - m_SelectionBegin->rowid + 1;
-    // for every row
-    for(int rowcount=RowCount; rowcount>0; --rowcount)
-    {
-        const int rowwidth = lit->m_RowIndices[subrowid].m_Width;
-        if(GetEditMode()==emTextMode)
-        {
             if(RowCount == 1) // one row only
             {
-                xmin = m_SelectionBegin->xpos;
-                xmax = m_SelectionEnd->xpos;
+                xpos1 = m_SelectionBegin->xpos;
+                xpos2 = m_SelectionEnd->xpos;
             }
             else
             {
-                if(rowcount == RowCount) // first row
+                if(firstrow == m_SelectionBegin->rowid) // first row
                 {
-                    xmin = m_SelectionBegin->xpos;
-                    xmax = rowwidth;
+                    xpos1 = m_SelectionBegin->xpos;
+                    xpos2 = rowwidth;
                 }
-                else if(rowcount == 1) // last line
+                else if(firstrow == lastrow) // last line
                 {
-                    xmin = 0;
-                    xmax = m_SelectionEnd->xpos;
+                    xpos1 = 0;
+                    xpos2 = m_SelectionEnd->xpos;
                 }
                 else // middle line
                 {
-                    xmin = 0;
-                    xmax = rowwidth;
+                    xpos1 = 0;
+                    xpos2 = rowwidth;
                 }
             }
         }
 
-        // begin of row
-        int prev_space_count = 0;
-        int nowxpos = 0;
-        m_Lines->InitNextUChar(lit, lit->m_RowIndices[subrowid].m_Start);
+        if(xpos1 < rowwidth)
+        {
+            int space_count = 0;
+            wxFileOffset rowpos = lit->m_RowIndices[subrowid].m_Start;
+            wxFileOffset rowendpos = lit->m_RowIndices[subrowid + 1].m_Start;
+
+            m_Lines->InitNextUChar(lit, rowpos);
+            do
+            {
+                int uc = 0x0D;
+                if((m_Lines->*NextUChar)(ucqueue))
+                    uc = ucqueue.back().first;
+
+                if(uc == 0x0D || uc == 0x0A)    // EOL
+                {
+                    break;
+                }
+
+                int ucwidth = GetUCharWidth(uc);
+                if(uc == 0x09)
+                {
+                    int tabwidth = m_TabColumns * GetUCharWidth(0x20);
+                    ucwidth = rowwidth - nowxpos;
+                    tabwidth -= (nowxpos % tabwidth);
+                    if(tabwidth < ucwidth)
+                        ucwidth = tabwidth;
+                }
+                nowxpos += ucwidth;
+
+                int uchw = ucwidth >> 1;
+                if(xpos1 > uchw)
+                {
+                    rowpos += ucqueue.back().second;
+                    xpos1 -= ucwidth;
+                    xpos2 -= ucwidth;
+                }
+                else
+                {
+                    xpos1 = 0;
+                    if(xpos2 > uchw)
+                    {
+                        if(uc == 0x20)
+                        {
+                            ++space_count;
+                            int w = nowxpos % (m_TabColumns * ucwidth);
+                            if(w < ucwidth)
+                            {
+                                newtext.push_back(0x09);
+                                modified = true;
+                                space_count = 0;
+                                nowxpos -= w;
+                                ucwidth -= w;
+                            }
+                        }
+                        else if(uc == 0x09)
+                        {
+                            newtext.push_back(0x09);
+                            if(space_count > 0)
+                            {
+                                modified = true;
+                                space_count = 0;
+                            }
+                        }
+                        else
+                        {
+                            if(space_count > 0)
+                            {
+                                do
+                                {
+                                    newtext.push_back(0x20);
+                                }
+                                while(--space_count > 0);
+                            }
+                            newtext.push_back(uc);
+                        }
+
+                        xpos2 -= ucwidth;
+                    }
+                    else
+                        xpos2 = 0;
+                }
+
+            }
+            while(xpos2 > 0 && rowpos < rowendpos);
+
+            if(space_count > 0)
+            {
+                do
+                {
+                    newtext.push_back(0x20);
+                }
+                while(--space_count > 0);
+            }
+        }
+
+        // add newline
+        if(GetEditMode() == emColumnMode)
+        {
+#ifdef __WXMSW__
+            newtext.push_back(0x0D);
+#endif
+            newtext.push_back(0x0A);
+        }
+        else
+        {
+            if(firstrow != lastrow)
+                switch(m_Lines->GetNewLine(lit))
+                {
+                case 0x0D: newtext.push_back(0x0D); break;
+                case 0x0A: newtext.push_back(0x0A); break;
+                case 0x0D+0x0A:
+                    newtext.push_back(0x0D);
+                    newtext.push_back(0x0A);
+                    break;
+                }
+        }
+
+        if(firstrow == lastrow)
+            break;
+
+        ++firstrow;
         ucqueue.clear();
-        for(;;) // for every uchar
+
+        // to next row, line
+        if(++subrowid == lit->RowCount())
         {
-            bool eol = !(m_Lines->*NextUChar)(ucqueue);
-            ucs4_t uc = eol? 0 : ucqueue.back().first;
-
-            if(eol || uc==0x0D || uc==0x0A) // end of line
-            {
-                if(prev_space_count > 0)
-                    do
-                    {
-                        newtext.push_back(0x20);
-                    }
-                    while(--prev_space_count > 0);
-
-                if(GetEditMode()==emColumnMode)
-                {
-                    newtext.push_back(0x0A);
-                }
-                else if(RowCount!=1 && rowcount>1)
-                {
-                    if(uc==0x0D)
-                    {
-                        newtext.push_back(0x0D);
-                        if(m_Lines->NextUCharIs0x0A())
-                        {
-                            newtext.push_back(0x0A);
-                        }
-                    }
-                    else if(uc==0x0A)
-                    {
-                        newtext.push_back(0x0A);
-                    }
-                }
-                break;
-            }
-
-            int ucwidth = GetUCharWidth(uc);
-            if(uc == 0x09)
-            {
-                if(prev_space_count != 0)
-                {
-                    newtext.push_back(0x09);
-                    modified = true;
-                    prev_space_count = 0;
-                }
-                else if(nowxpos >= xmin)
-                {
-                    newtext.push_back(0x09);
-                }
-
-                int tabwidth = TabStop;
-                ucwidth = rowwidth - nowxpos;
-                tabwidth -= (nowxpos % tabwidth);
-                if(tabwidth < ucwidth)
-                    ucwidth = tabwidth;
-                nowxpos += ucwidth;
-            }
-            else if(uc == 0x20)
-            {
-                if(nowxpos >= xmin) ++prev_space_count;
-                nowxpos += ucwidth;
-                if(nowxpos > xmin && (nowxpos % TabStop) < ucwidth)
-                {
-                    newtext.push_back(0x09);
-                    modified = true;
-                    prev_space_count = 0;
-                }
-            }
-            else // other char
-            {
-                if(prev_space_count > 0)
-                    do
-                    {
-                        newtext.push_back(0x20);
-                    }
-                    while(--prev_space_count > 0);
-                if(nowxpos >= xmin) newtext.push_back(uc);
-                nowxpos += ucwidth;
-            }
-
-            if(nowxpos >= xmax)
-            {
-                if((nowxpos-xmax) >= ucwidth/2) newtext.pop_back();
-
-                if(prev_space_count > 0)
-                    do
-                    {
-                        newtext.push_back(0x20);
-                    }
-                    while(--prev_space_count > 0);
-
-                if(GetEditMode()==emColumnMode)
-                {
-                    newtext.push_back(0x0A);
-                }
-                else //emTextMode
-                {
-                    if(rowcount!=1)
-                        switch(m_Lines->GetNewLine(lit))
-                        {
-                        case 0x0D: newtext.push_back(0x0D); break;
-                        case 0x0A: newtext.push_back(0x0A); break;
-                        case 0x0D+0x0A:
-                            newtext.push_back(0x0D);
-                            newtext.push_back(0x0A);
-                            break;
-                        }
-                }
-
-                break;
-            }
-        }
-        // end of row
-
-        if(rowcount>1 && ++subrowid == lit->RowCount())
-        {
+            pos += lit->m_Size;
             ++lit;
             subrowid = 0;
         }
@@ -2491,5 +2491,4 @@ void MadEdit::ConvertSpaceToTab()
 
 void MadEdit::ConvertTabToSpace()
 {
-
 }
