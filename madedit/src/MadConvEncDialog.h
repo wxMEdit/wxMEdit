@@ -84,9 +84,6 @@ class MadConvEncDialog : public wxDialog
 	public:
 		void MadConvEncDialogClose(wxCloseEvent& event);
 		void CreateGUIControls(void);
-#ifdef __WXMSW__
-		void Reset() { Init(); }
-#endif
 };
 
 extern MadConvEncDialog *g_ConvEncDialog;
