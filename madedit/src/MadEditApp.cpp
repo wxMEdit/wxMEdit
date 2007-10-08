@@ -56,7 +56,7 @@ extern const size_t g_LanguageCount = sizeof(g_LanguageValue)/sizeof(int);
 
 #ifdef __WXGTK__
 
-// the codes of SingleInstance checking and 
+// the codes of SingleInstance checking and
 // SendMessage to previous instance under GTK+
 // are from gcin (http://www.csie.nctu.edu.tw/~cp76/gcin/)
 
@@ -74,26 +74,29 @@ static GdkFilterReturn my_gdk_filter(GdkXEvent *xevent,
 {
     XEvent *xeve = (XEvent *)xevent;
 
-    if (xeve->type == PropertyNotify) 
+    if (xeve->type == PropertyNotify)
     {
         XPropertyEvent *xprop = &xeve->xproperty;
 
-        if (xprop->atom == g_MadEdit_atom) 
+        if (xprop->atom == g_MadEdit_atom)
         {
             Atom actual_type;
             int actual_format;
             u_long nitems,bytes_after;
-            wxChar *message;
+            char *message;
 
             if (XGetWindowProperty(g_Display, xprop->window, g_MadEdit_atom, 0, 1024*16,
                 False, AnyPropertyType, &actual_type, &actual_format,
-                &nitems,&bytes_after,(unsigned char**)&message) != Success) 
+                &nitems,&bytes_after,(unsigned char**)&message) != Success)
             {
                 //dbg("err prop");
                 return GDK_FILTER_REMOVE;
             }
 
-            OnReceiveMessage(message, nitems*sizeof(wxChar));
+            const wxWCharBuffer wcstr = wxConvUTF8.cMB2WX(message);
+            size_t datalen = wcslen((const wchar_t *)wcstr);
+
+            OnReceiveMessage((const wchar_t *)wcstr, datalen*sizeof(wchar_t));
 
             XFree(message);
             return GDK_FILTER_REMOVE;
@@ -106,13 +109,16 @@ static GdkFilterReturn my_gdk_filter(GdkXEvent *xevent,
     return GDK_FILTER_CONTINUE;
 }
 
-void send_message(Window madedit_win, const wxChar *msg, size_t len)
+void send_message(Window madedit_win, const wxString &msg)
 {
     Window mwin = XCreateSimpleWindow(g_Display, DefaultRootWindow(g_Display),
                     0,0,90,90,1,0,0);
 
-    XChangeProperty(g_Display, mwin , g_MadEdit_atom, XA_STRING, sizeof(wxChar)*8,
-        PropModeReplace, (unsigned char*)msg, len);
+    const wxCharBuffer data_utf8 = wxConvUTF8.cWX2MB( msg );
+    size_t datalen_utf8 = strlen(data_utf8);
+
+    XChangeProperty(g_Display, mwin , g_MadEdit_atom, XA_STRING, 8,
+        PropModeReplace, (unsigned char*)(const char*)data_utf8, datalen_utf8 + 1);
 
     XPropertyEvent eve;
 
@@ -212,7 +218,7 @@ bool MadEditApp::OnInit()
             extern const wxChar *wxCanvasClassNameNR;    // class name of MadEditFrame
             wxChar title[256]={0};
             HWND prevapp = ::FindWindowEx(NULL, NULL, wxCanvasClassNameNR, NULL);
-            for(;;)                // find wxCanvasClassNameNR 
+            for(;;)                // find wxCanvasClassNameNR
             {
                 if(prevapp)
                 {
@@ -231,7 +237,7 @@ bool MadEditApp::OnInit()
                 prevapp =::FindWindowEx(NULL, prevapp, wxCanvasClassNameNR, NULL);
             }
 
-            if(prevapp != NULL)   // send msg to the previous instance 
+            if(prevapp != NULL)   // send msg to the previous instance
             {
                 WINDOWPLACEMENT wp;
                 wp.length=sizeof(WINDOWPLACEMENT);
@@ -242,9 +248,9 @@ bool MadEditApp::OnInit()
                 }
 
                 COPYDATASTRUCT cds =
-                { 
-                    (ULONG_PTR)prevapp, 
-                    DWORD((filenames.length()+1)*sizeof(wxChar)), 
+                {
+                    (ULONG_PTR)prevapp,
+                    DWORD((filenames.length()+1)*sizeof(wxChar)),
                     (PVOID)(const wxChar*)filenames.c_str()
                 };
 
@@ -259,9 +265,10 @@ bool MadEditApp::OnInit()
         g_Display=GDK_DISPLAY();
         g_MadEdit_atom = XInternAtom(g_Display, "g_MadEdit_atom", False);
         Window madedit_win;
-        if ((madedit_win=XGetSelectionOwner(g_Display, g_MadEdit_atom))!=None) 
+
+        if ((madedit_win=XGetSelectionOwner(g_Display, g_MadEdit_atom))!=None)
         {
-            send_message(madedit_win, filenames.c_str(), filenames.length()+1);
+            send_message(madedit_win, filenames);
 
             g_DoNotSaveSettings = true;
             DeleteConfig();
@@ -355,7 +362,7 @@ bool MadEditApp::OnInit()
     // create the main frame
     MadEditFrame *myFrame = new MadEditFrame(NULL, 1 , wxEmptyString, pos, size);
     SetTopWindow(myFrame);
-    
+
 #ifdef __WXMSW__
     if(maximize)
     {
@@ -367,7 +374,7 @@ bool MadEditApp::OnInit()
     }
 #endif
 
-    myFrame->Show(TRUE);  
+    myFrame->Show(TRUE);
 
 
 #if defined(__WXGTK__)
