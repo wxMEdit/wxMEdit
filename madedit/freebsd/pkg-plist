@@ -18,6 +18,7 @@ share/madedit/syntax/syntax_cpp.syn
 share/madedit/syntax/syntax_csharp.syn
 share/madedit/syntax/syntax_css.syn
 share/madedit/syntax/syntax_diff.syn
+share/madedit/syntax/syntax_d.syn
 share/madedit/syntax/syntax_fortran.syn
 share/madedit/syntax/syntax_html.syn
 share/madedit/syntax/syntax_java.syn
@@ -34,11 +35,14 @@ share/madedit/syntax/syntax_python.syn
 share/madedit/syntax/syntax_reg.syn
 share/madedit/syntax/syntax_ruby.syn
 share/madedit/syntax/syntax_sh.syn
+share/madedit/syntax/syntax_sql.syn
 share/madedit/syntax/syntax_squirrel.syn
 share/madedit/syntax/syntax_syn.syn
 share/madedit/syntax/syntax_txt.syn
 share/madedit/syntax/syntax_vbscript_asp.syn
 share/madedit/syntax/syntax_visualbasic.syn
+share/madedit/syntax/syntax_verilog.syn
+share/madedit/syntax/syntax_vhdl.syn
 share/madedit/syntax/syntax_x86asm.syn
 share/madedit/syntax/syntax_xml.syn
 share/pixmaps/madedit.xpm

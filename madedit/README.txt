@@ -67,11 +67,15 @@ v0.2.8:
 2.added the function to split window into multiple Tab Controls (by using wxAuiNotebook)
   ScreenShot: http://madedit.sourceforge.net/screenshot06.png
 3.added the function to convert between WordWraps and NewLine chars.
-4.added File Type Associations Dialog under win32.
+4.added File-Type Associations Dialog under win32.
 5.added Search-In-Selection function when searching and replaceing.
 6.added Count function in SearchDialog.
-7.fixed that cannot replace text in Hex-Mode.
-8.some bug-fixes and changes.
+7.added ToHalfWidthByOptions, ToFullWidthByOptions to choose the characters(ASCII,Japanese,Korean)
+  you want to convert.
+8.added ConvertSpaceToTab and ConvertTabToSpace functions.
+9.added new syntax files for D, SQL, Verilog and VHDL.
+10.fixed that cannot replace text in Hex-Mode.
+11.many bug-fixes and changes.
 
 v0.2.7:
 1.fixed that ISO-8859-7 charset doesn't available under Win32.

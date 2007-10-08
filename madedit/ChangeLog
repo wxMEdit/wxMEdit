@@ -1,3 +1,19 @@
+2007-10-08  Alston Chen  <madedit@gmail.com>
+
+	1.added Japanese Kanji supporting for converting Chinese characters.
+	2.added the function to split window into multiple Tab Controls (by using wxAuiNotebook)
+	  ScreenShot: http://madedit.sourceforge.net/screenshot06.png
+	3.added the function to convert between WordWraps and NewLine chars.
+	4.added File-Type Associations Dialog under win32.
+	5.added Search-In-Selection function when searching and replaceing.
+	6.added Count function in SearchDialog.
+	7.added ToHalfWidthByOptions, ToFullWidthByOptions to choose the characters(ASCII,Japanese,Korean)
+	  you want to convert.
+	8.added ConvertSpaceToTab and ConvertTabToSpace functions.
+	9.added new syntax files for D, SQL, Verilog and VHDL.
+	10.fixed that cannot replace text in Hex-Mode.
+	11.many bug-fixes and changes.
+
 2007-04-10  gettextize  <bug-gnu-gettext@gnu.org>
 
 	* Makefile.am (ACLOCAL_AMFLAGS): New variable.

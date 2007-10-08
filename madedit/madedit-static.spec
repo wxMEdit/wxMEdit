@@ -1,7 +1,7 @@
 %define release 1
 %define prefix /usr
 %define name madedit
-%define version 0.2.7
+%define version 0.2.8
 
 
 Summary: madedit : GTK+2 based text/hex editor
@@ -31,7 +31,7 @@ WordWrap, Encodings, Column/Hex Modes.
 
 %build
 
-%configure --with-wx-config=${HOME}/wxWidgets/RELEASE/wx-config --with-xpressive=${HOME}/boost --with-boost=${HOME}/boost LIBS="${HOME}/wxWidgets/RELEASE/lib/libwx_gtk2u_core-2.9.a ${HOME}/wxWidgets/RELEASE/lib/libwx_baseu-2.9.a -lgtk-x11-2.0 -lgthread-2.0 /usr/X11R6/lib/libXinerama.a /usr/X11R6/lib/libXxf86vm.a /usr/X11R6/lib/libSM.a /usr/X11R6/lib/libICE.a" glib_gtk2_LIBS="-lm" WX_LIBS="-lm" CXXFLAGS="-O3 -fexpensive-optimizations -fforce-addr"
+%configure --with-wx-config=${HOME}/wxWidgets/RELEASE/wx-config LIBS="${HOME}/wxWidgets/RELEASE/lib/libwx_gtk2u_core-2.8.a ${HOME}/wxWidgets/RELEASE/lib/libwx_baseu-2.8.a -lgtk-x11-2.0 -lgthread-2.0 /usr/X11R6/lib/libXinerama.a /usr/X11R6/lib/libXxf86vm.a /usr/X11R6/lib/libSM.a /usr/X11R6/lib/libICE.a" glib_gtk2_LIBS="-lm" WX_LIBS="-lm"
 make
 
 %install
