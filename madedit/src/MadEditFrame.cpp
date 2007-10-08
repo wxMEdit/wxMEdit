@@ -2893,7 +2893,11 @@ void MadEditFrame::OnUpdateUI_MenuEdit_CheckSelSize(wxUpdateUIEvent& event)
 
 void MadEditFrame::OnUpdateUI_MenuEditPaste(wxUpdateUIEvent& event)
 {
+#ifdef __WXMSW__
     event.Enable(g_ActiveMadEdit && g_ActiveMadEdit->CanPaste());
+#else
+    event.Enable(g_ActiveMadEdit!=NULL); // workaround for high CPU loading in Linux
+#endif
 }
 void MadEditFrame::OnUpdateUI_Menu_CheckSize(wxUpdateUIEvent& event)
 {
