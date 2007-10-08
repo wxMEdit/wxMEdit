@@ -1,5 +1,5 @@
 /* XPM */
-static char *Mad2_xpm[] = {
+static char *madedit_xpm[] = {
 /* columns rows colors chars-per-pixel */
 "48 48 7 1",
 ". c Black",
