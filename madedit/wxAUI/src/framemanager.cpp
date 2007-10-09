@@ -4,7 +4,7 @@
 // Author:      Benjamin I. Williams
 // Modified by:
 // Created:     2005-05-17
-// RCS-ID:      $Id: framemanager.cpp 49062 2007-10-06 09:02:24Z JS $
+// RCS-ID:      $Id: framemanager.cpp 49104 2007-10-09 07:25:29Z BIW $
 // Copyright:   (C) Copyright 2005-2006, Kirix Corporation, All Rights Reserved
 // Licence:     wxWindows Library Licence, Version 3.1
 ///////////////////////////////////////////////////////////////////////////////
@@ -1452,12 +1452,11 @@ bool wxAuiManager::LoadPerspective(const wxString& layout, bool update)
         if (!p.IsOk())
         {
             // the pane window couldn't be found
-            // in the existing layout
-            return false;
+            // in the existing layout -- skip it
+            continue;
         }
 
         p.SafeSet(pane);
-
     }
 
     if (update)
