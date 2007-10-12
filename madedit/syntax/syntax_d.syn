@@ -68,4 +68,4 @@ Color=DarkBlue
 BgColor=
 Style=Bold
 InRange=0
-Keyword=opAdd opAdd_r opAddAssign opAnd opAnd_r opAndAssign opAssign opAssign opCall opCast opCat opCat_r opCatAssign opCmp opCom opDiv opDiv_r opDivAssign opEquals opIn opIn_r opIndex opIndexAssign opMod opMod_r opModAssign opMul opMul_r opMulAssign opNeg opOr opOr_r opOrAssign opPos opPostDec opPostInc opShl opShl_r opShlAssign opShr opShr_r opShrAssign opSlice opSliceAssign opSub opSub_r opSubAssign opUShr opUShr_r opUShrAssign opXor opXor_r opXorAssign
+Keyword=opAdd opAddAssign opAdd_r opAnd opAndAssign opAnd_r opApply opApplyReverse opAssign opCall opCast opCat opCatAssign opCat_r opCmp opCom opDiv opDivAssign opDiv_r opEquals opIn opIn_r opIndex opIndexAssign opMatch opMod opModAssign opMod_r opMul opMulAssign opMul_r opNeg opNext opOr opOrAssign opOr_r opPos opPostDec opPostInc opShl opShlAssign opShl_r opShr opShrAssign opShr_r opSlice opSliceAssign opSub opSubAssign opSub_r opUShr opUShrAssign opUShr_r opXor opXorAssign opXor_r
