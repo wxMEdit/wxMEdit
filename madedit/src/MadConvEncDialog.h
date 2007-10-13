@@ -5,7 +5,7 @@
 // Licence:     GPL
 ///////////////////////////////////////////////////////////////////////////////
 
-#ifndef _MADCONVENCDIALOG_H
+#ifndef _MADCONVENCDIALOG_H_
 #define _MADCONVENCDIALOG_H_
 
 #ifdef __BORLANDC__
