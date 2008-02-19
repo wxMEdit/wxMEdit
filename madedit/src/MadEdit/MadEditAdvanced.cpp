@@ -2453,16 +2453,22 @@ void MadEdit::ConvertSpaceToTab()
         }
         else
         {
-            if(firstrow != lastrow)
+            if((firstrow != lastrow) && (subrowid+1 == lit->RowCount()))
+            {
                 switch(m_Lines->GetNewLine(lit))
                 {
-                case 0x0D: newtext.push_back(0x0D); break;
-                case 0x0A: newtext.push_back(0x0A); break;
+                case 0x0D:
+                    newtext.push_back(0x0D);
+                    break;
+                case 0x0A:
+                    newtext.push_back(0x0A);
+                    break;
                 case 0x0D+0x0A:
                     newtext.push_back(0x0D);
                     newtext.push_back(0x0A);
                     break;
                 }
+            }
         }
 
         if(firstrow == lastrow)
@@ -2623,16 +2629,22 @@ void MadEdit::ConvertTabToSpace()
         }
         else
         {
-            if(firstrow != lastrow)
+            if((firstrow != lastrow) && (subrowid+1 == lit->RowCount()))
+            {
                 switch(m_Lines->GetNewLine(lit))
                 {
-                case 0x0D: newtext.push_back(0x0D); break;
-                case 0x0A: newtext.push_back(0x0A); break;
+                case 0x0D:
+                    newtext.push_back(0x0D);
+                    break;
+                case 0x0A:
+                    newtext.push_back(0x0A);
+                    break;
                 case 0x0D+0x0A:
                     newtext.push_back(0x0D);
                     newtext.push_back(0x0A);
                     break;
                 }
+            }
         }
 
         if(firstrow == lastrow)
