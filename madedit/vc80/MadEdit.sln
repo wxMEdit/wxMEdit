@@ -1,0 +1,19 @@
+Microsoft Visual Studio Solution File, Format Version 9.00
+# Visual Studio 2005
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MadEdit", "MadEdit.vcproj", "{FA2A8E06-DD41-44E0-A1CB-02906D4A080E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Unicode Debug|Win32 = Unicode Debug|Win32
+		Unicode Release|Win32 = Unicode Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FA2A8E06-DD41-44E0-A1CB-02906D4A080E}.Unicode Debug|Win32.ActiveCfg = Unicode Debug|Win32
+		{FA2A8E06-DD41-44E0-A1CB-02906D4A080E}.Unicode Debug|Win32.Build.0 = Unicode Debug|Win32
+		{FA2A8E06-DD41-44E0-A1CB-02906D4A080E}.Unicode Release|Win32.ActiveCfg = Unicode Release|Win32
+		{FA2A8E06-DD41-44E0-A1CB-02906D4A080E}.Unicode Release|Win32.Build.0 = Unicode Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
