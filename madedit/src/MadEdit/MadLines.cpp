@@ -1058,9 +1058,9 @@ bool MadLines::NextUChar_DBCS(MadUCQueue &ucqueue)
 
 bool MadLines::NextUChar_UTF8(MadUCQueue &ucqueue)
 {
-    /***    from rfc3629
-    Char. number range    |                UTF-8 octet sequence
-    (hexadecimal)        |                            (binary)
+    /***  from rfc3629
+    Char. number range  |        UTF-8 octet sequence
+    (hexadecimal)       |              (binary)
     --------------------+---------------------------------------------
     0000 0000-0000 007F | 0xxxxxxx
     0000 0080-0000 07FF | 110xxxxx 10xxxxxx
@@ -1068,14 +1068,14 @@ bool MadLines::NextUChar_UTF8(MadUCQueue &ucqueue)
     0001 0000-0010 FFFF | 11110xxx 10xxxxxx 10xxxxxx 10xxxxxx
 
     UTF8-octets = *( UTF8-char )
-    UTF8-char     = UTF8-1 / UTF8-2 / UTF8-3 / UTF8-4
-    UTF8-1            = %x00-7F
-    UTF8-2            = %xC2-DF UTF8-tail
-    UTF8-3            = %xE0 %xA0-BF UTF8-tail / %xE1-EC 2( UTF8-tail ) /
-                    %xED %x80-9F UTF8-tail / %xEE-EF 2( UTF8-tail )
-    UTF8-4            = %xF0 %x90-BF 2( UTF8-tail ) / %xF1-F3 3( UTF8-tail ) /
-                    %xF4 %x80-8F 2( UTF8-tail )
-    UTF8-tail     = %x80-BF
+    UTF8-char   = UTF8-1 / UTF8-2 / UTF8-3 / UTF8-4
+    UTF8-1      = %x00-7F
+    UTF8-2      = %xC2-DF UTF8-tail
+    UTF8-3      = %xE0 %xA0-BF UTF8-tail / %xE1-EC 2( UTF8-tail ) /
+                  %xED %x80-9F UTF8-tail / %xEE-EF 2( UTF8-tail )
+    UTF8-4      = %xF0 %x90-BF 2( UTF8-tail ) / %xF1-F3 3( UTF8-tail ) /
+                  %xF4 %x80-8F 2( UTF8-tail )
+    UTF8-tail   = %x80-BF
     ***/
 
     wxFileOffset rest=m_NextUChar_LineSize - m_NextUChar_Pos;

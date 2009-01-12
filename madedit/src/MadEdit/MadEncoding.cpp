@@ -594,7 +594,7 @@ size_t MadEncoding::UCS4toUTF8(ucs4_t ucs4, wxByte *buf)
 {
     /***  from rfc3629
     Char. number range  |        UTF-8 octet sequence
-    (hexadecimal)    |              (binary)
+    (hexadecimal)       |              (binary)
     --------------------+---------------------------------------------
     0000 0000-0000 007F | 0xxxxxxx
     0000 0080-0000 07FF | 110xxxxx 10xxxxxx
