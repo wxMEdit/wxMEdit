@@ -43,6 +43,10 @@
 
 namespace boost { namespace fusion
 {
+#if BOOST_VERSION < 103300
+    struct void_t;
+#endif
+
     struct nil;
 
     struct cons_tag;

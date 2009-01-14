@@ -16,11 +16,11 @@
 #include <boost/version.hpp>
 #if BOOST_VERSION <= 103200
 // WORKAROUND for Fusion bug in Boost 1.32
-namespace boost { namespace fusion
-{
-    namespace detail { struct iterator_root; }
-    using detail::iterator_root;
-}}
+//namespace boost { namespace fusion
+//{
+//    namespace detail { struct iterator_root; }
+//    using detail::iterator_root;
+//}}
 #endif
 
 #include <boost/xpressive/detail/detail_fwd.hpp>
