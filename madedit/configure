@@ -12947,7 +12947,7 @@ echo $ECHO_N "checking for wxWidgets version >= $min_wx_version... $ECHO_C" >&6;
 echo $ECHO_N "checking for wxWidgets version >= $min_wx_version ()... $ECHO_C" >&6; }
     fi
 
-    WX_CONFIG_WITH_ARGS="$WX_CONFIG_PATH $wx_config_args  "
+    WX_CONFIG_WITH_ARGS="$WX_CONFIG_PATH $wx_config_args  core"
 
     WX_VERSION=`$WX_CONFIG_WITH_ARGS --version 2>/dev/null`
     wx_config_major_version=`echo $WX_VERSION | \
@@ -13069,7 +13069,7 @@ echo "${ECHO_T}no (version $WX_VERSION is not new enough)" >&6; }
        WX_LIBS=""
        WX_LIBS_STATIC=""
        WX_RESCOMP=""
-       :
+       base
 
     fi
   else
@@ -13081,7 +13081,7 @@ echo "${ECHO_T}no (version $WX_VERSION is not new enough)" >&6; }
     WX_LIBS_STATIC=""
     WX_RESCOMP=""
 
-    :
+    base
 
   fi
 
