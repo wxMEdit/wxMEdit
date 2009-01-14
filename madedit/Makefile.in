@@ -76,11 +76,11 @@ am_madedit_OBJECTS = madedit-MadAboutDialog.$(OBJEXT) \
 	madedit-MadEditSearch.$(OBJEXT) madedit-MadEdit_gtk.$(OBJEXT) \
 	madedit-MadEncoding.$(OBJEXT) madedit-MadLines.$(OBJEXT) \
 	madedit-MadSyntax.$(OBJEXT) madedit-MadUndo.$(OBJEXT) \
-	madedit-TradSimp.$(OBJEXT) madedit-auibook.$(OBJEXT) \
-	madedit-dockart.$(OBJEXT) madedit-floatpane.$(OBJEXT) \
-	madedit-framemanager.$(OBJEXT) madedit-tabmdi.$(OBJEXT) \
-	madedit-CharDistribution.$(OBJEXT) madedit-JpCntx.$(OBJEXT) \
-	madedit-LangBulgarianModel.$(OBJEXT) \
+	madedit-TradSimp.$(OBJEXT) madedit-auibar.$(OBJEXT) \
+	madedit-auibook.$(OBJEXT) madedit-dockart.$(OBJEXT) \
+	madedit-floatpane.$(OBJEXT) madedit-framemanager.$(OBJEXT) \
+	madedit-tabmdi.$(OBJEXT) madedit-CharDistribution.$(OBJEXT) \
+	madedit-JpCntx.$(OBJEXT) madedit-LangBulgarianModel.$(OBJEXT) \
 	madedit-LangCyrillicModel.$(OBJEXT) \
 	madedit-LangGreekModel.$(OBJEXT) \
 	madedit-LangHebrewModel.$(OBJEXT) \
@@ -352,11 +352,13 @@ madedit_SOURCES = src/MadAboutDialog.cpp \
 	src/MadEdit/TradSimp.h \
 	src/MadEdit/ucs4_t.h \
 	wxAUI/include/wx/aui/aui.h \
+	wxAUI/include/wx/aui/auibar.h \
 	wxAUI/include/wx/aui/auibook.h \
 	wxAUI/include/wx/aui/dockart.h \
 	wxAUI/include/wx/aui/floatpane.h \
 	wxAUI/include/wx/aui/framemanager.h \
 	wxAUI/include/wx/aui/tabmdi.h \
+	wxAUI/src/auibar.cpp \
 	wxAUI/src/auibook.cpp \
 	wxAUI/src/dockart.cpp \
 	wxAUI/src/floatpane.cpp \
@@ -536,6 +538,8 @@ noinst_HEADERS = description-pak \
 	vc71/build_release.bat \
 	vc71/MadEdit.sln \
 	vc71/MadEdit.vcproj \
+	vc80/MadEdit.sln \
+	vc80/MadEdit.vcproj \
 	xpressive/boost/xpressive/basic_regex.hpp \
 	xpressive/boost/xpressive/detail/core/access.hpp \
 	xpressive/boost/xpressive/detail/core/action.hpp \
@@ -806,6 +810,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/madedit-MadUtils.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/madedit-MadWordCountDialog.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/madedit-TradSimp.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/madedit-auibar.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/madedit-auibook.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/madedit-caret_new.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/madedit-clipbrd_gtk.Po@am__quote@
@@ -1223,6 +1228,20 @@ madedit-TradSimp.obj: src/MadEdit/TradSimp.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/MadEdit/TradSimp.cpp' object='madedit-TradSimp.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(madedit_CXXFLAGS) $(CXXFLAGS) -c -o madedit-TradSimp.obj `if test -f 'src/MadEdit/TradSimp.cpp'; then $(CYGPATH_W) 'src/MadEdit/TradSimp.cpp'; else $(CYGPATH_W) '$(srcdir)/src/MadEdit/TradSimp.cpp'; fi`
+
+madedit-auibar.o: wxAUI/src/auibar.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(madedit_CXXFLAGS) $(CXXFLAGS) -MT madedit-auibar.o -MD -MP -MF "$(DEPDIR)/madedit-auibar.Tpo" -c -o madedit-auibar.o `test -f 'wxAUI/src/auibar.cpp' || echo '$(srcdir)/'`wxAUI/src/auibar.cpp; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/madedit-auibar.Tpo" "$(DEPDIR)/madedit-auibar.Po"; else rm -f "$(DEPDIR)/madedit-auibar.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='wxAUI/src/auibar.cpp' object='madedit-auibar.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(madedit_CXXFLAGS) $(CXXFLAGS) -c -o madedit-auibar.o `test -f 'wxAUI/src/auibar.cpp' || echo '$(srcdir)/'`wxAUI/src/auibar.cpp
+
+madedit-auibar.obj: wxAUI/src/auibar.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(madedit_CXXFLAGS) $(CXXFLAGS) -MT madedit-auibar.obj -MD -MP -MF "$(DEPDIR)/madedit-auibar.Tpo" -c -o madedit-auibar.obj `if test -f 'wxAUI/src/auibar.cpp'; then $(CYGPATH_W) 'wxAUI/src/auibar.cpp'; else $(CYGPATH_W) '$(srcdir)/wxAUI/src/auibar.cpp'; fi`; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/madedit-auibar.Tpo" "$(DEPDIR)/madedit-auibar.Po"; else rm -f "$(DEPDIR)/madedit-auibar.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='wxAUI/src/auibar.cpp' object='madedit-auibar.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(madedit_CXXFLAGS) $(CXXFLAGS) -c -o madedit-auibar.obj `if test -f 'wxAUI/src/auibar.cpp'; then $(CYGPATH_W) 'wxAUI/src/auibar.cpp'; else $(CYGPATH_W) '$(srcdir)/wxAUI/src/auibar.cpp'; fi`
 
 madedit-auibook.o: wxAUI/src/auibook.cpp
 @am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(madedit_CXXFLAGS) $(CXXFLAGS) -MT madedit-auibook.o -MD -MP -MF "$(DEPDIR)/madedit-auibook.Tpo" -c -o madedit-auibook.o `test -f 'wxAUI/src/auibook.cpp' || echo '$(srcdir)/'`wxAUI/src/auibook.cpp; \
@@ -1828,7 +1847,7 @@ distclean-tags:
 distdir: $(DISTFILES)
 	$(am__remove_distdir)
 	mkdir $(distdir)
-	$(mkdir_p) $(distdir)/charset-detector $(distdir)/charset-detector/src $(distdir)/charset-detector/src/entry $(distdir)/charset-detector/src/tables $(distdir)/charset-detector/test $(distdir)/debian $(distdir)/devcpp $(distdir)/freebsd $(distdir)/image2xpm $(distdir)/images $(distdir)/libunicows $(distdir)/m4 $(distdir)/makefiles $(distdir)/po $(distdir)/src $(distdir)/src/plugin_example $(distdir)/vc71 $(distdir)/wxAUI $(distdir)/xpressive $(distdir)/xpressive/boost/xpressive $(distdir)/xpressive/boost/xpressive/detail $(distdir)/xpressive/boost/xpressive/detail/core $(distdir)/xpressive/boost/xpressive/detail/core/matcher $(distdir)/xpressive/boost/xpressive/detail/dynamic $(distdir)/xpressive/boost/xpressive/detail/static $(distdir)/xpressive/boost/xpressive/detail/static/productions $(distdir)/xpressive/boost/xpressive/detail/utility $(distdir)/xpressive/boost/xpressive/detail/utility/chset $(distdir)/xpressive/boost/xpressive/proto $(distdir)/xpressive/boost/xpressive/proto/compiler $(distdir)/xpressive/boost/xpressive/traits $(distdir)/xpressive/boost/xpressive/traits/detail
+	$(mkdir_p) $(distdir)/charset-detector $(distdir)/charset-detector/src $(distdir)/charset-detector/src/entry $(distdir)/charset-detector/src/tables $(distdir)/charset-detector/test $(distdir)/debian $(distdir)/devcpp $(distdir)/freebsd $(distdir)/image2xpm $(distdir)/images $(distdir)/libunicows $(distdir)/m4 $(distdir)/makefiles $(distdir)/po $(distdir)/src $(distdir)/src/plugin_example $(distdir)/vc71 $(distdir)/vc80 $(distdir)/wxAUI $(distdir)/xpressive $(distdir)/xpressive/boost/xpressive $(distdir)/xpressive/boost/xpressive/detail $(distdir)/xpressive/boost/xpressive/detail/core $(distdir)/xpressive/boost/xpressive/detail/core/matcher $(distdir)/xpressive/boost/xpressive/detail/dynamic $(distdir)/xpressive/boost/xpressive/detail/static $(distdir)/xpressive/boost/xpressive/detail/static/productions $(distdir)/xpressive/boost/xpressive/detail/utility $(distdir)/xpressive/boost/xpressive/detail/utility/chset $(distdir)/xpressive/boost/xpressive/proto $(distdir)/xpressive/boost/xpressive/proto/compiler $(distdir)/xpressive/boost/xpressive/traits $(distdir)/xpressive/boost/xpressive/traits/detail
 	@srcdirstrip=`echo "$(srcdir)" | sed 's|.|.|g'`; \
 	topsrcdirstrip=`echo "$(top_srcdir)" | sed 's|.|.|g'`; \
 	list='$(DISTFILES)'; for file in $$list; do \

@@ -2311,7 +2311,7 @@ am__tar='${AMTAR} chof - "$$tardir"'; am__untar='${AMTAR} xf -'
 
 
 
-ALL_LINGUAS="it_IT zh_CN zh_TW"
+ALL_LINGUAS="it_IT ja_JP zh_CN zh_TW"
 
   { echo "$as_me:$LINENO: checking whether NLS is requested" >&5
 echo $ECHO_N "checking whether NLS is requested... $ECHO_C" >&6; }
@@ -12813,7 +12813,7 @@ fi
 if test "${with_xpressive+set}" = set; then
   withval=$with_xpressive; CXXFLAGS="$CXXFLAGS -I$withval"
 else
-  CXXFLAGS="$CXXFLAGS -I\$(top_srcdir)/xpressive"
+  CXXFLAGS="$CXXFLAGS -I$(top_srcdir)/xpressive"
 fi
 
 
