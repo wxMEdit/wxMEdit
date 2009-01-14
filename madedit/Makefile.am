@@ -248,10 +248,21 @@ noinst_HEADERS =	description-pak \
 	vc71/MadEdit.vcproj \
 	vc80/MadEdit.sln \
 	vc80/MadEdit.vcproj \
+	charset-detector/Makefile \
+	charset-detector/MPL-1.1.txt \
+	charset-detector/README \
+	charset-detector/test/Makefile \
+	charset-detector/test/test-chardetect.c \
+	charset-detector/src/Makefile \
+	charset-detector/src/tables/Big5Freq.tab \
+	charset-detector/src/tables/EUCKRFreq.tab \
+	charset-detector/src/tables/EUCTWFreq.tab \
+	charset-detector/src/tables/GB2312Freq.tab \
+	charset-detector/src/tables/JISFreq.tab \
+	charset-detector/src/entry/export-symbol.list \
 	xpressive/boost/xpressive/basic_regex.hpp \
 	xpressive/boost/xpressive/detail/core/access.hpp \
 	xpressive/boost/xpressive/detail/core/action.hpp \
-	xpressive/boost/xpressive/detail/core/action_state.hpp \
 	xpressive/boost/xpressive/detail/core/adaptor.hpp \
 	xpressive/boost/xpressive/detail/core/finder.hpp \
 	xpressive/boost/xpressive/detail/core/flow_control.hpp \
@@ -267,6 +278,9 @@ noinst_HEADERS =	description-pak \
 	xpressive/boost/xpressive/detail/core/matcher/assert_eos_matcher.hpp \
 	xpressive/boost/xpressive/detail/core/matcher/assert_line_base.hpp \
 	xpressive/boost/xpressive/detail/core/matcher/assert_word_matcher.hpp \
+	xpressive/boost/xpressive/detail/core/matcher/attr_begin_matcher.hpp \
+	xpressive/boost/xpressive/detail/core/matcher/attr_end_matcher.hpp \
+	xpressive/boost/xpressive/detail/core/matcher/attr_matcher.hpp \
 	xpressive/boost/xpressive/detail/core/matcher/charset_matcher.hpp \
 	xpressive/boost/xpressive/detail/core/matcher/end_matcher.hpp \
 	xpressive/boost/xpressive/detail/core/matcher/epsilon_matcher.hpp \
@@ -278,7 +292,9 @@ noinst_HEADERS =	description-pak \
 	xpressive/boost/xpressive/detail/core/matcher/mark_begin_matcher.hpp \
 	xpressive/boost/xpressive/detail/core/matcher/mark_end_matcher.hpp \
 	xpressive/boost/xpressive/detail/core/matcher/mark_matcher.hpp \
+	xpressive/boost/xpressive/detail/core/matcher/optional_matcher.hpp \
 	xpressive/boost/xpressive/detail/core/matcher/posix_charset_matcher.hpp \
+	xpressive/boost/xpressive/detail/core/matcher/predicate_matcher.hpp \
 	xpressive/boost/xpressive/detail/core/matcher/range_matcher.hpp \
 	xpressive/boost/xpressive/detail/core/matcher/regex_byref_matcher.hpp \
 	xpressive/boost/xpressive/detail/core/matcher/regex_matcher.hpp \
@@ -300,34 +316,30 @@ noinst_HEADERS =	description-pak \
 	xpressive/boost/xpressive/detail/detail_fwd.hpp \
 	xpressive/boost/xpressive/detail/dynamic/dynamic.hpp \
 	xpressive/boost/xpressive/detail/dynamic/matchable.hpp \
+	xpressive/boost/xpressive/detail/dynamic/parse_charset.hpp \
 	xpressive/boost/xpressive/detail/dynamic/parser.hpp \
 	xpressive/boost/xpressive/detail/dynamic/parser_enum.hpp \
 	xpressive/boost/xpressive/detail/dynamic/parser_traits.hpp \
-	xpressive/boost/xpressive/detail/dynamic/parse_charset.hpp \
-	xpressive/boost/xpressive/detail/static/as_xpr.hpp \
+	xpressive/boost/xpressive/detail/dynamic/sequence.hpp \
 	xpressive/boost/xpressive/detail/static/compile.hpp \
+	xpressive/boost/xpressive/detail/static/grammar.hpp \
 	xpressive/boost/xpressive/detail/static/is_pure.hpp \
 	xpressive/boost/xpressive/detail/static/modifier.hpp \
 	xpressive/boost/xpressive/detail/static/placeholders.hpp \
-	xpressive/boost/xpressive/detail/static/productions/alt_compilers.hpp \
-	xpressive/boost/xpressive/detail/static/productions/charset_transforms.hpp \
-	xpressive/boost/xpressive/detail/static/productions/complement_compiler.hpp \
-	xpressive/boost/xpressive/detail/static/productions/domain_tags.hpp \
-	xpressive/boost/xpressive/detail/static/productions/independent_compiler.hpp \
-	xpressive/boost/xpressive/detail/static/productions/marker_compiler.hpp \
-	xpressive/boost/xpressive/detail/static/productions/marker_transform.hpp \
-	xpressive/boost/xpressive/detail/static/productions/modify_compiler.hpp \
-	xpressive/boost/xpressive/detail/static/productions/noop_compiler.hpp \
-	xpressive/boost/xpressive/detail/static/productions/productions.hpp \
-	xpressive/boost/xpressive/detail/static/productions/quant_compilers.hpp \
-	xpressive/boost/xpressive/detail/static/productions/quant_traits.hpp \
-	xpressive/boost/xpressive/detail/static/productions/quant_transforms.hpp \
-	xpressive/boost/xpressive/detail/static/productions/set_compilers.hpp \
-	xpressive/boost/xpressive/detail/static/productions/transmogrify.hpp \
-	xpressive/boost/xpressive/detail/static/productions/visitor.hpp \
-	xpressive/boost/xpressive/detail/static/regex_operators.hpp \
 	xpressive/boost/xpressive/detail/static/static.hpp \
+	xpressive/boost/xpressive/detail/static/transforms/as_action.hpp \
+	xpressive/boost/xpressive/detail/static/transforms/as_alternate.hpp \
+	xpressive/boost/xpressive/detail/static/transforms/as_independent.hpp \
+	xpressive/boost/xpressive/detail/static/transforms/as_inverse.hpp \
+	xpressive/boost/xpressive/detail/static/transforms/as_marker.hpp \
+	xpressive/boost/xpressive/detail/static/transforms/as_matcher.hpp \
+	xpressive/boost/xpressive/detail/static/transforms/as_modifier.hpp \
+	xpressive/boost/xpressive/detail/static/transforms/as_quantifier.hpp \
+	xpressive/boost/xpressive/detail/static/transforms/as_sequence.hpp \
+	xpressive/boost/xpressive/detail/static/transforms/as_set.hpp \
+	xpressive/boost/xpressive/detail/static/transmogrify.hpp \
 	xpressive/boost/xpressive/detail/static/type_traits.hpp \
+	xpressive/boost/xpressive/detail/static/visitor.hpp \
 	xpressive/boost/xpressive/detail/static/width_of.hpp \
 	xpressive/boost/xpressive/detail/utility/algorithm.hpp \
 	xpressive/boost/xpressive/detail/utility/any.hpp \
@@ -338,6 +350,7 @@ noinst_HEADERS =	description-pak \
 	xpressive/boost/xpressive/detail/utility/chset/range_run.hpp \
 	xpressive/boost/xpressive/detail/utility/chset/range_run.ipp \
 	xpressive/boost/xpressive/detail/utility/cons.hpp \
+	xpressive/boost/xpressive/detail/utility/counted_base.hpp \
 	xpressive/boost/xpressive/detail/utility/dont_care.hpp \
 	xpressive/boost/xpressive/detail/utility/hash_peek_bitset.hpp \
 	xpressive/boost/xpressive/detail/utility/ignore_unused.hpp \
@@ -345,22 +358,71 @@ noinst_HEADERS =	description-pak \
 	xpressive/boost/xpressive/detail/utility/never_true.hpp \
 	xpressive/boost/xpressive/detail/utility/save_restore.hpp \
 	xpressive/boost/xpressive/detail/utility/sequence_stack.hpp \
+	xpressive/boost/xpressive/detail/utility/symbols.hpp \
 	xpressive/boost/xpressive/detail/utility/tracking_ptr.hpp \
 	xpressive/boost/xpressive/detail/utility/traits_utils.hpp \
+	xpressive/boost/xpressive/detail/utility/width.hpp \
 	xpressive/boost/xpressive/match_results.hpp \
-	xpressive/boost/xpressive/proto/arg_traits.hpp \
-	xpressive/boost/xpressive/proto/compiler/branch.hpp \
-	xpressive/boost/xpressive/proto/compiler/conditional.hpp \
-	xpressive/boost/xpressive/proto/compiler/error.hpp \
-	xpressive/boost/xpressive/proto/compiler/fold.hpp \
-	xpressive/boost/xpressive/proto/compiler/switch.hpp \
-	xpressive/boost/xpressive/proto/compiler/transform.hpp \
+	xpressive/boost/xpressive/proto/args.hpp \
+	xpressive/boost/xpressive/proto/context.hpp \
+	xpressive/boost/xpressive/proto/context/callable.hpp \
+	xpressive/boost/xpressive/proto/context/default.hpp \
+	xpressive/boost/xpressive/proto/context/null.hpp \
+	xpressive/boost/xpressive/proto/debug.hpp \
+	xpressive/boost/xpressive/proto/deep_copy.hpp \
+	xpressive/boost/xpressive/proto/detail/as_lvalue.hpp \
+	xpressive/boost/xpressive/proto/detail/dont_care.hpp \
+	xpressive/boost/xpressive/proto/detail/funop.hpp \
+	xpressive/boost/xpressive/proto/detail/ignore_unused.hpp \
+	xpressive/boost/xpressive/proto/detail/pop_front.hpp \
+	xpressive/boost/xpressive/proto/detail/prefix.hpp \
+	xpressive/boost/xpressive/proto/detail/reverse.hpp \
+	xpressive/boost/xpressive/proto/detail/suffix.hpp \
+	xpressive/boost/xpressive/proto/domain.hpp \
+	xpressive/boost/xpressive/proto/eval.hpp \
+	xpressive/boost/xpressive/proto/expr.hpp \
+	xpressive/boost/xpressive/proto/extends.hpp \
+	xpressive/boost/xpressive/proto/fusion.hpp \
+	xpressive/boost/xpressive/proto/generate.hpp \
+	xpressive/boost/xpressive/proto/literal.hpp \
+	xpressive/boost/xpressive/proto/make_expr.hpp \
+	xpressive/boost/xpressive/proto/matches.hpp \
 	xpressive/boost/xpressive/proto/operators.hpp \
-	xpressive/boost/xpressive/proto/op_base.hpp \
-	xpressive/boost/xpressive/proto/op_tags.hpp \
 	xpressive/boost/xpressive/proto/proto.hpp \
 	xpressive/boost/xpressive/proto/proto_fwd.hpp \
 	xpressive/boost/xpressive/proto/proto_typeof.hpp \
+	xpressive/boost/xpressive/proto/ref.hpp \
+	xpressive/boost/xpressive/proto/tags.hpp \
+	xpressive/boost/xpressive/proto/traits.hpp \
+	xpressive/boost/xpressive/proto/transform.hpp \
+	xpressive/boost/xpressive/proto/transform/apply.hpp \
+	xpressive/boost/xpressive/proto/transform/arg.hpp \
+	xpressive/boost/xpressive/proto/transform/bind.hpp \
+	xpressive/boost/xpressive/proto/transform/branch.hpp \
+	xpressive/boost/xpressive/proto/transform/call.hpp \
+	xpressive/boost/xpressive/proto/transform/compose.hpp \
+	xpressive/boost/xpressive/proto/transform/construct.hpp \
+	xpressive/boost/xpressive/proto/transform/fold.hpp \
+	xpressive/boost/xpressive/proto/transform/fold_tree.hpp \
+	xpressive/boost/xpressive/proto/transform/function.hpp \
+	xpressive/boost/xpressive/proto/transform/list.hpp \
+	xpressive/boost/xpressive/proto/transform/make.hpp \
+	xpressive/boost/xpressive/proto/transform/pass_through.hpp \
+	xpressive/boost/xpressive/proto/transform/when.hpp \
+	xpressive/boost/xpressive/proto/v1_/arg_traits.hpp \
+	xpressive/boost/xpressive/proto/v1_/compiler/branch.hpp \
+	xpressive/boost/xpressive/proto/v1_/compiler/conditional.hpp \
+	xpressive/boost/xpressive/proto/v1_/compiler/error.hpp \
+	xpressive/boost/xpressive/proto/v1_/compiler/fold.hpp \
+	xpressive/boost/xpressive/proto/v1_/compiler/switch.hpp \
+	xpressive/boost/xpressive/proto/v1_/compiler/transform.hpp \
+	xpressive/boost/xpressive/proto/v1_/op_base.hpp \
+	xpressive/boost/xpressive/proto/v1_/op_tags.hpp \
+	xpressive/boost/xpressive/proto/v1_/operators.hpp \
+	xpressive/boost/xpressive/proto/v1_/proto.hpp \
+	xpressive/boost/xpressive/proto/v1_/proto_fwd.hpp \
+	xpressive/boost/xpressive/proto/v1_/proto_typeof.hpp \
+	xpressive/boost/xpressive/regex_actions.hpp \
 	xpressive/boost/xpressive/regex_algorithms.hpp \
 	xpressive/boost/xpressive/regex_compiler.hpp \
 	xpressive/boost/xpressive/regex_constants.hpp \
@@ -370,8 +432,8 @@ noinst_HEADERS =	description-pak \
 	xpressive/boost/xpressive/regex_token_iterator.hpp \
 	xpressive/boost/xpressive/regex_traits.hpp \
 	xpressive/boost/xpressive/sub_match.hpp \
-	xpressive/boost/xpressive/traits/cpp_regex_traits.hpp \
 	xpressive/boost/xpressive/traits/c_regex_traits.hpp \
+	xpressive/boost/xpressive/traits/cpp_regex_traits.hpp \
 	xpressive/boost/xpressive/traits/detail/c_ctype.hpp \
 	xpressive/boost/xpressive/traits/null_regex_traits.hpp \
 	xpressive/boost/xpressive/xpressive.hpp \
@@ -379,20 +441,290 @@ noinst_HEADERS =	description-pak \
 	xpressive/boost/xpressive/xpressive_fwd.hpp \
 	xpressive/boost/xpressive/xpressive_static.hpp \
 	xpressive/boost/xpressive/xpressive_typeof.hpp \
-	xpressive/LICENSE_1_0.txt \
-	xpressive/README.TXT \
-	charset-detector/Makefile \
-	charset-detector/MPL-1.1.txt \
-	charset-detector/README \
-	charset-detector/test/Makefile \
-	charset-detector/test/test-chardetect.c \
-	charset-detector/src/Makefile \
-	charset-detector/src/tables/Big5Freq.tab \
-	charset-detector/src/tables/EUCKRFreq.tab \
-	charset-detector/src/tables/EUCTWFreq.tab \
-	charset-detector/src/tables/GB2312Freq.tab \
-	charset-detector/src/tables/JISFreq.tab \
-	charset-detector/src/entry/export-symbol.list
+	xpressive/boost/preprocessor/arithmetic.hpp \
+	xpressive/boost/preprocessor/arithmetic/add.hpp \
+	xpressive/boost/preprocessor/arithmetic/dec.hpp \
+	xpressive/boost/preprocessor/arithmetic/detail/div_base.hpp \
+	xpressive/boost/preprocessor/arithmetic/div.hpp \
+	xpressive/boost/preprocessor/arithmetic/inc.hpp \
+	xpressive/boost/preprocessor/arithmetic/mod.hpp \
+	xpressive/boost/preprocessor/arithmetic/mul.hpp \
+	xpressive/boost/preprocessor/arithmetic/sub.hpp \
+	xpressive/boost/preprocessor/array.hpp \
+	xpressive/boost/preprocessor/array/data.hpp \
+	xpressive/boost/preprocessor/array/elem.hpp \
+	xpressive/boost/preprocessor/array/insert.hpp \
+	xpressive/boost/preprocessor/array/pop_back.hpp \
+	xpressive/boost/preprocessor/array/pop_front.hpp \
+	xpressive/boost/preprocessor/array/push_back.hpp \
+	xpressive/boost/preprocessor/array/push_front.hpp \
+	xpressive/boost/preprocessor/array/remove.hpp \
+	xpressive/boost/preprocessor/array/replace.hpp \
+	xpressive/boost/preprocessor/array/reverse.hpp \
+	xpressive/boost/preprocessor/array/size.hpp \
+	xpressive/boost/preprocessor/assert_msg.hpp \
+	xpressive/boost/preprocessor/cat.hpp \
+	xpressive/boost/preprocessor/comma.hpp \
+	xpressive/boost/preprocessor/comma_if.hpp \
+	xpressive/boost/preprocessor/comparison.hpp \
+	xpressive/boost/preprocessor/comparison/equal.hpp \
+	xpressive/boost/preprocessor/comparison/greater.hpp \
+	xpressive/boost/preprocessor/comparison/greater_equal.hpp \
+	xpressive/boost/preprocessor/comparison/less.hpp \
+	xpressive/boost/preprocessor/comparison/less_equal.hpp \
+	xpressive/boost/preprocessor/comparison/not_equal.hpp \
+	xpressive/boost/preprocessor/config/config.hpp \
+	xpressive/boost/preprocessor/config/limits.hpp \
+	xpressive/boost/preprocessor/control.hpp \
+	xpressive/boost/preprocessor/control/deduce_d.hpp \
+	xpressive/boost/preprocessor/control/detail/dmc/while.hpp \
+	xpressive/boost/preprocessor/control/detail/edg/while.hpp \
+	xpressive/boost/preprocessor/control/detail/msvc/while.hpp \
+	xpressive/boost/preprocessor/control/detail/while.hpp \
+	xpressive/boost/preprocessor/control/expr_if.hpp \
+	xpressive/boost/preprocessor/control/expr_iif.hpp \
+	xpressive/boost/preprocessor/control/if.hpp \
+	xpressive/boost/preprocessor/control/iif.hpp \
+	xpressive/boost/preprocessor/control/while.hpp \
+	xpressive/boost/preprocessor/debug.hpp \
+	xpressive/boost/preprocessor/debug/assert.hpp \
+	xpressive/boost/preprocessor/debug/error.hpp \
+	xpressive/boost/preprocessor/debug/line.hpp \
+	xpressive/boost/preprocessor/dec.hpp \
+	xpressive/boost/preprocessor/detail/auto_rec.hpp \
+	xpressive/boost/preprocessor/detail/check.hpp \
+	xpressive/boost/preprocessor/detail/dmc/auto_rec.hpp \
+	xpressive/boost/preprocessor/detail/is_binary.hpp \
+	xpressive/boost/preprocessor/detail/is_nullary.hpp \
+	xpressive/boost/preprocessor/detail/is_unary.hpp \
+	xpressive/boost/preprocessor/detail/null.hpp \
+	xpressive/boost/preprocessor/detail/split.hpp \
+	xpressive/boost/preprocessor/empty.hpp \
+	xpressive/boost/preprocessor/enum.hpp \
+	xpressive/boost/preprocessor/enum_params.hpp \
+	xpressive/boost/preprocessor/enum_params_with_a_default.hpp \
+	xpressive/boost/preprocessor/enum_params_with_defaults.hpp \
+	xpressive/boost/preprocessor/enum_shifted.hpp \
+	xpressive/boost/preprocessor/enum_shifted_params.hpp \
+	xpressive/boost/preprocessor/expand.hpp \
+	xpressive/boost/preprocessor/expr_if.hpp \
+	xpressive/boost/preprocessor/facilities.hpp \
+	xpressive/boost/preprocessor/facilities/apply.hpp \
+	xpressive/boost/preprocessor/facilities/empty.hpp \
+	xpressive/boost/preprocessor/facilities/expand.hpp \
+	xpressive/boost/preprocessor/facilities/identity.hpp \
+	xpressive/boost/preprocessor/facilities/intercept.hpp \
+	xpressive/boost/preprocessor/facilities/is_1.hpp \
+	xpressive/boost/preprocessor/facilities/is_empty.hpp \
+	xpressive/boost/preprocessor/facilities/is_empty_or_1.hpp \
+	xpressive/boost/preprocessor/for.hpp \
+	xpressive/boost/preprocessor/identity.hpp \
+	xpressive/boost/preprocessor/if.hpp \
+	xpressive/boost/preprocessor/inc.hpp \
+	xpressive/boost/preprocessor/iterate.hpp \
+	xpressive/boost/preprocessor/iteration.hpp \
+	xpressive/boost/preprocessor/iteration/detail/bounds/lower1.hpp \
+	xpressive/boost/preprocessor/iteration/detail/bounds/lower2.hpp \
+	xpressive/boost/preprocessor/iteration/detail/bounds/lower3.hpp \
+	xpressive/boost/preprocessor/iteration/detail/bounds/lower4.hpp \
+	xpressive/boost/preprocessor/iteration/detail/bounds/lower5.hpp \
+	xpressive/boost/preprocessor/iteration/detail/bounds/upper1.hpp \
+	xpressive/boost/preprocessor/iteration/detail/bounds/upper2.hpp \
+	xpressive/boost/preprocessor/iteration/detail/bounds/upper3.hpp \
+	xpressive/boost/preprocessor/iteration/detail/bounds/upper4.hpp \
+	xpressive/boost/preprocessor/iteration/detail/bounds/upper5.hpp \
+	xpressive/boost/preprocessor/iteration/detail/finish.hpp \
+	xpressive/boost/preprocessor/iteration/detail/iter/forward1.hpp \
+	xpressive/boost/preprocessor/iteration/detail/iter/forward2.hpp \
+	xpressive/boost/preprocessor/iteration/detail/iter/forward3.hpp \
+	xpressive/boost/preprocessor/iteration/detail/iter/forward4.hpp \
+	xpressive/boost/preprocessor/iteration/detail/iter/forward5.hpp \
+	xpressive/boost/preprocessor/iteration/detail/iter/reverse1.hpp \
+	xpressive/boost/preprocessor/iteration/detail/iter/reverse2.hpp \
+	xpressive/boost/preprocessor/iteration/detail/iter/reverse3.hpp \
+	xpressive/boost/preprocessor/iteration/detail/iter/reverse4.hpp \
+	xpressive/boost/preprocessor/iteration/detail/iter/reverse5.hpp \
+	xpressive/boost/preprocessor/iteration/detail/local.hpp \
+	xpressive/boost/preprocessor/iteration/detail/rlocal.hpp \
+	xpressive/boost/preprocessor/iteration/detail/self.hpp \
+	xpressive/boost/preprocessor/iteration/detail/start.hpp \
+	xpressive/boost/preprocessor/iteration/iterate.hpp \
+	xpressive/boost/preprocessor/iteration/local.hpp \
+	xpressive/boost/preprocessor/iteration/self.hpp \
+	xpressive/boost/preprocessor/library.hpp \
+	xpressive/boost/preprocessor/limits.hpp \
+	xpressive/boost/preprocessor/list.hpp \
+	xpressive/boost/preprocessor/list/adt.hpp \
+	xpressive/boost/preprocessor/list/append.hpp \
+	xpressive/boost/preprocessor/list/at.hpp \
+	xpressive/boost/preprocessor/list/cat.hpp \
+	xpressive/boost/preprocessor/list/detail/dmc/fold_left.hpp \
+	xpressive/boost/preprocessor/list/detail/edg/fold_left.hpp \
+	xpressive/boost/preprocessor/list/detail/edg/fold_right.hpp \
+	xpressive/boost/preprocessor/list/detail/fold_left.hpp \
+	xpressive/boost/preprocessor/list/detail/fold_right.hpp \
+	xpressive/boost/preprocessor/list/enum.hpp \
+	xpressive/boost/preprocessor/list/filter.hpp \
+	xpressive/boost/preprocessor/list/first_n.hpp \
+	xpressive/boost/preprocessor/list/fold_left.hpp \
+	xpressive/boost/preprocessor/list/fold_right.hpp \
+	xpressive/boost/preprocessor/list/for_each.hpp \
+	xpressive/boost/preprocessor/list/for_each_i.hpp \
+	xpressive/boost/preprocessor/list/for_each_product.hpp \
+	xpressive/boost/preprocessor/list/rest_n.hpp \
+	xpressive/boost/preprocessor/list/reverse.hpp \
+	xpressive/boost/preprocessor/list/size.hpp \
+	xpressive/boost/preprocessor/list/to_tuple.hpp \
+	xpressive/boost/preprocessor/list/transform.hpp \
+	xpressive/boost/preprocessor/logical.hpp \
+	xpressive/boost/preprocessor/logical/and.hpp \
+	xpressive/boost/preprocessor/logical/bitand.hpp \
+	xpressive/boost/preprocessor/logical/bitnor.hpp \
+	xpressive/boost/preprocessor/logical/bitor.hpp \
+	xpressive/boost/preprocessor/logical/bitxor.hpp \
+	xpressive/boost/preprocessor/logical/bool.hpp \
+	xpressive/boost/preprocessor/logical/compl.hpp \
+	xpressive/boost/preprocessor/logical/nor.hpp \
+	xpressive/boost/preprocessor/logical/not.hpp \
+	xpressive/boost/preprocessor/logical/or.hpp \
+	xpressive/boost/preprocessor/logical/xor.hpp \
+	xpressive/boost/preprocessor/max.hpp \
+	xpressive/boost/preprocessor/min.hpp \
+	xpressive/boost/preprocessor/punctuation.hpp \
+	xpressive/boost/preprocessor/punctuation/comma.hpp \
+	xpressive/boost/preprocessor/punctuation/comma_if.hpp \
+	xpressive/boost/preprocessor/punctuation/paren.hpp \
+	xpressive/boost/preprocessor/punctuation/paren_if.hpp \
+	xpressive/boost/preprocessor/repeat.hpp \
+	xpressive/boost/preprocessor/repeat_2nd.hpp \
+	xpressive/boost/preprocessor/repeat_3rd.hpp \
+	xpressive/boost/preprocessor/repeat_from_to.hpp \
+	xpressive/boost/preprocessor/repeat_from_to_2nd.hpp \
+	xpressive/boost/preprocessor/repeat_from_to_3rd.hpp \
+	xpressive/boost/preprocessor/repetition.hpp \
+	xpressive/boost/preprocessor/repetition/deduce_r.hpp \
+	xpressive/boost/preprocessor/repetition/deduce_z.hpp \
+	xpressive/boost/preprocessor/repetition/detail/dmc/for.hpp \
+	xpressive/boost/preprocessor/repetition/detail/edg/for.hpp \
+	xpressive/boost/preprocessor/repetition/detail/for.hpp \
+	xpressive/boost/preprocessor/repetition/detail/msvc/for.hpp \
+	xpressive/boost/preprocessor/repetition/enum.hpp \
+	xpressive/boost/preprocessor/repetition/enum_binary_params.hpp \
+	xpressive/boost/preprocessor/repetition/enum_params.hpp \
+	xpressive/boost/preprocessor/repetition/enum_params_with_a_default.hpp \
+	xpressive/boost/preprocessor/repetition/enum_params_with_defaults.hpp \
+	xpressive/boost/preprocessor/repetition/enum_shifted.hpp \
+	xpressive/boost/preprocessor/repetition/enum_shifted_binary_params.hpp \
+	xpressive/boost/preprocessor/repetition/enum_shifted_params.hpp \
+	xpressive/boost/preprocessor/repetition/enum_trailing.hpp \
+	xpressive/boost/preprocessor/repetition/enum_trailing_binary_params.hpp \
+	xpressive/boost/preprocessor/repetition/enum_trailing_params.hpp \
+	xpressive/boost/preprocessor/repetition/for.hpp \
+	xpressive/boost/preprocessor/repetition/repeat.hpp \
+	xpressive/boost/preprocessor/repetition/repeat_from_to.hpp \
+	xpressive/boost/preprocessor/selection.hpp \
+	xpressive/boost/preprocessor/selection/max.hpp \
+	xpressive/boost/preprocessor/selection/min.hpp \
+	xpressive/boost/preprocessor/seq.hpp \
+	xpressive/boost/preprocessor/seq/cat.hpp \
+	xpressive/boost/preprocessor/seq/detail/split.hpp \
+	xpressive/boost/preprocessor/seq/elem.hpp \
+	xpressive/boost/preprocessor/seq/enum.hpp \
+	xpressive/boost/preprocessor/seq/filter.hpp \
+	xpressive/boost/preprocessor/seq/first_n.hpp \
+	xpressive/boost/preprocessor/seq/fold_left.hpp \
+	xpressive/boost/preprocessor/seq/fold_right.hpp \
+	xpressive/boost/preprocessor/seq/for_each.hpp \
+	xpressive/boost/preprocessor/seq/for_each_i.hpp \
+	xpressive/boost/preprocessor/seq/for_each_product.hpp \
+	xpressive/boost/preprocessor/seq/insert.hpp \
+	xpressive/boost/preprocessor/seq/pop_back.hpp \
+	xpressive/boost/preprocessor/seq/pop_front.hpp \
+	xpressive/boost/preprocessor/seq/push_back.hpp \
+	xpressive/boost/preprocessor/seq/push_front.hpp \
+	xpressive/boost/preprocessor/seq/remove.hpp \
+	xpressive/boost/preprocessor/seq/replace.hpp \
+	xpressive/boost/preprocessor/seq/rest_n.hpp \
+	xpressive/boost/preprocessor/seq/reverse.hpp \
+	xpressive/boost/preprocessor/seq/seq.hpp \
+	xpressive/boost/preprocessor/seq/size.hpp \
+	xpressive/boost/preprocessor/seq/subseq.hpp \
+	xpressive/boost/preprocessor/seq/to_array.hpp \
+	xpressive/boost/preprocessor/seq/to_tuple.hpp \
+	xpressive/boost/preprocessor/seq/transform.hpp \
+	xpressive/boost/preprocessor/slot.hpp \
+	xpressive/boost/preprocessor/slot/counter.hpp \
+	xpressive/boost/preprocessor/slot/detail/counter.hpp \
+	xpressive/boost/preprocessor/slot/detail/def.hpp \
+	xpressive/boost/preprocessor/slot/detail/shared.hpp \
+	xpressive/boost/preprocessor/slot/detail/slot1.hpp \
+	xpressive/boost/preprocessor/slot/detail/slot2.hpp \
+	xpressive/boost/preprocessor/slot/detail/slot3.hpp \
+	xpressive/boost/preprocessor/slot/detail/slot4.hpp \
+	xpressive/boost/preprocessor/slot/detail/slot5.hpp \
+	xpressive/boost/preprocessor/slot/slot.hpp \
+	xpressive/boost/preprocessor/stringize.hpp \
+	xpressive/boost/preprocessor/tuple.hpp \
+	xpressive/boost/preprocessor/tuple/eat.hpp \
+	xpressive/boost/preprocessor/tuple/elem.hpp \
+	xpressive/boost/preprocessor/tuple/rem.hpp \
+	xpressive/boost/preprocessor/tuple/reverse.hpp \
+	xpressive/boost/preprocessor/tuple/to_list.hpp \
+	xpressive/boost/preprocessor/tuple/to_seq.hpp \
+	xpressive/boost/preprocessor/while.hpp \
+	xpressive/boost/preprocessor/wstringize.hpp \
+	xpressive/boost/range/as_array.hpp \
+	xpressive/boost/range/as_literal.hpp \
+	xpressive/boost/range/atl.hpp \
+	xpressive/boost/range/begin.hpp \
+	xpressive/boost/range/category.hpp \
+	xpressive/boost/range/concepts.hpp \
+	xpressive/boost/range/config.hpp \
+	xpressive/boost/range/const_iterator.hpp \
+	xpressive/boost/range/const_reverse_iterator.hpp \
+	xpressive/boost/range/detail/as_literal.hpp \
+	xpressive/boost/range/detail/begin.hpp \
+	xpressive/boost/range/detail/collection_traits.hpp \
+	xpressive/boost/range/detail/collection_traits_detail.hpp \
+	xpressive/boost/range/detail/common.hpp \
+	xpressive/boost/range/detail/const_iterator.hpp \
+	xpressive/boost/range/detail/detail_str.hpp \
+	xpressive/boost/range/detail/difference_type.hpp \
+	xpressive/boost/range/detail/empty.hpp \
+	xpressive/boost/range/detail/end.hpp \
+	xpressive/boost/range/detail/implementation_help.hpp \
+	xpressive/boost/range/detail/iterator.hpp \
+	xpressive/boost/range/detail/microsoft.hpp \
+	xpressive/boost/range/detail/remove_extent.hpp \
+	xpressive/boost/range/detail/sfinae.hpp \
+	xpressive/boost/range/detail/size.hpp \
+	xpressive/boost/range/detail/size_type.hpp \
+	xpressive/boost/range/detail/sizer.hpp \
+	xpressive/boost/range/detail/str_types.hpp \
+	xpressive/boost/range/detail/value_type.hpp \
+	xpressive/boost/range/detail/vc6/end.hpp \
+	xpressive/boost/range/detail/vc6/size.hpp \
+	xpressive/boost/range/difference_type.hpp \
+	xpressive/boost/range/distance.hpp \
+	xpressive/boost/range/empty.hpp \
+	xpressive/boost/range/end.hpp \
+	xpressive/boost/range/functions.hpp \
+	xpressive/boost/range/iterator.hpp \
+	xpressive/boost/range/iterator_range.hpp \
+	xpressive/boost/range/metafunctions.hpp \
+	xpressive/boost/range/mfc.hpp \
+	xpressive/boost/range/mutable_iterator.hpp \
+	xpressive/boost/range/pointer.hpp \
+	xpressive/boost/range/rbegin.hpp \
+	xpressive/boost/range/reference.hpp \
+	xpressive/boost/range/rend.hpp \
+	xpressive/boost/range/result_iterator.hpp \
+	xpressive/boost/range/reverse_iterator.hpp \
+	xpressive/boost/range/reverse_result_iterator.hpp \
+	xpressive/boost/range/size.hpp \
+	xpressive/boost/range/size_type.hpp \
+	xpressive/boost/range/sub_range.hpp \
+	xpressive/boost/range/value_type.hpp
 
 
 DOMAIN = madedit
