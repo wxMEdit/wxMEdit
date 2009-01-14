@@ -14,7 +14,6 @@
 #include <boost/xpressive/xpressive_dynamic.hpp>
 #include <boost/xpressive/traits/null_regex_traits.hpp>
 #include <boost/xpressive/traits/cpp_regex_traits.hpp>
-#include <boost/xpressive/detail/static/placeholders.hpp>
 
 using namespace std;
 using namespace boost::xpressive;
