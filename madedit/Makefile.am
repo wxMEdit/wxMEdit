@@ -1,8 +1,8 @@
 SUBDIRS = syntax po
 
 bin_PROGRAMS = madedit
-INCLUDES = -I$(top_srcdir)/charset-detector/include -I$(top_srcdir)/charset-detector/src -I$(top_srcdir)/charset-detector/src/tables
-madedit_CXXFLAGS = -DDATA_DIR=\"${datadir}\"
+INCLUDES = -I$(top_srcdir)/wxAUI/include -I$(top_srcdir)/charset-detector/include -I$(top_srcdir)/charset-detector/src -I$(top_srcdir)/charset-detector/src/tables
+madedit_CXXFLAGS = -DwxUSE_AUI=1 -DWXDLLIMPEXP_AUI= -DWXDLLIMPEXP_FWD_AUI= -DDATA_DIR=\"${datadir}\"
 madedit_SOURCES =	src/MadAboutDialog.cpp \
 	src/MadAboutDialog.h \
 	src/MadCommand.h \
@@ -56,6 +56,19 @@ madedit_SOURCES =	src/MadAboutDialog.cpp \
 	src/MadEdit/TradSimp.cpp \
 	src/MadEdit/TradSimp.h \
 	src/MadEdit/ucs4_t.h \
+	wxAUI/include/wx/aui/aui.h \
+	wxAUI/include/wx/aui/auibar.h \
+	wxAUI/include/wx/aui/auibook.h \
+	wxAUI/include/wx/aui/dockart.h \
+	wxAUI/include/wx/aui/floatpane.h \
+	wxAUI/include/wx/aui/framemanager.h \
+	wxAUI/include/wx/aui/tabmdi.h \
+	wxAUI/src/auibar.cpp \
+	wxAUI/src/auibook.cpp \
+	wxAUI/src/dockart.cpp \
+	wxAUI/src/floatpane.cpp \
+	wxAUI/src/framemanager.cpp \
+	wxAUI/src/tabmdi.cpp \
 	charset-detector/src/CharDistribution.cpp \
 	charset-detector/src/CharDistribution.h \
 	charset-detector/src/JpCntx.cpp \
@@ -157,6 +170,9 @@ noinst_HEADERS =	description-pak \
 	src/plugin_example/plugin.cpp \
 	src/plugin_example/vc_cl.bat \
 	src/plugin_example/wxwin16x16.xpm \
+	wxAUI/COPYING.LIB \
+	wxAUI/LICENCE.txt \
+	wxAUI/README.txt \
 	devcpp/MadEdit.dev \
 	devcpp/MadEdit.layout \
 	devcpp/MadEdit_private.h \
@@ -230,6 +246,8 @@ noinst_HEADERS =	description-pak \
 	vc71/build_release.bat \
 	vc71/MadEdit.sln \
 	vc71/MadEdit.vcproj \
+	vc80/MadEdit.sln \
+	vc80/MadEdit.vcproj \
 	xpressive/boost/xpressive/basic_regex.hpp \
 	xpressive/boost/xpressive/detail/core/access.hpp \
 	xpressive/boost/xpressive/detail/core/action.hpp \

@@ -4,7 +4,7 @@
 // Author:      Hans Van Leemputten
 // Modified by: Benjamin I. Williams / Kirix Corporation
 // Created:     29/07/2002
-// RCS-ID:      $Id: tabmdi.h 47254 2007-07-09 10:09:52Z VS $
+// RCS-ID:      $Id: tabmdi.h 53135 2008-04-12 02:31:04Z VZ $
 // Copyright:   (c) Hans Van Leemputten
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////
@@ -154,8 +154,6 @@ public:
     virtual void Activate();
     virtual bool Destroy();
 
-    virtual bool Show(bool show = true);
-
 #if wxUSE_STATUSBAR
     // no status bars
     virtual wxStatusBar* CreateStatusBar(int WXUNUSED(number) = 1,
@@ -206,6 +204,7 @@ public:
     
 protected:
     void Init();
+    virtual bool Show(bool show = true);
     virtual void DoSetSize(int x, int y, int width, int height, int size_flags);
     virtual void DoMoveWindow(int x, int y, int width, int height);
 

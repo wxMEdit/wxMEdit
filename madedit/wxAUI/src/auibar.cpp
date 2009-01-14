@@ -57,6 +57,15 @@ IMPLEMENT_CLASS(wxAuiToolBar, wxControl)
 IMPLEMENT_DYNAMIC_CLASS(wxAuiToolBarEvent, wxEvent)
 
 
+#if wxABI_VERSION < 20800
+    #define Contains Inside
+#endif
+extern void GradientFillLinear(wxDC &dc,   const wxRect& rect,
+                                    const wxColour& initialColour,
+                                    const wxColour& destColour,
+                                    wxDirection nDirection);
+
+
 // missing wxITEM_* items
 enum
 {
@@ -236,7 +245,7 @@ void wxAuiDefaultToolBarArt::DrawBackground(
     rect.height++;
     wxColour start_colour = wxAuiStepColour(m_base_colour, 150);
     wxColour end_colour = wxAuiStepColour(m_base_colour, 90);
-    dc.GradientFillLinear(rect, start_colour, end_colour, wxSOUTH);
+    GradientFillLinear(dc, rect, start_colour, end_colour, wxSOUTH);
 }
 
 void wxAuiDefaultToolBarArt::DrawLabel(
@@ -352,7 +361,7 @@ void wxAuiDefaultToolBarArt::DrawButton(
     else
         bmp = item.GetBitmap();
 
-    if (!bmp.IsOk())
+    if (!bmp.Ok())
         return;
 
     dc.DrawBitmap(bmp, bmp_x, bmp_y, true);
@@ -467,7 +476,7 @@ void wxAuiDefaultToolBarArt::DrawDropDownButton(
         dropbmp = m_button_dropdown_bmp;
     }
 
-    if (!bmp.IsOk())
+    if (!bmp.Ok())
         return;
 
     dc.DrawBitmap(bmp, bmp_x, bmp_y, true);
@@ -548,7 +557,7 @@ wxSize wxAuiDefaultToolBarArt::GetToolSize(
                                         wxWindow* WXUNUSED(wnd),
                                         const wxAuiToolBarItem& item)
 {
-    if (!item.GetBitmap().IsOk() && !(m_flags & wxAUI_TB_TEXT))
+    if (!item.GetBitmap().Ok() && !(m_flags & wxAUI_TB_TEXT))
         return wxSize(16,16);
 
     int width = item.GetBitmap().GetWidth();
@@ -622,7 +631,7 @@ void wxAuiDefaultToolBarArt::DrawSeparator(
 
     wxColour start_colour = wxAuiStepColour(m_base_colour, 80);
     wxColour end_colour = wxAuiStepColour(m_base_colour, 80);
-    dc.GradientFillLinear(rect, start_colour, end_colour, horizontal ? wxSOUTH : wxEAST);
+    GradientFillLinear(dc, rect, start_colour, end_colour, horizontal ? wxSOUTH : wxEAST);
 }
 
 void wxAuiDefaultToolBarArt::DrawGripper(wxDC& dc,
@@ -932,10 +941,10 @@ void wxAuiToolBar::AddTool(int tool_id,
     item.user_data = 0;
     item.sticky = false;
 
-    if (!item.disabled_bitmap.IsOk())
+    if (!item.disabled_bitmap.Ok())
     {
         // no disabled bitmap specified, we need to make one
-        if (item.bitmap.IsOk())
+        if (item.bitmap.Ok())
         {
             //wxImage img = item.bitmap.ConvertToImage();
             //wxImage grey_version = img.ConvertToGreyscale();
@@ -963,7 +972,11 @@ void wxAuiToolBar::AddControl(wxControl* control,
     item.proportion = 0;
     item.kind = wxITEM_CONTROL;
     item.sizer_item = NULL;
+#if wxABI_VERSION >= 20800
     item.min_size = control->GetEffectiveMinSize();
+#else
+    item.min_size = control->GetMinSize();
+#endif
     item.user_data = 0;
     item.sticky = false;
 
@@ -1679,7 +1692,7 @@ bool wxAuiToolBar::GetToolBarFits() const
 bool wxAuiToolBar::Realize()
 {
     wxClientDC dc(this);
-    if (!dc.IsOk())
+    if (!dc.Ok())
         return false;
 
     bool horizontal = true;
@@ -2364,7 +2377,7 @@ void wxAuiToolBar::OnLeftUp(wxMouseEvent& evt)
 
         if (m_action_item && hit_item == m_action_item)
         {
-            UnsetToolTip();
+            SetToolTip(NULL);
 
             if (hit_item->kind == wxITEM_CHECK)
             {
@@ -2538,7 +2551,7 @@ void wxAuiToolBar::OnMotion(wxMouseEvent& evt)
         m_action_pos != wxPoint(-1,-1) &&
         abs(evt.m_x - m_action_pos.x) + abs(evt.m_y - m_action_pos.y) > 5)
     {
-        UnsetToolTip();
+        SetToolTip(NULL);
 
         m_dragging = true;
 
@@ -2576,12 +2589,12 @@ void wxAuiToolBar::OnMotion(wxMouseEvent& evt)
             if ( !packing_hit_item->short_help.empty() )
                 SetToolTip(packing_hit_item->short_help);
             else
-                UnsetToolTip();
+                SetToolTip(NULL);
         }
     }
     else
     {
-        UnsetToolTip();
+        SetToolTip(NULL);
         m_tip_item = NULL;
     }
 

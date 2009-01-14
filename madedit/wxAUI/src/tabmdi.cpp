@@ -4,7 +4,7 @@
 // Author:      Hans Van Leemputten
 // Modified by: Benjamin I. Williams / Kirix Corporation
 // Created:     29/07/2002
-// RCS-ID:      $Id: tabmdi.cpp 47122 2007-07-04 20:54:36Z PC $
+// RCS-ID:      $Id: tabmdi.cpp 55206 2008-08-23 16:19:16Z VZ $
 // Copyright:   (c) Hans Van Leemputten
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////
@@ -134,7 +134,7 @@ wxAuiTabArt* wxAuiMDIParentFrame::GetArtProvider()
 
 wxAuiNotebook* wxAuiMDIParentFrame::GetNotebook() const
 {
-    return static_cast<wxAuiNotebook*>(m_pClientWindow);
+    return wx_static_cast(wxAuiNotebook*, m_pClientWindow);
 }
 
 
@@ -179,13 +179,13 @@ void wxAuiMDIParentFrame::SetChildMenuBar(wxAuiMDIChildFrame* pChild)
         // No Child, set Our menu bar back.
         if (m_pMyMenuBar)
             SetMenuBar(m_pMyMenuBar);
-        else
+             else
             SetMenuBar(GetMenuBar());
 
         // Make sure we know our menu bar is in use
         m_pMyMenuBar = NULL;
     }
-    else
+     else
     {
         if (pChild->GetMenuBar() == NULL)
             return;
@@ -314,7 +314,7 @@ void wxAuiMDIParentFrame::AddWindowMenu(wxMenuBar *pMenuBar)
         int pos = pMenuBar->FindMenu(wxGetStockLabel(wxID_HELP,0));
         if (pos == wxNOT_FOUND)
             pMenuBar->Append(m_pWindowMenu, _("&Window"));
-        else
+             else
             pMenuBar->Insert(pos, m_pWindowMenu, _("&Window"));
     }
 }
@@ -366,7 +366,7 @@ void wxAuiMDIParentFrame::Tile(wxOrientation orient)
     {
         client_window->Split(cur_idx, wxLEFT);
     }
-    else if (orient == wxHORIZONTAL)
+     else if (orient == wxHORIZONTAL)
     {
         client_window->Split(cur_idx, wxTOP);
     }
@@ -416,10 +416,20 @@ wxAuiMDIChildFrame::wxAuiMDIChildFrame(wxAuiMDIParentFrame *parent,
 wxAuiMDIChildFrame::~wxAuiMDIChildFrame()
 {
     wxAuiMDIParentFrame* pParentFrame = GetMDIParentFrame();
-    if (pParentFrame && pParentFrame->GetActiveChild() == this)
+    if (pParentFrame)
     {
-        pParentFrame->SetActiveChild(NULL);
-        pParentFrame->SetChildMenuBar(NULL);
+        if (pParentFrame->GetActiveChild() == this)
+        {
+            pParentFrame->SetActiveChild(NULL);
+            pParentFrame->SetChildMenuBar(NULL);
+        }
+        wxAuiMDIClientWindow* pClientWindow = pParentFrame->GetClientWindow();
+        wxASSERT(pClientWindow);
+        int idx = pClientWindow->GetPageIndex(this);
+        if (idx != wxNOT_FOUND)
+        {
+            pClientWindow->RemovePage(idx);
+        }
     }
 
 #if wxUSE_MENUS
@@ -446,10 +456,10 @@ bool wxAuiMDIChildFrame::Create(wxAuiMDIParentFrame* parent,
 
     // create the window off-screen to prevent flicker
     wxPanel::Create(pClientWindow,
-                    id,
-                    wxPoint(cli_size.x+1, cli_size.y+1),
-                    size,
-                    wxNO_BORDER, name);
+		    id,
+		    wxPoint(cli_size.x+1, cli_size.y+1),
+		    size,
+		    wxNO_BORDER, name);
 
     DoShow(false);
 
@@ -716,7 +726,6 @@ wxAuiMDIClientWindow::wxAuiMDIClientWindow(wxAuiMDIParentFrame* parent, long sty
 
 wxAuiMDIClientWindow::~wxAuiMDIClientWindow()
 {
-    DestroyChildren();
 }
 
 bool wxAuiMDIClientWindow::CreateClient(wxAuiMDIParentFrame* parent, long style)
@@ -767,7 +776,7 @@ void wxAuiMDIClientWindow::PageChanged(int old_selection, int new_selection)
 
 
     // notify old active child that it has been deactivated
-    if (old_selection != -1)
+    if ((old_selection != -1) && (old_selection < (int)GetPageCount()))
     {
         wxAuiMDIChildFrame* old_child = (wxAuiMDIChildFrame*)GetPage(old_selection);
         wxASSERT_MSG(old_child, wxT("wxAuiMDIClientWindow::PageChanged - null page pointer"));
@@ -799,8 +808,8 @@ void wxAuiMDIClientWindow::PageChanged(int old_selection, int new_selection)
 
 void wxAuiMDIClientWindow::OnPageClose(wxAuiNotebookEvent& evt)
 {
-    wxAuiMDIChildFrame* wnd;
-    wnd = static_cast<wxAuiMDIChildFrame*>(GetPage(evt.GetSelection()));
+    wxAuiMDIChildFrame*
+        wnd = wx_static_cast(wxAuiMDIChildFrame*, GetPage(evt.GetSelection()));
 
     wnd->Close();
 
@@ -823,5 +832,6 @@ void wxAuiMDIClientWindow::OnSize(wxSizeEvent& evt)
         ((wxAuiMDIChildFrame *)GetPage(pos))->ApplyMDIChildFrameRect();
 }
 
-#endif //wxUSE_AUI
 #endif // wxUSE_MDI
+
+#endif // wxUSE_AUI
