@@ -4277,8 +4277,7 @@ void MadEditFrame::OnViewSetFont(wxCommandEvent& event)
     wxFontDialog dialog(this, data);
     if (dialog.ShowModal() == wxID_OK)
     {
-        const wxFontData &fd = dialog.GetFontData();
-        font = fd.GetChosenFont();
+        font = dialog.GetFontData().GetChosenFont();
         if(font.Ok())
         {
             wxString fn=FixUTF8ToWCS(font.GetFaceName());
@@ -4286,7 +4285,7 @@ void MadEditFrame::OnViewSetFont(wxCommandEvent& event)
             m_RecentFonts->AddFileToHistory(fn);
         }
 
-        attr->color = fd.GetColour();
+        attr->color = dialog.GetFontData().GetColour();
 
         MadFontStyles style = fsNone;
         if(font.GetWeight()==wxFONTWEIGHT_BOLD) style |= fsBold;
