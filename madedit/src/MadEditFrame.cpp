@@ -204,8 +204,10 @@ class FileCaretPosManager
         wxString name;
         wxFileOffset pos;
         unsigned long hash; // hash value of filename
-        FilePosData(const wxString &n, const wxLongLong_t& p, unsigned long h)
-            : name(n), pos(p), hash(h)
+        wxString encoding;
+
+        FilePosData(const wxString &n, const wxLongLong_t& p, unsigned long h, const wxString &e)
+            : name(n), pos(p), hash(h), encoding(e)
         {}
         FilePosData() {}
     };
@@ -214,7 +216,7 @@ class FileCaretPosManager
 public:
     FileCaretPosManager() : max_count(25) {}
 
-    void Add(const wxString &name, const wxFileOffset &pos)
+    void Add(const wxString &name, const wxFileOffset &pos, const wxString &encoding)
     {
 #ifdef __WXMSW__
         wxString name0(name.Upper());
@@ -224,7 +226,7 @@ public:
         unsigned long hash = wxStringHash::wxCharStringHash(name0);
         if(files.size()==0)
         {
-            files.push_back(FilePosData(name0, pos, hash));
+            files.push_back(FilePosData(name0, pos, hash, encoding));
         }
         else
         {
@@ -241,11 +243,13 @@ public:
 
             if(it == itend)
             {
-                files.push_front(FilePosData(name0, pos, hash));
+                files.push_front(FilePosData(name0, pos, hash, encoding));
             }
             else
             {
                 it->pos = pos;
+                it->encoding = encoding;
+
                 files.push_front(*it);
                 files.erase(it);
             }
@@ -263,7 +267,7 @@ public:
         if(!name.IsEmpty())
         {
             wxFileOffset pos=madedit->GetCaretPosition();
-            Add(name, pos);
+            Add(name, pos, madedit->GetEncodingName());
         }
     }
     void Save(wxConfigBase *cfg)
@@ -278,6 +282,8 @@ public:
             text = wxLongLong(it->pos).ToString();
             text += wxT("|");
             text += it->name;
+            text += wxT("|");
+            text += it->encoding;
             cfg->Write(entry + (wxString()<<(idx+1)), text);
             ++idx;
             ++it;
@@ -300,6 +306,14 @@ public:
                 {
                     fpdata.pos = i64;
                     fpdata.name = text.Right(text.Len() - (p+1));
+
+                    p = fpdata.name.Find(wxT("|"));
+                    if(p != wxNOT_FOUND)
+                    {
+                        fpdata.encoding = fpdata.name.Right(fpdata.name.Len() - (p+1));
+                        fpdata.name = fpdata.name.Left(p);
+                    }
+
                     fpdata.hash = wxStringHash::wxCharStringHash(fpdata.name);
                     files.push_back(fpdata);
                 }
