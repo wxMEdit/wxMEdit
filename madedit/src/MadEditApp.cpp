@@ -40,9 +40,10 @@ wxChar *g_LanguageString[]=
 {
     wxT("System Default"),
     wxT("\u7B80\u4F53\u4E2D\u6587(Chinese Simplified)"),
-    wxT("\u7E41\u9AD4\u4E2D\u6587(Chinese Traditional)"),
+    wxT("\u6B63\u9AD4\u4E2D\u6587(Chinese Traditional)"),
     wxT("English"),
     wxT("Italiano(Italian)"),
+    wxT("\u65E5\u6587(Japanese)"),
 };
 int g_LanguageValue[]=
 {
@@ -51,6 +52,7 @@ int g_LanguageValue[]=
     wxLANGUAGE_CHINESE_TRADITIONAL,
     wxLANGUAGE_ENGLISH_US,
     wxLANGUAGE_ITALIAN,
+    wxLANGUAGE_JAPANESE,
 };
 extern const size_t g_LanguageCount = sizeof(g_LanguageValue)/sizeof(int);
 
