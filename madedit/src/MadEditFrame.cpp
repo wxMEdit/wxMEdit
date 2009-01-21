@@ -2259,7 +2259,7 @@ void MadEditFrame::ResetAcceleratorTable()
     MadEdit::ms_KeyBindings.BuildAccelEntries(true, entries);
     if(entries.size()>0)
     {
-        wxAcceleratorTable accel(int(entries.size()), &(*entries.begin()));
+        wxAcceleratorTable accel(int(entries.size()), &entries[0]);
         this->SetAcceleratorTable(accel);
     }
 }

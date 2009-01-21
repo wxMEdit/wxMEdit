@@ -1225,7 +1225,7 @@ void MadEdit::SetText(const wxString &ws)
 
             vector<ucs4_t> ucs;
             TranslateText(ws.c_str(), size, &ucs, true);
-            UCStoBlock(&(*ucs.begin()), ucs.size(), blk);
+            UCStoBlock(&ucs[0], ucs.size(), blk);
 
             oudata->m_InsSize = blk.m_Size;
             oudata->m_InsData.push_back(blk);
@@ -1246,7 +1246,7 @@ void MadEdit::SetText(const wxString &ws)
 
         vector<ucs4_t> ucs;
         TranslateText(ws.c_str(), size, &ucs, true);
-        UCStoBlock(&(*ucs.begin()), ucs.size(), blk);
+        UCStoBlock(&ucs[0], ucs.size(), blk);
 
         MadInsertUndoData *insud = new MadInsertUndoData;
         insud->m_Pos = 0;
@@ -1555,7 +1555,7 @@ void MadEdit::PasteFromClipboard()
         int lines=GetColumnDataFromClipboard(&ucs);
 
         if(ucs.size())
-            InsertColumnString(&(*ucs.begin()), ucs.size(), lines, false, false);
+            InsertColumnString(&ucs[0], ucs.size(), lines, false, false);
     }
     else if(m_EditMode == emHexMode && m_CaretAtHexArea)
     {
@@ -1564,7 +1564,7 @@ void MadEdit::PasteFromClipboard()
 
         if(cs.size())
         {
-            InsertHexData((wxByte*)&(*cs.begin()), cs.size());
+            InsertHexData((wxByte*)&cs[0], cs.size());
         }
     }
     else //if(m_EditMode == emTextMode || !m_CaretAtHexArea)
@@ -1578,7 +1578,7 @@ void MadEdit::PasteFromClipboard()
             bool oldim = m_InsertMode;
             m_InsertMode = true;
 
-            InsertString(&(*ucs.begin()), size, false, true, false);
+            InsertString(&ucs[0], size, false, true, false);
 
             m_InsertMode = oldim;
         }
@@ -2475,7 +2475,7 @@ MadSearchResult MadEdit::FindHexNext(const wxString &hexstr,
         epos.linepos = rangeTo - epos.linepos;
     }
 
-    if(SR_YES==SearchHex(bpos, epos, &(*hex.begin()), hex.size()))
+    if(SR_YES==SearchHex(bpos, epos, &hex[0], hex.size()))
     {
         SetSelection(bpos.pos, epos.pos);
         return SR_YES;
@@ -2546,7 +2546,7 @@ MadSearchResult MadEdit::FindHexPrevious(const wxString &hexstr,
         }
 
         MadCaretPos bpos1=bpos, epos1=epos;
-        if(SR_YES==SearchHex(bpos1, epos1, &(*hex.begin()), hex.size())) // found
+        if(SR_YES==SearchHex(bpos1, epos1, &hex[0], hex.size())) // found
         {
             MadCaretPos bp, ep;
             do
@@ -2565,7 +2565,7 @@ MadSearchResult MadEdit::FindHexPrevious(const wxString &hexstr,
 
                 epos1=epos;
             }
-            while(SearchHex(bpos1, epos1, &(*hex.begin()), hex.size()));
+            while(SearchHex(bpos1, epos1, &hex[0], hex.size()));
 
             SetSelection(bp.pos, ep.pos, true);
             return SR_YES;
@@ -2693,7 +2693,7 @@ MadReplaceResult MadEdit::ReplaceHex(const wxString &expr, const wxString &fmt,
 
     if(m_Selection) // test the selection is wanted text
     {
-        int state=SearchHex(bpos, epos, &(*hex.begin()), hex.size());
+        int state=SearchHex(bpos, epos, &hex[0], hex.size());
 
         if(state==SR_EXPR_ERROR)
         {
@@ -2725,7 +2725,7 @@ MadReplaceResult MadEdit::ReplaceHex(const wxString &expr, const wxString &fmt,
     }
     else
     {
-        InsertHexData(&(*fmthex.begin()), fmthex.size());
+        InsertHexData(&fmthex[0], fmthex.size());
     }
 
     if(SR_NO==FindHexNext(expr, -1, rangeTo))
@@ -2914,11 +2914,11 @@ int MadEdit::ReplaceHexAll(const wxString &expr, const wxString &fmt,
     endpos=epos;
     int multi=0;
 
-    while(SearchHex(bpos, epos, &(*hex.begin()), hex.size())==SR_YES)
+    while(SearchHex(bpos, epos, &hex[0], hex.size())==SR_YES)
     {
         del_bpos.push_back(bpos.pos);
         del_epos.push_back(epos.pos);
-        ins_data.push_back(&(*fmthex.begin()));
+        ins_data.push_back(&fmthex[0]);
         ins_len.push_back(fmthex.size());
 
         if(bpos.iter!=epos.iter)
@@ -3081,7 +3081,7 @@ int MadEdit::FindHexAll(const wxString &expr, bool bFirstOnly,
     endpos=epos;
     int count=0;
 
-    while(SearchHex(bpos, epos, &(*hex.begin()), hex.size())==SR_YES)
+    while(SearchHex(bpos, epos, &hex[0], hex.size())==SR_YES)
     {
         if(pbegpos) pbegpos->push_back(bpos.pos);
         if(pendpos) pendpos->push_back(epos.pos);

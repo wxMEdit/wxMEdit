@@ -278,7 +278,7 @@ void MadEdit::ConvertNewLineType(MadNewLineType type)
             if(buffervector.size()<size)
             {
                 buffervector.resize(size);
-                buf=&(*buffervector.begin());
+                buf=&buffervector[0];
             }
 
             // add line text
@@ -434,7 +434,7 @@ void MadEdit::IncreaseDecreaseIndent(bool incIndent)
 
     vector<wxByte> buffervector;
     buffervector.resize(2048);
-    wxByte *buf=&(*buffervector.begin());
+    wxByte *buf=&buffervector[0];
 
     vector <ucs4_t> spaces;
     MadUCQueue ucqueue;
@@ -477,7 +477,7 @@ void MadEdit::IncreaseDecreaseIndent(bool incIndent)
                 DecreaseIndentSpaces(spaces);
 
             if(spaces.size()!=0)
-                UCStoBlock(&(*spaces.begin()), spaces.size(), blk);
+                UCStoBlock(&spaces[0], spaces.size(), blk);
         }
 
         size_t size = lit->m_Size - nonspacepos;
@@ -493,7 +493,7 @@ void MadEdit::IncreaseDecreaseIndent(bool incIndent)
             if(buffervector.size()<size)
             {
                 buffervector.resize(size);
-                buf=&(*buffervector.begin());
+                buf=&buffervector[0];
             }
 
             lit->Get(nonspacepos, buf, size);
@@ -602,7 +602,7 @@ void MadEdit::CommentUncomment(bool comment)
 
     vector<wxByte> buffervector;
     buffervector.resize(2048);
-    wxByte *buf=&(*buffervector.begin());
+    wxByte *buf=&buffervector[0];
 
     vector <ucs4_t> spaces;
     MadUCQueue ucqueue;
@@ -667,7 +667,7 @@ void MadEdit::CommentUncomment(bool comment)
         }
 
         if(spaces.size()!=0)
-            UCStoBlock(&(*spaces.begin()), spaces.size(), blk);
+            UCStoBlock(&spaces[0], spaces.size(), blk);
 
         size_t size = lit->m_Size - nonspacepos;
         if(count==0 && !SelEndAtBOL)
@@ -682,7 +682,7 @@ void MadEdit::CommentUncomment(bool comment)
             if(buffervector.size()<size)
             {
                 buffervector.resize(size);
-                buf=&(*buffervector.begin());
+                buf=&buffervector[0];
             }
 
             lit->Get(nonspacepos, buf, size);
@@ -771,11 +771,11 @@ void MadEdit::ToUpperCase()
         if(m_EditMode==emColumnMode)
         {
             int colcount = m_SelectionEnd->rowid - m_SelectionBegin->rowid + 1;
-            InsertColumnString(&(*ucs.begin()), ucs.size(), colcount, false, true);
+            InsertColumnString(&ucs[0], ucs.size(), colcount, false, true);
         }
         else
         {
-            InsertString(&(*ucs.begin()), ucs.size(), false, false, true);
+            InsertString(&ucs[0], ucs.size(), false, false, true);
         }
     }
 }
@@ -810,11 +810,11 @@ void MadEdit::ToLowerCase()
         if(m_EditMode==emColumnMode)
         {
             int colcount = m_SelectionEnd->rowid - m_SelectionBegin->rowid + 1;
-            InsertColumnString(&(*ucs.begin()), ucs.size(), colcount, false, true);
+            InsertColumnString(&ucs[0], ucs.size(), colcount, false, true);
         }
         else
         {
-            InsertString(&(*ucs.begin()), ucs.size(), false, false, true);
+            InsertString(&ucs[0], ucs.size(), false, false, true);
         }
     }
 }
@@ -858,11 +858,11 @@ void MadEdit::InvertCase()
         if(m_EditMode==emColumnMode)
         {
             int colcount = m_SelectionEnd->rowid - m_SelectionBegin->rowid + 1;
-            InsertColumnString(&(*ucs.begin()), ucs.size(), colcount, false, true);
+            InsertColumnString(&ucs[0], ucs.size(), colcount, false, true);
         }
         else
         {
-            InsertString(&(*ucs.begin()), ucs.size(), false, false, true);
+            InsertString(&ucs[0], ucs.size(), false, false, true);
         }
     }
 }
@@ -1226,11 +1226,11 @@ void MadEdit::ToHalfWidth(bool ascii, bool japanese, bool korean, bool other)
         if(m_EditMode==emColumnMode)
         {
             int colcount = m_SelectionEnd->rowid - m_SelectionBegin->rowid + 1;
-            InsertColumnString(&(*ucs.begin()), ucs.size(), colcount, false, true);
+            InsertColumnString(&ucs[0], ucs.size(), colcount, false, true);
         }
         else
         {
-            InsertString(&(*ucs.begin()), ucs.size(), false, false, true);
+            InsertString(&ucs[0], ucs.size(), false, false, true);
         }
     }
 }
@@ -1266,11 +1266,11 @@ void MadEdit::ToFullWidth(bool ascii, bool japanese, bool korean, bool other)
         if(m_EditMode==emColumnMode)
         {
             int colcount = m_SelectionEnd->rowid - m_SelectionBegin->rowid + 1;
-            InsertColumnString(&(*ucs.begin()), ucs.size(), colcount, false, true);
+            InsertColumnString(&ucs[0], ucs.size(), colcount, false, true);
         }
         else
         {
-            InsertString(&(*ucs.begin()), ucs.size(), false, false, true);
+            InsertString(&ucs[0], ucs.size(), false, false, true);
         }
     }
 }
@@ -2046,7 +2046,7 @@ void MadEdit::SortLines(MadSortFlags flags, int beginline, int endline)
                 if(buffervector.size()<size)
                 {
                     buffervector.resize(size);
-                    buf=&(*buffervector.begin());
+                    buf=&buffervector[0];
                 }
                 lit->Get(spos, buf, size);
                 m_Lines->m_MemData->Put(buf, size); // put line text (include newline char)
@@ -2215,7 +2215,7 @@ void MadEdit::ConvertWordWrapToNewLine()
 
     vector<wxByte> newlinedata;
     newlinedata.resize(blk.m_Size);
-    wxByte *buf = &(*newlinedata.begin());
+    wxByte *buf = &newlinedata[0];
     blk.Get(0, buf, blk.m_Size);
 
     vector<wxByte*> ins_data;
@@ -2489,9 +2489,9 @@ void MadEdit::ConvertSpaceToTab()
     if(modified)
     {
         if(GetEditMode()==emColumnMode)
-            InsertColumnString(&(*newtext.begin()), newtext.size(), RowCount, false, true);
+            InsertColumnString(&newtext[0], newtext.size(), RowCount, false, true);
         else
-            InsertString(&(*newtext.begin()), newtext.size(), false, false, true);
+            InsertString(&newtext[0], newtext.size(), false, false, true);
     }
 }
 
@@ -2665,8 +2665,8 @@ void MadEdit::ConvertTabToSpace()
     if(modified)
     {
         if(GetEditMode()==emColumnMode)
-            InsertColumnString(&(*newtext.begin()), newtext.size(), RowCount, false, true);
+            InsertColumnString(&newtext[0], newtext.size(), RowCount, false, true);
         else
-            InsertString(&(*newtext.begin()), newtext.size(), false, false, true);
+            InsertString(&newtext[0], newtext.size(), false, false, true);
     }
 }

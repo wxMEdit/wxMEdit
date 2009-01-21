@@ -116,7 +116,7 @@ size_t MadConvFileName::MB2WC(wchar_t *outputBuf, const char *psz, size_t output
     {
         vector<char> cbuf;
         cbuf.resize(dirlen+1);
-        char *pbuf = (char *) &(*cbuf.begin());
+        char *pbuf = (char *) &cbuf[0];
         memcpy(pbuf, psz, dirlen);
         cbuf[dirlen]=0;
 
@@ -3212,7 +3212,7 @@ bool TruncateFile(const wxString &filename, wxFileOffset size)
         if(buf==NULL)
         {
             buffervector.resize(256*1024);
-            buf=& (*buffervector.begin());
+            buf=&buffervector[0];
             ZeroMemory(buf, 256*1024);
         }
 
@@ -3284,7 +3284,7 @@ void MadLines::WriteToFile(wxFile &file, MadFileData *oldfd, MadFileData *newfd)
         if(m_WriteBuffer == NULL)
         {
             m_WriteBufferVector.resize(BUFFER_SIZE);
-            m_WriteBuffer = & (*m_WriteBufferVector.begin());
+            m_WriteBuffer = &m_WriteBufferVector[0];
         }
 
         MadLineIterator lit = m_LineList.begin();
@@ -3610,7 +3610,7 @@ bool MadLines::SaveToFile(const wxString &filename, const wxString &tempdir)
     if(m_WriteBuffer == NULL)
     {
         m_WriteBufferVector.resize(BUFFER_SIZE);
-        m_WriteBuffer = & (*m_WriteBufferVector.begin());
+        m_WriteBuffer = &m_WriteBufferVector[0];
     }
 
     MadConvFileName_WC2MB_UseLibc uselibc(MadFileNameIsUTF8(filename)<0);

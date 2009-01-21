@@ -94,7 +94,7 @@ public:
         *((size_t*)b)=data.size();
         b+=sizeof(size_t);
 
-        memcpy(b, &(*data.begin()), data.size());
+        memcpy(b, &data[0], data.size());
         return true;
     }
 
@@ -107,7 +107,7 @@ public:
         b+=sizeof(size_t);
 
         data.resize(len);
-        memcpy(&(*data.begin()), b, len);
+        memcpy(&data[0], b, len);
         return true;
     }
 };
@@ -121,7 +121,7 @@ public:
     bool GetColumnData(wxString &str, int &linecount)
     {
         if(data.size()==0) return false;
-        char *buf=&(*data.begin());
+        char *buf=&data[0];
         linecount=*((int*)buf);
         buf+=sizeof(int);
         str=(wxChar*)buf;
@@ -133,7 +133,7 @@ public:
         size_t size=sizeof(int) + (ws.Len()+1)*sizeof(wxChar);
         data.resize(size);
 
-        char *buf=&(*data.begin());
+        char *buf=&data[0];
         *((int*)buf)=linecount;
         buf+=sizeof(int);
         memcpy(buf, ws.c_str(), size-sizeof(int));
@@ -156,14 +156,14 @@ public:
     bool GetHexData(void *buf)
     {
         if(data.size()==0) return false;
-        memcpy(buf, &(*data.begin()), data.size());
+        memcpy(buf, &data[0], data.size());
         return true;
     }
 
     bool SetHexData(size_t len, const void *buf)
     {
         data.resize(len);
-        memcpy(&(*data.begin()), buf, len);
+        memcpy(&data[0], buf, len);
         return true;
     }
 };
@@ -4098,7 +4098,7 @@ void MadEdit::GetHexDataFromClipboard(vector <char> *cs)
             cs->resize(size);
             if(size)
             {
-                hexdata.GetHexData( &(*cs->begin()) );
+                hexdata.GetHexData( &(*cs)[0] );
             }
         }
         wxTheClipboard->Close();
@@ -4113,11 +4113,11 @@ void MadEdit::GetHexDataFromClipboard(vector <char> *cs)
         {
             MadMemData tempmem;
             MadBlock blk(&tempmem, -1, 0);
-            UCStoBlock( &(*ucs.begin()), ucs.size(), blk);
+            UCStoBlock( &ucs[0], ucs.size(), blk);
 
             size_t size=blk.m_Size;
             cs->resize(size);
-            char *p= &(*cs->begin());
+            char *p= &(*cs)[0];
             for(size_t i=0;i<size;i++, p++)
             {
                 *p= char(tempmem.Get(i));
@@ -4177,7 +4177,7 @@ void MadEdit::CopyFileDataToMem(MadBlockIterator begin, MadBlockIterator end)
     if(TempBuffer == NULL)
     {
         TempBufferVector.resize(BUFFER_SIZE);
-        TempBuffer = &( *TempBufferVector.begin() );
+        TempBuffer = &TempBufferVector[0];
     }
 
     do
@@ -4645,7 +4645,7 @@ void MadEdit::InsertString(const ucs4_t *ucs, size_t count, bool bColumnEditing,
                     colstr.push_back(ucs4_t(0x0A)); // newline char
                 }while(--cc > 0);
 
-                InsertColumnString(&(*colstr.begin()), colstr.size(), colcount, true, bSelText);
+                InsertColumnString(&colstr[0], colstr.size(), colcount, true, bSelText);
             }
             else
             {
@@ -6243,7 +6243,7 @@ void MadEdit::OverwriteDataSingle(vector<wxFileOffset> &del_bpos, vector<wxFileO
 
     vector<wxByte> buffer;
     buffer.resize(10240);
-    wxByte *buf=&(*buffer.begin());
+    wxByte *buf=&buffer[0];
     do
     {
 
@@ -6271,7 +6271,7 @@ void MadEdit::OverwriteDataSingle(vector<wxFileOffset> &del_bpos, vector<wxFileO
                     if(len > buffer.size())
                     {
                         buffer.resize(len);
-                        buf=&(*buffer.begin());
+                        buf=&buffer[0];
                     }
 
                     lit->Get(lpos, buf, len);   // put LineData to BlockData
@@ -7175,7 +7175,7 @@ void MadEdit::ProcessCommand(MadEditCommand command)
                             m_SelectionBegin->linepos=spos;
                             
                             spaces.push_back(uc);
-                            InsertString(&(*spaces.begin()), spaces.size(), true, false, false);
+                            InsertString(&spaces[0], spaces.size(), true, false, false);
                             
                             inserted=true;
                         }
@@ -7926,7 +7926,7 @@ void MadEdit::ProcessCommand(MadEditCommand command)
                                 }
                             }
 
-                            InsertString(&(*ucs.begin()), ucs.size(), false, true, false);
+                            InsertString(&ucs[0], ucs.size(), false, true, false);
                         }
                     }
                     break;
@@ -8069,7 +8069,7 @@ void MadEdit::ProcessCommand(MadEditCommand command)
                                         ucs.insert(ucs.begin(), m_CaretPos.extraspaces, 0x20);
 
                                         MadBlock blk(m_Lines->m_MemData, -1, 0);
-                                        UCStoBlock(&(*ucs.begin()), m_CaretPos.extraspaces, blk);
+                                        UCStoBlock(&ucs[0], m_CaretPos.extraspaces, blk);
 
                                         oudata->m_InsSize = blk.m_Size;
                                         oudata->m_InsData.push_back(blk);
@@ -8442,7 +8442,7 @@ void MadEdit::ProcessCommand(MadEditCommand command)
 
                             vector<ucs4_t> ucs;
                             TranslateText(text.c_str(), text.Len(), &ucs, true);
-                            InsertString(&(*ucs.begin()), ucs.size(), false, true, false);
+                            InsertString(&ucs[0], ucs.size(), false, true, false);
                         }
                     }
                     break;
