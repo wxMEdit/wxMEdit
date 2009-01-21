@@ -377,9 +377,10 @@ wxString MadEncoding::EncodingToName(wxFontEncoding enc)
 wxFontEncoding MadEncoding::NameToEncoding(const wxString &name)
 {
     size_t idx;
+    wxString uname(name.Upper());
     for(idx=0;idx<EncodingsTable.size();idx++)
     {
-        if(EncodingsTable[idx].m_Name==name.Upper())
+        if(EncodingsTable[idx].m_Name==uname)
         {
             return EncodingsTable[idx].m_Encoding;
         }
@@ -422,9 +423,10 @@ MadEncoding::MadEncoding(wxFontEncoding enc)
 MadEncoding::MadEncoding(const wxString &name)
 {
     size_t idx;
+    wxString uname(name.Upper());
     for(idx=0;idx<EncodingsTable.size();idx++)
     {
-        if(EncodingsTable[idx].m_Name==name.Upper())
+        if(EncodingsTable[idx].m_Name==uname)
         {
             Create(idx);
             break;
