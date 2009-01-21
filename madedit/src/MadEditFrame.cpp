@@ -321,7 +321,7 @@ public:
             ++idx;
         }
     }
-    wxFileOffset GetPos(const wxString &name)
+    wxFileOffset GetPosEncoding(const wxString &name, wxString &encoding)
     {
 #ifdef __WXMSW__
         wxString name0(name.Upper());
@@ -339,6 +339,7 @@ public:
                 if(it->hash == hash && it->name == name0)
                 {
                     pos = it->pos;
+                    encoding = it->encoding;
                     break;
                 }
             }
@@ -2733,7 +2734,11 @@ void MadEditFrame::OpenFile(const wxString &filename, bool mustExist)
 
     if(!filename.IsEmpty())
     {
-        if(!madedit->LoadFromFile(filename) && mustExist)
+        wxString enc;
+        wxFileOffset pos;
+        pos = g_FileCaretPosManager.GetPosEncoding(filename, enc);
+
+        if(!madedit->LoadFromFile(filename, enc) && mustExist)
         {
             wxLogError(wxString(_("Cannot load this file:")) + wxT("\n\n") + filename);
         }
@@ -2746,7 +2751,7 @@ void MadEditFrame::OpenFile(const wxString &filename, bool mustExist)
             m_Config->Read(wxT("/MadEdit/RestoreCaretPos"), &rcp, true);
             if(rcp)
             {
-                madedit->SetCaretPosition(g_FileCaretPosManager.GetPos(filename));
+                madedit->SetCaretPosition(pos);
             }
         }
     }

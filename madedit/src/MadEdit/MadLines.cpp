@@ -3039,7 +3039,13 @@ bool MadLines::LoadFromFile(const wxString &filename, const wxString &encoding)
     }
     else
     {
-        if(IsTextUTF16LE(buf, s))
+        if(!encoding.IsEmpty())
+        {
+            m_MadEdit->SetEncoding(encoding);
+            Reformat(iter, iter);
+            ok=true;
+        }
+        else if(IsTextUTF16LE(buf, s))
         {
             m_MadEdit->SetEncoding(wxT("utf-16le"));
             Reformat(iter, iter);
@@ -3073,7 +3079,11 @@ bool MadLines::LoadFromFile(const wxString &filename, const wxString &encoding)
 
     if(!ok)
     {
-        if(!m_Syntax->m_Encoding.IsEmpty())
+        if(!encoding.IsEmpty())
+        {
+            m_MadEdit->SetEncoding(encoding);
+        }
+        else if(!m_Syntax->m_Encoding.IsEmpty())
         {
             m_MadEdit->SetEncoding(m_Syntax->m_Encoding);
         }
