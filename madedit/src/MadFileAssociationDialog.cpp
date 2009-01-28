@@ -122,12 +122,19 @@ bool DetectType(wxString type)
 void AddType(wxString type)
 {
     wxString value;
+    wxString madedit_type = wxString(wxT("MadEdit")) + type;
+
     wxRegKey *pRegKey = new wxRegKey(wxString(wxT("HKEY_CLASSES_ROOT\\")) + type);
     if(!pRegKey->Exists()) pRegKey->Create();
     else pRegKey->QueryValue(wxEmptyString, value);
-    if(value.IsEmpty())
+    if(value != madedit_type)
     {
-        value = wxString(wxT("MadEdit")) + type;
+        if(!value.IsEmpty()) //save old default value
+        {
+            pRegKey->SetValue(wxT("Old_Default"), value);
+        }
+
+        value = madedit_type;
         pRegKey->SetValue(wxEmptyString, value);
     }
     delete pRegKey;
@@ -154,12 +161,21 @@ void RemoveType(wxString type)
 {
     if(type.IsEmpty()) return;
 
-    wxString value;
+    wxString value, old_default;
     wxString madedit_type = wxString(wxT("MadEdit")) + type;
 
     wxRegKey *pRegKey = new wxRegKey(wxString(wxT("HKEY_CLASSES_ROOT\\")) + type);
-    if(pRegKey->Exists()) pRegKey->QueryValue(wxEmptyString, value);
-    if(!value.IsEmpty())
+    if(pRegKey->Exists())
+    {
+        pRegKey->QueryValue(wxT("Old_Default"), old_default);
+        pRegKey->QueryValue(wxEmptyString, value);
+    }
+    if(!old_default.IsEmpty())
+    {
+        pRegKey->DeleteValue(wxT("Old_Default"));
+        pRegKey->SetValue(wxEmptyString, old_default);
+    }
+    else if(!value.IsEmpty())
     {
         if(value == madedit_type)
         {
@@ -168,25 +184,9 @@ void RemoveType(wxString type)
     }
     delete pRegKey;
 
-    if(value.IsEmpty()) return;
-
     if(value == madedit_type)
     {
         pRegKey = new wxRegKey(wxString(wxT("HKEY_CLASSES_ROOT\\")) + value);
-        if(pRegKey->Exists()) pRegKey->DeleteSelf();
-        delete pRegKey;
-    }
-    else
-    {
-        pRegKey = new wxRegKey(wxString(wxT("HKEY_CLASSES_ROOT\\"))
-                               + value
-                               + wxString(wxT("\\shell\\open\\command")));
-        if(pRegKey->Exists()) pRegKey->DeleteSelf();
-        delete pRegKey;
-
-        pRegKey = new wxRegKey(wxString(wxT("HKEY_CLASSES_ROOT\\"))
-                               + value
-                               + wxString(wxT("\\DefaultIcon")));
         if(pRegKey->Exists()) pRegKey->DeleteSelf();
         delete pRegKey;
     }
