@@ -132,6 +132,13 @@ void AddType(wxString type)
         if(!value.IsEmpty()) //save old default value
         {
             pRegKey->SetValue(wxT("Old_Default"), value);
+
+            //if(type == wxT(".txt"))
+            //{
+            //    wxRegKey *pRegKey1 = new wxRegKey(wxString(wxT("HKEY_CLASSES_ROOT\\")) + type);
+            //    pRegKey->QueryValue(wxEmptyString, txt_name);
+            //    delete pRegKey1;
+            //}
         }
 
         value = madedit_type;
@@ -141,6 +148,15 @@ void AddType(wxString type)
 
     wxString name(wxT("HKEY_CLASSES_ROOT\\"));
     name += value;
+
+    if(type == wxT(".txt"))
+    {
+        pRegKey = new wxRegKey(name);
+        pRegKey->Create();
+        pRegKey->SetValue(wxEmptyString, wxT("Text file"));
+        delete pRegKey;
+    }
+
     name += wxT("\\shell\\open\\command");
     pRegKey = new wxRegKey(name);
     pRegKey->Create();
