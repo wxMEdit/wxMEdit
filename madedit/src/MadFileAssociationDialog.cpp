@@ -151,9 +151,16 @@ void AddType(wxString type)
 
     if(type == wxT(".txt"))
     {
+        wxString txt_name;
+        pRegKey = new wxRegKey(wxString(wxT("HKEY_CLASSES_ROOT\\txtfile")));
+        if(pRegKey->Exists()) pRegKey->QueryValue(wxEmptyString, txt_name);
+        delete pRegKey;
+
+        if(txt_name.IsEmpty()) txt_name = wxT("Text file");
+
         pRegKey = new wxRegKey(name);
         pRegKey->Create();
-        pRegKey->SetValue(wxEmptyString, wxT("Text file"));
+        pRegKey->SetValue(wxEmptyString, txt_name);
         delete pRegKey;
     }
 
