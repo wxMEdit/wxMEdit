@@ -95,6 +95,8 @@ const int g_PredefinedTypes_Count = sizeof(g_PredefinedTypes) / sizeof(g_Predefi
 
 bool DetectType(wxString type)
 {
+    wxLogNull nolog; // disable error log
+
     wxString value;
     wxRegKey *pRegKey = new wxRegKey(wxString(wxT("HKEY_CLASSES_ROOT\\")) + type);
     if(pRegKey->Exists()) pRegKey->QueryValue(wxEmptyString, value);
