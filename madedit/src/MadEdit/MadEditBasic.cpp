@@ -233,6 +233,8 @@ void MadEdit::SetRecordCaretMovements(bool value)
 
 void MadEdit::SetTextFont(const wxString &name, int size, bool forceReset)
 {
+    if(size < 1) size = 1;
+
     if(forceReset || size!=m_TextFont->GetPointSize() || name!=m_TextFont->GetFaceName())
     {
         m_TextFont=wxTheFontList->FindOrCreateFont(size, //font.GetFamily(), font.GetStyle(), font.GetWeight(), font.GetUnderlined(), name);
@@ -449,6 +451,8 @@ void MadEdit::SetTextFont(const wxString &name, int size, bool forceReset)
 
 void MadEdit::SetHexFont(const wxString &name, int size, bool forceReset)
 {
+    if(size < 1) size = 1;
+
     if(forceReset || size!=m_HexFont->GetPointSize() || name!=m_HexFont->GetFaceName())
     {
         m_HexFont=wxTheFontList->FindOrCreateFont(size, //font.GetFamily(), font.GetStyle(), font.GetWeight(), font.GetUnderlined(), name);

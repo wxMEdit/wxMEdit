@@ -9628,15 +9628,29 @@ void MadEdit::OnMouseWheel(wxMouseEvent &evt)
     if(m_SingleLineMode)
         return;
 
-    if(evt.m_wheelRotation<0)
-        m_TopRow+=3;
+    if(evt.ControlDown()) // inc/dec font size
+    {
+        wxString name;
+        int size;
+        GetFont(name, size);
+
+        if(evt.m_wheelRotation < 0)
+            SetFont(name, size - 1);
+        else
+            SetFont(name, size + 1);
+    }
     else
-        m_TopRow-=3;
+    {
+        if(evt.m_wheelRotation < 0)
+            m_TopRow+=3;
+        else
+            m_TopRow-=3;
 
-    UpdateScrollBarPos();
+        UpdateScrollBarPos();
 
-    m_RepaintAll=true;
-    Refresh(false);
+        m_RepaintAll=true;
+        Refresh(false);
+    }
     //evt.Skip();
 }
 
