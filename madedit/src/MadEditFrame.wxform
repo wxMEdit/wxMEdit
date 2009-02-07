@@ -4,22 +4,16 @@ object frmNewForm: TfrmNewForm
   AutoScroll = False
   BorderIcons = [biSystemMenu, biMinimize]
   Caption = 'MadEdit'
-  ClientHeight = 370
-  ClientWidth = 392
+  ClientHeight = 455
+  ClientWidth = 482
   Color = clAppWorkSpace
-  Font.Charset = DEFAULT_CHARSET
-  Font.Color = clWindowText
-  Font.Height = -11
-  Font.Name = 'MS Sans Serif'
-  Font.Style = []
   OldCreateOrder = True
-  PopupMenu = MainForm.DesignerPopup
+  PopupMenu = DesignerPopup.Owner
   Visible = True
-  OnCloseQuery = FormCloseQuery
+  OnClick = FormClick
   OnCreate = FormCreate
   OnDestroy = FormDestroy
-  OnKeyDown = FormKeyDown
-  OnResize = NewFormResize
+  OnResize = FormResize
   EVT_KEY_DOWN = 'MadEditFrameKeyDown'
   EVT_CLOSE = 'MadEditFrameClose'
   Wx_ICON.Data = {07544269746D617000000000}
@@ -31,16 +25,17 @@ object frmNewForm: TfrmNewForm
   Wx_Hidden = False
   Wx_SizeToContents = True
   Wx_GeneralStyle = []
-  Wx_DialogStyle = [wxCAPTION, wxRESIZE_BORDER, wxSYSTEM_MENU, wxMINIMIZE_BOX, wxMAXIMIZE_BOX, wxCLOSE_BOX]
+  Wx_DialogStyle = [wxCAPTION, wxRESIZE_BORDER, wxSYSTEM_MENU, wxDIALOG_NO_PARENT, wxMINIMIZE_BOX, wxMAXIMIZE_BOX, wxCLOSE_BOX]
   Wx_DesignerType = dtWxFrame
   Wx_Border = 0
   Wx_BorderAlignment = []
+  isAuimanagerAvailable = False
   PixelsPerInch = 96
-  TextHeight = 13
+  TextHeight = 16
   object WxStatusBar1: TWxStatusBar
     Left = 0
-    Top = 351
-    Width = 392
+    Top = 436
+    Width = 482
     Height = 19
     Panels = <>
     SimplePanel = False
@@ -57,7 +52,7 @@ object frmNewForm: TfrmNewForm
   object WxToolBar1: TWxToolBar
     Left = 0
     Top = 0
-    Width = 392
+    Width = 482
     Height = 29
     Caption = 'WxToolBar1'
     Color = clBtnFace
@@ -79,8 +74,8 @@ object frmNewForm: TfrmNewForm
     Wx_Border = 0
   end
   object WxMenuBar1: TWxMenuBar
-    Left = 3
-    Top = 3
+    Left = 4
+    Top = 4
     Width = 28
     Height = 27
     TabOrder = 0
@@ -168,7 +163,5 @@ object frmNewForm: TfrmNewForm
     Wx_MenuItems.Wx_Checked = False
     Wx_MenuItems.Wx_FileHistory = False
     Wx_HasHistory = False
-  end
-  object TMainMenu
   end
 end

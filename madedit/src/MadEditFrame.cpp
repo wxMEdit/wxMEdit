@@ -1104,9 +1104,9 @@ BEGIN_EVENT_TABLE(MadEditFrame,wxFrame)
 	// tools
 	EVT_MENU(menuOptions, MadEditFrame::OnToolsOptions)
 	EVT_MENU(menuHighlighting, MadEditFrame::OnToolsHighlighting)
-#ifdef __WXMSW__
+	#ifdef __WXMSW__
 	EVT_MENU(menuFileAssociation, MadEditFrame::OnToolsFileAssociation)
-#endif
+	#endif
 	EVT_MENU(menuToggleBOM, MadEditFrame::OnToolsToggleBOM)
 	EVT_MENU(menuConvertToDOS, MadEditFrame::OnToolsConvertToDOS)
 	EVT_MENU(menuConvertToMAC, MadEditFrame::OnToolsConvertToMAC)
@@ -1133,7 +1133,7 @@ BEGIN_EVENT_TABLE(MadEditFrame,wxFrame)
 	// help
 	EVT_MENU(menuAbout, MadEditFrame::OnHelpAbout)
 	////Manual Code End
-
+	
 	EVT_CLOSE(MadEditFrame::MadEditFrameClose)
 	EVT_KEY_DOWN(MadEditFrame::MadEditFrameKeyDown)
 END_EVENT_TABLE()
@@ -1646,7 +1646,8 @@ void MadEditFrame::CreateGUIControls(void)
 
 	WxStatusBar1 = new wxStatusBar(this, ID_WXSTATUSBAR1);
 
-	WxToolBar1 = new wxToolBar(this, ID_WXTOOLBAR1, wxPoint(0,0), wxSize(392,29));
+	WxToolBar1 = new wxToolBar(this, ID_WXTOOLBAR1, wxPoint(0, 0), wxSize(482, 29));
+	WxToolBar1->SetFont(wxFont(12, wxSWISS, wxNORMAL, wxNORMAL, false));
 
 	WxMenuBar1 = new wxMenuBar();
 
@@ -1655,9 +1656,9 @@ void MadEditFrame::CreateGUIControls(void)
 	SetStatusBar(WxStatusBar1);
 	SetTitle(_("MadEdit"));
 	SetIcon(wxNullIcon);
-	SetSize(8,8,400,400);
+	SetSize(8,8,490,487);
 	Center();
-
+	
     ////GUI Items Creation End
 #endif
 
