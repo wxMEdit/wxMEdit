@@ -39,7 +39,7 @@
 
 ////Dialog Style Start
 #undef MadConvEncDialog_STYLE
-#define MadConvEncDialog_STYLE wxCAPTION | wxRESIZE_BORDER | wxSYSTEM_MENU | wxSTAY_ON_TOP | wxDIALOG_NO_PARENT | wxCLOSE_BOX
+#define MadConvEncDialog_STYLE wxCAPTION | wxRESIZE_BORDER | wxSYSTEM_MENU | wxDIALOG_NO_PARENT | wxCLOSE_BOX
 ////Dialog Style End
 
 class MadConvEncDialog : public wxDialog
