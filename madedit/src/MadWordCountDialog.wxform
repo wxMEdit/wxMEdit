@@ -13,12 +13,12 @@ object frmNewForm: TfrmNewForm
   Font.Name = 'MS Sans Serif'
   Font.Style = []
   OldCreateOrder = True
-  PopupMenu = MainForm.DesignerPopup
+  PopupMenu = DesignerPopup.Owner
   Visible = True
-  OnCloseQuery = FormCloseQuery
+  OnClick = FormClick
   OnCreate = FormCreate
   OnDestroy = FormDestroy
-  OnResize = NewFormResize
+  OnResize = FormResize
   EVT_CLOSE = 'MadWordCountDialogClose'
   Wx_ICON.Data = {07544269746D617000000000}
   Wx_Name = 'MadWordCountDialog'
@@ -32,6 +32,7 @@ object frmNewForm: TfrmNewForm
   Wx_DialogStyle = [wxCAPTION, wxRESIZE_BORDER, wxSYSTEM_MENU, wxDIALOG_NO_PARENT, wxMAXIMIZE_BOX, wxCLOSE_BOX]
   Wx_Border = 0
   Wx_BorderAlignment = []
+  isAuimanagerAvailable = False
   PixelsPerInch = 96
   TextHeight = 13
   object WxBoxSizer1: TWxBoxSizer
@@ -335,8 +336,8 @@ object frmNewForm: TfrmNewForm
       Wx_StretchFactor = 1
     end
     object WxButton1: TWxButton
-      Left = 218
-      Top = 376
+      Left = 191
+      Top = 373
       Width = 75
       Height = 30
       Caption = '&Close'
@@ -354,8 +355,6 @@ object frmNewForm: TfrmNewForm
       Wx_Hidden = False
       Wx_IDName = 'wxID_CANCEL'
       Wx_IDValue = 1020
-      Wx_Height = 30
-      Wx_Width = 75
     end
   end
 end

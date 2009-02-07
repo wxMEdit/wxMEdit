@@ -60,6 +60,9 @@ static void ResizeItem(wxBoxSizer* sizer, wxWindow *item, int ax, int ay)
 
 void MadWordCountDialog::CreateGUIControls(void)
 {
+    //do not set FontName, it is not exist on all platforms
+    #define wxFont(p0,p1,p2,p3,p4,p5) wxFont(wxDEFAULT,wxDEFAULT,p2,p3,p4)
+
     //Do not add custom code here
 	//wxDev-C++ designer will remove them.
 	//Add the custom code before or after the blocks
@@ -72,55 +75,71 @@ void MadWordCountDialog::CreateGUIControls(void)
 	WxFlexGridSizer1 = new wxFlexGridSizer(0, 2, 0, 150);
 	WxBoxSizer1->Add(WxFlexGridSizer1, 0, wxALIGN_CENTER | wxALL, 4);
 
-	WxStaticText1 = new wxStaticText(this, ID_WXSTATICTEXT1, _("Words"), wxPoint(47,5), wxDefaultSize, 0, _("WxStaticText1"));
+	WxStaticText1 = new wxStaticText(this, ID_WXSTATICTEXT1, _("Words"), wxPoint(47, 5), wxDefaultSize, 0, _("WxStaticText1"));
+	WxStaticText1->SetFont(wxFont(8, wxSWISS, wxNORMAL, wxNORMAL, false, _("MS Sans Serif")));
 	WxFlexGridSizer1->Add(WxStaticText1,0,wxALIGN_LEFT | wxALL,5);
 
-	WxStaticTextWordCount = new wxStaticText(this, ID_WXSTATICTEXTWORDCOUNT, _("999999"), wxPoint(285,5), wxDefaultSize, 0, _("WxStaticTextWordCount"));
+	WxStaticTextWordCount = new wxStaticText(this, ID_WXSTATICTEXTWORDCOUNT, _("999999"), wxPoint(285, 5), wxDefaultSize, 0, _("WxStaticTextWordCount"));
+	WxStaticTextWordCount->SetFont(wxFont(8, wxSWISS, wxNORMAL, wxNORMAL, false, _("MS Sans Serif")));
 	WxFlexGridSizer1->Add(WxStaticTextWordCount,0,wxALIGN_RIGHT | wxALL,5);
 
-	WxStaticText2 = new wxStaticText(this, ID_WXSTATICTEXT2, _("Characters (no spaces)"), wxPoint(8,32), wxDefaultSize, 0, _("WxStaticText2"));
+	WxStaticText2 = new wxStaticText(this, ID_WXSTATICTEXT2, _("Characters (no spaces)"), wxPoint(8, 32), wxDefaultSize, 0, _("WxStaticText2"));
+	WxStaticText2->SetFont(wxFont(8, wxSWISS, wxNORMAL, wxNORMAL, false, _("MS Sans Serif")));
 	WxFlexGridSizer1->Add(WxStaticText2,0,wxALIGN_LEFT | wxALL,5);
 
-	WxStaticTextCharCount = new wxStaticText(this, ID_WXSTATICTEXTCHARCOUNT, _("999999"), wxPoint(285,32), wxDefaultSize, 0, _("WxStaticTextCharCount"));
+	WxStaticTextCharCount = new wxStaticText(this, ID_WXSTATICTEXTCHARCOUNT, _("999999"), wxPoint(285, 32), wxDefaultSize, 0, _("WxStaticTextCharCount"));
+	WxStaticTextCharCount->SetFont(wxFont(8, wxSWISS, wxNORMAL, wxNORMAL, false, _("MS Sans Serif")));
 	WxFlexGridSizer1->Add(WxStaticTextCharCount,0,wxALIGN_RIGHT | wxALL,5);
 
-	WxStaticText3 = new wxStaticText(this, ID_WXSTATICTEXT3, _("Characters (with spaces)"), wxPoint(5,59), wxDefaultSize, 0, _("WxStaticText3"));
+	WxStaticText3 = new wxStaticText(this, ID_WXSTATICTEXT3, _("Characters (with spaces)"), wxPoint(5, 59), wxDefaultSize, 0, _("WxStaticText3"));
+	WxStaticText3->SetFont(wxFont(8, wxSWISS, wxNORMAL, wxNORMAL, false, _("MS Sans Serif")));
 	WxFlexGridSizer1->Add(WxStaticText3,0,wxALIGN_LEFT | wxALL,5);
 
-	WxStaticTextSpaceCount = new wxStaticText(this, ID_WXSTATICTEXTSPACECOUNT, _("999999"), wxPoint(285,59), wxDefaultSize, 0, _("WxStaticTextSpaceCount"));
+	WxStaticTextSpaceCount = new wxStaticText(this, ID_WXSTATICTEXTSPACECOUNT, _("999999"), wxPoint(285, 59), wxDefaultSize, 0, _("WxStaticTextSpaceCount"));
+	WxStaticTextSpaceCount->SetFont(wxFont(8, wxSWISS, wxNORMAL, wxNORMAL, false, _("MS Sans Serif")));
 	WxFlexGridSizer1->Add(WxStaticTextSpaceCount,0,wxALIGN_RIGHT | wxALL,5);
 
-	WxStaticText4 = new wxStaticText(this, ID_WXSTATICTEXT4, _("Halfwidth Words"), wxPoint(24,86), wxDefaultSize, 0, _("WxStaticText4"));
+	WxStaticText4 = new wxStaticText(this, ID_WXSTATICTEXT4, _("Halfwidth Words"), wxPoint(24, 86), wxDefaultSize, 0, _("WxStaticText4"));
+	WxStaticText4->SetFont(wxFont(8, wxSWISS, wxNORMAL, wxNORMAL, false, _("MS Sans Serif")));
 	WxFlexGridSizer1->Add(WxStaticText4,0,wxALIGN_LEFT | wxALL,5);
 
-	WxStaticTextHalfwidthCount = new wxStaticText(this, ID_WXSTATICTEXTHALFWIDTHCOUNT, _("999999"), wxPoint(285,86), wxDefaultSize, 0, _("WxStaticTextHalfwidthCount"));
+	WxStaticTextHalfwidthCount = new wxStaticText(this, ID_WXSTATICTEXTHALFWIDTHCOUNT, _("999999"), wxPoint(285, 86), wxDefaultSize, 0, _("WxStaticTextHalfwidthCount"));
+	WxStaticTextHalfwidthCount->SetFont(wxFont(8, wxSWISS, wxNORMAL, wxNORMAL, false, _("MS Sans Serif")));
 	WxFlexGridSizer1->Add(WxStaticTextHalfwidthCount,0,wxALIGN_RIGHT | wxALL,5);
 
-	WxStaticText5 = new wxStaticText(this, ID_WXSTATICTEXT5, _("Fullwidth Words"), wxPoint(25,113), wxDefaultSize, 0, _("WxStaticText5"));
+	WxStaticText5 = new wxStaticText(this, ID_WXSTATICTEXT5, _("Fullwidth Words"), wxPoint(25, 113), wxDefaultSize, 0, _("WxStaticText5"));
+	WxStaticText5->SetFont(wxFont(8, wxSWISS, wxNORMAL, wxNORMAL, false, _("MS Sans Serif")));
 	WxFlexGridSizer1->Add(WxStaticText5,0,wxALIGN_LEFT | wxALL,5);
 
-	WxStaticTextFullwidthCount = new wxStaticText(this, ID_WXSTATICTEXTFULLWIDTHCOUNT, _("999999"), wxPoint(285,113), wxDefaultSize, 0, _("WxStaticTextFullwidthCount"));
+	WxStaticTextFullwidthCount = new wxStaticText(this, ID_WXSTATICTEXTFULLWIDTHCOUNT, _("999999"), wxPoint(285, 113), wxDefaultSize, 0, _("WxStaticTextFullwidthCount"));
+	WxStaticTextFullwidthCount->SetFont(wxFont(8, wxSWISS, wxNORMAL, wxNORMAL, false, _("MS Sans Serif")));
 	WxFlexGridSizer1->Add(WxStaticTextFullwidthCount,0,wxALIGN_RIGHT | wxALL,5);
 
-	WxStaticText7 = new wxStaticText(this, ID_WXSTATICTEXT7, _("Lines"), wxPoint(50,140), wxDefaultSize, 0, _("WxStaticText7"));
+	WxStaticText7 = new wxStaticText(this, ID_WXSTATICTEXT7, _("Lines"), wxPoint(50, 140), wxDefaultSize, 0, _("WxStaticText7"));
+	WxStaticText7->SetFont(wxFont(8, wxSWISS, wxNORMAL, wxNORMAL, false, _("MS Sans Serif")));
 	WxFlexGridSizer1->Add(WxStaticText7,0,wxALIGN_LEFT | wxALL,5);
 
-	WxStaticTextLineCount = new wxStaticText(this, ID_WXSTATICTEXTLINECOUNT, _("999999"), wxPoint(285,140), wxDefaultSize, 0, _("WxStaticTextLineCount"));
+	WxStaticTextLineCount = new wxStaticText(this, ID_WXSTATICTEXTLINECOUNT, _("999999"), wxPoint(285, 140), wxDefaultSize, 0, _("WxStaticTextLineCount"));
+	WxStaticTextLineCount->SetFont(wxFont(8, wxSWISS, wxNORMAL, wxNORMAL, false, _("MS Sans Serif")));
 	WxFlexGridSizer1->Add(WxStaticTextLineCount,0,wxALIGN_RIGHT | wxALL,5);
 
-	WxStaticLine1 = new wxStaticLine(this, ID_WXSTATICLINE1, wxPoint(149,172), wxSize(150,-1), wxLI_HORIZONTAL);
+	WxStaticLine1 = new wxStaticLine(this, ID_WXSTATICLINE1, wxPoint(149, 172), wxSize(150, -1), wxLI_HORIZONTAL);
+	WxStaticLine1->SetFont(wxFont(8, wxSWISS, wxNORMAL, wxNORMAL, false, _("MS Sans Serif")));
 	WxBoxSizer1->Add(WxStaticLine1,0,wxEXPAND | wxALL,2);
 
-	WxStaticText6 = new wxStaticText(this, ID_WXSTATICTEXT6, _("Detail Information of Characters:"), wxPoint(146,183), wxDefaultSize, 0, _("WxStaticText6"));
+	WxStaticText6 = new wxStaticText(this, ID_WXSTATICTEXT6, _("Detail Information of Characters:"), wxPoint(146, 183), wxDefaultSize, 0, _("WxStaticText6"));
+	WxStaticText6->SetFont(wxFont(8, wxSWISS, wxNORMAL, wxNORMAL, false, _("MS Sans Serif")));
 	WxBoxSizer1->Add(WxStaticText6,0,wxALIGN_CENTER | wxALL,2);
 
-	WxMemo1 = new wxTextCtrl(this, ID_WXMEMO1, _(""), wxPoint(4,206), wxSize(440,160), wxTE_DONTWRAP | wxTE_MULTILINE, wxDefaultValidator, _("WxMemo1"));
+	WxMemo1 = new wxTextCtrl(this, ID_WXMEMO1, _(""), wxPoint(4, 206), wxSize(440, 160), wxTE_DONTWRAP | wxTE_MULTILINE, wxDefaultValidator, _("WxMemo1"));
 	WxMemo1->SetMaxLength(0);
 	WxMemo1->SetFocus();
 	WxMemo1->SetInsertionPointEnd();
+	WxMemo1->SetFont(wxFont(8, wxSWISS, wxNORMAL, wxNORMAL, false, _("MS Sans Serif")));
 	WxBoxSizer1->Add(WxMemo1,1,wxALIGN_CENTER | wxEXPAND | wxALL,4);
 
-	WxButton1 = new wxButton(this, wxID_CANCEL, _("&Close"), wxPoint(218,376), wxSize(75,30), 0, wxDefaultValidator, _("WxButton1"));
+	WxButton1 = new wxButton(this, wxID_CANCEL, _("&Close"), wxPoint(191, 373), wxSize(75, 30), 0, wxDefaultValidator, _("WxButton1"));
+	WxButton1->SetFont(wxFont(8, wxSWISS, wxNORMAL, wxNORMAL, false, _("MS Sans Serif")));
 	WxBoxSizer1->Add(WxButton1,0,wxALIGN_CENTER | wxALL,5);
 
 	SetTitle(_("Word Count"));
@@ -132,6 +151,9 @@ void MadWordCountDialog::CreateGUIControls(void)
 	Center();
 	
 	////GUI Items Creation End
+
+    //restore wxFont
+    #undef wxFont
 
     extern MadEdit *g_ActiveMadEdit;
     int words, chars, spaces, lines, halfwidths, fullwidths;
