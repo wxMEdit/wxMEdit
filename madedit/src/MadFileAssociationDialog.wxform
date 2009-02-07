@@ -13,9 +13,9 @@ object frmNewForm: TfrmNewForm
   Font.Name = 'MS Sans Serif'
   Font.Style = []
   OldCreateOrder = True
-  PopupMenu = MainForm.DesignerPopup
+  PopupMenu = DesignerPopup.Owner
   Visible = True
-  OnCloseQuery = FormCloseQuery
+  OnClick = FormClick
   OnCreate = FormCreate
   OnDestroy = FormDestroy
   OnResize = FormResize
@@ -29,9 +29,10 @@ object frmNewForm: TfrmNewForm
   Wx_Hidden = False
   Wx_SizeToContents = True
   Wx_GeneralStyle = []
-  Wx_DialogStyle = [wxCAPTION, wxRESIZE_BORDER, wxSYSTEM_MENU, wxSTAY_ON_TOP, wxDIALOG_NO_PARENT, wxMAXIMIZE_BOX, wxCLOSE_BOX]
+  Wx_DialogStyle = [wxCAPTION, wxRESIZE_BORDER, wxSYSTEM_MENU, wxDIALOG_NO_PARENT, wxMAXIMIZE_BOX, wxCLOSE_BOX]
   Wx_Border = 0
   Wx_BorderAlignment = []
+  isAuimanagerAvailable = False
   PixelsPerInch = 96
   TextHeight = 13
   object WxBoxSizer1: TWxBoxSizer
@@ -148,8 +149,6 @@ object frmNewForm: TfrmNewForm
             Wx_Hidden = False
             Wx_IDName = 'ID_WXBUTTONADD'
             Wx_IDValue = 1016
-            Wx_Height = 30
-            Wx_Width = 100
           end
           object WxButtonRemove: TWxButton
             Left = 5
@@ -172,8 +171,6 @@ object frmNewForm: TfrmNewForm
             Wx_Hidden = False
             Wx_IDName = 'ID_WXBUTTONREMOVE'
             Wx_IDValue = 1017
-            Wx_Height = 30
-            Wx_Width = 100
           end
         end
         object WxBoxSizer8: TWxBoxSizer
@@ -238,7 +235,7 @@ object frmNewForm: TfrmNewForm
         Wx_Alignment = [wxALIGN_LEFT]
         object WxEditCustomType: TWxEdit
           Left = 5
-          Top = 7
+          Top = 5
           Width = 121
           Height = 30
           BevelInner = bvNone
@@ -279,8 +276,6 @@ object frmNewForm: TfrmNewForm
           Wx_Hidden = False
           Wx_IDName = 'ID_WXBUTTONADDCUSTOM'
           Wx_IDValue = 1020
-          Wx_Height = 30
-          Wx_Width = 175
           Wx_Alignment = [wxALIGN_LEFT]
         end
       end
@@ -296,7 +291,7 @@ object frmNewForm: TfrmNewForm
       Wx_IDName = 'ID_WXBOXSIZER3'
       Wx_IDValue = 1003
       object WxButtonOK: TWxButton
-        Left = 5
+        Left = 14
         Top = 5
         Width = 85
         Height = 30
@@ -316,8 +311,6 @@ object frmNewForm: TfrmNewForm
         Wx_Hidden = False
         Wx_IDName = 'ID_WXBUTTONOK'
         Wx_IDValue = 1005
-        Wx_Height = 30
-        Wx_Width = 85
       end
       object WxButtonCancel: TWxButton
         Left = 100
@@ -339,8 +332,6 @@ object frmNewForm: TfrmNewForm
         Wx_Hidden = False
         Wx_IDName = 'wxID_CANCEL'
         Wx_IDValue = 1006
-        Wx_Height = 30
-        Wx_Width = 90
       end
     end
   end

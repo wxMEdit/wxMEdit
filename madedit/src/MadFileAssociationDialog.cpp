@@ -326,6 +326,9 @@ static void ResizeItem(wxBoxSizer* sizer, wxWindow *item, int ax, int ay)
 
 void MadFileAssociationDialog::CreateGUIControls()
 {
+    //do not set FontName, it is not exist on all platforms
+    #define wxFont(p0,p1,p2,p3,p4,p5) wxFont(wxDEFAULT,wxDEFAULT,p2,p3,p4)
+
 	//Do not add custom code between
 	//GUI Items Creation Start and GUI Items Creation End.
 	//wxDev-C++ designer will remove them.
@@ -345,48 +348,58 @@ void MadFileAssociationDialog::CreateGUIControls()
 	WxBoxSizer6 = new wxBoxSizer(wxVERTICAL);
 	WxBoxSizer4->Add(WxBoxSizer6, 0, wxALIGN_CENTER | wxALL, 5);
 
-	WxStaticText1 = new wxStaticText(this, ID_WXSTATICTEXT1, _("Associated File Types:"), wxPoint(10,5), wxDefaultSize, 0, _("WxStaticText1"));
+	WxStaticText1 = new wxStaticText(this, ID_WXSTATICTEXT1, _("Associated File Types:"), wxPoint(10, 5), wxDefaultSize, 0, _("WxStaticText1"));
+	WxStaticText1->SetFont(wxFont(8, wxSWISS, wxNORMAL, wxNORMAL, false, _("MS Sans Serif")));
 	WxBoxSizer6->Add(WxStaticText1,0,wxALIGN_CENTER | wxALL,5);
 
 	wxArrayString arrayStringFor_WxListBoxAssociated;
-	WxListBoxAssociated = new wxListBox(this, ID_WXLISTBOXASSOCIATED, wxPoint(5,32), wxSize(121,200), arrayStringFor_WxListBoxAssociated, wxLB_EXTENDED);
+	WxListBoxAssociated = new wxListBox(this, ID_WXLISTBOXASSOCIATED, wxPoint(5, 32), wxSize(121, 200), arrayStringFor_WxListBoxAssociated, wxLB_EXTENDED);
+	WxListBoxAssociated->SetFont(wxFont(8, wxSWISS, wxNORMAL, wxNORMAL, false, _("MS Sans Serif")));
 	WxBoxSizer6->Add(WxListBoxAssociated,0,wxALIGN_CENTER | wxALL,5);
 
 	WxBoxSizer7 = new wxBoxSizer(wxVERTICAL);
 	WxBoxSizer4->Add(WxBoxSizer7, 0, wxALIGN_CENTER | wxALL, 5);
 
-	WxButtonAdd = new wxButton(this, ID_WXBUTTONADD, _("<- Add"), wxPoint(5,5), wxSize(100,30), 0, wxDefaultValidator, _("WxButtonAdd"));
+	WxButtonAdd = new wxButton(this, ID_WXBUTTONADD, _("<- Add"), wxPoint(5, 5), wxSize(100, 30), 0, wxDefaultValidator, _("WxButtonAdd"));
+	WxButtonAdd->SetFont(wxFont(8, wxSWISS, wxNORMAL, wxNORMAL, false, _("MS Sans Serif")));
 	WxBoxSizer7->Add(WxButtonAdd,0,wxALIGN_CENTER | wxALL,5);
 
-	WxButtonRemove = new wxButton(this, ID_WXBUTTONREMOVE, _("Remove ->"), wxPoint(5,45), wxSize(100,30), 0, wxDefaultValidator, _("WxButtonRemove"));
+	WxButtonRemove = new wxButton(this, ID_WXBUTTONREMOVE, _("Remove ->"), wxPoint(5, 45), wxSize(100, 30), 0, wxDefaultValidator, _("WxButtonRemove"));
+	WxButtonRemove->SetFont(wxFont(8, wxSWISS, wxNORMAL, wxNORMAL, false, _("MS Sans Serif")));
 	WxBoxSizer7->Add(WxButtonRemove,0,wxALIGN_CENTER | wxALL,5);
 
 	WxBoxSizer8 = new wxBoxSizer(wxVERTICAL);
 	WxBoxSizer4->Add(WxBoxSizer8, 0, wxALIGN_CENTER | wxALL, 5);
 
-	WxStaticText2 = new wxStaticText(this, ID_WXSTATICTEXT2, _("Predefined File Types:"), wxPoint(11,5), wxDefaultSize, 0, _("WxStaticText2"));
+	WxStaticText2 = new wxStaticText(this, ID_WXSTATICTEXT2, _("Predefined File Types:"), wxPoint(11, 5), wxDefaultSize, 0, _("WxStaticText2"));
+	WxStaticText2->SetFont(wxFont(8, wxSWISS, wxNORMAL, wxNORMAL, false, _("MS Sans Serif")));
 	WxBoxSizer8->Add(WxStaticText2,0,wxALIGN_CENTER | wxALL,5);
 
 	wxArrayString arrayStringFor_WxListBoxPredefined;
-	WxListBoxPredefined = new wxListBox(this, ID_WXLISTBOXPREDEFINED, wxPoint(5,32), wxSize(121,200), arrayStringFor_WxListBoxPredefined, wxLB_EXTENDED);
+	WxListBoxPredefined = new wxListBox(this, ID_WXLISTBOXPREDEFINED, wxPoint(5, 32), wxSize(121, 200), arrayStringFor_WxListBoxPredefined, wxLB_EXTENDED);
+	WxListBoxPredefined->SetFont(wxFont(8, wxSWISS, wxNORMAL, wxNORMAL, false, _("MS Sans Serif")));
 	WxBoxSizer8->Add(WxListBoxPredefined,0,wxALIGN_CENTER | wxALL,5);
 
 	WxBoxSizer5 = new wxBoxSizer(wxHORIZONTAL);
 	WxBoxSizer2->Add(WxBoxSizer5, 0, wxALIGN_LEFT | wxALL, 5);
 
-	WxEditCustomType = new wxTextCtrl(this, ID_WXEDITCUSTOMTYPE, _(""), wxPoint(5,7), wxSize(121,30), 0, wxDefaultValidator, _("WxEditCustomType"));
+	WxEditCustomType = new wxTextCtrl(this, ID_WXEDITCUSTOMTYPE, _(""), wxPoint(5, 5), wxSize(121, 30), 0, wxDefaultValidator, _("WxEditCustomType"));
+	WxEditCustomType->SetFont(wxFont(8, wxSWISS, wxNORMAL, wxNORMAL, false, _("MS Sans Serif")));
 	WxBoxSizer5->Add(WxEditCustomType,0,wxALIGN_LEFT | wxALL,5);
 
-	WxButtonAddCustom = new wxButton(this, ID_WXBUTTONADDCUSTOM, _("<- Add Custom File Type"), wxPoint(136,5), wxSize(175,30), 0, wxDefaultValidator, _("WxButtonAddCustom"));
+	WxButtonAddCustom = new wxButton(this, ID_WXBUTTONADDCUSTOM, _("<- Add Custom File Type"), wxPoint(136, 5), wxSize(175, 30), 0, wxDefaultValidator, _("WxButtonAddCustom"));
+	WxButtonAddCustom->SetFont(wxFont(8, wxSWISS, wxNORMAL, wxNORMAL, false, _("MS Sans Serif")));
 	WxBoxSizer5->Add(WxButtonAddCustom,0,wxALIGN_LEFT | wxALL,5);
 
 	WxBoxSizer3 = new wxBoxSizer(wxHORIZONTAL);
 	WxBoxSizer1->Add(WxBoxSizer3, 0, wxALIGN_CENTER | wxALL, 5);
 
-	WxButtonOK = new wxButton(this, ID_WXBUTTONOK, _("&OK"), wxPoint(5,5), wxSize(85,30), 0, wxDefaultValidator, _("WxButtonOK"));
+	WxButtonOK = new wxButton(this, ID_WXBUTTONOK, _("&OK"), wxPoint(14, 5), wxSize(85, 30), 0, wxDefaultValidator, _("WxButtonOK"));
+	WxButtonOK->SetFont(wxFont(8, wxSWISS, wxNORMAL, wxNORMAL, false, _("MS Sans Serif")));
 	WxBoxSizer3->Add(WxButtonOK,0,wxALIGN_CENTER | wxALL,5);
 
-	WxButtonCancel = new wxButton(this, wxID_CANCEL, _("&Cancel"), wxPoint(100,5), wxSize(90,30), 0, wxDefaultValidator, _("WxButtonCancel"));
+	WxButtonCancel = new wxButton(this, wxID_CANCEL, _("&Cancel"), wxPoint(100, 5), wxSize(90, 30), 0, wxDefaultValidator, _("WxButtonCancel"));
+	WxButtonCancel->SetFont(wxFont(8, wxSWISS, wxNORMAL, wxNORMAL, false, _("MS Sans Serif")));
 	WxBoxSizer3->Add(WxButtonCancel,0,wxALIGN_CENTER | wxALL,5);
 
 	SetTitle(_("File Type Associations"));
@@ -398,6 +411,9 @@ void MadFileAssociationDialog::CreateGUIControls()
 	Center();
 	
 	////GUI Items Creation End
+
+    //restore wxFont
+    #undef wxFont
 
     wxArrayString as_predefined(g_PredefinedTypes_Count, g_PredefinedTypes);
 
