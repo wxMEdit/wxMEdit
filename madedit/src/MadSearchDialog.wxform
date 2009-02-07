@@ -13,13 +13,12 @@ object frmNewForm: TfrmNewForm
   Font.Name = 'MS Sans Serif'
   Font.Style = []
   OldCreateOrder = True
-  PopupMenu = MainForm.DesignerPopup
+  PopupMenu = DesignerPopup.Owner
   Visible = True
-  OnCloseQuery = FormCloseQuery
+  OnClick = FormClick
   OnCreate = FormCreate
   OnDestroy = FormDestroy
-  OnKeyDown = FormKeyDown
-  OnResize = NewFormResize
+  OnResize = FormResize
   EVT_KEY_DOWN = 'MadSearchDialogKeyDown'
   EVT_CLOSE = 'MadSearchDialogClose'
   EVT_ACTIVATE = 'MadSearchDialogActivate'
@@ -32,9 +31,10 @@ object frmNewForm: TfrmNewForm
   Wx_Hidden = False
   Wx_SizeToContents = True
   Wx_GeneralStyle = []
-  Wx_DialogStyle = [wxCAPTION, wxRESIZE_BORDER, wxSYSTEM_MENU, wxSTAY_ON_TOP, wxCLOSE_BOX]
+  Wx_DialogStyle = [wxCAPTION, wxRESIZE_BORDER, wxSYSTEM_MENU, wxCLOSE_BOX]
   Wx_Border = 0
   Wx_BorderAlignment = []
+  isAuimanagerAvailable = False
   PixelsPerInch = 96
   TextHeight = 13
   object WxBoxSizer1: TWxBoxSizer
@@ -334,8 +334,6 @@ object frmNewForm: TfrmNewForm
         Wx_Hidden = False
         Wx_IDName = 'ID_WXBUTTONFINDNEXT'
         Wx_IDValue = 10
-        Wx_Height = 28
-        Wx_Width = 100
         Wx_Border = 2
       end
       object WxButtonFindPrev: TWxButton
@@ -359,8 +357,6 @@ object frmNewForm: TfrmNewForm
         Wx_Hidden = False
         Wx_IDName = 'ID_WXBUTTONFINDPREV'
         Wx_IDValue = 11
-        Wx_Height = 28
-        Wx_Width = 100
         Wx_Border = 2
       end
       object WxButtonCount: TWxButton
@@ -384,8 +380,6 @@ object frmNewForm: TfrmNewForm
         Wx_Hidden = False
         Wx_IDName = 'ID_WXBUTTONCOUNT'
         Wx_IDValue = 23
-        Wx_Height = 28
-        Wx_Width = 100
         Wx_Border = 2
       end
       object WxButtonReplace: TWxButton
@@ -409,13 +403,11 @@ object frmNewForm: TfrmNewForm
         Wx_Hidden = False
         Wx_IDName = 'ID_WXBUTTONREPLACE'
         Wx_IDValue = 12
-        Wx_Height = 28
-        Wx_Width = 100
         Wx_Border = 2
       end
       object WxButtonClose: TWxButton
         Left = 2
-        Top = 130
+        Top = 128
         Width = 100
         Height = 28
         Caption = 'Close'
@@ -434,8 +426,6 @@ object frmNewForm: TfrmNewForm
         Wx_Hidden = False
         Wx_IDName = 'ID_WXBUTTONCLOSE'
         Wx_IDValue = 13
-        Wx_Height = 28
-        Wx_Width = 100
         Wx_Border = 2
       end
     end

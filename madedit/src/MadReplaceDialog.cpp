@@ -32,15 +32,15 @@ BEGIN_EVENT_TABLE(MadReplaceDialog,wxDialog)
 	EVT_MENU_RANGE(ID_RECENTFINDTEXT1, ID_RECENTFINDTEXT20, MadReplaceDialog::OnRecentFindText)
 	EVT_MENU_RANGE(ID_RECENTREPLACETEXT1, ID_RECENTREPLACETEXT20, MadReplaceDialog::OnRecentReplaceText)
 	////Manual Code End
-
+	
 	EVT_CLOSE(MadReplaceDialog::MadReplaceDialogClose)
 	EVT_KEY_DOWN(MadReplaceDialog::MadReplaceDialogKeyDown)
 	EVT_ACTIVATE(MadReplaceDialog::MadReplaceDialogActivate)
-	EVT_CHECKBOX(ID_WXCHECKBOXSEARCHINSELECTION,MadReplaceDialog::WxCheckBoxSearchInSelectionClick)
 	EVT_BUTTON(ID_WXBUTTONCLOSE,MadReplaceDialog::WxButtonCloseClick)
 	EVT_BUTTON(ID_WXBUTTONREPLACEALL,MadReplaceDialog::WxButtonReplaceAllClick)
 	EVT_BUTTON(ID_WXBUTTONREPLACE,MadReplaceDialog::WxButtonReplaceClick)
 	EVT_BUTTON(ID_WXBUTTONFINDNEXT,MadReplaceDialog::WxButtonFindNextClick)
+	EVT_CHECKBOX(ID_WXCHECKBOXSEARCHINSELECTION,MadReplaceDialog::WxCheckBoxSearchInSelectionClick)
 	EVT_CHECKBOX(ID_WXCHECKBOXFINDHEX,MadReplaceDialog::WxCheckBoxFindHexClick)
 END_EVENT_TABLE()
     ////Event Table End
@@ -71,6 +71,9 @@ static void ResizeItem(wxBoxSizer* sizer, wxWindow *item, int ax, int ay)
 
 void MadReplaceDialog::CreateGUIControls(void)
 {
+    //do not set FontName, it is not exist on all platforms
+    #define wxFont(p0,p1,p2,p3,p4,p5) wxFont(wxDEFAULT,wxDEFAULT,p2,p3,p4)
+
     //Do not add custom Code here
     //wx-devcpp designer will remove them.
     //Add the custom code before or after the Blocks
@@ -92,64 +95,81 @@ void MadReplaceDialog::CreateGUIControls(void)
 	WxBoxSizer6 = new wxBoxSizer(wxVERTICAL);
 	WxBoxSizer2->Add(WxBoxSizer6, 0, wxALIGN_LEFT | wxALIGN_TOP | wxALL, 0);
 
-	WxCheckBoxMoveFocus = new wxCheckBox(this, ID_WXCHECKBOXMOVEFOCUS, _("&Move Focus to Editor Window"), wxPoint(25,2), wxSize(300,22), 0, wxDefaultValidator, _("WxCheckBoxMoveFocus"));
+	WxCheckBoxMoveFocus = new wxCheckBox(this, ID_WXCHECKBOXMOVEFOCUS, _("&Move Focus to Editor Window"), wxPoint(25, 2), wxSize(300, 22), 0, wxDefaultValidator, _("WxCheckBoxMoveFocus"));
+	WxCheckBoxMoveFocus->SetFont(wxFont(8, wxSWISS, wxNORMAL, wxNORMAL, false, _("MS Sans Serif")));
 	WxBoxSizer6->Add(WxCheckBoxMoveFocus,0,wxALIGN_LEFT | wxALL,2);
 
-	WxCheckBoxCaseSensitive = new wxCheckBox(this, ID_WXCHECKBOXCASESENSITIVE, _("&Case Sensitive"), wxPoint(25,28), wxSize(300,22), 0, wxDefaultValidator, _("WxCheckBoxCaseSensitive"));
+	WxCheckBoxCaseSensitive = new wxCheckBox(this, ID_WXCHECKBOXCASESENSITIVE, _("&Case Sensitive"), wxPoint(25, 28), wxSize(300, 22), 0, wxDefaultValidator, _("WxCheckBoxCaseSensitive"));
+	WxCheckBoxCaseSensitive->SetFont(wxFont(8, wxSWISS, wxNORMAL, wxNORMAL, false, _("MS Sans Serif")));
 	WxBoxSizer6->Add(WxCheckBoxCaseSensitive,0,wxALIGN_LEFT | wxALL,2);
 
-	WxCheckBoxWholeWord = new wxCheckBox(this, ID_WXCHECKBOXWHOLEWORD, _("&Whole Word Only"), wxPoint(25,54), wxSize(300,22), 0, wxDefaultValidator, _("WxCheckBoxWholeWord"));
+	WxCheckBoxWholeWord = new wxCheckBox(this, ID_WXCHECKBOXWHOLEWORD, _("&Whole Word Only"), wxPoint(25, 54), wxSize(300, 22), 0, wxDefaultValidator, _("WxCheckBoxWholeWord"));
+	WxCheckBoxWholeWord->SetFont(wxFont(8, wxSWISS, wxNORMAL, wxNORMAL, false, _("MS Sans Serif")));
 	WxBoxSizer6->Add(WxCheckBoxWholeWord,0,wxALIGN_LEFT | wxALL,2);
 
-	WxCheckBoxRegex = new wxCheckBox(this, ID_WXCHECKBOXREGEX, _("Use Regular E&xpressions"), wxPoint(25,80), wxSize(300,22), 0, wxDefaultValidator, _("WxCheckBoxRegex"));
+	WxCheckBoxRegex = new wxCheckBox(this, ID_WXCHECKBOXREGEX, _("Use Regular E&xpressions"), wxPoint(25, 80), wxSize(300, 22), 0, wxDefaultValidator, _("WxCheckBoxRegex"));
+	WxCheckBoxRegex->SetFont(wxFont(8, wxSWISS, wxNORMAL, wxNORMAL, false, _("MS Sans Serif")));
 	WxBoxSizer6->Add(WxCheckBoxRegex,0,wxALIGN_LEFT | wxALL,2);
 
-	WxCheckBoxFindHex = new wxCheckBox(this, ID_WXCHECKBOXFINDHEX, _("Find &Hex String (Example: BE 00 3A or BE003A)"), wxPoint(25,106), wxSize(300,22), 0, wxDefaultValidator, _("WxCheckBoxFindHex"));
+	WxCheckBoxFindHex = new wxCheckBox(this, ID_WXCHECKBOXFINDHEX, _("Find &Hex String (Example: BE 00 3A or BE003A)"), wxPoint(25, 106), wxSize(300, 22), 0, wxDefaultValidator, _("WxCheckBoxFindHex"));
+	WxCheckBoxFindHex->SetFont(wxFont(8, wxSWISS, wxNORMAL, wxNORMAL, false, _("MS Sans Serif")));
 	WxBoxSizer6->Add(WxCheckBoxFindHex,0,wxALIGN_LEFT | wxALL,2);
-
-	WxBoxSizer3 = new wxBoxSizer(wxVERTICAL);
-	WxBoxSizer1->Add(WxBoxSizer3, 0, wxALIGN_TOP | wxALL, 0);
-
-	WxButtonFindNext = new wxButton(this, ID_WXBUTTONFINDNEXT, _("Find &Next"), wxPoint(2,2), wxSize(100,28), 0, wxDefaultValidator, _("WxButtonFindNext"));
-	WxBoxSizer3->Add(WxButtonFindNext,0,wxALIGN_CENTER | wxALL,2);
-
-	WxButtonReplace = new wxButton(this, ID_WXBUTTONREPLACE, _("&Replace"), wxPoint(2,34), wxSize(100,28), 0, wxDefaultValidator, _("WxButtonReplace"));
-	WxBoxSizer3->Add(WxButtonReplace,0,wxALIGN_CENTER | wxALL,2);
-
-	WxButtonReplaceAll = new wxButton(this, ID_WXBUTTONREPLACEALL, _("Replace &All"), wxPoint(2,66), wxSize(100,28), 0, wxDefaultValidator, _("WxButtonReplaceAll"));
-	WxBoxSizer3->Add(WxButtonReplaceAll,0,wxALIGN_CENTER | wxALL,2);
-
-	WxButtonClose = new wxButton(this, ID_WXBUTTONCLOSE, _("Close"), wxPoint(2,98), wxSize(100,28), 0, wxDefaultValidator, _("WxButtonClose"));
-	WxBoxSizer3->Add(WxButtonClose,0,wxALIGN_CENTER | wxALL,2);
-
-	WxPopupMenuRecentReplaceText = new wxMenu(_(""));
 
 	WxBoxSizer7 = new wxBoxSizer(wxHORIZONTAL);
 	WxBoxSizer6->Add(WxBoxSizer7, 0, wxALIGN_LEFT | wxALL, 0);
 
-	WxCheckBoxSearchInSelection = new wxCheckBox(this, ID_WXCHECKBOXSEARCHINSELECTION, _("Search In &Selection"), wxPoint(2,2), wxSize(120,22), 0, wxDefaultValidator, _("WxCheckBoxSearchInSelection"));
+	WxCheckBoxSearchInSelection = new wxCheckBox(this, ID_WXCHECKBOXSEARCHINSELECTION, _("Search In &Selection"), wxPoint(2, 2), wxSize(120, 22), 0, wxDefaultValidator, _("WxCheckBoxSearchInSelection"));
+	WxCheckBoxSearchInSelection->SetFont(wxFont(8, wxSWISS, wxNORMAL, wxNORMAL, false, _("MS Sans Serif")));
 	WxBoxSizer7->Add(WxCheckBoxSearchInSelection,0,wxALIGN_LEFT | wxALL,2);
 
-	WxStaticTextFrom = new wxStaticText(this, ID_WXSTATICTEXTFROM, _("From:"), wxPoint(126,4), wxDefaultSize, 0, _("WxStaticTextFrom"));
+	WxStaticTextFrom = new wxStaticText(this, ID_WXSTATICTEXTFROM, _("From:"), wxPoint(126, 4), wxDefaultSize, 0, _("WxStaticTextFrom"));
+	WxStaticTextFrom->SetFont(wxFont(8, wxSWISS, wxNORMAL, wxNORMAL, false, _("MS Sans Serif")));
 	WxBoxSizer7->Add(WxStaticTextFrom,0,wxALIGN_LEFT | wxALIGN_CENTER_VERTICAL | wxALL,2);
 
-	WxEditFrom = new wxTextCtrl(this, ID_WXEDITFROM, _(""), wxPoint(160,2), wxSize(80,22), 0, wxDefaultValidator, _("WxEditFrom"));
+	WxEditFrom = new wxTextCtrl(this, ID_WXEDITFROM, _(""), wxPoint(160, 2), wxSize(80, 22), 0, wxDefaultValidator, _("WxEditFrom"));
+	WxEditFrom->SetFont(wxFont(8, wxSWISS, wxNORMAL, wxNORMAL, false, _("MS Sans Serif")));
 	WxBoxSizer7->Add(WxEditFrom,0,wxALIGN_LEFT | wxALL,2);
 
-	WxStaticTextTo = new wxStaticText(this, ID_WXSTATICTEXTTO, _("To:"), wxPoint(244,4), wxDefaultSize, 0, _("WxStaticTextTo"));
+	WxStaticTextTo = new wxStaticText(this, ID_WXSTATICTEXTTO, _("To:"), wxPoint(244, 4), wxDefaultSize, 0, _("WxStaticTextTo"));
+	WxStaticTextTo->SetFont(wxFont(8, wxSWISS, wxNORMAL, wxNORMAL, false, _("MS Sans Serif")));
 	WxBoxSizer7->Add(WxStaticTextTo,0,wxALIGN_LEFT | wxALIGN_CENTER_VERTICAL | wxALL,2);
 
-	WxEditTo = new wxTextCtrl(this, ID_WXEDITTO, _(""), wxPoint(268,2), wxSize(80,22), 0, wxDefaultValidator, _("WxEditTo"));
+	WxEditTo = new wxTextCtrl(this, ID_WXEDITTO, _(""), wxPoint(268, 2), wxSize(80, 22), 0, wxDefaultValidator, _("WxEditTo"));
+	WxEditTo->SetFont(wxFont(8, wxSWISS, wxNORMAL, wxNORMAL, false, _("MS Sans Serif")));
 	WxBoxSizer7->Add(WxEditTo,0,wxALIGN_LEFT | wxALL,2);
+
+	WxBoxSizer3 = new wxBoxSizer(wxVERTICAL);
+	WxBoxSizer1->Add(WxBoxSizer3, 0, wxALIGN_TOP | wxALL, 0);
+
+	WxButtonFindNext = new wxButton(this, ID_WXBUTTONFINDNEXT, _("Find &Next"), wxPoint(2, 2), wxSize(100, 28), 0, wxDefaultValidator, _("WxButtonFindNext"));
+	WxButtonFindNext->SetFont(wxFont(8, wxSWISS, wxNORMAL, wxNORMAL, false, _("MS Sans Serif")));
+	WxBoxSizer3->Add(WxButtonFindNext,0,wxALIGN_CENTER | wxALL,2);
+
+	WxButtonReplace = new wxButton(this, ID_WXBUTTONREPLACE, _("&Replace"), wxPoint(2, 34), wxSize(100, 28), 0, wxDefaultValidator, _("WxButtonReplace"));
+	WxButtonReplace->SetFont(wxFont(8, wxSWISS, wxNORMAL, wxNORMAL, false, _("MS Sans Serif")));
+	WxBoxSizer3->Add(WxButtonReplace,0,wxALIGN_CENTER | wxALL,2);
+
+	WxButtonReplaceAll = new wxButton(this, ID_WXBUTTONREPLACEALL, _("Replace &All"), wxPoint(2, 66), wxSize(100, 28), 0, wxDefaultValidator, _("WxButtonReplaceAll"));
+	WxButtonReplaceAll->SetFont(wxFont(8, wxSWISS, wxNORMAL, wxNORMAL, false, _("MS Sans Serif")));
+	WxBoxSizer3->Add(WxButtonReplaceAll,0,wxALIGN_CENTER | wxALL,2);
+
+	WxButtonClose = new wxButton(this, ID_WXBUTTONCLOSE, _("Close"), wxPoint(2, 96), wxSize(100, 28), 0, wxDefaultValidator, _("WxButtonClose"));
+	WxButtonClose->SetFont(wxFont(8, wxSWISS, wxNORMAL, wxNORMAL, false, _("MS Sans Serif")));
+	WxBoxSizer3->Add(WxButtonClose,0,wxALIGN_CENTER | wxALL,2);
+
+	WxPopupMenuRecentReplaceText = new wxMenu(_(""));
 
 	SetTitle(_("Replace"));
 	SetIcon(wxNullIcon);
-
+	
 	GetSizer()->Layout();
 	GetSizer()->Fit(this);
 	GetSizer()->SetSizeHints(this);
-
+	
     ////GUI Items Creation End
+
+    //restore wxFont
+    #undef wxFont
 
     this->SetPosition(wxPoint(300,100));
 

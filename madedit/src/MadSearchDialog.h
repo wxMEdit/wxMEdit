@@ -33,7 +33,7 @@
 
 ////Dialog Style Start
 #undef MadSearchDialog_STYLE
-#define MadSearchDialog_STYLE wxCAPTION | wxRESIZE_BORDER | wxSYSTEM_MENU | wxSTAY_ON_TOP | wxCLOSE_BOX
+#define MadSearchDialog_STYLE wxCAPTION | wxRESIZE_BORDER | wxSYSTEM_MENU | wxCLOSE_BOX
 ////Dialog Style End
 
 class MadEdit;
