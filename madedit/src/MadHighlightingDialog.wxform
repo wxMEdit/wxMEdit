@@ -271,6 +271,7 @@ object frmNewForm: TfrmNewForm
         Wx_Length = 400
         LastOrientation = wxLI_HORIZONTAL
         Wx_Border = 1
+        Wx_Alignment = [wxEXPAND]
       end
       object WxBoxSizer5: TWxBoxSizer
         Left = 0
@@ -413,6 +414,7 @@ object frmNewForm: TfrmNewForm
             Wx_Length = 250
             LastOrientation = wxLI_HORIZONTAL
             Wx_Border = 1
+            Wx_Alignment = [wxEXPAND]
           end
           object WxBoxSizer10: TWxBoxSizer
             Left = 2
@@ -565,6 +567,7 @@ object frmNewForm: TfrmNewForm
               Wx_Length = 200
               LastOrientation = wxLI_VERTICAL
               Wx_Border = 1
+              Wx_Alignment = [wxEXPAND]
             end
             object WxBoxSizer12: TWxBoxSizer
               Left = 175
@@ -703,7 +706,7 @@ object frmNewForm: TfrmNewForm
         Wx_Border = 2
         Wx_Alignment = [wxALIGN_CENTER_HORIZONTAL]
         object WxButtonClose: TWxButton
-          Left = 3
+          Left = 5
           Top = 3
           Width = 90
           Height = 27

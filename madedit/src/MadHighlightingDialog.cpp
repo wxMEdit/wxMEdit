@@ -245,7 +245,7 @@ void MadHighlightingDialog::CreateGUIControls(void)
 
 	WxStaticLine1 = new wxStaticLine(this, ID_WXSTATICLINE1, wxPoint(47, 69), wxSize(400, -1), wxLI_HORIZONTAL);
 	WxStaticLine1->SetFont(wxFont(8, wxSWISS, wxNORMAL, wxNORMAL, false, _("MS Sans Serif")));
-	WxBoxSizer2->Add(WxStaticLine1,0,wxALIGN_CENTER | wxALL,1);
+	WxBoxSizer2->Add(WxStaticLine1,0,wxEXPAND | wxALL,1);
 
 	WxBoxSizer5 = new wxBoxSizer(wxHORIZONTAL);
 	WxBoxSizer2->Add(WxBoxSizer5, 1, wxEXPAND | wxALL, 0);
@@ -274,7 +274,7 @@ void MadHighlightingDialog::CreateGUIControls(void)
 
 	WxStaticLine3 = new wxStaticLine(this, ID_WXSTATICLINE3, wxPoint(47, 68), wxSize(250, -1), wxLI_HORIZONTAL);
 	WxStaticLine3->SetFont(wxFont(8, wxSWISS, wxNORMAL, wxNORMAL, false, _("MS Sans Serif")));
-	WxBoxSizer8->Add(WxStaticLine3,0,wxALIGN_CENTER | wxALL,1);
+	WxBoxSizer8->Add(WxStaticLine3,0,wxEXPAND | wxALL,1);
 
 	WxBoxSizer10 = new wxBoxSizer(wxHORIZONTAL);
 	WxBoxSizer8->Add(WxBoxSizer10, 1, wxEXPAND | wxALL, 2);
@@ -304,7 +304,7 @@ void MadHighlightingDialog::CreateGUIControls(void)
 
 	WxStaticLine2 = new wxStaticLine(this, ID_WXSTATICLINE2, wxPoint(169, 25), wxSize(-1, 200), wxLI_VERTICAL);
 	WxStaticLine2->SetFont(wxFont(8, wxSWISS, wxNORMAL, wxNORMAL, false, _("MS Sans Serif")));
-	WxBoxSizer10->Add(WxStaticLine2,0,wxALIGN_CENTER | wxALL,1);
+	WxBoxSizer10->Add(WxStaticLine2,0,wxEXPAND | wxALL,1);
 
 	WxBoxSizer12 = new wxBoxSizer(wxVERTICAL);
 	WxBoxSizer10->Add(WxBoxSizer12, 1, wxEXPAND | wxALL, 2);
@@ -332,7 +332,7 @@ void MadHighlightingDialog::CreateGUIControls(void)
 	WxBoxSizer7 = new wxBoxSizer(wxHORIZONTAL);
 	WxBoxSizer2->Add(WxBoxSizer7, 0, wxALIGN_CENTER_HORIZONTAL | wxALL, 2);
 
-	WxButtonClose = new wxButton(this, wxID_OK, _("&OK"), wxPoint(3, 3), wxSize(90, 27), 0, wxDefaultValidator, _("WxButtonClose"));
+	WxButtonClose = new wxButton(this, wxID_OK, _("&OK"), wxPoint(5, 3), wxSize(90, 27), 0, wxDefaultValidator, _("WxButtonClose"));
 	WxButtonClose->SetFont(wxFont(8, wxSWISS, wxNORMAL, wxNORMAL, false, _("MS Sans Serif")));
 	WxBoxSizer7->Add(WxButtonClose,0,wxALIGN_CENTER_VERTICAL | wxALL,3);
 
