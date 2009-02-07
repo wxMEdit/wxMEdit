@@ -13,13 +13,12 @@ object frmNewForm: TfrmNewForm
   Font.Name = 'MS Sans Serif'
   Font.Style = []
   OldCreateOrder = True
-  PopupMenu = MainForm.DesignerPopup
+  PopupMenu = DesignerPopup.Owner
   Visible = True
-  OnCloseQuery = FormCloseQuery
+  OnClick = FormClick
   OnCreate = FormCreate
   OnDestroy = FormDestroy
-  OnKeyDown = FormKeyDown
-  OnResize = NewFormResize
+  OnResize = FormResize
   EVT_CLOSE = 'MadAboutDialogClose'
   Wx_ICON.Data = {07544269746D617000000000}
   Wx_Name = 'MadAboutDialog'
@@ -33,6 +32,7 @@ object frmNewForm: TfrmNewForm
   Wx_DialogStyle = [wxCAPTION, wxSYSTEM_MENU, wxDIALOG_NO_PARENT, wxCLOSE_BOX]
   Wx_Border = 0
   Wx_BorderAlignment = []
+  isAuimanagerAvailable = False
   PixelsPerInch = 96
   TextHeight = 13
   object WxBoxSizer1: TWxBoxSizer
@@ -107,7 +107,6 @@ object frmNewForm: TfrmNewForm
         Height = 150
         BevelInner = bvNone
         BevelOuter = bvNone
-        ScrollBars = ssVertical
         TabOrder = 0
         Wx_BGColor = clBlack
         Wx_Class = 'wxTextCtrl'
@@ -152,8 +151,6 @@ object frmNewForm: TfrmNewForm
         Wx_Hidden = False
         Wx_IDName = 'wxID_OK'
         Wx_IDValue = 1012
-        Wx_Height = 30
-        Wx_Width = 90
         Wx_Border = 4
       end
       object WxButtonCancel: TWxButton
@@ -176,8 +173,6 @@ object frmNewForm: TfrmNewForm
         Wx_Hidden = False
         Wx_IDName = 'wxID_CANCEL'
         Wx_IDValue = 1013
-        Wx_Height = 30
-        Wx_Width = 90
         Wx_Border = 4
       end
     end

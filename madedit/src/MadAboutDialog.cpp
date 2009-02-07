@@ -41,6 +41,9 @@ MadAboutDialog::~MadAboutDialog() {}
 
 void MadAboutDialog::CreateGUIControls(void)
 {
+    //do not set FontName, it is not exist on all platforms
+    #define wxFont(p0,p1,p2,p3,p4,p5) wxFont(wxDEFAULT,wxDEFAULT,p2,p3,p4)
+
     //Do not add custom Code here
     //wx-devcpp designer will remove them.
     //Add the custom code before or after the Blocks
@@ -56,27 +59,32 @@ void MadAboutDialog::CreateGUIControls(void)
 	WxBoxSizer4 = new wxBoxSizer(wxVERTICAL);
 	WxBoxSizer2->Add(WxBoxSizer4, 0, wxALIGN_TOP | wxALL, 5);
 
-	WxStaticBitmap1 = new wxStaticBitmap(this, ID_WXSTATICBITMAP1, wxNullBitmap, wxPoint(5,5), wxSize(48,48) );
+	WxStaticBitmap1 = new wxStaticBitmap(this, ID_WXSTATICBITMAP1, wxNullBitmap, wxPoint(5, 5), wxSize(48, 48) );
 	WxStaticBitmap1->Enable(false);
+	WxStaticBitmap1->SetFont(wxFont(8, wxSWISS, wxNORMAL, wxNORMAL, false, _("MS Sans Serif")));
 	WxBoxSizer4->Add(WxStaticBitmap1,0,wxALIGN_CENTER | wxALL,5);
 
-	WxStaticBitmap2 = new wxStaticBitmap(this, ID_WXSTATICBITMAP2, wxNullBitmap, wxPoint(5,63), wxSize(48,48) );
+	WxStaticBitmap2 = new wxStaticBitmap(this, ID_WXSTATICBITMAP2, wxNullBitmap, wxPoint(5, 63), wxSize(48, 48) );
 	WxStaticBitmap2->Enable(false);
+	WxStaticBitmap2->SetFont(wxFont(8, wxSWISS, wxNORMAL, wxNORMAL, false, _("MS Sans Serif")));
 	WxBoxSizer4->Add(WxStaticBitmap2,0,wxALIGN_CENTER | wxALL,5);
 
-	WxMemo1 = new wxTextCtrl(this, ID_WXMEMO1, _(""), wxPoint(70,2), wxSize(350,150), wxTE_READONLY | wxTE_AUTO_URL | wxTE_MULTILINE, wxDefaultValidator, _("WxMemo1"));
+	WxMemo1 = new wxTextCtrl(this, ID_WXMEMO1, _(""), wxPoint(70, 2), wxSize(350, 150), wxTE_READONLY | wxTE_AUTO_URL | wxTE_MULTILINE, wxDefaultValidator, _("WxMemo1"));
 	WxMemo1->SetMaxLength(0);
 	WxMemo1->SetFocus();
 	WxMemo1->SetInsertionPointEnd();
+	WxMemo1->SetFont(wxFont(8, wxSWISS, wxNORMAL, wxNORMAL, false, _("MS Sans Serif")));
 	WxBoxSizer2->Add(WxMemo1,0,wxALIGN_CENTER | wxALL,2);
 
 	WxBoxSizer3 = new wxBoxSizer(wxHORIZONTAL);
 	WxBoxSizer1->Add(WxBoxSizer3, 0, wxALIGN_CENTER | wxALL, 3);
 
-	WxButtonOK = new wxButton(this, wxID_OK, _("&OK"), wxPoint(4,4), wxSize(90,30), 0, wxDefaultValidator, _("WxButtonOK"));
+	WxButtonOK = new wxButton(this, wxID_OK, _("&OK"), wxPoint(4, 4), wxSize(90, 30), 0, wxDefaultValidator, _("WxButtonOK"));
+	WxButtonOK->SetFont(wxFont(8, wxSWISS, wxNORMAL, wxNORMAL, false, _("MS Sans Serif")));
 	WxBoxSizer3->Add(WxButtonOK,0,wxALIGN_CENTER | wxALL,4);
 
-	WxButtonCancel = new wxButton(this, wxID_CANCEL, _("&Cancel"), wxPoint(102,4), wxSize(90,30), 0, wxDefaultValidator, _("WxButtonCancel"));
+	WxButtonCancel = new wxButton(this, wxID_CANCEL, _("&Cancel"), wxPoint(102, 4), wxSize(90, 30), 0, wxDefaultValidator, _("WxButtonCancel"));
+	WxButtonCancel->SetFont(wxFont(8, wxSWISS, wxNORMAL, wxNORMAL, false, _("MS Sans Serif")));
 	WxBoxSizer3->Add(WxButtonCancel,0,wxALIGN_CENTER | wxALL,4);
 
 	SetTitle(_("About MadEdit"));
@@ -88,6 +96,9 @@ void MadAboutDialog::CreateGUIControls(void)
 	Center();
 	
     ////GUI Items Creation End
+
+    //restore wxFont
+    #undef wxFont
     
     WxStaticBitmap1->SetBitmap(wxBitmap(Mad_xpm));
     WxStaticBitmap1->Enable(true);
