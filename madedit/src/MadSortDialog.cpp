@@ -51,6 +51,9 @@ static void ResizeItem(wxBoxSizer* sizer, wxWindow *item, int ax, int ay)
 
 void MadSortDialog::CreateGUIControls(void)
 {
+    //do not set FontName, it is not exist on all platforms
+    #define wxFont(p0,p1,p2,p3,p4,p5) wxFont(wxDEFAULT,wxDEFAULT,p2,p3,p4)
+
     //Do not add custom code here
 	//wxDev-C++ designer will remove them.
 	//Add the custom code before or after the blocks
@@ -63,26 +66,32 @@ void MadSortDialog::CreateGUIControls(void)
 	wxArrayString arrayStringFor_WxRadioBoxOrder;
 	arrayStringFor_WxRadioBoxOrder.Add(_("&Ascending"));
 	arrayStringFor_WxRadioBoxOrder.Add(_("&Descending"));
-	WxRadioBoxOrder = new wxRadioBox(this, ID_WXRADIOBOXORDER, _("Sort Order"), wxPoint(30,5), wxSize(150,75), arrayStringFor_WxRadioBoxOrder, 1, wxRA_SPECIFY_COLS, wxDefaultValidator, _("WxRadioBoxOrder"));
+	WxRadioBoxOrder = new wxRadioBox(this, ID_WXRADIOBOXORDER, _("Sort Order"), wxPoint(30, 5), wxSize(150, 75), arrayStringFor_WxRadioBoxOrder, 1, wxRA_SPECIFY_COLS, wxDefaultValidator, _("WxRadioBoxOrder"));
 	WxRadioBoxOrder->SetSelection(0);
+	WxRadioBoxOrder->SetFont(wxFont(8, wxSWISS, wxNORMAL, wxNORMAL, false, _("MS Sans Serif")));
 	WxBoxSizer1->Add(WxRadioBoxOrder,0,wxALIGN_LEFT | wxALL,5);
 
-	WxCheckBoxCase = new wxCheckBox(this, ID_WXCHECKBOXCASE, _("&Case Sensitive"), wxPoint(30,90), wxSize(150,20), 0, wxDefaultValidator, _("WxCheckBoxCase"));
+	WxCheckBoxCase = new wxCheckBox(this, ID_WXCHECKBOXCASE, _("&Case Sensitive"), wxPoint(30, 90), wxSize(150, 20), 0, wxDefaultValidator, _("WxCheckBoxCase"));
+	WxCheckBoxCase->SetFont(wxFont(8, wxSWISS, wxNORMAL, wxNORMAL, false, _("MS Sans Serif")));
 	WxBoxSizer1->Add(WxCheckBoxCase,0,wxALIGN_LEFT | wxALL,5);
 
-	WxCheckBoxNumeric = new wxCheckBox(this, ID_WXCHECKBOXNUMERIC, _("&Numeric Sort"), wxPoint(30,120), wxSize(150,20), 0, wxDefaultValidator, _("WxCheckBoxNumeric"));
+	WxCheckBoxNumeric = new wxCheckBox(this, ID_WXCHECKBOXNUMERIC, _("&Numeric Sort"), wxPoint(30, 120), wxSize(150, 20), 0, wxDefaultValidator, _("WxCheckBoxNumeric"));
+	WxCheckBoxNumeric->SetFont(wxFont(8, wxSWISS, wxNORMAL, wxNORMAL, false, _("MS Sans Serif")));
 	WxBoxSizer1->Add(WxCheckBoxNumeric,0,wxALIGN_LEFT | wxALL,5);
 
-	WxCheckBoxRemoveDup = new wxCheckBox(this, ID_WXCHECKBOXREMOVEDUP, _("&Remove Duplicates"), wxPoint(30,150), wxSize(150,20), 0, wxDefaultValidator, _("WxCheckBoxRemoveDup"));
+	WxCheckBoxRemoveDup = new wxCheckBox(this, ID_WXCHECKBOXREMOVEDUP, _("&Remove Duplicates"), wxPoint(30, 150), wxSize(150, 20), 0, wxDefaultValidator, _("WxCheckBoxRemoveDup"));
+	WxCheckBoxRemoveDup->SetFont(wxFont(8, wxSWISS, wxNORMAL, wxNORMAL, false, _("MS Sans Serif")));
 	WxBoxSizer1->Add(WxCheckBoxRemoveDup,0,wxALIGN_LEFT | wxALL,5);
 
 	WxBoxSizer2 = new wxBoxSizer(wxHORIZONTAL);
 	WxBoxSizer1->Add(WxBoxSizer2, 0, wxALIGN_LEFT | wxALL, 5);
 
-	WxButtonSort = new wxButton(this, wxID_OK, _("&Sort"), wxPoint(5,5), wxSize(90,30), 0, wxDefaultValidator, _("WxButtonSort"));
+	WxButtonSort = new wxButton(this, wxID_OK, _("&Sort"), wxPoint(5, 5), wxSize(90, 30), 0, wxDefaultValidator, _("WxButtonSort"));
+	WxButtonSort->SetFont(wxFont(8, wxSWISS, wxNORMAL, wxNORMAL, false, _("MS Sans Serif")));
 	WxBoxSizer2->Add(WxButtonSort,0,wxALIGN_CENTER | wxALL,5);
 
-	WxButtonCancel = new wxButton(this, wxID_CANCEL, _("Cancel"), wxPoint(105,5), wxSize(90,30), 0, wxDefaultValidator, _("WxButtonCancel"));
+	WxButtonCancel = new wxButton(this, wxID_CANCEL, _("Cancel"), wxPoint(111, 5), wxSize(90, 30), 0, wxDefaultValidator, _("WxButtonCancel"));
+	WxButtonCancel->SetFont(wxFont(8, wxSWISS, wxNORMAL, wxNORMAL, false, _("MS Sans Serif")));
 	WxBoxSizer2->Add(WxButtonCancel,0,wxALIGN_CENTER | wxALL,5);
 
 	SetTitle(_("Sort Options"));
@@ -94,6 +103,9 @@ void MadSortDialog::CreateGUIControls(void)
 	Center();
 	
 	////GUI Items Creation End
+
+    //restore wxFont
+    #undef wxFont
 
 	size_t i;
     int strx=0, stry=0;

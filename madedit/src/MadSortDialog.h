@@ -38,7 +38,7 @@
 
 ////Dialog Style Start
 #undef MadSortDialog_STYLE
-#define MadSortDialog_STYLE wxCAPTION | wxRESIZE_BORDER | wxSYSTEM_MENU | wxSTAY_ON_TOP | wxDIALOG_NO_PARENT | wxCLOSE_BOX
+#define MadSortDialog_STYLE wxCAPTION | wxRESIZE_BORDER | wxSYSTEM_MENU | wxDIALOG_NO_PARENT | wxCLOSE_BOX
 ////Dialog Style End
 
 class MadSortDialog : public wxDialog
