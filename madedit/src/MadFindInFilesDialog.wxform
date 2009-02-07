@@ -13,12 +13,12 @@ object frmNewForm: TfrmNewForm
   Font.Name = 'MS Sans Serif'
   Font.Style = []
   OldCreateOrder = True
-  PopupMenu = MainForm.DesignerPopup
+  PopupMenu = DesignerPopup.Owner
   Visible = True
-  OnCloseQuery = FormCloseQuery
+  OnClick = FormClick
   OnCreate = FormCreate
   OnDestroy = FormDestroy
-  OnResize = NewFormResize
+  OnResize = FormResize
   EVT_CLOSE = 'MadFindInFilesDialogClose'
   EVT_ACTIVATE = 'MadFindInFilesDialogActivate'
   Wx_ICON.Data = {07544269746D617000000000}
@@ -30,9 +30,10 @@ object frmNewForm: TfrmNewForm
   Wx_Hidden = False
   Wx_SizeToContents = True
   Wx_GeneralStyle = []
-  Wx_DialogStyle = [wxCAPTION, wxRESIZE_BORDER, wxSYSTEM_MENU, wxSTAY_ON_TOP, wxDIALOG_NO_PARENT, wxCLOSE_BOX]
+  Wx_DialogStyle = [wxCAPTION, wxRESIZE_BORDER, wxSYSTEM_MENU, wxDIALOG_NO_PARENT, wxCLOSE_BOX]
   Wx_Border = 0
   Wx_BorderAlignment = []
+  isAuimanagerAvailable = False
   PixelsPerInch = 96
   TextHeight = 13
   object WxBoxSizer1: TWxBoxSizer
@@ -240,8 +241,6 @@ object frmNewForm: TfrmNewForm
           Wx_Hidden = False
           Wx_IDName = 'ID_WXBUTTONFIND'
           Wx_IDValue = 1022
-          Wx_Height = 28
-          Wx_Width = 100
           Wx_Border = 2
         end
         object WxButtonReplace: TWxButton
@@ -265,8 +264,6 @@ object frmNewForm: TfrmNewForm
           Wx_Hidden = False
           Wx_IDName = 'ID_WXBUTTONREPLACE'
           Wx_IDValue = 1023
-          Wx_Height = 28
-          Wx_Width = 100
           Wx_Border = 2
         end
         object WxCheckBoxEnableReplace: TWxCheckBox
@@ -308,8 +305,6 @@ object frmNewForm: TfrmNewForm
           Wx_Hidden = False
           Wx_IDName = 'wxID_CANCEL'
           Wx_IDValue = 1024
-          Wx_Height = 28
-          Wx_Width = 100
           Wx_Border = 2
         end
       end
@@ -436,8 +431,6 @@ object frmNewForm: TfrmNewForm
           Wx_Hidden = False
           Wx_IDName = 'ID_WXBUTTONDIR'
           Wx_IDValue = 1035
-          Wx_Height = 25
-          Wx_Width = 30
           Wx_Border = 2
         end
         object WxButtonActiveDir: TWxButton
@@ -461,8 +454,6 @@ object frmNewForm: TfrmNewForm
           Wx_Hidden = False
           Wx_IDName = 'ID_WXBUTTONACTIVEDIR'
           Wx_IDValue = 1045
-          Wx_Height = 25
-          Wx_Width = 30
           Wx_Border = 2
         end
         object WxStaticText1: TWxStaticText
@@ -652,7 +643,7 @@ object frmNewForm: TfrmNewForm
         end
       end
       object WxCheckBoxSubDir: TWxCheckBox
-        Left = 108
+        Left = 114
         Top = 128
         Width = 300
         Height = 22
