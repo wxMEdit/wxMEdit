@@ -189,135 +189,169 @@ static void ResizeItem(wxBoxSizer* sizer, wxWindow *item, int ax, int ay)
 
 void MadHighlightingDialog::CreateGUIControls(void)
 {
+    //do not set FontName, it is not exist on all platforms
+    #define wxFont(p0,p1,p2,p3,p4,p5) wxFont(wxDEFAULT,wxDEFAULT,p2,p3,p4)
+
     //Do not add custom code here
 	//wxDev-C++ designer will remove them.
 	//Add the custom code before or after the blocks
 	////GUI Items Creation Start
 
-	wxBoxSizer* WxBoxSizer1 = new wxBoxSizer(wxHORIZONTAL);
+	WxBoxSizer1 = new wxBoxSizer(wxHORIZONTAL);
 	this->SetSizer(WxBoxSizer1);
-	this->SetAutoLayout(TRUE);
+	this->SetAutoLayout(true);
 
 	wxArrayString arrayStringFor_WxListBoxSyntax;
-	WxListBoxSyntax = new wxListBox(this, ID_WXLISTBOXSYNTAX, wxPoint(3,19), wxSize(145,380), arrayStringFor_WxListBoxSyntax, wxLB_SINGLE | wxLB_HSCROLL);
-	WxBoxSizer1->Add(WxListBoxSyntax,1,wxGROW | wxALL,4);
+	WxListBoxSyntax = new wxListBox(this, ID_WXLISTBOXSYNTAX, wxPoint(4, 32), wxSize(145, 380), arrayStringFor_WxListBoxSyntax, wxLB_SINGLE | wxLB_HSCROLL);
+	WxListBoxSyntax->SetFont(wxFont(8, wxSWISS, wxNORMAL, wxNORMAL, false, _("MS Sans Serif")));
+	WxBoxSizer1->Add(WxListBoxSyntax,1,wxEXPAND | wxALL,4);
 
-	wxBoxSizer* WxBoxSizer2 = new wxBoxSizer(wxVERTICAL);
-	WxBoxSizer1->Add(WxBoxSizer2,3,wxGROW | wxALL,0);
+	WxBoxSizer2 = new wxBoxSizer(wxVERTICAL);
+	WxBoxSizer1->Add(WxBoxSizer2, 3, wxEXPAND | wxALL, 0);
 
-	wxBoxSizer* WxBoxSizer3 = new wxBoxSizer(wxVERTICAL);
-	WxBoxSizer2->Add(WxBoxSizer3,0,wxALIGN_CENTER_HORIZONTAL | wxALL,0);
+	WxBoxSizer3 = new wxBoxSizer(wxVERTICAL);
+	WxBoxSizer2->Add(WxBoxSizer3, 0, wxALIGN_CENTER_HORIZONTAL | wxALL, 0);
 
-	wxBoxSizer* WxBoxSizer4 = new wxBoxSizer(wxHORIZONTAL);
-	WxBoxSizer3->Add(WxBoxSizer4,0,wxALIGN_CENTER_HORIZONTAL | wxALL,4);
+	WxBoxSizer4 = new wxBoxSizer(wxHORIZONTAL);
+	WxBoxSizer3->Add(WxBoxSizer4, 0, wxALIGN_CENTER_HORIZONTAL | wxALL, 4);
 
-	WxStaticText1 = new wxStaticText(this, ID_WXSTATICTEXT1, _("Scheme:"), wxPoint(4,6), wxSize(46,17), 0, _("WxStaticText1"));
+	WxStaticText1 = new wxStaticText(this, ID_WXSTATICTEXT1, _("Scheme:"), wxPoint(3, 5), wxDefaultSize, 0, _("WxStaticText1"));
+	WxStaticText1->SetFont(wxFont(8, wxSWISS, wxNORMAL, wxNORMAL, false, _("MS Sans Serif")));
 	WxBoxSizer4->Add(WxStaticText1,0,wxALIGN_CENTER_VERTICAL | wxALL,3);
 
 	wxArrayString arrayStringFor_WxComboBoxScheme;
-	WxComboBoxScheme = new wxComboBox(this, ID_WXCOMBOBOXSCHEME, _(""), wxPoint(58,4), wxSize(145,21), arrayStringFor_WxComboBoxScheme, 0, wxDefaultValidator, _("WxComboBoxScheme"));
+	WxComboBoxScheme = new wxComboBox(this, ID_WXCOMBOBOXSCHEME, _(""), wxPoint(55, 3), wxSize(145, 21), arrayStringFor_WxComboBoxScheme, 0, wxDefaultValidator, _("WxComboBoxScheme"));
+	WxComboBoxScheme->SetFont(wxFont(8, wxSWISS, wxNORMAL, wxNORMAL, false, _("MS Sans Serif")));
 	WxBoxSizer4->Add(WxComboBoxScheme,0,wxALIGN_CENTER_VERTICAL | wxALL,3);
 
-	WxStaticText2 = new wxStaticText(this, ID_WXSTATICTEXT2, _("You cannot modify the scheme with * sign."), wxPoint(211,6), wxSize(204,17), 0, _("WxStaticText2"));
+	WxStaticText2 = new wxStaticText(this, ID_WXSTATICTEXT2, _("You cannot modify the scheme with * sign."), wxPoint(206, 5), wxDefaultSize, 0, _("WxStaticText2"));
+	WxStaticText2->SetFont(wxFont(8, wxSWISS, wxNORMAL, wxNORMAL, false, _("MS Sans Serif")));
 	WxBoxSizer4->Add(WxStaticText2,0,wxALIGN_CENTER_VERTICAL | wxALL,3);
 
-	wxBoxSizer* WxBoxSizer6 = new wxBoxSizer(wxHORIZONTAL);
-	WxBoxSizer3->Add(WxBoxSizer6,0,wxALIGN_CENTER_HORIZONTAL | wxALL,2);
+	WxBoxSizer6 = new wxBoxSizer(wxHORIZONTAL);
+	WxBoxSizer3->Add(WxBoxSizer6, 0, wxALIGN_CENTER_HORIZONTAL | wxALL, 2);
 
-	WxButtonLoad = new wxButton(this, ID_WXBUTTONLOAD, _("&Load"), wxPoint(2,2), wxSize(75,25), 0, wxDefaultValidator, _("WxButtonLoad"));
+	WxButtonLoad = new wxButton(this, ID_WXBUTTONLOAD, _("&Load"), wxPoint(2, 2), wxSize(75, 25), 0, wxDefaultValidator, _("WxButtonLoad"));
+	WxButtonLoad->SetFont(wxFont(8, wxSWISS, wxNORMAL, wxNORMAL, false, _("MS Sans Serif")));
 	WxBoxSizer6->Add(WxButtonLoad,0,wxALIGN_CENTER_VERTICAL | wxALL,2);
 
-	WxButtonSave = new wxButton(this, ID_WXBUTTONSAVE, _("&Save"), wxPoint(81,2), wxSize(75,25), 0, wxDefaultValidator, _("WxButtonSave"));
+	WxButtonSave = new wxButton(this, ID_WXBUTTONSAVE, _("&Save"), wxPoint(81, 2), wxSize(75, 25), 0, wxDefaultValidator, _("WxButtonSave"));
+	WxButtonSave->SetFont(wxFont(8, wxSWISS, wxNORMAL, wxNORMAL, false, _("MS Sans Serif")));
 	WxBoxSizer6->Add(WxButtonSave,0,wxALIGN_CENTER_VERTICAL | wxALL,2);
 
-	WxButtonDelete = new wxButton(this, ID_WXBUTTONDELETE, _("&Delete"), wxPoint(160,2), wxSize(75,25), 0, wxDefaultValidator, _("WxButtonDelete"));
+	WxButtonDelete = new wxButton(this, ID_WXBUTTONDELETE, _("&Delete"), wxPoint(160, 2), wxSize(75, 25), 0, wxDefaultValidator, _("WxButtonDelete"));
+	WxButtonDelete->SetFont(wxFont(8, wxSWISS, wxNORMAL, wxNORMAL, false, _("MS Sans Serif")));
 	WxBoxSizer6->Add(WxButtonDelete,0,wxALIGN_CENTER_VERTICAL | wxALL,2);
 
-	WxStaticLine1 = new wxStaticLine(this, ID_WXSTATICLINE1, wxPoint(169,58), wxSize(150,-1), wxLI_HORIZONTAL);
-	WxBoxSizer2->Add(WxStaticLine1,0,wxGROW | wxALL,1);
+	WxStaticLine1 = new wxStaticLine(this, ID_WXSTATICLINE1, wxPoint(47, 69), wxSize(400, -1), wxLI_HORIZONTAL);
+	WxStaticLine1->SetFont(wxFont(8, wxSWISS, wxNORMAL, wxNORMAL, false, _("MS Sans Serif")));
+	WxBoxSizer2->Add(WxStaticLine1,0,wxALIGN_CENTER | wxALL,1);
 
-	wxBoxSizer* WxBoxSizer5 = new wxBoxSizer(wxHORIZONTAL);
-	WxBoxSizer2->Add(WxBoxSizer5,1,wxGROW | wxALL,0);
+	WxBoxSizer5 = new wxBoxSizer(wxHORIZONTAL);
+	WxBoxSizer2->Add(WxBoxSizer5, 1, wxEXPAND | wxALL, 0);
 
-	WxListCtrlKeyword = new wxListCtrl(this, ID_WXLISTCTRLKEYWORD, wxPoint(0,28), wxSize(145,259), wxLC_REPORT  | wxLC_NO_HEADER | wxLC_SINGLE_SEL);
-	WxBoxSizer5->Add(WxListCtrlKeyword,1,wxGROW | wxALL,2);
+	WxListCtrlKeyword = new wxListCtrl(this, ID_WXLISTCTRLKEYWORD, wxPoint(2, 35), wxSize(145, 259), wxLC_REPORT | wxLC_NO_HEADER | wxLC_SINGLE_SEL, wxDefaultValidator, _("WxListCtrlKeyword"));
+	WxListCtrlKeyword->SetFont(wxFont(8, wxSWISS, wxNORMAL, wxNORMAL, false, _("MS Sans Serif")));
+	WxBoxSizer5->Add(WxListCtrlKeyword,1,wxEXPAND | wxALL,2);
 
-	wxBoxSizer* WxBoxSizer8 = new wxBoxSizer(wxVERTICAL);
-	WxBoxSizer5->Add(WxBoxSizer8,2,wxGROW | wxALL,0);
+	WxBoxSizer8 = new wxBoxSizer(wxVERTICAL);
+	WxBoxSizer5->Add(WxBoxSizer8, 2, wxEXPAND | wxALL, 0);
 
-	wxBoxSizer* WxBoxSizer9 = new wxBoxSizer(wxVERTICAL);
-	WxBoxSizer8->Add(WxBoxSizer9,0,wxALIGN_LEFT | wxALL,2);
+	WxBoxSizer9 = new wxBoxSizer(wxVERTICAL);
+	WxBoxSizer8->Add(WxBoxSizer9, 0, wxALIGN_LEFT | wxALL, 2);
 
-	WxCheckBoxBold = new wxCheckBox(this, ID_WXCHECKBOXBOLD, _("Bold"), wxPoint(2,2), wxSize(97,17), 0, wxDefaultValidator, _("WxCheckBoxBold"));
+	WxCheckBoxBold = new wxCheckBox(this, ID_WXCHECKBOXBOLD, _("Bold"), wxPoint(2, 2), wxSize(97, 17), 0, wxDefaultValidator, _("WxCheckBoxBold"));
+	WxCheckBoxBold->SetFont(wxFont(8, wxSWISS, wxNORMAL, wxNORMAL, false, _("MS Sans Serif")));
 	WxBoxSizer9->Add(WxCheckBoxBold,0,wxALIGN_LEFT | wxALL,2);
 
-	WxCheckBoxItalic = new wxCheckBox(this, ID_WXCHECKBOXITALIC, _("Italic"), wxPoint(2,23), wxSize(97,17), 0, wxDefaultValidator, _("WxCheckBoxItalic"));
+	WxCheckBoxItalic = new wxCheckBox(this, ID_WXCHECKBOXITALIC, _("Italic"), wxPoint(2, 23), wxSize(97, 17), 0, wxDefaultValidator, _("WxCheckBoxItalic"));
+	WxCheckBoxItalic->SetFont(wxFont(8, wxSWISS, wxNORMAL, wxNORMAL, false, _("MS Sans Serif")));
 	WxBoxSizer9->Add(WxCheckBoxItalic,0,wxALIGN_LEFT | wxALL,2);
 
-	WxCheckBoxUnderline = new wxCheckBox(this, ID_WXCHECKBOXUNDERLINE, _("Underline"), wxPoint(2,44), wxSize(97,17), 0, wxDefaultValidator, _("WxCheckBoxUnderline"));
+	WxCheckBoxUnderline = new wxCheckBox(this, ID_WXCHECKBOXUNDERLINE, _("Underline"), wxPoint(2, 44), wxSize(97, 17), 0, wxDefaultValidator, _("WxCheckBoxUnderline"));
+	WxCheckBoxUnderline->SetFont(wxFont(8, wxSWISS, wxNORMAL, wxNORMAL, false, _("MS Sans Serif")));
 	WxBoxSizer9->Add(WxCheckBoxUnderline,0,wxALIGN_LEFT | wxALL,2);
 
-	WxStaticLine3 = new wxStaticLine(this, ID_WXSTATICLINE3, wxPoint(96,63), wxSize(150,-1), wxLI_HORIZONTAL);
-	WxBoxSizer8->Add(WxStaticLine3,0,wxGROW | wxALL,1);
+	WxStaticLine3 = new wxStaticLine(this, ID_WXSTATICLINE3, wxPoint(47, 68), wxSize(250, -1), wxLI_HORIZONTAL);
+	WxStaticLine3->SetFont(wxFont(8, wxSWISS, wxNORMAL, wxNORMAL, false, _("MS Sans Serif")));
+	WxBoxSizer8->Add(WxStaticLine3,0,wxALIGN_CENTER | wxALL,1);
 
-	wxBoxSizer* WxBoxSizer10 = new wxBoxSizer(wxHORIZONTAL);
-	WxBoxSizer8->Add(WxBoxSizer10,1,wxGROW | wxALL,2);
+	WxBoxSizer10 = new wxBoxSizer(wxHORIZONTAL);
+	WxBoxSizer8->Add(WxBoxSizer10, 1, wxEXPAND | wxALL, 2);
 
-	wxBoxSizer* WxBoxSizer11 = new wxBoxSizer(wxVERTICAL);
-	WxBoxSizer10->Add(WxBoxSizer11,1,wxGROW | wxALL,2);
+	WxBoxSizer11 = new wxBoxSizer(wxVERTICAL);
+	WxBoxSizer10->Add(WxBoxSizer11, 1, wxEXPAND | wxALL, 2);
 
-	WxStaticText3 = new wxStaticText(this, ID_WXSTATICTEXT3, _("Foreground/Text Color"), wxPoint(26,2), wxSize(111,17), 0, _("WxStaticText3"));
+	WxStaticText3 = new wxStaticText(this, ID_WXSTATICTEXT3, _("Foreground/Text Color"), wxPoint(26, 3), wxDefaultSize, 0, _("WxStaticText3"));
+	WxStaticText3->SetFont(wxFont(8, wxSWISS, wxNORMAL, wxNORMAL, false, _("MS Sans Serif")));
 	WxBoxSizer11->Add(WxStaticText3,0,wxALIGN_CENTER_HORIZONTAL | wxALL,3);
 
-	WxStaticTextFCName = new wxStaticText(this, ID_WXSTATICTEXTFCNAME, _("WxStaticTextFCName"), wxPoint(27,23), wxSize(109,17), wxALIGN_CENTRE, _("WxStaticTextFCName"));
+	WxStaticTextFCName = new wxStaticText(this, ID_WXSTATICTEXTFCNAME, _("WxStaticTextFCName"), wxPoint(27, 26), wxDefaultSize, wxALIGN_CENTRE, _("WxStaticTextFCName"));
+	WxStaticTextFCName->SetFont(wxFont(8, wxSWISS, wxNORMAL, wxNORMAL, false, _("MS Sans Serif")));
 	WxBoxSizer11->Add(WxStaticTextFCName,0,wxALIGN_CENTER_HORIZONTAL | wxALL,3);
 
-	WxPanelFC = new wxPanel(this, ID_WXPANELFC, wxPoint(39,44), wxSize(85,20), wxSIMPLE_BORDER);
+	WxPanelFC = new wxPanel(this, ID_WXPANELFC, wxPoint(39, 48), wxSize(85, 20), wxSIMPLE_BORDER);
+	WxPanelFC->SetFont(wxFont(8, wxSWISS, wxNORMAL, wxNORMAL, false, _("MS Sans Serif")));
 	WxBoxSizer11->Add(WxPanelFC,0,wxALIGN_CENTER_HORIZONTAL | wxALL,2);
 
-	WxListCtrlFC = new wxListCtrl(this, ID_WXLISTCTRLFC, wxPoint(2,68), wxSize(160,140), wxLC_REPORT  | wxLC_NO_HEADER | wxLC_SINGLE_SEL);
-	WxBoxSizer11->Add(WxListCtrlFC,1,wxGROW | wxALL,2);
+	WxListCtrlFC = new wxListCtrl(this, ID_WXLISTCTRLFC, wxPoint(2, 72), wxSize(160, 140), wxLC_REPORT | wxLC_NO_HEADER | wxLC_SINGLE_SEL, wxDefaultValidator, _("WxListCtrlFC"));
+	WxListCtrlFC->SetFont(wxFont(8, wxSWISS, wxNORMAL, wxNORMAL, false, _("MS Sans Serif")));
+	WxBoxSizer11->Add(WxListCtrlFC,1,wxEXPAND | wxALL,2);
 
-	WxButtonFC = new wxButton(this, ID_WXBUTTONFC, _("Other Color"), wxPoint(37,212), wxSize(90,25), 0, wxDefaultValidator, _("WxButtonFC"));
+	WxButtonFC = new wxButton(this, ID_WXBUTTONFC, _("Other Color"), wxPoint(37, 216), wxSize(90, 25), 0, wxDefaultValidator, _("WxButtonFC"));
+	WxButtonFC->SetFont(wxFont(8, wxSWISS, wxNORMAL, wxNORMAL, false, _("MS Sans Serif")));
 	WxBoxSizer11->Add(WxButtonFC,0,wxALIGN_CENTER_HORIZONTAL | wxALL,2);
 
-	WxStaticLine2 = new wxStaticLine(this, ID_WXSTATICLINE2, wxPoint(170,48), wxSize(-1,150), wxLI_VERTICAL);
-	WxBoxSizer10->Add(WxStaticLine2,0,wxGROW | wxALL,1);
+	WxStaticLine2 = new wxStaticLine(this, ID_WXSTATICLINE2, wxPoint(169, 25), wxSize(-1, 200), wxLI_VERTICAL);
+	WxStaticLine2->SetFont(wxFont(8, wxSWISS, wxNORMAL, wxNORMAL, false, _("MS Sans Serif")));
+	WxBoxSizer10->Add(WxStaticLine2,0,wxALIGN_CENTER | wxALL,1);
 
-	wxBoxSizer* WxBoxSizer12 = new wxBoxSizer(wxVERTICAL);
-	WxBoxSizer10->Add(WxBoxSizer12,1,wxGROW | wxALL,2);
+	WxBoxSizer12 = new wxBoxSizer(wxVERTICAL);
+	WxBoxSizer10->Add(WxBoxSizer12, 1, wxEXPAND | wxALL, 2);
 
-	WxStaticText4 = new wxStaticText(this, ID_WXSTATICTEXT4, _("Background Color"), wxPoint(37,2), wxSize(89,17), 0, _("WxStaticText4"));
+	WxStaticText4 = new wxStaticText(this, ID_WXSTATICTEXT4, _("Background Color"), wxPoint(37, 3), wxDefaultSize, 0, _("WxStaticText4"));
+	WxStaticText4->SetFont(wxFont(8, wxSWISS, wxNORMAL, wxNORMAL, false, _("MS Sans Serif")));
 	WxBoxSizer12->Add(WxStaticText4,0,wxALIGN_CENTER_HORIZONTAL | wxALL,3);
 
-	WxStaticTextBCName = new wxStaticText(this, ID_WXSTATICTEXTBCNAME, _("WxStaticTextBCName"), wxPoint(27,23), wxSize(110,17), wxALIGN_CENTRE, _("WxStaticTextBCName"));
+	WxStaticTextBCName = new wxStaticText(this, ID_WXSTATICTEXTBCNAME, _("WxStaticTextBCName"), wxPoint(27, 26), wxDefaultSize, wxALIGN_CENTRE, _("WxStaticTextBCName"));
+	WxStaticTextBCName->SetFont(wxFont(8, wxSWISS, wxNORMAL, wxNORMAL, false, _("MS Sans Serif")));
 	WxBoxSizer12->Add(WxStaticTextBCName,0,wxALIGN_CENTER_HORIZONTAL | wxALL,3);
 
-	WxPanelBC = new wxPanel(this, ID_WXPANELBC, wxPoint(39,44), wxSize(85,20), wxSIMPLE_BORDER);
+	WxPanelBC = new wxPanel(this, ID_WXPANELBC, wxPoint(39, 48), wxSize(85, 20), wxSIMPLE_BORDER);
+	WxPanelBC->SetFont(wxFont(8, wxSWISS, wxNORMAL, wxNORMAL, false, _("MS Sans Serif")));
 	WxBoxSizer12->Add(WxPanelBC,0,wxALIGN_CENTER_HORIZONTAL | wxALL,2);
 
-	WxListCtrlBC = new wxListCtrl(this, ID_WXLISTCTRLBC, wxPoint(2,68), wxSize(160,140), wxLC_REPORT  | wxLC_NO_HEADER | wxLC_SINGLE_SEL);
-	WxBoxSizer12->Add(WxListCtrlBC,1,wxGROW | wxALL,2);
+	WxListCtrlBC = new wxListCtrl(this, ID_WXLISTCTRLBC, wxPoint(2, 72), wxSize(160, 140), wxLC_REPORT | wxLC_NO_HEADER | wxLC_SINGLE_SEL, wxDefaultValidator, _("WxListCtrlBC"));
+	WxListCtrlBC->SetFont(wxFont(8, wxSWISS, wxNORMAL, wxNORMAL, false, _("MS Sans Serif")));
+	WxBoxSizer12->Add(WxListCtrlBC,1,wxEXPAND | wxALL,2);
 
-	WxButtonBC = new wxButton(this, ID_WXBUTTONBC, _("Other Color"), wxPoint(37,212), wxSize(90,28), 0, wxDefaultValidator, _("WxButtonBC"));
+	WxButtonBC = new wxButton(this, ID_WXBUTTONBC, _("Other Color"), wxPoint(37, 216), wxSize(90, 28), 0, wxDefaultValidator, _("WxButtonBC"));
+	WxButtonBC->SetFont(wxFont(8, wxSWISS, wxNORMAL, wxNORMAL, false, _("MS Sans Serif")));
 	WxBoxSizer12->Add(WxButtonBC,0,wxALIGN_CENTER_HORIZONTAL | wxALL,2);
 
-	wxBoxSizer* WxBoxSizer7 = new wxBoxSizer(wxHORIZONTAL);
-	WxBoxSizer2->Add(WxBoxSizer7,0,wxALIGN_CENTER_HORIZONTAL | wxALL,2);
+	WxBoxSizer7 = new wxBoxSizer(wxHORIZONTAL);
+	WxBoxSizer2->Add(WxBoxSizer7, 0, wxALIGN_CENTER_HORIZONTAL | wxALL, 2);
 
-	WxButtonClose = new wxButton(this, wxID_OK, _("&OK"), wxPoint(2,2), wxSize(90,27), 0, wxDefaultValidator, _("WxButtonClose"));
+	WxButtonClose = new wxButton(this, wxID_OK, _("&OK"), wxPoint(3, 3), wxSize(90, 27), 0, wxDefaultValidator, _("WxButtonClose"));
+	WxButtonClose->SetFont(wxFont(8, wxSWISS, wxNORMAL, wxNORMAL, false, _("MS Sans Serif")));
 	WxBoxSizer7->Add(WxButtonClose,0,wxALIGN_CENTER_VERTICAL | wxALL,3);
 
-	WxButtonCancel = new wxButton(this, wxID_CANCEL, _("&Cancel"), wxPoint(96,2), wxSize(90,27), 0, wxDefaultValidator, _("WxButtonCancel"));
+	WxButtonCancel = new wxButton(this, wxID_CANCEL, _("&Cancel"), wxPoint(99, 3), wxSize(90, 27), 0, wxDefaultValidator, _("WxButtonCancel"));
+	WxButtonCancel->SetFont(wxFont(8, wxSWISS, wxNORMAL, wxNORMAL, false, _("MS Sans Serif")));
 	WxBoxSizer7->Add(WxButtonCancel,0,wxALIGN_CENTER_VERTICAL | wxALL,3);
 
+	SetTitle(_("Syntax Highlighting Settings"));
+	SetIcon(wxNullIcon);
+	
+	GetSizer()->Layout();
 	GetSizer()->Fit(this);
 	GetSizer()->SetSizeHints(this);
-	this->SetTitle(_("Syntax Highlighting Settings"));
-	this->Center();
-	this->SetIcon(wxNullIcon);
+	Center();
 	
 	////GUI Items Creation End
+
+    //restore wxFont
+    #undef wxFont
 
     ResizeItem(WxBoxSizer4, WxStaticText1, 2, 2);
     ResizeItem(WxBoxSizer4, WxStaticText2, 2, 2);

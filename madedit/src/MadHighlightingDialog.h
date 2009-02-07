@@ -30,6 +30,7 @@
 #include <wx/combobox.h>
 #include <wx/stattext.h>
 #include <wx/listbox.h>
+#include <wx/sizer.h>
 ////Header Include End
 
 #include <vector>
