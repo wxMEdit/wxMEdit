@@ -4,7 +4,7 @@
 // Author:      Benjamin I. Williams
 // Modified by:
 // Created:     2005-05-17
-// RCS-ID:      $Id: framemanager.cpp 57885 2009-01-07 14:51:49Z JS $
+// RCS-ID:      $Id: framemanager.cpp 58121 2009-01-15 18:56:41Z BP $
 // Copyright:   (C) Copyright 2005-2006, Kirix Corporation, All Rights Reserved
 // Licence:     wxWindows Library Licence, Version 3.1
 ///////////////////////////////////////////////////////////////////////////////
@@ -579,6 +579,7 @@ END_EVENT_TABLE()
 wxAuiManager::wxAuiManager(wxWindow* managed_wnd, unsigned int flags)
 {
     m_action = actionNone;
+    m_action_window = NULL;
     m_last_mouse_move = wxPoint();
     m_hover_button = NULL;
     m_art = new wxAuiDefaultDockArt;
