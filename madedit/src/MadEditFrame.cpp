@@ -139,8 +139,8 @@
 #endif
 
 
-wxString g_MadEdit_Version(wxT("MadEdit v0.2.8 Beta"));
-wxString g_MadEdit_URL(wxT("http://madedit.sourceforge.net"));
+wxString g_MadEdit_Version(wxT("MadEdit v0.2.9"));
+wxString g_MadEdit_URL(wxT("http://madedit.sourceforge.net/wiki"));
 
 
 extern wxString g_MadEditAppDir, g_MadEditHomeDir;

@@ -1,5 +1,5 @@
 			=================================
-			  MadEdit v0.2.8 Beta
+					MadEdit v0.2.9
 			=================================
 About:
 -----
@@ -62,6 +62,15 @@ Syntax files, Locale files and Settings:
 
 ChangeLog:
 ----------
+v0.2.9:
+1.added that restore the encoding and font(name, size) of a file when reopening it.
+2.added that use Ctrl+MouseWheel to decrease or increase the font size.
+3.added Japanese language. Thank Tilt for the translations.
+4.fixed a bug when converting between Tab and Space char in wordwrap mode.
+5.modified that the dialogs will stay on top of main window, not top of all windows.
+6.modified the action when associating file types.
+7.some minor changes.
+
 v0.2.8:
 1.added Japanese Kanji supporting for converting Chinese characters.
 2.added the function to split window into multiple Tab Controls (by using wxAuiNotebook)

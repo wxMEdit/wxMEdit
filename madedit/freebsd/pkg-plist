@@ -2,6 +2,7 @@ bin/madedit
 share/locale/zh_CN/LC_MESSAGES/madedit.mo
 share/locale/zh_TW/LC_MESSAGES/madedit.mo
 share/locale/it_IT/LC_MESSAGES/madedit.mo
+share/locale/ja_JP/LC_MESSAGES/madedit.mo
 share/applications/madedit.desktop
 share/madedit/syntax/Dark.sch
 share/madedit/syntax/DarkBlue.sch
