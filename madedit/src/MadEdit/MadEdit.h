@@ -577,6 +577,17 @@ public: // basic functions
     void SetTextFont(const wxString &name, int size, bool forceReset);
     void SetHexFont(const wxString &name, int size, bool forceReset);
 
+    void GetTextFont(wxString &name, int &size)
+    {
+        name=m_TextFont->GetFaceName();
+        size=m_TextFont->GetPointSize();
+    }
+    void GetHexFont(wxString &name, int &size)
+    {
+        name=m_HexFont->GetFaceName();
+        size=m_HexFont->GetPointSize();
+    }
+
     void SetFont(const wxString &name, int size)
     {
         if(m_EditMode==emHexMode)
@@ -605,13 +616,11 @@ public: // basic functions
     {
         if(m_EditMode==emHexMode)
         {
-            name=m_HexFont->GetFaceName();
-            size=m_HexFont->GetPointSize();
+            GetHexFont(name, size);
         }
         else
         {
-            name=m_TextFont->GetFaceName();
-            size=m_TextFont->GetPointSize();
+            GetTextFont(name, size);
         }
     }
 
