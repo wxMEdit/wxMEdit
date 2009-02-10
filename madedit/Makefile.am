@@ -2,7 +2,7 @@ SUBDIRS = syntax po
 
 bin_PROGRAMS = madedit
 INCLUDES = -I$(top_srcdir)/wxAUI/include -I$(top_srcdir)/charset-detector/include -I$(top_srcdir)/charset-detector/src -I$(top_srcdir)/charset-detector/src/tables
-madedit_CXXFLAGS = -DwxUSE_AUI=1 -DWXDLLIMPEXP_AUI= -DWXDLLIMPEXP_FWD_AUI= -DDATA_DIR=\"${datadir}\"
+madedit_CXXFLAGS = -DDATA_DIR=\"${datadir}\"
 madedit_SOURCES =	src/MadAboutDialog.cpp \
 	src/MadAboutDialog.h \
 	src/MadCommand.h \

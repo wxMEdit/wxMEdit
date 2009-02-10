@@ -18,13 +18,22 @@
 
 #include "wx/defs.h"
 
-#if wxUSE_AUI
+#if 1//wxUSE_AUI
 
 #include "wx/dynarray.h"
 #include "wx/gdicmn.h"
 #include "wx/window.h"
 #include "wx/timer.h"
 #include "wx/sizer.h"
+
+#ifdef WXDLLIMPEXP_AUI
+#undef WXDLLIMPEXP_AUI
+#endif
+#ifdef WXDLLIMPEXP_FWD_AUI
+#undef WXDLLIMPEXP_FWD_AUI
+#endif
+#define WXDLLIMPEXP_AUI
+#define WXDLLIMPEXP_FWD_AUI
 
 enum wxAuiManagerDock
 {

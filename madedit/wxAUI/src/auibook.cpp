@@ -18,7 +18,7 @@
     #pragma hdrstop
 #endif
 
-#if wxUSE_AUI
+#if 1//wxUSE_AUI
 
 #include "wx/aui/auibook.h"
 

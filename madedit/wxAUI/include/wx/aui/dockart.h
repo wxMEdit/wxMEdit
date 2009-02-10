@@ -18,12 +18,21 @@
 
 #include "wx/defs.h"
 
-#if wxUSE_AUI
+#if 1//wxUSE_AUI
 
 #include "wx/pen.h"
 #include "wx/brush.h"
 #include "wx/bitmap.h"
 #include "wx/colour.h"
+
+#ifdef WXDLLIMPEXP_AUI
+#undef WXDLLIMPEXP_AUI
+#endif
+#ifdef WXDLLIMPEXP_FWD_AUI
+#undef WXDLLIMPEXP_FWD_AUI
+#endif
+#define WXDLLIMPEXP_AUI
+#define WXDLLIMPEXP_FWD_AUI
 
 // dock art provider code - a dock provider provides all drawing
 // functionality to the wxAui dock manager.  This allows the dock

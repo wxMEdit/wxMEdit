@@ -18,7 +18,7 @@
 
 #include "wx/defs.h"
 
-#if wxUSE_AUI
+#if 1//wxUSE_AUI
 
 #include "wx/frame.h"
 
@@ -28,6 +28,15 @@
 #else
 #define wxAuiFloatingFrameBaseClass wxFrame
 #endif
+
+#ifdef WXDLLIMPEXP_AUI
+#undef WXDLLIMPEXP_AUI
+#endif
+#ifdef WXDLLIMPEXP_FWD_AUI
+#undef WXDLLIMPEXP_FWD_AUI
+#endif
+#define WXDLLIMPEXP_AUI
+#define WXDLLIMPEXP_FWD_AUI
 
 class WXDLLIMPEXP_AUI wxAuiFloatingFrame : public wxAuiFloatingFrameBaseClass
 {

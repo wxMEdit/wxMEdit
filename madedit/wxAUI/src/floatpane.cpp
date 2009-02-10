@@ -23,7 +23,7 @@
     #pragma hdrstop
 #endif
 
-#if wxUSE_AUI
+#if 1//wxUSE_AUI
 
 #include "wx/aui/framemanager.h"
 #include "wx/aui/floatpane.h"

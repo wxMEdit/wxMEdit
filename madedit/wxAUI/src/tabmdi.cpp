@@ -24,8 +24,8 @@
     #pragma hdrstop
 #endif
 
-#if wxUSE_AUI
-#if wxUSE_MDI
+#if 1//wxUSE_AUI
+#if 1//wxUSE_MDI
 
 #include "wx/aui/tabmdi.h"
 
