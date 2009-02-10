@@ -9398,6 +9398,10 @@ void MadEdit::OnMouseMiddleUp(wxMouseEvent &evt)
 
 void MadEdit::OnSetFocus(wxFocusEvent &evt)
 {
+    //force updating font widths
+    memset(m_TextFontWidths, 0, sizeof(m_TextFontWidths));
+    memset(m_HexFontWidths, 0, sizeof(m_HexFontWidths));
+
     if(m_SingleLineMode)
     {
         SelectAll();
