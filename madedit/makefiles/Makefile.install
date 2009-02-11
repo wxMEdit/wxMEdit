@@ -9,6 +9,7 @@ app_dir = $(prefix_dir)/share/applications
 mo_it_IT_dir = $(prefix_dir)/share/locale/it_IT/LC_MESSAGES
 mo_zh_CN_dir = $(prefix_dir)/share/locale/zh_CN/LC_MESSAGES
 mo_zh_TW_dir = $(prefix_dir)/share/locale/zh_TW/LC_MESSAGES
+mo_ja_JP_dir = $(prefix_dir)/share/locale/ja_JP/LC_MESSAGES
 data_dir = $(prefix_dir)/share/madedit
 
 INSTALL = $(prefix_dir)/bin/install
@@ -31,6 +32,8 @@ install:
 	$(INSTALL_DATA) locale/zh_CN/madedit.mo $(mo_zh_CN_dir)
 	$(MKDIR) $(mo_zh_TW_dir)
 	$(INSTALL_DATA) locale/zh_TW/madedit.mo $(mo_zh_TW_dir)
+	$(MKDIR) $(mo_ja_JP_dir)
+	$(INSTALL_DATA) locale/ja_JP/madedit.mo $(mo_ja_JP_dir)
 	$(MKDIR) $(data_dir)/syntax
 	$(INSTALL_DATA) syntax/* $(data_dir)/syntax
 
@@ -41,4 +44,5 @@ uninstall:
 	rm -f $(mo_it_IT_dir)/madedit.mo
 	rm -f $(mo_zh_CN_dir)/madedit.mo
 	rm -f $(mo_zh_TW_dir)/madedit.mo
+	rm -f $(mo_ja_JP_dir)/madedit.mo
 	rm -f -r $(data_dir)

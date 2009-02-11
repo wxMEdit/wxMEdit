@@ -29,6 +29,8 @@ OBJ  = ./Release/MadEditFrame.obj \
        ./Release/MadHighlightingDialog.obj \
        ./Release/MadFindInFilesDialog.obj \
        ./Release/MadSortDialog.obj \
+       ./Release/MadFileAssociationDialog.obj \
+       ./Release/auibar.obj \
        ./Release/tabmdi.obj \
        ./Release/auibook.obj \
        ./Release/dockart.obj \
@@ -64,16 +66,18 @@ OBJ  = ./Release/MadEditFrame.obj \
 
 LINKOBJ = $(OBJ)
 
-WXWIN = N:/wxWidgets
+WXWIN = D:\wxWidgets28_SVN
 #XPRESSIVE_DIR = N:/boost
 XPRESSIVE_DIR = ../xpressive
-BOOST_DIR = N:/boost
+BOOST_DIR = D:/boost
 
-LIBS =  -L$(WXWIN)/lib/gcc_lib -L"../libunicows" -mwindows -lwxmsw28u_core -lwxbase28u -lunicows -lkernel32 -luser32 -lgdi32 -lcomdlg32 -lwinspool -lwinmm -lshell32 -lcomctl32 -lole32 -loleaut32 -luuid -lrpcrt4 -ladvapi32 -lwsock32 -lodbc32 -lopengl32  -s 
+LIBS =  -L$(WXWIN)/lib/gcc_lib -L"../libunicows" -mwindows -lwxmsw28u_core -lwxbase28u -lunicows -lkernel32 -luser32 -lgdi32 -lcomdlg32 -lwinspool -lwinmm -lshell32 -lcomctl32 -lole32 -loleaut32 -luuid -lrpcrt4 -ladvapi32 -lwsock32 -lodbc32 -lopengl32 -lgmon -s
+#-g -pg
 CXXINCS =  -I$(XPRESSIVE_DIR) -I$(BOOST_DIR) -I"../wxAUI/include" -I"../charset-detector/include" -I"../charset-detector/src" -I"../charset-detector/src/tables" -I$(WXWIN)/include  -I$(WXWIN)/lib/gcc_lib/mswu
 
 BIN  = Release/MadEdit.exe
-CXXFLAGS = $(CXXINCS) -D_UNICODE -D__WXMSW__ -D__GNUWIN32__ -D__WIN95__ -DWIN32 -DwxUSE_AUI=1 -DWXDLLIMPEXP_AUI= -DWXDLLIMPEXP_FWD_AUI= -O2
+CXXFLAGS = $(CXXINCS) -D_UNICODE -D__WXMSW__ -D__GNUWIN32__ -D__WIN95__ -DWIN32 -O2
+#-g -pg
 RM = rm -f
 
 .PHONY: all all-before all-after clean clean-custom
@@ -161,6 +165,12 @@ $(BIN): $(OBJ)
 
 ./Release/MadSortDialog.obj: ../src/MadSortDialog.cpp
 	$(CPP) -c ../src/MadSortDialog.cpp -o ./Release/MadSortDialog.obj $(CXXFLAGS)
+
+./Release/MadFileAssociationDialog.obj: ../src/MadFileAssociationDialog.cpp
+	$(CPP) -c ../src/MadFileAssociationDialog.cpp -o ./Release/MadFileAssociationDialog.obj $(CXXFLAGS)
+
+./Release/auibar.obj: ../wxAUI/src/auibar.cpp
+	$(CPP) -c ../wxAUI/src/auibar.cpp -o ./Release/auibar.obj $(CXXFLAGS)
 
 ./Release/tabmdi.obj: ../wxAUI/src/tabmdi.cpp
 	$(CPP) -c ../wxAUI/src/tabmdi.cpp -o ./Release/tabmdi.obj $(CXXFLAGS)

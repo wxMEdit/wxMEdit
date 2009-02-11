@@ -29,8 +29,10 @@ OBJ  = ./Release/MadEditFrame.o \
        ./Release/MadWordCountDialog.o \
        ./Release/MadHighlightingDialog.o \
        ./Release/MadFindInFilesDialog.o \
+       ./Release/MadFileAssociationDialog.obj \
        ./Release/caret_new.o \
        ./Release/MadSortDialog.o \
+       ./Release/auibar.obj \
        ./Release/tabmdi.o \
        ./Release/auibook.o \
        ./Release/dockart.o \
@@ -172,6 +174,12 @@ $(BIN): $(OBJ)
 
 ./Release/MadSortDialog.o: ../src/MadSortDialog.cpp
 	$(CXX) -c ../src/MadSortDialog.cpp -o ./Release/MadSortDialog.o $(CXXFLAGS)
+
+./Release/MadFileAssociationDialog.obj: ../src/MadFileAssociationDialog.cpp
+	$(CXX) -c ../src/MadFileAssociationDialog.cpp -o ./Release/MadFileAssociationDialog.obj $(CXXFLAGS)
+
+./Release/auibar.obj: ../wxAUI/src/auibar.cpp
+	$(CXX) -c ../wxAUI/src/auibar.cpp -o ./Release/auibar.obj $(CXXFLAGS)
 
 ./Release/tabmdi.o: ../wxAUI/src/tabmdi.cpp
 	$(CXX) -c ../wxAUI/src/tabmdi.cpp -o ./Release/tabmdi.o $(CXXFLAGS)
