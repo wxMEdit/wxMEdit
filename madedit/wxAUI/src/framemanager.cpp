@@ -4,7 +4,7 @@
 // Author:      Benjamin I. Williams
 // Modified by:
 // Created:     2005-05-17
-// RCS-ID:      $Id: framemanager.cpp 58121 2009-01-15 18:56:41Z BP $
+// RCS-ID:      $Id: framemanager.cpp 58854 2009-02-12 22:47:27Z BIW $
 // Copyright:   (C) Copyright 2005-2006, Kirix Corporation, All Rights Reserved
 // Licence:     wxWindows Library Licence, Version 3.1
 ///////////////////////////////////////////////////////////////////////////////
@@ -1269,7 +1269,7 @@ void wxAuiManager::MaximizePane(wxAuiPaneInfo& pane_info)
     for (i = 0, pane_count = m_panes.GetCount(); i < pane_count; ++i)
     {
         wxAuiPaneInfo& p = m_panes.Item(i);
-        if (!p.IsToolbar())
+        if (!p.IsToolbar() && !p.IsFloating())
         {
             p.Restore();
 
