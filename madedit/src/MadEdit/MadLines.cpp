@@ -1022,7 +1022,7 @@ bool MadLines::NextUChar_DBCS(MadUCQueue &ucqueue)
     wxByte *ptr = m_NextUChar_Buffer+m_NextUChar_BufferStart;
     if(rest>1)
     {
-        if((uc=m_Encoding->DBtoUCS4(ptr)) == 0)// not a valid db-char
+        if(ptr[1] == 0 || (uc=m_Encoding->DBtoUCS4(ptr)) == 0)// not a valid db-char
         {
             wxByte db[2] = {*ptr, 0}; // re-check by first byte
             if((uc=m_Encoding->DBtoUCS4(db)) == 0)
