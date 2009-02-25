@@ -1,3 +1,4 @@
 # format: [filename][spaces][syn file]
 
 makefile	syntax_conf.syn
+CMakeLists	syntax_conf.syn
