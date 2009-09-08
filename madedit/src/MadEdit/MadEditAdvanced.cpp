@@ -1639,7 +1639,7 @@ struct SortLineData
 
     MadLineIterator lit;
     int lineid;
-    MadUCQueue ucq;
+    vector<ucs4_t> ucdata;
     // for numeric sorting. int_begin=-1 indicates invalid number
     int int_begin, int_len, frac_begin, frac_len;
     bool negative;
@@ -1653,11 +1653,14 @@ MadLines *SortLineData::s_lines=NULL;
 MadLines::NextUCharFuncPtr SortLineData::s_NextUChar=NULL;
 
 SortLineData::SortLineData(const MadLineIterator& l, int id)
-    : lit(l), lineid(id), int_begin(-1), frac_begin(-1), negative(false)
+    : lit(l), lineid(id), ucdata(), int_begin(-1), frac_begin(-1), negative(false)
 {
     enum { NUM_SIGN, NUM_INT, NUM_FRAC ,NUM_END};
     int numstep=NUM_SIGN;
     int num_idx=0;
+
+    static MadUCQueue ucq;
+    ucq.clear();
 
     s_lines->InitNextUChar(lit, lit->m_RowIndices[0].m_Start);
     ucs4_t uc;
@@ -1673,9 +1676,12 @@ SortLineData::SortLineData(const MadLineIterator& l, int id)
         {
             if(uc<0x10000 && uc>=0)
             {
-                ucq.back().first=towlower(wchar_t(uc));
+                uc = towlower(wchar_t(uc));
             }
         }
+
+        //save every character
+        ucdata.push_back(uc);
 
         if(s_numeric && numstep!=NUM_END)
         {
@@ -1799,15 +1805,15 @@ SortLineData::SortLineData(const MadLineIterator& l, int id)
 
 bool SortLineData::Equal(const SortLineData *data)
 {
-    size_t count = ucq.size();
-    const MadUCQueue &ucq2=data->ucq;
-    if(count != ucq2.size()) return false;
+    size_t count = ucdata.size();
+    const vector<ucs4_t> &ucdata2 = data->ucdata;
+    if(count != ucdata2.size()) return false;
     if(count == 0) return true;
 
     size_t i=0;
     do
     {
-        if(ucq[i].first != ucq2[i].first) return false;
+        if(ucdata[i] != ucdata2[i]) return false;
     }
     while(++i < count);
     return true;
@@ -1851,8 +1857,8 @@ struct SortLineComp
                 if(data1->int_len > data2->int_len) return false;
 
                 //int_len == it.int_len
-                const MadUCQueue &it1ucq = data1->ucq;
-                const MadUCQueue &it2ucq = data2->ucq;
+                const vector<ucs4_t> &it1ucdata = data1->ucdata;
+                const vector<ucs4_t> &it2ucdata = data2->ucdata;
                 if(data1->int_len > 0)
                 {
                     const int it1beg=data1->int_begin;
@@ -1860,8 +1866,8 @@ struct SortLineComp
                     int i=0;
                     do
                     {
-                        const ucs4_t uc1 = it1ucq[it1beg+i].first;
-                        const ucs4_t uc2 = it2ucq[it2beg+i].first;
+                        const ucs4_t uc1 = it1ucdata[it1beg+i];
+                        const ucs4_t uc2 = it2ucdata[it2beg+i];
                         if(uc1 < uc2) return true;
                         if(uc1 > uc2) return false;
                     }
@@ -1879,8 +1885,8 @@ struct SortLineComp
                 int i=0;
                 do
                 {
-                    const ucs4_t uc1 = it1ucq[it1beg+i].first;
-                    const ucs4_t uc2 = it2ucq[it2beg+i].first;
+                    const ucs4_t uc1 = it1ucdata[it1beg+i];
+                    const ucs4_t uc2 = it2ucdata[it2beg+i];
                     if(uc1 < uc2) return true;
                     if(uc1 > uc2) return false;
                     ++i;
@@ -1892,10 +1898,10 @@ struct SortLineComp
         }
         else // compare string
         {
-            const MadUCQueue &ucq1 = data->ucq;
-            const MadUCQueue &ucq2 = it.data->ucq;
-            const size_t len1 = ucq1.size();
-            const size_t len2 = ucq2.size();
+            const vector<ucs4_t> &ucdata1 = data->ucdata;
+            const vector<ucs4_t> &ucdata2 = it.data->ucdata;
+            const size_t len1 = ucdata1.size();
+            const size_t len2 = ucdata2.size();
 
             if(len1==0) return true;
             if(len2==0) return false;
@@ -1903,8 +1909,8 @@ struct SortLineComp
             size_t i = 0;
             do
             {
-                if(ucq1[i].first < ucq2[i].first) return true;
-                if(ucq1[i].first > ucq2[i].first) return false;
+                if(ucdata1[i] < ucdata2[i]) return true;
+                if(ucdata1[i] > ucdata2[i]) return false;
                 ++i;
             }
             while(i<len1 && i<len2);
@@ -1986,7 +1992,7 @@ void MadEdit::SortLines(MadSortFlags flags, int beginline, int endline)
     }
 
     // sort lines
-    std::sort(lines.begin(), lines.end());
+    std::stable_sort(lines.begin(), lines.end());
 
     // put the sorted lines to MemData
     MadBlock blk(m_Lines->m_MemData, m_Lines->m_MemData->m_Size, 0);
