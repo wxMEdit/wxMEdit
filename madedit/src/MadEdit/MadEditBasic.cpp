@@ -2141,7 +2141,7 @@ bool MadEdit::Reload()
     wxFileOffset oldCaretPos=m_CaretPos.pos;
     MadEditMode editmode=m_EditMode;
 
-    LoadFromFile(m_Lines->m_Name);
+    LoadFromFile(m_Lines->m_Name, m_Lines->m_Encoding->GetName());
     SetEditMode(editmode);
     RestorePosition(oldCaretPos, toprow);
     return true;
