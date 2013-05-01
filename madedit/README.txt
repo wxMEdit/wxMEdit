@@ -16,26 +16,23 @@ A. Linux, FreeBSD, and Unix-like OS (__WXGTK__):
       Required Libraries to compile:
       1. wxWidgets-2.6.1 or higher with Unicode enabled
       2. Boost-1.33.0 or higher
-      3. Boost.Xpressive latest version
 
 B. MS Windows (__WXMSW__):
    a. MinGW32/GNU C++ 3.x (wxDevCpp):
       Required Libraries to compile:
       1. wxWidgets-2.6.1 or higher with Unicode enabled
       2. Boost-1.33.0 or higher
-      3. Boost.Xpressive latest version
-      4. libunicows: it's optional under WinNT/XP, but required under Win98
+      3. libunicows: it's optional under WinNT/XP, but required under Win98
    b. Visual C++ 7.1 (VS.Net 2003):
       Required Libraries to compile:
       1. wxWidgets-2.6.1 or higher with Unicode enabled
       2. Boost-1.33.0 or higher
-      3. Boost.Xpressive latest version
-      4. libunicows: it's optional under WinNT/XP, but required under Win98
+      3. libunicows: it's optional under WinNT/XP, but required under Win98
 
-P.S.: If you use CVS version of Boost, Boost.Xpressive has been included in the CVS HEAD, 
-      or you must get 'xpressive.zip' at:
-      http://www.boost-consulting.com/vault/index.php?directory=Strings%20-%20Text%20Processing
-P.S.2: Since MadEdit v0.2.2, Xpressive is attached in MadEdit sources package.
+NOTE: If you use  Boost-1.33, you should get Boost.Xpressive at:
+      http://code.google.com/p/wxmedit/
+      http://wxmedit.googlecode.com/files/xpressive.tgz
+      http://wxmedit.googlecode.com/files/xpressive.zip
 
 Syntax files, Locale files and Settings:
 ---------------------------------------
@@ -251,10 +248,10 @@ Alston Chen <madedit@gmail.com>
 Links:
 -----
 MadEdit: http://sourceforge.net/projects/madedit/
-wxWidgets: http://www.wxwidgets.org
-wxDevCpp: http://wxdsgn.sourceforge.net
-Boost: http://www.boost.org
-Boost.Xpressive: http://boost-sandbox.sourceforge.net/libs/xpressive/
-libunicows: http://libunicows.sourceforge.net
-Open Clip Art Library: http://www.openclipart.org
+wxWidgets: http://www.wxwidgets.org/
+wxDevCpp: http://wxdsgn.sourceforge.net/
+Boost: http://www.boost.org/
+Boost.Xpressive: http://www.boost.org/doc/html/xpressive.html
+libunicows: http://libunicows.sourceforge.net/
+Open Clip Art Library: http://www.openclipart.org/
 

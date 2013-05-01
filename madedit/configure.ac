@@ -9,8 +9,9 @@ AC_PREFIX_DEFAULT([/usr])
 
 AM_INIT_AUTOMAKE
 
+AC_USE_SYSTEM_EXTENSIONS
 ALL_LINGUAS="it_IT ja_JP zh_CN zh_TW"
-AM_GNU_GETTEXT
+AM_GNU_GETTEXT([external])
 AC_SUBST(ALL_LINGUAS)
 
 # Checks for programs.
@@ -32,21 +33,20 @@ esac
 #AM_PATH_GLIB_2_0(2.6.0)
 #AM_PATH_GTK_2_0(2.6.0)
 
-if test "x$IS_MACOS" == "x"; then
-    PKG_CHECK_MODULES(glib_gtk2, [
-            glib-2.0 >= 2.6.0
-            gtk+-2.0 >= 2.6.0
-    ])
-    CXXFLAGS="$CXXFLAGS $glib_gtk2_CFLAGS"
-    LIBS="$LIBS $glib_gtk2_LIBS"
-fi
+#if test "x$IS_MACOS" == "x"; then
+#fi
+PKG_CHECK_MODULES(glib_gtk2, [
+        glib-2.0 >= 2.6.0
+        gtk+-2.0 >= 2.6.0
+])
+CXXFLAGS="$CXXFLAGS $glib_gtk2_CFLAGS"
+LIBS="$LIBS $glib_gtk2_LIBS"
 
 # option for additional Xpressive lib
 AC_ARG_WITH(xpressive, 
     [  --with-xpressive=PATH   use additional Boost.Xpressive library path,
-                          otherwise use default path "$(top_srcdir)/xpressive"],
-    [CXXFLAGS="$CXXFLAGS -I$withval"],
-    [CXXFLAGS="$CXXFLAGS -I\$(top_srcdir)/xpressive"])
+                          otherwise use Boost library path],
+    [CXXFLAGS="$CXXFLAGS -I$withval"])
 
 # option for additional Boost lib
 AC_ARG_WITH(boost, 

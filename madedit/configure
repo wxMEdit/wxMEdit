@@ -1383,7 +1383,7 @@ Optional Packages:
   --with-libintl-prefix[=DIR]  search for libintl in DIR/include and DIR/lib
   --without-libintl-prefix     don't search for libintl in includedir and libdir
   --with-xpressive=PATH   use additional Boost.Xpressive library path,
-                          otherwise use default path "$(top_srcdir)/xpressive"
+                          otherwise use Boost library path
   --with-boost=PATH       use additional Boost library path,
                           otherwise use system include path
   --with-wxdir=PATH       Use uninstalled version of wxWidgets in PATH
@@ -12812,8 +12812,6 @@ fi
 # Check whether --with-xpressive was given.
 if test "${with_xpressive+set}" = set; then
   withval=$with_xpressive; CXXFLAGS="$CXXFLAGS -I$withval"
-else
-  CXXFLAGS="$CXXFLAGS -I\$(top_srcdir)/xpressive"
 fi
 
 

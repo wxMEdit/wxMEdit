@@ -66,10 +66,10 @@ OBJ  = ./Release/MadEditFrame.obj \
 
 LINKOBJ = $(OBJ)
 
-WXWIN = D:\wxWidgets28_SVN
-#XPRESSIVE_DIR = N:/boost
-XPRESSIVE_DIR = ../xpressive
-BOOST_DIR = D:/boost
+# Use the inherited value from the environment
+#WXWIN = 
+#XPRESSIVE_DIR = 
+#BOOST_DIR = 
 
 LIBS =  -L$(WXWIN)/lib/gcc_lib -L"../libunicows" -mwindows -lwxmsw28u_core -lwxbase28u -lunicows -lkernel32 -luser32 -lgdi32 -lcomdlg32 -lwinspool -lwinmm -lshell32 -lcomctl32 -lole32 -loleaut32 -luuid -lrpcrt4 -ladvapi32 -lwsock32 -lodbc32 -lopengl32 -lgmon -s
 #-g -pg

@@ -3,8 +3,10 @@
 CXX  = g++
 CC   = gcc
 
-WXCONFIG = $(HOME)/wxWidgets/RELEASE/wx-config
-#WXCONFIG = wx-config --unicode=yes
+# Use the inherited value from the environment
+#WXCONFIG = 
+#BOOST_INC = 
+#XPRESSIVE_INC = 
 
 OBJ  = ./Release/MadEditFrame.o \
        ./Release/MadEditApp.o \
@@ -66,12 +68,6 @@ OBJ  = ./Release/MadEditFrame.o \
        ./Release/nsUTF8Prober.o
 
 LINKOBJ  = $(OBJ)
-
-BOOST_INC = 
-#BOOST_INC = -I$(HOME)/boost
-
-XPRESSIVE_INC = -I../xpressive
-#XPRESSIVE_INC = 
 
 ADDINC = -I../wxAUI/include -I../charset-detector/include -I../charset-detector/src -I../charset-detector/src/tables
 
