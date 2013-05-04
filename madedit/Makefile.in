@@ -528,7 +528,6 @@ noinst_HEADERS = description-pak \
 	makefiles/zcfg_wx_release.sh \
 	po/madedit.pot \
 	po/src.list \
-	po/wxstd.po.txt \
 	po/wxstd.po.cpp \
 	po/xgettext.bat \
 	po/xgettext_join.bat \
