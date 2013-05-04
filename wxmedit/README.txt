@@ -1,6 +1,6 @@
-			=================================
-					wxMEdit v0.2.9
-			=================================
+                      ==================================
+                                wxMEdit v2.9.0
+                      ==================================
 About:
 -----
 wxMEdit is a cross-platform Text/Hex Editor written in C++ & wxWidgets.
@@ -60,7 +60,13 @@ Syntax files, Locale files and Settings:
 
 ChangeLog:
 ----------
-v0.2.9:
+wxMEdit v2.9.0:
+1.remove xpressive and adjust build configurations.
+2.update translation files.
+3.swith the project to wxMEdit.
+4.change the version 0.2.9 to 2.9.0.
+
+MadEdit v0.2.9:
 1.added that restore the encoding and font(name, size) of a file when reopening it.
 2.added that use Ctrl+MouseWheel to decrease or increase the font size.
 3.added Japanese language. Thank Tilt for the translations.
@@ -69,7 +75,7 @@ v0.2.9:
 6.modified the action when associating file types.
 7.some minor changes.
 
-v0.2.8:
+MadEdit v0.2.8:
 1.added Japanese Kanji supporting for converting Chinese characters.
 2.added the function to split window into multiple Tab Controls (by using wxAuiNotebook)
   ScreenShot: http://madedit.sourceforge.net/screenshot06.png
@@ -84,7 +90,7 @@ v0.2.8:
 10.fixed that cannot replace text in Hex-Mode.
 11.many bug-fixes and changes.
 
-v0.2.7:
+MadEdit v0.2.7:
 1.fixed that ISO-8859-7 charset doesn't available under Win32.
 2.fixed that incorrectly handle Japanese halfwidth characters in Shift-JIS charset.
 3.supported XIM Over-The-Spot feature under Linux/FreeBSD(wxGTK).
@@ -94,7 +100,7 @@ v0.2.7:
 7.fixed a crashing bug that incorrectly detect MAC/DOS new-line char on HTML/PHP files.
 8.changed for showing CR, LF, CRLF and EOF in different marks.
 
-v0.2.6:
+MadEdit v0.2.6:
 1.improved the redraw speed under Linux (wxGTK).
 2.added charset-detector, a port to C of "universalchardet", for detecting the encoding of files.
   Thanks Jserv (http://blog.linux.org.tw/~jserv/archives/001672.html).
@@ -103,7 +109,7 @@ v0.2.6:
 5.added new syntax files for Fortran, TeX/LaTeX, Squirrel, C#, Visual Basic, ASP(VBScript).
 6.many misc changes and bug-fixes.
 
-v0.2.5:
+MadEdit v0.2.5:
 1.fixed crashes when copying and pasting data between TextMode and ColumnMode under Linux.
 2.fixed sometimes crashes when using FindInFiles function under Linux.
 3.added a dockable Information Window for listing the results of FindInFiles.
@@ -117,15 +123,15 @@ v0.2.5:
 11.added a new option to choose the Language of UI.
 12.added Italian language. Thank Contardi Angelo for the translations.
 
-v0.2.4-2:
+MadEdit v0.2.4-2:
 1.fixed that lost the last byte of clipboard data (Linux version only).
 
-v0.2.4:
+MadEdit v0.2.4:
 1.added custom Syntax Highlighting settings.
 2.added Find/Replace In Files function.
 3.some minor changes.
 
-v0.2.3:
+MadEdit v0.2.3:
 1.improved the loading speed for the files contain U+10000~U+10FFFF widechars.
 2.improved the repaint speed when the lines are very long(>1MB).
 3.added ToHalfWidth, ToFullWidth functions.
@@ -135,7 +141,7 @@ v0.2.3:
 7.now 'ESC' key can be used in custom keybindings.
 8.some minor changes.
 
-v0.2.2:
+MadEdit v0.2.2:
 1.fixed that menu icons will cause crash under Win98.
 2.fixed that input incorrect CJK chars under Win98.
 3.fixed that copy and then paste data in Column/Hex modes will cause crash under Win98.
@@ -143,37 +149,37 @@ v0.2.2:
 5.added ToUpperCase, ToLowerCase, InvertCase functions.
 6.some misc changes.
 
-v0.2.1-2:
+MadEdit v0.2.1-2:
 1.fixed that it will crash when close ConvertEncodingDialog by pressing top-right 'X' button.
 2.fixed the bug of AutoCompletePair function.
 
-v0.2.1:
+MadEdit v0.2.1:
 1.fixed copy/paste text to/from PrimarySelection when use mouse under Linux.
 2.added ConvertEncoding function.
 3.added ConvertChineseChar(Simplified<=>Traditional) in both of file and clipboard.
 4.added AutoCompletePair function. The AutoCompletePair must be defined in syntax files.
 5.improved AutoIndent function. The IndentChar and UnindentChar must be defined in syntax files.
 
-v0.2.0:
+MadEdit v0.2.0:
 1.fixed syntax parsing error in non-global range(ex: PHP, JavaScript).
 2.fixed that reopen the same file under Win32 because compare filename with case sensitive.
 3.added new option of custom KeyBindings.
 4.added MouseSelectToCopy and MiddleMouseToPaste functions.
 5.added new syntax files for CSS, Windows Registry File, XML.
 
-v0.1.9.9:
+MadEdit v0.1.9.9:
 1.fixed the incorrect searching result on some search patterns.
 2.added SaveAll function.
 3.some misc changes.
 
-v0.1.9:
+MadEdit v0.1.9:
 1.replaced Boost.Regex with Boost.Xpressive for searching & replacing Regular Expressions.
   now we can use wxDevCpp with the precompiled wxWidgets library(*.devpak, Unicode version)
   on www.devpaks.org to build MadEdit under win32.
 2.added a new function for Multi-Line Editing in Column Mode.
 3.several misc changes & bug-fixs.
 
-v0.1.8:
+MadEdit v0.1.8:
 1.fixed that randomly crash when quit MadEdit for Linux version.
 2.fixed EscapeChar syntax checking.
 3.fixed that Print/Preview incorrectly when the position of Horizontal-ScrollBar is not 0.
@@ -182,24 +188,24 @@ v0.1.8:
   When save a file, MadEdit will use UTF8 as default encoding of the FileName.
 6.added new syntax files for diff/patch, JavaScript and Ruby.
 
-v0.1.7:
+MadEdit v0.1.7:
 1.fixed several misc bugs.
 2.fixed MultiByte Encoding <==> Unicode converting error in v0.1.6 under Linux.
 3.removed the linking to the unnecessary libs(e.g. libtiff, libjpeg and libpng) for Linux version.
 4.added Print&PrintPreview functions. (Known bug: cannot print/preview correctly on the papers with landscape orientation.)
 5.added Comment(Ctrl-M)/Uncomment(Ctrl-Shift-M) functions. MadEdit will add/remove LineComment string to the selected lines, the LineComment must be defined in the syntax files.
 
-v0.1.6:
+MadEdit v0.1.6:
 1.fixed that cannot search U+10000~U+10FFFF ucs4 char under win32.
 2.added Increase&Decrease Indent functions. 
 When select multi-lines and press 'Tab' will Inc-Indent, and press 'Shift-Tab' will Dec-Indent.
 
-v0.1.5:
+MadEdit v0.1.5:
 1.fixed several bugs.
 2.now MadEdit will open the same files once only.
 3.improved Reload() function, and MadEdit will reload the files which were changed by another app.
 
-v0.1.4:
+MadEdit v0.1.4:
 1.fixed the bug of Mark Brace incorrect position when use WordWrap.
 2.fixed several misc. bugs.
 3.used a new approach to determine file types:
@@ -217,37 +223,38 @@ v0.1.3:
 6.supported Drop Files from window-manager under Linux.
 7.improved the speed of repaint in HexMode.
 
-v0.1.2:
+MadEdit v0.1.2:
 1.fixed several bugs.
 2.added Replace Text/Hex functions.
 3.added some fine improvements.
 
-v0.1.1:
+MadEdit v0.1.1:
   fixed some bugs.
   added RightClick Popup Menu.
   added new syntax files.
   added FindPrevious & FindHexNext/Previous functions.
   changed ShortCuts of Text/Column/HexMode to Alt-1, Alt-2, Alt-3.
 
-v0.1:
+MadEdit v0.1:
   added Edit & Search functions.
 
-v0.0.9:
+MadEdit v0.0.9:
   Preview & AlphaTest version.
 
 
 License:
 -------
-MadEdit is released under the GNU General Public License.
+wxMEdit is released under the GNU General Public License Version 3.
 
 
 Author:
 ------
-Alston Chen <madedit@gmail.com>
-
+Alston Chen <madedit@gmail.com>      (MadEdit creator)
+JiaYanwei <wxmedit@gmail.com>        (wxMEdit current maintainer)
 
 Links:
 -----
+wxMEdit: http://code.google.com/p/wxmedit/
 MadEdit: http://sourceforge.net/projects/madedit/
 wxWidgets: http://www.wxwidgets.org/
 wxDevCpp: http://wxdsgn.sourceforge.net/

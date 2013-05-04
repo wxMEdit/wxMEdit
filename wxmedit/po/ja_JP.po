@@ -35,7 +35,7 @@
 #: ../src/wxm_word_count_dialog.cpp:135 ../src/wxmedit_about_dialog.cpp:73
 msgid ""
 msgstr ""
-"Project-Id-Version: wxMEdit 0.2.9\n"
+"Project-Id-Version: wxMEdit 2.9.0\n"
 "Report-Msgid-Bugs-To: wxmedit@gmail.com\n"
 "POT-Creation-Date: 2013-05-04 16:39+0800\n"
 "PO-Revision-Date: 2007-10-09 04:40+0900\n"
