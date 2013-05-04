@@ -1,5 +1,0 @@
-GTK+2 based text/hex editor
-MadEdit is a cross-platform Text/Hex Editor written in C++ & wxWidgets.
-MadEdit supports many useful functions, e.g. SyntaxHighlightings,
-WordWrap, Encodings, Column/Hex Modes.
-HomePage: http://madedit.sourceforge.net

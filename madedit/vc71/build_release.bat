@@ -1,1 +1,0 @@
-devenv MadEdit.sln /build "Unicode Release"

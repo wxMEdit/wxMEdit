@@ -1,1 +1,0 @@
-"C:\Program Files\poEdit\bin\xgettext.exe" -f src.list -o madedit.pot -LC -k_

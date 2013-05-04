@@ -1,0 +1,3 @@
+
+# make; make install
+pkg_create -p /usr/local -c pkg-comment -d pkg-descr -f pkg-plist wxmedit-{version}

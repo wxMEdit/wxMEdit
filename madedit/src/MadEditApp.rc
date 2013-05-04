@@ -1,3 +1,0 @@
-appicon ICON "../images/Mad2.ico"
-appicon2 ICON "../images/Mad.ico"
-#include <wx/msw/wx.rc>
