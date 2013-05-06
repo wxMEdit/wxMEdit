@@ -9,6 +9,7 @@ CC   = gcc
 #XPRESSIVE_INC = 
 #AUI_INC = 
 #AUI_LIB = 
+#ICUCONFIG = 
 
 OBJ  = ./Release/wxmedit_frame.o \
        ./Release/wxmedit_app.o \
@@ -17,6 +18,7 @@ OBJ  = ./Release/wxmedit_frame.o \
        ./Release/wxm_lines.o \
        ./Release/wxm_syntax.o \
        ./Release/wxm_undo.o \
+       ./Release/wxm_wx_icu.o \
        ./Release/wxm_plugin.o \
        ./Release/wxm_utils.o \
        ./Release/wxmedit_command.o \
@@ -67,12 +69,12 @@ LINKOBJ  = $(OBJ)
 
 ADDINC = -I../charset-detector/include -I../charset-detector/src -I../charset-detector/src/tables
 
-LIBS = $(AUI_LIB) $(shell $(WXCONFIG) --libs core,base,aui) # $(shell pkg-config --libs gtk+-2.0)
+LIBS = $(AUI_LIB) $(shell $(WXCONFIG) --libs core,base,aui) $(shell $(ICUCONFIG) --ldflags) #$(shell pkg-config --libs gtk+-2.0)
 #LIBS = -pthread -Wl,-O1 -Wl,--enable-new-dtags -Wl,--sort-common $(HOME)/wxWidgets/RELEASE/lib/libwx_gtk2u_core-2.7.a $(HOME)/wxWidgets/RELEASE/lib/libwx_baseu-2.7.a -lgtk-x11-2.0 -lgdk-x11-2.0 -lgdk_pixbuf-2.0 -lpangoxft-1.0 -lpangox-1.0 -lpangoft2-1.0 -lpango-1.0 -lgobject-2.0 -lgmodule-2.0 -lgthread-2.0 -lglib-2.0 -ldl -lm
 
-CXXINCS = -I/Developer/Headers/FlatCarbon $(XPRESSIVE_INC) $(BOOST_INC) $(AUI_INC) $(ADDINC) $(shell $(WXCONFIG) --cxxflags) #$(shell pkg-config --cflags gtk+-2.0)
+CXXINCS = -I/Developer/Headers/FlatCarbon $(XPRESSIVE_INC) $(BOOST_INC) $(AUI_INC) $(ADDINC) $(shell $(WXCONFIG) --cxxflags) $(shell $(ICUCONFIG) --cppflags) #$(shell pkg-config --cflags gtk+-2.0)
  
-CXXFLAGS = $(CXXINCS) -O2 #-O3 -fexpensive-optimizations 
+CXXFLAGS = $(CXXINCS) -O2 $(shell $(ICUCONFIG) --cxxflags) #-O3 -fexpensive-optimizations 
 
 BIN  = ./Release/wxmedit
 
@@ -112,6 +114,9 @@ $(BIN): $(OBJ)
 
 ./Release/wxm_undo.o: ../src/wxmedit/wxm_undo.cpp
 	$(CXX) -c ../src/wxmedit/wxm_undo.cpp -o ./Release/wxm_undo.o $(CXXFLAGS)
+
+./Release/wxm_wx_icu.o: ../src/wxmedit/wxm_wx_icu.cpp
+	$(CXX) -c ../src/wxmedit/wxm_wx_icu.cpp -o ./Release/wxm_wx_icu.o $(CXXFLAGS)
 
 ./Release/wxm_plugin.o: ../src/wxm_plugin.cpp
 	$(CXX) -c ../src/wxm_plugin.cpp -o ./Release/wxm_plugin.o $(CXXFLAGS)

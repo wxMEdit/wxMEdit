@@ -8,6 +8,9 @@
 
 #include "wxmedit.h"
 #include "wxm_encoding.h"
+#include "wxm_wx_icu.h"
+
+#include <unicode/uchar.h>
 #include <iostream>
 #include <string>
 
@@ -27,14 +30,7 @@ using namespace boost::xpressive;
 template<typename char_type>
 inline char_type xtolower(char_type ch)
 {
-    if(ch<0 || ch>0xFFFF) return ch;
-    return towlower(wchar_t(ch));
-}
-
-template<>
-inline wchar_t xtolower(wchar_t ch)
-{
-    return towlower(ch);
+    return (char_type)u_tolower((UChar32)ch);
 }
 
 template<>
@@ -277,23 +273,13 @@ struct ucs4_regex_traits: public null_regex_traits<ucs4_t>
     template<typename char_type2>
     static char_type2 tolower(char_type2 ch)
     {
-        if(ch<0 || ch>0xFFFF) return ch;
-        return towlower(wchar_t(ch));
-    }
-    static wchar_t tolower(wchar_t ch)
-    {
-        return towlower(ch);
+        return (char_type2)u_tolower((UChar32)ch);
     }
 
     template<typename char_type2>
     static char_type2 toupper(char_type2 ch)
     {
-        if(ch<0 || ch>0xFFFF) return ch;
-        return towupper(wchar_t(ch));
-    }
-    static wchar_t toupper(wchar_t ch)
-    {
-        return towupper(ch);
+        return (char_type2)u_toupper((UChar32)ch);
     }
 
     static char_type widen(char ch)
@@ -633,7 +619,7 @@ MadSearchResult MadEdit::Search(/*IN_OUT*/MadCaretPos &beginpos, /*IN_OUT*/MadCa
     if(!bCaseSensitive)
     {
         static wxString text_lower;
-        text_lower = text.Lower();
+		text_lower = wxm::WxStrToLower(text);
         text_ptr = &text_lower;
     }
 

@@ -12,6 +12,7 @@ OBJ  = ./Release/wxmedit_frame.obj \
        ./Release/wxm_lines.obj \
        ./Release/wxm_syntax.obj \
        ./Release/wxm_undo.obj \
+       ./Release/wxm_wx_icu.obj \
        ./Release/wxm_plugin.obj \
        ./Release/wxm_utils.obj \
        ./Release/wxmedit_command.obj \
@@ -66,10 +67,11 @@ LINKOBJ = $(OBJ)
 #BOOST_DIR = 
 #AUI_INC = 
 #AUI_LIB = 
+#ICU_DIR = 
 
-LIBS =  $(AUI_LIB) -L$(WXWIN)/lib/gcc_lib -L"../libunicows" -mwindows -lwxmsw28u_aui -lwxmsw28u_core -lwxbase28u -lunicows -lkernel32 -luser32 -lgdi32 -lcomdlg32 -lwinspool -lwinmm -lshell32 -lcomctl32 -lole32 -loleaut32 -luuid -lrpcrt4 -ladvapi32 -lwsock32 -lodbc32 -lopengl32 -lgmon -s
+LIBS =  $(AUI_LIB) -L$(WXWIN)/lib/gcc_lib -L$(ICU_DIR)/lib -L"../libunicows" -mwindows -lwxmsw28u_aui -lwxmsw28u_core -lwxbase28u -licudata -licuuc -lunicows -lkernel32 -luser32 -lgdi32 -lcomdlg32 -lwinspool -lwinmm -lshell32 -lcomctl32 -lole32 -loleaut32 -luuid -lrpcrt4 -ladvapi32 -lwsock32 -lodbc32 -lopengl32 -lgmon -s
 #-g -pg
-CXXINCS =  $(XPRESSIVE_INC) $(AUI_INC) -I$(BOOST_DIR) -I"../charset-detector/include" -I"../charset-detector/src" -I"../charset-detector/src/tables" -I$(WXWIN)/include  -I$(WXWIN)/lib/gcc_lib/mswu
+CXXINCS =  $(XPRESSIVE_INC) $(AUI_INC) -I$(BOOST_DIR) -I$(ICU_DIR)/include -I"../charset-detector/include" -I"../charset-detector/src" -I"../charset-detector/src/tables" -I$(WXWIN)/include  -I$(WXWIN)/lib/gcc_lib/mswu
 
 BIN  = Release/wxmedit.exe
 CXXFLAGS = $(CXXINCS) -D_UNICODE -D__WXMSW__ -D__GNUWIN32__ -D__WIN95__ -DWIN32 -O2
@@ -110,6 +112,9 @@ $(BIN): $(OBJ)
 
 ./Release/wxm_undo.obj: ../src/wxmedit/wxm_undo.cpp
 	$(CPP) -c ../src/wxmedit/wxm_undo.cpp -o ./Release/wxm_undo.obj $(CXXFLAGS)
+
+./Release/wxm_wx_icu.obj: ../src/wxmedit/wxm_wx_icu.cpp
+	$(CPP) -c ../src/wxmedit/wxm_wx_icu.cpp -o ./Release/wxm_wx_icu.obj $(CXXFLAGS)
 
 ./Release/wxm_plugin.obj: ../src/wxm_plugin.cpp
 	$(CPP) -c ../src/wxm_plugin.cpp -o ./Release/wxm_plugin.obj $(CXXFLAGS)

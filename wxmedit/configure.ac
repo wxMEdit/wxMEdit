@@ -2,7 +2,7 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.59)
-AC_INIT([wxmedit], [2.9.0], [wxmedit@gmail.com])
+AC_INIT([wxmedit], [2.9.1], [wxmedit@gmail.com])
 AC_CONFIG_SRCDIR([src/wxmedit_app.cpp])
 AC_CONFIG_HEADER([config.h])
 AC_PREFIX_DEFAULT([/usr])
@@ -55,6 +55,17 @@ AC_ARG_WITH(boost,
     [CXXFLAGS="$CXXFLAGS -I$withval"])
 
 
+# option for additional ICU lib
+ICUCONFIG=icu-config
+AC_ARG_WITH(icu, 
+    [  --with-icu=PATH         use additional ICU library path,
+                          otherwise use system include/library path],
+    [ICUCONFIG="$withval/bin/icu-config"])
+CPPFLAGS="$CPPFLAGS `$ICUCONFIG --cppflags`"
+#CXXFLAGS="$CXXFLAGS `$ICUCONFIG --cxxflags`"
+LIBS="$LIBS `$ICUCONFIG --ldflags`"
+
+
 # Checks for wxWidgets library
 WX_LIBS_set="0"
 if test "x$WX_LIBS" != "x"; then
@@ -94,7 +105,7 @@ fi
 
 
 # Checks for header files.
-AC_CHECK_HEADERS([boost/config.hpp])
+AC_CHECK_HEADERS([boost/config.hpp unicode/uchar.h unicode/unistr.h])
 
 # Checks for typedefs, structures, and compiler characteristics.
 #AC_HEADER_STDBOOL

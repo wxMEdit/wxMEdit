@@ -1,5 +1,5 @@
                       ==================================
-                                wxMEdit v2.9.0
+                                wxMEdit v2.9.1
                       ==================================
 About:
 -----
@@ -17,6 +17,7 @@ A. Linux, FreeBSD, and Unix-like OS (__WXGTK__):
       Required Libraries to compile:
       1. wxWidgets-2.6.1 or higher with Unicode enabled
       2. Boost-1.33.0 or higher
+      3. ICU4C 4.2 or higher
 
 B. MS Windows (__WXMSW__):
    a. MinGW32/GNU C++ 3.x (wxDevCpp):
@@ -24,16 +25,23 @@ B. MS Windows (__WXMSW__):
       1. wxWidgets-2.6.1 or higher with Unicode enabled
       2. Boost-1.33.0 or higher
       3. libunicows: it's optional under WinNT/XP, but required under Win98
+      4. ICU4C 4.2 or higher
    b. Visual C++ 7.1 (VS.Net 2003):
       Required Libraries to compile:
       1. wxWidgets-2.6.1 or higher with Unicode enabled
       2. Boost-1.33.0 or higher
       3. libunicows: it's optional under WinNT/XP, but required under Win98
+      4. ICU4C 4.2 or higher
 
-NOTE: If you use  Boost-1.33, you should get Boost.Xpressive at:
+NOTE:
+   If you use Boost-1.33, you should get Boost.Xpressive at:
       http://code.google.com/p/wxmedit/
       http://wxmedit.googlecode.com/files/xpressive.tgz
       http://wxmedit.googlecode.com/files/xpressive.zip
+   If you use wxWidgets-2.6, you should get wxAUI:
+      http://wxmedit.googlecode.com/files/wxAUI.tgz
+      http://wxmedit.googlecode.com/files/wxAUI.zip
+
 
 Syntax files, Locale files and Settings:
 ---------------------------------------
@@ -60,6 +68,11 @@ Syntax files, Locale files and Settings:
 
 ChangeLog:
 ----------
+wxMEdit v2.9.1:
+1.update Simplified Chinese translation.
+2.remove wxAUI and adjust build configurations.
+3.fixed locale-dependent case conversion bug.
+
 wxMEdit v2.9.0:
 1.remove xpressive and adjust build configurations.
 2.update translation files.
@@ -262,4 +275,4 @@ Boost: http://www.boost.org/
 Boost.Xpressive: http://www.boost.org/doc/html/xpressive.html
 libunicows: http://libunicows.sourceforge.net/
 Open Clip Art Library: http://www.openclipart.org/
-
+ICU: http://site.icu-project.org/

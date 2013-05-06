@@ -8,6 +8,7 @@
 
 #include "wxmedit.h"
 #include "trad_simp.h"
+#include "wxm_wx_icu.h"
 
 #include <algorithm>
 #include <vector>
@@ -749,22 +750,10 @@ void MadEdit::ToUpperCase()
 
     wxString text;
     GetSelText(text);
-    bool modified=false;
 
-    size_t i=0, count=text.Len();
-    while(i<count)
-    {
-        int c=text[i];
-        int nc=towupper(c);
-        if(nc != c)
-        {
-            text.SetChar(i, nc);
-            modified=true;
-        }
-        ++i;
-    }
-
-    if(modified)
+	wxm::WxUpperCaseConverter upperconv(text);
+	upperconv.Convert();
+    if(upperconv.Modified())
     {
         vector<ucs4_t> ucs;
         TranslateText(text.c_str(), text.Len(), &ucs, true);
@@ -788,22 +777,10 @@ void MadEdit::ToLowerCase()
 
     wxString text;
     GetSelText(text);
-    bool modified=false;
 
-    size_t i=0, count=text.Len();
-    while(i<count)
-    {
-        int c=text[i];
-        int nc=towlower(c);
-        if(nc != c)
-        {
-            text.SetChar(i, nc);
-            modified=true;
-        }
-        ++i;
-    }
-
-    if(modified)
+	wxm::WxLowerCaseConverter lowerconv(text);
+	lowerconv.Convert();
+    if(lowerconv.Modified())
     {
         vector<ucs4_t> ucs;
         TranslateText(text.c_str(), text.Len(), &ucs, true);
@@ -827,31 +804,10 @@ void MadEdit::InvertCase()
 
     wxString text;
     GetSelText(text);
-    bool modified=false;
 
-    size_t i=0, count=text.Len();
-    while(i<count)
-    {
-        int c=text[i];
-        int nc=c;
-        if(iswlower(c))
-        {
-            nc=towupper(c);
-        }
-        else if(iswupper(c))
-        {
-            nc=towlower(c);
-        }
-
-        if(nc != c)
-        {
-            text.SetChar(i, nc);
-            modified=true;
-        }
-        ++i;
-    }
-
-    if(modified)
+	wxm::WxCaseInverter caseinv(text);
+	caseinv.Convert();
+    if(caseinv.Modified())
     {
         vector<ucs4_t> ucs;
         TranslateText(text.c_str(), text.Len(), &ucs, true);
@@ -1675,10 +1631,7 @@ SortLineData::SortLineData(const MadLineIterator& l, int id)
 
         if(!s_casesensitive) // ignore case
         {
-            if(uc<0x10000 && uc>=0)
-            {
-                uc = towlower(wchar_t(uc));
-            }
+			uc = u_tolower(uc);
         }
 
         //save every character

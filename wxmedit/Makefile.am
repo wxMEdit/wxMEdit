@@ -53,6 +53,8 @@ wxmedit_SOURCES =	src/wxmedit_about_dialog.cpp \
 	src/wxmedit/wxm_syntax.h \
 	src/wxmedit/wxm_undo.cpp \
 	src/wxmedit/wxm_undo.h \
+	src/wxmedit/wxm_wx_icu.cpp \
+	src/wxmedit/wxm_wx_icu.h \
 	src/wxmedit/trad_simp.cpp \
 	src/wxmedit/trad_simp.h \
 	src/wxmedit/ucs4_t.h \
