@@ -12937,15 +12937,15 @@ fi
     WX_VERSION=""
 
     min_wx_version=2.6.0
-    if test -z "" ; then
+    if test -z "aui" ; then
       { echo "$as_me:$LINENO: checking for wxWidgets version >= $min_wx_version" >&5
 echo $ECHO_N "checking for wxWidgets version >= $min_wx_version... $ECHO_C" >&6; }
     else
-      { echo "$as_me:$LINENO: checking for wxWidgets version >= $min_wx_version ()" >&5
-echo $ECHO_N "checking for wxWidgets version >= $min_wx_version ()... $ECHO_C" >&6; }
+      { echo "$as_me:$LINENO: checking for wxWidgets version >= $min_wx_version (aui)" >&5
+echo $ECHO_N "checking for wxWidgets version >= $min_wx_version (aui)... $ECHO_C" >&6; }
     fi
 
-    WX_CONFIG_WITH_ARGS="$WX_CONFIG_PATH $wx_config_args  core"
+    WX_CONFIG_WITH_ARGS="$WX_CONFIG_PATH $wx_config_args aui core"
 
     WX_VERSION=`$WX_CONFIG_WITH_ARGS --version 2>/dev/null`
     wx_config_major_version=`echo $WX_VERSION | \

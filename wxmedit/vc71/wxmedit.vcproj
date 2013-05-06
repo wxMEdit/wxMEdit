@@ -19,8 +19,8 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="..\wxAUI\include;$(WXWIN)\lib\vc_lib\mswud;$(WXWIN)\include;$(BOOST_DIR);..\charset-detector\include;..\charset-detector\src;..\charset-detector\src\tables"
-				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;wxUSE_AUI=1;WXDLLIMPEXP_AUI=;WXDLLIMPEXP_FWD_AUI="
+				AdditionalIncludeDirectories="$(WXWIN)\lib\vc_lib\mswud;$(WXWIN)\include;$(BOOST_DIR);..\charset-detector\include;..\charset-detector\src;..\charset-detector\src\tables"
+				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS"
 				MinimalRebuild="TRUE"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="1"
@@ -33,7 +33,7 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="wxmsw28ud_core.lib wxbase28ud.lib unicows.lib comctl32.lib uuid.lib rpcrt4.lib User32.Lib Gdi32.Lib Shell32.Lib AdvAPI32.Lib Ole32.Lib OleAut32.Lib ComDlg32.Lib"
+				AdditionalDependencies="wxmsw28ud_core.lib wxbase28ud.lib wxmsw28ud_aui.lib unicows.lib comctl32.lib uuid.lib rpcrt4.lib User32.Lib Gdi32.Lib Shell32.Lib AdvAPI32.Lib Ole32.Lib OleAut32.Lib ComDlg32.Lib"
 				OutputFile="$(OutDir)/wxmedit.exe"
 				LinkIncremental="1"
 				AdditionalLibraryDirectories="$(WXWIN)\lib\vc_lib;..\libunicows"
@@ -72,8 +72,8 @@
 				Name="VCCLCompilerTool"
 				GlobalOptimizations="TRUE"
 				FavorSizeOrSpeed="1"
-				AdditionalIncludeDirectories="..\wxAUI\include;$(WXWIN)\lib\vc_lib\mswu;$(WXWIN)\include;$(BOOST_DIR);..\charset-detector\include;..\charset-detector\src;..\charset-detector\src\tables"
-				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;wxUSE_AUI=1;WXDLLIMPEXP_AUI=;WXDLLIMPEXP_FWD_AUI="
+				AdditionalIncludeDirectories="$(WXWIN)\lib\vc_lib\mswu;$(WXWIN)\include;$(BOOST_DIR);..\charset-detector\include;..\charset-detector\src;..\charset-detector\src\tables"
+				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS"
 				RuntimeLibrary="0"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
@@ -82,7 +82,7 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="wxmsw28u_core.lib wxbase28u.lib unicows.lib comctl32.lib User32.Lib Gdi32.Lib Shell32.Lib AdvAPI32.Lib Ole32.Lib OleAut32.Lib ComDlg32.Lib"
+				AdditionalDependencies="wxmsw28u_core.lib wxbase28u.lib wxmsw28u_aui.lib unicows.lib comctl32.lib User32.Lib Gdi32.Lib Shell32.Lib AdvAPI32.Lib Ole32.Lib OleAut32.Lib ComDlg32.Lib"
 				OutputFile="$(OutDir)/wxmedit.exe"
 				LinkIncremental="1"
 				AdditionalLibraryDirectories="$(WXWIN)\lib\vc_lib;..\libunicows"
@@ -198,25 +198,6 @@
 				</File>
 				<File
 					RelativePath="..\src\wxmedit\trad_simp.cpp">
-				</File>
-			</Filter>
-			<Filter
-				Name="wxAUI"
-				Filter="">
-				<File
-					RelativePath="..\wxAUI\src\auibook.cpp">
-				</File>
-				<File
-					RelativePath="..\wxAUI\src\dockart.cpp">
-				</File>
-				<File
-					RelativePath="..\wxAUI\src\floatpane.cpp">
-				</File>
-				<File
-					RelativePath="..\wxAUI\src\framemanager.cpp">
-				</File>
-				<File
-					RelativePath="..\wxAUI\src\tabmdi.cpp">
 				</File>
 			</Filter>
 			<Filter
@@ -377,28 +358,6 @@
 				</File>
 				<File
 					RelativePath="..\src\wxmedit\ucs4_t.h">
-				</File>
-			</Filter>
-			<Filter
-				Name="wxAUI"
-				Filter="">
-				<File
-					RelativePath="..\wxAUI\include\wx\aui\aui.h">
-				</File>
-				<File
-					RelativePath="..\wxAUI\include\wx\aui\auibook.h">
-				</File>
-				<File
-					RelativePath="..\wxAUI\include\wx\aui\dockart.h">
-				</File>
-				<File
-					RelativePath="..\wxAUI\include\wx\aui\floatpane.h">
-				</File>
-				<File
-					RelativePath="..\wxAUI\include\wx\aui\framemanager.h">
-				</File>
-				<File
-					RelativePath="..\wxAUI\include\wx\aui\tabmdi.h">
 				</File>
 			</Filter>
 			<Filter

@@ -1,7 +1,7 @@
 SUBDIRS = syntax po
 
 bin_PROGRAMS = wxmedit
-INCLUDES = -I$(top_srcdir)/wxAUI/include -I$(top_srcdir)/charset-detector/include -I$(top_srcdir)/charset-detector/src -I$(top_srcdir)/charset-detector/src/tables
+INCLUDES = -I$(top_srcdir)/charset-detector/include -I$(top_srcdir)/charset-detector/src -I$(top_srcdir)/charset-detector/src/tables
 wxmedit_CXXFLAGS = -DDATA_DIR=\"${datadir}\"
 wxmedit_SOURCES =	src/wxmedit_about_dialog.cpp \
 	src/wxmedit_about_dialog.h \
@@ -56,19 +56,6 @@ wxmedit_SOURCES =	src/wxmedit_about_dialog.cpp \
 	src/wxmedit/trad_simp.cpp \
 	src/wxmedit/trad_simp.h \
 	src/wxmedit/ucs4_t.h \
-	wxAUI/include/wx/aui/aui.h \
-	wxAUI/include/wx/aui/auibar.h \
-	wxAUI/include/wx/aui/auibook.h \
-	wxAUI/include/wx/aui/dockart.h \
-	wxAUI/include/wx/aui/floatpane.h \
-	wxAUI/include/wx/aui/framemanager.h \
-	wxAUI/include/wx/aui/tabmdi.h \
-	wxAUI/src/auibar.cpp \
-	wxAUI/src/auibook.cpp \
-	wxAUI/src/dockart.cpp \
-	wxAUI/src/floatpane.cpp \
-	wxAUI/src/framemanager.cpp \
-	wxAUI/src/tabmdi.cpp \
 	charset-detector/src/CharDistribution.cpp \
 	charset-detector/src/CharDistribution.h \
 	charset-detector/src/JpCntx.cpp \
@@ -169,9 +156,6 @@ noinst_HEADERS =	description-pak \
 	src/plugin_example/plugin.cpp \
 	src/plugin_example/vc_cl.bat \
 	src/plugin_example/wxwin16x16.xpm \
-	wxAUI/COPYING.LIB \
-	wxAUI/LICENCE.txt \
-	wxAUI/README.txt \
 	devcpp/wxmedit.dev \
 	devcpp/wxmedit.layout \
 	devcpp/wxmedit_private.h \
