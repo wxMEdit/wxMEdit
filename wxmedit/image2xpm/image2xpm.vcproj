@@ -19,7 +19,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="\wxWidgets\lib\vc_lib\mswud;\wxWidgets\include"
+				AdditionalIncludeDirectories="$(WXWIN)\lib\vc_lib\mswud;$(WXWIN)\include"
 				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS"
 				MinimalRebuild="TRUE"
 				BasicRuntimeChecks="3"
@@ -33,10 +33,10 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="wxmsw27ud_core.lib wxbase27ud.lib wxpngd.lib wxzlibd.lib wxjpegd.lib wxtiffd.lib unicows.lib comctl32.lib uuid.lib rpcrt4.lib User32.Lib Gdi32.Lib Shell32.Lib AdvAPI32.Lib Ole32.Lib OleAut32.Lib ComDlg32.Lib"
+				AdditionalDependencies="wxmsw28ud_core.lib wxbase28ud.lib wxpngd.lib wxzlibd.lib wxjpegd.lib wxtiffd.lib unicows.lib comctl32.lib uuid.lib rpcrt4.lib User32.Lib Gdi32.Lib Shell32.Lib AdvAPI32.Lib Ole32.Lib OleAut32.Lib ComDlg32.Lib"
 				OutputFile="$(OutDir)/image2xpm.exe"
 				LinkIncremental="1"
-				AdditionalLibraryDirectories="\wxWidgets\lib\vc_lib;..\libunicows"
+				AdditionalLibraryDirectories="$(WXWIN)\lib\vc_lib;..\libunicows"
 				GenerateDebugInformation="TRUE"
 				ProgramDatabaseFile="$(OutDir)/image2xpm.pdb"
 				SubSystem="2"
@@ -51,7 +51,7 @@
 				Name="VCPreLinkEventTool"/>
 			<Tool
 				Name="VCResourceCompilerTool"
-				AdditionalIncludeDirectories="\wxWidgets\include"/>
+				AdditionalIncludeDirectories="$(WXWIN)\include"/>
 			<Tool
 				Name="VCWebServiceProxyGeneratorTool"/>
 			<Tool
@@ -71,7 +71,7 @@
 			CharacterSet="1">
 			<Tool
 				Name="VCCLCompilerTool"
-				AdditionalIncludeDirectories="\wxWidgets\lib\vc_lib\mswu;\wxWidgets\include"
+				AdditionalIncludeDirectories="$(WXWIN)\lib\vc_lib\mswu;$(WXWIN)\include"
 				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS"
 				RuntimeLibrary="0"
 				TreatWChar_tAsBuiltInType="TRUE"
@@ -83,10 +83,10 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="wxmsw27u_core.lib wxbase27u.lib wxpng.lib wxzlib.lib wxjpeg.lib wxtiff.lib unicows.lib comctl32.lib uuid.lib rpcrt4.lib User32.Lib Gdi32.Lib Shell32.Lib AdvAPI32.Lib Ole32.Lib OleAut32.Lib ComDlg32.Lib"
+				AdditionalDependencies="wxmsw28u_core.lib wxbase28u.lib wxpng.lib wxzlib.lib wxjpeg.lib wxtiff.lib unicows.lib comctl32.lib uuid.lib rpcrt4.lib User32.Lib Gdi32.Lib Shell32.Lib AdvAPI32.Lib Ole32.Lib OleAut32.Lib ComDlg32.Lib"
 				OutputFile="$(OutDir)/image2xpm.exe"
 				LinkIncremental="1"
-				AdditionalLibraryDirectories="\wxWidgets\lib\vc_lib;..\libunicows"
+				AdditionalLibraryDirectories="$(WXWIN)\lib\vc_lib;..\libunicows"
 				GenerateDebugInformation="TRUE"
 				SubSystem="2"
 				OptimizeReferences="2"
@@ -102,7 +102,7 @@
 				Name="VCPreLinkEventTool"/>
 			<Tool
 				Name="VCResourceCompilerTool"
-				AdditionalIncludeDirectories="\wxWidgets\include"/>
+				AdditionalIncludeDirectories="$(WXWIN)\include"/>
 			<Tool
 				Name="VCWebServiceProxyGeneratorTool"/>
 			<Tool
