@@ -38,10 +38,15 @@ NOTE:
       http://code.google.com/p/wxmedit/
       http://wxmedit.googlecode.com/files/xpressive.tgz
       http://wxmedit.googlecode.com/files/xpressive.zip
+
    If you use wxWidgets-2.6, you should get wxAUI:
       http://wxmedit.googlecode.com/files/wxAUI.tgz
       http://wxmedit.googlecode.com/files/wxAUI.zip
 
+   The small tool image2xpm was removed. 
+   You may turn to GIMP, XnView, IrfanView, etc. or get image2xpm at:
+      http://wxmedit.googlecode.com/files/image2xpm.exe
+      http://wxmedit.googlecode.com/files/image2xpm_src.zip
 
 Syntax files, Locale files and Settings:
 ---------------------------------------
