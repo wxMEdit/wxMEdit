@@ -2923,7 +2923,7 @@ int MadEdit::ReplaceHexAll(const wxString &expr, const wxString &fmt,
     {
         del_bpos.push_back(bpos.pos);
         del_epos.push_back(epos.pos);
-        ins_data.push_back(&fmthex[0]);
+		ins_data.push_back(fmthex.empty()? NULL: &fmthex[0]);
         ins_len.push_back(fmthex.size());
 
         if(bpos.iter!=epos.iter)
