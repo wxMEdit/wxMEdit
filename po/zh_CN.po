@@ -3390,7 +3390,7 @@ msgstr "页脚"
 
 #: ../src/wxm_options_dialog.cpp:520
 msgid "Print Page Footer"
-msgstr "印出页脚"
+msgstr "打印页脚"
 
 #: ../src/wxm_options_dialog.cpp:520
 msgid "WxCheckBoxPrintPageFooter"
