@@ -285,6 +285,9 @@ void MadSearchDialog::WxButtonFindNextClick(wxCommandEvent& event)
     wxString text;
     m_FindText->GetText(text, true);
 
+	if(WxCheckBoxFindHex->GetValue())
+		text.Trim();
+
     if(text.Len()>0)
     {
         m_RecentFindText->AddFileToHistory(text);
@@ -371,6 +374,9 @@ void MadSearchDialog::WxButtonFindPrevClick(wxCommandEvent& event)
 
     wxString text;
     m_FindText->GetText(text, true);
+
+	if(WxCheckBoxFindHex->GetValue())
+		text.Trim();
 
     if(text.Len()>0)
     {

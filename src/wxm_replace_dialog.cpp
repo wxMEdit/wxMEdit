@@ -481,6 +481,9 @@ void MadReplaceDialog::WxButtonReplaceClick(wxCommandEvent& event)
     wxString text;
     m_FindText->GetText(text, true);
 
+	if(WxCheckBoxFindHex->GetValue())
+		text.Trim();
+
     if(text.Len()>0)
     {
         wxString reptext;
@@ -562,6 +565,9 @@ void MadReplaceDialog::WxButtonReplaceAllClick(wxCommandEvent& event)
 
     wxString text;
     m_FindText->GetText(text, true);
+
+	if(WxCheckBoxFindHex->GetValue())
+		text.Trim();
 
     if(text.Len()>0)
     {
