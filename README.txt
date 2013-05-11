@@ -1,5 +1,5 @@
                       ==================================
-                                wxMEdit v2.9.1
+                                wxMEdit v2.9.2
                       ==================================
 About:
 -----
@@ -20,13 +20,13 @@ A. Linux, FreeBSD, and Unix-like OS (__WXGTK__):
       3. ICU4C 4.2 or higher
 
 B. MS Windows (__WXMSW__):
-   a. MinGW32/GNU C++ 3.x (wxDevCpp):
+   a. MinGW32/GNU C++ 3.x/4.x:
       Required Libraries to compile:
       1. wxWidgets-2.6.1 or higher with Unicode enabled
       2. Boost-1.33.0 or higher
       3. libunicows: it's optional under WinNT/XP, but required under Win98
       4. ICU4C 4.2 or higher
-   b. Visual C++ 7.1 (VS.Net 2003):
+   b. Visual C++ 7.1/8.0:
       Required Libraries to compile:
       1. wxWidgets-2.6.1 or higher with Unicode enabled
       2. Boost-1.33.0 or higher
@@ -73,6 +73,13 @@ Syntax files, Locale files and Settings:
 
 ChangeLog:
 ----------
+wxMEdit v2.9.2:
+1.application icon: add 16x16, 32x32 and 256x156 resolutions.
+2.remove standalone tool image2xpm.
+3.fix crash when hex-replacing a not-empty string with empty by "Replace All".
+4.fix crash when hex-searching a blank string.
+5.update Simplified Chinese translation.
+
 wxMEdit v2.9.1:
 1.update Simplified Chinese translation.
 2.remove wxAUI and adjust build configurations.
@@ -231,7 +238,7 @@ MadEdit v0.1.4:
 4.added a setting of "Do Not Save Settings to MadEdit.cfg after MadEdit Finish",
   it's useful when you edit 'MadEdit.cfg' by MadEdit.
 
-v0.1.3:
+MadEdit v0.1.3:
 1.fixed several bugs.
 2.added Mark Brace Pair.
 3.added Go To Left/Right Brace (Ctrl-[ and Ctrl-], press Shift to select).
