@@ -452,17 +452,6 @@ noinst_HEADERS = description-pak \
 	devcpp/wxmedit.layout \
 	devcpp/wxmedit_private.h \
 	devcpp/wxmedit_private.rc \
-	image2xpm/image2xpm.dev \
-	image2xpm/image2xpm.layout \
-	image2xpm/image2xpm_app.cpp \
-	image2xpm/image2xpm_app.h \
-	image2xpm/image2xpm_app.rc \
-	image2xpm/image2xpm_frm.cpp \
-	image2xpm/image2xpm_frm.h \
-	image2xpm/image2xpm_frm.wxform \
-	image2xpm/image2xpm_frm.xml \
-	image2xpm/image2xpm_private.h \
-	image2xpm/image2xpm_private.rc \
 	images/closeall.xpm \
 	images/columnmode.xpm \
 	images/comment.xpm \
