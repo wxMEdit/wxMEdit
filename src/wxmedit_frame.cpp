@@ -3489,7 +3489,7 @@ void MadEditFrame::OnFilePrintPreview(wxCommandEvent& event)
     }
     else
     {
-        wxPreviewFrame *frame = new wxPreviewFrame(preview, this, _T("wxMEdit Print Preview"),
+        wxPreviewFrame *frame = new wxPreviewFrame(preview, this, _("wxMEdit Print Preview"),
             wxPoint(0, 0),
 #ifdef __WXMSW__
             wxSize(600, 720)

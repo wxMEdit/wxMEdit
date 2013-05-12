@@ -35,9 +35,9 @@
 #: ../src/wxm_word_count_dialog.cpp:135 ../src/wxmedit_about_dialog.cpp:73
 msgid ""
 msgstr ""
-"Project-Id-Version: wxMEdit 2.9.0\n"
-"Report-Msgid-Bugs-To: wxmedit@gmail.com\n"
-"POT-Creation-Date: 2013-05-04 16:39+0800\n"
+"Project-Id-Version: wxMEdit 2.9.2\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-05-12 18:55+0800\n"
 "PO-Revision-Date: 2007-10-09 04:40+0900\n"
 "Last-Translator: Tilt <tiltstr@gmail.com>\n"
 "Language-Team: Tilt <<tiltstr@gmail.com>>\n"
@@ -369,600 +369,605 @@ msgstr "To:"
 msgid "Top margin (mm):"
 msgstr "上側の余白 (mm):"
 
-#: ../src/wxmedit/wxmedit_advanced.cpp:1296
+#: wxstd.po.cpp:81
+#, c-format
+msgid "Page %d of %d"
+msgstr ""
+
+#: ../src/wxmedit/wxmedit_advanced.cpp:1252
 msgid "Control Characters"
 msgstr "制御文字"
 
-#: ../src/wxmedit/wxmedit_advanced.cpp:1297
+#: ../src/wxmedit/wxmedit_advanced.cpp:1253
 msgid "Basic Latin"
 msgstr "ラテン語(標準)"
 
-#: ../src/wxmedit/wxmedit_advanced.cpp:1298
+#: ../src/wxmedit/wxmedit_advanced.cpp:1254
 msgid "Latin-1 Supplement"
 msgstr "ラテン文字拡張追加 1"
 
-#: ../src/wxmedit/wxmedit_advanced.cpp:1299
+#: ../src/wxmedit/wxmedit_advanced.cpp:1255
 msgid "Latin Extended-A"
 msgstr "ラテン文字拡張-A"
 
-#: ../src/wxmedit/wxmedit_advanced.cpp:1300
+#: ../src/wxmedit/wxmedit_advanced.cpp:1256
 msgid "Latin Extended-B"
 msgstr "ラテン文字拡張-B"
 
-#: ../src/wxmedit/wxmedit_advanced.cpp:1301
+#: ../src/wxmedit/wxmedit_advanced.cpp:1257
 msgid "IPA Extensions"
 msgstr "IPA 拡張"
 
-#: ../src/wxmedit/wxmedit_advanced.cpp:1302
+#: ../src/wxmedit/wxmedit_advanced.cpp:1258
 msgid "Spacing Modifier Letters"
 msgstr "スペース調整文字"
 
-#: ../src/wxmedit/wxmedit_advanced.cpp:1303
+#: ../src/wxmedit/wxmedit_advanced.cpp:1259
 msgid "Combining Diacritical Marks"
 msgstr "読み分け記号を結合"
 
-#: ../src/wxmedit/wxmedit_advanced.cpp:1304
+#: ../src/wxmedit/wxmedit_advanced.cpp:1260
 msgid "Greek and Coptic"
 msgstr "ギリシア文字及びコプト文字"
 
-#: ../src/wxmedit/wxmedit_advanced.cpp:1305
+#: ../src/wxmedit/wxmedit_advanced.cpp:1261
 msgid "Cyrillic"
 msgstr "キリル言語"
 
-#: ../src/wxmedit/wxmedit_advanced.cpp:1306
+#: ../src/wxmedit/wxmedit_advanced.cpp:1262
 msgid "Cyrillic Supplement"
 msgstr "キリル文字追加"
 
-#: ../src/wxmedit/wxmedit_advanced.cpp:1307
+#: ../src/wxmedit/wxmedit_advanced.cpp:1263
 msgid "Armenian"
 msgstr "アルメニア語"
 
-#: ../src/wxmedit/wxmedit_advanced.cpp:1308
+#: ../src/wxmedit/wxmedit_advanced.cpp:1264
 msgid "Hebrew"
 msgstr "ヘブライ語"
 
-#: ../src/wxmedit/wxmedit_advanced.cpp:1309
+#: ../src/wxmedit/wxmedit_advanced.cpp:1265
 msgid "Arabic"
 msgstr "アラビア語"
 
-#: ../src/wxmedit/wxmedit_advanced.cpp:1310
+#: ../src/wxmedit/wxmedit_advanced.cpp:1266
 msgid "Syriac"
 msgstr "シリア語"
 
-#: ../src/wxmedit/wxmedit_advanced.cpp:1311
+#: ../src/wxmedit/wxmedit_advanced.cpp:1267
 msgid "Arabic Supplement"
 msgstr "アラビア語補足"
 
-#: ../src/wxmedit/wxmedit_advanced.cpp:1312
+#: ../src/wxmedit/wxmedit_advanced.cpp:1268
 msgid "Thaana"
 msgstr "ターナ文字 "
 
-#: ../src/wxmedit/wxmedit_advanced.cpp:1313
+#: ../src/wxmedit/wxmedit_advanced.cpp:1269
 msgid "Devanagari"
 msgstr "デーヴァナーガリー文字"
 
-#: ../src/wxmedit/wxmedit_advanced.cpp:1314
+#: ../src/wxmedit/wxmedit_advanced.cpp:1270
 msgid "Bengali"
 msgstr "ベンガル語"
 
-#: ../src/wxmedit/wxmedit_advanced.cpp:1315
+#: ../src/wxmedit/wxmedit_advanced.cpp:1271
 msgid "Gurmukhi"
 msgstr "パンジャブ語"
 
-#: ../src/wxmedit/wxmedit_advanced.cpp:1316
+#: ../src/wxmedit/wxmedit_advanced.cpp:1272
 msgid "Gujarati"
 msgstr "グジャラート語"
 
-#: ../src/wxmedit/wxmedit_advanced.cpp:1317
+#: ../src/wxmedit/wxmedit_advanced.cpp:1273
 msgid "Oriya"
 msgstr "オリヤー文字 "
 
-#: ../src/wxmedit/wxmedit_advanced.cpp:1318
+#: ../src/wxmedit/wxmedit_advanced.cpp:1274
 msgid "Tamil"
 msgstr "タミル語"
 
-#: ../src/wxmedit/wxmedit_advanced.cpp:1319
+#: ../src/wxmedit/wxmedit_advanced.cpp:1275
 msgid "Telugu"
 msgstr "テルグ語"
 
-#: ../src/wxmedit/wxmedit_advanced.cpp:1320
+#: ../src/wxmedit/wxmedit_advanced.cpp:1276
 msgid "Kannada"
 msgstr "カンナダ語"
 
-#: ../src/wxmedit/wxmedit_advanced.cpp:1321
+#: ../src/wxmedit/wxmedit_advanced.cpp:1277
 msgid "Malayalam"
 msgstr "マラヤーラム文字"
 
-#: ../src/wxmedit/wxmedit_advanced.cpp:1322
+#: ../src/wxmedit/wxmedit_advanced.cpp:1278
 msgid "Sinhala"
 msgstr "シンハラ語 "
 
-#: ../src/wxmedit/wxmedit_advanced.cpp:1323
+#: ../src/wxmedit/wxmedit_advanced.cpp:1279
 msgid "Thai"
 msgstr "タイ語"
 
-#: ../src/wxmedit/wxmedit_advanced.cpp:1324
+#: ../src/wxmedit/wxmedit_advanced.cpp:1280
 msgid "Lao"
 msgstr "ラオス文字"
 
-#: ../src/wxmedit/wxmedit_advanced.cpp:1325
+#: ../src/wxmedit/wxmedit_advanced.cpp:1281
 msgid "Tibetan"
 msgstr "チベット語"
 
-#: ../src/wxmedit/wxmedit_advanced.cpp:1326
+#: ../src/wxmedit/wxmedit_advanced.cpp:1282
 msgid "Myanmar"
 msgstr "ミャンマー語"
 
-#: ../src/wxmedit/wxmedit_advanced.cpp:1327
+#: ../src/wxmedit/wxmedit_advanced.cpp:1283
 msgid "Georgian"
 msgstr "グルジア文字"
 
-#: ../src/wxmedit/wxmedit_advanced.cpp:1328
+#: ../src/wxmedit/wxmedit_advanced.cpp:1284
 msgid "Hangul Jamo"
 msgstr "ハングル字母"
 
-#: ../src/wxmedit/wxmedit_advanced.cpp:1329
+#: ../src/wxmedit/wxmedit_advanced.cpp:1285
 msgid "Ethiopic"
 msgstr "エチオピア語"
 
-#: ../src/wxmedit/wxmedit_advanced.cpp:1330
+#: ../src/wxmedit/wxmedit_advanced.cpp:1286
 msgid "Ethiopic Supplement"
 msgstr "エチオピア文字追加 "
 
-#: ../src/wxmedit/wxmedit_advanced.cpp:1331
+#: ../src/wxmedit/wxmedit_advanced.cpp:1287
 msgid "Cherokee"
 msgstr "チェロキー"
 
-#: ../src/wxmedit/wxmedit_advanced.cpp:1332
+#: ../src/wxmedit/wxmedit_advanced.cpp:1288
 msgid "Unified Canadian Aboriginal Syllabics"
 msgstr "統合カナダ先住民文字"
 
-#: ../src/wxmedit/wxmedit_advanced.cpp:1333
+#: ../src/wxmedit/wxmedit_advanced.cpp:1289
 msgid "Ogham"
 msgstr "オガム文字"
 
-#: ../src/wxmedit/wxmedit_advanced.cpp:1334
+#: ../src/wxmedit/wxmedit_advanced.cpp:1290
 msgid "Runic"
 msgstr "ルーン文字"
 
-#: ../src/wxmedit/wxmedit_advanced.cpp:1335
+#: ../src/wxmedit/wxmedit_advanced.cpp:1291
 msgid "Tagalog"
 msgstr "タガログ語"
 
-#: ../src/wxmedit/wxmedit_advanced.cpp:1336
+#: ../src/wxmedit/wxmedit_advanced.cpp:1292
 msgid "Hanunoo"
 msgstr "ハヌノオ文字"
 
-#: ../src/wxmedit/wxmedit_advanced.cpp:1337
+#: ../src/wxmedit/wxmedit_advanced.cpp:1293
 msgid "Buhid"
 msgstr "ブビット文字"
 
-#: ../src/wxmedit/wxmedit_advanced.cpp:1338
+#: ../src/wxmedit/wxmedit_advanced.cpp:1294
 msgid "Tagbanwa"
 msgstr "タグバンワ文字"
 
-#: ../src/wxmedit/wxmedit_advanced.cpp:1339
+#: ../src/wxmedit/wxmedit_advanced.cpp:1295
 msgid "Khmer"
 msgstr "クメール語"
 
-#: ../src/wxmedit/wxmedit_advanced.cpp:1340
+#: ../src/wxmedit/wxmedit_advanced.cpp:1296
 msgid "Mongolian"
 msgstr "モンゴル語"
 
-#: ../src/wxmedit/wxmedit_advanced.cpp:1341
+#: ../src/wxmedit/wxmedit_advanced.cpp:1297
 msgid "Limbu"
 msgstr "リンブ文字"
 
-#: ../src/wxmedit/wxmedit_advanced.cpp:1342
+#: ../src/wxmedit/wxmedit_advanced.cpp:1298
 msgid "Tai Le"
 msgstr "タイレ文字"
 
-#: ../src/wxmedit/wxmedit_advanced.cpp:1343
+#: ../src/wxmedit/wxmedit_advanced.cpp:1299
 msgid "New Tai Lue"
 msgstr "新タイ・ルー文字"
 
-#: ../src/wxmedit/wxmedit_advanced.cpp:1344
+#: ../src/wxmedit/wxmedit_advanced.cpp:1300
 msgid "Khmer Symbols"
 msgstr "クメール記号"
 
-#: ../src/wxmedit/wxmedit_advanced.cpp:1345
+#: ../src/wxmedit/wxmedit_advanced.cpp:1301
 msgid "Buginese"
 msgstr "ブギナ語"
 
-#: ../src/wxmedit/wxmedit_advanced.cpp:1346
+#: ../src/wxmedit/wxmedit_advanced.cpp:1302
 msgid "Phonetic Extensions"
 msgstr "音声記号"
 
-#: ../src/wxmedit/wxmedit_advanced.cpp:1347
+#: ../src/wxmedit/wxmedit_advanced.cpp:1303
 msgid "Phonetic Extensions Supplement"
 msgstr "音声記号の追加"
 
-#: ../src/wxmedit/wxmedit_advanced.cpp:1348
+#: ../src/wxmedit/wxmedit_advanced.cpp:1304
 msgid "Combining Diacritical Marks Supplement"
 msgstr "ダイアクリティカルマーク追加"
 
-#: ../src/wxmedit/wxmedit_advanced.cpp:1349
+#: ../src/wxmedit/wxmedit_advanced.cpp:1305
 msgid "Latin Extended Additional"
 msgstr "ラテン拡張追加"
 
-#: ../src/wxmedit/wxmedit_advanced.cpp:1350
+#: ../src/wxmedit/wxmedit_advanced.cpp:1306
 msgid "Greek Extended"
 msgstr "ギリシャ文字拡張"
 
-#: ../src/wxmedit/wxmedit_advanced.cpp:1351
+#: ../src/wxmedit/wxmedit_advanced.cpp:1307
 msgid "General Punctuation"
 msgstr "一般的な句読点"
 
-#: ../src/wxmedit/wxmedit_advanced.cpp:1352
+#: ../src/wxmedit/wxmedit_advanced.cpp:1308
 msgid "Superscripts and Subscripts"
 msgstr "上付き下付き文字"
 
-#: ../src/wxmedit/wxmedit_advanced.cpp:1353
+#: ../src/wxmedit/wxmedit_advanced.cpp:1309
 msgid "Currency Symbols"
 msgstr "通貨記号"
 
-#: ../src/wxmedit/wxmedit_advanced.cpp:1354
+#: ../src/wxmedit/wxmedit_advanced.cpp:1310
 msgid "Combining Diacritical Marks for Symbols"
 msgstr "ダイアクリティカルマーク（記号）追加"
 
-#: ../src/wxmedit/wxmedit_advanced.cpp:1355
+#: ../src/wxmedit/wxmedit_advanced.cpp:1311
 msgid "Letterlike Symbols"
 msgstr "文字種記号"
 
-#: ../src/wxmedit/wxmedit_advanced.cpp:1356
+#: ../src/wxmedit/wxmedit_advanced.cpp:1312
 msgid "Number Forms"
 msgstr "数字"
 
-#: ../src/wxmedit/wxmedit_advanced.cpp:1357
+#: ../src/wxmedit/wxmedit_advanced.cpp:1313
 msgid "Arrows"
 msgstr "矢印"
 
-#: ../src/wxmedit/wxmedit_advanced.cpp:1358
+#: ../src/wxmedit/wxmedit_advanced.cpp:1314
 msgid "Mathematical Operators"
 msgstr "数学記号"
 
-#: ../src/wxmedit/wxmedit_advanced.cpp:1359
+#: ../src/wxmedit/wxmedit_advanced.cpp:1315
 msgid "Miscellaneous Technical"
 msgstr "その他の技術用記号"
 
-#: ../src/wxmedit/wxmedit_advanced.cpp:1360
+#: ../src/wxmedit/wxmedit_advanced.cpp:1316
 #, fuzzy
 msgid "Control Pictures"
 msgstr "制御文字"
 
-#: ../src/wxmedit/wxmedit_advanced.cpp:1361
+#: ../src/wxmedit/wxmedit_advanced.cpp:1317
 msgid "Optical Character Recognition"
 msgstr "光学式文字認識 "
 
-#: ../src/wxmedit/wxmedit_advanced.cpp:1362
+#: ../src/wxmedit/wxmedit_advanced.cpp:1318
 msgid "Enclosed Alphanumerics"
 msgstr ""
 
-#: ../src/wxmedit/wxmedit_advanced.cpp:1363
+#: ../src/wxmedit/wxmedit_advanced.cpp:1319
 msgid "Box Drawing"
 msgstr "罫線"
 
-#: ../src/wxmedit/wxmedit_advanced.cpp:1364
+#: ../src/wxmedit/wxmedit_advanced.cpp:1320
 msgid "Block Elements"
 msgstr ""
 
-#: ../src/wxmedit/wxmedit_advanced.cpp:1365
+#: ../src/wxmedit/wxmedit_advanced.cpp:1321
 msgid "Geometric Shapes"
 msgstr "幾何学模様"
 
-#: ../src/wxmedit/wxmedit_advanced.cpp:1366
+#: ../src/wxmedit/wxmedit_advanced.cpp:1322
 msgid "Miscellaneous Symbols"
 msgstr "その他の記号"
 
-#: ../src/wxmedit/wxmedit_advanced.cpp:1367
+#: ../src/wxmedit/wxmedit_advanced.cpp:1323
 msgid "Dingbats"
 msgstr "装飾記号"
 
-#: ../src/wxmedit/wxmedit_advanced.cpp:1368
+#: ../src/wxmedit/wxmedit_advanced.cpp:1324
 msgid "Miscellaneous Mathematical Symbols-A"
 msgstr "その他の数学記号-A"
 
-#: ../src/wxmedit/wxmedit_advanced.cpp:1369
+#: ../src/wxmedit/wxmedit_advanced.cpp:1325
 msgid "Supplemental Arrows-A"
 msgstr "補助矢印 -A"
 
-#: ../src/wxmedit/wxmedit_advanced.cpp:1370
+#: ../src/wxmedit/wxmedit_advanced.cpp:1326
 msgid "Braille Patterns"
 msgstr "点字パターン"
 
-#: ../src/wxmedit/wxmedit_advanced.cpp:1371
+#: ../src/wxmedit/wxmedit_advanced.cpp:1327
 msgid "Supplemental Arrows-B"
 msgstr "補助矢印 -B"
 
-#: ../src/wxmedit/wxmedit_advanced.cpp:1372
+#: ../src/wxmedit/wxmedit_advanced.cpp:1328
 msgid "Miscellaneous Mathematical Symbols-B"
 msgstr "その他の数学記号-B"
 
-#: ../src/wxmedit/wxmedit_advanced.cpp:1373
+#: ../src/wxmedit/wxmedit_advanced.cpp:1329
 msgid "Supplemental Mathematical Operators"
 msgstr "追加句読点"
 
-#: ../src/wxmedit/wxmedit_advanced.cpp:1374
+#: ../src/wxmedit/wxmedit_advanced.cpp:1330
 msgid "Miscellaneous Symbols and Arrows"
 msgstr "その他の記号と矢印"
 
-#: ../src/wxmedit/wxmedit_advanced.cpp:1375
+#: ../src/wxmedit/wxmedit_advanced.cpp:1331
 msgid "Glagolitic"
 msgstr "グラゴール文字"
 
-#: ../src/wxmedit/wxmedit_advanced.cpp:1376
+#: ../src/wxmedit/wxmedit_advanced.cpp:1332
 msgid "Coptic"
 msgstr "コプト語"
 
-#: ../src/wxmedit/wxmedit_advanced.cpp:1377
+#: ../src/wxmedit/wxmedit_advanced.cpp:1333
 msgid "Georgian Supplement"
 msgstr "グルジア文字追加"
 
-#: ../src/wxmedit/wxmedit_advanced.cpp:1378
+#: ../src/wxmedit/wxmedit_advanced.cpp:1334
 msgid "Tifinagh"
 msgstr "ティフナグ文字"
 
-#: ../src/wxmedit/wxmedit_advanced.cpp:1379
+#: ../src/wxmedit/wxmedit_advanced.cpp:1335
 msgid "Ethiopic Extended"
 msgstr "エチオピア拡張"
 
-#: ../src/wxmedit/wxmedit_advanced.cpp:1380
+#: ../src/wxmedit/wxmedit_advanced.cpp:1336
 msgid "Supplemental Punctuation"
 msgstr "補助句読点"
 
-#: ../src/wxmedit/wxmedit_advanced.cpp:1381
+#: ../src/wxmedit/wxmedit_advanced.cpp:1337
 msgid "CJK Radicals Supplement"
 msgstr "CJK 部首補助"
 
-#: ../src/wxmedit/wxmedit_advanced.cpp:1382
+#: ../src/wxmedit/wxmedit_advanced.cpp:1338
 msgid "Kangxi Radicals"
 msgstr "カンナダ語"
 
-#: ../src/wxmedit/wxmedit_advanced.cpp:1383
+#: ../src/wxmedit/wxmedit_advanced.cpp:1339
 msgid "Ideographic Description Characters"
 msgstr ""
 
-#: ../src/wxmedit/wxmedit_advanced.cpp:1384
+#: ../src/wxmedit/wxmedit_advanced.cpp:1340
 msgid "CJK Symbols and Punctuation"
 msgstr "CJK 記号と句読点"
 
-#: ../src/wxmedit/wxmedit_advanced.cpp:1385
+#: ../src/wxmedit/wxmedit_advanced.cpp:1341
 msgid "Hiragana"
 msgstr "ひらがな"
 
-#: ../src/wxmedit/wxmedit_advanced.cpp:1386
+#: ../src/wxmedit/wxmedit_advanced.cpp:1342
 msgid "Katakana"
 msgstr "カタカナ"
 
-#: ../src/wxmedit/wxmedit_advanced.cpp:1387
+#: ../src/wxmedit/wxmedit_advanced.cpp:1343
 msgid "Bopomofo"
 msgstr "Bopomofo(中国語)"
 
-#: ../src/wxmedit/wxmedit_advanced.cpp:1388
+#: ../src/wxmedit/wxmedit_advanced.cpp:1344
 #, fuzzy
 msgid "Hangul Compatibility Jamo"
 msgstr "CJK 互換性"
 
-#: ../src/wxmedit/wxmedit_advanced.cpp:1389
+#: ../src/wxmedit/wxmedit_advanced.cpp:1345
 msgid "Kanbun"
 msgstr "漢文"
 
-#: ../src/wxmedit/wxmedit_advanced.cpp:1390
+#: ../src/wxmedit/wxmedit_advanced.cpp:1346
 msgid "Bopomofo Extended"
 msgstr "Bopomofo(中国語) 拡張"
 
-#: ../src/wxmedit/wxmedit_advanced.cpp:1391
+#: ../src/wxmedit/wxmedit_advanced.cpp:1347
 msgid "CJK Strokes"
 msgstr ""
 
-#: ../src/wxmedit/wxmedit_advanced.cpp:1392
+#: ../src/wxmedit/wxmedit_advanced.cpp:1348
 msgid "Katakana Phonetic Extensions"
 msgstr "カタカナ表音拡張"
 
-#: ../src/wxmedit/wxmedit_advanced.cpp:1393
+#: ../src/wxmedit/wxmedit_advanced.cpp:1349
 msgid "Enclosed CJK Letters and Months"
 msgstr "囲みCJK 文字"
 
-#: ../src/wxmedit/wxmedit_advanced.cpp:1394
+#: ../src/wxmedit/wxmedit_advanced.cpp:1350
 msgid "CJK Compatibility"
 msgstr "CJK 互換性"
 
-#: ../src/wxmedit/wxmedit_advanced.cpp:1395
+#: ../src/wxmedit/wxmedit_advanced.cpp:1351
 msgid "CJK Unified Ideographs Extension A"
 msgstr ""
 
-#: ../src/wxmedit/wxmedit_advanced.cpp:1396
+#: ../src/wxmedit/wxmedit_advanced.cpp:1352
 msgid "Yijing Hexagram Symbols"
 msgstr ""
 
-#: ../src/wxmedit/wxmedit_advanced.cpp:1397
+#: ../src/wxmedit/wxmedit_advanced.cpp:1353
 msgid "CJK Unified Ideographs"
 msgstr ""
 
-#: ../src/wxmedit/wxmedit_advanced.cpp:1398
+#: ../src/wxmedit/wxmedit_advanced.cpp:1354
 msgid "Yi Syllables"
 msgstr "イ音節文字"
 
-#: ../src/wxmedit/wxmedit_advanced.cpp:1399
+#: ../src/wxmedit/wxmedit_advanced.cpp:1355
 msgid "Yi Radicals"
 msgstr "イ文字部首"
 
-#: ../src/wxmedit/wxmedit_advanced.cpp:1400
+#: ../src/wxmedit/wxmedit_advanced.cpp:1356
 #, fuzzy
 msgid "Modifier Tone Letters"
 msgstr "スペース調整文字"
 
-#: ../src/wxmedit/wxmedit_advanced.cpp:1401
+#: ../src/wxmedit/wxmedit_advanced.cpp:1357
 msgid "Syloti Nagri"
 msgstr "シロティ・ナグリ文字"
 
-#: ../src/wxmedit/wxmedit_advanced.cpp:1402
+#: ../src/wxmedit/wxmedit_advanced.cpp:1358
 msgid "Hangul Syllables"
 msgstr "ハングル音節"
 
-#: ../src/wxmedit/wxmedit_advanced.cpp:1403
+#: ../src/wxmedit/wxmedit_advanced.cpp:1359
 msgid "High Surrogates"
 msgstr ""
 
-#: ../src/wxmedit/wxmedit_advanced.cpp:1404
+#: ../src/wxmedit/wxmedit_advanced.cpp:1360
 msgid "High Private Use Surrogates"
 msgstr ""
 
-#: ../src/wxmedit/wxmedit_advanced.cpp:1405
+#: ../src/wxmedit/wxmedit_advanced.cpp:1361
 msgid "Low Surrogates"
 msgstr ""
 
-#: ../src/wxmedit/wxmedit_advanced.cpp:1406
+#: ../src/wxmedit/wxmedit_advanced.cpp:1362
 msgid "Private Use Area"
 msgstr ""
 
-#: ../src/wxmedit/wxmedit_advanced.cpp:1407
+#: ../src/wxmedit/wxmedit_advanced.cpp:1363
 #, fuzzy
 msgid "CJK Compatibility Ideographs"
 msgstr "CJK 互換性"
 
-#: ../src/wxmedit/wxmedit_advanced.cpp:1408
+#: ../src/wxmedit/wxmedit_advanced.cpp:1364
 msgid "Alphabetic Presentation Forms"
 msgstr ""
 
-#: ../src/wxmedit/wxmedit_advanced.cpp:1409
+#: ../src/wxmedit/wxmedit_advanced.cpp:1365
 msgid "Arabic Presentation Forms-A"
 msgstr ""
 
-#: ../src/wxmedit/wxmedit_advanced.cpp:1410
+#: ../src/wxmedit/wxmedit_advanced.cpp:1366
 msgid "Variation Selectors"
 msgstr ""
 
-#: ../src/wxmedit/wxmedit_advanced.cpp:1411
+#: ../src/wxmedit/wxmedit_advanced.cpp:1367
 msgid "Vertical Forms"
 msgstr "垂直フォーム"
 
-#: ../src/wxmedit/wxmedit_advanced.cpp:1412
+#: ../src/wxmedit/wxmedit_advanced.cpp:1368
 msgid "Combining Half Marks"
 msgstr "半記号を結合"
 
-#: ../src/wxmedit/wxmedit_advanced.cpp:1413
+#: ../src/wxmedit/wxmedit_advanced.cpp:1369
 #, fuzzy
 msgid "CJK Compatibility Forms"
 msgstr "CJK 互換性"
 
-#: ../src/wxmedit/wxmedit_advanced.cpp:1414
+#: ../src/wxmedit/wxmedit_advanced.cpp:1370
 msgid "Small Form Variants"
 msgstr ""
 
-#: ../src/wxmedit/wxmedit_advanced.cpp:1415
+#: ../src/wxmedit/wxmedit_advanced.cpp:1371
 msgid "Arabic Presentation Forms-B"
 msgstr ""
 
-#: ../src/wxmedit/wxmedit_advanced.cpp:1416
+#: ../src/wxmedit/wxmedit_advanced.cpp:1372
 msgid "Halfwidth and Fullwidth Forms"
 msgstr "半角形/全角形"
 
-#: ../src/wxmedit/wxmedit_advanced.cpp:1417
+#: ../src/wxmedit/wxmedit_advanced.cpp:1373
 msgid "Specials"
 msgstr "特殊用途文字"
 
-#: ../src/wxmedit/wxmedit_advanced.cpp:1418
+#: ../src/wxmedit/wxmedit_advanced.cpp:1374
 msgid "Linear B Syllabary"
 msgstr "線文字 B 音節文字"
 
-#: ../src/wxmedit/wxmedit_advanced.cpp:1419
+#: ../src/wxmedit/wxmedit_advanced.cpp:1375
 msgid "Linear B Ideograms"
 msgstr "線文字 B 表意文字"
 
-#: ../src/wxmedit/wxmedit_advanced.cpp:1420
+#: ../src/wxmedit/wxmedit_advanced.cpp:1376
 msgid "Aegean Numbers"
 msgstr "エーゲ数字"
 
-#: ../src/wxmedit/wxmedit_advanced.cpp:1421
+#: ../src/wxmedit/wxmedit_advanced.cpp:1377
 msgid "Ancient Greek Numbers"
 msgstr "古代ギリシャ数字"
 
-#: ../src/wxmedit/wxmedit_advanced.cpp:1422
+#: ../src/wxmedit/wxmedit_advanced.cpp:1378
 msgid "Old Italic"
 msgstr "オールドイタリック体"
 
-#: ../src/wxmedit/wxmedit_advanced.cpp:1423
+#: ../src/wxmedit/wxmedit_advanced.cpp:1379
 msgid "Gothic"
 msgstr "ゴシック体"
 
-#: ../src/wxmedit/wxmedit_advanced.cpp:1424
+#: ../src/wxmedit/wxmedit_advanced.cpp:1380
 msgid "Ugaritic"
 msgstr "ウガリット語"
 
-#: ../src/wxmedit/wxmedit_advanced.cpp:1425
+#: ../src/wxmedit/wxmedit_advanced.cpp:1381
 msgid "Old Persian"
 msgstr "古代ペルシャ語"
 
-#: ../src/wxmedit/wxmedit_advanced.cpp:1426
+#: ../src/wxmedit/wxmedit_advanced.cpp:1382
 msgid "Deseret"
 msgstr ""
 
-#: ../src/wxmedit/wxmedit_advanced.cpp:1427
+#: ../src/wxmedit/wxmedit_advanced.cpp:1383
 msgid "Shavian"
 msgstr "シェイヴィアン文字"
 
-#: ../src/wxmedit/wxmedit_advanced.cpp:1428
+#: ../src/wxmedit/wxmedit_advanced.cpp:1384
 msgid "Osmanya"
 msgstr "オスマン文字"
 
-#: ../src/wxmedit/wxmedit_advanced.cpp:1429
+#: ../src/wxmedit/wxmedit_advanced.cpp:1385
 msgid "Cypriot Syllabary"
 msgstr "キプロス文字音節"
 
-#: ../src/wxmedit/wxmedit_advanced.cpp:1430
+#: ../src/wxmedit/wxmedit_advanced.cpp:1386
 msgid "Kharoshthi"
 msgstr "カローシュティー文字"
 
-#: ../src/wxmedit/wxmedit_advanced.cpp:1431
+#: ../src/wxmedit/wxmedit_advanced.cpp:1387
 msgid "Byzantine Musical Symbols"
 msgstr "ビザンティン様式 音楽記号"
 
-#: ../src/wxmedit/wxmedit_advanced.cpp:1432
+#: ../src/wxmedit/wxmedit_advanced.cpp:1388
 msgid "Musical Symbols"
 msgstr "音楽記号"
 
-#: ../src/wxmedit/wxmedit_advanced.cpp:1433
+#: ../src/wxmedit/wxmedit_advanced.cpp:1389
 msgid "Ancient Greek Musical Notation"
 msgstr "古代ギリシャ記譜法 "
 
-#: ../src/wxmedit/wxmedit_advanced.cpp:1434
+#: ../src/wxmedit/wxmedit_advanced.cpp:1390
 msgid "Tai Xuan Jing Symbols"
 msgstr "太玄経記号"
 
-#: ../src/wxmedit/wxmedit_advanced.cpp:1435
+#: ../src/wxmedit/wxmedit_advanced.cpp:1391
 msgid "Mathematical Alphanumeric Symbols"
 msgstr "数学用英数字記号"
 
-#: ../src/wxmedit/wxmedit_advanced.cpp:1436
+#: ../src/wxmedit/wxmedit_advanced.cpp:1392
 msgid "CJK Unified Ideographs Extension B"
 msgstr ""
 
-#: ../src/wxmedit/wxmedit_advanced.cpp:1437
+#: ../src/wxmedit/wxmedit_advanced.cpp:1393
 #, fuzzy
 msgid "CJK Compatibility Ideographs Supplement"
 msgstr "CJK 部首補助"
 
-#: ../src/wxmedit/wxmedit_advanced.cpp:1438
+#: ../src/wxmedit/wxmedit_advanced.cpp:1394
 msgid "Tags"
 msgstr "タグ"
 
-#: ../src/wxmedit/wxmedit_advanced.cpp:1439
+#: ../src/wxmedit/wxmedit_advanced.cpp:1395
 #, fuzzy
 msgid "Variation Selectors Supplement"
 msgstr "アラビア語補足"
 
-#: ../src/wxmedit/wxmedit_advanced.cpp:1440
+#: ../src/wxmedit/wxmedit_advanced.cpp:1396
 #, fuzzy
 msgid "Supplementary Private Use Area-A"
 msgstr "補助矢印 -A"
 
-#: ../src/wxmedit/wxmedit_advanced.cpp:1441
+#: ../src/wxmedit/wxmedit_advanced.cpp:1397
 #, fuzzy
 msgid "Supplementary Private Use Area-B"
 msgstr "補助矢印 -B"
 
-#: ../src/wxmedit/wxmedit_advanced.cpp:1619
+#: ../src/wxmedit/wxmedit_advanced.cpp:1575
 msgid "Invalid Unicode Characters"
 msgstr "無効な Unicode 文字"
 
@@ -1019,12 +1024,12 @@ msgstr "ファイルを保存しますか?"
 msgid "The input string is not a valid Hex-String:"
 msgstr "入力された文字列は有効な16進文字列ではありません:"
 
-#: ../src/wxmedit/wxmedit_search.cpp:663 ../src/wxmedit/wxmedit_search.cpp:879
+#: ../src/wxmedit/wxmedit_search.cpp:649 ../src/wxmedit/wxmedit_search.cpp:865
 #, c-format
 msgid "'%s' is not a valid regular expression."
 msgstr "'%s' は有効な正規表現ではありません"
 
-#: ../src/wxmedit/wxmedit_search.cpp:788
+#: ../src/wxmedit/wxmedit_search.cpp:774
 msgid ""
 "Catched a exception of 'regex_error'.\n"
 "Maybe the regular expression is invalid."
@@ -1032,7 +1037,7 @@ msgstr ""
 "'regex_error' が起こりました.\n"
 "無効な正規表現です"
 
-#: ../src/wxmedit/wxmedit_search.cpp:915
+#: ../src/wxmedit/wxmedit_search.cpp:901
 #, c-format
 msgid "The format of '%s' is invalid."
 msgstr "この形式 '%s' は無効です"
@@ -2213,11 +2218,11 @@ msgstr "コメント解除"
 msgid "Find"
 msgstr "検索"
 
-#: ../src/wxmedit_frame.cpp:2072 ../src/wxm_search_dialog.cpp:347
+#: ../src/wxmedit_frame.cpp:2072 ../src/wxm_search_dialog.cpp:350
 msgid "Find Next"
 msgstr "次を検索"
 
-#: ../src/wxmedit_frame.cpp:2073 ../src/wxm_search_dialog.cpp:434
+#: ../src/wxmedit_frame.cpp:2073 ../src/wxm_search_dialog.cpp:440
 msgid "Find Previous"
 msgstr "前を検索"
 
@@ -2301,6 +2306,10 @@ msgstr ""
 #: ../src/wxmedit_frame.cpp:3488
 msgid "Previewing"
 msgstr "プレビュー"
+
+#: ../src/wxmedit_frame.cpp:3492
+msgid "wxMEdit Print Preview"
+msgstr ""
 
 #: ../src/wxmedit_frame.cpp:3517
 msgid ""
@@ -2985,43 +2994,43 @@ msgstr "置換(&R) >>"
 msgid "Search"
 msgstr "検索"
 
-#: ../src/wxm_search_dialog.cpp:301 ../src/wxm_search_dialog.cpp:388
-#: ../src/wxm_search_dialog.cpp:679 ../src/wxm_replace_dialog.cpp:502
-#: ../src/wxm_replace_dialog.cpp:584
+#: ../src/wxm_search_dialog.cpp:304 ../src/wxm_search_dialog.cpp:394
+#: ../src/wxm_search_dialog.cpp:685 ../src/wxm_replace_dialog.cpp:505
+#: ../src/wxm_replace_dialog.cpp:590
 msgid "The value of 'From' is incorrect."
 msgstr ""
 
-#: ../src/wxm_search_dialog.cpp:306 ../src/wxm_search_dialog.cpp:393
-#: ../src/wxm_search_dialog.cpp:684 ../src/wxm_replace_dialog.cpp:507
-#: ../src/wxm_replace_dialog.cpp:589
+#: ../src/wxm_search_dialog.cpp:309 ../src/wxm_search_dialog.cpp:399
+#: ../src/wxm_search_dialog.cpp:690 ../src/wxm_replace_dialog.cpp:510
+#: ../src/wxm_replace_dialog.cpp:595
 msgid "The value of 'To' is incorrect."
 msgstr ""
 
-#: ../src/wxm_search_dialog.cpp:341 ../src/wxm_search_dialog.cpp:428
+#: ../src/wxm_search_dialog.cpp:344 ../src/wxm_search_dialog.cpp:434
 #, fuzzy
 msgid "Cannot find the matched string."
 msgstr "適合する文字列は見つかりませんでした"
 
-#: ../src/wxm_search_dialog.cpp:344
+#: ../src/wxm_search_dialog.cpp:347
 msgid "Do you want to find from begin of selection?"
 msgstr ""
 
-#: ../src/wxm_search_dialog.cpp:345
+#: ../src/wxm_search_dialog.cpp:348
 #, fuzzy
 msgid "Do you want to find from begin of file?"
 msgstr "ファイルを保存しますか?"
 
-#: ../src/wxm_search_dialog.cpp:431
+#: ../src/wxm_search_dialog.cpp:437
 #, fuzzy
 msgid "Do you want to find from end of selection?"
 msgstr "本当に変更を破棄しますか?"
 
-#: ../src/wxm_search_dialog.cpp:432
+#: ../src/wxm_search_dialog.cpp:438
 #, fuzzy
 msgid "Do you want to find from end of file?"
 msgstr "ファイルを保存しますか?"
 
-#: ../src/wxm_search_dialog.cpp:711
+#: ../src/wxm_search_dialog.cpp:717
 #, c-format
 msgid "'%s' was found %d times."
 msgstr ""
@@ -3078,7 +3087,7 @@ msgstr "すべて置換(&A)"
 msgid "WxButtonReplaceAll"
 msgstr "WxButtonReplaceAll"
 
-#: ../src/wxm_replace_dialog.cpp:536
+#: ../src/wxm_replace_dialog.cpp:539
 msgid ""
 "Cannot find the matched string.\n"
 "Replace is finished."
@@ -3086,11 +3095,11 @@ msgstr ""
 "適合する文字列は見つかりませんでした.\n"
 "置換を終了します."
 
-#: ../src/wxm_replace_dialog.cpp:615
+#: ../src/wxm_replace_dialog.cpp:621
 msgid "Cannot find any matched string."
 msgstr "適合する文字列は見つかりませんでした"
 
-#: ../src/wxm_replace_dialog.cpp:617
+#: ../src/wxm_replace_dialog.cpp:623
 #, c-format
 msgid "%d string(s) were replaced."
 msgstr "%d つの文字列が置換されました"
