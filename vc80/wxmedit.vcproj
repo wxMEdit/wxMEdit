@@ -285,7 +285,7 @@
 					>
 				</File>
 				<File
-					RelativePath="..\src\wxmedit\u_block.cpp"
+					RelativePath="..\src\xm\xm_ublock.cpp"
 					>
 				</File>
 				<File
@@ -499,7 +499,7 @@
 					>
 				</File>
 				<File
-					RelativePath="..\src\wxmedit\u_block.h"
+					RelativePath="..\src\xm\xm_ublock.h"
 					>
 				</File>
 				<File

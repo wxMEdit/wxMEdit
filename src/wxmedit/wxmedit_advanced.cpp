@@ -9,7 +9,7 @@
 #include "wxmedit.h"
 #include "trad_simp.h"
 #include "../xm/wxm_case_conv.h"
-#include "u_block.h"
+#include "../xm/xm_ublock.h"
 
 #include <algorithm>
 #include <vector>
@@ -19,6 +19,8 @@ using std::vector;
 #include <crtdbg.h>
 #define new new(_NORMAL_BLOCK ,__FILE__, __LINE__)
 #endif
+
+using namespace xm;
 
 //==============================================================================
 
@@ -1256,7 +1258,7 @@ void MadEdit::WordCount(bool selection, int &wordCount, int &charCount, int &spa
 {
     wordCount=charCount=spaceCount=halfWidthCount=fullWidthCount=0;
 
-    UnicodeBlockSet ublock_set;
+    UnicodeBlockSet& ublock_set = UnicodeBlockSet::GetInstance();
     UnicodeBlockCharCounter ublock_cnt;
 
     MadLineIterator lit;
@@ -1358,7 +1360,7 @@ void MadEdit::WordCount(bool selection, int &wordCount, int &charCount, int &spa
         for(idx=ublock_cnt.BlockIndexBegin(); ublock_cnt.IsValidBlock(idx); idx=ublock_cnt.NextBlock())
         {
             int cnt = ublock_cnt.GetBlockCharCount(idx);
-            detail->Add(wxString::Format(wxT("%s %d    U+%04X - U+%04X: %s"), PrefixString(cnt).c_str(), cnt,
+            detail->Add(wxString::Format(wxT("%s %d    U+%06X - U+%06X: %s"), PrefixString(cnt).c_str(), cnt,
                 ublock_set.Begin(idx), ublock_set.End(idx), wxGetTranslation(ublock_set.Description(idx))));
         }
     }

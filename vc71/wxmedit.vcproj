@@ -197,7 +197,7 @@
 					RelativePath="..\src\wxmedit\wxm_undo.cpp">
 				</File>
 				<File
-					RelativePath="..\src\wxmedit\u_block.cpp">
+					RelativePath="..\src\xm\xm_ublock.cpp">
 				</File>
 				<File
 					RelativePath="..\src\xm\wxm_case_conv.cpp">
@@ -360,7 +360,7 @@
 					RelativePath="..\src\wxmedit\wxm_undo.h">
 				</File>
 				<File
-					RelativePath="..\src\wxmedit\u_block.h">
+					RelativePath="..\src\xm\xm_ublock.h">
 				</File>
 				<File
 					RelativePath="..\src\xm\wxm_case_conv.h">
