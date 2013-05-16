@@ -8,7 +8,7 @@
 
 #include "wxmedit.h"
 #include "wxm_encoding.h"
-#include "wxm_wx_icu.h"
+#include "../xm/wxm_case_conv.h"
 
 #include <unicode/uchar.h>
 #include <iostream>

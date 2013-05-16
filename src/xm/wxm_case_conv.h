@@ -1,22 +1,19 @@
 ///////////////////////////////////////////////////////////////////////////////
-// Name:        wxmedit/wxm_wx_icu.h
-// Description: wxWidgets/ICU type adapter
+// vim:         ts=4 sw=4
+// Name:        xm/wxm_wx_icu.h
+// Description: Case conversion for wxWidgets objects
 // Author:      wxmedit@gmail.com
 // Licence:     GPL
 ///////////////////////////////////////////////////////////////////////////////
 
-#ifndef _WXM_WX_ICU_H_
-#define _WXM_WX_ICU_H_
+#ifndef _WXM_CASE_CONV_H_
+#define _WXM_CASE_CONV_H_
 
-#include <wx/string.h>
-#include <unicode/unistr.h>
+#include "wxm_wx_icu.h"
 #include <unicode/uchar.h>
 
 namespace wxm
 {
-	UnicodeString WxStrToICU(const wxString& wxs);
-	wxString ICUStrToWx(const UnicodeString& us);
-
 	wxString WxStrToLower(const wxString& wxs);
 	wxString WxStrToUpper(const wxString& wxs);
 
@@ -104,4 +101,4 @@ namespace wxm
 
 } //namespace wxm
 
-#endif //_WXM_WX_ICU_H_
+#endif //_WXM_CASE_CONV_H_

@@ -18,6 +18,7 @@ OBJ  = ./Release/wxmedit_frame.o \
        ./Release/wxm_lines.o \
        ./Release/wxm_syntax.o \
        ./Release/wxm_undo.o \
+       ./Release/wxm_case_conv.o \
        ./Release/wxm_wx_icu.o \
        ./Release/wxm_plugin.o \
        ./Release/wxm_utils.o \
@@ -115,8 +116,11 @@ $(BIN): $(OBJ)
 ./Release/wxm_undo.o: ../src/wxmedit/wxm_undo.cpp
 	$(CXX) -c ../src/wxmedit/wxm_undo.cpp -o ./Release/wxm_undo.o $(CXXFLAGS)
 
-./Release/wxm_wx_icu.o: ../src/wxmedit/wxm_wx_icu.cpp
-	$(CXX) -c ../src/wxmedit/wxm_wx_icu.cpp -o ./Release/wxm_wx_icu.o $(CXXFLAGS)
+./Release/wxm_case_conv.o: ../src/xm/wxm_case_conv.cpp
+	$(CXX) -c ../src/xm/wxm_case_conv.cpp -o ./Release/wxm_case_conv.o $(CXXFLAGS)
+
+./Release/wxm_wx_icu.o: ../src/xm/wxm_wx_icu.cpp
+	$(CXX) -c ../src/xm/wxm_wx_icu.cpp -o ./Release/wxm_wx_icu.o $(CXXFLAGS)
 
 ./Release/wxm_plugin.o: ../src/wxm_plugin.cpp
 	$(CXX) -c ../src/wxm_plugin.cpp -o ./Release/wxm_plugin.o $(CXXFLAGS)

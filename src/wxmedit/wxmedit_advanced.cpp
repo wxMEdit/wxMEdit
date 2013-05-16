@@ -8,7 +8,7 @@
 
 #include "wxmedit.h"
 #include "trad_simp.h"
-#include "wxm_wx_icu.h"
+#include "../xm/wxm_case_conv.h"
 
 #include <algorithm>
 #include <vector>

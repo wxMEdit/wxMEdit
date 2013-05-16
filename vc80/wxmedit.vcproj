@@ -285,7 +285,11 @@
 					>
 				</File>
 				<File
-					RelativePath="..\src\wxmedit\wxm_wx_icu.cpp"
+					RelativePath="..\src\xm\wxm_case_conv.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\src\xm\wxm_wx_icu.cpp"
 					>
 				</File>
 				<File
@@ -491,7 +495,11 @@
 					>
 				</File>
 				<File
-					RelativePath="..\src\wxmedit\wxm_wx_icu.h"
+					RelativePath="..\src\xm\wxm_case_conv.h"
+					>
+				</File>
+				<File
+					RelativePath="..\src\xm\wxm_wx_icu.h"
 					>
 				</File>
 				<File
