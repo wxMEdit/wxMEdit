@@ -18,6 +18,7 @@ OBJ  = ./Release/wxmedit_frame.o \
        ./Release/wxm_lines.o \
        ./Release/wxm_syntax.o \
        ./Release/wxm_undo.o \
+       ./Release/u_block.o \
        ./Release/wxm_case_conv.o \
        ./Release/wxm_wx_icu.o \
        ./Release/wxm_plugin.o \
@@ -115,6 +116,9 @@ $(BIN): $(OBJ)
 
 ./Release/wxm_undo.o: ../src/wxmedit/wxm_undo.cpp
 	$(CXX) -c ../src/wxmedit/wxm_undo.cpp -o ./Release/wxm_undo.o $(CXXFLAGS)
+
+./Release/u_block.o: ../src/wxmedit/u_block.cpp
+	$(CXX) -c ../src/wxmedit/u_block.cpp -o ./Release/u_block.o $(CXXFLAGS)
 
 ./Release/wxm_case_conv.o: ../src/xm/wxm_case_conv.cpp
 	$(CXX) -c ../src/xm/wxm_case_conv.cpp -o ./Release/wxm_case_conv.o $(CXXFLAGS)

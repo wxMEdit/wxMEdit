@@ -197,6 +197,9 @@
 					RelativePath="..\src\wxmedit\wxm_undo.cpp">
 				</File>
 				<File
+					RelativePath="..\src\wxmedit\u_block.cpp">
+				</File>
+				<File
 					RelativePath="..\src\xm\wxm_case_conv.cpp">
 				</File>
 				<File
@@ -355,6 +358,9 @@
 				</File>
 				<File
 					RelativePath="..\src\wxmedit\wxm_undo.h">
+				</File>
+				<File
+					RelativePath="..\src\wxmedit\u_block.h">
 				</File>
 				<File
 					RelativePath="..\src\xm\wxm_case_conv.h">
