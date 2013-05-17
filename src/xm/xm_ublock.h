@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////
 // vim:         ts=4 sw=4
-// Name:        wxmedit/u_block.h
+// Name:        xm/xm_ublock.h
 // Description: Unicode Blocks Information
 // Author:      wxmedit@gmail.com
 // Licence:     GPL
