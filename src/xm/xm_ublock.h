@@ -24,7 +24,7 @@ struct UnicodeBlockSet: private boost::noncopyable
 	UChar32 End(int index);
 	bool IsAlphabet(int index);
 	bool IsFullWidth(int index);
-	const UChar* Description(int index);
+	const wchar_t* Description(int index);
 
 	bool Valid(int index);
 

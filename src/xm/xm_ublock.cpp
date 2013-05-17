@@ -75,7 +75,7 @@ bool UnicodeBlockSet::IsFullWidth(int index)
 	return false;	// FIXME
 }
 
-const UChar* UnicodeBlockSet::Description(int index)
+const wchar_t* UnicodeBlockSet::Description(int index)
 {
 	return NULL;	// FIXME
 }
