@@ -1286,8 +1286,6 @@ void MadEdit::WordCount(bool selection, int &wordCount, int &charCount, int &spa
     m_Lines->InitNextUChar(lit, linepos);
     int idx=0, count=0;
     UnicodeString ustr;
-    ucs2_t *half=GetHalfwidthTable(true, true, true, true);
-    ucs2_t *full=GetFullwidthTable(true, true, true, true);
 
     while(nowpos < endpos)
     {
@@ -1323,27 +1321,10 @@ void MadEdit::WordCount(bool selection, int &wordCount, int &charCount, int &spa
         {
             ++charCount;
 
-            bool tested=false;
-            if(uc<=0xFFFF)
-            {
-                if(half[uc]!=0)
-                {
-                ++halfWidthCount;
-                tested=true;
-                }
-                else if(full[uc]!=0)
-                {
+            if(xm::IsFullWidth(uc))
                 ++fullWidthCount;
-                tested=true;
-                }
-            }
-            if(!tested)
-            {
-                if(ublock_set.IsFullWidth(idx))
-                ++fullWidthCount;
-                else
+            else
                 ++halfWidthCount;
-            }
         }
     }
     wordCount = xm::GetWordCountNoCtrlNoSP(ustr);

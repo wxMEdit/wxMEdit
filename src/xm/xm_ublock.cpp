@@ -65,11 +65,6 @@ UChar32 UnicodeBlockSet::End(int index)
 	return m_block_map[index].second;
 }
 
-bool UnicodeBlockSet::IsFullWidth(int index)
-{
-	return false;	// FIXME
-}
-
 const wchar_t* UnicodeBlockSet::Description(int index)
 {
 	return NULL;	// FIXME
