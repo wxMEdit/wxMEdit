@@ -65,11 +65,6 @@ UChar32 UnicodeBlockSet::End(int index)
 	return m_block_map[index].second;
 }
 
-bool UnicodeBlockSet::IsAlphabet(int index)
-{
-	return false;	// FIXME
-}
-
 bool UnicodeBlockSet::IsFullWidth(int index)
 {
 	return false;	// FIXME

@@ -200,6 +200,9 @@
 					RelativePath="..\src\xm\xm_ublock.cpp">
 				</File>
 				<File
+					RelativePath="..\src\xm\xm_uutils.cpp">
+				</File>
+				<File
 					RelativePath="..\src\xm\wxm_case_conv.cpp">
 				</File>
 				<File
@@ -361,6 +364,9 @@
 				</File>
 				<File
 					RelativePath="..\src\xm\xm_ublock.h">
+				</File>
+				<File
+					RelativePath="..\src\xm\xm_uutils.h">
 				</File>
 				<File
 					RelativePath="..\src\xm\wxm_case_conv.h">

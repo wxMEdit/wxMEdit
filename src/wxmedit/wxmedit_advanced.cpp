@@ -1,4 +1,5 @@
 ///////////////////////////////////////////////////////////////////////////////
+// vim:         sw=4 ts=4 expandtab
 // Name:        wxmedit/wxmedit_advanced.cpp
 // Description: advanced functions of wxMEdit
 // Author:      madedit@gmail.com  (creator)
@@ -10,6 +11,7 @@
 #include "trad_simp.h"
 #include "../xm/wxm_case_conv.h"
 #include "../xm/xm_ublock.h"
+#include "../xm/xm_uutils.h"
 
 #include <algorithm>
 #include <vector>
@@ -1283,6 +1285,7 @@ void MadEdit::WordCount(bool selection, int &wordCount, int &charCount, int &spa
     MadUCQueue ucqueue;
     m_Lines->InitNextUChar(lit, linepos);
     int idx=0, previdx=-1, count=0;
+    UnicodeString ustr;
     ucs2_t *half=GetHalfwidthTable(true, true, true, true);
     ucs2_t *full=GetFullwidthTable(true, true, true, true);
 
@@ -1306,6 +1309,7 @@ void MadEdit::WordCount(bool selection, int &wordCount, int &charCount, int &spa
 
         idx = ublock_set.FindBlockIndex(uc);
         ublock_cnt.Count(idx);
+        ustr += (UChar32)uc;
 
         if(IsDelimiter(uc))
         {
@@ -1317,41 +1321,34 @@ void MadEdit::WordCount(bool selection, int &wordCount, int &charCount, int &spa
         }
         else if(ublock_set.Valid(idx))
         {
-            if(ublock_set.Valid(previdx) && ublock_set.IsAlphabet(previdx) && ublock_set.IsAlphabet(idx))
-            {
-                ++charCount;
-            }
-            else
-            {
-                ++wordCount;
-                ++charCount;
+            ++charCount;
 
-                bool tested=false;
-                if(uc<=0xFFFF)
+            bool tested=false;
+            if(uc<=0xFFFF)
+            {
+                if(half[uc]!=0)
                 {
-                    if(half[uc]!=0)
-                    {
-                        ++halfWidthCount;
-                        tested=true;
-                    }
-                    else if(full[uc]!=0)
-                    {
-                        ++fullWidthCount;
-                        tested=true;
-                    }
+                ++halfWidthCount;
+                tested=true;
                 }
-                if(!tested)
+                else if(full[uc]!=0)
                 {
-                    if(ublock_set.IsFullWidth(idx))
-                        ++fullWidthCount;
-                    else
-                        ++halfWidthCount;
+                ++fullWidthCount;
+                tested=true;
                 }
+            }
+            if(!tested)
+            {
+                if(ublock_set.IsFullWidth(idx))
+                ++fullWidthCount;
+                else
+                ++halfWidthCount;
             }
         }
 
         previdx=idx;
     }
+    wordCount = xm::GetWordCountNoCtrlNoSP(ustr);
 
     if(detail!=NULL)
     {
