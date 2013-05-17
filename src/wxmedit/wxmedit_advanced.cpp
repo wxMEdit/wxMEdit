@@ -20,8 +20,6 @@ using std::vector;
 #define new new(_NORMAL_BLOCK ,__FILE__, __LINE__)
 #endif
 
-using namespace xm;
-
 //==============================================================================
 
 void MadEdit::ToggleBOM()
@@ -1258,8 +1256,8 @@ void MadEdit::WordCount(bool selection, int &wordCount, int &charCount, int &spa
 {
     wordCount=charCount=spaceCount=halfWidthCount=fullWidthCount=0;
 
-    UnicodeBlockSet& ublock_set = UnicodeBlockSet::GetInstance();
-    UnicodeBlockCharCounter ublock_cnt;
+    xm::UnicodeBlockSet& ublock_set = xm::UnicodeBlockSet::GetInstance();
+    xm::UnicodeBlockCharCounter ublock_cnt;
 
     MadLineIterator lit;
     wxFileOffset linepos, nowpos, endpos;
