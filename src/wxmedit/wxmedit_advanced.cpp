@@ -1319,7 +1319,7 @@ void MadEdit::WordCount(bool selection, int &wordCount, int &charCount, int &spa
         }
         else if(ublock_set.Valid(idx))
         {
-            if(previdx>=0 && ublock_set.Valid(previdx) && ublock_set.IsAlphabet(previdx) && ublock_set.IsAlphabet(idx))
+            if(ublock_set.Valid(previdx) && ublock_set.IsAlphabet(previdx) && ublock_set.IsAlphabet(idx))
             {
                 ++charCount;
             }
