@@ -64,11 +64,11 @@ class MadWordCountDialog : public wxDialog
 		wxStaticText *WxStaticText7;
 		wxStaticText *WxStaticTextFullwidthCount;
 		wxStaticText *WxStaticText5;
-		wxStaticText *WxStaticTextHalfwidthCount;
+		wxStaticText *WxStaticTextControlCount;
 		wxStaticText *WxStaticText4;
-		wxStaticText *WxStaticTextSpaceCount;
+		wxStaticText *WxStaticTextCharCountAll;
 		wxStaticText *WxStaticText3;
-		wxStaticText *WxStaticTextCharCount;
+		wxStaticText *WxStaticTextCharCountNoSPNoCtrl;
 		wxStaticText *WxStaticText2;
 		wxStaticText *WxStaticTextWordCount;
 		wxStaticText *WxStaticText1;
@@ -91,11 +91,11 @@ class MadWordCountDialog : public wxDialog
 			ID_WXSTATICTEXT7 = 1021,
 			ID_WXSTATICTEXTFULLWIDTHCOUNT = 1013,
 			ID_WXSTATICTEXT5 = 1012,
-			ID_WXSTATICTEXTHALFWIDTHCOUNT = 1011,
+			ID_WXSTATICTEXTCONTROLCOUNT = 1011,
 			ID_WXSTATICTEXT4 = 1010,
-			ID_WXSTATICTEXTSPACECOUNT = 1009,
+			ID_WXSTATICTEXTCHARCOUNTALL = 1009,
 			ID_WXSTATICTEXT3 = 1008,
-			ID_WXSTATICTEXTCHARCOUNT = 1007,
+			ID_WXSTATICTEXTCHARCOUNTNOSPNOCTRL = 1007,
 			ID_WXSTATICTEXT2 = 1006,
 			ID_WXSTATICTEXTWORDCOUNT = 1005,
 			ID_WXSTATICTEXT1 = 1004,

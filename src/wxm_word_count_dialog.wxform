@@ -100,7 +100,7 @@ object frmNewForm: TfrmNewForm
         Top = 32
         Width = 113
         Height = 17
-        Caption = 'Characters (no spaces)'
+        Caption = 'Characters (no controls/spaces)'
         TabOrder = 2
         Wx_BGColor = clBlack
         Wx_Class = 'wxStaticText'
@@ -113,7 +113,7 @@ object frmNewForm: TfrmNewForm
         Wx_LabelStyle = []
         Wx_Alignment = [wxALIGN_LEFT]
       end
-      object WxStaticTextCharCount: TWxStaticText
+      object WxStaticTextCharCountNoSPNoCtrl: TWxStaticText
         Left = 285
         Top = 32
         Width = 40
@@ -136,7 +136,7 @@ object frmNewForm: TfrmNewForm
         Top = 59
         Width = 120
         Height = 17
-        Caption = 'Characters (with spaces)'
+        Caption = 'Characters (all)'
         TabOrder = 4
         Wx_BGColor = clBlack
         Wx_Class = 'wxStaticText'
@@ -149,7 +149,7 @@ object frmNewForm: TfrmNewForm
         Wx_LabelStyle = []
         Wx_Alignment = [wxALIGN_LEFT]
       end
-      object WxStaticTextSpaceCount: TWxStaticText
+      object WxStaticTextCharCountAll: TWxStaticText
         Left = 285
         Top = 59
         Width = 40
@@ -172,7 +172,7 @@ object frmNewForm: TfrmNewForm
         Top = 86
         Width = 82
         Height = 17
-        Caption = 'Halfwidth Words'
+        Caption = 'Control Characters'
         TabOrder = 6
         Wx_BGColor = clBlack
         Wx_Class = 'wxStaticText'
@@ -185,7 +185,7 @@ object frmNewForm: TfrmNewForm
         Wx_LabelStyle = []
         Wx_Alignment = [wxALIGN_LEFT]
       end
-      object WxStaticTextHalfwidthCount: TWxStaticText
+      object WxStaticTextControlCount: TWxStaticText
         Left = 285
         Top = 86
         Width = 40
@@ -208,7 +208,7 @@ object frmNewForm: TfrmNewForm
         Top = 113
         Width = 79
         Height = 17
-        Caption = 'Fullwidth Words'
+        Caption = 'Fullwidth Characters'
         TabOrder = 8
         Wx_BGColor = clBlack
         Wx_Class = 'wxStaticText'

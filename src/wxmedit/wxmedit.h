@@ -901,7 +901,7 @@ public: // advanced functions
 
 
     void WordCount(bool selection, int &wordCount, int &charCount, int &spaceCount,
-                   int &halfWidthCount, int &fullWidthCount, int &lineCount,
+                   int &controlCount, int &fullWidthCount, int &lineCount,
                    wxArrayString *detail);
 
 public:

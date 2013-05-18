@@ -1248,10 +1248,10 @@ wxString PrefixString(int i)
 }
 
 void MadEdit::WordCount(bool selection, int &wordCount, int &charCount, int &spaceCount,
-                        int &halfWidthCount, int &fullWidthCount, int &lineCount,
+                        int &controlCount, int &fullWidthCount, int &lineCount,
                         wxArrayString *detail)
 {
-    wordCount=charCount=spaceCount=halfWidthCount=fullWidthCount=0;
+    wordCount=charCount=spaceCount=controlCount=fullWidthCount=0;
 
     xm::UnicodeBlockSet& ublock_set = xm::UnicodeBlockSet::GetInstance();
     xm::UnicodeBlockCharCounter ublock_cnt;
@@ -1304,19 +1304,14 @@ void MadEdit::WordCount(bool selection, int &wordCount, int &charCount, int &spa
         ublock_cnt.Count(idx);
         ustr += (UChar32)uc;
 
-        if(u_isspace(uc))
-        {
+        ++charCount;
+        if(u_iscntrl(uc))
+            ++controlCount;
+        else if(u_isspace(uc))
             ++spaceCount;
-        }
-        else if(!u_iscntrl(uc) && ublock_set.Valid(idx))
-        {
-            ++charCount;
 
-            if(xm::IsFullWidth(uc))
-                ++fullWidthCount;
-            else
-                ++halfWidthCount;
-        }
+        if(xm::IsFullWidth(uc))
+            ++fullWidthCount;
     }
     wordCount = xm::GetWordCountNoCtrlNoSP(ustr);
 
