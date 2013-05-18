@@ -1060,7 +1060,7 @@ wxmedit-wxm_undo.obj: src/wxmedit/wxm_undo.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -c -o wxmedit-wxm_undo.obj `if test -f 'src/wxmedit/wxm_undo.cpp'; then $(CYGPATH_W) 'src/wxmedit/wxm_undo.cpp'; else $(CYGPATH_W) '$(srcdir)/src/wxmedit/wxm_undo.cpp'; fi`
 
-medit-xm_ublock_des.o: src/xm/xm_ublock_des.cpp
+wxmedit-xm_ublock_des.o: src/xm/xm_ublock_des.cpp
 @am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -MT wxmedit-xm_ublock_des.o -MD -MP -MF "$(DEPDIR)/wxmedit-xm_ublock_des.Tpo" -c -o wxmedit-xm_ublock_des.o `test -f 'src/xm/xm_ublock_des.cpp' || echo '$(srcdir)/'`src/xm/xm_ublock_des.cpp; \
 @am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/wxmedit-xm_ublock_des.Tpo" "$(DEPDIR)/wxmedit-xm_ublock_des.Po"; else rm -f "$(DEPDIR)/wxmedit-xm_ublock_des.Tpo"; exit 1; fi
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/xm/xm_ublock_des.cpp' object='wxmedit-xm_ublock_des.o' libtool=no @AMDEPBACKSLASH@
