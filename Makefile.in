@@ -76,10 +76,11 @@ am_wxmedit_OBJECTS = wxmedit-wxmedit_about_dialog.$(OBJEXT) \
 	wxmedit-wxmedit_search.$(OBJEXT) wxmedit-wxmedit_gtk.$(OBJEXT) \
 	wxmedit-wxm_encoding.$(OBJEXT) wxmedit-wxm_lines.$(OBJEXT) \
 	wxmedit-wxm_syntax.$(OBJEXT) wxmedit-wxm_undo.$(OBJEXT) \
-	wxmedit-xm_ublock.$(OBJEXT) wxmedit-xm_uutils.$(OBJEXT) \
-	wxmedit-wxm_case_conv.$(OBJEXT) wxmedit-wxm_wx_icu.$(OBJEXT) \
-	wxmedit-trad_simp.$(OBJEXT) wxmedit-CharDistribution.$(OBJEXT) \
-	wxmedit-JpCntx.$(OBJEXT) wxmedit-LangBulgarianModel.$(OBJEXT) \
+	wxmedit-xm_ublock_des.$(OBJEXT) wxmedit-xm_ublock.$(OBJEXT) \
+	wxmedit-xm_uutils.$(OBJEXT) wxmedit-wxm_case_conv.$(OBJEXT) \
+	wxmedit-wxm_wx_icu.$(OBJEXT) wxmedit-trad_simp.$(OBJEXT) \
+	wxmedit-CharDistribution.$(OBJEXT) wxmedit-JpCntx.$(OBJEXT) \
+	wxmedit-LangBulgarianModel.$(OBJEXT) \
 	wxmedit-LangCyrillicModel.$(OBJEXT) \
 	wxmedit-LangGreekModel.$(OBJEXT) \
 	wxmedit-LangHebrewModel.$(OBJEXT) \
@@ -347,6 +348,7 @@ wxmedit_SOURCES = src/wxmedit_about_dialog.cpp \
 	src/wxmedit/wxm_syntax.h \
 	src/wxmedit/wxm_undo.cpp \
 	src/wxmedit/wxm_undo.h \
+	src/xm/xm_ublock_des.cpp \
 	src/xm/xm_ublock.cpp \
 	src/xm/xm_ublock.h \
 	src/xm/xm_uutils.cpp \
@@ -651,6 +653,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/wxmedit-wxm_sort_dialog.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/wxmedit-wxm_syntax.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/wxmedit-wxm_undo.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/wxmedit-xm_ublock_des.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/wxmedit-xm_ublock.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/wxmedit-xm_uutils.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/wxmedit-wxm_case_conv.Po@am__quote@
@@ -1056,6 +1059,20 @@ wxmedit-wxm_undo.obj: src/wxmedit/wxm_undo.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/wxmedit/wxm_undo.cpp' object='wxmedit-wxm_undo.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -c -o wxmedit-wxm_undo.obj `if test -f 'src/wxmedit/wxm_undo.cpp'; then $(CYGPATH_W) 'src/wxmedit/wxm_undo.cpp'; else $(CYGPATH_W) '$(srcdir)/src/wxmedit/wxm_undo.cpp'; fi`
+
+medit-xm_ublock_des.o: src/xm/xm_ublock_des.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -MT wxmedit-xm_ublock_des.o -MD -MP -MF "$(DEPDIR)/wxmedit-xm_ublock_des.Tpo" -c -o wxmedit-xm_ublock_des.o `test -f 'src/xm/xm_ublock_des.cpp' || echo '$(srcdir)/'`src/xm/xm_ublock_des.cpp; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/wxmedit-xm_ublock_des.Tpo" "$(DEPDIR)/wxmedit-xm_ublock_des.Po"; else rm -f "$(DEPDIR)/wxmedit-xm_ublock_des.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/xm/xm_ublock_des.cpp' object='wxmedit-xm_ublock_des.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -c -o wxmedit-xm_ublock_des.o `test -f 'src/xm/xm_ublock_des.cpp' || echo '$(srcdir)/'`src/xm/xm_ublock_des.cpp
+
+wxmedit-xm_ublock_des.obj: src/xm/xm_ublock_des.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -MT wxmedit-xm_ublock_des.obj -MD -MP -MF "$(DEPDIR)/wxmedit-xm_ublock_des.Tpo" -c -o wxmedit-xm_ublock_des.obj `if test -f 'src/xm/xm_ublock_des.cpp'; then $(CYGPATH_W) 'src/xm/xm_ublock_des.cpp'; else $(CYGPATH_W) '$(srcdir)/src/xm/xm_ublock_des.cpp'; fi`; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/wxmedit-xm_ublock_des.Tpo" "$(DEPDIR)/wxmedit-xm_ublock_des.Po"; else rm -f "$(DEPDIR)/wxmedit-xm_ublock_des.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/xm/xm_ublock_des.cpp' object='wxmedit-xm_ublock_des.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -c -o wxmedit-xm_ublock_des.obj `if test -f 'src/xm/xm_ublock_des.cpp'; then $(CYGPATH_W) 'src/xm/xm_ublock_des.cpp'; else $(CYGPATH_W) '$(srcdir)/src/xm/xm_ublock_des.cpp'; fi`
 
 wxmedit-xm_ublock.o: src/xm/xm_ublock.cpp
 @am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -MT wxmedit-xm_ublock.o -MD -MP -MF "$(DEPDIR)/wxmedit-xm_ublock.Tpo" -c -o wxmedit-xm_ublock.o `test -f 'src/xm/xm_ublock.cpp' || echo '$(srcdir)/'`src/xm/xm_ublock.cpp; \

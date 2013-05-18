@@ -53,6 +53,7 @@ wxmedit_SOURCES =	src/wxmedit_about_dialog.cpp \
 	src/wxmedit/wxm_syntax.h \
 	src/wxmedit/wxm_undo.cpp \
 	src/wxmedit/wxm_undo.h \
+	src/xm/xm_ublock_des.cpp \
 	src/xm/xm_ublock.cpp \
 	src/xm/xm_ublock.h \
 	src/xm/xm_uutils.cpp \

@@ -30,6 +30,8 @@ UnicodeBlockSet::UnicodeBlockSet()
 
 	m_block_map.erase(UBLOCK_INVALID_CODE);
 	m_block_map.erase(UBLOCK_NO_BLOCK);
+
+	InitBlockDescriptions();
 }
 
 UnicodeBlockSet& UnicodeBlockSet::GetInstance()
@@ -67,9 +69,12 @@ UChar32 UnicodeBlockSet::End(int index)
 
 const wchar_t* UnicodeBlockSet::Description(int index)
 {
-	return NULL;	// FIXME
-}
+	std::map<int, std::wstring>::const_iterator it = m_des_map.find(index);
+	if (it == m_des_map.end())
+		return NULL;
 
+	return it->second.c_str();
+}
 
 bool UnicodeBlockSet::Valid(int index)
 {

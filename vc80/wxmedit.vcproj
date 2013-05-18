@@ -285,6 +285,10 @@
 					>
 				</File>
 				<File
+					RelativePath="..\src\xm\xm_ublock_des.cpp"
+					>
+				</File>
+				<File
 					RelativePath="..\src\xm\xm_ublock.cpp"
 					>
 				</File>

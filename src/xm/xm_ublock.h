@@ -30,6 +30,7 @@ struct UnicodeBlockSet: private boost::noncopyable
 	static UnicodeBlockSet& GetInstance();
 private:
 	UnicodeBlockSet();
+	void InitBlockDescriptions();
 
 	typedef std::pair<UChar32, UChar32> UBlockRange;
 	typedef std::map<int, UBlockRange>  UBlockMap;
@@ -43,6 +44,7 @@ private:
 	static object_creator create_object;
 
 	UBlockMap m_block_map;
+	std::map<int, std::wstring> m_des_map;
 };
 
 struct UnicodeBlockCharCounter
