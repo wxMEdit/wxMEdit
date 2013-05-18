@@ -1323,7 +1323,7 @@ void MadEdit::WordCount(bool selection, int &wordCount, int &charCount, int &spa
             wxString block_begin = wxString::Format(wxT("U+%04X"), ublock_set.Begin(idx));
             wxString block_end = wxString::Format(wxT("U+%04X"), ublock_set.End(idx));
             detail->Add(wxString::Format(wxT("%s %d    %8s - %8s: %s"), PrefixString(cnt).c_str(), cnt,
-                block_begin, block_end, wxGetTranslation(ublock_set.Description(idx))));
+                block_begin.c_str(), block_end.c_str(), wxGetTranslation(ublock_set.Description(idx))));
         }
     }
     if(ublock_cnt.GetInvalidBlockCharCount()>0)
