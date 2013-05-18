@@ -1235,9 +1235,9 @@ void MadEdit::ToFullWidth(bool ascii, bool japanese, bool korean, bool other)
     }
 }
 
-inline bool IsDelimiter(ucs4_t uc) // include space char
+inline bool IsControl(ucs4_t uc)
 {
-    return ((uc<=0x20 && uc>=0) || uc==0x3000);
+    return ((uc<=0x20 && uc>=0));
 }
 
 wxString PrefixString(int i)
@@ -1309,15 +1309,11 @@ void MadEdit::WordCount(bool selection, int &wordCount, int &charCount, int &spa
         ublock_cnt.Count(idx);
         ustr += (UChar32)uc;
 
-        if(IsDelimiter(uc))
+        if(uc==0x09 || uc==0x20 || uc==0x3000)
         {
-            if(uc==0x09 || uc==0x20 || uc==0x3000)
-            {
-                ++spaceCount;
-            }
-            idx=-1;
+            ++spaceCount;
         }
-        else if(ublock_set.Valid(idx))
+        else if(!IsControl(uc) && ublock_set.Valid(idx))
         {
             ++charCount;
 
