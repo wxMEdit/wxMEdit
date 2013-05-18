@@ -89,22 +89,37 @@ void UnicodeBlockCharCounter::Count(int index)
 	++m_counts_map[index];
 }
 
+void UnicodeBlockCharCounter::FillBlockIndexSet()
+{
+	m_blockidx_set.clear();
+	typedef std::map<int, int>::const_iterator CntMapCIter;
+	for(CntMapCIter it=m_counts_map.begin(); it!=m_counts_map.end(); ++it)
+	{
+		BlockIndex bi;
+		bi.index = it->first;
+		bi.ubegin = m_ublock_set.Begin(bi.index);
+		m_blockidx_set.insert(bi);
+	}
+}
+
 int UnicodeBlockCharCounter::BlockIndexBegin()
 {
-	m_it = m_counts_map.begin();
-	if (m_it == m_counts_map.end())
+	FillBlockIndexSet();
+
+	m_it = m_blockidx_set.begin();
+	if (m_it == m_blockidx_set.end())
 		return UBLOCK_NO_BLOCK;
 
-	return m_it->first;
+	return m_it->index;
 }
 
 int UnicodeBlockCharCounter::NextBlock()
 {
 	++m_it;
-	if (m_it == m_counts_map.end())
+	if (m_it == m_blockidx_set.end())
 		return UBLOCK_NO_BLOCK;
 
-	return m_it->first;
+	return m_it->index;
 }
 
 bool UnicodeBlockCharCounter::IsValidBlock(int index)

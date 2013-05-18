@@ -12,6 +12,7 @@
 #include <unicode/uchar.h>
 #include <boost/utility.hpp>
 #include <map>
+#include <set>
 
 namespace xm
 {
@@ -57,9 +58,26 @@ struct UnicodeBlockCharCounter
 
 	UnicodeBlockCharCounter();
 private:
+	void FillBlockIndexSet();
+
 	std::map<int, int> m_counts_map;
-	std::map<int, int>::const_iterator m_it;
 	UnicodeBlockSet& m_ublock_set;
+
+	struct BlockIndex
+	{
+		int index;
+		UChar32 ubegin;
+
+		BlockIndex(): index(0), ubegin(0) {}
+		bool operator<(const BlockIndex& bi2) const
+		{
+			return (ubegin<bi2.ubegin || index<bi2.index);
+		}
+	};
+	typedef std::set<BlockIndex> BlockIndexSet;
+
+	BlockIndexSet m_blockidx_set;
+	BlockIndexSet::const_iterator m_it;
 };
 
 }; // namespace xm

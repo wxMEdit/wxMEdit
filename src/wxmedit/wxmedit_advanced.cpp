@@ -1325,8 +1325,10 @@ void MadEdit::WordCount(bool selection, int &wordCount, int &charCount, int &spa
         for(idx=ublock_cnt.BlockIndexBegin(); ublock_cnt.IsValidBlock(idx); idx=ublock_cnt.NextBlock())
         {
             int cnt = ublock_cnt.GetBlockCharCount(idx);
-            detail->Add(wxString::Format(wxT("%s %d    U+%06X - U+%06X: %s"), PrefixString(cnt).c_str(), cnt,
-                ublock_set.Begin(idx), ublock_set.End(idx), wxGetTranslation(ublock_set.Description(idx))));
+            wxString block_begin = wxString::Format(wxT("U+%04X"), ublock_set.Begin(idx));
+            wxString block_end = wxString::Format(wxT("U+%04X"), ublock_set.End(idx));
+            detail->Add(wxString::Format(wxT("%s %d    %8s - %8s: %s"), PrefixString(cnt).c_str(), cnt,
+                block_begin, block_end, wxGetTranslation(ublock_set.Description(idx))));
         }
     }
     if(ublock_cnt.GetInvalidBlockCharCount()>0)
