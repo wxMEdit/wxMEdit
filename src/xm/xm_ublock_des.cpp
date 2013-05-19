@@ -185,6 +185,7 @@ void UnicodeBlockSet::InitBlockDescriptions()
 	m_des_map[UBLOCK_LYDIAN] = L"Lydian";
 	m_des_map[UBLOCK_MAHJONG_TILES] = L"Mahjong Tiles";
 	m_des_map[UBLOCK_DOMINO_TILES] = L"Domino Tiles";
+#if ((U_ICU_VERSION_MAJOR_NUM << 8) + U_ICU_VERSION_MINOR_NUM >= 0x0404) // 4.4
 	m_des_map[UBLOCK_SAMARITAN] = L"Samaritan";
 	m_des_map[UBLOCK_UNIFIED_CANADIAN_ABORIGINAL_SYLLABICS_EXTENDED] = L"Unified Canadian Aboriginal Syllabics Extended";
 	m_des_map[UBLOCK_TAI_THAM] = L"Tai Tham";
@@ -211,6 +212,7 @@ void UnicodeBlockSet::InitBlockDescriptions()
 	m_des_map[UBLOCK_ENCLOSED_ALPHANUMERIC_SUPPLEMENT] = L"Enclosed Alphanumeric Supplement";
 	m_des_map[UBLOCK_ENCLOSED_IDEOGRAPHIC_SUPPLEMENT] = L"Enclosed Ideographic Supplement";
 	m_des_map[UBLOCK_CJK_UNIFIED_IDEOGRAPHS_EXTENSION_C] = L"CJK Unified Ideographs Extension C";
+# if ((U_ICU_VERSION_MAJOR_NUM << 8) + U_ICU_VERSION_MINOR_NUM >= 0x0406) // 4.6
 	m_des_map[UBLOCK_MANDAIC] = L"Mandaic";
 	m_des_map[UBLOCK_BATAK] = L"Batak";
 	m_des_map[UBLOCK_ETHIOPIC_EXTENDED_A] = L"Ethiopic Extended-A";
@@ -223,6 +225,7 @@ void UnicodeBlockSet::InitBlockDescriptions()
 	m_des_map[UBLOCK_TRANSPORT_AND_MAP_SYMBOLS] = L"Transport And Map Symbols";
 	m_des_map[UBLOCK_ALCHEMICAL_SYMBOLS] = L"Alchemical Symbols";
 	m_des_map[UBLOCK_CJK_UNIFIED_IDEOGRAPHS_EXTENSION_D] = L"CJK Unified Ideographs Extension D";
+#   if (U_ICU_VERSION_MAJOR_NUM >= 49) // 49
 	m_des_map[UBLOCK_ARABIC_EXTENDED_A] = L"Arabic Extended-A";
 	m_des_map[UBLOCK_ARABIC_MATHEMATICAL_ALPHABETIC_SYMBOLS] = L"Arabic Mathematical Alphabetic Symbols";
 	m_des_map[UBLOCK_CHAKMA] = L"Chakma";
@@ -235,6 +238,9 @@ void UnicodeBlockSet::InitBlockDescriptions()
 	m_des_map[UBLOCK_SUNDANESE_SUPPLEMENT] = L"Sundanese Supplement";
 	m_des_map[UBLOCK_TAKRI] = L"Takri";
 	m_des_map[UBLOCK_INVALID_CODE] = L"Invalid Unicode Characters";
+#  endif // 49
+# endif // 4.6
+#endif // 4.4
 }
 
 }; // namespace xm
