@@ -1310,7 +1310,7 @@ void MadEdit::WordCount(bool selection, int &wordCount, int &charCount, int &spa
         else if(u_isspace(uc))
             ++spaceCount;
 
-        if(xm::IsFullWidth(uc))
+        if(xm::IsWideWidthEastAsian(uc))
             ++fullWidthCount;
     }
     wordCount = xm::GetWordCountNoCtrlNoSP(ustr);
