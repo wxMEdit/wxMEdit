@@ -1,4 +1,5 @@
 ///////////////////////////////////////////////////////////////////////////////
+// vim:         ts=4 sw=4 expandtab
 // Name:        wxmedit/wxmedit.cpp
 // Description: main Edit component of wxMEdit
 // Author:      madedit@gmail.com  (creator)
@@ -9440,7 +9441,7 @@ void MadEdit::OnKillFocus(wxFocusEvent &evt)
 }
 
 
-void MadEdit::OnSize(wxSizeEvent &evt)
+void MadEdit::UpdateClientBitmap()
 {
     int w,h;
 
@@ -9569,6 +9570,11 @@ void MadEdit::OnSize(wxSizeEvent &evt)
     UpdateScrollBarPos();
 
     Refresh(false);
+}
+
+void MadEdit::OnSize(wxSizeEvent &evt)
+{
+    UpdateClientBitmap();
     evt.Skip();
 }
 
@@ -9720,6 +9726,13 @@ void MadEdit::OnPaint(wxPaintEvent &evt)
     wxMemoryDC memdc, markdc;
 
     wxWindow *focuswin=FindFocus();
+
+    if (!m_ClientBitmap)
+    {
+        // OnSize event has not been raised.
+        // So we prepare m_ClientBitmap manaully.
+        UpdateClientBitmap();
+    }
 
     if(InPrinting())
     {

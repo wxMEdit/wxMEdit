@@ -1,4 +1,5 @@
 ///////////////////////////////////////////////////////////////////////////////
+// vim:         ts=4 sw=4 expandtab
 // Name:        wxmedit/wxmedit.h
 // Description: main Edit component of wxMEdit
 // Author:      madedit@gmail.com  (creator)
@@ -937,6 +938,7 @@ private: // Printing functions
     bool TextPrinting() { return m_Printing<0; }
     bool HexPrinting()  { return m_Printing>0; }
     bool InPrinting()   { return m_Printing!=0; }
+    void UpdateClientBitmap();
 
     int             m_old_ClientWidth;
     int             m_old_ClientHeight;
