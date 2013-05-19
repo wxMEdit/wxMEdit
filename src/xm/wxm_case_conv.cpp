@@ -1,7 +1,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 // vim:         ts=4 sw=4
 // Name:        xm/wxm_wx_icu.cpp
-// Description: Case conversion for wxWidgets objects
+// Description: Case conversion for wxWidgets string
 // Author:      wxmedit@gmail.com
 // Licence:     GPL
 ///////////////////////////////////////////////////////////////////////////////
@@ -41,8 +41,7 @@ void WxCaseConverter::Convert()
 	while(!Finished())
 	{
 		UChar32 c = PeekChar();
-		UChar32 nc = c;
-		nc = ConvertCase(c);
+		UChar32 nc = ConvertCase(c);
 		if(nc != c)
 		{
 			SaveChar(nc);
