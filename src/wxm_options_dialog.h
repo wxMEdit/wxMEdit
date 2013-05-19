@@ -13,6 +13,9 @@
 #ifdef __BORLANDC__
         #pragma hdrstop
 #endif
+
+#include "xm/wx_avoid_wxmsw_bug4373.h"
+
 #ifndef WX_PRECOMP
         #include <wx/wx.h>
 #endif
@@ -66,7 +69,7 @@ public:
 class KeyTextCtrl;
 class wxAuiNotebook;
 
-class MadOptionsDialog : public wxDialog
+class MadOptionsDialog : public wxDialogWrapper
 {
 public:
     MadOptionsDialog( wxWindow *parent, wxWindowID id = 1, const wxString &title = wxT("Options"),

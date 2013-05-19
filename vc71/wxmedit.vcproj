@@ -372,6 +372,9 @@
 					RelativePath="..\src\xm\xm_uutils.h">
 				</File>
 				<File
+					RelativePath="..\src\xm\wx_avoid_wxmsw_bug4373.h">
+				</File>
+				<File
 					RelativePath="..\src\xm\wxm_case_conv.h">
 				</File>
 				<File

@@ -13,6 +13,8 @@
 	#pragma hdrstop
 #endif
 
+#include "xm/wx_avoid_wxmsw_bug4373.h"
+
 #ifndef WX_PRECOMP
 	#include <wx/wx.h>
 	#include <wx/dialog.h>
@@ -32,6 +34,7 @@
 #include <wx/stattext.h>
 #include <wx/listbox.h>
 #include <wx/sizer.h>
+#include <wx/colordlg.h>
 ////Header Include End
 
 #include <vector>
@@ -52,7 +55,7 @@ using std::vector;
 
 class MadSyntax;
 
-class MadHighlightingDialog : public wxDialog
+class MadHighlightingDialog : public wxDialogWrapper
 {
 	private:
 		DECLARE_EVENT_TABLE();
@@ -144,6 +147,7 @@ class MadHighlightingDialog : public wxDialog
 	private:
 		MadSyntax *m_Syntax;
 		vector<MadSyntax*> m_ModifiedSyntax;
+		wxColourDialog *m_ColourDialog;
 	public:
 		wxString m_InitSetting; // the init title of madsyntax
 		MadSyntax *GetSyntax(const wxString &title);
@@ -170,6 +174,8 @@ class MadHighlightingDialog : public wxDialog
 		void WxButtonLoadClick(wxCommandEvent& event);
 		void WxButtonSaveClick(wxCommandEvent& event);
 		void WxButtonDeleteClick(wxCommandEvent& event);
+	private:
+		wxColour GetColourFromUser(const wxColour& colInit, const wxString& caption);
 };
 
 extern MadHighlightingDialog *g_HighlightingDialog;

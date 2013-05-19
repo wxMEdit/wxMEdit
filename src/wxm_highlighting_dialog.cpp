@@ -9,7 +9,6 @@
 #include "wxm_highlighting_dialog.h"
 #include "wxm_utils.h"
 #include "wxmedit/wxm_syntax.h"
-#include <wx/colordlg.h>
 
 
 //Do not add custom headers
@@ -46,12 +45,11 @@ struct KeywordInfo
 vector<KeywordInfo> g_KeywordInfoTable;
 long g_Index=-1;
 MadSyntax *g_Syntax=NULL;
-wxColourDialog *g_ColourDialog=NULL;
 int g_DefaultFontSize;
 
-wxColour GetColourFromUser(const wxColour& colInit, const wxString& caption)
+wxColour MadHighlightingDialog::GetColourFromUser(const wxColour& colInit, const wxString& caption)
 {
-    if(g_ColourDialog==NULL)
+    if(m_ColourDialog==NULL)
     {
         wxColourData *data=new wxColourData;
         data->SetChooseFull(true);
@@ -59,23 +57,23 @@ wxColour GetColourFromUser(const wxColour& colInit, const wxString& caption)
         {
             data->SetColour((wxColour &)colInit); // const_cast
         }
-        g_ColourDialog = new wxColourDialog(g_HighlightingDialog, data);
+        m_ColourDialog = new wxColourDialog(g_HighlightingDialog, data);
     }
     else
     {
         if ( colInit.Ok() )
         {
-            g_ColourDialog->GetColourData().SetColour(colInit);
+            m_ColourDialog->GetColourData().SetColour(colInit);
         }
     }
 
     if (!caption.IsEmpty())
-        g_ColourDialog->SetTitle(caption);
+        m_ColourDialog->SetTitle(caption);
 
     wxColour colRet;
-    if ( g_ColourDialog->ShowModal() == wxID_OK )
+    if ( m_ColourDialog->ShowModal() == wxID_OK )
     {
-        colRet = g_ColourDialog->GetColourData().GetColour();
+        colRet = m_ColourDialog->GetColourData().GetColour();
     }
 
     return colRet;
@@ -164,7 +162,7 @@ END_EVENT_TABLE()
 ////Event Table End
 
 MadHighlightingDialog::MadHighlightingDialog(wxWindow *parent, wxWindowID id, const wxString &title, const wxPoint &position, const wxSize& size, long style)
-: wxDialog(parent, id, title, position, size, style)
+: wxDialogWrapper(parent, id, title, position, size, style), m_ColourDialog(NULL)
 {
     m_Syntax=NULL;
     m_InitSetting.Empty();
@@ -439,7 +437,7 @@ void MadHighlightingDialog::MadHighlightingDialogClose(wxCloseEvent& event)
 
     FreeSyntax(false);
     g_HighlightingDialog=NULL;
-    if(g_ColourDialog) delete g_ColourDialog;
+    if(m_ColourDialog) delete m_ColourDialog;
     Destroy();
 }
 

@@ -58,6 +58,7 @@ wxmedit_SOURCES =	src/wxmedit_about_dialog.cpp \
 	src/xm/xm_ublock.h \
 	src/xm/xm_uutils.cpp \
 	src/xm/xm_uutils.h \
+	src/xm/wx_avoid_wxmsw_bug4373.h \
 	src/xm/wxm_case_conv.cpp \
 	src/xm/wxm_case_conv.h \
 	src/xm/wxm_wx_icu.cpp \

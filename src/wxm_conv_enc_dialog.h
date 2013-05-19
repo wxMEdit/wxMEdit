@@ -13,6 +13,8 @@
 	#pragma hdrstop
 #endif
 
+#include "xm/wx_avoid_wxmsw_bug4373.h"
+
 #ifndef WX_PRECOMP
 	#include <wx/wx.h>
 	#include <wx/dialog.h>
@@ -43,7 +45,7 @@
 #define MadConvEncDialog_STYLE wxCAPTION | wxRESIZE_BORDER | wxSYSTEM_MENU | wxDIALOG_NO_PARENT | wxCLOSE_BOX
 ////Dialog Style End
 
-class MadConvEncDialog : public wxDialog
+class MadConvEncDialog : public wxDialogWrapper
 {
 	private:
 		DECLARE_EVENT_TABLE();
