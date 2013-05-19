@@ -8,6 +8,7 @@
 
 #include "wxm_case_conv.h"
 #include <boost/scoped_array.hpp>
+#include <boost/static_assert.hpp>
 #include <limits>
 
 namespace wxm
@@ -50,6 +51,12 @@ void WxCaseConverter::Convert()
 		NextChar();
 	}
 }
+
+#ifdef __WXMSW__
+	BOOST_STATIC_ASSERT(sizeof(wxChar) == sizeof(UChar));
+#else
+	BOOST_STATIC_ASSERT(sizeof(wxChar) == sizeof(UChar32));
+#endif
 
 UChar32 WxCaseConverter::PeekChar()
 {

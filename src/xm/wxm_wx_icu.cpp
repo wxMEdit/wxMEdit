@@ -8,10 +8,17 @@
 
 #include "wxm_wx_icu.h"
 #include <boost/scoped_array.hpp>
+#include <boost/static_assert.hpp>
 #include <limits>
 
 namespace wxm
 {
+
+#ifdef __WXMSW__
+	BOOST_STATIC_ASSERT(sizeof(wxChar) == sizeof(UChar));
+#else
+	BOOST_STATIC_ASSERT(sizeof(wxChar) == sizeof(UChar32));
+#endif
 
 UnicodeString WxStrToICU(const wxString& wxs)
 {
