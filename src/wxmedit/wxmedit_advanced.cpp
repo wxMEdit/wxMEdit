@@ -1281,7 +1281,7 @@ void MadEdit::WordCount(bool selection, int &wordCount, int &charCount, int &spa
     MadUCQueue ucqueue;
     m_Lines->InitNextUChar(lit, linepos);
     int idx=0, count=0;
-    boost::scoped_ptr<xm::WordCounter> word_counter(new xm::SimpleWordCounter());
+    boost::scoped_ptr<xm::WordCounter> word_counter(new xm::AccumulativeWordCounter(0x4000));
 
     while(nowpos < endpos)
     {

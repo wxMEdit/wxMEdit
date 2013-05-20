@@ -57,5 +57,31 @@ private:
 	UnicodeString m_ustr;
 };
 
+struct AccumulativeWordCounter: public WordCounter
+{
+	virtual void operator+=(UChar32 ch);
+	virtual void operator+=(const UnicodeString& ustr);
+	virtual size_t GetWordCount();
+	virtual size_t GetWordCountNoCtrlNoSP();
+
+	AccumulativeWordCounter(int32_t capacity)
+		: m_capacity(capacity), m_size(0)
+		, m_cnt(0), m_ctrl_cnt(0), m_sp_cnt(0)
+	{
+	}
+private:
+	void PiecewiseCount(UChar32 ch);
+	void PiecewiseClear();
+
+
+	UnicodeString m_ustr;
+	int32_t m_capacity;
+	int32_t m_size;
+	size_t m_cnt;
+	size_t m_ctrl_cnt;
+	size_t m_sp_cnt;
+};
+
+
 }; // namespace xm
 #endif //_XM_UUTILS_H_
