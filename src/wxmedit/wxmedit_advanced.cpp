@@ -1254,7 +1254,7 @@ void MadEdit::WordCount(bool selection, int &wordCount, int &charCount, int &spa
     wordCount=charCount=spaceCount=controlCount=fullWidthCount=0;
 
     xm::UnicodeBlockSet& ublock_set = xm::UnicodeBlockSet::GetInstance();
-    xm::UnicodeBlockCharCounter ublock_cnt;
+    xm::UnicodeBlockCharCounter ublock_counter;
 
     MadLineIterator lit;
     wxFileOffset linepos, nowpos, endpos;
@@ -1301,7 +1301,7 @@ void MadEdit::WordCount(bool selection, int &wordCount, int &charCount, int &spa
         ucs4_t uc=ucp.first;
 
         idx = ublock_set.FindBlockIndex(uc);
-        ublock_cnt.Count(idx);
+        ublock_counter.Count(idx);
         ustr += (UChar32)uc;
 
         ++charCount;
@@ -1317,18 +1317,18 @@ void MadEdit::WordCount(bool selection, int &wordCount, int &charCount, int &spa
 
     if(detail!=NULL)
     {
-        for(idx=ublock_cnt.BlockIndexBegin(); ublock_cnt.IsValidBlock(idx); idx=ublock_cnt.NextBlock())
+        for(idx=ublock_counter.BlockIndexBegin(); ublock_counter.IsValidBlock(idx); idx=ublock_counter.NextBlock())
         {
-            int cnt = ublock_cnt.GetBlockCharCount(idx);
+            int cnt = ublock_counter.GetBlockCharCount(idx);
             wxString block_begin = wxString::Format(wxT("U+%04X"), ublock_set.Begin(idx));
             wxString block_end = wxString::Format(wxT("U+%04X"), ublock_set.End(idx));
             detail->Add(wxString::Format(wxT("%s %d    %8s - %8s: %s"), PrefixString(cnt).c_str(), cnt,
                 block_begin.c_str(), block_end.c_str(), wxGetTranslation(ublock_set.Description(idx))));
         }
     }
-    if(ublock_cnt.GetInvalidBlockCharCount()>0)
+    if(ublock_counter.GetInvalidBlockCharCount()>0)
     {
-        int cnt = ublock_cnt.GetInvalidBlockCharCount();
+        int cnt = ublock_counter.GetInvalidBlockCharCount();
         detail->Add(wxString::Format(wxT("%s %d    ? - ? %s"), PrefixString(cnt).c_str(), cnt, _("Invalid Unicode Characters")));
     }
 }
