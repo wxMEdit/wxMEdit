@@ -38,21 +38,21 @@ void CountWords(const UnicodeString& ustr, size_t& cnt, size_t& ctrl_cnt, size_t
 	--cnt;
 }
 
-size_t GetWordCount(const UnicodeString& ustr)
+size_t SimpleWordCounter::GetWordCount()
 {
 	size_t cnt = 0;
 	size_t ctrl_cnt = 0;
 	size_t sp_cnt = 0;
-	CountWords(ustr, cnt, ctrl_cnt, sp_cnt);
+	CountWords(m_ustr, cnt, ctrl_cnt, sp_cnt);
 	return cnt;
 }
 
-size_t GetWordCountNoCtrlNoSP(const UnicodeString& ustr)
+size_t SimpleWordCounter::GetWordCountNoCtrlNoSP()
 {
 	size_t cnt = 0;
 	size_t ctrl_cnt = 0;
 	size_t sp_cnt = 0;
-	CountWords(ustr, cnt, ctrl_cnt, sp_cnt);
+	CountWords(m_ustr, cnt, ctrl_cnt, sp_cnt);
 	return cnt - ctrl_cnt - sp_cnt;
 }
 

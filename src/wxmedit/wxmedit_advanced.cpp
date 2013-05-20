@@ -13,6 +13,7 @@
 #include "../xm/xm_ublock.h"
 #include "../xm/xm_uutils.h"
 
+#include <boost/scoped_ptr.hpp>
 #include <algorithm>
 #include <vector>
 using std::vector;
@@ -1280,7 +1281,7 @@ void MadEdit::WordCount(bool selection, int &wordCount, int &charCount, int &spa
     MadUCQueue ucqueue;
     m_Lines->InitNextUChar(lit, linepos);
     int idx=0, count=0;
-    UnicodeString ustr;
+    boost::scoped_ptr<xm::WordCounter> word_counter(new xm::SimpleWordCounter());
 
     while(nowpos < endpos)
     {
@@ -1302,7 +1303,7 @@ void MadEdit::WordCount(bool selection, int &wordCount, int &charCount, int &spa
 
         idx = ublock_set.FindBlockIndex(uc);
         ublock_counter.Count(idx);
-        ustr += (UChar32)uc;
+        (*word_counter) += (UChar32)uc;
 
         ++charCount;
         if(u_iscntrl(uc))
@@ -1313,7 +1314,7 @@ void MadEdit::WordCount(bool selection, int &wordCount, int &charCount, int &spa
         if(xm::IsWideWidthEastAsian(uc))
             ++fullWidthCount;
     }
-    wordCount = xm::GetWordCountNoCtrlNoSP(ustr);
+    wordCount = word_counter->GetWordCountNoCtrlNoSP();
 
     if(detail!=NULL)
     {
