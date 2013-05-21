@@ -1,5 +1,5 @@
                       ==================================
-                                wxMEdit v2.9.2
+                                wxMEdit v2.9.3
                       ==================================
 About:
 -----
@@ -73,23 +73,29 @@ Syntax files, Locale files and Settings:
 
 ChangeLog:
 ----------
+wxMEdit v2.9.3:
+1.replaced Word Counter with ICU implemention and partly changed the counter rules.
+2.avoided the bug 4373 of wxMSW-2.8.12 or lower.
+3.fixed crash on UNIX-like OS when create a second tab.
+4.updated translation files and Chinese translations.
+
 wxMEdit v2.9.2:
-1.application icon: add 16x16, 32x32 and 256x156 resolutions.
-2.remove standalone tool image2xpm.
-3.fix crash when hex-replacing a not-empty string with empty by "Replace All".
-4.fix crash when hex-searching a blank string.
-5.update Simplified Chinese translation.
+1.application icon: added 16x16, 32x32 and 256x156 resolutions.
+2.removed standalone tool image2xpm.
+3.fixed crash when hex-replacing a not-empty string with empty by "Replace All".
+4.fixed crash when hex-searching a blank string.
+5.updated Simplified Chinese translation.
 
 wxMEdit v2.9.1:
-1.update Simplified Chinese translation.
-2.remove wxAUI and adjust build configurations.
+1.updated Simplified Chinese translation.
+2.removed wxAUI and adjusted build configurations.
 3.fixed locale-dependent case conversion bug.
 
 wxMEdit v2.9.0:
-1.remove xpressive and adjust build configurations.
-2.update translation files.
-3.swith the project to wxMEdit.
-4.change the version 0.2.9 to 2.9.0.
+1.removed xpressive and adjusted build configurations.
+2.updated translation files.
+3.swithed the project to wxMEdit.
+4.changed the version 0.2.9 to 2.9.0.
 
 MadEdit v0.2.9:
 1.added that restore the encoding and font(name, size) of a file when reopening it.
