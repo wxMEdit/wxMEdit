@@ -36,6 +36,8 @@
 #include <wx/gtk/win_gtk.h>
 #endif
 
+#include <boost/format.hpp>
+#include <boost/static_assert.hpp>
 #include <locale.h>
 
 using std::vector;
@@ -4539,46 +4541,38 @@ void MadEdit::UCStoBlock(const ucs4_t *ucs, size_t count, MadBlock & block)
     MadMemData *md = (MadMemData *) block.m_Data;
 
     ucs4_t uc;
-    size_t size, idx;
-    wxByte mb[4], unitext[12]; // utf16: U+XXXX or utf32: U+XXXXXXXX
+    size_t size;
+    wxByte mb[4];
     wxByte *b;
     MadEncoding::UCS4toMultiByteFuncPtr UCS4toMultiByte=m_Encoding->UCS4toMultiByte;
+
+    BOOST_STATIC_ASSERT(sizeof(char) == sizeof(wxByte));
 
     do
     {
         size = (m_Encoding->*UCS4toMultiByte)(*ucs, mb);
         b = mb;
 
-        if(size == 0)               // the uc is not supported in current encoding
+        std::string enc_uescape;
+
+        // the uc is not supported in current encoding
+        if(size == 0)
         {
-            b = unitext;
-
-            (m_Encoding->*UCS4toMultiByte)(wxT('U'), unitext);
-            (m_Encoding->*UCS4toMultiByte)(wxT('+'), unitext+1);
-
+            enc_uescape.clear();
             uc = *ucs;
             wxASSERT(uc>=0 && uc<=0x10FFFF);
 
-            if(uc<=0xFFFF)
+            std::string ascii_uescape = (boost::format("{U+%04X}") % uc).str();
+
+            for(size_t i=0; i<ascii_uescape.size(); ++i)
             {
-                size = 6;
-                idx=2;
-            }
-            else //if(uc>=0x10000)
-            {
-                (m_Encoding->*UCS4toMultiByte)(wxT('0'), unitext+2);
-                (m_Encoding->*UCS4toMultiByte)(wxT('0'), unitext+3);
-                (m_Encoding->*UCS4toMultiByte)(ToHex((uc >> 20) & 0xF), unitext+ 4);
-                (m_Encoding->*UCS4toMultiByte)(ToHex((uc >> 16) & 0xF), unitext+ 5);
-                size=10;
-                idx=6;
+                wxByte buf[4];
+                size_t n = (m_Encoding->*UCS4toMultiByte)((ucs4_t)ascii_uescape[i], buf);
+                enc_uescape.append((const char*)buf, n);
             }
 
-            (m_Encoding->*UCS4toMultiByte)(ToHex((uc >> 12) & 0xF), unitext+ (idx++));
-            (m_Encoding->*UCS4toMultiByte)(ToHex((uc >> 8) & 0xF), unitext+ (idx++));
-            (m_Encoding->*UCS4toMultiByte)(ToHex((uc >> 4) & 0xF), unitext+ (idx++));
-            (m_Encoding->*UCS4toMultiByte)(ToHex(uc & 0xF), unitext+ (idx++));
-
+            b = (wxByte *)enc_uescape.c_str();
+            size = enc_uescape.size();
         }
 
         if(block.m_Pos < 0)
@@ -4594,7 +4588,6 @@ void MadEdit::UCStoBlock(const ucs4_t *ucs, size_t count, MadBlock & block)
         ++ucs;
     }
     while(--count > 0);
-
 }
 
 void MadEdit::InsertString(const ucs4_t *ucs, size_t count, bool bColumnEditing, bool moveCaret, bool bSelText)
