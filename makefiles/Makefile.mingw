@@ -120,7 +120,7 @@ $(BIN): $(OBJ)
 ./Release/xm_ublock_des.obj: ../src/xm/xm_ublock_des.cpp
 	$(CPP) -c ../src/xm/xm_ublock_des.cpp -o ./Release/xm_ublock_des.obj $(CXXFLAGS)
 
-./Release/xm_ublock_des.obj: ../src/xm/xm_ublock_des.cpp
+./Release/xm_ublock.obj: ../src/xm/xm_ublock.cpp
 	$(CPP) -c ../src/xm/xm_ublock.cpp -o ./Release/xm_ublock.obj $(CXXFLAGS)
 
 ./Release/xm_uutils.obj: ../src/xm/xm_uutils.cpp
