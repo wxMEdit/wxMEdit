@@ -26,10 +26,13 @@
 		<set var="BUILDDIR" make_var="1">$(BUILD)</set>
 
 		<if cond="FORMAT in ('mingw')">
-			<set var="WXDEBUG_DEF">
+			<set var="WXDEBUG_DEF" make_var="1">
 				<if cond="DEBUG==0"></if>
 				<if cond="DEBUG==1">-D__WXDEBUG__</if>
 			</set>
+
+			<set var="WXCOMP">gcc</set>
+			<set var="ICUDATA_LIB">icudata</set>
 
 			<define>_UNICODE</define>
 			<define>__WXMSW__</define>
@@ -38,25 +41,37 @@
 			<define>WIN32</define>
 
 			<cppflags>$(XPRESSIVE_INC) $(AUI_INC) $(WXDEBUG_DEF)</cppflags>
+
+			<sys-lib>gmon</sys-lib>
+		</if>
+		<if cond="FORMAT in ('msvc', 'msvs2003prj', 'msvs2005prj', 'msvs2008prj')">
+			<runtime-libs>static</runtime-libs>
+			<threading>multi</threading>
+
+			<set var="WXCOMP">vc</set>
+			<set var="ICUDATA_LIB">icudt</set>
+
+			<define>_UNICODE</define>
+			<define>UNICODE</define>
 		</if>
 
 		<include>$(BOOST_DIR)</include>
 		<include>$(ICU_DIR)/include</include>
 		<include>$(WXWIN)/include</include>
-		<include>$(WXWIN)/lib/gcc_lib/mswu$(LIB_POSTFIX)</include>
+		<include>$(WXWIN)/lib/$(WXCOMP)_lib/mswu$(LIB_POSTFIX)</include>
 		<include>../charset-detector/include</include>
 		<include>../charset-detector/src</include>
 		<include>../charset-detector/src/tables</include>
 
 		<lib-path>$(AUI_LIB)</lib-path>
-		<lib-path>$(WXWIN)/lib/gcc_lib</lib-path>
 		<lib-path>$(ICU_DIR)/lib</lib-path>
+		<lib-path>$(WXWIN)/lib/$(WXCOMP)_lib</lib-path>
 		<lib-path>../libunicows</lib-path>
 
 		<sys-lib>wxmsw28u$(LIB_POSTFIX)_aui</sys-lib>
 		<sys-lib>wxmsw28u$(LIB_POSTFIX)_core</sys-lib>
 		<sys-lib>wxbase28u$(LIB_POSTFIX)</sys-lib>
-		<sys-lib>icudata$(ICULIB_POSTFIX)</sys-lib>
+		<sys-lib>$(ICUDATA_LIB)$(ICULIB_POSTFIX)</sys-lib>
 		<sys-lib>icuuc$(ICULIB_POSTFIX)</sys-lib>
 		<sys-lib>unicows</sys-lib>
 		<sys-lib>kernel32</sys-lib>
@@ -75,7 +90,6 @@
 		<sys-lib>wsock32</sys-lib>
 		<sys-lib>odbc32</sys-lib>
 		<sys-lib>opengl32</sys-lib>
-		<sys-lib>gmon</sys-lib>
 
 		<win32-res>../devcpp/wxmedit_private.rc</win32-res>
 
