@@ -1,30 +1,55 @@
 <?xml version="1.0"?>
 <makefile>
 	<include file="presets/simple.bkl"/>
+	<set var="BUILD" make_var="1">
+		<if cond="DEBUG==0">release</if>
+		<if cond="DEBUG==1">debug</if>
+	</set>
+
+	<set var="OPTIMIZE_FLAG" >
+		<if cond="DEBUG==0">speed</if>
+		<if cond="DEBUG==1">off</if>
+	</set>
+
+	<set var="LIB_POSTFIX" make_var="1">
+		<if cond="DEBUG==0"></if>
+		<if cond="DEBUG==1">d</if>
+	</set>
+
+	<set var="ICULIB_POSTFIX" make_var="1"></set>
+
 	<exe id="wxmedit" template="simple">
-		<!--<dirname>../bin</dirname>-->
 		<app-type>gui</app-type>
+		<dirname>$(BUILD)</dirname>
+		<optimize>$(OPTIMIZE_FLAG)</optimize>
+
+		<set var="BUILDDIR" make_var="1">$(BUILD)</set>
+
+		<set var="WXDEBUG_DEF">
+			<if cond="DEBUG==0"></if>
+			<if cond="DEBUG==1">-D__WXDEBUG__</if>
+		</set>
+
+		<cppflags>$(XPRESSIVE_INC) $(AUI_INC) $(WXDEBUG_DEF) -D_UNICODE -D__WXMSW__ -D__GNUWIN32__ -D__WIN95__ -DWIN32 -O2</cppflags>
 
 		<include>$(BOOST_DIR)</include>
 		<include>$(ICU_DIR)/include</include>
 		<include>$(WXWIN)/include</include>
-		<include>$(WXWIN)/lib/gcc_lib/mswu</include>
+		<include>$(WXWIN)/lib/gcc_lib/mswu$(LIB_POSTFIX)</include>
 		<include>../charset-detector/include</include>
 		<include>../charset-detector/src</include>
 		<include>../charset-detector/src/tables</include>
-
-		<cppflags> $(XPRESSIVE_INC) $(AUI_INC) -D_UNICODE -D__WXMSW__ -D__GNUWIN32__ -D__WIN95__ -DWIN32 -O2</cppflags>
 
 		<lib-path>$(AUI_LIB)</lib-path>
 		<lib-path>$(WXWIN)/lib/gcc_lib</lib-path>
 		<lib-path>$(ICU_DIR)/lib</lib-path>
 		<lib-path>../libunicows</lib-path>
 
-		<sys-lib>wxmsw28u_aui</sys-lib>
-		<sys-lib>wxmsw28u_core</sys-lib>
-		<sys-lib>wxbase28u</sys-lib>
-		<sys-lib>icudata</sys-lib>
-		<sys-lib>icuuc</sys-lib>
+		<sys-lib>wxmsw28u$(LIB_POSTFIX)_aui</sys-lib>
+		<sys-lib>wxmsw28u$(LIB_POSTFIX)_core</sys-lib>
+		<sys-lib>wxbase28u$(LIB_POSTFIX)</sys-lib>
+		<sys-lib>icudata$(ICULIB_POSTFIX)</sys-lib>
+		<sys-lib>icuuc$(ICULIB_POSTFIX)</sys-lib>
 		<sys-lib>unicows</sys-lib>
 		<sys-lib>kernel32</sys-lib>
 		<sys-lib>user32</sys-lib>
@@ -72,67 +97,66 @@
 		<sources>../charset-detector/src/nsSJISProber.cpp</sources>
 		<sources>../charset-detector/src/nsUTF8Prober.cpp</sources>
 		<sources>../charset-detector/src/nsUniversalDetector.cpp</sources>
-		<sources>../src/wxm_conv_enc_dialog.cpp</sources>
-		<sources>../src/wxm_file_association_dialog.cpp</sources>
-		<sources>../src/wxm_find_in_files_dialog.cpp</sources>
-		<sources>../src/wxm_highlighting_dialog.cpp</sources>
-		<sources>../src/wxm_options_dialog.cpp</sources>
-		<sources>../src/wxm_plugin.cpp</sources>
-		<sources>../src/wxm_printout.cpp</sources>
-		<sources>../src/wxm_replace_dialog.cpp</sources>
-		<sources>../src/wxm_search_dialog.cpp</sources>
-		<sources>../src/wxm_sort_dialog.cpp</sources>
-		<sources>../src/wxm_utils.cpp</sources>
-		<sources>../src/wxm_word_count_dialog.cpp</sources>
-		<sources>../src/wxmedit/trad_simp.cpp</sources>
-		<sources>../src/wxmedit/wxm_encoding.cpp</sources>
-		<sources>../src/wxmedit/wxm_lines.cpp</sources>
-		<sources>../src/wxmedit/wxm_syntax.cpp</sources>
-		<sources>../src/wxmedit/wxm_undo.cpp</sources>
-		<sources>../src/wxmedit/wxmedit.cpp</sources>
-		<sources>../src/wxmedit/wxmedit_advanced.cpp</sources>
-		<sources>../src/wxmedit/wxmedit_basic.cpp</sources>
-		<sources>../src/wxmedit/wxmedit_command.cpp</sources>
-		<sources>../src/wxmedit/wxmedit_search.cpp</sources>
-		<sources>../src/wxmedit_about_dialog.cpp</sources>
-		<sources>../src/wxmedit_app.cpp</sources>
-		<sources>../src/wxmedit_frame.cpp</sources>
-		<sources>../src/xm/wxm_case_conv.cpp</sources>
-		<sources>../src/xm/wxm_wx_icu.cpp</sources>
-		<sources>../src/xm/xm_ublock.cpp</sources>
-		<sources>../src/xm/xm_ublock_des.cpp</sources>
-		<sources>../src/xm/xm_uutils.cpp</sources>
-
 		<headers>../src/plugin.h</headers>
 		<headers>../src/wxm_command.h</headers>
 		<headers>../src/wxm_conv_enc_dialog.h</headers>
+		<sources>../src/wxm_conv_enc_dialog.cpp</sources>
 		<headers>../src/wxm_file_association_dialog.h</headers>
+		<sources>../src/wxm_file_association_dialog.cpp</sources>
 		<headers>../src/wxm_find_in_files_dialog.h</headers>
+		<sources>../src/wxm_find_in_files_dialog.cpp</sources>
 		<headers>../src/wxm_highlighting_dialog.h</headers>
+		<sources>../src/wxm_highlighting_dialog.cpp</sources>
 		<headers>../src/wxm_options_dialog.h</headers>
+		<sources>../src/wxm_options_dialog.cpp</sources>
+		<sources>../src/wxm_plugin.cpp</sources>
 		<headers>../src/wxm_printout.h</headers>
+		<sources>../src/wxm_printout.cpp</sources>
 		<headers>../src/wxm_replace_dialog.h</headers>
+		<sources>../src/wxm_replace_dialog.cpp</sources>
 		<headers>../src/wxm_search_dialog.h</headers>
+		<sources>../src/wxm_search_dialog.cpp</sources>
 		<headers>../src/wxm_sort_dialog.h</headers>
+		<sources>../src/wxm_sort_dialog.cpp</sources>
 		<headers>../src/wxm_utils.h</headers>
+		<sources>../src/wxm_utils.cpp</sources>
 		<headers>../src/wxm_word_count_dialog.h</headers>
+		<sources>../src/wxm_word_count_dialog.cpp</sources>
 		<headers>../src/wxmedit/caret_new.h</headers>
 		<headers>../src/wxmedit/clipbrd_gtk.h</headers>
 		<headers>../src/wxmedit/trad_simp.h</headers>
+		<sources>../src/wxmedit/trad_simp.cpp</sources>
 		<headers>../src/wxmedit/ucs4_t.h</headers>
 		<headers>../src/wxmedit/wxm_encoding.h</headers>
+		<sources>../src/wxmedit/wxm_encoding.cpp</sources>
 		<headers>../src/wxmedit/wxm_lines.h</headers>
+		<sources>../src/wxmedit/wxm_lines.cpp</sources>
 		<headers>../src/wxmedit/wxm_syntax.h</headers>
+		<sources>../src/wxmedit/wxm_syntax.cpp</sources>
 		<headers>../src/wxmedit/wxm_undo.h</headers>
+		<sources>../src/wxmedit/wxm_undo.cpp</sources>
 		<headers>../src/wxmedit/wxmedit.h</headers>
+		<sources>../src/wxmedit/wxmedit.cpp</sources>
+		<sources>../src/wxmedit/wxmedit_advanced.cpp</sources>
+		<sources>../src/wxmedit/wxmedit_basic.cpp</sources>
 		<headers>../src/wxmedit/wxmedit_command.h</headers>
+		<sources>../src/wxmedit/wxmedit_command.cpp</sources>
+		<sources>../src/wxmedit/wxmedit_search.cpp</sources>
 		<headers>../src/wxmedit_about_dialog.h</headers>
+		<sources>../src/wxmedit_about_dialog.cpp</sources>
 		<headers>../src/wxmedit_app.h</headers>
+		<sources>../src/wxmedit_app.cpp</sources>
 		<headers>../src/wxmedit_frame.h</headers>
+		<sources>../src/wxmedit_frame.cpp</sources>
 		<headers>../src/xm/wx_avoid_wxmsw_bug4373.h</headers>
 		<headers>../src/xm/wxm_case_conv.h</headers>
+		<sources>../src/xm/wxm_case_conv.cpp</sources>
 		<headers>../src/xm/wxm_wx_icu.h</headers>
+		<sources>../src/xm/wxm_wx_icu.cpp</sources>
 		<headers>../src/xm/xm_ublock.h</headers>
+		<sources>../src/xm/xm_ublock.cpp</sources>
+		<sources>../src/xm/xm_ublock_des.cpp</sources>
 		<headers>../src/xm/xm_uutils.h</headers>
+		<sources>../src/xm/xm_uutils.cpp</sources>
 	</exe>
 </makefile>
