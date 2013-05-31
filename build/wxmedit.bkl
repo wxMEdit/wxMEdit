@@ -25,12 +25,20 @@
 
 		<set var="BUILDDIR" make_var="1">$(BUILD)</set>
 
-		<set var="WXDEBUG_DEF">
-			<if cond="DEBUG==0"></if>
-			<if cond="DEBUG==1">-D__WXDEBUG__</if>
-		</set>
+		<if cond="FORMAT in ('mingw')">
+			<set var="WXDEBUG_DEF">
+				<if cond="DEBUG==0"></if>
+				<if cond="DEBUG==1">-D__WXDEBUG__</if>
+			</set>
 
-		<cppflags>$(XPRESSIVE_INC) $(AUI_INC) $(WXDEBUG_DEF) -D_UNICODE -D__WXMSW__ -D__GNUWIN32__ -D__WIN95__ -DWIN32 -O2</cppflags>
+			<define>_UNICODE</define>
+			<define>__WXMSW__</define>
+			<define>__GNUWIN32__</define>
+			<define>__WIN95__</define>
+			<define>WIN32</define>
+
+			<cppflags>$(XPRESSIVE_INC) $(AUI_INC) $(WXDEBUG_DEF)</cppflags>
+		</if>
 
 		<include>$(BOOST_DIR)</include>
 		<include>$(ICU_DIR)/include</include>
