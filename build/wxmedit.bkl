@@ -19,35 +19,31 @@
 
 		<set var="BUILDDIR" make_var="1">$(BUILD)</set>
 
+		<define>_UNICODE</define>
+
+		<runtime-libs>static</runtime-libs>
+		<threading>multi</threading>
+
 		<if cond="FORMAT in ('mingw')">
+			<set var="WXCOMP">gcc</set>
+			<set var="ICUDATA_LIB">icudata</set>
+
+			<define>__WIN95__</define>
+
 			<set var="WXDEBUG_DEF" make_var="1">
 				<if cond="DEBUG==0"></if>
 				<if cond="DEBUG==1">-D__WXDEBUG__</if>
 			</set>
 
-			<set var="WXCOMP">gcc</set>
-			<set var="ICUDATA_LIB">icudata</set>
-
-			<define>_UNICODE</define>
-			<define>__WXMSW__</define>
-			<define>__GNUWIN32__</define>
-			<define>__WIN95__</define>
-			<define>WIN32</define>
-
-			<cppflags>$(XPRESSIVE_INC) $(AUI_INC) $(WXDEBUG_DEF)</cppflags>
-
 			<sys-lib>gmon</sys-lib>
 		</if>
 		<if cond="FORMAT in ('msvc', 'msvs2003prj', 'msvs2005prj', 'msvs2008prj')">
-			<runtime-libs>static</runtime-libs>
-			<threading>multi</threading>
-
 			<set var="WXCOMP">vc</set>
 			<set var="ICUDATA_LIB">icudt</set>
 
-			<define>_UNICODE</define>
-			<define>UNICODE</define>
+			<set var="WXDEBUG_DEF" make_var="1" />
 		</if>
+		<cppflags>$(XPRESSIVE_INC) $(AUI_INC) $(WXDEBUG_DEF)</cppflags>
 
 		<include>$(BOOST_DIR)</include>
 		<include>$(ICU_DIR)/include</include>
