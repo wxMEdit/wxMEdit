@@ -85,7 +85,7 @@
 		<sys-lib>odbc32</sys-lib>
 		<sys-lib>opengl32</sys-lib>
 
-		<win32-res>../devcpp/wxmedit_private.rc</win32-res>
+		<win32-res>../src/wxmedit_app.rc</win32-res>
 
 		<sources>../charset-detector/src/CharDistribution.cpp</sources>
 		<sources>../charset-detector/src/JpCntx.cpp</sources>
