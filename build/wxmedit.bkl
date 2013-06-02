@@ -6,11 +6,6 @@
 		<if cond="DEBUG==1">debug</if>
 	</set>
 
-	<set var="OPTIMIZE_FLAG" >
-		<if cond="DEBUG==0">speed</if>
-		<if cond="DEBUG==1">off</if>
-	</set>
-
 	<set var="LIB_POSTFIX" make_var="1">
 		<if cond="DEBUG==0"></if>
 		<if cond="DEBUG==1">d</if>
@@ -21,7 +16,6 @@
 	<exe id="wxmedit" template="simple">
 		<app-type>gui</app-type>
 		<dirname>$(BUILD)</dirname>
-		<optimize>$(OPTIMIZE_FLAG)</optimize>
 
 		<set var="BUILDDIR" make_var="1">$(BUILD)</set>
 
