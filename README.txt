@@ -28,7 +28,7 @@ B. MS Windows (__WXMSW__):
       3. libunicows: it's optional under WinNT/XP, but required under Win98
       4. ICU4C 4.2 or higher
       5. Bakefile 0.2.9
-   b. Visual C++ 2003/2005/2008:
+   b. Visual C++ 2003/2005/2008/2010(upgraded from 2008 .sln):
       Required Libraries to compile:
       1. wxWidgets-2.6.1 or higher with Unicode enabled
       2. Boost-1.33.0 or higher
@@ -50,7 +50,7 @@ NOTE:
       http://wxmedit.googlecode.com/files/wxAUI.zip
 
    The small tool image2xpm was removed. 
-   You may turn to GIMP, XnView, IrfanView, etc. or get image2xpm at:
+   You can turn to GIMP, XnView, IrfanView, etc. or get image2xpm at:
       http://wxmedit.googlecode.com/files/image2xpm.exe
       http://wxmedit.googlecode.com/files/image2xpm_src.zip
 
