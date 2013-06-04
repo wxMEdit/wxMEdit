@@ -11,8 +11,6 @@
 		<if cond="DEBUG==1">d</if>
 	</set>
 
-	<set var="ICULIB_POSTFIX" make_var="1"></set>
-
 	<exe id="wxmedit" template="simple">
 		<app-type>gui</app-type>
 		<dirname>$(BUILD)</dirname>
@@ -27,6 +25,7 @@
 		<if cond="FORMAT in ('mingw')">
 			<set var="WXCOMP">gcc</set>
 			<set var="ICUDATA_LIB">icudata</set>
+			<set var="ICULIB_POSTFIX" make_var="1"></set>
 
 			<define>__WIN95__</define>
 
@@ -40,6 +39,7 @@
 		<if cond="FORMAT in ('msvc', 'msvs2003prj', 'msvs2005prj', 'msvs2008prj')">
 			<set var="WXCOMP">vc</set>
 			<set var="ICUDATA_LIB">icudt</set>
+			<set var="ICULIB_POSTFIX" make_var="1">$(LIB_POSTFIX)</set>
 
 			<set var="WXDEBUG_DEF" make_var="1" />
 		</if>
@@ -61,7 +61,7 @@
 		<sys-lib>wxmsw28u$(LIB_POSTFIX)_aui</sys-lib>
 		<sys-lib>wxmsw28u$(LIB_POSTFIX)_core</sys-lib>
 		<sys-lib>wxbase28u$(LIB_POSTFIX)</sys-lib>
-		<sys-lib>$(ICUDATA_LIB)$(ICULIB_POSTFIX)</sys-lib>
+		<sys-lib>$(ICUDATA_LIB)</sys-lib>
 		<sys-lib>icuuc$(ICULIB_POSTFIX)</sys-lib>
 		<sys-lib>unicows</sys-lib>
 		<sys-lib>kernel32</sys-lib>
