@@ -8,6 +8,7 @@
 
 #include "wxm_lines.h"
 #include "wxm_encoding.h"
+#include "wxm_encdet.h"
 #include "wxm_syntax.h"
 #include "wxmedit.h"
 #include <wx/filename.h>

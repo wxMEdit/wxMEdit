@@ -104,15 +104,4 @@ public:
     wxFontEncoding GetEncoding() { return m_Info->m_Encoding; }
 };
 
-
-bool IsTextUTF32LE(wxByte *text, int size);
-bool IsTextUTF32BE(wxByte *text, int size);
-bool IsTextUTF16LE(wxByte *text, int size);
-bool IsTextUTF16BE(wxByte *text, int size);
-bool IsTextUTF8(wxByte *text, int size);
-bool IsBinaryData(wxByte *data, int size);
-void DetectChineseEncoding(const wxByte *text, int count, wxFontEncoding &enc);
-void DetectJapaneseEncoding(const wxByte *text, int count, wxFontEncoding &enc);
-void DetectEncoding(const wxByte *text, int count, wxFontEncoding &enc);
-
 #endif
