@@ -213,7 +213,6 @@ noinst_HEADERS =	description-pak \
 	libunicows/README.txt \
 	libunicows/unicows.lib \
 	makefiles/Makefile.mac \
-	makefiles/Makefile.mingw \
 	makefiles/Makefile.install \
 	makefiles/zcfg_wx_debug.sh \
 	makefiles/zcfg_wx_release.sh \
@@ -221,12 +220,6 @@ noinst_HEADERS =	description-pak \
 	po/wxstd.po.cpp \
 	po/xgettext.bat \
 	po/xgettext_join.bat \
-	vc71/build_debug.bat \
-	vc71/build_release.bat \
-	vc71/wxmedit.sln \
-	vc71/wxmedit.vcproj \
-	vc80/wxmedit.sln \
-	vc80/wxmedit.vcproj \
 	charset-detector/Makefile \
 	charset-detector/MPL-1.1.txt \
 	charset-detector/README \
