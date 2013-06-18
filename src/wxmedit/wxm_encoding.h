@@ -75,6 +75,10 @@ protected:
 
     virtual void Create(size_t idx);
 
+    virtual void MultiByteInit()
+    {
+    }
+
 public:
     static MadEncoding* CreateWxmEncoding(size_t idx);
     static MadEncoding* CreateWxmEncoding(wxFontEncoding enc);
@@ -83,12 +87,17 @@ public:
     virtual ~MadEncoding();
 
     // return the converted length of buf
-    virtual size_t UCS4toMultiByte(ucs4_t ucs4, wxByte *buf) = 0;
+    virtual size_t UCS4toMultiByte(ucs4_t ucs4, wxByte* buf) = 0;
 
-    ucs4_t SBtoUCS4(wxByte b1);     // Single-Byte to UCS4
-    ucs4_t DBtoUCS4(wxByte *buf);   // Double-Byte to UCS4
+    virtual ucs4_t MultiBytetoUCS4(wxByte* buf)
+    {
+        return 0xFFFD;
+    }
 
-    bool IsLeadByte(wxByte byte);   // for DBCS only
+    virtual bool IsLeadByte(wxByte byte)
+    {
+        return false;
+    }
 
     wxString GetName() { return m_Info->m_Name; }
     wxString GetDescription() { return m_Info->m_Description; }
@@ -97,35 +106,50 @@ public:
     wxFontEncoding GetEncoding() { return m_Info->m_Encoding; }
 };
 
-struct wxmEncodingMB: public MadEncoding
+struct wxmEncodingMultiByte: public MadEncoding
 {
-    virtual size_t UCS4toMultiByte(ucs4_t ucs4, wxByte *buf);
+    virtual void MultiByteInit() = 0;
+    virtual ucs4_t MultiBytetoUCS4(wxByte* buf) = 0;
+    virtual size_t UCS4toMultiByte(ucs4_t ucs4, wxByte* buf);
+};
+
+struct wxmEncodingSingleByte: public wxmEncodingMultiByte
+{
+    virtual void MultiByteInit();
+    virtual ucs4_t MultiBytetoUCS4(wxByte* buf);
+};
+
+struct wxmEncodingDoubleByte: public wxmEncodingMultiByte
+{
+    virtual void MultiByteInit();
+    virtual bool IsLeadByte(wxByte byte);
+    virtual ucs4_t MultiBytetoUCS4(wxByte* buf);
 };
 
 struct wxmEncodingUTF8: public MadEncoding
 {
-    virtual size_t UCS4toMultiByte(ucs4_t ucs4, wxByte *buf);
+    virtual size_t UCS4toMultiByte(ucs4_t ucs4, wxByte* buf);
 };
 
 struct wxmEncodingUTF16LE: public MadEncoding
 {
-    static size_t UCS4toUTF16LE_U10000(ucs4_t ucs4, wxByte *buf); // special case
-    virtual size_t UCS4toMultiByte(ucs4_t ucs4, wxByte *buf);
+    static size_t UCS4toUTF16LE_U10000(ucs4_t ucs4, wxByte* buf); // special case
+    virtual size_t UCS4toMultiByte(ucs4_t ucs4, wxByte* buf);
 };
 
 struct wxmEncodingUTF16BE: public MadEncoding
 {
-    virtual size_t UCS4toMultiByte(ucs4_t ucs4, wxByte *buf);
+    virtual size_t UCS4toMultiByte(ucs4_t ucs4, wxByte* buf);
 };
 
 struct wxmEncodingUTF32LE: public MadEncoding
 {
-    virtual size_t UCS4toMultiByte(ucs4_t ucs4, wxByte *buf);
+    virtual size_t UCS4toMultiByte(ucs4_t ucs4, wxByte* buf);
 };
 
 struct wxmEncodingUTF32BE: public MadEncoding
 {
-    virtual size_t UCS4toMultiByte(ucs4_t ucs4, wxByte *buf);
+    virtual size_t UCS4toMultiByte(ucs4_t ucs4, wxByte* buf);
 };
 
 #endif

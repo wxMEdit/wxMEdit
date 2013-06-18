@@ -1,4 +1,5 @@
 ///////////////////////////////////////////////////////////////////////////////
+// vim:         ts=4 sw=4 expandtab
 // Name:        wxmedit/wxm_lines.cpp
 // Description: the Text/Data Buffer of wxMEdit
 // Author:      madedit@gmail.com  (creator)
@@ -676,7 +677,10 @@ ucs4_t MadLine::LastUCharIsNewLine(MadEncoding *encoding)
 
         break;
     case etSingleByte:
-        uc = encoding->SBtoUCS4(bit->Get(bsize - 1));            // for EBCDIC
+        {
+            wxByte b1 = bit->Get(bsize - 1);
+            uc = encoding->MultiBytetoUCS4(&b1);            // for EBCDIC
+        }
         break;
     default:
         uc = bit->Get(bsize - 1);
@@ -766,7 +770,10 @@ bool MadLine::FirstUCharIs0x0A(MadEncoding *encoding)
 
         break;
     case etSingleByte:
-        uc = encoding->SBtoUCS4(bit->Get(0));            // for EBCDIC
+        {
+            wxByte b1 = bit->Get(0);
+            uc = encoding->MultiBytetoUCS4(&b1);            // for EBCDIC
+        }
         break;
     default:
         uc = bit->Get(0);
@@ -1002,7 +1009,7 @@ bool MadLines::NextUChar_SBCS(MadUCQueue &ucqueue)
         LoadNewBuffer();
     }
 
-    ucqueue.push_back(MadUCPair(m_Encoding->SBtoUCS4(m_NextUChar_Buffer[m_NextUChar_BufferStart]), 1));
+    ucqueue.push_back(MadUCPair(m_Encoding->MultiBytetoUCS4(&m_NextUChar_Buffer[m_NextUChar_BufferStart]), 1));
     m_NextUChar_Pos++;
     m_NextUChar_BufferStart++;
     m_NextUChar_BufferSize--;
@@ -1024,10 +1031,10 @@ bool MadLines::NextUChar_DBCS(MadUCQueue &ucqueue)
     wxByte *ptr = m_NextUChar_Buffer+m_NextUChar_BufferStart;
     if(rest>1)
     {
-        if(ptr[1] == 0 || (uc=m_Encoding->DBtoUCS4(ptr)) == 0)// not a valid db-char
+        if(ptr[1] == 0 || (uc=m_Encoding->MultiBytetoUCS4(ptr)) == 0)// not a valid db-char
         {
             wxByte db[2] = {*ptr, 0}; // re-check by first byte
-            if((uc=m_Encoding->DBtoUCS4(db)) == 0)
+            if((uc=m_Encoding->MultiBytetoUCS4(db)) == 0)
             {
                 uc = *ptr;
             }
@@ -1047,7 +1054,7 @@ bool MadLines::NextUChar_DBCS(MadUCQueue &ucqueue)
     }
 
     wxByte db[2] = {*ptr, 0}; // re-check by first byte
-    if((uc=m_Encoding->DBtoUCS4(db)) == 0)
+    if((uc=m_Encoding->MultiBytetoUCS4(db)) == 0)
     {
         uc = *ptr;
     }
@@ -1422,7 +1429,7 @@ bool MadLines::NextUCharIs0x0A(void)
         }
         break;
     case etSingleByte:
-        return m_Encoding->SBtoUCS4(*buf) == 0x0A;
+        return m_Encoding->MultiBytetoUCS4(buf) == 0x0A;
         break;
     default:
         return *buf == 0x0A;
