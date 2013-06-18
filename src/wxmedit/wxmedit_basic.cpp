@@ -1114,7 +1114,7 @@ void MadEdit::GetSelText(wxString &ws)
             if(uc>=0x10000)
             {
                 wchar_t wbuf[2];
-                wxmEncodingUTF16LE::UCS4toUTF16LE_U10000(uc, (wxByte*)wbuf);
+                WXMEncodingUTF16LE::UCS4toUTF16LE_U10000(uc, (wxByte*)wbuf);
                 ws<<wbuf[0];
                 ws<<wbuf[1];
             }
@@ -1163,7 +1163,7 @@ void MadEdit::GetText(wxString &ws, bool ignoreBOM)
         if(uc>=0x10000)
         {
             wchar_t wbuf[2];
-            wxmEncodingUTF16LE::UCS4toUTF16LE_U10000(uc, (wxByte*)wbuf);
+            WXMEncodingUTF16LE::UCS4toUTF16LE_U10000(uc, (wxByte*)wbuf);
             ws<<wbuf[0];
             ws<<wbuf[1];
         }
@@ -1354,7 +1354,7 @@ bool MadEdit::GetLine(wxString &ws, int line, size_t maxlen, bool ignoreBOM)
         if(uc>=0x10000)
         {
             wchar_t wbuf[2];
-            wxmEncodingUTF16LE::UCS4toUTF16LE_U10000(uc, (wxByte*)wbuf);
+            WXMEncodingUTF16LE::UCS4toUTF16LE_U10000(uc, (wxByte*)wbuf);
             ws<<wbuf[0];
             ws<<wbuf[1];
         }
@@ -1499,7 +1499,7 @@ void MadEdit::CopyToClipboard()
                 else if(uc>=0x10000)
                 {
                     wchar_t wcbuf[2];
-                    wxmEncodingUTF16LE::UCS4toUTF16LE_U10000(uc, (wxByte*)wcbuf);
+                    WXMEncodingUTF16LE::UCS4toUTF16LE_U10000(uc, (wxByte*)wcbuf);
                     ws<<wxChar(wcbuf[0]);
                     ws<<wxChar(wcbuf[1]);
                     pos += ucqueue.front().second;
@@ -3511,7 +3511,7 @@ bool MadEdit::PrintPage(wxDC *dc, int pageNum)
                     else
                     {
                         wchar_t wbuf[2];
-                        wxmEncodingUTF16LE::UCS4toUTF16LE_U10000(ucp.first, (wxByte*)wbuf);
+                        WXMEncodingUTF16LE::UCS4toUTF16LE_U10000(ucp.first, (wxByte*)wbuf);
                         lines << wbuf[0];
                         lines << wbuf[1];
                     }

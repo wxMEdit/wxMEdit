@@ -409,25 +409,25 @@ MadEncoding* MadEncoding::CreateWxmEncoding(size_t idx)
     switch(enc_info.m_Type)
     {
     case etUTF8:
-        enc = new wxmEncodingUTF8();
+        enc = new WXMEncodingUTF8();
         break;
     case etUTF16LE:
-        enc = new wxmEncodingUTF16LE();
+        enc = new WXMEncodingUTF16LE();
         break;
     case etUTF16BE:
-        enc = new wxmEncodingUTF16BE();
+        enc = new WXMEncodingUTF16BE();
         break;
     case etUTF32LE:
-        enc = new wxmEncodingUTF32LE();
+        enc = new WXMEncodingUTF32LE();
         break;
     case etUTF32BE:
-        enc = new wxmEncodingUTF32BE();
+        enc = new WXMEncodingUTF32BE();
         break;
     case etSingleByte:
-        enc = new wxmEncodingSingleByte();
+        enc = new WXMEncodingSingleByte();
         break;
     case etDoubleByte:
-        enc = new wxmEncodingDoubleByte();
+        enc = new WXMEncodingDoubleByte();
         break;
     }
 
@@ -470,6 +470,10 @@ void MadEncoding::Create(size_t idx)
     wxASSERT(idx<EncodingsTable.size());
 
     m_Info=&EncodingsTable[idx];
+}
+
+void WXMEncodingMultiByte::Create(size_t idx)
+{
     m_CSConv=m_Info->m_CSConv;
     if(m_CSConv!=NULL)
     {
@@ -494,7 +498,7 @@ MadEncoding::~MadEncoding()
 {
 }
 
-void wxmEncodingSingleByte::MultiByteInit()
+void WXMEncodingSingleByte::MultiByteInit()
 {
     m_MBtoWC_Table=new ucs2_t[256];
     memset(m_MBtoWC_Table, 0, sizeof(ucs2_t)*256);
@@ -525,7 +529,7 @@ void wxmEncodingSingleByte::MultiByteInit()
     m_Info->m_WCtoMB_Table=m_WCtoMB_Table;
 }
 
-void wxmEncodingDoubleByte::MultiByteInit()
+void WXMEncodingDoubleByte::MultiByteInit()
 {
     m_MBtoWC_Table=new ucs2_t[65536];
     // value: 0x0000, indicate the column isn't a valid Double-Byte char
@@ -543,7 +547,7 @@ void wxmEncodingDoubleByte::MultiByteInit()
     m_Info->m_LeadByte_Table=m_LeadByte_Table;
 }
 
-size_t wxmEncodingMultiByte::UCS4toMultiByte(ucs4_t ucs4, wxByte* buf)
+size_t WXMEncodingMultiByte::UCS4toMultiByte(ucs4_t ucs4, wxByte* buf)
 {
     if(ucs4>0xFFFF)
         return 0;
@@ -590,7 +594,7 @@ size_t wxmEncodingMultiByte::UCS4toMultiByte(ucs4_t ucs4, wxByte* buf)
     return len;
 }
 
-size_t wxmEncodingUTF8::UCS4toMultiByte(ucs4_t ucs4, wxByte* buf)
+size_t WXMEncodingUTF8::UCS4toMultiByte(ucs4_t ucs4, wxByte* buf)
 {
     /***  from rfc3629
     Char. number range  |        UTF-8 octet sequence
@@ -645,7 +649,7 @@ size_t wxmEncodingUTF8::UCS4toMultiByte(ucs4_t ucs4, wxByte* buf)
     return 0;
 }
 
-size_t wxmEncodingUTF16LE::UCS4toUTF16LE_U10000(ucs4_t ucs4, wxByte* buf)
+size_t WXMEncodingUTF16LE::UCS4toUTF16LE_U10000(ucs4_t ucs4, wxByte* buf)
 {
     //ucs4=(highChar -0xD800) * 0x400 + (lowChar -0xDC00) + 0x10000
     //if(ucs4>0x10FFFF) return 0;
@@ -664,7 +668,7 @@ size_t wxmEncodingUTF16LE::UCS4toUTF16LE_U10000(ucs4_t ucs4, wxByte* buf)
     return 4;
 }
 
-size_t wxmEncodingUTF16LE::UCS4toMultiByte(ucs4_t ucs4, wxByte* buf)
+size_t WXMEncodingUTF16LE::UCS4toMultiByte(ucs4_t ucs4, wxByte* buf)
 {
     if(ucs4>=0x10000)// to unicode surrogates
     {
@@ -677,7 +681,7 @@ size_t wxmEncodingUTF16LE::UCS4toMultiByte(ucs4_t ucs4, wxByte* buf)
 
     return 2;
 }
-size_t wxmEncodingUTF16BE::UCS4toMultiByte(ucs4_t ucs4, wxByte* buf)
+size_t WXMEncodingUTF16BE::UCS4toMultiByte(ucs4_t ucs4, wxByte* buf)
 {
     if(ucs4>=0x10000)// to unicode surrogates
     {
@@ -701,7 +705,7 @@ size_t wxmEncodingUTF16BE::UCS4toMultiByte(ucs4_t ucs4, wxByte* buf)
     return 2;
 }
 
-size_t wxmEncodingUTF32LE::UCS4toMultiByte(ucs4_t ucs4, wxByte* buf)
+size_t WXMEncodingUTF32LE::UCS4toMultiByte(ucs4_t ucs4, wxByte* buf)
 {
     wxASSERT(ucs4>=0 && ucs4<=0x10FFFF);
 
@@ -716,7 +720,7 @@ size_t wxmEncodingUTF32LE::UCS4toMultiByte(ucs4_t ucs4, wxByte* buf)
 #endif
     return 4;
 }
-size_t wxmEncodingUTF32BE::UCS4toMultiByte(ucs4_t ucs4, wxByte* buf)
+size_t WXMEncodingUTF32BE::UCS4toMultiByte(ucs4_t ucs4, wxByte* buf)
 {
     wxASSERT(ucs4>=0 && ucs4<=0x10FFFF);
 
@@ -732,13 +736,13 @@ size_t wxmEncodingUTF32BE::UCS4toMultiByte(ucs4_t ucs4, wxByte* buf)
     return 4;
 }
 
-ucs4_t wxmEncodingSingleByte::MultiBytetoUCS4(wxByte* buf)
+ucs4_t WXMEncodingSingleByte::MultiBytetoUCS4(wxByte* buf)
 {
     return m_MBtoWC_Table[ *buf ];
 }
 
 // return 0 if it is not a valid DB char
-ucs4_t wxmEncodingDoubleByte::MultiBytetoUCS4(wxByte* buf)
+ucs4_t WXMEncodingDoubleByte::MultiBytetoUCS4(wxByte* buf)
 {
     if(m_LeadByte_Table[ buf[0] ] == 0)
         IsLeadByte(buf[0]);
@@ -747,7 +751,7 @@ ucs4_t wxmEncodingDoubleByte::MultiBytetoUCS4(wxByte* buf)
     return m_MBtoWC_Table[w];
 }
 
-bool wxmEncodingDoubleByte::IsLeadByte(wxByte byte)
+bool WXMEncodingDoubleByte::IsLeadByte(wxByte byte)
 {
     if(m_LeadByte_Table[byte]==0)
     {

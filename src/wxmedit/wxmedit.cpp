@@ -1715,7 +1715,7 @@ void MadEdit::PaintText(wxDC *dc, int x, int y, const ucs4_t *text, const int *w
         }
         else
         {
-			wxmEncodingUTF16LE::UCS4toUTF16LE_U10000(uc, (wxByte*)wcbuf2);
+            WXMEncodingUTF16LE::UCS4toUTF16LE_U10000(uc, (wxByte*)wcbuf2);
             *pwc++=wcbuf2[0];
             *pwc=wcbuf2[1];
             *pwcw++=ucw;
@@ -3630,7 +3630,7 @@ wxFileOffset MadEdit::GetColumnSelection(wxString *ws)
                             else
                             {
                                 wchar_t wbuf[2];
-                                wxmEncodingUTF16LE::UCS4toUTF16LE_U10000(uc, (wxByte*)wbuf);
+                                WXMEncodingUTF16LE::UCS4toUTF16LE_U10000(uc, (wxByte*)wbuf);
                                 (*ws)<<wbuf[0];
                                 (*ws)<<wbuf[1];
                             }
@@ -3803,7 +3803,7 @@ void MadEdit::SelectWordFromCaretPos(wxString *ws)
                 else
                 {
                     wchar_t wbuf[2];
-                    wxmEncodingUTF16LE::UCS4toUTF16LE_U10000(uc, (wxByte*)wbuf);
+                    WXMEncodingUTF16LE::UCS4toUTF16LE_U10000(uc, (wxByte*)wbuf);
                     (*ws)<<wbuf[0];
                     (*ws)<<wbuf[1];
                 }
@@ -10532,7 +10532,7 @@ int MadEdit::GetUCharWidth(ucs4_t uc)
         }
         else
         {
-            wxmEncodingUTF16LE::UCS4toUTF16LE_U10000(uc, (wxByte*)wcs);
+            WXMEncodingUTF16LE::UCS4toUTF16LE_U10000(uc, (wxByte*)wcs);
             wcs[2] = 0;
         }
 #else
@@ -10590,7 +10590,7 @@ int MadEdit::GetHexUCharWidth(ucs4_t uc)
         }
         else
         {
-            wxmEncodingUTF16LE::UCS4toUTF16LE_U10000(uc, (wxByte*)wcs);
+            WXMEncodingUTF16LE::UCS4toUTF16LE_U10000(uc, (wxByte*)wcs);
             wcs[2] = 0;
         }
 #else
