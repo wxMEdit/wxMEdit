@@ -427,7 +427,7 @@ MadEncoding* MadEncoding::CreateWxmEncoding(size_t idx)
         enc = new wxmEncodingSingleByte();
         break;
     case etDoubleByte:
-        enc = new wxmEncodingSingleByte();
+        enc = new wxmEncodingDoubleByte();
         break;
     }
 
