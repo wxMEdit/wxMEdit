@@ -1,4 +1,5 @@
 ///////////////////////////////////////////////////////////////////////////////
+// vim:         ts=4 sw=4 expandtab
 // Name:        wxmedit/wxm_encoding.h
 // Description: define the Encodings which are supported by wxMEdit
 // Author:      madedit@gmail.com  (creator)
@@ -65,43 +66,66 @@ public:
     static wxFontEncoding NameToEncoding(const wxString &name);
     static MadEncoding *GetSystemEncoding();
 
-private:
+protected:
     MadEncodingInfo *m_Info;
     wxCSConv        *m_CSConv;
     ucs2_t          *m_MBtoWC_Table;    // MultiByte To WideChar table
     wxWord          *m_WCtoMB_Table;    // WideChar To MultiByte table
     wxByte          *m_LeadByte_Table;  // DBCS Lead-Byte table, 0:unset, 1:IsLeadByte, 0xFF:NotLeadByte
 
-    void Create(size_t idx);
+    virtual void Create(size_t idx);
 
 public:
-    MadEncoding(size_t idx);
-    MadEncoding(wxFontEncoding enc);
-    MadEncoding(const wxString &name);
-    ~MadEncoding();
+    static MadEncoding* CreateWxmEncoding(size_t idx);
+    static MadEncoding* CreateWxmEncoding(wxFontEncoding enc);
+    static MadEncoding* CreateWxmEncoding(const wxString &name);
+
+    virtual ~MadEncoding();
 
     // return the converted length of buf
-    size_t UCS4toMB     (ucs4_t ucs4, wxByte *buf);
-    size_t UCS4toUTF8   (ucs4_t ucs4, wxByte *buf);
-    static size_t UCS4toUTF16LE_U10000(ucs4_t ucs4, wxByte *buf); // special case
-    size_t UCS4toUTF16LE(ucs4_t ucs4, wxByte *buf);
-    size_t UCS4toUTF16BE(ucs4_t ucs4, wxByte *buf);
-    size_t UCS4toUTF32LE(ucs4_t ucs4, wxByte *buf);
-    size_t UCS4toUTF32BE(ucs4_t ucs4, wxByte *buf);
+    virtual size_t UCS4toMultiByte(ucs4_t ucs4, wxByte *buf) = 0;
 
     ucs4_t SBtoUCS4(wxByte b1);     // Single-Byte to UCS4
     ucs4_t DBtoUCS4(wxByte *buf);   // Double-Byte to UCS4
 
     bool IsLeadByte(wxByte byte);   // for DBCS only
 
-    typedef size_t (MadEncoding::*UCS4toMultiByteFuncPtr)(ucs4_t ucs4, wxByte *buf);
-    UCS4toMultiByteFuncPtr UCS4toMultiByte;
-
     wxString GetName() { return m_Info->m_Name; }
     wxString GetDescription() { return m_Info->m_Description; }
     MadEncodingType GetType() { return m_Info->m_Type; }
     wxString GetFontName() { return m_Info->m_FontName; }
     wxFontEncoding GetEncoding() { return m_Info->m_Encoding; }
+};
+
+struct wxmEncodingMB: public MadEncoding
+{
+    virtual size_t UCS4toMultiByte(ucs4_t ucs4, wxByte *buf);
+};
+
+struct wxmEncodingUTF8: public MadEncoding
+{
+    virtual size_t UCS4toMultiByte(ucs4_t ucs4, wxByte *buf);
+};
+
+struct wxmEncodingUTF16LE: public MadEncoding
+{
+    static size_t UCS4toUTF16LE_U10000(ucs4_t ucs4, wxByte *buf); // special case
+    virtual size_t UCS4toMultiByte(ucs4_t ucs4, wxByte *buf);
+};
+
+struct wxmEncodingUTF16BE: public MadEncoding
+{
+    virtual size_t UCS4toMultiByte(ucs4_t ucs4, wxByte *buf);
+};
+
+struct wxmEncodingUTF32LE: public MadEncoding
+{
+    virtual size_t UCS4toMultiByte(ucs4_t ucs4, wxByte *buf);
+};
+
+struct wxmEncodingUTF32BE: public MadEncoding
+{
+    virtual size_t UCS4toMultiByte(ucs4_t ucs4, wxByte *buf);
 };
 
 #endif

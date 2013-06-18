@@ -714,7 +714,7 @@ MadEdit::MadEdit(wxWindow* parent, wxWindowID id, const wxPoint& pos, const wxSi
     m_Config->Read(wxT("DefaultEncoding"), &defaultenc);
 
     m_Syntax = MadSyntax::GetSyntaxByTitle(MadPlainTextTitle);
-    m_Encoding = new MadEncoding(defaultenc);
+    m_Encoding = MadEncoding::CreateWxmEncoding(defaultenc);
     m_Lines = new MadLines(this);
 
     // set default value
@@ -1715,7 +1715,7 @@ void MadEdit::PaintText(wxDC *dc, int x, int y, const ucs4_t *text, const int *w
         }
         else
         {
-            m_Encoding->UCS4toUTF16LE_U10000(uc, (wxByte*)wcbuf2);
+			wxmEncodingUTF16LE::UCS4toUTF16LE_U10000(uc, (wxByte*)wcbuf2);
             *pwc++=wcbuf2[0];
             *pwc=wcbuf2[1];
             *pwcw++=ucw;
@@ -3630,7 +3630,7 @@ wxFileOffset MadEdit::GetColumnSelection(wxString *ws)
                             else
                             {
                                 wchar_t wbuf[2];
-                                m_Encoding->UCS4toUTF16LE_U10000(uc, (wxByte*)wbuf);
+                                wxmEncodingUTF16LE::UCS4toUTF16LE_U10000(uc, (wxByte*)wbuf);
                                 (*ws)<<wbuf[0];
                                 (*ws)<<wbuf[1];
                             }
@@ -3803,7 +3803,7 @@ void MadEdit::SelectWordFromCaretPos(wxString *ws)
                 else
                 {
                     wchar_t wbuf[2];
-                    m_Encoding->UCS4toUTF16LE_U10000(uc, (wxByte*)wbuf);
+                    wxmEncodingUTF16LE::UCS4toUTF16LE_U10000(uc, (wxByte*)wbuf);
                     (*ws)<<wbuf[0];
                     (*ws)<<wbuf[1];
                 }
@@ -4545,13 +4545,12 @@ void MadEdit::UCStoBlock(const ucs4_t *ucs, size_t count, MadBlock & block)
     size_t size;
     wxByte mb[4];
     wxByte *b;
-    MadEncoding::UCS4toMultiByteFuncPtr UCS4toMultiByte=m_Encoding->UCS4toMultiByte;
 
     BOOST_STATIC_ASSERT(sizeof(char) == sizeof(wxByte));
 
     do
     {
-        size = (m_Encoding->*UCS4toMultiByte)(*ucs, mb);
+        size = m_Encoding->UCS4toMultiByte(*ucs, mb);
         b = mb;
 
         std::string enc_uescape;
@@ -4568,7 +4567,7 @@ void MadEdit::UCStoBlock(const ucs4_t *ucs, size_t count, MadBlock & block)
             for(size_t i=0; i<ascii_uescape.size(); ++i)
             {
                 wxByte buf[4];
-                size_t n = (m_Encoding->*UCS4toMultiByte)((ucs4_t)ascii_uescape[i], buf);
+                size_t n = m_Encoding->UCS4toMultiByte((ucs4_t)ascii_uescape[i], buf);
                 enc_uescape.append((const char*)buf, n);
             }
 
@@ -10533,7 +10532,7 @@ int MadEdit::GetUCharWidth(ucs4_t uc)
         }
         else
         {
-            m_Encoding->UCS4toUTF16LE_U10000(uc, (wxByte*)wcs);
+            wxmEncodingUTF16LE::UCS4toUTF16LE_U10000(uc, (wxByte*)wcs);
             wcs[2] = 0;
         }
 #else
@@ -10591,7 +10590,7 @@ int MadEdit::GetHexUCharWidth(ucs4_t uc)
         }
         else
         {
-            m_Encoding->UCS4toUTF16LE_U10000(uc, (wxByte*)wcs);
+            wxmEncodingUTF16LE::UCS4toUTF16LE_U10000(uc, (wxByte*)wcs);
             wcs[2] = 0;
         }
 #else

@@ -1,4 +1,5 @@
 ///////////////////////////////////////////////////////////////////////////////
+// vim:         ts=4 sw=4 expandtab
 // Name:        wxmedit/wxm_encoding.cpp
 // Description: wxMEdit encoding detector
 // Author:      madedit@gmail.com  (creator)
@@ -393,35 +394,60 @@ MadEncoding *MadEncoding::GetSystemEncoding()
 {
     if(ms_SystemEncoding==NULL)
     {
-        ms_SystemEncoding=new MadEncoding(ms_SystemEncodingIndex);
+        ms_SystemEncoding=MadEncoding::CreateWxmEncoding(ms_SystemEncodingIndex);
     }
     return ms_SystemEncoding;
 }
 
-MadEncoding::MadEncoding(size_t idx)
+MadEncoding* MadEncoding::CreateWxmEncoding(size_t idx)
 {
-    Create(idx);
+    wxASSERT(idx<EncodingsTable.size());
+
+    MadEncodingInfo& enc_info =EncodingsTable[idx];
+    MadEncoding* enc = NULL;
+
+    switch(enc_info.m_Type)
+    {
+    case etUTF8:
+        enc = new wxmEncodingUTF8();
+        break;
+    case etUTF16LE:
+        enc = new wxmEncodingUTF16LE();
+        break;
+    case etUTF16BE:
+        enc = new wxmEncodingUTF16BE();
+        break;
+    case etUTF32LE:
+        enc = new wxmEncodingUTF32LE();
+        break;
+    case etUTF32BE:
+        enc = new wxmEncodingUTF32BE();
+        break;
+    default:
+        enc = new wxmEncodingMB();
+        break;
+    }
+
+    enc->Create(idx);
+
+    return enc;
 }
 
-MadEncoding::MadEncoding(wxFontEncoding enc)
+MadEncoding* MadEncoding::CreateWxmEncoding(wxFontEncoding enc)
 {
     size_t idx;
     for(idx=0;idx<EncodingsTable.size();idx++)
     {
         if(EncodingsTable[idx].m_Encoding==enc)
         {
-            Create(idx);
-            break;
+            return CreateWxmEncoding(idx);
         }
     }
 
-    if(idx==EncodingsTable.size())
-    {
-        Create(ms_SystemEncodingIndex);
-    }
+    return CreateWxmEncoding(ms_SystemEncodingIndex);
 }
 
-MadEncoding::MadEncoding(const wxString &name)
+MadEncoding* MadEncoding::CreateWxmEncoding(const wxString &name)
 {
     size_t idx;
     wxString uname(name.Upper());
@@ -429,15 +455,11 @@ MadEncoding::MadEncoding(const wxString &name)
     {
         if(EncodingsTable[idx].m_Name==uname)
         {
-            Create(idx);
-            break;
+            return CreateWxmEncoding(idx);
         }
     }
 
-    if(idx==EncodingsTable.size())
-    {
-        Create(ms_SystemEncodingIndex);
-    }
+    return CreateWxmEncoding(ms_SystemEncodingIndex);
 }
 
 void MadEncoding::Create(size_t idx)
@@ -514,31 +536,6 @@ void MadEncoding::Create(size_t idx)
             break;
         }
     }
-
-    // set member function pointer: UCS4toMultiByte
-    switch(m_Info->m_Type)
-    {
-    case etUTF8:
-        UCS4toMultiByte=&MadEncoding::UCS4toUTF8;
-        break;
-    case etUTF16LE:
-        UCS4toMultiByte=&MadEncoding::UCS4toUTF16LE;
-        break;
-    case etUTF16BE:
-        UCS4toMultiByte=&MadEncoding::UCS4toUTF16BE;
-        break;
-    case etUTF32LE:
-        UCS4toMultiByte=&MadEncoding::UCS4toUTF32LE;
-        break;
-    case etUTF32BE:
-        UCS4toMultiByte=&MadEncoding::UCS4toUTF32BE;
-        break;
-    default:
-    //case etSingleByte:
-    //case etDoubleByte:
-        UCS4toMultiByte=&MadEncoding::UCS4toMB;
-        break;
-    }
 }
 
 MadEncoding::~MadEncoding()
@@ -546,7 +543,7 @@ MadEncoding::~MadEncoding()
 }
 
 
-size_t MadEncoding::UCS4toMB(ucs4_t ucs4, wxByte *buf)
+size_t wxmEncodingMB::UCS4toMultiByte(ucs4_t ucs4, wxByte *buf)
 {
     if(ucs4>0xFFFF)
         return 0;
@@ -593,7 +590,7 @@ size_t MadEncoding::UCS4toMB(ucs4_t ucs4, wxByte *buf)
     return len;
 }
 
-size_t MadEncoding::UCS4toUTF8(ucs4_t ucs4, wxByte *buf)
+size_t wxmEncodingUTF8::UCS4toMultiByte(ucs4_t ucs4, wxByte *buf)
 {
     /***  from rfc3629
     Char. number range  |        UTF-8 octet sequence
@@ -648,7 +645,7 @@ size_t MadEncoding::UCS4toUTF8(ucs4_t ucs4, wxByte *buf)
     return 0;
 }
 
-size_t MadEncoding::UCS4toUTF16LE_U10000(ucs4_t ucs4, wxByte *buf)
+size_t wxmEncodingUTF16LE::UCS4toUTF16LE_U10000(ucs4_t ucs4, wxByte *buf)
 {
     //ucs4=(highChar -0xD800) * 0x400 + (lowChar -0xDC00) + 0x10000
     //if(ucs4>0x10FFFF) return 0;
@@ -667,7 +664,7 @@ size_t MadEncoding::UCS4toUTF16LE_U10000(ucs4_t ucs4, wxByte *buf)
     return 4;
 }
 
-size_t MadEncoding::UCS4toUTF16LE(ucs4_t ucs4, wxByte *buf)
+size_t wxmEncodingUTF16LE::UCS4toMultiByte(ucs4_t ucs4, wxByte *buf)
 {
     if(ucs4>=0x10000)// to unicode surrogates
     {
@@ -680,7 +677,7 @@ size_t MadEncoding::UCS4toUTF16LE(ucs4_t ucs4, wxByte *buf)
 
     return 2;
 }
-size_t MadEncoding::UCS4toUTF16BE(ucs4_t ucs4, wxByte *buf)
+size_t wxmEncodingUTF16BE::UCS4toMultiByte(ucs4_t ucs4, wxByte *buf)
 {
     if(ucs4>=0x10000)// to unicode surrogates
     {
@@ -704,7 +701,7 @@ size_t MadEncoding::UCS4toUTF16BE(ucs4_t ucs4, wxByte *buf)
     return 2;
 }
 
-size_t MadEncoding::UCS4toUTF32LE(ucs4_t ucs4, wxByte *buf)
+size_t wxmEncodingUTF32LE::UCS4toMultiByte(ucs4_t ucs4, wxByte *buf)
 {
     wxASSERT(ucs4>=0 && ucs4<=0x10FFFF);
 
@@ -719,7 +716,7 @@ size_t MadEncoding::UCS4toUTF32LE(ucs4_t ucs4, wxByte *buf)
 #endif
     return 4;
 }
-size_t MadEncoding::UCS4toUTF32BE(ucs4_t ucs4, wxByte *buf)
+size_t wxmEncodingUTF32BE::UCS4toMultiByte(ucs4_t ucs4, wxByte *buf)
 {
     wxASSERT(ucs4>=0 && ucs4<=0x10FFFF);
 
