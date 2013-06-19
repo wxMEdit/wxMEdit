@@ -14,6 +14,7 @@ CC   = gcc
 OBJ  = ./Release/wxmedit_frame.o \
        ./Release/wxmedit_app.o \
        ./Release/wxmedit.o \
+       ./Release/wxm_encdet.o \
        ./Release/wxm_encoding.o \
        ./Release/wxm_lines.o \
        ./Release/wxm_syntax.o \
@@ -106,6 +107,9 @@ $(BIN): $(OBJ)
 
 ./Release/wxmedit.o: ../src/wxmedit/wxmedit.cpp
 	$(CXX) -c ../src/wxmedit/wxmedit.cpp -o ./Release/wxmedit.o $(CXXFLAGS)
+
+./Release/wxm_encdet.o: ../src/wxmedit/wxm_encdet.cpp
+	$(CXX) -c ../src/wxmedit/wxm_encdet.cpp -o ./Release/wxm_encdet.o $(CXXFLAGS)
 
 ./Release/wxm_encoding.o: ../src/wxmedit/wxm_encoding.cpp
 	$(CXX) -c ../src/wxmedit/wxm_encoding.cpp -o ./Release/wxm_encoding.o $(CXXFLAGS)
