@@ -8,7 +8,6 @@
 
 #include "wxm_syntax.h"
 #include "wxmedit.h"
-#include "wxm_encoding.h"
 
 #include <wx/fileconf.h>
 #include <wx/tokenzr.h>

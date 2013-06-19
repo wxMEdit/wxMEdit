@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////
-// Name:        wxmedit/wxm_encoding.cpp
-// Description: define the Encodings which are supported by wxMEdit
+// Name:        wxmedit/wxm_encdet.cpp
+// Description: wxMEdit encoding detector
 // Author:      madedit@gmail.com  (creator)
 //              wxmedit@gmail.com  (current maintainer)
 // Licence:     GPL

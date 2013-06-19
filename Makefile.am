@@ -47,8 +47,8 @@ wxmedit_SOURCES =	src/wxmedit_about_dialog.cpp \
 	src/wxmedit/wxmedit_gtk.cpp \
 	src/wxmedit/wxm_encdet.cpp \
 	src/wxmedit/wxm_encdet.h \
-	src/wxmedit/wxm_encoding.cpp \
-	src/wxmedit/wxm_encoding.h \
+	src/wxmedit/wxm_encoding_wx.cpp \
+	src/wxmedit/wxm_encoding_wx.h \
 	src/wxmedit/wxm_lines.cpp \
 	src/wxmedit/wxm_lines.h \
 	src/wxmedit/wxm_syntax.cpp \

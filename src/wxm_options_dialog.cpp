@@ -9,7 +9,7 @@
 #include "wxm_options_dialog.h"
 #include <wx/fileconf.h>
 #include <wx/config.h>
-#include "wxmedit/wxm_encoding.h"
+#include "wxmedit/wxm_encoding_wx.h"
 #include "wxmedit/wxmedit_command.h"
 #include "wxmedit/wxmedit.h"
 #include "wxmedit_frame.h"

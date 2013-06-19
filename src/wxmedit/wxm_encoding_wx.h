@@ -7,8 +7,8 @@
 // Licence:     GPL
 ///////////////////////////////////////////////////////////////////////////////
 
-#ifndef _WXM_ENCODING_H_
-#define _WXM_ENCODING_H_
+#ifndef _WXM_ENCODING_WX_H_
+#define _WXM_ENCODING_WX_H_
 
 #include <wx/wxprec.h>
 

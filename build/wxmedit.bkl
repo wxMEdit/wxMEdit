@@ -141,8 +141,8 @@
 		<headers>../src/wxmedit/ucs4_t.h</headers>
 		<headers>../src/wxmedit/wxm_encdet.h</headers>
 		<sources>../src/wxmedit/wxm_encdet.cpp</sources>
-		<headers>../src/wxmedit/wxm_encoding.h</headers>
-		<sources>../src/wxmedit/wxm_encoding.cpp</sources>
+		<headers>../src/wxmedit/wxm_encoding_wx.h</headers>
+		<sources>../src/wxmedit/wxm_encoding_wx.cpp</sources>
 		<headers>../src/wxmedit/wxm_lines.h</headers>
 		<sources>../src/wxmedit/wxm_lines.cpp</sources>
 		<headers>../src/wxmedit/wxm_syntax.h</headers>

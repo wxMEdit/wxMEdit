@@ -8,7 +8,6 @@
 
 #include "wxmedit/wxmedit.h"
 #include "wxmedit/wxmedit_command.h"
-#include "wxmedit/wxm_encoding.h"
 #include "wxmedit/wxm_syntax.h"
 #include "wxmedit/trad_simp.h"
 #include "wxmedit_frame.h"

@@ -15,7 +15,7 @@ OBJ  = ./Release/wxmedit_frame.o \
        ./Release/wxmedit_app.o \
        ./Release/wxmedit.o \
        ./Release/wxm_encdet.o \
-       ./Release/wxm_encoding.o \
+       ./Release/wxm_encoding_wx.o \
        ./Release/wxm_lines.o \
        ./Release/wxm_syntax.o \
        ./Release/wxm_undo.o \
@@ -111,8 +111,8 @@ $(BIN): $(OBJ)
 ./Release/wxm_encdet.o: ../src/wxmedit/wxm_encdet.cpp
 	$(CXX) -c ../src/wxmedit/wxm_encdet.cpp -o ./Release/wxm_encdet.o $(CXXFLAGS)
 
-./Release/wxm_encoding.o: ../src/wxmedit/wxm_encoding.cpp
-	$(CXX) -c ../src/wxmedit/wxm_encoding.cpp -o ./Release/wxm_encoding.o $(CXXFLAGS)
+./Release/wxm_encoding_wx.o: ../src/wxmedit/wxm_encoding_wx.cpp
+	$(CXX) -c ../src/wxmedit/wxm_encoding_wx.cpp -o ./Release/wxm_encoding_wx.o $(CXXFLAGS)
 
 ./Release/wxm_lines.o: ../src/wxmedit/wxm_lines.cpp
 	$(CXX) -c ../src/wxmedit/wxm_lines.cpp -o ./Release/wxm_lines.o $(CXXFLAGS)

@@ -7,7 +7,6 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 #include "wxmedit.h"
-#include "wxm_encoding.h"
 #include "../xm/wxm_case_conv.h"
 
 #include <unicode/uchar.h>

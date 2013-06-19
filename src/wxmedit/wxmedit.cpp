@@ -8,7 +8,6 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 #include "wxmedit.h"
-#include "wxm_encoding.h"
 #include "wxm_encdet.h"
 #include "wxm_syntax.h"
 #include "wxm_undo.h"

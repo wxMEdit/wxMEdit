@@ -7,8 +7,7 @@
 // Licence:     GPL
 ///////////////////////////////////////////////////////////////////////////////
 
-#include "wxm_encoding.h"
-#include "chardetect.h"
+#include "wxm_encoding_wx.h"
 #include <wx/config.h>
 #include <vector>
 using std::vector;
