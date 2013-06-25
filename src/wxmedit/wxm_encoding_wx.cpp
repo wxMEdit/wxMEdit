@@ -1,7 +1,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 // vim:         ts=4 sw=4 expandtab
 // Name:        wxmedit/wxm_encoding.cpp
-// Description: wxMEdit encoding detector
+// Description: define the Encodings which are supported by wxMEdit
 // Author:      madedit@gmail.com  (creator)
 //              wxmedit@gmail.com  (current maintainer)
 // Licence:     GPL
