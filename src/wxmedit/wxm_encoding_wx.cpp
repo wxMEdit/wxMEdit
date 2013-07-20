@@ -473,6 +473,8 @@ void MadEncoding::Create(size_t idx)
 
 void WXMEncodingMultiByte::Create(size_t idx)
 {
+	MadEncoding::Create(idx);
+
     m_CSConv=m_Info->m_CSConv;
     if(m_CSConv!=NULL)
     {
