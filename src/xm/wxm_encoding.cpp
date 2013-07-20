@@ -98,20 +98,20 @@ void WXMEncoding::InitEncodings()
 	ms_wxenc_map["ISO-8859-13"] = wxFONTENCODING_ISO8859_13;
 	ms_wxenc_map["ISO-8859-14"] = wxFONTENCODING_ISO8859_14;
 	ms_wxenc_map["ISO-8859-15"] = wxFONTENCODING_ISO8859_15;
-	ms_wxenc_map["WINDOWS-874"] = wxFONTENCODING_CP874;
-	ms_wxenc_map["WINDOWS-1250"] = wxFONTENCODING_CP1250;
-	ms_wxenc_map["WINDOWS-1251"] = wxFONTENCODING_CP1251;
-	ms_wxenc_map["WINDOWS-1252"] = wxFONTENCODING_CP1252;
-	ms_wxenc_map["WINDOWS-1253"] = wxFONTENCODING_CP1253;
-	ms_wxenc_map["WINDOWS-1254"] = wxFONTENCODING_CP1254;
-	ms_wxenc_map["WINDOWS-1255"] = wxFONTENCODING_CP1255;
-	ms_wxenc_map["WINDOWS-1256"] = wxFONTENCODING_CP1256;
-	ms_wxenc_map["WINDOWS-1257"] = wxFONTENCODING_CP1257;
+	ms_wxenc_map["Windows-874"] = wxFONTENCODING_CP874;
+	ms_wxenc_map["Windows-1250"] = wxFONTENCODING_CP1250;
+	ms_wxenc_map["Windows-1251"] = wxFONTENCODING_CP1251;
+	ms_wxenc_map["Windows-1252"] = wxFONTENCODING_CP1252;
+	ms_wxenc_map["Windows-1253"] = wxFONTENCODING_CP1253;
+	ms_wxenc_map["Windows-1254"] = wxFONTENCODING_CP1254;
+	ms_wxenc_map["Windows-1255"] = wxFONTENCODING_CP1255;
+	ms_wxenc_map["Windows-1256"] = wxFONTENCODING_CP1256;
+	ms_wxenc_map["Windows-1257"] = wxFONTENCODING_CP1257;
 	ms_wxenc_map["CP437"] = wxFONTENCODING_CP437;
-	ms_wxenc_map["SHIFT-JIS"] = wxFONTENCODING_CP932;
-	ms_wxenc_map["GBK"] = wxFONTENCODING_CP936;
-	ms_wxenc_map["EUC-KR"] = wxFONTENCODING_CP949;
-	ms_wxenc_map["BIG5"] = wxFONTENCODING_CP950;
+	ms_wxenc_map["CP932"] = wxFONTENCODING_CP932;
+	ms_wxenc_map["CP936"] = wxFONTENCODING_CP936;
+	ms_wxenc_map["CP949"] = wxFONTENCODING_CP949;
+	ms_wxenc_map["CP950"] = wxFONTENCODING_CP950;
 	ms_wxenc_map["EUC-JP"] = wxFONTENCODING_EUC_JP;
 	ms_wxenc_map["UTF-8"] = wxFONTENCODING_UTF8;
 	ms_wxenc_map["UTF-16LE"] = wxFONTENCODING_UTF16LE;
@@ -119,16 +119,10 @@ void WXMEncoding::InitEncodings()
 	ms_wxenc_map["UTF-32LE"] = wxFONTENCODING_UTF32LE;
 	ms_wxenc_map["UTF-32BE"] = wxFONTENCODING_UTF32BE;
 
-	typedef std::map<wxFontEncoding, std::string> WXEncRMap;
-	WXEncRMap wxenc_rmap;
-
-	BOOST_FOREACH(const WXEncMap::value_type& val, ms_wxenc_map)
-		wxenc_rmap[val.second] = val.first;
-
-    BOOST_FOREACH(const WXEncRMap::value_type& val, wxenc_rmap)
+    BOOST_FOREACH(const WXEncMap::value_type& val, ms_wxenc_map)
     {
-		std::string encname = val.second;
-		wxFontEncoding wxenc = val.first;
+		std::string encname = val.first;
+		wxFontEncoding wxenc = val.second;
 		wxString wxencname(encname.c_str(), wxConvUTF8);
 
 		ms_wxenc_list.push_back(wxencname);
