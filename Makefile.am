@@ -47,8 +47,6 @@ wxmedit_SOURCES =	src/wxmedit_about_dialog.cpp \
 	src/wxmedit/wxmedit_gtk.cpp \
 	src/wxmedit/wxm_encdet.cpp \
 	src/wxmedit/wxm_encdet.h \
-	src/wxmedit/wxm_encoding_wx.cpp \
-	src/wxmedit/wxm_encoding_wx.h \
 	src/wxmedit/wxm_lines.cpp \
 	src/wxmedit/wxm_lines.h \
 	src/wxmedit/wxm_syntax.cpp \
@@ -63,6 +61,8 @@ wxmedit_SOURCES =	src/wxmedit_about_dialog.cpp \
 	src/xm/wx_avoid_wxmsw_bug4373.h \
 	src/xm/wxm_case_conv.cpp \
 	src/xm/wxm_case_conv.h \
+	src/xm/wxm_encoding.cpp \
+	src/xm/wxm_encoding.h \
 	src/xm/wxm_wx_icu.cpp \
 	src/xm/wxm_wx_icu.h \
 	src/wxmedit/trad_simp.cpp \

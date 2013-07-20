@@ -89,8 +89,11 @@ struct MadState
 
 
 class MadEdit;
-class MadEncoding;
 class wxFileConfig;
+namespace wxm
+{
+class WXMEncoding;
+}
 
 class MadSyntax
 {
@@ -216,7 +219,7 @@ public:
 private: // for NextWord()
     MadLines    *nw_MadLines;
     MadEdit     *nw_MadEdit;
-    MadEncoding *nw_Encoding;
+    wxm::WXMEncoding *nw_Encoding;
     ucs4_t      *nw_Word;
     int         *nw_Widths;
     wxString    nw_FontName;
@@ -264,7 +267,7 @@ private: // for NextWord()
 public:
     void InitNextWord1(MadLines *madlines, ucs4_t *word, int *widths, const wxString &fontname, int fontsize, int fontfamily);
     void InitNextWord2(MadLineIterator &lit, size_t row);
-    void SetEncoding(MadEncoding *encoding);
+    void SetEncoding(wxm::WXMEncoding *encoding);
 
     // return wordlength
     int NextWord(int &wordwidth);

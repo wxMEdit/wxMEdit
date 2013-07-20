@@ -27,8 +27,8 @@ using std::vector;
 
 void MadEdit::ToggleBOM()
 {
-    MadEncodingType type=GetEncodingType();
-    if(IsReadOnly() || !IsTextFile() || type==etSingleByte || type==etDoubleByte)
+    wxm::WXMEncodingType type=GetEncodingType();
+    if(IsReadOnly() || !IsTextFile() || type==wxm::etSingleByte || type==wxm::etDoubleByte)
         return;
 
     size_t len=m_Lines->m_LineList.begin()->m_RowIndices[0].m_Start;

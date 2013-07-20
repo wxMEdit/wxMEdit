@@ -8,7 +8,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 #include "wxm_lines.h"
-#include "wxm_encoding_wx.h"
+#include "../xm/wxm_encoding.h"
 #include "wxm_encdet.h"
 #include "wxm_syntax.h"
 #include "wxmedit.h"
@@ -594,7 +594,7 @@ void MadLine::Empty(void)
     m_BracePairIndices.clear();
 }
 
-ucs4_t MadLine::LastUCharIsNewLine(MadEncoding *encoding)
+ucs4_t MadLine::LastUCharIsNewLine(wxm::WXMEncoding *encoding)
 {
     if(m_Size == 0)
         return 0;
@@ -608,7 +608,7 @@ ucs4_t MadLine::LastUCharIsNewLine(MadEncoding *encoding)
 
     switch (encoding->GetType())
     {
-    case etUTF16LE:
+    case wxm::etUTF16LE:
         if((m_Size & 1) != 0)                // odd m_Size is invalid
             return 0;
 
@@ -625,7 +625,7 @@ ucs4_t MadLine::LastUCharIsNewLine(MadEncoding *encoding)
             uc = uc | bit->Get(bsize - 1);
         }
         break;
-    case etUTF16BE:
+    case wxm::etUTF16BE:
         if((m_Size & 1) != 0)                // odd m_Size is invalid
             return 0;
 
@@ -642,7 +642,7 @@ ucs4_t MadLine::LastUCharIsNewLine(MadEncoding *encoding)
             uc = (((ucs4_t) bit->Get(bsize - 1)) << 8) | uc;
         }
         break;
-    case etUTF32LE:
+    case wxm::etUTF32LE:
         if((m_Size & 0x03) != 0)                // m_Size must be 4X
             return 0;
 
@@ -659,7 +659,7 @@ ucs4_t MadLine::LastUCharIsNewLine(MadEncoding *encoding)
         uc= (ucs4_t(buf[3])<<24)|(ucs4_t(buf[2])<<16)|(ucs4_t(buf[1])<<8)|buf[0];
 
         break;
-    case etUTF32BE:
+    case wxm::etUTF32BE:
         if((m_Size & 0x03) != 0)                // m_Size must be 4X
             return 0;
 
@@ -676,7 +676,7 @@ ucs4_t MadLine::LastUCharIsNewLine(MadEncoding *encoding)
         uc= (ucs4_t(buf[0])<<24)|(ucs4_t(buf[1])<<16)|(ucs4_t(buf[2])<<8)|buf[3];
 
         break;
-    case etSingleByte:
+    case wxm::etSingleByte:
         {
             wxByte b1 = bit->Get(bsize - 1);
             uc = encoding->MultiBytetoUCS4(&b1);            // for EBCDIC
@@ -690,7 +690,7 @@ ucs4_t MadLine::LastUCharIsNewLine(MadEncoding *encoding)
     return 0;
 }
 
-bool MadLine::FirstUCharIs0x0A(MadEncoding *encoding)
+bool MadLine::FirstUCharIs0x0A(wxm::WXMEncoding *encoding)
 {
     if(m_Size == 0) return false;
 
@@ -703,7 +703,7 @@ bool MadLine::FirstUCharIs0x0A(MadEncoding *encoding)
 
     switch (encoding->GetType())
     {
-    case etUTF16LE:
+    case wxm::etUTF16LE:
         if((m_Size & 1) != 0)                // odd m_Size is invalid
             return false;
 
@@ -719,7 +719,7 @@ bool MadLine::FirstUCharIs0x0A(MadEncoding *encoding)
             uc = (ucs4_t((++bit)->Get(0)) << 8) | uc;
         }
         break;
-    case etUTF16BE:
+    case wxm::etUTF16BE:
         if((m_Size & 1) != 0)                // odd m_Size is invalid
             return false;
 
@@ -735,7 +735,7 @@ bool MadLine::FirstUCharIs0x0A(MadEncoding *encoding)
             uc = (uc << 8) | (++bit)->Get(0);
         }
         break;
-    case etUTF32LE:
+    case wxm::etUTF32LE:
         if((m_Size & 0x03) != 0)                // m_Size must be 4X
             return false;
 
@@ -752,7 +752,7 @@ bool MadLine::FirstUCharIs0x0A(MadEncoding *encoding)
         uc= (ucs4_t(buf[3])<<24)|(ucs4_t(buf[2])<<16)|(ucs4_t(buf[1])<<8)|buf[0];
 
         break;
-    case etUTF32BE:
+    case wxm::etUTF32BE:
         if((m_Size & 0x03) != 0)                // m_Size must be 4X
             return false;
 
@@ -769,7 +769,7 @@ bool MadLine::FirstUCharIs0x0A(MadEncoding *encoding)
         uc= (ucs4_t(buf[0])<<24)|(ucs4_t(buf[1])<<16)|(ucs4_t(buf[2])<<8)|buf[3];
 
         break;
-    case etSingleByte:
+    case wxm::etSingleByte:
         {
             wxByte b1 = bit->Get(0);
             uc = encoding->MultiBytetoUCS4(&b1);            // for EBCDIC
@@ -897,31 +897,31 @@ void MadLines::Clear(bool freeAll)
     m_MemData->Reset();
 }
 
-void MadLines::SetEncoding(MadEncoding *encoding)
+void MadLines::SetEncoding(wxm::WXMEncoding *encoding)
 {
     m_Encoding=encoding;
 
     switch(encoding->GetType())
     {
-    case etSingleByte:
+    case wxm::etSingleByte:
         NextUChar=&MadLines::NextUChar_SBCS;
         break;
-    case etDoubleByte:
+    case wxm::etDoubleByte:
         NextUChar=&MadLines::NextUChar_DBCS;
         break;
-    case etUTF8:
+    case wxm::etUTF8:
         NextUChar=&MadLines::NextUChar_UTF8;
         break;
-    case etUTF16LE:
+    case wxm::etUTF16LE:
         NextUChar=&MadLines::NextUChar_UTF16LE;
         break;
-    case etUTF16BE:
+    case wxm::etUTF16BE:
         NextUChar=&MadLines::NextUChar_UTF16BE;
         break;
-    case etUTF32LE:
+    case wxm::etUTF32LE:
         NextUChar=&MadLines::NextUChar_UTF32LE;
         break;
-    case etUTF32BE:
+    case wxm::etUTF32BE:
         NextUChar=&MadLines::NextUChar_UTF32BE;
         break;
     }
@@ -1404,31 +1404,31 @@ bool MadLines::NextUCharIs0x0A(void)
 
     switch(m_Encoding->GetType())
     {
-    case etUTF16LE:
+    case wxm::etUTF16LE:
         if(rest>=2)
         {
             return buf[0]==0x0A && buf[1]==0;
         }
         break;
-    case etUTF16BE:
+    case wxm::etUTF16BE:
         if(rest>=2)
         {
             return buf[1]==0x0A && buf[0]==0;
         }
         break;
-    case etUTF32LE:
+    case wxm::etUTF32LE:
         if(rest>=4)
         {
             return buf[0]==0x0A && buf[1]==0 && buf[2]==0 && buf[3]==0;
         }
         break;
-    case etUTF32BE:
+    case wxm::etUTF32BE:
         if(rest>=4)
         {
             return buf[3]==0x0A && buf[2]==0 && buf[1]==0 && buf[0]==0;
         }
         break;
-    case etSingleByte:
+    case wxm::etSingleByte:
         return m_Encoding->MultiBytetoUCS4(buf) == 0x0A;
         break;
     default:
@@ -1674,11 +1674,11 @@ MadLineState MadLines::Reformat(MadLineIterator iter)
 
     switch (m_Encoding->GetType())
     {
-    case etUTF8:
-    case etUTF16LE:
-    case etUTF16BE:
-    case etUTF32LE:
-    case etUTF32BE:
+    case wxm::etUTF8:
+    case wxm::etUTF16LE:
+    case wxm::etUTF16BE:
+    case wxm::etUTF32LE:
+    case wxm::etUTF32BE:
         // Byte-Order Mark
         if(ucqueue.front().first == 0xFEFF && iter == m_LineList.begin())
         {
@@ -3108,7 +3108,7 @@ bool MadLines::LoadFromFile(const wxString &filename, const wxString &encoding)
             {
                 // use default encoding
                 //enc=wxLocale::GetSystemEncoding();
-                enc=MadEncoding::NameToEncoding(defaultenc);
+                enc=wxm::WXMEncoding::NameToEncoding(defaultenc);
             }
 
             /* old method to detect encoding
@@ -3143,7 +3143,7 @@ bool MadLines::LoadFromFile(const wxString &filename, const wxString &encoding)
             // use charset-detector
             DetectEncoding(buf, s, enc);
 
-            m_MadEdit->SetEncoding(MadEncoding::EncodingToName(enc));
+            m_MadEdit->SetEncoding(wxm::WXMEncoding::EncodingToName(enc));
         }
 
         if(isbinary || IsBinaryData(buf, s))

@@ -7,7 +7,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 #include "wxm_conv_enc_dialog.h"
-#include "wxmedit/wxm_encoding_wx.h"
+#include "xm/wxm_encoding.h"
 #include <wx/config.h>
 
 //Do not add custom headers
@@ -118,12 +118,12 @@ void MadConvEncDialog::CreateGUIControls(void)
     //restore wxFont
     #undef wxFont
 
-    size_t cnt=MadEncoding::GetEncodingsCount();
+    size_t cnt=wxm::WXMEncoding::GetEncodingsCount();
     for(size_t i=0;i<cnt;i++)
     {
-        WxComboBoxEncoding->Append(MadEncoding::GetEncodingName(i));//enc+des);
+        WxComboBoxEncoding->Append(wxm::WXMEncoding::GetEncodingName(i));//enc+des);
     }
-    wxString convenc=MadEncoding::GetEncodingName(0);
+    wxString convenc=wxm::WXMEncoding::GetEncodingName(0);
     wxConfigBase *cfg=wxConfigBase::Get(false);
     wxString oldpath=cfg->GetPath();
     cfg->Read(wxT("/wxMEdit/ConvertEncoding"), &convenc);

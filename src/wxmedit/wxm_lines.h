@@ -238,7 +238,10 @@ typedef vector < MadBlock > MadBlockVector;
 typedef MadBlockVector::iterator MadBlockIterator;
 typedef vector < MadRowIndex >::iterator MadRowIndexIterator;
 
-class MadEncoding;
+namespace wxm
+{
+class WXMEncoding;
+}
 
 struct MadLine
 {
@@ -259,8 +262,8 @@ struct MadLine
     bool IsEmpty() { return m_Size == 0; }
 
     // if false return 0 ; else return 0x0D or 0x0A
-    ucs4_t LastUCharIsNewLine(MadEncoding *encoding);
-    bool FirstUCharIs0x0A(MadEncoding *encoding);
+    ucs4_t LastUCharIsNewLine(wxm::WXMEncoding *encoding);
+    bool FirstUCharIs0x0A(wxm::WXMEncoding *encoding);
 
     wxByte Get(wxFileOffset pos)                            // get 1 byte
     {
@@ -332,7 +335,7 @@ private:
 
     MadEdit       *m_MadEdit;
     MadSyntax     *m_Syntax;
-    MadEncoding   *m_Encoding;
+    wxm::WXMEncoding   *m_Encoding;
 
     list <MadLine> m_LineList;
     size_t m_LineCount, m_RowCount;         // line counts
@@ -418,7 +421,7 @@ private:  // NextUChar()
     FindStringPtr FindString;
 
 public:
-    void SetEncoding(MadEncoding *encoding);
+    void SetEncoding(wxm::WXMEncoding *encoding);
 
     // if no newline return 0 ; else return 0x0D or 0x0A or 0x0D+0x0A (=0x17)
     ucs4_t GetNewLine(const MadLineIterator &iter);

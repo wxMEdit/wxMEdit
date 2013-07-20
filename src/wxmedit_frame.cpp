@@ -1652,7 +1652,7 @@ MadEditFrame::MadEditFrame( wxWindow *parent, wxWindowID id, const wxString &tit
 
     m_NewFileCount=0;
     m_Config=wxConfigBase::Get(false);
-    MadEncoding::InitEncodings();
+    wxm::WXMEncoding::InitEncodings();
 
     MadSyntax::SetAttributeFilePath(g_MadEditHomeDir + wxT("syntax/"));
 
@@ -1922,11 +1922,11 @@ void MadEditFrame::CreateGUIControls(void)
     }
 
     {
-        size_t cnt=MadEncoding::GetEncodingsCount();
+        size_t cnt=wxm::WXMEncoding::GetEncodingsCount();
         for(size_t i=0;i<cnt;i++)
         {
-            wxString enc=wxString(wxT('['))+ MadEncoding::GetEncodingName(i) + wxT("] ");
-            wxString des=wxGetTranslation(MadEncoding::GetEncodingDescription(i).c_str());
+            wxString enc=wxString(wxT('['))+ wxm::WXMEncoding::GetEncodingName(i) + wxT("] ");
+            wxString des=wxGetTranslation(wxm::WXMEncoding::GetEncodingDescription(i).c_str());
 
             g_Menu_View_AllEncodings->Append(menuEncoding1 + int(i), enc+des);
         }
@@ -2210,7 +2210,7 @@ void MadEditFrame::MadEditFrameClose(wxCloseEvent& event)
 
     delete m_ImageList;
 
-    MadEncoding::FreeEncodings();
+    wxm::WXMEncoding::FreeEncodings();
 
     FreeConvertChineseTable();
 
@@ -3196,10 +3196,10 @@ void MadEditFrame::OnUpdateUI_MenuViewHexMode(wxUpdateUIEvent& event)
 
 void MadEditFrame::OnUpdateUI_MenuToolsByteOrderMark(wxUpdateUIEvent& event)
 {
-    MadEncodingType type;
+    wxm::WXMEncodingType type;
     if(g_ActiveMadEdit && g_ActiveMadEdit->IsTextFile()
-        && (type=g_ActiveMadEdit->GetEncodingType())!=etSingleByte
-        && type!=etDoubleByte)      // unicode format
+        && (type=g_ActiveMadEdit->GetEncodingType())!=wxm::etSingleByte
+        && type!=wxm::etDoubleByte)      // unicode format
     {
         event.Enable(true);
         if(g_ActiveMadEdit->HasBOM())
@@ -4240,10 +4240,10 @@ void MadEditFrame::OnViewEncoding(wxCommandEvent& event)
     if(g_ActiveMadEdit==NULL) return;
 
     int idx=event.GetId()-menuEncoding1;
-    wxString enc=MadEncoding::GetEncodingName(idx);
+    wxString enc=wxm::WXMEncoding::GetEncodingName(idx);
     g_ActiveMadEdit->SetEncoding(enc);
 
-    wxString str=wxString(wxT('['))+ enc + wxT("] ")+ wxGetTranslation(MadEncoding::GetEncodingDescription(idx).c_str());
+    wxString str=wxString(wxT('['))+ enc + wxT("] ")+ wxGetTranslation(wxm::WXMEncoding::GetEncodingDescription(idx).c_str());
     m_RecentEncodings->AddFileToHistory(str);
 
     int size;

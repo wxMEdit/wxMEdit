@@ -224,7 +224,7 @@ END_EVENT_TABLE()
 
 
 #if defined(__WXGTK20__)
-void GTK2_DrawText(wxMemoryDC *dc, MadEncoding *encoding, const int *widths,
+void GTK2_DrawText(wxMemoryDC *dc, WXMEncoding *encoding, const int *widths,
               const wxString &text, wxCoord x, wxCoord y )
 {
     wxCHECK_RET( dc->Ok(), wxT("invalid window dc") );
@@ -713,7 +713,7 @@ MadEdit::MadEdit(wxWindow* parent, wxWindowID id, const wxPoint& pos, const wxSi
     m_Config->Read(wxT("DefaultEncoding"), &defaultenc);
 
     m_Syntax = MadSyntax::GetSyntaxByTitle(MadPlainTextTitle);
-    m_Encoding = MadEncoding::CreateWxmEncoding(defaultenc);
+    m_Encoding = wxm::WXMEncoding::CreateWxmEncoding(defaultenc);
     m_Lines = new MadLines(this);
 
     // set default value
@@ -897,7 +897,7 @@ MadEdit::~MadEdit()
     }
 
     delete m_Lines;
-    delete m_Encoding;
+    //delete m_Encoding;
     delete m_Syntax;
     delete m_UndoBuffer;
 
@@ -1660,7 +1660,7 @@ void MadEdit::PaintText(wxDC *dc, int x, int y, const ucs4_t *text, const int *w
         }
         else
         {
-            m_Encoding->UCS4toUTF16LE_U10000(*text, (wxByte*)wcbuf2);
+            wxm::UCS4toUTF16LE_U10000(*text, (wxByte*)wcbuf2);
             text2.SetChar(0, wcbuf2[0]);
             text2.SetChar(1, wcbuf2[1]);
             dc->DrawText(text2, x, y);
@@ -1714,7 +1714,7 @@ void MadEdit::PaintText(wxDC *dc, int x, int y, const ucs4_t *text, const int *w
         }
         else
         {
-            WXMEncodingUTF16LE::UCS4toUTF16LE_U10000(uc, (wxByte*)wcbuf2);
+            wxm::UCS4toUTF16LE_U10000(uc, (wxByte*)wcbuf2);
             *pwc++=wcbuf2[0];
             *pwc=wcbuf2[1];
             *pwcw++=ucw;
@@ -2710,7 +2710,7 @@ void MadEdit::PrepareHexRowIndex(int toprow, int count)
     hexrowpos <<= 4;
     int idx = 0;
 
-    if(m_Encoding->GetType()==etSingleByte)
+    if(m_Encoding->GetType()==wxm::etSingleByte)
     {
         while(idx < count)
         {
@@ -3629,7 +3629,7 @@ wxFileOffset MadEdit::GetColumnSelection(wxString *ws)
                             else
                             {
                                 wchar_t wbuf[2];
-                                WXMEncodingUTF16LE::UCS4toUTF16LE_U10000(uc, (wxByte*)wbuf);
+                                wxm::UCS4toUTF16LE_U10000(uc, (wxByte*)wbuf);
                                 (*ws)<<wbuf[0];
                                 (*ws)<<wbuf[1];
                             }
@@ -3802,7 +3802,7 @@ void MadEdit::SelectWordFromCaretPos(wxString *ws)
                 else
                 {
                     wchar_t wbuf[2];
-                    WXMEncodingUTF16LE::UCS4toUTF16LE_U10000(uc, (wxByte*)wbuf);
+                    wxm::UCS4toUTF16LE_U10000(uc, (wxByte*)wbuf);
                     (*ws)<<wbuf[0];
                     (*ws)<<wbuf[1];
                 }
@@ -8957,8 +8957,8 @@ void MadEdit::OnChar(wxKeyEvent& evt)
         bool processed=false;
         if(m_IsWin98 && ucs4<0x100)
         {
-            MadEncoding *enc=MadEncoding::GetSystemEncoding();
-            if(enc->GetType()==etDoubleByte)
+            wxm::WXMEncoding *enc=wxm::WXMEncoding::GetSystemEncoding();
+            if(enc->GetType()==wxm::etDoubleByte)
             {
                 if(m_Win98LeadByte>=0)
                 {
@@ -10531,7 +10531,7 @@ int MadEdit::GetUCharWidth(ucs4_t uc)
         }
         else
         {
-            WXMEncodingUTF16LE::UCS4toUTF16LE_U10000(uc, (wxByte*)wcs);
+            wxm::UCS4toUTF16LE_U10000(uc, (wxByte*)wcs);
             wcs[2] = 0;
         }
 #else
@@ -10589,7 +10589,7 @@ int MadEdit::GetHexUCharWidth(ucs4_t uc)
         }
         else
         {
-            WXMEncodingUTF16LE::UCS4toUTF16LE_U10000(uc, (wxByte*)wcs);
+            wxm::UCS4toUTF16LE_U10000(uc, (wxByte*)wcs);
             wcs[2] = 0;
         }
 #else

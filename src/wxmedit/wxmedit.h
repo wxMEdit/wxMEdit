@@ -26,7 +26,7 @@
 
 #include "wxm_lines.h"
 #include "wxmedit_command.h"
-#include "wxm_encoding_wx.h"
+#include "../xm/wxm_encoding.h"
 #include "wxm_syntax.h"
 #include "wxm_undo.h"
 #include "ucs4_t.h"
@@ -188,7 +188,7 @@ public:
 
 private:
     friend class MadSyntax;
-    friend class MadEncoding;
+    friend class wxm::WXMEncoding;
     friend class MadLines;
     friend class MadMouseMotionTimer;
 
@@ -202,7 +202,7 @@ private:
 
     MadLines        *m_Lines;
     MadSyntax       *m_Syntax;
-    MadEncoding     *m_Encoding;
+    wxm::WXMEncoding     *m_Encoding;
 
     MadUndoBuffer   *m_UndoBuffer;
     MadUndo         *m_SavePoint;
@@ -571,7 +571,7 @@ public: // basic functions
     void SetEncoding(const wxString &encname);
     wxString GetEncodingName() { return m_Encoding->GetName(); }
     wxString GetEncodingDescription() { return m_Encoding->GetDescription(); }
-    MadEncodingType GetEncodingType() { return m_Encoding->GetType(); }
+    wxm::WXMEncodingType GetEncodingType() { return m_Encoding->GetType(); }
 
     bool GetRecordCaretMovements() { return m_RecordCaretMovements; }
     void SetRecordCaretMovements(bool value);

@@ -141,8 +141,6 @@
 		<headers>../src/wxmedit/ucs4_t.h</headers>
 		<headers>../src/wxmedit/wxm_encdet.h</headers>
 		<sources>../src/wxmedit/wxm_encdet.cpp</sources>
-		<headers>../src/wxmedit/wxm_encoding_wx.h</headers>
-		<sources>../src/wxmedit/wxm_encoding_wx.cpp</sources>
 		<headers>../src/wxmedit/wxm_lines.h</headers>
 		<sources>../src/wxmedit/wxm_lines.cpp</sources>
 		<headers>../src/wxmedit/wxm_syntax.h</headers>
@@ -165,6 +163,8 @@
 		<headers>../src/xm/wx_avoid_wxmsw_bug4373.h</headers>
 		<headers>../src/xm/wxm_case_conv.h</headers>
 		<sources>../src/xm/wxm_case_conv.cpp</sources>
+		<headers>../src/xm/wxm_encoding.h</headers>
+		<sources>../src/xm/wxm_encoding.cpp</sources>
 		<headers>../src/xm/wxm_wx_icu.h</headers>
 		<sources>../src/xm/wxm_wx_icu.cpp</sources>
 		<headers>../src/xm/xm_ublock.h</headers>

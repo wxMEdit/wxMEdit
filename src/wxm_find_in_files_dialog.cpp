@@ -285,10 +285,10 @@ void MadFindInFilesDialog::CreateGUIControls(void)
     // build encoding list
     wxString systemenc(_("Automatic Detection"));
     WxComboBoxEncoding->Append(systemenc);
-    size_t cnt=MadEncoding::GetEncodingsCount();
+    size_t cnt=wxm::WXMEncoding::GetEncodingsCount();
     for(size_t i=0;i<cnt;i++)
     {
-        WxComboBoxEncoding->Append(MadEncoding::GetEncodingName(i));//enc+des);
+        WxComboBoxEncoding->Append(wxm::WXMEncoding::GetEncodingName(i));//enc+des);
     }
     WxComboBoxEncoding->SetValue(systemenc);
 

@@ -9,7 +9,7 @@
 #include "wxm_options_dialog.h"
 #include <wx/fileconf.h>
 #include <wx/config.h>
-#include "wxmedit/wxm_encoding_wx.h"
+#include "xm/wxm_encoding.h"
 #include "wxmedit/wxmedit_command.h"
 #include "wxmedit/wxmedit.h"
 #include "wxmedit_frame.h"
@@ -700,11 +700,11 @@ void MadOptionsDialog::CreateGUIControls(void)
 
     wxString systemenc(_("System Default"));
     WxComboBoxEncoding->Append(systemenc);
-    size_t cnt=MadEncoding::GetEncodingsCount();
+    size_t cnt=wxm::WXMEncoding::GetEncodingsCount();
     size_t i;
     for(i=0; i<cnt; i++)
     {
-        WxComboBoxEncoding->Append(MadEncoding::GetEncodingName(i));//enc+des);
+        WxComboBoxEncoding->Append(wxm::WXMEncoding::GetEncodingName(i));//enc+des);
     }
     WxComboBoxEncoding->SetValue(systemenc);
 
