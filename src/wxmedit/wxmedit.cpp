@@ -224,7 +224,7 @@ END_EVENT_TABLE()
 
 
 #if defined(__WXGTK20__)
-void GTK2_DrawText(wxMemoryDC *dc, WXMEncoding *encoding, const int *widths,
+void GTK2_DrawText(wxMemoryDC *dc, wxm::WXMEncoding *encoding, const int *widths,
               const wxString &text, wxCoord x, wxCoord y )
 {
     wxCHECK_RET( dc->Ok(), wxT("invalid window dc") );
