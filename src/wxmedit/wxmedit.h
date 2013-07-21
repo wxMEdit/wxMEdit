@@ -188,7 +188,7 @@ public:
 
 private:
     friend class MadSyntax;
-    friend class wxm::WXMEncoding;
+    friend struct wxm::WXMEncoding;
     friend class MadLines;
     friend class MadMouseMotionTimer;
 

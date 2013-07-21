@@ -3108,7 +3108,7 @@ bool MadLines::LoadFromFile(const wxString &filename, const wxString &encoding)
             {
                 // use default encoding
                 //enc=wxLocale::GetSystemEncoding();
-                enc=wxm::WXMEncoding::NameToEncoding(defaultenc);
+                enc=wxm::WXMEncodingCreator::Instance().NameToEncoding(defaultenc);
             }
 
             /* old method to detect encoding
@@ -3143,7 +3143,7 @@ bool MadLines::LoadFromFile(const wxString &filename, const wxString &encoding)
             // use charset-detector
             DetectEncoding(buf, s, enc);
 
-            m_MadEdit->SetEncoding(wxm::WXMEncoding::EncodingToName(enc));
+            m_MadEdit->SetEncoding(wxm::WXMEncodingCreator::Instance().EncodingToName(enc));
         }
 
         if(isbinary || IsBinaryData(buf, s))

@@ -34,45 +34,72 @@ enum WXMEncodingType
 { etSingleByte, etDoubleByte, etUTF8, etUTF16LE, etUTF16BE, etUTF32LE, etUTF32BE };
 
 
-class WXMEncoding: private boost::noncopyable
+struct WXMEncoding;
+struct WXMEncodingCreator: private boost::noncopyable
 {
+	static WXMEncodingCreator& Instance()
+	{
+		static WXMEncodingCreator creator;
+		return creator;
+	}
+
+	void InitEncodings(){m_initialized = true;}
+	void FreeEncodings();
+
+	WXMEncoding* CreateWxmEncoding(ssize_t idx);
+	WXMEncoding* CreateWxmEncoding(wxFontEncoding enc);
+	WXMEncoding* CreateWxmEncoding(const wxString &name);
+
+	size_t GetEncodingsCount();
+	wxString GetEncodingName(ssize_t idx);
+	wxString GetEncodingDescription(ssize_t idx);
+	wxString GetEncodingFontName(ssize_t idx);
+	wxString EncodingToName(wxFontEncoding enc);
+	wxFontEncoding NameToEncoding(const wxString &name);
+	WXMEncoding* GetSystemEncoding();
+
+	WXMEncodingType GetIdxEncType(ssize_t idx);
+
 private:
-	static ssize_t ms_sysenc_idx;
-	static WXMEncoding *ms_sysenc;
+	ssize_t AdjustIndex(ssize_t idx);
+	wxFontEncoding IdxToEncoding(ssize_t idx)
+	{
+		return NameToEncoding(GetEncodingName(idx));
+	}
+
+	void DoInit();
+
+	WXMEncodingCreator()
+	: m_initialized(false), ms_sysenc_idx(-1), ms_sysenc(NULL)
+	{
+		DoInit();
+	}
+
+	bool m_initialized;
+	ssize_t ms_sysenc_idx;
+	WXMEncoding *ms_sysenc;
 
 	typedef std::map<std::string, wxFontEncoding> WXEncMap;
-	static WXEncMap ms_wxenc_map;
+	WXEncMap ms_wxenc_map;
 
-	static std::vector<wxString> ms_wxenc_list;
-	static std::vector<std::string> ms_enc_list;
+	std::vector<wxString> ms_wxenc_list;
+	std::vector<std::string> ms_enc_list;
 
 	typedef std::map<wxString, wxFontEncoding> WXNameEncMap;
 	typedef std::map<wxFontEncoding, wxString> WXEncNameMap;
 	typedef std::map<wxFontEncoding, WXMEncodingType> WXEncTypeMap;
 	typedef std::map<wxFontEncoding, wxString> WXEncFontMap;
-	static WXNameEncMap ms_wxnameenc_map;
-	static WXEncNameMap ms_wxencname_map;
-	static WXEncTypeMap ms_wxenctype_map;
-	static WXEncFontMap ms_wxencfont_map;
+	WXNameEncMap ms_wxnameenc_map;
+	WXEncNameMap ms_wxencname_map;
+	WXEncTypeMap ms_wxenctype_map;
+	WXEncFontMap ms_wxencfont_map;
 
 	typedef std::map<ssize_t, WXMEncoding*> WXEncInstMap;
-	static WXEncInstMap ms_inst_map;
+	WXEncInstMap ms_inst_map;
+};
 
-public:
-	static void     InitEncodings(); // must call this before use WXMEncoding
-	static void     FreeEncodings();
-
-	static size_t   GetEncodingsCount();
-	static wxString GetEncodingName(ssize_t idx);
-	static wxString GetEncodingDescription(ssize_t idx);
-	static wxString GetEncodingFontName(ssize_t idx);
-	static wxString EncodingToName(wxFontEncoding enc);
-	static wxFontEncoding NameToEncoding(const wxString &name);
-	static WXMEncoding* GetSystemEncoding();
-protected:
-	static WXMEncodingType GetIdxEncType(ssize_t idx);
-	static ssize_t AdjustIndex(ssize_t idx);
-
+struct WXMEncoding: private boost::noncopyable
+{
 protected:
 	wxString m_name;
 	wxString m_desc;
@@ -83,12 +110,9 @@ protected:
 
 	virtual void Create(ssize_t idx);
 
-public:
-	static WXMEncoding* CreateWxmEncoding(ssize_t idx);
-	static WXMEncoding* CreateWxmEncoding(wxFontEncoding enc);
-	static WXMEncoding* CreateWxmEncoding(const wxString &name);
-
 protected:
+	friend WXMEncoding* WXMEncodingCreator::CreateWxmEncoding(ssize_t idx);
+	friend void WXMEncodingCreator::FreeEncodings();
 	WXMEncoding(): m_idx(-1)
 	{
 	}
@@ -147,7 +171,7 @@ struct WXMEncodingSingleByte: public WXMEncodingMultiByte
     virtual void MultiByteInit();
     virtual ucs4_t MultiBytetoUCS4(wxByte* buf);
 private:
-	friend WXMEncoding* WXMEncoding::CreateWxmEncoding(ssize_t idx);
+	friend WXMEncoding* WXMEncodingCreator::CreateWxmEncoding(ssize_t idx);
 	WXMEncodingSingleByte(){}
 	~WXMEncodingSingleByte(){}
 };
@@ -158,7 +182,7 @@ struct WXMEncodingDoubleByte: public WXMEncodingMultiByte
     virtual bool IsLeadByte(wxByte byte);
     virtual ucs4_t MultiBytetoUCS4(wxByte* buf);
 private:
-	friend WXMEncoding* WXMEncoding::CreateWxmEncoding(ssize_t idx);
+	friend WXMEncoding* WXMEncodingCreator::CreateWxmEncoding(ssize_t idx);
 	WXMEncodingDoubleByte(){}
 	~WXMEncodingDoubleByte(){}
 };
@@ -167,7 +191,7 @@ struct WXMEncodingUTF8: public WXMEncoding
 {
     virtual size_t UCS4toMultiByte(ucs4_t ucs4, wxByte* buf);
 private:
-	friend WXMEncoding* WXMEncoding::CreateWxmEncoding(ssize_t idx);
+	friend WXMEncoding* WXMEncodingCreator::CreateWxmEncoding(ssize_t idx);
 	WXMEncodingUTF8(){}
 	~WXMEncodingUTF8(){}
 };
@@ -176,7 +200,7 @@ struct WXMEncodingUTF16LE: public WXMEncoding
 {
     virtual size_t UCS4toMultiByte(ucs4_t ucs4, wxByte* buf);
 private:
-	friend WXMEncoding* WXMEncoding::CreateWxmEncoding(ssize_t idx);
+	friend WXMEncoding* WXMEncodingCreator::CreateWxmEncoding(ssize_t idx);
 	WXMEncodingUTF16LE(){}
 	~WXMEncodingUTF16LE(){}
 };
@@ -185,7 +209,7 @@ struct WXMEncodingUTF16BE: public WXMEncoding
 {
     virtual size_t UCS4toMultiByte(ucs4_t ucs4, wxByte* buf);
 private:
-	friend WXMEncoding* WXMEncoding::CreateWxmEncoding(ssize_t idx);
+	friend WXMEncoding* WXMEncodingCreator::CreateWxmEncoding(ssize_t idx);
 	WXMEncodingUTF16BE(){}
 	~WXMEncodingUTF16BE(){}
 };
@@ -194,7 +218,7 @@ struct WXMEncodingUTF32LE: public WXMEncoding
 {
     virtual size_t UCS4toMultiByte(ucs4_t ucs4, wxByte* buf);
 private:
-	friend WXMEncoding* WXMEncoding::CreateWxmEncoding(ssize_t idx);
+	friend WXMEncoding* WXMEncodingCreator::CreateWxmEncoding(ssize_t idx);
 	WXMEncodingUTF32LE(){}
 	~WXMEncodingUTF32LE(){}
 };
@@ -203,7 +227,7 @@ struct WXMEncodingUTF32BE: public WXMEncoding
 {
     virtual size_t UCS4toMultiByte(ucs4_t ucs4, wxByte* buf);
 private:
-	friend WXMEncoding* WXMEncoding::CreateWxmEncoding(ssize_t idx);
+	friend WXMEncoding* WXMEncodingCreator::CreateWxmEncoding(ssize_t idx);
 	WXMEncodingUTF32BE(){}
 	~WXMEncodingUTF32BE(){}
 };

@@ -118,12 +118,12 @@ void MadConvEncDialog::CreateGUIControls(void)
     //restore wxFont
     #undef wxFont
 
-    size_t cnt=wxm::WXMEncoding::GetEncodingsCount();
+    size_t cnt=wxm::WXMEncodingCreator::Instance().GetEncodingsCount();
     for(size_t i=0;i<cnt;i++)
     {
-        WxComboBoxEncoding->Append(wxm::WXMEncoding::GetEncodingName(i));//enc+des);
+        WxComboBoxEncoding->Append(wxm::WXMEncodingCreator::Instance().GetEncodingName(i));//enc+des);
     }
-    wxString convenc=wxm::WXMEncoding::GetEncodingName(0);
+    wxString convenc=wxm::WXMEncodingCreator::Instance().GetEncodingName(0);
     wxConfigBase *cfg=wxConfigBase::Get(false);
     wxString oldpath=cfg->GetPath();
     cfg->Read(wxT("/wxMEdit/ConvertEncoding"), &convenc);

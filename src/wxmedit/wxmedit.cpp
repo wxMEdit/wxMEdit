@@ -713,7 +713,7 @@ MadEdit::MadEdit(wxWindow* parent, wxWindowID id, const wxPoint& pos, const wxSi
     m_Config->Read(wxT("DefaultEncoding"), &defaultenc);
 
     m_Syntax = MadSyntax::GetSyntaxByTitle(MadPlainTextTitle);
-    m_Encoding = wxm::WXMEncoding::CreateWxmEncoding(defaultenc);
+    m_Encoding = wxm::WXMEncodingCreator::Instance().CreateWxmEncoding(defaultenc);
     m_Lines = new MadLines(this);
 
     // set default value
@@ -8957,7 +8957,7 @@ void MadEdit::OnChar(wxKeyEvent& evt)
         bool processed=false;
         if(m_IsWin98 && ucs4<0x100)
         {
-            wxm::WXMEncoding *enc=wxm::WXMEncoding::GetSystemEncoding();
+            wxm::WXMEncoding *enc=wxm::WXMEncodingCreator::Instance().GetSystemEncoding();
             if(enc->GetType()==wxm::etDoubleByte)
             {
                 if(m_Win98LeadByte>=0)

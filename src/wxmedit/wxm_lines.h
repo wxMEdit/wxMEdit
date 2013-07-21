@@ -240,7 +240,7 @@ typedef vector < MadRowIndex >::iterator MadRowIndexIterator;
 
 namespace wxm
 {
-class WXMEncoding;
+struct WXMEncoding;
 }
 
 struct MadLine

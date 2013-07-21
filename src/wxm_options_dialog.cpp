@@ -700,11 +700,11 @@ void MadOptionsDialog::CreateGUIControls(void)
 
     wxString systemenc(_("System Default"));
     WxComboBoxEncoding->Append(systemenc);
-    size_t cnt=wxm::WXMEncoding::GetEncodingsCount();
+    size_t cnt=wxm::WXMEncodingCreator::Instance().GetEncodingsCount();
     size_t i;
     for(i=0; i<cnt; i++)
     {
-        WxComboBoxEncoding->Append(wxm::WXMEncoding::GetEncodingName(i));//enc+des);
+        WxComboBoxEncoding->Append(wxm::WXMEncodingCreator::Instance().GetEncodingName(i));//enc+des);
     }
     WxComboBoxEncoding->SetValue(systemenc);
 

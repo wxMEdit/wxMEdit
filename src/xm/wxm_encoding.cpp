@@ -65,22 +65,7 @@ wxString GetMSCPFontName(const wxString mscp)
 
 namespace wxm
 {
-ssize_t WXMEncoding::ms_sysenc_idx = -1;
-WXMEncoding* WXMEncoding::ms_sysenc = NULL;
-
-//typedef std::map<std::string, wxFontEncoding> WXEncMap;
-WXMEncoding::WXEncMap WXMEncoding::ms_wxenc_map;
-
-std::vector<wxString> WXMEncoding::ms_wxenc_list;
-std::vector<std::string> WXMEncoding::ms_enc_list;
-
-WXMEncoding::WXNameEncMap WXMEncoding::ms_wxnameenc_map;
-WXMEncoding::WXEncNameMap WXMEncoding::ms_wxencname_map;
-WXMEncoding::WXEncTypeMap WXMEncoding::ms_wxenctype_map;
-WXMEncoding::WXEncFontMap WXMEncoding::ms_wxencfont_map;
-WXMEncoding::WXEncInstMap WXMEncoding::ms_inst_map;
-
-void WXMEncoding::InitEncodings()
+void WXMEncodingCreator::DoInit()
 {
 	wxLogNull nolog;
 
@@ -177,21 +162,23 @@ void WXMEncoding::InitEncodings()
 	ms_sysenc_idx = AdjustIndex(ms_sysenc_idx);
 }
 
-void WXMEncoding::FreeEncodings()
+void WXMEncodingCreator::FreeEncodings()
 {
 	BOOST_FOREACH(WXEncInstMap::value_type val, ms_inst_map)
 		delete val.second;
 
 	if (ms_sysenc)
 		delete ms_sysenc;
+
+	m_initialized = false;
 }
 
-size_t WXMEncoding::GetEncodingsCount()
+size_t WXMEncodingCreator::GetEncodingsCount()
 {
     return ms_wxenc_map.size();
 }
 
-wxString WXMEncoding::GetEncodingName(ssize_t idx)
+wxString WXMEncodingCreator::GetEncodingName(ssize_t idx)
 {
 	if (idx < 0)
 		return wxFontMapper::GetEncodingName(wxLocale::GetSystemEncoding());
@@ -199,17 +186,12 @@ wxString WXMEncoding::GetEncodingName(ssize_t idx)
     return ms_wxenc_list[idx];
 }
 
-wxFontEncoding IdxToEncoding(ssize_t idx)
-{
-	return WXMEncoding::NameToEncoding(WXMEncoding::GetEncodingName(idx));
-}
-
-wxString WXMEncoding::GetEncodingDescription(ssize_t idx)
+wxString WXMEncodingCreator::GetEncodingDescription(ssize_t idx)
 {
 	return wxFontMapper::GetEncodingDescription(IdxToEncoding(idx));
 }
 
-wxString WXMEncoding::GetEncodingFontName(ssize_t idx)
+wxString WXMEncodingCreator::GetEncodingFontName(ssize_t idx)
 {
 	WXEncFontMap::const_iterator it = ms_wxencfont_map.find(IdxToEncoding(idx));
 	if (it == ms_wxencfont_map.end())
@@ -218,7 +200,7 @@ wxString WXMEncoding::GetEncodingFontName(ssize_t idx)
 	return it->second;
 }
 
-wxString WXMEncoding::EncodingToName(wxFontEncoding enc)
+wxString WXMEncodingCreator::EncodingToName(wxFontEncoding enc)
 {
 	WXEncNameMap::const_iterator it = ms_wxencname_map.find(enc);
 	if (it == ms_wxencname_map.end())
@@ -227,7 +209,7 @@ wxString WXMEncoding::EncodingToName(wxFontEncoding enc)
 	return it->second;
 }
 
-wxFontEncoding WXMEncoding::NameToEncoding(const wxString &name)
+wxFontEncoding WXMEncodingCreator::NameToEncoding(const wxString &name)
 {
 	WXNameEncMap::const_iterator it = ms_wxnameenc_map.find(name);
 	if (it == ms_wxnameenc_map.end())
@@ -236,7 +218,7 @@ wxFontEncoding WXMEncoding::NameToEncoding(const wxString &name)
 	return it->second;
 }
 
-WXMEncoding* WXMEncoding::GetSystemEncoding()
+WXMEncoding* WXMEncodingCreator::GetSystemEncoding()
 {
 	if (ms_sysenc == NULL)
 		ms_sysenc = CreateWxmEncoding(ms_sysenc_idx);
@@ -244,7 +226,7 @@ WXMEncoding* WXMEncoding::GetSystemEncoding()
 	return ms_sysenc;
 }
 
-ssize_t WXMEncoding::AdjustIndex(ssize_t idx)
+ssize_t WXMEncodingCreator::AdjustIndex(ssize_t idx)
 {
 	wxFontEncoding enc = IdxToEncoding(idx);
 
@@ -259,7 +241,7 @@ ssize_t WXMEncoding::AdjustIndex(ssize_t idx)
 	return idx;
 }
 
-WXMEncodingType WXMEncoding::GetIdxEncType(ssize_t idx)
+WXMEncodingType WXMEncodingCreator::GetIdxEncType(ssize_t idx)
 {
 	WXEncTypeMap::const_iterator it = ms_wxenctype_map.find(IdxToEncoding(idx));
 	if (it == ms_wxenctype_map.end())
@@ -268,7 +250,7 @@ WXMEncodingType WXMEncoding::GetIdxEncType(ssize_t idx)
 	return it->second;
 }
 
-WXMEncoding* WXMEncoding::CreateWxmEncoding(ssize_t idx)
+WXMEncoding* WXMEncodingCreator::CreateWxmEncoding(ssize_t idx)
 {
 	wxASSERT(idx<(ssize_t)ms_wxenc_list.size() && idx>=0);
 	WXEncInstMap::iterator it = ms_inst_map.find(idx);
@@ -304,13 +286,13 @@ WXMEncoding* WXMEncoding::CreateWxmEncoding(ssize_t idx)
         break;
     }
 
-    enc->Create(idx);
+	enc->Create(idx);
 	ms_inst_map[idx] = enc;
 
     return enc;
 }
 
-WXMEncoding* WXMEncoding::CreateWxmEncoding(wxFontEncoding enc)
+WXMEncoding* WXMEncodingCreator::CreateWxmEncoding(wxFontEncoding enc)
 {
     size_t idx;
     for(idx=0;idx<ms_wxenc_list.size();idx++)
@@ -324,7 +306,7 @@ WXMEncoding* WXMEncoding::CreateWxmEncoding(wxFontEncoding enc)
     return CreateWxmEncoding(ms_sysenc_idx);
 }
 
-WXMEncoding* WXMEncoding::CreateWxmEncoding(const wxString &name)
+WXMEncoding* WXMEncodingCreator::CreateWxmEncoding(const wxString &name)
 {
     size_t idx;
     for(idx=0;idx<ms_wxenc_list.size();idx++)
@@ -340,14 +322,12 @@ WXMEncoding* WXMEncoding::CreateWxmEncoding(const wxString &name)
 
 void WXMEncoding::Create(ssize_t idx)
 {
-    wxASSERT(idx<(ssize_t)ms_wxenc_list.size() && idx>=0);
-
 	m_idx = idx;
-	m_name = GetEncodingName(idx);
-	m_enc = NameToEncoding(m_name);
-	m_type = GetIdxEncType(idx);
-	m_desc = wxFontMapper::GetEncodingDescription(m_enc);
-	m_fontname = WXMEncoding::GetEncodingFontName(m_idx);
+	m_name = WXMEncodingCreator::Instance().GetEncodingName(idx);
+	m_enc = WXMEncodingCreator::Instance().NameToEncoding(m_name);
+	m_type = WXMEncodingCreator::Instance().GetIdxEncType(idx);
+	m_desc = WXMEncodingCreator::Instance().GetEncodingDescription(idx);
+	m_fontname = WXMEncodingCreator::Instance().GetEncodingFontName(m_idx);
 }
 
 void WXMEncodingMultiByte::Create(ssize_t idx)

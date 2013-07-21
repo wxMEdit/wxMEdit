@@ -92,7 +92,7 @@ class MadEdit;
 class wxFileConfig;
 namespace wxm
 {
-class WXMEncoding;
+struct WXMEncoding;
 }
 
 class MadSyntax
