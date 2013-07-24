@@ -384,7 +384,7 @@ void WXMEncodingDoubleByte::MultiByteInit()
     m_LeadByte_Table[0]=0xFF;
 }
 
-size_t WXMEncodingMultiByte::UCS4toMultiByte(ucs4_t ucs4, wxByte* buf)
+size_t WXMEncodingDoubleByte::UCS4toMultiByte(ucs4_t ucs4, wxByte* buf)
 {
     if(ucs4>0xFFFF)
         return 0;
@@ -557,6 +557,19 @@ size_t WXMEncodingUTF32BE::UCS4toMultiByte(ucs4_t ucs4, wxByte* buf)
 ucs4_t WXMEncodingSingleByte::MultiBytetoUCS4(wxByte* buf)
 {
     return m_MBtoWC_Table[ *buf ];
+}
+
+size_t WXMEncodingSingleByte::UCS4toMultiByte(ucs4_t ucs4, wxByte* buf)
+{
+    if(ucs4>0xFFFF)
+        return 0;
+
+    wxWord mb=m_WCtoMB_Table[ucs4];
+    if(mb==0)        // invalid MB char
+        return 0;
+
+    buf[0]=mb>>8;
+    return 1;
 }
 
 // return 0 if it is not a valid DB char

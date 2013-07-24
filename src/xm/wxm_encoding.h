@@ -145,16 +145,14 @@ struct WXMEncodingMultiByte: public WXMEncoding
 {
     virtual void MultiByteInit() = 0;
     virtual ucs4_t MultiBytetoUCS4(wxByte* buf) = 0;
-    virtual size_t UCS4toMultiByte(ucs4_t ucs4, wxByte* buf);
 	virtual void Create(ssize_t idx);
 
 protected:
     wxCSConv        *m_CSConv;
     ucs2_t          *m_MBtoWC_Table;    // MultiByte To WideChar table
     wxWord          *m_WCtoMB_Table;    // WideChar To MultiByte table
-    wxByte          *m_LeadByte_Table;  // DBCS Lead-Byte table, 0:unset, 1:IsLeadByte, 0xFF:NotLeadByte
 
-	WXMEncodingMultiByte(): m_CSConv(NULL), m_MBtoWC_Table(NULL), m_WCtoMB_Table(NULL), m_LeadByte_Table(NULL)
+	WXMEncodingMultiByte(): m_CSConv(NULL), m_MBtoWC_Table(NULL), m_WCtoMB_Table(NULL)
 	{
 	}
 	~WXMEncodingMultiByte()
@@ -162,7 +160,6 @@ protected:
 		delete m_CSConv; m_CSConv = NULL;
 		delete m_MBtoWC_Table; m_MBtoWC_Table = NULL;
 		delete m_WCtoMB_Table; m_WCtoMB_Table = NULL;
-		delete m_LeadByte_Table; m_LeadByte_Table = NULL;
 	}
 };
 
@@ -170,6 +167,7 @@ struct WXMEncodingSingleByte: public WXMEncodingMultiByte
 {
     virtual void MultiByteInit();
     virtual ucs4_t MultiBytetoUCS4(wxByte* buf);
+    virtual size_t UCS4toMultiByte(ucs4_t ucs4, wxByte* buf);
 private:
 	friend WXMEncoding* WXMEncodingCreator::CreateWxmEncoding(ssize_t idx);
 	WXMEncodingSingleByte(){}
@@ -181,10 +179,18 @@ struct WXMEncodingDoubleByte: public WXMEncodingMultiByte
     virtual void MultiByteInit();
     virtual bool IsLeadByte(wxByte byte);
     virtual ucs4_t MultiBytetoUCS4(wxByte* buf);
+    virtual size_t UCS4toMultiByte(ucs4_t ucs4, wxByte* buf);
 private:
+    wxByte          *m_LeadByte_Table;  // DBCS Lead-Byte table, 0:unset, 1:IsLeadByte, 0xFF:NotLeadByte
+
 	friend WXMEncoding* WXMEncodingCreator::CreateWxmEncoding(ssize_t idx);
-	WXMEncodingDoubleByte(){}
-	~WXMEncodingDoubleByte(){}
+	WXMEncodingDoubleByte(): m_LeadByte_Table(NULL)
+	{
+	}
+	~WXMEncodingDoubleByte()
+	{
+		delete m_LeadByte_Table; m_LeadByte_Table = NULL;
+	}
 };
 
 struct WXMEncodingUTF8: public WXMEncoding
