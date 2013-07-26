@@ -43,7 +43,12 @@ struct WXMEncodingCreator: private boost::noncopyable
 		return creator;
 	}
 
-	void InitEncodings(){m_initialized = true;}
+	void InitEncodings()
+	{
+		if (!m_initialized)
+			DoInit();
+		m_initialized = true;
+	}
 	void FreeEncodings();
 
 	WXMEncoding* CreateWxmEncoding(ssize_t idx);
@@ -73,6 +78,7 @@ private:
 	: m_initialized(false), ms_sysenc_idx(-1), ms_sysenc(NULL)
 	{
 		DoInit();
+		m_initialized = true;
 	}
 
 	bool m_initialized;
