@@ -7,7 +7,6 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 #include "wxm_case_conv.h"
-#include <boost/scoped_array.hpp>
 #include <boost/static_assert.hpp>
 #include <limits>
 
