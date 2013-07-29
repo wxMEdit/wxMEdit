@@ -345,29 +345,40 @@ void WXMEncodingMultiByte::Create(ssize_t idx)
 
 void WXMEncodingSingleByte::MultiByteInit()
 {
-    m_MBtoWC_Table=new ucs2_t[256];
-    memset(m_MBtoWC_Table, 0, sizeof(ucs2_t)*256);
+	char singlebyte[2]={0,0};
+	wchar_t wc[2];
+	for (size_t i=0; i<256; ++i)
+	{
+		singlebyte[0] = i;
+        if (m_CSConv->MB2WC(wc, singlebyte, 2) == 1)
+		{
+			m_tounicode[i] = wc[0];
+			m_fromunicode[wc[0]] = i;
+		} //FIXME: no non-BMP support on Windows
+		else
+		{
+			m_tounicode[i] = i;
+			m_fromunicode[i] = i;
+		}
+	}
+}
 
-    m_WCtoMB_Table=new wxWord[65536];
-    memset(m_WCtoMB_Table, 0, sizeof(wxWord)*65536);
+ucs4_t WXMEncodingSingleByte::MultiBytetoUCS4(wxByte* buf)
+{
+    return m_tounicode[*buf];
+}
 
-   // cache the results of Single-Byte <==> Wide-Char
-    wxByte singlebyte[2]={0,0};
-    wchar_t wc[2];
-    for(wxWord i=0;i<256;i++)
-    {
-        singlebyte[0]=i;
-        if(m_CSConv->MB2WC(wc,(char*)singlebyte,2)==1)
-        {
-            m_MBtoWC_Table[i]=wc[0];
-        }
-        else
-        {
-            m_MBtoWC_Table[i]=i;
-            wc[0]=i;
-        }
-        m_WCtoMB_Table[ wc[0] ]= (i<<8) ;
-    }
+size_t WXMEncodingSingleByte::UCS4toMultiByte(ucs4_t ucs4, wxByte* buf)
+{
+    if(ucs4>0xFFFF)
+        return 0;
+
+	UnicodeByteMap::const_iterator it = m_fromunicode.find(ucs4);
+	if (it == m_fromunicode.end() || it->second == 0)
+        return 0;
+
+	buf[0] = it->second;
+    return 1;
 }
 
 void WXMEncodingDoubleByte::MultiByteInit()
@@ -552,24 +563,6 @@ size_t WXMEncodingUTF32BE::UCS4toMultiByte(ucs4_t ucs4, wxByte* buf)
     buf[3]=p[0];
 #endif
     return 4;
-}
-
-ucs4_t WXMEncodingSingleByte::MultiBytetoUCS4(wxByte* buf)
-{
-    return m_MBtoWC_Table[ *buf ];
-}
-
-size_t WXMEncodingSingleByte::UCS4toMultiByte(ucs4_t ucs4, wxByte* buf)
-{
-    if(ucs4>0xFFFF)
-        return 0;
-
-    wxWord mb=m_WCtoMB_Table[ucs4];
-    if(mb==0)        // invalid MB char
-        return 0;
-
-    buf[0]=mb>>8;
-    return 1;
 }
 
 // return 0 if it is not a valid DB char
