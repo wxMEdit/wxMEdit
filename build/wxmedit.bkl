@@ -173,7 +173,7 @@
 		<headers>../src/xm/xm_uutils.h</headers>
 		<sources>../src/xm/xm_uutils.cpp</sources>
 	</exe>
-	<exe id="test" template="simple">
+	<exe id="wxmedit_test" template="simple">
 		<dirname>$(BUILD)</dirname>
 
 		<set var="BUILDDIR" make_var="1">$(BUILD)</set>
