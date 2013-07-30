@@ -352,13 +352,25 @@ void WXMEncodingSingleByte::MultiByteInit()
 		singlebyte[0] = i;
         if (m_CSConv->MB2WC(wc, singlebyte, 2) == 1)
 		{
-			m_tounicode[i] = wc[0];
-			m_fromunicode[wc[0]] = i;
-		} //FIXME: no non-BMP support on Windows
+			m_tounicode[i] = wc[0]; // FIXME: no non-BMP support on Windows
+		}
 		else
 		{
 			m_tounicode[i] = i;
 			m_fromunicode[i] = i;
+		}
+	}
+
+	wc[1] = 0;
+	for (ucs4_t i=0; i<=0xFFFF; ++i) // FIXME: no non-BMP support on Windows
+	{
+		if (i>=0xE000 && i<=0xF8FF)
+			continue;
+
+		wc[0] = i;
+		if (m_CSConv->WC2MB(singlebyte, wc, 2) == 1)
+		{
+			m_fromunicode[i] = singlebyte[0];
 		}
 	}
 }
@@ -370,7 +382,7 @@ ucs4_t WXMEncodingSingleByte::MultiBytetoUCS4(wxByte* buf)
 
 size_t WXMEncodingSingleByte::UCS4toMultiByte(ucs4_t ucs4, wxByte* buf)
 {
-    if(ucs4>0xFFFF)
+    if(ucs4>0xFFFF) // FIXME: no non-BMP support on Windows
         return 0;
 
 	UnicodeByteMap::const_iterator it = m_fromunicode.find(ucs4);
