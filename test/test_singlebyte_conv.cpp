@@ -7182,7 +7182,7 @@ void test_enc(const std::string& encname)
 	}
 }
 
-void test_singlebyte_conv()
+int test_singlebyte_conv()
 {
 	wxm::WXMEncodingCreator::Instance().InitEncodings();
 	init();
@@ -7194,4 +7194,6 @@ void test_singlebyte_conv()
 	}
 
 	wxm::WXMEncodingCreator::Instance().FreeEncodings();
+
+	return (int)boost::minimal_test::errors_counter();
 }

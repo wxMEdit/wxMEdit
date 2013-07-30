@@ -2,6 +2,5 @@
 
 int test_main(int, char** const)
 {
-	test_singlebyte_conv();
-	return 0;
+	return test_singlebyte_conv();
 }
