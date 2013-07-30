@@ -22,6 +22,7 @@
 #include <wx/wx.h>
 #endif
 
+#include <unicode/ucnv.h>
 #include <boost/utility.hpp>
 #include <boost/array.hpp>
 #include <string>
@@ -155,15 +156,38 @@ struct WXMEncodingMultiByte: public WXMEncoding
 	virtual void Create(ssize_t idx);
 
 protected:
-    wxCSConv        *m_CSConv;
+	WXMEncodingMultiByte(){}
+	~WXMEncodingMultiByte(){}
+};
 
-	WXMEncodingMultiByte(): m_CSConv(NULL)
-	{
-	}
-	~WXMEncodingMultiByte()
-	{
-		delete m_CSConv; m_CSConv = NULL;
-	}
+struct ICUConverter
+{
+	ICUConverter(const UnicodeString& encname);
+	~ICUConverter();
+
+	size_t MB2WC(UChar* dest, const char* src, size_t dest_len);
+	size_t WC2MB(char* dest, const UChar* src, size_t dest_len);
+private:
+	UConverter* m_ucnv;
+};
+
+typedef boost::array<ucs4_t, 256> ByteUnicodeArr;
+typedef std::map<ucs4_t, wxByte> UnicodeByteMap;
+
+struct EncodingTableFixer
+{
+	virtual ~EncodingTableFixer() {}
+	virtual void fix(ByteUnicodeArr& toutab, UnicodeByteMap& fromutab) {}
+};
+
+struct CP437TableFixer: public EncodingTableFixer
+{
+	virtual void fix(ByteUnicodeArr& toutab, UnicodeByteMap& fromutab);
+};
+
+struct Windows874TableFixer: public EncodingTableFixer
+{
+	virtual void fix(ByteUnicodeArr& toutab, UnicodeByteMap& fromutab);
 };
 
 struct WXMEncodingSingleByte: public WXMEncodingMultiByte
@@ -172,13 +196,20 @@ struct WXMEncodingSingleByte: public WXMEncodingMultiByte
     virtual ucs4_t MultiBytetoUCS4(wxByte* buf);
     virtual size_t UCS4toMultiByte(ucs4_t ucs4, wxByte* buf);
 private:
-	boost::array<ucs4_t, 256> m_tounicode;
-	typedef std::map<ucs4_t, wxByte> UnicodeByteMap;
+	ICUConverter* m_icucnv;
+	ByteUnicodeArr m_tounicode;
 	UnicodeByteMap m_fromunicode;
 
 	friend WXMEncoding* WXMEncodingCreator::CreateWxmEncoding(ssize_t idx);
-	WXMEncodingSingleByte(){}
-	~WXMEncodingSingleByte(){}
+	WXMEncodingSingleByte(): m_icucnv(NULL)
+	{
+	}
+	~WXMEncodingSingleByte()
+	{
+		delete m_icucnv; m_icucnv = NULL;
+	}
+
+	EncodingTableFixer* CreateEncodingTableFixer();
 };
 
 struct WXMEncodingDoubleByte: public WXMEncodingMultiByte
@@ -188,16 +219,18 @@ struct WXMEncodingDoubleByte: public WXMEncodingMultiByte
     virtual ucs4_t MultiBytetoUCS4(wxByte* buf);
     virtual size_t UCS4toMultiByte(ucs4_t ucs4, wxByte* buf);
 private:
+    wxCSConv        *m_CSConv;
     wxByte          *m_LeadByte_Table;  // DBCS Lead-Byte table, 0:unset, 1:IsLeadByte, 0xFF:NotLeadByte
     ucs2_t          *m_MBtoWC_Table;    // MultiByte To WideChar table
     wxWord          *m_WCtoMB_Table;    // WideChar To MultiByte table
 
 	friend WXMEncoding* WXMEncodingCreator::CreateWxmEncoding(ssize_t idx);
-	WXMEncodingDoubleByte(): m_LeadByte_Table(NULL), m_MBtoWC_Table(NULL), m_WCtoMB_Table(NULL)
+	WXMEncodingDoubleByte(): m_CSConv(NULL), m_LeadByte_Table(NULL), m_MBtoWC_Table(NULL), m_WCtoMB_Table(NULL)
 	{
 	}
 	~WXMEncodingDoubleByte()
 	{
+		delete m_CSConv; m_CSConv = NULL;
 		delete m_LeadByte_Table; m_LeadByte_Table = NULL;
 		delete m_MBtoWC_Table; m_MBtoWC_Table = NULL;
 		delete m_WCtoMB_Table; m_WCtoMB_Table = NULL;

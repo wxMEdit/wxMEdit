@@ -7,9 +7,12 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 #include "wxm_encoding.h"
+#include "wxm_wx_icu.h"
 #include <wx/config.h>
 #include <wx/fontmap.h>
 #include <boost/foreach.hpp>
+#include <boost/scoped_array.hpp>
+#include <boost/scoped_ptr.hpp>
 
 #ifdef _DEBUG
 #include <crtdbg.h>
@@ -320,6 +323,55 @@ WXMEncoding* WXMEncodingCreator::CreateWxmEncoding(const wxString &name)
     return CreateWxmEncoding(ms_sysenc_idx);
 }
 
+extern "C"
+{
+	void error_callback(const void *context, UConverterFromUnicodeArgs *args, const UChar *codeUnits, int32_t length, UChar32 codePoint, UConverterCallbackReason reason, UErrorCode *pErrorCode)
+	{
+		*pErrorCode = U_INVALID_CHAR_FOUND;
+	}
+}
+
+ICUConverter::ICUConverter(const UnicodeString& encname): m_ucnv(NULL)
+{
+	size_t len = encname.length() + 1;
+	boost::scoped_array<UChar> arr(new UChar[len]);
+
+	UErrorCode err;
+	encname.extract(arr.get(), len, err);
+
+	m_ucnv = ucnv_openU(arr.get(), &err);
+	ucnv_setFallback(m_ucnv, FALSE);
+	ucnv_setFromUCallBack(m_ucnv, error_callback, NULL, NULL, NULL, &err);
+}
+
+ICUConverter::~ICUConverter()
+{
+	ucnv_close(m_ucnv);
+	m_ucnv = NULL;
+}
+
+size_t ICUConverter::MB2WC(UChar* dest, const char* src, size_t dest_len)
+{
+	UErrorCode err;
+	int32_t n = ucnv_toUChars(m_ucnv, dest, dest_len, src, 1, &err); // FIXME, no non-BMP support
+
+	if (n!=1 || dest[0]==0xFFFD)
+		return 0;
+
+	return 1;
+}
+
+size_t ICUConverter::WC2MB(char* dest, const UChar* src, size_t dest_len)
+{
+	UErrorCode err;
+	int32_t n = ucnv_fromUChars(m_ucnv, dest, dest_len, src, 1, &err); // FIXME, no non-BMP support
+
+	if (n!=1)
+		return 0;
+
+	return 1;
+}
+
 void WXMEncoding::Create(ssize_t idx)
 {
 	m_idx = idx;
@@ -334,25 +386,67 @@ void WXMEncodingMultiByte::Create(ssize_t idx)
 {
 	WXMEncoding::Create(idx);
 
-#if defined(__WXGTK__)
-    m_CSConv=new wxCSConv(m_name.c_str());
-#else //#elif defined(__WXMSW__) || defined(__WXMAC__)
-    m_CSConv=new wxCSConv(m_enc);
-#endif
-
     MultiByteInit();
+}
+
+void CP437TableFixer::fix(ByteUnicodeArr& toutab, UnicodeByteMap& fromutab)
+{
+	toutab[0x1A] = 0x00001A;
+	toutab[0x1C] = 0x00001C;
+	toutab[0x7f] = 0x00007f;
+	toutab[0xE6] = 0x0000B5;
+
+	fromutab.erase(0x0003BC);
+	fromutab[0x00001A] = 0x1A;
+	fromutab[0x00001C] = 0x1C;
+	fromutab[0x00007F] = 0x7F;
+	fromutab[0x0000B5] = 0xE6;
+}
+
+void Windows874TableFixer::fix(ByteUnicodeArr& toutab, UnicodeByteMap& fromutab)
+{
+	toutab[0xDB] = 0x0000DB;
+	toutab[0xDC] = 0x0000DC;
+	toutab[0xDD] = 0x0000DD;
+	toutab[0xDE] = 0x0000DE;
+	toutab[0xFC] = 0x0000FC;
+	toutab[0xFD] = 0x0000FD;
+	toutab[0xFE] = 0x0000FE;
+	toutab[0xFF] = 0x0000FF;
+
+	fromutab[0x0000DB] = 0xDB;
+	fromutab[0x0000DC] = 0xDC;
+	fromutab[0x0000DD] = 0xDD;
+	fromutab[0x0000DE] = 0xDE;
+	fromutab[0x0000FC] = 0xFC;
+	fromutab[0x0000FD] = 0xFD;
+	fromutab[0x0000FE] = 0xFE;
+	fromutab[0x0000FF] = 0xFF;
+}
+
+EncodingTableFixer* WXMEncodingSingleByte::CreateEncodingTableFixer()
+{
+	if (m_name == wxT("CP437"))
+		return new CP437TableFixer();
+	if (m_name == wxT("Windows-874"))
+		return new Windows874TableFixer();
+	return new EncodingTableFixer();
 }
 
 void WXMEncodingSingleByte::MultiByteInit()
 {
-	char singlebyte[2]={0,0};
-	wchar_t wc[2];
+	m_icucnv = new ICUConverter(WxStrToICU(m_name));
+
+	boost::scoped_ptr<EncodingTableFixer>enc_fix(CreateEncodingTableFixer());
+
+	char singlebyte[1];
+	UChar wc[1];
 	for (size_t i=0; i<256; ++i)
 	{
 		singlebyte[0] = i;
-        if (m_CSConv->MB2WC(wc, singlebyte, 2) == 1)
+		if (m_icucnv->MB2WC(wc, singlebyte, 1) == 1)
 		{
-			m_tounicode[i] = wc[0]; // FIXME: no non-BMP support on Windows
+			m_tounicode[i] = wc[0]; // FIXME: no non-BMP support
 		}
 		else
 		{
@@ -361,18 +455,19 @@ void WXMEncodingSingleByte::MultiByteInit()
 		}
 	}
 
-	wc[1] = 0;
-	for (ucs4_t i=0; i<=0xFFFF; ++i) // FIXME: no non-BMP support on Windows
+	for (ucs4_t i=0; i<=0xFFFF; ++i) // FIXME: no non-BMP support
 	{
 		if (i>=0xE000 && i<=0xF8FF)
 			continue;
 
 		wc[0] = i;
-		if (m_CSConv->WC2MB(singlebyte, wc, 2) == 1)
+		if (m_icucnv->WC2MB(singlebyte, wc, 1) == 1)
 		{
 			m_fromunicode[i] = singlebyte[0];
 		}
 	}
+
+	enc_fix->fix(m_tounicode, m_fromunicode);
 }
 
 ucs4_t WXMEncodingSingleByte::MultiBytetoUCS4(wxByte* buf)
@@ -382,7 +477,7 @@ ucs4_t WXMEncodingSingleByte::MultiBytetoUCS4(wxByte* buf)
 
 size_t WXMEncodingSingleByte::UCS4toMultiByte(ucs4_t ucs4, wxByte* buf)
 {
-    if(ucs4>0xFFFF) // FIXME: no non-BMP support on Windows
+    if(ucs4>0xFFFF) // FIXME: no non-BMP support
         return 0;
 
 	UnicodeByteMap::const_iterator it = m_fromunicode.find(ucs4);
@@ -395,7 +490,13 @@ size_t WXMEncodingSingleByte::UCS4toMultiByte(ucs4_t ucs4, wxByte* buf)
 
 void WXMEncodingDoubleByte::MultiByteInit()
 {
-    m_MBtoWC_Table=new ucs2_t[65536];
+#if defined(__WXGTK__)
+    m_CSConv=new wxCSConv(m_name.c_str());
+#else //#elif defined(__WXMSW__) || defined(__WXMAC__)
+    m_CSConv=new wxCSConv(m_enc);
+#endif
+
+	m_MBtoWC_Table=new ucs2_t[65536];
     // value: 0x0000, indicate the column isn't a valid Double-Byte char
     memset(m_MBtoWC_Table, 0, sizeof(ucs2_t)*256);
     // value: 0xFFFF, indicate the column is non-cached
