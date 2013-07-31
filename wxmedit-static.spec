@@ -1,7 +1,7 @@
 %define release 1
 %define prefix /usr
 %define name wxmedit
-%define version 2.9.3
+%define version 2.9.4
 
 
 Summary: wxmedit : GTK+2 based text/hex editor

@@ -1,5 +1,5 @@
                       ==================================
-                                wxMEdit v2.9.3+
+                                wxMEdit v2.9.4
                       ==================================
 About:
 -----
@@ -28,7 +28,7 @@ B. MS Windows (__WXMSW__):
       3. libunicows: it's optional under WinNT/XP, but required under Win98
       4. ICU4C 4.2 or higher
       5. Bakefile 0.2.9
-   b. Visual C++ 2003/2005/2008/2010(upgraded from 2008 .sln):
+   b. Visual C++ 2003/2005/2008:
       Required Libraries to compile:
       1. wxWidgets-2.6.1 or higher with Unicode enabled
       2. Boost-1.33.0 or higher
@@ -79,6 +79,14 @@ Syntax files, Locale files and Settings:
 
 ChangeLog:
 ----------
+wxMEdit v2.9.4:
+1.change Unicode escape to ICU code point format {U+XXXX}-{U+XXXXXX}.
+2.introduce Bakefile building system and remove MSVC/MinGW building files.
+3.refactor encoding implementation.
+4.add test case for conversion between Unicode and Single-Byte Encoding.
+5.fix incorrect conversion between Unicode and Single-Byte Encoding.
+6.add CP866 and KOI8-R support.
+
 wxMEdit v2.9.3:
 1.replaced Word Counter with ICU implemention and partly changed the counter rules.
 2.avoided the bug 4373 of wxMSW-2.8.12 or lower.
