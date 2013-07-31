@@ -11,7 +11,6 @@
 #include <wx/config.h>
 #include <wx/fontmap.h>
 #include <boost/foreach.hpp>
-#include <boost/scoped_array.hpp>
 #include <boost/scoped_ptr.hpp>
 
 #ifdef _DEBUG
@@ -333,13 +332,13 @@ extern "C"
 
 ICUConverter::ICUConverter(const UnicodeString& encname): m_ucnv(NULL)
 {
-	size_t len = encname.length() + 1;
-	boost::scoped_array<UChar> arr(new UChar[len]);
+	UErrorCode err = U_ZERO_ERROR;
 
-	UErrorCode err;
-	encname.extract(arr.get(), len, err);
+	std::string sencname;
+	encname.toUTF8String(sencname);
 
-	m_ucnv = ucnv_openU(arr.get(), &err);
+	m_ucnv = ucnv_open(sencname.c_str(), &err);
+
 	ucnv_setFallback(m_ucnv, FALSE);
 	ucnv_setFromUCallBack(m_ucnv, error_callback, NULL, NULL, NULL, &err);
 }
@@ -352,7 +351,7 @@ ICUConverter::~ICUConverter()
 
 size_t ICUConverter::MB2WC(UChar* dest, const char* src, size_t dest_len)
 {
-	UErrorCode err;
+	UErrorCode err = U_ZERO_ERROR;
 	int32_t n = ucnv_toUChars(m_ucnv, dest, dest_len, src, 1, &err); // FIXME, no non-BMP support
 
 	if (n!=1 || dest[0]==0xFFFD)
@@ -363,7 +362,7 @@ size_t ICUConverter::MB2WC(UChar* dest, const char* src, size_t dest_len)
 
 size_t ICUConverter::WC2MB(char* dest, const UChar* src, size_t dest_len)
 {
-	UErrorCode err;
+	UErrorCode err = U_ZERO_ERROR;
 	int32_t n = ucnv_fromUChars(m_ucnv, dest, dest_len, src, 1, &err); // FIXME, no non-BMP support
 
 	if (n!=1)
