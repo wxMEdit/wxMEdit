@@ -327,21 +327,46 @@ ICUConverter::~ICUConverter()
 	m_ucnv = NULL;
 }
 
-size_t ICUConverter::MB2WC(UChar* dest, const char* src, size_t dest_len)
+size_t ICUConverter::MB2WC(UChar32& ch, const char* src, size_t src_len)
 {
+	UChar dest[2];
 	UErrorCode err = U_ZERO_ERROR;
-	int32_t n = ucnv_toUChars(m_ucnv, dest, dest_len, src, 1, &err); // FIXME, no non-BMP support
+	int32_t n = ucnv_toUChars(m_ucnv, dest, 2, src, src_len, &err);
 
-	if (n!=1 || dest[0]==0xFFFD)
+	if (n == 1)
+	{
+		if (dest[0]==0xFFFD)
+			return 0;
+
+		ch = dest[0];
+		return 1;
+	}
+
+	if (n<1 || n>=2 && (dest[0]<0xD800 || dest[0]>0xDBFF || dest[1]<0xDC00 || dest[1]>0xDFFF))
 		return 0;
+
+	ch = 0x10000 + (((dest[0] & 0x03FF) << 10) | (dest[1] & 0x03FF));
 
 	return 1;
 }
 
-size_t ICUConverter::WC2MB(char* dest, const UChar* src, size_t dest_len)
+size_t ICUConverter::WC2MB(char* dest, size_t dest_len, const UChar32& ch)
 {
+	UChar src[2] = {0, 0};
+	size_t src_len = 1;
+	if (ch <= 0xFFFF)
+	{
+		src[0] = ch;
+	}
+	else
+	{
+		UChar32 tmp = ch - 0x10000;
+		src[0] = (ch >> 10) | 0xD800;
+		src[1] = (ch & 0x3FF) | 0xDC00;
+	}
+
 	UErrorCode err = U_ZERO_ERROR;
-	int32_t n = ucnv_fromUChars(m_ucnv, dest, dest_len, src, 1, &err); // FIXME, no non-BMP support
+	int32_t n = ucnv_fromUChars(m_ucnv, dest, dest_len, src, src_len, &err);
 
 	if (n!=1)
 		return 0;
@@ -426,13 +451,13 @@ void WXMEncodingSingleByte::MultiByteInit()
 	boost::scoped_ptr<EncodingTableFixer>enc_fix(CreateEncodingTableFixer());
 
 	char singlebyte[1];
-	UChar wc[1];
+	UChar32 ch;
 	for (size_t i=0; i<256; ++i)
 	{
 		singlebyte[0] = i;
-		if (m_icucnv->MB2WC(wc, singlebyte, 1) == 1)
+		if (m_icucnv->MB2WC(ch, singlebyte, 1) == 1)
 		{
-			m_tounicode[i] = wc[0]; // FIXME: no non-BMP support
+			m_tounicode[i] = ch;
 		}
 		else
 		{
@@ -441,13 +466,13 @@ void WXMEncodingSingleByte::MultiByteInit()
 		}
 	}
 
-	for (ucs4_t i=0; i<=0xFFFF; ++i) // FIXME: no non-BMP support
+	for (ucs4_t i=0; i<=0x10FFFF; ++i)
 	{
-		if (i>=0xE000 && i<=0xF8FF)
+		if (i>=0xD800 && i<=0xF8FF) // skip PUA and surrogates
 			continue;
 
-		wc[0] = i;
-		if (m_icucnv->WC2MB(singlebyte, wc, 1) == 1)
+		ch = i;
+		if (m_icucnv->WC2MB(singlebyte, 1, ch) == 1)
 		{
 			m_fromunicode[i] = singlebyte[0];
 		}
@@ -463,9 +488,6 @@ ucs4_t WXMEncodingSingleByte::MultiBytetoUCS4(wxByte* buf)
 
 size_t WXMEncodingSingleByte::UCS4toMultiByte(ucs4_t ucs4, wxByte* buf)
 {
-	if(ucs4>0xFFFF) // FIXME: no non-BMP support
-		return 0;
-
 	UnicodeByteMap::const_iterator it = m_fromunicode.find(ucs4);
 	if (it == m_fromunicode.end() || it->second == 0)
 		return 0;

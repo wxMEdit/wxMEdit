@@ -168,8 +168,8 @@ struct ICUConverter
 	ICUConverter(const UnicodeString& encname);
 	~ICUConverter();
 
-	size_t MB2WC(UChar* dest, const char* src, size_t dest_len);
-	size_t WC2MB(char* dest, const UChar* src, size_t dest_len);
+	size_t MB2WC(UChar32& ch, const char* src, size_t src_len);
+	size_t WC2MB(char* dest, size_t dest_len, const UChar32& ch);
 private:
 	UConverter* m_ucnv;
 };
