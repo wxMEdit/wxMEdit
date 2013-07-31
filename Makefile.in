@@ -38,7 +38,7 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
-bin_PROGRAMS = wxmedit$(EXEEXT)
+bin_PROGRAMS = wxmedit$(EXEEXT) wxmedit_test$(EXEEXT)
 DIST_COMMON = $(am__configure_deps) $(noinst_HEADERS) \
 	$(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 	$(srcdir)/config.h.in $(top_srcdir)/configure ABOUT-NLS \
@@ -63,8 +63,8 @@ am_wxmedit_OBJECTS = wxmedit-wxmedit_about_dialog.$(OBJEXT) \
 	wxmedit-wxmedit_app.$(OBJEXT) wxmedit-wxmedit_frame.$(OBJEXT) \
 	wxmedit-wxm_find_in_files_dialog.$(OBJEXT) \
 	wxmedit-wxm_highlighting_dialog.$(OBJEXT) \
-	wxmedit-wxm_options_dialog.$(OBJEXT) wxmedit-wxm_plugin.$(OBJEXT) \
-	wxmedit-wxm_printout.$(OBJEXT) \
+	wxmedit-wxm_options_dialog.$(OBJEXT) \
+	wxmedit-wxm_plugin.$(OBJEXT) wxmedit-wxm_printout.$(OBJEXT) \
 	wxmedit-wxm_replace_dialog.$(OBJEXT) \
 	wxmedit-wxm_search_dialog.$(OBJEXT) \
 	wxmedit-wxm_sort_dialog.$(OBJEXT) wxmedit-wxm_utils.$(OBJEXT) \
@@ -74,11 +74,11 @@ am_wxmedit_OBJECTS = wxmedit-wxmedit_about_dialog.$(OBJEXT) \
 	wxmedit-wxmedit_basic.$(OBJEXT) \
 	wxmedit-wxmedit_command.$(OBJEXT) \
 	wxmedit-wxmedit_search.$(OBJEXT) wxmedit-wxmedit_gtk.$(OBJEXT) \
-	wxmedit-wxm_encdet.$(OBJEXT) wxmedit-wxm_encoding.$(OBJEXT) \
-	wxmedit-wxm_lines.$(OBJEXT) wxmedit-wxm_syntax.$(OBJEXT) \
-	wxmedit-wxm_undo.$(OBJEXT) wxmedit-xm_ublock_des.$(OBJEXT) \
-	wxmedit-xm_ublock.$(OBJEXT) wxmedit-xm_uutils.$(OBJEXT) \
-	wxmedit-wxm_case_conv.$(OBJEXT) wxmedit-wxm_wx_icu.$(OBJEXT) \
+	wxmedit-wxm_encdet.$(OBJEXT) wxmedit-wxm_lines.$(OBJEXT) \
+	wxmedit-wxm_syntax.$(OBJEXT) wxmedit-wxm_undo.$(OBJEXT) \
+	wxmedit-xm_ublock_des.$(OBJEXT) wxmedit-xm_ublock.$(OBJEXT) \
+	wxmedit-xm_uutils.$(OBJEXT) wxmedit-wxm_case_conv.$(OBJEXT) \
+	wxmedit-wxm_encoding.$(OBJEXT) wxmedit-wxm_wx_icu.$(OBJEXT) \
 	wxmedit-trad_simp.$(OBJEXT) wxmedit-CharDistribution.$(OBJEXT) \
 	wxmedit-JpCntx.$(OBJEXT) wxmedit-LangBulgarianModel.$(OBJEXT) \
 	wxmedit-LangCyrillicModel.$(OBJEXT) \
@@ -102,6 +102,10 @@ am_wxmedit_OBJECTS = wxmedit-wxmedit_about_dialog.$(OBJEXT) \
 	wxmedit-nsUTF8Prober.$(OBJEXT) wxmedit-impl.$(OBJEXT)
 wxmedit_OBJECTS = $(am_wxmedit_OBJECTS)
 wxmedit_LDADD = $(LDADD)
+am_wxmedit_test_OBJECTS = wxm_encoding.$(OBJEXT) wxm_wx_icu.$(OBJEXT) \
+	test_singlebyte_conv.$(OBJEXT) test.$(OBJEXT)
+wxmedit_test_OBJECTS = $(am_wxmedit_test_OBJECTS)
+wxmedit_test_LDADD = $(LDADD)
 DEFAULT_INCLUDES = -I. -I$(srcdir) -I.
 depcomp = $(SHELL) $(top_srcdir)/depcomp
 am__depfiles_maybe = depfiles
@@ -114,8 +118,8 @@ COMPILE = $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
 	$(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
 CCLD = $(CC)
 LINK = $(CCLD) $(AM_CFLAGS) $(CFLAGS) $(AM_LDFLAGS) $(LDFLAGS) -o $@
-SOURCES = $(wxmedit_SOURCES)
-DIST_SOURCES = $(wxmedit_SOURCES)
+SOURCES = $(wxmedit_SOURCES) $(wxmedit_test_SOURCES)
+DIST_SOURCES = $(wxmedit_SOURCES) $(wxmedit_test_SOURCES)
 RECURSIVE_TARGETS = all-recursive check-recursive dvi-recursive \
 	html-recursive info-recursive install-data-recursive \
 	install-exec-recursive install-info-recursive \
@@ -412,6 +416,15 @@ wxmedit_SOURCES = src/wxmedit_about_dialog.cpp \
 	charset-detector/src/entry/impl.cpp \
 	charset-detector/include/chardetect.h
 
+wxmedit_test_SOURCES = src/wxmedit/ucs4_t.h \
+	src/xm/wxm_encoding.h \
+	src/xm/wxm_encoding.cpp \
+	src/xm/wxm_wx_icu.h \
+	src/xm/wxm_wx_icu.cpp \
+	test/test_singlebyte_conv.cpp \
+	test/test.h \
+	test/test.cpp
+
 pixmapsdir = $(datadir)/pixmaps
 pixmaps_DATA = wxmedit.xpm
 appdir = $(datadir)/applications
@@ -612,6 +625,9 @@ clean-binPROGRAMS:
 wxmedit$(EXEEXT): $(wxmedit_OBJECTS) $(wxmedit_DEPENDENCIES) 
 	@rm -f wxmedit$(EXEEXT)
 	$(CXXLINK) $(wxmedit_LDFLAGS) $(wxmedit_OBJECTS) $(wxmedit_LDADD) $(LIBS)
+wxmedit_test$(EXEEXT): $(wxmedit_test_OBJECTS) $(wxmedit_test_DEPENDENCIES) 
+	@rm -f wxmedit_test$(EXEEXT)
+	$(CXXLINK) $(wxmedit_test_LDFLAGS) $(wxmedit_test_OBJECTS) $(wxmedit_test_LDADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
@@ -619,6 +635,10 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/test.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/test_singlebyte_conv.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/wxm_encoding.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/wxm_wx_icu.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/wxmedit-CharDistribution.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/wxmedit-JpCntx.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/wxmedit-LangBulgarianModel.Po@am__quote@
@@ -627,37 +647,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/wxmedit-LangHebrewModel.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/wxmedit-LangHungarianModel.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/wxmedit-LangThaiModel.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/wxmedit-wxmedit_about_dialog.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/wxmedit-wxm_conv_enc_dialog.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/wxmedit-wxmedit.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/wxmedit-wxmedit_advanced.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/wxmedit-wxmedit_app.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/wxmedit-wxmedit_basic.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/wxmedit-wxmedit_command.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/wxmedit-wxmedit_frame.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/wxmedit-wxmedit_search.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/wxmedit-wxmedit_gtk.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/wxmedit-wxm_encdet.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/wxmedit-wxm_encoding.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/wxmedit-wxm_find_in_files_dialog.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/wxmedit-wxm_highlighting_dialog.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/wxmedit-wxm_lines.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/wxmedit-wxm_options_dialog.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/wxmedit-wxm_plugin.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/wxmedit-wxm_printout.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/wxmedit-wxm_replace_dialog.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/wxmedit-wxm_search_dialog.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/wxmedit-wxm_sort_dialog.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/wxmedit-wxm_syntax.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/wxmedit-wxm_undo.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/wxmedit-xm_ublock_des.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/wxmedit-xm_ublock.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/wxmedit-xm_uutils.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/wxmedit-wxm_case_conv.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/wxmedit-wxm_wx_icu.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/wxmedit-wxm_utils.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/wxmedit-wxm_word_count_dialog.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/wxmedit-trad_simp.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/wxmedit-caret_new.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/wxmedit-clipbrd_gtk.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/wxmedit-impl.Po@am__quote@
@@ -678,6 +667,37 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/wxmedit-nsSJISProber.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/wxmedit-nsUTF8Prober.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/wxmedit-nsUniversalDetector.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/wxmedit-trad_simp.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/wxmedit-wxm_case_conv.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/wxmedit-wxm_conv_enc_dialog.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/wxmedit-wxm_encdet.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/wxmedit-wxm_encoding.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/wxmedit-wxm_find_in_files_dialog.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/wxmedit-wxm_highlighting_dialog.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/wxmedit-wxm_lines.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/wxmedit-wxm_options_dialog.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/wxmedit-wxm_plugin.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/wxmedit-wxm_printout.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/wxmedit-wxm_replace_dialog.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/wxmedit-wxm_search_dialog.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/wxmedit-wxm_sort_dialog.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/wxmedit-wxm_syntax.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/wxmedit-wxm_undo.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/wxmedit-wxm_utils.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/wxmedit-wxm_word_count_dialog.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/wxmedit-wxm_wx_icu.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/wxmedit-wxmedit.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/wxmedit-wxmedit_about_dialog.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/wxmedit-wxmedit_advanced.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/wxmedit-wxmedit_app.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/wxmedit-wxmedit_basic.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/wxmedit-wxmedit_command.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/wxmedit-wxmedit_frame.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/wxmedit-wxmedit_gtk.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/wxmedit-wxmedit_search.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/wxmedit-xm_ublock.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/wxmedit-xm_ublock_des.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/wxmedit-xm_uutils.Po@am__quote@
 
 .cpp.o:
 @am__fastdepCXX_TRUE@	if $(CXXCOMPILE) -MT $@ -MD -MP -MF "$(DEPDIR)/$*.Tpo" -c -o $@ $<; \
@@ -1015,20 +1035,6 @@ wxmedit-wxm_encdet.obj: src/wxmedit/wxm_encdet.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -c -o wxmedit-wxm_encdet.obj `if test -f 'src/wxmedit/wxm_encdet.cpp'; then $(CYGPATH_W) 'src/wxmedit/wxm_encdet.cpp'; else $(CYGPATH_W) '$(srcdir)/src/wxmedit/wxm_encdet.cpp'; fi`
 
-wxmedit-wxm_encoding.o: src/xm/wxm_encoding.cpp
-@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -MT wxmedit-wxm_encoding.o -MD -MP -MF "$(DEPDIR)/wxmedit-wxm_encoding.Tpo" -c -o wxmedit-wxm_encoding.o `test -f 'src/xm/wxm_encoding.cpp' || echo '$(srcdir)/'`src/xm/wxm_encoding.cpp; \
-@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/wxmedit-wxm_encoding.Tpo" "$(DEPDIR)/wxmedit-wxm_encoding.Po"; else rm -f "$(DEPDIR)/wxmedit-wxm_encoding.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/xm/wxm_encoding.cpp' object='wxmedit-wxm_encoding.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -c -o wxmedit-wxm_encoding.o `test -f 'src/xm/wxm_encoding.cpp' || echo '$(srcdir)/'`src/xm/wxm_encoding.cpp
-
-wxmedit-wxm_encoding.obj: src/xm/wxm_encoding.cpp
-@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -MT wxmedit-wxm_encoding.obj -MD -MP -MF "$(DEPDIR)/wxmedit-wxm_encoding.Tpo" -c -o wxmedit-wxm_encoding.obj `if test -f 'src/xm/wxm_encoding.cpp'; then $(CYGPATH_W) 'src/xm/wxm_encoding.cpp'; else $(CYGPATH_W) '$(srcdir)/src/xm/wxm_encoding.cpp'; fi`; \
-@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/wxmedit-wxm_encoding.Tpo" "$(DEPDIR)/wxmedit-wxm_encoding.Po"; else rm -f "$(DEPDIR)/wxmedit-wxm_encoding.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/xm/wxm_encoding.cpp' object='wxmedit-wxm_encoding.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -c -o wxmedit-wxm_encoding.obj `if test -f 'src/xm/wxm_encoding.cpp'; then $(CYGPATH_W) 'src/xm/wxm_encoding.cpp'; else $(CYGPATH_W) '$(srcdir)/src/xm/wxm_encoding.cpp'; fi`
-
 wxmedit-wxm_lines.o: src/wxmedit/wxm_lines.cpp
 @am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -MT wxmedit-wxm_lines.o -MD -MP -MF "$(DEPDIR)/wxmedit-wxm_lines.Tpo" -c -o wxmedit-wxm_lines.o `test -f 'src/wxmedit/wxm_lines.cpp' || echo '$(srcdir)/'`src/wxmedit/wxm_lines.cpp; \
 @am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/wxmedit-wxm_lines.Tpo" "$(DEPDIR)/wxmedit-wxm_lines.Po"; else rm -f "$(DEPDIR)/wxmedit-wxm_lines.Tpo"; exit 1; fi
@@ -1126,6 +1132,20 @@ wxmedit-wxm_case_conv.obj: src/xm/wxm_case_conv.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/xm/wxm_case_conv.cpp' object='wxmedit-wxm_case_conv.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -c -o wxmedit-wxm_case_conv.obj `if test -f 'src/xm/wxm_case_conv.cpp'; then $(CYGPATH_W) 'src/xm/wxm_case_conv.cpp'; else $(CYGPATH_W) '$(srcdir)/src/xm/wxm_case_conv.cpp'; fi`
+
+wxmedit-wxm_encoding.o: src/xm/wxm_encoding.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -MT wxmedit-wxm_encoding.o -MD -MP -MF "$(DEPDIR)/wxmedit-wxm_encoding.Tpo" -c -o wxmedit-wxm_encoding.o `test -f 'src/xm/wxm_encoding.cpp' || echo '$(srcdir)/'`src/xm/wxm_encoding.cpp; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/wxmedit-wxm_encoding.Tpo" "$(DEPDIR)/wxmedit-wxm_encoding.Po"; else rm -f "$(DEPDIR)/wxmedit-wxm_encoding.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/xm/wxm_encoding.cpp' object='wxmedit-wxm_encoding.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -c -o wxmedit-wxm_encoding.o `test -f 'src/xm/wxm_encoding.cpp' || echo '$(srcdir)/'`src/xm/wxm_encoding.cpp
+
+wxmedit-wxm_encoding.obj: src/xm/wxm_encoding.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -MT wxmedit-wxm_encoding.obj -MD -MP -MF "$(DEPDIR)/wxmedit-wxm_encoding.Tpo" -c -o wxmedit-wxm_encoding.obj `if test -f 'src/xm/wxm_encoding.cpp'; then $(CYGPATH_W) 'src/xm/wxm_encoding.cpp'; else $(CYGPATH_W) '$(srcdir)/src/xm/wxm_encoding.cpp'; fi`; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/wxmedit-wxm_encoding.Tpo" "$(DEPDIR)/wxmedit-wxm_encoding.Po"; else rm -f "$(DEPDIR)/wxmedit-wxm_encoding.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/xm/wxm_encoding.cpp' object='wxmedit-wxm_encoding.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -c -o wxmedit-wxm_encoding.obj `if test -f 'src/xm/wxm_encoding.cpp'; then $(CYGPATH_W) 'src/xm/wxm_encoding.cpp'; else $(CYGPATH_W) '$(srcdir)/src/xm/wxm_encoding.cpp'; fi`
 
 wxmedit-wxm_wx_icu.o: src/xm/wxm_wx_icu.cpp
 @am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -MT wxmedit-wxm_wx_icu.o -MD -MP -MF "$(DEPDIR)/wxmedit-wxm_wx_icu.Tpo" -c -o wxmedit-wxm_wx_icu.o `test -f 'src/xm/wxm_wx_icu.cpp' || echo '$(srcdir)/'`src/xm/wxm_wx_icu.cpp; \
@@ -1518,6 +1538,62 @@ wxmedit-impl.obj: charset-detector/src/entry/impl.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='charset-detector/src/entry/impl.cpp' object='wxmedit-impl.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -c -o wxmedit-impl.obj `if test -f 'charset-detector/src/entry/impl.cpp'; then $(CYGPATH_W) 'charset-detector/src/entry/impl.cpp'; else $(CYGPATH_W) '$(srcdir)/charset-detector/src/entry/impl.cpp'; fi`
+
+wxm_encoding.o: src/xm/wxm_encoding.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT wxm_encoding.o -MD -MP -MF "$(DEPDIR)/wxm_encoding.Tpo" -c -o wxm_encoding.o `test -f 'src/xm/wxm_encoding.cpp' || echo '$(srcdir)/'`src/xm/wxm_encoding.cpp; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/wxm_encoding.Tpo" "$(DEPDIR)/wxm_encoding.Po"; else rm -f "$(DEPDIR)/wxm_encoding.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/xm/wxm_encoding.cpp' object='wxm_encoding.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o wxm_encoding.o `test -f 'src/xm/wxm_encoding.cpp' || echo '$(srcdir)/'`src/xm/wxm_encoding.cpp
+
+wxm_encoding.obj: src/xm/wxm_encoding.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT wxm_encoding.obj -MD -MP -MF "$(DEPDIR)/wxm_encoding.Tpo" -c -o wxm_encoding.obj `if test -f 'src/xm/wxm_encoding.cpp'; then $(CYGPATH_W) 'src/xm/wxm_encoding.cpp'; else $(CYGPATH_W) '$(srcdir)/src/xm/wxm_encoding.cpp'; fi`; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/wxm_encoding.Tpo" "$(DEPDIR)/wxm_encoding.Po"; else rm -f "$(DEPDIR)/wxm_encoding.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/xm/wxm_encoding.cpp' object='wxm_encoding.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o wxm_encoding.obj `if test -f 'src/xm/wxm_encoding.cpp'; then $(CYGPATH_W) 'src/xm/wxm_encoding.cpp'; else $(CYGPATH_W) '$(srcdir)/src/xm/wxm_encoding.cpp'; fi`
+
+wxm_wx_icu.o: src/xm/wxm_wx_icu.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT wxm_wx_icu.o -MD -MP -MF "$(DEPDIR)/wxm_wx_icu.Tpo" -c -o wxm_wx_icu.o `test -f 'src/xm/wxm_wx_icu.cpp' || echo '$(srcdir)/'`src/xm/wxm_wx_icu.cpp; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/wxm_wx_icu.Tpo" "$(DEPDIR)/wxm_wx_icu.Po"; else rm -f "$(DEPDIR)/wxm_wx_icu.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/xm/wxm_wx_icu.cpp' object='wxm_wx_icu.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o wxm_wx_icu.o `test -f 'src/xm/wxm_wx_icu.cpp' || echo '$(srcdir)/'`src/xm/wxm_wx_icu.cpp
+
+wxm_wx_icu.obj: src/xm/wxm_wx_icu.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT wxm_wx_icu.obj -MD -MP -MF "$(DEPDIR)/wxm_wx_icu.Tpo" -c -o wxm_wx_icu.obj `if test -f 'src/xm/wxm_wx_icu.cpp'; then $(CYGPATH_W) 'src/xm/wxm_wx_icu.cpp'; else $(CYGPATH_W) '$(srcdir)/src/xm/wxm_wx_icu.cpp'; fi`; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/wxm_wx_icu.Tpo" "$(DEPDIR)/wxm_wx_icu.Po"; else rm -f "$(DEPDIR)/wxm_wx_icu.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/xm/wxm_wx_icu.cpp' object='wxm_wx_icu.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o wxm_wx_icu.obj `if test -f 'src/xm/wxm_wx_icu.cpp'; then $(CYGPATH_W) 'src/xm/wxm_wx_icu.cpp'; else $(CYGPATH_W) '$(srcdir)/src/xm/wxm_wx_icu.cpp'; fi`
+
+test_singlebyte_conv.o: test/test_singlebyte_conv.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT test_singlebyte_conv.o -MD -MP -MF "$(DEPDIR)/test_singlebyte_conv.Tpo" -c -o test_singlebyte_conv.o `test -f 'test/test_singlebyte_conv.cpp' || echo '$(srcdir)/'`test/test_singlebyte_conv.cpp; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/test_singlebyte_conv.Tpo" "$(DEPDIR)/test_singlebyte_conv.Po"; else rm -f "$(DEPDIR)/test_singlebyte_conv.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='test/test_singlebyte_conv.cpp' object='test_singlebyte_conv.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o test_singlebyte_conv.o `test -f 'test/test_singlebyte_conv.cpp' || echo '$(srcdir)/'`test/test_singlebyte_conv.cpp
+
+test_singlebyte_conv.obj: test/test_singlebyte_conv.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT test_singlebyte_conv.obj -MD -MP -MF "$(DEPDIR)/test_singlebyte_conv.Tpo" -c -o test_singlebyte_conv.obj `if test -f 'test/test_singlebyte_conv.cpp'; then $(CYGPATH_W) 'test/test_singlebyte_conv.cpp'; else $(CYGPATH_W) '$(srcdir)/test/test_singlebyte_conv.cpp'; fi`; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/test_singlebyte_conv.Tpo" "$(DEPDIR)/test_singlebyte_conv.Po"; else rm -f "$(DEPDIR)/test_singlebyte_conv.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='test/test_singlebyte_conv.cpp' object='test_singlebyte_conv.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o test_singlebyte_conv.obj `if test -f 'test/test_singlebyte_conv.cpp'; then $(CYGPATH_W) 'test/test_singlebyte_conv.cpp'; else $(CYGPATH_W) '$(srcdir)/test/test_singlebyte_conv.cpp'; fi`
+
+test.o: test/test.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT test.o -MD -MP -MF "$(DEPDIR)/test.Tpo" -c -o test.o `test -f 'test/test.cpp' || echo '$(srcdir)/'`test/test.cpp; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/test.Tpo" "$(DEPDIR)/test.Po"; else rm -f "$(DEPDIR)/test.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='test/test.cpp' object='test.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o test.o `test -f 'test/test.cpp' || echo '$(srcdir)/'`test/test.cpp
+
+test.obj: test/test.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT test.obj -MD -MP -MF "$(DEPDIR)/test.Tpo" -c -o test.obj `if test -f 'test/test.cpp'; then $(CYGPATH_W) 'test/test.cpp'; else $(CYGPATH_W) '$(srcdir)/test/test.cpp'; fi`; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/test.Tpo" "$(DEPDIR)/test.Po"; else rm -f "$(DEPDIR)/test.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='test/test.cpp' object='test.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o test.obj `if test -f 'test/test.cpp'; then $(CYGPATH_W) 'test/test.cpp'; else $(CYGPATH_W) '$(srcdir)/test/test.cpp'; fi`
 uninstall-info-am:
 install-appDATA: $(app_DATA)
 	@$(NORMAL_INSTALL)
@@ -1689,7 +1765,7 @@ distclean-tags:
 distdir: $(DISTFILES)
 	$(am__remove_distdir)
 	mkdir $(distdir)
-	$(mkdir_p) $(distdir)/charset-detector $(distdir)/charset-detector/src $(distdir)/charset-detector/src/entry $(distdir)/charset-detector/src/tables $(distdir)/charset-detector/test $(distdir)/debian $(distdir)/devcpp $(distdir)/freebsd $(distdir)/images $(distdir)/libunicows $(distdir)/m4 $(distdir)/makefiles $(distdir)/po $(distdir)/src $(distdir)/src/plugin_example $(distdir)/vc71 $(distdir)/vc80
+	$(mkdir_p) $(distdir)/charset-detector $(distdir)/charset-detector/src $(distdir)/charset-detector/src/entry $(distdir)/charset-detector/src/tables $(distdir)/charset-detector/test $(distdir)/debian $(distdir)/devcpp $(distdir)/freebsd $(distdir)/images $(distdir)/libunicows $(distdir)/m4 $(distdir)/makefiles $(distdir)/po $(distdir)/src $(distdir)/src/plugin_example
 	@srcdirstrip=`echo "$(srcdir)" | sed 's|.|.|g'`; \
 	topsrcdirstrip=`echo "$(top_srcdir)" | sed 's|.|.|g'`; \
 	list='$(DISTFILES)'; for file in $$list; do \

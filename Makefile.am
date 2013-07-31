@@ -1,6 +1,6 @@
 SUBDIRS = syntax po
 
-bin_PROGRAMS = wxmedit
+bin_PROGRAMS = wxmedit wxmedit_test
 INCLUDES = -I$(top_srcdir)/charset-detector/include -I$(top_srcdir)/charset-detector/src -I$(top_srcdir)/charset-detector/src/tables
 wxmedit_CXXFLAGS = -DDATA_DIR=\"${datadir}\"
 wxmedit_SOURCES =	src/wxmedit_about_dialog.cpp \
@@ -116,6 +116,15 @@ wxmedit_SOURCES =	src/wxmedit_about_dialog.cpp \
 	charset-detector/src/prmem.h \
 	charset-detector/src/entry/impl.cpp \
 	charset-detector/include/chardetect.h
+
+wxmedit_test_SOURCES = src/wxmedit/ucs4_t.h \
+	src/xm/wxm_encoding.h \
+	src/xm/wxm_encoding.cpp \
+	src/xm/wxm_wx_icu.h \
+	src/xm/wxm_wx_icu.cpp \
+	test/test_singlebyte_conv.cpp \
+	test/test.h \
+	test/test.cpp
 
 pixmapsdir = $(datadir)/pixmaps
 pixmaps_DATA = wxmedit.xpm
