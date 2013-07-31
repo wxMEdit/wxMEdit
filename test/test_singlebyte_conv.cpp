@@ -8,12 +8,12 @@
 #include <map>
 #include <vector>
 #include <cassert>
-#include <stdint.h>
 
 typedef ucs4_t ByteArr[256];
 typedef std::map<std::string, const ByteArr*> B2UMap;
 B2UMap b2u;
-typedef std::map<ucs4_t, uint8_t> U2BDataMap;
+typedef unsigned char uchar_t_;
+typedef std::map<ucs4_t, uchar_t_> U2BDataMap;
 typedef std::map<std::string, const U2BDataMap*> U2BMap;
 U2BMap u2b;
 std::vector<std::string> enc_list;
