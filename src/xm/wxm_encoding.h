@@ -75,35 +75,36 @@ private:
 	}
 
 	void DoInit();
+	void AddEncoding(const std::string&encname, wxFontEncoding wxenc, WXMEncodingType entype);
 
 	WXMEncodingCreator()
-	: m_initialized(false), ms_sysenc_idx(-1), ms_sysenc(NULL)
+	: m_initialized(false), m_sysenc_idx(-1), m_sysenc(NULL)
 	{
 		DoInit();
 		m_initialized = true;
 	}
 
 	bool m_initialized;
-	ssize_t ms_sysenc_idx;
-	WXMEncoding *ms_sysenc;
+	ssize_t m_sysenc_idx;
+	WXMEncoding *m_sysenc;
 
 	typedef std::map<std::string, wxFontEncoding> WXEncMap;
-	WXEncMap ms_wxenc_map;
+	WXEncMap m_wxenc_map;
 
-	std::vector<wxString> ms_wxenc_list;
-	std::vector<std::string> ms_enc_list;
+	std::vector<wxString> m_wxenc_list;
+	std::vector<std::string> m_enc_list;
 
 	typedef std::map<wxString, wxFontEncoding> WXNameEncMap;
 	typedef std::map<wxFontEncoding, wxString> WXEncNameMap;
 	typedef std::map<wxFontEncoding, WXMEncodingType> WXEncTypeMap;
 	typedef std::map<wxFontEncoding, wxString> WXEncFontMap;
-	WXNameEncMap ms_wxnameenc_map;
-	WXEncNameMap ms_wxencname_map;
-	WXEncTypeMap ms_wxenctype_map;
-	WXEncFontMap ms_wxencfont_map;
+	WXNameEncMap m_wxnameenc_map;
+	WXEncNameMap m_wxencname_map;
+	WXEncTypeMap m_wxenctype_map;
+	WXEncFontMap m_wxencfont_map;
 
 	typedef std::map<ssize_t, WXMEncoding*> WXEncInstMap;
-	WXEncInstMap ms_inst_map;
+	WXEncInstMap m_inst_map;
 };
 
 struct WXMEncoding: private boost::noncopyable
@@ -151,8 +152,8 @@ public:
 
 struct WXMEncodingMultiByte: public WXMEncoding
 {
-    virtual void MultiByteInit() = 0;
-    virtual ucs4_t MultiBytetoUCS4(wxByte* buf) = 0;
+	virtual void MultiByteInit() = 0;
+	virtual ucs4_t MultiBytetoUCS4(wxByte* buf) = 0;
 	virtual void Create(ssize_t idx);
 
 protected:
@@ -192,9 +193,9 @@ struct Windows874TableFixer: public EncodingTableFixer
 
 struct WXMEncodingSingleByte: public WXMEncodingMultiByte
 {
-    virtual void MultiByteInit();
-    virtual ucs4_t MultiBytetoUCS4(wxByte* buf);
-    virtual size_t UCS4toMultiByte(ucs4_t ucs4, wxByte* buf);
+	virtual void MultiByteInit();
+	virtual ucs4_t MultiBytetoUCS4(wxByte* buf);
+	virtual size_t UCS4toMultiByte(ucs4_t ucs4, wxByte* buf);
 private:
 	ICUConverter* m_icucnv;
 	ByteUnicodeArr m_tounicode;
@@ -214,15 +215,15 @@ private:
 
 struct WXMEncodingDoubleByte: public WXMEncodingMultiByte
 {
-    virtual void MultiByteInit();
-    virtual bool IsLeadByte(wxByte byte);
-    virtual ucs4_t MultiBytetoUCS4(wxByte* buf);
-    virtual size_t UCS4toMultiByte(ucs4_t ucs4, wxByte* buf);
+	virtual void MultiByteInit();
+	virtual bool IsLeadByte(wxByte byte);
+	virtual ucs4_t MultiBytetoUCS4(wxByte* buf);
+	virtual size_t UCS4toMultiByte(ucs4_t ucs4, wxByte* buf);
 private:
-    wxCSConv        *m_CSConv;
-    wxByte          *m_LeadByte_Table;  // DBCS Lead-Byte table, 0:unset, 1:IsLeadByte, 0xFF:NotLeadByte
-    ucs2_t          *m_MBtoWC_Table;    // MultiByte To WideChar table
-    wxWord          *m_WCtoMB_Table;    // WideChar To MultiByte table
+	wxCSConv        *m_CSConv;
+	wxByte          *m_LeadByte_Table;  // DBCS Lead-Byte table, 0:unset, 1:IsLeadByte, 0xFF:NotLeadByte
+	ucs2_t          *m_MBtoWC_Table;    // MultiByte To WideChar table
+	wxWord          *m_WCtoMB_Table;    // WideChar To MultiByte table
 
 	friend WXMEncoding* WXMEncodingCreator::CreateWxmEncoding(ssize_t idx);
 	WXMEncodingDoubleByte(): m_CSConv(NULL), m_LeadByte_Table(NULL), m_MBtoWC_Table(NULL), m_WCtoMB_Table(NULL)
@@ -239,7 +240,7 @@ private:
 
 struct WXMEncodingUTF8: public WXMEncoding
 {
-    virtual size_t UCS4toMultiByte(ucs4_t ucs4, wxByte* buf);
+	virtual size_t UCS4toMultiByte(ucs4_t ucs4, wxByte* buf);
 private:
 	friend WXMEncoding* WXMEncodingCreator::CreateWxmEncoding(ssize_t idx);
 	WXMEncodingUTF8(){}
@@ -248,7 +249,7 @@ private:
 
 struct WXMEncodingUTF16LE: public WXMEncoding
 {
-    virtual size_t UCS4toMultiByte(ucs4_t ucs4, wxByte* buf);
+	virtual size_t UCS4toMultiByte(ucs4_t ucs4, wxByte* buf);
 private:
 	friend WXMEncoding* WXMEncodingCreator::CreateWxmEncoding(ssize_t idx);
 	WXMEncodingUTF16LE(){}
@@ -257,7 +258,7 @@ private:
 
 struct WXMEncodingUTF16BE: public WXMEncoding
 {
-    virtual size_t UCS4toMultiByte(ucs4_t ucs4, wxByte* buf);
+	virtual size_t UCS4toMultiByte(ucs4_t ucs4, wxByte* buf);
 private:
 	friend WXMEncoding* WXMEncodingCreator::CreateWxmEncoding(ssize_t idx);
 	WXMEncodingUTF16BE(){}
@@ -266,7 +267,7 @@ private:
 
 struct WXMEncodingUTF32LE: public WXMEncoding
 {
-    virtual size_t UCS4toMultiByte(ucs4_t ucs4, wxByte* buf);
+	virtual size_t UCS4toMultiByte(ucs4_t ucs4, wxByte* buf);
 private:
 	friend WXMEncoding* WXMEncodingCreator::CreateWxmEncoding(ssize_t idx);
 	WXMEncodingUTF32LE(){}
@@ -275,7 +276,7 @@ private:
 
 struct WXMEncodingUTF32BE: public WXMEncoding
 {
-    virtual size_t UCS4toMultiByte(ucs4_t ucs4, wxByte* buf);
+	virtual size_t UCS4toMultiByte(ucs4_t ucs4, wxByte* buf);
 private:
 	friend WXMEncoding* WXMEncodingCreator::CreateWxmEncoding(ssize_t idx);
 	WXMEncodingUTF32BE(){}
