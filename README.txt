@@ -80,12 +80,12 @@ Syntax files, Locale files and Settings:
 ChangeLog:
 ----------
 wxMEdit v2.9.4:
-1.change Unicode escape to ICU code point format {U+XXXX}-{U+XXXXXX}.
-2.introduce Bakefile building system and remove MSVC/MinGW building files.
-3.refactor encoding implementation.
-4.add test case for conversion between Unicode and Single-Byte Encoding.
-5.fix incorrect conversion between Unicode and Single-Byte Encoding.
-6.add CP866 and KOI8-R support.
+1.changed Unicode escape to ICU code point format {U+XXXX}-{U+XXXXXX}.
+2.introduced Bakefile building system and removed MSVC/MinGW building files.
+3.refactored encoding implementation.
+4.added test case for conversion between Unicode and Single-Byte Encoding.
+5.fixed incorrect conversion between Unicode and Single-Byte Encoding.
+6.added CP866 and KOI8-R support.
 
 wxMEdit v2.9.3:
 1.replaced Word Counter with ICU implemention and partly changed the counter rules.
