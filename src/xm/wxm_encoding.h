@@ -98,10 +98,12 @@ private:
 	typedef std::map<wxFontEncoding, wxString> WXEncNameMap;
 	typedef std::map<wxFontEncoding, WXMEncodingType> WXEncTypeMap;
 	typedef std::map<wxFontEncoding, wxString> WXEncFontMap;
+	typedef std::map<wxFontEncoding, wxString> WXEncDescMap;
 	WXNameEncMap m_wxnameenc_map;
 	WXEncNameMap m_wxencname_map;
 	WXEncTypeMap m_wxenctype_map;
 	WXEncFontMap m_wxencfont_map;
+	WXEncDescMap m_wxencdesc_map;
 
 	typedef std::map<ssize_t, WXMEncoding*> WXEncInstMap;
 	WXEncInstMap m_inst_map;
@@ -181,7 +183,12 @@ struct EncodingTableFixer
 	virtual void fix(ByteUnicodeArr& toutab, UnicodeByteMap& fromutab) {}
 };
 
-struct CP437TableFixer: public EncodingTableFixer
+struct OEMTableFixer: public EncodingTableFixer
+{
+	virtual void fix(ByteUnicodeArr& toutab, UnicodeByteMap& fromutab);
+};
+
+struct CP437TableFixer: public OEMTableFixer
 {
 	virtual void fix(ByteUnicodeArr& toutab, UnicodeByteMap& fromutab);
 };

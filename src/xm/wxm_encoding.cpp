@@ -101,6 +101,8 @@ void WXMEncodingCreator::DoInit()
 	AddEncoding("Windows-1256", wxFONTENCODING_CP1256, etSingleByte);
 	AddEncoding("Windows-1257", wxFONTENCODING_CP1257, etSingleByte);
 	AddEncoding("CP437", wxFONTENCODING_CP437, etSingleByte);
+	AddEncoding("CP866", wxFONTENCODING_CP866, etSingleByte);
+	AddEncoding("KOI8-R", wxFONTENCODING_KOI8, etSingleByte);
 	AddEncoding("CP932", wxFONTENCODING_CP932, etDoubleByte);
 	AddEncoding("CP936", wxFONTENCODING_CP936, etDoubleByte);
 	AddEncoding("CP949", wxFONTENCODING_CP949, etDoubleByte);
@@ -131,6 +133,8 @@ void WXMEncodingCreator::DoInit()
 	m_wxencfont_map[wxFONTENCODING_CP950] = GetMSCPFontName(wxT("950"));
 	m_wxencfont_map[wxFONTENCODING_EUC_JP] = GetMSCPFontName(wxT("51932"));
 
+	m_wxencdesc_map[wxFONTENCODING_CP866] = wxT("Windows/DOS OEM - Cyrillic (CP 866)");
+
 	m_sysenc_idx = AdjustIndex(m_sysenc_idx);
 }
 
@@ -160,7 +164,11 @@ wxString WXMEncodingCreator::GetEncodingName(ssize_t idx)
 
 wxString WXMEncodingCreator::GetEncodingDescription(ssize_t idx)
 {
-	return wxFontMapper::GetEncodingDescription(IdxToEncoding(idx));
+	WXEncDescMap::const_iterator it = m_wxencdesc_map.find(IdxToEncoding(idx));
+	if (it == m_wxencdesc_map.end())
+		return wxFontMapper::GetEncodingDescription(IdxToEncoding(idx));
+
+	return it->second;
 }
 
 wxString WXMEncodingCreator::GetEncodingFontName(ssize_t idx)
@@ -358,17 +366,24 @@ void WXMEncodingMultiByte::Create(ssize_t idx)
 	MultiByteInit();
 }
 
-void CP437TableFixer::fix(ByteUnicodeArr& toutab, UnicodeByteMap& fromutab)
+void OEMTableFixer::fix(ByteUnicodeArr& toutab, UnicodeByteMap& fromutab)
 {
 	toutab[0x1A] = 0x00001A;
 	toutab[0x1C] = 0x00001C;
 	toutab[0x7f] = 0x00007f;
-	toutab[0xE6] = 0x0000B5;
 
-	fromutab.erase(0x0003BC);
 	fromutab[0x00001A] = 0x1A;
 	fromutab[0x00001C] = 0x1C;
 	fromutab[0x00007F] = 0x7F;
+}
+
+void CP437TableFixer::fix(ByteUnicodeArr& toutab, UnicodeByteMap& fromutab)
+{
+	OEMTableFixer::fix(toutab, fromutab);
+
+	toutab[0xE6] = 0x0000B5;
+
+	fromutab.erase(0x0003BC);
 	fromutab[0x0000B5] = 0xE6;
 }
 
@@ -397,6 +412,8 @@ EncodingTableFixer* WXMEncodingSingleByte::CreateEncodingTableFixer()
 {
 	if (m_name == wxT("CP437"))
 		return new CP437TableFixer();
+	if (m_name == wxT("CP866"))
+		return new OEMTableFixer();
 	if (m_name == wxT("Windows-874"))
 		return new Windows874TableFixer();
 	return new EncodingTableFixer();
