@@ -148,9 +148,11 @@ void WXMEncodingCreator::FreeEncodings()
 {
 	BOOST_FOREACH(WXEncInstMap::value_type val, m_inst_map)
 		delete val.second;
+	m_inst_map.clear();
 
 	if (m_sysenc)
 		delete m_sysenc;
+	m_sysenc = NULL;
 
 	m_initialized = false;
 }
