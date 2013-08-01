@@ -101,8 +101,12 @@ void WXMEncodingCreator::DoInit()
 	AddEncoding("Windows-1256", wxFONTENCODING_CP1256, etSingleByte);
 	AddEncoding("Windows-1257", wxFONTENCODING_CP1257, etSingleByte);
 	AddEncoding("CP437", wxFONTENCODING_CP437, etSingleByte);
+	AddEncoding("CP850", wxFONTENCODING_CP850, etSingleByte);
+	AddEncoding("CP852", wxFONTENCODING_CP852, etSingleByte);
+	AddEncoding("CP855", wxFONTENCODING_CP855, etSingleByte);
 	AddEncoding("CP866", wxFONTENCODING_CP866, etSingleByte);
 	AddEncoding("KOI8-R", wxFONTENCODING_KOI8, etSingleByte);
+	AddEncoding("KOI8-U", wxFONTENCODING_KOI8_U, etSingleByte);
 	AddEncoding("CP932", wxFONTENCODING_CP932, etDoubleByte);
 	AddEncoding("CP936", wxFONTENCODING_CP936, etDoubleByte);
 	AddEncoding("CP949", wxFONTENCODING_CP949, etDoubleByte);
@@ -133,6 +137,9 @@ void WXMEncodingCreator::DoInit()
 	m_wxencfont_map[wxFONTENCODING_CP950] = GetMSCPFontName(wxT("950"));
 	m_wxencfont_map[wxFONTENCODING_EUC_JP] = GetMSCPFontName(wxT("51932"));
 
+	m_wxencdesc_map[wxFONTENCODING_CP850] = wxT("Windows/DOS OEM - Latin 1 (CP 850)");
+	m_wxencdesc_map[wxFONTENCODING_CP852] = wxT("Windows/DOS OEM - Latin 2 (CP 852)");
+	m_wxencdesc_map[wxFONTENCODING_CP855] = wxT("Windows/DOS OEM - Cyrillic (CP 855)");
 	m_wxencdesc_map[wxFONTENCODING_CP866] = wxT("Windows/DOS OEM - Cyrillic (CP 866)");
 
 	m_sysenc_idx = AdjustIndex(m_sysenc_idx);
@@ -412,6 +419,16 @@ void CP437TableFixer::fix(ByteUnicodeArr& toutab, UnicodeByteMap& fromutab)
 	fromutab[0x0000B5] = 0xE6;
 }
 
+void CP852TableFixer::fix(ByteUnicodeArr& toutab, UnicodeByteMap& fromutab)
+{
+	OEMTableFixer::fix(toutab, fromutab);
+
+	toutab[0xAA] = 0x0000AC;
+
+	fromutab.erase(0x0000AA);
+	fromutab[0x0000AC] = 0xAA;
+}
+
 void Windows874TableFixer::fix(ByteUnicodeArr& toutab, UnicodeByteMap& fromutab)
 {
 	toutab[0xDB] = 0x0000DB;
@@ -437,8 +454,10 @@ EncodingTableFixer* WXMEncodingSingleByte::CreateEncodingTableFixer()
 {
 	if (m_name == wxT("CP437"))
 		return new CP437TableFixer();
-	if (m_name == wxT("CP866"))
+	if (m_name == wxT("CP850") || m_name == wxT("CP855") || m_name == wxT("CP866"))
 		return new OEMTableFixer();
+	if (m_name == wxT("CP852"))
+		return new CP852TableFixer();
 	if (m_name == wxT("Windows-874"))
 		return new Windows874TableFixer();
 	return new EncodingTableFixer();

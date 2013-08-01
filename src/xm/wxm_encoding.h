@@ -193,6 +193,11 @@ struct CP437TableFixer: public OEMTableFixer
 	virtual void fix(ByteUnicodeArr& toutab, UnicodeByteMap& fromutab);
 };
 
+struct CP852TableFixer: public OEMTableFixer
+{
+	virtual void fix(ByteUnicodeArr& toutab, UnicodeByteMap& fromutab);
+};
+
 struct Windows874TableFixer: public EncodingTableFixer
 {
 	virtual void fix(ByteUnicodeArr& toutab, UnicodeByteMap& fromutab);
