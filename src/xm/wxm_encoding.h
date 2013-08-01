@@ -75,7 +75,7 @@ private:
 	}
 
 	void DoInit();
-	void AddEncoding(const std::string&encname, wxFontEncoding wxenc, WXMEncodingType entype);
+	void AddEncoding(const std::string&encname, wxFontEncoding wxenc, WXMEncodingType entype=etSingleByte);
 
 	WXMEncodingCreator()
 	: m_initialized(false), m_sysenc_idx(-1), m_sysenc(NULL)
@@ -92,7 +92,6 @@ private:
 	WXEncMap m_wxenc_map;
 
 	std::vector<wxString> m_wxenc_list;
-	std::vector<std::string> m_enc_list;
 
 	typedef std::map<wxString, wxFontEncoding> WXNameEncMap;
 	typedef std::map<wxFontEncoding, wxString> WXEncNameMap;

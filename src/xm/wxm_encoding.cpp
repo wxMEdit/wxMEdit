@@ -71,42 +71,48 @@ void WXMEncodingCreator::AddEncoding(const std::string&encname, wxFontEncoding w
 {
 	m_wxenc_map[encname] = wxenc;
 	m_wxenctype_map[wxenc] = entype;
+
+	wxString wxencname(encname.c_str(), wxConvUTF8);
+
+	m_wxenc_list.push_back(wxencname);
+	m_wxnameenc_map[wxencname] = wxenc;
+	m_wxencname_map[wxenc] = wxencname;
 }
 
 void WXMEncodingCreator::DoInit()
 {
 	wxLogNull nolog;
 
-	AddEncoding("ISO-8859-1", wxFONTENCODING_ISO8859_1, etSingleByte);
-	AddEncoding("ISO-8859-2", wxFONTENCODING_ISO8859_2, etSingleByte);
-	AddEncoding("ISO-8859-3", wxFONTENCODING_ISO8859_3, etSingleByte);
-	AddEncoding("ISO-8859-4", wxFONTENCODING_ISO8859_4, etSingleByte);
-	AddEncoding("ISO-8859-5", wxFONTENCODING_ISO8859_5, etSingleByte);
-	AddEncoding("ISO-8859-6", wxFONTENCODING_ISO8859_6, etSingleByte);
-	AddEncoding("ISO-8859-7", wxFONTENCODING_ISO8859_7, etSingleByte);
-	AddEncoding("ISO-8859-8", wxFONTENCODING_ISO8859_8, etSingleByte);
-	AddEncoding("ISO-8859-9", wxFONTENCODING_ISO8859_9, etSingleByte);
-	AddEncoding("ISO-8859-10", wxFONTENCODING_ISO8859_10, etSingleByte);
-	AddEncoding("ISO-8859-11", wxFONTENCODING_ISO8859_11, etSingleByte);
-	AddEncoding("ISO-8859-13", wxFONTENCODING_ISO8859_13, etSingleByte);
-	AddEncoding("ISO-8859-14", wxFONTENCODING_ISO8859_14, etSingleByte);
-	AddEncoding("ISO-8859-15", wxFONTENCODING_ISO8859_15, etSingleByte);
-	AddEncoding("Windows-874", wxFONTENCODING_CP874, etSingleByte);
-	AddEncoding("Windows-1250", wxFONTENCODING_CP1250, etSingleByte);
-	AddEncoding("Windows-1251", wxFONTENCODING_CP1251, etSingleByte);
-	AddEncoding("Windows-1252", wxFONTENCODING_CP1252, etSingleByte);
-	AddEncoding("Windows-1253", wxFONTENCODING_CP1253, etSingleByte);
-	AddEncoding("Windows-1254", wxFONTENCODING_CP1254, etSingleByte);
-	AddEncoding("Windows-1255", wxFONTENCODING_CP1255, etSingleByte);
-	AddEncoding("Windows-1256", wxFONTENCODING_CP1256, etSingleByte);
-	AddEncoding("Windows-1257", wxFONTENCODING_CP1257, etSingleByte);
-	AddEncoding("CP437", wxFONTENCODING_CP437, etSingleByte);
-	AddEncoding("CP850", wxFONTENCODING_CP850, etSingleByte);
-	AddEncoding("CP852", wxFONTENCODING_CP852, etSingleByte);
-	AddEncoding("CP855", wxFONTENCODING_CP855, etSingleByte);
-	AddEncoding("CP866", wxFONTENCODING_CP866, etSingleByte);
-	AddEncoding("KOI8-R", wxFONTENCODING_KOI8, etSingleByte);
-	AddEncoding("KOI8-U", wxFONTENCODING_KOI8_U, etSingleByte);
+	AddEncoding("ISO-8859-1", wxFONTENCODING_ISO8859_1);
+	AddEncoding("ISO-8859-2", wxFONTENCODING_ISO8859_2);
+	AddEncoding("ISO-8859-3", wxFONTENCODING_ISO8859_3);
+	AddEncoding("ISO-8859-4", wxFONTENCODING_ISO8859_4);
+	AddEncoding("ISO-8859-5", wxFONTENCODING_ISO8859_5);
+	AddEncoding("ISO-8859-6", wxFONTENCODING_ISO8859_6);
+	AddEncoding("ISO-8859-7", wxFONTENCODING_ISO8859_7);
+	AddEncoding("ISO-8859-8", wxFONTENCODING_ISO8859_8);
+	AddEncoding("ISO-8859-9", wxFONTENCODING_ISO8859_9);
+	AddEncoding("ISO-8859-10", wxFONTENCODING_ISO8859_10);
+	AddEncoding("ISO-8859-11", wxFONTENCODING_ISO8859_11);
+	AddEncoding("ISO-8859-13", wxFONTENCODING_ISO8859_13);
+	AddEncoding("ISO-8859-14", wxFONTENCODING_ISO8859_14);
+	AddEncoding("ISO-8859-15", wxFONTENCODING_ISO8859_15);
+	AddEncoding("Windows-874", wxFONTENCODING_CP874);
+	AddEncoding("Windows-1250", wxFONTENCODING_CP1250);
+	AddEncoding("Windows-1251", wxFONTENCODING_CP1251);
+	AddEncoding("Windows-1252", wxFONTENCODING_CP1252);
+	AddEncoding("Windows-1253", wxFONTENCODING_CP1253);
+	AddEncoding("Windows-1254", wxFONTENCODING_CP1254);
+	AddEncoding("Windows-1255", wxFONTENCODING_CP1255);
+	AddEncoding("Windows-1256", wxFONTENCODING_CP1256);
+	AddEncoding("Windows-1257", wxFONTENCODING_CP1257);
+	AddEncoding("CP437", wxFONTENCODING_CP437);
+	AddEncoding("CP850", wxFONTENCODING_CP850);
+	AddEncoding("CP852", wxFONTENCODING_CP852);
+	AddEncoding("CP855", wxFONTENCODING_CP855);
+	AddEncoding("CP866", wxFONTENCODING_CP866);
+	AddEncoding("KOI8-R", wxFONTENCODING_KOI8);
+	AddEncoding("KOI8-U", wxFONTENCODING_KOI8_U);
 	AddEncoding("CP932", wxFONTENCODING_CP932, etDoubleByte);
 	AddEncoding("CP936", wxFONTENCODING_CP936, etDoubleByte);
 	AddEncoding("CP949", wxFONTENCODING_CP949, etDoubleByte);
@@ -117,18 +123,6 @@ void WXMEncodingCreator::DoInit()
 	AddEncoding("UTF-16BE", wxFONTENCODING_UTF16BE, etUTF16BE);
 	AddEncoding("UTF-32LE", wxFONTENCODING_UTF32LE, etUTF32LE);
 	AddEncoding("UTF-32BE", wxFONTENCODING_UTF32BE, etUTF32BE);
-
-	BOOST_FOREACH(const WXEncMap::value_type& val, m_wxenc_map)
-	{
-		std::string encname = val.first;
-		wxFontEncoding wxenc = val.second;
-		wxString wxencname(encname.c_str(), wxConvUTF8);
-
-		m_wxenc_list.push_back(wxencname);
-		m_enc_list.push_back(encname);
-		m_wxnameenc_map[wxencname] = wxenc;
-		m_wxencname_map[wxenc] = wxencname;
-	}
 	
 	m_wxencfont_map[wxFONTENCODING_CP874] = GetMSCPFontName(wxT("874"));
 	m_wxencfont_map[wxFONTENCODING_CP932] = GetMSCPFontName(wxT("932"));
