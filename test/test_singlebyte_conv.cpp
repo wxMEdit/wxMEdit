@@ -1,13 +1,9 @@
 #include "test.h"
-#include "../src/xm/wxm_encoding.h"
+#include "../src/wxmedit/ucs4_t.h"
 #include <boost/format.hpp>
-#include <boost/foreach.hpp>
-#include <boost/test/minimal.hpp>
-#include <iostream>
 #include <string>
 #include <map>
 #include <vector>
-#include <cassert>
 
 typedef ucs4_t ByteArr[256];
 typedef std::map<std::string, const ByteArr*> B2UMap;
@@ -16,11 +12,11 @@ typedef unsigned char uchar_t_;
 typedef std::map<ucs4_t, uchar_t_> U2BDataMap;
 typedef std::map<std::string, const U2BDataMap*> U2BMap;
 U2BMap u2b;
-std::vector<std::string> enc_list;
+std::vector<std::string> test_singlebyte_conv_enc_list;
 
-void init()
+void test_singlebyte_conv_init()
 {
-enc_list.push_back("CP437");
+test_singlebyte_conv_enc_list.push_back("CP437");
 
 static ucs4_t b2u_cp437[] = {
 0x000000, 0x000001, 0x000002, 0x000003, 0x000004, 0x000005, 0x000006, 0x000007, 
@@ -317,7 +313,7 @@ u2b_cp437[0x0025A0] = 0xFE;
 // u2b_cp437.size() == 255
 u2b["CP437"] = &u2b_cp437;
 
-enc_list.push_back("CP850");
+test_singlebyte_conv_enc_list.push_back("CP850");
 
 static ucs4_t b2u_cp850[] = {
 0x000000, 0x000001, 0x000002, 0x000003, 0x000004, 0x000005, 0x000006, 0x000007, 
@@ -614,7 +610,7 @@ u2b_cp850[0x0025A0] = 0xFE;
 // u2b_cp850.size() == 255
 u2b["CP850"] = &u2b_cp850;
 
-enc_list.push_back("CP852");
+test_singlebyte_conv_enc_list.push_back("CP852");
 
 static ucs4_t b2u_cp852[] = {
 0x000000, 0x000001, 0x000002, 0x000003, 0x000004, 0x000005, 0x000006, 0x000007, 
@@ -911,7 +907,7 @@ u2b_cp852[0x0025A0] = 0xFE;
 // u2b_cp852.size() == 255
 u2b["CP852"] = &u2b_cp852;
 
-enc_list.push_back("CP855");
+test_singlebyte_conv_enc_list.push_back("CP855");
 
 static ucs4_t b2u_cp855[] = {
 0x000000, 0x000001, 0x000002, 0x000003, 0x000004, 0x000005, 0x000006, 0x000007, 
@@ -1208,7 +1204,7 @@ u2b_cp855[0x0025A0] = 0xFE;
 // u2b_cp855.size() == 255
 u2b["CP855"] = &u2b_cp855;
 
-enc_list.push_back("CP866");
+test_singlebyte_conv_enc_list.push_back("CP866");
 
 static ucs4_t b2u_cp866[] = {
 0x000000, 0x000001, 0x000002, 0x000003, 0x000004, 0x000005, 0x000006, 0x000007, 
@@ -1505,7 +1501,7 @@ u2b_cp866[0x0025A0] = 0xFE;
 // u2b_cp866.size() == 255
 u2b["CP866"] = &u2b_cp866;
 
-enc_list.push_back("ISO-8859-1");
+test_singlebyte_conv_enc_list.push_back("ISO-8859-1");
 
 static ucs4_t b2u_iso8859_1[] = {
 0x000000, 0x000001, 0x000002, 0x000003, 0x000004, 0x000005, 0x000006, 0x000007, 
@@ -1802,7 +1798,7 @@ u2b_iso8859_1[0x0000FF] = 0xFF;
 // u2b_iso8859_1.size() == 255
 u2b["ISO-8859-1"] = &u2b_iso8859_1;
 
-enc_list.push_back("ISO-8859-2");
+test_singlebyte_conv_enc_list.push_back("ISO-8859-2");
 
 static ucs4_t b2u_iso8859_2[] = {
 0x000000, 0x000001, 0x000002, 0x000003, 0x000004, 0x000005, 0x000006, 0x000007, 
@@ -2099,7 +2095,7 @@ u2b_iso8859_2[0x0002DD] = 0xBD;
 // u2b_iso8859_2.size() == 255
 u2b["ISO-8859-2"] = &u2b_iso8859_2;
 
-enc_list.push_back("ISO-8859-3");
+test_singlebyte_conv_enc_list.push_back("ISO-8859-3");
 
 static ucs4_t b2u_iso8859_3[] = {
 0x000000, 0x000001, 0x000002, 0x000003, 0x000004, 0x000005, 0x000006, 0x000007, 
@@ -2396,7 +2392,7 @@ u2b_iso8859_3[0x0002D9] = 0xFF;
 // u2b_iso8859_3.size() == 255
 u2b["ISO-8859-3"] = &u2b_iso8859_3;
 
-enc_list.push_back("ISO-8859-4");
+test_singlebyte_conv_enc_list.push_back("ISO-8859-4");
 
 static ucs4_t b2u_iso8859_4[] = {
 0x000000, 0x000001, 0x000002, 0x000003, 0x000004, 0x000005, 0x000006, 0x000007, 
@@ -2693,7 +2689,7 @@ u2b_iso8859_4[0x0002DB] = 0xB2;
 // u2b_iso8859_4.size() == 255
 u2b["ISO-8859-4"] = &u2b_iso8859_4;
 
-enc_list.push_back("ISO-8859-5");
+test_singlebyte_conv_enc_list.push_back("ISO-8859-5");
 
 static ucs4_t b2u_iso8859_5[] = {
 0x000000, 0x000001, 0x000002, 0x000003, 0x000004, 0x000005, 0x000006, 0x000007, 
@@ -2990,7 +2986,7 @@ u2b_iso8859_5[0x002116] = 0xF0;
 // u2b_iso8859_5.size() == 255
 u2b["ISO-8859-5"] = &u2b_iso8859_5;
 
-enc_list.push_back("ISO-8859-6");
+test_singlebyte_conv_enc_list.push_back("ISO-8859-6");
 
 static ucs4_t b2u_iso8859_6[] = {
 0x000000, 0x000001, 0x000002, 0x000003, 0x000004, 0x000005, 0x000006, 0x000007, 
@@ -3287,7 +3283,7 @@ u2b_iso8859_6[0x000652] = 0xF2;
 // u2b_iso8859_6.size() == 255
 u2b["ISO-8859-6"] = &u2b_iso8859_6;
 
-enc_list.push_back("ISO-8859-7");
+test_singlebyte_conv_enc_list.push_back("ISO-8859-7");
 
 static ucs4_t b2u_iso8859_7[] = {
 0x000000, 0x000001, 0x000002, 0x000003, 0x000004, 0x000005, 0x000006, 0x000007, 
@@ -3584,7 +3580,7 @@ u2b_iso8859_7[0x0020AF] = 0xA5;
 // u2b_iso8859_7.size() == 255
 u2b["ISO-8859-7"] = &u2b_iso8859_7;
 
-enc_list.push_back("ISO-8859-8");
+test_singlebyte_conv_enc_list.push_back("ISO-8859-8");
 
 static ucs4_t b2u_iso8859_8[] = {
 0x000000, 0x000001, 0x000002, 0x000003, 0x000004, 0x000005, 0x000006, 0x000007, 
@@ -3880,7 +3876,7 @@ u2b_iso8859_8[0x002017] = 0xDF;
 // u2b_iso8859_8.size() == 254
 u2b["ISO-8859-8"] = &u2b_iso8859_8;
 
-enc_list.push_back("ISO-8859-9");
+test_singlebyte_conv_enc_list.push_back("ISO-8859-9");
 
 static ucs4_t b2u_iso8859_9[] = {
 0x000000, 0x000001, 0x000002, 0x000003, 0x000004, 0x000005, 0x000006, 0x000007, 
@@ -4177,7 +4173,7 @@ u2b_iso8859_9[0x00015F] = 0xFE;
 // u2b_iso8859_9.size() == 255
 u2b["ISO-8859-9"] = &u2b_iso8859_9;
 
-enc_list.push_back("ISO-8859-10");
+test_singlebyte_conv_enc_list.push_back("ISO-8859-10");
 
 static ucs4_t b2u_iso8859_10[] = {
 0x000000, 0x000001, 0x000002, 0x000003, 0x000004, 0x000005, 0x000006, 0x000007, 
@@ -4474,7 +4470,7 @@ u2b_iso8859_10[0x002015] = 0xBD;
 // u2b_iso8859_10.size() == 255
 u2b["ISO-8859-10"] = &u2b_iso8859_10;
 
-enc_list.push_back("ISO-8859-11");
+test_singlebyte_conv_enc_list.push_back("ISO-8859-11");
 
 static ucs4_t b2u_iso8859_11[] = {
 0x000000, 0x000001, 0x000002, 0x000003, 0x000004, 0x000005, 0x000006, 0x000007, 
@@ -4771,7 +4767,7 @@ u2b_iso8859_11[0x000E5B] = 0xFB;
 // u2b_iso8859_11.size() == 255
 u2b["ISO-8859-11"] = &u2b_iso8859_11;
 
-enc_list.push_back("ISO-8859-13");
+test_singlebyte_conv_enc_list.push_back("ISO-8859-13");
 
 static ucs4_t b2u_iso8859_13[] = {
 0x000000, 0x000001, 0x000002, 0x000003, 0x000004, 0x000005, 0x000006, 0x000007, 
@@ -5068,7 +5064,7 @@ u2b_iso8859_13[0x00201E] = 0xA5;
 // u2b_iso8859_13.size() == 255
 u2b["ISO-8859-13"] = &u2b_iso8859_13;
 
-enc_list.push_back("ISO-8859-14");
+test_singlebyte_conv_enc_list.push_back("ISO-8859-14");
 
 static ucs4_t b2u_iso8859_14[] = {
 0x000000, 0x000001, 0x000002, 0x000003, 0x000004, 0x000005, 0x000006, 0x000007, 
@@ -5365,7 +5361,7 @@ u2b_iso8859_14[0x001EF3] = 0xBC;
 // u2b_iso8859_14.size() == 255
 u2b["ISO-8859-14"] = &u2b_iso8859_14;
 
-enc_list.push_back("ISO-8859-15");
+test_singlebyte_conv_enc_list.push_back("ISO-8859-15");
 
 static ucs4_t b2u_iso8859_15[] = {
 0x000000, 0x000001, 0x000002, 0x000003, 0x000004, 0x000005, 0x000006, 0x000007, 
@@ -5662,7 +5658,7 @@ u2b_iso8859_15[0x0020AC] = 0xA4;
 // u2b_iso8859_15.size() == 255
 u2b["ISO-8859-15"] = &u2b_iso8859_15;
 
-enc_list.push_back("KOI8-R");
+test_singlebyte_conv_enc_list.push_back("KOI8-R");
 
 static ucs4_t b2u_koi8_r[] = {
 0x000000, 0x000001, 0x000002, 0x000003, 0x000004, 0x000005, 0x000006, 0x000007, 
@@ -5959,7 +5955,7 @@ u2b_koi8_r[0x0025A0] = 0x94;
 // u2b_koi8_r.size() == 255
 u2b["KOI8-R"] = &u2b_koi8_r;
 
-enc_list.push_back("KOI8-U");
+test_singlebyte_conv_enc_list.push_back("KOI8-U");
 
 static ucs4_t b2u_koi8_u[] = {
 0x000000, 0x000001, 0x000002, 0x000003, 0x000004, 0x000005, 0x000006, 0x000007, 
@@ -6256,7 +6252,7 @@ u2b_koi8_u[0x0025A0] = 0x94;
 // u2b_koi8_u.size() == 255
 u2b["KOI8-U"] = &u2b_koi8_u;
 
-enc_list.push_back("Windows-874");
+test_singlebyte_conv_enc_list.push_back("Windows-874");
 
 static ucs4_t b2u_windows874[] = {
 0x000000, 0x000001, 0x000002, 0x000003, 0x000004, 0x000005, 0x000006, 0x000007, 
@@ -6553,7 +6549,7 @@ u2b_windows874[0x0020AC] = 0x80;
 // u2b_windows874.size() == 255
 u2b["Windows-874"] = &u2b_windows874;
 
-enc_list.push_back("Windows-1250");
+test_singlebyte_conv_enc_list.push_back("Windows-1250");
 
 static ucs4_t b2u_windows1250[] = {
 0x000000, 0x000001, 0x000002, 0x000003, 0x000004, 0x000005, 0x000006, 0x000007, 
@@ -6850,7 +6846,7 @@ u2b_windows1250[0x002122] = 0x99;
 // u2b_windows1250.size() == 255
 u2b["Windows-1250"] = &u2b_windows1250;
 
-enc_list.push_back("Windows-1251");
+test_singlebyte_conv_enc_list.push_back("Windows-1251");
 
 static ucs4_t b2u_windows1251[] = {
 0x000000, 0x000001, 0x000002, 0x000003, 0x000004, 0x000005, 0x000006, 0x000007, 
@@ -7147,7 +7143,7 @@ u2b_windows1251[0x002122] = 0x99;
 // u2b_windows1251.size() == 255
 u2b["Windows-1251"] = &u2b_windows1251;
 
-enc_list.push_back("Windows-1252");
+test_singlebyte_conv_enc_list.push_back("Windows-1252");
 
 static ucs4_t b2u_windows1252[] = {
 0x000000, 0x000001, 0x000002, 0x000003, 0x000004, 0x000005, 0x000006, 0x000007, 
@@ -7444,7 +7440,7 @@ u2b_windows1252[0x002122] = 0x99;
 // u2b_windows1252.size() == 255
 u2b["Windows-1252"] = &u2b_windows1252;
 
-enc_list.push_back("Windows-1253");
+test_singlebyte_conv_enc_list.push_back("Windows-1253");
 
 static ucs4_t b2u_windows1253[] = {
 0x000000, 0x000001, 0x000002, 0x000003, 0x000004, 0x000005, 0x000006, 0x000007, 
@@ -7741,7 +7737,7 @@ u2b_windows1253[0x002122] = 0x99;
 // u2b_windows1253.size() == 255
 u2b["Windows-1253"] = &u2b_windows1253;
 
-enc_list.push_back("Windows-1254");
+test_singlebyte_conv_enc_list.push_back("Windows-1254");
 
 static ucs4_t b2u_windows1254[] = {
 0x000000, 0x000001, 0x000002, 0x000003, 0x000004, 0x000005, 0x000006, 0x000007, 
@@ -8038,7 +8034,7 @@ u2b_windows1254[0x002122] = 0x99;
 // u2b_windows1254.size() == 255
 u2b["Windows-1254"] = &u2b_windows1254;
 
-enc_list.push_back("Windows-1255");
+test_singlebyte_conv_enc_list.push_back("Windows-1255");
 
 static ucs4_t b2u_windows1255[] = {
 0x000000, 0x000001, 0x000002, 0x000003, 0x000004, 0x000005, 0x000006, 0x000007, 
@@ -8335,7 +8331,7 @@ u2b_windows1255[0x002122] = 0x99;
 // u2b_windows1255.size() == 255
 u2b["Windows-1255"] = &u2b_windows1255;
 
-enc_list.push_back("Windows-1256");
+test_singlebyte_conv_enc_list.push_back("Windows-1256");
 
 static ucs4_t b2u_windows1256[] = {
 0x000000, 0x000001, 0x000002, 0x000003, 0x000004, 0x000005, 0x000006, 0x000007, 
@@ -8632,7 +8628,7 @@ u2b_windows1256[0x002122] = 0x99;
 // u2b_windows1256.size() == 255
 u2b["Windows-1256"] = &u2b_windows1256;
 
-enc_list.push_back("Windows-1257");
+test_singlebyte_conv_enc_list.push_back("Windows-1257");
 
 static ucs4_t b2u_windows1257[] = {
 0x000000, 0x000001, 0x000002, 0x000003, 0x000004, 0x000005, 0x000006, 0x000007, 
@@ -8929,53 +8925,4 @@ u2b_windows1257[0x002122] = 0x99;
 // u2b_windows1257.size() == 255
 u2b["Windows-1257"] = &u2b_windows1257;
 
-}
-
-void test_enc(const std::string& encname)
-{
-	wxString wxencname(encname.c_str(), wxConvUTF8);
-	wxm::WXMEncoding* enc = wxm::WXMEncodingCreator::Instance().CreateWxmEncoding(wxencname);
-
-	for (size_t i=0; i<256; ++i)
-	{
-		wxByte wxb = wxByte(i);
-		ucs4_t u = enc->MultiBytetoUCS4(&wxb);
-		ucs4_t t = (*b2u[encname])[i];
-		BOOST_CHECK(u == t);
-	}
-	for (ucs4_t i=0; i<=0x10FFFF; ++i)
-	{
-		wxByte buf[4];
-		size_t n = enc->UCS4toMultiByte(i, buf);
-		BOOST_CHECK(n < 2);
-
-		U2BDataMap::const_iterator it = u2b[encname]->find(i);
-		U2BDataMap::const_iterator u2bend = u2b[encname]->end();
-		if (n == 1)
-		{
-			BOOST_CHECK(it != u2bend);
-			if (it != u2bend)
-				BOOST_CHECK(buf[0] == it->second);
-		}
-		else if(n == 0)
-		{
-			BOOST_CHECK(it == u2bend);
-		}
-	}
-}
-
-int test_singlebyte_conv()
-{
-	wxm::WXMEncodingCreator::Instance().InitEncodings();
-	init();
-
-	BOOST_FOREACH(const std::string& encname, enc_list)
-	{
-		std::cout << encname << std::endl;
-		test_enc(encname);
-	}
-
-	wxm::WXMEncodingCreator::Instance().FreeEncodings();
-
-	return (int)boost::minimal_test::errors_counter();
 }
