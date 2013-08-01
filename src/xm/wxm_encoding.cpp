@@ -67,7 +67,8 @@ wxString GetMSCPFontName(const wxString mscp)
 
 namespace wxm
 {
-void WXMEncodingCreator::AddEncoding(const std::string&encname, wxFontEncoding wxenc, WXMEncodingType entype)
+void WXMEncodingCreator::AddEncoding(const std::string& encname, wxFontEncoding wxenc
+	, WXMEncodingType entype, const std::string& innername0)
 {
 	m_wxenc_map[encname] = wxenc;
 	m_wxenctype_map[wxenc] = entype;
@@ -77,6 +78,10 @@ void WXMEncodingCreator::AddEncoding(const std::string&encname, wxFontEncoding w
 	m_wxenc_list.push_back(wxencname);
 	m_wxnameenc_map[wxencname] = wxenc;
 	m_wxencname_map[wxenc] = wxencname;
+
+	std::string innername = innername0.empty()? encname: innername0;
+
+	m_wxencinnername_map[wxenc] = innername;
 }
 
 void WXMEncodingCreator::DoInit()
@@ -161,6 +166,15 @@ wxString WXMEncodingCreator::GetEncodingName(ssize_t idx)
 		return wxFontMapper::GetEncodingName(wxLocale::GetSystemEncoding());
 
 	return m_wxenc_list[idx];
+}
+
+std::string WXMEncodingCreator::GetEncodingInnerName(ssize_t idx)
+{
+	WXEncInnerNameMap::const_iterator it = m_wxencinnername_map.find(IdxToEncoding(idx));
+	if (it == m_wxencinnername_map.end())
+		return wxFontMapper::GetEncodingName(wxLocale::GetSystemEncoding()).mb_str(wxConvUTF8).data();
+
+	return it->second;
 }
 
 wxString WXMEncodingCreator::GetEncodingDescription(ssize_t idx)
@@ -309,14 +323,11 @@ extern "C"
 	}
 }
 
-ICUConverter::ICUConverter(const UnicodeString& encname): m_ucnv(NULL)
+ICUConverter::ICUConverter(const std::string& encname): m_ucnv(NULL)
 {
 	UErrorCode err = U_ZERO_ERROR;
 
-	std::string sencname;
-	encname.toUTF8String(sencname);
-
-	m_ucnv = ucnv_open(sencname.c_str(), &err);
+	m_ucnv = ucnv_open(encname.c_str(), &err);
 
 	ucnv_setFallback(m_ucnv, FALSE);
 	ucnv_setFromUCallBack(m_ucnv, error_callback, NULL, NULL, NULL, &err);
@@ -380,6 +391,7 @@ void WXMEncoding::Create(ssize_t idx)
 	m_idx = idx;
 	m_name = WXMEncodingCreator::Instance().GetEncodingName(idx);
 	m_enc = WXMEncodingCreator::Instance().NameToEncoding(m_name);
+	m_innername = WXMEncodingCreator::Instance().GetEncodingInnerName(idx);
 	m_type = WXMEncodingCreator::Instance().GetIdxEncType(idx);
 	m_desc = WXMEncodingCreator::Instance().GetEncodingDescription(idx);
 	m_fontname = WXMEncodingCreator::Instance().GetEncodingFontName(m_idx);
@@ -459,7 +471,7 @@ EncodingTableFixer* WXMEncodingSingleByte::CreateEncodingTableFixer()
 
 void WXMEncodingSingleByte::MultiByteInit()
 {
-	m_icucnv = new ICUConverter(WxStrToICU(m_name));
+	m_icucnv = new ICUConverter(m_innername);
 
 	boost::scoped_ptr<EncodingTableFixer>enc_fix(CreateEncodingTableFixer());
 
@@ -512,7 +524,8 @@ size_t WXMEncodingSingleByte::UCS4toMultiByte(ucs4_t ucs4, wxByte* buf)
 void WXMEncodingDoubleByte::MultiByteInit()
 {
 #if defined(__WXGTK__)
-	m_CSConv=new wxCSConv(m_name.c_str());
+	wxString wxinnnername = wxString(m_innername.c_str(), wxConvUTF8);
+	m_CSConv=new wxCSConv(wxinnnername.c_str());
 #else //#elif defined(__WXMSW__) || defined(__WXMAC__)
 	m_CSConv=new wxCSConv(m_enc);
 #endif

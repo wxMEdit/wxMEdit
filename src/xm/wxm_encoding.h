@@ -59,6 +59,7 @@ struct WXMEncodingCreator: private boost::noncopyable
 
 	size_t GetEncodingsCount();
 	wxString GetEncodingName(ssize_t idx);
+	std::string GetEncodingInnerName(ssize_t idx);
 	wxString GetEncodingDescription(ssize_t idx);
 	wxString GetEncodingFontName(ssize_t idx);
 	wxString EncodingToName(wxFontEncoding enc);
@@ -75,7 +76,8 @@ private:
 	}
 
 	void DoInit();
-	void AddEncoding(const std::string&encname, wxFontEncoding wxenc, WXMEncodingType entype=etSingleByte);
+	void AddEncoding(const std::string& encname, wxFontEncoding wxenc
+		, WXMEncodingType entype=etSingleByte, const std::string& innername0=std::string());
 
 	WXMEncodingCreator()
 	: m_initialized(false), m_sysenc_idx(-1), m_sysenc(NULL)
@@ -98,11 +100,13 @@ private:
 	typedef std::map<wxFontEncoding, WXMEncodingType> WXEncTypeMap;
 	typedef std::map<wxFontEncoding, wxString> WXEncFontMap;
 	typedef std::map<wxFontEncoding, wxString> WXEncDescMap;
+	typedef std::map<wxFontEncoding, std::string> WXEncInnerNameMap;
 	WXNameEncMap m_wxnameenc_map;
 	WXEncNameMap m_wxencname_map;
 	WXEncTypeMap m_wxenctype_map;
 	WXEncFontMap m_wxencfont_map;
 	WXEncDescMap m_wxencdesc_map;
+	WXEncInnerNameMap m_wxencinnername_map;
 
 	typedef std::map<ssize_t, WXMEncoding*> WXEncInstMap;
 	WXEncInstMap m_inst_map;
@@ -112,6 +116,7 @@ struct WXMEncoding: private boost::noncopyable
 {
 protected:
 	wxString m_name;
+	std::string m_innername;
 	wxString m_desc;
 	wxString m_fontname;
 	wxFontEncoding m_enc;
@@ -164,7 +169,7 @@ protected:
 
 struct ICUConverter
 {
-	ICUConverter(const UnicodeString& encname);
+	ICUConverter(const std::string& encname);
 	~ICUConverter();
 
 	size_t MB2WC(UChar32& ch, const char* src, size_t src_len);
