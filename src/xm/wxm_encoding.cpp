@@ -736,7 +736,6 @@ bool WXMEncodingDoubleByte::IsLeadByte(wxByte byte)
 		if(m_CSConv->MB2WC(wc,(char*)dbs,4)==1)
 		{
 			m_MBtoWC_Table[ db ] = wc[0];
-			m_WCtoMB_Table[ wc[0] ] = db;
 		}
 		else
 		{
@@ -750,7 +749,6 @@ bool WXMEncodingDoubleByte::IsLeadByte(wxByte byte)
 			if(m_CSConv->MB2WC(wc,(char*)dbs,4)==1)
 			{
 				m_MBtoWC_Table[ db ]    = wc[0];
-				m_WCtoMB_Table[ wc[0] ] = db;
 				m_LeadByte_Table[byte]  = 1;       // is lead-byte
 			}
 			else
