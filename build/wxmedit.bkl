@@ -244,6 +244,7 @@
 		<sources>../src/xm/wxm_encoding.cpp</sources>
 		<headers>../src/xm/wxm_wx_icu.h</headers>
 		<sources>../src/xm/wxm_wx_icu.cpp</sources>
+		<sources>../test/test_doublebyte_conv.cpp</sources>
 		<sources>../test/test_singlebyte_conv.cpp</sources>
 		<headers>../test/test.h</headers>
 		<sources>../test/test.cpp</sources>

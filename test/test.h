@@ -4,4 +4,7 @@
 int test_singlebyte_conv();
 void test_singlebyte_conv_init();
 
+int test_doublebyte_conv();
+void test_doublebyte_conv_init();
+
 #endif

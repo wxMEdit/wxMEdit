@@ -1,6 +1,5 @@
 #include "test.h"
 #include "../src/wxmedit/ucs4_t.h"
-#include <boost/format.hpp>
 #include <string>
 #include <map>
 #include <vector>
@@ -10,7 +9,7 @@ typedef std::map<std::string, const ByteArr*> B2UMap;
 B2UMap b2u;
 typedef unsigned char uchar_t_;
 typedef std::map<ucs4_t, uchar_t_> U2BDataMap;
-typedef std::map<std::string, const U2BDataMap*> U2BMap;
+typedef std::map<std::string, U2BDataMap*> U2BMap;
 U2BMap u2b;
 std::vector<std::string> test_singlebyte_conv_enc_list;
 
