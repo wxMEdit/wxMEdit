@@ -395,8 +395,8 @@ size_t ICUConverter::WC2MB(char* dest, size_t dest_len, const UChar32& ch)
 WXConverter::WXConverter(const std::string& encname, wxFontEncoding enc)
 {
 #if defined(__WXGTK__)
-	wxString wxinnnername = wxString(encname.c_str(), wxConvUTF8);
-	m_wxcnv=new wxCSConv(encname.c_str());
+	wxString wxencname = wxString(encname.c_str(), wxConvUTF8);
+	m_wxcnv=new wxCSConv(wxencname.c_str());
 #else //#elif defined(__WXMSW__) || defined(__WXMAC__)
 	m_wxcnv=new wxCSConv(enc);
 #endif
@@ -582,12 +582,12 @@ bool WXMEncodingDoubleByte::IsLeadByte(wxByte byte)
 	if(m_leadbyte_tab[byte]==lbUnset)
 	{
 		wxByte dbs[3]={byte,0,0};
-		ucs4_t ucs4;
+		UChar32 ch;
 
 		// check first byte
-		if(m_mbcnv->MB2WC(ucs4, (char*)dbs, 1) == 1)
+		if(m_mbcnv->MB2WC(ch, (char*)dbs, 1) == 1)
 		{
-			m_b2u_tab[byte] = ucs4;
+			m_b2u_tab[byte] = ch;
 
 			m_leadbyte_tab[byte]=lbNotLeadByte;
 		}
@@ -596,9 +596,9 @@ bool WXMEncodingDoubleByte::IsLeadByte(wxByte byte)
 		for(int i=1; i<=0xFF; ++i)
 		{
 			dbs[1] = i;
-			if(m_mbcnv->MB2WC(ucs4, (char*)dbs, 2) == 1)
+			if(m_mbcnv->MB2WC(ch, (char*)dbs, 2) == 1)
 			{
-				m_db2u_tab[byte][i] = ucs4;
+				m_db2u_tab[byte][i] = ch;
 
 				m_leadbyte_tab[byte] = lbLeadByte;
 			}
