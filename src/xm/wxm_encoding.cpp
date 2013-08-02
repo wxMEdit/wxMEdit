@@ -12,6 +12,7 @@
 #include <wx/fontmap.h>
 #include <boost/foreach.hpp>
 #include <boost/scoped_ptr.hpp>
+#include <boost/scoped_array.hpp>
 
 #ifdef _DEBUG
 #include <crtdbg.h>
@@ -118,11 +119,11 @@ void WXMEncodingCreator::DoInit()
 	AddEncoding("CP866", wxFONTENCODING_CP866);
 	AddEncoding("KOI8-R", wxFONTENCODING_KOI8);
 	AddEncoding("KOI8-U", wxFONTENCODING_KOI8_U);
-	AddEncoding("Windows-31J", wxFONTENCODING_CP932, etDoubleByte, "CP932");
-	AddEncoding("GBK/CP936", wxFONTENCODING_CP936, etDoubleByte, "CP936");
-	AddEncoding("UHC", wxFONTENCODING_CP949, etDoubleByte, "CP949");
-	AddEncoding("Big-5/CP950", wxFONTENCODING_CP950, etDoubleByte, "CP950");
-	AddEncoding("EUC-JP", wxFONTENCODING_EUC_JP, etDoubleByte);
+	AddEncoding("Windows-31J", wxFONTENCODING_CP932, etWXDoubleByte, "CP932");
+	AddEncoding("GBK/CP936", wxFONTENCODING_CP936, etDoubleByte, "MS936");
+	AddEncoding("UHC", wxFONTENCODING_CP949, etDoubleByte, "MS949");
+	AddEncoding("Big-5/CP950", wxFONTENCODING_CP950, etDoubleByte, "MS950");
+	AddEncoding("EUC-JP", wxFONTENCODING_EUC_JP, etWXDoubleByte);
 	AddEncoding("UTF-8", wxFONTENCODING_UTF8, etUTF8);
 	AddEncoding("UTF-16LE", wxFONTENCODING_UTF16LE, etUTF16LE);
 	AddEncoding("UTF-16BE", wxFONTENCODING_UTF16BE, etUTF16BE);
@@ -281,6 +282,9 @@ WXMEncoding* WXMEncodingCreator::CreateWxmEncoding(ssize_t idx)
 		case etDoubleByte:
 			enc = new WXMEncodingDoubleByte();
 			break;
+		case etWXDoubleByte:
+			enc = new WXMEncodingWXDoubleByte();
+			break;
 	}
 
 	enc->Create(idx);
@@ -382,10 +386,39 @@ size_t ICUConverter::WC2MB(char* dest, size_t dest_len, const UChar32& ch)
 	UErrorCode err = U_ZERO_ERROR;
 	int32_t n = ucnv_fromUChars(m_ucnv, dest, dest_len, src, src_len, &err);
 
-	if (n!=1)
+	if (n<=0)
 		return 0;
 
-	return 1;
+	return ((size_t)n>dest_len)? dest_len: (size_t)n;
+}
+
+WXConverter::WXConverter(const std::string& encname, wxFontEncoding enc)
+{
+#if defined(__WXGTK__)
+	wxString wxinnnername = wxString(encname.c_str(), wxConvUTF8);
+	m_wxcnv=new wxCSConv(encname.c_str());
+#else //#elif defined(__WXMSW__) || defined(__WXMAC__)
+	m_wxcnv=new wxCSConv(enc);
+#endif
+}
+
+size_t WXConverter::MB2WC(UChar32& ch, const char* src, size_t src_len)
+{
+	boost::scoped_array<wchar_t> wc(new wchar_t[src_len+1]);
+
+	boost::scoped_array<char> arr(new char[src_len + 1]);
+	strncpy(arr.get(), src, src_len);
+	arr[src_len] = '\0';
+
+	size_t n = m_wxcnv->MB2WC(wc.get(), arr.get(), src_len+1);
+	ch = wc[0]; // FIXME: no non-BMP support on Windows
+	return n;
+}
+
+size_t WXConverter::WC2MB(char* dest, size_t dest_len, const UChar32& ch)
+{
+	wchar_t wc[2]={ch, 0}; // FIXME: no non-BMP support on Windows
+	return m_wxcnv->WC2MB(dest, wc, dest_len);
 }
 
 void WXMEncoding::Create(ssize_t idx)
@@ -458,7 +491,7 @@ void Windows874TableFixer::fix(ByteUnicodeArr& toutab, UnicodeByteMap& fromutab)
 	fromutab[0x0000FF] = 0xFF;
 }
 
-EncodingTableFixer* WXMEncodingSingleByte::CreateEncodingTableFixer()
+SingleByteEncodingTableFixer* WXMEncodingSingleByte::CreateSingleByteEncodingTableFixer()
 {
 	if (m_name == wxT("CP437"))
 		return new CP437TableFixer();
@@ -468,14 +501,14 @@ EncodingTableFixer* WXMEncodingSingleByte::CreateEncodingTableFixer()
 		return new CP852TableFixer();
 	if (m_name == wxT("Windows-874"))
 		return new Windows874TableFixer();
-	return new EncodingTableFixer();
+	return new SingleByteEncodingTableFixer();
 }
 
 void WXMEncodingSingleByte::MultiByteInit()
 {
 	m_icucnv = new ICUConverter(m_innername);
 
-	boost::scoped_ptr<EncodingTableFixer>enc_fix(CreateEncodingTableFixer());
+	boost::scoped_ptr<SingleByteEncodingTableFixer>enc_fix(CreateSingleByteEncodingTableFixer());
 
 	char singlebyte[1];
 	UChar32 ch;
@@ -525,12 +558,7 @@ size_t WXMEncodingSingleByte::UCS4toMultiByte(ucs4_t ucs4, wxByte* buf)
 
 void WXMEncodingDoubleByte::MultiByteInit()
 {
-#if defined(__WXGTK__)
-	wxString wxinnnername = wxString(m_innername.c_str(), wxConvUTF8);
-	m_CSConv=new wxCSConv(wxinnnername.c_str());
-#else //#elif defined(__WXMSW__) || defined(__WXMAC__)
-	m_CSConv=new wxCSConv(m_enc);
-#endif
+	InitMBConverter();
 
 	memset(m_b2u_tab.data(), svtInvaliad, sizeof(ucs4_t)*256);
 
@@ -554,12 +582,12 @@ bool WXMEncodingDoubleByte::IsLeadByte(wxByte byte)
 	if(m_leadbyte_tab[byte]==lbUnset)
 	{
 		wxByte dbs[3]={byte,0,0};
-		wchar_t wc[4];
+		ucs4_t ucs4;
 
 		// check first byte
-		if(m_CSConv->MB2WC(wc,(char*)dbs,4)==1) // FIXME: no non-BMP support on Windows
+		if(m_mbcnv->MB2WC(ucs4, (char*)dbs, 1) == 1)
 		{
-			m_b2u_tab[byte] = wc[0];
+			m_b2u_tab[byte] = ucs4;
 
 			m_leadbyte_tab[byte]=lbNotLeadByte;
 		}
@@ -568,11 +596,11 @@ bool WXMEncodingDoubleByte::IsLeadByte(wxByte byte)
 		for(int i=1; i<=0xFF; ++i)
 		{
 			dbs[1] = i;
-			if(m_CSConv->MB2WC(wc,(char*)dbs,4)==1)
+			if(m_mbcnv->MB2WC(ucs4, (char*)dbs, 2) == 1)
 			{
-				m_db2u_tab[byte][i] = wc[0]; // FIXME: no non-BMP support on Windows
+				m_db2u_tab[byte][i] = ucs4;
 
-				m_leadbyte_tab[byte]  = lbLeadByte;
+				m_leadbyte_tab[byte] = lbLeadByte;
 			}
 		}
 
@@ -608,8 +636,7 @@ size_t WXMEncodingDoubleByte::UCS4toMultiByte(ucs4_t ucs4, wxByte* buf)
 	// non-cached
 	size_t len;
 	wxByte mbs[3];
-	wchar_t wc[2]={ucs4, 0}; // FIXME: no non-BMP support on Windows
-	len=m_CSConv->WC2MB((char*)mbs,wc,3);
+	len = m_mbcnv->WC2MB((char*)mbs, 3, ucs4);
 	if(len==0 || len==(size_t)-1)
 	{
 		m_bmp2mb_tab[ucs4]=0;
@@ -618,9 +645,12 @@ size_t WXMEncodingDoubleByte::UCS4toMultiByte(ucs4_t ucs4, wxByte* buf)
 
 	wxASSERT( len<=2 );
 
-	//mbs[len]=0;
+	mbs[len]=0;
 	mb= (((wxWord)mbs[0])<<8) | mbs[1];
 	m_bmp2mb_tab[ucs4]=mb;
+
+	if (mb == 0)
+		return 0;
 
 	buf[0]=mbs[0];
 	if(len==2)

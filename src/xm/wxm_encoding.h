@@ -33,7 +33,7 @@ namespace wxm
 {
 
 enum WXMEncodingType
-{ etSingleByte, etDoubleByte, etUTF8, etUTF16LE, etUTF16BE, etUTF32LE, etUTF32BE };
+{ etSingleByte, etDoubleByte, etUTF8, etUTF16LE, etUTF16BE, etUTF32LE, etUTF32BE, etWXDoubleByte };
 
 
 struct WXMEncoding;
@@ -167,7 +167,15 @@ protected:
 	~WXMEncodingMultiByte(){}
 };
 
-struct ICUConverter
+struct MBConverter
+{
+	virtual size_t MB2WC(UChar32& ch, const char* src, size_t src_len) = 0;
+	virtual size_t WC2MB(char* dest, size_t dest_len, const UChar32& ch) = 0;
+
+	virtual ~MBConverter() {}
+};
+
+struct ICUConverter: public MBConverter
 {
 	ICUConverter(const std::string& encname);
 	~ICUConverter();
@@ -178,16 +186,30 @@ private:
 	UConverter* m_ucnv;
 };
 
+struct WXConverter: public MBConverter
+{
+	WXConverter(const std::string& encname, wxFontEncoding enc);
+	~WXConverter()
+	{
+		delete m_wxcnv; m_wxcnv = NULL;
+	}
+
+	size_t MB2WC(UChar32& ch, const char* src, size_t src_len);
+	size_t WC2MB(char* dest, size_t dest_len, const UChar32& ch);
+private:
+	wxCSConv* m_wxcnv;
+};
+
 typedef boost::array<ucs4_t, 256> ByteUnicodeArr;
 typedef std::map<ucs4_t, wxByte> UnicodeByteMap;
 
-struct EncodingTableFixer
+struct SingleByteEncodingTableFixer
 {
-	virtual ~EncodingTableFixer() {}
+	virtual ~SingleByteEncodingTableFixer() {}
 	virtual void fix(ByteUnicodeArr& toutab, UnicodeByteMap& fromutab) {}
 };
 
-struct OEMTableFixer: public EncodingTableFixer
+struct OEMTableFixer: public SingleByteEncodingTableFixer
 {
 	virtual void fix(ByteUnicodeArr& toutab, UnicodeByteMap& fromutab);
 };
@@ -202,7 +224,7 @@ struct CP852TableFixer: public OEMTableFixer
 	virtual void fix(ByteUnicodeArr& toutab, UnicodeByteMap& fromutab);
 };
 
-struct Windows874TableFixer: public EncodingTableFixer
+struct Windows874TableFixer: public SingleByteEncodingTableFixer
 {
 	virtual void fix(ByteUnicodeArr& toutab, UnicodeByteMap& fromutab);
 };
@@ -226,7 +248,7 @@ private:
 		delete m_icucnv; m_icucnv = NULL;
 	}
 
-	EncodingTableFixer* CreateEncodingTableFixer();
+	SingleByteEncodingTableFixer* CreateSingleByteEncodingTableFixer();
 };
 
 struct WXMEncodingDoubleByte: public WXMEncodingMultiByte
@@ -235,10 +257,26 @@ struct WXMEncodingDoubleByte: public WXMEncodingMultiByte
 	virtual bool IsLeadByte(wxByte byte);
 	virtual ucs4_t MultiBytetoUCS4(wxByte* buf);
 	virtual size_t UCS4toMultiByte(ucs4_t ucs4, wxByte* buf);
+
+protected:
+	virtual void InitMBConverter()
+	{
+		m_mbcnv = new ICUConverter(m_innername);
+	}
+	WXMEncodingDoubleByte(): m_mbcnv(NULL)
+	{
+	}
+	~WXMEncodingDoubleByte()
+	{
+		delete m_mbcnv; m_mbcnv = NULL;
+	}
+
+	MBConverter* m_mbcnv;
+
 private:
 	enum LeadByteType{ lbUnset=0, lbLeadByte, lbNotLeadByte=0xFF};
 	enum SpecialValueType{ svtInvaliad=0, svtNotCached=0xFF};
-	wxCSConv        *m_CSConv;
+
 	boost::array<wxByte, 256> m_leadbyte_tab;
 
 	boost::array<ucs4_t, 256> m_b2u_tab;
@@ -248,12 +286,14 @@ private:
 	std::map<ucs4_t, wxWord> m_nonbmp2mb_map;
 
 	friend WXMEncoding* WXMEncodingCreator::CreateWxmEncoding(ssize_t idx);
-	WXMEncodingDoubleByte(): m_CSConv(NULL)
+};
+
+struct WXMEncodingWXDoubleByte: public WXMEncodingDoubleByte
+{
+protected:
+	virtual void InitMBConverter()
 	{
-	}
-	~WXMEncodingDoubleByte()
-	{
-		delete m_CSConv; m_CSConv = NULL;
+		m_mbcnv = new WXConverter(m_innername, m_enc);
 	}
 };
 
