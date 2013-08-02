@@ -562,10 +562,7 @@ bool WXMEncodingDoubleByte::IsLeadByte(wxByte byte)
 			m_b2u_tab[byte] = wc[0];
 
 			m_leadbyte_tab[byte]=lbNotLeadByte;
-			return false;
 		}
-
-		m_b2u_tab[byte] = 0;
 
 		memset(m_db2u_tab[byte].data(), 0, sizeof(ucs4_t)*256);
 		for(int i=1; i<=0xFF; ++i)
@@ -578,6 +575,9 @@ bool WXMEncodingDoubleByte::IsLeadByte(wxByte byte)
 				m_leadbyte_tab[byte]  = lbLeadByte;
 			}
 		}
+
+		if (m_leadbyte_tab[byte] == lbLeadByte)
+			m_b2u_tab[byte] = 0;
 	}
 
 	return m_leadbyte_tab[byte]==lbLeadByte;
