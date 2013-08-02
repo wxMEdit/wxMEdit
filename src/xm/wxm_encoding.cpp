@@ -532,61 +532,99 @@ void WXMEncodingDoubleByte::MultiByteInit()
 	m_CSConv=new wxCSConv(m_enc);
 #endif
 
-	m_MBtoWC_Table=new ucs2_t[65536];
-	// value: 0x0000, indicate the column isn't a valid Double-Byte char
-	memset(m_MBtoWC_Table, 0, sizeof(ucs2_t)*256);
-	// value: 0xFFFF, indicate the column is non-cached
-	memset(&m_MBtoWC_Table[256], 0xFF, sizeof(ucs2_t)*(65536-256));
-	m_WCtoMB_Table=new wxWord[65536];
-	memset(m_WCtoMB_Table, 0xFF, sizeof(wxWord)*65536);
-	m_LeadByte_Table=new wxByte[256];
-	memset(m_LeadByte_Table, 0, 256);
-	m_LeadByte_Table[0]=0xFF;
+	memset(m_b2u_tab.data(), svtInvaliad, sizeof(ucs4_t)*256);
+
+	memset(m_bmp2mb_tab.data(), svtNotCached, sizeof(wxWord)*0x10000);
+
+	memset(m_leadbyte_tab.data(), lbUnset, 256);
+	m_leadbyte_tab[0]=lbNotLeadByte;
+}
+
+// return 0 if it is not a valid DB char
+ucs4_t WXMEncodingDoubleByte::MultiBytetoUCS4(wxByte* buf)
+{
+	if( IsLeadByte(buf[0]))
+		return m_db2u_tab[buf[0]][buf[1]];
+
+	return m_b2u_tab[buf[0]];
+}
+
+bool WXMEncodingDoubleByte::IsLeadByte(wxByte byte)
+{
+	if(m_leadbyte_tab[byte]==lbUnset)
+	{
+		wxByte dbs[3]={byte,0,0};
+		wchar_t wc[4];
+
+		// check first byte
+		if(m_CSConv->MB2WC(wc,(char*)dbs,4)==1) // FIXME: no non-BMP support on Windows
+		{
+			m_b2u_tab[byte] = wc[0];
+
+			m_leadbyte_tab[byte]=lbNotLeadByte;
+			return false;
+		}
+
+		m_b2u_tab[byte] = 0;
+
+		memset(m_db2u_tab[byte].data(), 0, sizeof(ucs4_t)*256);
+		for(int i=1; i<=0xFF; ++i)
+		{
+			dbs[1] = i;
+			if(m_CSConv->MB2WC(wc,(char*)dbs,4)==1)
+			{
+				m_db2u_tab[byte][i] = wc[0]; // FIXME: no non-BMP support on Windows
+
+				m_leadbyte_tab[byte]  = lbLeadByte;
+			}
+		}
+	}
+
+	return m_leadbyte_tab[byte]==lbLeadByte;
 }
 
 size_t WXMEncodingDoubleByte::UCS4toMultiByte(ucs4_t ucs4, wxByte* buf)
 {
-	if(ucs4>0xFFFF)
+	if(ucs4>0xFFFF) // FIXME: no non-BMP support
 		return 0;
 
-	wxWord mb=m_WCtoMB_Table[ucs4];
-	if(mb==0)        // invalid MB char
-	{
+	wxWord mb=m_bmp2mb_tab[ucs4];
+	if(mb == 0) // invalid MB char
 		return 0;
+
+	if ((mb & 0xFF) == 0)
+	{
+		buf[0] = mb >> 8;
+		return 1;
 	}
 
+	if(mb!=0xFFFF) // cached
+	{
+		buf[0] = mb >> 8;
+		buf[1] = mb & 0xFF;
+		return 2;
+	}
+
+	// non-cached
 	size_t len;
-	if(mb==0xFFFF)    // non-cached
+	wxByte mbs[3];
+	wchar_t wc[2]={ucs4, 0}; // FIXME: no non-BMP support on Windows
+	len=m_CSConv->WC2MB((char*)mbs,wc,3);
+	if(len==0 || len==(size_t)-1)
 	{
-		wxByte mbs[4];
-		wchar_t wc[2]={ucs4,0};
-		len=m_CSConv->WC2MB((char*)mbs,wc,4);
-		if(len==0 || len==(size_t)-1)
-		{
-			m_WCtoMB_Table[ucs4]=0;
-			return 0;
-		}
-
-		wxASSERT( len<=2 );
-
-		//mbs[len]=0;
-		mb= (((wxWord)mbs[0])<<8) | mbs[1];
-		m_WCtoMB_Table[ucs4]=mb;
-
-		buf[0]=mbs[0];
-		if(len==2) buf[1]=mbs[1];
-
-		return len;
+		m_bmp2mb_tab[ucs4]=0;
+		return 0;
 	}
 
-	buf[0]=mb>>8;
-	len=1;
+	wxASSERT( len<=2 );
 
-	if((mb&0xFF)!=0)
-	{
-		buf[1]=mb&0xFF;
-		++len;//len=2
-	}
+	//mbs[len]=0;
+	mb= (((wxWord)mbs[0])<<8) | mbs[1];
+	m_bmp2mb_tab[ucs4]=mb;
+
+	buf[0]=mbs[0];
+	if(len==2)
+		buf[1]=mbs[1];
 
 	return len;
 }
@@ -712,59 +750,6 @@ size_t WXMEncodingUTF32BE::UCS4toMultiByte(ucs4_t ucs4, wxByte* buf)
 	buf[3]=p[0];
 #endif
 	return 4;
-}
-
-// return 0 if it is not a valid DB char
-ucs4_t WXMEncodingDoubleByte::MultiBytetoUCS4(wxByte* buf)
-{
-	if(m_LeadByte_Table[ buf[0] ] == 0)
-		IsLeadByte(buf[0]);
-
-	register unsigned int w = (((unsigned int)buf[0]) << 8) | buf[1];
-	return m_MBtoWC_Table[w];
-}
-
-bool WXMEncodingDoubleByte::IsLeadByte(wxByte byte)
-{
-	if(m_LeadByte_Table[byte]==0)
-	{
-		wxWord db= ((wxWord)byte)<<8 ;
-		wxByte dbs[4]={byte,0,0,0};
-		wchar_t wc[4];
-
-		// check first byte
-		if(m_CSConv->MB2WC(wc,(char*)dbs,4)==1)
-		{
-			m_MBtoWC_Table[ db ] = wc[0];
-		}
-		else
-		{
-			m_MBtoWC_Table[ db ] = 0;
-		}
-
-		++db;
-		++dbs[1];
-		for(int i=1; i<=0xFF; ++i, ++db, ++dbs[1])
-		{
-			if(m_CSConv->MB2WC(wc,(char*)dbs,4)==1)
-			{
-				m_MBtoWC_Table[ db ]    = wc[0];
-				m_LeadByte_Table[byte]  = 1;       // is lead-byte
-			}
-			else
-			{
-				m_MBtoWC_Table[ db ]=0;
-			}
-		}
-
-		if(m_LeadByte_Table[byte]==0)
-		{
-			m_LeadByte_Table[byte]=0xFF;
-			return false;
-		}
-	}
-
-	return m_LeadByte_Table[byte]==1;
 }
 
 size_t UCS4toUTF16LE_U10000(ucs4_t ucs4, wxByte* buf)

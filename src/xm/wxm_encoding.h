@@ -236,21 +236,24 @@ struct WXMEncodingDoubleByte: public WXMEncodingMultiByte
 	virtual ucs4_t MultiBytetoUCS4(wxByte* buf);
 	virtual size_t UCS4toMultiByte(ucs4_t ucs4, wxByte* buf);
 private:
+	enum LeadByteType{ lbUnset=0, lbLeadByte, lbNotLeadByte};
+	enum SpecialValueType{ svtInvaliad=0, svtNotCached=0xFF};
 	wxCSConv        *m_CSConv;
-	wxByte          *m_LeadByte_Table;  // DBCS Lead-Byte table, 0:unset, 1:IsLeadByte, 0xFF:NotLeadByte
-	ucs2_t          *m_MBtoWC_Table;    // MultiByte To WideChar table
-	wxWord          *m_WCtoMB_Table;    // WideChar To MultiByte table
+	boost::array<wxByte, 256> m_leadbyte_tab;
+
+	boost::array<ucs4_t, 256> m_b2u_tab;
+	std::map<wxByte, boost::array<ucs4_t, 256> > m_db2u_tab;
+
+	boost::array<wxWord, 0x10000> m_bmp2mb_tab;
+	std::map<ucs4_t, wxWord> m_nonbmp2mb_map;
 
 	friend WXMEncoding* WXMEncodingCreator::CreateWxmEncoding(ssize_t idx);
-	WXMEncodingDoubleByte(): m_CSConv(NULL), m_LeadByte_Table(NULL), m_MBtoWC_Table(NULL), m_WCtoMB_Table(NULL)
+	WXMEncodingDoubleByte(): m_CSConv(NULL)
 	{
 	}
 	~WXMEncodingDoubleByte()
 	{
 		delete m_CSConv; m_CSConv = NULL;
-		delete m_LeadByte_Table; m_LeadByte_Table = NULL;
-		delete m_MBtoWC_Table; m_MBtoWC_Table = NULL;
-		delete m_WCtoMB_Table; m_WCtoMB_Table = NULL;
 	}
 };
 
