@@ -574,7 +574,7 @@ ucs4_t WXMEncodingDoubleByte::MultiBytetoUCS4(wxByte* buf)
 	if( IsLeadByte(buf[0]))
 		return m_db2u_tab[buf[0]][buf[1]];
 
-	return m_b2u_tab[buf[0]];
+	return (buf[1] == '\0')? m_b2u_tab[buf[0]]: 0;
 }
 
 bool WXMEncodingDoubleByte::IsLeadByte(wxByte byte)
@@ -592,7 +592,7 @@ bool WXMEncodingDoubleByte::IsLeadByte(wxByte byte)
 			m_leadbyte_tab[byte]=lbNotLeadByte;
 		}
 
-		memset(m_db2u_tab[byte].data(), 0, sizeof(ucs4_t)*256);
+		memset(m_db2u_tab[byte].data(), svtInvaliad, sizeof(ucs4_t)*256);
 		for(int i=1; i<=0xFF; ++i)
 		{
 			dbs[1] = i;

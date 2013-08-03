@@ -253,6 +253,8 @@ private:
 
 struct WXMEncodingDoubleByte: public WXMEncodingMultiByte
 {
+	enum SpecialValueType{ svtInvaliad=0, svtNotCached=0xFF};
+
 	virtual void MultiByteInit();
 	virtual bool IsLeadByte(wxByte byte);
 	virtual ucs4_t MultiBytetoUCS4(wxByte* buf);
@@ -276,7 +278,6 @@ protected:
 
 private:
 	enum LeadByteType{ lbUnset=0, lbLeadByte, lbNotLeadByte=0xFF};
-	enum SpecialValueType{ svtInvaliad=0, svtNotCached=0xFF};
 
 	boost::array<wxByte, 256> m_leadbyte_tab;
 

@@ -1031,10 +1031,10 @@ bool MadLines::NextUChar_DBCS(MadUCQueue &ucqueue)
     wxByte *ptr = m_NextUChar_Buffer+m_NextUChar_BufferStart;
     if(rest>1)
     {
-        if(ptr[1] == 0 || (uc=m_Encoding->MultiBytetoUCS4(ptr)) == 0)// not a valid db-char
+        if(ptr[1] == 0 || (uc=m_Encoding->MultiBytetoUCS4(ptr)) == wxm::WXMEncodingDoubleByte::svtInvaliad)
         {
             wxByte db[2] = {*ptr, 0}; // re-check by first byte
-            if((uc=m_Encoding->MultiBytetoUCS4(db)) == 0)
+			if((uc=m_Encoding->MultiBytetoUCS4(db)) == wxm::WXMEncodingDoubleByte::svtInvaliad)
             {
                 uc = *ptr;
             }
@@ -1054,7 +1054,7 @@ bool MadLines::NextUChar_DBCS(MadUCQueue &ucqueue)
     }
 
     wxByte db[2] = {*ptr, 0}; // re-check by first byte
-    if((uc=m_Encoding->MultiBytetoUCS4(db)) == 0)
+    if((uc=m_Encoding->MultiBytetoUCS4(db)) == wxm::WXMEncodingDoubleByte::svtInvaliad)
     {
         uc = *ptr;
     }
