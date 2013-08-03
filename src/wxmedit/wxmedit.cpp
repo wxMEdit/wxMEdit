@@ -8980,7 +8980,7 @@ void MadEdit::OnChar(wxKeyEvent& evt)
                 {
                     wxByte db[2]={ucs4, 0};
                     ucs4_t uc=enc->MultiBytetoUCS4(db);
-                    if(uc != wxm::WXMEncodingDoubleByte::svtInvaliad) // is a valid single-byte char
+                    if(uc != (ucs4_t)wxm::WXMEncodingDoubleByte::svtInvaliad) // is a valid single-byte char
                     {
                         ProcessCommand(uc);
                         processed=true;
