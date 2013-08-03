@@ -122,6 +122,12 @@ wxmedit_test_SOURCES = src/wxmedit/ucs4_t.h \
 	src/xm/wxm_encoding.cpp \
 	src/xm/wxm_wx_icu.h \
 	src/xm/wxm_wx_icu.cpp \
+	test/test_cp932_conv.cpp \
+	test/test_cp936_conv.cpp \
+	test/test_cp949_conv.cpp \
+	test/test_cp950_conv.cpp \
+	test/test_doublebyte_conv.cpp \
+	test/test_euc_jp_conv.cpp \
 	test/test_singlebyte_conv.cpp \
 	test/test.h \
 	test/test.cpp
