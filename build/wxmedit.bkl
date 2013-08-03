@@ -244,7 +244,12 @@
 		<sources>../src/xm/wxm_encoding.cpp</sources>
 		<headers>../src/xm/wxm_wx_icu.h</headers>
 		<sources>../src/xm/wxm_wx_icu.cpp</sources>
+		<sources>../test/test_cp932_conv.cpp</sources>
+		<sources>../test/test_cp936_conv.cpp</sources>
+		<sources>../test/test_cp949_conv.cpp</sources>
+		<sources>../test/test_cp950_conv.cpp</sources>
 		<sources>../test/test_doublebyte_conv.cpp</sources>
+		<sources>../test/test_euc_jp_conv.cpp</sources>
 		<sources>../test/test_singlebyte_conv.cpp</sources>
 		<headers>../test/test.h</headers>
 		<sources>../test/test.cpp</sources>
