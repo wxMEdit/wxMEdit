@@ -180,8 +180,8 @@ struct ICUConverter: public MBConverter
 	ICUConverter(const std::string& encname);
 	~ICUConverter();
 
-	size_t MB2WC(UChar32& ch, const char* src, size_t src_len);
-	size_t WC2MB(char* dest, size_t dest_len, const UChar32& ch);
+	virtual size_t MB2WC(UChar32& ch, const char* src, size_t src_len);
+	virtual size_t WC2MB(char* dest, size_t dest_len, const UChar32& ch);
 private:
 	UConverter* m_ucnv;
 };
@@ -194,8 +194,8 @@ struct WXConverter: public MBConverter
 		delete m_wxcnv; m_wxcnv = NULL;
 	}
 
-	size_t MB2WC(UChar32& ch, const char* src, size_t src_len);
-	size_t WC2MB(char* dest, size_t dest_len, const UChar32& ch);
+	virtual size_t MB2WC(UChar32& ch, const char* src, size_t src_len);
+	virtual size_t WC2MB(char* dest, size_t dest_len, const UChar32& ch);
 private:
 	wxCSConv* m_wxcnv;
 };
@@ -259,6 +259,7 @@ struct WXMEncodingDoubleByte: public WXMEncodingMultiByte
 	virtual size_t UCS4toMultiByte(ucs4_t ucs4, wxByte* buf);
 
 protected:
+	friend WXMEncoding* WXMEncodingCreator::CreateWxmEncoding(ssize_t idx);
 	virtual void InitMBConverter()
 	{
 		m_mbcnv = new ICUConverter(m_innername);
@@ -285,12 +286,20 @@ private:
 	boost::array<wxWord, 0x10000> m_bmp2mb_tab;
 	std::map<ucs4_t, wxWord> m_nonbmp2mb_map;
 
-	friend WXMEncoding* WXMEncodingCreator::CreateWxmEncoding(ssize_t idx);
 };
 
 struct WXMEncodingWXDoubleByte: public WXMEncodingDoubleByte
 {
-protected:
+private:
+	friend WXMEncoding* WXMEncodingCreator::CreateWxmEncoding(ssize_t idx);
+	virtual void Create(ssize_t idx)
+	{
+		WXMEncodingDoubleByte::Create(idx);
+
+		m_type = etDoubleByte;
+	}
+	~WXMEncodingWXDoubleByte(){}
+
 	virtual void InitMBConverter()
 	{
 		m_mbcnv = new WXConverter(m_innername, m_enc);
