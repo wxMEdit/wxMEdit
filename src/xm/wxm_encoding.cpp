@@ -560,11 +560,11 @@ void WXMEncodingDoubleByte::MultiByteInit()
 {
 	InitMBConverter();
 
-	memset(m_b2u_tab.data(), svtInvaliad, sizeof(ucs4_t)*256);
+	memset(m_b2u_tab.c_array(), svtInvaliad, sizeof(ucs4_t)*256);
 
-	memset(m_bmp2mb_tab.data(), svtNotCached, sizeof(wxWord)*0x10000);
+	memset(m_bmp2mb_tab.c_array(), svtNotCached, sizeof(wxWord)*0x10000);
 
-	memset(m_leadbyte_tab.data(), lbUnset, 256);
+	memset(m_leadbyte_tab.c_array(), lbUnset, 256);
 	m_leadbyte_tab[0]=lbNotLeadByte;
 }
 
@@ -592,7 +592,7 @@ bool WXMEncodingDoubleByte::IsLeadByte(wxByte byte)
 			m_leadbyte_tab[byte]=lbNotLeadByte;
 		}
 
-		memset(m_db2u_tab[byte].data(), svtInvaliad, sizeof(ucs4_t)*256);
+		memset(m_db2u_tab[byte].c_array(), svtInvaliad, sizeof(ucs4_t)*256);
 		for(int i=1; i<=0xFF; ++i)
 		{
 			dbs[1] = i;
