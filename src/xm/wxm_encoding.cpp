@@ -417,8 +417,12 @@ size_t WXConverter::MB2WC(UChar32& ch, const char* src, size_t src_len)
 
 size_t WXConverter::WC2MB(char* dest, size_t dest_len, const UChar32& ch)
 {
-	wchar_t wc[2]={ch, 0}; // FIXME: no non-BMP support on Windows
-	return m_wxcnv->WC2MB(dest, wc, dest_len);
+	if (ch > 0x10000) // FIXME: no non-BMP support (but only for buggy EUC-JP now)
+		return 0;
+
+	wchar_t wc[2]={ch, 0};
+	size_t len = m_wxcnv->WC2MB(dest, wc, dest_len);
+	return (len==(size_t)-1)? 0: len;
 }
 
 void WXMEncoding::Create(ssize_t idx)
@@ -648,6 +652,31 @@ DoubleByteEncodingTableFixer* WXMEncodingDoubleByte::CreateDoubleByteEncodingTab
 	return new DoubleByteEncodingTableFixer(*this);
 }
 
+wxWord WXMEncodingDoubleByte::GetMBofUCS4(ucs4_t u)
+{
+	if (u < 0x10000)
+		return m_bmp2mb_tab[u];
+
+	std::map<ucs4_t, wxWord>::const_iterator it = m_nonbmp2mb_map.find(u);
+	if (it == m_nonbmp2mb_map.end())
+		return svtDByteNotCached;
+	return it->second;
+}
+
+void WXMEncodingDoubleByte::SetMBofUCS4(ucs4_t u, wxWord mb)
+{
+	if (u < 0x10000)
+	{
+		m_bmp2mb_tab[u] = mb;
+		return;
+	}
+
+	if (mb == (wxWord)svtInvaliad)
+		return;
+
+	m_nonbmp2mb_map[u] = mb;
+}
+
 void WXMEncodingDoubleByte::MultiByteInit()
 {
 	InitMBConverter();
@@ -733,10 +762,7 @@ size_t WXMEncodingDoubleByte::UCS4toMultiByte(ucs4_t ucs4, wxByte* buf)
 		return 2;
 	}
 
-	if(ucs4>0xFFFF) // FIXME: no non-BMP support
-		return 0;
-
-	wxWord mb=m_bmp2mb_tab[ucs4];
+	wxWord mb = GetMBofUCS4(ucs4);
 	if(mb == 0) // invalid MB char
 		return 0;
 
@@ -757,26 +783,24 @@ size_t WXMEncodingDoubleByte::UCS4toMultiByte(ucs4_t ucs4, wxByte* buf)
 	size_t len;
 	wxByte mbs[3];
 	len = m_mbcnv->WC2MB((char*)mbs, 3, ucs4);
-	if(len==0 || len==(size_t)-1)
+	mb = (((wxWord)mbs[0])<<8) | mbs[1];
+	if(len == 0 || mb == svtInvaliad)
 	{
-		m_bmp2mb_tab[ucs4] = svtInvaliad;
+		SetMBofUCS4(ucs4, svtInvaliad);
 		return 0;
 	}
 
 	wxASSERT( len<=2 );
 
-	mbs[len]=0;
-	mb= (((wxWord)mbs[0])<<8) | mbs[1];
-	m_bmp2mb_tab[ucs4]=mb;
+	mbs[len] = '\0';
+	SetMBofUCS4(ucs4, mb);
 
-	if (mb == 0)
-		return 0;
+	buf[0] = mbs[0];
+	if(len == 1)
+		return 1;
 
-	buf[0]=mbs[0];
-	if(len==2)
-		buf[1]=mbs[1];
-
-	return len;
+	buf[1]=mbs[1];
+	return 2;
 }
 
 size_t WXMEncodingUTF8::UCS4toMultiByte(ucs4_t ucs4, wxByte* buf)

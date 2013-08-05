@@ -340,6 +340,8 @@ private:
 	std::map<ucs4_t, wxWord> m_nonbmp2mb_map;
 
 	DoubleByteEncodingTableFixer* CreateDoubleByteEncodingTableFixer();
+	wxWord GetMBofUCS4(ucs4_t u);
+	void SetMBofUCS4(ucs4_t u, wxWord mb);
 };
 
 struct WXMEncodingWXDoubleByte: public WXMEncodingDoubleByte
