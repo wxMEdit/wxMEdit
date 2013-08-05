@@ -119,7 +119,7 @@ void WXMEncodingCreator::DoInit()
 	AddEncoding("CP866", wxFONTENCODING_CP866);
 	AddEncoding("KOI8-R", wxFONTENCODING_KOI8);
 	AddEncoding("KOI8-U", wxFONTENCODING_KOI8_U);
-	AddEncoding("Windows-31J", wxFONTENCODING_CP932, etWXDoubleByte, "CP932");
+	AddEncoding("Windows-31J", wxFONTENCODING_CP932, etDoubleByte, "MS932");
 	AddEncoding("GBK/MS936", wxFONTENCODING_CP936, etDoubleByte, "MS936");
 	AddEncoding("UHC", wxFONTENCODING_CP949, etDoubleByte, "MS949");
 	AddEncoding("Big-5/MS950", wxFONTENCODING_CP950, etDoubleByte, "Windows-950-2000");
@@ -556,9 +556,104 @@ size_t WXMEncodingSingleByte::UCS4toMultiByte(ucs4_t ucs4, wxByte* buf)
 	return 1;
 }
 
+void DoubleByteEncodingTableFixer::RemoveLeadByte(wxByte b)
+{
+	m_leadbyte_map[b] = WXMEncodingDoubleByte::lbNotLeadByte;
+}
+void DoubleByteEncodingTableFixer::AddLeadByte(wxByte b)
+{
+	m_leadbyte_map[b] = WXMEncodingDoubleByte::lbLeadByte;
+}
+
+void DoubleByteEncodingTableFixer::RemoveMB2U(wxWord db)
+{
+	m_mb2u_map[db] = WXMEncodingDoubleByte::svtInvaliad;
+}
+void DoubleByteEncodingTableFixer::ChangeMB2U(wxWord db, ucs4_t u)
+{
+	m_mb2u_map[db] = u;
+}
+
+void DoubleByteEncodingTableFixer::RemoveU2MB(ucs4_t u)
+{
+	m_u2mb_map[u] = WXMEncodingDoubleByte::svtInvaliad;
+}
+void DoubleByteEncodingTableFixer::ChangeU2MB(ucs4_t u, wxWord db)
+{
+	m_u2mb_map[u] = db;
+}
+int DoubleByteEncodingTableFixer::LeadByteInfo(wxByte b)
+{
+	std::map<wxByte, int>::const_iterator it = m_leadbyte_map.find(b);
+	if (it == m_leadbyte_map.end())
+		return WXMEncodingDoubleByte::lbUnset;
+
+	return it->second;
+}
+
+ucs4_t DoubleByteEncodingTableFixer::MB2UInfo(wxWord db)
+{
+	std::map<wxWord, ucs4_t>::const_iterator it = m_mb2u_map.find(db);
+	if (it == m_mb2u_map.end())
+		return WXMEncodingDoubleByte::svtUCS4NotCached;
+
+	return it->second;
+}
+
+wxWord DoubleByteEncodingTableFixer::U2MBInfo(ucs4_t db)
+{
+	std::map<ucs4_t, wxWord>::const_iterator it = m_u2mb_map.find(db);
+	if (it == m_u2mb_map.end())
+		return WXMEncodingDoubleByte::svtDByteNotCached;
+
+	return it->second;
+}
+
+void MS932TableFixer::fix()
+{
+	ChangeMB2U(0x1A00, 0x00001A);
+	ChangeMB2U(0x1C00, 0x00001C);
+	ChangeMB2U(0x7F00, 0x00007F);
+	ChangeMB2U(0x8000, 0x000080);
+
+	RemoveMB2U(0x8500);
+	RemoveMB2U(0x8600);
+	RemoveMB2U(0xEB00);
+	RemoveMB2U(0xEC00);
+	RemoveMB2U(0xEF00);
+
+	ChangeMB2U(0xA000, 0x00F8F0);
+	ChangeMB2U(0xFD00, 0x00F8F1);
+	ChangeMB2U(0xFE00, 0x00F8F2);
+	ChangeMB2U(0xFF00, 0x00F8F3);
+
+
+	ChangeU2MB(0x00001A, 0x1A00);
+	ChangeU2MB(0x00001C, 0x1C00);
+	ChangeU2MB(0x00007F, 0x7F00);
+	ChangeU2MB(0x000080, 0x8000);
+
+	ChangeU2MB(0x00F8F0, 0xA000);
+	ChangeU2MB(0x00F8F1, 0xFD00);
+	ChangeU2MB(0x00F8F2, 0xFE00);
+	ChangeU2MB(0x00F8F3, 0xFF00);
+
+	RemoveU2MB(0x00F86F);
+}
+
+DoubleByteEncodingTableFixer* WXMEncodingDoubleByte::CreateDoubleByteEncodingTableFixer()
+{
+	if (m_innername == "MS932")
+		return new MS932TableFixer(*this);
+	return new DoubleByteEncodingTableFixer(*this);
+}
+
 void WXMEncodingDoubleByte::MultiByteInit()
 {
 	InitMBConverter();
+
+	m_dbfix = CreateDoubleByteEncodingTableFixer();
+	m_dbfix->fix();
 
 	memset(m_b2u_tab.c_array(), svtInvaliad, sizeof(ucs4_t)*256);
 
@@ -571,6 +666,11 @@ void WXMEncodingDoubleByte::MultiByteInit()
 // return 0 if it is not a valid DB char
 ucs4_t WXMEncodingDoubleByte::MultiBytetoUCS4(wxByte* buf)
 {
+	wxWord dbtmp = (buf[0] << 8) | buf[1];
+	ucs4_t uinfo = m_dbfix->MB2UInfo(dbtmp);
+	if (uinfo != (ucs4_t)svtUCS4NotCached)
+		return uinfo;
+
 	if( IsLeadByte(buf[0]))
 		return m_db2u_tab[buf[0]][buf[1]];
 
@@ -579,6 +679,10 @@ ucs4_t WXMEncodingDoubleByte::MultiBytetoUCS4(wxByte* buf)
 
 bool WXMEncodingDoubleByte::IsLeadByte(wxByte byte)
 {
+	int lbinfo = m_dbfix->LeadByteInfo(byte);
+	if (lbinfo != lbUnset)
+		return lbinfo==lbLeadByte;
+
 	if(m_leadbyte_tab[byte]==lbUnset)
 	{
 		wxByte dbs[3]={byte,0,0};
@@ -613,6 +717,22 @@ bool WXMEncodingDoubleByte::IsLeadByte(wxByte byte)
 
 size_t WXMEncodingDoubleByte::UCS4toMultiByte(ucs4_t ucs4, wxByte* buf)
 {
+	wxWord dbinfo = m_dbfix->U2MBInfo(ucs4);
+	if (dbinfo != (ucs4_t)svtDByteNotCached)
+	{
+		if (dbinfo == svtInvaliad)
+			return 0;
+
+		buf[0] = dbinfo >> 8;
+		wxByte b = dbinfo & 0xFF;
+
+		if (b == svtInvaliad)
+			return 1;
+
+		buf[1] = b;
+		return 2;
+	}
+
 	if(ucs4>0xFFFF) // FIXME: no non-BMP support
 		return 0;
 
@@ -626,7 +746,7 @@ size_t WXMEncodingDoubleByte::UCS4toMultiByte(ucs4_t ucs4, wxByte* buf)
 		return 1;
 	}
 
-	if(mb!=0xFFFF) // cached
+	if(mb != (ucs4_t)svtDByteNotCached)
 	{
 		buf[0] = mb >> 8;
 		buf[1] = mb & 0xFF;
@@ -639,7 +759,7 @@ size_t WXMEncodingDoubleByte::UCS4toMultiByte(ucs4_t ucs4, wxByte* buf)
 	len = m_mbcnv->WC2MB((char*)mbs, 3, ucs4);
 	if(len==0 || len==(size_t)-1)
 	{
-		m_bmp2mb_tab[ucs4]=0;
+		m_bmp2mb_tab[ucs4] = svtInvaliad;
 		return 0;
 	}
 
