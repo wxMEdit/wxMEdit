@@ -22,10 +22,8 @@ typedef std::map<std::string, U2MBDataMap> U2MBMap;
 U2MBMap u2mb;
 std::vector<std::string> test_doublebyte_conv_enc_list;
 
-#ifdef __WXMSW__
 void mb2u_cp932_init();
 void u2mb_cp932_init();
-#endif
 
 void mb2u_cp936_init();
 void u2mb_cp936_init();
@@ -43,10 +41,8 @@ void u2mb_euc_jp_init();
 
 void test_doublebyte_conv_init()
 {
-#ifdef __WXMSW__
 	mb2u_cp932_init();
 	u2mb_cp932_init();
-#endif
 
 	mb2u_cp936_init();
 	u2mb_cp936_init();
