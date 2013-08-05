@@ -78,9 +78,14 @@ am_wxmedit_OBJECTS = wxmedit-wxmedit_about_dialog.$(OBJEXT) \
 	wxmedit-wxm_syntax.$(OBJEXT) wxmedit-wxm_undo.$(OBJEXT) \
 	wxmedit-xm_ublock_des.$(OBJEXT) wxmedit-xm_ublock.$(OBJEXT) \
 	wxmedit-xm_uutils.$(OBJEXT) wxmedit-wxm_case_conv.$(OBJEXT) \
-	wxmedit-wxm_encoding.$(OBJEXT) wxmedit-wxm_wx_icu.$(OBJEXT) \
-	wxmedit-trad_simp.$(OBJEXT) wxmedit-CharDistribution.$(OBJEXT) \
-	wxmedit-JpCntx.$(OBJEXT) wxmedit-LangBulgarianModel.$(OBJEXT) \
+	wxmedit-wxm_encoding.$(OBJEXT) \
+	wxmedit-wxm_encoding_doublebyte.$(OBJEXT) \
+	wxmedit-wxm_encoding_multibyte.$(OBJEXT) \
+	wxmedit-wxm_encoding_singlebyte.$(OBJEXT) \
+	wxmedit-wxm_encoding_unicode.$(OBJEXT) \
+	wxmedit-wxm_wx_icu.$(OBJEXT) wxmedit-trad_simp.$(OBJEXT) \
+	wxmedit-CharDistribution.$(OBJEXT) wxmedit-JpCntx.$(OBJEXT) \
+	wxmedit-LangBulgarianModel.$(OBJEXT) \
 	wxmedit-LangCyrillicModel.$(OBJEXT) \
 	wxmedit-LangGreekModel.$(OBJEXT) \
 	wxmedit-LangHebrewModel.$(OBJEXT) \
@@ -102,11 +107,15 @@ am_wxmedit_OBJECTS = wxmedit-wxmedit_about_dialog.$(OBJEXT) \
 	wxmedit-nsUTF8Prober.$(OBJEXT) wxmedit-impl.$(OBJEXT)
 wxmedit_OBJECTS = $(am_wxmedit_OBJECTS)
 wxmedit_LDADD = $(LDADD)
-am_wxmedit_test_OBJECTS = wxm_encoding.$(OBJEXT) wxm_wx_icu.$(OBJEXT) \
-	test_cp932_conv.$(OBJEXT) test_cp936_conv.$(OBJEXT) \
-	test_cp949_conv.$(OBJEXT) test_cp950_conv.$(OBJEXT) \
-	test_doublebyte_conv.$(OBJEXT) test_euc_jp_conv.$(OBJEXT) \
-	test_singlebyte_conv.$(OBJEXT) test.$(OBJEXT)
+am_wxmedit_test_OBJECTS = wxm_encoding.$(OBJEXT) \
+	wxm_encoding_doublebyte.$(OBJEXT) \
+	wxm_encoding_multibyte.$(OBJEXT) \
+	wxm_encoding_singlebyte.$(OBJEXT) \
+	wxm_encoding_unicode.$(OBJEXT) test_cp932_conv.$(OBJEXT) \
+	test_cp936_conv.$(OBJEXT) test_cp949_conv.$(OBJEXT) \
+	test_cp950_conv.$(OBJEXT) test_doublebyte_conv.$(OBJEXT) \
+	test_euc_jp_conv.$(OBJEXT) test_singlebyte_conv.$(OBJEXT) \
+	test.$(OBJEXT)
 wxmedit_test_OBJECTS = $(am_wxmedit_test_OBJECTS)
 wxmedit_test_LDADD = $(LDADD)
 DEFAULT_INCLUDES = -I. -I$(srcdir) -I.
@@ -365,6 +374,14 @@ wxmedit_SOURCES = src/wxmedit_about_dialog.cpp \
 	src/xm/wxm_case_conv.h \
 	src/xm/wxm_encoding.cpp \
 	src/xm/wxm_encoding.h \
+	src/xm/wxm_encoding_doublebyte.cpp \
+	src/xm/wxm_encoding_doublebyte.h \
+	src/xm/wxm_encoding_multibyte.cpp \
+	src/xm/wxm_encoding_multibyte.h \
+	src/xm/wxm_encoding_singlebyte.cpp \
+	src/xm/wxm_encoding_singlebyte.h \
+	src/xm/wxm_encoding_unicode.cpp \
+	src/xm/wxm_encoding_unicode.h \
 	src/xm/wxm_wx_icu.cpp \
 	src/xm/wxm_wx_icu.h \
 	src/wxmedit/trad_simp.cpp \
@@ -420,10 +437,16 @@ wxmedit_SOURCES = src/wxmedit_about_dialog.cpp \
 	charset-detector/include/chardetect.h
 
 wxmedit_test_SOURCES = src/wxmedit/ucs4_t.h \
-	src/xm/wxm_encoding.h \
 	src/xm/wxm_encoding.cpp \
-	src/xm/wxm_wx_icu.h \
-	src/xm/wxm_wx_icu.cpp \
+	src/xm/wxm_encoding.h \
+	src/xm/wxm_encoding_doublebyte.cpp \
+	src/xm/wxm_encoding_doublebyte.h \
+	src/xm/wxm_encoding_multibyte.cpp \
+	src/xm/wxm_encoding_multibyte.h \
+	src/xm/wxm_encoding_singlebyte.cpp \
+	src/xm/wxm_encoding_singlebyte.h \
+	src/xm/wxm_encoding_unicode.cpp \
+	src/xm/wxm_encoding_unicode.h \
 	test/test_cp932_conv.cpp \
 	test/test_cp936_conv.cpp \
 	test/test_cp949_conv.cpp \
@@ -653,7 +676,10 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/test_euc_jp_conv.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/test_singlebyte_conv.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/wxm_encoding.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/wxm_wx_icu.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/wxm_encoding_doublebyte.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/wxm_encoding_multibyte.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/wxm_encoding_singlebyte.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/wxm_encoding_unicode.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/wxmedit-CharDistribution.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/wxmedit-JpCntx.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/wxmedit-LangBulgarianModel.Po@am__quote@
@@ -687,6 +713,10 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/wxmedit-wxm_conv_enc_dialog.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/wxmedit-wxm_encdet.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/wxmedit-wxm_encoding.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/wxmedit-wxm_encoding_doublebyte.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/wxmedit-wxm_encoding_multibyte.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/wxmedit-wxm_encoding_singlebyte.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/wxmedit-wxm_encoding_unicode.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/wxmedit-wxm_find_in_files_dialog.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/wxmedit-wxm_highlighting_dialog.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/wxmedit-wxm_lines.Po@am__quote@
@@ -1162,6 +1192,62 @@ wxmedit-wxm_encoding.obj: src/xm/wxm_encoding.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -c -o wxmedit-wxm_encoding.obj `if test -f 'src/xm/wxm_encoding.cpp'; then $(CYGPATH_W) 'src/xm/wxm_encoding.cpp'; else $(CYGPATH_W) '$(srcdir)/src/xm/wxm_encoding.cpp'; fi`
 
+wxmedit-wxm_encoding_doublebyte.o: src/xm/wxm_encoding_doublebyte.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -MT wxmedit-wxm_encoding_doublebyte.o -MD -MP -MF "$(DEPDIR)/wxmedit-wxm_encoding_doublebyte.Tpo" -c -o wxmedit-wxm_encoding_doublebyte.o `test -f 'src/xm/wxm_encoding_doublebyte.cpp' || echo '$(srcdir)/'`src/xm/wxm_encoding_doublebyte.cpp; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/wxmedit-wxm_encoding_doublebyte.Tpo" "$(DEPDIR)/wxmedit-wxm_encoding_doublebyte.Po"; else rm -f "$(DEPDIR)/wxmedit-wxm_encoding_doublebyte.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/xm/wxm_encoding_doublebyte.cpp' object='wxmedit-wxm_encoding_doublebyte.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -c -o wxmedit-wxm_encoding_doublebyte.o `test -f 'src/xm/wxm_encoding_doublebyte.cpp' || echo '$(srcdir)/'`src/xm/wxm_encoding_doublebyte.cpp
+
+wxmedit-wxm_encoding_doublebyte.obj: src/xm/wxm_encoding_doublebyte.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -MT wxmedit-wxm_encoding_doublebyte.obj -MD -MP -MF "$(DEPDIR)/wxmedit-wxm_encoding_doublebyte.Tpo" -c -o wxmedit-wxm_encoding_doublebyte.obj `if test -f 'src/xm/wxm_encoding_doublebyte.cpp'; then $(CYGPATH_W) 'src/xm/wxm_encoding_doublebyte.cpp'; else $(CYGPATH_W) '$(srcdir)/src/xm/wxm_encoding_doublebyte.cpp'; fi`; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/wxmedit-wxm_encoding_doublebyte.Tpo" "$(DEPDIR)/wxmedit-wxm_encoding_doublebyte.Po"; else rm -f "$(DEPDIR)/wxmedit-wxm_encoding_doublebyte.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/xm/wxm_encoding_doublebyte.cpp' object='wxmedit-wxm_encoding_doublebyte.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -c -o wxmedit-wxm_encoding_doublebyte.obj `if test -f 'src/xm/wxm_encoding_doublebyte.cpp'; then $(CYGPATH_W) 'src/xm/wxm_encoding_doublebyte.cpp'; else $(CYGPATH_W) '$(srcdir)/src/xm/wxm_encoding_doublebyte.cpp'; fi`
+
+wxmedit-wxm_encoding_multibyte.o: src/xm/wxm_encoding_multibyte.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -MT wxmedit-wxm_encoding_multibyte.o -MD -MP -MF "$(DEPDIR)/wxmedit-wxm_encoding_multibyte.Tpo" -c -o wxmedit-wxm_encoding_multibyte.o `test -f 'src/xm/wxm_encoding_multibyte.cpp' || echo '$(srcdir)/'`src/xm/wxm_encoding_multibyte.cpp; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/wxmedit-wxm_encoding_multibyte.Tpo" "$(DEPDIR)/wxmedit-wxm_encoding_multibyte.Po"; else rm -f "$(DEPDIR)/wxmedit-wxm_encoding_multibyte.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/xm/wxm_encoding_multibyte.cpp' object='wxmedit-wxm_encoding_multibyte.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -c -o wxmedit-wxm_encoding_multibyte.o `test -f 'src/xm/wxm_encoding_multibyte.cpp' || echo '$(srcdir)/'`src/xm/wxm_encoding_multibyte.cpp
+
+wxmedit-wxm_encoding_multibyte.obj: src/xm/wxm_encoding_multibyte.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -MT wxmedit-wxm_encoding_multibyte.obj -MD -MP -MF "$(DEPDIR)/wxmedit-wxm_encoding_multibyte.Tpo" -c -o wxmedit-wxm_encoding_multibyte.obj `if test -f 'src/xm/wxm_encoding_multibyte.cpp'; then $(CYGPATH_W) 'src/xm/wxm_encoding_multibyte.cpp'; else $(CYGPATH_W) '$(srcdir)/src/xm/wxm_encoding_multibyte.cpp'; fi`; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/wxmedit-wxm_encoding_multibyte.Tpo" "$(DEPDIR)/wxmedit-wxm_encoding_multibyte.Po"; else rm -f "$(DEPDIR)/wxmedit-wxm_encoding_multibyte.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/xm/wxm_encoding_multibyte.cpp' object='wxmedit-wxm_encoding_multibyte.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -c -o wxmedit-wxm_encoding_multibyte.obj `if test -f 'src/xm/wxm_encoding_multibyte.cpp'; then $(CYGPATH_W) 'src/xm/wxm_encoding_multibyte.cpp'; else $(CYGPATH_W) '$(srcdir)/src/xm/wxm_encoding_multibyte.cpp'; fi`
+
+wxmedit-wxm_encoding_singlebyte.o: src/xm/wxm_encoding_singlebyte.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -MT wxmedit-wxm_encoding_singlebyte.o -MD -MP -MF "$(DEPDIR)/wxmedit-wxm_encoding_singlebyte.Tpo" -c -o wxmedit-wxm_encoding_singlebyte.o `test -f 'src/xm/wxm_encoding_singlebyte.cpp' || echo '$(srcdir)/'`src/xm/wxm_encoding_singlebyte.cpp; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/wxmedit-wxm_encoding_singlebyte.Tpo" "$(DEPDIR)/wxmedit-wxm_encoding_singlebyte.Po"; else rm -f "$(DEPDIR)/wxmedit-wxm_encoding_singlebyte.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/xm/wxm_encoding_singlebyte.cpp' object='wxmedit-wxm_encoding_singlebyte.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -c -o wxmedit-wxm_encoding_singlebyte.o `test -f 'src/xm/wxm_encoding_singlebyte.cpp' || echo '$(srcdir)/'`src/xm/wxm_encoding_singlebyte.cpp
+
+wxmedit-wxm_encoding_singlebyte.obj: src/xm/wxm_encoding_singlebyte.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -MT wxmedit-wxm_encoding_singlebyte.obj -MD -MP -MF "$(DEPDIR)/wxmedit-wxm_encoding_singlebyte.Tpo" -c -o wxmedit-wxm_encoding_singlebyte.obj `if test -f 'src/xm/wxm_encoding_singlebyte.cpp'; then $(CYGPATH_W) 'src/xm/wxm_encoding_singlebyte.cpp'; else $(CYGPATH_W) '$(srcdir)/src/xm/wxm_encoding_singlebyte.cpp'; fi`; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/wxmedit-wxm_encoding_singlebyte.Tpo" "$(DEPDIR)/wxmedit-wxm_encoding_singlebyte.Po"; else rm -f "$(DEPDIR)/wxmedit-wxm_encoding_singlebyte.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/xm/wxm_encoding_singlebyte.cpp' object='wxmedit-wxm_encoding_singlebyte.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -c -o wxmedit-wxm_encoding_singlebyte.obj `if test -f 'src/xm/wxm_encoding_singlebyte.cpp'; then $(CYGPATH_W) 'src/xm/wxm_encoding_singlebyte.cpp'; else $(CYGPATH_W) '$(srcdir)/src/xm/wxm_encoding_singlebyte.cpp'; fi`
+
+wxmedit-wxm_encoding_unicode.o: src/xm/wxm_encoding_unicode.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -MT wxmedit-wxm_encoding_unicode.o -MD -MP -MF "$(DEPDIR)/wxmedit-wxm_encoding_unicode.Tpo" -c -o wxmedit-wxm_encoding_unicode.o `test -f 'src/xm/wxm_encoding_unicode.cpp' || echo '$(srcdir)/'`src/xm/wxm_encoding_unicode.cpp; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/wxmedit-wxm_encoding_unicode.Tpo" "$(DEPDIR)/wxmedit-wxm_encoding_unicode.Po"; else rm -f "$(DEPDIR)/wxmedit-wxm_encoding_unicode.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/xm/wxm_encoding_unicode.cpp' object='wxmedit-wxm_encoding_unicode.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -c -o wxmedit-wxm_encoding_unicode.o `test -f 'src/xm/wxm_encoding_unicode.cpp' || echo '$(srcdir)/'`src/xm/wxm_encoding_unicode.cpp
+
+wxmedit-wxm_encoding_unicode.obj: src/xm/wxm_encoding_unicode.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -MT wxmedit-wxm_encoding_unicode.obj -MD -MP -MF "$(DEPDIR)/wxmedit-wxm_encoding_unicode.Tpo" -c -o wxmedit-wxm_encoding_unicode.obj `if test -f 'src/xm/wxm_encoding_unicode.cpp'; then $(CYGPATH_W) 'src/xm/wxm_encoding_unicode.cpp'; else $(CYGPATH_W) '$(srcdir)/src/xm/wxm_encoding_unicode.cpp'; fi`; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/wxmedit-wxm_encoding_unicode.Tpo" "$(DEPDIR)/wxmedit-wxm_encoding_unicode.Po"; else rm -f "$(DEPDIR)/wxmedit-wxm_encoding_unicode.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/xm/wxm_encoding_unicode.cpp' object='wxmedit-wxm_encoding_unicode.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -c -o wxmedit-wxm_encoding_unicode.obj `if test -f 'src/xm/wxm_encoding_unicode.cpp'; then $(CYGPATH_W) 'src/xm/wxm_encoding_unicode.cpp'; else $(CYGPATH_W) '$(srcdir)/src/xm/wxm_encoding_unicode.cpp'; fi`
+
 wxmedit-wxm_wx_icu.o: src/xm/wxm_wx_icu.cpp
 @am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -MT wxmedit-wxm_wx_icu.o -MD -MP -MF "$(DEPDIR)/wxmedit-wxm_wx_icu.Tpo" -c -o wxmedit-wxm_wx_icu.o `test -f 'src/xm/wxm_wx_icu.cpp' || echo '$(srcdir)/'`src/xm/wxm_wx_icu.cpp; \
 @am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/wxmedit-wxm_wx_icu.Tpo" "$(DEPDIR)/wxmedit-wxm_wx_icu.Po"; else rm -f "$(DEPDIR)/wxmedit-wxm_wx_icu.Tpo"; exit 1; fi
@@ -1568,19 +1654,61 @@ wxm_encoding.obj: src/xm/wxm_encoding.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o wxm_encoding.obj `if test -f 'src/xm/wxm_encoding.cpp'; then $(CYGPATH_W) 'src/xm/wxm_encoding.cpp'; else $(CYGPATH_W) '$(srcdir)/src/xm/wxm_encoding.cpp'; fi`
 
-wxm_wx_icu.o: src/xm/wxm_wx_icu.cpp
-@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT wxm_wx_icu.o -MD -MP -MF "$(DEPDIR)/wxm_wx_icu.Tpo" -c -o wxm_wx_icu.o `test -f 'src/xm/wxm_wx_icu.cpp' || echo '$(srcdir)/'`src/xm/wxm_wx_icu.cpp; \
-@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/wxm_wx_icu.Tpo" "$(DEPDIR)/wxm_wx_icu.Po"; else rm -f "$(DEPDIR)/wxm_wx_icu.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/xm/wxm_wx_icu.cpp' object='wxm_wx_icu.o' libtool=no @AMDEPBACKSLASH@
+wxm_encoding_doublebyte.o: src/xm/wxm_encoding_doublebyte.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT wxm_encoding_doublebyte.o -MD -MP -MF "$(DEPDIR)/wxm_encoding_doublebyte.Tpo" -c -o wxm_encoding_doublebyte.o `test -f 'src/xm/wxm_encoding_doublebyte.cpp' || echo '$(srcdir)/'`src/xm/wxm_encoding_doublebyte.cpp; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/wxm_encoding_doublebyte.Tpo" "$(DEPDIR)/wxm_encoding_doublebyte.Po"; else rm -f "$(DEPDIR)/wxm_encoding_doublebyte.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/xm/wxm_encoding_doublebyte.cpp' object='wxm_encoding_doublebyte.o' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o wxm_wx_icu.o `test -f 'src/xm/wxm_wx_icu.cpp' || echo '$(srcdir)/'`src/xm/wxm_wx_icu.cpp
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o wxm_encoding_doublebyte.o `test -f 'src/xm/wxm_encoding_doublebyte.cpp' || echo '$(srcdir)/'`src/xm/wxm_encoding_doublebyte.cpp
 
-wxm_wx_icu.obj: src/xm/wxm_wx_icu.cpp
-@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT wxm_wx_icu.obj -MD -MP -MF "$(DEPDIR)/wxm_wx_icu.Tpo" -c -o wxm_wx_icu.obj `if test -f 'src/xm/wxm_wx_icu.cpp'; then $(CYGPATH_W) 'src/xm/wxm_wx_icu.cpp'; else $(CYGPATH_W) '$(srcdir)/src/xm/wxm_wx_icu.cpp'; fi`; \
-@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/wxm_wx_icu.Tpo" "$(DEPDIR)/wxm_wx_icu.Po"; else rm -f "$(DEPDIR)/wxm_wx_icu.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/xm/wxm_wx_icu.cpp' object='wxm_wx_icu.obj' libtool=no @AMDEPBACKSLASH@
+wxm_encoding_doublebyte.obj: src/xm/wxm_encoding_doublebyte.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT wxm_encoding_doublebyte.obj -MD -MP -MF "$(DEPDIR)/wxm_encoding_doublebyte.Tpo" -c -o wxm_encoding_doublebyte.obj `if test -f 'src/xm/wxm_encoding_doublebyte.cpp'; then $(CYGPATH_W) 'src/xm/wxm_encoding_doublebyte.cpp'; else $(CYGPATH_W) '$(srcdir)/src/xm/wxm_encoding_doublebyte.cpp'; fi`; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/wxm_encoding_doublebyte.Tpo" "$(DEPDIR)/wxm_encoding_doublebyte.Po"; else rm -f "$(DEPDIR)/wxm_encoding_doublebyte.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/xm/wxm_encoding_doublebyte.cpp' object='wxm_encoding_doublebyte.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o wxm_wx_icu.obj `if test -f 'src/xm/wxm_wx_icu.cpp'; then $(CYGPATH_W) 'src/xm/wxm_wx_icu.cpp'; else $(CYGPATH_W) '$(srcdir)/src/xm/wxm_wx_icu.cpp'; fi`
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o wxm_encoding_doublebyte.obj `if test -f 'src/xm/wxm_encoding_doublebyte.cpp'; then $(CYGPATH_W) 'src/xm/wxm_encoding_doublebyte.cpp'; else $(CYGPATH_W) '$(srcdir)/src/xm/wxm_encoding_doublebyte.cpp'; fi`
+
+wxm_encoding_multibyte.o: src/xm/wxm_encoding_multibyte.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT wxm_encoding_multibyte.o -MD -MP -MF "$(DEPDIR)/wxm_encoding_multibyte.Tpo" -c -o wxm_encoding_multibyte.o `test -f 'src/xm/wxm_encoding_multibyte.cpp' || echo '$(srcdir)/'`src/xm/wxm_encoding_multibyte.cpp; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/wxm_encoding_multibyte.Tpo" "$(DEPDIR)/wxm_encoding_multibyte.Po"; else rm -f "$(DEPDIR)/wxm_encoding_multibyte.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/xm/wxm_encoding_multibyte.cpp' object='wxm_encoding_multibyte.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o wxm_encoding_multibyte.o `test -f 'src/xm/wxm_encoding_multibyte.cpp' || echo '$(srcdir)/'`src/xm/wxm_encoding_multibyte.cpp
+
+wxm_encoding_multibyte.obj: src/xm/wxm_encoding_multibyte.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT wxm_encoding_multibyte.obj -MD -MP -MF "$(DEPDIR)/wxm_encoding_multibyte.Tpo" -c -o wxm_encoding_multibyte.obj `if test -f 'src/xm/wxm_encoding_multibyte.cpp'; then $(CYGPATH_W) 'src/xm/wxm_encoding_multibyte.cpp'; else $(CYGPATH_W) '$(srcdir)/src/xm/wxm_encoding_multibyte.cpp'; fi`; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/wxm_encoding_multibyte.Tpo" "$(DEPDIR)/wxm_encoding_multibyte.Po"; else rm -f "$(DEPDIR)/wxm_encoding_multibyte.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/xm/wxm_encoding_multibyte.cpp' object='wxm_encoding_multibyte.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o wxm_encoding_multibyte.obj `if test -f 'src/xm/wxm_encoding_multibyte.cpp'; then $(CYGPATH_W) 'src/xm/wxm_encoding_multibyte.cpp'; else $(CYGPATH_W) '$(srcdir)/src/xm/wxm_encoding_multibyte.cpp'; fi`
+
+wxm_encoding_singlebyte.o: src/xm/wxm_encoding_singlebyte.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT wxm_encoding_singlebyte.o -MD -MP -MF "$(DEPDIR)/wxm_encoding_singlebyte.Tpo" -c -o wxm_encoding_singlebyte.o `test -f 'src/xm/wxm_encoding_singlebyte.cpp' || echo '$(srcdir)/'`src/xm/wxm_encoding_singlebyte.cpp; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/wxm_encoding_singlebyte.Tpo" "$(DEPDIR)/wxm_encoding_singlebyte.Po"; else rm -f "$(DEPDIR)/wxm_encoding_singlebyte.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/xm/wxm_encoding_singlebyte.cpp' object='wxm_encoding_singlebyte.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o wxm_encoding_singlebyte.o `test -f 'src/xm/wxm_encoding_singlebyte.cpp' || echo '$(srcdir)/'`src/xm/wxm_encoding_singlebyte.cpp
+
+wxm_encoding_singlebyte.obj: src/xm/wxm_encoding_singlebyte.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT wxm_encoding_singlebyte.obj -MD -MP -MF "$(DEPDIR)/wxm_encoding_singlebyte.Tpo" -c -o wxm_encoding_singlebyte.obj `if test -f 'src/xm/wxm_encoding_singlebyte.cpp'; then $(CYGPATH_W) 'src/xm/wxm_encoding_singlebyte.cpp'; else $(CYGPATH_W) '$(srcdir)/src/xm/wxm_encoding_singlebyte.cpp'; fi`; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/wxm_encoding_singlebyte.Tpo" "$(DEPDIR)/wxm_encoding_singlebyte.Po"; else rm -f "$(DEPDIR)/wxm_encoding_singlebyte.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/xm/wxm_encoding_singlebyte.cpp' object='wxm_encoding_singlebyte.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o wxm_encoding_singlebyte.obj `if test -f 'src/xm/wxm_encoding_singlebyte.cpp'; then $(CYGPATH_W) 'src/xm/wxm_encoding_singlebyte.cpp'; else $(CYGPATH_W) '$(srcdir)/src/xm/wxm_encoding_singlebyte.cpp'; fi`
+
+wxm_encoding_unicode.o: src/xm/wxm_encoding_unicode.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT wxm_encoding_unicode.o -MD -MP -MF "$(DEPDIR)/wxm_encoding_unicode.Tpo" -c -o wxm_encoding_unicode.o `test -f 'src/xm/wxm_encoding_unicode.cpp' || echo '$(srcdir)/'`src/xm/wxm_encoding_unicode.cpp; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/wxm_encoding_unicode.Tpo" "$(DEPDIR)/wxm_encoding_unicode.Po"; else rm -f "$(DEPDIR)/wxm_encoding_unicode.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/xm/wxm_encoding_unicode.cpp' object='wxm_encoding_unicode.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o wxm_encoding_unicode.o `test -f 'src/xm/wxm_encoding_unicode.cpp' || echo '$(srcdir)/'`src/xm/wxm_encoding_unicode.cpp
+
+wxm_encoding_unicode.obj: src/xm/wxm_encoding_unicode.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT wxm_encoding_unicode.obj -MD -MP -MF "$(DEPDIR)/wxm_encoding_unicode.Tpo" -c -o wxm_encoding_unicode.obj `if test -f 'src/xm/wxm_encoding_unicode.cpp'; then $(CYGPATH_W) 'src/xm/wxm_encoding_unicode.cpp'; else $(CYGPATH_W) '$(srcdir)/src/xm/wxm_encoding_unicode.cpp'; fi`; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/wxm_encoding_unicode.Tpo" "$(DEPDIR)/wxm_encoding_unicode.Po"; else rm -f "$(DEPDIR)/wxm_encoding_unicode.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/xm/wxm_encoding_unicode.cpp' object='wxm_encoding_unicode.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o wxm_encoding_unicode.obj `if test -f 'src/xm/wxm_encoding_unicode.cpp'; then $(CYGPATH_W) 'src/xm/wxm_encoding_unicode.cpp'; else $(CYGPATH_W) '$(srcdir)/src/xm/wxm_encoding_unicode.cpp'; fi`
 
 test_cp932_conv.o: test/test_cp932_conv.cpp
 @am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT test_cp932_conv.o -MD -MP -MF "$(DEPDIR)/test_cp932_conv.Tpo" -c -o test_cp932_conv.o `test -f 'test/test_cp932_conv.cpp' || echo '$(srcdir)/'`test/test_cp932_conv.cpp; \

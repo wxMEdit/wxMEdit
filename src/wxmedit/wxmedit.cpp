@@ -9,6 +9,8 @@
 
 #include "wxmedit.h"
 #include "wxm_encdet.h"
+#include "../xm/wxm_encoding_doublebyte.h"
+#include "../xm/wxm_encoding_unicode.h"
 #include "wxm_syntax.h"
 #include "wxm_undo.h"
 

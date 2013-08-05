@@ -165,6 +165,14 @@
 		<sources>../src/xm/wxm_case_conv.cpp</sources>
 		<headers>../src/xm/wxm_encoding.h</headers>
 		<sources>../src/xm/wxm_encoding.cpp</sources>
+		<headers>../src/xm/wxm_encoding_doublebyte.h</headers>
+		<sources>../src/xm/wxm_encoding_doublebyte.cpp</sources>
+		<headers>../src/xm/wxm_encoding_singlebyte.h</headers>
+		<sources>../src/xm/wxm_encoding_singlebyte.cpp</sources>
+		<headers>../src/xm/wxm_encoding_multibyte.h</headers>
+		<sources>../src/xm/wxm_encoding_multibyte.cpp</sources>
+		<headers>../src/xm/wxm_encoding_unicode.h</headers>
+		<sources>../src/xm/wxm_encoding_unicode.cpp</sources>
 		<headers>../src/xm/wxm_wx_icu.h</headers>
 		<sources>../src/xm/wxm_wx_icu.cpp</sources>
 		<headers>../src/xm/xm_ublock.h</headers>
@@ -242,8 +250,14 @@
 		<headers>../src/wxmedit/ucs4_t.h</headers>
 		<headers>../src/xm/wxm_encoding.h</headers>
 		<sources>../src/xm/wxm_encoding.cpp</sources>
-		<headers>../src/xm/wxm_wx_icu.h</headers>
-		<sources>../src/xm/wxm_wx_icu.cpp</sources>
+		<headers>../src/xm/wxm_encoding_doublebyte.h</headers>
+		<sources>../src/xm/wxm_encoding_doublebyte.cpp</sources>
+		<headers>../src/xm/wxm_encoding_singlebyte.h</headers>
+		<sources>../src/xm/wxm_encoding_singlebyte.cpp</sources>
+		<headers>../src/xm/wxm_encoding_multibyte.h</headers>
+		<sources>../src/xm/wxm_encoding_multibyte.cpp</sources>
+		<headers>../src/xm/wxm_encoding_unicode.h</headers>
+		<sources>../src/xm/wxm_encoding_unicode.cpp</sources>
 		<sources>../test/test_cp932_conv.cpp</sources>
 		<sources>../test/test_cp936_conv.cpp</sources>
 		<sources>../test/test_cp949_conv.cpp</sources>
