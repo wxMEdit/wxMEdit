@@ -40,10 +40,10 @@ NOTE:
    You can download Bakefile at:
       http://www.bakefile.org/download.html
 
-   If you use Boost-1.33, you should get Boost.Xpressive at:
+   If you use Boost-1.33, you should get Boost.Xpressive and Boost::Foreach at:
       http://code.google.com/p/wxmedit/
-      http://wxmedit.googlecode.com/files/xpressive.tgz
-      http://wxmedit.googlecode.com/files/xpressive.zip
+      http://wxmedit.googlecode.com/files/xpressive_foreach.tgz
+      http://wxmedit.googlecode.com/files/xpressive_foreach.zip
 
    If you use wxWidgets-2.6, you should get wxAUI:
       http://wxmedit.googlecode.com/files/wxAUI.tgz
