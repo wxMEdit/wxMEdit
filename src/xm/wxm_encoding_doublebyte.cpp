@@ -237,8 +237,8 @@ size_t WXMEncodingDoubleByte::UCS4toMultiByte(ucs4_t ucs4, wxByte* buf)
 
 	// non-cached
 	size_t len;
-	wxByte mbs[3];
-	len = m_mbcnv->WC2MB((char*)mbs, 3, ucs4);
+	wxByte mbs[4];
+	len = m_mbcnv->WC2MB((char*)mbs, 4, ucs4);
 	mb = (((wxWord)mbs[0])<<8) | mbs[1];
 	if(len == 0 || mb == svtInvaliad)
 	{
