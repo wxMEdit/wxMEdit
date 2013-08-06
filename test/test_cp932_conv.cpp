@@ -22,6 +22,8 @@ typedef std::map<std::string, U2MBDataMap> U2MBMap;
 extern U2MBMap u2mb;
 extern std::vector<std::string> test_doublebyte_conv_enc_list;
 
+const std::string enc_cp932("Windows-31J");
+
 void mb2u_00_cp932_init()
 {
 static MB2UData mb2u_00_cp932 [] = { {"", 0}, 
@@ -94,7 +96,7 @@ static MB2UData mb2u_00_cp932 [] = { {"", 0},
  for(size_t i=1; i<sizeof(mb2u_00_cp932)/sizeof(MB2UData); ++i)
  {
 	MB2UData& data = mb2u_00_cp932[i];
-	mb2u["Windows-31J"][data.mbs] = data.u;
+	mb2u[enc_cp932][data.mbs] = data.u;
  }
 }
 
@@ -170,7 +172,7 @@ static MB2UData mb2u_01_cp932 [] = { {"", 0},
  for(size_t i=1; i<sizeof(mb2u_01_cp932)/sizeof(MB2UData); ++i)
  {
 	MB2UData& data = mb2u_01_cp932[i];
-	mb2u["Windows-31J"][data.mbs] = data.u;
+	mb2u[enc_cp932][data.mbs] = data.u;
  }
 }
 
@@ -246,7 +248,7 @@ static MB2UData mb2u_02_cp932 [] = { {"", 0},
  for(size_t i=1; i<sizeof(mb2u_02_cp932)/sizeof(MB2UData); ++i)
  {
 	MB2UData& data = mb2u_02_cp932[i];
-	mb2u["Windows-31J"][data.mbs] = data.u;
+	mb2u[enc_cp932][data.mbs] = data.u;
  }
 }
 
@@ -322,7 +324,7 @@ static MB2UData mb2u_03_cp932 [] = { {"", 0},
  for(size_t i=1; i<sizeof(mb2u_03_cp932)/sizeof(MB2UData); ++i)
  {
 	MB2UData& data = mb2u_03_cp932[i];
-	mb2u["Windows-31J"][data.mbs] = data.u;
+	mb2u[enc_cp932][data.mbs] = data.u;
  }
 }
 
@@ -398,7 +400,7 @@ static MB2UData mb2u_04_cp932 [] = { {"", 0},
  for(size_t i=1; i<sizeof(mb2u_04_cp932)/sizeof(MB2UData); ++i)
  {
 	MB2UData& data = mb2u_04_cp932[i];
-	mb2u["Windows-31J"][data.mbs] = data.u;
+	mb2u[enc_cp932][data.mbs] = data.u;
  }
 }
 
@@ -474,7 +476,7 @@ static MB2UData mb2u_05_cp932 [] = { {"", 0},
  for(size_t i=1; i<sizeof(mb2u_05_cp932)/sizeof(MB2UData); ++i)
  {
 	MB2UData& data = mb2u_05_cp932[i];
-	mb2u["Windows-31J"][data.mbs] = data.u;
+	mb2u[enc_cp932][data.mbs] = data.u;
  }
 }
 
@@ -550,7 +552,7 @@ static MB2UData mb2u_06_cp932 [] = { {"", 0},
  for(size_t i=1; i<sizeof(mb2u_06_cp932)/sizeof(MB2UData); ++i)
  {
 	MB2UData& data = mb2u_06_cp932[i];
-	mb2u["Windows-31J"][data.mbs] = data.u;
+	mb2u[enc_cp932][data.mbs] = data.u;
  }
 }
 
@@ -626,7 +628,7 @@ static MB2UData mb2u_07_cp932 [] = { {"", 0},
  for(size_t i=1; i<sizeof(mb2u_07_cp932)/sizeof(MB2UData); ++i)
  {
 	MB2UData& data = mb2u_07_cp932[i];
-	mb2u["Windows-31J"][data.mbs] = data.u;
+	mb2u[enc_cp932][data.mbs] = data.u;
  }
 }
 
@@ -702,7 +704,7 @@ static MB2UData mb2u_08_cp932 [] = { {"", 0},
  for(size_t i=1; i<sizeof(mb2u_08_cp932)/sizeof(MB2UData); ++i)
  {
 	MB2UData& data = mb2u_08_cp932[i];
-	mb2u["Windows-31J"][data.mbs] = data.u;
+	mb2u[enc_cp932][data.mbs] = data.u;
  }
 }
 
@@ -778,7 +780,7 @@ static MB2UData mb2u_09_cp932 [] = { {"", 0},
  for(size_t i=1; i<sizeof(mb2u_09_cp932)/sizeof(MB2UData); ++i)
  {
 	MB2UData& data = mb2u_09_cp932[i];
-	mb2u["Windows-31J"][data.mbs] = data.u;
+	mb2u[enc_cp932][data.mbs] = data.u;
  }
 }
 
@@ -854,7 +856,7 @@ static MB2UData mb2u_0a_cp932 [] = { {"", 0},
  for(size_t i=1; i<sizeof(mb2u_0a_cp932)/sizeof(MB2UData); ++i)
  {
 	MB2UData& data = mb2u_0a_cp932[i];
-	mb2u["Windows-31J"][data.mbs] = data.u;
+	mb2u[enc_cp932][data.mbs] = data.u;
  }
 }
 
@@ -930,7 +932,7 @@ static MB2UData mb2u_0b_cp932 [] = { {"", 0},
  for(size_t i=1; i<sizeof(mb2u_0b_cp932)/sizeof(MB2UData); ++i)
  {
 	MB2UData& data = mb2u_0b_cp932[i];
-	mb2u["Windows-31J"][data.mbs] = data.u;
+	mb2u[enc_cp932][data.mbs] = data.u;
  }
 }
 
@@ -1006,7 +1008,7 @@ static MB2UData mb2u_0c_cp932 [] = { {"", 0},
  for(size_t i=1; i<sizeof(mb2u_0c_cp932)/sizeof(MB2UData); ++i)
  {
 	MB2UData& data = mb2u_0c_cp932[i];
-	mb2u["Windows-31J"][data.mbs] = data.u;
+	mb2u[enc_cp932][data.mbs] = data.u;
  }
 }
 
@@ -1082,7 +1084,7 @@ static MB2UData mb2u_0d_cp932 [] = { {"", 0},
  for(size_t i=1; i<sizeof(mb2u_0d_cp932)/sizeof(MB2UData); ++i)
  {
 	MB2UData& data = mb2u_0d_cp932[i];
-	mb2u["Windows-31J"][data.mbs] = data.u;
+	mb2u[enc_cp932][data.mbs] = data.u;
  }
 }
 
@@ -1158,7 +1160,7 @@ static MB2UData mb2u_0e_cp932 [] = { {"", 0},
  for(size_t i=1; i<sizeof(mb2u_0e_cp932)/sizeof(MB2UData); ++i)
  {
 	MB2UData& data = mb2u_0e_cp932[i];
-	mb2u["Windows-31J"][data.mbs] = data.u;
+	mb2u[enc_cp932][data.mbs] = data.u;
  }
 }
 
@@ -1234,7 +1236,7 @@ static MB2UData mb2u_0f_cp932 [] = { {"", 0},
  for(size_t i=1; i<sizeof(mb2u_0f_cp932)/sizeof(MB2UData); ++i)
  {
 	MB2UData& data = mb2u_0f_cp932[i];
-	mb2u["Windows-31J"][data.mbs] = data.u;
+	mb2u[enc_cp932][data.mbs] = data.u;
  }
 }
 
@@ -1310,7 +1312,7 @@ static MB2UData mb2u_10_cp932 [] = { {"", 0},
  for(size_t i=1; i<sizeof(mb2u_10_cp932)/sizeof(MB2UData); ++i)
  {
 	MB2UData& data = mb2u_10_cp932[i];
-	mb2u["Windows-31J"][data.mbs] = data.u;
+	mb2u[enc_cp932][data.mbs] = data.u;
  }
 }
 
@@ -1386,7 +1388,7 @@ static MB2UData mb2u_11_cp932 [] = { {"", 0},
  for(size_t i=1; i<sizeof(mb2u_11_cp932)/sizeof(MB2UData); ++i)
  {
 	MB2UData& data = mb2u_11_cp932[i];
-	mb2u["Windows-31J"][data.mbs] = data.u;
+	mb2u[enc_cp932][data.mbs] = data.u;
  }
 }
 
@@ -1462,7 +1464,7 @@ static MB2UData mb2u_12_cp932 [] = { {"", 0},
  for(size_t i=1; i<sizeof(mb2u_12_cp932)/sizeof(MB2UData); ++i)
  {
 	MB2UData& data = mb2u_12_cp932[i];
-	mb2u["Windows-31J"][data.mbs] = data.u;
+	mb2u[enc_cp932][data.mbs] = data.u;
  }
 }
 
@@ -1538,7 +1540,7 @@ static MB2UData mb2u_13_cp932 [] = { {"", 0},
  for(size_t i=1; i<sizeof(mb2u_13_cp932)/sizeof(MB2UData); ++i)
  {
 	MB2UData& data = mb2u_13_cp932[i];
-	mb2u["Windows-31J"][data.mbs] = data.u;
+	mb2u[enc_cp932][data.mbs] = data.u;
  }
 }
 
@@ -1614,7 +1616,7 @@ static MB2UData mb2u_14_cp932 [] = { {"", 0},
  for(size_t i=1; i<sizeof(mb2u_14_cp932)/sizeof(MB2UData); ++i)
  {
 	MB2UData& data = mb2u_14_cp932[i];
-	mb2u["Windows-31J"][data.mbs] = data.u;
+	mb2u[enc_cp932][data.mbs] = data.u;
  }
 }
 
@@ -1690,7 +1692,7 @@ static MB2UData mb2u_15_cp932 [] = { {"", 0},
  for(size_t i=1; i<sizeof(mb2u_15_cp932)/sizeof(MB2UData); ++i)
  {
 	MB2UData& data = mb2u_15_cp932[i];
-	mb2u["Windows-31J"][data.mbs] = data.u;
+	mb2u[enc_cp932][data.mbs] = data.u;
  }
 }
 
@@ -1766,7 +1768,7 @@ static MB2UData mb2u_16_cp932 [] = { {"", 0},
  for(size_t i=1; i<sizeof(mb2u_16_cp932)/sizeof(MB2UData); ++i)
  {
 	MB2UData& data = mb2u_16_cp932[i];
-	mb2u["Windows-31J"][data.mbs] = data.u;
+	mb2u[enc_cp932][data.mbs] = data.u;
  }
 }
 
@@ -1842,7 +1844,7 @@ static MB2UData mb2u_17_cp932 [] = { {"", 0},
  for(size_t i=1; i<sizeof(mb2u_17_cp932)/sizeof(MB2UData); ++i)
  {
 	MB2UData& data = mb2u_17_cp932[i];
-	mb2u["Windows-31J"][data.mbs] = data.u;
+	mb2u[enc_cp932][data.mbs] = data.u;
  }
 }
 
@@ -1918,7 +1920,7 @@ static MB2UData mb2u_18_cp932 [] = { {"", 0},
  for(size_t i=1; i<sizeof(mb2u_18_cp932)/sizeof(MB2UData); ++i)
  {
 	MB2UData& data = mb2u_18_cp932[i];
-	mb2u["Windows-31J"][data.mbs] = data.u;
+	mb2u[enc_cp932][data.mbs] = data.u;
  }
 }
 
@@ -1994,7 +1996,7 @@ static MB2UData mb2u_19_cp932 [] = { {"", 0},
  for(size_t i=1; i<sizeof(mb2u_19_cp932)/sizeof(MB2UData); ++i)
  {
 	MB2UData& data = mb2u_19_cp932[i];
-	mb2u["Windows-31J"][data.mbs] = data.u;
+	mb2u[enc_cp932][data.mbs] = data.u;
  }
 }
 
@@ -2070,7 +2072,7 @@ static MB2UData mb2u_1a_cp932 [] = { {"", 0},
  for(size_t i=1; i<sizeof(mb2u_1a_cp932)/sizeof(MB2UData); ++i)
  {
 	MB2UData& data = mb2u_1a_cp932[i];
-	mb2u["Windows-31J"][data.mbs] = data.u;
+	mb2u[enc_cp932][data.mbs] = data.u;
  }
 }
 
@@ -2146,7 +2148,7 @@ static MB2UData mb2u_1b_cp932 [] = { {"", 0},
  for(size_t i=1; i<sizeof(mb2u_1b_cp932)/sizeof(MB2UData); ++i)
  {
 	MB2UData& data = mb2u_1b_cp932[i];
-	mb2u["Windows-31J"][data.mbs] = data.u;
+	mb2u[enc_cp932][data.mbs] = data.u;
  }
 }
 
@@ -2222,7 +2224,7 @@ static MB2UData mb2u_1c_cp932 [] = { {"", 0},
  for(size_t i=1; i<sizeof(mb2u_1c_cp932)/sizeof(MB2UData); ++i)
  {
 	MB2UData& data = mb2u_1c_cp932[i];
-	mb2u["Windows-31J"][data.mbs] = data.u;
+	mb2u[enc_cp932][data.mbs] = data.u;
  }
 }
 
@@ -2298,7 +2300,7 @@ static MB2UData mb2u_1d_cp932 [] = { {"", 0},
  for(size_t i=1; i<sizeof(mb2u_1d_cp932)/sizeof(MB2UData); ++i)
  {
 	MB2UData& data = mb2u_1d_cp932[i];
-	mb2u["Windows-31J"][data.mbs] = data.u;
+	mb2u[enc_cp932][data.mbs] = data.u;
  }
 }
 
@@ -2374,7 +2376,7 @@ static MB2UData mb2u_1e_cp932 [] = { {"", 0},
  for(size_t i=1; i<sizeof(mb2u_1e_cp932)/sizeof(MB2UData); ++i)
  {
 	MB2UData& data = mb2u_1e_cp932[i];
-	mb2u["Windows-31J"][data.mbs] = data.u;
+	mb2u[enc_cp932][data.mbs] = data.u;
  }
 }
 
@@ -2450,7 +2452,7 @@ static MB2UData mb2u_1f_cp932 [] = { {"", 0},
  for(size_t i=1; i<sizeof(mb2u_1f_cp932)/sizeof(MB2UData); ++i)
  {
 	MB2UData& data = mb2u_1f_cp932[i];
-	mb2u["Windows-31J"][data.mbs] = data.u;
+	mb2u[enc_cp932][data.mbs] = data.u;
  }
 }
 
@@ -2526,7 +2528,7 @@ static MB2UData mb2u_20_cp932 [] = { {"", 0},
  for(size_t i=1; i<sizeof(mb2u_20_cp932)/sizeof(MB2UData); ++i)
  {
 	MB2UData& data = mb2u_20_cp932[i];
-	mb2u["Windows-31J"][data.mbs] = data.u;
+	mb2u[enc_cp932][data.mbs] = data.u;
  }
 }
 
@@ -2602,7 +2604,7 @@ static MB2UData mb2u_21_cp932 [] = { {"", 0},
  for(size_t i=1; i<sizeof(mb2u_21_cp932)/sizeof(MB2UData); ++i)
  {
 	MB2UData& data = mb2u_21_cp932[i];
-	mb2u["Windows-31J"][data.mbs] = data.u;
+	mb2u[enc_cp932][data.mbs] = data.u;
  }
 }
 
@@ -2678,7 +2680,7 @@ static MB2UData mb2u_22_cp932 [] = { {"", 0},
  for(size_t i=1; i<sizeof(mb2u_22_cp932)/sizeof(MB2UData); ++i)
  {
 	MB2UData& data = mb2u_22_cp932[i];
-	mb2u["Windows-31J"][data.mbs] = data.u;
+	mb2u[enc_cp932][data.mbs] = data.u;
  }
 }
 
@@ -2754,7 +2756,7 @@ static MB2UData mb2u_23_cp932 [] = { {"", 0},
  for(size_t i=1; i<sizeof(mb2u_23_cp932)/sizeof(MB2UData); ++i)
  {
 	MB2UData& data = mb2u_23_cp932[i];
-	mb2u["Windows-31J"][data.mbs] = data.u;
+	mb2u[enc_cp932][data.mbs] = data.u;
  }
 }
 
@@ -2830,7 +2832,7 @@ static MB2UData mb2u_24_cp932 [] = { {"", 0},
  for(size_t i=1; i<sizeof(mb2u_24_cp932)/sizeof(MB2UData); ++i)
  {
 	MB2UData& data = mb2u_24_cp932[i];
-	mb2u["Windows-31J"][data.mbs] = data.u;
+	mb2u[enc_cp932][data.mbs] = data.u;
  }
 }
 
@@ -2906,7 +2908,7 @@ static MB2UData mb2u_25_cp932 [] = { {"", 0},
  for(size_t i=1; i<sizeof(mb2u_25_cp932)/sizeof(MB2UData); ++i)
  {
 	MB2UData& data = mb2u_25_cp932[i];
-	mb2u["Windows-31J"][data.mbs] = data.u;
+	mb2u[enc_cp932][data.mbs] = data.u;
  }
 }
 
@@ -2935,13 +2937,13 @@ static MB2UData mb2u_26_cp932 [] = { {"", 0},
  for(size_t i=1; i<sizeof(mb2u_26_cp932)/sizeof(MB2UData); ++i)
  {
 	MB2UData& data = mb2u_26_cp932[i];
-	mb2u["Windows-31J"][data.mbs] = data.u;
+	mb2u[enc_cp932][data.mbs] = data.u;
  }
 }
 
 void mb2u_cp932_init()
 {
-test_doublebyte_conv_enc_list.push_back("Windows-31J");
+test_doublebyte_conv_enc_list.push_back(enc_cp932);
 mb2u_00_cp932_init();mb2u_01_cp932_init();mb2u_02_cp932_init();mb2u_03_cp932_init();
 mb2u_04_cp932_init();mb2u_05_cp932_init();mb2u_06_cp932_init();mb2u_07_cp932_init();
 mb2u_08_cp932_init();mb2u_09_cp932_init();mb2u_0a_cp932_init();mb2u_0b_cp932_init();
@@ -3026,7 +3028,7 @@ static U2MBData u2mb_000_cp932[] = { {0, ""},
  for(size_t i=1; i<sizeof(u2mb_000_cp932)/sizeof(U2MBData); ++i)
  {
 	U2MBData& data = u2mb_000_cp932[i];
-	u2mb["Windows-31J"][data.u] = data.mbs;
+	u2mb[enc_cp932][data.u] = data.mbs;
  }
 }
 void u2mb_001_cp932_init()
@@ -3101,7 +3103,7 @@ static U2MBData u2mb_001_cp932[] = { {0, ""},
  for(size_t i=1; i<sizeof(u2mb_001_cp932)/sizeof(U2MBData); ++i)
  {
 	U2MBData& data = u2mb_001_cp932[i];
-	u2mb["Windows-31J"][data.u] = data.mbs;
+	u2mb[enc_cp932][data.u] = data.mbs;
  }
 }
 void u2mb_002_cp932_init()
@@ -3176,7 +3178,7 @@ static U2MBData u2mb_002_cp932[] = { {0, ""},
  for(size_t i=1; i<sizeof(u2mb_002_cp932)/sizeof(U2MBData); ++i)
  {
 	U2MBData& data = u2mb_002_cp932[i];
-	u2mb["Windows-31J"][data.u] = data.mbs;
+	u2mb[enc_cp932][data.u] = data.mbs;
  }
 }
 void u2mb_003_cp932_init()
@@ -3251,7 +3253,7 @@ static U2MBData u2mb_003_cp932[] = { {0, ""},
  for(size_t i=1; i<sizeof(u2mb_003_cp932)/sizeof(U2MBData); ++i)
  {
 	U2MBData& data = u2mb_003_cp932[i];
-	u2mb["Windows-31J"][data.u] = data.mbs;
+	u2mb[enc_cp932][data.u] = data.mbs;
  }
 }
 void u2mb_004_cp932_init()
@@ -3326,7 +3328,7 @@ static U2MBData u2mb_004_cp932[] = { {0, ""},
  for(size_t i=1; i<sizeof(u2mb_004_cp932)/sizeof(U2MBData); ++i)
  {
 	U2MBData& data = u2mb_004_cp932[i];
-	u2mb["Windows-31J"][data.u] = data.mbs;
+	u2mb[enc_cp932][data.u] = data.mbs;
  }
 }
 void u2mb_005_cp932_init()
@@ -3401,7 +3403,7 @@ static U2MBData u2mb_005_cp932[] = { {0, ""},
  for(size_t i=1; i<sizeof(u2mb_005_cp932)/sizeof(U2MBData); ++i)
  {
 	U2MBData& data = u2mb_005_cp932[i];
-	u2mb["Windows-31J"][data.u] = data.mbs;
+	u2mb[enc_cp932][data.u] = data.mbs;
  }
 }
 void u2mb_006_cp932_init()
@@ -3476,7 +3478,7 @@ static U2MBData u2mb_006_cp932[] = { {0, ""},
  for(size_t i=1; i<sizeof(u2mb_006_cp932)/sizeof(U2MBData); ++i)
  {
 	U2MBData& data = u2mb_006_cp932[i];
-	u2mb["Windows-31J"][data.u] = data.mbs;
+	u2mb[enc_cp932][data.u] = data.mbs;
  }
 }
 void u2mb_007_cp932_init()
@@ -3551,7 +3553,7 @@ static U2MBData u2mb_007_cp932[] = { {0, ""},
  for(size_t i=1; i<sizeof(u2mb_007_cp932)/sizeof(U2MBData); ++i)
  {
 	U2MBData& data = u2mb_007_cp932[i];
-	u2mb["Windows-31J"][data.u] = data.mbs;
+	u2mb[enc_cp932][data.u] = data.mbs;
  }
 }
 void u2mb_008_cp932_init()
@@ -3626,7 +3628,7 @@ static U2MBData u2mb_008_cp932[] = { {0, ""},
  for(size_t i=1; i<sizeof(u2mb_008_cp932)/sizeof(U2MBData); ++i)
  {
 	U2MBData& data = u2mb_008_cp932[i];
-	u2mb["Windows-31J"][data.u] = data.mbs;
+	u2mb[enc_cp932][data.u] = data.mbs;
  }
 }
 void u2mb_009_cp932_init()
@@ -3701,7 +3703,7 @@ static U2MBData u2mb_009_cp932[] = { {0, ""},
  for(size_t i=1; i<sizeof(u2mb_009_cp932)/sizeof(U2MBData); ++i)
  {
 	U2MBData& data = u2mb_009_cp932[i];
-	u2mb["Windows-31J"][data.u] = data.mbs;
+	u2mb[enc_cp932][data.u] = data.mbs;
  }
 }
 void u2mb_00a_cp932_init()
@@ -3776,7 +3778,7 @@ static U2MBData u2mb_00a_cp932[] = { {0, ""},
  for(size_t i=1; i<sizeof(u2mb_00a_cp932)/sizeof(U2MBData); ++i)
  {
 	U2MBData& data = u2mb_00a_cp932[i];
-	u2mb["Windows-31J"][data.u] = data.mbs;
+	u2mb[enc_cp932][data.u] = data.mbs;
  }
 }
 void u2mb_00b_cp932_init()
@@ -3851,7 +3853,7 @@ static U2MBData u2mb_00b_cp932[] = { {0, ""},
  for(size_t i=1; i<sizeof(u2mb_00b_cp932)/sizeof(U2MBData); ++i)
  {
 	U2MBData& data = u2mb_00b_cp932[i];
-	u2mb["Windows-31J"][data.u] = data.mbs;
+	u2mb[enc_cp932][data.u] = data.mbs;
  }
 }
 void u2mb_00c_cp932_init()
@@ -3926,7 +3928,7 @@ static U2MBData u2mb_00c_cp932[] = { {0, ""},
  for(size_t i=1; i<sizeof(u2mb_00c_cp932)/sizeof(U2MBData); ++i)
  {
 	U2MBData& data = u2mb_00c_cp932[i];
-	u2mb["Windows-31J"][data.u] = data.mbs;
+	u2mb[enc_cp932][data.u] = data.mbs;
  }
 }
 void u2mb_00d_cp932_init()
@@ -4001,7 +4003,7 @@ static U2MBData u2mb_00d_cp932[] = { {0, ""},
  for(size_t i=1; i<sizeof(u2mb_00d_cp932)/sizeof(U2MBData); ++i)
  {
 	U2MBData& data = u2mb_00d_cp932[i];
-	u2mb["Windows-31J"][data.u] = data.mbs;
+	u2mb[enc_cp932][data.u] = data.mbs;
  }
 }
 void u2mb_00e_cp932_init()
@@ -4076,7 +4078,7 @@ static U2MBData u2mb_00e_cp932[] = { {0, ""},
  for(size_t i=1; i<sizeof(u2mb_00e_cp932)/sizeof(U2MBData); ++i)
  {
 	U2MBData& data = u2mb_00e_cp932[i];
-	u2mb["Windows-31J"][data.u] = data.mbs;
+	u2mb[enc_cp932][data.u] = data.mbs;
  }
 }
 void u2mb_00f_cp932_init()
@@ -4151,7 +4153,7 @@ static U2MBData u2mb_00f_cp932[] = { {0, ""},
  for(size_t i=1; i<sizeof(u2mb_00f_cp932)/sizeof(U2MBData); ++i)
  {
 	U2MBData& data = u2mb_00f_cp932[i];
-	u2mb["Windows-31J"][data.u] = data.mbs;
+	u2mb[enc_cp932][data.u] = data.mbs;
  }
 }
 void u2mb_010_cp932_init()
@@ -4226,7 +4228,7 @@ static U2MBData u2mb_010_cp932[] = { {0, ""},
  for(size_t i=1; i<sizeof(u2mb_010_cp932)/sizeof(U2MBData); ++i)
  {
 	U2MBData& data = u2mb_010_cp932[i];
-	u2mb["Windows-31J"][data.u] = data.mbs;
+	u2mb[enc_cp932][data.u] = data.mbs;
  }
 }
 void u2mb_011_cp932_init()
@@ -4301,7 +4303,7 @@ static U2MBData u2mb_011_cp932[] = { {0, ""},
  for(size_t i=1; i<sizeof(u2mb_011_cp932)/sizeof(U2MBData); ++i)
  {
 	U2MBData& data = u2mb_011_cp932[i];
-	u2mb["Windows-31J"][data.u] = data.mbs;
+	u2mb[enc_cp932][data.u] = data.mbs;
  }
 }
 void u2mb_012_cp932_init()
@@ -4376,7 +4378,7 @@ static U2MBData u2mb_012_cp932[] = { {0, ""},
  for(size_t i=1; i<sizeof(u2mb_012_cp932)/sizeof(U2MBData); ++i)
  {
 	U2MBData& data = u2mb_012_cp932[i];
-	u2mb["Windows-31J"][data.u] = data.mbs;
+	u2mb[enc_cp932][data.u] = data.mbs;
  }
 }
 void u2mb_013_cp932_init()
@@ -4451,7 +4453,7 @@ static U2MBData u2mb_013_cp932[] = { {0, ""},
  for(size_t i=1; i<sizeof(u2mb_013_cp932)/sizeof(U2MBData); ++i)
  {
 	U2MBData& data = u2mb_013_cp932[i];
-	u2mb["Windows-31J"][data.u] = data.mbs;
+	u2mb[enc_cp932][data.u] = data.mbs;
  }
 }
 void u2mb_014_cp932_init()
@@ -4526,7 +4528,7 @@ static U2MBData u2mb_014_cp932[] = { {0, ""},
  for(size_t i=1; i<sizeof(u2mb_014_cp932)/sizeof(U2MBData); ++i)
  {
 	U2MBData& data = u2mb_014_cp932[i];
-	u2mb["Windows-31J"][data.u] = data.mbs;
+	u2mb[enc_cp932][data.u] = data.mbs;
  }
 }
 void u2mb_015_cp932_init()
@@ -4601,7 +4603,7 @@ static U2MBData u2mb_015_cp932[] = { {0, ""},
  for(size_t i=1; i<sizeof(u2mb_015_cp932)/sizeof(U2MBData); ++i)
  {
 	U2MBData& data = u2mb_015_cp932[i];
-	u2mb["Windows-31J"][data.u] = data.mbs;
+	u2mb[enc_cp932][data.u] = data.mbs;
  }
 }
 void u2mb_016_cp932_init()
@@ -4676,7 +4678,7 @@ static U2MBData u2mb_016_cp932[] = { {0, ""},
  for(size_t i=1; i<sizeof(u2mb_016_cp932)/sizeof(U2MBData); ++i)
  {
 	U2MBData& data = u2mb_016_cp932[i];
-	u2mb["Windows-31J"][data.u] = data.mbs;
+	u2mb[enc_cp932][data.u] = data.mbs;
  }
 }
 void u2mb_017_cp932_init()
@@ -4751,7 +4753,7 @@ static U2MBData u2mb_017_cp932[] = { {0, ""},
  for(size_t i=1; i<sizeof(u2mb_017_cp932)/sizeof(U2MBData); ++i)
  {
 	U2MBData& data = u2mb_017_cp932[i];
-	u2mb["Windows-31J"][data.u] = data.mbs;
+	u2mb[enc_cp932][data.u] = data.mbs;
  }
 }
 void u2mb_018_cp932_init()
@@ -4826,7 +4828,7 @@ static U2MBData u2mb_018_cp932[] = { {0, ""},
  for(size_t i=1; i<sizeof(u2mb_018_cp932)/sizeof(U2MBData); ++i)
  {
 	U2MBData& data = u2mb_018_cp932[i];
-	u2mb["Windows-31J"][data.u] = data.mbs;
+	u2mb[enc_cp932][data.u] = data.mbs;
  }
 }
 void u2mb_019_cp932_init()
@@ -4901,7 +4903,7 @@ static U2MBData u2mb_019_cp932[] = { {0, ""},
  for(size_t i=1; i<sizeof(u2mb_019_cp932)/sizeof(U2MBData); ++i)
  {
 	U2MBData& data = u2mb_019_cp932[i];
-	u2mb["Windows-31J"][data.u] = data.mbs;
+	u2mb[enc_cp932][data.u] = data.mbs;
  }
 }
 void u2mb_01a_cp932_init()
@@ -4976,7 +4978,7 @@ static U2MBData u2mb_01a_cp932[] = { {0, ""},
  for(size_t i=1; i<sizeof(u2mb_01a_cp932)/sizeof(U2MBData); ++i)
  {
 	U2MBData& data = u2mb_01a_cp932[i];
-	u2mb["Windows-31J"][data.u] = data.mbs;
+	u2mb[enc_cp932][data.u] = data.mbs;
  }
 }
 void u2mb_01b_cp932_init()
@@ -5051,7 +5053,7 @@ static U2MBData u2mb_01b_cp932[] = { {0, ""},
  for(size_t i=1; i<sizeof(u2mb_01b_cp932)/sizeof(U2MBData); ++i)
  {
 	U2MBData& data = u2mb_01b_cp932[i];
-	u2mb["Windows-31J"][data.u] = data.mbs;
+	u2mb[enc_cp932][data.u] = data.mbs;
  }
 }
 void u2mb_01c_cp932_init()
@@ -5126,7 +5128,7 @@ static U2MBData u2mb_01c_cp932[] = { {0, ""},
  for(size_t i=1; i<sizeof(u2mb_01c_cp932)/sizeof(U2MBData); ++i)
  {
 	U2MBData& data = u2mb_01c_cp932[i];
-	u2mb["Windows-31J"][data.u] = data.mbs;
+	u2mb[enc_cp932][data.u] = data.mbs;
  }
 }
 void u2mb_01d_cp932_init()
@@ -5201,7 +5203,7 @@ static U2MBData u2mb_01d_cp932[] = { {0, ""},
  for(size_t i=1; i<sizeof(u2mb_01d_cp932)/sizeof(U2MBData); ++i)
  {
 	U2MBData& data = u2mb_01d_cp932[i];
-	u2mb["Windows-31J"][data.u] = data.mbs;
+	u2mb[enc_cp932][data.u] = data.mbs;
  }
 }
 void u2mb_01e_cp932_init()
@@ -5276,7 +5278,7 @@ static U2MBData u2mb_01e_cp932[] = { {0, ""},
  for(size_t i=1; i<sizeof(u2mb_01e_cp932)/sizeof(U2MBData); ++i)
  {
 	U2MBData& data = u2mb_01e_cp932[i];
-	u2mb["Windows-31J"][data.u] = data.mbs;
+	u2mb[enc_cp932][data.u] = data.mbs;
  }
 }
 void u2mb_01f_cp932_init()
@@ -5351,7 +5353,7 @@ static U2MBData u2mb_01f_cp932[] = { {0, ""},
  for(size_t i=1; i<sizeof(u2mb_01f_cp932)/sizeof(U2MBData); ++i)
  {
 	U2MBData& data = u2mb_01f_cp932[i];
-	u2mb["Windows-31J"][data.u] = data.mbs;
+	u2mb[enc_cp932][data.u] = data.mbs;
  }
 }
 void u2mb_020_cp932_init()
@@ -5426,7 +5428,7 @@ static U2MBData u2mb_020_cp932[] = { {0, ""},
  for(size_t i=1; i<sizeof(u2mb_020_cp932)/sizeof(U2MBData); ++i)
  {
 	U2MBData& data = u2mb_020_cp932[i];
-	u2mb["Windows-31J"][data.u] = data.mbs;
+	u2mb[enc_cp932][data.u] = data.mbs;
  }
 }
 void u2mb_021_cp932_init()
@@ -5501,7 +5503,7 @@ static U2MBData u2mb_021_cp932[] = { {0, ""},
  for(size_t i=1; i<sizeof(u2mb_021_cp932)/sizeof(U2MBData); ++i)
  {
 	U2MBData& data = u2mb_021_cp932[i];
-	u2mb["Windows-31J"][data.u] = data.mbs;
+	u2mb[enc_cp932][data.u] = data.mbs;
  }
 }
 void u2mb_022_cp932_init()
@@ -5576,7 +5578,7 @@ static U2MBData u2mb_022_cp932[] = { {0, ""},
  for(size_t i=1; i<sizeof(u2mb_022_cp932)/sizeof(U2MBData); ++i)
  {
 	U2MBData& data = u2mb_022_cp932[i];
-	u2mb["Windows-31J"][data.u] = data.mbs;
+	u2mb[enc_cp932][data.u] = data.mbs;
  }
 }
 void u2mb_023_cp932_init()
@@ -5651,7 +5653,7 @@ static U2MBData u2mb_023_cp932[] = { {0, ""},
  for(size_t i=1; i<sizeof(u2mb_023_cp932)/sizeof(U2MBData); ++i)
  {
 	U2MBData& data = u2mb_023_cp932[i];
-	u2mb["Windows-31J"][data.u] = data.mbs;
+	u2mb[enc_cp932][data.u] = data.mbs;
  }
 }
 void u2mb_024_cp932_init()
@@ -5708,7 +5710,7 @@ static U2MBData u2mb_024_cp932[] = { {0, ""},
  for(size_t i=1; i<sizeof(u2mb_024_cp932)/sizeof(U2MBData); ++i)
  {
 	U2MBData& data = u2mb_024_cp932[i];
-	u2mb["Windows-31J"][data.u] = data.mbs;
+	u2mb[enc_cp932][data.u] = data.mbs;
  }
 }
 void u2mb_cp932_init()

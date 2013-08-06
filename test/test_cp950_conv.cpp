@@ -22,6 +22,8 @@ typedef std::map<std::string, U2MBDataMap> U2MBMap;
 extern U2MBMap u2mb;
 extern std::vector<std::string> test_doublebyte_conv_enc_list;
 
+const std::string enc_cp950("Big-5/MS950");
+
 void mb2u_00_cp950_init()
 {
 static MB2UData mb2u_00_cp950 [] = { {"", 0}, 
@@ -94,7 +96,7 @@ static MB2UData mb2u_00_cp950 [] = { {"", 0},
  for(size_t i=1; i<sizeof(mb2u_00_cp950)/sizeof(MB2UData); ++i)
  {
 	MB2UData& data = mb2u_00_cp950[i];
-	mb2u["Big-5/MS950"][data.mbs] = data.u;
+	mb2u[enc_cp950][data.mbs] = data.u;
  }
 }
 
@@ -170,7 +172,7 @@ static MB2UData mb2u_01_cp950 [] = { {"", 0},
  for(size_t i=1; i<sizeof(mb2u_01_cp950)/sizeof(MB2UData); ++i)
  {
 	MB2UData& data = mb2u_01_cp950[i];
-	mb2u["Big-5/MS950"][data.mbs] = data.u;
+	mb2u[enc_cp950][data.mbs] = data.u;
  }
 }
 
@@ -246,7 +248,7 @@ static MB2UData mb2u_02_cp950 [] = { {"", 0},
  for(size_t i=1; i<sizeof(mb2u_02_cp950)/sizeof(MB2UData); ++i)
  {
 	MB2UData& data = mb2u_02_cp950[i];
-	mb2u["Big-5/MS950"][data.mbs] = data.u;
+	mb2u[enc_cp950][data.mbs] = data.u;
  }
 }
 
@@ -322,7 +324,7 @@ static MB2UData mb2u_03_cp950 [] = { {"", 0},
  for(size_t i=1; i<sizeof(mb2u_03_cp950)/sizeof(MB2UData); ++i)
  {
 	MB2UData& data = mb2u_03_cp950[i];
-	mb2u["Big-5/MS950"][data.mbs] = data.u;
+	mb2u[enc_cp950][data.mbs] = data.u;
  }
 }
 
@@ -398,7 +400,7 @@ static MB2UData mb2u_04_cp950 [] = { {"", 0},
  for(size_t i=1; i<sizeof(mb2u_04_cp950)/sizeof(MB2UData); ++i)
  {
 	MB2UData& data = mb2u_04_cp950[i];
-	mb2u["Big-5/MS950"][data.mbs] = data.u;
+	mb2u[enc_cp950][data.mbs] = data.u;
  }
 }
 
@@ -474,7 +476,7 @@ static MB2UData mb2u_05_cp950 [] = { {"", 0},
  for(size_t i=1; i<sizeof(mb2u_05_cp950)/sizeof(MB2UData); ++i)
  {
 	MB2UData& data = mb2u_05_cp950[i];
-	mb2u["Big-5/MS950"][data.mbs] = data.u;
+	mb2u[enc_cp950][data.mbs] = data.u;
  }
 }
 
@@ -550,7 +552,7 @@ static MB2UData mb2u_06_cp950 [] = { {"", 0},
  for(size_t i=1; i<sizeof(mb2u_06_cp950)/sizeof(MB2UData); ++i)
  {
 	MB2UData& data = mb2u_06_cp950[i];
-	mb2u["Big-5/MS950"][data.mbs] = data.u;
+	mb2u[enc_cp950][data.mbs] = data.u;
  }
 }
 
@@ -626,7 +628,7 @@ static MB2UData mb2u_07_cp950 [] = { {"", 0},
  for(size_t i=1; i<sizeof(mb2u_07_cp950)/sizeof(MB2UData); ++i)
  {
 	MB2UData& data = mb2u_07_cp950[i];
-	mb2u["Big-5/MS950"][data.mbs] = data.u;
+	mb2u[enc_cp950][data.mbs] = data.u;
  }
 }
 
@@ -702,7 +704,7 @@ static MB2UData mb2u_08_cp950 [] = { {"", 0},
  for(size_t i=1; i<sizeof(mb2u_08_cp950)/sizeof(MB2UData); ++i)
  {
 	MB2UData& data = mb2u_08_cp950[i];
-	mb2u["Big-5/MS950"][data.mbs] = data.u;
+	mb2u[enc_cp950][data.mbs] = data.u;
  }
 }
 
@@ -778,7 +780,7 @@ static MB2UData mb2u_09_cp950 [] = { {"", 0},
  for(size_t i=1; i<sizeof(mb2u_09_cp950)/sizeof(MB2UData); ++i)
  {
 	MB2UData& data = mb2u_09_cp950[i];
-	mb2u["Big-5/MS950"][data.mbs] = data.u;
+	mb2u[enc_cp950][data.mbs] = data.u;
  }
 }
 
@@ -854,7 +856,7 @@ static MB2UData mb2u_0a_cp950 [] = { {"", 0},
  for(size_t i=1; i<sizeof(mb2u_0a_cp950)/sizeof(MB2UData); ++i)
  {
 	MB2UData& data = mb2u_0a_cp950[i];
-	mb2u["Big-5/MS950"][data.mbs] = data.u;
+	mb2u[enc_cp950][data.mbs] = data.u;
  }
 }
 
@@ -930,7 +932,7 @@ static MB2UData mb2u_0b_cp950 [] = { {"", 0},
  for(size_t i=1; i<sizeof(mb2u_0b_cp950)/sizeof(MB2UData); ++i)
  {
 	MB2UData& data = mb2u_0b_cp950[i];
-	mb2u["Big-5/MS950"][data.mbs] = data.u;
+	mb2u[enc_cp950][data.mbs] = data.u;
  }
 }
 
@@ -1006,7 +1008,7 @@ static MB2UData mb2u_0c_cp950 [] = { {"", 0},
  for(size_t i=1; i<sizeof(mb2u_0c_cp950)/sizeof(MB2UData); ++i)
  {
 	MB2UData& data = mb2u_0c_cp950[i];
-	mb2u["Big-5/MS950"][data.mbs] = data.u;
+	mb2u[enc_cp950][data.mbs] = data.u;
  }
 }
 
@@ -1082,7 +1084,7 @@ static MB2UData mb2u_0d_cp950 [] = { {"", 0},
  for(size_t i=1; i<sizeof(mb2u_0d_cp950)/sizeof(MB2UData); ++i)
  {
 	MB2UData& data = mb2u_0d_cp950[i];
-	mb2u["Big-5/MS950"][data.mbs] = data.u;
+	mb2u[enc_cp950][data.mbs] = data.u;
  }
 }
 
@@ -1158,7 +1160,7 @@ static MB2UData mb2u_0e_cp950 [] = { {"", 0},
  for(size_t i=1; i<sizeof(mb2u_0e_cp950)/sizeof(MB2UData); ++i)
  {
 	MB2UData& data = mb2u_0e_cp950[i];
-	mb2u["Big-5/MS950"][data.mbs] = data.u;
+	mb2u[enc_cp950][data.mbs] = data.u;
  }
 }
 
@@ -1234,7 +1236,7 @@ static MB2UData mb2u_0f_cp950 [] = { {"", 0},
  for(size_t i=1; i<sizeof(mb2u_0f_cp950)/sizeof(MB2UData); ++i)
  {
 	MB2UData& data = mb2u_0f_cp950[i];
-	mb2u["Big-5/MS950"][data.mbs] = data.u;
+	mb2u[enc_cp950][data.mbs] = data.u;
  }
 }
 
@@ -1310,7 +1312,7 @@ static MB2UData mb2u_10_cp950 [] = { {"", 0},
  for(size_t i=1; i<sizeof(mb2u_10_cp950)/sizeof(MB2UData); ++i)
  {
 	MB2UData& data = mb2u_10_cp950[i];
-	mb2u["Big-5/MS950"][data.mbs] = data.u;
+	mb2u[enc_cp950][data.mbs] = data.u;
  }
 }
 
@@ -1386,7 +1388,7 @@ static MB2UData mb2u_11_cp950 [] = { {"", 0},
  for(size_t i=1; i<sizeof(mb2u_11_cp950)/sizeof(MB2UData); ++i)
  {
 	MB2UData& data = mb2u_11_cp950[i];
-	mb2u["Big-5/MS950"][data.mbs] = data.u;
+	mb2u[enc_cp950][data.mbs] = data.u;
  }
 }
 
@@ -1462,7 +1464,7 @@ static MB2UData mb2u_12_cp950 [] = { {"", 0},
  for(size_t i=1; i<sizeof(mb2u_12_cp950)/sizeof(MB2UData); ++i)
  {
 	MB2UData& data = mb2u_12_cp950[i];
-	mb2u["Big-5/MS950"][data.mbs] = data.u;
+	mb2u[enc_cp950][data.mbs] = data.u;
  }
 }
 
@@ -1538,7 +1540,7 @@ static MB2UData mb2u_13_cp950 [] = { {"", 0},
  for(size_t i=1; i<sizeof(mb2u_13_cp950)/sizeof(MB2UData); ++i)
  {
 	MB2UData& data = mb2u_13_cp950[i];
-	mb2u["Big-5/MS950"][data.mbs] = data.u;
+	mb2u[enc_cp950][data.mbs] = data.u;
  }
 }
 
@@ -1614,7 +1616,7 @@ static MB2UData mb2u_14_cp950 [] = { {"", 0},
  for(size_t i=1; i<sizeof(mb2u_14_cp950)/sizeof(MB2UData); ++i)
  {
 	MB2UData& data = mb2u_14_cp950[i];
-	mb2u["Big-5/MS950"][data.mbs] = data.u;
+	mb2u[enc_cp950][data.mbs] = data.u;
  }
 }
 
@@ -1690,7 +1692,7 @@ static MB2UData mb2u_15_cp950 [] = { {"", 0},
  for(size_t i=1; i<sizeof(mb2u_15_cp950)/sizeof(MB2UData); ++i)
  {
 	MB2UData& data = mb2u_15_cp950[i];
-	mb2u["Big-5/MS950"][data.mbs] = data.u;
+	mb2u[enc_cp950][data.mbs] = data.u;
  }
 }
 
@@ -1766,7 +1768,7 @@ static MB2UData mb2u_16_cp950 [] = { {"", 0},
  for(size_t i=1; i<sizeof(mb2u_16_cp950)/sizeof(MB2UData); ++i)
  {
 	MB2UData& data = mb2u_16_cp950[i];
-	mb2u["Big-5/MS950"][data.mbs] = data.u;
+	mb2u[enc_cp950][data.mbs] = data.u;
  }
 }
 
@@ -1842,7 +1844,7 @@ static MB2UData mb2u_17_cp950 [] = { {"", 0},
  for(size_t i=1; i<sizeof(mb2u_17_cp950)/sizeof(MB2UData); ++i)
  {
 	MB2UData& data = mb2u_17_cp950[i];
-	mb2u["Big-5/MS950"][data.mbs] = data.u;
+	mb2u[enc_cp950][data.mbs] = data.u;
  }
 }
 
@@ -1918,7 +1920,7 @@ static MB2UData mb2u_18_cp950 [] = { {"", 0},
  for(size_t i=1; i<sizeof(mb2u_18_cp950)/sizeof(MB2UData); ++i)
  {
 	MB2UData& data = mb2u_18_cp950[i];
-	mb2u["Big-5/MS950"][data.mbs] = data.u;
+	mb2u[enc_cp950][data.mbs] = data.u;
  }
 }
 
@@ -1994,7 +1996,7 @@ static MB2UData mb2u_19_cp950 [] = { {"", 0},
  for(size_t i=1; i<sizeof(mb2u_19_cp950)/sizeof(MB2UData); ++i)
  {
 	MB2UData& data = mb2u_19_cp950[i];
-	mb2u["Big-5/MS950"][data.mbs] = data.u;
+	mb2u[enc_cp950][data.mbs] = data.u;
  }
 }
 
@@ -2070,7 +2072,7 @@ static MB2UData mb2u_1a_cp950 [] = { {"", 0},
  for(size_t i=1; i<sizeof(mb2u_1a_cp950)/sizeof(MB2UData); ++i)
  {
 	MB2UData& data = mb2u_1a_cp950[i];
-	mb2u["Big-5/MS950"][data.mbs] = data.u;
+	mb2u[enc_cp950][data.mbs] = data.u;
  }
 }
 
@@ -2146,7 +2148,7 @@ static MB2UData mb2u_1b_cp950 [] = { {"", 0},
  for(size_t i=1; i<sizeof(mb2u_1b_cp950)/sizeof(MB2UData); ++i)
  {
 	MB2UData& data = mb2u_1b_cp950[i];
-	mb2u["Big-5/MS950"][data.mbs] = data.u;
+	mb2u[enc_cp950][data.mbs] = data.u;
  }
 }
 
@@ -2222,7 +2224,7 @@ static MB2UData mb2u_1c_cp950 [] = { {"", 0},
  for(size_t i=1; i<sizeof(mb2u_1c_cp950)/sizeof(MB2UData); ++i)
  {
 	MB2UData& data = mb2u_1c_cp950[i];
-	mb2u["Big-5/MS950"][data.mbs] = data.u;
+	mb2u[enc_cp950][data.mbs] = data.u;
  }
 }
 
@@ -2298,7 +2300,7 @@ static MB2UData mb2u_1d_cp950 [] = { {"", 0},
  for(size_t i=1; i<sizeof(mb2u_1d_cp950)/sizeof(MB2UData); ++i)
  {
 	MB2UData& data = mb2u_1d_cp950[i];
-	mb2u["Big-5/MS950"][data.mbs] = data.u;
+	mb2u[enc_cp950][data.mbs] = data.u;
  }
 }
 
@@ -2374,7 +2376,7 @@ static MB2UData mb2u_1e_cp950 [] = { {"", 0},
  for(size_t i=1; i<sizeof(mb2u_1e_cp950)/sizeof(MB2UData); ++i)
  {
 	MB2UData& data = mb2u_1e_cp950[i];
-	mb2u["Big-5/MS950"][data.mbs] = data.u;
+	mb2u[enc_cp950][data.mbs] = data.u;
  }
 }
 
@@ -2450,7 +2452,7 @@ static MB2UData mb2u_1f_cp950 [] = { {"", 0},
  for(size_t i=1; i<sizeof(mb2u_1f_cp950)/sizeof(MB2UData); ++i)
  {
 	MB2UData& data = mb2u_1f_cp950[i];
-	mb2u["Big-5/MS950"][data.mbs] = data.u;
+	mb2u[enc_cp950][data.mbs] = data.u;
  }
 }
 
@@ -2526,7 +2528,7 @@ static MB2UData mb2u_20_cp950 [] = { {"", 0},
  for(size_t i=1; i<sizeof(mb2u_20_cp950)/sizeof(MB2UData); ++i)
  {
 	MB2UData& data = mb2u_20_cp950[i];
-	mb2u["Big-5/MS950"][data.mbs] = data.u;
+	mb2u[enc_cp950][data.mbs] = data.u;
  }
 }
 
@@ -2602,7 +2604,7 @@ static MB2UData mb2u_21_cp950 [] = { {"", 0},
  for(size_t i=1; i<sizeof(mb2u_21_cp950)/sizeof(MB2UData); ++i)
  {
 	MB2UData& data = mb2u_21_cp950[i];
-	mb2u["Big-5/MS950"][data.mbs] = data.u;
+	mb2u[enc_cp950][data.mbs] = data.u;
  }
 }
 
@@ -2678,7 +2680,7 @@ static MB2UData mb2u_22_cp950 [] = { {"", 0},
  for(size_t i=1; i<sizeof(mb2u_22_cp950)/sizeof(MB2UData); ++i)
  {
 	MB2UData& data = mb2u_22_cp950[i];
-	mb2u["Big-5/MS950"][data.mbs] = data.u;
+	mb2u[enc_cp950][data.mbs] = data.u;
  }
 }
 
@@ -2754,7 +2756,7 @@ static MB2UData mb2u_23_cp950 [] = { {"", 0},
  for(size_t i=1; i<sizeof(mb2u_23_cp950)/sizeof(MB2UData); ++i)
  {
 	MB2UData& data = mb2u_23_cp950[i];
-	mb2u["Big-5/MS950"][data.mbs] = data.u;
+	mb2u[enc_cp950][data.mbs] = data.u;
  }
 }
 
@@ -2830,7 +2832,7 @@ static MB2UData mb2u_24_cp950 [] = { {"", 0},
  for(size_t i=1; i<sizeof(mb2u_24_cp950)/sizeof(MB2UData); ++i)
  {
 	MB2UData& data = mb2u_24_cp950[i];
-	mb2u["Big-5/MS950"][data.mbs] = data.u;
+	mb2u[enc_cp950][data.mbs] = data.u;
  }
 }
 
@@ -2906,7 +2908,7 @@ static MB2UData mb2u_25_cp950 [] = { {"", 0},
  for(size_t i=1; i<sizeof(mb2u_25_cp950)/sizeof(MB2UData); ++i)
  {
 	MB2UData& data = mb2u_25_cp950[i];
-	mb2u["Big-5/MS950"][data.mbs] = data.u;
+	mb2u[enc_cp950][data.mbs] = data.u;
  }
 }
 
@@ -2982,7 +2984,7 @@ static MB2UData mb2u_26_cp950 [] = { {"", 0},
  for(size_t i=1; i<sizeof(mb2u_26_cp950)/sizeof(MB2UData); ++i)
  {
 	MB2UData& data = mb2u_26_cp950[i];
-	mb2u["Big-5/MS950"][data.mbs] = data.u;
+	mb2u[enc_cp950][data.mbs] = data.u;
  }
 }
 
@@ -3058,7 +3060,7 @@ static MB2UData mb2u_27_cp950 [] = { {"", 0},
  for(size_t i=1; i<sizeof(mb2u_27_cp950)/sizeof(MB2UData); ++i)
  {
 	MB2UData& data = mb2u_27_cp950[i];
-	mb2u["Big-5/MS950"][data.mbs] = data.u;
+	mb2u[enc_cp950][data.mbs] = data.u;
  }
 }
 
@@ -3134,7 +3136,7 @@ static MB2UData mb2u_28_cp950 [] = { {"", 0},
  for(size_t i=1; i<sizeof(mb2u_28_cp950)/sizeof(MB2UData); ++i)
  {
 	MB2UData& data = mb2u_28_cp950[i];
-	mb2u["Big-5/MS950"][data.mbs] = data.u;
+	mb2u[enc_cp950][data.mbs] = data.u;
  }
 }
 
@@ -3210,7 +3212,7 @@ static MB2UData mb2u_29_cp950 [] = { {"", 0},
  for(size_t i=1; i<sizeof(mb2u_29_cp950)/sizeof(MB2UData); ++i)
  {
 	MB2UData& data = mb2u_29_cp950[i];
-	mb2u["Big-5/MS950"][data.mbs] = data.u;
+	mb2u[enc_cp950][data.mbs] = data.u;
  }
 }
 
@@ -3286,7 +3288,7 @@ static MB2UData mb2u_2a_cp950 [] = { {"", 0},
  for(size_t i=1; i<sizeof(mb2u_2a_cp950)/sizeof(MB2UData); ++i)
  {
 	MB2UData& data = mb2u_2a_cp950[i];
-	mb2u["Big-5/MS950"][data.mbs] = data.u;
+	mb2u[enc_cp950][data.mbs] = data.u;
  }
 }
 
@@ -3362,7 +3364,7 @@ static MB2UData mb2u_2b_cp950 [] = { {"", 0},
  for(size_t i=1; i<sizeof(mb2u_2b_cp950)/sizeof(MB2UData); ++i)
  {
 	MB2UData& data = mb2u_2b_cp950[i];
-	mb2u["Big-5/MS950"][data.mbs] = data.u;
+	mb2u[enc_cp950][data.mbs] = data.u;
  }
 }
 
@@ -3438,7 +3440,7 @@ static MB2UData mb2u_2c_cp950 [] = { {"", 0},
  for(size_t i=1; i<sizeof(mb2u_2c_cp950)/sizeof(MB2UData); ++i)
  {
 	MB2UData& data = mb2u_2c_cp950[i];
-	mb2u["Big-5/MS950"][data.mbs] = data.u;
+	mb2u[enc_cp950][data.mbs] = data.u;
  }
 }
 
@@ -3514,7 +3516,7 @@ static MB2UData mb2u_2d_cp950 [] = { {"", 0},
  for(size_t i=1; i<sizeof(mb2u_2d_cp950)/sizeof(MB2UData); ++i)
  {
 	MB2UData& data = mb2u_2d_cp950[i];
-	mb2u["Big-5/MS950"][data.mbs] = data.u;
+	mb2u[enc_cp950][data.mbs] = data.u;
  }
 }
 
@@ -3590,7 +3592,7 @@ static MB2UData mb2u_2e_cp950 [] = { {"", 0},
  for(size_t i=1; i<sizeof(mb2u_2e_cp950)/sizeof(MB2UData); ++i)
  {
 	MB2UData& data = mb2u_2e_cp950[i];
-	mb2u["Big-5/MS950"][data.mbs] = data.u;
+	mb2u[enc_cp950][data.mbs] = data.u;
  }
 }
 
@@ -3666,7 +3668,7 @@ static MB2UData mb2u_2f_cp950 [] = { {"", 0},
  for(size_t i=1; i<sizeof(mb2u_2f_cp950)/sizeof(MB2UData); ++i)
  {
 	MB2UData& data = mb2u_2f_cp950[i];
-	mb2u["Big-5/MS950"][data.mbs] = data.u;
+	mb2u[enc_cp950][data.mbs] = data.u;
  }
 }
 
@@ -3742,7 +3744,7 @@ static MB2UData mb2u_30_cp950 [] = { {"", 0},
  for(size_t i=1; i<sizeof(mb2u_30_cp950)/sizeof(MB2UData); ++i)
  {
 	MB2UData& data = mb2u_30_cp950[i];
-	mb2u["Big-5/MS950"][data.mbs] = data.u;
+	mb2u[enc_cp950][data.mbs] = data.u;
  }
 }
 
@@ -3818,7 +3820,7 @@ static MB2UData mb2u_31_cp950 [] = { {"", 0},
  for(size_t i=1; i<sizeof(mb2u_31_cp950)/sizeof(MB2UData); ++i)
  {
 	MB2UData& data = mb2u_31_cp950[i];
-	mb2u["Big-5/MS950"][data.mbs] = data.u;
+	mb2u[enc_cp950][data.mbs] = data.u;
  }
 }
 
@@ -3894,7 +3896,7 @@ static MB2UData mb2u_32_cp950 [] = { {"", 0},
  for(size_t i=1; i<sizeof(mb2u_32_cp950)/sizeof(MB2UData); ++i)
  {
 	MB2UData& data = mb2u_32_cp950[i];
-	mb2u["Big-5/MS950"][data.mbs] = data.u;
+	mb2u[enc_cp950][data.mbs] = data.u;
  }
 }
 
@@ -3970,7 +3972,7 @@ static MB2UData mb2u_33_cp950 [] = { {"", 0},
  for(size_t i=1; i<sizeof(mb2u_33_cp950)/sizeof(MB2UData); ++i)
  {
 	MB2UData& data = mb2u_33_cp950[i];
-	mb2u["Big-5/MS950"][data.mbs] = data.u;
+	mb2u[enc_cp950][data.mbs] = data.u;
  }
 }
 
@@ -4046,7 +4048,7 @@ static MB2UData mb2u_34_cp950 [] = { {"", 0},
  for(size_t i=1; i<sizeof(mb2u_34_cp950)/sizeof(MB2UData); ++i)
  {
 	MB2UData& data = mb2u_34_cp950[i];
-	mb2u["Big-5/MS950"][data.mbs] = data.u;
+	mb2u[enc_cp950][data.mbs] = data.u;
  }
 }
 
@@ -4122,7 +4124,7 @@ static MB2UData mb2u_35_cp950 [] = { {"", 0},
  for(size_t i=1; i<sizeof(mb2u_35_cp950)/sizeof(MB2UData); ++i)
  {
 	MB2UData& data = mb2u_35_cp950[i];
-	mb2u["Big-5/MS950"][data.mbs] = data.u;
+	mb2u[enc_cp950][data.mbs] = data.u;
  }
 }
 
@@ -4198,7 +4200,7 @@ static MB2UData mb2u_36_cp950 [] = { {"", 0},
  for(size_t i=1; i<sizeof(mb2u_36_cp950)/sizeof(MB2UData); ++i)
  {
 	MB2UData& data = mb2u_36_cp950[i];
-	mb2u["Big-5/MS950"][data.mbs] = data.u;
+	mb2u[enc_cp950][data.mbs] = data.u;
  }
 }
 
@@ -4274,7 +4276,7 @@ static MB2UData mb2u_37_cp950 [] = { {"", 0},
  for(size_t i=1; i<sizeof(mb2u_37_cp950)/sizeof(MB2UData); ++i)
  {
 	MB2UData& data = mb2u_37_cp950[i];
-	mb2u["Big-5/MS950"][data.mbs] = data.u;
+	mb2u[enc_cp950][data.mbs] = data.u;
  }
 }
 
@@ -4350,7 +4352,7 @@ static MB2UData mb2u_38_cp950 [] = { {"", 0},
  for(size_t i=1; i<sizeof(mb2u_38_cp950)/sizeof(MB2UData); ++i)
  {
 	MB2UData& data = mb2u_38_cp950[i];
-	mb2u["Big-5/MS950"][data.mbs] = data.u;
+	mb2u[enc_cp950][data.mbs] = data.u;
  }
 }
 
@@ -4426,7 +4428,7 @@ static MB2UData mb2u_39_cp950 [] = { {"", 0},
  for(size_t i=1; i<sizeof(mb2u_39_cp950)/sizeof(MB2UData); ++i)
  {
 	MB2UData& data = mb2u_39_cp950[i];
-	mb2u["Big-5/MS950"][data.mbs] = data.u;
+	mb2u[enc_cp950][data.mbs] = data.u;
  }
 }
 
@@ -4502,7 +4504,7 @@ static MB2UData mb2u_3a_cp950 [] = { {"", 0},
  for(size_t i=1; i<sizeof(mb2u_3a_cp950)/sizeof(MB2UData); ++i)
  {
 	MB2UData& data = mb2u_3a_cp950[i];
-	mb2u["Big-5/MS950"][data.mbs] = data.u;
+	mb2u[enc_cp950][data.mbs] = data.u;
  }
 }
 
@@ -4578,7 +4580,7 @@ static MB2UData mb2u_3b_cp950 [] = { {"", 0},
  for(size_t i=1; i<sizeof(mb2u_3b_cp950)/sizeof(MB2UData); ++i)
  {
 	MB2UData& data = mb2u_3b_cp950[i];
-	mb2u["Big-5/MS950"][data.mbs] = data.u;
+	mb2u[enc_cp950][data.mbs] = data.u;
  }
 }
 
@@ -4654,7 +4656,7 @@ static MB2UData mb2u_3c_cp950 [] = { {"", 0},
  for(size_t i=1; i<sizeof(mb2u_3c_cp950)/sizeof(MB2UData); ++i)
  {
 	MB2UData& data = mb2u_3c_cp950[i];
-	mb2u["Big-5/MS950"][data.mbs] = data.u;
+	mb2u[enc_cp950][data.mbs] = data.u;
  }
 }
 
@@ -4730,7 +4732,7 @@ static MB2UData mb2u_3d_cp950 [] = { {"", 0},
  for(size_t i=1; i<sizeof(mb2u_3d_cp950)/sizeof(MB2UData); ++i)
  {
 	MB2UData& data = mb2u_3d_cp950[i];
-	mb2u["Big-5/MS950"][data.mbs] = data.u;
+	mb2u[enc_cp950][data.mbs] = data.u;
  }
 }
 
@@ -4806,7 +4808,7 @@ static MB2UData mb2u_3e_cp950 [] = { {"", 0},
  for(size_t i=1; i<sizeof(mb2u_3e_cp950)/sizeof(MB2UData); ++i)
  {
 	MB2UData& data = mb2u_3e_cp950[i];
-	mb2u["Big-5/MS950"][data.mbs] = data.u;
+	mb2u[enc_cp950][data.mbs] = data.u;
  }
 }
 
@@ -4882,7 +4884,7 @@ static MB2UData mb2u_3f_cp950 [] = { {"", 0},
  for(size_t i=1; i<sizeof(mb2u_3f_cp950)/sizeof(MB2UData); ++i)
  {
 	MB2UData& data = mb2u_3f_cp950[i];
-	mb2u["Big-5/MS950"][data.mbs] = data.u;
+	mb2u[enc_cp950][data.mbs] = data.u;
  }
 }
 
@@ -4958,7 +4960,7 @@ static MB2UData mb2u_40_cp950 [] = { {"", 0},
  for(size_t i=1; i<sizeof(mb2u_40_cp950)/sizeof(MB2UData); ++i)
  {
 	MB2UData& data = mb2u_40_cp950[i];
-	mb2u["Big-5/MS950"][data.mbs] = data.u;
+	mb2u[enc_cp950][data.mbs] = data.u;
  }
 }
 
@@ -5034,7 +5036,7 @@ static MB2UData mb2u_41_cp950 [] = { {"", 0},
  for(size_t i=1; i<sizeof(mb2u_41_cp950)/sizeof(MB2UData); ++i)
  {
 	MB2UData& data = mb2u_41_cp950[i];
-	mb2u["Big-5/MS950"][data.mbs] = data.u;
+	mb2u[enc_cp950][data.mbs] = data.u;
  }
 }
 
@@ -5110,7 +5112,7 @@ static MB2UData mb2u_42_cp950 [] = { {"", 0},
  for(size_t i=1; i<sizeof(mb2u_42_cp950)/sizeof(MB2UData); ++i)
  {
 	MB2UData& data = mb2u_42_cp950[i];
-	mb2u["Big-5/MS950"][data.mbs] = data.u;
+	mb2u[enc_cp950][data.mbs] = data.u;
  }
 }
 
@@ -5186,7 +5188,7 @@ static MB2UData mb2u_43_cp950 [] = { {"", 0},
  for(size_t i=1; i<sizeof(mb2u_43_cp950)/sizeof(MB2UData); ++i)
  {
 	MB2UData& data = mb2u_43_cp950[i];
-	mb2u["Big-5/MS950"][data.mbs] = data.u;
+	mb2u[enc_cp950][data.mbs] = data.u;
  }
 }
 
@@ -5262,7 +5264,7 @@ static MB2UData mb2u_44_cp950 [] = { {"", 0},
  for(size_t i=1; i<sizeof(mb2u_44_cp950)/sizeof(MB2UData); ++i)
  {
 	MB2UData& data = mb2u_44_cp950[i];
-	mb2u["Big-5/MS950"][data.mbs] = data.u;
+	mb2u[enc_cp950][data.mbs] = data.u;
  }
 }
 
@@ -5338,7 +5340,7 @@ static MB2UData mb2u_45_cp950 [] = { {"", 0},
  for(size_t i=1; i<sizeof(mb2u_45_cp950)/sizeof(MB2UData); ++i)
  {
 	MB2UData& data = mb2u_45_cp950[i];
-	mb2u["Big-5/MS950"][data.mbs] = data.u;
+	mb2u[enc_cp950][data.mbs] = data.u;
  }
 }
 
@@ -5414,7 +5416,7 @@ static MB2UData mb2u_46_cp950 [] = { {"", 0},
  for(size_t i=1; i<sizeof(mb2u_46_cp950)/sizeof(MB2UData); ++i)
  {
 	MB2UData& data = mb2u_46_cp950[i];
-	mb2u["Big-5/MS950"][data.mbs] = data.u;
+	mb2u[enc_cp950][data.mbs] = data.u;
  }
 }
 
@@ -5490,7 +5492,7 @@ static MB2UData mb2u_47_cp950 [] = { {"", 0},
  for(size_t i=1; i<sizeof(mb2u_47_cp950)/sizeof(MB2UData); ++i)
  {
 	MB2UData& data = mb2u_47_cp950[i];
-	mb2u["Big-5/MS950"][data.mbs] = data.u;
+	mb2u[enc_cp950][data.mbs] = data.u;
  }
 }
 
@@ -5566,7 +5568,7 @@ static MB2UData mb2u_48_cp950 [] = { {"", 0},
  for(size_t i=1; i<sizeof(mb2u_48_cp950)/sizeof(MB2UData); ++i)
  {
 	MB2UData& data = mb2u_48_cp950[i];
-	mb2u["Big-5/MS950"][data.mbs] = data.u;
+	mb2u[enc_cp950][data.mbs] = data.u;
  }
 }
 
@@ -5642,7 +5644,7 @@ static MB2UData mb2u_49_cp950 [] = { {"", 0},
  for(size_t i=1; i<sizeof(mb2u_49_cp950)/sizeof(MB2UData); ++i)
  {
 	MB2UData& data = mb2u_49_cp950[i];
-	mb2u["Big-5/MS950"][data.mbs] = data.u;
+	mb2u[enc_cp950][data.mbs] = data.u;
  }
 }
 
@@ -5718,7 +5720,7 @@ static MB2UData mb2u_4a_cp950 [] = { {"", 0},
  for(size_t i=1; i<sizeof(mb2u_4a_cp950)/sizeof(MB2UData); ++i)
  {
 	MB2UData& data = mb2u_4a_cp950[i];
-	mb2u["Big-5/MS950"][data.mbs] = data.u;
+	mb2u[enc_cp950][data.mbs] = data.u;
  }
 }
 
@@ -5794,7 +5796,7 @@ static MB2UData mb2u_4b_cp950 [] = { {"", 0},
  for(size_t i=1; i<sizeof(mb2u_4b_cp950)/sizeof(MB2UData); ++i)
  {
 	MB2UData& data = mb2u_4b_cp950[i];
-	mb2u["Big-5/MS950"][data.mbs] = data.u;
+	mb2u[enc_cp950][data.mbs] = data.u;
  }
 }
 
@@ -5870,7 +5872,7 @@ static MB2UData mb2u_4c_cp950 [] = { {"", 0},
  for(size_t i=1; i<sizeof(mb2u_4c_cp950)/sizeof(MB2UData); ++i)
  {
 	MB2UData& data = mb2u_4c_cp950[i];
-	mb2u["Big-5/MS950"][data.mbs] = data.u;
+	mb2u[enc_cp950][data.mbs] = data.u;
  }
 }
 
@@ -5916,13 +5918,13 @@ static MB2UData mb2u_4d_cp950 [] = { {"", 0},
  for(size_t i=1; i<sizeof(mb2u_4d_cp950)/sizeof(MB2UData); ++i)
  {
 	MB2UData& data = mb2u_4d_cp950[i];
-	mb2u["Big-5/MS950"][data.mbs] = data.u;
+	mb2u[enc_cp950][data.mbs] = data.u;
  }
 }
 
 void mb2u_cp950_init()
 {
-test_doublebyte_conv_enc_list.push_back("Big-5/MS950");
+test_doublebyte_conv_enc_list.push_back(enc_cp950);
 mb2u_00_cp950_init();mb2u_01_cp950_init();mb2u_02_cp950_init();mb2u_03_cp950_init();
 mb2u_04_cp950_init();mb2u_05_cp950_init();mb2u_06_cp950_init();mb2u_07_cp950_init();
 mb2u_08_cp950_init();mb2u_09_cp950_init();mb2u_0a_cp950_init();mb2u_0b_cp950_init();
@@ -6017,7 +6019,7 @@ static U2MBData u2mb_000_cp950[] = { {0, ""},
  for(size_t i=1; i<sizeof(u2mb_000_cp950)/sizeof(U2MBData); ++i)
  {
 	U2MBData& data = u2mb_000_cp950[i];
-	u2mb["Big-5/MS950"][data.u] = data.mbs;
+	u2mb[enc_cp950][data.u] = data.mbs;
  }
 }
 void u2mb_001_cp950_init()
@@ -6092,7 +6094,7 @@ static U2MBData u2mb_001_cp950[] = { {0, ""},
  for(size_t i=1; i<sizeof(u2mb_001_cp950)/sizeof(U2MBData); ++i)
  {
 	U2MBData& data = u2mb_001_cp950[i];
-	u2mb["Big-5/MS950"][data.u] = data.mbs;
+	u2mb[enc_cp950][data.u] = data.mbs;
  }
 }
 void u2mb_002_cp950_init()
@@ -6167,7 +6169,7 @@ static U2MBData u2mb_002_cp950[] = { {0, ""},
  for(size_t i=1; i<sizeof(u2mb_002_cp950)/sizeof(U2MBData); ++i)
  {
 	U2MBData& data = u2mb_002_cp950[i];
-	u2mb["Big-5/MS950"][data.u] = data.mbs;
+	u2mb[enc_cp950][data.u] = data.mbs;
  }
 }
 void u2mb_003_cp950_init()
@@ -6242,7 +6244,7 @@ static U2MBData u2mb_003_cp950[] = { {0, ""},
  for(size_t i=1; i<sizeof(u2mb_003_cp950)/sizeof(U2MBData); ++i)
  {
 	U2MBData& data = u2mb_003_cp950[i];
-	u2mb["Big-5/MS950"][data.u] = data.mbs;
+	u2mb[enc_cp950][data.u] = data.mbs;
  }
 }
 void u2mb_004_cp950_init()
@@ -6317,7 +6319,7 @@ static U2MBData u2mb_004_cp950[] = { {0, ""},
  for(size_t i=1; i<sizeof(u2mb_004_cp950)/sizeof(U2MBData); ++i)
  {
 	U2MBData& data = u2mb_004_cp950[i];
-	u2mb["Big-5/MS950"][data.u] = data.mbs;
+	u2mb[enc_cp950][data.u] = data.mbs;
  }
 }
 void u2mb_005_cp950_init()
@@ -6392,7 +6394,7 @@ static U2MBData u2mb_005_cp950[] = { {0, ""},
  for(size_t i=1; i<sizeof(u2mb_005_cp950)/sizeof(U2MBData); ++i)
  {
 	U2MBData& data = u2mb_005_cp950[i];
-	u2mb["Big-5/MS950"][data.u] = data.mbs;
+	u2mb[enc_cp950][data.u] = data.mbs;
  }
 }
 void u2mb_006_cp950_init()
@@ -6467,7 +6469,7 @@ static U2MBData u2mb_006_cp950[] = { {0, ""},
  for(size_t i=1; i<sizeof(u2mb_006_cp950)/sizeof(U2MBData); ++i)
  {
 	U2MBData& data = u2mb_006_cp950[i];
-	u2mb["Big-5/MS950"][data.u] = data.mbs;
+	u2mb[enc_cp950][data.u] = data.mbs;
  }
 }
 void u2mb_007_cp950_init()
@@ -6542,7 +6544,7 @@ static U2MBData u2mb_007_cp950[] = { {0, ""},
  for(size_t i=1; i<sizeof(u2mb_007_cp950)/sizeof(U2MBData); ++i)
  {
 	U2MBData& data = u2mb_007_cp950[i];
-	u2mb["Big-5/MS950"][data.u] = data.mbs;
+	u2mb[enc_cp950][data.u] = data.mbs;
  }
 }
 void u2mb_008_cp950_init()
@@ -6617,7 +6619,7 @@ static U2MBData u2mb_008_cp950[] = { {0, ""},
  for(size_t i=1; i<sizeof(u2mb_008_cp950)/sizeof(U2MBData); ++i)
  {
 	U2MBData& data = u2mb_008_cp950[i];
-	u2mb["Big-5/MS950"][data.u] = data.mbs;
+	u2mb[enc_cp950][data.u] = data.mbs;
  }
 }
 void u2mb_009_cp950_init()
@@ -6692,7 +6694,7 @@ static U2MBData u2mb_009_cp950[] = { {0, ""},
  for(size_t i=1; i<sizeof(u2mb_009_cp950)/sizeof(U2MBData); ++i)
  {
 	U2MBData& data = u2mb_009_cp950[i];
-	u2mb["Big-5/MS950"][data.u] = data.mbs;
+	u2mb[enc_cp950][data.u] = data.mbs;
  }
 }
 void u2mb_00a_cp950_init()
@@ -6767,7 +6769,7 @@ static U2MBData u2mb_00a_cp950[] = { {0, ""},
  for(size_t i=1; i<sizeof(u2mb_00a_cp950)/sizeof(U2MBData); ++i)
  {
 	U2MBData& data = u2mb_00a_cp950[i];
-	u2mb["Big-5/MS950"][data.u] = data.mbs;
+	u2mb[enc_cp950][data.u] = data.mbs;
  }
 }
 void u2mb_00b_cp950_init()
@@ -6842,7 +6844,7 @@ static U2MBData u2mb_00b_cp950[] = { {0, ""},
  for(size_t i=1; i<sizeof(u2mb_00b_cp950)/sizeof(U2MBData); ++i)
  {
 	U2MBData& data = u2mb_00b_cp950[i];
-	u2mb["Big-5/MS950"][data.u] = data.mbs;
+	u2mb[enc_cp950][data.u] = data.mbs;
  }
 }
 void u2mb_00c_cp950_init()
@@ -6917,7 +6919,7 @@ static U2MBData u2mb_00c_cp950[] = { {0, ""},
  for(size_t i=1; i<sizeof(u2mb_00c_cp950)/sizeof(U2MBData); ++i)
  {
 	U2MBData& data = u2mb_00c_cp950[i];
-	u2mb["Big-5/MS950"][data.u] = data.mbs;
+	u2mb[enc_cp950][data.u] = data.mbs;
  }
 }
 void u2mb_00d_cp950_init()
@@ -6992,7 +6994,7 @@ static U2MBData u2mb_00d_cp950[] = { {0, ""},
  for(size_t i=1; i<sizeof(u2mb_00d_cp950)/sizeof(U2MBData); ++i)
  {
 	U2MBData& data = u2mb_00d_cp950[i];
-	u2mb["Big-5/MS950"][data.u] = data.mbs;
+	u2mb[enc_cp950][data.u] = data.mbs;
  }
 }
 void u2mb_00e_cp950_init()
@@ -7067,7 +7069,7 @@ static U2MBData u2mb_00e_cp950[] = { {0, ""},
  for(size_t i=1; i<sizeof(u2mb_00e_cp950)/sizeof(U2MBData); ++i)
  {
 	U2MBData& data = u2mb_00e_cp950[i];
-	u2mb["Big-5/MS950"][data.u] = data.mbs;
+	u2mb[enc_cp950][data.u] = data.mbs;
  }
 }
 void u2mb_00f_cp950_init()
@@ -7142,7 +7144,7 @@ static U2MBData u2mb_00f_cp950[] = { {0, ""},
  for(size_t i=1; i<sizeof(u2mb_00f_cp950)/sizeof(U2MBData); ++i)
  {
 	U2MBData& data = u2mb_00f_cp950[i];
-	u2mb["Big-5/MS950"][data.u] = data.mbs;
+	u2mb[enc_cp950][data.u] = data.mbs;
  }
 }
 void u2mb_010_cp950_init()
@@ -7217,7 +7219,7 @@ static U2MBData u2mb_010_cp950[] = { {0, ""},
  for(size_t i=1; i<sizeof(u2mb_010_cp950)/sizeof(U2MBData); ++i)
  {
 	U2MBData& data = u2mb_010_cp950[i];
-	u2mb["Big-5/MS950"][data.u] = data.mbs;
+	u2mb[enc_cp950][data.u] = data.mbs;
  }
 }
 void u2mb_011_cp950_init()
@@ -7292,7 +7294,7 @@ static U2MBData u2mb_011_cp950[] = { {0, ""},
  for(size_t i=1; i<sizeof(u2mb_011_cp950)/sizeof(U2MBData); ++i)
  {
 	U2MBData& data = u2mb_011_cp950[i];
-	u2mb["Big-5/MS950"][data.u] = data.mbs;
+	u2mb[enc_cp950][data.u] = data.mbs;
  }
 }
 void u2mb_012_cp950_init()
@@ -7367,7 +7369,7 @@ static U2MBData u2mb_012_cp950[] = { {0, ""},
  for(size_t i=1; i<sizeof(u2mb_012_cp950)/sizeof(U2MBData); ++i)
  {
 	U2MBData& data = u2mb_012_cp950[i];
-	u2mb["Big-5/MS950"][data.u] = data.mbs;
+	u2mb[enc_cp950][data.u] = data.mbs;
  }
 }
 void u2mb_013_cp950_init()
@@ -7442,7 +7444,7 @@ static U2MBData u2mb_013_cp950[] = { {0, ""},
  for(size_t i=1; i<sizeof(u2mb_013_cp950)/sizeof(U2MBData); ++i)
  {
 	U2MBData& data = u2mb_013_cp950[i];
-	u2mb["Big-5/MS950"][data.u] = data.mbs;
+	u2mb[enc_cp950][data.u] = data.mbs;
  }
 }
 void u2mb_014_cp950_init()
@@ -7517,7 +7519,7 @@ static U2MBData u2mb_014_cp950[] = { {0, ""},
  for(size_t i=1; i<sizeof(u2mb_014_cp950)/sizeof(U2MBData); ++i)
  {
 	U2MBData& data = u2mb_014_cp950[i];
-	u2mb["Big-5/MS950"][data.u] = data.mbs;
+	u2mb[enc_cp950][data.u] = data.mbs;
  }
 }
 void u2mb_015_cp950_init()
@@ -7592,7 +7594,7 @@ static U2MBData u2mb_015_cp950[] = { {0, ""},
  for(size_t i=1; i<sizeof(u2mb_015_cp950)/sizeof(U2MBData); ++i)
  {
 	U2MBData& data = u2mb_015_cp950[i];
-	u2mb["Big-5/MS950"][data.u] = data.mbs;
+	u2mb[enc_cp950][data.u] = data.mbs;
  }
 }
 void u2mb_016_cp950_init()
@@ -7667,7 +7669,7 @@ static U2MBData u2mb_016_cp950[] = { {0, ""},
  for(size_t i=1; i<sizeof(u2mb_016_cp950)/sizeof(U2MBData); ++i)
  {
 	U2MBData& data = u2mb_016_cp950[i];
-	u2mb["Big-5/MS950"][data.u] = data.mbs;
+	u2mb[enc_cp950][data.u] = data.mbs;
  }
 }
 void u2mb_017_cp950_init()
@@ -7742,7 +7744,7 @@ static U2MBData u2mb_017_cp950[] = { {0, ""},
  for(size_t i=1; i<sizeof(u2mb_017_cp950)/sizeof(U2MBData); ++i)
  {
 	U2MBData& data = u2mb_017_cp950[i];
-	u2mb["Big-5/MS950"][data.u] = data.mbs;
+	u2mb[enc_cp950][data.u] = data.mbs;
  }
 }
 void u2mb_018_cp950_init()
@@ -7817,7 +7819,7 @@ static U2MBData u2mb_018_cp950[] = { {0, ""},
  for(size_t i=1; i<sizeof(u2mb_018_cp950)/sizeof(U2MBData); ++i)
  {
 	U2MBData& data = u2mb_018_cp950[i];
-	u2mb["Big-5/MS950"][data.u] = data.mbs;
+	u2mb[enc_cp950][data.u] = data.mbs;
  }
 }
 void u2mb_019_cp950_init()
@@ -7892,7 +7894,7 @@ static U2MBData u2mb_019_cp950[] = { {0, ""},
  for(size_t i=1; i<sizeof(u2mb_019_cp950)/sizeof(U2MBData); ++i)
  {
 	U2MBData& data = u2mb_019_cp950[i];
-	u2mb["Big-5/MS950"][data.u] = data.mbs;
+	u2mb[enc_cp950][data.u] = data.mbs;
  }
 }
 void u2mb_01a_cp950_init()
@@ -7967,7 +7969,7 @@ static U2MBData u2mb_01a_cp950[] = { {0, ""},
  for(size_t i=1; i<sizeof(u2mb_01a_cp950)/sizeof(U2MBData); ++i)
  {
 	U2MBData& data = u2mb_01a_cp950[i];
-	u2mb["Big-5/MS950"][data.u] = data.mbs;
+	u2mb[enc_cp950][data.u] = data.mbs;
  }
 }
 void u2mb_01b_cp950_init()
@@ -8042,7 +8044,7 @@ static U2MBData u2mb_01b_cp950[] = { {0, ""},
  for(size_t i=1; i<sizeof(u2mb_01b_cp950)/sizeof(U2MBData); ++i)
  {
 	U2MBData& data = u2mb_01b_cp950[i];
-	u2mb["Big-5/MS950"][data.u] = data.mbs;
+	u2mb[enc_cp950][data.u] = data.mbs;
  }
 }
 void u2mb_01c_cp950_init()
@@ -8117,7 +8119,7 @@ static U2MBData u2mb_01c_cp950[] = { {0, ""},
  for(size_t i=1; i<sizeof(u2mb_01c_cp950)/sizeof(U2MBData); ++i)
  {
 	U2MBData& data = u2mb_01c_cp950[i];
-	u2mb["Big-5/MS950"][data.u] = data.mbs;
+	u2mb[enc_cp950][data.u] = data.mbs;
  }
 }
 void u2mb_01d_cp950_init()
@@ -8192,7 +8194,7 @@ static U2MBData u2mb_01d_cp950[] = { {0, ""},
  for(size_t i=1; i<sizeof(u2mb_01d_cp950)/sizeof(U2MBData); ++i)
  {
 	U2MBData& data = u2mb_01d_cp950[i];
-	u2mb["Big-5/MS950"][data.u] = data.mbs;
+	u2mb[enc_cp950][data.u] = data.mbs;
  }
 }
 void u2mb_01e_cp950_init()
@@ -8267,7 +8269,7 @@ static U2MBData u2mb_01e_cp950[] = { {0, ""},
  for(size_t i=1; i<sizeof(u2mb_01e_cp950)/sizeof(U2MBData); ++i)
  {
 	U2MBData& data = u2mb_01e_cp950[i];
-	u2mb["Big-5/MS950"][data.u] = data.mbs;
+	u2mb[enc_cp950][data.u] = data.mbs;
  }
 }
 void u2mb_01f_cp950_init()
@@ -8342,7 +8344,7 @@ static U2MBData u2mb_01f_cp950[] = { {0, ""},
  for(size_t i=1; i<sizeof(u2mb_01f_cp950)/sizeof(U2MBData); ++i)
  {
 	U2MBData& data = u2mb_01f_cp950[i];
-	u2mb["Big-5/MS950"][data.u] = data.mbs;
+	u2mb[enc_cp950][data.u] = data.mbs;
  }
 }
 void u2mb_020_cp950_init()
@@ -8417,7 +8419,7 @@ static U2MBData u2mb_020_cp950[] = { {0, ""},
  for(size_t i=1; i<sizeof(u2mb_020_cp950)/sizeof(U2MBData); ++i)
  {
 	U2MBData& data = u2mb_020_cp950[i];
-	u2mb["Big-5/MS950"][data.u] = data.mbs;
+	u2mb[enc_cp950][data.u] = data.mbs;
  }
 }
 void u2mb_021_cp950_init()
@@ -8492,7 +8494,7 @@ static U2MBData u2mb_021_cp950[] = { {0, ""},
  for(size_t i=1; i<sizeof(u2mb_021_cp950)/sizeof(U2MBData); ++i)
  {
 	U2MBData& data = u2mb_021_cp950[i];
-	u2mb["Big-5/MS950"][data.u] = data.mbs;
+	u2mb[enc_cp950][data.u] = data.mbs;
  }
 }
 void u2mb_022_cp950_init()
@@ -8567,7 +8569,7 @@ static U2MBData u2mb_022_cp950[] = { {0, ""},
  for(size_t i=1; i<sizeof(u2mb_022_cp950)/sizeof(U2MBData); ++i)
  {
 	U2MBData& data = u2mb_022_cp950[i];
-	u2mb["Big-5/MS950"][data.u] = data.mbs;
+	u2mb[enc_cp950][data.u] = data.mbs;
  }
 }
 void u2mb_023_cp950_init()
@@ -8642,7 +8644,7 @@ static U2MBData u2mb_023_cp950[] = { {0, ""},
  for(size_t i=1; i<sizeof(u2mb_023_cp950)/sizeof(U2MBData); ++i)
  {
 	U2MBData& data = u2mb_023_cp950[i];
-	u2mb["Big-5/MS950"][data.u] = data.mbs;
+	u2mb[enc_cp950][data.u] = data.mbs;
  }
 }
 void u2mb_024_cp950_init()
@@ -8717,7 +8719,7 @@ static U2MBData u2mb_024_cp950[] = { {0, ""},
  for(size_t i=1; i<sizeof(u2mb_024_cp950)/sizeof(U2MBData); ++i)
  {
 	U2MBData& data = u2mb_024_cp950[i];
-	u2mb["Big-5/MS950"][data.u] = data.mbs;
+	u2mb[enc_cp950][data.u] = data.mbs;
  }
 }
 void u2mb_025_cp950_init()
@@ -8792,7 +8794,7 @@ static U2MBData u2mb_025_cp950[] = { {0, ""},
  for(size_t i=1; i<sizeof(u2mb_025_cp950)/sizeof(U2MBData); ++i)
  {
 	U2MBData& data = u2mb_025_cp950[i];
-	u2mb["Big-5/MS950"][data.u] = data.mbs;
+	u2mb[enc_cp950][data.u] = data.mbs;
  }
 }
 void u2mb_026_cp950_init()
@@ -8867,7 +8869,7 @@ static U2MBData u2mb_026_cp950[] = { {0, ""},
  for(size_t i=1; i<sizeof(u2mb_026_cp950)/sizeof(U2MBData); ++i)
  {
 	U2MBData& data = u2mb_026_cp950[i];
-	u2mb["Big-5/MS950"][data.u] = data.mbs;
+	u2mb[enc_cp950][data.u] = data.mbs;
  }
 }
 void u2mb_027_cp950_init()
@@ -8942,7 +8944,7 @@ static U2MBData u2mb_027_cp950[] = { {0, ""},
  for(size_t i=1; i<sizeof(u2mb_027_cp950)/sizeof(U2MBData); ++i)
  {
 	U2MBData& data = u2mb_027_cp950[i];
-	u2mb["Big-5/MS950"][data.u] = data.mbs;
+	u2mb[enc_cp950][data.u] = data.mbs;
  }
 }
 void u2mb_028_cp950_init()
@@ -9017,7 +9019,7 @@ static U2MBData u2mb_028_cp950[] = { {0, ""},
  for(size_t i=1; i<sizeof(u2mb_028_cp950)/sizeof(U2MBData); ++i)
  {
 	U2MBData& data = u2mb_028_cp950[i];
-	u2mb["Big-5/MS950"][data.u] = data.mbs;
+	u2mb[enc_cp950][data.u] = data.mbs;
  }
 }
 void u2mb_029_cp950_init()
@@ -9092,7 +9094,7 @@ static U2MBData u2mb_029_cp950[] = { {0, ""},
  for(size_t i=1; i<sizeof(u2mb_029_cp950)/sizeof(U2MBData); ++i)
  {
 	U2MBData& data = u2mb_029_cp950[i];
-	u2mb["Big-5/MS950"][data.u] = data.mbs;
+	u2mb[enc_cp950][data.u] = data.mbs;
  }
 }
 void u2mb_02a_cp950_init()
@@ -9167,7 +9169,7 @@ static U2MBData u2mb_02a_cp950[] = { {0, ""},
  for(size_t i=1; i<sizeof(u2mb_02a_cp950)/sizeof(U2MBData); ++i)
  {
 	U2MBData& data = u2mb_02a_cp950[i];
-	u2mb["Big-5/MS950"][data.u] = data.mbs;
+	u2mb[enc_cp950][data.u] = data.mbs;
  }
 }
 void u2mb_02b_cp950_init()
@@ -9242,7 +9244,7 @@ static U2MBData u2mb_02b_cp950[] = { {0, ""},
  for(size_t i=1; i<sizeof(u2mb_02b_cp950)/sizeof(U2MBData); ++i)
  {
 	U2MBData& data = u2mb_02b_cp950[i];
-	u2mb["Big-5/MS950"][data.u] = data.mbs;
+	u2mb[enc_cp950][data.u] = data.mbs;
  }
 }
 void u2mb_02c_cp950_init()
@@ -9317,7 +9319,7 @@ static U2MBData u2mb_02c_cp950[] = { {0, ""},
  for(size_t i=1; i<sizeof(u2mb_02c_cp950)/sizeof(U2MBData); ++i)
  {
 	U2MBData& data = u2mb_02c_cp950[i];
-	u2mb["Big-5/MS950"][data.u] = data.mbs;
+	u2mb[enc_cp950][data.u] = data.mbs;
  }
 }
 void u2mb_02d_cp950_init()
@@ -9392,7 +9394,7 @@ static U2MBData u2mb_02d_cp950[] = { {0, ""},
  for(size_t i=1; i<sizeof(u2mb_02d_cp950)/sizeof(U2MBData); ++i)
  {
 	U2MBData& data = u2mb_02d_cp950[i];
-	u2mb["Big-5/MS950"][data.u] = data.mbs;
+	u2mb[enc_cp950][data.u] = data.mbs;
  }
 }
 void u2mb_02e_cp950_init()
@@ -9467,7 +9469,7 @@ static U2MBData u2mb_02e_cp950[] = { {0, ""},
  for(size_t i=1; i<sizeof(u2mb_02e_cp950)/sizeof(U2MBData); ++i)
  {
 	U2MBData& data = u2mb_02e_cp950[i];
-	u2mb["Big-5/MS950"][data.u] = data.mbs;
+	u2mb[enc_cp950][data.u] = data.mbs;
  }
 }
 void u2mb_02f_cp950_init()
@@ -9542,7 +9544,7 @@ static U2MBData u2mb_02f_cp950[] = { {0, ""},
  for(size_t i=1; i<sizeof(u2mb_02f_cp950)/sizeof(U2MBData); ++i)
  {
 	U2MBData& data = u2mb_02f_cp950[i];
-	u2mb["Big-5/MS950"][data.u] = data.mbs;
+	u2mb[enc_cp950][data.u] = data.mbs;
  }
 }
 void u2mb_030_cp950_init()
@@ -9617,7 +9619,7 @@ static U2MBData u2mb_030_cp950[] = { {0, ""},
  for(size_t i=1; i<sizeof(u2mb_030_cp950)/sizeof(U2MBData); ++i)
  {
 	U2MBData& data = u2mb_030_cp950[i];
-	u2mb["Big-5/MS950"][data.u] = data.mbs;
+	u2mb[enc_cp950][data.u] = data.mbs;
  }
 }
 void u2mb_031_cp950_init()
@@ -9692,7 +9694,7 @@ static U2MBData u2mb_031_cp950[] = { {0, ""},
  for(size_t i=1; i<sizeof(u2mb_031_cp950)/sizeof(U2MBData); ++i)
  {
 	U2MBData& data = u2mb_031_cp950[i];
-	u2mb["Big-5/MS950"][data.u] = data.mbs;
+	u2mb[enc_cp950][data.u] = data.mbs;
  }
 }
 void u2mb_032_cp950_init()
@@ -9767,7 +9769,7 @@ static U2MBData u2mb_032_cp950[] = { {0, ""},
  for(size_t i=1; i<sizeof(u2mb_032_cp950)/sizeof(U2MBData); ++i)
  {
 	U2MBData& data = u2mb_032_cp950[i];
-	u2mb["Big-5/MS950"][data.u] = data.mbs;
+	u2mb[enc_cp950][data.u] = data.mbs;
  }
 }
 void u2mb_033_cp950_init()
@@ -9842,7 +9844,7 @@ static U2MBData u2mb_033_cp950[] = { {0, ""},
  for(size_t i=1; i<sizeof(u2mb_033_cp950)/sizeof(U2MBData); ++i)
  {
 	U2MBData& data = u2mb_033_cp950[i];
-	u2mb["Big-5/MS950"][data.u] = data.mbs;
+	u2mb[enc_cp950][data.u] = data.mbs;
  }
 }
 void u2mb_034_cp950_init()
@@ -9917,7 +9919,7 @@ static U2MBData u2mb_034_cp950[] = { {0, ""},
  for(size_t i=1; i<sizeof(u2mb_034_cp950)/sizeof(U2MBData); ++i)
  {
 	U2MBData& data = u2mb_034_cp950[i];
-	u2mb["Big-5/MS950"][data.u] = data.mbs;
+	u2mb[enc_cp950][data.u] = data.mbs;
  }
 }
 void u2mb_035_cp950_init()
@@ -9992,7 +9994,7 @@ static U2MBData u2mb_035_cp950[] = { {0, ""},
  for(size_t i=1; i<sizeof(u2mb_035_cp950)/sizeof(U2MBData); ++i)
  {
 	U2MBData& data = u2mb_035_cp950[i];
-	u2mb["Big-5/MS950"][data.u] = data.mbs;
+	u2mb[enc_cp950][data.u] = data.mbs;
  }
 }
 void u2mb_036_cp950_init()
@@ -10067,7 +10069,7 @@ static U2MBData u2mb_036_cp950[] = { {0, ""},
  for(size_t i=1; i<sizeof(u2mb_036_cp950)/sizeof(U2MBData); ++i)
  {
 	U2MBData& data = u2mb_036_cp950[i];
-	u2mb["Big-5/MS950"][data.u] = data.mbs;
+	u2mb[enc_cp950][data.u] = data.mbs;
  }
 }
 void u2mb_037_cp950_init()
@@ -10142,7 +10144,7 @@ static U2MBData u2mb_037_cp950[] = { {0, ""},
  for(size_t i=1; i<sizeof(u2mb_037_cp950)/sizeof(U2MBData); ++i)
  {
 	U2MBData& data = u2mb_037_cp950[i];
-	u2mb["Big-5/MS950"][data.u] = data.mbs;
+	u2mb[enc_cp950][data.u] = data.mbs;
  }
 }
 void u2mb_038_cp950_init()
@@ -10217,7 +10219,7 @@ static U2MBData u2mb_038_cp950[] = { {0, ""},
  for(size_t i=1; i<sizeof(u2mb_038_cp950)/sizeof(U2MBData); ++i)
  {
 	U2MBData& data = u2mb_038_cp950[i];
-	u2mb["Big-5/MS950"][data.u] = data.mbs;
+	u2mb[enc_cp950][data.u] = data.mbs;
  }
 }
 void u2mb_039_cp950_init()
@@ -10292,7 +10294,7 @@ static U2MBData u2mb_039_cp950[] = { {0, ""},
  for(size_t i=1; i<sizeof(u2mb_039_cp950)/sizeof(U2MBData); ++i)
  {
 	U2MBData& data = u2mb_039_cp950[i];
-	u2mb["Big-5/MS950"][data.u] = data.mbs;
+	u2mb[enc_cp950][data.u] = data.mbs;
  }
 }
 void u2mb_03a_cp950_init()
@@ -10367,7 +10369,7 @@ static U2MBData u2mb_03a_cp950[] = { {0, ""},
  for(size_t i=1; i<sizeof(u2mb_03a_cp950)/sizeof(U2MBData); ++i)
  {
 	U2MBData& data = u2mb_03a_cp950[i];
-	u2mb["Big-5/MS950"][data.u] = data.mbs;
+	u2mb[enc_cp950][data.u] = data.mbs;
  }
 }
 void u2mb_03b_cp950_init()
@@ -10442,7 +10444,7 @@ static U2MBData u2mb_03b_cp950[] = { {0, ""},
  for(size_t i=1; i<sizeof(u2mb_03b_cp950)/sizeof(U2MBData); ++i)
  {
 	U2MBData& data = u2mb_03b_cp950[i];
-	u2mb["Big-5/MS950"][data.u] = data.mbs;
+	u2mb[enc_cp950][data.u] = data.mbs;
  }
 }
 void u2mb_03c_cp950_init()
@@ -10517,7 +10519,7 @@ static U2MBData u2mb_03c_cp950[] = { {0, ""},
  for(size_t i=1; i<sizeof(u2mb_03c_cp950)/sizeof(U2MBData); ++i)
  {
 	U2MBData& data = u2mb_03c_cp950[i];
-	u2mb["Big-5/MS950"][data.u] = data.mbs;
+	u2mb[enc_cp950][data.u] = data.mbs;
  }
 }
 void u2mb_03d_cp950_init()
@@ -10592,7 +10594,7 @@ static U2MBData u2mb_03d_cp950[] = { {0, ""},
  for(size_t i=1; i<sizeof(u2mb_03d_cp950)/sizeof(U2MBData); ++i)
  {
 	U2MBData& data = u2mb_03d_cp950[i];
-	u2mb["Big-5/MS950"][data.u] = data.mbs;
+	u2mb[enc_cp950][data.u] = data.mbs;
  }
 }
 void u2mb_03e_cp950_init()
@@ -10667,7 +10669,7 @@ static U2MBData u2mb_03e_cp950[] = { {0, ""},
  for(size_t i=1; i<sizeof(u2mb_03e_cp950)/sizeof(U2MBData); ++i)
  {
 	U2MBData& data = u2mb_03e_cp950[i];
-	u2mb["Big-5/MS950"][data.u] = data.mbs;
+	u2mb[enc_cp950][data.u] = data.mbs;
  }
 }
 void u2mb_03f_cp950_init()
@@ -10742,7 +10744,7 @@ static U2MBData u2mb_03f_cp950[] = { {0, ""},
  for(size_t i=1; i<sizeof(u2mb_03f_cp950)/sizeof(U2MBData); ++i)
  {
 	U2MBData& data = u2mb_03f_cp950[i];
-	u2mb["Big-5/MS950"][data.u] = data.mbs;
+	u2mb[enc_cp950][data.u] = data.mbs;
  }
 }
 void u2mb_040_cp950_init()
@@ -10817,7 +10819,7 @@ static U2MBData u2mb_040_cp950[] = { {0, ""},
  for(size_t i=1; i<sizeof(u2mb_040_cp950)/sizeof(U2MBData); ++i)
  {
 	U2MBData& data = u2mb_040_cp950[i];
-	u2mb["Big-5/MS950"][data.u] = data.mbs;
+	u2mb[enc_cp950][data.u] = data.mbs;
  }
 }
 void u2mb_041_cp950_init()
@@ -10892,7 +10894,7 @@ static U2MBData u2mb_041_cp950[] = { {0, ""},
  for(size_t i=1; i<sizeof(u2mb_041_cp950)/sizeof(U2MBData); ++i)
  {
 	U2MBData& data = u2mb_041_cp950[i];
-	u2mb["Big-5/MS950"][data.u] = data.mbs;
+	u2mb[enc_cp950][data.u] = data.mbs;
  }
 }
 void u2mb_042_cp950_init()
@@ -10967,7 +10969,7 @@ static U2MBData u2mb_042_cp950[] = { {0, ""},
  for(size_t i=1; i<sizeof(u2mb_042_cp950)/sizeof(U2MBData); ++i)
  {
 	U2MBData& data = u2mb_042_cp950[i];
-	u2mb["Big-5/MS950"][data.u] = data.mbs;
+	u2mb[enc_cp950][data.u] = data.mbs;
  }
 }
 void u2mb_043_cp950_init()
@@ -11042,7 +11044,7 @@ static U2MBData u2mb_043_cp950[] = { {0, ""},
  for(size_t i=1; i<sizeof(u2mb_043_cp950)/sizeof(U2MBData); ++i)
  {
 	U2MBData& data = u2mb_043_cp950[i];
-	u2mb["Big-5/MS950"][data.u] = data.mbs;
+	u2mb[enc_cp950][data.u] = data.mbs;
  }
 }
 void u2mb_044_cp950_init()
@@ -11117,7 +11119,7 @@ static U2MBData u2mb_044_cp950[] = { {0, ""},
  for(size_t i=1; i<sizeof(u2mb_044_cp950)/sizeof(U2MBData); ++i)
  {
 	U2MBData& data = u2mb_044_cp950[i];
-	u2mb["Big-5/MS950"][data.u] = data.mbs;
+	u2mb[enc_cp950][data.u] = data.mbs;
  }
 }
 void u2mb_045_cp950_init()
@@ -11192,7 +11194,7 @@ static U2MBData u2mb_045_cp950[] = { {0, ""},
  for(size_t i=1; i<sizeof(u2mb_045_cp950)/sizeof(U2MBData); ++i)
  {
 	U2MBData& data = u2mb_045_cp950[i];
-	u2mb["Big-5/MS950"][data.u] = data.mbs;
+	u2mb[enc_cp950][data.u] = data.mbs;
  }
 }
 void u2mb_046_cp950_init()
@@ -11267,7 +11269,7 @@ static U2MBData u2mb_046_cp950[] = { {0, ""},
  for(size_t i=1; i<sizeof(u2mb_046_cp950)/sizeof(U2MBData); ++i)
  {
 	U2MBData& data = u2mb_046_cp950[i];
-	u2mb["Big-5/MS950"][data.u] = data.mbs;
+	u2mb[enc_cp950][data.u] = data.mbs;
  }
 }
 void u2mb_047_cp950_init()
@@ -11342,7 +11344,7 @@ static U2MBData u2mb_047_cp950[] = { {0, ""},
  for(size_t i=1; i<sizeof(u2mb_047_cp950)/sizeof(U2MBData); ++i)
  {
 	U2MBData& data = u2mb_047_cp950[i];
-	u2mb["Big-5/MS950"][data.u] = data.mbs;
+	u2mb[enc_cp950][data.u] = data.mbs;
  }
 }
 void u2mb_048_cp950_init()
@@ -11417,7 +11419,7 @@ static U2MBData u2mb_048_cp950[] = { {0, ""},
  for(size_t i=1; i<sizeof(u2mb_048_cp950)/sizeof(U2MBData); ++i)
  {
 	U2MBData& data = u2mb_048_cp950[i];
-	u2mb["Big-5/MS950"][data.u] = data.mbs;
+	u2mb[enc_cp950][data.u] = data.mbs;
  }
 }
 void u2mb_049_cp950_init()
@@ -11492,7 +11494,7 @@ static U2MBData u2mb_049_cp950[] = { {0, ""},
  for(size_t i=1; i<sizeof(u2mb_049_cp950)/sizeof(U2MBData); ++i)
  {
 	U2MBData& data = u2mb_049_cp950[i];
-	u2mb["Big-5/MS950"][data.u] = data.mbs;
+	u2mb[enc_cp950][data.u] = data.mbs;
  }
 }
 void u2mb_04a_cp950_init()
@@ -11567,7 +11569,7 @@ static U2MBData u2mb_04a_cp950[] = { {0, ""},
  for(size_t i=1; i<sizeof(u2mb_04a_cp950)/sizeof(U2MBData); ++i)
  {
 	U2MBData& data = u2mb_04a_cp950[i];
-	u2mb["Big-5/MS950"][data.u] = data.mbs;
+	u2mb[enc_cp950][data.u] = data.mbs;
  }
 }
 void u2mb_04b_cp950_init()
@@ -11642,7 +11644,7 @@ static U2MBData u2mb_04b_cp950[] = { {0, ""},
  for(size_t i=1; i<sizeof(u2mb_04b_cp950)/sizeof(U2MBData); ++i)
  {
 	U2MBData& data = u2mb_04b_cp950[i];
-	u2mb["Big-5/MS950"][data.u] = data.mbs;
+	u2mb[enc_cp950][data.u] = data.mbs;
  }
 }
 void u2mb_04c_cp950_init()
@@ -11717,7 +11719,7 @@ static U2MBData u2mb_04c_cp950[] = { {0, ""},
  for(size_t i=1; i<sizeof(u2mb_04c_cp950)/sizeof(U2MBData); ++i)
  {
 	U2MBData& data = u2mb_04c_cp950[i];
-	u2mb["Big-5/MS950"][data.u] = data.mbs;
+	u2mb[enc_cp950][data.u] = data.mbs;
  }
 }
 void u2mb_04d_cp950_init()
@@ -11759,7 +11761,7 @@ static U2MBData u2mb_04d_cp950[] = { {0, ""},
  for(size_t i=1; i<sizeof(u2mb_04d_cp950)/sizeof(U2MBData); ++i)
  {
 	U2MBData& data = u2mb_04d_cp950[i];
-	u2mb["Big-5/MS950"][data.u] = data.mbs;
+	u2mb[enc_cp950][data.u] = data.mbs;
  }
 }
 void u2mb_cp950_init()
