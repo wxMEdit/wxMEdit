@@ -141,7 +141,7 @@ wxmedit_test_SOURCES = src/wxmedit/ucs4_t.h \
 	test/test_cp949_conv.cpp \
 	test/test_cp950_conv.cpp \
 	test/test_doublebyte_conv.cpp \
-	test/test_euc_jp_conv.cpp \
+	test/test_eucjpms_conv.cpp \
 	test/test_singlebyte_conv.cpp \
 	test/test.h \
 	test/test.cpp

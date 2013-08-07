@@ -34,10 +34,8 @@ void u2mb_cp949_init();
 void mb2u_cp950_init();
 void u2mb_cp950_init();
 
-#ifdef __WXMSW__
-void mb2u_euc_jp_init();
-void u2mb_euc_jp_init();
-#endif
+void mb2u_eucjpms_init();
+void u2mb_eucjpms_init();
 
 void test_doublebyte_conv_init()
 {
@@ -53,9 +51,7 @@ void test_doublebyte_conv_init()
 	mb2u_cp950_init();
 	u2mb_cp950_init();
 
-#ifdef __WXMSW__
-	mb2u_euc_jp_init();
-	u2mb_euc_jp_init();
-#endif
+	mb2u_eucjpms_init();
+	u2mb_eucjpms_init();
 
 }
