@@ -46,20 +46,6 @@ private:
 	UConverter* m_ucnv;
 };
 
-struct WXConverter: public MBConverter
-{
-	WXConverter(const std::string& encname, wxFontEncoding enc);
-	~WXConverter()
-	{
-		delete m_wxcnv; m_wxcnv = NULL;
-	}
-
-	virtual size_t MB2WC(UChar32& ch, const char* src, size_t src_len);
-	virtual size_t WC2MB(char* dest, size_t dest_len, const UChar32& ch);
-private:
-	wxCSConv* m_wxcnv;
-};
-
 };// namespace wxm
 
 #endif // _WXM_ENCODING_MULTIBYTE_H_

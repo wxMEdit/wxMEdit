@@ -1,0 +1,62 @@
+///////////////////////////////////////////////////////////////////////////////
+// vim:         ts=4 sw=4
+// Name:        wxmedit/wxm_encoding.h
+// Description: define the Double-byte Encodings which are supported by wxMEdit
+// Author:      wxmedit@gmail.com
+// Licence:     GPL
+///////////////////////////////////////////////////////////////////////////////
+
+#ifndef _WXM_ENCODING_EUCJPMS_H_
+#define _WXM_ENCODING_EUCJPMS_H_
+
+#include "wxm_encoding_doublebyte.h"
+
+namespace wxm
+{
+
+struct EUCJPMSConverter: public ICUConverter
+{
+	EUCJPMSConverter(const std::string& encname)
+		:ICUConverter(encname)
+	{
+	}
+
+	virtual size_t MB2WC(UChar32& ch, const char* src, size_t src_len);
+	virtual size_t WC2MB(char* dest, size_t dest_len, const UChar32& ch);
+};
+
+struct EUCJPMSTableFixer: public DoubleByteEncodingTableFixer
+{
+	EUCJPMSTableFixer(WXMEncodingDoubleByte& dbenc)
+		:DoubleByteEncodingTableFixer(dbenc)
+	{
+	}
+	virtual void fix();
+};
+
+struct WXMEncodingEUCJPMS: public WXMEncodingDoubleByte
+{
+private:
+	friend WXMEncoding* WXMEncodingCreator::CreateWxmEncoding(ssize_t idx);
+	virtual void Create(ssize_t idx)
+	{
+		WXMEncodingDoubleByte::Create(idx);
+
+		m_type = etDoubleByte;
+	}
+	~WXMEncodingEUCJPMS(){}
+
+	virtual void InitMBConverter()
+	{
+		m_mbcnv = new EUCJPMSConverter(m_innername);
+	}
+
+	virtual DoubleByteEncodingTableFixer* CreateDoubleByteEncodingTableFixer()
+	{
+		return new EUCJPMSTableFixer(*this);
+	}
+};
+
+};// namespace wxm
+
+#endif // _WXM_ENCODING_EUCJPMS_H_

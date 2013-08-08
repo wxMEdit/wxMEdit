@@ -9,6 +9,7 @@
 #include "wxm_encoding_unicode.h"
 #include "wxm_encoding_singlebyte.h"
 #include "wxm_encoding_doublebyte.h"
+#include "wxm_encoding_eucjpms.h"
 #include <wx/config.h>
 #include <wx/fontmap.h>
 #include <boost/foreach.hpp>
@@ -123,7 +124,7 @@ void WXMEncodingCreator::DoInit()
 	AddEncoding("GBK/MS936", wxFONTENCODING_CP936, etDoubleByte, "MS936");
 	AddEncoding("UHC", wxFONTENCODING_CP949, etDoubleByte, "MS949");
 	AddEncoding("Big-5/MS950", wxFONTENCODING_CP950, etDoubleByte, "Windows-950-2000");
-	AddEncoding("EUC-JP-MS", wxFONTENCODING_EUC_JP, etWXDoubleByte, "EUC-JP");
+	AddEncoding("EUC-JP-MS", wxFONTENCODING_EUC_JP, etEUCJPMS, "EUC-JP");
 	AddEncoding("UTF-8", wxFONTENCODING_UTF8, etUTF8);
 	AddEncoding("UTF-16LE", wxFONTENCODING_UTF16LE, etUTF16LE);
 	AddEncoding("UTF-16BE", wxFONTENCODING_UTF16BE, etUTF16BE);
@@ -282,8 +283,8 @@ WXMEncoding* WXMEncodingCreator::CreateWxmEncoding(ssize_t idx)
 		case etDoubleByte:
 			enc = new WXMEncodingDoubleByte();
 			break;
-		case etWXDoubleByte:
-			enc = new WXMEncodingWXDoubleByte();
+		case etEUCJPMS:
+			enc = new WXMEncodingEUCJPMS();
 			break;
 	}
 

@@ -79,6 +79,7 @@ struct WXMEncodingDoubleByte: public WXMEncodingMultiByte
 
 protected:
 	friend WXMEncoding* WXMEncodingCreator::CreateWxmEncoding(ssize_t idx);
+	virtual DoubleByteEncodingTableFixer* CreateDoubleByteEncodingTableFixer();
 	virtual void InitMBConverter()
 	{
 		m_mbcnv = new ICUConverter(m_innername);
@@ -104,27 +105,8 @@ private:
 	boost::array<wxWord, 0x10000> m_bmp2mb_tab;
 	std::map<ucs4_t, wxWord> m_nonbmp2mb_map;
 
-	DoubleByteEncodingTableFixer* CreateDoubleByteEncodingTableFixer();
 	wxWord GetMBofUCS4(ucs4_t u);
 	void SetMBofUCS4(ucs4_t u, wxWord mb);
-};
-
-struct WXMEncodingWXDoubleByte: public WXMEncodingDoubleByte
-{
-private:
-	friend WXMEncoding* WXMEncodingCreator::CreateWxmEncoding(ssize_t idx);
-	virtual void Create(ssize_t idx)
-	{
-		WXMEncodingDoubleByte::Create(idx);
-
-		m_type = etDoubleByte;
-	}
-	~WXMEncodingWXDoubleByte(){}
-
-	virtual void InitMBConverter()
-	{
-		m_mbcnv = new WXConverter(m_innername, m_enc);
-	}
 };
 
 };// namespace wxm

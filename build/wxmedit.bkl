@@ -167,6 +167,8 @@
 		<sources>../src/xm/wxm_encoding.cpp</sources>
 		<headers>../src/xm/wxm_encoding_doublebyte.h</headers>
 		<sources>../src/xm/wxm_encoding_doublebyte.cpp</sources>
+		<headers>../src/xm/wxm_encoding_eucjpms.h</headers>
+		<sources>../src/xm/wxm_encoding_eucjpms.cpp</sources>
 		<headers>../src/xm/wxm_encoding_singlebyte.h</headers>
 		<sources>../src/xm/wxm_encoding_singlebyte.cpp</sources>
 		<headers>../src/xm/wxm_encoding_multibyte.h</headers>
@@ -252,6 +254,8 @@
 		<sources>../src/xm/wxm_encoding.cpp</sources>
 		<headers>../src/xm/wxm_encoding_doublebyte.h</headers>
 		<sources>../src/xm/wxm_encoding_doublebyte.cpp</sources>
+		<headers>../src/xm/wxm_encoding_eucjpms.h</headers>
+		<sources>../src/xm/wxm_encoding_eucjpms.cpp</sources>
 		<headers>../src/xm/wxm_encoding_singlebyte.h</headers>
 		<sources>../src/xm/wxm_encoding_singlebyte.cpp</sources>
 		<headers>../src/xm/wxm_encoding_multibyte.h</headers>
