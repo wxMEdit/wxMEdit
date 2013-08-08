@@ -22,7 +22,7 @@ typedef std::map<std::string, U2MBDataMap> U2MBMap;
 extern U2MBMap u2mb;
 extern std::vector<std::string> test_doublebyte_conv_enc_list;
 
-const std::string enc_cp950("Big-5/MS950");
+const std::string enc_cp950("MS950");
 
 void mb2u_00_cp950_init()
 {

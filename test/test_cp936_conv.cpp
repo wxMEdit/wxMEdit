@@ -22,7 +22,7 @@ typedef std::map<std::string, U2MBDataMap> U2MBMap;
 extern U2MBMap u2mb;
 extern std::vector<std::string> test_doublebyte_conv_enc_list;
 
-const std::string enc_cp936("GBK/MS936");
+const std::string enc_cp936("MS936");
 
 void mb2u_00_cp936_init()
 {
