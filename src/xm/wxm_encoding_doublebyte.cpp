@@ -60,9 +60,9 @@ ucs4_t DoubleByteEncodingTableFixer::MB2UInfo(wxWord db)
 	return it->second;
 }
 
-wxWord DoubleByteEncodingTableFixer::U2MBInfo(ucs4_t db)
+wxWord DoubleByteEncodingTableFixer::U2MBInfo(ucs4_t u)
 {
-	std::map<ucs4_t, wxWord>::const_iterator it = m_u2mb_map.find(db);
+	std::map<ucs4_t, wxWord>::const_iterator it = m_u2mb_map.find(u);
 	if (it == m_u2mb_map.end())
 		return WXMEncodingDoubleByte::svtDByteNotCached;
 
