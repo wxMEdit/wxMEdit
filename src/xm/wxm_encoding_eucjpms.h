@@ -1,7 +1,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 // vim:         ts=4 sw=4
-// Name:        wxmedit/wxm_encoding.h
-// Description: define the Double-byte Encodings which are supported by wxMEdit
+// Name:        wxmedit/wxm_encoding_eucjpms.h
+// Description: define the Double-byte Encoding EUC-JP-MS
 // Author:      wxmedit@gmail.com
 // Licence:     GPL
 ///////////////////////////////////////////////////////////////////////////////
