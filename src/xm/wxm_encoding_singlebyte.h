@@ -45,6 +45,11 @@ struct Windows874TableFixer: public SingleByteEncodingTableFixer
 	virtual void fix(ByteUnicodeArr& toutab, UnicodeByteMap& fromutab);
 };
 
+struct ISO8859_16TableFixer: public SingleByteEncodingTableFixer
+{
+	virtual void fix(ByteUnicodeArr& toutab, UnicodeByteMap& fromutab);
+};
+
 struct WXMEncodingSingleByte: public WXMEncodingMultiByte
 {
 	virtual void MultiByteInit();

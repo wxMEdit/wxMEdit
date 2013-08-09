@@ -106,6 +106,7 @@ void WXMEncodingCreator::DoInit()
 	AddEncoding("ISO-8859-13", ENC_ISO_8859_13, wxT("Baltic (ISO-8859-13)"));
 	AddEncoding("ISO-8859-14", ENC_ISO_8859_14, wxT("Celtic (ISO-8859-14)"));
 	AddEncoding("ISO-8859-15", ENC_ISO_8859_15, wxT("Western European with Euro (ISO-8859-15)"));
+	AddEncoding("ISO-8859-16", ENC_ISO_8859_16, wxT("South-Eastern European (ISO-8859-16)"), etSingleByte, "ISO-8859-15");
 	AddEncoding("Windows-874", ENC_Windows_874, wxT("Windows Thai (CP 874)"));
 	AddEncoding("Windows-1250", ENC_Windows_1250, wxT("Windows Central European (CP 1250)"), etSingleByte, "CP1250");
 	AddEncoding("Windows-1251", ENC_Windows_1251, wxT("Windows Cyrillic (CP 1251)"), etSingleByte, "CP1251");
@@ -115,6 +116,7 @@ void WXMEncodingCreator::DoInit()
 	AddEncoding("Windows-1255", ENC_Windows_1255, wxT("Windows Hebrew (CP 1255)"), etSingleByte, "CP1255");
 	AddEncoding("Windows-1256", ENC_Windows_1256, wxT("Windows Arabic (CP 1256)"), etSingleByte, "CP1256");
 	AddEncoding("Windows-1257", ENC_Windows_1257, wxT("Windows Baltic (CP 1257)"), etSingleByte, "CP1257");
+	AddEncoding("Windows-1258", ENC_Windows_1258, wxT("Windows Vietnamese (CP 1258)"), etSingleByte, "CP1258");
 	AddEncoding("CP437", ENC_CP437, wxT("Windows/DOS OEM (CP 437)"));
 	AddEncoding("CP850", ENC_CP850, wxT("Windows/DOS OEM - Latin 1 (CP 850)"));
 	AddEncoding("CP852", ENC_CP852, wxT("Windows/DOS OEM - Latin 2 (CP 852)"));
