@@ -9,6 +9,7 @@
 #ifndef _WXM_ENCDET_H_
 #define _WXM_ENCDET_H_
 
+#include "../xm/wxm_encoding_def.h"
 #include <wx/wxprec.h>
 
 #ifdef __BORLANDC__
@@ -26,8 +27,8 @@ bool IsTextUTF16LE(wxByte *text, int size);
 bool IsTextUTF16BE(wxByte *text, int size);
 bool IsTextUTF8(wxByte *text, int size);
 bool IsBinaryData(wxByte *data, int size);
-void DetectChineseEncoding(const wxByte *text, int count, wxFontEncoding &enc);
-void DetectJapaneseEncoding(const wxByte *text, int count, wxFontEncoding &enc);
-void DetectEncoding(const wxByte *text, int count, wxFontEncoding &enc);
+void DetectChineseEncoding(const wxByte *text, int count, wxm::WXMEncodingID &enc);
+void DetectJapaneseEncoding(const wxByte *text, int count, wxm::WXMEncodingID &enc);
+void DetectEncoding(const wxByte *text, int count, wxm::WXMEncodingID &enc);
 
 #endif //_WXM_ENCDET_H_

@@ -165,6 +165,7 @@
 		<sources>../src/xm/wxm_case_conv.cpp</sources>
 		<headers>../src/xm/wxm_encoding.h</headers>
 		<sources>../src/xm/wxm_encoding.cpp</sources>
+		<headers>../src/xm/wxm_encoding_def.h</headers>
 		<headers>../src/xm/wxm_encoding_doublebyte.h</headers>
 		<sources>../src/xm/wxm_encoding_doublebyte.cpp</sources>
 		<headers>../src/xm/wxm_encoding_eucjpms.h</headers>
@@ -252,6 +253,7 @@
 		<headers>../src/wxmedit/ucs4_t.h</headers>
 		<headers>../src/xm/wxm_encoding.h</headers>
 		<sources>../src/xm/wxm_encoding.cpp</sources>
+		<headers>../src/xm/wxm_encoding_def.h</headers>
 		<headers>../src/xm/wxm_encoding_doublebyte.h</headers>
 		<sources>../src/xm/wxm_encoding_doublebyte.cpp</sources>
 		<headers>../src/xm/wxm_encoding_eucjpms.h</headers>

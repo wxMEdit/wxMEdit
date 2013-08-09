@@ -9,17 +9,19 @@
 #ifndef _WXM_ENCODING_H_
 #define _WXM_ENCODING_H_
 
+#include "wxm_encoding_def.h"
 #include "../wxmedit/ucs4_t.h"
 
+#ifdef WX_PRECOMP
 #include <wx/wxprec.h>
+#endif
 
 #ifdef __BORLANDC__
 #pragma hdrstop
 #endif
 
 #ifndef WX_PRECOMP
-// Include your minimal set of headers here, or wx.h
-#include <wx/wx.h>
+#include <wx/string.h>
 #endif
 
 #include <boost/utility.hpp>
@@ -32,7 +34,6 @@ namespace wxm
 
 enum WXMEncodingType
 { etSingleByte, etDoubleByte, etUTF8, etUTF16LE, etUTF16BE, etUTF32LE, etUTF32BE, etEUCJPMS };
-
 
 struct WXMEncoding;
 struct WXMEncodingCreator: private boost::noncopyable
@@ -52,7 +53,7 @@ struct WXMEncodingCreator: private boost::noncopyable
 	void FreeEncodings();
 
 	WXMEncoding* CreateWxmEncoding(ssize_t idx);
-	WXMEncoding* CreateWxmEncoding(wxFontEncoding enc);
+	WXMEncoding* CreateWxmEncoding(WXMEncodingID enc);
 	WXMEncoding* CreateWxmEncoding(const wxString &name);
 
 	size_t GetEncodingsCount();
@@ -60,22 +61,25 @@ struct WXMEncodingCreator: private boost::noncopyable
 	std::string GetEncodingInnerName(ssize_t idx);
 	wxString GetEncodingDescription(ssize_t idx);
 	wxString GetEncodingFontName(ssize_t idx);
-	wxString EncodingToName(wxFontEncoding enc);
-	wxFontEncoding NameToEncoding(const wxString &name);
+	wxString EncodingToName(WXMEncodingID enc);
+	WXMEncodingID NameToEncoding(const wxString &name);
 	WXMEncoding* GetSystemEncoding();
 
 	WXMEncodingType GetIdxEncType(ssize_t idx);
 
 private:
-	ssize_t AdjustIndex(ssize_t idx);
-	wxFontEncoding IdxToEncoding(ssize_t idx)
+	WXMEncodingID IdxToEncoding(ssize_t idx)
 	{
 		return NameToEncoding(GetEncodingName(idx));
 	}
 
+	void InitSystemEncoding();
+	WXMEncodingID GetSystemEncodingID();
+
 	void DoInit();
-	void AddEncoding(const std::string& encname, wxFontEncoding wxenc
-		, WXMEncodingType entype=etSingleByte, const std::string& innername0=std::string());
+	void AddEncoding(const std::string& encname, WXMEncodingID encid
+		, const wxString& desc=wxString(), WXMEncodingType entype=etSingleByte
+		, const std::string& innername0=std::string());
 
 	WXMEncodingCreator()
 	: m_initialized(false), m_sysenc_idx(-1), m_sysenc(NULL)
@@ -88,17 +92,17 @@ private:
 	ssize_t m_sysenc_idx;
 	WXMEncoding *m_sysenc;
 
-	typedef std::map<std::string, wxFontEncoding> WXEncMap;
+	typedef std::map<std::string, WXMEncodingID> WXEncMap;
 	WXEncMap m_wxenc_map;
 
 	std::vector<wxString> m_wxenc_list;
 
-	typedef std::map<wxString, wxFontEncoding> WXNameEncMap;
-	typedef std::map<wxFontEncoding, wxString> WXEncNameMap;
-	typedef std::map<wxFontEncoding, WXMEncodingType> WXEncTypeMap;
-	typedef std::map<wxFontEncoding, wxString> WXEncFontMap;
-	typedef std::map<wxFontEncoding, wxString> WXEncDescMap;
-	typedef std::map<wxFontEncoding, std::string> WXEncInnerNameMap;
+	typedef std::map<wxString, WXMEncodingID> WXNameEncMap;
+	typedef std::map<WXMEncodingID, wxString> WXEncNameMap;
+	typedef std::map<WXMEncodingID, WXMEncodingType> WXEncTypeMap;
+	typedef std::map<WXMEncodingID, wxString> WXEncFontMap;
+	typedef std::map<WXMEncodingID, wxString> WXEncDescMap;
+	typedef std::map<WXMEncodingID, std::string> WXEncInnerNameMap;
 	WXNameEncMap m_wxnameenc_map;
 	WXEncNameMap m_wxencname_map;
 	WXEncTypeMap m_wxenctype_map;
@@ -117,7 +121,7 @@ protected:
 	std::string m_innername;
 	wxString m_desc;
 	wxString m_fontname;
-	wxFontEncoding m_enc;
+	WXMEncodingID m_enc;
 	WXMEncodingType m_type;
 	ssize_t m_idx;
 
@@ -151,7 +155,7 @@ public:
 	wxString GetDescription() { return m_desc; }
 	WXMEncodingType GetType() { return m_type; }
 	wxString GetFontName() { return m_fontname; }
-	wxFontEncoding GetEncoding() { return m_enc; }
+	WXMEncodingID GetEncoding() { return m_enc; }
 };
 
 };// namespace wxm

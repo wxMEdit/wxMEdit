@@ -3099,12 +3099,12 @@ bool MadLines::LoadFromFile(const wxString &filename, const wxString &encoding)
         }
         else
         {
-            wxFontEncoding enc=m_MadEdit->m_Encoding->GetEncoding();
-            if( enc==wxFONTENCODING_UTF8 ||
-                enc==wxFONTENCODING_UTF16LE ||
-                enc==wxFONTENCODING_UTF16BE ||
-                enc==wxFONTENCODING_UTF32LE ||
-                enc==wxFONTENCODING_UTF32BE
+            wxm::WXMEncodingID enc=m_MadEdit->m_Encoding->GetEncoding();
+            if( enc==wxm::ENC_UTF_8 ||
+                enc==wxm::ENC_UTF_16LE ||
+                enc==wxm::ENC_UTF_16BE ||
+                enc==wxm::ENC_UTF_32LE ||
+                enc==wxm::ENC_UTF_32BE
                 )
             {
                 // use default encoding

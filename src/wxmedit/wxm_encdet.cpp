@@ -222,7 +222,7 @@ bool IsBinaryData(wxByte *data, int size)
     return false;
 }
 
-void DetectChineseEncoding(const wxByte *text, int count, wxFontEncoding &enc)
+void DetectChineseEncoding(const wxByte *text, int count, wxm::WXMEncodingID &enc)
 {
     // detect by punctuation marks
     int i=0;
@@ -312,7 +312,7 @@ void DetectChineseEncoding(const wxByte *text, int count, wxFontEncoding &enc)
             {
                 if(b0>=0x81 && b0<=0xFE)
                 {
-                    enc = wxFONTENCODING_CP936; // [0x81~0xFE][0x80~0xA0] are invalid in big5
+					enc = wxm::ENC_MS936; // [0x81~0xFE][0x80~0xA0] are invalid in big5
                     return;
                 }
             }
@@ -341,15 +341,15 @@ void DetectChineseEncoding(const wxByte *text, int count, wxFontEncoding &enc)
         }
     }
 
-    if(cp950>cp936) enc = wxFONTENCODING_CP950;
-    else if(cp936>cp950) enc = wxFONTENCODING_CP936;
+	if(cp950>cp936) enc = wxm::ENC_MS950;
+    else if(cp936>cp950) enc = wxm::ENC_MS936;
 }
 
-void DetectJapaneseEncoding(const wxByte *text, int count, wxFontEncoding &enc)
+void DetectJapaneseEncoding(const wxByte *text, int count, wxm::WXMEncodingID &enc)
 {
     wxByte c;
     int i=0;
-    wxFontEncoding xenc= wxFontEncoding(0);
+    wxm::WXMEncodingID xenc= wxm::ENC_DEFAULT;
 
     while (xenc == 0 && i++ < count) {
 
@@ -362,7 +362,7 @@ void DetectJapaneseEncoding(const wxByte *text, int count, wxFontEncoding &enc)
 
                 c = *text++;
                 if ((c >= 0x40 && c <= 0xA0) || (c >= 0xE0 && c <= 0xFC))
-                    xenc = wxFONTENCODING_CP932;
+                    xenc = wxm::ENC_MS932;
             }
             else if (c == 0x8F) /* SS3 */ {
 
@@ -370,12 +370,12 @@ void DetectJapaneseEncoding(const wxByte *text, int count, wxFontEncoding &enc)
 
                 c = *text++;
                 if (c >= 0x40 && c <= 0xA0)
-                    xenc = wxFONTENCODING_CP932;
+                    xenc = wxm::ENC_MS932;
                 else if (c >= 0xFD)
                     break;
             }
             else
-                xenc = wxFONTENCODING_CP932;
+                xenc = wxm::ENC_MS932;
         }
         else if (c >= 0xA1 && c <= 0xDF) {
 
@@ -383,7 +383,7 @@ void DetectJapaneseEncoding(const wxByte *text, int count, wxFontEncoding &enc)
 
             c = *text++;
             if (c <= 0x9F)
-                xenc = wxFONTENCODING_CP932;
+                xenc = wxm::ENC_MS932;
             else if (c >= 0xFD)
                 break;
         }
@@ -393,7 +393,7 @@ void DetectJapaneseEncoding(const wxByte *text, int count, wxFontEncoding &enc)
 
             c = *text++;
             if (c >= 0x40 && c <= 0xA0)
-                xenc = wxFONTENCODING_CP932;
+                xenc = wxm::ENC_MS932;
             else if (c >= 0xFD)
                 break;
         }
@@ -405,7 +405,7 @@ void DetectJapaneseEncoding(const wxByte *text, int count, wxFontEncoding &enc)
         enc = xenc;
 }
 
-void DetectEncoding(const wxByte *text, int count, wxFontEncoding &enc)
+void DetectEncoding(const wxByte *text, int count, wxm::WXMEncodingID &enc)
 {
     chardet_t det = NULL;
     char encoding_name[CHARDET_MAX_ENCODING_NAME];
@@ -424,7 +424,7 @@ void DetectEncoding(const wxByte *text, int count, wxFontEncoding &enc)
     {
         if(rest.ToLong(&value))
         {
-            enc = wxFontEncoding( long(wxFONTENCODING_ISO8859_1) - 1 + value );
+            enc = wxm::WXMEncodingID( long(wxm::ENC_ISO_8859_1) - 1 + value );
         }
     }
     else if(name.StartsWith(wxT("WINDOWS-125"), &rest))
@@ -433,11 +433,11 @@ void DetectEncoding(const wxByte *text, int count, wxFontEncoding &enc)
         {
             if(value==2)//1252 or ?
             {
-                wxFontEncoding def=wxFONTENCODING_DEFAULT;
-                if(enc==wxFONTENCODING_CP950 || wxFONTENCODING_CP936)
+                wxm::WXMEncodingID def=wxm::ENC_DEFAULT;
+                if(enc==wxm::ENC_MS950 || wxm::ENC_MS936)
                 {
                     DetectChineseEncoding(text, count, def);
-                    if(def != wxFONTENCODING_DEFAULT)
+                    if(def != wxm::ENC_DEFAULT)
                     {
                         value=-1;
                         enc = def;
@@ -447,7 +447,7 @@ void DetectEncoding(const wxByte *text, int count, wxFontEncoding &enc)
 
             if(value>=0)
             {
-                enc = wxFontEncoding( long(wxFONTENCODING_CP1250) + value );
+                enc = wxm::WXMEncodingID( long(wxm::ENC_Windows_1250) + value );
             }
         }
     }
@@ -455,43 +455,43 @@ void DetectEncoding(const wxByte *text, int count, wxFontEncoding &enc)
     {
         if(rest[0] == wxT('8'))
         {
-            enc = wxFONTENCODING_UTF8;
+            enc = wxm::ENC_UTF_8;
         }
         else if(rest[0] == wxT('1')) // 16BE/LE
         {
-            if(rest[2] == wxT('B')) enc = wxFONTENCODING_UTF16BE;
-            else                    enc = wxFONTENCODING_UTF16LE;
+            if(rest[2] == wxT('B')) enc = wxm::ENC_UTF_16BE;
+            else                    enc = wxm::ENC_UTF_16LE;
         }
         else // 32BE/LE
         {
-            if(rest[2] == wxT('B')) enc = wxFONTENCODING_UTF32BE;
-            else                    enc = wxFONTENCODING_UTF32LE;
+            if(rest[2] == wxT('B')) enc = wxm::ENC_UTF_32BE;
+            else                    enc = wxm::ENC_UTF_32LE;
         }
     }
     else if(name.IsSameAs(wxT("BIG5")))
     {
-        enc = wxFONTENCODING_CP950;
+        enc = wxm::ENC_MS950;
     }
     else if(name.IsSameAs(wxT("GB2312"))
          || name.IsSameAs(wxT("GB18030"))
          || name.IsSameAs(wxT("HZ-GB-2312")))
     {
-        enc = wxFONTENCODING_CP936;
+        enc = wxm::ENC_MS936;
     }
     else if(name.IsSameAs(wxT("SHIFT_JIS")))
     {
-        enc = wxFONTENCODING_CP932;
+        enc = wxm::ENC_MS932;
     }
     else if(name.IsSameAs(wxT("EUC-JP")))
     {
-        enc = wxFONTENCODING_EUC_JP;
+        enc = wxm::ENC_EUCJP_MS;
     }
     else if(name.IsSameAs(wxT("EUC-KR")))
     {
-        enc = wxFONTENCODING_CP949;
+        enc = wxm::ENC_MS949;
     }
     else if(name.IsSameAs(wxT("KOI8-R")))
     {
-        enc = wxFONTENCODING_KOI8;
+        enc = wxm::ENC_KOI8_R;
     }
 }

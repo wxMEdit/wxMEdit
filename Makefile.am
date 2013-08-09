@@ -63,6 +63,7 @@ wxmedit_SOURCES =	src/wxmedit_about_dialog.cpp \
 	src/xm/wxm_case_conv.h \
 	src/xm/wxm_encoding.cpp \
 	src/xm/wxm_encoding.h \
+	src/xm/wxm_encoding_def.h \
 	src/xm/wxm_encoding_doublebyte.cpp \
 	src/xm/wxm_encoding_doublebyte.h \
 	src/xm/wxm_encoding_eucjpms.cpp \
@@ -130,6 +131,7 @@ wxmedit_SOURCES =	src/wxmedit_about_dialog.cpp \
 wxmedit_test_SOURCES = src/wxmedit/ucs4_t.h \
 	src/xm/wxm_encoding.cpp \
 	src/xm/wxm_encoding.h \
+	src/xm/wxm_encoding_def.h \
 	src/xm/wxm_encoding_doublebyte.cpp \
 	src/xm/wxm_encoding_doublebyte.h \
 	src/xm/wxm_encoding_eucjpms.cpp \
