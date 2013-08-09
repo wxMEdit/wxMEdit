@@ -3196,10 +3196,8 @@ void MadEditFrame::OnUpdateUI_MenuViewHexMode(wxUpdateUIEvent& event)
 
 void MadEditFrame::OnUpdateUI_MenuToolsByteOrderMark(wxUpdateUIEvent& event)
 {
-    wxm::WXMEncodingType type;
     if(g_ActiveMadEdit && g_ActiveMadEdit->IsTextFile()
-        && (type=g_ActiveMadEdit->GetEncodingType())!=wxm::etSingleByte
-        && type!=wxm::etDoubleByte)      // unicode format
+		&& g_ActiveMadEdit->IsSimpleUnicodeFile())      // unicode format
     {
         event.Enable(true);
         if(g_ActiveMadEdit->HasBOM())

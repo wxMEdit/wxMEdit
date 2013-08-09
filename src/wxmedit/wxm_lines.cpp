@@ -3100,12 +3100,7 @@ bool MadLines::LoadFromFile(const wxString &filename, const wxString &encoding)
         else
         {
             wxm::WXMEncodingID enc=m_MadEdit->m_Encoding->GetEncoding();
-            if( enc==wxm::ENC_UTF_8 ||
-                enc==wxm::ENC_UTF_16LE ||
-                enc==wxm::ENC_UTF_16BE ||
-                enc==wxm::ENC_UTF_32LE ||
-                enc==wxm::ENC_UTF_32BE
-                )
+			if(wxm::WXMEncodingCreator::IsSimpleUnicodeEncoding(enc))
             {
                 // use default encoding
                 //enc=wxLocale::GetSystemEncoding();

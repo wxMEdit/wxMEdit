@@ -44,6 +44,17 @@ struct WXMEncodingCreator: private boost::noncopyable
 		return creator;
 	}
 
+	static bool IsSimpleUnicodeEncoding(WXMEncodingID enc)
+	{
+		if( enc==ENC_UTF_8 || enc==ENC_UTF_16LE || enc==ENC_UTF_16BE ||
+			enc==ENC_UTF_32LE || enc==ENC_UTF_32BE)
+		{
+			return true;
+		}
+
+		return false;
+	}
+
 	void InitEncodings()
 	{
 		if (!m_initialized)
@@ -124,13 +135,14 @@ protected:
 	WXMEncodingID m_enc;
 	WXMEncodingType m_type;
 	ssize_t m_idx;
+	bool m_simp_unicode;
 
 	virtual void Create(ssize_t idx);
 
 protected:
 	friend WXMEncoding* WXMEncodingCreator::CreateWxmEncoding(ssize_t idx);
 	friend void WXMEncodingCreator::FreeEncodings();
-	WXMEncoding(): m_idx(-1)
+	WXMEncoding(): m_idx(-1), m_simp_unicode(false)
 	{
 	}
 	virtual ~WXMEncoding()
@@ -149,6 +161,11 @@ public:
 	virtual bool IsLeadByte(wxByte byte)
 	{
 		return false;
+	}
+
+	virtual bool IsSimpleUnicodeEncoding()
+	{
+		return m_simp_unicode;
 	}
 
 	wxString GetName() { return m_name; }

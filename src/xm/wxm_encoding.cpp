@@ -384,6 +384,7 @@ void WXMEncoding::Create(ssize_t idx)
 	m_type = WXMEncodingCreator::Instance().GetIdxEncType(idx);
 	m_desc = WXMEncodingCreator::Instance().GetEncodingDescription(idx);
 	m_fontname = WXMEncodingCreator::Instance().GetEncodingFontName(m_idx);
+	m_simp_unicode = WXMEncodingCreator::IsSimpleUnicodeEncoding(m_enc);
 }
 
 };// namespace wxm
