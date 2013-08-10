@@ -21,10 +21,10 @@
 		<runtime-libs>static</runtime-libs>
 		<threading>multi</threading>
 
+		<set var="ICULIB_POSTFIX" make_var="1"></set>
 		<if cond="FORMAT in ('mingw')">
 			<set var="WXCOMP">gcc</set>
 			<set var="ICUDATA_LIB">icudata</set>
-			<set var="ICULIB_POSTFIX" make_var="1"></set>
 
 			<define>__WIN95__</define>
 
@@ -38,7 +38,9 @@
 		<if cond="FORMAT in ('msvc', 'msvs2003prj', 'msvs2005prj', 'msvs2008prj')">
 			<set var="WXCOMP">vc</set>
 			<set var="ICUDATA_LIB">icudt</set>
-			<set var="ICULIB_POSTFIX" make_var="1">$(LIB_POSTFIX)</set>
+			<if cond="ICUDEBUG == '1'">
+				<set var="ICULIB_POSTFIX" make_var="1">$(LIB_POSTFIX)</set>
+			</if>
 
 			<set var="WXDEBUG_DEF" make_var="1" />
 		</if>
