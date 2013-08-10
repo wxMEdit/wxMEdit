@@ -11,8 +11,7 @@
 		<if cond="DEBUG==1">d</if>
 	</set>
 
-	<exe id="wxmedit" template="simple">
-		<app-type>gui</app-type>
+	<template id="win_cfg" template="simple">
 		<dirname>$(BUILD)</dirname>
 
 		<set var="BUILDDIR" make_var="1">$(BUILD)</set>
@@ -49,9 +48,6 @@
 		<include>$(ICU_DIR)/include</include>
 		<include>$(WXWIN)/include</include>
 		<include>$(WXWIN)/lib/$(WXCOMP)_lib/mswu$(LIB_POSTFIX)</include>
-		<include>../charset-detector/include</include>
-		<include>../charset-detector/src</include>
-		<include>../charset-detector/src/tables</include>
 
 		<lib-path>$(AUI_LIB)</lib-path>
 		<lib-path>$(ICU_DIR)/lib</lib-path>
@@ -80,6 +76,30 @@
 		<sys-lib>wsock32</sys-lib>
 		<sys-lib>odbc32</sys-lib>
 		<sys-lib>opengl32</sys-lib>
+	</template>
+
+	<template id="enc_src">
+		<headers>../src/xm/wxm_encoding.h</headers>
+		<sources>../src/xm/wxm_encoding.cpp</sources>
+		<headers>../src/xm/wxm_encoding_def.h</headers>
+		<headers>../src/xm/wxm_encoding_doublebyte.h</headers>
+		<sources>../src/xm/wxm_encoding_doublebyte.cpp</sources>
+		<headers>../src/xm/wxm_encoding_eucjpms.h</headers>
+		<sources>../src/xm/wxm_encoding_eucjpms.cpp</sources>
+		<headers>../src/xm/wxm_encoding_singlebyte.h</headers>
+		<sources>../src/xm/wxm_encoding_singlebyte.cpp</sources>
+		<headers>../src/xm/wxm_encoding_multibyte.h</headers>
+		<sources>../src/xm/wxm_encoding_multibyte.cpp</sources>
+		<headers>../src/xm/wxm_encoding_unicode.h</headers>
+		<sources>../src/xm/wxm_encoding_unicode.cpp</sources>
+	</template>
+
+	<exe id="wxmedit" template="win_cfg,enc_src">
+		<app-type>gui</app-type>
+
+		<include>../charset-detector/include</include>
+		<include>../charset-detector/src</include>
+		<include>../charset-detector/src/tables</include>
 
 		<win32-res>../src/wxmedit_app.rc</win32-res>
 
@@ -163,19 +183,6 @@
 		<headers>../src/xm/wx_avoid_wxmsw_bug4373.h</headers>
 		<headers>../src/xm/wxm_case_conv.h</headers>
 		<sources>../src/xm/wxm_case_conv.cpp</sources>
-		<headers>../src/xm/wxm_encoding.h</headers>
-		<sources>../src/xm/wxm_encoding.cpp</sources>
-		<headers>../src/xm/wxm_encoding_def.h</headers>
-		<headers>../src/xm/wxm_encoding_doublebyte.h</headers>
-		<sources>../src/xm/wxm_encoding_doublebyte.cpp</sources>
-		<headers>../src/xm/wxm_encoding_eucjpms.h</headers>
-		<sources>../src/xm/wxm_encoding_eucjpms.cpp</sources>
-		<headers>../src/xm/wxm_encoding_singlebyte.h</headers>
-		<sources>../src/xm/wxm_encoding_singlebyte.cpp</sources>
-		<headers>../src/xm/wxm_encoding_multibyte.h</headers>
-		<sources>../src/xm/wxm_encoding_multibyte.cpp</sources>
-		<headers>../src/xm/wxm_encoding_unicode.h</headers>
-		<sources>../src/xm/wxm_encoding_unicode.cpp</sources>
 		<headers>../src/xm/wxm_wx_icu.h</headers>
 		<sources>../src/xm/wxm_wx_icu.cpp</sources>
 		<headers>../src/xm/xm_ublock.h</headers>
@@ -184,86 +191,8 @@
 		<headers>../src/xm/xm_uutils.h</headers>
 		<sources>../src/xm/xm_uutils.cpp</sources>
 	</exe>
-	<exe id="wxmedit_test" template="simple">
-		<dirname>$(BUILD)</dirname>
-
-		<set var="BUILDDIR" make_var="1">$(BUILD)</set>
-
-		<define>_UNICODE</define>
-
-		<runtime-libs>static</runtime-libs>
-		<threading>multi</threading>
-
-		<if cond="FORMAT in ('mingw')">
-			<set var="WXCOMP">gcc</set>
-			<set var="ICUDATA_LIB">icudata</set>
-			<set var="ICULIB_POSTFIX" make_var="1"></set>
-
-			<define>__WIN95__</define>
-
-			<set var="WXDEBUG_DEF" make_var="1">
-				<if cond="DEBUG==0"></if>
-				<if cond="DEBUG==1">-D__WXDEBUG__</if>
-			</set>
-
-			<sys-lib>gmon</sys-lib>
-		</if>
-		<if cond="FORMAT in ('msvc', 'msvs2003prj', 'msvs2005prj', 'msvs2008prj')">
-			<set var="WXCOMP">vc</set>
-			<set var="ICUDATA_LIB">icudt</set>
-			<set var="ICULIB_POSTFIX" make_var="1">$(LIB_POSTFIX)</set>
-
-			<set var="WXDEBUG_DEF" make_var="1" />
-		</if>
-		<cppflags>$(XPRESSIVE_INC) $(AUI_INC) $(WXDEBUG_DEF)</cppflags>
-
-		<include>$(BOOST_DIR)</include>
-		<include>$(ICU_DIR)/include</include>
-		<include>$(WXWIN)/include</include>
-		<include>$(WXWIN)/lib/$(WXCOMP)_lib/mswu$(LIB_POSTFIX)</include>
-
-		<lib-path>$(AUI_LIB)</lib-path>
-		<lib-path>$(ICU_DIR)/lib</lib-path>
-		<lib-path>$(WXWIN)/lib/$(WXCOMP)_lib</lib-path>
-		<lib-path>../libunicows</lib-path>
-
-		<sys-lib>wxmsw28u$(LIB_POSTFIX)_aui</sys-lib>
-		<sys-lib>wxmsw28u$(LIB_POSTFIX)_core</sys-lib>
-		<sys-lib>wxbase28u$(LIB_POSTFIX)</sys-lib>
-		<sys-lib>$(ICUDATA_LIB)</sys-lib>
-		<sys-lib>icuuc$(ICULIB_POSTFIX)</sys-lib>
-		<sys-lib>unicows</sys-lib>
-		<sys-lib>kernel32</sys-lib>
-		<sys-lib>user32</sys-lib>
-		<sys-lib>gdi32</sys-lib>
-		<sys-lib>comdlg32</sys-lib>
-		<sys-lib>winspool</sys-lib>
-		<sys-lib>winmm</sys-lib>
-		<sys-lib>shell32</sys-lib>
-		<sys-lib>comctl32</sys-lib>
-		<sys-lib>ole32</sys-lib>
-		<sys-lib>oleaut32</sys-lib>
-		<sys-lib>uuid</sys-lib>
-		<sys-lib>rpcrt4</sys-lib>
-		<sys-lib>advapi32</sys-lib>
-		<sys-lib>wsock32</sys-lib>
-		<sys-lib>odbc32</sys-lib>
-		<sys-lib>opengl32</sys-lib>
-
+	<exe id="wxmedit_test" template="win_cfg,enc_src">
 		<headers>../src/wxmedit/ucs4_t.h</headers>
-		<headers>../src/xm/wxm_encoding.h</headers>
-		<sources>../src/xm/wxm_encoding.cpp</sources>
-		<headers>../src/xm/wxm_encoding_def.h</headers>
-		<headers>../src/xm/wxm_encoding_doublebyte.h</headers>
-		<sources>../src/xm/wxm_encoding_doublebyte.cpp</sources>
-		<headers>../src/xm/wxm_encoding_eucjpms.h</headers>
-		<sources>../src/xm/wxm_encoding_eucjpms.cpp</sources>
-		<headers>../src/xm/wxm_encoding_singlebyte.h</headers>
-		<sources>../src/xm/wxm_encoding_singlebyte.cpp</sources>
-		<headers>../src/xm/wxm_encoding_multibyte.h</headers>
-		<sources>../src/xm/wxm_encoding_multibyte.cpp</sources>
-		<headers>../src/xm/wxm_encoding_unicode.h</headers>
-		<sources>../src/xm/wxm_encoding_unicode.cpp</sources>
 		<sources>../test/test_cp932_conv.cpp</sources>
 		<sources>../test/test_cp936_conv.cpp</sources>
 		<sources>../test/test_cp949_conv.cpp</sources>
