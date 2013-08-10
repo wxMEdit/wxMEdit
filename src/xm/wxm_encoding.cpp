@@ -14,12 +14,16 @@
 #include <wx/log.h>
 #include <wx/fontenc.h>
 #include <wx/intl.h>
+#include <unicode/uvernum.h>
 #include <boost/foreach.hpp>
+#include <boost/static_assert.hpp>
 
 #ifdef _DEBUG
 #include <crtdbg.h>
 #define new new(_NORMAL_BLOCK ,__FILE__, __LINE__)
 #endif
+
+BOOST_STATIC_ASSERT(U_ICU_VERSION_MAJOR_NUM >= 51);
 
 #ifdef __WXMSW__
 #define MSW_GET_FONT_NAME(cp,fn) MSW_GetFontName(cp,fn)

@@ -7,11 +7,15 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 #include "wxm_encoding_eucjpms.h"
+#include <unicode/uvernum.h>
+#include <boost/static_assert.hpp>
 
 #ifdef _DEBUG
 #include <crtdbg.h>
 #define new new(_NORMAL_BLOCK ,__FILE__, __LINE__)
 #endif
+
+BOOST_STATIC_ASSERT(U_ICU_VERSION_MAJOR_NUM >= 51);
 
 namespace wxm
 {
