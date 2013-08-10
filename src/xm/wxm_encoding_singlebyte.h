@@ -53,14 +53,16 @@ struct ISO8859_16TableFixer: public SingleByteEncodingTableFixer
 struct WXMEncodingSingleByte: public WXMEncodingMultiByte
 {
 	virtual void MultiByteInit();
-	virtual ucs4_t MultiBytetoUCS4(wxByte* buf);
+	virtual ucs4_t MultiBytetoUCS4(const wxByte* buf);
 	virtual size_t UCS4toMultiByte(ucs4_t ucs4, wxByte* buf);
+	virtual bool NextUChar32(MadUCQueue &ucqueue, UChar32BytesMapper& mapper);
 private:
 	ICUConverter* m_icucnv;
 	ByteUnicodeArr m_tounicode;
 	UnicodeByteMap m_fromunicode;
 
 	friend WXMEncoding* WXMEncodingCreator::CreateWxmEncoding(ssize_t idx);
+protected:
 	WXMEncodingSingleByte(): m_icucnv(NULL)
 	{
 	}
@@ -70,6 +72,49 @@ private:
 	}
 
 	SingleByteEncodingTableFixer* CreateSingleByteEncodingTableFixer();
+};
+
+struct WXMEncodingSingleByteISO646Compatible: public WXMEncodingSingleByte
+{
+	virtual bool IsUChar32_LineFeed(const wxByte* buf, size_t len)
+	{
+		return m_dec.IsUChar32_LineFeed(buf, len);
+	}
+	virtual bool IsUChar32_LineFeed(WXMBlockDumper& dumper, size_t len)
+	{
+		return m_dec.IsUChar32_LineFeed(dumper, len);
+	}
+	virtual ucs4_t PeekUChar32_Newline(WXMBlockDumper& dumper, size_t len)
+	{
+		return m_dec.IsUChar32_LineFeed(dumper, len);
+	}
+
+private:
+	WXMEncodingDecoderISO646 m_dec;
+};
+
+
+struct WXMEncodingSingleByteNonISO646Compatible: public WXMEncodingSingleByte
+{
+	virtual bool IsUChar32_LineFeed(const wxByte* buf, size_t len)
+	{
+		return MultiBytetoUCS4(buf) == (ucs4_t)0x00000A;
+	}
+	virtual bool IsUChar32_LineFeed(WXMBlockDumper& dumper, size_t len)
+	{
+		wxByte b;
+		dumper.Dump(&b, 1);
+		return MultiBytetoUCS4(&b) == (ucs4_t)0x00000A;
+	}
+	virtual ucs4_t PeekUChar32_Newline(WXMBlockDumper& dumper, size_t len)
+	{
+		wxByte b;
+		dumper.Dump(&b, 1);
+		ucs4_t u = MultiBytetoUCS4(&b);
+		if (u == (ucs4_t)0x00000A || u == (ucs4_t)0x00000D)
+			return u;
+		return 0;
+	}
 };
 
 };// namespace wxm

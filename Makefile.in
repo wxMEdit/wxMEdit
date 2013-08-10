@@ -78,6 +78,7 @@ am_wxmedit_OBJECTS = wxmedit-wxmedit_about_dialog.$(OBJEXT) \
 	wxmedit-wxm_syntax.$(OBJEXT) wxmedit-wxm_undo.$(OBJEXT) \
 	wxmedit-xm_ublock_des.$(OBJEXT) wxmedit-xm_ublock.$(OBJEXT) \
 	wxmedit-xm_uutils.$(OBJEXT) wxmedit-wxm_case_conv.$(OBJEXT) \
+	wxmedit-wxm_line_enc_adapter.$(OBJEXT) \
 	wxmedit-wxm_encoding.$(OBJEXT) \
 	wxmedit-wxm_encoding_doublebyte.$(OBJEXT) \
 	wxmedit-wxm_encoding_eucjpms.$(OBJEXT) \
@@ -374,6 +375,8 @@ wxmedit_SOURCES = src/wxmedit_about_dialog.cpp \
 	src/xm/wx_avoid_wxmsw_bug4373.h \
 	src/xm/wxm_case_conv.cpp \
 	src/xm/wxm_case_conv.h \
+	src/xm/wxm_line_enc_adapter.cpp \
+	src/xm/wxm_line_enc_adapter.h \
 	src/xm/wxm_encoding.cpp \
 	src/xm/wxm_encoding.h \
 	src/xm/wxm_encoding_def.h \
@@ -442,6 +445,7 @@ wxmedit_SOURCES = src/wxmedit_about_dialog.cpp \
 	charset-detector/include/chardetect.h
 
 wxmedit_test_SOURCES = src/wxmedit/ucs4_t.h \
+	src/wxmedit/wxm_deque.hpp \
 	src/xm/wxm_encoding.cpp \
 	src/xm/wxm_encoding.h \
 	src/xm/wxm_encoding_def.h \
@@ -455,6 +459,7 @@ wxmedit_test_SOURCES = src/wxmedit/ucs4_t.h \
 	src/xm/wxm_encoding_singlebyte.h \
 	src/xm/wxm_encoding_unicode.cpp \
 	src/xm/wxm_encoding_unicode.h \
+	src/xm/wxm_line_enc_adapter.h \
 	test/test_cp932_conv.cpp \
 	test/test_cp936_conv.cpp \
 	test/test_cp949_conv.cpp \
@@ -730,6 +735,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/wxmedit-wxm_find_in_files_dialog.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/wxmedit-wxm_highlighting_dialog.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/wxmedit-wxm_lines.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/wxmedit-wxm_line_enc_adapter.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/wxmedit-wxm_options_dialog.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/wxmedit-wxm_plugin.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/wxmedit-wxm_printout.Po@am__quote@
@@ -1103,6 +1109,20 @@ wxmedit-wxm_lines.obj: src/wxmedit/wxm_lines.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/wxmedit/wxm_lines.cpp' object='wxmedit-wxm_lines.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -c -o wxmedit-wxm_lines.obj `if test -f 'src/wxmedit/wxm_lines.cpp'; then $(CYGPATH_W) 'src/wxmedit/wxm_lines.cpp'; else $(CYGPATH_W) '$(srcdir)/src/wxmedit/wxm_lines.cpp'; fi`
+
+wxmedit-wxm_line_enc_adapter.o: src/xm/wxm_line_enc_adapter.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -MT wxmedit-wxm_line_enc_adapter.o -MD -MP -MF "$(DEPDIR)/wxmedit-wxm_line_enc_adapter.Tpo" -c -o wxmedit-wxm_line_enc_adapter.o `test -f 'src/xm/wxm_line_enc_adapter.cpp' || echo '$(srcdir)/'`src/xm/wxm_line_enc_adapter.cpp; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/wxmedit-wxm_line_enc_adapter.Tpo" "$(DEPDIR)/wxmedit-wxm_line_enc_adapter.Po"; else rm -f "$(DEPDIR)/wxmedit-wxm_line_enc_adapter.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/xm/wxm_line_enc_adapter.cpp' object='wxmedit-wxm_line_enc_adapter.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -c -o wxmedit-wxm_line_enc_adapter.o `test -f 'src/xm/wxm_line_enc_adapter.cpp' || echo '$(srcdir)/'`src/xm/wxm_line_enc_adapter.cpp
+
+wxmedit-wxm_line_enc_adapter.obj: src/xm/wxm_line_enc_adapter.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -MT wxmedit-wxm_line_enc_adapter.obj -MD -MP -MF "$(DEPDIR)/wxmedit-wxm_line_enc_adapter.Tpo" -c -o wxmedit-wxm_line_enc_adapter.obj `if test -f 'src/xm/wxm_line_enc_adapter.cpp'; then $(CYGPATH_W) 'src/xm/wxm_line_enc_adapter.cpp'; else $(CYGPATH_W) '$(srcdir)/src/xm/wxm_line_enc_adapter.cpp'; fi`; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/wxmedit-wxm_line_enc_adapter.Tpo" "$(DEPDIR)/wxmedit-wxm_line_enc_adapter.Po"; else rm -f "$(DEPDIR)/wxmedit-wxm_line_enc_adapter.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/xm/wxm_line_enc_adapter.cpp' object='wxmedit-wxm_line_enc_adapter.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -c -o wxmedit-wxm_line_enc_adapter.obj `if test -f 'src/xm/wxm_line_enc_adapter.cpp'; then $(CYGPATH_W) 'src/xm/wxm_line_enc_adapter.cpp'; else $(CYGPATH_W) '$(srcdir)/src/xm/wxm_line_enc_adapter.cpp'; fi`
 
 wxmedit-wxm_syntax.o: src/wxmedit/wxm_syntax.cpp
 @am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -MT wxmedit-wxm_syntax.o -MD -MP -MF "$(DEPDIR)/wxmedit-wxm_syntax.Tpo" -c -o wxmedit-wxm_syntax.o `test -f 'src/wxmedit/wxm_syntax.cpp' || echo '$(srcdir)/'`src/wxmedit/wxm_syntax.cpp; \

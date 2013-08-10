@@ -161,6 +161,7 @@
 		<headers>../src/wxmedit/trad_simp.h</headers>
 		<sources>../src/wxmedit/trad_simp.cpp</sources>
 		<headers>../src/wxmedit/ucs4_t.h</headers>
+		<headers>../src/wxmedit/wxm_deque.hpp</headers>
 		<headers>../src/wxmedit/wxm_encdet.h</headers>
 		<sources>../src/wxmedit/wxm_encdet.cpp</sources>
 		<headers>../src/wxmedit/wxm_lines.h</headers>
@@ -185,6 +186,8 @@
 		<headers>../src/xm/wx_avoid_wxmsw_bug4373.h</headers>
 		<headers>../src/xm/wxm_case_conv.h</headers>
 		<sources>../src/xm/wxm_case_conv.cpp</sources>
+		<headers>../src/xm/wxm_line_enc_adapter.h</headers>
+		<sources>../src/xm/wxm_line_enc_adapter.cpp</sources>
 		<headers>../src/xm/wxm_wx_icu.h</headers>
 		<sources>../src/xm/wxm_wx_icu.cpp</sources>
 		<headers>../src/xm/xm_ublock.h</headers>
@@ -195,6 +198,8 @@
 	</exe>
 	<exe id="wxmedit_test" template="win_cfg,enc_src">
 		<headers>../src/wxmedit/ucs4_t.h</headers>
+		<headers>../src/wxmedit/wxm_deque.hpp</headers>
+		<headers>../src/xm/wxm_line_enc_adapter.h</headers>
 		<sources>../test/test_cp932_conv.cpp</sources>
 		<sources>../test/test_cp936_conv.cpp</sources>
 		<sources>../test/test_cp949_conv.cpp</sources>

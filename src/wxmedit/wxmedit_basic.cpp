@@ -1100,14 +1100,13 @@ void MadEdit::GetSelText(wxString &ws)
 
         MadLineIterator lit = m_SelectionBegin->iter;
         m_Lines->InitNextUChar(lit, m_SelectionBegin->linepos);
-        MadLines::NextUCharFuncPtr NextUChar=m_Lines->NextUChar;
         do
         {
-            if(!(m_Lines->*NextUChar)(ucqueue))
+            if(!m_Lines->NextUChar(ucqueue))
             {
                 ++lit;
                 m_Lines->InitNextUChar(lit, 0);
-                (m_Lines->*NextUChar)(ucqueue);
+                m_Lines->NextUChar(ucqueue);
             }
 
 #ifdef __WXMSW__
@@ -1148,15 +1147,14 @@ void MadEdit::GetText(wxString &ws, bool ignoreBOM)
     if(pos >= m_Lines->m_Size)
         return;
 
-    MadLines::NextUCharFuncPtr NextUChar=m_Lines->NextUChar;
     m_Lines->InitNextUChar(lit, pos);
     do
     {
-        if(!(m_Lines->*NextUChar)(ucqueue))
+        if(!m_Lines->NextUChar(ucqueue))
         {
             ++lit;
             m_Lines->InitNextUChar(lit, 0);
-            (m_Lines->*NextUChar)(ucqueue);
+            m_Lines->NextUChar(ucqueue);
         }
 
 #ifdef __WXMSW__
@@ -1338,11 +1336,10 @@ bool MadEdit::GetLine(wxString &ws, int line, size_t maxlen, bool ignoreBOM)
 
     if(maxlen==0) maxlen=size_t(-1);
 
-    MadLines::NextUCharFuncPtr NextUChar=m_Lines->NextUChar;
     m_Lines->InitNextUChar(lit, pos);
     do
     {
-        if(!(m_Lines->*NextUChar)(ucqueue))
+        if(!m_Lines->NextUChar(ucqueue))
         {
             return true;
         }
@@ -1369,7 +1366,7 @@ bool MadEdit::GetLine(wxString &ws, int line, size_t maxlen, bool ignoreBOM)
     }
     while(ws.Len() < maxlen);
 
-    if((m_Lines->*NextUChar)(ucqueue)) return false;
+    if(m_Lines->NextUChar(ucqueue)) return false;
     return true;
 }
 
@@ -1468,14 +1465,13 @@ void MadEdit::CopyToClipboard()
     {
         wxString ws;
         MadUCQueue ucqueue;
-        MadLines::NextUCharFuncPtr NextUChar=m_Lines->NextUChar;
 
         wxFileOffset pos = m_SelectionBegin->pos;
         MadLineIterator lit = m_SelectionBegin->iter;
         m_Lines->InitNextUChar(lit, m_SelectionBegin->linepos);
         do
         {
-            if(ucqueue.size() || (m_Lines->*NextUChar)(ucqueue))
+            if(ucqueue.size() || m_Lines->NextUChar(ucqueue))
             {
                 ucs4_t &uc=ucqueue.front().first;
                 if(uc==0x0D || uc==0x0A)
@@ -1487,7 +1483,7 @@ void MadEdit::CopyToClipboard()
 
                     pos += ucqueue.front().second;
 
-                    if(uc==0x0D && (m_Lines->*NextUChar)(ucqueue) &&
+                    if(uc==0x0D && m_Lines->NextUChar(ucqueue) &&
                         ucqueue.back().first==0x0A)
                     {
                         pos += ucqueue.back().second;
@@ -2330,7 +2326,6 @@ MadSearchResult MadEdit::FindTextPrevious(const wxString &text,
 
         if(state==SR_YES) // found
         {
-            MadLines::NextUCharFuncPtr NextUChar=m_Lines->NextUChar;
             MadUCQueue ucq;
 
             MadCaretPos bp, ep;
@@ -2341,12 +2336,12 @@ MadSearchResult MadEdit::FindTextPrevious(const wxString &text,
 
                 // advance one uchar
                 m_Lines->InitNextUChar(bpos1.iter, bpos1.linepos);
-                if(!(m_Lines->*NextUChar)(ucq))
+                if(!m_Lines->NextUChar(ucq))
                 {
                     ++bpos1.iter;
                     bpos1.linepos=0;
                     m_Lines->InitNextUChar(bpos1.iter, 0);
-                    (m_Lines->*NextUChar)(ucq);
+                    m_Lines->NextUChar(ucq);
                 }
                 bpos1.pos+=ucq.back().second;
                 bpos1.linepos+=ucq.back().second;
@@ -3416,7 +3411,6 @@ bool MadEdit::PrintPage(wxDC *dc, int pageNum)
         int rn;
         wxFileOffset pos;
         MadUCQueue ucqueue;
-        MadLines::NextUCharFuncPtr NextUChar= m_Lines->NextUChar;
 
         wxFileOffset hexrowpos = size_t(toprow)<<4;
         wxString offset(wxT("12345678"));
@@ -3486,14 +3480,14 @@ bool MadEdit::PrintPage(wxDC *dc, int pageNum)
             m_Lines->InitNextUChar(lit, pos);
             do
             {
-                if(!(m_Lines->*NextUChar)(ucqueue))
+                if(!m_Lines->NextUChar(ucqueue))
                 {
                     if(++lit == lineend || lit->m_Size == 0)
                     {
                         break;
                     }
                     m_Lines->InitNextUChar(lit, 0);
-                    (m_Lines->*NextUChar)(ucqueue);
+                    m_Lines->NextUChar(ucqueue);
                 }
 
                 MadUCPair &ucp=ucqueue.back();

@@ -356,7 +356,6 @@ struct UCIterator   // ucs4_t widechar iterator
     typedef const value_type &reference;
 
     static MadLines         *s_lines;
-    static MadLines::NextUCharFuncPtr s_NextUChar;
     static wxFileOffset     s_endpos;
     static list<UCQueueSet> s_ucqueues;
 
@@ -365,7 +364,6 @@ struct UCIterator   // ucs4_t widechar iterator
         wxASSERT(endpos>=0 && endpos<=lines->GetSize());
 
         s_lines=lines;
-        s_NextUChar=lines->NextUChar;
         s_endpos=endpos;
         s_ucqueues.clear();
     }
@@ -422,7 +420,7 @@ struct UCIterator   // ucs4_t widechar iterator
 
             if(pos>=s_endpos) i=10;
 
-            while(--i>0 && (s_lines->*s_NextUChar)(ucqueue))
+            while(--i>0 && s_lines->NextUChar(ucqueue))
             {
                 //ucqit->size += ucqueue.back().second;
             }
@@ -507,7 +505,7 @@ struct UCIterator   // ucs4_t widechar iterator
 
             s_lines->InitNextUChar(lit, linepos);
             int i = BUF_MAXSIZE;
-            while(--i>0 && (s_lines->*s_NextUChar)(*ucqueue))
+            while(--i>0 && s_lines->NextUChar(*ucqueue))
             {
                 //ucqit->size += ucqueue->back().second;
             }
@@ -597,7 +595,6 @@ struct UCIterator   // ucs4_t widechar iterator
 };
 
 MadLines *UCIterator::s_lines=NULL;
-MadLines::NextUCharFuncPtr UCIterator::s_NextUChar=NULL;
 wxFileOffset UCIterator::s_endpos=0;
 list<UCQueueSet> UCIterator::s_ucqueues;
 

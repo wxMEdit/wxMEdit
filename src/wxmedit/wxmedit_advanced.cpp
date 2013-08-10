@@ -443,7 +443,6 @@ void MadEdit::IncreaseDecreaseIndent(bool incIndent)
 
     vector <ucs4_t> spaces;
     MadUCQueue ucqueue;
-    MadLines::NextUCharFuncPtr NextUChar=m_Lines->NextUChar;
     wxFileOffset delsize=0;
     for(;;)  // for each line
     {
@@ -459,7 +458,7 @@ void MadEdit::IncreaseDecreaseIndent(bool incIndent)
         ucqueue.clear();
 
         // get spaces at begin of line
-        while((m_Lines->*NextUChar)(ucqueue))
+        while(m_Lines->NextUChar(ucqueue))
         {
             uc=ucqueue.back().first;
             if(uc==0x20 || uc==0x09)
@@ -611,7 +610,6 @@ void MadEdit::CommentUncomment(bool comment)
 
     vector <ucs4_t> spaces;
     MadUCQueue ucqueue;
-    MadLines::NextUCharFuncPtr NextUChar=m_Lines->NextUChar;
     wxFileOffset delsize=0;
     for(;;)  // for each line
     {
@@ -627,7 +625,7 @@ void MadEdit::CommentUncomment(bool comment)
         ucqueue.clear();
 
         // get spaces at begin of line
-        while((m_Lines->*NextUChar)(ucqueue))
+        while(m_Lines->NextUChar(ucqueue))
         {
             uc=ucqueue.back().first;
             if(uc==0x20 || uc==0x09)
@@ -652,7 +650,7 @@ void MadEdit::CommentUncomment(bool comment)
                 cmt.push_back(ucqueue.back().first);
                 cmtsize+=ucqueue.back().second;
             }
-            while(cmt.size()<commentlen && (m_Lines->*NextUChar)(ucqueue));
+            while(cmt.size()<commentlen && m_Lines->NextUChar(ucqueue));
 
             if(comment)
             {
@@ -1276,7 +1274,6 @@ void MadEdit::WordCount(bool selection, int &wordCount, int &charCount, int &spa
     }
 
     // begin counting
-    MadLines::NextUCharFuncPtr NextUChar=m_Lines->NextUChar;
     MadUCQueue ucqueue;
     m_Lines->InitNextUChar(lit, linepos);
     int idx=0, count=0;
@@ -1290,11 +1287,11 @@ void MadEdit::WordCount(bool selection, int &wordCount, int &charCount, int &spa
             count=0;
         }
 
-        if(!(m_Lines->*NextUChar)(ucqueue))
+        if(!m_Lines->NextUChar(ucqueue))
         {
             ++lit;
             m_Lines->InitNextUChar(lit, 0);
-            (m_Lines->*NextUChar)(ucqueue);
+            m_Lines->NextUChar(ucqueue);
         }
         MadUCPair &ucp=ucqueue.back();
         nowpos+=ucp.second;
@@ -1349,7 +1346,6 @@ struct SortLineData
     static bool s_casesensitive;
     static bool s_numeric;
     static MadLines *s_lines;
-    static MadLines::NextUCharFuncPtr s_NextUChar;
 
     MadLineIterator lit;
     int lineid;
@@ -1364,7 +1360,6 @@ struct SortLineData
 bool SortLineData::s_casesensitive=false;
 bool SortLineData::s_numeric=false;
 MadLines *SortLineData::s_lines=NULL;
-MadLines::NextUCharFuncPtr SortLineData::s_NextUChar=NULL;
 
 SortLineData::SortLineData(const MadLineIterator& l, int id)
     : lit(l), lineid(id), ucdata(), int_begin(-1), frac_begin(-1), negative(false)
@@ -1378,7 +1373,7 @@ SortLineData::SortLineData(const MadLineIterator& l, int id)
 
     s_lines->InitNextUChar(lit, lit->m_RowIndices[0].m_Start);
     ucs4_t uc;
-    while((s_lines->*s_NextUChar)(ucq)) // get line content
+    while(s_lines->NextUChar(ucq)) // get line content
     {
         if( (uc=ucq.back().first)==0x0D || uc==0x0A)
         {
@@ -1664,7 +1659,6 @@ void MadEdit::SortLines(MadSortFlags flags, int beginline, int endline)
     SortLineComp::s_numeric = SortLineData::s_numeric;
 
     SortLineData::s_lines=m_Lines;
-    SortLineData::s_NextUChar=m_Lines->NextUChar;
 
     std::list<SortLineData*> datalist;
     std::vector<SortLineComp> lines;
@@ -2026,7 +2020,6 @@ void MadEdit::ConvertSpaceToTab()
     const int RowCount = int(lastrow - firstrow + 1);
 
     MadUCQueue ucqueue;
-    MadLines::NextUCharFuncPtr NextUChar=m_Lines->NextUChar;
     for(;;)
     {
         int rowwidth = lit->m_RowIndices[subrowid].m_Width;
@@ -2075,7 +2068,7 @@ void MadEdit::ConvertSpaceToTab()
             do
             {
                 int uc = 0x0D;
-                if((m_Lines->*NextUChar)(ucqueue))
+                if(m_Lines->NextUChar(ucqueue))
                     uc = ucqueue.back().first;
 
                 if(uc == 0x0D || uc == 0x0A)    // EOL
@@ -2229,7 +2222,6 @@ void MadEdit::ConvertTabToSpace()
     const int RowCount = int(lastrow - firstrow + 1);
 
     MadUCQueue ucqueue;
-    MadLines::NextUCharFuncPtr NextUChar=m_Lines->NextUChar;
     for(;;)
     {
         int rowwidth = lit->m_RowIndices[subrowid].m_Width;
@@ -2277,7 +2269,7 @@ void MadEdit::ConvertTabToSpace()
             do
             {
                 int uc = 0x0D;
-                if((m_Lines->*NextUChar)(ucqueue))
+                if(m_Lines->NextUChar(ucqueue))
                     uc = ucqueue.back().first;
 
                 if(uc == 0x0D || uc == 0x0A)    // EOL

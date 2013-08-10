@@ -61,6 +61,8 @@ wxmedit_SOURCES =	src/wxmedit_about_dialog.cpp \
 	src/xm/wx_avoid_wxmsw_bug4373.h \
 	src/xm/wxm_case_conv.cpp \
 	src/xm/wxm_case_conv.h \
+	src/xm/wxm_line_enc_adapter.cpp \
+	src/xm/wxm_line_enc_adapter.h \
 	src/xm/wxm_encoding.cpp \
 	src/xm/wxm_encoding.h \
 	src/xm/wxm_encoding_def.h \
@@ -129,6 +131,7 @@ wxmedit_SOURCES =	src/wxmedit_about_dialog.cpp \
 	charset-detector/include/chardetect.h
 
 wxmedit_test_SOURCES = src/wxmedit/ucs4_t.h \
+	src/wxmedit/wxm_deque.hpp \
 	src/xm/wxm_encoding.cpp \
 	src/xm/wxm_encoding.h \
 	src/xm/wxm_encoding_def.h \
@@ -142,6 +145,7 @@ wxmedit_test_SOURCES = src/wxmedit/ucs4_t.h \
 	src/xm/wxm_encoding_singlebyte.h \
 	src/xm/wxm_encoding_unicode.cpp \
 	src/xm/wxm_encoding_unicode.h \
+	src/xm/wxm_line_enc_adapter.h \
 	test/test_cp932_conv.cpp \
 	test/test_cp936_conv.cpp \
 	test/test_cp949_conv.cpp \
@@ -253,6 +257,7 @@ noinst_HEADERS =	description-pak \
 	makefiles/Makefile.install \
 	makefiles/zcfg_wx_debug.sh \
 	makefiles/zcfg_wx_release.sh \
+	po/wxmedit.pot \
 	po/src.list \
 	po/wxstd.po.cpp \
 	po/xgettext.bat \

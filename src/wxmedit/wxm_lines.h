@@ -9,6 +9,7 @@
 #ifndef _WXM_LINES_H_
 #define _WXM_LINES_H_
 
+#include "../xm/wxm_line_enc_adapter.h"
 #include <wx/wxprec.h>
 
 #ifdef __BORLANDC__
@@ -234,8 +235,6 @@ struct BracePairIndex
     {}
 };
 
-typedef vector < MadBlock > MadBlockVector;
-typedef MadBlockVector::iterator MadBlockIterator;
 typedef vector < MadRowIndex >::iterator MadRowIndexIterator;
 
 namespace wxm
@@ -317,17 +316,15 @@ struct MadLine
 //==================================================
 
 typedef list<MadLine>::iterator         MadLineIterator;
-typedef pair<ucs4_t, int>               MadUCPair;  // ucs4char, uc_len
 //typedef deque<MadUCPair>             MadUCQueue;
 //typedef deque<MadUCPair>::iterator   MadUCQueueIterator;
-typedef MadDeque<MadUCPair>             MadUCQueue;
 typedef MadDeque<MadUCPair>::iterator   MadUCQueueIterator;
 typedef vector<wxString>::iterator      MadStringIterator;
 
 class MadEdit;
 class MadSyntax;
 
-class MadLines
+class MadLines: public wxm::UChar32BytesMapper
 {
 private:
     friend class MadEdit;
@@ -398,13 +395,8 @@ private:  // NextUChar()
     wxFileOffset    m_NextUChar_LineSize;
     wxFileOffset    m_NextUChar_Pos;
 
-    bool NextUChar_SBCS(MadUCQueue &ucqueue);
-    bool NextUChar_DBCS(MadUCQueue &ucqueue);
-    bool NextUChar_UTF8(MadUCQueue &ucqueue);
-    bool NextUChar_UTF16LE(MadUCQueue &ucqueue);
-    bool NextUChar_UTF16BE(MadUCQueue &ucqueue);
-    bool NextUChar_UTF32LE(MadUCQueue &ucqueue);
-    bool NextUChar_UTF32BE(MadUCQueue &ucqueue);
+    virtual void MoveUChar32Bytes(MadUCQueue &ucqueue, ucs4_t uc, size_t len);
+    virtual wxByte* BufferLoadBytes(wxFileOffset& rest, size_t buf_len);
 
     bool NextUCharIs0x0A(void);
 
@@ -428,8 +420,7 @@ public:
 
     void InitNextUChar(const MadLineIterator &iter, const wxFileOffset pos);
 
-    typedef bool (MadLines::*NextUCharFuncPtr)(MadUCQueue & ucqueue);
-    NextUCharFuncPtr NextUChar;
+    bool NextUChar(MadUCQueue &ucqueue);
 
     // should not frequently use this, it's slowly
     // if no, return MadUCPair(0, 0)

@@ -74,8 +74,9 @@ struct WXMEncodingDoubleByte: public WXMEncodingMultiByte
 
 	virtual void MultiByteInit();
 	virtual bool IsLeadByte(wxByte byte);
-	virtual ucs4_t MultiBytetoUCS4(wxByte* buf);
+	virtual ucs4_t MultiBytetoUCS4(const wxByte* buf);
 	virtual size_t UCS4toMultiByte(ucs4_t ucs4, wxByte* buf);
+	virtual bool NextUChar32(MadUCQueue &ucqueue, UChar32BytesMapper& mapper);
 
 protected:
 	friend WXMEncoding* WXMEncodingCreator::CreateWxmEncoding(ssize_t idx);
@@ -107,6 +108,24 @@ private:
 
 	wxWord GetMBofUCS4(ucs4_t u);
 	void SetMBofUCS4(ucs4_t u, wxWord mb);
+};
+
+struct WXMEncodingDoubleByteISO646Compatible: public WXMEncodingDoubleByte
+{
+	virtual bool IsUChar32_LineFeed(const wxByte* buf, size_t len)
+	{
+		return m_dec.IsUChar32_LineFeed(buf, len);
+	}
+	virtual bool IsUChar32_LineFeed(WXMBlockDumper& dumper, size_t len)
+	{
+		return m_dec.IsUChar32_LineFeed(dumper, len);
+	}
+	virtual ucs4_t PeekUChar32_Newline(WXMBlockDumper& dumper, size_t len)
+	{
+		return m_dec.IsUChar32_LineFeed(dumper, len);
+	}
+private:
+	WXMEncodingDecoderISO646 m_dec;
 };
 
 };// namespace wxm

@@ -11,6 +11,9 @@
 namespace wxm
 {
 
+enum WXMEncodingType
+{ etSingleByte, etDoubleByte, etUTF8, etUTF16LE, etUTF16BE, etUTF32LE, etUTF32BE, etEUCJPMS };
+
 enum WXMEncodingID
 {
 	ENC_DEFAULT = 0,

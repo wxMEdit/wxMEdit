@@ -6,6 +6,11 @@
 // Licence:     GPL
 ///////////////////////////////////////////////////////////////////////////////
 
+#ifndef _WXM_DEQUE_HPP_
+#define _WXM_DEQUE_HPP_
+
+#include <iterator>
+#include <utility>
 #include <cstddef>
 
 template <typename T>
@@ -369,3 +374,5 @@ public:
         m_end_iterator = m_begin_iterator;
     }
 };
+
+#endif //_WXM_DEQUE_HPP_

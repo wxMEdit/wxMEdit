@@ -9,7 +9,6 @@
 
 #include "wxm_lines.h"
 #include "../xm/wxm_encoding.h"
-#include "../xm/wxm_encoding_doublebyte.h"
 #include "wxm_encdet.h"
 #include "wxm_syntax.h"
 #include "wxmedit.h"
@@ -601,94 +600,11 @@ ucs4_t MadLine::LastUCharIsNewLine(wxm::WXMEncoding *encoding)
         return 0;
 
     MadBlockIterator bit = m_Blocks.end();
-    wxFileOffset bsize = (--bit)->m_Size;
+    --bit;
 
-    ucs4_t uc;
-    wxByte buf[4];
-    int count,cnt;
+    wxm::WXMBackwardBlockDumper dumper(bit);
 
-    switch (encoding->GetType())
-    {
-    case wxm::etUTF16LE:
-        if((m_Size & 1) != 0)                // odd m_Size is invalid
-            return 0;
-
-        if(bsize >= 2)
-        {
-            //uc = (((ucs4_t) bit->Get(bsize - 1)) << 8) | bit->Get(bsize - 2);
-            bit->Get(bsize-2, buf, 2);
-            uc= (((ucs4_t)buf[1])<<8) | buf[0];
-        }
-        else
-        {
-            uc = ((ucs4_t)bit->Get(0)) << 8;
-            bsize = (--bit)->m_Size;
-            uc = uc | bit->Get(bsize - 1);
-        }
-        break;
-    case wxm::etUTF16BE:
-        if((m_Size & 1) != 0)                // odd m_Size is invalid
-            return 0;
-
-        if(bsize >= 2)
-        {
-            //uc = (((ucs4_t) bit->Get(bsize - 2)) << 8) | bit->Get(bsize - 1);
-            bit->Get(bsize-2, buf, 2);
-            uc= (((ucs4_t)buf[0])<<8) | buf[1];
-        }
-        else
-        {
-            uc = bit->Get(0);
-            bsize = (--bit)->m_Size;
-            uc = (((ucs4_t) bit->Get(bsize - 1)) << 8) | uc;
-        }
-        break;
-    case wxm::etUTF32LE:
-        if((m_Size & 0x03) != 0)                // m_Size must be 4X
-            return 0;
-
-        count=4;
-        while(true)
-        {
-            cnt=count;
-            if(bsize<cnt) cnt=bsize;
-            bit->Get(bsize-cnt, buf+(count-=cnt), cnt);
-            if(count==0) break;
-
-            bsize=(--bit)->m_Size;
-        }
-        uc= (ucs4_t(buf[3])<<24)|(ucs4_t(buf[2])<<16)|(ucs4_t(buf[1])<<8)|buf[0];
-
-        break;
-    case wxm::etUTF32BE:
-        if((m_Size & 0x03) != 0)                // m_Size must be 4X
-            return 0;
-
-        count=4;
-        while(true)
-        {
-            cnt=count;
-            if(bsize<cnt) cnt=bsize;
-            bit->Get(bsize-cnt, buf+(count-=cnt), cnt);
-            if(count==0) break;
-
-            bsize=(--bit)->m_Size;
-        }
-        uc= (ucs4_t(buf[0])<<24)|(ucs4_t(buf[1])<<16)|(ucs4_t(buf[2])<<8)|buf[3];
-
-        break;
-    case wxm::etSingleByte:
-        {
-            wxByte b1 = bit->Get(bsize - 1);
-            uc = encoding->MultiBytetoUCS4(&b1);            // for EBCDIC
-        }
-        break;
-    default:
-        uc = bit->Get(bsize - 1);
-    }
-
-    if((uc == 0x0A) || (uc == 0x0D)) return uc;
-    return 0;
+    return encoding->PeekUChar32_Newline(dumper, m_Size);
 }
 
 bool MadLine::FirstUCharIs0x0A(wxm::WXMEncoding *encoding)
@@ -698,89 +614,9 @@ bool MadLine::FirstUCharIs0x0A(wxm::WXMEncoding *encoding)
     MadBlockIterator bit = m_Blocks.begin();
     wxFileOffset bsize = bit->m_Size;
 
-    ucs4_t uc;
-    wxByte buf[4];
-    int idx,cnt;
+    wxm::WXMForwardBlockDumper dumper(bit);
 
-    switch (encoding->GetType())
-    {
-    case wxm::etUTF16LE:
-        if((m_Size & 1) != 0)                // odd m_Size is invalid
-            return false;
-
-        if(bsize >= 2)
-        {
-            //uc = (((ucs4_t) bit->Get(1)) << 8) | bit->Get(0);
-            bit->Get(0, buf, 2);
-            uc = (ucs4_t(buf[1]) << 8) | buf[0];
-        }
-        else
-        {
-            uc = bit->Get(0);
-            uc = (ucs4_t((++bit)->Get(0)) << 8) | uc;
-        }
-        break;
-    case wxm::etUTF16BE:
-        if((m_Size & 1) != 0)                // odd m_Size is invalid
-            return false;
-
-        if(bsize > 1)
-        {
-            //uc = (((ucs4_t) bit->Get(0)) << 8) | bit->Get(1);
-            bit->Get(0, buf, 2);
-            uc = (ucs4_t(buf[0]) << 8) | buf[1];
-        }
-        else
-        {
-            uc = bit->Get(0);
-            uc = (uc << 8) | (++bit)->Get(0);
-        }
-        break;
-    case wxm::etUTF32LE:
-        if((m_Size & 0x03) != 0)                // m_Size must be 4X
-            return false;
-
-        idx=0;
-        while(true)
-        {
-            cnt=4-idx;
-            if(bsize<cnt) cnt=bsize;
-            bit->Get(0, buf+idx, cnt);
-            if((idx+=cnt)==4) break;
-
-            bsize=(++bit)->m_Size;
-        }
-        uc= (ucs4_t(buf[3])<<24)|(ucs4_t(buf[2])<<16)|(ucs4_t(buf[1])<<8)|buf[0];
-
-        break;
-    case wxm::etUTF32BE:
-        if((m_Size & 0x03) != 0)                // m_Size must be 4X
-            return false;
-
-        idx=0;
-        while(true)
-        {
-            cnt=4-idx;
-            if(bsize<cnt) cnt=bsize;
-            bit->Get(0, buf+idx, cnt);
-            if((idx+=cnt)==4) break;
-
-            bsize=(++bit)->m_Size;
-        }
-        uc= (ucs4_t(buf[0])<<24)|(ucs4_t(buf[1])<<16)|(ucs4_t(buf[2])<<8)|buf[3];
-
-        break;
-    case wxm::etSingleByte:
-        {
-            wxByte b1 = bit->Get(0);
-            uc = encoding->MultiBytetoUCS4(&b1);            // for EBCDIC
-        }
-        break;
-    default:
-        uc = bit->Get(0);
-    }
-
-    return uc == 0x0A;
+    return encoding->IsUChar32_LineFeed(dumper, m_Size);
 }
 
 
@@ -901,31 +737,6 @@ void MadLines::Clear(bool freeAll)
 void MadLines::SetEncoding(wxm::WXMEncoding *encoding)
 {
     m_Encoding=encoding;
-
-    switch(encoding->GetType())
-    {
-    case wxm::etSingleByte:
-        NextUChar=&MadLines::NextUChar_SBCS;
-        break;
-    case wxm::etDoubleByte:
-        NextUChar=&MadLines::NextUChar_DBCS;
-        break;
-    case wxm::etUTF8:
-        NextUChar=&MadLines::NextUChar_UTF8;
-        break;
-    case wxm::etUTF16LE:
-        NextUChar=&MadLines::NextUChar_UTF16LE;
-        break;
-    case wxm::etUTF16BE:
-        NextUChar=&MadLines::NextUChar_UTF16BE;
-        break;
-    case wxm::etUTF32LE:
-        NextUChar=&MadLines::NextUChar_UTF32LE;
-        break;
-    case wxm::etUTF32BE:
-        NextUChar=&MadLines::NextUChar_UTF32BE;
-        break;
-    }
 }
 
 ucs4_t MadLines::GetNewLine(const MadLineIterator &iter)
@@ -934,8 +745,8 @@ ucs4_t MadLines::GetNewLine(const MadLineIterator &iter)
 
     InitNextUChar(iter, iter->m_Size - iter->m_NewLineSize);
     MadUCQueue ucq;
-    (this->*NextUChar)(ucq);
-    (this->*NextUChar)(ucq);
+    NextUChar(ucq);
+    NextUChar(ucq);
 
     if(ucq.size()==2) return 0x0D+0x0A;
     return ucq.front().first;
@@ -999,445 +810,41 @@ void MadLines::InitNextUChar(const MadLineIterator &iter, const wxFileOffset pos
 
 }
 
-bool MadLines::NextUChar_SBCS(MadUCQueue &ucqueue)
+void MadLines::MoveUChar32Bytes(MadUCQueue &ucqueue, ucs4_t uc, size_t len)
 {
-    if(m_NextUChar_Pos >= m_NextUChar_LineSize)
-        return false;
+    ucqueue.push_back(MadUCPair(uc, len));
+    m_NextUChar_Pos += len;
+    m_NextUChar_BufferStart += len;
+    m_NextUChar_BufferSize -= len;
+}
+wxByte* MadLines::BufferLoadBytes(wxFileOffset& rest, size_t buf_len)
+{
+    rest=m_NextUChar_LineSize - m_NextUChar_Pos;
+    if(rest <= 0)
+        return NULL;
 
     //check buffersize
-    if(m_NextUChar_BufferNextPos!=m_NextUChar_LineSize && m_NextUChar_BufferSize<4)
+    if(m_NextUChar_BufferNextPos!=m_NextUChar_LineSize && m_NextUChar_BufferSize<buf_len)
     {
         LoadNewBuffer();
     }
 
-    ucqueue.push_back(MadUCPair(m_Encoding->MultiBytetoUCS4(&m_NextUChar_Buffer[m_NextUChar_BufferStart]), 1));
-    m_NextUChar_Pos++;
-    m_NextUChar_BufferStart++;
-    m_NextUChar_BufferSize--;
-    return true;
+    return m_NextUChar_Buffer+m_NextUChar_BufferStart;
 }
 
-bool MadLines::NextUChar_DBCS(MadUCQueue &ucqueue)
+bool MadLines::NextUChar(MadUCQueue &ucqueue)
 {
-    wxFileOffset rest = m_NextUChar_LineSize - m_NextUChar_Pos;
-    if(rest<=0) return false;
-
-    //check buffersize
-    if(m_NextUChar_BufferNextPos!=m_NextUChar_LineSize && m_NextUChar_BufferSize<2)
-    {
-        LoadNewBuffer();
-    }
-
-    ucs4_t uc;
-    wxByte *ptr = m_NextUChar_Buffer+m_NextUChar_BufferStart;
-    if(rest>1)
-    {
-        if(ptr[1] == 0 || (uc=m_Encoding->MultiBytetoUCS4(ptr)) == (ucs4_t)wxm::WXMEncodingDoubleByte::svtInvaliad)
-        {
-            wxByte db[2] = {*ptr, 0}; // re-check by first byte
-			if((uc=m_Encoding->MultiBytetoUCS4(db)) == (ucs4_t)wxm::WXMEncodingDoubleByte::svtInvaliad)
-            {
-                uc = *ptr;
-            }
-
-            ucqueue.push_back(MadUCPair(uc, 1));
-            m_NextUChar_Pos++;
-            m_NextUChar_BufferStart++;
-            m_NextUChar_BufferSize--;
-            return true;
-        }
-
-        ucqueue.push_back(MadUCPair(uc, 2));
-        m_NextUChar_Pos+=2;
-        m_NextUChar_BufferStart+=2;
-        m_NextUChar_BufferSize-=2;
-        return true;
-    }
-
-    wxByte db[2] = {*ptr, 0}; // re-check by first byte
-    if((uc=m_Encoding->MultiBytetoUCS4(db)) == (ucs4_t)wxm::WXMEncodingDoubleByte::svtInvaliad)
-    {
-        uc = *ptr;
-    }
-    ucqueue.push_back(MadUCPair(uc, 1));
-    m_NextUChar_Pos++;
-    m_NextUChar_BufferStart++;
-    m_NextUChar_BufferSize--;
-    return true;
-}
-
-bool MadLines::NextUChar_UTF8(MadUCQueue &ucqueue)
-{
-    /***  from rfc3629
-    Char. number range  |        UTF-8 octet sequence
-    (hexadecimal)       |              (binary)
-    --------------------+---------------------------------------------
-    0000 0000-0000 007F | 0xxxxxxx
-    0000 0080-0000 07FF | 110xxxxx 10xxxxxx
-    0000 0800-0000 FFFF | 1110xxxx 10xxxxxx 10xxxxxx
-    0001 0000-0010 FFFF | 11110xxx 10xxxxxx 10xxxxxx 10xxxxxx
-
-    UTF8-octets = *( UTF8-char )
-    UTF8-char   = UTF8-1 / UTF8-2 / UTF8-3 / UTF8-4
-    UTF8-1      = %x00-7F
-    UTF8-2      = %xC2-DF UTF8-tail
-    UTF8-3      = %xE0 %xA0-BF UTF8-tail / %xE1-EC 2( UTF8-tail ) /
-                  %xED %x80-9F UTF8-tail / %xEE-EF 2( UTF8-tail )
-    UTF8-4      = %xF0 %x90-BF 2( UTF8-tail ) / %xF1-F3 3( UTF8-tail ) /
-                  %xF4 %x80-8F 2( UTF8-tail )
-    UTF8-tail   = %x80-BF
-    ***/
-
-    wxFileOffset rest=m_NextUChar_LineSize - m_NextUChar_Pos;
-    if(rest<=0) return false;
-
-    //check buffersize
-    if(m_NextUChar_BufferNextPos!=m_NextUChar_LineSize && m_NextUChar_BufferSize<4)
-    {
-        LoadNewBuffer();
-    }
-
-    int cnt=4;
-    if(rest<4) cnt=rest;
-
-    wxByte *buf=m_NextUChar_Buffer+m_NextUChar_BufferStart;
-
-    if(buf[0]<=0x7F)
-    {
-        ucqueue.push_back(MadUCPair(buf[0], 1));
-        m_NextUChar_Pos++;
-        m_NextUChar_BufferStart++;
-        m_NextUChar_BufferSize--;
-        return true;
-    }
-
-    ucs4_t uc;
-    if(buf[0]<=0xDF)
-    {
-        if(cnt>=2 && (buf[1] & 0xC0) == 0x80)     // valid 2 bytes
-        {
-            if((uc= ((ucs4_t(buf[0] & 0x1F)<<6) | (buf[1] & 0x3F) )) >= 0x80)
-            {
-                ucqueue.push_back(MadUCPair(uc, 2));
-                m_NextUChar_Pos+=2;
-                m_NextUChar_BufferStart+=2;
-                m_NextUChar_BufferSize-=2;
-                return true;
-            }
-        }
-        ucqueue.push_back(MadUCPair(buf[0], 1));
-        m_NextUChar_Pos++;
-        m_NextUChar_BufferStart++;
-        m_NextUChar_BufferSize--;
-        return true;
-    }
-
-    if(buf[0]<=0xEF)
-    {
-        if(cnt>=3 && (buf[1] & 0xC0)==0x80 && (buf[2] & 0xC0)==0x80)     // valid 3 bytes
-        {
-            uc= (ucs4_t(buf[0] & 0x0F)<<12) | (ucs4_t(buf[1] & 0x3F) << 6) | (buf[2] & 0x3F);
-            if(uc>=0x800 )//&& !(uc>=0xD800 && uc<=0xDFFF))
-            {
-                ucqueue.push_back(MadUCPair(uc, 3));
-                m_NextUChar_Pos+=3;
-                m_NextUChar_BufferStart+=3;
-                m_NextUChar_BufferSize-=3;
-                return true;
-            }
-        }
-        ucqueue.push_back(MadUCPair(buf[0], 1));
-        m_NextUChar_Pos++;
-        m_NextUChar_BufferStart++;
-        m_NextUChar_BufferSize--;
-        return true;
-    }
-
-    if((buf[0]&0xF0) == 0xF0)
-    {
-        if(cnt>=4 && (buf[1] & 0xC0)==0x80 && (buf[2] & 0xC0)==0x80 && (buf[3] & 0xC0)==0x80)     // valid 4 bytes
-        {
-            uc= (ucs4_t(buf[0] & 0x07)<<18) | (ucs4_t(buf[1] & 0x3F) << 12) | (ucs4_t(buf[2] & 0x3F) << 6) | (buf[3] & 0x3F);
-            if(uc>=0x10000 && uc<=0x10FFFF)
-            {
-                ucqueue.push_back(MadUCPair(uc, 4));
-                m_NextUChar_Pos+=4;
-                m_NextUChar_BufferStart+=4;
-                m_NextUChar_BufferSize-=4;
-                return true;
-            }
-        }
-    }
-
-    ucqueue.push_back(MadUCPair(buf[0], 1));
-    m_NextUChar_Pos++;
-    m_NextUChar_BufferStart++;
-    m_NextUChar_BufferSize--;
-    return true;
-}
-
-bool MadLines::NextUChar_UTF16LE(MadUCQueue &ucqueue)
-{
-    wxFileOffset rest=m_NextUChar_LineSize - m_NextUChar_Pos;
-    if(rest<=0) return false;
-
-    //check buffersize
-    if(m_NextUChar_BufferNextPos!=m_NextUChar_LineSize && m_NextUChar_BufferSize<4)
-    {
-        LoadNewBuffer();
-    }
-
-    wxByte *buf=m_NextUChar_Buffer+m_NextUChar_BufferStart;
-
-    if(rest >= 2)
-    {
-        ucs4_t uc;
-        uc=(ucs4_t(buf[1])<<8) | buf[0];
-
-        //utf16 surrogates
-        if(uc>=0xD800 && uc<=0xDBFF && rest >= 4)
-        {
-            buf+=2;
-            ucs4_t uc1=(ucs4_t(buf[1])<<8) | buf[0];
-
-            if(uc1>=0xDC00 && uc1<=0xDFFF)
-            {
-                //ucs4=(highChar -0xD800) * 0x400 + (lowChar -0xDC00) + 0x10000
-                ucqueue.push_back(MadUCPair( ((uc-0xD800)<<10) + (uc1-0xDC00) + 0x10000, 4));
-                m_NextUChar_Pos+=4;
-                m_NextUChar_BufferStart+=4;
-                m_NextUChar_BufferSize-=4;
-                return true;
-            }
-        }
-
-        ucqueue.push_back(MadUCPair(uc, 2));
-        m_NextUChar_Pos+=2;
-        m_NextUChar_BufferStart+=2;
-        m_NextUChar_BufferSize-=2;
-        return true;
-    }
-
-    /***
-    ucs4_t uc;
-    if(m_MadEdit->editMode_!=emHexMode)
-    {
-        uc=wxT('?');
-    }
-    else
-    {
-        uc=m_NextUChar_LineIter->Get(m_NextUChar_Pos);
-    }
-    ***/
-
-    ucqueue.push_back(MadUCPair('?', 1));
-    m_NextUChar_Pos++;
-    m_NextUChar_BufferStart++;
-    m_NextUChar_BufferSize--;
-    return true;
-}
-
-bool MadLines::NextUChar_UTF16BE(MadUCQueue &ucqueue)
-{
-    wxFileOffset rest=m_NextUChar_LineSize - m_NextUChar_Pos;
-    if(rest<=0) return false;
-
-    //check buffersize
-    if(m_NextUChar_BufferNextPos!=m_NextUChar_LineSize && m_NextUChar_BufferSize<4)
-    {
-        LoadNewBuffer();
-    }
-
-    wxByte *buf=m_NextUChar_Buffer+m_NextUChar_BufferStart;
-
-    if(rest >= 2)
-    {
-        ucs4_t uc;
-        uc=(ucs4_t(buf[0])<<8) | buf[1];
-
-        //utf16 surrogates
-        if(uc>=0xD800 && uc<=0xDBFF && rest>=4)
-        {
-            buf+=2;
-            ucs4_t uc1=(ucs4_t(buf[0])<<8) | buf[1];
-
-            if(uc1>=0xDC00 && uc1<=0xDFFF)
-            {
-                //ucs4=(highChar -0xD800) * 0x400 + (lowChar -0xDC00) + 0x10000
-                ucqueue.push_back(MadUCPair( ((uc-0xD800)<<10) + (uc1-0xDC00) + 0x10000, 4));
-                m_NextUChar_Pos+=4;
-                m_NextUChar_BufferStart+=4;
-                m_NextUChar_BufferSize-=4;
-                return true;
-            }
-        }
-
-        ucqueue.push_back(MadUCPair(uc, 2));
-        m_NextUChar_Pos+=2;
-        m_NextUChar_BufferStart+=2;
-        m_NextUChar_BufferSize-=2;
-        return true;
-    }
-
-    /***
-    ucs4_t uc;
-    if(m_MadEdit->editMode_!=emHexMode)
-    {
-        uc=wxT('?');
-    }
-    else
-    {
-        uc=m_NextUChar_LineIter->Get(m_NextUChar_Pos);
-    }
-    ***/
-
-    ucqueue.push_back(MadUCPair('?', 1));
-    m_NextUChar_Pos++;
-    m_NextUChar_BufferStart++;
-    m_NextUChar_BufferSize--;
-    return true;
-}
-
-bool MadLines::NextUChar_UTF32LE(MadUCQueue &ucqueue)
-{
-    wxFileOffset rest=m_NextUChar_LineSize - m_NextUChar_Pos;
-    if(rest<=0) return false;
-
-    //check buffersize
-    if(m_NextUChar_BufferNextPos!=m_NextUChar_LineSize && m_NextUChar_BufferSize<4)
-    {
-        LoadNewBuffer();
-    }
-
-    if(rest>=4)
-    {
-        wxByte *buf=m_NextUChar_Buffer+m_NextUChar_BufferStart;
-        ucs4_t ucs4=wxUINT32_SWAP_ON_BE(*((ucs4_t*)buf));
-        if(ucs4>0x10FFFF || ucs4<0)
-        {
-            ucs4='?'; // not a valid ucs4 char
-        }
-
-        ucqueue.push_back(MadUCPair(ucs4, 4));
-        m_NextUChar_Pos+=4;
-        m_NextUChar_BufferStart+=4;
-        m_NextUChar_BufferSize-=4;
-        return true;
-    }
-
-    /***
-    ucs4_t uc;
-    if(m_MadEdit->editMode_!=emHexMode)
-    {
-        uc=wxT('?');
-    }
-    else
-    {
-        uc=m_NextUChar_LineIter->Get(m_NextUChar_Pos);
-    }
-    ***/
-
-    ucqueue.push_back(MadUCPair('?', MadUCPair::second_type(rest)));
-    m_NextUChar_Pos+=rest;
-    m_NextUChar_BufferStart+=size_t(rest);
-    m_NextUChar_BufferSize-=size_t(rest);
-    return true;
-}
-
-bool MadLines::NextUChar_UTF32BE(MadUCQueue &ucqueue)
-{
-    wxFileOffset rest=m_NextUChar_LineSize - m_NextUChar_Pos;
-    if(rest<=0) return false;
-
-    //check buffersize
-    if(m_NextUChar_BufferNextPos!=m_NextUChar_LineSize && m_NextUChar_BufferSize<4)
-    {
-        LoadNewBuffer();
-    }
-
-    if(rest>=4)
-    {
-        wxByte *buf=m_NextUChar_Buffer+m_NextUChar_BufferStart;
-        ucs4_t ucs4=wxUINT32_SWAP_ON_LE(*((ucs4_t*)buf));
-        if(ucs4>0x10FFFF || ucs4<0)
-        {
-            ucs4='?'; // not a valid ucs4 char
-        }
-
-        ucqueue.push_back(MadUCPair( ucs4, 4));
-        m_NextUChar_Pos+=4;
-        m_NextUChar_BufferStart+=4;
-        m_NextUChar_BufferSize-=4;
-        return true;
-    }
-
-    /***
-    ucs4_t uc;
-    if(m_MadEdit->editMode_!=emHexMode)
-    {
-        uc=wxT('?');
-    }
-    else
-    {
-        uc=m_NextUChar_LineIter->Get(m_NextUChar_Pos);
-    }
-    ***/
-
-    ucqueue.push_back(MadUCPair('?', MadUCPair::second_type(rest)));
-    m_NextUChar_Pos+=rest;
-    m_NextUChar_BufferStart+=size_t(rest);
-    m_NextUChar_BufferSize-=size_t(rest);
-    return true;
+    return m_Encoding->NextUChar32(ucqueue, *this);
 }
 
 bool MadLines::NextUCharIs0x0A(void)
 {
-    wxFileOffset rest=m_NextUChar_LineSize - m_NextUChar_Pos;
-    if(rest<=0) return false;
+    wxFileOffset rest;
+    wxByte *buf = BufferLoadBytes(rest, 4);
+    if(buf == NULL)
+        return false;
 
-    //check buffersize
-    if(m_NextUChar_BufferNextPos!=m_NextUChar_LineSize && m_NextUChar_BufferSize<4)
-    {
-        LoadNewBuffer();
-    }
-
-    wxByte *buf=m_NextUChar_Buffer+m_NextUChar_BufferStart;
-
-    switch(m_Encoding->GetType())
-    {
-    case wxm::etUTF16LE:
-        if(rest>=2)
-        {
-            return buf[0]==0x0A && buf[1]==0;
-        }
-        break;
-    case wxm::etUTF16BE:
-        if(rest>=2)
-        {
-            return buf[1]==0x0A && buf[0]==0;
-        }
-        break;
-    case wxm::etUTF32LE:
-        if(rest>=4)
-        {
-            return buf[0]==0x0A && buf[1]==0 && buf[2]==0 && buf[3]==0;
-        }
-        break;
-    case wxm::etUTF32BE:
-        if(rest>=4)
-        {
-            return buf[3]==0x0A && buf[2]==0 && buf[1]==0 && buf[0]==0;
-        }
-        break;
-    case wxm::etSingleByte:
-        return m_Encoding->MultiBytetoUCS4(buf) == 0x0A;
-        break;
-    default:
-        return *buf == 0x0A;
-        break;
-    }
-
-    return false;
+    return m_Encoding->IsUChar32_LineFeed(buf, rest);
 }
 
 MadUCPair MadLines::PreviousUChar(/*IN_OUT*/MadLineIterator &lit, /*IN_OUT*/wxFileOffset &linepos)
@@ -1456,9 +863,9 @@ MadUCPair MadLines::PreviousUChar(/*IN_OUT*/MadLineIterator &lit, /*IN_OUT*/wxFi
 
         InitNextUChar(lit, linepos);
 
-        (this->*NextUChar)(ucq);     // OD or OA
+        NextUChar(ucq);     // OD or OA
 
-        if((this->*NextUChar)(ucq))  // 0D -> 0A
+        if(NextUChar(ucq))  // 0D -> 0A
         {
             linepos+=ucq.front().second;
         }
@@ -1472,7 +879,7 @@ MadUCPair MadLines::PreviousUChar(/*IN_OUT*/MadLineIterator &lit, /*IN_OUT*/wxFi
     do
     {
         InitNextUChar(lit, lpos);
-        (this->*NextUChar)(ucq);
+        NextUChar(ucq);
 
         if(lpos+ucq.back().second == linepos)
         {
@@ -1523,7 +930,7 @@ int MadLines::FindStringCase(MadUCQueue &ucqueue, MadStringIterator begin,
 
             if(ucsize < len && noNewLine)
             {
-                while( (this->*NextUChar)(ucqueue) )
+                while( NextUChar(ucqueue) )
                 {
                     register ucs4_t uc = ucqueue.back().first;
                     if(uc==0x0D || uc==0x0A)
@@ -1592,7 +999,7 @@ int MadLines::FindStringNoCase(MadUCQueue &ucqueue, MadStringIterator begin,
 
             if(ucsize < len && noNewLine)
             {
-                while( (this->*NextUChar)(ucqueue) )
+                while( NextUChar(ucqueue) )
                 {
                     register ucs4_t uc = ucqueue.back().first;
                     if(uc==0x0D || uc==0x0A)
@@ -1671,7 +1078,7 @@ MadLineState MadLines::Reformat(MadLineIterator iter)
     int maxwidth = m_MadEdit->GetMaxWordWrapWidth();
     size_t bomlen=0;
 
-    (this->*NextUChar)(ucqueue);
+    NextUChar(ucqueue);
 
     switch (m_Encoding->GetType())
     {
@@ -1687,7 +1094,7 @@ MadLineState MadLines::Reformat(MadLineIterator iter)
             rowidx.m_Start = ucqueue.front().second;
             bomlen = rowidx.m_Start;
             ucqueue.pop_front();
-            (this->*NextUChar)(ucqueue);
+            NextUChar(ucqueue);
         }
     default: break;
     }
@@ -1755,7 +1162,7 @@ MadLineState MadLines::Reformat(MadLineIterator iter)
                     //else 
                     if(NextUCharIs0x0A()) // DOS newline chars
                     {
-                        (this->*NextUChar)(ucqueue);
+                        NextUChar(ucqueue);
                         m_MadEdit->m_NewLineType = nltDOS;
                         iter->m_NewLineSize = ucqueue.back().second;
                     }
@@ -1816,7 +1223,7 @@ MadLineState MadLines::Reformat(MadLineIterator iter)
                                     ucs4_t uc=ucqueue[length-1].first;
                                     if(!m_Syntax->IsDelimiter(uc) && uc>0x20)// check last char for wholeword
                                     {
-                                        if(ucqueue.size()>length || (this->*NextUChar)(ucqueue))
+                                        if(ucqueue.size()>length || NextUChar(ucqueue))
                                         {
                                             uc = ucqueue[length].first;
                                             if(!m_Syntax->IsDelimiter(uc) && uc>0x20)
@@ -1864,7 +1271,7 @@ MadLineState MadLines::Reformat(MadLineIterator iter)
                                     ucs4_t uc=ucqueue[length-1].first;
                                     if(!m_Syntax->IsDelimiter(uc) && uc>0x20)// check last char for wholeword
                                     {
-                                        if(ucqueue.size()>length || (this->*NextUChar)(ucqueue))
+                                        if(ucqueue.size()>length || NextUChar(ucqueue))
                                         {
                                             uc = ucqueue[length].first;
                                             if(!m_Syntax->IsDelimiter(uc) && uc>0x20)
@@ -1912,7 +1319,7 @@ MadLineState MadLines::Reformat(MadLineIterator iter)
                                 if(firstuc == m_Syntax->nw_EscapeChar)
                                 {
                                     if(ucqueue.size() == 1)
-                                        (this->*NextUChar)(ucqueue);
+                                        NextUChar(ucqueue);
 
                                     if(ucqueue.size() != 1)
                                     {
@@ -1949,7 +1356,7 @@ MadLineState MadLines::Reformat(MadLineIterator iter)
                                     //if(firstuc == m_Syntax->nw_EscapeChar)
                                     //{
                                         //if(ucqueue.size() == 1)
-                                            //(this->*NextUChar)(ucqueue);
+                                            //NextUChar(ucqueue);
 
                                         //if(ucqueue.size() != 1)
                                         //{
@@ -2310,7 +1717,7 @@ MadLineState MadLines::Reformat(MadLineIterator iter)
 
                 BeginOfLine=false;
             }
-            while(!ucqueue.empty() || (this->*NextUChar)(ucqueue));
+            while(!ucqueue.empty() || NextUChar(ucqueue));
 
             wxASSERT(ucqueue.empty());
 
@@ -2379,7 +1786,7 @@ MadLineState MadLines::Reformat(MadLineIterator iter)
 
             iter = nline;
             InitNextUChar(iter, 0);
-            (this->*NextUChar)(ucqueue);
+            NextUChar(ucqueue);
         }
     }
     else
@@ -2534,7 +1941,7 @@ void MadLines::RecountLineWidth(void)
 
         ++m_RowCount;
 
-        (this->*NextUChar)(ucqueue);
+        NextUChar(ucqueue);
         if(!ucqueue.empty())
         {
             wordlength = 0;
@@ -2553,7 +1960,7 @@ void MadLines::RecountLineWidth(void)
 
                     if(NextUCharIs0x0A()) // DOS newline chars
                     {
-                        (this->*NextUChar)(ucqueue);
+                        NextUChar(ucqueue);
                     }
                     ucqueue.clear();
 
@@ -2809,7 +2216,7 @@ void MadLines::RecountLineWidth(void)
                 rowidx.m_Width += ucwidth;
                 rowlen += firstuclen;
             }
-            while(!ucqueue.empty() || (this->*NextUChar)(ucqueue));
+            while(!ucqueue.empty() || NextUChar(ucqueue));
 
             if(rowidx.m_Width > m_MaxLineWidth)
                 m_MaxLineWidth = rowidx.m_Width;

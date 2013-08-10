@@ -1321,7 +1321,6 @@ int MadSyntax::FindStringCase(MadUCQueue & ucqueue, size_t first,
             --ucsize; // exclude NewLine char
         }
     }
-    MadLines::NextUCharFuncPtr NextUChar=nw_MadLines->NextUChar;
 
     do
     {
@@ -1334,7 +1333,7 @@ int MadSyntax::FindStringCase(MadUCQueue & ucqueue, size_t first,
 
             if(ucsize < len && noNewLine)
             {
-                while( (nw_MadLines->*NextUChar)(ucqueue) )
+                while( nw_MadLines->NextUChar(ucqueue) )
                 {
                     register ucs4_t uc = ucqueue.back().first;
                     if(uc==0x0D || uc==0x0A)
@@ -1390,7 +1389,6 @@ int MadSyntax::FindStringNoCase(MadUCQueue & ucqueue, size_t first,
             --ucsize; // exclude NewLine char
         }
     }
-    MadLines::NextUCharFuncPtr NextUChar=nw_MadLines->NextUChar;
 
     do
     {
@@ -1403,7 +1401,7 @@ int MadSyntax::FindStringNoCase(MadUCQueue & ucqueue, size_t first,
 
             if(ucsize < len && noNewLine)
             {
-                while( (nw_MadLines->*NextUChar)(ucqueue) )
+                while( nw_MadLines->NextUChar(ucqueue) )
                 {
                     register ucs4_t uc = ucqueue.back().first;
                     if(uc==0x0D || uc==0x0A)
@@ -1445,7 +1443,6 @@ int MadSyntax::FindStringNoCase(MadUCQueue & ucqueue, size_t first,
 int MadSyntax::NextWord(int &wordwidth)
 {
     wordwidth = 0;
-    MadLines::NextUCharFuncPtr NextUChar=nw_MadLines->NextUChar;
 
     if(nw_RestCount == 0)
     {
@@ -1462,7 +1459,7 @@ int MadSyntax::NextWord(int &wordwidth)
         {
             if(nw_EndOfLine == false)
             {
-                (nw_MadLines->*NextUChar)(nw_ucqueue);
+                nw_MadLines->NextUChar(nw_ucqueue);
             }
 
             size_t ucsize = nw_ucqueue.size();
@@ -1499,7 +1496,7 @@ int MadSyntax::NextWord(int &wordwidth)
                         // check EscapeChar
                         if(firstuc == nw_EscapeChar)
                         {
-                            (nw_MadLines->*NextUChar)(nw_ucqueue);
+                            nw_MadLines->NextUChar(nw_ucqueue);
                             idx = (int)nw_FirstIndex + 1;
                             if(nw_ucqueue.size() > (size_t) idx)
                             {

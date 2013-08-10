@@ -162,7 +162,7 @@ void WXMEncodingSingleByte::MultiByteInit()
 	enc_fix->fix(m_tounicode, m_fromunicode);
 }
 
-ucs4_t WXMEncodingSingleByte::MultiBytetoUCS4(wxByte* buf)
+ucs4_t WXMEncodingSingleByte::MultiBytetoUCS4(const wxByte* buf)
 {
 	return m_tounicode[*buf];
 }
@@ -175,6 +175,19 @@ size_t WXMEncodingSingleByte::UCS4toMultiByte(ucs4_t ucs4, wxByte* buf)
 
 	buf[0] = it->second;
 	return 1;
+}
+
+bool WXMEncodingSingleByte::NextUChar32(MadUCQueue &ucqueue, UChar32BytesMapper& mapper)
+{
+	wxFileOffset rest;
+	wxByte *buf=mapper.BufferLoadBytes(rest, 4);
+	if (buf == NULL)
+		return false;
+
+	ucs4_t uc = MultiBytetoUCS4(buf);
+
+	mapper.MoveUChar32Bytes(ucqueue, uc, 1);
+	return true;
 }
 
 };// namespace wxm

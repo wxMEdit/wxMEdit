@@ -149,7 +149,7 @@ void WXMEncodingDoubleByte::MultiByteInit()
 }
 
 // return 0 if it is not a valid DB char
-ucs4_t WXMEncodingDoubleByte::MultiBytetoUCS4(wxByte* buf)
+ucs4_t WXMEncodingDoubleByte::MultiBytetoUCS4(const wxByte* buf)
 {
 	wxWord dbtmp = (buf[0] << 8) | buf[1];
 	ucs4_t uinfo = m_dbfix->MB2UInfo(dbtmp);
@@ -257,6 +257,38 @@ size_t WXMEncodingDoubleByte::UCS4toMultiByte(ucs4_t ucs4, wxByte* buf)
 
 	buf[1]=mbs[1];
 	return 2;
+}
+
+bool WXMEncodingDoubleByte::NextUChar32(MadUCQueue &ucqueue, UChar32BytesMapper& mapper)
+{
+	wxFileOffset rest;
+	wxByte *buf=mapper.BufferLoadBytes(rest, 2);
+	if (buf == NULL)
+		return false;
+
+	ucs4_t uc;
+	if(rest>1)
+	{
+		if(buf[1] == 0 || (uc=MultiBytetoUCS4(buf)) == (ucs4_t)svtInvaliad)
+		{
+			wxByte db[2] = {buf[0], 0}; // re-check by first byte
+			if((uc=MultiBytetoUCS4(db)) == (ucs4_t)svtInvaliad)
+				uc = buf[0];
+
+			mapper.MoveUChar32Bytes(ucqueue, uc, 1);
+			return true;
+		}
+
+		mapper.MoveUChar32Bytes(ucqueue, uc, 2);
+		return true;
+	}
+
+	wxByte db[2] = {buf[0], 0}; // re-check by first byte
+	if((uc=MultiBytetoUCS4(db)) == (ucs4_t)svtInvaliad)
+		uc = buf[0];
+
+	mapper.MoveUChar32Bytes(ucqueue, uc, 1);
+	return true;
 }
 
 };// namespace wxm

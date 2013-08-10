@@ -335,10 +335,10 @@ WXMEncoding* WXMEncodingCreator::CreateWxmEncoding(ssize_t idx)
 			enc = new WXMEncodingUTF32BE();
 			break;
 		case etSingleByte:
-			enc = new WXMEncodingSingleByte();
+			enc = new WXMEncodingSingleByteISO646Compatible();
 			break;
 		case etDoubleByte:
-			enc = new WXMEncodingDoubleByte();
+			enc = new WXMEncodingDoubleByteISO646Compatible();
 			break;
 		case etEUCJPMS:
 			enc = new WXMEncodingEUCJPMS();
@@ -389,6 +389,26 @@ void WXMEncoding::Create(ssize_t idx)
 	m_desc = WXMEncodingCreator::Instance().GetEncodingDescription(idx);
 	m_fontname = WXMEncodingCreator::Instance().GetEncodingFontName(m_idx);
 	m_simp_unicode = WXMEncodingCreator::IsSimpleUnicodeEncoding(m_enc);
+}
+
+
+bool WXMEncodingDecoderISO646::IsUChar32_LineFeed(const wxByte* buf, size_t len)
+{
+	return *buf == 0x0A;
+}
+bool WXMEncodingDecoderISO646::IsUChar32_LineFeed(WXMBlockDumper& dumper, size_t len)
+{
+	wxByte b;
+	dumper.Dump(&b, 1);
+	return b == 0x0A;
+}
+ucs4_t WXMEncodingDecoderISO646::PeekUChar32_Newline(WXMBlockDumper& dumper, size_t len)
+{
+	wxByte b;
+	dumper.Dump(&b, 1);
+	if (b == 0x0A || b == 0x0D)
+		return (ucs4_t)b;
+	return 0;
 }
 
 };// namespace wxm

@@ -34,7 +34,7 @@ struct EUCJPMSTableFixer: public DoubleByteEncodingTableFixer
 	virtual void fix();
 };
 
-struct WXMEncodingEUCJPMS: public WXMEncodingDoubleByte
+struct WXMEncodingEUCJPMS: public WXMEncodingDoubleByteISO646Compatible
 {
 private:
 	friend WXMEncoding* WXMEncodingCreator::CreateWxmEncoding(ssize_t idx);

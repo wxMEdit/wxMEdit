@@ -10,6 +10,7 @@
 #define _WXM_ENCODING_H_
 
 #include "wxm_encoding_def.h"
+#include "wxm_line_enc_adapter.h"
 #include "../wxmedit/ucs4_t.h"
 
 #ifdef WX_PRECOMP
@@ -31,9 +32,6 @@
 
 namespace wxm
 {
-
-enum WXMEncodingType
-{ etSingleByte, etDoubleByte, etUTF8, etUTF16LE, etUTF16BE, etUTF32LE, etUTF32BE, etEUCJPMS };
 
 struct WXMEncoding;
 struct WXMEncodingCreator: private boost::noncopyable
@@ -125,7 +123,26 @@ private:
 	WXEncInstMap m_inst_map;
 };
 
-struct WXMEncoding: private boost::noncopyable
+struct WXMBlockDumper;
+
+
+struct WXMEncodingDecoder
+{
+	virtual bool IsUChar32_LineFeed(const wxByte* buf, size_t len) = 0;
+	virtual bool IsUChar32_LineFeed(WXMBlockDumper& dumper, size_t len) = 0;
+	virtual ucs4_t PeekUChar32_Newline(WXMBlockDumper& dumper, size_t len) = 0;
+
+	virtual ~WXMEncodingDecoder(){}
+};
+
+struct WXMEncodingDecoderISO646: public WXMEncodingDecoder
+{
+	virtual bool IsUChar32_LineFeed(const wxByte* buf, size_t len);
+	virtual bool IsUChar32_LineFeed(WXMBlockDumper& dumper, size_t len);
+	virtual ucs4_t PeekUChar32_Newline(WXMBlockDumper& dumper, size_t len);
+};
+
+struct WXMEncoding: public WXMEncodingDecoder, private boost::noncopyable
 {
 protected:
 	wxString m_name;
@@ -152,8 +169,9 @@ protected:
 public:
 	// return the converted length of buf
 	virtual size_t UCS4toMultiByte(ucs4_t ucs4, wxByte* buf) = 0;
+	virtual bool NextUChar32(MadUCQueue &ucqueue, UChar32BytesMapper& mapper) = 0;
 
-	virtual ucs4_t MultiBytetoUCS4(wxByte* buf)
+	virtual ucs4_t MultiBytetoUCS4(const wxByte* buf)
 	{
 		return 0xFFFD;
 	}

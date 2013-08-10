@@ -1282,10 +1282,8 @@ void MadEdit::UpdateCaret(MadCaretPos &caretPos,
         m_Lines->InitNextUChar(caretPos.iter, riter->m_Start);
         const wxFileOffset & row_endpos = (++riter)->m_Start;
 
-        MadLines::NextUCharFuncPtr NextUChar=m_Lines->NextUChar;
-
         while(m_Lines->m_NextUChar_Pos < row_endpos
-                && (m_Lines->*NextUChar)(ucharQueue))
+                && m_Lines->NextUChar(ucharQueue))
         {
             const MadUCPair & ucp = ucharQueue.back();
             ucs4_t uc = ucp.first;
@@ -1388,10 +1386,8 @@ void MadEdit::UpdateCaretByXPos(int xPos, MadCaretPos &caretPos,
     caretPos.extraspaces = 0;
     int xpos=0, restxpos=xPos;
 
-    MadLines::NextUCharFuncPtr NextUChar=m_Lines->NextUChar;
-
     while(m_Lines->m_NextUChar_Pos < row_endpos
-            && (m_Lines->*NextUChar)(ucharQueue))
+            && m_Lines->NextUChar(ucharQueue))
     {
         const MadUCPair & ucp = ucharQueue.back();
         ucs4_t uc = ucp.first;
@@ -2337,8 +2333,6 @@ void MadEdit::PaintHexLines(wxDC *dc, wxRect &rect, int toprow, int rowcount, bo
     int MarkCharLeft, MarkCharRight;
     wxFileOffset MarkPos1 = -1, MarkPos2 = -1;
 
-    MadLines::NextUCharFuncPtr NextUChar = m_Lines->NextUChar;
-
     int SelLeft = 0, SelRight = 0;
     wxFileOffset SelPos1, SelPos2;
     if(m_Selection)
@@ -2438,7 +2432,7 @@ void MadEdit::PaintHexLines(wxDC *dc, wxRect &rect, int toprow, int rowcount, bo
                 m_Lines->InitNextUChar(lit2, 0);
             }
 
-            if((m_Lines->*NextUChar)(m_ActiveRowUChars) == false)
+            if(m_Lines->NextUChar(m_ActiveRowUChars) == false)
                 break;
 
             MadUCPair & ucp = m_ActiveRowUChars.back();
@@ -2745,7 +2739,6 @@ void MadEdit::PrepareHexRowIndex(int toprow, int count)
         m_ActiveRowUChars.clear();
 
         wxFileOffset nextpos = hexrowpos;
-        MadLines::NextUCharFuncPtr NextUChar=m_Lines->NextUChar;
 
         do
         {
@@ -2754,7 +2747,7 @@ void MadEdit::PrepareHexRowIndex(int toprow, int count)
             do
             {
                 //uclen = 0;
-                if((m_Lines->*NextUChar)(m_ActiveRowUChars))
+                if(m_Lines->NextUChar(m_ActiveRowUChars))
                 {
                     uclen = m_ActiveRowUChars.back().second;
                 }
@@ -2765,7 +2758,7 @@ void MadEdit::PrepareHexRowIndex(int toprow, int count)
                         break;
 
                     m_Lines->InitNextUChar(lit, 0);
-                    if((m_Lines->*NextUChar)(m_ActiveRowUChars))
+                    if(m_Lines->NextUChar(m_ActiveRowUChars))
                     {
                         uclen = m_ActiveRowUChars.back().second;
                     }
@@ -2829,16 +2822,15 @@ void MadEdit::UpdateTextAreaXPos()
     m_Lines->InitNextUChar(lit, pos2);
 
     MadUCQueue ucarray;
-    MadLines::NextUCharFuncPtr NextUChar= m_Lines->NextUChar;
 
     for(;;)
     {
-        if(!(m_Lines->*NextUChar)(ucarray))
+        if(!m_Lines->NextUChar(ucarray))
         {
             if(++lit != m_Lines->m_LineList.end() && lit->m_Size != 0)
             {
                 m_Lines->InitNextUChar(lit, 0);
-                (m_Lines->*NextUChar)(ucarray);
+                m_Lines->NextUChar(ucarray);
             }
             else
                 break;
@@ -3044,7 +3036,6 @@ void MadEdit::UpdateHexPosByXPos(int row, int xpos)
             endpos = m_Lines->m_Size;
 
         wxFileOffset firstpos = m_HexRowIndex[row];
-        MadLines::NextUCharFuncPtr NextUChar= m_Lines->NextUChar;
 
         if(firstpos < endpos)
         {
@@ -3061,7 +3052,7 @@ void MadEdit::UpdateHexPosByXPos(int row, int xpos)
             pos = firstpos;
             do
             {
-                if((m_Lines->*NextUChar)(m_ActiveRowUChars))
+                if(m_Lines->NextUChar(m_ActiveRowUChars))
                 {
                     int w = GetHexUCharWidth(m_ActiveRowUChars.back().first);
                     if(w < m_HexFontMaxDigitWidth)
@@ -3574,7 +3565,6 @@ wxFileOffset MadEdit::GetColumnSelection(wxString *ws)
     size_t lastrow = m_SelectionEnd->rowid;
 
     MadUCQueue ucqueue;
-    MadLines::NextUCharFuncPtr NextUChar=m_Lines->NextUChar;
     for(;;)
     {
         int rowwidth = lit->m_RowIndices[subrowid].m_Width;
@@ -3589,7 +3579,7 @@ wxFileOffset MadEdit::GetColumnSelection(wxString *ws)
             do
             {
                 int uc = 0x0D;
-                if((m_Lines->*NextUChar)(ucqueue))
+                if(m_Lines->NextUChar(ucqueue))
                     uc = ucqueue.back().first;
 
                 if(uc == 0x0D || uc == 0x0A)    // EOL
@@ -3724,9 +3714,8 @@ void MadEdit::SelectWordFromCaretPos(wxString *ws)
     int idx = 0, posidx = 0;
 
     pos = startpos;
-    MadLines::NextUCharFuncPtr NextUChar=m_Lines->NextUChar;
 
-    if((m_Lines->*NextUChar)(ucqueue))
+    if(m_Lines->NextUChar(ucqueue))
     {
         do
         {
@@ -3766,7 +3755,7 @@ void MadEdit::SelectWordFromCaretPos(wxString *ws)
             ++idx;
             pos += ucp.second;
         }
-        while(pos < endpos && (m_Lines->*NextUChar)(ucqueue));
+        while(pos < endpos && m_Lines->NextUChar(ucqueue));
     }
 
 
@@ -4748,11 +4737,10 @@ void MadEdit::InsertString(const ucs4_t *ucs, size_t count, bool bColumnEditing,
                 oudata->m_DelSize = 0;
 
                 MadUCQueue ucqueue;
-                MadLines::NextUCharFuncPtr NextUChar=m_Lines->NextUChar;
                 m_Lines->InitNextUChar(m_CaretPos.iter, m_CaretPos.linepos);
                 do
                 {
-                    if(!(m_Lines->*NextUChar)(ucqueue))
+                    if(!m_Lines->NextUChar(ucqueue))
                         break;
                     ucs4_t uc = ucqueue.back().first;
                     if(uc == 0x0D || uc == 0x0A)
@@ -4937,14 +4925,13 @@ wxFileOffset MadEdit::GetRowposXPos(int &xpos, MadLineIterator & lit,
     if(xpos < rowwidth)
     {
         int nowxpos = 0;
-        MadLines::NextUCharFuncPtr NextUChar=m_Lines->NextUChar;
         MadUCQueue ucqueue;
         m_Lines->InitNextUChar(lit, rowpos);
 
         do
         {
             int uc = 0x0D;
-            if((m_Lines->*NextUChar)(ucqueue))
+            if(m_Lines->NextUChar(ucqueue))
                 uc = ucqueue.back().first;
 
             if(uc == 0x0D || uc == 0x0A)      // EOL
@@ -5503,7 +5490,6 @@ void MadEdit::InsertColumnString(const ucs4_t *ucs, size_t count, int linecount,
 // get indent spaces from current the line of caretpos
 void MadEdit::GetIndentSpaces(int lineid, MadLineIterator lit, vector <ucs4_t> &spaces, bool autoIndent, bool unindentChar)
 {
-    MadLines::NextUCharFuncPtr NextUChar=m_Lines->NextUChar;
     wxFileOffset linepos=lit->m_RowIndices.front().m_Start;
     m_Lines->InitNextUChar(lit, linepos);
 
@@ -5512,7 +5498,7 @@ void MadEdit::GetIndentSpaces(int lineid, MadLineIterator lit, vector <ucs4_t> &
     for(;;)
     {
         ucs4_t uc = 0x0D;
-        if((m_Lines->*NextUChar)(ucqueue))
+        if(m_Lines->NextUChar(ucqueue))
         {
             MadUCPair &ucp=ucqueue.back();
             uc = ucp.first;
@@ -5561,7 +5547,7 @@ void MadEdit::GetIndentSpaces(int lineid, MadLineIterator lit, vector <ucs4_t> &
 
         while(lineid < maxpos->lineid || (lineid==maxpos->lineid && linepos<maxpos->linepos))
         {
-            if((m_Lines->*NextUChar)(ucqueue)==false)
+            if(m_Lines->NextUChar(ucqueue)==false)
             {
                 break;
             }
@@ -5691,7 +5677,6 @@ MadUndo *MadEdit::DeleteSelection(bool bCorrectCaretPos, vector <int> *rpos, boo
         wxFileOffset pos = m_SelectionEnd->pos - m_SelectionEnd->linepos;
         MadLineIterator firstlit = lastlit;
         MadUCQueue ucqueue;
-        MadLines::NextUCharFuncPtr NextUChar=m_Lines->NextUChar;
 
         for(;;)
         {
@@ -5709,7 +5694,7 @@ MadUndo *MadEdit::DeleteSelection(bool bCorrectCaretPos, vector <int> *rpos, boo
                 do
                 {
                     int uc = 0x0D;
-                    if((m_Lines->*NextUChar)(ucqueue))
+                    if(m_Lines->NextUChar(ucqueue))
                         uc = ucqueue.back().first;
 
                     if(uc == 0x0D || uc == 0x0A)  // EOL
@@ -7107,10 +7092,9 @@ void MadEdit::ProcessCommand(MadEditCommand command)
                     // check the right char of send is not a normal char, 
                     // if yes, insert the AutoCompleteRightChar
                     m_Lines->InitNextUChar(send->iter, send->linepos);
-                    MadLines::NextUCharFuncPtr NextUChar=m_Lines->NextUChar;
                     MadUCQueue ucqueue;
                     ucs4_t ucb;
-                    if((m_Lines->*NextUChar)(ucqueue)==false || (ucb=ucqueue.back().first)<=0x20 || m_Syntax->IsDelimiter(ucb))
+                    if(m_Lines->NextUChar(ucqueue)==false || (ucb=ucqueue.back().first)<=0x20 || m_Syntax->IsDelimiter(ucb))
                     {
                         NewAutoCompleteRightChar= m_Syntax->m_AutoCompleteRightChar[idx];
                         InsertString(&NewAutoCompleteRightChar, 1, true, false, false);
@@ -7137,10 +7121,9 @@ void MadEdit::ProcessCommand(MadEditCommand command)
                         
                         wxFileOffset linepos=sbeg->iter->m_RowIndices[0].m_Start;
                         m_Lines->InitNextUChar(sbeg->iter, linepos);
-                        MadLines::NextUCharFuncPtr NextUChar=m_Lines->NextUChar;
                         MadUCQueue ucqueue;
                         bool allspace=true;
-                        while(linepos < sbeg->linepos && (m_Lines->*NextUChar)(ucqueue))
+                        while(linepos < sbeg->linepos && m_Lines->NextUChar(ucqueue))
                         {
                             if(ucqueue.back().first>0x20)
                             {
@@ -7672,11 +7655,10 @@ void MadEdit::ProcessCommand(MadEditCommand command)
                         {
                             m_Lines->InitNextUChar(lit, m_CaretPos.linepos);
 
-                            MadLines::NextUCharFuncPtr NextUChar=m_Lines->NextUChar;
                             int uctype0 = 0, uctype;
                             do
                             {
-                                (m_Lines->*NextUChar)(m_ActiveRowUChars);
+                                m_Lines->NextUChar(m_ActiveRowUChars);
                                 MadUCPair & ucp = m_ActiveRowUChars.back();
 
                                 if(uctype0 == 0)
@@ -7830,7 +7812,6 @@ void MadEdit::ProcessCommand(MadEditCommand command)
                                 bool prevline=false;
 
                                 MadUCQueue ucqueue;
-                                MadLines::NextUCharFuncPtr NextUChar=m_Lines->NextUChar;
                                 ucs4_t uc;
                                 wxFileOffset pos, pos1;
 
@@ -7849,7 +7830,7 @@ void MadEdit::ProcessCommand(MadEditCommand command)
                                     pos=pos1-m_CaretPos.linepos+pos;
                                 }
 
-                                while(pos<pos1 && (m_Lines->*NextUChar)(ucqueue) && ((uc=ucqueue.back().first)==0x20 || uc==0x09))
+                                while(pos<pos1 && m_Lines->NextUChar(ucqueue) && ((uc=ucqueue.back().first)==0x20 || uc==0x09))
                                     pos+=ucqueue.back().second;
 
                                 if(pos==pos1)   // from [pos] to [pos1] are all spaces
@@ -7864,7 +7845,7 @@ void MadEdit::ProcessCommand(MadEditCommand command)
                                 else
                                     m_Lines->InitNextUChar(m_CaretPos.iter, m_CaretPos.linepos);
 
-                                while((m_Lines->*NextUChar)(ucqueue) && ((uc=ucqueue.back().first)==0x20 || uc==0x09))
+                                while(m_Lines->NextUChar(ucqueue) && ((uc=ucqueue.back().first)==0x20 || uc==0x09))
                                 {
                                     ++spaces;
                                 }
@@ -8105,8 +8086,7 @@ void MadEdit::ProcessCommand(MadEditCommand command)
                                         m_Lines->InitNextUChar(m_CaretPos.iter, m_CaretPos.linepos);
 
                                         MadUCQueue ucqueue;
-                                        MadLines::NextUCharFuncPtr NextUChar=m_Lines->NextUChar;
-                                        (m_Lines->*NextUChar)(ucqueue);
+                                        m_Lines->NextUChar(ucqueue);
 
                                         MadDeleteUndoData *dudata = new MadDeleteUndoData;
                                         dudata->m_Pos = m_CaretPos.pos;
@@ -8463,8 +8443,6 @@ void MadEdit::ProcessCommand(MadEditCommand command)
             if(!m_ActiveRowUChars.empty())
                 m_ActiveRowUChars.clear();
 
-            MadLines::NextUCharFuncPtr NextUChar=m_Lines->NextUChar;
-
             if(command >= ecCharFirst && command <= ecCharLast)
             {
                 if(m_CaretAtHexArea)
@@ -8598,7 +8576,7 @@ void MadEdit::ProcessCommand(MadEditCommand command)
                                 do
                                 {
                                     oldpos = pos;
-                                    if((m_Lines->*NextUChar)(m_ActiveRowUChars))
+                                    if(m_Lines->NextUChar(m_ActiveRowUChars))
                                     {
                                         linepos += m_ActiveRowUChars.back().second;
                                         pos += m_ActiveRowUChars.back().second;
@@ -8650,7 +8628,7 @@ void MadEdit::ProcessCommand(MadEditCommand command)
                         else                // at TextArea
                         {
                             m_Lines->InitNextUChar(m_CaretPos.iter, m_CaretPos.linepos);
-                            if((m_Lines->*NextUChar)(m_ActiveRowUChars))
+                            if(m_Lines->NextUChar(m_ActiveRowUChars))
                             {
                                 m_CaretPos.linepos += m_ActiveRowUChars.back().second;
                                 m_CaretPos.pos += m_ActiveRowUChars.back().second;
