@@ -1080,13 +1080,8 @@ MadLineState MadLines::Reformat(MadLineIterator iter)
 
     NextUChar(ucqueue);
 
-    switch (m_Encoding->GetType())
+    if (m_Encoding->IsSimpleUnicodeEncoding())
     {
-    case wxm::etUTF8:
-    case wxm::etUTF16LE:
-    case wxm::etUTF16BE:
-    case wxm::etUTF32LE:
-    case wxm::etUTF32BE:
         // Byte-Order Mark
         if(ucqueue.front().first == 0xFEFF && iter == m_LineList.begin())
         {
@@ -1096,7 +1091,6 @@ MadLineState MadLines::Reformat(MadLineIterator iter)
             ucqueue.pop_front();
             NextUChar(ucqueue);
         }
-    default: break;
     }
 
     ucs4_t firstuc, lastuc, prevuc;
