@@ -38,12 +38,6 @@ struct WXMEncodingEUCJPMS: public WXMEncodingDoubleByteISO646Compatible
 {
 private:
 	friend WXMEncoding* WXMEncodingCreator::CreateWxmEncoding(ssize_t idx);
-	virtual void Create(ssize_t idx)
-	{
-		WXMEncodingDoubleByte::Create(idx);
-
-		m_type = etDoubleByte;
-	}
 	~WXMEncodingEUCJPMS(){}
 
 	virtual void InitMBConverter()

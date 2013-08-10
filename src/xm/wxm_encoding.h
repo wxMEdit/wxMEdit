@@ -65,6 +65,11 @@ struct WXMEncodingCreator: private boost::noncopyable
 	WXMEncoding* CreateWxmEncoding(WXMEncodingID enc);
 	WXMEncoding* CreateWxmEncoding(const wxString &name);
 
+private:
+	enum WXMEncodingType
+	{ etSingleByte, etDoubleByte, etUTF8, etUTF16LE, etUTF16BE, etUTF32LE, etUTF32BE, etEUCJPMS };
+
+public:
 	size_t GetEncodingsCount();
 	wxString GetEncodingName(ssize_t idx);
 	std::string GetEncodingInnerName(ssize_t idx);
@@ -77,6 +82,7 @@ struct WXMEncodingCreator: private boost::noncopyable
 	WXMEncodingType GetIdxEncType(ssize_t idx);
 
 private:
+
 	WXMEncodingID IdxToEncoding(ssize_t idx)
 	{
 		return NameToEncoding(GetEncodingName(idx));
@@ -150,7 +156,6 @@ protected:
 	wxString m_desc;
 	wxString m_fontname;
 	WXMEncodingID m_enc;
-	WXMEncodingType m_type;
 	ssize_t m_idx;
 	bool m_simp_unicode;
 

@@ -297,7 +297,7 @@ WXMEncoding* WXMEncodingCreator::GetSystemEncoding()
 	return m_sysenc;
 }
 
-WXMEncodingType WXMEncodingCreator::GetIdxEncType(ssize_t idx)
+WXMEncodingCreator::WXMEncodingType WXMEncodingCreator::GetIdxEncType(ssize_t idx)
 {
 	WXEncTypeMap::const_iterator it = m_wxenctype_map.find(IdxToEncoding(idx));
 	if (it == m_wxenctype_map.end())
@@ -385,7 +385,6 @@ void WXMEncoding::Create(ssize_t idx)
 	m_name = WXMEncodingCreator::Instance().GetEncodingName(idx);
 	m_enc = WXMEncodingCreator::Instance().NameToEncoding(m_name);
 	m_innername = WXMEncodingCreator::Instance().GetEncodingInnerName(idx);
-	m_type = WXMEncodingCreator::Instance().GetIdxEncType(idx);
 	m_desc = WXMEncodingCreator::Instance().GetEncodingDescription(idx);
 	m_fontname = WXMEncodingCreator::Instance().GetEncodingFontName(m_idx);
 	m_simp_unicode = WXMEncodingCreator::IsSimpleUnicodeEncoding(m_enc);
