@@ -56,6 +56,16 @@ struct WXMEncodingSingleByte: public WXMEncodingMultiByte
 	virtual ucs4_t MultiBytetoUCS4(const wxByte* buf);
 	virtual size_t UCS4toMultiByte(ucs4_t ucs4, wxByte* buf);
 	virtual bool NextUChar32(MadUCQueue &ucqueue, UChar32BytesMapper& mapper);
+
+	virtual bool IsSingleByteEncoding()
+	{
+		return true;
+	}
+	virtual bool IsDoubleByteEncoding()
+	{
+		return false;
+	}
+
 private:
 	ICUConverter* m_icucnv;
 	ByteUnicodeArr m_tounicode;

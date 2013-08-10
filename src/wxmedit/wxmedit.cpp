@@ -2706,7 +2706,7 @@ void MadEdit::PrepareHexRowIndex(int toprow, int count)
     hexrowpos <<= 4;
     int idx = 0;
 
-    if(m_Encoding->GetType()==wxm::etSingleByte)
+	if(m_Encoding->IsSingleByteEncoding())
     {
         while(idx < count)
         {
@@ -8938,7 +8938,7 @@ void MadEdit::OnChar(wxKeyEvent& evt)
         if(m_IsWin98 && ucs4<0x100)
         {
             wxm::WXMEncoding *enc=wxm::WXMEncodingCreator::Instance().GetSystemEncoding();
-            if(enc->GetType()==wxm::etDoubleByte)
+			if(enc->IsDoubleByteEncoding())
             {
                 if(m_Win98LeadByte>=0)
                 {

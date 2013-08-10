@@ -78,6 +78,15 @@ struct WXMEncodingDoubleByte: public WXMEncodingMultiByte
 	virtual size_t UCS4toMultiByte(ucs4_t ucs4, wxByte* buf);
 	virtual bool NextUChar32(MadUCQueue &ucqueue, UChar32BytesMapper& mapper);
 
+	virtual bool IsSingleByteEncoding()
+	{
+		return false;
+	}
+	virtual bool IsDoubleByteEncoding()
+	{
+		return true;
+	}
+
 protected:
 	friend WXMEncoding* WXMEncodingCreator::CreateWxmEncoding(ssize_t idx);
 	virtual DoubleByteEncodingTableFixer* CreateDoubleByteEncodingTableFixer();

@@ -20,6 +20,8 @@ struct WXMEncodingMultiByte: public WXMEncoding
 {
 	virtual void MultiByteInit() = 0;
 	virtual ucs4_t MultiBytetoUCS4(const wxByte* buf) = 0;
+	virtual bool IsSingleByteEncoding() = 0;
+	virtual bool IsDoubleByteEncoding() = 0;
 	virtual void Create(ssize_t idx);
 
 protected:

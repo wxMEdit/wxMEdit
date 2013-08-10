@@ -186,9 +186,18 @@ public:
 		return m_simp_unicode;
 	}
 
+	virtual bool IsSingleByteEncoding()
+	{
+		return false;
+	}
+
+	virtual bool IsDoubleByteEncoding()
+	{
+		return false;
+	}
+
 	wxString GetName() { return m_name; }
 	wxString GetDescription() { return m_desc; }
-	WXMEncodingType GetType() { return m_type; }
 	wxString GetFontName() { return m_fontname; }
 	WXMEncodingID GetEncoding() { return m_enc; }
 };
