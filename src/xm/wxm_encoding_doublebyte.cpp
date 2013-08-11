@@ -113,10 +113,8 @@ wxWord WXMEncodingDoubleByte::GetMBofUCS4(ucs4_t u)
 	if (u < 0x10000)
 		return m_bmp2mb_tab[u];
 
-	std::map<ucs4_t, wxWord>::const_iterator it = m_nonbmp2mb_map.find(u);
-	if (it == m_nonbmp2mb_map.end())
-		return svtDByteNotCached;
-	return it->second;
+	// use DoubleByteEncodingTableFixer to support non-BMP
+	return svtInvaliad;
 }
 
 void WXMEncodingDoubleByte::SetMBofUCS4(ucs4_t u, wxWord mb)
@@ -127,10 +125,8 @@ void WXMEncodingDoubleByte::SetMBofUCS4(ucs4_t u, wxWord mb)
 		return;
 	}
 
-	if (mb == (wxWord)svtInvaliad)
-		return;
-
-	m_nonbmp2mb_map[u] = mb;
+	// use DoubleByteEncodingTableFixer to support non-BMP
+	assert(0); // should not be here
 }
 
 void WXMEncodingDoubleByte::MultiByteInit()

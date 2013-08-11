@@ -113,7 +113,6 @@ private:
 	std::map<wxByte, boost::array<ucs4_t, 256> > m_db2u_tab;
 
 	boost::array<wxWord, 0x10000> m_bmp2mb_tab;
-	std::map<ucs4_t, wxWord> m_nonbmp2mb_map;
 
 	wxWord GetMBofUCS4(ucs4_t u);
 	void SetMBofUCS4(ucs4_t u, wxWord mb);
