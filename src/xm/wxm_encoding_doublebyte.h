@@ -114,8 +114,8 @@ private:
 
 	boost::array<wxWord, 0x10000> m_bmp2mb_tab;
 
-	wxWord GetMBofUCS4(ucs4_t u);
-	void SetMBofUCS4(ucs4_t u, wxWord mb);
+	wxWord GetCachedMBofUCS4(ucs4_t u);
+	void CacheMBofUCS4(wxWord& mb, ucs4_t u);
 };
 
 struct WXMEncodingDoubleByteISO646Compatible: public WXMEncodingDoubleByte
