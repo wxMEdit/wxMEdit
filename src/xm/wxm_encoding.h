@@ -132,7 +132,7 @@ private:
 struct WXMBlockDumper;
 
 
-struct WXMEncodingDecoder
+struct WXMEncodingDecoder: private boost::noncopyable
 {
 	virtual bool IsUChar32_LineFeed(const wxByte* buf, size_t len) = 0;
 	virtual bool IsUChar32_LineFeed(WXMBlockDumper& dumper, size_t len) = 0;
@@ -141,14 +141,14 @@ struct WXMEncodingDecoder
 	virtual ~WXMEncodingDecoder(){}
 };
 
-struct WXMEncodingDecoderISO646: public WXMEncodingDecoder
+struct WXMEncodingDecoderISO646: virtual public WXMEncodingDecoder
 {
 	virtual bool IsUChar32_LineFeed(const wxByte* buf, size_t len);
 	virtual bool IsUChar32_LineFeed(WXMBlockDumper& dumper, size_t len);
 	virtual ucs4_t PeekUChar32_Newline(WXMBlockDumper& dumper, size_t len);
 };
 
-struct WXMEncoding: public WXMEncodingDecoder, private boost::noncopyable
+struct WXMEncoding: virtual public WXMEncodingDecoder
 {
 protected:
 	wxString m_name;

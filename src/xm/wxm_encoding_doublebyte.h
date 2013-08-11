@@ -13,6 +13,11 @@
 
 #include <boost/array.hpp>
 
+#ifdef _MSC_VER
+# pragma warning( push )
+# pragma warning( disable : 4250 )
+#endif
+
 namespace wxm
 {
 
@@ -110,24 +115,14 @@ private:
 	void CacheMBofUCS4(wxWord& mb, ucs4_t u);
 };
 
-struct WXMEncodingDoubleByteISO646Compatible: public WXMEncodingDoubleByte
+struct WXMEncodingDoubleByteISO646Compatible: public WXMEncodingDoubleByte, public WXMEncodingDecoderISO646
 {
-	virtual bool IsUChar32_LineFeed(const wxByte* buf, size_t len)
-	{
-		return m_dec.IsUChar32_LineFeed(buf, len);
-	}
-	virtual bool IsUChar32_LineFeed(WXMBlockDumper& dumper, size_t len)
-	{
-		return m_dec.IsUChar32_LineFeed(dumper, len);
-	}
-	virtual ucs4_t PeekUChar32_Newline(WXMBlockDumper& dumper, size_t len)
-	{
-		return m_dec.PeekUChar32_Newline(dumper, len);
-	}
-private:
-	WXMEncodingDecoderISO646 m_dec;
 };
 
 };// namespace wxm
+
+#ifdef _MSC_VER
+# pragma warning( pop )
+#endif
 
 #endif // _WXM_ENCODING_DOUBLEBYTE_H_

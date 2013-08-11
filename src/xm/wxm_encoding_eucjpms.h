@@ -11,6 +11,11 @@
 
 #include "wxm_encoding_doublebyte.h"
 
+#ifdef _MSC_VER
+# pragma warning( push )
+# pragma warning( disable : 4250 )
+#endif
+
 namespace wxm
 {
 
@@ -48,5 +53,9 @@ private:
 };
 
 };// namespace wxm
+
+#ifdef _MSC_VER
+# pragma warning( pop )
+#endif
 
 #endif // _WXM_ENCODING_EUCJPMS_H_
