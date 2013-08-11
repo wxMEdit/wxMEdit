@@ -61,13 +61,6 @@ struct MS932TableFixer: public DoubleByteEncodingTableFixer
 struct WXMEncodingDoubleByte: public WXMEncodingMultiByte
 {
 	enum LeadByteType{ lbUnset=0, lbLeadByte, lbNotLeadByte=0xFF};
-	enum SpecialValueType
-	{
-		svtInvaliad       = 0,
-		svtNotCached      = 0xFF, 
-		svtDByteNotCached = 0xFFFF,
-		svtUCS4NotCached  = 0xFFFFFFFF,
-	};
 
 	virtual void MultiByteInit();
 	virtual bool IsLeadByte(wxByte byte);

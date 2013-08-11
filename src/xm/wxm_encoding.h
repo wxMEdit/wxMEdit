@@ -150,6 +150,14 @@ struct WXMEncodingDecoderISO646: virtual public WXMEncodingDecoder
 
 struct WXMEncoding: virtual public WXMEncodingDecoder
 {
+	enum SpecialValueType
+	{
+		svtInvaliad       = 0,
+		svtNotCached      = 0xFF, 
+		svtDByteNotCached = 0xFFFF,
+		svtUCS4NotCached  = 0xFFFFFFFF,
+	};
+
 protected:
 	wxString m_name;
 	std::string m_innername;
@@ -178,7 +186,7 @@ public:
 
 	virtual ucs4_t MultiBytetoUCS4(const wxByte* buf)
 	{
-		return 0xFFFD;
+		return (ucs4_t)svtInvaliad;
 	}
 
 	virtual bool IsLeadByte(wxByte byte)

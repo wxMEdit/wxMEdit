@@ -27,7 +27,7 @@ void DoubleByteEncodingTableFixer::AddLeadByte(wxByte b)
 
 void DoubleByteEncodingTableFixer::RemoveMB2U(wxWord db)
 {
-	m_mb2u_map[db] = WXMEncodingDoubleByte::svtInvaliad;
+	m_mb2u_map[db] = WXMEncoding::svtInvaliad;
 }
 void DoubleByteEncodingTableFixer::ChangeMB2U(wxWord db, ucs4_t u)
 {
@@ -36,7 +36,7 @@ void DoubleByteEncodingTableFixer::ChangeMB2U(wxWord db, ucs4_t u)
 
 void DoubleByteEncodingTableFixer::RemoveU2MB(ucs4_t u)
 {
-	m_u2mb_map[u] = WXMEncodingDoubleByte::svtInvaliad;
+	m_u2mb_map[u] = WXMEncoding::svtInvaliad;
 }
 void DoubleByteEncodingTableFixer::ChangeU2MB(ucs4_t u, wxWord db)
 {
@@ -55,7 +55,7 @@ ucs4_t DoubleByteEncodingTableFixer::MB2UInfo(wxWord db)
 {
 	std::map<wxWord, ucs4_t>::const_iterator it = m_mb2u_map.find(db);
 	if (it == m_mb2u_map.end())
-		return WXMEncodingDoubleByte::svtUCS4NotCached;
+		return WXMEncoding::svtUCS4NotCached;
 
 	return it->second;
 }
@@ -64,7 +64,7 @@ wxWord DoubleByteEncodingTableFixer::U2MBInfo(ucs4_t u)
 {
 	std::map<ucs4_t, wxWord>::const_iterator it = m_u2mb_map.find(u);
 	if (it == m_u2mb_map.end())
-		return WXMEncodingDoubleByte::svtDByteNotCached;
+		return WXMEncoding::svtDByteNotCached;
 
 	return it->second;
 }
