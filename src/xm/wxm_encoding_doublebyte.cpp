@@ -199,7 +199,7 @@ bool WXMEncodingDoubleByte::IsLeadByte(wxByte byte)
 size_t WXMEncodingDoubleByte::UCS4toMultiByte(ucs4_t ucs4, wxByte* buf)
 {
 	wxWord dbinfo = m_dbfix->U2MBInfo(ucs4);
-	if (dbinfo != (ucs4_t)svtDByteNotCached)
+	if (dbinfo != (wxWord)svtDByteNotCached)
 	{
 		if (dbinfo == svtInvaliad)
 			return 0;
@@ -215,7 +215,7 @@ size_t WXMEncodingDoubleByte::UCS4toMultiByte(ucs4_t ucs4, wxByte* buf)
 	}
 
 	wxWord mb = GetMBofUCS4(ucs4);
-	if(mb == 0) // invalid MB char
+	if(mb == (wxWord)svtInvaliad)
 		return 0;
 
 	if ((mb & 0xFF) == 0)
@@ -224,7 +224,7 @@ size_t WXMEncodingDoubleByte::UCS4toMultiByte(ucs4_t ucs4, wxByte* buf)
 		return 1;
 	}
 
-	if(mb != (ucs4_t)svtDByteNotCached)
+	if(mb != (wxWord)svtDByteNotCached)
 	{
 		buf[0] = mb >> 8;
 		buf[1] = mb & 0xFF;
@@ -236,7 +236,7 @@ size_t WXMEncodingDoubleByte::UCS4toMultiByte(ucs4_t ucs4, wxByte* buf)
 	wxByte mbs[3];
 	len = m_mbcnv->WC2MB((char*)mbs, 3, ucs4);
 	mb = (((wxWord)mbs[0])<<8) | mbs[1];
-	if(len == 0 || mb == svtInvaliad)
+	if(len == 0 || mb == (wxWord)svtInvaliad)
 	{
 		SetMBofUCS4(ucs4, svtInvaliad);
 		return 0;
