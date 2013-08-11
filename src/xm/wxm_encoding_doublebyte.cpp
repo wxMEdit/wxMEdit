@@ -104,8 +104,8 @@ void MS932TableFixer::fix()
 DoubleByteEncodingTableFixer* WXMEncodingDoubleByte::CreateDoubleByteEncodingTableFixer()
 {
 	if (m_innername == "MS932")
-		return new MS932TableFixer(*this);
-	return new DoubleByteEncodingTableFixer(*this);
+		return new MS932TableFixer();
+	return new DoubleByteEncodingTableFixer();
 }
 
 wxWord WXMEncodingDoubleByte::GetCachedMBofUCS4(ucs4_t u)

@@ -96,7 +96,7 @@ struct WXMEncodingSingleByteISO646Compatible: public WXMEncodingSingleByte
 	}
 	virtual ucs4_t PeekUChar32_Newline(WXMBlockDumper& dumper, size_t len)
 	{
-		return m_dec.IsUChar32_LineFeed(dumper, len);
+		return m_dec.PeekUChar32_Newline(dumper, len);
 	}
 
 private:

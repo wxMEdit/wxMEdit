@@ -16,11 +16,9 @@
 namespace wxm
 {
 
-struct WXMEncodingDoubleByte;
 struct DoubleByteEncodingTableFixer
 {
-	DoubleByteEncodingTableFixer(WXMEncodingDoubleByte& dbenc)
-		:m_dbenc(dbenc)
+	DoubleByteEncodingTableFixer()
 	{
 	}
 	virtual ~DoubleByteEncodingTableFixer()
@@ -45,8 +43,6 @@ protected:
 	void ChangeU2MB(ucs4_t u, wxWord db);
 
 private:
-	WXMEncodingDoubleByte& m_dbenc;
-
 	std::map<wxByte, int> m_leadbyte_map;
 	std::map<wxWord, ucs4_t> m_mb2u_map;
 	std::map<ucs4_t, wxWord> m_u2mb_map;
@@ -54,10 +50,6 @@ private:
 
 struct MS932TableFixer: public DoubleByteEncodingTableFixer
 {
-	MS932TableFixer(WXMEncodingDoubleByte& dbenc)
-		:DoubleByteEncodingTableFixer(dbenc)
-	{
-	}
 	virtual void fix();
 };
 
@@ -130,7 +122,7 @@ struct WXMEncodingDoubleByteISO646Compatible: public WXMEncodingDoubleByte
 	}
 	virtual ucs4_t PeekUChar32_Newline(WXMBlockDumper& dumper, size_t len)
 	{
-		return m_dec.IsUChar32_LineFeed(dumper, len);
+		return m_dec.PeekUChar32_Newline(dumper, len);
 	}
 private:
 	WXMEncodingDecoderISO646 m_dec;

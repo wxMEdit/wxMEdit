@@ -27,10 +27,6 @@ struct EUCJPMSConverter: public ICUConverter
 
 struct EUCJPMSTableFixer: public DoubleByteEncodingTableFixer
 {
-	EUCJPMSTableFixer(WXMEncodingDoubleByte& dbenc)
-		:DoubleByteEncodingTableFixer(dbenc)
-	{
-	}
 	virtual void fix();
 };
 
@@ -47,7 +43,7 @@ private:
 
 	virtual DoubleByteEncodingTableFixer* CreateDoubleByteEncodingTableFixer()
 	{
-		return new EUCJPMSTableFixer(*this);
+		return new EUCJPMSTableFixer();
 	}
 };
 
