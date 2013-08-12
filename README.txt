@@ -28,7 +28,7 @@ B. MS Windows (__WXMSW__):
       3. libunicows: it's optional under WinNT/XP, but required under Win98
       4. ICU4C 51 or higher
       5. Bakefile 0.2.9
-   b. Visual C++ 2003/2005/2008:
+   b. Visual C++ 2003/2005/2008/2010(by upgrading from 2008 solution and project files):
       Required Libraries to compile:
       1. wxWidgets-2.6.1 or higher with Unicode enabled
       2. Boost-1.33.0 or higher
@@ -83,8 +83,8 @@ wxMEdit v2.9.4:
 1.changed Unicode escape to ICU code point format {U+XXXX}-{U+XXXXXX}.
 2.introduced Bakefile building system and removed MSVC/MinGW building files.
 3.refactored encoding implementation.
-4.added test case for conversion between Unicode and Single-Byte Encoding.
-5.fixed incorrect conversion between Unicode and Single-Byte Encoding.
+4.added test case for conversion between Unicode and Single-Byte Encodings.
+5.fixed incorrect conversion between Unicode and Single-Byte Encodings.
 6.added CP866 and KOI8-R support.
 
 wxMEdit v2.9.3:
