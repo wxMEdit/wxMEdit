@@ -96,11 +96,11 @@ msgstr "中歐語系 (ISO-8859-2)"
 
 #: wxstd.po.cpp:12
 msgid "South European (ISO-8859-3)"
-msgstr ""
+msgstr "南歐語系 (ISO-8859-3)"
 
 #: wxstd.po.cpp:13
 msgid "North European (ISO-8859-4)"
-msgstr ""
+msgstr "北歐語系 (ISO-8859-4)"
 
 #: wxstd.po.cpp:14
 msgid "Cyrillic (ISO-8859-5)"
@@ -144,79 +144,79 @@ msgstr "凱爾特語 (ISO-8859-14)"
 
 #: wxstd.po.cpp:24
 msgid "Western European with Euro (ISO-8859-15)"
-msgstr "西歐與歐洲 (ISO-8859-15)"
+msgstr "西歐語系帶歐元 (ISO-8859-15)"
 
 #: wxstd.po.cpp:25
 msgid "South-Eastern European (ISO-8859-16)"
-msgstr ""
+msgstr "東南歐語系 (ISO-8859-16)"
 
 #: wxstd.po.cpp:26
 msgid "Cyrillic (KOI8-R)"
-msgstr ""
+msgstr "斯拉夫語 (KOI8-R)"
 
 #: wxstd.po.cpp:27
 msgid "Cyrillic (KOI8-U)"
-msgstr ""
+msgstr "斯拉夫語 (KOI8-U)"
 
 #: wxstd.po.cpp:28
 msgid "Windows Thai (CP 874)"
-msgstr "泰文 (CP 874)"
+msgstr "Windows 泰文 (CP 874)"
 
 #: wxstd.po.cpp:29
 msgid "Windows Central European (CP 1250)"
-msgstr "中歐語系 (CP 1250)"
+msgstr "Windows 中歐語系 (CP 1250)"
 
 #: wxstd.po.cpp:30
 msgid "Windows Cyrillic (CP 1251)"
-msgstr "斯拉夫文 (CP 1251)"
+msgstr "Windows 斯拉夫語 (CP 1251)"
 
 #: wxstd.po.cpp:31
 msgid "Windows Western European (CP 1252)"
-msgstr "西歐語系 (CP 1252)"
+msgstr "Windows 西歐語系 (CP 1252)"
 
 #: wxstd.po.cpp:32
 msgid "Windows Greek (CP 1253)"
-msgstr "希臘文 (CP 1253)"
+msgstr "Windows 希臘文 (CP 1253)"
 
 #: wxstd.po.cpp:33
 msgid "Windows Turkish (CP 1254)"
-msgstr "土耳其文 (CP 1254)"
+msgstr "Windows 土耳其文 (CP 1254)"
 
 #: wxstd.po.cpp:34
 msgid "Windows Hebrew (CP 1255)"
-msgstr "希伯來文 (CP 1255)"
+msgstr "Windows 希伯來文 (CP 1255)"
 
 #: wxstd.po.cpp:35
 msgid "Windows Arabic (CP 1256)"
-msgstr "阿拉伯文 (CP 1256)"
+msgstr "Windows 阿拉伯文 (CP 1256)"
 
 #: wxstd.po.cpp:36
 msgid "Windows Baltic (CP 1257)"
-msgstr "波羅的海文 (CP 1257)"
+msgstr "Windows 波羅的海文 (CP 1257)"
 
 #: wxstd.po.cpp:37
 msgid "Windows Japanese (CP 932)"
-msgstr "日文 (CP 932)"
+msgstr "Windows 日文 (CP 932)"
 
 #: wxstd.po.cpp:38
 msgid "Windows Chinese Simplified (CP 936)"
-msgstr "簡體中文 (CP 936)"
+msgstr "Windows 簡體中文 (CP 936)"
 
 #: wxstd.po.cpp:39
 msgid "Windows Korean (CP 949)"
-msgstr "韓文 (CP 949)"
+msgstr "Windows 韓文 (CP 949)"
 
 #: wxstd.po.cpp:40
 msgid "Windows Chinese Traditional (CP 950)"
-msgstr "正體中文 (CP 950)"
+msgstr "Windows 正體中文 (CP 950)"
 
 #: wxstd.po.cpp:41
 msgid "Windows Vietnamese (CP 1258)"
-msgstr ""
+msgstr "Windows 越南文 (CP 1258)"
 
 #: wxstd.po.cpp:42
 msgid "EUC-JP Double-Byte Edition of Windows (CP 20932)"
-msgstr ""
+msgstr "Windows 雙位元組編碼 EUC-JP (CP 20932)"
 
 #: wxstd.po.cpp:43
 msgid "Windows/DOS OEM (CP 437)"
@@ -224,19 +224,19 @@ msgstr "Windows/DOS OEM (CP 437)"
 
 #: wxstd.po.cpp:44
 msgid "Windows/DOS OEM - Latin 1 (CP 850)"
-msgstr ""
+msgstr "Windows/DOS OEM - 拉丁1 (CP 850)"
 
 #: wxstd.po.cpp:45
 msgid "Windows/DOS OEM - Latin 2 (CP 852)"
-msgstr ""
+msgstr "Windows/DOS OEM - 拉丁2 (CP 852)"
 
 #: wxstd.po.cpp:46
 msgid "Windows/DOS OEM - Cyrillic (CP 855)"
-msgstr ""
+msgstr "Windows/DOS OEM - 斯拉夫語 (CP 855)"
 
 #: wxstd.po.cpp:47
 msgid "Windows/DOS OEM - Cyrillic (CP 866)"
-msgstr ""
+msgstr "Windows/DOS OEM - 斯拉夫語 (CP 866)"
 
 #: wxstd.po.cpp:48
 msgid "OK"
@@ -4137,18 +4137,3 @@ msgstr "計算字數 (所選取的文字)"
 #: ../src/wxmedit_about_dialog.cpp:91
 msgid "About wxMEdit"
 msgstr "關於 wxMEdit"
-
-#~ msgid "Esperanto (ISO-8859-3)"
-#~ msgstr "世界語 (ISO-8859-3)"
-
-#~ msgid "Baltic (old) (ISO-8859-4)"
-#~ msgstr "波羅的海語 (舊的) (ISO-8859-4)"
-
-#~ msgid "KOI8-R"
-#~ msgstr "斯拉夫文 (KOI8-R)"
-
-#~ msgid "KOI8-U"
-#~ msgstr "斯拉夫文 (KOI8-U)"
-
-#~ msgid "Extended Unix Codepage for Japanese (EUC-JP)"
-#~ msgstr "日文 (EUC-JP)"
