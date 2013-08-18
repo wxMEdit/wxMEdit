@@ -40,7 +40,7 @@ PKG_CHECK_MODULES(glib_gtk2, [
         gtk+-2.0 >= 2.6.0
 ])
 CXXFLAGS="$CXXFLAGS $glib_gtk2_CFLAGS"
-LIBS="$LIBS $glib_gtk2_LIBS"
+LIBS="$LIBS $glib_gtk2_LIBS -lX11"
 
 # option for additional Xpressive lib
 AC_ARG_WITH(xpressive, 

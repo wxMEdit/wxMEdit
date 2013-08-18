@@ -8,5 +8,5 @@ Exec=wxmedit %f
 Icon=wxmedit.xpm
 Terminal=false
 Type=Application
-MimeType=text/plain
+MimeType=text/plain;
 Categories=Application;Utility;TextEditor;

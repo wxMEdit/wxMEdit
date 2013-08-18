@@ -12806,7 +12806,7 @@ echo "${ECHO_T}yes" >&6; }
 	:
 fi
     CXXFLAGS="$CXXFLAGS $glib_gtk2_CFLAGS"
-    LIBS="$LIBS $glib_gtk2_LIBS"
+    LIBS="$LIBS $glib_gtk2_LIBS -lX11"
 fi
 
 # option for additional Xpressive lib
