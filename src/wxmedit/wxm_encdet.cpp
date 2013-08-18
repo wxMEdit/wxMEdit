@@ -482,9 +482,9 @@ void DetectEncoding(const wxByte *text, int count, wxm::WXMEncodingID &enc)
     {
         enc = wxm::ENC_MS932;
     }
-    else if(name.IsSameAs(wxT("EUC-JP")))
+    else if(name.IsSameAs(wxT("EUC-JP"))) // FIXME later
     {
-        enc = wxm::ENC_EUCJP_MS;
+        enc = wxm::ENC_CP20932;
     }
     else if(name.IsSameAs(wxT("EUC-KR")))
     {

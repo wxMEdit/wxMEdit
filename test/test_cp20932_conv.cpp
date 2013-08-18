@@ -22,11 +22,11 @@ typedef std::map<std::string, U2MBDataMap> U2MBMap;
 extern U2MBMap u2mb;
 extern std::vector<std::string> test_doublebyte_conv_enc_list;
 
-const std::string enc_eucjpms("EUC-JP-MS");
+const std::string enc_cp20932("CP20932");
 
-void mb2u_00_eucjpms_init()
+void mb2u_00_cp20932_init()
 {
-static MB2UData mb2u_00_eucjpms [] = { {"", 0}, 
+static MB2UData mb2u_00_cp20932 [] = { {"", 0}, 
 {"\x01"    , 0x000001}, {"\x02"    , 0x000002}, {"\x03"    , 0x000003}, {"\x04"    , 0x000004}, 
 {"\x05"    , 0x000005}, {"\x06"    , 0x000006}, {"\x07"    , 0x000007}, {"\x08"    , 0x000008}, 
 {"\x09"    , 0x000009}, {"\x0A"    , 0x00000A}, {"\x0B"    , 0x00000B}, {"\x0C"    , 0x00000C}, 
@@ -93,16 +93,16 @@ static MB2UData mb2u_00_eucjpms [] = { {"", 0},
 {"\xA1\xBF", 0x00FF0F}, {"\xA1\xC0", 0x00FF3C}, {"\xA1\xC1", 0x00301C}, {"\xA1\xC2", 0x002016}, 
 
 };
- for(size_t i=1; i<sizeof(mb2u_00_eucjpms)/sizeof(MB2UData); ++i)
+ for(size_t i=1; i<sizeof(mb2u_00_cp20932)/sizeof(MB2UData); ++i)
  {
-	MB2UData& data = mb2u_00_eucjpms[i];
-	mb2u[enc_eucjpms][data.mbs] = data.u;
+	MB2UData& data = mb2u_00_cp20932[i];
+	mb2u[enc_cp20932][data.mbs] = data.u;
  }
 }
 
-void mb2u_01_eucjpms_init()
+void mb2u_01_cp20932_init()
 {
-static MB2UData mb2u_01_eucjpms [] = { {"", 0}, 
+static MB2UData mb2u_01_cp20932 [] = { {"", 0}, 
 {"\xA1\xC3", 0x00FF5C}, {"\xA1\xC4", 0x002026}, {"\xA1\xC5", 0x002025}, {"\xA1\xC6", 0x002018}, 
 {"\xA1\xC7", 0x002019}, {"\xA1\xC8", 0x00201C}, {"\xA1\xC9", 0x00201D}, {"\xA1\xCA", 0x00FF08}, 
 {"\xA1\xCB", 0x00FF09}, {"\xA1\xCC", 0x003014}, {"\xA1\xCD", 0x003015}, {"\xA1\xCE", 0x00FF3B}, 
@@ -169,16 +169,16 @@ static MB2UData mb2u_01_eucjpms [] = { {"", 0},
 {"\xA4\xDB", 0x00307B}, {"\xA4\xDC", 0x00307C}, {"\xA4\xDD", 0x00307D}, {"\xA4\xDE", 0x00307E}, 
 
 };
- for(size_t i=1; i<sizeof(mb2u_01_eucjpms)/sizeof(MB2UData); ++i)
+ for(size_t i=1; i<sizeof(mb2u_01_cp20932)/sizeof(MB2UData); ++i)
  {
-	MB2UData& data = mb2u_01_eucjpms[i];
-	mb2u[enc_eucjpms][data.mbs] = data.u;
+	MB2UData& data = mb2u_01_cp20932[i];
+	mb2u[enc_cp20932][data.mbs] = data.u;
  }
 }
 
-void mb2u_02_eucjpms_init()
+void mb2u_02_cp20932_init()
 {
-static MB2UData mb2u_02_eucjpms [] = { {"", 0}, 
+static MB2UData mb2u_02_cp20932 [] = { {"", 0}, 
 {"\xA4\xDF", 0x00307F}, {"\xA4\xE0", 0x003080}, {"\xA4\xE1", 0x003081}, {"\xA4\xE2", 0x003082}, 
 {"\xA4\xE3", 0x003083}, {"\xA4\xE4", 0x003084}, {"\xA4\xE5", 0x003085}, {"\xA4\xE6", 0x003086}, 
 {"\xA4\xE7", 0x003087}, {"\xA4\xE8", 0x003088}, {"\xA4\xE9", 0x003089}, {"\xA4\xEA", 0x00308A}, 
@@ -245,16 +245,16 @@ static MB2UData mb2u_02_eucjpms [] = { {"", 0},
 {"\xA7\xE2", 0x000440}, {"\xA7\xE3", 0x000441}, {"\xA7\xE4", 0x000442}, {"\xA7\xE5", 0x000443}, 
 
 };
- for(size_t i=1; i<sizeof(mb2u_02_eucjpms)/sizeof(MB2UData); ++i)
+ for(size_t i=1; i<sizeof(mb2u_02_cp20932)/sizeof(MB2UData); ++i)
  {
-	MB2UData& data = mb2u_02_eucjpms[i];
-	mb2u[enc_eucjpms][data.mbs] = data.u;
+	MB2UData& data = mb2u_02_cp20932[i];
+	mb2u[enc_cp20932][data.mbs] = data.u;
  }
 }
 
-void mb2u_03_eucjpms_init()
+void mb2u_03_cp20932_init()
 {
-static MB2UData mb2u_03_eucjpms [] = { {"", 0}, 
+static MB2UData mb2u_03_cp20932 [] = { {"", 0}, 
 {"\xA7\xE6", 0x000444}, {"\xA7\xE7", 0x000445}, {"\xA7\xE8", 0x000446}, {"\xA7\xE9", 0x000447}, 
 {"\xA7\xEA", 0x000448}, {"\xA7\xEB", 0x000449}, {"\xA7\xEC", 0x00044A}, {"\xA7\xED", 0x00044B}, 
 {"\xA7\xEE", 0x00044C}, {"\xA7\xEF", 0x00044D}, {"\xA7\xF0", 0x00044E}, {"\xA7\xF1", 0x00044F}, 
@@ -321,16 +321,16 @@ static MB2UData mb2u_03_eucjpms [] = { {"", 0},
 {"\xAD\xAB", 0x00246A}, {"\xAD\xAC", 0x00246B}, {"\xAD\xAD", 0x00246C}, {"\xAD\xAE", 0x00246D}, 
 
 };
- for(size_t i=1; i<sizeof(mb2u_03_eucjpms)/sizeof(MB2UData); ++i)
+ for(size_t i=1; i<sizeof(mb2u_03_cp20932)/sizeof(MB2UData); ++i)
  {
-	MB2UData& data = mb2u_03_eucjpms[i];
-	mb2u[enc_eucjpms][data.mbs] = data.u;
+	MB2UData& data = mb2u_03_cp20932[i];
+	mb2u[enc_cp20932][data.mbs] = data.u;
  }
 }
 
-void mb2u_04_eucjpms_init()
+void mb2u_04_cp20932_init()
 {
-static MB2UData mb2u_04_eucjpms [] = { {"", 0}, 
+static MB2UData mb2u_04_cp20932 [] = { {"", 0}, 
 {"\xAD\xAF", 0x00246E}, {"\xAD\xB0", 0x00246F}, {"\xAD\xB1", 0x002470}, {"\xAD\xB2", 0x002471}, 
 {"\xAD\xB3", 0x002472}, {"\xAD\xB4", 0x002473}, {"\xAD\xB5", 0x002160}, {"\xAD\xB6", 0x002161}, 
 {"\xAD\xB7", 0x002162}, {"\xAD\xB8", 0x002163}, {"\xAD\xB9", 0x002164}, {"\xAD\xBA", 0x002165}, 
@@ -397,16 +397,16 @@ static MB2UData mb2u_04_eucjpms [] = { {"", 0},
 {"\xB1\x25", 0x004F8E}, {"\xB1\x26", 0x004F90}, {"\xB1\x27", 0x004F92}, {"\xB1\x28", 0x004F93}, 
 
 };
- for(size_t i=1; i<sizeof(mb2u_04_eucjpms)/sizeof(MB2UData); ++i)
+ for(size_t i=1; i<sizeof(mb2u_04_cp20932)/sizeof(MB2UData); ++i)
  {
-	MB2UData& data = mb2u_04_eucjpms[i];
-	mb2u[enc_eucjpms][data.mbs] = data.u;
+	MB2UData& data = mb2u_04_cp20932[i];
+	mb2u[enc_cp20932][data.mbs] = data.u;
  }
 }
 
-void mb2u_05_eucjpms_init()
+void mb2u_05_cp20932_init()
 {
-static MB2UData mb2u_05_eucjpms [] = { {"", 0}, 
+static MB2UData mb2u_05_cp20932 [] = { {"", 0}, 
 {"\xB1\x29", 0x004F94}, {"\xB1\x2A", 0x004F97}, {"\xB1\x2B", 0x004F99}, {"\xB1\x2C", 0x004F9A}, 
 {"\xB1\x2D", 0x004F9E}, {"\xB1\x2E", 0x004F9F}, {"\xB1\x2F", 0x004FB2}, {"\xB1\x30", 0x004FB7}, 
 {"\xB1\x31", 0x004FB9}, {"\xB1\x32", 0x004FBB}, {"\xB1\x33", 0x004FBC}, {"\xB1\x34", 0x004FBD}, 
@@ -473,16 +473,16 @@ static MB2UData mb2u_05_eucjpms [] = { {"", 0},
 {"\xB2\x69", 0x005155}, {"\xB2\x6A", 0x005157}, {"\xB2\x6B", 0x005158}, {"\xB2\x6C", 0x00515F}, 
 
 };
- for(size_t i=1; i<sizeof(mb2u_05_eucjpms)/sizeof(MB2UData); ++i)
+ for(size_t i=1; i<sizeof(mb2u_05_cp20932)/sizeof(MB2UData); ++i)
  {
-	MB2UData& data = mb2u_05_eucjpms[i];
-	mb2u[enc_eucjpms][data.mbs] = data.u;
+	MB2UData& data = mb2u_05_cp20932[i];
+	mb2u[enc_cp20932][data.mbs] = data.u;
  }
 }
 
-void mb2u_06_eucjpms_init()
+void mb2u_06_cp20932_init()
 {
-static MB2UData mb2u_06_eucjpms [] = { {"", 0}, 
+static MB2UData mb2u_06_cp20932 [] = { {"", 0}, 
 {"\xB2\x6D", 0x005164}, {"\xB2\x6E", 0x005166}, {"\xB2\x6F", 0x00517E}, {"\xB2\x70", 0x005183}, 
 {"\xB2\x71", 0x005184}, {"\xB2\x72", 0x00518B}, {"\xB2\x73", 0x00518E}, {"\xB2\x74", 0x005198}, 
 {"\xB2\x75", 0x00519D}, {"\xB2\x76", 0x0051A1}, {"\xB2\x77", 0x0051A3}, {"\xB2\x78", 0x0051AD}, 
@@ -549,16 +549,16 @@ static MB2UData mb2u_06_eucjpms [] = { {"", 0},
 {"\xB3\xCF", 0x007A6B}, {"\xB3\xD0", 0x00899A}, {"\xB3\xD1", 0x0089D2}, {"\xB3\xD2", 0x008D6B}, 
 
 };
- for(size_t i=1; i<sizeof(mb2u_06_eucjpms)/sizeof(MB2UData); ++i)
+ for(size_t i=1; i<sizeof(mb2u_06_cp20932)/sizeof(MB2UData); ++i)
  {
-	MB2UData& data = mb2u_06_eucjpms[i];
-	mb2u[enc_eucjpms][data.mbs] = data.u;
+	MB2UData& data = mb2u_06_cp20932[i];
+	mb2u[enc_cp20932][data.mbs] = data.u;
  }
 }
 
-void mb2u_07_eucjpms_init()
+void mb2u_07_cp20932_init()
 {
-static MB2UData mb2u_07_eucjpms [] = { {"", 0}, 
+static MB2UData mb2u_07_cp20932 [] = { {"", 0}, 
 {"\xB3\xD3", 0x008F03}, {"\xB3\xD4", 0x0090ED}, {"\xB3\xD5", 0x0095A3}, {"\xB3\xD6", 0x009694}, 
 {"\xB3\xD7", 0x009769}, {"\xB3\xD8", 0x005B66}, {"\xB3\xD9", 0x005CB3}, {"\xB3\xDA", 0x00697D}, 
 {"\xB3\xDB", 0x00984D}, {"\xB3\xDC", 0x00984E}, {"\xB3\xDD", 0x00639B}, {"\xB3\xDE", 0x007B20}, 
@@ -625,16 +625,16 @@ static MB2UData mb2u_07_eucjpms [] = { {"", 0},
 {"\xB5\x35", 0x0054B9}, {"\xB5\x36", 0x0054BA}, {"\xB5\x37", 0x0054BB}, {"\xB5\x38", 0x0054BF}, 
 
 };
- for(size_t i=1; i<sizeof(mb2u_07_eucjpms)/sizeof(MB2UData); ++i)
+ for(size_t i=1; i<sizeof(mb2u_07_cp20932)/sizeof(MB2UData); ++i)
  {
-	MB2UData& data = mb2u_07_eucjpms[i];
-	mb2u[enc_eucjpms][data.mbs] = data.u;
+	MB2UData& data = mb2u_07_cp20932[i];
+	mb2u[enc_cp20932][data.mbs] = data.u;
  }
 }
 
-void mb2u_08_eucjpms_init()
+void mb2u_08_cp20932_init()
 {
-static MB2UData mb2u_08_eucjpms [] = { {"", 0}, 
+static MB2UData mb2u_08_cp20932 [] = { {"", 0}, 
 {"\xB5\x39", 0x0054C6}, {"\xB5\x3A", 0x0054CA}, {"\xB5\x3B", 0x0054CD}, {"\xB5\x3C", 0x0054CE}, 
 {"\xB5\x3D", 0x0054E0}, {"\xB5\x3E", 0x0054EA}, {"\xB5\x3F", 0x0054EC}, {"\xB5\x40", 0x0054EF}, 
 {"\xB5\x41", 0x0054F6}, {"\xB5\x42", 0x0054FC}, {"\xB5\x43", 0x0054FE}, {"\xB5\x44", 0x0054FF}, 
@@ -701,16 +701,16 @@ static MB2UData mb2u_08_eucjpms [] = { {"", 0},
 {"\xB6\x79", 0x0056E6}, {"\xB6\x7A", 0x0056E7}, {"\xB6\x7B", 0x0056E8}, {"\xB6\x7C", 0x0056F1}, 
 
 };
- for(size_t i=1; i<sizeof(mb2u_08_eucjpms)/sizeof(MB2UData); ++i)
+ for(size_t i=1; i<sizeof(mb2u_08_cp20932)/sizeof(MB2UData); ++i)
  {
-	MB2UData& data = mb2u_08_eucjpms[i];
-	mb2u[enc_eucjpms][data.mbs] = data.u;
+	MB2UData& data = mb2u_08_cp20932[i];
+	mb2u[enc_cp20932][data.mbs] = data.u;
  }
 }
 
-void mb2u_09_eucjpms_init()
+void mb2u_09_cp20932_init()
 {
-static MB2UData mb2u_09_eucjpms [] = { {"", 0}, 
+static MB2UData mb2u_09_cp20932 [] = { {"", 0}, 
 {"\xB6\x7D", 0x0056EB}, {"\xB6\x7E", 0x0056ED}, {"\xB6\xA1", 0x004F9B}, {"\xB6\xA2", 0x004FA0}, 
 {"\xB6\xA3", 0x0050D1}, {"\xB6\xA4", 0x005147}, {"\xB6\xA5", 0x007AF6}, {"\xB6\xA6", 0x005171}, 
 {"\xB6\xA7", 0x0051F6}, {"\xB6\xA8", 0x005354}, {"\xB6\xA9", 0x005321}, {"\xB6\xAA", 0x00537F}, 
@@ -777,16 +777,16 @@ static MB2UData mb2u_09_eucjpms [] = { {"", 0},
 {"\xB7\xDF", 0x009BE8}, {"\xB7\xE0", 0x005287}, {"\xB7\xE1", 0x00621F}, {"\xB7\xE2", 0x006483}, 
 
 };
- for(size_t i=1; i<sizeof(mb2u_09_eucjpms)/sizeof(MB2UData); ++i)
+ for(size_t i=1; i<sizeof(mb2u_09_cp20932)/sizeof(MB2UData); ++i)
  {
-	MB2UData& data = mb2u_09_eucjpms[i];
-	mb2u[enc_eucjpms][data.mbs] = data.u;
+	MB2UData& data = mb2u_09_cp20932[i];
+	mb2u[enc_cp20932][data.mbs] = data.u;
  }
 }
 
-void mb2u_0a_eucjpms_init()
+void mb2u_0a_cp20932_init()
 {
-static MB2UData mb2u_0a_eucjpms [] = { {"", 0}, 
+static MB2UData mb2u_0a_cp20932 [] = { {"", 0}, 
 {"\xB7\xE3", 0x006FC0}, {"\xB7\xE4", 0x009699}, {"\xB7\xE5", 0x006841}, {"\xB7\xE6", 0x005091}, 
 {"\xB7\xE7", 0x006B20}, {"\xB7\xE8", 0x006C7A}, {"\xB7\xE9", 0x006F54}, {"\xB7\xEA", 0x007A74}, 
 {"\xB7\xEB", 0x007D50}, {"\xB7\xEC", 0x008840}, {"\xB7\xED", 0x008A23}, {"\xB7\xEE", 0x006708}, 
@@ -853,16 +853,16 @@ static MB2UData mb2u_0a_eucjpms [] = { {"", 0},
 {"\xB9\x45", 0x0059E7}, {"\xB9\x46", 0x0059EE}, {"\xB9\x47", 0x0059EF}, {"\xB9\x48", 0x0059F1}, 
 
 };
- for(size_t i=1; i<sizeof(mb2u_0a_eucjpms)/sizeof(MB2UData); ++i)
+ for(size_t i=1; i<sizeof(mb2u_0a_cp20932)/sizeof(MB2UData); ++i)
  {
-	MB2UData& data = mb2u_0a_eucjpms[i];
-	mb2u[enc_eucjpms][data.mbs] = data.u;
+	MB2UData& data = mb2u_0a_cp20932[i];
+	mb2u[enc_cp20932][data.mbs] = data.u;
  }
 }
 
-void mb2u_0b_eucjpms_init()
+void mb2u_0b_cp20932_init()
 {
-static MB2UData mb2u_0b_eucjpms [] = { {"", 0}, 
+static MB2UData mb2u_0b_cp20932 [] = { {"", 0}, 
 {"\xB9\x49", 0x0059F2}, {"\xB9\x4A", 0x0059F4}, {"\xB9\x4B", 0x0059F7}, {"\xB9\x4C", 0x005A00}, 
 {"\xB9\x4D", 0x005A04}, {"\xB9\x4E", 0x005A0C}, {"\xB9\x4F", 0x005A0D}, {"\xB9\x50", 0x005A0E}, 
 {"\xB9\x51", 0x005A12}, {"\xB9\x52", 0x005A13}, {"\xB9\x53", 0x005A1E}, {"\xB9\x54", 0x005A23}, 
@@ -929,16 +929,16 @@ static MB2UData mb2u_0b_eucjpms [] = { {"", 0},
 {"\xBA\xAB", 0x006606}, {"\xBA\xAC", 0x006839}, {"\xBA\xAD", 0x0068B1}, {"\xBA\xAE", 0x006DF7}, 
 
 };
- for(size_t i=1; i<sizeof(mb2u_0b_eucjpms)/sizeof(MB2UData); ++i)
+ for(size_t i=1; i<sizeof(mb2u_0b_cp20932)/sizeof(MB2UData); ++i)
  {
-	MB2UData& data = mb2u_0b_eucjpms[i];
-	mb2u[enc_eucjpms][data.mbs] = data.u;
+	MB2UData& data = mb2u_0b_cp20932[i];
+	mb2u[enc_cp20932][data.mbs] = data.u;
  }
 }
 
-void mb2u_0c_eucjpms_init()
+void mb2u_0c_cp20932_init()
 {
-static MB2UData mb2u_0c_eucjpms [] = { {"", 0}, 
+static MB2UData mb2u_0c_cp20932 [] = { {"", 0}, 
 {"\xBA\xAF", 0x0075D5}, {"\xBA\xB0", 0x007D3A}, {"\xBA\xB1", 0x00826E}, {"\xBA\xB2", 0x009B42}, 
 {"\xBA\xB3", 0x004E9B}, {"\xBA\xB4", 0x004F50}, {"\xBA\xB5", 0x0053C9}, {"\xBA\xB6", 0x005506}, 
 {"\xBA\xB7", 0x005D6F}, {"\xBA\xB8", 0x005DE6}, {"\xBA\xB9", 0x005DEE}, {"\xBA\xBA", 0x0067FB}, 
@@ -1005,16 +1005,16 @@ static MB2UData mb2u_0c_eucjpms [] = { {"", 0},
 {"\xBB\xEF", 0x008A8C}, {"\xBB\xF0", 0x008AEE}, {"\xBB\xF1", 0x008CC7}, {"\xBB\xF2", 0x008CDC}, 
 
 };
- for(size_t i=1; i<sizeof(mb2u_0c_eucjpms)/sizeof(MB2UData); ++i)
+ for(size_t i=1; i<sizeof(mb2u_0c_cp20932)/sizeof(MB2UData); ++i)
  {
-	MB2UData& data = mb2u_0c_eucjpms[i];
-	mb2u[enc_eucjpms][data.mbs] = data.u;
+	MB2UData& data = mb2u_0c_cp20932[i];
+	mb2u[enc_cp20932][data.mbs] = data.u;
  }
 }
 
-void mb2u_0d_eucjpms_init()
+void mb2u_0d_cp20932_init()
 {
-static MB2UData mb2u_0d_eucjpms [] = { {"", 0}, 
+static MB2UData mb2u_0d_cp20932 [] = { {"", 0}, 
 {"\xBB\xF3", 0x0096CC}, {"\xBB\xF4", 0x0098FC}, {"\xBB\xF5", 0x006B6F}, {"\xBB\xF6", 0x004E8B}, 
 {"\xBB\xF7", 0x004F3C}, {"\xBB\xF8", 0x004F8D}, {"\xBB\xF9", 0x005150}, {"\xBB\xFA", 0x005B57}, 
 {"\xBB\xFB", 0x005BFA}, {"\xBB\xFC", 0x006148}, {"\xBB\xFD", 0x006301}, {"\xBB\xFE", 0x006642}, 
@@ -1081,16 +1081,16 @@ static MB2UData mb2u_0d_eucjpms [] = { {"", 0},
 {"\xBD\x55", 0x006014}, {"\xBD\x56", 0x006017}, {"\xBD\x57", 0x006018}, {"\xBD\x58", 0x00601A}, 
 
 };
- for(size_t i=1; i<sizeof(mb2u_0d_eucjpms)/sizeof(MB2UData); ++i)
+ for(size_t i=1; i<sizeof(mb2u_0d_cp20932)/sizeof(MB2UData); ++i)
  {
-	MB2UData& data = mb2u_0d_eucjpms[i];
-	mb2u[enc_eucjpms][data.mbs] = data.u;
+	MB2UData& data = mb2u_0d_cp20932[i];
+	mb2u[enc_cp20932][data.mbs] = data.u;
  }
 }
 
-void mb2u_0e_eucjpms_init()
+void mb2u_0e_cp20932_init()
 {
-static MB2UData mb2u_0e_eucjpms [] = { {"", 0}, 
+static MB2UData mb2u_0e_cp20932 [] = { {"", 0}, 
 {"\xBD\x59", 0x00601F}, {"\xBD\x5A", 0x006024}, {"\xBD\x5B", 0x00602D}, {"\xBD\x5C", 0x006033}, 
 {"\xBD\x5D", 0x006035}, {"\xBD\x5E", 0x006040}, {"\xBD\x5F", 0x006047}, {"\xBD\x60", 0x006048}, 
 {"\xBD\x61", 0x006049}, {"\xBD\x62", 0x00604C}, {"\xBD\x63", 0x006051}, {"\xBD\x64", 0x006054}, 
@@ -1157,16 +1157,16 @@ static MB2UData mb2u_0e_eucjpms [] = { {"", 0},
 {"\xBE\xBB", 0x00660C}, {"\xBE\xBC", 0x00662D}, {"\xBE\xBD", 0x006676}, {"\xBE\xBE", 0x00677E}, 
 
 };
- for(size_t i=1; i<sizeof(mb2u_0e_eucjpms)/sizeof(MB2UData); ++i)
+ for(size_t i=1; i<sizeof(mb2u_0e_cp20932)/sizeof(MB2UData); ++i)
  {
-	MB2UData& data = mb2u_0e_eucjpms[i];
-	mb2u[enc_eucjpms][data.mbs] = data.u;
+	MB2UData& data = mb2u_0e_cp20932[i];
+	mb2u[enc_cp20932][data.mbs] = data.u;
  }
 }
 
-void mb2u_0f_eucjpms_init()
+void mb2u_0f_cp20932_init()
 {
-static MB2UData mb2u_0f_eucjpms [] = { {"", 0}, 
+static MB2UData mb2u_0f_cp20932 [] = { {"", 0}, 
 {"\xBE\xBF", 0x0068A2}, {"\xBE\xC0", 0x006A1F}, {"\xBE\xC1", 0x006A35}, {"\xBE\xC2", 0x006CBC}, 
 {"\xBE\xC3", 0x006D88}, {"\xBE\xC4", 0x006E09}, {"\xBE\xC5", 0x006E58}, {"\xBE\xC6", 0x00713C}, 
 {"\xBE\xC7", 0x007126}, {"\xBE\xC8", 0x007167}, {"\xBE\xC9", 0x0075C7}, {"\xBE\xCA", 0x007701}, 
@@ -1233,16 +1233,16 @@ static MB2UData mb2u_0f_eucjpms [] = { {"", 0},
 {"\xC0\x21", 0x006378}, {"\xC0\x22", 0x00637C}, {"\xC0\x23", 0x00637D}, {"\xC0\x24", 0x00637F}, 
 
 };
- for(size_t i=1; i<sizeof(mb2u_0f_eucjpms)/sizeof(MB2UData); ++i)
+ for(size_t i=1; i<sizeof(mb2u_0f_cp20932)/sizeof(MB2UData); ++i)
  {
-	MB2UData& data = mb2u_0f_eucjpms[i];
-	mb2u[enc_eucjpms][data.mbs] = data.u;
+	MB2UData& data = mb2u_0f_cp20932[i];
+	mb2u[enc_cp20932][data.mbs] = data.u;
  }
 }
 
-void mb2u_10_eucjpms_init()
+void mb2u_10_cp20932_init()
 {
-static MB2UData mb2u_10_eucjpms [] = { {"", 0}, 
+static MB2UData mb2u_10_cp20932 [] = { {"", 0}, 
 {"\xC0\x25", 0x006382}, {"\xC0\x26", 0x006384}, {"\xC0\x27", 0x006387}, {"\xC0\x28", 0x00638A}, 
 {"\xC0\x29", 0x006390}, {"\xC0\x2A", 0x006394}, {"\xC0\x2B", 0x006395}, {"\xC0\x2C", 0x006399}, 
 {"\xC0\x2D", 0x00639A}, {"\xC0\x2E", 0x00639E}, {"\xC0\x2F", 0x0063A4}, {"\xC0\x30", 0x0063A6}, 
@@ -1309,16 +1309,16 @@ static MB2UData mb2u_10_eucjpms [] = { {"", 0},
 {"\xC1\x65", 0x0065C2}, {"\xC1\x66", 0x0065C8}, {"\xC1\x67", 0x0065C9}, {"\xC1\x68", 0x0065CE}, 
 
 };
- for(size_t i=1; i<sizeof(mb2u_10_eucjpms)/sizeof(MB2UData); ++i)
+ for(size_t i=1; i<sizeof(mb2u_10_cp20932)/sizeof(MB2UData); ++i)
  {
-	MB2UData& data = mb2u_10_eucjpms[i];
-	mb2u[enc_eucjpms][data.mbs] = data.u;
+	MB2UData& data = mb2u_10_cp20932[i];
+	mb2u[enc_cp20932][data.mbs] = data.u;
  }
 }
 
-void mb2u_11_eucjpms_init()
+void mb2u_11_cp20932_init()
 {
-static MB2UData mb2u_11_eucjpms [] = { {"", 0}, 
+static MB2UData mb2u_11_cp20932 [] = { {"", 0}, 
 {"\xC1\x69", 0x0065D0}, {"\xC1\x6A", 0x0065D4}, {"\xC1\x6B", 0x0065D6}, {"\xC1\x6C", 0x0065D8}, 
 {"\xC1\x6D", 0x0065DF}, {"\xC1\x6E", 0x0065F0}, {"\xC1\x6F", 0x0065F2}, {"\xC1\x70", 0x0065F4}, 
 {"\xC1\x71", 0x0065F5}, {"\xC1\x72", 0x0065F9}, {"\xC1\x73", 0x0065FE}, {"\xC1\x74", 0x0065FF}, 
@@ -1385,16 +1385,16 @@ static MB2UData mb2u_11_eucjpms [] = { {"", 0},
 {"\xC2\xCB", 0x009640}, {"\xC2\xCC", 0x0099C4}, {"\xC2\xCD", 0x009A28}, {"\xC2\xCE", 0x004F53}, 
 
 };
- for(size_t i=1; i<sizeof(mb2u_11_eucjpms)/sizeof(MB2UData); ++i)
+ for(size_t i=1; i<sizeof(mb2u_11_cp20932)/sizeof(MB2UData); ++i)
  {
-	MB2UData& data = mb2u_11_eucjpms[i];
-	mb2u[enc_eucjpms][data.mbs] = data.u;
+	MB2UData& data = mb2u_11_cp20932[i];
+	mb2u[enc_cp20932][data.mbs] = data.u;
  }
 }
 
-void mb2u_12_eucjpms_init()
+void mb2u_12_cp20932_init()
 {
-static MB2UData mb2u_12_eucjpms [] = { {"", 0}, 
+static MB2UData mb2u_12_cp20932 [] = { {"", 0}, 
 {"\xC2\xCF", 0x005806}, {"\xC2\xD0", 0x005BFE}, {"\xC2\xD1", 0x008010}, {"\xC2\xD2", 0x005CB1}, 
 {"\xC2\xD3", 0x005E2F}, {"\xC2\xD4", 0x005F85}, {"\xC2\xD5", 0x006020}, {"\xC2\xD6", 0x00614B}, 
 {"\xC2\xD7", 0x006234}, {"\xC2\xD8", 0x0066FF}, {"\xC2\xD9", 0x006CF0}, {"\xC2\xDA", 0x006EDE}, 
@@ -1461,16 +1461,16 @@ static MB2UData mb2u_12_eucjpms [] = { {"", 0},
 {"\xC4\x31", 0x0068F6}, {"\xC4\x32", 0x0068FB}, {"\xC4\x33", 0x0068FC}, {"\xC4\x34", 0x0068FD}, 
 
 };
- for(size_t i=1; i<sizeof(mb2u_12_eucjpms)/sizeof(MB2UData); ++i)
+ for(size_t i=1; i<sizeof(mb2u_12_cp20932)/sizeof(MB2UData); ++i)
  {
-	MB2UData& data = mb2u_12_eucjpms[i];
-	mb2u[enc_eucjpms][data.mbs] = data.u;
+	MB2UData& data = mb2u_12_cp20932[i];
+	mb2u[enc_cp20932][data.mbs] = data.u;
  }
 }
 
-void mb2u_13_eucjpms_init()
+void mb2u_13_cp20932_init()
 {
-static MB2UData mb2u_13_eucjpms [] = { {"", 0}, 
+static MB2UData mb2u_13_cp20932 [] = { {"", 0}, 
 {"\xC4\x35", 0x006906}, {"\xC4\x36", 0x006909}, {"\xC4\x37", 0x00690A}, {"\xC4\x38", 0x006910}, 
 {"\xC4\x39", 0x006911}, {"\xC4\x3A", 0x006913}, {"\xC4\x3B", 0x006916}, {"\xC4\x3C", 0x006917}, 
 {"\xC4\x3D", 0x006931}, {"\xC4\x3E", 0x006933}, {"\xC4\x3F", 0x006935}, {"\xC4\x40", 0x006938}, 
@@ -1537,16 +1537,16 @@ static MB2UData mb2u_13_eucjpms [] = { {"", 0},
 {"\xC5\x75", 0x006B56}, {"\xC5\x76", 0x006B58}, {"\xC5\x77", 0x006B5D}, {"\xC5\x78", 0x006B60}, 
 
 };
- for(size_t i=1; i<sizeof(mb2u_13_eucjpms)/sizeof(MB2UData); ++i)
+ for(size_t i=1; i<sizeof(mb2u_13_cp20932)/sizeof(MB2UData); ++i)
  {
-	MB2UData& data = mb2u_13_eucjpms[i];
-	mb2u[enc_eucjpms][data.mbs] = data.u;
+	MB2UData& data = mb2u_13_cp20932[i];
+	mb2u[enc_cp20932][data.mbs] = data.u;
  }
 }
 
-void mb2u_14_eucjpms_init()
+void mb2u_14_cp20932_init()
 {
-static MB2UData mb2u_14_eucjpms [] = { {"", 0}, 
+static MB2UData mb2u_14_cp20932 [] = { {"", 0}, 
 {"\xC5\x79", 0x006B67}, {"\xC5\x7A", 0x006B6B}, {"\xC5\x7B", 0x006B6E}, {"\xC5\x7C", 0x006B70}, 
 {"\xC5\x7D", 0x006B75}, {"\xC5\x7E", 0x006B7D}, {"\xC5\xA1", 0x0090B8}, {"\xC5\xA2", 0x00912D}, 
 {"\xC5\xA3", 0x0091D8}, {"\xC5\xA4", 0x009F0E}, {"\xC5\xA5", 0x006CE5}, {"\xC5\xA6", 0x006458}, 
@@ -1613,16 +1613,16 @@ static MB2UData mb2u_14_eucjpms [] = { {"", 0},
 {"\xC6\xDB", 0x009041}, {"\xC6\xDC", 0x009813}, {"\xC6\xDD", 0x005451}, {"\xC6\xDE", 0x0066C7}, 
 
 };
- for(size_t i=1; i<sizeof(mb2u_14_eucjpms)/sizeof(MB2UData); ++i)
+ for(size_t i=1; i<sizeof(mb2u_14_cp20932)/sizeof(MB2UData); ++i)
  {
-	MB2UData& data = mb2u_14_eucjpms[i];
-	mb2u[enc_eucjpms][data.mbs] = data.u;
+	MB2UData& data = mb2u_14_cp20932[i];
+	mb2u[enc_cp20932][data.mbs] = data.u;
  }
 }
 
-void mb2u_15_eucjpms_init()
+void mb2u_15_cp20932_init()
 {
-static MB2UData mb2u_15_eucjpms [] = { {"", 0}, 
+static MB2UData mb2u_15_cp20932 [] = { {"", 0}, 
 {"\xC6\xDF", 0x00920D}, {"\xC6\xE0", 0x005948}, {"\xC6\xE1", 0x0090A3}, {"\xC6\xE2", 0x005185}, 
 {"\xC6\xE3", 0x004E4D}, {"\xC6\xE4", 0x0051EA}, {"\xC6\xE5", 0x008599}, {"\xC6\xE6", 0x008B0E}, 
 {"\xC6\xE7", 0x007058}, {"\xC6\xE8", 0x00637A}, {"\xC6\xE9", 0x00934B}, {"\xC6\xEA", 0x006962}, 
@@ -1689,16 +1689,16 @@ static MB2UData mb2u_15_eucjpms [] = { {"", 0},
 {"\xC8\x41", 0x006F04}, {"\xC8\x42", 0x006F08}, {"\xC8\x43", 0x006F0A}, {"\xC8\x44", 0x006F0C}, 
 
 };
- for(size_t i=1; i<sizeof(mb2u_15_eucjpms)/sizeof(MB2UData); ++i)
+ for(size_t i=1; i<sizeof(mb2u_15_cp20932)/sizeof(MB2UData); ++i)
  {
-	MB2UData& data = mb2u_15_eucjpms[i];
-	mb2u[enc_eucjpms][data.mbs] = data.u;
+	MB2UData& data = mb2u_15_cp20932[i];
+	mb2u[enc_cp20932][data.mbs] = data.u;
  }
 }
 
-void mb2u_16_eucjpms_init()
+void mb2u_16_cp20932_init()
 {
-static MB2UData mb2u_16_eucjpms [] = { {"", 0}, 
+static MB2UData mb2u_16_cp20932 [] = { {"", 0}, 
 {"\xC8\x45", 0x006F0D}, {"\xC8\x46", 0x006F16}, {"\xC8\x47", 0x006F18}, {"\xC8\x48", 0x006F1A}, 
 {"\xC8\x49", 0x006F1B}, {"\xC8\x4A", 0x006F26}, {"\xC8\x4B", 0x006F29}, {"\xC8\x4C", 0x006F2A}, 
 {"\xC8\x4D", 0x006F2F}, {"\xC8\x4E", 0x006F30}, {"\xC8\x4F", 0x006F33}, {"\xC8\x50", 0x006F36}, 
@@ -1765,16 +1765,16 @@ static MB2UData mb2u_16_eucjpms [] = { {"", 0},
 {"\xC9\xA7", 0x005F66}, {"\xC9\xA8", 0x00819D}, {"\xC9\xA9", 0x0083F1}, {"\xC9\xAA", 0x008098}, 
 
 };
- for(size_t i=1; i<sizeof(mb2u_16_eucjpms)/sizeof(MB2UData); ++i)
+ for(size_t i=1; i<sizeof(mb2u_16_cp20932)/sizeof(MB2UData); ++i)
  {
-	MB2UData& data = mb2u_16_eucjpms[i];
-	mb2u[enc_eucjpms][data.mbs] = data.u;
+	MB2UData& data = mb2u_16_cp20932[i];
+	mb2u[enc_cp20932][data.mbs] = data.u;
  }
 }
 
-void mb2u_17_eucjpms_init()
+void mb2u_17_cp20932_init()
 {
-static MB2UData mb2u_17_eucjpms [] = { {"", 0}, 
+static MB2UData mb2u_17_cp20932 [] = { {"", 0}, 
 {"\xC9\xAB", 0x005F3C}, {"\xC9\xAC", 0x005FC5}, {"\xC9\xAD", 0x007562}, {"\xC9\xAE", 0x007B46}, 
 {"\xC9\xAF", 0x00903C}, {"\xC9\xB0", 0x006867}, {"\xC9\xB1", 0x0059EB}, {"\xC9\xB2", 0x005A9B}, 
 {"\xC9\xB3", 0x007D10}, {"\xC9\xB4", 0x00767E}, {"\xC9\xB5", 0x008B2C}, {"\xC9\xB6", 0x004FF5}, 
@@ -1841,16 +1841,16 @@ static MB2UData mb2u_17_eucjpms [] = { {"", 0},
 {"\xCA\xEB", 0x0066AE}, {"\xCA\xEC", 0x006BCD}, {"\xCA\xED", 0x007C3F}, {"\xCA\xEE", 0x0083E9}, 
 
 };
- for(size_t i=1; i<sizeof(mb2u_17_eucjpms)/sizeof(MB2UData); ++i)
+ for(size_t i=1; i<sizeof(mb2u_17_cp20932)/sizeof(MB2UData); ++i)
  {
-	MB2UData& data = mb2u_17_eucjpms[i];
-	mb2u[enc_eucjpms][data.mbs] = data.u;
+	MB2UData& data = mb2u_17_cp20932[i];
+	mb2u[enc_cp20932][data.mbs] = data.u;
  }
 }
 
-void mb2u_18_eucjpms_init()
+void mb2u_18_cp20932_init()
 {
-static MB2UData mb2u_18_eucjpms [] = { {"", 0}, 
+static MB2UData mb2u_18_cp20932 [] = { {"", 0}, 
 {"\xCA\xEF", 0x005023}, {"\xCA\xF0", 0x004FF8}, {"\xCA\xF1", 0x005305}, {"\xCA\xF2", 0x005446}, 
 {"\xCA\xF3", 0x005831}, {"\xCA\xF4", 0x005949}, {"\xCA\xF5", 0x005B9D}, {"\xCA\xF6", 0x005CF0}, 
 {"\xCA\xF7", 0x005CEF}, {"\xCA\xF8", 0x005D29}, {"\xCA\xF9", 0x005E96}, {"\xCA\xFA", 0x0062B1}, 
@@ -1917,16 +1917,16 @@ static MB2UData mb2u_18_eucjpms [] = { {"", 0},
 {"\xCC\x51", 0x00748F}, {"\xCC\x52", 0x007490}, {"\xCC\x53", 0x007491}, {"\xCC\x54", 0x007492}, 
 
 };
- for(size_t i=1; i<sizeof(mb2u_18_eucjpms)/sizeof(MB2UData); ++i)
+ for(size_t i=1; i<sizeof(mb2u_18_cp20932)/sizeof(MB2UData); ++i)
  {
-	MB2UData& data = mb2u_18_eucjpms[i];
-	mb2u[enc_eucjpms][data.mbs] = data.u;
+	MB2UData& data = mb2u_18_cp20932[i];
+	mb2u[enc_cp20932][data.mbs] = data.u;
  }
 }
 
-void mb2u_19_eucjpms_init()
+void mb2u_19_cp20932_init()
 {
-static MB2UData mb2u_19_eucjpms [] = { {"", 0}, 
+static MB2UData mb2u_19_cp20932 [] = { {"", 0}, 
 {"\xCC\x55", 0x007498}, {"\xCC\x56", 0x007499}, {"\xCC\x57", 0x00749A}, {"\xCC\x58", 0x00749C}, 
 {"\xCC\x59", 0x00749F}, {"\xCC\x5A", 0x0074A0}, {"\xCC\x5B", 0x0074A1}, {"\xCC\x5C", 0x0074A3}, 
 {"\xCC\x5D", 0x0074A6}, {"\xCC\x5E", 0x0074A8}, {"\xCC\x5F", 0x0074A9}, {"\xCC\x60", 0x0074AA}, 
@@ -1993,16 +1993,16 @@ static MB2UData mb2u_19_eucjpms [] = { {"", 0},
 {"\xCD\xB7", 0x00904A}, {"\xCD\xB8", 0x009091}, {"\xCD\xB9", 0x0090F5}, {"\xCD\xBA", 0x0096C4}, 
 
 };
- for(size_t i=1; i<sizeof(mb2u_19_eucjpms)/sizeof(MB2UData); ++i)
+ for(size_t i=1; i<sizeof(mb2u_19_cp20932)/sizeof(MB2UData); ++i)
  {
-	MB2UData& data = mb2u_19_eucjpms[i];
-	mb2u[enc_eucjpms][data.mbs] = data.u;
+	MB2UData& data = mb2u_19_cp20932[i];
+	mb2u[enc_cp20932][data.mbs] = data.u;
  }
 }
 
-void mb2u_1a_eucjpms_init()
+void mb2u_1a_cp20932_init()
 {
-static MB2UData mb2u_1a_eucjpms [] = { {"", 0}, 
+static MB2UData mb2u_1a_cp20932 [] = { {"", 0}, 
 {"\xCD\xBB", 0x00878D}, {"\xCD\xBC", 0x005915}, {"\xCD\xBD", 0x004E88}, {"\xCD\xBE", 0x004F59}, 
 {"\xCD\xBF", 0x004E0E}, {"\xCD\xC0", 0x008A89}, {"\xCD\xC1", 0x008F3F}, {"\xCD\xC2", 0x009810}, 
 {"\xCD\xC3", 0x0050AD}, {"\xCD\xC4", 0x005E7C}, {"\xCD\xC5", 0x005996}, {"\xCD\xC6", 0x005BB9}, 
@@ -2069,16 +2069,16 @@ static MB2UData mb2u_1a_eucjpms [] = { {"", 0},
 {"\xCE\xFB", 0x007149}, {"\xCE\xFC", 0x007C3E}, {"\xCE\xFD", 0x007DF4}, {"\xCE\xFE", 0x00806F}, 
 
 };
- for(size_t i=1; i<sizeof(mb2u_1a_eucjpms)/sizeof(MB2UData); ++i)
+ for(size_t i=1; i<sizeof(mb2u_1a_cp20932)/sizeof(MB2UData); ++i)
  {
-	MB2UData& data = mb2u_1a_eucjpms[i];
-	mb2u[enc_eucjpms][data.mbs] = data.u;
+	MB2UData& data = mb2u_1a_cp20932[i];
+	mb2u[enc_cp20932][data.mbs] = data.u;
  }
 }
 
-void mb2u_1b_eucjpms_init()
+void mb2u_1b_cp20932_init()
 {
-static MB2UData mb2u_1b_eucjpms [] = { {"", 0}, 
+static MB2UData mb2u_1b_cp20932 [] = { {"", 0}, 
 {"\xCF\x21", 0x007764}, {"\xCF\x22", 0x007767}, {"\xCF\x23", 0x00776A}, {"\xCF\x24", 0x00776C}, 
 {"\xCF\x25", 0x007770}, {"\xCF\x26", 0x007772}, {"\xCF\x27", 0x007773}, {"\xCF\x28", 0x007774}, 
 {"\xCF\x29", 0x00777A}, {"\xCF\x2A", 0x00777D}, {"\xCF\x2B", 0x007780}, {"\xCF\x2C", 0x007784}, 
@@ -2145,16 +2145,16 @@ static MB2UData mb2u_1b_eucjpms [] = { {"", 0},
 {"\xD0\xAE", 0x008C6B}, {"\xD0\xAF", 0x004E8A}, {"\xD0\xB0", 0x008212}, {"\xD0\xB1", 0x005F0D}, 
 
 };
- for(size_t i=1; i<sizeof(mb2u_1b_eucjpms)/sizeof(MB2UData); ++i)
+ for(size_t i=1; i<sizeof(mb2u_1b_cp20932)/sizeof(MB2UData); ++i)
  {
-	MB2UData& data = mb2u_1b_eucjpms[i];
-	mb2u[enc_eucjpms][data.mbs] = data.u;
+	MB2UData& data = mb2u_1b_cp20932[i];
+	mb2u[enc_cp20932][data.mbs] = data.u;
  }
 }
 
-void mb2u_1c_eucjpms_init()
+void mb2u_1c_cp20932_init()
 {
-static MB2UData mb2u_1c_eucjpms [] = { {"", 0}, 
+static MB2UData mb2u_1c_cp20932 [] = { {"", 0}, 
 {"\xD0\xB2", 0x004E8E}, {"\xD0\xB3", 0x004E9E}, {"\xD0\xB4", 0x004E9F}, {"\xD0\xB5", 0x004EA0}, 
 {"\xD0\xB6", 0x004EA2}, {"\xD0\xB7", 0x004EB0}, {"\xD0\xB8", 0x004EB3}, {"\xD0\xB9", 0x004EB6}, 
 {"\xD0\xBA", 0x004ECE}, {"\xD0\xBB", 0x004ECD}, {"\xD0\xBC", 0x004EC4}, {"\xD0\xBD", 0x004EC6}, 
@@ -2221,16 +2221,16 @@ static MB2UData mb2u_1c_eucjpms [] = { {"", 0},
 {"\xD1\xF2", 0x00526A}, {"\xD1\xF3", 0x005274}, {"\xD1\xF4", 0x005269}, {"\xD1\xF5", 0x005273}, 
 
 };
- for(size_t i=1; i<sizeof(mb2u_1c_eucjpms)/sizeof(MB2UData); ++i)
+ for(size_t i=1; i<sizeof(mb2u_1c_cp20932)/sizeof(MB2UData); ++i)
  {
-	MB2UData& data = mb2u_1c_eucjpms[i];
-	mb2u[enc_eucjpms][data.mbs] = data.u;
+	MB2UData& data = mb2u_1c_cp20932[i];
+	mb2u[enc_cp20932][data.mbs] = data.u;
  }
 }
 
-void mb2u_1d_eucjpms_init()
+void mb2u_1d_cp20932_init()
 {
-static MB2UData mb2u_1d_eucjpms [] = { {"", 0}, 
+static MB2UData mb2u_1d_cp20932 [] = { {"", 0}, 
 {"\xD1\xF6", 0x00527F}, {"\xD1\xF7", 0x00527D}, {"\xD1\xF8", 0x00528D}, {"\xD1\xF9", 0x005294}, 
 {"\xD1\xFA", 0x005292}, {"\xD1\xFB", 0x005271}, {"\xD1\xFC", 0x005288}, {"\xD1\xFD", 0x005291}, 
 {"\xD1\xFE", 0x008FA8}, {"\xD2\x21", 0x007B31}, {"\xD2\x22", 0x007B34}, {"\xD2\x23", 0x007B3D}, 
@@ -2297,16 +2297,16 @@ static MB2UData mb2u_1d_eucjpms [] = { {"", 0},
 {"\xD3\x58", 0x007D2A}, {"\xD3\x59", 0x007D2D}, {"\xD3\x5A", 0x007D31}, {"\xD3\x5B", 0x007D3C}, 
 
 };
- for(size_t i=1; i<sizeof(mb2u_1d_eucjpms)/sizeof(MB2UData); ++i)
+ for(size_t i=1; i<sizeof(mb2u_1d_cp20932)/sizeof(MB2UData); ++i)
  {
-	MB2UData& data = mb2u_1d_eucjpms[i];
-	mb2u[enc_eucjpms][data.mbs] = data.u;
+	MB2UData& data = mb2u_1d_cp20932[i];
+	mb2u[enc_cp20932][data.mbs] = data.u;
  }
 }
 
-void mb2u_1e_eucjpms_init()
+void mb2u_1e_cp20932_init()
 {
-static MB2UData mb2u_1e_eucjpms [] = { {"", 0}, 
+static MB2UData mb2u_1e_cp20932 [] = { {"", 0}, 
 {"\xD3\x5C", 0x007D3D}, {"\xD3\x5D", 0x007D3E}, {"\xD3\x5E", 0x007D40}, {"\xD3\x5F", 0x007D41}, 
 {"\xD3\x60", 0x007D47}, {"\xD3\x61", 0x007D48}, {"\xD3\x62", 0x007D4D}, {"\xD3\x63", 0x007D51}, 
 {"\xD3\x64", 0x007D53}, {"\xD3\x65", 0x007D57}, {"\xD3\x66", 0x007D59}, {"\xD3\x67", 0x007D5A}, 
@@ -2373,16 +2373,16 @@ static MB2UData mb2u_1e_eucjpms [] = { {"", 0},
 {"\xD4\xBE", 0x0057D4}, {"\xD4\xBF", 0x0057D2}, {"\xD4\xC0", 0x0057D3}, {"\xD4\xC1", 0x00580A}, 
 
 };
- for(size_t i=1; i<sizeof(mb2u_1e_eucjpms)/sizeof(MB2UData); ++i)
+ for(size_t i=1; i<sizeof(mb2u_1e_cp20932)/sizeof(MB2UData); ++i)
  {
-	MB2UData& data = mb2u_1e_eucjpms[i];
-	mb2u[enc_eucjpms][data.mbs] = data.u;
+	MB2UData& data = mb2u_1e_cp20932[i];
+	mb2u[enc_cp20932][data.mbs] = data.u;
  }
 }
 
-void mb2u_1f_eucjpms_init()
+void mb2u_1f_cp20932_init()
 {
-static MB2UData mb2u_1f_eucjpms [] = { {"", 0}, 
+static MB2UData mb2u_1f_cp20932 [] = { {"", 0}, 
 {"\xD4\xC2", 0x0057D6}, {"\xD4\xC3", 0x0057E3}, {"\xD4\xC4", 0x00580B}, {"\xD4\xC5", 0x005819}, 
 {"\xD4\xC6", 0x00581D}, {"\xD4\xC7", 0x005872}, {"\xD4\xC8", 0x005821}, {"\xD4\xC9", 0x005862}, 
 {"\xD4\xCA", 0x00584B}, {"\xD4\xCB", 0x005870}, {"\xD4\xCC", 0x006BC0}, {"\xD4\xCD", 0x005852}, 
@@ -2449,16 +2449,16 @@ static MB2UData mb2u_1f_eucjpms [] = { {"", 0},
 {"\xD6\x24", 0x0080F6}, {"\xD6\x25", 0x0080F9}, {"\xD6\x26", 0x0080FA}, {"\xD6\x27", 0x0080FE}, 
 
 };
- for(size_t i=1; i<sizeof(mb2u_1f_eucjpms)/sizeof(MB2UData); ++i)
+ for(size_t i=1; i<sizeof(mb2u_1f_cp20932)/sizeof(MB2UData); ++i)
  {
-	MB2UData& data = mb2u_1f_eucjpms[i];
-	mb2u[enc_eucjpms][data.mbs] = data.u;
+	MB2UData& data = mb2u_1f_cp20932[i];
+	mb2u[enc_cp20932][data.mbs] = data.u;
  }
 }
 
-void mb2u_20_eucjpms_init()
+void mb2u_20_cp20932_init()
 {
-static MB2UData mb2u_20_eucjpms [] = { {"", 0}, 
+static MB2UData mb2u_20_cp20932 [] = { {"", 0}, 
 {"\xD6\x28", 0x008103}, {"\xD6\x29", 0x00810B}, {"\xD6\x2A", 0x008116}, {"\xD6\x2B", 0x008117}, 
 {"\xD6\x2C", 0x008118}, {"\xD6\x2D", 0x00811C}, {"\xD6\x2E", 0x00811E}, {"\xD6\x2F", 0x008120}, 
 {"\xD6\x30", 0x008124}, {"\xD6\x31", 0x008127}, {"\xD6\x32", 0x00812C}, {"\xD6\x33", 0x008130}, 
@@ -2525,16 +2525,16 @@ static MB2UData mb2u_20_eucjpms [] = { {"", 0},
 {"\xD7\x68", 0x008321}, {"\xD7\x69", 0x008322}, {"\xD7\x6A", 0x00832C}, {"\xD7\x6B", 0x00832D}, 
 
 };
- for(size_t i=1; i<sizeof(mb2u_20_eucjpms)/sizeof(MB2UData); ++i)
+ for(size_t i=1; i<sizeof(mb2u_20_cp20932)/sizeof(MB2UData); ++i)
  {
-	MB2UData& data = mb2u_20_eucjpms[i];
-	mb2u[enc_eucjpms][data.mbs] = data.u;
+	MB2UData& data = mb2u_20_cp20932[i];
+	mb2u[enc_cp20932][data.mbs] = data.u;
  }
 }
 
-void mb2u_21_eucjpms_init()
+void mb2u_21_cp20932_init()
 {
-static MB2UData mb2u_21_eucjpms [] = { {"", 0}, 
+static MB2UData mb2u_21_cp20932 [] = { {"", 0}, 
 {"\xD7\x6C", 0x00832E}, {"\xD7\x6D", 0x008330}, {"\xD7\x6E", 0x008333}, {"\xD7\x6F", 0x008337}, 
 {"\xD7\x70", 0x00833A}, {"\xD7\x71", 0x00833C}, {"\xD7\x72", 0x00833D}, {"\xD7\x73", 0x008342}, 
 {"\xD7\x74", 0x008343}, {"\xD7\x75", 0x008344}, {"\xD7\x76", 0x008347}, {"\xD7\x77", 0x00834D}, 
@@ -2601,16 +2601,16 @@ static MB2UData mb2u_21_eucjpms [] = { {"", 0},
 {"\xD8\xCE", 0x006158}, {"\xD8\xCF", 0x006159}, {"\xD8\xD0", 0x00615A}, {"\xD8\xD1", 0x00616B}, 
 
 };
- for(size_t i=1; i<sizeof(mb2u_21_eucjpms)/sizeof(MB2UData); ++i)
+ for(size_t i=1; i<sizeof(mb2u_21_cp20932)/sizeof(MB2UData); ++i)
  {
-	MB2UData& data = mb2u_21_eucjpms[i];
-	mb2u[enc_eucjpms][data.mbs] = data.u;
+	MB2UData& data = mb2u_21_cp20932[i];
+	mb2u[enc_cp20932][data.mbs] = data.u;
  }
 }
 
-void mb2u_22_eucjpms_init()
+void mb2u_22_cp20932_init()
 {
-static MB2UData mb2u_22_eucjpms [] = { {"", 0}, 
+static MB2UData mb2u_22_cp20932 [] = { {"", 0}, 
 {"\xD8\xD2", 0x006174}, {"\xD8\xD3", 0x00616F}, {"\xD8\xD4", 0x006165}, {"\xD8\xD5", 0x006171}, 
 {"\xD8\xD6", 0x00615F}, {"\xD8\xD7", 0x00615D}, {"\xD8\xD8", 0x006153}, {"\xD8\xD9", 0x006175}, 
 {"\xD8\xDA", 0x006199}, {"\xD8\xDB", 0x006196}, {"\xD8\xDC", 0x006187}, {"\xD8\xDD", 0x0061AC}, 
@@ -2677,16 +2677,16 @@ static MB2UData mb2u_22_eucjpms [] = { {"", 0},
 {"\xDA\x34", 0x00863C}, {"\xDA\x35", 0x00863D}, {"\xDA\x36", 0x008640}, {"\xDA\x37", 0x008642}, 
 
 };
- for(size_t i=1; i<sizeof(mb2u_22_eucjpms)/sizeof(MB2UData); ++i)
+ for(size_t i=1; i<sizeof(mb2u_22_cp20932)/sizeof(MB2UData); ++i)
  {
-	MB2UData& data = mb2u_22_eucjpms[i];
-	mb2u[enc_eucjpms][data.mbs] = data.u;
+	MB2UData& data = mb2u_22_cp20932[i];
+	mb2u[enc_cp20932][data.mbs] = data.u;
  }
 }
 
-void mb2u_23_eucjpms_init()
+void mb2u_23_cp20932_init()
 {
-static MB2UData mb2u_23_eucjpms [] = { {"", 0}, 
+static MB2UData mb2u_23_cp20932 [] = { {"", 0}, 
 {"\xDA\x38", 0x008646}, {"\xDA\x39", 0x008652}, {"\xDA\x3A", 0x008653}, {"\xDA\x3B", 0x008656}, 
 {"\xDA\x3C", 0x008657}, {"\xDA\x3D", 0x008658}, {"\xDA\x3E", 0x008659}, {"\xDA\x3F", 0x00865D}, 
 {"\xDA\x40", 0x008660}, {"\xDA\x41", 0x008661}, {"\xDA\x42", 0x008662}, {"\xDA\x43", 0x008663}, 
@@ -2753,16 +2753,16 @@ static MB2UData mb2u_23_eucjpms [] = { {"", 0},
 {"\xDB\x78", 0x00881F}, {"\xDB\x79", 0x008828}, {"\xDB\x7A", 0x00882D}, {"\xDB\x7B", 0x00882E}, 
 
 };
- for(size_t i=1; i<sizeof(mb2u_23_eucjpms)/sizeof(MB2UData); ++i)
+ for(size_t i=1; i<sizeof(mb2u_23_cp20932)/sizeof(MB2UData); ++i)
  {
-	MB2UData& data = mb2u_23_eucjpms[i];
-	mb2u[enc_eucjpms][data.mbs] = data.u;
+	MB2UData& data = mb2u_23_cp20932[i];
+	mb2u[enc_cp20932][data.mbs] = data.u;
  }
 }
 
-void mb2u_24_eucjpms_init()
+void mb2u_24_cp20932_init()
 {
-static MB2UData mb2u_24_eucjpms [] = { {"", 0}, 
+static MB2UData mb2u_24_cp20932 [] = { {"", 0}, 
 {"\xDB\x7C", 0x008830}, {"\xDB\x7D", 0x008832}, {"\xDB\x7E", 0x008835}, {"\xDB\xA1", 0x0066C4}, 
 {"\xDB\xA2", 0x0066B8}, {"\xDB\xA3", 0x0066D6}, {"\xDB\xA4", 0x0066DA}, {"\xDB\xA5", 0x0066E0}, 
 {"\xDB\xA6", 0x00663F}, {"\xDB\xA7", 0x0066E6}, {"\xDB\xA8", 0x0066E9}, {"\xDB\xA9", 0x0066F0}, 
@@ -2829,16 +2829,16 @@ static MB2UData mb2u_24_eucjpms [] = { {"", 0},
 {"\xDC\xDE", 0x006B0A}, {"\xDC\xDF", 0x0069F9}, {"\xDC\xE0", 0x0069F2}, {"\xDC\xE1", 0x0069E7}, 
 
 };
- for(size_t i=1; i<sizeof(mb2u_24_eucjpms)/sizeof(MB2UData); ++i)
+ for(size_t i=1; i<sizeof(mb2u_24_cp20932)/sizeof(MB2UData); ++i)
  {
-	MB2UData& data = mb2u_24_eucjpms[i];
-	mb2u[enc_eucjpms][data.mbs] = data.u;
+	MB2UData& data = mb2u_24_cp20932[i];
+	mb2u[enc_cp20932][data.mbs] = data.u;
  }
 }
 
-void mb2u_25_eucjpms_init()
+void mb2u_25_cp20932_init()
 {
-static MB2UData mb2u_25_eucjpms [] = { {"", 0}, 
+static MB2UData mb2u_25_cp20932 [] = { {"", 0}, 
 {"\xDC\xE2", 0x006A05}, {"\xDC\xE3", 0x0069B1}, {"\xDC\xE4", 0x006A1E}, {"\xDC\xE5", 0x0069ED}, 
 {"\xDC\xE6", 0x006A14}, {"\xDC\xE7", 0x0069EB}, {"\xDC\xE8", 0x006A0A}, {"\xDC\xE9", 0x006A12}, 
 {"\xDC\xEA", 0x006AC1}, {"\xDC\xEB", 0x006A23}, {"\xDC\xEC", 0x006A13}, {"\xDC\xED", 0x006A44}, 
@@ -2905,16 +2905,16 @@ static MB2UData mb2u_25_eucjpms [] = { {"", 0},
 {"\xDE\x44", 0x008B42}, {"\xDE\x45", 0x008B43}, {"\xDE\x46", 0x008B44}, {"\xDE\x47", 0x008B45}, 
 
 };
- for(size_t i=1; i<sizeof(mb2u_25_eucjpms)/sizeof(MB2UData); ++i)
+ for(size_t i=1; i<sizeof(mb2u_25_cp20932)/sizeof(MB2UData); ++i)
  {
-	MB2UData& data = mb2u_25_eucjpms[i];
-	mb2u[enc_eucjpms][data.mbs] = data.u;
+	MB2UData& data = mb2u_25_cp20932[i];
+	mb2u[enc_cp20932][data.mbs] = data.u;
  }
 }
 
-void mb2u_26_eucjpms_init()
+void mb2u_26_cp20932_init()
 {
-static MB2UData mb2u_26_eucjpms [] = { {"", 0}, 
+static MB2UData mb2u_26_cp20932 [] = { {"", 0}, 
 {"\xDE\x48", 0x008B46}, {"\xDE\x49", 0x008B48}, {"\xDE\x4A", 0x008B52}, {"\xDE\x4B", 0x008B53}, 
 {"\xDE\x4C", 0x008B54}, {"\xDE\x4D", 0x008B59}, {"\xDE\x4E", 0x008B4D}, {"\xDE\x4F", 0x008B5E}, 
 {"\xDE\x50", 0x008B63}, {"\xDE\x51", 0x008B6D}, {"\xDE\x52", 0x008B76}, {"\xDE\x53", 0x008B78}, 
@@ -2981,16 +2981,16 @@ static MB2UData mb2u_26_eucjpms [] = { {"", 0},
 {"\xDF\xAA", 0x006F5B}, {"\xDF\xAB", 0x006FF3}, {"\xDF\xAC", 0x006F6D}, {"\xDF\xAD", 0x006F82}, 
 
 };
- for(size_t i=1; i<sizeof(mb2u_26_eucjpms)/sizeof(MB2UData); ++i)
+ for(size_t i=1; i<sizeof(mb2u_26_cp20932)/sizeof(MB2UData); ++i)
  {
-	MB2UData& data = mb2u_26_eucjpms[i];
-	mb2u[enc_eucjpms][data.mbs] = data.u;
+	MB2UData& data = mb2u_26_cp20932[i];
+	mb2u[enc_cp20932][data.mbs] = data.u;
  }
 }
 
-void mb2u_27_eucjpms_init()
+void mb2u_27_cp20932_init()
 {
-static MB2UData mb2u_27_eucjpms [] = { {"", 0}, 
+static MB2UData mb2u_27_cp20932 [] = { {"", 0}, 
 {"\xDF\xAE", 0x006F7C}, {"\xDF\xAF", 0x006F58}, {"\xDF\xB0", 0x006F8E}, {"\xDF\xB1", 0x006F91}, 
 {"\xDF\xB2", 0x006FC2}, {"\xDF\xB3", 0x006F66}, {"\xDF\xB4", 0x006FB3}, {"\xDF\xB5", 0x006FA3}, 
 {"\xDF\xB6", 0x006FA1}, {"\xDF\xB7", 0x006FA4}, {"\xDF\xB8", 0x006FB9}, {"\xDF\xB9", 0x006FC6}, 
@@ -3057,16 +3057,16 @@ static MB2UData mb2u_27_eucjpms [] = { {"", 0},
 {"\xE0\xEE", 0x00745F}, {"\xE0\xEF", 0x007459}, {"\xE0\xF0", 0x007441}, {"\xE0\xF1", 0x00745C}, 
 
 };
- for(size_t i=1; i<sizeof(mb2u_27_eucjpms)/sizeof(MB2UData); ++i)
+ for(size_t i=1; i<sizeof(mb2u_27_cp20932)/sizeof(MB2UData); ++i)
  {
-	MB2UData& data = mb2u_27_eucjpms[i];
-	mb2u[enc_eucjpms][data.mbs] = data.u;
+	MB2UData& data = mb2u_27_cp20932[i];
+	mb2u[enc_cp20932][data.mbs] = data.u;
  }
 }
 
-void mb2u_28_eucjpms_init()
+void mb2u_28_cp20932_init()
 {
-static MB2UData mb2u_28_eucjpms [] = { {"", 0}, 
+static MB2UData mb2u_28_cp20932 [] = { {"", 0}, 
 {"\xE0\xF2", 0x007469}, {"\xE0\xF3", 0x007470}, {"\xE0\xF4", 0x007463}, {"\xE0\xF5", 0x00746A}, 
 {"\xE0\xF6", 0x007476}, {"\xE0\xF7", 0x00747E}, {"\xE0\xF8", 0x00748B}, {"\xE0\xF9", 0x00749E}, 
 {"\xE0\xFA", 0x0074A7}, {"\xE0\xFB", 0x0074CA}, {"\xE0\xFC", 0x0074CF}, {"\xE0\xFD", 0x0074D4}, 
@@ -3133,16 +3133,16 @@ static MB2UData mb2u_28_eucjpms [] = { {"", 0},
 {"\xE2\x54", 0x009147}, {"\xE2\x55", 0x009148}, {"\xE2\x56", 0x00914F}, {"\xE2\x57", 0x009153}, 
 
 };
- for(size_t i=1; i<sizeof(mb2u_28_eucjpms)/sizeof(MB2UData); ++i)
+ for(size_t i=1; i<sizeof(mb2u_28_cp20932)/sizeof(MB2UData); ++i)
  {
-	MB2UData& data = mb2u_28_eucjpms[i];
-	mb2u[enc_eucjpms][data.mbs] = data.u;
+	MB2UData& data = mb2u_28_cp20932[i];
+	mb2u[enc_cp20932][data.mbs] = data.u;
  }
 }
 
-void mb2u_29_eucjpms_init()
+void mb2u_29_cp20932_init()
 {
-static MB2UData mb2u_29_eucjpms [] = { {"", 0}, 
+static MB2UData mb2u_29_cp20932 [] = { {"", 0}, 
 {"\xE2\x58", 0x009157}, {"\xE2\x59", 0x009159}, {"\xE2\x5A", 0x00915A}, {"\xE2\x5B", 0x00915B}, 
 {"\xE2\x5C", 0x009161}, {"\xE2\x5D", 0x009164}, {"\xE2\x5E", 0x009167}, {"\xE2\x5F", 0x00916D}, 
 {"\xE2\x60", 0x009174}, {"\xE2\x61", 0x009179}, {"\xE2\x62", 0x00917A}, {"\xE2\x63", 0x00917B}, 
@@ -3209,16 +3209,16 @@ static MB2UData mb2u_29_eucjpms [] = { {"", 0},
 {"\xE3\xBA", 0x0079B3}, {"\xE3\xBB", 0x0079B9}, {"\xE3\xBC", 0x0079BA}, {"\xE3\xBD", 0x0079C9}, 
 
 };
- for(size_t i=1; i<sizeof(mb2u_29_eucjpms)/sizeof(MB2UData); ++i)
+ for(size_t i=1; i<sizeof(mb2u_29_cp20932)/sizeof(MB2UData); ++i)
  {
-	MB2UData& data = mb2u_29_eucjpms[i];
-	mb2u[enc_eucjpms][data.mbs] = data.u;
+	MB2UData& data = mb2u_29_cp20932[i];
+	mb2u[enc_cp20932][data.mbs] = data.u;
  }
 }
 
-void mb2u_2a_eucjpms_init()
+void mb2u_2a_cp20932_init()
 {
-static MB2UData mb2u_2a_eucjpms [] = { {"", 0}, 
+static MB2UData mb2u_2a_cp20932 [] = { {"", 0}, 
 {"\xE3\xBE", 0x0079D5}, {"\xE3\xBF", 0x0079E7}, {"\xE3\xC0", 0x0079EC}, {"\xE3\xC1", 0x0079E1}, 
 {"\xE3\xC2", 0x0079E3}, {"\xE3\xC3", 0x007A08}, {"\xE3\xC4", 0x007A0D}, {"\xE3\xC5", 0x007A18}, 
 {"\xE3\xC6", 0x007A19}, {"\xE3\xC7", 0x007A20}, {"\xE3\xC8", 0x007A1F}, {"\xE3\xC9", 0x007980}, 
@@ -3285,16 +3285,16 @@ static MB2UData mb2u_2a_eucjpms [] = { {"", 0},
 {"\xE4\xFE", 0x007D06}, {"\xE5\x21", 0x00937A}, {"\xE5\x22", 0x00937D}, {"\xE5\x23", 0x00937F}, 
 
 };
- for(size_t i=1; i<sizeof(mb2u_2a_eucjpms)/sizeof(MB2UData); ++i)
+ for(size_t i=1; i<sizeof(mb2u_2a_cp20932)/sizeof(MB2UData); ++i)
  {
-	MB2UData& data = mb2u_2a_eucjpms[i];
-	mb2u[enc_eucjpms][data.mbs] = data.u;
+	MB2UData& data = mb2u_2a_cp20932[i];
+	mb2u[enc_cp20932][data.mbs] = data.u;
  }
 }
 
-void mb2u_2b_eucjpms_init()
+void mb2u_2b_cp20932_init()
 {
-static MB2UData mb2u_2b_eucjpms [] = { {"", 0}, 
+static MB2UData mb2u_2b_cp20932 [] = { {"", 0}, 
 {"\xE5\x24", 0x009380}, {"\xE5\x25", 0x009381}, {"\xE5\x26", 0x009382}, {"\xE5\x27", 0x009388}, 
 {"\xE5\x28", 0x00938A}, {"\xE5\x29", 0x00938B}, {"\xE5\x2A", 0x00938D}, {"\xE5\x2B", 0x00938F}, 
 {"\xE5\x2C", 0x009392}, {"\xE5\x2D", 0x009395}, {"\xE5\x2E", 0x009398}, {"\xE5\x2F", 0x00939B}, 
@@ -3361,16 +3361,16 @@ static MB2UData mb2u_2b_eucjpms [] = { {"", 0},
 {"\xE6\x64", 0x009689}, {"\xE6\x65", 0x009691}, {"\xE6\x66", 0x009696}, {"\xE6\x67", 0x00969A}, 
 
 };
- for(size_t i=1; i<sizeof(mb2u_2b_eucjpms)/sizeof(MB2UData); ++i)
+ for(size_t i=1; i<sizeof(mb2u_2b_cp20932)/sizeof(MB2UData); ++i)
  {
-	MB2UData& data = mb2u_2b_eucjpms[i];
-	mb2u[enc_eucjpms][data.mbs] = data.u;
+	MB2UData& data = mb2u_2b_cp20932[i];
+	mb2u[enc_cp20932][data.mbs] = data.u;
  }
 }
 
-void mb2u_2c_eucjpms_init()
+void mb2u_2c_cp20932_init()
 {
-static MB2UData mb2u_2c_eucjpms [] = { {"", 0}, 
+static MB2UData mb2u_2c_cp20932 [] = { {"", 0}, 
 {"\xE6\x68", 0x00969D}, {"\xE6\x69", 0x00969F}, {"\xE6\x6A", 0x0096A4}, {"\xE6\x6B", 0x0096A5}, 
 {"\xE6\x6C", 0x0096A6}, {"\xE6\x6D", 0x0096A9}, {"\xE6\x6E", 0x0096AE}, {"\xE6\x6F", 0x0096AF}, 
 {"\xE6\x70", 0x0096B3}, {"\xE6\x71", 0x0096BA}, {"\xE6\x72", 0x0096CA}, {"\xE6\x73", 0x0096D2}, 
@@ -3437,16 +3437,16 @@ static MB2UData mb2u_2c_eucjpms [] = { {"", 0},
 {"\xE7\xCA", 0x0081FA}, {"\xE7\xCB", 0x0081FB}, {"\xE7\xCC", 0x0081FE}, {"\xE7\xCD", 0x008201}, 
 
 };
- for(size_t i=1; i<sizeof(mb2u_2c_eucjpms)/sizeof(MB2UData); ++i)
+ for(size_t i=1; i<sizeof(mb2u_2c_cp20932)/sizeof(MB2UData); ++i)
  {
-	MB2UData& data = mb2u_2c_eucjpms[i];
-	mb2u[enc_eucjpms][data.mbs] = data.u;
+	MB2UData& data = mb2u_2c_cp20932[i];
+	mb2u[enc_cp20932][data.mbs] = data.u;
  }
 }
 
-void mb2u_2d_eucjpms_init()
+void mb2u_2d_cp20932_init()
 {
-static MB2UData mb2u_2d_eucjpms [] = { {"", 0}, 
+static MB2UData mb2u_2d_cp20932 [] = { {"", 0}, 
 {"\xE7\xCE", 0x008202}, {"\xE7\xCF", 0x008205}, {"\xE7\xD0", 0x008207}, {"\xE7\xD1", 0x00820A}, 
 {"\xE7\xD2", 0x00820D}, {"\xE7\xD3", 0x008210}, {"\xE7\xD4", 0x008216}, {"\xE7\xD5", 0x008229}, 
 {"\xE7\xD6", 0x00822B}, {"\xE7\xD7", 0x008238}, {"\xE7\xD8", 0x008233}, {"\xE7\xD9", 0x008240}, 
@@ -3513,16 +3513,16 @@ static MB2UData mb2u_2d_eucjpms [] = { {"", 0},
 {"\xE9\x30", 0x0099EC}, {"\xE9\x31", 0x0099F0}, {"\xE9\x32", 0x0099F4}, {"\xE9\x33", 0x0099F5}, 
 
 };
- for(size_t i=1; i<sizeof(mb2u_2d_eucjpms)/sizeof(MB2UData); ++i)
+ for(size_t i=1; i<sizeof(mb2u_2d_cp20932)/sizeof(MB2UData); ++i)
  {
-	MB2UData& data = mb2u_2d_eucjpms[i];
-	mb2u[enc_eucjpms][data.mbs] = data.u;
+	MB2UData& data = mb2u_2d_cp20932[i];
+	mb2u[enc_cp20932][data.mbs] = data.u;
  }
 }
 
-void mb2u_2e_eucjpms_init()
+void mb2u_2e_cp20932_init()
 {
-static MB2UData mb2u_2e_eucjpms [] = { {"", 0}, 
+static MB2UData mb2u_2e_cp20932 [] = { {"", 0}, 
 {"\xE9\x34", 0x0099F9}, {"\xE9\x35", 0x0099FD}, {"\xE9\x36", 0x0099FE}, {"\xE9\x37", 0x009A02}, 
 {"\xE9\x38", 0x009A03}, {"\xE9\x39", 0x009A04}, {"\xE9\x3A", 0x009A0B}, {"\xE9\x3B", 0x009A0C}, 
 {"\xE9\x3C", 0x009A10}, {"\xE9\x3D", 0x009A11}, {"\xE9\x3E", 0x009A16}, {"\xE9\x3F", 0x009A1E}, 
@@ -3589,16 +3589,16 @@ static MB2UData mb2u_2e_eucjpms [] = { {"", 0},
 {"\xEA\x74", 0x009BD8}, {"\xEA\x75", 0x009BDD}, {"\xEA\x76", 0x009BDF}, {"\xEA\x77", 0x009BE5}, 
 
 };
- for(size_t i=1; i<sizeof(mb2u_2e_eucjpms)/sizeof(MB2UData); ++i)
+ for(size_t i=1; i<sizeof(mb2u_2e_cp20932)/sizeof(MB2UData); ++i)
  {
-	MB2UData& data = mb2u_2e_eucjpms[i];
-	mb2u[enc_eucjpms][data.mbs] = data.u;
+	MB2UData& data = mb2u_2e_cp20932[i];
+	mb2u[enc_cp20932][data.mbs] = data.u;
  }
 }
 
-void mb2u_2f_eucjpms_init()
+void mb2u_2f_cp20932_init()
 {
-static MB2UData mb2u_2f_eucjpms [] = { {"", 0}, 
+static MB2UData mb2u_2f_cp20932 [] = { {"", 0}, 
 {"\xEA\x78", 0x009BE7}, {"\xEA\x79", 0x009BEA}, {"\xEA\x7A", 0x009BEB}, {"\xEA\x7B", 0x009BEF}, 
 {"\xEA\x7C", 0x009BF3}, {"\xEA\x7D", 0x009BF7}, {"\xEA\x7E", 0x009BF8}, {"\xEA\xA1", 0x008753}, 
 {"\xEA\xA2", 0x008763}, {"\xEA\xA3", 0x00876A}, {"\xEA\xA4", 0x008805}, {"\xEA\xA5", 0x0087A2}, 
@@ -3665,16 +3665,16 @@ static MB2UData mb2u_2f_eucjpms [] = { {"", 0},
 {"\xEB\xDA", 0x008ACD}, {"\xEB\xDB", 0x008AC2}, {"\xEB\xDC", 0x008ADA}, {"\xEB\xDD", 0x008AEB}, 
 
 };
- for(size_t i=1; i<sizeof(mb2u_2f_eucjpms)/sizeof(MB2UData); ++i)
+ for(size_t i=1; i<sizeof(mb2u_2f_cp20932)/sizeof(MB2UData); ++i)
  {
-	MB2UData& data = mb2u_2f_eucjpms[i];
-	mb2u[enc_eucjpms][data.mbs] = data.u;
+	MB2UData& data = mb2u_2f_cp20932[i];
+	mb2u[enc_cp20932][data.mbs] = data.u;
  }
 }
 
-void mb2u_30_eucjpms_init()
+void mb2u_30_cp20932_init()
 {
-static MB2UData mb2u_30_eucjpms [] = { {"", 0}, 
+static MB2UData mb2u_30_cp20932 [] = { {"", 0}, 
 {"\xEB\xDE", 0x008AF3}, {"\xEB\xDF", 0x008AE7}, {"\xEB\xE0", 0x008AE4}, {"\xEB\xE1", 0x008AF1}, 
 {"\xEB\xE2", 0x008B14}, {"\xEB\xE3", 0x008AE0}, {"\xEB\xE4", 0x008AE2}, {"\xEB\xE5", 0x008AF7}, 
 {"\xEB\xE6", 0x008ADE}, {"\xEB\xE7", 0x008ADB}, {"\xEB\xE8", 0x008B0C}, {"\xEB\xE9", 0x008B07}, 
@@ -3741,16 +3741,16 @@ static MB2UData mb2u_30_eucjpms [] = { {"", 0},
 {"\xED\x40", 0x009F43}, {"\xED\x41", 0x009F44}, {"\xED\x42", 0x009F45}, {"\xED\x43", 0x009F46}, 
 
 };
- for(size_t i=1; i<sizeof(mb2u_30_eucjpms)/sizeof(MB2UData); ++i)
+ for(size_t i=1; i<sizeof(mb2u_30_cp20932)/sizeof(MB2UData); ++i)
  {
-	MB2UData& data = mb2u_30_eucjpms[i];
-	mb2u[enc_eucjpms][data.mbs] = data.u;
+	MB2UData& data = mb2u_30_cp20932[i];
+	mb2u[enc_cp20932][data.mbs] = data.u;
  }
 }
 
-void mb2u_31_eucjpms_init()
+void mb2u_31_cp20932_init()
 {
-static MB2UData mb2u_31_eucjpms [] = { {"", 0}, 
+static MB2UData mb2u_31_cp20932 [] = { {"", 0}, 
 {"\xED\x44", 0x009F47}, {"\xED\x45", 0x009F53}, {"\xED\x46", 0x009F55}, {"\xED\x47", 0x009F56}, 
 {"\xED\x48", 0x009F57}, {"\xED\x49", 0x009F58}, {"\xED\x4A", 0x009F5A}, {"\xED\x4B", 0x009F5D}, 
 {"\xED\x4C", 0x009F5E}, {"\xED\x4D", 0x009F68}, {"\xED\x4E", 0x009F69}, {"\xED\x4F", 0x009F6D}, 
@@ -3817,16 +3817,16 @@ static MB2UData mb2u_31_eucjpms [] = { {"", 0},
 {"\xEF\xC1", 0x009410}, {"\xEF\xC2", 0x009436}, {"\xEF\xC3", 0x00942B}, {"\xEF\xC4", 0x009435}, 
 
 };
- for(size_t i=1; i<sizeof(mb2u_31_eucjpms)/sizeof(MB2UData); ++i)
+ for(size_t i=1; i<sizeof(mb2u_31_cp20932)/sizeof(MB2UData); ++i)
  {
-	MB2UData& data = mb2u_31_eucjpms[i];
-	mb2u[enc_eucjpms][data.mbs] = data.u;
+	MB2UData& data = mb2u_31_cp20932[i];
+	mb2u[enc_cp20932][data.mbs] = data.u;
  }
 }
 
-void mb2u_32_eucjpms_init()
+void mb2u_32_cp20932_init()
 {
-static MB2UData mb2u_32_eucjpms [] = { {"", 0}, 
+static MB2UData mb2u_32_cp20932 [] = { {"", 0}, 
 {"\xEF\xC5", 0x009421}, {"\xEF\xC6", 0x00943A}, {"\xEF\xC7", 0x009441}, {"\xEF\xC8", 0x009452}, 
 {"\xEF\xC9", 0x009444}, {"\xEF\xCA", 0x00945B}, {"\xEF\xCB", 0x009460}, {"\xEF\xCC", 0x009462}, 
 {"\xEF\xCD", 0x00945E}, {"\xEF\xCE", 0x00946A}, {"\xEF\xCF", 0x009229}, {"\xEF\xD0", 0x009470}, 
@@ -3893,16 +3893,16 @@ static MB2UData mb2u_32_eucjpms [] = { {"", 0},
 {"\xF2\xA7", 0x009B23}, {"\xF2\xA8", 0x009B25}, {"\xF2\xA9", 0x009B27}, {"\xF2\xAA", 0x009B28}, 
 
 };
- for(size_t i=1; i<sizeof(mb2u_32_eucjpms)/sizeof(MB2UData); ++i)
+ for(size_t i=1; i<sizeof(mb2u_32_cp20932)/sizeof(MB2UData); ++i)
  {
-	MB2UData& data = mb2u_32_eucjpms[i];
-	mb2u[enc_eucjpms][data.mbs] = data.u;
+	MB2UData& data = mb2u_32_cp20932[i];
+	mb2u[enc_cp20932][data.mbs] = data.u;
  }
 }
 
-void mb2u_33_eucjpms_init()
+void mb2u_33_cp20932_init()
 {
-static MB2UData mb2u_33_eucjpms [] = { {"", 0}, 
+static MB2UData mb2u_33_cp20932 [] = { {"", 0}, 
 {"\xF2\xAB", 0x009B29}, {"\xF2\xAC", 0x009B2A}, {"\xF2\xAD", 0x009B2E}, {"\xF2\xAE", 0x009B2F}, 
 {"\xF2\xAF", 0x009B32}, {"\xF2\xB0", 0x009B44}, {"\xF2\xB1", 0x009B43}, {"\xF2\xB2", 0x009B4F}, 
 {"\xF2\xB3", 0x009B4D}, {"\xF2\xB4", 0x009B4E}, {"\xF2\xB5", 0x009B51}, {"\xF2\xB6", 0x009B58}, 
@@ -3969,16 +3969,16 @@ static MB2UData mb2u_33_eucjpms [] = { {"", 0},
 {"\xF3\xF9", 0x009F77}, {"\xF3\xFA", 0x009F72}, {"\xF3\xFB", 0x009F76}, {"\xF3\xFC", 0x009F95}, 
 
 };
- for(size_t i=1; i<sizeof(mb2u_33_eucjpms)/sizeof(MB2UData); ++i)
+ for(size_t i=1; i<sizeof(mb2u_33_cp20932)/sizeof(MB2UData); ++i)
  {
-	MB2UData& data = mb2u_33_eucjpms[i];
-	mb2u[enc_eucjpms][data.mbs] = data.u;
+	MB2UData& data = mb2u_33_cp20932[i];
+	mb2u[enc_cp20932][data.mbs] = data.u;
  }
 }
 
-void mb2u_34_eucjpms_init()
+void mb2u_34_cp20932_init()
 {
-static MB2UData mb2u_34_eucjpms [] = { {"", 0}, 
+static MB2UData mb2u_34_cp20932 [] = { {"", 0}, 
 {"\xF3\xFD", 0x009F9C}, {"\xF3\xFE", 0x009FA0}, {"\xF4\x21", 0x00FA29}, {"\xF4\x22", 0x00973B}, 
 {"\xF4\x24", 0x009751}, {"\xF4\x25", 0x00FA2A}, {"\xF4\x26", 0x00FA2B}, {"\xF4\x27", 0x00FA2C}, 
 {"\xF4\x28", 0x00999E}, {"\xF4\x29", 0x009AD9}, {"\xF4\x2A", 0x009B72}, {"\xF4\x2B", 0x00FA2D}, 
@@ -4045,16 +4045,16 @@ static MB2UData mb2u_34_eucjpms [] = { {"", 0},
 {"\xF6\x4D", 0x00E436}, {"\xF6\x4E", 0x00E437}, {"\xF6\x4F", 0x00E438}, {"\xF6\x50", 0x00E439}, 
 
 };
- for(size_t i=1; i<sizeof(mb2u_34_eucjpms)/sizeof(MB2UData); ++i)
+ for(size_t i=1; i<sizeof(mb2u_34_cp20932)/sizeof(MB2UData); ++i)
  {
-	MB2UData& data = mb2u_34_eucjpms[i];
-	mb2u[enc_eucjpms][data.mbs] = data.u;
+	MB2UData& data = mb2u_34_cp20932[i];
+	mb2u[enc_cp20932][data.mbs] = data.u;
  }
 }
 
-void mb2u_35_eucjpms_init()
+void mb2u_35_cp20932_init()
 {
-static MB2UData mb2u_35_eucjpms [] = { {"", 0}, 
+static MB2UData mb2u_35_cp20932 [] = { {"", 0}, 
 {"\xF6\x51", 0x00E43A}, {"\xF6\x52", 0x00E43B}, {"\xF6\x53", 0x00E43C}, {"\xF6\x54", 0x00E43D}, 
 {"\xF6\x55", 0x00E43E}, {"\xF6\x56", 0x00E43F}, {"\xF6\x57", 0x00E440}, {"\xF6\x58", 0x00E441}, 
 {"\xF6\x59", 0x00E442}, {"\xF6\x5A", 0x00E443}, {"\xF6\x5B", 0x00E444}, {"\xF6\x5C", 0x00E445}, 
@@ -4121,16 +4121,16 @@ static MB2UData mb2u_35_eucjpms [] = { {"", 0},
 {"\xF7\xB3", 0x00E0CE}, {"\xF7\xB4", 0x00E0CF}, {"\xF7\xB5", 0x00E0D0}, {"\xF7\xB6", 0x00E0D1}, 
 
 };
- for(size_t i=1; i<sizeof(mb2u_35_eucjpms)/sizeof(MB2UData); ++i)
+ for(size_t i=1; i<sizeof(mb2u_35_cp20932)/sizeof(MB2UData); ++i)
  {
-	MB2UData& data = mb2u_35_eucjpms[i];
-	mb2u[enc_eucjpms][data.mbs] = data.u;
+	MB2UData& data = mb2u_35_cp20932[i];
+	mb2u[enc_cp20932][data.mbs] = data.u;
  }
 }
 
-void mb2u_36_eucjpms_init()
+void mb2u_36_cp20932_init()
 {
-static MB2UData mb2u_36_eucjpms [] = { {"", 0}, 
+static MB2UData mb2u_36_cp20932 [] = { {"", 0}, 
 {"\xF7\xB7", 0x00E0D2}, {"\xF7\xB8", 0x00E0D3}, {"\xF7\xB9", 0x00E0D4}, {"\xF7\xBA", 0x00E0D5}, 
 {"\xF7\xBB", 0x00E0D6}, {"\xF7\xBC", 0x00E0D7}, {"\xF7\xBD", 0x00E0D8}, {"\xF7\xBE", 0x00E0D9}, 
 {"\xF7\xBF", 0x00E0DA}, {"\xF7\xC0", 0x00E0DB}, {"\xF7\xC1", 0x00E0DC}, {"\xF7\xC2", 0x00E0DD}, 
@@ -4197,16 +4197,16 @@ static MB2UData mb2u_36_eucjpms [] = { {"", 0},
 {"\xF8\xF7", 0x00E170}, {"\xF8\xF8", 0x00E171}, {"\xF8\xF9", 0x00E172}, {"\xF8\xFA", 0x00E173}, 
 
 };
- for(size_t i=1; i<sizeof(mb2u_36_eucjpms)/sizeof(MB2UData); ++i)
+ for(size_t i=1; i<sizeof(mb2u_36_cp20932)/sizeof(MB2UData); ++i)
  {
-	MB2UData& data = mb2u_36_eucjpms[i];
-	mb2u[enc_eucjpms][data.mbs] = data.u;
+	MB2UData& data = mb2u_36_cp20932[i];
+	mb2u[enc_cp20932][data.mbs] = data.u;
  }
 }
 
-void mb2u_37_eucjpms_init()
+void mb2u_37_cp20932_init()
 {
-static MB2UData mb2u_37_eucjpms [] = { {"", 0}, 
+static MB2UData mb2u_37_cp20932 [] = { {"", 0}, 
 {"\xF8\xFB", 0x00E174}, {"\xF8\xFC", 0x00E175}, {"\xF8\xFD", 0x00E176}, {"\xF8\xFE", 0x00E177}, 
 {"\xF9\x21", 0x00E524}, {"\xF9\x22", 0x00E525}, {"\xF9\x23", 0x00E526}, {"\xF9\x24", 0x00E527}, 
 {"\xF9\x25", 0x00E528}, {"\xF9\x26", 0x00E529}, {"\xF9\x27", 0x00E52A}, {"\xF9\x28", 0x00E52B}, 
@@ -4273,16 +4273,16 @@ static MB2UData mb2u_37_eucjpms [] = { {"", 0},
 {"\xFA\x5D", 0x00E5BE}, {"\xFA\x5E", 0x00E5BF}, {"\xFA\x5F", 0x00E5C0}, {"\xFA\x60", 0x00E5C1}, 
 
 };
- for(size_t i=1; i<sizeof(mb2u_37_eucjpms)/sizeof(MB2UData); ++i)
+ for(size_t i=1; i<sizeof(mb2u_37_cp20932)/sizeof(MB2UData); ++i)
  {
-	MB2UData& data = mb2u_37_eucjpms[i];
-	mb2u[enc_eucjpms][data.mbs] = data.u;
+	MB2UData& data = mb2u_37_cp20932[i];
+	mb2u[enc_cp20932][data.mbs] = data.u;
  }
 }
 
-void mb2u_38_eucjpms_init()
+void mb2u_38_cp20932_init()
 {
-static MB2UData mb2u_38_eucjpms [] = { {"", 0}, 
+static MB2UData mb2u_38_cp20932 [] = { {"", 0}, 
 {"\xFA\x61", 0x00E5C2}, {"\xFA\x62", 0x00E5C3}, {"\xFA\x63", 0x00E5C4}, {"\xFA\x64", 0x00E5C5}, 
 {"\xFA\x65", 0x00E5C6}, {"\xFA\x66", 0x00E5C7}, {"\xFA\x67", 0x00E5C8}, {"\xFA\x68", 0x00E5C9}, 
 {"\xFA\x69", 0x00E5CA}, {"\xFA\x6A", 0x00E5CB}, {"\xFA\x6B", 0x00E5CC}, {"\xFA\x6C", 0x00E5CD}, 
@@ -4349,16 +4349,16 @@ static MB2UData mb2u_38_eucjpms [] = { {"", 0},
 {"\xFB\xC3", 0x00E256}, {"\xFB\xC4", 0x00E257}, {"\xFB\xC5", 0x00E258}, {"\xFB\xC6", 0x00E259}, 
 
 };
- for(size_t i=1; i<sizeof(mb2u_38_eucjpms)/sizeof(MB2UData); ++i)
+ for(size_t i=1; i<sizeof(mb2u_38_cp20932)/sizeof(MB2UData); ++i)
  {
-	MB2UData& data = mb2u_38_eucjpms[i];
-	mb2u[enc_eucjpms][data.mbs] = data.u;
+	MB2UData& data = mb2u_38_cp20932[i];
+	mb2u[enc_cp20932][data.mbs] = data.u;
  }
 }
 
-void mb2u_39_eucjpms_init()
+void mb2u_39_cp20932_init()
 {
-static MB2UData mb2u_39_eucjpms [] = { {"", 0}, 
+static MB2UData mb2u_39_cp20932 [] = { {"", 0}, 
 {"\xFB\xC7", 0x00E25A}, {"\xFB\xC8", 0x00E25B}, {"\xFB\xC9", 0x00E25C}, {"\xFB\xCA", 0x00E25D}, 
 {"\xFB\xCB", 0x00E25E}, {"\xFB\xCC", 0x00E25F}, {"\xFB\xCD", 0x00E260}, {"\xFB\xCE", 0x00E261}, 
 {"\xFB\xCF", 0x00E262}, {"\xFB\xD0", 0x00E263}, {"\xFB\xD1", 0x00E264}, {"\xFB\xD2", 0x00E265}, 
@@ -4425,16 +4425,16 @@ static MB2UData mb2u_39_eucjpms [] = { {"", 0},
 {"\xFD\x29", 0x00E6A4}, {"\xFD\x2A", 0x00E6A5}, {"\xFD\x2B", 0x00E6A6}, {"\xFD\x2C", 0x00E6A7}, 
 
 };
- for(size_t i=1; i<sizeof(mb2u_39_eucjpms)/sizeof(MB2UData); ++i)
+ for(size_t i=1; i<sizeof(mb2u_39_cp20932)/sizeof(MB2UData); ++i)
  {
-	MB2UData& data = mb2u_39_eucjpms[i];
-	mb2u[enc_eucjpms][data.mbs] = data.u;
+	MB2UData& data = mb2u_39_cp20932[i];
+	mb2u[enc_cp20932][data.mbs] = data.u;
  }
 }
 
-void mb2u_3a_eucjpms_init()
+void mb2u_3a_cp20932_init()
 {
-static MB2UData mb2u_3a_eucjpms [] = { {"", 0}, 
+static MB2UData mb2u_3a_cp20932 [] = { {"", 0}, 
 {"\xFD\x2D", 0x00E6A8}, {"\xFD\x2E", 0x00E6A9}, {"\xFD\x2F", 0x00E6AA}, {"\xFD\x30", 0x00E6AB}, 
 {"\xFD\x31", 0x00E6AC}, {"\xFD\x32", 0x00E6AD}, {"\xFD\x33", 0x00E6AE}, {"\xFD\x34", 0x00E6AF}, 
 {"\xFD\x35", 0x00E6B0}, {"\xFD\x36", 0x00E6B1}, {"\xFD\x37", 0x00E6B2}, {"\xFD\x38", 0x00E6B3}, 
@@ -4501,16 +4501,16 @@ static MB2UData mb2u_3a_eucjpms [] = { {"", 0},
 {"\xFE\x6D", 0x00E746}, {"\xFE\x6E", 0x00E747}, {"\xFE\x6F", 0x00E748}, {"\xFE\x70", 0x00E749}, 
 
 };
- for(size_t i=1; i<sizeof(mb2u_3a_eucjpms)/sizeof(MB2UData); ++i)
+ for(size_t i=1; i<sizeof(mb2u_3a_cp20932)/sizeof(MB2UData); ++i)
  {
-	MB2UData& data = mb2u_3a_eucjpms[i];
-	mb2u[enc_eucjpms][data.mbs] = data.u;
+	MB2UData& data = mb2u_3a_cp20932[i];
+	mb2u[enc_cp20932][data.mbs] = data.u;
  }
 }
 
-void mb2u_3b_eucjpms_init()
+void mb2u_3b_cp20932_init()
 {
-static MB2UData mb2u_3b_eucjpms [] = { {"", 0}, 
+static MB2UData mb2u_3b_cp20932 [] = { {"", 0}, 
 {"\xFE\x71", 0x00E74A}, {"\xFE\x72", 0x00E74B}, {"\xFE\x73", 0x00E74C}, {"\xFE\x74", 0x00E74D}, 
 {"\xFE\x75", 0x00E74E}, {"\xFE\x76", 0x00E74F}, {"\xFE\x77", 0x00E750}, {"\xFE\x78", 0x00E751}, 
 {"\xFE\x79", 0x00E752}, {"\xFE\x7A", 0x00E753}, {"\xFE\x7B", 0x00E754}, {"\xFE\x7C", 0x00E755}, 
@@ -4540,37 +4540,37 @@ static MB2UData mb2u_3b_eucjpms [] = { {"", 0},
 {"\xFE\xFB", 0x00E3A8}, {"\xFE\xFC", 0x00E3A9}, {"\xFE\xFD", 0x00E3AA}, {"\xFE\xFE", 0x00E3AB}, 
 {"\xFF"    , 0x00F8F3}, 
 };
- for(size_t i=1; i<sizeof(mb2u_3b_eucjpms)/sizeof(MB2UData); ++i)
+ for(size_t i=1; i<sizeof(mb2u_3b_cp20932)/sizeof(MB2UData); ++i)
  {
-	MB2UData& data = mb2u_3b_eucjpms[i];
-	mb2u[enc_eucjpms][data.mbs] = data.u;
+	MB2UData& data = mb2u_3b_cp20932[i];
+	mb2u[enc_cp20932][data.mbs] = data.u;
  }
 }
 
-void mb2u_eucjpms_init()
+void mb2u_cp20932_init()
 {
-test_doublebyte_conv_enc_list.push_back(enc_eucjpms);
-mb2u_00_eucjpms_init();mb2u_01_eucjpms_init();mb2u_02_eucjpms_init();mb2u_03_eucjpms_init();
-mb2u_04_eucjpms_init();mb2u_05_eucjpms_init();mb2u_06_eucjpms_init();mb2u_07_eucjpms_init();
-mb2u_08_eucjpms_init();mb2u_09_eucjpms_init();mb2u_0a_eucjpms_init();mb2u_0b_eucjpms_init();
-mb2u_0c_eucjpms_init();mb2u_0d_eucjpms_init();mb2u_0e_eucjpms_init();mb2u_0f_eucjpms_init();
-mb2u_10_eucjpms_init();mb2u_11_eucjpms_init();mb2u_12_eucjpms_init();mb2u_13_eucjpms_init();
-mb2u_14_eucjpms_init();mb2u_15_eucjpms_init();mb2u_16_eucjpms_init();mb2u_17_eucjpms_init();
-mb2u_18_eucjpms_init();mb2u_19_eucjpms_init();mb2u_1a_eucjpms_init();mb2u_1b_eucjpms_init();
-mb2u_1c_eucjpms_init();mb2u_1d_eucjpms_init();mb2u_1e_eucjpms_init();mb2u_1f_eucjpms_init();
-mb2u_20_eucjpms_init();mb2u_21_eucjpms_init();mb2u_22_eucjpms_init();mb2u_23_eucjpms_init();
-mb2u_24_eucjpms_init();mb2u_25_eucjpms_init();mb2u_26_eucjpms_init();mb2u_27_eucjpms_init();
-mb2u_28_eucjpms_init();mb2u_29_eucjpms_init();mb2u_2a_eucjpms_init();mb2u_2b_eucjpms_init();
-mb2u_2c_eucjpms_init();mb2u_2d_eucjpms_init();mb2u_2e_eucjpms_init();mb2u_2f_eucjpms_init();
-mb2u_30_eucjpms_init();mb2u_31_eucjpms_init();mb2u_32_eucjpms_init();mb2u_33_eucjpms_init();
-mb2u_34_eucjpms_init();mb2u_35_eucjpms_init();mb2u_36_eucjpms_init();mb2u_37_eucjpms_init();
-mb2u_38_eucjpms_init();mb2u_39_eucjpms_init();mb2u_3a_eucjpms_init();mb2u_3b_eucjpms_init();
+test_doublebyte_conv_enc_list.push_back(enc_cp20932);
+mb2u_00_cp20932_init();mb2u_01_cp20932_init();mb2u_02_cp20932_init();mb2u_03_cp20932_init();
+mb2u_04_cp20932_init();mb2u_05_cp20932_init();mb2u_06_cp20932_init();mb2u_07_cp20932_init();
+mb2u_08_cp20932_init();mb2u_09_cp20932_init();mb2u_0a_cp20932_init();mb2u_0b_cp20932_init();
+mb2u_0c_cp20932_init();mb2u_0d_cp20932_init();mb2u_0e_cp20932_init();mb2u_0f_cp20932_init();
+mb2u_10_cp20932_init();mb2u_11_cp20932_init();mb2u_12_cp20932_init();mb2u_13_cp20932_init();
+mb2u_14_cp20932_init();mb2u_15_cp20932_init();mb2u_16_cp20932_init();mb2u_17_cp20932_init();
+mb2u_18_cp20932_init();mb2u_19_cp20932_init();mb2u_1a_cp20932_init();mb2u_1b_cp20932_init();
+mb2u_1c_cp20932_init();mb2u_1d_cp20932_init();mb2u_1e_cp20932_init();mb2u_1f_cp20932_init();
+mb2u_20_cp20932_init();mb2u_21_cp20932_init();mb2u_22_cp20932_init();mb2u_23_cp20932_init();
+mb2u_24_cp20932_init();mb2u_25_cp20932_init();mb2u_26_cp20932_init();mb2u_27_cp20932_init();
+mb2u_28_cp20932_init();mb2u_29_cp20932_init();mb2u_2a_cp20932_init();mb2u_2b_cp20932_init();
+mb2u_2c_cp20932_init();mb2u_2d_cp20932_init();mb2u_2e_cp20932_init();mb2u_2f_cp20932_init();
+mb2u_30_cp20932_init();mb2u_31_cp20932_init();mb2u_32_cp20932_init();mb2u_33_cp20932_init();
+mb2u_34_cp20932_init();mb2u_35_cp20932_init();mb2u_36_cp20932_init();mb2u_37_cp20932_init();
+mb2u_38_cp20932_init();mb2u_39_cp20932_init();mb2u_3a_cp20932_init();mb2u_3b_cp20932_init();
 
 }
 
-void u2mb_000_eucjpms_init()
+void u2mb_000_cp20932_init()
 {
-static U2MBData u2mb_000_eucjpms[] = { {0, ""}, 
+static U2MBData u2mb_000_cp20932[] = { {0, ""}, 
 {0x000001, "\x01"    }, {0x000002, "\x02"    }, {0x000003, "\x03"    }, {0x000004, "\x04"    }, 
 {0x000005, "\x05"    }, {0x000006, "\x06"    }, {0x000007, "\x07"    }, {0x000008, "\x08"    }, 
 {0x000009, "\x09"    }, {0x00000A, "\x0A"    }, {0x00000B, "\x0B"    }, {0x00000C, "\x0C"    }, 
@@ -4637,15 +4637,15 @@ static U2MBData u2mb_000_eucjpms[] = { {0, ""},
 {0x000130, "\xAA\x44"}, {0x000131, "\xA9\x45"}, {0x000132, "\xA9\x26"}, {0x000133, "\xA9\x46"}, 
 
 };
- for(size_t i=1; i<sizeof(u2mb_000_eucjpms)/sizeof(U2MBData); ++i)
+ for(size_t i=1; i<sizeof(u2mb_000_cp20932)/sizeof(U2MBData); ++i)
  {
-	U2MBData& data = u2mb_000_eucjpms[i];
-	u2mb[enc_eucjpms][data.u] = data.mbs;
+	U2MBData& data = u2mb_000_cp20932[i];
+	u2mb[enc_cp20932][data.u] = data.mbs;
  }
 }
-void u2mb_001_eucjpms_init()
+void u2mb_001_cp20932_init()
 {
-static U2MBData u2mb_001_eucjpms[] = { {0, ""}, 
+static U2MBData u2mb_001_cp20932[] = { {0, ""}, 
 {0x000134, "\xAA\x48"}, {0x000135, "\xAB\x48"}, {0x000136, "\xAA\x49"}, {0x000137, "\xAB\x49"}, 
 {0x000138, "\xA9\x47"}, {0x000139, "\xAA\x4A"}, {0x00013A, "\xAB\x4A"}, {0x00013B, "\xAA\x4C"}, 
 {0x00013C, "\xAB\x4C"}, {0x00013D, "\xAA\x4B"}, {0x00013E, "\xAB\x4B"}, {0x00013F, "\xA9\x29"}, 
@@ -4712,15 +4712,15 @@ static U2MBData u2mb_001_eucjpms[] = { {0, ""},
 {0x000458, "\xA7\x78"}, {0x000459, "\xA7\x79"}, {0x00045A, "\xA7\x7A"}, {0x00045B, "\xA7\x7B"}, 
 
 };
- for(size_t i=1; i<sizeof(u2mb_001_eucjpms)/sizeof(U2MBData); ++i)
+ for(size_t i=1; i<sizeof(u2mb_001_cp20932)/sizeof(U2MBData); ++i)
  {
-	U2MBData& data = u2mb_001_eucjpms[i];
-	u2mb[enc_eucjpms][data.u] = data.mbs;
+	U2MBData& data = u2mb_001_cp20932[i];
+	u2mb[enc_cp20932][data.u] = data.mbs;
  }
 }
-void u2mb_002_eucjpms_init()
+void u2mb_002_cp20932_init()
 {
-static U2MBData u2mb_002_eucjpms[] = { {0, ""}, 
+static U2MBData u2mb_002_cp20932[] = { {0, ""}, 
 {0x00045C, "\xA7\x7C"}, {0x00045E, "\xA7\x7D"}, {0x00045F, "\xA7\x7E"}, {0x002010, "\xA1\xBE"}, 
 {0x002015, "\xA1\xBD"}, {0x002016, "\xA1\xC2"}, {0x002018, "\xA1\xC6"}, {0x002019, "\xA1\xC7"}, 
 {0x00201C, "\xA1\xC8"}, {0x00201D, "\xA1\xC9"}, {0x002020, "\xA2\xF7"}, {0x002021, "\xA2\xF8"}, 
@@ -4787,15 +4787,15 @@ static U2MBData u2mb_002_eucjpms[] = { {0, ""},
 {0x003088, "\xA4\xE8"}, {0x003089, "\xA4\xE9"}, {0x00308A, "\xA4\xEA"}, {0x00308B, "\xA4\xEB"}, 
 
 };
- for(size_t i=1; i<sizeof(u2mb_002_eucjpms)/sizeof(U2MBData); ++i)
+ for(size_t i=1; i<sizeof(u2mb_002_cp20932)/sizeof(U2MBData); ++i)
  {
-	U2MBData& data = u2mb_002_eucjpms[i];
-	u2mb[enc_eucjpms][data.u] = data.mbs;
+	U2MBData& data = u2mb_002_cp20932[i];
+	u2mb[enc_cp20932][data.u] = data.mbs;
  }
 }
-void u2mb_003_eucjpms_init()
+void u2mb_003_cp20932_init()
 {
-static U2MBData u2mb_003_eucjpms[] = { {0, ""}, 
+static U2MBData u2mb_003_cp20932[] = { {0, ""}, 
 {0x00308C, "\xA4\xEC"}, {0x00308D, "\xA4\xED"}, {0x00308E, "\xA4\xEE"}, {0x00308F, "\xA4\xEF"}, 
 {0x003090, "\xA4\xF0"}, {0x003091, "\xA4\xF1"}, {0x003092, "\xA4\xF2"}, {0x003093, "\xA4\xF3"}, 
 {0x00309B, "\xA1\xAB"}, {0x00309C, "\xA1\xAC"}, {0x00309D, "\xA1\xB5"}, {0x00309E, "\xA1\xB6"}, 
@@ -4862,15 +4862,15 @@ static U2MBData u2mb_003_eucjpms[] = { {0, ""},
 {0x004EB0, "\xD0\xB7"}, {0x004EB3, "\xD0\xB8"}, {0x004EB6, "\xD0\xB9"}, {0x004EB9, "\xB0\x42"}, 
 
 };
- for(size_t i=1; i<sizeof(u2mb_003_eucjpms)/sizeof(U2MBData); ++i)
+ for(size_t i=1; i<sizeof(u2mb_003_cp20932)/sizeof(U2MBData); ++i)
  {
-	U2MBData& data = u2mb_003_eucjpms[i];
-	u2mb[enc_eucjpms][data.u] = data.mbs;
+	U2MBData& data = u2mb_003_cp20932[i];
+	u2mb[enc_cp20932][data.u] = data.mbs;
  }
 }
-void u2mb_004_eucjpms_init()
+void u2mb_004_cp20932_init()
 {
-static U2MBData u2mb_004_eucjpms[] = { {0, ""}, 
+static U2MBData u2mb_004_cp20932[] = { {0, ""}, 
 {0x004EBA, "\xBF\xCD"}, {0x004EC0, "\xBD\xBA"}, {0x004EC1, "\xBF\xCE"}, {0x004EC2, "\xD0\xBE"}, 
 {0x004EC3, "\xB0\x43"}, {0x004EC4, "\xD0\xBC"}, {0x004EC6, "\xD0\xBD"}, {0x004EC7, "\xB5\xD8"}, 
 {0x004ECA, "\xBA\xA3"}, {0x004ECB, "\xB2\xF0"}, {0x004ECD, "\xD0\xBB"}, {0x004ECE, "\xD0\xBA"}, 
@@ -4937,15 +4937,15 @@ static U2MBData u2mb_004_eucjpms[] = { {0, ""},
 {0x005022, "\xB1\x58"}, {0x005023, "\xCA\xEF"}, {0x005024, "\xC3\xCD"}, {0x005025, "\xD0\xE5"}, 
 
 };
- for(size_t i=1; i<sizeof(u2mb_004_eucjpms)/sizeof(U2MBData); ++i)
+ for(size_t i=1; i<sizeof(u2mb_004_cp20932)/sizeof(U2MBData); ++i)
  {
-	U2MBData& data = u2mb_004_eucjpms[i];
-	u2mb[enc_eucjpms][data.u] = data.mbs;
+	U2MBData& data = u2mb_004_cp20932[i];
+	u2mb[enc_cp20932][data.u] = data.mbs;
  }
 }
-void u2mb_005_eucjpms_init()
+void u2mb_005_cp20932_init()
 {
-static U2MBData u2mb_005_eucjpms[] = { {0, ""}, 
+static U2MBData u2mb_005_cp20932[] = { {0, ""}, 
 {0x005026, "\xB7\xF1"}, {0x005027, "\xB1\x59"}, {0x005028, "\xD0\xE2"}, {0x005029, "\xD0\xEA"}, 
 {0x00502A, "\xD0\xE4"}, {0x00502B, "\xCE\xD1"}, {0x00502C, "\xD0\xEB"}, {0x00502D, "\xCF\xC1"}, 
 {0x00502E, "\xB1\x5A"}, {0x005030, "\xB1\x5B"}, {0x005032, "\xB1\x5C"}, {0x005033, "\xB1\x5D"}, 
@@ -5012,15 +5012,15 @@ static U2MBData u2mb_005_eucjpms[] = { {0, ""},
 {0x005198, "\xB2\x74"}, {0x005199, "\xBC\xCC"}, {0x00519D, "\xB2\x75"}, {0x0051A0, "\xB4\xA7"}, 
 
 };
- for(size_t i=1; i<sizeof(u2mb_005_eucjpms)/sizeof(U2MBData); ++i)
+ for(size_t i=1; i<sizeof(u2mb_005_cp20932)/sizeof(U2MBData); ++i)
  {
-	U2MBData& data = u2mb_005_eucjpms[i];
-	u2mb[enc_eucjpms][data.u] = data.mbs;
+	U2MBData& data = u2mb_005_cp20932[i];
+	u2mb[enc_cp20932][data.u] = data.mbs;
  }
 }
-void u2mb_006_eucjpms_init()
+void u2mb_006_cp20932_init()
 {
-static U2MBData u2mb_006_eucjpms[] = { {0, ""}, 
+static U2MBData u2mb_006_cp20932[] = { {0, ""}, 
 {0x0051A1, "\xB2\x76"}, {0x0051A2, "\xD1\xCF"}, {0x0051A3, "\xB2\x77"}, {0x0051A4, "\xD1\xCD"}, 
 {0x0051A5, "\xCC\xBD"}, {0x0051A6, "\xD1\xCE"}, {0x0051A8, "\xC9\xDA"}, {0x0051A9, "\xD1\xD0"}, 
 {0x0051AA, "\xD1\xD1"}, {0x0051AB, "\xD1\xD2"}, {0x0051AC, "\xC5\xDF"}, {0x0051AD, "\xB2\x78"}, 
@@ -5087,15 +5087,15 @@ static U2MBData u2mb_006_eucjpms[] = { {0, ""},
 {0x005303, "\xB3\x7C"}, {0x005305, "\xCA\xF1"}, {0x005306, "\xD2\xB2"}, {0x005307, "\xF3\x3E"}, 
 
 };
- for(size_t i=1; i<sizeof(u2mb_006_eucjpms)/sizeof(U2MBData); ++i)
+ for(size_t i=1; i<sizeof(u2mb_006_cp20932)/sizeof(U2MBData); ++i)
  {
-	U2MBData& data = u2mb_006_eucjpms[i];
-	u2mb[enc_eucjpms][data.u] = data.mbs;
+	U2MBData& data = u2mb_006_cp20932[i];
+	u2mb[enc_cp20932][data.u] = data.mbs;
  }
 }
-void u2mb_007_eucjpms_init()
+void u2mb_007_cp20932_init()
 {
-static U2MBData u2mb_007_eucjpms[] = { {0, ""}, 
+static U2MBData u2mb_007_cp20932[] = { {0, ""}, 
 {0x005308, "\xD2\xB3"}, {0x00530A, "\xB3\x7D"}, {0x00530B, "\xB3\x7E"}, {0x00530C, "\xB4\x21"}, 
 {0x00530D, "\xD2\xB5"}, {0x00530F, "\xD2\xB7"}, {0x005310, "\xD2\xB6"}, {0x005311, "\xB4\x22"}, 
 {0x005313, "\xB4\x23"}, {0x005315, "\xD2\xB8"}, {0x005316, "\xB2\xBD"}, {0x005317, "\xCB\xCC"}, 
@@ -5162,15 +5162,15 @@ static U2MBData u2mb_007_eucjpms[] = { {0, ""},
 {0x00547C, "\xB8\xC6"}, {0x00547D, "\xCC\xBF"}, {0x00547F, "\xB4\x7E"}, {0x005480, "\xD2\xF2"}, 
 
 };
- for(size_t i=1; i<sizeof(u2mb_007_eucjpms)/sizeof(U2MBData); ++i)
+ for(size_t i=1; i<sizeof(u2mb_007_cp20932)/sizeof(U2MBData); ++i)
  {
-	U2MBData& data = u2mb_007_eucjpms[i];
-	u2mb[enc_eucjpms][data.u] = data.mbs;
+	U2MBData& data = u2mb_007_cp20932[i];
+	u2mb[enc_cp20932][data.u] = data.mbs;
  }
 }
-void u2mb_008_eucjpms_init()
+void u2mb_008_cp20932_init()
 {
-static U2MBData u2mb_008_eucjpms[] = { {0, ""}, 
+static U2MBData u2mb_008_cp20932[] = { {0, ""}, 
 {0x005481, "\xB5\x21"}, {0x005483, "\xB5\x22"}, {0x005484, "\xD2\xF4"}, {0x005485, "\xB5\x23"}, 
 {0x005486, "\xD2\xF6"}, {0x005488, "\xB5\x24"}, {0x005489, "\xB5\x25"}, {0x00548A, "\xF3\x41"}, 
 {0x00548B, "\xBA\xF0"}, {0x00548C, "\xCF\xC2"}, {0x00548D, "\xB5\x26"}, {0x00548E, "\xD2\xEB"}, 
@@ -5237,15 +5237,15 @@ static U2MBData u2mb_008_eucjpms[] = { {0, ""},
 {0x00564D, "\xB6\x45"}, {0x00564E, "\xD3\xD9"}, {0x00564F, "\xB6\x46"}, {0x005650, "\xD3\xDA"}, 
 
 };
- for(size_t i=1; i<sizeof(u2mb_008_eucjpms)/sizeof(U2MBData); ++i)
+ for(size_t i=1; i<sizeof(u2mb_008_cp20932)/sizeof(U2MBData); ++i)
  {
-	U2MBData& data = u2mb_008_eucjpms[i];
-	u2mb[enc_eucjpms][data.u] = data.mbs;
+	U2MBData& data = u2mb_008_cp20932[i];
+	u2mb[enc_cp20932][data.u] = data.mbs;
  }
 }
-void u2mb_009_eucjpms_init()
+void u2mb_009_cp20932_init()
 {
-static U2MBData u2mb_009_eucjpms[] = { {0, ""}, 
+static U2MBData u2mb_009_cp20932[] = { {0, ""}, 
 {0x005654, "\xB6\x47"}, {0x00565B, "\xB3\xFA"}, {0x00565E, "\xB6\x48"}, {0x005660, "\xB6\x49"}, 
 {0x005661, "\xB6\x4A"}, {0x005662, "\xB6\x4B"}, {0x005663, "\xB6\x4C"}, {0x005664, "\xD3\xE1"}, 
 {0x005666, "\xB6\x4D"}, {0x005668, "\xB4\xEF"}, {0x005669, "\xB6\x4E"}, {0x00566A, "\xD3\xE4"}, 
@@ -5312,15 +5312,15 @@ static U2MBData u2mb_009_eucjpms[] = { {0, ""},
 {0x0057F9, "\xC7\xDD"}, {0x0057FA, "\xB4\xF0"}, {0x0057FC, "\xBA\xEB"}, {0x0057FD, "\xB7\x77"}, 
 
 };
- for(size_t i=1; i<sizeof(u2mb_009_eucjpms)/sizeof(U2MBData); ++i)
+ for(size_t i=1; i<sizeof(u2mb_009_cp20932)/sizeof(U2MBData); ++i)
  {
-	U2MBData& data = u2mb_009_eucjpms[i];
-	u2mb[enc_eucjpms][data.u] = data.mbs;
+	U2MBData& data = u2mb_009_cp20932[i];
+	u2mb[enc_cp20932][data.u] = data.mbs;
  }
 }
-void u2mb_00a_eucjpms_init()
+void u2mb_00a_cp20932_init()
 {
-static U2MBData u2mb_00a_eucjpms[] = { {0, ""}, 
+static U2MBData u2mb_00a_cp20932[] = { {0, ""}, 
 {0x0057FE, "\xB7\x78"}, {0x0057FF, "\xB7\x79"}, {0x005800, "\xCB\xD9"}, {0x005802, "\xC6\xB2"}, 
 {0x005803, "\xB7\x7A"}, {0x005804, "\xB7\x7B"}, {0x005805, "\xB7\xF8"}, {0x005806, "\xC2\xCF"}, 
 {0x005808, "\xB7\x7C"}, {0x005809, "\xB7\x7D"}, {0x00580A, "\xD4\xC1"}, {0x00580B, "\xD4\xC4"}, 
@@ -5387,15 +5387,15 @@ static U2MBData u2mb_00a_eucjpms[] = { {0, ""},
 {0x005993, "\xB5\xB8"}, {0x005995, "\xB9\x2C"}, {0x005996, "\xCD\xC5"}, {0x005997, "\xB9\x2D"}, 
 
 };
- for(size_t i=1; i<sizeof(u2mb_00a_eucjpms)/sizeof(U2MBData); ++i)
+ for(size_t i=1; i<sizeof(u2mb_00a_cp20932)/sizeof(U2MBData); ++i)
  {
-	U2MBData& data = u2mb_00a_eucjpms[i];
-	u2mb[enc_eucjpms][data.u] = data.mbs;
+	U2MBData& data = u2mb_00a_cp20932[i];
+	u2mb[enc_cp20932][data.u] = data.mbs;
  }
 }
-void u2mb_00b_eucjpms_init()
+void u2mb_00b_cp20932_init()
 {
-static U2MBData u2mb_00b_eucjpms[] = { {0, ""}, 
+static U2MBData u2mb_00b_cp20932[] = { {0, ""}, 
 {0x005999, "\xCC\xAF"}, {0x00599B, "\xD6\xAC"}, {0x00599D, "\xD5\xA3"}, {0x00599F, "\xB9\x2E"}, 
 {0x0059A3, "\xD5\xA6"}, {0x0059A4, "\xB9\x2F"}, {0x0059A5, "\xC2\xC5"}, {0x0059A7, "\xB9\x30"}, 
 {0x0059A8, "\xCB\xB8"}, {0x0059AC, "\xC5\xCA"}, {0x0059AD, "\xB9\x31"}, {0x0059AE, "\xB9\x32"}, 
@@ -5462,15 +5462,15 @@ static U2MBData u2mb_00b_eucjpms[] = { {0, ""},
 {0x005B98, "\xB4\xB1"}, {0x005B99, "\xC3\xE8"}, {0x005B9A, "\xC4\xEA"}, {0x005B9B, "\xB0\xB8"}, 
 
 };
- for(size_t i=1; i<sizeof(u2mb_00b_eucjpms)/sizeof(U2MBData); ++i)
+ for(size_t i=1; i<sizeof(u2mb_00b_cp20932)/sizeof(U2MBData); ++i)
  {
-	U2MBData& data = u2mb_00b_eucjpms[i];
-	u2mb[enc_eucjpms][data.u] = data.mbs;
+	U2MBData& data = u2mb_00b_cp20932[i];
+	u2mb[enc_cp20932][data.u] = data.mbs;
  }
 }
-void u2mb_00c_eucjpms_init()
+void u2mb_00c_cp20932_init()
 {
-static U2MBData u2mb_00c_eucjpms[] = { {0, ""}, 
+static U2MBData u2mb_00c_cp20932[] = { {0, ""}, 
 {0x005B9C, "\xB5\xB9"}, {0x005B9D, "\xCA\xF5"}, {0x005B9F, "\xBC\xC2"}, {0x005BA2, "\xB5\xD2"}, 
 {0x005BA3, "\xC0\xEB"}, {0x005BA4, "\xBC\xBC"}, {0x005BA5, "\xCD\xA8"}, {0x005BA6, "\xD5\xE1"}, 
 {0x005BA8, "\xBA\x51"}, {0x005BA9, "\xBA\x52"}, {0x005BAC, "\xBA\x53"}, {0x005BAD, "\xBA\x54"}, 
@@ -5537,15 +5537,15 @@ static U2MBData u2mb_00c_eucjpms[] = { {0, ""},
 {0x005D48, "\xBB\x53"}, {0x005D4A, "\xBB\x57"}, {0x005D4B, "\xD6\xCB"}, {0x005D4C, "\xD6\xC8"}, 
 
 };
- for(size_t i=1; i<sizeof(u2mb_00c_eucjpms)/sizeof(U2MBData); ++i)
+ for(size_t i=1; i<sizeof(u2mb_00c_cp20932)/sizeof(U2MBData); ++i)
  {
-	U2MBData& data = u2mb_00c_eucjpms[i];
-	u2mb[enc_eucjpms][data.u] = data.mbs;
+	U2MBData& data = u2mb_00c_cp20932[i];
+	u2mb[enc_cp20932][data.u] = data.mbs;
  }
 }
-void u2mb_00d_eucjpms_init()
+void u2mb_00d_cp20932_init()
 {
-static U2MBData u2mb_00d_eucjpms[] = { {0, ""}, 
+static U2MBData u2mb_00d_cp20932[] = { {0, ""}, 
 {0x005D4E, "\xD6\xCA"}, {0x005D50, "\xCD\xF2"}, {0x005D51, "\xBB\x55"}, {0x005D52, "\xD6\xC9"}, 
 {0x005D53, "\xF3\x48"}, {0x005D55, "\xBB\x54"}, {0x005D59, "\xBB\x56"}, {0x005D5C, "\xD6\xBF"}, 
 {0x005D5F, "\xBB\x58"}, {0x005D60, "\xBB\x59"}, {0x005D61, "\xBB\x5A"}, {0x005D62, "\xBB\x5B"}, 
@@ -5612,15 +5612,15 @@ static U2MBData u2mb_00d_eucjpms[] = { {0, ""},
 {0x005EFE, "\xD7\xB0"}, {0x005EFF, "\xC6\xFB"}, {0x005F01, "\xCA\xDB"}, {0x005F02, "\xBC\x5C"}, 
 
 };
- for(size_t i=1; i<sizeof(u2mb_00d_eucjpms)/sizeof(U2MBData); ++i)
+ for(size_t i=1; i<sizeof(u2mb_00d_cp20932)/sizeof(U2MBData); ++i)
  {
-	U2MBData& data = u2mb_00d_eucjpms[i];
-	u2mb[enc_eucjpms][data.u] = data.mbs;
+	U2MBData& data = u2mb_00d_cp20932[i];
+	u2mb[enc_cp20932][data.u] = data.mbs;
  }
 }
-void u2mb_00e_eucjpms_init()
+void u2mb_00e_cp20932_init()
 {
-static U2MBData u2mb_00e_eucjpms[] = { {0, ""}, 
+static U2MBData u2mb_00e_cp20932[] = { {0, ""}, 
 {0x005F03, "\xD7\xB1"}, {0x005F04, "\xCF\xAE"}, {0x005F06, "\xBC\x5D"}, {0x005F07, "\xBC\x5E"}, 
 {0x005F08, "\xBC\x5F"}, {0x005F09, "\xD7\xB2"}, {0x005F0A, "\xCA\xC0"}, {0x005F0B, "\xD7\xB5"}, 
 {0x005F0C, "\xD0\xA1"}, {0x005F0D, "\xD0\xB1"}, {0x005F0E, "\xBC\x60"}, {0x005F0F, "\xBC\xB0"}, 
@@ -5687,15 +5687,15 @@ static U2MBData u2mb_00e_eucjpms[] = { {0, ""},
 {0x006063, "\xD7\xF3"}, {0x006064, "\xD7\xF5"}, {0x006065, "\xC3\xD1"}, {0x006067, "\xBD\x69"}, 
 
 };
- for(size_t i=1; i<sizeof(u2mb_00e_eucjpms)/sizeof(U2MBData); ++i)
+ for(size_t i=1; i<sizeof(u2mb_00e_cp20932)/sizeof(U2MBData); ++i)
  {
-	U2MBData& data = u2mb_00e_eucjpms[i];
-	u2mb[enc_eucjpms][data.u] = data.mbs;
+	U2MBData& data = u2mb_00e_cp20932[i];
+	u2mb[enc_cp20932][data.u] = data.mbs;
  }
 }
-void u2mb_00f_eucjpms_init()
+void u2mb_00f_cp20932_init()
 {
-static U2MBData u2mb_00f_eucjpms[] = { {0, ""}, 
+static U2MBData u2mb_00f_cp20932[] = { {0, ""}, 
 {0x006068, "\xBA\xA8"}, {0x006069, "\xB2\xB8"}, {0x00606A, "\xD7\xED"}, {0x00606B, "\xD7\xF8"}, 
 {0x00606C, "\xD7\xF7"}, {0x00606D, "\xB6\xB3"}, {0x00606F, "\xC2\xA9"}, {0x006070, "\xB3\xE6"}, 
 {0x006071, "\xBD\x6A"}, {0x006075, "\xB7\xC3"}, {0x006077, "\xD7\xEE"}, {0x00607E, "\xBD\x6B"}, 
@@ -5762,15 +5762,15 @@ static U2MBData u2mb_00f_eucjpms[] = { {0, ""},
 {0x0061D5, "\xBE\x75"}, {0x0061DC, "\xBE\x76"}, {0x0061DD, "\xBE\x77"}, {0x0061DE, "\xBE\x78"}, 
 
 };
- for(size_t i=1; i<sizeof(u2mb_00f_eucjpms)/sizeof(U2MBData); ++i)
+ for(size_t i=1; i<sizeof(u2mb_00f_cp20932)/sizeof(U2MBData); ++i)
  {
-	U2MBData& data = u2mb_00f_eucjpms[i];
-	u2mb[enc_eucjpms][data.u] = data.mbs;
+	U2MBData& data = u2mb_00f_cp20932[i];
+	u2mb[enc_cp20932][data.u] = data.mbs;
  }
 }
-void u2mb_010_eucjpms_init()
+void u2mb_010_cp20932_init()
 {
-static U2MBData u2mb_010_eucjpms[] = { {0, ""}, 
+static U2MBData u2mb_010_cp20932[] = { {0, ""}, 
 {0x0061DF, "\xBE\x79"}, {0x0061E1, "\xBE\x7A"}, {0x0061E2, "\xBE\x7B"}, {0x0061E3, "\xD8\xF0"}, 
 {0x0061E5, "\xBE\x7E"}, {0x0061E6, "\xD8\xEF"}, {0x0061E7, "\xBE\x7C"}, {0x0061E9, "\xBE\x7D"}, 
 {0x0061EC, "\xBF\x21"}, {0x0061ED, "\xBF\x22"}, {0x0061EF, "\xBF\x23"}, {0x0061F2, "\xC4\xA8"}, 
@@ -5837,15 +5837,15 @@ static U2MBData u2mb_010_eucjpms[] = { {0, ""},
 {0x006374, "\xBF\x7D"}, {0x006375, "\xBF\x7E"}, {0x006376, "\xD9\xD9"}, {0x006377, "\xBE\xB9"}, 
 
 };
- for(size_t i=1; i<sizeof(u2mb_010_eucjpms)/sizeof(U2MBData); ++i)
+ for(size_t i=1; i<sizeof(u2mb_010_cp20932)/sizeof(U2MBData); ++i)
  {
-	U2MBData& data = u2mb_010_eucjpms[i];
-	u2mb[enc_eucjpms][data.u] = data.mbs;
+	U2MBData& data = u2mb_010_cp20932[i];
+	u2mb[enc_cp20932][data.u] = data.mbs;
  }
 }
-void u2mb_011_eucjpms_init()
+void u2mb_011_cp20932_init()
 {
-static U2MBData u2mb_011_eucjpms[] = { {0, ""}, 
+static U2MBData u2mb_011_cp20932[] = { {0, ""}, 
 {0x006378, "\xC0\x21"}, {0x00637A, "\xC6\xE8"}, {0x00637B, "\xC7\xB1"}, {0x00637C, "\xC0\x22"}, 
 {0x00637D, "\xC0\x23"}, {0x00637F, "\xC0\x24"}, {0x006380, "\xD9\xD7"}, {0x006382, "\xC0\x25"}, 
 {0x006383, "\xC1\xDD"}, {0x006384, "\xC0\x26"}, {0x006387, "\xC0\x27"}, {0x006388, "\xBC\xF8"}, 
@@ -5912,15 +5912,15 @@ static U2MBData u2mb_011_eucjpms[] = { {0, ""},
 {0x00652B, "\xDA\xBC"}, {0x00652C, "\xDA\xB0"}, {0x00652E, "\xC1\x45"}, {0x00652F, "\xBB\xD9"}, 
 
 };
- for(size_t i=1; i<sizeof(u2mb_011_eucjpms)/sizeof(U2MBData); ++i)
+ for(size_t i=1; i<sizeof(u2mb_011_cp20932)/sizeof(U2MBData); ++i)
  {
-	U2MBData& data = u2mb_011_eucjpms[i];
-	u2mb[enc_eucjpms][data.u] = data.mbs;
+	U2MBData& data = u2mb_011_cp20932[i];
+	u2mb[enc_cp20932][data.u] = data.mbs;
  }
 }
-void u2mb_012_eucjpms_init()
+void u2mb_012_cp20932_init()
 {
-static U2MBData u2mb_012_eucjpms[] = { {0, ""}, 
+static U2MBData u2mb_012_cp20932[] = { {0, ""}, 
 {0x006531, "\xC1\x46"}, {0x006534, "\xDA\xBD"}, {0x006535, "\xDA\xBE"}, {0x006536, "\xDA\xC0"}, 
 {0x006537, "\xDA\xBF"}, {0x006538, "\xDA\xC1"}, {0x006539, "\xB2\xFE"}, {0x00653A, "\xC1\x47"}, 
 {0x00653B, "\xB9\xB6"}, {0x00653C, "\xC1\x48"}, {0x00653D, "\xC1\x49"}, {0x00653E, "\xCA\xFC"}, 
@@ -5987,15 +5987,15 @@ static U2MBData u2mb_012_eucjpms[] = { {0, ""},
 {0x00669F, "\xC2\x56"}, {0x0066A0, "\xC2\x57"}, {0x0066A2, "\xC4\xAA"}, {0x0066A4, "\xC2\x58"}, 
 
 };
- for(size_t i=1; i<sizeof(u2mb_012_eucjpms)/sizeof(U2MBData); ++i)
+ for(size_t i=1; i<sizeof(u2mb_012_cp20932)/sizeof(U2MBData); ++i)
  {
-	U2MBData& data = u2mb_012_eucjpms[i];
-	u2mb[enc_eucjpms][data.u] = data.mbs;
+	U2MBData& data = u2mb_012_cp20932[i];
+	u2mb[enc_cp20932][data.u] = data.mbs;
  }
 }
-void u2mb_013_eucjpms_init()
+void u2mb_013_cp20932_init()
 {
-static U2MBData u2mb_013_eucjpms[] = { {0, ""}, 
+static U2MBData u2mb_013_cp20932[] = { {0, ""}, 
 {0x0066A6, "\xCE\xF1"}, {0x0066AB, "\xBB\xC3"}, {0x0066AD, "\xC2\x59"}, {0x0066AE, "\xCA\xEB"}, 
 {0x0066B1, "\xC2\x5A"}, {0x0066B2, "\xC2\x5B"}, {0x0066B4, "\xCB\xBD"}, {0x0066B5, "\xC2\x5C"}, 
 {0x0066B8, "\xDB\xA2"}, {0x0066B9, "\xDA\xFB"}, {0x0066BB, "\xC2\x5D"}, {0x0066BC, "\xDA\xFE"}, 
@@ -6062,15 +6062,15 @@ static U2MBData u2mb_013_eucjpms[] = { {0, ""},
 {0x006839, "\xBA\xAC"}, {0x00683B, "\xC3\x56"}, {0x00683C, "\xB3\xCA"}, {0x00683D, "\xBA\xCF"}, 
 
 };
- for(size_t i=1; i<sizeof(u2mb_013_eucjpms)/sizeof(U2MBData); ++i)
+ for(size_t i=1; i<sizeof(u2mb_013_cp20932)/sizeof(U2MBData); ++i)
  {
-	U2MBData& data = u2mb_013_eucjpms[i];
-	u2mb[enc_eucjpms][data.u] = data.mbs;
+	U2MBData& data = u2mb_013_cp20932[i];
+	u2mb[enc_cp20932][data.u] = data.mbs;
  }
 }
-void u2mb_014_eucjpms_init()
+void u2mb_014_cp20932_init()
 {
-static U2MBData u2mb_014_eucjpms[] = { {0, ""}, 
+static U2MBData u2mb_014_cp20932[] = { {0, ""}, 
 {0x00683F, "\xC3\x57"}, {0x006840, "\xDB\xDC"}, {0x006841, "\xB7\xE5"}, {0x006842, "\xB7\xCB"}, 
 {0x006843, "\xC5\xED"}, {0x006844, "\xC3\x58"}, {0x006845, "\xC3\x59"}, {0x006846, "\xDB\xDA"}, 
 {0x006848, "\xB0\xC6"}, {0x00684A, "\xC3\x5A"}, {0x00684C, "\xC3\x5B"}, {0x00684D, "\xDB\xDD"}, 
@@ -6137,15 +6137,15 @@ static U2MBData u2mb_014_eucjpms[] = { {0, ""},
 {0x0069C1, "\xDC\xC9"}, {0x0069C3, "\xDC\xD1"}, {0x0069C5, "\xC4\x65"}, {0x0069C7, "\xF4\xA2"}, 
 
 };
- for(size_t i=1; i<sizeof(u2mb_014_eucjpms)/sizeof(U2MBData); ++i)
+ for(size_t i=1; i<sizeof(u2mb_014_cp20932)/sizeof(U2MBData); ++i)
  {
-	U2MBData& data = u2mb_014_eucjpms[i];
-	u2mb[enc_eucjpms][data.u] = data.mbs;
+	U2MBData& data = u2mb_014_cp20932[i];
+	u2mb[enc_cp20932][data.u] = data.mbs;
  }
 }
-void u2mb_015_eucjpms_init()
+void u2mb_015_cp20932_init()
 {
-static U2MBData u2mb_015_eucjpms[] = { {0, ""}, 
+static U2MBData u2mb_015_cp20932[] = { {0, ""}, 
 {0x0069C8, "\xC4\x66"}, {0x0069CA, "\xDC\xCE"}, {0x0069CB, "\xB9\xBD"}, {0x0069CC, "\xC4\xC8"}, 
 {0x0069CD, "\xC1\xE4"}, {0x0069CE, "\xDC\xCC"}, {0x0069D0, "\xDC\xC7"}, {0x0069D1, "\xC4\x67"}, 
 {0x0069D3, "\xDC\xCA"}, {0x0069D6, "\xC4\x68"}, {0x0069D7, "\xC4\x69"}, {0x0069D8, "\xCD\xCD"}, 
@@ -6212,15 +6212,15 @@ static U2MBData u2mb_015_eucjpms[] = { {0, ""},
 {0x006B7F, "\xDD\xC7"}, {0x006B80, "\xDD\xC8"}, {0x006B82, "\xC6\x22"}, {0x006B83, "\xDD\xCA"}, 
 
 };
- for(size_t i=1; i<sizeof(u2mb_015_eucjpms)/sizeof(U2MBData); ++i)
+ for(size_t i=1; i<sizeof(u2mb_015_cp20932)/sizeof(U2MBData); ++i)
  {
-	U2MBData& data = u2mb_015_eucjpms[i];
-	u2mb[enc_eucjpms][data.u] = data.mbs;
+	U2MBData& data = u2mb_015_cp20932[i];
+	u2mb[enc_cp20932][data.u] = data.mbs;
  }
 }
-void u2mb_016_eucjpms_init()
+void u2mb_016_cp20932_init()
 {
-static U2MBData u2mb_016_eucjpms[] = { {0, ""}, 
+static U2MBData u2mb_016_cp20932[] = { {0, ""}, 
 {0x006B84, "\xDD\xC9"}, {0x006B85, "\xC6\x23"}, {0x006B86, "\xCB\xD8"}, {0x006B89, "\xBD\xDE"}, 
 {0x006B8A, "\xBC\xEC"}, {0x006B8B, "\xBB\xC4"}, {0x006B8D, "\xDD\xCB"}, {0x006B95, "\xDD\xCD"}, 
 {0x006B96, "\xBF\xA3"}, {0x006B97, "\xC6\x24"}, {0x006B98, "\xDD\xCC"}, {0x006B9B, "\xC6\x25"}, 
@@ -6287,15 +6287,15 @@ static U2MBData u2mb_016_eucjpms[] = { {0, ""},
 {0x006D32, "\xBD\xA7"}, {0x006D33, "\xDE\xAE"}, {0x006D35, "\xDE\xAD"}, {0x006D36, "\xDE\xA8"}, 
 
 };
- for(size_t i=1; i<sizeof(u2mb_016_eucjpms)/sizeof(U2MBData); ++i)
+ for(size_t i=1; i<sizeof(u2mb_016_cp20932)/sizeof(U2MBData); ++i)
  {
-	U2MBData& data = u2mb_016_eucjpms[i];
-	u2mb[enc_eucjpms][data.u] = data.mbs;
+	U2MBData& data = u2mb_016_cp20932[i];
+	u2mb[enc_cp20932][data.u] = data.mbs;
  }
 }
-void u2mb_017_eucjpms_init()
+void u2mb_017_cp20932_init()
 {
-static U2MBData u2mb_017_eucjpms[] = { {0, ""}, 
+static U2MBData u2mb_017_cp20932[] = { {0, ""}, 
 {0x006D38, "\xDE\xAB"}, {0x006D39, "\xC7\x3A"}, {0x006D3B, "\xB3\xE8"}, {0x006D3C, "\xC7\x3B"}, 
 {0x006D3D, "\xDE\xAA"}, {0x006D3E, "\xC7\xC9"}, {0x006D3F, "\xC7\x3C"}, {0x006D41, "\xCE\xAE"}, 
 {0x006D44, "\xBE\xF4"}, {0x006D45, "\xC0\xF5"}, {0x006D57, "\xC7\x3D"}, {0x006D59, "\xDE\xB6"}, 
@@ -6362,15 +6362,15 @@ static U2MBData u2mb_017_eucjpms[] = { {0, ""},
 {0x006F08, "\xC8\x42"}, {0x006F09, "\xB9\xF7"}, {0x006F0A, "\xC8\x43"}, {0x006F0C, "\xC8\x44"}, 
 
 };
- for(size_t i=1; i<sizeof(u2mb_017_eucjpms)/sizeof(U2MBData); ++i)
+ for(size_t i=1; i<sizeof(u2mb_017_cp20932)/sizeof(U2MBData); ++i)
  {
-	U2MBData& data = u2mb_017_eucjpms[i];
-	u2mb[enc_eucjpms][data.u] = data.mbs;
+	U2MBData& data = u2mb_017_cp20932[i];
+	u2mb[enc_cp20932][data.u] = data.mbs;
  }
 }
-void u2mb_018_eucjpms_init()
+void u2mb_018_cp20932_init()
 {
-static U2MBData u2mb_018_eucjpms[] = { {0, ""}, 
+static U2MBData u2mb_018_cp20932[] = { {0, ""}, 
 {0x006F0D, "\xC8\x45"}, {0x006F0F, "\xCF\xB3"}, {0x006F11, "\xDE\xF4"}, {0x006F13, "\xDF\xA2"}, 
 {0x006F14, "\xB1\xE9"}, {0x006F15, "\xC1\xE6"}, {0x006F16, "\xC8\x46"}, {0x006F18, "\xC8\x47"}, 
 {0x006F1A, "\xC8\x48"}, {0x006F1B, "\xC8\x49"}, {0x006F20, "\xC7\xF9"}, {0x006F22, "\xB4\xC1"}, 
@@ -6437,15 +6437,15 @@ static U2MBData u2mb_018_eucjpms[] = { {0, ""},
 {0x00710F, "\xC9\x69"}, {0x007114, "\xB1\xEB"}, {0x007119, "\xDF\xE4"}, {0x00711A, "\xCA\xB2"}, 
 
 };
- for(size_t i=1; i<sizeof(u2mb_018_eucjpms)/sizeof(U2MBData); ++i)
+ for(size_t i=1; i<sizeof(u2mb_018_cp20932)/sizeof(U2MBData); ++i)
  {
-	U2MBData& data = u2mb_018_eucjpms[i];
-	u2mb[enc_eucjpms][data.u] = data.mbs;
+	U2MBData& data = u2mb_018_cp20932[i];
+	u2mb[enc_cp20932][data.u] = data.mbs;
  }
 }
-void u2mb_019_eucjpms_init()
+void u2mb_019_cp20932_init()
 {
-static U2MBData u2mb_019_eucjpms[] = { {0, ""}, 
+static U2MBData u2mb_019_cp20932[] = { {0, ""}, 
 {0x00711C, "\xDF\xE3"}, {0x00711E, "\xC9\x6A"}, {0x007120, "\xC9\x6B"}, {0x007121, "\xCC\xB5"}, 
 {0x007126, "\xBE\xC7"}, {0x00712B, "\xC9\x6C"}, {0x00712D, "\xC9\x6D"}, {0x00712F, "\xC9\x6E"}, 
 {0x007130, "\xC9\x6F"}, {0x007131, "\xC9\x70"}, {0x007136, "\xC1\xB3"}, {0x007138, "\xC9\x71"}, 
@@ -6512,15 +6512,15 @@ static U2MBData u2mb_019_eucjpms[] = { {0, ""},
 {0x007312, "\xCB\x28"}, {0x007313, "\xCB\x29"}, {0x007316, "\xE0\xCB"}, {0x007317, "\xE0\xC8"}, 
 
 };
- for(size_t i=1; i<sizeof(u2mb_019_eucjpms)/sizeof(U2MBData); ++i)
+ for(size_t i=1; i<sizeof(u2mb_019_cp20932)/sizeof(U2MBData); ++i)
  {
-	U2MBData& data = u2mb_019_eucjpms[i];
-	u2mb[enc_eucjpms][data.u] = data.mbs;
+	U2MBData& data = u2mb_019_cp20932[i];
+	u2mb[enc_cp20932][data.u] = data.mbs;
  }
 }
-void u2mb_01a_eucjpms_init()
+void u2mb_01a_cp20932_init()
 {
-static U2MBData u2mb_01a_eucjpms[] = { {0, ""}, 
+static U2MBData u2mb_01a_cp20932[] = { {0, ""}, 
 {0x007318, "\xCB\x2A"}, {0x007319, "\xCB\x2B"}, {0x00731B, "\xCC\xD4"}, {0x00731C, "\xE0\xCA"}, 
 {0x00731D, "\xE0\xCC"}, {0x00731E, "\xCB\x2C"}, {0x00731F, "\xCE\xC4"}, {0x007322, "\xCB\x2D"}, 
 {0x007324, "\xCB\x2E"}, {0x007325, "\xE0\xD0"}, {0x007327, "\xCB\x2F"}, {0x007328, "\xCB\x30"}, 
@@ -6587,15 +6587,15 @@ static U2MBData u2mb_01a_eucjpms[] = { {0, ""},
 {0x0074CC, "\xCC\x6C"}, {0x0074CF, "\xE0\xFC"}, {0x0074D0, "\xCC\x6D"}, {0x0074D3, "\xCC\x6E"}, 
 
 };
- for(size_t i=1; i<sizeof(u2mb_01a_eucjpms)/sizeof(U2MBData); ++i)
+ for(size_t i=1; i<sizeof(u2mb_01a_cp20932)/sizeof(U2MBData); ++i)
  {
-	U2MBData& data = u2mb_01a_eucjpms[i];
-	u2mb[enc_eucjpms][data.u] = data.mbs;
+	U2MBData& data = u2mb_01a_cp20932[i];
+	u2mb[enc_cp20932][data.u] = data.mbs;
  }
 }
-void u2mb_01b_eucjpms_init()
+void u2mb_01b_cp20932_init()
 {
-static U2MBData u2mb_01b_eucjpms[] = { {0, ""}, 
+static U2MBData u2mb_01b_cp20932[] = { {0, ""}, 
 {0x0074D4, "\xE0\xFD"}, {0x0074D8, "\xCC\x6F"}, {0x0074DA, "\xCC\x70"}, {0x0074DB, "\xCC\x71"}, 
 {0x0074DC, "\xB1\xBB"}, {0x0074DE, "\xCC\x72"}, {0x0074DF, "\xCC\x73"}, {0x0074E0, "\xE1\xA1"}, 
 {0x0074E2, "\xC9\xBB"}, {0x0074E3, "\xE1\xA2"}, {0x0074E4, "\xCC\x74"}, {0x0074E6, "\xB4\xA4"}, 
@@ -6662,15 +6662,15 @@ static U2MBData u2mb_01b_eucjpms[] = { {0, ""},
 {0x007642, "\xCE\xC5"}, {0x007643, "\xCE\x26"}, {0x007644, "\xCE\x27"}, {0x007645, "\xCE\x28"}, 
 
 };
- for(size_t i=1; i<sizeof(u2mb_01b_eucjpms)/sizeof(U2MBData); ++i)
+ for(size_t i=1; i<sizeof(u2mb_01b_cp20932)/sizeof(U2MBData); ++i)
  {
-	U2MBData& data = u2mb_01b_eucjpms[i];
-	u2mb[enc_eucjpms][data.u] = data.mbs;
+	U2MBData& data = u2mb_01b_cp20932[i];
+	u2mb[enc_cp20932][data.u] = data.mbs;
  }
 }
-void u2mb_01c_eucjpms_init()
+void u2mb_01c_cp20932_init()
 {
-static U2MBData u2mb_01c_eucjpms[] = { {0, ""}, 
+static U2MBData u2mb_01c_cp20932[] = { {0, ""}, 
 {0x007646, "\xE1\xF4"}, {0x007647, "\xE1\xF2"}, {0x007648, "\xE1\xF3"}, {0x007649, "\xCE\x29"}, 
 {0x00764A, "\xCE\x23"}, {0x00764B, "\xCE\x2A"}, {0x00764C, "\xB4\xE2"}, {0x007652, "\xCC\xFE"}, 
 {0x007655, "\xCE\x2B"}, {0x007656, "\xCA\xCA"}, {0x007658, "\xE1\xF6"}, {0x007659, "\xCE\x2C"}, 
@@ -6737,15 +6737,15 @@ static U2MBData u2mb_01c_eucjpms[] = { {0, ""},
 {0x0077E5, "\xC3\xCE"}, {0x0077E6, "\xCF\x46"}, {0x0077E7, "\xC7\xEA"}, {0x0077E9, "\xB6\xEB"}, 
 
 };
- for(size_t i=1; i<sizeof(u2mb_01c_eucjpms)/sizeof(U2MBData); ++i)
+ for(size_t i=1; i<sizeof(u2mb_01c_cp20932)/sizeof(U2MBData); ++i)
  {
-	U2MBData& data = u2mb_01c_eucjpms[i];
-	u2mb[enc_eucjpms][data.u] = data.mbs;
+	U2MBData& data = u2mb_01c_cp20932[i];
+	u2mb[enc_cp20932][data.u] = data.mbs;
  }
 }
-void u2mb_01d_eucjpms_init()
+void u2mb_01d_cp20932_init()
 {
-static U2MBData u2mb_01d_eucjpms[] = { {0, ""}, 
+static U2MBData u2mb_01d_cp20932[] = { {0, ""}, 
 {0x0077EA, "\xCF\x47"}, {0x0077EC, "\xCF\x48"}, {0x0077ED, "\xC3\xBB"}, {0x0077EE, "\xE2\xE4"}, 
 {0x0077EF, "\xB6\xBA"}, {0x0077F0, "\xCF\x49"}, {0x0077F1, "\xCF\x4A"}, {0x0077F3, "\xC0\xD0"}, 
 {0x0077F4, "\xCF\x4B"}, {0x0077F8, "\xCF\x4C"}, {0x0077FB, "\xCF\x4D"}, {0x0077FC, "\xE2\xE5"}, 
@@ -6812,15 +6812,15 @@ static U2MBData u2mb_01d_eucjpms[] = { {0, ""},
 {0x0079BB, "\xD0\x73"}, {0x0079BD, "\xB6\xD9"}, {0x0079BE, "\xB2\xD3"}, {0x0079BF, "\xC6\xC5"}, 
 
 };
- for(size_t i=1; i<sizeof(u2mb_01d_eucjpms)/sizeof(U2MBData); ++i)
+ for(size_t i=1; i<sizeof(u2mb_01d_cp20932)/sizeof(U2MBData); ++i)
  {
-	U2MBData& data = u2mb_01d_eucjpms[i];
-	u2mb[enc_eucjpms][data.u] = data.mbs;
+	U2MBData& data = u2mb_01d_cp20932[i];
+	u2mb[enc_cp20932][data.u] = data.mbs;
  }
 }
-void u2mb_01e_eucjpms_init()
+void u2mb_01e_cp20932_init()
 {
-static U2MBData u2mb_01e_eucjpms[] = { {0, ""}, 
+static U2MBData u2mb_01e_cp20932[] = { {0, ""}, 
 {0x0079C0, "\xBD\xA8"}, {0x0079C1, "\xBB\xE4"}, {0x0079C2, "\xD0\x74"}, {0x0079C4, "\xD0\x75"}, 
 {0x0079C7, "\xD0\x76"}, {0x0079C8, "\xD0\x77"}, {0x0079C9, "\xE3\xBD"}, {0x0079CA, "\xD0\x78"}, 
 {0x0079CB, "\xBD\xA9"}, {0x0079CF, "\xD0\x79"}, {0x0079D1, "\xB2\xCA"}, {0x0079D2, "\xC9\xC3"}, 
@@ -6887,15 +6887,15 @@ static U2MBData u2mb_01e_eucjpms[] = { {0, ""},
 {0x007B4C, "\xE4\xA5"}, {0x007B4D, "\xE4\xA3"}, {0x007B4E, "\xD2\x28"}, {0x007B4F, "\xC8\xB5"}, 
 
 };
- for(size_t i=1; i<sizeof(u2mb_01e_eucjpms)/sizeof(U2MBData); ++i)
+ for(size_t i=1; i<sizeof(u2mb_01e_cp20932)/sizeof(U2MBData); ++i)
  {
-	U2MBData& data = u2mb_01e_eucjpms[i];
-	u2mb[enc_eucjpms][data.u] = data.mbs;
+	U2MBData& data = u2mb_01e_cp20932[i];
+	u2mb[enc_cp20932][data.u] = data.mbs;
  }
 }
-void u2mb_01f_eucjpms_init()
+void u2mb_01f_cp20932_init()
 {
-static U2MBData u2mb_01f_eucjpms[] = { {0, ""}, 
+static U2MBData u2mb_01f_cp20932[] = { {0, ""}, 
 {0x007B50, "\xE3\xFE"}, {0x007B51, "\xC3\xDE"}, {0x007B52, "\xC5\xFB"}, {0x007B54, "\xC5\xFA"}, 
 {0x007B55, "\xD2\x29"}, {0x007B56, "\xBA\xF6"}, {0x007B5D, "\xE4\xB8"}, {0x007B60, "\xD2\x2A"}, 
 {0x007B64, "\xD2\x2B"}, {0x007B65, "\xE4\xA8"}, {0x007B66, "\xD2\x2C"}, {0x007B67, "\xE4\xAA"}, 
@@ -6962,15 +6962,15 @@ static U2MBData u2mb_01f_eucjpms[] = { {0, ""},
 {0x007CDE, "\xCA\xB5"}, {0x007CDF, "\xC1\xEC"}, {0x007CE0, "\xB9\xC7"}, {0x007CE2, "\xE4\xF7"}, 
 
 };
- for(size_t i=1; i<sizeof(u2mb_01f_eucjpms)/sizeof(U2MBData); ++i)
+ for(size_t i=1; i<sizeof(u2mb_01f_cp20932)/sizeof(U2MBData); ++i)
  {
-	U2MBData& data = u2mb_01f_eucjpms[i];
-	u2mb[enc_eucjpms][data.u] = data.mbs;
+	U2MBData& data = u2mb_01f_cp20932[i];
+	u2mb[enc_cp20932][data.u] = data.mbs;
  }
 }
-void u2mb_020_eucjpms_init()
+void u2mb_020_cp20932_init()
 {
-static U2MBData u2mb_020_eucjpms[] = { {0, ""}, 
+static U2MBData u2mb_020_cp20932[] = { {0, ""}, 
 {0x007CE6, "\xD3\x47"}, {0x007CE7, "\xCE\xC8"}, {0x007CE9, "\xD3\x48"}, {0x007CEB, "\xD3\x49"}, 
 {0x007CEF, "\xE4\xF9"}, {0x007CF2, "\xE4\xFA"}, {0x007CF4, "\xE4\xFB"}, {0x007CF5, "\xD3\x4A"}, 
 {0x007CF6, "\xE4\xFC"}, {0x007CF8, "\xBB\xE5"}, {0x007CFA, "\xE4\xFD"}, {0x007CFB, "\xB7\xCF"}, 
@@ -7037,15 +7037,15 @@ static U2MBData u2mb_020_eucjpms[] = { {0, ""},
 {0x007E4E, "\xD4\x52"}, {0x007E50, "\xD4\x53"}, {0x007E52, "\xD4\x54"}, {0x007E54, "\xBF\xA5"}, 
 
 };
- for(size_t i=1; i<sizeof(u2mb_020_eucjpms)/sizeof(U2MBData); ++i)
+ for(size_t i=1; i<sizeof(u2mb_020_cp20932)/sizeof(U2MBData); ++i)
  {
-	U2MBData& data = u2mb_020_eucjpms[i];
-	u2mb[enc_eucjpms][data.u] = data.mbs;
+	U2MBData& data = u2mb_020_cp20932[i];
+	u2mb[enc_cp20932][data.u] = data.mbs;
  }
 }
-void u2mb_021_eucjpms_init()
+void u2mb_021_cp20932_init()
 {
-static U2MBData u2mb_021_eucjpms[] = { {0, ""}, 
+static U2MBData u2mb_021_cp20932[] = { {0, ""}, 
 {0x007E55, "\xC1\xB6"}, {0x007E56, "\xE5\xE4"}, {0x007E58, "\xD4\x55"}, {0x007E59, "\xE5\xE6"}, 
 {0x007E5A, "\xE5\xE7"}, {0x007E5D, "\xE5\xE3"}, {0x007E5E, "\xE5\xE5"}, {0x007E5F, "\xD4\x56"}, 
 {0x007E61, "\xD4\x57"}, {0x007E62, "\xD4\x58"}, {0x007E65, "\xD4\x59"}, {0x007E66, "\xE5\xDA"}, 
@@ -7112,15 +7112,15 @@ static U2MBData u2mb_021_eucjpms[] = { {0, ""},
 {0x008076, "\xE6\xE3"}, {0x008077, "\xBF\xA6"}, {0x008079, "\xE6\xE4"}, {0x00807D, "\xE6\xE5"}, 
 
 };
- for(size_t i=1; i<sizeof(u2mb_021_eucjpms)/sizeof(U2MBData); ++i)
+ for(size_t i=1; i<sizeof(u2mb_021_cp20932)/sizeof(U2MBData); ++i)
  {
-	U2MBData& data = u2mb_021_eucjpms[i];
-	u2mb[enc_eucjpms][data.u] = data.mbs;
+	U2MBData& data = u2mb_021_cp20932[i];
+	u2mb[enc_cp20932][data.u] = data.mbs;
  }
 }
-void u2mb_022_eucjpms_init()
+void u2mb_022_cp20932_init()
 {
-static U2MBData u2mb_022_eucjpms[] = { {0, ""}, 
+static U2MBData u2mb_022_cp20932[] = { {0, ""}, 
 {0x00807E, "\xCF\xB8"}, {0x00807F, "\xE6\xE6"}, {0x008081, "\xD5\x6A"}, {0x008084, "\xE6\xE7"}, 
 {0x008085, "\xE6\xE9"}, {0x008086, "\xE6\xE8"}, {0x008087, "\xC8\xA5"}, {0x008088, "\xD5\x6B"}, 
 {0x008089, "\xC6\xF9"}, {0x00808B, "\xCF\xBE"}, {0x00808C, "\xC8\xA9"}, {0x00808E, "\xD5\x6C"}, 
@@ -7187,15 +7187,15 @@ static U2MBData u2mb_022_eucjpms[] = { {0, ""},
 {0x00821C, "\xBD\xD8"}, {0x00821D, "\xD6\x74"}, {0x00821E, "\xC9\xF1"}, {0x00821F, "\xBD\xAE"}, 
 
 };
- for(size_t i=1; i<sizeof(u2mb_022_eucjpms)/sizeof(U2MBData); ++i)
+ for(size_t i=1; i<sizeof(u2mb_022_cp20932)/sizeof(U2MBData); ++i)
  {
-	U2MBData& data = u2mb_022_eucjpms[i];
-	u2mb[enc_eucjpms][data.u] = data.mbs;
+	U2MBData& data = u2mb_022_cp20932[i];
+	u2mb[enc_cp20932][data.u] = data.mbs;
  }
 }
-void u2mb_023_eucjpms_init()
+void u2mb_023_cp20932_init()
 {
-static U2MBData u2mb_023_eucjpms[] = { {0, ""}, 
+static U2MBData u2mb_023_cp20932[] = { {0, ""}, 
 {0x008221, "\xD6\x75"}, {0x008222, "\xD6\x76"}, {0x008228, "\xD6\x77"}, {0x008229, "\xE7\xD5"}, 
 {0x00822A, "\xB9\xD2"}, {0x00822B, "\xE7\xD6"}, {0x00822C, "\xC8\xCC"}, {0x00822E, "\xE7\xE4"}, 
 {0x008232, "\xD6\x78"}, {0x008233, "\xE7\xD8"}, {0x008234, "\xD6\x79"}, {0x008235, "\xC2\xC9"}, 
@@ -7262,15 +7262,15 @@ static U2MBData u2mb_023_eucjpms[] = { {0, ""},
 {0x0083BE, "\xD8\x34"}, {0x0083BF, "\xD8\x35"}, {0x0083C0, "\xD8\x36"}, {0x0083C1, "\xE8\xC7"}, 
 
 };
- for(size_t i=1; i<sizeof(u2mb_023_eucjpms)/sizeof(U2MBData); ++i)
+ for(size_t i=1; i<sizeof(u2mb_023_cp20932)/sizeof(U2MBData); ++i)
  {
-	U2MBData& data = u2mb_023_eucjpms[i];
-	u2mb[enc_eucjpms][data.u] = data.mbs;
+	U2MBData& data = u2mb_023_cp20932[i];
+	u2mb[enc_cp20932][data.u] = data.mbs;
  }
 }
-void u2mb_024_eucjpms_init()
+void u2mb_024_cp20932_init()
 {
-static U2MBData u2mb_024_eucjpms[] = { {0, ""}, 
+static U2MBData u2mb_024_cp20932[] = { {0, ""}, 
 {0x0083C5, "\xBF\xFB"}, {0x0083C7, "\xD8\x37"}, {0x0083C9, "\xD8\x38"}, {0x0083CA, "\xB5\xC6"}, 
 {0x0083CC, "\xB6\xDD"}, {0x0083CE, "\xE8\xC2"}, {0x0083CF, "\xD8\x39"}, {0x0083D0, "\xD8\x3A"}, 
 {0x0083D1, "\xD8\x3B"}, {0x0083D3, "\xB2\xDB"}, {0x0083D4, "\xD8\x3C"}, {0x0083D6, "\xBE\xD4"}, 
@@ -7337,15 +7337,15 @@ static U2MBData u2mb_024_eucjpms[] = { {0, ""},
 {0x008581, "\xD9\x58"}, {0x008584, "\xC7\xF6"}, {0x008585, "\xD9\x59"}, {0x008586, "\xD9\x5A"}, 
 
 };
- for(size_t i=1; i<sizeof(u2mb_024_eucjpms)/sizeof(U2MBData); ++i)
+ for(size_t i=1; i<sizeof(u2mb_024_cp20932)/sizeof(U2MBData); ++i)
  {
-	U2MBData& data = u2mb_024_eucjpms[i];
-	u2mb[enc_eucjpms][data.u] = data.mbs;
+	U2MBData& data = u2mb_024_cp20932[i];
+	u2mb[enc_cp20932][data.u] = data.mbs;
  }
 }
-void u2mb_025_eucjpms_init()
+void u2mb_025_cp20932_init()
 {
-static U2MBData u2mb_025_eucjpms[] = { {0, ""}, 
+static U2MBData u2mb_025_cp20932[] = { {0, ""}, 
 {0x008587, "\xE9\xAF"}, {0x008588, "\xE9\xA7"}, {0x008589, "\xD9\x5B"}, {0x00858A, "\xE9\xA9"}, 
 {0x00858B, "\xD9\x5C"}, {0x00858C, "\xD9\x5D"}, {0x00858F, "\xD9\x5E"}, {0x008590, "\xE9\xB3"}, 
 {0x008591, "\xE9\xA8"}, {0x008593, "\xD9\x5F"}, {0x008594, "\xE9\xAC"}, {0x008597, "\xB1\xF2"}, 
@@ -7412,15 +7412,15 @@ static U2MBData u2mb_025_eucjpms[] = { {0, ""},
 {0x008732, "\xDB\x25"}, {0x008734, "\xE9\xEE"}, {0x008737, "\xE9\xF0"}, {0x008739, "\xDB\x26"}, 
 
 };
- for(size_t i=1; i<sizeof(u2mb_025_eucjpms)/sizeof(U2MBData); ++i)
+ for(size_t i=1; i<sizeof(u2mb_025_cp20932)/sizeof(U2MBData); ++i)
  {
-	U2MBData& data = u2mb_025_eucjpms[i];
-	u2mb[enc_eucjpms][data.u] = data.mbs;
+	U2MBData& data = u2mb_025_cp20932[i];
+	u2mb[enc_cp20932][data.u] = data.mbs;
  }
 }
-void u2mb_026_eucjpms_init()
+void u2mb_026_cp20932_init()
 {
-static U2MBData u2mb_026_eucjpms[] = { {0, ""}, 
+static U2MBData u2mb_026_cp20932[] = { {0, ""}, 
 {0x00873A, "\xDB\x27"}, {0x00873B, "\xE9\xF1"}, {0x00873C, "\xDB\x28"}, {0x00873D, "\xDB\x29"}, 
 {0x00873E, "\xDB\x2A"}, {0x00873F, "\xE9\xEF"}, {0x008740, "\xDB\x2B"}, {0x008743, "\xDB\x2C"}, 
 {0x008745, "\xDB\x2D"}, {0x008749, "\xC0\xE6"}, {0x00874B, "\xCF\xB9"}, {0x00874C, "\xE9\xF8"}, 
@@ -7487,15 +7487,15 @@ static U2MBData u2mb_026_eucjpms[] = { {0, ""},
 {0x0088DE, "\xDC\x4E"}, {0x0088DF, "\xBA\xC0"}, {0x0088E1, "\xCE\xA3"}, {0x0088E7, "\xDC\x4F"}, 
 
 };
- for(size_t i=1; i<sizeof(u2mb_026_eucjpms)/sizeof(U2MBData); ++i)
+ for(size_t i=1; i<sizeof(u2mb_026_cp20932)/sizeof(U2MBData); ++i)
  {
-	U2MBData& data = u2mb_026_eucjpms[i];
-	u2mb[enc_eucjpms][data.u] = data.mbs;
+	U2MBData& data = u2mb_026_cp20932[i];
+	u2mb[enc_cp20932][data.u] = data.mbs;
  }
 }
-void u2mb_027_eucjpms_init()
+void u2mb_027_cp20932_init()
 {
-static U2MBData u2mb_027_eucjpms[] = { {0, ""}, 
+static U2MBData u2mb_027_cp20932[] = { {0, ""}, 
 {0x0088E8, "\xEA\xEB"}, {0x0088EF, "\xDC\x50"}, {0x0088F0, "\xDC\x51"}, {0x0088F1, "\xDC\x52"}, 
 {0x0088F2, "\xEA\xEC"}, {0x0088F3, "\xBE\xD8"}, {0x0088F4, "\xEA\xEA"}, {0x0088F5, "\xDC\x53"}, 
 {0x0088F7, "\xDC\x54"}, {0x0088F8, "\xCD\xE7"}, {0x0088F9, "\xEA\xE7"}, {0x0088FC, "\xEA\xE9"}, 
@@ -7562,15 +7562,15 @@ static U2MBData u2mb_027_eucjpms[] = { {0, ""},
 {0x008A7E, "\xDD\x6D"}, {0x008A7F, "\xDD\x6E"}, {0x008A80, "\xDD\x6F"}, {0x008A82, "\xEB\xD0"}, 
 
 };
- for(size_t i=1; i<sizeof(u2mb_027_eucjpms)/sizeof(U2MBData); ++i)
+ for(size_t i=1; i<sizeof(u2mb_027_cp20932)/sizeof(U2MBData); ++i)
  {
-	U2MBData& data = u2mb_027_eucjpms[i];
-	u2mb[enc_eucjpms][data.u] = data.mbs;
+	U2MBData& data = u2mb_027_cp20932[i];
+	u2mb[enc_cp20932][data.u] = data.mbs;
  }
 }
-void u2mb_028_eucjpms_init()
+void u2mb_028_cp20932_init()
 {
-static U2MBData u2mb_028_eucjpms[] = { {0, ""}, 
+static U2MBData u2mb_028_cp20932[] = { {0, ""}, 
 {0x008A83, "\xDD\x70"}, {0x008A84, "\xEB\xD1"}, {0x008A85, "\xEB\xCF"}, {0x008A86, "\xDD\x71"}, 
 {0x008A87, "\xB8\xD8"}, {0x008A89, "\xCD\xC0"}, {0x008A8B, "\xDD\x72"}, {0x008A8C, "\xBB\xEF"}, 
 {0x008A8D, "\xC7\xA7"}, {0x008A8F, "\xDD\x73"}, {0x008A90, "\xDD\x74"}, {0x008A91, "\xEB\xD4"}, 
@@ -7637,15 +7637,15 @@ static U2MBData u2mb_028_eucjpms[] = { {0, ""},
 {0x008C93, "\xDF\x25"}, {0x008C94, "\xEC\xC0"}, {0x008C98, "\xEC\xC2"}, {0x008C99, "\xDF\x26"}, 
 
 };
- for(size_t i=1; i<sizeof(u2mb_028_eucjpms)/sizeof(U2MBData); ++i)
+ for(size_t i=1; i<sizeof(u2mb_028_cp20932)/sizeof(U2MBData); ++i)
  {
-	U2MBData& data = u2mb_028_eucjpms[i];
-	u2mb[enc_eucjpms][data.u] = data.mbs;
+	U2MBData& data = u2mb_028_cp20932[i];
+	u2mb[enc_cp20932][data.u] = data.mbs;
  }
 }
-void u2mb_029_eucjpms_init()
+void u2mb_029_cp20932_init()
 {
-static U2MBData u2mb_029_eucjpms[] = { {0, ""}, 
+static U2MBData u2mb_029_cp20932[] = { {0, ""}, 
 {0x008C9B, "\xDF\x27"}, {0x008C9C, "\xDF\x28"}, {0x008C9D, "\xB3\xAD"}, {0x008C9E, "\xC4\xE7"}, 
 {0x008CA0, "\xC9\xE9"}, {0x008CA1, "\xBA\xE2"}, {0x008CA2, "\xB9\xD7"}, {0x008CA4, "\xDF\x29"}, 
 {0x008CA7, "\xC9\xCF"}, {0x008CA8, "\xB2\xDF"}, {0x008CA9, "\xC8\xCE"}, {0x008CAA, "\xEC\xC5"}, 
@@ -7712,15 +7712,15 @@ static U2MBData u2mb_029_eucjpms[] = { {0, ""},
 {0x008E7B, "\xE0\x40"}, {0x008E7C, "\xED\xAE"}, {0x008E81, "\xED\xAF"}, {0x008E82, "\xE0\x41"}, 
 
 };
- for(size_t i=1; i<sizeof(u2mb_029_eucjpms)/sizeof(U2MBData); ++i)
+ for(size_t i=1; i<sizeof(u2mb_029_cp20932)/sizeof(U2MBData); ++i)
  {
-	U2MBData& data = u2mb_029_eucjpms[i];
-	u2mb[enc_eucjpms][data.u] = data.mbs;
+	U2MBData& data = u2mb_029_cp20932[i];
+	u2mb[enc_cp20932][data.u] = data.mbs;
  }
 }
-void u2mb_02a_eucjpms_init()
+void u2mb_02a_cp20932_init()
 {
-static U2MBData u2mb_02a_eucjpms[] = { {0, ""}, 
+static U2MBData u2mb_02a_cp20932[] = { {0, ""}, 
 {0x008E83, "\xE0\x42"}, {0x008E84, "\xED\xB2"}, {0x008E85, "\xED\xB1"}, {0x008E87, "\xED\xB0"}, 
 {0x008E89, "\xE0\x43"}, {0x008E8A, "\xED\xB4"}, {0x008E8B, "\xED\xB3"}, {0x008E8D, "\xCC\xF6"}, 
 {0x008E90, "\xE0\x44"}, {0x008E91, "\xED\xB6"}, {0x008E92, "\xE0\x45"}, {0x008E93, "\xED\xB5"}, 
@@ -7787,15 +7787,15 @@ static U2MBData u2mb_02a_eucjpms[] = { {0, ""},
 {0x00902A, "\xE1\x54"}, {0x00902C, "\xE1\x55"}, {0x00902D, "\xE1\x56"}, {0x00902E, "\xC2\xE1"}, 
 
 };
- for(size_t i=1; i<sizeof(u2mb_02a_eucjpms)/sizeof(U2MBData); ++i)
+ for(size_t i=1; i<sizeof(u2mb_02a_cp20932)/sizeof(U2MBData); ++i)
  {
-	U2MBData& data = u2mb_02a_eucjpms[i];
-	u2mb[enc_eucjpms][data.u] = data.mbs;
+	U2MBData& data = u2mb_02a_cp20932[i];
+	u2mb[enc_cp20932][data.u] = data.mbs;
  }
 }
-void u2mb_02b_eucjpms_init()
+void u2mb_02b_cp20932_init()
 {
-static U2MBData u2mb_02b_eucjpms[] = { {0, ""}, 
+static U2MBData u2mb_02b_cp20932[] = { {0, ""}, 
 {0x00902F, "\xE1\x53"}, {0x009031, "\xBD\xB5"}, {0x009032, "\xBF\xCA"}, {0x009033, "\xE1\x57"}, 
 {0x009034, "\xE1\x58"}, {0x009035, "\xED\xFC"}, {0x009036, "\xED\xFB"}, {0x009037, "\xE1\x59"}, 
 {0x009038, "\xB0\xEF"}, {0x009039, "\xED\xFD"}, {0x00903C, "\xC9\xAF"}, {0x00903E, "\xEE\xA7"}, 
@@ -7862,15 +7862,15 @@ static U2MBData u2mb_02b_eucjpms[] = { {0, ""},
 {0x0091B6, "\xE2\x7A"}, {0x0091B8, "\xBE\xFA"}, {0x0091BA, "\xEE\xD5"}, {0x0091BB, "\xE2\x7B"}, 
 
 };
- for(size_t i=1; i<sizeof(u2mb_02b_eucjpms)/sizeof(U2MBData); ++i)
+ for(size_t i=1; i<sizeof(u2mb_02b_cp20932)/sizeof(U2MBData); ++i)
  {
-	U2MBData& data = u2mb_02b_eucjpms[i];
-	u2mb[enc_eucjpms][data.u] = data.mbs;
+	U2MBData& data = u2mb_02b_cp20932[i];
+	u2mb[enc_cp20932][data.u] = data.mbs;
  }
 }
-void u2mb_02c_eucjpms_init()
+void u2mb_02c_cp20932_init()
 {
-static U2MBData u2mb_02c_eucjpms[] = { {0, ""}, 
+static U2MBData u2mb_02c_cp20932[] = { {0, ""}, 
 {0x0091BC, "\xE2\x7C"}, {0x0091BD, "\xE2\x7D"}, {0x0091BF, "\xE2\x7E"}, {0x0091C0, "\xEE\xD6"}, 
 {0x0091C1, "\xEE\xD7"}, {0x0091C2, "\xE3\x21"}, {0x0091C3, "\xE3\x22"}, {0x0091C5, "\xE3\x23"}, 
 {0x0091C6, "\xC8\xD0"}, {0x0091C7, "\xBA\xD3"}, {0x0091C8, "\xBC\xE1"}, {0x0091C9, "\xEE\xD8"}, 
@@ -7937,15 +7937,15 @@ static U2MBData u2mb_02c_eucjpms[] = { {0, ""},
 {0x00932A, "\xE4\x63"}, {0x00932B, "\xBC\xE2"}, {0x00932C, "\xCF\xA3"}, {0x00932E, "\xEE\xFE"}, 
 
 };
- for(size_t i=1; i<sizeof(u2mb_02c_eucjpms)/sizeof(U2MBData); ++i)
+ for(size_t i=1; i<sizeof(u2mb_02c_cp20932)/sizeof(U2MBData); ++i)
  {
-	U2MBData& data = u2mb_02c_eucjpms[i];
-	u2mb[enc_eucjpms][data.u] = data.mbs;
+	U2MBData& data = u2mb_02c_cp20932[i];
+	u2mb[enc_cp20932][data.u] = data.mbs;
  }
 }
-void u2mb_02d_eucjpms_init()
+void u2mb_02d_cp20932_init()
 {
-static U2MBData u2mb_02d_eucjpms[] = { {0, ""}, 
+static U2MBData u2mb_02d_cp20932[] = { {0, ""}, 
 {0x00932F, "\xBA\xF8"}, {0x009332, "\xCF\xBF"}, {0x009333, "\xE4\x64"}, {0x009334, "\xE4\x65"}, 
 {0x009335, "\xEF\xA6"}, {0x009336, "\xE4\x66"}, {0x009337, "\xE4\x67"}, {0x00933A, "\xEF\xA5"}, 
 {0x00933B, "\xEF\xA7"}, {0x009344, "\xEE\xFD"}, {0x009347, "\xE4\x68"}, {0x009348, "\xE4\x69"}, 
@@ -8012,15 +8012,15 @@ static U2MBData u2mb_02d_eucjpms[] = { {0, ""},
 {0x0095D0, "\xE6\x38"}, {0x0095D1, "\xE6\x39"}, {0x0095D2, "\xE6\x3A"}, {0x0095D3, "\xE6\x3B"}, 
 
 };
- for(size_t i=1; i<sizeof(u2mb_02d_eucjpms)/sizeof(U2MBData); ++i)
+ for(size_t i=1; i<sizeof(u2mb_02d_cp20932)/sizeof(U2MBData); ++i)
  {
-	U2MBData& data = u2mb_02d_eucjpms[i];
-	u2mb[enc_eucjpms][data.u] = data.mbs;
+	U2MBData& data = u2mb_02d_cp20932[i];
+	u2mb[enc_cp20932][data.u] = data.mbs;
  }
 }
-void u2mb_02e_eucjpms_init()
+void u2mb_02e_cp20932_init()
 {
-static U2MBData u2mb_02e_eucjpms[] = { {0, ""}, 
+static U2MBData u2mb_02e_cp20932[] = { {0, ""}, 
 {0x0095D4, "\xEF\xEE"}, {0x0095D5, "\xEF\xED"}, {0x0095D6, "\xEF\xEF"}, {0x0095D8, "\xC6\xAE"}, 
 {0x0095D9, "\xE6\x3C"}, {0x0095DA, "\xE6\x3D"}, {0x0095DC, "\xEF\xF0"}, {0x0095DD, "\xE6\x3E"}, 
 {0x0095DE, "\xE6\x3F"}, {0x0095DF, "\xE6\x40"}, {0x0095E0, "\xE6\x41"}, {0x0095E1, "\xEF\xF1"}, 
@@ -8087,15 +8087,15 @@ static U2MBData u2mb_02e_eucjpms[] = { {0, ""},
 {0x00977D, "\xE7\x40"}, {0x00977F, "\xE7\x41"}, {0x009780, "\xE7\x42"}, {0x009781, "\xF0\xDB"}, 
 
 };
- for(size_t i=1; i<sizeof(u2mb_02e_eucjpms)/sizeof(U2MBData); ++i)
+ for(size_t i=1; i<sizeof(u2mb_02e_cp20932)/sizeof(U2MBData); ++i)
  {
-	U2MBData& data = u2mb_02e_eucjpms[i];
-	u2mb[enc_eucjpms][data.u] = data.mbs;
+	U2MBData& data = u2mb_02e_cp20932[i];
+	u2mb[enc_cp20932][data.u] = data.mbs;
  }
 }
-void u2mb_02f_eucjpms_init()
+void u2mb_02f_cp20932_init()
 {
-static U2MBData u2mb_02f_eucjpms[] = { {0, ""}, 
+static U2MBData u2mb_02f_cp20932[] = { {0, ""}, 
 {0x009784, "\xB3\xF3"}, {0x009785, "\xF0\xD9"}, {0x009786, "\xF0\xDD"}, {0x009789, "\xE7\x43"}, 
 {0x00978B, "\xF0\xDE"}, {0x00978D, "\xB0\xC8"}, {0x00978F, "\xF0\xDF"}, {0x009790, "\xF0\xE0"}, 
 {0x009795, "\xE7\x44"}, {0x009796, "\xE7\x45"}, {0x009797, "\xE7\x46"}, {0x009798, "\xBE\xE4"}, 
@@ -8162,15 +8162,15 @@ static U2MBData u2mb_02f_eucjpms[] = { {0, ""},
 {0x009947, "\xE8\x6B"}, {0x009948, "\xE8\x6C"}, {0x009949, "\xF1\xBC"}, {0x00994B, "\xF1\xBF"}, 
 
 };
- for(size_t i=1; i<sizeof(u2mb_02f_eucjpms)/sizeof(U2MBData); ++i)
+ for(size_t i=1; i<sizeof(u2mb_02f_cp20932)/sizeof(U2MBData); ++i)
  {
-	U2MBData& data = u2mb_02f_eucjpms[i];
-	u2mb[enc_eucjpms][data.u] = data.mbs;
+	U2MBData& data = u2mb_02f_cp20932[i];
+	u2mb[enc_cp20932][data.u] = data.mbs;
  }
 }
-void u2mb_030_eucjpms_init()
+void u2mb_030_cp20932_init()
 {
-static U2MBData u2mb_030_eucjpms[] = { {0, ""}, 
+static U2MBData u2mb_030_cp20932[] = { {0, ""}, 
 {0x00994C, "\xF1\xC2"}, {0x00994D, "\xE8\x6D"}, {0x00994E, "\xE8\x6E"}, {0x009950, "\xF1\xBE"}, 
 {0x009951, "\xF1\xC0"}, {0x009952, "\xF1\xC1"}, {0x009954, "\xE8\x6F"}, {0x009955, "\xF1\xC3"}, 
 {0x009957, "\xB6\xC2"}, {0x009958, "\xE8\x70"}, {0x009959, "\xE8\x71"}, {0x00995B, "\xE8\x72"}, 
@@ -8237,15 +8237,15 @@ static U2MBData u2mb_030_eucjpms[] = { {0, ""},
 {0x009B44, "\xF2\xB0"}, {0x009B45, "\xCC\xA5"}, {0x009B48, "\xEA\x3A"}, {0x009B4B, "\xEA\x3B"}, 
 
 };
- for(size_t i=1; i<sizeof(u2mb_030_eucjpms)/sizeof(U2MBData); ++i)
+ for(size_t i=1; i<sizeof(u2mb_030_cp20932)/sizeof(U2MBData); ++i)
  {
-	U2MBData& data = u2mb_030_eucjpms[i];
-	u2mb[enc_eucjpms][data.u] = data.mbs;
+	U2MBData& data = u2mb_030_cp20932[i];
+	u2mb[enc_cp20932][data.u] = data.mbs;
  }
 }
-void u2mb_031_eucjpms_init()
+void u2mb_031_cp20932_init()
 {
-static U2MBData u2mb_031_eucjpms[] = { {0, ""}, 
+static U2MBData u2mb_031_cp20932[] = { {0, ""}, 
 {0x009B4C, "\xEA\x3C"}, {0x009B4D, "\xF2\xB3"}, {0x009B4E, "\xF2\xB4"}, {0x009B4F, "\xF2\xB2"}, 
 {0x009B51, "\xF2\xB5"}, {0x009B54, "\xCB\xE2"}, {0x009B55, "\xEA\x3D"}, {0x009B56, "\xEA\x3E"}, 
 {0x009B57, "\xEA\x3F"}, {0x009B58, "\xF2\xB6"}, {0x009B5A, "\xB5\xFB"}, {0x009B5B, "\xEA\x40"}, 
@@ -8312,15 +8312,15 @@ static U2MBData u2mb_031_eucjpms[] = { {0, ""},
 {0x009D42, "\xEB\x6E"}, {0x009D43, "\xEB\x6F"}, {0x009D44, "\xF2\xF7"}, {0x009D45, "\xEB\x6C"}, 
 
 };
- for(size_t i=1; i<sizeof(u2mb_031_eucjpms)/sizeof(U2MBData); ++i)
+ for(size_t i=1; i<sizeof(u2mb_031_cp20932)/sizeof(U2MBData); ++i)
  {
-	U2MBData& data = u2mb_031_eucjpms[i];
-	u2mb[enc_eucjpms][data.u] = data.mbs;
+	U2MBData& data = u2mb_031_cp20932[i];
+	u2mb[enc_cp20932][data.u] = data.mbs;
  }
 }
-void u2mb_032_eucjpms_init()
+void u2mb_032_cp20932_init()
 {
-static U2MBData u2mb_032_eucjpms[] = { {0, ""}, 
+static U2MBData u2mb_032_cp20932[] = { {0, ""}, 
 {0x009D46, "\xF2\xFD"}, {0x009D47, "\xEB\x70"}, {0x009D48, "\xF2\xFE"}, {0x009D4A, "\xEB\x71"}, 
 {0x009D50, "\xF3\xA5"}, {0x009D51, "\xF3\xA4"}, {0x009D53, "\xEB\x72"}, {0x009D54, "\xEB\x73"}, 
 {0x009D59, "\xF3\xA6"}, {0x009D5C, "\xB1\xAD"}, {0x009D5D, "\xF3\xA1"}, {0x009D5E, "\xF3\xA2"}, 
@@ -8387,15 +8387,15 @@ static U2MBData u2mb_032_eucjpms[] = { {0, ""},
 {0x009F45, "\xED\x42"}, {0x009F46, "\xED\x43"}, {0x009F47, "\xED\x44"}, {0x009F4A, "\xF3\xEE"}, 
 
 };
- for(size_t i=1; i<sizeof(u2mb_032_eucjpms)/sizeof(U2MBData); ++i)
+ for(size_t i=1; i<sizeof(u2mb_032_cp20932)/sizeof(U2MBData); ++i)
  {
-	U2MBData& data = u2mb_032_eucjpms[i];
-	u2mb[enc_eucjpms][data.u] = data.mbs;
+	U2MBData& data = u2mb_032_cp20932[i];
+	u2mb[enc_cp20932][data.u] = data.mbs;
  }
 }
-void u2mb_033_eucjpms_init()
+void u2mb_033_cp20932_init()
 {
-static U2MBData u2mb_033_eucjpms[] = { {0, ""}, 
+static U2MBData u2mb_033_cp20932[] = { {0, ""}, 
 {0x009F4B, "\xE3\xB7"}, {0x009F4E, "\xEC\xDA"}, {0x009F4F, "\xF0\xED"}, {0x009F52, "\xF3\xEF"}, 
 {0x009F53, "\xED\x45"}, {0x009F54, "\xF3\xF0"}, {0x009F55, "\xED\x46"}, {0x009F56, "\xED\x47"}, 
 {0x009F57, "\xED\x48"}, {0x009F58, "\xED\x49"}, {0x009F5A, "\xED\x4A"}, {0x009F5D, "\xED\x4B"}, 
@@ -8462,15 +8462,15 @@ static U2MBData u2mb_033_eucjpms[] = { {0, ""},
 {0x00E0C7, "\xF7\xAC"}, {0x00E0C8, "\xF7\xAD"}, {0x00E0C9, "\xF7\xAE"}, {0x00E0CA, "\xF7\xAF"}, 
 
 };
- for(size_t i=1; i<sizeof(u2mb_033_eucjpms)/sizeof(U2MBData); ++i)
+ for(size_t i=1; i<sizeof(u2mb_033_cp20932)/sizeof(U2MBData); ++i)
  {
-	U2MBData& data = u2mb_033_eucjpms[i];
-	u2mb[enc_eucjpms][data.u] = data.mbs;
+	U2MBData& data = u2mb_033_cp20932[i];
+	u2mb[enc_cp20932][data.u] = data.mbs;
  }
 }
-void u2mb_034_eucjpms_init()
+void u2mb_034_cp20932_init()
 {
-static U2MBData u2mb_034_eucjpms[] = { {0, ""}, 
+static U2MBData u2mb_034_cp20932[] = { {0, ""}, 
 {0x00E0CB, "\xF7\xB0"}, {0x00E0CC, "\xF7\xB1"}, {0x00E0CD, "\xF7\xB2"}, {0x00E0CE, "\xF7\xB3"}, 
 {0x00E0CF, "\xF7\xB4"}, {0x00E0D0, "\xF7\xB5"}, {0x00E0D1, "\xF7\xB6"}, {0x00E0D2, "\xF7\xB7"}, 
 {0x00E0D3, "\xF7\xB8"}, {0x00E0D4, "\xF7\xB9"}, {0x00E0D5, "\xF7\xBA"}, {0x00E0D6, "\xF7\xBB"}, 
@@ -8537,15 +8537,15 @@ static U2MBData u2mb_034_eucjpms[] = { {0, ""},
 {0x00E1C7, "\xF9\xF0"}, {0x00E1C8, "\xF9\xF1"}, {0x00E1C9, "\xF9\xF2"}, {0x00E1CA, "\xF9\xF3"}, 
 
 };
- for(size_t i=1; i<sizeof(u2mb_034_eucjpms)/sizeof(U2MBData); ++i)
+ for(size_t i=1; i<sizeof(u2mb_034_cp20932)/sizeof(U2MBData); ++i)
  {
-	U2MBData& data = u2mb_034_eucjpms[i];
-	u2mb[enc_eucjpms][data.u] = data.mbs;
+	U2MBData& data = u2mb_034_cp20932[i];
+	u2mb[enc_cp20932][data.u] = data.mbs;
  }
 }
-void u2mb_035_eucjpms_init()
+void u2mb_035_cp20932_init()
 {
-static U2MBData u2mb_035_eucjpms[] = { {0, ""}, 
+static U2MBData u2mb_035_cp20932[] = { {0, ""}, 
 {0x00E1CB, "\xF9\xF4"}, {0x00E1CC, "\xF9\xF5"}, {0x00E1CD, "\xF9\xF6"}, {0x00E1CE, "\xF9\xF7"}, 
 {0x00E1CF, "\xF9\xF8"}, {0x00E1D0, "\xF9\xF9"}, {0x00E1D1, "\xF9\xFA"}, {0x00E1D2, "\xF9\xFB"}, 
 {0x00E1D3, "\xF9\xFC"}, {0x00E1D4, "\xF9\xFD"}, {0x00E1D5, "\xF9\xFE"}, {0x00E1D6, "\xFA\xA1"}, 
@@ -8612,15 +8612,15 @@ static U2MBData u2mb_035_eucjpms[] = { {0, ""},
 {0x00E2C7, "\xFC\xD6"}, {0x00E2C8, "\xFC\xD7"}, {0x00E2C9, "\xFC\xD8"}, {0x00E2CA, "\xFC\xD9"}, 
 
 };
- for(size_t i=1; i<sizeof(u2mb_035_eucjpms)/sizeof(U2MBData); ++i)
+ for(size_t i=1; i<sizeof(u2mb_035_cp20932)/sizeof(U2MBData); ++i)
  {
-	U2MBData& data = u2mb_035_eucjpms[i];
-	u2mb[enc_eucjpms][data.u] = data.mbs;
+	U2MBData& data = u2mb_035_cp20932[i];
+	u2mb[enc_cp20932][data.u] = data.mbs;
  }
 }
-void u2mb_036_eucjpms_init()
+void u2mb_036_cp20932_init()
 {
-static U2MBData u2mb_036_eucjpms[] = { {0, ""}, 
+static U2MBData u2mb_036_cp20932[] = { {0, ""}, 
 {0x00E2CB, "\xFC\xDA"}, {0x00E2CC, "\xFC\xDB"}, {0x00E2CD, "\xFC\xDC"}, {0x00E2CE, "\xFC\xDD"}, 
 {0x00E2CF, "\xFC\xDE"}, {0x00E2D0, "\xFC\xDF"}, {0x00E2D1, "\xFC\xE0"}, {0x00E2D2, "\xFC\xE1"}, 
 {0x00E2D3, "\xFC\xE2"}, {0x00E2D4, "\xFC\xE3"}, {0x00E2D5, "\xFC\xE4"}, {0x00E2D6, "\xFC\xE5"}, 
@@ -8687,15 +8687,15 @@ static U2MBData u2mb_036_eucjpms[] = { {0, ""},
 {0x00E3C7, "\xF5\x3C"}, {0x00E3C8, "\xF5\x3D"}, {0x00E3C9, "\xF5\x3E"}, {0x00E3CA, "\xF5\x3F"}, 
 
 };
- for(size_t i=1; i<sizeof(u2mb_036_eucjpms)/sizeof(U2MBData); ++i)
+ for(size_t i=1; i<sizeof(u2mb_036_cp20932)/sizeof(U2MBData); ++i)
  {
-	U2MBData& data = u2mb_036_eucjpms[i];
-	u2mb[enc_eucjpms][data.u] = data.mbs;
+	U2MBData& data = u2mb_036_cp20932[i];
+	u2mb[enc_cp20932][data.u] = data.mbs;
  }
 }
-void u2mb_037_eucjpms_init()
+void u2mb_037_cp20932_init()
 {
-static U2MBData u2mb_037_eucjpms[] = { {0, ""}, 
+static U2MBData u2mb_037_cp20932[] = { {0, ""}, 
 {0x00E3CB, "\xF5\x40"}, {0x00E3CC, "\xF5\x41"}, {0x00E3CD, "\xF5\x42"}, {0x00E3CE, "\xF5\x43"}, 
 {0x00E3CF, "\xF5\x44"}, {0x00E3D0, "\xF5\x45"}, {0x00E3D1, "\xF5\x46"}, {0x00E3D2, "\xF5\x47"}, 
 {0x00E3D3, "\xF5\x48"}, {0x00E3D4, "\xF5\x49"}, {0x00E3D5, "\xF5\x4A"}, {0x00E3D6, "\xF5\x4B"}, 
@@ -8762,15 +8762,15 @@ static U2MBData u2mb_037_eucjpms[] = { {0, ""},
 {0x00E4C7, "\xF8\x22"}, {0x00E4C8, "\xF8\x23"}, {0x00E4C9, "\xF8\x24"}, {0x00E4CA, "\xF8\x25"}, 
 
 };
- for(size_t i=1; i<sizeof(u2mb_037_eucjpms)/sizeof(U2MBData); ++i)
+ for(size_t i=1; i<sizeof(u2mb_037_cp20932)/sizeof(U2MBData); ++i)
  {
-	U2MBData& data = u2mb_037_eucjpms[i];
-	u2mb[enc_eucjpms][data.u] = data.mbs;
+	U2MBData& data = u2mb_037_cp20932[i];
+	u2mb[enc_cp20932][data.u] = data.mbs;
  }
 }
-void u2mb_038_eucjpms_init()
+void u2mb_038_cp20932_init()
 {
-static U2MBData u2mb_038_eucjpms[] = { {0, ""}, 
+static U2MBData u2mb_038_cp20932[] = { {0, ""}, 
 {0x00E4CB, "\xF8\x26"}, {0x00E4CC, "\xF8\x27"}, {0x00E4CD, "\xF8\x28"}, {0x00E4CE, "\xF8\x29"}, 
 {0x00E4CF, "\xF8\x2A"}, {0x00E4D0, "\xF8\x2B"}, {0x00E4D1, "\xF8\x2C"}, {0x00E4D2, "\xF8\x2D"}, 
 {0x00E4D3, "\xF8\x2E"}, {0x00E4D4, "\xF8\x2F"}, {0x00E4D5, "\xF8\x30"}, {0x00E4D6, "\xF8\x31"}, 
@@ -8837,15 +8837,15 @@ static U2MBData u2mb_038_eucjpms[] = { {0, ""},
 {0x00E5C7, "\xFA\x66"}, {0x00E5C8, "\xFA\x67"}, {0x00E5C9, "\xFA\x68"}, {0x00E5CA, "\xFA\x69"}, 
 
 };
- for(size_t i=1; i<sizeof(u2mb_038_eucjpms)/sizeof(U2MBData); ++i)
+ for(size_t i=1; i<sizeof(u2mb_038_cp20932)/sizeof(U2MBData); ++i)
  {
-	U2MBData& data = u2mb_038_eucjpms[i];
-	u2mb[enc_eucjpms][data.u] = data.mbs;
+	U2MBData& data = u2mb_038_cp20932[i];
+	u2mb[enc_cp20932][data.u] = data.mbs;
  }
 }
-void u2mb_039_eucjpms_init()
+void u2mb_039_cp20932_init()
 {
-static U2MBData u2mb_039_eucjpms[] = { {0, ""}, 
+static U2MBData u2mb_039_cp20932[] = { {0, ""}, 
 {0x00E5CB, "\xFA\x6A"}, {0x00E5CC, "\xFA\x6B"}, {0x00E5CD, "\xFA\x6C"}, {0x00E5CE, "\xFA\x6D"}, 
 {0x00E5CF, "\xFA\x6E"}, {0x00E5D0, "\xFA\x6F"}, {0x00E5D1, "\xFA\x70"}, {0x00E5D2, "\xFA\x71"}, 
 {0x00E5D3, "\xFA\x72"}, {0x00E5D4, "\xFA\x73"}, {0x00E5D5, "\xFA\x74"}, {0x00E5D6, "\xFA\x75"}, 
@@ -8912,15 +8912,15 @@ static U2MBData u2mb_039_eucjpms[] = { {0, ""},
 {0x00E6C7, "\xFD\x4C"}, {0x00E6C8, "\xFD\x4D"}, {0x00E6C9, "\xFD\x4E"}, {0x00E6CA, "\xFD\x4F"}, 
 
 };
- for(size_t i=1; i<sizeof(u2mb_039_eucjpms)/sizeof(U2MBData); ++i)
+ for(size_t i=1; i<sizeof(u2mb_039_cp20932)/sizeof(U2MBData); ++i)
  {
-	U2MBData& data = u2mb_039_eucjpms[i];
-	u2mb[enc_eucjpms][data.u] = data.mbs;
+	U2MBData& data = u2mb_039_cp20932[i];
+	u2mb[enc_cp20932][data.u] = data.mbs;
  }
 }
-void u2mb_03a_eucjpms_init()
+void u2mb_03a_cp20932_init()
 {
-static U2MBData u2mb_03a_eucjpms[] = { {0, ""}, 
+static U2MBData u2mb_03a_cp20932[] = { {0, ""}, 
 {0x00E6CB, "\xFD\x50"}, {0x00E6CC, "\xFD\x51"}, {0x00E6CD, "\xFD\x52"}, {0x00E6CE, "\xFD\x53"}, 
 {0x00E6CF, "\xFD\x54"}, {0x00E6D0, "\xFD\x55"}, {0x00E6D1, "\xFD\x56"}, {0x00E6D2, "\xFD\x57"}, 
 {0x00E6D3, "\xFD\x58"}, {0x00E6D4, "\xFD\x59"}, {0x00E6D5, "\xFD\x5A"}, {0x00E6D6, "\xFD\x5B"}, 
@@ -8987,15 +8987,15 @@ static U2MBData u2mb_03a_eucjpms[] = { {0, ""},
 {0x00FF4F, "\xA3\xEF"}, {0x00FF50, "\xA3\xF0"}, {0x00FF51, "\xA3\xF1"}, {0x00FF52, "\xA3\xF2"}, 
 
 };
- for(size_t i=1; i<sizeof(u2mb_03a_eucjpms)/sizeof(U2MBData); ++i)
+ for(size_t i=1; i<sizeof(u2mb_03a_cp20932)/sizeof(U2MBData); ++i)
  {
-	U2MBData& data = u2mb_03a_eucjpms[i];
-	u2mb[enc_eucjpms][data.u] = data.mbs;
+	U2MBData& data = u2mb_03a_cp20932[i];
+	u2mb[enc_cp20932][data.u] = data.mbs;
  }
 }
-void u2mb_03b_eucjpms_init()
+void u2mb_03b_cp20932_init()
 {
-static U2MBData u2mb_03b_eucjpms[] = { {0, ""}, 
+static U2MBData u2mb_03b_cp20932[] = { {0, ""}, 
 {0x00FF53, "\xA3\xF3"}, {0x00FF54, "\xA3\xF4"}, {0x00FF55, "\xA3\xF5"}, {0x00FF56, "\xA3\xF6"}, 
 {0x00FF57, "\xA3\xF7"}, {0x00FF58, "\xA3\xF8"}, {0x00FF59, "\xA3\xF9"}, {0x00FF5A, "\xA3\xFA"}, 
 {0x00FF5B, "\xA1\xD0"}, {0x00FF5C, "\xA1\xC3"}, {0x00FF5D, "\xA1\xD1"}, {0x00FF61, "\x8E\xA1"}, 
@@ -9017,29 +9017,29 @@ static U2MBData u2mb_03b_eucjpms[] = { {0, ""},
 {0x00FF9E, "\x8E\xDE"}, {0x00FF9F, "\x8E\xDF"}, {0x00FFE3, "\xA1\xB1"}, {0x00FFE5, "\xA1\xEF"}, 
 
 };
- for(size_t i=1; i<sizeof(u2mb_03b_eucjpms)/sizeof(U2MBData); ++i)
+ for(size_t i=1; i<sizeof(u2mb_03b_cp20932)/sizeof(U2MBData); ++i)
  {
-	U2MBData& data = u2mb_03b_eucjpms[i];
-	u2mb[enc_eucjpms][data.u] = data.mbs;
+	U2MBData& data = u2mb_03b_cp20932[i];
+	u2mb[enc_cp20932][data.u] = data.mbs;
  }
 }
-void u2mb_eucjpms_init()
+void u2mb_cp20932_init()
 {
-u2mb_000_eucjpms_init();u2mb_001_eucjpms_init();u2mb_002_eucjpms_init();u2mb_003_eucjpms_init();
-u2mb_004_eucjpms_init();u2mb_005_eucjpms_init();u2mb_006_eucjpms_init();u2mb_007_eucjpms_init();
-u2mb_008_eucjpms_init();u2mb_009_eucjpms_init();u2mb_00a_eucjpms_init();u2mb_00b_eucjpms_init();
-u2mb_00c_eucjpms_init();u2mb_00d_eucjpms_init();u2mb_00e_eucjpms_init();u2mb_00f_eucjpms_init();
-u2mb_010_eucjpms_init();u2mb_011_eucjpms_init();u2mb_012_eucjpms_init();u2mb_013_eucjpms_init();
-u2mb_014_eucjpms_init();u2mb_015_eucjpms_init();u2mb_016_eucjpms_init();u2mb_017_eucjpms_init();
-u2mb_018_eucjpms_init();u2mb_019_eucjpms_init();u2mb_01a_eucjpms_init();u2mb_01b_eucjpms_init();
-u2mb_01c_eucjpms_init();u2mb_01d_eucjpms_init();u2mb_01e_eucjpms_init();u2mb_01f_eucjpms_init();
-u2mb_020_eucjpms_init();u2mb_021_eucjpms_init();u2mb_022_eucjpms_init();u2mb_023_eucjpms_init();
-u2mb_024_eucjpms_init();u2mb_025_eucjpms_init();u2mb_026_eucjpms_init();u2mb_027_eucjpms_init();
-u2mb_028_eucjpms_init();u2mb_029_eucjpms_init();u2mb_02a_eucjpms_init();u2mb_02b_eucjpms_init();
-u2mb_02c_eucjpms_init();u2mb_02d_eucjpms_init();u2mb_02e_eucjpms_init();u2mb_02f_eucjpms_init();
-u2mb_030_eucjpms_init();u2mb_031_eucjpms_init();u2mb_032_eucjpms_init();u2mb_033_eucjpms_init();
-u2mb_034_eucjpms_init();u2mb_035_eucjpms_init();u2mb_036_eucjpms_init();u2mb_037_eucjpms_init();
-u2mb_038_eucjpms_init();u2mb_039_eucjpms_init();u2mb_03a_eucjpms_init();u2mb_03b_eucjpms_init();
+u2mb_000_cp20932_init();u2mb_001_cp20932_init();u2mb_002_cp20932_init();u2mb_003_cp20932_init();
+u2mb_004_cp20932_init();u2mb_005_cp20932_init();u2mb_006_cp20932_init();u2mb_007_cp20932_init();
+u2mb_008_cp20932_init();u2mb_009_cp20932_init();u2mb_00a_cp20932_init();u2mb_00b_cp20932_init();
+u2mb_00c_cp20932_init();u2mb_00d_cp20932_init();u2mb_00e_cp20932_init();u2mb_00f_cp20932_init();
+u2mb_010_cp20932_init();u2mb_011_cp20932_init();u2mb_012_cp20932_init();u2mb_013_cp20932_init();
+u2mb_014_cp20932_init();u2mb_015_cp20932_init();u2mb_016_cp20932_init();u2mb_017_cp20932_init();
+u2mb_018_cp20932_init();u2mb_019_cp20932_init();u2mb_01a_cp20932_init();u2mb_01b_cp20932_init();
+u2mb_01c_cp20932_init();u2mb_01d_cp20932_init();u2mb_01e_cp20932_init();u2mb_01f_cp20932_init();
+u2mb_020_cp20932_init();u2mb_021_cp20932_init();u2mb_022_cp20932_init();u2mb_023_cp20932_init();
+u2mb_024_cp20932_init();u2mb_025_cp20932_init();u2mb_026_cp20932_init();u2mb_027_cp20932_init();
+u2mb_028_cp20932_init();u2mb_029_cp20932_init();u2mb_02a_cp20932_init();u2mb_02b_cp20932_init();
+u2mb_02c_cp20932_init();u2mb_02d_cp20932_init();u2mb_02e_cp20932_init();u2mb_02f_cp20932_init();
+u2mb_030_cp20932_init();u2mb_031_cp20932_init();u2mb_032_cp20932_init();u2mb_033_cp20932_init();
+u2mb_034_cp20932_init();u2mb_035_cp20932_init();u2mb_036_cp20932_init();u2mb_037_cp20932_init();
+u2mb_038_cp20932_init();u2mb_039_cp20932_init();u2mb_03a_cp20932_init();u2mb_03b_cp20932_init();
 
 }
 

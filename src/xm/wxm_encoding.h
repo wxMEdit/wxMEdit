@@ -67,7 +67,7 @@ struct WXMEncodingCreator: private boost::noncopyable
 
 private:
 	enum WXMEncodingType
-	{ etSingleByte, etDoubleByte, etUTF8, etUTF16LE, etUTF16BE, etUTF32LE, etUTF32BE, etEUCJPMS };
+	{ etSingleByte, etDoubleByte, etUTF8, etUTF16LE, etUTF16BE, etUTF32LE, etUTF32BE, etCP20932 };
 
 public:
 	size_t GetEncodingsCount();

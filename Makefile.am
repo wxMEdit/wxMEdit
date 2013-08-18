@@ -65,11 +65,11 @@ wxmedit_SOURCES =	src/wxmedit_about_dialog.cpp \
 	src/xm/wxm_line_enc_adapter.h \
 	src/xm/wxm_encoding.cpp \
 	src/xm/wxm_encoding.h \
+	src/xm/wxm_encoding_cp20932.cpp \
+	src/xm/wxm_encoding_cp20932.h \
 	src/xm/wxm_encoding_def.h \
 	src/xm/wxm_encoding_doublebyte.cpp \
 	src/xm/wxm_encoding_doublebyte.h \
-	src/xm/wxm_encoding_eucjpms.cpp \
-	src/xm/wxm_encoding_eucjpms.h \
 	src/xm/wxm_encoding_multibyte.cpp \
 	src/xm/wxm_encoding_multibyte.h \
 	src/xm/wxm_encoding_singlebyte.cpp \
@@ -134,11 +134,11 @@ wxmedit_test_SOURCES = src/wxmedit/ucs4_t.h \
 	src/wxmedit/wxm_deque.hpp \
 	src/xm/wxm_encoding.cpp \
 	src/xm/wxm_encoding.h \
+	src/xm/wxm_encoding_cp20932.cpp \
+	src/xm/wxm_encoding_cp20932.h \
 	src/xm/wxm_encoding_def.h \
 	src/xm/wxm_encoding_doublebyte.cpp \
 	src/xm/wxm_encoding_doublebyte.h \
-	src/xm/wxm_encoding_eucjpms.cpp \
-	src/xm/wxm_encoding_eucjpms.h \
 	src/xm/wxm_encoding_multibyte.cpp \
 	src/xm/wxm_encoding_multibyte.h \
 	src/xm/wxm_encoding_singlebyte.cpp \
@@ -146,12 +146,12 @@ wxmedit_test_SOURCES = src/wxmedit/ucs4_t.h \
 	src/xm/wxm_encoding_unicode.cpp \
 	src/xm/wxm_encoding_unicode.h \
 	src/xm/wxm_line_enc_adapter.h \
+	test/test_cp20932_conv.cpp \
 	test/test_cp932_conv.cpp \
 	test/test_cp936_conv.cpp \
 	test/test_cp949_conv.cpp \
 	test/test_cp950_conv.cpp \
 	test/test_doublebyte_conv.cpp \
-	test/test_eucjpms_conv.cpp \
 	test/test_singlebyte_conv.cpp \
 	test/test.h \
 	test/test.cpp

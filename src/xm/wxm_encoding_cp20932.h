@@ -1,7 +1,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 // vim:         ts=4 sw=4
-// Name:        wxmedit/wxm_encoding_eucjpms.h
-// Description: define the Double-byte Encoding EUC-JP-MS
+// Name:        wxmedit/wxm_encoding_cp20932.h
+// Description: define the Double-byte Encoding CP20932
 // Author:      wxmedit@gmail.com
 // Licence:     GPL
 ///////////////////////////////////////////////////////////////////////////////

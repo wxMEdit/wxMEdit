@@ -9,7 +9,7 @@
 #include "wxm_encoding_unicode.h"
 #include "wxm_encoding_singlebyte.h"
 #include "wxm_encoding_doublebyte.h"
-#include "wxm_encoding_eucjpms.h"
+#include "wxm_encoding_cp20932.h"
 #include <wx/config.h>
 #include <wx/log.h>
 #include <wx/fontenc.h>
@@ -98,8 +98,8 @@ void WXMEncodingCreator::DoInit()
 
 	AddEncoding("ISO-8859-1", ENC_ISO_8859_1, wxT("Western European (ISO-8859-1)"));
 	AddEncoding("ISO-8859-2", ENC_ISO_8859_2, wxT("Central European (ISO-8859-2)"));
-	AddEncoding("ISO-8859-3", ENC_ISO_8859_3, wxT("Esperanto (ISO-8859-3)"));
-	AddEncoding("ISO-8859-4", ENC_ISO_8859_4, wxT("Baltic (old) (ISO-8859-4)"));
+	AddEncoding("ISO-8859-3", ENC_ISO_8859_3, wxT("South European (ISO-8859-3)"));
+	AddEncoding("ISO-8859-4", ENC_ISO_8859_4, wxT("North European (ISO-8859-4)"));
 	AddEncoding("ISO-8859-5", ENC_ISO_8859_5, wxT("Cyrillic (ISO-8859-5)"));
 	AddEncoding("ISO-8859-6", ENC_ISO_8859_6, wxT("Arabic (ISO-8859-6)"));
 	AddEncoding("ISO-8859-7", ENC_ISO_8859_7, wxT("Greek (ISO-8859-7)"), etSingleByte, "IBM-9005");
@@ -126,14 +126,14 @@ void WXMEncodingCreator::DoInit()
 	AddEncoding("CP852", ENC_CP852, wxT("Windows/DOS OEM - Latin 2 (CP 852)"));
 	AddEncoding("CP855", ENC_CP855, wxT("Windows/DOS OEM - Cyrillic (CP 855)"));
 	AddEncoding("CP866", ENC_CP866, wxT("Windows/DOS OEM - Cyrillic (CP 866)"));
-	AddEncoding("KOI8-R", ENC_KOI8_R, wxT(""));
-	AddEncoding("KOI8-U", ENC_KOI8_U, wxT(""));
+	AddEncoding("KOI8-R", ENC_KOI8_R, wxT("Cyrillic (KOI8-R)"));
+	AddEncoding("KOI8-U", ENC_KOI8_U, wxT("Cyrillic (KOI8-U)"));
 
 	AddEncoding("Windows-31J", ENC_MS932, wxT("Windows Japanese (CP 932)"), etDoubleByte, "MS932");
 	AddEncoding("MS936"      , ENC_MS936, wxT("Windows Chinese Simplified (CP 936)"), etDoubleByte, "MS936");
 	AddEncoding("UHC"        , ENC_MS949, wxT("Windows Korean (CP 949)"), etDoubleByte, "MS949");
 	AddEncoding("MS950"      , ENC_MS950, wxT("Windows Chinese Traditional (CP 950)"), etDoubleByte, "MS950");
-	AddEncoding("EUC-JP-MS", ENC_EUCJP_MS, wxT("Windows EUC-JP Double-Byte Edition (CP 20932)"), etEUCJPMS, "EUC-JP");
+	AddEncoding("CP20932", ENC_CP20932, wxT("EUC-JP Double-Byte Edition of Windows (CP 20932)"), etCP20932, "EUC-JP");
 
 	AddEncoding("UTF-8", ENC_UTF_8, wxT("Unicode 8 bit (UTF-8)"), etUTF8);
 	AddEncoding("UTF-16LE", ENC_UTF_16LE, wxT("Unicode 16 bit Little Endian (UTF-16LE)"), etUTF16LE);
@@ -146,7 +146,7 @@ void WXMEncodingCreator::DoInit()
 	m_wxencfont_map[ENC_MS936] = GetMSCPFontName(wxT("936"));
 	m_wxencfont_map[ENC_MS949] = GetMSCPFontName(wxT("949"));
 	m_wxencfont_map[ENC_MS950] = GetMSCPFontName(wxT("950"));
-	m_wxencfont_map[ENC_EUCJP_MS] = GetMSCPFontName(wxT("51932"));
+	m_wxencfont_map[ENC_CP20932] = GetMSCPFontName(wxT("51932"));
 
 	InitSystemEncoding();
 	
@@ -186,7 +186,7 @@ WXMEncodingID WXMEncodingCreator::GetSystemEncodingID()
 		sysencid = ENC_MS949;
 	else if(wxenc==wxFONTENCODING_CP950)
 		sysencid = ENC_MS950;
-	// EUC-JP-MS cannot mapping directly
+	// CP20932 cannot mapping directly
 	else if(wxenc==wxFONTENCODING_UTF8)
 		sysencid = ENC_UTF_8;
 	else if(wxenc==wxFONTENCODING_UTF16LE)
@@ -340,7 +340,7 @@ WXMEncoding* WXMEncodingCreator::CreateWxmEncoding(ssize_t idx)
 		case etDoubleByte:
 			enc = new WXMEncodingDoubleByteISO646Compatible();
 			break;
-		case etEUCJPMS:
+		case etCP20932:
 			enc = new WXMEncodingEUCJPMS();
 			break;
 	}

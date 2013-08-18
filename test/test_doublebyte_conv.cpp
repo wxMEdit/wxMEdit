@@ -34,8 +34,8 @@ void u2mb_cp949_init();
 void mb2u_cp950_init();
 void u2mb_cp950_init();
 
-void mb2u_eucjpms_init();
-void u2mb_eucjpms_init();
+void mb2u_cp20932_init();
+void u2mb_cp20932_init();
 
 void test_doublebyte_conv_init()
 {
@@ -51,7 +51,7 @@ void test_doublebyte_conv_init()
 	mb2u_cp950_init();
 	u2mb_cp950_init();
 
-	mb2u_eucjpms_init();
-	u2mb_eucjpms_init();
+	mb2u_cp20932_init();
+	u2mb_cp20932_init();
 
 }

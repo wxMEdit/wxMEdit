@@ -83,11 +83,11 @@
 	<template id="enc_src">
 		<headers>../src/xm/wxm_encoding.h</headers>
 		<sources>../src/xm/wxm_encoding.cpp</sources>
+		<headers>../src/xm/wxm_encoding_cp20932.h</headers>
+		<sources>../src/xm/wxm_encoding_cp20932.cpp</sources>
 		<headers>../src/xm/wxm_encoding_def.h</headers>
 		<headers>../src/xm/wxm_encoding_doublebyte.h</headers>
 		<sources>../src/xm/wxm_encoding_doublebyte.cpp</sources>
-		<headers>../src/xm/wxm_encoding_eucjpms.h</headers>
-		<sources>../src/xm/wxm_encoding_eucjpms.cpp</sources>
 		<headers>../src/xm/wxm_encoding_singlebyte.h</headers>
 		<sources>../src/xm/wxm_encoding_singlebyte.cpp</sources>
 		<headers>../src/xm/wxm_encoding_multibyte.h</headers>
@@ -200,12 +200,12 @@
 		<headers>../src/wxmedit/ucs4_t.h</headers>
 		<headers>../src/wxmedit/wxm_deque.hpp</headers>
 		<headers>../src/xm/wxm_line_enc_adapter.h</headers>
+		<sources>../test/test_cp20932_conv.cpp</sources>
 		<sources>../test/test_cp932_conv.cpp</sources>
 		<sources>../test/test_cp936_conv.cpp</sources>
 		<sources>../test/test_cp949_conv.cpp</sources>
 		<sources>../test/test_cp950_conv.cpp</sources>
 		<sources>../test/test_doublebyte_conv.cpp</sources>
-		<sources>../test/test_eucjpms_conv.cpp</sources>
 		<sources>../test/test_singlebyte_conv.cpp</sources>
 		<headers>../test/test.h</headers>
 		<sources>../test/test.cpp</sources>

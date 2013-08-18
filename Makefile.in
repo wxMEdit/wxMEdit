@@ -80,8 +80,8 @@ am_wxmedit_OBJECTS = wxmedit-wxmedit_about_dialog.$(OBJEXT) \
 	wxmedit-xm_uutils.$(OBJEXT) wxmedit-wxm_case_conv.$(OBJEXT) \
 	wxmedit-wxm_line_enc_adapter.$(OBJEXT) \
 	wxmedit-wxm_encoding.$(OBJEXT) \
+	wxmedit-wxm_encoding_cp20932.$(OBJEXT) \
 	wxmedit-wxm_encoding_doublebyte.$(OBJEXT) \
-	wxmedit-wxm_encoding_eucjpms.$(OBJEXT) \
 	wxmedit-wxm_encoding_multibyte.$(OBJEXT) \
 	wxmedit-wxm_encoding_singlebyte.$(OBJEXT) \
 	wxmedit-wxm_encoding_unicode.$(OBJEXT) \
@@ -110,14 +110,15 @@ am_wxmedit_OBJECTS = wxmedit-wxmedit_about_dialog.$(OBJEXT) \
 wxmedit_OBJECTS = $(am_wxmedit_OBJECTS)
 wxmedit_LDADD = $(LDADD)
 am_wxmedit_test_OBJECTS = wxm_encoding.$(OBJEXT) \
+	wxm_encoding_cp20932.$(OBJEXT) \
 	wxm_encoding_doublebyte.$(OBJEXT) \
-	wxm_encoding_eucjpms.$(OBJEXT) \
 	wxm_encoding_multibyte.$(OBJEXT) \
 	wxm_encoding_singlebyte.$(OBJEXT) \
-	wxm_encoding_unicode.$(OBJEXT) test_cp932_conv.$(OBJEXT) \
-	test_cp936_conv.$(OBJEXT) test_cp949_conv.$(OBJEXT) \
-	test_cp950_conv.$(OBJEXT) test_doublebyte_conv.$(OBJEXT) \
-	test_eucjpms_conv.$(OBJEXT) test_singlebyte_conv.$(OBJEXT) \
+	wxm_encoding_unicode.$(OBJEXT) test_cp20932_conv.$(OBJEXT) \
+	test_cp932_conv.$(OBJEXT) test_cp936_conv.$(OBJEXT) \
+	test_cp949_conv.$(OBJEXT) test_cp950_conv.$(OBJEXT) \
+	test_doublebyte_conv.$(OBJEXT) \
+	test_singlebyte_conv.$(OBJEXT) \
 	test.$(OBJEXT)
 wxmedit_test_OBJECTS = $(am_wxmedit_test_OBJECTS)
 wxmedit_test_LDADD = $(LDADD)
@@ -379,11 +380,11 @@ wxmedit_SOURCES = src/wxmedit_about_dialog.cpp \
 	src/xm/wxm_line_enc_adapter.h \
 	src/xm/wxm_encoding.cpp \
 	src/xm/wxm_encoding.h \
+	src/xm/wxm_encoding_cp20932.cpp \
+	src/xm/wxm_encoding_cp20932.h \
 	src/xm/wxm_encoding_def.h \
 	src/xm/wxm_encoding_doublebyte.cpp \
 	src/xm/wxm_encoding_doublebyte.h \
-	src/xm/wxm_encoding_eucjpms.cpp \
-	src/xm/wxm_encoding_eucjpms.h \
 	src/xm/wxm_encoding_multibyte.cpp \
 	src/xm/wxm_encoding_multibyte.h \
 	src/xm/wxm_encoding_singlebyte.cpp \
@@ -448,11 +449,11 @@ wxmedit_test_SOURCES = src/wxmedit/ucs4_t.h \
 	src/wxmedit/wxm_deque.hpp \
 	src/xm/wxm_encoding.cpp \
 	src/xm/wxm_encoding.h \
+	src/xm/wxm_encoding_cp20932.cpp \
+	src/xm/wxm_encoding_cp20932.h \
 	src/xm/wxm_encoding_def.h \
 	src/xm/wxm_encoding_doublebyte.cpp \
 	src/xm/wxm_encoding_doublebyte.h \
-	src/xm/wxm_encoding_eucjpms.cpp \
-	src/xm/wxm_encoding_eucjpms.h \
 	src/xm/wxm_encoding_multibyte.cpp \
 	src/xm/wxm_encoding_multibyte.h \
 	src/xm/wxm_encoding_singlebyte.cpp \
@@ -460,12 +461,12 @@ wxmedit_test_SOURCES = src/wxmedit/ucs4_t.h \
 	src/xm/wxm_encoding_unicode.cpp \
 	src/xm/wxm_encoding_unicode.h \
 	src/xm/wxm_line_enc_adapter.h \
+	test/test_cp20932_conv.cpp \
 	test/test_cp932_conv.cpp \
 	test/test_cp936_conv.cpp \
 	test/test_cp949_conv.cpp \
 	test/test_cp950_conv.cpp \
 	test/test_doublebyte_conv.cpp \
-	test/test_eucjpms_conv.cpp \
 	test/test_singlebyte_conv.cpp \
 	test/test.h \
 	test/test.cpp
@@ -681,16 +682,16 @@ distclean-compile:
 	-rm -f *.tab.c
 
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/test.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/test_cp20932_conv.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/test_cp932_conv.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/test_cp936_conv.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/test_cp949_conv.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/test_cp950_conv.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/test_doublebyte_conv.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/test_eucjpms_conv.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/test_singlebyte_conv.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/wxm_encoding.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/wxm_encoding_cp20932.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/wxm_encoding_doublebyte.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/wxm_encoding_eucjpms.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/wxm_encoding_multibyte.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/wxm_encoding_singlebyte.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/wxm_encoding_unicode.Po@am__quote@
@@ -727,8 +728,8 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/wxmedit-wxm_conv_enc_dialog.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/wxmedit-wxm_encdet.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/wxmedit-wxm_encoding.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/wxmedit-wxm_encoding_cp20932.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/wxmedit-wxm_encoding_doublebyte.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/wxmedit-wxm_encoding_eucjpms.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/wxmedit-wxm_encoding_multibyte.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/wxmedit-wxm_encoding_singlebyte.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/wxmedit-wxm_encoding_unicode.Po@am__quote@
@@ -1222,6 +1223,20 @@ wxmedit-wxm_encoding.obj: src/xm/wxm_encoding.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -c -o wxmedit-wxm_encoding.obj `if test -f 'src/xm/wxm_encoding.cpp'; then $(CYGPATH_W) 'src/xm/wxm_encoding.cpp'; else $(CYGPATH_W) '$(srcdir)/src/xm/wxm_encoding.cpp'; fi`
 
+wxmedit-wxm_encoding_cp20932.o: src/xm/wxm_encoding_cp20932.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -MT wxmedit-wxm_encoding_cp20932.o -MD -MP -MF "$(DEPDIR)/wxmedit-wxm_encoding_cp20932.Tpo" -c -o wxmedit-wxm_encoding_cp20932.o `test -f 'src/xm/wxm_encoding_cp20932.cpp' || echo '$(srcdir)/'`src/xm/wxm_encoding_cp20932.cpp; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/wxmedit-wxm_encoding_cp20932.Tpo" "$(DEPDIR)/wxmedit-wxm_encoding_cp20932.Po"; else rm -f "$(DEPDIR)/wxmedit-wxm_encoding_cp20932.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/xm/wxm_encoding_cp20932.cpp' object='wxmedit-wxm_encoding_cp20932.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -c -o wxmedit-wxm_encoding_cp20932.o `test -f 'src/xm/wxm_encoding_cp20932.cpp' || echo '$(srcdir)/'`src/xm/wxm_encoding_cp20932.cpp
+
+wxmedit-wxm_encoding_cp20932.obj: src/xm/wxm_encoding_cp20932.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -MT wxmedit-wxm_encoding_cp20932.obj -MD -MP -MF "$(DEPDIR)/wxmedit-wxm_encoding_cp20932.Tpo" -c -o wxmedit-wxm_encoding_cp20932.obj `if test -f 'src/xm/wxm_encoding_cp20932.cpp'; then $(CYGPATH_W) 'src/xm/wxm_encoding_cp20932.cpp'; else $(CYGPATH_W) '$(srcdir)/src/xm/wxm_encoding_cp20932.cpp'; fi`; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/wxmedit-wxm_encoding_cp20932.Tpo" "$(DEPDIR)/wxmedit-wxm_encoding_cp20932.Po"; else rm -f "$(DEPDIR)/wxmedit-wxm_encoding_cp20932.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/xm/wxm_encoding_cp20932.cpp' object='wxmedit-wxm_encoding_cp20932.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -c -o wxmedit-wxm_encoding_cp20932.obj `if test -f 'src/xm/wxm_encoding_cp20932.cpp'; then $(CYGPATH_W) 'src/xm/wxm_encoding_cp20932.cpp'; else $(CYGPATH_W) '$(srcdir)/src/xm/wxm_encoding_cp20932.cpp'; fi`
+
 wxmedit-wxm_encoding_doublebyte.o: src/xm/wxm_encoding_doublebyte.cpp
 @am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -MT wxmedit-wxm_encoding_doublebyte.o -MD -MP -MF "$(DEPDIR)/wxmedit-wxm_encoding_doublebyte.Tpo" -c -o wxmedit-wxm_encoding_doublebyte.o `test -f 'src/xm/wxm_encoding_doublebyte.cpp' || echo '$(srcdir)/'`src/xm/wxm_encoding_doublebyte.cpp; \
 @am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/wxmedit-wxm_encoding_doublebyte.Tpo" "$(DEPDIR)/wxmedit-wxm_encoding_doublebyte.Po"; else rm -f "$(DEPDIR)/wxmedit-wxm_encoding_doublebyte.Tpo"; exit 1; fi
@@ -1235,20 +1250,6 @@ wxmedit-wxm_encoding_doublebyte.obj: src/xm/wxm_encoding_doublebyte.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/xm/wxm_encoding_doublebyte.cpp' object='wxmedit-wxm_encoding_doublebyte.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -c -o wxmedit-wxm_encoding_doublebyte.obj `if test -f 'src/xm/wxm_encoding_doublebyte.cpp'; then $(CYGPATH_W) 'src/xm/wxm_encoding_doublebyte.cpp'; else $(CYGPATH_W) '$(srcdir)/src/xm/wxm_encoding_doublebyte.cpp'; fi`
-
-wxmedit-wxm_encoding_eucjpms.o: src/xm/wxm_encoding_eucjpms.cpp
-@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -MT wxmedit-wxm_encoding_eucjpms.o -MD -MP -MF "$(DEPDIR)/wxmedit-wxm_encoding_eucjpms.Tpo" -c -o wxmedit-wxm_encoding_eucjpms.o `test -f 'src/xm/wxm_encoding_eucjpms.cpp' || echo '$(srcdir)/'`src/xm/wxm_encoding_eucjpms.cpp; \
-@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/wxmedit-wxm_encoding_eucjpms.Tpo" "$(DEPDIR)/wxmedit-wxm_encoding_eucjpms.Po"; else rm -f "$(DEPDIR)/wxmedit-wxm_encoding_eucjpms.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/xm/wxm_encoding_eucjpms.cpp' object='wxmedit-wxm_encoding_eucjpms.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -c -o wxmedit-wxm_encoding_eucjpms.o `test -f 'src/xm/wxm_encoding_eucjpms.cpp' || echo '$(srcdir)/'`src/xm/wxm_encoding_eucjpms.cpp
-
-wxmedit-wxm_encoding_eucjpms.obj: src/xm/wxm_encoding_eucjpms.cpp
-@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -MT wxmedit-wxm_encoding_eucjpms.obj -MD -MP -MF "$(DEPDIR)/wxmedit-wxm_encoding_eucjpms.Tpo" -c -o wxmedit-wxm_encoding_eucjpms.obj `if test -f 'src/xm/wxm_encoding_eucjpms.cpp'; then $(CYGPATH_W) 'src/xm/wxm_encoding_eucjpms.cpp'; else $(CYGPATH_W) '$(srcdir)/src/xm/wxm_encoding_eucjpms.cpp'; fi`; \
-@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/wxmedit-wxm_encoding_eucjpms.Tpo" "$(DEPDIR)/wxmedit-wxm_encoding_eucjpms.Po"; else rm -f "$(DEPDIR)/wxmedit-wxm_encoding_eucjpms.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/xm/wxm_encoding_eucjpms.cpp' object='wxmedit-wxm_encoding_eucjpms.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -c -o wxmedit-wxm_encoding_eucjpms.obj `if test -f 'src/xm/wxm_encoding_eucjpms.cpp'; then $(CYGPATH_W) 'src/xm/wxm_encoding_eucjpms.cpp'; else $(CYGPATH_W) '$(srcdir)/src/xm/wxm_encoding_eucjpms.cpp'; fi`
 
 wxmedit-wxm_encoding_multibyte.o: src/xm/wxm_encoding_multibyte.cpp
 @am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -MT wxmedit-wxm_encoding_multibyte.o -MD -MP -MF "$(DEPDIR)/wxmedit-wxm_encoding_multibyte.Tpo" -c -o wxmedit-wxm_encoding_multibyte.o `test -f 'src/xm/wxm_encoding_multibyte.cpp' || echo '$(srcdir)/'`src/xm/wxm_encoding_multibyte.cpp; \
@@ -1698,6 +1699,20 @@ wxm_encoding.obj: src/xm/wxm_encoding.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o wxm_encoding.obj `if test -f 'src/xm/wxm_encoding.cpp'; then $(CYGPATH_W) 'src/xm/wxm_encoding.cpp'; else $(CYGPATH_W) '$(srcdir)/src/xm/wxm_encoding.cpp'; fi`
 
+wxm_encoding_cp20932.o: src/xm/wxm_encoding_cp20932.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT wxm_encoding_cp20932.o -MD -MP -MF "$(DEPDIR)/wxm_encoding_cp20932.Tpo" -c -o wxm_encoding_cp20932.o `test -f 'src/xm/wxm_encoding_cp20932.cpp' || echo '$(srcdir)/'`src/xm/wxm_encoding_cp20932.cpp; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/wxm_encoding_cp20932.Tpo" "$(DEPDIR)/wxm_encoding_cp20932.Po"; else rm -f "$(DEPDIR)/wxm_encoding_cp20932.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/xm/wxm_encoding_cp20932.cpp' object='wxm_encoding_cp20932.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o wxm_encoding_cp20932.o `test -f 'src/xm/wxm_encoding_cp20932.cpp' || echo '$(srcdir)/'`src/xm/wxm_encoding_cp20932.cpp
+
+wxm_encoding_cp20932.obj: src/xm/wxm_encoding_cp20932.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT wxm_encoding_cp20932.obj -MD -MP -MF "$(DEPDIR)/wxm_encoding_cp20932.Tpo" -c -o wxm_encoding_cp20932.obj `if test -f 'src/xm/wxm_encoding_cp20932.cpp'; then $(CYGPATH_W) 'src/xm/wxm_encoding_cp20932.cpp'; else $(CYGPATH_W) '$(srcdir)/src/xm/wxm_encoding_cp20932.cpp'; fi`; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/wxm_encoding_cp20932.Tpo" "$(DEPDIR)/wxm_encoding_cp20932.Po"; else rm -f "$(DEPDIR)/wxm_encoding_cp20932.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/xm/wxm_encoding_cp20932.cpp' object='wxm_encoding_cp20932.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o wxm_encoding_cp20932.obj `if test -f 'src/xm/wxm_encoding_cp20932.cpp'; then $(CYGPATH_W) 'src/xm/wxm_encoding_cp20932.cpp'; else $(CYGPATH_W) '$(srcdir)/src/xm/wxm_encoding_cp20932.cpp'; fi`
+
 wxm_encoding_doublebyte.o: src/xm/wxm_encoding_doublebyte.cpp
 @am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT wxm_encoding_doublebyte.o -MD -MP -MF "$(DEPDIR)/wxm_encoding_doublebyte.Tpo" -c -o wxm_encoding_doublebyte.o `test -f 'src/xm/wxm_encoding_doublebyte.cpp' || echo '$(srcdir)/'`src/xm/wxm_encoding_doublebyte.cpp; \
 @am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/wxm_encoding_doublebyte.Tpo" "$(DEPDIR)/wxm_encoding_doublebyte.Po"; else rm -f "$(DEPDIR)/wxm_encoding_doublebyte.Tpo"; exit 1; fi
@@ -1711,20 +1726,6 @@ wxm_encoding_doublebyte.obj: src/xm/wxm_encoding_doublebyte.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/xm/wxm_encoding_doublebyte.cpp' object='wxm_encoding_doublebyte.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o wxm_encoding_doublebyte.obj `if test -f 'src/xm/wxm_encoding_doublebyte.cpp'; then $(CYGPATH_W) 'src/xm/wxm_encoding_doublebyte.cpp'; else $(CYGPATH_W) '$(srcdir)/src/xm/wxm_encoding_doublebyte.cpp'; fi`
-
-wxm_encoding_eucjpms.o: src/xm/wxm_encoding_eucjpms.cpp
-@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT wxm_encoding_eucjpms.o -MD -MP -MF "$(DEPDIR)/wxm_encoding_eucjpms.Tpo" -c -o wxm_encoding_eucjpms.o `test -f 'src/xm/wxm_encoding_eucjpms.cpp' || echo '$(srcdir)/'`src/xm/wxm_encoding_eucjpms.cpp; \
-@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/wxm_encoding_eucjpms.Tpo" "$(DEPDIR)/wxm_encoding_eucjpms.Po"; else rm -f "$(DEPDIR)/wxm_encoding_eucjpms.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/xm/wxm_encoding_eucjpms.cpp' object='wxm_encoding_eucjpms.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o wxm_encoding_eucjpms.o `test -f 'src/xm/wxm_encoding_eucjpms.cpp' || echo '$(srcdir)/'`src/xm/wxm_encoding_eucjpms.cpp
-
-wxm_encoding_eucjpms.obj: src/xm/wxm_encoding_eucjpms.cpp
-@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT wxm_encoding_eucjpms.obj -MD -MP -MF "$(DEPDIR)/wxm_encoding_eucjpms.Tpo" -c -o wxm_encoding_eucjpms.obj `if test -f 'src/xm/wxm_encoding_eucjpms.cpp'; then $(CYGPATH_W) 'src/xm/wxm_encoding_eucjpms.cpp'; else $(CYGPATH_W) '$(srcdir)/src/xm/wxm_encoding_eucjpms.cpp'; fi`; \
-@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/wxm_encoding_eucjpms.Tpo" "$(DEPDIR)/wxm_encoding_eucjpms.Po"; else rm -f "$(DEPDIR)/wxm_encoding_eucjpms.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/xm/wxm_encoding_eucjpms.cpp' object='wxm_encoding_eucjpms.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o wxm_encoding_eucjpms.obj `if test -f 'src/xm/wxm_encoding_eucjpms.cpp'; then $(CYGPATH_W) 'src/xm/wxm_encoding_eucjpms.cpp'; else $(CYGPATH_W) '$(srcdir)/src/xm/wxm_encoding_eucjpms.cpp'; fi`
 
 wxm_encoding_multibyte.o: src/xm/wxm_encoding_multibyte.cpp
 @am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT wxm_encoding_multibyte.o -MD -MP -MF "$(DEPDIR)/wxm_encoding_multibyte.Tpo" -c -o wxm_encoding_multibyte.o `test -f 'src/xm/wxm_encoding_multibyte.cpp' || echo '$(srcdir)/'`src/xm/wxm_encoding_multibyte.cpp; \
@@ -1767,6 +1768,20 @@ wxm_encoding_unicode.obj: src/xm/wxm_encoding_unicode.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/xm/wxm_encoding_unicode.cpp' object='wxm_encoding_unicode.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o wxm_encoding_unicode.obj `if test -f 'src/xm/wxm_encoding_unicode.cpp'; then $(CYGPATH_W) 'src/xm/wxm_encoding_unicode.cpp'; else $(CYGPATH_W) '$(srcdir)/src/xm/wxm_encoding_unicode.cpp'; fi`
+
+test_cp20932_conv.o: test/test_cp20932_conv.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT test_cp20932_conv.o -MD -MP -MF "$(DEPDIR)/test_cp20932_conv.Tpo" -c -o test_cp20932_conv.o `test -f 'test/test_cp20932_conv.cpp' || echo '$(srcdir)/'`test/test_cp20932_conv.cpp; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/test_cp20932_conv.Tpo" "$(DEPDIR)/test_cp20932_conv.Po"; else rm -f "$(DEPDIR)/test_cp20932_conv.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='test/test_cp20932_conv.cpp' object='test_cp20932_conv.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o test_cp20932_conv.o `test -f 'test/test_cp20932_conv.cpp' || echo '$(srcdir)/'`test/test_cp20932_conv.cpp
+
+test_cp20932_conv.obj: test/test_cp20932_conv.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT test_cp20932_conv.obj -MD -MP -MF "$(DEPDIR)/test_cp20932_conv.Tpo" -c -o test_cp20932_conv.obj `if test -f 'test/test_cp20932_conv.cpp'; then $(CYGPATH_W) 'test/test_cp20932_conv.cpp'; else $(CYGPATH_W) '$(srcdir)/test/test_cp20932_conv.cpp'; fi`; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/test_cp20932_conv.Tpo" "$(DEPDIR)/test_cp20932_conv.Po"; else rm -f "$(DEPDIR)/test_cp20932_conv.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='test/test_cp20932_conv.cpp' object='test_cp20932_conv.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o test_cp20932_conv.obj `if test -f 'test/test_cp20932_conv.cpp'; then $(CYGPATH_W) 'test/test_cp20932_conv.cpp'; else $(CYGPATH_W) '$(srcdir)/test/test_cp20932_conv.cpp'; fi`
 
 test_cp932_conv.o: test/test_cp932_conv.cpp
 @am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT test_cp932_conv.o -MD -MP -MF "$(DEPDIR)/test_cp932_conv.Tpo" -c -o test_cp932_conv.o `test -f 'test/test_cp932_conv.cpp' || echo '$(srcdir)/'`test/test_cp932_conv.cpp; \
@@ -1837,20 +1852,6 @@ test_doublebyte_conv.obj: test/test_doublebyte_conv.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='test/test_doublebyte_conv.cpp' object='test_doublebyte_conv.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o test_doublebyte_conv.obj `if test -f 'test/test_doublebyte_conv.cpp'; then $(CYGPATH_W) 'test/test_doublebyte_conv.cpp'; else $(CYGPATH_W) '$(srcdir)/test/test_doublebyte_conv.cpp'; fi`
-
-test_eucjpms_conv.o: test/test_eucjpms_conv.cpp
-@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT test_eucjpms_conv.o -MD -MP -MF "$(DEPDIR)/test_eucjpms_conv.Tpo" -c -o test_eucjpms_conv.o `test -f 'test/test_eucjpms_conv.cpp' || echo '$(srcdir)/'`test/test_eucjpms_conv.cpp; \
-@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/test_eucjpms_conv.Tpo" "$(DEPDIR)/test_eucjpms_conv.Po"; else rm -f "$(DEPDIR)/test_eucjpms_conv.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='test/test_eucjpms_conv.cpp' object='test_eucjpms_conv.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o test_eucjpms_conv.o `test -f 'test/test_eucjpms_conv.cpp' || echo '$(srcdir)/'`test/test_eucjpms_conv.cpp
-
-test_eucjpms_conv.obj: test/test_eucjpms_conv.cpp
-@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT test_eucjpms_conv.obj -MD -MP -MF "$(DEPDIR)/test_eucjpms_conv.Tpo" -c -o test_eucjpms_conv.obj `if test -f 'test/test_eucjpms_conv.cpp'; then $(CYGPATH_W) 'test/test_eucjpms_conv.cpp'; else $(CYGPATH_W) '$(srcdir)/test/test_eucjpms_conv.cpp'; fi`; \
-@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/test_eucjpms_conv.Tpo" "$(DEPDIR)/test_eucjpms_conv.Po"; else rm -f "$(DEPDIR)/test_eucjpms_conv.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='test/test_eucjpms_conv.cpp' object='test_eucjpms_conv.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o test_eucjpms_conv.obj `if test -f 'test/test_eucjpms_conv.cpp'; then $(CYGPATH_W) 'test/test_eucjpms_conv.cpp'; else $(CYGPATH_W) '$(srcdir)/test/test_eucjpms_conv.cpp'; fi`
 
 test_singlebyte_conv.o: test/test_singlebyte_conv.cpp
 @am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT test_singlebyte_conv.o -MD -MP -MF "$(DEPDIR)/test_singlebyte_conv.Tpo" -c -o test_singlebyte_conv.o `test -f 'test/test_singlebyte_conv.cpp' || echo '$(srcdir)/'`test/test_singlebyte_conv.cpp; \
