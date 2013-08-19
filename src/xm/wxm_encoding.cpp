@@ -221,10 +221,15 @@ void WXMEncodingCreator::InitSystemEncoding()
 void WXMEncodingCreator::FreeEncodings()
 {
 	BOOST_FOREACH(WXEncInstMap::value_type val, m_inst_map)
+	{
+		if (m_sysenc == val.second)
+			m_sysenc = NULL;
+
 		delete val.second;
+	}
 	m_inst_map.clear();
 
-	if (m_sysenc)
+	if (m_sysenc != NULL)
 		delete m_sysenc;
 	m_sysenc = NULL;
 
