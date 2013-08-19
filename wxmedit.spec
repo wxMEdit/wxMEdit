@@ -55,6 +55,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/locale/zh_CN/LC_MESSAGES/wxmedit.mo
 %{_datadir}/locale/it_IT/LC_MESSAGES/wxmedit.mo
 %{_datadir}/locale/ja_JP/LC_MESSAGES/wxmedit.mo
+%{_datadir}/locale/es_ES/LC_MESSAGES/wxmedit.mo
 
 
 %changelog
