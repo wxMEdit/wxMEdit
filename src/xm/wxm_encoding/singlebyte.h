@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////
 // vim:         ts=4 sw=4
-// Name:        wxmedit/wxm_encoding_singlebyte.h
+// Name:        xm/wxm_encoding/singlebyte.h
 // Description: define the Single-byte Encodings which are supported by wxMEdit
 // Author:      wxmedit@gmail.com
 // Licence:     GPL
@@ -9,7 +9,7 @@
 #ifndef _WXM_ENCODING_SINGLEBYTE_H_
 #define _WXM_ENCODING_SINGLEBYTE_H_
 
-#include "wxm_encoding_multibyte.h"
+#include "multibyte.h"
 
 #include <boost/array.hpp>
 

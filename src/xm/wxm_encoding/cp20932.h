@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////
 // vim:         ts=4 sw=4
-// Name:        wxmedit/wxm_encoding_cp20932.h
+// Name:        xm/wxm_encoding/cp20932.h
 // Description: define the Double-byte Encoding CP20932
 // Author:      wxmedit@gmail.com
 // Licence:     GPL
@@ -9,7 +9,7 @@
 #ifndef _WXM_ENCODING_EUCJPMS_H_
 #define _WXM_ENCODING_EUCJPMS_H_
 
-#include "wxm_encoding_doublebyte.h"
+#include "doublebyte.h"
 
 #ifdef _MSC_VER
 # pragma warning( push )

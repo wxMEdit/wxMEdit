@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////
 // vim:         ts=4 sw=4
-// Name:        wxmedit/wxm_encoding.h
+// Name:        xm/wxm_encoding/encoding.h
 // Description: define the Encodings which are supported by wxMEdit
 // Author:      wxmedit@gmail.com
 // Licence:     GPL
@@ -9,9 +9,9 @@
 #ifndef _WXM_ENCODING_H_
 #define _WXM_ENCODING_H_
 
-#include "wxm_encoding_def.h"
-#include "wxm_line_enc_adapter.h"
-#include "../wxmedit/ucs4_t.h"
+#include "encoding_def.h"
+#include "../wxm_line_enc_adapter.h"
+#include "../../wxmedit/ucs4_t.h"
 
 #ifdef WX_PRECOMP
 #include <wx/wxprec.h>

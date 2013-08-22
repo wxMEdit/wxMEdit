@@ -1,12 +1,12 @@
 ///////////////////////////////////////////////////////////////////////////////
 // vim:         ts=4 sw=4
-// Name:        wxmedit/wxm_encoding_unicode.cpp
+// Name:        xm/wxm_encoding/unicode.h
 // Description: define the Unicode Encodings which are supported by wxMEdit
 // Author:      wxmedit@gmail.com
 // Licence:     GPL
 ///////////////////////////////////////////////////////////////////////////////
 
-#include "wxm_encoding_unicode.h"
+#include "unicode.h"
 
 namespace wxm
 {

@@ -1,5 +1,5 @@
 #include "test.h"
-#include "../src/xm/wxm_encoding.h"
+#include "../src/xm/wxm_encoding/encoding.h"
 #include <boost/foreach.hpp>
 #include <boost/test/minimal.hpp>
 

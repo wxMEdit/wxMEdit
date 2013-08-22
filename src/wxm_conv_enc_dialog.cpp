@@ -7,7 +7,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 #include "wxm_conv_enc_dialog.h"
-#include "xm/wxm_encoding.h"
+#include "xm/wxm_encoding/encoding.h"
 #include <wx/config.h>
 
 //Do not add custom headers

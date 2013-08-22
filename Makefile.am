@@ -63,19 +63,19 @@ wxmedit_SOURCES =	src/wxmedit_about_dialog.cpp \
 	src/xm/wxm_case_conv.h \
 	src/xm/wxm_line_enc_adapter.cpp \
 	src/xm/wxm_line_enc_adapter.h \
-	src/xm/wxm_encoding.cpp \
-	src/xm/wxm_encoding.h \
-	src/xm/wxm_encoding_cp20932.cpp \
-	src/xm/wxm_encoding_cp20932.h \
-	src/xm/wxm_encoding_def.h \
-	src/xm/wxm_encoding_doublebyte.cpp \
-	src/xm/wxm_encoding_doublebyte.h \
-	src/xm/wxm_encoding_multibyte.cpp \
-	src/xm/wxm_encoding_multibyte.h \
-	src/xm/wxm_encoding_singlebyte.cpp \
-	src/xm/wxm_encoding_singlebyte.h \
-	src/xm/wxm_encoding_unicode.cpp \
-	src/xm/wxm_encoding_unicode.h \
+	src/xm/wxm_encoding/cp20932.cpp \
+	src/xm/wxm_encoding/cp20932.h \
+	src/xm/wxm_encoding/doublebyte.cpp \
+	src/xm/wxm_encoding/doublebyte.h \
+	src/xm/wxm_encoding/encoding.cpp \
+	src/xm/wxm_encoding/encoding.h \
+	src/xm/wxm_encoding/encoding_def.h \
+	src/xm/wxm_encoding/multibyte.cpp \
+	src/xm/wxm_encoding/multibyte.h \
+	src/xm/wxm_encoding/singlebyte.cpp \
+	src/xm/wxm_encoding/singlebyte.h \
+	src/xm/wxm_encoding/unicode.cpp \
+	src/xm/wxm_encoding/unicode.h \
 	src/xm/wxm_wx_icu.cpp \
 	src/xm/wxm_wx_icu.h \
 	src/wxmedit/trad_simp.cpp \
@@ -132,19 +132,19 @@ wxmedit_SOURCES =	src/wxmedit_about_dialog.cpp \
 
 wxmedit_test_SOURCES = src/wxmedit/ucs4_t.h \
 	src/wxmedit/wxm_deque.hpp \
-	src/xm/wxm_encoding.cpp \
-	src/xm/wxm_encoding.h \
-	src/xm/wxm_encoding_cp20932.cpp \
-	src/xm/wxm_encoding_cp20932.h \
-	src/xm/wxm_encoding_def.h \
-	src/xm/wxm_encoding_doublebyte.cpp \
-	src/xm/wxm_encoding_doublebyte.h \
-	src/xm/wxm_encoding_multibyte.cpp \
-	src/xm/wxm_encoding_multibyte.h \
-	src/xm/wxm_encoding_singlebyte.cpp \
-	src/xm/wxm_encoding_singlebyte.h \
-	src/xm/wxm_encoding_unicode.cpp \
-	src/xm/wxm_encoding_unicode.h \
+	src/xm/wxm_encoding/cp20932.cpp \
+	src/xm/wxm_encoding/cp20932.h \
+	src/xm/wxm_encoding/doublebyte.cpp \
+	src/xm/wxm_encoding/doublebyte.h \
+	src/xm/wxm_encoding/encoding.cpp \
+	src/xm/wxm_encoding/encoding.h \
+	src/xm/wxm_encoding/encoding_def.h \
+	src/xm/wxm_encoding/multibyte.cpp \
+	src/xm/wxm_encoding/multibyte.h \
+	src/xm/wxm_encoding/singlebyte.cpp \
+	src/xm/wxm_encoding/singlebyte.h \
+	src/xm/wxm_encoding/unicode.cpp \
+	src/xm/wxm_encoding/unicode.h \
 	src/xm/wxm_line_enc_adapter.h \
 	test/test_cp20932_conv.cpp \
 	test/test_cp932_conv.cpp \

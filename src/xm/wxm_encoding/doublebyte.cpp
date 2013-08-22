@@ -1,12 +1,12 @@
 ///////////////////////////////////////////////////////////////////////////////
 // vim:         ts=4 sw=4
-// Name:        wxmedit/wxm_encoding_doublebyte.cpp
+// Name:        xm/wxm_encoding/doublebyte.h
 // Description: define the Double-byte Encodings which are supported by wxMEdit
 // Author:      wxmedit@gmail.com
 // Licence:     GPL
 ///////////////////////////////////////////////////////////////////////////////
 
-#include "wxm_encoding_doublebyte.h"
+#include "doublebyte.h"
 
 #ifdef _DEBUG
 #include <crtdbg.h>

@@ -8,7 +8,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 #include "wxm_lines.h"
-#include "../xm/wxm_encoding.h"
+#include "../xm/wxm_encoding/encoding.h"
 #include "wxm_encdet.h"
 #include "wxm_syntax.h"
 #include "wxmedit.h"

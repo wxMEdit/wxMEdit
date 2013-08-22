@@ -81,19 +81,19 @@
 	</template>
 
 	<template id="enc_src">
-		<headers>../src/xm/wxm_encoding.h</headers>
-		<sources>../src/xm/wxm_encoding.cpp</sources>
-		<headers>../src/xm/wxm_encoding_cp20932.h</headers>
-		<sources>../src/xm/wxm_encoding_cp20932.cpp</sources>
-		<headers>../src/xm/wxm_encoding_def.h</headers>
-		<headers>../src/xm/wxm_encoding_doublebyte.h</headers>
-		<sources>../src/xm/wxm_encoding_doublebyte.cpp</sources>
-		<headers>../src/xm/wxm_encoding_singlebyte.h</headers>
-		<sources>../src/xm/wxm_encoding_singlebyte.cpp</sources>
-		<headers>../src/xm/wxm_encoding_multibyte.h</headers>
-		<sources>../src/xm/wxm_encoding_multibyte.cpp</sources>
-		<headers>../src/xm/wxm_encoding_unicode.h</headers>
-		<sources>../src/xm/wxm_encoding_unicode.cpp</sources>
+		<headers>../src/xm/wxm_encoding/cp20932.h</headers>
+		<sources>../src/xm/wxm_encoding/cp20932.cpp</sources>
+		<headers>../src/xm/wxm_encoding/doublebyte.h</headers>
+		<sources>../src/xm/wxm_encoding/doublebyte.cpp</sources>
+		<headers>../src/xm/wxm_encoding/encoding.h</headers>
+		<sources>../src/xm/wxm_encoding/encoding.cpp</sources>
+		<headers>../src/xm/wxm_encoding/encoding_def.h</headers>
+		<headers>../src/xm/wxm_encoding/singlebyte.h</headers>
+		<sources>../src/xm/wxm_encoding/singlebyte.cpp</sources>
+		<headers>../src/xm/wxm_encoding/multibyte.h</headers>
+		<sources>../src/xm/wxm_encoding/multibyte.cpp</sources>
+		<headers>../src/xm/wxm_encoding/unicode.h</headers>
+		<sources>../src/xm/wxm_encoding/unicode.cpp</sources>
 	</template>
 
 	<exe id="wxmedit" template="win_cfg,enc_src">

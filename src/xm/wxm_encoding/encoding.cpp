@@ -1,15 +1,15 @@
 ///////////////////////////////////////////////////////////////////////////////
 // vim:         ts=4 sw=4
-// Name:        wxmedit/wxm_encoding.cpp
+// Name:        xm/wxm_encoding/encoding.h
 // Description: define the Encodings which are supported by wxMEdit
 // Author:      wxmedit@gmail.com
 // Licence:     GPL
 ///////////////////////////////////////////////////////////////////////////////
 
-#include "wxm_encoding_unicode.h"
-#include "wxm_encoding_singlebyte.h"
-#include "wxm_encoding_doublebyte.h"
-#include "wxm_encoding_cp20932.h"
+#include "unicode.h"
+#include "singlebyte.h"
+#include "doublebyte.h"
+#include "cp20932.h"
 #include <wx/config.h>
 #include <wx/log.h>
 #include <wx/fontenc.h>

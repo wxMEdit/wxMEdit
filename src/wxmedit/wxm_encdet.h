@@ -9,7 +9,7 @@
 #ifndef _WXM_ENCDET_H_
 #define _WXM_ENCDET_H_
 
-#include "../xm/wxm_encoding_def.h"
+#include "../xm/wxm_encoding/encoding_def.h"
 #include <wx/wxprec.h>
 
 #ifdef __BORLANDC__

@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////
 // vim:         ts=4 sw=4
-// Name:        wxmedit/wxm_encoding_multibyte.h
+// Name:        xm/wxm_encoding/multibyte.h
 // Description: define the Multi-byte Encodings which are supported by wxMEdit
 // Author:      wxmedit@gmail.com
 // Licence:     GPL
@@ -9,7 +9,7 @@
 #ifndef _WXM_ENCODING_MULTIBYTE_H_
 #define _WXM_ENCODING_MULTIBYTE_H_
 
-#include "wxm_encoding.h"
+#include "encoding.h"
 
 #include <unicode/ucnv.h>
 

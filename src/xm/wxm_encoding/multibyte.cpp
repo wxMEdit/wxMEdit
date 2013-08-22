@@ -1,12 +1,12 @@
 ///////////////////////////////////////////////////////////////////////////////
 // vim:         ts=4 sw=4
-// Name:        wxmedit/wxm_encoding_multibyte.cpp
+// Name:        xm/wxm_encoding/multibyte.h
 // Description: define the Multi-byte Encodings which are supported by wxMEdit
 // Author:      wxmedit@gmail.com
 // Licence:     GPL
 ///////////////////////////////////////////////////////////////////////////////
 
-#include "wxm_encoding_multibyte.h"
+#include "multibyte.h"
 #include <boost/scoped_array.hpp>
 
 #ifdef _DEBUG
