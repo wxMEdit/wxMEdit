@@ -12,8 +12,6 @@
 #include "cp20932.h"
 #include <wx/config.h>
 #include <wx/log.h>
-#include <wx/fontenc.h>
-#include <wx/intl.h>
 #include <unicode/uvernum.h>
 #include <boost/foreach.hpp>
 #include <boost/static_assert.hpp>
@@ -75,8 +73,23 @@ static wxString GetMSCPFontName(const wxString mscp)
 namespace wxm
 {
 
+std::string GetEncodingICUName(const char* innername)
+{
+	UErrorCode err=U_ZERO_ERROR;
+	UConverter* ucnv = ucnv_open(innername, &err);
+	if (ucnv == NULL || U_FAILURE(err))
+		return std::string();
+
+	const char* icuname = ucnv_getName(ucnv, &err);
+	if (icuname == NULL || U_FAILURE(err))
+		return std::string();
+
+	return std::string(icuname);
+}
+
 void WXMEncodingCreator::AddEncoding(const std::string& encname, WXMEncodingID encid
-		, const wxString& desc, WXMEncodingType entype, const std::string& innername0)
+		, const wxString& desc, WXMEncodingType entype, const std::string& innername0
+		, bool exact)
 {
 	m_wxenc_map[encname] = encid;
 	m_wxenctype_map[encid] = entype;
@@ -87,9 +100,14 @@ void WXMEncodingCreator::AddEncoding(const std::string& encname, WXMEncodingID e
 	m_wxnameenc_map[wxencname] = encid;
 	m_wxencname_map[encid] = wxencname;
 
-	m_wxencinnername_map[encid] = innername0.empty()? encname: innername0;
+	std::string innername = innername0.empty()? encname: innername0;
+	m_encinnername_map[encid] = innername;
 
 	m_wxencdesc_map[encid] = desc.IsEmpty()? wxencname: desc;
+
+	std::string icuname = GetEncodingICUName(innername.c_str());
+	if (exact && !icuname.empty())
+		m_icunameenc_map[icuname] = encid;
 }
 
 void WXMEncodingCreator::DoInit()
@@ -110,7 +128,7 @@ void WXMEncodingCreator::DoInit()
 	AddEncoding("ISO-8859-13", ENC_ISO_8859_13, wxT("Baltic (ISO-8859-13)"));
 	AddEncoding("ISO-8859-14", ENC_ISO_8859_14, wxT("Celtic (ISO-8859-14)"));
 	AddEncoding("ISO-8859-15", ENC_ISO_8859_15, wxT("Western European with Euro (ISO-8859-15)"));
-	AddEncoding("ISO-8859-16", ENC_ISO_8859_16, wxT("South-Eastern European (ISO-8859-16)"), etSingleByte, "ISO-8859-15");
+	AddEncoding("ISO-8859-16", ENC_ISO_8859_16, wxT("South-Eastern European (ISO-8859-16)"), etSingleByte, "ISO-8859-15", false);
 	AddEncoding("Windows-874", ENC_Windows_874, wxT("Windows Thai (CP 874)"));
 	AddEncoding("Windows-1250", ENC_Windows_1250, wxT("Windows Central European (CP 1250)"), etSingleByte, "CP1250");
 	AddEncoding("Windows-1251", ENC_Windows_1251, wxT("Windows Cyrillic (CP 1251)"), etSingleByte, "CP1251");
@@ -133,7 +151,7 @@ void WXMEncodingCreator::DoInit()
 	AddEncoding("MS936"      , ENC_MS936, wxT("Windows Chinese Simplified (CP 936)"), etDoubleByte, "MS936");
 	AddEncoding("UHC"        , ENC_MS949, wxT("Windows Korean (CP 949)"), etDoubleByte, "MS949");
 	AddEncoding("MS950"      , ENC_MS950, wxT("Windows Chinese Traditional (CP 950)"), etDoubleByte, "MS950");
-	AddEncoding("CP20932", ENC_CP20932, wxT("EUC-JP Double-Byte Edition of Windows (CP 20932)"), etCP20932, "EUC-JP");
+	AddEncoding("CP20932", ENC_CP20932, wxT("EUC-JP Double-Byte Edition of Windows (CP 20932)"), etCP20932, "EUC-JP", false);
 
 	AddEncoding("UTF-8", ENC_UTF_8, wxT("Unicode 8 bit (UTF-8)"), etUTF8);
 	AddEncoding("UTF-16LE", ENC_UTF_16LE, wxT("Unicode 16 bit Little Endian (UTF-16LE)"), etUTF16LE);
@@ -158,47 +176,12 @@ WXMEncodingID WXMEncodingCreator::GetSystemEncodingID()
 	if (sysencid != ENC_DEFAULT)
 		return sysencid;
 
-	wxFontEncoding wxenc = wxLocale::GetSystemEncoding();
-
-	if (wxenc>=wxFONTENCODING_ISO8859_1 && wxenc<=wxFONTENCODING_ISO8859_15)
-		sysencid = WXMEncodingID(ENC_ISO_8859_1 + (wxenc - wxFONTENCODING_ISO8859_1));
-	else if(wxenc>=wxFONTENCODING_CP1250 && wxenc<=wxFONTENCODING_CP1257)
-		sysencid = WXMEncodingID(ENC_Windows_1250 + (wxenc - wxFONTENCODING_CP1250));
-	else if(wxenc==wxFONTENCODING_CP437)
-		sysencid = ENC_CP437;
-	else if(wxenc==wxFONTENCODING_CP850)
-		sysencid = ENC_CP850;
-	else if(wxenc==wxFONTENCODING_CP852)
-		sysencid = ENC_CP852;
-	else if(wxenc==wxFONTENCODING_CP855)
-		sysencid = ENC_CP855;
-	else if(wxenc==wxFONTENCODING_CP866)
-		sysencid = ENC_CP866;
-	else if(wxenc==wxFONTENCODING_KOI8)
-		sysencid = ENC_KOI8_R;
-	else if(wxenc==wxFONTENCODING_KOI8_U)
-		sysencid = ENC_KOI8_U;
-	else if(wxenc==wxFONTENCODING_CP932)
-		sysencid = ENC_MS932;
-	else if(wxenc==wxFONTENCODING_CP936)
-		sysencid = ENC_MS936;
-	else if(wxenc==wxFONTENCODING_CP949)
-		sysencid = ENC_MS949;
-	else if(wxenc==wxFONTENCODING_CP950)
-		sysencid = ENC_MS950;
-	// CP20932 cannot mapping directly
-	else if(wxenc==wxFONTENCODING_UTF8)
-		sysencid = ENC_UTF_8;
-	else if(wxenc==wxFONTENCODING_UTF16LE)
-		sysencid = ENC_UTF_16LE;
-	else if(wxenc==wxFONTENCODING_UTF16BE)
-		sysencid = ENC_UTF_16BE;
-	else if(wxenc==wxFONTENCODING_UTF32LE)
-		sysencid = ENC_UTF_32LE;
-	else if(wxenc==wxFONTENCODING_UTF32BE)
-		sysencid = ENC_UTF_32BE;
-	else
+	std::string sysenc_icuname = GetEncodingICUName(NULL);
+	ICUNameEncMap::const_iterator it = m_icunameenc_map.find(sysenc_icuname);
+	if (it == m_icunameenc_map.end())
 		sysencid = ENC_ISO_8859_1;
+	else
+		sysencid = it->second;
 
 	return sysencid;
 }
@@ -220,7 +203,7 @@ void WXMEncodingCreator::InitSystemEncoding()
 
 void WXMEncodingCreator::FreeEncodings()
 {
-	BOOST_FOREACH(WXEncInstMap::value_type val, m_inst_map)
+	BOOST_FOREACH(EncInstMap::value_type val, m_inst_map)
 	{
 		if (m_sysenc == val.second)
 			m_sysenc = NULL;
@@ -251,8 +234,8 @@ wxString WXMEncodingCreator::GetEncodingName(ssize_t idx)
 
 std::string WXMEncodingCreator::GetEncodingInnerName(ssize_t idx)
 {
-	WXEncInnerNameMap::const_iterator it = m_wxencinnername_map.find(IdxToEncoding(idx));
-	if (it == m_wxencinnername_map.end())
+	EncInnerNameMap::const_iterator it = m_encinnername_map.find(IdxToEncoding(idx));
+	if (it == m_encinnername_map.end())
 		return "unknown";
 
 	return it->second;
@@ -314,7 +297,7 @@ WXMEncodingCreator::WXMEncodingType WXMEncodingCreator::GetIdxEncType(ssize_t id
 WXMEncoding* WXMEncodingCreator::CreateWxmEncoding(ssize_t idx)
 {
 	wxASSERT(idx<(ssize_t)m_wxenc_list.size() && idx>=0);
-	WXEncInstMap::iterator it = m_inst_map.find(idx);
+	EncInstMap::iterator it = m_inst_map.find(idx);
 	if (it!=m_inst_map.end() && it->second!=NULL)
 		return it->second;
 

@@ -94,7 +94,7 @@ private:
 	void DoInit();
 	void AddEncoding(const std::string& encname, WXMEncodingID encid
 		, const wxString& desc=wxString(), WXMEncodingType entype=etSingleByte
-		, const std::string& innername0=std::string());
+		, const std::string& innername0=std::string(), bool exact=true);
 
 	WXMEncodingCreator()
 	: m_initialized(false), m_sysenc_idx(-1), m_sysenc(NULL)
@@ -117,16 +117,18 @@ private:
 	typedef std::map<WXMEncodingID, WXMEncodingType> WXEncTypeMap;
 	typedef std::map<WXMEncodingID, wxString> WXEncFontMap;
 	typedef std::map<WXMEncodingID, wxString> WXEncDescMap;
-	typedef std::map<WXMEncodingID, std::string> WXEncInnerNameMap;
+	typedef std::map<WXMEncodingID, std::string> EncInnerNameMap;
+	typedef std::map<std::string, WXMEncodingID> ICUNameEncMap;
 	WXNameEncMap m_wxnameenc_map;
 	WXEncNameMap m_wxencname_map;
 	WXEncTypeMap m_wxenctype_map;
 	WXEncFontMap m_wxencfont_map;
 	WXEncDescMap m_wxencdesc_map;
-	WXEncInnerNameMap m_wxencinnername_map;
+	EncInnerNameMap m_encinnername_map;
+	ICUNameEncMap m_icunameenc_map;
 
-	typedef std::map<ssize_t, WXMEncoding*> WXEncInstMap;
-	WXEncInstMap m_inst_map;
+	typedef std::map<ssize_t, WXMEncoding*> EncInstMap;
+	EncInstMap m_inst_map;
 };
 
 struct WXMBlockDumper;
