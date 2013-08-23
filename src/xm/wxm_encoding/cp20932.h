@@ -6,8 +6,8 @@
 // Licence:     GPL
 ///////////////////////////////////////////////////////////////////////////////
 
-#ifndef _WXM_ENCODING_EUCJPMS_H_
-#define _WXM_ENCODING_EUCJPMS_H_
+#ifndef _WXM_ENCODING_CP20932_H_
+#define _WXM_ENCODING_CP20932_H_
 
 #include "doublebyte.h"
 
@@ -58,4 +58,4 @@ private:
 # pragma warning( pop )
 #endif
 
-#endif // _WXM_ENCODING_EUCJPMS_H_
+#endif // _WXM_ENCODING_CP20932_H_
