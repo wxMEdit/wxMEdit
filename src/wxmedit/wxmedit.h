@@ -571,7 +571,7 @@ public: // basic functions
     void SetEncoding(const wxString &encname);
     wxString GetEncodingName() { return m_Encoding->GetName(); }
     wxString GetEncodingDescription() { return m_Encoding->GetDescription(); }
-	bool IsSimpleUnicodeFile() { return m_Encoding->IsSimpleUnicodeEncoding(); }
+	bool IsUnicodeFile() { return m_Encoding->IsUnicodeEncoding(); }
 
     bool GetRecordCaretMovements() { return m_RecordCaretMovements; }
     void SetRecordCaretMovements(bool value);

@@ -10,6 +10,7 @@
 #include "singlebyte.h"
 #include "doublebyte.h"
 #include "cp20932.h"
+#include "gb18030.h"
 #include <wx/config.h>
 #include <wx/log.h>
 #include <unicode/uvernum.h>
@@ -153,6 +154,8 @@ void WXMEncodingCreator::DoInit()
 	AddEncoding("MS950"      , ENC_MS950, wxT("Windows Chinese Traditional (CP 950)"), etDoubleByte, "MS950");
 	AddEncoding("CP20932", ENC_CP20932, wxT("EUC-JP Double-Byte Edition of Windows (CP 20932)"), etCP20932, "EUC-JP", false);
 
+	AddEncoding("GB18030", ENC_GB18030, wxT("Unicode/Chinese Simplified (GB18030)"), etGB18030);
+
 	AddEncoding("UTF-8", ENC_UTF_8, wxT("Unicode 8 bit (UTF-8)"), etUTF8);
 	AddEncoding("UTF-16LE", ENC_UTF_16LE, wxT("Unicode 16 bit Little Endian (UTF-16LE)"), etUTF16LE);
 	AddEncoding("UTF-16BE", ENC_UTF_16BE, wxT("Unicode 16 bit Big Endian (UTF-16BE)"), etUTF16BE);
@@ -165,6 +168,7 @@ void WXMEncodingCreator::DoInit()
 	m_wxencfont_map[ENC_MS949] = GetMSCPFontName(wxT("949"));
 	m_wxencfont_map[ENC_MS950] = GetMSCPFontName(wxT("950"));
 	m_wxencfont_map[ENC_CP20932] = GetMSCPFontName(wxT("51932"));
+	m_wxencfont_map[ENC_GB18030] = GetMSCPFontName(wxT("936"));
 
 	InitSystemEncoding();
 	
@@ -330,6 +334,9 @@ WXMEncoding* WXMEncodingCreator::CreateWxmEncoding(ssize_t idx)
 			break;
 		case etCP20932:
 			enc = new WXMEncodingEUCJPMS();
+			break;
+		case etGB18030:
+			enc = new WXMEncodingGB18030();
 			break;
 	}
 

@@ -88,6 +88,8 @@
 		<headers>../src/xm/wxm_encoding/encoding.h</headers>
 		<sources>../src/xm/wxm_encoding/encoding.cpp</sources>
 		<headers>../src/xm/wxm_encoding/encoding_def.h</headers>
+		<headers>../src/xm/wxm_encoding/gb18030.h</headers>
+		<sources>../src/xm/wxm_encoding/gb18030.cpp</sources>
 		<headers>../src/xm/wxm_encoding/singlebyte.h</headers>
 		<sources>../src/xm/wxm_encoding/singlebyte.cpp</sources>
 		<headers>../src/xm/wxm_encoding/multibyte.h</headers>

@@ -27,7 +27,7 @@ using std::vector;
 
 void MadEdit::ToggleBOM()
 {
-    if(IsReadOnly() || !IsTextFile() || !IsSimpleUnicodeFile())
+    if(IsReadOnly() || !IsTextFile() || !IsUnicodeFile())
         return;
 
     size_t len=m_Lines->m_LineList.begin()->m_RowIndices[0].m_Start;
@@ -155,7 +155,7 @@ void MadEdit::ConvertEncoding(const wxString &newenc, MadConvertEncodingFlag fla
 
     bool ignoreBOM=true;
 	wxm::WXMEncoding* enc = wxm::WXMEncodingCreator::Instance().CreateWxmEncoding(newenc);
-	if(enc->IsSimpleUnicodeEncoding())
+	if(enc->IsUnicodeEncoding())
     {
         ignoreBOM=false;
     }

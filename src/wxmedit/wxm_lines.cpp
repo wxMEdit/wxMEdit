@@ -1080,7 +1080,7 @@ MadLineState MadLines::Reformat(MadLineIterator iter)
 
     NextUChar(ucqueue);
 
-    if (m_Encoding->IsSimpleUnicodeEncoding())
+    if (m_Encoding->IsUnicodeEncoding())
     {
         // Byte-Order Mark
         if(ucqueue.front().first == 0xFEFF && iter == m_LineList.begin())

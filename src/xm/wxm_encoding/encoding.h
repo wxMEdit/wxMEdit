@@ -67,7 +67,7 @@ struct WXMEncodingCreator: private boost::noncopyable
 
 private:
 	enum WXMEncodingType
-	{ etSingleByte, etDoubleByte, etUTF8, etUTF16LE, etUTF16BE, etUTF32LE, etUTF32BE, etCP20932 };
+	{ etSingleByte, etDoubleByte, etUTF8, etUTF16LE, etUTF16BE, etUTF32LE, etUTF32BE, etCP20932, etGB18030 };
 
 public:
 	size_t GetEncodingsCount();
@@ -157,6 +157,7 @@ struct WXMEncoding: virtual public WXMEncodingDecoder
 		svtInvaliad       = 0,
 		svtNotCached      = 0xFF, 
 		svtDByteNotCached = 0xFFFF,
+		svtQByteNotCached = 0xFFFFFFFF,
 		svtUCS4NotCached  = 0xFFFFFFFF,
 	};
 
@@ -196,7 +197,7 @@ public:
 		return false;
 	}
 
-	virtual bool IsSimpleUnicodeEncoding()
+	virtual bool IsUnicodeEncoding()
 	{
 		return m_simp_unicode;
 	}

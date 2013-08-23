@@ -76,7 +76,6 @@ private:
 	ByteUnicodeArr m_tounicode;
 	UnicodeByteMap m_fromunicode;
 
-	friend WXMEncoding* WXMEncodingCreator::CreateWxmEncoding(ssize_t idx);
 protected:
 	WXMEncodingSingleByte(): m_icucnv(NULL)
 	{
@@ -91,6 +90,10 @@ protected:
 
 struct WXMEncodingSingleByteISO646Compatible: public WXMEncodingSingleByte, public WXMEncodingDecoderISO646
 {
+private:
+	friend WXMEncoding* WXMEncodingCreator::CreateWxmEncoding(ssize_t idx);
+	WXMEncodingSingleByteISO646Compatible(): WXMEncodingSingleByte(), WXMEncodingDecoderISO646() {}
+	~WXMEncodingSingleByteISO646Compatible(){}
 };
 
 struct WXMEncodingSingleByteNonISO646Compatible: public WXMEncodingSingleByte
@@ -114,6 +117,11 @@ struct WXMEncodingSingleByteNonISO646Compatible: public WXMEncodingSingleByte
 			return u;
 		return 0;
 	}
+
+private:
+	friend WXMEncoding* WXMEncodingCreator::CreateWxmEncoding(ssize_t idx);
+	WXMEncodingSingleByteNonISO646Compatible(): WXMEncodingSingleByte() {}
+	~WXMEncodingSingleByteNonISO646Compatible() {}
 };
 
 };// namespace wxm

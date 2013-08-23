@@ -158,7 +158,6 @@ void WXMEncodingDoubleByte::MultiByteInit()
 	m_leadbyte_tab[0]=lbNotLeadByte;
 }
 
-// return 0 if it is not a valid DB char
 ucs4_t WXMEncodingDoubleByte::MultiBytetoUCS4(const wxByte* buf)
 {
 	wxWord dbtmp = (buf[0] << 8) | buf[1];
@@ -169,7 +168,7 @@ ucs4_t WXMEncodingDoubleByte::MultiBytetoUCS4(const wxByte* buf)
 	if( IsLeadByte(buf[0]))
 		return m_db2u_tab[buf[0]][buf[1]];
 
-	return (buf[1] == '\0')? m_b2u_tab[buf[0]]: 0;
+	return (buf[1] == '\0')? m_b2u_tab[buf[0]]: (ucs4_t)svtInvaliad;
 }
 
 bool WXMEncodingDoubleByte::IsLeadByte(wxByte byte)

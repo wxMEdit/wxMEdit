@@ -72,6 +72,8 @@ wxmedit_SOURCES =	src/wxmedit_about_dialog.cpp \
 	src/xm/wxm_encoding/encoding_def.h \
 	src/xm/wxm_encoding/multibyte.cpp \
 	src/xm/wxm_encoding/multibyte.h \
+	src/xm/wxm_encoding/gb18030.cpp \
+	src/xm/wxm_encoding/gb18030.h \
 	src/xm/wxm_encoding/singlebyte.cpp \
 	src/xm/wxm_encoding/singlebyte.h \
 	src/xm/wxm_encoding/unicode.cpp \
@@ -141,6 +143,8 @@ wxmedit_test_SOURCES = src/wxmedit/ucs4_t.h \
 	src/xm/wxm_encoding/encoding_def.h \
 	src/xm/wxm_encoding/multibyte.cpp \
 	src/xm/wxm_encoding/multibyte.h \
+	src/xm/wxm_encoding/gb18030.cpp \
+	src/xm/wxm_encoding/gb18030.h \
 	src/xm/wxm_encoding/singlebyte.cpp \
 	src/xm/wxm_encoding/singlebyte.h \
 	src/xm/wxm_encoding/unicode.cpp \
