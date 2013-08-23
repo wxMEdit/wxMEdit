@@ -154,7 +154,8 @@ void MadEdit::ConvertEncoding(const wxString &newenc, MadConvertEncodingFlag fla
     int toprow=m_TopRow;
 
     bool ignoreBOM=true;
-    if(lowerenc.Len()>3 && lowerenc.Left(3)==wxT("utf"))
+	wxm::WXMEncoding* enc = wxm::WXMEncodingCreator::Instance().CreateWxmEncoding(newenc);
+	if(enc->IsSimpleUnicodeEncoding())
     {
         ignoreBOM=false;
     }
