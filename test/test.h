@@ -7,4 +7,7 @@ void test_singlebyte_conv_init();
 int test_doublebyte_conv();
 void test_doublebyte_conv_init();
 
+int test_gb18030_conv();
+void test_gb18030_conv_init();
+
 #endif

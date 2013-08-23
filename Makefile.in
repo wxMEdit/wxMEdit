@@ -112,7 +112,7 @@ am_wxmedit_test_OBJECTS = encoding.$(OBJEXT) cp20932.$(OBJEXT) \
 	test_cp20932_conv.$(OBJEXT) \
 	test_cp932_conv.$(OBJEXT) test_cp936_conv.$(OBJEXT) \
 	test_cp949_conv.$(OBJEXT) test_cp950_conv.$(OBJEXT) \
-	test_doublebyte_conv.$(OBJEXT) \
+	test_doublebyte_conv.$(OBJEXT) test_gb18030_conv.$(OBJEXT) \
 	test_singlebyte_conv.$(OBJEXT) \
 	test.$(OBJEXT)
 wxmedit_test_OBJECTS = $(am_wxmedit_test_OBJECTS)
@@ -462,6 +462,7 @@ wxmedit_test_SOURCES = src/wxmedit/ucs4_t.h \
 	test/test_cp949_conv.cpp \
 	test/test_cp950_conv.cpp \
 	test/test_doublebyte_conv.cpp \
+	test/test_gb18030_conv.cpp \
 	test/test_singlebyte_conv.cpp \
 	test/test.h \
 	test/test.cpp
@@ -683,6 +684,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/test_cp949_conv.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/test_cp950_conv.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/test_doublebyte_conv.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/test_gb18030_conv.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/test_singlebyte_conv.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/cp20932.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/doublebyte.Po@am__quote@
@@ -1847,6 +1849,20 @@ test_doublebyte_conv.obj: test/test_doublebyte_conv.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='test/test_doublebyte_conv.cpp' object='test_doublebyte_conv.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o test_doublebyte_conv.obj `if test -f 'test/test_doublebyte_conv.cpp'; then $(CYGPATH_W) 'test/test_doublebyte_conv.cpp'; else $(CYGPATH_W) '$(srcdir)/test/test_doublebyte_conv.cpp'; fi`
+
+test_gb18030_conv.o: test/test_gb18030_conv.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT test_gb18030_conv.o -MD -MP -MF "$(DEPDIR)/test_gb18030_conv.Tpo" -c -o test_gb18030_conv.o `test -f 'test/test_gb18030_conv.cpp' || echo '$(srcdir)/'`test/test_gb18030_conv.cpp; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/test_gb18030_conv.Tpo" "$(DEPDIR)/test_gb18030_conv.Po"; else rm -f "$(DEPDIR)/test_gb18030_conv.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='test/test_gb18030_conv.cpp' object='test_gb18030_conv.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o test_gb18030_conv.o `test -f 'test/test_gb18030_conv.cpp' || echo '$(srcdir)/'`test/test_gb18030_conv.cpp
+
+test_gb18030_conv.obj: test/test_gb18030_conv.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT test_gb18030_conv.obj -MD -MP -MF "$(DEPDIR)/test_gb18030_conv.Tpo" -c -o test_gb18030_conv.obj `if test -f 'test/test_gb18030_conv.cpp'; then $(CYGPATH_W) 'test/test_gb18030_conv.cpp'; else $(CYGPATH_W) '$(srcdir)/test/test_gb18030_conv.cpp'; fi`; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/test_gb18030_conv.Tpo" "$(DEPDIR)/test_gb18030_conv.Po"; else rm -f "$(DEPDIR)/test_gb18030_conv.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='test/test_gb18030_conv.cpp' object='test_gb18030_conv.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o test_gb18030_conv.obj `if test -f 'test/test_gb18030_conv.cpp'; then $(CYGPATH_W) 'test/test_gb18030_conv.cpp'; else $(CYGPATH_W) '$(srcdir)/test/test_gb18030_conv.cpp'; fi`
 
 test_singlebyte_conv.o: test/test_singlebyte_conv.cpp
 @am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT test_singlebyte_conv.o -MD -MP -MF "$(DEPDIR)/test_singlebyte_conv.Tpo" -c -o test_singlebyte_conv.o `test -f 'test/test_singlebyte_conv.cpp' || echo '$(srcdir)/'`test/test_singlebyte_conv.cpp; \

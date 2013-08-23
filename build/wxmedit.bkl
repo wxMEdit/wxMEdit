@@ -206,6 +206,7 @@
 		<sources>../test/test_cp949_conv.cpp</sources>
 		<sources>../test/test_cp950_conv.cpp</sources>
 		<sources>../test/test_doublebyte_conv.cpp</sources>
+		<sources>../test/test_gb18030_conv.cpp</sources>
 		<sources>../test/test_singlebyte_conv.cpp</sources>
 		<headers>../test/test.h</headers>
 		<sources>../test/test.cpp</sources>
