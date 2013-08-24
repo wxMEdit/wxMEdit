@@ -156,7 +156,11 @@ wxmedit_test_SOURCES = src/wxmedit/ucs4_t.h \
 	test/test_cp949_conv.cpp \
 	test/test_cp950_conv.cpp \
 	test/test_doublebyte_conv.cpp \
+	test/test_gb18030_bmp2db.cpp \
+	test/test_gb18030_bmp2qb.cpp \
 	test/test_gb18030_conv.cpp \
+	test/test_gb18030_db2bmp.cpp \
+	test/test_gb18030_qb2bmp.cpp \
 	test/test_singlebyte_conv.cpp \
 	test/test.h \
 	test/test.cpp

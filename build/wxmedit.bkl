@@ -208,7 +208,11 @@
 		<sources>../test/test_cp949_conv.cpp</sources>
 		<sources>../test/test_cp950_conv.cpp</sources>
 		<sources>../test/test_doublebyte_conv.cpp</sources>
+		<sources>../test/test_gb18030_bmp2db.cpp</sources>
+		<sources>../test/test_gb18030_bmp2qb.cpp</sources>
 		<sources>../test/test_gb18030_conv.cpp</sources>
+		<sources>../test/test_gb18030_db2bmp.cpp</sources>
+		<sources>../test/test_gb18030_qb2bmp.cpp</sources>
 		<sources>../test/test_singlebyte_conv.cpp</sources>
 		<headers>../test/test.h</headers>
 		<sources>../test/test.cpp</sources>
