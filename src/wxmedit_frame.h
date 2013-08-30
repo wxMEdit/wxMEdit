@@ -9,6 +9,8 @@
 #ifndef _WXMEDIT_FRAME_H_
 #define _WXMEDIT_FRAME_H_
 
+#include "xm/wx_recent_list.h"
+
 #include <wx/wxprec.h>
 #ifdef __BORLANDC__
         #pragma hdrstop
@@ -87,8 +89,8 @@ public:
     wxConfigBase  *m_Config;
     wxImageList   *m_ImageList;
     wxFileHistory *m_RecentFiles;
-    wxFileHistory *m_RecentEncodings;
-    wxFileHistory *m_RecentFonts;
+    wxRecentList *m_RecentEncodings;
+    wxRecentList *m_RecentFonts;
 
     wxAuiManager m_AuiManager; // wxAUI
     wxAuiNotebook *m_InfoNotebook; //

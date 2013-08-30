@@ -293,9 +293,9 @@ void MadFindInFilesDialog::CreateGUIControls(void)
     WxComboBoxEncoding->SetValue(systemenc);
 
     //
-    m_RecentFindDir = new wxFileHistory();
-    m_RecentFindFilter = new wxFileHistory();
-    m_RecentFindExclude = new wxFileHistory();
+    m_RecentFindDir = new wxRecentList();
+    m_RecentFindFilter = new wxRecentList();
+    m_RecentFindExclude = new wxRecentList();
     wxConfigBase *m_Config=wxConfigBase::Get(false);
     wxString oldpath=m_Config->GetPath();
     m_Config->SetPath(wxT("/RecentFindDir"));
@@ -440,7 +440,7 @@ void MadFindInFilesDialog::WxButtonFindClick(wxCommandEvent& event)
     m_FindText->GetText(text);
     if(!text.IsEmpty())
     {
-        g_SearchDialog->m_RecentFindText->AddFileToHistory(text);
+        g_SearchDialog->m_RecentFindText->AddItemToHistory(text);
         FindReplaceInFiles(false);
     }
 }
@@ -455,10 +455,10 @@ void MadFindInFilesDialog::WxButtonReplaceClick(wxCommandEvent& event)
     m_ReplaceText->GetText(text2);
     if(!text.IsEmpty())
     {
-        g_SearchDialog->m_RecentFindText->AddFileToHistory(text);
+        g_SearchDialog->m_RecentFindText->AddItemToHistory(text);
         if(!text2.IsEmpty())
         {
-            g_ReplaceDialog->m_RecentReplaceText->AddFileToHistory(text2);
+            g_ReplaceDialog->m_RecentReplaceText->AddItemToHistory(text2);
         }
         FindReplaceInFiles(true);
     }
@@ -648,7 +648,7 @@ void MadFindInFilesDialog::FindReplaceInFiles(bool bReplace)
             wxMessageBox(_("The selected directory does not exist."), wxT("wxMEdit"), wxOK|wxICON_ERROR);
             return;
         }
-        m_RecentFindDir->AddFileToHistory(str);
+        m_RecentFindDir->AddItemToHistory(str);
         if(WxComboBoxDir->GetCount()==0 || WxComboBoxDir->GetString(0)!=str)
         {
             WxComboBoxDir->Insert(str, 0);
@@ -669,7 +669,7 @@ void MadFindInFilesDialog::FindReplaceInFiles(bool bReplace)
         }
         if(!filters.empty())
         {
-            m_RecentFindFilter->AddFileToHistory(str);
+            m_RecentFindFilter->AddItemToHistory(str);
             if(WxComboBoxFilter->GetCount()==0 || WxComboBoxFilter->GetString(0)!=str)
             {
                 WxComboBoxFilter->Insert(str, 0);
@@ -691,7 +691,7 @@ void MadFindInFilesDialog::FindReplaceInFiles(bool bReplace)
         }
         if(!g_ExcludeFilters.empty())
         {
-            m_RecentFindExclude->AddFileToHistory(str);
+            m_RecentFindExclude->AddItemToHistory(str);
             if(WxComboBoxExclude->GetCount()==0 || WxComboBoxExclude->GetString(0)!=str)
             {
                 WxComboBoxExclude->Insert(str, 0);

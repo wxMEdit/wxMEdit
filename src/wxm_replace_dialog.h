@@ -9,6 +9,8 @@
 #ifndef _WXM_REPLACE_DIALOG_H_
 #define _WXM_REPLACE_DIALOG_H_
 
+#include "xm/wx_recent_list.h"
+
 #include <wx/wxprec.h>
 #ifdef __BORLANDC__
         #pragma hdrstop
@@ -129,7 +131,7 @@ public:
 
     MadEdit *m_FindText, *m_ReplaceText;
     wxBitmapButton *WxBitmapButtonRecentFindText, *WxBitmapButtonRecentReplaceText;
-    wxFileHistory *m_RecentReplaceText;
+    wxRecentList *m_RecentReplaceText;
 
     void WxButtonCloseClick(wxCommandEvent& event);
     void WxButtonFindNextClick(wxCommandEvent& event);

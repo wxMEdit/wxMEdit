@@ -186,6 +186,8 @@
 		<headers>../src/wxmedit_frame.h</headers>
 		<sources>../src/wxmedit_frame.cpp</sources>
 		<headers>../src/xm/wx_avoid_wxmsw_bug4373.h</headers>
+		<headers>../src/xm/wx_recent_list.h</headers>
+		<sources>../src/xm/wx_recent_list.cpp</sources>
 		<headers>../src/xm/wxm_case_conv.h</headers>
 		<sources>../src/xm/wxm_case_conv.cpp</sources>
 		<headers>../src/xm/wxm_line_enc_adapter.h</headers>

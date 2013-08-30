@@ -77,7 +77,8 @@ am_wxmedit_OBJECTS = wxmedit-wxmedit_about_dialog.$(OBJEXT) \
 	wxmedit-wxm_encdet.$(OBJEXT) wxmedit-wxm_lines.$(OBJEXT) \
 	wxmedit-wxm_syntax.$(OBJEXT) wxmedit-wxm_undo.$(OBJEXT) \
 	wxmedit-xm_ublock_des.$(OBJEXT) wxmedit-xm_ublock.$(OBJEXT) \
-	wxmedit-xm_uutils.$(OBJEXT) wxmedit-wxm_case_conv.$(OBJEXT) \
+	wxmedit-xm_uutils.$(OBJEXT) wx_recent_list.$(OBJEXT) \
+	wxmedit-wxm_case_conv.$(OBJEXT) \
 	wxmedit-wxm_line_enc_adapter.$(OBJEXT) \
 	wxmedit-encoding.$(OBJEXT) wxmedit-cp20932.$(OBJEXT) \
 	wxmedit-doublebyte.$(OBJEXT) wxmedit-multibyte.$(OBJEXT) \
@@ -370,6 +371,8 @@ wxmedit_SOURCES = src/wxmedit_about_dialog.cpp \
 	src/xm/xm_uutils.cpp \
 	src/xm/xm_uutils.h \
 	src/xm/wx_avoid_wxmsw_bug4373.h \
+	src/xm/wx_recent_list.cpp \
+	src/xm/wx_recent_list.h \
 	src/xm/wxm_case_conv.cpp \
 	src/xm/wxm_case_conv.h \
 	src/xm/wxm_line_enc_adapter.cpp \
@@ -735,6 +738,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/wxmedit-nsUTF8Prober.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/wxmedit-nsUniversalDetector.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/wxmedit-trad_simp.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/wxmedit-wx_recent_list.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/wxmedit-wxm_case_conv.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/wxmedit-wxm_conv_enc_dialog.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/wxmedit-cp20932.Po@am__quote@
@@ -1206,6 +1210,20 @@ wxmedit-xm_uutils.obj: src/xm/xm_uutils.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/xm/xm_uutils.cpp' object='wxmedit-xm_uutils.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -c -o wxmedit-xm_uutils.obj `if test -f 'src/xm/xm_uutils.cpp'; then $(CYGPATH_W) 'src/xm/xm_uutils.cpp'; else $(CYGPATH_W) '$(srcdir)/src/xm/xm_uutils.cpp'; fi`
+
+wxmedit-wx_recent_list.o: src/xm/wx_recent_list.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -MT wxmedit-wx_recent_list.o -MD -MP -MF "$(DEPDIR)/wxmedit-wx_recent_list.Tpo" -c -o wxmedit-wx_recent_list.o `test -f 'src/xm/wx_recent_list.cpp' || echo '$(srcdir)/'`src/xm/wx_recent_list.cpp; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/wxmedit-wx_recent_list.Tpo" "$(DEPDIR)/wxmedit-wx_recent_list.Po"; else rm -f "$(DEPDIR)/wxmedit-wx_recent_list.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/xm/wx_recent_list.cpp' object='wxmedit-wx_recent_list.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -c -o wxmedit-wx_recent_list.o `test -f 'src/xm/wx_recent_list.cpp' || echo '$(srcdir)/'`src/xm/wx_recent_list.cpp
+
+wxmedit-wx_recent_list.obj: src/xm/wx_recent_list.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -MT wxmedit-wx_recent_list.obj -MD -MP -MF "$(DEPDIR)/wxmedit-wx_recent_list.Tpo" -c -o wxmedit-wx_recent_list.obj `if test -f 'src/xm/wx_recent_list.cpp'; then $(CYGPATH_W) 'src/xm/wx_recent_list.cpp'; else $(CYGPATH_W) '$(srcdir)/src/xm/wx_recent_list.cpp'; fi`; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/wxmedit-wx_recent_list.Tpo" "$(DEPDIR)/wxmedit-wx_recent_list.Po"; else rm -f "$(DEPDIR)/wxmedit-wx_recent_list.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/xm/wx_recent_list.cpp' object='wxmedit-wx_recent_list.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -c -o wxmedit-wx_recent_list.obj `if test -f 'src/xm/wx_recent_list.cpp'; then $(CYGPATH_W) 'src/xm/wx_recent_list.cpp'; else $(CYGPATH_W) '$(srcdir)/src/xm/wx_recent_list.cpp'; fi`
 
 wxmedit-wxm_case_conv.o: src/xm/wxm_case_conv.cpp
 @am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -MT wxmedit-wxm_case_conv.o -MD -MP -MF "$(DEPDIR)/wxmedit-wxm_case_conv.Tpo" -c -o wxmedit-wxm_case_conv.o `test -f 'src/xm/wxm_case_conv.cpp' || echo '$(srcdir)/'`src/xm/wxm_case_conv.cpp; \

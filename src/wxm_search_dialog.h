@@ -9,6 +9,8 @@
 #ifndef _WXM_SEARCH_DIALOG_H_
 #define _WXM_SEARCH_DIALOG_H_
 
+#include "xm/wx_recent_list.h"
+
 #include <wx/wxprec.h>
 #ifdef __BORLANDC__
         #pragma hdrstop
@@ -115,7 +117,7 @@ public:
 
     MadEdit *m_FindText;
     wxBitmapButton *WxBitmapButtonRecentFindText;
-    wxFileHistory *m_RecentFindText;
+    wxRecentList *m_RecentFindText;
     
 	void WxButtonCloseClick(wxCommandEvent& event);
 	void MadSearchDialogKeyDown(wxKeyEvent& event);

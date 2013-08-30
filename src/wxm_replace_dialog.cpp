@@ -243,7 +243,7 @@ void MadReplaceDialog::CreateGUIControls(void)
     WxButtonClose->Connect(wxEVT_KEY_DOWN, wxKeyEventHandler(MadReplaceDialog::MadReplaceDialogKeyDown));
 
 
-    m_RecentReplaceText=new wxFileHistory(20, ID_RECENTREPLACETEXT1);
+    m_RecentReplaceText=new wxRecentList(true, 20, ID_RECENTREPLACETEXT1);
     m_RecentReplaceText->UseMenu(WxPopupMenuRecentReplaceText);
 
     wxConfigBase *m_Config=wxConfigBase::Get(false);
@@ -489,11 +489,11 @@ void MadReplaceDialog::WxButtonReplaceClick(wxCommandEvent& event)
         wxString reptext;
         m_ReplaceText->GetText(reptext, true);
 
-        g_SearchDialog->m_RecentFindText->AddFileToHistory(text);
+        g_SearchDialog->m_RecentFindText->AddItemToHistory(text);
 
         if(reptext.Len()>0)
         {
-            m_RecentReplaceText->AddFileToHistory(reptext);
+            m_RecentReplaceText->AddItemToHistory(reptext);
         }
 
         wxInt64 from = 0, to = 0;
@@ -574,11 +574,11 @@ void MadReplaceDialog::WxButtonReplaceAllClick(wxCommandEvent& event)
         wxString reptext;
         m_ReplaceText->GetText(reptext, true);
 
-        g_SearchDialog->m_RecentFindText->AddFileToHistory(text);
+        g_SearchDialog->m_RecentFindText->AddItemToHistory(text);
 
         if(reptext.Len()>0)
         {
-            m_RecentReplaceText->AddFileToHistory(reptext);
+            m_RecentReplaceText->AddItemToHistory(reptext);
         }
 
         wxInt64 from = 0, to = 0;

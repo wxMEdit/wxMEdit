@@ -35,6 +35,11 @@ wxString WxStrToUpper(const wxString& wxs)
 	return tmp;
 }
 
+int WxCaseCompare(const wxString& wxs1, const wxString& wxs2)
+{
+	return WxStrToICU(wxs1).toLower().compare(WxStrToICU(wxs2).toLower());
+}
+
 void WxCaseConverter::Convert()
 {
 	while(!Finished())

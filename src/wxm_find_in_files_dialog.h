@@ -13,6 +13,8 @@
 	#pragma hdrstop
 #endif
 
+#include "xm/wx_recent_list.h"
+
 #ifndef WX_PRECOMP
 	#include <wx/wx.h>
 	#include <wx/dialog.h>
@@ -149,8 +151,8 @@ class MadFindInFilesDialog : public wxDialog
 	public:
 		MadEdit *m_FindText, *m_ReplaceText;
 		wxBitmapButton *WxBitmapButtonRecentFindText, *WxBitmapButtonRecentReplaceText;
-		wxFileHistory *m_RecentFindDir;
-		wxFileHistory *m_RecentFindFilter, *m_RecentFindExclude;
+		wxRecentList *m_RecentFindDir;
+		wxRecentList *m_RecentFindFilter, *m_RecentFindExclude;
 		void UpdateCheckBoxByCBHex(bool check);
 		void WxBitmapButtonRecentFindTextClick(wxCommandEvent& event);
 		void WxBitmapButtonRecentReplaceTextClick(wxCommandEvent& event);

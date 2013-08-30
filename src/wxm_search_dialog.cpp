@@ -226,7 +226,7 @@ void MadSearchDialog::CreateGUIControls(void)
     WxButtonClose->Connect(wxEVT_KEY_DOWN, wxKeyEventHandler(MadSearchDialog::MadSearchDialogKeyDown));
 
 
-    m_RecentFindText=new wxFileHistory(20, ID_RECENTFINDTEXT1);
+    m_RecentFindText=new wxRecentList(true, 20, ID_RECENTFINDTEXT1);
     m_RecentFindText->UseMenu(WxPopupMenuRecentFindText);
 
     wxConfigBase *m_Config=wxConfigBase::Get(false);
@@ -290,7 +290,7 @@ void MadSearchDialog::WxButtonFindNextClick(wxCommandEvent& event)
 
     if(text.Len()>0)
     {
-        m_RecentFindText->AddFileToHistory(text);
+        m_RecentFindText->AddItemToHistory(text);
 
         MadSearchResult sr;
         wxFileOffset selend = g_ActiveMadEdit->GetSelectionEndPos();
@@ -380,7 +380,7 @@ void MadSearchDialog::WxButtonFindPrevClick(wxCommandEvent& event)
 
     if(text.Len()>0)
     {
-        m_RecentFindText->AddFileToHistory(text);
+        m_RecentFindText->AddItemToHistory(text);
 
         MadSearchResult sr;
         wxFileOffset selbeg = g_ActiveMadEdit->GetSelectionBeginPos();
@@ -674,7 +674,7 @@ void MadSearchDialog::WxButtonCountClick(wxCommandEvent& event)
 
     if(text.Len()>0)
     {
-        m_RecentFindText->AddFileToHistory(text);
+        m_RecentFindText->AddItemToHistory(text);
 
         wxInt64 from = 0, to = 0;
         wxFileOffset rangeFrom = -1, rangeTo = -1;

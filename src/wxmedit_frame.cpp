@@ -26,6 +26,7 @@
 #include "wxm_printout.h"
 #include "wxm_utils.h"
 #include "wxm_command.h"
+#include "xm/wx_recent_list.h"
 #include "plugin.h"
 #include "wx/aui/auibook.h"
 
@@ -1993,12 +1994,12 @@ void MadEditFrame::CreateGUIControls(void)
     m_Config->SetPath(wxT("/RecentFiles"));
     m_RecentFiles->Load(*m_Config);
 
-    m_RecentEncodings=new wxFileHistory(9, menuRecentEncoding1);
+	m_RecentEncodings=new wxRecentList(false, 9, menuRecentEncoding1);
     m_RecentEncodings->UseMenu(g_Menu_View_Encoding);
     m_Config->SetPath(wxT("/RecentEncodings"));
     m_RecentEncodings->Load(*m_Config);
 
-    m_RecentFonts=new wxFileHistory(9, menuRecentFont1);
+    m_RecentFonts=new wxRecentList(wxRecentList::OSCaseSensitive(), 9, menuRecentFont1);
     m_RecentFonts->UseMenu(g_Menu_View_FontName);
     m_Config->SetPath(wxT("/RecentFonts"));
     m_RecentFonts->Load(*m_Config);
@@ -2816,10 +2817,10 @@ void MadEditFrame::OpenFile(const wxString &filename, bool mustExist)
     wxString str;
     int size;
     madedit->GetFont(str, size);
-    m_RecentFonts->AddFileToHistory(str);
+    m_RecentFonts->AddItemToHistory(str);
 
     str= wxString(wxT('['))+ madedit->GetEncodingName() + wxT("] ")+ wxGetTranslation(madedit->GetEncodingDescription().c_str());
-    m_RecentEncodings->AddFileToHistory(str);
+    m_RecentEncodings->AddItemToHistory(str);
 
     madedit->SetFocus();
 
@@ -3037,7 +3038,7 @@ void MadEditFrame::OnUpdateUI_MenuViewEncoding(wxUpdateUIEvent& event)
         wxString str=wxString(wxT('[')) + g_ActiveMadEdit->GetEncodingName() + wxT("] ") + wxGetTranslation(g_ActiveMadEdit->GetEncodingDescription().c_str());
         event.SetText(wxString(_("Encoding: ")) + str);
 
-        //m_RecentEncodings->AddFileToHistory(str);
+        //m_RecentEncodings->AddItemToHistory(str);
     }
     else
     {
@@ -4242,11 +4243,11 @@ void MadEditFrame::OnViewEncoding(wxCommandEvent& event)
     g_ActiveMadEdit->SetEncoding(enc);
 
     wxString str=wxString(wxT('['))+ enc + wxT("] ")+ wxGetTranslation(wxm::WXMEncodingCreator::Instance().GetEncodingDescription(idx).c_str());
-    m_RecentEncodings->AddFileToHistory(str);
+    m_RecentEncodings->AddItemToHistory(str);
 
     int size;
     g_ActiveMadEdit->GetFont(str, size);
-    m_RecentFonts->AddFileToHistory(str);
+    m_RecentFonts->AddItemToHistory(str);
 }
 
 void MadEditFrame::OnViewRecentEncoding(wxCommandEvent& event)
@@ -4264,12 +4265,12 @@ void MadEditFrame::OnViewRecentEncoding(wxCommandEvent& event)
             wxString enc = tkz.GetNextToken();
             g_ActiveMadEdit->SetEncoding(enc);
 
-            m_RecentEncodings->AddFileToHistory(str);
+            m_RecentEncodings->AddItemToHistory(str);
 
             wxString str;
             int size;
             g_ActiveMadEdit->GetFont(str, size);
-            m_RecentFonts->AddFileToHistory(str);
+            m_RecentFonts->AddItemToHistory(str);
         }
 
     }
@@ -4296,7 +4297,7 @@ void MadEditFrame::OnViewFontName(wxCommandEvent& event)
     wxString &fontname=g_FontNames[idx];
     g_ActiveMadEdit->SetFont(fontname, fs);
 
-    m_RecentFonts->AddFileToHistory(fontname);
+    m_RecentFonts->AddItemToHistory(fontname);
 }
 
 void MadEditFrame::OnViewRecentFont(wxCommandEvent& event)
@@ -4312,7 +4313,7 @@ void MadEditFrame::OnViewRecentFont(wxCommandEvent& event)
         g_ActiveMadEdit->GetFont(fn, fs);
         g_ActiveMadEdit->SetFont(fontname, fs);
 
-        m_RecentFonts->AddFileToHistory(fontname);
+        m_RecentFonts->AddItemToHistory(fontname);
     }
 }
 
@@ -4357,7 +4358,7 @@ void MadEditFrame::OnViewSetFont(wxCommandEvent& event)
         {
             wxString fn=FixUTF8ToWCS(font.GetFaceName());
             g_ActiveMadEdit->SetFont(fn, font.GetPointSize());
-            m_RecentFonts->AddFileToHistory(fn);
+            m_RecentFonts->AddItemToHistory(fn);
         }
 
         attr->color = dialog.GetFontData().GetColour();
@@ -4810,11 +4811,11 @@ void MadEditFrame::OnToolsConvertEncoding(wxCommandEvent& event)
 
         wxString str=wxString(wxT('['))+ g_ActiveMadEdit->GetEncodingName() + wxT("] ")+
                      wxGetTranslation(g_ActiveMadEdit->GetEncodingDescription().c_str());
-        m_RecentEncodings->AddFileToHistory(str);
+        m_RecentEncodings->AddItemToHistory(str);
 
         int size;
         g_ActiveMadEdit->GetFont(str, size);
-        m_RecentFonts->AddFileToHistory(str);
+        m_RecentFonts->AddItemToHistory(str);
     }
 }
 
