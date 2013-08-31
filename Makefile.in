@@ -77,7 +77,7 @@ am_wxmedit_OBJECTS = wxmedit-wxmedit_about_dialog.$(OBJEXT) \
 	wxmedit-wxm_encdet.$(OBJEXT) wxmedit-wxm_lines.$(OBJEXT) \
 	wxmedit-wxm_syntax.$(OBJEXT) wxmedit-wxm_undo.$(OBJEXT) \
 	wxmedit-xm_ublock_des.$(OBJEXT) wxmedit-xm_ublock.$(OBJEXT) \
-	wxmedit-xm_uutils.$(OBJEXT) wx_recent_list.$(OBJEXT) \
+	wxmedit-xm_uutils.$(OBJEXT) wxmedit-wx_recent_list.$(OBJEXT) \
 	wxmedit-wxm_case_conv.$(OBJEXT) \
 	wxmedit-wxm_line_enc_adapter.$(OBJEXT) \
 	wxmedit-encoding.$(OBJEXT) wxmedit-cp20932.$(OBJEXT) \
