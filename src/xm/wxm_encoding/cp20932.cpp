@@ -20,7 +20,7 @@ BOOST_STATIC_ASSERT(U_ICU_VERSION_MAJOR_NUM >= 51);
 namespace wxm
 {
 
-size_t EUCJPMSConverter::MB2WC(UChar32& ch, const char* src, size_t src_len)
+size_t CP20932Converter::MB2WC(UChar32& ch, const char* src, size_t src_len)
 {
 	if (src_len == 2 && (src[1] & 0x80) == 0)
 	{
@@ -31,7 +31,7 @@ size_t EUCJPMSConverter::MB2WC(UChar32& ch, const char* src, size_t src_len)
 	return ICUConverter::MB2WC(ch, src, src_len);
 }
 
-size_t EUCJPMSConverter::WC2MB(char* dest, size_t dest_len, const UChar32& ch)
+size_t CP20932Converter::WC2MB(char* dest, size_t dest_len, const UChar32& ch)
 {
 	char mbs[3];
 	size_t len = ICUConverter::WC2MB(mbs, 3, ch);
@@ -53,7 +53,7 @@ size_t EUCJPMSConverter::WC2MB(char* dest, size_t dest_len, const UChar32& ch)
 	return 2;
 }
 
-void EUCJPMSTableFixer::fix()
+void CP20932TableFixer::fix()
 {
 	ChangeMB2U(0x8F00, 0x00008F);
 	ChangeMB2U(0xA000, 0x00F8F0);

@@ -19,9 +19,9 @@
 namespace wxm
 {
 
-struct EUCJPMSConverter: public ICUConverter
+struct CP20932Converter: public ICUConverter
 {
-	EUCJPMSConverter(const std::string& encname)
+	CP20932Converter(const std::string& encname)
 		:ICUConverter(encname)
 	{
 	}
@@ -30,25 +30,25 @@ struct EUCJPMSConverter: public ICUConverter
 	virtual size_t WC2MB(char* dest, size_t dest_len, const UChar32& ch);
 };
 
-struct EUCJPMSTableFixer: public DoubleByteEncodingTableFixer
+struct CP20932TableFixer: public DoubleByteEncodingTableFixer
 {
 	virtual void fix();
 };
 
-struct WXMEncodingEUCJPMS: public WXMEncodingDoubleByteISO646Compatible
+struct WXMEncodingCP20932: public WXMEncodingDoubleByteISO646Compatible
 {
 private:
 	friend WXMEncoding* WXMEncodingCreator::CreateWxmEncoding(ssize_t idx);
-	~WXMEncodingEUCJPMS(){}
+	~WXMEncodingCP20932(){}
 
 	virtual void InitMBConverter()
 	{
-		m_mbcnv = new EUCJPMSConverter(m_innername);
+		m_mbcnv = new CP20932Converter(m_innername);
 	}
 
 	virtual DoubleByteEncodingTableFixer* CreateDoubleByteEncodingTableFixer()
 	{
-		return new EUCJPMSTableFixer();
+		return new CP20932TableFixer();
 	}
 };
 

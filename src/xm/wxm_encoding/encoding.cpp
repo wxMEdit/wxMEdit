@@ -333,7 +333,7 @@ WXMEncoding* WXMEncodingCreator::CreateWxmEncoding(ssize_t idx)
 			enc = new WXMEncodingDoubleByteISO646Compatible();
 			break;
 		case etCP20932:
-			enc = new WXMEncodingEUCJPMS();
+			enc = new WXMEncodingCP20932();
 			break;
 		case etGB18030:
 			enc = new WXMEncodingGB18030();
