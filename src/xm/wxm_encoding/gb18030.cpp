@@ -7,6 +7,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 #include "gb18030.h"
+#include <unicode/uversion.h>
 
 namespace wxm
 {
@@ -77,6 +78,14 @@ ucs4_t WXMEncodingGB18030::QByte2BMP(const wxByte* buf)
 	if (m_qb2u[idx] != (ucs4_t)svtUCS4NotCached)
 		return m_qb2u[idx];
 
+#if (U_ICU_VERSION_MAJOR_NUM*10+U_ICU_VERSION_MINOR_NUM < 48)
+	if (idx == (0x81-0x81)*12600 + (0x35-0x30)*1260 + (0xF4-0x81)*10 + 0x37-0x30)
+	{
+		m_db2u[idx] = (ucs4_t)0x00E7C7;
+		return (ucs4_t)0x00E7C7;
+	}
+#endif
+
 	UChar32 ch = 0;
 	size_t len = m_icucnv.MB2WC(ch, (const char*)buf, 4);
 	if (len == 0)
@@ -91,6 +100,14 @@ ucs4_t WXMEncodingGB18030::DByte2BMP(const wxByte* buf)
 	size_t idx = (buf[0] - 0x81)*(0xFE - 0x40 + 1) + (buf[1] - 0x40);
 	if (m_db2u[idx] != (ucs4_t)svtUCS4NotCached)
 		return m_db2u[idx];
+
+#if (U_ICU_VERSION_MAJOR_NUM*10+U_ICU_VERSION_MINOR_NUM < 48)
+	if (idx == (0xA8 - 0x81)*(0xFE - 0x40 + 1) + (0xBC - 0x40))
+	{
+		m_db2u[idx] = (ucs4_t)0x001E3F;
+		return (ucs4_t)0x001E3F;
+	}
+#endif
 
 	UChar32 ch = 0;
 	size_t len = m_icucnv.MB2WC(ch, (const char*)buf, 2);
@@ -151,6 +168,21 @@ size_t WXMEncodingGB18030::NonBMP2QByte(wxByte* buf, ucs4_t ucs4)
 
 void WXMEncodingGB18030::CacheMBofUCS4(wxDword& mb, ucs4_t u)
 {
+#if (U_ICU_VERSION_MAJOR_NUM*10+U_ICU_VERSION_MINOR_NUM < 48)
+	if (u == 0x00E7C7)
+	{
+		mb = 0x8135F437;
+		m_bmp2mb[u] = mb;
+		return;
+	}
+	if(u == 0x001E3F)
+	{
+		mb = 0xA8BC0000;
+		m_bmp2mb[u] = mb;
+		return;
+	}
+#endif
+
 	wxByte mbs[4] = {'\0', '\0', '\0', '\0'};
 	size_t len = m_icucnv.WC2MB((char*)mbs, 4, u);
 	if (len!=4 && len!=2)

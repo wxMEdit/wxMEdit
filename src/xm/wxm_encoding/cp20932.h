@@ -33,6 +33,8 @@ struct CP20932Converter: public ICUConverter
 struct CP20932TableFixer: public DoubleByteEncodingTableFixer
 {
 	virtual void fix();
+private:
+	void icu42fix();
 };
 
 struct WXMEncodingCP20932: public WXMEncodingDoubleByteISO646Compatible

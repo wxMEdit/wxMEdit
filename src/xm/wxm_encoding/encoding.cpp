@@ -13,7 +13,6 @@
 #include "gb18030.h"
 #include <wx/config.h>
 #include <wx/log.h>
-#include <unicode/uvernum.h>
 #include <boost/foreach.hpp>
 #include <boost/static_assert.hpp>
 
@@ -21,8 +20,6 @@
 #include <crtdbg.h>
 #define new new(_NORMAL_BLOCK ,__FILE__, __LINE__)
 #endif
-
-BOOST_STATIC_ASSERT(U_ICU_VERSION_MAJOR_NUM >= 51);
 
 #ifdef __WXMSW__
 #define MSW_GET_FONT_NAME(cp,fn) MSW_GetFontName(cp,fn)
@@ -151,7 +148,7 @@ void WXMEncodingCreator::DoInit()
 	AddEncoding("Windows-31J", ENC_MS932, wxT("Windows Japanese (CP 932)"), etDoubleByte, "MS932");
 	AddEncoding("MS936"      , ENC_MS936, wxT("Windows Chinese Simplified (CP 936)"), etDoubleByte, "MS936");
 	AddEncoding("UHC"        , ENC_MS949, wxT("Windows Korean (CP 949)"), etDoubleByte, "MS949");
-	AddEncoding("MS950"      , ENC_MS950, wxT("Windows Chinese Traditional (CP 950)"), etDoubleByte, "MS950");
+	AddEncoding("MS950"      , ENC_MS950, wxT("Windows Chinese Traditional (CP 950)"), etDoubleByte, "Windows-950-2000");
 	AddEncoding("CP20932", ENC_CP20932, wxT("EUC-JP Double-Byte Edition of Windows (CP 20932)"), etCP20932, "EUC-JP", false);
 
 	AddEncoding("GB18030", ENC_GB18030, wxT("Unicode/Chinese Simplified (GB18030)"), etGB18030);
