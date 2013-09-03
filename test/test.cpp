@@ -246,20 +246,21 @@ int test_gb18030_conv()
 				{
 					wxByte wxb[4] = {wxByte(i), wxByte(j), wxByte(k), wxByte(l)};
 					ucs4_t u = enc->MultiBytetoUCS4(wxb);
+
+					char mbs_arr[5] = {i, j, k, l, 0};
+					MB2UDataMap::const_iterator it = mb2u[encname].find(mbs_arr);
 					if (u != 0)
 					{
-						char mbs_arr[5] = {i, j, k, l, 0};
-						MB2UDataMap::const_iterator it = mb2u[encname].find(mbs_arr);
 						BOOST_CHECK(it != mb2uend);
 						if (it != mb2uend)
 						{
 							ucs4_t t = it->second;
 							BOOST_CHECK(u == t);
 						}
-						else
-						{
-							BOOST_CHECK(it == mb2uend);
-						}
+					}
+					else
+					{
+						BOOST_CHECK(it == mb2uend);
 					}
 				}
 			}
