@@ -58,6 +58,8 @@ src/xm/wxm_encoding/doublebyte.cpp
 src/xm/wxm_encoding/doublebyte.h	
 src/xm/wxm_encoding/cp20932.cpp	
 src/xm/wxm_encoding/cp20932.h	
+src/xm/wxm_encoding/gb18030.cpp
+src/xm/wxm_encoding/gb18030.h
 src/xm/wxm_encoding/multibyte.cpp	
 src/xm/wxm_encoding/multibyte.h	
 src/xm/wxm_encoding/singlebyte.cpp	
@@ -66,3 +68,5 @@ src/xm/wxm_encoding/unicode.cpp
 src/xm/wxm_encoding/unicode.h	
 src/xm/wxm_line_enc_adapter.cpp	
 src/xm/wxm_line_enc_adapter.h	
+src/xm/wx_recent_list.cpp
+src/xm/wx_recent_list.h
