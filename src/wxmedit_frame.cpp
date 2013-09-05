@@ -140,7 +140,7 @@
 #endif
 
 
-wxString g_MadEdit_Version(wxT("wxMEdit v2.9.4"));
+wxString g_MadEdit_Version(wxT("wxMEdit v2.9.5"));
 wxString g_MadEdit_URL(wxT("http://code.google.com/p/wxmedit/"));
 
 

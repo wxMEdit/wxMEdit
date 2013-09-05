@@ -2,7 +2,7 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.59)
-AC_INIT([wxmedit], [2.9.4], [wxmedit@gmail.com])
+AC_INIT([wxmedit], [2.9.5], [wxmedit@gmail.com])
 AC_CONFIG_SRCDIR([src/wxmedit_app.cpp])
 AC_CONFIG_HEADER([config.h])
 AC_PREFIX_DEFAULT([/usr])
@@ -42,10 +42,9 @@ PKG_CHECK_MODULES(glib_gtk2, [
 CXXFLAGS="$CXXFLAGS $glib_gtk2_CFLAGS"
 LIBS="$LIBS $glib_gtk2_LIBS -lX11"
 
-# option for additional Xpressive lib
-AC_ARG_WITH(xpressive, 
-    [  --with-xpressive=PATH   use additional Boost.Xpressive library path,
-                          otherwise use Boost library path],
+# option for additional Boost.Xpressive and Boost.Foreach lib
+AC_ARG_WITH(boost-add, 
+    [  --with-boost-add=PATH   use additional Boost.Xpressive and Boost.Foreach library path],
     [CXXFLAGS="$CXXFLAGS -I$withval"])
 
 # option for additional Boost lib
