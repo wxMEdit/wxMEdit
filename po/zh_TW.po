@@ -40,10 +40,10 @@
 #: ../src/wxm_word_count_dialog.cpp:135 ../src/wxmedit_about_dialog.cpp:73
 msgid ""
 msgstr ""
-"Project-Id-Version: wxMEdit 2.9.2\n"
+"Project-Id-Version: wxMEdit 2.9.5\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-09-04 13:31+0800\n"
-"PO-Revision-Date: 2013-05-18 23:05+0800\n"
+"PO-Revision-Date: 2013-09-04 13:49+0800\n"
 "Last-Translator: wxMEdit\n"
 "Language-Team: wxMEdit <wxmedit@gmail.com>\n"
 "Language: \n"
@@ -88,7 +88,7 @@ msgstr "Unicode 8 bit (UTF-8)"
 
 #: wxstd.po.cpp:10
 msgid "Unicode/Chinese Simplified (GB18030)"
-msgstr ""
+msgstr "Unicode/簡體中文 (GB18030)"
 
 #: wxstd.po.cpp:11
 msgid "Western European (ISO-8859-1)"
