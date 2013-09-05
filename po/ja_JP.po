@@ -1,53 +1,17 @@
-#: ../src/wxm_file_association_dialog.cpp:387
-#: ../src/wxm_find_in_files_dialog.cpp:175
-#: ../src/wxm_find_in_files_dialog.cpp:192
-#: ../src/wxm_find_in_files_dialog.cpp:196
-#: ../src/wxm_find_in_files_dialog.cpp:200
-#: ../src/wxm_find_in_files_dialog.cpp:209
-#: ../src/wxm_find_in_files_dialog.cpp:213
-#: ../src/wxm_find_in_files_dialog.cpp:217
-#: ../src/wxm_find_in_files_dialog.cpp:226
-#: ../src/wxm_highlighting_dialog.cpp:222 ../src/wxm_search_dialog.cpp:130
-#: ../src/wxm_search_dialog.cpp:138 ../src/wxm_search_dialog.cpp:165
-#: ../src/wxm_replace_dialog.cpp:130 ../src/wxm_replace_dialog.cpp:138
-#: ../src/wxm_replace_dialog.cpp:161 ../src/wxm_options_dialog.cpp:241
-#: ../src/wxm_options_dialog.cpp:286 ../src/wxm_options_dialog.cpp:364
-#: ../src/wxm_options_dialog.cpp:484 ../src/wxm_options_dialog.cpp:496
-#: ../src/wxm_options_dialog.cpp:508 ../src/wxm_options_dialog.cpp:531
-#: ../src/wxm_options_dialog.cpp:543 ../src/wxm_options_dialog.cpp:555
-#: ../src/wxm_options_dialog.cpp:588 ../src/wxm_options_dialog.cpp:615
-#: ../src/wxm_options_dialog.cpp:619 ../src/wxm_options_dialog.cpp:654
-#: ../src/wxm_options_dialog.cpp:655 ../src/wxm_options_dialog.cpp:657
-#: ../src/wxm_options_dialog.cpp:658 ../src/wxm_options_dialog.cpp:660
-#: ../src/wxm_options_dialog.cpp:661 ../src/wxm_options_dialog.cpp:663
-#: ../src/wxm_options_dialog.cpp:664 ../src/wxm_options_dialog.cpp:665
-#: ../src/wxm_options_dialog.cpp:667 ../src/wxm_options_dialog.cpp:668
-#: ../src/wxm_options_dialog.cpp:669 ../src/wxm_options_dialog.cpp:670
-#: ../src/wxm_options_dialog.cpp:671 ../src/wxm_options_dialog.cpp:672
-#: ../src/wxm_options_dialog.cpp:673 ../src/wxm_options_dialog.cpp:674
-#: ../src/wxm_options_dialog.cpp:675 ../src/wxm_options_dialog.cpp:676
-#: ../src/wxm_options_dialog.cpp:677 ../src/wxm_options_dialog.cpp:678
-#: ../src/wxm_options_dialog.cpp:679 ../src/wxm_options_dialog.cpp:680
-#: ../src/wxm_options_dialog.cpp:681 ../src/wxm_options_dialog.cpp:682
-#: ../src/wxm_options_dialog.cpp:683 ../src/wxm_options_dialog.cpp:684
-#: ../src/wxm_options_dialog.cpp:685 ../src/wxm_options_dialog.cpp:686
-#: ../src/wxm_options_dialog.cpp:687 ../src/wxm_options_dialog.cpp:688
-#: ../src/wxm_word_count_dialog.cpp:135 ../src/wxmedit_about_dialog.cpp:73
 msgid ""
 msgstr ""
-"Project-Id-Version: wxMEdit 2.9.2\n"
+"Project-Id-Version: wxMEdit 2.9.5\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-09-04 13:31+0800\n"
-"PO-Revision-Date: 2007-10-09 04:40+0900\n"
-"Last-Translator: Tilt <tiltstr@gmail.com>\n"
+"PO-Revision-Date: 2013-09-05 00:08+0900\n"
+"Last-Translator: Tilt <<tiltstr@gmail.com>>\n"
 "Language-Team: Tilt <<tiltstr@gmail.com>>\n"
-"Language: \n"
+"Language: ja_JP\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Poedit-Language: Japanese\n"
-"X-Poedit-Country: JAPAN\n"
-"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Generator: Poedit 1.5.7\n"
 
 #: wxstd.po.cpp:2
 msgid "Unicode 16 bit (UTF-16)"
@@ -83,7 +47,7 @@ msgstr "Unicode 8 bit (UTF-8)"
 
 #: wxstd.po.cpp:10
 msgid "Unicode/Chinese Simplified (GB18030)"
-msgstr ""
+msgstr "Unicode/簡体字中国語 (GB18030)"
 
 #: wxstd.po.cpp:11
 msgid "Western European (ISO-8859-1)"
@@ -95,15 +59,15 @@ msgstr "中央ヨーロッパ言語 (ISO-8859-2)"
 
 #: wxstd.po.cpp:13
 msgid "South European (ISO-8859-3)"
-msgstr ""
+msgstr "南ヨーロッパ (ISO-8859-3)"
 
 #: wxstd.po.cpp:14
 msgid "North European (ISO-8859-4)"
-msgstr ""
+msgstr "北ヨーロッパ (ISO-8859-4)"
 
 #: wxstd.po.cpp:15
 msgid "Cyrillic (ISO-8859-5)"
-msgstr "キリル言語 (ISO-8859-5)"
+msgstr "キリル文字 (ISO-8859-5)"
 
 #: wxstd.po.cpp:16
 msgid "Arabic (ISO-8859-6)"
@@ -131,7 +95,7 @@ msgstr "タイ語 (ISO-8859-11)"
 
 #: wxstd.po.cpp:22
 msgid "Indian (ISO-8859-12)"
-msgstr "Indian (ISO-8859-12)"
+msgstr "インド語 (ISO-8859-12)"
 
 #: wxstd.po.cpp:23
 msgid "Baltic (ISO-8859-13)"
@@ -147,15 +111,15 @@ msgstr "西ヨーロッパ言語 - ユーロ (ISO-8859-15)"
 
 #: wxstd.po.cpp:26
 msgid "South-Eastern European (ISO-8859-16)"
-msgstr ""
+msgstr "南東ヨーロッパ (ISO-8859-16)"
 
 #: wxstd.po.cpp:27
 msgid "Cyrillic (KOI8-R)"
-msgstr ""
+msgstr "キリル文字 (KOI8-R)"
 
 #: wxstd.po.cpp:28
 msgid "Cyrillic (KOI8-U)"
-msgstr ""
+msgstr "キリル文字 (KOI8-U)"
 
 #: wxstd.po.cpp:29
 msgid "Windows Thai (CP 874)"
@@ -211,11 +175,11 @@ msgstr "Windows 繁体中国語 (CP 950)"
 
 #: wxstd.po.cpp:42
 msgid "Windows Vietnamese (CP 1258)"
-msgstr ""
+msgstr "Windows ベトナム語 (CP 1258)"
 
 #: wxstd.po.cpp:43
 msgid "EUC-JP Double-Byte Edition of Windows (CP 20932)"
-msgstr ""
+msgstr "Windows EUC-JP 2バイト (CP 20932)"
 
 #: wxstd.po.cpp:44
 msgid "Windows/DOS OEM (CP 437)"
@@ -223,19 +187,19 @@ msgstr "Windows /DOS OEM (CP 437)"
 
 #: wxstd.po.cpp:45
 msgid "Windows/DOS OEM - Latin 1 (CP 850)"
-msgstr ""
+msgstr "Windows/DOS OEM - ラテン語 1 (CP 850)"
 
 #: wxstd.po.cpp:46
 msgid "Windows/DOS OEM - Latin 2 (CP 852)"
-msgstr ""
+msgstr "Windows/DOS OEM - ラテン語 2 (CP 852)"
 
 #: wxstd.po.cpp:47
 msgid "Windows/DOS OEM - Cyrillic (CP 855)"
-msgstr ""
+msgstr "Windows/DOS OEM - キリル文字 (CP 855)"
 
 #: wxstd.po.cpp:48
 msgid "Windows/DOS OEM - Cyrillic (CP 866)"
-msgstr ""
+msgstr "Windows/DOS OEM - キリル文字 (CP 866)"
 
 #: wxstd.po.cpp:49
 msgid "OK"
@@ -400,11 +364,11 @@ msgstr "上側の余白 (mm):"
 #: wxstd.po.cpp:88
 #, c-format
 msgid "Page %d of %d"
-msgstr ""
+msgstr "ページ %d / %d"
 
 #: wxstd.po.cpp:90
 msgid "No_Block"
-msgstr ""
+msgstr "No_Block"
 
 #: wxstd.po.cpp:91
 msgid "Basic Latin"
@@ -412,7 +376,7 @@ msgstr "ラテン語(標準)"
 
 #: wxstd.po.cpp:92
 msgid "Latin-1 Supplement"
-msgstr "ラテン文字拡張追加 1"
+msgstr "ラテン-1 補助"
 
 #: wxstd.po.cpp:93
 msgid "Latin Extended-A"
@@ -428,15 +392,15 @@ msgstr "IPA 拡張"
 
 #: wxstd.po.cpp:96
 msgid "Spacing Modifier Letters"
-msgstr "スペース調整文字"
+msgstr "前進を伴う修飾文字"
 
 #: wxstd.po.cpp:97
 msgid "Combining Diacritical Marks"
-msgstr "読み分け記号を結合"
+msgstr "ダイアクリティカルマーク"
 
 #: wxstd.po.cpp:98
 msgid "Greek and Coptic"
-msgstr "ギリシア文字及びコプト文字"
+msgstr "ギリシア文字・コプト文字"
 
 #: wxstd.po.cpp:99
 msgid "Cyrillic"
@@ -599,9 +563,8 @@ msgid "Miscellaneous Technical"
 msgstr "その他の技術用記号"
 
 #: wxstd.po.cpp:139
-#, fuzzy
 msgid "Control Pictures"
-msgstr "制御文字"
+msgstr "制御用記号"
 
 #: wxstd.po.cpp:140
 msgid "Optical Character Recognition"
@@ -609,7 +572,7 @@ msgstr "光学式文字認識 "
 
 #: wxstd.po.cpp:141
 msgid "Enclosed Alphanumerics"
-msgstr ""
+msgstr "囲み英数字"
 
 #: wxstd.po.cpp:142
 msgid "Box Drawing"
@@ -617,7 +580,7 @@ msgstr "罫線"
 
 #: wxstd.po.cpp:143
 msgid "Block Elements"
-msgstr ""
+msgstr "ブロック要素"
 
 #: wxstd.po.cpp:144
 msgid "Geometric Shapes"
@@ -645,7 +608,7 @@ msgstr "カンナダ語"
 
 #: wxstd.po.cpp:150
 msgid "Ideographic Description Characters"
-msgstr ""
+msgstr "漢字構成記述文字"
 
 #: wxstd.po.cpp:151
 msgid "CJK Symbols and Punctuation"
@@ -664,9 +627,8 @@ msgid "Bopomofo"
 msgstr "Bopomofo(中国語)"
 
 #: wxstd.po.cpp:155
-#, fuzzy
 msgid "Hangul Compatibility Jamo"
-msgstr "CJK 互換性"
+msgstr "ハングル互換字母"
 
 #: wxstd.po.cpp:156
 msgid "Kanbun"
@@ -686,11 +648,11 @@ msgstr "CJK 互換性"
 
 #: wxstd.po.cpp:160
 msgid "CJK Unified Ideographs Extension A"
-msgstr ""
+msgstr "CJK 統合漢字-拡張A"
 
 #: wxstd.po.cpp:161
 msgid "CJK Unified Ideographs"
-msgstr ""
+msgstr "CJK 統合漢字"
 
 #: wxstd.po.cpp:162
 msgid "Yi Syllables"
@@ -706,49 +668,47 @@ msgstr "ハングル音節"
 
 #: wxstd.po.cpp:165
 msgid "High Surrogates"
-msgstr ""
+msgstr "上位サロゲート"
 
 #: wxstd.po.cpp:166
 msgid "High Private Use Surrogates"
-msgstr ""
+msgstr "上位私用サロゲート"
 
 #: wxstd.po.cpp:167
 msgid "Low Surrogates"
-msgstr ""
+msgstr "下位サロゲート"
 
 #: wxstd.po.cpp:168
 msgid "Private Use Area"
-msgstr ""
+msgstr "私用領域"
 
 #: wxstd.po.cpp:169
-#, fuzzy
 msgid "CJK Compatibility Ideographs"
-msgstr "CJK 互換性"
+msgstr "ハングル互換漢字"
 
 #: wxstd.po.cpp:170
 msgid "Alphabetic Presentation Forms"
-msgstr ""
+msgstr "アルファベット表示形"
 
 #: wxstd.po.cpp:171
 msgid "Arabic Presentation Forms-A"
-msgstr ""
+msgstr "アラビア文字表示形-A"
 
 #: wxstd.po.cpp:172
 msgid "Combining Half Marks"
 msgstr "半記号を結合"
 
 #: wxstd.po.cpp:173
-#, fuzzy
 msgid "CJK Compatibility Forms"
-msgstr "CJK 互換性"
+msgstr "CJK 互換形"
 
 #: wxstd.po.cpp:174
 msgid "Small Form Variants"
-msgstr ""
+msgstr "小字形変種"
 
 #: wxstd.po.cpp:175
 msgid "Arabic Presentation Forms-B"
-msgstr ""
+msgstr "アラビア文字表示形-B"
 
 #: wxstd.po.cpp:176
 msgid "Specials"
@@ -768,7 +728,7 @@ msgstr "ゴシック体"
 
 #: wxstd.po.cpp:180
 msgid "Deseret"
-msgstr ""
+msgstr "ディザレット"
 
 #: wxstd.po.cpp:181
 msgid "Byzantine Musical Symbols"
@@ -784,12 +744,11 @@ msgstr "数学用英数字記号"
 
 #: wxstd.po.cpp:184
 msgid "CJK Unified Ideographs Extension B"
-msgstr ""
+msgstr "CJK 統合漢字-拡張B"
 
 #: wxstd.po.cpp:185
-#, fuzzy
 msgid "CJK Compatibility Ideographs Supplement"
-msgstr "CJK 部首補助"
+msgstr "CJK 互換漢字補助"
 
 #: wxstd.po.cpp:186
 msgid "Tags"
@@ -821,11 +780,11 @@ msgstr "その他の数学記号-A"
 
 #: wxstd.po.cpp:193
 msgid "Supplemental Arrows-A"
-msgstr "補助矢印 -A"
+msgstr "補助矢印-A"
 
 #: wxstd.po.cpp:194
 msgid "Supplemental Arrows-B"
-msgstr "補助矢印 -B"
+msgstr "補助矢印-B"
 
 #: wxstd.po.cpp:195
 msgid "Miscellaneous Mathematical Symbols-B"
@@ -841,17 +800,15 @@ msgstr "カタカナ表音拡張"
 
 #: wxstd.po.cpp:198
 msgid "Variation Selectors"
-msgstr ""
+msgstr "異体字セレクタ"
 
 #: wxstd.po.cpp:199
-#, fuzzy
 msgid "Supplementary Private Use Area-A"
-msgstr "補助矢印 -A"
+msgstr "補助私用領域-A"
 
 #: wxstd.po.cpp:200
-#, fuzzy
 msgid "Supplementary Private Use Area-B"
-msgstr "補助矢印 -B"
+msgstr "補助私用領域-B "
 
 #: wxstd.po.cpp:201
 msgid "Limbu"
@@ -875,7 +832,7 @@ msgstr "その他の記号と矢印"
 
 #: wxstd.po.cpp:206
 msgid "Yijing Hexagram Symbols"
-msgstr ""
+msgstr "易経記号"
 
 #: wxstd.po.cpp:207
 msgid "Linear B Syllabary"
@@ -910,9 +867,8 @@ msgid "Tai Xuan Jing Symbols"
 msgstr "太玄経記号"
 
 #: wxstd.po.cpp:215
-#, fuzzy
 msgid "Variation Selectors Supplement"
-msgstr "アラビア語補足"
+msgstr "異体字セレクタ補助"
 
 #: wxstd.po.cpp:216
 msgid "Ancient Greek Musical Notation"
@@ -932,7 +888,7 @@ msgstr "ブギナ語"
 
 #: wxstd.po.cpp:220
 msgid "CJK Strokes"
-msgstr ""
+msgstr "CJK 筆画"
 
 #: wxstd.po.cpp:221
 msgid "Combining Diacritical Marks Supplement"
@@ -963,9 +919,8 @@ msgid "Kharoshthi"
 msgstr "カローシュティー文字"
 
 #: wxstd.po.cpp:228
-#, fuzzy
 msgid "Modifier Tone Letters"
-msgstr "スペース調整文字"
+msgstr "声調修飾文字"
 
 #: wxstd.po.cpp:229
 msgid "New Tai Lue"
@@ -997,303 +952,303 @@ msgstr "垂直フォーム"
 
 #: wxstd.po.cpp:236
 msgid "NKo"
-msgstr ""
+msgstr "NKo(ンコ)文字"
 
 #: wxstd.po.cpp:237
 msgid "Balinese"
-msgstr ""
+msgstr "バリ語"
 
 #: wxstd.po.cpp:238
 msgid "Latin Extended-C"
-msgstr ""
+msgstr "ラテン文字拡張-C"
 
 #: wxstd.po.cpp:239
 msgid "Latin Extended-D"
-msgstr ""
+msgstr "ラテン文字拡張-D"
 
 #: wxstd.po.cpp:240
 msgid "Phags-pa"
-msgstr ""
+msgstr "パスパ文字"
 
 #: wxstd.po.cpp:241
 msgid "Phoenician"
-msgstr ""
+msgstr "フェニキア語"
 
 #: wxstd.po.cpp:242
 msgid "Cuneiform"
-msgstr ""
+msgstr "楔形文字"
 
 #: wxstd.po.cpp:243
 msgid "Cuneiform Numbers and Punctuation"
-msgstr ""
+msgstr "楔形文字の数字と句読点"
 
 #: wxstd.po.cpp:244
 msgid "Counting Rod Numerals"
-msgstr ""
+msgstr "算木 "
 
 #: wxstd.po.cpp:245
 msgid "Sundanese"
-msgstr ""
+msgstr "スンダ語"
 
 #: wxstd.po.cpp:246
 msgid "Lepcha"
-msgstr ""
+msgstr "レプチャ文字"
 
 #: wxstd.po.cpp:247
 msgid "Ol Chiki"
-msgstr ""
+msgstr "オル・チキ文字"
 
 #: wxstd.po.cpp:248
 msgid "Cyrillic Extended-A"
-msgstr ""
+msgstr "キリル文字拡張-A"
 
 #: wxstd.po.cpp:249
 msgid "Vai"
-msgstr ""
+msgstr "ヴァイ文字"
 
 #: wxstd.po.cpp:250
 msgid "Cyrillic Extended-B"
-msgstr ""
+msgstr "キリル文字拡張-B"
 
 #: wxstd.po.cpp:251
 msgid "Saurashtra"
-msgstr ""
+msgstr "サウラーシュトラ文字"
 
 #: wxstd.po.cpp:252
 msgid "Kayah Li"
-msgstr ""
+msgstr "カヤー文字"
 
 #: wxstd.po.cpp:253
 msgid "Rejang"
-msgstr ""
+msgstr "レジャン語"
 
 #: wxstd.po.cpp:254
 msgid "Cham"
-msgstr ""
+msgstr "チャム文字"
 
 #: wxstd.po.cpp:255
 msgid "Ancient Symbols"
-msgstr ""
+msgstr "古代記号"
 
 #: wxstd.po.cpp:256
 msgid "Phaistos Disc"
-msgstr ""
+msgstr "ファイストス円盤文字"
 
 #: wxstd.po.cpp:257
 msgid "Lycian"
-msgstr ""
+msgstr "リキア文字"
 
 #: wxstd.po.cpp:258
 msgid "Carian"
-msgstr ""
+msgstr "カリア文字"
 
 #: wxstd.po.cpp:259
 msgid "Lydian"
-msgstr ""
+msgstr "リディア文字"
 
 #: wxstd.po.cpp:260
 msgid "Mahjong Tiles"
-msgstr ""
+msgstr "麻雀牌"
 
 #: wxstd.po.cpp:261
 msgid "Domino Tiles"
-msgstr ""
+msgstr "ドミノ牌"
 
 #: wxstd.po.cpp:262
 msgid "Samaritan"
-msgstr ""
+msgstr "サマリア文字"
 
 #: wxstd.po.cpp:263
 msgid "Unified Canadian Aboriginal Syllabics Extended"
-msgstr ""
+msgstr "統合カナダ先住民音節拡張"
 
 #: wxstd.po.cpp:264
 msgid "Tai Tham"
-msgstr ""
+msgstr "ラーンナー文字"
 
 #: wxstd.po.cpp:265
 msgid "Vedic Extensions"
-msgstr ""
+msgstr "ヴェーダ文字拡張"
 
 #: wxstd.po.cpp:266
 msgid "Lisu"
-msgstr ""
+msgstr "リス文字"
 
 #: wxstd.po.cpp:267
 msgid "Bamum"
-msgstr ""
+msgstr "バムン文字"
 
 #: wxstd.po.cpp:268
 msgid "Common Indic Number Forms"
-msgstr ""
+msgstr "共通インド数字準拠"
 
 #: wxstd.po.cpp:269
 msgid "Devanagari Extended"
-msgstr ""
+msgstr "デーヴァナーガリー文字拡張"
 
 #: wxstd.po.cpp:270
 msgid "Hangul Jamo Extended-A"
-msgstr ""
+msgstr "ハングル字母拡張-A"
 
 #: wxstd.po.cpp:271
 msgid "Javanese"
-msgstr ""
+msgstr "ジャワ文字"
 
 #: wxstd.po.cpp:272
 msgid "Myanmar Extended-A"
-msgstr ""
+msgstr "ミャンマー文字拡張-A"
 
 #: wxstd.po.cpp:273
 msgid "Tai Viet"
-msgstr ""
+msgstr "タイ・ヴェト文字"
 
 #: wxstd.po.cpp:274
 msgid "Meetei Mayek"
-msgstr ""
+msgstr "マニプリ文字"
 
 #: wxstd.po.cpp:275
 msgid "Hangul Jamo Extended-B"
-msgstr ""
+msgstr "ハングル字母拡張-B"
 
 #: wxstd.po.cpp:276
 msgid "Imperial Aramaic"
-msgstr ""
+msgstr "アラム文字"
 
 #: wxstd.po.cpp:277
 msgid "Old South Arabian"
-msgstr ""
+msgstr "南アラビア文字"
 
 #: wxstd.po.cpp:278
 msgid "Avestan"
-msgstr ""
+msgstr "アヴェスター文字"
 
 #: wxstd.po.cpp:279
 msgid "Inscriptional Parthian"
-msgstr ""
+msgstr "パルティア文字"
 
 #: wxstd.po.cpp:280
 msgid "Inscriptional Pahlavi"
-msgstr ""
+msgstr "パフラヴィー文字"
 
 #: wxstd.po.cpp:281
 msgid "Old Turkic"
-msgstr ""
+msgstr "突厥文字"
 
 #: wxstd.po.cpp:282
 msgid "Rumi Numeral Symbols"
-msgstr ""
+msgstr "ルーミー数字"
 
 #: wxstd.po.cpp:283
 msgid "Kaithi"
-msgstr ""
+msgstr "カイティ文字"
 
 #: wxstd.po.cpp:284
 msgid "Egyptian Hieroglyphs"
-msgstr ""
+msgstr "エジプト・ヒエログリフ"
 
 #: wxstd.po.cpp:285
 msgid "Enclosed Alphanumeric Supplement"
-msgstr ""
+msgstr "囲み英数字補助"
 
 #: wxstd.po.cpp:286
 msgid "Enclosed Ideographic Supplement"
-msgstr ""
+msgstr "囲み表意文字補助"
 
 #: wxstd.po.cpp:287
 msgid "CJK Unified Ideographs Extension C"
-msgstr ""
+msgstr "CJK 統合漢字拡張-C"
 
 #: wxstd.po.cpp:288
 msgid "Mandaic"
-msgstr ""
+msgstr "マンダ文字"
 
 #: wxstd.po.cpp:289
 msgid "Batak"
-msgstr ""
+msgstr "バタク文字"
 
 #: wxstd.po.cpp:290
 msgid "Ethiopic Extended-A"
-msgstr ""
+msgstr "エチオピア文字拡張-A"
 
 #: wxstd.po.cpp:291
 msgid "Brahmi"
-msgstr ""
+msgstr "ブラーフミー文字"
 
 #: wxstd.po.cpp:292
 msgid "Bamum Supplement"
-msgstr ""
+msgstr "バムン文字補助"
 
 #: wxstd.po.cpp:293
 msgid "Kana Supplement"
-msgstr ""
+msgstr "仮名文字補助"
 
 #: wxstd.po.cpp:294
 msgid "Playing Cards"
-msgstr ""
+msgstr "トランプ"
 
 #: wxstd.po.cpp:295
 msgid "Miscellaneous Symbols And Pictographs"
-msgstr ""
+msgstr "その他の記号・絵文字"
 
 #: wxstd.po.cpp:296
 msgid "Emoticons"
-msgstr ""
+msgstr "顔文字"
 
 #: wxstd.po.cpp:297
 msgid "Transport And Map Symbols"
-msgstr ""
+msgstr "交通・地図記号"
 
 #: wxstd.po.cpp:298
 msgid "Alchemical Symbols"
-msgstr ""
+msgstr "錬金術記号"
 
 #: wxstd.po.cpp:299
 msgid "CJK Unified Ideographs Extension D"
-msgstr ""
+msgstr "CJK 統合漢字拡張-D"
 
 #: wxstd.po.cpp:300
 msgid "Arabic Extended-A"
-msgstr ""
+msgstr "アラビア文字拡張-A"
 
 #: wxstd.po.cpp:301
 msgid "Arabic Mathematical Alphabetic Symbols"
-msgstr ""
+msgstr "アラビア数学用文字記号"
 
 #: wxstd.po.cpp:302
 msgid "Chakma"
-msgstr ""
+msgstr "チャクマ文字"
 
 #: wxstd.po.cpp:303
 msgid "Meetei Mayek Extensions"
-msgstr ""
+msgstr "マニプリ文字拡張"
 
 #: wxstd.po.cpp:304
 msgid "Meroitic Cursive"
-msgstr ""
+msgstr "メロエ草書体"
 
 #: wxstd.po.cpp:305
 msgid "Meroitic Hieroglyphs"
-msgstr ""
+msgstr "メロエ記念碑書体"
 
 #: wxstd.po.cpp:306
 msgid "Miao"
-msgstr ""
+msgstr "ポラード文字"
 
 #: wxstd.po.cpp:307
 msgid "Sharada"
-msgstr ""
+msgstr "シャラダ文字"
 
 #: wxstd.po.cpp:308
 msgid "Sora Sompeng"
-msgstr ""
+msgstr "ソラ・ソンペン文字"
 
 #: wxstd.po.cpp:309
 msgid "Sundanese Supplement"
-msgstr ""
+msgstr "スンダ文字補助"
 
 #: wxstd.po.cpp:310
 msgid "Takri"
-msgstr ""
+msgstr "タクリ文字"
 
 #: wxstd.po.cpp:311 ../src/wxmedit/wxmedit_advanced.cpp:1330
 msgid "Invalid Unicode Characters"
@@ -1344,9 +1299,8 @@ msgid "This file has been changed by another application."
 msgstr "このファイルは、他のアプリケーションによって変更されています"
 
 #: ../src/wxmedit/wxmedit_basic.cpp:2167
-#, fuzzy
 msgid "Do you want to reload it?"
-msgstr "ファイルを保存しますか?"
+msgstr "再読み込みしますか?"
 
 #: ../src/wxmedit/wxmedit_basic.cpp:2402
 msgid "The input string is not a valid Hex-String:"
@@ -1651,24 +1605,20 @@ msgid "Uncomment the selected lines"
 msgstr "選択行のコメントを解除"
 
 #: ../src/wxmedit_frame.cpp:1277
-#, fuzzy
 msgid "WordWraps To NewLine Chars"
-msgstr "新しい行に挿入"
+msgstr "改行文字で折り返す"
 
 #: ../src/wxmedit_frame.cpp:1277
-#, fuzzy
 msgid "Convert WordWraps to NewLine chars in the file or selection"
-msgstr "ファイルまたは選択範囲の単語と文字数をカウント"
+msgstr "ファイルまたは選択範囲の折り返しを改行文字に変換"
 
 #: ../src/wxmedit_frame.cpp:1278
-#, fuzzy
 msgid "NewLine Chars To WordWraps"
-msgstr "改行文字 (ファイル形式): "
+msgstr "改行文字を折り返し"
 
 #: ../src/wxmedit_frame.cpp:1278
-#, fuzzy
 msgid "Convert NewLine chars to WordWraps in the selection"
-msgstr "選択範囲の大文字小文字を反転"
+msgstr "選択範囲の改行文字を折り返しに変換"
 
 #: ../src/wxmedit_frame.cpp:1280
 msgid "To U&pperCase"
@@ -1703,14 +1653,12 @@ msgid "Convert the selection to halfwidth"
 msgstr "選択範囲を半角に変換"
 
 #: ../src/wxmedit_frame.cpp:1285 ../src/wxmedit_frame.cpp:3839
-#, fuzzy
 msgid "To Halfwidth by Options..."
-msgstr "ソートオプション(&O)..."
+msgstr "半角オプション..."
 
 #: ../src/wxmedit_frame.cpp:1285
-#, fuzzy
 msgid "Convert the selection to halfwidth by options"
-msgstr "選択範囲を半角に変換"
+msgstr "オプションで選択範囲を半角に変換"
 
 #: ../src/wxmedit_frame.cpp:1286
 msgid "To &Fullwidth"
@@ -1721,34 +1669,28 @@ msgid "Convert the selection to fullwidth"
 msgstr "選択範囲を全角に変換"
 
 #: ../src/wxmedit_frame.cpp:1287 ../src/wxmedit_frame.cpp:3882
-#, fuzzy
 msgid "To Fullwidth by Options..."
-msgstr "ソートオプション(&O)..."
+msgstr "全角オプション..."
 
 #: ../src/wxmedit_frame.cpp:1287
-#, fuzzy
 msgid "Convert the selection to fullwidth by options"
-msgstr "選択範囲を全角に変換"
+msgstr "オプションで選択範囲を全角に変換"
 
 #: ../src/wxmedit_frame.cpp:1289
-#, fuzzy
 msgid "Tab Chars To Space Chars"
-msgstr "スペース文字を表示"
+msgstr "タブ文字を空白文字"
 
 #: ../src/wxmedit_frame.cpp:1289
-#, fuzzy
 msgid "Convert Tab chars to Space chars in the selection"
-msgstr "選択範囲の大文字小文字を反転"
+msgstr "選択範囲内のタブ文字を空白文字に変換"
 
 #: ../src/wxmedit_frame.cpp:1290
-#, fuzzy
 msgid "Space Chars To Tab Chars"
-msgstr "TAB にスペースを挿入"
+msgstr "空白文字をタブ文字"
 
 #: ../src/wxmedit_frame.cpp:1290
-#, fuzzy
 msgid "Convert Space chars to Tab chars in the selection"
-msgstr "選択範囲の大文字小文字を反転"
+msgstr "選択範囲内の空白文字をタブ文字に変換"
 
 #: ../src/wxmedit_frame.cpp:1292
 msgid "Tri&m Trailing Spaces"
@@ -2107,12 +2049,11 @@ msgstr "構文強調設定を変更"
 
 #: ../src/wxmedit_frame.cpp:1488
 msgid "&File Type Associations..."
-msgstr ""
+msgstr "ファイル形式の関連付け(&F)..."
 
 #: ../src/wxmedit_frame.cpp:1488
-#, fuzzy
 msgid "Change file type associations"
-msgstr "構成設定を変更"
+msgstr "ファイル形式の関連付けを変更"
 
 #: ../src/wxmedit_frame.cpp:1491 ../src/wxmedit_frame.cpp:3206
 msgid "Has Unicode BOM (Byte-Order Mark)"
@@ -2180,7 +2121,7 @@ msgstr "LF/0A (&UNIX) を挿入"
 
 #: ../src/wxmedit_frame.cpp:1501
 msgid "Insert LF char when pressing Enter key"
-msgstr "Enter キーで LF を入力"
+msgstr "Enter キーで LFを入力"
 
 #: ../src/wxmedit_frame.cpp:1503
 msgid "Convert File &Encoding..."
@@ -2195,100 +2136,90 @@ msgid "Convert &Chinese Char"
 msgstr "中国語に変換(&C)"
 
 #: ../src/wxmedit_frame.cpp:1506
-#, fuzzy
 msgid "File: Simplified Chinese to &Traditional Chinese"
-msgstr "ファイルの繁体字中国語を簡体字中国語に変換"
+msgstr "ファイル: 簡体字中国語を繁体字中国語(&T)"
 
 #: ../src/wxmedit_frame.cpp:1506
 msgid ""
 "Convert simplified Chinese chars to traditional Chinese chars in the file"
-msgstr "ファイルの繁体字中国語を簡体字中国語に変換"
+msgstr "ファイルの簡体字中国語を繁体字中国語に変換"
 
 #: ../src/wxmedit_frame.cpp:1507
-#, fuzzy
 msgid "File: Traditional Chinese to &Simplified Chinese"
-msgstr "ファイルの簡体字中国語を繁体字中国語に変換"
+msgstr "ファイル: 繁体字中国語を簡体字中国語(&S)"
 
 #: ../src/wxmedit_frame.cpp:1507
 msgid ""
 "Convert traditional Chinese chars to simplified Chinese chars in the file"
-msgstr "ファイルの簡体字中国語を繁体字中国語に変換"
+msgstr "ファイルの繁体字中国語を簡体字中国語に変換"
 
 #: ../src/wxmedit_frame.cpp:1508
 msgid "File: Japanese Kanji to Tr&aditional Chinese"
-msgstr ""
+msgstr "ファイル: 日本語漢字を繁体字中国語(&A)"
 
 #: ../src/wxmedit_frame.cpp:1508
-#, fuzzy
 msgid "Convert Japanese Kanji to traditional Chinese chars in the file"
-msgstr "ファイルの繁体字中国語を簡体字中国語に変換"
+msgstr "ファイル内の日本語漢字を繁体字中国語に変換"
 
 #: ../src/wxmedit_frame.cpp:1509
 msgid "File: Japanese Kanji to Si&mplified Chinese"
-msgstr ""
+msgstr "ファイル: 日本語漢字を簡体字中国語(&M)"
 
 #: ../src/wxmedit_frame.cpp:1509
-#, fuzzy
 msgid "Convert Japanese Kanji to simplified Chinese chars in the file"
-msgstr "ファイルの簡体字中国語を繁体字中国語に変換"
+msgstr "ファイル内の日本語漢字を簡体字中国語に変換"
 
 #: ../src/wxmedit_frame.cpp:1510
 msgid "File: Chinese to &Japanese Kanji"
-msgstr ""
+msgstr "ファイル: 中国語を日本語漢字(&J)"
 
 #: ../src/wxmedit_frame.cpp:1510
-#, fuzzy
 msgid "Convert Chinese chars to Japanese Kanji in the file"
-msgstr "ファイルの繁体字中国語を簡体字中国語に変換"
+msgstr "ファイル内の中国語を日本語漢字に変換"
 
 #: ../src/wxmedit_frame.cpp:1512
-#, fuzzy
 msgid "Clipboard: Simplified Chinese to T&raditional Chinese"
-msgstr "ファイルの繁体字中国語を簡体字中国語に変換"
+msgstr "クリップボード: 簡体字中国語を繁体字中国語(&R)"
 
 #: ../src/wxmedit_frame.cpp:1512
 msgid ""
 "Convert simplified Chinese chars to traditional Chinese chars in the "
 "clipboard"
-msgstr "クリップボードの繁体字中国語を簡体字中国語に変換"
+msgstr "クリップボードの簡体字中国語を繁体字中国語に変換"
 
 #: ../src/wxmedit_frame.cpp:1513
-#, fuzzy
 msgid "Clipboard: Traditional Chinese to S&implified Chinese"
-msgstr "ファイルの簡体字中国語を繁体字中国語に変換"
+msgstr "クリップボード: 繁体字中国語を簡体字中国語(&I)"
 
 #: ../src/wxmedit_frame.cpp:1513
 msgid ""
 "Convert traditional Chinese chars to simplified Chinese chars in the "
 "clipboard"
-msgstr "クリップボードの簡体字中国語を繁体字中国語に変換"
+msgstr "クリップボードの繁体字中国語を簡体字中国語に変換"
 
 #: ../src/wxmedit_frame.cpp:1514
 msgid "Clipboard: Japanese Kanji to Tra&ditional Chinese"
-msgstr ""
+msgstr "クリップボード: 日本語漢字を繁体字中国語(&D)"
 
 #: ../src/wxmedit_frame.cpp:1514
-#, fuzzy
 msgid "Convert Japanese Kanji to traditional Chinese chars in the clipboard"
-msgstr "クリップボードの繁体字中国語を簡体字中国語に変換"
+msgstr "クリップボード内の日本語漢字を繁体字中国語に変換"
 
 #: ../src/wxmedit_frame.cpp:1515
 msgid "Clipboard: Japanese Kanji to Sim&plified Chinese"
-msgstr ""
+msgstr "クリップボード: 日本語漢字を簡体字中国語(&P)"
 
 #: ../src/wxmedit_frame.cpp:1515
-#, fuzzy
 msgid "Convert Japanese Kanji to simplified Chinese chars in the clipboard"
-msgstr "クリップボードの簡体字中国語を繁体字中国語に変換"
+msgstr "クリップボード内の日本語漢字を簡体字中国語に変換"
 
 #: ../src/wxmedit_frame.cpp:1516
 msgid "Clipboard: Chinese to Japanese &Kanji"
-msgstr ""
+msgstr "クリップボード: 中国語を日本語漢字(&K)"
 
 #: ../src/wxmedit_frame.cpp:1516
-#, fuzzy
 msgid "Convert Chinese chars to Japanese Kanji in the clipboard"
-msgstr "クリップボードの繁体字中国語を簡体字中国語に変換"
+msgstr "クリップボード内の日本語漢字を中国語に変換"
 
 #: ../src/wxmedit_frame.cpp:1518
 msgid "&Word Count"
@@ -2637,7 +2568,7 @@ msgstr "プレビュー"
 
 #: ../src/wxmedit_frame.cpp:3490
 msgid "wxMEdit Print Preview"
-msgstr ""
+msgstr "wxMEdit 印刷プレビュー"
 
 #: ../src/wxmedit_frame.cpp:3515
 msgid ""
@@ -2652,27 +2583,24 @@ msgid "Printing"
 msgstr "印刷"
 
 #: ../src/wxmedit_frame.cpp:3836 ../src/wxmedit_frame.cpp:3879
-#, fuzzy
 msgid "ASCII characters"
-msgstr "制御文字"
+msgstr "ASCII 文字"
 
 #: ../src/wxmedit_frame.cpp:3836 ../src/wxmedit_frame.cpp:3879
 msgid "Japanese characters"
-msgstr ""
+msgstr "日本語文字"
 
 #: ../src/wxmedit_frame.cpp:3837 ../src/wxmedit_frame.cpp:3880
-#, fuzzy
 msgid "Korean characters"
-msgstr "制御文字"
+msgstr "韓国語文字"
 
 #: ../src/wxmedit_frame.cpp:3837 ../src/wxmedit_frame.cpp:3880
-#, fuzzy
 msgid "other characters"
-msgstr "制御文字"
+msgstr "その他の文字"
 
 #: ../src/wxmedit_frame.cpp:3839 ../src/wxmedit_frame.cpp:3882
 msgid "Choose the characters you want to convert:"
-msgstr ""
+msgstr "変換する文字を選択してください:"
 
 #: ../src/wxmedit_frame.cpp:4186
 msgid "Line Number: (you can input HexNumber: 0xNNN)"
@@ -2695,9 +2623,8 @@ msgid "Press OK to visit our HomePage."
 msgstr "OK でホームページに移動します"
 
 #: ../src/wxm_file_association_dialog.cpp:352
-#, fuzzy
 msgid "Associated File Types:"
-msgstr "キーの割り当て:"
+msgstr "関連付けられたファイル形式:"
 
 #: ../src/wxm_file_association_dialog.cpp:352
 #: ../src/wxm_find_in_files_dialog.cpp:187
@@ -2838,30 +2765,27 @@ msgstr "WxStaticText1"
 #: ../src/wxmedit_about_dialog.cpp:70 ../src/wxmedit_about_dialog.cpp:77
 #: ../src/wxmedit_about_dialog.cpp:84 ../src/wxmedit_about_dialog.cpp:88
 msgid "MS Sans Serif"
-msgstr ""
+msgstr "MS UI Gothic"
 
 #: ../src/wxm_file_association_dialog.cpp:364
 msgid "<- Add"
-msgstr ""
+msgstr "<- 追加"
 
 #: ../src/wxm_file_association_dialog.cpp:364
-#, fuzzy
 msgid "WxButtonAdd"
-msgstr "WxButtonAddKey"
+msgstr "WxButtonAdd"
 
 #: ../src/wxm_file_association_dialog.cpp:368
-#, fuzzy
 msgid "Remove ->"
-msgstr "BOM を追加/除去"
+msgstr "除去 ->"
 
 #: ../src/wxm_file_association_dialog.cpp:368
-#, fuzzy
 msgid "WxButtonRemove"
-msgstr "WxButtonSave"
+msgstr "WxButtonRemove"
 
 #: ../src/wxm_file_association_dialog.cpp:375
 msgid "Predefined File Types:"
-msgstr ""
+msgstr "定義済みのファイル形式:"
 
 #: ../src/wxm_file_association_dialog.cpp:375
 #: ../src/wxm_find_in_files_dialog.cpp:196
@@ -2871,18 +2795,16 @@ msgid "WxStaticText2"
 msgstr "WxStaticText2"
 
 #: ../src/wxm_file_association_dialog.cpp:387
-#, fuzzy
 msgid "WxEditCustomType"
-msgstr "WxEditDateTime"
+msgstr "WxEditCustomType"
 
 #: ../src/wxm_file_association_dialog.cpp:391
 msgid "<- Add Custom File Type"
-msgstr ""
+msgstr "<- カスタムファイル形式に追加"
 
 #: ../src/wxm_file_association_dialog.cpp:391
-#, fuzzy
 msgid "WxButtonAddCustom"
-msgstr "WxButtonAddKey"
+msgstr "WxButtonAddCustom"
 
 #: ../src/wxm_file_association_dialog.cpp:398
 #: ../src/wxm_highlighting_dialog.cpp:334 ../src/wxm_options_dialog.cpp:646
@@ -2911,7 +2833,7 @@ msgstr "WxButtonCancel"
 
 #: ../src/wxm_file_association_dialog.cpp:406
 msgid "File Type Associations"
-msgstr ""
+msgstr "ファイル形式の関連付け"
 
 #: ../src/wxm_find_in_files_dialog.cpp:117 ../src/wxm_search_dialog.cpp:103
 #: ../src/wxm_sort_dialog.cpp:75 ../src/wxm_replace_dialog.cpp:103
@@ -2926,7 +2848,7 @@ msgstr "WxCheckBoxCaseSensitive"
 #: ../src/wxm_find_in_files_dialog.cpp:121 ../src/wxm_search_dialog.cpp:107
 #: ../src/wxm_replace_dialog.cpp:107
 msgid "&Whole Word Only"
-msgstr "単語単位(&W)"
+msgstr "単語のみ(&W)"
 
 #: ../src/wxm_find_in_files_dialog.cpp:121 ../src/wxm_search_dialog.cpp:107
 #: ../src/wxm_replace_dialog.cpp:107
@@ -3108,7 +3030,7 @@ msgstr "WxBitmapButtonRecentReplaceText"
 
 #: ../src/wxm_find_in_files_dialog.cpp:286
 msgid "Automatic Detection"
-msgstr ""
+msgstr "自動検出"
 
 #: ../src/wxm_find_in_files_dialog.cpp:474
 msgid "Choose a directory"
@@ -3181,7 +3103,7 @@ msgstr "WxButtonDelete"
 
 #: ../src/wxm_highlighting_dialog.cpp:252
 msgid "WxListCtrlKeyword"
-msgstr ""
+msgstr "WxListCtrlKeyword"
 
 #: ../src/wxm_highlighting_dialog.cpp:262
 msgid "Bold"
@@ -3217,7 +3139,7 @@ msgstr "WxStaticTextFCName"
 
 #: ../src/wxm_highlighting_dialog.cpp:296
 msgid "WxListCtrlFC"
-msgstr ""
+msgstr "WxListCtrlFC"
 
 #: ../src/wxm_highlighting_dialog.cpp:300
 #: ../src/wxm_highlighting_dialog.cpp:327
@@ -3238,7 +3160,7 @@ msgstr "WxStaticTextBCName"
 
 #: ../src/wxm_highlighting_dialog.cpp:323
 msgid "WxListCtrlBC"
-msgstr ""
+msgstr "WxListCtrlBC"
 
 #: ../src/wxm_highlighting_dialog.cpp:327
 msgid "WxButtonBC"
@@ -3270,27 +3192,23 @@ msgstr "WxCheckBoxMoveFocus"
 
 #: ../src/wxm_search_dialog.cpp:122 ../src/wxm_replace_dialog.cpp:122
 msgid "Search In &Selection"
-msgstr ""
+msgstr "選択範囲内を検索(&S)"
 
 #: ../src/wxm_search_dialog.cpp:122 ../src/wxm_replace_dialog.cpp:122
-#, fuzzy
 msgid "WxCheckBoxSearchInSelection"
-msgstr "WxCheckBoxMouseSelectToCopy"
+msgstr "WxCheckBoxSearchInSelection"
 
 #: ../src/wxm_search_dialog.cpp:126 ../src/wxm_replace_dialog.cpp:126
-#, fuzzy
 msgid "WxStaticTextFrom"
-msgstr "WxStaticText1"
+msgstr "WxStaticTextFrom"
 
 #: ../src/wxm_search_dialog.cpp:130 ../src/wxm_replace_dialog.cpp:130
-#, fuzzy
 msgid "WxEditFrom"
-msgstr "WxEditTo"
+msgstr "WxEditFrom"
 
 #: ../src/wxm_search_dialog.cpp:134 ../src/wxm_replace_dialog.cpp:134
-#, fuzzy
 msgid "WxStaticTextTo"
-msgstr "WxStaticText1"
+msgstr "WxStaticTextTo"
 
 #: ../src/wxm_search_dialog.cpp:138 ../src/wxm_replace_dialog.cpp:138
 msgid "WxEditTo"
@@ -3305,14 +3223,12 @@ msgid "WxButtonFindPrev"
 msgstr "WxButtonFindPrev"
 
 #: ../src/wxm_search_dialog.cpp:153
-#, fuzzy
 msgid "C&ount"
-msgstr "切り取り"
+msgstr "カウント(&O)"
 
 #: ../src/wxm_search_dialog.cpp:153
-#, fuzzy
 msgid "WxButtonCount"
-msgstr "WxButtonSort"
+msgstr "WxButtonCount"
 
 #: ../src/wxm_search_dialog.cpp:157
 msgid "&Replace >>"
@@ -3326,42 +3242,38 @@ msgstr "検索"
 #: ../src/wxm_search_dialog.cpp:685 ../src/wxm_replace_dialog.cpp:505
 #: ../src/wxm_replace_dialog.cpp:590
 msgid "The value of 'From' is incorrect."
-msgstr ""
+msgstr "'From' の値に誤りがあります"
 
 #: ../src/wxm_search_dialog.cpp:309 ../src/wxm_search_dialog.cpp:399
 #: ../src/wxm_search_dialog.cpp:690 ../src/wxm_replace_dialog.cpp:510
 #: ../src/wxm_replace_dialog.cpp:595
 msgid "The value of 'To' is incorrect."
-msgstr ""
+msgstr "'To' の値に誤りがあります"
 
 #: ../src/wxm_search_dialog.cpp:344 ../src/wxm_search_dialog.cpp:434
-#, fuzzy
 msgid "Cannot find the matched string."
-msgstr "適合する文字列は見つかりませんでした"
+msgstr "合致する文字列は見つかりませんでした"
 
 #: ../src/wxm_search_dialog.cpp:347
 msgid "Do you want to find from begin of selection?"
-msgstr ""
+msgstr "選択範囲の先頭から検索しますか?"
 
 #: ../src/wxm_search_dialog.cpp:348
-#, fuzzy
 msgid "Do you want to find from begin of file?"
-msgstr "ファイルを保存しますか?"
+msgstr "ファイルの先頭から検索しますか?"
 
 #: ../src/wxm_search_dialog.cpp:437
-#, fuzzy
 msgid "Do you want to find from end of selection?"
-msgstr "本当に変更を破棄しますか?"
+msgstr "選択範囲の末尾から検索しますか?"
 
 #: ../src/wxm_search_dialog.cpp:438
-#, fuzzy
 msgid "Do you want to find from end of file?"
-msgstr "ファイルを保存しますか?"
+msgstr "ファイルの終端から検索しますか?"
 
 #: ../src/wxm_search_dialog.cpp:717
 #, c-format
 msgid "'%s' was found %d times."
-msgstr ""
+msgstr "'%s' を検出 %d 回"
 
 #: ../src/wxm_sort_dialog.cpp:68
 msgid "&Ascending"
@@ -3825,7 +3737,7 @@ msgstr "キー"
 
 #: ../src/wxm_options_dialog.cpp:574
 msgid "WxTreeCtrl1"
-msgstr ""
+msgstr "WxTreeCtrl1"
 
 #: ../src/wxm_options_dialog.cpp:584
 msgid "Hint:"
@@ -4088,26 +4000,24 @@ msgid "New Encoding:"
 msgstr "新規エンコーディング:"
 
 #: ../src/wxm_conv_enc_dialog.cpp:87
-#, fuzzy
 msgid "Simplified Chinese => Traditional Chinese"
-msgstr "ファイルの繁体字中国語を簡体字中国語に変換"
+msgstr "簡体字中国語 => 繁体字中国語"
 
 #: ../src/wxm_conv_enc_dialog.cpp:88
-#, fuzzy
 msgid "Traditional Chinese => Simplified Chinese"
-msgstr "ファイルの簡体字中国語を繁体字中国語に変換"
+msgstr "繁体字中国語 => 簡体字中国語"
 
 #: ../src/wxm_conv_enc_dialog.cpp:89
 msgid "Japanese Kanji => Traditional Chinese"
-msgstr ""
+msgstr "日本語漢字 => 繁体字中国語"
 
 #: ../src/wxm_conv_enc_dialog.cpp:90
 msgid "Japanese Kanji => Simplified Chinese"
-msgstr ""
+msgstr "日本語漢字 => 簡体字中国語"
 
 #: ../src/wxm_conv_enc_dialog.cpp:91
 msgid "Chinese => Japanese Kanji"
-msgstr ""
+msgstr "中国語 => 日本語漢字"
 
 #: ../src/wxm_conv_enc_dialog.cpp:92
 msgid "Addtional Option"
@@ -4137,7 +4047,7 @@ msgstr "WxStaticTextWordCount"
 
 #: ../src/wxm_word_count_dialog.cpp:87
 msgid "Characters (no controls/spaces)"
-msgstr ""
+msgstr "文字 (制御/空白以外)"
 
 #: ../src/wxm_word_count_dialog.cpp:91
 msgid "WxStaticTextCharCountNoSPNoCtrl"
@@ -4145,7 +4055,7 @@ msgstr "WxStaticTextCharCountNoSPNoCtrl"
 
 #: ../src/wxm_word_count_dialog.cpp:95
 msgid "Characters (all)"
-msgstr ""
+msgstr "文字(すべて)"
 
 #: ../src/wxm_word_count_dialog.cpp:99
 msgid "WxStaticTextCharCountAll"
@@ -4161,7 +4071,7 @@ msgstr "WxStaticTextControlCount"
 
 #: ../src/wxm_word_count_dialog.cpp:111
 msgid "Fullwidth Characters"
-msgstr ""
+msgstr "全角文字"
 
 #: ../src/wxm_word_count_dialog.cpp:115
 msgid "WxStaticTextFullwidthCount"
@@ -4197,7 +4107,7 @@ msgstr "wxMEdit について..."
 
 #: ../src/xm/wx_recent_list.cpp:66
 msgid "[EMPTY]"
-msgstr ""
+msgstr "[ 空 ]"
 
 #~ msgid "Esperanto (ISO-8859-3)"
 #~ msgstr "エスペラント語 (ISO-8859-3)"
