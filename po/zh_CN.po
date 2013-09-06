@@ -42,7 +42,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: wxMEdit 2.9.5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-09-04 13:31+0800\n"
+"POT-Creation-Date: 2013-09-06 11:37+0800\n"
 "PO-Revision-Date: 2013-09-14 13:50+0800\n"
 "Last-Translator: JiaYanwei\n"
 "Language-Team: wxMEdit <wxmedit@gmail.com>\n"
@@ -4142,6 +4142,10 @@ msgstr "统计字数 (选中的文本)"
 msgid "About wxMEdit"
 msgstr "关于 wxMEdit"
 
+#: ../src/wxm_printout.h:18
+msgid "wxMEdit Printout"
+msgstr "wxMEdit 打印"
+
 #: ../src/xm/wx_recent_list.cpp:66
 msgid "[EMPTY]"
-msgstr ""
+msgstr "[空]"

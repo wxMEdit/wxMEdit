@@ -6,12 +6,11 @@
 // Licence:     GPL
 ///////////////////////////////////////////////////////////////////////////////
 
-#include <wx/print.h>
+#include "wxm_printout.h"
+#include "wxmedit/wxmedit.h"
 #include <wx/dc.h>
 #include <wx/confbase.h>
 #include <wx/filename.h>
-#include "wxm_printout.h"
-#include "wxmedit/wxmedit.h"
 
 extern MadEdit *g_ActiveMadEdit;
 bool GetActiveMadEditPathNameOrTitle(wxString &name);

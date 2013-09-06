@@ -42,7 +42,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: wxMEdit 2.9.5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-09-04 13:31+0800\n"
+"POT-Creation-Date: 2013-09-06 11:37+0800\n"
 "PO-Revision-Date: 2013-09-04 13:49+0800\n"
 "Last-Translator: wxMEdit\n"
 "Language-Team: wxMEdit <wxmedit@gmail.com>\n"
@@ -4054,7 +4054,7 @@ msgstr "日文漢字 => 簡體中文"
 
 #: ../src/wxm_conv_enc_dialog.cpp:91
 msgid "Chinese => Japanese Kanji"
-msgstr "中文字 => 日文漢字"
+msgstr "中文漢字 => 日文漢字"
 
 #: ../src/wxm_conv_enc_dialog.cpp:92
 msgid "Addtional Option"
@@ -4142,6 +4142,10 @@ msgstr "計算字數 (所選取的文字)"
 msgid "About wxMEdit"
 msgstr "關於 wxMEdit"
 
+#: ../src/wxm_printout.h:18
+msgid "wxMEdit Printout"
+msgstr "wxMEdit 列印"
+
 #: ../src/xm/wx_recent_list.cpp:66
 msgid "[EMPTY]"
-msgstr ""
+msgstr "[空]"

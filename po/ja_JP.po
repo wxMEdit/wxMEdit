@@ -1,8 +1,43 @@
+#: ../src/wxm_file_association_dialog.cpp:387
+#: ../src/wxm_find_in_files_dialog.cpp:175
+#: ../src/wxm_find_in_files_dialog.cpp:192
+#: ../src/wxm_find_in_files_dialog.cpp:196
+#: ../src/wxm_find_in_files_dialog.cpp:200
+#: ../src/wxm_find_in_files_dialog.cpp:209
+#: ../src/wxm_find_in_files_dialog.cpp:213
+#: ../src/wxm_find_in_files_dialog.cpp:217
+#: ../src/wxm_find_in_files_dialog.cpp:226
+#: ../src/wxm_highlighting_dialog.cpp:222 ../src/wxm_search_dialog.cpp:130
+#: ../src/wxm_search_dialog.cpp:138 ../src/wxm_search_dialog.cpp:165
+#: ../src/wxm_replace_dialog.cpp:130 ../src/wxm_replace_dialog.cpp:138
+#: ../src/wxm_replace_dialog.cpp:161 ../src/wxm_options_dialog.cpp:241
+#: ../src/wxm_options_dialog.cpp:286 ../src/wxm_options_dialog.cpp:364
+#: ../src/wxm_options_dialog.cpp:484 ../src/wxm_options_dialog.cpp:496
+#: ../src/wxm_options_dialog.cpp:508 ../src/wxm_options_dialog.cpp:531
+#: ../src/wxm_options_dialog.cpp:543 ../src/wxm_options_dialog.cpp:555
+#: ../src/wxm_options_dialog.cpp:588 ../src/wxm_options_dialog.cpp:615
+#: ../src/wxm_options_dialog.cpp:619 ../src/wxm_options_dialog.cpp:654
+#: ../src/wxm_options_dialog.cpp:655 ../src/wxm_options_dialog.cpp:657
+#: ../src/wxm_options_dialog.cpp:658 ../src/wxm_options_dialog.cpp:660
+#: ../src/wxm_options_dialog.cpp:661 ../src/wxm_options_dialog.cpp:663
+#: ../src/wxm_options_dialog.cpp:664 ../src/wxm_options_dialog.cpp:665
+#: ../src/wxm_options_dialog.cpp:667 ../src/wxm_options_dialog.cpp:668
+#: ../src/wxm_options_dialog.cpp:669 ../src/wxm_options_dialog.cpp:670
+#: ../src/wxm_options_dialog.cpp:671 ../src/wxm_options_dialog.cpp:672
+#: ../src/wxm_options_dialog.cpp:673 ../src/wxm_options_dialog.cpp:674
+#: ../src/wxm_options_dialog.cpp:675 ../src/wxm_options_dialog.cpp:676
+#: ../src/wxm_options_dialog.cpp:677 ../src/wxm_options_dialog.cpp:678
+#: ../src/wxm_options_dialog.cpp:679 ../src/wxm_options_dialog.cpp:680
+#: ../src/wxm_options_dialog.cpp:681 ../src/wxm_options_dialog.cpp:682
+#: ../src/wxm_options_dialog.cpp:683 ../src/wxm_options_dialog.cpp:684
+#: ../src/wxm_options_dialog.cpp:685 ../src/wxm_options_dialog.cpp:686
+#: ../src/wxm_options_dialog.cpp:687 ../src/wxm_options_dialog.cpp:688
+#: ../src/wxm_word_count_dialog.cpp:135 ../src/wxmedit_about_dialog.cpp:73
 msgid ""
 msgstr ""
 "Project-Id-Version: wxMEdit 2.9.5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-09-04 13:31+0800\n"
+"POT-Creation-Date: 2013-09-06 11:37+0800\n"
 "PO-Revision-Date: 2013-09-05 00:08+0900\n"
 "Last-Translator: Tilt <<tiltstr@gmail.com>>\n"
 "Language-Team: Tilt <<tiltstr@gmail.com>>\n"
@@ -4104,6 +4139,10 @@ msgstr "単語数 (選択テキスト)"
 #: ../src/wxmedit_about_dialog.cpp:91
 msgid "About wxMEdit"
 msgstr "wxMEdit について..."
+
+#: ../src/wxm_printout.h:18
+msgid "wxMEdit Printout"
+msgstr ""
 
 #: ../src/xm/wx_recent_list.cpp:66
 msgid "[EMPTY]"

@@ -9,11 +9,13 @@
 #ifndef _WXM_PRINTOUT_H_
 #define _WXM_PRINTOUT_H_
 
+#include <wx/print.h>
+
 class MadPrintout: public wxPrintout
 {
     static int s_PrintoutCount;
 public:
-    MadPrintout(const wxString& title = wxT("wxMEdit Printout"));
+    MadPrintout(const wxString& title = _("wxMEdit Printout"));
     virtual ~MadPrintout();
 
     virtual void GetPageInfo(int *minPage, int *maxPage, int *pageFrom, int *pageTo);
