@@ -1,5 +1,5 @@
                       ==================================
-                                wxMEdit v2.9.5
+                                wxMEdit v2.9.5-2
                       ==================================
 About:
 -----
@@ -79,6 +79,11 @@ Syntax files, Locale files and Settings:
 
 ChangeLog:
 ----------
+wxMEdit v2.9.5-2:
+1.updated translations for "Printout" and Syntax Highlighting Settings
+2.updated Spanish translation
+3.added Spanish to language chooser of General Settings
+
 wxMEdit v2.9.5:
 1.fixed crash when delete a character in a line which contains two or more characters with MadEdit/wxMEdit built with vc2010.
 2.fixed Fedora build and packing by Huaren Zhong <huaren.zhong@gmail.com>.

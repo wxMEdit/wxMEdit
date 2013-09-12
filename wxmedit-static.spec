@@ -1,4 +1,4 @@
-%define release 1
+%define release 2
 %define prefix /usr
 %define name wxmedit
 %define version 2.9.5
