@@ -38,6 +38,8 @@
 ////Header Include End
 
 #include <vector>
+#include <map>
+
 using std::vector;
 
 //Compatibility for 2.4 code
@@ -148,6 +150,7 @@ class MadHighlightingDialog : public wxDialogWrapper
 		MadSyntax *m_Syntax;
 		vector<MadSyntax*> m_ModifiedSyntax;
 		wxColourDialog *m_ColourDialog;
+		std::map<wxString, wxString> m_l10n_syntitle_map;
 	public:
 		wxString m_InitSetting; // the init title of madsyntax
 		MadSyntax *GetSyntax(const wxString &title);

@@ -380,7 +380,9 @@ void MadHighlightingDialog::CreateGUIControls(void)
         for(size_t i=0;i<cnt;i++)
         {
             wxString title=MadSyntax::GetSyntaxTitle(i);
-            WxListBoxSyntax->Append(title);
+			wxString l10n_title = wxGetTranslation(title);
+			m_l10n_syntitle_map[l10n_title] = title;
+            WxListBoxSyntax->Append(l10n_title);
         }
     }
 
@@ -396,7 +398,7 @@ void MadHighlightingDialog::CreateGUIControls(void)
     wxListItem it;
     it.SetColumn(0);
     it.SetId(0);
-    it.SetText(wxT("(Automatic)"));
+    it.SetText(_("(Automatic)"));
     it.SetTextColour(wxT("Red"));
     WxListCtrlFC->InsertItem(it);
     WxListCtrlBC->InsertItem(it);
@@ -404,7 +406,7 @@ void MadHighlightingDialog::CreateGUIControls(void)
     HtmlColor *hc=HtmlColorTable;
     for(int i=0; i<HtmlColorTableCount; ++i, ++hc)
     {
-        it.SetText(hc->name);
+        it.SetText(wxGetTranslation(hc->name));
         it.SetId(i+1);
 
         wxColor c(wxColor(hc->red, hc->green, hc->blue));
@@ -446,7 +448,8 @@ void MadHighlightingDialog::MadHighlightingDialogClose(wxCloseEvent& event)
  */
 void MadHighlightingDialog::WxListBoxSyntaxSelected(wxCommandEvent& event)
 {
-    wxString title=WxListBoxSyntax->GetString(event.GetSelection());
+    wxString l10n_title=WxListBoxSyntax->GetString(event.GetSelection());
+	wxString title = m_l10n_syntitle_map[l10n_title];
     g_Syntax=GetSyntax(title);
 
     // build keyword list
@@ -514,7 +517,7 @@ void MadHighlightingDialog::SetPanelFC(const wxColor &color)
 {
     if(color==wxNullColour)
     {
-        WxStaticTextFCName->SetLabel(wxT("(Automatic)"));
+        WxStaticTextFCName->SetLabel(_("(Automatic)"));
         WxPanelFC->SetBackgroundColour(WxListCtrlFC->GetItemTextColour(0));
         WxPanelFC->ClearBackground();
     }
@@ -535,7 +538,7 @@ void MadHighlightingDialog::SetPanelBC(const wxColor &color)
 {
     if(color==wxNullColour)
     {
-        WxStaticTextBCName->SetLabel(wxT("(Automatic)"));
+        WxStaticTextBCName->SetLabel(_("(Automatic)"));
         WxPanelBC->SetBackgroundColour(WxListCtrlBC->GetItemBackgroundColour(0));
         WxPanelBC->ClearBackground();
     }
@@ -853,7 +856,7 @@ void MadHighlightingDialog::SetAttrFC(const wxColor &color, const wxString &colo
     else
     {
         wxASSERT(kinfo.kind!=kindRange);
-        if(colorname==wxT("(Automatic)"))
+        if(colorname==_("(Automatic)"))
         {
             kinfo.attr->color=wxNullColour;
         }
@@ -881,11 +884,11 @@ void MadHighlightingDialog::SetAttrBC(const wxColor &color, const wxString &colo
         {
         case kindSysAttr1:
         case kindKeyword:
-            if(colorname==wxT("(Automatic)")) kinfo.attr->bgcolor=wxNullColour;
+            if(colorname==_("(Automatic)")) kinfo.attr->bgcolor=wxNullColour;
             else                              kinfo.attr->bgcolor=color;
             break;
         case kindRange:
-            if(colorname==wxT("(Automatic)")) *kinfo.range_bgcolor=wxNullColour;
+            if(colorname==_("(Automatic)")) *kinfo.range_bgcolor=wxNullColour;
             else                              *kinfo.range_bgcolor=color;
             break;
         }

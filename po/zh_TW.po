@@ -42,7 +42,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: wxMEdit 2.9.5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-09-06 11:37+0800\n"
+"POT-Creation-Date: 2013-09-12 13:08+0800\n"
 "PO-Revision-Date: 2013-09-04 13:49+0800\n"
 "Last-Translator: wxMEdit\n"
 "Language-Team: wxMEdit <wxmedit@gmail.com>\n"
@@ -1295,6 +1295,766 @@ msgstr ""
 msgid "Invalid Unicode Characters"
 msgstr "不正確的 Unicode 字元"
 
+#: wxstd.po.cpp:312
+msgid "Text"
+msgstr ""
+
+#: wxstd.po.cpp:313
+msgid "Delimiter"
+msgstr ""
+
+#: wxstd.po.cpp:314
+msgid "Space"
+msgstr ""
+
+#: wxstd.po.cpp:315
+msgid "Number"
+msgstr ""
+
+#: wxstd.po.cpp:316
+msgid "String"
+msgstr ""
+
+#: wxstd.po.cpp:317 ../src/wxmedit_frame.cpp:2068
+msgid "Comment"
+msgstr "註解"
+
+#: wxstd.po.cpp:318
+msgid "Directive"
+msgstr ""
+
+#: wxstd.po.cpp:319
+msgid "SpecialWord"
+msgstr ""
+
+#: wxstd.po.cpp:320
+msgid "LineNumber"
+msgstr ""
+
+#: wxstd.po.cpp:321
+msgid "ActiveLine"
+msgstr ""
+
+#: wxstd.po.cpp:322
+msgid "Bookmark"
+msgstr ""
+
+#: wxstd.po.cpp:323
+msgid "AliceBlue"
+msgstr ""
+
+#: wxstd.po.cpp:324
+msgid "AntiqueWhite"
+msgstr ""
+
+#: wxstd.po.cpp:325
+msgid "Aqua"
+msgstr ""
+
+#: wxstd.po.cpp:326
+msgid "Aquamarine"
+msgstr ""
+
+#: wxstd.po.cpp:327
+msgid "Azure"
+msgstr ""
+
+#: wxstd.po.cpp:328
+msgid "Beige"
+msgstr ""
+
+#: wxstd.po.cpp:329
+msgid "Bisque"
+msgstr ""
+
+#: wxstd.po.cpp:330
+msgid "Black"
+msgstr ""
+
+#: wxstd.po.cpp:331
+msgid "BlanchedAlmond"
+msgstr ""
+
+#: wxstd.po.cpp:332
+msgid "Blue"
+msgstr ""
+
+#: wxstd.po.cpp:333
+msgid "BlueViolet"
+msgstr ""
+
+#: wxstd.po.cpp:334
+msgid "Brown"
+msgstr ""
+
+#: wxstd.po.cpp:335
+msgid "BurlyWood"
+msgstr ""
+
+#: wxstd.po.cpp:336
+msgid "CadetBlue"
+msgstr ""
+
+#: wxstd.po.cpp:337
+msgid "Chartreuse"
+msgstr ""
+
+#: wxstd.po.cpp:338
+msgid "Chocolate"
+msgstr ""
+
+#: wxstd.po.cpp:339
+msgid "Coral"
+msgstr ""
+
+#: wxstd.po.cpp:340
+msgid "CornflowerBlue"
+msgstr ""
+
+#: wxstd.po.cpp:341
+msgid "Cornsilk"
+msgstr ""
+
+#: wxstd.po.cpp:342
+msgid "Crimson"
+msgstr ""
+
+#: wxstd.po.cpp:343
+msgid "Cyan"
+msgstr ""
+
+#: wxstd.po.cpp:344
+msgid "DarkBlue"
+msgstr ""
+
+#: wxstd.po.cpp:345
+msgid "DarkCyan"
+msgstr ""
+
+#: wxstd.po.cpp:346
+msgid "DarkGoldenRod"
+msgstr ""
+
+#: wxstd.po.cpp:347
+msgid "DarkGray"
+msgstr ""
+
+#: wxstd.po.cpp:348
+msgid "DarkGreen"
+msgstr ""
+
+#: wxstd.po.cpp:349
+msgid "DarkKhaki"
+msgstr ""
+
+#: wxstd.po.cpp:350
+msgid "DarkMagenta"
+msgstr ""
+
+#: wxstd.po.cpp:351
+msgid "DarkOliveGreen"
+msgstr ""
+
+#: wxstd.po.cpp:352
+msgid "DarkOrchid"
+msgstr ""
+
+#: wxstd.po.cpp:353
+msgid "DarkRed"
+msgstr ""
+
+#: wxstd.po.cpp:354
+msgid "DarkSalmon"
+msgstr ""
+
+#: wxstd.po.cpp:355
+msgid "DarkSeaGreen"
+msgstr ""
+
+#: wxstd.po.cpp:356
+msgid "DarkSlateBlue"
+msgstr ""
+
+#: wxstd.po.cpp:357
+msgid "DarkSlateGray"
+msgstr ""
+
+#: wxstd.po.cpp:358
+msgid "DarkTurquoise"
+msgstr ""
+
+#: wxstd.po.cpp:359
+msgid "DarkViolet"
+msgstr ""
+
+#: wxstd.po.cpp:360
+msgid "Darkorange"
+msgstr ""
+
+#: wxstd.po.cpp:361
+msgid "DeepPink"
+msgstr ""
+
+#: wxstd.po.cpp:362
+msgid "DeepSkyBlue"
+msgstr ""
+
+#: wxstd.po.cpp:363
+msgid "DimGray"
+msgstr ""
+
+#: wxstd.po.cpp:364
+msgid "DodgerBlue"
+msgstr ""
+
+#: wxstd.po.cpp:365
+msgid "Feldspar"
+msgstr ""
+
+#: wxstd.po.cpp:366
+msgid "FireBrick"
+msgstr ""
+
+#: wxstd.po.cpp:367
+msgid "FloralWhite"
+msgstr ""
+
+#: wxstd.po.cpp:368
+msgid "ForestGreen"
+msgstr ""
+
+#: wxstd.po.cpp:369
+msgid "Fuchsia"
+msgstr ""
+
+#: wxstd.po.cpp:370
+msgid "Gainsboro"
+msgstr ""
+
+#: wxstd.po.cpp:371
+msgid "GhostWhite"
+msgstr ""
+
+#: wxstd.po.cpp:372
+msgid "Gold"
+msgstr ""
+
+#: wxstd.po.cpp:373
+msgid "GoldenRod"
+msgstr ""
+
+#: wxstd.po.cpp:374
+msgid "Gray"
+msgstr ""
+
+#: wxstd.po.cpp:375
+msgid "Green"
+msgstr ""
+
+#: wxstd.po.cpp:376
+msgid "GreenYellow"
+msgstr ""
+
+#: wxstd.po.cpp:377
+msgid "HoneyDew"
+msgstr ""
+
+#: wxstd.po.cpp:378
+msgid "HotPink"
+msgstr ""
+
+#: wxstd.po.cpp:379
+msgid "IndianRed"
+msgstr ""
+
+#: wxstd.po.cpp:380
+msgid "Indigo"
+msgstr ""
+
+#: wxstd.po.cpp:381
+msgid "Ivory"
+msgstr ""
+
+#: wxstd.po.cpp:382
+msgid "Khaki"
+msgstr ""
+
+#: wxstd.po.cpp:383
+msgid "Lavender"
+msgstr ""
+
+#: wxstd.po.cpp:384
+msgid "LavenderBlush"
+msgstr ""
+
+#: wxstd.po.cpp:385
+msgid "LawnGreen"
+msgstr ""
+
+#: wxstd.po.cpp:386
+msgid "LemonChiffon"
+msgstr ""
+
+#: wxstd.po.cpp:387
+msgid "LightBlue"
+msgstr ""
+
+#: wxstd.po.cpp:388
+msgid "LightCoral"
+msgstr ""
+
+#: wxstd.po.cpp:389
+msgid "LightCyan"
+msgstr ""
+
+#: wxstd.po.cpp:390
+msgid "LightGoldenRodYellow"
+msgstr ""
+
+#: wxstd.po.cpp:391
+msgid "LightGreen"
+msgstr ""
+
+#: wxstd.po.cpp:392
+msgid "LightGrey"
+msgstr ""
+
+#: wxstd.po.cpp:393
+msgid "LightPink"
+msgstr ""
+
+#: wxstd.po.cpp:394
+msgid "LightSalmon"
+msgstr ""
+
+#: wxstd.po.cpp:395
+msgid "LightSeaGreen"
+msgstr ""
+
+#: wxstd.po.cpp:396
+msgid "LightSkyBlue"
+msgstr ""
+
+#: wxstd.po.cpp:397
+msgid "LightSlateBlue"
+msgstr ""
+
+#: wxstd.po.cpp:398
+msgid "LightSlateGray"
+msgstr ""
+
+#: wxstd.po.cpp:399
+msgid "LightSteelBlue"
+msgstr ""
+
+#: wxstd.po.cpp:400
+msgid "LightYellow"
+msgstr ""
+
+#: wxstd.po.cpp:401
+msgid "Lime"
+msgstr ""
+
+#: wxstd.po.cpp:402
+msgid "LimeGreen"
+msgstr ""
+
+#: wxstd.po.cpp:403
+msgid "Linen"
+msgstr ""
+
+#: wxstd.po.cpp:404
+msgid "Magenta"
+msgstr ""
+
+#: wxstd.po.cpp:405
+msgid "Maroon"
+msgstr ""
+
+#: wxstd.po.cpp:406
+msgid "MediumAquaMarine"
+msgstr ""
+
+#: wxstd.po.cpp:407
+msgid "MediumBlue"
+msgstr ""
+
+#: wxstd.po.cpp:408
+msgid "MediumOrchid"
+msgstr ""
+
+#: wxstd.po.cpp:409
+msgid "MediumPurple"
+msgstr ""
+
+#: wxstd.po.cpp:410
+msgid "MediumSeaGreen"
+msgstr ""
+
+#: wxstd.po.cpp:411
+msgid "MediumSlateBlue"
+msgstr ""
+
+#: wxstd.po.cpp:412
+msgid "MediumSpringGreen"
+msgstr ""
+
+#: wxstd.po.cpp:413
+msgid "MediumTurquoise"
+msgstr ""
+
+#: wxstd.po.cpp:414
+msgid "MediumVioletRed"
+msgstr ""
+
+#: wxstd.po.cpp:415
+msgid "MidnightBlue"
+msgstr ""
+
+#: wxstd.po.cpp:416
+msgid "MintCream"
+msgstr ""
+
+#: wxstd.po.cpp:417
+msgid "MistyRose"
+msgstr ""
+
+#: wxstd.po.cpp:418
+msgid "Moccasin"
+msgstr ""
+
+#: wxstd.po.cpp:419
+msgid "NavajoWhite"
+msgstr ""
+
+#: wxstd.po.cpp:420
+msgid "Navy"
+msgstr ""
+
+#: wxstd.po.cpp:421
+msgid "OldLace"
+msgstr ""
+
+#: wxstd.po.cpp:422
+msgid "Olive"
+msgstr ""
+
+#: wxstd.po.cpp:423
+msgid "OliveDrab"
+msgstr ""
+
+#: wxstd.po.cpp:424
+msgid "Orange"
+msgstr ""
+
+#: wxstd.po.cpp:425
+msgid "OrangeRed"
+msgstr ""
+
+#: wxstd.po.cpp:426
+msgid "Orchid"
+msgstr ""
+
+#: wxstd.po.cpp:427
+msgid "PaleGoldenRod"
+msgstr ""
+
+#: wxstd.po.cpp:428
+msgid "PaleGreen"
+msgstr ""
+
+#: wxstd.po.cpp:429
+msgid "PaleTurquoise"
+msgstr ""
+
+#: wxstd.po.cpp:430
+msgid "PaleVioletRed"
+msgstr ""
+
+#: wxstd.po.cpp:431
+msgid "PapayaWhip"
+msgstr ""
+
+#: wxstd.po.cpp:432
+msgid "PeachPuff"
+msgstr ""
+
+#: wxstd.po.cpp:433
+msgid "Peru"
+msgstr ""
+
+#: wxstd.po.cpp:434
+msgid "Pink"
+msgstr ""
+
+#: wxstd.po.cpp:435
+msgid "Plum"
+msgstr ""
+
+#: wxstd.po.cpp:436
+msgid "PowderBlue"
+msgstr ""
+
+#: wxstd.po.cpp:437
+msgid "Purple"
+msgstr ""
+
+#: wxstd.po.cpp:438
+msgid "Red"
+msgstr ""
+
+#: wxstd.po.cpp:439
+msgid "RosyBrown"
+msgstr ""
+
+#: wxstd.po.cpp:440
+msgid "RoyalBlue"
+msgstr ""
+
+#: wxstd.po.cpp:441
+msgid "SaddleBrown"
+msgstr ""
+
+#: wxstd.po.cpp:442
+msgid "Salmon"
+msgstr ""
+
+#: wxstd.po.cpp:443
+msgid "SandyBrown"
+msgstr ""
+
+#: wxstd.po.cpp:444
+msgid "SeaGreen"
+msgstr ""
+
+#: wxstd.po.cpp:445
+msgid "SeaShell"
+msgstr ""
+
+#: wxstd.po.cpp:446
+msgid "Sienna"
+msgstr ""
+
+#: wxstd.po.cpp:447
+msgid "Silver"
+msgstr ""
+
+#: wxstd.po.cpp:448
+msgid "SkyBlue"
+msgstr ""
+
+#: wxstd.po.cpp:449
+msgid "SlateBlue"
+msgstr ""
+
+#: wxstd.po.cpp:450
+msgid "SlateGray"
+msgstr ""
+
+#: wxstd.po.cpp:451
+msgid "Snow"
+msgstr ""
+
+#: wxstd.po.cpp:452
+msgid "SpringGreen"
+msgstr ""
+
+#: wxstd.po.cpp:453
+msgid "SteelBlue"
+msgstr ""
+
+#: wxstd.po.cpp:454
+msgid "Tan"
+msgstr ""
+
+#: wxstd.po.cpp:455
+msgid "Teal"
+msgstr ""
+
+#: wxstd.po.cpp:456
+msgid "Thistle"
+msgstr ""
+
+#: wxstd.po.cpp:457
+msgid "Tomato"
+msgstr ""
+
+#: wxstd.po.cpp:458
+msgid "Turquoise"
+msgstr ""
+
+#: wxstd.po.cpp:459
+msgid "Violet"
+msgstr ""
+
+#: wxstd.po.cpp:460
+msgid "VioletRed"
+msgstr ""
+
+#: wxstd.po.cpp:461
+msgid "Wheat"
+msgstr ""
+
+#: wxstd.po.cpp:462
+msgid "White"
+msgstr ""
+
+#: wxstd.po.cpp:463
+msgid "WhiteSmoke"
+msgstr ""
+
+#: wxstd.po.cpp:464
+msgid "Yellow"
+msgstr ""
+
+#: wxstd.po.cpp:465
+msgid "YellowGreen"
+msgstr ""
+
+#: wxstd.po.cpp:466
+msgid "Plain Text"
+msgstr ""
+
+#: wxstd.po.cpp:467
+msgid "AngelScript"
+msgstr ""
+
+#: wxstd.po.cpp:468
+msgid "ASCII Art"
+msgstr ""
+
+#: wxstd.po.cpp:469
+msgid "ASP(VBScript)"
+msgstr ""
+
+#: wxstd.po.cpp:470
+msgid "awk"
+msgstr ""
+
+#: wxstd.po.cpp:471
+msgid "C#"
+msgstr ""
+
+#: wxstd.po.cpp:472
+msgid "C/C++"
+msgstr ""
+
+#: wxstd.po.cpp:473
+msgid "CSS"
+msgstr ""
+
+#: wxstd.po.cpp:474
+msgid "D"
+msgstr ""
+
+#: wxstd.po.cpp:475
+msgid "diff/patch"
+msgstr ""
+
+#: wxstd.po.cpp:476
+msgid "DOS Batch"
+msgstr ""
+
+#: wxstd.po.cpp:477
+msgid "Flash ActionScript"
+msgstr ""
+
+#: wxstd.po.cpp:478
+msgid "Fortran 90"
+msgstr ""
+
+#: wxstd.po.cpp:479
+msgid "HTML"
+msgstr ""
+
+#: wxstd.po.cpp:480
+msgid "Java"
+msgstr ""
+
+#: wxstd.po.cpp:481
+msgid "JavaScript"
+msgstr ""
+
+#: wxstd.po.cpp:482
+msgid "JavaScript in HTML"
+msgstr ""
+
+#: wxstd.po.cpp:483
+msgid "JSP"
+msgstr ""
+
+#: wxstd.po.cpp:484
+msgid "Lua"
+msgstr ""
+
+#: wxstd.po.cpp:485
+msgid "Pascal/Delphi"
+msgstr ""
+
+#: wxstd.po.cpp:486
+msgid "Perl"
+msgstr ""
+
+#: wxstd.po.cpp:487
+msgid "PHP"
+msgstr ""
+
+#: wxstd.po.cpp:488
+msgid "Python"
+msgstr ""
+
+#: wxstd.po.cpp:489
+msgid "Ruby"
+msgstr ""
+
+#: wxstd.po.cpp:490
+msgid "SQL"
+msgstr ""
+
+#: wxstd.po.cpp:491
+msgid "Squirrel"
+msgstr ""
+
+#: wxstd.po.cpp:492
+msgid "TeX/LaTeX"
+msgstr ""
+
+#: wxstd.po.cpp:493
+msgid "UNIX Configuration"
+msgstr ""
+
+#: wxstd.po.cpp:494
+msgid "UNIX Shell Script"
+msgstr ""
+
+#: wxstd.po.cpp:495
+msgid "Verilog"
+msgstr ""
+
+#: wxstd.po.cpp:496
+msgid "VHDL"
+msgstr ""
+
+#: wxstd.po.cpp:497
+msgid "Visual Basic"
+msgstr ""
+
+#: wxstd.po.cpp:498
+msgid "Windows Registry File"
+msgstr ""
+
+#: wxstd.po.cpp:499
+msgid "wxMEdit Syntax"
+msgstr ""
+
+#: wxstd.po.cpp:500
+msgid "x86 Assembly"
+msgstr ""
+
+#: wxstd.po.cpp:501
+msgid "XML"
+msgstr ""
+
 #: ../src/wxmedit/wxmedit_basic.cpp:583
 #, c-format
 msgid ""
@@ -2506,10 +3266,6 @@ msgstr "增加縮排"
 msgid "Decrease Indent"
 msgstr "減少縮排"
 
-#: ../src/wxmedit_frame.cpp:2068
-msgid "Comment"
-msgstr "註解"
-
 #: ../src/wxmedit_frame.cpp:2069
 msgid "Uncomment"
 msgstr "取消註解"
@@ -3211,15 +3967,24 @@ msgstr "WxButtonBC"
 msgid "Syntax Highlighting Settings"
 msgstr "語法高亮度設定"
 
-#: ../src/wxm_highlighting_dialog.cpp:988
+#: ../src/wxm_highlighting_dialog.cpp:401
+#: ../src/wxm_highlighting_dialog.cpp:520
+#: ../src/wxm_highlighting_dialog.cpp:541
+#: ../src/wxm_highlighting_dialog.cpp:859
+#: ../src/wxm_highlighting_dialog.cpp:887
+#: ../src/wxm_highlighting_dialog.cpp:891
+msgid "(Automatic)"
+msgstr ""
+
+#: ../src/wxm_highlighting_dialog.cpp:991
 msgid "Cannot load this scheme."
 msgstr "無法載入這個配色。"
 
-#: ../src/wxm_highlighting_dialog.cpp:1011
+#: ../src/wxm_highlighting_dialog.cpp:1014
 msgid "Cannot save to the scheme."
 msgstr "無法儲存這個配色。"
 
-#: ../src/wxm_highlighting_dialog.cpp:1033
+#: ../src/wxm_highlighting_dialog.cpp:1036
 msgid "Cannot delete this scheme."
 msgstr "無法刪除這個配色。"
 

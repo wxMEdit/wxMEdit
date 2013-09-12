@@ -14,7 +14,7 @@
 #include <wx/dir.h>
 #include <wx/textfile.h>
 #include <wx/filename.h>
-
+#include <wx/intl.h>
 
 #ifdef _DEBUG
 #include <crtdbg.h>
@@ -1166,7 +1166,7 @@ MadSyntaxRange *MadSyntax::GetSyntaxRange(int rangeid)
 
 wxString MadSyntax::GetAttributeName(MadAttributeElement ae)
 {
-    return wxString(SystemAttributesName[ae]);
+    return wxGetTranslation(wxString(SystemAttributesName[ae]));
 }
 
 void MadSyntax::SetAttributes(MadAttributes *attr)
