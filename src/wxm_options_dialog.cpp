@@ -708,11 +708,13 @@ void MadOptionsDialog::CreateGUIControls(void)
     }
     WxComboBoxEncoding->SetValue(systemenc);
 
-    for(i=0; i<g_LanguageCount; i++)
+    wxString systemlang(_("System Default"));
+	WxComboBoxLanguage->Append(systemlang);
+    for(i=1; i<g_LanguageCount; i++)
     {
         WxComboBoxLanguage->Append(wxString(g_LanguageString[i]));
     }
-    WxComboBoxLanguage->SetValue(wxString(g_LanguageString[0]));
+    WxComboBoxLanguage->SetValue(systemlang);
 
     ResizeItem(WxBoxSizer27, WxStaticText16, 2, 2);
     ResizeItem(WxBoxSizer4, WxCheckBoxSingleInstance, 25, 4);

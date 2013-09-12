@@ -45,6 +45,7 @@ wxChar *g_LanguageString[]=
     wxT("English"),
     wxT("Italiano(Italian)"),
     wxT("\u65E5\u6587(Japanese)"),
+    wxT("Espa\u00F1ol(Spanish)"),
 };
 int g_LanguageValue[]=
 {
@@ -54,6 +55,7 @@ int g_LanguageValue[]=
     wxLANGUAGE_ENGLISH_US,
     wxLANGUAGE_ITALIAN,
     wxLANGUAGE_JAPANESE,
+    wxLANGUAGE_SPANISH,
 };
 extern const size_t g_LanguageCount = sizeof(g_LanguageValue)/sizeof(int);
 
