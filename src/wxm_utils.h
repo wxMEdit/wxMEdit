@@ -10,6 +10,7 @@
 #define _WXM_UTILS_H_
 
 #include <wx/defs.h>
+#include <map>
 
 struct HtmlColor
 {
@@ -23,5 +24,6 @@ extern const int HtmlColorTableCount;
 
 extern void SetHtmlColors();
 extern wxString GetExecutablePath();
+extern std::map<wxString, wxString> g_color_l10n_map;
 
 #endif

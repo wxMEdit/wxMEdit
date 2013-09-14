@@ -170,6 +170,8 @@ HtmlColor HtmlColorTable[]=
 };
 const int HtmlColorTableCount= sizeof(HtmlColorTable) / sizeof(HtmlColor);
 
+std::map<wxString, wxString> g_color_l10n_map;
+
 void SetHtmlColors()
 {
     wxColourDatabase *cdb=wxTheColourDatabase;
@@ -177,6 +179,7 @@ void SetHtmlColors()
     for(int i=0; i<HtmlColorTableCount; ++i, ++hc)
     {
         cdb->AddColour(hc->name, wxColor(hc->red, hc->green, hc->blue));
+        g_color_l10n_map[wxString(hc->name).Upper()] = wxGetTranslation(hc->name);
     }
 }
 

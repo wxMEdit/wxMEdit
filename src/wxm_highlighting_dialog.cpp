@@ -528,6 +528,10 @@ void MadHighlightingDialog::SetPanelFC(const wxColor &color)
         {
             cname.Printf(wxT("#%02X%02X%02X"), color.Red(), color.Green(), color.Blue());
         }
+        else
+        {
+            cname = g_color_l10n_map[cname.Upper()];
+        }
         WxStaticTextFCName->SetLabel(cname);
         WxPanelFC->SetBackgroundColour(color);
         WxPanelFC->ClearBackground();
@@ -548,6 +552,10 @@ void MadHighlightingDialog::SetPanelBC(const wxColor &color)
         if(cname.IsEmpty())
         {
             cname.Printf(wxT("#%02X%02X%02X"), color.Red(), color.Green(), color.Blue());
+        }
+        else
+        {
+            cname = g_color_l10n_map[cname.Upper()];
         }
         WxStaticTextBCName->SetLabel(cname);
         WxPanelBC->SetBackgroundColour(color);
