@@ -43,16 +43,15 @@ msgstr ""
 "Project-Id-Version: wxMEdit 2.9.5\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-09-12 13:08+0800\n"
-"PO-Revision-Date: 2013-09-14 13:50+0800\n"
-"Last-Translator: JiaYanwei\n"
+"PO-Revision-Date: 2013-09-14 14:41+0800\n"
+"Last-Translator: JiaYanwei <wxmedit@gmail.com>\n"
 "Language-Team: wxMEdit <wxmedit@gmail.com>\n"
-"Language: \n"
+"Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Poedit-Language: Chinese\n"
-"X-Poedit-Country: CHINA\n"
 "X-Poedit-SourceCharset: utf-8\n"
+"X-Generator: Poedit 1.5.7\n"
 
 #: wxstd.po.cpp:2
 msgid "Unicode 16 bit (UTF-16)"
@@ -1297,23 +1296,23 @@ msgstr "不正确的 Unicode 字符"
 
 #: wxstd.po.cpp:312
 msgid "Text"
-msgstr ""
+msgstr "文本"
 
 #: wxstd.po.cpp:313
 msgid "Delimiter"
-msgstr ""
+msgstr "分隔符"
 
 #: wxstd.po.cpp:314
 msgid "Space"
-msgstr ""
+msgstr "箜白符"
 
 #: wxstd.po.cpp:315
 msgid "Number"
-msgstr ""
+msgstr "数字"
 
 #: wxstd.po.cpp:316
 msgid "String"
-msgstr ""
+msgstr "字符串"
 
 #: wxstd.po.cpp:317 ../src/wxmedit_frame.cpp:2068
 msgid "Comment"
@@ -1321,739 +1320,739 @@ msgstr "注释"
 
 #: wxstd.po.cpp:318
 msgid "Directive"
-msgstr ""
+msgstr "伪指令"
 
 #: wxstd.po.cpp:319
 msgid "SpecialWord"
-msgstr ""
+msgstr "特殊词汇"
 
 #: wxstd.po.cpp:320
 msgid "LineNumber"
-msgstr ""
+msgstr "行号"
 
 #: wxstd.po.cpp:321
 msgid "ActiveLine"
-msgstr ""
+msgstr "当前行"
 
 #: wxstd.po.cpp:322
 msgid "Bookmark"
-msgstr ""
+msgstr "书签"
 
 #: wxstd.po.cpp:323
 msgid "AliceBlue"
-msgstr ""
+msgstr "艾丽斯蓝"
 
 #: wxstd.po.cpp:324
 msgid "AntiqueWhite"
-msgstr ""
+msgstr "古董白"
 
 #: wxstd.po.cpp:325
 msgid "Aqua"
-msgstr ""
+msgstr "水绿"
 
 #: wxstd.po.cpp:326
 msgid "Aquamarine"
-msgstr ""
+msgstr "碧绿"
 
 #: wxstd.po.cpp:327
 msgid "Azure"
-msgstr ""
+msgstr "蔚蓝"
 
 #: wxstd.po.cpp:328
 msgid "Beige"
-msgstr ""
+msgstr "米黄色"
 
 #: wxstd.po.cpp:329
 msgid "Bisque"
-msgstr ""
+msgstr "橘黄"
 
 #: wxstd.po.cpp:330
 msgid "Black"
-msgstr ""
+msgstr "黑"
 
 #: wxstd.po.cpp:331
 msgid "BlanchedAlmond"
-msgstr ""
+msgstr "杏仁白"
 
 #: wxstd.po.cpp:332
 msgid "Blue"
-msgstr ""
+msgstr "蓝"
 
 #: wxstd.po.cpp:333
 msgid "BlueViolet"
-msgstr ""
+msgstr "蓝紫"
 
 #: wxstd.po.cpp:334
 msgid "Brown"
-msgstr ""
+msgstr "棕"
 
 #: wxstd.po.cpp:335
 msgid "BurlyWood"
-msgstr ""
+msgstr "原木"
 
 #: wxstd.po.cpp:336
 msgid "CadetBlue"
-msgstr ""
+msgstr "军官蓝"
 
 #: wxstd.po.cpp:337
 msgid "Chartreuse"
-msgstr ""
+msgstr "淡黄绿"
 
 #: wxstd.po.cpp:338
 msgid "Chocolate"
-msgstr ""
+msgstr "巧克力"
 
 #: wxstd.po.cpp:339
 msgid "Coral"
-msgstr ""
+msgstr "珊瑚"
 
 #: wxstd.po.cpp:340
 msgid "CornflowerBlue"
-msgstr ""
+msgstr "矢车菊蓝"
 
 #: wxstd.po.cpp:341
 msgid "Cornsilk"
-msgstr ""
+msgstr "米绸"
 
 #: wxstd.po.cpp:342
 msgid "Crimson"
-msgstr ""
+msgstr "绯红"
 
 #: wxstd.po.cpp:343
 msgid "Cyan"
-msgstr ""
+msgstr "蓝绿"
 
 #: wxstd.po.cpp:344
 msgid "DarkBlue"
-msgstr ""
+msgstr "深蓝"
 
 #: wxstd.po.cpp:345
 msgid "DarkCyan"
-msgstr ""
+msgstr "深蓝绿"
 
 #: wxstd.po.cpp:346
 msgid "DarkGoldenRod"
-msgstr ""
+msgstr "深菊黄"
 
 #: wxstd.po.cpp:347
 msgid "DarkGray"
-msgstr ""
+msgstr "深灰"
 
 #: wxstd.po.cpp:348
 msgid "DarkGreen"
-msgstr ""
+msgstr "深绿"
 
 #: wxstd.po.cpp:349
 msgid "DarkKhaki"
-msgstr ""
+msgstr "深卡其"
 
 #: wxstd.po.cpp:350
 msgid "DarkMagenta"
-msgstr ""
+msgstr "深洋红"
 
 #: wxstd.po.cpp:351
 msgid "DarkOliveGreen"
-msgstr ""
+msgstr "深橄榄绿"
 
 #: wxstd.po.cpp:352
 msgid "DarkOrchid"
-msgstr ""
+msgstr "深兰花紫"
 
 #: wxstd.po.cpp:353
 msgid "DarkRed"
-msgstr ""
+msgstr "深红"
 
 #: wxstd.po.cpp:354
 msgid "DarkSalmon"
-msgstr ""
+msgstr "深肉"
 
 #: wxstd.po.cpp:355
 msgid "DarkSeaGreen"
-msgstr ""
+msgstr "深海洋绿"
 
 #: wxstd.po.cpp:356
 msgid "DarkSlateBlue"
-msgstr ""
+msgstr "深灰蓝"
 
 #: wxstd.po.cpp:357
 msgid "DarkSlateGray"
-msgstr ""
+msgstr "深青灰"
 
 #: wxstd.po.cpp:358
 msgid "DarkTurquoise"
-msgstr ""
+msgstr "深宝石绿"
 
 #: wxstd.po.cpp:359
 msgid "DarkViolet"
-msgstr ""
+msgstr "深紫罗兰"
 
 #: wxstd.po.cpp:360
 msgid "Darkorange"
-msgstr ""
+msgstr "深橙"
 
 #: wxstd.po.cpp:361
 msgid "DeepPink"
-msgstr ""
+msgstr "深粉"
 
 #: wxstd.po.cpp:362
 msgid "DeepSkyBlue"
-msgstr ""
+msgstr "深天蓝"
 
 #: wxstd.po.cpp:363
 msgid "DimGray"
-msgstr ""
+msgstr "暗灰"
 
 #: wxstd.po.cpp:364
 msgid "DodgerBlue"
-msgstr ""
+msgstr "闪蓝"
 
 #: wxstd.po.cpp:365
 msgid "Feldspar"
-msgstr ""
+msgstr "长石"
 
 #: wxstd.po.cpp:366
 msgid "FireBrick"
-msgstr ""
+msgstr "火砖"
 
 #: wxstd.po.cpp:367
 msgid "FloralWhite"
-msgstr ""
+msgstr "花白"
 
 #: wxstd.po.cpp:368
 msgid "ForestGreen"
-msgstr ""
+msgstr "森林绿"
 
 #: wxstd.po.cpp:369
 msgid "Fuchsia"
-msgstr ""
+msgstr "紫红"
 
 #: wxstd.po.cpp:370
 msgid "Gainsboro"
-msgstr ""
+msgstr "亮灰"
 
 #: wxstd.po.cpp:371
 msgid "GhostWhite"
-msgstr ""
+msgstr "幽灵白"
 
 #: wxstd.po.cpp:372
 msgid "Gold"
-msgstr ""
+msgstr "金"
 
 #: wxstd.po.cpp:373
 msgid "GoldenRod"
-msgstr ""
+msgstr "菊黄"
 
 #: wxstd.po.cpp:374
 msgid "Gray"
-msgstr ""
+msgstr "灰"
 
 #: wxstd.po.cpp:375
 msgid "Green"
-msgstr ""
+msgstr "绿"
 
 #: wxstd.po.cpp:376
 msgid "GreenYellow"
-msgstr ""
+msgstr "绿黄"
 
 #: wxstd.po.cpp:377
 msgid "HoneyDew"
-msgstr ""
+msgstr "蜜汁绿"
 
 #: wxstd.po.cpp:378
 msgid "HotPink"
-msgstr ""
+msgstr "艳粉"
 
 #: wxstd.po.cpp:379
 msgid "IndianRed"
-msgstr ""
+msgstr "印第安红"
 
 #: wxstd.po.cpp:380
 msgid "Indigo"
-msgstr ""
+msgstr "靛蓝"
 
 #: wxstd.po.cpp:381
 msgid "Ivory"
-msgstr ""
+msgstr "乳白"
 
 #: wxstd.po.cpp:382
 msgid "Khaki"
-msgstr ""
+msgstr "卡其"
 
 #: wxstd.po.cpp:383
 msgid "Lavender"
-msgstr ""
+msgstr "薰衣草淡紫"
 
 #: wxstd.po.cpp:384
 msgid "LavenderBlush"
-msgstr ""
+msgstr "淡紫红"
 
 #: wxstd.po.cpp:385
 msgid "LawnGreen"
-msgstr ""
+msgstr "草坪绿"
 
 #: wxstd.po.cpp:386
 msgid "LemonChiffon"
-msgstr ""
+msgstr "粉黄"
 
 #: wxstd.po.cpp:387
 msgid "LightBlue"
-msgstr ""
+msgstr "浅蓝"
 
 #: wxstd.po.cpp:388
 msgid "LightCoral"
-msgstr ""
+msgstr "浅珊瑚"
 
 #: wxstd.po.cpp:389
 msgid "LightCyan"
-msgstr ""
+msgstr "浅蓝绿"
 
 #: wxstd.po.cpp:390
 msgid "LightGoldenRodYellow"
-msgstr ""
+msgstr "浅菊黄"
 
 #: wxstd.po.cpp:391
 msgid "LightGreen"
-msgstr ""
+msgstr "浅绿"
 
 #: wxstd.po.cpp:392
 msgid "LightGrey"
-msgstr ""
+msgstr "浅灰"
 
 #: wxstd.po.cpp:393
 msgid "LightPink"
-msgstr ""
+msgstr "浅粉"
 
 #: wxstd.po.cpp:394
 msgid "LightSalmon"
-msgstr ""
+msgstr "浅肉"
 
 #: wxstd.po.cpp:395
 msgid "LightSeaGreen"
-msgstr ""
+msgstr "浅海洋绿"
 
 #: wxstd.po.cpp:396
 msgid "LightSkyBlue"
-msgstr ""
+msgstr "浅天蓝"
 
 #: wxstd.po.cpp:397
 msgid "LightSlateBlue"
-msgstr ""
+msgstr "浅灰蓝"
 
 #: wxstd.po.cpp:398
 msgid "LightSlateGray"
-msgstr ""
+msgstr "浅青灰"
 
 #: wxstd.po.cpp:399
 msgid "LightSteelBlue"
-msgstr ""
+msgstr "浅钢蓝"
 
 #: wxstd.po.cpp:400
 msgid "LightYellow"
-msgstr ""
+msgstr "浅黄"
 
 #: wxstd.po.cpp:401
 msgid "Lime"
-msgstr ""
+msgstr "酸橙绿"
 
 #: wxstd.po.cpp:402
 msgid "LimeGreen"
-msgstr ""
+msgstr "石灰绿"
 
 #: wxstd.po.cpp:403
 msgid "Linen"
-msgstr ""
+msgstr "亚麻"
 
 #: wxstd.po.cpp:404
 msgid "Magenta"
-msgstr ""
+msgstr "洋红"
 
 #: wxstd.po.cpp:405
 msgid "Maroon"
-msgstr ""
+msgstr "褐红"
 
 #: wxstd.po.cpp:406
 msgid "MediumAquaMarine"
-msgstr ""
+msgstr "间碧绿"
 
 #: wxstd.po.cpp:407
 msgid "MediumBlue"
-msgstr ""
+msgstr "间蓝"
 
 #: wxstd.po.cpp:408
 msgid "MediumOrchid"
-msgstr ""
+msgstr "间兰花紫"
 
 #: wxstd.po.cpp:409
 msgid "MediumPurple"
-msgstr ""
+msgstr "间紫"
 
 #: wxstd.po.cpp:410
 msgid "MediumSeaGreen"
-msgstr ""
+msgstr "间海洋绿"
 
 #: wxstd.po.cpp:411
 msgid "MediumSlateBlue"
-msgstr ""
+msgstr "间灰蓝"
 
 #: wxstd.po.cpp:412
 msgid "MediumSpringGreen"
-msgstr ""
+msgstr "间春绿"
 
 #: wxstd.po.cpp:413
 msgid "MediumTurquoise"
-msgstr ""
+msgstr "间宝石绿"
 
 #: wxstd.po.cpp:414
 msgid "MediumVioletRed"
-msgstr ""
+msgstr "间紫罗兰红"
 
 #: wxstd.po.cpp:415
 msgid "MidnightBlue"
-msgstr ""
+msgstr "午夜蓝"
 
 #: wxstd.po.cpp:416
 msgid "MintCream"
-msgstr ""
+msgstr "薄荷乳白"
 
 #: wxstd.po.cpp:417
 msgid "MistyRose"
-msgstr ""
+msgstr "浅玫瑰"
 
 #: wxstd.po.cpp:418
 msgid "Moccasin"
-msgstr ""
+msgstr "鹿皮"
 
 #: wxstd.po.cpp:419
 msgid "NavajoWhite"
-msgstr ""
+msgstr "那瓦白"
 
 #: wxstd.po.cpp:420
 msgid "Navy"
-msgstr ""
+msgstr "海军蓝"
 
 #: wxstd.po.cpp:421
 msgid "OldLace"
-msgstr ""
+msgstr "浅米"
 
 #: wxstd.po.cpp:422
 msgid "Olive"
-msgstr ""
+msgstr "橄榄"
 
 #: wxstd.po.cpp:423
 msgid "OliveDrab"
-msgstr ""
+msgstr "草绿"
 
 #: wxstd.po.cpp:424
 msgid "Orange"
-msgstr ""
+msgstr "橙"
 
 #: wxstd.po.cpp:425
 msgid "OrangeRed"
-msgstr ""
+msgstr "橙红"
 
 #: wxstd.po.cpp:426
 msgid "Orchid"
-msgstr ""
+msgstr "兰花紫"
 
 #: wxstd.po.cpp:427
 msgid "PaleGoldenRod"
-msgstr ""
+msgstr "苍菊黄"
 
 #: wxstd.po.cpp:428
 msgid "PaleGreen"
-msgstr ""
+msgstr "苍绿"
 
 #: wxstd.po.cpp:429
 msgid "PaleTurquoise"
-msgstr ""
+msgstr "苍宝石绿"
 
 #: wxstd.po.cpp:430
 msgid "PaleVioletRed"
-msgstr ""
+msgstr "苍紫罗兰红"
 
 #: wxstd.po.cpp:431
 msgid "PapayaWhip"
-msgstr ""
+msgstr "番木"
 
 #: wxstd.po.cpp:432
 msgid "PeachPuff"
-msgstr ""
+msgstr "桃"
 
 #: wxstd.po.cpp:433
 msgid "Peru"
-msgstr ""
+msgstr "秘鲁褐"
 
 #: wxstd.po.cpp:434
 msgid "Pink"
-msgstr ""
+msgstr "粉"
 
 #: wxstd.po.cpp:435
 msgid "Plum"
-msgstr ""
+msgstr "洋李"
 
 #: wxstd.po.cpp:436
 msgid "PowderBlue"
-msgstr ""
+msgstr "粉蓝"
 
 #: wxstd.po.cpp:437
 msgid "Purple"
-msgstr ""
+msgstr "紫"
 
 #: wxstd.po.cpp:438
 msgid "Red"
-msgstr ""
+msgstr "红"
 
 #: wxstd.po.cpp:439
 msgid "RosyBrown"
-msgstr ""
+msgstr "玫瑰棕"
 
 #: wxstd.po.cpp:440
 msgid "RoyalBlue"
-msgstr ""
+msgstr "宝蓝"
 
 #: wxstd.po.cpp:441
 msgid "SaddleBrown"
-msgstr ""
+msgstr "马鞍棕"
 
 #: wxstd.po.cpp:442
 msgid "Salmon"
-msgstr ""
+msgstr "肉"
 
 #: wxstd.po.cpp:443
 msgid "SandyBrown"
-msgstr ""
+msgstr "沙褐"
 
 #: wxstd.po.cpp:444
 msgid "SeaGreen"
-msgstr ""
+msgstr "海洋绿"
 
 #: wxstd.po.cpp:445
 msgid "SeaShell"
-msgstr ""
+msgstr "海贝"
 
 #: wxstd.po.cpp:446
 msgid "Sienna"
-msgstr ""
+msgstr "红褐色"
 
 #: wxstd.po.cpp:447
 msgid "Silver"
-msgstr ""
+msgstr "银"
 
 #: wxstd.po.cpp:448
 msgid "SkyBlue"
-msgstr ""
+msgstr "天蓝"
 
 #: wxstd.po.cpp:449
 msgid "SlateBlue"
-msgstr ""
+msgstr "灰蓝"
 
 #: wxstd.po.cpp:450
 msgid "SlateGray"
-msgstr ""
+msgstr "青灰"
 
 #: wxstd.po.cpp:451
 msgid "Snow"
-msgstr ""
+msgstr "雪白"
 
 #: wxstd.po.cpp:452
 msgid "SpringGreen"
-msgstr ""
+msgstr "春绿"
 
 #: wxstd.po.cpp:453
 msgid "SteelBlue"
-msgstr ""
+msgstr "钢蓝"
 
 #: wxstd.po.cpp:454
 msgid "Tan"
-msgstr ""
+msgstr "黄褐"
 
 #: wxstd.po.cpp:455
 msgid "Teal"
-msgstr ""
+msgstr "水鸭"
 
 #: wxstd.po.cpp:456
 msgid "Thistle"
-msgstr ""
+msgstr "苍紫"
 
 #: wxstd.po.cpp:457
 msgid "Tomato"
-msgstr ""
+msgstr "番茄红"
 
 #: wxstd.po.cpp:458
 msgid "Turquoise"
-msgstr ""
+msgstr "宝石绿"
 
 #: wxstd.po.cpp:459
 msgid "Violet"
-msgstr ""
+msgstr "紫罗兰"
 
 #: wxstd.po.cpp:460
 msgid "VioletRed"
-msgstr ""
+msgstr "紫罗兰红"
 
 #: wxstd.po.cpp:461
 msgid "Wheat"
-msgstr ""
+msgstr "土黄"
 
 #: wxstd.po.cpp:462
 msgid "White"
-msgstr ""
+msgstr "白"
 
 #: wxstd.po.cpp:463
 msgid "WhiteSmoke"
-msgstr ""
+msgstr "烟白"
 
 #: wxstd.po.cpp:464
 msgid "Yellow"
-msgstr ""
+msgstr "黄"
 
 #: wxstd.po.cpp:465
 msgid "YellowGreen"
-msgstr ""
+msgstr "黄绿"
 
 #: wxstd.po.cpp:466
 msgid "Plain Text"
-msgstr ""
+msgstr "纯文本"
 
 #: wxstd.po.cpp:467
 msgid "AngelScript"
-msgstr ""
+msgstr "AngelScript"
 
 #: wxstd.po.cpp:468
 msgid "ASCII Art"
-msgstr ""
+msgstr "ASCII 艺术"
 
 #: wxstd.po.cpp:469
 msgid "ASP(VBScript)"
-msgstr ""
+msgstr "ASP(VBScript)"
 
 #: wxstd.po.cpp:470
 msgid "awk"
-msgstr ""
+msgstr "awk"
 
 #: wxstd.po.cpp:471
 msgid "C#"
-msgstr ""
+msgstr "C#"
 
 #: wxstd.po.cpp:472
 msgid "C/C++"
-msgstr ""
+msgstr "C/C++"
 
 #: wxstd.po.cpp:473
 msgid "CSS"
-msgstr ""
+msgstr "CSS"
 
 #: wxstd.po.cpp:474
 msgid "D"
-msgstr ""
+msgstr "D"
 
 #: wxstd.po.cpp:475
 msgid "diff/patch"
-msgstr ""
+msgstr "diff/patch"
 
 #: wxstd.po.cpp:476
 msgid "DOS Batch"
-msgstr ""
+msgstr "DOS 批处理"
 
 #: wxstd.po.cpp:477
 msgid "Flash ActionScript"
-msgstr ""
+msgstr "Flash ActionScript"
 
 #: wxstd.po.cpp:478
 msgid "Fortran 90"
-msgstr ""
+msgstr "Fortran 90"
 
 #: wxstd.po.cpp:479
 msgid "HTML"
-msgstr ""
+msgstr "HTML"
 
 #: wxstd.po.cpp:480
 msgid "Java"
-msgstr ""
+msgstr "Java"
 
 #: wxstd.po.cpp:481
 msgid "JavaScript"
-msgstr ""
+msgstr "JavaScript"
 
 #: wxstd.po.cpp:482
 msgid "JavaScript in HTML"
-msgstr ""
+msgstr "HTML 中的 JavaScript"
 
 #: wxstd.po.cpp:483
 msgid "JSP"
-msgstr ""
+msgstr "JSP"
 
 #: wxstd.po.cpp:484
 msgid "Lua"
-msgstr ""
+msgstr "Lua"
 
 #: wxstd.po.cpp:485
 msgid "Pascal/Delphi"
-msgstr ""
+msgstr "Pascal/Delphi"
 
 #: wxstd.po.cpp:486
 msgid "Perl"
-msgstr ""
+msgstr "Perl"
 
 #: wxstd.po.cpp:487
 msgid "PHP"
-msgstr ""
+msgstr "PHP"
 
 #: wxstd.po.cpp:488
 msgid "Python"
-msgstr ""
+msgstr "Python"
 
 #: wxstd.po.cpp:489
 msgid "Ruby"
-msgstr ""
+msgstr "Ruby"
 
 #: wxstd.po.cpp:490
 msgid "SQL"
-msgstr ""
+msgstr "SQL"
 
 #: wxstd.po.cpp:491
 msgid "Squirrel"
-msgstr ""
+msgstr "Squirrel"
 
 #: wxstd.po.cpp:492
 msgid "TeX/LaTeX"
-msgstr ""
+msgstr "TeX/LaTeX"
 
 #: wxstd.po.cpp:493
 msgid "UNIX Configuration"
-msgstr ""
+msgstr "UNIX 配置"
 
 #: wxstd.po.cpp:494
 msgid "UNIX Shell Script"
-msgstr ""
+msgstr "UNIX Shell 脚本"
 
 #: wxstd.po.cpp:495
 msgid "Verilog"
-msgstr ""
+msgstr "Verilog"
 
 #: wxstd.po.cpp:496
 msgid "VHDL"
-msgstr ""
+msgstr "VHDL"
 
 #: wxstd.po.cpp:497
 msgid "Visual Basic"
-msgstr ""
+msgstr "Visual Basic"
 
 #: wxstd.po.cpp:498
 msgid "Windows Registry File"
-msgstr ""
+msgstr "Windows 注册表文件"
 
 #: wxstd.po.cpp:499
 msgid "wxMEdit Syntax"
-msgstr ""
+msgstr "wxMEdit 语法"
 
 #: wxstd.po.cpp:500
 msgid "x86 Assembly"
-msgstr ""
+msgstr "x86 汇编"
 
 #: wxstd.po.cpp:501
 msgid "XML"
-msgstr ""
+msgstr "XML"
 
 #: ../src/wxmedit/wxmedit_basic.cpp:583
 #, c-format
@@ -3974,7 +3973,7 @@ msgstr "语法高亮设置"
 #: ../src/wxm_highlighting_dialog.cpp:887
 #: ../src/wxm_highlighting_dialog.cpp:891
 msgid "(Automatic)"
-msgstr ""
+msgstr "(自动)"
 
 #: ../src/wxm_highlighting_dialog.cpp:991
 msgid "Cannot load this scheme."
