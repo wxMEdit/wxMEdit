@@ -80,9 +80,9 @@ Syntax files, Locale files and Settings:
 ChangeLog:
 ----------
 wxMEdit v2.9.5-2:
-1.updated translations for "Printout" and Syntax Highlighting Settings
-2.updated Spanish translation
-3.added Spanish to language chooser of General Settings
+1.updated translations for "Printout" and Syntax Highlighting Settings.
+2.updated Spanish translation.
+3.added Spanish to language chooser of General Settings.
 
 wxMEdit v2.9.5:
 1.fixed crash when delete a character in a line which contains two or more characters with MadEdit/wxMEdit built with vc2010.
@@ -271,7 +271,7 @@ MadEdit v0.1.4:
 1.fixed the bug of Mark Brace incorrect position when use WordWrap.
 2.fixed several misc. bugs.
 3.used a new approach to determine file types:
-  (a)by file extension (b)by the context of first line (c)by file name.
+  a. by file extension b. by the context of first line c. by file name.
 4.added a setting of "Do Not Save Settings to MadEdit.cfg after MadEdit Finish",
   it's useful when you edit 'MadEdit.cfg' by MadEdit.
 
@@ -291,17 +291,17 @@ MadEdit v0.1.2:
 3.added some fine improvements.
 
 MadEdit v0.1.1:
-  fixed some bugs.
-  added RightClick Popup Menu.
-  added new syntax files.
-  added FindPrevious & FindHexNext/Previous functions.
-  changed ShortCuts of Text/Column/HexMode to Alt-1, Alt-2, Alt-3.
+1.fixed some bugs.
+2.added RightClick Popup Menu.
+3.added new syntax files.
+4.added FindPrevious & FindHexNext/Previous functions.
+5.changed ShortCuts of Text/Column/HexMode to Alt-1, Alt-2, Alt-3.
 
 MadEdit v0.1:
-  added Edit & Search functions.
+1.added Editing & Searching functions.
 
 MadEdit v0.0.9:
-  Preview & AlphaTest version.
+  Preview & Alpha Test Version.
 
 
 License:
