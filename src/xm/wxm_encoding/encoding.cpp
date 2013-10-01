@@ -6,6 +6,7 @@
 // Licence:     GPL
 ///////////////////////////////////////////////////////////////////////////////
 
+#include "../wxm_def.h"
 #include "unicode.h"
 #include "singlebyte.h"
 #include "doublebyte.h"
@@ -54,12 +55,7 @@ static void MSW_GetFontName(const wxString codepage, wxString &fontname)
 
 static wxString GetMSCPFontName(const wxString mscp)
 {
-	wxString fontname;
-#ifdef __WXMSW__
-	fontname=wxT("Courier New");
-#else
-	fontname=wxT("Monospace");
-#endif
+	wxString fontname = wxm::MonoFontName;
 
 	if (mscp.IsEmpty())
 		return fontname;

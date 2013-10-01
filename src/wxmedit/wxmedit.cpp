@@ -7,6 +7,7 @@
 // Licence:     GPL
 ///////////////////////////////////////////////////////////////////////////////
 
+#include "../xm/wxm_def.h"
 #include "wxmedit.h"
 #include "wxm_encdet.h"
 #include "../xm/wxm_encoding/unicode.h"
@@ -856,11 +857,8 @@ MadEdit::MadEdit(wxWindow* parent, wxWindowID id, const wxPoint& pos, const wxSi
     m_Config->Read(wxT("TextFontSize"), &fontsize, 12);
     SetTextFont(fontname, fontsize, true);
 
-#ifdef __WXMSW__
-    fontname=wxT("Courier New");
-#else
-    fontname=wxT("Monospace");
-#endif
+    fontname = wxm::MonoFontName;
+
     m_Config->Read(wxString(wxT("HexFontName")), &fontname, fontname);
     m_Config->Read(wxT("HexFontSize"), &fontsize, 12);
     SetHexFont(fontname, fontsize, true);

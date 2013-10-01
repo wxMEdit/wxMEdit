@@ -190,6 +190,7 @@
 		<sources>../src/xm/wx_recent_list.cpp</sources>
 		<headers>../src/xm/wxm_case_conv.h</headers>
 		<sources>../src/xm/wxm_case_conv.cpp</sources>
+		<headers>../src/xm/wxm_def.h</headers>
 		<headers>../src/xm/wxm_line_enc_adapter.h</headers>
 		<sources>../src/xm/wxm_line_enc_adapter.cpp</sources>
 		<headers>../src/xm/wxm_wx_icu.h</headers>
