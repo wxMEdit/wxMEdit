@@ -1,7 +1,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 // vim:         ts=4 sw=4
 // Name:        xm/wxm_encoding/encoding_def.h
-// Description: Encoding relative defines of wxMEdit
+// Description: Encoding relative definitions of wxMEdit
 // Author:      wxmedit@gmail.com
 // Licence:     GPL
 ///////////////////////////////////////////////////////////////////////////////
