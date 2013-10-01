@@ -12542,8 +12542,8 @@ esac
 #AM_PATH_GLIB_2_0(2.6.0)
 #AM_PATH_GTK_2_0(2.6.0)
 
-if test "x$IS_MACOS" == "x"; then
-
+#if test "x$IS_MACOS" == "x"; then
+#fi
 
 if test "x$ac_cv_env_PKG_CONFIG_set" != "xset"; then
 	if test -n "$ac_tool_prefix"; then
@@ -12804,9 +12804,8 @@ else
 echo "${ECHO_T}yes" >&6; }
 	:
 fi
-    CXXFLAGS="$CXXFLAGS $glib_gtk2_CFLAGS"
-    LIBS="$LIBS $glib_gtk2_LIBS -lX11"
-fi
+CXXFLAGS="$CXXFLAGS $glib_gtk2_CFLAGS"
+LIBS="$LIBS $glib_gtk2_LIBS -lX11"
 
 # option for additional Boost.Xpressive and Boost.Foreach lib
 

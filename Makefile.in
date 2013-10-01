@@ -573,10 +573,6 @@ noinst_HEADERS = description-pak \
 	libunicows/libunicows.a \
 	libunicows/README.txt \
 	libunicows/unicows.lib \
-	makefiles/Makefile.mac \
-	makefiles/Makefile.install \
-	makefiles/zcfg_wx_debug.sh \
-	makefiles/zcfg_wx_release.sh \
 	po/wxmedit.pot \
 	po/src.list \
 	po/wxstd.po.cpp \
@@ -2179,7 +2175,7 @@ distclean-tags:
 distdir: $(DISTFILES)
 	$(am__remove_distdir)
 	mkdir $(distdir)
-	$(mkdir_p) $(distdir)/charset-detector $(distdir)/charset-detector/src $(distdir)/charset-detector/src/entry $(distdir)/charset-detector/src/tables $(distdir)/charset-detector/test $(distdir)/debian $(distdir)/devcpp $(distdir)/freebsd $(distdir)/images $(distdir)/libunicows $(distdir)/m4 $(distdir)/makefiles $(distdir)/po $(distdir)/src $(distdir)/src/plugin_example
+	$(mkdir_p) $(distdir)/charset-detector $(distdir)/charset-detector/src $(distdir)/charset-detector/src/entry $(distdir)/charset-detector/src/tables $(distdir)/charset-detector/test $(distdir)/debian $(distdir)/devcpp $(distdir)/freebsd $(distdir)/images $(distdir)/libunicows $(distdir)/m4 $(distdir)/po $(distdir)/src $(distdir)/src/plugin_example
 	@srcdirstrip=`echo "$(srcdir)" | sed 's|.|.|g'`; \
 	topsrcdirstrip=`echo "$(top_srcdir)" | sed 's|.|.|g'`; \
 	list='$(DISTFILES)'; for file in $$list; do \

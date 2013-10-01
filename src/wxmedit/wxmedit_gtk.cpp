@@ -16,6 +16,7 @@
 #include <gtk/gtk.h>
 #include <gdk/gdkkeysyms.h>
 #include <glib-object.h>
+#include <iostream>
 
 
 // source code from:

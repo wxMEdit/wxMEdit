@@ -264,10 +264,6 @@ noinst_HEADERS =	description-pak \
 	libunicows/libunicows.a \
 	libunicows/README.txt \
 	libunicows/unicows.lib \
-	makefiles/Makefile.mac \
-	makefiles/Makefile.install \
-	makefiles/zcfg_wx_debug.sh \
-	makefiles/zcfg_wx_release.sh \
 	po/wxmedit.pot \
 	po/src.list \
 	po/wxstd.po.cpp \
