@@ -184,11 +184,11 @@ wxMenu *g_Menu_Tools_ConvertChineseChar = NULL;
 wxArrayString g_FontNames;
 
 #ifdef __WXMSW__
-int g_StatusWidth_1_6=    (215+ 215+ 135+ 121+ 60+ (40 + 18));
-int g_StatusWidths[7]={ 0, 215, 215, 135, 121, 60, (40 + 18)};
+int g_StatusWidth_1_6=    (220+ 235+ 135+ 155+ 65+ (50 + 10));
+int g_StatusWidths[7]={ 0, 220, 235, 135, 155, 65, (50 + 10)};
 #else
-int g_StatusWidth_1_6=    (220+ 235+ 135+ 155+ 65+ (40 + 0));
-int g_StatusWidths[7]={ 0, 220, 235, 135, 155, 65, (40 + 0)};
+int g_StatusWidth_1_6=    (220+ 235+ 135+ 155+ 65+ (50 + 0));
+int g_StatusWidths[7]={ 0, 220, 235, 135, 155, 65, (50 + 0)};
 #endif
 
 wxAcceleratorEntry g_AccelFindNext, g_AccelFindPrev;
@@ -1719,11 +1719,7 @@ void MadEditFrame::CreateGUIControls(void)
     g_StatusBar = WxStatusBar1;
 
 #if defined(__WXGTK__)
-    const wxFont &font=WxStatusBar1->GetFont();
-    int pt=font.GetPointSize();
-    if(pt>10) pt=10;
-    wxFont *pf=wxTheFontList->FindOrCreateFont(pt, font.GetFamily(), font.GetStyle(), font.GetWeight(), font.GetUnderlined(), wxT("Serif"));
-    WxStatusBar1->SetFont(*pf);
+    WxStatusBar1->SetFont(wxFont(9, wxDEFAULT, wxNORMAL, wxNORMAL, false));
 #endif
 
     WxToolBar1 = new wxToolBar(this, ID_WXTOOLBAR1, wxPoint(0,0), wxSize(392,29));
