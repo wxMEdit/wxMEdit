@@ -875,6 +875,22 @@ void MadOptionsDialog::CreateGUIControls(void)
     WxButtonCancel->SetId(wxID_CANCEL);
 }
 
+wxString MadOptionsDialog::GetSelectedLanguage()
+{
+    wxString wxs = WxComboBoxLanguage->GetValue();
+    if (wxs == _("System Default"))
+        return wxString();
+    return wxs;
+}
+
+wxString MadOptionsDialog::GetSelectedEncoding()
+{
+    wxString wxs = WxComboBoxEncoding->GetValue();
+    if (wxs == _("System Default"))
+        return wxString();
+    return wxs;
+}
+
 void MadOptionsDialog::MadOptionsDialogClose(wxCloseEvent& event)
 {
     // --> Don't use Close with a wxDialog,
@@ -920,8 +936,9 @@ void MadOptionsDialog::LoadOptions(void)
     wxString ss;
 
     // General page
-    ss=g_LanguageString[0];
     cfg->Read(wxT("Language"), &ss);
+    if (ss.IsEmpty())
+        ss=_("System Default");
     WxComboBoxLanguage->SetValue(ss);
 
     cfg->Read(wxT("SingleInstance"), &bb);
@@ -936,8 +953,10 @@ void MadOptionsDialog::LoadOptions(void)
     cfg->Read(wxT("MaxTextFileSize"), &ll);
     WxEditMaxTextFileSize->SetValue(wxString()<<ll);
 
-    ss=_("System Default");
+    ss.Clear();
     cfg->Read(wxT("DefaultEncoding"), &ss);
+    if (ss.IsEmpty())
+        ss=_("System Default");
     WxComboBoxEncoding->SetValue(ss);
 
 #ifdef __WXMSW__

@@ -4487,7 +4487,7 @@ void MadEditFrame::OnToolsOptions(wxCommandEvent& event)
         bool rcm, isiot, ai, acp, msc, mscck, mmp;
         wxString mc, tc, ic;
 
-        m_Config->Write(wxT("Language"), g_OptionsDialog->WxComboBoxLanguage->GetValue());
+        m_Config->Write(wxT("Language"), g_OptionsDialog->GetSelectedLanguage());
         m_Config->Write(wxT("SingleInstance"), g_OptionsDialog->WxCheckBoxSingleInstance->GetValue());
 
         rcm=g_OptionsDialog->WxCheckBoxRecordCaretMovements->GetValue();
@@ -4496,7 +4496,7 @@ void MadEditFrame::OnToolsOptions(wxCommandEvent& event)
         m_Config->Write(wxT("MaxSizeToLoad"), g_OptionsDialog->WxEditMaxSizeToLoad->GetValue());
 
         m_Config->Write(wxT("MaxTextFileSize"), g_OptionsDialog->WxEditMaxTextFileSize->GetValue());
-        m_Config->Write(wxT("DefaultEncoding"), g_OptionsDialog->WxComboBoxEncoding->GetValue());
+        m_Config->Write(wxT("DefaultEncoding"), g_OptionsDialog->GetSelectedEncoding());
 
 #ifdef __WXMSW__
         if(g_OptionsDialog->WxCheckBoxRightClickMenu->GetValue())

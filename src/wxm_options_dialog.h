@@ -333,6 +333,9 @@ public:
 #endif
 
 public:
+    wxString GetSelectedLanguage();
+    wxString GetSelectedEncoding();
+
     void MadOptionsDialogClose(wxCloseEvent& event);
     void CreateGUIControls(void);
 	void MadOptionsDialogActivate(wxActivateEvent& event);
