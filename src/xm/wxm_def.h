@@ -10,6 +10,11 @@
 #define _WXM_DEF_H_
 
 #include <wx/string.h>
+#include <wx/version.h>
+
+#if defined(__WXMSW__) && wxMAJOR_VERSION==2 && wxMINOR_VERSION==6
+# define wxOS_WINDOWS_9X wxWIN95
+#endif
 
 namespace wxm
 {

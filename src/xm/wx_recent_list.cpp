@@ -9,6 +9,7 @@
 #include "wx_recent_list.h"
 #include "wxm_case_conv.h"
 #include <wx/menu.h>
+#include <wx/intl.h>
 
 bool wxRecentList::ItemEQ(const wxString& item1, const wxString& item2)
 {

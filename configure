@@ -1382,6 +1382,7 @@ Optional Packages:
   --with-included-gettext use the GNU gettext library included here
   --with-libintl-prefix[=DIR]  search for libintl in DIR/include and DIR/lib
   --without-libintl-prefix     don't search for libintl in includedir and libdir
+  --with-aui=PATH         use additional wxAUI library path
   --with-boost-add=PATH   use additional Boost.Xpressive and Boost.Foreach library path
   --with-boost=PATH       use additional Boost library path,
                           otherwise use system include path
@@ -12806,6 +12807,19 @@ echo "${ECHO_T}yes" >&6; }
 fi
 CXXFLAGS="$CXXFLAGS $glib_gtk2_CFLAGS"
 LIBS="$LIBS $glib_gtk2_LIBS -lX11"
+
+# option for additional wxAUI lib
+
+# Check whether --with-aui was given.
+if test "${with_aui+set}" = set; then :
+  withval=$with_aui; WXAUI="$withval"
+fi
+
+if test "w$WXAUI" != "x"; then
+    CPPFLAGS="$CXXFLAGS -I$WXAUI/include"
+    LIBS="$LIBS -L$WXAUI/lib"
+fi
+
 
 # option for additional Boost.Xpressive and Boost.Foreach lib
 

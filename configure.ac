@@ -42,6 +42,16 @@ PKG_CHECK_MODULES(glib_gtk2, [
 CXXFLAGS="$CXXFLAGS $glib_gtk2_CFLAGS"
 LIBS="$LIBS $glib_gtk2_LIBS -lX11"
 
+# option for additional wxAUI lib
+AC_ARG_WITH(aui, 
+    [  --with-aui=PATH         use additional wxAUI library path],
+    [WXAUI="$withval"])
+if test "w$WXAUI" != "x"; then
+    CPPFLAGS="$CXXFLAGS -I$WXAUI/include"
+    LIBS="$LIBS -L$WXAUI/lib"
+fi
+
+
 # option for additional Boost.Xpressive and Boost.Foreach lib
 AC_ARG_WITH(boost-add, 
     [  --with-boost-add=PATH   use additional Boost.Xpressive and Boost.Foreach library path],
@@ -76,7 +86,7 @@ AM_PATH_WXCONFIG(2.6.0, wxWin=1, base,core,aui)
 if test "$wxWin" != 1; then
    AC_MSG_ERROR([
            wxWidgets must be installed on your system
-           but wx-config script couldn't be found.
+           but wx-config script couldn''t be found.
 
            Please check that wx-config is in path, the directory
            where wxWidgets libraries are installed (returned by

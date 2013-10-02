@@ -27,6 +27,7 @@
 #include "wxm_utils.h"
 #include "wxm_command.h"
 #include "xm/wx_recent_list.h"
+#include "xm/wxm_def.h"
 #include "plugin.h"
 #include "wx/aui/auibook.h"
 

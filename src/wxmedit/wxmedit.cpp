@@ -18,6 +18,7 @@
 #include <wx/gdicmn.h>
 #include <wx/image.h>
 #include <wx/dataobj.h>
+#include <wx/datetime.h>
 
 #ifdef __WXGTK__
 #   include "clipbrd_gtk.h"

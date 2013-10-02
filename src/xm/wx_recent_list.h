@@ -24,7 +24,7 @@ public:
 	}
 
 	wxRecentList(bool caseSensitive=OSCaseSensitive(), size_t maxFiles = 9, wxWindowID idBase = wxID_FILE1)
-		: wxFileHistory(maxFiles, idBase), m_caseSensitive(caseSensitive)
+		: m_idbase(idBase), wxFileHistory(maxFiles, idBase), m_caseSensitive(caseSensitive)
 	{}
 
 	void AddItemToHistory(const wxString& item)
@@ -37,6 +37,13 @@ private:
 	bool ItemEQ(const wxString& item1, const wxString& item2);
 
 	bool m_caseSensitive;
+
+	wxWindowID m_idbase;
+
+	wxWindowID GetBaseId()
+	{
+		return m_idbase;
+	}
 };
 
 #endif //_WX_RECENT_LIST_H_

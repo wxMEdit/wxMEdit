@@ -13,6 +13,7 @@
 #include <wx/string.h>
 #include <wx/filefn.h>
 #include <wx/filename.h>
+#include <wx/intl.h>
 #include <locale.h>
 
 #if defined(__WXMAC__)

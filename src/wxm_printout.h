@@ -10,6 +10,7 @@
 #define _WXM_PRINTOUT_H_
 
 #include <wx/print.h>
+#include <wx/intl.h>
 
 class MadPrintout: public wxPrintout
 {
