@@ -4741,7 +4741,7 @@ void MadEditFrame::OnToolsHighlighting(wxCommandEvent& event)
 #ifdef __WXMSW__
 void MadEditFrame::OnToolsFileAssociation(wxCommandEvent& event)
 {
-    MadFileAssociationDialog fadialog(this, -1);
+    WXMFileAssociationDialog fadialog(this);
     fadialog.ShowModal();
 }
 #endif

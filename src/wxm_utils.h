@@ -10,6 +10,7 @@
 #define _WXM_UTILS_H_
 
 #include <wx/defs.h>
+#include <wx/string.h>
 #include <map>
 
 struct HtmlColor

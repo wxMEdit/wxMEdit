@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<wxsmith>
+	<object class="wxDialog" name="WXMFileAssociationDialog">
+		<title>File Type Associations</title>
+		<centered>1</centered>
+		<id_arg>0</id_arg>
+		<style>wxCAPTION|wxSYSTEM_MENU|wxRESIZE_BORDER|wxCLOSE_BOX|wxDIALOG_NO_PARENT|wxMAXIMIZE_BOX</style>
+		<object class="wxBoxSizer" variable="BoxSizer1" member="no">
+			<orient>wxVERTICAL</orient>
+			<object class="sizeritem">
+				<object class="wxBoxSizer" variable="BoxSizer2" member="no">
+					<orient>wxVERTICAL</orient>
+					<object class="sizeritem">
+						<object class="wxBoxSizer" variable="BoxSizer4" member="no">
+							<object class="sizeritem">
+								<object class="wxBoxSizer" variable="BoxSizer6" member="no">
+									<orient>wxVERTICAL</orient>
+									<object class="sizeritem">
+										<object class="wxStaticText" name="ID_STATICTEXT1" variable="StaticText1" member="yes">
+											<label>Associated File Types:</label>
+										</object>
+										<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+										<border>5</border>
+									</object>
+									<object class="sizeritem">
+										<object class="wxListBox" name="ID_WXLISTBOXASSOCIATED" variable="WxListBoxAssociated" member="yes">
+											<default>-1</default>
+											<size>121,200</size>
+											<style>wxLB_EXTENDED</style>
+											<handler function="WxListBoxAssociatedDoubleClicked" entry="EVT_LISTBOX_DCLICK" />
+										</object>
+										<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+										<border>5</border>
+										<option>1</option>
+									</object>
+								</object>
+								<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+								<border>5</border>
+								<option>1</option>
+							</object>
+							<object class="sizeritem">
+								<object class="wxBoxSizer" variable="BoxSizer7" member="no">
+									<orient>wxVERTICAL</orient>
+									<object class="sizeritem">
+										<object class="wxButton" name="ID_WXBUTTONADD" variable="WxButtonAdd" member="yes">
+											<label>&lt;- Add</label>
+											<handler function="WxButtonAddClick" entry="EVT_BUTTON" />
+										</object>
+										<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+										<border>5</border>
+									</object>
+									<object class="sizeritem">
+										<object class="wxButton" name="ID_WXBUTTONREMOVE" variable="WxButtonRemove" member="yes">
+											<label>Remove -&gt;</label>
+											<handler function="WxButtonRemoveClick" entry="EVT_BUTTON" />
+										</object>
+										<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+										<border>5</border>
+									</object>
+								</object>
+								<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+								<border>5</border>
+							</object>
+							<object class="sizeritem">
+								<object class="wxBoxSizer" variable="BoxSizer8" member="no">
+									<orient>wxVERTICAL</orient>
+									<object class="sizeritem">
+										<object class="wxStaticText" name="ID_STATICTEXT2" variable="StaticText2" member="yes">
+											<label>Predefined File Types:</label>
+										</object>
+										<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+										<border>5</border>
+									</object>
+									<object class="sizeritem">
+										<object class="wxListBox" name="ID_WXLISTBOXPREDEFINED" variable="WxListBoxPredefined" member="yes">
+											<default>-1</default>
+											<size>121,200</size>
+											<style>wxLB_EXTENDED</style>
+											<handler function="WxListBoxPredefinedDoubleClicked" entry="EVT_LISTBOX_DCLICK" />
+										</object>
+										<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+										<border>5</border>
+										<option>1</option>
+									</object>
+								</object>
+								<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+								<border>5</border>
+								<option>1</option>
+							</object>
+						</object>
+						<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+						<option>1</option>
+					</object>
+					<object class="sizeritem">
+						<object class="wxBoxSizer" variable="BoxSizer5" member="no">
+							<object class="sizeritem">
+								<object class="wxTextCtrl" name="ID_WXEDITCUSTOMTYPE" variable="WxEditCustomType" member="yes" />
+								<flag>wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
+								<border>5</border>
+							</object>
+							<object class="sizeritem">
+								<object class="wxButton" name="ID_WXBUTTONADDCUSTOM" variable="WxButtonAddCustom" member="yes">
+									<label>&lt;- Add Custom File Type</label>
+									<handler function="WxButtonAddCustomClick" entry="EVT_BUTTON" />
+								</object>
+								<flag>wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
+								<border>5</border>
+							</object>
+						</object>
+						<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+						<border>5</border>
+					</object>
+				</object>
+				<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+				<border>5</border>
+				<option>1</option>
+			</object>
+			<object class="sizeritem">
+				<object class="wxBoxSizer" variable="BoxSizer3" member="no">
+					<object class="sizeritem">
+						<object class="wxButton" name="ID_WXBUTTONOK" variable="WxButtonOK" member="yes">
+							<label>&amp;OK</label>
+							<handler function="WxButtonOKClick" entry="EVT_BUTTON" />
+						</object>
+						<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+						<border>5</border>
+					</object>
+					<object class="sizeritem">
+						<object class="wxButton" name="wxID_CANCEL" variable="WxButtonCancel" member="yes">
+							<label>&amp;Cancel0</label>
+							<default>1</default>
+							<focused>1</focused>
+						</object>
+						<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+						<border>5</border>
+					</object>
+				</object>
+				<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+				<border>5</border>
+			</object>
+		</object>
+	</object>
+</wxsmith>
