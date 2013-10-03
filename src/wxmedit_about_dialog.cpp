@@ -55,6 +55,7 @@ WXMAboutDialog::WXMAboutDialog(wxWindow* parent,wxWindowID id,const wxPoint& pos
 	SetSizer(BoxSizer1);
 	BoxSizer1->Fit(this);
 	BoxSizer1->SetSizeHints(this);
+	Center();
 
 	Connect(wxID_ANY,wxEVT_CLOSE_WINDOW,(wxObjectEventFunction)&WXMAboutDialog::WXMAboutDialogClose);
 	//*)
