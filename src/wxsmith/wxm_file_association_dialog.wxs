@@ -127,7 +127,7 @@
 					</object>
 					<object class="sizeritem">
 						<object class="wxButton" name="wxID_CANCEL" variable="WxButtonCancel" member="yes">
-							<label>&amp;Cancel0</label>
+							<label>&amp;Cancel</label>
 							<default>1</default>
 							<focused>1</focused>
 						</object>
