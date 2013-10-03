@@ -1,155 +1,100 @@
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        wxm_conv_enc_dialog.cpp
 // Description:
-// Author:      madedit@gmail.com  (creator)
-//              wxmedit@gmail.com  (current maintainer)
+// Author:      wxmedit@gmail.com
 // Licence:     GPL
 ///////////////////////////////////////////////////////////////////////////////
 
 #include "wxm_conv_enc_dialog.h"
+
 #include "xm/wxm_encoding/encoding.h"
 #include <wx/config.h>
 
-//Do not add custom headers
-//wxDev-C++ designer will remove them
-////Header Include Start
-////Header Include End
+//(*InternalHeaders(WXMConvEncDialog)
+#include <wx/intl.h>
+#include <wx/string.h>
+//*)
 
-MadConvEncDialog *g_ConvEncDialog=NULL;
+WXMConvEncDialog *g_ConvEncDialog=NULL;
+//(*IdInit(WXMConvEncDialog)
+const long WXMConvEncDialog::ID_STATICTEXT1 = wxNewId();
+const long WXMConvEncDialog::ID_WXCOMBOBOXENCODING = wxNewId();
+const long WXMConvEncDialog::ID_WXRADIOBOXOPTION = wxNewId();
+//*)
 
-//----------------------------------------------------------------------------
-// MadConvEncDialog
-//----------------------------------------------------------------------------
-//Add Custom Events only in the appropriate block.
-//Code added in other places will be removed by wxDev-C++
-////Event Table Start
-BEGIN_EVENT_TABLE(MadConvEncDialog,wxDialog)
-	////Manual Code Start
-	////Manual Code End
-	
-	EVT_CLOSE(MadConvEncDialog::MadConvEncDialogClose)
+BEGIN_EVENT_TABLE(WXMConvEncDialog,wxDialog)
+	//(*EventTable(WXMConvEncDialog)
+	//*)
 END_EVENT_TABLE()
-////Event Table End
 
-MadConvEncDialog::MadConvEncDialog(wxWindow *parent, wxWindowID id, const wxString &title, const wxPoint &position, const wxSize& size, long style)
-: wxDialogWrapper(parent, id, title, position, size, style)
+WXMConvEncDialog::WXMConvEncDialog(wxWindow* parent,wxWindowID id,const wxPoint& pos,const wxSize& size)
 {
-    CreateGUIControls();
-}
+	//(*Initialize(WXMConvEncDialog)
+	wxBoxSizer* BoxSizer4;
+	wxBoxSizer* BoxSizer2;
+	wxBoxSizer* BoxSizer1;
+	wxBoxSizer* BoxSizer3;
 
-MadConvEncDialog::~MadConvEncDialog() {} 
-
-//static int gs_MinX=0;
-
-static void ResizeItem(wxBoxSizer* sizer, wxWindow *item, int ax, int ay)
-{
-    int x, y;
-    wxString str=item->GetLabel();
-    item->GetTextExtent(str, &x, &y);
-    item->SetSize(x+=ax, y+=ay);
-    sizer->SetItemMinSize(item, x, y);
-    
-    //wxPoint pos=item->GetPosition();
-    //if(pos.x + x > gs_MinX) gs_MinX = pos.x + x;
-}
-
-void MadConvEncDialog::CreateGUIControls(void)
-{
-    //do not set FontName, it is not exist on all platforms
-    #define wxFont(p0,p1,p2,p3,p4,p5) wxFont(wxDEFAULT,wxDEFAULT,p2,p3,p4)
-
-    //Do not add custom code here
-	//wxDev-C++ designer will remove them.
-	//Add the custom code before or after the blocks
-	////GUI Items Creation Start
-
-	WxBoxSizer1 = new wxBoxSizer(wxVERTICAL);
-	this->SetSizer(WxBoxSizer1);
-	this->SetAutoLayout(true);
-
-	WxBoxSizer2 = new wxBoxSizer(wxHORIZONTAL);
-	WxBoxSizer1->Add(WxBoxSizer2, 0, wxALIGN_CENTER | wxALL, 5);
-
-	WxStaticText1 = new wxStaticText(this, ID_WXSTATICTEXT1, _("New Encoding:"), wxPoint(5, 7), wxDefaultSize, 0, _("WxStaticText1"));
-	WxStaticText1->SetFont(wxFont(8, wxSWISS, wxNORMAL, wxNORMAL, false, _("MS Sans Serif")));
-	WxBoxSizer2->Add(WxStaticText1,0,wxALIGN_CENTER | wxALL,5);
-
-	wxArrayString arrayStringFor_WxComboBoxEncoding;
-	WxComboBoxEncoding = new wxComboBox(this, ID_WXCOMBOBOXENCODING, _("WxComboBoxEncoding"), wxPoint(92, 5), wxSize(150, 21), arrayStringFor_WxComboBoxEncoding, wxCB_DROPDOWN | wxCB_READONLY, wxDefaultValidator, _("WxComboBoxEncoding"));
-	WxComboBoxEncoding->SetFont(wxFont(8, wxSWISS, wxNORMAL, wxNORMAL, false, _("MS Sans Serif")));
-	WxBoxSizer2->Add(WxComboBoxEncoding,0,wxALIGN_CENTER | wxALL,5);
-
-	WxBoxSizer3 = new wxBoxSizer(wxHORIZONTAL);
-	WxBoxSizer1->Add(WxBoxSizer3, 0, wxALIGN_CENTER | wxALL, 5);
-
-	wxArrayString arrayStringFor_WxRadioBoxOption;
-	arrayStringFor_WxRadioBoxOption.Add(_("None"));
-	arrayStringFor_WxRadioBoxOption.Add(_("Simplified Chinese => Traditional Chinese"));
-	arrayStringFor_WxRadioBoxOption.Add(_("Traditional Chinese => Simplified Chinese"));
-	arrayStringFor_WxRadioBoxOption.Add(_("Japanese Kanji => Traditional Chinese"));
-	arrayStringFor_WxRadioBoxOption.Add(_("Japanese Kanji => Simplified Chinese"));
-	arrayStringFor_WxRadioBoxOption.Add(_("Chinese => Japanese Kanji"));
-	WxRadioBoxOption = new wxRadioBox(this, ID_WXRADIOBOXOPTION, _("Addtional Option"), wxPoint(5, 5), wxSize(250, 155), arrayStringFor_WxRadioBoxOption, 1, wxRA_SPECIFY_COLS, wxDefaultValidator, _("WxRadioBoxOption"));
-	WxRadioBoxOption->SetSelection(0);
-	WxRadioBoxOption->SetFont(wxFont(8, wxSWISS, wxNORMAL, wxNORMAL, false, _("MS Sans Serif")));
-	WxBoxSizer3->Add(WxRadioBoxOption,0,wxALIGN_CENTER | wxALL,5);
-
-	WxBoxSizer4 = new wxBoxSizer(wxHORIZONTAL);
-	WxBoxSizer1->Add(WxBoxSizer4, 0, wxALIGN_CENTER | wxALL, 5);
-
-	WxButtonOK = new wxButton(this, wxID_OK, _("&OK"), wxPoint(11, 5), wxSize(91, 30), 0, wxDefaultValidator, _("WxButtonOK"));
-	WxButtonOK->SetFont(wxFont(8, wxSWISS, wxNORMAL, wxNORMAL, false, _("MS Sans Serif")));
-	WxBoxSizer4->Add(WxButtonOK,0,wxALIGN_CENTER | wxALL,5);
-
-	WxButtonCancel = new wxButton(this, wxID_CANCEL, _("&Cancel"), wxPoint(106, 5), wxSize(90, 30), 0, wxDefaultValidator, _("WxButtonCancel"));
-	WxButtonCancel->SetFont(wxFont(8, wxSWISS, wxNORMAL, wxNORMAL, false, _("MS Sans Serif")));
-	WxBoxSizer4->Add(WxButtonCancel,0,wxALIGN_CENTER | wxALL,5);
-
-	SetTitle(_("Convert Encoding"));
-	SetIcon(wxNullIcon);
-	
-	GetSizer()->Layout();
-	GetSizer()->Fit(this);
-	GetSizer()->SetSizeHints(this);
+	Create(parent, id, _("Convert Encoding"), wxDefaultPosition, wxDefaultSize, wxCAPTION|wxSYSTEM_MENU|wxRESIZE_BORDER|wxCLOSE_BOX|wxDIALOG_NO_PARENT, _T("id"));
+	SetClientSize(wxDefaultSize);
+	Move(wxDefaultPosition);
+	BoxSizer1 = new wxBoxSizer(wxVERTICAL);
+	BoxSizer2 = new wxBoxSizer(wxHORIZONTAL);
+	StaticText1 = new wxStaticText(this, ID_STATICTEXT1, _("New Encoding:"), wxDefaultPosition, wxDefaultSize, 0, _T("ID_STATICTEXT1"));
+	BoxSizer2->Add(StaticText1, 0, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+	WxComboBoxEncoding = new wxComboBox(this, ID_WXCOMBOBOXENCODING, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0, 0, wxCB_READONLY|wxCB_DROPDOWN, wxDefaultValidator, _T("ID_WXCOMBOBOXENCODING"));
+	BoxSizer2->Add(WxComboBoxEncoding, 0, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+	BoxSizer1->Add(BoxSizer2, 0, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+	BoxSizer3 = new wxBoxSizer(wxHORIZONTAL);
+	wxString __wxRadioBoxChoices_1[6] =
+	{
+	_("None"),
+	_("Simplified Chinese => Traditional Chinese"),
+	_("Traditional Chinese => Simplified Chinese"),
+	_("Japanese Kanji => Traditional Chinese"),
+	_("Japanese Kanji => Simplified Chinese"),
+	_("Chinese => Japanese Kanji")
+	};
+	WxRadioBoxOption = new wxRadioBox(this, ID_WXRADIOBOXOPTION, _("Addtional Option"), wxDefaultPosition, wxDefaultSize, 6, __wxRadioBoxChoices_1, 1, wxRA_SPECIFY_COLS, wxDefaultValidator, _T("ID_WXRADIOBOXOPTION"));
+	BoxSizer3->Add(WxRadioBoxOption, 0, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+	BoxSizer1->Add(BoxSizer3, 0, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+	BoxSizer4 = new wxBoxSizer(wxHORIZONTAL);
+	WxButtonOK = new wxButton(this, wxID_OK, _("&OK"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("wxID_OK"));
+	BoxSizer4->Add(WxButtonOK, 0, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+	WxButtonCancel = new wxButton(this, wxID_CANCEL, _("&Cancel"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("wxID_CANCEL"));
+	WxButtonCancel->SetFocus();
+	BoxSizer4->Add(WxButtonCancel, 0, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+	BoxSizer1->Add(BoxSizer4, 0, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+	SetSizer(BoxSizer1);
+	BoxSizer1->Fit(this);
+	BoxSizer1->SetSizeHints(this);
 	Center();
-	
-	////GUI Items Creation End
 
-    //restore wxFont
-    #undef wxFont
+	Connect(wxID_ANY,wxEVT_CLOSE_WINDOW,(wxObjectEventFunction)&WXMConvEncDialog::WXMConvEncDialogClose);
+	//*)
 
-    size_t cnt=wxm::WXMEncodingCreator::Instance().GetEncodingsCount();
-    for(size_t i=0;i<cnt;i++)
-    {
-        WxComboBoxEncoding->Append(wxm::WXMEncodingCreator::Instance().GetEncodingName(i));//enc+des);
-    }
-    wxString convenc=wxm::WXMEncodingCreator::Instance().GetEncodingName(0);
-    wxConfigBase *cfg=wxConfigBase::Get(false);
-    wxString oldpath=cfg->GetPath();
-    cfg->Read(wxT("/wxMEdit/ConvertEncoding"), &convenc);
-    cfg->SetPath(oldpath);
-    WxComboBoxEncoding->SetValue(convenc);
+	size_t cnt=wxm::WXMEncodingCreator::Instance().GetEncodingsCount();
+	for(size_t i=0;i<cnt;i++)
+	{
+		WxComboBoxEncoding->Append(wxm::WXMEncodingCreator::Instance().GetEncodingName(i));//enc+des);
+	}
+	wxString convenc=wxm::WXMEncodingCreator::Instance().GetEncodingName(0);
+	wxConfigBase *cfg=wxConfigBase::Get(false);
+	wxString oldpath=cfg->GetPath();
+	cfg->Read(wxT("/wxMEdit/ConvertEncoding"), &convenc);
+	cfg->SetPath(oldpath);
+	WxComboBoxEncoding->SetValue(convenc);
 
-    ResizeItem(WxBoxSizer2, WxStaticText1, 2, 2);
-
-    int strx=0, stry=0;
-    wxString str=WxRadioBoxOption->GetLabel();
-    WxRadioBoxOption->GetTextExtent(str, &strx, &stry);
-    for(size_t i=0;i<WxRadioBoxOption->GetCount();i++)
-    {
-        int x;
-        str=WxRadioBoxOption->GetString((unsigned int)i);
-        WxRadioBoxOption->GetTextExtent(str, &x, &stry);
-        if(x>strx) strx=x;
-    }
-    stry = (stry *((int)WxRadioBoxOption->GetCount()+2))*4/3;
-    WxRadioBoxOption->SetSize(strx+=35, stry);
-    WxBoxSizer3->SetItemMinSize(WxRadioBoxOption, strx, stry);
-
-    WxButtonCancel->SetFocus();
 }
 
-void MadConvEncDialog::MadConvEncDialogClose(wxCloseEvent& event)
+WXMConvEncDialog::~WXMConvEncDialog()
+{
+	//(*Destroy(WXMConvEncDialog)
+	//*)
+}
+
+
+void WXMConvEncDialog::WXMConvEncDialogClose(wxCloseEvent& event)
 {
     if(event.CanVeto())
     {
@@ -161,4 +106,3 @@ void MadConvEncDialog::MadConvEncDialogClose(wxCloseEvent& event)
     g_ConvEncDialog=NULL;
     Destroy();
 }
- 
