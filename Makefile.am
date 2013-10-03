@@ -200,19 +200,8 @@ noinst_HEADERS =	description-pak \
 	m4/progtest.m4 \
 	m4/ChangeLog \
 	src/wxmedit_app.rc \
-	src/wxmedit_about_dialog.wxform \
-	src/wxm_conv_enc_dialog.wxform \
-	src/wxmedit_frame.wxform \
 	src/wxm_file_association_dialog.cpp \
 	src/wxm_file_association_dialog.h \
-	src/wxm_file_association_dialog.wxform \
-	src/wxm_find_in_files_dialog.wxform \
-	src/wxm_highlighting_dialog.wxform \
-	src/wxm_options_dialog.wxform \
-	src/wxm_replace_dialog.wxform \
-	src/wxm_search_dialog.wxform \
-	src/wxm_sort_dialog.wxform \
-	src/wxm_word_count_dialog.wxform \
 	src/plugin_example/makefile.linux \
 	src/plugin_example/makefile.mingw32 \
 	src/plugin_example/makefile.vc \
