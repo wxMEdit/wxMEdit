@@ -3714,7 +3714,7 @@ void MadEditFrame::OnEditSortOptions(wxCommandEvent& event)
     if(g_ActiveMadEdit==NULL || g_ActiveMadEdit->GetEditMode()==emHexMode)
         return;
 
-    MadSortDialog dialog(this, -1);
+    WXMSortDialog dialog(this);
 
     wxString oldpath=m_Config->GetPath();
     m_Config->SetPath(wxT("/wxMEdit"));

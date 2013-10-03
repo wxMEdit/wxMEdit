@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<wxsmith>
+	<object class="wxDialog" name="WXMSortDialog">
+		<title>Sort Options</title>
+		<centered>1</centered>
+		<pos_arg>1</pos_arg>
+		<size_arg>1</size_arg>
+		<style>wxCAPTION|wxSYSTEM_MENU|wxRESIZE_BORDER|wxCLOSE_BOX|wxDIALOG_NO_PARENT</style>
+		<handler function="WXMSortDialogClose" entry="EVT_CLOSE" />
+		<object class="wxBoxSizer" variable="BoxSizer1" member="no">
+			<orient>wxVERTICAL</orient>
+			<object class="sizeritem">
+				<object class="wxRadioBox" name="ID_WXRADIOBOXORDER" variable="WxRadioBoxOrder" member="yes">
+					<label>Sort Order</label>
+					<content>
+						<item>&amp;Ascending</item>
+						<item>&amp;Descending</item>
+					</content>
+					<default>-1</default>
+					<style>wxRA_SPECIFY_COLS</style>
+				</object>
+				<flag>wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
+				<border>5</border>
+			</object>
+			<object class="sizeritem">
+				<object class="wxCheckBox" name="ID_WXCHECKBOXCASE" variable="WxCheckBoxCase" member="yes">
+					<label>&amp;Case Sensitive</label>
+				</object>
+				<flag>wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
+				<border>5</border>
+			</object>
+			<object class="sizeritem">
+				<object class="wxCheckBox" name="ID_WXCHECKBOXNUMERIC" variable="WxCheckBoxNumeric" member="yes">
+					<label>&amp;Numeric Sort</label>
+				</object>
+				<flag>wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
+				<border>5</border>
+			</object>
+			<object class="sizeritem">
+				<object class="wxCheckBox" name="ID_WXCHECKBOXREMOVEDUP" variable="WxCheckBoxRemoveDup" member="yes">
+					<label>&amp;Remove Duplicates</label>
+				</object>
+				<flag>wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
+				<border>5</border>
+			</object>
+			<object class="sizeritem">
+				<object class="wxBoxSizer" variable="BoxSizer2" member="no">
+					<object class="sizeritem">
+						<object class="wxButton" name="wxID_OK" variable="WxButtonSort" member="yes">
+							<label>&amp;Sort</label>
+							<focused>1</focused>
+						</object>
+						<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+						<border>5</border>
+					</object>
+					<object class="sizeritem">
+						<object class="wxButton" name="wxID_CANCEL" variable="WxButtonCancel" member="yes">
+							<label>Cancel</label>
+						</object>
+						<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+						<border>5</border>
+					</object>
+				</object>
+				<flag>wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
+				<border>5</border>
+			</object>
+		</object>
+	</object>
+</wxsmith>
