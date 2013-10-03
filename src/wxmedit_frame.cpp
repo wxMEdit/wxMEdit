@@ -4875,7 +4875,7 @@ void MadEditFrame::OnToolsWordCount(wxCommandEvent& event)
 {
     if(g_ActiveMadEdit==NULL) return;
 
-    MadWordCountDialog dialog(this, -1);
+    WXMWordCountDialog dialog(this);
     dialog.ShowModal();
 }
 

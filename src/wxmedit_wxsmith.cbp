@@ -14,6 +14,7 @@
 					<wxDialog wxs="wxsmith/wxmedit_about_dialog.wxs" src="wxmedit_about_dialog.cpp" hdr="wxmedit_about_dialog.h" fwddecl="0" i18n="1" name="WXMAboutDialog" language="CPP" />
 					<wxDialog wxs="wxsmith/wxm_sort_dialog.wxs" src="wxm_sort_dialog.cpp" hdr="wxm_sort_dialog.h" fwddecl="0" i18n="1" name="WXMSortDialog" language="CPP" />
 					<wxDialog wxs="wxsmith/wxm_conv_enc_dialog.wxs" src="wxm_conv_enc_dialog.cpp" hdr="wxm_conv_enc_dialog.h" fwddecl="0" i18n="1" name="WXMConvEncDialog" language="CPP" />
+					<wxDialog wxs="wxsmith/wxm_word_count_dialog.wxs" src="wxm_word_count_dialog.cpp" hdr="wxm_word_count_dialog.h" fwddecl="0" i18n="1" name="WXMWordCountDialog" language="CPP" />
 				</resources>
 			</wxsmith>
 		</Extensions>
