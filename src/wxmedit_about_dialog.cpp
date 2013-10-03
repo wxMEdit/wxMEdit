@@ -1,119 +1,80 @@
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        wxmedit_about_dialog.cpp
 // Description:
-// Author:      madedit@gmail.com  (creator)
-//              wxmedit@gmail.com  (current maintainer)
+// Author:      wxmedit@gmail.com
 // Licence:     GPL
 ///////////////////////////////////////////////////////////////////////////////
 
 #include "wxmedit_about_dialog.h"
 
-//Do not add custom headers.
-//wx-dvcpp designer will remove them
-////Header Include Start
-////Header Include End
+//(*InternalHeaders(WXMAboutDialog)
+#include <wx/intl.h>
+#include <wx/string.h>
+//*)
 
 #include "../images/wxmedit.xpm"
 #include "../images/madedit.xpm"
 
-//----------------------------------------------------------------------------
-// MadAboutDialog
-//----------------------------------------------------------------------------
-     //Add Custom Events only in the appropriate Block.
-    // Code added in  other places will be removed by wx-dvcpp 
-    ////Event Table Start
-BEGIN_EVENT_TABLE(MadAboutDialog,wxDialog)
-	////Manual Code Start
-	////Manual Code End
-	
-	EVT_CLOSE(MadAboutDialog::MadAboutDialogClose)
+//(*IdInit(WXMAboutDialog)
+const long WXMAboutDialog::ID_STATICBITMAP1 = wxNewId();
+const long WXMAboutDialog::ID_STATICBITMAP2 = wxNewId();
+const long WXMAboutDialog::ID_WXMEMO1 = wxNewId();
+//*)
+
+BEGIN_EVENT_TABLE(WXMAboutDialog,wxDialog)
+	//(*EventTable(WXMAboutDialog)
+	//*)
 END_EVENT_TABLE()
-    ////Event Table End
 
-
-
-MadAboutDialog::MadAboutDialog( wxWindow *parent, wxWindowID id, const wxString &title, const wxPoint &position, const wxSize& size, long style )
-    : wxDialog( parent, id, title, position, size, style)
+WXMAboutDialog::WXMAboutDialog(wxWindow* parent,wxWindowID id,const wxPoint& pos,const wxSize& size)
 {
-    CreateGUIControls();
+	//(*Initialize(WXMAboutDialog)
+	wxBoxSizer* BoxSizer4;
+	wxBoxSizer* BoxSizer2;
+	wxBoxSizer* BoxSizer1;
+	wxBoxSizer* BoxSizer3;
+
+	Create(parent, wxID_ANY, _("About wxMEdit"), wxDefaultPosition, wxDefaultSize, wxCAPTION|wxSYSTEM_MENU|wxCLOSE_BOX|wxDIALOG_NO_PARENT, _T("wxID_ANY"));
+	BoxSizer1 = new wxBoxSizer(wxVERTICAL);
+	BoxSizer2 = new wxBoxSizer(wxHORIZONTAL);
+	BoxSizer4 = new wxBoxSizer(wxVERTICAL);
+	StaticBitmap1 = new wxStaticBitmap(this, ID_STATICBITMAP1, wxNullBitmap, wxDefaultPosition, wxSize(48,48), 0, _T("ID_STATICBITMAP1"));
+	BoxSizer4->Add(StaticBitmap1, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+	StaticBitmap2 = new wxStaticBitmap(this, ID_STATICBITMAP2, wxNullBitmap, wxDefaultPosition, wxSize(48,48), 0, _T("ID_STATICBITMAP2"));
+	BoxSizer4->Add(StaticBitmap2, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+	BoxSizer2->Add(BoxSizer4, 0, wxALL|wxALIGN_TOP|wxALIGN_CENTER_HORIZONTAL, 5);
+	WxMemo1 = new wxTextCtrl(this, ID_WXMEMO1, wxEmptyString, wxDefaultPosition, wxSize(350,150), wxTE_MULTILINE|wxTE_READONLY|wxTE_AUTO_URL, wxDefaultValidator, _T("ID_WXMEMO1"));
+	BoxSizer2->Add(WxMemo1, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 2);
+	BoxSizer1->Add(BoxSizer2, 0, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+	BoxSizer3 = new wxBoxSizer(wxHORIZONTAL);
+	WxButtonOK = new wxButton(this, wxID_OK, _("&OK"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("wxID_OK"));
+	BoxSizer3->Add(WxButtonOK, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 4);
+	WxButtonCancel = new wxButton(this, wxID_CANCEL, _("&Cancel"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("wxID_CANCEL"));
+	BoxSizer3->Add(WxButtonCancel, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+	BoxSizer1->Add(BoxSizer3, 0, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 3);
+	SetSizer(BoxSizer1);
+	BoxSizer1->Fit(this);
+	BoxSizer1->SetSizeHints(this);
+
+	Connect(wxID_ANY,wxEVT_CLOSE_WINDOW,(wxObjectEventFunction)&WXMAboutDialog::WXMAboutDialogClose);
+	//*)
+
+	StaticBitmap1->SetBitmap(wxBitmap(wxmedit_xpm));
+	StaticBitmap1->Enable(true);
+	StaticBitmap2->SetBitmap(wxBitmap(madedit_xpm));
+	StaticBitmap2->Enable(true);
+
+	SetDefaultItem(WxButtonCancel);
+	WxButtonCancel->SetFocus();
 }
 
-MadAboutDialog::~MadAboutDialog() {} 
-
-void MadAboutDialog::CreateGUIControls(void)
+WXMAboutDialog::~WXMAboutDialog()
 {
-    //do not set FontName, it is not exist on all platforms
-    #define wxFont(p0,p1,p2,p3,p4,p5) wxFont(wxDEFAULT,wxDEFAULT,p2,p3,p4)
-
-    //Do not add custom Code here
-    //wx-devcpp designer will remove them.
-    //Add the custom code before or after the Blocks
-    ////GUI Items Creation Start
-
-	WxBoxSizer1 = new wxBoxSizer(wxVERTICAL);
-	this->SetSizer(WxBoxSizer1);
-	this->SetAutoLayout(true);
-
-	WxBoxSizer2 = new wxBoxSizer(wxHORIZONTAL);
-	WxBoxSizer1->Add(WxBoxSizer2, 0, wxALIGN_CENTER | wxALL, 3);
-
-	WxBoxSizer4 = new wxBoxSizer(wxVERTICAL);
-	WxBoxSizer2->Add(WxBoxSizer4, 0, wxALIGN_TOP | wxALL, 5);
-
-	WxStaticBitmap1 = new wxStaticBitmap(this, ID_WXSTATICBITMAP1, wxNullBitmap, wxPoint(5, 5), wxSize(48, 48) );
-	WxStaticBitmap1->Enable(false);
-	WxStaticBitmap1->SetFont(wxFont(8, wxSWISS, wxNORMAL, wxNORMAL, false, _("MS Sans Serif")));
-	WxBoxSizer4->Add(WxStaticBitmap1,0,wxALIGN_CENTER | wxALL,5);
-
-	WxStaticBitmap2 = new wxStaticBitmap(this, ID_WXSTATICBITMAP2, wxNullBitmap, wxPoint(5, 63), wxSize(48, 48) );
-	WxStaticBitmap2->Enable(false);
-	WxStaticBitmap2->SetFont(wxFont(8, wxSWISS, wxNORMAL, wxNORMAL, false, _("MS Sans Serif")));
-	WxBoxSizer4->Add(WxStaticBitmap2,0,wxALIGN_CENTER | wxALL,5);
-
-	WxMemo1 = new wxTextCtrl(this, ID_WXMEMO1, _(""), wxPoint(70, 2), wxSize(350, 150), wxTE_READONLY | wxTE_AUTO_URL | wxTE_MULTILINE, wxDefaultValidator, _("WxMemo1"));
-	WxMemo1->SetMaxLength(0);
-	WxMemo1->SetFocus();
-	WxMemo1->SetInsertionPointEnd();
-	WxMemo1->SetFont(wxFont(8, wxSWISS, wxNORMAL, wxNORMAL, false, _("MS Sans Serif")));
-	WxBoxSizer2->Add(WxMemo1,0,wxALIGN_CENTER | wxALL,2);
-
-	WxBoxSizer3 = new wxBoxSizer(wxHORIZONTAL);
-	WxBoxSizer1->Add(WxBoxSizer3, 0, wxALIGN_CENTER | wxALL, 3);
-
-	WxButtonOK = new wxButton(this, wxID_OK, _("&OK"), wxPoint(4, 4), wxSize(90, 30), 0, wxDefaultValidator, _("WxButtonOK"));
-	WxButtonOK->SetFont(wxFont(8, wxSWISS, wxNORMAL, wxNORMAL, false, _("MS Sans Serif")));
-	WxBoxSizer3->Add(WxButtonOK,0,wxALIGN_CENTER | wxALL,4);
-
-	WxButtonCancel = new wxButton(this, wxID_CANCEL, _("&Cancel"), wxPoint(102, 4), wxSize(90, 30), 0, wxDefaultValidator, _("WxButtonCancel"));
-	WxButtonCancel->SetFont(wxFont(8, wxSWISS, wxNORMAL, wxNORMAL, false, _("MS Sans Serif")));
-	WxBoxSizer3->Add(WxButtonCancel,0,wxALIGN_CENTER | wxALL,4);
-
-	SetTitle(_("About wxMEdit"));
-	SetIcon(wxNullIcon);
-	
-	GetSizer()->Layout();
-	GetSizer()->Fit(this);
-	GetSizer()->SetSizeHints(this);
-	Center();
-	
-    ////GUI Items Creation End
-
-    //restore wxFont
-    #undef wxFont
-    
-    WxStaticBitmap1->SetBitmap(wxBitmap(wxmedit_xpm));
-    WxStaticBitmap1->Enable(true);
-    WxStaticBitmap2->SetBitmap(wxBitmap(madedit_xpm));
-    WxStaticBitmap2->Enable(true);
-
-    SetDefaultItem(WxButtonCancel);
-    WxButtonCancel->SetFocus();
+	//(*Destroy(WXMAboutDialog)
+	//*)
 }
 
-void MadAboutDialog::MadAboutDialogClose(wxCloseEvent& event)
+void WXMAboutDialog::WXMAboutDialogClose(wxCloseEvent& event)
 {
-    // --> Don't use Close with a wxDialog,
-    // use Destroy instead.
-    Destroy();
+	Destroy();
 }
-

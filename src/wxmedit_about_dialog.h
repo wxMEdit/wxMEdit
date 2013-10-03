@@ -1,98 +1,51 @@
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        wxmedit_about_dialog.h
 // Description:
-// Author:      madedit@gmail.com  (creator)
-//              wxmedit@gmail.com  (current maintainer)
+// Author:      wxmedit@gmail.com
 // Licence:     GPL
 ///////////////////////////////////////////////////////////////////////////////
 
-#ifndef _WXMEDIT_ABOUT_DIALOG_H_
-#define _WXMEDIT_ABOUT_DIALOG_H_
+#ifndef WXMEDIT_ABOUT_DIALOG_H
+#define WXMEDIT_ABOUT_DIALOG_H
 
-#include <wx/wxprec.h>
-#ifdef __BORLANDC__
-        #pragma hdrstop
-#endif
-#ifndef WX_PRECOMP
-        #include <wx/wx.h>
-#endif
-
-//Do not add custom headers.
-//wx-dvcpp designer will remove them
-////Header Include Start
-#include <wx/button.h>
+//(*Headers(WXMAboutDialog)
+#include <wx/sizer.h>
 #include <wx/textctrl.h>
 #include <wx/statbmp.h>
-#include <wx/sizer.h>
-////Header Include End
-
+#include <wx/button.h>
 #include <wx/dialog.h>
+//*)
 
-//Compatibility for 2.4.x code
-#ifndef wxCLOSE_BOX
-#define wxCLOSE_BOX 0x1000
-#endif
-#ifndef wxFIXED_MINSIZE
-#define wxFIXED_MINSIZE 0
-#endif
-
-////Dialog Style Start
-#undef MadAboutDialog_STYLE
-#define MadAboutDialog_STYLE wxCAPTION | wxSYSTEM_MENU | wxDIALOG_NO_PARENT | wxCLOSE_BOX
-////Dialog Style End
-
-class MadAboutDialog : public wxDialog
+class WXMAboutDialog: public wxDialog
 {
-public:
-    MadAboutDialog( wxWindow *parent, wxWindowID id = 1, const wxString &title = wxT("About wxMEdit"),
-        const wxPoint& pos = wxDefaultPosition,
-        const wxSize& size = wxDefaultSize,
-        long style = MadAboutDialog_STYLE);
-    virtual ~MadAboutDialog();
+	public:
 
-public:
+		WXMAboutDialog(wxWindow* parent,wxWindowID id=wxID_ANY,const wxPoint& pos=wxDefaultPosition,const wxSize& size=wxDefaultSize);
+		virtual ~WXMAboutDialog();
 
-  //Do not add custom Control Declarations here.
-  //wx-devcpp will remove them. Try adding the custom code 
-  //after the block.
-  ////GUI Control Declaration Start
-		wxButton *WxButtonCancel;
-		wxButton *WxButtonOK;
-		wxBoxSizer *WxBoxSizer3;
-		wxTextCtrl *WxMemo1;
-		wxStaticBitmap *WxStaticBitmap2;
-		wxStaticBitmap *WxStaticBitmap1;
-		wxBoxSizer *WxBoxSizer4;
-		wxBoxSizer *WxBoxSizer2;
-		wxBoxSizer *WxBoxSizer1;
-  ////GUI Control Declaration End
+		//(*Declarations(WXMAboutDialog)
+		wxStaticBitmap* StaticBitmap2;
+		wxStaticBitmap* StaticBitmap1;
+		wxButton* WxButtonCancel;
+		wxTextCtrl* WxMemo1;
+		wxButton* WxButtonOK;
+		//*)
 
-private:
-    DECLARE_EVENT_TABLE()
+	protected:
 
-public:
-    //Note: if you receive any error with these enums, then you need to
-    //change your old form code that are based on the #define control ids.
-    //#defines may replace a numeric value for the enums names.
-    //Try copy pasting the below block in your old Form header Files.
-	enum {
-////GUI Enum Control ID Start
-			ID_WXMEMO1 = 1011,
-			ID_WXSTATICBITMAP2 = 1015,
-			ID_WXSTATICBITMAP1 = 1016,
-////GUI Enum Control ID End
-   ID_DUMMY_VALUE_ //Dont Delete this DummyValue
-   }; //End of Enum
+		//(*Identifiers(WXMAboutDialog)
+		static const long ID_STATICBITMAP1;
+		static const long ID_STATICBITMAP2;
+		static const long ID_WXMEMO1;
+		//*)
 
-public:
-    void MadAboutDialogClose(wxCloseEvent& event);
-    void CreateGUIControls(void);
+	private:
 
+		//(*Handlers(WXMAboutDialog)
+		void WXMAboutDialogClose(wxCloseEvent& event);
+		//*)
+
+		DECLARE_EVENT_TABLE()
 };
 
-
 #endif
- 
- 
- 
- 

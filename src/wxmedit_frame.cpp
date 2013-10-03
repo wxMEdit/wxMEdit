@@ -4960,7 +4960,7 @@ void MadEditFrame::OnWindowNextWindow(wxCommandEvent& event)
 
 void MadEditFrame::OnHelpAbout(wxCommandEvent& event)
 {
-    MadAboutDialog dlg(this);
+    WXMAboutDialog dlg(this);
     dlg.WxMemo1->AppendText(g_MadEdit_Version + wxT("\n\n")+
                             g_MadEdit_URL + wxT("\n\n")+
                             _("Press OK to visit our HomePage."));
