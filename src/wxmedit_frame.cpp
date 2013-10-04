@@ -3917,11 +3917,11 @@ void MadEditFrame::OnSearchFind(wxCommandEvent& event)
 
     if(g_SearchDialog==NULL)
     {
-        g_SearchDialog=new MadSearchDialog(this, -1);
+        g_SearchDialog=new WXMSearchDialog(this);
     }
     if(g_ReplaceDialog==NULL)
     {
-        g_ReplaceDialog=new MadReplaceDialog(this, -1);
+        g_ReplaceDialog=new MadReplaceDialog(this);
     }
 
     g_ReplaceDialog->Show(false);
@@ -3980,7 +3980,7 @@ void MadEditFrame::OnSearchFindNext(wxCommandEvent& event)
 
     if(g_SearchDialog==NULL)
     {
-        g_SearchDialog=new MadSearchDialog(this, -1);
+        g_SearchDialog=new WXMSearchDialog(this);
     }
     if(g_ReplaceDialog==NULL)
     {
@@ -4018,7 +4018,7 @@ void MadEditFrame::OnSearchFindPrevious(wxCommandEvent& event)
 
     if(g_SearchDialog==NULL)
     {
-        g_SearchDialog=new MadSearchDialog(this, -1);
+        g_SearchDialog=new WXMSearchDialog(this);
     }
     if(g_ReplaceDialog==NULL)
     {
@@ -4056,7 +4056,7 @@ void MadEditFrame::OnSearchReplace(wxCommandEvent& event)
 
     if(g_SearchDialog==NULL)
     {
-        g_SearchDialog=new MadSearchDialog(this, -1);
+        g_SearchDialog=new WXMSearchDialog(this);
     }
     if(g_ReplaceDialog==NULL)
     {
@@ -4118,7 +4118,7 @@ void MadEditFrame::OnSearchFindInFiles(wxCommandEvent& event)
 {
     if(g_SearchDialog==NULL)
     {
-        g_SearchDialog=new MadSearchDialog(this, -1);
+        g_SearchDialog=new WXMSearchDialog(this);
     }
     if(g_ReplaceDialog==NULL)
     {

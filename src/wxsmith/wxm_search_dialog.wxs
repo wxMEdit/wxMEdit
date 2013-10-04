@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<wxsmith>
+	<object class="wxDialog" name="WXMSearchDialog">
+		<title>Search</title>
+		<pos_arg>1</pos_arg>
+		<size_arg>1</size_arg>
+		<style>wxCAPTION|wxSYSTEM_MENU|wxRESIZE_BORDER|wxCLOSE_BOX</style>
+		<handler function="WXMSearchDialogClose" entry="EVT_CLOSE" />
+		<handler function="WXMSearchDialogKeyDown" entry="EVT_KEY_DOWN" />
+		<object class="wxBoxSizer" variable="BoxSizer1" member="no">
+			<object class="sizeritem">
+				<object class="wxBoxSizer" variable="BoxSizer2" member="no">
+					<orient>wxVERTICAL</orient>
+					<object class="sizeritem">
+						<object class="wxBoxSizer" variable="BoxSizer4" member="no" />
+						<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+						<option>1</option>
+					</object>
+					<object class="sizeritem">
+						<object class="wxBoxSizer" variable="BoxSizer5" member="no">
+							<orient>wxVERTICAL</orient>
+							<object class="sizeritem">
+								<object class="wxCheckBox" name="ID_WXCHECKBOXMOVEFOCUS" variable="WxCheckBoxMoveFocus" member="yes">
+									<label>&amp;Move Focus to Editor Window</label>
+								</object>
+								<flag>wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
+								<border>2</border>
+							</object>
+							<object class="sizeritem">
+								<object class="wxCheckBox" name="ID_WXCHECKBOXCASESENSITIVE" variable="WxCheckBoxCaseSensitive" member="yes">
+									<label>&amp;Case Sensitive</label>
+								</object>
+								<flag>wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
+								<border>2</border>
+							</object>
+							<object class="sizeritem">
+								<object class="wxCheckBox" name="ID_WXCHECKBOXWHOLEWORD" variable="WxCheckBoxWholeWord" member="yes">
+									<label>&amp;Whole Word Only</label>
+								</object>
+								<flag>wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
+								<border>2</border>
+							</object>
+							<object class="sizeritem">
+								<object class="wxCheckBox" name="ID_WXCHECKBOXREGEX" variable="WxCheckBoxRegex" member="yes">
+									<label>Use Regular E&amp;xpressions</label>
+								</object>
+								<flag>wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
+								<border>2</border>
+							</object>
+							<object class="sizeritem">
+								<object class="wxCheckBox" name="ID_WXCHECKBOXFINDHEX" variable="WxCheckBoxFindHex" member="yes">
+									<label>Find &amp;Hex String (Example: BE 00 3A or BE003A)</label>
+									<handler function="WxCheckBoxFindHexClick" entry="EVT_CHECKBOX" />
+								</object>
+								<flag>wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
+								<border>2</border>
+							</object>
+							<object class="sizeritem">
+								<object class="wxBoxSizer" variable="BoxSizer6" member="no">
+									<object class="sizeritem">
+										<object class="wxCheckBox" name="ID_WXCHECKBOXSEARCHINSELECTION" variable="WxCheckBoxSearchInSelection" member="yes">
+											<label>Search In &amp;Selection</label>
+											<handler function="WxCheckBoxSearchInSelectionClick" entry="EVT_CHECKBOX" />
+										</object>
+										<flag>wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
+										<border>2</border>
+									</object>
+									<object class="sizeritem">
+										<object class="wxStaticText" name="ID_WXSTATICTEXTFROM" variable="WxStaticTextFrom" member="yes">
+											<label>From:</label>
+										</object>
+										<flag>wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
+										<border>2</border>
+									</object>
+									<object class="sizeritem">
+										<object class="wxTextCtrl" name="ID_WXEDITFROM" variable="WxEditFrom" member="yes" />
+										<flag>wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
+										<border>2</border>
+									</object>
+									<object class="sizeritem">
+										<object class="wxStaticText" name="ID_WXSTATICTEXTTO" variable="WxStaticTextTo" member="yes">
+											<label>To:</label>
+										</object>
+										<flag>wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
+										<border>2</border>
+									</object>
+									<object class="sizeritem">
+										<object class="wxTextCtrl" name="ID_WXEDITTO" variable="WxEditTo" member="yes" />
+										<flag>wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
+										<border>2</border>
+									</object>
+								</object>
+								<flag>wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
+							</object>
+						</object>
+						<flag>wxALL|wxALIGN_LEFT|wxALIGN_TOP</flag>
+					</object>
+				</object>
+				<flag>wxALL|wxALIGN_TOP|wxALIGN_CENTER_HORIZONTAL</flag>
+				<option>1</option>
+			</object>
+			<object class="sizeritem">
+				<object class="wxBoxSizer" variable="BoxSizer3" member="no">
+					<orient>wxVERTICAL</orient>
+					<object class="sizeritem">
+						<object class="wxButton" name="ID_WXBUTTONFINDNEXT" variable="WxButtonFindNext" member="yes">
+							<label>Find &amp;Next</label>
+							<default>1</default>
+							<handler function="WxButtonFindNextClick" entry="EVT_BUTTON" />
+						</object>
+						<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+						<border>2</border>
+					</object>
+					<object class="sizeritem">
+						<object class="wxButton" name="ID_WXBUTTONFINDPREV" variable="WxButtonFindPrev" member="yes">
+							<label>Find &amp;Previous</label>
+							<handler function="WxButtonFindPrevClick" entry="EVT_BUTTON" />
+						</object>
+						<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+						<border>2</border>
+					</object>
+					<object class="sizeritem">
+						<object class="wxButton" name="ID_WXBUTTONCOUNT" variable="WxButtonCount" member="yes">
+							<label>C&amp;ount</label>
+							<handler function="WxButtonCountClick" entry="EVT_BUTTON" />
+						</object>
+						<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+						<border>2</border>
+					</object>
+					<object class="sizeritem">
+						<object class="wxButton" name="ID_WXBUTTONREPLACE" variable="WxButtonReplace" member="yes">
+							<label>&amp;Replace &gt;&gt;</label>
+							<handler function="WxButtonReplaceClick" entry="EVT_BUTTON" />
+						</object>
+						<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+						<border>2</border>
+					</object>
+					<object class="sizeritem">
+						<object class="wxButton" name="ID_WXBUTTONCLOSE" variable="WxButtonClose" member="yes">
+							<label>Close</label>
+							<handler function="WxButtonCloseClick" entry="EVT_BUTTON" />
+						</object>
+						<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+						<border>2</border>
+					</object>
+				</object>
+				<flag>wxALL|wxALIGN_TOP|wxALIGN_CENTER_HORIZONTAL</flag>
+			</object>
+		</object>
+		<object class="wxMenu" variable="WxPopupMenuRecentFindText" member="yes" />
+	</object>
+</wxsmith>

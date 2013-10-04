@@ -393,7 +393,7 @@ void MadFindInFilesDialog::UpdateCheckBoxByCBHex(bool check)
 
 void MadFindInFilesDialog::WxBitmapButtonRecentFindTextClick(wxCommandEvent& event)
 {
-    PopupMenu(g_SearchDialog->WxPopupMenuRecentFindText);
+    PopupMenu(&g_SearchDialog->WxPopupMenuRecentFindText);
 }
 
 void MadFindInFilesDialog::WxBitmapButtonRecentReplaceTextClick(wxCommandEvent& event)

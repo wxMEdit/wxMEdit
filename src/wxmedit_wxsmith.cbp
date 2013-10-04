@@ -12,21 +12,24 @@
 				<Option compiler="gcc" />
 			</Target>
 		</Build>
-		<Unit filename="wxmedit_about_dialog.cpp" />
-		<Unit filename="wxmedit_about_dialog.h" />
-		<Unit filename="wxsmith/wxmedit_about_dialog.wxs" />
-		<Unit filename="wxm_sort_dialog.cpp" />
-		<Unit filename="wxm_sort_dialog.h" />
-		<Unit filename="wxsmith/wxm_sort_dialog.wxs" />
 		<Unit filename="wxm_conv_enc_dialog.cpp" />
 		<Unit filename="wxm_conv_enc_dialog.h" />
-		<Unit filename="wxsmith/wxm_conv_enc_dialog.wxs" />
-		<Unit filename="wxm_word_count_dialog.cpp" />
-		<Unit filename="wxm_word_count_dialog.h" />
-		<Unit filename="wxsmith/wxm_word_count_dialog.wxs" />
 		<Unit filename="wxm_file_association_dialog.cpp" />
 		<Unit filename="wxm_file_association_dialog.h" />
+		<Unit filename="wxm_search_dialog.cpp" />
+		<Unit filename="wxm_search_dialog.h" />
+		<Unit filename="wxm_sort_dialog.cpp" />
+		<Unit filename="wxm_sort_dialog.h" />
+		<Unit filename="wxm_word_count_dialog.cpp" />
+		<Unit filename="wxm_word_count_dialog.h" />
+		<Unit filename="wxmedit_about_dialog.cpp" />
+		<Unit filename="wxmedit_about_dialog.h" />
+		<Unit filename="wxsmith/wxm_conv_enc_dialog.wxs" />
 		<Unit filename="wxsmith/wxm_file_association_dialog.wxs" />
+		<Unit filename="wxsmith/wxm_search_dialog.wxs" />
+		<Unit filename="wxsmith/wxm_sort_dialog.wxs" />
+		<Unit filename="wxsmith/wxm_word_count_dialog.wxs" />
+		<Unit filename="wxsmith/wxmedit_about_dialog.wxs" />
 		<Extensions>
 			<code_completion />
 			<envvars />
@@ -39,6 +42,7 @@
 					<wxDialog wxs="wxsmith/wxm_conv_enc_dialog.wxs" src="wxm_conv_enc_dialog.cpp" hdr="wxm_conv_enc_dialog.h" fwddecl="0" i18n="1" name="WXMConvEncDialog" language="CPP" />
 					<wxDialog wxs="wxsmith/wxm_word_count_dialog.wxs" src="wxm_word_count_dialog.cpp" hdr="wxm_word_count_dialog.h" fwddecl="0" i18n="1" name="WXMWordCountDialog" language="CPP" />
 					<wxDialog wxs="wxsmith/wxm_file_association_dialog.wxs" src="wxm_file_association_dialog.cpp" hdr="wxm_file_association_dialog.h" fwddecl="0" i18n="1" name="WXMFileAssociationDialog" language="CPP" />
+					<wxDialog wxs="wxsmith/wxm_search_dialog.wxs" src="wxm_search_dialog.cpp" hdr="wxm_search_dialog.h" fwddecl="0" i18n="1" name="WXMSearchDialog" language="CPP" />
 				</resources>
 			</wxsmith>
 		</Extensions>

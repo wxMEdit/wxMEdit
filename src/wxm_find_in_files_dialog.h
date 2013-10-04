@@ -140,10 +140,6 @@ class MadFindInFilesDialog : public wxDialog
 			ID_MADEDIT2 = 1401,
 			ID_WXBITMAPBUTTONRECENTFINDTEXT=1402,
 			ID_WXBITMAPBUTTONRECENTREPLACETEXT=1403,
-			ID_RECENTFINDTEXT1=1501,    // must be the same with MadSearchDialog
-			ID_RECENTFINDTEXT20=1520,
-			ID_RECENTREPLACETEXT1=ID_RECENTFINDTEXT20+1,
-			ID_RECENTREPLACETEXT20=ID_RECENTREPLACETEXT1+19,
 
 			ID_DUMMY_VALUE_ //don't remove this value unless you have other enum values
 		}; //End of Enum

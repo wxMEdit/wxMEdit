@@ -419,7 +419,7 @@ void MadReplaceDialog::MadReplaceDialogKeyDown(wxKeyEvent& event)
             int x,y,w,h;
             g_ReplaceDialog->m_FindText->GetPosition(&x, &y);
             g_ReplaceDialog->m_FindText->GetSize(&w, &h);
-            g_ReplaceDialog->PopupMenu(g_SearchDialog->WxPopupMenuRecentFindText, x, y+h);
+            g_ReplaceDialog->PopupMenu(&g_SearchDialog->WxPopupMenuRecentFindText, x, y+h);
             return;
         }
         else if((MadEdit*)this==g_ReplaceDialog->m_ReplaceText)
@@ -438,7 +438,7 @@ void MadReplaceDialog::MadReplaceDialogKeyDown(wxKeyEvent& event)
 
 void MadReplaceDialog::WxBitmapButtonRecentFindTextClick(wxCommandEvent& event)
 {
-    PopupMenu(g_SearchDialog->WxPopupMenuRecentFindText);
+    PopupMenu(&g_SearchDialog->WxPopupMenuRecentFindText);
 }
 
 void MadReplaceDialog::WxBitmapButtonRecentReplaceTextClick(wxCommandEvent& event)

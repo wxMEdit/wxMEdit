@@ -6,142 +6,109 @@
 // Licence:     GPL
 ///////////////////////////////////////////////////////////////////////////////
 
-#ifndef _WXM_SEARCH_DIALOG_H_
-#define _WXM_SEARCH_DIALOG_H_
+#ifndef WXM_SEARCH_DIALOG_H
+#define WXM_SEARCH_DIALOG_H
 
 #include "xm/wx_recent_list.h"
 
-#include <wx/wxprec.h>
-#ifdef __BORLANDC__
-        #pragma hdrstop
-#endif
-#ifndef WX_PRECOMP
-        #include <wx/wx.h>
-#endif
-
-//Do not add custom headers.
-//wx-dvcpp designer will remove them
-////Header Include Start
-#include <wx/menu.h>
-#include <wx/button.h>
-#include <wx/textctrl.h>
-#include <wx/stattext.h>
-#include <wx/checkbox.h>
+//(*Headers(WXMSearchDialog)
 #include <wx/sizer.h>
-////Header Include End
-
+#include <wx/stattext.h>
+#include <wx/menu.h>
+#include <wx/textctrl.h>
+#include <wx/checkbox.h>
+#include <wx/button.h>
 #include <wx/dialog.h>
-#include <wx/docview.h>
-#include <wx/fileconf.h>
+//*)
 
-////Dialog Style Start
-#undef MadSearchDialog_STYLE
-#define MadSearchDialog_STYLE wxCAPTION | wxRESIZE_BORDER | wxSYSTEM_MENU | wxCLOSE_BOX
-////Dialog Style End
+#include <wx/fileconf.h>
+#include <wx/bmpbuttn.h>
+
+extern const long ID_RECENTFINDTEXT1;
+extern const long ID_RECENTFINDTEXT20;
+extern const long ID_RECENTREPLACETEXT1;
+extern const long ID_RECENTREPLACETEXT20;
 
 class MadEdit;
 
-class MadSearchDialog : public wxDialog
+class WXMSearchDialog: public wxDialog
 {
-private:
-    DECLARE_EVENT_TABLE()
-public:
-    MadSearchDialog( wxWindow *parent, wxWindowID id = 1, const wxString &title = wxT("Search"),
-        const wxPoint& pos = wxDefaultPosition,
-        const wxSize& size = wxDefaultSize,
-        long style = MadSearchDialog_STYLE);
-    virtual ~MadSearchDialog();
-public:
+	public:
 
-  //Do not add custom Control Declarations here.
-  //wx-devcpp will remove them. Try adding the custom code 
-  //after the block.
-  ////GUI Control Declaration Start
-		wxMenu *WxPopupMenuRecentFindText;
-		wxButton *WxButtonClose;
-		wxButton *WxButtonReplace;
-		wxButton *WxButtonCount;
-		wxButton *WxButtonFindPrev;
-		wxButton *WxButtonFindNext;
-		wxBoxSizer *WxBoxSizer3;
-		wxTextCtrl *WxEditTo;
-		wxStaticText *WxStaticTextTo;
-		wxTextCtrl *WxEditFrom;
-		wxStaticText *WxStaticTextFrom;
-		wxCheckBox *WxCheckBoxSearchInSelection;
-		wxBoxSizer *WxBoxSizer6;
-		wxCheckBox *WxCheckBoxFindHex;
-		wxCheckBox *WxCheckBoxRegex;
-		wxCheckBox *WxCheckBoxWholeWord;
-		wxCheckBox *WxCheckBoxCaseSensitive;
-		wxCheckBox *WxCheckBoxMoveFocus;
-		wxBoxSizer *WxBoxSizer5;
-		wxBoxSizer *WxBoxSizer4;
-		wxBoxSizer *WxBoxSizer2;
-		wxBoxSizer *WxBoxSizer1;
-  ////GUI Control Declaration End
+		WXMSearchDialog(wxWindow* parent,wxWindowID id=wxID_ANY,const wxPoint& pos=wxDefaultPosition,const wxSize& size=wxDefaultSize);
+		virtual ~WXMSearchDialog();
 
-public:
-    //Note: if you receive any error with these enums, then you need to
-    //change your old form code that are based on the #define control ids.
-    //#defines may replace a numeric value for the enums names.
-    //Try copy pasting the below block in your old Form header Files.
-	enum {
-////GUI Enum Control ID Start
-			ID_WXBUTTONCLOSE = 13,
-			ID_WXBUTTONREPLACE = 12,
-			ID_WXBUTTONCOUNT = 23,
-			ID_WXBUTTONFINDPREV = 11,
-			ID_WXBUTTONFINDNEXT = 10,
-			ID_WXEDITTO = 22,
-			ID_WXSTATICTEXTTO = 21,
-			ID_WXEDITFROM = 20,
-			ID_WXSTATICTEXTFROM = 19,
-			ID_WXCHECKBOXSEARCHINSELECTION = 18,
-			ID_WXCHECKBOXFINDHEX = 9,
-			ID_WXCHECKBOXREGEX = 8,
-			ID_WXCHECKBOXWHOLEWORD = 7,
-			ID_WXCHECKBOXCASESENSITIVE = 6,
-			ID_WXCHECKBOXMOVEFOCUS = 16,
-////GUI Enum Control ID End
-            ID_MADEDIT=1500,
-            ID_RECENTFINDTEXT1=1501,
-            ID_RECENTFINDTEXT20=1520,
-            ID_WXBITMAPBUTTONRECENTFINDTEXT=1521,
-   ID_DUMMY_VALUE_ //Dont Delete this DummyValue
-   }; //End of Enum
+		//(*Declarations(WXMSearchDialog)
+		wxButton* WxButtonReplace;
+		wxButton* WxButtonFindPrev;
+		wxButton* WxButtonFindNext;
+		wxCheckBox* WxCheckBoxMoveFocus;
+		wxStaticText* WxStaticTextTo;
+		wxCheckBox* WxCheckBoxCaseSensitive;
+		wxCheckBox* WxCheckBoxSearchInSelection;
+		wxMenu WxPopupMenuRecentFindText;
+		wxTextCtrl* WxEditTo;
+		wxButton* WxButtonClose;
+		wxTextCtrl* WxEditFrom;
+		wxCheckBox* WxCheckBoxFindHex;
+		wxStaticText* WxStaticTextFrom;
+		wxCheckBox* WxCheckBoxWholeWord;
+		wxButton* WxButtonCount;
+		wxCheckBox* WxCheckBoxRegex;
+		//*)
 
-public:
-    void MadSearchDialogClose(wxCloseEvent& event);
-    void CreateGUIControls(void);
+	protected:
 
-    MadEdit *m_FindText;
-    wxBitmapButton *WxBitmapButtonRecentFindText;
-    wxRecentList *m_RecentFindText;
-    
-	void WxButtonCloseClick(wxCommandEvent& event);
-	void MadSearchDialogKeyDown(wxKeyEvent& event);
-	void WxButtonFindNextClick(wxCommandEvent& event);
-	
-	void WxBitmapButtonRecentFindTextClick(wxCommandEvent& event);
-	void OnRecentFindText(wxCommandEvent& event);
-	void WxButtonFindPrevClick(wxCommandEvent& event);
+		//(*Identifiers(WXMSearchDialog)
+		static const long ID_WXCHECKBOXMOVEFOCUS;
+		static const long ID_WXCHECKBOXCASESENSITIVE;
+		static const long ID_WXCHECKBOXWHOLEWORD;
+		static const long ID_WXCHECKBOXREGEX;
+		static const long ID_WXCHECKBOXFINDHEX;
+		static const long ID_WXCHECKBOXSEARCHINSELECTION;
+		static const long ID_WXSTATICTEXTFROM;
+		static const long ID_WXEDITFROM;
+		static const long ID_WXSTATICTEXTTO;
+		static const long ID_WXEDITTO;
+		static const long ID_WXBUTTONFINDNEXT;
+		static const long ID_WXBUTTONFINDPREV;
+		static const long ID_WXBUTTONCOUNT;
+		static const long ID_WXBUTTONREPLACE;
+		static const long ID_WXBUTTONCLOSE;
+		//*)
 
-    void ReadWriteSettings(bool bRead);
-    void UpdateCheckBoxByCBHex(bool check);
-    void UpdateSearchInSelection(bool check);
+		static const long ID_MADEDIT;
+		static const long ID_WXBITMAPBUTTONRECENTFINDTEXT;
 
-    void WxCheckBoxFindHexClick(wxCommandEvent& event);
-    void MadSearchDialogActivate(wxActivateEvent& event);
-    void WxButtonReplaceClick(wxCommandEvent& event);
-    void WxCheckBoxSearchInSelectionClick(wxCommandEvent& event);
-    void WxButtonCountClick(wxCommandEvent& event);
+	public:
+		MadEdit *m_FindText;
+		wxBitmapButton *WxBitmapButtonRecentFindText;
+		wxRecentList *m_RecentFindText;
+		
+		void OnRecentFindText(wxCommandEvent& event);
+		void ReadWriteSettings(bool bRead);
+		void UpdateCheckBoxByCBHex(bool check);
+		void UpdateSearchInSelection(bool check);
+
+	//private:
+	public:
+		//(*Handlers(WXMSearchDialog)
+		void WXMSearchDialogClose(wxCloseEvent& event);
+		void WXMSearchDialogKeyDown(wxKeyEvent& event);
+		void WxCheckBoxFindHexClick(wxCommandEvent& event);
+		void WxCheckBoxSearchInSelectionClick(wxCommandEvent& event);
+		void WxButtonFindNextClick(wxCommandEvent& event);
+		void WxButtonFindPrevClick(wxCommandEvent& event);
+		void WxButtonCountClick(wxCommandEvent& event);
+		void WxButtonReplaceClick(wxCommandEvent& event);
+		void WxButtonCloseClick(wxCommandEvent& event);
+		//*)
+		void WXMSearchDialogActivate(wxActivateEvent& event);
+		void WxBitmapButtonRecentFindTextClick(wxCommandEvent& event);
+
+		DECLARE_EVENT_TABLE()
 };
 
-extern MadSearchDialog *g_SearchDialog;
+extern WXMSearchDialog *g_SearchDialog;
 
 #endif
- 
- 
- 
- 
