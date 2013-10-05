@@ -85,7 +85,6 @@ class WXMSearchDialog: public wxDialog
 		wxBitmapButton *WxBitmapButtonRecentFindText;
 		wxRecentList *m_RecentFindText;
 		
-		void OnRecentFindText(wxCommandEvent& event);
 		void ReadWriteSettings(bool bRead);
 		void UpdateCheckBoxByCBHex(bool check);
 		void UpdateSearchInSelection(bool check);
@@ -103,8 +102,11 @@ class WXMSearchDialog: public wxDialog
 		void WxButtonReplaceClick(wxCommandEvent& event);
 		void WxButtonCloseClick(wxCommandEvent& event);
 		//*)
+
 		void WXMSearchDialogActivate(wxActivateEvent& event);
+
 		void WxBitmapButtonRecentFindTextClick(wxCommandEvent& event);
+		void OnRecentFindText(wxCommandEvent& event);
 
 		DECLARE_EVENT_TABLE()
 };

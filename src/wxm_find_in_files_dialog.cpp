@@ -398,7 +398,7 @@ void MadFindInFilesDialog::WxBitmapButtonRecentFindTextClick(wxCommandEvent& eve
 
 void MadFindInFilesDialog::WxBitmapButtonRecentReplaceTextClick(wxCommandEvent& event)
 {
-    PopupMenu(g_ReplaceDialog->WxPopupMenuRecentReplaceText);
+    PopupMenu(&g_ReplaceDialog->WxPopupMenuRecentReplaceText);
 }
 
 void MadFindInFilesDialog::OnRecentFindText(wxCommandEvent& event)

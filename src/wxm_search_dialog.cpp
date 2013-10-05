@@ -60,6 +60,9 @@ BEGIN_EVENT_TABLE(WXMSearchDialog,wxDialog)
 	//(*EventTable(WXMSearchDialog)
 	//*)
 	EVT_ACTIVATE(WXMSearchDialog::WXMSearchDialogActivate)
+
+	EVT_BUTTON(ID_WXBITMAPBUTTONRECENTFINDTEXT, WXMSearchDialog::WxBitmapButtonRecentFindTextClick)
+	EVT_MENU_RANGE(ID_RECENTFINDTEXT1, ID_RECENTFINDTEXT20, WXMSearchDialog::OnRecentFindText)
 END_EVENT_TABLE()
 
 WXMSearchDialog::WXMSearchDialog(wxWindow* parent,wxWindowID id,const wxPoint& pos,const wxSize& size)

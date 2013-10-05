@@ -3921,7 +3921,7 @@ void MadEditFrame::OnSearchFind(wxCommandEvent& event)
     }
     if(g_ReplaceDialog==NULL)
     {
-        g_ReplaceDialog=new MadReplaceDialog(this);
+        g_ReplaceDialog=new WXMReplaceDialog(this);
     }
 
     g_ReplaceDialog->Show(false);
@@ -3984,7 +3984,7 @@ void MadEditFrame::OnSearchFindNext(wxCommandEvent& event)
     }
     if(g_ReplaceDialog==NULL)
     {
-        g_ReplaceDialog=new MadReplaceDialog(this, -1);
+        g_ReplaceDialog=new WXMReplaceDialog(this);
     }
 
     g_SearchDialog->UpdateCheckBoxByCBHex(g_SearchDialog->WxCheckBoxFindHex->GetValue());
@@ -4022,7 +4022,7 @@ void MadEditFrame::OnSearchFindPrevious(wxCommandEvent& event)
     }
     if(g_ReplaceDialog==NULL)
     {
-        g_ReplaceDialog=new MadReplaceDialog(this, -1);
+        g_ReplaceDialog=new WXMReplaceDialog(this);
     }
 
     g_SearchDialog->UpdateCheckBoxByCBHex(g_SearchDialog->WxCheckBoxFindHex->GetValue());
@@ -4060,7 +4060,7 @@ void MadEditFrame::OnSearchReplace(wxCommandEvent& event)
     }
     if(g_ReplaceDialog==NULL)
     {
-        g_ReplaceDialog=new MadReplaceDialog(this, -1);
+        g_ReplaceDialog=new WXMReplaceDialog(this);
     }
 
     g_SearchDialog->Show(false);
@@ -4122,7 +4122,7 @@ void MadEditFrame::OnSearchFindInFiles(wxCommandEvent& event)
     }
     if(g_ReplaceDialog==NULL)
     {
-        g_ReplaceDialog=new MadReplaceDialog(this, -1);
+        g_ReplaceDialog=new WXMReplaceDialog(this);
     }
     if(g_FindInFilesDialog==NULL)
     {
