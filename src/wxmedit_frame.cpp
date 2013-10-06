@@ -45,17 +45,11 @@
 
 #include <algorithm>
 
-//Do not add custom headers.
-//wx-dvcpp designer will remove them
-////Header Include Start
-////Header Include End
-
 
 #ifdef _DEBUG
 #include <crtdbg.h>
 #define new new(_NORMAL_BLOCK ,__FILE__, __LINE__)
 #endif
-
 
 
 #if !defined(__WXMSW__) && !defined(__WXPM__)
@@ -966,10 +960,7 @@ public:
 // MadEditFrame
 //----------------------------------------------------------------------------
    //Add Custom Events only in the appropriate Block.
-   // Code added in  other places will be removed by wx-dvcpp
-  ////Event Table Start
 BEGIN_EVENT_TABLE(MadEditFrame,wxFrame)
-	////Manual Code Start
 	//EVT_SIZE(MadEditFrame::OnSize)
 	EVT_AUINOTEBOOK_PAGE_CHANGING(ID_NOTEBOOK, MadEditFrame::OnNotebookPageChanging)
 	EVT_AUINOTEBOOK_PAGE_CHANGED(ID_NOTEBOOK, MadEditFrame::OnNotebookPageChanged)
@@ -1185,12 +1176,10 @@ BEGIN_EVENT_TABLE(MadEditFrame,wxFrame)
 	EVT_MENU(menuPreviousWindow, MadEditFrame::OnWindowPreviousWindow)
 	// help
 	EVT_MENU(menuAbout, MadEditFrame::OnHelpAbout)
-	////Manual Code End
 	
 	EVT_CLOSE(MadEditFrame::MadEditFrameClose)
 	EVT_KEY_DOWN(MadEditFrame::MadEditFrameKeyDown)
 END_EVENT_TABLE()
-  ////Event Table End
 
 
 
@@ -1691,31 +1680,6 @@ MadEditFrame::~MadEditFrame()
 
 void MadEditFrame::CreateGUIControls(void)
 {
-#if 0
-    //Do not add custom Code here
-    //wx-devcpp designer will remove them.
-    //Add the custom code before or after the Blocks
-    ////GUI Items Creation Start
-
-	WxStatusBar1 = new wxStatusBar(this, ID_WXSTATUSBAR1);
-
-	WxToolBar1 = new wxToolBar(this, ID_WXTOOLBAR1, wxPoint(0, 0), wxSize(482, 29));
-	WxToolBar1->SetFont(wxFont(12, wxSWISS, wxNORMAL, wxNORMAL, false));
-
-	WxMenuBar1 = new wxMenuBar();
-
-	WxToolBar1->Realize();
-	SetToolBar(WxToolBar1);
-	SetStatusBar(WxStatusBar1);
-	SetTitle(_("wxMEdit"));
-	SetIcon(wxNullIcon);
-	SetSize(8,8,490,487);
-	Center();
-	
-    ////GUI Items Creation End
-#endif
-
-
     WxStatusBar1 = new wxStatusBar(this, ID_WXSTATUSBAR1);
     g_StatusBar = WxStatusBar1;
 
