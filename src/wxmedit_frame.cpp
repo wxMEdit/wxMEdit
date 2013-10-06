@@ -4126,7 +4126,7 @@ void MadEditFrame::OnSearchFindInFiles(wxCommandEvent& event)
     }
     if(g_FindInFilesDialog==NULL)
     {
-        g_FindInFilesDialog=new MadFindInFilesDialog(this, -1);
+        g_FindInFilesDialog=new WXMFindInFilesDialog(this);
     }
 
     g_FindInFilesDialog->Show();
