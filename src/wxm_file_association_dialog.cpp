@@ -348,7 +348,6 @@ WXMFileAssociationDialog::WXMFileAssociationDialog(wxWindow* parent,wxWindowID i
 	BoxSizer3->Add(WxButtonOK, 0, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
 	WxButtonCancel = new wxButton(this, wxID_CANCEL, _("&Cancel"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("wxID_CANCEL"));
 	WxButtonCancel->SetDefault();
-	WxButtonCancel->SetFocus();
 	BoxSizer3->Add(WxButtonCancel, 0, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
 	BoxSizer1->Add(BoxSizer3, 0, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
 	SetSizer(BoxSizer1);
@@ -389,6 +388,7 @@ WXMFileAssociationDialog::WXMFileAssociationDialog(wxWindow* parent,wxWindowID i
 
 	cfg->SetPath(oldpath);
 
+	WxButtonCancel->SetFocus();
 }
 
 WXMFileAssociationDialog::~WXMFileAssociationDialog()

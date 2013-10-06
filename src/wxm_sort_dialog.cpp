@@ -52,7 +52,6 @@ WXMSortDialog::WXMSortDialog(wxWindow* parent,wxWindowID id,const wxPoint& pos,c
 	BoxSizer1->Add(WxCheckBoxRemoveDup, 0, wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL, 5);
 	BoxSizer2 = new wxBoxSizer(wxHORIZONTAL);
 	WxButtonSort = new wxButton(this, wxID_OK, _("&Sort"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("wxID_OK"));
-	WxButtonSort->SetFocus();
 	BoxSizer2->Add(WxButtonSort, 0, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
 	WxButtonCancel = new wxButton(this, wxID_CANCEL, _("Cancel"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("wxID_CANCEL"));
 	BoxSizer2->Add(WxButtonCancel, 0, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
@@ -64,6 +63,8 @@ WXMSortDialog::WXMSortDialog(wxWindow* parent,wxWindowID id,const wxPoint& pos,c
 
 	Connect(wxID_ANY,wxEVT_CLOSE_WINDOW,(wxObjectEventFunction)&WXMSortDialog::WXMSortDialogClose);
 	//*)
+
+	WxButtonSort->SetFocus();
 }
 
 WXMSortDialog::~WXMSortDialog()

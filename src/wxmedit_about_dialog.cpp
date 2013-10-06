@@ -50,6 +50,7 @@ WXMAboutDialog::WXMAboutDialog(wxWindow* parent,wxWindowID id,const wxPoint& pos
 	WxButtonOK = new wxButton(this, wxID_OK, _("&OK"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("wxID_OK"));
 	BoxSizer3->Add(WxButtonOK, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 4);
 	WxButtonCancel = new wxButton(this, wxID_CANCEL, _("&Cancel"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("wxID_CANCEL"));
+	WxButtonCancel->SetDefault();
 	BoxSizer3->Add(WxButtonCancel, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
 	BoxSizer1->Add(BoxSizer3, 0, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 3);
 	SetSizer(BoxSizer1);
@@ -65,7 +66,6 @@ WXMAboutDialog::WXMAboutDialog(wxWindow* parent,wxWindowID id,const wxPoint& pos
 	StaticBitmap2->SetBitmap(wxBitmap(madedit_xpm));
 	StaticBitmap2->Enable(true);
 
-	SetDefaultItem(WxButtonCancel);
 	WxButtonCancel->SetFocus();
 }
 

@@ -83,7 +83,6 @@ WXMWordCountDialog::WXMWordCountDialog(wxWindow* parent,wxWindowID id,const wxPo
 	WxMemo1 = new wxTextCtrl(this, ID_WXMEMO1, wxEmptyString, wxDefaultPosition, wxSize(440,160), wxTE_MULTILINE|wxTE_DONTWRAP, wxDefaultValidator, _T("ID_WXMEMO1"));
 	BoxSizer1->Add(WxMemo1, 1, wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 4);
 	Button1 = new wxButton(this, wxID_CANCEL, _("&Close"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("wxID_CANCEL"));
-	Button1->SetFocus();
 	BoxSizer1->Add(Button1, 0, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
 	SetSizer(BoxSizer1);
 	BoxSizer1->Fit(this);
@@ -115,6 +114,7 @@ WXMWordCountDialog::WXMWordCountDialog(wxWindow* parent,wxWindowID id,const wxPo
 		str<<detail[i]<<wxT("\n");
 	}
 	WxMemo1->SetValue(str);
+	Button1->SetFocus();
 }
 
 WXMWordCountDialog::~WXMWordCountDialog()

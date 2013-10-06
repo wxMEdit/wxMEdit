@@ -48,7 +48,6 @@
 					<object class="sizeritem">
 						<object class="wxButton" name="wxID_OK" variable="WxButtonSort" member="yes">
 							<label>&amp;Sort</label>
-							<focused>1</focused>
 						</object>
 						<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
 						<border>5</border>

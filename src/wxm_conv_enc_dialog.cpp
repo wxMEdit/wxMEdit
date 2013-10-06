@@ -62,7 +62,6 @@ WXMConvEncDialog::WXMConvEncDialog(wxWindow* parent,wxWindowID id,const wxPoint&
 	WxButtonOK = new wxButton(this, wxID_OK, _("&OK"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("wxID_OK"));
 	BoxSizer4->Add(WxButtonOK, 0, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
 	WxButtonCancel = new wxButton(this, wxID_CANCEL, _("&Cancel"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("wxID_CANCEL"));
-	WxButtonCancel->SetFocus();
 	BoxSizer4->Add(WxButtonCancel, 0, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
 	BoxSizer1->Add(BoxSizer4, 0, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
 	SetSizer(BoxSizer1);
@@ -85,6 +84,7 @@ WXMConvEncDialog::WXMConvEncDialog(wxWindow* parent,wxWindowID id,const wxPoint&
 	cfg->SetPath(oldpath);
 	WxComboBoxEncoding->SetValue(convenc);
 
+	WxButtonCancel->SetFocus();
 }
 
 WXMConvEncDialog::~WXMConvEncDialog()
@@ -96,13 +96,13 @@ WXMConvEncDialog::~WXMConvEncDialog()
 
 void WXMConvEncDialog::WXMConvEncDialogClose(wxCloseEvent& event)
 {
-    if(event.CanVeto())
-    {
-        event.Veto();
-        Show(false);
-        return;
-    }
-    
-    g_ConvEncDialog=NULL;
-    Destroy();
+	if(event.CanVeto())
+	{
+		event.Veto();
+		Show(false);
+		return;
+	}
+
+	g_ConvEncDialog=NULL;
+	Destroy();
 }

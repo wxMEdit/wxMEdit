@@ -61,6 +61,7 @@
 					<object class="sizeritem">
 						<object class="wxButton" name="wxID_CANCEL" variable="WxButtonCancel" member="yes">
 							<label>&amp;Cancel</label>
+							<default>1</default>
 						</object>
 						<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
 						<border>5</border>
