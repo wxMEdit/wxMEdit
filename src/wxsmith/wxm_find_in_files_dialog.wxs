@@ -138,9 +138,9 @@
 							</object>
 							<object class="sizeritem">
 								<object class="wxComboBox" name="ID_COMBOBOX1" variable="WxComboBoxDir" member="yes">
-									<size>330,0</size>
+									<size>330,-1</size>
 								</object>
-								<flag>wxALL|wxEXPAND|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
+								<flag>wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
 								<border>2</border>
 								<option>1</option>
 							</object>
@@ -171,9 +171,9 @@
 							</object>
 							<object class="sizeritem">
 								<object class="wxComboBox" name="ID_WXCOMBOBOXFILTER" variable="WxComboBoxFilter" member="yes">
-									<size>330,0</size>
+									<size>330,-1</size>
 								</object>
-								<flag>wxALL|wxEXPAND|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
+								<flag>wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
 								<border>2</border>
 								<option>1</option>
 							</object>
@@ -182,7 +182,7 @@
 									<label></label>
 								</object>
 								<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
-								<border>5</border>
+								<border>8</border>
 								<option>1</option>
 							</object>
 							<object class="sizeritem">
@@ -190,7 +190,7 @@
 									<label></label>
 								</object>
 								<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
-								<border>5</border>
+								<border>2</border>
 								<option>1</option>
 							</object>
 							<object class="sizeritem">
@@ -202,9 +202,9 @@
 							</object>
 							<object class="sizeritem">
 								<object class="wxComboBox" name="ID_WXCOMBOBOXEXCLUDE" variable="WxComboBoxExclude" member="yes">
-									<size>330,0</size>
+									<size>330,-1</size>
 								</object>
-								<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+								<flag>wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
 								<border>2</border>
 								<option>1</option>
 							</object>
@@ -213,7 +213,7 @@
 									<label></label>
 								</object>
 								<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
-								<border>5</border>
+								<border>8</border>
 								<option>1</option>
 							</object>
 							<object class="sizeritem">
@@ -221,7 +221,7 @@
 									<label></label>
 								</object>
 								<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
-								<border>5</border>
+								<border>2</border>
 								<option>1</option>
 							</object>
 							<object class="sizeritem">
