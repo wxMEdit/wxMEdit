@@ -4683,7 +4683,7 @@ void MadEditFrame::OnToolsOptions(wxCommandEvent& event)
 
 void MadEditFrame::OnToolsHighlighting(wxCommandEvent& event)
 {
-    if(g_HighlightingDialog==NULL) g_HighlightingDialog=new MadHighlightingDialog(this, -1);
+    if(g_HighlightingDialog==NULL) g_HighlightingDialog=new WXMHighlightingDialog(this);
 
     if(g_ActiveMadEdit)
     {

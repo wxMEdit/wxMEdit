@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<wxsmith>
+	<object class="wxDialog" name="WXMHighlightingDialog">
+		<title>Syntax Highlighting Settings</title>
+		<centered>1</centered>
+		<id_arg>0</id_arg>
+		<style>wxCAPTION|wxSYSTEM_MENU|wxRESIZE_BORDER|wxCLOSE_BOX|wxDIALOG_NO_PARENT|wxMAXIMIZE_BOX</style>
+		<handler function="WXMHighlightingDialogClose" entry="EVT_CLOSE" />
+		<object class="wxBoxSizer" variable="BoxSizer1" member="no">
+			<object class="sizeritem">
+				<object class="wxListBox" name="ID_WXLISTBOXSYNTAX" variable="WxListBoxSyntax" member="yes">
+					<default>-1</default>
+					<style>wxLB_SINGLE|wxLB_HSCROLL</style>
+					<handler function="WxListBoxSyntaxSelected" entry="EVT_LISTBOX" />
+				</object>
+				<flag>wxALL|wxEXPAND|wxALIGN_LEFT|wxALIGN_TOP</flag>
+				<border>4</border>
+				<option>1</option>
+			</object>
+			<object class="sizeritem">
+				<object class="wxBoxSizer" variable="BoxSizer2" member="no">
+					<orient>wxVERTICAL</orient>
+					<object class="sizeritem">
+						<object class="wxBoxSizer" variable="BoxSizer3" member="no">
+							<orient>wxVERTICAL</orient>
+							<object class="sizeritem">
+								<object class="wxBoxSizer" variable="BoxSizer4" member="no">
+									<object class="sizeritem">
+										<object class="wxStaticText" name="ID_STATICTEXT1" variable="StaticText1" member="yes">
+											<label>Scheme:</label>
+										</object>
+										<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+										<border>3</border>
+									</object>
+									<object class="sizeritem">
+										<object class="wxComboBox" name="ID_WXCOMBOBOXSCHEME" variable="WxComboBoxScheme" member="yes" />
+										<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+										<border>5</border>
+										<option>1</option>
+									</object>
+									<object class="sizeritem">
+										<object class="wxStaticText" name="ID_STATICTEXT2" variable="StaticText2" member="yes">
+											<label>You cannot modify the scheme with * sign.</label>
+										</object>
+										<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+										<border>3</border>
+									</object>
+								</object>
+								<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+								<border>4</border>
+							</object>
+							<object class="sizeritem">
+								<object class="wxBoxSizer" variable="BoxSizer6" member="no">
+									<object class="sizeritem">
+										<object class="wxButton" name="ID_WXBUTTONLOAD" variable="WxButtonLoad" member="yes">
+											<label>&amp;Load</label>
+											<handler function="WxButtonLoadClick" entry="EVT_BUTTON" />
+										</object>
+										<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+										<border>2</border>
+									</object>
+									<object class="sizeritem">
+										<object class="wxButton" name="ID_WXBUTTONSAVE" variable="WxButtonSave" member="yes">
+											<label>&amp;Save</label>
+											<handler function="WxButtonSaveClick" entry="EVT_BUTTON" />
+										</object>
+										<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+										<border>2</border>
+									</object>
+									<object class="sizeritem">
+										<object class="wxButton" name="ID_WXBUTTONDELETE" variable="WxButtonDelete" member="yes">
+											<label>&amp;Delete</label>
+											<handler function="WxButtonDeleteClick" entry="EVT_BUTTON" />
+										</object>
+										<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+										<border>2</border>
+									</object>
+								</object>
+								<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+								<border>2</border>
+							</object>
+						</object>
+						<flag>wxALL|wxALIGN_TOP|wxALIGN_CENTER_HORIZONTAL</flag>
+					</object>
+					<object class="sizeritem">
+						<object class="wxStaticLine" name="ID_STATICLINE1" variable="StaticLine1" member="yes">
+							<size>10,-1</size>
+						</object>
+						<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+						<border>1</border>
+					</object>
+					<object class="sizeritem">
+						<object class="wxBoxSizer" variable="BoxSizer5" member="no">
+							<object class="sizeritem">
+								<object class="wxListCtrl" name="ID_WXLISTCTRLKEYWORD" variable="WxListCtrlKeyword" member="yes">
+									<style>wxLC_REPORT|wxLC_NO_HEADER|wxLC_SINGLE_SEL</style>
+									<handler function="WxListCtrlKeywordSelected" entry="EVT_LIST_ITEM_SELECTED" />
+								</object>
+								<flag>wxALL|wxEXPAND|wxALIGN_LEFT|wxALIGN_TOP</flag>
+								<border>2</border>
+								<option>1</option>
+							</object>
+							<object class="sizeritem">
+								<object class="wxBoxSizer" variable="BoxSizer8" member="no">
+									<orient>wxVERTICAL</orient>
+									<object class="sizeritem">
+										<object class="wxBoxSizer" variable="BoxSizer9" member="no">
+											<orient>wxVERTICAL</orient>
+											<object class="sizeritem">
+												<object class="wxCheckBox" name="ID_WXCHECKBOXBOLD" variable="WxCheckBoxBold" member="yes">
+													<label>Bold</label>
+													<handler function="WxCheckBoxBoldClick" entry="EVT_CHECKBOX" />
+												</object>
+												<flag>wxALL|wxEXPAND|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
+												<border>2</border>
+											</object>
+											<object class="sizeritem">
+												<object class="wxCheckBox" name="ID_WXCHECKBOXITALIC" variable="WxCheckBoxItalic" member="yes">
+													<label>Italic</label>
+													<handler function="WxCheckBoxItalicClick" entry="EVT_CHECKBOX" />
+												</object>
+												<flag>wxALL|wxEXPAND|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
+												<border>2</border>
+											</object>
+											<object class="sizeritem">
+												<object class="wxCheckBox" name="ID_WXCHECKBOXUNDERLINE" variable="WxCheckBoxUnderline" member="yes">
+													<label>Underline</label>
+													<handler function="WxCheckBoxUnderlineClick" entry="EVT_CHECKBOX" />
+												</object>
+												<flag>wxALL|wxEXPAND|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
+												<border>2</border>
+											</object>
+										</object>
+										<flag>wxALL|wxALIGN_LEFT|wxALIGN_TOP</flag>
+										<border>2</border>
+									</object>
+									<object class="sizeritem">
+										<object class="wxStaticLine" name="ID_STATICLINE3" variable="StaticLine3" member="yes">
+											<size>10,-1</size>
+										</object>
+										<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+										<border>1</border>
+									</object>
+									<object class="sizeritem">
+										<object class="wxBoxSizer" variable="BoxSizer10" member="no">
+											<object class="sizeritem">
+												<object class="wxBoxSizer" variable="BoxSizer11" member="no">
+													<orient>wxVERTICAL</orient>
+													<object class="sizeritem">
+														<object class="wxStaticText" name="ID_STATICTEXT3" variable="StaticText3" member="yes">
+															<label>Foreground/Text Color</label>
+														</object>
+														<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+														<border>3</border>
+													</object>
+													<object class="sizeritem">
+														<object class="wxStaticText" name="ID_WXSTATICTEXTFCNAME" variable="WxStaticTextFCName" member="yes">
+															<label>WxStaticTextFCName</label>
+														</object>
+														<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+														<border>3</border>
+													</object>
+													<object class="sizeritem">
+														<object class="wxPanel" name="ID_WXPANELFC" variable="WxPanelFC" member="yes">
+															<size>85,20</size>
+															<style>wxSIMPLE_BORDER</style>
+														</object>
+														<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+														<border>2</border>
+													</object>
+													<object class="sizeritem">
+														<object class="wxListCtrl" name="ID_WXLISTCTRLFC" variable="WxListCtrlFC" member="yes">
+															<size>160,140</size>
+															<style>wxLC_REPORT|wxLC_NO_HEADER|wxLC_SINGLE_SEL</style>
+															<handler function="WxListCtrlFCSelected" entry="EVT_LIST_ITEM_SELECTED" />
+														</object>
+														<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+														<border>2</border>
+														<option>1</option>
+													</object>
+													<object class="sizeritem">
+														<object class="wxButton" name="ID_WXBUTTONFC" variable="WxButtonFC" member="yes">
+															<label>Other Color</label>
+															<handler function="WxButtonFCClick" entry="EVT_BUTTON" />
+														</object>
+														<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+														<border>2</border>
+													</object>
+												</object>
+												<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+												<border>2</border>
+												<option>1</option>
+											</object>
+											<object class="sizeritem">
+												<object class="wxStaticLine" name="ID_STATICLINE2" variable="StaticLine2" member="yes">
+													<size>-1,-1</size>
+													<style>wxLI_VERTICAL</style>
+												</object>
+												<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+												<border>1</border>
+											</object>
+											<object class="sizeritem">
+												<object class="wxBoxSizer" variable="BoxSizer12" member="no">
+													<orient>wxVERTICAL</orient>
+													<object class="sizeritem">
+														<object class="wxStaticText" name="ID_STATICTEXT4" variable="StaticText4" member="yes">
+															<label>Background Color</label>
+														</object>
+														<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+														<border>3</border>
+													</object>
+													<object class="sizeritem">
+														<object class="wxStaticText" name="ID_WXSTATICTEXTBCNAME" variable="WxStaticTextBCName" member="yes">
+															<label>WxStaticTextBCName</label>
+														</object>
+														<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+														<border>3</border>
+													</object>
+													<object class="sizeritem">
+														<object class="wxPanel" name="ID_WXPANELBC" variable="WxPanelBC" member="yes">
+															<size>85,20</size>
+															<style>wxSIMPLE_BORDER</style>
+														</object>
+														<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+														<border>2</border>
+													</object>
+													<object class="sizeritem">
+														<object class="wxListCtrl" name="ID_WXLISTCTRLBC" variable="WxListCtrlBC" member="yes">
+															<size>160,140</size>
+															<style>wxLC_REPORT|wxLC_NO_HEADER|wxLC_SINGLE_SEL</style>
+															<handler function="WxListCtrlBCSelected" entry="EVT_LIST_ITEM_SELECTED" />
+														</object>
+														<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+														<border>2</border>
+														<option>1</option>
+													</object>
+													<object class="sizeritem">
+														<object class="wxButton" name="ID_WXBUTTONBC" variable="WxButtonBC" member="yes">
+															<label>Other Color</label>
+															<handler function="WxButtonBCClick" entry="EVT_BUTTON" />
+														</object>
+														<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+														<border>2</border>
+													</object>
+												</object>
+												<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+												<border>2</border>
+												<option>1</option>
+											</object>
+										</object>
+										<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+										<border>2</border>
+										<option>1</option>
+									</object>
+								</object>
+								<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+								<option>2</option>
+							</object>
+						</object>
+						<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+						<option>1</option>
+					</object>
+					<object class="sizeritem">
+						<object class="wxBoxSizer" variable="BoxSizer7" member="no">
+							<object class="sizeritem">
+								<object class="wxButton" name="wxID_OK" variable="WxButtonClose" member="yes">
+									<label>&amp;OK</label>
+								</object>
+								<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+								<border>3</border>
+							</object>
+							<object class="sizeritem">
+								<object class="wxButton" name="wxID_CANCEL" variable="WxButtonCancel" member="yes">
+									<label>&amp;Cancel</label>
+								</object>
+								<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+								<border>3</border>
+							</object>
+						</object>
+						<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+						<border>2</border>
+					</object>
+				</object>
+				<flag>wxALL|wxEXPAND|wxALIGN_TOP|wxALIGN_CENTER_HORIZONTAL</flag>
+				<option>3</option>
+			</object>
+		</object>
+	</object>
+</wxsmith>
