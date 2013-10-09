@@ -320,10 +320,11 @@ Links:
 wxMEdit: http://code.google.com/p/wxmedit/
 MadEdit: http://sourceforge.net/projects/madedit/
 wxWidgets: http://www.wxwidgets.org/
-wxDevCpp: http://wxdsgn.sourceforge.net/
 Boost: http://www.boost.org/
 Boost.Xpressive: http://www.boost.org/doc/html/xpressive.html
 libunicows: http://libunicows.sourceforge.net/
 Open Clip Art Library: http://www.openclipart.org/
 ICU: http://site.icu-project.org/
 Bakefile: http://www.bakefile.org/
+Code::Blocks: http://www.codeblocks.org/
+wxSmith: http://wiki.codeblocks.org/index.php?title=WxSmith_plugin

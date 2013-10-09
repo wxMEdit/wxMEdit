@@ -545,10 +545,6 @@ noinst_HEADERS = description-pak \
 	src/plugin_example/plugin.cpp \
 	src/plugin_example/vc_cl.bat \
 	src/plugin_example/wxwin16x16.xpm \
-	devcpp/wxmedit.dev \
-	devcpp/wxmedit.layout \
-	devcpp/wxmedit_private.h \
-	devcpp/wxmedit_private.rc \
 	images/closeall.xpm \
 	images/columnmode.xpm \
 	images/comment.xpm \
@@ -2264,7 +2260,7 @@ distclean-tags:
 distdir: $(DISTFILES)
 	$(am__remove_distdir)
 	mkdir $(distdir)
-	$(mkdir_p) $(distdir)/charset-detector $(distdir)/charset-detector/src $(distdir)/charset-detector/src/entry $(distdir)/charset-detector/src/tables $(distdir)/charset-detector/test $(distdir)/debian $(distdir)/devcpp $(distdir)/freebsd $(distdir)/images $(distdir)/libunicows $(distdir)/m4 $(distdir)/po $(distdir)/src $(distdir)/src/plugin_example
+	$(mkdir_p) $(distdir)/charset-detector $(distdir)/charset-detector/src $(distdir)/charset-detector/src/entry $(distdir)/charset-detector/src/tables $(distdir)/charset-detector/test $(distdir)/debian $(distdir)/freebsd $(distdir)/images $(distdir)/libunicows $(distdir)/m4 $(distdir)/po $(distdir)/src $(distdir)/src/plugin_example
 	@srcdirstrip=`echo "$(srcdir)" | sed 's|.|.|g'`; \
 	topsrcdirstrip=`echo "$(top_srcdir)" | sed 's|.|.|g'`; \
 	list='$(DISTFILES)'; for file in $$list; do \

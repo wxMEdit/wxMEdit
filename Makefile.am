@@ -208,10 +208,6 @@ noinst_HEADERS =	description-pak \
 	src/plugin_example/plugin.cpp \
 	src/plugin_example/vc_cl.bat \
 	src/plugin_example/wxwin16x16.xpm \
-	devcpp/wxmedit.dev \
-	devcpp/wxmedit.layout \
-	devcpp/wxmedit_private.h \
-	devcpp/wxmedit_private.rc \
 	images/closeall.xpm \
 	images/columnmode.xpm \
 	images/comment.xpm \
