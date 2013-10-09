@@ -14,7 +14,6 @@
 //(*Headers(WXMFindInFilesDialog)
 #include <wx/sizer.h>
 #include <wx/stattext.h>
-#include <wx/menu.h>
 #include <wx/checkbox.h>
 #include <wx/statline.h>
 #include <wx/radiobut.h>
@@ -53,7 +52,6 @@ class WXMFindInFilesDialog: public wxDialog
 		wxButton* WxButtonActiveDir;
 		wxButton* WxButtonDir;
 		wxComboBox* WxComboBoxDir;
-		wxMenu WxPopupMenuRecentReplaceText;
 		wxComboBox* WxComboBoxEncoding;
 		wxStaticText* StaticText5;
 		wxStaticText* StaticText7;

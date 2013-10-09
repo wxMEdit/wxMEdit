@@ -252,6 +252,5 @@
 				<option>1</option>
 			</object>
 		</object>
-		<object class="wxMenu" variable="WxPopupMenuRecentReplaceText" member="yes" />
 	</object>
 </wxsmith>
