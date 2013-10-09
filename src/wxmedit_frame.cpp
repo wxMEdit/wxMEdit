@@ -4436,7 +4436,7 @@ void MadEditFrame::OnViewHexMode(wxCommandEvent& event)
 
 void MadEditFrame::OnToolsOptions(wxCommandEvent& event)
 {
-    if(g_OptionsDialog==NULL) g_OptionsDialog=new MadOptionsDialog(this, -1);
+    if(g_OptionsDialog==NULL) g_OptionsDialog=new WXMOptionsDialog(this);
 
     g_OptionsDialog->LoadOptions();
     if(g_OptionsDialog->ShowModal()==wxID_OK)

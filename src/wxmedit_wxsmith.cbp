@@ -20,6 +20,8 @@
 		<Unit filename="wxm_find_in_files_dialog.h" />
 		<Unit filename="wxm_highlighting_dialog.cpp" />
 		<Unit filename="wxm_highlighting_dialog.h" />
+		<Unit filename="wxm_options_dialog.cpp" />
+		<Unit filename="wxm_options_dialog.h" />
 		<Unit filename="wxm_replace_dialog.cpp" />
 		<Unit filename="wxm_replace_dialog.h" />
 		<Unit filename="wxm_search_dialog.cpp" />
@@ -34,6 +36,7 @@
 		<Unit filename="wxsmith/wxm_file_association_dialog.wxs" />
 		<Unit filename="wxsmith/wxm_find_in_files_dialog.wxs" />
 		<Unit filename="wxsmith/wxm_highlighting_dialog.wxs" />
+		<Unit filename="wxsmith/wxm_options_dialog.wxs" />
 		<Unit filename="wxsmith/wxm_replace_dialog.wxs" />
 		<Unit filename="wxsmith/wxm_search_dialog.wxs" />
 		<Unit filename="wxsmith/wxm_sort_dialog.wxs" />
@@ -55,6 +58,7 @@
 					<wxDialog wxs="wxsmith/wxm_replace_dialog.wxs" src="wxm_replace_dialog.cpp" hdr="wxm_replace_dialog.h" fwddecl="0" i18n="1" name="WXMReplaceDialog" language="CPP" />
 					<wxDialog wxs="wxsmith/wxm_find_in_files_dialog.wxs" src="wxm_find_in_files_dialog.cpp" hdr="wxm_find_in_files_dialog.h" fwddecl="0" i18n="1" name="WXMFindInFilesDialog" language="CPP" />
 					<wxDialog wxs="wxsmith/wxm_highlighting_dialog.wxs" src="wxm_highlighting_dialog.cpp" hdr="wxm_highlighting_dialog.h" fwddecl="0" i18n="1" name="WXMHighlightingDialog" language="CPP" />
+					<wxDialog wxs="wxsmith/wxm_options_dialog.wxs" src="wxm_options_dialog.cpp" hdr="wxm_options_dialog.h" fwddecl="0" i18n="1" name="WXMOptionsDialog" language="CPP" />
 				</resources>
 			</wxsmith>
 		</Extensions>
