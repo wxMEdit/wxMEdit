@@ -114,7 +114,12 @@ fi
 
 
 # Checks for header files.
-AC_CHECK_HEADERS([boost/config.hpp unicode/uchar.h unicode/unistr.h])
+AC_CHECK_HEADERS([boost/config.hpp], [], AC_MSG_ERROR([cannot find required header boost/config.hpp]))
+AC_CHECK_HEADERS([boost/xpressive/xpressive_dynamic.hpp], [], AC_MSG_ERROR([cannot find required header boost/xpressive/xpressive_dynamic.hpp]))
+AC_CHECK_HEADERS([boost/foreach.hpp], [], AC_MSG_ERROR([cannot find required header boost/foreach.hpp]))
+AC_CHECK_HEADERS([unicode/uchar.h], [], AC_MSG_ERROR([cannot find required header unicode/uchar.h]))
+AC_CHECK_HEADERS([unicode/unistr.h], [], AC_MSG_ERROR([cannot find required header unicode/unistr.h]))
+AC_CHECK_HEADERS([wx/aui/aui.h], [], AC_MSG_ERROR([cannot find required header wx/aui/aui.h]))
 
 # Checks for typedefs, structures, and compiler characteristics.
 #AC_HEADER_STDBOOL
