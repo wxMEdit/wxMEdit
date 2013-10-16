@@ -9,9 +9,9 @@
 		<object class="wxBoxSizer" variable="BoxSizer1" member="no">
 			<orient>wxVERTICAL</orient>
 			<object class="sizeritem">
-				<object class="wxBoxSizer" variable="BoxSizer50" member="no">
+				<object class="wxBoxSizer" variable="BoxSizer30" member="no">
 					<object class="sizeritem">
-						<object class="wxBoxSizer" variable="BoxSizer500" member="no">
+						<object class="wxBoxSizer" variable="BoxSizer31" member="no">
 							<orient>wxVERTICAL</orient>
 							<object class="sizeritem">
 								<object class="wxAuiNotebook" name="ID_AUINOTEBOOK1" variable="AuiNotebook1" member="yes">
@@ -21,6 +21,10 @@
 												<orient>wxVERTICAL</orient>
 												<object class="sizeritem">
 													<object class="wxBoxSizer" variable="BoxSizer27" member="no">
+														<object class="spacer">
+															<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+															<size>3,0</size>
+														</object>
 														<object class="sizeritem">
 															<object class="wxComboBox" name="ID_WXCOMBOBOXLANGUAGE" variable="WxComboBoxLanguage" member="yes">
 																<style>wxCB_READONLY|wxCB_DROPDOWN</style>
@@ -61,6 +65,10 @@
 												</object>
 												<object class="sizeritem">
 													<object class="wxBoxSizer" variable="BoxSizer5" member="no">
+														<object class="spacer">
+															<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+															<size>3,0</size>
+														</object>
 														<object class="sizeritem">
 															<object class="wxTextCtrl" name="ID_WXEDITMAXSIZETOLOAD" variable="WxEditMaxSizeToLoad" member="yes">
 																<value>0</value>
@@ -80,6 +88,10 @@
 												</object>
 												<object class="sizeritem">
 													<object class="wxBoxSizer" variable="BoxSizer6" member="no">
+														<object class="spacer">
+															<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+															<size>3,0</size>
+														</object>
 														<object class="sizeritem">
 															<object class="wxTextCtrl" name="ID_WXEDITMAXTEXTFILESIZE" variable="WxEditMaxTextFileSize" member="yes">
 																<value>0</value>
@@ -99,6 +111,10 @@
 												</object>
 												<object class="sizeritem">
 													<object class="wxBoxSizer" variable="BoxSizer17" member="no">
+														<object class="spacer">
+															<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+															<size>3,0</size>
+														</object>
 														<object class="sizeritem">
 															<object class="wxComboBox" name="ID_WXCOMBOBOXENCODING" variable="WxComboBoxEncoding" member="yes">
 																<style>wxCB_READONLY|wxCB_DROPDOWN</style>
@@ -154,6 +170,10 @@
 												<orient>wxVERTICAL</orient>
 												<object class="sizeritem">
 													<object class="wxBoxSizer" variable="BoxSizer9" member="no">
+														<object class="spacer">
+															<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+															<size>3,0</size>
+														</object>
 														<object class="sizeritem">
 															<object class="wxTextCtrl" name="ID_WXEDITMAXLINELENGTH" variable="WxEditMaxLineLength" member="yes">
 																<value>0</value>
@@ -173,6 +193,10 @@
 												</object>
 												<object class="sizeritem">
 													<object class="wxBoxSizer" variable="BoxSizer10" member="no">
+														<object class="spacer">
+															<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+															<size>3,0</size>
+														</object>
 														<object class="sizeritem">
 															<object class="wxTextCtrl" name="ID_WXEDITMAXCOLUMNS" variable="WxEditMaxColumns" member="yes">
 																<value>0</value>
@@ -192,6 +216,10 @@
 												</object>
 												<object class="sizeritem">
 													<object class="wxBoxSizer" variable="BoxSizer11" member="no">
+														<object class="spacer">
+															<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+															<size>3,0</size>
+														</object>
 														<object class="sizeritem">
 															<object class="wxTextCtrl" name="ID_WXEDITTABCOLUMNS" variable="WxEditTabColumns" member="yes">
 																<value>0</value>
@@ -211,6 +239,10 @@
 												</object>
 												<object class="sizeritem">
 													<object class="wxBoxSizer" variable="BoxSizer13" member="no">
+														<object class="spacer">
+															<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+															<size>3,0</size>
+														</object>
 														<object class="sizeritem">
 															<object class="wxTextCtrl" name="IID_WXEDITINDENTCOLUMNS" variable="WxEditIndentColumns" member="yes">
 																<value>0</value>
@@ -230,6 +262,10 @@
 												</object>
 												<object class="sizeritem">
 													<object class="wxBoxSizer" variable="BoxSizer23" member="no">
+														<object class="spacer">
+															<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+															<size>3,0</size>
+														</object>
 														<object class="sizeritem">
 															<object class="wxTextCtrl" name="ID_WXEDITDATETIME" variable="WxEditDateTime" member="yes">
 																<size>160,-1</size>
@@ -769,17 +805,28 @@
 								<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
 								<option>1</option>
 							</object>
-							<object class="spacer">
-								<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
-								<size>600,0</size>
+							<object class="sizeritem">
+								<object class="wxBoxSizer" variable="BoxSizer32" member="no">
+									<orient>wxVERTICAL</orient>
+									<object class="spacer">
+										<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+										<size>450,0</size>
+									</object>
+								</object>
+								<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
 							</object>
 						</object>
 						<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
 						<option>1</option>
 					</object>
-					<object class="spacer">
+					<object class="sizeritem">
+						<object class="wxBoxSizer" variable="BoxSizer33" member="no">
+							<object class="spacer">
+								<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+								<size>0,260</size>
+							</object>
+						</object>
 						<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
-						<size>0,330</size>
 					</object>
 				</object>
 				<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
