@@ -1,6 +1,5 @@
 #! /bin/sh
-#./chmod_644_all_files.sh
-aclocal $ACLOCAL_FLAGS
+aclocal $ACLOCAL_AMFLAGS
 autoheader
 automake --foreign --add-missing --copy
 autoconf
