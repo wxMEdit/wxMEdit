@@ -44,14 +44,22 @@
 
 			<set var="WXDEBUG_DEF" make_var="1" />
 		</if>
-		<cppflags>$(XPRESSIVE_INC) $(AUI_INC) $(WXDEBUG_DEF)</cppflags>
+		<cppflags>$(WXDEBUG_DEF)</cppflags>
+
+		<if cond="BOOST_ADD != ''">
+			<include>$(BOOST_ADD)</include>
+		</if>
 
 		<include>$(BOOST_DIR)</include>
 		<include>$(ICU_DIR)/include</include>
 		<include>$(WXWIN)/include</include>
 		<include>$(WXWIN)/lib/$(WXCOMP)_lib/mswu$(LIB_POSTFIX)</include>
 
-		<lib-path>$(AUI_LIB)</lib-path>
+		<if cond="WXAUI_DIR != ''">
+			<include>$(WXAUI_DIR)/include</include>
+			<lib-path>$(WXAUI_DIR)/lib</lib-path>
+		</if>
+	
 		<lib-path>$(ICU_DIR)/lib</lib-path>
 		<lib-path>$(WXWIN)/lib/$(WXCOMP)_lib</lib-path>
 		<lib-path>../libunicows</lib-path>
