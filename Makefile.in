@@ -135,17 +135,20 @@ am_wxmedit_test_OBJECTS = src/xm/wxm_encoding/cp20932.$(OBJEXT) \
 	src/xm/wxm_encoding/gb18030.$(OBJEXT) \
 	src/xm/wxm_encoding/singlebyte.$(OBJEXT) \
 	src/xm/wxm_encoding/unicode.$(OBJEXT) \
-	test/data_cp20932_conv.$(OBJEXT) \
-	test/data_cp932_conv.$(OBJEXT) test/data_cp936_conv.$(OBJEXT) \
-	test/data_cp949_conv.$(OBJEXT) test/data_cp950_conv.$(OBJEXT) \
-	test/data_gb18030_bmp2db.$(OBJEXT) \
-	test/data_gb18030_bmp2qb.$(OBJEXT) \
-	test/data_gb18030_db2bmp.$(OBJEXT) \
-	test/data_gb18030_qb2bmp.$(OBJEXT) \
-	test/data_singlebyte_conv.$(OBJEXT) \
-	test/test_doublebyte_conv.$(OBJEXT) \
-	test/test_gb18030_conv.$(OBJEXT) \
-	test/test_singlebyte_conv.$(OBJEXT) test/test.$(OBJEXT)
+	test/encoding/data_cp20932_conv.$(OBJEXT) \
+	test/encoding/data_cp932_conv.$(OBJEXT) \
+	test/encoding/data_cp936_conv.$(OBJEXT) \
+	test/encoding/data_cp949_conv.$(OBJEXT) \
+	test/encoding/data_cp950_conv.$(OBJEXT) \
+	test/encoding/data_gb18030_bmp2db.$(OBJEXT) \
+	test/encoding/data_gb18030_bmp2qb.$(OBJEXT) \
+	test/encoding/data_gb18030_db2bmp.$(OBJEXT) \
+	test/encoding/data_gb18030_qb2bmp.$(OBJEXT) \
+	test/encoding/data_singlebyte_conv.$(OBJEXT) \
+	test/encoding/test_doublebyte_conv.$(OBJEXT) \
+	test/encoding/test_gb18030_conv.$(OBJEXT) \
+	test/encoding/test_singlebyte_conv.$(OBJEXT) \
+	test/test.$(OBJEXT)
 wxmedit_test_OBJECTS = $(am_wxmedit_test_OBJECTS)
 wxmedit_test_LDADD = $(LDADD)
 DEFAULT_INCLUDES = -I. -I$(srcdir) -I.
@@ -495,22 +498,22 @@ wxmedit_test_SOURCES = src/wxmedit/ucs4_t.h \
 	src/xm/wxm_encoding/unicode.cpp \
 	src/xm/wxm_encoding/unicode.h \
 	src/xm/wxm_line_enc_adapter.h \
-	test/data_cp20932_conv.cpp \
-	test/data_cp932_conv.cpp \
-	test/data_cp936_conv.cpp \
-	test/data_cp949_conv.cpp \
-	test/data_cp950_conv.cpp \
-	test/data_gb18030_bmp2db.cpp \
-	test/data_gb18030_bmp2qb.cpp \
-	test/data_gb18030_db2bmp.cpp \
-	test/data_gb18030_qb2bmp.cpp \
-	test/data_multibyte_conv.h \
-	test/data_singlebyte_conv.cpp \
-	test/data_singlebyte_conv.h \
+	test/encoding/data_cp20932_conv.cpp \
+	test/encoding/data_cp932_conv.cpp \
+	test/encoding/data_cp936_conv.cpp \
+	test/encoding/data_cp949_conv.cpp \
+	test/encoding/data_cp950_conv.cpp \
+	test/encoding/data_gb18030_bmp2db.cpp \
+	test/encoding/data_gb18030_bmp2qb.cpp \
+	test/encoding/data_gb18030_db2bmp.cpp \
+	test/encoding/data_gb18030_qb2bmp.cpp \
+	test/encoding/data_multibyte_conv.h \
+	test/encoding/data_singlebyte_conv.cpp \
+	test/encoding/data_singlebyte_conv.h \
+	test/encoding/test_doublebyte_conv.cpp \
+	test/encoding/test_gb18030_conv.cpp \
+	test/encoding/test_singlebyte_conv.cpp \
 	test/encoding_test.h \
-	test/test_doublebyte_conv.cpp \
-	test/test_gb18030_conv.cpp \
-	test/test_singlebyte_conv.cpp \
 	test/test.cpp
 
 wxmedit_test_LDFLAGS = @TESTLIBS@
@@ -931,31 +934,31 @@ test/$(am__dirstamp):
 test/$(DEPDIR)/$(am__dirstamp):
 	@$(mkdir_p) test/$(DEPDIR)
 	@: > test/$(DEPDIR)/$(am__dirstamp)
-test/data_cp20932_conv.$(OBJEXT): test/$(am__dirstamp) \
+test/encoding/data_cp20932_conv.$(OBJEXT): test/$(am__dirstamp) \
 	test/$(DEPDIR)/$(am__dirstamp)
-test/data_cp932_conv.$(OBJEXT): test/$(am__dirstamp) \
+test/encoding/data_cp932_conv.$(OBJEXT): test/$(am__dirstamp) \
 	test/$(DEPDIR)/$(am__dirstamp)
-test/data_cp936_conv.$(OBJEXT): test/$(am__dirstamp) \
+test/encoding/data_cp936_conv.$(OBJEXT): test/$(am__dirstamp) \
 	test/$(DEPDIR)/$(am__dirstamp)
-test/data_cp949_conv.$(OBJEXT): test/$(am__dirstamp) \
+test/encoding/data_cp949_conv.$(OBJEXT): test/$(am__dirstamp) \
 	test/$(DEPDIR)/$(am__dirstamp)
-test/data_cp950_conv.$(OBJEXT): test/$(am__dirstamp) \
+test/encoding/data_cp950_conv.$(OBJEXT): test/$(am__dirstamp) \
 	test/$(DEPDIR)/$(am__dirstamp)
-test/data_gb18030_bmp2db.$(OBJEXT): test/$(am__dirstamp) \
+test/encoding/data_gb18030_bmp2db.$(OBJEXT): test/$(am__dirstamp) \
 	test/$(DEPDIR)/$(am__dirstamp)
-test/data_gb18030_bmp2qb.$(OBJEXT): test/$(am__dirstamp) \
+test/encoding/data_gb18030_bmp2qb.$(OBJEXT): test/$(am__dirstamp) \
 	test/$(DEPDIR)/$(am__dirstamp)
-test/data_gb18030_db2bmp.$(OBJEXT): test/$(am__dirstamp) \
+test/encoding/data_gb18030_db2bmp.$(OBJEXT): test/$(am__dirstamp) \
 	test/$(DEPDIR)/$(am__dirstamp)
-test/data_gb18030_qb2bmp.$(OBJEXT): test/$(am__dirstamp) \
+test/encoding/data_gb18030_qb2bmp.$(OBJEXT): test/$(am__dirstamp) \
 	test/$(DEPDIR)/$(am__dirstamp)
-test/data_singlebyte_conv.$(OBJEXT): test/$(am__dirstamp) \
+test/encoding/data_singlebyte_conv.$(OBJEXT): test/$(am__dirstamp) \
 	test/$(DEPDIR)/$(am__dirstamp)
-test/test_doublebyte_conv.$(OBJEXT): test/$(am__dirstamp) \
+test/encoding/test_doublebyte_conv.$(OBJEXT): test/$(am__dirstamp) \
 	test/$(DEPDIR)/$(am__dirstamp)
-test/test_gb18030_conv.$(OBJEXT): test/$(am__dirstamp) \
+test/encoding/test_gb18030_conv.$(OBJEXT): test/$(am__dirstamp) \
 	test/$(DEPDIR)/$(am__dirstamp)
-test/test_singlebyte_conv.$(OBJEXT): test/$(am__dirstamp) \
+test/encoding/test_singlebyte_conv.$(OBJEXT): test/$(am__dirstamp) \
 	test/$(DEPDIR)/$(am__dirstamp)
 test/test.$(OBJEXT): test/$(am__dirstamp) \
 	test/$(DEPDIR)/$(am__dirstamp)
@@ -1039,20 +1042,20 @@ mostlyclean-compile:
 	-rm -f src/xm/wxmedit-xm_ublock.$(OBJEXT)
 	-rm -f src/xm/wxmedit-xm_ublock_des.$(OBJEXT)
 	-rm -f src/xm/wxmedit-xm_uutils.$(OBJEXT)
-	-rm -f test/data_cp20932_conv.$(OBJEXT)
-	-rm -f test/data_cp932_conv.$(OBJEXT)
-	-rm -f test/data_cp936_conv.$(OBJEXT)
-	-rm -f test/data_cp949_conv.$(OBJEXT)
-	-rm -f test/data_cp950_conv.$(OBJEXT)
-	-rm -f test/data_gb18030_bmp2db.$(OBJEXT)
-	-rm -f test/data_gb18030_bmp2qb.$(OBJEXT)
-	-rm -f test/data_gb18030_db2bmp.$(OBJEXT)
-	-rm -f test/data_gb18030_qb2bmp.$(OBJEXT)
-	-rm -f test/data_singlebyte_conv.$(OBJEXT)
+	-rm -f test/encoding/data_cp20932_conv.$(OBJEXT)
+	-rm -f test/encoding/data_cp932_conv.$(OBJEXT)
+	-rm -f test/encoding/data_cp936_conv.$(OBJEXT)
+	-rm -f test/encoding/data_cp949_conv.$(OBJEXT)
+	-rm -f test/encoding/data_cp950_conv.$(OBJEXT)
+	-rm -f test/encoding/data_gb18030_bmp2db.$(OBJEXT)
+	-rm -f test/encoding/data_gb18030_bmp2qb.$(OBJEXT)
+	-rm -f test/encoding/data_gb18030_db2bmp.$(OBJEXT)
+	-rm -f test/encoding/data_gb18030_qb2bmp.$(OBJEXT)
+	-rm -f test/encoding/data_singlebyte_conv.$(OBJEXT)
+	-rm -f test/encoding/test_doublebyte_conv.$(OBJEXT)
+	-rm -f test/encoding/test_gb18030_conv.$(OBJEXT)
+	-rm -f test/encoding/test_singlebyte_conv.$(OBJEXT)
 	-rm -f test/test.$(OBJEXT)
-	-rm -f test/test_doublebyte_conv.$(OBJEXT)
-	-rm -f test/test_gb18030_conv.$(OBJEXT)
-	-rm -f test/test_singlebyte_conv.$(OBJEXT)
 
 distclean-compile:
 	-rm -f *.tab.c
@@ -1131,20 +1134,20 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/xm/wxm_encoding/$(DEPDIR)/wxmedit-multibyte.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/xm/wxm_encoding/$(DEPDIR)/wxmedit-singlebyte.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/xm/wxm_encoding/$(DEPDIR)/wxmedit-unicode.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@test/$(DEPDIR)/data_cp20932_conv.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@test/$(DEPDIR)/data_cp932_conv.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@test/$(DEPDIR)/data_cp936_conv.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@test/$(DEPDIR)/data_cp949_conv.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@test/$(DEPDIR)/data_cp950_conv.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@test/$(DEPDIR)/data_gb18030_bmp2db.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@test/$(DEPDIR)/data_gb18030_bmp2qb.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@test/$(DEPDIR)/data_gb18030_db2bmp.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@test/$(DEPDIR)/data_gb18030_qb2bmp.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@test/$(DEPDIR)/data_singlebyte_conv.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@test/encoding/$(DEPDIR)/data_cp20932_conv.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@test/encoding/$(DEPDIR)/data_cp932_conv.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@test/encoding/$(DEPDIR)/data_cp936_conv.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@test/encoding/$(DEPDIR)/data_cp949_conv.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@test/encoding/$(DEPDIR)/data_cp950_conv.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@test/encoding/$(DEPDIR)/data_gb18030_bmp2db.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@test/encoding/$(DEPDIR)/data_gb18030_bmp2qb.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@test/encoding/$(DEPDIR)/data_gb18030_db2bmp.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@test/encoding/$(DEPDIR)/data_gb18030_qb2bmp.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@test/encoding/$(DEPDIR)/data_singlebyte_conv.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@test/encoding/$(DEPDIR)/test_doublebyte_conv.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@test/encoding/$(DEPDIR)/test_gb18030_conv.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@test/encoding/$(DEPDIR)/test_singlebyte_conv.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@test/$(DEPDIR)/test.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@test/$(DEPDIR)/test_doublebyte_conv.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@test/$(DEPDIR)/test_gb18030_conv.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@test/$(DEPDIR)/test_singlebyte_conv.Po@am__quote@
 
 .cpp.o:
 @am__fastdepCXX_TRUE@	depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.o$$||'`; \

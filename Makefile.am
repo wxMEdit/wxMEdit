@@ -153,22 +153,22 @@ wxmedit_test_SOURCES = src/wxmedit/ucs4_t.h \
 	src/xm/wxm_encoding/unicode.cpp \
 	src/xm/wxm_encoding/unicode.h \
 	src/xm/wxm_line_enc_adapter.h \
-	test/data_cp20932_conv.cpp \
-	test/data_cp932_conv.cpp \
-	test/data_cp936_conv.cpp \
-	test/data_cp949_conv.cpp \
-	test/data_cp950_conv.cpp \
-	test/data_gb18030_bmp2db.cpp \
-	test/data_gb18030_bmp2qb.cpp \
-	test/data_gb18030_db2bmp.cpp \
-	test/data_gb18030_qb2bmp.cpp \
-	test/data_multibyte_conv.h \
-	test/data_singlebyte_conv.cpp \
-	test/data_singlebyte_conv.h \
+	test/encoding/data_cp20932_conv.cpp \
+	test/encoding/data_cp932_conv.cpp \
+	test/encoding/data_cp936_conv.cpp \
+	test/encoding/data_cp949_conv.cpp \
+	test/encoding/data_cp950_conv.cpp \
+	test/encoding/data_gb18030_bmp2db.cpp \
+	test/encoding/data_gb18030_bmp2qb.cpp \
+	test/encoding/data_gb18030_db2bmp.cpp \
+	test/encoding/data_gb18030_qb2bmp.cpp \
+	test/encoding/data_multibyte_conv.h \
+	test/encoding/data_singlebyte_conv.cpp \
+	test/encoding/data_singlebyte_conv.h \
+	test/encoding/test_doublebyte_conv.cpp \
+	test/encoding/test_gb18030_conv.cpp \
+	test/encoding/test_singlebyte_conv.cpp \
 	test/encoding_test.h \
-	test/test_doublebyte_conv.cpp \
-	test/test_gb18030_conv.cpp \
-	test/test_singlebyte_conv.cpp \
 	test/test.cpp
 
 wxmedit_test_LDFLAGS = @TESTLIBS@

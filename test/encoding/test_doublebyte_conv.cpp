@@ -1,6 +1,6 @@
-#include "encoding_test.h"
 #include "data_multibyte_conv.h"
-#include "../src/xm/wxm_encoding/encoding.h"
+#include "../encoding_test.h"
+#include "../../src/xm/wxm_encoding/encoding.h"
 
 #include <boost/foreach.hpp>
 #include <boost/test/unit_test.hpp>

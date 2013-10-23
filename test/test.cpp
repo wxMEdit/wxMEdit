@@ -12,11 +12,13 @@
 
 boost::unit_test::test_suite* init_unit_test_suite(int argc, char* argv[])
 {
-	boost::unit_test::test_suite* test = BOOST_TEST_SUITE("encoding_test");
+	boost::unit_test::test_suite* encoding_test = BOOST_TEST_SUITE("encoding_test");
+	encoding_test->add(BOOST_TEST_CASE(&test_gb18030_conv));
+	encoding_test->add(BOOST_TEST_CASE(&test_doublebyte_conv));
+	encoding_test->add(BOOST_TEST_CASE(&test_singlebyte_conv));
 
-	test->add(BOOST_TEST_CASE(&test_gb18030_conv));
-	test->add(BOOST_TEST_CASE(&test_doublebyte_conv));
-	test->add(BOOST_TEST_CASE(&test_singlebyte_conv));
+	boost::unit_test::test_suite* test = BOOST_TEST_SUITE("wxmedit_test");
+	test->add(encoding_test);
 
 	return test;
 }

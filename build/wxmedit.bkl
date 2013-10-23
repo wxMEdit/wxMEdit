@@ -213,22 +213,22 @@
 		<headers>../src/wxmedit/ucs4_t.h</headers>
 		<headers>../src/wxmedit/wxm_deque.hpp</headers>
 		<headers>../src/xm/wxm_line_enc_adapter.h</headers>
-		<sources>../test/data_cp20932_conv.cpp</sources>
-		<sources>../test/data_cp932_conv.cpp</sources>
-		<sources>../test/data_cp936_conv.cpp</sources>
-		<sources>../test/data_cp949_conv.cpp</sources>
-		<sources>../test/data_cp950_conv.cpp</sources>
-		<sources>../test/data_gb18030_bmp2db.cpp</sources>
-		<sources>../test/data_gb18030_bmp2qb.cpp</sources>
-		<sources>../test/data_gb18030_db2bmp.cpp</sources>
-		<sources>../test/data_gb18030_qb2bmp.cpp</sources>
-		<headers>../test/data_multibyte_conv.h</headers>
-		<headers>../test/data_singlebyte_conv.h</headers>
-		<sources>../test/data_singlebyte_conv.cpp</sources>
+		<sources>../test/encoding/data_cp20932_conv.cpp</sources>
+		<sources>../test/encoding/data_cp932_conv.cpp</sources>
+		<sources>../test/encoding/data_cp936_conv.cpp</sources>
+		<sources>../test/encoding/data_cp949_conv.cpp</sources>
+		<sources>../test/encoding/data_cp950_conv.cpp</sources>
+		<sources>../test/encoding/data_gb18030_bmp2db.cpp</sources>
+		<sources>../test/encoding/data_gb18030_bmp2qb.cpp</sources>
+		<sources>../test/encoding/data_gb18030_db2bmp.cpp</sources>
+		<sources>../test/encoding/data_gb18030_qb2bmp.cpp</sources>
+		<headers>../test/encoding/data_multibyte_conv.h</headers>
+		<headers>../test/encoding/data_singlebyte_conv.h</headers>
+		<sources>../test/encoding/data_singlebyte_conv.cpp</sources>
+		<sources>../test/encoding/test_doublebyte_conv.cpp</sources>
+		<sources>../test/encoding/test_gb18030_conv.cpp</sources>
+		<sources>../test/encoding/test_singlebyte_conv.cpp</sources>
 		<headers>../test/encoding_test.h</headers>
-		<sources>../test/test_doublebyte_conv.cpp</sources>
-		<sources>../test/test_gb18030_conv.cpp</sources>
-		<sources>../test/test_singlebyte_conv.cpp</sources>
 		<sources>../test/test.cpp</sources>
 		
 		<lib-path>$(BOOST_DIR)/stage/lib</lib-path>

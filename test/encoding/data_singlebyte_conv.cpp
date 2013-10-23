@@ -1,9 +1,5 @@
-#include "encoding_test.h"
 #include "data_singlebyte_conv.h"
-#include "../src/wxmedit/ucs4_t.h"
-#include <string>
-#include <map>
-#include <vector>
+#include "../encoding_test.h"
 
 B2UMap b2u;
 U2BMap u2b;
