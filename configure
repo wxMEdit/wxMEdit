@@ -1386,6 +1386,9 @@ Optional Packages:
   --with-boost-add=PATH   use additional Boost.Xpressive and Boost.Foreach library path
   --with-boost=PATH       use additional Boost library path,
                           otherwise use system include path
+  --with-boost-lib-suffix=PATH
+                          use specified Boost library file suffix,
+                          otherwise use '-mt'
   --with-icu=PATH         use additional ICU library path,
                           otherwise use system include/library path
   --with-wxdir=PATH       Use uninstalled version of wxWidgets in PATH
@@ -12835,6 +12838,18 @@ fi
 if test "${with_boost+set}" = set; then
   withval=$with_boost; CXXFLAGS="$CXXFLAGS -I$withval"
 fi
+
+
+
+# option for Boost lib suffix
+BOOST_LIB_SUFFIX=-mt
+
+# Check whether --with-boost-lib-suffix was given.
+if test "${with_boost_lib_suffixt+set}" = set; then
+  withval=$with_boost_lib_suffixt; BOOST_LIB_SUFFIX="$withval"
+fi
+
+TESTLIBS="-lboost_unit_test_framework$BOOST_LIB_SUFFIX"
 
 
 

@@ -153,20 +153,25 @@ wxmedit_test_SOURCES = src/wxmedit/ucs4_t.h \
 	src/xm/wxm_encoding/unicode.cpp \
 	src/xm/wxm_encoding/unicode.h \
 	src/xm/wxm_line_enc_adapter.h \
-	test/test_cp20932_conv.cpp \
-	test/test_cp932_conv.cpp \
-	test/test_cp936_conv.cpp \
-	test/test_cp949_conv.cpp \
-	test/test_cp950_conv.cpp \
+	test/data_cp20932_conv.cpp \
+	test/data_cp932_conv.cpp \
+	test/data_cp936_conv.cpp \
+	test/data_cp949_conv.cpp \
+	test/data_cp950_conv.cpp \
+	test/data_gb18030_bmp2db.cpp \
+	test/data_gb18030_bmp2qb.cpp \
+	test/data_gb18030_db2bmp.cpp \
+	test/data_gb18030_qb2bmp.cpp \
+	test/data_multibyte_conv.h \
+	test/data_singlebyte_conv.cpp \
+	test/data_singlebyte_conv.h \
+	test/encoding_test.h \
 	test/test_doublebyte_conv.cpp \
-	test/test_gb18030_bmp2db.cpp \
-	test/test_gb18030_bmp2qb.cpp \
 	test/test_gb18030_conv.cpp \
-	test/test_gb18030_db2bmp.cpp \
-	test/test_gb18030_qb2bmp.cpp \
 	test/test_singlebyte_conv.cpp \
-	test/test.h \
 	test/test.cpp
+
+wxmedit_test_LDFLAGS = @TESTLIBS@
 
 pixmapsdir = $(datadir)/pixmaps
 pixmaps_DATA = wxmedit.xpm

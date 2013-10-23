@@ -1,7 +1,10 @@
-void db2bmp_gb18030_init();
-void qb2bmp_gb18030_init();
-void bmp2db_gb18030_init();
-void bmp2qb_gb18030_init();
+#include "encoding_test.h"
+#include "data_multibyte_conv.h"
+#include "../src/xm/wxm_encoding/encoding.h"
+
+#include <boost/test/unit_test.hpp>
+
+#include <iostream>
 
 void test_gb18030_conv_init()
 {
@@ -10,4 +13,160 @@ void test_gb18030_conv_init()
 	bmp2db_gb18030_init();
 	bmp2qb_gb18030_init();
 
+}
+
+void test_gb18030_conv()
+{
+	wxm::WXMEncodingCreator::Instance().InitEncodings();
+	test_gb18030_conv_init();
+
+	const std::string encname("GB18030");
+	std::cout << encname << std::endl;
+
+	wxString wxencname(encname.c_str(), wxConvUTF8);
+	wxm::WXMEncoding* enc = wxm::WXMEncodingCreator::Instance().CreateWxmEncoding(wxencname);
+
+	MB2UDataMap::const_iterator mb2uend = mb2u[encname].end();
+	for (size_t i=0; i<256; ++i)
+	{
+		wxByte wxb[3] = {wxByte(i), 0, 0};
+		{
+			char mbs_arr[2] = {i, 0};
+			MB2UDataMap::const_iterator it = mb2u[encname].find(mbs_arr);
+			ucs4_t u = enc->MultiBytetoUCS4(wxb);
+			if (u != 0)
+			{
+				BOOST_CHECK(it != mb2uend);
+				if (it != mb2uend)
+				{
+					ucs4_t t = it->second;
+					BOOST_CHECK(u == t);
+				}
+			}
+			else
+			{
+				BOOST_CHECK(it == mb2uend);
+			}
+		}
+
+		for(size_t j=1; j<256; ++j)
+		{
+			char mbs_arr[3] = {i, j, 0};
+			MB2UDataMap::const_iterator it = mb2u[encname].find(mbs_arr);
+
+			wxb[1] = wxByte(j);
+			ucs4_t u = enc->MultiBytetoUCS4(wxb);
+			if (u != 0)
+			{
+				BOOST_CHECK(it != mb2uend);
+				if (it != mb2uend)
+				{
+					ucs4_t t = it->second;
+					BOOST_CHECK(u == t);
+				}
+			}
+			else
+			{
+				BOOST_CHECK(it == mb2uend);
+			}
+		}
+	}
+	for (size_t i=0x81; i<0x90; ++i)
+	{
+		for (size_t j=0x30; j<=0x39; ++j)
+		{
+			for (size_t k=0x81; k<=0xFE; ++k)
+			{
+				for (size_t l=0x30; l<=0x39; ++l)
+				{
+					wxByte wxb[4] = {wxByte(i), wxByte(j), wxByte(k), wxByte(l)};
+					ucs4_t u = enc->MultiBytetoUCS4(wxb);
+
+					char mbs_arr[5] = {i, j, k, l, 0};
+					MB2UDataMap::const_iterator it = mb2u[encname].find(mbs_arr);
+					if (u != 0)
+					{
+						BOOST_CHECK(it != mb2uend);
+						if (it != mb2uend)
+						{
+							ucs4_t t = it->second;
+							BOOST_CHECK(u == t);
+						}
+					}
+					else
+					{
+						BOOST_CHECK(it == mb2uend);
+					}
+				}
+			}
+		}
+	}
+	for (size_t i=0x90; i<=0xFE; ++i)
+	{
+		for (size_t j=0x30; j<=0x39; ++j)
+		{
+			for (size_t k=0x81; k<=0xFE; ++k)
+			{
+				for (size_t l=0x30; l<=0x39; ++l)
+				{
+					wxByte wxb[4] = {wxByte(i), wxByte(j), wxByte(k), wxByte(l)};
+					ucs4_t u = enc->MultiBytetoUCS4(wxb);
+					ucs4_t t = (ucs4_t)((i-0x90)*12600 + (j-0x30)*1260 + (k-0x81)*10 + l-0x30 + 0x10000);
+					if (u != 0)
+						BOOST_CHECK(u == t);
+					else
+						BOOST_CHECK(t > 0x10FFFF);
+				}
+			}
+		}
+	}
+
+
+	U2MBDataMap::const_iterator u2mbend = u2mb[encname].end();
+	for (ucs4_t i=0; i<=0xFFFF; ++i)
+	{
+		wxByte buf[5] = {0, 0, 0, 0, 0};
+		size_t n = enc->UCS4toMultiByte(i, buf);
+		BOOST_CHECK(n<=4 && n!=3);
+
+		U2MBDataMap::const_iterator it = u2mb[encname].find(i);
+		if (n == 1 || n == 2 || n == 4)
+		{
+			BOOST_CHECK(it != u2mbend);
+			if (it != u2mbend)
+			{
+				buf[n] = 0;
+				std::string mbs((const char*)buf);
+				BOOST_CHECK(it->second == mbs);
+			}
+		}
+		else if(n == 0)
+		{
+			BOOST_CHECK(it == u2mbend);
+		}
+	}
+	for (ucs4_t i=0x10000; i<=0x10FFFF; ++i)
+	{
+		wxByte buf[5] = {0, 0, 0, 0, 0};
+		size_t n = enc->UCS4toMultiByte(i, buf);
+		BOOST_CHECK(n==4);
+
+		wxDword t = i - 0x10000;
+		BOOST_CHECK(buf[0] == 0x90 + t / 12600);
+
+		t = t % 12600;
+		BOOST_CHECK(buf[1] == 0x30 + t / 1260);
+
+		t = t % 1260;
+		BOOST_CHECK(buf[2] = 0x81 + t / 10);
+		BOOST_CHECK(buf[3] = 0x30 + t % 10);
+	}
+
+
+	mb2u[encname].clear();
+	u2mb[encname].clear();
+
+	wxm::WXMEncodingCreator::Instance().FreeEncodings();
+
+//	return (int)boost::minimal_test::errors_counter();
 }

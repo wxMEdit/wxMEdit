@@ -213,19 +213,31 @@
 		<headers>../src/wxmedit/ucs4_t.h</headers>
 		<headers>../src/wxmedit/wxm_deque.hpp</headers>
 		<headers>../src/xm/wxm_line_enc_adapter.h</headers>
-		<sources>../test/test_cp20932_conv.cpp</sources>
-		<sources>../test/test_cp932_conv.cpp</sources>
-		<sources>../test/test_cp936_conv.cpp</sources>
-		<sources>../test/test_cp949_conv.cpp</sources>
-		<sources>../test/test_cp950_conv.cpp</sources>
+		<sources>../test/data_cp20932_conv.cpp</sources>
+		<sources>../test/data_cp932_conv.cpp</sources>
+		<sources>../test/data_cp936_conv.cpp</sources>
+		<sources>../test/data_cp949_conv.cpp</sources>
+		<sources>../test/data_cp950_conv.cpp</sources>
+		<sources>../test/data_gb18030_bmp2db.cpp</sources>
+		<sources>../test/data_gb18030_bmp2qb.cpp</sources>
+		<sources>../test/data_gb18030_db2bmp.cpp</sources>
+		<sources>../test/data_gb18030_qb2bmp.cpp</sources>
+		<headers>../test/data_multibyte_conv.h</headers>
+		<headers>../test/data_singlebyte_conv.h</headers>
+		<sources>../test/data_singlebyte_conv.cpp</sources>
+		<headers>../test/encoding_test.h</headers>
 		<sources>../test/test_doublebyte_conv.cpp</sources>
-		<sources>../test/test_gb18030_bmp2db.cpp</sources>
-		<sources>../test/test_gb18030_bmp2qb.cpp</sources>
 		<sources>../test/test_gb18030_conv.cpp</sources>
-		<sources>../test/test_gb18030_db2bmp.cpp</sources>
-		<sources>../test/test_gb18030_qb2bmp.cpp</sources>
 		<sources>../test/test_singlebyte_conv.cpp</sources>
-		<headers>../test/test.h</headers>
 		<sources>../test/test.cpp</sources>
+		
+		<lib-path>$(BOOST_DIR)/stage/lib</lib-path>
+		<if cond="FORMAT in ('mingw')">
+			<set var="BOOST_RT_OPT" make_var="1">
+				<if cond="DEBUG==0"></if>
+				<if cond="DEBUG==1">-d</if>
+			</set>
+			<sys-lib>boost_unit_test_framework-mgw$(MGW_VER)-mt$(BOOST_RT_OPT)-$(BOOST_VER)</sys-lib>
+		</if>
 	</exe>
 </makefile>

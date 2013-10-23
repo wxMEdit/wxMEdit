@@ -63,6 +63,15 @@ AC_ARG_WITH(boost,
                           otherwise use system include path],
     [CXXFLAGS="$CXXFLAGS -I$withval"])
 
+# option for Boost lib suffix
+BOOST_LIB_SUFFIX=-mt
+AC_ARG_WITH(boost-lib-suffix, 
+    [  --with-boost-lib-suffix=PATH
+                          use specified Boost library file suffix,
+                          otherwise use '-mt'],
+    [BOOST_LIB_SUFFIX="$withval"])
+TESTLIBS="-lboost_unit_test_framework$BOOST_LIB_SUFFIX"
+AC_SUBST([TESTLIBS])
 
 # option for additional ICU lib
 ICUCONFIG=icu-config
