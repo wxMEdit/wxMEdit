@@ -5,7 +5,7 @@ B2UMap b2u;
 U2BMap u2b;
 std::vector<std::string> test_singlebyte_conv_enc_list;
 
-void data_singlebyte_conv_init()
+void data_cp437_conv_init()
 {
 test_singlebyte_conv_enc_list.push_back("CP437");
 
@@ -303,7 +303,10 @@ u2b_cp437[0x002593] = 0xB2;
 u2b_cp437[0x0025A0] = 0xFE;
 // u2b_cp437.size() == 255
 u2b["CP437"] = &u2b_cp437;
+}
 
+void data_cp850_conv_init()
+{
 test_singlebyte_conv_enc_list.push_back("CP850");
 
 static ucs4_t b2u_cp850[] = {
@@ -600,7 +603,10 @@ u2b_cp850[0x002593] = 0xB2;
 u2b_cp850[0x0025A0] = 0xFE;
 // u2b_cp850.size() == 255
 u2b["CP850"] = &u2b_cp850;
+}
 
+void data_cp852_conv_init()
+{
 test_singlebyte_conv_enc_list.push_back("CP852");
 
 static ucs4_t b2u_cp852[] = {
@@ -897,7 +903,10 @@ u2b_cp852[0x002593] = 0xB2;
 u2b_cp852[0x0025A0] = 0xFE;
 // u2b_cp852.size() == 255
 u2b["CP852"] = &u2b_cp852;
+}
 
+void data_cp855_conv_init()
+{
 test_singlebyte_conv_enc_list.push_back("CP855");
 
 static ucs4_t b2u_cp855[] = {
@@ -1194,7 +1203,10 @@ u2b_cp855[0x002593] = 0xB2;
 u2b_cp855[0x0025A0] = 0xFE;
 // u2b_cp855.size() == 255
 u2b["CP855"] = &u2b_cp855;
+}
 
+void data_cp866_conv_init()
+{
 test_singlebyte_conv_enc_list.push_back("CP866");
 
 static ucs4_t b2u_cp866[] = {
@@ -1491,7 +1503,10 @@ u2b_cp866[0x002593] = 0xB2;
 u2b_cp866[0x0025A0] = 0xFE;
 // u2b_cp866.size() == 255
 u2b["CP866"] = &u2b_cp866;
+}
 
+void data_iso8859_1_conv_init()
+{
 test_singlebyte_conv_enc_list.push_back("ISO-8859-1");
 
 static ucs4_t b2u_iso8859_1[] = {
@@ -1788,7 +1803,10 @@ u2b_iso8859_1[0x0000FE] = 0xFE;
 u2b_iso8859_1[0x0000FF] = 0xFF;
 // u2b_iso8859_1.size() == 255
 u2b["ISO-8859-1"] = &u2b_iso8859_1;
+}
 
+void data_iso8859_2_conv_init()
+{
 test_singlebyte_conv_enc_list.push_back("ISO-8859-2");
 
 static ucs4_t b2u_iso8859_2[] = {
@@ -2085,7 +2103,10 @@ u2b_iso8859_2[0x0002DB] = 0xB2;
 u2b_iso8859_2[0x0002DD] = 0xBD;
 // u2b_iso8859_2.size() == 255
 u2b["ISO-8859-2"] = &u2b_iso8859_2;
+}
 
+void data_iso8859_3_conv_init()
+{
 test_singlebyte_conv_enc_list.push_back("ISO-8859-3");
 
 static ucs4_t b2u_iso8859_3[] = {
@@ -2382,7 +2403,10 @@ u2b_iso8859_3[0x0002D8] = 0xA2;
 u2b_iso8859_3[0x0002D9] = 0xFF;
 // u2b_iso8859_3.size() == 255
 u2b["ISO-8859-3"] = &u2b_iso8859_3;
+}
 
+void data_iso8859_4_conv_init()
+{
 test_singlebyte_conv_enc_list.push_back("ISO-8859-4");
 
 static ucs4_t b2u_iso8859_4[] = {
@@ -2679,7 +2703,10 @@ u2b_iso8859_4[0x0002D9] = 0xFF;
 u2b_iso8859_4[0x0002DB] = 0xB2;
 // u2b_iso8859_4.size() == 255
 u2b["ISO-8859-4"] = &u2b_iso8859_4;
+}
 
+void data_iso8859_5_conv_init()
+{
 test_singlebyte_conv_enc_list.push_back("ISO-8859-5");
 
 static ucs4_t b2u_iso8859_5[] = {
@@ -2976,7 +3003,10 @@ u2b_iso8859_5[0x00045F] = 0xFF;
 u2b_iso8859_5[0x002116] = 0xF0;
 // u2b_iso8859_5.size() == 255
 u2b["ISO-8859-5"] = &u2b_iso8859_5;
+}
 
+void data_iso8859_6_conv_init()
+{
 test_singlebyte_conv_enc_list.push_back("ISO-8859-6");
 
 static ucs4_t b2u_iso8859_6[] = {
@@ -3273,7 +3303,10 @@ u2b_iso8859_6[0x000651] = 0xF1;
 u2b_iso8859_6[0x000652] = 0xF2;
 // u2b_iso8859_6.size() == 255
 u2b["ISO-8859-6"] = &u2b_iso8859_6;
+}
 
+void data_iso8859_7_conv_init()
+{
 test_singlebyte_conv_enc_list.push_back("ISO-8859-7");
 
 static ucs4_t b2u_iso8859_7[] = {
@@ -3570,7 +3603,10 @@ u2b_iso8859_7[0x0020AC] = 0xA4;
 u2b_iso8859_7[0x0020AF] = 0xA5;
 // u2b_iso8859_7.size() == 255
 u2b["ISO-8859-7"] = &u2b_iso8859_7;
+}
 
+void data_iso8859_8_conv_init()
+{
 test_singlebyte_conv_enc_list.push_back("ISO-8859-8");
 
 static ucs4_t b2u_iso8859_8[] = {
@@ -3866,7 +3902,10 @@ u2b_iso8859_8[0x00200F] = 0xFE;
 u2b_iso8859_8[0x002017] = 0xDF;
 // u2b_iso8859_8.size() == 254
 u2b["ISO-8859-8"] = &u2b_iso8859_8;
+}
 
+void data_iso8859_9_conv_init()
+{
 test_singlebyte_conv_enc_list.push_back("ISO-8859-9");
 
 static ucs4_t b2u_iso8859_9[] = {
@@ -4163,7 +4202,10 @@ u2b_iso8859_9[0x00015E] = 0xDE;
 u2b_iso8859_9[0x00015F] = 0xFE;
 // u2b_iso8859_9.size() == 255
 u2b["ISO-8859-9"] = &u2b_iso8859_9;
+}
 
+void data_iso8859_10_conv_init()
+{
 test_singlebyte_conv_enc_list.push_back("ISO-8859-10");
 
 static ucs4_t b2u_iso8859_10[] = {
@@ -4460,7 +4502,10 @@ u2b_iso8859_10[0x00017E] = 0xBC;
 u2b_iso8859_10[0x002015] = 0xBD;
 // u2b_iso8859_10.size() == 255
 u2b["ISO-8859-10"] = &u2b_iso8859_10;
+}
 
+void data_iso8859_11_conv_init()
+{
 test_singlebyte_conv_enc_list.push_back("ISO-8859-11");
 
 static ucs4_t b2u_iso8859_11[] = {
@@ -4757,7 +4802,10 @@ u2b_iso8859_11[0x000E5A] = 0xFA;
 u2b_iso8859_11[0x000E5B] = 0xFB;
 // u2b_iso8859_11.size() == 255
 u2b["ISO-8859-11"] = &u2b_iso8859_11;
+}
 
+void data_iso8859_13_conv_init()
+{
 test_singlebyte_conv_enc_list.push_back("ISO-8859-13");
 
 static ucs4_t b2u_iso8859_13[] = {
@@ -5054,7 +5102,10 @@ u2b_iso8859_13[0x00201D] = 0xA1;
 u2b_iso8859_13[0x00201E] = 0xA5;
 // u2b_iso8859_13.size() == 255
 u2b["ISO-8859-13"] = &u2b_iso8859_13;
+}
 
+void data_iso8859_14_conv_init()
+{
 test_singlebyte_conv_enc_list.push_back("ISO-8859-14");
 
 static ucs4_t b2u_iso8859_14[] = {
@@ -5351,7 +5402,10 @@ u2b_iso8859_14[0x001EF2] = 0xAC;
 u2b_iso8859_14[0x001EF3] = 0xBC;
 // u2b_iso8859_14.size() == 255
 u2b["ISO-8859-14"] = &u2b_iso8859_14;
+}
 
+void data_iso8859_15_conv_init()
+{
 test_singlebyte_conv_enc_list.push_back("ISO-8859-15");
 
 static ucs4_t b2u_iso8859_15[] = {
@@ -5648,7 +5702,10 @@ u2b_iso8859_15[0x00017E] = 0xB8;
 u2b_iso8859_15[0x0020AC] = 0xA4;
 // u2b_iso8859_15.size() == 255
 u2b["ISO-8859-15"] = &u2b_iso8859_15;
+}
 
+void data_iso8859_16_conv_init()
+{
 test_singlebyte_conv_enc_list.push_back("ISO-8859-16");
 
 static ucs4_t b2u_iso8859_16[] = {
@@ -5945,7 +6002,10 @@ u2b_iso8859_16[0x00201E] = 0xA5;
 u2b_iso8859_16[0x0020AC] = 0xA4;
 // u2b_iso8859_16.size() == 255
 u2b["ISO-8859-16"] = &u2b_iso8859_16;
+}
 
+void data_koi8_r_conv_init()
+{
 test_singlebyte_conv_enc_list.push_back("KOI8-R");
 
 static ucs4_t b2u_koi8_r[] = {
@@ -6242,7 +6302,10 @@ u2b_koi8_r[0x002593] = 0x92;
 u2b_koi8_r[0x0025A0] = 0x94;
 // u2b_koi8_r.size() == 255
 u2b["KOI8-R"] = &u2b_koi8_r;
+}
 
+void data_koi8_u_conv_init()
+{
 test_singlebyte_conv_enc_list.push_back("KOI8-U");
 
 static ucs4_t b2u_koi8_u[] = {
@@ -6539,7 +6602,10 @@ u2b_koi8_u[0x002593] = 0x92;
 u2b_koi8_u[0x0025A0] = 0x94;
 // u2b_koi8_u.size() == 255
 u2b["KOI8-U"] = &u2b_koi8_u;
+}
 
+void data_windows874_conv_init()
+{
 test_singlebyte_conv_enc_list.push_back("Windows-874");
 
 static ucs4_t b2u_windows874[] = {
@@ -6836,7 +6902,10 @@ u2b_windows874[0x002026] = 0x85;
 u2b_windows874[0x0020AC] = 0x80;
 // u2b_windows874.size() == 255
 u2b["Windows-874"] = &u2b_windows874;
+}
 
+void data_windows1250_conv_init()
+{
 test_singlebyte_conv_enc_list.push_back("Windows-1250");
 
 static ucs4_t b2u_windows1250[] = {
@@ -7133,7 +7202,10 @@ u2b_windows1250[0x0020AC] = 0x80;
 u2b_windows1250[0x002122] = 0x99;
 // u2b_windows1250.size() == 255
 u2b["Windows-1250"] = &u2b_windows1250;
+}
 
+void data_windows1251_conv_init()
+{
 test_singlebyte_conv_enc_list.push_back("Windows-1251");
 
 static ucs4_t b2u_windows1251[] = {
@@ -7430,7 +7502,10 @@ u2b_windows1251[0x002116] = 0xB9;
 u2b_windows1251[0x002122] = 0x99;
 // u2b_windows1251.size() == 255
 u2b["Windows-1251"] = &u2b_windows1251;
+}
 
+void data_windows1252_conv_init()
+{
 test_singlebyte_conv_enc_list.push_back("Windows-1252");
 
 static ucs4_t b2u_windows1252[] = {
@@ -7727,7 +7802,10 @@ u2b_windows1252[0x0020AC] = 0x80;
 u2b_windows1252[0x002122] = 0x99;
 // u2b_windows1252.size() == 255
 u2b["Windows-1252"] = &u2b_windows1252;
+}
 
+void data_windows1253_conv_init()
+{
 test_singlebyte_conv_enc_list.push_back("Windows-1253");
 
 static ucs4_t b2u_windows1253[] = {
@@ -8024,7 +8102,10 @@ u2b_windows1253[0x0020AC] = 0x80;
 u2b_windows1253[0x002122] = 0x99;
 // u2b_windows1253.size() == 255
 u2b["Windows-1253"] = &u2b_windows1253;
+}
 
+void data_windows1254_conv_init()
+{
 test_singlebyte_conv_enc_list.push_back("Windows-1254");
 
 static ucs4_t b2u_windows1254[] = {
@@ -8321,7 +8402,10 @@ u2b_windows1254[0x0020AC] = 0x80;
 u2b_windows1254[0x002122] = 0x99;
 // u2b_windows1254.size() == 255
 u2b["Windows-1254"] = &u2b_windows1254;
+}
 
+void data_windows1255_conv_init()
+{
 test_singlebyte_conv_enc_list.push_back("Windows-1255");
 
 static ucs4_t b2u_windows1255[] = {
@@ -8618,7 +8702,10 @@ u2b_windows1255[0x0020AC] = 0x80;
 u2b_windows1255[0x002122] = 0x99;
 // u2b_windows1255.size() == 255
 u2b["Windows-1255"] = &u2b_windows1255;
+}
 
+void data_windows1256_conv_init()
+{
 test_singlebyte_conv_enc_list.push_back("Windows-1256");
 
 static ucs4_t b2u_windows1256[] = {
@@ -8915,7 +9002,10 @@ u2b_windows1256[0x0020AC] = 0x80;
 u2b_windows1256[0x002122] = 0x99;
 // u2b_windows1256.size() == 255
 u2b["Windows-1256"] = &u2b_windows1256;
+}
 
+void data_windows1257_conv_init()
+{
 test_singlebyte_conv_enc_list.push_back("Windows-1257");
 
 static ucs4_t b2u_windows1257[] = {
@@ -9212,7 +9302,10 @@ u2b_windows1257[0x0020AC] = 0x80;
 u2b_windows1257[0x002122] = 0x99;
 // u2b_windows1257.size() == 255
 u2b["Windows-1257"] = &u2b_windows1257;
+}
 
+void data_windows1258_conv_init()
+{
 test_singlebyte_conv_enc_list.push_back("Windows-1258");
 
 static ucs4_t b2u_windows1258[] = {
@@ -9509,5 +9602,40 @@ u2b_windows1258[0x0020AC] = 0x80;
 u2b_windows1258[0x002122] = 0x99;
 // u2b_windows1258.size() == 255
 u2b["Windows-1258"] = &u2b_windows1258;
+}
 
+void data_singlebyte_conv_init()
+{
+	data_cp437_conv_init();
+	data_cp850_conv_init();
+	data_cp852_conv_init();
+	data_cp855_conv_init();
+	data_cp866_conv_init();
+	data_iso8859_1_conv_init();
+	data_iso8859_2_conv_init();
+	data_iso8859_3_conv_init();
+	data_iso8859_4_conv_init();
+	data_iso8859_5_conv_init();
+	data_iso8859_6_conv_init();
+	data_iso8859_7_conv_init();
+	data_iso8859_8_conv_init();
+	data_iso8859_9_conv_init();
+	data_iso8859_10_conv_init();
+	data_iso8859_11_conv_init();
+	data_iso8859_13_conv_init();
+	data_iso8859_14_conv_init();
+	data_iso8859_15_conv_init();
+	data_iso8859_16_conv_init();
+	data_koi8_r_conv_init();
+	data_koi8_u_conv_init();
+	data_windows874_conv_init();
+	data_windows1250_conv_init();
+	data_windows1251_conv_init();
+	data_windows1252_conv_init();
+	data_windows1253_conv_init();
+	data_windows1254_conv_init();
+	data_windows1255_conv_init();
+	data_windows1256_conv_init();
+	data_windows1257_conv_init();
+	data_windows1258_conv_init();
 }

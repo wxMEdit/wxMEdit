@@ -11,7 +11,7 @@ MB2UMap mb2u;
 U2MBMap u2mb;
 std::vector<std::string> test_doublebyte_conv_enc_list;
 
-void test_doublebyte_conv_init()
+void data_doublebyte_conv_init()
 {
 	mb2u_cp932_init();
 	u2mb_cp932_init();
@@ -115,7 +115,7 @@ void test_a_doublebyte_conv(const std::string& encname)
 void test_doublebyte_conv()
 {
 	wxm::WXMEncodingCreator::Instance().InitEncodings();
-	test_doublebyte_conv_init();
+	data_doublebyte_conv_init();
 
 	BOOST_FOREACH(const std::string& encname, test_doublebyte_conv_enc_list)
 	{
@@ -124,6 +124,4 @@ void test_doublebyte_conv()
 	}
 
 	wxm::WXMEncodingCreator::Instance().FreeEncodings();
-
-//	return (int)boost::minimal_test::errors_counter();
 }

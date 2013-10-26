@@ -6,7 +6,7 @@
 
 #include <iostream>
 
-void test_gb18030_conv_init()
+void data_gb18030_conv_init()
 {
 	db2bmp_gb18030_init();
 	qb2bmp_gb18030_init();
@@ -18,7 +18,7 @@ void test_gb18030_conv_init()
 void test_gb18030_conv()
 {
 	wxm::WXMEncodingCreator::Instance().InitEncodings();
-	test_gb18030_conv_init();
+	data_gb18030_conv_init();
 
 	const std::string encname("GB18030");
 	std::cout << encname << std::endl;
@@ -167,6 +167,4 @@ void test_gb18030_conv()
 	u2mb[encname].clear();
 
 	wxm::WXMEncodingCreator::Instance().FreeEncodings();
-
-//	return (int)boost::minimal_test::errors_counter();
 }

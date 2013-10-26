@@ -55,6 +55,4 @@ void test_singlebyte_conv()
 	}
 
 	wxm::WXMEncodingCreator::Instance().FreeEncodings();
-
-//	return (int)boost::minimal_test::errors_counter();
 }
