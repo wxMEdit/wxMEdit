@@ -504,8 +504,7 @@ void DetectEncoding(const wxByte *text, int count, wxm::WXMEncodingID &enc)
         enc = wxm::ENC_MS950;
     }
     else if(name.IsSameAs(wxT("GB2312"))
-         || name.IsSameAs(wxT("GB18030"))
-         || name.IsSameAs(wxT("HZ-GB-2312")))
+         || name.IsSameAs(wxT("GB18030")))
     {
         enc = wxm::ENC_MS936;
     }
