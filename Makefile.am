@@ -146,9 +146,12 @@ wxmedit_test_SOURCES =	$(enc_src) \
 	src/xm/wxm_line_enc_adapter.h \
 	test/encdet/data_from_icudet.cpp \
 	test/encdet/data_from_icudet.h \
+	test/encdet/data_from_mozdet.cpp \
+	test/encdet/data_from_mozdet.h \
 	test/encdet/test_detenc.cpp \
 	test/encdet/test_detenc.h \
 	test/encdet/test_from_icudet.cpp \
+	test/encdet/test_from_mozdet.cpp \
 	test/encoding/data_cp20932_conv.cpp \
 	test/encoding/data_cp932_conv.cpp \
 	test/encoding/data_cp936_conv.cpp \

@@ -2,31 +2,12 @@
 #include "../encdet_test.h"
 #include "test_detenc.h"
 
-#include <unicode/unistr.h>
 #include <boost/foreach.hpp>
-#include <boost/scoped_array.hpp>
 #include <boost/algorithm/string/split.hpp>
 #include <boost/algorithm/string/classification.hpp>
 #include <set>
 #include <utility>
 #include <iostream>
-
-bool javaesc_to_enc(std::string& dest, const std::string& src, const std::string& enc)
-{
-	UnicodeString us = UnicodeString(src.data(), src.size()).unescape();
-
-	int32_t uslen = us.length();
-
-	int32_t slen = us.extract(0, uslen, NULL, enc.c_str());
-	if (slen <= 0)
-		return false;
-	boost::scoped_array<char> buf(new char[slen + 1]);
-	us.extract(0, uslen, buf.get(), enc.c_str());
-
-	dest = std::string(buf.get(), slen);
-
-	return true;
-}
 
 std::set<std::pair<std::string, std::string> > skiped_test_cases;
 
@@ -83,7 +64,6 @@ void test_icucase_encdet(const ICUEncDetTestCase& tcase)
 
 		test_detenc(text, tenc);
 	}
-	std::cout << std::endl;
 }
 
 void test_encdet_with_icucases()
