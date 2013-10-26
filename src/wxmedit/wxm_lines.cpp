@@ -2297,11 +2297,11 @@ bool MadLines::LoadFromFile(const wxString &filename, const wxString &encoding)
         m_MadEdit->SetEditMode(emTextMode);
 
     const int max_detecting_size = 4096;
-    int s;
+    int sz;
     if(m_FileData->m_Size > max_detecting_size)
-        s = max_detecting_size;
+        sz = max_detecting_size;
     else
-        s = m_FileData->m_Size;
+        sz = m_FileData->m_Size;
 
     wxString defaultenc;
     if(encoding.IsEmpty())
@@ -2313,7 +2313,7 @@ bool MadLines::LoadFromFile(const wxString &filename, const wxString &encoding)
         defaultenc = encoding;
     }
 
-    if(s == 0)
+    if(sz == 0)
     {
         delete m_FileData;
         m_FileData = NULL;
@@ -2420,7 +2420,7 @@ bool MadLines::LoadFromFile(const wxString &filename, const wxString &encoding)
         m_Syntax = MadSyntax::GetSyntaxByExt(fn.GetExt());
         if(m_Syntax==NULL)
         {
-            m_Syntax = MadSyntax::GetSyntaxByFirstLine(buf, s);
+            m_Syntax = MadSyntax::GetSyntaxByFirstLine(buf, sz);
             if(m_Syntax==NULL)
             {
                 m_Syntax = MadSyntax::GetSyntaxByFileName(fn.GetName());
@@ -2451,42 +2451,19 @@ bool MadLines::LoadFromFile(const wxString &filename, const wxString &encoding)
     }
     else
     {
+		wxString uenc;
         if(!encoding.IsEmpty())
         {
             m_MadEdit->SetEncoding(encoding);
             Reformat(iter, iter);
             ok=true;
         }
-        else if(IsTextUTF16LE(buf, s))
-        {
-            m_MadEdit->SetEncoding(wxT("utf-16le"));
+		else if(MatchSimpleUnicode(uenc, buf, sz))
+		{
+            m_MadEdit->SetEncoding(uenc);
             Reformat(iter, iter);
             ok=true;
-        }
-        else if(IsTextUTF16BE(buf, s))
-        {
-            m_MadEdit->SetEncoding(wxT("utf-16be"));
-            Reformat(iter, iter);
-            ok=true;
-        }
-        else if(IsTextUTF8(buf, s))
-        {
-            m_MadEdit->SetEncoding(wxT("utf-8"));
-            Reformat(iter, iter);
-            ok=true;
-        }
-        else if(IsTextUTF32LE(buf, s))
-        {
-            m_MadEdit->SetEncoding(wxT("utf-32le"));
-            Reformat(iter, iter);
-            ok=true;
-        }
-        else if(IsTextUTF32BE(buf, s))
-        {
-            m_MadEdit->SetEncoding(wxT("utf-32be"));
-            Reformat(iter, iter);
-            ok=true;
-        }
+		}
     }
 
     if(!ok)
@@ -2505,46 +2482,16 @@ bool MadLines::LoadFromFile(const wxString &filename, const wxString &encoding)
 			if(wxm::WXMEncodingCreator::IsSimpleUnicodeEncoding(enc))
             {
                 // use default encoding
-                //enc=wxLocale::GetSystemEncoding();
                 enc=wxm::WXMEncodingCreator::Instance().NameToEncoding(defaultenc);
             }
 
-            /* old method to detect encoding
-            bool detectchinese=false;
-            bool detectjapanese=false;
-
-            extern wxLocale g_Locale;
-            wxString cname=g_Locale.GetCanonicalName();
-
-            if(cname.Len()>=2)
-            {
-                if(cname[0]==wxT('z') && cname[1]==wxT('h'))
-                {
-                    detectchinese=true;
-                }
-                else if(cname[0]==wxT('j') && cname[1]==wxT('a'))
-                {
-                    detectjapanese=true;
-                }
-            }
-
-            if(detectchinese || enc==wxFONTENCODING_CP936 || enc==wxFONTENCODING_CP950)
-            {
-                DetectChineseEncoding(buf, s, enc);
-            }
-            else if(detectjapanese || enc==wxFONTENCODING_CP932 || enc==wxFONTENCODING_EUC_JP)
-            {
-                DetectJapaneseEncoding(buf, s, enc);
-            }
-            */
-
             // use charset-detector
-            DetectEncoding(buf, s, enc);
+            DetectEncoding(buf, sz, enc);
 
             m_MadEdit->SetEncoding(wxm::WXMEncodingCreator::Instance().EncodingToName(enc));
         }
 
-        if(isbinary || IsBinaryData(buf, s))
+        if(isbinary || IsBinaryData(buf, sz))
         {
             m_MaxLineWidth = -1;       // indicate the data is not text data
             m_MadEdit->SetEditMode(emHexMode);

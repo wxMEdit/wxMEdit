@@ -21,12 +21,13 @@
 #include <wx/wx.h>
 #endif
 
-bool IsTextUTF32LE(wxByte *text, int size);
-bool IsTextUTF32BE(wxByte *text, int size);
-bool IsTextUTF16LE(wxByte *text, int size);
-bool IsTextUTF16BE(wxByte *text, int size);
-bool IsTextUTF8(wxByte *text, int size);
-bool IsBinaryData(wxByte *data, int size);
+bool IsTextUTF32LE(const wxByte *text, int size);
+bool IsTextUTF32BE(const wxByte *text, int size);
+bool IsTextUTF16LE(const wxByte *text, int size);
+bool IsTextUTF16BE(const wxByte *text, int size);
+bool IsTextUTF8(const wxByte *text, int size);
+bool MatchSimpleUnicode(wxString& enc, const wxByte *text, int size);
+bool IsBinaryData(const wxByte *data, int size);
 void DetectChineseEncoding(const wxByte *text, int count, wxm::WXMEncodingID &enc);
 void DetectJapaneseEncoding(const wxByte *text, int count, wxm::WXMEncodingID &enc);
 void DetectEncoding(const wxByte *text, int count, wxm::WXMEncodingID &enc);

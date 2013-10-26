@@ -11,7 +11,7 @@
 #include "chardetect.h"
 #include <wx/config.h>
 
-bool IsTextUTF32LE(wxByte *text, int size)
+bool IsTextUTF32LE(const wxByte *text, int size)
 {
     // check BOM
     if(size>=4 && text[0]==0xFF && text[1]==0xFE && text[2]==0 && text[3]==0)
@@ -32,7 +32,7 @@ bool IsTextUTF32LE(wxByte *text, int size)
     return true;
 }
 
-bool IsTextUTF32BE(wxByte *text, int size)
+bool IsTextUTF32BE(const wxByte *text, int size)
 {
     // check BOM
     if(size>=4 && text[0]==0 && text[1]==0 && text[2]==0xFE && text[3]==0xFF)
@@ -54,7 +54,7 @@ bool IsTextUTF32BE(wxByte *text, int size)
 }
 
 
-bool IsTextUTF16LE(wxByte *text, int size)
+bool IsTextUTF16LE(const wxByte *text, int size)
 {
     if(size >= 2)
     {
@@ -104,7 +104,7 @@ bool IsTextUTF16LE(wxByte *text, int size)
     return false;
 }
 
-bool IsTextUTF16BE(wxByte *text, int size)
+bool IsTextUTF16BE(const wxByte *text, int size)
 {
     if(size >= 2 && text[0] == 0xFE && text[1] == 0xFF)
         return true;
@@ -144,7 +144,7 @@ inline bool IsUTF8Tail(wxByte b)
 {
     return (b & 0xC0) == 0x80;
 }
-bool IsTextUTF8(wxByte *text, int size)
+bool IsTextUTF8(const wxByte *text, int size)
 {
     //check BOM
     if(size >= 3 && text[0] == 0xEF && text[1] == 0xBB && text[2] == 0xBF)
@@ -208,7 +208,38 @@ bool IsTextUTF8(wxByte *text, int size)
     return ok_count > 0;
 }
 
-bool IsBinaryData(wxByte *data, int size)
+bool MatchSimpleUnicode(wxString& enc, const wxByte *text, int size)
+{
+    if(IsTextUTF16LE(text, size))
+    {
+        enc = wxT("utf-16le");
+        return true;
+    }
+    else if(IsTextUTF16BE(text, size))
+    {
+        enc = wxT("utf-16be");
+        return true;
+    }
+    else if(IsTextUTF8(text, size))
+    {
+        enc = wxT("utf-8");
+        return true;
+    }
+    else if(IsTextUTF32LE(text, size))
+    {
+        enc = wxT("utf-32le");
+        return true;
+    }
+    else if(IsTextUTF32BE(text, size))
+    {
+        enc = wxT("utf-32be");
+        return true;
+    }
+
+    return false;
+}
+
+bool IsBinaryData(const wxByte *data, int size)
 {
     int i = 0;
     wxByte b;
