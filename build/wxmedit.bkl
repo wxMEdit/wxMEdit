@@ -106,14 +106,10 @@
 		<sources>../src/xm/wxm_encoding/unicode.cpp</sources>
 	</template>
 
-	<exe id="wxmedit" template="win_cfg,enc_src">
-		<app-type>gui</app-type>
-
+	<template id="chardet_src">
 		<include>../charset-detector/include</include>
 		<include>../charset-detector/src</include>
 		<include>../charset-detector/src/tables</include>
-
-		<win32-res>../src/wxmedit_app.rc</win32-res>
 
 		<sources>../charset-detector/src/CharDistribution.cpp</sources>
 		<sources>../charset-detector/src/JpCntx.cpp</sources>
@@ -141,6 +137,15 @@
 		<sources>../charset-detector/src/nsSJISProber.cpp</sources>
 		<sources>../charset-detector/src/nsUTF8Prober.cpp</sources>
 		<sources>../charset-detector/src/nsUniversalDetector.cpp</sources>
+		<headers>../src/wxmedit/wxm_encdet.h</headers>
+		<sources>../src/wxmedit/wxm_encdet.cpp</sources>
+	</template>
+
+	<exe id="wxmedit" template="win_cfg,enc_src,chardet_src">
+		<app-type>gui</app-type>
+
+		<win32-res>../src/wxmedit_app.rc</win32-res>
+
 		<headers>../src/plugin.h</headers>
 		<headers>../src/wxm_command.h</headers>
 		<headers>../src/wxm_conv_enc_dialog.h</headers>
@@ -172,8 +177,6 @@
 		<sources>../src/wxmedit/trad_simp.cpp</sources>
 		<headers>../src/wxmedit/ucs4_t.h</headers>
 		<headers>../src/wxmedit/wxm_deque.hpp</headers>
-		<headers>../src/wxmedit/wxm_encdet.h</headers>
-		<sources>../src/wxmedit/wxm_encdet.cpp</sources>
 		<headers>../src/wxmedit/wxm_lines.h</headers>
 		<sources>../src/wxmedit/wxm_lines.cpp</sources>
 		<headers>../src/wxmedit/wxm_syntax.h</headers>
@@ -209,10 +212,15 @@
 		<headers>../src/xm/xm_uutils.h</headers>
 		<sources>../src/xm/xm_uutils.cpp</sources>
 	</exe>
-	<exe id="wxmedit_test" template="win_cfg,enc_src">
+	<exe id="wxmedit_test" template="win_cfg,enc_src,chardet_src">
 		<headers>../src/wxmedit/ucs4_t.h</headers>
 		<headers>../src/wxmedit/wxm_deque.hpp</headers>
 		<headers>../src/xm/wxm_line_enc_adapter.h</headers>
+		<headers>../test/encdet/data_from_icudet.h</headers>
+		<sources>../test/encdet/data_from_icudet.cpp</sources>
+		<headers>../test/encdet/test_detenc.h</headers>
+		<sources>../test/encdet/test_detenc.cpp</sources>
+		<sources>../test/encdet/test_from_icudet.cpp</sources>
 		<sources>../test/encoding/data_cp20932_conv.cpp</sources>
 		<sources>../test/encoding/data_cp932_conv.cpp</sources>
 		<sources>../test/encoding/data_cp936_conv.cpp</sources>
@@ -228,6 +236,7 @@
 		<sources>../test/encoding/test_doublebyte_conv.cpp</sources>
 		<sources>../test/encoding/test_gb18030_conv.cpp</sources>
 		<sources>../test/encoding/test_singlebyte_conv.cpp</sources>
+		<headers>../test/encdet_test.h</headers>
 		<headers>../test/encoding_test.h</headers>
 		<sources>../test/test.cpp</sources>
 		

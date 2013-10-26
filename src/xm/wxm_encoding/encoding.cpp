@@ -173,8 +173,7 @@ WXMEncodingID WXMEncodingCreator::GetSystemEncodingID()
 	if (sysencid != ENC_DEFAULT)
 		return sysencid;
 
-	std::string sysenc_icuname = GetEncodingICUName(NULL);
-	ICUNameEncMap::const_iterator it = m_icunameenc_map.find(sysenc_icuname);
+	ICUNameEncMap::const_iterator it = m_icunameenc_map.find(GetEncodingICUName(NULL));
 	if (it == m_icunameenc_map.end())
 		sysencid = ENC_ISO_8859_1;
 	else
@@ -272,6 +271,19 @@ WXMEncodingID WXMEncodingCreator::NameToEncoding(const wxString &name)
 		return GetSystemEncodingID();
 
 	return it->second;
+}
+
+WXMEncodingID WXMEncodingCreator::ExtNameToEncoding(const std::string &name)
+{
+	WXNameEncMap::const_iterator itwx = m_wxnameenc_map.find(wxString(name.c_str(), wxConvUTF8));
+	if (itwx != m_wxnameenc_map.end())
+		return itwx->second;
+
+	ICUNameEncMap::const_iterator iticu = m_icunameenc_map.find(GetEncodingICUName(name.c_str()));
+	if (iticu != m_icunameenc_map.end())
+		return iticu->second;
+
+	return ENC_DEFAULT;
 }
 
 WXMEncoding* WXMEncodingCreator::GetSystemEncoding()

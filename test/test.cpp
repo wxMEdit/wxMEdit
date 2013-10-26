@@ -1,4 +1,5 @@
 #include "encoding_test.h"
+#include "encdet_test.h"
 
 #include <boost/version.hpp>
 
@@ -17,7 +18,11 @@ boost::unit_test::test_suite* init_unit_test_suite(int argc, char* argv[])
 	encoding_test->add(BOOST_TEST_CASE(&test_doublebyte_conv));
 	encoding_test->add(BOOST_TEST_CASE(&test_singlebyte_conv));
 
+	boost::unit_test::test_suite* encdet_test = BOOST_TEST_SUITE("encdet_test");
+	encdet_test->add(BOOST_TEST_CASE(&test_encdet_with_icucases));
+
 	boost::unit_test::test_suite* test = BOOST_TEST_SUITE("wxmedit_test");
+	test->add(encdet_test);
 	test->add(encoding_test);
 
 	return test;

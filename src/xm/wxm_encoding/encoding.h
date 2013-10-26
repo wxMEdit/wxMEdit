@@ -77,6 +77,7 @@ public:
 	wxString GetEncodingFontName(ssize_t idx);
 	wxString EncodingToName(WXMEncodingID enc);
 	WXMEncodingID NameToEncoding(const wxString &name);
+	WXMEncodingID ExtNameToEncoding(const std::string &name);
 	WXMEncoding* GetSystemEncoding();
 
 	WXMEncodingType GetIdxEncType(ssize_t idx);

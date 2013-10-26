@@ -1,72 +1,6 @@
 SUBDIRS = syntax po
 
-bin_PROGRAMS = wxmedit wxmedit_test
-AM_CPPFLAGS = -I$(top_srcdir)/charset-detector/include -I$(top_srcdir)/charset-detector/src -I$(top_srcdir)/charset-detector/src/tables
-wxmedit_CXXFLAGS = -DDATA_DIR=\"${datadir}\"
-wxmedit_SOURCES =	src/wxmedit_about_dialog.cpp \
-	src/wxmedit_about_dialog.h \
-	src/wxm_command.h \
-	src/wxm_conv_enc_dialog.cpp \
-	src/wxm_conv_enc_dialog.h \
-	src/wxmedit_app.cpp \
-	src/wxmedit_app.h \
-	src/wxmedit_frame.cpp \
-	src/wxmedit_frame.h \
-	src/wxm_find_in_files_dialog.cpp \
-	src/wxm_find_in_files_dialog.h \
-	src/wxm_highlighting_dialog.cpp \
-	src/wxm_highlighting_dialog.h \
-	src/wxm_options_dialog.cpp \
-	src/wxm_options_dialog.h \
-	src/wxm_plugin.cpp \
-	src/wxm_printout.cpp \
-	src/wxm_printout.h \
-	src/wxm_replace_dialog.cpp \
-	src/wxm_replace_dialog.h \
-	src/wxm_search_dialog.cpp \
-	src/wxm_search_dialog.h \
-	src/wxm_sort_dialog.cpp \
-	src/wxm_sort_dialog.h \
-	src/wxm_utils.cpp \
-	src/wxm_utils.h \
-	src/wxm_word_count_dialog.cpp \
-	src/wxm_word_count_dialog.h \
-	src/plugin.h \
-	src/wxmedit/caret_new.cpp \
-	src/wxmedit/caret_new.h \
-	src/wxmedit/clipbrd_gtk.cpp \
-	src/wxmedit/clipbrd_gtk.h \
-	src/wxmedit/wxm_deque.hpp \
-	src/wxmedit/wxmedit.cpp \
-	src/wxmedit/wxmedit.h \
-	src/wxmedit/wxmedit_advanced.cpp \
-	src/wxmedit/wxmedit_basic.cpp \
-	src/wxmedit/wxmedit_command.cpp \
-	src/wxmedit/wxmedit_command.h \
-	src/wxmedit/wxmedit_search.cpp \
-	src/wxmedit/wxmedit_gtk.cpp \
-	src/wxmedit/wxm_encdet.cpp \
-	src/wxmedit/wxm_encdet.h \
-	src/wxmedit/wxm_lines.cpp \
-	src/wxmedit/wxm_lines.h \
-	src/wxmedit/wxm_syntax.cpp \
-	src/wxmedit/wxm_syntax.h \
-	src/wxmedit/wxm_undo.cpp \
-	src/wxmedit/wxm_undo.h \
-	src/xm/xm_ublock_des.cpp \
-	src/xm/xm_ublock.cpp \
-	src/xm/xm_ublock.h \
-	src/xm/xm_uutils.cpp \
-	src/xm/xm_uutils.h \
-	src/xm/wx_avoid_wxmsw_bug4373.h \
-	src/xm/wx_recent_list.cpp \
-	src/xm/wx_recent_list.h \
-	src/xm/wxm_case_conv.cpp \
-	src/xm/wxm_case_conv.h \
-	src/xm/wxm_def.h \
-	src/xm/wxm_line_enc_adapter.cpp \
-	src/xm/wxm_line_enc_adapter.h \
-	src/xm/wxm_encoding/cp20932.cpp \
+enc_src =	src/xm/wxm_encoding/cp20932.cpp \
 	src/xm/wxm_encoding/cp20932.h \
 	src/xm/wxm_encoding/doublebyte.cpp \
 	src/xm/wxm_encoding/doublebyte.h \
@@ -80,13 +14,9 @@ wxmedit_SOURCES =	src/wxmedit_about_dialog.cpp \
 	src/xm/wxm_encoding/singlebyte.cpp \
 	src/xm/wxm_encoding/singlebyte.h \
 	src/xm/wxm_encoding/unicode.cpp \
-	src/xm/wxm_encoding/unicode.h \
-	src/xm/wxm_wx_icu.cpp \
-	src/xm/wxm_wx_icu.h \
-	src/wxmedit/trad_simp.cpp \
-	src/wxmedit/trad_simp.h \
-	src/wxmedit/ucs4_t.h \
-	charset-detector/src/CharDistribution.cpp \
+	src/xm/wxm_encoding/unicode.h
+
+chardet_src =	charset-detector/src/CharDistribution.cpp \
 	charset-detector/src/CharDistribution.h \
 	charset-detector/src/JpCntx.cpp \
 	charset-detector/src/JpCntx.h \
@@ -133,26 +63,92 @@ wxmedit_SOURCES =	src/wxmedit_about_dialog.cpp \
 	charset-detector/src/nsUTF8Prober.h \
 	charset-detector/src/prmem.h \
 	charset-detector/src/entry/impl.cpp \
-	charset-detector/include/chardetect.h
+	charset-detector/include/chardetect.h \
+	src/wxmedit/wxm_encdet.cpp \
+	src/wxmedit/wxm_encdet.h
 
-wxmedit_test_SOURCES = src/wxmedit/ucs4_t.h \
+bin_PROGRAMS = wxmedit wxmedit_test
+AM_CPPFLAGS = -I$(top_srcdir)/charset-detector/include -I$(top_srcdir)/charset-detector/src -I$(top_srcdir)/charset-detector/src/tables
+wxmedit_CXXFLAGS = -DDATA_DIR=\"${datadir}\"
+wxmedit_SOURCES =	$(enc_src) \
+	$(chardet_src) \
+	src/wxmedit_about_dialog.cpp \
+	src/wxmedit_about_dialog.h \
+	src/wxm_command.h \
+	src/wxm_conv_enc_dialog.cpp \
+	src/wxm_conv_enc_dialog.h \
+	src/wxmedit_app.cpp \
+	src/wxmedit_app.h \
+	src/wxmedit_frame.cpp \
+	src/wxmedit_frame.h \
+	src/wxm_find_in_files_dialog.cpp \
+	src/wxm_find_in_files_dialog.h \
+	src/wxm_highlighting_dialog.cpp \
+	src/wxm_highlighting_dialog.h \
+	src/wxm_options_dialog.cpp \
+	src/wxm_options_dialog.h \
+	src/wxm_plugin.cpp \
+	src/wxm_printout.cpp \
+	src/wxm_printout.h \
+	src/wxm_replace_dialog.cpp \
+	src/wxm_replace_dialog.h \
+	src/wxm_search_dialog.cpp \
+	src/wxm_search_dialog.h \
+	src/wxm_sort_dialog.cpp \
+	src/wxm_sort_dialog.h \
+	src/wxm_utils.cpp \
+	src/wxm_utils.h \
+	src/wxm_word_count_dialog.cpp \
+	src/wxm_word_count_dialog.h \
+	src/plugin.h \
+	src/wxmedit/caret_new.cpp \
+	src/wxmedit/caret_new.h \
+	src/wxmedit/clipbrd_gtk.cpp \
+	src/wxmedit/clipbrd_gtk.h \
 	src/wxmedit/wxm_deque.hpp \
-	src/xm/wxm_encoding/cp20932.cpp \
-	src/xm/wxm_encoding/cp20932.h \
-	src/xm/wxm_encoding/doublebyte.cpp \
-	src/xm/wxm_encoding/doublebyte.h \
-	src/xm/wxm_encoding/encoding.cpp \
-	src/xm/wxm_encoding/encoding.h \
-	src/xm/wxm_encoding/encoding_def.h \
-	src/xm/wxm_encoding/multibyte.cpp \
-	src/xm/wxm_encoding/multibyte.h \
-	src/xm/wxm_encoding/gb18030.cpp \
-	src/xm/wxm_encoding/gb18030.h \
-	src/xm/wxm_encoding/singlebyte.cpp \
-	src/xm/wxm_encoding/singlebyte.h \
-	src/xm/wxm_encoding/unicode.cpp \
-	src/xm/wxm_encoding/unicode.h \
+	src/wxmedit/wxmedit.cpp \
+	src/wxmedit/wxmedit.h \
+	src/wxmedit/wxmedit_advanced.cpp \
+	src/wxmedit/wxmedit_basic.cpp \
+	src/wxmedit/wxmedit_command.cpp \
+	src/wxmedit/wxmedit_command.h \
+	src/wxmedit/wxmedit_search.cpp \
+	src/wxmedit/wxmedit_gtk.cpp \
+	src/wxmedit/wxm_lines.cpp \
+	src/wxmedit/wxm_lines.h \
+	src/wxmedit/wxm_syntax.cpp \
+	src/wxmedit/wxm_syntax.h \
+	src/wxmedit/wxm_undo.cpp \
+	src/wxmedit/wxm_undo.h \
+	src/xm/xm_ublock_des.cpp \
+	src/xm/xm_ublock.cpp \
+	src/xm/xm_ublock.h \
+	src/xm/xm_uutils.cpp \
+	src/xm/xm_uutils.h \
+	src/xm/wx_avoid_wxmsw_bug4373.h \
+	src/xm/wx_recent_list.cpp \
+	src/xm/wx_recent_list.h \
+	src/xm/wxm_case_conv.cpp \
+	src/xm/wxm_case_conv.h \
+	src/xm/wxm_def.h \
+	src/xm/wxm_line_enc_adapter.cpp \
 	src/xm/wxm_line_enc_adapter.h \
+	src/xm/wxm_wx_icu.cpp \
+	src/xm/wxm_wx_icu.h \
+	src/wxmedit/trad_simp.cpp \
+	src/wxmedit/trad_simp.h \
+	src/wxmedit/ucs4_t.h
+
+wxmedit_test_SOURCES =	$(enc_src) \
+	$(chardet_src) \
+	src/wxmedit/ucs4_t.h \
+	src/wxmedit/wxm_deque.hpp \
+	src/xm/wxm_line_enc_adapter.h \
+	test/encdet/data_from_icudet.cpp \
+	test/encdet/data_from_icudet.h \
+	test/encdet/test_detenc.cpp \
+	test/encdet/test_detenc.h \
+	test/encdet/test_from_icudet.cpp \
 	test/encoding/data_cp20932_conv.cpp \
 	test/encoding/data_cp932_conv.cpp \
 	test/encoding/data_cp936_conv.cpp \
@@ -168,6 +164,7 @@ wxmedit_test_SOURCES = src/wxmedit/ucs4_t.h \
 	test/encoding/test_doublebyte_conv.cpp \
 	test/encoding/test_gb18030_conv.cpp \
 	test/encoding/test_singlebyte_conv.cpp \
+	test/encdet_test.h \
 	test/encoding_test.h \
 	test/test.cpp
 
