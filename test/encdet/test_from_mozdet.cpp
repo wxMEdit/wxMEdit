@@ -3,36 +3,34 @@
 #include "test_detenc.h"
 
 #include <boost/foreach.hpp>
+#include <boost/assign/list_of.hpp>
 #include <iostream>
-#include <utility>
+#include <set>
 
-void check_enc_and_text(const EncAndText& enc_and_text)
+std::set<size_t> skiped_test_ids = boost::assign::list_of (488426)(421271);
+
+static bool is_skiped_test(size_t tid)
 {
-	std::string text;
-	const std::string tenc = enc_and_text._enc;
-
-	if (!javaesc_to_enc(text, enc_and_text._text, tenc))
-		return;
-
-	std::cout << "\t" << tenc << std::endl;
-	test_detenc(text, tenc);
+	return skiped_test_ids.find(tid) != skiped_test_ids.end();
 }
 
 void test_encdet_moz_muticases()
 {
-	BOOST_FOREACH(const MozMultiCasesTicketsMap::value_type& tickets, moz_muticases_map)
+	BOOST_FOREACH(const MozMultiCasesTickets::value_type& tickets, moz_muticases_tickets)
 	{
 		std::cout << "Mozilla-" << tickets.first << std::endl;
-		BOOST_FOREACH(const EncAndText& enc_and_text, tickets.second)
-			check_enc_and_text(enc_and_text);
+		BOOST_FOREACH(const EncAndText& enc_txt, tickets.second)
+			test_detenc_javaescaped(enc_txt._text, enc_txt._enc, false);
 	}
 }
 
 void test_encdet_moz_others()
 {
-	BOOST_FOREACH(const MozOtherTicketsMap::value_type& tcase, moz_others_map)
+	BOOST_FOREACH(const MozOtherTickets::value_type& tcase, moz_other_tickes)
 	{
 		std::cout << "Mozilla-" << tcase.first << std::endl;
-		check_enc_and_text(tcase.second);
+		const EncAndText& enc_txt = tcase.second;
+
+		test_detenc_javaescaped(enc_txt._text, enc_txt._enc, is_skiped_test(tcase.first));
 	}
 }

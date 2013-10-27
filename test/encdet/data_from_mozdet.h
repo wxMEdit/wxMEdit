@@ -3,7 +3,7 @@
 
 #include <string>
 #include <vector>
-#include <map>
+#include <utility>
 
 struct EncAndText
 {
@@ -16,10 +16,10 @@ struct EncAndText
 };
 
 typedef std::vector<EncAndText> MozCaseVec;
-typedef std::map<size_t, MozCaseVec> MozMultiCasesTicketsMap;
-extern MozMultiCasesTicketsMap moz_muticases_map;
+typedef std::vector<std::pair<size_t, MozCaseVec> > MozMultiCasesTickets;
+extern MozMultiCasesTickets moz_muticases_tickets;
 
-typedef std::map<size_t, EncAndText> MozOtherTicketsMap;
-extern  MozOtherTicketsMap moz_others_map;
+typedef std::vector<std::pair<size_t, EncAndText> > MozOtherTickets;
+extern  MozOtherTickets moz_other_tickes;
 
 #endif //WXMEDIT_TEST_DATA_FROM_MOZDET_H

@@ -34,7 +34,7 @@ void init_skiped_test_cases()
 	skip_test_case("WIU-tr-Q", "windows-1254");
 }
 
-bool is_skiped_test(const std::string& tid, const std::string tenc)
+static bool is_skiped_test(const std::string& tid, const std::string tenc)
 {
 	if(skiped_test_cases.find(std::make_pair(tid, tenc)) != skiped_test_cases.end())
 		return true;
@@ -52,17 +52,8 @@ void test_icucase_encdet(const ICUEncDetTestCase& tcase)
 	BOOST_FOREACH(const std::string& tenclang, tenclangs)
 	{
 		std::string tenc = tenclang.substr(0, tenclang.find('/'));
-		std::string text;
 
-		if (is_skiped_test(tcase._tid, tenc))
-			continue;
-
-		if (!javaesc_to_enc(text, tcase._text, tenc))
-			continue;
-
-		std::cout << "\t" << tenc << std::endl;
-
-		test_detenc(text, tenc);
+		test_detenc_javaescaped(tcase._text, tenc, is_skiped_test(tcase._tid, tenc));
 	}
 }
 

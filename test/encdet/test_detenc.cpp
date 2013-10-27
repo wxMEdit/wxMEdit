@@ -26,6 +26,26 @@ bool javaesc_to_enc(std::string& dest, const std::string& src, const std::string
 	return true;
 }
 
+void test_detenc_javaescaped(const std::string& jesc_text, const std::string& enc, bool skiped)
+{
+	std::string text;
+	std::cout << "\t" << enc << std::endl;
+
+	if (!javaesc_to_enc(text, jesc_text, enc))
+	{
+		std::cout << "\t\t<Test data not supported>" << std::endl;
+		return;
+	}
+
+	if (skiped)
+	{
+		std::cout << "\t\t<Skiped>" << std::endl;
+		return;
+	}
+
+	test_detenc(text, enc);
+}
+
 void test_detenc(const std::string& text, const std::string& enc)
 {
 	wxm::WXMEncodingCreator& enccreator = wxm::WXMEncodingCreator::Instance();
@@ -43,9 +63,12 @@ void test_detenc(const std::string& text, const std::string& enc)
 	{
 		DetectEncoding(wxtext, text.size(), detencid);
 
-		// use GB18030 instead of detected encoding MS936
+		// use GB18030      instead of detected encoding MS936
+		// use Windows-1252 instead of detected encoding ISO-8859-1
 		if (detencid == wxm::ENC_MS936)
 			detencid = wxm::ENC_GB18030;
+		if (detencid == wxm::ENC_ISO_8859_1)
+			detencid = wxm::ENC_Windows_1252;
 	}
 
 	// use Windows-1252 instead of expected encoding ISO-8859-1
