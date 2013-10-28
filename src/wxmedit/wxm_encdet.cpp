@@ -1,4 +1,5 @@
 ///////////////////////////////////////////////////////////////////////////////
+// vim:         sw=4 ts=4 expandtab
 // Name:        wxmedit/wxm_encdet.cpp
 // Description: wxMEdit encoding detector
 // Author:      madedit@gmail.com  (creator)
@@ -7,9 +8,8 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 #include "wxm_encdet.h"
-#include "ucs4_t.h"
+#include "../xm/wxm_encoding/encoding.h"
 #include "chardetect.h"
-#include <wx/config.h>
 
 bool IsTextUTF32LE(const wxByte *text, int size)
 {
@@ -343,7 +343,7 @@ void DetectChineseEncoding(const wxByte *text, int count, wxm::WXMEncodingID &en
             {
                 if(b0>=0x81 && b0<=0xFE)
                 {
-					enc = wxm::ENC_MS936; // [0x81~0xFE][0x80~0xA0] are invalid in big5
+                    enc = wxm::ENC_MS936; // [0x81~0xFE][0x80~0xA0] are invalid in big5
                     return;
                 }
             }
@@ -372,7 +372,7 @@ void DetectChineseEncoding(const wxByte *text, int count, wxm::WXMEncodingID &en
         }
     }
 
-	if(cp950>cp936) enc = wxm::ENC_MS950;
+    if(cp950>cp936) enc = wxm::ENC_MS950;
     else if(cp936>cp950) enc = wxm::ENC_MS936;
 }
 
@@ -447,81 +447,22 @@ void DetectEncoding(const wxByte *text, int count, wxm::WXMEncodingID &enc)
     chardet_get_charset(det, encoding_name, CHARDET_MAX_ENCODING_NAME);
     chardet_destroy(det);
 
-    wxString name(encoding_name, wxConvLocal), rest;
-    name.MakeUpper();
-    long value;
+    std::string enc_name(encoding_name);
+    if(enc_name == "EUC-KR")
+        enc_name = "UHC";
+    else if(enc_name == "EUC-JP")
+        enc_name = "CP20932";
+    else if(enc_name == "GB2312")
+        enc_name = "MS936";
 
-    if(name.StartsWith(wxT("ISO-8859-"), &rest))
-    {
-        if(rest.ToLong(&value))
-        {
-            enc = wxm::WXMEncodingID( long(wxm::ENC_ISO_8859_1) - 1 + value );
-        }
-    }
-    else if(name.StartsWith(wxT("WINDOWS-125"), &rest))
-    {
-        if(rest.ToLong(&value))
-        {
-            if(value==2)//1252 or ?
-            {
-                wxm::WXMEncodingID def=wxm::ENC_DEFAULT;
-                if(enc==wxm::ENC_MS950 || wxm::ENC_MS936)
-                {
-                    DetectChineseEncoding(text, count, def);
-                    if(def != wxm::ENC_DEFAULT)
-                    {
-                        value=-1;
-                        enc = def;
-                    }
-                }
-            }
+    wxm::WXMEncodingID init_enc = enc;
+    enc = wxm::WXMEncodingCreator::Instance().ExtNameToEncoding(enc_name);
 
-            if(value>=0)
-            {
-                enc = wxm::WXMEncodingID( long(wxm::ENC_Windows_1250) + value );
-            }
-        }
-    }
-    else if(name.StartsWith(wxT("UTF-"), &rest))
+    if(enc == wxm::ENC_Windows_1252 && (init_enc==wxm::ENC_MS950 || init_enc==wxm::ENC_MS936))
     {
-        if(rest[0] == wxT('8'))
-        {
-            enc = wxm::ENC_UTF_8;
-        }
-        else if(rest[0] == wxT('1')) // 16BE/LE
-        {
-            if(rest[2] == wxT('B')) enc = wxm::ENC_UTF_16BE;
-            else                    enc = wxm::ENC_UTF_16LE;
-        }
-        else // 32BE/LE
-        {
-            if(rest[2] == wxT('B')) enc = wxm::ENC_UTF_32BE;
-            else                    enc = wxm::ENC_UTF_32LE;
-        }
-    }
-    else if(name.IsSameAs(wxT("BIG5")))
-    {
-        enc = wxm::ENC_MS950;
-    }
-    else if(name.IsSameAs(wxT("GB2312"))
-         || name.IsSameAs(wxT("GB18030")))
-    {
-        enc = wxm::ENC_MS936;
-    }
-    else if(name.IsSameAs(wxT("SHIFT_JIS")))
-    {
-        enc = wxm::ENC_MS932;
-    }
-    else if(name.IsSameAs(wxT("EUC-JP"))) // FIXME later
-    {
-        enc = wxm::ENC_CP20932;
-    }
-    else if(name.IsSameAs(wxT("EUC-KR")))
-    {
-        enc = wxm::ENC_MS949;
-    }
-    else if(name.IsSameAs(wxT("KOI8-R")))
-    {
-        enc = wxm::ENC_KOI8_R;
+        wxm::WXMEncodingID det=wxm::ENC_DEFAULT;
+        DetectChineseEncoding(text, count, det);
+        if(det != wxm::ENC_DEFAULT)
+            enc = det;
     }
 }
