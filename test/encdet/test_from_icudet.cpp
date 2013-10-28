@@ -34,6 +34,12 @@ void init_skiped_test_cases()
 	skip_test_case("WIU-tr-Q", "windows-1254");
 }
 
+void add_addtional_cases(const std::string& tid, std::vector<std::string>& enclangs)
+{
+	if (tid == "IUC10-jp")
+		enclangs.push_back("EUC-JP/ja");
+}
+
 static bool is_skiped_test(const std::string& tid, const std::string tenc)
 {
 	if(skiped_test_cases.find(std::make_pair(tid, tenc)) != skiped_test_cases.end())
@@ -48,6 +54,7 @@ void test_icucase_encdet(const ICUEncDetTestCase& tcase)
 
 	std::vector<std::string> tenclangs;
 	boost::algorithm::split(tenclangs, tcase._encs, boost::algorithm::is_any_of(" "));
+	add_addtional_cases(tcase._tid, tenclangs);
 
 	BOOST_FOREACH(const std::string& tenclang, tenclangs)
 	{
