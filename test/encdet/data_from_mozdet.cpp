@@ -52,7 +52,7 @@ EncAndText("ISO-8859-1", "Orphaned continuation bytes: \\u0080\\u0081\\u0082\\u0
 )
 #endif
 (
-EncAndText("Windows-1252", "First bytes of 2-byte sequences (0xc0-0xdf), each followed by a space character: "
+EncAndText("ISO-8859-1", "First bytes of 2-byte sequences (0xc0-0xdf), each followed by a space character: "
 	"\\u00c0 \\u00c1 \\u00c2 \\u00c3 \\u00c4 \\u00c5 \\u00c6 \\u00c7 \\u00c8 \\u00c9 \\u00ca \\u00cb \\u00cc "
 	"\\u00cd \\u00ce \\u00cf \\u00d0 \\u00d1 \\u00d2 \\u00d3 \\u00d4 \\u00d5 \\u00d6 \\u00d7 \\u00d8 \\u00d9 "
 	"\\u00da \\u00db \\u00dc \\u00dd \\u00de \\u00df \n"
