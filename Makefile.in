@@ -66,34 +66,7 @@ am__objects_1 = src/xm/wxm_encoding/wxmedit-cp20932.$(OBJEXT) \
 	src/xm/wxm_encoding/wxmedit-gb18030.$(OBJEXT) \
 	src/xm/wxm_encoding/wxmedit-singlebyte.$(OBJEXT) \
 	src/xm/wxm_encoding/wxmedit-unicode.$(OBJEXT)
-am__objects_2 =  \
-	charset-detector/src/wxmedit-CharDistribution.$(OBJEXT) \
-	charset-detector/src/wxmedit-JpCntx.$(OBJEXT) \
-	charset-detector/src/wxmedit-LangBulgarianModel.$(OBJEXT) \
-	charset-detector/src/wxmedit-LangCyrillicModel.$(OBJEXT) \
-	charset-detector/src/wxmedit-LangGreekModel.$(OBJEXT) \
-	charset-detector/src/wxmedit-LangHebrewModel.$(OBJEXT) \
-	charset-detector/src/wxmedit-LangHungarianModel.$(OBJEXT) \
-	charset-detector/src/wxmedit-LangThaiModel.$(OBJEXT) \
-	charset-detector/src/wxmedit-nsBig5Prober.$(OBJEXT) \
-	charset-detector/src/wxmedit-nsCharSetProber.$(OBJEXT) \
-	charset-detector/src/wxmedit-nsEscCharsetProber.$(OBJEXT) \
-	charset-detector/src/wxmedit-nsEscSM.$(OBJEXT) \
-	charset-detector/src/wxmedit-nsEUCJPProber.$(OBJEXT) \
-	charset-detector/src/wxmedit-nsEUCKRProber.$(OBJEXT) \
-	charset-detector/src/wxmedit-nsEUCTWProber.$(OBJEXT) \
-	charset-detector/src/wxmedit-nsGB2312Prober.$(OBJEXT) \
-	charset-detector/src/wxmedit-nsHebrewProber.$(OBJEXT) \
-	charset-detector/src/wxmedit-nsLatin1Prober.$(OBJEXT) \
-	charset-detector/src/wxmedit-nsMBCSGroupProber.$(OBJEXT) \
-	charset-detector/src/wxmedit-nsMBCSSM.$(OBJEXT) \
-	charset-detector/src/wxmedit-nsSBCharSetProber.$(OBJEXT) \
-	charset-detector/src/wxmedit-nsSBCSGroupProber.$(OBJEXT) \
-	charset-detector/src/wxmedit-nsSJISProber.$(OBJEXT) \
-	charset-detector/src/wxmedit-nsUniversalDetector.$(OBJEXT) \
-	charset-detector/src/wxmedit-nsUTF8Prober.$(OBJEXT) \
-	charset-detector/src/entry/wxmedit-impl.$(OBJEXT) \
-	src/wxmedit/wxmedit-wxm_encdet.$(OBJEXT)
+am__objects_2 = src/wxmedit/wxmedit-wxm_encdet.$(OBJEXT)
 am_wxmedit_OBJECTS = $(am__objects_1) $(am__objects_2) \
 	src/wxmedit-wxmedit_about_dialog.$(OBJEXT) \
 	src/wxmedit-wxm_conv_enc_dialog.$(OBJEXT) \
@@ -137,33 +110,7 @@ am__objects_3 = src/xm/wxm_encoding/cp20932.$(OBJEXT) \
 	src/xm/wxm_encoding/gb18030.$(OBJEXT) \
 	src/xm/wxm_encoding/singlebyte.$(OBJEXT) \
 	src/xm/wxm_encoding/unicode.$(OBJEXT)
-am__objects_4 = charset-detector/src/CharDistribution.$(OBJEXT) \
-	charset-detector/src/JpCntx.$(OBJEXT) \
-	charset-detector/src/LangBulgarianModel.$(OBJEXT) \
-	charset-detector/src/LangCyrillicModel.$(OBJEXT) \
-	charset-detector/src/LangGreekModel.$(OBJEXT) \
-	charset-detector/src/LangHebrewModel.$(OBJEXT) \
-	charset-detector/src/LangHungarianModel.$(OBJEXT) \
-	charset-detector/src/LangThaiModel.$(OBJEXT) \
-	charset-detector/src/nsBig5Prober.$(OBJEXT) \
-	charset-detector/src/nsCharSetProber.$(OBJEXT) \
-	charset-detector/src/nsEscCharsetProber.$(OBJEXT) \
-	charset-detector/src/nsEscSM.$(OBJEXT) \
-	charset-detector/src/nsEUCJPProber.$(OBJEXT) \
-	charset-detector/src/nsEUCKRProber.$(OBJEXT) \
-	charset-detector/src/nsEUCTWProber.$(OBJEXT) \
-	charset-detector/src/nsGB2312Prober.$(OBJEXT) \
-	charset-detector/src/nsHebrewProber.$(OBJEXT) \
-	charset-detector/src/nsLatin1Prober.$(OBJEXT) \
-	charset-detector/src/nsMBCSGroupProber.$(OBJEXT) \
-	charset-detector/src/nsMBCSSM.$(OBJEXT) \
-	charset-detector/src/nsSBCharSetProber.$(OBJEXT) \
-	charset-detector/src/nsSBCSGroupProber.$(OBJEXT) \
-	charset-detector/src/nsSJISProber.$(OBJEXT) \
-	charset-detector/src/nsUniversalDetector.$(OBJEXT) \
-	charset-detector/src/nsUTF8Prober.$(OBJEXT) \
-	charset-detector/src/entry/impl.$(OBJEXT) \
-	src/wxmedit/wxm_encdet.$(OBJEXT)
+am__objects_4 = src/wxmedit/wxm_encdet.$(OBJEXT)
 am_wxmedit_test_OBJECTS = $(am__objects_3) $(am__objects_4) \
 	test/encdet/data_from_icudet.$(OBJEXT) \
 	test/encdet/data_from_mozdet.$(OBJEXT) \
@@ -397,61 +344,12 @@ enc_src = src/xm/wxm_encoding/cp20932.cpp \
 	src/xm/wxm_encoding/unicode.cpp \
 	src/xm/wxm_encoding/unicode.h
 
-chardet_src = charset-detector/src/CharDistribution.cpp \
-	charset-detector/src/CharDistribution.h \
-	charset-detector/src/JpCntx.cpp \
-	charset-detector/src/JpCntx.h \
-	charset-detector/src/LangBulgarianModel.cpp \
-	charset-detector/src/LangCyrillicModel.cpp \
-	charset-detector/src/LangGreekModel.cpp \
-	charset-detector/src/LangHebrewModel.cpp \
-	charset-detector/src/LangHungarianModel.cpp \
-	charset-detector/src/LangThaiModel.cpp \
-	charset-detector/src/nsBig5Prober.cpp \
-	charset-detector/src/nsBig5Prober.h \
-	charset-detector/src/nsCharSetProber.cpp \
-	charset-detector/src/nsCharSetProber.h \
-	charset-detector/src/nsCodingStateMachine.h \
-	charset-detector/src/nscore.h \
-	charset-detector/src/nsEscCharsetProber.cpp \
-	charset-detector/src/nsEscCharsetProber.h \
-	charset-detector/src/nsEscSM.cpp \
-	charset-detector/src/nsEUCJPProber.cpp \
-	charset-detector/src/nsEUCJPProber.h \
-	charset-detector/src/nsEUCKRProber.cpp \
-	charset-detector/src/nsEUCKRProber.h \
-	charset-detector/src/nsEUCTWProber.cpp \
-	charset-detector/src/nsEUCTWProber.h \
-	charset-detector/src/nsGB2312Prober.cpp \
-	charset-detector/src/nsGB2312Prober.h \
-	charset-detector/src/nsHebrewProber.cpp \
-	charset-detector/src/nsHebrewProber.h \
-	charset-detector/src/nsLatin1Prober.cpp \
-	charset-detector/src/nsLatin1Prober.h \
-	charset-detector/src/nsMBCSGroupProber.cpp \
-	charset-detector/src/nsMBCSGroupProber.h \
-	charset-detector/src/nsMBCSSM.cpp \
-	charset-detector/src/nsPkgInt.h \
-	charset-detector/src/nsSBCharSetProber.cpp \
-	charset-detector/src/nsSBCharSetProber.h \
-	charset-detector/src/nsSBCSGroupProber.cpp \
-	charset-detector/src/nsSBCSGroupProber.h \
-	charset-detector/src/nsSJISProber.cpp \
-	charset-detector/src/nsSJISProber.h \
-	charset-detector/src/nsUniversalDetector.cpp \
-	charset-detector/src/nsUniversalDetector.h \
-	charset-detector/src/nsUTF8Prober.cpp \
-	charset-detector/src/nsUTF8Prober.h \
-	charset-detector/src/prmem.h \
-	charset-detector/src/entry/impl.cpp \
-	charset-detector/include/chardetect.h \
-	src/wxmedit/wxm_encdet.cpp \
+encdet_src = src/wxmedit/wxm_encdet.cpp \
 	src/wxmedit/wxm_encdet.h
 
-AM_CPPFLAGS = -I$(top_srcdir)/charset-detector/include -I$(top_srcdir)/charset-detector/src -I$(top_srcdir)/charset-detector/src/tables
 wxmedit_CXXFLAGS = -DDATA_DIR=\"${datadir}\"
 wxmedit_SOURCES = $(enc_src) \
-	$(chardet_src) \
+	$(encdet_src) \
 	src/wxmedit_about_dialog.cpp \
 	src/wxmedit_about_dialog.h \
 	src/wxm_command.h \
@@ -520,7 +418,7 @@ wxmedit_SOURCES = $(enc_src) \
 	src/wxmedit/ucs4_t.h
 
 wxmedit_test_SOURCES = $(enc_src) \
-	$(chardet_src) \
+	$(encdet_src) \
 	src/wxmedit/ucs4_t.h \
 	src/wxmedit/wxm_deque.hpp \
 	src/xm/wxm_line_enc_adapter.h \
@@ -635,19 +533,7 @@ noinst_HEADERS = description-pak \
 	po/src.list \
 	po/wxstd.po.cpp \
 	po/xgettext.bat \
-	po/xgettext_join.bat \
-	charset-detector/Makefile \
-	charset-detector/MPL-1.1.txt \
-	charset-detector/README \
-	charset-detector/test/Makefile \
-	charset-detector/test/test-chardetect.c \
-	charset-detector/src/Makefile \
-	charset-detector/src/tables/Big5Freq.tab \
-	charset-detector/src/tables/EUCKRFreq.tab \
-	charset-detector/src/tables/EUCTWFreq.tab \
-	charset-detector/src/tables/GB2312Freq.tab \
-	charset-detector/src/tables/JISFreq.tab \
-	charset-detector/src/entry/export-symbol.list
+	po/xgettext_join.bat
 
 DOMAIN = wxmedit
 podir = $(top_srcdir)/po
@@ -757,96 +643,6 @@ src/xm/wxm_encoding/wxmedit-singlebyte.$(OBJEXT):  \
 src/xm/wxm_encoding/wxmedit-unicode.$(OBJEXT):  \
 	src/xm/wxm_encoding/$(am__dirstamp) \
 	src/xm/wxm_encoding/$(DEPDIR)/$(am__dirstamp)
-charset-detector/src/$(am__dirstamp):
-	@$(mkdir_p) charset-detector/src
-	@: > charset-detector/src/$(am__dirstamp)
-charset-detector/src/$(DEPDIR)/$(am__dirstamp):
-	@$(mkdir_p) charset-detector/src/$(DEPDIR)
-	@: > charset-detector/src/$(DEPDIR)/$(am__dirstamp)
-charset-detector/src/wxmedit-CharDistribution.$(OBJEXT):  \
-	charset-detector/src/$(am__dirstamp) \
-	charset-detector/src/$(DEPDIR)/$(am__dirstamp)
-charset-detector/src/wxmedit-JpCntx.$(OBJEXT):  \
-	charset-detector/src/$(am__dirstamp) \
-	charset-detector/src/$(DEPDIR)/$(am__dirstamp)
-charset-detector/src/wxmedit-LangBulgarianModel.$(OBJEXT):  \
-	charset-detector/src/$(am__dirstamp) \
-	charset-detector/src/$(DEPDIR)/$(am__dirstamp)
-charset-detector/src/wxmedit-LangCyrillicModel.$(OBJEXT):  \
-	charset-detector/src/$(am__dirstamp) \
-	charset-detector/src/$(DEPDIR)/$(am__dirstamp)
-charset-detector/src/wxmedit-LangGreekModel.$(OBJEXT):  \
-	charset-detector/src/$(am__dirstamp) \
-	charset-detector/src/$(DEPDIR)/$(am__dirstamp)
-charset-detector/src/wxmedit-LangHebrewModel.$(OBJEXT):  \
-	charset-detector/src/$(am__dirstamp) \
-	charset-detector/src/$(DEPDIR)/$(am__dirstamp)
-charset-detector/src/wxmedit-LangHungarianModel.$(OBJEXT):  \
-	charset-detector/src/$(am__dirstamp) \
-	charset-detector/src/$(DEPDIR)/$(am__dirstamp)
-charset-detector/src/wxmedit-LangThaiModel.$(OBJEXT):  \
-	charset-detector/src/$(am__dirstamp) \
-	charset-detector/src/$(DEPDIR)/$(am__dirstamp)
-charset-detector/src/wxmedit-nsBig5Prober.$(OBJEXT):  \
-	charset-detector/src/$(am__dirstamp) \
-	charset-detector/src/$(DEPDIR)/$(am__dirstamp)
-charset-detector/src/wxmedit-nsCharSetProber.$(OBJEXT):  \
-	charset-detector/src/$(am__dirstamp) \
-	charset-detector/src/$(DEPDIR)/$(am__dirstamp)
-charset-detector/src/wxmedit-nsEscCharsetProber.$(OBJEXT):  \
-	charset-detector/src/$(am__dirstamp) \
-	charset-detector/src/$(DEPDIR)/$(am__dirstamp)
-charset-detector/src/wxmedit-nsEscSM.$(OBJEXT):  \
-	charset-detector/src/$(am__dirstamp) \
-	charset-detector/src/$(DEPDIR)/$(am__dirstamp)
-charset-detector/src/wxmedit-nsEUCJPProber.$(OBJEXT):  \
-	charset-detector/src/$(am__dirstamp) \
-	charset-detector/src/$(DEPDIR)/$(am__dirstamp)
-charset-detector/src/wxmedit-nsEUCKRProber.$(OBJEXT):  \
-	charset-detector/src/$(am__dirstamp) \
-	charset-detector/src/$(DEPDIR)/$(am__dirstamp)
-charset-detector/src/wxmedit-nsEUCTWProber.$(OBJEXT):  \
-	charset-detector/src/$(am__dirstamp) \
-	charset-detector/src/$(DEPDIR)/$(am__dirstamp)
-charset-detector/src/wxmedit-nsGB2312Prober.$(OBJEXT):  \
-	charset-detector/src/$(am__dirstamp) \
-	charset-detector/src/$(DEPDIR)/$(am__dirstamp)
-charset-detector/src/wxmedit-nsHebrewProber.$(OBJEXT):  \
-	charset-detector/src/$(am__dirstamp) \
-	charset-detector/src/$(DEPDIR)/$(am__dirstamp)
-charset-detector/src/wxmedit-nsLatin1Prober.$(OBJEXT):  \
-	charset-detector/src/$(am__dirstamp) \
-	charset-detector/src/$(DEPDIR)/$(am__dirstamp)
-charset-detector/src/wxmedit-nsMBCSGroupProber.$(OBJEXT):  \
-	charset-detector/src/$(am__dirstamp) \
-	charset-detector/src/$(DEPDIR)/$(am__dirstamp)
-charset-detector/src/wxmedit-nsMBCSSM.$(OBJEXT):  \
-	charset-detector/src/$(am__dirstamp) \
-	charset-detector/src/$(DEPDIR)/$(am__dirstamp)
-charset-detector/src/wxmedit-nsSBCharSetProber.$(OBJEXT):  \
-	charset-detector/src/$(am__dirstamp) \
-	charset-detector/src/$(DEPDIR)/$(am__dirstamp)
-charset-detector/src/wxmedit-nsSBCSGroupProber.$(OBJEXT):  \
-	charset-detector/src/$(am__dirstamp) \
-	charset-detector/src/$(DEPDIR)/$(am__dirstamp)
-charset-detector/src/wxmedit-nsSJISProber.$(OBJEXT):  \
-	charset-detector/src/$(am__dirstamp) \
-	charset-detector/src/$(DEPDIR)/$(am__dirstamp)
-charset-detector/src/wxmedit-nsUniversalDetector.$(OBJEXT):  \
-	charset-detector/src/$(am__dirstamp) \
-	charset-detector/src/$(DEPDIR)/$(am__dirstamp)
-charset-detector/src/wxmedit-nsUTF8Prober.$(OBJEXT):  \
-	charset-detector/src/$(am__dirstamp) \
-	charset-detector/src/$(DEPDIR)/$(am__dirstamp)
-charset-detector/src/entry/$(am__dirstamp):
-	@$(mkdir_p) charset-detector/src/entry
-	@: > charset-detector/src/entry/$(am__dirstamp)
-charset-detector/src/entry/$(DEPDIR)/$(am__dirstamp):
-	@$(mkdir_p) charset-detector/src/entry/$(DEPDIR)
-	@: > charset-detector/src/entry/$(DEPDIR)/$(am__dirstamp)
-charset-detector/src/entry/wxmedit-impl.$(OBJEXT):  \
-	charset-detector/src/entry/$(am__dirstamp) \
-	charset-detector/src/entry/$(DEPDIR)/$(am__dirstamp)
 src/wxmedit/$(am__dirstamp):
 	@$(mkdir_p) src/wxmedit
 	@: > src/wxmedit/$(am__dirstamp)
@@ -963,84 +759,6 @@ src/xm/wxm_encoding/singlebyte.$(OBJEXT):  \
 src/xm/wxm_encoding/unicode.$(OBJEXT):  \
 	src/xm/wxm_encoding/$(am__dirstamp) \
 	src/xm/wxm_encoding/$(DEPDIR)/$(am__dirstamp)
-charset-detector/src/CharDistribution.$(OBJEXT):  \
-	charset-detector/src/$(am__dirstamp) \
-	charset-detector/src/$(DEPDIR)/$(am__dirstamp)
-charset-detector/src/JpCntx.$(OBJEXT):  \
-	charset-detector/src/$(am__dirstamp) \
-	charset-detector/src/$(DEPDIR)/$(am__dirstamp)
-charset-detector/src/LangBulgarianModel.$(OBJEXT):  \
-	charset-detector/src/$(am__dirstamp) \
-	charset-detector/src/$(DEPDIR)/$(am__dirstamp)
-charset-detector/src/LangCyrillicModel.$(OBJEXT):  \
-	charset-detector/src/$(am__dirstamp) \
-	charset-detector/src/$(DEPDIR)/$(am__dirstamp)
-charset-detector/src/LangGreekModel.$(OBJEXT):  \
-	charset-detector/src/$(am__dirstamp) \
-	charset-detector/src/$(DEPDIR)/$(am__dirstamp)
-charset-detector/src/LangHebrewModel.$(OBJEXT):  \
-	charset-detector/src/$(am__dirstamp) \
-	charset-detector/src/$(DEPDIR)/$(am__dirstamp)
-charset-detector/src/LangHungarianModel.$(OBJEXT):  \
-	charset-detector/src/$(am__dirstamp) \
-	charset-detector/src/$(DEPDIR)/$(am__dirstamp)
-charset-detector/src/LangThaiModel.$(OBJEXT):  \
-	charset-detector/src/$(am__dirstamp) \
-	charset-detector/src/$(DEPDIR)/$(am__dirstamp)
-charset-detector/src/nsBig5Prober.$(OBJEXT):  \
-	charset-detector/src/$(am__dirstamp) \
-	charset-detector/src/$(DEPDIR)/$(am__dirstamp)
-charset-detector/src/nsCharSetProber.$(OBJEXT):  \
-	charset-detector/src/$(am__dirstamp) \
-	charset-detector/src/$(DEPDIR)/$(am__dirstamp)
-charset-detector/src/nsEscCharsetProber.$(OBJEXT):  \
-	charset-detector/src/$(am__dirstamp) \
-	charset-detector/src/$(DEPDIR)/$(am__dirstamp)
-charset-detector/src/nsEscSM.$(OBJEXT):  \
-	charset-detector/src/$(am__dirstamp) \
-	charset-detector/src/$(DEPDIR)/$(am__dirstamp)
-charset-detector/src/nsEUCJPProber.$(OBJEXT):  \
-	charset-detector/src/$(am__dirstamp) \
-	charset-detector/src/$(DEPDIR)/$(am__dirstamp)
-charset-detector/src/nsEUCKRProber.$(OBJEXT):  \
-	charset-detector/src/$(am__dirstamp) \
-	charset-detector/src/$(DEPDIR)/$(am__dirstamp)
-charset-detector/src/nsEUCTWProber.$(OBJEXT):  \
-	charset-detector/src/$(am__dirstamp) \
-	charset-detector/src/$(DEPDIR)/$(am__dirstamp)
-charset-detector/src/nsGB2312Prober.$(OBJEXT):  \
-	charset-detector/src/$(am__dirstamp) \
-	charset-detector/src/$(DEPDIR)/$(am__dirstamp)
-charset-detector/src/nsHebrewProber.$(OBJEXT):  \
-	charset-detector/src/$(am__dirstamp) \
-	charset-detector/src/$(DEPDIR)/$(am__dirstamp)
-charset-detector/src/nsLatin1Prober.$(OBJEXT):  \
-	charset-detector/src/$(am__dirstamp) \
-	charset-detector/src/$(DEPDIR)/$(am__dirstamp)
-charset-detector/src/nsMBCSGroupProber.$(OBJEXT):  \
-	charset-detector/src/$(am__dirstamp) \
-	charset-detector/src/$(DEPDIR)/$(am__dirstamp)
-charset-detector/src/nsMBCSSM.$(OBJEXT):  \
-	charset-detector/src/$(am__dirstamp) \
-	charset-detector/src/$(DEPDIR)/$(am__dirstamp)
-charset-detector/src/nsSBCharSetProber.$(OBJEXT):  \
-	charset-detector/src/$(am__dirstamp) \
-	charset-detector/src/$(DEPDIR)/$(am__dirstamp)
-charset-detector/src/nsSBCSGroupProber.$(OBJEXT):  \
-	charset-detector/src/$(am__dirstamp) \
-	charset-detector/src/$(DEPDIR)/$(am__dirstamp)
-charset-detector/src/nsSJISProber.$(OBJEXT):  \
-	charset-detector/src/$(am__dirstamp) \
-	charset-detector/src/$(DEPDIR)/$(am__dirstamp)
-charset-detector/src/nsUniversalDetector.$(OBJEXT):  \
-	charset-detector/src/$(am__dirstamp) \
-	charset-detector/src/$(DEPDIR)/$(am__dirstamp)
-charset-detector/src/nsUTF8Prober.$(OBJEXT):  \
-	charset-detector/src/$(am__dirstamp) \
-	charset-detector/src/$(DEPDIR)/$(am__dirstamp)
-charset-detector/src/entry/impl.$(OBJEXT):  \
-	charset-detector/src/entry/$(am__dirstamp) \
-	charset-detector/src/entry/$(DEPDIR)/$(am__dirstamp)
 src/wxmedit/wxm_encdet.$(OBJEXT): src/wxmedit/$(am__dirstamp) \
 	src/wxmedit/$(DEPDIR)/$(am__dirstamp)
 test/encdet/$(am__dirstamp):
@@ -1118,58 +836,6 @@ wxmedit_test$(EXEEXT): $(wxmedit_test_OBJECTS) $(wxmedit_test_DEPENDENCIES)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
-	-rm -f charset-detector/src/CharDistribution.$(OBJEXT)
-	-rm -f charset-detector/src/JpCntx.$(OBJEXT)
-	-rm -f charset-detector/src/LangBulgarianModel.$(OBJEXT)
-	-rm -f charset-detector/src/LangCyrillicModel.$(OBJEXT)
-	-rm -f charset-detector/src/LangGreekModel.$(OBJEXT)
-	-rm -f charset-detector/src/LangHebrewModel.$(OBJEXT)
-	-rm -f charset-detector/src/LangHungarianModel.$(OBJEXT)
-	-rm -f charset-detector/src/LangThaiModel.$(OBJEXT)
-	-rm -f charset-detector/src/entry/impl.$(OBJEXT)
-	-rm -f charset-detector/src/entry/wxmedit-impl.$(OBJEXT)
-	-rm -f charset-detector/src/nsBig5Prober.$(OBJEXT)
-	-rm -f charset-detector/src/nsCharSetProber.$(OBJEXT)
-	-rm -f charset-detector/src/nsEUCJPProber.$(OBJEXT)
-	-rm -f charset-detector/src/nsEUCKRProber.$(OBJEXT)
-	-rm -f charset-detector/src/nsEUCTWProber.$(OBJEXT)
-	-rm -f charset-detector/src/nsEscCharsetProber.$(OBJEXT)
-	-rm -f charset-detector/src/nsEscSM.$(OBJEXT)
-	-rm -f charset-detector/src/nsGB2312Prober.$(OBJEXT)
-	-rm -f charset-detector/src/nsHebrewProber.$(OBJEXT)
-	-rm -f charset-detector/src/nsLatin1Prober.$(OBJEXT)
-	-rm -f charset-detector/src/nsMBCSGroupProber.$(OBJEXT)
-	-rm -f charset-detector/src/nsMBCSSM.$(OBJEXT)
-	-rm -f charset-detector/src/nsSBCSGroupProber.$(OBJEXT)
-	-rm -f charset-detector/src/nsSBCharSetProber.$(OBJEXT)
-	-rm -f charset-detector/src/nsSJISProber.$(OBJEXT)
-	-rm -f charset-detector/src/nsUTF8Prober.$(OBJEXT)
-	-rm -f charset-detector/src/nsUniversalDetector.$(OBJEXT)
-	-rm -f charset-detector/src/wxmedit-CharDistribution.$(OBJEXT)
-	-rm -f charset-detector/src/wxmedit-JpCntx.$(OBJEXT)
-	-rm -f charset-detector/src/wxmedit-LangBulgarianModel.$(OBJEXT)
-	-rm -f charset-detector/src/wxmedit-LangCyrillicModel.$(OBJEXT)
-	-rm -f charset-detector/src/wxmedit-LangGreekModel.$(OBJEXT)
-	-rm -f charset-detector/src/wxmedit-LangHebrewModel.$(OBJEXT)
-	-rm -f charset-detector/src/wxmedit-LangHungarianModel.$(OBJEXT)
-	-rm -f charset-detector/src/wxmedit-LangThaiModel.$(OBJEXT)
-	-rm -f charset-detector/src/wxmedit-nsBig5Prober.$(OBJEXT)
-	-rm -f charset-detector/src/wxmedit-nsCharSetProber.$(OBJEXT)
-	-rm -f charset-detector/src/wxmedit-nsEUCJPProber.$(OBJEXT)
-	-rm -f charset-detector/src/wxmedit-nsEUCKRProber.$(OBJEXT)
-	-rm -f charset-detector/src/wxmedit-nsEUCTWProber.$(OBJEXT)
-	-rm -f charset-detector/src/wxmedit-nsEscCharsetProber.$(OBJEXT)
-	-rm -f charset-detector/src/wxmedit-nsEscSM.$(OBJEXT)
-	-rm -f charset-detector/src/wxmedit-nsGB2312Prober.$(OBJEXT)
-	-rm -f charset-detector/src/wxmedit-nsHebrewProber.$(OBJEXT)
-	-rm -f charset-detector/src/wxmedit-nsLatin1Prober.$(OBJEXT)
-	-rm -f charset-detector/src/wxmedit-nsMBCSGroupProber.$(OBJEXT)
-	-rm -f charset-detector/src/wxmedit-nsMBCSSM.$(OBJEXT)
-	-rm -f charset-detector/src/wxmedit-nsSBCSGroupProber.$(OBJEXT)
-	-rm -f charset-detector/src/wxmedit-nsSBCharSetProber.$(OBJEXT)
-	-rm -f charset-detector/src/wxmedit-nsSJISProber.$(OBJEXT)
-	-rm -f charset-detector/src/wxmedit-nsUTF8Prober.$(OBJEXT)
-	-rm -f charset-detector/src/wxmedit-nsUniversalDetector.$(OBJEXT)
 	-rm -f src/wxmedit-wxm_conv_enc_dialog.$(OBJEXT)
 	-rm -f src/wxmedit-wxm_find_in_files_dialog.$(OBJEXT)
 	-rm -f src/wxmedit-wxm_highlighting_dialog.$(OBJEXT)
@@ -1242,58 +908,6 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
-@AMDEP_TRUE@@am__include@ @am__quote@charset-detector/src/$(DEPDIR)/CharDistribution.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@charset-detector/src/$(DEPDIR)/JpCntx.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@charset-detector/src/$(DEPDIR)/LangBulgarianModel.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@charset-detector/src/$(DEPDIR)/LangCyrillicModel.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@charset-detector/src/$(DEPDIR)/LangGreekModel.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@charset-detector/src/$(DEPDIR)/LangHebrewModel.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@charset-detector/src/$(DEPDIR)/LangHungarianModel.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@charset-detector/src/$(DEPDIR)/LangThaiModel.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@charset-detector/src/$(DEPDIR)/nsBig5Prober.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@charset-detector/src/$(DEPDIR)/nsCharSetProber.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@charset-detector/src/$(DEPDIR)/nsEUCJPProber.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@charset-detector/src/$(DEPDIR)/nsEUCKRProber.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@charset-detector/src/$(DEPDIR)/nsEUCTWProber.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@charset-detector/src/$(DEPDIR)/nsEscCharsetProber.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@charset-detector/src/$(DEPDIR)/nsEscSM.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@charset-detector/src/$(DEPDIR)/nsGB2312Prober.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@charset-detector/src/$(DEPDIR)/nsHebrewProber.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@charset-detector/src/$(DEPDIR)/nsLatin1Prober.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@charset-detector/src/$(DEPDIR)/nsMBCSGroupProber.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@charset-detector/src/$(DEPDIR)/nsMBCSSM.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@charset-detector/src/$(DEPDIR)/nsSBCSGroupProber.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@charset-detector/src/$(DEPDIR)/nsSBCharSetProber.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@charset-detector/src/$(DEPDIR)/nsSJISProber.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@charset-detector/src/$(DEPDIR)/nsUTF8Prober.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@charset-detector/src/$(DEPDIR)/nsUniversalDetector.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@charset-detector/src/$(DEPDIR)/wxmedit-CharDistribution.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@charset-detector/src/$(DEPDIR)/wxmedit-JpCntx.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@charset-detector/src/$(DEPDIR)/wxmedit-LangBulgarianModel.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@charset-detector/src/$(DEPDIR)/wxmedit-LangCyrillicModel.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@charset-detector/src/$(DEPDIR)/wxmedit-LangGreekModel.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@charset-detector/src/$(DEPDIR)/wxmedit-LangHebrewModel.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@charset-detector/src/$(DEPDIR)/wxmedit-LangHungarianModel.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@charset-detector/src/$(DEPDIR)/wxmedit-LangThaiModel.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@charset-detector/src/$(DEPDIR)/wxmedit-nsBig5Prober.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@charset-detector/src/$(DEPDIR)/wxmedit-nsCharSetProber.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@charset-detector/src/$(DEPDIR)/wxmedit-nsEUCJPProber.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@charset-detector/src/$(DEPDIR)/wxmedit-nsEUCKRProber.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@charset-detector/src/$(DEPDIR)/wxmedit-nsEUCTWProber.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@charset-detector/src/$(DEPDIR)/wxmedit-nsEscCharsetProber.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@charset-detector/src/$(DEPDIR)/wxmedit-nsEscSM.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@charset-detector/src/$(DEPDIR)/wxmedit-nsGB2312Prober.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@charset-detector/src/$(DEPDIR)/wxmedit-nsHebrewProber.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@charset-detector/src/$(DEPDIR)/wxmedit-nsLatin1Prober.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@charset-detector/src/$(DEPDIR)/wxmedit-nsMBCSGroupProber.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@charset-detector/src/$(DEPDIR)/wxmedit-nsMBCSSM.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@charset-detector/src/$(DEPDIR)/wxmedit-nsSBCSGroupProber.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@charset-detector/src/$(DEPDIR)/wxmedit-nsSBCharSetProber.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@charset-detector/src/$(DEPDIR)/wxmedit-nsSJISProber.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@charset-detector/src/$(DEPDIR)/wxmedit-nsUTF8Prober.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@charset-detector/src/$(DEPDIR)/wxmedit-nsUniversalDetector.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@charset-detector/src/entry/$(DEPDIR)/impl.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@charset-detector/src/entry/$(DEPDIR)/wxmedit-impl.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/$(DEPDIR)/wxmedit-wxm_conv_enc_dialog.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/$(DEPDIR)/wxmedit-wxm_find_in_files_dialog.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/$(DEPDIR)/wxmedit-wxm_highlighting_dialog.Po@am__quote@
@@ -1476,370 +1090,6 @@ src/xm/wxm_encoding/wxmedit-unicode.obj: src/xm/wxm_encoding/unicode.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/xm/wxm_encoding/unicode.cpp' object='src/xm/wxm_encoding/wxmedit-unicode.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -c -o src/xm/wxm_encoding/wxmedit-unicode.obj `if test -f 'src/xm/wxm_encoding/unicode.cpp'; then $(CYGPATH_W) 'src/xm/wxm_encoding/unicode.cpp'; else $(CYGPATH_W) '$(srcdir)/src/xm/wxm_encoding/unicode.cpp'; fi`
-
-charset-detector/src/wxmedit-CharDistribution.o: charset-detector/src/CharDistribution.cpp
-@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -MT charset-detector/src/wxmedit-CharDistribution.o -MD -MP -MF "charset-detector/src/$(DEPDIR)/wxmedit-CharDistribution.Tpo" -c -o charset-detector/src/wxmedit-CharDistribution.o `test -f 'charset-detector/src/CharDistribution.cpp' || echo '$(srcdir)/'`charset-detector/src/CharDistribution.cpp; \
-@am__fastdepCXX_TRUE@	then mv -f "charset-detector/src/$(DEPDIR)/wxmedit-CharDistribution.Tpo" "charset-detector/src/$(DEPDIR)/wxmedit-CharDistribution.Po"; else rm -f "charset-detector/src/$(DEPDIR)/wxmedit-CharDistribution.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='charset-detector/src/CharDistribution.cpp' object='charset-detector/src/wxmedit-CharDistribution.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -c -o charset-detector/src/wxmedit-CharDistribution.o `test -f 'charset-detector/src/CharDistribution.cpp' || echo '$(srcdir)/'`charset-detector/src/CharDistribution.cpp
-
-charset-detector/src/wxmedit-CharDistribution.obj: charset-detector/src/CharDistribution.cpp
-@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -MT charset-detector/src/wxmedit-CharDistribution.obj -MD -MP -MF "charset-detector/src/$(DEPDIR)/wxmedit-CharDistribution.Tpo" -c -o charset-detector/src/wxmedit-CharDistribution.obj `if test -f 'charset-detector/src/CharDistribution.cpp'; then $(CYGPATH_W) 'charset-detector/src/CharDistribution.cpp'; else $(CYGPATH_W) '$(srcdir)/charset-detector/src/CharDistribution.cpp'; fi`; \
-@am__fastdepCXX_TRUE@	then mv -f "charset-detector/src/$(DEPDIR)/wxmedit-CharDistribution.Tpo" "charset-detector/src/$(DEPDIR)/wxmedit-CharDistribution.Po"; else rm -f "charset-detector/src/$(DEPDIR)/wxmedit-CharDistribution.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='charset-detector/src/CharDistribution.cpp' object='charset-detector/src/wxmedit-CharDistribution.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -c -o charset-detector/src/wxmedit-CharDistribution.obj `if test -f 'charset-detector/src/CharDistribution.cpp'; then $(CYGPATH_W) 'charset-detector/src/CharDistribution.cpp'; else $(CYGPATH_W) '$(srcdir)/charset-detector/src/CharDistribution.cpp'; fi`
-
-charset-detector/src/wxmedit-JpCntx.o: charset-detector/src/JpCntx.cpp
-@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -MT charset-detector/src/wxmedit-JpCntx.o -MD -MP -MF "charset-detector/src/$(DEPDIR)/wxmedit-JpCntx.Tpo" -c -o charset-detector/src/wxmedit-JpCntx.o `test -f 'charset-detector/src/JpCntx.cpp' || echo '$(srcdir)/'`charset-detector/src/JpCntx.cpp; \
-@am__fastdepCXX_TRUE@	then mv -f "charset-detector/src/$(DEPDIR)/wxmedit-JpCntx.Tpo" "charset-detector/src/$(DEPDIR)/wxmedit-JpCntx.Po"; else rm -f "charset-detector/src/$(DEPDIR)/wxmedit-JpCntx.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='charset-detector/src/JpCntx.cpp' object='charset-detector/src/wxmedit-JpCntx.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -c -o charset-detector/src/wxmedit-JpCntx.o `test -f 'charset-detector/src/JpCntx.cpp' || echo '$(srcdir)/'`charset-detector/src/JpCntx.cpp
-
-charset-detector/src/wxmedit-JpCntx.obj: charset-detector/src/JpCntx.cpp
-@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -MT charset-detector/src/wxmedit-JpCntx.obj -MD -MP -MF "charset-detector/src/$(DEPDIR)/wxmedit-JpCntx.Tpo" -c -o charset-detector/src/wxmedit-JpCntx.obj `if test -f 'charset-detector/src/JpCntx.cpp'; then $(CYGPATH_W) 'charset-detector/src/JpCntx.cpp'; else $(CYGPATH_W) '$(srcdir)/charset-detector/src/JpCntx.cpp'; fi`; \
-@am__fastdepCXX_TRUE@	then mv -f "charset-detector/src/$(DEPDIR)/wxmedit-JpCntx.Tpo" "charset-detector/src/$(DEPDIR)/wxmedit-JpCntx.Po"; else rm -f "charset-detector/src/$(DEPDIR)/wxmedit-JpCntx.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='charset-detector/src/JpCntx.cpp' object='charset-detector/src/wxmedit-JpCntx.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -c -o charset-detector/src/wxmedit-JpCntx.obj `if test -f 'charset-detector/src/JpCntx.cpp'; then $(CYGPATH_W) 'charset-detector/src/JpCntx.cpp'; else $(CYGPATH_W) '$(srcdir)/charset-detector/src/JpCntx.cpp'; fi`
-
-charset-detector/src/wxmedit-LangBulgarianModel.o: charset-detector/src/LangBulgarianModel.cpp
-@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -MT charset-detector/src/wxmedit-LangBulgarianModel.o -MD -MP -MF "charset-detector/src/$(DEPDIR)/wxmedit-LangBulgarianModel.Tpo" -c -o charset-detector/src/wxmedit-LangBulgarianModel.o `test -f 'charset-detector/src/LangBulgarianModel.cpp' || echo '$(srcdir)/'`charset-detector/src/LangBulgarianModel.cpp; \
-@am__fastdepCXX_TRUE@	then mv -f "charset-detector/src/$(DEPDIR)/wxmedit-LangBulgarianModel.Tpo" "charset-detector/src/$(DEPDIR)/wxmedit-LangBulgarianModel.Po"; else rm -f "charset-detector/src/$(DEPDIR)/wxmedit-LangBulgarianModel.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='charset-detector/src/LangBulgarianModel.cpp' object='charset-detector/src/wxmedit-LangBulgarianModel.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -c -o charset-detector/src/wxmedit-LangBulgarianModel.o `test -f 'charset-detector/src/LangBulgarianModel.cpp' || echo '$(srcdir)/'`charset-detector/src/LangBulgarianModel.cpp
-
-charset-detector/src/wxmedit-LangBulgarianModel.obj: charset-detector/src/LangBulgarianModel.cpp
-@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -MT charset-detector/src/wxmedit-LangBulgarianModel.obj -MD -MP -MF "charset-detector/src/$(DEPDIR)/wxmedit-LangBulgarianModel.Tpo" -c -o charset-detector/src/wxmedit-LangBulgarianModel.obj `if test -f 'charset-detector/src/LangBulgarianModel.cpp'; then $(CYGPATH_W) 'charset-detector/src/LangBulgarianModel.cpp'; else $(CYGPATH_W) '$(srcdir)/charset-detector/src/LangBulgarianModel.cpp'; fi`; \
-@am__fastdepCXX_TRUE@	then mv -f "charset-detector/src/$(DEPDIR)/wxmedit-LangBulgarianModel.Tpo" "charset-detector/src/$(DEPDIR)/wxmedit-LangBulgarianModel.Po"; else rm -f "charset-detector/src/$(DEPDIR)/wxmedit-LangBulgarianModel.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='charset-detector/src/LangBulgarianModel.cpp' object='charset-detector/src/wxmedit-LangBulgarianModel.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -c -o charset-detector/src/wxmedit-LangBulgarianModel.obj `if test -f 'charset-detector/src/LangBulgarianModel.cpp'; then $(CYGPATH_W) 'charset-detector/src/LangBulgarianModel.cpp'; else $(CYGPATH_W) '$(srcdir)/charset-detector/src/LangBulgarianModel.cpp'; fi`
-
-charset-detector/src/wxmedit-LangCyrillicModel.o: charset-detector/src/LangCyrillicModel.cpp
-@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -MT charset-detector/src/wxmedit-LangCyrillicModel.o -MD -MP -MF "charset-detector/src/$(DEPDIR)/wxmedit-LangCyrillicModel.Tpo" -c -o charset-detector/src/wxmedit-LangCyrillicModel.o `test -f 'charset-detector/src/LangCyrillicModel.cpp' || echo '$(srcdir)/'`charset-detector/src/LangCyrillicModel.cpp; \
-@am__fastdepCXX_TRUE@	then mv -f "charset-detector/src/$(DEPDIR)/wxmedit-LangCyrillicModel.Tpo" "charset-detector/src/$(DEPDIR)/wxmedit-LangCyrillicModel.Po"; else rm -f "charset-detector/src/$(DEPDIR)/wxmedit-LangCyrillicModel.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='charset-detector/src/LangCyrillicModel.cpp' object='charset-detector/src/wxmedit-LangCyrillicModel.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -c -o charset-detector/src/wxmedit-LangCyrillicModel.o `test -f 'charset-detector/src/LangCyrillicModel.cpp' || echo '$(srcdir)/'`charset-detector/src/LangCyrillicModel.cpp
-
-charset-detector/src/wxmedit-LangCyrillicModel.obj: charset-detector/src/LangCyrillicModel.cpp
-@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -MT charset-detector/src/wxmedit-LangCyrillicModel.obj -MD -MP -MF "charset-detector/src/$(DEPDIR)/wxmedit-LangCyrillicModel.Tpo" -c -o charset-detector/src/wxmedit-LangCyrillicModel.obj `if test -f 'charset-detector/src/LangCyrillicModel.cpp'; then $(CYGPATH_W) 'charset-detector/src/LangCyrillicModel.cpp'; else $(CYGPATH_W) '$(srcdir)/charset-detector/src/LangCyrillicModel.cpp'; fi`; \
-@am__fastdepCXX_TRUE@	then mv -f "charset-detector/src/$(DEPDIR)/wxmedit-LangCyrillicModel.Tpo" "charset-detector/src/$(DEPDIR)/wxmedit-LangCyrillicModel.Po"; else rm -f "charset-detector/src/$(DEPDIR)/wxmedit-LangCyrillicModel.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='charset-detector/src/LangCyrillicModel.cpp' object='charset-detector/src/wxmedit-LangCyrillicModel.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -c -o charset-detector/src/wxmedit-LangCyrillicModel.obj `if test -f 'charset-detector/src/LangCyrillicModel.cpp'; then $(CYGPATH_W) 'charset-detector/src/LangCyrillicModel.cpp'; else $(CYGPATH_W) '$(srcdir)/charset-detector/src/LangCyrillicModel.cpp'; fi`
-
-charset-detector/src/wxmedit-LangGreekModel.o: charset-detector/src/LangGreekModel.cpp
-@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -MT charset-detector/src/wxmedit-LangGreekModel.o -MD -MP -MF "charset-detector/src/$(DEPDIR)/wxmedit-LangGreekModel.Tpo" -c -o charset-detector/src/wxmedit-LangGreekModel.o `test -f 'charset-detector/src/LangGreekModel.cpp' || echo '$(srcdir)/'`charset-detector/src/LangGreekModel.cpp; \
-@am__fastdepCXX_TRUE@	then mv -f "charset-detector/src/$(DEPDIR)/wxmedit-LangGreekModel.Tpo" "charset-detector/src/$(DEPDIR)/wxmedit-LangGreekModel.Po"; else rm -f "charset-detector/src/$(DEPDIR)/wxmedit-LangGreekModel.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='charset-detector/src/LangGreekModel.cpp' object='charset-detector/src/wxmedit-LangGreekModel.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -c -o charset-detector/src/wxmedit-LangGreekModel.o `test -f 'charset-detector/src/LangGreekModel.cpp' || echo '$(srcdir)/'`charset-detector/src/LangGreekModel.cpp
-
-charset-detector/src/wxmedit-LangGreekModel.obj: charset-detector/src/LangGreekModel.cpp
-@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -MT charset-detector/src/wxmedit-LangGreekModel.obj -MD -MP -MF "charset-detector/src/$(DEPDIR)/wxmedit-LangGreekModel.Tpo" -c -o charset-detector/src/wxmedit-LangGreekModel.obj `if test -f 'charset-detector/src/LangGreekModel.cpp'; then $(CYGPATH_W) 'charset-detector/src/LangGreekModel.cpp'; else $(CYGPATH_W) '$(srcdir)/charset-detector/src/LangGreekModel.cpp'; fi`; \
-@am__fastdepCXX_TRUE@	then mv -f "charset-detector/src/$(DEPDIR)/wxmedit-LangGreekModel.Tpo" "charset-detector/src/$(DEPDIR)/wxmedit-LangGreekModel.Po"; else rm -f "charset-detector/src/$(DEPDIR)/wxmedit-LangGreekModel.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='charset-detector/src/LangGreekModel.cpp' object='charset-detector/src/wxmedit-LangGreekModel.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -c -o charset-detector/src/wxmedit-LangGreekModel.obj `if test -f 'charset-detector/src/LangGreekModel.cpp'; then $(CYGPATH_W) 'charset-detector/src/LangGreekModel.cpp'; else $(CYGPATH_W) '$(srcdir)/charset-detector/src/LangGreekModel.cpp'; fi`
-
-charset-detector/src/wxmedit-LangHebrewModel.o: charset-detector/src/LangHebrewModel.cpp
-@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -MT charset-detector/src/wxmedit-LangHebrewModel.o -MD -MP -MF "charset-detector/src/$(DEPDIR)/wxmedit-LangHebrewModel.Tpo" -c -o charset-detector/src/wxmedit-LangHebrewModel.o `test -f 'charset-detector/src/LangHebrewModel.cpp' || echo '$(srcdir)/'`charset-detector/src/LangHebrewModel.cpp; \
-@am__fastdepCXX_TRUE@	then mv -f "charset-detector/src/$(DEPDIR)/wxmedit-LangHebrewModel.Tpo" "charset-detector/src/$(DEPDIR)/wxmedit-LangHebrewModel.Po"; else rm -f "charset-detector/src/$(DEPDIR)/wxmedit-LangHebrewModel.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='charset-detector/src/LangHebrewModel.cpp' object='charset-detector/src/wxmedit-LangHebrewModel.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -c -o charset-detector/src/wxmedit-LangHebrewModel.o `test -f 'charset-detector/src/LangHebrewModel.cpp' || echo '$(srcdir)/'`charset-detector/src/LangHebrewModel.cpp
-
-charset-detector/src/wxmedit-LangHebrewModel.obj: charset-detector/src/LangHebrewModel.cpp
-@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -MT charset-detector/src/wxmedit-LangHebrewModel.obj -MD -MP -MF "charset-detector/src/$(DEPDIR)/wxmedit-LangHebrewModel.Tpo" -c -o charset-detector/src/wxmedit-LangHebrewModel.obj `if test -f 'charset-detector/src/LangHebrewModel.cpp'; then $(CYGPATH_W) 'charset-detector/src/LangHebrewModel.cpp'; else $(CYGPATH_W) '$(srcdir)/charset-detector/src/LangHebrewModel.cpp'; fi`; \
-@am__fastdepCXX_TRUE@	then mv -f "charset-detector/src/$(DEPDIR)/wxmedit-LangHebrewModel.Tpo" "charset-detector/src/$(DEPDIR)/wxmedit-LangHebrewModel.Po"; else rm -f "charset-detector/src/$(DEPDIR)/wxmedit-LangHebrewModel.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='charset-detector/src/LangHebrewModel.cpp' object='charset-detector/src/wxmedit-LangHebrewModel.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -c -o charset-detector/src/wxmedit-LangHebrewModel.obj `if test -f 'charset-detector/src/LangHebrewModel.cpp'; then $(CYGPATH_W) 'charset-detector/src/LangHebrewModel.cpp'; else $(CYGPATH_W) '$(srcdir)/charset-detector/src/LangHebrewModel.cpp'; fi`
-
-charset-detector/src/wxmedit-LangHungarianModel.o: charset-detector/src/LangHungarianModel.cpp
-@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -MT charset-detector/src/wxmedit-LangHungarianModel.o -MD -MP -MF "charset-detector/src/$(DEPDIR)/wxmedit-LangHungarianModel.Tpo" -c -o charset-detector/src/wxmedit-LangHungarianModel.o `test -f 'charset-detector/src/LangHungarianModel.cpp' || echo '$(srcdir)/'`charset-detector/src/LangHungarianModel.cpp; \
-@am__fastdepCXX_TRUE@	then mv -f "charset-detector/src/$(DEPDIR)/wxmedit-LangHungarianModel.Tpo" "charset-detector/src/$(DEPDIR)/wxmedit-LangHungarianModel.Po"; else rm -f "charset-detector/src/$(DEPDIR)/wxmedit-LangHungarianModel.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='charset-detector/src/LangHungarianModel.cpp' object='charset-detector/src/wxmedit-LangHungarianModel.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -c -o charset-detector/src/wxmedit-LangHungarianModel.o `test -f 'charset-detector/src/LangHungarianModel.cpp' || echo '$(srcdir)/'`charset-detector/src/LangHungarianModel.cpp
-
-charset-detector/src/wxmedit-LangHungarianModel.obj: charset-detector/src/LangHungarianModel.cpp
-@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -MT charset-detector/src/wxmedit-LangHungarianModel.obj -MD -MP -MF "charset-detector/src/$(DEPDIR)/wxmedit-LangHungarianModel.Tpo" -c -o charset-detector/src/wxmedit-LangHungarianModel.obj `if test -f 'charset-detector/src/LangHungarianModel.cpp'; then $(CYGPATH_W) 'charset-detector/src/LangHungarianModel.cpp'; else $(CYGPATH_W) '$(srcdir)/charset-detector/src/LangHungarianModel.cpp'; fi`; \
-@am__fastdepCXX_TRUE@	then mv -f "charset-detector/src/$(DEPDIR)/wxmedit-LangHungarianModel.Tpo" "charset-detector/src/$(DEPDIR)/wxmedit-LangHungarianModel.Po"; else rm -f "charset-detector/src/$(DEPDIR)/wxmedit-LangHungarianModel.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='charset-detector/src/LangHungarianModel.cpp' object='charset-detector/src/wxmedit-LangHungarianModel.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -c -o charset-detector/src/wxmedit-LangHungarianModel.obj `if test -f 'charset-detector/src/LangHungarianModel.cpp'; then $(CYGPATH_W) 'charset-detector/src/LangHungarianModel.cpp'; else $(CYGPATH_W) '$(srcdir)/charset-detector/src/LangHungarianModel.cpp'; fi`
-
-charset-detector/src/wxmedit-LangThaiModel.o: charset-detector/src/LangThaiModel.cpp
-@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -MT charset-detector/src/wxmedit-LangThaiModel.o -MD -MP -MF "charset-detector/src/$(DEPDIR)/wxmedit-LangThaiModel.Tpo" -c -o charset-detector/src/wxmedit-LangThaiModel.o `test -f 'charset-detector/src/LangThaiModel.cpp' || echo '$(srcdir)/'`charset-detector/src/LangThaiModel.cpp; \
-@am__fastdepCXX_TRUE@	then mv -f "charset-detector/src/$(DEPDIR)/wxmedit-LangThaiModel.Tpo" "charset-detector/src/$(DEPDIR)/wxmedit-LangThaiModel.Po"; else rm -f "charset-detector/src/$(DEPDIR)/wxmedit-LangThaiModel.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='charset-detector/src/LangThaiModel.cpp' object='charset-detector/src/wxmedit-LangThaiModel.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -c -o charset-detector/src/wxmedit-LangThaiModel.o `test -f 'charset-detector/src/LangThaiModel.cpp' || echo '$(srcdir)/'`charset-detector/src/LangThaiModel.cpp
-
-charset-detector/src/wxmedit-LangThaiModel.obj: charset-detector/src/LangThaiModel.cpp
-@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -MT charset-detector/src/wxmedit-LangThaiModel.obj -MD -MP -MF "charset-detector/src/$(DEPDIR)/wxmedit-LangThaiModel.Tpo" -c -o charset-detector/src/wxmedit-LangThaiModel.obj `if test -f 'charset-detector/src/LangThaiModel.cpp'; then $(CYGPATH_W) 'charset-detector/src/LangThaiModel.cpp'; else $(CYGPATH_W) '$(srcdir)/charset-detector/src/LangThaiModel.cpp'; fi`; \
-@am__fastdepCXX_TRUE@	then mv -f "charset-detector/src/$(DEPDIR)/wxmedit-LangThaiModel.Tpo" "charset-detector/src/$(DEPDIR)/wxmedit-LangThaiModel.Po"; else rm -f "charset-detector/src/$(DEPDIR)/wxmedit-LangThaiModel.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='charset-detector/src/LangThaiModel.cpp' object='charset-detector/src/wxmedit-LangThaiModel.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -c -o charset-detector/src/wxmedit-LangThaiModel.obj `if test -f 'charset-detector/src/LangThaiModel.cpp'; then $(CYGPATH_W) 'charset-detector/src/LangThaiModel.cpp'; else $(CYGPATH_W) '$(srcdir)/charset-detector/src/LangThaiModel.cpp'; fi`
-
-charset-detector/src/wxmedit-nsBig5Prober.o: charset-detector/src/nsBig5Prober.cpp
-@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -MT charset-detector/src/wxmedit-nsBig5Prober.o -MD -MP -MF "charset-detector/src/$(DEPDIR)/wxmedit-nsBig5Prober.Tpo" -c -o charset-detector/src/wxmedit-nsBig5Prober.o `test -f 'charset-detector/src/nsBig5Prober.cpp' || echo '$(srcdir)/'`charset-detector/src/nsBig5Prober.cpp; \
-@am__fastdepCXX_TRUE@	then mv -f "charset-detector/src/$(DEPDIR)/wxmedit-nsBig5Prober.Tpo" "charset-detector/src/$(DEPDIR)/wxmedit-nsBig5Prober.Po"; else rm -f "charset-detector/src/$(DEPDIR)/wxmedit-nsBig5Prober.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='charset-detector/src/nsBig5Prober.cpp' object='charset-detector/src/wxmedit-nsBig5Prober.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -c -o charset-detector/src/wxmedit-nsBig5Prober.o `test -f 'charset-detector/src/nsBig5Prober.cpp' || echo '$(srcdir)/'`charset-detector/src/nsBig5Prober.cpp
-
-charset-detector/src/wxmedit-nsBig5Prober.obj: charset-detector/src/nsBig5Prober.cpp
-@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -MT charset-detector/src/wxmedit-nsBig5Prober.obj -MD -MP -MF "charset-detector/src/$(DEPDIR)/wxmedit-nsBig5Prober.Tpo" -c -o charset-detector/src/wxmedit-nsBig5Prober.obj `if test -f 'charset-detector/src/nsBig5Prober.cpp'; then $(CYGPATH_W) 'charset-detector/src/nsBig5Prober.cpp'; else $(CYGPATH_W) '$(srcdir)/charset-detector/src/nsBig5Prober.cpp'; fi`; \
-@am__fastdepCXX_TRUE@	then mv -f "charset-detector/src/$(DEPDIR)/wxmedit-nsBig5Prober.Tpo" "charset-detector/src/$(DEPDIR)/wxmedit-nsBig5Prober.Po"; else rm -f "charset-detector/src/$(DEPDIR)/wxmedit-nsBig5Prober.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='charset-detector/src/nsBig5Prober.cpp' object='charset-detector/src/wxmedit-nsBig5Prober.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -c -o charset-detector/src/wxmedit-nsBig5Prober.obj `if test -f 'charset-detector/src/nsBig5Prober.cpp'; then $(CYGPATH_W) 'charset-detector/src/nsBig5Prober.cpp'; else $(CYGPATH_W) '$(srcdir)/charset-detector/src/nsBig5Prober.cpp'; fi`
-
-charset-detector/src/wxmedit-nsCharSetProber.o: charset-detector/src/nsCharSetProber.cpp
-@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -MT charset-detector/src/wxmedit-nsCharSetProber.o -MD -MP -MF "charset-detector/src/$(DEPDIR)/wxmedit-nsCharSetProber.Tpo" -c -o charset-detector/src/wxmedit-nsCharSetProber.o `test -f 'charset-detector/src/nsCharSetProber.cpp' || echo '$(srcdir)/'`charset-detector/src/nsCharSetProber.cpp; \
-@am__fastdepCXX_TRUE@	then mv -f "charset-detector/src/$(DEPDIR)/wxmedit-nsCharSetProber.Tpo" "charset-detector/src/$(DEPDIR)/wxmedit-nsCharSetProber.Po"; else rm -f "charset-detector/src/$(DEPDIR)/wxmedit-nsCharSetProber.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='charset-detector/src/nsCharSetProber.cpp' object='charset-detector/src/wxmedit-nsCharSetProber.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -c -o charset-detector/src/wxmedit-nsCharSetProber.o `test -f 'charset-detector/src/nsCharSetProber.cpp' || echo '$(srcdir)/'`charset-detector/src/nsCharSetProber.cpp
-
-charset-detector/src/wxmedit-nsCharSetProber.obj: charset-detector/src/nsCharSetProber.cpp
-@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -MT charset-detector/src/wxmedit-nsCharSetProber.obj -MD -MP -MF "charset-detector/src/$(DEPDIR)/wxmedit-nsCharSetProber.Tpo" -c -o charset-detector/src/wxmedit-nsCharSetProber.obj `if test -f 'charset-detector/src/nsCharSetProber.cpp'; then $(CYGPATH_W) 'charset-detector/src/nsCharSetProber.cpp'; else $(CYGPATH_W) '$(srcdir)/charset-detector/src/nsCharSetProber.cpp'; fi`; \
-@am__fastdepCXX_TRUE@	then mv -f "charset-detector/src/$(DEPDIR)/wxmedit-nsCharSetProber.Tpo" "charset-detector/src/$(DEPDIR)/wxmedit-nsCharSetProber.Po"; else rm -f "charset-detector/src/$(DEPDIR)/wxmedit-nsCharSetProber.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='charset-detector/src/nsCharSetProber.cpp' object='charset-detector/src/wxmedit-nsCharSetProber.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -c -o charset-detector/src/wxmedit-nsCharSetProber.obj `if test -f 'charset-detector/src/nsCharSetProber.cpp'; then $(CYGPATH_W) 'charset-detector/src/nsCharSetProber.cpp'; else $(CYGPATH_W) '$(srcdir)/charset-detector/src/nsCharSetProber.cpp'; fi`
-
-charset-detector/src/wxmedit-nsEscCharsetProber.o: charset-detector/src/nsEscCharsetProber.cpp
-@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -MT charset-detector/src/wxmedit-nsEscCharsetProber.o -MD -MP -MF "charset-detector/src/$(DEPDIR)/wxmedit-nsEscCharsetProber.Tpo" -c -o charset-detector/src/wxmedit-nsEscCharsetProber.o `test -f 'charset-detector/src/nsEscCharsetProber.cpp' || echo '$(srcdir)/'`charset-detector/src/nsEscCharsetProber.cpp; \
-@am__fastdepCXX_TRUE@	then mv -f "charset-detector/src/$(DEPDIR)/wxmedit-nsEscCharsetProber.Tpo" "charset-detector/src/$(DEPDIR)/wxmedit-nsEscCharsetProber.Po"; else rm -f "charset-detector/src/$(DEPDIR)/wxmedit-nsEscCharsetProber.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='charset-detector/src/nsEscCharsetProber.cpp' object='charset-detector/src/wxmedit-nsEscCharsetProber.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -c -o charset-detector/src/wxmedit-nsEscCharsetProber.o `test -f 'charset-detector/src/nsEscCharsetProber.cpp' || echo '$(srcdir)/'`charset-detector/src/nsEscCharsetProber.cpp
-
-charset-detector/src/wxmedit-nsEscCharsetProber.obj: charset-detector/src/nsEscCharsetProber.cpp
-@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -MT charset-detector/src/wxmedit-nsEscCharsetProber.obj -MD -MP -MF "charset-detector/src/$(DEPDIR)/wxmedit-nsEscCharsetProber.Tpo" -c -o charset-detector/src/wxmedit-nsEscCharsetProber.obj `if test -f 'charset-detector/src/nsEscCharsetProber.cpp'; then $(CYGPATH_W) 'charset-detector/src/nsEscCharsetProber.cpp'; else $(CYGPATH_W) '$(srcdir)/charset-detector/src/nsEscCharsetProber.cpp'; fi`; \
-@am__fastdepCXX_TRUE@	then mv -f "charset-detector/src/$(DEPDIR)/wxmedit-nsEscCharsetProber.Tpo" "charset-detector/src/$(DEPDIR)/wxmedit-nsEscCharsetProber.Po"; else rm -f "charset-detector/src/$(DEPDIR)/wxmedit-nsEscCharsetProber.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='charset-detector/src/nsEscCharsetProber.cpp' object='charset-detector/src/wxmedit-nsEscCharsetProber.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -c -o charset-detector/src/wxmedit-nsEscCharsetProber.obj `if test -f 'charset-detector/src/nsEscCharsetProber.cpp'; then $(CYGPATH_W) 'charset-detector/src/nsEscCharsetProber.cpp'; else $(CYGPATH_W) '$(srcdir)/charset-detector/src/nsEscCharsetProber.cpp'; fi`
-
-charset-detector/src/wxmedit-nsEscSM.o: charset-detector/src/nsEscSM.cpp
-@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -MT charset-detector/src/wxmedit-nsEscSM.o -MD -MP -MF "charset-detector/src/$(DEPDIR)/wxmedit-nsEscSM.Tpo" -c -o charset-detector/src/wxmedit-nsEscSM.o `test -f 'charset-detector/src/nsEscSM.cpp' || echo '$(srcdir)/'`charset-detector/src/nsEscSM.cpp; \
-@am__fastdepCXX_TRUE@	then mv -f "charset-detector/src/$(DEPDIR)/wxmedit-nsEscSM.Tpo" "charset-detector/src/$(DEPDIR)/wxmedit-nsEscSM.Po"; else rm -f "charset-detector/src/$(DEPDIR)/wxmedit-nsEscSM.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='charset-detector/src/nsEscSM.cpp' object='charset-detector/src/wxmedit-nsEscSM.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -c -o charset-detector/src/wxmedit-nsEscSM.o `test -f 'charset-detector/src/nsEscSM.cpp' || echo '$(srcdir)/'`charset-detector/src/nsEscSM.cpp
-
-charset-detector/src/wxmedit-nsEscSM.obj: charset-detector/src/nsEscSM.cpp
-@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -MT charset-detector/src/wxmedit-nsEscSM.obj -MD -MP -MF "charset-detector/src/$(DEPDIR)/wxmedit-nsEscSM.Tpo" -c -o charset-detector/src/wxmedit-nsEscSM.obj `if test -f 'charset-detector/src/nsEscSM.cpp'; then $(CYGPATH_W) 'charset-detector/src/nsEscSM.cpp'; else $(CYGPATH_W) '$(srcdir)/charset-detector/src/nsEscSM.cpp'; fi`; \
-@am__fastdepCXX_TRUE@	then mv -f "charset-detector/src/$(DEPDIR)/wxmedit-nsEscSM.Tpo" "charset-detector/src/$(DEPDIR)/wxmedit-nsEscSM.Po"; else rm -f "charset-detector/src/$(DEPDIR)/wxmedit-nsEscSM.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='charset-detector/src/nsEscSM.cpp' object='charset-detector/src/wxmedit-nsEscSM.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -c -o charset-detector/src/wxmedit-nsEscSM.obj `if test -f 'charset-detector/src/nsEscSM.cpp'; then $(CYGPATH_W) 'charset-detector/src/nsEscSM.cpp'; else $(CYGPATH_W) '$(srcdir)/charset-detector/src/nsEscSM.cpp'; fi`
-
-charset-detector/src/wxmedit-nsEUCJPProber.o: charset-detector/src/nsEUCJPProber.cpp
-@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -MT charset-detector/src/wxmedit-nsEUCJPProber.o -MD -MP -MF "charset-detector/src/$(DEPDIR)/wxmedit-nsEUCJPProber.Tpo" -c -o charset-detector/src/wxmedit-nsEUCJPProber.o `test -f 'charset-detector/src/nsEUCJPProber.cpp' || echo '$(srcdir)/'`charset-detector/src/nsEUCJPProber.cpp; \
-@am__fastdepCXX_TRUE@	then mv -f "charset-detector/src/$(DEPDIR)/wxmedit-nsEUCJPProber.Tpo" "charset-detector/src/$(DEPDIR)/wxmedit-nsEUCJPProber.Po"; else rm -f "charset-detector/src/$(DEPDIR)/wxmedit-nsEUCJPProber.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='charset-detector/src/nsEUCJPProber.cpp' object='charset-detector/src/wxmedit-nsEUCJPProber.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -c -o charset-detector/src/wxmedit-nsEUCJPProber.o `test -f 'charset-detector/src/nsEUCJPProber.cpp' || echo '$(srcdir)/'`charset-detector/src/nsEUCJPProber.cpp
-
-charset-detector/src/wxmedit-nsEUCJPProber.obj: charset-detector/src/nsEUCJPProber.cpp
-@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -MT charset-detector/src/wxmedit-nsEUCJPProber.obj -MD -MP -MF "charset-detector/src/$(DEPDIR)/wxmedit-nsEUCJPProber.Tpo" -c -o charset-detector/src/wxmedit-nsEUCJPProber.obj `if test -f 'charset-detector/src/nsEUCJPProber.cpp'; then $(CYGPATH_W) 'charset-detector/src/nsEUCJPProber.cpp'; else $(CYGPATH_W) '$(srcdir)/charset-detector/src/nsEUCJPProber.cpp'; fi`; \
-@am__fastdepCXX_TRUE@	then mv -f "charset-detector/src/$(DEPDIR)/wxmedit-nsEUCJPProber.Tpo" "charset-detector/src/$(DEPDIR)/wxmedit-nsEUCJPProber.Po"; else rm -f "charset-detector/src/$(DEPDIR)/wxmedit-nsEUCJPProber.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='charset-detector/src/nsEUCJPProber.cpp' object='charset-detector/src/wxmedit-nsEUCJPProber.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -c -o charset-detector/src/wxmedit-nsEUCJPProber.obj `if test -f 'charset-detector/src/nsEUCJPProber.cpp'; then $(CYGPATH_W) 'charset-detector/src/nsEUCJPProber.cpp'; else $(CYGPATH_W) '$(srcdir)/charset-detector/src/nsEUCJPProber.cpp'; fi`
-
-charset-detector/src/wxmedit-nsEUCKRProber.o: charset-detector/src/nsEUCKRProber.cpp
-@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -MT charset-detector/src/wxmedit-nsEUCKRProber.o -MD -MP -MF "charset-detector/src/$(DEPDIR)/wxmedit-nsEUCKRProber.Tpo" -c -o charset-detector/src/wxmedit-nsEUCKRProber.o `test -f 'charset-detector/src/nsEUCKRProber.cpp' || echo '$(srcdir)/'`charset-detector/src/nsEUCKRProber.cpp; \
-@am__fastdepCXX_TRUE@	then mv -f "charset-detector/src/$(DEPDIR)/wxmedit-nsEUCKRProber.Tpo" "charset-detector/src/$(DEPDIR)/wxmedit-nsEUCKRProber.Po"; else rm -f "charset-detector/src/$(DEPDIR)/wxmedit-nsEUCKRProber.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='charset-detector/src/nsEUCKRProber.cpp' object='charset-detector/src/wxmedit-nsEUCKRProber.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -c -o charset-detector/src/wxmedit-nsEUCKRProber.o `test -f 'charset-detector/src/nsEUCKRProber.cpp' || echo '$(srcdir)/'`charset-detector/src/nsEUCKRProber.cpp
-
-charset-detector/src/wxmedit-nsEUCKRProber.obj: charset-detector/src/nsEUCKRProber.cpp
-@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -MT charset-detector/src/wxmedit-nsEUCKRProber.obj -MD -MP -MF "charset-detector/src/$(DEPDIR)/wxmedit-nsEUCKRProber.Tpo" -c -o charset-detector/src/wxmedit-nsEUCKRProber.obj `if test -f 'charset-detector/src/nsEUCKRProber.cpp'; then $(CYGPATH_W) 'charset-detector/src/nsEUCKRProber.cpp'; else $(CYGPATH_W) '$(srcdir)/charset-detector/src/nsEUCKRProber.cpp'; fi`; \
-@am__fastdepCXX_TRUE@	then mv -f "charset-detector/src/$(DEPDIR)/wxmedit-nsEUCKRProber.Tpo" "charset-detector/src/$(DEPDIR)/wxmedit-nsEUCKRProber.Po"; else rm -f "charset-detector/src/$(DEPDIR)/wxmedit-nsEUCKRProber.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='charset-detector/src/nsEUCKRProber.cpp' object='charset-detector/src/wxmedit-nsEUCKRProber.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -c -o charset-detector/src/wxmedit-nsEUCKRProber.obj `if test -f 'charset-detector/src/nsEUCKRProber.cpp'; then $(CYGPATH_W) 'charset-detector/src/nsEUCKRProber.cpp'; else $(CYGPATH_W) '$(srcdir)/charset-detector/src/nsEUCKRProber.cpp'; fi`
-
-charset-detector/src/wxmedit-nsEUCTWProber.o: charset-detector/src/nsEUCTWProber.cpp
-@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -MT charset-detector/src/wxmedit-nsEUCTWProber.o -MD -MP -MF "charset-detector/src/$(DEPDIR)/wxmedit-nsEUCTWProber.Tpo" -c -o charset-detector/src/wxmedit-nsEUCTWProber.o `test -f 'charset-detector/src/nsEUCTWProber.cpp' || echo '$(srcdir)/'`charset-detector/src/nsEUCTWProber.cpp; \
-@am__fastdepCXX_TRUE@	then mv -f "charset-detector/src/$(DEPDIR)/wxmedit-nsEUCTWProber.Tpo" "charset-detector/src/$(DEPDIR)/wxmedit-nsEUCTWProber.Po"; else rm -f "charset-detector/src/$(DEPDIR)/wxmedit-nsEUCTWProber.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='charset-detector/src/nsEUCTWProber.cpp' object='charset-detector/src/wxmedit-nsEUCTWProber.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -c -o charset-detector/src/wxmedit-nsEUCTWProber.o `test -f 'charset-detector/src/nsEUCTWProber.cpp' || echo '$(srcdir)/'`charset-detector/src/nsEUCTWProber.cpp
-
-charset-detector/src/wxmedit-nsEUCTWProber.obj: charset-detector/src/nsEUCTWProber.cpp
-@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -MT charset-detector/src/wxmedit-nsEUCTWProber.obj -MD -MP -MF "charset-detector/src/$(DEPDIR)/wxmedit-nsEUCTWProber.Tpo" -c -o charset-detector/src/wxmedit-nsEUCTWProber.obj `if test -f 'charset-detector/src/nsEUCTWProber.cpp'; then $(CYGPATH_W) 'charset-detector/src/nsEUCTWProber.cpp'; else $(CYGPATH_W) '$(srcdir)/charset-detector/src/nsEUCTWProber.cpp'; fi`; \
-@am__fastdepCXX_TRUE@	then mv -f "charset-detector/src/$(DEPDIR)/wxmedit-nsEUCTWProber.Tpo" "charset-detector/src/$(DEPDIR)/wxmedit-nsEUCTWProber.Po"; else rm -f "charset-detector/src/$(DEPDIR)/wxmedit-nsEUCTWProber.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='charset-detector/src/nsEUCTWProber.cpp' object='charset-detector/src/wxmedit-nsEUCTWProber.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -c -o charset-detector/src/wxmedit-nsEUCTWProber.obj `if test -f 'charset-detector/src/nsEUCTWProber.cpp'; then $(CYGPATH_W) 'charset-detector/src/nsEUCTWProber.cpp'; else $(CYGPATH_W) '$(srcdir)/charset-detector/src/nsEUCTWProber.cpp'; fi`
-
-charset-detector/src/wxmedit-nsGB2312Prober.o: charset-detector/src/nsGB2312Prober.cpp
-@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -MT charset-detector/src/wxmedit-nsGB2312Prober.o -MD -MP -MF "charset-detector/src/$(DEPDIR)/wxmedit-nsGB2312Prober.Tpo" -c -o charset-detector/src/wxmedit-nsGB2312Prober.o `test -f 'charset-detector/src/nsGB2312Prober.cpp' || echo '$(srcdir)/'`charset-detector/src/nsGB2312Prober.cpp; \
-@am__fastdepCXX_TRUE@	then mv -f "charset-detector/src/$(DEPDIR)/wxmedit-nsGB2312Prober.Tpo" "charset-detector/src/$(DEPDIR)/wxmedit-nsGB2312Prober.Po"; else rm -f "charset-detector/src/$(DEPDIR)/wxmedit-nsGB2312Prober.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='charset-detector/src/nsGB2312Prober.cpp' object='charset-detector/src/wxmedit-nsGB2312Prober.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -c -o charset-detector/src/wxmedit-nsGB2312Prober.o `test -f 'charset-detector/src/nsGB2312Prober.cpp' || echo '$(srcdir)/'`charset-detector/src/nsGB2312Prober.cpp
-
-charset-detector/src/wxmedit-nsGB2312Prober.obj: charset-detector/src/nsGB2312Prober.cpp
-@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -MT charset-detector/src/wxmedit-nsGB2312Prober.obj -MD -MP -MF "charset-detector/src/$(DEPDIR)/wxmedit-nsGB2312Prober.Tpo" -c -o charset-detector/src/wxmedit-nsGB2312Prober.obj `if test -f 'charset-detector/src/nsGB2312Prober.cpp'; then $(CYGPATH_W) 'charset-detector/src/nsGB2312Prober.cpp'; else $(CYGPATH_W) '$(srcdir)/charset-detector/src/nsGB2312Prober.cpp'; fi`; \
-@am__fastdepCXX_TRUE@	then mv -f "charset-detector/src/$(DEPDIR)/wxmedit-nsGB2312Prober.Tpo" "charset-detector/src/$(DEPDIR)/wxmedit-nsGB2312Prober.Po"; else rm -f "charset-detector/src/$(DEPDIR)/wxmedit-nsGB2312Prober.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='charset-detector/src/nsGB2312Prober.cpp' object='charset-detector/src/wxmedit-nsGB2312Prober.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -c -o charset-detector/src/wxmedit-nsGB2312Prober.obj `if test -f 'charset-detector/src/nsGB2312Prober.cpp'; then $(CYGPATH_W) 'charset-detector/src/nsGB2312Prober.cpp'; else $(CYGPATH_W) '$(srcdir)/charset-detector/src/nsGB2312Prober.cpp'; fi`
-
-charset-detector/src/wxmedit-nsHebrewProber.o: charset-detector/src/nsHebrewProber.cpp
-@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -MT charset-detector/src/wxmedit-nsHebrewProber.o -MD -MP -MF "charset-detector/src/$(DEPDIR)/wxmedit-nsHebrewProber.Tpo" -c -o charset-detector/src/wxmedit-nsHebrewProber.o `test -f 'charset-detector/src/nsHebrewProber.cpp' || echo '$(srcdir)/'`charset-detector/src/nsHebrewProber.cpp; \
-@am__fastdepCXX_TRUE@	then mv -f "charset-detector/src/$(DEPDIR)/wxmedit-nsHebrewProber.Tpo" "charset-detector/src/$(DEPDIR)/wxmedit-nsHebrewProber.Po"; else rm -f "charset-detector/src/$(DEPDIR)/wxmedit-nsHebrewProber.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='charset-detector/src/nsHebrewProber.cpp' object='charset-detector/src/wxmedit-nsHebrewProber.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -c -o charset-detector/src/wxmedit-nsHebrewProber.o `test -f 'charset-detector/src/nsHebrewProber.cpp' || echo '$(srcdir)/'`charset-detector/src/nsHebrewProber.cpp
-
-charset-detector/src/wxmedit-nsHebrewProber.obj: charset-detector/src/nsHebrewProber.cpp
-@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -MT charset-detector/src/wxmedit-nsHebrewProber.obj -MD -MP -MF "charset-detector/src/$(DEPDIR)/wxmedit-nsHebrewProber.Tpo" -c -o charset-detector/src/wxmedit-nsHebrewProber.obj `if test -f 'charset-detector/src/nsHebrewProber.cpp'; then $(CYGPATH_W) 'charset-detector/src/nsHebrewProber.cpp'; else $(CYGPATH_W) '$(srcdir)/charset-detector/src/nsHebrewProber.cpp'; fi`; \
-@am__fastdepCXX_TRUE@	then mv -f "charset-detector/src/$(DEPDIR)/wxmedit-nsHebrewProber.Tpo" "charset-detector/src/$(DEPDIR)/wxmedit-nsHebrewProber.Po"; else rm -f "charset-detector/src/$(DEPDIR)/wxmedit-nsHebrewProber.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='charset-detector/src/nsHebrewProber.cpp' object='charset-detector/src/wxmedit-nsHebrewProber.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -c -o charset-detector/src/wxmedit-nsHebrewProber.obj `if test -f 'charset-detector/src/nsHebrewProber.cpp'; then $(CYGPATH_W) 'charset-detector/src/nsHebrewProber.cpp'; else $(CYGPATH_W) '$(srcdir)/charset-detector/src/nsHebrewProber.cpp'; fi`
-
-charset-detector/src/wxmedit-nsLatin1Prober.o: charset-detector/src/nsLatin1Prober.cpp
-@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -MT charset-detector/src/wxmedit-nsLatin1Prober.o -MD -MP -MF "charset-detector/src/$(DEPDIR)/wxmedit-nsLatin1Prober.Tpo" -c -o charset-detector/src/wxmedit-nsLatin1Prober.o `test -f 'charset-detector/src/nsLatin1Prober.cpp' || echo '$(srcdir)/'`charset-detector/src/nsLatin1Prober.cpp; \
-@am__fastdepCXX_TRUE@	then mv -f "charset-detector/src/$(DEPDIR)/wxmedit-nsLatin1Prober.Tpo" "charset-detector/src/$(DEPDIR)/wxmedit-nsLatin1Prober.Po"; else rm -f "charset-detector/src/$(DEPDIR)/wxmedit-nsLatin1Prober.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='charset-detector/src/nsLatin1Prober.cpp' object='charset-detector/src/wxmedit-nsLatin1Prober.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -c -o charset-detector/src/wxmedit-nsLatin1Prober.o `test -f 'charset-detector/src/nsLatin1Prober.cpp' || echo '$(srcdir)/'`charset-detector/src/nsLatin1Prober.cpp
-
-charset-detector/src/wxmedit-nsLatin1Prober.obj: charset-detector/src/nsLatin1Prober.cpp
-@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -MT charset-detector/src/wxmedit-nsLatin1Prober.obj -MD -MP -MF "charset-detector/src/$(DEPDIR)/wxmedit-nsLatin1Prober.Tpo" -c -o charset-detector/src/wxmedit-nsLatin1Prober.obj `if test -f 'charset-detector/src/nsLatin1Prober.cpp'; then $(CYGPATH_W) 'charset-detector/src/nsLatin1Prober.cpp'; else $(CYGPATH_W) '$(srcdir)/charset-detector/src/nsLatin1Prober.cpp'; fi`; \
-@am__fastdepCXX_TRUE@	then mv -f "charset-detector/src/$(DEPDIR)/wxmedit-nsLatin1Prober.Tpo" "charset-detector/src/$(DEPDIR)/wxmedit-nsLatin1Prober.Po"; else rm -f "charset-detector/src/$(DEPDIR)/wxmedit-nsLatin1Prober.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='charset-detector/src/nsLatin1Prober.cpp' object='charset-detector/src/wxmedit-nsLatin1Prober.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -c -o charset-detector/src/wxmedit-nsLatin1Prober.obj `if test -f 'charset-detector/src/nsLatin1Prober.cpp'; then $(CYGPATH_W) 'charset-detector/src/nsLatin1Prober.cpp'; else $(CYGPATH_W) '$(srcdir)/charset-detector/src/nsLatin1Prober.cpp'; fi`
-
-charset-detector/src/wxmedit-nsMBCSGroupProber.o: charset-detector/src/nsMBCSGroupProber.cpp
-@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -MT charset-detector/src/wxmedit-nsMBCSGroupProber.o -MD -MP -MF "charset-detector/src/$(DEPDIR)/wxmedit-nsMBCSGroupProber.Tpo" -c -o charset-detector/src/wxmedit-nsMBCSGroupProber.o `test -f 'charset-detector/src/nsMBCSGroupProber.cpp' || echo '$(srcdir)/'`charset-detector/src/nsMBCSGroupProber.cpp; \
-@am__fastdepCXX_TRUE@	then mv -f "charset-detector/src/$(DEPDIR)/wxmedit-nsMBCSGroupProber.Tpo" "charset-detector/src/$(DEPDIR)/wxmedit-nsMBCSGroupProber.Po"; else rm -f "charset-detector/src/$(DEPDIR)/wxmedit-nsMBCSGroupProber.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='charset-detector/src/nsMBCSGroupProber.cpp' object='charset-detector/src/wxmedit-nsMBCSGroupProber.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -c -o charset-detector/src/wxmedit-nsMBCSGroupProber.o `test -f 'charset-detector/src/nsMBCSGroupProber.cpp' || echo '$(srcdir)/'`charset-detector/src/nsMBCSGroupProber.cpp
-
-charset-detector/src/wxmedit-nsMBCSGroupProber.obj: charset-detector/src/nsMBCSGroupProber.cpp
-@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -MT charset-detector/src/wxmedit-nsMBCSGroupProber.obj -MD -MP -MF "charset-detector/src/$(DEPDIR)/wxmedit-nsMBCSGroupProber.Tpo" -c -o charset-detector/src/wxmedit-nsMBCSGroupProber.obj `if test -f 'charset-detector/src/nsMBCSGroupProber.cpp'; then $(CYGPATH_W) 'charset-detector/src/nsMBCSGroupProber.cpp'; else $(CYGPATH_W) '$(srcdir)/charset-detector/src/nsMBCSGroupProber.cpp'; fi`; \
-@am__fastdepCXX_TRUE@	then mv -f "charset-detector/src/$(DEPDIR)/wxmedit-nsMBCSGroupProber.Tpo" "charset-detector/src/$(DEPDIR)/wxmedit-nsMBCSGroupProber.Po"; else rm -f "charset-detector/src/$(DEPDIR)/wxmedit-nsMBCSGroupProber.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='charset-detector/src/nsMBCSGroupProber.cpp' object='charset-detector/src/wxmedit-nsMBCSGroupProber.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -c -o charset-detector/src/wxmedit-nsMBCSGroupProber.obj `if test -f 'charset-detector/src/nsMBCSGroupProber.cpp'; then $(CYGPATH_W) 'charset-detector/src/nsMBCSGroupProber.cpp'; else $(CYGPATH_W) '$(srcdir)/charset-detector/src/nsMBCSGroupProber.cpp'; fi`
-
-charset-detector/src/wxmedit-nsMBCSSM.o: charset-detector/src/nsMBCSSM.cpp
-@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -MT charset-detector/src/wxmedit-nsMBCSSM.o -MD -MP -MF "charset-detector/src/$(DEPDIR)/wxmedit-nsMBCSSM.Tpo" -c -o charset-detector/src/wxmedit-nsMBCSSM.o `test -f 'charset-detector/src/nsMBCSSM.cpp' || echo '$(srcdir)/'`charset-detector/src/nsMBCSSM.cpp; \
-@am__fastdepCXX_TRUE@	then mv -f "charset-detector/src/$(DEPDIR)/wxmedit-nsMBCSSM.Tpo" "charset-detector/src/$(DEPDIR)/wxmedit-nsMBCSSM.Po"; else rm -f "charset-detector/src/$(DEPDIR)/wxmedit-nsMBCSSM.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='charset-detector/src/nsMBCSSM.cpp' object='charset-detector/src/wxmedit-nsMBCSSM.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -c -o charset-detector/src/wxmedit-nsMBCSSM.o `test -f 'charset-detector/src/nsMBCSSM.cpp' || echo '$(srcdir)/'`charset-detector/src/nsMBCSSM.cpp
-
-charset-detector/src/wxmedit-nsMBCSSM.obj: charset-detector/src/nsMBCSSM.cpp
-@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -MT charset-detector/src/wxmedit-nsMBCSSM.obj -MD -MP -MF "charset-detector/src/$(DEPDIR)/wxmedit-nsMBCSSM.Tpo" -c -o charset-detector/src/wxmedit-nsMBCSSM.obj `if test -f 'charset-detector/src/nsMBCSSM.cpp'; then $(CYGPATH_W) 'charset-detector/src/nsMBCSSM.cpp'; else $(CYGPATH_W) '$(srcdir)/charset-detector/src/nsMBCSSM.cpp'; fi`; \
-@am__fastdepCXX_TRUE@	then mv -f "charset-detector/src/$(DEPDIR)/wxmedit-nsMBCSSM.Tpo" "charset-detector/src/$(DEPDIR)/wxmedit-nsMBCSSM.Po"; else rm -f "charset-detector/src/$(DEPDIR)/wxmedit-nsMBCSSM.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='charset-detector/src/nsMBCSSM.cpp' object='charset-detector/src/wxmedit-nsMBCSSM.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -c -o charset-detector/src/wxmedit-nsMBCSSM.obj `if test -f 'charset-detector/src/nsMBCSSM.cpp'; then $(CYGPATH_W) 'charset-detector/src/nsMBCSSM.cpp'; else $(CYGPATH_W) '$(srcdir)/charset-detector/src/nsMBCSSM.cpp'; fi`
-
-charset-detector/src/wxmedit-nsSBCharSetProber.o: charset-detector/src/nsSBCharSetProber.cpp
-@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -MT charset-detector/src/wxmedit-nsSBCharSetProber.o -MD -MP -MF "charset-detector/src/$(DEPDIR)/wxmedit-nsSBCharSetProber.Tpo" -c -o charset-detector/src/wxmedit-nsSBCharSetProber.o `test -f 'charset-detector/src/nsSBCharSetProber.cpp' || echo '$(srcdir)/'`charset-detector/src/nsSBCharSetProber.cpp; \
-@am__fastdepCXX_TRUE@	then mv -f "charset-detector/src/$(DEPDIR)/wxmedit-nsSBCharSetProber.Tpo" "charset-detector/src/$(DEPDIR)/wxmedit-nsSBCharSetProber.Po"; else rm -f "charset-detector/src/$(DEPDIR)/wxmedit-nsSBCharSetProber.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='charset-detector/src/nsSBCharSetProber.cpp' object='charset-detector/src/wxmedit-nsSBCharSetProber.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -c -o charset-detector/src/wxmedit-nsSBCharSetProber.o `test -f 'charset-detector/src/nsSBCharSetProber.cpp' || echo '$(srcdir)/'`charset-detector/src/nsSBCharSetProber.cpp
-
-charset-detector/src/wxmedit-nsSBCharSetProber.obj: charset-detector/src/nsSBCharSetProber.cpp
-@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -MT charset-detector/src/wxmedit-nsSBCharSetProber.obj -MD -MP -MF "charset-detector/src/$(DEPDIR)/wxmedit-nsSBCharSetProber.Tpo" -c -o charset-detector/src/wxmedit-nsSBCharSetProber.obj `if test -f 'charset-detector/src/nsSBCharSetProber.cpp'; then $(CYGPATH_W) 'charset-detector/src/nsSBCharSetProber.cpp'; else $(CYGPATH_W) '$(srcdir)/charset-detector/src/nsSBCharSetProber.cpp'; fi`; \
-@am__fastdepCXX_TRUE@	then mv -f "charset-detector/src/$(DEPDIR)/wxmedit-nsSBCharSetProber.Tpo" "charset-detector/src/$(DEPDIR)/wxmedit-nsSBCharSetProber.Po"; else rm -f "charset-detector/src/$(DEPDIR)/wxmedit-nsSBCharSetProber.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='charset-detector/src/nsSBCharSetProber.cpp' object='charset-detector/src/wxmedit-nsSBCharSetProber.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -c -o charset-detector/src/wxmedit-nsSBCharSetProber.obj `if test -f 'charset-detector/src/nsSBCharSetProber.cpp'; then $(CYGPATH_W) 'charset-detector/src/nsSBCharSetProber.cpp'; else $(CYGPATH_W) '$(srcdir)/charset-detector/src/nsSBCharSetProber.cpp'; fi`
-
-charset-detector/src/wxmedit-nsSBCSGroupProber.o: charset-detector/src/nsSBCSGroupProber.cpp
-@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -MT charset-detector/src/wxmedit-nsSBCSGroupProber.o -MD -MP -MF "charset-detector/src/$(DEPDIR)/wxmedit-nsSBCSGroupProber.Tpo" -c -o charset-detector/src/wxmedit-nsSBCSGroupProber.o `test -f 'charset-detector/src/nsSBCSGroupProber.cpp' || echo '$(srcdir)/'`charset-detector/src/nsSBCSGroupProber.cpp; \
-@am__fastdepCXX_TRUE@	then mv -f "charset-detector/src/$(DEPDIR)/wxmedit-nsSBCSGroupProber.Tpo" "charset-detector/src/$(DEPDIR)/wxmedit-nsSBCSGroupProber.Po"; else rm -f "charset-detector/src/$(DEPDIR)/wxmedit-nsSBCSGroupProber.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='charset-detector/src/nsSBCSGroupProber.cpp' object='charset-detector/src/wxmedit-nsSBCSGroupProber.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -c -o charset-detector/src/wxmedit-nsSBCSGroupProber.o `test -f 'charset-detector/src/nsSBCSGroupProber.cpp' || echo '$(srcdir)/'`charset-detector/src/nsSBCSGroupProber.cpp
-
-charset-detector/src/wxmedit-nsSBCSGroupProber.obj: charset-detector/src/nsSBCSGroupProber.cpp
-@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -MT charset-detector/src/wxmedit-nsSBCSGroupProber.obj -MD -MP -MF "charset-detector/src/$(DEPDIR)/wxmedit-nsSBCSGroupProber.Tpo" -c -o charset-detector/src/wxmedit-nsSBCSGroupProber.obj `if test -f 'charset-detector/src/nsSBCSGroupProber.cpp'; then $(CYGPATH_W) 'charset-detector/src/nsSBCSGroupProber.cpp'; else $(CYGPATH_W) '$(srcdir)/charset-detector/src/nsSBCSGroupProber.cpp'; fi`; \
-@am__fastdepCXX_TRUE@	then mv -f "charset-detector/src/$(DEPDIR)/wxmedit-nsSBCSGroupProber.Tpo" "charset-detector/src/$(DEPDIR)/wxmedit-nsSBCSGroupProber.Po"; else rm -f "charset-detector/src/$(DEPDIR)/wxmedit-nsSBCSGroupProber.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='charset-detector/src/nsSBCSGroupProber.cpp' object='charset-detector/src/wxmedit-nsSBCSGroupProber.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -c -o charset-detector/src/wxmedit-nsSBCSGroupProber.obj `if test -f 'charset-detector/src/nsSBCSGroupProber.cpp'; then $(CYGPATH_W) 'charset-detector/src/nsSBCSGroupProber.cpp'; else $(CYGPATH_W) '$(srcdir)/charset-detector/src/nsSBCSGroupProber.cpp'; fi`
-
-charset-detector/src/wxmedit-nsSJISProber.o: charset-detector/src/nsSJISProber.cpp
-@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -MT charset-detector/src/wxmedit-nsSJISProber.o -MD -MP -MF "charset-detector/src/$(DEPDIR)/wxmedit-nsSJISProber.Tpo" -c -o charset-detector/src/wxmedit-nsSJISProber.o `test -f 'charset-detector/src/nsSJISProber.cpp' || echo '$(srcdir)/'`charset-detector/src/nsSJISProber.cpp; \
-@am__fastdepCXX_TRUE@	then mv -f "charset-detector/src/$(DEPDIR)/wxmedit-nsSJISProber.Tpo" "charset-detector/src/$(DEPDIR)/wxmedit-nsSJISProber.Po"; else rm -f "charset-detector/src/$(DEPDIR)/wxmedit-nsSJISProber.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='charset-detector/src/nsSJISProber.cpp' object='charset-detector/src/wxmedit-nsSJISProber.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -c -o charset-detector/src/wxmedit-nsSJISProber.o `test -f 'charset-detector/src/nsSJISProber.cpp' || echo '$(srcdir)/'`charset-detector/src/nsSJISProber.cpp
-
-charset-detector/src/wxmedit-nsSJISProber.obj: charset-detector/src/nsSJISProber.cpp
-@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -MT charset-detector/src/wxmedit-nsSJISProber.obj -MD -MP -MF "charset-detector/src/$(DEPDIR)/wxmedit-nsSJISProber.Tpo" -c -o charset-detector/src/wxmedit-nsSJISProber.obj `if test -f 'charset-detector/src/nsSJISProber.cpp'; then $(CYGPATH_W) 'charset-detector/src/nsSJISProber.cpp'; else $(CYGPATH_W) '$(srcdir)/charset-detector/src/nsSJISProber.cpp'; fi`; \
-@am__fastdepCXX_TRUE@	then mv -f "charset-detector/src/$(DEPDIR)/wxmedit-nsSJISProber.Tpo" "charset-detector/src/$(DEPDIR)/wxmedit-nsSJISProber.Po"; else rm -f "charset-detector/src/$(DEPDIR)/wxmedit-nsSJISProber.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='charset-detector/src/nsSJISProber.cpp' object='charset-detector/src/wxmedit-nsSJISProber.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -c -o charset-detector/src/wxmedit-nsSJISProber.obj `if test -f 'charset-detector/src/nsSJISProber.cpp'; then $(CYGPATH_W) 'charset-detector/src/nsSJISProber.cpp'; else $(CYGPATH_W) '$(srcdir)/charset-detector/src/nsSJISProber.cpp'; fi`
-
-charset-detector/src/wxmedit-nsUniversalDetector.o: charset-detector/src/nsUniversalDetector.cpp
-@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -MT charset-detector/src/wxmedit-nsUniversalDetector.o -MD -MP -MF "charset-detector/src/$(DEPDIR)/wxmedit-nsUniversalDetector.Tpo" -c -o charset-detector/src/wxmedit-nsUniversalDetector.o `test -f 'charset-detector/src/nsUniversalDetector.cpp' || echo '$(srcdir)/'`charset-detector/src/nsUniversalDetector.cpp; \
-@am__fastdepCXX_TRUE@	then mv -f "charset-detector/src/$(DEPDIR)/wxmedit-nsUniversalDetector.Tpo" "charset-detector/src/$(DEPDIR)/wxmedit-nsUniversalDetector.Po"; else rm -f "charset-detector/src/$(DEPDIR)/wxmedit-nsUniversalDetector.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='charset-detector/src/nsUniversalDetector.cpp' object='charset-detector/src/wxmedit-nsUniversalDetector.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -c -o charset-detector/src/wxmedit-nsUniversalDetector.o `test -f 'charset-detector/src/nsUniversalDetector.cpp' || echo '$(srcdir)/'`charset-detector/src/nsUniversalDetector.cpp
-
-charset-detector/src/wxmedit-nsUniversalDetector.obj: charset-detector/src/nsUniversalDetector.cpp
-@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -MT charset-detector/src/wxmedit-nsUniversalDetector.obj -MD -MP -MF "charset-detector/src/$(DEPDIR)/wxmedit-nsUniversalDetector.Tpo" -c -o charset-detector/src/wxmedit-nsUniversalDetector.obj `if test -f 'charset-detector/src/nsUniversalDetector.cpp'; then $(CYGPATH_W) 'charset-detector/src/nsUniversalDetector.cpp'; else $(CYGPATH_W) '$(srcdir)/charset-detector/src/nsUniversalDetector.cpp'; fi`; \
-@am__fastdepCXX_TRUE@	then mv -f "charset-detector/src/$(DEPDIR)/wxmedit-nsUniversalDetector.Tpo" "charset-detector/src/$(DEPDIR)/wxmedit-nsUniversalDetector.Po"; else rm -f "charset-detector/src/$(DEPDIR)/wxmedit-nsUniversalDetector.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='charset-detector/src/nsUniversalDetector.cpp' object='charset-detector/src/wxmedit-nsUniversalDetector.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -c -o charset-detector/src/wxmedit-nsUniversalDetector.obj `if test -f 'charset-detector/src/nsUniversalDetector.cpp'; then $(CYGPATH_W) 'charset-detector/src/nsUniversalDetector.cpp'; else $(CYGPATH_W) '$(srcdir)/charset-detector/src/nsUniversalDetector.cpp'; fi`
-
-charset-detector/src/wxmedit-nsUTF8Prober.o: charset-detector/src/nsUTF8Prober.cpp
-@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -MT charset-detector/src/wxmedit-nsUTF8Prober.o -MD -MP -MF "charset-detector/src/$(DEPDIR)/wxmedit-nsUTF8Prober.Tpo" -c -o charset-detector/src/wxmedit-nsUTF8Prober.o `test -f 'charset-detector/src/nsUTF8Prober.cpp' || echo '$(srcdir)/'`charset-detector/src/nsUTF8Prober.cpp; \
-@am__fastdepCXX_TRUE@	then mv -f "charset-detector/src/$(DEPDIR)/wxmedit-nsUTF8Prober.Tpo" "charset-detector/src/$(DEPDIR)/wxmedit-nsUTF8Prober.Po"; else rm -f "charset-detector/src/$(DEPDIR)/wxmedit-nsUTF8Prober.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='charset-detector/src/nsUTF8Prober.cpp' object='charset-detector/src/wxmedit-nsUTF8Prober.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -c -o charset-detector/src/wxmedit-nsUTF8Prober.o `test -f 'charset-detector/src/nsUTF8Prober.cpp' || echo '$(srcdir)/'`charset-detector/src/nsUTF8Prober.cpp
-
-charset-detector/src/wxmedit-nsUTF8Prober.obj: charset-detector/src/nsUTF8Prober.cpp
-@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -MT charset-detector/src/wxmedit-nsUTF8Prober.obj -MD -MP -MF "charset-detector/src/$(DEPDIR)/wxmedit-nsUTF8Prober.Tpo" -c -o charset-detector/src/wxmedit-nsUTF8Prober.obj `if test -f 'charset-detector/src/nsUTF8Prober.cpp'; then $(CYGPATH_W) 'charset-detector/src/nsUTF8Prober.cpp'; else $(CYGPATH_W) '$(srcdir)/charset-detector/src/nsUTF8Prober.cpp'; fi`; \
-@am__fastdepCXX_TRUE@	then mv -f "charset-detector/src/$(DEPDIR)/wxmedit-nsUTF8Prober.Tpo" "charset-detector/src/$(DEPDIR)/wxmedit-nsUTF8Prober.Po"; else rm -f "charset-detector/src/$(DEPDIR)/wxmedit-nsUTF8Prober.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='charset-detector/src/nsUTF8Prober.cpp' object='charset-detector/src/wxmedit-nsUTF8Prober.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -c -o charset-detector/src/wxmedit-nsUTF8Prober.obj `if test -f 'charset-detector/src/nsUTF8Prober.cpp'; then $(CYGPATH_W) 'charset-detector/src/nsUTF8Prober.cpp'; else $(CYGPATH_W) '$(srcdir)/charset-detector/src/nsUTF8Prober.cpp'; fi`
-
-charset-detector/src/entry/wxmedit-impl.o: charset-detector/src/entry/impl.cpp
-@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -MT charset-detector/src/entry/wxmedit-impl.o -MD -MP -MF "charset-detector/src/entry/$(DEPDIR)/wxmedit-impl.Tpo" -c -o charset-detector/src/entry/wxmedit-impl.o `test -f 'charset-detector/src/entry/impl.cpp' || echo '$(srcdir)/'`charset-detector/src/entry/impl.cpp; \
-@am__fastdepCXX_TRUE@	then mv -f "charset-detector/src/entry/$(DEPDIR)/wxmedit-impl.Tpo" "charset-detector/src/entry/$(DEPDIR)/wxmedit-impl.Po"; else rm -f "charset-detector/src/entry/$(DEPDIR)/wxmedit-impl.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='charset-detector/src/entry/impl.cpp' object='charset-detector/src/entry/wxmedit-impl.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -c -o charset-detector/src/entry/wxmedit-impl.o `test -f 'charset-detector/src/entry/impl.cpp' || echo '$(srcdir)/'`charset-detector/src/entry/impl.cpp
-
-charset-detector/src/entry/wxmedit-impl.obj: charset-detector/src/entry/impl.cpp
-@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -MT charset-detector/src/entry/wxmedit-impl.obj -MD -MP -MF "charset-detector/src/entry/$(DEPDIR)/wxmedit-impl.Tpo" -c -o charset-detector/src/entry/wxmedit-impl.obj `if test -f 'charset-detector/src/entry/impl.cpp'; then $(CYGPATH_W) 'charset-detector/src/entry/impl.cpp'; else $(CYGPATH_W) '$(srcdir)/charset-detector/src/entry/impl.cpp'; fi`; \
-@am__fastdepCXX_TRUE@	then mv -f "charset-detector/src/entry/$(DEPDIR)/wxmedit-impl.Tpo" "charset-detector/src/entry/$(DEPDIR)/wxmedit-impl.Po"; else rm -f "charset-detector/src/entry/$(DEPDIR)/wxmedit-impl.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='charset-detector/src/entry/impl.cpp' object='charset-detector/src/entry/wxmedit-impl.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -c -o charset-detector/src/entry/wxmedit-impl.obj `if test -f 'charset-detector/src/entry/impl.cpp'; then $(CYGPATH_W) 'charset-detector/src/entry/impl.cpp'; else $(CYGPATH_W) '$(srcdir)/charset-detector/src/entry/impl.cpp'; fi`
 
 src/wxmedit/wxmedit-wxm_encdet.o: src/wxmedit/wxm_encdet.cpp
 @am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -MT src/wxmedit/wxmedit-wxm_encdet.o -MD -MP -MF "src/wxmedit/$(DEPDIR)/wxmedit-wxm_encdet.Tpo" -c -o src/wxmedit/wxmedit-wxm_encdet.o `test -f 'src/wxmedit/wxm_encdet.cpp' || echo '$(srcdir)/'`src/wxmedit/wxm_encdet.cpp; \
@@ -2487,7 +1737,7 @@ distclean-tags:
 distdir: $(DISTFILES)
 	$(am__remove_distdir)
 	mkdir $(distdir)
-	$(mkdir_p) $(distdir)/charset-detector $(distdir)/charset-detector/src $(distdir)/charset-detector/src/entry $(distdir)/charset-detector/src/tables $(distdir)/charset-detector/test $(distdir)/debian $(distdir)/freebsd $(distdir)/images $(distdir)/libunicows $(distdir)/m4 $(distdir)/po $(distdir)/src $(distdir)/src/plugin_example
+	$(mkdir_p) $(distdir)/debian $(distdir)/freebsd $(distdir)/images $(distdir)/libunicows $(distdir)/m4 $(distdir)/po $(distdir)/src $(distdir)/src/plugin_example
 	@srcdirstrip=`echo "$(srcdir)" | sed 's|.|.|g'`; \
 	topsrcdirstrip=`echo "$(top_srcdir)" | sed 's|.|.|g'`; \
 	list='$(DISTFILES)'; for file in $$list; do \
@@ -2655,10 +1905,6 @@ clean-generic:
 
 distclean-generic:
 	-test -z "$(CONFIG_CLEAN_FILES)" || rm -f $(CONFIG_CLEAN_FILES)
-	-rm -f charset-detector/src/$(DEPDIR)/$(am__dirstamp)
-	-rm -f charset-detector/src/$(am__dirstamp)
-	-rm -f charset-detector/src/entry/$(DEPDIR)/$(am__dirstamp)
-	-rm -f charset-detector/src/entry/$(am__dirstamp)
 	-rm -f src/$(DEPDIR)/$(am__dirstamp)
 	-rm -f src/$(am__dirstamp)
 	-rm -f src/wxmedit/$(DEPDIR)/$(am__dirstamp)
@@ -2683,7 +1929,7 @@ clean-am: clean-binPROGRAMS clean-generic mostlyclean-am
 
 distclean: distclean-recursive
 	-rm -f $(am__CONFIG_DISTCLEAN_FILES)
-	-rm -rf charset-detector/src/$(DEPDIR) charset-detector/src/entry/$(DEPDIR) src/$(DEPDIR) src/wxmedit/$(DEPDIR) src/xm/$(DEPDIR) src/xm/wxm_encoding/$(DEPDIR) test/$(DEPDIR) test/encdet/$(DEPDIR) test/encoding/$(DEPDIR)
+	-rm -rf src/$(DEPDIR) src/wxmedit/$(DEPDIR) src/xm/$(DEPDIR) src/xm/wxm_encoding/$(DEPDIR) test/$(DEPDIR) test/encdet/$(DEPDIR) test/encoding/$(DEPDIR)
 	-rm -f Makefile
 distclean-am: clean-am distclean-compile distclean-generic \
 	distclean-hdr distclean-tags
@@ -2711,7 +1957,7 @@ installcheck-am:
 maintainer-clean: maintainer-clean-recursive
 	-rm -f $(am__CONFIG_DISTCLEAN_FILES)
 	-rm -rf $(top_srcdir)/autom4te.cache
-	-rm -rf charset-detector/src/$(DEPDIR) charset-detector/src/entry/$(DEPDIR) src/$(DEPDIR) src/wxmedit/$(DEPDIR) src/xm/$(DEPDIR) src/xm/wxm_encoding/$(DEPDIR) test/$(DEPDIR) test/encdet/$(DEPDIR) test/encoding/$(DEPDIR)
+	-rm -rf src/$(DEPDIR) src/wxmedit/$(DEPDIR) src/xm/$(DEPDIR) src/xm/wxm_encoding/$(DEPDIR) test/$(DEPDIR) test/encdet/$(DEPDIR) test/encoding/$(DEPDIR)
 	-rm -f Makefile
 maintainer-clean-am: distclean-am maintainer-clean-generic
 

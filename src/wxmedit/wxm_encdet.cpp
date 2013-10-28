@@ -9,7 +9,10 @@
 
 #include "wxm_encdet.h"
 #include "../xm/wxm_encoding/encoding.h"
-#include "chardetect.h"
+
+#include <unicode/ucsdet.h>
+#include <unicode/uversion.h>
+#include <string>
 
 bool IsTextUTF32LE(const wxByte *text, int size)
 {
@@ -436,24 +439,84 @@ void DetectJapaneseEncoding(const wxByte *text, int count, wxm::WXMEncodingID &e
         enc = xenc;
 }
 
+bool MatchEUCJPMoreThanGB18030(const wxByte *text, int count)
+{
+    int i=0;
+    size_t eucjp = 0;
+    size_t other = 0;
+    while(i < count - 1)
+    {
+        wxByte b0 = text[i];
+        wxByte b1 = text[i+1];
+        // hiragana & katakana (encoded the same in EUC-JP and GB2312/GBK/GB18030)
+        if (b0==0xA4 && b1>=0xA1 && b1<=0xF4 ||
+            b0==0xA5 && b1>=0xA1 && b1<=0xF6
+            )
+        {
+            ++eucjp;
+            ++i;
+        }
+        else if(b0 >= 0x80)
+        {
+            ++other;
+            ++i;
+        }
+
+        ++i;
+    }
+
+    size_t nonascii = eucjp + other;
+    return (nonascii > 0) && (100*eucjp/nonascii > 50);
+}
+
+#if U_ICU_VERSION_MAJOR_NUM *10 + U_ICU_VERSION_MINOR_NUM < 44
+struct LocalUCharsetDetectorPointer
+{
+	LocalUCharsetDetectorPointer(UCharsetDetector* ptr)
+		: m_ptr(ptr)
+	{
+	}
+	~LocalUCharsetDetectorPointer()
+	{
+		if (m_ptr!=NULL)
+			ucsdet_close(m_ptr);
+		m_ptr = NULL;
+	}
+	UCharsetDetector* getAlias()
+	{
+		return m_ptr;
+	}
+
+private:
+	UCharsetDetector* m_ptr;
+};
+#endif
+
 void DetectEncoding(const wxByte *text, int count, wxm::WXMEncodingID &enc)
 {
-    chardet_t det = NULL;
-    char encoding_name[CHARDET_MAX_ENCODING_NAME];
+    UErrorCode status = U_ZERO_ERROR;
+    LocalUCharsetDetectorPointer csd(ucsdet_open(&status));
+    ucsdet_setText(csd.getAlias(), (const char*)text, count, &status);
+    int32_t match_count = 0;
+    const UCharsetMatch **matches = ucsdet_detectAll(csd.getAlias(), &match_count, &status);
+    std::string enc_name(ucsdet_getName(matches[0], &status));
 
-    chardet_create(&det);
-    chardet_handle_data(det, (const char*)text, count);
-    chardet_data_end(det);
-    chardet_get_charset(det, encoding_name, CHARDET_MAX_ENCODING_NAME);
-    chardet_destroy(det);
+    // check if EUC-JP was detected as GB18030
+    if (match_count>1 && enc_name=="GB18030")
+    {
+        std::string enc2nd(ucsdet_getName(matches[1], &status));
+        if (enc2nd=="EUC-JP" &&
+            ucsdet_getConfidence(matches[0], &status) == ucsdet_getConfidence(matches[1], &status) &&
+            MatchEUCJPMoreThanGB18030(text, count))
+        {
+            enc_name = "EUC-JP";
+        }
+    }
 
-    std::string enc_name(encoding_name);
     if(enc_name == "EUC-KR")
         enc_name = "UHC";
     else if(enc_name == "EUC-JP")
         enc_name = "CP20932";
-    else if(enc_name == "GB2312")
-        enc_name = "MS936";
 
     wxm::WXMEncodingID init_enc = enc;
     enc = wxm::WXMEncodingCreator::Instance().ExtNameToEncoding(enc_name);

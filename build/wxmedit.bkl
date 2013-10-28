@@ -25,6 +25,7 @@
 		<if cond="FORMAT in ('mingw')">
 			<set var="WXCOMP">gcc</set>
 			<set var="ICUDATA_LIB">icudata</set>
+			<set var="ICUI18N_LIB">icui18n</set>
 
 			<define>__WIN95__</define>
 
@@ -38,6 +39,7 @@
 		<if cond="FORMAT in ('msvc', 'msvs2003prj', 'msvs2005prj', 'msvs2008prj')">
 			<set var="WXCOMP">vc</set>
 			<set var="ICUDATA_LIB">icudt</set>
+			<set var="ICUI18N_LIB">icuin</set>
 			<if cond="ICUDEBUG == '1'">
 				<set var="ICULIB_POSTFIX" make_var="1">$(LIB_POSTFIX)</set>
 			</if>
@@ -68,6 +70,7 @@
 		<sys-lib>wxmsw$(WXVER)u$(LIB_POSTFIX)_core</sys-lib>
 		<sys-lib>wxbase$(WXVER)u$(LIB_POSTFIX)</sys-lib>
 		<sys-lib>$(ICUDATA_LIB)</sys-lib>
+		<sys-lib>$(ICUI18N_LIB)$(ICULIB_POSTFIX)</sys-lib>
 		<sys-lib>icuuc$(ICULIB_POSTFIX)</sys-lib>
 		<sys-lib>unicows</sys-lib>
 		<sys-lib>kernel32</sys-lib>
@@ -106,42 +109,12 @@
 		<sources>../src/xm/wxm_encoding/unicode.cpp</sources>
 	</template>
 
-	<template id="chardet_src">
-		<include>../charset-detector/include</include>
-		<include>../charset-detector/src</include>
-		<include>../charset-detector/src/tables</include>
-
-		<sources>../charset-detector/src/CharDistribution.cpp</sources>
-		<sources>../charset-detector/src/JpCntx.cpp</sources>
-		<sources>../charset-detector/src/LangBulgarianModel.cpp</sources>
-		<sources>../charset-detector/src/LangCyrillicModel.cpp</sources>
-		<sources>../charset-detector/src/LangGreekModel.cpp</sources>
-		<sources>../charset-detector/src/LangHebrewModel.cpp</sources>
-		<sources>../charset-detector/src/LangHungarianModel.cpp</sources>
-		<sources>../charset-detector/src/LangThaiModel.cpp</sources>
-		<sources>../charset-detector/src/entry/impl.cpp</sources>
-		<sources>../charset-detector/src/nsBig5Prober.cpp</sources>
-		<sources>../charset-detector/src/nsCharSetProber.cpp</sources>
-		<sources>../charset-detector/src/nsEUCJPProber.cpp</sources>
-		<sources>../charset-detector/src/nsEUCKRProber.cpp</sources>
-		<sources>../charset-detector/src/nsEUCTWProber.cpp</sources>
-		<sources>../charset-detector/src/nsEscCharsetProber.cpp</sources>
-		<sources>../charset-detector/src/nsEscSM.cpp</sources>
-		<sources>../charset-detector/src/nsGB2312Prober.cpp</sources>
-		<sources>../charset-detector/src/nsHebrewProber.cpp</sources>
-		<sources>../charset-detector/src/nsLatin1Prober.cpp</sources>
-		<sources>../charset-detector/src/nsMBCSGroupProber.cpp</sources>
-		<sources>../charset-detector/src/nsMBCSSM.cpp</sources>
-		<sources>../charset-detector/src/nsSBCSGroupProber.cpp</sources>
-		<sources>../charset-detector/src/nsSBCharSetProber.cpp</sources>
-		<sources>../charset-detector/src/nsSJISProber.cpp</sources>
-		<sources>../charset-detector/src/nsUTF8Prober.cpp</sources>
-		<sources>../charset-detector/src/nsUniversalDetector.cpp</sources>
+	<template id="encdet_src">
 		<headers>../src/wxmedit/wxm_encdet.h</headers>
 		<sources>../src/wxmedit/wxm_encdet.cpp</sources>
 	</template>
 
-	<exe id="wxmedit" template="win_cfg,enc_src,chardet_src">
+	<exe id="wxmedit" template="win_cfg,enc_src,encdet_src">
 		<app-type>gui</app-type>
 
 		<win32-res>../src/wxmedit_app.rc</win32-res>
@@ -212,7 +185,7 @@
 		<headers>../src/xm/xm_uutils.h</headers>
 		<sources>../src/xm/xm_uutils.cpp</sources>
 	</exe>
-	<exe id="wxmedit_test" template="win_cfg,enc_src,chardet_src">
+	<exe id="wxmedit_test" template="win_cfg,enc_src,encdet_src">
 		<headers>../src/wxmedit/ucs4_t.h</headers>
 		<headers>../src/wxmedit/wxm_deque.hpp</headers>
 		<headers>../src/xm/wxm_line_enc_adapter.h</headers>
