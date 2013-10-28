@@ -64,20 +64,14 @@ void test_detenc(const std::string& text, const std::string& enc)
 		DetectEncoding(wxtext, text.size(), detencid);
 
 		// use GB18030      instead of detected encoding MS936
-		// use Windows-1252 instead of detected encoding ISO-8859-1
 		if (detencid == wxm::ENC_MS936)
 			detencid = wxm::ENC_GB18030;
-		if (detencid == wxm::ENC_ISO_8859_1)
-			detencid = wxm::ENC_Windows_1252;
 	}
 
-	// use Windows-1252 instead of expected encoding ISO-8859-1
 	// use UHC          instead of expected encoding EUC-KR
 	// use CP20932      instead of expected encoding EUC-JP /* FIXME later */
 	std::string eenc = enc;
-	if (eenc == "ISO-8859-1")
-		eenc = "Windows-1252";
-	else if(eenc == "EUC-KR")
+	if(eenc == "EUC-KR")
 		eenc = "UHC";
 	else if(eenc == "EUC-JP")
 		eenc = "CP20932";

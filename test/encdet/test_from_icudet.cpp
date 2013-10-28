@@ -18,20 +18,6 @@ void skip_test_case(const std::string& tid, const std::string tenc)
 
 void init_skiped_test_cases()
 {
-	skip_test_case("IUC10-ar", "ISO-8859-6");
-	skip_test_case("IUC10-ar", "windows-1256");
-	skip_test_case("IUC10-en", "ISO-8859-1");
-	skip_test_case("IUC10-he", "ISO-8859-8-I");
-	skip_test_case("IUC10-hu", "ISO-8859-2");
-	skip_test_case("IUC10-hu-Q", "windows-1250");
-	skip_test_case("IUC10-nl", "ISO-8859-1");
-	skip_test_case("IUC10-ro", "ISO-8859-2");
-	skip_test_case("WIU-cz", "ISO-8859-2");
-	skip_test_case("WIU-el", "ISO-8859-7");
-	skip_test_case("WIU-el-Q", "windows-1253");
-	skip_test_case("WIU-pl", "ISO-8859-2");
-	skip_test_case("WIU-tr", "ISO-8859-9");
-	skip_test_case("WIU-tr-Q", "windows-1254");
 }
 
 void add_addtional_cases(const std::string& tid, std::vector<std::string>& enclangs)
