@@ -39,7 +39,15 @@
 #include <wx/gtk/win_gtk.h>
 #endif
 
+#ifdef _MSC_VER
+# pragma warning(push)
+# pragma warning(disable:4819)
+#endif
 #include <boost/format.hpp>
+#ifdef _MSC_VER
+# pragma warning(pop)
+#endif
+
 #include <boost/static_assert.hpp>
 #include <locale.h>
 
@@ -836,7 +844,7 @@ MadEdit::MadEdit(wxWindow* parent, wxWindowID id, const wxPoint& pos, const wxSi
 #endif
     m_Config->Read(wxT("MiddleMouseToPaste"), &m_MiddleMouseToPaste, true);
 
-    m_HexTopRow = size_t(-1);
+    m_HexTopRow = -1;
     m_HexRowCount = 0;
     m_HexDigitBitmap=NULL;
 

@@ -29,8 +29,9 @@
 #define new new(_NORMAL_BLOCK ,__FILE__, __LINE__)
 #endif
 
-
+#define static static const
 #include "../images/down.xpm"
+#undef static
 
 WXMFindInFilesDialog *g_FindInFilesDialog=NULL;
 

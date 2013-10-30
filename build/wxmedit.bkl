@@ -45,6 +45,8 @@
 			</if>
 
 			<set var="WXDEBUG_DEF" make_var="1" />
+
+			<define>_SCL_SECURE_NO_WARNINGS</define>
 		</if>
 		<cppflags>$(WXDEBUG_DEF)</cppflags>
 

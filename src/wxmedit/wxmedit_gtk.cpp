@@ -16,6 +16,7 @@
 #include <gtk/gtk.h>
 #include <gdk/gdkkeysyms.h>
 #include <glib-object.h>
+#include <X11/XKBlib.h>
 #include <iostream>
 
 
@@ -430,7 +431,7 @@ wxTranslateGTKKeyEventToWx(wxKeyEvent& event,
 
             wxLogTrace(TRACE_KEYS, _T("\t-> keycode %d"), keycode);
 
-            KeySym keysymNormalized = XKeycodeToKeysym(dpy, keycode, 0);
+            KeySym keysymNormalized = XkbKeycodeToKeysym(dpy, keycode, 0, 0);
 
             // use the normalized, i.e. lower register, keysym if we've
             // got one

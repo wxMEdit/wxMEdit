@@ -13,6 +13,11 @@
 #include <utility>
 #include <cstddef>
 
+#ifdef _MSC_VER
+# pragma warning(push)
+# pragma warning(disable:4355)
+#endif
+
 template <typename T>
 class MadDeque
 {
@@ -374,5 +379,9 @@ public:
         m_end_iterator = m_begin_iterator;
     }
 };
+
+#ifdef _MSC_VER
+# pragma warning(pop)
+#endif
 
 #endif //_WXM_DEQUE_HPP_

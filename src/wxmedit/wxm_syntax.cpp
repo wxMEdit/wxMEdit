@@ -24,15 +24,15 @@
 extern wxString g_MadEditHomeDir;
 
 
-wxChar *SystemAttributesName[] = {
+const wxChar *SystemAttributesName[] = {
     wxT("Text"), wxT("Delimiter"), wxT("Space"), wxT("Number"), wxT("String"), wxT("Comment"),
     wxT("Directive"), wxT("SpecialWord"), wxT("LineNumber"), wxT("ActiveLine"), wxT("Bookmark"),
 };
 
-wxChar *SystemAttributesColor[]= {
+const wxChar *SystemAttributesColor[]= {
     wxT("Black"), wxT("SaddleBrown"), wxT("Aqua"), wxT("Blue"), wxT("Red"), wxT("Teal"), wxT("Green"), wxT("Maroon"), wxT("White"), wxT("Fuchsia"), wxT("#\xC0\xFF\xFF")
 };
-wxChar *SystemAttributesBgColor[]= {
+const wxChar *SystemAttributesBgColor[]= {
     wxT("White"), wxT(""), wxT(""), wxT(""), wxT(""), wxT(""), wxT(""), wxT(""), wxT("#\xA0\xA0\xA0"), wxT(""), wxT("")
 };
 

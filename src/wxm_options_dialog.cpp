@@ -27,7 +27,7 @@
 
 WXMOptionsDialog *g_OptionsDialog=NULL;
 
-extern wxChar *g_LanguageString[];
+extern const wxChar *g_LanguageString[];
 extern const size_t g_LanguageCount;
 
 TreeItemData *g_SelectedCommandItem=NULL;

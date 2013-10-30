@@ -16,8 +16,9 @@
 #include <wx/string.h>
 //*)
 
-
+#define static static const
 #include "../images/down.xpm"
+#undef static
 
 WXMSearchDialog *g_SearchDialog=NULL;
 

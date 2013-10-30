@@ -37,7 +37,7 @@ wxString g_MadEditConfigName;
 bool g_DoNotSaveSettings=false;
 bool g_ResetAllKeys=false;
 
-wxChar *g_LanguageString[]=
+const wxChar *g_LanguageString[]=
 {
     wxT("System Default"),
     wxT("\u7B80\u4F53\u4E2D\u6587(Chinese Simplified)"),

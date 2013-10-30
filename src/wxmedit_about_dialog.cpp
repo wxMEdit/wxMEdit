@@ -12,8 +12,10 @@
 #include <wx/string.h>
 //*)
 
+#define static static const
 #include "../images/wxmedit.xpm"
 #include "../images/madedit.xpm"
+#undef static
 
 //(*IdInit(WXMAboutDialog)
 const long WXMAboutDialog::ID_STATICBITMAP1 = wxNewId();

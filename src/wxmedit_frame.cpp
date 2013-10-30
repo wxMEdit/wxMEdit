@@ -51,6 +51,7 @@
 #define new new(_NORMAL_BLOCK ,__FILE__, __LINE__)
 #endif
 
+#define static static const
 
 #if !defined(__WXMSW__) && !defined(__WXPM__)
 #   include "../images/wxmedit.xpm"
@@ -127,6 +128,8 @@
 
 #include "../images/wxmedit_16x15.xpm"
 #define wxmedit_16x15_xpm_idx (hexmode_xpm_idx+1)
+
+#undef static
 
 #if wxCHECK_VERSION(2,7,0)
     #define GetAccelFromString(x) wxAcceleratorEntry::Create(x)
