@@ -752,9 +752,9 @@ CXXDEPMODE
 am__fastdepCXX_TRUE
 am__fastdepCXX_FALSE
 PKG_CONFIG
-TESTLIBS
 glib_gtk2_CFLAGS
 glib_gtk2_LIBS
+TESTLIBS
 WX_CONFIG_PATH
 WX_CPPFLAGS
 WX_CFLAGS
@@ -1387,7 +1387,7 @@ Optional Packages:
   --with-boost-add=PATH   use additional Boost.Xpressive and Boost.Foreach library path
   --with-boost=PATH       use additional Boost library path,
                           otherwise use system include path
-  --with-boost-lib-suffix=PATH
+  --with-boost-lib-suffix=SUFFIX
                           use specified Boost library file suffix,
                           otherwise use '-mt'
   --with-icu=PATH         use additional ICU library path,
@@ -12846,8 +12846,8 @@ fi
 BOOST_LIB_SUFFIX=-mt
 
 # Check whether --with-boost-lib-suffix was given.
-if test "${with_boost_lib_suffixt+set}" = set; then
-  withval=$with_boost_lib_suffixt; BOOST_LIB_SUFFIX="$withval"
+if test "${with_boost_lib_suffix+set}" = set; then
+  withval=$with_boost_lib_suffix; BOOST_LIB_SUFFIX="$withval"
 fi
 
 TESTLIBS="-lboost_unit_test_framework$BOOST_LIB_SUFFIX"
@@ -15484,6 +15484,7 @@ am__fastdepCXX_FALSE!$am__fastdepCXX_FALSE$ac_delim
 PKG_CONFIG!$PKG_CONFIG$ac_delim
 glib_gtk2_CFLAGS!$glib_gtk2_CFLAGS$ac_delim
 glib_gtk2_LIBS!$glib_gtk2_LIBS$ac_delim
+TESTLIBS!$TESTLIBS$ac_delim
 WX_CONFIG_PATH!$WX_CONFIG_PATH$ac_delim
 WX_CPPFLAGS!$WX_CPPFLAGS$ac_delim
 WX_CFLAGS!$WX_CFLAGS$ac_delim
@@ -15499,7 +15500,7 @@ LIBOBJS!$LIBOBJS$ac_delim
 LTLIBOBJS!$LTLIBOBJS$ac_delim
 _ACEOF
 
-  if test `sed -n "s/.*$ac_delim\$/X/p" conf$$subs.sed | grep -c X` = 53; then
+  if test `sed -n "s/.*$ac_delim\$/X/p" conf$$subs.sed | grep -c X` = 54; then
     break
   elif $ac_last_try; then
     { { echo "$as_me:$LINENO: error: could not make $CONFIG_STATUS" >&5

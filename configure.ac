@@ -66,7 +66,7 @@ AC_ARG_WITH(boost,
 # option for Boost lib suffix
 BOOST_LIB_SUFFIX=-mt
 AC_ARG_WITH(boost-lib-suffix, 
-    [  --with-boost-lib-suffix=PATH
+    [  --with-boost-lib-suffix=SUFFIX
                           use specified Boost library file suffix,
                           otherwise use '-mt'],
     [BOOST_LIB_SUFFIX="$withval"])
