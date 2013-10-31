@@ -14,50 +14,64 @@
 #include <unicode/uversion.h>
 #include <string>
 
-bool IsUTF32LE(const wxByte *text, size_t len)
+struct UTF32Checker
 {
-    // check BOM
-    if(len>=4 && text[0]==0xFF && text[1]==0xFE && text[2]==0 && text[3]==0)
-        return true;
+    virtual ucs4_t QByteToInt(ucs4_t u) = 0;
 
-    if(len<4)
-		return false;
-
-	size_t count = len / 4;
-
-    ucs4_t ucs4, *p=(ucs4_t *)text;
-
-    for(size_t i=0;i<count;i++, p++)
+    bool IsUTF32(const wxByte *text, size_t len)
     {
-        ucs4=wxINT32_SWAP_ON_BE(*p);
+        if (len < 4)
+            return false;
 
-        if(ucs4<=0 || ucs4>0x10FFFF) return false;
+        ucs4_t *u32text = (ucs4_t *)text;
+
+        // check BOM
+        if(QByteToInt(*u32text) == 0x00FEFF)
+            return true;
+
+        size_t count = len / 4;
+        for(size_t i=0; i<count; i++)
+        {
+            ucs4_t ucs4 = QByteToInt(u32text[i]);
+            if(ucs4<=0 || ucs4>0x10FFFF)
+                return false;
+        }
+
+        return true;
     }
 
-    return true;
+    virtual ~UTF32Checker(){}
+};
+
+struct UTF32LEChecker: public UTF32Checker
+{
+    virtual ucs4_t QByteToInt(ucs4_t u)
+    {
+        return wxINT32_SWAP_ON_BE(u);
+    }
+};
+
+struct UTF32BEChecker: public UTF32Checker
+{
+    virtual ucs4_t QByteToInt(ucs4_t u)
+    {
+        return wxINT32_SWAP_ON_LE(u);
+    }
+};
+
+
+bool IsUTF32LE(const wxByte *text, size_t len)
+{
+    static UTF32LEChecker checker;
+
+    return checker.IsUTF32(text, len);
 }
 
 bool IsUTF32BE(const wxByte *text, size_t len)
 {
-    // check BOM
-    if(len>=4 && text[0]==0 && text[1]==0 && text[2]==0xFE && text[3]==0xFF)
-        return true;
+    static UTF32BEChecker checker;
 
-    if(len<4)
-		return false;
-
-	size_t count = len / 4;
-
-    ucs4_t ucs4, *p=(ucs4_t *)text;
-
-    for(size_t i=0;i<count;i++, p++)
-    {
-        ucs4=wxINT32_SWAP_ON_LE(*p);
-
-        if(ucs4<=0 || ucs4>0x10FFFF) return false;
-    }
-
-    return true;
+    return checker.IsUTF32(text, len);
 }
 
 
