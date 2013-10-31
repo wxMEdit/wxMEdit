@@ -14,20 +14,20 @@
 #include <unicode/uversion.h>
 #include <string>
 
-bool IsTextUTF32LE(const wxByte *text, int size)
+bool IsUTF32LE(const wxByte *text, size_t len)
 {
     // check BOM
-    if(size>=4 && text[0]==0xFF && text[1]==0xFE && text[2]==0 && text[3]==0)
+    if(len>=4 && text[0]==0xFF && text[1]==0xFE && text[2]==0 && text[3]==0)
         return true;
 
-    if(size<4)
+    if(len<4)
 		return false;
 
-	int count = size / 4;
+	size_t count = len / 4;
 
     ucs4_t ucs4, *p=(ucs4_t *)text;
 
-    for(int i=0;i<count;i++, p++)
+    for(size_t i=0;i<count;i++, p++)
     {
         ucs4=wxINT32_SWAP_ON_BE(*p);
 
@@ -37,20 +37,20 @@ bool IsTextUTF32LE(const wxByte *text, int size)
     return true;
 }
 
-bool IsTextUTF32BE(const wxByte *text, int size)
+bool IsUTF32BE(const wxByte *text, size_t len)
 {
     // check BOM
-    if(size>=4 && text[0]==0 && text[1]==0 && text[2]==0xFE && text[3]==0xFF)
+    if(len>=4 && text[0]==0 && text[1]==0 && text[2]==0xFE && text[3]==0xFF)
         return true;
 
-    if(size<4)
+    if(len<4)
 		return false;
 
-	int count = size / 4;
+	size_t count = len / 4;
 
     ucs4_t ucs4, *p=(ucs4_t *)text;
 
-    for(int i=0;i<count;i++, p++)
+    for(size_t i=0;i<count;i++, p++)
     {
         ucs4=wxINT32_SWAP_ON_LE(*p);
 
@@ -61,13 +61,13 @@ bool IsTextUTF32BE(const wxByte *text, int size)
 }
 
 
-bool IsTextUTF16LE(const wxByte *text, int size)
+bool IsUTF16LE(const wxByte *text, size_t len)
 {
-    if(size >= 2)
+    if(len >= 2)
     {
         if(text[0] == 0xFF && text[1] == 0xFE) // check BOM
         {
-            if(size >= 4 && text[2] == 0 && text[3] == 0) // utf32le BOM
+            if(len >= 4 && text[2] == 0 && text[3] == 0) // utf32le BOM
             {
                 return false;
             }
@@ -80,8 +80,8 @@ bool IsTextUTF16LE(const wxByte *text, int size)
         bool ok = false;
         bool highsurrogate = false;
 
-        size = size & 0x1FFFFFFE;   // to even
-        while(size > 0)
+        len = len & 0x1FFFFFFE;   // to even
+        while(len > 0)
         {
             if(text[1] == 0)
             {
@@ -102,7 +102,7 @@ bool IsTextUTF16LE(const wxByte *text, int size)
                 highsurrogate = false;
             }
 
-            size -= 2;
+            len -= 2;
             text += 2;
         }
 
@@ -111,15 +111,15 @@ bool IsTextUTF16LE(const wxByte *text, int size)
     return false;
 }
 
-bool IsTextUTF16BE(const wxByte *text, int size)
+bool IsUTF16BE(const wxByte *text, size_t len)
 {
-    if(size >= 2 && text[0] == 0xFE && text[1] == 0xFF)
+    if(len >= 2 && text[0] == 0xFE && text[1] == 0xFF)
         return true;
 
     bool ok = false;
     bool highsurrogate = false;
-    size = size & 0x1FFFFFFE;     // to even
-    while(size > 0)
+    len = len & 0x1FFFFFFE;     // to even
+    while(len > 0)
     {
         if(text[0] == 0)
         {
@@ -140,7 +140,7 @@ bool IsTextUTF16BE(const wxByte *text, int size)
             highsurrogate = false;
         }
 
-        size -= 2;
+        len -= 2;
         text += 2;
     }
 
@@ -151,15 +151,15 @@ inline bool IsUTF8Tail(wxByte b)
 {
     return (b & 0xC0) == 0x80;
 }
-bool IsTextUTF8(const wxByte *text, int size)
+bool IsUTF8(const wxByte *text, size_t len)
 {
     //check BOM
-    if(size >= 3 && text[0] == 0xEF && text[1] == 0xBB && text[2] == 0xBF)
+    if(len >= 3 && text[0] == 0xEF && text[1] == 0xBB && text[2] == 0xBF)
         return true;
 
-    int i = 0;
-    int ok_count = 0;
-    while(i < size)
+    size_t i = 0;
+    size_t ok_count = 0;
+    while(i < len)
     {
         if(text[i] < 0x80)          // 1 byte
         {
@@ -169,39 +169,39 @@ bool IsTextUTF8(const wxByte *text, int size)
         }
         else if(text[i] <= 0xDF)
         {
-            if(++i < size && IsUTF8Tail(text[i]))     // 2 bytes
+            if(++i < len && IsUTF8Tail(text[i]))     // 2 bytes
             {
                 ++i;
                 ++ok_count;
             }
-            else if(size != i)
+            else if(len != i)
             {
                 return false;
             }
         }
         else if(text[i] <= 0xEF)
         {
-            if((++i < size && IsUTF8Tail(text[i]))    // 3 bytes
-                && (++i < size && IsUTF8Tail(text[i])))
+            if((++i < len && IsUTF8Tail(text[i]))    // 3 bytes
+                && (++i < len && IsUTF8Tail(text[i])))
             {
                 ++i;
                 ++ok_count;
             }
-            else if(size != i)
+            else if(len != i)
             {
                 return false;
             }
         }
         else if(text[i] <= 0xF4)
         {
-            if((++i < size && IsUTF8Tail(text[i]))    // 4 bytes
-                && (++i < size && IsUTF8Tail(text[i])) //
-                && (++i < size && IsUTF8Tail(text[i])))
+            if((++i < len && IsUTF8Tail(text[i]))    // 4 bytes
+                && (++i < len && IsUTF8Tail(text[i])) //
+                && (++i < len && IsUTF8Tail(text[i])))
             {
                 ++i;
                 ++ok_count;
             }
-            else if(size != i)
+            else if(len != i)
             {
                 return false;
             }
@@ -215,29 +215,29 @@ bool IsTextUTF8(const wxByte *text, int size)
     return ok_count > 0;
 }
 
-bool MatchSimpleUnicode(wxString& enc, const wxByte *text, int size)
+bool MatchSimpleUnicode(wxString& enc, const wxByte *text, size_t len)
 {
-    if(IsTextUTF16LE(text, size))
+    if(IsUTF16LE(text, len))
     {
         enc = wxT("utf-16le");
         return true;
     }
-    else if(IsTextUTF16BE(text, size))
+    else if(IsUTF16BE(text, len))
     {
         enc = wxT("utf-16be");
         return true;
     }
-    else if(IsTextUTF8(text, size))
+    else if(IsUTF8(text, len))
     {
         enc = wxT("utf-8");
         return true;
     }
-    else if(IsTextUTF32LE(text, size))
+    else if(IsUTF32LE(text, len))
     {
         enc = wxT("utf-32le");
         return true;
     }
-    else if(IsTextUTF32BE(text, size))
+    else if(IsUTF32BE(text, len))
     {
         enc = wxT("utf-32be");
         return true;
@@ -246,11 +246,11 @@ bool MatchSimpleUnicode(wxString& enc, const wxByte *text, int size)
     return false;
 }
 
-bool IsBinaryData(const wxByte *data, int size)
+bool IsBinaryData(const wxByte *data, size_t len)
 {
-    int i = 0;
+    size_t i = 0;
     wxByte b;
-    while(i < size)
+    while(i < len)
     {
         b = data[i];
         if(b == 0)
@@ -260,15 +260,15 @@ bool IsBinaryData(const wxByte *data, int size)
     return false;
 }
 
-void DetectChineseEncoding(const wxByte *text, int count, wxm::WXMEncodingID &enc)
+void DetectChineseEncoding(const wxByte *text, size_t len, wxm::WXMEncodingID &enc)
 {
     // detect by punctuation marks
-    int i=0;
-    int b0=0, b1=0, c=0;
-    int cp950=0;
-    int cp936=0;
+    size_t i=0;
+    unsigned int b0=0, b1=0, c=0;
+    size_t cp950=0;
+    size_t cp936=0;
 
-    while (i++ < count)
+    while (i++ < len)
     {
         b0=b1;
         b1=c;
@@ -356,7 +356,7 @@ void DetectChineseEncoding(const wxByte *text, int count, wxm::WXMEncodingID &en
             }
             else
             {
-                int w=(b0<<8) + b1;
+                unsigned int w=(b0<<8) + b1;
                 switch(w)
                 {
                 case 0xa6e1:
@@ -383,20 +383,20 @@ void DetectChineseEncoding(const wxByte *text, int count, wxm::WXMEncodingID &en
     else if(cp936>cp950) enc = wxm::ENC_MS936;
 }
 
-void DetectJapaneseEncoding(const wxByte *text, int count, wxm::WXMEncodingID &enc)
+void DetectJapaneseEncoding(const wxByte *text, size_t len, wxm::WXMEncodingID &enc)
 {
     wxByte c;
-    int i=0;
+    size_t i=0;
     wxm::WXMEncodingID xenc= wxm::ENC_DEFAULT;
 
-    while (xenc == 0 && i++ < count) {
+    while (xenc == 0 && i++ < len) {
 
         c = *text++;
 
         if (c >= 0x81 && c <= 0x9F) {
             if (c == 0x8E) /* SS2 */ {
 
-                if(i++ >= count) break;
+                if(i++ >= len) break;
 
                 c = *text++;
                 if ((c >= 0x40 && c <= 0xA0) || (c >= 0xE0 && c <= 0xFC))
@@ -404,7 +404,7 @@ void DetectJapaneseEncoding(const wxByte *text, int count, wxm::WXMEncodingID &e
             }
             else if (c == 0x8F) /* SS3 */ {
 
-                if(i++ >= count) break;
+                if(i++ >= len) break;
 
                 c = *text++;
                 if (c >= 0x40 && c <= 0xA0)
@@ -417,7 +417,7 @@ void DetectJapaneseEncoding(const wxByte *text, int count, wxm::WXMEncodingID &e
         }
         else if (c >= 0xA1 && c <= 0xDF) {
 
-            if(i++ >= count) break;
+            if(i++ >= len) break;
 
             c = *text++;
             if (c <= 0x9F)
@@ -427,7 +427,7 @@ void DetectJapaneseEncoding(const wxByte *text, int count, wxm::WXMEncodingID &e
         }
         else if (c >= 0xE0 && c <= 0xEF) {
 
-            if(i++ >= count) break;
+            if(i++ >= len) break;
 
             c = *text++;
             if (c >= 0x40 && c <= 0xA0)
@@ -443,12 +443,12 @@ void DetectJapaneseEncoding(const wxByte *text, int count, wxm::WXMEncodingID &e
         enc = xenc;
 }
 
-bool MatchEUCJPMoreThanGB18030(const wxByte *text, int count)
+bool MatchEUCJPMoreThanGB18030(const wxByte *text, size_t len)
 {
-    int i=0;
+    size_t i=0;
     size_t eucjp = 0;
     size_t other = 0;
-    while(i < count - 1)
+    while(i < len - 1)
     {
         wxByte b0 = text[i];
         wxByte b1 = text[i+1];
@@ -496,11 +496,11 @@ private:
 };
 #endif
 
-void DetectEncoding(const wxByte *text, int count, wxm::WXMEncodingID &enc)
+void DetectEncoding(const wxByte *text, size_t len, wxm::WXMEncodingID &enc)
 {
     UErrorCode status = U_ZERO_ERROR;
     LocalUCharsetDetectorPointer csd(ucsdet_open(&status));
-    ucsdet_setText(csd.getAlias(), (const char*)text, count, &status);
+    ucsdet_setText(csd.getAlias(), (const char*)text, len, &status);
     int32_t match_count = 0;
     const UCharsetMatch **matches = ucsdet_detectAll(csd.getAlias(), &match_count, &status);
     std::string enc_name(ucsdet_getName(matches[0], &status));
@@ -511,7 +511,7 @@ void DetectEncoding(const wxByte *text, int count, wxm::WXMEncodingID &enc)
         std::string enc2nd(ucsdet_getName(matches[1], &status));
         if (enc2nd=="EUC-JP" &&
             ucsdet_getConfidence(matches[0], &status) == ucsdet_getConfidence(matches[1], &status) &&
-            MatchEUCJPMoreThanGB18030(text, count))
+            MatchEUCJPMoreThanGB18030(text, len))
         {
             enc_name = "EUC-JP";
         }
@@ -528,7 +528,7 @@ void DetectEncoding(const wxByte *text, int count, wxm::WXMEncodingID &enc)
     if(enc == wxm::ENC_Windows_1252 && (init_enc==wxm::ENC_MS950 || init_enc==wxm::ENC_MS936))
     {
         wxm::WXMEncodingID det=wxm::ENC_DEFAULT;
-        DetectChineseEncoding(text, count, det);
+        DetectChineseEncoding(text, len, det);
         if(det != wxm::ENC_DEFAULT)
             enc = det;
     }

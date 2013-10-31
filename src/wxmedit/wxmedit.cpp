@@ -387,7 +387,7 @@ wxString FixUTF8ToWCS(const wxString &str)
 
     wxString wcs;
 
-    if(IsTextUTF8(bbuf, (int)len))
+    if(IsUTF8(bbuf, (int)len))
     {
         wxChar *wbuf=new wxChar[len+1];
         wxConvUTF8.MB2WC(wbuf, (const char*)bbuf, len+1);

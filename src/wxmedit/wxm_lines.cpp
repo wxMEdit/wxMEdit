@@ -92,7 +92,7 @@ size_t MadConvFileName::MB2WC(wchar_t *outputBuf, const char *psz, size_t output
 
     if(g_MB2WC_check_dir_filename==false)
     {
-        g_MB2WC_is_utf8=IsTextUTF8((wxByte *)psz, int(len));
+        g_MB2WC_is_utf8=IsUTF8((wxByte *)psz, int(len));
 
         if(g_MB2WC_is_utf8)
         {
@@ -123,7 +123,7 @@ size_t MadConvFileName::MB2WC(wchar_t *outputBuf, const char *psz, size_t output
         memcpy(pbuf, psz, dirlen);
         cbuf[dirlen]=0;
 
-        bool is_utf8=IsTextUTF8((wxByte *)pbuf, int(dirlen));
+        bool is_utf8=IsUTF8((wxByte *)pbuf, int(dirlen));
         if(is_utf8)
         {
             dirret=wxConvUTF8.MB2WC(outputBuf, pbuf, outputSize);
@@ -140,7 +140,7 @@ size_t MadConvFileName::MB2WC(wchar_t *outputBuf, const char *psz, size_t output
     size_t fnret=0;
     if(fnlen!=0)
     {
-        bool is_utf8=IsTextUTF8((wxByte *)psz+dirlen, int(fnlen));
+        bool is_utf8=IsUTF8((wxByte *)psz+dirlen, int(fnlen));
         wchar_t *obuf=outputBuf;
         if(outputBuf!=NULL)
             obuf+=dirret;

@@ -21,15 +21,15 @@
 #include <wx/wx.h>
 #endif
 
-bool IsTextUTF32LE(const wxByte *text, int size);
-bool IsTextUTF32BE(const wxByte *text, int size);
-bool IsTextUTF16LE(const wxByte *text, int size);
-bool IsTextUTF16BE(const wxByte *text, int size);
-bool IsTextUTF8(const wxByte *text, int size);
-bool MatchSimpleUnicode(wxString& enc, const wxByte *text, int size);
-bool IsBinaryData(const wxByte *data, int size);
-void DetectChineseEncoding(const wxByte *text, int count, wxm::WXMEncodingID &enc);
-void DetectJapaneseEncoding(const wxByte *text, int count, wxm::WXMEncodingID &enc);
-void DetectEncoding(const wxByte *text, int count, wxm::WXMEncodingID &enc);
+bool IsUTF32LE(const wxByte *text, size_t len);
+bool IsUTF32BE(const wxByte *text, size_t len);
+bool IsUTF16LE(const wxByte *text, size_t len);
+bool IsUTF16BE(const wxByte *text, size_t len);
+bool IsUTF8(const wxByte *text, size_t len);
+bool MatchSimpleUnicode(wxString& enc, const wxByte *text, size_t len);
+bool IsBinaryData(const wxByte *data, size_t len);
+void DetectChineseEncoding(const wxByte *text, size_t len, wxm::WXMEncodingID &enc);
+void DetectJapaneseEncoding(const wxByte *text, size_t len, wxm::WXMEncodingID &enc);
+void DetectEncoding(const wxByte *text, size_t len, wxm::WXMEncodingID &enc);
 
 #endif //_WXM_ENCDET_H_
