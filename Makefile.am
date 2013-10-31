@@ -103,6 +103,7 @@ wxmedit_test_SOURCES =	$(enc_src) \
 	test/encdet/test_detenc.h \
 	test/encdet/test_from_icudet.cpp \
 	test/encdet/test_from_mozdet.cpp \
+	test/encdet/test_wxmedit_encdet.cpp \
 	test/encoding/data_cp20932_conv.cpp \
 	test/encoding/data_cp932_conv.cpp \
 	test/encoding/data_cp936_conv.cpp \

@@ -117,6 +117,7 @@ am_wxmedit_test_OBJECTS = $(am__objects_3) $(am__objects_4) \
 	test/encdet/test_detenc.$(OBJEXT) \
 	test/encdet/test_from_icudet.$(OBJEXT) \
 	test/encdet/test_from_mozdet.$(OBJEXT) \
+	test/encdet/test_wxmedit_encdet.$(OBJEXT) \
 	test/encoding/data_cp20932_conv.$(OBJEXT) \
 	test/encoding/data_cp932_conv.$(OBJEXT) \
 	test/encoding/data_cp936_conv.$(OBJEXT) \
@@ -430,6 +431,7 @@ wxmedit_test_SOURCES = $(enc_src) \
 	test/encdet/test_detenc.h \
 	test/encdet/test_from_icudet.cpp \
 	test/encdet/test_from_mozdet.cpp \
+	test/encdet/test_wxmedit_encdet.cpp \
 	test/encoding/data_cp20932_conv.cpp \
 	test/encoding/data_cp932_conv.cpp \
 	test/encoding/data_cp936_conv.cpp \
@@ -777,6 +779,8 @@ test/encdet/test_from_icudet.$(OBJEXT): test/encdet/$(am__dirstamp) \
 	test/encdet/$(DEPDIR)/$(am__dirstamp)
 test/encdet/test_from_mozdet.$(OBJEXT): test/encdet/$(am__dirstamp) \
 	test/encdet/$(DEPDIR)/$(am__dirstamp)
+test/encdet/test_wxmedit_encdet.$(OBJEXT): test/encdet/$(am__dirstamp) \
+	test/encdet/$(DEPDIR)/$(am__dirstamp)
 test/encoding/$(am__dirstamp):
 	@$(mkdir_p) test/encoding
 	@: > test/encoding/$(am__dirstamp)
@@ -890,6 +894,7 @@ mostlyclean-compile:
 	-rm -f test/encdet/test_detenc.$(OBJEXT)
 	-rm -f test/encdet/test_from_icudet.$(OBJEXT)
 	-rm -f test/encdet/test_from_mozdet.$(OBJEXT)
+	-rm -f test/encdet/test_wxmedit_encdet.$(OBJEXT)
 	-rm -f test/encoding/data_cp20932_conv.$(OBJEXT)
 	-rm -f test/encoding/data_cp932_conv.$(OBJEXT)
 	-rm -f test/encoding/data_cp936_conv.$(OBJEXT)
@@ -963,6 +968,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@test/encdet/$(DEPDIR)/test_detenc.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@test/encdet/$(DEPDIR)/test_from_icudet.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@test/encdet/$(DEPDIR)/test_from_mozdet.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@test/encdet/$(DEPDIR)/test_wxmedit_encdet.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@test/encoding/$(DEPDIR)/data_cp20932_conv.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@test/encoding/$(DEPDIR)/data_cp932_conv.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@test/encoding/$(DEPDIR)/data_cp936_conv.Po@am__quote@

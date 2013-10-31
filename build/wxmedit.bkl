@@ -199,6 +199,7 @@
 		<sources>../test/encdet/test_detenc.cpp</sources>
 		<sources>../test/encdet/test_from_icudet.cpp</sources>
 		<sources>../test/encdet/test_from_mozdet.cpp</sources>
+		<sources>../test/encdet/test_wxmedit_encdet.cpp</sources>
 		<sources>../test/encoding/data_cp20932_conv.cpp</sources>
 		<sources>../test/encoding/data_cp932_conv.cpp</sources>
 		<sources>../test/encoding/data_cp936_conv.cpp</sources>

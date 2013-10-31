@@ -86,3 +86,38 @@ void test_detenc(const std::string& text, const std::string& enc)
 
 	BOOST_CHECK(detencid==encid);
 }
+
+void test_predetenc(const std::string& text, const std::string& enc)
+{
+	wxm::WXMEncodingCreator& enccreator = wxm::WXMEncodingCreator::Instance();
+
+	wxString wxdetenc;
+	wxm::WXMEncodingID detencid = wxm::ENC_DEFAULT;
+	const wxByte* wxtext = (const wxByte*)text.data();
+
+	bool is_uenc = MatchSimpleUnicode(wxdetenc, wxtext, text.size());
+	if (!is_uenc)
+	{
+		BOOST_CHECK(is_uenc);
+		return;
+	}
+
+	detencid = enccreator.ExtNameToEncoding(wxdetenc.mb_str().data());
+	wxm::WXMEncodingID encid = enccreator.ExtNameToEncoding(enc.c_str());
+
+	BOOST_CHECK(detencid==encid);
+}
+
+void test_predetenc_javaescaped(const std::string& jesc_text, const std::string& enc)
+{
+	std::string text;
+	std::cout << "\t" << enc << std::endl;
+
+	if (!javaesc_to_enc(text, jesc_text, enc))
+	{
+		std::cout << "\t\t<Test data not supported>" << std::endl;
+		return;
+	}
+
+	test_predetenc(text, enc);
+}
