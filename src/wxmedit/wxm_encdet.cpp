@@ -20,12 +20,14 @@ bool IsTextUTF32LE(const wxByte *text, int size)
     if(size>=4 && text[0]==0xFF && text[1]==0xFE && text[2]==0 && text[3]==0)
         return true;
 
-    size>>=2;   // to count
-    if(size<4) return false;
+    if(size<4)
+		return false;
+
+	int count = size / 4;
 
     ucs4_t ucs4, *p=(ucs4_t *)text;
 
-    for(int i=0;i<size;i++, p++)
+    for(int i=0;i<count;i++, p++)
     {
         ucs4=wxINT32_SWAP_ON_BE(*p);
 
@@ -41,12 +43,14 @@ bool IsTextUTF32BE(const wxByte *text, int size)
     if(size>=4 && text[0]==0 && text[1]==0 && text[2]==0xFE && text[3]==0xFF)
         return true;
 
-    size>>=2;   // to count
-    if(size<4) return false;
+    if(size<4)
+		return false;
+
+	int count = size / 4;
 
     ucs4_t ucs4, *p=(ucs4_t *)text;
 
-    for(int i=0;i<size;i++, p++)
+    for(int i=0;i<count;i++, p++)
     {
         ucs4=wxINT32_SWAP_ON_LE(*p);
 
