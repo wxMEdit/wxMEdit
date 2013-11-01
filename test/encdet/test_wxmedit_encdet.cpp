@@ -17,6 +17,7 @@ std::vector<std::string> utf16_cases = boost::assign::list_of
 	("a")
 	("Unicode")
 	("\\u6f22\\u5b57 - Chinese")
+	("\\ud85a\\ude77\\ud85a\\ude87\\u4e2d")
 	;
 
 void test_encdet_wxmedit_utf32()
