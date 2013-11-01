@@ -16,8 +16,6 @@
 
 struct UTF32Checker
 {
-    virtual ucs4_t QByteToInt(ucs4_t u) = 0;
-
     bool IsUTF32(const wxByte *text, size_t len)
     {
         if (len < 4)
@@ -25,8 +23,8 @@ struct UTF32Checker
 
         ucs4_t *u32text = (ucs4_t *)text;
 
-        // check BOM
-        if(QByteToInt(*u32text) == 0x00FEFF)
+        // check UTF-32 BOM
+        if(QByteToInt(u32text[0]) == 0x00FEFF)
             return true;
 
         size_t count = len / 4;
@@ -41,9 +39,12 @@ struct UTF32Checker
     }
 
     virtual ~UTF32Checker(){}
+
+private:
+    virtual ucs4_t QByteToInt(ucs4_t u) = 0;
 };
 
-struct UTF32LEChecker: public UTF32Checker
+class UTF32LEChecker: public UTF32Checker
 {
     virtual ucs4_t QByteToInt(ucs4_t u)
     {
@@ -51,7 +52,7 @@ struct UTF32LEChecker: public UTF32Checker
     }
 };
 
-struct UTF32BEChecker: public UTF32Checker
+class UTF32BEChecker: public UTF32Checker
 {
     virtual ucs4_t QByteToInt(ucs4_t u)
     {
@@ -74,91 +75,92 @@ bool IsUTF32BE(const wxByte *text, size_t len)
     return checker.IsUTF32(text, len);
 }
 
-
-bool IsUTF16LE(const wxByte *text, size_t len)
+struct UTF16Checker
 {
-    if(len >= 2)
+    bool IsUTF16(const wxByte *text, size_t len)
     {
-        if(text[0] == 0xFF && text[1] == 0xFE) // check BOM
-        {
-            if(len >= 4 && text[2] == 0 && text[3] == 0) // utf32le BOM
-            {
-                return false;
-            }
-            return true;
-        }
-
-        if(text[1] == 0xFF && text[0] == 0xFE)      // big-endian
+        if(len < 2)
             return false;
+
+        // UTF-32 BOM
+        if(len >= 4)
+        {
+            ucs4_t* u32text = (ucs4_t *)text;
+            if (wxINT32_SWAP_ON_BE(u32text[0]) == 0x00FEFF ||
+                wxINT32_SWAP_ON_LE(u32text[0]) == 0x00FEFF)
+            return false;
+        }
+        // reverse endian UTF-16 BOM
+        wxUint16* u16text = (wxUint16 *)text;
+        if(DByteToUInt(u16text[0]) == 0xFFFE)
+            return false;
+
+        // UTF-16 BOM
+        if(DByteToUInt(u16text[0]) == 0xFEFF)
+            return true;
 
         bool ok = false;
         bool highsurrogate = false;
-
-        len = len & 0x1FFFFFFE;   // to even
-        while(len > 0)
+        size_t count = len / 2;
+        for(size_t i=0; i<count; ++i)
         {
-            if(text[1] == 0)
+            wxUint16 u = DByteToUInt(u16text[i]);
+            if(u == 0)
+                return false;
+
+            if((u & 0xFF00) == 0)
             {
-                if(text[0] == 0)
-                    return false;
                 ok = true;
             }
-            else if(text[1] >= 0xD8 && text[1] <= 0xDB)
+            else if(u >= 0xD800 && u <= 0xDB00)
             {
                 if(highsurrogate)
                     return false;
                 highsurrogate = true;
             }
-            else if(text[1] >= 0xDC && text[1] <= 0xDF)
+            else if(u >= 0xDC00 && u <= 0xDF00)
             {
                 if(highsurrogate == false)
                     return false;
                 highsurrogate = false;
             }
-
-            len -= 2;
-            text += 2;
         }
 
         return ok;
     }
-    return false;
+    
+    virtual ~UTF16Checker(){}
+
+private:
+    virtual wxUint16 DByteToUInt(wxUint16 u) = 0;
+};
+
+class UTF16LEChecker: public UTF16Checker
+{
+    virtual wxUint16 DByteToUInt(wxUint16 u)
+    {
+        return wxINT16_SWAP_ON_BE(u);
+    }
+};
+
+class UTF16BEChecker: public UTF16Checker
+{
+    virtual wxUint16 DByteToUInt(wxUint16 u)
+    {
+        return wxINT16_SWAP_ON_LE(u);
+    }
+};
+
+bool IsUTF16LE(const wxByte *text, size_t len)
+{
+    static UTF16LEChecker checker;
+    return checker.IsUTF16(text, len);
 }
 
 bool IsUTF16BE(const wxByte *text, size_t len)
 {
-    if(len >= 2 && text[0] == 0xFE && text[1] == 0xFF)
-        return true;
-
-    bool ok = false;
-    bool highsurrogate = false;
-    len = len & 0x1FFFFFFE;     // to even
-    while(len > 0)
-    {
-        if(text[0] == 0)
-        {
-            if(text[1] == 0)
-                return false;
-            ok = true;
-        }
-        else if(text[0] >= 0xD8 && text[0] <= 0xDB)
-        {
-            if(highsurrogate)
-                return false;
-            highsurrogate = true;
-        }
-        else if(text[0] >= 0xDC && text[0] <= 0xDF)
-        {
-            if(highsurrogate == false)
-                return false;
-            highsurrogate = false;
-        }
-
-        len -= 2;
-        text += 2;
-    }
-
-    return ok;
+    static UTF16BEChecker checker;
+    return checker.IsUTF16(text, len);
 }
 
 inline bool IsUTF8Tail(wxByte b)
@@ -490,23 +492,23 @@ bool MatchEUCJPMoreThanGB18030(const wxByte *text, size_t len)
 #if U_ICU_VERSION_MAJOR_NUM *10 + U_ICU_VERSION_MINOR_NUM < 44
 struct LocalUCharsetDetectorPointer
 {
-	LocalUCharsetDetectorPointer(UCharsetDetector* ptr)
-		: m_ptr(ptr)
-	{
-	}
-	~LocalUCharsetDetectorPointer()
-	{
-		if (m_ptr!=NULL)
-			ucsdet_close(m_ptr);
-		m_ptr = NULL;
-	}
-	UCharsetDetector* getAlias()
-	{
-		return m_ptr;
-	}
+    LocalUCharsetDetectorPointer(UCharsetDetector* ptr)
+        : m_ptr(ptr)
+    {
+    }
+    ~LocalUCharsetDetectorPointer()
+    {
+        if (m_ptr!=NULL)
+            ucsdet_close(m_ptr);
+        m_ptr = NULL;
+    }
+    UCharsetDetector* getAlias()
+    {
+        return m_ptr;
+    }
 
 private:
-	UCharsetDetector* m_ptr;
+    UCharsetDetector* m_ptr;
 };
 #endif
 
