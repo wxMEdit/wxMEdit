@@ -108,27 +108,33 @@ struct UTF16Checker
             if(u == 0)
                 return false;
 
-            if((u & 0xFF00) == 0)
-            {
-                ok = true;
-            }
-            else if(u >= 0xD800 && u <= 0xDB00)
+            if(u >= 0xD800 && u <= 0xDB00)
             {
                 if(highsurrogate)
                     return false;
+
                 highsurrogate = true;
+				continue;
             }
-            else if(u >= 0xDC00 && u <= 0xDF00)
+
+            if(u >= 0xDC00 && u <= 0xDF00)
             {
-                if(highsurrogate == false)
+                if(!highsurrogate)
                     return false;
-                highsurrogate = false;
+
+                ok = true;
             }
+            else if((u & 0xFF00) == 0)
+            {
+                ok = true;
+            }
+
+            highsurrogate = false;
         }
 
         return ok;
     }
-    
+
     virtual ~UTF16Checker(){}
 
 private:
