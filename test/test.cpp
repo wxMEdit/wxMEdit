@@ -23,6 +23,7 @@ boost::unit_test::test_suite* init_unit_test_suite(int argc, char* argv[])
 	encdet_test_with_mozcases->add(BOOST_TEST_CASE(&test_encdet_moz_others));
 
 	boost::unit_test::test_suite* encdet_test_wxmedit_cases = BOOST_TEST_SUITE("encdet_test_wxmedit_cases");
+	encdet_test_wxmedit_cases->add(BOOST_TEST_CASE(&test_encdet_wxmedit_utf16));
 	encdet_test_wxmedit_cases->add(BOOST_TEST_CASE(&test_encdet_wxmedit_utf32));
 
 	boost::unit_test::test_suite* encdet_test = BOOST_TEST_SUITE("encdet_test");
