@@ -87,7 +87,7 @@ void test_detenc(const std::string& text, const std::string& enc)
 	BOOST_CHECK(detencid==encid);
 }
 
-void test_predetenc(const std::string& text, const std::string& enc)
+void test_predetenc(const std::string& text, const std::string& enc, bool matched)
 {
 	wxm::WXMEncodingCreator& enccreator = wxm::WXMEncodingCreator::Instance();
 
@@ -98,20 +98,21 @@ void test_predetenc(const std::string& text, const std::string& enc)
 	bool is_uenc = MatchSimpleUnicode(wxdetenc, wxtext, text.size());
 	if (!is_uenc)
 	{
-		BOOST_CHECK(is_uenc);
+		BOOST_CHECK(is_uenc || !matched);
 		return;
 	}
 
 	detencid = enccreator.ExtNameToEncoding(wxdetenc.mb_str().data());
 	wxm::WXMEncodingID encid = enccreator.ExtNameToEncoding(enc.c_str());
 
-	BOOST_CHECK(detencid==encid);
+	BOOST_CHECK((detencid==encid) == matched);
 }
 
-void test_predetenc_javaescaped(const std::string& jesc_text, const std::string& enc)
+void test_predetenc_javaescaped(const std::string& jesc_text, const std::string& enc, bool matched)
 {
 	std::string text;
-	std::cout << "\t" << enc << std::endl;
+	std::string match = (matched)? "": "not ";
+	std::cout << "\t" << match << enc << std::endl;
 
 	if (!javaesc_to_enc(text, jesc_text, enc))
 	{
@@ -119,5 +120,5 @@ void test_predetenc_javaescaped(const std::string& jesc_text, const std::string&
 		return;
 	}
 
-	test_predetenc(text, enc);
+	test_predetenc(text, enc, matched);
 }
