@@ -122,3 +122,11 @@ void test_predetenc_javaescaped(const std::string& jesc_text, const std::string&
 
 	test_predetenc(text, enc, matched);
 }
+
+void test_predetenc_wrap(const std::string& raw_text, const std::string& enc, bool matched)
+{
+	std::string match = (matched)? "": "not ";
+	std::cout << "\t" << match << enc << std::endl;
+
+	test_predetenc(raw_text, enc, matched);
+}

@@ -32,6 +32,14 @@ std::vector<std::string> utf16_notsure_cases = boost::assign::list_of
 	("\\uA758\\uA759")
 	;
 
+std::vector<std::string> utf8_invalid_cases = boost::assign::list_of
+	("\xC0\xAF")
+	("\xE0\x9F\xBF")
+	("\xEC\xAF\xAF")
+	("\xF0\x8F\xBF\xBF")
+	("\xF4\x90\x80\x80")
+	;
+
 void test_encdet_wxmedit_utf32()
 {
 	std::cout << "wxMEdit-encdet-UTF32" << std::endl;
@@ -55,5 +63,14 @@ void test_encdet_wxmedit_utf16()
 	{
 		test_predetenc_javaescaped(txt, "UTF-16LE", false);
 		test_predetenc_javaescaped(txt, "UTF-16BE", false);
+	}
+}
+
+void test_encdet_wxmedit_utf8()
+{
+	std::cout << "wxMEdit-encdet-UTF8" << std::endl;
+	BOOST_FOREACH(const std::string& txt, utf8_invalid_cases)
+	{
+		test_predetenc_wrap(txt, "UTF-8", false);
 	}
 }
