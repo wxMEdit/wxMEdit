@@ -16,7 +16,7 @@
 
 struct UTF32Checker
 {
-    bool IsUTF32(const wxByte *text, size_t len)
+    bool IsUTF32(const wxByte *text, size_t len) const
     {
         if (len < 4)
             return false;
@@ -41,12 +41,12 @@ struct UTF32Checker
     virtual ~UTF32Checker(){}
 
 private:
-    virtual ucs4_t QByteToInt(ucs4_t u) = 0;
+    virtual ucs4_t QByteToInt(ucs4_t u) const = 0;
 };
 
 class UTF32LEChecker: public UTF32Checker
 {
-    virtual ucs4_t QByteToInt(ucs4_t u)
+    virtual ucs4_t QByteToInt(ucs4_t u) const
     {
         return wxINT32_SWAP_ON_BE(u);
     }
@@ -54,7 +54,7 @@ class UTF32LEChecker: public UTF32Checker
 
 class UTF32BEChecker: public UTF32Checker
 {
-    virtual ucs4_t QByteToInt(ucs4_t u)
+    virtual ucs4_t QByteToInt(ucs4_t u) const
     {
         return wxINT32_SWAP_ON_LE(u);
     }
@@ -63,21 +63,21 @@ class UTF32BEChecker: public UTF32Checker
 
 bool IsUTF32LE(const wxByte *text, size_t len)
 {
-    static UTF32LEChecker checker;
+    static const UTF32LEChecker checker;
 
     return checker.IsUTF32(text, len);
 }
 
 bool IsUTF32BE(const wxByte *text, size_t len)
 {
-    static UTF32BEChecker checker;
+    static const UTF32BEChecker checker;
 
     return checker.IsUTF32(text, len);
 }
 
 struct UTF16Checker
 {
-    bool IsUTF16(const wxByte *text, size_t len)
+    bool IsUTF16(const wxByte *text, size_t len) const
     {
         if(len < 2)
             return false;
@@ -138,12 +138,12 @@ struct UTF16Checker
     virtual ~UTF16Checker(){}
 
 private:
-    virtual wxUint16 DByteToUInt(wxUint16 u) = 0;
+    virtual wxUint16 DByteToUInt(wxUint16 u) const = 0;
 };
 
 class UTF16LEChecker: public UTF16Checker
 {
-    virtual wxUint16 DByteToUInt(wxUint16 u)
+    virtual wxUint16 DByteToUInt(wxUint16 u) const
     {
         return wxINT16_SWAP_ON_BE(u);
     }
@@ -151,7 +151,7 @@ class UTF16LEChecker: public UTF16Checker
 
 class UTF16BEChecker: public UTF16Checker
 {
-    virtual wxUint16 DByteToUInt(wxUint16 u)
+    virtual wxUint16 DByteToUInt(wxUint16 u) const
     {
         return wxINT16_SWAP_ON_LE(u);
     }
@@ -159,82 +159,174 @@ class UTF16BEChecker: public UTF16Checker
 
 bool IsUTF16LE(const wxByte *text, size_t len)
 {
-    static UTF16LEChecker checker;
+    static const UTF16LEChecker checker;
     return checker.IsUTF16(text, len);
 }
 
 bool IsUTF16BE(const wxByte *text, size_t len)
 {
-    static UTF16BEChecker checker;
+    static const UTF16BEChecker checker;
     return checker.IsUTF16(text, len);
 }
 
-inline bool IsUTF8Tail(wxByte b)
+struct UTF8BytesChecker
 {
-    return (b & 0xC0) == 0x80;
-}
+	bool Check(const wxByte* str, size_t len, bool& nonascii) const
+	{
+		if (len < this->TakenBytes())
+			return false;
+
+		nonascii = nonascii || NonASCII();
+		return this->BytesMatch(str);
+	}
+
+	virtual bool NonASCII() const { return true; }
+	virtual bool BytesMatch(const wxByte* bytes) const= 0;
+	virtual size_t TakenBytes() const = 0;
+
+	virtual ~UTF8BytesChecker() {}
+private:
+	bool m_worked;
+};
+
+struct SingleByteChecker: public UTF8BytesChecker
+{
+	virtual bool BytesMatch(const wxByte* bytes) const { return true; }
+	virtual bool NonASCII() const { return false; }
+
+	virtual size_t TakenBytes() const { return 1; }
+};
+
+struct TwoBytesChecker: public UTF8BytesChecker
+{
+	virtual bool BytesMatch(const wxByte* b) const
+	{
+		return (b[1] & 0xC0)==0x80;
+	}
+	virtual size_t TakenBytes() const { return 2; }
+};
+
+struct ThreeBytesChecker: public UTF8BytesChecker
+{
+	virtual bool BytesMatch(const wxByte* b) const
+	{
+		return (b[1] & 0xC0)==0x80 && (b[2] & 0xC0)==0x80;
+	}
+
+	virtual size_t TakenBytes() const { return 3; }
+};
+
+// first byte is 0xE0, second byte should >=0xA0
+struct ThreeBytesCheckerLB: public ThreeBytesChecker
+{
+	virtual bool BytesMatch(const wxByte* b) const
+	{
+		return (b[1] & 0xE0)==0xA0 && (b[2] & 0xC0)==0x80;
+	}
+
+};
+
+struct FourBytesChecker: public UTF8BytesChecker
+{
+	virtual bool BytesMatch(const wxByte* b) const
+	{
+		return (b[1] & 0xC0)==0x80 && (b[2] & 0xC0)==0x80 && (b[3] & 0xC0)==0x80;
+	}
+
+	virtual size_t TakenBytes() const { return 4; }
+};
+
+// first byte is 0xF0, second byte should >=0x90
+struct FourBytesCheckerLB: public FourBytesChecker
+{
+	virtual bool BytesMatch(const wxByte* b) const
+	{
+		return (b[1] & 0xF0)>=0x90 && (b[1] & 0xF0)<=0xb0 && (b[2] & 0xC0)==0x80 && (b[3] & 0xC0)==0x80;
+	}
+
+};
+
+// first byte is 0xF4, second byte should <=0x8F
+struct FourBytesCheckerUB: public FourBytesChecker
+{
+	virtual bool BytesMatch(const wxByte* b) const
+	{
+		return (b[1] & 0xF0)==0x80 && (b[2] & 0xC0)==0x80 && (b[3] & 0xC0)==0x80;
+	}
+
+};
+
+struct InvalidBytesChecker: public UTF8BytesChecker
+{
+	virtual bool BytesMatch(const wxByte* bytes) const { return false; }
+	virtual size_t TakenBytes() const { return 1; }
+};
+
+struct UTF8Checker
+{
+	UTF8Checker()
+	{
+		// 0x00-0x7F b1
+		// 0x80-0xBF bx-2 bx-3 bx-4
+		// 0xC0-0xC1 err
+		// 0xC2-0xDF b2-1
+		// 0xE0-0xEB b3-1
+		// 0xEC-0xED b3-1 surrogate pairs
+		// 0xEE-0xEF b3-1
+		// 0xF0-0xF7 b4-1
+		m_decoders[0x7F] = &m_dec1;
+		m_decoders[0xC1] = &m_dec_invalid;
+		m_decoders[0xDF] = &m_dec2;
+		m_decoders[0xE0] = &m_dec3lb;
+		m_decoders[0xEB] = &m_dec3;
+		m_decoders[0xED] = &m_dec_invalid;
+		m_decoders[0xEF] = &m_dec3;
+		m_decoders[0xF0] = &m_dec4lb;
+		m_decoders[0xF3] = &m_dec4;
+		m_decoders[0xF4] = &m_dec4ub;
+		m_decoders[0xFF] = &m_dec_invalid;
+	}
+
+	bool IsUTF8(const wxByte* str, size_t len) const
+	{
+		bool nonascii = false;
+		while(len > 0)
+		{
+			CheckerMap::const_iterator it = m_decoders.lower_bound(str[0]);
+			const UTF8BytesChecker* checker = it->second;
+			if (!checker->Check(str, len, nonascii))
+				return false;
+	
+			len -= checker->TakenBytes();
+		}
+
+		return nonascii;
+	}
+
+private:
+
+	typedef std::map<wxByte, UTF8BytesChecker*> CheckerMap;
+	CheckerMap m_decoders;
+
+	SingleByteChecker   m_dec1;
+	TwoBytesChecker     m_dec2;
+	ThreeBytesCheckerLB m_dec3lb;
+	ThreeBytesChecker   m_dec3;
+	FourBytesCheckerLB  m_dec4lb;
+	FourBytesChecker    m_dec4;
+	FourBytesCheckerUB  m_dec4ub;
+	InvalidBytesChecker m_dec_invalid;
+};
+
 bool IsUTF8(const wxByte *text, size_t len)
 {
     //check BOM
     if(len >= 3 && text[0] == 0xEF && text[1] == 0xBB && text[2] == 0xBF)
         return true;
 
-    size_t i = 0;
-    size_t ok_count = 0;
-    while(i < len)
-    {
-        if(text[i] < 0x80)          // 1 byte
-        {
-            if(text[i] == 0)
-                return false;
-            ++i;
-        }
-        else if(text[i] <= 0xDF)
-        {
-            if(++i < len && IsUTF8Tail(text[i]))     // 2 bytes
-            {
-                ++i;
-                ++ok_count;
-            }
-            else if(len != i)
-            {
-                return false;
-            }
-        }
-        else if(text[i] <= 0xEF)
-        {
-            if((++i < len && IsUTF8Tail(text[i]))    // 3 bytes
-                && (++i < len && IsUTF8Tail(text[i])))
-            {
-                ++i;
-                ++ok_count;
-            }
-            else if(len != i)
-            {
-                return false;
-            }
-        }
-        else if(text[i] <= 0xF4)
-        {
-            if((++i < len && IsUTF8Tail(text[i]))    // 4 bytes
-                && (++i < len && IsUTF8Tail(text[i])) //
-                && (++i < len && IsUTF8Tail(text[i])))
-            {
-                ++i;
-                ++ok_count;
-            }
-            else if(len != i)
-            {
-                return false;
-            }
-        }
-        else
-        {
-            return false;
-        }
-    }
+	static const UTF8Checker checker;
 
-    return ok_count > 0;
+	return checker.IsUTF8(text, len);
 }
 
 bool MatchSimpleUnicode(wxString& enc, const wxByte *text, size_t len)
