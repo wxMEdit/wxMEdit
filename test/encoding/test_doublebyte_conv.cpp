@@ -119,7 +119,7 @@ void test_doublebyte_conv()
 
 	BOOST_FOREACH(const std::string& encname, test_doublebyte_conv_enc_list)
 	{
-		std::cout << encname << std::endl;
+		std::cout << "wxMEdit-enc-" << encname << std::endl;
 		test_a_doublebyte_conv(encname);
 	}
 

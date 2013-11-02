@@ -50,7 +50,7 @@ void test_singlebyte_conv()
 
 	BOOST_FOREACH(const std::string& encname, test_singlebyte_conv_enc_list)
 	{
-		std::cout << encname << std::endl;
+		std::cout << "wxMEdit-enc-" << encname << std::endl;
 		test_a_singlebyte_conv(encname);
 	}
 
