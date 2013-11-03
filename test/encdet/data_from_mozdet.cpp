@@ -39,18 +39,17 @@ EncAndText("UTF-8", "Four byte UTF-8, first byte 0xF4, including first and last 
 EncAndText("UTF-8", "Four byte UTF-8, first byte 0xF0, including BMP only:"
 		   "\\ud802\\udd14\\ud802\\udd13\\ud802\\udd0b\\ud802\\udd05\\ud802\\udd12\n\n")
 )
-#if 0
 (
-EncAndText("ISO-8859-1", "Orphaned continuation bytes: \\u0080\\u0081\\u0082\\u0083\\u0084\\u0085\\u0086"
-	"\\u0087\\u0088\\u0089\\u008a\\u008b\\u008c\\u008d\\u008e\\u008f\n"
-	"\\u0090\\u0091\\u0092\\u0093\\u0094\\u0095\\u0096\\u0097\\u0098\\u0099\\u009a\\u009b\\u009c\\u009d"
-	"\\u009e\\u009f\n"
+EncAndText("Windows-1252", "Orphaned continuation bytes: \\u20ac\\u0081\\u201a\\u0192\\u201e\\u2026\\u2020"
+	"\\u2021\\u02c6\\u2030\\u0160\\u2039\\u0152\\u008d\\u017d\\u008f\n"
+	"\\u0090\\u2018\\u2019\\u201c\\u201d\\u2022\\u2013\\u2014\\u02dc\\u2122\\u0161\\u203a\\u0153\\u009d"
+	"\\u017e\\u0178\n"
 	"\\u00a0\\u00a1\\u00a2\\u00a3\\u00a4\\u00a5\\u00a6\\u00a7\\u00a8\\u00a9\\u00aa\\u00ab\\u00ac\\u00ad"
 	"\\u00ae\\u00af\n"
 	"\\u00b0\\u00b1\\u00b2\\u00b3\\u00b4\\u00b5\\u00b6\\u00b7\\u00b8\\u00b9\\u00ba\\u00bb\\u00bc\\u00bd"
-	"\\u00be\\u00bf\n")
+	"\\u00be\\u00bf\n"
+	)
 )
-#endif
 (
 EncAndText("ISO-8859-1", "First bytes of 2-byte sequences (0xc0-0xdf), each followed by a space character: "
 	"\\u00c0 \\u00c1 \\u00c2 \\u00c3 \\u00c4 \\u00c5 \\u00c6 \\u00c7 \\u00c8 \\u00c9 \\u00ca \\u00cb \\u00cc "
@@ -62,7 +61,6 @@ EncAndText("ISO-8859-1", "First bytes of 2-byte sequences (0xc0-0xdf), each foll
 	"First bytes of 4-byte sequences (0xf0-0xf4), each followed by a space character: "
 	"\\u00f0 \\u00f1 \\u00f2 \\u00f3 \\u00f4 \n")
 )
-#if 0
 (
 EncAndText("Windows-1252", "3-byte sequence with last byte missing (U+0000): \\u00e0\\u00b0\n"
 	"4-byte sequence with last b0te missing (U+0000): \\u00f0\\u00b0\\u20ac\n")
@@ -72,11 +70,10 @@ EncAndText("Windows-1252", "Overlong encodings: "
 	"\\u00c0\\u00af \\u00e0\\u20ac\\u00af \\u00f0\\u20ac\\u20ac\\u00af\n")
 )
 (
-EncAndText("ISO-8859-1", "Isolated surrogates: \\u00ed\\u00a0\\u0080 \\u00ed\\u00bf\\u00bf\n"
-	"Surrogate pairs: \\u00ed\\u00a0\\u0080\\u00ed\\u00b0\\u0081 \\u00ed\\u00af\\u00bf\\u00ed\\u00bf\\u00bf\n"
-	"\n")
+EncAndText("Windows-1252", "Isolated surrogates: \\u00ed\\u00a0\\u20ac \\u00ed\\u00bf\\u00bf\n"
+	"Surrogate pairs: \\u00ed\\u00a0\\u20ac\\u00ed\\u00b0\\u0081 \\u00ed\\u00af\\u00bf\\u00ed\\u00bf\\u00bf\n"
+	)
 )
-#endif
 ;
 
 MozCaseVec moz426271cases = boost::assign::list_of
