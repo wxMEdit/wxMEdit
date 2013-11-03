@@ -2444,15 +2444,21 @@ bool MadLines::LoadFromFile(const wxString &filename, const wxString &encoding)
 
     bool preset=false;
     bool hexmode=false;
+    bool skip_utf8=false;
 
     if(m_Size>=maxtextfilesize)
+    {
         hexmode = true;
+    }
     else
+    {
         preset = PresetFileEncoding(encoding, buf, sz);
+        skip_utf8 = !preset;
+    }
 
     if(!preset)
     {
-        SetFileEncoding(encoding, defaultenc, buf, sz);
+        SetFileEncoding(encoding, defaultenc, buf, sz, skip_utf8);
 
         if(!hexmode)
             hexmode = IsBinaryData(buf, sz);
@@ -2492,7 +2498,8 @@ bool MadLines::PresetFileEncoding(const wxString& encoding, const wxByte* buf, s
 	return false;
 }
 
-void MadLines::SetFileEncoding(const wxString& encoding, const wxString& defaultenc, const wxByte* buf, size_t sz)
+void MadLines::SetFileEncoding(const wxString& encoding, const wxString& defaultenc, 
+                               const wxByte* buf, size_t sz, bool skip_utf8)
 {
     if(!encoding.IsEmpty())
     {
@@ -2514,7 +2521,7 @@ void MadLines::SetFileEncoding(const wxString& encoding, const wxString& default
     }
 
     // use Encoding Detector
-    DetectEncoding(buf, sz, enc);
+    DetectEncoding(buf, sz, enc, skip_utf8);
 
     m_MadEdit->SetEncoding(wxm::WXMEncodingCreator::Instance().EncodingToName(enc));
 }

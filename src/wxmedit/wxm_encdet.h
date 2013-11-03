@@ -30,6 +30,6 @@ bool MatchSimpleUnicode(wxString& enc, const wxByte *text, size_t len);
 bool IsBinaryData(const wxByte *data, size_t len);
 void DetectChineseEncoding(const wxByte *text, size_t len, wxm::WXMEncodingID &enc);
 void DetectJapaneseEncoding(const wxByte *text, size_t len, wxm::WXMEncodingID &enc);
-void DetectEncoding(const wxByte *text, size_t len, wxm::WXMEncodingID &enc);
+void DetectEncoding(const wxByte *text, size_t len, wxm::WXMEncodingID &enc, bool skip_utf8);
 
 #endif //_WXM_ENCDET_H_

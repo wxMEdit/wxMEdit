@@ -61,7 +61,7 @@ void test_detenc(const std::string& text, const std::string& enc)
 	}
 	else
 	{
-		DetectEncoding(wxtext, text.size(), detencid);
+		DetectEncoding(wxtext, text.size(), detencid, true);
 
 		// use GB18030      instead of detected encoding MS936
 		if (detencid == wxm::ENC_MS936)

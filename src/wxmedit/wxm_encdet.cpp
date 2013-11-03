@@ -621,7 +621,7 @@ private:
 };
 #endif
 
-void DetectEncoding(const wxByte *text, size_t len, wxm::WXMEncodingID &enc)
+void DetectEncoding(const wxByte *text, size_t len, wxm::WXMEncodingID &enc, bool skip_utf8)
 {
     UErrorCode status = U_ZERO_ERROR;
     LocalUCharsetDetectorPointer csd(ucsdet_open(&status));
@@ -630,9 +630,9 @@ void DetectEncoding(const wxByte *text, size_t len, wxm::WXMEncodingID &enc)
     const UCharsetMatch **matches = ucsdet_detectAll(csd.getAlias(), &match_count, &status);
     std::string enc_name(ucsdet_getName(matches[0], &status));
 
-    // check if EUC-JP was detected as GB18030
     if (match_count>1 && enc_name=="GB18030")
     {
+        // check if EUC-JP was detected as GB18030
         std::string enc2nd(ucsdet_getName(matches[1], &status));
         if (enc2nd=="EUC-JP" &&
             ucsdet_getConfidence(matches[0], &status) == ucsdet_getConfidence(matches[1], &status) &&
@@ -640,6 +640,13 @@ void DetectEncoding(const wxByte *text, size_t len, wxm::WXMEncodingID &enc)
         {
             enc_name = "EUC-JP";
         }
+    }
+    else if (skip_utf8 && enc_name=="UTF-8")
+    {
+        if (match_count>1)
+            enc_name = ucsdet_getName(matches[1], &status);
+        else
+            enc_name.clear();
     }
 
     if(enc_name == "EUC-KR")
