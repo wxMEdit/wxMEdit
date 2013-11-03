@@ -2442,69 +2442,81 @@ bool MadLines::LoadFromFile(const wxString &filename, const wxString &encoding)
     m_MadEdit->m_Config->Read(wxT("/wxMEdit/MaxTextFileSize"), &maxtextfilesize, 10*1000*1000);
     m_MadEdit->m_Config->SetPath(oldpath);
 
-    bool ok=false;
-    bool isbinary=false;
+    bool preset=false;
+    bool hexmode=false;
 
     if(m_Size>=maxtextfilesize)
+        hexmode = true;
+    else
+        preset = PresetFileEncoding(encoding, buf, sz);
+
+    if(!preset)
     {
-        isbinary=true;
+        SetFileEncoding(encoding, defaultenc, buf, sz);
+
+        if(!hexmode)
+            hexmode = IsBinaryData(buf, sz);
+    }
+
+    if(hexmode)
+    {
+        m_MaxLineWidth = -1;       // indicate the data is not text data
+        m_MadEdit->SetEditMode(emHexMode);
     }
     else
     {
-		wxString uenc;
-        if(!encoding.IsEmpty())
-        {
-            m_MadEdit->SetEncoding(encoding);
-            Reformat(iter, iter);
-            ok=true;
-        }
-		else if(MatchSimpleUnicode(uenc, buf, sz))
-		{
-            m_MadEdit->SetEncoding(uenc);
-            Reformat(iter, iter);
-            ok=true;
-		}
-    }
-
-    if(!ok)
-    {
-        if(!encoding.IsEmpty())
-        {
-            m_MadEdit->SetEncoding(encoding);
-        }
-        else if(!m_Syntax->m_Encoding.IsEmpty())
-        {
-            m_MadEdit->SetEncoding(m_Syntax->m_Encoding);
-        }
-        else
-        {
-            wxm::WXMEncodingID enc=m_MadEdit->m_Encoding->GetEncoding();
-			if(wxm::WXMEncodingCreator::IsSimpleUnicodeEncoding(enc))
-            {
-                // use default encoding
-                enc=wxm::WXMEncodingCreator::Instance().NameToEncoding(defaultenc);
-            }
-
-            // use charset-detector
-            DetectEncoding(buf, sz, enc);
-
-            m_MadEdit->SetEncoding(wxm::WXMEncodingCreator::Instance().EncodingToName(enc));
-        }
-
-        if(isbinary || IsBinaryData(buf, sz))
-        {
-            m_MaxLineWidth = -1;       // indicate the data is not text data
-            m_MadEdit->SetEditMode(emHexMode);
-        }
-        else
-        {
-            Reformat(iter, iter);
-        }
+        Reformat(iter, iter);
     }
 
     m_MadEdit->m_LoadingFile = false;
 
     return true;
+}
+
+
+bool MadLines::PresetFileEncoding(const wxString& encoding, const wxByte* buf, size_t sz)
+{
+    if(!encoding.IsEmpty())
+    {
+        m_MadEdit->SetEncoding(encoding);
+        return true;
+    }
+
+    wxString uenc;
+    if(MatchSimpleUnicode(uenc, buf, sz))
+    {
+        m_MadEdit->SetEncoding(uenc);
+        return true;
+    }
+
+	return false;
+}
+
+void MadLines::SetFileEncoding(const wxString& encoding, const wxString& defaultenc, const wxByte* buf, size_t sz)
+{
+    if(!encoding.IsEmpty())
+    {
+        m_MadEdit->SetEncoding(encoding);
+        return;
+    }
+
+    if(!m_Syntax->m_Encoding.IsEmpty())
+    {
+        m_MadEdit->SetEncoding(m_Syntax->m_Encoding);
+        return;
+    }
+
+    wxm::WXMEncodingID enc=m_MadEdit->m_Encoding->GetEncoding();
+    if(wxm::WXMEncodingCreator::IsSimpleUnicodeEncoding(enc))
+    {
+        // use default encoding
+        enc=wxm::WXMEncodingCreator::Instance().NameToEncoding(defaultenc);
+    }
+
+    // use Encoding Detector
+    DetectEncoding(buf, sz, enc);
+
+    m_MadEdit->SetEncoding(wxm::WXMEncodingCreator::Instance().EncodingToName(enc));
 }
 
 //===========================================================================

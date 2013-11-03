@@ -400,6 +400,9 @@ private:  // NextUChar()
 
     bool NextUCharIs0x0A(void);
 
+    bool PresetFileEncoding(const wxString& encoding, const wxByte* buf, size_t sz);
+    void SetFileEncoding(const wxString& encoding, const wxString& defaultenc, const wxByte* buf, size_t sz);
+
     int FindStringCase(MadUCQueue &ucqueue, MadStringIterator begin,
                    const MadStringIterator &end, size_t &len);
 
