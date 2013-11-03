@@ -48,9 +48,10 @@ void test_singlebyte_conv()
 	wxm::WXMEncodingCreator::Instance().InitEncodings();
 	data_singlebyte_conv_init();
 
+	std::cout << "wxMEdit-enc-singlebyte" << std::endl;
 	BOOST_FOREACH(const std::string& encname, test_singlebyte_conv_enc_list)
 	{
-		std::cout << "wxMEdit-enc-" << encname << std::endl;
+		std::cout << "\t" << encname << std::endl;
 		test_a_singlebyte_conv(encname);
 	}
 

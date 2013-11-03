@@ -22,6 +22,7 @@ void test_gb18030_conv()
 
 	const std::string encname("GB18030");
 	std::cout << "wxMEdit-enc-" << encname << std::endl;
+	std::cout << "\t" << encname << std::endl;
 
 	wxString wxencname(encname.c_str(), wxConvUTF8);
 	wxm::WXMEncoding* enc = wxm::WXMEncodingCreator::Instance().CreateWxmEncoding(wxencname);

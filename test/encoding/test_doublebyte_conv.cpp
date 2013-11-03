@@ -117,9 +117,10 @@ void test_doublebyte_conv()
 	wxm::WXMEncodingCreator::Instance().InitEncodings();
 	data_doublebyte_conv_init();
 
+	std::cout << "wxMEdit-enc-doublebyte" << std::endl;
 	BOOST_FOREACH(const std::string& encname, test_doublebyte_conv_enc_list)
 	{
-		std::cout << "wxMEdit-enc-" << encname << std::endl;
+		std::cout << "\t" << encname << std::endl;
 		test_a_doublebyte_conv(encname);
 	}
 
