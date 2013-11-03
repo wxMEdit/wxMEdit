@@ -1,5 +1,6 @@
 #include "../encdet_test.h"
 #include "test_detenc.h"
+#include "data_from_mozdet.h"
 
 #include <boost/foreach.hpp>
 #include <boost/assign/list_of.hpp>
@@ -35,7 +36,8 @@ std::vector<std::string> utf16_notsure_cases = boost::assign::list_of
 std::vector<std::string> utf8_invalid_cases = boost::assign::list_of
 	("\xC0\xAF")
 	("\xE0\x9F\xBF")
-	("\xEC\xAF\xAF")
+	("\xED\xA0\x80")
+	("\xED\xBF\xBF")
 	("\xF0\x8F\xBF\xBF")
 	("\xF4\x90\x80\x80")
 	;
@@ -69,6 +71,12 @@ void test_encdet_wxmedit_utf16()
 void test_encdet_wxmedit_utf8()
 {
 	std::cout << "wxMEdit-encdet-UTF8" << std::endl;
+	BOOST_FOREACH(const EncAndText& enc_txt, moz811363cases)
+	{
+		if (enc_txt._enc == "UTF-8")
+			test_predetenc_javaescaped(enc_txt._text, "UTF-8");
+	}
+
 	BOOST_FOREACH(const std::string& txt, utf8_invalid_cases)
 	{
 		test_predetenc_wrap(txt, "UTF-8", false);

@@ -20,6 +20,7 @@ typedef std::vector<std::pair<size_t, MozCaseVec> > MozMultiCasesTickets;
 extern MozMultiCasesTickets moz_muticases_tickets;
 
 typedef std::vector<std::pair<size_t, EncAndText> > MozOtherTickets;
-extern  MozOtherTickets moz_other_tickes;
+extern MozOtherTickets moz_other_tickes;
+extern MozCaseVec moz811363cases;
 
 #endif //WXMEDIT_TEST_DATA_FROM_MOZDET_H
