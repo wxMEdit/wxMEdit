@@ -226,6 +226,16 @@ struct ThreeBytesCheckerLB: public ThreeBytesChecker
 
 };
 
+// first byte is 0xED, second byte should < 0xA0
+// skip surrogates
+struct ThreeBytesCheckerM: public ThreeBytesChecker
+{
+	virtual bool BytesMatch(const wxByte* b) const
+	{
+		return (b[1] & 0xA0)==0x80 && (b[2] & 0xC0)==0x80;
+	}
+};
+
 struct FourBytesChecker: public UTF8BytesChecker
 {
 	virtual bool BytesMatch(const wxByte* b) const
@@ -270,16 +280,14 @@ struct UTF8Checker
 		// 0x80-0xBF bx-2 bx-3 bx-4
 		// 0xC0-0xC1 err
 		// 0xC2-0xDF b2-1
-		// 0xE0-0xEB b3-1
-		// 0xEC-0xED b3-1 surrogate pairs
-		// 0xEE-0xEF b3-1
+		// 0xE0-0xEF b3-1
 		// 0xF0-0xF7 b4-1
 		m_decoders[0x7F] = &m_dec1;
 		m_decoders[0xC1] = &m_dec_invalid;
 		m_decoders[0xDF] = &m_dec2;
 		m_decoders[0xE0] = &m_dec3lb;
-		m_decoders[0xEB] = &m_dec3;
-		m_decoders[0xED] = &m_dec_invalid;
+		m_decoders[0xEC] = &m_dec3;
+		m_decoders[0xED] = &m_dec3m;
 		m_decoders[0xEF] = &m_dec3;
 		m_decoders[0xF0] = &m_dec4lb;
 		m_decoders[0xF3] = &m_dec4;
@@ -297,7 +305,9 @@ struct UTF8Checker
 			if (!checker->Check(str, len, nonascii))
 				return false;
 	
-			len -= checker->TakenBytes();
+			size_t bytes = checker->TakenBytes();
+			len -= bytes;
+			str += bytes;
 		}
 
 		return nonascii;
@@ -312,6 +322,7 @@ private:
 	TwoBytesChecker     m_dec2;
 	ThreeBytesCheckerLB m_dec3lb;
 	ThreeBytesChecker   m_dec3;
+	ThreeBytesCheckerM  m_dec3m;
 	FourBytesCheckerLB  m_dec4lb;
 	FourBytesChecker    m_dec4;
 	FourBytesCheckerUB  m_dec4ub;
