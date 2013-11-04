@@ -12,12 +12,18 @@
 
 #include <unicode/ucsdet.h>
 #include <unicode/uversion.h>
+#include <boost/foreach.hpp>
 #include <string>
 
 struct EncodingChecker
 {
 	virtual bool MatchText(const wxByte *text, size_t len) const = 0;
 	virtual bool MatchBOM(const wxByte *text, size_t len) const = 0;
+	virtual std::string EncodingName() const = 0;
+	wxString WXEncodingName() const
+	{
+		return wxString(EncodingName().c_str(), wxConvUTF8);
+	}
 
 	virtual ~EncodingChecker(){}
 };
@@ -60,6 +66,11 @@ class UTF32LEChecker: public UTF32Checker
 	{
 		return wxINT32_SWAP_ON_BE(u);
 	}
+
+	virtual std::string EncodingName() const
+	{
+		return "UTF-32LE";
+	}
 };
 
 class UTF32BEChecker: public UTF32Checker
@@ -67,6 +78,11 @@ class UTF32BEChecker: public UTF32Checker
 	virtual ucs4_t QByteToInt(ucs4_t u) const
 	{
 		return wxINT32_SWAP_ON_LE(u);
+	}
+
+	virtual std::string EncodingName() const
+	{
+		return "UTF-32BE";
 	}
 };
 
@@ -158,6 +174,11 @@ class UTF16LEChecker: public UTF16Checker
 	{
 		return wxINT16_SWAP_ON_BE(u);
 	}
+
+	virtual std::string EncodingName() const
+	{
+		return "UTF-16LE";
+	}
 };
 
 class UTF16BEChecker: public UTF16Checker
@@ -165,6 +186,11 @@ class UTF16BEChecker: public UTF16Checker
 	virtual wxUint16 DByteToUInt(wxUint16 u) const
 	{
 		return wxINT16_SWAP_ON_LE(u);
+	}
+
+	virtual std::string EncodingName() const
+	{
+		return "UTF-16BE";
 	}
 };
 
@@ -330,6 +356,11 @@ struct UTF8Checker: public EncodingChecker
 		return nonascii;
 	}
 
+	virtual std::string EncodingName() const
+	{
+		return "UTF-8";
+	}
+
 private:
 
 	typedef std::map<wxByte, UTF8BytesChecker*> CheckerMap;
@@ -354,32 +385,28 @@ bool IsUTF8(const wxByte *text, size_t len)
 
 bool MatchSimpleUnicode(wxString& enc, const wxByte *text, size_t len)
 {
-	if(IsUTF16LE(text, len))
-	{
-		enc = wxT("utf-16le");
-		return true;
-	}
-	else if(IsUTF16BE(text, len))
-	{
-		enc = wxT("utf-16be");
-		return true;
-	}
-	else if(IsUTF8(text, len))
-	{
-		enc = wxT("utf-8");
-		return true;
-	}
-	else if(IsUTF32LE(text, len))
-	{
-		enc = wxT("utf-32le");
-		return true;
-	}
-	else if(IsUTF32BE(text, len))
-	{
-		enc = wxT("utf-32be");
-		return true;
-	}
+	static const UTF8Checker utf8_checker;
+	static const UTF16LEChecker utf16le_checker;
+	static const UTF16BEChecker utf16be_checker;
+	static const UTF32LEChecker utf32le_checker;
+	static const UTF32BEChecker utf32be_checker;
 
+	static const EncodingChecker* checkers[] = {
+		&utf16le_checker,
+		&utf16be_checker,
+		&utf8_checker,
+		&utf32le_checker,
+		&utf32be_checker,
+	};
+
+	BOOST_FOREACH(const EncodingChecker* checker, checkers)
+	{
+		if (checker->MatchBOM(text, len) || checker->MatchText(text, len))
+		{
+			enc = checker->WXEncodingName();
+			return true;
+		}
+	}
 	return false;
 }
 
