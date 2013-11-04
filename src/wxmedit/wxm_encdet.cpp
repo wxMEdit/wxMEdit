@@ -1,5 +1,5 @@
 ///////////////////////////////////////////////////////////////////////////////
-// vim:         sw=4 ts=4 expandtab
+// vim:         sw=4 ts=4
 // Name:        wxmedit/wxm_encdet.cpp
 // Description: wxMEdit encoding detector
 // Author:      madedit@gmail.com  (creator)
@@ -14,159 +14,170 @@
 #include <unicode/uversion.h>
 #include <string>
 
-struct UTF32Checker
+struct EncodingChecker
 {
-    bool IsUTF32(const wxByte *text, size_t len) const
-    {
-        if (len < 4)
-            return false;
+	virtual bool MatchText(const wxByte *text, size_t len) const = 0;
+	virtual bool MatchBOM(const wxByte *text, size_t len) const = 0;
 
-        ucs4_t *u32text = (ucs4_t *)text;
+	virtual ~EncodingChecker(){}
+};
 
-        // check UTF-32 BOM
-        if(QByteToInt(u32text[0]) == 0x00FEFF)
-            return true;
+struct UTF32Checker: public EncodingChecker
+{
+	virtual bool MatchBOM(const wxByte *text, size_t len) const
+	{
+		if (len < 4)
+			return false;
 
-        size_t count = len / 4;
-        for(size_t i=0; i<count; i++)
-        {
-            ucs4_t ucs4 = QByteToInt(u32text[i]);
-            if(ucs4<=0 || ucs4>0x10FFFF)
-                return false;
-        }
+		ucs4_t *u32text = (ucs4_t *)text;
+		return QByteToInt(u32text[0]) == 0x00FEFF;
+	}
 
-        return true;
-    }
+	virtual bool MatchText(const wxByte *text, size_t len) const
+	{
+		ucs4_t *u32text = (ucs4_t *)text;
 
-    virtual ~UTF32Checker(){}
+		size_t count = len / 4;
+		for(size_t i=0; i<count; i++)
+		{
+			ucs4_t ucs4 = QByteToInt(u32text[i]);
+			if(ucs4<=0 || ucs4>0x10FFFF)
+				return false;
+		}
+
+		return true;
+	}
+
+	virtual ~UTF32Checker(){}
 
 private:
-    virtual ucs4_t QByteToInt(ucs4_t u) const = 0;
+	virtual ucs4_t QByteToInt(ucs4_t u) const = 0;
 };
 
 class UTF32LEChecker: public UTF32Checker
 {
-    virtual ucs4_t QByteToInt(ucs4_t u) const
-    {
-        return wxINT32_SWAP_ON_BE(u);
-    }
+	virtual ucs4_t QByteToInt(ucs4_t u) const
+	{
+		return wxINT32_SWAP_ON_BE(u);
+	}
 };
 
 class UTF32BEChecker: public UTF32Checker
 {
-    virtual ucs4_t QByteToInt(ucs4_t u) const
-    {
-        return wxINT32_SWAP_ON_LE(u);
-    }
+	virtual ucs4_t QByteToInt(ucs4_t u) const
+	{
+		return wxINT32_SWAP_ON_LE(u);
+	}
 };
 
 
 bool IsUTF32LE(const wxByte *text, size_t len)
 {
-    static const UTF32LEChecker checker;
-
-    return checker.IsUTF32(text, len);
+	static const UTF32LEChecker checker;
+	return checker.MatchBOM(text, len) || checker.MatchText(text, len);
 }
 
 bool IsUTF32BE(const wxByte *text, size_t len)
 {
-    static const UTF32BEChecker checker;
-
-    return checker.IsUTF32(text, len);
+	static const UTF32BEChecker checker;
+	return checker.MatchBOM(text, len) || checker.MatchText(text, len);
 }
 
-struct UTF16Checker
+struct UTF16Checker: public EncodingChecker
 {
-    bool IsUTF16(const wxByte *text, size_t len) const
-    {
-        if(len < 2)
-            return false;
+	virtual bool MatchBOM(const wxByte *text, size_t len) const
+	{
+		if(len < 2)
+			return false;
 
-        // UTF-32 BOM
-        if(len >= 4)
-        {
-            ucs4_t* u32text = (ucs4_t *)text;
-            if (wxINT32_SWAP_ON_BE(u32text[0]) == 0x00FEFF ||
-                wxINT32_SWAP_ON_LE(u32text[0]) == 0x00FEFF)
-            return false;
-        }
-        // reverse endian UTF-16 BOM
-        wxUint16* u16text = (wxUint16 *)text;
-        if(DByteToUInt(u16text[0]) == 0xFFFE)
-            return false;
+		// UTF-32 BOM
+		if(len >= 4)
+		{
+			ucs4_t* u32text = (ucs4_t *)text;
+			if (wxINT32_SWAP_ON_BE(u32text[0]) == 0x00FEFF ||
+					wxINT32_SWAP_ON_LE(u32text[0]) == 0x00FEFF)
+				return false;
+		}
 
-        // UTF-16 BOM
-        if(DByteToUInt(u16text[0]) == 0xFEFF)
-            return true;
+		wxUint16* u16text = (wxUint16 *)text;
+		return DByteToUInt(u16text[0]) == 0xFEFF;
+	}
 
-        bool ok = false;
-        bool highsurrogate = false;
-        size_t count = len / 2;
-        for(size_t i=0; i<count; ++i)
-        {
-            wxUint16 u = DByteToUInt(u16text[i]);
-            if(u == 0)
-                return false;
+	virtual bool MatchText(const wxByte *text, size_t len) const
+	{
+		// reverse endian UTF-16 BOM
+		wxUint16* u16text = (wxUint16 *)text;
+		if(DByteToUInt(u16text[0]) == 0xFFFE)
+			return false;
 
-            if(u >= 0xD800 && u <= 0xDB00)
-            {
-                if(highsurrogate)
-                    return false;
+		bool ok = false;
+		bool highsurrogate = false;
+		size_t count = len / 2;
+		for(size_t i=0; i<count; ++i)
+		{
+			wxUint16 u = DByteToUInt(u16text[i]);
+			if(u == 0)
+				return false;
 
-                highsurrogate = true;
+			if(u >= 0xD800 && u <= 0xDB00)
+			{
+				if(highsurrogate)
+					return false;
+
+				highsurrogate = true;
 				continue;
-            }
+			}
 
-            if(u >= 0xDC00 && u <= 0xDF00)
-            {
-                if(!highsurrogate)
-                    return false;
+			if(u >= 0xDC00 && u <= 0xDF00)
+			{
+				if(!highsurrogate)
+					return false;
 
-                ok = true;
-            }
-            else if((u & 0xFF00) == 0)
-            {
-                ok = true;
-            }
+				ok = true;
+			}
+			else if((u & 0xFF00) == 0)
+			{
+				ok = true;
+			}
 
-            highsurrogate = false;
-        }
+			highsurrogate = false;
+		}
 
-        return ok;
-    }
+		return ok;
+	}
 
-    virtual ~UTF16Checker(){}
+	virtual ~UTF16Checker(){}
 
 private:
-    virtual wxUint16 DByteToUInt(wxUint16 u) const = 0;
+	virtual wxUint16 DByteToUInt(wxUint16 u) const = 0;
 };
 
 class UTF16LEChecker: public UTF16Checker
 {
-    virtual wxUint16 DByteToUInt(wxUint16 u) const
-    {
-        return wxINT16_SWAP_ON_BE(u);
-    }
+	virtual wxUint16 DByteToUInt(wxUint16 u) const
+	{
+		return wxINT16_SWAP_ON_BE(u);
+	}
 };
 
 class UTF16BEChecker: public UTF16Checker
 {
-    virtual wxUint16 DByteToUInt(wxUint16 u) const
-    {
-        return wxINT16_SWAP_ON_LE(u);
-    }
+	virtual wxUint16 DByteToUInt(wxUint16 u) const
+	{
+		return wxINT16_SWAP_ON_LE(u);
+	}
 };
 
 bool IsUTF16LE(const wxByte *text, size_t len)
 {
-    static const UTF16LEChecker checker;
-    return checker.IsUTF16(text, len);
+	static const UTF16LEChecker checker;
+	return checker.MatchBOM(text, len) || checker.MatchText(text, len);
 }
 
 bool IsUTF16BE(const wxByte *text, size_t len)
 {
-    static const UTF16BEChecker checker;
-    return checker.IsUTF16(text, len);
+	static const UTF16BEChecker checker;
+	return checker.MatchBOM(text, len) || checker.MatchText(text, len);
 }
 
 struct UTF8BytesChecker
@@ -185,8 +196,6 @@ struct UTF8BytesChecker
 	virtual size_t TakenBytes() const = 0;
 
 	virtual ~UTF8BytesChecker() {}
-private:
-	bool m_worked;
 };
 
 struct SingleByteChecker: public UTF8BytesChecker
@@ -272,7 +281,7 @@ struct InvalidBytesChecker: public UTF8BytesChecker
 	virtual size_t TakenBytes() const { return 1; }
 };
 
-struct UTF8Checker
+struct UTF8Checker: public EncodingChecker
 {
 	UTF8Checker()
 	{
@@ -295,7 +304,15 @@ struct UTF8Checker
 		m_decoders[0xFF] = &m_dec_invalid;
 	}
 
-	bool IsUTF8(const wxByte* str, size_t len) const
+	virtual bool MatchBOM(const wxByte* text, size_t len) const
+	{
+		if(len >= 3)
+			return false;
+
+		return text[0]==0xEF && text[1]==0xBB && text[2]==0xBF;
+	}
+
+	virtual bool MatchText(const wxByte* str, size_t len) const
 	{
 		bool nonascii = false;
 		while(len > 0)
@@ -304,7 +321,7 @@ struct UTF8Checker
 			const UTF8BytesChecker* checker = it->second;
 			if (!checker->Check(str, len, nonascii))
 				return false;
-	
+
 			size_t bytes = checker->TakenBytes();
 			len -= bytes;
 			str += bytes;
@@ -331,44 +348,39 @@ private:
 
 bool IsUTF8(const wxByte *text, size_t len)
 {
-    //check BOM
-    if(len >= 3 && text[0] == 0xEF && text[1] == 0xBB && text[2] == 0xBF)
-        return true;
-
 	static const UTF8Checker checker;
-
-	return checker.IsUTF8(text, len);
+	return checker.MatchBOM(text, len) || checker.MatchText(text, len);
 }
 
 bool MatchSimpleUnicode(wxString& enc, const wxByte *text, size_t len)
 {
-    if(IsUTF16LE(text, len))
-    {
-        enc = wxT("utf-16le");
-        return true;
-    }
-    else if(IsUTF16BE(text, len))
-    {
-        enc = wxT("utf-16be");
-        return true;
-    }
-    else if(IsUTF8(text, len))
-    {
-        enc = wxT("utf-8");
-        return true;
-    }
-    else if(IsUTF32LE(text, len))
-    {
-        enc = wxT("utf-32le");
-        return true;
-    }
-    else if(IsUTF32BE(text, len))
-    {
-        enc = wxT("utf-32be");
-        return true;
-    }
+	if(IsUTF16LE(text, len))
+	{
+		enc = wxT("utf-16le");
+		return true;
+	}
+	else if(IsUTF16BE(text, len))
+	{
+		enc = wxT("utf-16be");
+		return true;
+	}
+	else if(IsUTF8(text, len))
+	{
+		enc = wxT("utf-8");
+		return true;
+	}
+	else if(IsUTF32LE(text, len))
+	{
+		enc = wxT("utf-32le");
+		return true;
+	}
+	else if(IsUTF32BE(text, len))
+	{
+		enc = wxT("utf-32be");
+		return true;
+	}
 
-    return false;
+	return false;
 }
 
 bool IsBinaryData(const wxByte *data, size_t len)
@@ -570,98 +582,97 @@ void DetectJapaneseEncoding(const wxByte *text, size_t len, wxm::WXMEncodingID &
 
 bool MatchEUCJPMoreThanGB18030(const wxByte *text, size_t len)
 {
-    size_t i=0;
-    size_t eucjp = 0;
-    size_t other = 0;
-    while(i < len - 1)
-    {
-        wxByte b0 = text[i];
-        wxByte b1 = text[i+1];
-        // hiragana & katakana (encoded the same in EUC-JP and GB2312/GBK/GB18030)
-        if (b0==0xA4 && b1>=0xA1 && b1<=0xF4 ||
-            b0==0xA5 && b1>=0xA1 && b1<=0xF6
-            )
-        {
-            ++eucjp;
-            ++i;
-        }
-        else if(b0 >= 0x80)
-        {
-            ++other;
-            ++i;
-        }
+	size_t i=0;
+	size_t eucjp = 0;
+	size_t other = 0;
+	while(i < len - 1)
+	{
+		wxByte b0 = text[i];
+		wxByte b1 = text[i+1];
+		// hiragana & katakana (encoded the same in EUC-JP and GB2312/GBK/GB18030)
+		if (b0==0xA4 && b1>=0xA1 && b1<=0xF4 ||
+		    b0==0xA5 && b1>=0xA1 && b1<=0xF6)
+		{
+			++eucjp;
+			++i;
+		}
+		else if(b0 >= 0x80)
+		{
+			++other;
+			++i;
+		}
 
-        ++i;
-    }
+		++i;
+	}
 
-    size_t nonascii = eucjp + other;
-    return (nonascii > 0) && (100*eucjp/nonascii > 50);
+	size_t nonascii = eucjp + other;
+	return (nonascii > 0) && (100*eucjp/nonascii > 50);
 }
 
 #if U_ICU_VERSION_MAJOR_NUM *10 + U_ICU_VERSION_MINOR_NUM < 44
 struct LocalUCharsetDetectorPointer
 {
-    LocalUCharsetDetectorPointer(UCharsetDetector* ptr)
-        : m_ptr(ptr)
-    {
-    }
-    ~LocalUCharsetDetectorPointer()
-    {
-        if (m_ptr!=NULL)
-            ucsdet_close(m_ptr);
-        m_ptr = NULL;
-    }
-    UCharsetDetector* getAlias()
-    {
-        return m_ptr;
-    }
+	LocalUCharsetDetectorPointer(UCharsetDetector* ptr)
+		: m_ptr(ptr)
+	{
+	}
+	~LocalUCharsetDetectorPointer()
+	{
+		if (m_ptr!=NULL)
+			ucsdet_close(m_ptr);
+		m_ptr = NULL;
+	}
+	UCharsetDetector* getAlias()
+	{
+		return m_ptr;
+	}
 
 private:
-    UCharsetDetector* m_ptr;
+	UCharsetDetector* m_ptr;
 };
 #endif
 
 void DetectEncoding(const wxByte *text, size_t len, wxm::WXMEncodingID &enc, bool skip_utf8)
 {
-    UErrorCode status = U_ZERO_ERROR;
-    LocalUCharsetDetectorPointer csd(ucsdet_open(&status));
-    ucsdet_setText(csd.getAlias(), (const char*)text, len, &status);
-    int32_t match_count = 0;
-    const UCharsetMatch **matches = ucsdet_detectAll(csd.getAlias(), &match_count, &status);
-    std::string enc_name(ucsdet_getName(matches[0], &status));
+	UErrorCode status = U_ZERO_ERROR;
+	LocalUCharsetDetectorPointer csd(ucsdet_open(&status));
+	ucsdet_setText(csd.getAlias(), (const char*)text, len, &status);
+	int32_t match_count = 0;
+	const UCharsetMatch **matches = ucsdet_detectAll(csd.getAlias(), &match_count, &status);
+	std::string enc_name(ucsdet_getName(matches[0], &status));
 
-    if (match_count>1 && enc_name=="GB18030")
-    {
-        // check if EUC-JP was detected as GB18030
-        std::string enc2nd(ucsdet_getName(matches[1], &status));
-        if (enc2nd=="EUC-JP" &&
-            ucsdet_getConfidence(matches[0], &status) == ucsdet_getConfidence(matches[1], &status) &&
-            MatchEUCJPMoreThanGB18030(text, len))
-        {
-            enc_name = "EUC-JP";
-        }
-    }
-    else if (skip_utf8 && enc_name=="UTF-8")
-    {
-        if (match_count>1)
-            enc_name = ucsdet_getName(matches[1], &status);
-        else
-            enc_name.clear();
-    }
+	if (match_count>1 && enc_name=="GB18030")
+	{
+		// check if EUC-JP was detected as GB18030
+		std::string enc2nd(ucsdet_getName(matches[1], &status));
+		if (enc2nd=="EUC-JP" &&
+		    ucsdet_getConfidence(matches[0], &status) == ucsdet_getConfidence(matches[1], &status) &&
+		    MatchEUCJPMoreThanGB18030(text, len))
+		{
+			enc_name = "EUC-JP";
+		}
+	}
+	else if (skip_utf8 && enc_name=="UTF-8")
+	{
+		if (match_count>1)
+			enc_name = ucsdet_getName(matches[1], &status);
+		else
+			enc_name.clear();
+	}
 
-    if(enc_name == "EUC-KR")
-        enc_name = "UHC";
-    else if(enc_name == "EUC-JP")
-        enc_name = "CP20932";
+	if(enc_name == "EUC-KR")
+		enc_name = "UHC";
+	else if(enc_name == "EUC-JP")
+		enc_name = "CP20932";
 
-    wxm::WXMEncodingID init_enc = enc;
-    enc = wxm::WXMEncodingCreator::Instance().ExtNameToEncoding(enc_name);
+	wxm::WXMEncodingID init_enc = enc;
+	enc = wxm::WXMEncodingCreator::Instance().ExtNameToEncoding(enc_name);
 
-    if(enc == wxm::ENC_Windows_1252 && (init_enc==wxm::ENC_MS950 || init_enc==wxm::ENC_MS936))
-    {
-        wxm::WXMEncodingID det=wxm::ENC_DEFAULT;
-        DetectChineseEncoding(text, len, det);
-        if(det != wxm::ENC_DEFAULT)
-            enc = det;
-    }
+	if(enc == wxm::ENC_Windows_1252 && (init_enc==wxm::ENC_MS950 || init_enc==wxm::ENC_MS936))
+	{
+		wxm::WXMEncodingID det=wxm::ENC_DEFAULT;
+		DetectChineseEncoding(text, len, det);
+		if(det != wxm::ENC_DEFAULT)
+			enc = det;
+	}
 }
