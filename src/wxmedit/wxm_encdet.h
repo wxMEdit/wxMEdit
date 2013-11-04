@@ -21,10 +21,6 @@
 #include <wx/wx.h>
 #endif
 
-bool IsUTF32LE(const wxByte *text, size_t len);
-bool IsUTF32BE(const wxByte *text, size_t len);
-bool IsUTF16LE(const wxByte *text, size_t len);
-bool IsUTF16BE(const wxByte *text, size_t len);
 bool IsUTF8(const wxByte *text, size_t len);
 bool MatchSimpleUnicode(wxString& enc, const wxByte *text, size_t len);
 bool IsBinaryData(const wxByte *data, size_t len);

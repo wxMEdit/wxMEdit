@@ -12,33 +12,21 @@
 
 #include <unicode/ucsdet.h>
 #include <unicode/uversion.h>
+#include <boost/assign/list_inserter.hpp>
 #include <boost/foreach.hpp>
 #include <string>
 
 struct EncodingChecker
 {
 	virtual bool MatchText(const wxByte *text, size_t len) const = 0;
-	virtual bool MatchBOM(const wxByte *text, size_t len) const = 0;
+	virtual std::string BOM() const = 0;
 	virtual std::string EncodingName() const = 0;
-	wxString WXEncodingName() const
-	{
-		return wxString(EncodingName().c_str(), wxConvUTF8);
-	}
 
 	virtual ~EncodingChecker(){}
 };
 
 struct UTF32Checker: public EncodingChecker
 {
-	virtual bool MatchBOM(const wxByte *text, size_t len) const
-	{
-		if (len < 4)
-			return false;
-
-		ucs4_t *u32text = (ucs4_t *)text;
-		return QByteToInt(u32text[0]) == 0x00FEFF;
-	}
-
 	virtual bool MatchText(const wxByte *text, size_t len) const
 	{
 		ucs4_t *u32text = (ucs4_t *)text;
@@ -71,6 +59,12 @@ class UTF32LEChecker: public UTF32Checker
 	{
 		return "UTF-32LE";
 	}
+
+	virtual std::string BOM() const
+	{
+		static const char bom[] = {'\xFF', '\xFE', '\0', '\0'};
+		return std::string(bom, 4);
+	}
 };
 
 class UTF32BEChecker: public UTF32Checker
@@ -84,50 +78,23 @@ class UTF32BEChecker: public UTF32Checker
 	{
 		return "UTF-32BE";
 	}
+
+	virtual std::string BOM() const
+	{
+		static const char bom[] = {'\0', '\0', '\xFE', '\xFF'};
+		return std::string(bom, 4);
+	}
 };
 
 
-bool IsUTF32LE(const wxByte *text, size_t len)
-{
-	static const UTF32LEChecker checker;
-	return checker.MatchBOM(text, len) || checker.MatchText(text, len);
-}
-
-bool IsUTF32BE(const wxByte *text, size_t len)
-{
-	static const UTF32BEChecker checker;
-	return checker.MatchBOM(text, len) || checker.MatchText(text, len);
-}
-
 struct UTF16Checker: public EncodingChecker
 {
-	virtual bool MatchBOM(const wxByte *text, size_t len) const
-	{
-		if(len < 2)
-			return false;
-
-		// UTF-32 BOM
-		if(len >= 4)
-		{
-			ucs4_t* u32text = (ucs4_t *)text;
-			if (wxINT32_SWAP_ON_BE(u32text[0]) == 0x00FEFF ||
-					wxINT32_SWAP_ON_LE(u32text[0]) == 0x00FEFF)
-				return false;
-		}
-
-		wxUint16* u16text = (wxUint16 *)text;
-		return DByteToUInt(u16text[0]) == 0xFEFF;
-	}
-
 	virtual bool MatchText(const wxByte *text, size_t len) const
 	{
-		// reverse endian UTF-16 BOM
-		wxUint16* u16text = (wxUint16 *)text;
-		if(DByteToUInt(u16text[0]) == 0xFFFE)
-			return false;
-
 		bool ok = false;
 		bool highsurrogate = false;
+
+		wxUint16* u16text=(wxUint16*)text;
 		size_t count = len / 2;
 		for(size_t i=0; i<count; ++i)
 		{
@@ -179,6 +146,11 @@ class UTF16LEChecker: public UTF16Checker
 	{
 		return "UTF-16LE";
 	}
+
+	virtual std::string BOM() const
+	{
+		return "\xFF\xFE";
+	}
 };
 
 class UTF16BEChecker: public UTF16Checker
@@ -192,19 +164,13 @@ class UTF16BEChecker: public UTF16Checker
 	{
 		return "UTF-16BE";
 	}
+
+	virtual std::string BOM() const
+	{
+		return "\xFE\xFF";
+	}
 };
 
-bool IsUTF16LE(const wxByte *text, size_t len)
-{
-	static const UTF16LEChecker checker;
-	return checker.MatchBOM(text, len) || checker.MatchText(text, len);
-}
-
-bool IsUTF16BE(const wxByte *text, size_t len)
-{
-	static const UTF16BEChecker checker;
-	return checker.MatchBOM(text, len) || checker.MatchText(text, len);
-}
 
 struct UTF8BytesChecker
 {
@@ -330,12 +296,9 @@ struct UTF8Checker: public EncodingChecker
 		m_decoders[0xFF] = &m_dec_invalid;
 	}
 
-	virtual bool MatchBOM(const wxByte* text, size_t len) const
+	virtual std::string BOM() const
 	{
-		if(len >= 3)
-			return false;
-
-		return text[0]==0xEF && text[1]==0xBB && text[2]==0xBF;
+		return "\xEF\xBB\xBF";
 	}
 
 	virtual bool MatchText(const wxByte* str, size_t len) const
@@ -380,34 +343,83 @@ private:
 bool IsUTF8(const wxByte *text, size_t len)
 {
 	static const UTF8Checker checker;
-	return checker.MatchBOM(text, len) || checker.MatchText(text, len);
+	return checker.MatchText(text, len);
 }
+
+struct BOMIterationPrior
+{
+	bool operator()(const std::string& s1, const std::string s2)
+	{
+		return s1 > s2;
+	}
+};
+
+struct SimpleUnicodeDetector
+{
+	bool MatchBOM(const std::string bom, const wxByte *text, size_t len) const
+	{
+		if (len < bom.size())
+			return false;
+
+		return bom == std::string((const char*)text, bom.size());
+	}
+
+	std::string DetectEncoding(const wxByte *text, size_t len) const
+	{
+		BOOST_FOREACH(BOMEncMap::value_type bom_enc, m_bom_enc_map)
+		{
+			if (MatchBOM(bom_enc.first, text, len))
+				return bom_enc.second;
+		}
+
+		BOOST_FOREACH(const EncodingChecker* checker, m_checkers)
+		{
+			if (checker->MatchText(text, len))
+				return checker->EncodingName();
+		}
+
+		return std::string();
+	}
+
+	SimpleUnicodeDetector()
+	{
+		boost::assign::push_back(m_checkers)
+			(&utf16le_checker)
+			(&utf16be_checker)
+			(&utf8_checker)
+			(&utf32le_checker)
+			(&utf32be_checker)
+			;
+
+		BOOST_FOREACH(const EncodingChecker* checker, m_checkers)
+		{
+			m_bom_enc_map[checker->BOM()] = checker->EncodingName();
+		}
+	}
+
+private:
+	const UTF8Checker utf8_checker;
+	const UTF16LEChecker utf16le_checker;
+	const UTF16BEChecker utf16be_checker;
+	const UTF32LEChecker utf32le_checker;
+	const UTF32BEChecker utf32be_checker;
+
+	std::vector<const EncodingChecker*> m_checkers;
+
+	typedef std::map<std::string, std::string, BOMIterationPrior> BOMEncMap;
+	BOMEncMap m_bom_enc_map;
+};
 
 bool MatchSimpleUnicode(wxString& enc, const wxByte *text, size_t len)
 {
-	static const UTF8Checker utf8_checker;
-	static const UTF16LEChecker utf16le_checker;
-	static const UTF16BEChecker utf16be_checker;
-	static const UTF32LEChecker utf32le_checker;
-	static const UTF32BEChecker utf32be_checker;
+	static const SimpleUnicodeDetector det;
 
-	static const EncodingChecker* checkers[] = {
-		&utf16le_checker,
-		&utf16be_checker,
-		&utf8_checker,
-		&utf32le_checker,
-		&utf32be_checker,
-	};
+	std::string detenc = det.DetectEncoding(text, len);
+	if (detenc.empty())
+		return false;
 
-	BOOST_FOREACH(const EncodingChecker* checker, checkers)
-	{
-		if (checker->MatchBOM(text, len) || checker->MatchText(text, len))
-		{
-			enc = checker->WXEncodingName();
-			return true;
-		}
-	}
-	return false;
+	enc = wxString(detenc.c_str(), wxConvUTF8);
+	return true;
 }
 
 bool IsBinaryData(const wxByte *data, size_t len)
