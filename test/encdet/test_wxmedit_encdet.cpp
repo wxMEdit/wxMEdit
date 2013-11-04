@@ -42,6 +42,16 @@ std::vector<std::string> utf8_invalid_cases = boost::assign::list_of
 	("\xF4\x90\x80\x80")
 	;
 
+const char u32le_bom[] = {'\xFF', '\xFE', '\0', '\0'};
+const char u32be_bom[] = {'\0', '\0', '\xFE', '\xFF'};
+std::vector<EncAndText> bom_cases = boost::assign::list_of
+	(EncAndText("UTF-8", "\xEF\xBB\xBF"))
+	(EncAndText("UTF-16LE", "\xFF\xFE"))
+	(EncAndText("UTF-16BE", "\xFE\xFF"))
+	(EncAndText("UTF-32LE", std::string(u32le_bom, 4)))
+	(EncAndText("UTF-32BE", std::string(u32be_bom, 4)))
+	;
+
 void test_encdet_wxmedit_utf32()
 {
 	std::cout << "wxMEdit-encdet-UTF32" << std::endl;
@@ -80,5 +90,14 @@ void test_encdet_wxmedit_utf8()
 	BOOST_FOREACH(const std::string& txt, utf8_invalid_cases)
 	{
 		test_predetenc_wrap(txt, "UTF-8", false);
+	}
+}
+
+void test_encdet_wxmedit_bom()
+{
+	std::cout << "wxMEdit-encdet-BOM" << std::endl;
+	BOOST_FOREACH(const EncAndText& enc_txt, bom_cases)
+	{
+		test_predetenc_wrap(enc_txt._text, enc_txt._enc);
 	}
 }
