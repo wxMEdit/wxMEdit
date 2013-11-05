@@ -346,6 +346,24 @@ bool IsUTF8(const wxByte *text, size_t len)
 	return checker.MatchText(text, len);
 }
 
+struct GB18030Checker: public EncodingChecker
+{
+	virtual std::string BOM() const
+	{
+		return "\x84\x31\x95\x33";
+	}
+
+	virtual bool MatchText(const wxByte* str, size_t len) const
+	{
+		return false;
+	}
+
+	virtual std::string EncodingName() const
+	{
+		return "GB18030";
+	}
+};
+
 struct BOMIterationPrior
 {
 	bool operator()(const std::string& s1, const std::string s2)
@@ -354,7 +372,7 @@ struct BOMIterationPrior
 	}
 };
 
-struct SimpleUnicodeDetector
+struct UnicodeDetector
 {
 	bool MatchBOM(const std::string bom, const wxByte *text, size_t len) const
 	{
@@ -381,7 +399,7 @@ struct SimpleUnicodeDetector
 		return std::string();
 	}
 
-	SimpleUnicodeDetector()
+	UnicodeDetector()
 	{
 		boost::assign::push_back(m_checkers)
 			(&utf16le_checker)
@@ -389,6 +407,7 @@ struct SimpleUnicodeDetector
 			(&utf8_checker)
 			(&utf32le_checker)
 			(&utf32be_checker)
+			(&gb18030_checker)
 			;
 
 		BOOST_FOREACH(const EncodingChecker* checker, m_checkers)
@@ -403,6 +422,7 @@ private:
 	const UTF16BEChecker utf16be_checker;
 	const UTF32LEChecker utf32le_checker;
 	const UTF32BEChecker utf32be_checker;
+	const GB18030Checker gb18030_checker;
 
 	std::vector<const EncodingChecker*> m_checkers;
 
@@ -410,9 +430,9 @@ private:
 	BOMEncMap m_bom_enc_map;
 };
 
-bool MatchSimpleUnicode(wxString& enc, const wxByte *text, size_t len)
+bool MatchUnicodeEncoding(wxString& enc, const wxByte *text, size_t len)
 {
-	static const SimpleUnicodeDetector det;
+	static const UnicodeDetector det;
 
 	std::string detenc = det.DetectEncoding(text, len);
 	if (detenc.empty())

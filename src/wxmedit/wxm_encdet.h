@@ -22,7 +22,7 @@
 #endif
 
 bool IsUTF8(const wxByte *text, size_t len);
-bool MatchSimpleUnicode(wxString& enc, const wxByte *text, size_t len);
+bool MatchUnicodeEncoding(wxString& enc, const wxByte *text, size_t len);
 bool IsBinaryData(const wxByte *data, size_t len);
 void DetectChineseEncoding(const wxByte *text, size_t len, wxm::WXMEncodingID &enc);
 void DetectJapaneseEncoding(const wxByte *text, size_t len, wxm::WXMEncodingID &enc);

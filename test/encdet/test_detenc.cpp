@@ -54,7 +54,7 @@ void test_detenc(const std::string& text, const std::string& enc)
 	wxm::WXMEncodingID detencid = wxm::ENC_DEFAULT;
 	const wxByte* wxtext = (const wxByte*)text.data();
 
-	bool is_uenc = MatchSimpleUnicode(wxdetenc, wxtext, text.size());
+	bool is_uenc = MatchUnicodeEncoding(wxdetenc, wxtext, text.size());
 	if (is_uenc)
 	{
 		detencid = enccreator.ExtNameToEncoding(wxdetenc.mb_str().data());
@@ -95,7 +95,7 @@ void test_predetenc(const std::string& text, const std::string& enc, bool matche
 	wxm::WXMEncodingID detencid = wxm::ENC_DEFAULT;
 	const wxByte* wxtext = (const wxByte*)text.data();
 
-	bool is_uenc = MatchSimpleUnicode(wxdetenc, wxtext, text.size());
+	bool is_uenc = MatchUnicodeEncoding(wxdetenc, wxtext, text.size());
 	if (!is_uenc)
 	{
 		BOOST_CHECK(is_uenc || !matched);
