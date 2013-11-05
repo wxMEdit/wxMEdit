@@ -456,7 +456,7 @@ pixmapsdir = $(datadir)/pixmaps
 pixmaps_DATA = wxmedit.xpm
 appdir = $(datadir)/applications
 app_DATA = wxmedit.desktop
-EXTRA_DIST = m4/ChangeLog  $(pixmaps_DATA) $(app_DATA)
+EXTRA_DIST = $(pixmaps_DATA) $(app_DATA)
 noinst_HEADERS = description-pak \
 	README.txt \
 	autogen.sh \
@@ -471,15 +471,6 @@ noinst_HEADERS = description-pak \
 	freebsd/pkg-descr \
 	freebsd/pkg-plist \
 	freebsd/pkgcreate.txt \
-	m4/gettext.m4 \
-	m4/iconv.m4 \
-	m4/lib-ld.m4 \
-	m4/lib-link.m4 \
-	m4/lib-prefix.m4 \
-	m4/nls.m4 \
-	m4/po.m4 \
-	m4/progtest.m4 \
-	m4/ChangeLog \
 	src/wxmedit_app.rc \
 	src/wxm_file_association_dialog.cpp \
 	src/wxm_file_association_dialog.h \
@@ -1743,7 +1734,7 @@ distclean-tags:
 distdir: $(DISTFILES)
 	$(am__remove_distdir)
 	mkdir $(distdir)
-	$(mkdir_p) $(distdir)/debian $(distdir)/freebsd $(distdir)/images $(distdir)/libunicows $(distdir)/m4 $(distdir)/po $(distdir)/src $(distdir)/src/plugin_example
+	$(mkdir_p) $(distdir)/debian $(distdir)/freebsd $(distdir)/images $(distdir)/libunicows $(distdir)/po $(distdir)/src $(distdir)/src/plugin_example
 	@srcdirstrip=`echo "$(srcdir)" | sed 's|.|.|g'`; \
 	topsrcdirstrip=`echo "$(top_srcdir)" | sed 's|.|.|g'`; \
 	list='$(DISTFILES)'; for file in $$list; do \
@@ -2013,7 +2004,6 @@ loc:
 		fi; \
 	done
 
-#ACLOCAL_AMFLAGS = -I m4
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.
 .NOEXPORT:

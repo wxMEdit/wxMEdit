@@ -131,7 +131,7 @@ pixmaps_DATA = wxmedit.xpm
 appdir = $(datadir)/applications
 app_DATA = wxmedit.desktop
 
-EXTRA_DIST = m4/ChangeLog  $(pixmaps_DATA) $(app_DATA)
+EXTRA_DIST = $(pixmaps_DATA) $(app_DATA)
 
 noinst_HEADERS =	description-pak \
 	README.txt \
@@ -147,15 +147,6 @@ noinst_HEADERS =	description-pak \
 	freebsd/pkg-descr \
 	freebsd/pkg-plist \
 	freebsd/pkgcreate.txt \
-	m4/gettext.m4 \
-	m4/iconv.m4 \
-	m4/lib-ld.m4 \
-	m4/lib-link.m4 \
-	m4/lib-prefix.m4 \
-	m4/nls.m4 \
-	m4/po.m4 \
-	m4/progtest.m4 \
-	m4/ChangeLog \
 	src/wxmedit_app.rc \
 	src/wxm_file_association_dialog.cpp \
 	src/wxm_file_association_dialog.h \
@@ -228,6 +219,3 @@ loc:
 			echo "installing $(podir)/$$lang.gmo as $$dir/$(DOMAIN).mo"; \
 		fi; \
 	done
-
-
-#ACLOCAL_AMFLAGS = -I m4
