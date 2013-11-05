@@ -50,6 +50,7 @@ std::vector<EncAndText> bom_cases = boost::assign::list_of
 	(EncAndText("UTF-16BE", "\xFE\xFF"))
 	(EncAndText("UTF-32LE", std::string(u32le_bom, 4)))
 	(EncAndText("UTF-32BE", std::string(u32be_bom, 4)))
+	(EncAndText("GB18030", "\x84\x31\x95\x33"))
 	;
 
 void test_encdet_wxmedit_utf32()
