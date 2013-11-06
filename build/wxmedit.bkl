@@ -48,6 +48,9 @@
 
 			<define>_SCL_SECURE_NO_WARNINGS</define>
 		</if>
+		<if cond="FORMAT in ('msvs2003prj', 'msvs2005prj', 'msvs2008prj')">
+			<define>wxUSE_NO_MANIFEST=1</define>
+		</if>
 		<cppflags>$(WXDEBUG_DEF)</cppflags>
 
 		<if cond="BOOST_ADD != ''">
