@@ -14,7 +14,7 @@ Supported Platforms:
 -------------------
 A. Linux, FreeBSD, Mac OS X, and other Unix-like OS (__WXGTK__):
    a. GNU C++ 3.x/4.x:
-      Required Libraries to compile:
+      Required Libraries and Tools to compile:
       1. wxWidgets-2.6.1 or higher with Unicode enabled
       2. Boost-1.33.0 or higher
       3. ICU4C 4.2 or higher
@@ -23,14 +23,14 @@ A. Linux, FreeBSD, Mac OS X, and other Unix-like OS (__WXGTK__):
 
 B. MS Windows (__WXMSW__):
    a. MinGW32/GNU C++ 3.x/4.x:
-      Required Libraries to compile:
+      Required Libraries and Tools to compile:
       1. wxWidgets-2.6.1 or higher with Unicode enabled
       2. Boost-1.33.0 or higher
       3. libunicows: it's optional under WinNT/XP, but required under Win98
       4. ICU4C 4.2 or higher
       5. Bakefile 0.2.9
    b. Visual C++ 2005/2008/2010/2012(by upgrading from 2008 solution and project files):
-      Required Libraries to compile:
+      Required Libraries and Tools to compile:
       1. wxWidgets-2.6.1 or higher with Unicode enabled
       2. Boost-1.33.0 or higher
       3. libunicows: it's optional under WinNT/XP, but required under Win98
