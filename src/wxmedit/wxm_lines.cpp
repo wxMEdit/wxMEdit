@@ -2489,10 +2489,10 @@ bool MadLines::PresetFileEncoding(const wxString& encoding, const wxByte* buf, s
         return true;
     }
 
-    wxString uenc;
-    if(MatchUnicodeEncoding(uenc, buf, sz))
+    wxString wxmenc;
+    if(MatchWXMEncoding(wxmenc, buf, sz))
     {
-        m_MadEdit->SetEncoding(uenc);
+        m_MadEdit->SetEncoding(wxmenc);
         return true;
     }
 

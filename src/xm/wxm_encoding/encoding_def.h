@@ -14,6 +14,7 @@ namespace wxm
 enum WXMEncodingID
 {
 	ENC_DEFAULT = 0,
+	ENC_ISO_646,
 	ENC_ISO_8859_1,
 	ENC_ISO_8859_2,
 	ENC_ISO_8859_3,

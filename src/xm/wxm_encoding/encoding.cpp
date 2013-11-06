@@ -154,7 +154,10 @@ void WXMEncodingCreator::DoInit()
 	AddEncoding("UTF-16BE", ENC_UTF_16BE, wxT("Unicode 16 bit Big Endian (UTF-16BE)"), etUTF16BE);
 	AddEncoding("UTF-32LE", ENC_UTF_32LE, wxT("Unicode 32 bit Little Endian (UTF-32LE)"), etUTF32LE);
 	AddEncoding("UTF-32BE", ENC_UTF_32BE, wxT("Unicode 32 bit Big Endian (UTF-32BE)"), etUTF32BE);
-	
+
+	// only for encoding detection not for editing
+	m_icunameenc_map[GetEncodingICUName("US-ASCII")] = ENC_ISO_646;
+
 	m_wxencfont_map[ENC_Windows_874] = GetMSCPFontName(wxT("874"));
 	m_wxencfont_map[ENC_MS932] = GetMSCPFontName(wxT("932"));
 	m_wxencfont_map[ENC_MS936] = GetMSCPFontName(wxT("936"));
