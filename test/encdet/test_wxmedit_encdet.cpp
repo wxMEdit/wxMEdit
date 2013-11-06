@@ -14,6 +14,12 @@ std::vector<std::string> utf32_cases = boost::assign::list_of
 	("\\uD85A\\uDE77\\uD85A\\uDE87\\u4E2D") // 3 characters == 12 bytes
 	;
 
+std::vector<std::string> utf32_invalid_cases = boost::assign::list_of
+	("a")
+	("ab")
+	("abc")
+	;
+
 std::vector<std::string> utf16_cases = boost::assign::list_of
 	("a")
 	("Unicode")
@@ -60,6 +66,12 @@ void test_encdet_wxmedit_utf32()
 	{
 		test_predetenc_javaescaped(txt, "UTF-32LE");
 		test_predetenc_javaescaped(txt, "UTF-32BE");
+	}
+
+	BOOST_FOREACH(const std::string& txt, utf32_invalid_cases)
+	{
+		test_predetenc_wrap(txt, "UTF-32LE", false);
+		test_predetenc_wrap(txt, "UTF-32BE", false);
 	}
 }
 
