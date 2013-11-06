@@ -16,8 +16,10 @@ enc_src =	src/xm/wxm_encoding/cp20932.cpp \
 	src/xm/wxm_encoding/unicode.cpp \
 	src/xm/wxm_encoding/unicode.h
 
-encdet_src =	src/wxmedit/wxm_encdet.cpp \
-	src/wxmedit/wxm_encdet.h
+encdet_src =	src/wxmedit/mad_encdet.cpp \
+	src/wxmedit/mad_encdet.h \
+	src/xm/wxm_encdet.cpp \
+	src/xm/wxm_encdet.h
 
 bin_PROGRAMS = wxmedit wxmedit_test
 wxmedit_CXXFLAGS = -DDATA_DIR=\"${datadir}\"

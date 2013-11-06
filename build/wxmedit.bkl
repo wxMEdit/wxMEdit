@@ -120,8 +120,10 @@
 	</template>
 
 	<template id="encdet_src">
-		<headers>../src/wxmedit/wxm_encdet.h</headers>
-		<sources>../src/wxmedit/wxm_encdet.cpp</sources>
+		<headers>../src/wxmedit/mad_encdet.h</headers>
+		<sources>../src/wxmedit/mad_encdet.cpp</sources>
+		<headers>../src/xm/wxm_encdet.h</headers>
+		<sources>../src/xm/wxm_encdet.cpp</sources>
 	</template>
 
 	<exe id="wxmedit" template="win_cfg,enc_src,encdet_src">

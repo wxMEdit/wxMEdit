@@ -9,7 +9,7 @@
 
 #include "../xm/wxm_def.h"
 #include "wxmedit.h"
-#include "wxm_encdet.h"
+#include "../xm/wxm_encdet.h"
 #include "../xm/wxm_encoding/unicode.h"
 #include "wxm_syntax.h"
 #include "wxm_undo.h"

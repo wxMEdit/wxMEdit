@@ -1,5 +1,5 @@
 #include "test_detenc.h"
-#include "../../src/wxmedit/wxm_encdet.h"
+#include "../../src/xm/wxm_encdet.h"
 #include "../../src/xm/wxm_encoding/encoding.h"
 
 #include <unicode/unistr.h>
