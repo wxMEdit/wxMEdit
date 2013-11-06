@@ -7,7 +7,7 @@
 #include <iostream>
 #include <set>
 
-std::set<size_t> skiped_test_ids = boost::assign::list_of (488426);
+std::set<size_t> skiped_test_ids = boost::assign::list_of (488426)(638318);
 
 static bool is_skiped_test(size_t tid)
 {

@@ -59,6 +59,14 @@ std::vector<EncAndText> bom_cases = boost::assign::list_of
 	(EncAndText("GB18030", "\x84\x31\x95\x33"))
 	;
 
+std::vector<std::string> iso646_cases = boost::assign::list_of
+	("an US-ASCII text")
+	("$ is RMB yuan in ISO-646-CN")
+	("# is pound in ISO-646-GB")
+	("\\ is yen in ISO-646-JA")
+	(":-)")
+	;
+
 void test_encdet_wxmedit_utf32()
 {
 	std::cout << "wxMEdit-encdet-UTF32" << std::endl;
@@ -112,5 +120,14 @@ void test_encdet_wxmedit_bom()
 	BOOST_FOREACH(const EncAndText& enc_txt, bom_cases)
 	{
 		test_predetenc_wrap(enc_txt._text, enc_txt._enc);
+	}
+}
+
+void test_encdet_wxmedit_iso646()
+{
+	std::cout << "wxMEdit-encdet-ISO-646" << std::endl;
+	BOOST_FOREACH(const std::string& txt, iso646_cases)
+	{
+		test_predetenc_wrap(txt, "US-ASCII");
 	}
 }

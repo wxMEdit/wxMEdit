@@ -20,10 +20,22 @@ void init_skiped_test_cases()
 {
 }
 
-void add_addtional_cases(const std::string& tid, std::vector<std::string>& enclangs)
+void modify_cases(const std::string& tid, std::vector<std::string>& enclangs)
 {
 	if (tid == "IUC10-jp")
 		enclangs.push_back("EUC-JP/ja");
+
+	if (tid == "IUC10-en")
+	{
+		enclangs.pop_back();
+		enclangs.push_back("US-ASCII/en");
+	}
+
+	if (tid == "IUC10-nl")
+	{
+		enclangs.pop_back();
+		enclangs.push_back("US-ASCII/nl");
+	}
 }
 
 static bool is_skiped_test(const std::string& tid, const std::string tenc)
@@ -40,7 +52,7 @@ void test_icucase_encdet(const ICUEncDetTestCase& tcase)
 
 	std::vector<std::string> tenclangs;
 	boost::algorithm::split(tenclangs, tcase._encs, boost::algorithm::is_any_of(" "));
-	add_addtional_cases(tcase._tid, tenclangs);
+	modify_cases(tcase._tid, tenclangs);
 
 	BOOST_FOREACH(const std::string& tenclang, tenclangs)
 	{

@@ -8,5 +8,6 @@ void test_encdet_wxmedit_utf32();
 void test_encdet_wxmedit_utf16();
 void test_encdet_wxmedit_utf8();
 void test_encdet_wxmedit_bom();
+void test_encdet_wxmedit_iso646();
 
 #endif //WXMEDIT_ENCEET_TEST_H
