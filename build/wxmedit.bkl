@@ -69,7 +69,10 @@
 	
 		<lib-path>$(ICU_DIR)/lib</lib-path>
 		<lib-path>$(WXWIN)/lib/$(WXCOMP)_lib</lib-path>
-		<lib-path>../libunicows</lib-path>
+
+		<if cond="MSLU == '1'">
+			<lib-path>../libunicows</lib-path>
+		</if>
 
 		<sys-lib>wxmsw$(WXVER)u$(LIB_POSTFIX)_aui</sys-lib>
 		<sys-lib>wxmsw$(WXVER)u$(LIB_POSTFIX)_core</sys-lib>
@@ -77,7 +80,9 @@
 		<sys-lib>$(ICUDATA_LIB)</sys-lib>
 		<sys-lib>$(ICUI18N_LIB)$(ICULIB_POSTFIX)</sys-lib>
 		<sys-lib>icuuc$(ICULIB_POSTFIX)</sys-lib>
-		<sys-lib>unicows</sys-lib>
+		<if cond="MSLU == '1'">
+			<sys-lib>unicows</sys-lib>
+		</if>
 		<sys-lib>kernel32</sys-lib>
 		<sys-lib>user32</sys-lib>
 		<sys-lib>gdi32</sys-lib>
