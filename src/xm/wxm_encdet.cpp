@@ -393,7 +393,7 @@ struct ISO646Checker: public EncodingChecker
 
 struct BOMIterationPrior
 {
-	bool operator()(const std::string& s1, const std::string s2)
+	bool operator()(const std::string& s1, const std::string s2) const
 	{
 		return s1 > s2;
 	}
