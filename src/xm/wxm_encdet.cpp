@@ -29,6 +29,9 @@ struct UTF32Checker: public EncodingChecker
 {
 	virtual bool MatchText(const wxByte *text, size_t len) const
 	{
+		if (len < 4)
+			return false;
+
 		ucs4_t *u32text = (ucs4_t *)text;
 
 		size_t count = len / 4;
