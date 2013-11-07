@@ -22,7 +22,7 @@ namespace wxm
 #ifdef __WXMSW__
 		wxT("Courier New")
 #elif defined(__APPLE__) && defined(__MACH__)
-		wxT("Monaco")
+		wxT("Andale Mono")
 #else
 		wxT("Monospace")
 #endif
