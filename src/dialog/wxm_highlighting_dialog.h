@@ -10,7 +10,7 @@
 #define WXM_HIGHLIGHTING_DIALOG_H
 
 
-#include "xm/wx_avoid_wxmsw_bug4373.h"
+#include "../xm/wx_avoid_wxmsw_bug4373.h"
 
 //(*Headers(WXMHighlightingDialog)
 #include <wx/listctrl.h>

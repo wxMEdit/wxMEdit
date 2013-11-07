@@ -13,8 +13,8 @@
 //*)
 
 #define static static const
-#include "../images/wxmedit.xpm"
-#include "../images/madedit.xpm"
+#include "../../images/wxmedit.xpm"
+#include "../../images/madedit.xpm"
 #undef static
 
 //(*IdInit(WXMAboutDialog)

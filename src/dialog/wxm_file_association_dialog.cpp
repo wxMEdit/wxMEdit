@@ -8,7 +8,7 @@
 
 #include "wxm_file_association_dialog.h"
 
-#include "wxm_utils.h"
+#include "../wxm_utils.h"
 #include <wx/config.h>
 #include <wx/log.h>
 

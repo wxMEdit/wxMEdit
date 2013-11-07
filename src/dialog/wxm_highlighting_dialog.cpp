@@ -8,8 +8,8 @@
 
 #include "wxm_highlighting_dialog.h"
 
-#include "wxm_utils.h"
-#include "wxmedit/wxm_syntax.h"
+#include "../wxm_utils.h"
+#include "../wxmedit/wxm_syntax.h"
 
 
 //(*InternalHeaders(WXMHighlightingDialog)

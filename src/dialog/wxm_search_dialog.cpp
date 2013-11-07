@@ -9,7 +9,7 @@
 #include "wxm_search_dialog.h"
 #include "wxm_replace_dialog.h"
 
-#include "wxmedit/wxmedit.h"
+#include "../wxmedit/wxmedit.h"
 
 //(*InternalHeaders(WXMSearchDialog)
 #include <wx/intl.h>
@@ -17,7 +17,7 @@
 //*)
 
 #define static static const
-#include "../images/down.xpm"
+#include "../../images/down.xpm"
 #undef static
 
 WXMSearchDialog *g_SearchDialog=NULL;

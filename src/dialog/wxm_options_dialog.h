@@ -10,7 +10,7 @@
 #define WXM_OPTIONS_DIALOG_H
 
 
-#include "xm/wx_avoid_wxmsw_bug4373.h"
+#include "../xm/wx_avoid_wxmsw_bug4373.h"
 
 //(*Headers(WXMOptionsDialog)
 #include <wx/treectrl.h>
@@ -29,7 +29,7 @@
 #include <wx/combobox.h>
 //*)
 
-#include "wxm_command.h"
+#include "../wxm_command.h"
 #include <list>
 #include <map>
 using std::list;

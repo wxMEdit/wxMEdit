@@ -8,11 +8,11 @@
 
 #include "wxm_options_dialog.h"
 
-#include "xm/wxm_encoding/encoding.h"
-#include "wxmedit/wxmedit_command.h"
-#include "wxmedit/wxmedit.h"
-#include "wxmedit_frame.h"
-#include "wxm_utils.h"
+#include "../xm/wxm_encoding/encoding.h"
+#include "../wxmedit/wxmedit_command.h"
+#include "../wxmedit/wxmedit.h"
+#include "../wxmedit_frame.h"
+#include "../wxm_utils.h"
 
 //(*InternalHeaders(WXMOptionsDialog)
 #include <wx/settings.h>

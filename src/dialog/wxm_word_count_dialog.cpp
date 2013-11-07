@@ -7,7 +7,7 @@
 
 #include "wxm_word_count_dialog.h"
 
-#include "wxmedit/wxmedit.h"
+#include "../wxmedit/wxmedit.h"
 
 //(*InternalHeaders(WXMWordCountDialog)
 #include <wx/intl.h>

@@ -25,35 +25,35 @@ bin_PROGRAMS = wxmedit wxmedit_test
 wxmedit_CXXFLAGS = -DDATA_DIR=\"${datadir}\"
 wxmedit_SOURCES =	$(enc_src) \
 	$(encdet_src) \
-	src/wxmedit_about_dialog.cpp \
-	src/wxmedit_about_dialog.h \
+	src/dialog/wxm_conv_enc_dialog.cpp \
+	src/dialog/wxm_conv_enc_dialog.h \
+	src/dialog/wxm_find_in_files_dialog.cpp \
+	src/dialog/wxm_find_in_files_dialog.h \
+	src/dialog/wxm_highlighting_dialog.cpp \
+	src/dialog/wxm_highlighting_dialog.h \
+	src/dialog/wxm_options_dialog.cpp \
+	src/dialog/wxm_options_dialog.h \
+	src/dialog/wxm_replace_dialog.cpp \
+	src/dialog/wxm_replace_dialog.h \
+	src/dialog/wxm_search_dialog.cpp \
+	src/dialog/wxm_search_dialog.h \
+	src/dialog/wxm_sort_dialog.cpp \
+	src/dialog/wxm_sort_dialog.h \
+	src/dialog/wxm_word_count_dialog.cpp \
+	src/dialog/wxm_word_count_dialog.h \
+	src/dialog/wxmedit_about_dialog.cpp \
+	src/dialog/wxmedit_about_dialog.h \
+	src/plugin.h \
 	src/wxm_command.h \
-	src/wxm_conv_enc_dialog.cpp \
-	src/wxm_conv_enc_dialog.h \
+	src/wxm_plugin.cpp \
+	src/wxm_printout.cpp \
+	src/wxm_printout.h \
+	src/wxm_utils.cpp \
+	src/wxm_utils.h \
 	src/wxmedit_app.cpp \
 	src/wxmedit_app.h \
 	src/wxmedit_frame.cpp \
 	src/wxmedit_frame.h \
-	src/wxm_find_in_files_dialog.cpp \
-	src/wxm_find_in_files_dialog.h \
-	src/wxm_highlighting_dialog.cpp \
-	src/wxm_highlighting_dialog.h \
-	src/wxm_options_dialog.cpp \
-	src/wxm_options_dialog.h \
-	src/wxm_plugin.cpp \
-	src/wxm_printout.cpp \
-	src/wxm_printout.h \
-	src/wxm_replace_dialog.cpp \
-	src/wxm_replace_dialog.h \
-	src/wxm_search_dialog.cpp \
-	src/wxm_search_dialog.h \
-	src/wxm_sort_dialog.cpp \
-	src/wxm_sort_dialog.h \
-	src/wxm_utils.cpp \
-	src/wxm_utils.h \
-	src/wxm_word_count_dialog.cpp \
-	src/wxm_word_count_dialog.h \
-	src/plugin.h \
 	src/wxmedit/caret_new.cpp \
 	src/wxmedit/caret_new.h \
 	src/wxmedit/clipbrd_gtk.cpp \

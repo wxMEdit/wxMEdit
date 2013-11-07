@@ -131,31 +131,33 @@
 
 		<win32-res>../src/wxmedit_app.rc</win32-res>
 
+		<headers>../src/dialog/wxm_conv_enc_dialog.h</headers>
+		<sources>../src/dialog/wxm_conv_enc_dialog.cpp</sources>
+		<headers>../src/dialog/wxm_file_association_dialog.h</headers>
+		<sources>../src/dialog/wxm_file_association_dialog.cpp</sources>
+		<headers>../src/dialog/wxm_find_in_files_dialog.h</headers>
+		<sources>../src/dialog/wxm_find_in_files_dialog.cpp</sources>
+		<headers>../src/dialog/wxm_highlighting_dialog.h</headers>
+		<sources>../src/dialog/wxm_highlighting_dialog.cpp</sources>
+		<headers>../src/dialog/wxm_options_dialog.h</headers>
+		<sources>../src/dialog/wxm_options_dialog.cpp</sources>
+		<headers>../src/dialog/wxm_replace_dialog.h</headers>
+		<sources>../src/dialog/wxm_replace_dialog.cpp</sources>
+		<headers>../src/dialog/wxm_search_dialog.h</headers>
+		<sources>../src/dialog/wxm_search_dialog.cpp</sources>
+		<headers>../src/dialog/wxm_sort_dialog.h</headers>
+		<sources>../src/dialog/wxm_sort_dialog.cpp</sources>
+		<headers>../src/dialog/wxm_word_count_dialog.h</headers>
+		<sources>../src/dialog/wxm_word_count_dialog.cpp</sources>
+		<headers>../src/dialog/wxmedit_about_dialog.h</headers>
+		<sources>../src/dialog/wxmedit_about_dialog.cpp</sources>
 		<headers>../src/plugin.h</headers>
 		<headers>../src/wxm_command.h</headers>
-		<headers>../src/wxm_conv_enc_dialog.h</headers>
-		<sources>../src/wxm_conv_enc_dialog.cpp</sources>
-		<headers>../src/wxm_file_association_dialog.h</headers>
-		<sources>../src/wxm_file_association_dialog.cpp</sources>
-		<headers>../src/wxm_find_in_files_dialog.h</headers>
-		<sources>../src/wxm_find_in_files_dialog.cpp</sources>
-		<headers>../src/wxm_highlighting_dialog.h</headers>
-		<sources>../src/wxm_highlighting_dialog.cpp</sources>
-		<headers>../src/wxm_options_dialog.h</headers>
-		<sources>../src/wxm_options_dialog.cpp</sources>
 		<sources>../src/wxm_plugin.cpp</sources>
 		<headers>../src/wxm_printout.h</headers>
 		<sources>../src/wxm_printout.cpp</sources>
-		<headers>../src/wxm_replace_dialog.h</headers>
-		<sources>../src/wxm_replace_dialog.cpp</sources>
-		<headers>../src/wxm_search_dialog.h</headers>
-		<sources>../src/wxm_search_dialog.cpp</sources>
-		<headers>../src/wxm_sort_dialog.h</headers>
-		<sources>../src/wxm_sort_dialog.cpp</sources>
 		<headers>../src/wxm_utils.h</headers>
 		<sources>../src/wxm_utils.cpp</sources>
-		<headers>../src/wxm_word_count_dialog.h</headers>
-		<sources>../src/wxm_word_count_dialog.cpp</sources>
 		<headers>../src/wxmedit/caret_new.h</headers>
 		<headers>../src/wxmedit/clipbrd_gtk.h</headers>
 		<headers>../src/wxmedit/trad_simp.h</headers>
@@ -175,8 +177,6 @@
 		<headers>../src/wxmedit/wxmedit_command.h</headers>
 		<sources>../src/wxmedit/wxmedit_command.cpp</sources>
 		<sources>../src/wxmedit/wxmedit_search.cpp</sources>
-		<headers>../src/wxmedit_about_dialog.h</headers>
-		<sources>../src/wxmedit_about_dialog.cpp</sources>
 		<headers>../src/wxmedit_app.h</headers>
 		<sources>../src/wxmedit_app.cpp</sources>
 		<headers>../src/wxmedit_frame.h</headers>

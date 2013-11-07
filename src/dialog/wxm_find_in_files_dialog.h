@@ -9,7 +9,7 @@
 #ifndef WXM_FIND_IN_FILES_DIALOG_H
 #define WXM_FIND_IN_FILES_DIALOG_H
 
-#include "xm/wx_recent_list.h"
+#include "../xm/wx_recent_list.h"
 
 //(*Headers(WXMFindInFilesDialog)
 #include <wx/sizer.h>

@@ -8,8 +8,8 @@
 
 #include "wxmedit_app.h"
 #include "wxmedit_frame.h"
-#include "wxm_options_dialog.h"
 #include "wxm_utils.h"
+#include "dialog/wxm_options_dialog.h"
 
 #include "wxmedit/wxmedit.h"
 

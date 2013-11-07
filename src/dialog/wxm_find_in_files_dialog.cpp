@@ -7,11 +7,11 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 #include "wxm_find_in_files_dialog.h"
-#include "wxmedit_frame.h"
 #include "wxm_replace_dialog.h"
 #include "wxm_search_dialog.h"
 
-#include "wxmedit/wxmedit.h"
+#include "../wxmedit_frame.h"
+#include "../wxmedit/wxmedit.h"
 
 #include <wx/progdlg.h>
 #include <wx/dir.h>
@@ -30,7 +30,7 @@
 #endif
 
 #define static static const
-#include "../images/down.xpm"
+#include "../../images/down.xpm"
 #undef static
 
 WXMFindInFilesDialog *g_FindInFilesDialog=NULL;
