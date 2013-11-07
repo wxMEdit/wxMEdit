@@ -10134,7 +10134,13 @@ WXLRESULT MadEdit::MSWWindowProc(WXUINT message, WXWPARAM wParam, WXLPARAM lPara
                         }
                         else
                         {
+                            wxMemoryDC hexdc;
+                            hexdc.SelectObject(*m_HexDigitBitmap);
+                            m_HexDigitDC=&hexdc;
+
                             PaintHexLines(&dc, rect, m_TopRow+row-1, 1, false);
+
+                            m_HexDigitDC=NULL;
                         }
 
                         m_RepaintAll=false;
