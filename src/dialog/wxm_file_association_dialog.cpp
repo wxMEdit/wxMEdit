@@ -192,7 +192,7 @@ void RemoveType(wxString type)
 	wxString madedit_type = wxString(wxT("wxMEdit")) + type;
 
 	wxRegKey *pRegKey = new wxRegKey(wxString(wxT("HKEY_CLASSES_ROOT\\")) + type);
-	if(pRegKey->Exists())
+	if(pRegKey->Exists() && pRegKey->HasValue(wxT("Old_Default")))
 	{
 		pRegKey->QueryValue(wxT("Old_Default"), old_default);
 		pRegKey->QueryValue(wxEmptyString, value);
