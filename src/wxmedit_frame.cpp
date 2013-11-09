@@ -4939,6 +4939,11 @@ void MadEditFrame::OnHelpAbout(wxCommandEvent& event)
         {
             wxT("/usr/bin/firefox"),
             wxT("/usr/bin/mozilla"),
+            wxT("/usr/bin/chromium"),
+            wxT("/usr/bin/konqueror"),
+# if defined(__APPLE__) && defined(__MACH__)
+            wxT("/usr/bin/open"),
+# endif
             wxT("/usr/kde/3.5/bin/konqueror"),
             wxT("/usr/kde/3.4/bin/konqueror"),
             wxT("/usr/kde/3.3/bin/konqueror"),
