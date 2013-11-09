@@ -9946,7 +9946,7 @@ void MadEdit::OnPaint(wxPaintEvent &evt)
                     }
                 }
 
-                wxCaretSuspend cs(this);
+                //wxCaretSuspend cs(this);
     #endif
 
                 dc.Blit(0,0,m_ClientWidth,m_ClientHeight, &markdc, 0, 0);
