@@ -177,7 +177,7 @@ WXMEncodingID WXMEncodingCreator::GetSystemEncodingID()
 		return sysencid;
 
 	ICUNameEncMap::const_iterator it = m_icunameenc_map.find(GetEncodingICUName(NULL));
-	if (it == m_icunameenc_map.end())
+	if (it == m_icunameenc_map.end() || it->second == ENC_ISO_646)
 		sysencid = ENC_ISO_8859_1;
 	else
 		sysencid = it->second;
