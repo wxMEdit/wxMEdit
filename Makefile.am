@@ -21,7 +21,9 @@ encdet_src =	src/wxmedit/mad_encdet.cpp \
 	src/xm/wxm_encdet.cpp \
 	src/xm/wxm_encdet.h
 
-bin_PROGRAMS = wxmedit wxmedit_test
+bin_PROGRAMS = wxmedit
+check_PROGRAMS = wxmedit_test
+TESTS = wxmedit_test
 wxmedit_CXXFLAGS = -DDATA_DIR=\"${datadir}\"
 wxmedit_SOURCES =	$(enc_src) \
 	$(encdet_src) \
@@ -150,8 +152,8 @@ noinst_HEADERS =	description-pak \
 	freebsd/pkg-plist \
 	freebsd/pkgcreate.txt \
 	src/wxmedit_app.rc \
-	src/wxm_file_association_dialog.cpp \
-	src/wxm_file_association_dialog.h \
+	src/dialog/wxm_file_association_dialog.cpp \
+	src/dialog/wxm_file_association_dialog.h \
 	src/plugin_example/makefile.linux \
 	src/plugin_example/makefile.mingw32 \
 	src/plugin_example/makefile.vc \
