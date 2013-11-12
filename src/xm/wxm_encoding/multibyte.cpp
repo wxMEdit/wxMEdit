@@ -75,8 +75,8 @@ size_t ICUConverter::WC2MB(char* dest, size_t dest_len, const UChar32& ch)
 	else
 	{
 		UChar32 tmp = ch - 0x10000;
-		src[0] = (ch >> 10) | 0xD800;
-		src[1] = (ch & 0x3FF) | 0xDC00;
+		src[0] = (tmp >> 10) | 0xD800;
+		src[1] = (tmp & 0x3FF) | 0xDC00;
 	}
 
 	UErrorCode err = U_ZERO_ERROR;
