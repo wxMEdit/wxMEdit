@@ -55,7 +55,6 @@
 
 #if !defined(__WXMSW__) && !defined(__WXPM__)
 #   include "../images/wxmedit.xpm"
-#   include "../images/madedit.xpm"
 #endif
 
 #include "../images/null.xpm"
@@ -1635,14 +1634,6 @@ MadEditFrame::MadEditFrame( wxWindow *parent, wxWindowID id, const wxString &tit
 #endif
 
     this->SetWindowStyleFlag(this->GetWindowStyleFlag() & ~wxTAB_TRAVERSAL);
-
-    /*
-#if !defined(__WXMSW__) && !defined(__WXPM__)
-    SetIcon(wxIcon(madedit_xpm));
-#else // __MSW__
-    SetIcon(wxIcon(wxT("appicon")));
-#endif
-    */
 
     m_NewFileCount=0;
     m_Config=wxConfigBase::Get(false);

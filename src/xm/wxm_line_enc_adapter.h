@@ -33,6 +33,7 @@ struct WXMBlockDumper
 	}
 	virtual void Dump(wxByte* buf, size_t len) = 0;
 
+	virtual ~WXMBlockDumper() {}
 protected:
 	MadBlockIterator& m_bit;
 };
@@ -53,6 +54,8 @@ struct UChar32BytesMapper
 {
 	virtual void MoveUChar32Bytes(MadUCQueue &ucqueue, ucs4_t uc, size_t len) = 0;
 	virtual wxByte* BufferLoadBytes(wxFileOffset& rest, size_t buf_len) = 0;
+	
+	virtual ~UChar32BytesMapper() {}
 };
 
 }; // namespace wxm

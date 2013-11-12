@@ -44,7 +44,7 @@
 // ----------------------------------------------------------------------------
 
 // the blink time (common to all carets for MSW compatibility)
-static int gs_blinkTime = 500;  // in milliseconds
+//static int gs_blinkTime = 500;  // in milliseconds
 
 // ============================================================================
 // implementation

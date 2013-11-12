@@ -376,7 +376,7 @@ private:
 
 public:
     MadLines(MadEdit *madedit);
-    ~MadLines();
+    virtual ~MadLines();
 
     bool LoadFromFile(const wxString &filename, const wxString &encoding = wxEmptyString);
     bool SaveToFile(const wxString &filename, const wxString &tempdir);

@@ -56,7 +56,7 @@ size_t ICUConverter::MB2WC(UChar32& ch, const char* src, size_t src_len)
 		return 1;
 	}
 
-	if (n<1 || n>=2 && (dest[0]<0xD800 || dest[0]>0xDBFF || dest[1]<0xDC00 || dest[1]>0xDFFF))
+	if (n<1 || (n>=2 && (dest[0]<0xD800 || dest[0]>0xDBFF || dest[1]<0xDC00 || dest[1]>0xDFFF)))
 		return 0;
 
 	ch = 0x10000 + (((dest[0] & 0x03FF) << 10) | (dest[1] & 0x03FF));

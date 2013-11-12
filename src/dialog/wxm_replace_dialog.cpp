@@ -484,6 +484,8 @@ void WXMReplaceDialog::WxButtonReplaceClick(wxCommandEvent& event)
 				g_ActiveMadEdit->SetFocus();
 			}
 			break;
+		default:
+			break;
 		}
 	}
 }

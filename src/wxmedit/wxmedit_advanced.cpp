@@ -169,7 +169,7 @@ void MadEdit::ConvertEncoding(const wxString &newenc, MadConvertEncodingFlag fla
             { cefSC2TC, cefTC2SC, cefJK2TC, cefJK2SC, cefC2JK };
         MadConvertChineseFlag ccfs[]=
             { ccfSimp2Trad, ccfTrad2Simp, ccfKanji2Trad, ccfKanji2Simp, ccfChinese2Kanji };
-        for(int i=0; i<sizeof(cefs)/sizeof(cefs[0]); ++i)
+        for(size_t i=0; i<sizeof(cefs)/sizeof(cefs[0]); ++i)
         {
             if(flag==cefs[i])
             {
@@ -213,7 +213,7 @@ void MadEdit::ConvertChinese(MadConvertEncodingFlag flag)
             { cefSC2TC, cefTC2SC, cefJK2TC, cefJK2SC, cefC2JK };
         MadConvertChineseFlag ccfs[]=
             { ccfSimp2Trad, ccfTrad2Simp, ccfKanji2Trad, ccfKanji2Simp, ccfChinese2Kanji };
-        for(int i=0; i<sizeof(cefs)/sizeof(cefs[0]); ++i)
+        for(size_t i=0; i<sizeof(cefs)/sizeof(cefs[0]); ++i)
         {
             if(flag==cefs[i])
             {
@@ -2041,7 +2041,7 @@ void MadEdit::ConvertSpaceToTab()
             }
             else
             {
-                if(firstrow == m_SelectionBegin->rowid) // first row
+                if((int /*FIXME later*/)firstrow == m_SelectionBegin->rowid) // first row
                 {
                     xpos1 = m_SelectionBegin->xpos;
                     xpos2 = rowwidth;
@@ -2243,7 +2243,7 @@ void MadEdit::ConvertTabToSpace()
             }
             else
             {
-                if(firstrow == m_SelectionBegin->rowid) // first row
+                if((int /*FIXME later*/)firstrow == m_SelectionBegin->rowid) // first row
                 {
                     xpos1 = m_SelectionBegin->xpos;
                     xpos2 = rowwidth;

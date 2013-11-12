@@ -613,7 +613,6 @@ bool MadLine::FirstUCharIs0x0A(wxm::WXMEncoding *encoding)
     if(m_Size == 0) return false;
 
     MadBlockIterator bit = m_Blocks.begin();
-    wxFileOffset bsize = bit->m_Size;
 
     wxm::WXMForwardBlockDumper dumper(bit);
 

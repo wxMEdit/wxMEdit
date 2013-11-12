@@ -73,7 +73,7 @@ private:
 		BlockIndex(): index(0), ubegin(0) {}
 		bool operator<(const BlockIndex& bi2) const
 		{
-			return (ubegin<bi2.ubegin || ubegin==bi2.ubegin && index<bi2.index);
+			return (ubegin<bi2.ubegin || (ubegin==bi2.ubegin && index<bi2.index));
 		}
 	};
 	typedef std::set<BlockIndex> BlockIndexSet;

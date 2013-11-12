@@ -479,8 +479,8 @@ bool MatchEUCJPMoreThanGB18030(const wxByte *text, size_t len)
 		wxByte b0 = text[i];
 		wxByte b1 = text[i+1];
 		// hiragana & katakana (encoded the same in EUC-JP and GB2312/GBK/GB18030)
-		if (b0==0xA4 && b1>=0xA1 && b1<=0xF4 ||
-		    b0==0xA5 && b1>=0xA1 && b1<=0xF6)
+		if ((b0==0xA4 && b1>=0xA1 && b1<=0xF4) ||
+		    (b0==0xA5 && b1>=0xA1 && b1<=0xF6))
 		{
 			++eucjp;
 			++i;
