@@ -144,8 +144,6 @@ EXTRA_DIST = $(pixmaps_DATA) $(app_DATA)
 
 noinst_HEADERS =	README.txt \
 	autogen.sh \
-	wxmedit.spec \
-	wxmedit-static.spec \
 	debian/changelog \
 	debian/control \
 	debian/copyright \

@@ -4,7 +4,7 @@
 %define version 2.9.5
 
 
-Summary: wxmedit : GTK+2 based text/hex editor
+Summary: wxMEdit: Cross-platform Text/Hex Editor, a fork of MadEdit
 Name: %{name}
 Version: %{version}
 Release: %{release}
@@ -16,37 +16,43 @@ Source0: %{name}-%{version}.tar.gz
 Packager: JiaYanwei <wxmedit@gmail.com>
 BuildRoot: %{_builddir}/%{name}-%{version}-root
 
-BuildRequires: gtk2-devel >= 2.6.0
-Requires: gtk2 >= 2.6.0
+BuildRequires: gtk2-devel >= 2.6.0, boost >= 1.34, wxGTK-devel >= 2.8.0, wxGTK-devel < 2.9.0, libicu-devel >= 4.2.1
+Requires: gtk2 >= 2.6.0, wxGTK >= 2.8.0, wxGTK < 2.9.0, libicu >= 4.2.1
 
 Docdir: %{prefix}/share/doc
+
 
 %description
 wxMEdit is a cross-platform Text/Hex Editor.
 wxMEdit is a fork of MadEdit which has been discontinued.
 wxMEdit supports many useful functions, e.g. SyntaxHighlightings,
-WordWrap, Encodings, Column/Hex Modes.
+ WordWrap, Encodings, Column/Hex Modes.
+wxMEdit is a continually maintained text/hex editor with bug fixes,
+ improvements and refactor.
 
 %prep
 %setup
+touch $RPM_BUILD_DIR/%{name}-%{version}/aclocal.m4 \
+$RPM_BUILD_DIR/%{name}-%{version}/configure \
+$RPM_BUILD_DIR/%{name}-%{version}/Makefile.in \
+$RPM_BUILD_DIR/%{name}-%{version}/config.h.in
 
 %build
-
-%configure --with-wx-config=${HOME}/wxWidgets/RELEASE/wx-config LIBS="${HOME}/wxWidgets/RELEASE/lib/libwx_gtk2u_core-2.8.a ${HOME}/wxWidgets/RELEASE/lib/libwx_baseu-2.8.a -lgtk-x11-2.0 -lgthread-2.0 /usr/X11R6/lib/libXinerama.a /usr/X11R6/lib/libXxf86vm.a /usr/X11R6/lib/libSM.a /usr/X11R6/lib/libICE.a" glib_gtk2_LIBS="-lm" WX_LIBS="-lm"
+%configure
 make
 
 %install
-rm -rf $RPM_BUILD_ROOT
-
+[ "$RPM_BUILD_ROOT" != "/" ] && rm -rf "$RPM_BUILD_ROOT"
 %makeinstall
 
 %clean
-rm -rf $RPM_BUILD_ROOT
-
+[ "$RPM_BUILD_ROOT" != "/" ] && rm -rf "$RPM_BUILD_ROOT"
+rm -rf $RPM_BUILD_DIR/%{name}-%{version}
 
 %files
 %defattr(-,root,root,0755)
 %doc README.txt
+%doc ChangeLog
 %{_bindir}/*
 %{_datadir}/wxmedit/*
 %{_datadir}/pixmaps/*
