@@ -110,7 +110,8 @@ See file ChangeLog for more changes.
 
 License:
 -------
-wxMEdit is released under the GNU General Public License Version 3.
+wxMEdit is released under the GNU General Public License Version 3
+or (at your option) any later version.
 
 
 Author:

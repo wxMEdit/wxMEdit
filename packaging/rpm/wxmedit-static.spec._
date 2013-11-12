@@ -8,7 +8,7 @@ Summary: wxMEdit: Cross-platform Text/Hex Editor, a fork of MadEdit
 Name: %{name}
 Version: %{version}
 Release: %{release}
-License: GPL
+License: GPLv3+
 Vendor: JiaYanwei
 URL: http://code.google.com/p/wxmedit/
 Group: Applications/Editors
@@ -51,17 +51,18 @@ rm -rf $RPM_BUILD_DIR/%{name}-%{version}
 
 %files
 %defattr(-,root,root,0755)
-%doc README.txt
 %doc ChangeLog
+%doc LICENSE
+%doc README.txt
 %{_bindir}/*
-%{_datadir}/wxmedit/*
-%{_datadir}/pixmaps/*
 %{_datadir}/applications/*
-%{_datadir}/locale/zh_TW/LC_MESSAGES/wxmedit.mo
-%{_datadir}/locale/zh_CN/LC_MESSAGES/wxmedit.mo
+%{_datadir}/pixmaps/*
+%{_datadir}/wxmedit/*
+%{_datadir}/locale/es_ES/LC_MESSAGES/wxmedit.mo
 %{_datadir}/locale/it_IT/LC_MESSAGES/wxmedit.mo
 %{_datadir}/locale/ja_JP/LC_MESSAGES/wxmedit.mo
-%{_datadir}/locale/es_ES/LC_MESSAGES/wxmedit.mo
+%{_datadir}/locale/zh_CN/LC_MESSAGES/wxmedit.mo
+%{_datadir}/locale/zh_TW/LC_MESSAGES/wxmedit.mo
 
 
 %changelog
