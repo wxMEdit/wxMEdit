@@ -142,8 +142,7 @@ app_DATA = wxmedit.desktop
 
 EXTRA_DIST = $(pixmaps_DATA) $(app_DATA)
 
-noinst_HEADERS =	description-pak \
-	README.txt \
+noinst_HEADERS =	README.txt \
 	autogen.sh \
 	wxmedit.spec \
 	wxmedit-static.spec \
