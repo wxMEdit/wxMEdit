@@ -28,5 +28,7 @@ namespace wxm
 #endif
 	;
 
+	const long MINVAL_MAXLINELEN = 80;
+	const long MAXVAL_MAXLINELEN = 65536;
 }; // namespace wxm
 #endif //_WXM_DEF_H_

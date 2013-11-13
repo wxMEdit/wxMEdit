@@ -750,7 +750,10 @@ MadEdit::MadEdit(wxWindow* parent, wxWindowID id, const wxPoint& pos, const wxSi
     //caret->Show();    // first Show() in OnPaint()
 
     m_Config->Read(wxT("MaxLineLength"), &m_MaxLineLength, 4096);
-    if(m_MaxLineLength<80) m_MaxLineLength=80;
+    if(m_MaxLineLength < wxm::MINVAL_MAXLINELEN)
+        m_MaxLineLength = wxm::MINVAL_MAXLINELEN;
+    if(m_MaxLineLength > wxm::MAXVAL_MAXLINELEN)
+        m_MaxLineLength = wxm::MAXVAL_MAXLINELEN;
 
     m_WordBuffer = new ucs4_t[m_MaxLineLength+1];
 #ifdef __WXMSW__

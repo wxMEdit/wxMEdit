@@ -8,6 +8,7 @@
 
 #include "wxm_options_dialog.h"
 
+#include "../xm/wxm_def.h"
 #include "../xm/wxm_encoding/encoding.h"
 #include "../wxmedit/wxmedit_command.h"
 #include "../wxmedit/wxmedit.h"
@@ -1002,7 +1003,8 @@ void WXMOptionsDialog::WxButtonOKClick(wxCommandEvent& event)
 		error=true;
 	}
 
-	if(!WxEditMaxLineLength->GetValue().ToLong(&lo) || lo<80)
+	if(!WxEditMaxLineLength->GetValue().ToLong(&lo) ||
+		lo<wxm::MINVAL_MAXLINELEN || lo>wxm::MAXVAL_MAXLINELEN)
 	{
 		wxLogError(errtext, StaticText3->GetLabel().c_str());
 		error=true;
