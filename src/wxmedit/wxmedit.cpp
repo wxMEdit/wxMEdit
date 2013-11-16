@@ -1883,7 +1883,7 @@ void MadEdit::PaintTextLines(wxDC *dc, const wxRect &rect, int toprow, int rowco
     int row_top = rect.GetTop();
     const int rectright=rect.x+rect.width;
 
-    int SelLeft, SelRight;
+    int SelLeft=0/*?*/, SelRight=0/*?*/;
     int xpos1=0, xpos2=0;
 
     // Begin Paint Lines
@@ -2339,11 +2339,11 @@ void MadEdit::PaintHexLines(wxDC *dc, wxRect &rect, int toprow, int rowcount, bo
 
 
     bool bMarkChar = false;
-    int MarkCharLeft, MarkCharRight;
+    int MarkCharLeft=0/*?*/, MarkCharRight=0/*?*/;
     wxFileOffset MarkPos1 = -1, MarkPos2 = -1;
 
     int SelLeft = 0, SelRight = 0;
-    wxFileOffset SelPos1, SelPos2;
+    wxFileOffset SelPos1=0/*?*/, SelPos2=0/*?*/;
     if(m_Selection)
     {
         SelPos1 = m_SelectionBegin->pos;
@@ -2422,7 +2422,7 @@ void MadEdit::PaintHexLines(wxDC *dc, wxRect &rect, int toprow, int rowcount, bo
             while(--i > 0);
         }
 
-        wxFileOffset oldpos;
+        wxFileOffset oldpos=0/*?*/;
         wxFileOffset oldhexrowpos = hexrowpos;
         hexrowpos += 16;
 
@@ -5113,7 +5113,7 @@ void MadEdit::InsertColumnString(const ucs4_t *ucs, size_t count, int linecount,
     else // insert column string
     {
         MadLineIterator lit = firstlit;
-        wxFileOffset inssize = 0, selcaretpos;
+        wxFileOffset inssize = 0, selcaretpos=0/*?*/;
         const ucs4_t *ucs1 = ucs;
         for(;;)
         {
@@ -6231,7 +6231,7 @@ void MadEdit::OverwriteDataSingle(vector<wxFileOffset> &del_bpos, vector<wxFileO
 
     MadLineIterator lit;
     wxFileOffset pos, lpos, newCaretPos=m_CaretPos.pos;
-    wxFileOffset oldblksize, caretdiffsize, del_size;
+    wxFileOffset oldblksize, caretdiffsize, del_size=0/*?*/;
     int rowid;
 
     vector<wxByte> buffer;
@@ -7824,7 +7824,7 @@ void MadEdit::ProcessCommand(MadEditCommand command)
                                 bool prevline=false;
 
                                 MadUCQueue ucqueue;
-                                ucs4_t uc;
+                                ucs4_t uc=0/*?*/;
                                 wxFileOffset pos, pos1;
 
                                 if(m_Selection)

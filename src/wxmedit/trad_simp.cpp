@@ -11542,7 +11542,7 @@ void FreeConvertChineseTable()
 int ConvertChinese(const wxChar *in, wxChar *out, size_t count, MadConvertChineseFlag flag)
 {
     int converted=0;
-    ucs2_t *table;
+    ucs2_t *table=NULL;
 
     switch(flag)
     {
