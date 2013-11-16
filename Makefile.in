@@ -466,11 +466,6 @@ app_DATA = wxmedit.desktop
 EXTRA_DIST = $(pixmaps_DATA) $(app_DATA)
 noinst_HEADERS = README.txt \
 	autogen.sh \
-	debian/changelog \
-	debian/control \
-	debian/copyright \
-	debian/menu \
-	debian/rules \
 	freebsd/pkg-comment \
 	freebsd/pkg-descr \
 	freebsd/pkg-plist \
@@ -1852,7 +1847,7 @@ check-TESTS: $(TESTS)
 distdir: $(DISTFILES)
 	$(am__remove_distdir)
 	mkdir $(distdir)
-	$(mkdir_p) $(distdir)/debian $(distdir)/freebsd $(distdir)/images $(distdir)/libunicows $(distdir)/po $(distdir)/src $(distdir)/src/dialog $(distdir)/src/plugin_example
+	$(mkdir_p) $(distdir)/freebsd $(distdir)/images $(distdir)/libunicows $(distdir)/po $(distdir)/src $(distdir)/src/dialog $(distdir)/src/plugin_example
 	@srcdirstrip=`echo "$(srcdir)" | sed 's|.|.|g'`; \
 	topsrcdirstrip=`echo "$(top_srcdir)" | sed 's|.|.|g'`; \
 	list='$(DISTFILES)'; for file in $$list; do \

@@ -144,11 +144,6 @@ EXTRA_DIST = $(pixmaps_DATA) $(app_DATA)
 
 noinst_HEADERS =	README.txt \
 	autogen.sh \
-	debian/changelog \
-	debian/control \
-	debian/copyright \
-	debian/menu \
-	debian/rules \
 	freebsd/pkg-comment \
 	freebsd/pkg-descr \
 	freebsd/pkg-plist \

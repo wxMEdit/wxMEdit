@@ -1,0 +1,19 @@
+Source: wxmedit
+Section: editors
+Priority: optional
+Maintainer: JiaYanwei <wxmedit@gmail.com>
+Build-Depends: debhelper (>= 4.0.0), libgtk2.0-dev (>= 2.6), libwxgtk2.8-dev,
+ libboost-dev (>= 1.35), libicu-dev (>= 4.2.1)
+Standards-Version: 3.6.2
+
+Package: wxmedit
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+HomePage: http://code.google.com/p/wxmedit/
+Description: Cross-platform Text/Hex Editor
+ wxMEdit is a cross-platform Text/Hex Editor written in C++ & wxWidgets.
+ wxMEdit is a fork of MadEdit which has been discontinued.
+ wxMEdit supports many useful functions, e.g. SyntaxHighlightings,
+ WordWrap, Encodings, Column/Hex Modes.
+ wxMEdit is a continually maintained text/hex editor with bug fixes,
+ improvements and refactor.
