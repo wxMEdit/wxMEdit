@@ -2114,7 +2114,7 @@ uninstall-info: uninstall-info-recursive
 
 
 wxmedit.desktop: wxmedit.desktop._ Makefile
-	sed "s#@pixmapsdir@#$(pixmapsdir)#" $< > $@
+	sed "s#@pixmapsdir@#$(pixmapsdir)#" wxmedit.desktop._ > $@
 
 loc:
 	@linguas='$(LINGUAS)'; \

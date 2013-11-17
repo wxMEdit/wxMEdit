@@ -133,7 +133,7 @@ pixmapsdir = $(datadir)/pixmaps
 pixmaps_DATA = wxmedit.png
 
 wxmedit.desktop: wxmedit.desktop._ Makefile
-	sed "s#@pixmapsdir@#$(pixmapsdir)#" $< > $@
+	sed "s#@pixmapsdir@#$(pixmapsdir)#" wxmedit.desktop._ > $@
 
 CLEANFILES = wxmedit.desktop
 
