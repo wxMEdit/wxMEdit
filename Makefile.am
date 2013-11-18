@@ -144,10 +144,6 @@ EXTRA_DIST = $(pixmaps_DATA) $(app_DATA)
 
 noinst_HEADERS =	README.txt \
 	autogen.sh \
-	freebsd/pkg-comment \
-	freebsd/pkg-descr \
-	freebsd/pkg-plist \
-	freebsd/pkgcreate.txt \
 	src/wxmedit_app.rc \
 	src/dialog/wxm_file_association_dialog.cpp \
 	src/dialog/wxm_file_association_dialog.h \
