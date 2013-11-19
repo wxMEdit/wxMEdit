@@ -137,9 +137,26 @@
 #endif
 
 
-wxString g_MadEdit_Version(wxT("wxMEdit v2.9.5"));
-wxString g_MadEdit_URL(wxT("http://code.google.com/p/wxmedit/"));
+wxString g_wxMEdit_Version(wxT("wxMEdit v2.9.5"));
 
+wxString g_wxMEdit_Homepage_URL(wxT("http://code.google.com/p/wxmedit/"));
+wxString g_wxMEdit_License_URL(wxT("http://www.gnu.org/licenses/gpl-3.0.html"));
+wxString g_wxMEdit_About_URL = g_wxMEdit_Homepage_URL;
+
+wxString g_wxMEdit_License(
+wxT("Copyright (C) 2013 JiaYanwei <wxmedit@gmail.com>\n")
+wxT("Copyright (C) 2005-2010  Alston Chen <madedit@gmail.com>\n")
+wxT("\n")
+wxT("This program is free software: you can redistribute it and/or modify ")
+wxT("it under the terms of the GNU General Public License as published by ")
+wxT("the Free Software Foundation, either version 3 of the License, or ")
+wxT("(at your option) any later version.\n")
+wxT("\n")
+wxT("This program is distributed in the hope that it will be useful, ")
+wxT("but WITHOUT ANY WARRANTY; without even the implied warranty of ")
+wxT("MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the ")
+wxT("GNU General Public License for more details.\n")
+);
 
 extern wxString g_MadEditAppDir, g_MadEditHomeDir;
 
@@ -4918,10 +4935,16 @@ void MadEditFrame::OnWindowNextWindow(wxCommandEvent& event)
 
 void MadEditFrame::OnHelpAbout(wxCommandEvent& event)
 {
+	g_wxMEdit_About_URL = g_wxMEdit_Homepage_URL;
     WXMAboutDialog dlg(this);
-    dlg.WxMemo1->AppendText(g_MadEdit_Version + wxT("\n\n")+
-                            g_MadEdit_URL + wxT("\n\n")+
+    dlg.TxtAbout->AppendText(g_wxMEdit_Version + wxT("\n\n") +
+                            g_wxMEdit_Homepage_URL + wxT("\n\n") +
                             _("Press OK to visit our HomePage."));
+
+    dlg.TxtLicense->AppendText( wxString(_("wxMEdit, a cross-platform Text/Hex Editor")) + wxT("\n\n") +
+                            g_wxMEdit_License + wxT("\n\n") +
+                            g_wxMEdit_License_URL + wxT("\n\n") +
+                            _("Press OK to visit the license online version.\n"));
 
     if(dlg.ShowModal()==wxID_OK)
     {
@@ -4950,14 +4973,14 @@ void MadEditFrame::OnHelpAbout(wxCommandEvent& event)
 
         if(idx < count)
         {
-            wxExecute(wxString(browsers[idx]) +wxT(' ') +g_MadEdit_URL);
+            wxExecute(wxString(browsers[idx]) +wxT(' ') +g_wxMEdit_About_URL);
         }
         else
         {
-            wxLaunchDefaultBrowser(g_MadEdit_URL);
+            wxLaunchDefaultBrowser(g_wxMEdit_About_URL);
         }
 #else
-        wxLaunchDefaultBrowser(g_MadEdit_URL);
+        wxLaunchDefaultBrowser(g_wxMEdit_About_URL);
 #endif
     }
 }

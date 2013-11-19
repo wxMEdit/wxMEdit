@@ -36,12 +36,40 @@
 						<border>5</border>
 					</object>
 					<object class="sizeritem">
-						<object class="wxTextCtrl" name="ID_WXMEMO1" variable="WxMemo1" member="yes">
-							<size>350,150</size>
-							<style>wxTE_MULTILINE|wxTE_READONLY|wxTE_AUTO_URL</style>
+						<object class="wxNotebook" name="ID_NOTEBOOK1" variable="Notebook1" member="yes">
+							<handler function="OnNotebook1PageChanged" entry="EVT_NOTEBOOK_PAGE_CHANGED" />
+							<object class="notebookpage">
+								<object class="wxPanel" name="ID_PANEL1" variable="AoubtTab" member="yes">
+									<object class="wxBoxSizer" variable="BoxSizer5" member="no">
+										<object class="sizeritem">
+											<object class="wxTextCtrl" name="ID_TEXTCTRL1" variable="TxtAbout" member="yes">
+												<size>450,180</size>
+												<style>wxTE_AUTO_SCROLL|wxTE_MULTILINE|wxTE_READONLY|wxTE_AUTO_URL|wxSTATIC_BORDER</style>
+											</object>
+											<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+											<option>1</option>
+										</object>
+									</object>
+								</object>
+								<label>About</label>
+							</object>
+							<object class="notebookpage">
+								<object class="wxPanel" name="ID_PANEL2" variable="LicenseTab" member="yes">
+									<object class="wxBoxSizer" variable="BoxSizer6" member="no">
+										<object class="sizeritem">
+											<object class="wxTextCtrl" name="ID_TEXTCTRL2" variable="TxtLicense" member="yes">
+												<style>wxTE_AUTO_SCROLL|wxTE_MULTILINE|wxTE_READONLY|wxTE_WORDWRAP|wxSTATIC_BORDER</style>
+											</object>
+											<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+											<option>1</option>
+										</object>
+									</object>
+								</object>
+								<label>License</label>
+							</object>
 						</object>
 						<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
-						<border>2</border>
+						<border>5</border>
 						<option>1</option>
 					</object>
 				</object>

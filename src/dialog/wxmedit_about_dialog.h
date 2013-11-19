@@ -9,12 +9,18 @@
 #define WXMEDIT_ABOUT_DIALOG_H
 
 //(*Headers(WXMAboutDialog)
+#include <wx/notebook.h>
 #include <wx/sizer.h>
 #include <wx/textctrl.h>
+#include <wx/panel.h>
 #include <wx/statbmp.h>
 #include <wx/button.h>
 #include <wx/dialog.h>
 //*)
+
+extern wxString g_wxMEdit_Homepage_URL;
+extern wxString g_wxMEdit_License_URL;
+extern wxString g_wxMEdit_About_URL;
 
 class WXMAboutDialog: public wxDialog
 {
@@ -25,10 +31,14 @@ class WXMAboutDialog: public wxDialog
 
 		//(*Declarations(WXMAboutDialog)
 		wxStaticBitmap* StaticBitmap2;
+		wxNotebook* Notebook1;
 		wxStaticBitmap* StaticBitmap1;
+		wxPanel* LicenseTab;
+		wxTextCtrl* TxtAbout;
+		wxPanel* AoubtTab;
 		wxButton* WxButtonCancel;
-		wxTextCtrl* WxMemo1;
 		wxButton* WxButtonOK;
+		wxTextCtrl* TxtLicense;
 		//*)
 
 	protected:
@@ -36,13 +46,18 @@ class WXMAboutDialog: public wxDialog
 		//(*Identifiers(WXMAboutDialog)
 		static const long ID_STATICBITMAP1;
 		static const long ID_STATICBITMAP2;
-		static const long ID_WXMEMO1;
+		static const long ID_TEXTCTRL1;
+		static const long ID_PANEL1;
+		static const long ID_TEXTCTRL2;
+		static const long ID_PANEL2;
+		static const long ID_NOTEBOOK1;
 		//*)
 
 	private:
 
 		//(*Handlers(WXMAboutDialog)
 		void WXMAboutDialogClose(wxCloseEvent& event);
+		void OnNotebook1PageChanged(wxNotebookEvent& event);
 		//*)
 
 		DECLARE_EVENT_TABLE()
