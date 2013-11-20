@@ -31,10 +31,10 @@
 #: ../src/dialog/wxm_options_dialog.cpp:659
 msgid ""
 msgstr ""
-"Project-Id-Version: wxMEdit 2.9.5\n"
+"Project-Id-Version: wxMEdit 2.9.6\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-11-19 22:03+0800\n"
-"PO-Revision-Date: 2013-09-05 00:08+0900\n"
+"PO-Revision-Date: 2013-11-19 22:39+0900\n"
 "Last-Translator: Tilt <<tiltstr@gmail.com>>\n"
 "Language-Team: Tilt <<tiltstr@gmail.com>>\n"
 "Language: ja_JP\n"
@@ -1287,23 +1287,23 @@ msgstr "無効な Unicode 文字"
 
 #: wxstd.po.cpp:312
 msgid "Text"
-msgstr ""
+msgstr "テキスト"
 
 #: wxstd.po.cpp:313
 msgid "Delimiter"
-msgstr ""
+msgstr "区切り文字"
 
 #: wxstd.po.cpp:314
 msgid "Space"
-msgstr ""
+msgstr "空白"
 
 #: wxstd.po.cpp:315
 msgid "Number"
-msgstr ""
+msgstr "番号"
 
 #: wxstd.po.cpp:316
 msgid "String"
-msgstr ""
+msgstr "文字列"
 
 #: wxstd.po.cpp:317 ../src/wxmedit_frame.cpp:2040
 msgid "Comment"
@@ -1311,739 +1311,739 @@ msgstr "コメント"
 
 #: wxstd.po.cpp:318
 msgid "Directive"
-msgstr ""
+msgstr "指令"
 
 #: wxstd.po.cpp:319
 msgid "SpecialWord"
-msgstr ""
+msgstr "特殊語"
 
 #: wxstd.po.cpp:320
 msgid "LineNumber"
-msgstr ""
+msgstr "行番号"
 
 #: wxstd.po.cpp:321
 msgid "ActiveLine"
-msgstr ""
+msgstr "アクティブ行"
 
 #: wxstd.po.cpp:322
 msgid "Bookmark"
-msgstr ""
+msgstr "ブックマーク"
 
 #: wxstd.po.cpp:323
 msgid "AliceBlue"
-msgstr ""
+msgstr "アリス・ブルー"
 
 #: wxstd.po.cpp:324
 msgid "AntiqueWhite"
-msgstr ""
+msgstr "アンティーク・ホワイト"
 
 #: wxstd.po.cpp:325
 msgid "Aqua"
-msgstr ""
+msgstr "アクア"
 
 #: wxstd.po.cpp:326
 msgid "Aquamarine"
-msgstr ""
+msgstr "アクアマリン"
 
 #: wxstd.po.cpp:327
 msgid "Azure"
-msgstr ""
+msgstr "紺碧"
 
 #: wxstd.po.cpp:328
 msgid "Beige"
-msgstr ""
+msgstr "ベージュ"
 
 #: wxstd.po.cpp:329
 msgid "Bisque"
-msgstr ""
+msgstr "ビスク"
 
 #: wxstd.po.cpp:330
 msgid "Black"
-msgstr ""
+msgstr "ブラック"
 
 #: wxstd.po.cpp:331
 msgid "BlanchedAlmond"
-msgstr ""
+msgstr "アーモンド"
 
 #: wxstd.po.cpp:332
 msgid "Blue"
-msgstr ""
+msgstr "ブルー"
 
 #: wxstd.po.cpp:333
 msgid "BlueViolet"
-msgstr ""
+msgstr "ブルーバイオレット"
 
 #: wxstd.po.cpp:334
 msgid "Brown"
-msgstr ""
+msgstr "ブラウン"
 
 #: wxstd.po.cpp:335
 msgid "BurlyWood"
-msgstr ""
+msgstr "バーリーウッド"
 
 #: wxstd.po.cpp:336
 msgid "CadetBlue"
-msgstr ""
+msgstr "カデット・ブルー"
 
 #: wxstd.po.cpp:337
 msgid "Chartreuse"
-msgstr ""
+msgstr "シャルトルーズ"
 
 #: wxstd.po.cpp:338
 msgid "Chocolate"
-msgstr ""
+msgstr "チョコレート"
 
 #: wxstd.po.cpp:339
 msgid "Coral"
-msgstr ""
+msgstr "コーラル"
 
 #: wxstd.po.cpp:340
 msgid "CornflowerBlue"
-msgstr ""
+msgstr "コーン・フラワーブルー"
 
 #: wxstd.po.cpp:341
 msgid "Cornsilk"
-msgstr ""
+msgstr "コーン・シルク"
 
 #: wxstd.po.cpp:342
 msgid "Crimson"
-msgstr ""
+msgstr "クリムゾン"
 
 #: wxstd.po.cpp:343
 msgid "Cyan"
-msgstr ""
+msgstr "シアン"
 
 #: wxstd.po.cpp:344
 msgid "DarkBlue"
-msgstr ""
+msgstr "ダーク・ブルー"
 
 #: wxstd.po.cpp:345
 msgid "DarkCyan"
-msgstr ""
+msgstr "ダーク・シアン"
 
 #: wxstd.po.cpp:346
 msgid "DarkGoldenRod"
-msgstr ""
+msgstr "ダーク・ゴールデンロッド"
 
 #: wxstd.po.cpp:347
 msgid "DarkGray"
-msgstr ""
+msgstr "ダーク・グレイ"
 
 #: wxstd.po.cpp:348
 msgid "DarkGreen"
-msgstr ""
+msgstr "ダーク・グリーン"
 
 #: wxstd.po.cpp:349
 msgid "DarkKhaki"
-msgstr ""
+msgstr "ダーク・カーキ"
 
 #: wxstd.po.cpp:350
 msgid "DarkMagenta"
-msgstr ""
+msgstr "ダーク・マゼンタ"
 
 #: wxstd.po.cpp:351
 msgid "DarkOliveGreen"
-msgstr ""
+msgstr "ダーク・オリーブグリーン"
 
 #: wxstd.po.cpp:352
 msgid "DarkOrchid"
-msgstr ""
+msgstr "ダーク・オーキッド"
 
 #: wxstd.po.cpp:353
 msgid "DarkRed"
-msgstr ""
+msgstr "ダーク・レッド"
 
 #: wxstd.po.cpp:354
 msgid "DarkSalmon"
-msgstr ""
+msgstr "ダークサーモン"
 
 #: wxstd.po.cpp:355
 msgid "DarkSeaGreen"
-msgstr ""
+msgstr "ダーク・シーグリーン"
 
 #: wxstd.po.cpp:356
 msgid "DarkSlateBlue"
-msgstr ""
+msgstr "ダーク・スレートブルー"
 
 #: wxstd.po.cpp:357
 msgid "DarkSlateGray"
-msgstr ""
+msgstr "ダーク・スレートグレイ"
 
 #: wxstd.po.cpp:358
 msgid "DarkTurquoise"
-msgstr ""
+msgstr "ダーク・ターコイズ"
 
 #: wxstd.po.cpp:359
 msgid "DarkViolet"
-msgstr ""
+msgstr "ダーク・バイオレット"
 
 #: wxstd.po.cpp:360
 msgid "Darkorange"
-msgstr ""
+msgstr "ダークオレンジ"
 
 #: wxstd.po.cpp:361
 msgid "DeepPink"
-msgstr ""
+msgstr "ディープ・ピンク"
 
 #: wxstd.po.cpp:362
 msgid "DeepSkyBlue"
-msgstr ""
+msgstr "ディープ・スカイブルー"
 
 #: wxstd.po.cpp:363
 msgid "DimGray"
-msgstr ""
+msgstr "ディム・グレイ"
 
 #: wxstd.po.cpp:364
 msgid "DodgerBlue"
-msgstr ""
+msgstr "ドジャー・ブルー"
 
 #: wxstd.po.cpp:365
 msgid "Feldspar"
-msgstr ""
+msgstr "長石"
 
 #: wxstd.po.cpp:366
 msgid "FireBrick"
-msgstr ""
+msgstr "ファイア・ブリック"
 
 #: wxstd.po.cpp:367
 msgid "FloralWhite"
-msgstr ""
+msgstr "フローラル・ホワイト"
 
 #: wxstd.po.cpp:368
 msgid "ForestGreen"
-msgstr ""
+msgstr "フォレスト・グリーン"
 
 #: wxstd.po.cpp:369
 msgid "Fuchsia"
-msgstr ""
+msgstr "フクシア"
 
 #: wxstd.po.cpp:370
 msgid "Gainsboro"
-msgstr ""
+msgstr "ゲインズボロ"
 
 #: wxstd.po.cpp:371
 msgid "GhostWhite"
-msgstr ""
+msgstr "ゴースト・ホワイト"
 
 #: wxstd.po.cpp:372
 msgid "Gold"
-msgstr ""
+msgstr "ゴールド"
 
 #: wxstd.po.cpp:373
 msgid "GoldenRod"
-msgstr ""
+msgstr "ゴールデン・ロッド"
 
 #: wxstd.po.cpp:374
 msgid "Gray"
-msgstr ""
+msgstr "グレイ"
 
 #: wxstd.po.cpp:375
 msgid "Green"
-msgstr ""
+msgstr "グリーン"
 
 #: wxstd.po.cpp:376
 msgid "GreenYellow"
-msgstr ""
+msgstr "グリーン・イエロー"
 
 #: wxstd.po.cpp:377
 msgid "HoneyDew"
-msgstr ""
+msgstr "ハニーデュー"
 
 #: wxstd.po.cpp:378
 msgid "HotPink"
-msgstr ""
+msgstr "ホット・ピンク"
 
 #: wxstd.po.cpp:379
 msgid "IndianRed"
-msgstr ""
+msgstr "インディア・ンレッド"
 
 #: wxstd.po.cpp:380
 msgid "Indigo"
-msgstr ""
+msgstr "インディゴ"
 
 #: wxstd.po.cpp:381
 msgid "Ivory"
-msgstr ""
+msgstr "アイボリー"
 
 #: wxstd.po.cpp:382
 msgid "Khaki"
-msgstr ""
+msgstr "カーキ"
 
 #: wxstd.po.cpp:383
 msgid "Lavender"
-msgstr ""
+msgstr "ラベンダー"
 
 #: wxstd.po.cpp:384
 msgid "LavenderBlush"
-msgstr ""
+msgstr "ラベンダーブラッシュ"
 
 #: wxstd.po.cpp:385
 msgid "LawnGreen"
-msgstr ""
+msgstr "ローン・グリーン"
 
 #: wxstd.po.cpp:386
 msgid "LemonChiffon"
-msgstr ""
+msgstr "レモン・シフォン"
 
 #: wxstd.po.cpp:387
 msgid "LightBlue"
-msgstr ""
+msgstr "ライト・ブルー"
 
 #: wxstd.po.cpp:388
 msgid "LightCoral"
-msgstr ""
+msgstr "ライト・コーラル"
 
 #: wxstd.po.cpp:389
 msgid "LightCyan"
-msgstr ""
+msgstr "ライト・シアン"
 
 #: wxstd.po.cpp:390
 msgid "LightGoldenRodYellow"
-msgstr ""
+msgstr "ライト・ゴールデンロッド・イエロー"
 
 #: wxstd.po.cpp:391
 msgid "LightGreen"
-msgstr ""
+msgstr "ライト・グリーン"
 
 #: wxstd.po.cpp:392
 msgid "LightGrey"
-msgstr ""
+msgstr "ライト・グレイ"
 
 #: wxstd.po.cpp:393
 msgid "LightPink"
-msgstr ""
+msgstr "ライト・ピンク"
 
 #: wxstd.po.cpp:394
 msgid "LightSalmon"
-msgstr ""
+msgstr "ライト・サーモン"
 
 #: wxstd.po.cpp:395
 msgid "LightSeaGreen"
-msgstr ""
+msgstr "ライト・シーグリーン"
 
 #: wxstd.po.cpp:396
 msgid "LightSkyBlue"
-msgstr ""
+msgstr "ライト・スカイブルー"
 
 #: wxstd.po.cpp:397
 msgid "LightSlateBlue"
-msgstr ""
+msgstr "ライト・スレートブルー"
 
 #: wxstd.po.cpp:398
 msgid "LightSlateGray"
-msgstr ""
+msgstr "ライト・スレートグレイ"
 
 #: wxstd.po.cpp:399
 msgid "LightSteelBlue"
-msgstr ""
+msgstr "ライト・スチールブルー"
 
 #: wxstd.po.cpp:400
 msgid "LightYellow"
-msgstr ""
+msgstr "ライト・イエロー"
 
 #: wxstd.po.cpp:401
 msgid "Lime"
-msgstr ""
+msgstr "ライム"
 
 #: wxstd.po.cpp:402
 msgid "LimeGreen"
-msgstr ""
+msgstr "ライム・グリーン"
 
 #: wxstd.po.cpp:403
 msgid "Linen"
-msgstr ""
+msgstr "リネン"
 
 #: wxstd.po.cpp:404
 msgid "Magenta"
-msgstr ""
+msgstr "マゼンタ"
 
 #: wxstd.po.cpp:405
 msgid "Maroon"
-msgstr ""
+msgstr "マルーン"
 
 #: wxstd.po.cpp:406
 msgid "MediumAquaMarine"
-msgstr ""
+msgstr "ミディアム・アクアマリン"
 
 #: wxstd.po.cpp:407
 msgid "MediumBlue"
-msgstr ""
+msgstr "ミディアム・ブルー"
 
 #: wxstd.po.cpp:408
 msgid "MediumOrchid"
-msgstr ""
+msgstr "ミディアム・オーキッド"
 
 #: wxstd.po.cpp:409
 msgid "MediumPurple"
-msgstr ""
+msgstr "ミディアム・パープル"
 
 #: wxstd.po.cpp:410
 msgid "MediumSeaGreen"
-msgstr ""
+msgstr "ミディアム・シーグリーン"
 
 #: wxstd.po.cpp:411
 msgid "MediumSlateBlue"
-msgstr ""
+msgstr "ミディアム・スレートブルー"
 
 #: wxstd.po.cpp:412
 msgid "MediumSpringGreen"
-msgstr ""
+msgstr "ミディアム・スプリング・グリーン"
 
 #: wxstd.po.cpp:413
 msgid "MediumTurquoise"
-msgstr ""
+msgstr "ミディアム・ターコイズ"
 
 #: wxstd.po.cpp:414
 msgid "MediumVioletRed"
-msgstr ""
+msgstr "ミディアム・バイオレッド・レッド"
 
 #: wxstd.po.cpp:415
 msgid "MidnightBlue"
-msgstr ""
+msgstr "ミッドナイト・ブルー"
 
 #: wxstd.po.cpp:416
 msgid "MintCream"
-msgstr ""
+msgstr "ミント・クリーム"
 
 #: wxstd.po.cpp:417
 msgid "MistyRose"
-msgstr ""
+msgstr "ミスティ・ローズ"
 
 #: wxstd.po.cpp:418
 msgid "Moccasin"
-msgstr ""
+msgstr "モカシン"
 
 #: wxstd.po.cpp:419
 msgid "NavajoWhite"
-msgstr ""
+msgstr "ナバホ・ホワイト"
 
 #: wxstd.po.cpp:420
 msgid "Navy"
-msgstr ""
+msgstr "ネイビー"
 
 #: wxstd.po.cpp:421
 msgid "OldLace"
-msgstr ""
+msgstr "オールド・レース"
 
 #: wxstd.po.cpp:422
 msgid "Olive"
-msgstr ""
+msgstr "オリーブ"
 
 #: wxstd.po.cpp:423
 msgid "OliveDrab"
-msgstr ""
+msgstr "オリーブ・ドラブ"
 
 #: wxstd.po.cpp:424
 msgid "Orange"
-msgstr ""
+msgstr "オレンジ"
 
 #: wxstd.po.cpp:425
 msgid "OrangeRed"
-msgstr ""
+msgstr "オレンジ・レッド"
 
 #: wxstd.po.cpp:426
 msgid "Orchid"
-msgstr ""
+msgstr "オーキッド"
 
 #: wxstd.po.cpp:427
 msgid "PaleGoldenRod"
-msgstr ""
+msgstr "パール・ゴールデン・ロッド"
 
 #: wxstd.po.cpp:428
 msgid "PaleGreen"
-msgstr ""
+msgstr "パール・グリーン"
 
 #: wxstd.po.cpp:429
 msgid "PaleTurquoise"
-msgstr ""
+msgstr "パール・ターコイズ"
 
 #: wxstd.po.cpp:430
 msgid "PaleVioletRed"
-msgstr ""
+msgstr "パール・バイオレッド・レッド"
 
 #: wxstd.po.cpp:431
 msgid "PapayaWhip"
-msgstr ""
+msgstr "パパイヤ・ホイップ"
 
 #: wxstd.po.cpp:432
 msgid "PeachPuff"
-msgstr ""
+msgstr "ピーチ・パフ"
 
 #: wxstd.po.cpp:433
 msgid "Peru"
-msgstr ""
+msgstr "ペルー"
 
 #: wxstd.po.cpp:434
 msgid "Pink"
-msgstr ""
+msgstr "ピンク"
 
 #: wxstd.po.cpp:435
 msgid "Plum"
-msgstr ""
+msgstr "プラム"
 
 #: wxstd.po.cpp:436
 msgid "PowderBlue"
-msgstr ""
+msgstr "パウダー・ブルー"
 
 #: wxstd.po.cpp:437
 msgid "Purple"
-msgstr ""
+msgstr "パープル"
 
 #: wxstd.po.cpp:438
 msgid "Red"
-msgstr ""
+msgstr "レッド"
 
 #: wxstd.po.cpp:439
 msgid "RosyBrown"
-msgstr ""
+msgstr "ロージー・ブラウン"
 
 #: wxstd.po.cpp:440
 msgid "RoyalBlue"
-msgstr ""
+msgstr "ロイヤル・ブルー"
 
 #: wxstd.po.cpp:441
 msgid "SaddleBrown"
-msgstr ""
+msgstr "サドル・ブラウン"
 
 #: wxstd.po.cpp:442
 msgid "Salmon"
-msgstr ""
+msgstr "サーモン"
 
 #: wxstd.po.cpp:443
 msgid "SandyBrown"
-msgstr ""
+msgstr "サンディ・ブラウン"
 
 #: wxstd.po.cpp:444
 msgid "SeaGreen"
-msgstr ""
+msgstr "シーグリーン"
 
 #: wxstd.po.cpp:445
 msgid "SeaShell"
-msgstr ""
+msgstr "シーシェル"
 
 #: wxstd.po.cpp:446
 msgid "Sienna"
-msgstr ""
+msgstr "シエナ"
 
 #: wxstd.po.cpp:447
 msgid "Silver"
-msgstr ""
+msgstr "シルバー"
 
 #: wxstd.po.cpp:448
 msgid "SkyBlue"
-msgstr ""
+msgstr "スカイブルー"
 
 #: wxstd.po.cpp:449
 msgid "SlateBlue"
-msgstr ""
+msgstr "スレート・ブルー"
 
 #: wxstd.po.cpp:450
 msgid "SlateGray"
-msgstr ""
+msgstr "スレート・グレイ"
 
 #: wxstd.po.cpp:451
 msgid "Snow"
-msgstr ""
+msgstr "スノウ"
 
 #: wxstd.po.cpp:452
 msgid "SpringGreen"
-msgstr ""
+msgstr "スプリング・グリーン "
 
 #: wxstd.po.cpp:453
 msgid "SteelBlue"
-msgstr ""
+msgstr "スチール・ブルー"
 
 #: wxstd.po.cpp:454
 msgid "Tan"
-msgstr ""
+msgstr "タン"
 
 #: wxstd.po.cpp:455
 msgid "Teal"
-msgstr ""
+msgstr "ティール"
 
 #: wxstd.po.cpp:456
 msgid "Thistle"
-msgstr ""
+msgstr "シスル"
 
 #: wxstd.po.cpp:457
 msgid "Tomato"
-msgstr ""
+msgstr "トマト"
 
 #: wxstd.po.cpp:458
 msgid "Turquoise"
-msgstr ""
+msgstr "ターコイズ"
 
 #: wxstd.po.cpp:459
 msgid "Violet"
-msgstr ""
+msgstr "バイオレット"
 
 #: wxstd.po.cpp:460
 msgid "VioletRed"
-msgstr ""
+msgstr "バイオレット・レッド"
 
 #: wxstd.po.cpp:461
 msgid "Wheat"
-msgstr ""
+msgstr "ウィート"
 
 #: wxstd.po.cpp:462
 msgid "White"
-msgstr ""
+msgstr "ホワイト"
 
 #: wxstd.po.cpp:463
 msgid "WhiteSmoke"
-msgstr ""
+msgstr "ホワイト・スモーク"
 
 #: wxstd.po.cpp:464
 msgid "Yellow"
-msgstr ""
+msgstr "イエロー"
 
 #: wxstd.po.cpp:465
 msgid "YellowGreen"
-msgstr ""
+msgstr "イエローグリーン"
 
 #: wxstd.po.cpp:466
 msgid "Plain Text"
-msgstr ""
+msgstr "プレーンテキスト"
 
 #: wxstd.po.cpp:467
 msgid "AngelScript"
-msgstr ""
+msgstr "AngelScript"
 
 #: wxstd.po.cpp:468
 msgid "ASCII Art"
-msgstr ""
+msgstr "アスキーアート"
 
 #: wxstd.po.cpp:469
 msgid "ASP(VBScript)"
-msgstr ""
+msgstr "ASP(VBScript)"
 
 #: wxstd.po.cpp:470
 msgid "awk"
-msgstr ""
+msgstr "awk"
 
 #: wxstd.po.cpp:471
 msgid "C#"
-msgstr ""
+msgstr "C#"
 
 #: wxstd.po.cpp:472
 msgid "C/C++"
-msgstr ""
+msgstr "C/C++"
 
 #: wxstd.po.cpp:473
 msgid "CSS"
-msgstr ""
+msgstr "CSS"
 
 #: wxstd.po.cpp:474
 msgid "D"
-msgstr ""
+msgstr "D"
 
 #: wxstd.po.cpp:475
 msgid "diff/patch"
-msgstr ""
+msgstr "差分/パッチ"
 
 #: wxstd.po.cpp:476
 msgid "DOS Batch"
-msgstr ""
+msgstr "DOS バッチ"
 
 #: wxstd.po.cpp:477
 msgid "Flash ActionScript"
-msgstr ""
+msgstr "Flash アクションスクリプト"
 
 #: wxstd.po.cpp:478
 msgid "Fortran 90"
-msgstr ""
+msgstr "Fortran 90"
 
 #: wxstd.po.cpp:479
 msgid "HTML"
-msgstr ""
+msgstr "HTML"
 
 #: wxstd.po.cpp:480
 msgid "Java"
-msgstr ""
+msgstr "Java"
 
 #: wxstd.po.cpp:481
 msgid "JavaScript"
-msgstr ""
+msgstr "JavaScript"
 
 #: wxstd.po.cpp:482
 msgid "JavaScript in HTML"
-msgstr ""
+msgstr "JavaScript (HTML内)"
 
 #: wxstd.po.cpp:483
 msgid "JSP"
-msgstr ""
+msgstr "JSP"
 
 #: wxstd.po.cpp:484
 msgid "Lua"
-msgstr ""
+msgstr "Lua"
 
 #: wxstd.po.cpp:485
 msgid "Pascal/Delphi"
-msgstr ""
+msgstr "Pascal/Delphi"
 
 #: wxstd.po.cpp:486
 msgid "Perl"
-msgstr ""
+msgstr "Perl"
 
 #: wxstd.po.cpp:487
 msgid "PHP"
-msgstr ""
+msgstr "PHP"
 
 #: wxstd.po.cpp:488
 msgid "Python"
-msgstr ""
+msgstr "Python"
 
 #: wxstd.po.cpp:489
 msgid "Ruby"
-msgstr ""
+msgstr "Ruby"
 
 #: wxstd.po.cpp:490
 msgid "SQL"
-msgstr ""
+msgstr "SQL"
 
 #: wxstd.po.cpp:491
 msgid "Squirrel"
-msgstr ""
+msgstr "Squirrel"
 
 #: wxstd.po.cpp:492
 msgid "TeX/LaTeX"
-msgstr ""
+msgstr "TeX/LaTeX"
 
 #: wxstd.po.cpp:493
 msgid "UNIX Configuration"
-msgstr ""
+msgstr "UNIX コンフィグレーション"
 
 #: wxstd.po.cpp:494
 msgid "UNIX Shell Script"
-msgstr ""
+msgstr "UNIX シェルスクリプト"
 
 #: wxstd.po.cpp:495
 msgid "Verilog"
-msgstr ""
+msgstr "Verilog"
 
 #: wxstd.po.cpp:496
 msgid "VHDL"
-msgstr ""
+msgstr "VHDL"
 
 #: wxstd.po.cpp:497
 msgid "Visual Basic"
-msgstr ""
+msgstr "Visual Basic"
 
 #: wxstd.po.cpp:498
 msgid "Windows Registry File"
-msgstr ""
+msgstr "Windows レジストリファイル"
 
 #: wxstd.po.cpp:499
 msgid "wxMEdit Syntax"
-msgstr ""
+msgstr "wxMEdit 構文"
 
 #: wxstd.po.cpp:500
 msgid "x86 Assembly"
-msgstr ""
+msgstr "x86 アセンブリ"
 
 #: wxstd.po.cpp:501
 msgid "XML"
-msgstr ""
+msgstr "XML"
 
 #: ../src/wxmedit/wxmedit_basic.cpp:583
 #, c-format
@@ -3408,11 +3408,11 @@ msgstr "OK でホームページに移動します"
 
 #: ../src/wxmedit_frame.cpp:4944
 msgid "wxMEdit, a cross-platform Text/Hex Editor"
-msgstr ""
+msgstr "wxMEdit, クロスプラットフォームのテキスト/Hex エディタ"
 
 #: ../src/wxmedit_frame.cpp:4947
 msgid "Press OK to visit the license online version.\n"
-msgstr ""
+msgstr "OK を押してライセンス、バージョンの確認(オンライン)\n"
 
 #: ../src/dialog/wxm_file_association_dialog.cpp:316
 msgid "File Type Associations"
@@ -3649,7 +3649,7 @@ msgstr "WxStaticTextBCName"
 #: ../src/dialog/wxm_highlighting_dialog.cpp:787
 #: ../src/dialog/wxm_highlighting_dialog.cpp:791
 msgid "(Automatic)"
-msgstr ""
+msgstr "(自動)"
 
 #: ../src/dialog/wxm_highlighting_dialog.cpp:887
 msgid "Cannot load this scheme."
@@ -4272,15 +4272,15 @@ msgstr "wxMEdit について..."
 
 #: ../src/dialog/wxmedit_about_dialog.cpp:69
 msgid "About"
-msgstr ""
+msgstr "情報"
 
 #: ../src/dialog/wxmedit_about_dialog.cpp:70
 msgid "License"
-msgstr ""
+msgstr "ライセンス"
 
 #: ../src/wxm_printout.h:19
 msgid "wxMEdit Printout"
-msgstr ""
+msgstr "wxMEdit プリントアウト"
 
 #: ../src/xm/wx_recent_list.cpp:67
 msgid "[EMPTY]"
