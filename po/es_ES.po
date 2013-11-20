@@ -36,10 +36,10 @@
 #: ../src/dialog/wxm_options_dialog.cpp:659
 msgid ""
 msgstr ""
-"Project-Id-Version: wxMEdit 2.9.5\n"
+"Project-Id-Version: wxMEdit 2.9.6\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-11-19 22:03+0800\n"
-"PO-Revision-Date: 2013-09-11 13:38+0100\n"
+"PO-Revision-Date: 2013-11-19 12:11+0100\n"
 "Last-Translator: \n"
 "Language-Team:  <carlos1994sanchez@gmail.com>\n"
 "Language: Español\n"
@@ -3413,11 +3413,11 @@ msgstr "Pulse \"Aceptar\" para visitar nuestra página web."
 
 #: ../src/wxmedit_frame.cpp:4944
 msgid "wxMEdit, a cross-platform Text/Hex Editor"
-msgstr ""
+msgstr "wxMEdit, un editor de Texto/Hex multiplataforma"
 
 #: ../src/wxmedit_frame.cpp:4947
 msgid "Press OK to visit the license online version.\n"
-msgstr ""
+msgstr "Pulse Aceptar para visitar la versión en línea de la licencia.\n"
 
 #: ../src/dialog/wxm_file_association_dialog.cpp:316
 msgid "File Type Associations"
@@ -4287,11 +4287,11 @@ msgstr "Acerca de wxMEdit"
 
 #: ../src/dialog/wxmedit_about_dialog.cpp:69
 msgid "About"
-msgstr ""
+msgstr "Acerca de..."
 
 #: ../src/dialog/wxmedit_about_dialog.cpp:70
 msgid "License"
-msgstr ""
+msgstr "Licencia"
 
 #: ../src/wxm_printout.h:19
 msgid "wxMEdit Printout"
