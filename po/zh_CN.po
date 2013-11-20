@@ -36,10 +36,10 @@
 #: ../src/dialog/wxm_options_dialog.cpp:659
 msgid ""
 msgstr ""
-"Project-Id-Version: wxMEdit 2.9.5\n"
+"Project-Id-Version: wxMEdit 2.9.6\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-11-19 22:03+0800\n"
-"PO-Revision-Date: 2013-09-14 14:41+0800\n"
+"PO-Revision-Date: 2013-11-20 11:18+0800\n"
 "Last-Translator: JiaYanwei <wxmedit@gmail.com>\n"
 "Language-Team: wxMEdit <wxmedit@gmail.com>\n"
 "Language: zh_CN\n"
@@ -3413,11 +3413,11 @@ msgstr "按“确定”访问 wxMEdit 主页。"
 
 #: ../src/wxmedit_frame.cpp:4944
 msgid "wxMEdit, a cross-platform Text/Hex Editor"
-msgstr ""
+msgstr "wxMEdit：跨平台的文本/十六进制编辑器"
 
 #: ../src/wxmedit_frame.cpp:4947
 msgid "Press OK to visit the license online version.\n"
-msgstr ""
+msgstr "按“确定”访问在线版授权许可。\n"
 
 #: ../src/dialog/wxm_file_association_dialog.cpp:316
 msgid "File Type Associations"
@@ -4273,11 +4273,11 @@ msgstr "关于 wxMEdit"
 
 #: ../src/dialog/wxmedit_about_dialog.cpp:69
 msgid "About"
-msgstr ""
+msgstr "关于"
 
 #: ../src/dialog/wxmedit_about_dialog.cpp:70
 msgid "License"
-msgstr ""
+msgstr "授权许可"
 
 #: ../src/wxm_printout.h:19
 msgid "wxMEdit Printout"
