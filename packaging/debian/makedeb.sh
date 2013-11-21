@@ -11,4 +11,5 @@ cp control copyright menu rules "$DEBIAN_DIR"
 echo '1.0' > "$DEBSOURCE_DIR/format"
 echo 8 > "$DEBIAN_DIR/compat"
 cd "$TOP_DIR"
+touch aclocal.m4 configure Makefile.in config.h.in
 dpkg-buildpackage

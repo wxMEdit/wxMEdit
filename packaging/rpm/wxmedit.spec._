@@ -1,7 +1,7 @@
-%define release 2
+%define release @REL@
 %define prefix /usr
 %define name wxmedit
-%define version 2.9.5
+%define version @VER@
 
 
 Summary: wxMEdit: Cross-platform Text/Hex Editor, a fork of MadEdit
@@ -16,7 +16,7 @@ Source0: %{name}-%{version}.tar.gz
 Packager: JiaYanwei <wxmedit@gmail.com>
 BuildRoot: %{_builddir}/%{name}-%{version}-root
 
-BuildRequires: gtk2-devel >= 2.6.0, boost >= 1.34, wxGTK-devel >= 2.8.0, wxGTK-devel < 2.9.0, libicu-devel >= 4.2.1
+BuildRequires: gtk2-devel >= 2.6.0, boost-devel >= 1.34, wxGTK-devel >= 2.8.0, wxGTK-devel < 2.9.0, libicu-devel >= 4.2.1
 Requires: gtk2 >= 2.6.0, wxGTK >= 2.8.0, wxGTK < 2.9.0, libicu >= 4.2.1
 
 Docdir: %{prefix}/share/doc
