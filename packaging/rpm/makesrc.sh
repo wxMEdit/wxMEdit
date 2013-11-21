@@ -18,7 +18,7 @@ release=`echo "$ver" | sed 's/^.*-//'`
 sedcmd_ver="s/@VER@/$verbase/;s/@REL@/$release/"
 
 SRCPARENTDIR="$SRCBASEDIR/.."
-SRCVERDIR="$SRCPARENTDIR/wxmedit-$verbase-$release"
+SRCVERDIR="$SRCPARENTDIR/wxmedit-$verbase"
 
 mkdir -p "$SRCVERDIR"
 /bin/cp -Rf "$SRCBASEDIR/"* "$SRCVERDIR"
@@ -44,7 +44,7 @@ sed -f static_spec.sed wxmedit.spec > wxmedit-static.spec
 
 cd "$NEW_SRCPARENTDIR"
 
-SRCPACKDIR="wxmedit-$verbase-$release"
+SRCPACKDIR="wxmedit-$verbase"
 SRCPACK="$SRCPACKDIR.tar.gz"
 
 tar -czvf "$SRCPACK" "$SRCPACKDIR"
