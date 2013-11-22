@@ -44,7 +44,7 @@
 2013-05-12 19:20:49 +0800 JiaYanwei <wxmedit@gmail.com>
 
 	* wxMEdit v2.9.2:
-	 1. application icon: added 16x16, 32x32 and 256x156 resolutions.
+	 1. application icon: added 16x16, 32x32 and 256x256 resolutions.
 	 2. removed standalone tool image2xpm.
 	 3. fixed crash when hex-replacing a not-empty string with empty by "Replace All".
 	 4. fixed crash when hex-searching a blank string.
