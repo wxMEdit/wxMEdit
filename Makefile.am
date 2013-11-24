@@ -132,8 +132,8 @@ wxmedit_test_LDFLAGS = @TESTLIBS@
 pixmapsdir = $(datadir)/pixmaps
 pixmaps_DATA = wxmedit.png
 
-wxmedit.desktop: wxmedit.desktop._ Makefile
-	sed "s#@pixmapsdir@#$(pixmapsdir)#" wxmedit.desktop._ > $@
+wxmedit.desktop: $(top_srcdir)/wxmedit.desktop._ Makefile
+	sed "s#@pixmapsdir@#$(pixmapsdir)#" $(top_srcdir)/wxmedit.desktop._ > $@
 
 CLEANFILES = wxmedit.desktop
 
