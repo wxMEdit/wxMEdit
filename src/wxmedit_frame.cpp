@@ -137,7 +137,7 @@
 #endif
 
 
-wxString g_wxMEdit_Version(wxT("wxMEdit v2.9.5"));
+wxString g_wxMEdit_Version(wxT("wxMEdit v2.9.6"));
 
 wxString g_wxMEdit_Homepage_URL(wxT("http://code.google.com/p/wxmedit/"));
 wxString g_wxMEdit_License_URL(wxT("http://www.gnu.org/licenses/gpl-3.0.html"));

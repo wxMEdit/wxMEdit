@@ -1,3 +1,22 @@
+2013-09-12 21:38:09 +0800 JiaYanwei <wxmedit@gmail.com>
+
+	* wxMEdit v2.9.6:
+	 1. improved Mac OS X support.
+	 2. redesigned all dialogs with wxSmith and fixed dialog size problems.
+	 3. refactored Encoding Detector and fixed encoding detection problems.
+	 4. fixed hex mode repaint problem under windows.
+	 5. fixed crash under Unix like OS when open Find In Files Result panel if the caret was in top several lines of text editing area.
+	 6. fixed wxWidgets error when remove file association.
+	 7. updated RPM, debian and FreeBSD packaging files.
+	 8. fixed crash on restart if "Max line length before Line-Wrap" was set too large.
+	 9. improved build configurations.
+	10. updated Spanish translation by Carlos Sánchez <carlos1994sanchez@gmail.com>.
+	11. updated Japanese translation by Tilt <tiltstr@gmail.com>.
+	12. updated Simplified Chinese translation.
+	13. updated Traditional Chinese translation by Denir Li <denir.li@gmail.com>.
+	14. other minor changes.
+
+
 2013-09-12 14:53:59 +0800 JiaYanwei <wxmedit@gmail.com>
 
 	* wxMEdit v2.9.5-2:

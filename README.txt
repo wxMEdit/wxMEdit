@@ -1,5 +1,5 @@
                       ==================================
-                                wxMEdit v2.9.5-2+
+                                wxMEdit v2.9.6
                       ==================================
 About:
 -----
@@ -80,30 +80,38 @@ Syntax files, Locale files and Settings:
 
 ChangeLog:
 ----------
+wxMEdit v2.9.6
+  1. improved Mac OS X support.
+  2. redesigned all dialogs with wxSmith and fixed dialog size problems.
+  3. refactored Encoding Detector and fixed encoding detection problems.
+  4. fixed hex mode repaint problem under windows.
+  5. fixed crash under Unix like OS when open Find In Files Result panel if the caret was in top several lines of text editing area.
+  6. fixed wxWidgets error when remove file association.
+  7. updated RPM, debian and FreeBSD packaging files.
+  8. fixed crash on restart if "Max line length before Line-Wrap" was set too large.
+  9. improved build configurations.
+ 10. updated Spanish translation by Carlos Sánchez <carlos1994sanchez@gmail.com>.
+ 11. updated Japanese translation by Tilt <tiltstr@gmail.com>.
+ 12. updated Simplified Chinese translation.
+ 13. updated Traditional Chinese translation by Denir Li <denir.li@gmail.com>.
+ 14. other minor changes.
+
 wxMEdit v2.9.5-2:
-1.updated translations for "Printout" and Syntax Highlighting Settings.
-2.updated Spanish translation.
-3.added Spanish to language chooser of General Settings.
+  1.updated translations for "Printout" and Syntax Highlighting Settings.
+  2.updated Spanish translation.
+  3.added Spanish to language chooser of General Settings.
 
 wxMEdit v2.9.5:
-1.fixed crash when delete a character in a line which contains two or more characters with MadEdit/wxMEdit built with vc2010.
-2.fixed Fedora build and packing by Huaren Zhong <huaren.zhong@gmail.com>.
-3.fixed recent lists case sensitive and truncated in menu bug.
-4.fixed Double-byte conversion bug.
-5.changed EUC-JP implementation to meet CP20932.
-6.added CP850, CP852, CP855, KOI8-U, ISO-8859-16, Windows-1258 and GB18030 support.
-7.made more system encodings(e.g. Windows-1258) detectable.
-8.added Spanish translation by Carlos Sánchez <carlos1994sanchez@gmail.com>.
-9.updated Japanese translation by Tilt <tiltstr@gmail.com>.
-10.updated Chinese translations.
-
-wxMEdit v2.9.4:
-1.changed Unicode escape to ICU code point format {U+XXXX}-{U+XXXXXX}.
-2.introduced Bakefile building system and removed MSVC/MinGW building files.
-3.refactored encoding implementation.
-4.added test case for conversion between Unicode and Single-Byte Encodings.
-5.fixed incorrect conversion between Unicode and Single-Byte Encodings.
-6.added CP866 and KOI8-R support.
+  1.fixed crash when delete a character in a line which contains two or more characters with MadEdit/wxMEdit built with vc2010.
+  2.fixed Fedora build and packing by Huaren Zhong <huaren.zhong@gmail.com>.
+  3.fixed recent lists case sensitive and truncated in menu bug.
+  4.fixed Double-byte conversion bug.
+  5.changed EUC-JP implementation to meet CP20932.
+  6.added CP850, CP852, CP855, KOI8-U, ISO-8859-16, Windows-1258 and GB18030 support.
+  7.made more system encodings(e.g. Windows-1258) detectable.
+  8.added Spanish translation by Carlos Sánchez <carlos1994sanchez@gmail.com>.
+  9.updated Japanese translation by Tilt <tiltstr@gmail.com>.
+ 10.updated Chinese translations.
 
 See file ChangeLog for more changes.
 
