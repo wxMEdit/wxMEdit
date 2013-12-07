@@ -10,6 +10,7 @@ export TOPDIR=../..
 	touch aclocal.m4 configure Makefile.in config.h.in
 	./configure --prefix="$PREFIX" --with-wx-config=wxgtk2u-2.8-config --with-boost-lib-suffix=''
 	make
+	strip wxmedit
 	sudo make install
 	DOCDIR="$PREFIX/share/doc/wxmedit"
 	sudo mkdir -p "$DOCDIR"
