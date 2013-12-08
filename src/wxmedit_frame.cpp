@@ -1534,7 +1534,7 @@ CommandData CommandTable[]=
 
     // Help
     { 0, 0, 0, 0, _("&Help"), 0, wxITEM_NORMAL, 0, &g_Menu_Help, 0},
-    { 0, 1, menuAbout, wxT("menuAbout"), _("&About wxMEdit..."), wxT(""),       wxITEM_NORMAL, wxmedit_16x15_xpm_idx, 0, wxT("")},
+    { 0, 1, menuAbout, wxT("menuAbout"), _("&About wxMEdit..."), wxT(""),       wxITEM_NORMAL, wxmedit_16x15_xpm_idx, 0, _("Show about dialog")},
     // end menu
 
     // begin editor
