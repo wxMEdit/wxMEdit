@@ -296,7 +296,7 @@ struct MadLine
         while(true)
         {
             cnt=size;
-            if(pos+cnt > biter->m_Size) cnt=biter->m_Size-pos;
+            if(wxFileOffset(pos+cnt) > biter->m_Size) cnt=biter->m_Size-pos;
             biter->Get(pos, buf, cnt);
             if((size-=cnt)==0) break;
 

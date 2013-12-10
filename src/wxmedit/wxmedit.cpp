@@ -4194,7 +4194,7 @@ void MadEdit::CopyFileDataToMem(MadBlockIterator begin, MadBlockIterator end)
             do
             {
                 // now bs == BUFFER_SIZE;
-                if(BUFFER_SIZE > size)
+                if((wxFileOffset)BUFFER_SIZE > size)
                     bs = size;
 
                 begin->m_Data->Get(begin->m_Pos, TempBuffer, bs);
@@ -6256,10 +6256,10 @@ void MadEdit::OverwriteDataSingle(vector<wxFileOffset> &del_bpos, vector<wxFileO
                 for(;;)
                 {
                     size_t len=256*1024;
-                    if(len>size) len=size;
+                    if((wxFileOffset)len>size) len=size;
 
                     wxFileOffset ll=lit->m_Size- lpos;
-                    if(len>ll) len=ll;
+                    if((wxFileOffset)len>ll) len=ll;
 
                     if(len > buffer.size())
                     {

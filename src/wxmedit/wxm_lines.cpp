@@ -482,7 +482,7 @@ void MadFileData::Get(const wxFileOffset &pos, wxByte * buffer, size_t size)
     }
 
     idx = pos & BUFFER_BASE_MASK; //(pos >> BUFFER_BITS) << BUFFER_BITS;        //(pos / BUFFER_SIZE) * BUFFER_SIZE;
-    if(pos+size <= idx+BUFFER_SIZE)                    // wanted bytes in one block
+    if(wxFileOffset(pos+size) <= idx+BUFFER_SIZE)   // wanted bytes in one block
     {
         if(m_Buf1Pos>=0)
         {
@@ -2176,7 +2176,7 @@ void MadLines::RecountLineWidth(void)
                 {
                     wxASSERT(bracepos<=bpi->LinePos);
 
-                    if(bpi->LinePos==bracepos)
+                    if(bpi->LinePos==(wxFileOffset)bracepos)
                     {
                         bpi->XPos = rowidx.m_Width;
 

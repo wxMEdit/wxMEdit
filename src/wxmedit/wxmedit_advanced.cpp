@@ -310,7 +310,7 @@ void MadEdit::ConvertNewLineType(MadNewLineType type)
             if(m_CaretPos.linepos > len)
             {
                 len = m_CaretPos.linepos - len;
-                if(len>=newlinesize)
+                if(len>=(wxFileOffset)newlinesize)
                 {
                     wxFileOffset newlen= newlinesize - 1;
                     newCaretPos -= (len-newlen);
@@ -1709,7 +1709,7 @@ void MadEdit::SortLines(MadSortFlags flags, int beginline, int endline)
     std::vector<SortLineComp>::iterator slit = lines.begin();
     std::vector<SortLineComp>::iterator slitend = lines.end();
     std::vector<SortLineComp>::reverse_iterator slrit = lines.rbegin();
-    std::vector<SortLineComp>::reverse_iterator slritend = lines.rend();
+    //std::vector<SortLineComp>::reverse_iterator slritend = lines.rend();
     SortLineData *dupdata=NULL;
     do
     {
