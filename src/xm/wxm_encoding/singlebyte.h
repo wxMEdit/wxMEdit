@@ -40,6 +40,11 @@ struct CP437TableFixer: public OEMTableFixer
 	virtual void fix(ByteUnicodeArr& toutab, UnicodeByteMap& fromutab);
 };
 
+struct CP437ArtTableFixer: public CP437TableFixer
+{
+	virtual void fix(ByteUnicodeArr& toutab, UnicodeByteMap& fromutab);
+};
+
 struct CP852TableFixer: public OEMTableFixer
 {
 	virtual void fix(ByteUnicodeArr& toutab, UnicodeByteMap& fromutab);
@@ -85,7 +90,7 @@ protected:
 		delete m_icucnv; m_icucnv = NULL;
 	}
 
-	SingleByteEncodingTableFixer* CreateSingleByteEncodingTableFixer();
+	virtual SingleByteEncodingTableFixer* CreateSingleByteEncodingTableFixer();
 };
 
 struct WXMEncodingSingleByteISO646Compatible: public WXMEncodingSingleByte, public WXMEncodingDecoderISO646
@@ -118,10 +123,22 @@ struct WXMEncodingSingleByteNonISO646Compatible: public WXMEncodingSingleByte
 		return 0;
 	}
 
-private:
+protected:
 	friend WXMEncoding* WXMEncodingCreator::CreateWxmEncoding(ssize_t idx);
 	WXMEncodingSingleByteNonISO646Compatible(): WXMEncodingSingleByte() {}
 	~WXMEncodingSingleByteNonISO646Compatible() {}
+};
+
+struct WXMEncodingCP437Art: public WXMEncodingSingleByteNonISO646Compatible
+{
+	virtual SingleByteEncodingTableFixer* CreateSingleByteEncodingTableFixer()
+	{
+		return new CP437ArtTableFixer();
+	}
+private:
+	friend WXMEncoding* WXMEncodingCreator::CreateWxmEncoding(ssize_t idx);
+	WXMEncodingCP437Art(): WXMEncodingSingleByteNonISO646Compatible() {}
+	~WXMEncodingCP437Art() {}
 };
 
 };// namespace wxm

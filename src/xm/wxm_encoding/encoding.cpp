@@ -134,6 +134,7 @@ void WXMEncodingCreator::DoInit()
 	AddEncoding("Windows-1257", ENC_Windows_1257, wxT("Windows Baltic (CP 1257)"), etSingleByte, "CP1257");
 	AddEncoding("Windows-1258", ENC_Windows_1258, wxT("Windows Vietnamese (CP 1258)"), etSingleByte, "CP1258");
 	AddEncoding("CP437", ENC_CP437, wxT("Windows/DOS OEM (CP 437)"));
+	AddEncoding("CP437-Art", ENC_CP437_ART, wxT("CP437 for ASCII Art"), etCP437ART, "CP437");
 	AddEncoding("CP850", ENC_CP850, wxT("Windows/DOS OEM - Latin 1 (CP 850)"));
 	AddEncoding("CP852", ENC_CP852, wxT("Windows/DOS OEM - Latin 2 (CP 852)"));
 	AddEncoding("CP855", ENC_CP855, wxT("Windows/DOS OEM - Cyrillic (CP 855)"));
@@ -345,6 +346,9 @@ WXMEncoding* WXMEncodingCreator::CreateWxmEncoding(ssize_t idx)
 			break;
 		case etGB18030:
 			enc = new WXMEncodingGB18030();
+			break;
+		case etCP437ART:
+			enc = new WXMEncodingCP437Art();
 			break;
 	}
 

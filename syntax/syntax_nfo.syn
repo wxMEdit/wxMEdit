@@ -12,8 +12,8 @@ SpecialWordPrefix=
 IndentChar=
 UnindentChar=
 BracePair=
-# use cp437 to show ASCII characters
-Encoding=CP437
+# use cp437-Art to show graph characters
+Encoding=CP437-Art
 
 # System Predefined Color & Style
 TextColor=Black

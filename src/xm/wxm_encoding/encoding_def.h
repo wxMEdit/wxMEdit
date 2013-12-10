@@ -42,6 +42,7 @@ enum WXMEncodingID
 	ENC_Windows_1257,
 	ENC_Windows_1258,
 	ENC_CP437,
+	ENC_CP437_ART,
 	ENC_CP850,
 	ENC_CP852,
 	ENC_CP855,
