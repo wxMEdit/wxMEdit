@@ -30,7 +30,7 @@ const wxChar *SystemAttributesName[] = {
 };
 
 const wxChar *SystemAttributesColor[]= {
-    wxT("Black"), wxT("SaddleBrown"), wxT("Aqua"), wxT("Blue"), wxT("Red"), wxT("Teal"), wxT("Green"), wxT("Maroon"), wxT("White"), wxT("Fuchsia"), wxT("#\xC0\xFF\xFF")
+    wxT("Black"), wxT("SaddleBrown"), wxT("Aqua"), wxT("Blue"), wxT("Red"), wxT("Teal"), wxT("Green"), wxT("Maroon"), wxT("White"), wxT("Fuchsia"), wxT("#\x00\x00\xC0")
 };
 const wxChar *SystemAttributesBgColor[]= {
     wxT("White"), wxT(""), wxT(""), wxT(""), wxT(""), wxT(""), wxT(""), wxT(""), wxT("#\xA0\xA0\xA0"), wxT(""), wxT("")

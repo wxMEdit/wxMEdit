@@ -2199,27 +2199,26 @@ void MadEdit::PaintTextLines(wxDC *dc, const wxRect &rect, int toprow, int rowco
 
                     if ( m_Lines->m_LineList.IsBookmarked(lineiter) )
                     {
-                        dc->SetBrush( *wxTheBrushList->FindOrCreateBrush(wxColour(0,0,192)) );
-                        dc->DrawCircle( l + m_LineNumberAreaWidth/2, row_top + m_RowHeight/2,
-                                        m_RowHeight < 16 ? m_RowHeight/2 : 8 );
+                        dc->SetBrush( *wxTheBrushList->FindOrCreateBrush(m_Syntax->GetAttributes(aeBookmark)->color) );
+                        wxRect rect(0, row_top, m_LineNumberAreaWidth, m_RowHeight);
+                        double r = m_RowHeight < 18 ? 3.0 : m_RowHeight/6.0;
+                        dc->DrawRoundedRectangle(rect, r);
                     }
-                    else
+
+                    wxString s(wxT('%'));
+                    s += wxString::Format(wxT("%d"), ncount);
+                    s += wxT('d');
+                    s = wxString::Format(s, lineid);
+                    const wxChar *wcstr = s.c_str();
+
+                    dc->SetTextForeground(m_Syntax->nw_Color);
+                    dc->SetFont(*(m_Syntax->nw_Font));
+
+                    for(int i = 0; i < ncount; i++, l+=m_TextFontMaxDigitWidth)
                     {
-                        wxString s(wxT('%'));
-                        s += wxString::Format(wxT("%d"), ncount);
-                        s += wxT('d');
-                        s = wxString::Format(s, lineid);
-                        const wxChar *wcstr = s.c_str();
-
-                        dc->SetTextForeground(m_Syntax->nw_Color);
-                        dc->SetFont(*(m_Syntax->nw_Font));
-
-                        for(int i = 0; i < ncount; i++, l+=m_TextFontMaxDigitWidth)
+                        if(wcstr[i] != 0x20)
                         {
-                            if(wcstr[i] != 0x20)
-                            {
-                                dc->DrawText(wcstr[i], l, text_top);
-                            }
+                            dc->DrawText(wcstr[i], l, text_top);
                         }
                     }
                 }
