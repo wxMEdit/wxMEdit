@@ -571,7 +571,7 @@ public: // basic functions
     void SetEncoding(const wxString &encname);
     wxString GetEncodingName() { return m_Encoding->GetName(); }
     wxString GetEncodingDescription() { return m_Encoding->GetDescription(); }
-	bool IsUnicodeFile() { return m_Encoding->IsUnicodeEncoding(); }
+    bool IsUnicodeFile() { return m_Encoding->IsUnicodeEncoding(); }
 
     bool GetRecordCaretMovements() { return m_RecordCaretMovements; }
     void SetRecordCaretMovements(bool value);
@@ -865,6 +865,9 @@ public: // basic functions
     // return wxID_YES(Saved), wxID_NO(Not Saved), or wxID_CANCEL
     int Save(bool ask, const wxString &title, bool saveas);
 
+    void SetBookmark();
+    void GotoNextBookmark();
+    void GotoPreviousBookmark();
 public: // advanced functions
     void ConvertEncoding(const wxString &newenc, MadConvertEncodingFlag flag);
     void ConvertChinese(MadConvertEncodingFlag flag);

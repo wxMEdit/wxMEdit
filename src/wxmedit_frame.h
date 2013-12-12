@@ -1,4 +1,5 @@
 ///////////////////////////////////////////////////////////////////////////////
+// vim:         ts=4 sw=4 expandtab
 // Name:        wxmedit_frame.h
 // Description: Main frame of wxMEdit
 // Author:      madedit@gmail.com  (creator)
@@ -52,21 +53,21 @@ public:
         long style = MadEditFrame_STYLE);
     virtual ~MadEditFrame();
 public:
-		wxMenuBar *WxMenuBar1;
-		wxToolBar *WxToolBar1;
-		wxStatusBar *WxStatusBar1;
+        wxMenuBar *WxMenuBar1;
+        wxToolBar *WxToolBar1;
+        wxStatusBar *WxStatusBar1;
 
 public:
-	enum {
-		ID_WXTOOLBAR1 = 1005,
-		ID_WXSTATUSBAR1 = 1003,
+    enum {
+        ID_WXTOOLBAR1 = 1005,
+        ID_WXSTATUSBAR1 = 1003,
 
-		ID_NOTEBOOK, // for wxAuiNotebook m_Notebook
-		ID_OUTPUTNOTEBOOK,
-		ID_FINDINFILESRESULTS,
+        ID_NOTEBOOK, // for wxAuiNotebook m_Notebook
+        ID_OUTPUTNOTEBOOK,
+        ID_FINDINFILESRESULTS,
 
-		ID_DUMMY_VALUE_ //Dont Delete this DummyValue
-	}; //End of Enum
+        ID_DUMMY_VALUE_ //Dont Delete this DummyValue
+    }; //End of Enum
 
 public:
     wxMadAuiNotebook *m_Notebook;
@@ -95,6 +96,10 @@ public:
     void OnUpdateUI_MenuEditDeleteLine(wxUpdateUIEvent& event);
     void OnUpdateUI_MenuEditInsertTabChar(wxUpdateUIEvent& event);
     void OnUpdateUI_MenuEditInsertDateTime(wxUpdateUIEvent& event);
+
+    void OnUpdateUI_MenuEditToggleBookmark(wxUpdateUIEvent& event);
+    void OnUpdateUI_MenuEditGotoNextBookmark(wxUpdateUIEvent& event);
+    void OnUpdateUI_MenuEditGotoPreviousBookmark(wxUpdateUIEvent& event);
 
     void OnUpdateUI_Menu_CheckTextFile(wxUpdateUIEvent& event);
 
@@ -159,6 +164,10 @@ public:
     void OnEditSelectAll(wxCommandEvent& event);
     void OnEditInsertTabChar(wxCommandEvent& event);
     void OnEditInsertDateTime(wxCommandEvent& event);
+
+    void OnEditToggleBookmark(wxCommandEvent& event);
+    void OnEditGotoNextBookmark(wxCommandEvent& event);
+    void OnEditGotoPreviousBookmark(wxCommandEvent& event);
 
     void OnEditSortAscending(wxCommandEvent& event);
     void OnEditSortDescending(wxCommandEvent& event);
@@ -267,7 +276,7 @@ protected:
     void MadEditFrameClose(wxCloseEvent& event);
     void CreateGUIControls(void);
 
-	void OnNotebookPageChanging(wxAuiNotebookEvent& event);
+    void OnNotebookPageChanging(wxAuiNotebookEvent& event);
     void OnNotebookPageChanged(wxAuiNotebookEvent& event);
     void OnNotebookPageClosing(wxAuiNotebookEvent& event);
     void OnNotebookPageClosed(bool bZeroPage=false);//wxAuiNotebookEvent& event); //wxAUI doesn't support this event
@@ -327,6 +336,9 @@ enum { // menu id
     menuDeleteLine,
     menuInsertTabChar,
     menuInsertDateTime,
+    menuToggleBookmark,
+    menuGotoNextBookmark,
+    menuGotoPreviousBookmark,
     menuSort,
     menuSortAscending,
     menuSortDescending,

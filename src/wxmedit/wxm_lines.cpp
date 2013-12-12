@@ -14,6 +14,7 @@
 #include "wxm_syntax.h"
 #include "wxmedit.h"
 #include <wx/filename.h>
+#include <algorithm>
 
 #ifdef _DEBUG
 #include <crtdbg.h>
@@ -2495,7 +2496,7 @@ bool MadLines::PresetFileEncoding(const wxString& encoding, const wxByte* buf, s
         return true;
     }
 
-	return false;
+    return false;
 }
 
 void MadLines::SetFileEncoding(const wxString& encoding, const wxString& defaultenc, 
@@ -3239,3 +3240,146 @@ bool MadLines::SaveToFile(const wxString &filename, const wxString &tempdir)
     return true;
 }
 
+MadLineList::MadLineList()
+{
+}
+
+// Toggle or remove bookmark from given position.
+// If there is a bookmark on the given position, remove it. If there is not, add it.
+void MadLineList::SetBookmark( MadLineIterator position )
+{
+    if ( m_BookmarkList.empty() )
+    {
+        m_BookmarkList.push_front( position );
+        return;
+    }
+
+    MadBookmarkIterator bmkIter = find( m_BookmarkList.begin(), m_BookmarkList.end(), position );
+    if ( bmkIter != m_BookmarkList.end() )
+    {
+        m_BookmarkList.erase( bmkIter );   // we remove this bookmark
+        return;
+    }
+
+    // we keep the bookmarks sorted, we have to find out where to insert the new one
+
+    bmkIter = m_BookmarkList.begin();
+    MadLineIterator bookmark = *bmkIter;
+    MadLineIterator iter;
+
+    for ( iter = begin(); iter != end(); iter++ )
+    {
+        if ( iter == position )
+            break;
+
+        if ( iter == bookmark )
+        {
+            if ( ++bmkIter == m_BookmarkList.end() )
+                break;
+            bookmark = *bmkIter;
+        }
+    }
+
+    wxASSERT( iter != end() );
+    m_BookmarkList.insert( bmkIter, position );
+}
+
+
+// Return line number, or -1 if there are no bookmars.
+//
+int MadLineList::GetNextBookmark( MadLineIterator position )
+{
+    if ( m_BookmarkList.empty() )
+        return -1;
+
+    int lineNumFirstBmk = -1;
+    int lineNum = 1;
+    bool positionFound = false;
+
+    MadBookmarkIterator bmkIter = m_BookmarkList.begin();
+    MadLineIterator bookmark = *bmkIter;
+
+    MadLineIterator iter;
+    for ( iter = begin(); iter != end(); ++lineNum, ++iter )
+    {
+        if ( iter == bookmark )
+        {
+            if ( positionFound )
+                break;   // we found the next bookmark
+
+            if ( lineNumFirstBmk < 0 )
+                lineNumFirstBmk = lineNum;
+
+            if ( ++bmkIter == m_BookmarkList.end() )
+                return lineNumFirstBmk; // no more bookmarks, we return the position of the first one
+
+            bookmark = *bmkIter;
+        }
+        if ( iter == position )
+            positionFound = true;
+    }
+
+    wxASSERT( iter != end() );  // this can be triggered if bookmark list is not sorted
+    return lineNum;
+}
+
+
+// Return opposite line number (from the end to the beginning, i.e. the last line as N= 1),
+// or -1 if there are no bookmars.
+//
+int MadLineList::GetPreviousBookmark( MadLineIterator position )
+{
+    if ( m_BookmarkList.empty() )
+        return -1;
+
+    int lineNumFirstBmk = -1;
+    int lineNum = 1;
+    bool positionFound = false;
+
+    list<MadLineIterator>::reverse_iterator bmkIter = m_BookmarkList.rbegin();
+    MadLineIterator bookmark = *bmkIter;
+
+    list<MadLine>::reverse_iterator iter;
+    for ( iter = rbegin(); iter != rend(); ++lineNum, ++iter )
+    {
+        MadLineIterator frwiter = iter.base();
+        --frwiter;
+
+        if ( frwiter == bookmark )
+        {
+            if ( positionFound )
+                break;   // we found the next bookmark
+
+            if ( lineNumFirstBmk < 0 )
+                lineNumFirstBmk = lineNum;
+
+            if ( ++bmkIter == m_BookmarkList.rend() )
+                return lineNumFirstBmk; // no more bookmarks, we return the position of the first one
+
+            bookmark = *bmkIter;
+        }
+        if ( frwiter == position )
+            positionFound = true;
+    }
+
+    wxASSERT( iter != rend() );  // this can be triggered if bookmark list is not sorted
+    return lineNum;
+}
+
+
+MadLineIterator MadLineList::erase( MadLineIterator position )
+{
+    // using remove() is simpler, but we plan more sophisticated bookmars later
+    MadBookmarkIterator found = find( m_BookmarkList.begin(), m_BookmarkList.end(), position );
+    if ( found != m_BookmarkList.end() )
+        m_BookmarkList.erase( found );
+
+    return list<MadLine>::erase( position );
+}
+
+
+bool MadLineList::IsBookmarked( MadLineIterator position )
+{
+    MadBookmarkIterator found = find( m_BookmarkList.begin(), m_BookmarkList.end(), position );
+    return found != m_BookmarkList.end();
+}

@@ -2195,21 +2195,31 @@ void MadEdit::PaintTextLines(wxDC *dc, const wxRect &rect, int toprow, int rowco
 
                 if(displaylinenumber)
                 {
-                    wxString s(wxT('%'));
-                    s += wxString::Format(wxT("%d"), ncount);
-                    s += wxT('d');
-                    s = wxString::Format(s, lineid);
-                    const wxChar *wcstr = s.c_str();
-
-                    dc->SetTextForeground(m_Syntax->nw_Color);
-                    dc->SetFont(*(m_Syntax->nw_Font));
-
                     int l=rect.GetLeft();
-                    for(int i = 0; i < ncount; i++, l+=m_TextFontMaxDigitWidth)
+
+                    if ( m_Lines->m_LineList.IsBookmarked(lineiter) )
                     {
-                        if(wcstr[i] != 0x20)
+                        dc->SetBrush( *wxTheBrushList->FindOrCreateBrush(wxColour(0,0,192)) );
+                        dc->DrawCircle( l + m_LineNumberAreaWidth/2, row_top + m_RowHeight/2,
+                                        m_RowHeight < 16 ? m_RowHeight/2 : 8 );
+                    }
+                    else
+                    {
+                        wxString s(wxT('%'));
+                        s += wxString::Format(wxT("%d"), ncount);
+                        s += wxT('d');
+                        s = wxString::Format(s, lineid);
+                        const wxChar *wcstr = s.c_str();
+
+                        dc->SetTextForeground(m_Syntax->nw_Color);
+                        dc->SetFont(*(m_Syntax->nw_Font));
+
+                        for(int i = 0; i < ncount; i++, l+=m_TextFontMaxDigitWidth)
                         {
-                            dc->DrawText(wcstr[i], l, text_top);
+                            if(wcstr[i] != 0x20)
+                            {
+                                dc->DrawText(wcstr[i], l, text_top);
+                            }
                         }
                     }
                 }
@@ -2715,7 +2725,7 @@ void MadEdit::PrepareHexRowIndex(int toprow, int count)
     hexrowpos <<= 4;
     int idx = 0;
 
-	if(m_Encoding->IsSingleByteEncoding())
+    if(m_Encoding->IsSingleByteEncoding())
     {
         while(idx < count)
         {
@@ -4251,7 +4261,7 @@ MadLineIterator MadEdit::DeleteInsertData(wxFileOffset pos,
 
     if(bpos != pos) // separate bit
     {
-		MadBlock block_tmp = *bit;
+        MadBlock block_tmp = *bit;
         MadBlockIterator bit0 = blocks.insert(bit, block_tmp);
         bit0->m_Size = pos - bpos;
         headsize += bit0->m_Size;
@@ -8950,7 +8960,7 @@ void MadEdit::OnChar(wxKeyEvent& evt)
         if(m_IsWin98 && ucs4<0x100)
         {
             wxm::WXMEncoding *enc=wxm::WXMEncodingCreator::Instance().GetSystemEncoding();
-			if(enc->IsDoubleByteEncoding())
+            if(enc->IsDoubleByteEncoding())
             {
                 if(m_Win98LeadByte>=0)
                 {
@@ -10626,3 +10636,23 @@ int MadEdit::GetUCharType(ucs4_t uc)
     return 8;
 }
 
+void MadEdit::SetBookmark()
+{
+    m_Lines->m_LineList.SetBookmark( m_CaretPos.iter );
+    m_RepaintAll = true;
+    Refresh( false );
+}
+
+void MadEdit::GotoNextBookmark()
+{
+    int lineNum = m_Lines->m_LineList.GetNextBookmark( m_CaretPos.iter );
+    if ( lineNum > 0 )
+        GoToLine( lineNum );
+}
+
+void MadEdit::GotoPreviousBookmark()
+{
+    int lineNum = m_Lines->m_LineList.GetPreviousBookmark( m_CaretPos.iter );
+    if ( lineNum > 0 )
+        GoToLine( int(m_Lines->m_LineCount + 1) - lineNum );
+}

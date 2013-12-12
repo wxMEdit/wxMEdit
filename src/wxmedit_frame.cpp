@@ -1,4 +1,5 @@
 ///////////////////////////////////////////////////////////////////////////////
+// vim:         ts=4 sw=4 expandtab
 // Name:        wxm_edit_frame.cpp
 // Description: main frame of wxMEdit
 // Author:      madedit@gmail.com  (creator)
@@ -1009,6 +1010,9 @@ BEGIN_EVENT_TABLE(MadEditFrame,wxFrame)
 	EVT_UPDATE_UI(menuSelectAll, MadEditFrame::OnUpdateUI_Menu_CheckSize)
 	EVT_UPDATE_UI(menuInsertTabChar, MadEditFrame::OnUpdateUI_MenuEditInsertTabChar)
 	EVT_UPDATE_UI(menuInsertDateTime, MadEditFrame::OnUpdateUI_MenuEditInsertDateTime)
+	EVT_UPDATE_UI(menuToggleBookmark, MadEditFrame::OnUpdateUI_MenuEditToggleBookmark)
+	EVT_UPDATE_UI(menuGotoNextBookmark, MadEditFrame::OnUpdateUI_MenuEditGotoNextBookmark)
+	EVT_UPDATE_UI(menuGotoPreviousBookmark, MadEditFrame::OnUpdateUI_MenuEditGotoPreviousBookmark)
 	EVT_UPDATE_UI(menuSortAscending, MadEditFrame::OnUpdateUI_Menu_CheckTextFile)
 	EVT_UPDATE_UI(menuSortDescending, MadEditFrame::OnUpdateUI_Menu_CheckTextFile)
 	EVT_UPDATE_UI(menuSortAscendingCase, MadEditFrame::OnUpdateUI_Menu_CheckTextFile)
@@ -1106,6 +1110,9 @@ BEGIN_EVENT_TABLE(MadEditFrame,wxFrame)
 	EVT_MENU(menuSelectAll, MadEditFrame::OnEditSelectAll)
 	EVT_MENU(menuInsertTabChar, MadEditFrame::OnEditInsertTabChar)
 	EVT_MENU(menuInsertDateTime, MadEditFrame::OnEditInsertDateTime)
+	EVT_MENU(menuToggleBookmark, MadEditFrame::OnEditToggleBookmark)
+	EVT_MENU(menuGotoNextBookmark, MadEditFrame::OnEditGotoNextBookmark)
+	EVT_MENU(menuGotoPreviousBookmark, MadEditFrame::OnEditGotoPreviousBookmark)
 	EVT_MENU(menuSortAscending, MadEditFrame::OnEditSortAscending)
 	EVT_MENU(menuSortDescending, MadEditFrame::OnEditSortDescending)
 	EVT_MENU(menuSortAscendingCase, MadEditFrame::OnEditSortAscendingCase)
@@ -1272,6 +1279,12 @@ CommandData CommandTable[]=
                                                                                                                                                                  wxITEM_NORMAL,    -1,                0,                     _("Insert a Tab char at current position")},
 
     { ecInsertDateTime, 1, menuInsertDateTime,           wxT("menuInsertDateTime"),           _("Insert Dat&e and Time"),                   wxT("F7"),           wxITEM_NORMAL,    -1,                0,                     _("Insert date and time at current position")},
+
+    { 0,                1, 0,                            0,                                   0,                                            0,                   wxITEM_SEPARATOR, -1,                0,                     0},
+    { 0,                1, menuToggleBookmark,           wxT("menuToggleBookmark"),           _("Toggle/Remove Bookmark "),                 wxT("Ctrl-F2"),      wxITEM_NORMAL,    -1,                0,                     _("Toggle Bookmark at current line")},
+    { 0,                1, menuGotoNextBookmark,         wxT("menuGotoNextBookmark"),         _("Go To Next Bookmark"),                     wxT("F2"),           wxITEM_NORMAL,    -1,                0,                     _("Go to the next bookmark")},
+    { 0,                1, menuGotoPreviousBookmark,     wxT("menuGotoPreviousBookmark"),     _("Go To Previous Bookmark"),                 wxT("Shift-F2"),     wxITEM_NORMAL,    -1,                0,                     _("Go to the previous bookmark")},
+
     { 0,                1, 0,                            0,                                   0,                                            0,                   wxITEM_SEPARATOR, -1,                0,                     0},
     { 0,                1, menuAdvanced,                 wxT("menuAdvanced"),                 _("Ad&vanced"),                               0,                   wxITEM_NORMAL,    -1,                &g_Menu_Edit_Advanced, 0},
     { 0,                2, menuCopyAsHexString,          wxT("menuCopyAsHexString"),          _("Copy As &Hex String"),                     wxT(""),             wxITEM_NORMAL,    -1,                0,                     _("Copy the selection as hex-string")},
@@ -1966,7 +1979,7 @@ void MadEditFrame::CreateGUIControls(void)
     m_Config->SetPath(wxT("/RecentFiles"));
     m_RecentFiles->Load(*m_Config);
 
-	m_RecentEncodings=new wxRecentList(false, 9, menuRecentEncoding1);
+    m_RecentEncodings=new wxRecentList(false, 9, menuRecentEncoding1);
     m_RecentEncodings->UseMenu(g_Menu_View_Encoding);
     m_Config->SetPath(wxT("/RecentEncodings"));
     m_RecentEncodings->Load(*m_Config);
@@ -2309,7 +2322,7 @@ WXLRESULT MadEditFrame::MSWWindowProc(WXUINT message, WXWPARAM wParam, WXLPARAM 
 
 void MadEditFrame::OnNotebookPageChanging(wxAuiNotebookEvent& event)
 {
-	g_PrevPageID = event.GetOldSelection();
+    g_PrevPageID = event.GetOldSelection();
 }
 
 void MadEditFrame::OnNotebookPageChanged(wxAuiNotebookEvent& event)
@@ -2968,6 +2981,21 @@ void MadEditFrame::OnUpdateUI_MenuEditInsertDateTime(wxUpdateUIEvent& event)
     event.Enable(g_ActiveMadEdit!=NULL && g_ActiveMadEdit->GetEditMode()!=emHexMode);
 }
 
+void MadEditFrame::OnUpdateUI_MenuEditToggleBookmark(wxUpdateUIEvent& event)
+{
+    event.Enable( g_ActiveMadEdit != NULL );
+}
+
+void MadEditFrame::OnUpdateUI_MenuEditGotoPreviousBookmark(wxUpdateUIEvent& event)
+{
+    event.Enable( g_ActiveMadEdit != NULL );
+}
+
+void MadEditFrame::OnUpdateUI_MenuEditGotoNextBookmark(wxUpdateUIEvent& event)
+{
+    event.Enable( g_ActiveMadEdit != NULL );
+}
+
 void MadEditFrame::OnUpdateUI_Menu_CheckTextFile(wxUpdateUIEvent& event)
 {
     event.Enable(g_ActiveMadEdit!=NULL && g_ActiveMadEdit->GetEditMode()!=emHexMode);
@@ -3169,8 +3197,8 @@ void MadEditFrame::OnUpdateUI_MenuViewHexMode(wxUpdateUIEvent& event)
 
 void MadEditFrame::OnUpdateUI_MenuToolsByteOrderMark(wxUpdateUIEvent& event)
 {
-    if(g_ActiveMadEdit && g_ActiveMadEdit->IsTextFile()
-		&& g_ActiveMadEdit->IsUnicodeFile())      // unicode format
+    if(g_ActiveMadEdit && g_ActiveMadEdit->IsTextFile() &&
+       g_ActiveMadEdit->IsUnicodeFile())      // unicode format
     {
         event.Enable(true);
         if(g_ActiveMadEdit->HasBOM())
@@ -3615,6 +3643,24 @@ void MadEditFrame::OnEditInsertDateTime(wxCommandEvent& event)
 {
     if(g_ActiveMadEdit==NULL) return;
     g_ActiveMadEdit->InsertDateTime();
+}
+
+void MadEditFrame::OnEditToggleBookmark(wxCommandEvent& event)
+{
+    if ( g_ActiveMadEdit )
+        g_ActiveMadEdit->SetBookmark();
+}
+
+void MadEditFrame::OnEditGotoNextBookmark(wxCommandEvent& event)
+{
+    if ( g_ActiveMadEdit )
+        g_ActiveMadEdit->GotoNextBookmark();
+}
+
+void MadEditFrame::OnEditGotoPreviousBookmark(wxCommandEvent& event)
+{
+    if ( g_ActiveMadEdit )
+        g_ActiveMadEdit->GotoPreviousBookmark();
 }
 
 void MadEditFrame::OnEditSortAscending(wxCommandEvent& event)
@@ -4935,7 +4981,7 @@ void MadEditFrame::OnWindowNextWindow(wxCommandEvent& event)
 
 void MadEditFrame::OnHelpAbout(wxCommandEvent& event)
 {
-	g_wxMEdit_About_URL = g_wxMEdit_Homepage_URL;
+    g_wxMEdit_About_URL = g_wxMEdit_Homepage_URL;
     WXMAboutDialog dlg(this);
     dlg.TxtAbout->AppendText(g_wxMEdit_Version + wxT("\n\n") +
                             g_wxMEdit_Homepage_URL + wxT("\n\n") +
