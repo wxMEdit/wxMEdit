@@ -150,8 +150,7 @@ void MadEdit::ConvertEncoding(const wxString &newenc, MadConvertEncodingFlag fla
         return;
     }
 
-    wxFileOffset caretpos=m_CaretPos.pos;
-    int toprow=m_TopRow;
+    WXMLocations loc = SaveLocations();
 
     bool ignoreBOM=true;
 	wxm::WXMEncoding* enc = wxm::WXMEncodingCreator::Instance().CreateWxmEncoding(newenc);
@@ -193,7 +192,7 @@ void MadEdit::ConvertEncoding(const wxString &newenc, MadConvertEncodingFlag fla
         SetText(text);
     }
 
-    RestorePosition(caretpos, toprow);
+    RestoreLocations(loc);
 }
 
 void MadEdit::ConvertChinese(MadConvertEncodingFlag flag)
@@ -201,8 +200,7 @@ void MadEdit::ConvertChinese(MadConvertEncodingFlag flag)
     if(IsReadOnly() || !IsTextFile() || m_Lines->m_Size==0)
         return;
 
-    wxFileOffset caretpos=m_CaretPos.pos;
-    int toprow=m_TopRow;
+    WXMLocations loc = SaveLocations();
 
     wxString text, *ptext=NULL;
     GetText(text, false);
@@ -229,7 +227,7 @@ void MadEdit::ConvertChinese(MadConvertEncodingFlag flag)
         delete ptext;
     }
 
-    RestorePosition(caretpos, toprow);
+    RestoreLocations(loc);
 }
 
 void MadEdit::ConvertNewLineType(MadNewLineType type)

@@ -857,8 +857,17 @@ public: // basic functions
     bool Reload();
     // if the file is modified by another app, reload it.
     bool ReloadByModificationTime();
-    // restore pos in Reload(), ConvertEncoding()
-    void RestorePosition(wxFileOffset pos, int toprow);
+
+    struct WXMLocations
+    {
+        wxFileOffset pos;
+        int toprow;
+        std::vector<size_t> bmklinenums;
+    };
+
+    // save & restore caret position and bookmarks in Reload(), ConvertEncoding()
+    WXMLocations SaveLocations();
+    void RestoreLocations(const WXMLocations& loc);
 
     // write back to the original FileName;
     // if FileName is empty, ask the user to get filename

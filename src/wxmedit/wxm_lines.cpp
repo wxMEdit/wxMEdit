@@ -3383,3 +3383,45 @@ bool MadLineList::IsBookmarked( MadLineIterator position )
     MadBookmarkIterator found = find( m_BookmarkList.begin(), m_BookmarkList.end(), position );
     return found != m_BookmarkList.end();
 }
+
+std::vector<size_t> MadLineList::SaveBookmarkLineNumberList() const
+{
+    list<MadLineIterator>::const_iterator bmkIter = m_BookmarkList.begin();
+    list<MadLineIterator>::const_iterator bmkEnd = m_BookmarkList.end();
+
+    std::vector<size_t> linenums;
+    size_t linenum = 0;
+    for(list<MadLine>::const_iterator iter = begin(); bmkIter!=bmkEnd && iter!=end(); ++iter)
+    {
+        ++linenum;
+
+        if (*bmkIter != iter)
+            continue;
+
+        linenums.push_back(linenum);
+        ++bmkIter;
+    }
+
+    return linenums;
+}
+
+void MadLineList::RestoreBookmarkByLineNumberList(const std::vector<size_t>& linenums)
+{
+    if (linenums.empty())
+        return;
+
+    m_BookmarkList.clear();
+
+    size_t max_bmklinenum = *(linenums.rbegin());
+    size_t linenum = 0;
+    size_t i = 0;
+    for(MadLineIterator iter = begin(); linenum<max_bmklinenum && iter!=end(); ++iter)
+    {
+        ++linenum;
+        if (linenum < linenums[i])
+            continue;
+
+        m_BookmarkList.push_back(iter);
+        ++i;
+    }
+}

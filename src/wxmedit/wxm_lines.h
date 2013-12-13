@@ -333,6 +333,9 @@ public:
     int  GetPreviousBookmark( MadLineIterator position ); // return line number from the end to the beginning, or -1
     bool IsBookmarked( MadLineIterator position );
 
+    std::vector<size_t> SaveBookmarkLineNumberList() const;
+    void RestoreBookmarkByLineNumberList(const std::vector<size_t>& linenums);
+
     MadLineIterator erase( MadLineIterator position );
 
 private:

@@ -2135,13 +2135,12 @@ bool MadEdit::Reload()
         }
     }
 
-    int toprow=m_TopRow;
-    wxFileOffset oldCaretPos=m_CaretPos.pos;
+    WXMLocations loc = SaveLocations();
     MadEditMode editmode=m_EditMode;
 
     LoadFromFile(m_Lines->m_Name, m_Lines->m_Encoding->GetName());
     SetEditMode(editmode);
-    RestorePosition(oldCaretPos, toprow);
+    RestoreLocations(loc);
     return true;
 }
 
@@ -2175,17 +2174,31 @@ bool MadEdit::ReloadByModificationTime()
     return Reload();
 }
 
-void MadEdit::RestorePosition(wxFileOffset pos, int toprow)
+MadEdit::WXMLocations MadEdit::SaveLocations()
 {
-    if(pos > m_Lines->m_Size) pos=m_Lines->m_Size;
+    WXMLocations loc;
 
-    m_CaretPos.pos=pos;
+    loc.pos = m_CaretPos.pos;
+    loc.toprow = m_TopRow;
+    loc.bmklinenums = m_Lines->m_LineList.SaveBookmarkLineNumberList();
+
+    return loc;
+}
+
+void MadEdit::RestoreLocations(const WXMLocations& loc)
+{
+    m_Lines->m_LineList.RestoreBookmarkByLineNumberList(loc.bmklinenums);
+
+    m_CaretPos.pos=loc.pos;
+
+    if( m_CaretPos.pos > m_Lines->m_Size)
+         m_CaretPos.pos = m_Lines->m_Size;
 
     m_UpdateValidPos=-1;
     UpdateCaretByPos(m_CaretPos, m_ActiveRowUChars, m_ActiveRowWidths, m_CaretRowUCharPos);
     m_UpdateValidPos=0;
 
-    m_TopRow=toprow;
+    m_TopRow=loc.toprow;
 
     AppearCaret();
     UpdateScrollBarPos();
@@ -2919,7 +2932,7 @@ int MadEdit::ReplaceHexAll(const wxString &expr, const wxString &fmt,
     {
         del_bpos.push_back(bpos.pos);
         del_epos.push_back(epos.pos);
-		ins_data.push_back(fmthex.empty()? NULL: &fmthex[0]);
+        ins_data.push_back(fmthex.empty()? NULL: &fmthex[0]);
         ins_len.push_back(fmthex.size());
 
         if(bpos.iter!=epos.iter)
