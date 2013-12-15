@@ -379,7 +379,7 @@ bool MadEditApp::OnInit()
     }
 #endif
 
-    myFrame->Show(TRUE);
+    myFrame->Show(true);
 
 
 #if defined(__WXGTK__)
@@ -411,7 +411,7 @@ bool MadEditApp::OnInit()
         myFrame->OpenFile(wxEmptyString, false);
     }
 
-    return TRUE;
+    return true;
 }
 
 int MadEditApp::OnExit()

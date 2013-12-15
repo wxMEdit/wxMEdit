@@ -57,9 +57,9 @@ public:
     // clears wxTheClipboard and the system's clipboard if possible
     virtual void Clear();
 
-    // If primary == TRUE, use primary selection in all further ops,
-    // primary == FALSE resets it.
-    virtual void UsePrimarySelection(bool primary = TRUE)
+    // If primary == true, use primary selection in all further ops,
+    // primary == false resets it.
+    virtual void UsePrimarySelection(bool primary = true)
         { m_usePrimary = primary; }
     
     // implementation from now on
