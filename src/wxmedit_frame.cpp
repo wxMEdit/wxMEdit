@@ -586,7 +586,8 @@ public:
             wxString name(it->madedit->GetFileName());
             if(!name.IsEmpty())
             {
-                filelist.Append(name);
+                LineNumberList bmklns = it->madedit->SaveBookmarkLineNumberList();
+                filelist.Append(name, bmklns);
                 ++count;
             }
         }
@@ -691,9 +692,9 @@ void OnReceiveMessage(const wchar_t *msg, size_t size)
 
     FileList filelist(msg);
 
-    BOOST_FOREACH (const wxString& file, filelist.List())
+    BOOST_FOREACH (const FileList::FileDesc& fdesc, filelist.List())
     {
-        g_MainFrame->OpenFile(file, false);
+        g_MainFrame->OpenFile(fdesc.file, false, fdesc.bmklinenums);
     }
 }
 
@@ -2653,7 +2654,7 @@ int MadEditFrame::OpenedFileCount()
     return (int)m_Notebook->GetPageCount();
 }
 
-void MadEditFrame::OpenFile(const wxString &filename, bool mustExist)
+void MadEditFrame::OpenFile(const wxString &filename, bool mustExist, const LineNumberList& bmklns)
 {
     wxString title;
     if(filename.IsEmpty())
@@ -2776,6 +2777,8 @@ void MadEditFrame::OpenFile(const wxString &filename, bool mustExist)
         {
             // add filename, fontname, and encoding to recentlist
             m_RecentFiles->AddFileToHistory(filename);
+
+            madedit->RestoreBookmarkByLineNumberList(bmklns);
 
             bool rcp;
             m_Config->Read(wxT("/wxMEdit/RestoreCaretPos"), &rcp, true);

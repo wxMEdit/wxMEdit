@@ -10,6 +10,7 @@
 #define _WXM_LINES_H_
 
 #include "../xm/wxm_line_enc_adapter.h"
+#include "../xm/wxm_def.h"
 #include <wx/wxprec.h>
 
 #ifdef __BORLANDC__
@@ -333,8 +334,8 @@ public:
     int  GetPreviousBookmark( MadLineIterator position ); // return line number from the end to the beginning, or -1
     bool IsBookmarked( MadLineIterator position );
 
-    std::vector<size_t> SaveBookmarkLineNumberList() const;
-    void RestoreBookmarkByLineNumberList(const std::vector<size_t>& linenums);
+    LineNumberList SaveBookmarkLineNumberList() const;
+    void RestoreBookmarkByLineNumberList(const LineNumberList& linenums);
 
     MadLineIterator erase( MadLineIterator position );
 

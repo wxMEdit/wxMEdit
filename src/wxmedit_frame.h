@@ -11,6 +11,7 @@
 #define _WXMEDIT_FRAME_H_
 
 #include "xm/wx_recent_list.h"
+#include "xm/wxm_def.h"
 
 #include <wx/wxprec.h>
 #ifdef __BORLANDC__
@@ -264,7 +265,8 @@ private:
     bool m_PageClosing; // prevent from reentry of CloseFile(), OnNotebookPageClosing()
 public:
     int OpenedFileCount();
-    void OpenFile(const wxString &filename, bool mustExist); // if filename is empty, open a new file
+    // if filename is empty, open a new file
+    void OpenFile(const wxString &filename, bool mustExist, const LineNumberList& bmklns=LineNumberList());
     void CloseFile(int pageId);
     void CloseAllFiles(bool force);
     void MadEditFrameKeyDown(wxKeyEvent& event);

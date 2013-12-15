@@ -862,7 +862,7 @@ public: // basic functions
     {
         wxFileOffset pos;
         int toprow;
-        std::vector<size_t> bmklinenums;
+        LineNumberList bmklinenums;
     };
 
     // save & restore caret position and bookmarks in Reload(), ConvertEncoding()
@@ -916,6 +916,9 @@ public: // advanced functions
     void WordCount(bool selection, int &wordCount, int &charCount, int &spaceCount,
                    int &controlCount, int &fullWidthCount, int &lineCount,
                    wxArrayString *detail);
+
+    LineNumberList SaveBookmarkLineNumberList();
+    void RestoreBookmarkByLineNumberList(const LineNumberList& linenums);
 
 public:
     void SetOnSelectionChanged(OnSelectionChangedPtr func)

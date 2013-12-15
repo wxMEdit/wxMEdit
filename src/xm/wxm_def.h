@@ -11,10 +11,13 @@
 
 #include <wx/string.h>
 #include <wx/version.h>
+#include <vector>
 
 #if defined(__WXMSW__) && wxMAJOR_VERSION==2 && wxMINOR_VERSION==6
 # define wxOS_WINDOWS_9X wxWIN95
 #endif
+
+typedef std::vector<size_t> LineNumberList;
 
 namespace wxm
 {
@@ -31,4 +34,5 @@ namespace wxm
 	const long MINVAL_MAXLINELEN = 80;
 	const long MAXVAL_MAXLINELEN = 65536;
 }; // namespace wxm
+
 #endif //_WXM_DEF_H_

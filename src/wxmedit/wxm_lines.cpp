@@ -3384,12 +3384,12 @@ bool MadLineList::IsBookmarked( MadLineIterator position )
     return found != m_BookmarkList.end();
 }
 
-std::vector<size_t> MadLineList::SaveBookmarkLineNumberList() const
+LineNumberList MadLineList::SaveBookmarkLineNumberList() const
 {
     list<MadLineIterator>::const_iterator bmkIter = m_BookmarkList.begin();
     list<MadLineIterator>::const_iterator bmkEnd = m_BookmarkList.end();
 
-    std::vector<size_t> linenums;
+    LineNumberList linenums;
     size_t linenum = 0;
     for(list<MadLine>::const_iterator iter = begin(); bmkIter!=bmkEnd && iter!=end(); ++iter)
     {
@@ -3405,7 +3405,7 @@ std::vector<size_t> MadLineList::SaveBookmarkLineNumberList() const
     return linenums;
 }
 
-void MadLineList::RestoreBookmarkByLineNumberList(const std::vector<size_t>& linenums)
+void MadLineList::RestoreBookmarkByLineNumberList(const LineNumberList& linenums)
 {
     if (linenums.empty())
         return;

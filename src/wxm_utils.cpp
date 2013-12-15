@@ -17,6 +17,8 @@
 #include <wx/intl.h>
 #include <wx/tokenzr.h>
 
+#include <boost/foreach.hpp>
+
 #include <locale.h>
 
 #if defined(__WXMAC__)
@@ -236,17 +238,35 @@ wxString GetExecutablePath()
     return path;
 }
 
-void FileList::Append(const wxString& file)
+void FileList::Append(const wxString& file, const LineNumberList& bmklns)
 {
-    m_files += file + wxT('|');
-    m_filevec.push_back(file);
+    m_files += file + wxT("<");
+    BOOST_FOREACH (size_t ln, bmklns)
+        m_files << ln << wxT("<");
+    m_files += wxT("|");
+
+    m_filevec.push_back(FileDesc(file, bmklns));
 }
 
 void FileList::Init(const wxString& files)
 {
     m_files = files;
 
-    wxStringTokenizer tkz(files,  wxT('|'));
-    while (tkz.HasMoreTokens())
-         m_filevec.push_back(tkz.GetNextToken());
+    wxStringTokenizer tkzfiledescs(files,  wxT("|"));
+    while (tkzfiledescs.HasMoreTokens())
+    {
+        wxStringTokenizer tkz(tkzfiledescs.GetNextToken(), wxT("<"));
+
+        wxString file = tkz.GetNextToken();
+
+        LineNumberList bmklns;
+        while (tkz.HasMoreTokens())
+        {
+            unsigned long ln = 0;
+            if (tkz.GetNextToken().ToULong(&ln))
+                bmklns.push_back((size_t)ln);
+        }
+
+        m_filevec.push_back(FileDesc(file, bmklns));
+    }
 }

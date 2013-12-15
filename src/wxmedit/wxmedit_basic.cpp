@@ -2174,20 +2174,30 @@ bool MadEdit::ReloadByModificationTime()
     return Reload();
 }
 
+LineNumberList MadEdit::SaveBookmarkLineNumberList()
+{
+    return m_Lines->m_LineList.SaveBookmarkLineNumberList();
+}
+
+void MadEdit::RestoreBookmarkByLineNumberList(const LineNumberList& linenums)
+{
+    m_Lines->m_LineList.RestoreBookmarkByLineNumberList(linenums);
+}
+
 MadEdit::WXMLocations MadEdit::SaveLocations()
 {
     WXMLocations loc;
 
     loc.pos = m_CaretPos.pos;
     loc.toprow = m_TopRow;
-    loc.bmklinenums = m_Lines->m_LineList.SaveBookmarkLineNumberList();
+    loc.bmklinenums = SaveBookmarkLineNumberList();
 
     return loc;
 }
 
 void MadEdit::RestoreLocations(const WXMLocations& loc)
 {
-    m_Lines->m_LineList.RestoreBookmarkByLineNumberList(loc.bmklinenums);
+    RestoreBookmarkByLineNumberList(loc.bmklinenums);
 
     m_CaretPos.pos=loc.pos;
 

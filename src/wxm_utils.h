@@ -10,6 +10,8 @@
 #ifndef _WXM_UTILS_H_
 #define _WXM_UTILS_H_
 
+#include "xm/wxm_def.h"
+
 #include <wx/defs.h>
 #include <wx/string.h>
 #include <map>
@@ -40,14 +42,23 @@ struct FileList
         Init(wxString(files));
     }
 
-    void Append(const wxString& file);
+    void Append(const wxString& file, const LineNumberList& bmklns=LineNumberList());
 
     const wxString& String()
     {
         return m_files;
     }
 
-    typedef std::vector<wxString> FDescList;
+    struct FileDesc
+    {
+        wxString file;
+        LineNumberList bmklinenums;
+
+        FileDesc() {}
+        FileDesc(const wxString& f, const LineNumberList& lns) : file(f), bmklinenums(lns) {}
+    };
+
+    typedef std::vector<FileDesc> FDescList;
 
     const FDescList& List()
     {
