@@ -44,6 +44,8 @@
 #include <wx/printdlg.h>
 #include <wx/config.h>
 
+#include <boost/foreach.hpp>
+
 #include <algorithm>
 
 
@@ -573,9 +575,9 @@ public:
         return pages_list;
     }
 
-    int GetFilesList(wxString &files)
+    size_t GetFilesListForReload(FileList& filelist)
     {
-        int count = 0;
+        size_t count = 0;
         list<PageData> pages_list = GetPagesList();
         size_t page_count = pages_list.size();
         list<PageData>::iterator it = pages_list.begin();
@@ -584,11 +586,15 @@ public:
             wxString name(it->madedit->GetFileName());
             if(!name.IsEmpty())
             {
-                files += name;
-                files += wxT('|');
+                filelist.Append(name);
                 ++count;
             }
         }
+
+        wxString selname = g_ActiveMadEdit->GetFileName();
+        if(count>1 && !selname.IsEmpty())
+            filelist.Append(selname); // append selname to activate it
+
         return count;
     }
 
@@ -683,24 +689,12 @@ void OnReceiveMessage(const wchar_t *msg, size_t size)
 
     if(g_ActiveMadEdit) g_ActiveMadEdit->SetFocus();
 
-    // open the files
-    wxString file;
-    size_t len=size/sizeof(wchar_t);
+    FileList filelist(msg);
 
-    const wchar_t *pwc=msg;
-    for(size_t i=0;i<len && *pwc!=0 ;i++, pwc++)
+    BOOST_FOREACH (const wxString& file, filelist.List())
     {
-        if(*pwc=='|')
-        {
-            g_MainFrame->OpenFile(file, false);
-            file.clear();
-        }
-        else
-        {
-            file<<*pwc;
-        }
+        g_MainFrame->OpenFile(file, false);
     }
-
 }
 
 
@@ -2114,22 +2108,14 @@ void MadEditFrame::MadEditFrameClose(wxCloseEvent& event)
 
 
     // save ReloadFilesList
-    wxString files;
-    int count=int(m_Notebook->GetPageCount());
+    FileList filelist;
+    size_t count = m_Notebook->GetPageCount();
     bool bb=true;
     m_Config->Read(wxT("ReloadFiles"), &bb);
     if(bb && count>0)
-    {
-        count = m_Notebook->GetFilesList(files);
+        m_Notebook->GetFilesListForReload(filelist);
 
-        wxString selname = g_ActiveMadEdit->GetFileName();
-        if(count!=1 && !selname.IsEmpty())
-        {
-            files += selname; // append selname to activate it
-            files += wxT('|');
-        }
-    }
-    m_Config->Write(wxT("/wxMEdit/ReloadFilesList"), files );
+    m_Config->Write(wxT("/wxMEdit/ReloadFilesList"), filelist.String());
 
     m_Config->SetPath(wxT("/FileCaretPos"));
     g_FileCaretPosManager.Save(m_Config);

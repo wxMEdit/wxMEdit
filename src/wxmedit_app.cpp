@@ -1,4 +1,5 @@
 ///////////////////////////////////////////////////////////////////////////////
+// vim:         ts=4 sw=4 expandtab
 // Name:        wxmedit_app.cpp
 // Description:
 // Author:      madedit@gmail.com  (creator)
@@ -171,6 +172,78 @@ void DeleteConfig()
     wxFileConfig::Set(NULL);
 }
 
+bool OpenFilesInPrevInst(const wxString& flist)
+{
+#ifdef __WXMSW__
+    g_Mutex = CreateMutex(NULL, true, wxT("wxMEdit_App"));
+    if(GetLastError() != ERROR_ALREADY_EXISTS)
+        return false;
+
+    extern const wxChar *wxCanvasClassNameNR;    // class name of MadEditFrame
+    wxChar title[256]={0};
+    HWND prevapp = ::FindWindowEx(NULL, NULL, wxCanvasClassNameNR, NULL);
+    for(;;)                // find wxCanvasClassNameNR
+    {
+        if(prevapp)
+        {
+            int len = ::GetWindowText(prevapp, title, 256);
+            if(len>=8 && title[len-1]==wxT(' '))    // last wchar is space?
+            {
+                title[7]=0;
+                if(lstrcmp(title, wxT("wxMEdit"))==0) // compare first 7 wchars
+                    break;
+            }
+        }
+        else
+        {
+            Sleep(50);
+        }
+        prevapp =::FindWindowEx(NULL, prevapp, wxCanvasClassNameNR, NULL);
+    }
+
+    if(prevapp == NULL)
+        return false;
+
+   // send msg to the previous instance
+    WINDOWPLACEMENT wp;
+    wp.length=sizeof(WINDOWPLACEMENT);
+    GetWindowPlacement(prevapp, &wp);
+    if(wp.showCmd!=SW_SHOWMINIMIZED)
+    {
+        ::SetForegroundWindow(prevapp);
+    }
+
+    COPYDATASTRUCT cds =
+    {
+        (ULONG_PTR)prevapp,
+        DWORD((flist.length()+1)*sizeof(wxChar)),
+        (PVOID)(const wxChar*)flist.c_str()
+    };
+
+    ::SendMessage(prevapp, WM_COPYDATA, 0, (LPARAM) &cds);
+
+    g_DoNotSaveSettings = true;
+    DeleteConfig();
+
+	return true;
+#elif defined(__WXGTK__)
+    g_Display=GDK_DISPLAY();
+    g_MadEdit_atom = XInternAtom(g_Display, "g_wxMEdit_atom", False);
+    Window madedit_win;
+
+    if ((madedit_win=XGetSelectionOwner(g_Display, g_MadEdit_atom)) == None)
+        return false;
+
+	send_message(madedit_win, flist);
+
+    g_DoNotSaveSettings = true;
+    DeleteConfig();
+    return true;
+#else // not supported
+    return false;
+#endif
+}
+
 bool MadEditApp::OnInit()
 {
     wxFileName filename(GetExecutablePath());
@@ -192,13 +265,13 @@ bool MadEditApp::OnInit()
     //wxLogMessage(g_MadEditHomeDir);
 
 
-    // parse commandline to filenames, every file is with a trailing char '|', ex: filename1|filename2|
-    wxString filenames;
-    for(int i=1;i<argc;i++)
+    // parse commandline to filelist
+    FileList filelist;
+    for(int i=1; i<argc; i++)
     {
         wxFileName filename(argv[i]);
         filename.MakeAbsolute();
-        filenames += filename.GetFullPath() + wxT('|');
+        filelist.Append(filename.GetFullPath());
     }
 
 
@@ -213,75 +286,9 @@ bool MadEditApp::OnInit()
     bool bSingleInstance=true;
     cfg->Read(wxT("/wxMEdit/SingleInstance"), &bSingleInstance, true);
 
-    if(bSingleInstance)
-    {
-        // check SingleInstance and send filenames to previous MadEdit
-#ifdef __WXMSW__
-        g_Mutex = CreateMutex(NULL, true, wxT("wxMEdit_App"));
-        if(GetLastError() == ERROR_ALREADY_EXISTS)
-        {
-            extern const wxChar *wxCanvasClassNameNR;    // class name of MadEditFrame
-            wxChar title[256]={0};
-            HWND prevapp = ::FindWindowEx(NULL, NULL, wxCanvasClassNameNR, NULL);
-            for(;;)                // find wxCanvasClassNameNR
-            {
-                if(prevapp)
-                {
-                    int len = ::GetWindowText(prevapp, title, 256);
-                    if(len>=8 && title[len-1]==wxT(' '))    // last wchar is space?
-                    {
-                        title[7]=0;
-                        if(lstrcmp(title, wxT("wxMEdit"))==0) // compare first 7 wchars
-                            break;
-                    }
-                }
-                else
-                {
-                    Sleep(50);
-                }
-                prevapp =::FindWindowEx(NULL, prevapp, wxCanvasClassNameNR, NULL);
-            }
-
-            if(prevapp != NULL)   // send msg to the previous instance
-            {
-                WINDOWPLACEMENT wp;
-                wp.length=sizeof(WINDOWPLACEMENT);
-                GetWindowPlacement(prevapp, &wp);
-                if(wp.showCmd!=SW_SHOWMINIMIZED)
-                {
-                    ::SetForegroundWindow(prevapp);
-                }
-
-                COPYDATASTRUCT cds =
-                {
-                    (ULONG_PTR)prevapp,
-                    DWORD((filenames.length()+1)*sizeof(wxChar)),
-                    (PVOID)(const wxChar*)filenames.c_str()
-                };
-
-                ::SendMessage(prevapp, WM_COPYDATA, 0, (LPARAM) &cds);
-
-                g_DoNotSaveSettings = true;
-                DeleteConfig();
-                return false;
-            }
-        }
-#elif defined(__WXGTK__)
-        g_Display=GDK_DISPLAY();
-        g_MadEdit_atom = XInternAtom(g_Display, "g_wxMEdit_atom", False);
-        Window madedit_win;
-
-        if ((madedit_win=XGetSelectionOwner(g_Display, g_MadEdit_atom))!=None)
-        {
-            send_message(madedit_win, filenames);
-
-            g_DoNotSaveSettings = true;
-            DeleteConfig();
-            return false;
-        }
-#endif
-    }
-
+    // check SingleInstance and send filelist to previous instance
+    if(bSingleInstance && OpenFilesInPrevInst(filelist.String()))
+        return false;
 
 #ifdef __WXGTK__
     bool bDisableWarningMessage = true;
@@ -395,15 +402,12 @@ bool MadEditApp::OnInit()
     // reload files previously opened
     wxString files;
     cfg->Read(wxT("/wxMEdit/ReloadFilesList"), &files);
+    files += filelist.String();
+
     if(!files.IsEmpty())
     {
-        filenames = files + filenames;
-    }
-
-    if(!filenames.IsEmpty())
-    {
         // use OnReceiveMessage() to open the files
-        OnReceiveMessage(filenames.c_str(), (filenames.size()+1)*sizeof(wxChar));
+        OnReceiveMessage(files.c_str(), (files.size()+1)*sizeof(wxChar));
     }
 
     if(myFrame->OpenedFileCount()==0)

@@ -1,4 +1,5 @@
 ///////////////////////////////////////////////////////////////////////////////
+// vim:         ts=4 sw=4 expandtab
 // Name:        wxm_utils.cpp
 // Description: utility functions. collects from internet
 // Author:      madedit@gmail.com  (creator)
@@ -14,6 +15,8 @@
 #include <wx/filefn.h>
 #include <wx/filename.h>
 #include <wx/intl.h>
+#include <wx/tokenzr.h>
+
 #include <locale.h>
 
 #if defined(__WXMAC__)
@@ -233,3 +236,17 @@ wxString GetExecutablePath()
     return path;
 }
 
+void FileList::Append(const wxString& file)
+{
+    m_files += file + wxT('|');
+    m_filevec.push_back(file);
+}
+
+void FileList::Init(const wxString& files)
+{
+    m_files = files;
+
+    wxStringTokenizer tkz(files,  wxT('|'));
+    while (tkz.HasMoreTokens())
+         m_filevec.push_back(tkz.GetNextToken());
+}
