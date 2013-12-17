@@ -4231,7 +4231,7 @@ msgstr "計算字數"
 
 #: ../src/dialog/wxm_word_count_dialog.cpp:54
 msgid "Words"
-msgstr "字數"
+msgstr "詞數"
 
 #: ../src/dialog/wxm_word_count_dialog.cpp:56
 #: ../src/dialog/wxm_word_count_dialog.cpp:60
