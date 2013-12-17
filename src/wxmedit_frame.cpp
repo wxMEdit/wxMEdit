@@ -1586,6 +1586,9 @@ CommandData CommandTable[]=
     { ecTab,            -1, 0, 0, 0, 0, wxITEM_NORMAL , -1, 0, _("Insert one Tab char or indent lines")},
     { ecBackSpace,      -1, 0, 0, 0, 0, wxITEM_NORMAL , -1, 0, _("Delete one char to the left of the caret")},
 
+    { ecDelPrevWord,    -1, 0, 0, 0, 0, wxITEM_NORMAL , -1, 0, _("Delete a word left from the caret")},
+    { ecDelNextWord,    -1, 0, 0, 0, 0, wxITEM_NORMAL , -1, 0, _("Delete a word right from the caret")},
+
     { ecToggleInsertMode, -1, 0, 0, 0, 0, wxITEM_NORMAL , -1, 0, _("Toggle Insert/Overwrite Mode")},
 
     // end editor

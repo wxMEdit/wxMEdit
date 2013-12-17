@@ -9051,7 +9051,20 @@ void MadEdit::OnKeyDown(wxKeyEvent& evt)
             DoToggleWindow();
         }
 
-        ProcessCommand(cmd);
+        if ( cmd == ecDelPrevWord || cmd == ecDelNextWord )
+        {
+            if ( m_EditMode != emHexMode )
+            {
+                Freeze();
+                // if there is a selection, maybe some caret movement have to be done here:
+                // moving the caret before or after the current selection ?
+                ProcessCommand( cmd == ecDelPrevWord ? ecSelPrevWord : ecSelNextWord );
+                ProcessCommand( ecDelete );
+                Thaw();
+            }
+        }
+        else //--------------------------
+            ProcessCommand(cmd);
 
 #ifdef __WXMSW__
         if(key == int(evt.GetUnicodeKey()))

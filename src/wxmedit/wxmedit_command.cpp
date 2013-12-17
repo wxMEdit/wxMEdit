@@ -91,6 +91,9 @@ void MadKeyBindings::InitCommandTextMap()
     INSERT_COMMANDTEXT(ecDelete);
     INSERT_COMMANDTEXT(ecBackSpace);
 
+    INSERT_COMMANDTEXT(ecDelPrevWord);
+    INSERT_COMMANDTEXT(ecDelNextWord);
+
     INSERT_COMMANDTEXT(ecCutLine);
     INSERT_COMMANDTEXT(ecDeleteLine);
 
@@ -734,6 +737,10 @@ void MadKeyBindings::AddDefaultBindings(bool overwrite)
 
     Add(ShortCut(wxACCEL_NORMAL, WXK_DELETE),   ecDelete, overwrite);
     Add(ShortCut(wxACCEL_NORMAL, WXK_BACK),     ecBackSpace, overwrite);
+
+    Add(ShortCut(wxACCEL_CTRL, WXK_BACK),          ecDelPrevWord, overwrite);
+    Add(ShortCut(wxACCEL_CTRL, WXK_DELETE),        ecDelNextWord, overwrite);
+    Add(ShortCut(wxACCEL_CTRL, WXK_NUMPAD_DELETE), ecDelNextWord, overwrite);
 
     Add(ShortCut(wxACCEL_CTRL | wxACCEL_SHIFT, 'L'),  ecCutLine, overwrite);
     Add(ShortCut(wxACCEL_CTRL, 'L'),  ecDeleteLine, overwrite);

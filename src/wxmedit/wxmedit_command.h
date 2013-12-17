@@ -74,6 +74,8 @@ enum //MadEditCommand
     ecDelete,
     ecBackSpace,
 
+    ecDelPrevWord, ecDelNextWord,
+
     ecCutLine,
     ecDeleteLine,
 
