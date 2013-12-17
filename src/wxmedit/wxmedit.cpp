@@ -7689,12 +7689,10 @@ void MadEdit::ProcessCommand(MadEditCommand command)
                                 else
                                 {
                                     uctype = GetUCharType(ucp.first);
+                                    if(uctype == 1)
+                                        uctype0 = 1;
                                     if(uctype != uctype0)
-                                    {
-                                        //if(uctype != 1)
-                                            break;
-                                        //uctype0 = 1;
-                                    }
+                                        break;
                                 }
 
                                 m_CaretPos.pos += ucp.second;
