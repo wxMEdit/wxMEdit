@@ -24,6 +24,7 @@ WXMSearchDialog *g_SearchDialog=NULL;
 
 //(*IdInit(WXMSearchDialog)
 const long WXMSearchDialog::ID_WXCHECKBOXMOVEFOCUS = wxNewId();
+const long WXMSearchDialog::ID_WXCHECKBOXWRAPAROUND = wxNewId();
 const long WXMSearchDialog::ID_WXCHECKBOXCASESENSITIVE = wxNewId();
 const long WXMSearchDialog::ID_WXCHECKBOXWHOLEWORD = wxNewId();
 const long WXMSearchDialog::ID_WXCHECKBOXREGEX = wxNewId();
@@ -87,6 +88,9 @@ WXMSearchDialog::WXMSearchDialog(wxWindow* parent,wxWindowID id,const wxPoint& p
 	WxCheckBoxMoveFocus = new wxCheckBox(this, ID_WXCHECKBOXMOVEFOCUS, _("&Move Focus to Editor Window"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_WXCHECKBOXMOVEFOCUS"));
 	WxCheckBoxMoveFocus->SetValue(false);
 	BoxSizer5->Add(WxCheckBoxMoveFocus, 0, wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL, 2);
+	WxCheckBoxWrapAround = new wxCheckBox(this, ID_WXCHECKBOXWRAPAROUND, _("Wrap ar&ound"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_WXCHECKBOXWRAPAROUND"));
+	WxCheckBoxWrapAround->SetValue(true);
+	BoxSizer5->Add(WxCheckBoxWrapAround, 0, wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL, 2);
 	WxCheckBoxCaseSensitive = new wxCheckBox(this, ID_WXCHECKBOXCASESENSITIVE, _("&Case Sensitive"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_WXCHECKBOXCASESENSITIVE"));
 	WxCheckBoxCaseSensitive->SetValue(false);
 	BoxSizer5->Add(WxCheckBoxCaseSensitive, 0, wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL, 2);
@@ -247,6 +251,7 @@ void WXMSearchDialog::WxButtonFindNextClick(wxCommandEvent& event)
 
 		MadSearchResult sr;
 		wxFileOffset selend = g_ActiveMadEdit->GetSelectionEndPos();
+		wxFileOffset caretpos = g_ActiveMadEdit->GetCaretPosition();
 
 		wxInt64 from = 0, to = 0;
 		wxFileOffset rangeFrom = -1, rangeTo = -1;
@@ -264,7 +269,6 @@ void WXMSearchDialog::WxButtonFindNextClick(wxCommandEvent& event)
 			}
 
 			rangeTo = to;
-			wxFileOffset caretpos = g_ActiveMadEdit->GetCaretPosition();
 			if(caretpos <= from || caretpos > to)
 				rangeFrom = from;
 		}
@@ -294,17 +298,16 @@ void WXMSearchDialog::WxButtonFindNextClick(wxCommandEvent& event)
 				break;
 			}
 
-			wxString msg(_("Cannot find the matched string."));
-			msg += wxT("\n\n");
-			msg += WxCheckBoxSearchInSelection->IsChecked()?
-				_("Do you want to find from begin of selection?"):
-				_("Do you want to find from begin of file?");
-
-			if(wxCANCEL == wxMessageBox(msg, _("Find Next"), wxOK|wxCANCEL|wxICON_QUESTION ))
+			if (WxCheckBoxWrapAround->IsChecked() && rangeTo != caretpos)
 			{
-				break;
+				rangeTo = caretpos;
+				rangeFrom = WxCheckBoxSearchInSelection->IsChecked()? from : 0;
+				continue;
 			}
-			rangeFrom = WxCheckBoxSearchInSelection->IsChecked()? from : 0;
+
+			wxString msg(_("Cannot find the matched string."));
+			wxMessageBox(msg, _("Find Next"), wxOK|wxICON_WARNING);
+			break;
 		}
 	}
 
@@ -334,6 +337,7 @@ void WXMSearchDialog::WxButtonFindPrevClick(wxCommandEvent& event)
 
 		MadSearchResult sr;
 		wxFileOffset selbeg = g_ActiveMadEdit->GetSelectionBeginPos();
+		wxFileOffset caretpos = g_ActiveMadEdit->GetCaretPosition();
 
 		wxInt64 from = 0, to = 0;
 		wxFileOffset rangeFrom = -1, rangeTo = -1;
@@ -351,7 +355,6 @@ void WXMSearchDialog::WxButtonFindPrevClick(wxCommandEvent& event)
 			}
 
 			rangeFrom = from;
-			wxFileOffset caretpos = g_ActiveMadEdit->GetCaretPosition();
 			if(caretpos < from || caretpos >= to)
 				rangeTo = to;
 		}
@@ -381,17 +384,16 @@ void WXMSearchDialog::WxButtonFindPrevClick(wxCommandEvent& event)
 				break;
 			}
 
-			wxString msg(_("Cannot find the matched string."));
-			msg += wxT("\n\n");
-			msg += WxCheckBoxSearchInSelection->IsChecked()?
-				_("Do you want to find from end of selection?"):
-				_("Do you want to find from end of file?");
-
-			if(wxCANCEL==wxMessageBox(msg, _("Find Previous"), wxOK|wxCANCEL|wxICON_QUESTION ))
+			if (WxCheckBoxWrapAround->IsChecked() && rangeFrom != caretpos)
 			{
-				break;
+				rangeTo = WxCheckBoxSearchInSelection->IsChecked()? to: g_ActiveMadEdit->GetFileSize();
+				rangeFrom = caretpos;
+				continue;
 			}
-			rangeTo = WxCheckBoxSearchInSelection->IsChecked()? to: g_ActiveMadEdit->GetFileSize();
+
+			wxString msg(_("Cannot find the matched string."));
+			wxMessageBox(msg, _("Find Previous"), wxOK|wxICON_WARNING);
+			break;
 		}
 	}
 
@@ -488,6 +490,9 @@ void WXMSearchDialog::ReadWriteSettings(bool bRead)
 		m_Config->Read(wxT("/wxMEdit/SearchMoveFocus"), &bb, false);
 		WxCheckBoxMoveFocus->SetValue(bb);
 
+		m_Config->Read(wxT("/wxMEdit/SearchWrapAround"), &bb, false);
+		WxCheckBoxWrapAround->SetValue(bb);
+
 		m_Config->Read(wxT("/wxMEdit/SearchCaseSensitive"), &bb, false);
 		WxCheckBoxCaseSensitive->SetValue(bb);
 
@@ -514,6 +519,7 @@ void WXMSearchDialog::ReadWriteSettings(bool bRead)
 	else
 	{
 		m_Config->Write(wxT("/wxMEdit/SearchMoveFocus"), WxCheckBoxMoveFocus->GetValue());
+		m_Config->Write(wxT("/wxMEdit/SearchWrapAround"), WxCheckBoxWrapAround->GetValue());
 		m_Config->Write(wxT("/wxMEdit/SearchCaseSensitive"), WxCheckBoxCaseSensitive->GetValue());
 		m_Config->Write(wxT("/wxMEdit/SearchWholeWord"), WxCheckBoxWholeWord->GetValue());
 		m_Config->Write(wxT("/wxMEdit/SearchRegex"), WxCheckBoxRegex->GetValue());

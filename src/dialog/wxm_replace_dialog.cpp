@@ -24,6 +24,7 @@ WXMReplaceDialog *g_ReplaceDialog=NULL;
 
 //(*IdInit(WXMReplaceDialog)
 const long WXMReplaceDialog::ID_WXCHECKBOXMOVEFOCUS = wxNewId();
+const long WXMReplaceDialog::ID_WXCHECKBOXWRAPAROUND = wxNewId();
 const long WXMReplaceDialog::ID_WXCHECKBOXCASESENSITIVE = wxNewId();
 const long WXMReplaceDialog::ID_WXCHECKBOXWHOLEWORD = wxNewId();
 const long WXMReplaceDialog::ID_WXCHECKBOXREGEX = wxNewId();
@@ -77,6 +78,9 @@ WXMReplaceDialog::WXMReplaceDialog(wxWindow* parent,wxWindowID id,const wxPoint&
 	WxCheckBoxMoveFocus = new wxCheckBox(this, ID_WXCHECKBOXMOVEFOCUS, _("&Move Focus to Editor Window"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_WXCHECKBOXMOVEFOCUS"));
 	WxCheckBoxMoveFocus->SetValue(false);
 	BoxSizer6->Add(WxCheckBoxMoveFocus, 0, wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL, 2);
+	WxCheckBoxWrapAround = new wxCheckBox(this, ID_WXCHECKBOXWRAPAROUND, _("Wrap ar&ound"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_WXCHECKBOXWRAPAROUND"));
+	WxCheckBoxWrapAround->SetValue(true);
+	BoxSizer6->Add(WxCheckBoxWrapAround, 0, wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL, 2);
 	WxCheckBoxCaseSensitive = new wxCheckBox(this, ID_WXCHECKBOXCASESENSITIVE, _("&Case Sensitive"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_WXCHECKBOXCASESENSITIVE"));
 	WxCheckBoxCaseSensitive->SetValue(false);
 	BoxSizer6->Add(WxCheckBoxCaseSensitive, 0, wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL, 2);
@@ -268,6 +272,9 @@ void WXMReplaceDialog::ReadWriteSettings(bool bRead)
 		m_Config->Read(wxT("/wxMEdit/SearchMoveFocus"), &bb, false);
 		WxCheckBoxMoveFocus->SetValue(bb);
 
+		m_Config->Read(wxT("/wxMEdit/SearchWrapAround"), &bb, false);
+		WxCheckBoxWrapAround->SetValue(bb);
+
 		m_Config->Read(wxT("/wxMEdit/SearchCaseSensitive"), &bb, false);
 		WxCheckBoxCaseSensitive->SetValue(bb);
 
@@ -294,6 +301,7 @@ void WXMReplaceDialog::ReadWriteSettings(bool bRead)
 	else
 	{
 		m_Config->Write(wxT("/wxMEdit/SearchMoveFocus"), WxCheckBoxMoveFocus->GetValue());
+		m_Config->Write(wxT("/wxMEdit/SearchWrapAround"), WxCheckBoxWrapAround->GetValue());
 		m_Config->Write(wxT("/wxMEdit/SearchCaseSensitive"), WxCheckBoxCaseSensitive->GetValue());
 		m_Config->Write(wxT("/wxMEdit/SearchWholeWord"), WxCheckBoxWholeWord->GetValue());
 		m_Config->Write(wxT("/wxMEdit/SearchRegex"), WxCheckBoxRegex->GetValue());

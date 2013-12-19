@@ -31,6 +31,14 @@
 								<border>2</border>
 							</object>
 							<object class="sizeritem">
+								<object class="wxCheckBox" name="ID_WXCHECKBOXWRAPAROUND" variable="WxCheckBoxWrapAround" member="yes">
+									<label>Wrap ar&amp;ound</label>
+									<checked>1</checked>
+								</object>
+								<flag>wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
+								<border>2</border>
+							</object>
+							<object class="sizeritem">
 								<object class="wxCheckBox" name="ID_WXCHECKBOXCASESENSITIVE" variable="WxCheckBoxCaseSensitive" member="yes">
 									<label>&amp;Case Sensitive</label>
 								</object>

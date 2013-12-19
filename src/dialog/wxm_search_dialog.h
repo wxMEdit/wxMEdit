@@ -55,12 +55,14 @@ class WXMSearchDialog: public wxDialog
 		wxCheckBox* WxCheckBoxWholeWord;
 		wxButton* WxButtonCount;
 		wxCheckBox* WxCheckBoxRegex;
+		wxCheckBox* WxCheckBoxWrapAround;
 		//*)
 
 	protected:
 
 		//(*Identifiers(WXMSearchDialog)
 		static const long ID_WXCHECKBOXMOVEFOCUS;
+		static const long ID_WXCHECKBOXWRAPAROUND;
 		static const long ID_WXCHECKBOXCASESENSITIVE;
 		static const long ID_WXCHECKBOXWHOLEWORD;
 		static const long ID_WXCHECKBOXREGEX;
