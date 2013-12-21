@@ -542,14 +542,14 @@ void WXMSearchReplaceDialog::WXMSearchReplaceDialogKeyDown(wxKeyEvent& event)
 		return;
 	case WXK_RETURN:
 	case WXK_NUMPAD_ENTER:
-		if((wxButton*)this!=g_SearchReplaceDialog->WxButtonFindNext &&
-		   (wxButton*)this!=g_SearchReplaceDialog->WxButtonReplace &&
-		   (wxButton*)this!=g_SearchReplaceDialog->WxButtonReplaceAll &&
-		   (wxButton*)this!=g_SearchReplaceDialog->WxButtonClose)
+		if(this->GetClassInfo()->GetClassName()!=wxString(wxT("wxButton")))
 		{
 			wxCommandEvent e;
-			g_SearchReplaceDialog->WxButtonReplaceClick(e);
-			return; // no skip
+			wxButton* default_btn = static_cast<wxButton*>(g_SearchReplaceDialog->GetDefaultItem());
+			if(default_btn == g_SearchReplaceDialog->WxButtonReplace)
+				return g_SearchReplaceDialog->WxButtonReplaceClick(e); // no skip
+
+			return g_SearchReplaceDialog->WxButtonFindNextClick(e); // no skip
 		}
 		break;
 	case WXK_DOWN:
