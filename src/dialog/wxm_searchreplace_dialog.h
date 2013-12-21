@@ -17,12 +17,15 @@
 #include <wx/menu.h>
 #include <wx/textctrl.h>
 #include <wx/checkbox.h>
+#include <wx/statline.h>
 #include <wx/button.h>
 #include <wx/dialog.h>
 //*)
 
 #include <wx/fileconf.h>
 #include <wx/bmpbuttn.h>
+
+#include <map>
 
 extern const long ID_RECENTFINDTEXT1;
 extern const long ID_RECENTFINDTEXT20;
@@ -48,12 +51,14 @@ class WXMSearchReplaceDialog: public wxDialog
 		wxCheckBox* WxCheckBoxCaseSensitive;
 		wxCheckBox* WxCheckBoxSearchInSelection;
 		wxMenu WxPopupMenuRecentFindText;
+		wxStaticText* StaticTextStatus;
 		wxTextCtrl* WxEditTo;
 		wxButton* WxButtonClose;
 		wxTextCtrl* WxEditFrom;
 		wxMenu WxPopupMenuRecentReplaceText;
 		wxCheckBox* WxCheckBoxFindHex;
 		wxStaticText* WxStaticTextFrom;
+		wxStaticLine* StaticLine1;
 		wxCheckBox* WxCheckBoxWholeWord;
 		wxButton* WxButtonCount;
 		wxCheckBox* WxCheckBoxRegex;
@@ -82,6 +87,8 @@ class WXMSearchReplaceDialog: public wxDialog
 		static const long ID_WXBUTTONREPLACEALL;
 		static const long ID_WXBUTTONREPLACEEXPAND;
 		static const long ID_WXBUTTONCLOSE;
+		static const long ID_STATICLINE1;
+		static const long ID_STATICTEXTSTATUS;
 		//*)
 
 		static const long ID_MADEDIT1;
@@ -99,6 +106,27 @@ class WXMSearchReplaceDialog: public wxDialog
 		void UpdateCheckBoxByCBHex(bool check);
 		void UpdateSearchInSelection(bool check);
 
+		bool ShowOnlyFindFunc();
+		bool ShowWithReplaceFunc();
+
+		virtual bool Show(bool show)
+		{
+			if (!show)
+				ResetMessage();
+
+			return wxDialog::Show(show);
+		}
+	private:
+		enum SearchMsgType
+		{
+			SMT_INFORMATION,
+			SMT_NOTICE,
+			SMT_WARNING,
+		};
+		std::map<int, wxColor> m_msgtypecolor_map;
+		wxColor GetMessageColor(SearchMsgType type);
+		void ResetMessage();
+		void ShowMessage(const wxString& msg, SearchMsgType type=SMT_INFORMATION);
 	//private:
 	public:
 		//(*Handlers(WXMSearchReplaceDialog)
@@ -121,9 +149,6 @@ class WXMSearchReplaceDialog: public wxDialog
 		void WxBitmapButtonRecentReplaceTextClick(wxCommandEvent& event);
 		void OnRecentFindText(wxCommandEvent& event);
 		void OnRecentReplaceText(wxCommandEvent& event);
-
-		bool ShowOnlyFindFunc();
-		bool ShowWithReplaceFunc();
 
 		DECLARE_EVENT_TABLE()
 };

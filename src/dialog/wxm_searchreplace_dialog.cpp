@@ -40,6 +40,8 @@ const long WXMSearchReplaceDialog::ID_WXBUTTONREPLACE = wxNewId();
 const long WXMSearchReplaceDialog::ID_WXBUTTONREPLACEALL = wxNewId();
 const long WXMSearchReplaceDialog::ID_WXBUTTONREPLACEEXPAND = wxNewId();
 const long WXMSearchReplaceDialog::ID_WXBUTTONCLOSE = wxNewId();
+const long WXMSearchReplaceDialog::ID_STATICLINE1 = wxNewId();
+const long WXMSearchReplaceDialog::ID_STATICTEXTSTATUS = wxNewId();
 //*)
 
 const long WXMSearchReplaceDialog::ID_MADEDIT1 = wxNewId();
@@ -79,6 +81,7 @@ WXMSearchReplaceDialog::WXMSearchReplaceDialog(wxWindow* parent,wxWindowID id,co
 	wxBoxSizer* BoxSizer6;
 	wxBoxSizer* BoxSizer5;
 	wxBoxSizer* BoxSizer7;
+	wxBoxSizer* BoxSizer8;
 	wxBoxSizer* BoxSizer2;
 	wxBoxSizer* BoxSizer1;
 	wxBoxSizer* BoxSizer3;
@@ -86,7 +89,8 @@ WXMSearchReplaceDialog::WXMSearchReplaceDialog(wxWindow* parent,wxWindowID id,co
 	Create(parent, id, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxCAPTION|wxSYSTEM_MENU|wxRESIZE_BORDER|wxCLOSE_BOX|wxDIALOG_NO_PARENT, _T("id"));
 	SetClientSize(wxDefaultSize);
 	Move(wxDefaultPosition);
-	BoxSizer1 = new wxBoxSizer(wxHORIZONTAL);
+	BoxSizer1 = new wxBoxSizer(wxVERTICAL);
+	BoxSizer8 = new wxBoxSizer(wxHORIZONTAL);
 	BoxSizer2 = new wxBoxSizer(wxVERTICAL);
 	BoxSizer4 = new wxBoxSizer(wxHORIZONTAL);
 	BoxSizer2->Add(BoxSizer4, 1, wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 0);
@@ -125,7 +129,7 @@ WXMSearchReplaceDialog::WXMSearchReplaceDialog(wxWindow* parent,wxWindowID id,co
 	BoxSizer7->Add(WxEditTo, 0, wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL, 2);
 	BoxSizer6->Add(BoxSizer7, 0, wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL, 0);
 	BoxSizer2->Add(BoxSizer6, 0, wxALL|wxALIGN_LEFT|wxALIGN_TOP, 0);
-	BoxSizer1->Add(BoxSizer2, 1, wxALL|wxALIGN_TOP|wxALIGN_CENTER_HORIZONTAL, 0);
+	BoxSizer8->Add(BoxSizer2, 1, wxALL|wxALIGN_TOP|wxALIGN_CENTER_HORIZONTAL, 0);
 	BoxSizer3 = new wxBoxSizer(wxVERTICAL);
 	WxButtonFindNext = new wxButton(this, ID_WXBUTTONFINDNEXT, _("Find &Next"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_WXBUTTONFINDNEXT"));
 	WxButtonFindNext->SetDefault();
@@ -142,7 +146,12 @@ WXMSearchReplaceDialog::WXMSearchReplaceDialog(wxWindow* parent,wxWindowID id,co
 	BoxSizer3->Add(WxButtonReplaceExpand, 0, wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 2);
 	WxButtonClose = new wxButton(this, ID_WXBUTTONCLOSE, _("Close"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_WXBUTTONCLOSE"));
 	BoxSizer3->Add(WxButtonClose, 0, wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 2);
-	BoxSizer1->Add(BoxSizer3, 0, wxALL|wxALIGN_TOP|wxALIGN_CENTER_HORIZONTAL, 0);
+	BoxSizer8->Add(BoxSizer3, 0, wxALL|wxALIGN_TOP|wxALIGN_CENTER_HORIZONTAL, 0);
+	BoxSizer1->Add(BoxSizer8, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 0);
+	StaticLine1 = new wxStaticLine(this, ID_STATICLINE1, wxDefaultPosition, wxDefaultSize, wxLI_HORIZONTAL, _T("ID_STATICLINE1"));
+	BoxSizer1->Add(StaticLine1, 0, wxTOP|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 2);
+	StaticTextStatus = new wxStaticText(this, ID_STATICTEXTSTATUS, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0, _T("ID_STATICTEXTSTATUS"));
+	BoxSizer1->Add(StaticTextStatus, 0, wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
 	SetSizer(BoxSizer1);
 	BoxSizer1->Fit(this);
 	BoxSizer1->SetSizeHints(this);
@@ -255,6 +264,10 @@ WXMSearchReplaceDialog::WXMSearchReplaceDialog(wxWindow* parent,wxWindowID id,co
 			m_ReplaceText->SetText(text);
 		}
 	}
+
+	m_msgtypecolor_map[SMT_INFORMATION] = wxColor(wxT("Green"));
+	m_msgtypecolor_map[SMT_NOTICE] = wxColor(wxT("Blue"));
+	m_msgtypecolor_map[SMT_WARNING] = wxColor(wxT("Red"));
 }
 
 WXMSearchReplaceDialog::~WXMSearchReplaceDialog()
@@ -284,6 +297,8 @@ void WXMSearchReplaceDialog::WxButtonCloseClick(wxCommandEvent& event)
 
 void WXMSearchReplaceDialog::WxButtonFindNextClick(wxCommandEvent& event)
 {
+	ResetMessage();
+
 	extern MadEdit *g_ActiveMadEdit;
 
 	if(g_ActiveMadEdit==NULL)
@@ -309,12 +324,12 @@ void WXMSearchReplaceDialog::WxButtonFindNextClick(wxCommandEvent& event)
 		{
 			if(!StrToInt64(WxEditFrom->GetValue(), from))
 			{
-				wxMessageBox(_("The value of 'From' is incorrect."), wxT("wxMEdit"), wxOK|wxICON_WARNING);
+				ShowMessage(_("The value of 'From' is incorrect."), SMT_WARNING);
 				return;
 			}
 			if(!StrToInt64(WxEditTo->GetValue(), to))
 			{
-				wxMessageBox(_("The value of 'To' is incorrect."), wxT("wxMEdit"), wxOK|wxICON_WARNING);
+				ShowMessage(_("The value of 'To' is incorrect."), SMT_WARNING);
 				return;
 			}
 
@@ -350,13 +365,20 @@ void WXMSearchReplaceDialog::WxButtonFindNextClick(wxCommandEvent& event)
 
 			if (WxCheckBoxWrapAround->IsChecked() && rangeTo != caretpos)
 			{
+				bool search_in_selection = WxCheckBoxSearchInSelection->IsChecked();
+
+				wxString msg = search_in_selection?
+					_("End of selection reached, search from beginning."):
+					_("End of file reached, search from beginning.");
+				ShowMessage(msg);
+
 				rangeTo = caretpos;
-				rangeFrom = WxCheckBoxSearchInSelection->IsChecked()? from : 0;
+				rangeFrom = search_in_selection? from : 0;
 				continue;
 			}
 
 			wxString msg(_("Cannot find the matched string."));
-			wxMessageBox(msg, _("Find Next"), wxOK|wxICON_WARNING);
+			ShowMessage(msg, SMT_WARNING);
 			break;
 		}
 	}
@@ -370,6 +392,8 @@ void WXMSearchReplaceDialog::WxButtonFindNextClick(wxCommandEvent& event)
 
 void WXMSearchReplaceDialog::WxButtonFindPrevClick(wxCommandEvent& event)
 {
+	ResetMessage();
+
 	extern MadEdit *g_ActiveMadEdit;
 
 	if(g_ActiveMadEdit==NULL)
@@ -395,12 +419,12 @@ void WXMSearchReplaceDialog::WxButtonFindPrevClick(wxCommandEvent& event)
 		{
 			if(!StrToInt64(WxEditFrom->GetValue(), from))
 			{
-				wxMessageBox(_("The value of 'From' is incorrect."), wxT("wxMEdit"), wxOK|wxICON_WARNING);
+				ShowMessage(_("The value of 'From' is incorrect."), SMT_WARNING);
 				return;
 			}
 			if(!StrToInt64(WxEditTo->GetValue(), to))
 			{
-				wxMessageBox(_("The value of 'To' is incorrect."), wxT("wxMEdit"), wxOK|wxICON_WARNING);
+				ShowMessage(_("The value of 'To' is incorrect."), SMT_WARNING);
 				return;
 			}
 
@@ -436,13 +460,20 @@ void WXMSearchReplaceDialog::WxButtonFindPrevClick(wxCommandEvent& event)
 
 			if (WxCheckBoxWrapAround->IsChecked() && rangeFrom != caretpos)
 			{
-				rangeTo = WxCheckBoxSearchInSelection->IsChecked()? to: g_ActiveMadEdit->GetFileSize();
+				bool search_in_selection = WxCheckBoxSearchInSelection->IsChecked();
+
+				wxString msg = search_in_selection?
+					_("Beginning of selection reached, search from end."):
+					_("Beginning of file reached, search from end.");
+				ShowMessage(msg);
+
+				rangeTo = search_in_selection? to: g_ActiveMadEdit->GetFileSize();
 				rangeFrom = caretpos;
 				continue;
 			}
 
 			wxString msg(_("Cannot find the matched string."));
-			wxMessageBox(msg, _("Find Previous"), wxOK|wxICON_WARNING);
+			ShowMessage(msg, SMT_WARNING);
 			break;
 		}
 	}
@@ -641,6 +672,8 @@ void WXMSearchReplaceDialog::WxButtonReplaceExpandClick(wxCommandEvent& event)
 
 void WXMSearchReplaceDialog::WxButtonReplaceClick(wxCommandEvent& event)
 {
+	ResetMessage();
+
 	extern MadEdit *g_ActiveMadEdit;
 
 	if(g_ActiveMadEdit==NULL)
@@ -672,12 +705,12 @@ void WXMSearchReplaceDialog::WxButtonReplaceClick(wxCommandEvent& event)
 	{
 		if(!StrToInt64(WxEditFrom->GetValue(), from))
 		{
-			wxMessageBox(_("The value of 'From' is incorrect."), wxT("wxMEdit"), wxOK|wxICON_WARNING);
+			ShowMessage(_("The value of 'From' is incorrect."), SMT_WARNING);
 			return;
 		}
 		if(!StrToInt64(WxEditTo->GetValue(), to))
 		{
-			wxMessageBox(_("The value of 'To' is incorrect."), wxT("wxMEdit"), wxOK|wxICON_WARNING);
+			ShowMessage(_("The value of 'To' is incorrect."), SMT_WARNING);
 			return;
 		}
 
@@ -706,8 +739,15 @@ void WXMSearchReplaceDialog::WxButtonReplaceClick(wxCommandEvent& event)
 		if ((ret==RR_REP_NNEXT || ret==RR_NREP_NNEXT) &&
 			WxCheckBoxWrapAround->IsChecked() && rangeTo != caretpos)
 		{
+			bool search_in_selection = WxCheckBoxSearchInSelection->IsChecked();
+
+			wxString msg = search_in_selection?
+				_("End of selection reached, replace from beginning."):
+				_("End of file reached, replace from beginning.");
+			ShowMessage(msg);
+
 			rangeTo = caretpos;
-			rangeFrom = WxCheckBoxSearchInSelection->IsChecked()? from : 0;
+			rangeFrom = search_in_selection? from : 0;
 			continue;
 		}
 
@@ -717,10 +757,14 @@ void WXMSearchReplaceDialog::WxButtonReplaceClick(wxCommandEvent& event)
 	switch(ret)
 	{
 	case RR_REP_NNEXT:
+		{
+			ShowMessage(_("Cannot find the matched string. Replace is finished."), SMT_NOTICE);
+			m_FindText->SetFocus();
+		}
+		break;
 	case RR_NREP_NNEXT:
 		{
-			wxMessageDialog dlg(this, _("Cannot find the matched string.\nReplace is finished."), wxT("wxMEdit"));
-			dlg.ShowModal();
+			ShowMessage(_("Cannot find the matched string."), SMT_WARNING);
 			m_FindText->SetFocus();
 		}
 		break;
@@ -739,6 +783,8 @@ void WXMSearchReplaceDialog::WxButtonReplaceClick(wxCommandEvent& event)
 
 void WXMSearchReplaceDialog::WxButtonCountClick(wxCommandEvent& event)
 {
+	ResetMessage();
+
 	extern MadEdit *g_ActiveMadEdit;
 
 	if(g_ActiveMadEdit==NULL)
@@ -758,12 +804,12 @@ void WXMSearchReplaceDialog::WxButtonCountClick(wxCommandEvent& event)
 		{
 			if(!StrToInt64(WxEditFrom->GetValue(), from))
 			{
-				wxMessageBox(_("The value of 'From' is incorrect."), wxT("wxMEdit"), wxOK|wxICON_WARNING);
+				ShowMessage(_("The value of 'From' is incorrect."), SMT_WARNING);
 				return;
 			}
 			if(!StrToInt64(WxEditTo->GetValue(), to))
 			{
-				wxMessageBox(_("The value of 'To' is incorrect."), wxT("wxMEdit"), wxOK|wxICON_WARNING);
+				ShowMessage(_("The value of 'To' is incorrect."), SMT_WARNING);
 				return;
 			}
 
@@ -791,12 +837,14 @@ void WXMSearchReplaceDialog::WxButtonCountClick(wxCommandEvent& event)
 	{
 		wxString msg;
 		msg.Printf(_("'%s' was found %d times."), text.c_str(), count);
-		wxMessageBox(msg, wxT("wxMEdit"), wxOK);
+		ShowMessage(msg, SMT_NOTICE);
 	}
 }
 
 void WXMSearchReplaceDialog::WxButtonReplaceAllClick(wxCommandEvent& event)
 {
+	ResetMessage();
+
 	extern MadEdit *g_ActiveMadEdit;
 
 	if(g_ActiveMadEdit==NULL)
@@ -826,12 +874,12 @@ void WXMSearchReplaceDialog::WxButtonReplaceAllClick(wxCommandEvent& event)
 		{
 			if(!StrToInt64(WxEditFrom->GetValue(), from))
 			{
-				wxMessageBox(_("The value of 'From' is incorrect."), wxT("wxMEdit"), wxOK|wxICON_WARNING);
+				ShowMessage(_("The value of 'From' is incorrect."), SMT_WARNING);
 				return;
 			}
 			if(!StrToInt64(WxEditTo->GetValue(), to))
 			{
-				wxMessageBox(_("The value of 'To' is incorrect."), wxT("wxMEdit"), wxOK|wxICON_WARNING);
+				ShowMessage(_("The value of 'To' is incorrect."), SMT_WARNING);
 				return;
 			}
 
@@ -857,12 +905,9 @@ void WXMSearchReplaceDialog::WxButtonReplaceAllClick(wxCommandEvent& event)
 		{
 			wxString msg;
 			if(count==0)
-				msg=wxString(_("Cannot find any matched string."));
+				ShowMessage(_("Cannot find any matched string."), SMT_WARNING);
 			else
-				msg=wxString::Format(_("%d string(s) were replaced."), count);
-
-			wxMessageDialog dlg(this, msg, wxT("wxMEdit"));
-			dlg.ShowModal();
+				ShowMessage(wxString::Format(_("%d string(s) were replaced."), count), SMT_NOTICE);
 		}
 
 		m_FindText->SetFocus();
@@ -928,4 +973,26 @@ bool WXMSearchReplaceDialog::ShowWithReplaceFunc()
 	SetTitle(_("Replace"));
 
 	return Show(true);
+}
+
+wxColor WXMSearchReplaceDialog::GetMessageColor(WXMSearchReplaceDialog::SearchMsgType type)
+{
+	std::map<int, wxColor>::const_iterator it = m_msgtypecolor_map.find(type);
+	if (it == m_msgtypecolor_map.end())
+		return wxColor();
+
+	return it->second;
+}
+
+void WXMSearchReplaceDialog::ResetMessage()
+{
+	StaticTextStatus->SetLabel(wxString());
+}
+
+void WXMSearchReplaceDialog::ShowMessage(const wxString &msg, WXMSearchReplaceDialog::SearchMsgType type)
+{
+	if (type != SMT_INFORMATION)
+		wxBell();
+	StaticTextStatus->SetForegroundColour(GetMessageColor(type));
+	StaticTextStatus->SetLabel(msg);
 }
