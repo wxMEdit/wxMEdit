@@ -457,7 +457,7 @@ void WXMReplaceDialog::WxButtonReplaceClick(wxCommandEvent& event)
 		}
 
 		rangeTo = to;
-		if(caretpos <= from || caretpos > to)
+		if(caretpos <= from || caretpos > to || (caretpos==to && WxCheckBoxWrapAround->IsChecked()))
 			rangeFrom = from;
 	}
 

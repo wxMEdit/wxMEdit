@@ -269,7 +269,7 @@ void WXMSearchDialog::WxButtonFindNextClick(wxCommandEvent& event)
 			}
 
 			rangeTo = to;
-			if(caretpos <= from || caretpos > to)
+			if(caretpos <= from || caretpos > to || (caretpos==to && WxCheckBoxWrapAround->IsChecked()))
 				rangeFrom = from;
 		}
 
@@ -355,7 +355,7 @@ void WXMSearchDialog::WxButtonFindPrevClick(wxCommandEvent& event)
 			}
 
 			rangeFrom = from;
-			if(caretpos < from || caretpos >= to)
+			if(caretpos < from || caretpos >= to || (caretpos==from && WxCheckBoxWrapAround->IsChecked()))
 				rangeTo = to;
 		}
 
