@@ -272,7 +272,7 @@ void WXMReplaceDialog::ReadWriteSettings(bool bRead)
 		m_Config->Read(wxT("/wxMEdit/SearchMoveFocus"), &bb, false);
 		WxCheckBoxMoveFocus->SetValue(bb);
 
-		m_Config->Read(wxT("/wxMEdit/SearchWrapAround"), &bb, false);
+		m_Config->Read(wxT("/wxMEdit/SearchWrapAround"), &bb, true);
 		WxCheckBoxWrapAround->SetValue(bb);
 
 		m_Config->Read(wxT("/wxMEdit/SearchCaseSensitive"), &bb, false);
