@@ -427,40 +427,44 @@ void WXMReplaceDialog::WxButtonReplaceClick(wxCommandEvent& event)
 	if(WxCheckBoxFindHex->GetValue())
 		text.Trim();
 
-	if(text.Len()>0)
+	if(text.Len() <= 0)
+		return;
+
+	wxString reptext;
+	m_ReplaceText->GetText(reptext, true);
+
+	g_SearchDialog->m_RecentFindText->AddItemToHistory(text);
+
+	if(reptext.Len()>0)
 	{
-		wxString reptext;
-		m_ReplaceText->GetText(reptext, true);
+		m_RecentReplaceText->AddItemToHistory(reptext);
+	}
 
-		g_SearchDialog->m_RecentFindText->AddItemToHistory(text);
-
-		if(reptext.Len()>0)
+	wxInt64 from = 0, to = 0;
+	wxFileOffset rangeFrom = -1, rangeTo = -1;
+	wxFileOffset caretpos = g_ActiveMadEdit->GetCaretPosition();
+	if(WxCheckBoxSearchInSelection->IsChecked())
+	{
+		if(!StrToInt64(WxEditFrom->GetValue(), from))
 		{
-			m_RecentReplaceText->AddItemToHistory(reptext);
+			wxMessageBox(_("The value of 'From' is incorrect."), wxT("wxMEdit"), wxOK|wxICON_WARNING);
+			return;
+		}
+		if(!StrToInt64(WxEditTo->GetValue(), to))
+		{
+			wxMessageBox(_("The value of 'To' is incorrect."), wxT("wxMEdit"), wxOK|wxICON_WARNING);
+			return;
 		}
 
-		wxInt64 from = 0, to = 0;
-		wxFileOffset rangeFrom = -1, rangeTo = -1;
-		if(WxCheckBoxSearchInSelection->IsChecked())
-		{
-			if(!StrToInt64(WxEditFrom->GetValue(), from))
-			{
-				wxMessageBox(_("The value of 'From' is incorrect."), wxT("wxMEdit"), wxOK|wxICON_WARNING);
-				return;
-			}
-			if(!StrToInt64(WxEditTo->GetValue(), to))
-			{
-				wxMessageBox(_("The value of 'To' is incorrect."), wxT("wxMEdit"), wxOK|wxICON_WARNING);
-				return;
-			}
+		rangeTo = to;
+		if(caretpos <= from || caretpos > to)
+			rangeFrom = from;
+	}
 
-			rangeTo = to;
-			wxFileOffset caretpos = g_ActiveMadEdit->GetCaretPosition();
-			if(caretpos <= from || caretpos > to)
-				rangeFrom = from;
-		}
+	MadReplaceResult ret=RR_EXPR_ERROR;
 
-		MadReplaceResult ret=RR_EXPR_ERROR;
+	for(;;)
+	{
 		if(WxCheckBoxFindHex->GetValue())
 		{
 			ret=g_ActiveMadEdit->ReplaceHex(text, reptext, rangeFrom, rangeTo);
@@ -474,27 +478,37 @@ void WXMReplaceDialog::WxButtonReplaceClick(wxCommandEvent& event)
 				rangeFrom, rangeTo);
 		}
 
-		switch(ret)
+		if ((ret==RR_REP_NNEXT || ret==RR_NREP_NNEXT) &&
+			WxCheckBoxWrapAround->IsChecked() && rangeTo != caretpos)
 		{
-		case RR_REP_NNEXT:
-		case RR_NREP_NNEXT:
-			{
-				wxMessageDialog dlg(this, _("Cannot find the matched string.\nReplace is finished."), wxT("wxMEdit"));
-				dlg.ShowModal();
-				m_FindText->SetFocus();
-			}
-			break;
-		case RR_REP_NEXT:
-		case RR_NREP_NEXT:
-			if(WxCheckBoxMoveFocus->GetValue())
-			{
-				((wxFrame*)wxTheApp->GetTopWindow())->Raise();
-				g_ActiveMadEdit->SetFocus();
-			}
-			break;
-		default:
-			break;
+			rangeTo = caretpos;
+			rangeFrom = WxCheckBoxSearchInSelection->IsChecked()? from : 0;
+			continue;
 		}
+
+		break;
+	}
+
+	switch(ret)
+	{
+	case RR_REP_NNEXT:
+	case RR_NREP_NNEXT:
+		{
+			wxMessageDialog dlg(this, _("Cannot find the matched string.\nReplace is finished."), wxT("wxMEdit"));
+			dlg.ShowModal();
+			m_FindText->SetFocus();
+		}
+		break;
+	case RR_REP_NEXT:
+	case RR_NREP_NEXT:
+		if(WxCheckBoxMoveFocus->GetValue())
+		{
+			((wxFrame*)wxTheApp->GetTopWindow())->Raise();
+			g_ActiveMadEdit->SetFocus();
+		}
+		break;
+	default:
+		break;
 	}
 }
 
