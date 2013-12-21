@@ -111,7 +111,7 @@
 								<flag>wxALL|wxALIGN_LEFT|wxALIGN_TOP</flag>
 							</object>
 						</object>
-						<flag>wxALL|wxALIGN_TOP|wxALIGN_CENTER_HORIZONTAL</flag>
+						<flag>wxALL|wxEXPAND|wxALIGN_TOP|wxALIGN_CENTER_HORIZONTAL</flag>
 						<option>1</option>
 					</object>
 					<object class="sizeritem">
