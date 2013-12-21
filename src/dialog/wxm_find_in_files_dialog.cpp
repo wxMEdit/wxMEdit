@@ -7,8 +7,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 #include "wxm_find_in_files_dialog.h"
-#include "wxm_replace_dialog.h"
-#include "wxm_search_dialog.h"
+#include "wxm_searchreplace_dialog.h"
 
 #include "../wxmedit_frame.h"
 #include "../wxmedit/wxmedit.h"
@@ -275,13 +274,13 @@ WXMFindInFilesDialog::WXMFindInFilesDialog(wxWindow* parent,wxWindowID id,const 
 	Center();
 
 	//
-	if(g_SearchDialog->m_RecentFindText->GetCount()>0)
+	if(g_SearchReplaceDialog->m_RecentFindText->GetCount()>0)
 	{
-		m_FindText->SetText(g_SearchDialog->m_RecentFindText->GetHistoryFile(0));
+		m_FindText->SetText(g_SearchReplaceDialog->m_RecentFindText->GetHistoryFile(0));
 	}
-	if(g_ReplaceDialog->m_RecentReplaceText->GetCount()>0)
+	if(g_SearchReplaceDialog->m_RecentReplaceText->GetCount()>0)
 	{
-		m_ReplaceText->SetText(g_ReplaceDialog->m_RecentReplaceText->GetHistoryFile(0));
+		m_ReplaceText->SetText(g_SearchReplaceDialog->m_RecentReplaceText->GetHistoryFile(0));
 	}
 
 	WxButtonClose->SetFocus();
@@ -324,18 +323,18 @@ void WXMFindInFilesDialog::UpdateCheckBoxByCBHex(bool check)
 
 void WXMFindInFilesDialog::WxBitmapButtonRecentFindTextClick(wxCommandEvent& event)
 {
-	PopupMenu(&g_SearchDialog->WxPopupMenuRecentFindText);
+	PopupMenu(&g_SearchReplaceDialog->WxPopupMenuRecentFindText);
 }
 
 void WXMFindInFilesDialog::WxBitmapButtonRecentReplaceTextClick(wxCommandEvent& event)
 {
-	PopupMenu(&g_ReplaceDialog->WxPopupMenuRecentReplaceText);
+	PopupMenu(&g_SearchReplaceDialog->WxPopupMenuRecentReplaceText);
 }
 
 void WXMFindInFilesDialog::OnRecentFindText(wxCommandEvent& event)
 {
 	int idx=event.GetId()-ID_RECENTFINDTEXT1;
-	wxString text=g_SearchDialog->m_RecentFindText->GetHistoryFile(idx);
+	wxString text=g_SearchReplaceDialog->m_RecentFindText->GetHistoryFile(idx);
 	if(!text.IsEmpty())
 	{
 		m_FindText->SetText(text);
@@ -346,7 +345,7 @@ void WXMFindInFilesDialog::OnRecentFindText(wxCommandEvent& event)
 void WXMFindInFilesDialog::OnRecentReplaceText(wxCommandEvent& event)
 {
 	int idx=event.GetId()-ID_RECENTREPLACETEXT1;
-	wxString text=g_ReplaceDialog->m_RecentReplaceText->GetHistoryFile(idx);
+	wxString text=g_SearchReplaceDialog->m_RecentReplaceText->GetHistoryFile(idx);
 	if(!text.IsEmpty())
 	{
 		m_ReplaceText->SetText(text);
@@ -365,7 +364,7 @@ void WXMFindInFilesDialog::WxButtonFindClick(wxCommandEvent& event)
 	m_FindText->GetText(text);
 	if(!text.IsEmpty())
 	{
-		g_SearchDialog->m_RecentFindText->AddItemToHistory(text);
+		g_SearchReplaceDialog->m_RecentFindText->AddItemToHistory(text);
 		FindReplaceInFiles(false);
 	}
 }
@@ -377,10 +376,10 @@ void WXMFindInFilesDialog::WxButtonReplaceClick(wxCommandEvent& event)
 	m_ReplaceText->GetText(text2);
 	if(!text.IsEmpty())
 	{
-		g_SearchDialog->m_RecentFindText->AddItemToHistory(text);
+		g_SearchReplaceDialog->m_RecentFindText->AddItemToHistory(text);
 		if(!text2.IsEmpty())
 		{
-			g_ReplaceDialog->m_RecentReplaceText->AddItemToHistory(text2);
+			g_SearchReplaceDialog->m_RecentReplaceText->AddItemToHistory(text2);
 		}
 		FindReplaceInFiles(true);
 	}

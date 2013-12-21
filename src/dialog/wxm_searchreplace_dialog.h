@@ -1,17 +1,17 @@
 ///////////////////////////////////////////////////////////////////////////////
-// Name:        wxm_search_dialog.h
+// Name:        wxm_searchreplace_dialog.h
 // Description:
 // Author:      madedit@gmail.com  (creator)
 //              wxmedit@gmail.com  (current maintainer)
 // Licence:     GPL
 ///////////////////////////////////////////////////////////////////////////////
 
-#ifndef WXM_SEARCH_DIALOG_H
-#define WXM_SEARCH_DIALOG_H
+#ifndef WXM_REPLACE_DIALOG_H
+#define WXM_REPLACE_DIALOG_H
 
 #include "../xm/wx_recent_list.h"
 
-//(*Headers(WXMSearchDialog)
+//(*Headers(WXMSearchReplaceDialog)
 #include <wx/sizer.h>
 #include <wx/stattext.h>
 #include <wx/menu.h>
@@ -31,17 +31,18 @@ extern const long ID_RECENTREPLACETEXT20;
 
 class MadEdit;
 
-class WXMSearchDialog: public wxDialog
+class WXMSearchReplaceDialog: public wxDialog
 {
 	public:
 
-		WXMSearchDialog(wxWindow* parent,wxWindowID id=wxID_ANY,const wxPoint& pos=wxDefaultPosition,const wxSize& size=wxDefaultSize);
-		virtual ~WXMSearchDialog();
+		WXMSearchReplaceDialog(wxWindow* parent,wxWindowID id=wxID_ANY,const wxPoint& pos=wxDefaultPosition,const wxSize& size=wxDefaultSize);
+		virtual ~WXMSearchReplaceDialog();
 
-		//(*Declarations(WXMSearchDialog)
+		//(*Declarations(WXMSearchReplaceDialog)
 		wxButton* WxButtonReplace;
 		wxButton* WxButtonFindPrev;
 		wxButton* WxButtonFindNext;
+		wxButton* WxButtonReplaceAll;
 		wxCheckBox* WxCheckBoxMoveFocus;
 		wxStaticText* WxStaticTextTo;
 		wxCheckBox* WxCheckBoxCaseSensitive;
@@ -50,17 +51,19 @@ class WXMSearchDialog: public wxDialog
 		wxTextCtrl* WxEditTo;
 		wxButton* WxButtonClose;
 		wxTextCtrl* WxEditFrom;
+		wxMenu WxPopupMenuRecentReplaceText;
 		wxCheckBox* WxCheckBoxFindHex;
 		wxStaticText* WxStaticTextFrom;
 		wxCheckBox* WxCheckBoxWholeWord;
 		wxButton* WxButtonCount;
 		wxCheckBox* WxCheckBoxRegex;
 		wxCheckBox* WxCheckBoxWrapAround;
+		wxButton* WxButtonReplaceExpand;
 		//*)
 
 	protected:
 
-		//(*Identifiers(WXMSearchDialog)
+		//(*Identifiers(WXMSearchReplaceDialog)
 		static const long ID_WXCHECKBOXMOVEFOCUS;
 		static const long ID_WXCHECKBOXWRAPAROUND;
 		static const long ID_WXCHECKBOXCASESENSITIVE;
@@ -76,43 +79,55 @@ class WXMSearchDialog: public wxDialog
 		static const long ID_WXBUTTONFINDPREV;
 		static const long ID_WXBUTTONCOUNT;
 		static const long ID_WXBUTTONREPLACE;
+		static const long ID_WXBUTTONREPLACEALL;
+		static const long ID_WXBUTTONREPLACEEXPAND;
 		static const long ID_WXBUTTONCLOSE;
 		//*)
 
-		static const long ID_MADEDIT;
+		static const long ID_MADEDIT1;
+		static const long ID_MADEDIT2;
 		static const long ID_WXBITMAPBUTTONRECENTFINDTEXT;
+		static const long ID_WXBITMAPBUTTONRECENTREPLACETEXT;
 
 	public:
-		MadEdit *m_FindText;
-		wxBitmapButton *WxBitmapButtonRecentFindText;
+		MadEdit *m_FindText, *m_ReplaceText;
+		wxBitmapButton *WxBitmapButtonRecentFindText, *WxBitmapButtonRecentReplaceText;
 		wxRecentList *m_RecentFindText;
-		
+		wxRecentList *m_RecentReplaceText;
+
 		void ReadWriteSettings(bool bRead);
 		void UpdateCheckBoxByCBHex(bool check);
 		void UpdateSearchInSelection(bool check);
 
 	//private:
 	public:
-		//(*Handlers(WXMSearchDialog)
-		void WXMSearchDialogClose(wxCloseEvent& event);
-		void WXMSearchDialogKeyDown(wxKeyEvent& event);
+		//(*Handlers(WXMSearchReplaceDialog)
+		void WXMSearchReplaceDialogClose(wxCloseEvent& event);
+		void WXMSearchReplaceDialogKeyDown(wxKeyEvent& event);
 		void WxCheckBoxFindHexClick(wxCommandEvent& event);
 		void WxCheckBoxSearchInSelectionClick(wxCommandEvent& event);
 		void WxButtonFindNextClick(wxCommandEvent& event);
+		void WxButtonReplaceClick(wxCommandEvent& event);
+		void WxButtonReplaceAllClick(wxCommandEvent& event);
 		void WxButtonFindPrevClick(wxCommandEvent& event);
 		void WxButtonCountClick(wxCommandEvent& event);
-		void WxButtonReplaceClick(wxCommandEvent& event);
 		void WxButtonCloseClick(wxCommandEvent& event);
+		void WxButtonReplaceExpandClick(wxCommandEvent& event);
 		//*)
 
-		void WXMSearchDialogActivate(wxActivateEvent& event);
+		void WXMSearchReplaceDialogActivate(wxActivateEvent& event);
 
 		void WxBitmapButtonRecentFindTextClick(wxCommandEvent& event);
+		void WxBitmapButtonRecentReplaceTextClick(wxCommandEvent& event);
 		void OnRecentFindText(wxCommandEvent& event);
+		void OnRecentReplaceText(wxCommandEvent& event);
+
+		bool ShowOnlyFindFunc();
+		bool ShowWithReplaceFunc();
 
 		DECLARE_EVENT_TABLE()
 };
 
-extern WXMSearchDialog *g_SearchDialog;
+extern WXMSearchReplaceDialog *g_SearchReplaceDialog;
 
 #endif

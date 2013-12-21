@@ -74,8 +74,7 @@ am_wxmedit_OBJECTS = $(am__objects_1) $(am__objects_2) \
 	src/dialog/wxmedit-wxm_find_in_files_dialog.$(OBJEXT) \
 	src/dialog/wxmedit-wxm_highlighting_dialog.$(OBJEXT) \
 	src/dialog/wxmedit-wxm_options_dialog.$(OBJEXT) \
-	src/dialog/wxmedit-wxm_replace_dialog.$(OBJEXT) \
-	src/dialog/wxmedit-wxm_search_dialog.$(OBJEXT) \
+	src/dialog/wxmedit-wxm_searchreplace_dialog.$(OBJEXT) \
 	src/dialog/wxmedit-wxm_sort_dialog.$(OBJEXT) \
 	src/dialog/wxmedit-wxm_word_count_dialog.$(OBJEXT) \
 	src/dialog/wxmedit-wxmedit_about_dialog.$(OBJEXT) \
@@ -365,10 +364,8 @@ wxmedit_SOURCES = $(enc_src) \
 	src/dialog/wxm_highlighting_dialog.h \
 	src/dialog/wxm_options_dialog.cpp \
 	src/dialog/wxm_options_dialog.h \
-	src/dialog/wxm_replace_dialog.cpp \
-	src/dialog/wxm_replace_dialog.h \
-	src/dialog/wxm_search_dialog.cpp \
-	src/dialog/wxm_search_dialog.h \
+	src/dialog/wxm_searchreplace_dialog.cpp \
+	src/dialog/wxm_searchreplace_dialog.h \
 	src/dialog/wxm_sort_dialog.cpp \
 	src/dialog/wxm_sort_dialog.h \
 	src/dialog/wxm_word_count_dialog.cpp \
@@ -668,10 +665,7 @@ src/dialog/wxmedit-wxm_highlighting_dialog.$(OBJEXT):  \
 src/dialog/wxmedit-wxm_options_dialog.$(OBJEXT):  \
 	src/dialog/$(am__dirstamp) \
 	src/dialog/$(DEPDIR)/$(am__dirstamp)
-src/dialog/wxmedit-wxm_replace_dialog.$(OBJEXT):  \
-	src/dialog/$(am__dirstamp) \
-	src/dialog/$(DEPDIR)/$(am__dirstamp)
-src/dialog/wxmedit-wxm_search_dialog.$(OBJEXT):  \
+src/dialog/wxmedit-wxm_searchreplace_dialog.$(OBJEXT):  \
 	src/dialog/$(am__dirstamp) \
 	src/dialog/$(DEPDIR)/$(am__dirstamp)
 src/dialog/wxmedit-wxm_sort_dialog.$(OBJEXT):  \
@@ -853,8 +847,7 @@ mostlyclean-compile:
 	-rm -f src/dialog/wxmedit-wxm_find_in_files_dialog.$(OBJEXT)
 	-rm -f src/dialog/wxmedit-wxm_highlighting_dialog.$(OBJEXT)
 	-rm -f src/dialog/wxmedit-wxm_options_dialog.$(OBJEXT)
-	-rm -f src/dialog/wxmedit-wxm_replace_dialog.$(OBJEXT)
-	-rm -f src/dialog/wxmedit-wxm_search_dialog.$(OBJEXT)
+	-rm -f src/dialog/wxmedit-wxm_searchreplace_dialog.$(OBJEXT)
 	-rm -f src/dialog/wxmedit-wxm_sort_dialog.$(OBJEXT)
 	-rm -f src/dialog/wxmedit-wxm_word_count_dialog.$(OBJEXT)
 	-rm -f src/dialog/wxmedit-wxmedit_about_dialog.$(OBJEXT)
@@ -933,8 +926,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/dialog/$(DEPDIR)/wxmedit-wxm_find_in_files_dialog.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/dialog/$(DEPDIR)/wxmedit-wxm_highlighting_dialog.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/dialog/$(DEPDIR)/wxmedit-wxm_options_dialog.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@src/dialog/$(DEPDIR)/wxmedit-wxm_replace_dialog.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@src/dialog/$(DEPDIR)/wxmedit-wxm_search_dialog.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/dialog/$(DEPDIR)/wxmedit-wxm_searchreplace_dialog.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/dialog/$(DEPDIR)/wxmedit-wxm_sort_dialog.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/dialog/$(DEPDIR)/wxmedit-wxm_word_count_dialog.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/dialog/$(DEPDIR)/wxmedit-wxmedit_about_dialog.Po@am__quote@
@@ -1194,33 +1186,19 @@ src/dialog/wxmedit-wxm_options_dialog.obj: src/dialog/wxm_options_dialog.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -c -o src/dialog/wxmedit-wxm_options_dialog.obj `if test -f 'src/dialog/wxm_options_dialog.cpp'; then $(CYGPATH_W) 'src/dialog/wxm_options_dialog.cpp'; else $(CYGPATH_W) '$(srcdir)/src/dialog/wxm_options_dialog.cpp'; fi`
 
-src/dialog/wxmedit-wxm_replace_dialog.o: src/dialog/wxm_replace_dialog.cpp
-@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -MT src/dialog/wxmedit-wxm_replace_dialog.o -MD -MP -MF "src/dialog/$(DEPDIR)/wxmedit-wxm_replace_dialog.Tpo" -c -o src/dialog/wxmedit-wxm_replace_dialog.o `test -f 'src/dialog/wxm_replace_dialog.cpp' || echo '$(srcdir)/'`src/dialog/wxm_replace_dialog.cpp; \
-@am__fastdepCXX_TRUE@	then mv -f "src/dialog/$(DEPDIR)/wxmedit-wxm_replace_dialog.Tpo" "src/dialog/$(DEPDIR)/wxmedit-wxm_replace_dialog.Po"; else rm -f "src/dialog/$(DEPDIR)/wxmedit-wxm_replace_dialog.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/dialog/wxm_replace_dialog.cpp' object='src/dialog/wxmedit-wxm_replace_dialog.o' libtool=no @AMDEPBACKSLASH@
+src/dialog/wxmedit-wxm_searchreplace_dialog.o: src/dialog/wxm_searchreplace_dialog.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -MT src/dialog/wxmedit-wxm_searchreplace_dialog.o -MD -MP -MF "src/dialog/$(DEPDIR)/wxmedit-wxm_searchreplace_dialog.Tpo" -c -o src/dialog/wxmedit-wxm_searchreplace_dialog.o `test -f 'src/dialog/wxm_searchreplace_dialog.cpp' || echo '$(srcdir)/'`src/dialog/wxm_searchreplace_dialog.cpp; \
+@am__fastdepCXX_TRUE@	then mv -f "src/dialog/$(DEPDIR)/wxmedit-wxm_searchreplace_dialog.Tpo" "src/dialog/$(DEPDIR)/wxmedit-wxm_searchreplace_dialog.Po"; else rm -f "src/dialog/$(DEPDIR)/wxmedit-wxm_searchreplace_dialog.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/dialog/wxm_searchreplace_dialog.cpp' object='src/dialog/wxmedit-wxm_searchreplace_dialog.o' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -c -o src/dialog/wxmedit-wxm_replace_dialog.o `test -f 'src/dialog/wxm_replace_dialog.cpp' || echo '$(srcdir)/'`src/dialog/wxm_replace_dialog.cpp
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -c -o src/dialog/wxmedit-wxm_searchreplace_dialog.o `test -f 'src/dialog/wxm_searchreplace_dialog.cpp' || echo '$(srcdir)/'`src/dialog/wxm_searchreplace_dialog.cpp
 
-src/dialog/wxmedit-wxm_replace_dialog.obj: src/dialog/wxm_replace_dialog.cpp
-@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -MT src/dialog/wxmedit-wxm_replace_dialog.obj -MD -MP -MF "src/dialog/$(DEPDIR)/wxmedit-wxm_replace_dialog.Tpo" -c -o src/dialog/wxmedit-wxm_replace_dialog.obj `if test -f 'src/dialog/wxm_replace_dialog.cpp'; then $(CYGPATH_W) 'src/dialog/wxm_replace_dialog.cpp'; else $(CYGPATH_W) '$(srcdir)/src/dialog/wxm_replace_dialog.cpp'; fi`; \
-@am__fastdepCXX_TRUE@	then mv -f "src/dialog/$(DEPDIR)/wxmedit-wxm_replace_dialog.Tpo" "src/dialog/$(DEPDIR)/wxmedit-wxm_replace_dialog.Po"; else rm -f "src/dialog/$(DEPDIR)/wxmedit-wxm_replace_dialog.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/dialog/wxm_replace_dialog.cpp' object='src/dialog/wxmedit-wxm_replace_dialog.obj' libtool=no @AMDEPBACKSLASH@
+src/dialog/wxmedit-wxm_searchreplace_dialog.obj: src/dialog/wxm_searchreplace_dialog.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -MT src/dialog/wxmedit-wxm_searchreplace_dialog.obj -MD -MP -MF "src/dialog/$(DEPDIR)/wxmedit-wxm_searchreplace_dialog.Tpo" -c -o src/dialog/wxmedit-wxm_searchreplace_dialog.obj `if test -f 'src/dialog/wxm_searchreplace_dialog.cpp'; then $(CYGPATH_W) 'src/dialog/wxm_searchreplace_dialog.cpp'; else $(CYGPATH_W) '$(srcdir)/src/dialog/wxm_searchreplace_dialog.cpp'; fi`; \
+@am__fastdepCXX_TRUE@	then mv -f "src/dialog/$(DEPDIR)/wxmedit-wxm_searchreplace_dialog.Tpo" "src/dialog/$(DEPDIR)/wxmedit-wxm_searchreplace_dialog.Po"; else rm -f "src/dialog/$(DEPDIR)/wxmedit-wxm_searchreplace_dialog.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/dialog/wxm_searchreplace_dialog.cpp' object='src/dialog/wxmedit-wxm_searchreplace_dialog.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -c -o src/dialog/wxmedit-wxm_replace_dialog.obj `if test -f 'src/dialog/wxm_replace_dialog.cpp'; then $(CYGPATH_W) 'src/dialog/wxm_replace_dialog.cpp'; else $(CYGPATH_W) '$(srcdir)/src/dialog/wxm_replace_dialog.cpp'; fi`
-
-src/dialog/wxmedit-wxm_search_dialog.o: src/dialog/wxm_search_dialog.cpp
-@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -MT src/dialog/wxmedit-wxm_search_dialog.o -MD -MP -MF "src/dialog/$(DEPDIR)/wxmedit-wxm_search_dialog.Tpo" -c -o src/dialog/wxmedit-wxm_search_dialog.o `test -f 'src/dialog/wxm_search_dialog.cpp' || echo '$(srcdir)/'`src/dialog/wxm_search_dialog.cpp; \
-@am__fastdepCXX_TRUE@	then mv -f "src/dialog/$(DEPDIR)/wxmedit-wxm_search_dialog.Tpo" "src/dialog/$(DEPDIR)/wxmedit-wxm_search_dialog.Po"; else rm -f "src/dialog/$(DEPDIR)/wxmedit-wxm_search_dialog.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/dialog/wxm_search_dialog.cpp' object='src/dialog/wxmedit-wxm_search_dialog.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -c -o src/dialog/wxmedit-wxm_search_dialog.o `test -f 'src/dialog/wxm_search_dialog.cpp' || echo '$(srcdir)/'`src/dialog/wxm_search_dialog.cpp
-
-src/dialog/wxmedit-wxm_search_dialog.obj: src/dialog/wxm_search_dialog.cpp
-@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -MT src/dialog/wxmedit-wxm_search_dialog.obj -MD -MP -MF "src/dialog/$(DEPDIR)/wxmedit-wxm_search_dialog.Tpo" -c -o src/dialog/wxmedit-wxm_search_dialog.obj `if test -f 'src/dialog/wxm_search_dialog.cpp'; then $(CYGPATH_W) 'src/dialog/wxm_search_dialog.cpp'; else $(CYGPATH_W) '$(srcdir)/src/dialog/wxm_search_dialog.cpp'; fi`; \
-@am__fastdepCXX_TRUE@	then mv -f "src/dialog/$(DEPDIR)/wxmedit-wxm_search_dialog.Tpo" "src/dialog/$(DEPDIR)/wxmedit-wxm_search_dialog.Po"; else rm -f "src/dialog/$(DEPDIR)/wxmedit-wxm_search_dialog.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/dialog/wxm_search_dialog.cpp' object='src/dialog/wxmedit-wxm_search_dialog.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -c -o src/dialog/wxmedit-wxm_search_dialog.obj `if test -f 'src/dialog/wxm_search_dialog.cpp'; then $(CYGPATH_W) 'src/dialog/wxm_search_dialog.cpp'; else $(CYGPATH_W) '$(srcdir)/src/dialog/wxm_search_dialog.cpp'; fi`
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -c -o src/dialog/wxmedit-wxm_searchreplace_dialog.obj `if test -f 'src/dialog/wxm_searchreplace_dialog.cpp'; then $(CYGPATH_W) 'src/dialog/wxm_searchreplace_dialog.cpp'; else $(CYGPATH_W) '$(srcdir)/src/dialog/wxm_searchreplace_dialog.cpp'; fi`
 
 src/dialog/wxmedit-wxm_sort_dialog.o: src/dialog/wxm_sort_dialog.cpp
 @am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -MT src/dialog/wxmedit-wxm_sort_dialog.o -MD -MP -MF "src/dialog/$(DEPDIR)/wxmedit-wxm_sort_dialog.Tpo" -c -o src/dialog/wxmedit-wxm_sort_dialog.o `test -f 'src/dialog/wxm_sort_dialog.cpp' || echo '$(srcdir)/'`src/dialog/wxm_sort_dialog.cpp; \

@@ -12,8 +12,7 @@
 #include "wxmedit/wxm_syntax.h"
 #include "wxmedit/trad_simp.h"
 #include "wxmedit_frame.h"
-#include "dialog/wxm_search_dialog.h"
-#include "dialog/wxm_replace_dialog.h"
+#include "dialog/wxm_searchreplace_dialog.h"
 #include "dialog/wxm_find_in_files_dialog.h"
 #include "dialog/wxm_options_dialog.h"
 #include "dialog/wxm_highlighting_dialog.h"
@@ -899,13 +898,9 @@ void OnEditStatusChanged(MadEdit *madedit)
             g_StatusBar->Update(); // repaint immediately
 
 
-            if(g_SearchDialog!=NULL)
+            if(g_SearchReplaceDialog!=NULL)
             {
-                g_SearchDialog->UpdateCheckBoxByCBHex(g_SearchDialog->WxCheckBoxFindHex->GetValue());
-            }
-            if(g_ReplaceDialog!=NULL)
-            {
-                g_ReplaceDialog->UpdateCheckBoxByCBHex(g_ReplaceDialog->WxCheckBoxFindHex->GetValue());
+                g_SearchReplaceDialog->UpdateCheckBoxByCBHex(g_SearchReplaceDialog->WxCheckBoxFindHex->GetValue());
             }
         }
     }
@@ -2148,17 +2143,13 @@ void MadEditFrame::MadEditFrameClose(wxCloseEvent& event)
     m_Config->SetPath(wxT("/RecentFonts"));
     m_RecentFonts->Save(*m_Config);
 
-    if(g_SearchDialog!=NULL)
+    if(g_SearchReplaceDialog!=NULL)
     {
-        g_SearchDialog->Show(false);
+        g_SearchReplaceDialog->Show(false);
         m_Config->SetPath(wxT("/RecentFindText"));
-        g_SearchDialog->m_RecentFindText->Save(*m_Config);
-    }
-    if(g_ReplaceDialog!=NULL)
-    {
-        g_ReplaceDialog->Show(false);
+        g_SearchReplaceDialog->m_RecentReplaceText->Save(*m_Config);
         m_Config->SetPath(wxT("/RecentReplaceText"));
-        g_ReplaceDialog->m_RecentReplaceText->Save(*m_Config);
+        g_SearchReplaceDialog->m_RecentReplaceText->Save(*m_Config);
     }
     if(g_FindInFilesDialog!=NULL)
     {
@@ -2222,13 +2213,9 @@ void MadEditFrame::MadEditFrameKeyDown(wxKeyEvent& event)
     switch(key)
     {
     case WXK_ESCAPE:
-        if(g_SearchDialog && g_SearchDialog->IsShown())
+        if(g_SearchReplaceDialog && g_SearchReplaceDialog->IsShown())
         {
-            g_SearchDialog->Show(false);
-        }
-        if(g_ReplaceDialog && g_ReplaceDialog->IsShown())
-        {
-            g_ReplaceDialog->Show(false);
+            g_SearchReplaceDialog->Show(false);
         }
         if(g_FindInFilesDialog && g_FindInFilesDialog->IsShown())
         {
@@ -3928,214 +3915,190 @@ void MadEditFrame::OnSearchFind(wxCommandEvent& event)
 {
     if(g_ActiveMadEdit==NULL) return;
 
-    if(g_SearchDialog==NULL)
+    if(g_SearchReplaceDialog==NULL)
     {
-        g_SearchDialog=new WXMSearchDialog(this);
-    }
-    if(g_ReplaceDialog==NULL)
-    {
-        g_ReplaceDialog=new WXMReplaceDialog(this);
+        g_SearchReplaceDialog=new WXMSearchReplaceDialog(this);
     }
 
-    g_ReplaceDialog->Show(false);
-
-    g_SearchDialog->Show();
-    g_SearchDialog->SetFocus();
-    g_SearchDialog->Raise();
+	g_SearchReplaceDialog->ShowOnlyFindFunc();
+    g_SearchReplaceDialog->SetFocus();
+    g_SearchReplaceDialog->Raise();
 
     wxString fname;
     int fsize;
 
-    g_SearchDialog->UpdateCheckBoxByCBHex(g_SearchDialog->WxCheckBoxFindHex->GetValue());
+    g_SearchReplaceDialog->UpdateCheckBoxByCBHex(g_SearchReplaceDialog->WxCheckBoxFindHex->GetValue());
 
     g_ActiveMadEdit->GetFont(fname, fsize);
-    g_SearchDialog->m_FindText->SetFont(fname, 14);
+    g_SearchReplaceDialog->m_FindText->SetFont(fname, 14);
 
     if(g_ActiveMadEdit->IsSelected())
     {
         if(g_ActiveMadEdit->GetSelectionSize()<=10240)
         {
-            if(g_SearchDialog->WxCheckBoxFindHex->GetValue())
+            if(g_SearchReplaceDialog->WxCheckBoxFindHex->GetValue())
             {
                 wxString ws;
                 g_ActiveMadEdit->GetSelHexString(ws, true);
-                g_SearchDialog->m_FindText->SetText(ws);
+                g_SearchReplaceDialog->m_FindText->SetText(ws);
             }
-            else if(g_SearchDialog->WxCheckBoxRegex->GetValue()==false)
+            else if(g_SearchReplaceDialog->WxCheckBoxRegex->GetValue()==false)
             {
                 wxString ws;
                 g_ActiveMadEdit->GetSelText(ws);
-                g_SearchDialog->m_FindText->SetText(ws);
+                g_SearchReplaceDialog->m_FindText->SetText(ws);
             }
         }
     }
     else
     {
-        if(g_SearchDialog->WxCheckBoxRegex->GetValue()==false &&
-            !(g_SearchDialog->WxCheckBoxFindHex->GetValue()) )
+        if(g_SearchReplaceDialog->WxCheckBoxRegex->GetValue()==false &&
+            !(g_SearchReplaceDialog->WxCheckBoxFindHex->GetValue()) )
         {
             wxString ws;
             g_ActiveMadEdit->GetWordFromCaretPos(ws);
             if(!ws.IsEmpty() && ws[0]>wxChar(0x20))
             {
-                g_SearchDialog->m_FindText->SetText(ws);
+                g_SearchReplaceDialog->m_FindText->SetText(ws);
             }
         }
     }
 
-    g_SearchDialog->m_FindText->SelectAll();
-    g_SearchDialog->m_FindText->SetFocus();
+    g_SearchReplaceDialog->m_FindText->SelectAll();
+    g_SearchReplaceDialog->m_FindText->SetFocus();
 }
 
 void MadEditFrame::OnSearchFindNext(wxCommandEvent& event)
 {
     if(g_ActiveMadEdit==NULL) return;
 
-    if(g_SearchDialog==NULL)
+    if(g_SearchReplaceDialog==NULL)
     {
-        g_SearchDialog=new WXMSearchDialog(this);
-    }
-    if(g_ReplaceDialog==NULL)
-    {
-        g_ReplaceDialog=new WXMReplaceDialog(this);
+        g_SearchReplaceDialog=new WXMSearchReplaceDialog(this);
     }
 
-    g_SearchDialog->UpdateCheckBoxByCBHex(g_SearchDialog->WxCheckBoxFindHex->GetValue());
+    g_SearchReplaceDialog->UpdateCheckBoxByCBHex(g_SearchReplaceDialog->WxCheckBoxFindHex->GetValue());
 
     if(g_ActiveMadEdit->IsSelected())
     {
         if(g_ActiveMadEdit->GetSelectionSize()<=10240)
         {
-            if(g_SearchDialog->WxCheckBoxFindHex->GetValue())
+            if(g_SearchReplaceDialog->WxCheckBoxFindHex->GetValue())
             {
                 wxString ws;
                 g_ActiveMadEdit->GetSelHexString(ws, true);
-                g_SearchDialog->m_FindText->SetText(ws);
+                g_SearchReplaceDialog->m_FindText->SetText(ws);
             }
-            else if(g_SearchDialog->WxCheckBoxRegex->GetValue()==false)
+            else if(g_SearchReplaceDialog->WxCheckBoxRegex->GetValue()==false)
             {
                 wxString ws;
                 g_ActiveMadEdit->GetSelText(ws);
-                g_SearchDialog->m_FindText->SetText(ws);
+                g_SearchReplaceDialog->m_FindText->SetText(ws);
             }
         }
     }
 
     wxCommandEvent e;
-    g_SearchDialog->WxButtonFindNextClick(e);
+    g_SearchReplaceDialog->WxButtonFindNextClick(e);
 }
 
 void MadEditFrame::OnSearchFindPrevious(wxCommandEvent& event)
 {
     if(g_ActiveMadEdit==NULL) return;
 
-    if(g_SearchDialog==NULL)
+    if(g_SearchReplaceDialog==NULL)
     {
-        g_SearchDialog=new WXMSearchDialog(this);
-    }
-    if(g_ReplaceDialog==NULL)
-    {
-        g_ReplaceDialog=new WXMReplaceDialog(this);
+        g_SearchReplaceDialog=new WXMSearchReplaceDialog(this);
     }
 
-    g_SearchDialog->UpdateCheckBoxByCBHex(g_SearchDialog->WxCheckBoxFindHex->GetValue());
+    g_SearchReplaceDialog->UpdateCheckBoxByCBHex(g_SearchReplaceDialog->WxCheckBoxFindHex->GetValue());
 
     if(g_ActiveMadEdit->IsSelected())
     {
         if(g_ActiveMadEdit->GetSelectionSize()<=10240)
         {
-            if(g_SearchDialog->WxCheckBoxFindHex->GetValue())
+            if(g_SearchReplaceDialog->WxCheckBoxFindHex->GetValue())
             {
                 wxString ws;
                 g_ActiveMadEdit->GetSelHexString(ws, true);
-                g_SearchDialog->m_FindText->SetText(ws);
+                g_SearchReplaceDialog->m_FindText->SetText(ws);
             }
-            else if(g_SearchDialog->WxCheckBoxRegex->GetValue()==false)
+            else if(g_SearchReplaceDialog->WxCheckBoxRegex->GetValue()==false)
             {
                 wxString ws;
                 g_ActiveMadEdit->GetSelText(ws);
-                g_SearchDialog->m_FindText->SetText(ws);
+                g_SearchReplaceDialog->m_FindText->SetText(ws);
             }
         }
     }
 
     wxCommandEvent e;
-    g_SearchDialog->WxButtonFindPrevClick(e);
+    g_SearchReplaceDialog->WxButtonFindPrevClick(e);
 }
 
 void MadEditFrame::OnSearchReplace(wxCommandEvent& event)
 {
     if(g_ActiveMadEdit==NULL) return;
 
-    if(g_SearchDialog==NULL)
+    if(g_SearchReplaceDialog==NULL)
     {
-        g_SearchDialog=new WXMSearchDialog(this);
-    }
-    if(g_ReplaceDialog==NULL)
-    {
-        g_ReplaceDialog=new WXMReplaceDialog(this);
+        g_SearchReplaceDialog=new WXMSearchReplaceDialog(this);
     }
 
-    g_SearchDialog->Show(false);
-
-    g_ReplaceDialog->Show();
-    g_ReplaceDialog->SetFocus();
-    g_ReplaceDialog->Raise();
+	g_SearchReplaceDialog->ShowWithReplaceFunc();
+    g_SearchReplaceDialog->SetFocus();
+    g_SearchReplaceDialog->Raise();
 
     wxString fname;
     int fsize;
 
-    g_ReplaceDialog->UpdateCheckBoxByCBHex(g_ReplaceDialog->WxCheckBoxFindHex->GetValue());
+    g_SearchReplaceDialog->UpdateCheckBoxByCBHex(g_SearchReplaceDialog->WxCheckBoxFindHex->GetValue());
 
     g_ActiveMadEdit->GetFont(fname, fsize);
-    g_ReplaceDialog->m_FindText->SetFont(fname, 14);
-    g_ReplaceDialog->m_ReplaceText->SetFont(fname, 14);
+    g_SearchReplaceDialog->m_FindText->SetFont(fname, 14);
+    g_SearchReplaceDialog->m_ReplaceText->SetFont(fname, 14);
 
     if(g_ActiveMadEdit->IsSelected())
     {
         if(g_ActiveMadEdit->GetSelectionSize()<=10240)
         {
-            if(g_ReplaceDialog->WxCheckBoxFindHex->GetValue())
+            if(g_SearchReplaceDialog->WxCheckBoxFindHex->GetValue())
             {
                 wxString ws;
                 g_ActiveMadEdit->GetSelHexString(ws, true);
-                g_ReplaceDialog->m_FindText->SetText(ws);
+                g_SearchReplaceDialog->m_FindText->SetText(ws);
             }
-            else if(g_ReplaceDialog->WxCheckBoxRegex->GetValue()==false)
+            else if(g_SearchReplaceDialog->WxCheckBoxRegex->GetValue()==false)
             {
                 wxString ws;
                 g_ActiveMadEdit->GetSelText(ws);
-                g_ReplaceDialog->m_FindText->SetText(ws);
+                g_SearchReplaceDialog->m_FindText->SetText(ws);
             }
         }
     }
     else
     {
-        if(g_ReplaceDialog->WxCheckBoxRegex->GetValue()==false &&
-            !(g_ReplaceDialog->WxCheckBoxFindHex->GetValue()) )
+        if(g_SearchReplaceDialog->WxCheckBoxRegex->GetValue()==false &&
+            !(g_SearchReplaceDialog->WxCheckBoxFindHex->GetValue()) )
         {
             wxString ws;
             g_ActiveMadEdit->GetWordFromCaretPos(ws);
             if(!ws.IsEmpty() && ws[0]>wxChar(0x20))
             {
-                g_ReplaceDialog->m_FindText->SetText(ws);
+                g_SearchReplaceDialog->m_FindText->SetText(ws);
             }
         }
     }
 
-    g_ReplaceDialog->m_FindText->SelectAll();
-    g_ReplaceDialog->m_FindText->SetFocus();
+    g_SearchReplaceDialog->m_FindText->SelectAll();
+    g_SearchReplaceDialog->m_FindText->SetFocus();
 }
 
 void MadEditFrame::OnSearchFindInFiles(wxCommandEvent& event)
 {
-    if(g_SearchDialog==NULL)
+    if(g_SearchReplaceDialog==NULL)
     {
-        g_SearchDialog=new WXMSearchDialog(this);
-    }
-    if(g_ReplaceDialog==NULL)
-    {
-        g_ReplaceDialog=new WXMReplaceDialog(this);
+        g_SearchReplaceDialog=new WXMSearchReplaceDialog(this);
     }
     if(g_FindInFilesDialog==NULL)
     {
