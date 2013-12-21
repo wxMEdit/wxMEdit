@@ -169,8 +169,6 @@ WXMSearchReplaceDialog::WXMSearchReplaceDialog(wxWindow* parent,wxWindowID id,co
 	Connect(wxEVT_KEY_DOWN,(wxObjectEventFunction)&WXMSearchReplaceDialog::WXMSearchReplaceDialogKeyDown);
 	//*)
 
-	this->SetPosition(wxPoint(300,100));
-
 	int bw, bh;
 	// find
 	WxButtonFindNext->GetSize(&bw, &bh);
