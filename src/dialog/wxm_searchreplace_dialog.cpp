@@ -155,6 +155,7 @@ WXMSearchReplaceDialog::WXMSearchReplaceDialog(wxWindow* parent,wxWindowID id,co
 	SetSizer(BoxSizer1);
 	BoxSizer1->Fit(this);
 	BoxSizer1->SetSizeHints(this);
+	Center();
 
 	Connect(ID_WXCHECKBOXFINDHEX,wxEVT_COMMAND_CHECKBOX_CLICKED,(wxObjectEventFunction)&WXMSearchReplaceDialog::WxCheckBoxFindHexClick);
 	Connect(ID_WXCHECKBOXSEARCHINSELECTION,wxEVT_COMMAND_CHECKBOX_CLICKED,(wxObjectEventFunction)&WXMSearchReplaceDialog::WxCheckBoxSearchInSelectionClick);

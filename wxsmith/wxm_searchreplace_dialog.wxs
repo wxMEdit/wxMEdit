@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <wxsmith>
 	<object class="wxDialog" name="WXMSearchReplaceDialog">
+		<centered>1</centered>
 		<pos_arg>1</pos_arg>
 		<size_arg>1</size_arg>
 		<style>wxCAPTION|wxSYSTEM_MENU|wxRESIZE_BORDER|wxCLOSE_BOX|wxDIALOG_NO_PARENT</style>
