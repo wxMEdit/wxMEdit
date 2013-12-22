@@ -344,25 +344,21 @@ bool MadEditApp::OnInit()
     wxPoint pos=wxDefaultPosition;
     wxSize size=wxDefaultSize;
 
-    if(!maximize)
+    long x=0,y=0,w=0,h=0;
+    cfg->Read(wxT("/wxMEdit/WindowLeft"), &x);
+    cfg->Read(wxT("/wxMEdit/WindowTop"), &y);
+    cfg->Read(wxT("/wxMEdit/WindowWidth"), &w);
+    cfg->Read(wxT("/wxMEdit/WindowHeight"), &h);
+
+    if(x+w>0 && y+h>0)
+    //if(w>0 && h>0)
     {
-        long x=0,y=0,w=0,h=0;
-        cfg->Read(wxT("/wxMEdit/WindowLeft"), &x);
-        cfg->Read(wxT("/wxMEdit/WindowTop"), &y);
-        cfg->Read(wxT("/wxMEdit/WindowWidth"), &w);
-        cfg->Read(wxT("/wxMEdit/WindowHeight"), &h);
+        size.x=w;
+        size.y=h;
 
-        if(x+w>0 && y+h>0)
-        //if(w>0 && h>0)
-        {
-            size.x=w;
-            size.y=h;
-
-            pos.x=x;
-            pos.y=y;
-        }
+        pos.x=x;
+        pos.y=y;
     }
-
 
     // load FontWidth buffers
     cfg->Read(wxT("/wxMEdit/FontWidthBufferMaxCount"), &FontWidthManager::MaxCount, 10);
@@ -376,14 +372,11 @@ bool MadEditApp::OnInit()
     SetTopWindow(myFrame);
 
 #ifdef __WXMSW__
-    if(maximize)
-    {
-        WINDOWPLACEMENT wp;
-        wp.length=sizeof(WINDOWPLACEMENT);
-        GetWindowPlacement((HWND)myFrame->GetHWND(), &wp);
-        wp.showCmd=SW_SHOWMAXIMIZED;
-        SetWindowPlacement((HWND)myFrame->GetHWND(), &wp);
-    }
+    WINDOWPLACEMENT wp;
+    wp.length=sizeof(WINDOWPLACEMENT);
+    GetWindowPlacement((HWND)myFrame->GetHWND(), &wp);
+    wp.showCmd = maximize ? SW_SHOWMAXIMIZED : SW_SHOWNORMAL;
+    SetWindowPlacement((HWND)myFrame->GetHWND(), &wp);
 #endif
 
     myFrame->Show(true);

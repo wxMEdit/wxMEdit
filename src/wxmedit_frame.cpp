@@ -2120,10 +2120,16 @@ void MadEditFrame::MadEditFrameClose(wxCloseEvent& event)
     g_FileCaretPosManager.Save(m_Config);
 
 #ifdef __WXMSW__
-    int style=::GetWindowLong((HWND)GetHWND(), GWL_STYLE);
-    m_Config->Write(wxT("/wxMEdit/WindowMaximize"), (style&WS_MAXIMIZE)!=0 );
-#endif
+    WINDOWPLACEMENT wp;
+    wp.length = sizeof(WINDOWPLACEMENT);
+    GetWindowPlacement( (HWND) GetHWND(), &wp );
+    m_Config->Write( wxT("/wxMEdit/WindowMaximize"), wp.showCmd == SW_SHOWMAXIMIZED );
 
+    m_Config->Write(wxT("/wxMEdit/WindowLeft"),   wp.rcNormalPosition.left );
+    m_Config->Write(wxT("/wxMEdit/WindowTop"),    wp.rcNormalPosition.top );
+    m_Config->Write(wxT("/wxMEdit/WindowWidth"),  wp.rcNormalPosition.right - wp.rcNormalPosition.left);
+    m_Config->Write(wxT("/wxMEdit/WindowHeight"), wp.rcNormalPosition.bottom - wp.rcNormalPosition.top);
+#else
     int x,y;
     GetPosition(&x,&y);
     m_Config->Write(wxT("/wxMEdit/WindowLeft"), x );
@@ -2132,7 +2138,7 @@ void MadEditFrame::MadEditFrameClose(wxCloseEvent& event)
     GetSize(&x,&y);
     m_Config->Write(wxT("/wxMEdit/WindowWidth"), x );
     m_Config->Write(wxT("/wxMEdit/WindowHeight"), y );
-
+#endif
 
     m_Config->SetPath(wxT("/RecentFiles"));
     m_RecentFiles->Save(*m_Config);
