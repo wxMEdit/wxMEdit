@@ -316,6 +316,9 @@ void WXMSearchReplaceDialog::WxButtonFindNextClick(wxCommandEvent& event)
 		wxFileOffset selend = g_ActiveMadEdit->GetSelectionEndPos();
 		wxFileOffset caretpos = g_ActiveMadEdit->GetCaretPosition();
 
+		wxString msg_selection_end(_("End of selection reached, search from beginning."));
+		wxString msg_file_end(_("End of file reached, search from beginning."));
+
 		wxInt64 from = 0, to = 0;
 		wxFileOffset rangeFrom = -1, rangeTo = -1;
 		if(WxCheckBoxSearchInSelection->IsChecked())
@@ -332,8 +335,15 @@ void WXMSearchReplaceDialog::WxButtonFindNextClick(wxCommandEvent& event)
 			}
 
 			rangeTo = to;
-			if(caretpos <= from || caretpos > to || (caretpos==to && WxCheckBoxWrapAround->IsChecked()))
+			if (caretpos <= from || caretpos > to)
+			{
 				rangeFrom = from;
+			}
+			else if (caretpos==to && WxCheckBoxWrapAround->IsChecked())
+			{
+				ShowMessage(msg_selection_end);
+				rangeFrom = from;
+			}
 		}
 
 		for(;;)
@@ -363,15 +373,12 @@ void WXMSearchReplaceDialog::WxButtonFindNextClick(wxCommandEvent& event)
 
 			if (WxCheckBoxWrapAround->IsChecked() && rangeTo != caretpos)
 			{
-				bool search_in_selection = WxCheckBoxSearchInSelection->IsChecked();
+				bool in_selection = WxCheckBoxSearchInSelection->IsChecked();
 
-				wxString msg = search_in_selection?
-					_("End of selection reached, search from beginning."):
-					_("End of file reached, search from beginning.");
-				ShowMessage(msg);
+				ShowMessage(in_selection? msg_selection_end: msg_file_end);
 
 				rangeTo = caretpos;
-				rangeFrom = search_in_selection? from : 0;
+				rangeFrom = in_selection? from : 0;
 				continue;
 			}
 
@@ -411,6 +418,9 @@ void WXMSearchReplaceDialog::WxButtonFindPrevClick(wxCommandEvent& event)
 		wxFileOffset selbeg = g_ActiveMadEdit->GetSelectionBeginPos();
 		wxFileOffset caretpos = g_ActiveMadEdit->GetCaretPosition();
 
+		wxString msg_selection_begin(_("Beginning of selection reached, search from end."));
+		wxString msg_file_begin(_("Beginning of file reached, search from end."));
+
 		wxInt64 from = 0, to = 0;
 		wxFileOffset rangeFrom = -1, rangeTo = -1;
 		if(WxCheckBoxSearchInSelection->IsChecked())
@@ -427,8 +437,15 @@ void WXMSearchReplaceDialog::WxButtonFindPrevClick(wxCommandEvent& event)
 			}
 
 			rangeFrom = from;
-			if(caretpos < from || caretpos >= to || (caretpos==from && WxCheckBoxWrapAround->IsChecked()))
+			if (caretpos < from || caretpos >= to)
+			{
 				rangeTo = to;
+			}
+			else if (caretpos==from && WxCheckBoxWrapAround->IsChecked())
+			{
+				ShowMessage(msg_selection_begin);
+				rangeTo = to;
+			}
 		}
 
 		for(;;)
@@ -458,14 +475,11 @@ void WXMSearchReplaceDialog::WxButtonFindPrevClick(wxCommandEvent& event)
 
 			if (WxCheckBoxWrapAround->IsChecked() && rangeFrom != caretpos)
 			{
-				bool search_in_selection = WxCheckBoxSearchInSelection->IsChecked();
+				bool in_selection = WxCheckBoxSearchInSelection->IsChecked();
 
-				wxString msg = search_in_selection?
-					_("Beginning of selection reached, search from end."):
-					_("Beginning of file reached, search from end.");
-				ShowMessage(msg);
+				ShowMessage(in_selection? msg_selection_begin: msg_file_begin);
 
-				rangeTo = search_in_selection? to: g_ActiveMadEdit->GetFileSize();
+				rangeTo = in_selection? to: g_ActiveMadEdit->GetFileSize();
 				rangeFrom = caretpos;
 				continue;
 			}
@@ -696,6 +710,9 @@ void WXMSearchReplaceDialog::WxButtonReplaceClick(wxCommandEvent& event)
 		m_RecentReplaceText->AddItemToHistory(reptext);
 	}
 
+	wxString msg_selection_end(_("End of selection reached, replace from beginning."));
+	wxString msg_file_end(_("End of file reached, replace from beginning."));
+
 	wxInt64 from = 0, to = 0;
 	wxFileOffset rangeFrom = -1, rangeTo = -1;
 	wxFileOffset caretpos = g_ActiveMadEdit->GetCaretPosition();
@@ -713,8 +730,15 @@ void WXMSearchReplaceDialog::WxButtonReplaceClick(wxCommandEvent& event)
 		}
 
 		rangeTo = to;
-		if(caretpos <= from || caretpos > to || (caretpos==to && WxCheckBoxWrapAround->IsChecked()))
+		if (caretpos <= from || caretpos > to)
+		{
 			rangeFrom = from;
+		}
+		else if (caretpos==to && WxCheckBoxWrapAround->IsChecked())
+		{
+			ShowMessage(msg_selection_end);
+			rangeFrom = from;
+		}
 	}
 
 	MadReplaceResult ret=RR_EXPR_ERROR;
@@ -737,15 +761,12 @@ void WXMSearchReplaceDialog::WxButtonReplaceClick(wxCommandEvent& event)
 		if ((ret==RR_REP_NNEXT || ret==RR_NREP_NNEXT) &&
 			WxCheckBoxWrapAround->IsChecked() && rangeTo != caretpos)
 		{
-			bool search_in_selection = WxCheckBoxSearchInSelection->IsChecked();
+			bool in_selection = WxCheckBoxSearchInSelection->IsChecked();
 
-			wxString msg = search_in_selection?
-				_("End of selection reached, replace from beginning."):
-				_("End of file reached, replace from beginning.");
-			ShowMessage(msg);
+			ShowMessage(in_selection? msg_selection_end: msg_file_end);
 
 			rangeTo = caretpos;
-			rangeFrom = search_in_selection? from : 0;
+			rangeFrom = in_selection? from : 0;
 			continue;
 		}
 
