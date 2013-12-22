@@ -3930,7 +3930,7 @@ void MadEditFrame::OnSearchFind(wxCommandEvent& event)
     g_SearchReplaceDialog->UpdateCheckBoxByCBHex(g_SearchReplaceDialog->WxCheckBoxFindHex->GetValue());
 
     g_ActiveMadEdit->GetFont(fname, fsize);
-    g_SearchReplaceDialog->m_FindText->SetFont(fname, 14);
+    g_SearchReplaceDialog->m_FindText->SetFont(fname, 12);
 
     if(g_ActiveMadEdit->IsSelected())
     {
@@ -4055,8 +4055,8 @@ void MadEditFrame::OnSearchReplace(wxCommandEvent& event)
     g_SearchReplaceDialog->UpdateCheckBoxByCBHex(g_SearchReplaceDialog->WxCheckBoxFindHex->GetValue());
 
     g_ActiveMadEdit->GetFont(fname, fsize);
-    g_SearchReplaceDialog->m_FindText->SetFont(fname, 14);
-    g_SearchReplaceDialog->m_ReplaceText->SetFont(fname, 14);
+    g_SearchReplaceDialog->m_FindText->SetFont(fname, 12);
+    g_SearchReplaceDialog->m_ReplaceText->SetFont(fname, 12);
 
     if(g_ActiveMadEdit->IsSelected())
     {
@@ -4113,8 +4113,8 @@ void MadEditFrame::OnSearchFindInFiles(wxCommandEvent& event)
     int fsize;
     if(g_ActiveMadEdit) g_ActiveMadEdit->GetFont(fname, fsize);
     else g_FindInFilesDialog->m_FindText->GetFont(fname, fsize);
-    g_FindInFilesDialog->m_FindText->SetFont(fname, 14);
-    g_FindInFilesDialog->m_ReplaceText->SetFont(fname, 14);
+    g_FindInFilesDialog->m_FindText->SetFont(fname, 12);
+    g_FindInFilesDialog->m_ReplaceText->SetFont(fname, 12);
 
     if(g_ActiveMadEdit && g_ActiveMadEdit->IsSelected())
     {
