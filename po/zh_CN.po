@@ -2348,27 +2348,27 @@ msgstr "插入日期、时间到当前位置"
 
 #: ../src/wxmedit_frame.cpp:1274
 msgid "Toggle/Remove Bookmark "
-msgstr ""
+msgstr "设置/移除书签"
 
 #: ../src/wxmedit_frame.cpp:1274
 msgid "Toggle Bookmark at current line"
-msgstr ""
+msgstr "在当前行设置/移除书签"
 
 #: ../src/wxmedit_frame.cpp:1275
 msgid "Go To Next Bookmark"
-msgstr ""
+msgstr "转到下一书签"
 
 #: ../src/wxmedit_frame.cpp:1275
 msgid "Go to the next bookmark"
-msgstr ""
+msgstr "转到下一书签处"
 
 #: ../src/wxmedit_frame.cpp:1276
 msgid "Go To Previous Bookmark"
-msgstr ""
+msgstr "转到上一书签"
 
 #: ../src/wxmedit_frame.cpp:1276
 msgid "Go to the previous bookmark"
-msgstr ""
+msgstr "转到上一书签处"
 
 #: ../src/wxmedit_frame.cpp:1279
 msgid "Ad&vanced"
@@ -3086,7 +3086,7 @@ msgstr "关于 wxMEdit (&A)..."
 
 #: ../src/wxmedit_frame.cpp:1540
 msgid "Show about dialog"
-msgstr ""
+msgstr "显示关于对话框"
 
 #: ../src/wxmedit_frame.cpp:1544
 msgid "Move caret left one char"
@@ -3234,11 +3234,11 @@ msgstr "删除光标左边的字符"
 
 #: ../src/wxmedit_frame.cpp:1584
 msgid "Delete a word left from the caret"
-msgstr ""
+msgstr "删除光标左边的一个单词"
 
 #: ../src/wxmedit_frame.cpp:1585
 msgid "Delete a word right from the caret"
-msgstr ""
+msgstr "删除光标右边的一个单词"
 
 #: ../src/wxmedit_frame.cpp:1587
 msgid "Toggle Insert/Overwrite Mode"
@@ -3705,7 +3705,7 @@ msgstr "将输入焦点移到编辑器窗口(&M)"
 
 #: ../src/dialog/wxm_searchreplace_dialog.cpp:103
 msgid "Wrap ar&ound"
-msgstr ""
+msgstr "循环查找(O)"
 
 #: ../src/dialog/wxm_searchreplace_dialog.cpp:119
 msgid "Search In &Selection"
@@ -3725,11 +3725,11 @@ msgstr "替换(&R) >>"
 
 #: ../src/dialog/wxm_searchreplace_dialog.cpp:320
 msgid "End of selection reached, search from beginning."
-msgstr ""
+msgstr "已到选区末尾，从选区开头查找。"
 
 #: ../src/dialog/wxm_searchreplace_dialog.cpp:321
 msgid "End of file reached, search from beginning."
-msgstr ""
+msgstr "已到文件末尾，从文件开头查找。"
 
 #: ../src/dialog/wxm_searchreplace_dialog.cpp:329
 #: ../src/dialog/wxm_searchreplace_dialog.cpp:431
@@ -3755,19 +3755,19 @@ msgstr "找不到符合的字符串。"
 
 #: ../src/dialog/wxm_searchreplace_dialog.cpp:422
 msgid "Beginning of selection reached, search from end."
-msgstr ""
+msgstr "已到选区开头，从选区末尾查找。"
 
 #: ../src/dialog/wxm_searchreplace_dialog.cpp:423
 msgid "Beginning of file reached, search from end."
-msgstr ""
+msgstr "已到文件开头，从文件末尾查找。"
 
 #: ../src/dialog/wxm_searchreplace_dialog.cpp:714
 msgid "End of selection reached, replace from beginning."
-msgstr ""
+msgstr "已到选区末尾，从文件开头替换。"
 
 #: ../src/dialog/wxm_searchreplace_dialog.cpp:715
 msgid "End of file reached, replace from beginning."
-msgstr ""
+msgstr "已到文件末尾，从文件开头替换。"
 
 #: ../src/dialog/wxm_searchreplace_dialog.cpp:781
 msgid "Cannot find the matched string. Replace is finished."
