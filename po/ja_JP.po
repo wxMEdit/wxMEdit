@@ -33,7 +33,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: wxMEdit 2.9.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-11-19 22:03+0800\n"
+"POT-Creation-Date: 2013-12-23 20:29+0800\n"
 "PO-Revision-Date: 2013-11-19 22:39+0900\n"
 "Last-Translator: Tilt <<tiltstr@gmail.com>>\n"
 "Language-Team: Tilt <<tiltstr@gmail.com>>\n"
@@ -286,8 +286,7 @@ msgstr "コピー:"
 msgid "Default printer"
 msgstr "デフォルトプリンタ"
 
-#: wxstd.po.cpp:62 ../src/dialog/wxm_search_dialog.cpp:106
-#: ../src/dialog/wxm_replace_dialog.cpp:96
+#: wxstd.po.cpp:62 ../src/dialog/wxm_searchreplace_dialog.cpp:122
 msgid "From:"
 msgstr "From:"
 
@@ -383,8 +382,7 @@ msgstr "設定..."
 msgid "Status:"
 msgstr "ステータス:"
 
-#: wxstd.po.cpp:86 ../src/dialog/wxm_search_dialog.cpp:110
-#: ../src/dialog/wxm_replace_dialog.cpp:100
+#: wxstd.po.cpp:86 ../src/dialog/wxm_searchreplace_dialog.cpp:126
 msgid "To:"
 msgstr "To:"
 
@@ -1281,7 +1279,7 @@ msgstr "スンダ文字補助"
 msgid "Takri"
 msgstr "タクリ文字"
 
-#: wxstd.po.cpp:311 ../src/wxmedit/wxmedit_advanced.cpp:1330
+#: wxstd.po.cpp:311 ../src/wxmedit/wxmedit_advanced.cpp:1328
 msgid "Invalid Unicode Characters"
 msgstr "無効な Unicode 文字"
 
@@ -1305,7 +1303,7 @@ msgstr "番号"
 msgid "String"
 msgstr "文字列"
 
-#: wxstd.po.cpp:317 ../src/wxmedit_frame.cpp:2040
+#: wxstd.po.cpp:317 ../src/wxmedit_frame.cpp:2046
 msgid "Comment"
 msgstr "コメント"
 
@@ -2061,7 +2059,7 @@ msgid "Hex Mode to Text/Column Mode"
 msgstr "16 進モードから テキスト/列モード"
 
 #: ../src/wxmedit/wxmedit_basic.cpp:1959 ../src/wxmedit/wxmedit_basic.cpp:2028
-#: ../src/wxmedit_frame.cpp:2721
+#: ../src/wxmedit_frame.cpp:2717
 msgid "The Parent Directory of this file does not exist:"
 msgstr "このファイルの親ディレクトリが存在しません:"
 
@@ -2077,7 +2075,7 @@ msgstr "ファイルを保存しますか?"
 msgid "Save File As"
 msgstr "ファイルを保存..."
 
-#: ../src/wxmedit/wxmedit_basic.cpp:2091 ../src/wxmedit_frame.cpp:2025
+#: ../src/wxmedit/wxmedit_basic.cpp:2091 ../src/wxmedit_frame.cpp:2031
 msgid "Save File"
 msgstr "ファイルを保存"
 
@@ -2085,15 +2083,15 @@ msgstr "ファイルを保存"
 msgid "Do you want to discard changes?"
 msgstr "本当に変更を破棄しますか?"
 
-#: ../src/wxmedit/wxmedit_basic.cpp:2166
+#: ../src/wxmedit/wxmedit_basic.cpp:2165
 msgid "This file has been changed by another application."
 msgstr "このファイルは、他のアプリケーションによって変更されています"
 
-#: ../src/wxmedit/wxmedit_basic.cpp:2167
+#: ../src/wxmedit/wxmedit_basic.cpp:2166
 msgid "Do you want to reload it?"
 msgstr "再読み込みしますか?"
 
-#: ../src/wxmedit/wxmedit_basic.cpp:2402
+#: ../src/wxmedit/wxmedit_basic.cpp:2425
 msgid "The input string is not a valid Hex-String:"
 msgstr "入力された文字列は有効な16進文字列ではありません:"
 
@@ -2115,1230 +2113,1268 @@ msgstr ""
 msgid "The format of '%s' is invalid."
 msgstr "この形式 '%s' は無効です"
 
-#: ../src/wxmedit_frame.cpp:763
+#: ../src/wxmedit_frame.cpp:758
 msgid "Ln:"
 msgstr "行: "
 
-#: ../src/wxmedit_frame.cpp:766
+#: ../src/wxmedit_frame.cpp:761
 msgid "Sub:"
 msgstr "Sub:"
 
-#: ../src/wxmedit_frame.cpp:769
+#: ../src/wxmedit_frame.cpp:764
 msgid "Col:"
 msgstr "列: "
 
-#: ../src/wxmedit_frame.cpp:770
+#: ../src/wxmedit_frame.cpp:765
 msgid "CharPos:"
 msgstr "文字位置: "
 
-#: ../src/wxmedit_frame.cpp:771
+#: ../src/wxmedit_frame.cpp:766
 msgid "SelSize:"
 msgstr "セルのサイズ: "
 
-#: ../src/wxmedit_frame.cpp:884
+#: ../src/wxmedit_frame.cpp:879
 msgid "ReadOnly"
 msgstr "読み取り専用"
 
-#: ../src/wxmedit_frame.cpp:894
+#: ../src/wxmedit_frame.cpp:889
 msgid "INS"
 msgstr "INS"
 
-#: ../src/wxmedit_frame.cpp:899
+#: ../src/wxmedit_frame.cpp:894
 msgid "OVR"
 msgstr "OVR"
 
-#: ../src/wxmedit_frame.cpp:1213
+#: ../src/wxmedit_frame.cpp:1210
 msgid "&File"
 msgstr "ファイル(&F)"
 
-#: ../src/wxmedit_frame.cpp:1214
+#: ../src/wxmedit_frame.cpp:1211
 msgid "&New File"
 msgstr "新規ファイル(&N)"
 
-#: ../src/wxmedit_frame.cpp:1214
+#: ../src/wxmedit_frame.cpp:1211
 msgid "Create a new file"
 msgstr "新規ファイルを作成"
 
-#: ../src/wxmedit_frame.cpp:1215
+#: ../src/wxmedit_frame.cpp:1212
 msgid "&Open File..."
 msgstr "ファイルを開く(&O)..."
 
-#: ../src/wxmedit_frame.cpp:1215
+#: ../src/wxmedit_frame.cpp:1212
 msgid "Open an existing file"
 msgstr "既存ファイルを開く"
 
-#: ../src/wxmedit_frame.cpp:1217
+#: ../src/wxmedit_frame.cpp:1214
 msgid "&Save File"
 msgstr "ファイルを保存(&S)"
 
-#: ../src/wxmedit_frame.cpp:1217
+#: ../src/wxmedit_frame.cpp:1214
 msgid "Save the file"
 msgstr "このファイルを保存"
 
-#: ../src/wxmedit_frame.cpp:1218
+#: ../src/wxmedit_frame.cpp:1215
 msgid "Save &As..."
 msgstr "名前をつけて保存(&A)..."
 
-#: ../src/wxmedit_frame.cpp:1218
+#: ../src/wxmedit_frame.cpp:1215
 msgid "Save the file with a new name"
 msgstr "ファイルを別名で保存..."
 
-#: ../src/wxmedit_frame.cpp:1219
+#: ../src/wxmedit_frame.cpp:1216
 msgid "Sa&ve All"
 msgstr "すべて保存(&A)"
 
-#: ../src/wxmedit_frame.cpp:1219
+#: ../src/wxmedit_frame.cpp:1216
 msgid "Save all files"
 msgstr "すべてのファイルを保存"
 
-#: ../src/wxmedit_frame.cpp:1221
+#: ../src/wxmedit_frame.cpp:1218
 msgid "&Reload File"
 msgstr "再読み込み(&R)"
 
-#: ../src/wxmedit_frame.cpp:1221
+#: ../src/wxmedit_frame.cpp:1218
 msgid "Reload the file"
 msgstr "このファイルを再読み込み"
 
-#: ../src/wxmedit_frame.cpp:1223
+#: ../src/wxmedit_frame.cpp:1220
 msgid "&Close File"
 msgstr "ファイルを閉じる(&C)"
 
-#: ../src/wxmedit_frame.cpp:1223
+#: ../src/wxmedit_frame.cpp:1220
 msgid "Close the file"
 msgstr "このファイルを閉じる"
 
-#: ../src/wxmedit_frame.cpp:1224
+#: ../src/wxmedit_frame.cpp:1221
 msgid "C&lose All"
 msgstr "すべて閉じる(&L)"
 
-#: ../src/wxmedit_frame.cpp:1224
+#: ../src/wxmedit_frame.cpp:1221
 msgid "Close all files"
 msgstr "すべてのファイルを閉じる"
 
-#: ../src/wxmedit_frame.cpp:1226
+#: ../src/wxmedit_frame.cpp:1223
 msgid "Page Set&up..."
 msgstr "ページ設定(&U)..."
 
-#: ../src/wxmedit_frame.cpp:1226
+#: ../src/wxmedit_frame.cpp:1223
 msgid "Setup the pages for printing"
 msgstr "印刷の為のページ設定"
 
-#: ../src/wxmedit_frame.cpp:1227
+#: ../src/wxmedit_frame.cpp:1224
 msgid "Print Previe&w..."
 msgstr "印刷プレビュー(&W)..."
 
-#: ../src/wxmedit_frame.cpp:1227
+#: ../src/wxmedit_frame.cpp:1224
 msgid "Preview the result of printing"
 msgstr "印刷結果をプレビュー"
 
-#: ../src/wxmedit_frame.cpp:1228
+#: ../src/wxmedit_frame.cpp:1225
 msgid "&Print..."
 msgstr "印刷(&P)..."
 
-#: ../src/wxmedit_frame.cpp:1228
+#: ../src/wxmedit_frame.cpp:1225
 msgid "Print the file"
 msgstr "このファイルを印刷"
 
-#: ../src/wxmedit_frame.cpp:1230
+#: ../src/wxmedit_frame.cpp:1227
 msgid "Recent Files"
 msgstr "最近使用したファイル"
 
-#: ../src/wxmedit_frame.cpp:1232
+#: ../src/wxmedit_frame.cpp:1229
 msgid "E&xit"
 msgstr "終了(&X)"
 
-#: ../src/wxmedit_frame.cpp:1232
+#: ../src/wxmedit_frame.cpp:1229
 msgid "Quit wxMEdit"
 msgstr "wxMEdit を終了"
 
-#: ../src/wxmedit_frame.cpp:1235
+#: ../src/wxmedit_frame.cpp:1232
 msgid "&Edit"
 msgstr "編集(&E)"
 
-#: ../src/wxmedit_frame.cpp:1236
+#: ../src/wxmedit_frame.cpp:1233
 msgid "&Undo"
 msgstr "元に戻す(&U)"
 
-#: ../src/wxmedit_frame.cpp:1236
+#: ../src/wxmedit_frame.cpp:1233
 msgid "Undo the last action"
 msgstr "最後の操作を元に戻す"
 
-#: ../src/wxmedit_frame.cpp:1238
+#: ../src/wxmedit_frame.cpp:1235
 msgid "&Redo"
 msgstr "やり直す(&R)"
 
-#: ../src/wxmedit_frame.cpp:1244
+#: ../src/wxmedit_frame.cpp:1241
 msgid "Redo the previously undone action"
 msgstr "以前に元に戻された動作をやり直す"
 
-#: ../src/wxmedit_frame.cpp:1247
+#: ../src/wxmedit_frame.cpp:1244
 msgid "Cu&t"
 msgstr "切り取り(&C)"
 
-#: ../src/wxmedit_frame.cpp:1247
+#: ../src/wxmedit_frame.cpp:1244
 msgid "Cut the selection and put it on the Clipboard"
 msgstr "選択を切り取ってクリップボードにコピー"
 
-#: ../src/wxmedit_frame.cpp:1248
+#: ../src/wxmedit_frame.cpp:1245
 msgid "&Copy"
 msgstr "コピー(&C)"
 
-#: ../src/wxmedit_frame.cpp:1248
+#: ../src/wxmedit_frame.cpp:1245
 msgid "Copy the selection and put it on the Clipboard"
 msgstr "選択範囲をクリップボードにコピー"
 
-#: ../src/wxmedit_frame.cpp:1249
+#: ../src/wxmedit_frame.cpp:1246
 msgid "&Paste"
 msgstr "貼り付け(&P)"
 
-#: ../src/wxmedit_frame.cpp:1249
+#: ../src/wxmedit_frame.cpp:1246
 msgid "Insert data from the Clipboard"
 msgstr "クリップボードからデータを挿入"
 
-#: ../src/wxmedit_frame.cpp:1250 ../src/dialog/wxm_highlighting_dialog.cpp:204
+#: ../src/wxmedit_frame.cpp:1247 ../src/dialog/wxm_highlighting_dialog.cpp:204
 msgid "&Delete"
 msgstr "削除(&D)"
 
-#: ../src/wxmedit_frame.cpp:1250
+#: ../src/wxmedit_frame.cpp:1247
 msgid "Delete data"
 msgstr "データを削除"
 
-#: ../src/wxmedit_frame.cpp:1252
+#: ../src/wxmedit_frame.cpp:1249
 msgid "Cut L&ine"
 msgstr "行を切り取り(&I)"
 
-#: ../src/wxmedit_frame.cpp:1252
+#: ../src/wxmedit_frame.cpp:1249
 msgid "Cut the selected lines and put it on the Clipboard"
 msgstr "選択行を切り取ってクリップボードにコピー"
 
-#: ../src/wxmedit_frame.cpp:1254
+#: ../src/wxmedit_frame.cpp:1251
 msgid "Delete &Line"
 msgstr "行を削除(&L)"
 
-#: ../src/wxmedit_frame.cpp:1260
+#: ../src/wxmedit_frame.cpp:1257
 msgid "Delete the selected lines"
 msgstr "選択された行を削除"
 
-#: ../src/wxmedit_frame.cpp:1263
+#: ../src/wxmedit_frame.cpp:1260
 msgid "Select &All"
 msgstr "すべて選択(&A)"
 
-#: ../src/wxmedit_frame.cpp:1263
+#: ../src/wxmedit_frame.cpp:1260
 msgid "Select all data"
 msgstr "すべてのデータを選択"
 
-#: ../src/wxmedit_frame.cpp:1266
+#: ../src/wxmedit_frame.cpp:1263
 msgid "Insert Ta&b Char"
 msgstr "TAB を挿入(&T)"
 
-#: ../src/wxmedit_frame.cpp:1272
+#: ../src/wxmedit_frame.cpp:1269
 msgid "Insert a Tab char at current position"
 msgstr "現在位置に TAB を挿入"
 
-#: ../src/wxmedit_frame.cpp:1274
+#: ../src/wxmedit_frame.cpp:1271
 msgid "Insert Dat&e and Time"
 msgstr "日付と時間を挿入(&E)"
 
-#: ../src/wxmedit_frame.cpp:1274
+#: ../src/wxmedit_frame.cpp:1271
 msgid "Insert date and time at current position"
 msgstr "現在位置に日付と時間を挿入"
 
+#: ../src/wxmedit_frame.cpp:1274
+msgid "Toggle/Remove Bookmark "
+msgstr ""
+
+#: ../src/wxmedit_frame.cpp:1274
+msgid "Toggle Bookmark at current line"
+msgstr ""
+
+#: ../src/wxmedit_frame.cpp:1275
+msgid "Go To Next Bookmark"
+msgstr ""
+
+#: ../src/wxmedit_frame.cpp:1275
+msgid "Go to the next bookmark"
+msgstr ""
+
 #: ../src/wxmedit_frame.cpp:1276
+msgid "Go To Previous Bookmark"
+msgstr ""
+
+#: ../src/wxmedit_frame.cpp:1276
+msgid "Go to the previous bookmark"
+msgstr ""
+
+#: ../src/wxmedit_frame.cpp:1279
 msgid "Ad&vanced"
 msgstr "拡張(&A)"
 
-#: ../src/wxmedit_frame.cpp:1277
+#: ../src/wxmedit_frame.cpp:1280
 msgid "Copy As &Hex String"
 msgstr "16進文字列をコピー(&H)"
 
-#: ../src/wxmedit_frame.cpp:1277
+#: ../src/wxmedit_frame.cpp:1280
 msgid "Copy the selection as hex-string"
 msgstr "選択された16 進文字列をコピー"
 
-#: ../src/wxmedit_frame.cpp:1278
+#: ../src/wxmedit_frame.cpp:1281
 msgid "Copy As He&x String with Space"
 msgstr "16 進文字列をスペースとしてコピー(&X)"
 
-#: ../src/wxmedit_frame.cpp:1278
+#: ../src/wxmedit_frame.cpp:1281
 msgid "Copy the selection as hex-string with space"
 msgstr "選択された 16 進文字列をスペースとしてコピー"
 
-#: ../src/wxmedit_frame.cpp:1280
+#: ../src/wxmedit_frame.cpp:1283
 msgid "&Increase Indent"
 msgstr "インデントを減少(&I)"
 
-#: ../src/wxmedit_frame.cpp:1280
+#: ../src/wxmedit_frame.cpp:1283
 msgid "Increase the indent of seleted lines"
 msgstr "選択された行のインデントを増加"
 
-#: ../src/wxmedit_frame.cpp:1281
+#: ../src/wxmedit_frame.cpp:1284
 msgid "&Decrease Indent"
 msgstr "インデントを減少(&D)"
 
-#: ../src/wxmedit_frame.cpp:1281
+#: ../src/wxmedit_frame.cpp:1284
 msgid "Decrease the indent of seleted lines"
 msgstr "選択行のインデントを減少"
 
-#: ../src/wxmedit_frame.cpp:1283
+#: ../src/wxmedit_frame.cpp:1286
 msgid "&Comment"
 msgstr "コメント(&C)"
 
-#: ../src/wxmedit_frame.cpp:1283
+#: ../src/wxmedit_frame.cpp:1286
 msgid "Comment out the selected lines"
 msgstr "選択行からのコメント"
 
-#: ../src/wxmedit_frame.cpp:1284
+#: ../src/wxmedit_frame.cpp:1287
 msgid "&Uncomment"
 msgstr "コメント解除(&U)"
 
-#: ../src/wxmedit_frame.cpp:1284
+#: ../src/wxmedit_frame.cpp:1287
 msgid "Uncomment the selected lines"
 msgstr "選択行のコメントを解除"
 
-#: ../src/wxmedit_frame.cpp:1286
+#: ../src/wxmedit_frame.cpp:1289
 msgid "WordWraps To NewLine Chars"
 msgstr "改行文字で折り返す"
 
-#: ../src/wxmedit_frame.cpp:1286
+#: ../src/wxmedit_frame.cpp:1289
 msgid "Convert WordWraps to NewLine chars in the file or selection"
 msgstr "ファイルまたは選択範囲の折り返しを改行文字に変換"
 
-#: ../src/wxmedit_frame.cpp:1287
+#: ../src/wxmedit_frame.cpp:1290
 msgid "NewLine Chars To WordWraps"
 msgstr "改行文字を折り返し"
 
-#: ../src/wxmedit_frame.cpp:1287
+#: ../src/wxmedit_frame.cpp:1290
 msgid "Convert NewLine chars to WordWraps in the selection"
 msgstr "選択範囲の改行文字を折り返しに変換"
 
-#: ../src/wxmedit_frame.cpp:1289
+#: ../src/wxmedit_frame.cpp:1292
 msgid "To U&pperCase"
 msgstr "大文字に(&P)"
 
-#: ../src/wxmedit_frame.cpp:1289
+#: ../src/wxmedit_frame.cpp:1292
 msgid "Convert the selection to uppercase"
 msgstr "選択範囲を大文字に変換"
 
-#: ../src/wxmedit_frame.cpp:1290
+#: ../src/wxmedit_frame.cpp:1293
 msgid "To L&owerCase"
 msgstr "小文字に(&L)"
 
-#: ../src/wxmedit_frame.cpp:1290
+#: ../src/wxmedit_frame.cpp:1293
 msgid "Convert the selection to lowercase"
 msgstr "選択範囲を小文字に変換"
 
-#: ../src/wxmedit_frame.cpp:1291
+#: ../src/wxmedit_frame.cpp:1294
 msgid "Inver&t Case"
 msgstr "大文字小文字を反転(&T)"
 
-#: ../src/wxmedit_frame.cpp:1291
+#: ../src/wxmedit_frame.cpp:1294
 msgid "Invert the case of the selection"
 msgstr "選択範囲の大文字小文字を反転"
 
-#: ../src/wxmedit_frame.cpp:1293
+#: ../src/wxmedit_frame.cpp:1296
 msgid "To H&alfwidth"
 msgstr "半角に(&H)"
 
-#: ../src/wxmedit_frame.cpp:1293
+#: ../src/wxmedit_frame.cpp:1296
 msgid "Convert the selection to halfwidth"
 msgstr "選択範囲を半角に変換"
 
-#: ../src/wxmedit_frame.cpp:1294 ../src/wxmedit_frame.cpp:3811
+#: ../src/wxmedit_frame.cpp:1297 ../src/wxmedit_frame.cpp:3842
 msgid "To Halfwidth by Options..."
 msgstr "半角オプション..."
 
-#: ../src/wxmedit_frame.cpp:1294
+#: ../src/wxmedit_frame.cpp:1297
 msgid "Convert the selection to halfwidth by options"
 msgstr "オプションで選択範囲を半角に変換"
 
-#: ../src/wxmedit_frame.cpp:1295
+#: ../src/wxmedit_frame.cpp:1298
 msgid "To &Fullwidth"
 msgstr "全角に(&F)"
 
-#: ../src/wxmedit_frame.cpp:1295
+#: ../src/wxmedit_frame.cpp:1298
 msgid "Convert the selection to fullwidth"
 msgstr "選択範囲を全角に変換"
 
-#: ../src/wxmedit_frame.cpp:1296 ../src/wxmedit_frame.cpp:3854
+#: ../src/wxmedit_frame.cpp:1299 ../src/wxmedit_frame.cpp:3885
 msgid "To Fullwidth by Options..."
 msgstr "全角オプション..."
 
-#: ../src/wxmedit_frame.cpp:1296
+#: ../src/wxmedit_frame.cpp:1299
 msgid "Convert the selection to fullwidth by options"
 msgstr "オプションで選択範囲を全角に変換"
 
-#: ../src/wxmedit_frame.cpp:1298
+#: ../src/wxmedit_frame.cpp:1301
 msgid "Tab Chars To Space Chars"
 msgstr "タブ文字を空白文字"
 
-#: ../src/wxmedit_frame.cpp:1298
+#: ../src/wxmedit_frame.cpp:1301
 msgid "Convert Tab chars to Space chars in the selection"
 msgstr "選択範囲内のタブ文字を空白文字に変換"
 
-#: ../src/wxmedit_frame.cpp:1299
+#: ../src/wxmedit_frame.cpp:1302
 msgid "Space Chars To Tab Chars"
 msgstr "空白文字をタブ文字"
 
-#: ../src/wxmedit_frame.cpp:1299
+#: ../src/wxmedit_frame.cpp:1302
 msgid "Convert Space chars to Tab chars in the selection"
 msgstr "選択範囲内の空白文字をタブ文字に変換"
 
-#: ../src/wxmedit_frame.cpp:1301
+#: ../src/wxmedit_frame.cpp:1304
 msgid "Tri&m Trailing Spaces"
 msgstr "連続するスペースを削除(&M)"
 
-#: ../src/wxmedit_frame.cpp:1301
+#: ../src/wxmedit_frame.cpp:1304
 msgid "Trim trailing spaces at the end of lines"
 msgstr "最終行の連続スペースを削除"
 
-#: ../src/wxmedit_frame.cpp:1303 ../src/dialog/wxm_sort_dialog.cpp:54
+#: ../src/wxmedit_frame.cpp:1306 ../src/dialog/wxm_sort_dialog.cpp:54
 msgid "&Sort"
 msgstr "ソート(&S)"
 
-#: ../src/wxmedit_frame.cpp:1304
+#: ../src/wxmedit_frame.cpp:1307
 msgid "Sort Lines (&Ascending)"
 msgstr "行のソート - 昇順(&A)"
 
-#: ../src/wxmedit_frame.cpp:1304
+#: ../src/wxmedit_frame.cpp:1307
 msgid "Sort the selected or all lines in ascending order"
 msgstr "選択されたすべての行に対して、昇順でソート"
 
-#: ../src/wxmedit_frame.cpp:1305
+#: ../src/wxmedit_frame.cpp:1308
 msgid "Sort Lines (&Descending)"
 msgstr "行のソート - 降順(&D)"
 
-#: ../src/wxmedit_frame.cpp:1305
+#: ../src/wxmedit_frame.cpp:1308
 msgid "Sort the selected or all lines in descending order"
 msgstr "選択されたすべての行に対して、降順でソート"
 
-#: ../src/wxmedit_frame.cpp:1307
+#: ../src/wxmedit_frame.cpp:1310
 msgid "Sort Lines (A&scending, CaseSensitive)"
 msgstr "行のソート - 昇順 + 大小文字を区別(&S)"
 
-#: ../src/wxmedit_frame.cpp:1307
+#: ../src/wxmedit_frame.cpp:1310
 msgid "Sort lines in ascending order and with case-sensitive"
 msgstr "昇順で、大文字小文字を区別して行をソート"
 
-#: ../src/wxmedit_frame.cpp:1308
+#: ../src/wxmedit_frame.cpp:1311
 msgid "Sort Lines (D&escending, CaseSensitive)"
 msgstr "行のソート - 降順 + 大小文字を区別(&E)"
 
-#: ../src/wxmedit_frame.cpp:1308
+#: ../src/wxmedit_frame.cpp:1311
 msgid "Sort lines in descending order and with case-sensitive"
 msgstr "降順で、大文字小文字を区別して行をソート"
 
-#: ../src/wxmedit_frame.cpp:1310
+#: ../src/wxmedit_frame.cpp:1313
 msgid "Sort Lines by &Current Options"
 msgstr "行のソート - 現在のオプション(&C)"
 
-#: ../src/wxmedit_frame.cpp:1310
+#: ../src/wxmedit_frame.cpp:1313
 msgid "Sort the selected or all lines by using current options"
 msgstr "選択されたすべての行に対して、現在のオプションでソート"
 
-#: ../src/wxmedit_frame.cpp:1311
+#: ../src/wxmedit_frame.cpp:1314
 msgid "Sort &Options..."
 msgstr "ソートオプション(&O)..."
 
-#: ../src/wxmedit_frame.cpp:1311
+#: ../src/wxmedit_frame.cpp:1314
 msgid "Set the sort options"
 msgstr "ソートオプションの設定"
 
-#: ../src/wxmedit_frame.cpp:1314
+#: ../src/wxmedit_frame.cpp:1317
 msgid "&Search"
 msgstr "検索(&S)"
 
-#: ../src/wxmedit_frame.cpp:1315
+#: ../src/wxmedit_frame.cpp:1318
 msgid "&Find..."
 msgstr "検索(&F)..."
 
-#: ../src/wxmedit_frame.cpp:1315
+#: ../src/wxmedit_frame.cpp:1318
 msgid "Find a string"
 msgstr "文字列を検索"
 
-#: ../src/wxmedit_frame.cpp:1316 ../src/dialog/wxm_search_dialog.cpp:118
-#: ../src/dialog/wxm_replace_dialog.cpp:108
+#: ../src/wxmedit_frame.cpp:1319
+#: ../src/dialog/wxm_searchreplace_dialog.cpp:134
 msgid "Find &Next"
 msgstr "次を検索(&N)"
 
-#: ../src/wxmedit_frame.cpp:1316
+#: ../src/wxmedit_frame.cpp:1319
 msgid "Find next occurrence"
 msgstr "次の箇所を検索"
 
-#: ../src/wxmedit_frame.cpp:1317 ../src/dialog/wxm_search_dialog.cpp:121
+#: ../src/wxmedit_frame.cpp:1320
+#: ../src/dialog/wxm_searchreplace_dialog.cpp:137
 msgid "Find &Previous"
 msgstr "前を検索(&P)"
 
-#: ../src/wxmedit_frame.cpp:1317
+#: ../src/wxmedit_frame.cpp:1320
 msgid "Find previous occurrence"
 msgstr "前の箇所を検索"
 
-#: ../src/wxmedit_frame.cpp:1319
+#: ../src/wxmedit_frame.cpp:1322
 msgid "&Replace..."
 msgstr "置換(&R)..."
 
-#: ../src/wxmedit_frame.cpp:1319
+#: ../src/wxmedit_frame.cpp:1322
 msgid "Replace a string"
 msgstr "置換文字列"
 
-#: ../src/wxmedit_frame.cpp:1321
+#: ../src/wxmedit_frame.cpp:1324
 msgid "Fin&d/Replace in Files..."
 msgstr "ファイル検索/置換(&D)..."
 
-#: ../src/wxmedit_frame.cpp:1321
+#: ../src/wxmedit_frame.cpp:1324
 msgid "Find or replace a string in files"
 msgstr "ファイルの文字列を検索または置換"
 
-#: ../src/wxmedit_frame.cpp:1322
+#: ../src/wxmedit_frame.cpp:1325
 msgid "&Show/Hide the Results of Find/Replace in Files"
 msgstr "ファイルの検索/置換時の、結果ウィンドウの表示(&S)"
 
-#: ../src/wxmedit_frame.cpp:1322
+#: ../src/wxmedit_frame.cpp:1325
 msgid "Show or hide the results of find or replace a string in files"
 msgstr "ファイルの文字列検索/置換 の結果を表示/隠す"
 
-#: ../src/wxmedit_frame.cpp:1324
+#: ../src/wxmedit_frame.cpp:1327
 msgid "&Go To Line..."
 msgstr "指定行に移動(&G)..."
 
-#: ../src/wxmedit_frame.cpp:1324
+#: ../src/wxmedit_frame.cpp:1327
 msgid "Go to the specified line"
 msgstr "指定行に移動"
 
-#: ../src/wxmedit_frame.cpp:1325
+#: ../src/wxmedit_frame.cpp:1328
 msgid "G&o To Position..."
 msgstr "指定位置に移動(&O)..."
 
-#: ../src/wxmedit_frame.cpp:1325
+#: ../src/wxmedit_frame.cpp:1328
 msgid "Go to the specified position"
 msgstr "指定位置に移動"
 
-#: ../src/wxmedit_frame.cpp:1327
+#: ../src/wxmedit_frame.cpp:1330
 msgid "Go To L&eft Brace"
 msgstr "左括弧に移動(&E)"
 
-#: ../src/wxmedit_frame.cpp:1327
+#: ../src/wxmedit_frame.cpp:1330
 msgid "Go to left brace"
 msgstr "左括弧に移動"
 
-#: ../src/wxmedit_frame.cpp:1328
+#: ../src/wxmedit_frame.cpp:1331
 msgid "Go To R&ight Brace"
 msgstr "右括弧に移動(&I)"
 
-#: ../src/wxmedit_frame.cpp:1328
+#: ../src/wxmedit_frame.cpp:1331
 msgid "Go to right brace"
 msgstr "右括弧に移動"
 
-#: ../src/wxmedit_frame.cpp:1331
+#: ../src/wxmedit_frame.cpp:1334
 msgid "&View"
 msgstr "表示(&V)"
 
-#: ../src/wxmedit_frame.cpp:1332 ../src/wxmedit_frame.cpp:3011
-#: ../src/wxmedit_frame.cpp:3018
+#: ../src/wxmedit_frame.cpp:1335 ../src/wxmedit_frame.cpp:3024
+#: ../src/wxmedit_frame.cpp:3031
 msgid "Encoding: "
 msgstr "エンコーディング: "
 
-#: ../src/wxmedit_frame.cpp:1333
+#: ../src/wxmedit_frame.cpp:1336
 msgid "All Encodings"
 msgstr "すべてのエンコード"
 
-#: ../src/wxmedit_frame.cpp:1335 ../src/wxmedit_frame.cpp:3027
-#: ../src/wxmedit_frame.cpp:3032
+#: ../src/wxmedit_frame.cpp:1338 ../src/wxmedit_frame.cpp:3040
+#: ../src/wxmedit_frame.cpp:3045
 msgid "Syntax Type: "
 msgstr "構文の種類: "
 
-#: ../src/wxmedit_frame.cpp:1337 ../src/wxmedit_frame.cpp:3044
-#: ../src/wxmedit_frame.cpp:3049
+#: ../src/wxmedit_frame.cpp:1340 ../src/wxmedit_frame.cpp:3057
+#: ../src/wxmedit_frame.cpp:3062
 msgid "Font Name: "
 msgstr "フォント名: "
 
-#: ../src/wxmedit_frame.cpp:1338
+#: ../src/wxmedit_frame.cpp:1341
 msgid "[@]"
 msgstr "[@]"
 
-#: ../src/wxmedit_frame.cpp:1339
+#: ../src/wxmedit_frame.cpp:1342
 msgid "[ABCDE]"
 msgstr "[ABCDE]"
 
-#: ../src/wxmedit_frame.cpp:1340
+#: ../src/wxmedit_frame.cpp:1343
 msgid "[FGHIJ]"
 msgstr "[FGHIJ]"
 
-#: ../src/wxmedit_frame.cpp:1341
+#: ../src/wxmedit_frame.cpp:1344
 msgid "[KLMNO]"
 msgstr "[KLMNO]"
 
-#: ../src/wxmedit_frame.cpp:1342
+#: ../src/wxmedit_frame.cpp:1345
 msgid "[PQRST]"
 msgstr "[PQRST]"
 
-#: ../src/wxmedit_frame.cpp:1343
+#: ../src/wxmedit_frame.cpp:1346
 msgid "[UVWXYZ]"
 msgstr "[UVWXYZ]"
 
-#: ../src/wxmedit_frame.cpp:1344
+#: ../src/wxmedit_frame.cpp:1347
 msgid "[other]"
 msgstr "[その他]"
 
-#: ../src/wxmedit_frame.cpp:1346 ../src/wxmedit_frame.cpp:3060
-#: ../src/wxmedit_frame.cpp:3065
+#: ../src/wxmedit_frame.cpp:1349 ../src/wxmedit_frame.cpp:3073
+#: ../src/wxmedit_frame.cpp:3078
 msgid "Font Size: "
 msgstr "フォントサイズ: "
 
-#: ../src/wxmedit_frame.cpp:1347
+#: ../src/wxmedit_frame.cpp:1350
 msgid "Set font point-size"
 msgstr "フォントのサイズ設定(ポイント)"
 
-#: ../src/wxmedit_frame.cpp:1420
+#: ../src/wxmedit_frame.cpp:1423
 msgid "Set Font..."
 msgstr "フォント設定..."
 
-#: ../src/wxmedit_frame.cpp:1420
+#: ../src/wxmedit_frame.cpp:1423
 msgid "Change font settings"
 msgstr "フォント設定を変更"
 
-#: ../src/wxmedit_frame.cpp:1421
+#: ../src/wxmedit_frame.cpp:1424
 msgid "&Fixed Width Mode"
 msgstr "幅固定モード(&F)"
 
-#: ../src/wxmedit_frame.cpp:1421
+#: ../src/wxmedit_frame.cpp:1424
 msgid "Set/Unset the font with Fixed Width"
 msgstr "フォントの固定幅の設定/解除"
 
-#: ../src/wxmedit_frame.cpp:1424 ../src/wxmedit_frame.cpp:3084
-#: ../src/wxmedit_frame.cpp:3089
+#: ../src/wxmedit_frame.cpp:1427 ../src/wxmedit_frame.cpp:3097
+#: ../src/wxmedit_frame.cpp:3102
 msgid "Tab Column: "
 msgstr "列のタブ: "
 
-#: ../src/wxmedit_frame.cpp:1425
+#: ../src/wxmedit_frame.cpp:1428
 msgid "Set column of Tab char"
 msgstr "列と TAB 文字を設定"
 
-#: ../src/wxmedit_frame.cpp:1443 ../src/wxmedit_frame.cpp:3098
-#: ../src/wxmedit_frame.cpp:3103
+#: ../src/wxmedit_frame.cpp:1446 ../src/wxmedit_frame.cpp:3111
+#: ../src/wxmedit_frame.cpp:3116
 msgid "Line Spacing: "
 msgstr "行間: "
 
-#: ../src/wxmedit_frame.cpp:1444
+#: ../src/wxmedit_frame.cpp:1447
 msgid "Set line spacing"
 msgstr "行間の設定"
 
-#: ../src/wxmedit_frame.cpp:1477
+#: ../src/wxmedit_frame.cpp:1480
 msgid "&No Wrap"
 msgstr "折り返さない(&W)"
 
-#: ../src/wxmedit_frame.cpp:1477
+#: ../src/wxmedit_frame.cpp:1480
 msgid "Do not wrap lines"
 msgstr "行を折り返さない"
 
-#: ../src/wxmedit_frame.cpp:1478
+#: ../src/wxmedit_frame.cpp:1481
 msgid "Wrap By &Window"
 msgstr "ウィンドウの右端で折り返す(&W)"
 
-#: ../src/wxmedit_frame.cpp:1478
+#: ../src/wxmedit_frame.cpp:1481
 msgid "Wrap the lines by the window width"
 msgstr "行折り返しのウィンドウ幅"
 
-#: ../src/wxmedit_frame.cpp:1479
+#: ../src/wxmedit_frame.cpp:1482
 msgid "Wrap By Column"
 msgstr "列幅で折り返す"
 
-#: ../src/wxmedit_frame.cpp:1479
+#: ../src/wxmedit_frame.cpp:1482
 msgid "Wrap the lines by the specified Max Columns"
 msgstr "最大列を指定して折り返す"
 
-#: ../src/wxmedit_frame.cpp:1481
+#: ../src/wxmedit_frame.cpp:1484
 msgid "&Display Line Number"
 msgstr "行番号を表示(&D)"
 
-#: ../src/wxmedit_frame.cpp:1481
+#: ../src/wxmedit_frame.cpp:1484
 msgid "Display the Line Numbers"
 msgstr "行番号を表示"
 
-#: ../src/wxmedit_frame.cpp:1482
+#: ../src/wxmedit_frame.cpp:1485
 msgid "Show End Of Line"
 msgstr "EOL（End Of Line）を表示"
 
-#: ../src/wxmedit_frame.cpp:1482
+#: ../src/wxmedit_frame.cpp:1485
 msgid "Show the sign of EndOfLine"
 msgstr "EOL(EndOfLine)記号を表示"
 
-#: ../src/wxmedit_frame.cpp:1483
+#: ../src/wxmedit_frame.cpp:1486
 msgid "Show Tab Char"
 msgstr "TAB 文字を表示"
 
-#: ../src/wxmedit_frame.cpp:1483
+#: ../src/wxmedit_frame.cpp:1486
 msgid "Show the sign of Tab char"
 msgstr "TAB 文字記号を表示"
 
-#: ../src/wxmedit_frame.cpp:1484
+#: ../src/wxmedit_frame.cpp:1487
 msgid "Show Space Char"
 msgstr "スペース文字を表示"
 
-#: ../src/wxmedit_frame.cpp:1484
+#: ../src/wxmedit_frame.cpp:1487
 msgid "Show the sign of Space char"
 msgstr "スペース文字記号を表示"
 
-#: ../src/wxmedit_frame.cpp:1485
+#: ../src/wxmedit_frame.cpp:1488
 msgid "Mark Active Line"
 msgstr "アクティブ行にマーク"
 
-#: ../src/wxmedit_frame.cpp:1485
+#: ../src/wxmedit_frame.cpp:1488
 msgid "Mark the current line"
 msgstr "現在の行にマーク"
 
-#: ../src/wxmedit_frame.cpp:1486
+#: ../src/wxmedit_frame.cpp:1489
 msgid "Mark Brace Pair"
 msgstr "括弧のペアにマーク"
 
-#: ../src/wxmedit_frame.cpp:1486
+#: ../src/wxmedit_frame.cpp:1489
 msgid "Mark the BracePair under the caret"
 msgstr "キャレット以下の括弧のペアにマーク"
 
-#: ../src/wxmedit_frame.cpp:1488
+#: ../src/wxmedit_frame.cpp:1491
 msgid "&Text Mode"
 msgstr "テキストモード(&T)"
 
-#: ../src/wxmedit_frame.cpp:1488
+#: ../src/wxmedit_frame.cpp:1491
 msgid "Change the editing mode to Text-Mode"
 msgstr "編集モードをテキストモードに変更"
 
-#: ../src/wxmedit_frame.cpp:1489
+#: ../src/wxmedit_frame.cpp:1492
 msgid "&Column Mode"
 msgstr "列モード(&C)"
 
-#: ../src/wxmedit_frame.cpp:1489
+#: ../src/wxmedit_frame.cpp:1492
 msgid "Change the editing mode to Column-Mode"
 msgstr "編集モードを列モードに変更"
 
-#: ../src/wxmedit_frame.cpp:1490
+#: ../src/wxmedit_frame.cpp:1493
 msgid "&Hex Mode"
 msgstr "16進モード(&H)"
 
-#: ../src/wxmedit_frame.cpp:1490
+#: ../src/wxmedit_frame.cpp:1493
 msgid "Change the editing mode to Hex-Mode"
 msgstr "編集モードを 16 進モードに変更"
 
-#: ../src/wxmedit_frame.cpp:1493
+#: ../src/wxmedit_frame.cpp:1496
 msgid "&Tools"
 msgstr "ツール(&T)"
 
-#: ../src/wxmedit_frame.cpp:1494
+#: ../src/wxmedit_frame.cpp:1497
 msgid "&Options..."
 msgstr "オプション(&O)..."
 
-#: ../src/wxmedit_frame.cpp:1494
+#: ../src/wxmedit_frame.cpp:1497
 msgid "Change the configuration"
 msgstr "構成設定を変更"
 
-#: ../src/wxmedit_frame.cpp:1495
+#: ../src/wxmedit_frame.cpp:1498
 msgid "&Syntax Highlighting Settings..."
 msgstr "構文強調設定(&S)..."
 
-#: ../src/wxmedit_frame.cpp:1495
+#: ../src/wxmedit_frame.cpp:1498
 msgid "Change syntax highlighting settings"
 msgstr "構文強調設定を変更"
 
-#: ../src/wxmedit_frame.cpp:1497
+#: ../src/wxmedit_frame.cpp:1500
 msgid "&File Type Associations..."
 msgstr "ファイル形式の関連付け(&F)..."
 
-#: ../src/wxmedit_frame.cpp:1497
+#: ../src/wxmedit_frame.cpp:1500
 msgid "Change file type associations"
 msgstr "ファイル形式の関連付けを変更"
 
-#: ../src/wxmedit_frame.cpp:1500 ../src/wxmedit_frame.cpp:3178
+#: ../src/wxmedit_frame.cpp:1503 ../src/wxmedit_frame.cpp:3191
 msgid "Has Unicode BOM (Byte-Order Mark)"
 msgstr "Unicode (BOM あり)"
 
-#: ../src/wxmedit_frame.cpp:1501
+#: ../src/wxmedit_frame.cpp:1504
 msgid "Add/Remove BOM"
 msgstr "BOM を追加/除去"
 
-#: ../src/wxmedit_frame.cpp:1501
+#: ../src/wxmedit_frame.cpp:1504
 msgid "Add/Remove Unicode BOM"
 msgstr "Unicode BOM を追加/除去"
 
-#: ../src/wxmedit_frame.cpp:1503 ../src/wxmedit_frame.cpp:3193
+#: ../src/wxmedit_frame.cpp:1506 ../src/wxmedit_frame.cpp:3206
 msgid "NewLine Char (File Format): "
 msgstr "改行文字 (ファイル形式): "
 
-#: ../src/wxmedit_frame.cpp:1504
+#: ../src/wxmedit_frame.cpp:1507
 msgid "Convert To CRLF/0D0A (&DOS)"
 msgstr "CRLF/0D0A (DOS)　に変換(&D)"
 
-#: ../src/wxmedit_frame.cpp:1504
+#: ../src/wxmedit_frame.cpp:1507
 msgid "Convert the file format to DOS format"
 msgstr "ファイルを DOS形式に変換"
 
-#: ../src/wxmedit_frame.cpp:1505
+#: ../src/wxmedit_frame.cpp:1508
 msgid "Convert To CR/0D (&MAC)"
 msgstr "CR/0D (MAC) に変換(&M)"
 
-#: ../src/wxmedit_frame.cpp:1505
+#: ../src/wxmedit_frame.cpp:1508
 msgid "Convert the file format to MAC format"
 msgstr "ファイルを MAC形式に変換"
 
-#: ../src/wxmedit_frame.cpp:1506
+#: ../src/wxmedit_frame.cpp:1509
 msgid "Convert To LF/0A (&UNIX)"
 msgstr "LF/0A (UNIX) に変換(&U)"
 
-#: ../src/wxmedit_frame.cpp:1506
+#: ../src/wxmedit_frame.cpp:1509
 msgid "Convert the file format to UNIX format"
 msgstr "ファイルを UNIX形式に変換"
 
-#: ../src/wxmedit_frame.cpp:1507 ../src/wxmedit_frame.cpp:3215
+#: ../src/wxmedit_frame.cpp:1510 ../src/wxmedit_frame.cpp:3228
 msgid "Press Enter to Insert NewLine Char: "
 msgstr "Enter で改行記号を挿入: "
 
-#: ../src/wxmedit_frame.cpp:1508
+#: ../src/wxmedit_frame.cpp:1511
 msgid "Insert CRLF/0D0A (&DOS)"
 msgstr "CRLF/0D0A (&DOS) を挿入"
 
-#: ../src/wxmedit_frame.cpp:1508
+#: ../src/wxmedit_frame.cpp:1511
 msgid "Insert CR&LF chars when pressing Enter key"
 msgstr "Enter キーで CR&LF を入力"
 
-#: ../src/wxmedit_frame.cpp:1509
+#: ../src/wxmedit_frame.cpp:1512
 msgid "Insert CR/0D (&MAC)"
 msgstr "CR/0D (&MAC) を挿入"
 
-#: ../src/wxmedit_frame.cpp:1509
+#: ../src/wxmedit_frame.cpp:1512
 msgid "Insert CR char when pressing Enter key"
 msgstr "Enter キーで CR を入力"
 
-#: ../src/wxmedit_frame.cpp:1510
+#: ../src/wxmedit_frame.cpp:1513
 msgid "Insert LF/0A (&UNIX)"
 msgstr "LF/0A (&UNIX) を挿入"
 
-#: ../src/wxmedit_frame.cpp:1510
+#: ../src/wxmedit_frame.cpp:1513
 msgid "Insert LF char when pressing Enter key"
 msgstr "Enter キーで LFを入力"
 
-#: ../src/wxmedit_frame.cpp:1512
+#: ../src/wxmedit_frame.cpp:1515
 msgid "Convert File &Encoding..."
 msgstr "ファイルのエンコードを変換(&E)"
 
-#: ../src/wxmedit_frame.cpp:1512
+#: ../src/wxmedit_frame.cpp:1515
 msgid "Convert to the specified encoding"
 msgstr "指定したエンコードに変換"
 
-#: ../src/wxmedit_frame.cpp:1514
+#: ../src/wxmedit_frame.cpp:1517
 msgid "Convert &Chinese Char"
 msgstr "中国語に変換(&C)"
 
-#: ../src/wxmedit_frame.cpp:1515
+#: ../src/wxmedit_frame.cpp:1518
 msgid "File: Simplified Chinese to &Traditional Chinese"
 msgstr "ファイル: 簡体字中国語を繁体字中国語(&T)"
 
-#: ../src/wxmedit_frame.cpp:1515
+#: ../src/wxmedit_frame.cpp:1518
 msgid ""
 "Convert simplified Chinese chars to traditional Chinese chars in the file"
 msgstr "ファイルの簡体字中国語を繁体字中国語に変換"
 
-#: ../src/wxmedit_frame.cpp:1516
+#: ../src/wxmedit_frame.cpp:1519
 msgid "File: Traditional Chinese to &Simplified Chinese"
 msgstr "ファイル: 繁体字中国語を簡体字中国語(&S)"
 
-#: ../src/wxmedit_frame.cpp:1516
+#: ../src/wxmedit_frame.cpp:1519
 msgid ""
 "Convert traditional Chinese chars to simplified Chinese chars in the file"
 msgstr "ファイルの繁体字中国語を簡体字中国語に変換"
 
-#: ../src/wxmedit_frame.cpp:1517
+#: ../src/wxmedit_frame.cpp:1520
 msgid "File: Japanese Kanji to Tr&aditional Chinese"
 msgstr "ファイル: 日本語漢字を繁体字中国語(&A)"
 
-#: ../src/wxmedit_frame.cpp:1517
+#: ../src/wxmedit_frame.cpp:1520
 msgid "Convert Japanese Kanji to traditional Chinese chars in the file"
 msgstr "ファイル内の日本語漢字を繁体字中国語に変換"
 
-#: ../src/wxmedit_frame.cpp:1518
+#: ../src/wxmedit_frame.cpp:1521
 msgid "File: Japanese Kanji to Si&mplified Chinese"
 msgstr "ファイル: 日本語漢字を簡体字中国語(&M)"
 
-#: ../src/wxmedit_frame.cpp:1518
+#: ../src/wxmedit_frame.cpp:1521
 msgid "Convert Japanese Kanji to simplified Chinese chars in the file"
 msgstr "ファイル内の日本語漢字を簡体字中国語に変換"
 
-#: ../src/wxmedit_frame.cpp:1519
+#: ../src/wxmedit_frame.cpp:1522
 msgid "File: Chinese to &Japanese Kanji"
 msgstr "ファイル: 中国語を日本語漢字(&J)"
 
-#: ../src/wxmedit_frame.cpp:1519
+#: ../src/wxmedit_frame.cpp:1522
 msgid "Convert Chinese chars to Japanese Kanji in the file"
 msgstr "ファイル内の中国語を日本語漢字に変換"
 
-#: ../src/wxmedit_frame.cpp:1521
+#: ../src/wxmedit_frame.cpp:1524
 msgid "Clipboard: Simplified Chinese to T&raditional Chinese"
 msgstr "クリップボード: 簡体字中国語を繁体字中国語(&R)"
 
-#: ../src/wxmedit_frame.cpp:1521
+#: ../src/wxmedit_frame.cpp:1524
 msgid ""
 "Convert simplified Chinese chars to traditional Chinese chars in the "
 "clipboard"
 msgstr "クリップボードの簡体字中国語を繁体字中国語に変換"
 
-#: ../src/wxmedit_frame.cpp:1522
+#: ../src/wxmedit_frame.cpp:1525
 msgid "Clipboard: Traditional Chinese to S&implified Chinese"
 msgstr "クリップボード: 繁体字中国語を簡体字中国語(&I)"
 
-#: ../src/wxmedit_frame.cpp:1522
+#: ../src/wxmedit_frame.cpp:1525
 msgid ""
 "Convert traditional Chinese chars to simplified Chinese chars in the "
 "clipboard"
 msgstr "クリップボードの繁体字中国語を簡体字中国語に変換"
 
-#: ../src/wxmedit_frame.cpp:1523
+#: ../src/wxmedit_frame.cpp:1526
 msgid "Clipboard: Japanese Kanji to Tra&ditional Chinese"
 msgstr "クリップボード: 日本語漢字を繁体字中国語(&D)"
 
-#: ../src/wxmedit_frame.cpp:1523
+#: ../src/wxmedit_frame.cpp:1526
 msgid "Convert Japanese Kanji to traditional Chinese chars in the clipboard"
 msgstr "クリップボード内の日本語漢字を繁体字中国語に変換"
 
-#: ../src/wxmedit_frame.cpp:1524
+#: ../src/wxmedit_frame.cpp:1527
 msgid "Clipboard: Japanese Kanji to Sim&plified Chinese"
 msgstr "クリップボード: 日本語漢字を簡体字中国語(&P)"
 
-#: ../src/wxmedit_frame.cpp:1524
+#: ../src/wxmedit_frame.cpp:1527
 msgid "Convert Japanese Kanji to simplified Chinese chars in the clipboard"
 msgstr "クリップボード内の日本語漢字を簡体字中国語に変換"
 
-#: ../src/wxmedit_frame.cpp:1525
+#: ../src/wxmedit_frame.cpp:1528
 msgid "Clipboard: Chinese to Japanese &Kanji"
 msgstr "クリップボード: 中国語を日本語漢字(&K)"
 
-#: ../src/wxmedit_frame.cpp:1525
+#: ../src/wxmedit_frame.cpp:1528
 msgid "Convert Chinese chars to Japanese Kanji in the clipboard"
 msgstr "クリップボード内の日本語漢字を中国語に変換"
 
-#: ../src/wxmedit_frame.cpp:1527
+#: ../src/wxmedit_frame.cpp:1530
 msgid "&Word Count"
 msgstr "単語カウント(&W)"
 
-#: ../src/wxmedit_frame.cpp:1527
+#: ../src/wxmedit_frame.cpp:1530
 msgid "Count the words and chars of the file or selection"
 msgstr "ファイルまたは選択範囲の単語と文字数をカウント"
 
-#: ../src/wxmedit_frame.cpp:1530
+#: ../src/wxmedit_frame.cpp:1533
 msgid "&Window"
 msgstr "ウィンドウ(&W)"
 
-#: ../src/wxmedit_frame.cpp:1531
+#: ../src/wxmedit_frame.cpp:1534
 msgid "&Toggle Window"
 msgstr "ウィンドウの切替(&T)"
 
-#: ../src/wxmedit_frame.cpp:1531
+#: ../src/wxmedit_frame.cpp:1534
 msgid "Switch to the previous active window"
 msgstr "前のアクティブウィンドウに切替"
 
-#: ../src/wxmedit_frame.cpp:1532
+#: ../src/wxmedit_frame.cpp:1535
 msgid "&Previous Window"
 msgstr "前のウィンドウ(&P)"
 
-#: ../src/wxmedit_frame.cpp:1532
+#: ../src/wxmedit_frame.cpp:1535
 msgid "Activate the previous window"
 msgstr "前のウィンドウをアクティブ"
 
-#: ../src/wxmedit_frame.cpp:1533
+#: ../src/wxmedit_frame.cpp:1536
 msgid "&Next Window"
 msgstr "次のウィンドウ(&N)"
 
-#: ../src/wxmedit_frame.cpp:1533
+#: ../src/wxmedit_frame.cpp:1536
 msgid "Activate the next window"
 msgstr "次のウィンドウをアクティブ"
 
-#: ../src/wxmedit_frame.cpp:1536
+#: ../src/wxmedit_frame.cpp:1539
 msgid "&Help"
 msgstr "ヘルプ(&H)"
 
-#: ../src/wxmedit_frame.cpp:1537
+#: ../src/wxmedit_frame.cpp:1540
 msgid "&About wxMEdit..."
 msgstr "wxMEdit について(&A)..."
 
-#: ../src/wxmedit_frame.cpp:1541
+#: ../src/wxmedit_frame.cpp:1540
+msgid "Show about dialog"
+msgstr ""
+
+#: ../src/wxmedit_frame.cpp:1544
 msgid "Move caret left one char"
 msgstr "キャレットを一文字左に移動"
 
-#: ../src/wxmedit_frame.cpp:1542
+#: ../src/wxmedit_frame.cpp:1545
 msgid "Move caret right one char"
 msgstr "キャレットを一文字右に移動"
 
-#: ../src/wxmedit_frame.cpp:1543
+#: ../src/wxmedit_frame.cpp:1546
 msgid "Move caret up one line"
 msgstr "キャレットを一行上に移動"
 
-#: ../src/wxmedit_frame.cpp:1544
+#: ../src/wxmedit_frame.cpp:1547
 msgid "Move caret down one line"
 msgstr "キャレットを一つ下の行に移動"
 
-#: ../src/wxmedit_frame.cpp:1545
+#: ../src/wxmedit_frame.cpp:1548
 msgid "Go to begin of line"
 msgstr "行頭に移動"
 
-#: ../src/wxmedit_frame.cpp:1546
+#: ../src/wxmedit_frame.cpp:1549
 msgid "Go to end of line"
 msgstr "行末に移動"
 
-#: ../src/wxmedit_frame.cpp:1547
+#: ../src/wxmedit_frame.cpp:1550
 msgid "Go to begin of document"
 msgstr "文頭に移動"
 
-#: ../src/wxmedit_frame.cpp:1548
+#: ../src/wxmedit_frame.cpp:1551
 msgid "Go to end of document"
 msgstr "文末に移動"
 
-#: ../src/wxmedit_frame.cpp:1549
+#: ../src/wxmedit_frame.cpp:1552
 msgid "Go to previous page"
 msgstr "前のページに移動"
 
-#: ../src/wxmedit_frame.cpp:1550
+#: ../src/wxmedit_frame.cpp:1553
 msgid "Go to next page"
 msgstr "次のページに移動"
 
-#: ../src/wxmedit_frame.cpp:1551
+#: ../src/wxmedit_frame.cpp:1554
 msgid "Go to previous word"
 msgstr "前の単語に移動"
 
-#: ../src/wxmedit_frame.cpp:1552
+#: ../src/wxmedit_frame.cpp:1555
 msgid "Go to next word"
 msgstr "次の単語に移動"
 
-#: ../src/wxmedit_frame.cpp:1554
+#: ../src/wxmedit_frame.cpp:1557
 msgid "Move caret left one char and select"
 msgstr "キャレットを一文字左に移動（選択）"
 
-#: ../src/wxmedit_frame.cpp:1555
+#: ../src/wxmedit_frame.cpp:1558
 msgid "Move caret right one char and select"
 msgstr "キャレットを一文字右に移動（選択）"
 
-#: ../src/wxmedit_frame.cpp:1556
+#: ../src/wxmedit_frame.cpp:1559
 msgid "Move caret up one line and select"
 msgstr "キャレットを一行上に移動（選択）"
 
-#: ../src/wxmedit_frame.cpp:1557
+#: ../src/wxmedit_frame.cpp:1560
 msgid "Move caret down one line and select"
 msgstr "キャレットを一つ下の行に移動(選択)"
 
-#: ../src/wxmedit_frame.cpp:1558
+#: ../src/wxmedit_frame.cpp:1561
 msgid "Go to begin of line and select"
 msgstr "行頭に移動(選択)"
 
-#: ../src/wxmedit_frame.cpp:1559
+#: ../src/wxmedit_frame.cpp:1562
 msgid "Go to end of line and select"
 msgstr "行末に移動(選択)"
 
-#: ../src/wxmedit_frame.cpp:1560
+#: ../src/wxmedit_frame.cpp:1563
 msgid "Go to begin of document and select"
 msgstr "文頭に移動(選択)"
 
-#: ../src/wxmedit_frame.cpp:1561
+#: ../src/wxmedit_frame.cpp:1564
 msgid "Go to end of document and select"
 msgstr "文末に移動(選択)"
 
-#: ../src/wxmedit_frame.cpp:1562
+#: ../src/wxmedit_frame.cpp:1565
 msgid "Go to previous page and select"
 msgstr "前のページに移動(選択)"
 
-#: ../src/wxmedit_frame.cpp:1563
+#: ../src/wxmedit_frame.cpp:1566
 msgid "Go to next page and select"
 msgstr "次のページに移動(選択)"
 
-#: ../src/wxmedit_frame.cpp:1564
+#: ../src/wxmedit_frame.cpp:1567
 msgid "Go to previous word and select"
 msgstr "前の単語に移動(選択)"
 
-#: ../src/wxmedit_frame.cpp:1565
+#: ../src/wxmedit_frame.cpp:1568
 msgid "Go to next word and select"
 msgstr "次の単語に移動(選択)"
 
-#: ../src/wxmedit_frame.cpp:1566
+#: ../src/wxmedit_frame.cpp:1569
 msgid "Go to left brace and select"
 msgstr "左括弧に移動(選択)"
 
-#: ../src/wxmedit_frame.cpp:1567
+#: ../src/wxmedit_frame.cpp:1570
 msgid "Go to right brace and select"
 msgstr "右括弧に移動(選択)"
 
-#: ../src/wxmedit_frame.cpp:1569
+#: ../src/wxmedit_frame.cpp:1572
 msgid "Scroll text up one line"
 msgstr "テキストの 一行上にスクロール"
 
-#: ../src/wxmedit_frame.cpp:1570
+#: ../src/wxmedit_frame.cpp:1573
 msgid "Scroll text down one line"
 msgstr "テキストの 一行下にスクロール"
 
-#: ../src/wxmedit_frame.cpp:1571
+#: ../src/wxmedit_frame.cpp:1574
 msgid "Scroll text up one page"
 msgstr "テキストの 1 ページ上にスクロール"
 
-#: ../src/wxmedit_frame.cpp:1572
+#: ../src/wxmedit_frame.cpp:1575
 msgid "Scroll text down one page"
 msgstr "テキストの 1 ページ下にスクロール"
 
-#: ../src/wxmedit_frame.cpp:1573
+#: ../src/wxmedit_frame.cpp:1576
 msgid "Scroll text left"
 msgstr "テキストの左にスクロール"
 
-#: ../src/wxmedit_frame.cpp:1574
+#: ../src/wxmedit_frame.cpp:1577
 msgid "Scroll text right"
 msgstr "テキストの右にスクロール"
 
-#: ../src/wxmedit_frame.cpp:1576
+#: ../src/wxmedit_frame.cpp:1579
 msgid "Insert one NewLine char"
 msgstr "新しい行に挿入"
 
-#: ../src/wxmedit_frame.cpp:1577
+#: ../src/wxmedit_frame.cpp:1580
 msgid "Insert one NewLine char without indentation"
 msgstr "字下げなしで新しい行に挿入"
 
-#: ../src/wxmedit_frame.cpp:1578
+#: ../src/wxmedit_frame.cpp:1581
 msgid "Insert one Tab char or indent lines"
 msgstr "インデント行に TAB を挿入"
 
-#: ../src/wxmedit_frame.cpp:1579
+#: ../src/wxmedit_frame.cpp:1582
 msgid "Delete one char to the left of the caret"
 msgstr "キャレットより左側の文字を削除"
 
-#: ../src/wxmedit_frame.cpp:1581
+#: ../src/wxmedit_frame.cpp:1584
+msgid "Delete a word left from the caret"
+msgstr ""
+
+#: ../src/wxmedit_frame.cpp:1585
+msgid "Delete a word right from the caret"
+msgstr ""
+
+#: ../src/wxmedit_frame.cpp:1587
 msgid "Toggle Insert/Overwrite Mode"
 msgstr "挿入/上書きモードの切替"
 
-#: ../src/wxmedit_frame.cpp:2023
+#: ../src/wxmedit_frame.cpp:2029
 msgid "New File"
 msgstr "新規ファイル"
 
-#: ../src/wxmedit_frame.cpp:2024 ../src/wxmedit_frame.cpp:3268
+#: ../src/wxmedit_frame.cpp:2030 ../src/wxmedit_frame.cpp:3281
 msgid "Open File"
 msgstr "ファイルを開く..."
 
-#: ../src/wxmedit_frame.cpp:2026
+#: ../src/wxmedit_frame.cpp:2032
 msgid "Save All Files"
 msgstr "すべてのファイルを保存"
 
-#: ../src/wxmedit_frame.cpp:2027
+#: ../src/wxmedit_frame.cpp:2033
 msgid "Close File"
 msgstr "ファイルを閉じる"
 
-#: ../src/wxmedit_frame.cpp:2028
+#: ../src/wxmedit_frame.cpp:2034
 msgid "Close All Files"
 msgstr "すべてのファイルを閉じる"
 
-#: ../src/wxmedit_frame.cpp:2030
+#: ../src/wxmedit_frame.cpp:2036
 msgid "Undo"
 msgstr "元に戻す"
 
-#: ../src/wxmedit_frame.cpp:2031
+#: ../src/wxmedit_frame.cpp:2037
 msgid "Redo"
 msgstr "やり直し"
 
-#: ../src/wxmedit_frame.cpp:2033
+#: ../src/wxmedit_frame.cpp:2039
 msgid "Cut"
 msgstr "切り取り"
 
-#: ../src/wxmedit_frame.cpp:2034
+#: ../src/wxmedit_frame.cpp:2040
 msgid "Copy"
 msgstr "コピー"
 
-#: ../src/wxmedit_frame.cpp:2035
+#: ../src/wxmedit_frame.cpp:2041
 msgid "Paste"
 msgstr "貼り付け"
 
-#: ../src/wxmedit_frame.cpp:2037
+#: ../src/wxmedit_frame.cpp:2043
 msgid "Increase Indent"
 msgstr "インデントを増加"
 
-#: ../src/wxmedit_frame.cpp:2038
+#: ../src/wxmedit_frame.cpp:2044
 msgid "Decrease Indent"
 msgstr "インデントを減少"
 
-#: ../src/wxmedit_frame.cpp:2041
+#: ../src/wxmedit_frame.cpp:2047
 msgid "Uncomment"
 msgstr "コメント解除"
 
-#: ../src/wxmedit_frame.cpp:2043
+#: ../src/wxmedit_frame.cpp:2049
 msgid "Find"
 msgstr "検索"
 
-#: ../src/wxmedit_frame.cpp:2044 ../src/dialog/wxm_search_dialog.cpp:303
+#: ../src/wxmedit_frame.cpp:2050
 msgid "Find Next"
 msgstr "次を検索"
 
-#: ../src/wxmedit_frame.cpp:2045 ../src/dialog/wxm_search_dialog.cpp:390
+#: ../src/wxmedit_frame.cpp:2051
 msgid "Find Previous"
 msgstr "前を検索"
 
-#: ../src/wxmedit_frame.cpp:2046 ../src/dialog/wxm_replace_dialog.cpp:69
+#: ../src/wxmedit_frame.cpp:2052
+#: ../src/dialog/wxm_searchreplace_dialog.cpp:993
 msgid "Replace"
 msgstr "置換"
 
-#: ../src/wxmedit_frame.cpp:2048
+#: ../src/wxmedit_frame.cpp:2054
 msgid "No Line Wrap"
 msgstr "折り返さない"
 
-#: ../src/wxmedit_frame.cpp:2049
+#: ../src/wxmedit_frame.cpp:2055
 msgid "Wrap Lines by Window"
 msgstr "ウィンドウ幅で折り返す"
 
-#: ../src/wxmedit_frame.cpp:2050
+#: ../src/wxmedit_frame.cpp:2056
 msgid "Wrap Lines by Max Columns"
 msgstr "列幅で折り返す"
 
-#: ../src/wxmedit_frame.cpp:2052 ../src/dialog/wxm_options_dialog.cpp:457
+#: ../src/wxmedit_frame.cpp:2058 ../src/dialog/wxm_options_dialog.cpp:457
 msgid "Text Mode"
 msgstr "テキストモード"
 
-#: ../src/wxmedit_frame.cpp:2053
+#: ../src/wxmedit_frame.cpp:2059
 msgid "Column Mode"
 msgstr "列モード"
 
-#: ../src/wxmedit_frame.cpp:2054 ../src/dialog/wxm_options_dialog.cpp:474
+#: ../src/wxmedit_frame.cpp:2060 ../src/dialog/wxm_options_dialog.cpp:474
 msgid "Hex Mode"
 msgstr "16 進モード"
 
-#: ../src/wxmedit_frame.cpp:2072
+#: ../src/wxmedit_frame.cpp:2078
 msgid "Find/Replace in Files Results"
 msgstr "ファイルの検索/置換結果"
 
-#: ../src/wxmedit_frame.cpp:2080
+#: ../src/wxmedit_frame.cpp:2086
 msgid "Information Window"
 msgstr "情報ウィンドウ"
 
-#: ../src/wxmedit_frame.cpp:2662
+#: ../src/wxmedit_frame.cpp:2658
 #, c-format
 msgid "NoName%d"
 msgstr "名称不明%d"
 
-#: ../src/wxmedit_frame.cpp:2702
+#: ../src/wxmedit_frame.cpp:2698
 msgid "This is a Directory:"
 msgstr "これはディレクトリです:"
 
-#: ../src/wxmedit_frame.cpp:2711
+#: ../src/wxmedit_frame.cpp:2707
 msgid "This file does not exist:"
 msgstr "このファイルは存在しません:"
 
-#: ../src/wxmedit_frame.cpp:2729
+#: ../src/wxmedit_frame.cpp:2725
 msgid "Cannot access this file:"
 msgstr "ファイルにアクセス出来ません:"
 
-#: ../src/wxmedit_frame.cpp:2774
+#: ../src/wxmedit_frame.cpp:2770
 msgid "Cannot load this file:"
 msgstr "ファイルを読み込めません:"
 
-#: ../src/wxmedit_frame.cpp:3018 ../src/wxmedit_frame.cpp:3032
-#: ../src/wxmedit_frame.cpp:3049 ../src/wxmedit_frame.cpp:3065
-#: ../src/wxmedit_frame.cpp:3089 ../src/wxmedit_frame.cpp:3103
-#: ../src/wxmedit_frame.cpp:3210 ../src/wxmedit_frame.cpp:3232
+#: ../src/wxmedit_frame.cpp:3031 ../src/wxmedit_frame.cpp:3045
+#: ../src/wxmedit_frame.cpp:3062 ../src/wxmedit_frame.cpp:3078
+#: ../src/wxmedit_frame.cpp:3102 ../src/wxmedit_frame.cpp:3116
+#: ../src/wxmedit_frame.cpp:3223 ../src/wxmedit_frame.cpp:3245
 #: ../src/dialog/wxm_options_dialog.cpp:477
 #: ../src/dialog/wxm_conv_enc_dialog.cpp:51
 msgid "None"
 msgstr "なし"
 
-#: ../src/wxmedit_frame.cpp:3182 ../src/wxmedit_frame.cpp:3188
+#: ../src/wxmedit_frame.cpp:3195 ../src/wxmedit_frame.cpp:3201
 msgid "Has No Unicode BOM (Byte-Order Mark)"
 msgstr "Unicode (BOMなし)"
 
-#: ../src/wxmedit_frame.cpp:3458
+#: ../src/wxmedit_frame.cpp:3471
 msgid ""
 "There was a problem previewing.\n"
 "Perhaps your current printer is not set correctly?"
@@ -3346,15 +3382,15 @@ msgstr ""
 "プレビューに不具合がありました.\n"
 "現在のプリンタ設定をもう一度確認してください"
 
-#: ../src/wxmedit_frame.cpp:3458
+#: ../src/wxmedit_frame.cpp:3471
 msgid "Previewing"
 msgstr "プレビュー"
 
-#: ../src/wxmedit_frame.cpp:3462
+#: ../src/wxmedit_frame.cpp:3475
 msgid "wxMEdit Print Preview"
 msgstr "wxMEdit 印刷プレビュー"
 
-#: ../src/wxmedit_frame.cpp:3487
+#: ../src/wxmedit_frame.cpp:3500
 msgid ""
 "There was a problem printing.\n"
 "Perhaps your current printer is not set correctly?"
@@ -3362,55 +3398,55 @@ msgstr ""
 "印刷に不具合がありました.\n"
 "現在のプリンタ設定をもう一度確認してください"
 
-#: ../src/wxmedit_frame.cpp:3487
+#: ../src/wxmedit_frame.cpp:3500
 msgid "Printing"
 msgstr "印刷"
 
-#: ../src/wxmedit_frame.cpp:3808 ../src/wxmedit_frame.cpp:3851
+#: ../src/wxmedit_frame.cpp:3839 ../src/wxmedit_frame.cpp:3882
 msgid "ASCII characters"
 msgstr "ASCII 文字"
 
-#: ../src/wxmedit_frame.cpp:3808 ../src/wxmedit_frame.cpp:3851
+#: ../src/wxmedit_frame.cpp:3839 ../src/wxmedit_frame.cpp:3882
 msgid "Japanese characters"
 msgstr "日本語文字"
 
-#: ../src/wxmedit_frame.cpp:3809 ../src/wxmedit_frame.cpp:3852
+#: ../src/wxmedit_frame.cpp:3840 ../src/wxmedit_frame.cpp:3883
 msgid "Korean characters"
 msgstr "韓国語文字"
 
-#: ../src/wxmedit_frame.cpp:3809 ../src/wxmedit_frame.cpp:3852
+#: ../src/wxmedit_frame.cpp:3840 ../src/wxmedit_frame.cpp:3883
 msgid "other characters"
 msgstr "その他の文字"
 
-#: ../src/wxmedit_frame.cpp:3811 ../src/wxmedit_frame.cpp:3854
+#: ../src/wxmedit_frame.cpp:3842 ../src/wxmedit_frame.cpp:3885
 msgid "Choose the characters you want to convert:"
 msgstr "変換する文字を選択してください:"
 
-#: ../src/wxmedit_frame.cpp:4158
+#: ../src/wxmedit_frame.cpp:4165
 msgid "Line Number: (you can input HexNumber: 0xNNN)"
 msgstr "行番号: (16進数の入力可: 0xNNN)"
 
-#: ../src/wxmedit_frame.cpp:4158
+#: ../src/wxmedit_frame.cpp:4165
 msgid "Go To Line"
 msgstr "行の移動"
 
-#: ../src/wxmedit_frame.cpp:4182
+#: ../src/wxmedit_frame.cpp:4189
 msgid "Position: (you can input HexNumber: 0xNNN)"
 msgstr "位置: (16進数入力可: 0xNNN)"
 
-#: ../src/wxmedit_frame.cpp:4182
+#: ../src/wxmedit_frame.cpp:4189
 msgid "Go To Position"
 msgstr "位置の移動"
 
-#: ../src/wxmedit_frame.cpp:4942
+#: ../src/wxmedit_frame.cpp:4949
 msgid "Press OK to visit our HomePage."
 msgstr "OK でホームページに移動します"
 
-#: ../src/wxmedit_frame.cpp:4944
+#: ../src/wxmedit_frame.cpp:4951
 msgid "wxMEdit, a cross-platform Text/Hex Editor"
 msgstr "wxMEdit, クロスプラットフォームのテキスト/Hex エディタ"
 
-#: ../src/wxmedit_frame.cpp:4947
+#: ../src/wxmedit_frame.cpp:4954
 msgid "Press OK to visit the license online version.\n"
 msgstr "OK を押してライセンス、バージョンの確認(オンライン)\n"
 
@@ -3454,137 +3490,132 @@ msgstr "&OK"
 msgid "&Cancel"
 msgstr "キャンセル(&C)"
 
-#: ../src/dialog/wxm_find_in_files_dialog.cpp:95
+#: ../src/dialog/wxm_find_in_files_dialog.cpp:94
 msgid "Find/Replace In Files"
 msgstr "ファイルの検索/置換"
 
-#: ../src/dialog/wxm_find_in_files_dialog.cpp:104
-#: ../src/dialog/wxm_search_dialog.cpp:90 ../src/dialog/wxm_sort_dialog.cpp:44
-#: ../src/dialog/wxm_replace_dialog.cpp:80
+#: ../src/dialog/wxm_find_in_files_dialog.cpp:103
+#: ../src/dialog/wxm_searchreplace_dialog.cpp:106
+#: ../src/dialog/wxm_sort_dialog.cpp:44
 msgid "&Case Sensitive"
 msgstr "大文字小文字を区別(&C)"
 
-#: ../src/dialog/wxm_find_in_files_dialog.cpp:107
-#: ../src/dialog/wxm_search_dialog.cpp:93
-#: ../src/dialog/wxm_replace_dialog.cpp:83
+#: ../src/dialog/wxm_find_in_files_dialog.cpp:106
+#: ../src/dialog/wxm_searchreplace_dialog.cpp:109
 msgid "&Whole Word Only"
 msgstr "単語のみ(&W)"
 
-#: ../src/dialog/wxm_find_in_files_dialog.cpp:110
-#: ../src/dialog/wxm_search_dialog.cpp:96
-#: ../src/dialog/wxm_replace_dialog.cpp:86
+#: ../src/dialog/wxm_find_in_files_dialog.cpp:109
+#: ../src/dialog/wxm_searchreplace_dialog.cpp:112
 msgid "Use Regular E&xpressions"
 msgstr "正規表現を使用(&X)"
 
-#: ../src/dialog/wxm_find_in_files_dialog.cpp:113
-#: ../src/dialog/wxm_search_dialog.cpp:99
-#: ../src/dialog/wxm_replace_dialog.cpp:89
+#: ../src/dialog/wxm_find_in_files_dialog.cpp:112
+#: ../src/dialog/wxm_searchreplace_dialog.cpp:115
 msgid "Find &Hex String (Example: BE 00 3A or BE003A)"
 msgstr "16進文字列検索(&H) (例: BE 00 3A or BE003A)"
 
-#: ../src/dialog/wxm_find_in_files_dialog.cpp:116
+#: ../src/dialog/wxm_find_in_files_dialog.cpp:115
 msgid "&List the First Found Item Only"
 msgstr "リスト - 最初に見つけたアイテムのみ(&L)"
 
-#: ../src/dialog/wxm_find_in_files_dialog.cpp:122
+#: ../src/dialog/wxm_find_in_files_dialog.cpp:121
 msgid "&Find"
 msgstr "検索(&F)"
 
-#: ../src/dialog/wxm_find_in_files_dialog.cpp:124
-#: ../src/dialog/wxm_replace_dialog.cpp:110
+#: ../src/dialog/wxm_find_in_files_dialog.cpp:123
+#: ../src/dialog/wxm_searchreplace_dialog.cpp:141
 msgid "&Replace"
 msgstr "置換(&R)"
 
-#: ../src/dialog/wxm_find_in_files_dialog.cpp:126
+#: ../src/dialog/wxm_find_in_files_dialog.cpp:125
 msgid "&Enable Replace"
 msgstr "置換を有効(&E)"
 
-#: ../src/dialog/wxm_find_in_files_dialog.cpp:129
-#: ../src/dialog/wxm_search_dialog.cpp:127
-#: ../src/dialog/wxm_replace_dialog.cpp:115
+#: ../src/dialog/wxm_find_in_files_dialog.cpp:128
+#: ../src/dialog/wxm_searchreplace_dialog.cpp:147
 msgid "Close"
 msgstr "閉じる"
 
-#: ../src/dialog/wxm_find_in_files_dialog.cpp:136
+#: ../src/dialog/wxm_find_in_files_dialog.cpp:135
 msgid "Opened Files in Editor"
 msgstr "エディタで開かれたファイル"
 
-#: ../src/dialog/wxm_find_in_files_dialog.cpp:139
+#: ../src/dialog/wxm_find_in_files_dialog.cpp:138
 msgid "Selected Directory:"
 msgstr "ディレクトリを選択:"
 
-#: ../src/dialog/wxm_find_in_files_dialog.cpp:143
+#: ../src/dialog/wxm_find_in_files_dialog.cpp:142
 msgid "..."
 msgstr "..."
 
-#: ../src/dialog/wxm_find_in_files_dialog.cpp:145
+#: ../src/dialog/wxm_find_in_files_dialog.cpp:144
 msgid "<<"
 msgstr "<<"
 
-#: ../src/dialog/wxm_find_in_files_dialog.cpp:147
+#: ../src/dialog/wxm_find_in_files_dialog.cpp:146
 msgid "File Filters:"
 msgstr "ファイルフィルタ:"
 
-#: ../src/dialog/wxm_find_in_files_dialog.cpp:155
+#: ../src/dialog/wxm_find_in_files_dialog.cpp:154
 msgid "Exclude Filters:"
 msgstr "除外フィルタ:"
 
-#: ../src/dialog/wxm_find_in_files_dialog.cpp:163
+#: ../src/dialog/wxm_find_in_files_dialog.cpp:162
 msgid "File Encoding:"
 msgstr "ファイルのエンコーディング:"
 
-#: ../src/dialog/wxm_find_in_files_dialog.cpp:168
+#: ../src/dialog/wxm_find_in_files_dialog.cpp:167
 msgid "Include Subdirectories"
 msgstr "サブディレクトリを含む"
 
-#: ../src/dialog/wxm_find_in_files_dialog.cpp:203
-#: ../src/dialog/wxm_search_dialog.cpp:163
-#: ../src/dialog/wxm_replace_dialog.cpp:151
+#: ../src/dialog/wxm_find_in_files_dialog.cpp:202
+#: ../src/dialog/wxm_searchreplace_dialog.cpp:190
 msgid "WxBitmapButtonRecentFindText"
 msgstr "WxBitmapButtonRecentFindText"
 
-#: ../src/dialog/wxm_find_in_files_dialog.cpp:221
-#: ../src/dialog/wxm_replace_dialog.cpp:169
+#: ../src/dialog/wxm_find_in_files_dialog.cpp:220
+#: ../src/dialog/wxm_searchreplace_dialog.cpp:208
 msgid "WxBitmapButtonRecentReplaceText"
 msgstr "WxBitmapButtonRecentReplaceText"
 
-#: ../src/dialog/wxm_find_in_files_dialog.cpp:225
+#: ../src/dialog/wxm_find_in_files_dialog.cpp:224
 msgid "Automatic Detection"
 msgstr "自動検出"
 
-#: ../src/dialog/wxm_find_in_files_dialog.cpp:393
+#: ../src/dialog/wxm_find_in_files_dialog.cpp:392
 msgid "Choose a directory"
 msgstr "ディレクトリを選択"
 
-#: ../src/dialog/wxm_find_in_files_dialog.cpp:534
+#: ../src/dialog/wxm_find_in_files_dialog.cpp:533
 #, c-format
 msgid "Found %d file(s) matched the filters..."
 msgstr "フィルタに適合するファイル %d が見つかりました"
 
-#: ../src/dialog/wxm_find_in_files_dialog.cpp:564
+#: ../src/dialog/wxm_find_in_files_dialog.cpp:563
 msgid "The selected directory does not exist."
 msgstr "選択されたディレクトリは存在しません"
 
-#: ../src/dialog/wxm_find_in_files_dialog.cpp:653
+#: ../src/dialog/wxm_find_in_files_dialog.cpp:652
 #, c-format
 msgid "Processing %d of %d files..."
 msgstr "ファイル%d から %d まで処理されます..."
 
-#: ../src/dialog/wxm_find_in_files_dialog.cpp:783
+#: ../src/dialog/wxm_find_in_files_dialog.cpp:782
 #, c-format
 msgid "Line(%d): "
 msgstr "行(%d): "
 
-#: ../src/dialog/wxm_find_in_files_dialog.cpp:787
+#: ../src/dialog/wxm_find_in_files_dialog.cpp:786
 #, c-format
 msgid "Offset(%s): "
 msgstr "オフセット(%s): "
 
-#: ../src/dialog/wxm_find_in_files_dialog.cpp:788
+#: ../src/dialog/wxm_find_in_files_dialog.cpp:787
 msgid "Binary file matches"
 msgstr "バイナリファイルのマッチ"
 
-#: ../src/dialog/wxm_find_in_files_dialog.cpp:812
+#: ../src/dialog/wxm_find_in_files_dialog.cpp:811
 #, c-format
 msgid "%d results"
 msgstr "%d 結果"
@@ -3663,69 +3694,97 @@ msgstr "スキームを保存できません"
 msgid "Cannot delete this scheme."
 msgstr "スキームを削除出来ません"
 
-#: ../src/dialog/wxm_search_dialog.cpp:79
-msgid "Search"
-msgstr "検索"
-
-#: ../src/dialog/wxm_search_dialog.cpp:87
-#: ../src/dialog/wxm_replace_dialog.cpp:77
+#: ../src/dialog/wxm_searchreplace_dialog.cpp:100
 msgid "&Move Focus to Editor Window"
 msgstr "編集ウィンドウにフォーカスを移動(&M)"
 
-#: ../src/dialog/wxm_search_dialog.cpp:103
-#: ../src/dialog/wxm_replace_dialog.cpp:93
+#: ../src/dialog/wxm_searchreplace_dialog.cpp:103
+msgid "Wrap ar&ound"
+msgstr ""
+
+#: ../src/dialog/wxm_searchreplace_dialog.cpp:119
 msgid "Search In &Selection"
 msgstr "選択範囲内を検索(&S)"
 
-#: ../src/dialog/wxm_search_dialog.cpp:123
+#: ../src/dialog/wxm_searchreplace_dialog.cpp:139
 msgid "C&ount"
 msgstr "カウント(&O)"
 
-#: ../src/dialog/wxm_search_dialog.cpp:125
+#: ../src/dialog/wxm_searchreplace_dialog.cpp:143
+msgid "Replace &All"
+msgstr "すべて置換(&A)"
+
+#: ../src/dialog/wxm_searchreplace_dialog.cpp:145
 msgid "&Replace >>"
 msgstr "置換(&R) >>"
 
-#: ../src/dialog/wxm_search_dialog.cpp:257
-#: ../src/dialog/wxm_search_dialog.cpp:344
-#: ../src/dialog/wxm_search_dialog.cpp:619
-#: ../src/dialog/wxm_replace_dialog.cpp:440
-#: ../src/dialog/wxm_replace_dialog.cpp:524
+#: ../src/dialog/wxm_searchreplace_dialog.cpp:320
+msgid "End of selection reached, search from beginning."
+msgstr ""
+
+#: ../src/dialog/wxm_searchreplace_dialog.cpp:321
+msgid "End of file reached, search from beginning."
+msgstr ""
+
+#: ../src/dialog/wxm_searchreplace_dialog.cpp:329
+#: ../src/dialog/wxm_searchreplace_dialog.cpp:431
+#: ../src/dialog/wxm_searchreplace_dialog.cpp:724
+#: ../src/dialog/wxm_searchreplace_dialog.cpp:827
+#: ../src/dialog/wxm_searchreplace_dialog.cpp:897
 msgid "The value of 'From' is incorrect."
 msgstr "'From' の値に誤りがあります"
 
-#: ../src/dialog/wxm_search_dialog.cpp:262
-#: ../src/dialog/wxm_search_dialog.cpp:349
-#: ../src/dialog/wxm_search_dialog.cpp:624
-#: ../src/dialog/wxm_replace_dialog.cpp:445
-#: ../src/dialog/wxm_replace_dialog.cpp:529
+#: ../src/dialog/wxm_searchreplace_dialog.cpp:334
+#: ../src/dialog/wxm_searchreplace_dialog.cpp:436
+#: ../src/dialog/wxm_searchreplace_dialog.cpp:729
+#: ../src/dialog/wxm_searchreplace_dialog.cpp:832
+#: ../src/dialog/wxm_searchreplace_dialog.cpp:902
 msgid "The value of 'To' is incorrect."
 msgstr "'To' の値に誤りがあります"
 
-#: ../src/dialog/wxm_search_dialog.cpp:297
-#: ../src/dialog/wxm_search_dialog.cpp:384
+#: ../src/dialog/wxm_searchreplace_dialog.cpp:386
+#: ../src/dialog/wxm_searchreplace_dialog.cpp:488
+#: ../src/dialog/wxm_searchreplace_dialog.cpp:787
 msgid "Cannot find the matched string."
 msgstr "合致する文字列は見つかりませんでした"
 
-#: ../src/dialog/wxm_search_dialog.cpp:300
-msgid "Do you want to find from begin of selection?"
-msgstr "選択範囲の先頭から検索しますか?"
+#: ../src/dialog/wxm_searchreplace_dialog.cpp:422
+msgid "Beginning of selection reached, search from end."
+msgstr ""
 
-#: ../src/dialog/wxm_search_dialog.cpp:301
-msgid "Do you want to find from begin of file?"
-msgstr "ファイルの先頭から検索しますか?"
+#: ../src/dialog/wxm_searchreplace_dialog.cpp:423
+msgid "Beginning of file reached, search from end."
+msgstr ""
 
-#: ../src/dialog/wxm_search_dialog.cpp:387
-msgid "Do you want to find from end of selection?"
-msgstr "選択範囲の末尾から検索しますか?"
+#: ../src/dialog/wxm_searchreplace_dialog.cpp:714
+msgid "End of selection reached, replace from beginning."
+msgstr ""
 
-#: ../src/dialog/wxm_search_dialog.cpp:388
-msgid "Do you want to find from end of file?"
-msgstr "ファイルの終端から検索しますか?"
+#: ../src/dialog/wxm_searchreplace_dialog.cpp:715
+msgid "End of file reached, replace from beginning."
+msgstr ""
 
-#: ../src/dialog/wxm_search_dialog.cpp:651
+#: ../src/dialog/wxm_searchreplace_dialog.cpp:781
+msgid "Cannot find the matched string. Replace is finished."
+msgstr "適合する文字列は見つかりませんでした. 置換を終了します."
+
+#: ../src/dialog/wxm_searchreplace_dialog.cpp:859
 #, c-format
 msgid "'%s' was found %d times."
 msgstr "'%s' を検出 %d 回"
+
+#: ../src/dialog/wxm_searchreplace_dialog.cpp:928
+msgid "Cannot find any matched string."
+msgstr "適合する文字列は見つかりませんでした"
+
+#: ../src/dialog/wxm_searchreplace_dialog.cpp:930
+#, c-format
+msgid "%d string(s) were replaced."
+msgstr "%d つの文字列が置換されました"
+
+#: ../src/dialog/wxm_searchreplace_dialog.cpp:974
+msgid "Search"
+msgstr "検索"
 
 #: ../src/dialog/wxm_sort_dialog.cpp:33
 msgid "Sort Options"
@@ -3750,27 +3809,6 @@ msgstr "数字でソート(&N)"
 #: ../src/dialog/wxm_sort_dialog.cpp:50
 msgid "&Remove Duplicates"
 msgstr "重複を除去(&R)"
-
-#: ../src/dialog/wxm_replace_dialog.cpp:113
-msgid "Replace &All"
-msgstr "すべて置換(&A)"
-
-#: ../src/dialog/wxm_replace_dialog.cpp:474
-msgid ""
-"Cannot find the matched string.\n"
-"Replace is finished."
-msgstr ""
-"適合する文字列は見つかりませんでした.\n"
-"置換を終了します."
-
-#: ../src/dialog/wxm_replace_dialog.cpp:555
-msgid "Cannot find any matched string."
-msgstr "適合する文字列は見つかりませんでした"
-
-#: ../src/dialog/wxm_replace_dialog.cpp:557
-#, c-format
-msgid "%d string(s) were replaced."
-msgstr "%d つの文字列が置換されました"
 
 #: ../src/dialog/wxm_options_dialog.cpp:327
 msgid "Options"
@@ -4285,6 +4323,18 @@ msgstr "wxMEdit プリントアウト"
 #: ../src/xm/wx_recent_list.cpp:67
 msgid "[EMPTY]"
 msgstr "[ 空 ]"
+
+#~ msgid "Do you want to find from begin of selection?"
+#~ msgstr "選択範囲の先頭から検索しますか?"
+
+#~ msgid "Do you want to find from begin of file?"
+#~ msgstr "ファイルの先頭から検索しますか?"
+
+#~ msgid "Do you want to find from end of selection?"
+#~ msgstr "選択範囲の末尾から検索しますか?"
+
+#~ msgid "Do you want to find from end of file?"
+#~ msgstr "ファイルの終端から検索しますか?"
 
 #~ msgid "Esperanto (ISO-8859-3)"
 #~ msgstr "エスペラント語 (ISO-8859-3)"

@@ -32,12 +32,10 @@ src/wxm_find_in_files_dialog.cpp
 src/wxm_find_in_files_dialog.h
 src/wxm_highlighting_dialog.cpp
 src/wxm_highlighting_dialog.h
-src/wxm_search_dialog.cpp
-src/wxm_search_dialog.h
+src/wxm_searchreplace_dialog.cpp
+src/wxm_searchreplace_dialog.h
 src/wxm_sort_dialog.cpp
 src/wxm_sort_dialog.h
-src/wxm_replace_dialog.cpp
-src/wxm_replace_dialog.h
 src/wxm_options_dialog.cpp
 src/wxm_options_dialog.h
 src/wxm_conv_enc_dialog.cpp
