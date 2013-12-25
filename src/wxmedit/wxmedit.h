@@ -350,6 +350,8 @@ private:
     OnMouseRightUpPtr     m_OnMouseRightUp;
     OnActivatePtr         m_OnActivate;
 
+    wxMilliClock_t m_lastDoubleClick;
+
 #ifdef __WXMSW__
     bool m_IsWin98;
     int  m_Win98LeadByte; // fixed that input DBCS char under win98
@@ -429,6 +431,7 @@ protected:
     // if(ws==NULL) SelectWord only;
     // else GetWord to ws;
     void SelectWordFromCaretPos(wxString *ws);
+    void SelectLineFromCaretPos(wxString *ws=NULL);
 
     bool PutTextToClipboard(const wxString &ws);
     bool PutColumnDataToClipboard(const wxString &ws, int linecount);

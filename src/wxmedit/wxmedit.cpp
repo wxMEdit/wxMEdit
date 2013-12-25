@@ -888,6 +888,8 @@ MadEdit::MadEdit(wxWindow* parent, wxWindowID id, const wxPoint& pos, const wxSi
     m_UseDefaultSyntax=false;
     m_SearchWholeWord=false;
 
+    m_lastDoubleClick = 0;
+
 #ifdef __WXMSW__
     m_IsWin98 = (wxGetOsVersion()==wxOS_WINDOWS_9X);
     m_Win98LeadByte=-1;
@@ -3863,6 +3865,76 @@ void MadEdit::SelectWordFromCaretPos(wxString *ws)
         DoSelectionChanged();
     }
 
+}
+
+void MadEdit::SelectLineFromCaretPos(wxString *ws)
+{
+    if (m_EditMode == emColumnMode && m_CaretPos.extraspaces)
+        return;
+
+    wxFileOffset startpos, endpos;
+
+    if (!IsTextFile()) // not a text file (HexMode)
+    {
+        startpos = m_HexRowIndex[0];
+
+        int count = GetVisibleHexRowCount();
+        if (count == 0) ++count;
+        endpos = m_HexRowIndex[count-1]+16;
+
+        if (endpos > m_Lines->m_Size)
+        {
+            endpos = m_Lines->m_Size;
+        }
+    }
+    else                          //TextMode
+    {
+        //may select whole line
+        startpos = m_CaretPos.pos - m_CaretPos.linepos +
+            m_CaretPos.iter->m_RowIndices[0].m_Start; // exclude BOM
+        endpos = m_CaretPos.pos - m_CaretPos.linepos +
+            m_CaretPos.iter->m_RowIndices[1].m_Start; ;
+       
+    }
+
+    m_Selection = true;
+    m_SelectionPos1.pos = startpos;
+    m_SelectionPos2.pos = endpos;
+
+    UpdateSelectionPos();
+
+    m_CaretPos = m_SelectionPos2;
+
+    m_SelectionBegin = &m_SelectionPos1;
+    m_SelectionEnd = &m_SelectionPos2;
+
+    m_SelFirstRow = m_SelectionBegin->rowid;
+    m_SelLastRow = m_SelectionEnd->rowid;
+
+    UpdateCaret(m_CaretPos, m_ActiveRowUChars, m_ActiveRowWidths, m_CaretRowUCharPos);
+
+    if (m_EditMode == emHexMode)
+    {
+        AppearHexRow(m_CaretPos.pos);
+
+        m_CaretAtHalfByte = false;
+
+        if (!m_CaretAtHexArea)
+        {
+            UpdateTextAreaXPos();
+        }
+    }
+
+    AppearCaret();
+    UpdateScrollBarPos();
+
+    m_LastTextAreaXPos = m_TextAreaXPos;
+    m_LastCaretXPos = m_CaretPos.xpos;
+
+    m_RepaintAll = true;
+    Refresh(false);
+
+    DoSelectionChanged();
 }
 
 bool MadEdit::PutTextToClipboard(const wxString &ws)
@@ -9103,6 +9175,13 @@ void MadEdit::OnMouseLeftDown(wxMouseEvent &evt)
     {
         CaptureMouse();
 
+        const long TRIPLECLICK_LEN = 200; // 0.2 sec after doubleclick
+        if (wxGetLocalTimeMillis() - m_lastDoubleClick <= TRIPLECLICK_LEN)
+        {
+            SelectLineFromCaretPos();
+            return;
+        }
+
         wxFileOffset oldCaretPos=m_CaretPos.pos;
 
         m_MouseAtHexTextArea = true;
@@ -9239,6 +9318,8 @@ void MadEdit::OnMouseLeftDClick(wxMouseEvent &evt)
     m_MouseLeftDoubleClick=true;
     m_MouseLeftDown=true;
     SelectWordFromCaretPos(NULL);
+
+    m_lastDoubleClick = wxGetLocalTimeMillis();
 
     CaptureMouse();
 
