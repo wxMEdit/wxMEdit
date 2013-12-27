@@ -9175,8 +9175,7 @@ void MadEdit::OnMouseLeftDown(wxMouseEvent &evt)
     {
         CaptureMouse();
 
-        const long TRIPLECLICK_LEN = 200; // 0.2 sec after doubleclick
-        if (wxGetLocalTimeMillis() - m_lastDoubleClick <= TRIPLECLICK_LEN)
+        if (wxGetLocalTimeMillis() - m_lastDoubleClick <= GetTripleClickInterval())
         {
             SelectLineFromCaretPos();
             return;
@@ -10749,3 +10748,22 @@ void MadEdit::GotoPreviousBookmark()
     if ( lineNum > 0 )
         GoToLine( int(m_Lines->m_LineCount + 1) - lineNum );
 }
+
+wxMilliClock_t MadEdit::GetTripleClickInterval()
+{
+    static wxMilliClock_t t = 0;
+    if (t == 0)
+    {
+#ifdef __WXMSW__
+        t = (wxMilliClock_t)GetDoubleClickTime();
+#else // __WXGTK__
+        GtkSettings *settings = gtk_settings_get_default();
+        gint i;
+        g_object_get(G_OBJECT(settings), "gtk-double-click-time", &i, NULL);
+        t = (wxMilliClock_t)i;
+#endif
+    }
+
+    return t;
+}
+

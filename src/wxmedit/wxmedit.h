@@ -981,6 +981,8 @@ private: // Printing functions
     int m_PrintTotalHexLineCount;
     MadEdit *m_PrintHexEdit;    // use a temporary MadEdit to print Hex-Data
 
+    static wxMilliClock_t GetTripleClickInterval();
+
 public: // printing functions
     void BeginPrint(const wxRect &printRect);
     int  GetPageCount() { return m_PrintPageCount; }
