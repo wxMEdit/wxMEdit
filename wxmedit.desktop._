@@ -1,5 +1,4 @@
 [Desktop Entry]
-Encoding=UTF-8
 Name=wxMEdit
 Comment=Text/Hex Editor
 Comment[zh_CN]=文本及十六进制编辑器
@@ -9,4 +8,4 @@ Icon=@pixmapsdir@/wxmedit.png
 Terminal=false
 Type=Application
 MimeType=text/plain;
-Categories=Application;Utility;TextEditor;
+Categories=Utility;TextEditor;
