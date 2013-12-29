@@ -400,6 +400,8 @@ private:
 
     wxFileOffset GetMaxTempSize(const wxString &filename);
 
+    void InitFileSyntax();
+
 public:
     MadLines(MadEdit *madedit);
     virtual ~MadLines();

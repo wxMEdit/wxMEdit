@@ -2258,6 +2258,31 @@ void MadLines::Append(const MadLineIterator &lit1, const MadLineIterator &lit2)
 
 //===========================================================================
 
+MadSyntax* GetFileSyntax(const wxString& filename, const wxByte* buf, int sz)
+{
+    wxFileName fn(filename);
+    MadSyntax* syntax = MadSyntax::GetSyntaxByExt(fn.GetExt());
+    if(syntax!=NULL)
+        return syntax;
+
+    syntax = MadSyntax::GetSyntaxByFirstLine(buf, sz);
+    if(syntax!=NULL)
+        return syntax;
+
+	syntax = MadSyntax::GetSyntaxByFileName(fn.GetName());
+    if(syntax!=NULL)
+        return syntax;
+
+    return MadSyntax::GetSyntaxByTitle(MadPlainTextTitle);
+}
+
+void MadLines::InitFileSyntax()
+{
+    wxFont *font=m_MadEdit->m_TextFont;
+    m_Syntax->InitNextWord1(m_MadEdit->m_Lines, m_MadEdit->m_WordBuffer, m_MadEdit->m_WidthBuffer, font->GetFaceName(), font->GetPointSize(), font->GetFamily());
+    m_MadEdit->m_Syntax = m_Syntax;
+}
+
 bool MadLines::LoadFromFile(const wxString &filename, const wxString &encoding)
 {
     MadFileData *fd = new MadFileData(filename);
@@ -2322,20 +2347,9 @@ bool MadLines::LoadFromFile(const wxString &filename, const wxString &encoding)
         // reload syntax
         delete m_Syntax;
 
-        wxFileName fn(filename);
-        m_Syntax = MadSyntax::GetSyntaxByExt(fn.GetExt());
-        if(m_Syntax==NULL)
-        {
-            m_Syntax = MadSyntax::GetSyntaxByFileName(fn.GetName());
-            if(m_Syntax==NULL)
-            {
-                m_Syntax = MadSyntax::GetSyntaxByTitle(MadPlainTextTitle);
-            }
-        }
+        m_Syntax = GetFileSyntax(filename, NULL, 0);
 
-        wxFont *font=m_MadEdit->m_TextFont;
-        m_Syntax->InitNextWord1(m_MadEdit->m_Lines, m_MadEdit->m_WordBuffer, m_MadEdit->m_WidthBuffer, font->GetFaceName(), font->GetPointSize(), font->GetFamily());
-        m_MadEdit->m_Syntax = m_Syntax;
+		InitFileSyntax();
 
         m_MadEdit->m_LoadingFile = false;
 
@@ -2417,26 +2431,10 @@ bool MadLines::LoadFromFile(const wxString &filename, const wxString &encoding)
     }
     else
     {
-        wxFileName fn(filename);
-        m_Syntax = MadSyntax::GetSyntaxByExt(fn.GetExt());
-        if(m_Syntax==NULL)
-        {
-            m_Syntax = MadSyntax::GetSyntaxByFirstLine(buf, sz);
-            if(m_Syntax==NULL)
-            {
-                m_Syntax = MadSyntax::GetSyntaxByFileName(fn.GetName());
-                if(m_Syntax==NULL)
-                {
-                    m_Syntax = MadSyntax::GetSyntaxByTitle(MadPlainTextTitle);
-                }
-            }
-        }
+        m_Syntax = GetFileSyntax(filename, buf, sz);
     }
 
-    wxFont *font=m_MadEdit->m_TextFont;
-    m_Syntax->InitNextWord1(m_MadEdit->m_Lines, m_MadEdit->m_WordBuffer, m_MadEdit->m_WidthBuffer, font->GetFaceName(), font->GetPointSize(), font->GetFamily());
-    m_MadEdit->m_Syntax = m_Syntax;
-
+	InitFileSyntax();
 
     long maxtextfilesize;
     wxString oldpath=m_MadEdit->m_Config->GetPath();
@@ -2870,28 +2868,16 @@ wxFileOffset MadLines::GetMaxTempSize(const wxString &filename)
 
 bool MadLines::SaveToFile(const wxString &filename, const wxString &tempdir)
 {
-    wxFileName fn(filename);
-    MadSyntax * tmp_Syntax = MadSyntax::GetSyntaxByExt(fn.GetExt());
-    if(tmp_Syntax==NULL)
+    MadSyntax * tmp_Syntax = GetFileSyntax(filename, NULL, 0);
+    if(tmp_Syntax->m_Title == m_Syntax->m_Title)
     {
-        tmp_Syntax = MadSyntax::GetSyntaxByFileName(fn.GetName());
-        if(tmp_Syntax==NULL)
-        {
-            tmp_Syntax = MadSyntax::GetSyntaxByTitle(MadPlainTextTitle);
-        }
-    }
-   
-    if(tmp_Syntax->m_Title != m_Syntax->m_Title)
-    {
-        delete m_Syntax;
-        m_Syntax = tmp_Syntax;
-        wxFont *font=m_MadEdit->m_TextFont;
-        tmp_Syntax->InitNextWord1(m_MadEdit->m_Lines, m_MadEdit->m_WordBuffer, m_MadEdit->m_WidthBuffer, font->GetFaceName(), font->GetPointSize(), font->GetFamily());
-        m_MadEdit->m_Syntax = tmp_Syntax;
+        delete tmp_Syntax;
     }
     else
     {
-        delete tmp_Syntax;
+        delete m_Syntax;
+        m_Syntax = tmp_Syntax;
+        InitFileSyntax();
     }
 
     if(m_FileData == NULL)

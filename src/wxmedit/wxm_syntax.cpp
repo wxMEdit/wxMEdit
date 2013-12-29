@@ -328,8 +328,11 @@ MadSyntax* MadSyntax::GetSyntaxByExt(const wxString &ext)
     return NULL;
 }
 
-MadSyntax* MadSyntax::GetSyntaxByFirstLine(wxByte *data, int size)
+MadSyntax* MadSyntax::GetSyntaxByFirstLine(const wxByte* data, int size)
 {
+    if (data == NULL || size == 0)
+        return NULL;
+
     wxString line;
     wxChar ch=0;
     // get first non-empty line

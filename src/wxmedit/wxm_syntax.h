@@ -118,7 +118,7 @@ public:
 
     // below functions will return NULL if not found
     static MadSyntax* GetSyntaxByExt(const wxString &ext);
-    static MadSyntax* GetSyntaxByFirstLine(wxByte *data, int size);
+    static MadSyntax* GetSyntaxByFirstLine(const wxByte* data, int size);
     static MadSyntax* GetSyntaxByFileName(const wxString &filename);
 
     // .sch files management functions
