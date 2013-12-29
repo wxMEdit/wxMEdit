@@ -2870,6 +2870,30 @@ wxFileOffset MadLines::GetMaxTempSize(const wxString &filename)
 
 bool MadLines::SaveToFile(const wxString &filename, const wxString &tempdir)
 {
+    wxFileName fn(filename);
+    MadSyntax * tmp_Syntax = MadSyntax::GetSyntaxByExt(fn.GetExt());
+    if(tmp_Syntax==NULL)
+    {
+        tmp_Syntax = MadSyntax::GetSyntaxByFileName(fn.GetName());
+        if(tmp_Syntax==NULL)
+        {
+            tmp_Syntax = MadSyntax::GetSyntaxByTitle(MadPlainTextTitle);
+        }
+    }
+   
+    if(tmp_Syntax->m_Title != m_Syntax->m_Title)
+    {
+        delete m_Syntax;
+        m_Syntax = tmp_Syntax;
+        wxFont *font=m_MadEdit->m_TextFont;
+        tmp_Syntax->InitNextWord1(m_MadEdit->m_Lines, m_MadEdit->m_WordBuffer, m_MadEdit->m_WidthBuffer, font->GetFaceName(), font->GetPointSize(), font->GetFamily());
+        m_MadEdit->m_Syntax = tmp_Syntax;
+    }
+    else
+    {
+        delete tmp_Syntax;
+    }
+
     if(m_FileData == NULL)
     {
         int utf8test=MadFileNameIsUTF8(filename);
