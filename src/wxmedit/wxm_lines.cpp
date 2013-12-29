@@ -10,10 +10,14 @@
 #include "wxm_lines.h"
 #include "../xm/wxm_encoding/encoding.h"
 #include "../xm/wxm_encdet.h"
+#include "../xm/wxm_def.h"
 #include "mad_encdet.h"
 #include "wxm_syntax.h"
 #include "wxmedit.h"
 #include <wx/filename.h>
+
+#include <boost/scoped_ptr.hpp>
+
 #include <algorithm>
 
 #ifdef _DEBUG
@@ -2868,17 +2872,18 @@ wxFileOffset MadLines::GetMaxTempSize(const wxString &filename)
 
 bool MadLines::SaveToFile(const wxString &filename, const wxString &tempdir)
 {
-    MadSyntax * tmp_Syntax = GetFileSyntax(filename, NULL, 0);
-    if(tmp_Syntax->m_Title == m_Syntax->m_Title)
+    size_t sz = 0;
+    wxByte buf[wxm::FIRSTLINE_SYNTAXPATTEN_MAXLEN] = {'\0'};
+    if (!m_LineList.empty())
     {
-        delete tmp_Syntax;
+        MadLine& line = m_LineList.front();
+        sz = std::min(wxm::FIRSTLINE_SYNTAXPATTEN_MAXLEN, (size_t)line.m_Size);
+        line.Get(0, buf, sz);
     }
-    else
-    {
-        delete m_Syntax;
-        m_Syntax = tmp_Syntax;
-        InitFileSyntax();
-    }
+
+    boost::scoped_ptr<MadSyntax> tmp_Syntax(GetFileSyntax(filename, buf, (int)sz));
+    if(tmp_Syntax->m_Title != m_Syntax->m_Title)
+        m_MadEdit->SetSyntax(tmp_Syntax->m_Title);
 
     if(m_FileData == NULL)
     {

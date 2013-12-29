@@ -33,6 +33,9 @@ namespace wxm
 
 	const long MINVAL_MAXLINELEN = 80;
 	const long MAXVAL_MAXLINELEN = 65536;
+
+	const size_t FIRSTLINE_SYNTAXPATTEN_MAXLEN = 16;
+
 }; // namespace wxm
 
 #endif //_WXM_DEF_H_
