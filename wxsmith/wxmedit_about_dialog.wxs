@@ -58,7 +58,7 @@
 									<object class="wxBoxSizer" variable="BoxSizer6" member="no">
 										<object class="sizeritem">
 											<object class="wxTextCtrl" name="ID_TEXTCTRL2" variable="TxtLicense" member="yes">
-												<style>wxTE_AUTO_SCROLL|wxTE_MULTILINE|wxTE_READONLY|wxTE_WORDWRAP|wxSTATIC_BORDER</style>
+												<style>wxTE_AUTO_SCROLL|wxTE_MULTILINE|wxTE_READONLY|wxTE_AUTO_URL|wxTE_WORDWRAP|wxSTATIC_BORDER</style>
 											</object>
 											<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
 											<option>1</option>

@@ -30,6 +30,7 @@ const long WXMAboutDialog::ID_NOTEBOOK1 = wxNewId();
 BEGIN_EVENT_TABLE(WXMAboutDialog,wxDialog)
 	//(*EventTable(WXMAboutDialog)
 	//*)
+	EVT_ACTIVATE(WXMAboutDialog::WXMAboutDialogActivate)
 END_EVENT_TABLE()
 
 WXMAboutDialog::WXMAboutDialog(wxWindow* parent,wxWindowID id,const wxPoint& pos,const wxSize& size)
@@ -61,7 +62,7 @@ WXMAboutDialog::WXMAboutDialog(wxWindow* parent,wxWindowID id,const wxPoint& pos
 	BoxSizer5->SetSizeHints(AoubtTab);
 	LicenseTab = new wxPanel(Notebook1, ID_PANEL2, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL, _T("ID_PANEL2"));
 	BoxSizer6 = new wxBoxSizer(wxHORIZONTAL);
-	TxtLicense = new wxTextCtrl(LicenseTab, ID_TEXTCTRL2, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_AUTO_SCROLL|wxTE_MULTILINE|wxTE_READONLY|wxTE_WORDWRAP|wxSTATIC_BORDER, wxDefaultValidator, _T("ID_TEXTCTRL2"));
+	TxtLicense = new wxTextCtrl(LicenseTab, ID_TEXTCTRL2, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_AUTO_SCROLL|wxTE_MULTILINE|wxTE_READONLY|wxTE_AUTO_URL|wxTE_WORDWRAP|wxSTATIC_BORDER, wxDefaultValidator, _T("ID_TEXTCTRL2"));
 	BoxSizer6->Add(TxtLicense, 1, wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 0);
 	LicenseTab->SetSizer(BoxSizer6);
 	BoxSizer6->Fit(LicenseTab);
@@ -86,6 +87,8 @@ WXMAboutDialog::WXMAboutDialog(wxWindow* parent,wxWindowID id,const wxPoint& pos
 	Connect(wxID_ANY,wxEVT_CLOSE_WINDOW,(wxObjectEventFunction)&WXMAboutDialog::WXMAboutDialogClose);
 	//*)
 
+	m_reset_license_text_pos = false;
+
 	StaticBitmap1->SetBitmap(wxBitmap(wxmedit_xpm));
 	StaticBitmap1->Enable(true);
 	StaticBitmap2->SetBitmap(wxBitmap(madedit_xpm));
@@ -108,7 +111,22 @@ void WXMAboutDialog::WXMAboutDialogClose(wxCloseEvent& event)
 void WXMAboutDialog::OnNotebook1PageChanged(wxNotebookEvent& event)
 {
 	if (event.GetSelection() == 1/* LicenseTab */)
+	{
 		g_wxMEdit_About_URL = g_wxMEdit_License_URL;
-	else
-		g_wxMEdit_About_URL = g_wxMEdit_Homepage_URL;
+
+		if (m_reset_license_text_pos)
+		{
+			m_reset_license_text_pos = false;
+			TxtLicense->SetInsertionPoint(0);
+		}
+
+		return;
+	}
+
+	g_wxMEdit_About_URL = g_wxMEdit_Homepage_URL;
+}
+
+void WXMAboutDialog::WXMAboutDialogActivate(wxActivateEvent& event)
+{
+	m_reset_license_text_pos = true;
 }
