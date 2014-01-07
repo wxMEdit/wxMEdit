@@ -38,7 +38,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: wxMEdit 2.9.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-12-23 20:29+0800\n"
+"POT-Creation-Date: 2014-01-07 23:32+0800\n"
 "PO-Revision-Date: 2013-09-04 13:49+0800\n"
 "Last-Translator: Denir Li <denir.li@gmail.com>\n"
 "Language-Team: wxMEdit <wxmedit@gmail.com>\n"
@@ -220,1833 +220,1837 @@ msgid "EUC-JP Double-Byte Edition of Windows (CP 20932)"
 msgstr "Windows 雙位元組編碼 EUC-JP (CP 20932)"
 
 #: wxstd.po.cpp:44
+msgid "CP437 Variant for ASCII Art"
+msgstr ""
+
+#: wxstd.po.cpp:45
 msgid "Windows/DOS OEM (CP 437)"
 msgstr "Windows/DOS OEM (CP 437)"
 
-#: wxstd.po.cpp:45
+#: wxstd.po.cpp:46
 msgid "Windows/DOS OEM - Latin 1 (CP 850)"
 msgstr "Windows/DOS OEM - 拉丁1 (CP 850)"
 
-#: wxstd.po.cpp:46
+#: wxstd.po.cpp:47
 msgid "Windows/DOS OEM - Latin 2 (CP 852)"
 msgstr "Windows/DOS OEM - 拉丁2 (CP 852)"
 
-#: wxstd.po.cpp:47
+#: wxstd.po.cpp:48
 msgid "Windows/DOS OEM - Cyrillic (CP 855)"
 msgstr "Windows/DOS OEM - 斯拉夫語 (CP 855)"
 
-#: wxstd.po.cpp:48
+#: wxstd.po.cpp:49
 msgid "Windows/DOS OEM - Cyrillic (CP 866)"
 msgstr "Windows/DOS OEM - 斯拉夫語 (CP 866)"
 
-#: wxstd.po.cpp:49
+#: wxstd.po.cpp:50
 msgid "OK"
 msgstr "確定"
 
-#: wxstd.po.cpp:50 ../src/dialog/wxm_sort_dialog.cpp:56
+#: wxstd.po.cpp:51 ../src/dialog/wxm_sort_dialog.cpp:56
 msgid "Cancel"
 msgstr "取消"
 
-#: wxstd.po.cpp:51
+#: wxstd.po.cpp:52
 #, c-format
 msgid "File '%s' already exists, do you really want to overwrite it?"
 msgstr "檔案 '%s' 已存在，確認是否要覆寫？"
 
-#: wxstd.po.cpp:52 ../src/dialog/wxm_word_count_dialog.cpp:85
+#: wxstd.po.cpp:53 ../src/dialog/wxm_word_count_dialog.cpp:85
 msgid "&Close"
 msgstr "關閉(&C)"
 
-#: wxstd.po.cpp:53
+#: wxstd.po.cpp:54
 msgid "&Goto..."
 msgstr "移到(&G)…"
 
-#: wxstd.po.cpp:54
+#: wxstd.po.cpp:55
 msgid "Goto Page"
 msgstr "移到此頁"
 
-#: wxstd.po.cpp:55
+#: wxstd.po.cpp:56
 #, c-format
 msgid "Enter a page number between %d and %d:"
 msgstr "請輸入介於 %d 到 %d 之間的頁數："
 
-#: wxstd.po.cpp:56
+#: wxstd.po.cpp:57
 msgid "Please wait while printing\n"
 msgstr "列印中，請稍候\n"
 
-#: wxstd.po.cpp:57
+#: wxstd.po.cpp:58
 msgid "Printing "
 msgstr "列印"
 
-#: wxstd.po.cpp:58
+#: wxstd.po.cpp:59
 msgid "All"
 msgstr "全部"
 
-#: wxstd.po.cpp:59
+#: wxstd.po.cpp:60
 msgid "Bottom margin (mm):"
 msgstr "底部邊界 (mm)："
 
-#: wxstd.po.cpp:60
+#: wxstd.po.cpp:61
 msgid "Copies:"
 msgstr "份數："
 
-#: wxstd.po.cpp:61
+#: wxstd.po.cpp:62
 msgid "Default printer"
 msgstr "預設印表機"
 
-#: wxstd.po.cpp:62 ../src/dialog/wxm_searchreplace_dialog.cpp:122
+#: wxstd.po.cpp:63 ../src/dialog/wxm_searchreplace_dialog.cpp:122
 msgid "From:"
 msgstr "從："
 
-#: wxstd.po.cpp:63
+#: wxstd.po.cpp:64
 msgid "Landscape"
 msgstr "橫向"
 
-#: wxstd.po.cpp:64
+#: wxstd.po.cpp:65
 msgid "Left margin (mm):"
 msgstr "左邊界 (mm)："
 
-#: wxstd.po.cpp:65
+#: wxstd.po.cpp:66
 msgid "Orientation"
 msgstr "方向"
 
-#: wxstd.po.cpp:66
+#: wxstd.po.cpp:67
 msgid "Page Setup"
 msgstr "頁面設定"
 
-#: wxstd.po.cpp:67
+#: wxstd.po.cpp:68
 msgid "Pages"
 msgstr "頁"
 
-#: wxstd.po.cpp:68
+#: wxstd.po.cpp:69
 msgid "Paper Size"
 msgstr "紙張尺寸"
 
-#: wxstd.po.cpp:69
+#: wxstd.po.cpp:70
 msgid "Paper size"
 msgstr "紙張尺寸"
 
-#: wxstd.po.cpp:70
+#: wxstd.po.cpp:71
 msgid "Portrait"
 msgstr "直向"
 
-#: wxstd.po.cpp:71
+#: wxstd.po.cpp:72
 msgid "PostScript file"
 msgstr "PostScript 檔案"
 
-#: wxstd.po.cpp:72
+#: wxstd.po.cpp:73
 msgid "Print Range"
 msgstr "列印範圍"
 
-#: wxstd.po.cpp:73
+#: wxstd.po.cpp:74
 msgid "Print Setup"
 msgstr "列印設定"
 
-#: wxstd.po.cpp:74
+#: wxstd.po.cpp:75
 msgid "Print in colour"
 msgstr "彩色列印"
 
-#: wxstd.po.cpp:75
+#: wxstd.po.cpp:76
 msgid "Print spooling"
 msgstr "列印多工緩衝"
 
-#: wxstd.po.cpp:76
+#: wxstd.po.cpp:77
 msgid "Print to File"
 msgstr "列印至檔案"
 
-#: wxstd.po.cpp:77
+#: wxstd.po.cpp:78
 msgid "Printer"
 msgstr "印表機"
 
-#: wxstd.po.cpp:78
+#: wxstd.po.cpp:79
 msgid "Printer command:"
 msgstr "印表機命令："
 
-#: wxstd.po.cpp:79
+#: wxstd.po.cpp:80
 msgid "Printer options"
 msgstr "印表機選項"
 
-#: wxstd.po.cpp:80
+#: wxstd.po.cpp:81
 msgid "Printer options:"
 msgstr "印表機選項："
 
-#: wxstd.po.cpp:81
+#: wxstd.po.cpp:82
 msgid "Printer..."
 msgstr "印表機…"
 
-#: wxstd.po.cpp:82
+#: wxstd.po.cpp:83
 msgid "Printer:"
 msgstr "印表機："
 
-#: wxstd.po.cpp:83
+#: wxstd.po.cpp:84
 msgid "Right margin (mm):"
 msgstr "右邊界 (mm)："
 
-#: wxstd.po.cpp:84
+#: wxstd.po.cpp:85
 msgid "Setup..."
 msgstr "設定..."
 
-#: wxstd.po.cpp:85
+#: wxstd.po.cpp:86
 msgid "Status:"
 msgstr "狀態："
 
-#: wxstd.po.cpp:86 ../src/dialog/wxm_searchreplace_dialog.cpp:126
+#: wxstd.po.cpp:87 ../src/dialog/wxm_searchreplace_dialog.cpp:126
 msgid "To:"
 msgstr "到："
 
-#: wxstd.po.cpp:87
+#: wxstd.po.cpp:88
 msgid "Top margin (mm):"
 msgstr "頂部邊界 (mm)："
 
-#: wxstd.po.cpp:88
+#: wxstd.po.cpp:89
 #, c-format
 msgid "Page %d of %d"
 msgstr "第 %d/%d 頁"
 
-#: wxstd.po.cpp:90
+#: wxstd.po.cpp:91
 msgid "No_Block"
 msgstr ""
 
-#: wxstd.po.cpp:91
+#: wxstd.po.cpp:92
 msgid "Basic Latin"
 msgstr ""
 
-#: wxstd.po.cpp:92
+#: wxstd.po.cpp:93
 msgid "Latin-1 Supplement"
 msgstr ""
 
-#: wxstd.po.cpp:93
+#: wxstd.po.cpp:94
 msgid "Latin Extended-A"
 msgstr ""
 
-#: wxstd.po.cpp:94
+#: wxstd.po.cpp:95
 msgid "Latin Extended-B"
 msgstr ""
 
-#: wxstd.po.cpp:95
+#: wxstd.po.cpp:96
 msgid "IPA Extensions"
 msgstr ""
 
-#: wxstd.po.cpp:96
+#: wxstd.po.cpp:97
 msgid "Spacing Modifier Letters"
 msgstr ""
 
-#: wxstd.po.cpp:97
+#: wxstd.po.cpp:98
 msgid "Combining Diacritical Marks"
 msgstr ""
 
-#: wxstd.po.cpp:98
+#: wxstd.po.cpp:99
 msgid "Greek and Coptic"
 msgstr ""
 
-#: wxstd.po.cpp:99
+#: wxstd.po.cpp:100
 msgid "Cyrillic"
 msgstr ""
 
-#: wxstd.po.cpp:100
+#: wxstd.po.cpp:101
 msgid "Armenian"
 msgstr ""
 
-#: wxstd.po.cpp:101
+#: wxstd.po.cpp:102
 msgid "Hebrew"
 msgstr ""
 
-#: wxstd.po.cpp:102
+#: wxstd.po.cpp:103
 msgid "Arabic"
 msgstr ""
 
-#: wxstd.po.cpp:103
+#: wxstd.po.cpp:104
 msgid "Syriac"
 msgstr ""
 
-#: wxstd.po.cpp:104
+#: wxstd.po.cpp:105
 msgid "Thaana"
 msgstr ""
 
-#: wxstd.po.cpp:105
+#: wxstd.po.cpp:106
 msgid "Devanagari"
 msgstr ""
 
-#: wxstd.po.cpp:106
+#: wxstd.po.cpp:107
 msgid "Bengali"
 msgstr ""
 
-#: wxstd.po.cpp:107
+#: wxstd.po.cpp:108
 msgid "Gurmukhi"
 msgstr ""
 
-#: wxstd.po.cpp:108
+#: wxstd.po.cpp:109
 msgid "Gujarati"
 msgstr ""
 
-#: wxstd.po.cpp:109
+#: wxstd.po.cpp:110
 msgid "Oriya"
 msgstr ""
 
-#: wxstd.po.cpp:110
+#: wxstd.po.cpp:111
 msgid "Tamil"
 msgstr ""
 
-#: wxstd.po.cpp:111
+#: wxstd.po.cpp:112
 msgid "Telugu"
 msgstr ""
 
-#: wxstd.po.cpp:112
+#: wxstd.po.cpp:113
 msgid "Kannada"
 msgstr ""
 
-#: wxstd.po.cpp:113
+#: wxstd.po.cpp:114
 msgid "Malayalam"
 msgstr ""
 
-#: wxstd.po.cpp:114
+#: wxstd.po.cpp:115
 msgid "Sinhala"
 msgstr ""
 
-#: wxstd.po.cpp:115
+#: wxstd.po.cpp:116
 msgid "Thai"
 msgstr ""
 
-#: wxstd.po.cpp:116
+#: wxstd.po.cpp:117
 msgid "Lao"
 msgstr ""
 
-#: wxstd.po.cpp:117
+#: wxstd.po.cpp:118
 msgid "Tibetan"
 msgstr ""
 
-#: wxstd.po.cpp:118
+#: wxstd.po.cpp:119
 msgid "Myanmar"
 msgstr ""
 
-#: wxstd.po.cpp:119
+#: wxstd.po.cpp:120
 msgid "Georgian"
 msgstr ""
 
-#: wxstd.po.cpp:120
+#: wxstd.po.cpp:121
 msgid "Hangul Jamo"
 msgstr ""
 
-#: wxstd.po.cpp:121
+#: wxstd.po.cpp:122
 msgid "Ethiopic"
 msgstr ""
 
-#: wxstd.po.cpp:122
+#: wxstd.po.cpp:123
 msgid "Cherokee"
 msgstr ""
 
-#: wxstd.po.cpp:123
+#: wxstd.po.cpp:124
 msgid "Unified Canadian Aboriginal Syllabics"
 msgstr ""
 
-#: wxstd.po.cpp:124
+#: wxstd.po.cpp:125
 msgid "Ogham"
 msgstr ""
 
-#: wxstd.po.cpp:125
+#: wxstd.po.cpp:126
 msgid "Runic"
 msgstr ""
 
-#: wxstd.po.cpp:126
+#: wxstd.po.cpp:127
 msgid "Khmer"
 msgstr ""
 
-#: wxstd.po.cpp:127
+#: wxstd.po.cpp:128
 msgid "Mongolian"
 msgstr ""
 
-#: wxstd.po.cpp:128
+#: wxstd.po.cpp:129
 msgid "Latin Extended Additional"
 msgstr ""
 
-#: wxstd.po.cpp:129
+#: wxstd.po.cpp:130
 msgid "Greek Extended"
 msgstr ""
 
-#: wxstd.po.cpp:130
+#: wxstd.po.cpp:131
 msgid "General Punctuation"
 msgstr ""
 
-#: wxstd.po.cpp:131
+#: wxstd.po.cpp:132
 msgid "Superscripts and Subscripts"
 msgstr ""
 
-#: wxstd.po.cpp:132
+#: wxstd.po.cpp:133
 msgid "Currency Symbols"
 msgstr ""
 
-#: wxstd.po.cpp:133
+#: wxstd.po.cpp:134
 msgid "Combining Diacritical Marks for Symbols"
 msgstr ""
 
-#: wxstd.po.cpp:134
+#: wxstd.po.cpp:135
 msgid "Letterlike Symbols"
 msgstr ""
 
-#: wxstd.po.cpp:135
+#: wxstd.po.cpp:136
 msgid "Number Forms"
 msgstr ""
 
-#: wxstd.po.cpp:136
+#: wxstd.po.cpp:137
 msgid "Arrows"
 msgstr ""
 
-#: wxstd.po.cpp:137
+#: wxstd.po.cpp:138
 msgid "Mathematical Operators"
 msgstr ""
 
-#: wxstd.po.cpp:138
+#: wxstd.po.cpp:139
 msgid "Miscellaneous Technical"
 msgstr ""
 
-#: wxstd.po.cpp:139
+#: wxstd.po.cpp:140
 msgid "Control Pictures"
 msgstr ""
 
-#: wxstd.po.cpp:140
+#: wxstd.po.cpp:141
 msgid "Optical Character Recognition"
 msgstr ""
 
-#: wxstd.po.cpp:141
+#: wxstd.po.cpp:142
 msgid "Enclosed Alphanumerics"
 msgstr ""
 
-#: wxstd.po.cpp:142
+#: wxstd.po.cpp:143
 msgid "Box Drawing"
 msgstr ""
 
-#: wxstd.po.cpp:143
+#: wxstd.po.cpp:144
 msgid "Block Elements"
 msgstr ""
 
-#: wxstd.po.cpp:144
+#: wxstd.po.cpp:145
 msgid "Geometric Shapes"
 msgstr ""
 
-#: wxstd.po.cpp:145
+#: wxstd.po.cpp:146
 msgid "Miscellaneous Symbols"
 msgstr ""
 
-#: wxstd.po.cpp:146
+#: wxstd.po.cpp:147
 msgid "Dingbats"
 msgstr ""
 
-#: wxstd.po.cpp:147
+#: wxstd.po.cpp:148
 msgid "Braille Patterns"
 msgstr ""
 
-#: wxstd.po.cpp:148
+#: wxstd.po.cpp:149
 msgid "CJK Radicals Supplement"
 msgstr ""
 
-#: wxstd.po.cpp:149
+#: wxstd.po.cpp:150
 msgid "Kangxi Radicals"
 msgstr ""
 
-#: wxstd.po.cpp:150
+#: wxstd.po.cpp:151
 msgid "Ideographic Description Characters"
 msgstr ""
 
-#: wxstd.po.cpp:151
+#: wxstd.po.cpp:152
 msgid "CJK Symbols and Punctuation"
 msgstr ""
 
-#: wxstd.po.cpp:152
+#: wxstd.po.cpp:153
 msgid "Hiragana"
 msgstr ""
 
-#: wxstd.po.cpp:153
+#: wxstd.po.cpp:154
 msgid "Katakana"
 msgstr ""
 
-#: wxstd.po.cpp:154
+#: wxstd.po.cpp:155
 msgid "Bopomofo"
 msgstr ""
 
-#: wxstd.po.cpp:155
+#: wxstd.po.cpp:156
 msgid "Hangul Compatibility Jamo"
 msgstr ""
 
-#: wxstd.po.cpp:156
+#: wxstd.po.cpp:157
 msgid "Kanbun"
 msgstr ""
 
-#: wxstd.po.cpp:157
+#: wxstd.po.cpp:158
 msgid "Bopomofo Extended"
 msgstr ""
 
-#: wxstd.po.cpp:158
+#: wxstd.po.cpp:159
 msgid "Enclosed CJK Letters and Months"
 msgstr ""
 
-#: wxstd.po.cpp:159
+#: wxstd.po.cpp:160
 msgid "CJK Compatibility"
 msgstr ""
 
-#: wxstd.po.cpp:160
+#: wxstd.po.cpp:161
 msgid "CJK Unified Ideographs Extension A"
 msgstr ""
 
-#: wxstd.po.cpp:161
+#: wxstd.po.cpp:162
 msgid "CJK Unified Ideographs"
 msgstr ""
 
-#: wxstd.po.cpp:162
+#: wxstd.po.cpp:163
 msgid "Yi Syllables"
 msgstr ""
 
-#: wxstd.po.cpp:163
+#: wxstd.po.cpp:164
 msgid "Yi Radicals"
 msgstr ""
 
-#: wxstd.po.cpp:164
+#: wxstd.po.cpp:165
 msgid "Hangul Syllables"
 msgstr ""
 
-#: wxstd.po.cpp:165
+#: wxstd.po.cpp:166
 msgid "High Surrogates"
 msgstr ""
 
-#: wxstd.po.cpp:166
+#: wxstd.po.cpp:167
 msgid "High Private Use Surrogates"
 msgstr ""
 
-#: wxstd.po.cpp:167
+#: wxstd.po.cpp:168
 msgid "Low Surrogates"
 msgstr ""
 
-#: wxstd.po.cpp:168
+#: wxstd.po.cpp:169
 msgid "Private Use Area"
 msgstr ""
 
-#: wxstd.po.cpp:169
+#: wxstd.po.cpp:170
 msgid "CJK Compatibility Ideographs"
 msgstr ""
 
-#: wxstd.po.cpp:170
+#: wxstd.po.cpp:171
 msgid "Alphabetic Presentation Forms"
 msgstr ""
 
-#: wxstd.po.cpp:171
+#: wxstd.po.cpp:172
 msgid "Arabic Presentation Forms-A"
 msgstr ""
 
-#: wxstd.po.cpp:172
+#: wxstd.po.cpp:173
 msgid "Combining Half Marks"
 msgstr ""
 
-#: wxstd.po.cpp:173
+#: wxstd.po.cpp:174
 msgid "CJK Compatibility Forms"
 msgstr ""
 
-#: wxstd.po.cpp:174
+#: wxstd.po.cpp:175
 msgid "Small Form Variants"
 msgstr ""
 
-#: wxstd.po.cpp:175
+#: wxstd.po.cpp:176
 msgid "Arabic Presentation Forms-B"
 msgstr ""
 
-#: wxstd.po.cpp:176
+#: wxstd.po.cpp:177
 msgid "Specials"
 msgstr ""
 
-#: wxstd.po.cpp:177
+#: wxstd.po.cpp:178
 msgid "Halfwidth and Fullwidth Forms"
 msgstr ""
 
-#: wxstd.po.cpp:178
+#: wxstd.po.cpp:179
 msgid "Old Italic"
 msgstr ""
 
-#: wxstd.po.cpp:179
+#: wxstd.po.cpp:180
 msgid "Gothic"
 msgstr ""
 
-#: wxstd.po.cpp:180
+#: wxstd.po.cpp:181
 msgid "Deseret"
 msgstr ""
 
-#: wxstd.po.cpp:181
+#: wxstd.po.cpp:182
 msgid "Byzantine Musical Symbols"
 msgstr ""
 
-#: wxstd.po.cpp:182
+#: wxstd.po.cpp:183
 msgid "Musical Symbols"
 msgstr ""
 
-#: wxstd.po.cpp:183
+#: wxstd.po.cpp:184
 msgid "Mathematical Alphanumeric Symbols"
 msgstr ""
 
-#: wxstd.po.cpp:184
+#: wxstd.po.cpp:185
 msgid "CJK Unified Ideographs Extension B"
 msgstr ""
 
-#: wxstd.po.cpp:185
+#: wxstd.po.cpp:186
 msgid "CJK Compatibility Ideographs Supplement"
 msgstr ""
 
-#: wxstd.po.cpp:186
+#: wxstd.po.cpp:187
 msgid "Tags"
 msgstr ""
 
-#: wxstd.po.cpp:187
+#: wxstd.po.cpp:188
 msgid "Cyrillic Supplement"
 msgstr ""
 
-#: wxstd.po.cpp:188
+#: wxstd.po.cpp:189
 msgid "Tagalog"
 msgstr ""
 
-#: wxstd.po.cpp:189
+#: wxstd.po.cpp:190
 msgid "Hanunoo"
 msgstr ""
 
-#: wxstd.po.cpp:190
+#: wxstd.po.cpp:191
 msgid "Buhid"
 msgstr ""
 
-#: wxstd.po.cpp:191
+#: wxstd.po.cpp:192
 msgid "Tagbanwa"
 msgstr ""
 
-#: wxstd.po.cpp:192
+#: wxstd.po.cpp:193
 msgid "Miscellaneous Mathematical Symbols-A"
 msgstr ""
 
-#: wxstd.po.cpp:193
+#: wxstd.po.cpp:194
 msgid "Supplemental Arrows-A"
 msgstr ""
 
-#: wxstd.po.cpp:194
+#: wxstd.po.cpp:195
 msgid "Supplemental Arrows-B"
 msgstr ""
 
-#: wxstd.po.cpp:195
+#: wxstd.po.cpp:196
 msgid "Miscellaneous Mathematical Symbols-B"
 msgstr ""
 
-#: wxstd.po.cpp:196
+#: wxstd.po.cpp:197
 msgid "Supplemental Mathematical Operators"
 msgstr ""
 
-#: wxstd.po.cpp:197
+#: wxstd.po.cpp:198
 msgid "Katakana Phonetic Extensions"
 msgstr ""
 
-#: wxstd.po.cpp:198
+#: wxstd.po.cpp:199
 msgid "Variation Selectors"
 msgstr ""
 
-#: wxstd.po.cpp:199
+#: wxstd.po.cpp:200
 msgid "Supplementary Private Use Area-A"
 msgstr ""
 
-#: wxstd.po.cpp:200
+#: wxstd.po.cpp:201
 msgid "Supplementary Private Use Area-B"
 msgstr ""
 
-#: wxstd.po.cpp:201
+#: wxstd.po.cpp:202
 msgid "Limbu"
 msgstr ""
 
-#: wxstd.po.cpp:202
+#: wxstd.po.cpp:203
 msgid "Tai Le"
 msgstr ""
 
-#: wxstd.po.cpp:203
+#: wxstd.po.cpp:204
 msgid "Khmer Symbols"
 msgstr ""
 
-#: wxstd.po.cpp:204
+#: wxstd.po.cpp:205
 msgid "Phonetic Extensions"
 msgstr ""
 
-#: wxstd.po.cpp:205
+#: wxstd.po.cpp:206
 msgid "Miscellaneous Symbols and Arrows"
 msgstr ""
 
-#: wxstd.po.cpp:206
+#: wxstd.po.cpp:207
 msgid "Yijing Hexagram Symbols"
 msgstr ""
 
-#: wxstd.po.cpp:207
+#: wxstd.po.cpp:208
 msgid "Linear B Syllabary"
 msgstr ""
 
-#: wxstd.po.cpp:208
+#: wxstd.po.cpp:209
 msgid "Linear B Ideograms"
 msgstr ""
 
-#: wxstd.po.cpp:209
+#: wxstd.po.cpp:210
 msgid "Aegean Numbers"
 msgstr ""
 
-#: wxstd.po.cpp:210
+#: wxstd.po.cpp:211
 msgid "Ugaritic"
 msgstr ""
 
-#: wxstd.po.cpp:211
+#: wxstd.po.cpp:212
 msgid "Shavian"
 msgstr ""
 
-#: wxstd.po.cpp:212
+#: wxstd.po.cpp:213
 msgid "Osmanya"
 msgstr ""
 
-#: wxstd.po.cpp:213
+#: wxstd.po.cpp:214
 msgid "Cypriot Syllabary"
 msgstr ""
 
-#: wxstd.po.cpp:214
+#: wxstd.po.cpp:215
 msgid "Tai Xuan Jing Symbols"
 msgstr ""
 
-#: wxstd.po.cpp:215
+#: wxstd.po.cpp:216
 msgid "Variation Selectors Supplement"
 msgstr ""
 
-#: wxstd.po.cpp:216
+#: wxstd.po.cpp:217
 msgid "Ancient Greek Musical Notation"
 msgstr ""
 
-#: wxstd.po.cpp:217
+#: wxstd.po.cpp:218
 msgid "Ancient Greek Numbers"
 msgstr ""
 
-#: wxstd.po.cpp:218
+#: wxstd.po.cpp:219
 msgid "Arabic Supplement"
 msgstr ""
 
-#: wxstd.po.cpp:219
+#: wxstd.po.cpp:220
 msgid "Buginese"
 msgstr ""
 
-#: wxstd.po.cpp:220
+#: wxstd.po.cpp:221
 msgid "CJK Strokes"
 msgstr ""
 
-#: wxstd.po.cpp:221
+#: wxstd.po.cpp:222
 msgid "Combining Diacritical Marks Supplement"
 msgstr ""
 
-#: wxstd.po.cpp:222
+#: wxstd.po.cpp:223
 msgid "Coptic"
 msgstr ""
 
-#: wxstd.po.cpp:223
+#: wxstd.po.cpp:224
 msgid "Ethiopic Extended"
 msgstr ""
 
-#: wxstd.po.cpp:224
+#: wxstd.po.cpp:225
 msgid "Ethiopic Supplement"
 msgstr ""
 
-#: wxstd.po.cpp:225
+#: wxstd.po.cpp:226
 msgid "Georgian Supplement"
 msgstr ""
 
-#: wxstd.po.cpp:226
+#: wxstd.po.cpp:227
 msgid "Glagolitic"
 msgstr ""
 
-#: wxstd.po.cpp:227
+#: wxstd.po.cpp:228
 msgid "Kharoshthi"
 msgstr ""
 
-#: wxstd.po.cpp:228
+#: wxstd.po.cpp:229
 msgid "Modifier Tone Letters"
 msgstr ""
 
-#: wxstd.po.cpp:229
+#: wxstd.po.cpp:230
 msgid "New Tai Lue"
 msgstr ""
 
-#: wxstd.po.cpp:230
+#: wxstd.po.cpp:231
 msgid "Old Persian"
 msgstr ""
 
-#: wxstd.po.cpp:231
+#: wxstd.po.cpp:232
 msgid "Phonetic Extensions Supplement"
 msgstr ""
 
-#: wxstd.po.cpp:232
+#: wxstd.po.cpp:233
 msgid "Supplemental Punctuation"
 msgstr ""
 
-#: wxstd.po.cpp:233
+#: wxstd.po.cpp:234
 msgid "Syloti Nagri"
 msgstr ""
 
-#: wxstd.po.cpp:234
+#: wxstd.po.cpp:235
 msgid "Tifinagh"
 msgstr ""
 
-#: wxstd.po.cpp:235
+#: wxstd.po.cpp:236
 msgid "Vertical Forms"
 msgstr ""
 
-#: wxstd.po.cpp:236
+#: wxstd.po.cpp:237
 msgid "NKo"
 msgstr ""
 
-#: wxstd.po.cpp:237
+#: wxstd.po.cpp:238
 msgid "Balinese"
 msgstr ""
 
-#: wxstd.po.cpp:238
+#: wxstd.po.cpp:239
 msgid "Latin Extended-C"
 msgstr ""
 
-#: wxstd.po.cpp:239
+#: wxstd.po.cpp:240
 msgid "Latin Extended-D"
 msgstr ""
 
-#: wxstd.po.cpp:240
+#: wxstd.po.cpp:241
 msgid "Phags-pa"
 msgstr ""
 
-#: wxstd.po.cpp:241
+#: wxstd.po.cpp:242
 msgid "Phoenician"
 msgstr ""
 
-#: wxstd.po.cpp:242
+#: wxstd.po.cpp:243
 msgid "Cuneiform"
 msgstr ""
 
-#: wxstd.po.cpp:243
+#: wxstd.po.cpp:244
 msgid "Cuneiform Numbers and Punctuation"
 msgstr ""
 
-#: wxstd.po.cpp:244
+#: wxstd.po.cpp:245
 msgid "Counting Rod Numerals"
 msgstr ""
 
-#: wxstd.po.cpp:245
+#: wxstd.po.cpp:246
 msgid "Sundanese"
 msgstr ""
 
-#: wxstd.po.cpp:246
+#: wxstd.po.cpp:247
 msgid "Lepcha"
 msgstr ""
 
-#: wxstd.po.cpp:247
+#: wxstd.po.cpp:248
 msgid "Ol Chiki"
 msgstr ""
 
-#: wxstd.po.cpp:248
+#: wxstd.po.cpp:249
 msgid "Cyrillic Extended-A"
 msgstr ""
 
-#: wxstd.po.cpp:249
+#: wxstd.po.cpp:250
 msgid "Vai"
 msgstr ""
 
-#: wxstd.po.cpp:250
+#: wxstd.po.cpp:251
 msgid "Cyrillic Extended-B"
 msgstr ""
 
-#: wxstd.po.cpp:251
+#: wxstd.po.cpp:252
 msgid "Saurashtra"
 msgstr ""
 
-#: wxstd.po.cpp:252
+#: wxstd.po.cpp:253
 msgid "Kayah Li"
 msgstr ""
 
-#: wxstd.po.cpp:253
+#: wxstd.po.cpp:254
 msgid "Rejang"
 msgstr ""
 
-#: wxstd.po.cpp:254
+#: wxstd.po.cpp:255
 msgid "Cham"
 msgstr ""
 
-#: wxstd.po.cpp:255
+#: wxstd.po.cpp:256
 msgid "Ancient Symbols"
 msgstr ""
 
-#: wxstd.po.cpp:256
+#: wxstd.po.cpp:257
 msgid "Phaistos Disc"
 msgstr ""
 
-#: wxstd.po.cpp:257
+#: wxstd.po.cpp:258
 msgid "Lycian"
 msgstr ""
 
-#: wxstd.po.cpp:258
+#: wxstd.po.cpp:259
 msgid "Carian"
 msgstr ""
 
-#: wxstd.po.cpp:259
+#: wxstd.po.cpp:260
 msgid "Lydian"
 msgstr ""
 
-#: wxstd.po.cpp:260
+#: wxstd.po.cpp:261
 msgid "Mahjong Tiles"
 msgstr ""
 
-#: wxstd.po.cpp:261
+#: wxstd.po.cpp:262
 msgid "Domino Tiles"
 msgstr ""
 
-#: wxstd.po.cpp:262
+#: wxstd.po.cpp:263
 msgid "Samaritan"
 msgstr ""
 
-#: wxstd.po.cpp:263
+#: wxstd.po.cpp:264
 msgid "Unified Canadian Aboriginal Syllabics Extended"
 msgstr ""
 
-#: wxstd.po.cpp:264
+#: wxstd.po.cpp:265
 msgid "Tai Tham"
 msgstr ""
 
-#: wxstd.po.cpp:265
+#: wxstd.po.cpp:266
 msgid "Vedic Extensions"
 msgstr ""
 
-#: wxstd.po.cpp:266
+#: wxstd.po.cpp:267
 msgid "Lisu"
 msgstr ""
 
-#: wxstd.po.cpp:267
+#: wxstd.po.cpp:268
 msgid "Bamum"
 msgstr ""
 
-#: wxstd.po.cpp:268
+#: wxstd.po.cpp:269
 msgid "Common Indic Number Forms"
 msgstr ""
 
-#: wxstd.po.cpp:269
+#: wxstd.po.cpp:270
 msgid "Devanagari Extended"
 msgstr ""
 
-#: wxstd.po.cpp:270
+#: wxstd.po.cpp:271
 msgid "Hangul Jamo Extended-A"
 msgstr ""
 
-#: wxstd.po.cpp:271
+#: wxstd.po.cpp:272
 msgid "Javanese"
 msgstr ""
 
-#: wxstd.po.cpp:272
+#: wxstd.po.cpp:273
 msgid "Myanmar Extended-A"
 msgstr ""
 
-#: wxstd.po.cpp:273
+#: wxstd.po.cpp:274
 msgid "Tai Viet"
 msgstr ""
 
-#: wxstd.po.cpp:274
+#: wxstd.po.cpp:275
 msgid "Meetei Mayek"
 msgstr ""
 
-#: wxstd.po.cpp:275
+#: wxstd.po.cpp:276
 msgid "Hangul Jamo Extended-B"
 msgstr ""
 
-#: wxstd.po.cpp:276
+#: wxstd.po.cpp:277
 msgid "Imperial Aramaic"
 msgstr ""
 
-#: wxstd.po.cpp:277
+#: wxstd.po.cpp:278
 msgid "Old South Arabian"
 msgstr ""
 
-#: wxstd.po.cpp:278
+#: wxstd.po.cpp:279
 msgid "Avestan"
 msgstr ""
 
-#: wxstd.po.cpp:279
+#: wxstd.po.cpp:280
 msgid "Inscriptional Parthian"
 msgstr ""
 
-#: wxstd.po.cpp:280
+#: wxstd.po.cpp:281
 msgid "Inscriptional Pahlavi"
 msgstr ""
 
-#: wxstd.po.cpp:281
+#: wxstd.po.cpp:282
 msgid "Old Turkic"
 msgstr ""
 
-#: wxstd.po.cpp:282
+#: wxstd.po.cpp:283
 msgid "Rumi Numeral Symbols"
 msgstr ""
 
-#: wxstd.po.cpp:283
+#: wxstd.po.cpp:284
 msgid "Kaithi"
 msgstr ""
 
-#: wxstd.po.cpp:284
+#: wxstd.po.cpp:285
 msgid "Egyptian Hieroglyphs"
 msgstr ""
 
-#: wxstd.po.cpp:285
+#: wxstd.po.cpp:286
 msgid "Enclosed Alphanumeric Supplement"
 msgstr ""
 
-#: wxstd.po.cpp:286
+#: wxstd.po.cpp:287
 msgid "Enclosed Ideographic Supplement"
 msgstr ""
 
-#: wxstd.po.cpp:287
+#: wxstd.po.cpp:288
 msgid "CJK Unified Ideographs Extension C"
 msgstr ""
 
-#: wxstd.po.cpp:288
+#: wxstd.po.cpp:289
 msgid "Mandaic"
 msgstr ""
 
-#: wxstd.po.cpp:289
+#: wxstd.po.cpp:290
 msgid "Batak"
 msgstr ""
 
-#: wxstd.po.cpp:290
+#: wxstd.po.cpp:291
 msgid "Ethiopic Extended-A"
 msgstr ""
 
-#: wxstd.po.cpp:291
+#: wxstd.po.cpp:292
 msgid "Brahmi"
 msgstr ""
 
-#: wxstd.po.cpp:292
+#: wxstd.po.cpp:293
 msgid "Bamum Supplement"
 msgstr ""
 
-#: wxstd.po.cpp:293
+#: wxstd.po.cpp:294
 msgid "Kana Supplement"
 msgstr ""
 
-#: wxstd.po.cpp:294
+#: wxstd.po.cpp:295
 msgid "Playing Cards"
 msgstr ""
 
-#: wxstd.po.cpp:295
+#: wxstd.po.cpp:296
 msgid "Miscellaneous Symbols And Pictographs"
 msgstr ""
 
-#: wxstd.po.cpp:296
+#: wxstd.po.cpp:297
 msgid "Emoticons"
 msgstr ""
 
-#: wxstd.po.cpp:297
+#: wxstd.po.cpp:298
 msgid "Transport And Map Symbols"
 msgstr ""
 
-#: wxstd.po.cpp:298
+#: wxstd.po.cpp:299
 msgid "Alchemical Symbols"
 msgstr ""
 
-#: wxstd.po.cpp:299
+#: wxstd.po.cpp:300
 msgid "CJK Unified Ideographs Extension D"
 msgstr ""
 
-#: wxstd.po.cpp:300
+#: wxstd.po.cpp:301
 msgid "Arabic Extended-A"
 msgstr ""
 
-#: wxstd.po.cpp:301
+#: wxstd.po.cpp:302
 msgid "Arabic Mathematical Alphabetic Symbols"
 msgstr ""
 
-#: wxstd.po.cpp:302
+#: wxstd.po.cpp:303
 msgid "Chakma"
 msgstr ""
 
-#: wxstd.po.cpp:303
+#: wxstd.po.cpp:304
 msgid "Meetei Mayek Extensions"
 msgstr ""
 
-#: wxstd.po.cpp:304
+#: wxstd.po.cpp:305
 msgid "Meroitic Cursive"
 msgstr ""
 
-#: wxstd.po.cpp:305
+#: wxstd.po.cpp:306
 msgid "Meroitic Hieroglyphs"
 msgstr ""
 
-#: wxstd.po.cpp:306
+#: wxstd.po.cpp:307
 msgid "Miao"
 msgstr ""
 
-#: wxstd.po.cpp:307
+#: wxstd.po.cpp:308
 msgid "Sharada"
 msgstr ""
 
-#: wxstd.po.cpp:308
+#: wxstd.po.cpp:309
 msgid "Sora Sompeng"
 msgstr ""
 
-#: wxstd.po.cpp:309
+#: wxstd.po.cpp:310
 msgid "Sundanese Supplement"
 msgstr ""
 
-#: wxstd.po.cpp:310
+#: wxstd.po.cpp:311
 msgid "Takri"
 msgstr ""
 
-#: wxstd.po.cpp:311 ../src/wxmedit/wxmedit_advanced.cpp:1328
+#: wxstd.po.cpp:312 ../src/wxmedit/wxmedit_advanced.cpp:1328
 msgid "Invalid Unicode Characters"
 msgstr "不正確的 Unicode 字元"
 
-#: wxstd.po.cpp:312
+#: wxstd.po.cpp:313
 msgid "Text"
 msgstr "文字"
 
-#: wxstd.po.cpp:313
+#: wxstd.po.cpp:314
 msgid "Delimiter"
 msgstr "分隔符號"
 
-#: wxstd.po.cpp:314
+#: wxstd.po.cpp:315
 msgid "Space"
 msgstr "空格符號"
 
-#: wxstd.po.cpp:315
+#: wxstd.po.cpp:316
 msgid "Number"
 msgstr "數字"
 
-#: wxstd.po.cpp:316
+#: wxstd.po.cpp:317
 msgid "String"
 msgstr "字串"
 
-#: wxstd.po.cpp:317 ../src/wxmedit_frame.cpp:2046
+#: wxstd.po.cpp:318 ../src/wxmedit_frame.cpp:2046
 msgid "Comment"
 msgstr "註解"
 
-#: wxstd.po.cpp:318
+#: wxstd.po.cpp:319
 msgid "Directive"
 msgstr "指令"
 
-#: wxstd.po.cpp:319
+#: wxstd.po.cpp:320
 msgid "SpecialWord"
 msgstr "特殊詞彙"
 
-#: wxstd.po.cpp:320
+#: wxstd.po.cpp:321
 msgid "LineNumber"
 msgstr "行號"
 
-#: wxstd.po.cpp:321
+#: wxstd.po.cpp:322
 msgid "ActiveLine"
 msgstr "所在行處"
 
-#: wxstd.po.cpp:322
+#: wxstd.po.cpp:323
 msgid "Bookmark"
 msgstr "書籤"
 
-#: wxstd.po.cpp:323
+#: wxstd.po.cpp:324
 msgid "AliceBlue"
 msgstr "愛麗絲藍"
 
-#: wxstd.po.cpp:324
+#: wxstd.po.cpp:325
 msgid "AntiqueWhite"
 msgstr "古董白"
 
-#: wxstd.po.cpp:325
+#: wxstd.po.cpp:326
 msgid "Aqua"
 msgstr "水色"
 
-#: wxstd.po.cpp:326
+#: wxstd.po.cpp:327
 msgid "Aquamarine"
 msgstr "碧藍色"
 
-#: wxstd.po.cpp:327
+#: wxstd.po.cpp:328
 msgid "Azure"
 msgstr "湛藍"
 
-#: wxstd.po.cpp:328
+#: wxstd.po.cpp:329
 msgid "Beige"
 msgstr "米黃色"
 
-#: wxstd.po.cpp:329
+#: wxstd.po.cpp:330
 msgid "Bisque"
 msgstr "陶坯黃"
 
-#: wxstd.po.cpp:330
+#: wxstd.po.cpp:331
 msgid "Black"
 msgstr "黑色"
 
-#: wxstd.po.cpp:331
+#: wxstd.po.cpp:332
 msgid "BlanchedAlmond"
 msgstr "杏仁白"
 
-#: wxstd.po.cpp:332
+#: wxstd.po.cpp:333
 msgid "Blue"
 msgstr "藍色"
 
-#: wxstd.po.cpp:333
+#: wxstd.po.cpp:334
 msgid "BlueViolet"
 msgstr "藍紫色"
 
-#: wxstd.po.cpp:334
+#: wxstd.po.cpp:335
 msgid "Brown"
 msgstr "褐色"
 
-#: wxstd.po.cpp:335
+#: wxstd.po.cpp:336
 msgid "BurlyWood"
 msgstr "硬木色"
 
-#: wxstd.po.cpp:336
+#: wxstd.po.cpp:337
 msgid "CadetBlue"
 msgstr "軍服藍"
 
-#: wxstd.po.cpp:337
+#: wxstd.po.cpp:338
 msgid "Chartreuse"
 msgstr "查特酒綠"
 
-#: wxstd.po.cpp:338
+#: wxstd.po.cpp:339
 msgid "Chocolate"
 msgstr "巧克力色"
 
-#: wxstd.po.cpp:339
+#: wxstd.po.cpp:340
 msgid "Coral"
 msgstr "珊瑚紅"
 
-#: wxstd.po.cpp:340
+#: wxstd.po.cpp:341
 msgid "CornflowerBlue"
 msgstr "矢車菊藍"
 
-#: wxstd.po.cpp:341
+#: wxstd.po.cpp:342
 msgid "Cornsilk"
 msgstr "玉米絲色"
 
-#: wxstd.po.cpp:342
+#: wxstd.po.cpp:343
 msgid "Crimson"
 msgstr "緋紅"
 
-#: wxstd.po.cpp:343
+#: wxstd.po.cpp:344
 msgid "Cyan"
 msgstr "青色"
 
-#: wxstd.po.cpp:344
+#: wxstd.po.cpp:345
 msgid "DarkBlue"
 msgstr "暗藍色"
 
-#: wxstd.po.cpp:345
+#: wxstd.po.cpp:346
 msgid "DarkCyan"
 msgstr "暗青色"
 
-#: wxstd.po.cpp:346
+#: wxstd.po.cpp:347
 msgid "DarkGoldenRod"
 msgstr "暗金菊色"
 
-#: wxstd.po.cpp:347
+#: wxstd.po.cpp:348
 msgid "DarkGray"
 msgstr "暗灰色"
 
-#: wxstd.po.cpp:348
+#: wxstd.po.cpp:349
 msgid "DarkGreen"
 msgstr "暗綠色"
 
-#: wxstd.po.cpp:349
+#: wxstd.po.cpp:350
 msgid "DarkKhaki"
 msgstr "暗卡其色"
 
-#: wxstd.po.cpp:350
+#: wxstd.po.cpp:351
 msgid "DarkMagenta"
 msgstr "暗洋紅"
 
-#: wxstd.po.cpp:351
+#: wxstd.po.cpp:352
 msgid "DarkOliveGreen"
 msgstr "暗橄欖綠"
 
-#: wxstd.po.cpp:352
+#: wxstd.po.cpp:353
 msgid "DarkOrchid"
 msgstr "暗蘭紫"
 
-#: wxstd.po.cpp:353
+#: wxstd.po.cpp:354
 msgid "DarkRed"
 msgstr "暗紅色"
 
-#: wxstd.po.cpp:354
+#: wxstd.po.cpp:355
 msgid "DarkSalmon"
 msgstr "暗鮭紅"
 
-#: wxstd.po.cpp:355
+#: wxstd.po.cpp:356
 msgid "DarkSeaGreen"
 msgstr "暗海綠"
 
-#: wxstd.po.cpp:356
+#: wxstd.po.cpp:357
 msgid "DarkSlateBlue"
 msgstr "暗岩藍"
 
-#: wxstd.po.cpp:357
+#: wxstd.po.cpp:358
 msgid "DarkSlateGray"
 msgstr "暗岩灰"
 
-#: wxstd.po.cpp:358
+#: wxstd.po.cpp:359
 msgid "DarkTurquoise"
 msgstr "暗綠松石色"
 
-#: wxstd.po.cpp:359
+#: wxstd.po.cpp:360
 msgid "DarkViolet"
 msgstr "暗紫色"
 
-#: wxstd.po.cpp:360
+#: wxstd.po.cpp:361
 msgid "Darkorange"
 msgstr "暗橙色"
 
-#: wxstd.po.cpp:361
+#: wxstd.po.cpp:362
 msgid "DeepPink"
 msgstr "深粉紅"
 
-#: wxstd.po.cpp:362
+#: wxstd.po.cpp:363
 msgid "DeepSkyBlue"
 msgstr "深天藍"
 
-#: wxstd.po.cpp:363
+#: wxstd.po.cpp:364
 msgid "DimGray"
 msgstr "昏灰色"
 
-#: wxstd.po.cpp:364
+#: wxstd.po.cpp:365
 msgid "DodgerBlue"
 msgstr "道奇藍"
 
-#: wxstd.po.cpp:365
+#: wxstd.po.cpp:366
 msgid "Feldspar"
 msgstr "長石"
 
-#: wxstd.po.cpp:366
+#: wxstd.po.cpp:367
 msgid "FireBrick"
 msgstr "耐火磚紅"
 
-#: wxstd.po.cpp:367
+#: wxstd.po.cpp:368
 msgid "FloralWhite"
 msgstr "花卉白"
 
-#: wxstd.po.cpp:368
+#: wxstd.po.cpp:369
 msgid "ForestGreen"
 msgstr "森林綠"
 
-#: wxstd.po.cpp:369
+#: wxstd.po.cpp:370
 msgid "Fuchsia"
 msgstr "品紅"
 
-#: wxstd.po.cpp:370
+#: wxstd.po.cpp:371
 msgid "Gainsboro"
 msgstr "庚斯博羅灰"
 
-#: wxstd.po.cpp:371
+#: wxstd.po.cpp:372
 msgid "GhostWhite"
 msgstr "幽靈白"
 
-#: wxstd.po.cpp:372
+#: wxstd.po.cpp:373
 msgid "Gold"
 msgstr "金色"
 
-#: wxstd.po.cpp:373
+#: wxstd.po.cpp:374
 msgid "GoldenRod"
 msgstr "金菊色"
 
-#: wxstd.po.cpp:374
+#: wxstd.po.cpp:375
 msgid "Gray"
 msgstr "灰色"
 
-#: wxstd.po.cpp:375
+#: wxstd.po.cpp:376
 msgid "Green"
 msgstr "綠色"
 
-#: wxstd.po.cpp:376
+#: wxstd.po.cpp:377
 msgid "GreenYellow"
 msgstr "綠黃色"
 
-#: wxstd.po.cpp:377
+#: wxstd.po.cpp:378
 msgid "HoneyDew"
 msgstr "哈蜜瓜綠"
 
-#: wxstd.po.cpp:378
+#: wxstd.po.cpp:379
 msgid "HotPink"
 msgstr "暖粉紅色"
 
-#: wxstd.po.cpp:379
+#: wxstd.po.cpp:380
 msgid "IndianRed"
 msgstr "印度紅"
 
-#: wxstd.po.cpp:380
+#: wxstd.po.cpp:381
 msgid "Indigo"
 msgstr "靛色"
 
-#: wxstd.po.cpp:381
+#: wxstd.po.cpp:382
 msgid "Ivory"
 msgstr "象牙色"
 
-#: wxstd.po.cpp:382
+#: wxstd.po.cpp:383
 msgid "Khaki"
 msgstr "卡其色"
 
-#: wxstd.po.cpp:383
+#: wxstd.po.cpp:384
 msgid "Lavender"
 msgstr "薰衣草紫"
 
-#: wxstd.po.cpp:384
+#: wxstd.po.cpp:385
 msgid "LavenderBlush"
 msgstr "薰衣草紫紅"
 
-#: wxstd.po.cpp:385
+#: wxstd.po.cpp:386
 msgid "LawnGreen"
 msgstr "草坪綠"
 
-#: wxstd.po.cpp:386
+#: wxstd.po.cpp:387
 msgid "LemonChiffon"
 msgstr "檸檬綢色"
 
-#: wxstd.po.cpp:387
+#: wxstd.po.cpp:388
 msgid "LightBlue"
 msgstr "亮藍色"
 
-#: wxstd.po.cpp:388
+#: wxstd.po.cpp:389
 msgid "LightCoral"
 msgstr "亮珊瑚色"
 
-#: wxstd.po.cpp:389
+#: wxstd.po.cpp:390
 msgid "LightCyan"
 msgstr "亮青色"
 
-#: wxstd.po.cpp:390
+#: wxstd.po.cpp:391
 msgid "LightGoldenRodYellow"
 msgstr "亮金菊黃"
 
-#: wxstd.po.cpp:391
+#: wxstd.po.cpp:392
 msgid "LightGreen"
 msgstr "亮綠色"
 
-#: wxstd.po.cpp:392
+#: wxstd.po.cpp:393
 msgid "LightGrey"
 msgstr "淺灰色"
 
-#: wxstd.po.cpp:393
+#: wxstd.po.cpp:394
 msgid "LightPink"
 msgstr "亮粉紅色"
 
-#: wxstd.po.cpp:394
+#: wxstd.po.cpp:395
 msgid "LightSalmon"
 msgstr "亮鮭紅色"
 
-#: wxstd.po.cpp:395
+#: wxstd.po.cpp:396
 msgid "LightSeaGreen"
 msgstr "亮海綠"
 
-#: wxstd.po.cpp:396
+#: wxstd.po.cpp:397
 msgid "LightSkyBlue"
 msgstr "亮天藍"
 
-#: wxstd.po.cpp:397
+#: wxstd.po.cpp:398
 msgid "LightSlateBlue"
 msgstr "亮岩藍"
 
-#: wxstd.po.cpp:398
+#: wxstd.po.cpp:399
 msgid "LightSlateGray"
 msgstr "亮岩灰"
 
-#: wxstd.po.cpp:399
+#: wxstd.po.cpp:400
 msgid "LightSteelBlue"
 msgstr "亮鋼藍"
 
-#: wxstd.po.cpp:400
+#: wxstd.po.cpp:401
 msgid "LightYellow"
 msgstr "亮黃色"
 
-#: wxstd.po.cpp:401
+#: wxstd.po.cpp:402
 msgid "Lime"
 msgstr "鮮綠色"
 
-#: wxstd.po.cpp:402
+#: wxstd.po.cpp:403
 msgid "LimeGreen"
 msgstr "檸檬綠"
 
-#: wxstd.po.cpp:403
+#: wxstd.po.cpp:404
 msgid "Linen"
 msgstr "亞麻色"
 
-#: wxstd.po.cpp:404
+#: wxstd.po.cpp:405
 msgid "Magenta"
 msgstr "洋紅色"
 
-#: wxstd.po.cpp:405
+#: wxstd.po.cpp:406
 msgid "Maroon"
 msgstr "栗色"
 
-#: wxstd.po.cpp:406
+#: wxstd.po.cpp:407
 msgid "MediumAquaMarine"
 msgstr "中碧藍色"
 
-#: wxstd.po.cpp:407
+#: wxstd.po.cpp:408
 msgid "MediumBlue"
 msgstr "中藍色"
 
-#: wxstd.po.cpp:408
+#: wxstd.po.cpp:409
 msgid "MediumOrchid"
 msgstr "中蘭紫"
 
-#: wxstd.po.cpp:409
+#: wxstd.po.cpp:410
 msgid "MediumPurple"
 msgstr "中紫紅"
 
-#: wxstd.po.cpp:410
+#: wxstd.po.cpp:411
 msgid "MediumSeaGreen"
 msgstr "中海綠"
 
-#: wxstd.po.cpp:411
+#: wxstd.po.cpp:412
 msgid "MediumSlateBlue"
 msgstr "中岩藍"
 
-#: wxstd.po.cpp:412
+#: wxstd.po.cpp:413
 msgid "MediumSpringGreen"
 msgstr "中春綠色"
 
-#: wxstd.po.cpp:413
+#: wxstd.po.cpp:414
 msgid "MediumTurquoise"
 msgstr "中綠松石色"
 
-#: wxstd.po.cpp:414
+#: wxstd.po.cpp:415
 msgid "MediumVioletRed"
 msgstr "中青紫紅"
 
-#: wxstd.po.cpp:415
+#: wxstd.po.cpp:416
 msgid "MidnightBlue"
 msgstr "午夜藍"
 
-#: wxstd.po.cpp:416
+#: wxstd.po.cpp:417
 msgid "MintCream"
 msgstr "薄荷奶油色"
 
-#: wxstd.po.cpp:417
+#: wxstd.po.cpp:418
 msgid "MistyRose"
 msgstr "霧玫瑰色"
 
-#: wxstd.po.cpp:418
+#: wxstd.po.cpp:419
 msgid "Moccasin"
 msgstr "鹿皮鞋色"
 
-#: wxstd.po.cpp:419
+#: wxstd.po.cpp:420
 msgid "NavajoWhite"
 msgstr "那瓦霍白"
 
-#: wxstd.po.cpp:420
+#: wxstd.po.cpp:421
 msgid "Navy"
 msgstr "海軍藍"
 
-#: wxstd.po.cpp:421
+#: wxstd.po.cpp:422
 msgid "OldLace"
 msgstr "舊蕾絲色"
 
-#: wxstd.po.cpp:422
+#: wxstd.po.cpp:423
 msgid "Olive"
 msgstr "橄欖色"
 
-#: wxstd.po.cpp:423
+#: wxstd.po.cpp:424
 msgid "OliveDrab"
 msgstr "橄欖軍服綠"
 
-#: wxstd.po.cpp:424
+#: wxstd.po.cpp:425
 msgid "Orange"
 msgstr "橙色"
 
-#: wxstd.po.cpp:425
+#: wxstd.po.cpp:426
 msgid "OrangeRed"
 msgstr "橙紅"
 
-#: wxstd.po.cpp:426
+#: wxstd.po.cpp:427
 msgid "Orchid"
 msgstr "蘭紫色"
 
-#: wxstd.po.cpp:427
+#: wxstd.po.cpp:428
 msgid "PaleGoldenRod"
 msgstr "灰金菊色"
 
-#: wxstd.po.cpp:428
+#: wxstd.po.cpp:429
 msgid "PaleGreen"
 msgstr "灰綠色"
 
-#: wxstd.po.cpp:429
+#: wxstd.po.cpp:430
 msgid "PaleTurquoise"
 msgstr "灰綠松石色"
 
-#: wxstd.po.cpp:430
+#: wxstd.po.cpp:431
 msgid "PaleVioletRed"
 msgstr "灰紫紅"
 
-#: wxstd.po.cpp:431
+#: wxstd.po.cpp:432
 msgid "PapayaWhip"
 msgstr "蕃木瓜色"
 
-#: wxstd.po.cpp:432
+#: wxstd.po.cpp:433
 msgid "PeachPuff"
 msgstr "粉撲桃色"
 
-#: wxstd.po.cpp:433
+#: wxstd.po.cpp:434
 msgid "Peru"
 msgstr "秘魯色"
 
-#: wxstd.po.cpp:434
+#: wxstd.po.cpp:435
 msgid "Pink"
 msgstr "粉紅色"
 
-#: wxstd.po.cpp:435
+#: wxstd.po.cpp:436
 msgid "Plum"
 msgstr "梅紅色"
 
-#: wxstd.po.cpp:436
+#: wxstd.po.cpp:437
 msgid "PowderBlue"
 msgstr "嬰兒粉藍"
 
-#: wxstd.po.cpp:437
+#: wxstd.po.cpp:438
 msgid "Purple"
 msgstr "紫色"
 
-#: wxstd.po.cpp:438
+#: wxstd.po.cpp:439
 msgid "Red"
 msgstr "紅色"
 
-#: wxstd.po.cpp:439
+#: wxstd.po.cpp:440
 msgid "RosyBrown"
 msgstr "玫瑰褐"
 
-#: wxstd.po.cpp:440
+#: wxstd.po.cpp:441
 msgid "RoyalBlue"
 msgstr "品藍"
 
-#: wxstd.po.cpp:441
+#: wxstd.po.cpp:442
 msgid "SaddleBrown"
 msgstr "鞍褐"
 
-#: wxstd.po.cpp:442
+#: wxstd.po.cpp:443
 msgid "Salmon"
 msgstr "鮭紅"
 
-#: wxstd.po.cpp:443
+#: wxstd.po.cpp:444
 msgid "SandyBrown"
 msgstr "淡棕色"
 
-#: wxstd.po.cpp:444
+#: wxstd.po.cpp:445
 msgid "SeaGreen"
 msgstr "海綠色"
 
-#: wxstd.po.cpp:445
+#: wxstd.po.cpp:446
 msgid "SeaShell"
 msgstr "海貝色"
 
-#: wxstd.po.cpp:446
+#: wxstd.po.cpp:447
 msgid "Sienna"
 msgstr "赭黃色"
 
-#: wxstd.po.cpp:447
+#: wxstd.po.cpp:448
 msgid "Silver"
 msgstr "銀色"
 
-#: wxstd.po.cpp:448
+#: wxstd.po.cpp:449
 msgid "SkyBlue"
 msgstr "天藍色"
 
-#: wxstd.po.cpp:449
+#: wxstd.po.cpp:450
 msgid "SlateBlue"
 msgstr "岩藍色"
 
-#: wxstd.po.cpp:450
+#: wxstd.po.cpp:451
 msgid "SlateGray"
 msgstr "岩灰色"
 
-#: wxstd.po.cpp:451
+#: wxstd.po.cpp:452
 msgid "Snow"
 msgstr "雪色"
 
-#: wxstd.po.cpp:452
+#: wxstd.po.cpp:453
 msgid "SpringGreen"
 msgstr "春綠色"
 
-#: wxstd.po.cpp:453
+#: wxstd.po.cpp:454
 msgid "SteelBlue"
 msgstr "鋼青色"
 
-#: wxstd.po.cpp:454
+#: wxstd.po.cpp:455
 msgid "Tan"
 msgstr "日曬色"
 
-#: wxstd.po.cpp:455
+#: wxstd.po.cpp:456
 msgid "Teal"
 msgstr "鳧綠"
 
-#: wxstd.po.cpp:456
+#: wxstd.po.cpp:457
 msgid "Thistle"
 msgstr "薊紫"
 
-#: wxstd.po.cpp:457
+#: wxstd.po.cpp:458
 msgid "Tomato"
 msgstr "蕃茄紅"
 
-#: wxstd.po.cpp:458
+#: wxstd.po.cpp:459
 msgid "Turquoise"
 msgstr "綠松石色"
 
-#: wxstd.po.cpp:459
+#: wxstd.po.cpp:460
 msgid "Violet"
 msgstr "紫羅蘭色"
 
-#: wxstd.po.cpp:460
+#: wxstd.po.cpp:461
 msgid "VioletRed"
 msgstr "紫羅蘭紅"
 
-#: wxstd.po.cpp:461
+#: wxstd.po.cpp:462
 msgid "Wheat"
 msgstr "小麥色"
 
-#: wxstd.po.cpp:462
+#: wxstd.po.cpp:463
 msgid "White"
 msgstr "白色"
 
-#: wxstd.po.cpp:463
+#: wxstd.po.cpp:464
 msgid "WhiteSmoke"
 msgstr "白煙色"
 
-#: wxstd.po.cpp:464
+#: wxstd.po.cpp:465
 msgid "Yellow"
 msgstr "黃色"
 
-#: wxstd.po.cpp:465
+#: wxstd.po.cpp:466
 msgid "YellowGreen"
 msgstr "黃綠色"
 
-#: wxstd.po.cpp:466
+#: wxstd.po.cpp:467
 msgid "Plain Text"
 msgstr "純文字"
 
-#: wxstd.po.cpp:467
+#: wxstd.po.cpp:468
 msgid "AngelScript"
 msgstr ""
 
-#: wxstd.po.cpp:468
+#: wxstd.po.cpp:469
 msgid "ASCII Art"
 msgstr ""
 
-#: wxstd.po.cpp:469
+#: wxstd.po.cpp:470
 msgid "ASP(VBScript)"
 msgstr ""
 
-#: wxstd.po.cpp:470
+#: wxstd.po.cpp:471
 msgid "awk"
 msgstr ""
 
-#: wxstd.po.cpp:471
+#: wxstd.po.cpp:472
 msgid "C#"
 msgstr ""
 
-#: wxstd.po.cpp:472
+#: wxstd.po.cpp:473
 msgid "C/C++"
 msgstr ""
 
-#: wxstd.po.cpp:473
+#: wxstd.po.cpp:474
 msgid "CSS"
 msgstr ""
 
-#: wxstd.po.cpp:474
+#: wxstd.po.cpp:475
 msgid "D"
 msgstr ""
 
-#: wxstd.po.cpp:475
+#: wxstd.po.cpp:476
 msgid "diff/patch"
 msgstr ""
 
-#: wxstd.po.cpp:476
+#: wxstd.po.cpp:477
 msgid "DOS Batch"
 msgstr "DOS 批次檔"
 
-#: wxstd.po.cpp:477
+#: wxstd.po.cpp:478
 msgid "Flash ActionScript"
 msgstr ""
 
-#: wxstd.po.cpp:478
+#: wxstd.po.cpp:479
 msgid "Fortran 90"
 msgstr ""
 
-#: wxstd.po.cpp:479
+#: wxstd.po.cpp:480
 msgid "HTML"
 msgstr ""
 
-#: wxstd.po.cpp:480
+#: wxstd.po.cpp:481
 msgid "Java"
 msgstr ""
 
-#: wxstd.po.cpp:481
+#: wxstd.po.cpp:482
 msgid "JavaScript"
 msgstr ""
 
-#: wxstd.po.cpp:482
+#: wxstd.po.cpp:483
 msgid "JavaScript in HTML"
 msgstr ""
 
-#: wxstd.po.cpp:483
+#: wxstd.po.cpp:484
 msgid "JSP"
 msgstr ""
 
-#: wxstd.po.cpp:484
+#: wxstd.po.cpp:485
 msgid "Lua"
 msgstr ""
 
-#: wxstd.po.cpp:485
+#: wxstd.po.cpp:486
 msgid "Pascal/Delphi"
 msgstr ""
 
-#: wxstd.po.cpp:486
+#: wxstd.po.cpp:487
 msgid "Perl"
 msgstr ""
 
-#: wxstd.po.cpp:487
+#: wxstd.po.cpp:488
 msgid "PHP"
 msgstr ""
 
-#: wxstd.po.cpp:488
+#: wxstd.po.cpp:489
 msgid "Python"
 msgstr ""
 
-#: wxstd.po.cpp:489
+#: wxstd.po.cpp:490
 msgid "Ruby"
 msgstr ""
 
-#: wxstd.po.cpp:490
+#: wxstd.po.cpp:491
 msgid "SQL"
 msgstr ""
 
-#: wxstd.po.cpp:491
+#: wxstd.po.cpp:492
 msgid "Squirrel"
 msgstr ""
 
-#: wxstd.po.cpp:492
+#: wxstd.po.cpp:493
 msgid "TeX/LaTeX"
 msgstr ""
 
-#: wxstd.po.cpp:493
+#: wxstd.po.cpp:494
 msgid "UNIX Configuration"
 msgstr "UNIX 設定檔"
 
-#: wxstd.po.cpp:494
+#: wxstd.po.cpp:495
 msgid "UNIX Shell Script"
 msgstr ""
 
-#: wxstd.po.cpp:495
+#: wxstd.po.cpp:496
 msgid "Verilog"
 msgstr ""
 
-#: wxstd.po.cpp:496
+#: wxstd.po.cpp:497
 msgid "VHDL"
 msgstr ""
 
-#: wxstd.po.cpp:497
+#: wxstd.po.cpp:498
 msgid "Visual Basic"
 msgstr ""
 
-#: wxstd.po.cpp:498
+#: wxstd.po.cpp:499
 msgid "Windows Registry File"
 msgstr "Windows 登錄檔"
 
-#: wxstd.po.cpp:499
+#: wxstd.po.cpp:500
 msgid "wxMEdit Syntax"
 msgstr ""
 
-#: wxstd.po.cpp:500
+#: wxstd.po.cpp:501
 msgid "x86 Assembly"
 msgstr "x86 組合語言"
 
-#: wxstd.po.cpp:501
+#: wxstd.po.cpp:502
 msgid "XML"
 msgstr ""
 
@@ -2349,7 +2353,7 @@ msgid "Insert date and time at current position"
 msgstr "插入日期與時間到現在的位置"
 
 #: ../src/wxmedit_frame.cpp:1274
-msgid "Toggle/Remove Bookmark "
+msgid "T&oggle Bookmark "
 msgstr ""
 
 #: ../src/wxmedit_frame.cpp:1274
@@ -2357,7 +2361,7 @@ msgid "Toggle Bookmark at current line"
 msgstr ""
 
 #: ../src/wxmedit_frame.cpp:1275
-msgid "Go To Next Bookmark"
+msgid "Go To &Next Bookmark"
 msgstr ""
 
 #: ../src/wxmedit_frame.cpp:1275
@@ -2365,7 +2369,7 @@ msgid "Go to the next bookmark"
 msgstr ""
 
 #: ../src/wxmedit_frame.cpp:1276
-msgid "Go To Previous Bookmark"
+msgid "Go To P&revious Bookmark"
 msgstr ""
 
 #: ../src/wxmedit_frame.cpp:1276
@@ -3485,7 +3489,7 @@ msgstr "<- 加入自定的檔案類型"
 #: ../src/dialog/wxm_highlighting_dialog.cpp:258
 #: ../src/dialog/wxm_options_dialog.cpp:602
 #: ../src/dialog/wxm_conv_enc_dialog.cpp:62
-#: ../src/dialog/wxmedit_about_dialog.cpp:74
+#: ../src/dialog/wxmedit_about_dialog.cpp:75
 msgid "&OK"
 msgstr "確定(&O)"
 
@@ -3493,7 +3497,7 @@ msgstr "確定(&O)"
 #: ../src/dialog/wxm_highlighting_dialog.cpp:260
 #: ../src/dialog/wxm_options_dialog.cpp:604
 #: ../src/dialog/wxm_conv_enc_dialog.cpp:64
-#: ../src/dialog/wxmedit_about_dialog.cpp:76
+#: ../src/dialog/wxmedit_about_dialog.cpp:77
 msgid "&Cancel"
 msgstr "取消(&C)"
 
@@ -4308,15 +4312,15 @@ msgstr "所有字元的詳細資料："
 msgid "Word Count (Selected Text)"
 msgstr "計算字數 (所選取的文字)"
 
-#: ../src/dialog/wxmedit_about_dialog.cpp:45
+#: ../src/dialog/wxmedit_about_dialog.cpp:46
 msgid "About wxMEdit"
 msgstr "關於 wxMEdit"
 
-#: ../src/dialog/wxmedit_about_dialog.cpp:69
+#: ../src/dialog/wxmedit_about_dialog.cpp:70
 msgid "About"
 msgstr "關於"
 
-#: ../src/dialog/wxmedit_about_dialog.cpp:70
+#: ../src/dialog/wxmedit_about_dialog.cpp:71
 msgid "License"
 msgstr "授權"
 
