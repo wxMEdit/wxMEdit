@@ -54,14 +54,14 @@ void test_detenc(const std::string& text, const std::string& enc)
 	wxm::WXMEncodingID detencid = wxm::ENC_DEFAULT;
 	const wxByte* wxtext = (const wxByte*)text.data();
 
-	bool det_succ = MatchWXMEncoding(wxdetenc, wxtext, text.size());
+	bool det_succ = wxm::MatchWXMEncoding(wxdetenc, wxtext, text.size());
 	if (det_succ)
 	{
 		detencid = enccreator.ExtNameToEncoding(wxdetenc.mb_str().data());
 	}
 	else
 	{
-		DetectEncoding(wxtext, text.size(), detencid, true);
+		wxm::DetectEncoding(wxtext, text.size(), detencid, true);
 
 		// use GB18030      instead of detected encoding MS936
 		if (detencid == wxm::ENC_MS936)
@@ -95,7 +95,7 @@ void test_predetenc(const std::string& text, const std::string& enc, bool matche
 	wxm::WXMEncodingID detencid = wxm::ENC_DEFAULT;
 	const wxByte* wxtext = (const wxByte*)text.data();
 
-	bool det_succ = MatchWXMEncoding(wxdetenc, wxtext, text.size());
+	bool det_succ = wxm::MatchWXMEncoding(wxdetenc, wxtext, text.size());
 
 	BOOST_CHECK(det_succ || !matched);
 	if (!det_succ)

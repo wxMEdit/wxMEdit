@@ -2,7 +2,7 @@
 // vim:         sw=4 ts=4
 // Name:        xm/wxm_encdet.cpp
 // Description: wxMEdit encoding detector
-// Author:      wxmedit@gmail.com  (current maintainer)
+// Author:      wxmedit@gmail.com
 // Licence:     GPL
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -16,6 +16,8 @@
 #include <boost/assign/list_inserter.hpp>
 #include <boost/range/iterator_range.hpp>
 #include <string>
+namespace wxm
+{
 
 struct EncodingChecker
 {
@@ -565,3 +567,5 @@ void DetectEncoding(const wxByte *text, size_t len, wxm::WXMEncodingID &enc, boo
 			enc = det;
 	}
 }
+
+} // namespace wxm
