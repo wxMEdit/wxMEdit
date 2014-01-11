@@ -4520,7 +4520,7 @@ void MadEditFrame::OnToolsOptions(wxCommandEvent& event)
         msc=g_OptionsDialog->WxCheckBoxMouseSelectToCopy->GetValue();
         m_Config->Write(wxT("MouseSelectToCopy"), msc);
 
-        mscck=g_OptionsDialog->WxRadioButtonEnable->GetValue();
+        mscck=g_OptionsDialog->WxCheckBoxWhenPressCtrlKey->GetValue();
         m_Config->Write(wxT("MouseSelectToCopyWithCtrlKey"), mscck);
 
         mmp=g_OptionsDialog->WxCheckBoxMiddleMouseToPaste->GetValue();

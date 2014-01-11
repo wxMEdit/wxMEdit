@@ -327,28 +327,14 @@
 															<object class="wxBoxSizer" variable="BoxSizer28" member="no">
 																<object class="sizeritem">
 																	<object class="wxCheckBox" name="ID_WXCHECKBOXMOUSESELECTTOCOPY" variable="WxCheckBoxMouseSelectToCopy" member="yes">
-																		<label>Auto copy the mouse-selected text to clipboard  (</label>
+																		<label>Auto copy the mouse-selected text to clipboard</label>
 																	</object>
 																	<flag>wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
 																	<border>2</border>
 																</object>
 																<object class="sizeritem">
-																	<object class="wxRadioButton" name="ID_WXRADIOBUTTONENABLE" variable="WxRadioButtonEnable" member="yes">
-																		<label>Enable</label>
-																	</object>
-																	<flag>wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
-																	<border>2</border>
-																</object>
-																<object class="sizeritem">
-																	<object class="wxRadioButton" name="ID_WXRADIOBUTTONDISABLE" variable="WxRadioButtonDisable" member="yes">
-																		<label>Disable</label>
-																	</object>
-																	<flag>wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
-																	<border>2</border>
-																</object>
-																<object class="sizeritem">
-																	<object class="wxStaticText" name="ID_STATICTEXT17" variable="StaticText17" member="yes">
-																		<label>when pressing Ctrl key)</label>
+																	<object class="wxCheckBox" name="ID_WXCHECKBOXWHENPRESSCTRLKEY" variable="WxCheckBoxWhenPressCtrlKey" member="yes">
+																		<label>when pressing Ctrl key</label>
 																	</object>
 																	<flag>wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
 																	<border>2</border>

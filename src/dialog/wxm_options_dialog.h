@@ -22,7 +22,6 @@
 #include <wx/checkbox.h>
 #include <wx/listbox.h>
 #include <wx/aui/aui.h>
-#include <wx/radiobut.h>
 #include <wx/panel.h>
 #include <wx/button.h>
 #include <wx/dialog.h>
@@ -56,13 +55,13 @@ class WXMOptionsDialog: public wxDialogWrapper
 		wxStaticText* StaticText10;
 		wxStaticText* StaticText9;
 		wxCheckBox* WxCheckBoxPrintTabChar;
+		wxCheckBox* WxCheckBoxWhenPressCtrlKey;
 		wxCheckBox* WxCheckBoxAutoCompletePair;
 		wxTextCtrl* WxEditIndentColumns;
 		wxTextCtrl* WxEditMaxColumns;
 		wxStaticText* WxStaticTextCommandHint;
 		wxCheckBox* WxCheckBoxPrintLineNumber;
 		wxButton* Button4;
-		wxRadioButton* WxRadioButtonEnable;
 		wxCheckBox* WxCheckBoxDoNotSaveSettings;
 		wxTextCtrl* WxEditHeaderLeft;
 		wxButton* WxButtonAddKey;
@@ -87,7 +86,6 @@ class WXMOptionsDialog: public wxDialogWrapper
 		wxPanel* Panel1;
 		wxCheckBox* WxCheckBoxTabOrSpaces;
 		wxStaticText* StaticText1;
-		wxRadioButton* WxRadioButtonDisable;
 		wxStaticText* StaticText3;
 		wxTextCtrl* WxEditMaxLineLength;
 		wxTextCtrl* WxEditFooterCenter;
@@ -125,7 +123,6 @@ class WXMOptionsDialog: public wxDialogWrapper
 		wxCheckBox* WxCheckBoxMouseSelectToCopy;
 		wxStaticText* WxStaticTextDateTime;
 		wxCheckBox* WxCheckBoxPrintSyntax;
-		wxStaticText* StaticText17;
 		wxStaticText* StaticText4;
 		wxCheckBox* WxCheckBoxPrintSpaceChar;
 		wxCheckBox* WxCheckBoxDateTimeInEnglish;
@@ -167,9 +164,7 @@ class WXMOptionsDialog: public wxDialogWrapper
 		static const long ID_WXCHECKBOXAUTOINDENT;
 		static const long ID_WXCHECKBOXAUTOCOMPLETEPAIR;
 		static const long ID_WXCHECKBOXMOUSESELECTTOCOPY;
-		static const long ID_WXRADIOBUTTONENABLE;
-		static const long ID_WXRADIOBUTTONDISABLE;
-		static const long ID_STATICTEXT17;
+		static const long ID_WXCHECKBOXWHENPRESSCTRLKEY;
 		static const long ID_WXCHECKBOXMIDDLEMOUSETOPASTE;
 		static const long ID_PANEL2;
 		static const long ID_WXCHECKBOXPRINTSYNTAX;

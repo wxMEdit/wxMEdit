@@ -149,9 +149,7 @@ const long WXMOptionsDialog::ID_WXCHECKBOXTABORSPACES = wxNewId();
 const long WXMOptionsDialog::ID_WXCHECKBOXAUTOINDENT = wxNewId();
 const long WXMOptionsDialog::ID_WXCHECKBOXAUTOCOMPLETEPAIR = wxNewId();
 const long WXMOptionsDialog::ID_WXCHECKBOXMOUSESELECTTOCOPY = wxNewId();
-const long WXMOptionsDialog::ID_WXRADIOBUTTONENABLE = wxNewId();
-const long WXMOptionsDialog::ID_WXRADIOBUTTONDISABLE = wxNewId();
-const long WXMOptionsDialog::ID_STATICTEXT17 = wxNewId();
+const long WXMOptionsDialog::ID_WXCHECKBOXWHENPRESSCTRLKEY = wxNewId();
 const long WXMOptionsDialog::ID_WXCHECKBOXMIDDLEMOUSETOPASTE = wxNewId();
 const long WXMOptionsDialog::ID_PANEL2 = wxNewId();
 const long WXMOptionsDialog::ID_WXCHECKBOXPRINTSYNTAX = wxNewId();
@@ -434,15 +432,12 @@ WXMOptionsDialog::WXMOptionsDialog(wxWindow* parent,wxWindowID id)
 	WxCheckBoxAutoCompletePair->SetValue(false);
 	BoxSizer12->Add(WxCheckBoxAutoCompletePair, 0, wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL, 2);
 	BoxSizer28 = new wxBoxSizer(wxHORIZONTAL);
-	WxCheckBoxMouseSelectToCopy = new wxCheckBox(Panel2, ID_WXCHECKBOXMOUSESELECTTOCOPY, _("Auto copy the mouse-selected text to clipboard  ("), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_WXCHECKBOXMOUSESELECTTOCOPY"));
+	WxCheckBoxMouseSelectToCopy = new wxCheckBox(Panel2, ID_WXCHECKBOXMOUSESELECTTOCOPY, _("Auto copy the mouse-selected text to clipboard"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_WXCHECKBOXMOUSESELECTTOCOPY"));
 	WxCheckBoxMouseSelectToCopy->SetValue(false);
 	BoxSizer28->Add(WxCheckBoxMouseSelectToCopy, 0, wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL, 2);
-	WxRadioButtonEnable = new wxRadioButton(Panel2, ID_WXRADIOBUTTONENABLE, _("Enable"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_WXRADIOBUTTONENABLE"));
-	BoxSizer28->Add(WxRadioButtonEnable, 0, wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL, 2);
-	WxRadioButtonDisable = new wxRadioButton(Panel2, ID_WXRADIOBUTTONDISABLE, _("Disable"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_WXRADIOBUTTONDISABLE"));
-	BoxSizer28->Add(WxRadioButtonDisable, 0, wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL, 2);
-	StaticText17 = new wxStaticText(Panel2, ID_STATICTEXT17, _("when pressing Ctrl key)"), wxDefaultPosition, wxDefaultSize, 0, _T("ID_STATICTEXT17"));
-	BoxSizer28->Add(StaticText17, 0, wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL, 2);
+	WxCheckBoxWhenPressCtrlKey = new wxCheckBox(Panel2, ID_WXCHECKBOXWHENPRESSCTRLKEY, _("when pressing Ctrl key"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_WXCHECKBOXWHENPRESSCTRLKEY"));
+	WxCheckBoxWhenPressCtrlKey->SetValue(false);
+	BoxSizer28->Add(WxCheckBoxWhenPressCtrlKey, 0, wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL, 2);
 	BoxSizer12->Add(BoxSizer28, 0, wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL, 0);
 	WxCheckBoxMiddleMouseToPaste = new wxCheckBox(Panel2, ID_WXCHECKBOXMIDDLEMOUSETOPASTE, _("Paste text from clipboard when pressing middle mouse button"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_WXCHECKBOXMIDDLEMOUSETOPASTE"));
 	WxCheckBoxMiddleMouseToPaste->SetValue(false);
@@ -474,9 +469,9 @@ WXMOptionsDialog::WXMOptionsDialog(wxWindow* parent,wxWindowID id)
 	StaticBoxSizer2 = new wxStaticBoxSizer(wxVERTICAL, Panel3, _("Hex Mode"));
 	wxString __wxRadioBoxChoices_1[3] =
 	{
-		_("None"),
-		_("First Page Only"),
-		_("Every Page")
+	_("None"),
+	_("First Page Only"),
+	_("Every Page")
 	};
 	WxRadioBoxPrintOffset = new wxRadioBox(Panel3, ID_WXRADIOBOXPRINTOFFSET, _("Print Offset Header"), wxDefaultPosition, wxDefaultSize, 3, __wxRadioBoxChoices_1, 1, wxRA_SPECIFY_COLS, wxDefaultValidator, _T("ID_WXRADIOBOXPRINTOFFSET"));
 	StaticBoxSizer2->Add(WxRadioBoxPrintOffset, 0, wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL, 1);
@@ -897,8 +892,7 @@ void WXMOptionsDialog::LoadOptions(void)
 	WxCheckBoxMouseSelectToCopy->SetValue(bb);
 
 	cfg->Read(wxT("MouseSelectToCopyWithCtrlKey"), &bb);
-	WxRadioButtonEnable->SetValue(bb);
-	WxRadioButtonDisable->SetValue(!bb);
+	WxCheckBoxWhenPressCtrlKey->SetValue(bb);
 
 	cfg->Read(wxT("MiddleMouseToPaste"), &bb);
 	WxCheckBoxMiddleMouseToPaste->SetValue(bb);
