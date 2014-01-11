@@ -15,6 +15,8 @@
 
 #if defined(__WXMSW__) && wxMAJOR_VERSION==2 && wxMINOR_VERSION==6
 # define wxOS_WINDOWS_9X wxWIN95
+# include <wx/longlong.h>
+  typedef wxLongLong wxMilliClock_t;
 #endif
 
 typedef std::vector<size_t> LineNumberList;
