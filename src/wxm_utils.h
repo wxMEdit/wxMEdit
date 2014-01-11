@@ -28,8 +28,11 @@ extern HtmlColor HtmlColorTable[];
 extern const int HtmlColorTableCount;
 
 extern void SetHtmlColors();
-extern wxString GetExecutablePath();
 extern std::map<wxString, wxString> g_color_l10n_map;
+
+extern wxString GetExecutablePath();
+
+extern void OpenURL(const wxString& url);
 
 struct FileList
 {

@@ -7,6 +7,8 @@
 // Licence:     GPL
 ///////////////////////////////////////////////////////////////////////////////
 
+#include "wxm_utils.h"
+
 #include <wx/wxprec.h>
 #include <wx/app.h>
 #include <wx/gdicmn.h>
@@ -16,6 +18,7 @@
 #include <wx/filename.h>
 #include <wx/intl.h>
 #include <wx/tokenzr.h>
+#include <wx/utils.h>
 
 #include <boost/foreach.hpp>
 
@@ -25,8 +28,6 @@
 #include <wx/mac/private.h>
 #include <Processes.h>
 #endif
-
-#include "wxm_utils.h"
 
 HtmlColor HtmlColorTable[]=
 {
@@ -269,4 +270,42 @@ void FileList::Init(const wxString& files)
 
         m_filevec.push_back(FileDesc(file, bmklns));
     }
+}
+
+void OpenURL(const wxString& url)
+{
+#ifdef __WXGTK__
+    const wxChar *browsers[]=
+    {
+        wxT("/usr/bin/firefox"),
+        wxT("/usr/bin/mozilla"),
+        wxT("/usr/bin/chromium"),
+        wxT("/usr/bin/konqueror"),
+# if defined(__APPLE__) && defined(__MACH__)
+        wxT("/usr/bin/open"),
+# endif
+        wxT("/usr/kde/3.5/bin/konqueror"),
+        wxT("/usr/kde/3.4/bin/konqueror"),
+        wxT("/usr/kde/3.3/bin/konqueror"),
+        wxT("/usr/kde/3.2/bin/konqueror"),
+    };
+    int idx=0;
+    int count=sizeof(browsers)/sizeof(browsers[0]);
+    do
+    {
+        if(wxFileExists(wxString(browsers[idx])))
+            break;
+    }while(++idx < count);
+
+    if(idx < count)
+    {
+        wxExecute(wxString(browsers[idx]) +wxT(' ') +url);
+    }
+    else
+    {
+        wxLaunchDefaultBrowser(url);
+    }
+#else
+    wxLaunchDefaultBrowser(url);
+#endif
 }
