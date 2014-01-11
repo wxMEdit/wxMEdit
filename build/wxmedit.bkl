@@ -26,6 +26,7 @@
 			<set var="WXCOMP">gcc</set>
 			<set var="ICUDATA_LIB">icudata</set>
 			<set var="ICUI18N_LIB">icui18n</set>
+			<set var="LIBCURL">curldll</set>
 
 			<define>__WIN95__</define>
 
@@ -40,6 +41,7 @@
 			<set var="WXCOMP">vc</set>
 			<set var="ICUDATA_LIB">icudt</set>
 			<set var="ICUI18N_LIB">icuin</set>
+			<set var="LIBCURL">libcurl</set>
 			<if cond="ICUDEBUG == '1'">
 				<set var="ICULIB_POSTFIX" make_var="1">$(LIB_POSTFIX)</set>
 			</if>
@@ -129,6 +131,10 @@
 	<exe id="wxmedit" template="win_cfg,enc_src,encdet_src">
 		<app-type>gui</app-type>
 
+		<include>$(CURL_DIR)/include</include>
+		<lib-path>$(CURL_DIR)/lib</lib-path>
+		<sys-lib>$(LIBCURL)</sys-lib>
+
 		<win32-res>../src/wxmedit_app.rc</win32-res>
 
 		<headers>../src/dialog/wxm_conv_enc_dialog.h</headers>
@@ -187,8 +193,12 @@
 		<headers>../src/xm/wxm_def.h</headers>
 		<headers>../src/xm/wxm_line_enc_adapter.h</headers>
 		<sources>../src/xm/wxm_line_enc_adapter.cpp</sources>
+		<headers>../src/xm/wxm_update.h</headers>
+		<sources>../src/xm/wxm_update.cpp</sources>
 		<headers>../src/xm/wxm_wx_icu.h</headers>
 		<sources>../src/xm/wxm_wx_icu.cpp</sources>
+		<headers>../src/xm/xm_remote.h</headers>
+		<sources>../src/xm/xm_remote.cpp</sources>
 		<headers>../src/xm/xm_ublock.h</headers>
 		<sources>../src/xm/xm_ublock.cpp</sources>
 		<sources>../src/xm/xm_ublock_des.cpp</sources>

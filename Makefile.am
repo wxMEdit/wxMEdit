@@ -24,7 +24,8 @@ encdet_src =	src/wxmedit/mad_encdet.cpp \
 bin_PROGRAMS = wxmedit
 check_PROGRAMS = wxmedit_test
 TESTS = wxmedit_test
-wxmedit_CXXFLAGS = -DDATA_DIR=\"${datadir}\"
+wxmedit_LDFLAGS = ${curl_LIBS}
+wxmedit_CXXFLAGS = -DDATA_DIR=\"${datadir}\" ${curl_CFLAGS}
 wxmedit_SOURCES =	$(enc_src) \
 	$(encdet_src) \
 	src/dialog/wxm_conv_enc_dialog.cpp \
@@ -73,11 +74,6 @@ wxmedit_SOURCES =	$(enc_src) \
 	src/wxmedit/wxm_syntax.h \
 	src/wxmedit/wxm_undo.cpp \
 	src/wxmedit/wxm_undo.h \
-	src/xm/xm_ublock_des.cpp \
-	src/xm/xm_ublock.cpp \
-	src/xm/xm_ublock.h \
-	src/xm/xm_uutils.cpp \
-	src/xm/xm_uutils.h \
 	src/xm/wx_avoid_wxmsw_bug4373.h \
 	src/xm/wx_recent_list.cpp \
 	src/xm/wx_recent_list.h \
@@ -86,8 +82,17 @@ wxmedit_SOURCES =	$(enc_src) \
 	src/xm/wxm_def.h \
 	src/xm/wxm_line_enc_adapter.cpp \
 	src/xm/wxm_line_enc_adapter.h \
+	src/xm/wxm_update.cpp \
+	src/xm/wxm_update.h \
 	src/xm/wxm_wx_icu.cpp \
 	src/xm/wxm_wx_icu.h \
+	src/xm/xm_remote.cpp \
+	src/xm/xm_remote.h \
+	src/xm/xm_ublock_des.cpp \
+	src/xm/xm_ublock.cpp \
+	src/xm/xm_ublock.h \
+	src/xm/xm_uutils.cpp \
+	src/xm/xm_uutils.h \
 	src/wxmedit/trad_simp.cpp \
 	src/wxmedit/trad_simp.h \
 	src/wxmedit/ucs4_t.h

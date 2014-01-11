@@ -94,13 +94,15 @@ am_wxmedit_OBJECTS = $(am__objects_1) $(am__objects_2) \
 	src/wxmedit/wxmedit-wxm_lines.$(OBJEXT) \
 	src/wxmedit/wxmedit-wxm_syntax.$(OBJEXT) \
 	src/wxmedit/wxmedit-wxm_undo.$(OBJEXT) \
-	src/xm/wxmedit-xm_ublock_des.$(OBJEXT) \
-	src/xm/wxmedit-xm_ublock.$(OBJEXT) \
-	src/xm/wxmedit-xm_uutils.$(OBJEXT) \
 	src/xm/wxmedit-wx_recent_list.$(OBJEXT) \
 	src/xm/wxmedit-wxm_case_conv.$(OBJEXT) \
 	src/xm/wxmedit-wxm_line_enc_adapter.$(OBJEXT) \
+	src/xm/wxmedit-wxm_update.$(OBJEXT) \
 	src/xm/wxmedit-wxm_wx_icu.$(OBJEXT) \
+	src/xm/wxmedit-xm_remote.$(OBJEXT) \
+	src/xm/wxmedit-xm_ublock_des.$(OBJEXT) \
+	src/xm/wxmedit-xm_ublock.$(OBJEXT) \
+	src/xm/wxmedit-xm_uutils.$(OBJEXT) \
 	src/wxmedit/wxmedit-trad_simp.$(OBJEXT)
 wxmedit_OBJECTS = $(am_wxmedit_OBJECTS)
 wxmedit_LDADD = $(LDADD)
@@ -299,6 +301,8 @@ build_alias = @build_alias@
 build_cpu = @build_cpu@
 build_os = @build_os@
 build_vendor = @build_vendor@
+curl_CFLAGS = @curl_CFLAGS@
+curl_LIBS = @curl_LIBS@
 datadir = @datadir@
 datarootdir = @datarootdir@
 docdir = @docdir@
@@ -353,7 +357,8 @@ encdet_src = src/wxmedit/mad_encdet.cpp \
 	src/xm/wxm_encdet.h
 
 TESTS = wxmedit_test
-wxmedit_CXXFLAGS = -DDATA_DIR=\"${datadir}\"
+wxmedit_LDFLAGS = ${curl_LIBS}
+wxmedit_CXXFLAGS = -DDATA_DIR=\"${datadir}\" ${curl_CFLAGS}
 wxmedit_SOURCES = $(enc_src) \
 	$(encdet_src) \
 	src/dialog/wxm_conv_enc_dialog.cpp \
@@ -402,11 +407,6 @@ wxmedit_SOURCES = $(enc_src) \
 	src/wxmedit/wxm_syntax.h \
 	src/wxmedit/wxm_undo.cpp \
 	src/wxmedit/wxm_undo.h \
-	src/xm/xm_ublock_des.cpp \
-	src/xm/xm_ublock.cpp \
-	src/xm/xm_ublock.h \
-	src/xm/xm_uutils.cpp \
-	src/xm/xm_uutils.h \
 	src/xm/wx_avoid_wxmsw_bug4373.h \
 	src/xm/wx_recent_list.cpp \
 	src/xm/wx_recent_list.h \
@@ -415,8 +415,17 @@ wxmedit_SOURCES = $(enc_src) \
 	src/xm/wxm_def.h \
 	src/xm/wxm_line_enc_adapter.cpp \
 	src/xm/wxm_line_enc_adapter.h \
+	src/xm/wxm_update.cpp \
+	src/xm/wxm_update.h \
 	src/xm/wxm_wx_icu.cpp \
 	src/xm/wxm_wx_icu.h \
+	src/xm/xm_remote.cpp \
+	src/xm/xm_remote.h \
+	src/xm/xm_ublock_des.cpp \
+	src/xm/xm_ublock.cpp \
+	src/xm/xm_ublock.h \
+	src/xm/xm_uutils.cpp \
+	src/xm/xm_uutils.h \
 	src/wxmedit/trad_simp.cpp \
 	src/wxmedit/trad_simp.h \
 	src/wxmedit/ucs4_t.h
@@ -721,19 +730,23 @@ src/wxmedit/wxmedit-wxm_syntax.$(OBJEXT): src/wxmedit/$(am__dirstamp) \
 	src/wxmedit/$(DEPDIR)/$(am__dirstamp)
 src/wxmedit/wxmedit-wxm_undo.$(OBJEXT): src/wxmedit/$(am__dirstamp) \
 	src/wxmedit/$(DEPDIR)/$(am__dirstamp)
-src/xm/wxmedit-xm_ublock_des.$(OBJEXT): src/xm/$(am__dirstamp) \
-	src/xm/$(DEPDIR)/$(am__dirstamp)
-src/xm/wxmedit-xm_ublock.$(OBJEXT): src/xm/$(am__dirstamp) \
-	src/xm/$(DEPDIR)/$(am__dirstamp)
-src/xm/wxmedit-xm_uutils.$(OBJEXT): src/xm/$(am__dirstamp) \
-	src/xm/$(DEPDIR)/$(am__dirstamp)
 src/xm/wxmedit-wx_recent_list.$(OBJEXT): src/xm/$(am__dirstamp) \
 	src/xm/$(DEPDIR)/$(am__dirstamp)
 src/xm/wxmedit-wxm_case_conv.$(OBJEXT): src/xm/$(am__dirstamp) \
 	src/xm/$(DEPDIR)/$(am__dirstamp)
 src/xm/wxmedit-wxm_line_enc_adapter.$(OBJEXT): src/xm/$(am__dirstamp) \
 	src/xm/$(DEPDIR)/$(am__dirstamp)
+src/xm/wxmedit-wxm_update.$(OBJEXT): src/xm/$(am__dirstamp) \
+	src/xm/$(DEPDIR)/$(am__dirstamp)
 src/xm/wxmedit-wxm_wx_icu.$(OBJEXT): src/xm/$(am__dirstamp) \
+	src/xm/$(DEPDIR)/$(am__dirstamp)
+src/xm/wxmedit-xm_remote.$(OBJEXT): src/xm/$(am__dirstamp) \
+	src/xm/$(DEPDIR)/$(am__dirstamp)
+src/xm/wxmedit-xm_ublock_des.$(OBJEXT): src/xm/$(am__dirstamp) \
+	src/xm/$(DEPDIR)/$(am__dirstamp)
+src/xm/wxmedit-xm_ublock.$(OBJEXT): src/xm/$(am__dirstamp) \
+	src/xm/$(DEPDIR)/$(am__dirstamp)
+src/xm/wxmedit-xm_uutils.$(OBJEXT): src/xm/$(am__dirstamp) \
 	src/xm/$(DEPDIR)/$(am__dirstamp)
 src/wxmedit/wxmedit-trad_simp.$(OBJEXT): src/wxmedit/$(am__dirstamp) \
 	src/wxmedit/$(DEPDIR)/$(am__dirstamp)
@@ -889,7 +902,9 @@ mostlyclean-compile:
 	-rm -f src/xm/wxmedit-wxm_case_conv.$(OBJEXT)
 	-rm -f src/xm/wxmedit-wxm_encdet.$(OBJEXT)
 	-rm -f src/xm/wxmedit-wxm_line_enc_adapter.$(OBJEXT)
+	-rm -f src/xm/wxmedit-wxm_update.$(OBJEXT)
 	-rm -f src/xm/wxmedit-wxm_wx_icu.$(OBJEXT)
+	-rm -f src/xm/wxmedit-xm_remote.$(OBJEXT)
 	-rm -f src/xm/wxmedit-xm_ublock.$(OBJEXT)
 	-rm -f src/xm/wxmedit-xm_ublock_des.$(OBJEXT)
 	-rm -f src/xm/wxmedit-xm_uutils.$(OBJEXT)
@@ -949,7 +964,9 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/xm/$(DEPDIR)/wxmedit-wxm_case_conv.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/xm/$(DEPDIR)/wxmedit-wxm_encdet.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/xm/$(DEPDIR)/wxmedit-wxm_line_enc_adapter.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/xm/$(DEPDIR)/wxmedit-wxm_update.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/xm/$(DEPDIR)/wxmedit-wxm_wx_icu.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/xm/$(DEPDIR)/wxmedit-xm_remote.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/xm/$(DEPDIR)/wxmedit-xm_ublock.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/xm/$(DEPDIR)/wxmedit-xm_ublock_des.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/xm/$(DEPDIR)/wxmedit-xm_uutils.Po@am__quote@
@@ -1466,48 +1483,6 @@ src/wxmedit/wxmedit-wxm_undo.obj: src/wxmedit/wxm_undo.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -c -o src/wxmedit/wxmedit-wxm_undo.obj `if test -f 'src/wxmedit/wxm_undo.cpp'; then $(CYGPATH_W) 'src/wxmedit/wxm_undo.cpp'; else $(CYGPATH_W) '$(srcdir)/src/wxmedit/wxm_undo.cpp'; fi`
 
-src/xm/wxmedit-xm_ublock_des.o: src/xm/xm_ublock_des.cpp
-@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -MT src/xm/wxmedit-xm_ublock_des.o -MD -MP -MF "src/xm/$(DEPDIR)/wxmedit-xm_ublock_des.Tpo" -c -o src/xm/wxmedit-xm_ublock_des.o `test -f 'src/xm/xm_ublock_des.cpp' || echo '$(srcdir)/'`src/xm/xm_ublock_des.cpp; \
-@am__fastdepCXX_TRUE@	then mv -f "src/xm/$(DEPDIR)/wxmedit-xm_ublock_des.Tpo" "src/xm/$(DEPDIR)/wxmedit-xm_ublock_des.Po"; else rm -f "src/xm/$(DEPDIR)/wxmedit-xm_ublock_des.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/xm/xm_ublock_des.cpp' object='src/xm/wxmedit-xm_ublock_des.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -c -o src/xm/wxmedit-xm_ublock_des.o `test -f 'src/xm/xm_ublock_des.cpp' || echo '$(srcdir)/'`src/xm/xm_ublock_des.cpp
-
-src/xm/wxmedit-xm_ublock_des.obj: src/xm/xm_ublock_des.cpp
-@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -MT src/xm/wxmedit-xm_ublock_des.obj -MD -MP -MF "src/xm/$(DEPDIR)/wxmedit-xm_ublock_des.Tpo" -c -o src/xm/wxmedit-xm_ublock_des.obj `if test -f 'src/xm/xm_ublock_des.cpp'; then $(CYGPATH_W) 'src/xm/xm_ublock_des.cpp'; else $(CYGPATH_W) '$(srcdir)/src/xm/xm_ublock_des.cpp'; fi`; \
-@am__fastdepCXX_TRUE@	then mv -f "src/xm/$(DEPDIR)/wxmedit-xm_ublock_des.Tpo" "src/xm/$(DEPDIR)/wxmedit-xm_ublock_des.Po"; else rm -f "src/xm/$(DEPDIR)/wxmedit-xm_ublock_des.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/xm/xm_ublock_des.cpp' object='src/xm/wxmedit-xm_ublock_des.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -c -o src/xm/wxmedit-xm_ublock_des.obj `if test -f 'src/xm/xm_ublock_des.cpp'; then $(CYGPATH_W) 'src/xm/xm_ublock_des.cpp'; else $(CYGPATH_W) '$(srcdir)/src/xm/xm_ublock_des.cpp'; fi`
-
-src/xm/wxmedit-xm_ublock.o: src/xm/xm_ublock.cpp
-@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -MT src/xm/wxmedit-xm_ublock.o -MD -MP -MF "src/xm/$(DEPDIR)/wxmedit-xm_ublock.Tpo" -c -o src/xm/wxmedit-xm_ublock.o `test -f 'src/xm/xm_ublock.cpp' || echo '$(srcdir)/'`src/xm/xm_ublock.cpp; \
-@am__fastdepCXX_TRUE@	then mv -f "src/xm/$(DEPDIR)/wxmedit-xm_ublock.Tpo" "src/xm/$(DEPDIR)/wxmedit-xm_ublock.Po"; else rm -f "src/xm/$(DEPDIR)/wxmedit-xm_ublock.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/xm/xm_ublock.cpp' object='src/xm/wxmedit-xm_ublock.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -c -o src/xm/wxmedit-xm_ublock.o `test -f 'src/xm/xm_ublock.cpp' || echo '$(srcdir)/'`src/xm/xm_ublock.cpp
-
-src/xm/wxmedit-xm_ublock.obj: src/xm/xm_ublock.cpp
-@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -MT src/xm/wxmedit-xm_ublock.obj -MD -MP -MF "src/xm/$(DEPDIR)/wxmedit-xm_ublock.Tpo" -c -o src/xm/wxmedit-xm_ublock.obj `if test -f 'src/xm/xm_ublock.cpp'; then $(CYGPATH_W) 'src/xm/xm_ublock.cpp'; else $(CYGPATH_W) '$(srcdir)/src/xm/xm_ublock.cpp'; fi`; \
-@am__fastdepCXX_TRUE@	then mv -f "src/xm/$(DEPDIR)/wxmedit-xm_ublock.Tpo" "src/xm/$(DEPDIR)/wxmedit-xm_ublock.Po"; else rm -f "src/xm/$(DEPDIR)/wxmedit-xm_ublock.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/xm/xm_ublock.cpp' object='src/xm/wxmedit-xm_ublock.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -c -o src/xm/wxmedit-xm_ublock.obj `if test -f 'src/xm/xm_ublock.cpp'; then $(CYGPATH_W) 'src/xm/xm_ublock.cpp'; else $(CYGPATH_W) '$(srcdir)/src/xm/xm_ublock.cpp'; fi`
-
-src/xm/wxmedit-xm_uutils.o: src/xm/xm_uutils.cpp
-@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -MT src/xm/wxmedit-xm_uutils.o -MD -MP -MF "src/xm/$(DEPDIR)/wxmedit-xm_uutils.Tpo" -c -o src/xm/wxmedit-xm_uutils.o `test -f 'src/xm/xm_uutils.cpp' || echo '$(srcdir)/'`src/xm/xm_uutils.cpp; \
-@am__fastdepCXX_TRUE@	then mv -f "src/xm/$(DEPDIR)/wxmedit-xm_uutils.Tpo" "src/xm/$(DEPDIR)/wxmedit-xm_uutils.Po"; else rm -f "src/xm/$(DEPDIR)/wxmedit-xm_uutils.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/xm/xm_uutils.cpp' object='src/xm/wxmedit-xm_uutils.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -c -o src/xm/wxmedit-xm_uutils.o `test -f 'src/xm/xm_uutils.cpp' || echo '$(srcdir)/'`src/xm/xm_uutils.cpp
-
-src/xm/wxmedit-xm_uutils.obj: src/xm/xm_uutils.cpp
-@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -MT src/xm/wxmedit-xm_uutils.obj -MD -MP -MF "src/xm/$(DEPDIR)/wxmedit-xm_uutils.Tpo" -c -o src/xm/wxmedit-xm_uutils.obj `if test -f 'src/xm/xm_uutils.cpp'; then $(CYGPATH_W) 'src/xm/xm_uutils.cpp'; else $(CYGPATH_W) '$(srcdir)/src/xm/xm_uutils.cpp'; fi`; \
-@am__fastdepCXX_TRUE@	then mv -f "src/xm/$(DEPDIR)/wxmedit-xm_uutils.Tpo" "src/xm/$(DEPDIR)/wxmedit-xm_uutils.Po"; else rm -f "src/xm/$(DEPDIR)/wxmedit-xm_uutils.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/xm/xm_uutils.cpp' object='src/xm/wxmedit-xm_uutils.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -c -o src/xm/wxmedit-xm_uutils.obj `if test -f 'src/xm/xm_uutils.cpp'; then $(CYGPATH_W) 'src/xm/xm_uutils.cpp'; else $(CYGPATH_W) '$(srcdir)/src/xm/xm_uutils.cpp'; fi`
-
 src/xm/wxmedit-wx_recent_list.o: src/xm/wx_recent_list.cpp
 @am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -MT src/xm/wxmedit-wx_recent_list.o -MD -MP -MF "src/xm/$(DEPDIR)/wxmedit-wx_recent_list.Tpo" -c -o src/xm/wxmedit-wx_recent_list.o `test -f 'src/xm/wx_recent_list.cpp' || echo '$(srcdir)/'`src/xm/wx_recent_list.cpp; \
 @am__fastdepCXX_TRUE@	then mv -f "src/xm/$(DEPDIR)/wxmedit-wx_recent_list.Tpo" "src/xm/$(DEPDIR)/wxmedit-wx_recent_list.Po"; else rm -f "src/xm/$(DEPDIR)/wxmedit-wx_recent_list.Tpo"; exit 1; fi
@@ -1550,6 +1525,20 @@ src/xm/wxmedit-wxm_line_enc_adapter.obj: src/xm/wxm_line_enc_adapter.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -c -o src/xm/wxmedit-wxm_line_enc_adapter.obj `if test -f 'src/xm/wxm_line_enc_adapter.cpp'; then $(CYGPATH_W) 'src/xm/wxm_line_enc_adapter.cpp'; else $(CYGPATH_W) '$(srcdir)/src/xm/wxm_line_enc_adapter.cpp'; fi`
 
+src/xm/wxmedit-wxm_update.o: src/xm/wxm_update.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -MT src/xm/wxmedit-wxm_update.o -MD -MP -MF "src/xm/$(DEPDIR)/wxmedit-wxm_update.Tpo" -c -o src/xm/wxmedit-wxm_update.o `test -f 'src/xm/wxm_update.cpp' || echo '$(srcdir)/'`src/xm/wxm_update.cpp; \
+@am__fastdepCXX_TRUE@	then mv -f "src/xm/$(DEPDIR)/wxmedit-wxm_update.Tpo" "src/xm/$(DEPDIR)/wxmedit-wxm_update.Po"; else rm -f "src/xm/$(DEPDIR)/wxmedit-wxm_update.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/xm/wxm_update.cpp' object='src/xm/wxmedit-wxm_update.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -c -o src/xm/wxmedit-wxm_update.o `test -f 'src/xm/wxm_update.cpp' || echo '$(srcdir)/'`src/xm/wxm_update.cpp
+
+src/xm/wxmedit-wxm_update.obj: src/xm/wxm_update.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -MT src/xm/wxmedit-wxm_update.obj -MD -MP -MF "src/xm/$(DEPDIR)/wxmedit-wxm_update.Tpo" -c -o src/xm/wxmedit-wxm_update.obj `if test -f 'src/xm/wxm_update.cpp'; then $(CYGPATH_W) 'src/xm/wxm_update.cpp'; else $(CYGPATH_W) '$(srcdir)/src/xm/wxm_update.cpp'; fi`; \
+@am__fastdepCXX_TRUE@	then mv -f "src/xm/$(DEPDIR)/wxmedit-wxm_update.Tpo" "src/xm/$(DEPDIR)/wxmedit-wxm_update.Po"; else rm -f "src/xm/$(DEPDIR)/wxmedit-wxm_update.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/xm/wxm_update.cpp' object='src/xm/wxmedit-wxm_update.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -c -o src/xm/wxmedit-wxm_update.obj `if test -f 'src/xm/wxm_update.cpp'; then $(CYGPATH_W) 'src/xm/wxm_update.cpp'; else $(CYGPATH_W) '$(srcdir)/src/xm/wxm_update.cpp'; fi`
+
 src/xm/wxmedit-wxm_wx_icu.o: src/xm/wxm_wx_icu.cpp
 @am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -MT src/xm/wxmedit-wxm_wx_icu.o -MD -MP -MF "src/xm/$(DEPDIR)/wxmedit-wxm_wx_icu.Tpo" -c -o src/xm/wxmedit-wxm_wx_icu.o `test -f 'src/xm/wxm_wx_icu.cpp' || echo '$(srcdir)/'`src/xm/wxm_wx_icu.cpp; \
 @am__fastdepCXX_TRUE@	then mv -f "src/xm/$(DEPDIR)/wxmedit-wxm_wx_icu.Tpo" "src/xm/$(DEPDIR)/wxmedit-wxm_wx_icu.Po"; else rm -f "src/xm/$(DEPDIR)/wxmedit-wxm_wx_icu.Tpo"; exit 1; fi
@@ -1563,6 +1552,62 @@ src/xm/wxmedit-wxm_wx_icu.obj: src/xm/wxm_wx_icu.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/xm/wxm_wx_icu.cpp' object='src/xm/wxmedit-wxm_wx_icu.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -c -o src/xm/wxmedit-wxm_wx_icu.obj `if test -f 'src/xm/wxm_wx_icu.cpp'; then $(CYGPATH_W) 'src/xm/wxm_wx_icu.cpp'; else $(CYGPATH_W) '$(srcdir)/src/xm/wxm_wx_icu.cpp'; fi`
+
+src/xm/wxmedit-xm_remote.o: src/xm/xm_remote.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -MT src/xm/wxmedit-xm_remote.o -MD -MP -MF "src/xm/$(DEPDIR)/wxmedit-xm_remote.Tpo" -c -o src/xm/wxmedit-xm_remote.o `test -f 'src/xm/xm_remote.cpp' || echo '$(srcdir)/'`src/xm/xm_remote.cpp; \
+@am__fastdepCXX_TRUE@	then mv -f "src/xm/$(DEPDIR)/wxmedit-xm_remote.Tpo" "src/xm/$(DEPDIR)/wxmedit-xm_remote.Po"; else rm -f "src/xm/$(DEPDIR)/wxmedit-xm_remote.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/xm/xm_remote.cpp' object='src/xm/wxmedit-xm_remote.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -c -o src/xm/wxmedit-xm_remote.o `test -f 'src/xm/xm_remote.cpp' || echo '$(srcdir)/'`src/xm/xm_remote.cpp
+
+src/xm/wxmedit-xm_remote.obj: src/xm/xm_remote.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -MT src/xm/wxmedit-xm_remote.obj -MD -MP -MF "src/xm/$(DEPDIR)/wxmedit-xm_remote.Tpo" -c -o src/xm/wxmedit-xm_remote.obj `if test -f 'src/xm/xm_remote.cpp'; then $(CYGPATH_W) 'src/xm/xm_remote.cpp'; else $(CYGPATH_W) '$(srcdir)/src/xm/xm_remote.cpp'; fi`; \
+@am__fastdepCXX_TRUE@	then mv -f "src/xm/$(DEPDIR)/wxmedit-xm_remote.Tpo" "src/xm/$(DEPDIR)/wxmedit-xm_remote.Po"; else rm -f "src/xm/$(DEPDIR)/wxmedit-xm_remote.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/xm/xm_remote.cpp' object='src/xm/wxmedit-xm_remote.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -c -o src/xm/wxmedit-xm_remote.obj `if test -f 'src/xm/xm_remote.cpp'; then $(CYGPATH_W) 'src/xm/xm_remote.cpp'; else $(CYGPATH_W) '$(srcdir)/src/xm/xm_remote.cpp'; fi`
+
+src/xm/wxmedit-xm_ublock_des.o: src/xm/xm_ublock_des.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -MT src/xm/wxmedit-xm_ublock_des.o -MD -MP -MF "src/xm/$(DEPDIR)/wxmedit-xm_ublock_des.Tpo" -c -o src/xm/wxmedit-xm_ublock_des.o `test -f 'src/xm/xm_ublock_des.cpp' || echo '$(srcdir)/'`src/xm/xm_ublock_des.cpp; \
+@am__fastdepCXX_TRUE@	then mv -f "src/xm/$(DEPDIR)/wxmedit-xm_ublock_des.Tpo" "src/xm/$(DEPDIR)/wxmedit-xm_ublock_des.Po"; else rm -f "src/xm/$(DEPDIR)/wxmedit-xm_ublock_des.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/xm/xm_ublock_des.cpp' object='src/xm/wxmedit-xm_ublock_des.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -c -o src/xm/wxmedit-xm_ublock_des.o `test -f 'src/xm/xm_ublock_des.cpp' || echo '$(srcdir)/'`src/xm/xm_ublock_des.cpp
+
+src/xm/wxmedit-xm_ublock_des.obj: src/xm/xm_ublock_des.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -MT src/xm/wxmedit-xm_ublock_des.obj -MD -MP -MF "src/xm/$(DEPDIR)/wxmedit-xm_ublock_des.Tpo" -c -o src/xm/wxmedit-xm_ublock_des.obj `if test -f 'src/xm/xm_ublock_des.cpp'; then $(CYGPATH_W) 'src/xm/xm_ublock_des.cpp'; else $(CYGPATH_W) '$(srcdir)/src/xm/xm_ublock_des.cpp'; fi`; \
+@am__fastdepCXX_TRUE@	then mv -f "src/xm/$(DEPDIR)/wxmedit-xm_ublock_des.Tpo" "src/xm/$(DEPDIR)/wxmedit-xm_ublock_des.Po"; else rm -f "src/xm/$(DEPDIR)/wxmedit-xm_ublock_des.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/xm/xm_ublock_des.cpp' object='src/xm/wxmedit-xm_ublock_des.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -c -o src/xm/wxmedit-xm_ublock_des.obj `if test -f 'src/xm/xm_ublock_des.cpp'; then $(CYGPATH_W) 'src/xm/xm_ublock_des.cpp'; else $(CYGPATH_W) '$(srcdir)/src/xm/xm_ublock_des.cpp'; fi`
+
+src/xm/wxmedit-xm_ublock.o: src/xm/xm_ublock.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -MT src/xm/wxmedit-xm_ublock.o -MD -MP -MF "src/xm/$(DEPDIR)/wxmedit-xm_ublock.Tpo" -c -o src/xm/wxmedit-xm_ublock.o `test -f 'src/xm/xm_ublock.cpp' || echo '$(srcdir)/'`src/xm/xm_ublock.cpp; \
+@am__fastdepCXX_TRUE@	then mv -f "src/xm/$(DEPDIR)/wxmedit-xm_ublock.Tpo" "src/xm/$(DEPDIR)/wxmedit-xm_ublock.Po"; else rm -f "src/xm/$(DEPDIR)/wxmedit-xm_ublock.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/xm/xm_ublock.cpp' object='src/xm/wxmedit-xm_ublock.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -c -o src/xm/wxmedit-xm_ublock.o `test -f 'src/xm/xm_ublock.cpp' || echo '$(srcdir)/'`src/xm/xm_ublock.cpp
+
+src/xm/wxmedit-xm_ublock.obj: src/xm/xm_ublock.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -MT src/xm/wxmedit-xm_ublock.obj -MD -MP -MF "src/xm/$(DEPDIR)/wxmedit-xm_ublock.Tpo" -c -o src/xm/wxmedit-xm_ublock.obj `if test -f 'src/xm/xm_ublock.cpp'; then $(CYGPATH_W) 'src/xm/xm_ublock.cpp'; else $(CYGPATH_W) '$(srcdir)/src/xm/xm_ublock.cpp'; fi`; \
+@am__fastdepCXX_TRUE@	then mv -f "src/xm/$(DEPDIR)/wxmedit-xm_ublock.Tpo" "src/xm/$(DEPDIR)/wxmedit-xm_ublock.Po"; else rm -f "src/xm/$(DEPDIR)/wxmedit-xm_ublock.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/xm/xm_ublock.cpp' object='src/xm/wxmedit-xm_ublock.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -c -o src/xm/wxmedit-xm_ublock.obj `if test -f 'src/xm/xm_ublock.cpp'; then $(CYGPATH_W) 'src/xm/xm_ublock.cpp'; else $(CYGPATH_W) '$(srcdir)/src/xm/xm_ublock.cpp'; fi`
+
+src/xm/wxmedit-xm_uutils.o: src/xm/xm_uutils.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -MT src/xm/wxmedit-xm_uutils.o -MD -MP -MF "src/xm/$(DEPDIR)/wxmedit-xm_uutils.Tpo" -c -o src/xm/wxmedit-xm_uutils.o `test -f 'src/xm/xm_uutils.cpp' || echo '$(srcdir)/'`src/xm/xm_uutils.cpp; \
+@am__fastdepCXX_TRUE@	then mv -f "src/xm/$(DEPDIR)/wxmedit-xm_uutils.Tpo" "src/xm/$(DEPDIR)/wxmedit-xm_uutils.Po"; else rm -f "src/xm/$(DEPDIR)/wxmedit-xm_uutils.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/xm/xm_uutils.cpp' object='src/xm/wxmedit-xm_uutils.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -c -o src/xm/wxmedit-xm_uutils.o `test -f 'src/xm/xm_uutils.cpp' || echo '$(srcdir)/'`src/xm/xm_uutils.cpp
+
+src/xm/wxmedit-xm_uutils.obj: src/xm/xm_uutils.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -MT src/xm/wxmedit-xm_uutils.obj -MD -MP -MF "src/xm/$(DEPDIR)/wxmedit-xm_uutils.Tpo" -c -o src/xm/wxmedit-xm_uutils.obj `if test -f 'src/xm/xm_uutils.cpp'; then $(CYGPATH_W) 'src/xm/xm_uutils.cpp'; else $(CYGPATH_W) '$(srcdir)/src/xm/xm_uutils.cpp'; fi`; \
+@am__fastdepCXX_TRUE@	then mv -f "src/xm/$(DEPDIR)/wxmedit-xm_uutils.Tpo" "src/xm/$(DEPDIR)/wxmedit-xm_uutils.Po"; else rm -f "src/xm/$(DEPDIR)/wxmedit-xm_uutils.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/xm/xm_uutils.cpp' object='src/xm/wxmedit-xm_uutils.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -c -o src/xm/wxmedit-xm_uutils.obj `if test -f 'src/xm/xm_uutils.cpp'; then $(CYGPATH_W) 'src/xm/xm_uutils.cpp'; else $(CYGPATH_W) '$(srcdir)/src/xm/xm_uutils.cpp'; fi`
 
 src/wxmedit/wxmedit-trad_simp.o: src/wxmedit/trad_simp.cpp
 @am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -MT src/wxmedit/wxmedit-trad_simp.o -MD -MP -MF "src/wxmedit/$(DEPDIR)/wxmedit-trad_simp.Tpo" -c -o src/wxmedit/wxmedit-trad_simp.o `test -f 'src/wxmedit/trad_simp.cpp' || echo '$(srcdir)/'`src/wxmedit/trad_simp.cpp; \

@@ -259,6 +259,7 @@ public:
     void OnWindowPreviousWindow(wxCommandEvent& event);
     void OnWindowNextWindow(wxCommandEvent& event);
 
+    void OnHelpCheckUpdates(wxCommandEvent& event);
     void OnHelpAbout(wxCommandEvent& event);
 
 private:
@@ -469,7 +470,10 @@ enum { // menu id
     // window
     menuToggleWindow,
     menuPreviousWindow,
-    menuNextWindow
+    menuNextWindow,
+
+    // help
+    menuCheckUpdates,
 };
 
 extern MadEditFrame *g_MainFrame;

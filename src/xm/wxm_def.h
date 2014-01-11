@@ -13,6 +13,8 @@
 #include <wx/version.h>
 #include <vector>
 
+#define WXMEDIT_VERSION	"2.9.6"
+
 #if defined(__WXMSW__) && wxMAJOR_VERSION==2 && wxMINOR_VERSION==6
 # define wxOS_WINDOWS_9X wxWIN95
 # include <wx/longlong.h>

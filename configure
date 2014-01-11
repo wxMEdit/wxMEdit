@@ -754,6 +754,8 @@ am__fastdepCXX_FALSE
 PKG_CONFIG
 glib_gtk2_CFLAGS
 glib_gtk2_LIBS
+curl_CFLAGS
+curl_LIBS
 TESTLIBS
 WX_CONFIG_PATH
 WX_CPPFLAGS
@@ -784,6 +786,8 @@ CCC
 PKG_CONFIG
 glib_gtk2_CFLAGS
 glib_gtk2_LIBS
+curl_CFLAGS
+curl_LIBS
 CXXCPP'
 
 
@@ -1414,6 +1418,8 @@ Some influential environment variables:
               C compiler flags for glib_gtk2, overriding pkg-config
   glib_gtk2_LIBS
               linker flags for glib_gtk2, overriding pkg-config
+  curl_CFLAGS C compiler flags for curl, overriding pkg-config
+  curl_LIBS   linker flags for curl, overriding pkg-config
   CXXCPP      C++ preprocessor
 
 Use these variables to override the choices made by `configure' or to help
@@ -12550,6 +12556,7 @@ esac
 #if test "x$IS_MACOS" == "x"; then
 #fi
 
+
 if test "x$ac_cv_env_PKG_CONFIG_set" != "xset"; then
 	if test -n "$ac_tool_prefix"; then
   # Extract the first word of "${ac_tool_prefix}pkg-config", so it can be a program name with args.
@@ -12811,6 +12818,118 @@ echo "${ECHO_T}yes" >&6; }
 fi
 CXXFLAGS="$CXXFLAGS $glib_gtk2_CFLAGS"
 LIBS="$LIBS $glib_gtk2_LIBS -lX11"
+
+
+pkg_failed=no
+{ echo "$as_me:$LINENO: checking for curl" >&5
+echo $ECHO_N "checking for curl... $ECHO_C" >&6; }
+
+if test -n "$PKG_CONFIG"; then
+    if test -n "$curl_CFLAGS"; then
+        pkg_cv_curl_CFLAGS="$curl_CFLAGS"
+    else
+        if test -n "$PKG_CONFIG" && \
+    { (echo "$as_me:$LINENO: \$PKG_CONFIG --exists --print-errors \"libcurl\"") >&5
+  ($PKG_CONFIG --exists --print-errors "libcurl") 2>&5
+  ac_status=$?
+  echo "$as_me:$LINENO: \$? = $ac_status" >&5
+  (exit $ac_status); }; then
+  pkg_cv_curl_CFLAGS=`$PKG_CONFIG --cflags "libcurl" 2>/dev/null`
+else
+  pkg_failed=yes
+fi
+    fi
+else
+	pkg_failed=untried
+fi
+if test -n "$PKG_CONFIG"; then
+    if test -n "$curl_LIBS"; then
+        pkg_cv_curl_LIBS="$curl_LIBS"
+    else
+        if test -n "$PKG_CONFIG" && \
+    { (echo "$as_me:$LINENO: \$PKG_CONFIG --exists --print-errors \"libcurl\"") >&5
+  ($PKG_CONFIG --exists --print-errors "libcurl") 2>&5
+  ac_status=$?
+  echo "$as_me:$LINENO: \$? = $ac_status" >&5
+  (exit $ac_status); }; then
+  pkg_cv_curl_LIBS=`$PKG_CONFIG --libs "libcurl" 2>/dev/null`
+else
+  pkg_failed=yes
+fi
+    fi
+else
+	pkg_failed=untried
+fi
+
+
+
+if test $pkg_failed = yes; then
+
+if $PKG_CONFIG --atleast-pkgconfig-version 0.20; then
+        _pkg_short_errors_supported=yes
+else
+        _pkg_short_errors_supported=no
+fi
+        if test $_pkg_short_errors_supported = yes; then
+	        curl_PKG_ERRORS=`$PKG_CONFIG --short-errors --errors-to-stdout --print-errors "libcurl"`
+        else
+	        curl_PKG_ERRORS=`$PKG_CONFIG --errors-to-stdout --print-errors "libcurl"`
+        fi
+	# Put the nasty error message in config.log where it belongs
+	echo "$curl_PKG_ERRORS" >&5
+
+	{ { echo "$as_me:$LINENO: error: Package requirements (libcurl) were not met:
+
+$curl_PKG_ERRORS
+
+Consider adjusting the PKG_CONFIG_PATH environment variable if you
+installed software in a non-standard prefix.
+
+Alternatively, you may set the environment variables curl_CFLAGS
+and curl_LIBS to avoid the need to call pkg-config.
+See the pkg-config man page for more details.
+" >&5
+echo "$as_me: error: Package requirements (libcurl) were not met:
+
+$curl_PKG_ERRORS
+
+Consider adjusting the PKG_CONFIG_PATH environment variable if you
+installed software in a non-standard prefix.
+
+Alternatively, you may set the environment variables curl_CFLAGS
+and curl_LIBS to avoid the need to call pkg-config.
+See the pkg-config man page for more details.
+" >&2;}
+   { (exit 1); exit 1; }; }
+elif test $pkg_failed = untried; then
+	{ { echo "$as_me:$LINENO: error: The pkg-config script could not be found or is too old.  Make sure it
+is in your PATH or set the PKG_CONFIG environment variable to the full
+path to pkg-config.
+
+Alternatively, you may set the environment variables curl_CFLAGS
+and curl_LIBS to avoid the need to call pkg-config.
+See the pkg-config man page for more details.
+
+To get pkg-config, see <http://www.freedesktop.org/software/pkgconfig>.
+See \`config.log' for more details." >&5
+echo "$as_me: error: The pkg-config script could not be found or is too old.  Make sure it
+is in your PATH or set the PKG_CONFIG environment variable to the full
+path to pkg-config.
+
+Alternatively, you may set the environment variables curl_CFLAGS
+and curl_LIBS to avoid the need to call pkg-config.
+See the pkg-config man page for more details.
+
+To get pkg-config, see <http://www.freedesktop.org/software/pkgconfig>.
+See \`config.log' for more details." >&2;}
+   { (exit 1); exit 1; }; }
+else
+	curl_CFLAGS=$pkg_cv_curl_CFLAGS
+	curl_LIBS=$pkg_cv_curl_LIBS
+        { echo "$as_me:$LINENO: result: yes" >&5
+echo "${ECHO_T}yes" >&6; }
+	:
+fi
 
 # option for additional wxAUI lib
 
@@ -13412,7 +13531,7 @@ ac_compiler_gnu=$ac_cv_cxx_compiler_gnu
 
 
 
-for ac_header in boost/config.hpp unicode/uchar.h unicode/unistr.h
+for ac_header in boost/config.hpp
 do
 as_ac_Header=`echo "ac_cv_header_$ac_header" | $as_tr_sh`
 if { as_var=$as_ac_Header; eval "test \"\${$as_var+set}\" = set"; }; then
@@ -15484,6 +15603,8 @@ am__fastdepCXX_FALSE!$am__fastdepCXX_FALSE$ac_delim
 PKG_CONFIG!$PKG_CONFIG$ac_delim
 glib_gtk2_CFLAGS!$glib_gtk2_CFLAGS$ac_delim
 glib_gtk2_LIBS!$glib_gtk2_LIBS$ac_delim
+curl_CFLAGS!$curl_CFLAGS$ac_delim
+curl_LIBS!$curl_LIBS$ac_delim
 TESTLIBS!$TESTLIBS$ac_delim
 WX_CONFIG_PATH!$WX_CONFIG_PATH$ac_delim
 WX_CPPFLAGS!$WX_CPPFLAGS$ac_delim
@@ -15500,7 +15621,7 @@ LIBOBJS!$LIBOBJS$ac_delim
 LTLIBOBJS!$LTLIBOBJS$ac_delim
 _ACEOF
 
-  if test `sed -n "s/.*$ac_delim\$/X/p" conf$$subs.sed | grep -c X` = 54; then
+  if test `sed -n "s/.*$ac_delim\$/X/p" conf$$subs.sed | grep -c X` = 56; then
     break
   elif $ac_last_try; then
     { { echo "$as_me:$LINENO: error: could not make $CONFIG_STATUS" >&5

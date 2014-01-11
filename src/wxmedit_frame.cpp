@@ -26,6 +26,7 @@
 #include "wxm_printout.h"
 #include "wxm_utils.h"
 #include "wxm_command.h"
+#include "xm/wxm_update.h"
 #include "xm/wx_recent_list.h"
 #include "xm/wxm_def.h"
 #include "plugin.h"
@@ -139,7 +140,8 @@
 #endif
 
 
-wxString g_wxMEdit_Version(wxT("wxMEdit v2.9.6"));
+wxString g_wxMEdit_Version(wxT("wxMEdit v")
+                           wxT(WXMEDIT_VERSION));
 
 wxString g_wxMEdit_Homepage_URL(wxT("http://code.google.com/p/wxmedit/"));
 wxString g_wxMEdit_License_URL(wxT("http://www.gnu.org/licenses/gpl-3.0.html"));
@@ -1191,6 +1193,7 @@ BEGIN_EVENT_TABLE(MadEditFrame,wxFrame)
 	EVT_MENU(menuNextWindow, MadEditFrame::OnWindowNextWindow)
 	EVT_MENU(menuPreviousWindow, MadEditFrame::OnWindowPreviousWindow)
 	// help
+	EVT_MENU(menuCheckUpdates, MadEditFrame::OnHelpCheckUpdates)
 	EVT_MENU(menuAbout, MadEditFrame::OnHelpAbout)
 	
 	EVT_CLOSE(MadEditFrame::MadEditFrameClose)
@@ -1537,7 +1540,8 @@ CommandData CommandTable[]=
 
     // Help
     { 0, 0, 0, 0, _("&Help"), 0, wxITEM_NORMAL, 0, &g_Menu_Help, 0},
-    { 0, 1, menuAbout, wxT("menuAbout"), _("&About wxMEdit..."), wxT(""),       wxITEM_NORMAL, wxmedit_16x15_xpm_idx, 0, _("Show about dialog")},
+    { 0, 1, menuCheckUpdates, wxT("menuCheckUpdates"), _("&Check for updates..."), wxT(""),       wxITEM_NORMAL, -1,                    0, _("Check for new versions of wxMEdit")},
+    { 0, 1, menuAbout,       wxT("menuAbout"),       _("&About wxMEdit..."),          wxT(""),       wxITEM_NORMAL, wxmedit_16x15_xpm_idx, 0, _("Show about dialog")},
     // end menu
 
     // begin editor
@@ -4938,6 +4942,11 @@ void MadEditFrame::OnWindowNextWindow(wxCommandEvent& event)
 
     g_CheckModTimeForReload=true;
     g_ActiveMadEdit->ReloadByModificationTime();
+}
+
+void MadEditFrame::OnHelpCheckUpdates(wxCommandEvent& event)
+{
+    wxm::CheckUpdates();
 }
 
 void MadEditFrame::OnHelpAbout(wxCommandEvent& event)

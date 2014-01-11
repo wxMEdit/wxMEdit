@@ -42,6 +42,8 @@ PKG_CHECK_MODULES(glib_gtk2, [
 CXXFLAGS="$CXXFLAGS $glib_gtk2_CFLAGS"
 LIBS="$LIBS $glib_gtk2_LIBS -lX11"
 
+PKG_CHECK_MODULES([curl], [libcurl])
+
 # option for additional wxAUI lib
 AC_ARG_WITH(aui, 
     [  --with-aui=PATH         use additional wxAUI library path],
