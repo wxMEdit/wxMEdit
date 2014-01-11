@@ -60,9 +60,6 @@ class WXMAboutDialog: public wxDialog
 		void OnNotebook1PageChanged(wxNotebookEvent& event);
 		//*)
 
-		void WXMAboutDialogActivate(wxActivateEvent& event);
-		bool m_reset_license_text_pos;
-
 		DECLARE_EVENT_TABLE()
 };
 

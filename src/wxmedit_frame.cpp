@@ -4953,6 +4953,8 @@ void MadEditFrame::OnHelpAbout(wxCommandEvent& event)
                             g_wxMEdit_License_URL + wxT("\n\n") +
                             _("Press OK to visit the license online version.\n"));
 
+    dlg.TxtLicense->SetInsertionPoint(0L);
+
     if(dlg.ShowModal()==wxID_OK)
     {
         OpenURL(g_wxMEdit_About_URL);
