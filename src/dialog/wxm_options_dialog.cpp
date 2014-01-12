@@ -346,7 +346,7 @@ WXMOptionsDialog::WXMOptionsDialog(wxWindow* parent,wxWindowID id)
 	WxButtonCheckNow = new wxButton(Panel1, ID_WXBUTTONCHECKNOW, _("Check &now"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_WXBUTTONCHECKNOW"));
 	BoxSizer34->Add(WxButtonCheckNow, 0, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 0);
 	BoxSizer35->Add(BoxSizer34, 0, wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL, 0);
-	WxCheckBoxCheckPrerelease = new wxCheckBox(Panel1, ID_WXCHECKBOXCHECKPRERELEASE, _("Check for new version including &prerelease"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_WXCHECKBOXCHECKPRERELEASE"));
+	WxCheckBoxCheckPrerelease = new wxCheckBox(Panel1, ID_WXCHECKBOXCHECKPRERELEASE, _("Check for new versions including &prereleases"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_WXCHECKBOXCHECKPRERELEASE"));
 	WxCheckBoxCheckPrerelease->SetValue(false);
 	BoxSizer35->Add(WxCheckBoxCheckPrerelease, 0, wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL, 2);
 	BoxSizer3->Add(BoxSizer35, 0, wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL, 5);
