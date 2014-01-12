@@ -8,11 +8,12 @@
 
 #include "wxm_options_dialog.h"
 
-#include "../xm/wxm_def.h"
-#include "../xm/wxm_encoding/encoding.h"
 #include "../wxmedit/wxmedit_command.h"
 #include "../wxmedit/wxmedit.h"
 #include "../wxmedit_frame.h"
+#include "../xm/wxm_encoding/encoding.h"
+#include "../xm/wxm_update.h"
+#include "../xm/wxm_def.h"
 #include "../wxm_utils.h"
 
 //(*InternalHeaders(WXMOptionsDialog)
@@ -119,6 +120,9 @@ wxString FilterChar(const wxChar *ws)
 
 
 //(*IdInit(WXMOptionsDialog)
+const long WXMOptionsDialog::ID_STATICTEXT17 = wxNewId();
+const long WXMOptionsDialog::ID_WXCOMBOBOXUPDATESCHECKINGPERIOD = wxNewId();
+const long WXMOptionsDialog::ID_WXBUTTONCHECKNOW = wxNewId();
 const long WXMOptionsDialog::ID_WXCOMBOBOXLANGUAGE = wxNewId();
 const long WXMOptionsDialog::ID_STATICTEXT16 = wxNewId();
 const long WXMOptionsDialog::ID_WXCHECKBOXSINGLEINSTANCE = wxNewId();
@@ -318,6 +322,7 @@ WXMOptionsDialog::WXMOptionsDialog(wxWindow* parent,wxWindowID id)
 	wxStaticBoxSizer* StaticBoxSizer1;
 	wxBoxSizer* BoxSizer33;
 	wxBoxSizer* BoxSizer22;
+	wxBoxSizer* BoxSizer34;
 	wxFlexGridSizer* FlexGridSizer1;
 	wxBoxSizer* BoxSizer3;
 	wxBoxSizer* BoxSizer25;
@@ -329,6 +334,15 @@ WXMOptionsDialog::WXMOptionsDialog(wxWindow* parent,wxWindowID id)
 	AuiNotebook1 = new wxAuiNotebook(this, ID_AUINOTEBOOK1, wxDefaultPosition, wxDefaultSize, wxAUI_NB_DEFAULT_STYLE);
 	Panel1 = new wxPanel(AuiNotebook1, ID_PANEL1, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL, _T("ID_PANEL1"));
 	BoxSizer3 = new wxBoxSizer(wxVERTICAL);
+	BoxSizer34 = new wxBoxSizer(wxHORIZONTAL);
+	StaticText17 = new wxStaticText(Panel1, ID_STATICTEXT17, _("Automatically check for new versions:"), wxDefaultPosition, wxDefaultSize, 0, _T("ID_STATICTEXT17"));
+	BoxSizer34->Add(StaticText17, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+	WxComboBoxUpdatesCheckingPeriod = new wxComboBox(Panel1, ID_WXCOMBOBOXUPDATESCHECKINGPERIOD, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0, 0, wxCB_READONLY|wxCB_DROPDOWN, wxDefaultValidator, _T("ID_WXCOMBOBOXUPDATESCHECKINGPERIOD"));
+	BoxSizer34->Add(WxComboBoxUpdatesCheckingPeriod, 0, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 0);
+	BoxSizer34->Add(20,0,0, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 0);
+	WxButtonCheckNow = new wxButton(Panel1, ID_WXBUTTONCHECKNOW, _("Check &now"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_WXBUTTONCHECKNOW"));
+	BoxSizer34->Add(WxButtonCheckNow, 0, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 0);
+	BoxSizer3->Add(BoxSizer34, 0, wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL, 2);
 	BoxSizer27 = new wxBoxSizer(wxHORIZONTAL);
 	BoxSizer27->Add(3,0,0, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 0);
 	WxComboBoxLanguage = new wxComboBox(Panel1, ID_WXCOMBOBOXLANGUAGE, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0, 0, wxCB_READONLY|wxCB_DROPDOWN, wxDefaultValidator, _T("ID_WXCOMBOBOXLANGUAGE"));
@@ -604,6 +618,7 @@ WXMOptionsDialog::WXMOptionsDialog(wxWindow* parent,wxWindowID id)
 	BoxSizer1->SetSizeHints(this);
 	Center();
 
+	Connect(ID_WXBUTTONCHECKNOW,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&WXMOptionsDialog::WxButtonCheckNowClick);
 	Connect(ID_WXBUTTONDATETIME,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&WXMOptionsDialog::WxButtonDateTimeClick);
 	Connect(ID_TREECTRL1,wxEVT_COMMAND_TREE_SEL_CHANGED,(wxObjectEventFunction)&WXMOptionsDialog::WxTreeCtrl1SelChanged);
 	Connect(ID_WXLISTBOXKEYS,wxEVT_COMMAND_LISTBOX_SELECTED,(wxObjectEventFunction)&WXMOptionsDialog::WxListBoxKeysSelected);
@@ -670,6 +685,13 @@ WXMOptionsDialog::WXMOptionsDialog(wxWindow* parent,wxWindowID id)
 		WxComboBoxLanguage->Append(wxString(g_LanguageString[i]));
 	}
 	WxComboBoxLanguage->SetValue(systemlang);
+
+	std::vector<wxString> peroids = wxm::UpdatePeriods::Instance().GetTitles();
+	for(i=0; i<peroids.size(); ++i)
+	{
+		WxComboBoxUpdatesCheckingPeriod->Append(peroids[i]);
+	}
+	WxComboBoxUpdatesCheckingPeriod->SetValue(wxm::UpdatePeriods::Instance().GetDefaultTitle());
 
 #ifdef __WXMSW__
 	WxCheckBoxRightClickMenu = new wxCheckBox(Panel1, -1, _("Add wxMEdit to the RightClickMenu of Explorer(Deselect to Remove the Entry from Windows Registry)"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("WxCheckBoxRightClickMenu"));
@@ -785,6 +807,12 @@ wxString WXMOptionsDialog::GetSelectedEncoding()
 	return wxs;
 }
 
+wxString WXMOptionsDialog::GetSelectedUpdatePeroid()
+{
+	wxString title = WxComboBoxUpdatesCheckingPeriod->GetValue();
+	return wxm::UpdatePeriods::Instance().TitleToConfig(title);
+}
+
 void WXMOptionsDialog::WXMOptionsDialogClose(wxCloseEvent& event)
 {
 	if(event.CanVeto())
@@ -823,6 +851,9 @@ void WXMOptionsDialog::LoadOptions(void)
 	wxString ss;
 
 	// General page
+	cfg->Read(wxT("UpdatesCheckingPeriod"), &ss);
+	WxComboBoxUpdatesCheckingPeriod->SetValue(wxm::UpdatePeriods::Instance().ConfigToTitle(ss));
+
 	cfg->Read(wxT("Language"), &ss);
 	if (ss.IsEmpty())
 		ss=_("System Default");
@@ -1297,3 +1328,8 @@ void WXMOptionsDialog::DateTimeMarkClick(wxCommandEvent& event)
 	WxEditDateTime->SetValue(text+str);
 }
 
+
+void WXMOptionsDialog::WxButtonCheckNowClick(wxCommandEvent& event)
+{
+	wxm::ConfirmUpdate(wxm::CheckUpdates());
+}

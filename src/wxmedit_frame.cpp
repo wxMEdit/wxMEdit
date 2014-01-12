@@ -4476,6 +4476,8 @@ void MadEditFrame::OnToolsOptions(wxCommandEvent& event)
         bool rcm, isiot, ai, acp, msc, mscck, mmp;
         wxString mc, tc, ic;
 
+        m_Config->Write(wxT("UpdatesCheckingPeriod"), g_OptionsDialog->GetSelectedUpdatePeroid());
+
         m_Config->Write(wxT("Language"), g_OptionsDialog->GetSelectedLanguage());
         m_Config->Write(wxT("SingleInstance"), g_OptionsDialog->WxCheckBoxSingleInstance->GetValue());
 
@@ -4952,7 +4954,7 @@ void MadEditFrame::OnWindowNextWindow(wxCommandEvent& event)
 
 void MadEditFrame::OnHelpCheckUpdates(wxCommandEvent& event)
 {
-    wxm::CheckUpdates();
+    wxm::ConfirmUpdate(wxm::CheckUpdates());
 }
 
 void MadEditFrame::OnHelpAbout(wxCommandEvent& event)

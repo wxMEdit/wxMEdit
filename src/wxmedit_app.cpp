@@ -11,6 +11,7 @@
 #include "wxmedit_frame.h"
 #include "wxm_utils.h"
 #include "dialog/wxm_options_dialog.h"
+#include "xm/wxm_update.h"
 
 #include "wxmedit/wxmedit.h"
 
@@ -337,6 +338,8 @@ bool MadEditApp::OnInit()
     // set colors
     SetHtmlColors();
 
+    wxm::UpdatePeriods::Instance().Initialize();
+
     bool maximize=false;
 #ifdef __WXMSW__
     cfg->Read(wxT("/wxMEdit/WindowMaximize"), &maximize, false);
@@ -407,6 +410,8 @@ bool MadEditApp::OnInit()
     {
         myFrame->OpenFile(wxEmptyString, false);
     }
+
+    wxm::AutoCheckUpdates(cfg);
 
     return true;
 }

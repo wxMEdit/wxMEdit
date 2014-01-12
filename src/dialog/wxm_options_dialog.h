@@ -58,12 +58,14 @@ class WXMOptionsDialog: public wxDialogWrapper
 		wxCheckBox* WxCheckBoxWhenPressCtrlKey;
 		wxCheckBox* WxCheckBoxAutoCompletePair;
 		wxTextCtrl* WxEditIndentColumns;
+		wxButton* WxButtonCheckNow;
 		wxTextCtrl* WxEditMaxColumns;
 		wxStaticText* WxStaticTextCommandHint;
 		wxCheckBox* WxCheckBoxPrintLineNumber;
 		wxButton* Button4;
 		wxCheckBox* WxCheckBoxDoNotSaveSettings;
 		wxTextCtrl* WxEditHeaderLeft;
+		wxComboBox* WxComboBoxUpdatesCheckingPeriod;
 		wxButton* WxButtonAddKey;
 		wxStaticText* StaticText13;
 		wxListBox* WxListBoxKeys;
@@ -124,6 +126,7 @@ class WXMOptionsDialog: public wxDialogWrapper
 		wxStaticText* WxStaticTextDateTime;
 		wxCheckBox* WxCheckBoxPrintSyntax;
 		wxStaticText* StaticText4;
+		wxStaticText* StaticText17;
 		wxCheckBox* WxCheckBoxPrintSpaceChar;
 		wxCheckBox* WxCheckBoxDateTimeInEnglish;
 		wxRadioBox* WxRadioBoxPrintOffset;
@@ -134,6 +137,9 @@ class WXMOptionsDialog: public wxDialogWrapper
 	protected:
 		friend class KeyTextCtrl;
 		//(*Identifiers(WXMOptionsDialog)
+		static const long ID_STATICTEXT17;
+		static const long ID_WXCOMBOBOXUPDATESCHECKINGPERIOD;
+		static const long ID_WXBUTTONCHECKNOW;
 		static const long ID_WXCOMBOBOXLANGUAGE;
 		static const long ID_STATICTEXT16;
 		static const long ID_WXCHECKBOXSINGLEINSTANCE;
@@ -259,6 +265,7 @@ class WXMOptionsDialog: public wxDialogWrapper
 		void WxButtonShowInMenuClick(wxCommandEvent& event);
 		void WxListBoxKeysSelected(wxCommandEvent& event);
 		void WxTreeCtrl1SelChanged(wxTreeEvent& event);
+		void WxButtonCheckNowClick(wxCommandEvent& event);
 		//*)
 		
 		void WXMOptionsDialogActivate(wxActivateEvent& event);
@@ -272,6 +279,7 @@ class WXMOptionsDialog: public wxDialogWrapper
 public:
 	wxString GetSelectedLanguage();
 	wxString GetSelectedEncoding();
+	wxString GetSelectedUpdatePeroid();
 
 	void LoadOptions(void);
 
