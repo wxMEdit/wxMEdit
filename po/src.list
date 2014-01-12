@@ -67,5 +67,7 @@ wxstd.po.cpp
 ../src/xm/wxm_encoding/unicode.h
 ../src/xm/wxm_line_enc_adapter.cpp
 ../src/xm/wxm_line_enc_adapter.h
+../src/xm/wxm_update.cpp
+../src/xm/wxm_update.h
 ../src/xm/wx_recent_list.cpp
 ../src/xm/wx_recent_list.h
