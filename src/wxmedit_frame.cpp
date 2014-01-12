@@ -29,6 +29,7 @@
 #include "xm/wxm_update.h"
 #include "xm/wx_recent_list.h"
 #include "xm/wxm_def.h"
+#include "xm/xm_remote.h"
 #include "plugin.h"
 #include "wx/aui/auibook.h"
 
@@ -1664,6 +1665,9 @@ MadEditFrame::MadEditFrame( wxWindow *parent, wxWindowID id, const wxString &tit
 
     m_NewFileCount=0;
     m_Config=wxConfigBase::Get(false);
+
+    xm::RemoteAccessInit();
+
     wxm::WXMEncodingCreator::Instance().InitEncodings();
 
     MadSyntax::SetAttributeFilePath(g_MadEditHomeDir + wxT("syntax/"));
@@ -2190,6 +2194,8 @@ void MadEditFrame::MadEditFrameClose(wxCloseEvent& event)
     wxm::WXMEncodingCreator::Instance().FreeEncodings();
 
     FreeConvertChineseTable();
+
+    xm::RemoteAccessCleanup();
 
     //delete g_PrintData;
     delete g_PageSetupData;

@@ -13,7 +13,9 @@
 
 namespace xm
 {
-	std::string get_remote_txt(const std::string& url);	
+	bool RemoteAccessInit();
+	void RemoteAccessCleanup();
+	std::string GetRemoteText(const std::string& url);	
 } //namespace wxm
 
 #endif //_WXM_REMOTE_H_

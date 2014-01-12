@@ -19,10 +19,19 @@ static size_t string_append(const void *buffer, size_t size, size_t nmemb, void 
 namespace xm
 {
 
-std::string get_remote_txt(const std::string& url)
+bool RemoteAccessInit()
 {
-	CURLcode r = curl_global_init(CURL_GLOBAL_ALL);
-	if (r != CURLE_OK)
+	static bool inited = false;
+
+	if (!inited)
+		inited = (curl_global_init(CURL_GLOBAL_ALL) == CURLE_OK);
+
+	return inited;
+}
+
+std::string GetRemoteText(const std::string& url)
+{
+	if (!RemoteAccessInit())
 		return std::string();
 
 	CURL* h = curl_easy_init();
@@ -45,6 +54,8 @@ std::string get_remote_txt(const std::string& url)
 	curl_easy_setopt(h, CURLOPT_SSL_VERIFYPEER, 0L);
 	//curl_easy_setopt(h, CURLOPT_CAINFO, "./cacert.pem");
 
+	curl_easy_setopt(h, CURLOPT_TIMEOUT, 3*60L);
+
 	curl_easy_perform(h);
 
 	curl_easy_cleanup(h);
@@ -52,6 +63,11 @@ std::string get_remote_txt(const std::string& url)
 	curl_global_cleanup();
 
 	return txt;
+}
+
+void RemoteAccessCleanup()
+{
+	curl_global_cleanup();
 }
 
 } //namespace wxm
