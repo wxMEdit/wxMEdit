@@ -4966,13 +4966,10 @@ void MadEditFrame::OnHelpAbout(wxCommandEvent& event)
     dlg.TxtLicense->AppendText( wxString(_("wxMEdit, a cross-platform Text/Hex Editor")) + wxT("\n\n") +
                             g_wxMEdit_License + wxT("\n\n") +
                             g_wxMEdit_License_URL + wxT("\n\n") +
-                            _("Press OK to visit the license online version.\n"));
+                            _("Press OK to view the license online version.\n"));
 
     dlg.TxtLicense->SetInsertionPoint(0L);
 
-    if(dlg.ShowModal()==wxID_OK)
-    {
+    if(dlg.ShowModal() == wxID_OK)
         OpenURL(g_wxMEdit_About_URL);
-    }
 }
-
