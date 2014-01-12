@@ -9,6 +9,7 @@
 #include "wxm_update.h"
 #include "xm_remote.h"
 #include "wxm_def.h"
+#include "../wxmedit_frame.h"
 #include "../wxm_utils.h"
 
 #include <wx/msgdlg.h>
@@ -43,13 +44,13 @@ void CheckUpdates()
 		wxString title(_("wxMEdit - New version available"));
 		wxString msg( wxString::Format( _("wxMEdit %s is available. \nClick OK to open the download page."), 
 		                                wxString(remote_ver.c_str(), wxConvUTF8).c_str() ) );
-		if (wxOK == wxMessageBox(msg, title, wxICON_INFORMATION|wxOK|wxCANCEL))
+		if (wxOK == wxMessageBox(msg, title, wxICON_INFORMATION|wxOK|wxCANCEL, g_MainFrame))
 			OpenURL(wxT("http://code.google.com/p/wxmedit/wiki/download?tm=2"));
 
 		return;
 	}
 
-	wxMessageBox(_("wxMEdit is already the newest version."), wxT("wxMEdit"), wxICON_INFORMATION|wxOK);
+	wxMessageBox(_("wxMEdit is already the newest version."), wxT("wxMEdit"), wxICON_INFORMATION|wxOK, g_MainFrame);
 }
 
 std::string GetVersionFromRemoteChangeLog()
