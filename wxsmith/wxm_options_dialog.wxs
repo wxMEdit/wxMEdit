@@ -20,36 +20,48 @@
 											<object class="wxBoxSizer" variable="BoxSizer3" member="no">
 												<orient>wxVERTICAL</orient>
 												<object class="sizeritem">
-													<object class="wxBoxSizer" variable="BoxSizer34" member="no">
+													<object class="wxBoxSizer" variable="BoxSizer35" member="no">
+														<orient>wxVERTICAL</orient>
 														<object class="sizeritem">
-															<object class="wxStaticText" name="ID_STATICTEXT17" variable="StaticText17" member="yes">
-																<label>Automatically check for new versions:</label>
+															<object class="wxBoxSizer" variable="BoxSizer34" member="no">
+																<object class="sizeritem">
+																	<object class="wxStaticText" name="ID_STATICTEXT17" variable="StaticText17" member="yes">
+																		<label>Automatically check for new versions: </label>
+																	</object>
+																	<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+																	<border>2</border>
+																</object>
+																<object class="sizeritem">
+																	<object class="wxComboBox" name="ID_WXCOMBOBOXUPDATESCHECKINGPERIOD" variable="WxComboBoxUpdatesCheckingPeriod" member="yes">
+																		<selection>1</selection>
+																		<style>wxCB_READONLY|wxCB_DROPDOWN</style>
+																	</object>
+																	<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+																</object>
+																<object class="spacer">
+																	<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+																	<size>20,0</size>
+																</object>
+																<object class="sizeritem">
+																	<object class="wxButton" name="ID_WXBUTTONCHECKNOW" variable="WxButtonCheckNow" member="yes">
+																		<label>Check &amp;now</label>
+																		<handler function="WxButtonCheckNowClick" entry="EVT_BUTTON" />
+																	</object>
+																	<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+																</object>
 															</object>
-															<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
-															<border>5</border>
-															<option>1</option>
+															<flag>wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
 														</object>
 														<object class="sizeritem">
-															<object class="wxComboBox" name="ID_WXCOMBOBOXUPDATESCHECKINGPERIOD" variable="WxComboBoxUpdatesCheckingPeriod" member="yes">
-																<selection>1</selection>
-																<style>wxCB_READONLY|wxCB_DROPDOWN</style>
+															<object class="wxCheckBox" name="ID_WXCHECKBOXCHECKPRERELEASE" variable="WxCheckBoxCheckPrerelease" member="yes">
+																<label>Check for new version including &amp;prerelease</label>
 															</object>
-															<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
-														</object>
-														<object class="spacer">
-															<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
-															<size>20,0</size>
-														</object>
-														<object class="sizeritem">
-															<object class="wxButton" name="ID_WXBUTTONCHECKNOW" variable="WxButtonCheckNow" member="yes">
-																<label>Check &amp;now</label>
-																<handler function="WxButtonCheckNowClick" entry="EVT_BUTTON" />
-															</object>
-															<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+															<flag>wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
+															<border>2</border>
 														</object>
 													</object>
 													<flag>wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
-													<border>2</border>
+													<border>5</border>
 												</object>
 												<object class="sizeritem">
 													<object class="wxBoxSizer" variable="BoxSizer27" member="no">

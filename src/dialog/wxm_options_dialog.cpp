@@ -123,6 +123,7 @@ wxString FilterChar(const wxChar *ws)
 const long WXMOptionsDialog::ID_STATICTEXT17 = wxNewId();
 const long WXMOptionsDialog::ID_WXCOMBOBOXUPDATESCHECKINGPERIOD = wxNewId();
 const long WXMOptionsDialog::ID_WXBUTTONCHECKNOW = wxNewId();
+const long WXMOptionsDialog::ID_WXCHECKBOXCHECKPRERELEASE = wxNewId();
 const long WXMOptionsDialog::ID_WXCOMBOBOXLANGUAGE = wxNewId();
 const long WXMOptionsDialog::ID_STATICTEXT16 = wxNewId();
 const long WXMOptionsDialog::ID_WXCHECKBOXSINGLEINSTANCE = wxNewId();
@@ -324,6 +325,7 @@ WXMOptionsDialog::WXMOptionsDialog(wxWindow* parent,wxWindowID id)
 	wxBoxSizer* BoxSizer22;
 	wxBoxSizer* BoxSizer34;
 	wxFlexGridSizer* FlexGridSizer1;
+	wxBoxSizer* BoxSizer35;
 	wxBoxSizer* BoxSizer3;
 	wxBoxSizer* BoxSizer25;
 
@@ -334,15 +336,20 @@ WXMOptionsDialog::WXMOptionsDialog(wxWindow* parent,wxWindowID id)
 	AuiNotebook1 = new wxAuiNotebook(this, ID_AUINOTEBOOK1, wxDefaultPosition, wxDefaultSize, wxAUI_NB_DEFAULT_STYLE);
 	Panel1 = new wxPanel(AuiNotebook1, ID_PANEL1, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL, _T("ID_PANEL1"));
 	BoxSizer3 = new wxBoxSizer(wxVERTICAL);
+	BoxSizer35 = new wxBoxSizer(wxVERTICAL);
 	BoxSizer34 = new wxBoxSizer(wxHORIZONTAL);
-	StaticText17 = new wxStaticText(Panel1, ID_STATICTEXT17, _("Automatically check for new versions:"), wxDefaultPosition, wxDefaultSize, 0, _T("ID_STATICTEXT17"));
-	BoxSizer34->Add(StaticText17, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+	StaticText17 = new wxStaticText(Panel1, ID_STATICTEXT17, _("Automatically check for new versions: "), wxDefaultPosition, wxDefaultSize, 0, _T("ID_STATICTEXT17"));
+	BoxSizer34->Add(StaticText17, 0, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 2);
 	WxComboBoxUpdatesCheckingPeriod = new wxComboBox(Panel1, ID_WXCOMBOBOXUPDATESCHECKINGPERIOD, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0, 0, wxCB_READONLY|wxCB_DROPDOWN, wxDefaultValidator, _T("ID_WXCOMBOBOXUPDATESCHECKINGPERIOD"));
 	BoxSizer34->Add(WxComboBoxUpdatesCheckingPeriod, 0, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 0);
 	BoxSizer34->Add(20,0,0, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 0);
 	WxButtonCheckNow = new wxButton(Panel1, ID_WXBUTTONCHECKNOW, _("Check &now"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_WXBUTTONCHECKNOW"));
 	BoxSizer34->Add(WxButtonCheckNow, 0, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 0);
-	BoxSizer3->Add(BoxSizer34, 0, wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL, 2);
+	BoxSizer35->Add(BoxSizer34, 0, wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL, 0);
+	WxCheckBoxCheckPrerelease = new wxCheckBox(Panel1, ID_WXCHECKBOXCHECKPRERELEASE, _("Check for new version including &prerelease"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_WXCHECKBOXCHECKPRERELEASE"));
+	WxCheckBoxCheckPrerelease->SetValue(false);
+	BoxSizer35->Add(WxCheckBoxCheckPrerelease, 0, wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL, 2);
+	BoxSizer3->Add(BoxSizer35, 0, wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL, 5);
 	BoxSizer27 = new wxBoxSizer(wxHORIZONTAL);
 	BoxSizer27->Add(3,0,0, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 0);
 	WxComboBoxLanguage = new wxComboBox(Panel1, ID_WXCOMBOBOXLANGUAGE, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0, 0, wxCB_READONLY|wxCB_DROPDOWN, wxDefaultValidator, _T("ID_WXCOMBOBOXLANGUAGE"));
@@ -853,6 +860,8 @@ void WXMOptionsDialog::LoadOptions(void)
 	// General page
 	cfg->Read(wxT("UpdatesCheckingPeriod"), &ss);
 	WxComboBoxUpdatesCheckingPeriod->SetValue(wxm::UpdatePeriods::Instance().ConfigToTitle(ss));
+
+	WxCheckBoxCheckPrerelease->SetValue(wxm::g_check_prerelease);
 
 	cfg->Read(wxT("Language"), &ss);
 	if (ss.IsEmpty())

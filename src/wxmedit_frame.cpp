@@ -4493,6 +4493,9 @@ void MadEditFrame::OnToolsOptions(wxCommandEvent& event)
 
         m_Config->Write(wxT("UpdatesCheckingPeriod"), g_OptionsDialog->GetSelectedUpdatePeroid());
 
+        wxm::g_check_prerelease =  g_OptionsDialog->WxCheckBoxCheckPrerelease->GetValue();
+        m_Config->Write(wxT("CheckPrereleaseUpdates"), wxm::g_check_prerelease);
+
         m_Config->Write(wxT("Language"), g_OptionsDialog->GetSelectedLanguage());
         m_Config->Write(wxT("SingleInstance"), g_OptionsDialog->WxCheckBoxSingleInstance->GetValue());
 

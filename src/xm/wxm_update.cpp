@@ -18,12 +18,14 @@
 #include <wx/fileconf.h>
 #include <boost/xpressive/xpressive_dynamic.hpp>
 #include <boost/algorithm/string/split.hpp>
-#include <boost/algorithm/string/classification.hpp>
+#include <boost/algorithm/string/find.hpp>
+#include <boost/range/algorithm/replace.hpp>
 #include <boost/lexical_cast.hpp>
 #include <boost/assign/list_of.hpp>
 #include <boost/foreach.hpp>
 #include <vector>
 #include <algorithm>
+#include <functional>
 #include <limits>
 
 namespace xp =  boost::xpressive;
@@ -32,21 +34,40 @@ namespace wxm
 {
 
 std::string g_result_autocheckupdates;
+bool g_check_prerelease = false;
 
 static std::string GetVersionFromRemoteChangeLog();
 static std::vector<unsigned int> ParseVersion(const std::string& ver);
-static bool IsFirstNewer(const std::vector<unsigned int>& v1, const std::vector<unsigned int>& v2);
+static bool IsFirstNewer(const std::vector<unsigned int>& v1, const std::vector<unsigned int>& v2, bool check_prerelease);
 
-inline bool IsFirstNewer(const std::string& v1, const std::string& v2)
+inline bool IsFirstNewer(const std::string& v1, const std::string& v2, bool check_prerelease)
 {
-	return IsFirstNewer(ParseVersion(v1), ParseVersion(v2));
+	return IsFirstNewer(ParseVersion(v1), ParseVersion(v2), check_prerelease);
+}
+
+bool IsPrerelease(const std::string& ver)
+{
+	return !algo::find_nth(ver, ".", 2).empty();
+}
+
+std::string AdjustVersion(const std::string& ver, bool with_prerelease)
+{
+	if (with_prerelease)
+		return ver;
+
+	std::string::const_iterator dot3rd = algo::find_nth(ver, ".", 2).begin();
+
+	return std::string(ver.begin(), dot3rd);
 }
 
 std::string CheckUpdates()
 {
 	std::string remote_ver = GetVersionFromRemoteChangeLog();
-	if (IsFirstNewer(remote_ver, WXMEDIT_VERSION))
-		return remote_ver;
+
+	if (IsFirstNewer(remote_ver, WXMEDIT_VERSION, g_check_prerelease))
+	{
+		return AdjustVersion(remote_ver, g_check_prerelease);
+	}
 
 	return std::string();
 }
@@ -55,11 +76,16 @@ void ConfirmUpdate(const std::string& newver, bool notify_newest)
 {
 	if (!newver.empty())
 	{
+		wxString download_page = wxT("http://code.google.com/p/wxmedit/wiki/download?tm=2");
+		if (IsPrerelease(newver))
+			download_page = wxT("http://code.google.com/p/wxmedit/wiki/prerelease?tm=2");
+
 		wxString title(_("wxMEdit - New version available"));
 		wxString msg( wxString::Format( _("wxMEdit %s is available. \nClick OK to open the download page."), 
 		                                wxString(newver.c_str(), wxConvUTF8).c_str() ) );
+
 		if (wxOK == wxMessageBox(msg, title, wxICON_INFORMATION|wxOK|wxCANCEL, g_MainFrame))
-			OpenURL(wxT("http://code.google.com/p/wxmedit/wiki/download?tm=2"));
+			OpenURL(download_page);
 
 		return;
 	}
@@ -82,7 +108,8 @@ std::string GetVersionFromRemoteChangeLog()
 	xp::smatch what;
 	if (xp::regex_search(ver_line, what, ver_regex))
 	{
-		return what[0].str();
+		std::string ver(what[0].str());
+		return boost::replace(ver, '-', '.');
 	}
 
 	return std::string();
@@ -91,8 +118,7 @@ std::string GetVersionFromRemoteChangeLog()
 std::vector<unsigned int> ParseVersion(const std::string& ver)
 {
 	std::vector<std::string> svec;
-	algo::split(svec, ver, algo::is_any_of(".-"));
-
+	algo::split(svec, ver, std::bind1st(std::equal_to<char>(),'.') );
 
 	std::vector<unsigned int> uvec = boost::assign::list_of(0u)(0u)(0u)(0u);
 
@@ -107,13 +133,16 @@ std::vector<unsigned int> ParseVersion(const std::string& ver)
 	return uvec;
 }
 
-bool IsFirstNewer(const std::vector<unsigned int>& v1, const std::vector<unsigned int>& v2)
+bool IsFirstNewer(const std::vector<unsigned int>& v1, const std::vector<unsigned int>& v2, bool check_prerelease)
 {
-	for(size_t i=0; i<4; ++i)
+	for(size_t i=0; i<3; ++i)
 	{
 		if (v1[i] > v2[i])
 			return true;
 	}
+
+	if (check_prerelease && (v1[3] > v2[3]))
+		return true;
 
 	return false;
 }
@@ -222,6 +251,12 @@ struct UpdatesCheckingThread : public wxThread
 
 void AutoCheckUpdates(wxFileConfig* cfg)
 {
+	bool default_check_prerelease = false;
+#ifdef __WXMSW__
+	default_check_prerelease = true;
+#endif
+	cfg->Read(wxT("/wxMEdit/CheckPrereleaseUpdates"), &g_check_prerelease, default_check_prerelease);
+
 	long lasttime = 0;
 	wxString period;
     cfg->Read(wxT("/wxMEdit/LastTimeAutoCheckUpdates"), &lasttime, 0);

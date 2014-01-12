@@ -9,6 +9,12 @@
 #ifndef _WXM_UPDATE_H_
 #define _WXM_UPDATE_H_
 
+///////////////////////////////////////////////////////////////////////////////
+// Version Numbers of Release and Prerelease:
+//     Release   : A.B.C
+//     Prerelease: A.B.C.D / A.B.C-D
+///////////////////////////////////////////////////////////////////////////////
+
 #include <wx/string.h>
 #include <vector>
 #include <map>
@@ -24,6 +30,7 @@ std::string CheckUpdates();
 void ConfirmUpdate(const std::string& newver, bool notify_newest=true);
 
 extern std::string g_result_autocheckupdates;
+extern bool g_check_prerelease;
 
 void AutoCheckUpdates(wxFileConfig* cfg);
 

@@ -58,6 +58,7 @@ class WXMOptionsDialog: public wxDialogWrapper
 		wxCheckBox* WxCheckBoxWhenPressCtrlKey;
 		wxCheckBox* WxCheckBoxAutoCompletePair;
 		wxTextCtrl* WxEditIndentColumns;
+		wxCheckBox* WxCheckBoxCheckPrerelease;
 		wxButton* WxButtonCheckNow;
 		wxTextCtrl* WxEditMaxColumns;
 		wxStaticText* WxStaticTextCommandHint;
@@ -140,6 +141,7 @@ class WXMOptionsDialog: public wxDialogWrapper
 		static const long ID_STATICTEXT17;
 		static const long ID_WXCOMBOBOXUPDATESCHECKINGPERIOD;
 		static const long ID_WXBUTTONCHECKNOW;
+		static const long ID_WXCHECKBOXCHECKPRERELEASE;
 		static const long ID_WXCOMBOBOXLANGUAGE;
 		static const long ID_STATICTEXT16;
 		static const long ID_WXCHECKBOXSINGLEINSTANCE;
