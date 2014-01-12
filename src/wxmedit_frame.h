@@ -31,6 +31,7 @@
 #include <wx/hashset.h>
 #include <wx/imaglist.h>
 #include <wx/treectrl.h>
+#include <wx/event.h>
 
 #include <wx/aui/aui.h> // wxAUI
 
@@ -43,6 +44,8 @@ class wxMadAuiNotebook;
 class wxAuiNotebookEvent;
 class MadEdit;
 
+BEGIN_DECLARE_EVENT_TYPES()    DECLARE_LOCAL_EVENT_TYPE( wxmEVT_RESULT_AUTOCHECKUPDATES, wxNewEventType() )END_DECLARE_EVENT_TYPES()
+
 class MadEditFrame : public wxFrame
 {
 private:
@@ -287,6 +290,8 @@ protected:
     void OnSize(wxSizeEvent &evt);
     //void OnChar(wxKeyEvent& evt);
     void OnActivate(wxActivateEvent &evt);
+
+    void OnResultAutoCheckUpdates(wxEvent &evt);
 
     bool QueryCloseFile(int idx);
     bool QueryCloseAllFiles();

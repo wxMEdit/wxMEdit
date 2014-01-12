@@ -972,6 +972,8 @@ public:
 //----------------------------------------------------------------------------
 // MadEditFrame
 //----------------------------------------------------------------------------
+DEFINE_LOCAL_EVENT_TYPE( wxmEVT_RESULT_AUTOCHECKUPDATES )
+
    //Add Custom Events only in the appropriate Block.
 BEGIN_EVENT_TABLE(MadEditFrame,wxFrame)
 	//EVT_SIZE(MadEditFrame::OnSize)
@@ -982,6 +984,7 @@ BEGIN_EVENT_TABLE(MadEditFrame,wxFrame)
 	//EVT_CHAR(MadEditFrame::OnChar)
 	// file
 	EVT_ACTIVATE(MadEditFrame::OnActivate)
+	EVT_CUSTOM( wxmEVT_RESULT_AUTOCHECKUPDATES, wxID_ANY, MadEditFrame::OnResultAutoCheckUpdates)
 	EVT_UPDATE_UI(menuSave, MadEditFrame::OnUpdateUI_MenuFile_CheckCount)
 	EVT_UPDATE_UI(menuSaveAs, MadEditFrame::OnUpdateUI_MenuFile_CheckCount)
 	EVT_UPDATE_UI(menuSaveAll, MadEditFrame::OnUpdateUI_MenuFile_CheckCount)
@@ -2447,6 +2450,18 @@ void MadEditFrame::OnActivate(wxActivateEvent &evt)
         g_ActiveMadEdit->SetFocus();
         g_ActiveMadEdit->ReloadByModificationTime();
     }
+    evt.Skip();
+}
+
+void MadEditFrame::OnResultAutoCheckUpdates(wxEvent &evt)
+{
+    bool notify_newest = false;
+
+#ifdef _DEBUG
+    notify_newest = true;
+#endif
+
+    wxm::ConfirmUpdate(wxm::g_result_autocheckupdates, notify_newest);
     evt.Skip();
 }
 

@@ -31,6 +31,8 @@ namespace algo = boost::algorithm;
 namespace wxm
 {
 
+std::string g_result_autocheckupdates;
+
 static std::string GetVersionFromRemoteChangeLog();
 static std::vector<unsigned int> ParseVersion(const std::string& ver);
 static bool IsFirstNewer(const std::vector<unsigned int>& v1, const std::vector<unsigned int>& v2);
@@ -209,14 +211,12 @@ struct UpdatesCheckingThread : public wxThread
 {
 	virtual ExitCode Entry()
 	{
-		bool notify_newest = false;
+		g_result_autocheckupdates = wxm::CheckUpdates();
 
-#ifdef _DEBUG
-		notify_newest = true;
-#endif
+		wxCommandEvent evt(wxmEVT_RESULT_AUTOCHECKUPDATES);
+		wxPostEvent(g_MainFrame, evt);
 
-		wxm::ConfirmUpdate(wxm::CheckUpdates(), notify_newest);
-		return 0;
+		return NULL;
 	}
 };
 

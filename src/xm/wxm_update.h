@@ -23,6 +23,8 @@ std::string CheckUpdates();
 
 void ConfirmUpdate(const std::string& newver, bool notify_newest=true);
 
+extern std::string g_result_autocheckupdates;
+
 void AutoCheckUpdates(wxFileConfig* cfg);
 
 struct UpdatePeriods
