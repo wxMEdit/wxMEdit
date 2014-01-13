@@ -104,7 +104,7 @@ std::string GetVersionFromRemoteChangeLog()
 
 	std::string ver_line = str.substr(poslf2+1, poslf3-poslf2-1);
 
-	xp::sregex ver_regex = xp::sregex::compile("[0-9]+\\.[0-9]+\\.[0-9]+([\\.-][0-9]+)?");
+	static const xp::sregex ver_regex = xp::sregex::compile("[0-9]+\\.[0-9]+\\.[0-9]+(?:[\\.-][0-9]+)?");
 	xp::smatch what;
 	if (xp::regex_search(ver_line, what, ver_regex))
 	{
