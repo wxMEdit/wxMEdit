@@ -19,7 +19,7 @@
 #include <boost/xpressive/xpressive_dynamic.hpp>
 #include <boost/algorithm/string/split.hpp>
 #include <boost/algorithm/string/find.hpp>
-#include <boost/range/algorithm/replace.hpp>
+#include <boost/algorithm/string/replace.hpp>
 #include <boost/lexical_cast.hpp>
 #include <boost/assign/list_of.hpp>
 #include <boost/foreach.hpp>
@@ -108,8 +108,7 @@ std::string GetVersionFromRemoteChangeLog()
 	xp::smatch what;
 	if (xp::regex_search(ver_line, what, ver_regex))
 	{
-		std::string ver(what[0].str());
-		return boost::replace(ver, '-', '.');
+		return algo::replace_all_copy(what[0].str(), "-", ".");
 	}
 
 	return std::string();
