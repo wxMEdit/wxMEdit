@@ -1,3 +1,22 @@
+2014-01-13 18:27:25 +0800 JiaYanwei <wxmedit@gmail.com>
+
+	* wxMEdit v2.9.6.2:
+	 1. added new encoding "CP437 for ASCII-Art" to support ASCII-Art better.
+	 2. added automatically checking for updates.
+	 3. added bookmark [mainly by Gospodin Gyurov (aka Gogo) <ggurov@yahoo.com>].
+	 4. added new commands: delete previous/next word (by Gogo).
+	 5. improved maximized behavior under Windows (by Gogo).
+	 6. changed behavior of selecting next word as other editors.
+	 7. added search option "Wrap around".
+	 8. fixed that always not wrap around when replacing.
+	 9. changed notification messages of Search/Replace Dialog showing in the bottom bar of the dialog.
+	10. added selecting a line by triple click (mainly by cfreeer <cfreeer@users.sf.net>).
+	11. added updating syntax highlighting on saving file (mainly by cfreeer).
+	12. added FreeBASIC syntax file.
+	13. updated Simplified Chinese translation.
+	14. other minor changes and bug fixes.
+
+
 2013-09-12 21:38:09 +0800 JiaYanwei <wxmedit@gmail.com>
 
 	* wxMEdit v2.9.6:
