@@ -72,7 +72,7 @@ std::string CheckUpdates(bool check_prerelease)
 	return std::string();
 }
 
-void ConfirmUpdate(const std::string& newver, bool notify_newest)
+void ConfirmUpdate(const std::string& newver, bool notify_newest, wxWindow* parentwin)
 {
 	if (!newver.empty())
 	{
@@ -84,14 +84,14 @@ void ConfirmUpdate(const std::string& newver, bool notify_newest)
 		wxString msg( wxString::Format( _("wxMEdit %s is available. \nClick OK to open the download page."), 
 		                                wxString(newver.c_str(), wxConvUTF8).c_str() ) );
 
-		if (wxOK == wxMessageBox(msg, title, wxICON_INFORMATION|wxOK|wxCANCEL, g_MainFrame))
+		if (wxOK == wxMessageBox(msg, title, wxICON_INFORMATION|wxOK|wxCANCEL, parentwin))
 			OpenURL(download_page);
 
 		return;
 	}
 
 	if (notify_newest)
-		wxMessageBox(_("wxMEdit is already the newest version."), wxT("wxMEdit"), wxICON_INFORMATION|wxOK, g_MainFrame);
+		wxMessageBox(_("wxMEdit is already the newest version."), wxT("wxMEdit"), wxICON_INFORMATION|wxOK, parentwin);
 }
 
 std::string GetVersionFromRemoteChangeLog()
