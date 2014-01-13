@@ -60,13 +60,13 @@ std::string AdjustVersion(const std::string& ver, bool with_prerelease)
 	return std::string(ver.begin(), dot3rd);
 }
 
-std::string CheckUpdates()
+std::string CheckUpdates(bool check_prerelease)
 {
 	std::string remote_ver = GetVersionFromRemoteChangeLog();
 
-	if (IsFirstNewer(remote_ver, WXMEDIT_VERSION, g_check_prerelease))
+	if (IsFirstNewer(remote_ver, WXMEDIT_VERSION, check_prerelease))
 	{
-		return AdjustVersion(remote_ver, g_check_prerelease);
+		return AdjustVersion(remote_ver, check_prerelease);
 	}
 
 	return std::string();

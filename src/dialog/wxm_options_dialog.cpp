@@ -1340,5 +1340,5 @@ void WXMOptionsDialog::DateTimeMarkClick(wxCommandEvent& event)
 
 void WXMOptionsDialog::WxButtonCheckNowClick(wxCommandEvent& event)
 {
-	wxm::ConfirmUpdate(wxm::CheckUpdates());
+	wxm::ConfirmUpdate(wxm::CheckUpdates( WxCheckBoxCheckPrerelease->GetValue() ));
 }

@@ -25,12 +25,12 @@ class wxFileConfig;
 namespace wxm
 {
 
-std::string CheckUpdates();
-
-void ConfirmUpdate(const std::string& newver, bool notify_newest=true);
-
 extern std::string g_result_autocheckupdates;
 extern bool g_check_prerelease;
+
+std::string CheckUpdates(bool check_prerelease=g_check_prerelease);
+
+void ConfirmUpdate(const std::string& newver, bool notify_newest=true);
 
 void AutoCheckUpdates(wxFileConfig* cfg);
 
