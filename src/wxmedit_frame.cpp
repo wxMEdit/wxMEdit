@@ -46,7 +46,10 @@
 #include <wx/config.h>
 
 #include <boost/foreach.hpp>
+#include <boost/assign/list_of.hpp>
 
+#include <vector>
+#include <utility>
 #include <algorithm>
 
 
@@ -141,14 +144,11 @@
 #endif
 
 
-wxString g_wxMEdit_Version(wxT("wxMEdit v")
-                           wxT(WXMEDIT_VERSION));
-
-wxString g_wxMEdit_Homepage_URL(wxT("http://code.google.com/p/wxmedit/"));
-wxString g_wxMEdit_License_URL(wxT("http://www.gnu.org/licenses/gpl-3.0.html"));
+const wxString g_wxMEdit_Homepage_URL(wxT("http://code.google.com/p/wxmedit/"));
+const wxString g_wxMEdit_License_URL(wxT("http://www.gnu.org/licenses/gpl-3.0.html"));
 wxString g_wxMEdit_About_URL = g_wxMEdit_Homepage_URL;
 
-wxString g_wxMEdit_License(
+const static wxString s_wxMEdit_License(
 wxT("Copyright (C) 2013-2014  JiaYanwei <wxmedit@gmail.com>\n")
 wxT("Copyright (C) 2005-2010  Alston Chen <madedit@gmail.com>\n")
 wxT("\n")
@@ -162,6 +162,26 @@ wxT("but WITHOUT ANY WARRANTY; without even the implied warranty of ")
 wxT("MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the ")
 wxT("GNU General Public License for more details.\n")
 );
+
+#undef _
+#define _(s)    wxT(s)
+#define s_(s)   wxString(_T(s))
+typedef std::vector<std::pair<wxString, wxString> > CreditsList;
+const static CreditsList s_wxMEdit_Credits = boost::assign::pair_list_of
+        (s_("JiaYanwei"),           _("Current maintainer of wxMEdit"))
+        (s_("Alston Chen"),         _("Creator of MadEdit"))
+        (s_("Tilt"),                _("Translator for Japanese"))
+        (s_("Carlos S\u00E1nchez"), _("Translator for Spanish"))
+        (s_("Denir Li"),            _("Translator for Traditional Chinese"))
+        (s_("Huaren Zhong"),        _("Patch submitter for wxMEdit/MadEdit"))
+        (s_("Gospodin Gyurov"),     _("Patch submitter for wxMEdit/MadEdit"))
+        (s_("cfreeer"),             _("Patch submitter for wxMEdit/MadEdit"))
+        (s_("Nagy Gabor"),          _("Patch submitter for wxMEdit/MadEdit"))
+        (s_("codestation"),         _("Creator of wxmedit package in AUR"))
+    ;
+#undef s_
+#undef _
+#define _(s)    wxGetTranslation(_T(s))
 
 extern wxString g_MadEditAppDir, g_MadEditHomeDir;
 
@@ -4975,21 +4995,35 @@ void MadEditFrame::OnHelpCheckUpdates(wxCommandEvent& event)
     wxm::ConfirmUpdate(wxm::CheckUpdates());
 }
 
+const wxString& GetCredits()
+{
+    static wxString credits;
+    if (credits.empty())
+    {
+        BOOST_FOREACH(const CreditsList::value_type& v, s_wxMEdit_Credits)
+			credits += wxString::Format(wxT("  %-16s %s\n"), v.first.c_str(), wxGetTranslation(v.second.c_str()));
+    }
+
+    return credits;
+}
+
 void MadEditFrame::OnHelpAbout(wxCommandEvent& event)
 {
     g_wxMEdit_About_URL = g_wxMEdit_Homepage_URL;
     WXMAboutDialog dlg(this);
-    dlg.TxtAbout->AppendText(g_wxMEdit_Version + wxT("\n\n") +
+    dlg.TxtAbout->AppendText(wxString(wxT("wxMEdit v")) + wxT(WXMEDIT_VERSION) + wxT("\n\n") +
                             g_wxMEdit_Homepage_URL + wxT("\n\n") +
                             _("Press OK to visit our HomePage."));
 
     dlg.TxtLicense->AppendText( wxString(_("wxMEdit, a cross-platform Text/Hex Editor")) + wxT("\n\n") +
-                            g_wxMEdit_License + wxT("\n\n") +
+                            s_wxMEdit_License + wxT("\n\n") +
                             g_wxMEdit_License_URL + wxT("\n\n") +
                             _("Press OK to view the license online version.\n"));
-
     dlg.TxtLicense->SetInsertionPoint(0L);
 
-    if(dlg.ShowModal() == wxID_OK)
+    dlg.TxtCredits->AppendText(GetCredits());
+    dlg.TxtCredits->SetInsertionPoint(0L);
+
+    if(dlg.ShowModal() == wxID_OK && !g_wxMEdit_About_URL.empty())
         OpenURL(g_wxMEdit_About_URL);
 }

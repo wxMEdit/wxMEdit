@@ -18,8 +18,8 @@
 #include <wx/dialog.h>
 //*)
 
-extern wxString g_wxMEdit_Homepage_URL;
-extern wxString g_wxMEdit_License_URL;
+extern const wxString g_wxMEdit_Homepage_URL;
+extern const wxString g_wxMEdit_License_URL;
 extern wxString g_wxMEdit_About_URL;
 
 class WXMAboutDialog: public wxDialog
@@ -37,8 +37,10 @@ class WXMAboutDialog: public wxDialog
 		wxTextCtrl* TxtAbout;
 		wxPanel* AoubtTab;
 		wxButton* WxButtonCancel;
+		wxTextCtrl* TxtCredits;
 		wxButton* WxButtonOK;
 		wxTextCtrl* TxtLicense;
+		wxPanel* CreditsTab;
 		//*)
 
 	protected:
@@ -50,6 +52,8 @@ class WXMAboutDialog: public wxDialog
 		static const long ID_PANEL1;
 		static const long ID_TEXTCTRL2;
 		static const long ID_PANEL2;
+		static const long ID_TEXTCTRL3;
+		static const long ID_PANEL3;
 		static const long ID_NOTEBOOK1;
 		//*)
 

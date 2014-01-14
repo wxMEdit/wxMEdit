@@ -67,6 +67,20 @@
 								</object>
 								<label>License</label>
 							</object>
+							<object class="notebookpage">
+								<object class="wxPanel" name="ID_PANEL3" variable="CreditsTab" member="yes">
+									<object class="wxBoxSizer" variable="BoxSizer7" member="no">
+										<object class="sizeritem">
+											<object class="wxTextCtrl" name="ID_TEXTCTRL3" variable="TxtCredits" member="yes">
+												<style>wxTE_AUTO_SCROLL|wxTE_MULTILINE|wxTE_READONLY|wxTE_WORDWRAP|wxSTATIC_BORDER</style>
+											</object>
+											<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+											<option>1</option>
+										</object>
+									</object>
+								</object>
+								<label>Credits</label>
+							</object>
 						</object>
 						<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
 						<border>5</border>

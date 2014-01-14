@@ -124,8 +124,8 @@ or (at your option) any later version.
 
 Author:
 ------
-Alston Chen <madedit@gmail.com>      (MadEdit creator)
-JiaYanwei <wxmedit@gmail.com>        (wxMEdit current maintainer)
+JiaYanwei <wxmedit@gmail.com>        (current maintainer of wxMEdit)
+Alston Chen <madedit@gmail.com>      (creator of MadEdit)
 
 Links:
 -----

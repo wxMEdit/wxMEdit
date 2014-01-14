@@ -6,11 +6,13 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 #include "wxmedit_about_dialog.h"
+#include "../wxm_utils.h"
 
 //(*InternalHeaders(WXMAboutDialog)
 #include <wx/intl.h>
 #include <wx/string.h>
 //*)
+
 
 #define static static const
 #include "../../images/wxmedit.xpm"
@@ -24,6 +26,8 @@ const long WXMAboutDialog::ID_TEXTCTRL1 = wxNewId();
 const long WXMAboutDialog::ID_PANEL1 = wxNewId();
 const long WXMAboutDialog::ID_TEXTCTRL2 = wxNewId();
 const long WXMAboutDialog::ID_PANEL2 = wxNewId();
+const long WXMAboutDialog::ID_TEXTCTRL3 = wxNewId();
+const long WXMAboutDialog::ID_PANEL3 = wxNewId();
 const long WXMAboutDialog::ID_NOTEBOOK1 = wxNewId();
 //*)
 
@@ -38,6 +42,7 @@ WXMAboutDialog::WXMAboutDialog(wxWindow* parent,wxWindowID id,const wxPoint& pos
 	wxBoxSizer* BoxSizer4;
 	wxBoxSizer* BoxSizer6;
 	wxBoxSizer* BoxSizer5;
+	wxBoxSizer* BoxSizer7;
 	wxBoxSizer* BoxSizer2;
 	wxBoxSizer* BoxSizer1;
 	wxBoxSizer* BoxSizer3;
@@ -66,8 +71,16 @@ WXMAboutDialog::WXMAboutDialog(wxWindow* parent,wxWindowID id,const wxPoint& pos
 	LicenseTab->SetSizer(BoxSizer6);
 	BoxSizer6->Fit(LicenseTab);
 	BoxSizer6->SetSizeHints(LicenseTab);
+	CreditsTab = new wxPanel(Notebook1, ID_PANEL3, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL, _T("ID_PANEL3"));
+	BoxSizer7 = new wxBoxSizer(wxHORIZONTAL);
+	TxtCredits = new wxTextCtrl(CreditsTab, ID_TEXTCTRL3, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_AUTO_SCROLL|wxTE_MULTILINE|wxTE_READONLY|wxTE_WORDWRAP|wxSTATIC_BORDER, wxDefaultValidator, _T("ID_TEXTCTRL3"));
+	BoxSizer7->Add(TxtCredits, 1, wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 0);
+	CreditsTab->SetSizer(BoxSizer7);
+	BoxSizer7->Fit(CreditsTab);
+	BoxSizer7->SetSizeHints(CreditsTab);
 	Notebook1->AddPage(AoubtTab, _("About"), false);
 	Notebook1->AddPage(LicenseTab, _("License"), false);
+	Notebook1->AddPage(CreditsTab, _("Credits"), false);
 	BoxSizer2->Add(Notebook1, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
 	BoxSizer1->Add(BoxSizer2, 0, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
 	BoxSizer3 = new wxBoxSizer(wxHORIZONTAL);
@@ -85,6 +98,8 @@ WXMAboutDialog::WXMAboutDialog(wxWindow* parent,wxWindowID id,const wxPoint& pos
 	Connect(ID_NOTEBOOK1,wxEVT_COMMAND_NOTEBOOK_PAGE_CHANGED,(wxObjectEventFunction)&WXMAboutDialog::OnNotebook1PageChanged);
 	Connect(wxID_ANY,wxEVT_CLOSE_WINDOW,(wxObjectEventFunction)&WXMAboutDialog::WXMAboutDialogClose);
 	//*)
+
+	SetDefaultMonoFont(TxtCredits);
 
 	StaticBitmap1->SetBitmap(wxBitmap(wxmedit_xpm));
 	StaticBitmap1->Enable(true);
@@ -107,11 +122,17 @@ void WXMAboutDialog::WXMAboutDialogClose(wxCloseEvent& event)
 
 void WXMAboutDialog::OnNotebook1PageChanged(wxNotebookEvent& event)
 {
+	if (event.GetSelection() == 0/* AboutTab */)
+	{
+		g_wxMEdit_About_URL = g_wxMEdit_Homepage_URL;
+		return;
+	}
+
 	if (event.GetSelection() == 1/* LicenseTab */)
 	{
 		g_wxMEdit_About_URL = g_wxMEdit_License_URL;
 		return;
 	}
 
-	g_wxMEdit_About_URL = g_wxMEdit_Homepage_URL;
+	g_wxMEdit_About_URL.clear();
 }
