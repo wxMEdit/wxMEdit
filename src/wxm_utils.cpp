@@ -1,13 +1,14 @@
 ///////////////////////////////////////////////////////////////////////////////
 // vim:         ts=4 sw=4 expandtab
 // Name:        wxm_utils.cpp
-// Description: utility functions. collects from internet
+// Description: Utility Functions
 // Author:      madedit@gmail.com  (creator)
 //              wxmedit@gmail.com  (current maintainer)
 // Licence:     GPL
 ///////////////////////////////////////////////////////////////////////////////
 
 #include "wxm_utils.h"
+#include "xm/wxm_encoding/encoding.h"
 
 #include <wx/wxprec.h>
 #include <wx/app.h>
@@ -19,6 +20,8 @@
 #include <wx/intl.h>
 #include <wx/tokenzr.h>
 #include <wx/utils.h>
+#include <wx/font.h>
+#include <wx/window.h>
 
 #include <boost/foreach.hpp>
 
@@ -308,4 +311,11 @@ void OpenURL(const wxString& url)
 #else
     wxLaunchDefaultBrowser(url);
 #endif
+}
+
+void SetDefaultMonoFont(wxWindow* win)
+{
+    const wxString fontname = wxm::WXMEncodingCreator::Instance().GetSystemEncoding()->GetFontName();
+    int fontsize = win->GetFont().GetPointSize();
+    win->SetFont(wxFont(fontsize, wxDEFAULT, wxNORMAL, wxNORMAL, false, fontname));
 }

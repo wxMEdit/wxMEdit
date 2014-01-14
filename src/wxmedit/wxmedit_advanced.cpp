@@ -1232,17 +1232,6 @@ void MadEdit::ToFullWidth(bool ascii, bool japanese, bool korean, bool other)
     }
 }
 
-wxString PrefixString(int i)
-{
-    int count=1;
-    while(i>=10)
-    {
-        i/=10;
-        ++count;
-    }
-    if(count>=8) return wxEmptyString;
-    return wxString(wxT('_'), 8-count);
-}
 
 void MadEdit::WordCount(bool selection, int &wordCount, int &charCount, int &spaceCount,
                         int &controlCount, int &fullWidthCount, int &lineCount,
@@ -1318,14 +1307,14 @@ void MadEdit::WordCount(bool selection, int &wordCount, int &charCount, int &spa
             int cnt = ublock_counter.GetBlockCharCount(idx);
             wxString block_begin = wxString::Format(wxT("U+%04X"), ublock_set.Begin(idx));
             wxString block_end = wxString::Format(wxT("U+%04X"), ublock_set.End(idx));
-            detail->Add(wxString::Format(wxT("%s %d    %8s - %8s: %s"), PrefixString(cnt).c_str(), cnt,
+            detail->Add(wxString::Format(wxT("%10d    %8s - %8s: %s"), cnt,
                 block_begin.c_str(), block_end.c_str(), wxGetTranslation(ublock_set.Description(idx))));
         }
     }
     if(ublock_counter.GetInvalidBlockCharCount()>0)
     {
         int cnt = ublock_counter.GetInvalidBlockCharCount();
-        detail->Add(wxString::Format(wxT("%s %d    ? - ? %s"), PrefixString(cnt).c_str(), cnt, _("Invalid Unicode Characters")));
+        detail->Add(wxString::Format(wxT("%10d    ? - ? %s"), cnt, _("Invalid Unicode Characters")));
     }
 }
 

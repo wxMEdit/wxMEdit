@@ -1,7 +1,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 // vim:         ts=4 sw=4 expandtab
 // Name:        wxm_utils.h
-// Description: utility functions. collects from internet
+// Description: Utility Functions
 // Author:      madedit@gmail.com  (creator)
 //              wxmedit@gmail.com  (current maintainer)
 // Licence:     GPL
@@ -27,12 +27,15 @@ struct HtmlColor
 extern HtmlColor HtmlColorTable[];
 extern const int HtmlColorTableCount;
 
-extern void SetHtmlColors();
+void SetHtmlColors();
 extern std::map<wxString, wxString> g_color_l10n_map;
 
 extern wxString GetExecutablePath();
 
-extern void OpenURL(const wxString& url);
+void OpenURL(const wxString& url);
+
+class wxWindow;
+void SetDefaultMonoFont(wxWindow* win);
 
 struct FileList
 {

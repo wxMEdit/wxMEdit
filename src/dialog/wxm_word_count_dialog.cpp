@@ -6,8 +6,8 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 #include "wxm_word_count_dialog.h"
-
 #include "../wxmedit/wxmedit.h"
+#include "../wxm_utils.h"
 
 //(*InternalHeaders(WXMWordCountDialog)
 #include <wx/intl.h>
@@ -91,6 +91,8 @@ WXMWordCountDialog::WXMWordCountDialog(wxWindow* parent,wxWindowID id,const wxPo
 
 	Connect(wxID_ANY,wxEVT_CLOSE_WINDOW,(wxObjectEventFunction)&WXMWordCountDialog::WXMWordCountDialogClose);
 	//*)
+
+	SetDefaultMonoFont(WxMemo1);
 
 	extern MadEdit *g_ActiveMadEdit;
 	int words, chars, spaces, lines, controls, fullwidths;
