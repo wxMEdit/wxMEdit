@@ -35,14 +35,6 @@ namespace wxm
 #endif
 	;
 
-	static const bool FILENAME_SENSITIVE =
-#ifdef __WXMSW__
-		false
-#else
-		true
-#endif
-	;
-
 	static const long MINVAL_MAXLINELEN = 80;
 	static const long MAXVAL_MAXLINELEN = 65536;
 

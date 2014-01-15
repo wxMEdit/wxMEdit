@@ -328,11 +328,11 @@ void SetDefaultMonoFont(wxWindow* win)
     win->SetFont(wxFont(fontsize, wxDEFAULT, wxNORMAL, wxNORMAL, false, fontname));
 }
 
-wxString FilePathFoldCase(const wxString& name)
+wxString FilePathNormalCase(const wxString& name)
 {
-	if (wxm::FILENAME_SENSITIVE)
-		return name;
-
+#ifndef __WXMSW__
+	return name;
+#else
 	// wxString::Upper is buggy under Windows
 	// and the filename insensitive of Windows is also buggy
  	// but they are different
@@ -341,16 +341,17 @@ wxString FilePathFoldCase(const wxString& name)
 		uppername.append(1, (wxChar)u_toupper((UChar32)(unsigned int)ch));
 
 	return uppername;
+#endif
 }
 
 bool FilePathEqual(const wxString& name1, const wxString& name2)
 {
-	return FilePathFoldCase(name1) == FilePathFoldCase(name2);
+	return FilePathNormalCase(name1) == FilePathNormalCase(name2);
 }
 
 unsigned long FilePathHash(const wxString& name)
 {
-	return wxStringHash::wxCharStringHash(FilePathFoldCase(name));
+	return wxStringHash::wxCharStringHash(FilePathNormalCase(name));
 }
 
 } // namespace wxm

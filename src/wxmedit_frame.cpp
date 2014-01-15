@@ -959,11 +959,11 @@ public:
         if(count == 0)
         {
             g_FontNames.Add(facename);
-            m_facenames_foldcase.Add(wxm::FilePathFoldCase(facename));
+            m_facenames_foldcase.Add(wxm::FilePathNormalCase(facename));
         }
         else
         {
-            wxString fn_foldcase = wxm::FilePathFoldCase(facename);
+            wxString fn_foldcase = wxm::FilePathNormalCase(facename);
             size_t i = 0;
             for(; i<count; i++)
             {
@@ -2643,7 +2643,7 @@ void MadEditFrame::AddItemToFindInFilesResults(const wxString &text, size_t inde
             while(id.IsOk())
             {
                 wxString idname=m_FindInFilesResults->GetItemText(id);
-                if(wxm::FilePathFoldCase(filename) < wxm::FilePathFoldCase(idname))
+                if(wxm::FilePathNormalCase(filename) < wxm::FilePathNormalCase(idname))
                 {
                     break;
                 }

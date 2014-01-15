@@ -489,7 +489,7 @@ public:
 			for(size_t i=0; i<count; i++)
 			{
 				fn.Assign(filename);
-				if(wxm::FilePathFoldCase(fn.GetFullName()).Matches(g_ExcludeFilters[i].c_str()))
+				if(wxm::FilePathNormalCase(fn.GetFullName()).Matches(g_ExcludeFilters[i].c_str()))
 				{
 					exclude=true;
 					break;
@@ -597,7 +597,7 @@ void WXMFindInFilesDialog::FindReplaceInFiles(bool bReplace)
 			tok=tkz2.GetNextToken();
 			if(tok.IsEmpty())
 				break;
-			g_ExcludeFilters.push_back(wxm::FilePathFoldCase(tok));
+			g_ExcludeFilters.push_back(wxm::FilePathNormalCase(tok));
 		}
 		if(!g_ExcludeFilters.empty())
 		{

@@ -42,7 +42,7 @@ void OpenURL(const wxString& url);
 
 void SetDefaultMonoFont(wxWindow* win);
 
-wxString FilePathFoldCase(const wxString& path);
+wxString FilePathNormalCase(const wxString& path);
 bool FilePathEqual(const wxString& path1, const wxString& path2);
 unsigned long FilePathHash(const wxString& path);
 
