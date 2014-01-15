@@ -262,15 +262,10 @@ public:
 
     void Add(const wxString &name, const wxFileOffset &pos, const wxString &encoding, const wxString &fontname, int fontsize)
     {
-#ifdef __WXMSW__
-        wxString name0(name.Upper());
-#else
-        const wxString &name0 = name;
-#endif
-        unsigned long hash = wxStringHash::wxCharStringHash(name0);
+        unsigned long hash = wxm::FilePathHash(name);
         if(files.size()==0)
         {
-            files.push_back(FilePosData(name0, pos, hash, encoding, fontname, fontsize));
+            files.push_back(FilePosData(name, pos, hash, encoding, fontname, fontsize));
         }
         else
         {
@@ -278,7 +273,7 @@ public:
             std::list<FilePosData>::iterator itend = files.end();
             do
             {
-                if(it->hash == hash && it->name == name0)
+                if(it->hash == hash && wxm::FilePathEqual(it->name, name))
                 {
                     break;
                 }
@@ -287,7 +282,7 @@ public:
 
             if(it == itend)
             {
-                files.push_front(FilePosData(name0, pos, hash, encoding, fontname, fontsize));
+                files.push_front(FilePosData(name, pos, hash, encoding, fontname, fontsize));
             }
             else
             {
@@ -402,7 +397,7 @@ public:
                         fpdata.name = text;
                     }
 
-                    fpdata.hash = wxStringHash::wxCharStringHash(fpdata.name);
+                    fpdata.hash = wxm::FilePathHash(fpdata.name);
                     files.push_back(fpdata);
                 }
             }
@@ -411,12 +406,7 @@ public:
     }
     wxFileOffset GetRestoreData(const wxString &name, wxString &encoding, wxString &fontname, int &fontsize)
     {
-#ifdef __WXMSW__
-        wxString name0(name.Upper());
-#else
-        const wxString &name0 = name;
-#endif
-        unsigned long hash = wxStringHash::wxCharStringHash(name0);
+        unsigned long hash = wxm::FilePathHash(name);
         wxFileOffset pos = 0;
         fontsize = 0;
         if(files.size() != 0)
@@ -425,7 +415,7 @@ public:
             std::list<FilePosData>::iterator itend = files.end();
             do
             {
-                if(it->hash == hash && it->name == name0)
+                if(it->hash == hash && wxm::FilePathEqual(it->name, name))
                 {
                     pos = it->pos;
                     encoding = it->encoding;
@@ -597,7 +587,7 @@ public:
         return pages_list;
     }
 
-    size_t GetFilesListForReload(FileList& filelist)
+    size_t GetFilesListForReload(wxm::FileList& filelist)
     {
         size_t count = 0;
         list<PageData> pages_list = GetPagesList();
@@ -712,9 +702,9 @@ void OnReceiveMessage(const wchar_t *msg, size_t size)
 
     if(g_ActiveMadEdit) g_ActiveMadEdit->SetFocus();
 
-    FileList filelist(msg);
+    wxm::FileList filelist(msg);
 
-    BOOST_FOREACH (const FileList::FileDesc& fdesc, filelist.List())
+    BOOST_FOREACH (const wxm::FileList::FileDesc& fdesc, filelist.List())
     {
         g_MainFrame->OpenFile(fdesc.file, false, fdesc.bmklinenums);
     }
@@ -960,29 +950,29 @@ void UpdateMenus()
 // enum & sort the facenames
 class MadFontEnumerator : public wxFontEnumerator
 {
-    wxArrayString m_facenames_lowercase;
+    wxArrayString m_facenames_foldcase;
 public:
 
     virtual bool OnFacename(const wxString& facename)
     {
-        size_t count=m_facenames_lowercase.Count();
-        if(count==0)
+        size_t count = m_facenames_foldcase.Count();
+        if(count == 0)
         {
             g_FontNames.Add(facename);
-            m_facenames_lowercase.Add(facename.Lower());
+            m_facenames_foldcase.Add(wxm::FilePathFoldCase(facename));
         }
         else
         {
-            wxString lname;
-            size_t i=0;
-            for(;i<count;i++)
+            wxString fn_foldcase = wxm::FilePathFoldCase(facename);
+            size_t i = 0;
+            for(; i<count; i++)
             {
-                lname=facename.Lower();
-                if(lname < m_facenames_lowercase[i]) break;
+                if(fn_foldcase < m_facenames_foldcase[i])
+                    break;
             }
 
             g_FontNames.Insert(facename, i);
-            m_facenames_lowercase.Insert(lname, i);
+            m_facenames_foldcase.Insert(fn_foldcase, i);
         }
         return true;
     }
@@ -2003,12 +1993,12 @@ void MadEditFrame::CreateGUIControls(void)
     m_Config->SetPath(wxT("/RecentFiles"));
     m_RecentFiles->Load(*m_Config);
 
-    m_RecentEncodings=new wxRecentList(false, 9, menuRecentEncoding1);
+    m_RecentEncodings=new wxCaseInsensitiveRecentList(9, menuRecentEncoding1);
     m_RecentEncodings->UseMenu(g_Menu_View_Encoding);
     m_Config->SetPath(wxT("/RecentEncodings"));
     m_RecentEncodings->Load(*m_Config);
 
-    m_RecentFonts=new wxRecentList(wxRecentList::OSCaseSensitive(), 9, menuRecentFont1);
+    m_RecentFonts=new wxFilePathRecentList(9, menuRecentFont1);
     m_RecentFonts->UseMenu(g_Menu_View_FontName);
     m_Config->SetPath(wxT("/RecentFonts"));
     m_RecentFonts->Load(*m_Config);
@@ -2138,7 +2128,7 @@ void MadEditFrame::MadEditFrameClose(wxCloseEvent& event)
 
 
     // save ReloadFilesList
-    FileList filelist;
+    wxm::FileList filelist;
     size_t count = m_Notebook->GetPageCount();
     bool bb=true;
     m_Config->Read(wxT("ReloadFiles"), &bb);
@@ -2294,11 +2284,7 @@ MadEdit *MadEditFrame::GetEditByFileName(const wxString &filename, int &id)
     {
         MadEdit *me=(MadEdit*)m_Notebook->GetPage(id);
         fn = me->GetFileName();
-#ifdef __WXMSW__
-        if(fn.Lower()==filename.Lower())
-#else
-        if(fn==filename)
-#endif
+        if(wxm::FilePathEqual(fn, filename))
         {
             return me;
         }
@@ -2615,11 +2601,7 @@ void MadEditFrame::OnFindInFilesResultsDClick(wxMouseEvent& event)
             {
                 g_MainFrame->OpenFile(cpdata->filename, true);
 
-#ifdef __WXMSW__
-                if(g_ActiveMadEdit->GetFileName().Lower()==cpdata->filename.Lower())
-#else
-                if(g_ActiveMadEdit->GetFileName()==cpdata->filename)
-#endif
+                if(wxm::FilePathEqual(g_ActiveMadEdit->GetFileName(), cpdata->filename))
                 {
                     madedit = g_ActiveMadEdit;
                 }
@@ -2661,11 +2643,7 @@ void MadEditFrame::AddItemToFindInFilesResults(const wxString &text, size_t inde
             while(id.IsOk())
             {
                 wxString idname=m_FindInFilesResults->GetItemText(id);
-#ifdef __WXMSW__
-                if(filename.Lower() < idname.Lower())
-#else
-                if(filename < idname)
-#endif
+                if(wxm::FilePathFoldCase(filename) < wxm::FilePathFoldCase(idname))
                 {
                     break;
                 }
@@ -2711,11 +2689,7 @@ void MadEditFrame::OpenFile(const wxString &filename, bool mustExist, const Line
         for(int id=0;id<count;id++)
         {
             MadEdit *me=(MadEdit*)m_Notebook->GetPage(id);
-#ifdef __WXMSW__
-            if(me->GetFileName().Lower()==filename.Lower())
-#else
-            if(me->GetFileName()==filename)
-#endif
+            if(wxm::FilePathEqual(me->GetFileName(), filename))
             {   // YES, it's opened. Activate it.
                 g_CheckModTimeForReload=false;
                 m_Notebook->SetSelection(id);
@@ -5025,5 +4999,5 @@ void MadEditFrame::OnHelpAbout(wxCommandEvent& event)
     dlg.TxtCredits->SetInsertionPoint(0L);
 
     if(dlg.ShowModal() == wxID_OK && !g_wxMEdit_About_URL.empty())
-        OpenURL(g_wxMEdit_About_URL);
+        wxm::OpenURL(g_wxMEdit_About_URL);
 }

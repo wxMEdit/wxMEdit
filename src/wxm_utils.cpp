@@ -9,6 +9,7 @@
 
 #include "wxm_utils.h"
 #include "xm/wxm_encoding/encoding.h"
+#include "xm/wxm_def.h"
 
 #include <wx/wxprec.h>
 #include <wx/app.h>
@@ -22,6 +23,9 @@
 #include <wx/utils.h>
 #include <wx/font.h>
 #include <wx/window.h>
+#include <wx/hashmap.h>
+
+#include <unicode/uchar.h>
 
 #include <boost/foreach.hpp>
 
@@ -182,17 +186,6 @@ const int HtmlColorTableCount= sizeof(HtmlColorTable) / sizeof(HtmlColor);
 
 std::map<wxString, wxString> g_color_l10n_map;
 
-void SetHtmlColors()
-{
-    wxColourDatabase *cdb=wxTheColourDatabase;
-    HtmlColor *hc=HtmlColorTable;
-    for(int i=0; i<HtmlColorTableCount; ++i, ++hc)
-    {
-        cdb->AddColour(hc->name, wxColor(hc->red, hc->green, hc->blue));
-        g_color_l10n_map[wxString(hc->name).Upper()] = wxGetTranslation(hc->name);
-    }
-}
-
 wxString GetExecutablePath()
 {
     static bool found = false;
@@ -240,6 +233,21 @@ wxString GetExecutablePath()
     }
 
     return path;
+}
+
+
+namespace wxm
+{
+
+void SetL10nHtmlColors()
+{
+    wxColourDatabase *cdb=wxTheColourDatabase;
+    HtmlColor *hc=HtmlColorTable;
+    for(int i=0; i<HtmlColorTableCount; ++i, ++hc)
+    {
+        cdb->AddColour(hc->name, wxColor(hc->red, hc->green, hc->blue));
+        g_color_l10n_map[wxString(hc->name).Upper()] = wxGetTranslation(hc->name);
+    }
 }
 
 void FileList::Append(const wxString& file, const LineNumberList& bmklns)
@@ -319,3 +327,30 @@ void SetDefaultMonoFont(wxWindow* win)
     int fontsize = win->GetFont().GetPointSize();
     win->SetFont(wxFont(fontsize, wxDEFAULT, wxNORMAL, wxNORMAL, false, fontname));
 }
+
+wxString FilePathFoldCase(const wxString& name)
+{
+	if (wxm::FILENAME_SENSITIVE)
+		return name;
+
+	// wxString::Upper is buggy under Windows
+	// and the filename insensitive of Windows is also buggy
+ 	// but they are different
+	wxString uppername;
+	BOOST_FOREACH(wxChar ch, name)
+		uppername.append(1, (wxChar)u_toupper((UChar32)(unsigned int)ch));
+
+	return uppername;
+}
+
+bool FilePathEqual(const wxString& name1, const wxString& name2)
+{
+	return FilePathFoldCase(name1) == FilePathFoldCase(name2);
+}
+
+unsigned long FilePathHash(const wxString& name)
+{
+	return wxStringHash::wxCharStringHash(FilePathFoldCase(name));
+}
+
+} // namespace wxm

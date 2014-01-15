@@ -11,6 +11,7 @@
 
 #include "../wxmedit_frame.h"
 #include "../wxmedit/wxmedit.h"
+#include "../wxm_utils.h"
 
 #include <wx/progdlg.h>
 #include <wx/dir.h>
@@ -231,9 +232,9 @@ WXMFindInFilesDialog::WXMFindInFilesDialog(wxWindow* parent,wxWindowID id,const 
 	WxComboBoxEncoding->SetValue(systemenc);
 
 	//
-	m_RecentFindDir = new wxRecentList();
-	m_RecentFindFilter = new wxRecentList();
-	m_RecentFindExclude = new wxRecentList();
+	m_RecentFindDir = new wxFilePathRecentList();
+	m_RecentFindFilter = new wxFilePathRecentList();
+	m_RecentFindExclude = new wxFilePathRecentList();
 	wxConfigBase *m_Config=wxConfigBase::Get(false);
 	wxString oldpath=m_Config->GetPath();
 	m_Config->SetPath(wxT("/RecentFindDir"));
@@ -488,11 +489,7 @@ public:
 			for(size_t i=0; i<count; i++)
 			{
 				fn.Assign(filename);
-#ifdef __WXMSW__
-				if(fn.GetFullName().Lower().Matches(g_ExcludeFilters[i].c_str()))
-#else
-				if(fn.GetFullName().Matches(g_ExcludeFilters[i].c_str()))
-#endif
+				if(wxm::FilePathFoldCase(fn.GetFullName()).Matches(g_ExcludeFilters[i].c_str()))
 				{
 					exclude=true;
 					break;
@@ -598,11 +595,9 @@ void WXMFindInFilesDialog::FindReplaceInFiles(bool bReplace)
 		for(;;)
 		{
 			tok=tkz2.GetNextToken();
-			if(tok.IsEmpty()) break;
-#ifdef __WXMSW__
-			tok.MakeLower();
-#endif
-			g_ExcludeFilters.push_back(tok);
+			if(tok.IsEmpty())
+				break;
+			g_ExcludeFilters.push_back(wxm::FilePathFoldCase(tok));
 		}
 		if(!g_ExcludeFilters.empty())
 		{

@@ -11,32 +11,21 @@
 
 #include <wx/docview.h>
 
-class wxRecentList: public wxFileHistory
+struct wxRecentList: public wxFileHistory
 {
-public:
-	static inline bool OSCaseSensitive()
-	{
-#ifdef __WXMSW__
-		return false;
-#else
-		return true;
-#endif
-	}
-
-	wxRecentList(bool caseSensitive=OSCaseSensitive(), size_t maxFiles = 9, wxWindowID idBase = wxID_FILE1)
-		: wxFileHistory(maxFiles, idBase), m_caseSensitive(caseSensitive), m_idbase(idBase)
+	wxRecentList(size_t maxFiles = 9, wxWindowID idBase = wxID_FILE1)
+		: wxFileHistory(maxFiles, idBase), m_idbase(idBase)
 	{}
 
 	void AddItemToHistory(const wxString& item)
 	{
 		return AddFileToHistory(item);
 	}
+
+protected:
+	virtual bool ItemEqual(const wxString& item1, const wxString& item2) = 0;
 private:
 	virtual void AddFileToHistory(const wxString& file);
-
-	bool ItemEQ(const wxString& item1, const wxString& item2);
-
-	bool m_caseSensitive;
 
 	wxWindowID m_idbase;
 
@@ -44,6 +33,36 @@ private:
 	{
 		return m_idbase;
 	}
+};
+
+struct wxSimpleRecentList: public wxRecentList
+{
+	wxSimpleRecentList(size_t maxFiles = 9, wxWindowID idBase = wxID_FILE1)
+		: wxRecentList(maxFiles, idBase)
+	{}
+private:
+	virtual bool ItemEqual(const wxString& item1, const wxString& item2)
+	{
+		return item1 == item2;
+	}
+};
+
+struct wxFilePathRecentList: public wxRecentList
+{
+	wxFilePathRecentList(size_t maxFiles = 9, wxWindowID idBase = wxID_FILE1)
+		: wxRecentList(maxFiles, idBase)
+	{}
+private:
+	virtual bool ItemEqual(const wxString& item1, const wxString& item2);
+};
+
+struct wxCaseInsensitiveRecentList: public wxRecentList
+{
+	wxCaseInsensitiveRecentList(size_t maxFiles = 9, wxWindowID idBase = wxID_FILE1)
+		: wxRecentList(maxFiles, idBase)
+	{}
+private:
+	virtual bool ItemEqual(const wxString& item1, const wxString& item2);
 };
 
 #endif //_WX_RECENT_LIST_H_

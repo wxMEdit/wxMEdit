@@ -267,7 +267,7 @@ bool MadEditApp::OnInit()
 
 
     // parse commandline to filelist
-    FileList filelist;
+    wxm::FileList filelist;
     for(int i=1; i<argc; i++)
     {
         wxFileName filename(argv[i]);
@@ -336,7 +336,7 @@ bool MadEditApp::OnInit()
     g_Locale.AddCatalog(wxT("wxmedit"));
 
     // set colors
-    SetHtmlColors();
+    wxm::SetL10nHtmlColors();
 
     wxm::UpdatePeriods::Instance().Initialize();
 

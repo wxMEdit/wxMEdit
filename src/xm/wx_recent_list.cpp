@@ -8,15 +8,18 @@
 
 #include "wx_recent_list.h"
 #include "wxm_case_conv.h"
+#include "../wxm_utils.h"
 #include <wx/menu.h>
 #include <wx/intl.h>
 
-bool wxRecentList::ItemEQ(const wxString& item1, const wxString& item2)
+bool wxCaseInsensitiveRecentList::ItemEqual(const wxString& item1, const wxString& item2)
 {
-	if (m_caseSensitive)
-		return item1 == item2;
-
 	return wxm::WxCaseCompare(item1, item2) == 0;
+}
+
+bool wxFilePathRecentList::ItemEqual(const wxString& item1, const wxString& item2)
+{
+	return wxm::FilePathEqual(item1, item2);
 }
 
 static const wxChar *s_MRUEntryFormat = wxT("&%d %s");
@@ -35,7 +38,7 @@ void wxRecentList::AddFileToHistory(const wxString& item)
 	// Check we don't already have this item
 	for (i = 0; i < m_fileHistoryN; i++)
 	{
-		if ( m_fileHistory[i] && ItemEQ(item, m_fileHistory[i]) )
+		if ( m_fileHistory[i] && ItemEqual(item, m_fileHistory[i]) )
 		{
 			// we do have it, move it to the top of the history
 			RemoveFileFromHistory (i);

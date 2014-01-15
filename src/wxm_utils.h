@@ -27,15 +27,24 @@ struct HtmlColor
 extern HtmlColor HtmlColorTable[];
 extern const int HtmlColorTableCount;
 
-void SetHtmlColors();
 extern std::map<wxString, wxString> g_color_l10n_map;
 
 extern wxString GetExecutablePath();
 
+class wxWindow;
+
+namespace wxm
+{
+
+void SetL10nHtmlColors();
+
 void OpenURL(const wxString& url);
 
-class wxWindow;
 void SetDefaultMonoFont(wxWindow* win);
+
+wxString FilePathFoldCase(const wxString& path);
+bool FilePathEqual(const wxString& path1, const wxString& path2);
+unsigned long FilePathHash(const wxString& path);
 
 struct FileList
 {
@@ -77,5 +86,7 @@ private:
     wxString m_files;
     FDescList m_filevec;
 };
+
+} //namespace wxm
 
 #endif

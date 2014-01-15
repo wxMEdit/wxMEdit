@@ -99,7 +99,7 @@ WXMAboutDialog::WXMAboutDialog(wxWindow* parent,wxWindowID id,const wxPoint& pos
 	Connect(wxID_ANY,wxEVT_CLOSE_WINDOW,(wxObjectEventFunction)&WXMAboutDialog::WXMAboutDialogClose);
 	//*)
 
-	SetDefaultMonoFont(TxtCredits);
+	wxm::SetDefaultMonoFont(TxtCredits);
 
 	StaticBitmap1->SetBitmap(wxBitmap(wxmedit_xpm));
 	StaticBitmap1->Enable(true);

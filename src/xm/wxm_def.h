@@ -25,7 +25,7 @@ typedef std::vector<size_t> LineNumberList;
 
 namespace wxm
 {
-	const wxString MonoFontName =
+	static const wxString MonoFontName =
 #ifdef __WXMSW__
 		wxT("Courier New")
 #elif defined(__APPLE__) && defined(__MACH__)
@@ -35,10 +35,18 @@ namespace wxm
 #endif
 	;
 
-	const long MINVAL_MAXLINELEN = 80;
-	const long MAXVAL_MAXLINELEN = 65536;
+	static const bool FILENAME_SENSITIVE =
+#ifdef __WXMSW__
+		false
+#else
+		true
+#endif
+	;
 
-	const size_t FIRSTLINE_SYNTAXPATTEN_MAXLEN = 16;
+	static const long MINVAL_MAXLINELEN = 80;
+	static const long MAXVAL_MAXLINELEN = 65536;
+
+	static const size_t FIRSTLINE_SYNTAXPATTEN_MAXLEN = 16;
 
 }; // namespace wxm
 
