@@ -2174,7 +2174,7 @@ void MadEditFrame::MadEditFrameClose(wxCloseEvent& event)
     {
         g_SearchReplaceDialog->Show(false);
         m_Config->SetPath(wxT("/RecentFindText"));
-        g_SearchReplaceDialog->m_RecentReplaceText->Save(*m_Config);
+        g_SearchReplaceDialog->m_RecentFindText->Save(*m_Config);
         m_Config->SetPath(wxT("/RecentReplaceText"));
         g_SearchReplaceDialog->m_RecentReplaceText->Save(*m_Config);
     }
