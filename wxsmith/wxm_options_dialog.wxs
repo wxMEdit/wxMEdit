@@ -88,73 +88,6 @@
 												</object>
 												<object class="sizeritem">
 													<object class="wxBoxSizer" variable="BoxSizer4" member="no">
-														<orient>wxVERTICAL</orient>
-														<object class="sizeritem">
-															<object class="wxCheckBox" name="ID_WXCHECKBOXSINGLEINSTANCE" variable="WxCheckBoxSingleInstance" member="yes">
-																<label>Single Instance (must restart wxMEdit)</label>
-															</object>
-															<flag>wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
-															<border>2</border>
-														</object>
-														<object class="sizeritem">
-															<object class="wxCheckBox" name="ID_WXCHECKBOXRECORDCARETMOVEMENTS" variable="WxCheckBoxRecordCaretMovements" member="yes">
-																<label>Record caret movements in undo list</label>
-															</object>
-															<flag>wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
-															<border>2</border>
-														</object>
-													</object>
-													<flag>wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
-													<border>5</border>
-												</object>
-												<object class="sizeritem">
-													<object class="wxBoxSizer" variable="BoxSizer5" member="no">
-														<object class="spacer">
-															<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
-															<size>3,0</size>
-														</object>
-														<object class="sizeritem">
-															<object class="wxTextCtrl" name="ID_WXEDITMAXSIZETOLOAD" variable="WxEditMaxSizeToLoad" member="yes">
-																<value>0</value>
-															</object>
-															<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
-														</object>
-														<object class="sizeritem">
-															<object class="wxStaticText" name="ID_STATICTEXT1" variable="StaticText1" member="yes">
-																<label>Max file size to load whole file into memory</label>
-															</object>
-															<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
-															<border>5</border>
-														</object>
-													</object>
-													<flag>wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
-													<border>2</border>
-												</object>
-												<object class="sizeritem">
-													<object class="wxBoxSizer" variable="BoxSizer6" member="no">
-														<object class="spacer">
-															<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
-															<size>3,0</size>
-														</object>
-														<object class="sizeritem">
-															<object class="wxTextCtrl" name="ID_WXEDITMAXTEXTFILESIZE" variable="WxEditMaxTextFileSize" member="yes">
-																<value>0</value>
-															</object>
-															<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
-														</object>
-														<object class="sizeritem">
-															<object class="wxStaticText" name="ID_STATICTEXT2" variable="StaticText2" member="yes">
-																<label>Max file size to load as a text file</label>
-															</object>
-															<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
-															<border>5</border>
-														</object>
-													</object>
-													<flag>wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
-													<border>2</border>
-												</object>
-												<object class="sizeritem">
-													<object class="wxBoxSizer" variable="BoxSizer17" member="no">
 														<object class="spacer">
 															<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
 															<size>3,0</size>
@@ -180,6 +113,13 @@
 													<object class="wxBoxSizer" variable="BoxSizer7" member="no">
 														<orient>wxVERTICAL</orient>
 														<object class="sizeritem">
+															<object class="wxCheckBox" name="ID_WXCHECKBOXSINGLEINSTANCE" variable="WxCheckBoxSingleInstance" member="yes">
+																<label>Single Instance (must restart wxMEdit)</label>
+															</object>
+															<flag>wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
+															<border>2</border>
+														</object>
+														<object class="sizeritem">
 															<object class="wxCheckBox" name="ID_WXCHECKBOXRELOADFILES" variable="WxCheckBoxReloadFiles" member="yes">
 																<label>Reload files previously open on startup</label>
 															</object>
@@ -187,15 +127,15 @@
 															<border>2</border>
 														</object>
 														<object class="sizeritem">
-															<object class="wxCheckBox" name="ID_WXCHECKBOXRESTORECARETPOS" variable="WxCheckBoxRestoreCaretPos" member="yes">
-																<label>Restore previous caret position when files are opened</label>
+															<object class="wxCheckBox" name="ID_WXCHECKBOXRECORDCARETMOVEMENTS" variable="WxCheckBoxRecordCaretMovements" member="yes">
+																<label>Record caret movements in undo list</label>
 															</object>
 															<flag>wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
 															<border>2</border>
 														</object>
 														<object class="sizeritem">
-															<object class="wxCheckBox" name="ID_WXCHECKBOXDONOTSAVESETTINGS" variable="WxCheckBoxDoNotSaveSettings" member="yes">
-																<label>Do not save settings to wxmedit.cfg when wxMEdit closed (this session only)</label>
+															<object class="wxCheckBox" name="ID_WXCHECKBOXRESTORECARETPOS" variable="WxCheckBoxRestoreCaretPos" member="yes">
+																<label>Restore previous caret position when files are opened</label>
 															</object>
 															<flag>wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
 															<border>2</border>
@@ -299,45 +239,6 @@
 															</object>
 															<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
 															<border>5</border>
-														</object>
-													</object>
-													<flag>wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
-													<border>2</border>
-												</object>
-												<object class="sizeritem">
-													<object class="wxBoxSizer" variable="BoxSizer23" member="no">
-														<object class="spacer">
-															<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
-															<size>3,0</size>
-														</object>
-														<object class="sizeritem">
-															<object class="wxTextCtrl" name="ID_WXEDITDATETIME" variable="WxEditDateTime" member="yes">
-																<size>160,-1</size>
-															</object>
-															<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
-														</object>
-														<object class="sizeritem">
-															<object class="wxStaticText" name="ID_WXSTATICTEXTDATETIME" variable="WxStaticTextDateTime" member="yes">
-																<label>Format of Date/Time</label>
-															</object>
-															<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
-															<border>5</border>
-														</object>
-														<object class="sizeritem">
-															<object class="wxButton" name="ID_WXBUTTONDATETIME" variable="WxButtonDateTime" member="yes">
-																<label>&gt;&gt;</label>
-																<size>40,-1</size>
-																<handler function="WxButtonDateTimeClick" entry="EVT_BUTTON" />
-															</object>
-															<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
-															<border>1</border>
-														</object>
-														<object class="sizeritem">
-															<object class="wxCheckBox" name="ID_WXCHECKBOXDATETIMEINENGLISH" variable="WxCheckBoxDateTimeInEnglish" member="yes">
-																<label>Use English instead of current locale</label>
-															</object>
-															<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
-															<border>2</border>
 														</object>
 													</object>
 													<flag>wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
@@ -830,6 +731,116 @@
 											</object>
 										</object>
 										<label>Keys</label>
+									</object>
+									<object class="AuiNotebookPage">
+										<object class="wxPanel" name="ID_PANEL5" variable="Panel5" member="yes">
+											<object class="wxBoxSizer" variable="BoxSizer36" member="no">
+												<orient>wxVERTICAL</orient>
+												<object class="sizeritem">
+													<object class="wxBoxSizer" variable="BoxSizer37" member="no">
+														<object class="sizeritem">
+															<object class="wxCheckBox" name="ID_WXCHECKBOXDONOTSAVESETTINGS" variable="WxCheckBoxDoNotSaveSettings" member="yes">
+																<label>Do not save settings to wxmedit.cfg when wxMEdit closed (this session only)</label>
+															</object>
+															<flag>wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
+															<border>2</border>
+														</object>
+													</object>
+													<flag>wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
+													<border>5</border>
+												</object>
+												<object class="sizeritem">
+													<object class="wxBoxSizer" variable="BoxSizer17" member="no">
+														<object class="spacer">
+															<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+															<size>3,0</size>
+														</object>
+														<object class="sizeritem">
+															<object class="wxTextCtrl" name="ID_WXEDITMAXTEXTFILESIZE" variable="WxEditMaxTextFileSize" member="yes">
+																<value>0</value>
+															</object>
+															<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+														</object>
+														<object class="sizeritem">
+															<object class="wxStaticText" name="ID_STATICTEXT2" variable="StaticText2" member="yes">
+																<label>Max file size to load as a text file</label>
+															</object>
+															<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+															<border>5</border>
+															<option>1</option>
+														</object>
+													</object>
+													<flag>wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
+													<border>2</border>
+												</object>
+												<object class="sizeritem">
+													<object class="wxBoxSizer" variable="BoxSizer38" member="no">
+														<object class="spacer">
+															<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+															<size>3,0</size>
+														</object>
+														<object class="sizeritem">
+															<object class="wxTextCtrl" name="ID_WXEDITMAXSIZETOLOAD" variable="WxEditMaxSizeToLoad" member="yes">
+																<value>0</value>
+															</object>
+															<flag>wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
+														</object>
+														<object class="sizeritem">
+															<object class="wxStaticText" name="ID_STATICTEXT1" variable="StaticText1" member="yes">
+																<label>Max file size to load whole file into memory</label>
+															</object>
+															<flag>wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
+															<border>5</border>
+														</object>
+													</object>
+													<flag>wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
+													<border>2</border>
+												</object>
+												<object class="sizeritem">
+													<object class="wxBoxSizer" variable="BoxSizer5" member="no">
+														<object class="spacer">
+															<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+															<size>3,0</size>
+														</object>
+														<object class="sizeritem">
+															<object class="wxTextCtrl" name="ID_WXEDITDATETIME" variable="WxEditDateTime" member="yes">
+																<size>160,-1</size>
+															</object>
+															<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+														</object>
+														<object class="sizeritem">
+															<object class="wxStaticText" name="ID_WXSTATICTEXTDATETIME" variable="WxStaticTextDateTime" member="yes">
+																<label>Format of Date/Time</label>
+															</object>
+															<flag>wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
+															<border>5</border>
+														</object>
+														<object class="spacer">
+															<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+															<size>3,0</size>
+														</object>
+														<object class="sizeritem">
+															<object class="wxButton" name="ID_WXBUTTONDATETIME" variable="WxButtonDateTime" member="yes">
+																<label>&gt;&gt;</label>
+																<size>40,-1</size>
+																<handler function="WxButtonDateTimeClick" entry="EVT_BUTTON" />
+															</object>
+															<flag>wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
+														</object>
+														<object class="sizeritem">
+															<object class="wxCheckBox" name="ID_WXCHECKBOXDATETIMEINENGLISH" variable="WxCheckBoxDateTimeInEnglish" member="yes">
+																<label>Use English instead of current locale</label>
+															</object>
+															<flag>wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
+															<border>2</border>
+														</object>
+													</object>
+													<flag>wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
+													<border>2</border>
+												</object>
+											</object>
+										</object>
+										<label>Misc</label>
 									</object>
 								</object>
 								<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
