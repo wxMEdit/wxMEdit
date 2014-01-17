@@ -22,8 +22,8 @@
 		<Unit filename="src/dialog/wxm_highlighting_dialog.h" />
 		<Unit filename="src/dialog/wxm_options_dialog.cpp" />
 		<Unit filename="src/dialog/wxm_options_dialog.h" />
-		<Unit filename="src/dialog/wxm_searchreplace_dialog.cpp" />
-		<Unit filename="src/dialog/wxm_searchreplace_dialog.h" />
+		<Unit filename="src/dialog/wxm_search_replace_dialog.cpp" />
+		<Unit filename="src/dialog/wxm_search_replace_dialog.h" />
 		<Unit filename="src/dialog/wxm_sort_dialog.cpp" />
 		<Unit filename="src/dialog/wxm_sort_dialog.h" />
 		<Unit filename="src/dialog/wxm_word_count_dialog.cpp" />
@@ -35,7 +35,7 @@
 		<Unit filename="wxsmith/wxm_find_in_files_dialog.wxs" />
 		<Unit filename="wxsmith/wxm_highlighting_dialog.wxs" />
 		<Unit filename="wxsmith/wxm_options_dialog.wxs" />
-		<Unit filename="wxsmith/wxm_searchreplace_dialog.wxs" />
+		<Unit filename="wxsmith/wxm_search_replace_dialog.wxs" />
 		<Unit filename="wxsmith/wxm_sort_dialog.wxs" />
 		<Unit filename="wxsmith/wxm_word_count_dialog.wxs" />
 		<Unit filename="wxsmith/wxmedit_about_dialog.wxs" />
@@ -51,7 +51,7 @@
 					<wxDialog wxs="wxsmith/wxm_conv_enc_dialog.wxs" src="src/dialog/wxm_conv_enc_dialog.cpp" hdr="src/dialog/wxm_conv_enc_dialog.h" fwddecl="0" i18n="1" name="WXMConvEncDialog" language="CPP" />
 					<wxDialog wxs="wxsmith/wxm_word_count_dialog.wxs" src="src/dialog/wxm_word_count_dialog.cpp" hdr="src/dialog/wxm_word_count_dialog.h" fwddecl="0" i18n="1" name="WXMWordCountDialog" language="CPP" />
 					<wxDialog wxs="wxsmith/wxm_file_association_dialog.wxs" src="src/dialog/wxm_file_association_dialog.cpp" hdr="src/dialog/wxm_file_association_dialog.h" fwddecl="0" i18n="1" name="WXMFileAssociationDialog" language="CPP" />
-					<wxDialog wxs="wxsmith/wxm_searchreplace_dialog.wxs" src="src/dialog/wxm_searchreplace_dialog.cpp" hdr="src/dialog/wxm_searchreplace_dialog.h" fwddecl="0" i18n="1" name="WXMSearchReplaceDialog" language="CPP" />
+					<wxDialog wxs="wxsmith/wxm_search_replace_dialog.wxs" src="src/dialog/wxm_search_replace_dialog.cpp" hdr="src/dialog/wxm_search_replace_dialog.h" fwddecl="0" i18n="1" name="WXMSearchReplaceDialog" language="CPP" />
 					<wxDialog wxs="wxsmith/wxm_find_in_files_dialog.wxs" src="src/dialog/wxm_find_in_files_dialog.cpp" hdr="src/dialog/wxm_find_in_files_dialog.h" fwddecl="0" i18n="1" name="WXMFindInFilesDialog" language="CPP" />
 					<wxDialog wxs="wxsmith/wxm_highlighting_dialog.wxs" src="src/dialog/wxm_highlighting_dialog.cpp" hdr="src/dialog/wxm_highlighting_dialog.h" fwddecl="0" i18n="1" name="WXMHighlightingDialog" language="CPP" />
 					<wxDialog wxs="wxsmith/wxm_options_dialog.wxs" src="src/dialog/wxm_options_dialog.cpp" hdr="src/dialog/wxm_options_dialog.h" fwddecl="0" i18n="1" name="WXMOptionsDialog" language="CPP" />

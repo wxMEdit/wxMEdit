@@ -12,7 +12,7 @@
 #include "wxmedit/wxm_syntax.h"
 #include "wxmedit/trad_simp.h"
 #include "wxmedit_frame.h"
-#include "dialog/wxm_searchreplace_dialog.h"
+#include "dialog/wxm_search_replace_dialog.h"
 #include "dialog/wxm_find_in_files_dialog.h"
 #include "dialog/wxm_options_dialog.h"
 #include "dialog/wxm_highlighting_dialog.h"

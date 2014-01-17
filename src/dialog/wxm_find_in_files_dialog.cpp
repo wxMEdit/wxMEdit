@@ -7,7 +7,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 #include "wxm_find_in_files_dialog.h"
-#include "wxm_searchreplace_dialog.h"
+#include "wxm_search_replace_dialog.h"
 
 #include "../wxmedit_frame.h"
 #include "../wxmedit/wxmedit.h"

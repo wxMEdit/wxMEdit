@@ -1,12 +1,12 @@
 ///////////////////////////////////////////////////////////////////////////////
-// Name:        wxm_searchreplace_dialog.cpp
+// Name:        wxm_search_replace_dialog.cpp
 // Description:
 // Author:      madedit@gmail.com  (creator)
 //              wxmedit@gmail.com  (current maintainer)
 // Licence:     GPL
 ///////////////////////////////////////////////////////////////////////////////
 
-#include "wxm_searchreplace_dialog.h"
+#include "wxm_search_replace_dialog.h"
 
 #include "../wxmedit/wxmedit.h"
 

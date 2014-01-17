@@ -1,5 +1,5 @@
 ///////////////////////////////////////////////////////////////////////////////
-// Name:        wxm_searchreplace_dialog.h
+// Name:        wxm_search_replace_dialog.h
 // Description:
 // Author:      madedit@gmail.com  (creator)
 //              wxmedit@gmail.com  (current maintainer)
