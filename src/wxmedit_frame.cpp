@@ -19,6 +19,7 @@
 #ifdef __WXMSW__
 #include "dialog/wxm_file_association_dialog.h"
 #endif
+#include "dialog/wxm_purge_histories_dialog.h"
 #include "dialog/wxm_conv_enc_dialog.h"
 #include "dialog/wxm_word_count_dialog.h"
 #include "dialog/wxm_sort_dialog.h"
@@ -1183,6 +1184,7 @@ BEGIN_EVENT_TABLE(MadEditFrame,wxFrame)
 	#ifdef __WXMSW__
 	EVT_MENU(menuFileAssociation, MadEditFrame::OnToolsFileAssociation)
 	#endif
+	EVT_MENU(menuPurgeHistories, MadEditFrame::OnToolsPurgeHistories)
 	EVT_MENU(menuToggleBOM, MadEditFrame::OnToolsToggleBOM)
 	EVT_MENU(menuConvertToDOS, MadEditFrame::OnToolsConvertToDOS)
 	EVT_MENU(menuConvertToMAC, MadEditFrame::OnToolsConvertToMAC)
@@ -1516,6 +1518,7 @@ CommandData CommandTable[]=
 #ifdef __WXMSW__
     { 0,               1, menuFileAssociation,    wxT("menuFileAssociation"),    _("&File Type Associations..."),                    wxT(""),       wxITEM_NORMAL,    -1, 0,                                _("Change file type associations")},
 #endif
+    { 0,               1, menuPurgeHistories,     wxT("menuPurgeHistories"),     _("&Purge Histories..."),                           wxT(""),       wxITEM_NORMAL,    -1, 0,                                _("Change file type associations")},
     { 0,               1, 0,                      0,                             0,                                                  0,             wxITEM_SEPARATOR, -1, 0,                                0},
     { 0,               1, menuByteOrderMark,      wxT("menuByteOrderMark"),      _("Has Unicode BOM (Byte-Order Mark)"),             0,             wxITEM_NORMAL,    -1, &g_Menu_Tools_BOM,                0},
     { 0,               2, menuToggleBOM,          wxT("menuToggleBOM"),          _("Add/Remove BOM"),                                wxT(""),       wxITEM_NORMAL,    -1, 0,                                _("Add/Remove Unicode BOM")},
@@ -4752,6 +4755,12 @@ void MadEditFrame::OnToolsFileAssociation(wxCommandEvent& event)
 }
 #endif
 
+void MadEditFrame::OnToolsPurgeHistories(wxCommandEvent& event)
+{
+    WXMPurgeHistoriesDialog dlg(this);
+    dlg.ShowModal();
+}
+
 void MadEditFrame::OnToolsToggleBOM(wxCommandEvent& event)
 {
     if(g_ActiveMadEdit==NULL) return;
@@ -5000,4 +5009,25 @@ void MadEditFrame::OnHelpAbout(wxCommandEvent& event)
 
     if(dlg.ShowModal() == wxID_OK && !g_wxMEdit_About_URL.empty())
         wxm::OpenURL(g_wxMEdit_About_URL);
+}
+
+void MadEditFrame::PurgeRecentFiles()
+{
+    int n = (int) m_RecentFiles->GetCount();
+    for(int i=n-1; i>=0; --i)
+        m_RecentFiles->RemoveFileFromHistory((size_t)i);
+}
+
+void MadEditFrame::PurgeRecentFonts()
+{
+    int n = (int) m_RecentFonts->GetCount();
+    for(int i=n-1; i>=1; --i)
+        m_RecentFonts->RemoveFileFromHistory((size_t)i);
+}
+
+void MadEditFrame::PurgeRecentEncodings()
+{
+    int n = (int) m_RecentEncodings->GetCount();
+    for(int i=n-1; i>=1; --i)
+        m_RecentEncodings->RemoveFileFromHistory((size_t)i);
 }

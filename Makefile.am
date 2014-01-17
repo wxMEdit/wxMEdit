@@ -36,6 +36,8 @@ wxmedit_SOURCES =	$(enc_src) \
 	src/dialog/wxm_highlighting_dialog.h \
 	src/dialog/wxm_options_dialog.cpp \
 	src/dialog/wxm_options_dialog.h \
+	src/dialog/wxm_purge_histories_dialog.cpp \
+	src/dialog/wxm_purge_histories_dialog.h \
 	src/dialog/wxm_search_replace_dialog.cpp \
 	src/dialog/wxm_search_replace_dialog.h \
 	src/dialog/wxm_sort_dialog.cpp \

@@ -147,6 +147,8 @@
 		<sources>../src/dialog/wxm_highlighting_dialog.cpp</sources>
 		<headers>../src/dialog/wxm_options_dialog.h</headers>
 		<sources>../src/dialog/wxm_options_dialog.cpp</sources>
+		<headers>../src/dialog/wxm_purge_histories_dialog.h</headers>
+		<sources>../src/dialog/wxm_purge_histories_dialog.cpp</sources>
 		<headers>../src/dialog/wxm_search_replace_dialog.h</headers>
 		<sources>../src/dialog/wxm_search_replace_dialog.cpp</sources>
 		<headers>../src/dialog/wxm_sort_dialog.h</headers>

@@ -826,3 +826,27 @@ void WXMFindInFilesDialog::WxButtonActiveDirClick(wxCommandEvent& event)
 		}
 	}
 }
+
+void WXMFindInFilesDialog::PurgeRecentFindDirs()
+{
+	int n = (int) m_RecentFindDir->GetCount();
+	for(int i=n-1; i>=0; --i)
+		m_RecentFindDir->RemoveFileFromHistory((size_t)i);
+	WxComboBoxDir->Clear();
+}
+
+void WXMFindInFilesDialog::PurgeRecentFindFilters()
+{
+	int n = (int) m_RecentFindFilter->GetCount();
+	for(int i=n-1; i>=0; --i)
+		m_RecentFindFilter->RemoveFileFromHistory((size_t)i);
+	WxComboBoxFilter->Clear();
+}
+
+void WXMFindInFilesDialog::PurgeRecentFindExcludes()
+{
+	int n = (int) m_RecentFindExclude->GetCount();
+	for(int i=n-1; i>=0; --i)
+		m_RecentFindExclude->RemoveFileFromHistory((size_t)i);
+	WxComboBoxExclude->Clear();
+}

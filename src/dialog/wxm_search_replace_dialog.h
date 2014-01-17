@@ -150,6 +150,9 @@ class WXMSearchReplaceDialog: public wxDialog
 		void OnRecentFindText(wxCommandEvent& event);
 		void OnRecentReplaceText(wxCommandEvent& event);
 
+		void PurgeRecentFindTexts();
+		void PurgeRecentReplaceTexts();
+
 		DECLARE_EVENT_TABLE()
 };
 

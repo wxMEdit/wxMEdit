@@ -1016,3 +1016,17 @@ void WXMSearchReplaceDialog::ShowMessage(const wxString &msg, WXMSearchReplaceDi
 	StaticTextStatus->SetForegroundColour(GetMessageColor(type));
 	StaticTextStatus->SetLabel(msg);
 }
+
+void WXMSearchReplaceDialog::PurgeRecentFindTexts()
+{
+	int n = (int) m_RecentFindText->GetCount();
+	for(int i=n-1; i>=0; --i)
+		m_RecentFindText->RemoveFileFromHistory((size_t)i);
+}
+
+void WXMSearchReplaceDialog::PurgeRecentReplaceTexts()
+{
+	int n = (int) m_RecentReplaceText->GetCount();
+	for(int i=n-1; i>=0; --i)
+		m_RecentReplaceText->RemoveFileFromHistory((size_t)i);
+}

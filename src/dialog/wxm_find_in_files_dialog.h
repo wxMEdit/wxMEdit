@@ -125,6 +125,9 @@ class WXMFindInFilesDialog: public wxDialog
 		void OnRecentFindText(wxCommandEvent& event);
 		void OnRecentReplaceText(wxCommandEvent& event);
 
+		void PurgeRecentFindDirs();
+		void PurgeRecentFindFilters();
+		void PurgeRecentFindExcludes();
 
 		DECLARE_EVENT_TABLE()
 };
