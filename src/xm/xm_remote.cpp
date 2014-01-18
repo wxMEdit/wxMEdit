@@ -19,14 +19,14 @@ static size_t string_append(const void *buffer, size_t size, size_t nmemb, void 
 namespace xm
 {
 
+static bool initialized = false;
+
 bool RemoteAccessInit()
 {
-	static bool inited = false;
+	if (!initialized)
+		initialized = (curl_global_init(CURL_GLOBAL_ALL) == CURLE_OK);
 
-	if (!inited)
-		inited = (curl_global_init(CURL_GLOBAL_ALL) == CURLE_OK);
-
-	return inited;
+	return initialized;
 }
 
 std::string GetRemoteText(const std::string& url)
@@ -67,7 +67,8 @@ std::string GetRemoteText(const std::string& url)
 
 void RemoteAccessCleanup()
 {
-	curl_global_cleanup();
+	if (initialized)
+		curl_global_cleanup();
 }
 
 } //namespace wxm

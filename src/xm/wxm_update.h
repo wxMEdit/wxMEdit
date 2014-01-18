@@ -16,6 +16,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 #include <wx/string.h>
+#include <boost/noncopyable.hpp>
 #include <vector>
 #include <map>
 #include <ctime>
@@ -37,7 +38,7 @@ void ConfirmUpdate(const std::string& newver, bool notify_newest=true,
 
 void AutoCheckUpdates(wxFileConfig* cfg);
 
-struct UpdatePeriods
+struct UpdatePeriods: private boost::noncopyable
 {
 	std::vector<wxString> GetTitles() const;
 	wxString GetDefaultTitle() const;

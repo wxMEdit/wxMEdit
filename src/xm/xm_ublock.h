@@ -10,7 +10,7 @@
 #define _XM_UBLOCK_H_
 
 #include <unicode/uchar.h>
-#include <boost/utility.hpp>
+#include <boost/noncopyable.hpp>
 #include <map>
 #include <set>
 

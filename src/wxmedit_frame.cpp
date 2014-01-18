@@ -3848,14 +3848,14 @@ void MadEditFrame::OnEditToHalfWidthByOptions(wxCommandEvent& event)
     if(g_ActiveMadEdit == NULL) return;
 
     static wxArrayInt selections;
-    static bool inited = false;
-    if(!inited)
+    static bool initialized = false;
+    if(!initialized)
     {
         selections.Add(0);
         selections.Add(1);
         selections.Add(2);
         selections.Add(3);
-        inited = true;
+        initialized = true;
     }
 
     wxString choices[4] = { _("ASCII characters"), _("Japanese characters"),
@@ -3891,14 +3891,14 @@ void MadEditFrame::OnEditToFullWidthByOptions(wxCommandEvent& event)
     if(g_ActiveMadEdit == NULL) return;
 
     static wxArrayInt selections;
-    static bool inited = false;
-    if(!inited)
+    static bool initialized = false;
+    if(!initialized)
     {
         selections.Add(0);
         selections.Add(1);
         selections.Add(2);
         selections.Add(3);
-        inited = true;
+        initialized = true;
     }
 
     wxString choices[4] = { _("ASCII characters"), _("Japanese characters"),
