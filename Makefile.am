@@ -81,6 +81,7 @@ wxmedit_SOURCES =	$(enc_src) \
 	src/xm/wx_recent_list.h \
 	src/xm/wxm_case_conv.cpp \
 	src/xm/wxm_case_conv.h \
+	src/xm/wxm_choice_map.hpp \
 	src/xm/wxm_def.h \
 	src/xm/wxm_line_enc_adapter.cpp \
 	src/xm/wxm_line_enc_adapter.h \

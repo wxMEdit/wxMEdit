@@ -23,7 +23,6 @@
 #include <boost/lexical_cast.hpp>
 #include <boost/assign/list_of.hpp>
 #include <boost/foreach.hpp>
-#include <vector>
 #include <algorithm>
 #include <functional>
 #include <limits>
@@ -146,93 +145,21 @@ bool IsFirstNewer(const std::vector<unsigned int>& v1, const std::vector<unsigne
 	return false;
 }
 
-UpdatePeriods& UpdatePeriods::Instance()
+void UpdatePeriods::DoInit()
 {
-	static UpdatePeriods s_inst;
-	if (!s_inst.m_initialized)
-		s_inst.Initialize();
-	return s_inst;
-}
-
-void UpdatePeriods::AddData(int idx, time_t peroid, const wxString& cfg, const wxString& l10ntitle)
-{
-	m_idx_peroid_map[idx] = peroid;
-	m_idx_l10ntitle_map[idx] = l10ntitle;
-	m_l10ntitle_cfg_map[l10ntitle] = cfg;
-	m_cfg_idx_map[cfg] = idx;
-}
-
-void UpdatePeriods::Initialize()
-{
-	if (m_initialized)
-		return;
-
-	m_initialized = true;
 	time_t timemax = std::numeric_limits<time_t>::max();
 
-	AddData(UP_DAILY,   time_t(3600*24),    wxT("daily"),   _("every day"));
-	AddData(UP_WEEKLY,  time_t(3600*24*7),  wxT("weekly"),  _("every week"));
-	AddData(UP_MONTHLY, time_t(3600*24*30), wxT("monthly"), _("every month"));
-	AddData(UP_NEVER,   timemax,            wxT("never"),   _("never"));
-}
+	AddData(UP_DAILY,   wxT("daily"),   _("every day"),   time_t(3600*24));
+	AddData(UP_WEEKLY,  wxT("weekly"),  _("every week"),  time_t(3600*24*7));
+	AddData(UP_MONTHLY, wxT("monthly"), _("every month"), time_t(3600*24*30));
+	AddData(UP_NEVER,   wxT("never"),   _("never"),       timemax);
 
-std::vector<wxString> UpdatePeriods::GetTitles() const
-{
-	std::vector<wxString> l10ntitles;
-	BOOST_FOREACH(const IdxL10nTitleMap::value_type& v, m_idx_l10ntitle_map)
-		l10ntitles.push_back(v.second);
-	return l10ntitles;
-}
-
-wxString UpdatePeriods::GetDefaultTitle() const
-{
-	return IndexToTitle(default_idx);
-}
-
-wxString UpdatePeriods::TitleToConfig(const wxString& title) const
-{
-	L10nTitleCfgMap::const_iterator it = m_l10ntitle_cfg_map.find(title);
-	if (it != m_l10ntitle_cfg_map.end())
-		return it->second;
-
-	return wxString();
-}
-
-wxString UpdatePeriods::ConfigToTitle(const wxString& cfg) const
-{
-	return IndexToTitle(ConfigToIndex(cfg));
-}
-
-int UpdatePeriods::ConfigToIndex(const wxString& cfg) const
-{
-	CfgIdxMap::const_iterator it = m_cfg_idx_map.find(cfg);
-	if (it != m_cfg_idx_map.end())
-		return it->second;
-
-	return default_idx;
-}
-
-wxString UpdatePeriods::IndexToTitle(int idx) const
-{
-	IdxL10nTitleMap::const_iterator it = m_idx_l10ntitle_map.find(idx);
-	if (it != m_idx_l10ntitle_map.end())
-		return it->second;
-
-	return wxString();
+	SetDefault(default_idx, default_peroid);
 }
 
 time_t UpdatePeriods::ConfigToPeroid(const wxString& cfg) const
 {
-	return IndexToPeriod(ConfigToIndex(cfg));
-}
-
-time_t UpdatePeriods::IndexToPeriod(int idx) const
-{
-	IdxPeriodMap::const_iterator it = m_idx_peroid_map.find(idx);
-	if (it != m_idx_peroid_map.end())
-		return it->second;
-
-	return default_peroid;
+	return IndexToVal(ConfigToIndex(cfg));
 }
 
 struct UpdatesCheckingThread : public wxThread
@@ -257,11 +184,11 @@ void AutoCheckUpdates(wxFileConfig* cfg)
 	cfg->Read(wxT("/wxMEdit/CheckPrereleaseUpdates"), &g_check_prerelease, default_check_prerelease);
 
 	long lasttime = 0;
-	wxString period;
+	wxString periodcfg;
     cfg->Read(wxT("/wxMEdit/LastTimeAutoCheckUpdates"), &lasttime, 0);
-    cfg->Read(wxT("/wxMEdit/UpdatesCheckingPeriod"), &period);
+    cfg->Read(wxT("/wxMEdit/UpdatesCheckingPeriod"), &periodcfg);
 
-	if (time(NULL)-lasttime < UpdatePeriods::Instance().ConfigToPeroid(period))
+	if (time(NULL)-lasttime < UpdatePeriods::Instance().ConfigToPeroid(periodcfg))
 		return;
 
 	cfg->Write(wxT("/wxMEdit/LastTimeAutoCheckUpdates"), long(time(NULL)));
