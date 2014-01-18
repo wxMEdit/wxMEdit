@@ -340,6 +340,11 @@ bool MadEditApp::OnInit()
 
     wxm::UpdatePeriods::Instance().Initialize();
 
+    wxString behav;
+    cfg->Read(wxT("/wxMEdit/BehaviorCopyingInHexArea"), &behav);
+    wxm::HexAreaClipboardCopyProxy::Instance().SelectCopierByConfig(behav);
+
+ 
     bool maximize=false;
 #ifdef __WXMSW__
     cfg->Read(wxT("/wxMEdit/WindowMaximize"), &maximize, false);

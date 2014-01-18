@@ -4553,6 +4553,10 @@ void MadEditFrame::OnToolsOptions(wxCommandEvent& event)
         mmp=g_OptionsDialog->WxCheckBoxMiddleMouseToPaste->GetValue();
         m_Config->Write(wxT("MiddleMouseToPaste"), mmp);
 
+        wxString behav = g_OptionsDialog->GetSelectedBehaviorCopyInHexArea();
+        wxm::HexAreaClipboardCopyProxy::Instance().SelectCopierByConfig(behav);
+        m_Config->Write(wxT("BehaviorCopyingInHexArea"), behav);
+
         int count=int(m_Notebook->GetPageCount());
         for(int i=0;i<count;i++)
         {

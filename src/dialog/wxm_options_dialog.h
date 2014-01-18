@@ -87,6 +87,7 @@ class WXMOptionsDialog: public wxDialogWrapper
 		wxStaticText* StaticText8;
 		wxStaticText* StaticText11;
 		wxButton* WxButtonShowInMenu;
+		wxStaticText* StaticText18;
 		wxPanel* Panel1;
 		wxStaticText* StaticText1;
 		wxCheckBox* WxCheckBoxTabOrSpaces;
@@ -102,6 +103,7 @@ class WXMOptionsDialog: public wxDialogWrapper
 		wxButton* Button5;
 		wxButton* WxButtonDateTime;
 		wxCheckBox* WxCheckBoxMiddleMouseToPaste;
+		wxComboBox* WxComboBoxBehaviorCopyInHexArea;
 		wxButton* Button3;
 		wxCheckBox* WxCheckBoxRecordCaretMovements;
 		wxStaticText* StaticText5;
@@ -166,6 +168,8 @@ class WXMOptionsDialog: public wxDialogWrapper
 		static const long ID_WXCHECKBOXMOUSESELECTTOCOPY;
 		static const long ID_WXCHECKBOXWHENPRESSCTRLKEY;
 		static const long ID_WXCHECKBOXMIDDLEMOUSETOPASTE;
+		static const long ID_STATICTEXT18;
+		static const long ID_COMBOBOXBEHAVIORCOPYINHEXAREA;
 		static const long ID_PANEL2;
 		static const long ID_WXCHECKBOXPRINTSYNTAX;
 		static const long ID_WXCHECKBOXPRINTLINENUMBER;
@@ -284,6 +288,7 @@ public:
 	wxString GetSelectedLanguage();
 	wxString GetSelectedEncoding();
 	wxString GetSelectedUpdatePeroid();
+	wxString GetSelectedBehaviorCopyInHexArea();
 
 	void LoadOptions(void);
 

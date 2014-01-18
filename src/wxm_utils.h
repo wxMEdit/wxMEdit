@@ -10,10 +10,12 @@
 #ifndef _WXM_UTILS_H_
 #define _WXM_UTILS_H_
 
+#include "xm/wxm_choice_map.hpp"
 #include "xm/wxm_def.h"
 
 #include <wx/defs.h>
 #include <wx/string.h>
+#include <boost/shared_ptr.hpp>
 #include <map>
 #include <vector>
 
@@ -32,6 +34,7 @@ extern std::map<wxString, wxString> g_color_l10n_map;
 extern wxString GetExecutablePath();
 
 class wxWindow;
+class MadEdit;
 
 namespace wxm
 {
@@ -85,6 +88,47 @@ private:
 
     wxString m_files;
     FDescList m_filevec;
+};
+
+struct HexAreaClipboardCopier
+{
+    virtual void Copy(MadEdit* inst) = 0;
+    virtual ~HexAreaClipboardCopier() {}
+};
+
+typedef boost::shared_ptr<HexAreaClipboardCopier> SharedCopierPtr;
+struct HexAreaClipboardCopyProxy: public ChoiceMap<HexAreaClipboardCopyProxy, SharedCopierPtr>
+{
+    void SelectCopierByConfig(const wxString& cfg)
+    {
+        m_selected_idx = ConfigToIndex(cfg);
+    }
+
+    wxString GetSelectedCopierTitle()
+    {
+        return IndexToTitle(m_selected_idx);
+    }
+
+    HexAreaClipboardCopier& GetSelectedCopier()
+    {
+        return *IndexToVal(m_selected_idx);
+    }
+
+private:
+    friend class ChoiceMap<HexAreaClipboardCopyProxy, SharedCopierPtr>;
+    HexAreaClipboardCopyProxy(): m_selected_idx(HACCI_RAWBYTES) {}
+
+    virtual void DoInit();
+
+    enum HexAreaClipboardCopierIndex
+    {
+        HACCI_RAWBYTES,
+        HACCI_REGULARTEXT,
+        HACCI_HEXSTRING,
+        HACCI_HEXSTRINGWITHSPACE,
+    };
+
+    int m_selected_idx;
 };
 
 } //namespace wxm

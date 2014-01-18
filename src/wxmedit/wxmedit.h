@@ -510,8 +510,9 @@ protected:
     int GetLineNumberAreaWidth(int number);
 
     void CopyColumnText();
+public:
     void CopyRegularText();
-    void CopyRawBinaryData();
+    void CopyRawBytes();
 
 protected:
     void OnChar(wxKeyEvent &evt);

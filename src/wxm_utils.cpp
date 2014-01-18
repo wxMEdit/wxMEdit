@@ -9,7 +9,7 @@
 
 #include "wxm_utils.h"
 #include "xm/wxm_encoding/encoding.h"
-#include "xm/wxm_def.h"
+#include "wxmedit/wxmedit.h"
 
 #include <wx/wxprec.h>
 #include <wx/app.h>
@@ -331,27 +331,69 @@ void SetDefaultMonoFont(wxWindow* win)
 wxString FilePathNormalCase(const wxString& name)
 {
 #ifndef __WXMSW__
-	return name;
+    return name;
 #else
-	// wxString::Upper is buggy under Windows
-	// and the filename insensitive of Windows is also buggy
- 	// but they are different
-	wxString uppername;
-	BOOST_FOREACH(wxChar ch, name)
-		uppername.append(1, (wxChar)u_toupper((UChar32)(unsigned int)ch));
+    // wxString::Upper is buggy under Windows
+    // and the filename insensitive of Windows is also buggy
+    // but they are different
+    wxString uppername;
+    BOOST_FOREACH(wxChar ch, name)
+        uppername.append(1, (wxChar)u_toupper((UChar32)(unsigned int)ch));
 
-	return uppername;
+    return uppername;
 #endif
 }
 
 bool FilePathEqual(const wxString& name1, const wxString& name2)
 {
-	return FilePathNormalCase(name1) == FilePathNormalCase(name2);
+    return FilePathNormalCase(name1) == FilePathNormalCase(name2);
 }
 
 unsigned long FilePathHash(const wxString& name)
 {
-	return wxStringHash::wxCharStringHash(FilePathNormalCase(name));
+    return wxStringHash::wxCharStringHash(FilePathNormalCase(name));
+}
+
+struct HexAreaRawBytesCopier: public HexAreaClipboardCopier
+{
+    virtual void Copy(MadEdit* inst)
+    {
+        inst->CopyRawBytes();
+    }
+};
+
+struct HexAreaRegularTextCopier: public HexAreaClipboardCopier
+{
+    virtual void Copy(MadEdit* inst)
+    {
+        inst->CopyRegularText();
+    }
+};
+
+struct HexAreaHexStringCopier: public HexAreaClipboardCopier
+{
+    virtual void Copy(MadEdit* inst)
+    {
+        inst->CopyAsHexString(false);
+    }
+};
+
+struct HexAreaHexStringWithSpaceCopier: public HexAreaClipboardCopier
+{
+    virtual void Copy(MadEdit* inst)
+    {
+        inst->CopyAsHexString(true);
+    }
+};
+
+void HexAreaClipboardCopyProxy::DoInit()
+{
+    AddData(HACCI_RAWBYTES,           wxT("raw_bytes"),             _("Copy as Raw Bytes"),              SharedCopierPtr(new HexAreaRawBytesCopier));
+    AddData(HACCI_REGULARTEXT,        wxT("regular_text"),          _("Copy as Regular Text"),           SharedCopierPtr(new HexAreaRegularTextCopier));
+    AddData(HACCI_HEXSTRING,          wxT("hex_string"),            _("Copy as Hex String"),             SharedCopierPtr(new HexAreaHexStringCopier));
+    AddData(HACCI_HEXSTRINGWITHSPACE, wxT("hex_string_with_space"), _("Copy as Hex String with Spaces"), SharedCopierPtr(new HexAreaHexStringWithSpaceCopier));
+
+    SetDefault(HACCI_RAWBYTES, IndexToVal(HACCI_RAWBYTES));
 }
 
 } // namespace wxm

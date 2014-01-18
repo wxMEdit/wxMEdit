@@ -25,6 +25,7 @@
 #include <wx/aui/auibook.h>
 #include <wx/fileconf.h>
 #include <wx/config.h>
+#include <boost/foreach.hpp>
 #include <algorithm>
 
 WXMOptionsDialog *g_OptionsDialog=NULL;
@@ -147,6 +148,8 @@ const long WXMOptionsDialog::ID_WXCHECKBOXAUTOCOMPLETEPAIR = wxNewId();
 const long WXMOptionsDialog::ID_WXCHECKBOXMOUSESELECTTOCOPY = wxNewId();
 const long WXMOptionsDialog::ID_WXCHECKBOXWHENPRESSCTRLKEY = wxNewId();
 const long WXMOptionsDialog::ID_WXCHECKBOXMIDDLEMOUSETOPASTE = wxNewId();
+const long WXMOptionsDialog::ID_STATICTEXT18 = wxNewId();
+const long WXMOptionsDialog::ID_COMBOBOXBEHAVIORCOPYINHEXAREA = wxNewId();
 const long WXMOptionsDialog::ID_PANEL2 = wxNewId();
 const long WXMOptionsDialog::ID_WXCHECKBOXPRINTSYNTAX = wxNewId();
 const long WXMOptionsDialog::ID_WXCHECKBOXPRINTLINENUMBER = wxNewId();
@@ -290,6 +293,7 @@ WXMOptionsDialog::WXMOptionsDialog(wxWindow* parent,wxWindowID id)
 	//(*Initialize(WXMOptionsDialog)
 	wxBoxSizer* BoxSizer4;
 	wxStaticBoxSizer* StaticBoxSizer2;
+	wxBoxSizer* BoxSizer6;
 	wxBoxSizer* BoxSizer29;
 	wxBoxSizer* BoxSizer19;
 	wxBoxSizer* BoxSizer15;
@@ -434,6 +438,12 @@ WXMOptionsDialog::WXMOptionsDialog(wxWindow* parent,wxWindowID id)
 	WxCheckBoxMiddleMouseToPaste = new wxCheckBox(Panel2, ID_WXCHECKBOXMIDDLEMOUSETOPASTE, _("Paste text from clipboard when pressing middle mouse button"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_WXCHECKBOXMIDDLEMOUSETOPASTE"));
 	WxCheckBoxMiddleMouseToPaste->SetValue(false);
 	BoxSizer12->Add(WxCheckBoxMiddleMouseToPaste, 0, wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL, 2);
+	BoxSizer6 = new wxBoxSizer(wxHORIZONTAL);
+	StaticText18 = new wxStaticText(Panel2, ID_STATICTEXT18, _("Behavior of copying in hex editing area:"), wxDefaultPosition, wxDefaultSize, 0, _T("ID_STATICTEXT18"));
+	BoxSizer6->Add(StaticText18, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 0);
+	WxComboBoxBehaviorCopyInHexArea = new wxComboBox(Panel2, ID_COMBOBOXBEHAVIORCOPYINHEXAREA, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0, 0, wxCB_READONLY|wxCB_DROPDOWN, wxDefaultValidator, _T("ID_COMBOBOXBEHAVIORCOPYINHEXAREA"));
+	BoxSizer6->Add(WxComboBoxBehaviorCopyInHexArea, 0, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 0);
+	BoxSizer12->Add(BoxSizer6, 0, wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL, 0);
 	BoxSizer8->Add(BoxSizer12, 0, wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL, 5);
 	Panel2->SetSizer(BoxSizer8);
 	BoxSizer8->Fit(Panel2);
@@ -702,12 +712,13 @@ WXMOptionsDialog::WXMOptionsDialog(wxWindow* parent,wxWindowID id)
 	}
 	WxComboBoxLanguage->SetValue(systemlang);
 
-	std::vector<wxString> peroids = wxm::UpdatePeriods::Instance().GetTitles();
-	for(i=0; i<peroids.size(); ++i)
-	{
-		WxComboBoxUpdatesCheckingPeriod->Append(peroids[i]);
-	}
+	BOOST_FOREACH(wxString peroid, wxm::UpdatePeriods::Instance().GetTitles())
+		WxComboBoxUpdatesCheckingPeriod->Append(peroid);
 	WxComboBoxUpdatesCheckingPeriod->SetValue(wxm::UpdatePeriods::Instance().GetDefaultTitle());
+
+	BOOST_FOREACH(wxString behavior, wxm::HexAreaClipboardCopyProxy::Instance().GetTitles())
+		WxComboBoxBehaviorCopyInHexArea->Append(behavior);
+	WxComboBoxBehaviorCopyInHexArea->SetValue(wxm::HexAreaClipboardCopyProxy::Instance().GetDefaultTitle());
 
 #ifdef __WXMSW__
 	WxCheckBoxRightClickMenu = new wxCheckBox(Panel1, -1, _("Add wxMEdit to the RightClickMenu of Explorer(Deselect to Remove the Entry from Windows Registry)"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("WxCheckBoxRightClickMenu"));
@@ -829,6 +840,12 @@ wxString WXMOptionsDialog::GetSelectedUpdatePeroid()
 	return wxm::UpdatePeriods::Instance().TitleToConfig(title);
 }
 
+wxString WXMOptionsDialog::GetSelectedBehaviorCopyInHexArea()
+{
+	wxString title = WxComboBoxBehaviorCopyInHexArea->GetValue();
+	return wxm::HexAreaClipboardCopyProxy::Instance().TitleToConfig(title);
+}
+
 void WXMOptionsDialog::WXMOptionsDialogClose(wxCloseEvent& event)
 {
 	if(event.CanVeto())
@@ -939,6 +956,9 @@ void WXMOptionsDialog::LoadOptions(void)
 
 	cfg->Read(wxT("MiddleMouseToPaste"), &bb);
 	WxCheckBoxMiddleMouseToPaste->SetValue(bb);
+
+	WxComboBoxBehaviorCopyInHexArea->SetValue(
+		wxm::HexAreaClipboardCopyProxy::Instance().GetSelectedCopierTitle());
 
 	// Print page
 	cfg->Read(wxT("PrintSyntax"), &bb);

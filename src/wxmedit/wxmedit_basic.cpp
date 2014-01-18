@@ -8,6 +8,7 @@
 
 #include "wxmedit.h"
 #include "../xm/wxm_encoding/unicode.h"
+#include "../wxm_utils.h"
 
 #ifdef __WXGTK__
 #   include "clipbrd_gtk.h"
@@ -1518,7 +1519,7 @@ void MadEdit::CopyRegularText()
     PutTextToClipboard(ws);
 }
 
-void MadEdit::CopyRawBinaryData()
+void MadEdit::CopyRawBytes()
 {
     wxFileOffset pos = m_SelectionBegin->pos;
     MadLineIterator lit = m_SelectionBegin->iter;
@@ -1557,7 +1558,7 @@ void MadEdit::CopyToClipboard()
     }
     else //m_EditMode==emHexMode && m_CaretAtHexArea
     {
-        CopyRawBinaryData();
+        wxm::HexAreaClipboardCopyProxy::Instance().GetSelectedCopier().Copy(this);
     }
 }
 
