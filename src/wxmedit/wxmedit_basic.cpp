@@ -1448,101 +1448,116 @@ void MadEdit::CutToClipboard()
     }
 }
 
+void MadEdit::CopyColumnText()
+{
+    wxString ws;
+    GetColumnSelection(&ws);
+    if(ws.size())
+    {
+        PutColumnDataToClipboard(ws, m_SelectionEnd->rowid - m_SelectionBegin->rowid + 1);
+    }
+}
+
+void MadEdit::CopyRegularText()
+{
+    wxString ws;
+    MadUCQueue ucqueue;
+
+    wxFileOffset pos = m_SelectionBegin->pos;
+    MadLineIterator lit = m_SelectionBegin->iter;
+    m_Lines->InitNextUChar(lit, m_SelectionBegin->linepos);
+    do
+    {
+        if(ucqueue.size() || m_Lines->NextUChar(ucqueue))
+        {
+            ucs4_t &uc=ucqueue.front().first;
+            if(uc==0x0D || uc==0x0A)
+            {
+#ifdef __WXMSW__
+                ws<<wxChar(0x0D);
+#endif
+                ws<<wxChar(0x0A);
+
+                pos += ucqueue.front().second;
+
+                if(uc==0x0D && m_Lines->NextUChar(ucqueue) &&
+                    ucqueue.back().first==0x0A)
+                {
+                    pos += ucqueue.back().second;
+                }
+
+                ucqueue.clear();
+
+            }
+#ifdef __WXMSW__
+            else if(uc>=0x10000)
+            {
+                wchar_t wcbuf[2];
+                wxm::UCS4toUTF16LE_U10000(uc, (wxByte*)wcbuf);
+                ws<<wxChar(wcbuf[0]);
+                ws<<wxChar(wcbuf[1]);
+                pos += ucqueue.front().second;
+                ucqueue.clear();
+            }
+#endif
+            else
+            {
+                ws<<wxChar(uc);
+                pos += ucqueue.front().second;
+                ucqueue.clear();
+            }
+
+        }
+        else
+        {
+            m_Lines->InitNextUChar(++lit, 0);
+        }
+    }
+    while(pos < m_SelectionEnd->pos);
+
+    PutTextToClipboard(ws);
+}
+
+void MadEdit::CopyRawBinaryData()
+{
+    wxFileOffset pos = m_SelectionBegin->pos;
+    MadLineIterator lit = m_SelectionBegin->iter;
+    wxFileOffset lpos = m_SelectionBegin->linepos;
+
+    std::string data;
+    do
+    {
+        if(lpos < lit->m_Size)
+        {
+            data += lit->Get(lpos++);
+            ++pos;
+        }
+        else
+        {
+            ++lit;
+            lpos = 0;
+        }
+    }
+    while(pos < m_SelectionEnd->pos);
+
+    PutHexDataToClipboard(data.c_str(), data.size());
+}
+
 void MadEdit::CopyToClipboard()
 {
     if(!m_Selection) return;
 
     if(m_EditMode==emColumnMode)
     {
-        wxString ws;
-        GetColumnSelection(&ws);
-        if(ws.size())
-        {
-            PutColumnDataToClipboard(ws, m_SelectionEnd->rowid - m_SelectionBegin->rowid + 1);
-        }
+        CopyColumnText();
     }
     else if(m_EditMode==emTextMode || !m_CaretAtHexArea)
     {
-        wxString ws;
-        MadUCQueue ucqueue;
-
-        wxFileOffset pos = m_SelectionBegin->pos;
-        MadLineIterator lit = m_SelectionBegin->iter;
-        m_Lines->InitNextUChar(lit, m_SelectionBegin->linepos);
-        do
-        {
-            if(ucqueue.size() || m_Lines->NextUChar(ucqueue))
-            {
-                ucs4_t &uc=ucqueue.front().first;
-                if(uc==0x0D || uc==0x0A)
-                {
-#ifdef __WXMSW__
-                    ws<<wxChar(0x0D);
-#endif
-                    ws<<wxChar(0x0A);
-
-                    pos += ucqueue.front().second;
-
-                    if(uc==0x0D && m_Lines->NextUChar(ucqueue) &&
-                        ucqueue.back().first==0x0A)
-                    {
-                        pos += ucqueue.back().second;
-                    }
-
-                    ucqueue.clear();
-
-                }
-#ifdef __WXMSW__
-                else if(uc>=0x10000)
-                {
-                    wchar_t wcbuf[2];
-                    wxm::UCS4toUTF16LE_U10000(uc, (wxByte*)wcbuf);
-                    ws<<wxChar(wcbuf[0]);
-                    ws<<wxChar(wcbuf[1]);
-                    pos += ucqueue.front().second;
-                    ucqueue.clear();
-                }
-#endif
-                else
-                {
-                    ws<<wxChar(uc);
-                    pos += ucqueue.front().second;
-                    ucqueue.clear();
-                }
-
-            }
-            else
-            {
-                m_Lines->InitNextUChar(++lit, 0);
-            }
-        }
-        while(pos < m_SelectionEnd->pos);
-
-        PutTextToClipboard(ws);
+        CopyRegularText();
     }
     else //m_EditMode==emHexMode && m_CaretAtHexArea
     {
-        wxFileOffset pos = m_SelectionBegin->pos;
-        MadLineIterator lit = m_SelectionBegin->iter;
-        wxFileOffset lpos = m_SelectionBegin->linepos;
-
-        std::string data;
-        do
-        {
-            if(lpos < lit->m_Size)
-            {
-                data += lit->Get(lpos++);
-                ++pos;
-            }
-            else
-            {
-                ++lit;
-                lpos = 0;
-            }
-        }
-        while(pos < m_SelectionEnd->pos);
-
-        PutHexDataToClipboard(data.c_str(), data.size());
+        CopyRawBinaryData();
     }
 }
 

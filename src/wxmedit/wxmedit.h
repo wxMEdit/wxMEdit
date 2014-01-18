@@ -509,6 +509,10 @@ protected:
     int CalcLineNumberAreaWidth(MadLineIterator lit, int lineid, int rowid, int toprow, int rowcount);
     int GetLineNumberAreaWidth(int number);
 
+    void CopyColumnText();
+    void CopyRegularText();
+    void CopyRawBinaryData();
+
 protected:
     void OnChar(wxKeyEvent &evt);
     void OnKeyDown(wxKeyEvent &evt);
