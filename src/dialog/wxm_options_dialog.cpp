@@ -877,23 +877,23 @@ void WXMOptionsDialog::LoadOptions(void)
 		ss=_("System Default");
 	WxComboBoxLanguage->SetValue(ss);
 
-	cfg->Read(wxT("SingleInstance"), &bb);
-	WxCheckBoxSingleInstance->SetValue(bb);
-
-	cfg->Read(wxT("RecordCaretMovements"), &bb);
-	WxCheckBoxRecordCaretMovements->SetValue(bb);
-
-	cfg->Read(wxT("MaxSizeToLoad"), &ll);
-	WxEditMaxSizeToLoad->SetValue(wxString()<<ll);
-
-	cfg->Read(wxT("MaxTextFileSize"), &ll);
-	WxEditMaxTextFileSize->SetValue(wxString()<<ll);
-
 	ss.Clear();
 	cfg->Read(wxT("DefaultEncoding"), &ss);
 	if (ss.IsEmpty())
 		ss=_("System Default");
 	WxComboBoxEncoding->SetValue(ss);
+
+	cfg->Read(wxT("SingleInstance"), &bb);
+	WxCheckBoxSingleInstance->SetValue(bb);
+
+	cfg->Read(wxT("ReloadFiles"), &bb, true);
+	WxCheckBoxReloadFiles->SetValue(bb);
+
+	cfg->Read(wxT("RecordCaretMovements"), &bb);
+	WxCheckBoxRecordCaretMovements->SetValue(bb);
+
+	cfg->Read(wxT("RestoreCaretPos"), &bb, true);
+	WxCheckBoxRestoreCaretPos->SetValue(bb);
 
 #ifdef __WXMSW__
 	wxRegKey *pRegKey = new wxRegKey(wxT("HKEY_CLASSES_ROOT\\*\\shell\\wxMEdit\\command"));
@@ -922,12 +922,6 @@ void WXMOptionsDialog::LoadOptions(void)
 	cfg->Read(wxT("IndentColumns"), &ll);
 	WxEditIndentColumns->SetValue(wxString()<<ll);
 
-	cfg->Read(wxT("DateTimeFormat"), &ss, wxT("%c"));
-	WxEditDateTime->SetValue(ss);
-
-	cfg->Read(wxT("DateTimeInEnglish"), &bb, false);
-	WxCheckBoxDateTimeInEnglish->SetValue(bb);
-
 	cfg->Read(wxT("InsertSpacesInsteadOfTab"), &bb);
 	WxCheckBoxTabOrSpaces->SetValue(bb);
 
@@ -945,15 +939,6 @@ void WXMOptionsDialog::LoadOptions(void)
 
 	cfg->Read(wxT("MiddleMouseToPaste"), &bb);
 	WxCheckBoxMiddleMouseToPaste->SetValue(bb);
-
-	extern bool g_DoNotSaveSettings;
-	WxCheckBoxDoNotSaveSettings->SetValue(g_DoNotSaveSettings);
-
-	cfg->Read(wxT("ReloadFiles"), &bb, true);
-	WxCheckBoxReloadFiles->SetValue(bb);
-
-	cfg->Read(wxT("RestoreCaretPos"), &bb, true);
-	WxCheckBoxRestoreCaretPos->SetValue(bb);
 
 	// Print page
 	cfg->Read(wxT("PrintSyntax"), &bb);
@@ -994,7 +979,7 @@ void WXMOptionsDialog::LoadOptions(void)
 	cfg->Read(wxT("PageFooterRight"), &ss);
 	WxEditFooterRight->SetValue(ss);
 
-
+	// Keys page
 	extern bool g_ResetAllKeys;
 	WxCheckBoxResetAllKeys->SetValue(g_ResetAllKeys);
 
@@ -1023,6 +1008,22 @@ void WXMOptionsDialog::LoadOptions(void)
 		TreeCtrl1->Unselect();
 		TreeCtrl1->SelectItem(selid, true);
 	}
+
+	// Misc page
+	extern bool g_DoNotSaveSettings;
+	WxCheckBoxDoNotSaveSettings->SetValue(g_DoNotSaveSettings);
+
+	cfg->Read(wxT("MaxSizeToLoad"), &ll);
+	WxEditMaxSizeToLoad->SetValue(wxString()<<ll);
+
+	cfg->Read(wxT("MaxTextFileSize"), &ll);
+	WxEditMaxTextFileSize->SetValue(wxString()<<ll);
+
+	cfg->Read(wxT("DateTimeFormat"), &ss, wxT("%c"));
+	WxEditDateTime->SetValue(ss);
+
+	cfg->Read(wxT("DateTimeInEnglish"), &bb, false);
+	WxCheckBoxDateTimeInEnglish->SetValue(bb);
 
 	cfg->SetPath(oldpath);
 

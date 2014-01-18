@@ -4488,21 +4488,23 @@ void MadEditFrame::OnToolsOptions(wxCommandEvent& event)
         bool rcm, isiot, ai, acp, msc, mscck, mmp;
         wxString mc, tc, ic;
 
+        // General page
         m_Config->Write(wxT("UpdatesCheckingPeriod"), g_OptionsDialog->GetSelectedUpdatePeroid());
 
         wxm::g_check_prerelease =  g_OptionsDialog->WxCheckBoxCheckPrerelease->GetValue();
         m_Config->Write(wxT("CheckPrereleaseUpdates"), wxm::g_check_prerelease);
 
         m_Config->Write(wxT("Language"), g_OptionsDialog->GetSelectedLanguage());
+        m_Config->Write(wxT("DefaultEncoding"), g_OptionsDialog->GetSelectedEncoding());
+
         m_Config->Write(wxT("SingleInstance"), g_OptionsDialog->WxCheckBoxSingleInstance->GetValue());
+
+        m_Config->Write(wxT("ReloadFiles"), g_OptionsDialog->WxCheckBoxReloadFiles->GetValue());
 
         rcm=g_OptionsDialog->WxCheckBoxRecordCaretMovements->GetValue();
         m_Config->Write(wxT("RecordCaretMovements"), rcm);
 
-        m_Config->Write(wxT("MaxSizeToLoad"), g_OptionsDialog->WxEditMaxSizeToLoad->GetValue());
-
-        m_Config->Write(wxT("MaxTextFileSize"), g_OptionsDialog->WxEditMaxTextFileSize->GetValue());
-        m_Config->Write(wxT("DefaultEncoding"), g_OptionsDialog->GetSelectedEncoding());
+        m_Config->Write(wxT("RestoreCaretPos"), g_OptionsDialog->WxCheckBoxRestoreCaretPos->GetValue());
 
 #ifdef __WXMSW__
         if(g_OptionsDialog->WxCheckBoxRightClickMenu->GetValue())
@@ -4521,6 +4523,7 @@ void MadEditFrame::OnToolsOptions(wxCommandEvent& event)
         }
 #endif
 
+        // Edit page
         m_Config->Write(wxT("MaxLineLength"), g_OptionsDialog->WxEditMaxLineLength->GetValue());
 
         mc=g_OptionsDialog->WxEditMaxColumns->GetValue();
@@ -4531,9 +4534,6 @@ void MadEditFrame::OnToolsOptions(wxCommandEvent& event)
 
         ic=g_OptionsDialog->WxEditIndentColumns->GetValue();
         m_Config->Write(wxT("IndentColumns"), ic);
-
-        m_Config->Write(wxT("DateTimeFormat"), g_OptionsDialog->WxEditDateTime->GetValue());
-        m_Config->Write(wxT("DateTimeInEnglish"), g_OptionsDialog->WxCheckBoxDateTimeInEnglish->GetValue());
 
         isiot=g_OptionsDialog->WxCheckBoxTabOrSpaces->GetValue();
         m_Config->Write(wxT("InsertSpacesInsteadOfTab"), isiot);
@@ -4553,13 +4553,25 @@ void MadEditFrame::OnToolsOptions(wxCommandEvent& event)
         mmp=g_OptionsDialog->WxCheckBoxMiddleMouseToPaste->GetValue();
         m_Config->Write(wxT("MiddleMouseToPaste"), mmp);
 
-        extern bool g_DoNotSaveSettings;
-        g_DoNotSaveSettings=g_OptionsDialog->WxCheckBoxDoNotSaveSettings->GetValue();
+        int count=int(m_Notebook->GetPageCount());
+        for(int i=0;i<count;i++)
+        {
+            MadEdit *madedit=(MadEdit*)m_Notebook->GetPage(i);
 
-        m_Config->Write(wxT("ReloadFiles"), g_OptionsDialog->WxCheckBoxReloadFiles->GetValue());
-        m_Config->Write(wxT("RestoreCaretPos"), g_OptionsDialog->WxCheckBoxRestoreCaretPos->GetValue());
+            madedit->SetRecordCaretMovements(rcm);
+            madedit->SetInsertSpacesInsteadOfTab(isiot);
+            madedit->SetAutoIndent(ai);
+            madedit->SetAutoCompletePair(acp);
+            madedit->SetMouseSelectToCopy(msc);
+            madedit->SetMouseSelectToCopyWithCtrlKey(mscck);
+            madedit->SetMiddleMouseToPaste(mmp);
+            long lo;
+            if(mc.ToLong(&lo)) madedit->SetMaxColumns(lo);
+            if(tc.ToLong(&lo)) madedit->SetTabColumns(lo);
+            if(ic.ToLong(&lo)) madedit->SetIndentColumns(lo);
+        }
 
-
+        // Print page
         bool bb;
         long ll;
         wxString ss;
@@ -4601,25 +4613,8 @@ void MadEditFrame::OnToolsOptions(wxCommandEvent& event)
         ss=g_OptionsDialog->WxEditFooterRight->GetValue();
         m_Config->Write(wxT("PageFooterRight"), ss);
 
-        int count=int(m_Notebook->GetPageCount());
-        for(int i=0;i<count;i++)
-        {
-            MadEdit *madedit=(MadEdit*)m_Notebook->GetPage(i);
 
-            madedit->SetRecordCaretMovements(rcm);
-            madedit->SetInsertSpacesInsteadOfTab(isiot);
-            madedit->SetAutoIndent(ai);
-            madedit->SetAutoCompletePair(acp);
-            madedit->SetMouseSelectToCopy(msc);
-            madedit->SetMouseSelectToCopyWithCtrlKey(mscck);
-            madedit->SetMiddleMouseToPaste(mmp);
-            long lo;
-            if(mc.ToLong(&lo)) madedit->SetMaxColumns(lo);
-            if(tc.ToLong(&lo)) madedit->SetTabColumns(lo);
-            if(ic.ToLong(&lo)) madedit->SetIndentColumns(lo);
-        }
-
-
+        // Keys page
         extern bool g_ResetAllKeys;
         g_ResetAllKeys=g_OptionsDialog->WxCheckBoxResetAllKeys->GetValue();
 
@@ -4721,6 +4716,18 @@ void MadEditFrame::OnToolsOptions(wxCommandEvent& event)
 
             ResetAcceleratorTable();
         }
+
+        // Misc page
+        extern bool g_DoNotSaveSettings;
+        g_DoNotSaveSettings=g_OptionsDialog->WxCheckBoxDoNotSaveSettings->GetValue();
+
+        m_Config->Write(wxT("MaxSizeToLoad"), g_OptionsDialog->WxEditMaxSizeToLoad->GetValue());
+
+        m_Config->Write(wxT("MaxTextFileSize"), g_OptionsDialog->WxEditMaxTextFileSize->GetValue());
+
+        m_Config->Write(wxT("DateTimeFormat"), g_OptionsDialog->WxEditDateTime->GetValue());
+        m_Config->Write(wxT("DateTimeInEnglish"), g_OptionsDialog->WxCheckBoxDateTimeInEnglish->GetValue());
+
 
         m_Config->SetPath(oldpath);
     }
