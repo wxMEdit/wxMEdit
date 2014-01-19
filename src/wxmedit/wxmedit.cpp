@@ -9295,7 +9295,7 @@ void MadEdit::OnMouseLeftUp(wxMouseEvent &evt)
     if(m_MouseSelectToCopy)
     {
         if( (evt.ControlDown() && m_MouseSelectToCopyWithCtrlKey) ||
-            (!evt.ControlDown() && !m_MouseSelectToCopyWithCtrlKey) )
+            !m_MouseSelectToCopyWithCtrlKey )
         {
             wxTheClipboard->UsePrimarySelection(true);
             CopyToClipboard();
