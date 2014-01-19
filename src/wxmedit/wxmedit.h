@@ -180,6 +180,11 @@ enum MadReplaceResult
 
 #define MadEditSuperClass wxWindow //wxScrolledWindow//wxPanel//wxControl//
 
+namespace wxm
+{
+    struct MouseCapturer;
+}
+
 class MadEdit: public MadEditSuperClass
 {
     DECLARE_EVENT_TABLE()
@@ -352,6 +357,8 @@ private:
 
     wxMilliClock_t m_lastDoubleClick;
 
+    wxm::MouseCapturer* m_mouse_capturer;
+
 #ifdef __WXMSW__
     bool m_IsWin98;
     int  m_Win98LeadByte; // fixed that input DBCS char under win98
@@ -518,6 +525,8 @@ protected:
     void OnChar(wxKeyEvent &evt);
     void OnKeyDown(wxKeyEvent &evt);
 
+    void LogicMouseLeftUp(bool ctrl_down);
+
     void OnMouseLeftDown(wxMouseEvent &evt);
     void OnMouseLeftUp(wxMouseEvent &evt);
     void OnMouseLeftDClick(wxMouseEvent &evt);
@@ -525,7 +534,7 @@ protected:
     void OnMouseRightUp(wxMouseEvent &evt);
     void OnMouseMiddleUp(wxMouseEvent &evt);
 
-    void OnMouseCaptureLost(wxMouseCaptureLostEvent &evt) {}
+    void OnMouseCaptureLost(wxMouseCaptureLostEvent &evt);
 
     void OnSetFocus(wxFocusEvent &evt);
     void OnKillFocus(wxFocusEvent &evt);

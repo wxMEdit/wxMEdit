@@ -13,6 +13,7 @@
 #include "../xm/wxm_encoding/unicode.h"
 #include "wxm_syntax.h"
 #include "wxm_undo.h"
+#include "../wxm_utils.h"
 
 #include <wx/fileconf.h>
 #include <wx/gdicmn.h>
@@ -700,6 +701,8 @@ MadEdit::MadEdit(wxWindow* parent, wxWindowID id, const wxPoint& pos, const wxSi
 {
     ++ms_Count;
 
+    m_mouse_capturer = new wxm::MouseCapturer(*this);
+
     m_VScrollBar=new wxScrollBar(this, ID_VSCROLLBAR, wxDefaultPosition, wxDefaultSize, wxSB_VERTICAL);
     m_HScrollBar=new wxScrollBar(this, ID_HSCROLLBAR, wxDefaultPosition, wxDefaultSize, wxSB_HORIZONTAL);
 
@@ -928,6 +931,8 @@ MadEdit::~MadEdit()
     delete m_MarkBitmap;
 
     delete m_MouseMotionTimer;
+
+    delete m_mouse_capturer;
 }
 
 //==================================================
@@ -9175,7 +9180,7 @@ void MadEdit::OnMouseLeftDown(wxMouseEvent &evt)
     }
     else
     {
-        CaptureMouse();
+        m_mouse_capturer->Capture();
 
         if (wxGetLocalTimeMillis() - m_lastDoubleClick <= GetTripleClickInterval())
         {
@@ -9269,9 +9274,8 @@ void MadEdit::OnMouseLeftDown(wxMouseEvent &evt)
     evt.Skip();
 }
 
-void MadEdit::OnMouseLeftUp(wxMouseEvent &evt)
+void MadEdit::LogicMouseLeftUp(bool ctrl_down)
 {
-    //wxTheApp->GetTopWindow()->SetTitle(wxString::Format(wxT("LUp")));
     ProcessCommand(ecMouseNotify);
 
     if(m_MouseMotionTimer->IsRunning())
@@ -9283,18 +9287,18 @@ void MadEdit::OnMouseLeftUp(wxMouseEvent &evt)
     {
         m_MouseLeftDoubleClick=false;
         m_MouseLeftDown=false;
-        ReleaseMouse();
+        m_mouse_capturer->Release();
     }
     else if(m_MouseLeftDown)
     {
         m_MouseLeftDown=false;
         EndUpdateSelection(true);
-        ReleaseMouse();
+        m_mouse_capturer->Release();
     }
 
     if(m_MouseSelectToCopy)
     {
-        if( (evt.ControlDown() && m_MouseSelectToCopyWithCtrlKey) ||
+        if( (ctrl_down && m_MouseSelectToCopyWithCtrlKey) ||
             !m_MouseSelectToCopyWithCtrlKey )
         {
             wxTheClipboard->UsePrimarySelection(true);
@@ -9302,6 +9306,12 @@ void MadEdit::OnMouseLeftUp(wxMouseEvent &evt)
             wxTheClipboard->UsePrimarySelection(false);
         }
     }
+}
+
+void MadEdit::OnMouseLeftUp(wxMouseEvent &evt)
+{
+    //wxTheApp->GetTopWindow()->SetTitle(wxString::Format(wxT("LUp")));
+    LogicMouseLeftUp(evt.ControlDown());
 
     evt.Skip();
 }
@@ -9322,7 +9332,7 @@ void MadEdit::OnMouseLeftDClick(wxMouseEvent &evt)
 
     m_lastDoubleClick = wxGetLocalTimeMillis();
 
-    CaptureMouse();
+    m_mouse_capturer->Capture();
 
     if(m_RecordCaretMovements && oldCaretPos != m_CaretPos.pos)
     {
@@ -9486,6 +9496,11 @@ void MadEdit::OnMouseMiddleUp(wxMouseEvent &evt)
     }
 }
 
+void MadEdit::OnMouseCaptureLost(wxMouseCaptureLostEvent &evt)
+{
+    m_mouse_capturer->Reset();
+}
+
 void MadEdit::OnSetFocus(wxFocusEvent &evt)
 {
     //force updating font widths
@@ -9511,6 +9526,8 @@ void MadEdit::OnKillFocus(wxFocusEvent &evt)
     }
     else 
     {
+        LogicMouseLeftUp(wxGetKeyState(WXK_CONTROL));
+
         if(m_SingleLineMode && m_Selection)
         {
             m_Selection=false;

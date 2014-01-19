@@ -131,6 +131,22 @@ private:
     int m_selected_idx;
 };
 
+struct MouseCapturer
+{
+	void Capture();
+	void Release();
+
+	void Reset()
+	{
+		m_captured = false;
+	}
+
+	MouseCapturer(MadEdit& edit): m_edit(edit), m_captured(false) {}
+private:
+	MadEdit& m_edit;
+	bool m_captured;
+};
+
 } //namespace wxm
 
 #endif

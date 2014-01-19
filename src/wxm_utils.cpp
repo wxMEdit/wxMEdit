@@ -396,4 +396,19 @@ void HexAreaClipboardCopyProxy::DoInit()
     SetDefault(HACCI_RAWBYTES, IndexToVal(HACCI_RAWBYTES));
 }
 
+void MouseCapturer::Capture()
+{
+	m_edit.CaptureMouse();
+	m_captured = true;
+}
+
+void MouseCapturer::Release()
+{
+	if (!m_captured)
+		return;
+
+	m_edit.ReleaseMouse();
+	m_captured = false;
+}
+
 } // namespace wxm
