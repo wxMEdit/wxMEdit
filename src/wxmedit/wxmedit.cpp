@@ -217,6 +217,8 @@ BEGIN_EVENT_TABLE(MadEdit, MadEditSuperClass)
     EVT_RIGHT_UP(MadEdit::OnMouseRightUp)
     EVT_MIDDLE_UP(MadEdit::OnMouseMiddleUp)
 
+    EVT_MOUSE_CAPTURE_LOST(MadEdit::OnMouseCaptureLost)
+
     EVT_SET_FOCUS(MadEdit::OnSetFocus)
     EVT_KILL_FOCUS (MadEdit::OnKillFocus)
 

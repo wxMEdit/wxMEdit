@@ -525,6 +525,8 @@ protected:
     void OnMouseRightUp(wxMouseEvent &evt);
     void OnMouseMiddleUp(wxMouseEvent &evt);
 
+    void OnMouseCaptureLost(wxMouseCaptureLostEvent &evt) {}
+
     void OnSetFocus(wxFocusEvent &evt);
     void OnKillFocus(wxFocusEvent &evt);
 
