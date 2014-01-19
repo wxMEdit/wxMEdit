@@ -86,7 +86,7 @@ public:
 
 	_VAL IndexToVal(int idx) const
 	{
-		IdxValMap::const_iterator it = m_idx_val_map.find(idx);
+		typename IdxValMap::const_iterator it = m_idx_val_map.find(idx);
 		if (it != m_idx_val_map.end())
 			return it->second;
 

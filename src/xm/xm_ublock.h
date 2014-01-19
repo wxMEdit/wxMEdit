@@ -13,6 +13,7 @@
 #include <boost/noncopyable.hpp>
 #include <map>
 #include <set>
+#include <string>
 
 namespace xm
 {
