@@ -359,6 +359,8 @@ private:
 
     wxm::MouseCapturer* m_mouse_capturer;
 
+    bool m_mouse_in_window;
+
 #ifdef __WXMSW__
     bool m_IsWin98;
     int  m_Win98LeadByte; // fixed that input DBCS char under win98
