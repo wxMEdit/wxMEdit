@@ -174,6 +174,7 @@ const static CreditsList s_wxMEdit_Credits = boost::assign::pair_list_of
         (s_("Tilt"),                _("Translator for Japanese"))
         (s_("Carlos S\u00E1nchez"), _("Translator for Spanish"))
         (s_("Denir Li"),            _("Translator for Traditional Chinese"))
+        (s_("hobbyscripter"),       _("Patch submitter for wxMEdit/MadEdit"))
         (s_("Huaren Zhong"),        _("Patch submitter for wxMEdit/MadEdit"))
         (s_("Gospodin Gyurov"),     _("Patch submitter for wxMEdit/MadEdit"))
         (s_("cfreeer"),             _("Patch submitter for wxMEdit/MadEdit"))
