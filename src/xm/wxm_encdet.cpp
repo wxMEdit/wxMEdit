@@ -557,7 +557,7 @@ void DetectEncoding(const wxByte *text, size_t len, wxm::WXMEncodingID &enc, boo
 		enc_name = "CP20932";
 
 	wxm::WXMEncodingID init_enc = enc;
-	enc = wxm::WXMEncodingCreator::Instance().ExtNameToEncoding(enc_name);
+	enc = wxm::WXMEncodingManager::Instance().ExtNameToEncoding(enc_name);
 
 	if(enc == wxm::ENC_Windows_1252 && (init_enc==wxm::ENC_MS950 || init_enc==wxm::ENC_MS936))
 	{

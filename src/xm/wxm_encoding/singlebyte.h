@@ -96,7 +96,7 @@ protected:
 struct WXMEncodingSingleByteISO646Compatible: public WXMEncodingSingleByte, public WXMEncodingDecoderISO646
 {
 private:
-	friend WXMEncoding* WXMEncodingCreator::CreateWxmEncoding(ssize_t idx);
+	friend WXMEncoding* WXMEncodingManager::GetWxmEncoding(ssize_t idx);
 	WXMEncodingSingleByteISO646Compatible(): WXMEncodingSingleByte(), WXMEncodingDecoderISO646() {}
 	~WXMEncodingSingleByteISO646Compatible(){}
 };
@@ -124,7 +124,7 @@ struct WXMEncodingSingleByteNonISO646Compatible: public WXMEncodingSingleByte
 	}
 
 protected:
-	friend WXMEncoding* WXMEncodingCreator::CreateWxmEncoding(ssize_t idx);
+	friend WXMEncoding* WXMEncodingManager::GetWxmEncoding(ssize_t idx);
 	WXMEncodingSingleByteNonISO646Compatible(): WXMEncodingSingleByte() {}
 	~WXMEncodingSingleByteNonISO646Compatible() {}
 };
@@ -136,7 +136,7 @@ struct WXMEncodingCP437Art: public WXMEncodingSingleByteNonISO646Compatible
 		return new CP437ArtTableFixer();
 	}
 private:
-	friend WXMEncoding* WXMEncodingCreator::CreateWxmEncoding(ssize_t idx);
+	friend WXMEncoding* WXMEncodingManager::GetWxmEncoding(ssize_t idx);
 	WXMEncodingCP437Art(): WXMEncodingSingleByteNonISO646Compatible() {}
 	~WXMEncodingCP437Art() {}
 };

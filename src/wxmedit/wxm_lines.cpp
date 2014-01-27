@@ -2517,16 +2517,16 @@ void MadLines::SetFileEncoding(const wxString& encoding, const wxString& default
     }
 
     wxm::WXMEncodingID enc=m_MadEdit->m_Encoding->GetEncoding();
-    if(wxm::WXMEncodingCreator::IsSimpleUnicodeEncoding(enc))
+    if(wxm::WXMEncodingManager::IsSimpleUnicodeEncoding(enc))
     {
         // use default encoding
-        enc=wxm::WXMEncodingCreator::Instance().NameToEncoding(defaultenc);
+        enc=wxm::WXMEncodingManager::Instance().NameToEncoding(defaultenc);
     }
 
     // use Encoding Detector
     wxm::DetectEncoding(buf, sz, enc, skip_utf8);
 
-    m_MadEdit->SetEncoding(wxm::WXMEncodingCreator::Instance().EncodingToName(enc));
+    m_MadEdit->SetEncoding(wxm::WXMEncodingManager::Instance().EncodingToName(enc));
 }
 
 //===========================================================================

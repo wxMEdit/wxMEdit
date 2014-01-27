@@ -224,10 +224,10 @@ WXMFindInFilesDialog::WXMFindInFilesDialog(wxWindow* parent,wxWindowID id,const 
 	// build encoding list
 	wxString systemenc(_("Automatic Detection"));
 	WxComboBoxEncoding->Append(systemenc);
-	size_t cnt=wxm::WXMEncodingCreator::Instance().GetEncodingsCount();
+	size_t cnt=wxm::WXMEncodingManager::Instance().GetEncodingsCount();
 	for(size_t i=0;i<cnt;i++)
 	{
-		WxComboBoxEncoding->Append(wxm::WXMEncodingCreator::Instance().GetEncodingName(i));//enc+des);
+		WxComboBoxEncoding->Append(wxm::WXMEncodingManager::Instance().GetEncodingName(i));//enc+des);
 	}
 	WxComboBoxEncoding->SetValue(systemenc);
 

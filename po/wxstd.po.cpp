@@ -1,503 +1,459 @@
 // for xgettext
-_("Unicode 16 bit (UTF-16)")
-_("Unicode 16 bit Big Endian (UTF-16BE)")
-_("Unicode 16 bit Little Endian (UTF-16LE)")
-_("Unicode 32 bit (UTF-32)")
-_("Unicode 32 bit Big Endian (UTF-32BE)")
-_("Unicode 32 bit Little Endian (UTF-32LE)")
-_("Unicode 7 bit (UTF-7)")
-_("Unicode 8 bit (UTF-8)")
-_("Unicode/Chinese Simplified (GB18030)")
-_("Western European (ISO-8859-1)")
-_("Central European (ISO-8859-2)")
-_("South European (ISO-8859-3)")
-_("North European (ISO-8859-4)")
-_("Cyrillic (ISO-8859-5)")
-_("Arabic (ISO-8859-6)")
-_("Greek (ISO-8859-7)")
-_("Hebrew (ISO-8859-8)")
-_("Turkish (ISO-8859-9)")
-_("Nordic (ISO-8859-10)")
-_("Thai (ISO-8859-11)")
-_("Indian (ISO-8859-12)")
-_("Baltic (ISO-8859-13)")
-_("Celtic (ISO-8859-14)")
-_("Western European with Euro (ISO-8859-15)")
-_("South-Eastern European (ISO-8859-16)")
-_("Cyrillic (KOI8-R)")
-_("Cyrillic (KOI8-U)")
-_("Windows Thai (CP 874)")
-_("Windows Central European (CP 1250)")
-_("Windows Cyrillic (CP 1251)")
-_("Windows Western European (CP 1252)")
-_("Windows Greek (CP 1253)")
-_("Windows Turkish (CP 1254)")
-_("Windows Hebrew (CP 1255)")
-_("Windows Arabic (CP 1256)")
-_("Windows Baltic (CP 1257)")
-_("Windows Japanese (CP 932)")
-_("Windows Chinese Simplified (CP 936)")
-_("Windows Korean (CP 949)")
-_("Windows Chinese Traditional (CP 950)")
-_("Windows Vietnamese (CP 1258)")
-_("EUC-JP Double-Byte Edition of Windows (CP 20932)")
-_("CP437 Variant for ASCII Art")
-_("Windows/DOS OEM (CP 437)")
-_("Windows/DOS OEM - Latin 1 (CP 850)")
-_("Windows/DOS OEM - Latin 2 (CP 852)")
-_("Windows/DOS OEM - Cyrillic (CP 855)")
-_("Windows/DOS OEM - Cyrillic (CP 866)")
-_("OK")
-_("Cancel")
-_("File '%s' already exists, do you really want to overwrite it?")
-_("&Close")
-_("&Goto...")
-_("Goto Page")
-_("Enter a page number between %d and %d:")
-_("Please wait while printing\n")
-_("Printing ")
-_("All")
-_("Bottom margin (mm):")
-_("Copies:")
-_("Default printer")
-_("From:")
-_("Landscape")
-_("Left margin (mm):")
-_("Orientation")
-_("Page Setup")
-_("Pages")
-_("Paper Size")
-_("Paper size")
-_("Portrait")
-_("PostScript file")
-_("Print Range")
-_("Print Setup")
-_("Print in colour")
-_("Print spooling")
-_("Print to File")
-_("Printer")
-_("Printer command:")
-_("Printer options")
-_("Printer options:")
-_("Printer...")
-_("Printer:")
-_("Right margin (mm):")
-_("Setup...")
-_("Status:")
-_("To:")
-_("Top margin (mm):")
-_("Page %d of %d")
-
-_("No_Block")
-_("Basic Latin")
-_("Latin-1 Supplement")
-_("Latin Extended-A")
-_("Latin Extended-B")
-_("IPA Extensions")
-_("Spacing Modifier Letters")
-_("Combining Diacritical Marks")
-_("Greek and Coptic")
-_("Cyrillic")
-_("Armenian")
-_("Hebrew")
-_("Arabic")
-_("Syriac")
-_("Thaana")
-_("Devanagari")
-_("Bengali")
-_("Gurmukhi")
-_("Gujarati")
-_("Oriya")
-_("Tamil")
-_("Telugu")
-_("Kannada")
-_("Malayalam")
-_("Sinhala")
-_("Thai")
-_("Lao")
-_("Tibetan")
-_("Myanmar")
-_("Georgian")
-_("Hangul Jamo")
-_("Ethiopic")
-_("Cherokee")
-_("Unified Canadian Aboriginal Syllabics")
-_("Ogham")
-_("Runic")
-_("Khmer")
-_("Mongolian")
-_("Latin Extended Additional")
-_("Greek Extended")
-_("General Punctuation")
-_("Superscripts and Subscripts")
-_("Currency Symbols")
-_("Combining Diacritical Marks for Symbols")
-_("Letterlike Symbols")
-_("Number Forms")
-_("Arrows")
-_("Mathematical Operators")
-_("Miscellaneous Technical")
-_("Control Pictures")
-_("Optical Character Recognition")
-_("Enclosed Alphanumerics")
-_("Box Drawing")
-_("Block Elements")
-_("Geometric Shapes")
-_("Miscellaneous Symbols")
-_("Dingbats")
-_("Braille Patterns")
-_("CJK Radicals Supplement")
-_("Kangxi Radicals")
-_("Ideographic Description Characters")
-_("CJK Symbols and Punctuation")
-_("Hiragana")
-_("Katakana")
-_("Bopomofo")
-_("Hangul Compatibility Jamo")
-_("Kanbun")
-_("Bopomofo Extended")
-_("Enclosed CJK Letters and Months")
-_("CJK Compatibility")
-_("CJK Unified Ideographs Extension A")
-_("CJK Unified Ideographs")
-_("Yi Syllables")
-_("Yi Radicals")
-_("Hangul Syllables")
-_("High Surrogates")
-_("High Private Use Surrogates")
-_("Low Surrogates")
-_("Private Use Area")
-_("CJK Compatibility Ideographs")
-_("Alphabetic Presentation Forms")
-_("Arabic Presentation Forms-A")
-_("Combining Half Marks")
-_("CJK Compatibility Forms")
-_("Small Form Variants")
-_("Arabic Presentation Forms-B")
-_("Specials")
-_("Halfwidth and Fullwidth Forms")
-_("Old Italic")
-_("Gothic")
-_("Deseret")
-_("Byzantine Musical Symbols")
-_("Musical Symbols")
-_("Mathematical Alphanumeric Symbols")
-_("CJK Unified Ideographs Extension B")
-_("CJK Compatibility Ideographs Supplement")
-_("Tags")
-_("Cyrillic Supplement")
-_("Tagalog")
-_("Hanunoo")
-_("Buhid")
-_("Tagbanwa")
-_("Miscellaneous Mathematical Symbols-A")
-_("Supplemental Arrows-A")
-_("Supplemental Arrows-B")
-_("Miscellaneous Mathematical Symbols-B")
-_("Supplemental Mathematical Operators")
-_("Katakana Phonetic Extensions")
-_("Variation Selectors")
-_("Supplementary Private Use Area-A")
-_("Supplementary Private Use Area-B")
-_("Limbu")
-_("Tai Le")
-_("Khmer Symbols")
-_("Phonetic Extensions")
-_("Miscellaneous Symbols and Arrows")
-_("Yijing Hexagram Symbols")
-_("Linear B Syllabary")
-_("Linear B Ideograms")
-_("Aegean Numbers")
-_("Ugaritic")
-_("Shavian")
-_("Osmanya")
-_("Cypriot Syllabary")
-_("Tai Xuan Jing Symbols")
-_("Variation Selectors Supplement")
-_("Ancient Greek Musical Notation")
-_("Ancient Greek Numbers")
-_("Arabic Supplement")
-_("Buginese")
-_("CJK Strokes")
-_("Combining Diacritical Marks Supplement")
-_("Coptic")
-_("Ethiopic Extended")
-_("Ethiopic Supplement")
-_("Georgian Supplement")
-_("Glagolitic")
-_("Kharoshthi")
-_("Modifier Tone Letters")
-_("New Tai Lue")
-_("Old Persian")
-_("Phonetic Extensions Supplement")
-_("Supplemental Punctuation")
-_("Syloti Nagri")
-_("Tifinagh")
-_("Vertical Forms")
-_("NKo")
-_("Balinese")
-_("Latin Extended-C")
-_("Latin Extended-D")
-_("Phags-pa")
-_("Phoenician")
-_("Cuneiform")
-_("Cuneiform Numbers and Punctuation")
-_("Counting Rod Numerals")
-_("Sundanese")
-_("Lepcha")
-_("Ol Chiki")
-_("Cyrillic Extended-A")
-_("Vai")
-_("Cyrillic Extended-B")
-_("Saurashtra")
-_("Kayah Li")
-_("Rejang")
-_("Cham")
-_("Ancient Symbols")
-_("Phaistos Disc")
-_("Lycian")
-_("Carian")
-_("Lydian")
-_("Mahjong Tiles")
-_("Domino Tiles")
-_("Samaritan")
-_("Unified Canadian Aboriginal Syllabics Extended")
-_("Tai Tham")
-_("Vedic Extensions")
-_("Lisu")
-_("Bamum")
-_("Common Indic Number Forms")
-_("Devanagari Extended")
-_("Hangul Jamo Extended-A")
-_("Javanese")
-_("Myanmar Extended-A")
-_("Tai Viet")
-_("Meetei Mayek")
-_("Hangul Jamo Extended-B")
-_("Imperial Aramaic")
-_("Old South Arabian")
-_("Avestan")
-_("Inscriptional Parthian")
-_("Inscriptional Pahlavi")
-_("Old Turkic")
-_("Rumi Numeral Symbols")
-_("Kaithi")
-_("Egyptian Hieroglyphs")
-_("Enclosed Alphanumeric Supplement")
-_("Enclosed Ideographic Supplement")
-_("CJK Unified Ideographs Extension C")
-_("Mandaic")
-_("Batak")
-_("Ethiopic Extended-A")
-_("Brahmi")
-_("Bamum Supplement")
-_("Kana Supplement")
-_("Playing Cards")
-_("Miscellaneous Symbols And Pictographs")
-_("Emoticons")
-_("Transport And Map Symbols")
-_("Alchemical Symbols")
-_("CJK Unified Ideographs Extension D")
-_("Arabic Extended-A")
-_("Arabic Mathematical Alphabetic Symbols")
-_("Chakma")
-_("Meetei Mayek Extensions")
-_("Meroitic Cursive")
-_("Meroitic Hieroglyphs")
-_("Miao")
-_("Sharada")
-_("Sora Sompeng")
-_("Sundanese Supplement")
-_("Takri")
-_("Invalid Unicode Characters")
-_("Text")
-_("Delimiter")
-_("Space")
-_("Number")
-_("String")
-_("Comment")
-_("Directive")
-_("SpecialWord")
-_("LineNumber")
-_("ActiveLine")
-_("Bookmark")
-_("AliceBlue")
-_("AntiqueWhite")
-_("Aqua")
-_("Aquamarine")
-_("Azure")
-_("Beige")
-_("Bisque")
-_("Black")
-_("BlanchedAlmond")
-_("Blue")
-_("BlueViolet")
-_("Brown")
-_("BurlyWood")
-_("CadetBlue")
-_("Chartreuse")
-_("Chocolate")
-_("Coral")
-_("CornflowerBlue")
-_("Cornsilk")
-_("Crimson")
-_("Cyan")
-_("DarkBlue")
-_("DarkCyan")
-_("DarkGoldenRod")
-_("DarkGray")
-_("DarkGreen")
-_("DarkKhaki")
-_("DarkMagenta")
-_("DarkOliveGreen")
-_("DarkOrchid")
-_("DarkRed")
-_("DarkSalmon")
-_("DarkSeaGreen")
-_("DarkSlateBlue")
-_("DarkSlateGray")
-_("DarkTurquoise")
-_("DarkViolet")
-_("Darkorange")
-_("DeepPink")
-_("DeepSkyBlue")
-_("DimGray")
-_("DodgerBlue")
-_("Feldspar")
-_("FireBrick")
-_("FloralWhite")
-_("ForestGreen")
-_("Fuchsia")
-_("Gainsboro")
-_("GhostWhite")
-_("Gold")
-_("GoldenRod")
-_("Gray")
-_("Green")
-_("GreenYellow")
-_("HoneyDew")
-_("HotPink")
-_("IndianRed")
-_("Indigo")
-_("Ivory")
-_("Khaki")
-_("Lavender")
-_("LavenderBlush")
-_("LawnGreen")
-_("LemonChiffon")
-_("LightBlue")
-_("LightCoral")
-_("LightCyan")
-_("LightGoldenRodYellow")
-_("LightGreen")
-_("LightGrey")
-_("LightPink")
-_("LightSalmon")
-_("LightSeaGreen")
-_("LightSkyBlue")
-_("LightSlateBlue")
-_("LightSlateGray")
-_("LightSteelBlue")
-_("LightYellow")
-_("Lime")
-_("LimeGreen")
-_("Linen")
-_("Magenta")
-_("Maroon")
-_("MediumAquaMarine")
-_("MediumBlue")
-_("MediumOrchid")
-_("MediumPurple")
-_("MediumSeaGreen")
-_("MediumSlateBlue")
-_("MediumSpringGreen")
-_("MediumTurquoise")
-_("MediumVioletRed")
-_("MidnightBlue")
-_("MintCream")
-_("MistyRose")
-_("Moccasin")
-_("NavajoWhite")
-_("Navy")
-_("OldLace")
-_("Olive")
-_("OliveDrab")
-_("Orange")
-_("OrangeRed")
-_("Orchid")
-_("PaleGoldenRod")
-_("PaleGreen")
-_("PaleTurquoise")
-_("PaleVioletRed")
-_("PapayaWhip")
-_("PeachPuff")
-_("Peru")
-_("Pink")
-_("Plum")
-_("PowderBlue")
-_("Purple")
-_("Red")
-_("RosyBrown")
-_("RoyalBlue")
-_("SaddleBrown")
-_("Salmon")
-_("SandyBrown")
-_("SeaGreen")
-_("SeaShell")
-_("Sienna")
-_("Silver")
-_("SkyBlue")
-_("SlateBlue")
-_("SlateGray")
-_("Snow")
-_("SpringGreen")
-_("SteelBlue")
-_("Tan")
-_("Teal")
-_("Thistle")
-_("Tomato")
-_("Turquoise")
-_("Violet")
-_("VioletRed")
-_("Wheat")
-_("White")
-_("WhiteSmoke")
-_("Yellow")
-_("YellowGreen")
-_("Plain Text")
-_("AngelScript")
-_("ASCII Art")
-_("ASP(VBScript)")
-_("awk")
-_("C#")
-_("C/C++")
-_("CSS")
-_("D")
-_("diff/patch")
-_("DOS Batch")
-_("Flash ActionScript")
-_("Fortran 90")
-_("FreeBASIC")
-_("HTML")
-_("Java")
-_("JavaScript")
-_("JavaScript in HTML")
-_("JSP")
-_("Lua")
-_("Pascal/Delphi")
-_("Perl")
-_("PHP")
-_("Python")
-_("Ruby")
-_("SQL")
-_("Squirrel")
-_("TeX/LaTeX")
-_("UNIX Configuration")
-_("UNIX Shell Script")
-_("Verilog")
-_("VHDL")
-_("Visual Basic")
-_("Windows Registry File")
-_("wxMEdit Syntax")
-_("x86 Assembly")
-_("XML")
+// misc
+_("OK");
+_("Cancel");
+_("File '%s' already exists, do you really want to overwrite it?");
+_("&Close");
+_("&Goto...");
+_("Goto Page");
+_("Enter a page number between %d and %d:");
+_("Please wait while printing\n");
+_("Printing ");
+_("All");
+_("Bottom margin (mm):");
+_("Copies:");
+_("Default printer");
+_("From:");
+_("Landscape");
+_("Left margin (mm):");
+_("Orientation");
+_("Page Setup");
+_("Pages");
+_("Paper Size");
+_("Paper size");
+_("Portrait");
+_("PostScript file");
+_("Print Range");
+_("Print Setup");
+_("Print in colour");
+_("Print spooling");
+_("Print to File");
+_("Printer");
+_("Printer command:");
+_("Printer options");
+_("Printer options:");
+_("Printer...");
+_("Printer:");
+_("Right margin (mm):");
+_("Setup...");
+_("Status:");
+_("To:");
+_("Top margin (mm):");
+_("Page %d of %d");
+// Unicode Blocks
+_("No_Block");
+_("Basic Latin");
+_("Latin-1 Supplement");
+_("Latin Extended-A");
+_("Latin Extended-B");
+_("IPA Extensions");
+_("Spacing Modifier Letters");
+_("Combining Diacritical Marks");
+_("Greek and Coptic");
+_("Cyrillic");
+_("Armenian");
+_("Hebrew");
+_("Arabic");
+_("Syriac");
+_("Thaana");
+_("Devanagari");
+_("Bengali");
+_("Gurmukhi");
+_("Gujarati");
+_("Oriya");
+_("Tamil");
+_("Telugu");
+_("Kannada");
+_("Malayalam");
+_("Sinhala");
+_("Thai");
+_("Lao");
+_("Tibetan");
+_("Myanmar");
+_("Georgian");
+_("Hangul Jamo");
+_("Ethiopic");
+_("Cherokee");
+_("Unified Canadian Aboriginal Syllabics");
+_("Ogham");
+_("Runic");
+_("Khmer");
+_("Mongolian");
+_("Latin Extended Additional");
+_("Greek Extended");
+_("General Punctuation");
+_("Superscripts and Subscripts");
+_("Currency Symbols");
+_("Combining Diacritical Marks for Symbols");
+_("Letterlike Symbols");
+_("Number Forms");
+_("Arrows");
+_("Mathematical Operators");
+_("Miscellaneous Technical");
+_("Control Pictures");
+_("Optical Character Recognition");
+_("Enclosed Alphanumerics");
+_("Box Drawing");
+_("Block Elements");
+_("Geometric Shapes");
+_("Miscellaneous Symbols");
+_("Dingbats");
+_("Braille Patterns");
+_("CJK Radicals Supplement");
+_("Kangxi Radicals");
+_("Ideographic Description Characters");
+_("CJK Symbols and Punctuation");
+_("Hiragana");
+_("Katakana");
+_("Bopomofo");
+_("Hangul Compatibility Jamo");
+_("Kanbun");
+_("Bopomofo Extended");
+_("Enclosed CJK Letters and Months");
+_("CJK Compatibility");
+_("CJK Unified Ideographs Extension A");
+_("CJK Unified Ideographs");
+_("Yi Syllables");
+_("Yi Radicals");
+_("Hangul Syllables");
+_("High Surrogates");
+_("High Private Use Surrogates");
+_("Low Surrogates");
+_("Private Use Area");
+_("CJK Compatibility Ideographs");
+_("Alphabetic Presentation Forms");
+_("Arabic Presentation Forms-A");
+_("Combining Half Marks");
+_("CJK Compatibility Forms");
+_("Small Form Variants");
+_("Arabic Presentation Forms-B");
+_("Specials");
+_("Halfwidth and Fullwidth Forms");
+_("Old Italic");
+_("Gothic");
+_("Deseret");
+_("Byzantine Musical Symbols");
+_("Musical Symbols");
+_("Mathematical Alphanumeric Symbols");
+_("CJK Unified Ideographs Extension B");
+_("CJK Compatibility Ideographs Supplement");
+_("Tags");
+_("Cyrillic Supplement");
+_("Tagalog");
+_("Hanunoo");
+_("Buhid");
+_("Tagbanwa");
+_("Miscellaneous Mathematical Symbols-A");
+_("Supplemental Arrows-A");
+_("Supplemental Arrows-B");
+_("Miscellaneous Mathematical Symbols-B");
+_("Supplemental Mathematical Operators");
+_("Katakana Phonetic Extensions");
+_("Variation Selectors");
+_("Supplementary Private Use Area-A");
+_("Supplementary Private Use Area-B");
+_("Limbu");
+_("Tai Le");
+_("Khmer Symbols");
+_("Phonetic Extensions");
+_("Miscellaneous Symbols and Arrows");
+_("Yijing Hexagram Symbols");
+_("Linear B Syllabary");
+_("Linear B Ideograms");
+_("Aegean Numbers");
+_("Ugaritic");
+_("Shavian");
+_("Osmanya");
+_("Cypriot Syllabary");
+_("Tai Xuan Jing Symbols");
+_("Variation Selectors Supplement");
+_("Ancient Greek Musical Notation");
+_("Ancient Greek Numbers");
+_("Arabic Supplement");
+_("Buginese");
+_("CJK Strokes");
+_("Combining Diacritical Marks Supplement");
+_("Coptic");
+_("Ethiopic Extended");
+_("Ethiopic Supplement");
+_("Georgian Supplement");
+_("Glagolitic");
+_("Kharoshthi");
+_("Modifier Tone Letters");
+_("New Tai Lue");
+_("Old Persian");
+_("Phonetic Extensions Supplement");
+_("Supplemental Punctuation");
+_("Syloti Nagri");
+_("Tifinagh");
+_("Vertical Forms");
+_("NKo");
+_("Balinese");
+_("Latin Extended-C");
+_("Latin Extended-D");
+_("Phags-pa");
+_("Phoenician");
+_("Cuneiform");
+_("Cuneiform Numbers and Punctuation");
+_("Counting Rod Numerals");
+_("Sundanese");
+_("Lepcha");
+_("Ol Chiki");
+_("Cyrillic Extended-A");
+_("Vai");
+_("Cyrillic Extended-B");
+_("Saurashtra");
+_("Kayah Li");
+_("Rejang");
+_("Cham");
+_("Ancient Symbols");
+_("Phaistos Disc");
+_("Lycian");
+_("Carian");
+_("Lydian");
+_("Mahjong Tiles");
+_("Domino Tiles");
+_("Samaritan");
+_("Unified Canadian Aboriginal Syllabics Extended");
+_("Tai Tham");
+_("Vedic Extensions");
+_("Lisu");
+_("Bamum");
+_("Common Indic Number Forms");
+_("Devanagari Extended");
+_("Hangul Jamo Extended-A");
+_("Javanese");
+_("Myanmar Extended-A");
+_("Tai Viet");
+_("Meetei Mayek");
+_("Hangul Jamo Extended-B");
+_("Imperial Aramaic");
+_("Old South Arabian");
+_("Avestan");
+_("Inscriptional Parthian");
+_("Inscriptional Pahlavi");
+_("Old Turkic");
+_("Rumi Numeral Symbols");
+_("Kaithi");
+_("Egyptian Hieroglyphs");
+_("Enclosed Alphanumeric Supplement");
+_("Enclosed Ideographic Supplement");
+_("CJK Unified Ideographs Extension C");
+_("Mandaic");
+_("Batak");
+_("Ethiopic Extended-A");
+_("Brahmi");
+_("Bamum Supplement");
+_("Kana Supplement");
+_("Playing Cards");
+_("Miscellaneous Symbols And Pictographs");
+_("Emoticons");
+_("Transport And Map Symbols");
+_("Alchemical Symbols");
+_("CJK Unified Ideographs Extension D");
+_("Arabic Extended-A");
+_("Arabic Mathematical Alphabetic Symbols");
+_("Chakma");
+_("Meetei Mayek Extensions");
+_("Meroitic Cursive");
+_("Meroitic Hieroglyphs");
+_("Miao");
+_("Sharada");
+_("Sora Sompeng");
+_("Sundanese Supplement");
+_("Takri");
+_("Invalid Unicode Characters");
+// syntax item
+_("Text");
+_("Delimiter");
+_("Space");
+_("Number");
+_("String");
+_("Comment");
+_("Directive");
+_("SpecialWord");
+_("LineNumber");
+_("ActiveLine");
+_("Bookmark");
+// HTML colors
+_("AliceBlue");
+_("AntiqueWhite");
+_("Aqua");
+_("Aquamarine");
+_("Azure");
+_("Beige");
+_("Bisque");
+_("Black");
+_("BlanchedAlmond");
+_("Blue");
+_("BlueViolet");
+_("Brown");
+_("BurlyWood");
+_("CadetBlue");
+_("Chartreuse");
+_("Chocolate");
+_("Coral");
+_("CornflowerBlue");
+_("Cornsilk");
+_("Crimson");
+_("Cyan");
+_("DarkBlue");
+_("DarkCyan");
+_("DarkGoldenRod");
+_("DarkGray");
+_("DarkGreen");
+_("DarkKhaki");
+_("DarkMagenta");
+_("DarkOliveGreen");
+_("DarkOrchid");
+_("DarkRed");
+_("DarkSalmon");
+_("DarkSeaGreen");
+_("DarkSlateBlue");
+_("DarkSlateGray");
+_("DarkTurquoise");
+_("DarkViolet");
+_("Darkorange");
+_("DeepPink");
+_("DeepSkyBlue");
+_("DimGray");
+_("DodgerBlue");
+_("Feldspar");
+_("FireBrick");
+_("FloralWhite");
+_("ForestGreen");
+_("Fuchsia");
+_("Gainsboro");
+_("GhostWhite");
+_("Gold");
+_("GoldenRod");
+_("Gray");
+_("Green");
+_("GreenYellow");
+_("HoneyDew");
+_("HotPink");
+_("IndianRed");
+_("Indigo");
+_("Ivory");
+_("Khaki");
+_("Lavender");
+_("LavenderBlush");
+_("LawnGreen");
+_("LemonChiffon");
+_("LightBlue");
+_("LightCoral");
+_("LightCyan");
+_("LightGoldenRodYellow");
+_("LightGreen");
+_("LightGrey");
+_("LightPink");
+_("LightSalmon");
+_("LightSeaGreen");
+_("LightSkyBlue");
+_("LightSlateBlue");
+_("LightSlateGray");
+_("LightSteelBlue");
+_("LightYellow");
+_("Lime");
+_("LimeGreen");
+_("Linen");
+_("Magenta");
+_("Maroon");
+_("MediumAquaMarine");
+_("MediumBlue");
+_("MediumOrchid");
+_("MediumPurple");
+_("MediumSeaGreen");
+_("MediumSlateBlue");
+_("MediumSpringGreen");
+_("MediumTurquoise");
+_("MediumVioletRed");
+_("MidnightBlue");
+_("MintCream");
+_("MistyRose");
+_("Moccasin");
+_("NavajoWhite");
+_("Navy");
+_("OldLace");
+_("Olive");
+_("OliveDrab");
+_("Orange");
+_("OrangeRed");
+_("Orchid");
+_("PaleGoldenRod");
+_("PaleGreen");
+_("PaleTurquoise");
+_("PaleVioletRed");
+_("PapayaWhip");
+_("PeachPuff");
+_("Peru");
+_("Pink");
+_("Plum");
+_("PowderBlue");
+_("Purple");
+_("Red");
+_("RosyBrown");
+_("RoyalBlue");
+_("SaddleBrown");
+_("Salmon");
+_("SandyBrown");
+_("SeaGreen");
+_("SeaShell");
+_("Sienna");
+_("Silver");
+_("SkyBlue");
+_("SlateBlue");
+_("SlateGray");
+_("Snow");
+_("SpringGreen");
+_("SteelBlue");
+_("Tan");
+_("Teal");
+_("Thistle");
+_("Tomato");
+_("Turquoise");
+_("Violet");
+_("VioletRed");
+_("Wheat");
+_("White");
+_("WhiteSmoke");
+_("Yellow");
+_("YellowGreen");
+// syntax type
+_("Plain Text");
+_("AngelScript");
+_("ASCII Art");
+_("ASP(VBScript)");
+_("awk");
+_("C#");
+_("C/C++");
+_("CSS");
+_("D");
+_("diff/patch");
+_("DOS Batch");
+_("Flash ActionScript");
+_("Fortran 90");
+_("FreeBASIC");
+_("HTML");
+_("Java");
+_("JavaScript");
+_("JavaScript in HTML");
+_("JSP");
+_("Lua");
+_("Pascal/Delphi");
+_("Perl");
+_("PHP");
+_("Python");
+_("Ruby");
+_("SQL");
+_("Squirrel");
+_("TeX/LaTeX");
+_("UNIX Configuration");
+_("UNIX Shell Script");
+_("Verilog");
+_("VHDL");
+_("Visual Basic");
+_("Windows Registry File");
+_("wxMEdit Syntax");
+_("x86 Assembly");
+_("XML");

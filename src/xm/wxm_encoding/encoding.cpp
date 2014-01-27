@@ -14,6 +14,7 @@
 #include "gb18030.h"
 #include <wx/config.h>
 #include <wx/log.h>
+#include <wx/intl.h>
 #include <boost/foreach.hpp>
 #include <boost/static_assert.hpp>
 
@@ -81,7 +82,7 @@ std::string GetEncodingICUName(const char* innername)
 	return std::string(icuname);
 }
 
-void WXMEncodingCreator::AddEncoding(const std::string& encname, WXMEncodingID encid
+void WXMEncodingManager::AddEncoding(const std::string& encname, WXMEncodingID encid
 		, const wxString& desc, WXMEncodingType entype, const std::string& innername0
 		, bool exact)
 {
@@ -104,74 +105,73 @@ void WXMEncodingCreator::AddEncoding(const std::string& encname, WXMEncodingID e
 		m_icunameenc_map[icuname] = encid;
 }
 
-void WXMEncodingCreator::DoInit()
+void WXMEncodingManager::DoInit()
 {
 	wxLogNull nolog;
 
-	AddEncoding("ISO-8859-1", ENC_ISO_8859_1, wxT("Western European (ISO-8859-1)"));
-	AddEncoding("ISO-8859-2", ENC_ISO_8859_2, wxT("Central European (ISO-8859-2)"));
-	AddEncoding("ISO-8859-3", ENC_ISO_8859_3, wxT("South European (ISO-8859-3)"));
-	AddEncoding("ISO-8859-4", ENC_ISO_8859_4, wxT("North European (ISO-8859-4)"));
-	AddEncoding("ISO-8859-5", ENC_ISO_8859_5, wxT("Cyrillic (ISO-8859-5)"));
-	AddEncoding("ISO-8859-6", ENC_ISO_8859_6, wxT("Arabic (ISO-8859-6)"));
-	AddEncoding("ISO-8859-7", ENC_ISO_8859_7, wxT("Greek (ISO-8859-7)"), etSingleByte, "IBM-9005");
-	AddEncoding("ISO-8859-8", ENC_ISO_8859_8, wxT("Hebrew (ISO-8859-8)"));
-	AddEncoding("ISO-8859-9", ENC_ISO_8859_9, wxT("Turkish (ISO-8859-9)"));
-	AddEncoding("ISO-8859-10", ENC_ISO_8859_10, wxT("Nordic (ISO-8859-10)"));
-	AddEncoding("ISO-8859-11", ENC_ISO_8859_11, wxT("Thai (ISO-8859-11)"));
-	AddEncoding("ISO-8859-13", ENC_ISO_8859_13, wxT("Baltic (ISO-8859-13)"));
-	AddEncoding("ISO-8859-14", ENC_ISO_8859_14, wxT("Celtic (ISO-8859-14)"));
-	AddEncoding("ISO-8859-15", ENC_ISO_8859_15, wxT("Western European with Euro (ISO-8859-15)"));
-	AddEncoding("ISO-8859-16", ENC_ISO_8859_16, wxT("South-Eastern European (ISO-8859-16)"), etSingleByte, "ISO-8859-15", false);
-	AddEncoding("Windows-874", ENC_Windows_874, wxT("Windows Thai (CP 874)"));
-	AddEncoding("Windows-1250", ENC_Windows_1250, wxT("Windows Central European (CP 1250)"), etSingleByte, "CP1250");
-	AddEncoding("Windows-1251", ENC_Windows_1251, wxT("Windows Cyrillic (CP 1251)"), etSingleByte, "CP1251");
-	AddEncoding("Windows-1252", ENC_Windows_1252, wxT("Windows Western European (CP 1252)"), etSingleByte, "CP1252");
-	AddEncoding("Windows-1253", ENC_Windows_1253, wxT("Windows Greek (CP 1253)"), etSingleByte, "CP1253");
-	AddEncoding("Windows-1254", ENC_Windows_1254, wxT("Windows Turkish (CP 1254)"), etSingleByte, "CP1254");
-	AddEncoding("Windows-1255", ENC_Windows_1255, wxT("Windows Hebrew (CP 1255)"), etSingleByte, "CP1255");
-	AddEncoding("Windows-1256", ENC_Windows_1256, wxT("Windows Arabic (CP 1256)"), etSingleByte, "CP1256");
-	AddEncoding("Windows-1257", ENC_Windows_1257, wxT("Windows Baltic (CP 1257)"), etSingleByte, "CP1257");
-	AddEncoding("Windows-1258", ENC_Windows_1258, wxT("Windows Vietnamese (CP 1258)"), etSingleByte, "CP1258");
-	AddEncoding("CP437-Art", ENC_CP437_ART, wxT("CP437 Variant for ASCII Art"), etCP437ART, "CP437");
-	AddEncoding("CP437", ENC_CP437, wxT("Windows/DOS OEM (CP 437)"));
-	AddEncoding("CP850", ENC_CP850, wxT("Windows/DOS OEM - Latin 1 (CP 850)"));
-	AddEncoding("CP852", ENC_CP852, wxT("Windows/DOS OEM - Latin 2 (CP 852)"));
-	AddEncoding("CP855", ENC_CP855, wxT("Windows/DOS OEM - Cyrillic (CP 855)"));
-	AddEncoding("CP866", ENC_CP866, wxT("Windows/DOS OEM - Cyrillic (CP 866)"));
-	AddEncoding("KOI8-R", ENC_KOI8_R, wxT("Cyrillic (KOI8-R)"));
-	AddEncoding("KOI8-U", ENC_KOI8_U, wxT("Cyrillic (KOI8-U)"));
+	AddEncoding("ISO-8859-1", ENC_ISO_8859_1, _("Western European (ISO-8859-1)"));
+	AddEncoding("ISO-8859-2", ENC_ISO_8859_2, _("Central European (ISO-8859-2)"));
+	AddEncoding("ISO-8859-3", ENC_ISO_8859_3, _("South European (ISO-8859-3)"));
+	AddEncoding("ISO-8859-4", ENC_ISO_8859_4, _("North European (ISO-8859-4)"));
+	AddEncoding("ISO-8859-5", ENC_ISO_8859_5, _("Cyrillic (ISO-8859-5)"));
+	AddEncoding("ISO-8859-6", ENC_ISO_8859_6, _("Arabic (ISO-8859-6)"));
+	AddEncoding("ISO-8859-7", ENC_ISO_8859_7, _("Greek (ISO-8859-7)"), etSingleByte, "IBM-9005");
+	AddEncoding("ISO-8859-8", ENC_ISO_8859_8, _("Hebrew (ISO-8859-8)"));
+	AddEncoding("ISO-8859-9", ENC_ISO_8859_9, _("Turkish (ISO-8859-9)"));
+	AddEncoding("ISO-8859-10", ENC_ISO_8859_10, _("Nordic (ISO-8859-10)"));
+	AddEncoding("ISO-8859-11", ENC_ISO_8859_11, _("Thai (ISO-8859-11)"));
+	AddEncoding("ISO-8859-13", ENC_ISO_8859_13, _("Baltic (ISO-8859-13)"));
+	AddEncoding("ISO-8859-14", ENC_ISO_8859_14, _("Celtic (ISO-8859-14)"));
+	AddEncoding("ISO-8859-15", ENC_ISO_8859_15, _("Western European with Euro (ISO-8859-15)"));
+	AddEncoding("ISO-8859-16", ENC_ISO_8859_16, _("South-Eastern European (ISO-8859-16)"), etSingleByte, "ISO-8859-15", false);
+	AddEncoding("Windows-874", ENC_Windows_874, _("Windows Thai (CP 874)"));
+	AddEncoding("Windows-1250", ENC_Windows_1250, _("Windows Central European (CP 1250)"), etSingleByte, "CP1250");
+	AddEncoding("Windows-1251", ENC_Windows_1251, _("Windows Cyrillic (CP 1251)"), etSingleByte, "CP1251");
+	AddEncoding("Windows-1252", ENC_Windows_1252, _("Windows Western European (CP 1252)"), etSingleByte, "CP1252");
+	AddEncoding("Windows-1253", ENC_Windows_1253, _("Windows Greek (CP 1253)"), etSingleByte, "CP1253");
+	AddEncoding("Windows-1254", ENC_Windows_1254, _("Windows Turkish (CP 1254)"), etSingleByte, "CP1254");
+	AddEncoding("Windows-1255", ENC_Windows_1255, _("Windows Hebrew (CP 1255)"), etSingleByte, "CP1255");
+	AddEncoding("Windows-1256", ENC_Windows_1256, _("Windows Arabic (CP 1256)"), etSingleByte, "CP1256");
+	AddEncoding("Windows-1257", ENC_Windows_1257, _("Windows Baltic (CP 1257)"), etSingleByte, "CP1257");
+	AddEncoding("Windows-1258", ENC_Windows_1258, _("Windows Vietnamese (CP 1258)"), etSingleByte, "CP1258");
+	AddEncoding("CP437-Art", ENC_CP437_ART, _("CP437 Variant for ASCII Art"), etCP437ART, "CP437");
+	AddEncoding("CP437", ENC_CP437, _("Windows/DOS OEM (CP 437)"));
+	AddEncoding("CP850", ENC_CP850, _("Windows/DOS OEM - Latin 1 (CP 850)"));
+	AddEncoding("CP852", ENC_CP852, _("Windows/DOS OEM - Latin 2 (CP 852)"));
+	AddEncoding("CP855", ENC_CP855, _("Windows/DOS OEM - Cyrillic (CP 855)"));
+	AddEncoding("CP866", ENC_CP866, _("Windows/DOS OEM - Cyrillic (CP 866)"));
+	AddEncoding("KOI8-R", ENC_KOI8_R, _("Cyrillic (KOI8-R)"));
+	AddEncoding("KOI8-U", ENC_KOI8_U, _("Cyrillic (KOI8-U)"));
 
-	AddEncoding("Windows-31J", ENC_MS932, wxT("Windows Japanese (CP 932)"), etDoubleByte, "MS932");
-	AddEncoding("MS936"      , ENC_MS936, wxT("Windows Chinese Simplified (CP 936)"), etDoubleByte, "MS936");
-	AddEncoding("UHC"        , ENC_MS949, wxT("Windows Korean (CP 949)"), etDoubleByte, "MS949");
-	AddEncoding("MS950"      , ENC_MS950, wxT("Windows Chinese Traditional (CP 950)"), etDoubleByte, "Windows-950-2000");
-	AddEncoding("CP20932", ENC_CP20932, wxT("EUC-JP Double-Byte Edition of Windows (CP 20932)"), etCP20932, "EUC-JP", false);
+	AddEncoding("Windows-31J", ENC_MS932, _("Windows Japanese (CP 932)"), etDoubleByte, "MS932");
+	AddEncoding("MS936"      , ENC_MS936, _("Windows Chinese Simplified (CP 936)"), etDoubleByte, "MS936");
+	AddEncoding("UHC"        , ENC_MS949, _("Windows Korean (CP 949)"), etDoubleByte, "MS949");
+	AddEncoding("MS950"      , ENC_MS950, _("Windows Chinese Traditional (CP 950)"), etDoubleByte, "Windows-950-2000");
+	AddEncoding("CP20932", ENC_CP20932, _("EUC-JP Double-Byte Edition of Windows (CP 20932)"), etCP20932, "EUC-JP", false);
 
-	AddEncoding("GB18030", ENC_GB18030, wxT("Unicode/Chinese Simplified (GB18030)"), etGB18030);
+	AddEncoding("GB18030", ENC_GB18030, _("Unicode/Chinese Simplified (GB18030)"), etGB18030);
 
-	AddEncoding("UTF-8", ENC_UTF_8, wxT("Unicode 8 bit (UTF-8)"), etUTF8);
-	AddEncoding("UTF-16LE", ENC_UTF_16LE, wxT("Unicode 16 bit Little Endian (UTF-16LE)"), etUTF16LE);
-	AddEncoding("UTF-16BE", ENC_UTF_16BE, wxT("Unicode 16 bit Big Endian (UTF-16BE)"), etUTF16BE);
-	AddEncoding("UTF-32LE", ENC_UTF_32LE, wxT("Unicode 32 bit Little Endian (UTF-32LE)"), etUTF32LE);
-	AddEncoding("UTF-32BE", ENC_UTF_32BE, wxT("Unicode 32 bit Big Endian (UTF-32BE)"), etUTF32BE);
+	AddEncoding("UTF-8", ENC_UTF_8, _("Unicode 8 bit (UTF-8)"), etUTF8);
+	AddEncoding("UTF-16LE", ENC_UTF_16LE, _("Unicode 16 bit Little Endian (UTF-16LE)"), etUTF16LE);
+	AddEncoding("UTF-16BE", ENC_UTF_16BE, _("Unicode 16 bit Big Endian (UTF-16BE)"), etUTF16BE);
+	AddEncoding("UTF-32LE", ENC_UTF_32LE, _("Unicode 32 bit Little Endian (UTF-32LE)"), etUTF32LE);
+	AddEncoding("UTF-32BE", ENC_UTF_32BE, _("Unicode 32 bit Big Endian (UTF-32BE)"), etUTF32BE);
 
 	// only for encoding detection not for editing
 	m_icunameenc_map[GetEncodingICUName("US-ASCII")] = ENC_ISO_646;
 
 	m_wxencfont_map[ENC_Windows_874] = GetMSCPFontName(wxT("874"));
-	m_wxencfont_map[ENC_MS932] = GetMSCPFontName(wxT("932"));
-	m_wxencfont_map[ENC_MS936] = GetMSCPFontName(wxT("936"));
-	m_wxencfont_map[ENC_MS949] = GetMSCPFontName(wxT("949"));
-	m_wxencfont_map[ENC_MS950] = GetMSCPFontName(wxT("950"));
-	m_wxencfont_map[ENC_CP20932] = GetMSCPFontName(wxT("51932"));
-	m_wxencfont_map[ENC_GB18030] = GetMSCPFontName(wxT("936"));
+	m_wxencfont_map[ENC_MS932]       = GetMSCPFontName(wxT("932"));
+	m_wxencfont_map[ENC_MS936]       = GetMSCPFontName(wxT("936"));
+	m_wxencfont_map[ENC_MS949]       = GetMSCPFontName(wxT("949"));
+	m_wxencfont_map[ENC_MS950]       = GetMSCPFontName(wxT("950"));
+	m_wxencfont_map[ENC_CP20932]     = GetMSCPFontName(wxT("51932"));
+	m_wxencfont_map[ENC_GB18030]     = GetMSCPFontName(wxT("936"));
 
 	InitSystemEncoding();
-	
 }
 
-WXMEncodingID WXMEncodingCreator::GetSystemEncodingID()
+WXMEncodingID WXMEncodingManager::GetSystemEncodingID()
 {
 	static WXMEncodingID sysencid = ENC_DEFAULT;
 	if (sysencid != ENC_DEFAULT)
@@ -186,7 +186,7 @@ WXMEncodingID WXMEncodingCreator::GetSystemEncodingID()
 	return sysencid;
 }
 
-void WXMEncodingCreator::InitSystemEncoding()
+void WXMEncodingManager::InitSystemEncoding()
 {
 	WXMEncodingID id = GetSystemEncodingID();
 
@@ -201,7 +201,7 @@ void WXMEncodingCreator::InitSystemEncoding()
 	}
 }
 
-void WXMEncodingCreator::FreeEncodings()
+void WXMEncodingManager::FreeEncodings()
 {
 	BOOST_FOREACH(EncInstMap::value_type val, m_inst_map)
 	{
@@ -219,12 +219,12 @@ void WXMEncodingCreator::FreeEncodings()
 	m_initialized = false;
 }
 
-size_t WXMEncodingCreator::GetEncodingsCount()
+size_t WXMEncodingManager::GetEncodingsCount()
 {
 	return m_wxenc_map.size();
 }
 
-wxString WXMEncodingCreator::GetEncodingName(ssize_t idx)
+wxString WXMEncodingManager::GetEncodingName(ssize_t idx)
 {
 	if (idx<0 || (size_t)idx>=m_wxenc_list.size())
 		return EncodingToName(GetSystemEncodingID());
@@ -232,7 +232,7 @@ wxString WXMEncodingCreator::GetEncodingName(ssize_t idx)
 	return m_wxenc_list[idx];
 }
 
-std::string WXMEncodingCreator::GetEncodingInnerName(ssize_t idx)
+std::string WXMEncodingManager::GetEncodingInnerName(ssize_t idx)
 {
 	EncInnerNameMap::const_iterator it = m_encinnername_map.find(IdxToEncoding(idx));
 	if (it == m_encinnername_map.end())
@@ -241,7 +241,7 @@ std::string WXMEncodingCreator::GetEncodingInnerName(ssize_t idx)
 	return it->second;
 }
 
-wxString WXMEncodingCreator::GetEncodingDescription(ssize_t idx)
+wxString WXMEncodingManager::GetEncodingDescription(ssize_t idx)
 {
 	WXEncDescMap::const_iterator it = m_wxencdesc_map.find(IdxToEncoding(idx));
 	if (it == m_wxencdesc_map.end())
@@ -250,7 +250,7 @@ wxString WXMEncodingCreator::GetEncodingDescription(ssize_t idx)
 	return it->second;
 }
 
-wxString WXMEncodingCreator::GetEncodingFontName(ssize_t idx)
+wxString WXMEncodingManager::GetEncodingFontName(ssize_t idx)
 {
 	WXEncFontMap::const_iterator it = m_wxencfont_map.find(IdxToEncoding(idx));
 	if (it == m_wxencfont_map.end())
@@ -259,7 +259,7 @@ wxString WXMEncodingCreator::GetEncodingFontName(ssize_t idx)
 	return it->second;
 }
 
-wxString WXMEncodingCreator::EncodingToName(WXMEncodingID enc)
+wxString WXMEncodingManager::EncodingToName(WXMEncodingID enc)
 {
 	WXEncNameMap::const_iterator it = m_wxencname_map.find(enc);
 	if (it == m_wxencname_map.end())
@@ -268,7 +268,7 @@ wxString WXMEncodingCreator::EncodingToName(WXMEncodingID enc)
 	return it->second;
 }
 
-WXMEncodingID WXMEncodingCreator::NameToEncoding(const wxString &name)
+WXMEncodingID WXMEncodingManager::NameToEncoding(const wxString &name)
 {
 	WXNameEncMap::const_iterator it = m_wxnameenc_map.find(name);
 	if (it == m_wxnameenc_map.end())
@@ -277,7 +277,7 @@ WXMEncodingID WXMEncodingCreator::NameToEncoding(const wxString &name)
 	return it->second;
 }
 
-WXMEncodingID WXMEncodingCreator::ExtNameToEncoding(const std::string &name)
+WXMEncodingID WXMEncodingManager::ExtNameToEncoding(const std::string &name)
 {
 	WXNameEncMap::const_iterator itwx = m_wxnameenc_map.find(wxString(name.c_str(), wxConvUTF8));
 	if (itwx != m_wxnameenc_map.end())
@@ -290,15 +290,15 @@ WXMEncodingID WXMEncodingCreator::ExtNameToEncoding(const std::string &name)
 	return ENC_DEFAULT;
 }
 
-WXMEncoding* WXMEncodingCreator::GetSystemEncoding()
+WXMEncoding* WXMEncodingManager::GetSystemEncoding()
 {
 	if (m_sysenc == NULL)
-		m_sysenc = CreateWxmEncoding(m_sysenc_idx);
+		m_sysenc = GetWxmEncoding(m_sysenc_idx);
 
 	return m_sysenc;
 }
 
-WXMEncodingCreator::WXMEncodingType WXMEncodingCreator::GetIdxEncType(ssize_t idx)
+WXMEncodingManager::WXMEncodingType WXMEncodingManager::GetIdxEncType(ssize_t idx)
 {
 	WXEncTypeMap::const_iterator it = m_wxenctype_map.find(IdxToEncoding(idx));
 	if (it == m_wxenctype_map.end())
@@ -307,9 +307,10 @@ WXMEncodingCreator::WXMEncodingType WXMEncodingCreator::GetIdxEncType(ssize_t id
 	return it->second;
 }
 
-WXMEncoding* WXMEncodingCreator::CreateWxmEncoding(ssize_t idx)
+WXMEncoding* WXMEncodingManager::GetWxmEncoding(ssize_t idx)
 {
 	wxASSERT(idx<(ssize_t)m_wxenc_list.size() && idx>=0);
+
 	EncInstMap::iterator it = m_inst_map.find(idx);
 	if (it!=m_inst_map.end() && it->second!=NULL)
 		return it->second;
@@ -358,43 +359,43 @@ WXMEncoding* WXMEncodingCreator::CreateWxmEncoding(ssize_t idx)
 	return enc;
 }
 
-WXMEncoding* WXMEncodingCreator::CreateWxmEncoding(WXMEncodingID enc)
+WXMEncoding* WXMEncodingManager::GetWxmEncoding(WXMEncodingID enc)
 {
 	size_t idx;
 	for(idx=0;idx<m_wxenc_list.size();idx++)
 	{
 		if(m_wxnameenc_map[m_wxenc_list[idx]]==enc)
 		{
-			return CreateWxmEncoding(idx);
+			return GetWxmEncoding(idx);
 		}
 	}
 
-	return CreateWxmEncoding(m_sysenc_idx);
+	return GetWxmEncoding(m_sysenc_idx);
 }
 
-WXMEncoding* WXMEncodingCreator::CreateWxmEncoding(const wxString &name)
+WXMEncoding* WXMEncodingManager::GetWxmEncoding(const wxString &name)
 {
 	size_t idx;
 	for(idx=0;idx<m_wxenc_list.size();idx++)
 	{
 		if(m_wxenc_list[idx].Lower()==name.Lower())
 		{
-			return CreateWxmEncoding(idx);
+			return GetWxmEncoding(idx);
 		}
 	}
 
-	return CreateWxmEncoding(m_sysenc_idx);
+	return GetWxmEncoding(m_sysenc_idx);
 }
 
 void WXMEncoding::Create(ssize_t idx)
 {
 	m_idx = idx;
-	m_name = WXMEncodingCreator::Instance().GetEncodingName(idx);
-	m_enc = WXMEncodingCreator::Instance().NameToEncoding(m_name);
-	m_innername = WXMEncodingCreator::Instance().GetEncodingInnerName(idx);
-	m_desc = WXMEncodingCreator::Instance().GetEncodingDescription(idx);
-	m_fontname = WXMEncodingCreator::Instance().GetEncodingFontName(m_idx);
-	m_simp_unicode = WXMEncodingCreator::IsSimpleUnicodeEncoding(m_enc);
+	m_name = WXMEncodingManager::Instance().GetEncodingName(idx);
+	m_enc = WXMEncodingManager::Instance().NameToEncoding(m_name);
+	m_innername = WXMEncodingManager::Instance().GetEncodingInnerName(idx);
+	m_desc = WXMEncodingManager::Instance().GetEncodingDescription(idx);
+	m_fontname = WXMEncodingManager::Instance().GetEncodingFontName(m_idx);
+	m_simp_unicode = WXMEncodingManager::IsSimpleUnicodeEncoding(m_enc);
 }
 
 

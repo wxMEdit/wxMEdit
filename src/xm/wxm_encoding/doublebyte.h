@@ -110,7 +110,7 @@ private:
 struct WXMEncodingDoubleByteISO646Compatible: public WXMEncodingDoubleByte, public WXMEncodingDecoderISO646
 {
 protected:
-	friend WXMEncoding* WXMEncodingCreator::CreateWxmEncoding(ssize_t idx);
+	friend WXMEncoding* WXMEncodingManager::GetWxmEncoding(ssize_t idx);
 	WXMEncodingDoubleByteISO646Compatible(): WXMEncodingDoubleByte(), WXMEncodingDecoderISO646() {}
 	~WXMEncodingDoubleByteISO646Compatible() {}
 };

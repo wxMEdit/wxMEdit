@@ -323,7 +323,7 @@ void OpenURL(const wxString& url)
 
 void SetDefaultMonoFont(wxWindow* win)
 {
-    const wxString fontname = wxm::WXMEncodingCreator::Instance().GetSystemEncoding()->GetFontName();
+    const wxString fontname = wxm::WXMEncodingManager::Instance().GetSystemEncoding()->GetFontName();
     int fontsize = win->GetFont().GetPointSize();
     win->SetFont(wxFont(fontsize, wxDEFAULT, wxNORMAL, wxNORMAL, false, fontname));
 }

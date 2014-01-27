@@ -33,7 +33,7 @@ void data_doublebyte_conv_init()
 void test_a_doublebyte_conv(const std::string& encname)
 {
 	wxString wxencname(encname.c_str(), wxConvUTF8);
-	wxm::WXMEncoding* enc = wxm::WXMEncodingCreator::Instance().CreateWxmEncoding(wxencname);
+	wxm::WXMEncoding* enc = wxm::WXMEncodingManager::Instance().GetWxmEncoding(wxencname);
 
 	MB2UDataMap::const_iterator mb2uend = mb2u[encname].end();
 	for (size_t i=0; i<256; ++i)
@@ -114,7 +114,7 @@ void test_a_doublebyte_conv(const std::string& encname)
 
 void test_doublebyte_conv()
 {
-	wxm::WXMEncodingCreator::Instance().InitEncodings();
+	wxm::WXMEncodingManager::Instance().InitEncodings();
 	data_doublebyte_conv_init();
 
 	std::cout << "wxMEdit-enc-doublebyte" << std::endl;
@@ -124,5 +124,5 @@ void test_doublebyte_conv()
 		test_a_doublebyte_conv(encname);
 	}
 
-	wxm::WXMEncodingCreator::Instance().FreeEncodings();
+	wxm::WXMEncodingManager::Instance().FreeEncodings();
 }

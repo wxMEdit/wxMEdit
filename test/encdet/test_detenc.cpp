@@ -48,7 +48,7 @@ void test_detenc_javaescaped(const std::string& jesc_text, const std::string& en
 
 void test_detenc(const std::string& text, const std::string& enc)
 {
-	wxm::WXMEncodingCreator& enccreator = wxm::WXMEncodingCreator::Instance();
+	wxm::WXMEncodingManager& enccreator = wxm::WXMEncodingManager::Instance();
 
 	wxString wxdetenc;
 	wxm::WXMEncodingID detencid = wxm::ENC_DEFAULT;
@@ -89,7 +89,7 @@ void test_detenc(const std::string& text, const std::string& enc)
 
 void test_predetenc(const std::string& text, const std::string& enc, bool matched)
 {
-	wxm::WXMEncodingCreator& enccreator = wxm::WXMEncodingCreator::Instance();
+	wxm::WXMEncodingManager& enccreator = wxm::WXMEncodingManager::Instance();
 
 	wxString wxdetenc;
 	wxm::WXMEncodingID detencid = wxm::ENC_DEFAULT;

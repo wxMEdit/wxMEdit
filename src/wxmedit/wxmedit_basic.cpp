@@ -178,7 +178,7 @@ void MadEdit::SetEncoding(const wxString &encname)
     if(encname.Lower() != m_Encoding->GetName().Lower())
     {
         //delete m_Encoding;
-        m_Encoding=wxm::WXMEncodingCreator::Instance().CreateWxmEncoding(encname);
+        m_Encoding=wxm::WXMEncodingManager::Instance().GetWxmEncoding(encname);
         m_Lines->SetEncoding(m_Encoding);
         m_Syntax->SetEncoding(m_Encoding);
 

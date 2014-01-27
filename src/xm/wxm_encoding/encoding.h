@@ -34,12 +34,14 @@ namespace wxm
 {
 
 struct WXMEncoding;
-struct WXMEncodingCreator: private boost::noncopyable
+struct WXMEncodingManager: private boost::noncopyable
 {
-	static WXMEncodingCreator& Instance()
+	static WXMEncodingManager& Instance()
 	{
-		static WXMEncodingCreator creator;
-		return creator;
+		static WXMEncodingManager* mgr= NULL;
+		if (mgr == NULL)
+			mgr = new WXMEncodingManager();
+		return *mgr;
 	}
 
 	static bool IsSimpleUnicodeEncoding(WXMEncodingID enc)
@@ -61,9 +63,9 @@ struct WXMEncodingCreator: private boost::noncopyable
 	}
 	void FreeEncodings();
 
-	WXMEncoding* CreateWxmEncoding(ssize_t idx);
-	WXMEncoding* CreateWxmEncoding(WXMEncodingID enc);
-	WXMEncoding* CreateWxmEncoding(const wxString &name);
+	WXMEncoding* GetWxmEncoding(ssize_t idx);
+	WXMEncoding* GetWxmEncoding(WXMEncodingID enc);
+	WXMEncoding* GetWxmEncoding(const wxString &name);
 
 private:
 	enum WXMEncodingType
@@ -97,7 +99,7 @@ private:
 		, const wxString& desc=wxString(), WXMEncodingType entype=etSingleByte
 		, const std::string& innername0=std::string(), bool exact=true);
 
-	WXMEncodingCreator()
+	WXMEncodingManager()
 	: m_initialized(false), m_sysenc_idx(-1), m_sysenc(NULL)
 	{
 		DoInit();
@@ -174,8 +176,8 @@ protected:
 	virtual void Create(ssize_t idx);
 
 protected:
-	friend WXMEncoding* WXMEncodingCreator::CreateWxmEncoding(ssize_t idx);
-	friend void WXMEncodingCreator::FreeEncodings();
+	friend WXMEncoding* WXMEncodingManager::GetWxmEncoding(ssize_t idx);
+	friend void WXMEncodingManager::FreeEncodings();
 	WXMEncoding(): m_idx(-1), m_simp_unicode(false)
 	{
 	}

@@ -10,7 +10,7 @@
 void test_a_singlebyte_conv(const std::string& encname)
 {
 	wxString wxencname(encname.c_str(), wxConvUTF8);
-	wxm::WXMEncoding* enc = wxm::WXMEncodingCreator::Instance().CreateWxmEncoding(wxencname);
+	wxm::WXMEncoding* enc = wxm::WXMEncodingManager::Instance().GetWxmEncoding(wxencname);
 
 	for (size_t i=0; i<256; ++i)
 	{
@@ -45,7 +45,7 @@ void test_a_singlebyte_conv(const std::string& encname)
 
 void test_singlebyte_conv()
 {
-	wxm::WXMEncodingCreator::Instance().InitEncodings();
+	wxm::WXMEncodingManager::Instance().InitEncodings();
 	data_singlebyte_conv_init();
 
 	std::cout << "wxMEdit-enc-singlebyte" << std::endl;
@@ -55,5 +55,5 @@ void test_singlebyte_conv()
 		test_a_singlebyte_conv(encname);
 	}
 
-	wxm::WXMEncodingCreator::Instance().FreeEncodings();
+	wxm::WXMEncodingManager::Instance().FreeEncodings();
 }

@@ -1685,7 +1685,7 @@ MadEditFrame::MadEditFrame( wxWindow *parent, wxWindowID id, const wxString &tit
 
     xm::RemoteAccessInit();
 
-    wxm::WXMEncodingCreator::Instance().InitEncodings();
+    wxm::WXMEncodingManager::Instance().InitEncodings();
 
     MadSyntax::SetAttributeFilePath(g_MadEditHomeDir + wxT("syntax/"));
 
@@ -1926,11 +1926,11 @@ void MadEditFrame::CreateGUIControls(void)
     }
 
     {
-        size_t cnt=wxm::WXMEncodingCreator::Instance().GetEncodingsCount();
+        size_t cnt=wxm::WXMEncodingManager::Instance().GetEncodingsCount();
         for(size_t i=0;i<cnt;i++)
         {
-            wxString enc=wxString(wxT('['))+ wxm::WXMEncodingCreator::Instance().GetEncodingName(i) + wxT("] ");
-            wxString des=wxGetTranslation(wxm::WXMEncodingCreator::Instance().GetEncodingDescription(i).c_str());
+            wxString enc=wxString(wxT('['))+ wxm::WXMEncodingManager::Instance().GetEncodingName(i) + wxT("] ");
+            wxString des=wxGetTranslation(wxm::WXMEncodingManager::Instance().GetEncodingDescription(i).c_str());
 
             g_Menu_View_AllEncodings->Append(menuEncoding1 + int(i), enc+des);
         }
@@ -2208,7 +2208,7 @@ void MadEditFrame::MadEditFrameClose(wxCloseEvent& event)
 
     delete m_ImageList;
 
-    wxm::WXMEncodingCreator::Instance().FreeEncodings();
+    wxm::WXMEncodingManager::Instance().FreeEncodings();
 
     FreeConvertChineseTable();
 
@@ -4241,10 +4241,10 @@ void MadEditFrame::OnViewEncoding(wxCommandEvent& event)
     if(g_ActiveMadEdit==NULL) return;
 
     int idx=event.GetId()-menuEncoding1;
-    wxString enc=wxm::WXMEncodingCreator::Instance().GetEncodingName(idx);
+    wxString enc=wxm::WXMEncodingManager::Instance().GetEncodingName(idx);
     g_ActiveMadEdit->SetEncoding(enc);
 
-    wxString str=wxString(wxT('['))+ enc + wxT("] ")+ wxGetTranslation(wxm::WXMEncodingCreator::Instance().GetEncodingDescription(idx).c_str());
+    wxString str=wxString(wxT('['))+ enc + wxT("] ")+ wxGetTranslation(wxm::WXMEncodingManager::Instance().GetEncodingDescription(idx).c_str());
     m_RecentEncodings->AddItemToHistory(str);
 
     int size;

@@ -153,7 +153,7 @@ void MadEdit::ConvertEncoding(const wxString &newenc, MadConvertEncodingFlag fla
     WXMLocations loc = SaveLocations();
 
     bool ignoreBOM=true;
-	wxm::WXMEncoding* enc = wxm::WXMEncodingCreator::Instance().CreateWxmEncoding(newenc);
+	wxm::WXMEncoding* enc = wxm::WXMEncodingManager::Instance().GetWxmEncoding(newenc);
 	if(enc->IsUnicodeEncoding())
     {
         ignoreBOM=false;

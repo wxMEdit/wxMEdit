@@ -72,12 +72,12 @@ WXMConvEncDialog::WXMConvEncDialog(wxWindow* parent,wxWindowID id,const wxPoint&
 	Connect(wxID_ANY,wxEVT_CLOSE_WINDOW,(wxObjectEventFunction)&WXMConvEncDialog::WXMConvEncDialogClose);
 	//*)
 
-	size_t cnt=wxm::WXMEncodingCreator::Instance().GetEncodingsCount();
+	size_t cnt=wxm::WXMEncodingManager::Instance().GetEncodingsCount();
 	for(size_t i=0;i<cnt;i++)
 	{
-		WxComboBoxEncoding->Append(wxm::WXMEncodingCreator::Instance().GetEncodingName(i));//enc+des);
+		WxComboBoxEncoding->Append(wxm::WXMEncodingManager::Instance().GetEncodingName(i));//enc+des);
 	}
-	wxString convenc=wxm::WXMEncodingCreator::Instance().GetEncodingName(0);
+	wxString convenc=wxm::WXMEncodingManager::Instance().GetEncodingName(0);
 	wxConfigBase *cfg=wxConfigBase::Get(false);
 	wxString oldpath=cfg->GetPath();
 	cfg->Read(wxT("/wxMEdit/ConvertEncoding"), &convenc);

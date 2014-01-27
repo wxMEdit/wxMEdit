@@ -28,7 +28,7 @@ struct WXMEncodingUTF8: public WXMEncoding, WXMEncodingDecoderISO646
 	virtual bool NextUChar32(MadUCQueue &ucqueue, UChar32BytesMapper& mapper);
 
 private:
-	friend WXMEncoding* WXMEncodingCreator::CreateWxmEncoding(ssize_t idx);
+	friend WXMEncoding* WXMEncodingManager::GetWxmEncoding(ssize_t idx);
 	WXMEncodingUTF8(){}
 	~WXMEncodingUTF8(){}
 };
@@ -45,7 +45,7 @@ struct WXMEncodingUTF16LE: public WXMEncoding
 	}
 
 private:
-	friend WXMEncoding* WXMEncodingCreator::CreateWxmEncoding(ssize_t idx);
+	friend WXMEncoding* WXMEncodingManager::GetWxmEncoding(ssize_t idx);
 	WXMEncodingUTF16LE(){}
 	~WXMEncodingUTF16LE(){}
 };
@@ -62,7 +62,7 @@ struct WXMEncodingUTF16BE: public WXMEncoding
 	}
 
 private:
-	friend WXMEncoding* WXMEncodingCreator::CreateWxmEncoding(ssize_t idx);
+	friend WXMEncoding* WXMEncodingManager::GetWxmEncoding(ssize_t idx);
 	WXMEncodingUTF16BE(){}
 	~WXMEncodingUTF16BE(){}
 };
@@ -79,7 +79,7 @@ struct WXMEncodingUTF32LE: public WXMEncoding
 	}
 
 private:
-	friend WXMEncoding* WXMEncodingCreator::CreateWxmEncoding(ssize_t idx);
+	friend WXMEncoding* WXMEncodingManager::GetWxmEncoding(ssize_t idx);
 	WXMEncodingUTF32LE(){}
 	~WXMEncodingUTF32LE(){}
 };
@@ -96,7 +96,7 @@ struct WXMEncodingUTF32BE: public WXMEncoding
 	}
 
 private:
-	friend WXMEncoding* WXMEncodingCreator::CreateWxmEncoding(ssize_t idx);
+	friend WXMEncoding* WXMEncodingManager::GetWxmEncoding(ssize_t idx);
 	WXMEncodingUTF32BE(){}
 	~WXMEncodingUTF32BE(){}
 };

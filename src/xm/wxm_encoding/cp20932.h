@@ -40,7 +40,7 @@ private:
 struct WXMEncodingCP20932: public WXMEncodingDoubleByteISO646Compatible
 {
 private:
-	friend WXMEncoding* WXMEncodingCreator::CreateWxmEncoding(ssize_t idx);
+	friend WXMEncoding* WXMEncodingManager::GetWxmEncoding(ssize_t idx);
 	~WXMEncodingCP20932(){}
 
 	virtual void InitMBConverter()

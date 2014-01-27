@@ -17,7 +17,7 @@ void data_gb18030_conv_init()
 
 void test_gb18030_conv()
 {
-	wxm::WXMEncodingCreator::Instance().InitEncodings();
+	wxm::WXMEncodingManager::Instance().InitEncodings();
 	data_gb18030_conv_init();
 
 	const std::string encname("GB18030");
@@ -25,7 +25,7 @@ void test_gb18030_conv()
 	std::cout << "\t" << encname << std::endl;
 
 	wxString wxencname(encname.c_str(), wxConvUTF8);
-	wxm::WXMEncoding* enc = wxm::WXMEncodingCreator::Instance().CreateWxmEncoding(wxencname);
+	wxm::WXMEncoding* enc = wxm::WXMEncodingManager::Instance().GetWxmEncoding(wxencname);
 
 	MB2UDataMap::const_iterator mb2uend = mb2u[encname].end();
 	for (size_t i=0; i<256; ++i)
@@ -167,5 +167,5 @@ void test_gb18030_conv()
 	mb2u[encname].clear();
 	u2mb[encname].clear();
 
-	wxm::WXMEncodingCreator::Instance().FreeEncodings();
+	wxm::WXMEncodingManager::Instance().FreeEncodings();
 }

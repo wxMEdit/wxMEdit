@@ -42,7 +42,7 @@ struct WXMEncodingGB18030: public WXMEncodingMultiByte, WXMEncodingDecoderISO646
 	}
 
 private:
-	friend WXMEncoding* WXMEncodingCreator::CreateWxmEncoding(ssize_t idx);
+	friend WXMEncoding* WXMEncodingManager::GetWxmEncoding(ssize_t idx);
 	WXMEncodingGB18030(): m_icucnv("GB18030")
 	{
 	}
