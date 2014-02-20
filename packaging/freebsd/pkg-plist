@@ -3,6 +3,7 @@ share/applications/wxmedit.desktop
 share/locale/es_ES/LC_MESSAGES/wxmedit.mo
 share/locale/it_IT/LC_MESSAGES/wxmedit.mo
 share/locale/ja_JP/LC_MESSAGES/wxmedit.mo
+share/locale/ru_RU/LC_MESSAGES/wxmedit.mo
 share/locale/zh_CN/LC_MESSAGES/wxmedit.mo
 share/locale/zh_TW/LC_MESSAGES/wxmedit.mo
 share/doc/wxmedit/ChangeLog

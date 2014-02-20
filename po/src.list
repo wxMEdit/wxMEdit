@@ -33,12 +33,14 @@ wxstd.po.cpp
 ../src/dialog/wxm_find_in_files_dialog.h
 ../src/dialog/wxm_highlighting_dialog.cpp
 ../src/dialog/wxm_highlighting_dialog.h
-../src/dialog/wxm_searchreplace_dialog.cpp
-../src/dialog/wxm_searchreplace_dialog.h
+../src/dialog/wxm_search_replace_dialog.cpp
+../src/dialog/wxm_search_replace_dialog.h
 ../src/dialog/wxm_sort_dialog.cpp
 ../src/dialog/wxm_sort_dialog.h
 ../src/dialog/wxm_options_dialog.cpp
 ../src/dialog/wxm_options_dialog.h
+../src/dialog/wxm_purge_histories_dialog.cpp
+../src/dialog/wxm_purge_histories_dialog.h
 ../src/dialog/wxm_conv_enc_dialog.cpp
 ../src/dialog/wxm_conv_enc_dialog.h
 ../src/dialog/wxm_word_count_dialog.cpp
