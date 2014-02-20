@@ -36,10 +36,10 @@
 #: ../src/dialog/wxm_options_dialog.cpp:695
 msgid ""
 msgstr ""
-"Project-Id-Version: wxMEdit 2.9.6\n"
+"Project-Id-Version: wxMEdit 2.9.7\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-02-20 23:41+0800\n"
-"PO-Revision-Date: 2013-11-20 11:18+0800\n"
+"PO-Revision-Date: 2014-02-20 21:58+0800\n"
 "Last-Translator: JiaYanwei <wxmedit@gmail.com>\n"
 "Language-Team: wxMEdit <wxmedit@gmail.com>\n"
 "Language: zh_CN\n"
@@ -47,7 +47,7 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-SourceCharset: utf-8\n"
-"X-Generator: Poedit 1.5.7\n"
+"X-Generator: Poedit 1.6.3\n"
 
 #: wxstd.po.cpp:3
 msgid "OK"
@@ -250,7 +250,7 @@ msgstr ""
 
 #: wxstd.po.cpp:53 ../src/xm/wxm_encoding/encoding.cpp:215
 msgid "Cyrillic"
-msgstr ""
+msgstr "斯拉夫"
 
 #: wxstd.po.cpp:54
 msgid "Armenian"
@@ -258,11 +258,11 @@ msgstr ""
 
 #: wxstd.po.cpp:55 ../src/xm/wxm_encoding/encoding.cpp:218
 msgid "Hebrew"
-msgstr ""
+msgstr "希伯来"
 
 #: wxstd.po.cpp:56 ../src/xm/wxm_encoding/encoding.cpp:216
 msgid "Arabic"
-msgstr ""
+msgstr "阿拉伯"
 
 #: wxstd.po.cpp:57
 msgid "Syriac"
@@ -1770,7 +1770,7 @@ msgstr "Fortran 90"
 
 #: wxstd.po.cpp:436
 msgid "FreeBASIC"
-msgstr ""
+msgstr "FreeBASIC"
 
 #: wxstd.po.cpp:437
 msgid "HTML"
@@ -2112,81 +2112,81 @@ msgstr "Unicode 32 bit Big Endian (UTF-32BE)"
 
 #: ../src/xm/wxm_encoding/encoding.cpp:210
 msgid "Other"
-msgstr ""
+msgstr "其他"
 
 #: ../src/xm/wxm_encoding/encoding.cpp:211
 msgid "Western Europe"
-msgstr ""
+msgstr "西欧"
 
 #: ../src/xm/wxm_encoding/encoding.cpp:212
 msgid "Central Europe"
-msgstr ""
+msgstr "中欧"
 
 #: ../src/xm/wxm_encoding/encoding.cpp:213
 msgid "South Europe"
-msgstr ""
+msgstr "南欧"
 
 #: ../src/xm/wxm_encoding/encoding.cpp:214
 msgid "North Europe"
-msgstr ""
+msgstr "北欧"
 
 #: ../src/xm/wxm_encoding/encoding.cpp:217
 msgid "Greek"
-msgstr ""
+msgstr "希腊"
 
 #: ../src/xm/wxm_encoding/encoding.cpp:219
 msgid "Turkish"
-msgstr ""
+msgstr "土耳其"
 
 #: ../src/xm/wxm_encoding/encoding.cpp:220
 msgid "Baltic"
-msgstr ""
+msgstr "波罗的海"
 
 #: ../src/xm/wxm_encoding/encoding.cpp:221
 msgid "East Asia"
-msgstr ""
+msgstr "东亚"
 
 #: ../src/xm/wxm_encoding/encoding.cpp:222
 msgid "Southeast Asia"
-msgstr ""
+msgstr "东南亚"
 
 #: ../src/xm/wxm_encoding/encoding.cpp:223
 msgid "Unicode"
-msgstr ""
+msgstr "Unicode"
 
 #: ../src/wxmedit_frame.cpp:172
 msgid "Current maintainer of wxMEdit"
-msgstr ""
+msgstr "wxMEdit 当前维护人"
 
 #: ../src/wxmedit_frame.cpp:173
 msgid "Creator of MadEdit"
-msgstr ""
+msgstr "MadEdit 创始人"
 
 #: ../src/wxmedit_frame.cpp:174
 msgid "Translator for Japanese"
-msgstr ""
+msgstr "日文翻译"
 
 #: ../src/wxmedit_frame.cpp:175
 msgid "Translator for Spanish"
-msgstr ""
+msgstr "西班牙文翻译"
 
 #: ../src/wxmedit_frame.cpp:176
 msgid "Translator for Traditional Chinese"
-msgstr ""
+msgstr "繁体中文翻译"
 
 #: ../src/wxmedit_frame.cpp:177
 msgid "Translator for Russian"
-msgstr ""
+msgstr "俄文翻译"
 
 #: ../src/wxmedit_frame.cpp:178 ../src/wxmedit_frame.cpp:179
 #: ../src/wxmedit_frame.cpp:180 ../src/wxmedit_frame.cpp:181
 #: ../src/wxmedit_frame.cpp:182
 msgid "Patch submitter for wxMEdit/MadEdit"
-msgstr ""
+msgstr "wxMEdit/MadEdit 补丁提交者"
 
 #: ../src/wxmedit_frame.cpp:183
 msgid "Creator of wxmedit package in AUR"
-msgstr ""
+msgstr "AUR 包 wxmedit 创建者"
 
 #: ../src/wxmedit_frame.cpp:774
 msgid "Ln:"
@@ -2946,7 +2946,7 @@ msgstr "修改文件关联设置"
 
 #: ../src/wxmedit_frame.cpp:1523
 msgid "&Purge Histories..."
-msgstr ""
+msgstr "清除历史记录(&P)"
 
 #: ../src/wxmedit_frame.cpp:1525 ../src/wxmedit_frame.cpp:3243
 msgid "Has Unicode BOM (Byte-Order Mark)"
@@ -3991,7 +3991,7 @@ msgstr "按鼠标中键粘贴剪贴板中的文本"
 
 #: ../src/dialog/wxm_options_dialog.cpp:442
 msgid "Behavior of copying in hex editing area:"
-msgstr ""
+msgstr "十六进制编辑区复制行为："
 
 #: ../src/dialog/wxm_options_dialog.cpp:455
 msgid "Print Syntax Highlighter"
@@ -4133,7 +4133,7 @@ msgstr "按键"
 
 #: ../src/dialog/wxm_options_dialog.cpp:626
 msgid "Misc"
-msgstr ""
+msgstr "杂项"
 
 #: ../src/dialog/wxm_options_dialog.cpp:661
 #, c-format
@@ -4325,47 +4325,47 @@ msgstr "这个按键已指定给 [%s]"
 
 #: ../src/dialog/wxm_purge_histories_dialog.cpp:35
 msgid "Purge Histories"
-msgstr ""
+msgstr "清除历史记录"
 
 #: ../src/dialog/wxm_purge_histories_dialog.cpp:37
 msgid "Select histories to purge"
-msgstr ""
+msgstr "选择要清除的历史记录"
 
 #: ../src/dialog/wxm_purge_histories_dialog.cpp:38
 msgid "Recent &Files"
-msgstr ""
+msgstr "最近打开的文件(&F)"
 
 #: ../src/dialog/wxm_purge_histories_dialog.cpp:41
 msgid "Recent Fon&ts"
-msgstr ""
+msgstr "最近使用的字体(&T)"
 
 #: ../src/dialog/wxm_purge_histories_dialog.cpp:44
 msgid "Recent &Encodings"
-msgstr ""
+msgstr "最近使用的编码(&E)"
 
 #: ../src/dialog/wxm_purge_histories_dialog.cpp:47
 msgid "Recent &Searched Texts"
-msgstr ""
+msgstr "最近查找的文本(&S)"
 
 #: ../src/dialog/wxm_purge_histories_dialog.cpp:50
 msgid "Recent &Replaced Texts"
-msgstr ""
+msgstr "最近替换的文本(&R)"
 
 #: ../src/dialog/wxm_purge_histories_dialog.cpp:53
 msgid "Recent Searched &Directories"
-msgstr ""
+msgstr "最近查找的目录(&D)"
 
 #: ../src/dialog/wxm_purge_histories_dialog.cpp:56
 msgid "Recent Searched File Fi&lters"
-msgstr ""
+msgstr "最近查找文件的筛选条件(&L)"
 
 #: ../src/dialog/wxm_purge_histories_dialog.cpp:59
 msgid "Recent Searched E&xclude Filters"
-msgstr ""
+msgstr "最近查找文件的排除条件(&X)"
 
 #: ../src/dialog/wxm_purge_histories_dialog.cpp:64
 msgid "&Purge"
-msgstr ""
+msgstr "清除"
 
 #: ../src/dialog/wxm_conv_enc_dialog.cpp:38
 msgid "Convert Encoding"
@@ -4458,23 +4458,23 @@ msgstr "授权许可"
 
 #: ../src/dialog/wxmedit_about_dialog.cpp:83
 msgid "Credits"
-msgstr ""
+msgstr "致谢"
 
 #: ../src/wxm_utils.cpp:391
 msgid "Copy as Raw Bytes"
-msgstr ""
+msgstr "复制原始字节"
 
 #: ../src/wxm_utils.cpp:392
 msgid "Copy as Regular Text"
-msgstr ""
+msgstr "复制常规文本"
 
 #: ../src/wxm_utils.cpp:393
 msgid "Copy as Hex String"
-msgstr ""
+msgstr "复制十六进制字符串"
 
 #: ../src/wxm_utils.cpp:394
 msgid "Copy as Hex String with Spaces"
-msgstr ""
+msgstr "复制空格分隔的十六进制字符串"
 
 #: ../src/wxm_printout.h:19
 msgid "wxMEdit Printout"
@@ -4482,7 +4482,7 @@ msgstr "wxMEdit 打印"
 
 #: ../src/xm/wxm_update.cpp:82
 msgid "wxMEdit - New version available"
-msgstr "wxMEdit——有新版本"
+msgstr "wxMEdit——存在新版本"
 
 #: ../src/xm/wxm_update.cpp:83
 #, c-format
@@ -4490,7 +4490,7 @@ msgid ""
 "wxMEdit %s is available. \n"
 "Click OK to open the download page."
 msgstr ""
-"可升级到 wxMEdit %s。\n"
+"可升级 wxMEdit 到 %s。\n"
 "点击“确定”打开下载页。"
 
 #: ../src/xm/wxm_update.cpp:93
