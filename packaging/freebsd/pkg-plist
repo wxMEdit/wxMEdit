@@ -26,6 +26,7 @@ share/wxmedit/syntax/syntax_css.syn
 share/wxmedit/syntax/syntax_d.syn
 share/wxmedit/syntax/syntax_diff.syn
 share/wxmedit/syntax/syntax_fortran.syn
+share/wxmedit/syntax/syntax_freebasic.syn
 share/wxmedit/syntax/syntax_html.syn
 share/wxmedit/syntax/syntax_java.syn
 share/wxmedit/syntax/syntax_javascript.syn
