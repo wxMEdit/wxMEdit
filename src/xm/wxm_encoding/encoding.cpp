@@ -17,6 +17,8 @@
 #include <wx/intl.h>
 #include <boost/foreach.hpp>
 #include <boost/static_assert.hpp>
+#include <boost/assign/list_inserter.hpp>
+#include <boost/assign/list_of.hpp>
 
 #ifdef _DEBUG
 #include <crtdbg.h>
@@ -168,6 +170,7 @@ void WXMEncodingManager::DoInit()
 	m_wxencfont_map[ENC_CP20932]     = GetMSCPFontName(wxT("51932"));
 	m_wxencfont_map[ENC_GB18030]     = GetMSCPFontName(wxT("936"));
 
+	InitEncodingGroups();
 	InitSystemEncoding();
 }
 
@@ -199,6 +202,93 @@ void WXMEncodingManager::InitSystemEncoding()
 			break;
 		}
 	}
+}
+
+void WXMEncodingManager::InitEncodingGroups()
+{
+	boost::assign::insert(m_wxencgrpname_map)
+		(ENCG_DEFAULT, _("Other"))
+		(ENCG_WESTERNEUROPE, _("Western Europe"))
+		(ENCG_CENTRALEUROPE, _("Central Europe"))
+		(ENCG_SOUTHEUROPE, _("South Europe"))
+		(ENCG_NORTHEUROPE, _("North Europe"))
+		(ENCG_CYRILLIC, _("Cyrillic"))
+		(ENCG_ARABIC, _("Arabic"))
+		(ENCG_GREEK, _("Greek"))
+		(ENCG_HEBREW, _("Hebrew"))
+		(ENCG_TURKISH, _("Turkish"))
+		(ENCG_BALTIC, _("Baltic"))
+		(ENCG_EASTASIA, _("East Asia"))
+		(ENCG_SOUTHEASTASIA, _("Southeast Asia"))
+		(ENCG_UNICODE, _("Unicode"))
+	;
+
+
+	boost::assign::insert(m_wxencgrps_map)
+		(ENC_ISO_8859_1, boost::assign::list_of(ENCG_WESTERNEUROPE))
+		(ENC_ISO_8859_2, boost::assign::list_of(ENCG_CENTRALEUROPE))
+		(ENC_ISO_8859_3, boost::assign::list_of(ENCG_SOUTHEUROPE))
+		(ENC_ISO_8859_4, boost::assign::list_of(ENCG_NORTHEUROPE))
+		(ENC_ISO_8859_5, boost::assign::list_of(ENCG_CYRILLIC))
+		(ENC_ISO_8859_6, boost::assign::list_of(ENCG_ARABIC))
+		(ENC_ISO_8859_7, boost::assign::list_of(ENCG_GREEK))
+		(ENC_ISO_8859_8, boost::assign::list_of(ENCG_HEBREW))
+		(ENC_ISO_8859_9, boost::assign::list_of(ENCG_TURKISH))
+		(ENC_ISO_8859_10, boost::assign::list_of(ENCG_NORTHEUROPE))
+		(ENC_ISO_8859_11, boost::assign::list_of(ENCG_SOUTHEASTASIA))
+		(ENC_ISO_8859_13, boost::assign::list_of(ENCG_BALTIC))
+		(ENC_ISO_8859_14, boost::assign::list_of(ENCG_NORTHEUROPE))
+		(ENC_ISO_8859_15, boost::assign::list_of(ENCG_WESTERNEUROPE))
+		(ENC_ISO_8859_16, boost::assign::list_of(ENCG_SOUTHEUROPE))
+		(ENC_Windows_874, boost::assign::list_of(ENCG_SOUTHEASTASIA))
+		(ENC_Windows_1250, boost::assign::list_of(ENCG_CENTRALEUROPE))
+		(ENC_Windows_1251, boost::assign::list_of(ENCG_CYRILLIC))
+		(ENC_Windows_1252, boost::assign::list_of(ENCG_WESTERNEUROPE))
+		(ENC_Windows_1253, boost::assign::list_of(ENCG_GREEK))
+		(ENC_Windows_1254, boost::assign::list_of(ENCG_TURKISH))
+		(ENC_Windows_1255, boost::assign::list_of(ENCG_HEBREW))
+		(ENC_Windows_1256, boost::assign::list_of(ENCG_ARABIC))
+		(ENC_Windows_1257, boost::assign::list_of(ENCG_BALTIC))
+		(ENC_Windows_1258, boost::assign::list_of(ENCG_SOUTHEASTASIA))
+		(ENC_CP855, boost::assign::list_of(ENCG_CYRILLIC))
+		(ENC_CP866, boost::assign::list_of(ENCG_CYRILLIC))
+		(ENC_KOI8_R, boost::assign::list_of(ENCG_CYRILLIC))
+		(ENC_KOI8_U, boost::assign::list_of(ENCG_CYRILLIC))
+		(ENC_MS932, boost::assign::list_of(ENCG_EASTASIA))
+		(ENC_MS936, boost::assign::list_of(ENCG_EASTASIA))
+		(ENC_MS949, boost::assign::list_of(ENCG_EASTASIA))
+		(ENC_MS950, boost::assign::list_of(ENCG_EASTASIA))
+		(ENC_CP20932, boost::assign::list_of(ENCG_EASTASIA))
+		(ENC_GB18030, boost::assign::list_of(ENCG_EASTASIA)(ENCG_UNICODE))
+		(ENC_UTF_8, boost::assign::list_of(ENCG_UNICODE))
+		(ENC_UTF_16LE, boost::assign::list_of(ENCG_UNICODE))
+		(ENC_UTF_16BE, boost::assign::list_of(ENCG_UNICODE))
+		(ENC_UTF_32LE, boost::assign::list_of(ENCG_UNICODE))
+		(ENC_UTF_32BE, boost::assign::list_of(ENCG_UNICODE))
+	;
+}
+
+std::vector<WXMEncodingGroupID> WXMEncodingManager::GetEncodingGroups(ssize_t idx)
+{
+	WXEncGrpsMap::const_iterator it = m_wxencgrps_map.find(IdxToEncoding(idx));
+	if (it == m_wxencgrps_map.end())
+	{
+		std::vector<WXMEncodingGroupID> v;
+		v.push_back(ENCG_DEFAULT);
+		return v;
+	}
+
+	std::vector<WXMEncodingGroupID> v(it->second.begin(), it->second.end());
+	return v;
+}
+
+wxString WXMEncodingManager::EncodingGroupToName(WXMEncodingGroupID gid)
+{
+	WXEncGrpNameMap::const_iterator it = m_wxencgrpname_map.find(gid);
+	if (it == m_wxencgrpname_map.end())
+		return wxString();
+
+	return it->second;
 }
 
 void WXMEncodingManager::FreeEncodings()

@@ -1719,6 +1719,27 @@ MadEditFrame::MadEditFrame( wxWindow *parent, wxWindowID id, const wxString &tit
 MadEditFrame::~MadEditFrame()
 {}
 
+void MadEditFrame::EncodingGroupMenuAppend(int itemid, const wxString& text, ssize_t idx)
+{
+    static int i = 1;
+
+    wxm::WXMEncodingManager& encmgr = wxm::WXMEncodingManager::Instance();
+    std::vector<wxm::WXMEncodingGroupID> vec = encmgr.GetEncodingGroups(idx);
+    BOOST_FOREACH(wxm::WXMEncodingGroupID gid, vec)
+    {
+        EncGrps::iterator it = m_encgrps.find(gid);
+        if (it == m_encgrps.end())
+        {
+            wxMenu* menu = new wxMenu();
+            it = m_encgrps.insert(std::make_pair(gid, menu)).first;
+            size_t pos = g_Menu_View_Encoding->GetMenuItemCount() - 1;
+            g_Menu_View_Encoding->Insert(pos, menuEncodingGroup1 + i, encmgr.EncodingGroupToName(gid), menu);
+        }
+
+        ++i;
+        it->second->Append(itemid, text);
+    }
+}
 
 void MadEditFrame::CreateGUIControls(void)
 {
@@ -1926,13 +1947,20 @@ void MadEditFrame::CreateGUIControls(void)
     }
 
     {
+        wxm::WXMEncodingManager& encmgr = wxm::WXMEncodingManager::Instance();
+
+        wxMenu* menu = new wxMenu();
+        g_Menu_View_Encoding->Append(menuEncodingGroup1 + 0, encmgr.EncodingGroupToName(wxm::ENCG_DEFAULT), menu);
+        m_encgrps[wxm::ENCG_DEFAULT] = menu;
+
         size_t cnt=wxm::WXMEncodingManager::Instance().GetEncodingsCount();
-        for(size_t i=0;i<cnt;i++)
+        for(size_t i=1; i<cnt; ++i)
         {
-            wxString enc=wxString(wxT('['))+ wxm::WXMEncodingManager::Instance().GetEncodingName(i) + wxT("] ");
-            wxString des=wxGetTranslation(wxm::WXMEncodingManager::Instance().GetEncodingDescription(i).c_str());
+            wxString enc=wxString(wxT('['))+ encmgr.GetEncodingName(i) + wxT("] ");
+            wxString des=wxGetTranslation(encmgr.GetEncodingDescription(i).c_str());
 
             g_Menu_View_AllEncodings->Append(menuEncoding1 + int(i), enc+des);
+            EncodingGroupMenuAppend(menuEncoding1 + int(i), enc+des, i);
         }
     }
 

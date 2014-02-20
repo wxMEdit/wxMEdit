@@ -84,6 +84,8 @@ public:
 
 	WXMEncodingType GetIdxEncType(ssize_t idx);
 
+	std::vector<WXMEncodingGroupID> GetEncodingGroups(ssize_t idx);
+	wxString EncodingGroupToName(WXMEncodingGroupID gid);
 private:
 
 	WXMEncodingID IdxToEncoding(ssize_t idx)
@@ -92,6 +94,7 @@ private:
 	}
 
 	void InitSystemEncoding();
+	void InitEncodingGroups();
 	WXMEncodingID GetSystemEncodingID();
 
 	void DoInit();
@@ -122,11 +125,16 @@ private:
 	typedef std::map<WXMEncodingID, wxString> WXEncDescMap;
 	typedef std::map<WXMEncodingID, std::string> EncInnerNameMap;
 	typedef std::map<std::string, WXMEncodingID> ICUNameEncMap;
+	typedef std::map<WXMEncodingGroupID, wxString> WXEncGrpNameMap;
+	typedef std::map<WXMEncodingID, std::set<WXMEncodingGroupID> > WXEncGrpsMap;
+
 	WXNameEncMap m_wxnameenc_map;
 	WXEncNameMap m_wxencname_map;
 	WXEncTypeMap m_wxenctype_map;
 	WXEncFontMap m_wxencfont_map;
 	WXEncDescMap m_wxencdesc_map;
+	WXEncGrpNameMap m_wxencgrpname_map;
+	WXEncGrpsMap m_wxencgrps_map;
 	EncInnerNameMap m_encinnername_map;
 	ICUNameEncMap m_icunameenc_map;
 

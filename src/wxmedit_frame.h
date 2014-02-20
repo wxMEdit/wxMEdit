@@ -12,6 +12,7 @@
 
 #include "xm/wx_recent_list.h"
 #include "xm/wxm_def.h"
+#include "xm/wxm_encoding/encoding_def.h"
 
 #include <wx/wxprec.h>
 #ifdef __BORLANDC__
@@ -35,6 +36,7 @@
 
 #include <wx/aui/aui.h> // wxAUI
 
+#include <map>
 
 #undef MadEditFrame_STYLE
 #define MadEditFrame_STYLE wxCAPTION | wxRESIZE_BORDER | wxSYSTEM_MENU | wxMINIMIZE_BOX | wxMAXIMIZE_BOX | wxCLOSE_BOX
@@ -268,6 +270,10 @@ public:
 
 private:
     bool m_PageClosing; // prevent from reentry of CloseFile(), OnNotebookPageClosing()
+
+    typedef std::map<wxm::WXMEncodingGroupID, wxMenu*> EncGrps;
+    EncGrps m_encgrps;
+
 public:
     int OpenedFileCount();
     // if filename is empty, open a new file
@@ -281,6 +287,7 @@ public:
 
 protected:
     void MadEditFrameClose(wxCloseEvent& event);
+    void EncodingGroupMenuAppend(int itemid, const wxString& text, ssize_t idx);
     void CreateGUIControls(void);
 
     void OnNotebookPageChanging(wxAuiNotebookEvent& event);
@@ -391,7 +398,10 @@ enum { // menu id
     // view
     menuEncoding,
     menuAllEncodings,
-    menuEncoding1,
+    menuEncodingGroup1,
+    menuEncodingGroup99 = menuEncodingGroup1 + 98,
+
+	menuEncoding1,
     menuEncoding99 = menuEncoding1 + 98,
 
     menuRecentEncoding1,
