@@ -36,10 +36,10 @@
 #: ../src/dialog/wxm_options_dialog.cpp:695
 msgid ""
 msgstr ""
-"Project-Id-Version: wxMEdit 2.9.6\n"
+"Project-Id-Version: wxMEdit 2.9.7\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-02-20 23:41+0800\n"
-"PO-Revision-Date: 2013-11-19 12:11+0100\n"
+"PO-Revision-Date: 2014-02-24 13:40+0100\n"
 "Last-Translator: \n"
 "Language-Team:  <carlos1994sanchez@gmail.com>\n"
 "Language: Español\n"
@@ -1769,7 +1769,7 @@ msgstr "Fortran 90"
 
 #: wxstd.po.cpp:436
 msgid "FreeBASIC"
-msgstr ""
+msgstr "FreeBASIC"
 
 #: wxstd.po.cpp:437
 msgid "HTML"
@@ -2035,7 +2035,7 @@ msgstr "Windows Vietnamita (CP 1258)"
 
 #: ../src/xm/wxm_encoding/encoding.cpp:139
 msgid "CP437 Variant for ASCII Art"
-msgstr ""
+msgstr "Variante CP437 para arte ASCII"
 
 #: ../src/xm/wxm_encoding/encoding.cpp:140
 msgid "Windows/DOS OEM (CP 437)"
@@ -2111,81 +2111,81 @@ msgstr "Unicode 32 bit Big Endian (UTF-32BE)"
 
 #: ../src/xm/wxm_encoding/encoding.cpp:210
 msgid "Other"
-msgstr ""
+msgstr "Otros"
 
 #: ../src/xm/wxm_encoding/encoding.cpp:211
 msgid "Western Europe"
-msgstr ""
+msgstr "Europa Occidental"
 
 #: ../src/xm/wxm_encoding/encoding.cpp:212
 msgid "Central Europe"
-msgstr ""
+msgstr "Europa Central"
 
 #: ../src/xm/wxm_encoding/encoding.cpp:213
 msgid "South Europe"
-msgstr ""
+msgstr "Europa del Sur"
 
 #: ../src/xm/wxm_encoding/encoding.cpp:214
 msgid "North Europe"
-msgstr ""
+msgstr "Europa del Norte"
 
 #: ../src/xm/wxm_encoding/encoding.cpp:217
 msgid "Greek"
-msgstr ""
+msgstr "Griego"
 
 #: ../src/xm/wxm_encoding/encoding.cpp:219
 msgid "Turkish"
-msgstr ""
+msgstr "Turco"
 
 #: ../src/xm/wxm_encoding/encoding.cpp:220
 msgid "Baltic"
-msgstr ""
+msgstr "Báltico"
 
 #: ../src/xm/wxm_encoding/encoding.cpp:221
 msgid "East Asia"
-msgstr ""
+msgstr "Asia del Este"
 
 #: ../src/xm/wxm_encoding/encoding.cpp:222
 msgid "Southeast Asia"
-msgstr ""
+msgstr "Asia del Sudeste"
 
 #: ../src/xm/wxm_encoding/encoding.cpp:223
 msgid "Unicode"
-msgstr ""
+msgstr "Unicode"
 
 #: ../src/wxmedit_frame.cpp:172
 msgid "Current maintainer of wxMEdit"
-msgstr ""
+msgstr "Mantenedor actual de wxMEdit"
 
 #: ../src/wxmedit_frame.cpp:173
 msgid "Creator of MadEdit"
-msgstr ""
+msgstr "Creador de MadEdit"
 
 #: ../src/wxmedit_frame.cpp:174
 msgid "Translator for Japanese"
-msgstr ""
+msgstr "Traducción al japonés"
 
 #: ../src/wxmedit_frame.cpp:175
 msgid "Translator for Spanish"
-msgstr ""
+msgstr "Traducción al Español"
 
 #: ../src/wxmedit_frame.cpp:176
 msgid "Translator for Traditional Chinese"
-msgstr ""
+msgstr "Traducción al Chino Tradicional"
 
 #: ../src/wxmedit_frame.cpp:177
 msgid "Translator for Russian"
-msgstr ""
+msgstr "Traducción al Ruso"
 
 #: ../src/wxmedit_frame.cpp:178 ../src/wxmedit_frame.cpp:179
 #: ../src/wxmedit_frame.cpp:180 ../src/wxmedit_frame.cpp:181
 #: ../src/wxmedit_frame.cpp:182
 msgid "Patch submitter for wxMEdit/MadEdit"
-msgstr ""
+msgstr "Presentador de parche para wxMEdit/MadEdit"
 
 #: ../src/wxmedit_frame.cpp:183
 msgid "Creator of wxmedit package in AUR"
-msgstr ""
+msgstr "Creador del paquete wxmedit en AUR"
 
 #: ../src/wxmedit_frame.cpp:774
 msgid "Ln:"
@@ -2417,27 +2417,27 @@ msgstr "Inserta fecha y hora"
 
 #: ../src/wxmedit_frame.cpp:1295
 msgid "T&oggle Bookmark "
-msgstr ""
+msgstr "Alternar Marcador"
 
 #: ../src/wxmedit_frame.cpp:1295
 msgid "Toggle Bookmark at current line"
-msgstr ""
+msgstr "Alternar marcador en la línea actual"
 
 #: ../src/wxmedit_frame.cpp:1296
 msgid "Go To &Next Bookmark"
-msgstr ""
+msgstr "Ir al marcador siguiente"
 
 #: ../src/wxmedit_frame.cpp:1296
 msgid "Go to the next bookmark"
-msgstr ""
+msgstr "Ir al marcador siguiente"
 
 #: ../src/wxmedit_frame.cpp:1297
 msgid "Go To P&revious Bookmark"
-msgstr ""
+msgstr "Ir al marcador anterior"
 
 #: ../src/wxmedit_frame.cpp:1297
 msgid "Go to the previous bookmark"
-msgstr ""
+msgstr "Ir al marcador anterior"
 
 #: ../src/wxmedit_frame.cpp:1300
 msgid "Ad&vanced"
@@ -2946,7 +2946,7 @@ msgstr "Cambia asociaciones de tipo de archivo"
 
 #: ../src/wxmedit_frame.cpp:1523
 msgid "&Purge Histories..."
-msgstr ""
+msgstr "Purgar historial..."
 
 #: ../src/wxmedit_frame.cpp:1525 ../src/wxmedit_frame.cpp:3243
 msgid "Has Unicode BOM (Byte-Order Mark)"
@@ -3156,11 +3156,11 @@ msgstr "A&yuda"
 
 #: ../src/wxmedit_frame.cpp:1562
 msgid "&Check for updates..."
-msgstr ""
+msgstr "Comprobar actualizaciones..."
 
 #: ../src/wxmedit_frame.cpp:1562
 msgid "Check for new versions of wxMEdit"
-msgstr ""
+msgstr "Comprueba si hay nuevas versiones de wxMEdit"
 
 #: ../src/wxmedit_frame.cpp:1563
 msgid "&About wxMEdit..."
@@ -3168,7 +3168,7 @@ msgstr "&Acerca de wxMEdit..."
 
 #: ../src/wxmedit_frame.cpp:1563
 msgid "Show about dialog"
-msgstr ""
+msgstr "Mostrar diálogo Acerca de..."
 
 #: ../src/wxmedit_frame.cpp:1567
 msgid "Move caret left one char"
@@ -3316,11 +3316,11 @@ msgstr "Eliminar un carácter a la izquierda del cursor"
 
 #: ../src/wxmedit_frame.cpp:1607
 msgid "Delete a word left from the caret"
-msgstr ""
+msgstr "Eliminar una palabra a la izquierda del símbolo de intercalación"
 
 #: ../src/wxmedit_frame.cpp:1608
 msgid "Delete a word right from the caret"
-msgstr ""
+msgstr "Eliminar una palabra a la derecha del símbolo de intercalación"
 
 #: ../src/wxmedit_frame.cpp:1610
 msgid "Toggle Insert/Overwrite Mode"
@@ -3535,7 +3535,7 @@ msgstr "wxMEdit, un editor de Texto/Hex multiplataforma"
 
 #: ../src/wxmedit_frame.cpp:5045
 msgid "Press OK to view the license online version.\n"
-msgstr ""
+msgstr "Pulse Aceptar para ver la versión en línea de la licencia.\n"
 
 #: ../src/dialog/wxm_file_association_dialog.cpp:316
 msgid "File Type Associations"
@@ -3788,7 +3788,7 @@ msgstr "&Mover el foco a la ventana editor"
 
 #: ../src/dialog/wxm_search_replace_dialog.cpp:103
 msgid "Wrap ar&ound"
-msgstr ""
+msgstr "Envolver"
 
 #: ../src/dialog/wxm_search_replace_dialog.cpp:119
 msgid "Search In &Selection"
@@ -3808,11 +3808,11 @@ msgstr "&Reemplazar >>"
 
 #: ../src/dialog/wxm_search_replace_dialog.cpp:320
 msgid "End of selection reached, search from beginning."
-msgstr ""
+msgstr "Fin de selección alcanzado, buscando desde el principio."
 
 #: ../src/dialog/wxm_search_replace_dialog.cpp:321
 msgid "End of file reached, search from beginning."
-msgstr ""
+msgstr "Fin de archivo alcanzado, buscando desde el principio."
 
 #: ../src/dialog/wxm_search_replace_dialog.cpp:329
 #: ../src/dialog/wxm_search_replace_dialog.cpp:431
@@ -3838,19 +3838,19 @@ msgstr "No se encuentra cadena coincidente."
 
 #: ../src/dialog/wxm_search_replace_dialog.cpp:422
 msgid "Beginning of selection reached, search from end."
-msgstr ""
+msgstr "Inicio de selección alcanzado, buscando desde el final."
 
 #: ../src/dialog/wxm_search_replace_dialog.cpp:423
 msgid "Beginning of file reached, search from end."
-msgstr ""
+msgstr "Inicio de archivo alcanzado, buscando desde el final."
 
 #: ../src/dialog/wxm_search_replace_dialog.cpp:714
 msgid "End of selection reached, replace from beginning."
-msgstr ""
+msgstr "Fin de selección alcanzado, reemplazando desde el principio."
 
 #: ../src/dialog/wxm_search_replace_dialog.cpp:715
 msgid "End of file reached, replace from beginning."
-msgstr ""
+msgstr "Fin de archivo alcanzado, reemplazando desde el principio."
 
 #: ../src/dialog/wxm_search_replace_dialog.cpp:781
 msgid "Cannot find the matched string. Replace is finished."
@@ -3904,15 +3904,15 @@ msgstr "Opciones"
 
 #: ../src/dialog/wxm_options_dialog.cpp:347
 msgid "Automatically check for new versions: "
-msgstr ""
+msgstr "Comprobar automáticamente si hay nuevas versiones:"
 
 #: ../src/dialog/wxm_options_dialog.cpp:352
 msgid "Check &now"
-msgstr ""
+msgstr "Comprobar ahora"
 
 #: ../src/dialog/wxm_options_dialog.cpp:355
 msgid "Check for new versions including &prereleases"
-msgstr ""
+msgstr "Comprobar si hay nuevas versiones incluyendo prereleases"
 
 #: ../src/dialog/wxm_options_dialog.cpp:363
 msgid "Language of User Interface (must restart wxMEdit)"
@@ -3983,11 +3983,11 @@ msgstr "Autocompletar pares de caracteres"
 
 #: ../src/dialog/wxm_options_dialog.cpp:431
 msgid "Auto copy the mouse-selected text to clipboard"
-msgstr ""
+msgstr "Copiar automáticamente texto seleccionado al portapapeles"
 
 #: ../src/dialog/wxm_options_dialog.cpp:434
 msgid "when pressing Ctrl key"
-msgstr ""
+msgstr "al pulsar la tecla Ctrl"
 
 #: ../src/dialog/wxm_options_dialog.cpp:438
 msgid "Paste text from clipboard when pressing middle mouse button"
@@ -3995,7 +3995,7 @@ msgstr "Pegar texto desde el portapapeles al pulsar el botón central del ratón
 
 #: ../src/dialog/wxm_options_dialog.cpp:442
 msgid "Behavior of copying in hex editing area:"
-msgstr ""
+msgstr "Comportamiento de copia en el área de edición hexadecimal:"
 
 #: ../src/dialog/wxm_options_dialog.cpp:455
 msgid "Print Syntax Highlighter"
@@ -4139,7 +4139,7 @@ msgstr "Claves"
 
 #: ../src/dialog/wxm_options_dialog.cpp:626
 msgid "Misc"
-msgstr ""
+msgstr "Diverso"
 
 #: ../src/dialog/wxm_options_dialog.cpp:661
 #, c-format
@@ -4339,47 +4339,47 @@ msgstr "Esta clave se asigna a [%s]"
 
 #: ../src/dialog/wxm_purge_histories_dialog.cpp:35
 msgid "Purge Histories"
-msgstr ""
+msgstr "Purgar historial"
 
 #: ../src/dialog/wxm_purge_histories_dialog.cpp:37
 msgid "Select histories to purge"
-msgstr ""
+msgstr "Seleccionar historial a purgar"
 
 #: ../src/dialog/wxm_purge_histories_dialog.cpp:38
 msgid "Recent &Files"
-msgstr ""
+msgstr "&Archivos recientes"
 
 #: ../src/dialog/wxm_purge_histories_dialog.cpp:41
 msgid "Recent Fon&ts"
-msgstr ""
+msgstr "&Fuentes recientes"
 
 #: ../src/dialog/wxm_purge_histories_dialog.cpp:44
 msgid "Recent &Encodings"
-msgstr ""
+msgstr "&Codificaciones recientes"
 
 #: ../src/dialog/wxm_purge_histories_dialog.cpp:47
 msgid "Recent &Searched Texts"
-msgstr ""
+msgstr "&Busqueda de textos recientes"
 
 #: ../src/dialog/wxm_purge_histories_dialog.cpp:50
 msgid "Recent &Replaced Texts"
-msgstr ""
+msgstr "&Reemplazo de textos recientes"
 
 #: ../src/dialog/wxm_purge_histories_dialog.cpp:53
 msgid "Recent Searched &Directories"
-msgstr ""
+msgstr "Busqueda de &directorios recientes"
 
 #: ../src/dialog/wxm_purge_histories_dialog.cpp:56
 msgid "Recent Searched File Fi&lters"
-msgstr ""
+msgstr "F&iltros de busqueda de archivos recientes"
 
 #: ../src/dialog/wxm_purge_histories_dialog.cpp:59
 msgid "Recent Searched E&xclude Filters"
-msgstr ""
+msgstr "Filtros de busqueda de archivos a &excluir recientes"
 
 #: ../src/dialog/wxm_purge_histories_dialog.cpp:64
 msgid "&Purge"
-msgstr ""
+msgstr "&Purgar"
 
 #: ../src/dialog/wxm_conv_enc_dialog.cpp:38
 msgid "Convert Encoding"
@@ -4472,23 +4472,23 @@ msgstr "Licencia"
 
 #: ../src/dialog/wxmedit_about_dialog.cpp:83
 msgid "Credits"
-msgstr ""
+msgstr "Créditos"
 
 #: ../src/wxm_utils.cpp:391
 msgid "Copy as Raw Bytes"
-msgstr ""
+msgstr "Copiar como bytes puros"
 
 #: ../src/wxm_utils.cpp:392
 msgid "Copy as Regular Text"
-msgstr ""
+msgstr "Copiar como texto normal"
 
 #: ../src/wxm_utils.cpp:393
 msgid "Copy as Hex String"
-msgstr ""
+msgstr "Copiar como cadena hexadecimal"
 
 #: ../src/wxm_utils.cpp:394
 msgid "Copy as Hex String with Spaces"
-msgstr ""
+msgstr "Copiar como cadena hexadecimal con espacios"
 
 #: ../src/wxm_printout.h:19
 msgid "wxMEdit Printout"
@@ -4496,7 +4496,7 @@ msgstr "wxMEdit Printout"
 
 #: ../src/xm/wxm_update.cpp:82
 msgid "wxMEdit - New version available"
-msgstr ""
+msgstr "wxMEdit - Nueva versión disponible"
 
 #: ../src/xm/wxm_update.cpp:83
 #, c-format
@@ -4504,26 +4504,28 @@ msgid ""
 "wxMEdit %s is available. \n"
 "Click OK to open the download page."
 msgstr ""
+"wxMEdit %s está disponible. \n"
+"Haga clic en Aceptar para abrir la página de descarga."
 
 #: ../src/xm/wxm_update.cpp:93
 msgid "wxMEdit is already the newest version."
-msgstr ""
+msgstr "Es la versión más reciente de wxMEdit ."
 
 #: ../src/xm/wxm_update.cpp:152
 msgid "every day"
-msgstr ""
+msgstr "cada día"
 
 #: ../src/xm/wxm_update.cpp:153
 msgid "every week"
-msgstr ""
+msgstr "cada semana"
 
 #: ../src/xm/wxm_update.cpp:154
 msgid "every month"
-msgstr ""
+msgstr "cada mes"
 
 #: ../src/xm/wxm_update.cpp:155
 msgid "never"
-msgstr ""
+msgstr "nunca"
 
 #: ../src/xm/wx_recent_list.cpp:70
 msgid "[EMPTY]"
