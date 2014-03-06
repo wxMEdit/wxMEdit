@@ -12,6 +12,8 @@
 #include "doublebyte.h"
 #include "cp20932.h"
 #include "gb18030.h"
+#include "../../wxm_utils.h"
+
 #include <wx/config.h>
 #include <wx/log.h>
 #include <wx/intl.h>
@@ -31,7 +33,7 @@
 // get fontname from registry mime database
 static void MSW_GetFontName(const wxString codepage, wxString &fontname)
 {
-	const wxString MIMEDB(wxT("HKEY_CLASSES_ROOT\\MIME\\Database\\Codepage\\"));
+	const wxString MIMEDB(g_wxsRegkeyClasses + wxT("MIME\\Database\\Codepage\\"));
 	wxRegKey *pRegKey = new wxRegKey(MIMEDB + codepage);
 
 	if(!pRegKey->Exists())

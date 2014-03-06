@@ -36,6 +36,8 @@
 #include <Processes.h>
 #endif
 
+wxString g_wxsRegkeyClasses = wxT("HKEY_CURRENT_USER\\Software\\Classes\\");
+
 HtmlColor HtmlColorTable[]=
 {
     { wxT("AliceBlue"),            240,248,255 },

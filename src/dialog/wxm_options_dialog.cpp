@@ -913,7 +913,7 @@ void WXMOptionsDialog::LoadOptions(void)
 	WxCheckBoxRestoreCaretPos->SetValue(bb);
 
 #ifdef __WXMSW__
-	wxRegKey *pRegKey = new wxRegKey(wxT("HKEY_CLASSES_ROOT\\*\\shell\\wxMEdit\\command"));
+	wxRegKey *pRegKey = new wxRegKey(g_wxsRegkeyClasses + wxT("*\\shell\\wxMEdit\\command"));
 	if(pRegKey->Exists())
 	{
 		wxString str;
