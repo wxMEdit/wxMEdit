@@ -137,6 +137,9 @@ bool IsFirstNewer(const std::vector<unsigned int>& v1, const std::vector<unsigne
 	{
 		if (v1[i] > v2[i])
 			return true;
+
+		if (v1[i] < v2[i])
+			return false;
 	}
 
 	if (check_prerelease && (v1[3] > v2[3]))
