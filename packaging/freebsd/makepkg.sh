@@ -1,7 +1,7 @@
 #!/bin/sh
 
 PREFIX=/usr/local
-[ $# -ge 1 -a -d "$1"] && PREFIX="$1"
+[ $# -ge 1 -a -d "$1" ] && PREFIX="$1"
 
 export TOPDIR=../..
 
