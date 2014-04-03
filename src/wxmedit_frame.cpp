@@ -1722,7 +1722,7 @@ MadEditFrame::~MadEditFrame()
 
 void MadEditFrame::EncodingGroupMenuAppend(int itemid, const wxString& text, ssize_t idx)
 {
-    static int i = 1;
+    static int i = 0;
 
     wxm::WXMEncodingManager& encmgr = wxm::WXMEncodingManager::Instance();
     std::vector<wxm::WXMEncodingGroupID> vec = encmgr.GetEncodingGroups(idx);
@@ -1734,7 +1734,7 @@ void MadEditFrame::EncodingGroupMenuAppend(int itemid, const wxString& text, ssi
             wxMenu* menu = new wxMenu();
             it = m_encgrps.insert(std::make_pair(gid, menu)).first;
             size_t pos = g_Menu_View_Encoding->GetMenuItemCount() - 1;
-            g_Menu_View_Encoding->Insert(pos, menuEncodingGroup1 + i, encmgr.EncodingGroupToName(gid), menu);
+            g_Menu_View_Encoding->Insert(pos, menuEncodingGroup1 + i + 1, encmgr.EncodingGroupToName(gid), menu);
         }
 
         ++i;
@@ -1955,7 +1955,7 @@ void MadEditFrame::CreateGUIControls(void)
         m_encgrps[wxm::ENCG_DEFAULT] = menu;
 
         size_t cnt=wxm::WXMEncodingManager::Instance().GetEncodingsCount();
-        for(size_t i=1; i<cnt; ++i)
+        for(size_t i=0; i<cnt; ++i)
         {
             wxString enc=wxString(wxT('['))+ encmgr.GetEncodingName(i) + wxT("] ");
             wxString des=wxGetTranslation(encmgr.GetEncodingDescription(i).c_str());
