@@ -17,6 +17,7 @@ syntax_DATA =	extension.list \
 	syntax_diff.syn \
 	syntax_d.syn \
 	syntax_fortran.syn \
+	syntax_freebasic.syn \
 	syntax_html.syn \
 	syntax_javascript.syn \
 	syntax_java.syn \
