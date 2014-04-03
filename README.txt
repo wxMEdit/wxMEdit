@@ -1,5 +1,5 @@
                       ==================================
-                                wxMEdit v2.9.6
+                                wxMEdit v2.9.7
                       ==================================
 About:
 -----
@@ -20,6 +20,7 @@ A. Linux, FreeBSD, Mac OS X, and other Unix-like OS (__WXGTK__):
       3. ICU4C 4.2 or higher
       4. autoconf 2.59 or higher
       5. automake 1.9 or higher
+      6. libcurl 7.15.5 or later
 
 B. MS Windows (__WXMSW__):
    a. MinGW32/GNU C++ 3.x/4.x:
@@ -29,6 +30,7 @@ B. MS Windows (__WXMSW__):
       3. libunicows: it's optional under WinNT/XP, but required under Win98
       4. ICU4C 4.2 or higher
       5. Bakefile 0.2.9
+      6. libcurl 7.15.5 or later
    b. Visual C++ 2005/2008/2010/2012(by upgrading from 2008 solution and project files):
       Required Libraries and Tools to compile:
       1. wxWidgets 2.6/2.8 with Unicode enabled
@@ -36,6 +38,7 @@ B. MS Windows (__WXMSW__):
       3. libunicows: it's optional under WinNT/XP, but required under Win98
       4. ICU4C 4.2 or higher
       5. Bakefile 0.2.9
+      6. libcurl 7.15.5 or later
 
 NOTE:
    You can download Bakefile at:
@@ -80,6 +83,34 @@ Syntax files, Locale files and Settings:
 
 ChangeLog:
 ----------
+wxMEdit v2.9.7:
+  1. added new encoding "CP437 for ASCII-Art" to support ASCII-Art better.
+  2. added automatically checking for updates.
+  3. added bookmark support [mainly by Gospodin Gyurov (aka Gogo) <ggurov@yahoo.com>].
+  4. added new commands: delete previous/next word (by Gogo).
+  5. added search option "Wrap around".
+  6. added Credits tab in About Dialog.
+  7. added Misc tab in Options Dialog.
+  8. added selecting a line by triple click (mainly by cfreeer <cfreeer@users.sf.net>).
+  9. added updating syntax highlighting on saving file (mainly by cfreeer).
+ 10. added FreeBASIC syntax file.
+ 11. added grouping of encodings.
+ 12. added purging histories support.
+ 13. added more choices for copying in hex-area in Options Dialog.
+ 14. added Russian translation (by Shamil Bikineyev).
+ 15. improved maximized behavior under Windows (by Gogo).
+ 16. improved system integration under Windows.
+ 17. improved display effect of the Word-Count information.
+ 18. changed behavior of selecting next word as other editors.
+ 19. changed notification messages of Search/Replace Dialog showing in the bottom bar of the dialog.
+ 20. fixed always not wrap around when replacing.
+ 21. fixed that the files "a b" and "aÀb" cannot be opened simultaneously under Windows Chinese Edition.
+ 22. fixed assertion failed with debug version of MadEdit/wxMEdit when mouse capture lost.
+ 23. fixed incorrect behavior when switch out from wxMEdit/MadEit on selecting text.
+ 24. fixed incorrect behavior when update an opened file and then click the editing area.
+ 25. updated Simplified Chinese, Japanese, Spanish translations.
+ 26. other minor changes and bug fixes.
+
 wxMEdit v2.9.6
   1. improved Mac OS X support.
   2. redesigned all dialogs with wxSmith and fixed dialog size problems.
@@ -101,18 +132,6 @@ wxMEdit v2.9.5-2:
   2.updated Spanish translation.
   3.added Spanish to language chooser of General Settings.
 
-wxMEdit v2.9.5:
-  1.fixed crash when delete a character in a line which contains two or more characters with MadEdit/wxMEdit built with vc2010.
-  2.fixed Fedora build and packing by Huaren Zhong <huaren.zhong@gmail.com>.
-  3.fixed recent lists case sensitive and truncated in menu bug.
-  4.fixed Double-byte conversion bug.
-  5.changed EUC-JP implementation to meet CP20932.
-  6.added CP850, CP852, CP855, KOI8-U, ISO-8859-16, Windows-1258 and GB18030 support.
-  7.made more system encodings(e.g. Windows-1258) detectable.
-  8.added Spanish translation by Carlos Sánchez <carlos1994sanchez@gmail.com>.
-  9.updated Japanese translation by Tilt <tiltstr@gmail.com>.
- 10.updated Chinese translations.
-
 See file ChangeLog for more changes.
 
 
@@ -122,10 +141,11 @@ wxMEdit is released under the GNU General Public License Version 3
 or (at your option) any later version.
 
 
-Author:
+Authors:
 ------
 JiaYanwei <wxmedit@gmail.com>        (current maintainer of wxMEdit)
 Alston Chen <madedit@gmail.com>      (creator of MadEdit)
+
 
 Links:
 -----
@@ -140,3 +160,4 @@ ICU: http://site.icu-project.org/
 Bakefile: http://www.bakefile.org/
 Code::Blocks: http://www.codeblocks.org/
 wxSmith: http://wiki.codeblocks.org/index.php?title=WxSmith_plugin
+cURL: http://curl.haxx.se/
