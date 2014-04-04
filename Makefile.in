@@ -106,7 +106,7 @@ am_wxmedit_OBJECTS = $(am__objects_1) $(am__objects_2) \
 	src/xm/wxmedit-xm_uutils.$(OBJEXT) \
 	src/wxmedit/wxmedit-trad_simp.$(OBJEXT)
 wxmedit_OBJECTS = $(am_wxmedit_OBJECTS)
-wxmedit_LDADD = $(LDADD)
+wxmedit_LDADD = ${curl_LIBS}
 am__objects_3 = src/xm/wxm_encoding/cp20932.$(OBJEXT) \
 	src/xm/wxm_encoding/doublebyte.$(OBJEXT) \
 	src/xm/wxm_encoding/encoding.$(OBJEXT) \
@@ -358,7 +358,6 @@ encdet_src = src/wxmedit/mad_encdet.cpp \
 	src/xm/wxm_encdet.h
 
 TESTS = wxmedit_test
-wxmedit_LDFLAGS = ${curl_LIBS}
 wxmedit_CXXFLAGS = -DDATA_DIR=\"${datadir}\" ${curl_CFLAGS}
 wxmedit_SOURCES = $(enc_src) \
 	$(encdet_src) \

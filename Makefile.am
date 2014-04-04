@@ -24,7 +24,7 @@ encdet_src =	src/wxmedit/mad_encdet.cpp \
 bin_PROGRAMS = wxmedit
 check_PROGRAMS = wxmedit_test
 TESTS = wxmedit_test
-wxmedit_LDFLAGS = ${curl_LIBS}
+wxmedit_LDADD = ${curl_LIBS}
 wxmedit_CXXFLAGS = -DDATA_DIR=\"${datadir}\" ${curl_CFLAGS}
 wxmedit_SOURCES =	$(enc_src) \
 	$(encdet_src) \
