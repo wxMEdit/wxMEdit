@@ -29,6 +29,16 @@ namespace wxm
 #ifdef __WXMSW__
 		wxT("Courier New")
 #elif defined(__APPLE__) && defined(__MACH__)
+		wxT("Monaco")
+#else
+		wxT("Monospace")
+#endif
+	;
+
+	static const wxString ASCIIArtFontName =
+#ifdef __WXMSW__
+		wxT("Courier New")
+#elif defined(__APPLE__) && defined(__MACH__)
 		wxT("Andale Mono")
 #else
 		wxT("Monospace")

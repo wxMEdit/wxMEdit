@@ -164,6 +164,7 @@ void WXMEncodingManager::DoInit()
 	// only for encoding detection not for editing
 	m_icunameenc_map[GetEncodingICUName("US-ASCII")] = ENC_ISO_646;
 
+	m_wxencfont_map[ENC_CP437_ART]   = ASCIIArtFontName;
 	m_wxencfont_map[ENC_Windows_874] = GetMSCPFontName(wxT("874"));
 	m_wxencfont_map[ENC_MS932]       = GetMSCPFontName(wxT("932"));
 	m_wxencfont_map[ENC_MS936]       = GetMSCPFontName(wxT("936"));
