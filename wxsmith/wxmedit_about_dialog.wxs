@@ -43,7 +43,7 @@
 									<object class="wxBoxSizer" variable="BoxSizer5" member="no">
 										<object class="sizeritem">
 											<object class="wxTextCtrl" name="ID_TEXTCTRL1" variable="TxtAbout" member="yes">
-												<size>450,180</size>
+												<size>472,240</size>
 												<style>wxTE_AUTO_SCROLL|wxTE_MULTILINE|wxTE_READONLY|wxTE_AUTO_URL|wxSTATIC_BORDER</style>
 											</object>
 											<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>

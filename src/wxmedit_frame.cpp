@@ -169,18 +169,20 @@ wxT("GNU General Public License for more details.\n")
 #define s_(s)   wxString(_T(s))
 typedef std::vector<std::pair<wxString, wxString> > CreditsList;
 const static CreditsList s_wxMEdit_Credits = boost::assign::pair_list_of
-        (s_("JiaYanwei"),           _("Current maintainer of wxMEdit"))
-        (s_("Alston Chen"),         _("Creator of MadEdit"))
-        (s_("Tilt"),                _("Translator for Japanese"))
-        (s_("Carlos S\u00E1nchez"), _("Translator for Spanish"))
-        (s_("Denir Li"),            _("Translator for Traditional Chinese"))
-        (s_("Shamil Bikineyev"),    _("Translator for Russian"))
-        (s_("hobbyscripter"),       _("Patch submitter for wxMEdit/MadEdit"))
-        (s_("Huaren Zhong"),        _("Patch submitter for wxMEdit/MadEdit"))
-        (s_("Gospodin Gyurov"),     _("Patch submitter for wxMEdit/MadEdit"))
-        (s_("cfreeer"),             _("Patch submitter for wxMEdit/MadEdit"))
-        (s_("Nagy Gabor"),          _("Patch submitter for wxMEdit/MadEdit"))
-        (s_("codestation"),         _("Creator of wxmedit package in AUR"))
+        (s_("JiaYanwei"),                   _("Current maintainer of wxMEdit"))
+        (s_("Alston Chen"),                 _("Creator of MadEdit"))
+        (s_("Tilt"),                        _("Translator for Japanese"))
+        (s_("Carlos S\u00E1nchez"),         _("Translator for Spanish"))
+        (s_("Denir Li"),                    _("Translator for Traditional Chinese"))
+        (s_("Vincent_TW"),                  _("Translator for Traditional Chinese"))
+        (s_("Shamil Bikineyev"),            _("Translator for Russian"))
+        (s_("hobbyscripter"),               _("Patch submitter for wxMEdit/MadEdit"))
+        (s_("Huaren Zhong"),                _("Patch submitter for wxMEdit/MadEdit"))
+        (s_("Gospodin Gyurov"),             _("Patch submitter for wxMEdit/MadEdit"))
+        (s_("cfreeer"),                     _("Patch submitter for wxMEdit/MadEdit"))
+        (s_("Nagy Gabor"),                  _("Patch submitter for wxMEdit/MadEdit"))
+        (s_("codestation"),                 _("Creator of wxmedit package in AUR"))
+        (s_("Micha\u0142 Zi\u0105bkowski"), _("Creator of Gentoo package wxmedit"))
     ;
 #undef s_
 #undef _
@@ -5025,7 +5027,7 @@ const wxString& GetCredits()
     if (credits.empty())
     {
         BOOST_FOREACH(const CreditsList::value_type& v, s_wxMEdit_Credits)
-			credits += wxString::Format(wxT("  %-16s %s\n"), v.first.c_str(), wxGetTranslation(v.second.c_str()));
+			credits += wxString::Format(wxT("  %-18s %s\n"), v.first.c_str(), wxGetTranslation(v.second.c_str()));
     }
 
     return credits;
