@@ -5,39 +5,40 @@ About:
 -----
 wxMEdit is a cross-platform Text/Hex Editor written in C++ & wxWidgets.
 wxMEdit a fork of MadEdit which has been discontinued.
-wxMEdit supports many useful functions, e.g. SyntaxHighlightings, WordWraps, 
-Encodings, Column/Hex Modes, and a Plugin system(not work yet).
+wxMEdit supports many useful functions, e.g. Bookmark, Syntax Highlightings, 
+Word Wraps, Encodings, Column/Hex Modes, Updates checking, and a 
+Plugin system(not work yet).
 In HexMode, wxMEdit can open large files which size is up to 32GB (INT_MAX*16).
 
 
 Supported Platforms:
 -------------------
 A. Linux, FreeBSD, Mac OS X, and other Unix-like OS (__WXGTK__):
-   a. GNU C++ 3.x/4.x:
-      Required Libraries and Tools to compile:
-      1. wxWidgets 2.6/2.8 with Unicode enabled
-      2. Boost 1.33.0 or higher
-      3. ICU4C 4.2 or higher
-      4. autoconf 2.59 or higher
-      5. automake 1.9 or higher
+   a. GNU C++ 3.x/4.x OR clang++ 2.7 or later:
+      Required Tools and Libraries to compile:
+      1. autoconf 2.59 or higher
+      2. automake 1.9 or higher
+      3. wxWidgets 2.6/2.8 with Unicode enabled
+      4. Boost 1.33.0 or higher
+      5. ICU4C 4.2 or higher
       6. libcurl 7.15.5 or later
 
 B. MS Windows (__WXMSW__):
    a. MinGW32/GNU C++ 3.x/4.x:
-      Required Libraries and Tools to compile:
-      1. wxWidgets 2.6/2.8 with Unicode enabled
-      2. Boost 1.33.0 or higher
-      3. libunicows: it's optional under WinNT/XP, but required under Win98
-      4. ICU4C 4.2 or higher
-      5. Bakefile 0.2.9
+      Required Tools and Libraries to compile:
+      1. Bakefile 0.2.9
+      2. wxWidgets 2.6/2.8 with Unicode enabled
+      3. Boost 1.33.0 or higher
+      4. libunicows: it's optional but required under Win98
+      5. ICU4C 4.2 or higher
       6. libcurl 7.15.5 or later
    b. Visual C++ 2005/2008/2010/2012(by upgrading from 2008 solution and project files):
-      Required Libraries and Tools to compile:
-      1. wxWidgets 2.6/2.8 with Unicode enabled
-      2. Boost 1.33.0 or higher
-      3. libunicows: it's optional under WinNT/XP, but required under Win98
-      4. ICU4C 4.2 or higher
-      5. Bakefile 0.2.9
+      Required Tools and Libraries to compile:
+      1. Bakefile 0.2.9
+      2. wxWidgets 2.6/2.8 with Unicode enabled
+      3. Boost 1.33.0 or higher
+      4. libunicows: it's optional but required under Win98
+      5. ICU4C 4.2 or higher
       6. libcurl 7.15.5 or later
 
 NOTE:
