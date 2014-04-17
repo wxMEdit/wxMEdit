@@ -27,6 +27,7 @@ public:
     typedef const T& const_reference;
     typedef T* pointer;
     typedef size_t size_type;
+    typedef ssize_t difference_type;
 
 private:
     struct buffer
@@ -59,7 +60,7 @@ public:
         typedef typename MadDeque::const_reference const_reference;
         typedef typename MadDeque::pointer pointer;
         typedef typename MadDeque::size_type size_type;
-        typedef size_type difference_type;
+        typedef typename MadDeque::difference_type difference_type;
         typedef std::random_access_iterator_tag iterator_category;
 
         buffer *buf;

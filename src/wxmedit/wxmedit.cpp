@@ -1983,15 +1983,16 @@ void MadEdit::PaintTextLines(wxDC *dc, const wxRect &rect, int toprow, int rowco
                                             const int y = text_top + 1 + m_TextFontHeight - t1;
                                             const int t2 = t1 > (m_WidthBuffer[idx] >> 1) ? (m_WidthBuffer[idx] >> 1) : t1 + 1;
                                             int x = x0 + 2 + t2;
+                                            int dx = m_WidthBuffer[idx] - 3;
 
                                             wxPoint pts[6]=
                                             {
                                                 wxPoint(x, y),
                                                 wxPoint(x, y - t1),
-                                                wxPoint(x -= t2, y),
-                                                wxPoint(x += (m_WidthBuffer[idx] - 3), y),
-                                                wxPoint(x -= t2, y - t1),
-                                                wxPoint(x,y)
+                                                wxPoint(x - t2, y),
+                                                wxPoint(x + dx, y),
+                                                wxPoint(x + dx - t2, y - t1),
+                                                wxPoint(x + dx - t2, y)
                                             };
 
                                             dc->DrawLines(6, pts);
