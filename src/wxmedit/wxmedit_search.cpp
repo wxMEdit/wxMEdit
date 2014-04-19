@@ -125,7 +125,7 @@ bool Search(CharIter &begin, CharIter &end,
 
     register size_t idx=0;
     register const char_type *p = pattern;
-    CharIter beginpos;
+    CharIter beginpos = begin;
     register char_type c1;
 
     for(;;)

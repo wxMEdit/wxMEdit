@@ -22,7 +22,7 @@ size_t CP20932Converter::MB2WC(UChar32& ch, const char* src, size_t src_len)
 {
 	if (src_len == 2 && (src[1] & 0x80) == 0)
 	{
-		char mbs[3] = { (char)0x8F, src[0], src[1] | 0x80};
+		char mbs[3] = { (char)0x8F, src[0], (char)(src[1] | 0x80)};
 		return ICUConverter::MB2WC(ch, mbs, 3);
 	}
 
