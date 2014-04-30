@@ -39,7 +39,7 @@ msgstr ""
 "Project-Id-Version: wxMEdit 2.9.7\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-02-20 23:41+0800\n"
-"PO-Revision-Date: 2014-02-20 21:58+0800\n"
+"PO-Revision-Date: 2014-04-30 10:36+0800\n"
 "Last-Translator: JiaYanwei <wxmedit@gmail.com>\n"
 "Language-Team: wxMEdit <wxmedit@gmail.com>\n"
 "Language: zh_CN\n"
@@ -47,7 +47,7 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-SourceCharset: utf-8\n"
-"X-Generator: Poedit 1.6.3\n"
+"X-Generator: Poedit 1.6.4\n"
 
 #: wxstd.po.cpp:3
 msgid "OK"
@@ -2266,7 +2266,7 @@ msgstr "保存全部文件"
 
 #: ../src/wxmedit_frame.cpp:1239
 msgid "&Reload File"
-msgstr "重新加载载文件(&R)"
+msgstr "重新加载文件(&R)"
 
 #: ../src/wxmedit_frame.cpp:1239
 msgid "Reload the file"
