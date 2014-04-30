@@ -39,7 +39,7 @@ msgstr ""
 "Project-Id-Version: wxMEdit 2.9.7\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-02-20 23:41+0800\n"
-"PO-Revision-Date: 2014-04-30 10:36+0800\n"
+"PO-Revision-Date: 2014-04-30 13:37+0800\n"
 "Last-Translator: JiaYanwei <wxmedit@gmail.com>\n"
 "Language-Team: wxMEdit <wxmedit@gmail.com>\n"
 "Language: zh_CN\n"
@@ -1952,23 +1952,23 @@ msgstr "北欧语系 (ISO-8859-4)"
 
 #: ../src/xm/wxm_encoding/encoding.cpp:118
 msgid "Cyrillic (ISO-8859-5)"
-msgstr "斯拉夫语 (ISO-8859-5)"
+msgstr "斯拉夫文 (ISO-8859-5)"
 
 #: ../src/xm/wxm_encoding/encoding.cpp:119
 msgid "Arabic (ISO-8859-6)"
-msgstr "阿拉伯语 (ISO-8859-6)"
+msgstr "阿拉伯文 (ISO-8859-6)"
 
 #: ../src/xm/wxm_encoding/encoding.cpp:120
 msgid "Greek (ISO-8859-7)"
-msgstr "希腊语 (ISO-8859-7)"
+msgstr "希腊文 (ISO-8859-7)"
 
 #: ../src/xm/wxm_encoding/encoding.cpp:121
 msgid "Hebrew (ISO-8859-8)"
-msgstr "希伯来语 (ISO-8859-8)"
+msgstr "希伯来文 (ISO-8859-8)"
 
 #: ../src/xm/wxm_encoding/encoding.cpp:122
 msgid "Turkish (ISO-8859-9)"
-msgstr "土耳其语 (ISO-8859-9)"
+msgstr "土耳其文 (ISO-8859-9)"
 
 #: ../src/xm/wxm_encoding/encoding.cpp:123
 msgid "Nordic (ISO-8859-10)"
@@ -1976,15 +1976,15 @@ msgstr "北欧语系 (ISO-8859-10)"
 
 #: ../src/xm/wxm_encoding/encoding.cpp:124
 msgid "Thai (ISO-8859-11)"
-msgstr "泰语 (ISO-8859-11)"
+msgstr "泰文 (ISO-8859-11)"
 
 #: ../src/xm/wxm_encoding/encoding.cpp:125
 msgid "Baltic (ISO-8859-13)"
-msgstr "波罗的海语 (ISO-8859-13)"
+msgstr "波罗的海文 (ISO-8859-13)"
 
 #: ../src/xm/wxm_encoding/encoding.cpp:126
 msgid "Celtic (ISO-8859-14)"
-msgstr "凯尔特语 (ISO-8859-14)"
+msgstr "凯尔特文 (ISO-8859-14)"
 
 #: ../src/xm/wxm_encoding/encoding.cpp:127
 msgid "Western European with Euro (ISO-8859-15)"
@@ -2004,7 +2004,7 @@ msgstr "Windows 中欧语系 (CP 1250)"
 
 #: ../src/xm/wxm_encoding/encoding.cpp:131
 msgid "Windows Cyrillic (CP 1251)"
-msgstr "Windows 斯拉夫语 (CP 1251)"
+msgstr "Windows 斯拉夫文 (CP 1251)"
 
 #: ../src/xm/wxm_encoding/encoding.cpp:132
 msgid "Windows Western European (CP 1252)"
@@ -2052,19 +2052,19 @@ msgstr "Windows/DOS OEM - 拉丁2 (CP 852)"
 
 #: ../src/xm/wxm_encoding/encoding.cpp:143
 msgid "Windows/DOS OEM - Cyrillic (CP 855)"
-msgstr "Windows/DOS OEM - 斯拉夫语 (CP 855)"
+msgstr "Windows/DOS OEM - 斯拉夫文 (CP 855)"
 
 #: ../src/xm/wxm_encoding/encoding.cpp:144
 msgid "Windows/DOS OEM - Cyrillic (CP 866)"
-msgstr "Windows/DOS OEM - 斯拉夫语 (CP 866)"
+msgstr "Windows/DOS OEM - 斯拉夫文 (CP 866)"
 
 #: ../src/xm/wxm_encoding/encoding.cpp:145
 msgid "Cyrillic (KOI8-R)"
-msgstr "斯拉夫语 (KOI8-R)"
+msgstr "斯拉夫文 (KOI8-R)"
 
 #: ../src/xm/wxm_encoding/encoding.cpp:146
 msgid "Cyrillic (KOI8-U)"
-msgstr "斯拉夫语 (KOI8-U)"
+msgstr "斯拉夫文 (KOI8-U)"
 
 #: ../src/xm/wxm_encoding/encoding.cpp:148
 msgid "Windows Japanese (CP 932)"
