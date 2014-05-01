@@ -13099,7 +13099,7 @@ fi
   if test "$WX_CONFIG_PATH" != "no" ; then
     WX_VERSION=""
 
-    min_wx_version=2.6.0
+    min_wx_version=2.8.0
     if test -z "aui" ; then
       { echo "$as_me:$LINENO: checking for wxWidgets version >= $min_wx_version" >&5
 echo $ECHO_N "checking for wxWidgets version >= $min_wx_version... $ECHO_C" >&6; }
@@ -13264,7 +13264,7 @@ if test "$wxWin" != 1; then
            Please check that wx-config is in path, the directory
            where wxWidgets libraries are installed (returned by
            'wx-config --libs' command) is in LD_LIBRARY_PATH or
-           equivalent variable and wxWidgets version is 2.6.0 or above.
+           equivalent variable and wxWidgets version is 2.8.0.
    " >&5
 echo "$as_me: error:
            wxWidgets must be installed on your system
@@ -13273,7 +13273,7 @@ echo "$as_me: error:
            Please check that wx-config is in path, the directory
            where wxWidgets libraries are installed (returned by
            'wx-config --libs' command) is in LD_LIBRARY_PATH or
-           equivalent variable and wxWidgets version is 2.6.0 or above.
+           equivalent variable and wxWidgets version is 2.8.0.
    " >&2;}
    { (exit 1); exit 1; }; }
 fi

@@ -18,7 +18,7 @@ A. Linux, FreeBSD, Mac OS X, and other Unix-like OS (__WXGTK__):
       Required Tools and Libraries to compile:
       1. autoconf 2.59 or higher
       2. automake 1.9 or higher
-      3. wxWidgets 2.6/2.8 with Unicode enabled
+      3. wxWidgets 2.8 with Unicode enabled
       4. Boost 1.33.0 or higher
       5. ICU4C 4.2 or higher
       6. libcurl 7.15.5 or later
