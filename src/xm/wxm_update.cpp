@@ -34,6 +34,7 @@ namespace wxm
 
 std::string g_result_autocheckupdates;
 bool g_check_prerelease = false;
+const std::string NO_NEW_VERSION("no-new-ver");
 
 static std::string GetVersionFromRemoteChangeLog();
 static std::vector<unsigned int> ParseVersion(const std::string& ver);
@@ -62,35 +63,43 @@ std::string AdjustVersion(const std::string& ver, bool with_prerelease)
 std::string CheckUpdates(bool check_prerelease)
 {
 	std::string remote_ver = GetVersionFromRemoteChangeLog();
+	if (remote_ver.empty())
+		return std::string();
 
 	if (IsFirstNewer(remote_ver, WXMEDIT_VERSION, check_prerelease))
 	{
 		return AdjustVersion(remote_ver, check_prerelease);
 	}
 
-	return std::string();
+	return NO_NEW_VERSION;
 }
 
-void ConfirmUpdate(const std::string& newver, bool notify_newest, wxWindow* parentwin)
+void ConfirmUpdate(const std::string& newver, bool notify_all, wxWindow* parentwin)
 {
-	if (!newver.empty())
+	if (newver.empty())
 	{
-		wxString download_page = wxT("http://code.google.com/p/wxmedit/wiki/download?tm=2");
-		if (IsPrerelease(newver))
-			download_page = wxT("http://code.google.com/p/wxmedit/wiki/prerelease?tm=2");
-
-		wxString title(_("wxMEdit - New version available"));
-		wxString msg( wxString::Format( _("wxMEdit %s is available. \nClick OK to open the download page."), 
-		                                wxString(newver.c_str(), wxConvUTF8).c_str() ) );
-
-		if (wxOK == wxMessageBox(msg, title, wxICON_INFORMATION|wxOK|wxCANCEL, parentwin))
-			OpenURL(download_page);
-
+		if (notify_all)
+			wxMessageBox(_("Cannot check for new version!"), wxT("wxMEdit"), wxICON_ERROR|wxOK, parentwin);
 		return;
 	}
 
-	if (notify_newest)
-		wxMessageBox(_("wxMEdit is already the newest version."), wxT("wxMEdit"), wxICON_INFORMATION|wxOK, parentwin);
+	if (newver == NO_NEW_VERSION)
+	{
+		if (notify_all)
+			wxMessageBox(_("wxMEdit is already the newest version."), wxT("wxMEdit"), wxICON_INFORMATION|wxOK, parentwin);
+		return;
+	}
+
+	wxString download_page = wxT("http://code.google.com/p/wxmedit/wiki/download?tm=2");
+	if (IsPrerelease(newver))
+		download_page = wxT("http://code.google.com/p/wxmedit/wiki/prerelease?tm=2");
+
+	wxString title(_("wxMEdit - New version available"));
+	wxString msg( wxString::Format( _("wxMEdit %s is available. \nClick OK to open the download page."), 
+	                                wxString(newver.c_str(), wxConvUTF8).c_str() ) );
+
+	if (wxOK == wxMessageBox(msg, title, wxICON_INFORMATION|wxOK|wxCANCEL, parentwin))
+		OpenURL(download_page);
 }
 
 std::string GetVersionFromRemoteChangeLog()

@@ -30,7 +30,7 @@ extern bool g_check_prerelease;
 
 std::string CheckUpdates(bool check_prerelease=g_check_prerelease);
 
-void ConfirmUpdate(const std::string& newver, bool notify_newest=true, 
+void ConfirmUpdate(const std::string& newver, bool notify_all=true, 
                    wxWindow* parentwin=reinterpret_cast<wxWindow*>(g_MainFrame));
 
 void AutoCheckUpdates(wxFileConfig* cfg);

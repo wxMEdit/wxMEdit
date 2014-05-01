@@ -2496,13 +2496,13 @@ void MadEditFrame::OnActivate(wxActivateEvent &evt)
 
 void MadEditFrame::OnResultAutoCheckUpdates(wxEvent &evt)
 {
-    bool notify_newest = false;
+    bool notify_all = false;
 
 #ifdef _DEBUG
-    notify_newest = true;
+    notify_all = true;
 #endif
 
-    wxm::ConfirmUpdate(wxm::g_result_autocheckupdates, notify_newest);
+    wxm::ConfirmUpdate(wxm::g_result_autocheckupdates, notify_all);
     evt.Skip();
 }
 
