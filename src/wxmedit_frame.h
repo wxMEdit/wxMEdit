@@ -46,7 +46,7 @@ class wxMadAuiNotebook;
 class wxAuiNotebookEvent;
 class MadEdit;
 
-BEGIN_DECLARE_EVENT_TYPES()    DECLARE_LOCAL_EVENT_TYPE( wxmEVT_RESULT_AUTOCHECKUPDATES, wxNewEventType() )END_DECLARE_EVENT_TYPES()
+BEGIN_DECLARE_EVENT_TYPES()    DECLARE_LOCAL_EVENT_TYPE( wxmEVT_RESULT_AUTOCHECKUPDATES, wxNewEventType() )    DECLARE_LOCAL_EVENT_TYPE( wxmEVT_RESULT_MANUALCHECKUPDATES, wxNewEventType() )END_DECLARE_EVENT_TYPES()
 
 class MadEditFrame : public wxFrame
 {
@@ -144,6 +144,8 @@ public:
     void OnUpdateUI_MenuToolsConvertEncoding(wxUpdateUIEvent& event);
 
     void OnUpdateUI_MenuWindow_CheckCount(wxUpdateUIEvent& event);
+
+    void OnUpdateUI_MenuHelp_CheckUpdates(wxUpdateUIEvent& event);
 
     void OnFileNew(wxCommandEvent& event);
     void OnFileOpen(wxCommandEvent& event);
@@ -300,6 +302,7 @@ protected:
     void OnActivate(wxActivateEvent &evt);
 
     void OnResultAutoCheckUpdates(wxEvent &evt);
+    void OnResultManualCheckUpdates(wxEvent &evt);
 
     bool QueryCloseFile(int idx);
     bool QueryCloseAllFiles();

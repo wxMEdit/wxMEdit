@@ -12,6 +12,7 @@
 #include "wxm_utils.h"
 #include "dialog/wxm_options_dialog.h"
 #include "xm/wxm_update.h"
+#include "xm/xm_remote.h"
 
 #include "wxmedit/wxmedit.h"
 
@@ -249,6 +250,8 @@ bool OpenFilesInPrevInst(const wxString& flist)
 
 bool MadEditApp::OnInit()
 {
+    xm::RemoteAccessInit();
+
     wxFileName filename(GetExecutablePath());
     filename.MakeAbsolute();
     g_MadEditAppDir=filename.GetPath(wxPATH_GET_VOLUME|wxPATH_GET_SEPARATOR);
@@ -401,6 +404,8 @@ bool MadEditApp::OnInit()
     }
 #endif
 
+    wxm::AutoCheckUpdates(cfg);
+
     // reload files previously opened
     wxString files;
     cfg->Read(wxT("/wxMEdit/ReloadFilesList"), &files);
@@ -417,13 +422,13 @@ bool MadEditApp::OnInit()
         myFrame->OpenFile(wxEmptyString, false);
     }
 
-    wxm::AutoCheckUpdates(cfg);
-
     return true;
 }
 
 int MadEditApp::OnExit()
 {
+    xm::RemoteAccessCleanup();
+
     // save settings in FrameClose();
     return 0;
 }

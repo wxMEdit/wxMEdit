@@ -20,20 +20,19 @@
 
 class wxFileConfig;
 class wxWindow;
-class MadEditFrame;
-extern MadEditFrame *g_MainFrame;
 namespace wxm
 {
 
-extern std::string g_result_autocheckupdates;
+extern std::string g_result_checkupdates;
 extern bool g_check_prerelease;
+extern bool g_update_checking;
 
 std::string CheckUpdates(bool check_prerelease=g_check_prerelease);
 
-void ConfirmUpdate(const std::string& newver, bool notify_all=true, 
-                   wxWindow* parentwin=reinterpret_cast<wxWindow*>(g_MainFrame));
+void ConfirmUpdate(bool notify_all=true);
 
 void AutoCheckUpdates(wxFileConfig* cfg);
+void ManualCheckUpdates();
 
 struct UpdatePeriods: public ChoiceMap<UpdatePeriods, time_t>
 {

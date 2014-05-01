@@ -30,7 +30,6 @@
 #include "xm/wxm_update.h"
 #include "xm/wx_recent_list.h"
 #include "xm/wxm_def.h"
-#include "xm/xm_remote.h"
 #include "plugin.h"
 #include "wx/aui/auibook.h"
 
@@ -988,6 +987,7 @@ public:
 // MadEditFrame
 //----------------------------------------------------------------------------
 DEFINE_LOCAL_EVENT_TYPE( wxmEVT_RESULT_AUTOCHECKUPDATES )
+DEFINE_LOCAL_EVENT_TYPE( wxmEVT_RESULT_MANUALCHECKUPDATES )
 
    //Add Custom Events only in the appropriate Block.
 BEGIN_EVENT_TABLE(MadEditFrame,wxFrame)
@@ -1000,6 +1000,7 @@ BEGIN_EVENT_TABLE(MadEditFrame,wxFrame)
 	// file
 	EVT_ACTIVATE(MadEditFrame::OnActivate)
 	EVT_CUSTOM( wxmEVT_RESULT_AUTOCHECKUPDATES, wxID_ANY, MadEditFrame::OnResultAutoCheckUpdates)
+	EVT_CUSTOM( wxmEVT_RESULT_MANUALCHECKUPDATES, wxID_ANY, MadEditFrame::OnResultManualCheckUpdates)
 	EVT_UPDATE_UI(menuSave, MadEditFrame::OnUpdateUI_MenuFile_CheckCount)
 	EVT_UPDATE_UI(menuSaveAs, MadEditFrame::OnUpdateUI_MenuFile_CheckCount)
 	EVT_UPDATE_UI(menuSaveAll, MadEditFrame::OnUpdateUI_MenuFile_CheckCount)
@@ -1095,6 +1096,8 @@ BEGIN_EVENT_TABLE(MadEditFrame,wxFrame)
 	EVT_UPDATE_UI(menuToggleWindow, MadEditFrame::OnUpdateUI_MenuWindow_CheckCount)
 	EVT_UPDATE_UI(menuNextWindow, MadEditFrame::OnUpdateUI_MenuWindow_CheckCount)
 	EVT_UPDATE_UI(menuPreviousWindow, MadEditFrame::OnUpdateUI_MenuWindow_CheckCount)
+	// help
+	EVT_UPDATE_UI(menuCheckUpdates, MadEditFrame::OnUpdateUI_MenuHelp_CheckUpdates)
 	// file
 	EVT_MENU(menuNew, MadEditFrame::OnFileNew)
 	EVT_MENU(menuOpen, MadEditFrame::OnFileOpen)
@@ -1686,8 +1689,6 @@ MadEditFrame::MadEditFrame( wxWindow *parent, wxWindowID id, const wxString &tit
     m_NewFileCount=0;
     m_Config=wxConfigBase::Get(false);
 
-    xm::RemoteAccessInit();
-
     wxm::WXMEncodingManager::Instance().InitEncodings();
 
     MadSyntax::SetAttributeFilePath(g_MadEditHomeDir + wxT("syntax/"));
@@ -2243,8 +2244,6 @@ void MadEditFrame::MadEditFrameClose(wxCloseEvent& event)
 
     FreeConvertChineseTable();
 
-    xm::RemoteAccessCleanup();
-
     //delete g_PrintData;
     delete g_PageSetupData;
 
@@ -2502,7 +2501,13 @@ void MadEditFrame::OnResultAutoCheckUpdates(wxEvent &evt)
     notify_all = true;
 #endif
 
-    wxm::ConfirmUpdate(wxm::g_result_autocheckupdates, notify_all);
+    wxm::ConfirmUpdate(notify_all);
+    evt.Skip();
+}
+
+void MadEditFrame::OnResultManualCheckUpdates(wxEvent &evt)
+{
+    wxm::ConfirmUpdate();
     evt.Skip();
 }
 
@@ -3314,6 +3319,11 @@ void MadEditFrame::OnUpdateUI_MenuToolsConvertEncoding(wxUpdateUIEvent& event)
 void MadEditFrame::OnUpdateUI_MenuWindow_CheckCount(wxUpdateUIEvent& event)
 {
     event.Enable(m_Notebook->GetPageCount()>=2);
+}
+
+void MadEditFrame::OnUpdateUI_MenuHelp_CheckUpdates(wxUpdateUIEvent& event)
+{
+    event.Enable(!wxm::g_update_checking);
 }
 
 //---------------------------------------------------------------------------
@@ -5018,7 +5028,7 @@ void MadEditFrame::OnWindowNextWindow(wxCommandEvent& event)
 
 void MadEditFrame::OnHelpCheckUpdates(wxCommandEvent& event)
 {
-    wxm::ConfirmUpdate(wxm::CheckUpdates());
+    wxm::ManualCheckUpdates();
 }
 
 const wxString& GetCredits()

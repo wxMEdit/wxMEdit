@@ -32,8 +32,9 @@ namespace algo = boost::algorithm;
 namespace wxm
 {
 
-std::string g_result_autocheckupdates;
+std::string g_result_checkupdates;
 bool g_check_prerelease = false;
+bool g_update_checking = false;
 const std::string NO_NEW_VERSION("no-new-ver");
 
 static std::string GetVersionFromRemoteChangeLog();
@@ -74,31 +75,33 @@ std::string CheckUpdates(bool check_prerelease)
 	return NO_NEW_VERSION;
 }
 
-void ConfirmUpdate(const std::string& newver, bool notify_all, wxWindow* parentwin)
+void ConfirmUpdate(bool notify_all)
 {
-	if (newver.empty())
+	g_update_checking = false;
+
+	if (g_result_checkupdates.empty())
 	{
 		if (notify_all)
-			wxMessageBox(_("Cannot check for new version!"), wxT("wxMEdit"), wxICON_ERROR|wxOK, parentwin);
+			wxMessageBox(_("Cannot check for new version!"), wxT("wxMEdit"), wxICON_ERROR|wxOK);
 		return;
 	}
 
-	if (newver == NO_NEW_VERSION)
+	if (g_result_checkupdates == NO_NEW_VERSION)
 	{
 		if (notify_all)
-			wxMessageBox(_("wxMEdit is already the newest version."), wxT("wxMEdit"), wxICON_INFORMATION|wxOK, parentwin);
+			wxMessageBox(_("wxMEdit is already the newest version."), wxT("wxMEdit"), wxICON_INFORMATION|wxOK);
 		return;
 	}
 
 	wxString download_page = wxT("http://code.google.com/p/wxmedit/wiki/download?tm=2");
-	if (IsPrerelease(newver))
+	if (IsPrerelease(g_result_checkupdates))
 		download_page = wxT("http://code.google.com/p/wxmedit/wiki/prerelease?tm=2");
 
 	wxString title(_("wxMEdit - New version available"));
 	wxString msg( wxString::Format( _("wxMEdit %s is available. \nClick OK to open the download page."), 
-	                                wxString(newver.c_str(), wxConvUTF8).c_str() ) );
+	                                wxString(g_result_checkupdates.c_str(), wxConvUTF8).c_str() ) );
 
-	if (wxOK == wxMessageBox(msg, title, wxICON_INFORMATION|wxOK|wxCANCEL, parentwin))
+	if (wxOK == wxMessageBox(msg, title, wxICON_INFORMATION|wxOK|wxCANCEL))
 		OpenURL(download_page);
 }
 
@@ -176,15 +179,22 @@ time_t UpdatePeriods::ConfigToPeroid(const wxString& cfg) const
 
 struct UpdatesCheckingThread : public wxThread
 {
+	UpdatesCheckingThread(wxEventType evt_type)
+		: m_env_type(evt_type)
+	{}
+
 	virtual ExitCode Entry()
 	{
-		g_result_autocheckupdates = wxm::CheckUpdates();
+		g_result_checkupdates = wxm::CheckUpdates();
 
-		wxCommandEvent evt(wxmEVT_RESULT_AUTOCHECKUPDATES);
+		wxCommandEvent evt(m_env_type);
 		wxPostEvent(g_MainFrame, evt);
 
 		return NULL;
 	}
+
+private:
+	wxEventType m_env_type;
 };
 
 void AutoCheckUpdates(wxFileConfig* cfg)
@@ -205,13 +215,32 @@ void AutoCheckUpdates(wxFileConfig* cfg)
 
 	cfg->Write(wxT("/wxMEdit/LastTimeAutoCheckUpdates"), long(time(NULL)));
 
-	UpdatesCheckingThread* t = new UpdatesCheckingThread();
+	g_update_checking = true;
+
+	UpdatesCheckingThread* t = new UpdatesCheckingThread(wxmEVT_RESULT_AUTOCHECKUPDATES);
 	if (t->Create()==wxTHREAD_NO_ERROR && t->Run()==wxTHREAD_NO_ERROR)
 		return;
 
+	g_update_checking = false;
+
 #ifdef _DEBUG
-	wxMessageBox(wxT("Automatically Update Thread Error."), wxT("wxMEdit - Error"), wxICON_ERROR|wxOK, g_MainFrame);
+	wxMessageBox(wxT("Automatically Update Thread Error."), wxT("wxMEdit - Error"), wxICON_ERROR|wxOK);
 #endif
+}
+
+void ManualCheckUpdates()
+{
+	g_update_checking = true;
+
+	wxm::UpdatesCheckingThread* t = new wxm::UpdatesCheckingThread(wxmEVT_RESULT_MANUALCHECKUPDATES);
+	if (t->Create()==wxTHREAD_NO_ERROR && t->Run()==wxTHREAD_NO_ERROR)
+		return;
+
+	wxm::g_result_checkupdates.clear();
+
+	wxCommandEvent evt(wxmEVT_RESULT_MANUALCHECKUPDATES);
+	
+	wxPostEvent(g_MainFrame, evt);
 }
 
 } //namespace wxm

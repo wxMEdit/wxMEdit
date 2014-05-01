@@ -244,6 +244,8 @@ const long WXMOptionsDialog:: ID_MNU___T__TIME_1117 = wxNewId();
 BEGIN_EVENT_TABLE(WXMOptionsDialog,wxDialog)
 	//(*EventTable(WXMOptionsDialog)
 	//*)
+	EVT_UPDATE_UI(WXMOptionsDialog::ID_WXBUTTONCHECKNOW, WXMOptionsDialog::OnUpdateUI_DialogOptions_CheckNow)
+
 	EVT_ACTIVATE(WXMOptionsDialog::WXMOptionsDialogActivate)
 
 	EVT_BUTTON(ID_BUTTON1,WXMOptionsDialog::PrintMarkButtonClick)
@@ -1370,5 +1372,10 @@ void WXMOptionsDialog::DateTimeMarkClick(wxCommandEvent& event)
 
 void WXMOptionsDialog::WxButtonCheckNowClick(wxCommandEvent& event)
 {
-	wxm::ConfirmUpdate(wxm::CheckUpdates( WxCheckBoxCheckPrerelease->GetValue() ), true, this);
+	wxm::ManualCheckUpdates();
+}
+
+void WXMOptionsDialog::OnUpdateUI_DialogOptions_CheckNow(wxUpdateUIEvent& event)
+{
+	event.Enable(!wxm::g_update_checking);
 }

@@ -275,8 +275,10 @@ class WXMOptionsDialog: public wxDialogWrapper
 		void WxTreeCtrl1SelChanged(wxTreeEvent& event);
 		void WxButtonCheckNowClick(wxCommandEvent& event);
 		//*)
-		
+
 		void WXMOptionsDialogActivate(wxActivateEvent& event);
+
+		void OnUpdateUI_DialogOptions_CheckNow(wxUpdateUIEvent& event);
 
 		void PrintMarkClick(wxCommandEvent& event);
 		void PrintMarkButtonClick(wxCommandEvent& event);
