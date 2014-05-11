@@ -33,7 +33,7 @@ extern std::map<wxString, wxString> g_color_l10n_map;
 
 extern wxString GetExecutablePath();
 
-extern wxString g_wxsRegkeyClasses;
+static wxString g_wxsRegkeyClasses = wxT("HKEY_CURRENT_USER\\Software\\Classes\\");
 
 class wxWindow;
 class MadEdit;
