@@ -12,9 +12,6 @@ export TOPDIR=../..
 	make
 	strip wxmedit
 	sudo make install
-	DOCDIR="$PREFIX/share/doc/wxmedit"
-	sudo mkdir -p "$DOCDIR"
-	sudo cp ChangeLog LICENSE README.txt "$DOCDIR"
 )
 
 ver=`sed -n '3s/^.*v//;3s/://p' "$TOPDIR/ChangeLog"`

@@ -16,7 +16,7 @@ Source0: %{name}-%{version}.tar.gz
 Packager: JiaYanwei <wxmedit@gmail.com>
 BuildRoot: %{_builddir}/%{name}-%{version}-root
 
-BuildRequires: gtk2-devel >= 2.6.0, boost-devel >= 1.34, wxGTK-devel >= 2.8.0, wxGTK-devel < 2.9.0, libicu-devel >= 4.2.1, curl-devel
+BuildRequires: gtk2-devel >= 2.6.0, boost-devel >= 1.34, wxGTK-devel >= 2.8.0, wxGTK-devel < 2.9.0, libicu-devel >= 4.2.1, curl-devel, automake >= 1.9.0
 Requires: gtk2 >= 2.6.0, wxGTK >= 2.8.0, wxGTK < 2.9.0, libicu >= 4.2.1, curl
 
 Docdir: %{prefix}/share/doc
@@ -34,11 +34,14 @@ wxMEdit is a continually maintained text/hex editor with bug fixes, improvements
 %prep
 %setup
 touch $RPM_BUILD_DIR/%{name}-%{version}/aclocal.m4 \
-$RPM_BUILD_DIR/%{name}-%{version}/configure \
-$RPM_BUILD_DIR/%{name}-%{version}/Makefile.in \
-$RPM_BUILD_DIR/%{name}-%{version}/config.h.in
+ $RPM_BUILD_DIR/%{name}-%{version}/configure \
+ $RPM_BUILD_DIR/%{name}-%{version}/config.h.in
+
+sed -i 's/^dist_doc_DATA/#dist_doc_DATA/' \
+ $RPM_BUILD_DIR/%{name}-%{version}/Makefile.am
 
 %build
+automake --foreign --add-missing --copy
 %configure
 make
 

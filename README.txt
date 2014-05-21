@@ -17,7 +17,7 @@ A. Linux, FreeBSD, Mac OS X, and other Unix-like OS (__WXGTK__):
    a. GNU C++ 3.x/4.x OR clang++ 2.7 or later:
       Required Tools and Libraries to compile:
       1. autoconf 2.59 or higher
-      2. automake 1.9 or higher
+      2. automake 1.10 or higher
       3. wxWidgets 2.8 with Unicode enabled
       4. Boost 1.33.0 or higher
       5. ICU4C 4.2 or higher

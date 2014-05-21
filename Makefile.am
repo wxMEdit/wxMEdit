@@ -135,6 +135,8 @@ wxmedit_test_SOURCES =	$(enc_src) \
 
 wxmedit_test_LDFLAGS = @TESTLIBS@
 
+dist_doc_DATA = ChangeLog LICENSE README.txt
+
 pixmapsdir = $(datadir)/pixmaps
 pixmaps_DATA = wxmedit.png
 
