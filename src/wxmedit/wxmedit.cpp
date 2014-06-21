@@ -158,25 +158,25 @@ public:
     }
 };
 
-class MadHexDataObject : public MadDataObject
+class MadRawBytesObject : public MadDataObject
 {
 public:
-    MadHexDataObject() : MadDataObject(wxT("application/wxmedit-hexdata"))
+    MadRawBytesObject() : MadDataObject(wxT("application/wxmedit-rawbytes"))
     {}
 
-    size_t GetHexDataSize()
+    size_t GetRawBytesCount()
     {
         return data.size();
     }
 
-    bool GetHexData(void *buf)
+    bool GetRawBytes(void *buf)
     {
         if(data.size()==0) return false;
         memcpy(buf, &data[0], data.size());
         return true;
     }
 
-    bool SetHexData(size_t len, const void *buf)
+    bool SetRawBytes(size_t len, const void *buf)
     {
         data.resize(len);
         memcpy(&data[0], buf, len);
@@ -3984,7 +3984,7 @@ bool MadEdit::PutColumnDataToClipboard(const wxString &ws, int linecount)
     return false;
 }
 
-bool MadEdit::PutHexDataToClipboard(const char *cs, size_t length)
+bool MadEdit::PutRawBytesToClipboard(const char *cs, size_t length)
 {
     if(wxTheClipboard->Open())
     {
@@ -3992,10 +3992,10 @@ bool MadEdit::PutHexDataToClipboard(const char *cs, size_t length)
 
         wxDataObjectComposite *doc=new wxDataObjectComposite();
 
-        //add hex data
-        MadHexDataObject *hexdata=new MadHexDataObject();
-        hexdata->SetHexData(length, cs);
-        doc->Add( hexdata );
+        //add raw bytes
+        MadRawBytesObject *rawdata=new MadRawBytesObject();
+        rawdata->SetRawBytes(length, cs);
+        doc->Add( rawdata );
 
         //add text data
         wxString ws=wxString(cs, wxConvLibc, length);
@@ -4179,20 +4179,20 @@ int MadEdit::GetColumnDataFromClipboard(vector <ucs4_t> *ucs)
     return linecount;
 }
 
-void MadEdit::GetHexDataFromClipboard(vector <char> *cs)
+void MadEdit::GetRawBytesFromClipboard(vector <char> *cs)
 {
     if (wxTheClipboard->Open())
     {
-        MadHexDataObject hexdata;
-        if(wxTheClipboard->IsSupported( hexdata.GetFormat() ))
+        MadRawBytesObject rawdata;
+        if(wxTheClipboard->IsSupported( rawdata.GetFormat() ))
         {
-            wxTheClipboard->GetData( hexdata );
+            wxTheClipboard->GetData( rawdata );
 
-            size_t size=hexdata.GetHexDataSize();
+            size_t size=rawdata.GetRawBytesCount();
             cs->resize(size);
             if(size)
             {
-                hexdata.GetHexData( &(*cs)[0] );
+                rawdata.GetRawBytes( &(*cs)[0] );
             }
         }
         wxTheClipboard->Close();
@@ -4233,8 +4233,8 @@ bool MadEdit::CanPaste()
         {
             if(m_EditMode==emHexMode)
             {
-                MadHexDataObject hexdata;
-                if(wxTheClipboard->IsSupported( hexdata.GetFormat() ))
+                MadRawBytesObject rawdata;
+                if(wxTheClipboard->IsSupported( rawdata.GetFormat() ))
                 {
                     can=true;
                 }
@@ -6204,10 +6204,10 @@ void MadEdit::InsertHexChar(int hc) // handle input in hexarea
     }
 }
 
-void MadEdit::InsertHexData(wxByte *hex, size_t count)
+void MadEdit::InsertRawBytes(wxByte *bytes, size_t count)
 {
     MadBlock blk(m_Lines->m_MemData, 0, count);
-    blk.m_Pos = m_Lines->m_MemData->Put(hex, count);
+    blk.m_Pos = m_Lines->m_MemData->Put(bytes, count);
 
     if(m_Selection)
     {

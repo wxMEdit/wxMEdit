@@ -1454,9 +1454,7 @@ void MadEdit::CopyColumnText()
     wxString ws;
     GetColumnSelection(&ws);
     if(ws.size())
-    {
         PutColumnDataToClipboard(ws, m_SelectionEnd->rowid - m_SelectionBegin->rowid + 1);
-    }
 }
 
 void MadEdit::CopyRegularText()
@@ -1541,7 +1539,7 @@ void MadEdit::CopyRawBytes()
     }
     while(pos < m_SelectionEnd->pos);
 
-    PutHexDataToClipboard(data.c_str(), data.size());
+    PutRawBytesToClipboard(data.c_str(), data.size());
 }
 
 void MadEdit::CopyToClipboard()
@@ -1549,17 +1547,45 @@ void MadEdit::CopyToClipboard()
     if(!m_Selection) return;
 
     if(m_EditMode==emColumnMode)
-    {
         CopyColumnText();
-    }
     else if(m_EditMode==emTextMode || !m_CaretAtHexArea)
-    {
         CopyRegularText();
-    }
     else //m_EditMode==emHexMode && m_CaretAtHexArea
-    {
         wxm::HexAreaClipboardCopyProxy::Instance().GetSelectedCopier().Copy(this);
-    }
+}
+
+void MadEdit::PasteColumnText()
+{
+    vector<ucs4_t> ucs;
+    int lines = GetColumnDataFromClipboard(&ucs);
+
+    if(!ucs.empty())
+        InsertColumnString(&ucs[0], ucs.size(), lines, false, false);
+}
+
+void MadEdit::PasteRegularText()
+{
+    vector<ucs4_t> ucs;
+    GetTextFromClipboard(&ucs);
+
+    if(ucs.empty())
+        return;
+
+    bool oldim = m_InsertMode;
+    m_InsertMode = true;
+
+    InsertString(&ucs[0], ucs.size(), false, true, false);
+
+    m_InsertMode = oldim;
+}
+
+void MadEdit::PasteRawBytes()
+{
+    vector<char> cs;
+    GetRawBytesFromClipboard(&cs);
+
+    if(!cs.empty())
+        InsertRawBytes((wxByte*)&cs[0], cs.size());
 }
 
 void MadEdit::PasteFromClipboard()
@@ -1568,39 +1594,11 @@ void MadEdit::PasteFromClipboard()
         return;
 
     if(m_EditMode == emColumnMode)
-    {
-        vector < ucs4_t > ucs;
-        int lines=GetColumnDataFromClipboard(&ucs);
-
-        if(ucs.size())
-            InsertColumnString(&ucs[0], ucs.size(), lines, false, false);
-    }
-    else if(m_EditMode == emHexMode && m_CaretAtHexArea)
-    {
-        vector < char >cs;
-        GetHexDataFromClipboard(&cs);
-
-        if(cs.size())
-        {
-            InsertHexData((wxByte*)&cs[0], cs.size());
-        }
-    }
-    else //if(m_EditMode == emTextMode || !m_CaretAtHexArea)
-    {
-        vector < ucs4_t > ucs;
-        GetTextFromClipboard(&ucs);
-
-        size_t size = ucs.size();
-        if(size)
-        {
-            bool oldim = m_InsertMode;
-            m_InsertMode = true;
-
-            InsertString(&ucs[0], size, false, true, false);
-
-            m_InsertMode = oldim;
-        }
-    }
+        PasteColumnText();
+    else if(m_EditMode == emTextMode || !m_CaretAtHexArea)
+        PasteRegularText();
+    else// if(m_EditMode == emHexMode && m_CaretAtHexArea)
+        PasteRawBytes();
 }
 
 
@@ -2760,13 +2758,9 @@ MadReplaceResult MadEdit::ReplaceHex(const wxString &expr, const wxString &fmt,
     }
 
     if(fmthex.size()==0)
-    {
         DeleteSelection(true, NULL, false);
-    }
     else
-    {
-        InsertHexData(&fmthex[0], fmthex.size());
-    }
+        InsertRawBytes(&fmthex[0], fmthex.size());
 
     if(SR_NO==FindHexNext(expr, -1, rangeTo))
         return RR_REP_NNEXT;

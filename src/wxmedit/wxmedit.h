@@ -444,7 +444,7 @@ protected:
 
     bool PutTextToClipboard(const wxString &ws);
     bool PutColumnDataToClipboard(const wxString &ws, int linecount);
-    bool PutHexDataToClipboard(const char *cs, size_t length);
+    bool PutRawBytesToClipboard(const char *cs, size_t length);
 
     // return linecount
     int TranslateText(const wxChar *pwcs, size_t count, vector<ucs4_t> *ucs, bool passNewLine);
@@ -452,7 +452,7 @@ protected:
     int GetTextFromClipboard(vector <ucs4_t> *ucs);
     // return linecount
     int GetColumnDataFromClipboard(vector <ucs4_t> *ucs);
-    void GetHexDataFromClipboard(vector <char> *cs);
+    void GetRawBytesFromClipboard(vector <char> *cs);
 
     void HexModeToTextMode(MadEditMode mode);
 
@@ -485,7 +485,7 @@ protected:
     MadUndo *DeleteSelection(bool bCorrectCaretPos, vector <int> *rpos, bool bColumnEditing);
 
     void InsertHexChar(int hc);
-    void InsertHexData(wxByte *hex, size_t count);
+    void InsertRawBytes(wxByte *bytes, size_t count);
 
     MadSearchResult Search(/*IN_OUT*/MadCaretPos &beginpos, /*IN_OUT*/MadCaretPos &endpos,
                            const wxString &text, bool bRegex, bool bCaseSensitive, bool bWholeWord);
@@ -519,9 +519,13 @@ protected:
     int GetLineNumberAreaWidth(int number);
 
     void CopyColumnText();
+    void PasteColumnText();
 public:
     void CopyRegularText();
+    void PasteRegularText();
+
     void CopyRawBytes();
+    void PasteRawBytes();
 
 protected:
     void OnChar(wxKeyEvent &evt);
