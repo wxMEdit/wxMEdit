@@ -1229,7 +1229,7 @@ void MadEdit::SetText(const wxString &ws)
             MadBlock blk(m_Lines->m_MemData, -1, 0);
 
             vector<ucs4_t> ucs;
-            TranslateText(ws.c_str(), size, &ucs, true);
+            TranslateText(ws.c_str(), size, ucs, true);
             UCStoBlock(&ucs[0], ucs.size(), blk);
 
             oudata->m_InsSize = blk.m_Size;
@@ -1250,7 +1250,7 @@ void MadEdit::SetText(const wxString &ws)
         MadBlock blk(m_Lines->m_MemData, -1, 0);
 
         vector<ucs4_t> ucs;
-        TranslateText(ws.c_str(), size, &ucs, true);
+        TranslateText(ws.c_str(), size, ucs, true);
         UCStoBlock(&ucs[0], ucs.size(), blk);
 
         MadInsertUndoData *insud = new MadInsertUndoData;
@@ -1539,7 +1539,7 @@ void MadEdit::CopyRawBytes()
     }
     while(pos < m_SelectionEnd->pos);
 
-    PutRawBytesToClipboard(data.c_str(), data.size());
+    PutRawBytesToClipboard(data);
 }
 
 void MadEdit::CopyToClipboard()
@@ -1557,7 +1557,7 @@ void MadEdit::CopyToClipboard()
 void MadEdit::PasteColumnText()
 {
     vector<ucs4_t> ucs;
-    int lines = GetColumnDataFromClipboard(&ucs);
+    int lines = GetColumnDataFromClipboard(ucs);
 
     if(!ucs.empty())
         InsertColumnString(&ucs[0], ucs.size(), lines, false, false);
@@ -1566,7 +1566,7 @@ void MadEdit::PasteColumnText()
 void MadEdit::PasteRegularText()
 {
     vector<ucs4_t> ucs;
-    GetTextFromClipboard(&ucs);
+    GetTextFromClipboard(ucs);
 
     if(ucs.empty())
         return;
@@ -1582,7 +1582,7 @@ void MadEdit::PasteRegularText()
 void MadEdit::PasteRawBytes()
 {
     vector<char> cs;
-    GetRawBytesFromClipboard(&cs);
+    GetRawBytesFromClipboard(cs);
 
     if(!cs.empty())
         InsertRawBytes((wxByte*)&cs[0], cs.size());

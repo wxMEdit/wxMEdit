@@ -134,9 +134,10 @@ public:
     MadColumnDataObject() :MadDataObject(wxT("application/wxmedit-columndata"))
     {}
 
-    bool GetColumnData(wxString &str, int &linecount)
+    bool GetColumnData(wxString &str, int& linecount)
     {
-        if(data.size()==0) return false;
+        if(data.empty())
+            return false;
         char *buf=&data[0];
         linecount=*((int*)buf);
         buf+=sizeof(int);
@@ -169,17 +170,18 @@ public:
         return data.size();
     }
 
-    bool GetRawBytes(void *buf)
+    bool GetRawBytes(vector<char>& cs)
     {
-        if(data.size()==0) return false;
-        memcpy(buf, &data[0], data.size());
+        if(data.empty())
+            return false;
+
+        cs = data;
         return true;
     }
 
-    bool SetRawBytes(size_t len, const void *buf)
+    bool SetRawBytes(const std::string& str)
     {
-        data.resize(len);
-        memcpy(&data[0], buf, len);
+        data.assign(str.begin(), str.end());
         return true;
     }
 };
@@ -3946,74 +3948,78 @@ void MadEdit::SelectLineFromCaretPos(wxString *ws)
     DoSelectionChanged();
 }
 
+namespace
+{
+    struct wxTheClipboardCloser
+    {
+        ~wxTheClipboardCloser()
+        {
+            wxTheClipboard->Close();
+        }
+    };
+};
+
 bool MadEdit::PutTextToClipboard(const wxString &ws)
 {
-    if(wxTheClipboard->Open())
-    {
-        bool ok=wxTheClipboard->SetData( new wxTextDataObject(ws) );
-        wxTheClipboard->Flush();
-        wxTheClipboard->Close();
-        return ok;
-    }
-    return false;
+    if(!wxTheClipboard->Open())
+        return false;
+
+    wxTheClipboardCloser clipbrd_closer;
+    bool ok=wxTheClipboard->SetData( new wxTextDataObject(ws) );
+    wxTheClipboard->Flush();
+    return ok;
 }
 
 bool MadEdit::PutColumnDataToClipboard(const wxString &ws, int linecount)
 {
-    if(wxTheClipboard->Open())
-    {
-        wxTheClipboard->Clear();
+    if(!wxTheClipboard->Open())
+        return false;
 
-        wxDataObjectComposite *doc=new wxDataObjectComposite();
+    wxTheClipboardCloser clipbrd_closer;
+    wxTheClipboard->Clear();
 
-        // add column data
-        MadColumnDataObject *coldata=new MadColumnDataObject();
-        coldata->SetColumnData(ws, linecount);
-        doc->Add(coldata);
+    wxDataObjectComposite *doc=new wxDataObjectComposite();
 
-        // add text data
-        doc->Add(new wxTextDataObject(ws));
+    // add column data
+    MadColumnDataObject *coldata=new MadColumnDataObject();
+    coldata->SetColumnData(ws, linecount);
+    doc->Add(coldata);
 
-        bool ok=wxTheClipboard->AddData( doc );
+    // add text data
+    doc->Add(new wxTextDataObject(ws));
 
-        wxTheClipboard->Flush();
-        wxTheClipboard->Close();
-        return ok;
-    }
-
-    return false;
+    bool ok=wxTheClipboard->AddData( doc );
+    wxTheClipboard->Flush();
+    return ok;
 }
 
-bool MadEdit::PutRawBytesToClipboard(const char *cs, size_t length)
+bool MadEdit::PutRawBytesToClipboard(const std::string& cs)
 {
-    if(wxTheClipboard->Open())
-    {
-        wxTheClipboard->Clear();
+    if(!wxTheClipboard->Open())
+        return false;
 
-        wxDataObjectComposite *doc=new wxDataObjectComposite();
+    wxTheClipboardCloser clipbrd_closer;
+    wxTheClipboard->Clear();
 
-        //add raw bytes
-        MadRawBytesObject *rawdata=new MadRawBytesObject();
-        rawdata->SetRawBytes(length, cs);
-        doc->Add( rawdata );
+    wxDataObjectComposite *doc=new wxDataObjectComposite();
 
-        //add text data
-        wxString ws=wxString(cs, wxConvLibc, length);
-        doc->Add( new wxTextDataObject(ws) );
+    //add raw bytes
+    MadRawBytesObject *rawdata=new MadRawBytesObject();
+    rawdata->SetRawBytes(cs);
+    doc->Add( rawdata );
 
-        bool ok=wxTheClipboard->AddData( doc );
+    //add text data
+    wxString ws=wxString(cs.data(), wxConvLibc, cs.size());
+    doc->Add( new wxTextDataObject(ws) );
 
-        wxTheClipboard->Flush();
-        wxTheClipboard->Close();
-        return ok;
-    }
-
-    return false;
+    bool ok=wxTheClipboard->AddData( doc );
+    wxTheClipboard->Flush();
+    return ok;
 }
 
 // translate newline & utf16 surrogates
 // return linecount
-int MadEdit::TranslateText(const wxChar *pwcs, size_t count, vector<ucs4_t> *ucs, bool passNewLine)
+int MadEdit::TranslateText(const wxChar* pwcs, size_t count, vector<ucs4_t>& ucs, bool passNewLine)
 {
     ucs4_t uc;
     size_t i=0;
@@ -4050,7 +4056,7 @@ int MadEdit::TranslateText(const wxChar *pwcs, size_t count, vector<ucs4_t> *ucs
 #ifdef __WXMSW__
                 case nltDefault:
 #endif
-                    ucs->push_back(uc);
+                    ucs.push_back(uc);
                     uc=0x0A;
                     break;
 
@@ -4085,7 +4091,7 @@ int MadEdit::TranslateText(const wxChar *pwcs, size_t count, vector<ucs4_t> *ucs
 #ifdef __WXMSW__
                 case nltDefault:
 #endif
-                    ucs->push_back(0x0D);
+                    ucs.push_back(0x0D);
                     break;
 
                 case nltMAC:
@@ -4102,37 +4108,36 @@ int MadEdit::TranslateText(const wxChar *pwcs, size_t count, vector<ucs4_t> *ucs
             }
         }
 
-        ucs->push_back(uc);
+        ucs.push_back(uc);
     }
 
     return linecount;
 }
 
-int MadEdit::GetTextFromClipboard(vector <ucs4_t> *ucs)
+int MadEdit::GetTextFromClipboard(vector<ucs4_t>& ucs)
 {
+    if(!wxTheClipboard->Open())
+        return 0;
+
     int linecount=0;
-    if(wxTheClipboard->Open())
-    {
-        if(wxTheClipboard->IsSupported(wxDF_UNICODETEXT))
-        {
-            wxTextDataObject data;
-            wxTheClipboard->GetData( data );
-            wxString str=data.GetText();
+    wxTheClipboardCloser clipbrd_closer;
+    if(!wxTheClipboard->IsSupported(wxDF_UNICODETEXT))
+        return 0;
 
-            linecount=TranslateText(str.c_str(), str.Len(), ucs, false);
-        }
-        wxTheClipboard->Close();
-    }
+    wxTextDataObject data;
+    wxTheClipboard->GetData( data );
+    wxString str=data.GetText();
 
-    return linecount;
+    return TranslateText(str.c_str(), str.Len(), ucs, false);
 }
 
-int MadEdit::GetColumnDataFromClipboard(vector <ucs4_t> *ucs)
+int MadEdit::GetColumnDataFromClipboard(vector<ucs4_t>& ucs)
 {
     int linecount=0;
 
     if(wxTheClipboard->Open())
     {
+        wxTheClipboardCloser clipbrd_closer;
         MadColumnDataObject coldata;
         if(wxTheClipboard->IsSupported( coldata.GetFormat() ))
         {
@@ -4144,10 +4149,9 @@ int MadEdit::GetColumnDataFromClipboard(vector <ucs4_t> *ucs)
                 TranslateText(str.c_str(), str.Len(), ucs, false);
             }
         }
-        wxTheClipboard->Close();
     }
 
-    if(ucs->size()==0)
+    if(ucs.empty())
     {
         linecount=GetTextFromClipboard(ucs);
         if(linecount!=0)
@@ -4158,19 +4162,19 @@ int MadEdit::GetColumnDataFromClipboard(vector <ucs4_t> *ucs)
 #ifdef __WXMSW__
             case nltDefault:
 #endif
-                ucs->push_back(0x0D);
-                ucs->push_back(0x0A);
+                ucs.push_back(0x0D);
+                ucs.push_back(0x0A);
                 break;
 
             case nltMAC:
-                ucs->push_back(0x0D);
+                ucs.push_back(0x0D);
                 break;
 
             case nltUNIX:
 #ifndef __WXMSW__
             case nltDefault:
 #endif
-                ucs->push_back(0x0A);
+                ucs.push_back(0x0A);
                 break;
             }
         }
@@ -4179,79 +4183,64 @@ int MadEdit::GetColumnDataFromClipboard(vector <ucs4_t> *ucs)
     return linecount;
 }
 
-void MadEdit::GetRawBytesFromClipboard(vector <char> *cs)
+bool MadEdit::GetRawBytesFromClipboardDirectly(vector<char>& cs)
 {
-    if (wxTheClipboard->Open())
-    {
-        MadRawBytesObject rawdata;
-        if(wxTheClipboard->IsSupported( rawdata.GetFormat() ))
-        {
-            wxTheClipboard->GetData( rawdata );
+    if (!wxTheClipboard->Open())
+        return false;
 
-            size_t size=rawdata.GetRawBytesCount();
-            cs->resize(size);
-            if(size)
-            {
-                rawdata.GetRawBytes( &(*cs)[0] );
-            }
-        }
-        wxTheClipboard->Close();
-    }
+    wxTheClipboardCloser clipbrd_closer;
 
-    if(cs->size()==0)
-    {
-        vector<ucs4_t> ucs;
-        GetTextFromClipboard(&ucs);
+    MadRawBytesObject rawdata;
+    if(!wxTheClipboard->IsSupported(rawdata.GetFormat()))
+        return false;
 
-        if(ucs.size()>0)
-        {
-            MadMemData tempmem;
-            MadBlock blk(&tempmem, -1, 0);
-            UCStoBlock( &ucs[0], ucs.size(), blk);
+    wxTheClipboard->GetData(rawdata);
+    size_t size=rawdata.GetRawBytesCount();
+    if(size == 0)
+        return false;
 
-            size_t size=blk.m_Size;
-            cs->resize(size);
-            char *p= &(*cs)[0];
-            for(size_t i=0;i<size;i++, p++)
-            {
-                *p= char(tempmem.Get(i));
-            }
-        }
-    }
+    rawdata.GetRawBytes(cs);
+    return true;
+}
+
+void MadEdit::GetRawBytesFromClipboard(vector<char>& cs)
+{
+    if(GetRawBytesFromClipboardDirectly(cs))
+        return;
+
+    vector<ucs4_t> ucs;
+    GetTextFromClipboard(ucs);
+    if(ucs.empty())
+        return;
+
+    MadMemData tempmem;
+    MadBlock blk(&tempmem, -1, 0);
+    UCStoBlock( &ucs[0], ucs.size(), blk);
+
+    size_t size=blk.m_Size;
+    for(size_t i=0; i<size; ++i)
+        cs.push_back(char(tempmem.Get(i)));
 }
 
 bool MadEdit::CanPaste()
 {
-    bool can=false;
-    if(wxTheClipboard->Open())
-    {
-        if(wxTheClipboard->IsSupported(wxDF_TEXT) || wxTheClipboard->IsSupported(wxDF_UNICODETEXT))
-        {
-            can=true;
-        }
-        else 
-        {
-            if(m_EditMode==emHexMode)
-            {
-                MadRawBytesObject rawdata;
-                if(wxTheClipboard->IsSupported( rawdata.GetFormat() ))
-                {
-                    can=true;
-                }
-            }
-            else if(m_EditMode==emColumnMode)
-            {
-                MadColumnDataObject coldata;
-                if(wxTheClipboard->IsSupported( coldata.GetFormat() ))
-                {
-                    can=true;
-                }
-            }
-        }
+    if(!wxTheClipboard->Open())
+        return false;
 
-        wxTheClipboard->Close();
-    }
-    return can;
+    wxTheClipboardCloser clipbrd_closer;
+
+    if(wxTheClipboard->IsSupported(wxDF_TEXT) || wxTheClipboard->IsSupported(wxDF_UNICODETEXT))
+        return true;
+
+    MadRawBytesObject rawdata;
+    if(m_EditMode==emHexMode && wxTheClipboard->IsSupported( rawdata.GetFormat() ))
+        return true;
+
+    MadColumnDataObject coldata;
+    if(m_EditMode==emColumnMode && wxTheClipboard->IsSupported( coldata.GetFormat() ))
+        return true;
+
+    return false;
 }
 
 
@@ -8517,7 +8506,7 @@ void MadEdit::ProcessCommand(MadEditCommand command)
                             }
 
                             vector<ucs4_t> ucs;
-                            TranslateText(text.c_str(), text.Len(), &ucs, true);
+                            TranslateText(text.c_str(), text.Len(), ucs, true);
                             InsertString(&ucs[0], ucs.size(), false, true, false);
                         }
                     }

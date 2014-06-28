@@ -756,7 +756,7 @@ void MadEdit::ToUpperCase()
     if(upperconv.Modified())
     {
         vector<ucs4_t> ucs;
-        TranslateText(text.c_str(), text.Len(), &ucs, true);
+        TranslateText(text.c_str(), text.Len(), ucs, true);
 
         if(m_EditMode==emColumnMode)
         {
@@ -783,7 +783,7 @@ void MadEdit::ToLowerCase()
     if(lowerconv.Modified())
     {
         vector<ucs4_t> ucs;
-        TranslateText(text.c_str(), text.Len(), &ucs, true);
+        TranslateText(text.c_str(), text.Len(), ucs, true);
 
         if(m_EditMode==emColumnMode)
         {
@@ -810,7 +810,7 @@ void MadEdit::InvertCase()
     if(caseinv.Modified())
     {
         vector<ucs4_t> ucs;
-        TranslateText(text.c_str(), text.Len(), &ucs, true);
+        TranslateText(text.c_str(), text.Len(), ucs, true);
 
         if(m_EditMode==emColumnMode)
         {
@@ -1178,7 +1178,7 @@ void MadEdit::ToHalfWidth(bool ascii, bool japanese, bool korean, bool other)
     if(modified)
     {
         vector<ucs4_t> ucs;
-        TranslateText(text.c_str(), text.Len(), &ucs, true);
+        TranslateText(text.c_str(), text.Len(), ucs, true);
 
         if(m_EditMode==emColumnMode)
         {
@@ -1218,7 +1218,7 @@ void MadEdit::ToFullWidth(bool ascii, bool japanese, bool korean, bool other)
     if(modified)
     {
         vector<ucs4_t> ucs;
-        TranslateText(text.c_str(), text.Len(), &ucs, true);
+        TranslateText(text.c_str(), text.Len(), ucs, true);
 
         if(m_EditMode==emColumnMode)
         {

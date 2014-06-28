@@ -621,7 +621,7 @@ MadSearchResult MadEdit::Search(/*IN_OUT*/MadCaretPos &beginpos, /*IN_OUT*/MadCa
 
 #ifdef __WXMSW__
     vector<ucs4_t> ucs;
-    TranslateText(text_ptr->c_str(), text_ptr->Len(), &ucs, true);
+    TranslateText(text_ptr->c_str(), text_ptr->Len(), ucs, true);
     ucs4_t *puc=&ucs[0];
     size_t len=ucs.size();
     ucs4string exprstr(puc, puc+len);
@@ -822,7 +822,7 @@ MadSearchResult MadEdit::Replace(ucs4string &out, const MadCaretPos &beginpos, c
     {
         // fmt is the wanted string
         vector<ucs4_t> ucs;
-        TranslateText(fmt.c_str(), fmt.Len(), &ucs, true);
+        TranslateText(fmt.c_str(), fmt.Len(), ucs, true);
 
         for(size_t i=0, size=ucs.size(); i<size; i++)
         {
@@ -840,7 +840,7 @@ MadSearchResult MadEdit::Replace(ucs4string &out, const MadCaretPos &beginpos, c
 
 #ifdef __WXMSW__
     vector<ucs4_t> ucs;
-    TranslateText(expr.c_str(), expr.Len(), &ucs, true);
+    TranslateText(expr.c_str(), expr.Len(), ucs, true);
     ucs4_t *puc=&ucs[0];
     ucs4string exprstr(puc, puc+ucs.size());
 #else
@@ -866,7 +866,7 @@ MadSearchResult MadEdit::Replace(ucs4string &out, const MadCaretPos &beginpos, c
 
 #ifdef __WXMSW__
     ucs.clear();
-    TranslateText(fmt.c_str(), fmt.Len(), &ucs, true);
+    TranslateText(fmt.c_str(), fmt.Len(), ucs, true);
     puc=&ucs[0];
     ucs4string fmtstr(puc, puc+ucs.size());
 #else

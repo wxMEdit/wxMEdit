@@ -444,15 +444,17 @@ protected:
 
     bool PutTextToClipboard(const wxString &ws);
     bool PutColumnDataToClipboard(const wxString &ws, int linecount);
-    bool PutRawBytesToClipboard(const char *cs, size_t length);
+    bool PutRawBytesToClipboard(const std::string& cs);
 
     // return linecount
-    int TranslateText(const wxChar *pwcs, size_t count, vector<ucs4_t> *ucs, bool passNewLine);
+    int TranslateText(const wxChar* pwcs, size_t count, vector<ucs4_t>& ucs, bool passNewLine);
     // return linecount
-    int GetTextFromClipboard(vector <ucs4_t> *ucs);
+    int GetTextFromClipboard(vector<ucs4_t>& ucs);
     // return linecount
-    int GetColumnDataFromClipboard(vector <ucs4_t> *ucs);
-    void GetRawBytesFromClipboard(vector <char> *cs);
+    int GetColumnDataFromClipboard(vector<ucs4_t>& ucs);
+
+    bool GetRawBytesFromClipboardDirectly(vector<char>& cs);
+    void GetRawBytesFromClipboard(vector<char>& cs);
 
     void HexModeToTextMode(MadEditMode mode);
 
