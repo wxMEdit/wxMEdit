@@ -12,6 +12,7 @@
 
 #include "xm/wxm_choice_map.hpp"
 #include "xm/wxm_def.h"
+#include "wxmedit/ucs4_t.h"
 
 #include <wx/defs.h>
 #include <wx/string.h>
@@ -147,6 +148,47 @@ struct MouseCapturer
 private:
 	MadEdit& m_edit;
 	bool m_captured;
+};
+
+struct HexAreaClipboardPaster
+{
+    virtual bool GetRawBytesFromClipboardDirectly(MadEdit* inst, std::vector<char>& cs) = 0;
+    virtual void GetRawBytesFromUnicodeText(MadEdit* inst, std::vector<char>& cs, const std::vector<ucs4_t>& ucs) = 0;
+    virtual ~HexAreaClipboardPaster() {}
+};
+
+typedef boost::shared_ptr<HexAreaClipboardPaster> SharedPasterPtr;
+struct HexAreaClipboardPasteProxy: public ChoiceMap<HexAreaClipboardPasteProxy, SharedPasterPtr>
+{
+    void SelectConditionByConfig(const wxString& cfg)
+    {
+        m_selected_idx = ConfigToIndex(cfg);
+    }
+
+    wxString GetSelectedConditionTitle()
+    {
+        return IndexToTitle(m_selected_idx);
+    }
+
+    HexAreaClipboardPaster& GetSelectedPaster()
+    {
+        return *IndexToVal(m_selected_idx);
+    }
+
+private:
+    friend class ChoiceMap<HexAreaClipboardPasteProxy, SharedPasterPtr>;
+    HexAreaClipboardPasteProxy(): m_selected_idx(HAPAHCI_NEVER) {}
+
+    virtual void DoInit();
+
+    enum HexAreaPasteAsHexConditionIndex
+    {
+        HAPAHCI_NEVER,
+        HAPAHCI_IFPOSSIBLE,
+        HAPAHCI_ALWAYS,
+    };
+
+    int m_selected_idx;
 };
 
 } //namespace wxm

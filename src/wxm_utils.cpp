@@ -396,19 +396,93 @@ void HexAreaClipboardCopyProxy::DoInit()
     SetDefault(HACCI_RAWBYTES, IndexToVal(HACCI_RAWBYTES));
 }
 
+bool GetRawBytesFromHexUnicodeText(std::vector<char>& cs, const std::vector<ucs4_t>& ucs)
+{
+    std::vector<int> tmp_hex;
+
+    BOOST_FOREACH(ucs4_t u, ucs)
+    {
+        if (u == ucs4_t(' '))
+            continue;
+        if (!isxdigit(u))
+            return false;
+
+        int hex = (u > ucs4_t('9'))? (u | 0x20) - 'a' + 10: u - '0';
+        tmp_hex.push_back(hex);
+    }
+
+    if (tmp_hex.empty() || tmp_hex.size() % 2 != 0)
+        return false;
+
+    for (size_t i=0; i<tmp_hex.size(); i+=2)
+        cs.push_back(char((tmp_hex[i]<<4) | tmp_hex[i+1]));
+
+    return true;
+}
+
+struct HexAreaRawBytesHexPaster: public HexAreaClipboardPaster
+{
+    virtual bool GetRawBytesFromClipboardDirectly(MadEdit* inst, std::vector<char>& cs)
+    {
+        return inst->GetRawBytesFromClipboardDirectly(cs);
+    }
+
+    virtual void GetRawBytesFromUnicodeText(MadEdit* inst, std::vector<char>& cs, const std::vector<ucs4_t>& ucs) = 0;
+};
+
+struct HexAreaNerverHexPaster: public HexAreaRawBytesHexPaster
+{
+    virtual void GetRawBytesFromUnicodeText(MadEdit* inst, std::vector<char>& cs, const std::vector<ucs4_t>& ucs)
+    {
+        inst->ConvertToRawBytesFromUnicodeText(cs, ucs);
+    }
+};
+
+struct HexAreaIfPossibleHexPaster: public HexAreaRawBytesHexPaster
+{
+    virtual void GetRawBytesFromUnicodeText(MadEdit* inst, std::vector<char>& cs, const std::vector<ucs4_t>& ucs)
+    {
+        if (GetRawBytesFromHexUnicodeText(cs, ucs))
+            return;
+        inst->ConvertToRawBytesFromUnicodeText(cs, ucs);
+    }
+};
+
+struct HexAreaAlwaysHexPaster: public HexAreaClipboardPaster
+{
+    virtual bool GetRawBytesFromClipboardDirectly(MadEdit* inst, std::vector<char>& cs)
+    {
+        return false;
+    }
+
+    virtual void GetRawBytesFromUnicodeText(MadEdit* inst, std::vector<char>& cs, const std::vector<ucs4_t>& ucs)
+    {
+        GetRawBytesFromHexUnicodeText(cs, ucs);
+    }
+};
+
+void HexAreaClipboardPasteProxy::DoInit()
+{
+    AddData(HAPAHCI_NEVER,      wxT("never"),       _("Never"),       SharedPasterPtr(new HexAreaNerverHexPaster));
+    AddData(HAPAHCI_IFPOSSIBLE, wxT("if_possible"), _("If Possible"), SharedPasterPtr(new HexAreaIfPossibleHexPaster));
+    AddData(HAPAHCI_ALWAYS,     wxT("always"),      _("Always"),      SharedPasterPtr(new HexAreaAlwaysHexPaster));
+
+    SetDefault(HAPAHCI_NEVER, IndexToVal(HAPAHCI_NEVER));
+}
+
 void MouseCapturer::Capture()
 {
-	m_edit.CaptureMouse();
-	m_captured = true;
+    m_edit.CaptureMouse();
+    m_captured = true;
 }
 
 void MouseCapturer::Release()
 {
-	if (!m_captured)
-		return;
+    if (!m_captured)
+        return;
 
-	m_edit.ReleaseMouse();
-	m_captured = false;
+    m_edit.ReleaseMouse();
+    m_captured = false;
 }
 
 } // namespace wxm

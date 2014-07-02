@@ -312,6 +312,24 @@
 															</object>
 															<flag>wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
 														</object>
+														<object class="sizeritem">
+															<object class="wxBoxSizer" variable="BoxSizer23" member="no">
+																<object class="sizeritem">
+																	<object class="wxStaticText" name="ID_STATICTEXT19" variable="StaticText19" member="yes">
+																		<label>Treat clipboard text as Hex String when pasting in hex area:</label>
+																	</object>
+																	<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+																	<option>1</option>
+																</object>
+																<object class="sizeritem">
+																	<object class="wxComboBox" name="ID_COMBOBOXPASTEASHEXSTRING" variable="WxComboBoxPasteAsHexString" member="yes">
+																		<style>wxCB_READONLY|wxCB_DROPDOWN</style>
+																	</object>
+																	<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+																</object>
+															</object>
+															<flag>wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
+														</object>
 													</object>
 													<flag>wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
 													<border>5</border>

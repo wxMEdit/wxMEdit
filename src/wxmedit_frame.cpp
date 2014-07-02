@@ -4599,6 +4599,10 @@ void MadEditFrame::OnToolsOptions(wxCommandEvent& event)
         wxm::HexAreaClipboardCopyProxy::Instance().SelectCopierByConfig(behav);
         m_Config->Write(wxT("BehaviorCopyingInHexArea"), behav);
 
+        wxString cond = g_OptionsDialog->GetSelectedConditionPasteAsHexInHexArea();
+        wxm::HexAreaClipboardPasteProxy::Instance().SelectConditionByConfig(cond);
+        m_Config->Write(wxT("ConditionPastingAsHexInHexArea"), cond);
+
         int count=int(m_Notebook->GetPageCount());
         for(int i=0;i<count;i++)
         {

@@ -453,7 +453,11 @@ protected:
     // return linecount
     int GetColumnDataFromClipboard(vector<ucs4_t>& ucs);
 
+public:
     bool GetRawBytesFromClipboardDirectly(vector<char>& cs);
+    void ConvertToRawBytesFromUnicodeText(vector<char>& cs, const vector<ucs4_t>& ucs);
+
+protected:
     void GetRawBytesFromClipboard(vector<char>& cs);
 
     void HexModeToTextMode(MadEditMode mode);

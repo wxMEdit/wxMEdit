@@ -4205,7 +4205,8 @@ bool MadEdit::GetRawBytesFromClipboardDirectly(vector<char>& cs)
 
 void MadEdit::GetRawBytesFromClipboard(vector<char>& cs)
 {
-    if(GetRawBytesFromClipboardDirectly(cs))
+    wxm::HexAreaClipboardPaster& paster = wxm::HexAreaClipboardPasteProxy::Instance().GetSelectedPaster();
+    if(paster.GetRawBytesFromClipboardDirectly(this, cs))
         return;
 
     vector<ucs4_t> ucs;
@@ -4213,6 +4214,11 @@ void MadEdit::GetRawBytesFromClipboard(vector<char>& cs)
     if(ucs.empty())
         return;
 
+    paster.GetRawBytesFromUnicodeText(this, cs, ucs);
+}
+
+void MadEdit::ConvertToRawBytesFromUnicodeText(vector<char>& cs, const vector<ucs4_t>& ucs)
+{
     MadMemData tempmem;
     MadBlock blk(&tempmem, -1, 0);
     UCStoBlock( &ucs[0], ucs.size(), blk);

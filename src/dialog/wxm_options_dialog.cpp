@@ -150,6 +150,8 @@ const long WXMOptionsDialog::ID_WXCHECKBOXWHENPRESSCTRLKEY = wxNewId();
 const long WXMOptionsDialog::ID_WXCHECKBOXMIDDLEMOUSETOPASTE = wxNewId();
 const long WXMOptionsDialog::ID_STATICTEXT18 = wxNewId();
 const long WXMOptionsDialog::ID_COMBOBOXBEHAVIORCOPYINHEXAREA = wxNewId();
+const long WXMOptionsDialog::ID_STATICTEXT19 = wxNewId();
+const long WXMOptionsDialog::ID_COMBOBOXPASTEASHEXSTRING = wxNewId();
 const long WXMOptionsDialog::ID_PANEL2 = wxNewId();
 const long WXMOptionsDialog::ID_WXCHECKBOXPRINTSYNTAX = wxNewId();
 const long WXMOptionsDialog::ID_WXCHECKBOXPRINTLINENUMBER = wxNewId();
@@ -310,6 +312,7 @@ WXMOptionsDialog::WXMOptionsDialog(wxWindow* parent,wxWindowID id)
 	wxBoxSizer* BoxSizer36;
 	wxBoxSizer* BoxSizer37;
 	wxFlexGridSizer* FlexGridSizer2;
+	wxBoxSizer* BoxSizer23;
 	wxBoxSizer* BoxSizer2;
 	wxBoxSizer* BoxSizer11;
 	wxBoxSizer* BoxSizer16;
@@ -446,6 +449,12 @@ WXMOptionsDialog::WXMOptionsDialog(wxWindow* parent,wxWindowID id)
 	WxComboBoxBehaviorCopyInHexArea = new wxComboBox(Panel2, ID_COMBOBOXBEHAVIORCOPYINHEXAREA, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0, 0, wxCB_READONLY|wxCB_DROPDOWN, wxDefaultValidator, _T("ID_COMBOBOXBEHAVIORCOPYINHEXAREA"));
 	BoxSizer6->Add(WxComboBoxBehaviorCopyInHexArea, 0, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 0);
 	BoxSizer12->Add(BoxSizer6, 0, wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL, 0);
+	BoxSizer23 = new wxBoxSizer(wxHORIZONTAL);
+	StaticText19 = new wxStaticText(Panel2, ID_STATICTEXT19, _("Treat clipboard text as Hex String when pasting in hex area:"), wxDefaultPosition, wxDefaultSize, 0, _T("ID_STATICTEXT19"));
+	BoxSizer23->Add(StaticText19, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 0);
+	WxComboBoxPasteAsHexString = new wxComboBox(Panel2, ID_COMBOBOXPASTEASHEXSTRING, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0, 0, wxCB_READONLY|wxCB_DROPDOWN, wxDefaultValidator, _T("ID_COMBOBOXPASTEASHEXSTRING"));
+	BoxSizer23->Add(WxComboBoxPasteAsHexString, 0, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 0);
+	BoxSizer12->Add(BoxSizer23, 0, wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL, 0);
 	BoxSizer8->Add(BoxSizer12, 0, wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL, 5);
 	Panel2->SetSizer(BoxSizer8);
 	BoxSizer8->Fit(Panel2);
@@ -722,6 +731,10 @@ WXMOptionsDialog::WXMOptionsDialog(wxWindow* parent,wxWindowID id)
 		WxComboBoxBehaviorCopyInHexArea->Append(behavior);
 	WxComboBoxBehaviorCopyInHexArea->SetValue(wxm::HexAreaClipboardCopyProxy::Instance().GetDefaultTitle());
 
+	BOOST_FOREACH(wxString behavior, wxm::HexAreaClipboardPasteProxy::Instance().GetTitles())
+		WxComboBoxPasteAsHexString->Append(behavior);
+	WxComboBoxPasteAsHexString->SetValue(wxm::HexAreaClipboardPasteProxy::Instance().GetDefaultTitle());
+
 #ifdef __WXMSW__
 	WxCheckBoxRightClickMenu = new wxCheckBox(Panel1, -1, _("Add wxMEdit to the RightClickMenu of Explorer(Deselect to Remove the Entry from Windows Registry)"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("WxCheckBoxRightClickMenu"));
 	WxCheckBoxRightClickMenu->SetValue(false);
@@ -848,6 +861,12 @@ wxString WXMOptionsDialog::GetSelectedBehaviorCopyInHexArea()
 	return wxm::HexAreaClipboardCopyProxy::Instance().TitleToConfig(title);
 }
 
+wxString WXMOptionsDialog::GetSelectedConditionPasteAsHexInHexArea()
+{
+	wxString title = WxComboBoxPasteAsHexString->GetValue();
+	return wxm::HexAreaClipboardPasteProxy::Instance().TitleToConfig(title);
+}
+
 void WXMOptionsDialog::WXMOptionsDialogClose(wxCloseEvent& event)
 {
 	if(event.CanVeto())
@@ -961,6 +980,9 @@ void WXMOptionsDialog::LoadOptions(void)
 
 	WxComboBoxBehaviorCopyInHexArea->SetValue(
 		wxm::HexAreaClipboardCopyProxy::Instance().GetSelectedCopierTitle());
+
+	WxComboBoxPasteAsHexString->SetValue(
+		wxm::HexAreaClipboardPasteProxy::Instance().GetSelectedConditionTitle());
 
 	// Print page
 	cfg->Read(wxT("PrintSyntax"), &bb);
