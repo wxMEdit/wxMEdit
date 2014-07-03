@@ -96,6 +96,7 @@ private:
 struct HexAreaClipboardCopier
 {
     virtual void Copy(MadEdit* inst) = 0;
+    virtual bool Hexadecimal() = 0;
     virtual ~HexAreaClipboardCopier() {}
 };
 
@@ -184,6 +185,7 @@ private:
     enum HexAreaPasteAsHexConditionIndex
     {
         HAPAHCI_NEVER,
+        HAPAHCI_ACCORDINGTOCOPIER,
         HAPAHCI_IFPOSSIBLE,
         HAPAHCI_ALWAYS,
     };

@@ -360,6 +360,10 @@ struct HexAreaRawBytesCopier: public HexAreaClipboardCopier
     {
         inst->CopyRawBytes();
     }
+    virtual bool Hexadecimal()
+    {
+        return false;
+    }
 };
 
 struct HexAreaRegularTextCopier: public HexAreaClipboardCopier
@@ -367,6 +371,10 @@ struct HexAreaRegularTextCopier: public HexAreaClipboardCopier
     virtual void Copy(MadEdit* inst)
     {
         inst->CopyRegularText();
+    }
+    virtual bool Hexadecimal()
+    {
+        return false;
     }
 };
 
@@ -376,6 +384,10 @@ struct HexAreaHexStringCopier: public HexAreaClipboardCopier
     {
         inst->CopyAsHexString(false);
     }
+    virtual bool Hexadecimal()
+    {
+        return true;
+    }
 };
 
 struct HexAreaHexStringWithSpaceCopier: public HexAreaClipboardCopier
@@ -383,6 +395,10 @@ struct HexAreaHexStringWithSpaceCopier: public HexAreaClipboardCopier
     virtual void Copy(MadEdit* inst)
     {
         inst->CopyAsHexString(true);
+    }
+    virtual bool Hexadecimal()
+    {
+        return true;
     }
 };
 
@@ -448,6 +464,17 @@ struct HexAreaIfPossibleHexPaster: public HexAreaRawBytesHexPaster
     }
 };
 
+struct HexAreaAccordingToCopierHexPaster: public HexAreaRawBytesHexPaster
+{
+    virtual void GetRawBytesFromUnicodeText(MadEdit* inst, std::vector<char>& cs, const std::vector<ucs4_t>& ucs)
+    {
+        HexAreaClipboardCopier& copier = HexAreaClipboardCopyProxy::Instance().GetSelectedCopier();
+        if (copier.Hexadecimal() && GetRawBytesFromHexUnicodeText(cs, ucs))
+            return;
+        inst->ConvertToRawBytesFromUnicodeText(cs, ucs);
+    }
+};
+
 struct HexAreaAlwaysHexPaster: public HexAreaClipboardPaster
 {
     virtual bool GetRawBytesFromClipboardDirectly(MadEdit* inst, std::vector<char>& cs)
@@ -463,9 +490,10 @@ struct HexAreaAlwaysHexPaster: public HexAreaClipboardPaster
 
 void HexAreaClipboardPasteProxy::DoInit()
 {
-    AddData(HAPAHCI_NEVER,      wxT("never"),       _("Never"),       SharedPasterPtr(new HexAreaNerverHexPaster));
-    AddData(HAPAHCI_IFPOSSIBLE, wxT("if_possible"), _("If Possible"), SharedPasterPtr(new HexAreaIfPossibleHexPaster));
-    AddData(HAPAHCI_ALWAYS,     wxT("always"),      _("Always"),      SharedPasterPtr(new HexAreaAlwaysHexPaster));
+    AddData(HAPAHCI_NEVER,             wxT("never"),               _("Never"),               SharedPasterPtr(new HexAreaNerverHexPaster));
+    AddData(HAPAHCI_ACCORDINGTOCOPIER, wxT("according_to_copier"), _("According To Copier"), SharedPasterPtr(new HexAreaAccordingToCopierHexPaster));
+    AddData(HAPAHCI_IFPOSSIBLE,        wxT("if_possible"),         _("If Possible"),         SharedPasterPtr(new HexAreaIfPossibleHexPaster));
+    AddData(HAPAHCI_ALWAYS,            wxT("always"),              _("Always"),              SharedPasterPtr(new HexAreaAlwaysHexPaster));
 
     SetDefault(HAPAHCI_NEVER, IndexToVal(HAPAHCI_NEVER));
 }
