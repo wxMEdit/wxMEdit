@@ -490,10 +490,10 @@ struct HexAreaAlwaysHexPaster: public HexAreaClipboardPaster
 
 void HexAreaClipboardPasteProxy::DoInit()
 {
-    AddData(HAPAHCI_NEVER,             wxT("never"),               _("Never"),               SharedPasterPtr(new HexAreaNerverHexPaster));
-    AddData(HAPAHCI_ACCORDINGTOCOPIER, wxT("according_to_copier"), _("According To Copier"), SharedPasterPtr(new HexAreaAccordingToCopierHexPaster));
-    AddData(HAPAHCI_IFPOSSIBLE,        wxT("if_possible"),         _("If Possible"),         SharedPasterPtr(new HexAreaIfPossibleHexPaster));
-    AddData(HAPAHCI_ALWAYS,            wxT("always"),              _("Always"),              SharedPasterPtr(new HexAreaAlwaysHexPaster));
+    AddData(HAPAHCI_NEVER,             wxT("never"),               _("Never"),                         SharedPasterPtr(new HexAreaNerverHexPaster));
+    AddData(HAPAHCI_ACCORDINGTOCOPIER, wxT("according_to_copier"), _("According To Copying Behavior"), SharedPasterPtr(new HexAreaAccordingToCopierHexPaster));
+    AddData(HAPAHCI_IFPOSSIBLE,        wxT("if_possible"),         _("If Possible"),                   SharedPasterPtr(new HexAreaIfPossibleHexPaster));
+    AddData(HAPAHCI_ALWAYS,            wxT("always"),              _("Always"),                        SharedPasterPtr(new HexAreaAlwaysHexPaster));
 
     SetDefault(HAPAHCI_NEVER, IndexToVal(HAPAHCI_NEVER));
 }
