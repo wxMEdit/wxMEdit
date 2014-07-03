@@ -402,7 +402,7 @@ bool GetRawBytesFromHexUnicodeText(std::vector<char>& cs, const std::vector<ucs4
 
     BOOST_FOREACH(ucs4_t u, ucs)
     {
-        if (u == ucs4_t(' '))
+        if (u_isUWhiteSpace(u))
             continue;
         if (!isxdigit(u))
             return false;
