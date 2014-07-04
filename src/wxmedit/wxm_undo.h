@@ -27,13 +27,15 @@ using std::list;
 
 #include "wxm_lines.h"
 
-
-enum MadUndoDataType { udtInsert, udtDelete, udtOverwrite};
-
 struct MadUndoData
 {
-    MadUndoDataType  m_Type;    // undo data type
     wxFileOffset     m_Pos;
+
+    virtual wxFileOffset DelSize() = 0;
+    virtual wxFileOffset InsSize() = 0;
+    virtual MadBlockVector* DelData() = 0;
+    virtual MadBlockVector* InsData() = 0;
+    virtual ~MadUndoData(){}
 };
 
 struct MadInsertUndoData:MadUndoData
@@ -41,10 +43,10 @@ struct MadInsertUndoData:MadUndoData
     wxFileOffset m_Size;
     MadBlockVector m_Data;
 
-    MadInsertUndoData()
-    {
-        m_Type = udtInsert;
-    }
+    virtual wxFileOffset DelSize() {return 0;}
+    virtual wxFileOffset InsSize() {return m_Size;}
+    virtual MadBlockVector* DelData() {return NULL;}
+    virtual MadBlockVector* InsData() {return &m_Data;}
 };
 
 struct MadDeleteUndoData:MadUndoData
@@ -52,10 +54,10 @@ struct MadDeleteUndoData:MadUndoData
     wxFileOffset m_Size;
     MadBlockVector m_Data;
 
-    MadDeleteUndoData()
-    {
-        m_Type = udtDelete;
-    }
+    virtual wxFileOffset DelSize() {return m_Size;}
+    virtual wxFileOffset InsSize() {return 0;}
+    virtual MadBlockVector* DelData() {return &m_Data;}
+    virtual MadBlockVector* InsData() {return NULL;}
 };
 
 struct MadOverwriteUndoData:MadUndoData
@@ -63,10 +65,10 @@ struct MadOverwriteUndoData:MadUndoData
     wxFileOffset m_DelSize, m_InsSize;
     MadBlockVector m_DelData, m_InsData;
 
-    MadOverwriteUndoData()
-    {
-        m_Type = udtOverwrite;
-    }
+    virtual wxFileOffset DelSize() {return m_DelSize;}
+    virtual wxFileOffset InsSize() {return m_InsSize;}
+    virtual MadBlockVector* DelData() {return &m_DelData;}
+    virtual MadBlockVector* InsData() {return &m_InsData;}
 };
 
 

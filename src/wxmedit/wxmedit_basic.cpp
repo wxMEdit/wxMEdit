@@ -1629,29 +1629,7 @@ void MadEdit::Undo()
     do
     {
         wxFileOffset &pos = (*it)->m_Pos;
-        switch ((*it)->m_Type)
-        {
-        case udtInsert:
-            {
-                MadInsertUndoData *iudata = (MadInsertUndoData *) (*it);
-                lit = DeleteInsertData(pos, iudata->m_Size, NULL, 0, NULL, &lineid);
-            }
-            break;
-        case udtDelete:
-            {
-                MadDeleteUndoData *dudata = (MadDeleteUndoData *) (*it);
-                lit = DeleteInsertData(pos, 0, NULL, dudata->m_Size, &dudata->m_Data, &lineid);
-            }
-            break;
-        case udtOverwrite:
-            {
-                MadOverwriteUndoData *oudata = (MadOverwriteUndoData *) (*it);
-                lit = DeleteInsertData(pos, oudata->m_InsSize, NULL,
-                                            oudata->m_DelSize, &oudata->m_DelData,
-                                            &lineid);
-            }
-            break;
-        }
+        lit = DeleteInsertData(pos, (*it)->InsSize(), NULL, (*it)->DelSize(), (*it)->DelData(), &lineid);
 
         if(lineid < fid)
         {
@@ -1760,29 +1738,7 @@ void MadEdit::Redo()
     do
     {
         wxFileOffset & pos = (*it)->m_Pos;
-        switch ((*it)->m_Type)
-        {
-        case udtInsert:
-            {
-                MadInsertUndoData *iudata = (MadInsertUndoData *) (*it);
-                lit = DeleteInsertData(pos, 0, NULL, iudata->m_Size, &iudata->m_Data, &lineid);
-            }
-            break;
-        case udtDelete:
-            {
-                MadDeleteUndoData *dudata = (MadDeleteUndoData *) (*it);
-                lit = DeleteInsertData(pos, dudata->m_Size, NULL, 0, NULL, &lineid);
-            }
-            break;
-        case udtOverwrite:
-            {
-                MadOverwriteUndoData *oudata = (MadOverwriteUndoData *) (*it);
-                lit = DeleteInsertData(pos, oudata->m_DelSize, NULL,
-                                            oudata->m_InsSize, &oudata->m_InsData,
-                                            &lineid);
-            }
-            break;
-        }
+        lit = DeleteInsertData(pos, (*it)->DelSize(), NULL, (*it)->InsSize(), (*it)->InsData(), &lineid);
 
         if(lineid < fid)
         {
