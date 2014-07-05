@@ -418,7 +418,7 @@ bool GetRawBytesFromHexUnicodeText(std::vector<char>& cs, const std::vector<ucs4
 
     BOOST_FOREACH(ucs4_t u, ucs)
     {
-        if (u_isUWhiteSpace(u))
+        if (u_isUWhiteSpace(u) && tmp_hex.size()%2==0)
             continue;
         if (!isxdigit(u))
             return false;
