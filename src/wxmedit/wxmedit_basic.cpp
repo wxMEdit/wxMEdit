@@ -1548,10 +1548,10 @@ void MadEdit::CopyToClipboard()
 
     if(m_EditMode==emColumnMode)
         CopyColumnText();
-    else if(m_EditMode==emTextMode || !m_CaretAtHexArea)
-        CopyRegularText();
-    else //m_EditMode==emHexMode && m_CaretAtHexArea
+    else if(EditingInHexAera())
         wxm::HexAreaClipboardCopyProxy::Instance().GetSelectedCopier().Copy(this);
+    else //if(!EditingInHexAera())
+        CopyRegularText();
 }
 
 void MadEdit::PasteColumnText()
@@ -1579,26 +1579,26 @@ void MadEdit::PasteRegularText()
     m_InsertMode = oldim;
 }
 
-void MadEdit::PasteRawBytes()
+void MadEdit::PasteRawBytes(bool overwirte)
 {
     vector<char> cs;
     GetRawBytesFromClipboard(cs);
 
     if(!cs.empty())
-        InsertRawBytes((wxByte*)&cs[0], cs.size());
+        InsertRawBytes((wxByte*)&cs[0], cs.size(), overwirte);
 }
 
-void MadEdit::PasteFromClipboard()
+void MadEdit::PasteFromClipboard(bool overwirte)
 {
     if(IsReadOnly())
         return;
 
     if(m_EditMode == emColumnMode)
         PasteColumnText();
-    else if(m_EditMode == emTextMode || !m_CaretAtHexArea)
+    else if(!EditingInHexAera())
         PasteRegularText();
-    else// if(m_EditMode == emHexMode && m_CaretAtHexArea)
-        PasteRawBytes();
+    else //if(EditingInHexAera())
+        PasteRawBytes(overwirte);
 }
 
 
@@ -2716,7 +2716,7 @@ MadReplaceResult MadEdit::ReplaceHex(const wxString &expr, const wxString &fmt,
     if(fmthex.size()==0)
         DeleteSelection(true, NULL, false);
     else
-        InsertRawBytes(&fmthex[0], fmthex.size());
+        InsertRawBytes(&fmthex[0], fmthex.size(), false);
 
     if(SR_NO==FindHexNext(expr, -1, rangeTo))
         return RR_REP_NNEXT;

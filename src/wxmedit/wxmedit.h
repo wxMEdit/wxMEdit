@@ -491,7 +491,7 @@ protected:
     MadUndo *DeleteSelection(bool bCorrectCaretPos, vector <int> *rpos, bool bColumnEditing);
 
     void InsertHexChar(int hc);
-    void InsertRawBytes(wxByte *bytes, size_t count);
+    void InsertRawBytes(wxByte *bytes, size_t count, bool overwirte);
 
     MadSearchResult Search(/*IN_OUT*/MadCaretPos &beginpos, /*IN_OUT*/MadCaretPos &endpos,
                            const wxString &text, bool bRegex, bool bCaseSensitive, bool bWholeWord);
@@ -524,14 +524,13 @@ protected:
     int CalcLineNumberAreaWidth(MadLineIterator lit, int lineid, int rowid, int toprow, int rowcount);
     int GetLineNumberAreaWidth(int number);
 
-    void CopyColumnText();
     void PasteColumnText();
+    void PasteRegularText();
+    void PasteRawBytes(bool overwirte);
+    void CopyColumnText();
 public:
     void CopyRegularText();
-    void PasteRegularText();
-
     void CopyRawBytes();
-    void PasteRawBytes();
 
 protected:
     void OnChar(wxKeyEvent &evt);
@@ -818,7 +817,7 @@ public: // basic functions
     void SelectAll();
     void CutToClipboard();
     void CopyToClipboard();
-    void PasteFromClipboard();
+    void PasteFromClipboard(bool overwirte);
     bool CanPaste();
 
     bool CanUndo()
@@ -917,6 +916,11 @@ public: // advanced functions
         return m_Lines->m_LineList.begin()->m_RowIndices[0].m_Start != 0;
     }
     void ToggleBOM();
+
+    bool EditingInHexAera()
+    {
+        return m_EditMode == emHexMode && m_CaretAtHexArea;
+    }
 
     void IncreaseDecreaseIndent(bool incIndent);
     bool HasLineComment() { return !m_Syntax->m_LineComment.empty(); }

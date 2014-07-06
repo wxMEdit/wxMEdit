@@ -4679,7 +4679,7 @@ void MadEdit::UCStoBlock(const ucs4_t *ucs, size_t count, MadBlock & block)
 
 void MadEdit::InsertString(const ucs4_t *ucs, size_t count, bool bColumnEditing, bool moveCaret, bool bSelText)
 {
-    if(IsReadOnly())// || (m_EditMode == emHexMode && m_CaretAtHexArea))
+    if(IsReadOnly())// || EditingInHexAera()
         return;
 
     bool oldModified=m_Modified;
@@ -6088,7 +6088,7 @@ MadUndo *MadEdit::DeleteSelection(bool bCorrectCaretPos, vector <int> *rpos, boo
 void MadEdit::InsertHexChar(int hc) // handle input in hexarea
 {
     wxASSERT(0 <= hc && hc <= 15);
-    wxASSERT(m_EditMode == emHexMode && m_CaretAtHexArea);
+    wxASSERT(EditingInHexAera());
 
     if(IsReadOnly())
         return;
@@ -6199,7 +6199,7 @@ void MadEdit::InsertHexChar(int hc) // handle input in hexarea
     }
 }
 
-void MadEdit::InsertRawBytes(wxByte *bytes, size_t count)
+void MadEdit::InsertRawBytes(wxByte *bytes, size_t count, bool overwirte)
 {
     MadBlock blk(m_Lines->m_MemData, 0, count);
     blk.m_Pos = m_Lines->m_MemData->Put(bytes, count);
@@ -6210,6 +6210,12 @@ void MadEdit::InsertRawBytes(wxByte *bytes, size_t count)
         ud = new MadOverwriteUndoData();
         ud->m_Pos = m_SelectionBegin->pos;
         ud->SetDelSize(m_SelectionEnd->pos - m_SelectionBegin->pos);
+    }
+    else if(overwirte)
+    {
+        ud = new MadOverwriteUndoData();
+        ud->m_Pos = m_CaretPos.pos;
+        ud->SetDelSize(blk.m_Size);
     }
     else
     {
@@ -7002,7 +7008,11 @@ void MadEdit::ProcessCommand(MadEditCommand command)
         CopyToClipboard();
         break;
     case ecPaste:
-        PasteFromClipboard();
+        PasteFromClipboard(false);
+        break;
+
+    case ecPasteOvr:
+        PasteFromClipboard(true);
         break;
 
     case ecTextMode:
@@ -9449,7 +9459,7 @@ void MadEdit::OnMouseMiddleUp(wxMouseEvent &evt)
     if(m_MiddleMouseToPaste)
     {
         wxTheClipboard->UsePrimarySelection(true);
-        PasteFromClipboard();
+        PasteFromClipboard(false);
         wxTheClipboard->UsePrimarySelection(false);
         evt.Skip();
     }
@@ -10182,7 +10192,7 @@ WXLRESULT MadEdit::MSWWindowProc(WXUINT message, WXWPARAM wParam, WXLPARAM lPara
         CopyToClipboard();
         return TRUE;
     case WM_PASTE:
-        PasteFromClipboard();
+        PasteFromClipboard(false);
         return TRUE;
 
     case WM_PAINT: // for Mouse-Over-Get-Word of Dr.Eye & StarDict

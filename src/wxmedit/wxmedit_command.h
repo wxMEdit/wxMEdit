@@ -80,7 +80,7 @@ enum //MadEditCommand
     ecDeleteLine,
 
     ecUndo, ecRedo,
-    ecCut, ecCopy, ecPaste,
+    ecCut, ecCopy, ecPaste, ecPasteOvr,
 
     ecToggleInsertMode,
     ecTextMode, ecColumnMode, ecHexMode,

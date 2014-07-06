@@ -98,6 +98,7 @@ public:
     void OnUpdateUI_MenuEdit_CheckSelSize(wxUpdateUIEvent& event);
     void OnUpdateUI_MenuEditCopy(wxUpdateUIEvent& event);
     void OnUpdateUI_MenuEditPaste(wxUpdateUIEvent& event);
+    void OnUpdateUI_MenuEditPasteOvr(wxUpdateUIEvent& event);
     void OnUpdateUI_Menu_CheckSize(wxUpdateUIEvent& event);
     void OnUpdateUI_MenuEditDeleteLine(wxUpdateUIEvent& event);
     void OnUpdateUI_MenuEditInsertTabChar(wxUpdateUIEvent& event);
@@ -166,6 +167,7 @@ public:
     void OnEditCut(wxCommandEvent& event);
     void OnEditCopy(wxCommandEvent& event);
     void OnEditPaste(wxCommandEvent& event);
+    void OnEditPasteOvr(wxCommandEvent& event);
     void OnEditDelete(wxCommandEvent& event);
     void OnEditCutLine(wxCommandEvent& event);
     void OnEditDeleteLine(wxCommandEvent& event);
@@ -354,6 +356,7 @@ enum { // menu id
     menuRecentFiles,
 
     // edit
+    menuPasteOvr,
     menuCutLine,
     menuDeleteLine,
     menuInsertTabChar,

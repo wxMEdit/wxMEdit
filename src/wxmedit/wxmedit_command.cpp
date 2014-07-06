@@ -100,6 +100,7 @@ void MadKeyBindings::InitCommandTextMap()
     INSERT_COMMANDTEXT(ecCut);
     INSERT_COMMANDTEXT(ecCopy);
     INSERT_COMMANDTEXT(ecPaste);
+    INSERT_COMMANDTEXT(ecPasteOvr);
 
     INSERT_COMMANDTEXT(ecToggleInsertMode);
     INSERT_COMMANDTEXT(ecTextMode);

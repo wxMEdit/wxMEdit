@@ -1016,6 +1016,7 @@ BEGIN_EVENT_TABLE(MadEditFrame,wxFrame)
 	EVT_UPDATE_UI(menuCut, MadEditFrame::OnUpdateUI_MenuEdit_CheckSelection)
 	EVT_UPDATE_UI(menuCopy, MadEditFrame::OnUpdateUI_MenuEdit_CheckSelection)
 	EVT_UPDATE_UI(menuPaste, MadEditFrame::OnUpdateUI_MenuEditPaste)
+	EVT_UPDATE_UI(menuPasteOvr, MadEditFrame::OnUpdateUI_MenuEditPasteOvr)
 	EVT_UPDATE_UI(menuDelete, MadEditFrame::OnUpdateUI_Menu_CheckSize)
 	EVT_UPDATE_UI(menuCutLine, MadEditFrame::OnUpdateUI_MenuEditDeleteLine)
 	EVT_UPDATE_UI(menuDeleteLine, MadEditFrame::OnUpdateUI_MenuEditDeleteLine)
@@ -1118,6 +1119,7 @@ BEGIN_EVENT_TABLE(MadEditFrame,wxFrame)
 	EVT_MENU(menuCut, MadEditFrame::OnEditCut)
 	EVT_MENU(menuCopy, MadEditFrame::OnEditCopy)
 	EVT_MENU(menuPaste, MadEditFrame::OnEditPaste)
+	EVT_MENU(menuPasteOvr, MadEditFrame::OnEditPasteOvr)
 	EVT_MENU(menuDelete, MadEditFrame::OnEditDelete)
 	EVT_MENU(menuCutLine, MadEditFrame::OnEditCutLine)
 	EVT_MENU(menuDeleteLine, MadEditFrame::OnEditDeleteLine)
@@ -1270,6 +1272,7 @@ CommandData CommandTable[]=
     { ecCut,            1, menuCut,                      wxT("menuCut"),                      _("Cu&t"),                                    wxT("Ctrl-X"),       wxITEM_NORMAL,    cut_xpm_idx,       0,                     _("Cut the selection and put it on the Clipboard")},
     { ecCopy,           1, menuCopy,                     wxT("menuCopy"),                     _("&Copy"),                                   wxT("Ctrl-C"),       wxITEM_NORMAL,    copy_xpm_idx,      0,                     _("Copy the selection and put it on the Clipboard")},
     { ecPaste,          1, menuPaste,                    wxT("menuPaste"),                    _("&Paste"),                                  wxT("Ctrl-V"),       wxITEM_NORMAL,    paste_xpm_idx,     0,                     _("Insert data from the Clipboard")},
+    { ecPasteOvr,       1, menuPasteOvr,                 wxT("menuPasteOvr"),                 _("&Paste with Over&writing"),                wxT(""),             wxITEM_NORMAL,    -1,                0,                     _("Overwrite data from the Clipboard")},
     { ecDelete,         1, menuDelete,                   wxT("menuDelete"),                   _("&Delete"),                                 wxT("DEL"),          wxITEM_NORMAL,    -1,                0,                     _("Delete data")},
     { 0,                1, 0,                            0,                                   0,                                            0,                   wxITEM_SEPARATOR, -1,                0,                     0},
     { ecCutLine,        1, menuCutLine,                  wxT("menuCutLine"),                  _("Cut L&ine"),                               wxT("Ctrl-Shift-L"), wxITEM_NORMAL,    -1,                0,                     _("Cut the selected lines and put it on the Clipboard")},
@@ -3001,11 +3004,21 @@ void MadEditFrame::OnUpdateUI_MenuEdit_CheckSelSize(wxUpdateUIEvent& event)
 void MadEditFrame::OnUpdateUI_MenuEditPaste(wxUpdateUIEvent& event)
 {
 #ifdef __WXMSW__
-    event.Enable(g_ActiveMadEdit && g_ActiveMadEdit->CanPaste());
+    event.Enable(g_ActiveMadEdit!=NULL && g_ActiveMadEdit->CanPaste());
 #else
     event.Enable(g_ActiveMadEdit!=NULL); // workaround for high CPU loading in Linux
 #endif
 }
+
+void MadEditFrame::OnUpdateUI_MenuEditPasteOvr(wxUpdateUIEvent& event)
+{
+#ifdef __WXMSW__
+    event.Enable(g_ActiveMadEdit!=NULL && g_ActiveMadEdit->EditingInHexAera() && g_ActiveMadEdit->CanPaste());
+#else
+    event.Enable(g_ActiveMadEdit!=NULL && g_ActiveMadEdit->EditingInHexAera());
+#endif
+}
+
 void MadEditFrame::OnUpdateUI_Menu_CheckSize(wxUpdateUIEvent& event)
 {
     event.Enable(g_ActiveMadEdit && g_ActiveMadEdit->GetFileSize());
@@ -3659,7 +3672,12 @@ void MadEditFrame::OnEditCopy(wxCommandEvent& event)
 
 void MadEditFrame::OnEditPaste(wxCommandEvent& event)
 {
-    if(g_ActiveMadEdit) g_ActiveMadEdit->PasteFromClipboard();
+    if(g_ActiveMadEdit) g_ActiveMadEdit->PasteFromClipboard(false);
+}
+
+void MadEditFrame::OnEditPasteOvr(wxCommandEvent& event)
+{
+    if(g_ActiveMadEdit) g_ActiveMadEdit->PasteFromClipboard(true);
 }
 
 void MadEditFrame::OnEditDelete(wxCommandEvent& event)
