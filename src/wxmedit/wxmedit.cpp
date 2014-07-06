@@ -6204,93 +6204,57 @@ void MadEdit::InsertRawBytes(wxByte *bytes, size_t count)
     MadBlock blk(m_Lines->m_MemData, 0, count);
     blk.m_Pos = m_Lines->m_MemData->Put(bytes, count);
 
+    MadUndoData* ud = NULL;
     if(m_Selection)
     {
-        MadOverwriteUndoData *oudata = new MadOverwriteUndoData();
+        MadOverwriteUndoData *ovrud = new MadOverwriteUndoData();
+        ud = ovrud;
 
-        oudata->m_Pos = m_SelectionBegin->pos;
-        oudata->m_DelSize = m_SelectionEnd->pos - m_SelectionBegin->pos;
+        ovrud->m_Pos = m_SelectionBegin->pos;
+        ovrud->m_DelSize = m_SelectionEnd->pos - m_SelectionBegin->pos;
 
-        oudata->m_InsSize = blk.m_Size;
-        oudata->m_InsData.push_back(blk);
-
-        MadLineIterator lit = DeleteInsertData(oudata->m_Pos,
-                                oudata->m_DelSize, &oudata->m_DelData,
-                                oudata->m_InsSize, &oudata->m_InsData);
-
-        MadUndo *undo = m_UndoBuffer->Add();
-        undo->m_CaretPosBefore=m_CaretPos.pos;
-        undo->m_CaretPosAfter=oudata->m_Pos + oudata->m_InsSize;
-        undo->m_Undos.push_back(oudata);
-
-        m_Modified = true;
-        m_Selection = false;
-        m_RepaintAll = true;
-        Refresh(false);
-
-        if(IsTextFile())
-        {
-            m_Lines->Reformat(lit, lit);
-
-            m_CaretPos.pos = undo->m_CaretPosAfter;
-            UpdateCaretByPos(m_CaretPos, m_ActiveRowUChars, m_ActiveRowWidths, m_CaretRowUCharPos);
-
-            AppearCaret();
-            UpdateScrollBarPos();
-        }
-        else
-        {
-            m_CaretPos.pos = undo->m_CaretPosAfter;
-            m_CaretPos.linepos = m_CaretPos.pos;
-
-            AppearCaret();
-            UpdateScrollBarPos();
-        }
-
-        DoSelectionChanged();
-        DoStatusChanged();
-
+        ovrud->m_InsSize = blk.m_Size;
+        ovrud->m_InsData.push_back(blk);
     }
     else
     {
         MadInsertUndoData *insud = new MadInsertUndoData;
+        ud = insud;
+
         insud->m_Pos = m_CaretPos.pos;
         insud->m_Size = blk.m_Size;
         insud->m_Data.push_back(blk);
-
-        MadUndo *undo = m_UndoBuffer->Add();
-        undo->m_CaretPosBefore=m_CaretPos.pos;
-        undo->m_CaretPosAfter=m_CaretPos.pos+blk.m_Size;
-        undo->m_Undos.push_back(insud);
-
-        MadLineIterator lit = DeleteInsertData(insud->m_Pos, 0, NULL, insud->m_Size, &insud->m_Data);
-
-        m_RepaintAll = true;
-        if(IsTextFile())
-        {
-            m_Lines->Reformat(lit, lit);
-
-            m_CaretPos.pos += blk.m_Size;
-            UpdateCaretByPos(m_CaretPos, m_ActiveRowUChars, m_ActiveRowWidths, m_CaretRowUCharPos);
-
-            AppearCaret();
-            UpdateScrollBarPos();
-        }
-        else
-        {
-            m_CaretPos.pos += blk.m_Size;
-            m_CaretPos.linepos = m_CaretPos.pos;
-
-            AppearCaret();
-            UpdateScrollBarPos();
-        }
-
-        m_Modified = true;
-        Refresh(false);
-
-        DoSelectionChanged();
-        DoStatusChanged();
     }
+
+    MadLineIterator lit = DeleteInsertData(ud->m_Pos, ud->DelSize(), ud->DelData(), ud->InsSize(), ud->InsData());
+    m_Selection = false;
+
+    MadUndo *undo = m_UndoBuffer->Add();
+    undo->m_CaretPosBefore=m_CaretPos.pos;
+    undo->m_CaretPosAfter=ud->m_Pos + ud->InsSize();
+    undo->m_Undos.push_back(ud);
+
+    m_RepaintAll = true;
+    if(IsTextFile())
+    {
+        m_Lines->Reformat(lit, lit);
+
+        m_CaretPos.pos = undo->m_CaretPosAfter;
+        UpdateCaretByPos(m_CaretPos, m_ActiveRowUChars, m_ActiveRowWidths, m_CaretRowUCharPos);
+    }
+    else
+    {
+        m_CaretPos.pos = undo->m_CaretPosAfter;
+        m_CaretPos.linepos = m_CaretPos.pos;
+    }
+    AppearCaret();
+    UpdateScrollBarPos();
+
+    m_Modified = true;
+    Refresh(false);
+
+    DoSelectionChanged();
+    DoStatusChanged();
 }
 
 // overwrite data in a single Undo
