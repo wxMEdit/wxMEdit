@@ -35,6 +35,8 @@ struct MadUndoData
     virtual wxFileOffset InsSize() = 0;
     virtual MadBlockVector* DelData() = 0;
     virtual MadBlockVector* InsData() = 0;
+    virtual void SetInsBlock(const MadBlock& blk) = 0;
+    virtual void SetDelSize(wxFileOffset size) = 0;
     virtual ~MadUndoData(){}
 };
 
@@ -47,6 +49,12 @@ struct MadInsertUndoData:MadUndoData
     virtual wxFileOffset InsSize() {return m_Size;}
     virtual MadBlockVector* DelData() {return NULL;}
     virtual MadBlockVector* InsData() {return &m_Data;}
+    virtual void SetDelSize(wxFileOffset size) {wxASSERT(size == 0);}
+    virtual void SetInsBlock(const MadBlock& blk)
+    {
+        m_Size = blk.m_Size;
+        m_Data.push_back(blk);
+    }
 };
 
 struct MadDeleteUndoData:MadUndoData
@@ -58,6 +66,8 @@ struct MadDeleteUndoData:MadUndoData
     virtual wxFileOffset InsSize() {return 0;}
     virtual MadBlockVector* DelData() {return &m_Data;}
     virtual MadBlockVector* InsData() {return NULL;}
+    virtual void SetDelSize(wxFileOffset size) {m_Size = size;}
+    virtual void SetInsBlock(const MadBlock& blk) {wxASSERT(blk.m_Size == 0);}
 };
 
 struct MadOverwriteUndoData:MadUndoData
@@ -69,6 +79,12 @@ struct MadOverwriteUndoData:MadUndoData
     virtual wxFileOffset InsSize() {return m_InsSize;}
     virtual MadBlockVector* DelData() {return &m_DelData;}
     virtual MadBlockVector* InsData() {return &m_InsData;}
+    virtual void SetDelSize(wxFileOffset size) {m_DelSize = size;}
+    virtual void SetInsBlock(const MadBlock& blk)
+    {
+        m_InsSize = blk.m_Size;
+        m_InsData.push_back(blk);
+    }
 };
 
 

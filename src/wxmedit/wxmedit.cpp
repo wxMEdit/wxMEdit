@@ -6207,24 +6207,16 @@ void MadEdit::InsertRawBytes(wxByte *bytes, size_t count)
     MadUndoData* ud = NULL;
     if(m_Selection)
     {
-        MadOverwriteUndoData *ovrud = new MadOverwriteUndoData();
-        ud = ovrud;
-
-        ovrud->m_Pos = m_SelectionBegin->pos;
-        ovrud->m_DelSize = m_SelectionEnd->pos - m_SelectionBegin->pos;
-
-        ovrud->m_InsSize = blk.m_Size;
-        ovrud->m_InsData.push_back(blk);
+        ud = new MadOverwriteUndoData();
+        ud->m_Pos = m_SelectionBegin->pos;
+        ud->SetDelSize(m_SelectionEnd->pos - m_SelectionBegin->pos);
     }
     else
     {
-        MadInsertUndoData *insud = new MadInsertUndoData;
-        ud = insud;
-
-        insud->m_Pos = m_CaretPos.pos;
-        insud->m_Size = blk.m_Size;
-        insud->m_Data.push_back(blk);
+        ud = new MadInsertUndoData;
+        ud->m_Pos = m_CaretPos.pos;
     }
+    ud->SetInsBlock(blk);
 
     MadLineIterator lit = DeleteInsertData(ud->m_Pos, ud->DelSize(), ud->DelData(), ud->InsSize(), ud->InsData());
     m_Selection = false;
