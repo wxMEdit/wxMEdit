@@ -53,6 +53,9 @@ namespace wxm
 
 	static const size_t FIRSTLINE_SYNTAXPATTEN_MAXLEN = 16;
 
+	static const int DEFAULT_WINDOW_WIDTH = 990;
+	static const int DEFAULT_WINDOW_HEIGHT = 660;
+
 }; // namespace wxm
 
 #endif //_WXM_DEF_H_

@@ -358,7 +358,10 @@ bool MadEditApp::OnInit()
     cfg->Read(wxT("/wxMEdit/WindowMaximize"), &maximize, false);
 #endif
     wxPoint pos=wxDefaultPosition;
-    wxSize size=wxDefaultSize;
+    wxSize size;
+    wxRect rect = wxGetClientDisplayRect(); // FIXME: multi-monitor
+    size.x = std::min(rect.width, wxm::DEFAULT_WINDOW_WIDTH);
+    size.y = std::min(rect.height, wxm::DEFAULT_WINDOW_HEIGHT);
 
     long x=0,y=0,w=0,h=0;
     cfg->Read(wxT("/wxMEdit/WindowLeft"), &x);
