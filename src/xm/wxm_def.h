@@ -19,6 +19,9 @@
 # define wxOS_WINDOWS_9X wxWIN95
 # include <wx/longlong.h>
   typedef wxLongLong wxMilliClock_t;
+# define EVT_MOUSE_CAPTURE_LOST(x) 
+# include <wx/event.h>
+  typedef wxMouseEvent wxMouseCaptureLostEvent;
 #endif
 
 typedef std::vector<size_t> LineNumberList;
