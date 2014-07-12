@@ -3,26 +3,15 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
-#: ../src/dialog/wxm_options_dialog.cpp:661
-#: ../src/dialog/wxm_options_dialog.cpp:662
-#: ../src/dialog/wxm_options_dialog.cpp:664
-#: ../src/dialog/wxm_options_dialog.cpp:665
-#: ../src/dialog/wxm_options_dialog.cpp:667
-#: ../src/dialog/wxm_options_dialog.cpp:668
-#: ../src/dialog/wxm_options_dialog.cpp:670
-#: ../src/dialog/wxm_options_dialog.cpp:671
 #: ../src/dialog/wxm_options_dialog.cpp:672
-#: ../src/dialog/wxm_options_dialog.cpp:674
+#: ../src/dialog/wxm_options_dialog.cpp:673
 #: ../src/dialog/wxm_options_dialog.cpp:675
 #: ../src/dialog/wxm_options_dialog.cpp:676
-#: ../src/dialog/wxm_options_dialog.cpp:677
 #: ../src/dialog/wxm_options_dialog.cpp:678
 #: ../src/dialog/wxm_options_dialog.cpp:679
-#: ../src/dialog/wxm_options_dialog.cpp:680
 #: ../src/dialog/wxm_options_dialog.cpp:681
 #: ../src/dialog/wxm_options_dialog.cpp:682
 #: ../src/dialog/wxm_options_dialog.cpp:683
-#: ../src/dialog/wxm_options_dialog.cpp:684
 #: ../src/dialog/wxm_options_dialog.cpp:685
 #: ../src/dialog/wxm_options_dialog.cpp:686
 #: ../src/dialog/wxm_options_dialog.cpp:687
@@ -34,11 +23,22 @@
 #: ../src/dialog/wxm_options_dialog.cpp:693
 #: ../src/dialog/wxm_options_dialog.cpp:694
 #: ../src/dialog/wxm_options_dialog.cpp:695
+#: ../src/dialog/wxm_options_dialog.cpp:696
+#: ../src/dialog/wxm_options_dialog.cpp:697
+#: ../src/dialog/wxm_options_dialog.cpp:698
+#: ../src/dialog/wxm_options_dialog.cpp:699
+#: ../src/dialog/wxm_options_dialog.cpp:700
+#: ../src/dialog/wxm_options_dialog.cpp:701
+#: ../src/dialog/wxm_options_dialog.cpp:702
+#: ../src/dialog/wxm_options_dialog.cpp:703
+#: ../src/dialog/wxm_options_dialog.cpp:704
+#: ../src/dialog/wxm_options_dialog.cpp:705
+#: ../src/dialog/wxm_options_dialog.cpp:706
 msgid ""
 msgstr ""
 "Project-Id-Version: wxMEdit 2.9.7\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-02-20 23:41+0800\n"
+"POT-Creation-Date: 2014-07-12 15:57+0800\n"
 "PO-Revision-Date: 2014-02-24 13:40+0100\n"
 "Last-Translator: \n"
 "Language-Team:  <carlos1994sanchez@gmail.com>\n"
@@ -247,7 +247,7 @@ msgstr "Combinando marcas diacríticas"
 msgid "Greek and Coptic"
 msgstr "Griego y Copto"
 
-#: wxstd.po.cpp:53 ../src/xm/wxm_encoding/encoding.cpp:215
+#: wxstd.po.cpp:53 ../src/xm/wxm_encoding/encoding.cpp:218
 msgid "Cyrillic"
 msgstr "Cirílico"
 
@@ -255,11 +255,11 @@ msgstr "Cirílico"
 msgid "Armenian"
 msgstr "Armenio"
 
-#: wxstd.po.cpp:55 ../src/xm/wxm_encoding/encoding.cpp:218
+#: wxstd.po.cpp:55 ../src/xm/wxm_encoding/encoding.cpp:221
 msgid "Hebrew"
 msgstr "Hebreo"
 
-#: wxstd.po.cpp:56 ../src/xm/wxm_encoding/encoding.cpp:216
+#: wxstd.po.cpp:56 ../src/xm/wxm_encoding/encoding.cpp:219
 msgid "Arabic"
 msgstr "Árabe"
 
@@ -1119,7 +1119,7 @@ msgstr "Número"
 msgid "String"
 msgstr "Cadena"
 
-#: wxstd.po.cpp:272 ../src/wxmedit_frame.cpp:2100
+#: wxstd.po.cpp:272 ../src/wxmedit_frame.cpp:2106
 msgid "Comment"
 msgstr "Comentar"
 
@@ -1878,40 +1878,40 @@ msgstr ""
 msgid "Hex Mode to Text/Column Mode"
 msgstr "Modo hexadecimal a texto/Modo columna"
 
-#: ../src/wxmedit/wxmedit_basic.cpp:1975 ../src/wxmedit/wxmedit_basic.cpp:2044
-#: ../src/wxmedit_frame.cpp:2769
+#: ../src/wxmedit/wxmedit_basic.cpp:1929 ../src/wxmedit/wxmedit_basic.cpp:1998
+#: ../src/wxmedit_frame.cpp:2779
 msgid "The Parent Directory of this file does not exist:"
 msgstr "El directorio principal de este archivo no existe:"
 
-#: ../src/wxmedit/wxmedit_basic.cpp:2064
+#: ../src/wxmedit/wxmedit_basic.cpp:2018
 msgid "Cannot save this file:"
 msgstr "No es posible guardar el archivo:"
 
-#: ../src/wxmedit/wxmedit_basic.cpp:2092
+#: ../src/wxmedit/wxmedit_basic.cpp:2046
 msgid "Do you want to save this file?"
 msgstr "¿Desea guardar este archivo?"
 
-#: ../src/wxmedit/wxmedit_basic.cpp:2103
+#: ../src/wxmedit/wxmedit_basic.cpp:2057
 msgid "Save File As"
 msgstr "Guardar archivo como..."
 
-#: ../src/wxmedit/wxmedit_basic.cpp:2107 ../src/wxmedit_frame.cpp:2085
+#: ../src/wxmedit/wxmedit_basic.cpp:2061 ../src/wxmedit_frame.cpp:2091
 msgid "Save File"
 msgstr "Guardar archivo"
 
-#: ../src/wxmedit/wxmedit_basic.cpp:2147
+#: ../src/wxmedit/wxmedit_basic.cpp:2101
 msgid "Do you want to discard changes?"
 msgstr "¿Desea descartar los cambios?"
 
-#: ../src/wxmedit/wxmedit_basic.cpp:2181
+#: ../src/wxmedit/wxmedit_basic.cpp:2135
 msgid "This file has been changed by another application."
 msgstr "Este archivo ha sido cambiado por otra aplicación."
 
-#: ../src/wxmedit/wxmedit_basic.cpp:2182
+#: ../src/wxmedit/wxmedit_basic.cpp:2136
 msgid "Do you want to reload it?"
 msgstr "¿Desea volver a cargarlo?"
 
-#: ../src/wxmedit/wxmedit_basic.cpp:2441
+#: ../src/wxmedit/wxmedit_basic.cpp:2395
 msgid "The input string is not a valid Hex-String:"
 msgstr "La cadena introducida no es una cadena hexadecimal válida:"
 
@@ -1933,243 +1933,243 @@ msgstr ""
 msgid "The format of '%s' is invalid."
 msgstr "El formato de '%s' no es válido."
 
-#: ../src/xm/wxm_encoding/encoding.cpp:114
+#: ../src/xm/wxm_encoding/encoding.cpp:116
 msgid "Western European (ISO-8859-1)"
 msgstr "Europa Occidental (ISO-8859-1)"
 
-#: ../src/xm/wxm_encoding/encoding.cpp:115
+#: ../src/xm/wxm_encoding/encoding.cpp:117
 msgid "Central European (ISO-8859-2)"
 msgstr "Central Europeo (ISO-8859-2)"
 
-#: ../src/xm/wxm_encoding/encoding.cpp:116
+#: ../src/xm/wxm_encoding/encoding.cpp:118
 msgid "South European (ISO-8859-3)"
 msgstr "Europa del sur (ISO-8859-3)"
 
-#: ../src/xm/wxm_encoding/encoding.cpp:117
+#: ../src/xm/wxm_encoding/encoding.cpp:119
 msgid "North European (ISO-8859-4)"
 msgstr "Europa del norte (ISO-8859-4)"
 
-#: ../src/xm/wxm_encoding/encoding.cpp:118
+#: ../src/xm/wxm_encoding/encoding.cpp:120
 msgid "Cyrillic (ISO-8859-5)"
 msgstr "Cirílico (ISO-8859-5)"
 
-#: ../src/xm/wxm_encoding/encoding.cpp:119
+#: ../src/xm/wxm_encoding/encoding.cpp:121
 msgid "Arabic (ISO-8859-6)"
 msgstr "Árabe (ISO-8859-6)"
 
-#: ../src/xm/wxm_encoding/encoding.cpp:120
+#: ../src/xm/wxm_encoding/encoding.cpp:122
 msgid "Greek (ISO-8859-7)"
 msgstr "Griego (ISO-8859-7)"
 
-#: ../src/xm/wxm_encoding/encoding.cpp:121
+#: ../src/xm/wxm_encoding/encoding.cpp:123
 msgid "Hebrew (ISO-8859-8)"
 msgstr "Hebreo (ISO-8859-8)"
 
-#: ../src/xm/wxm_encoding/encoding.cpp:122
+#: ../src/xm/wxm_encoding/encoding.cpp:124
 msgid "Turkish (ISO-8859-9)"
 msgstr "Turco (ISO-8859-9)"
 
-#: ../src/xm/wxm_encoding/encoding.cpp:123
+#: ../src/xm/wxm_encoding/encoding.cpp:125
 msgid "Nordic (ISO-8859-10)"
 msgstr "Nórdico (ISO-8859-10)"
 
-#: ../src/xm/wxm_encoding/encoding.cpp:124
+#: ../src/xm/wxm_encoding/encoding.cpp:126
 msgid "Thai (ISO-8859-11)"
 msgstr "Tailandés (ISO-8859-11)"
 
-#: ../src/xm/wxm_encoding/encoding.cpp:125
+#: ../src/xm/wxm_encoding/encoding.cpp:127
 msgid "Baltic (ISO-8859-13)"
 msgstr "Báltico (ISO-8859-13)"
 
-#: ../src/xm/wxm_encoding/encoding.cpp:126
+#: ../src/xm/wxm_encoding/encoding.cpp:128
 msgid "Celtic (ISO-8859-14)"
 msgstr "Celta (ISO-8859-14)"
 
-#: ../src/xm/wxm_encoding/encoding.cpp:127
+#: ../src/xm/wxm_encoding/encoding.cpp:129
 msgid "Western European with Euro (ISO-8859-15)"
 msgstr "Europa occidental con Euro (ISO-8859-15)"
 
-#: ../src/xm/wxm_encoding/encoding.cpp:128
+#: ../src/xm/wxm_encoding/encoding.cpp:130
 msgid "South-Eastern European (ISO-8859-16)"
 msgstr "Europa sudoriental (ISO-8859-16)"
 
-#: ../src/xm/wxm_encoding/encoding.cpp:129
+#: ../src/xm/wxm_encoding/encoding.cpp:131
 msgid "Windows Thai (CP 874)"
 msgstr "Windows Tailandés (CP 874)"
 
-#: ../src/xm/wxm_encoding/encoding.cpp:130
+#: ../src/xm/wxm_encoding/encoding.cpp:132
 msgid "Windows Central European (CP 1250)"
 msgstr "Windows Europa Central (CP 1250)"
 
-#: ../src/xm/wxm_encoding/encoding.cpp:131
+#: ../src/xm/wxm_encoding/encoding.cpp:133
 msgid "Windows Cyrillic (CP 1251)"
 msgstr "Windows Cirílico (CP 1251)"
 
-#: ../src/xm/wxm_encoding/encoding.cpp:132
+#: ../src/xm/wxm_encoding/encoding.cpp:134
 msgid "Windows Western European (CP 1252)"
 msgstr "Windows Europa Occidental (CP 1252)"
 
-#: ../src/xm/wxm_encoding/encoding.cpp:133
+#: ../src/xm/wxm_encoding/encoding.cpp:135
 msgid "Windows Greek (CP 1253)"
 msgstr "Windows Griego (CP 1253)"
 
-#: ../src/xm/wxm_encoding/encoding.cpp:134
+#: ../src/xm/wxm_encoding/encoding.cpp:136
 msgid "Windows Turkish (CP 1254)"
 msgstr "Windows Turco (CP 1254)"
 
-#: ../src/xm/wxm_encoding/encoding.cpp:135
+#: ../src/xm/wxm_encoding/encoding.cpp:137
 msgid "Windows Hebrew (CP 1255)"
 msgstr "Windows Hebreo (CP 1255)"
 
-#: ../src/xm/wxm_encoding/encoding.cpp:136
+#: ../src/xm/wxm_encoding/encoding.cpp:138
 msgid "Windows Arabic (CP 1256)"
 msgstr "Windows Árabe (CP 1256)"
 
-#: ../src/xm/wxm_encoding/encoding.cpp:137
+#: ../src/xm/wxm_encoding/encoding.cpp:139
 msgid "Windows Baltic (CP 1257)"
 msgstr "Windows Báltico (CP 1257)"
 
-#: ../src/xm/wxm_encoding/encoding.cpp:138
+#: ../src/xm/wxm_encoding/encoding.cpp:140
 msgid "Windows Vietnamese (CP 1258)"
 msgstr "Windows Vietnamita (CP 1258)"
 
-#: ../src/xm/wxm_encoding/encoding.cpp:139
+#: ../src/xm/wxm_encoding/encoding.cpp:141
 msgid "CP437 Variant for ASCII Art"
 msgstr "Variante CP437 para arte ASCII"
 
-#: ../src/xm/wxm_encoding/encoding.cpp:140
+#: ../src/xm/wxm_encoding/encoding.cpp:142
 msgid "Windows/DOS OEM (CP 437)"
 msgstr "Windows/DOS OEM (CP 437)"
 
-#: ../src/xm/wxm_encoding/encoding.cpp:141
+#: ../src/xm/wxm_encoding/encoding.cpp:143
 msgid "Windows/DOS OEM - Latin 1 (CP 850)"
 msgstr "Windows/DOS OEM - Latín 1 (CP 850)"
 
-#: ../src/xm/wxm_encoding/encoding.cpp:142
+#: ../src/xm/wxm_encoding/encoding.cpp:144
 msgid "Windows/DOS OEM - Latin 2 (CP 852)"
 msgstr "Windows/DOS OEM - Latin 2 (CP 852)"
 
-#: ../src/xm/wxm_encoding/encoding.cpp:143
+#: ../src/xm/wxm_encoding/encoding.cpp:145
 msgid "Windows/DOS OEM - Cyrillic (CP 855)"
 msgstr "Windows/DOS OEM - Cirílico (CP 855)"
 
-#: ../src/xm/wxm_encoding/encoding.cpp:144
+#: ../src/xm/wxm_encoding/encoding.cpp:146
 msgid "Windows/DOS OEM - Cyrillic (CP 866)"
 msgstr "Windows/DOS OEM - Cirílico (CP 856)"
 
-#: ../src/xm/wxm_encoding/encoding.cpp:145
+#: ../src/xm/wxm_encoding/encoding.cpp:147
 msgid "Cyrillic (KOI8-R)"
 msgstr "Cirílico (KOI8-R)"
 
-#: ../src/xm/wxm_encoding/encoding.cpp:146
+#: ../src/xm/wxm_encoding/encoding.cpp:148
 msgid "Cyrillic (KOI8-U)"
 msgstr "Cirílico (KOI8-U)"
 
-#: ../src/xm/wxm_encoding/encoding.cpp:148
+#: ../src/xm/wxm_encoding/encoding.cpp:150
 msgid "Windows Japanese (CP 932)"
 msgstr "Windows Japonés (CP 932)"
 
-#: ../src/xm/wxm_encoding/encoding.cpp:149
+#: ../src/xm/wxm_encoding/encoding.cpp:151
 msgid "Windows Chinese Simplified (CP 936)"
 msgstr "Windows Chino Simplificado (CP 936)"
 
-#: ../src/xm/wxm_encoding/encoding.cpp:150
+#: ../src/xm/wxm_encoding/encoding.cpp:152
 msgid "Windows Korean (CP 949)"
 msgstr "Windows Coreano (CP 949)"
 
-#: ../src/xm/wxm_encoding/encoding.cpp:151
+#: ../src/xm/wxm_encoding/encoding.cpp:153
 msgid "Windows Chinese Traditional (CP 950)"
 msgstr "Windows Chino Tradicional (CP 950)"
 
-#: ../src/xm/wxm_encoding/encoding.cpp:152
+#: ../src/xm/wxm_encoding/encoding.cpp:154
 msgid "EUC-JP Double-Byte Edition of Windows (CP 20932)"
 msgstr "EUC-JP edición doble byte de Windows (CP 20932)"
 
-#: ../src/xm/wxm_encoding/encoding.cpp:154
+#: ../src/xm/wxm_encoding/encoding.cpp:156
 msgid "Unicode/Chinese Simplified (GB18030)"
 msgstr "Unicode/Chino simplificado (GB18030)"
 
-#: ../src/xm/wxm_encoding/encoding.cpp:156
+#: ../src/xm/wxm_encoding/encoding.cpp:158
 msgid "Unicode 8 bit (UTF-8)"
 msgstr "Unicode 8 bit (UTF-8)"
 
-#: ../src/xm/wxm_encoding/encoding.cpp:157
+#: ../src/xm/wxm_encoding/encoding.cpp:159
 msgid "Unicode 16 bit Little Endian (UTF-16LE)"
 msgstr "Unicode 16 bit Little Endian (UTF-16LE)"
 
-#: ../src/xm/wxm_encoding/encoding.cpp:158
+#: ../src/xm/wxm_encoding/encoding.cpp:160
 msgid "Unicode 16 bit Big Endian (UTF-16BE)"
 msgstr "Unicode 16 bit Big Endian (UTF-16BE)"
 
-#: ../src/xm/wxm_encoding/encoding.cpp:159
+#: ../src/xm/wxm_encoding/encoding.cpp:161
 msgid "Unicode 32 bit Little Endian (UTF-32LE)"
 msgstr "Unicode 32 bit Little Endian (UTF-32LE)"
 
-#: ../src/xm/wxm_encoding/encoding.cpp:160
+#: ../src/xm/wxm_encoding/encoding.cpp:162
 msgid "Unicode 32 bit Big Endian (UTF-32BE)"
 msgstr "Unicode 32 bit Big Endian (UTF-32BE)"
 
-#: ../src/xm/wxm_encoding/encoding.cpp:210
+#: ../src/xm/wxm_encoding/encoding.cpp:213
 msgid "Other"
 msgstr "Otros"
 
-#: ../src/xm/wxm_encoding/encoding.cpp:211
+#: ../src/xm/wxm_encoding/encoding.cpp:214
 msgid "Western Europe"
 msgstr "Europa Occidental"
 
-#: ../src/xm/wxm_encoding/encoding.cpp:212
+#: ../src/xm/wxm_encoding/encoding.cpp:215
 msgid "Central Europe"
 msgstr "Europa Central"
 
-#: ../src/xm/wxm_encoding/encoding.cpp:213
+#: ../src/xm/wxm_encoding/encoding.cpp:216
 msgid "South Europe"
 msgstr "Europa del Sur"
 
-#: ../src/xm/wxm_encoding/encoding.cpp:214
+#: ../src/xm/wxm_encoding/encoding.cpp:217
 msgid "North Europe"
 msgstr "Europa del Norte"
 
-#: ../src/xm/wxm_encoding/encoding.cpp:217
+#: ../src/xm/wxm_encoding/encoding.cpp:220
 msgid "Greek"
 msgstr "Griego"
 
-#: ../src/xm/wxm_encoding/encoding.cpp:219
+#: ../src/xm/wxm_encoding/encoding.cpp:222
 msgid "Turkish"
 msgstr "Turco"
 
-#: ../src/xm/wxm_encoding/encoding.cpp:220
+#: ../src/xm/wxm_encoding/encoding.cpp:223
 msgid "Baltic"
 msgstr "Báltico"
 
-#: ../src/xm/wxm_encoding/encoding.cpp:221
+#: ../src/xm/wxm_encoding/encoding.cpp:224
 msgid "East Asia"
 msgstr "Asia del Este"
 
-#: ../src/xm/wxm_encoding/encoding.cpp:222
+#: ../src/xm/wxm_encoding/encoding.cpp:225
 msgid "Southeast Asia"
 msgstr "Asia del Sudeste"
 
-#: ../src/xm/wxm_encoding/encoding.cpp:223
+#: ../src/xm/wxm_encoding/encoding.cpp:226
 msgid "Unicode"
 msgstr "Unicode"
 
-#: ../src/wxmedit_frame.cpp:172
+#: ../src/wxmedit_frame.cpp:171
 msgid "Current maintainer of wxMEdit"
 msgstr "Mantenedor actual de wxMEdit"
 
-#: ../src/wxmedit_frame.cpp:173
+#: ../src/wxmedit_frame.cpp:172
 msgid "Creator of MadEdit"
 msgstr "Creador de MadEdit"
 
-#: ../src/wxmedit_frame.cpp:174
+#: ../src/wxmedit_frame.cpp:173
 msgid "Translator for Japanese"
 msgstr "Traducción al japonés"
 
-#: ../src/wxmedit_frame.cpp:175
+#: ../src/wxmedit_frame.cpp:174
 msgid "Translator for Spanish"
 msgstr "Traducción al Español"
 
-#: ../src/wxmedit_frame.cpp:176
+#: ../src/wxmedit_frame.cpp:175 ../src/wxmedit_frame.cpp:176
 msgid "Translator for Traditional Chinese"
 msgstr "Traducción al Chino Tradicional"
 
@@ -2187,1281 +2187,1293 @@ msgstr "Presentador de parche para wxMEdit/MadEdit"
 msgid "Creator of wxmedit package in AUR"
 msgstr "Creador del paquete wxmedit en AUR"
 
-#: ../src/wxmedit_frame.cpp:774
+#: ../src/wxmedit_frame.cpp:184
+msgid "Creator of Gentoo package wxmedit"
+msgstr ""
+
+#: ../src/wxmedit_frame.cpp:775
 msgid "Ln:"
 msgstr "Línea: "
 
-#: ../src/wxmedit_frame.cpp:777
+#: ../src/wxmedit_frame.cpp:778
 msgid "Sub:"
 msgstr "Sub: "
 
-#: ../src/wxmedit_frame.cpp:780
+#: ../src/wxmedit_frame.cpp:781
 msgid "Col:"
 msgstr "Columna: "
 
-#: ../src/wxmedit_frame.cpp:781
+#: ../src/wxmedit_frame.cpp:782
 msgid "CharPos:"
 msgstr "Posición de carácter: "
 
-#: ../src/wxmedit_frame.cpp:782
+#: ../src/wxmedit_frame.cpp:783
 msgid "SelSize:"
 msgstr "Selección: "
 
-#: ../src/wxmedit_frame.cpp:895
+#: ../src/wxmedit_frame.cpp:896
 msgid "ReadOnly"
 msgstr "Sólo lectura"
 
-#: ../src/wxmedit_frame.cpp:905
+#: ../src/wxmedit_frame.cpp:906
 msgid "INS"
 msgstr "INS"
 
-#: ../src/wxmedit_frame.cpp:910
+#: ../src/wxmedit_frame.cpp:911
 msgid "OVR"
 msgstr "OVR"
 
-#: ../src/wxmedit_frame.cpp:1231
+#: ../src/wxmedit_frame.cpp:1238
 msgid "&File"
 msgstr "&Archivo"
 
-#: ../src/wxmedit_frame.cpp:1232
+#: ../src/wxmedit_frame.cpp:1239
 msgid "&New File"
 msgstr "&Nuevo archivo"
 
-#: ../src/wxmedit_frame.cpp:1232
+#: ../src/wxmedit_frame.cpp:1239
 msgid "Create a new file"
 msgstr "Crea un nuevo archivo"
 
-#: ../src/wxmedit_frame.cpp:1233
+#: ../src/wxmedit_frame.cpp:1240
 msgid "&Open File..."
 msgstr "&Abrir archivo..."
 
-#: ../src/wxmedit_frame.cpp:1233
+#: ../src/wxmedit_frame.cpp:1240
 msgid "Open an existing file"
 msgstr "Abre un archivo existente"
 
-#: ../src/wxmedit_frame.cpp:1235
+#: ../src/wxmedit_frame.cpp:1242
 msgid "&Save File"
 msgstr "&Guardar archivo"
 
-#: ../src/wxmedit_frame.cpp:1235
+#: ../src/wxmedit_frame.cpp:1242
 msgid "Save the file"
 msgstr "Guarde el archivo"
 
-#: ../src/wxmedit_frame.cpp:1236
+#: ../src/wxmedit_frame.cpp:1243
 msgid "Save &As..."
 msgstr "G&uardar como..."
 
-#: ../src/wxmedit_frame.cpp:1236
+#: ../src/wxmedit_frame.cpp:1243
 msgid "Save the file with a new name"
 msgstr "Guarda el archivo con un nuevo nombre"
 
-#: ../src/wxmedit_frame.cpp:1237
+#: ../src/wxmedit_frame.cpp:1244
 msgid "Sa&ve All"
 msgstr "Guardar &todo"
 
-#: ../src/wxmedit_frame.cpp:1237
+#: ../src/wxmedit_frame.cpp:1244
 msgid "Save all files"
 msgstr "Guarda todos los archivos"
 
-#: ../src/wxmedit_frame.cpp:1239
+#: ../src/wxmedit_frame.cpp:1246
 msgid "&Reload File"
 msgstr "&Recargar archivo"
 
-#: ../src/wxmedit_frame.cpp:1239
+#: ../src/wxmedit_frame.cpp:1246
 msgid "Reload the file"
 msgstr "Vuelva a cargar el archivo"
 
-#: ../src/wxmedit_frame.cpp:1241
+#: ../src/wxmedit_frame.cpp:1248
 msgid "&Close File"
 msgstr "&Cerrar archivo"
 
-#: ../src/wxmedit_frame.cpp:1241
+#: ../src/wxmedit_frame.cpp:1248
 msgid "Close the file"
 msgstr "Cierra el archivo"
 
-#: ../src/wxmedit_frame.cpp:1242
+#: ../src/wxmedit_frame.cpp:1249
 msgid "C&lose All"
 msgstr "C&errar todo"
 
-#: ../src/wxmedit_frame.cpp:1242
+#: ../src/wxmedit_frame.cpp:1249
 msgid "Close all files"
 msgstr "Cierra todos los archivos"
 
-#: ../src/wxmedit_frame.cpp:1244
+#: ../src/wxmedit_frame.cpp:1251
 msgid "Page Set&up..."
 msgstr "C&onfigurar página..."
 
-#: ../src/wxmedit_frame.cpp:1244
+#: ../src/wxmedit_frame.cpp:1251
 msgid "Setup the pages for printing"
 msgstr "Configura las páginas a imprimir"
 
-#: ../src/wxmedit_frame.cpp:1245
+#: ../src/wxmedit_frame.cpp:1252
 msgid "Print Previe&w..."
 msgstr "Imprimir &vista previa..."
 
-#: ../src/wxmedit_frame.cpp:1245
+#: ../src/wxmedit_frame.cpp:1252
 msgid "Preview the result of printing"
 msgstr "Muestra el resultado de la impresión"
 
-#: ../src/wxmedit_frame.cpp:1246
+#: ../src/wxmedit_frame.cpp:1253
 msgid "&Print..."
 msgstr "&Imprimir..."
 
-#: ../src/wxmedit_frame.cpp:1246
+#: ../src/wxmedit_frame.cpp:1253
 msgid "Print the file"
 msgstr "Imprime el archivo"
 
-#: ../src/wxmedit_frame.cpp:1248
+#: ../src/wxmedit_frame.cpp:1255
 msgid "Recent Files"
 msgstr "Archivos recientes"
 
-#: ../src/wxmedit_frame.cpp:1250
+#: ../src/wxmedit_frame.cpp:1257
 msgid "E&xit"
 msgstr "&Salir"
 
-#: ../src/wxmedit_frame.cpp:1250
+#: ../src/wxmedit_frame.cpp:1257
 msgid "Quit wxMEdit"
 msgstr "Cierra wxMEdit"
 
-#: ../src/wxmedit_frame.cpp:1253
+#: ../src/wxmedit_frame.cpp:1260
 msgid "&Edit"
 msgstr "&Editar"
 
-#: ../src/wxmedit_frame.cpp:1254
+#: ../src/wxmedit_frame.cpp:1261
 msgid "&Undo"
 msgstr "&Deshacer"
 
-#: ../src/wxmedit_frame.cpp:1254
+#: ../src/wxmedit_frame.cpp:1261
 msgid "Undo the last action"
 msgstr "Deshace la última acción"
 
-#: ../src/wxmedit_frame.cpp:1256
+#: ../src/wxmedit_frame.cpp:1263
 msgid "&Redo"
 msgstr "&Rehacer"
 
-#: ../src/wxmedit_frame.cpp:1262
+#: ../src/wxmedit_frame.cpp:1269
 msgid "Redo the previously undone action"
 msgstr "Rehace la acción deshecha anteriormente"
 
-#: ../src/wxmedit_frame.cpp:1265
+#: ../src/wxmedit_frame.cpp:1272
 msgid "Cu&t"
 msgstr "Cor&tar"
 
-#: ../src/wxmedit_frame.cpp:1265
+#: ../src/wxmedit_frame.cpp:1272
 msgid "Cut the selection and put it on the Clipboard"
 msgstr "Corta la selección"
 
-#: ../src/wxmedit_frame.cpp:1266
+#: ../src/wxmedit_frame.cpp:1273
 msgid "&Copy"
 msgstr "&Copiar"
 
-#: ../src/wxmedit_frame.cpp:1266
+#: ../src/wxmedit_frame.cpp:1273
 msgid "Copy the selection and put it on the Clipboard"
 msgstr "Copia la selección"
 
-#: ../src/wxmedit_frame.cpp:1267
+#: ../src/wxmedit_frame.cpp:1274
 msgid "&Paste"
 msgstr "&Pegar"
 
-#: ../src/wxmedit_frame.cpp:1267
+#: ../src/wxmedit_frame.cpp:1274
 msgid "Insert data from the Clipboard"
 msgstr "Inserta los datos del portapapeles"
 
-#: ../src/wxmedit_frame.cpp:1268 ../src/dialog/wxm_highlighting_dialog.cpp:204
+#: ../src/wxmedit_frame.cpp:1275
+msgid "Paste with Over&writing"
+msgstr ""
+
+#: ../src/wxmedit_frame.cpp:1275
+msgid "Overwrite data from the Clipboard"
+msgstr ""
+
+#: ../src/wxmedit_frame.cpp:1276 ../src/dialog/wxm_highlighting_dialog.cpp:204
 msgid "&Delete"
 msgstr "&Eliminar"
 
-#: ../src/wxmedit_frame.cpp:1268
+#: ../src/wxmedit_frame.cpp:1276
 msgid "Delete data"
 msgstr "Elimina los datos seleccionados"
 
-#: ../src/wxmedit_frame.cpp:1270
+#: ../src/wxmedit_frame.cpp:1278
 msgid "Cut L&ine"
 msgstr "Cortar &línea"
 
-#: ../src/wxmedit_frame.cpp:1270
+#: ../src/wxmedit_frame.cpp:1278
 msgid "Cut the selected lines and put it on the Clipboard"
 msgstr "Corta las líneas seleccionadas"
 
-#: ../src/wxmedit_frame.cpp:1272
+#: ../src/wxmedit_frame.cpp:1280
 msgid "Delete &Line"
 msgstr "Eliminar lí&nea"
 
-#: ../src/wxmedit_frame.cpp:1278
+#: ../src/wxmedit_frame.cpp:1286
 msgid "Delete the selected lines"
 msgstr "Elimina las líneas seleccionadas"
 
-#: ../src/wxmedit_frame.cpp:1281
+#: ../src/wxmedit_frame.cpp:1289
 msgid "Select &All"
 msgstr "&Seleccionar todo"
 
-#: ../src/wxmedit_frame.cpp:1281
+#: ../src/wxmedit_frame.cpp:1289
 msgid "Select all data"
 msgstr "Selecciona todos los datos"
 
-#: ../src/wxmedit_frame.cpp:1284
+#: ../src/wxmedit_frame.cpp:1292
 msgid "Insert Ta&b Char"
 msgstr "Insertar Ta&bulador"
 
-#: ../src/wxmedit_frame.cpp:1290
+#: ../src/wxmedit_frame.cpp:1298
 msgid "Insert a Tab char at current position"
 msgstr "Inserta un caracter tabulador"
 
-#: ../src/wxmedit_frame.cpp:1292
+#: ../src/wxmedit_frame.cpp:1300
 msgid "Insert Dat&e and Time"
 msgstr "Insertar &fecha y hora"
 
-#: ../src/wxmedit_frame.cpp:1292
+#: ../src/wxmedit_frame.cpp:1300
 msgid "Insert date and time at current position"
 msgstr "Inserta fecha y hora"
 
-#: ../src/wxmedit_frame.cpp:1295
+#: ../src/wxmedit_frame.cpp:1303
 msgid "T&oggle Bookmark "
 msgstr "Alternar Marcador"
 
-#: ../src/wxmedit_frame.cpp:1295
+#: ../src/wxmedit_frame.cpp:1303
 msgid "Toggle Bookmark at current line"
 msgstr "Alternar marcador en la línea actual"
 
-#: ../src/wxmedit_frame.cpp:1296
+#: ../src/wxmedit_frame.cpp:1304
 msgid "Go To &Next Bookmark"
 msgstr "Ir al marcador siguiente"
 
-#: ../src/wxmedit_frame.cpp:1296
+#: ../src/wxmedit_frame.cpp:1304
 msgid "Go to the next bookmark"
 msgstr "Ir al marcador siguiente"
 
-#: ../src/wxmedit_frame.cpp:1297
+#: ../src/wxmedit_frame.cpp:1305
 msgid "Go To P&revious Bookmark"
 msgstr "Ir al marcador anterior"
 
-#: ../src/wxmedit_frame.cpp:1297
+#: ../src/wxmedit_frame.cpp:1305
 msgid "Go to the previous bookmark"
 msgstr "Ir al marcador anterior"
 
-#: ../src/wxmedit_frame.cpp:1300
+#: ../src/wxmedit_frame.cpp:1308
 msgid "Ad&vanced"
 msgstr "&Avanzado"
 
-#: ../src/wxmedit_frame.cpp:1301
+#: ../src/wxmedit_frame.cpp:1309
 msgid "Copy As &Hex String"
 msgstr "Copiar como cadena &hexadecimal"
 
-#: ../src/wxmedit_frame.cpp:1301
+#: ../src/wxmedit_frame.cpp:1309
 msgid "Copy the selection as hex-string"
 msgstr "Copia selección como cadena hexadecimal"
 
-#: ../src/wxmedit_frame.cpp:1302
+#: ../src/wxmedit_frame.cpp:1310
 msgid "Copy As He&x String with Space"
 msgstr "Copiar como cadena he&xadecimal con espacio"
 
-#: ../src/wxmedit_frame.cpp:1302
+#: ../src/wxmedit_frame.cpp:1310
 msgid "Copy the selection as hex-string with space"
 msgstr "Copia selección como cadena hexadecimal con espacio"
 
-#: ../src/wxmedit_frame.cpp:1304
+#: ../src/wxmedit_frame.cpp:1312
 msgid "&Increase Indent"
 msgstr "&Aumentar sangría"
 
-#: ../src/wxmedit_frame.cpp:1304
+#: ../src/wxmedit_frame.cpp:1312
 msgid "Increase the indent of seleted lines"
 msgstr "Aumenta sangria de líneas seleccionadas"
 
-#: ../src/wxmedit_frame.cpp:1305
+#: ../src/wxmedit_frame.cpp:1313
 msgid "&Decrease Indent"
 msgstr "&Reducir sangría"
 
-#: ../src/wxmedit_frame.cpp:1305
+#: ../src/wxmedit_frame.cpp:1313
 msgid "Decrease the indent of seleted lines"
 msgstr "Reduce sangria de líneas seleccionadas"
 
-#: ../src/wxmedit_frame.cpp:1307
+#: ../src/wxmedit_frame.cpp:1315
 msgid "&Comment"
 msgstr "&Comentar"
 
-#: ../src/wxmedit_frame.cpp:1307
+#: ../src/wxmedit_frame.cpp:1315
 msgid "Comment out the selected lines"
 msgstr "Comenta líneas seleccionadas"
 
-#: ../src/wxmedit_frame.cpp:1308
+#: ../src/wxmedit_frame.cpp:1316
 msgid "&Uncomment"
 msgstr "&Descomentar"
 
-#: ../src/wxmedit_frame.cpp:1308
+#: ../src/wxmedit_frame.cpp:1316
 msgid "Uncomment the selected lines"
 msgstr "Descomenta líneas seleccionadas"
 
-#: ../src/wxmedit_frame.cpp:1310
+#: ../src/wxmedit_frame.cpp:1318
 msgid "WordWraps To NewLine Chars"
 msgstr "Caracteres de ajuste de línea a nueva línea"
 
-#: ../src/wxmedit_frame.cpp:1310
+#: ../src/wxmedit_frame.cpp:1318
 msgid "Convert WordWraps to NewLine chars in the file or selection"
 msgstr "Convierte caracteres de ajuste de línea a caracteres de nueva línea"
 
-#: ../src/wxmedit_frame.cpp:1311
+#: ../src/wxmedit_frame.cpp:1319
 msgid "NewLine Chars To WordWraps"
 msgstr "Caracteres de nueva línea a ajuste de línea"
 
-#: ../src/wxmedit_frame.cpp:1311
+#: ../src/wxmedit_frame.cpp:1319
 msgid "Convert NewLine chars to WordWraps in the selection"
 msgstr "Convierte caracteres de nueva línea a caracteres de ajuste de líneas"
 
-#: ../src/wxmedit_frame.cpp:1313
+#: ../src/wxmedit_frame.cpp:1321
 msgid "To U&pperCase"
 msgstr "A mayúsculas"
 
-#: ../src/wxmedit_frame.cpp:1313
+#: ../src/wxmedit_frame.cpp:1321
 msgid "Convert the selection to uppercase"
 msgstr "Convierte selección a mayúsculas"
 
-#: ../src/wxmedit_frame.cpp:1314
+#: ../src/wxmedit_frame.cpp:1322
 msgid "To L&owerCase"
 msgstr "A minúsculas"
 
-#: ../src/wxmedit_frame.cpp:1314
+#: ../src/wxmedit_frame.cpp:1322
 msgid "Convert the selection to lowercase"
 msgstr "Convierte selección a minúsculas"
 
-#: ../src/wxmedit_frame.cpp:1315
+#: ../src/wxmedit_frame.cpp:1323
 msgid "Inver&t Case"
 msgstr "&Invertir caso"
 
-#: ../src/wxmedit_frame.cpp:1315
+#: ../src/wxmedit_frame.cpp:1323
 msgid "Invert the case of the selection"
 msgstr "Invierte el caso de la selección"
 
-#: ../src/wxmedit_frame.cpp:1317
+#: ../src/wxmedit_frame.cpp:1325
 msgid "To H&alfwidth"
 msgstr "A media anchura"
 
-#: ../src/wxmedit_frame.cpp:1317
+#: ../src/wxmedit_frame.cpp:1325
 msgid "Convert the selection to halfwidth"
 msgstr "Convierte selección a ancho medio"
 
-#: ../src/wxmedit_frame.cpp:1318 ../src/wxmedit_frame.cpp:3894
+#: ../src/wxmedit_frame.cpp:1326 ../src/wxmedit_frame.cpp:3924
 msgid "To Halfwidth by Options..."
 msgstr "A ancho medio por opciones..."
 
-#: ../src/wxmedit_frame.cpp:1318
+#: ../src/wxmedit_frame.cpp:1326
 msgid "Convert the selection to halfwidth by options"
 msgstr "Convierte selección a ancho medio por opciones"
 
-#: ../src/wxmedit_frame.cpp:1319
+#: ../src/wxmedit_frame.cpp:1327
 msgid "To &Fullwidth"
 msgstr "A ancho completo"
 
-#: ../src/wxmedit_frame.cpp:1319
+#: ../src/wxmedit_frame.cpp:1327
 msgid "Convert the selection to fullwidth"
 msgstr "Convierte selección a ancho completo"
 
-#: ../src/wxmedit_frame.cpp:1320 ../src/wxmedit_frame.cpp:3937
+#: ../src/wxmedit_frame.cpp:1328 ../src/wxmedit_frame.cpp:3967
 msgid "To Fullwidth by Options..."
 msgstr "A ancho completo por opciones..."
 
-#: ../src/wxmedit_frame.cpp:1320
+#: ../src/wxmedit_frame.cpp:1328
 msgid "Convert the selection to fullwidth by options"
 msgstr "Convierte selección a ancho completo por opciones"
 
-#: ../src/wxmedit_frame.cpp:1322
+#: ../src/wxmedit_frame.cpp:1330
 msgid "Tab Chars To Space Chars"
 msgstr "Caracteres tabuladores a caracteres de espacio"
 
-#: ../src/wxmedit_frame.cpp:1322
+#: ../src/wxmedit_frame.cpp:1330
 msgid "Convert Tab chars to Space chars in the selection"
 msgstr ""
 "Convierte caracteres tabuladores a caracteres de espacio en la selección"
 
-#: ../src/wxmedit_frame.cpp:1323
+#: ../src/wxmedit_frame.cpp:1331
 msgid "Space Chars To Tab Chars"
 msgstr "Caracteres de espacio a tabuladores"
 
-#: ../src/wxmedit_frame.cpp:1323
+#: ../src/wxmedit_frame.cpp:1331
 msgid "Convert Space chars to Tab chars in the selection"
 msgstr "Convierte caracteres de espacio a tabuladores en la selección"
 
-#: ../src/wxmedit_frame.cpp:1325
+#: ../src/wxmedit_frame.cpp:1333
 msgid "Tri&m Trailing Spaces"
 msgstr "Recortar final de espacios"
 
-#: ../src/wxmedit_frame.cpp:1325
+#: ../src/wxmedit_frame.cpp:1333
 msgid "Trim trailing spaces at the end of lines"
 msgstr "Recorta espacios finales al final de las líneas"
 
-#: ../src/wxmedit_frame.cpp:1327 ../src/dialog/wxm_sort_dialog.cpp:54
+#: ../src/wxmedit_frame.cpp:1335 ../src/dialog/wxm_sort_dialog.cpp:54
 msgid "&Sort"
 msgstr "&Ordenar"
 
-#: ../src/wxmedit_frame.cpp:1328
+#: ../src/wxmedit_frame.cpp:1336
 msgid "Sort Lines (&Ascending)"
 msgstr "Ordenar líneas (&Ascendente)"
 
-#: ../src/wxmedit_frame.cpp:1328
+#: ../src/wxmedit_frame.cpp:1336
 msgid "Sort the selected or all lines in ascending order"
 msgstr "Ordena selección o todo ascendentemente"
 
-#: ../src/wxmedit_frame.cpp:1329
+#: ../src/wxmedit_frame.cpp:1337
 msgid "Sort Lines (&Descending)"
 msgstr "Ordenar líneas (&Descendente)"
 
-#: ../src/wxmedit_frame.cpp:1329
+#: ../src/wxmedit_frame.cpp:1337
 msgid "Sort the selected or all lines in descending order"
 msgstr "Ordena selección o todo descendentemente"
 
-#: ../src/wxmedit_frame.cpp:1331
+#: ../src/wxmedit_frame.cpp:1339
 msgid "Sort Lines (A&scending, CaseSensitive)"
 msgstr "Ordenar íneas (Ascendente, mayúsculas y minúsculas)"
 
-#: ../src/wxmedit_frame.cpp:1331
+#: ../src/wxmedit_frame.cpp:1339
 msgid "Sort lines in ascending order and with case-sensitive"
 msgstr "Ordena líneas ascendentemente con mayus/minus"
 
-#: ../src/wxmedit_frame.cpp:1332
+#: ../src/wxmedit_frame.cpp:1340
 msgid "Sort Lines (D&escending, CaseSensitive)"
 msgstr "Ordenar íneas (Descendente, mayúsculas y minúsculas)"
 
-#: ../src/wxmedit_frame.cpp:1332
+#: ../src/wxmedit_frame.cpp:1340
 msgid "Sort lines in descending order and with case-sensitive"
 msgstr "Ordena líneas descentemente con mayus/minus"
 
-#: ../src/wxmedit_frame.cpp:1334
+#: ../src/wxmedit_frame.cpp:1342
 msgid "Sort Lines by &Current Options"
 msgstr "Ordenar líneas con opciones actuales"
 
-#: ../src/wxmedit_frame.cpp:1334
+#: ../src/wxmedit_frame.cpp:1342
 msgid "Sort the selected or all lines by using current options"
 msgstr "Ordena selección o todo con opción actual"
 
-#: ../src/wxmedit_frame.cpp:1335
+#: ../src/wxmedit_frame.cpp:1343
 msgid "Sort &Options..."
 msgstr "&Opciones de orden..."
 
-#: ../src/wxmedit_frame.cpp:1335
+#: ../src/wxmedit_frame.cpp:1343
 msgid "Set the sort options"
 msgstr "Ajusta las opciones de ordenación"
 
-#: ../src/wxmedit_frame.cpp:1338
+#: ../src/wxmedit_frame.cpp:1346
 msgid "&Search"
 msgstr "&Buscar"
 
-#: ../src/wxmedit_frame.cpp:1339
+#: ../src/wxmedit_frame.cpp:1347
 msgid "&Find..."
 msgstr "&Buscar..."
 
-#: ../src/wxmedit_frame.cpp:1339
+#: ../src/wxmedit_frame.cpp:1347
 msgid "Find a string"
 msgstr "Busca una cadena"
 
-#: ../src/wxmedit_frame.cpp:1340
+#: ../src/wxmedit_frame.cpp:1348
 #: ../src/dialog/wxm_search_replace_dialog.cpp:134
 msgid "Find &Next"
 msgstr "Buscar &siguiente"
 
-#: ../src/wxmedit_frame.cpp:1340
+#: ../src/wxmedit_frame.cpp:1348
 msgid "Find next occurrence"
 msgstr "Busca la siguiente aparición"
 
-#: ../src/wxmedit_frame.cpp:1341
+#: ../src/wxmedit_frame.cpp:1349
 #: ../src/dialog/wxm_search_replace_dialog.cpp:137
 msgid "Find &Previous"
 msgstr "Buscar &anterior"
 
-#: ../src/wxmedit_frame.cpp:1341
+#: ../src/wxmedit_frame.cpp:1349
 msgid "Find previous occurrence"
 msgstr "Busca la anterior aparición"
 
-#: ../src/wxmedit_frame.cpp:1343
+#: ../src/wxmedit_frame.cpp:1351
 msgid "&Replace..."
 msgstr "&Reemplazar..."
 
-#: ../src/wxmedit_frame.cpp:1343
+#: ../src/wxmedit_frame.cpp:1351
 msgid "Replace a string"
 msgstr "Reemplaza una cadena"
 
-#: ../src/wxmedit_frame.cpp:1345
+#: ../src/wxmedit_frame.cpp:1353
 msgid "Fin&d/Replace in Files..."
 msgstr "B&uscar/Reemplazar en archivos..."
 
-#: ../src/wxmedit_frame.cpp:1345
+#: ../src/wxmedit_frame.cpp:1353
 msgid "Find or replace a string in files"
 msgstr "Busca o reemplaza una cadena en archivos"
 
-#: ../src/wxmedit_frame.cpp:1346
+#: ../src/wxmedit_frame.cpp:1354
 msgid "&Show/Hide the Results of Find/Replace in Files"
 msgstr "&Mostrar/Ocultar los resultados"
 
-#: ../src/wxmedit_frame.cpp:1346
+#: ../src/wxmedit_frame.cpp:1354
 msgid "Show or hide the results of find or replace a string in files"
 msgstr "Muestra/Oculta ventana de resultados"
 
-#: ../src/wxmedit_frame.cpp:1348
+#: ../src/wxmedit_frame.cpp:1356
 msgid "&Go To Line..."
 msgstr "Ir a la &línea..."
 
-#: ../src/wxmedit_frame.cpp:1348
+#: ../src/wxmedit_frame.cpp:1356
 msgid "Go to the specified line"
 msgstr "Ir a la línea especificada"
 
-#: ../src/wxmedit_frame.cpp:1349
+#: ../src/wxmedit_frame.cpp:1357
 msgid "G&o To Position..."
 msgstr "Ir a la &Posición..."
 
-#: ../src/wxmedit_frame.cpp:1349
+#: ../src/wxmedit_frame.cpp:1357
 msgid "Go to the specified position"
 msgstr "Ir a la posición especificada"
 
-#: ../src/wxmedit_frame.cpp:1351
+#: ../src/wxmedit_frame.cpp:1359
 msgid "Go To L&eft Brace"
 msgstr "Ir a la llave de la &izquierda"
 
-#: ../src/wxmedit_frame.cpp:1351
+#: ../src/wxmedit_frame.cpp:1359
 msgid "Go to left brace"
 msgstr "Mueve cursor a llave izquierda"
 
-#: ../src/wxmedit_frame.cpp:1352
+#: ../src/wxmedit_frame.cpp:1360
 msgid "Go To R&ight Brace"
 msgstr "Ir a la llave de la &derecha"
 
-#: ../src/wxmedit_frame.cpp:1352
+#: ../src/wxmedit_frame.cpp:1360
 msgid "Go to right brace"
 msgstr "Mueve cursor a llave derecha"
 
-#: ../src/wxmedit_frame.cpp:1355
+#: ../src/wxmedit_frame.cpp:1363
 msgid "&View"
 msgstr "&Ver"
 
-#: ../src/wxmedit_frame.cpp:1356 ../src/wxmedit_frame.cpp:3076
-#: ../src/wxmedit_frame.cpp:3083
+#: ../src/wxmedit_frame.cpp:1364 ../src/wxmedit_frame.cpp:3096
+#: ../src/wxmedit_frame.cpp:3103
 msgid "Encoding: "
 msgstr "C&odificación: "
 
-#: ../src/wxmedit_frame.cpp:1357
+#: ../src/wxmedit_frame.cpp:1365
 msgid "All Encodings"
 msgstr "&Todas las codificaciones"
 
-#: ../src/wxmedit_frame.cpp:1359 ../src/wxmedit_frame.cpp:3092
-#: ../src/wxmedit_frame.cpp:3097
+#: ../src/wxmedit_frame.cpp:1367 ../src/wxmedit_frame.cpp:3112
+#: ../src/wxmedit_frame.cpp:3117
 msgid "Syntax Type: "
 msgstr "Tipo de sinta&xis: "
 
-#: ../src/wxmedit_frame.cpp:1361 ../src/wxmedit_frame.cpp:3109
-#: ../src/wxmedit_frame.cpp:3114
+#: ../src/wxmedit_frame.cpp:1369 ../src/wxmedit_frame.cpp:3129
+#: ../src/wxmedit_frame.cpp:3134
 msgid "Font Name: "
 msgstr "Nombre &de fuente: "
 
-#: ../src/wxmedit_frame.cpp:1362
+#: ../src/wxmedit_frame.cpp:1370
 msgid "[@]"
 msgstr "[@]"
 
-#: ../src/wxmedit_frame.cpp:1363
+#: ../src/wxmedit_frame.cpp:1371
 msgid "[ABCDE]"
 msgstr "[ABCDE]"
 
-#: ../src/wxmedit_frame.cpp:1364
+#: ../src/wxmedit_frame.cpp:1372
 msgid "[FGHIJ]"
 msgstr "[FGHIJ]"
 
-#: ../src/wxmedit_frame.cpp:1365
+#: ../src/wxmedit_frame.cpp:1373
 msgid "[KLMNO]"
 msgstr "[KLMNO]"
 
-#: ../src/wxmedit_frame.cpp:1366
+#: ../src/wxmedit_frame.cpp:1374
 msgid "[PQRST]"
 msgstr "[PQRST]"
 
-#: ../src/wxmedit_frame.cpp:1367
+#: ../src/wxmedit_frame.cpp:1375
 msgid "[UVWXYZ]"
 msgstr "[UVWXYZ]"
 
-#: ../src/wxmedit_frame.cpp:1368
+#: ../src/wxmedit_frame.cpp:1376
 msgid "[other]"
 msgstr "[otros]"
 
-#: ../src/wxmedit_frame.cpp:1370 ../src/wxmedit_frame.cpp:3125
-#: ../src/wxmedit_frame.cpp:3130
+#: ../src/wxmedit_frame.cpp:1378 ../src/wxmedit_frame.cpp:3145
+#: ../src/wxmedit_frame.cpp:3150
 msgid "Font Size: "
 msgstr "Tamaño d&e fuente: "
 
-#: ../src/wxmedit_frame.cpp:1371
+#: ../src/wxmedit_frame.cpp:1379
 msgid "Set font point-size"
 msgstr "Ajusta tamaño de la fuente"
 
-#: ../src/wxmedit_frame.cpp:1444
+#: ../src/wxmedit_frame.cpp:1452
 msgid "Set Font..."
 msgstr "Establecer &fuente..."
 
-#: ../src/wxmedit_frame.cpp:1444
+#: ../src/wxmedit_frame.cpp:1452
 msgid "Change font settings"
 msgstr "Cambia la configuración de fuente"
 
-#: ../src/wxmedit_frame.cpp:1445
+#: ../src/wxmedit_frame.cpp:1453
 msgid "&Fixed Width Mode"
 msgstr "Modo de ancho fi&jo"
 
-#: ../src/wxmedit_frame.cpp:1445
+#: ../src/wxmedit_frame.cpp:1453
 msgid "Set/Unset the font with Fixed Width"
 msgstr "Activa/Desactiva fuente de ancho fijo"
 
-#: ../src/wxmedit_frame.cpp:1448 ../src/wxmedit_frame.cpp:3149
-#: ../src/wxmedit_frame.cpp:3154
+#: ../src/wxmedit_frame.cpp:1456 ../src/wxmedit_frame.cpp:3169
+#: ../src/wxmedit_frame.cpp:3174
 msgid "Tab Column: "
 msgstr "Columna del ta&bulador: "
 
-#: ../src/wxmedit_frame.cpp:1449
+#: ../src/wxmedit_frame.cpp:1457
 msgid "Set column of Tab char"
 msgstr "Ajusta la columna de caracteres tabuladores"
 
-#: ../src/wxmedit_frame.cpp:1467 ../src/wxmedit_frame.cpp:3163
-#: ../src/wxmedit_frame.cpp:3168
+#: ../src/wxmedit_frame.cpp:1475 ../src/wxmedit_frame.cpp:3183
+#: ../src/wxmedit_frame.cpp:3188
 msgid "Line Spacing: "
 msgstr "Espacio entre líneas: "
 
-#: ../src/wxmedit_frame.cpp:1468
+#: ../src/wxmedit_frame.cpp:1476
 msgid "Set line spacing"
 msgstr "Ajusta interlineado"
 
-#: ../src/wxmedit_frame.cpp:1501
+#: ../src/wxmedit_frame.cpp:1509
 msgid "&No Wrap"
 msgstr "&No ajustar líneas"
 
-#: ../src/wxmedit_frame.cpp:1501
+#: ../src/wxmedit_frame.cpp:1509
 msgid "Do not wrap lines"
 msgstr "No ajusta líneas"
 
-#: ../src/wxmedit_frame.cpp:1502
+#: ../src/wxmedit_frame.cpp:1510
 msgid "Wrap By &Window"
 msgstr "Ajustar líneas por &ventana"
 
-#: ../src/wxmedit_frame.cpp:1502
+#: ../src/wxmedit_frame.cpp:1510
 msgid "Wrap the lines by the window width"
 msgstr "Ajusta líneas por ancho de ventana"
 
-#: ../src/wxmedit_frame.cpp:1503
+#: ../src/wxmedit_frame.cpp:1511
 msgid "Wrap By Column"
 msgstr "Ajustar líneas por co&lumna"
 
-#: ../src/wxmedit_frame.cpp:1503
+#: ../src/wxmedit_frame.cpp:1511
 msgid "Wrap the lines by the specified Max Columns"
 msgstr "Ajusta líneas por columnas especificadas"
 
-#: ../src/wxmedit_frame.cpp:1505
+#: ../src/wxmedit_frame.cpp:1513
 msgid "&Display Line Number"
 msgstr "Mostrar número de línea"
 
-#: ../src/wxmedit_frame.cpp:1505
+#: ../src/wxmedit_frame.cpp:1513
 msgid "Display the Line Numbers"
 msgstr "Muestra los números de línea"
 
-#: ../src/wxmedit_frame.cpp:1506
+#: ../src/wxmedit_frame.cpp:1514
 msgid "Show End Of Line"
 msgstr "Mostrar fin de línea"
 
-#: ../src/wxmedit_frame.cpp:1506
+#: ../src/wxmedit_frame.cpp:1514
 msgid "Show the sign of EndOfLine"
 msgstr "Muestra el signo de fin de línea"
 
-#: ../src/wxmedit_frame.cpp:1507
+#: ../src/wxmedit_frame.cpp:1515
 msgid "Show Tab Char"
 msgstr "Mostrar caracter tabulador"
 
-#: ../src/wxmedit_frame.cpp:1507
+#: ../src/wxmedit_frame.cpp:1515
 msgid "Show the sign of Tab char"
 msgstr "Muestra el signo del caracter tabulador"
 
-#: ../src/wxmedit_frame.cpp:1508
+#: ../src/wxmedit_frame.cpp:1516
 msgid "Show Space Char"
 msgstr "Mostrar caracter de espacio"
 
-#: ../src/wxmedit_frame.cpp:1508
+#: ../src/wxmedit_frame.cpp:1516
 msgid "Show the sign of Space char"
 msgstr "Muestra el signo del caracter de espacion"
 
-#: ../src/wxmedit_frame.cpp:1509
+#: ../src/wxmedit_frame.cpp:1517
 msgid "Mark Active Line"
 msgstr "Marcar línea activa"
 
-#: ../src/wxmedit_frame.cpp:1509
+#: ../src/wxmedit_frame.cpp:1517
 msgid "Mark the current line"
 msgstr "Marca la línea actual"
 
-#: ../src/wxmedit_frame.cpp:1510
+#: ../src/wxmedit_frame.cpp:1518
 msgid "Mark Brace Pair"
 msgstr "Marcar par de llaves"
 
-#: ../src/wxmedit_frame.cpp:1510
+#: ../src/wxmedit_frame.cpp:1518
 msgid "Mark the BracePair under the caret"
 msgstr "Marca par de llaves con intercalación debajo"
 
-#: ../src/wxmedit_frame.cpp:1512
+#: ../src/wxmedit_frame.cpp:1520
 msgid "&Text Mode"
 msgstr "Modo &Texto"
 
-#: ../src/wxmedit_frame.cpp:1512
+#: ../src/wxmedit_frame.cpp:1520
 msgid "Change the editing mode to Text-Mode"
 msgstr "Cambia al modo de edición de texto"
 
-#: ../src/wxmedit_frame.cpp:1513
+#: ../src/wxmedit_frame.cpp:1521
 msgid "&Column Mode"
 msgstr "Modo &Columna"
 
-#: ../src/wxmedit_frame.cpp:1513
+#: ../src/wxmedit_frame.cpp:1521
 msgid "Change the editing mode to Column-Mode"
 msgstr "Cambia al modo de edición de columna"
 
-#: ../src/wxmedit_frame.cpp:1514
+#: ../src/wxmedit_frame.cpp:1522
 msgid "&Hex Mode"
 msgstr "Modo &Hexadecimal"
 
-#: ../src/wxmedit_frame.cpp:1514
+#: ../src/wxmedit_frame.cpp:1522
 msgid "Change the editing mode to Hex-Mode"
 msgstr "Cambia al modo de edición hexadecimal"
 
-#: ../src/wxmedit_frame.cpp:1517
+#: ../src/wxmedit_frame.cpp:1525
 msgid "&Tools"
 msgstr "&Herramientas"
 
-#: ../src/wxmedit_frame.cpp:1518
+#: ../src/wxmedit_frame.cpp:1526
 msgid "&Options..."
 msgstr "&Opciones..."
 
-#: ../src/wxmedit_frame.cpp:1518
+#: ../src/wxmedit_frame.cpp:1526
 msgid "Change the configuration"
 msgstr "Cambia la configuración"
 
-#: ../src/wxmedit_frame.cpp:1519
+#: ../src/wxmedit_frame.cpp:1527
 msgid "&Syntax Highlighting Settings..."
 msgstr "Opciones de resaltado de sintaxis"
 
-#: ../src/wxmedit_frame.cpp:1519
+#: ../src/wxmedit_frame.cpp:1527
 msgid "Change syntax highlighting settings"
 msgstr "Cambia configuración de resaltado de sintaxis"
 
-#: ../src/wxmedit_frame.cpp:1521
+#: ../src/wxmedit_frame.cpp:1529
 msgid "&File Type Associations..."
 msgstr "Asociaciones de tipo de archivo..."
 
-#: ../src/wxmedit_frame.cpp:1521 ../src/wxmedit_frame.cpp:1523
+#: ../src/wxmedit_frame.cpp:1529 ../src/wxmedit_frame.cpp:1531
 msgid "Change file type associations"
 msgstr "Cambia asociaciones de tipo de archivo"
 
-#: ../src/wxmedit_frame.cpp:1523
+#: ../src/wxmedit_frame.cpp:1531
 msgid "&Purge Histories..."
 msgstr "Purgar historial..."
 
-#: ../src/wxmedit_frame.cpp:1525 ../src/wxmedit_frame.cpp:3243
+#: ../src/wxmedit_frame.cpp:1533 ../src/wxmedit_frame.cpp:3263
 msgid "Has Unicode BOM (Byte-Order Mark)"
 msgstr "Tiene BOM Unicoide (Marca de orden de Byte)"
 
-#: ../src/wxmedit_frame.cpp:1526
+#: ../src/wxmedit_frame.cpp:1534
 msgid "Add/Remove BOM"
 msgstr "Añadir/Quitar BOM"
 
-#: ../src/wxmedit_frame.cpp:1526
+#: ../src/wxmedit_frame.cpp:1534
 msgid "Add/Remove Unicode BOM"
 msgstr "Añadir/Quitar Unicode BOM"
 
-#: ../src/wxmedit_frame.cpp:1528 ../src/wxmedit_frame.cpp:3258
+#: ../src/wxmedit_frame.cpp:1536 ../src/wxmedit_frame.cpp:3278
 msgid "NewLine Char (File Format): "
 msgstr "Caracter de nueva línea (Formato de archivo): "
 
-#: ../src/wxmedit_frame.cpp:1529
+#: ../src/wxmedit_frame.cpp:1537
 msgid "Convert To CRLF/0D0A (&DOS)"
 msgstr "Convertir a CRLF/0D0A (&DOS)"
 
-#: ../src/wxmedit_frame.cpp:1529
+#: ../src/wxmedit_frame.cpp:1537
 msgid "Convert the file format to DOS format"
 msgstr "Convierte formato de archivo a formato DOS"
 
-#: ../src/wxmedit_frame.cpp:1530
+#: ../src/wxmedit_frame.cpp:1538
 msgid "Convert To CR/0D (&MAC)"
 msgstr "Convertir a CR/0D (&MAC)"
 
-#: ../src/wxmedit_frame.cpp:1530
+#: ../src/wxmedit_frame.cpp:1538
 msgid "Convert the file format to MAC format"
 msgstr "Convierte formato de archivo a formato MAC"
 
-#: ../src/wxmedit_frame.cpp:1531
+#: ../src/wxmedit_frame.cpp:1539
 msgid "Convert To LF/0A (&UNIX)"
 msgstr "Convertir a LF/0A (&UNIX)"
 
-#: ../src/wxmedit_frame.cpp:1531
+#: ../src/wxmedit_frame.cpp:1539
 msgid "Convert the file format to UNIX format"
 msgstr "Convierte formato de archivo a formato UNIX"
 
-#: ../src/wxmedit_frame.cpp:1532 ../src/wxmedit_frame.cpp:3280
+#: ../src/wxmedit_frame.cpp:1540 ../src/wxmedit_frame.cpp:3300
 msgid "Press Enter to Insert NewLine Char: "
 msgstr "Caracter de nueva línea al pulsar Intro: "
 
-#: ../src/wxmedit_frame.cpp:1533
+#: ../src/wxmedit_frame.cpp:1541
 msgid "Insert CRLF/0D0A (&DOS)"
 msgstr "Insertar CRLF/0D0A (&DOS)"
 
-#: ../src/wxmedit_frame.cpp:1533
+#: ../src/wxmedit_frame.cpp:1541
 msgid "Insert CR&LF chars when pressing Enter key"
 msgstr "Inserta caracter CR&LF al pulsar Intro"
 
-#: ../src/wxmedit_frame.cpp:1534
+#: ../src/wxmedit_frame.cpp:1542
 msgid "Insert CR/0D (&MAC)"
 msgstr "Insertar CR/0D (&MAC)"
 
-#: ../src/wxmedit_frame.cpp:1534
+#: ../src/wxmedit_frame.cpp:1542
 msgid "Insert CR char when pressing Enter key"
 msgstr "Inserta caracter CR al pulsar Intro"
 
-#: ../src/wxmedit_frame.cpp:1535
+#: ../src/wxmedit_frame.cpp:1543
 msgid "Insert LF/0A (&UNIX)"
 msgstr "Insertar LF/0A (&UNIX)"
 
-#: ../src/wxmedit_frame.cpp:1535
+#: ../src/wxmedit_frame.cpp:1543
 msgid "Insert LF char when pressing Enter key"
 msgstr "Inserta caracter LF al pulsar Intro"
 
-#: ../src/wxmedit_frame.cpp:1537
+#: ../src/wxmedit_frame.cpp:1545
 msgid "Convert File &Encoding..."
 msgstr "Conv&ertir codificación de archivo..."
 
-#: ../src/wxmedit_frame.cpp:1537
+#: ../src/wxmedit_frame.cpp:1545
 msgid "Convert to the specified encoding"
 msgstr "Convierte a la codificación especificada"
 
-#: ../src/wxmedit_frame.cpp:1539
+#: ../src/wxmedit_frame.cpp:1547
 msgid "Convert &Chinese Char"
 msgstr "Convertir caracter &Chino"
 
-#: ../src/wxmedit_frame.cpp:1540
+#: ../src/wxmedit_frame.cpp:1548
 msgid "File: Simplified Chinese to &Traditional Chinese"
 msgstr "Archivo: Chino Simplificado a Chino &Tradicional"
 
-#: ../src/wxmedit_frame.cpp:1540
+#: ../src/wxmedit_frame.cpp:1548
 msgid ""
 "Convert simplified Chinese chars to traditional Chinese chars in the file"
 msgstr "Chino Simplificado a Chino Tradicional"
 
-#: ../src/wxmedit_frame.cpp:1541
+#: ../src/wxmedit_frame.cpp:1549
 msgid "File: Traditional Chinese to &Simplified Chinese"
 msgstr "Archivo: Chino Tradicional a Chino &Simplificado"
 
-#: ../src/wxmedit_frame.cpp:1541
+#: ../src/wxmedit_frame.cpp:1549
 msgid ""
 "Convert traditional Chinese chars to simplified Chinese chars in the file"
 msgstr "Chino Tradicional a Chino Simplificado"
 
-#: ../src/wxmedit_frame.cpp:1542
+#: ../src/wxmedit_frame.cpp:1550
 msgid "File: Japanese Kanji to Tr&aditional Chinese"
 msgstr "Archivo: Japonés Kanji a Chino Tr&adicional"
 
-#: ../src/wxmedit_frame.cpp:1542
+#: ../src/wxmedit_frame.cpp:1550
 msgid "Convert Japanese Kanji to traditional Chinese chars in the file"
 msgstr "Japonés Kanji a Chino Tradicional"
 
-#: ../src/wxmedit_frame.cpp:1543
+#: ../src/wxmedit_frame.cpp:1551
 msgid "File: Japanese Kanji to Si&mplified Chinese"
 msgstr "Archivo: Japonés Kanji a Chino Si&mplificado"
 
-#: ../src/wxmedit_frame.cpp:1543
+#: ../src/wxmedit_frame.cpp:1551
 msgid "Convert Japanese Kanji to simplified Chinese chars in the file"
 msgstr "Japonés Kanji a Chino Simplificado"
 
-#: ../src/wxmedit_frame.cpp:1544
+#: ../src/wxmedit_frame.cpp:1552
 msgid "File: Chinese to &Japanese Kanji"
 msgstr "Archivo: Chino a &Japonés Kanji"
 
-#: ../src/wxmedit_frame.cpp:1544
+#: ../src/wxmedit_frame.cpp:1552
 msgid "Convert Chinese chars to Japanese Kanji in the file"
 msgstr "Chino a Japonés Kanji"
 
-#: ../src/wxmedit_frame.cpp:1546
+#: ../src/wxmedit_frame.cpp:1554
 msgid "Clipboard: Simplified Chinese to T&raditional Chinese"
 msgstr "Portapapeles: Chino Simplificado a Chino T&radicional"
 
-#: ../src/wxmedit_frame.cpp:1546
+#: ../src/wxmedit_frame.cpp:1554
 msgid ""
 "Convert simplified Chinese chars to traditional Chinese chars in the "
 "clipboard"
 msgstr "Chino Simplificado a Chino Tradicional"
 
-#: ../src/wxmedit_frame.cpp:1547
+#: ../src/wxmedit_frame.cpp:1555
 msgid "Clipboard: Traditional Chinese to S&implified Chinese"
 msgstr "Portapapeles: Chino Tradicional a Chino S&implificado"
 
-#: ../src/wxmedit_frame.cpp:1547
+#: ../src/wxmedit_frame.cpp:1555
 msgid ""
 "Convert traditional Chinese chars to simplified Chinese chars in the "
 "clipboard"
 msgstr "Chino Tradicional a Chino Simplificado"
 
-#: ../src/wxmedit_frame.cpp:1548
+#: ../src/wxmedit_frame.cpp:1556
 msgid "Clipboard: Japanese Kanji to Tra&ditional Chinese"
 msgstr "Portapapeles: Japonés Kanji a Chino Tra&dicional"
 
-#: ../src/wxmedit_frame.cpp:1548
+#: ../src/wxmedit_frame.cpp:1556
 msgid "Convert Japanese Kanji to traditional Chinese chars in the clipboard"
 msgstr "Japonés Kanji a Chino Tradicional"
 
-#: ../src/wxmedit_frame.cpp:1549
+#: ../src/wxmedit_frame.cpp:1557
 msgid "Clipboard: Japanese Kanji to Sim&plified Chinese"
 msgstr "Portapapeles: Japonés Kanji a Chino Sim&plificado"
 
-#: ../src/wxmedit_frame.cpp:1549
+#: ../src/wxmedit_frame.cpp:1557
 msgid "Convert Japanese Kanji to simplified Chinese chars in the clipboard"
 msgstr "Japonés Kanji a Chino Simplificado"
 
-#: ../src/wxmedit_frame.cpp:1550
+#: ../src/wxmedit_frame.cpp:1558
 msgid "Clipboard: Chinese to Japanese &Kanji"
 msgstr "Portapapeles: Chino a Japonés &Kanji"
 
-#: ../src/wxmedit_frame.cpp:1550
+#: ../src/wxmedit_frame.cpp:1558
 msgid "Convert Chinese chars to Japanese Kanji in the clipboard"
 msgstr "Chino a Japonés Kanji"
 
-#: ../src/wxmedit_frame.cpp:1552
+#: ../src/wxmedit_frame.cpp:1560
 msgid "&Word Count"
 msgstr "Contar palabras"
 
-#: ../src/wxmedit_frame.cpp:1552
+#: ../src/wxmedit_frame.cpp:1560
 msgid "Count the words and chars of the file or selection"
 msgstr "Cuenta palabras y caracteres"
 
-#: ../src/wxmedit_frame.cpp:1555
+#: ../src/wxmedit_frame.cpp:1563
 msgid "&Window"
 msgstr "Ve&ntana"
 
-#: ../src/wxmedit_frame.cpp:1556
+#: ../src/wxmedit_frame.cpp:1564
 msgid "&Toggle Window"
 msgstr "Alternar &ventana "
 
-#: ../src/wxmedit_frame.cpp:1556
+#: ../src/wxmedit_frame.cpp:1564
 msgid "Switch to the previous active window"
 msgstr "Cambia de ventana activa a anterior"
 
-#: ../src/wxmedit_frame.cpp:1557
+#: ../src/wxmedit_frame.cpp:1565
 msgid "&Previous Window"
 msgstr "Ventana &anterior"
 
-#: ../src/wxmedit_frame.cpp:1557
+#: ../src/wxmedit_frame.cpp:1565
 msgid "Activate the previous window"
 msgstr "Activar la ventana anterior"
 
-#: ../src/wxmedit_frame.cpp:1558
+#: ../src/wxmedit_frame.cpp:1566
 msgid "&Next Window"
 msgstr "Ventana &siguiente"
 
-#: ../src/wxmedit_frame.cpp:1558
+#: ../src/wxmedit_frame.cpp:1566
 msgid "Activate the next window"
 msgstr "Active la ventana siguiente"
 
-#: ../src/wxmedit_frame.cpp:1561
+#: ../src/wxmedit_frame.cpp:1569
 msgid "&Help"
 msgstr "A&yuda"
 
-#: ../src/wxmedit_frame.cpp:1562
+#: ../src/wxmedit_frame.cpp:1570
 msgid "&Check for updates..."
 msgstr "Comprobar actualizaciones..."
 
-#: ../src/wxmedit_frame.cpp:1562
+#: ../src/wxmedit_frame.cpp:1570
 msgid "Check for new versions of wxMEdit"
 msgstr "Comprueba si hay nuevas versiones de wxMEdit"
 
-#: ../src/wxmedit_frame.cpp:1563
+#: ../src/wxmedit_frame.cpp:1571
 msgid "&About wxMEdit..."
 msgstr "&Acerca de wxMEdit..."
 
-#: ../src/wxmedit_frame.cpp:1563
+#: ../src/wxmedit_frame.cpp:1571
 msgid "Show about dialog"
 msgstr "Mostrar diálogo Acerca de..."
 
-#: ../src/wxmedit_frame.cpp:1567
+#: ../src/wxmedit_frame.cpp:1575
 msgid "Move caret left one char"
 msgstr "Mover cursor un caracter a la izquierda"
 
-#: ../src/wxmedit_frame.cpp:1568
+#: ../src/wxmedit_frame.cpp:1576
 msgid "Move caret right one char"
 msgstr "Mover cursor un caracter a la derecha"
 
-#: ../src/wxmedit_frame.cpp:1569
+#: ../src/wxmedit_frame.cpp:1577
 msgid "Move caret up one line"
 msgstr "Mover cursor una línea arriba"
 
-#: ../src/wxmedit_frame.cpp:1570
+#: ../src/wxmedit_frame.cpp:1578
 msgid "Move caret down one line"
 msgstr "Mover cursor una línea abajo"
 
-#: ../src/wxmedit_frame.cpp:1571
+#: ../src/wxmedit_frame.cpp:1579
 msgid "Go to begin of line"
 msgstr "Ir al inicio de línea"
 
-#: ../src/wxmedit_frame.cpp:1572
+#: ../src/wxmedit_frame.cpp:1580
 msgid "Go to end of line"
 msgstr "Ir al final de línea"
 
-#: ../src/wxmedit_frame.cpp:1573
+#: ../src/wxmedit_frame.cpp:1581
 msgid "Go to begin of document"
 msgstr "Ir al inicio del documento"
 
-#: ../src/wxmedit_frame.cpp:1574
+#: ../src/wxmedit_frame.cpp:1582
 msgid "Go to end of document"
 msgstr "Ir al final del documento"
 
-#: ../src/wxmedit_frame.cpp:1575
+#: ../src/wxmedit_frame.cpp:1583
 msgid "Go to previous page"
 msgstr "Ir a la página anterior"
 
-#: ../src/wxmedit_frame.cpp:1576
+#: ../src/wxmedit_frame.cpp:1584
 msgid "Go to next page"
 msgstr "Ir a la página siguiente"
 
-#: ../src/wxmedit_frame.cpp:1577
+#: ../src/wxmedit_frame.cpp:1585
 msgid "Go to previous word"
 msgstr "Ir a la palabra anterior"
 
-#: ../src/wxmedit_frame.cpp:1578
+#: ../src/wxmedit_frame.cpp:1586
 msgid "Go to next word"
 msgstr "Ir a la palabra siguiente"
 
-#: ../src/wxmedit_frame.cpp:1580
+#: ../src/wxmedit_frame.cpp:1588
 msgid "Move caret left one char and select"
 msgstr "Mover cursor a la izquierda y selecciona un carácter"
 
-#: ../src/wxmedit_frame.cpp:1581
+#: ../src/wxmedit_frame.cpp:1589
 msgid "Move caret right one char and select"
 msgstr "Mover cursor a la derecha y selecciona un carácter"
 
-#: ../src/wxmedit_frame.cpp:1582
+#: ../src/wxmedit_frame.cpp:1590
 msgid "Move caret up one line and select"
 msgstr "Mover cursor una línea arriba y selecciona"
 
-#: ../src/wxmedit_frame.cpp:1583
+#: ../src/wxmedit_frame.cpp:1591
 msgid "Move caret down one line and select"
 msgstr "Mover cursor una línea abajo y selecciona"
 
-#: ../src/wxmedit_frame.cpp:1584
+#: ../src/wxmedit_frame.cpp:1592
 msgid "Go to begin of line and select"
 msgstr "Ir al inicio de la línea y selecciona"
 
-#: ../src/wxmedit_frame.cpp:1585
+#: ../src/wxmedit_frame.cpp:1593
 msgid "Go to end of line and select"
 msgstr "Ir al final de la línea y selecciona"
 
-#: ../src/wxmedit_frame.cpp:1586
+#: ../src/wxmedit_frame.cpp:1594
 msgid "Go to begin of document and select"
 msgstr "Ir al inicio del documento y selecciona"
 
-#: ../src/wxmedit_frame.cpp:1587
+#: ../src/wxmedit_frame.cpp:1595
 msgid "Go to end of document and select"
 msgstr "Ir al final del documento y selecciona"
 
-#: ../src/wxmedit_frame.cpp:1588
+#: ../src/wxmedit_frame.cpp:1596
 msgid "Go to previous page and select"
 msgstr "Ir a la página anterior y seleccione"
 
-#: ../src/wxmedit_frame.cpp:1589
+#: ../src/wxmedit_frame.cpp:1597
 msgid "Go to next page and select"
 msgstr "Ir a la página siguiente y selecciona"
 
-#: ../src/wxmedit_frame.cpp:1590
+#: ../src/wxmedit_frame.cpp:1598
 msgid "Go to previous word and select"
 msgstr "Ir a la palabra anterior y selecciona"
 
-#: ../src/wxmedit_frame.cpp:1591
+#: ../src/wxmedit_frame.cpp:1599
 msgid "Go to next word and select"
 msgstr "Ir a la palabra siguiente y selecciona"
 
-#: ../src/wxmedit_frame.cpp:1592
+#: ../src/wxmedit_frame.cpp:1600
 msgid "Go to left brace and select"
 msgstr "Ir a la llave izquierda y selecciona"
 
-#: ../src/wxmedit_frame.cpp:1593
+#: ../src/wxmedit_frame.cpp:1601
 msgid "Go to right brace and select"
 msgstr "Ir a la llave derecha y selecciona"
 
-#: ../src/wxmedit_frame.cpp:1595
+#: ../src/wxmedit_frame.cpp:1603
 msgid "Scroll text up one line"
 msgstr "Desplazar el texto una línea hacia arriba"
 
-#: ../src/wxmedit_frame.cpp:1596
+#: ../src/wxmedit_frame.cpp:1604
 msgid "Scroll text down one line"
 msgstr "Desplazar el texto una línea hacia abajo"
 
-#: ../src/wxmedit_frame.cpp:1597
+#: ../src/wxmedit_frame.cpp:1605
 msgid "Scroll text up one page"
 msgstr "Desplazar el texto una página hacia arriba"
 
-#: ../src/wxmedit_frame.cpp:1598
+#: ../src/wxmedit_frame.cpp:1606
 msgid "Scroll text down one page"
 msgstr "Desplazar el texto una página hacia abajo"
 
-#: ../src/wxmedit_frame.cpp:1599
+#: ../src/wxmedit_frame.cpp:1607
 msgid "Scroll text left"
 msgstr "Desplazar el texto a la izquierda"
 
-#: ../src/wxmedit_frame.cpp:1600
+#: ../src/wxmedit_frame.cpp:1608
 msgid "Scroll text right"
 msgstr "Desplazar el texto a la derecha"
 
-#: ../src/wxmedit_frame.cpp:1602
+#: ../src/wxmedit_frame.cpp:1610
 msgid "Insert one NewLine char"
 msgstr "Insertar un caracter de nueva línea"
 
-#: ../src/wxmedit_frame.cpp:1603
+#: ../src/wxmedit_frame.cpp:1611
 msgid "Insert one NewLine char without indentation"
 msgstr "Insertar un caracter de nueva línea sin sangría"
 
-#: ../src/wxmedit_frame.cpp:1604
+#: ../src/wxmedit_frame.cpp:1612
 msgid "Insert one Tab char or indent lines"
 msgstr "Insertar un caracter tabulador o linea de sangría"
 
-#: ../src/wxmedit_frame.cpp:1605
+#: ../src/wxmedit_frame.cpp:1613
 msgid "Delete one char to the left of the caret"
 msgstr "Eliminar un carácter a la izquierda del cursor"
 
-#: ../src/wxmedit_frame.cpp:1607
+#: ../src/wxmedit_frame.cpp:1615
 msgid "Delete a word left from the caret"
 msgstr "Eliminar una palabra a la izquierda del símbolo de intercalación"
 
-#: ../src/wxmedit_frame.cpp:1608
+#: ../src/wxmedit_frame.cpp:1616
 msgid "Delete a word right from the caret"
 msgstr "Eliminar una palabra a la derecha del símbolo de intercalación"
 
-#: ../src/wxmedit_frame.cpp:1610
+#: ../src/wxmedit_frame.cpp:1618
 msgid "Toggle Insert/Overwrite Mode"
 msgstr "Alternar modo Insertar/Sobrescribir"
 
-#: ../src/wxmedit_frame.cpp:2083
+#: ../src/wxmedit_frame.cpp:2089
 msgid "New File"
 msgstr "Nuevo archivo"
 
-#: ../src/wxmedit_frame.cpp:2084 ../src/wxmedit_frame.cpp:3333
+#: ../src/wxmedit_frame.cpp:2090 ../src/wxmedit_frame.cpp:3358
 msgid "Open File"
 msgstr "Abrir archivo"
 
-#: ../src/wxmedit_frame.cpp:2086
+#: ../src/wxmedit_frame.cpp:2092
 msgid "Save All Files"
 msgstr "Guardar todos los archivos"
 
-#: ../src/wxmedit_frame.cpp:2087
+#: ../src/wxmedit_frame.cpp:2093
 msgid "Close File"
 msgstr "Cerrar archivo"
 
-#: ../src/wxmedit_frame.cpp:2088
+#: ../src/wxmedit_frame.cpp:2094
 msgid "Close All Files"
 msgstr "Cerrar todos los archivos"
 
-#: ../src/wxmedit_frame.cpp:2090
+#: ../src/wxmedit_frame.cpp:2096
 msgid "Undo"
 msgstr "Deshacer"
 
-#: ../src/wxmedit_frame.cpp:2091
+#: ../src/wxmedit_frame.cpp:2097
 msgid "Redo"
 msgstr "Rehacer"
 
-#: ../src/wxmedit_frame.cpp:2093
+#: ../src/wxmedit_frame.cpp:2099
 msgid "Cut"
 msgstr "Cortar"
 
-#: ../src/wxmedit_frame.cpp:2094
+#: ../src/wxmedit_frame.cpp:2100
 msgid "Copy"
 msgstr "Copiar"
 
-#: ../src/wxmedit_frame.cpp:2095
+#: ../src/wxmedit_frame.cpp:2101
 msgid "Paste"
 msgstr "Pegar"
 
-#: ../src/wxmedit_frame.cpp:2097
+#: ../src/wxmedit_frame.cpp:2103
 msgid "Increase Indent"
 msgstr "Aumentar sangría"
 
-#: ../src/wxmedit_frame.cpp:2098
+#: ../src/wxmedit_frame.cpp:2104
 msgid "Decrease Indent"
 msgstr "Reducir sangría"
 
-#: ../src/wxmedit_frame.cpp:2101
+#: ../src/wxmedit_frame.cpp:2107
 msgid "Uncomment"
 msgstr "Descomentar"
 
-#: ../src/wxmedit_frame.cpp:2103
+#: ../src/wxmedit_frame.cpp:2109
 msgid "Find"
 msgstr "Buscar"
 
-#: ../src/wxmedit_frame.cpp:2104
+#: ../src/wxmedit_frame.cpp:2110
 msgid "Find Next"
 msgstr "Buscar siguiente"
 
-#: ../src/wxmedit_frame.cpp:2105
+#: ../src/wxmedit_frame.cpp:2111
 msgid "Find Previous"
 msgstr "Buscar anterior"
 
-#: ../src/wxmedit_frame.cpp:2106
+#: ../src/wxmedit_frame.cpp:2112
 #: ../src/dialog/wxm_search_replace_dialog.cpp:993
 msgid "Replace"
 msgstr "Reemplazar"
 
-#: ../src/wxmedit_frame.cpp:2108
+#: ../src/wxmedit_frame.cpp:2114
 msgid "No Line Wrap"
 msgstr "No ajustar líneas"
 
-#: ../src/wxmedit_frame.cpp:2109
+#: ../src/wxmedit_frame.cpp:2115
 msgid "Wrap Lines by Window"
 msgstr "Ajustar líneas por ventana"
 
-#: ../src/wxmedit_frame.cpp:2110
+#: ../src/wxmedit_frame.cpp:2116
 msgid "Wrap Lines by Max Columns"
 msgstr "Ajustar líneas por columna"
 
-#: ../src/wxmedit_frame.cpp:2112 ../src/dialog/wxm_options_dialog.cpp:454
+#: ../src/wxmedit_frame.cpp:2118 ../src/dialog/wxm_options_dialog.cpp:465
 msgid "Text Mode"
 msgstr "Modo texto"
 
-#: ../src/wxmedit_frame.cpp:2113
+#: ../src/wxmedit_frame.cpp:2119
 msgid "Column Mode"
 msgstr "Modo columna"
 
-#: ../src/wxmedit_frame.cpp:2114 ../src/dialog/wxm_options_dialog.cpp:471
+#: ../src/wxmedit_frame.cpp:2120 ../src/dialog/wxm_options_dialog.cpp:482
 msgid "Hex Mode"
 msgstr "Modo hexadecimal"
 
-#: ../src/wxmedit_frame.cpp:2132
+#: ../src/wxmedit_frame.cpp:2138
 msgid "Find/Replace in Files Results"
 msgstr "Buscar/Reemplazar en resultados de archivos"
 
-#: ../src/wxmedit_frame.cpp:2140
+#: ../src/wxmedit_frame.cpp:2146
 msgid "Information Window"
 msgstr "Ventana de información"
 
-#: ../src/wxmedit_frame.cpp:2714
+#: ../src/wxmedit_frame.cpp:2724
 #, c-format
 msgid "NoName%d"
 msgstr "Sin nombre %d"
 
-#: ../src/wxmedit_frame.cpp:2750
+#: ../src/wxmedit_frame.cpp:2760
 msgid "This is a Directory:"
 msgstr "Este es un directorio:"
 
-#: ../src/wxmedit_frame.cpp:2759
+#: ../src/wxmedit_frame.cpp:2769
 msgid "This file does not exist:"
 msgstr "Este archivo no existe:"
 
-#: ../src/wxmedit_frame.cpp:2777
+#: ../src/wxmedit_frame.cpp:2787
 msgid "Cannot access this file:"
 msgstr "No se puede acceder a este archivo:"
 
-#: ../src/wxmedit_frame.cpp:2822
+#: ../src/wxmedit_frame.cpp:2832
 msgid "Cannot load this file:"
 msgstr "No se puede cargar este archivo:"
 
-#: ../src/wxmedit_frame.cpp:3083 ../src/wxmedit_frame.cpp:3097
-#: ../src/wxmedit_frame.cpp:3114 ../src/wxmedit_frame.cpp:3130
-#: ../src/wxmedit_frame.cpp:3154 ../src/wxmedit_frame.cpp:3168
-#: ../src/wxmedit_frame.cpp:3275 ../src/wxmedit_frame.cpp:3297
-#: ../src/dialog/wxm_options_dialog.cpp:474
+#: ../src/wxmedit_frame.cpp:3103 ../src/wxmedit_frame.cpp:3117
+#: ../src/wxmedit_frame.cpp:3134 ../src/wxmedit_frame.cpp:3150
+#: ../src/wxmedit_frame.cpp:3174 ../src/wxmedit_frame.cpp:3188
+#: ../src/wxmedit_frame.cpp:3295 ../src/wxmedit_frame.cpp:3317
+#: ../src/dialog/wxm_options_dialog.cpp:485
 #: ../src/dialog/wxm_conv_enc_dialog.cpp:51
 msgid "None"
 msgstr "Nada"
 
-#: ../src/wxmedit_frame.cpp:3247 ../src/wxmedit_frame.cpp:3253
+#: ../src/wxmedit_frame.cpp:3267 ../src/wxmedit_frame.cpp:3273
 msgid "Has No Unicode BOM (Byte-Order Mark)"
 msgstr "Tiene BOM Unicoide (Marca de orden de Byte)"
 
-#: ../src/wxmedit_frame.cpp:3523
+#: ../src/wxmedit_frame.cpp:3548
 msgid ""
 "There was a problem previewing.\n"
 "Perhaps your current printer is not set correctly?"
@@ -3469,15 +3481,15 @@ msgstr ""
 "Hubo un problema al obtener una vista previa.\n"
 "¿Tal vez la impresora actual no está configurada correctamente?"
 
-#: ../src/wxmedit_frame.cpp:3523
+#: ../src/wxmedit_frame.cpp:3548
 msgid "Previewing"
 msgstr "Previsualizando"
 
-#: ../src/wxmedit_frame.cpp:3527
+#: ../src/wxmedit_frame.cpp:3552
 msgid "wxMEdit Print Preview"
 msgstr "wxMEdit vista previa de impresión"
 
-#: ../src/wxmedit_frame.cpp:3552
+#: ../src/wxmedit_frame.cpp:3577
 msgid ""
 "There was a problem printing.\n"
 "Perhaps your current printer is not set correctly?"
@@ -3485,55 +3497,55 @@ msgstr ""
 "Hubo un problema al imprimir.\n"
 "¿Tal vez la impresora actual no está configurada correctamente?"
 
-#: ../src/wxmedit_frame.cpp:3552
+#: ../src/wxmedit_frame.cpp:3577
 msgid "Printing"
 msgstr "Imprimiendo"
 
-#: ../src/wxmedit_frame.cpp:3891 ../src/wxmedit_frame.cpp:3934
+#: ../src/wxmedit_frame.cpp:3921 ../src/wxmedit_frame.cpp:3964
 msgid "ASCII characters"
 msgstr "Caracteres ASCII"
 
-#: ../src/wxmedit_frame.cpp:3891 ../src/wxmedit_frame.cpp:3934
+#: ../src/wxmedit_frame.cpp:3921 ../src/wxmedit_frame.cpp:3964
 msgid "Japanese characters"
 msgstr "Caracteres Japoneses"
 
-#: ../src/wxmedit_frame.cpp:3892 ../src/wxmedit_frame.cpp:3935
+#: ../src/wxmedit_frame.cpp:3922 ../src/wxmedit_frame.cpp:3965
 msgid "Korean characters"
 msgstr "Caracteres Coreanos"
 
-#: ../src/wxmedit_frame.cpp:3892 ../src/wxmedit_frame.cpp:3935
+#: ../src/wxmedit_frame.cpp:3922 ../src/wxmedit_frame.cpp:3965
 msgid "other characters"
 msgstr "Otros caracteres"
 
-#: ../src/wxmedit_frame.cpp:3894 ../src/wxmedit_frame.cpp:3937
+#: ../src/wxmedit_frame.cpp:3924 ../src/wxmedit_frame.cpp:3967
 msgid "Choose the characters you want to convert:"
 msgstr "Seleccione los caracteres que desea convertir:"
 
-#: ../src/wxmedit_frame.cpp:4217
+#: ../src/wxmedit_frame.cpp:4247
 msgid "Line Number: (you can input HexNumber: 0xNNN)"
 msgstr "Número de línea: (puede introducir numero hexadecimal: 0xNNN)"
 
-#: ../src/wxmedit_frame.cpp:4217
+#: ../src/wxmedit_frame.cpp:4247
 msgid "Go To Line"
 msgstr "Ir a la línea"
 
-#: ../src/wxmedit_frame.cpp:4241
+#: ../src/wxmedit_frame.cpp:4271
 msgid "Position: (you can input HexNumber: 0xNNN)"
 msgstr "Posición: (puede introducir numero hexadecimal: 0xNNN)"
 
-#: ../src/wxmedit_frame.cpp:4241
+#: ../src/wxmedit_frame.cpp:4271
 msgid "Go To Position"
 msgstr "Ir a la Posición"
 
-#: ../src/wxmedit_frame.cpp:5040
+#: ../src/wxmedit_frame.cpp:5074
 msgid "Press OK to visit our HomePage."
 msgstr "Pulse \"Aceptar\" para visitar nuestra página web."
 
-#: ../src/wxmedit_frame.cpp:5042
+#: ../src/wxmedit_frame.cpp:5076
 msgid "wxMEdit, a cross-platform Text/Hex Editor"
 msgstr "wxMEdit, un editor de Texto/Hex multiplataforma"
 
-#: ../src/wxmedit_frame.cpp:5045
+#: ../src/wxmedit_frame.cpp:5079
 msgid "Press OK to view the license online version.\n"
 msgstr "Pulse Aceptar para ver la versión en línea de la licencia.\n"
 
@@ -3563,7 +3575,7 @@ msgstr "<- Añadir archivo personalizado"
 
 #: ../src/dialog/wxm_file_association_dialog.cpp:347
 #: ../src/dialog/wxm_highlighting_dialog.cpp:258
-#: ../src/dialog/wxm_options_dialog.cpp:637
+#: ../src/dialog/wxm_options_dialog.cpp:648
 #: ../src/dialog/wxm_conv_enc_dialog.cpp:62
 #: ../src/dialog/wxmedit_about_dialog.cpp:87
 msgid "&OK"
@@ -3571,7 +3583,7 @@ msgstr "&Aceptar"
 
 #: ../src/dialog/wxm_file_association_dialog.cpp:349
 #: ../src/dialog/wxm_highlighting_dialog.cpp:260
-#: ../src/dialog/wxm_options_dialog.cpp:639
+#: ../src/dialog/wxm_options_dialog.cpp:650
 #: ../src/dialog/wxm_purge_histories_dialog.cpp:66
 #: ../src/dialog/wxm_conv_enc_dialog.cpp:64
 #: ../src/dialog/wxmedit_about_dialog.cpp:89
@@ -3787,8 +3799,8 @@ msgid "&Move Focus to Editor Window"
 msgstr "&Mover el foco a la ventana editor"
 
 #: ../src/dialog/wxm_search_replace_dialog.cpp:103
-msgid "Wrap ar&ound"
-msgstr "Envolver"
+msgid "Wrap aroun&d"
+msgstr ""
 
 #: ../src/dialog/wxm_search_replace_dialog.cpp:119
 msgid "Search In &Selection"
@@ -3898,27 +3910,27 @@ msgstr "Orden &numérico"
 msgid "&Remove Duplicates"
 msgstr "&Eliminar duplicados"
 
-#: ../src/dialog/wxm_options_dialog.cpp:338
+#: ../src/dialog/wxm_options_dialog.cpp:343
 msgid "Options"
 msgstr "Opciones"
 
-#: ../src/dialog/wxm_options_dialog.cpp:347
+#: ../src/dialog/wxm_options_dialog.cpp:352
 msgid "Automatically check for new versions: "
 msgstr "Comprobar automáticamente si hay nuevas versiones:"
 
-#: ../src/dialog/wxm_options_dialog.cpp:352
+#: ../src/dialog/wxm_options_dialog.cpp:357
 msgid "Check &now"
 msgstr "Comprobar ahora"
 
-#: ../src/dialog/wxm_options_dialog.cpp:355
+#: ../src/dialog/wxm_options_dialog.cpp:360
 msgid "Check for new versions including &prereleases"
 msgstr "Comprobar si hay nuevas versiones incluyendo prereleases"
 
-#: ../src/dialog/wxm_options_dialog.cpp:363
+#: ../src/dialog/wxm_options_dialog.cpp:368
 msgid "Language of User Interface (must restart wxMEdit)"
 msgstr "Idioma de interfaz de usuario (debe reiniciar wxMEdit)"
 
-#: ../src/dialog/wxm_options_dialog.cpp:370
+#: ../src/dialog/wxm_options_dialog.cpp:375
 msgid ""
 "Use this encoding to create new file or when wxMEdit cannot determine the "
 "encoding of old file"
@@ -3926,325 +3938,329 @@ msgstr ""
 "Codificación de nuevo archivo o cuando wxMEdit no puede determinar "
 "codificación del archivo antiguo"
 
-#: ../src/dialog/wxm_options_dialog.cpp:374
+#: ../src/dialog/wxm_options_dialog.cpp:379
 msgid "Single Instance (must restart wxMEdit)"
 msgstr "Instancia sola (debe reiniciar wxMEdit)"
 
-#: ../src/dialog/wxm_options_dialog.cpp:377
+#: ../src/dialog/wxm_options_dialog.cpp:382
 msgid "Reload files previously open on startup"
 msgstr "Recargar los archivos que haya abierto anteriormente al arranque"
 
-#: ../src/dialog/wxm_options_dialog.cpp:380
+#: ../src/dialog/wxm_options_dialog.cpp:385
 msgid "Record caret movements in undo list"
 msgstr "Grabar movimientos de signo de intercalación en la lista deshacer"
 
-#: ../src/dialog/wxm_options_dialog.cpp:383
+#: ../src/dialog/wxm_options_dialog.cpp:388
 msgid "Restore previous caret position when files are opened"
 msgstr "Restaurar la posición del símbolo anterior cuando se abren archivos"
 
-#: ../src/dialog/wxm_options_dialog.cpp:394
-#: ../src/dialog/wxm_options_dialog.cpp:401
-#: ../src/dialog/wxm_options_dialog.cpp:408
-#: ../src/dialog/wxm_options_dialog.cpp:415
-#: ../src/dialog/wxm_options_dialog.cpp:594
-#: ../src/dialog/wxm_options_dialog.cpp:601
+#: ../src/dialog/wxm_options_dialog.cpp:399
+#: ../src/dialog/wxm_options_dialog.cpp:406
+#: ../src/dialog/wxm_options_dialog.cpp:413
+#: ../src/dialog/wxm_options_dialog.cpp:420
+#: ../src/dialog/wxm_options_dialog.cpp:605
+#: ../src/dialog/wxm_options_dialog.cpp:612
 msgid "0"
 msgstr "0"
 
-#: ../src/dialog/wxm_options_dialog.cpp:396
+#: ../src/dialog/wxm_options_dialog.cpp:401
 msgid "Max line length before Line-Wrap (must restart wxMEdit)"
 msgstr ""
 "Longitud máxima de la línea antes del ajuste de línea (debe reiniciar "
 "wxMEdit)"
 
-#: ../src/dialog/wxm_options_dialog.cpp:403
+#: ../src/dialog/wxm_options_dialog.cpp:408
 msgid "Columns of Wrap-By-Column"
 msgstr "Columnas de ajuste de línea por columna"
 
-#: ../src/dialog/wxm_options_dialog.cpp:410
+#: ../src/dialog/wxm_options_dialog.cpp:415
 msgid "Columns of Tab"
 msgstr "Columnas de tabuladores"
 
-#: ../src/dialog/wxm_options_dialog.cpp:417
+#: ../src/dialog/wxm_options_dialog.cpp:422
 msgid "Columns of Indent"
 msgstr "Columnas de sangría"
 
-#: ../src/dialog/wxm_options_dialog.cpp:421
+#: ../src/dialog/wxm_options_dialog.cpp:426
 msgid "Insert Space char instead of Tab char"
 msgstr "Insertar caracter de espacio en lugar de caracteres de tabuladores"
 
-#: ../src/dialog/wxm_options_dialog.cpp:424
+#: ../src/dialog/wxm_options_dialog.cpp:429
 msgid "Auto Indent"
 msgstr "Sangría automática"
 
-#: ../src/dialog/wxm_options_dialog.cpp:427
+#: ../src/dialog/wxm_options_dialog.cpp:432
 msgid "Auto complete character pair"
 msgstr "Autocompletar pares de caracteres"
 
-#: ../src/dialog/wxm_options_dialog.cpp:431
+#: ../src/dialog/wxm_options_dialog.cpp:436
 msgid "Auto copy the mouse-selected text to clipboard"
 msgstr "Copiar automáticamente texto seleccionado al portapapeles"
 
-#: ../src/dialog/wxm_options_dialog.cpp:434
+#: ../src/dialog/wxm_options_dialog.cpp:439
 msgid "when pressing Ctrl key"
 msgstr "al pulsar la tecla Ctrl"
 
-#: ../src/dialog/wxm_options_dialog.cpp:438
+#: ../src/dialog/wxm_options_dialog.cpp:443
 msgid "Paste text from clipboard when pressing middle mouse button"
 msgstr "Pegar texto desde el portapapeles al pulsar el botón central del ratón"
 
-#: ../src/dialog/wxm_options_dialog.cpp:442
+#: ../src/dialog/wxm_options_dialog.cpp:447
 msgid "Behavior of copying in hex editing area:"
 msgstr "Comportamiento de copia en el área de edición hexadecimal:"
 
-#: ../src/dialog/wxm_options_dialog.cpp:455
+#: ../src/dialog/wxm_options_dialog.cpp:453
+msgid "Treat clipboard text as Hex String when pasting in hex area:"
+msgstr ""
+
+#: ../src/dialog/wxm_options_dialog.cpp:466
 msgid "Print Syntax Highlighter"
 msgstr "Imprimir resaltador de sintaxis"
 
-#: ../src/dialog/wxm_options_dialog.cpp:458
+#: ../src/dialog/wxm_options_dialog.cpp:469
 msgid "Print Line Number"
 msgstr "Imprimir número de línea"
 
-#: ../src/dialog/wxm_options_dialog.cpp:461
+#: ../src/dialog/wxm_options_dialog.cpp:472
 msgid "Print End of Line"
 msgstr "Imprimir fin de línea"
 
-#: ../src/dialog/wxm_options_dialog.cpp:464
+#: ../src/dialog/wxm_options_dialog.cpp:475
 msgid "Print Tab Char"
 msgstr "Imprimir caracter tabulador"
 
-#: ../src/dialog/wxm_options_dialog.cpp:467
+#: ../src/dialog/wxm_options_dialog.cpp:478
 msgid "Print Space Char"
 msgstr "Imprimir caracter espacio"
 
-#: ../src/dialog/wxm_options_dialog.cpp:475
+#: ../src/dialog/wxm_options_dialog.cpp:486
 msgid "First Page Only"
 msgstr "Sólo la primera página"
 
-#: ../src/dialog/wxm_options_dialog.cpp:476
+#: ../src/dialog/wxm_options_dialog.cpp:487
 msgid "Every Page"
 msgstr "Todas las paginas"
 
-#: ../src/dialog/wxm_options_dialog.cpp:478
+#: ../src/dialog/wxm_options_dialog.cpp:489
 msgid "Print Offset Header"
 msgstr "Imprimir offset cabecera"
 
-#: ../src/dialog/wxm_options_dialog.cpp:483
+#: ../src/dialog/wxm_options_dialog.cpp:494
 msgid "Page Header"
 msgstr "Cabecera de página"
 
-#: ../src/dialog/wxm_options_dialog.cpp:484
+#: ../src/dialog/wxm_options_dialog.cpp:495
 msgid "Print Page Header"
 msgstr "Imprimir cabecera de página"
 
-#: ../src/dialog/wxm_options_dialog.cpp:488
-#: ../src/dialog/wxm_options_dialog.cpp:513
+#: ../src/dialog/wxm_options_dialog.cpp:499
+#: ../src/dialog/wxm_options_dialog.cpp:524
 msgid "Left:"
 msgstr "Izquierda:"
 
-#: ../src/dialog/wxm_options_dialog.cpp:492
-#: ../src/dialog/wxm_options_dialog.cpp:498
-#: ../src/dialog/wxm_options_dialog.cpp:504
-#: ../src/dialog/wxm_options_dialog.cpp:517
-#: ../src/dialog/wxm_options_dialog.cpp:523
-#: ../src/dialog/wxm_options_dialog.cpp:529
-#: ../src/dialog/wxm_options_dialog.cpp:613
+#: ../src/dialog/wxm_options_dialog.cpp:503
+#: ../src/dialog/wxm_options_dialog.cpp:509
+#: ../src/dialog/wxm_options_dialog.cpp:515
+#: ../src/dialog/wxm_options_dialog.cpp:528
+#: ../src/dialog/wxm_options_dialog.cpp:534
+#: ../src/dialog/wxm_options_dialog.cpp:540
+#: ../src/dialog/wxm_options_dialog.cpp:624
 msgid ">>"
 msgstr ">>"
 
-#: ../src/dialog/wxm_options_dialog.cpp:494
-#: ../src/dialog/wxm_options_dialog.cpp:519
+#: ../src/dialog/wxm_options_dialog.cpp:505
+#: ../src/dialog/wxm_options_dialog.cpp:530
 msgid "Center:"
 msgstr "Centro:"
 
-#: ../src/dialog/wxm_options_dialog.cpp:500
-#: ../src/dialog/wxm_options_dialog.cpp:525
+#: ../src/dialog/wxm_options_dialog.cpp:511
+#: ../src/dialog/wxm_options_dialog.cpp:536
 msgid "Right:"
 msgstr "Derecha:"
 
-#: ../src/dialog/wxm_options_dialog.cpp:508
+#: ../src/dialog/wxm_options_dialog.cpp:519
 msgid "Page Footer"
 msgstr "Pie de página"
 
-#: ../src/dialog/wxm_options_dialog.cpp:509
+#: ../src/dialog/wxm_options_dialog.cpp:520
 msgid "Print Page Footer"
 msgstr "Imprimir pie de página"
 
-#: ../src/dialog/wxm_options_dialog.cpp:545
+#: ../src/dialog/wxm_options_dialog.cpp:556
 msgid "Hint:"
 msgstr "Consejo:"
 
-#: ../src/dialog/wxm_options_dialog.cpp:553
+#: ../src/dialog/wxm_options_dialog.cpp:564
 msgid "Assigned Keys:"
 msgstr "Clave asignadas:"
 
-#: ../src/dialog/wxm_options_dialog.cpp:559
+#: ../src/dialog/wxm_options_dialog.cpp:570
 msgid "New Key:"
 msgstr "Nueva clave:"
 
-#: ../src/dialog/wxm_options_dialog.cpp:567
+#: ../src/dialog/wxm_options_dialog.cpp:578
 msgid "<== Add Key"
 msgstr "<== Agregar clave"
 
-#: ../src/dialog/wxm_options_dialog.cpp:569
+#: ../src/dialog/wxm_options_dialog.cpp:580
 msgid "==> Delete Key"
 msgstr "==> Eliminar clave"
 
-#: ../src/dialog/wxm_options_dialog.cpp:571
+#: ../src/dialog/wxm_options_dialog.cpp:582
 msgid "Show the Key in Menu"
 msgstr "Mostrar la clave en el menú"
 
-#: ../src/dialog/wxm_options_dialog.cpp:577
+#: ../src/dialog/wxm_options_dialog.cpp:588
 msgid "Reset all keys to default (must restart wxMEdit)"
 msgstr "Restablecer todas las claves por defecto (debe reiniciar wxMEdit)"
 
-#: ../src/dialog/wxm_options_dialog.cpp:588
+#: ../src/dialog/wxm_options_dialog.cpp:599
 msgid ""
 "Do not save settings to wxmedit.cfg when wxMEdit closed (this session only)"
 msgstr ""
 "No guardar la configuración en wxmedit.cfg cuando wxMEdit es cerrado (sólo "
 "esta sesión)"
 
-#: ../src/dialog/wxm_options_dialog.cpp:596
+#: ../src/dialog/wxm_options_dialog.cpp:607
 msgid "Max file size to load as a text file"
 msgstr "Tamaño máximo de archivo a cargar como archivo de texto"
 
-#: ../src/dialog/wxm_options_dialog.cpp:603
+#: ../src/dialog/wxm_options_dialog.cpp:614
 msgid "Max file size to load whole file into memory"
 msgstr "Tamaño máximo de archivo para cargar todo el archivo en la memoria"
 
-#: ../src/dialog/wxm_options_dialog.cpp:610
+#: ../src/dialog/wxm_options_dialog.cpp:621
 msgid "Format of Date/Time"
 msgstr "Formato de Fecha/Hora"
 
-#: ../src/dialog/wxm_options_dialog.cpp:615
+#: ../src/dialog/wxm_options_dialog.cpp:626
 msgid "Use English instead of current locale"
 msgstr "Usar Inglés en lugar de la configuración regional actual"
 
-#: ../src/dialog/wxm_options_dialog.cpp:622
+#: ../src/dialog/wxm_options_dialog.cpp:633
 msgid "General"
 msgstr "General"
 
-#: ../src/dialog/wxm_options_dialog.cpp:623
+#: ../src/dialog/wxm_options_dialog.cpp:634
 msgid "Edit"
 msgstr "Editar"
 
-#: ../src/dialog/wxm_options_dialog.cpp:624
+#: ../src/dialog/wxm_options_dialog.cpp:635
 msgid "Print"
 msgstr "Imprimir"
 
-#: ../src/dialog/wxm_options_dialog.cpp:625
+#: ../src/dialog/wxm_options_dialog.cpp:636
 msgid "Keys"
 msgstr "Claves"
 
-#: ../src/dialog/wxm_options_dialog.cpp:626
+#: ../src/dialog/wxm_options_dialog.cpp:637
 msgid "Misc"
 msgstr "Diverso"
 
-#: ../src/dialog/wxm_options_dialog.cpp:661
+#: ../src/dialog/wxm_options_dialog.cpp:672
 #, c-format
 msgid "[%f] &File Name"
 msgstr "[%f] &Nombre de archivo"
 
-#: ../src/dialog/wxm_options_dialog.cpp:662
+#: ../src/dialog/wxm_options_dialog.cpp:673
 #, c-format
 msgid "[%p] &Path Name"
 msgstr "[%p] Nombre de &ruta"
 
-#: ../src/dialog/wxm_options_dialog.cpp:664
+#: ../src/dialog/wxm_options_dialog.cpp:675
 #, c-format
 msgid "[%n] Page &Number"
 msgstr "[%n] Número de &página"
 
-#: ../src/dialog/wxm_options_dialog.cpp:665
+#: ../src/dialog/wxm_options_dialog.cpp:676
 #, c-format
 msgid "[%s] Total Page&s"
 msgstr "[%s] Páginas &totales"
 
-#: ../src/dialog/wxm_options_dialog.cpp:667
+#: ../src/dialog/wxm_options_dialog.cpp:678
 #, c-format
 msgid "[%d] &Date"
 msgstr "[%d] &Fecha"
 
-#: ../src/dialog/wxm_options_dialog.cpp:668
+#: ../src/dialog/wxm_options_dialog.cpp:679
 msgid "[%t] &Time"
 msgstr "[%t] &Tiempo"
 
-#: ../src/dialog/wxm_options_dialog.cpp:670
+#: ../src/dialog/wxm_options_dialog.cpp:681
 msgid "[%Y/%m/%d %I:%M:%S %p] 2007/02/24 08:30:55 AM"
 msgstr "[%Y/%m/%d %I:%M:%S %p] 2007/02/24 08:30:55 AM"
 
-#: ../src/dialog/wxm_options_dialog.cpp:671
+#: ../src/dialog/wxm_options_dialog.cpp:682
 msgid "[%d/%m/%Y] 24/02/2007"
 msgstr "[%d/%m/%Y] 24/02/2007"
 
-#: ../src/dialog/wxm_options_dialog.cpp:672
+#: ../src/dialog/wxm_options_dialog.cpp:683
 msgid "[%a, %d %b %Y %H:%M:%S %z] RFC822 timestamp"
 msgstr "[%a, %d %b %Y %H:%M:%S %z] RFC822 sello de tiempo"
 
-#: ../src/dialog/wxm_options_dialog.cpp:674
+#: ../src/dialog/wxm_options_dialog.cpp:685
 #, c-format
 msgid "[%a] Abbreviated weekday name"
 msgstr "[%a] Nombre abreviado del día de la semana"
 
-#: ../src/dialog/wxm_options_dialog.cpp:675
+#: ../src/dialog/wxm_options_dialog.cpp:686
 #, c-format
 msgid "[%A] Full weekday name"
 msgstr "[%A] Nombre completo de lunes a viernes"
 
-#: ../src/dialog/wxm_options_dialog.cpp:676
+#: ../src/dialog/wxm_options_dialog.cpp:687
 msgid "[%b] Abbreviated month name"
 msgstr "[%b] Nombre abreviado del mes"
 
-#: ../src/dialog/wxm_options_dialog.cpp:677
+#: ../src/dialog/wxm_options_dialog.cpp:688
 msgid "[%B] Full month name"
 msgstr "[%B] Nombre completo del mes"
 
-#: ../src/dialog/wxm_options_dialog.cpp:678
+#: ../src/dialog/wxm_options_dialog.cpp:689
 #, c-format
 msgid "[%c] Date and time representation appropriate for locale"
 msgstr ""
 "[%c] Fecha y hora de la representación adecuada para la configuración "
 "regional"
 
-#: ../src/dialog/wxm_options_dialog.cpp:679
+#: ../src/dialog/wxm_options_dialog.cpp:690
 #, c-format
 msgid "[%d] Day of month as decimal number (01 - 31)"
 msgstr "[%d] Día del mes como número decimal (01 - 31)"
 
-#: ../src/dialog/wxm_options_dialog.cpp:680
+#: ../src/dialog/wxm_options_dialog.cpp:691
 msgid "[%H] Hour in 24-hour format (00 - 23)"
 msgstr "[%H] Hora en formato de 24 horas (00 - 23)"
 
-#: ../src/dialog/wxm_options_dialog.cpp:681
+#: ../src/dialog/wxm_options_dialog.cpp:692
 msgid "[%I] Hour in 12-hour format (01 - 12)"
 msgstr "[%I] Hora en formato de 12 horas (01 - 12)"
 
-#: ../src/dialog/wxm_options_dialog.cpp:682
+#: ../src/dialog/wxm_options_dialog.cpp:693
 msgid "[%j] Day of year as decimal number (001 - 366)"
 msgstr "[%j] Día del año como número decimal (001 - 366)"
 
-#: ../src/dialog/wxm_options_dialog.cpp:683
+#: ../src/dialog/wxm_options_dialog.cpp:694
 #, c-format
 msgid "[%m] Month as decimal number (01 - 12)"
 msgstr "[%m] Mes como número decimal (01 - 12)"
 
-#: ../src/dialog/wxm_options_dialog.cpp:684
+#: ../src/dialog/wxm_options_dialog.cpp:695
 msgid "[%M] Minute as decimal number (00 - 59)"
 msgstr "[%M] Minuto como número decimal (00 - 59)"
 
-#: ../src/dialog/wxm_options_dialog.cpp:685
+#: ../src/dialog/wxm_options_dialog.cpp:696
 #, c-format
 msgid "[%p] Current locale's A.M./P.M. indicator for 12-hour clock"
 msgstr ""
 "[%p] Configuración regional actual A.M./P.M. indicador de reloj de 12 horas"
 
-#: ../src/dialog/wxm_options_dialog.cpp:686
+#: ../src/dialog/wxm_options_dialog.cpp:697
 #, c-format
 msgid "[%S] Second as decimal number (00 - 59)"
 msgstr "[%S] Segundo como número decimal (00 - 59)"
 
-#: ../src/dialog/wxm_options_dialog.cpp:687
+#: ../src/dialog/wxm_options_dialog.cpp:698
 msgid ""
 "[%U] Week of year as decimal number, with Sunday as first day of week (00 - "
 "53)"
@@ -4252,11 +4268,11 @@ msgstr ""
 "[%U] Semana del año como número decimal, con el domingo como primer día de "
 "la semana (00 - 53)"
 
-#: ../src/dialog/wxm_options_dialog.cpp:688
+#: ../src/dialog/wxm_options_dialog.cpp:699
 msgid "[%w] Weekday as decimal number (0 - 6; Sunday is 0)"
 msgstr "[%w] Día de la semana como número decimal (0 - 6; Domingo es 0)"
 
-#: ../src/dialog/wxm_options_dialog.cpp:689
+#: ../src/dialog/wxm_options_dialog.cpp:700
 msgid ""
 "[%W] Week of year as decimal number, with Monday as first day of week (00 - "
 "53)"
@@ -4264,42 +4280,42 @@ msgstr ""
 "[%W] Semana del año como número decimal, con el lunes como el primer día de "
 "la semana (00 - 53)"
 
-#: ../src/dialog/wxm_options_dialog.cpp:690
+#: ../src/dialog/wxm_options_dialog.cpp:701
 #, c-format
 msgid "[%x] Date representation for current locale"
 msgstr "[%x] Representación de la fecha para la localización actual"
 
-#: ../src/dialog/wxm_options_dialog.cpp:691
+#: ../src/dialog/wxm_options_dialog.cpp:702
 #, c-format
 msgid "[%X] Time representation for current locale"
 msgstr "[%X] Representación de la hora para la localización actual"
 
-#: ../src/dialog/wxm_options_dialog.cpp:692
+#: ../src/dialog/wxm_options_dialog.cpp:703
 msgid "[%y] Year without century, as decimal number (00 - 99)"
 msgstr "[%y] Año sin siglo, como número decimal (00 - 99)"
 
-#: ../src/dialog/wxm_options_dialog.cpp:693
+#: ../src/dialog/wxm_options_dialog.cpp:704
 msgid "[%Y] Year with century, as decimal number"
 msgstr "[%Y] Año con siglo, como número decimal"
 
-#: ../src/dialog/wxm_options_dialog.cpp:694
+#: ../src/dialog/wxm_options_dialog.cpp:705
 msgid "[%z] Time-zone name"
 msgstr "[%z] Nombre de la zona horaria"
 
-#: ../src/dialog/wxm_options_dialog.cpp:695
+#: ../src/dialog/wxm_options_dialog.cpp:706
 msgid "[%Z] Time-zone abbreviation"
 msgstr "[%Z] Abreviatura de la zona horaria"
 
-#: ../src/dialog/wxm_options_dialog.cpp:697
-#: ../src/dialog/wxm_options_dialog.cpp:707
-#: ../src/dialog/wxm_options_dialog.cpp:824
-#: ../src/dialog/wxm_options_dialog.cpp:832
-#: ../src/dialog/wxm_options_dialog.cpp:894
-#: ../src/dialog/wxm_options_dialog.cpp:900
+#: ../src/dialog/wxm_options_dialog.cpp:708
+#: ../src/dialog/wxm_options_dialog.cpp:718
+#: ../src/dialog/wxm_options_dialog.cpp:839
+#: ../src/dialog/wxm_options_dialog.cpp:847
+#: ../src/dialog/wxm_options_dialog.cpp:915
+#: ../src/dialog/wxm_options_dialog.cpp:921
 msgid "System Default"
 msgstr "Sistema predeterminado"
 
-#: ../src/dialog/wxm_options_dialog.cpp:724
+#: ../src/dialog/wxm_options_dialog.cpp:739
 msgid ""
 "Add wxMEdit to the RightClickMenu of Explorer(Deselect to Remove the Entry "
 "from Windows Registry)"
@@ -4307,32 +4323,32 @@ msgstr ""
 "Añadir wxMEdit al menú de clic derecho del Explorador (Anular la selección "
 "para eliminar la entrada del registro de Windows)"
 
-#: ../src/dialog/wxm_options_dialog.cpp:749
+#: ../src/dialog/wxm_options_dialog.cpp:764
 msgid "Commands"
 msgstr "Comandos"
 
-#: ../src/dialog/wxm_options_dialog.cpp:751
+#: ../src/dialog/wxm_options_dialog.cpp:766
 msgid "Menu"
 msgstr "Menú"
 
-#: ../src/dialog/wxm_options_dialog.cpp:752
+#: ../src/dialog/wxm_options_dialog.cpp:767
 msgid "Editor"
 msgstr "Editor"
 
-#: ../src/dialog/wxm_options_dialog.cpp:1056
+#: ../src/dialog/wxm_options_dialog.cpp:1080
 #, c-format
 msgid "Invalid value of \"%s\""
 msgstr "Valor no válido de \"%s\""
 
-#: ../src/dialog/wxm_options_dialog.cpp:1151
+#: ../src/dialog/wxm_options_dialog.cpp:1175
 msgid "Cannot assign key to this item"
 msgstr "No se puede asignar a la clave a este objeto"
 
-#: ../src/dialog/wxm_options_dialog.cpp:1245
+#: ../src/dialog/wxm_options_dialog.cpp:1269
 msgid "This key is not assigned"
 msgstr "No es asignada esta clave"
 
-#: ../src/dialog/wxm_options_dialog.cpp:1269
+#: ../src/dialog/wxm_options_dialog.cpp:1293
 #, c-format
 msgid "This key is assigned to [%s]"
 msgstr "Esta clave se asigna a [%s]"
@@ -4474,31 +4490,55 @@ msgstr "Licencia"
 msgid "Credits"
 msgstr "Créditos"
 
-#: ../src/wxm_utils.cpp:391
+#: ../src/wxm_utils.cpp:407
 msgid "Copy as Raw Bytes"
 msgstr "Copiar como bytes puros"
 
-#: ../src/wxm_utils.cpp:392
+#: ../src/wxm_utils.cpp:408
 msgid "Copy as Regular Text"
 msgstr "Copiar como texto normal"
 
-#: ../src/wxm_utils.cpp:393
+#: ../src/wxm_utils.cpp:409
 msgid "Copy as Hex String"
 msgstr "Copiar como cadena hexadecimal"
 
-#: ../src/wxm_utils.cpp:394
+#: ../src/wxm_utils.cpp:410
 msgid "Copy as Hex String with Spaces"
 msgstr "Copiar como cadena hexadecimal con espacios"
+
+#: ../src/wxm_utils.cpp:493
+msgid "Never"
+msgstr ""
+
+#: ../src/wxm_utils.cpp:494
+msgid "According To Copying Behavior"
+msgstr ""
+
+#: ../src/wxm_utils.cpp:495
+msgid "If Possible"
+msgstr ""
+
+#: ../src/wxm_utils.cpp:496
+msgid "Always"
+msgstr ""
 
 #: ../src/wxm_printout.h:19
 msgid "wxMEdit Printout"
 msgstr "wxMEdit Printout"
 
-#: ../src/xm/wxm_update.cpp:82
+#: ../src/xm/wxm_update.cpp:85
+msgid "Cannot check for new version!"
+msgstr ""
+
+#: ../src/xm/wxm_update.cpp:92
+msgid "wxMEdit is already the newest version."
+msgstr "Es la versión más reciente de wxMEdit ."
+
+#: ../src/xm/wxm_update.cpp:100
 msgid "wxMEdit - New version available"
 msgstr "wxMEdit - Nueva versión disponible"
 
-#: ../src/xm/wxm_update.cpp:83
+#: ../src/xm/wxm_update.cpp:101
 #, c-format
 msgid ""
 "wxMEdit %s is available. \n"
@@ -4507,29 +4547,28 @@ msgstr ""
 "wxMEdit %s está disponible. \n"
 "Haga clic en Aceptar para abrir la página de descarga."
 
-#: ../src/xm/wxm_update.cpp:93
-msgid "wxMEdit is already the newest version."
-msgstr "Es la versión más reciente de wxMEdit ."
-
-#: ../src/xm/wxm_update.cpp:152
+#: ../src/xm/wxm_update.cpp:167
 msgid "every day"
 msgstr "cada día"
 
-#: ../src/xm/wxm_update.cpp:153
+#: ../src/xm/wxm_update.cpp:168
 msgid "every week"
 msgstr "cada semana"
 
-#: ../src/xm/wxm_update.cpp:154
+#: ../src/xm/wxm_update.cpp:169
 msgid "every month"
 msgstr "cada mes"
 
-#: ../src/xm/wxm_update.cpp:155
+#: ../src/xm/wxm_update.cpp:170
 msgid "never"
 msgstr "nunca"
 
 #: ../src/xm/wx_recent_list.cpp:70
 msgid "[EMPTY]"
 msgstr "[VACIO]"
+
+#~ msgid "Wrap ar&ound"
+#~ msgstr "Envolver"
 
 #~ msgid "Unicode 16 bit (UTF-16)"
 #~ msgstr "Unicode 16 bit (UTF-16)"
