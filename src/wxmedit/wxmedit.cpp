@@ -6213,14 +6213,16 @@ void MadEdit::InsertRawBytes(wxByte *bytes, size_t count, bool overwirte)
     }
     else if(overwirte)
     {
+        wxFileOffset maxdel = GetFileSize() - GetCaretPosition();
+
         ud = new MadOverwriteUndoData();
-        ud->m_Pos = m_CaretPos.pos;
-        ud->SetDelSize(blk.m_Size);
+        ud->m_Pos = GetCaretPosition();
+        ud->SetDelSize(std::min(blk.m_Size, maxdel));
     }
     else
     {
         ud = new MadInsertUndoData;
-        ud->m_Pos = m_CaretPos.pos;
+        ud->m_Pos = GetCaretPosition();
     }
     ud->SetInsBlock(blk);
 
