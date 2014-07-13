@@ -36,10 +36,10 @@
 #: ../src/dialog/wxm_options_dialog.cpp:706
 msgid ""
 msgstr ""
-"Project-Id-Version: wxMEdit 2.9.7\n"
+"Project-Id-Version: wxMEdit 2.9.7.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-07-12 15:57+0800\n"
-"PO-Revision-Date: 2014-04-11 21:58+0800\n"
+"PO-Revision-Date: 2014-07-13 12:34+0800\n"
 "Last-Translator: Vincent_TW <wxmedit@gmail.com>\n"
 "Language-Team: wxMEdit <wxmedit@gmail.com>\n"
 "Language: zh_TW\n"
@@ -1952,23 +1952,23 @@ msgstr "北歐語系 (ISO-8859-4)"
 
 #: ../src/xm/wxm_encoding/encoding.cpp:120
 msgid "Cyrillic (ISO-8859-5)"
-msgstr "斯拉夫語 (ISO-8859-5)"
+msgstr "斯拉夫文 (ISO-8859-5)"
 
 #: ../src/xm/wxm_encoding/encoding.cpp:121
 msgid "Arabic (ISO-8859-6)"
-msgstr "阿拉伯語 (ISO-8859-6)"
+msgstr "阿拉伯文 (ISO-8859-6)"
 
 #: ../src/xm/wxm_encoding/encoding.cpp:122
 msgid "Greek (ISO-8859-7)"
-msgstr "希臘語 (ISO-8859-7)"
+msgstr "希臘文 (ISO-8859-7)"
 
 #: ../src/xm/wxm_encoding/encoding.cpp:123
 msgid "Hebrew (ISO-8859-8)"
-msgstr "希伯來語 (ISO-8859-8)"
+msgstr "希伯來文 (ISO-8859-8)"
 
 #: ../src/xm/wxm_encoding/encoding.cpp:124
 msgid "Turkish (ISO-8859-9)"
-msgstr "土耳其語 (ISO-8859-9)"
+msgstr "土耳其文 (ISO-8859-9)"
 
 #: ../src/xm/wxm_encoding/encoding.cpp:125
 msgid "Nordic (ISO-8859-10)"
@@ -1976,15 +1976,15 @@ msgstr "北歐語系 (ISO-8859-10)"
 
 #: ../src/xm/wxm_encoding/encoding.cpp:126
 msgid "Thai (ISO-8859-11)"
-msgstr "泰語 (ISO-8859-11)"
+msgstr "泰文 (ISO-8859-11)"
 
 #: ../src/xm/wxm_encoding/encoding.cpp:127
 msgid "Baltic (ISO-8859-13)"
-msgstr "波羅的海語 (ISO-8859-13)"
+msgstr "波羅的海文 (ISO-8859-13)"
 
 #: ../src/xm/wxm_encoding/encoding.cpp:128
 msgid "Celtic (ISO-8859-14)"
-msgstr "凱爾特語 (ISO-8859-14)"
+msgstr "凱爾特文 (ISO-8859-14)"
 
 #: ../src/xm/wxm_encoding/encoding.cpp:129
 msgid "Western European with Euro (ISO-8859-15)"
@@ -2004,7 +2004,7 @@ msgstr "Windows 中歐語系 (CP 1250)"
 
 #: ../src/xm/wxm_encoding/encoding.cpp:133
 msgid "Windows Cyrillic (CP 1251)"
-msgstr "Windows 斯拉夫語 (CP 1251)"
+msgstr "Windows 斯拉夫文 (CP 1251)"
 
 #: ../src/xm/wxm_encoding/encoding.cpp:134
 msgid "Windows Western European (CP 1252)"
@@ -2052,19 +2052,19 @@ msgstr "Windows/DOS OEM - 拉丁2 (CP 852)"
 
 #: ../src/xm/wxm_encoding/encoding.cpp:145
 msgid "Windows/DOS OEM - Cyrillic (CP 855)"
-msgstr "Windows/DOS OEM - 斯拉夫語 (CP 855)"
+msgstr "Windows/DOS OEM - 斯拉夫文 (CP 855)"
 
 #: ../src/xm/wxm_encoding/encoding.cpp:146
 msgid "Windows/DOS OEM - Cyrillic (CP 866)"
-msgstr "Windows/DOS OEM - 斯拉夫語 (CP 866)"
+msgstr "Windows/DOS OEM - 斯拉夫文 (CP 866)"
 
 #: ../src/xm/wxm_encoding/encoding.cpp:147
 msgid "Cyrillic (KOI8-R)"
-msgstr "斯拉夫語 (KOI8-R)"
+msgstr "斯拉夫文 (KOI8-R)"
 
 #: ../src/xm/wxm_encoding/encoding.cpp:148
 msgid "Cyrillic (KOI8-U)"
-msgstr "斯拉夫語 (KOI8-U)"
+msgstr "斯拉夫文 (KOI8-U)"
 
 #: ../src/xm/wxm_encoding/encoding.cpp:150
 msgid "Windows Japanese (CP 932)"
@@ -2190,7 +2190,7 @@ msgstr "AUR 套件 wxmedit 建立者"
 
 #: ../src/wxmedit_frame.cpp:184
 msgid "Creator of Gentoo package wxmedit"
-msgstr ""
+msgstr "Gentoo 套件 wxmedit 建立者"
 
 #: ../src/wxmedit_frame.cpp:775
 msgid "Ln:"
@@ -2374,11 +2374,11 @@ msgstr "將剪貼簿中的資料插入到檔案中"
 
 #: ../src/wxmedit_frame.cpp:1275
 msgid "Paste with Over&writing"
-msgstr ""
+msgstr "覆蓋貼上(&W)"
 
 #: ../src/wxmedit_frame.cpp:1275
 msgid "Overwrite data from the Clipboard"
-msgstr ""
+msgstr "將剪貼簿的資料覆蓋到檔案中"
 
 #: ../src/wxmedit_frame.cpp:1276 ../src/dialog/wxm_highlighting_dialog.cpp:204
 msgid "&Delete"
@@ -3539,7 +3539,7 @@ msgstr "跳到檔案位置"
 
 #: ../src/wxmedit_frame.cpp:5074
 msgid "Press OK to visit our HomePage."
-msgstr "按「確定」存取 wxMEdit 首頁。"
+msgstr "按「確定」瀏覽 wxMEdit 首頁。"
 
 #: ../src/wxmedit_frame.cpp:5076
 msgid "wxMEdit, a cross-platform Text/Hex Editor"
@@ -3800,7 +3800,7 @@ msgstr "將輸入焦點移到編輯器視窗(&M)"
 
 #: ../src/dialog/wxm_search_replace_dialog.cpp:103
 msgid "Wrap aroun&d"
-msgstr ""
+msgstr "循環尋找(&D)"
 
 #: ../src/dialog/wxm_search_replace_dialog.cpp:119
 msgid "Search In &Selection"
@@ -4007,7 +4007,7 @@ msgstr "十六進位編輯區複製行為："
 
 #: ../src/dialog/wxm_options_dialog.cpp:453
 msgid "Treat clipboard text as Hex String when pasting in hex area:"
-msgstr ""
+msgstr "在十六進位編輯區域貼上時把剪貼簿內的資料當作十六進位字串："
 
 #: ../src/dialog/wxm_options_dialog.cpp:466
 msgid "Print Syntax Highlighter"
@@ -4494,19 +4494,19 @@ msgstr "複製空格分隔的十六進位字串"
 
 #: ../src/wxm_utils.cpp:493
 msgid "Never"
-msgstr ""
+msgstr "從不"
 
 #: ../src/wxm_utils.cpp:494
 msgid "According To Copying Behavior"
-msgstr ""
+msgstr "依複製行為而定"
 
 #: ../src/wxm_utils.cpp:495
 msgid "If Possible"
-msgstr ""
+msgstr "盡可能"
 
 #: ../src/wxm_utils.cpp:496
 msgid "Always"
-msgstr ""
+msgstr "總是"
 
 #: ../src/wxm_printout.h:19
 msgid "wxMEdit Printout"
@@ -4514,7 +4514,7 @@ msgstr "wxMEdit 列印"
 
 #: ../src/xm/wxm_update.cpp:85
 msgid "Cannot check for new version!"
-msgstr ""
+msgstr "無法檢查新版本！"
 
 #: ../src/xm/wxm_update.cpp:92
 msgid "wxMEdit is already the newest version."
@@ -4552,6 +4552,3 @@ msgstr "從不"
 #: ../src/xm/wx_recent_list.cpp:70
 msgid "[EMPTY]"
 msgstr "[空]"
-
-#~ msgid "Wrap ar&ound"
-#~ msgstr "循環尋找(O)"
