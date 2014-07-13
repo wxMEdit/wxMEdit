@@ -1,7 +1,19 @@
+2014-07-13 19:34:42 +0800 JiaYanwei <wxmedit@gmail.com>
+
+	* wxMEdit v2.9.7.2:
+	 1. made manual update checking asynchronously as same as automatic update checking.
+	 2. made default window size bigger.
+	 3. added more choices for whether pasting as hex-string in hex-area when editing in hex-mode.
+	 4. added new feature: Paste with Overwriting in Hex Area.
+	 5. updated FreeBSD packaging that switched to pkgng via ports.
+	 6. updated Chinese translations.
+	 7. other minor changes and bug fixes.
+
+
 2014-04-03 11:00:01 +0800 JiaYanwei <wxmedit@gmail.com>
 
 	* wxMEdit v2.9.7:
-	 1. added new encoding "CP437 for ASCII-Art" to support ASCII-Art better.
+	 1. added new encoding "CP437 Variant for ASCII Art" to support ASCII-Art better.
 	 2. added automatically checking for updates.
 	 3. added bookmark support [mainly by Gospodin Gyurov (aka Gogo) <ggurov@yahoo.com>].
 	 4. added new commands: delete previous/next word (by Gogo).

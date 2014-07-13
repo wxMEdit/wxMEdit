@@ -1,5 +1,5 @@
                       ==================================
-                                wxMEdit v2.9.7
+                                wxMEdit v2.9.7.2
                       ==================================
 About:
 -----
@@ -84,6 +84,15 @@ Syntax files, Locale files and Settings:
 
 ChangeLog:
 ----------
+wxMEdit v2.9.7.2:
+  1. made manual update checking asynchronously as same as automatic update checking.
+  2. made default window size bigger.
+  3. added more choices for whether pasting as hex-string in hex-area when editing in hex-mode.
+  4. added new feature: Paste with Overwriting in Hex Area.
+  5. updated FreeBSD packaging that switched to pkgng via ports.
+  6. updated Chinese translations.
+  7. other minor changes and bug fixes.
+
 wxMEdit v2.9.7:
   1. added new encoding "CP437 for ASCII-Art" to support ASCII-Art better.
   2. added automatically checking for updates.
@@ -127,11 +136,6 @@ wxMEdit v2.9.6
  12. updated Simplified Chinese translation.
  13. updated Traditional Chinese translation by Denir Li <denir.li@gmail.com>.
  14. other minor changes.
-
-wxMEdit v2.9.5-2:
-  1.updated translations for "Printout" and Syntax Highlighting Settings.
-  2.updated Spanish translation.
-  3.added Spanish to language chooser of General Settings.
 
 See file ChangeLog for more changes.
 
