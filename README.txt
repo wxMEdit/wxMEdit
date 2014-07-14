@@ -21,7 +21,7 @@ A. Linux, FreeBSD, Mac OS X, and other Unix-like OS (__WXGTK__):
       3. wxWidgets 2.8 with Unicode enabled
       4. Boost 1.33.0 or higher
       5. ICU4C 4.2 or higher
-      6. libcurl 7.15.5 or later
+      6. libcurl 7.15.5 or higher
 
 B. MS Windows (__WXMSW__):
    a. MinGW32/GNU C++ 3.x/4.x:
@@ -31,7 +31,7 @@ B. MS Windows (__WXMSW__):
       3. Boost 1.33.0 or higher
       4. libunicows: it's optional but required under Win98
       5. ICU4C 4.2 or higher
-      6. libcurl 7.15.5 or later
+      6. libcurl 7.15.5 or higher
    b. Visual C++ 2005/2008/2010/2012(by upgrading from 2008 solution and project files):
       Required Tools and Libraries to compile:
       1. Bakefile 0.2.9
@@ -39,7 +39,7 @@ B. MS Windows (__WXMSW__):
       3. Boost 1.33.0 or higher
       4. libunicows: it's optional but required under Win98
       5. ICU4C 4.2 or higher
-      6. libcurl 7.15.5 or later
+      6. libcurl 7.15.5 or higher
 
 NOTE:
    You can download Bakefile at:
@@ -158,7 +158,6 @@ wxMEdit: http://code.google.com/p/wxmedit/
 MadEdit: http://sourceforge.net/projects/madedit/
 wxWidgets: http://www.wxwidgets.org/
 Boost: http://www.boost.org/
-Boost.Xpressive: http://www.boost.org/doc/html/xpressive.html
 libunicows: http://libunicows.sourceforge.net/
 Open Clip Art Library: http://www.openclipart.org/
 ICU: http://site.icu-project.org/
