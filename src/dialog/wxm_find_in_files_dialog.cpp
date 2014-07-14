@@ -633,10 +633,10 @@ void WXMFindInFilesDialog::FindReplaceInFiles(bool bReplace)
 
 	if(g_Continue)
 	{
-		MadEdit *madedit, *tempedit=NULL;
+		MadEdit *tempedit=NULL;
 		if(WxRadioButtonDir->GetValue())
 		{
-			madedit=tempedit=new MadEdit(this, -1, wxPoint(-1024,-1024));
+			tempedit=new MadEdit(this, -1, wxPoint(-1024,-1024));
 			tempedit->StopRepaint();
 			tempedit->SetStorePropertiesToGlobalConfig(false);
 			tempedit->SetFixedWidthMode(false);
@@ -650,6 +650,7 @@ void WXMFindInFilesDialog::FindReplaceInFiles(bool bReplace)
 		bool cont = true;
 		for(size_t i = 0; i < totalfiles && cont; i++)
 		{
+			MadEdit *madedit = NULL;
 			// prepare madedit
 			if(WxRadioButtonOpenedFiles->GetValue())
 			{

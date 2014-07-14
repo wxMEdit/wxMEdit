@@ -529,7 +529,7 @@ void MadEdit::IncreaseDecreaseIndent(bool incIndent)
     undo->m_CaretPosAfter=oudata->m_Pos;
     undo->m_Undos.push_back(oudata);
 
-    count = m_Lines->Reformat(lit, lit);
+    /*count = */m_Lines->Reformat(lit, lit);
 
     m_CaretPos.pos=oudata->m_Pos;
     UpdateCaretByPos(m_CaretPos, m_ActiveRowUChars, m_ActiveRowWidths, m_CaretRowUCharPos);
@@ -717,7 +717,7 @@ void MadEdit::CommentUncomment(bool comment)
     undo->m_CaretPosAfter=oudata->m_Pos;
     undo->m_Undos.push_back(oudata);
 
-    count = m_Lines->Reformat(lit, lit);
+    /*count = */m_Lines->Reformat(lit, lit);
 
     m_CaretPos.pos=oudata->m_Pos;
     UpdateCaretByPos(m_CaretPos, m_ActiveRowUChars, m_ActiveRowWidths, m_CaretRowUCharPos);
@@ -1300,16 +1300,16 @@ void MadEdit::WordCount(bool selection, int &wordCount, int &charCount, int &spa
     }
     wordCount = word_counter->GetWordCountNoCtrlNoSP();
 
-    if(detail!=NULL)
+    if(detail==NULL)
+        return;
+
+    for(idx=ublock_counter.BlockIndexBegin(); ublock_counter.IsValidBlock(idx); idx=ublock_counter.NextBlock())
     {
-        for(idx=ublock_counter.BlockIndexBegin(); ublock_counter.IsValidBlock(idx); idx=ublock_counter.NextBlock())
-        {
-            int cnt = ublock_counter.GetBlockCharCount(idx);
-            wxString block_begin = wxString::Format(wxT("U+%04X"), ublock_set.Begin(idx));
-            wxString block_end = wxString::Format(wxT("U+%04X"), ublock_set.End(idx));
-            detail->Add(wxString::Format(wxT("%10d    %8s - %8s: %s"), cnt,
-                block_begin.c_str(), block_end.c_str(), wxGetTranslation(ublock_set.Description(idx))));
-        }
+        int cnt = ublock_counter.GetBlockCharCount(idx);
+        wxString block_begin = wxString::Format(wxT("U+%04X"), ublock_set.Begin(idx));
+        wxString block_end = wxString::Format(wxT("U+%04X"), ublock_set.End(idx));
+        detail->Add(wxString::Format(wxT("%10d    %8s - %8s: %s"), cnt,
+            block_begin.c_str(), block_end.c_str(), wxGetTranslation(ublock_set.Description(idx))));
     }
     if(ublock_counter.GetInvalidBlockCharCount()>0)
     {
@@ -1962,7 +1962,7 @@ void MadEdit::ConvertNewLineToWordWrap()
             del_epos.push_back(pos1);
         }
 
-        pos = pos1;
+        //pos = pos1;
         pos1 += lit1->m_Size;
         ++lit;
         ++lit1;

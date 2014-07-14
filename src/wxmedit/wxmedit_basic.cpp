@@ -3234,7 +3234,7 @@ void MadEdit::BeginPrint(const wxRect &printRect)
                     ++m_PrintPageCount;
                 break;
             case 2: // print OffsetHeader on every page
-                if(m_RowCountPerPage==1)
+                if(m_HexLineCountPerPage==1)
                 {
                     m_PrintPageCount=m_PrintTotalHexLineCount;
                 }
