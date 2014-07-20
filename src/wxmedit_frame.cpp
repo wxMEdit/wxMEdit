@@ -1740,7 +1740,7 @@ void MadEditFrame::EncodingGroupMenuAppend(ssize_t idx, const wxString& text, si
         {
             wxMenu* menu = new wxMenu();
             it = m_encgrps.insert(std::make_pair(gid, menu)).first;
-            size_t pos = g_Menu_View_Encoding->GetMenuItemCount() - rsv_cnt;
+            size_t pos = g_Menu_View_Encoding->GetMenuItemCount() - rsv_cnt - 1;
             g_Menu_View_Encoding->Insert(pos, menuEncodingGroup1 + i + rsv_cnt, encmgr.EncodingGroupToName(gid), menu);
         }
 
@@ -1754,11 +1754,19 @@ size_t MadEditFrame::ReserveEncodingGrupMenus()
 {
     wxm::WXMEncodingManager& encmgr = wxm::WXMEncodingManager::Instance();
 
-    wxMenu* menu = new wxMenu();
-    g_Menu_View_Encoding->Append(menuEncodingGroup1 + 0, encmgr.EncodingGroupToName(wxm::ENCG_DEFAULT), menu);
-    m_encgrps[wxm::ENCG_DEFAULT] = menu;
+    std::vector<wxm::WXMEncodingGroupID> reserve_grps =
+        boost::assign::list_of(wxm::ENCG_ISO8859)(wxm::ENCG_WINDOWS)(wxm::ENCG_OEM)(wxm::ENCG_DEFAULT);
 
-    return 1;
+    size_t i = 0;
+    BOOST_FOREACH(wxm::WXMEncodingGroupID gid, reserve_grps)
+    {
+        wxMenu* menu = new wxMenu();
+        g_Menu_View_Encoding->Insert(i, menuEncodingGroup1 + i, encmgr.EncodingGroupToName(gid), menu);
+        m_encgrps[gid] = menu;
+        ++i;
+    }
+
+    return reserve_grps.size();
 }
 
 void MadEditFrame::InitEncodingMenus()

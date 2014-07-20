@@ -79,6 +79,9 @@ enum WXMEncodingGroupID
 	ENCG_EASTASIA,
 	ENCG_SOUTHEASTASIA,
 	ENCG_UNICODE,
+	ENCG_ISO8859,
+	ENCG_WINDOWS,
+	ENCG_OEM,
 };
 
 };// namespace wxm
