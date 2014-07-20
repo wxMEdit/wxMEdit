@@ -71,6 +71,7 @@ static wxString GetMSCPFontName(const wxString mscp)
 
 namespace wxm
 {
+WXMEncodingManager* WXMEncodingManager::s_inst = NULL;
 
 std::string GetEncodingICUName(const char* innername)
 {
@@ -310,6 +311,7 @@ void WXMEncodingManager::FreeEncodings()
 	m_sysenc = NULL;
 
 	m_initialized = false;
+	DestroyInstance();
 }
 
 size_t WXMEncodingManager::GetEncodingsCount()

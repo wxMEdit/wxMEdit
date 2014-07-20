@@ -8,6 +8,11 @@
 #include <wx/string.h>
 //*)
 
+#ifdef _DEBUG
+#include <crtdbg.h>
+#define new new(_NORMAL_BLOCK ,__FILE__, __LINE__)
+#endif
+
 //(*IdInit(WXMPurgeHistoriesDialog)
 const long WXMPurgeHistoriesDialog::ID_CHECKBOXRECENTFILES = wxNewId();
 const long WXMPurgeHistoriesDialog::ID_CHECKBOXRECENTFONTS = wxNewId();

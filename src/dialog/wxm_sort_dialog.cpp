@@ -12,6 +12,11 @@
 #include <wx/string.h>
 //*)
 
+#ifdef _DEBUG
+#include <crtdbg.h>
+#define new new(_NORMAL_BLOCK ,__FILE__, __LINE__)
+#endif
+
 //(*IdInit(WXMSortDialog)
 const long WXMSortDialog::ID_WXRADIOBOXORDER = wxNewId();
 const long WXMSortDialog::ID_WXCHECKBOXCASE = wxNewId();

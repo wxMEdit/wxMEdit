@@ -16,6 +16,12 @@
 #include <boost/assign/list_inserter.hpp>
 #include <boost/range/iterator_range.hpp>
 #include <string>
+
+#ifdef _DEBUG
+#include <crtdbg.h>
+#define new new(_NORMAL_BLOCK ,__FILE__, __LINE__)
+#endif
+
 namespace wxm
 {
 

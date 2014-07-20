@@ -10,6 +10,11 @@
 
 #include <curl/curl.h>
 
+#ifdef _DEBUG
+#include <crtdbg.h>
+#define new new(_NORMAL_BLOCK ,__FILE__, __LINE__)
+#endif
+
 static size_t string_append(const void *buffer, size_t size, size_t nmemb, void *pstr)
 {
 	reinterpret_cast<std::string *>(pstr)->append((const char *)buffer, size * nmemb);

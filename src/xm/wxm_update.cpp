@@ -27,6 +27,11 @@
 #include <functional>
 #include <limits>
 
+#ifdef _DEBUG
+#include <crtdbg.h>
+#define new new(_NORMAL_BLOCK ,__FILE__, __LINE__)
+#endif
+
 namespace xp =  boost::xpressive;
 namespace algo = boost::algorithm;
 namespace wxm

@@ -39,10 +39,14 @@ struct WXMEncodingManager: private boost::noncopyable
 {
 	static WXMEncodingManager& Instance()
 	{
-		static WXMEncodingManager* mgr= NULL;
-		if (mgr == NULL)
-			mgr = new WXMEncodingManager();
-		return *mgr;
+		if (s_inst == NULL)
+			s_inst = new WXMEncodingManager();
+		return *s_inst;
+	}
+	static void DestroyInstance()
+	{
+		delete s_inst;
+		s_inst = NULL;
 	}
 
 	static bool IsSimpleUnicodeEncoding(WXMEncodingID enc)
@@ -71,6 +75,8 @@ struct WXMEncodingManager: private boost::noncopyable
 private:
 	enum WXMEncodingType
 	{ etSingleByte, etDoubleByte, etUTF8, etUTF16LE, etUTF16BE, etUTF32LE, etUTF32BE, etCP20932, etGB18030, etCP437ART };
+
+	static WXMEncodingManager* s_inst;
 
 public:
 	size_t GetEncodingsCount();

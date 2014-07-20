@@ -15,6 +15,11 @@
 #include <wx/string.h>
 //*)
 
+#ifdef _DEBUG
+#include <crtdbg.h>
+#define new new(_NORMAL_BLOCK ,__FILE__, __LINE__)
+#endif
+
 WXMConvEncDialog *g_ConvEncDialog=NULL;
 //(*IdInit(WXMConvEncDialog)
 const long WXMConvEncDialog::ID_STATICTEXT1 = wxNewId();

@@ -12,6 +12,11 @@
 #include <wx/menu.h>
 #include <wx/intl.h>
 
+#ifdef _DEBUG
+#include <crtdbg.h>
+#define new new(_NORMAL_BLOCK ,__FILE__, __LINE__)
+#endif
+
 bool wxCaseInsensitiveRecentList::ItemEqual(const wxString& item1, const wxString& item2)
 {
 	return wxm::WxCaseCompare(item1, item2) == 0;

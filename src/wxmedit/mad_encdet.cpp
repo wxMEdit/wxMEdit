@@ -9,6 +9,11 @@
 
 #include "mad_encdet.h"
 
+#ifdef _DEBUG
+#include <crtdbg.h>
+#define new new(_NORMAL_BLOCK ,__FILE__, __LINE__)
+#endif
+
 bool IsBinaryData(const wxByte *data, size_t len)
 {
     size_t i = 0;
