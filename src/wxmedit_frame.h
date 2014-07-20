@@ -291,8 +291,10 @@ public:
 
 protected:
     void MadEditFrameClose(wxCloseEvent& event);
-    void EncodingGroupMenuAppend(int itemid, const wxString& text, ssize_t idx);
-    void CreateGUIControls(void);
+    void EncodingGroupMenuAppend(ssize_t idx, const wxString& text, size_t rsv_cnt);
+    size_t ReserveEncodingGrupMenus();
+    void InitEncodingMenus();
+    void CreateGUIControls();
 
     void OnNotebookPageChanging(wxAuiNotebookEvent& event);
     void OnNotebookPageChanged(wxAuiNotebookEvent& event);

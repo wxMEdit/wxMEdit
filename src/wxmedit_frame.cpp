@@ -1726,10 +1726,11 @@ MadEditFrame::MadEditFrame( wxWindow *parent, wxWindowID id, const wxString &tit
 MadEditFrame::~MadEditFrame()
 {}
 
-void MadEditFrame::EncodingGroupMenuAppend(int itemid, const wxString& text, ssize_t idx)
+void MadEditFrame::EncodingGroupMenuAppend(ssize_t idx, const wxString& text, size_t rsv_cnt)
 {
     static int i = 0;
 
+    int itemid = menuEncoding1 + int(idx);
     wxm::WXMEncodingManager& encmgr = wxm::WXMEncodingManager::Instance();
     std::vector<wxm::WXMEncodingGroupID> vec = encmgr.GetEncodingGroups(idx);
     BOOST_FOREACH(wxm::WXMEncodingGroupID gid, vec)
@@ -1739,16 +1740,44 @@ void MadEditFrame::EncodingGroupMenuAppend(int itemid, const wxString& text, ssi
         {
             wxMenu* menu = new wxMenu();
             it = m_encgrps.insert(std::make_pair(gid, menu)).first;
-            size_t pos = g_Menu_View_Encoding->GetMenuItemCount() - 1;
-            g_Menu_View_Encoding->Insert(pos, menuEncodingGroup1 + i + 1, encmgr.EncodingGroupToName(gid), menu);
+            size_t pos = g_Menu_View_Encoding->GetMenuItemCount() - rsv_cnt;
+            g_Menu_View_Encoding->Insert(pos, menuEncodingGroup1 + i + rsv_cnt, encmgr.EncodingGroupToName(gid), menu);
         }
 
         ++i;
         it->second->Append(itemid, text);
     }
+    g_Menu_View_AllEncodings->Append(itemid, text);
 }
 
-void MadEditFrame::CreateGUIControls(void)
+size_t MadEditFrame::ReserveEncodingGrupMenus()
+{
+    wxm::WXMEncodingManager& encmgr = wxm::WXMEncodingManager::Instance();
+
+    wxMenu* menu = new wxMenu();
+    g_Menu_View_Encoding->Append(menuEncodingGroup1 + 0, encmgr.EncodingGroupToName(wxm::ENCG_DEFAULT), menu);
+    m_encgrps[wxm::ENCG_DEFAULT] = menu;
+
+    return 1;
+}
+
+void MadEditFrame::InitEncodingMenus()
+{
+    wxm::WXMEncodingManager& encmgr = wxm::WXMEncodingManager::Instance();
+
+    size_t rsv_cnt = ReserveEncodingGrupMenus();
+
+    size_t cnt=wxm::WXMEncodingManager::Instance().GetEncodingsCount();
+    for(size_t i=0; i<cnt; ++i)
+    {
+        wxString enc=wxString(wxT('['))+ encmgr.GetEncodingName(i) + wxT("] ");
+        wxString des=wxGetTranslation(encmgr.GetEncodingDescription(i).c_str());
+
+        EncodingGroupMenuAppend(i, enc+des, rsv_cnt);
+    }
+}
+
+void MadEditFrame::CreateGUIControls()
 {
     WxStatusBar1 = new wxStatusBar(this, ID_WXSTATUSBAR1);
     g_StatusBar = WxStatusBar1;
@@ -1953,23 +1982,7 @@ void MadEditFrame::CreateGUIControls(void)
         delete ent;
     }
 
-    {
-        wxm::WXMEncodingManager& encmgr = wxm::WXMEncodingManager::Instance();
-
-        wxMenu* menu = new wxMenu();
-        g_Menu_View_Encoding->Append(menuEncodingGroup1 + 0, encmgr.EncodingGroupToName(wxm::ENCG_DEFAULT), menu);
-        m_encgrps[wxm::ENCG_DEFAULT] = menu;
-
-        size_t cnt=wxm::WXMEncodingManager::Instance().GetEncodingsCount();
-        for(size_t i=0; i<cnt; ++i)
-        {
-            wxString enc=wxString(wxT('['))+ encmgr.GetEncodingName(i) + wxT("] ");
-            wxString des=wxGetTranslation(encmgr.GetEncodingDescription(i).c_str());
-
-            g_Menu_View_AllEncodings->Append(menuEncoding1 + int(i), enc+des);
-            EncodingGroupMenuAppend(menuEncoding1 + int(i), enc+des, i);
-        }
-    }
+    InitEncodingMenus();
 
     {
         size_t cnt=MadSyntax::GetSyntaxCount();
