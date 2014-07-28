@@ -1362,7 +1362,7 @@ CommandData CommandTable[]=
     // View
     { 0, 0, 0, 0, _("&View"), 0, wxITEM_NORMAL, 0, &g_Menu_View, 0},
     { 0,            1, menuEncoding,          wxT("menuEncoding"),          _("Encoding: "),           0,                   wxITEM_NORMAL,    -1,                 &g_Menu_View_Encoding,     0},
-    { 0,            2, menuAllEncodings,      wxT("menuAllEncodings"),      _("All Encodings"),        0,                   wxITEM_NORMAL,    -1,                 &g_Menu_View_AllEncodings, 0},
+    { 0,            2, menuAllEncodings,      wxT("menuAllEncodings"),      _("All "),                 0,                   wxITEM_NORMAL,    -1,                 &g_Menu_View_AllEncodings, 0},
     { 0,            1, 0,                     0,                            0,                         0,                   wxITEM_SEPARATOR, -1,                 0,                         0},
     { 0,            1, menuSyntax,            wxT("menuSyntax"),            _("Syntax Type: "),        0,                   wxITEM_NORMAL,    -1,                 &g_Menu_View_Syntax,       0},
     { 0,            1, 0,                     0,                            0,                         0,                   wxITEM_SEPARATOR, -1,                 0,                         0},
