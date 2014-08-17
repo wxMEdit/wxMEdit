@@ -144,7 +144,7 @@
 #endif
 
 
-const wxString g_wxMEdit_Homepage_URL(wxT("http://code.google.com/p/wxmedit/"));
+const wxString g_wxMEdit_Homepage_URL(wxT("http://wxmedit.github.io/"));
 const wxString g_wxMEdit_License_URL(wxT("http://www.gnu.org/licenses/gpl-3.0.html"));
 wxString g_wxMEdit_About_URL = g_wxMEdit_Homepage_URL;
 

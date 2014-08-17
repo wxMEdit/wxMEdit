@@ -1,7 +1,7 @@
 This is Debianized package of wxMEdit.
 
 wxMEdit is a cross-platform Text/Hex Editor.
-wxMEdit is a fork of MadEdit which has been discontinued.
+wxMEdit is an improved version of MadEdit which has been discontinued.
 
 wxMEdit supports many useful functions, e.g. Bookmark, 
 SyntaxHighlightings, WordWrap, Encodings, Column/Hex Modes.
@@ -12,7 +12,7 @@ improvements and refactor.
 The original source code for this package can be downloaded from
 wxMEdit homepage or https://github.com/hltj/wxMEdit/ .
 
-Homepage: http://code.google.com/p/wxmedit/
+Homepage: http://wxmedit.github.io/
 
 Copyright (C) 2013-2014 JiaYanwei <wxmedit@gmail.com>
 Copyright (C) 2006-2010 Alston Chen <madedit@gmail.com>

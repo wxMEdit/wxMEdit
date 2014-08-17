@@ -4,7 +4,7 @@
 About:
 -----
 wxMEdit is a cross-platform Text/Hex Editor written in C++ & wxWidgets.
-wxMEdit a fork of MadEdit which has been discontinued.
+wxMEdit is an improved version of MadEdit which has been discontinued.
 wxMEdit supports many useful functions, e.g. Bookmark, Syntax Highlightings, 
 Word Wraps, Encodings, Column/Hex Modes, Updates checking, and a 
 Plugin system(not work yet).
@@ -46,7 +46,6 @@ NOTE:
       http://www.bakefile.org/download.html
 
    If you use Boost-1.33, you should get Boost.Xpressive and Boost.Foreach at:
-      http://code.google.com/p/wxmedit/
       http://wxmedit.googlecode.com/files/xpressive_foreach.tgz
       http://wxmedit.googlecode.com/files/xpressive_foreach.zip
 
@@ -154,7 +153,7 @@ Alston Chen <madedit@gmail.com>      (creator of MadEdit)
 
 Links:
 -----
-wxMEdit: http://code.google.com/p/wxmedit/
+wxMEdit: http://wxmedit.github.io/
 MadEdit: http://sourceforge.net/projects/madedit/
 wxWidgets: http://www.wxwidgets.org/
 Boost: http://www.boost.org/

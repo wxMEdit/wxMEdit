@@ -4,13 +4,13 @@
 %define version @VER@
 
 
-Summary: wxMEdit: Cross-platform Text/Hex Editor, a fork of MadEdit
+Summary: wxMEdit: Cross-platform Text/Hex Editor, Improved Version of MadEdit
 Name: %{name}
 Version: %{version}
 Release: %{release}
 License: GPLv3+
 Vendor: JiaYanwei
-URL: http://code.google.com/p/wxmedit/
+URL: http://wxmedit.github.io/
 Group: Applications/Editors
 Source0: %{name}-%{version}.tar.gz
 Packager: JiaYanwei <wxmedit@gmail.com>
@@ -24,7 +24,7 @@ Docdir: %{prefix}/share/doc
 
 %description
  wxMEdit is a cross-platform Text/Hex Editor.
- wxMEdit is a fork of MadEdit which has been discontinued.
+ wxMEdit is an improved version of MadEdit which has been discontinued.
 
 wxMEdit supports many useful functions, e.g. Bookmark, SyntaxHighlightings, WordWrap, Encodings, Column/Hex Modes.
 

@@ -16,4 +16,4 @@ export TOPDIR=../..
 
 ver=`sed -n '3s/^.*v//;3s/://p' "$TOPDIR/ChangeLog"`
 
-pkg_create -p "$PREFIX" -c -"wxMEdit: Cross-platform Text/Hex Editor, a fork of MadEdit" -d pkg-descr -f pkg-plist_old "wxmedit-$ver"
+pkg_create -p "$PREFIX" -c -"wxMEdit: Cross-platform Text/Hex Editor, Improved Version of MadEdit" -d pkg-descr -f pkg-plist_old "wxmedit-$ver"

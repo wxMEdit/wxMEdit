@@ -1,7 +1,7 @@
 ?package(wxmedit): \
 	icon="/usr/share/pixmaps/wxmedit.png" \
 	title="wxMEdit" \
-	longtitle="wxMEdit, Cross-platform Text/Hex Editor, a fork of MadEdit" \
+	longtitle="wxMEdit, Cross-platform Text/Hex Editor, Improved Version of MadEdit" \
 	needs="x11" \
 	section="Apps/Editors" \
 	command="/usr/bin/wxmedit"
