@@ -26,8 +26,11 @@
 #include <wx/hashmap.h>
 
 #include <unicode/uchar.h>
+#include <unicode/locid.h>
 
 #include <boost/foreach.hpp>
+#include <boost/format.hpp>
+#include <boost/algorithm/string/predicate.hpp>
 
 #include <locale.h>
 
@@ -288,7 +291,7 @@ void FileList::Init(const wxString& files)
     }
 }
 
-void OpenURL(const wxString& url)
+void OpenOriginalURL(const wxString& url)
 {
 #ifdef __WXGTK__
     const wxChar *browsers[]=
@@ -324,6 +327,17 @@ void OpenURL(const wxString& url)
 #else
     wxLaunchDefaultBrowser(url);
 #endif
+}
+
+void OpenURL(const wxString& url)
+{
+    if (! boost::algorithm::istarts_with(url, "http://wxmedit.github.io/"))
+        return OpenOriginalURL(url);
+
+    icu::Locale loc;
+    std::string s = (boost::format("?%s_%s") % loc.getLanguage() % loc.getCountry()).str();
+    wxString wxmurl = url + wxString(s.c_str(), wxConvUTF8);
+    OpenOriginalURL(wxmurl);
 }
 
 void SetDefaultMonoFont(wxWindow* win)
