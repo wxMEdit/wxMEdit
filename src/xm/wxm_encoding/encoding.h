@@ -83,6 +83,7 @@ public:
 	wxString GetEncodingName(ssize_t idx);
 	std::string GetEncodingInnerName(ssize_t idx);
 	wxString GetEncodingDescription(ssize_t idx);
+	wxString GetEncodingAliases(ssize_t idx);
 	wxString GetEncodingFontName(ssize_t idx);
 	wxString EncodingToName(WXMEncodingID enc);
 	WXMEncodingID NameToEncoding(const wxString &name);
@@ -105,9 +106,10 @@ private:
 	WXMEncodingID GetSystemEncodingID();
 
 	void DoInit();
-	void AddEncoding(const std::string& encname, WXMEncodingID encid
-		, const wxString& desc=wxString(), WXMEncodingType entype=etSingleByte
-		, const std::string& innername0=std::string(), bool exact=true);
+	void AddEncoding(const std::string& encname, WXMEncodingID encid, 
+		const wxString& desc=wxString(), const wxString& aliases=wxString(), 
+		WXMEncodingType entype=etSingleByte, const std::string& innername0=std::string(), 
+		bool exact=true);
 
 	WXMEncodingManager()
 	: m_initialized(false), m_sysenc_idx(-1), m_sysenc(NULL)
@@ -130,6 +132,7 @@ private:
 	typedef std::map<WXMEncodingID, WXMEncodingType> WXEncTypeMap;
 	typedef std::map<WXMEncodingID, wxString> WXEncFontMap;
 	typedef std::map<WXMEncodingID, wxString> WXEncDescMap;
+	typedef std::map<WXMEncodingID, wxString> WXEncAliasMap;
 	typedef std::map<WXMEncodingID, std::string> EncInnerNameMap;
 	typedef std::map<std::string, WXMEncodingID> ICUNameEncMap;
 	typedef std::map<WXMEncodingGroupID, wxString> WXEncGrpNameMap;
@@ -140,6 +143,7 @@ private:
 	WXEncTypeMap m_wxenctype_map;
 	WXEncFontMap m_wxencfont_map;
 	WXEncDescMap m_wxencdesc_map;
+	WXEncAliasMap m_wxencalias_map;
 	WXEncGrpNameMap m_wxencgrpname_map;
 	WXEncGrpsMap m_wxencgrps_map;
 	EncInnerNameMap m_encinnername_map;
@@ -183,6 +187,7 @@ protected:
 	wxString m_name;
 	std::string m_innername;
 	wxString m_desc;
+	wxString m_aliases;
 	wxString m_fontname;
 	WXMEncodingID m_enc;
 	ssize_t m_idx;
@@ -232,6 +237,7 @@ public:
 
 	wxString GetName() { return m_name; }
 	wxString GetDescription() { return m_desc; }
+	wxString GetAliases() { return m_aliases; }
 	wxString GetFontName() { return m_fontname; }
 	WXMEncodingID GetEncoding() { return m_enc; }
 };

@@ -80,8 +80,14 @@ WXMConvEncDialog::WXMConvEncDialog(wxWindow* parent,wxWindowID id,const wxPoint&
 	size_t cnt=wxm::WXMEncodingManager::Instance().GetEncodingsCount();
 	for(size_t i=0;i<cnt;i++)
 	{
-		WxComboBoxEncoding->Append(wxm::WXMEncodingManager::Instance().GetEncodingName(i));//enc+des);
+		wxString encname = wxm::WXMEncodingManager::Instance().GetEncodingName(i);
+		wxString aliases = wxm::WXMEncodingManager::Instance().GetEncodingAliases(i);
+		WxComboBoxEncoding->Append(encname + aliases);
 	}
+	BoxSizer1->Fit(this);
+	BoxSizer1->SetSizeHints(this);
+	Center();
+
 	wxString convenc=wxm::WXMEncodingManager::Instance().GetEncodingName(0);
 	wxConfigBase *cfg=wxConfigBase::Get(false);
 	wxString oldpath=cfg->GetPath();

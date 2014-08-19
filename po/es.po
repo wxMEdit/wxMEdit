@@ -38,7 +38,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: wxMEdit 2.9.7\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-07-28 21:46+0800\n"
+"POT-Creation-Date: 2014-08-21 01:22+0800\n"
 "PO-Revision-Date: 2014-02-24 13:40+0100\n"
 "Last-Translator: \n"
 "Language-Team:  <carlos1994sanchez@gmail.com>\n"
@@ -1933,247 +1933,208 @@ msgstr ""
 msgid "The format of '%s' is invalid."
 msgstr "El formato de '%s' no es válido."
 
-#: ../src/xm/wxm_encoding/encoding.cpp:117
-msgid "Western European (ISO-8859-1)"
-msgstr "Europa Occidental (ISO-8859-1)"
-
-#: ../src/xm/wxm_encoding/encoding.cpp:118
-msgid "Central European (ISO-8859-2)"
-msgstr "Central Europeo (ISO-8859-2)"
-
 #: ../src/xm/wxm_encoding/encoding.cpp:119
-msgid "South European (ISO-8859-3)"
-msgstr "Europa del sur (ISO-8859-3)"
+#: ../src/xm/wxm_encoding/encoding.cpp:217
+msgid "Western European "
+msgstr "Europa Occidental "
 
 #: ../src/xm/wxm_encoding/encoding.cpp:120
-msgid "North European (ISO-8859-4)"
-msgstr "Europa del norte (ISO-8859-4)"
+#: ../src/xm/wxm_encoding/encoding.cpp:218
+msgid "Central European "
+msgstr "Central Europeo "
 
 #: ../src/xm/wxm_encoding/encoding.cpp:121
-msgid "Cyrillic (ISO-8859-5)"
-msgstr "Cirílico (ISO-8859-5)"
+#: ../src/xm/wxm_encoding/encoding.cpp:219
+msgid "South European "
+msgstr "Europa del sur "
 
 #: ../src/xm/wxm_encoding/encoding.cpp:122
-msgid "Arabic (ISO-8859-6)"
-msgstr "Árabe (ISO-8859-6)"
+#: ../src/xm/wxm_encoding/encoding.cpp:220
+msgid "North European "
+msgstr "Europa del norte "
 
 #: ../src/xm/wxm_encoding/encoding.cpp:123
-msgid "Greek (ISO-8859-7)"
-msgstr "Griego (ISO-8859-7)"
+#: ../src/xm/wxm_encoding/encoding.cpp:150
+#: ../src/xm/wxm_encoding/encoding.cpp:151
+#: ../src/xm/wxm_encoding/encoding.cpp:221
+msgid "Cyrillic "
+msgstr "Cirílico "
 
 #: ../src/xm/wxm_encoding/encoding.cpp:124
-msgid "Hebrew (ISO-8859-8)"
-msgstr "Hebreo (ISO-8859-8)"
+#: ../src/xm/wxm_encoding/encoding.cpp:222
+msgid "Arabic "
+msgstr "Árabe "
 
 #: ../src/xm/wxm_encoding/encoding.cpp:125
-msgid "Turkish (ISO-8859-9)"
-msgstr "Turco (ISO-8859-9)"
+#: ../src/xm/wxm_encoding/encoding.cpp:223
+msgid "Greek "
+msgstr "Griego "
 
 #: ../src/xm/wxm_encoding/encoding.cpp:126
-msgid "Nordic (ISO-8859-10)"
-msgstr "Nórdico (ISO-8859-10)"
+#: ../src/xm/wxm_encoding/encoding.cpp:224
+msgid "Hebrew "
+msgstr "Hebreo "
 
 #: ../src/xm/wxm_encoding/encoding.cpp:127
-msgid "Thai (ISO-8859-11)"
-msgstr "Tailandés (ISO-8859-11)"
+#: ../src/xm/wxm_encoding/encoding.cpp:225
+msgid "Turkish "
+msgstr "Turco "
 
 #: ../src/xm/wxm_encoding/encoding.cpp:128
-msgid "Baltic (ISO-8859-13)"
-msgstr "Báltico (ISO-8859-13)"
+msgid "Nordic "
+msgstr "Nórdico "
 
 #: ../src/xm/wxm_encoding/encoding.cpp:129
-msgid "Celtic (ISO-8859-14)"
-msgstr "Celta (ISO-8859-14)"
+msgid "Thai "
+msgstr "Tailandés "
 
 #: ../src/xm/wxm_encoding/encoding.cpp:130
-msgid "Western European with Euro (ISO-8859-15)"
-msgstr "Europa occidental con Euro (ISO-8859-15)"
+#: ../src/xm/wxm_encoding/encoding.cpp:226
+msgid "Baltic "
+msgstr "Báltico "
 
 #: ../src/xm/wxm_encoding/encoding.cpp:131
-msgid "South-Eastern European (ISO-8859-16)"
-msgstr "Europa sudoriental (ISO-8859-16)"
+msgid "Celtic "
+msgstr "Celta "
 
 #: ../src/xm/wxm_encoding/encoding.cpp:132
-msgid "Windows Thai (CP 874)"
-msgstr "Windows Tailandés (CP 874)"
+msgid "Western European with Euro "
+msgstr "Europa occidental con Euro "
 
 #: ../src/xm/wxm_encoding/encoding.cpp:133
-msgid "Windows Central European (CP 1250)"
-msgstr "Windows Europa Central (CP 1250)"
+msgid "South-Eastern European "
+msgstr "Europa sudoriental "
 
 #: ../src/xm/wxm_encoding/encoding.cpp:134
-msgid "Windows Cyrillic (CP 1251)"
-msgstr "Windows Cirílico (CP 1251)"
+msgid "Windows Thai "
+msgstr "Windows Tailandés "
 
 #: ../src/xm/wxm_encoding/encoding.cpp:135
-msgid "Windows Western European (CP 1252)"
-msgstr "Windows Europa Occidental (CP 1252)"
+msgid "Windows Central European "
+msgstr "Windows Europa Central "
 
 #: ../src/xm/wxm_encoding/encoding.cpp:136
-msgid "Windows Greek (CP 1253)"
-msgstr "Windows Griego (CP 1253)"
+msgid "Windows Cyrillic "
+msgstr "Windows Cirílico "
 
 #: ../src/xm/wxm_encoding/encoding.cpp:137
-msgid "Windows Turkish (CP 1254)"
-msgstr "Windows Turco (CP 1254)"
+msgid "Windows Western European "
+msgstr "Windows Europa Occidental "
 
 #: ../src/xm/wxm_encoding/encoding.cpp:138
-msgid "Windows Hebrew (CP 1255)"
-msgstr "Windows Hebreo (CP 1255)"
+msgid "Windows Greek "
+msgstr "Windows Griego "
 
 #: ../src/xm/wxm_encoding/encoding.cpp:139
-msgid "Windows Arabic (CP 1256)"
-msgstr "Windows Árabe (CP 1256)"
+msgid "Windows Turkish "
+msgstr "Windows Turco "
 
 #: ../src/xm/wxm_encoding/encoding.cpp:140
-msgid "Windows Baltic (CP 1257)"
-msgstr "Windows Báltico (CP 1257)"
+msgid "Windows Hebrew "
+msgstr "Windows Hebreo "
 
 #: ../src/xm/wxm_encoding/encoding.cpp:141
-msgid "Windows Vietnamese (CP 1258)"
-msgstr "Windows Vietnamita (CP 1258)"
+msgid "Windows Arabic "
+msgstr "Windows Árabe "
 
 #: ../src/xm/wxm_encoding/encoding.cpp:142
-msgid "CP437 Variant for ASCII Art"
-msgstr "Variante CP437 para arte ASCII"
+msgid "Windows Baltic "
+msgstr "Windows Báltico "
 
 #: ../src/xm/wxm_encoding/encoding.cpp:143
-msgid "Windows/DOS OEM (CP 437)"
-msgstr "Windows/DOS OEM (CP 437)"
+msgid "Windows Vietnamese "
+msgstr "Windows Vietnamita "
 
 #: ../src/xm/wxm_encoding/encoding.cpp:144
-msgid "Windows/DOS OEM - Latin 1 (CP 850)"
-msgstr "Windows/DOS OEM - Latín 1 (CP 850)"
+msgid "CP437 Variant for ASCII Art "
+msgstr "Variante CP437 para arte ASCII "
 
 #: ../src/xm/wxm_encoding/encoding.cpp:145
-msgid "Windows/DOS OEM - Latin 2 (CP 852)"
-msgstr "Windows/DOS OEM - Latin 2 (CP 852)"
+msgid "Windows/DOS OEM "
+msgstr "Windows/DOS OEM "
 
 #: ../src/xm/wxm_encoding/encoding.cpp:146
-msgid "Windows/DOS OEM - Cyrillic (CP 855)"
-msgstr "Windows/DOS OEM - Cirílico (CP 855)"
+msgid "Windows/DOS OEM - Latin 1 "
+msgstr "Windows/DOS OEM - Latín 1 "
 
 #: ../src/xm/wxm_encoding/encoding.cpp:147
-msgid "Windows/DOS OEM - Cyrillic (CP 866)"
-msgstr "Windows/DOS OEM - Cirílico (CP 856)"
+msgid "Windows/DOS OEM - Latin 2 "
+msgstr "Windows/DOS OEM - Latin 2 "
 
 #: ../src/xm/wxm_encoding/encoding.cpp:148
-msgid "Cyrillic (KOI8-R)"
-msgstr "Cirílico (KOI8-R)"
-
 #: ../src/xm/wxm_encoding/encoding.cpp:149
-msgid "Cyrillic (KOI8-U)"
-msgstr "Cirílico (KOI8-U)"
-
-#: ../src/xm/wxm_encoding/encoding.cpp:151
-msgid "Windows Japanese (CP 932)"
-msgstr "Windows Japonés (CP 932)"
-
-#: ../src/xm/wxm_encoding/encoding.cpp:152
-msgid "Windows Chinese Simplified (CP 936)"
-msgstr "Windows Chino Simplificado (CP 936)"
+msgid "Windows/DOS OEM - Cyrillic "
+msgstr "Windows/DOS OEM - Cirílico "
 
 #: ../src/xm/wxm_encoding/encoding.cpp:153
-msgid "Windows Korean (CP 949)"
-msgstr "Windows Coreano (CP 949)"
+msgid "Windows Japanese "
+msgstr "Windows Japonés "
 
 #: ../src/xm/wxm_encoding/encoding.cpp:154
-msgid "Windows Chinese Traditional (CP 950)"
-msgstr "Windows Chino Tradicional (CP 950)"
+msgid "Windows Chinese Simplified "
+msgstr "Windows Chino Simplificado "
 
 #: ../src/xm/wxm_encoding/encoding.cpp:155
-msgid "EUC-JP Double-Byte Edition of Windows (CP 20932)"
-msgstr "EUC-JP edición doble byte de Windows (CP 20932)"
+msgid "Windows Korean "
+msgstr "Windows Coreano "
+
+#: ../src/xm/wxm_encoding/encoding.cpp:156
+msgid "Windows Chinese Traditional "
+msgstr "Windows Chino Tradicional "
 
 #: ../src/xm/wxm_encoding/encoding.cpp:157
-msgid "Unicode/Chinese Simplified (GB18030)"
-msgstr "Unicode/Chino simplificado (GB18030)"
+msgid "EUC-JP Double-Byte Edition of Windows "
+msgstr "EUC-JP edición doble byte de Windows "
 
 #: ../src/xm/wxm_encoding/encoding.cpp:159
-msgid "Unicode 8 bit (UTF-8)"
-msgstr "Unicode 8 bit (UTF-8)"
-
-#: ../src/xm/wxm_encoding/encoding.cpp:160
-msgid "Unicode 16 bit Little Endian (UTF-16LE)"
-msgstr "Unicode 16 bit Little Endian (UTF-16LE)"
+msgid "Unicode/Chinese Simplified "
+msgstr "Unicode/Chino simplificado "
 
 #: ../src/xm/wxm_encoding/encoding.cpp:161
-msgid "Unicode 16 bit Big Endian (UTF-16BE)"
-msgstr "Unicode 16 bit Big Endian (UTF-16BE)"
+msgid "Unicode 8 bit "
+msgstr "Unicode 8 bit "
 
 #: ../src/xm/wxm_encoding/encoding.cpp:162
-msgid "Unicode 32 bit Little Endian (UTF-32LE)"
-msgstr "Unicode 32 bit Little Endian (UTF-32LE)"
+msgid "Unicode 16 bit Little Endian "
+msgstr "Unicode 16 bit Little Endian "
 
 #: ../src/xm/wxm_encoding/encoding.cpp:163
-msgid "Unicode 32 bit Big Endian (UTF-32BE)"
-msgstr "Unicode 32 bit Big Endian (UTF-32BE)"
+msgid "Unicode 16 bit Big Endian "
+msgstr "Unicode 16 bit Big Endian "
 
-#: ../src/xm/wxm_encoding/encoding.cpp:214
-msgid "Other "
-msgstr ""
+#: ../src/xm/wxm_encoding/encoding.cpp:164
+msgid "Unicode 32 bit Little Endian "
+msgstr "Unicode 32 bit Little Endian "
 
-#: ../src/xm/wxm_encoding/encoding.cpp:215
-msgid "Western Europe "
-msgstr ""
+#: ../src/xm/wxm_encoding/encoding.cpp:165
+msgid "Unicode 32 bit Big Endian "
+msgstr "Unicode 32 bit Big Endian "
 
 #: ../src/xm/wxm_encoding/encoding.cpp:216
-msgid "Central Europe "
-msgstr ""
-
-#: ../src/xm/wxm_encoding/encoding.cpp:217
-msgid "South Europe "
-msgstr ""
-
-#: ../src/xm/wxm_encoding/encoding.cpp:218
-msgid "North Europe "
-msgstr ""
-
-#: ../src/xm/wxm_encoding/encoding.cpp:219
-msgid "Cyrillic "
-msgstr ""
-
-#: ../src/xm/wxm_encoding/encoding.cpp:220
-msgid "Arabic "
-msgstr ""
-
-#: ../src/xm/wxm_encoding/encoding.cpp:221
-msgid "Greek "
-msgstr ""
-
-#: ../src/xm/wxm_encoding/encoding.cpp:222
-msgid "Hebrew "
-msgstr ""
-
-#: ../src/xm/wxm_encoding/encoding.cpp:223
-msgid "Turkish "
-msgstr ""
-
-#: ../src/xm/wxm_encoding/encoding.cpp:224
-msgid "Baltic "
-msgstr ""
-
-#: ../src/xm/wxm_encoding/encoding.cpp:225
-msgid "East Asia "
-msgstr ""
-
-#: ../src/xm/wxm_encoding/encoding.cpp:226
-msgid "Southeast Asia "
-msgstr ""
+msgid "Other "
+msgstr "Otros "
 
 #: ../src/xm/wxm_encoding/encoding.cpp:227
-msgid "Unicode "
+msgid "East Asian "
 msgstr ""
 
 #: ../src/xm/wxm_encoding/encoding.cpp:228
-msgid "ISO-8859 "
+msgid "Southeast Asian "
 msgstr ""
 
 #: ../src/xm/wxm_encoding/encoding.cpp:229
+msgid "Unicode "
+msgstr "Unicode "
+
+#: ../src/xm/wxm_encoding/encoding.cpp:230
+msgid "ISO-8859 "
+msgstr ""
+
+#: ../src/xm/wxm_encoding/encoding.cpp:231
 msgid "Windows "
 msgstr ""
 
-#: ../src/xm/wxm_encoding/encoding.cpp:230
+#: ../src/xm/wxm_encoding/encoding.cpp:232
 msgid "OEM "
 msgstr ""
 
@@ -3824,7 +3785,7 @@ msgstr "&Mover el foco a la ventana editor"
 
 #: ../src/dialog/wxm_search_replace_dialog.cpp:108
 msgid "Wrap aroun&d"
-msgstr ""
+msgstr "Envolver"
 
 #: ../src/dialog/wxm_search_replace_dialog.cpp:124
 msgid "Search In &Selection"
@@ -4514,35 +4475,35 @@ msgstr "Licencia"
 msgid "Credits"
 msgstr "Créditos"
 
-#: ../src/wxm_utils.cpp:412
+#: ../src/wxm_utils.cpp:426
 msgid "Copy as Raw Bytes"
 msgstr "Copiar como bytes puros"
 
-#: ../src/wxm_utils.cpp:413
+#: ../src/wxm_utils.cpp:427
 msgid "Copy as Regular Text"
 msgstr "Copiar como texto normal"
 
-#: ../src/wxm_utils.cpp:414
+#: ../src/wxm_utils.cpp:428
 msgid "Copy as Hex String"
 msgstr "Copiar como cadena hexadecimal"
 
-#: ../src/wxm_utils.cpp:415
+#: ../src/wxm_utils.cpp:429
 msgid "Copy as Hex String with Spaces"
 msgstr "Copiar como cadena hexadecimal con espacios"
 
-#: ../src/wxm_utils.cpp:498
+#: ../src/wxm_utils.cpp:512
 msgid "Never"
 msgstr ""
 
-#: ../src/wxm_utils.cpp:499
+#: ../src/wxm_utils.cpp:513
 msgid "According To Copying Behavior"
 msgstr ""
 
-#: ../src/wxm_utils.cpp:500
+#: ../src/wxm_utils.cpp:514
 msgid "If Possible"
 msgstr ""
 
-#: ../src/wxm_utils.cpp:501
+#: ../src/wxm_utils.cpp:515
 msgid "Always"
 msgstr ""
 
@@ -4594,41 +4555,11 @@ msgstr "[VACIO]"
 #~ msgid "All Encodings"
 #~ msgstr "&Todas las codificaciones"
 
-#~ msgid "Other"
-#~ msgstr "Otros"
-
-#~ msgid "Western Europe"
-#~ msgstr "Europa Occidental"
-
-#~ msgid "Central Europe"
-#~ msgstr "Europa Central"
-
-#~ msgid "South Europe"
-#~ msgstr "Europa del Sur"
-
-#~ msgid "North Europe"
-#~ msgstr "Europa del Norte"
-
-#~ msgid "Greek"
-#~ msgstr "Griego"
-
-#~ msgid "Turkish"
-#~ msgstr "Turco"
-
-#~ msgid "Baltic"
-#~ msgstr "Báltico"
-
 #~ msgid "East Asia"
 #~ msgstr "Asia del Este"
 
 #~ msgid "Southeast Asia"
 #~ msgstr "Asia del Sudeste"
-
-#~ msgid "Unicode"
-#~ msgstr "Unicode"
-
-#~ msgid "Wrap ar&ound"
-#~ msgstr "Envolver"
 
 #~ msgid "Unicode 16 bit (UTF-16)"
 #~ msgstr "Unicode 16 bit (UTF-16)"
@@ -4674,12 +4605,6 @@ msgstr "[VACIO]"
 
 #~ msgid "Baltic (old) (ISO-8859-4)"
 #~ msgstr "Báltico (antiguo) (ISO-8859-4)"
-
-#~ msgid "KOI8-R"
-#~ msgstr "KOI8-R"
-
-#~ msgid "KOI8-U"
-#~ msgstr "KOI8-U"
 
 #~ msgid "Extended Unix Codepage for Japanese (EUC-JP)"
 #~ msgstr "Codificación Unix extendido para Japonés"
