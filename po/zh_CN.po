@@ -39,7 +39,7 @@ msgstr ""
 "Project-Id-Version: wxMEdit 2.9.7.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-08-21 01:22+0800\n"
-"PO-Revision-Date: 2014-07-28 21:49+0800\n"
+"PO-Revision-Date: 2014-08-21 01:45+0800\n"
 "Last-Translator: JiaYanwei <wxmedit@gmail.com>\n"
 "Language-Team: wxMEdit <wxmedit@gmail.com>\n"
 "Language: zh_CN\n"
@@ -1937,22 +1937,22 @@ msgstr "'%s' 的格式不正确。"
 #: ../src/xm/wxm_encoding/encoding.cpp:119
 #: ../src/xm/wxm_encoding/encoding.cpp:217
 msgid "Western European "
-msgstr "西欧语系 "
+msgstr "西欧文字 "
 
 #: ../src/xm/wxm_encoding/encoding.cpp:120
 #: ../src/xm/wxm_encoding/encoding.cpp:218
 msgid "Central European "
-msgstr "中欧语系 "
+msgstr "中欧文字 "
 
 #: ../src/xm/wxm_encoding/encoding.cpp:121
 #: ../src/xm/wxm_encoding/encoding.cpp:219
 msgid "South European "
-msgstr "南欧语系 "
+msgstr "南欧文字 "
 
 #: ../src/xm/wxm_encoding/encoding.cpp:122
 #: ../src/xm/wxm_encoding/encoding.cpp:220
 msgid "North European "
-msgstr "北欧语系 "
+msgstr "北欧文字 "
 
 #: ../src/xm/wxm_encoding/encoding.cpp:123
 #: ../src/xm/wxm_encoding/encoding.cpp:150
@@ -1983,7 +1983,7 @@ msgstr "土耳其文 "
 
 #: ../src/xm/wxm_encoding/encoding.cpp:128
 msgid "Nordic "
-msgstr "北欧语系 "
+msgstr "北欧文字 "
 
 #: ../src/xm/wxm_encoding/encoding.cpp:129
 msgid "Thai "
@@ -2000,11 +2000,11 @@ msgstr "凯尔特文 "
 
 #: ../src/xm/wxm_encoding/encoding.cpp:132
 msgid "Western European with Euro "
-msgstr "西欧语系带欧元 "
+msgstr "西欧文字带欧元 "
 
 #: ../src/xm/wxm_encoding/encoding.cpp:133
 msgid "South-Eastern European "
-msgstr "东南欧语系 "
+msgstr "东南欧文字 "
 
 #: ../src/xm/wxm_encoding/encoding.cpp:134
 msgid "Windows Thai "
@@ -2012,7 +2012,7 @@ msgstr "Windows 泰文 "
 
 #: ../src/xm/wxm_encoding/encoding.cpp:135
 msgid "Windows Central European "
-msgstr "Windows 中欧语系 "
+msgstr "Windows 中欧文字 "
 
 #: ../src/xm/wxm_encoding/encoding.cpp:136
 msgid "Windows Cyrillic "
@@ -2020,7 +2020,7 @@ msgstr "Windows 斯拉夫文 "
 
 #: ../src/xm/wxm_encoding/encoding.cpp:137
 msgid "Windows Western European "
-msgstr "Windows 西欧语系 "
+msgstr "Windows 西欧文字 "
 
 #: ../src/xm/wxm_encoding/encoding.cpp:138
 msgid "Windows Greek "
