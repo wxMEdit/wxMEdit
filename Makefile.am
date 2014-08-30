@@ -213,14 +213,3 @@ noinst_HEADERS =	README.txt \
 DOMAIN = wxmedit
 podir = $(top_srcdir)/po
 LINGUAS = @ALL_LINGUAS@
-
-loc:
-	@linguas='$(LINGUAS)'; \
-	for lang in $$linguas; do \
-		dir=./locale/$$lang; \
-		$(mkinstalldirs) $$dir; \
-		if test -r $(podir)/$$lang.gmo; then \
-			cp $(podir)/$$lang.gmo $$dir/$(DOMAIN).mo; \
-			echo "installing $(podir)/$$lang.gmo as $$dir/$(DOMAIN).mo"; \
-		fi; \
-	done

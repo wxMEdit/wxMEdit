@@ -73,7 +73,7 @@ $(DISTFILES.extra1) $(DISTFILES.extra2) $(DISTFILES.extra3)
 
 POTFILES = \
 
-CATALOGS = @CATALOGS@
+CATALOGS = @CATALOGS@ zh.gmo zh_HK.gmo zh_MO.gmo zh_SG.gmo
 
 # Makevars gets inserted here. (Don't remove this line!)
 
@@ -95,9 +95,22 @@ CATALOGS = @CATALOGS@
 	mv t-$@ $@
 
 
+$(srcdir)/zh.gmo: $(srcdir)/zh_CN.gmo
+	ln -s $< $@
+
+$(srcdir)/zh_HK.gmo: $(srcdir)/zh_TW.gmo
+	ln -s $< $@
+
+$(srcdir)/zh_MO.gmo: $(srcdir)/zh_TW.gmo
+	ln -s $< $@
+
+$(srcdir)/zh_SG.gmo: $(srcdir)/zh_CN.gmo
+	ln -s $< $@
+
+
 all: all-@USE_NLS@
 
-all-yes: stamp-po
+all-yes: stamp-po $(srcdir)/zh.gmo $(srcdir)/zh_HK.gmo $(srcdir)/zh_MO.gmo $(srcdir)/zh_SG.gmo
 all-no:
 
 # $(srcdir)/$(DOMAIN).pot is only created when needed. When xgettext finds no

@@ -2201,16 +2201,6 @@ uninstall-am: uninstall-appDATA uninstall-binPROGRAMS \
 wxmedit.desktop: $(top_srcdir)/wxmedit.desktop._ Makefile
 	sed "s#@pixmapsdir@#$(pixmapsdir)#" $(top_srcdir)/wxmedit.desktop._ > $@
 
-loc:
-	@linguas='$(LINGUAS)'; \
-	for lang in $$linguas; do \
-		dir=./locale/$$lang; \
-		$(mkinstalldirs) $$dir; \
-		if test -r $(podir)/$$lang.gmo; then \
-			cp $(podir)/$$lang.gmo $$dir/$(DOMAIN).mo; \
-			echo "installing $(podir)/$$lang.gmo as $$dir/$(DOMAIN).mo"; \
-		fi; \
-	done
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.
 .NOEXPORT:
