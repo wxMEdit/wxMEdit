@@ -34,9 +34,9 @@
 
 #include <locale.h>
 
-#if defined(__WXMAC__)
-#include <wx/mac/private.h>
-#include <Processes.h>
+#ifdef __WXMAC__
+# include <wx/mac/private.h>
+# include <Processes.h>
 #endif
 
 #ifdef _DEBUG
@@ -329,15 +329,23 @@ void OpenOriginalURL(const wxString& url)
 #endif
 }
 
+wxString WXMLanguageQuery()
+{
+    icu::Locale loc;
+    std::string lang = loc.getLanguage();
+    std::string ctry = loc.getCountry();
+
+    return wxString((boost::format("?%s_%s") % lang % ctry).str().c_str(), wxConvUTF8);
+}
+
 void OpenURL(const wxString& url)
 {
     if (! boost::algorithm::istarts_with(url, "http://wxmedit.github.io/"))
         return OpenOriginalURL(url);
 
-    icu::Locale loc;
-    std::string s = (boost::format("?%s_%s") % loc.getLanguage() % loc.getCountry()).str();
-    wxString wxmurl = url + wxString(s.c_str(), wxConvUTF8);
-    OpenOriginalURL(wxmurl);
+    static wxString lang_q = WXMLanguageQuery();
+
+    OpenOriginalURL(url + lang_q);
 }
 
 void SetDefaultMonoFont(wxWindow* win)
