@@ -18,7 +18,6 @@
 #include "wxmedit/wxmedit.h"
 
 #include <wx/filename.h>
-#include <wx/stdpaths.h>
 #include <wx/fileconf.h>
 
 IMPLEMENT_APP(MadEditApp)
@@ -35,9 +34,6 @@ HANDLE g_Mutex=NULL;
 
 wxLocale g_Locale;
 
-wxString g_MadEditAppDir;
-wxString g_MadEditHomeDir;
-wxString g_MadEditConfigName;
 bool g_DoNotSaveSettings=false;
 bool g_ResetAllKeys=false;
 
@@ -253,24 +249,7 @@ bool MadEditApp::OnInit()
 {
     xm::RemoteAccessInit();
 
-    wxFileName filename(GetExecutablePath());
-    filename.MakeAbsolute();
-    g_MadEditAppDir=filename.GetPath(wxPATH_GET_VOLUME|wxPATH_GET_SEPARATOR);
-
-#ifdef __WXMSW__
-    g_MadEditHomeDir=g_MadEditAppDir;
-#else //linux: ~/.madedit
-    g_MadEditHomeDir=wxStandardPaths::Get().GetUserDataDir() +wxFILE_SEP_PATH;
-    if(!wxDirExists(g_MadEditHomeDir))
-    {
-        wxLogNull nolog; // no error message
-        wxMkdir(g_MadEditHomeDir);
-    }
-#endif
-
-    //wxLogMessage(g_MadEditAppDir);
-    //wxLogMessage(g_MadEditHomeDir);
-
+	wxm::AppPath::Instance().Init(GetAppName());
 
     // parse commandline to filelist
     wxm::FileList filelist;
@@ -281,11 +260,9 @@ bool MadEditApp::OnInit()
         filelist.Append(filename.GetFullPath());
     }
 
-
     // init wxConfig
-    g_MadEditConfigName=g_MadEditHomeDir+ GetAppName()+ wxT(".cfg");
-
-    wxFileConfig *cfg=new wxFileConfig(wxEmptyString, wxEmptyString, g_MadEditConfigName, wxEmptyString, wxCONFIG_USE_RELATIVE_PATH|wxCONFIG_USE_NO_ESCAPE_CHARACTERS);
+	wxFileConfig *cfg=new wxFileConfig(wxEmptyString, wxEmptyString, wxm::AppPath::Instance().ConfigPath(), 
+	                                   wxEmptyString, wxCONFIG_USE_RELATIVE_PATH|wxCONFIG_USE_NO_ESCAPE_CHARACTERS);
     cfg->SetExpandEnvVars(false);
     cfg->SetRecordDefaults(true);
     wxFileConfig::Set(cfg);
@@ -331,9 +308,9 @@ bool MadEditApp::OnInit()
 
     g_Locale.Init(lang);
     g_Locale.AddCatalogLookupPathPrefix(wxT("./locale/"));
-    g_Locale.AddCatalogLookupPathPrefix(g_MadEditAppDir+wxT("locale/"));
+	g_Locale.AddCatalogLookupPathPrefix(wxm::AppPath::Instance().AppDir() + wxT("locale/"));
 #ifndef __WXMSW__
-    g_Locale.AddCatalogLookupPathPrefix(g_MadEditHomeDir+wxT("locale/"));
+    g_Locale.AddCatalogLookupPathPrefix(wxm::AppPath::Instance().HomeDir() + wxT("locale/"));
 #   if defined (DATA_DIR)
     g_Locale.AddCatalogLookupPathPrefix(wxT(DATA_DIR"/locale/"));
 #   endif
@@ -384,7 +361,7 @@ bool MadEditApp::OnInit()
     cfg->Read(wxT("/wxMEdit/FontWidthBufferMaxCount"), &FontWidthManager::MaxCount, 10);
     if(FontWidthManager::MaxCount < 4) FontWidthManager::MaxCount=4;
     else if(FontWidthManager::MaxCount>40) FontWidthManager::MaxCount=40;
-    FontWidthManager::Init(g_MadEditHomeDir);
+    FontWidthManager::Init(wxm::AppPath::Instance().HomeDir());
 
 
     // create the main frame

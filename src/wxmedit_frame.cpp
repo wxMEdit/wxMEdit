@@ -188,8 +188,6 @@ const static CreditsList s_wxMEdit_Credits = boost::assign::pair_list_of
 #undef _
 #define _(s)    wxGetTranslation(_T(s))
 
-extern wxString g_MadEditAppDir, g_MadEditHomeDir;
-
 MadEditFrame *g_MainFrame=NULL;
 MadEdit *g_ActiveMadEdit=NULL;
 int g_PrevPageID=-1;
@@ -1695,20 +1693,20 @@ MadEditFrame::MadEditFrame( wxWindow *parent, wxWindowID id, const wxString &tit
 
     wxm::WXMEncodingManager::Instance().InitEncodings();
 
-    MadSyntax::SetAttributeFilePath(g_MadEditHomeDir + wxT("syntax/"));
+    MadSyntax::SetAttributeFilePath(wxm::AppPath::Instance().HomeDir() + wxT("syntax/"));
 
 #if defined(__WXMSW__)
-    MadSyntax::AddSyntaxFilesPath(g_MadEditAppDir + wxT("syntax/"));
+    MadSyntax::AddSyntaxFilesPath(wxm::AppPath::Instance().AppDir() + wxT("syntax/"));
 #elif defined(__WXGTK__) // linux
-    MadSyntax::AddSyntaxFilesPath(g_MadEditAppDir + wxT("syntax/"));
-    MadSyntax::AddSyntaxFilesPath(g_MadEditHomeDir + wxT("syntax/"));
+    MadSyntax::AddSyntaxFilesPath(wxm::AppPath::Instance().AppDir() + wxT("syntax/"));
+    MadSyntax::AddSyntaxFilesPath(wxm::AppPath::Instance().HomeDir() + wxT("syntax/"));
     #if defined (DATA_DIR)
     MadSyntax::AddSyntaxFilesPath(wxT(DATA_DIR"/wxmedit/syntax/"));
     #else
     MadSyntax::AddSyntaxFilesPath(wxT("/usr/share/wxmedit/syntax/"));
     #endif
 #else // other platform
-    MadSyntax::AddSyntaxFilesPath(g_MadEditAppDir + wxT("syntax/"));
+    MadSyntax::AddSyntaxFilesPath(wxm::AppPath::Instance().AppDir() + wxT("syntax/"));
 #endif
 
     CreateGUIControls();
@@ -2266,6 +2264,7 @@ void MadEditFrame::MadEditFrameClose(wxCloseEvent& event)
     delete m_ImageList;
 
     wxm::WXMEncodingManager::Instance().FreeEncodings();
+    wxm::AppPath::Instance().DestroyInstance();
 
     FreeConvertChineseTable();
 

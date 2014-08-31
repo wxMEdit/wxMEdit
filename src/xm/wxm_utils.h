@@ -2,7 +2,7 @@
 // vim:         ts=4 sw=4
 // Name:        wxm_utils.h
 // Description: Utilities
-// Author:      wxmedit@gmail.com  (current maintainer)
+// Author:      wxmedit@gmail.com
 // Licence:     GPL
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -15,7 +15,10 @@
 
 #include <wx/defs.h>
 #include <wx/string.h>
+
 #include <boost/shared_ptr.hpp>
+#include <boost/noncopyable.hpp>
+
 #include <vector>
 
 class wxWindow;
@@ -175,6 +178,44 @@ private:
 	};
 
 	int m_selected_idx;
+};
+
+struct AppPath: private boost::noncopyable
+{
+	const wxString& AppDir()
+	{
+		return app_dir;
+	}
+	const wxString& HomeDir()
+	{
+		return home_dir;
+	}
+	const wxString ConfigPath()
+	{
+		return home_dir + cfg_file;
+	}
+
+	void Init(const wxString& appname);
+
+	static AppPath& Instance()
+	{
+		if (s_inst == NULL)
+			s_inst = new AppPath();
+		return *s_inst;
+	}
+	static void DestroyInstance()
+	{
+		delete s_inst;
+		s_inst = NULL;
+	}
+private:
+	AppPath() {}
+
+	static AppPath* s_inst;
+
+	wxString cfg_file;
+	wxString app_dir;
+	wxString home_dir;
 };
 
 } //namespace wxm

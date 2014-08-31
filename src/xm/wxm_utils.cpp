@@ -2,7 +2,7 @@
 // vim:         ts=4 sw=4
 // Name:        wxm_utils.cpp
 // Description: Utilities
-// Author:      wxmedit@gmail.com  (current maintainer)
+// Author:      wxmedit@gmail.com
 // Licence:     GPL
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -18,6 +18,8 @@
 #include <wx/font.h>
 #include <wx/window.h>
 #include <wx/hashmap.h>
+#include <wx/filename.h>
+#include <wx/stdpaths.h>
 
 #include <unicode/uchar.h>
 #include <unicode/locid.h>
@@ -332,6 +334,38 @@ void MouseCapturer::Release()
 
 	m_edit.ReleaseMouse();
 	m_captured = false;
+}
+
+AppPath* AppPath::s_inst = NULL;
+
+// return application data directory in user home
+//     ~/.wxmedit/          under *NIX
+//     %APPDATA%\\wxmedit\\ under Windows
+wxString GetDataDirInUserHome()
+{
+	wxString home_dir = wxStandardPaths::Get().GetUserDataDir() + wxFILE_SEP_PATH;
+	if(!wxDirExists(home_dir))
+	{
+		wxLogNull nolog; // no error message
+		wxMkdir(home_dir);
+	}
+	return home_dir;
+}
+
+void AppPath::Init(const wxString& appname)
+{
+	cfg_file = appname + wxT(".cfg");
+
+	wxFileName filename(GetExecutablePath());
+	filename.MakeAbsolute();
+	app_dir = filename.GetPath(wxPATH_GET_VOLUME | wxPATH_GET_SEPARATOR);
+
+#ifdef __WXMSW__
+	home_dir = app_dir;
+#else
+	home_dir = GetDataDirInUserHome();
+#endif
+
 }
 
 } // namespace wxm
