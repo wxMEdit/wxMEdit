@@ -3,7 +3,7 @@
 // Description: File Type Association Dialog for MSWindows
 // Author:      madedit@gmail.com  (creator)
 //              wxmedit@gmail.com  (current maintainer)
-// Licence:     GPL
+// Licence:     GPLv3
 ///////////////////////////////////////////////////////////////////////////////
 
 #ifndef WXM_FILE_ASSOCIATION_DIALOG_H

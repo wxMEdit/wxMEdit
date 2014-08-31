@@ -2,7 +2,7 @@
 // Name:        wxm_word_count_dialog.cpp
 // Description: WordCount Dialog
 // Author:      wxmedit@gmail.com
-// Licence:     GPL
+// Licence:     GPLv3
 ///////////////////////////////////////////////////////////////////////////////
 
 #include "wxm_word_count_dialog.h"

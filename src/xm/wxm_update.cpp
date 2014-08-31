@@ -3,7 +3,7 @@
 // Name:        xm/wxm_update.cpp
 // Description: Checking for update of wxMEdit
 // Author:      wxmedit@gmail.com
-// Licence:     GPL
+// Licence:     GPLv3
 ///////////////////////////////////////////////////////////////////////////////
 
 #include "wxm_update.h"

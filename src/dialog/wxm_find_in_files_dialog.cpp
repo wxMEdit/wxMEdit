@@ -3,7 +3,7 @@
 // Description: find or replace in files dialog
 // Author:      madedit@gmail.com  (creator)
 //              wxmedit@gmail.com  (current maintainer)
-// Licence:     GPL
+// Licence:     GPLv3
 ///////////////////////////////////////////////////////////////////////////////
 
 #include "wxm_find_in_files_dialog.h"

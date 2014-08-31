@@ -3,7 +3,7 @@
 // Name:        xm/xm_ublock.cpp
 // Description: Unicode Blocks Information
 // Author:      wxmedit@gmail.com
-// Licence:     GPL
+// Licence:     GPLv3
 ///////////////////////////////////////////////////////////////////////////////
 
 #include "xm_ublock.h"

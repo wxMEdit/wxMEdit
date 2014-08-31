@@ -3,7 +3,7 @@
 // Description: declare UCS4/UCS2 wide-char type
 // Author:      madedit@gmail.com  (creator)
 //              wxmedit@gmail.com  (current maintainer)
-// Licence:     GPL
+// Licence:     GPLv3
 ///////////////////////////////////////////////////////////////////////////////
 
 #ifndef _UCS4_T_H_

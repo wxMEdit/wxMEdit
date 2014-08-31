@@ -3,7 +3,7 @@
 // Name:        xm/wxm_encoding/singlebyte.h
 // Description: define the Single-byte Encodings which are supported by wxMEdit
 // Author:      wxmedit@gmail.com
-// Licence:     GPL
+// Licence:     GPLv3
 ///////////////////////////////////////////////////////////////////////////////
 
 #include "singlebyte.h"

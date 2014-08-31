@@ -3,7 +3,7 @@
 // Name:        xm/wxm_encdet.cpp
 // Description: wxMEdit encoding detector
 // Author:      wxmedit@gmail.com
-// Licence:     GPL
+// Licence:     GPLv3
 ///////////////////////////////////////////////////////////////////////////////
 
 #include "wxm_encdet.h"

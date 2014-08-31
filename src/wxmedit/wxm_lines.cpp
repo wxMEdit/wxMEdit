@@ -4,7 +4,7 @@
 // Description: the Text/Data Buffer of wxMEdit
 // Author:      madedit@gmail.com  (creator)
 //              wxmedit@gmail.com  (current maintainer)
-// Licence:     GPL
+// Licence:     GPLv3
 ///////////////////////////////////////////////////////////////////////////////
 
 #include "wxm_lines.h"

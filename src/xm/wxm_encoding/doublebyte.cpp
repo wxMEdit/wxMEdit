@@ -3,7 +3,7 @@
 // Name:        xm/wxm_encoding/doublebyte.h
 // Description: define the Double-byte Encodings which are supported by wxMEdit
 // Author:      wxmedit@gmail.com
-// Licence:     GPL
+// Licence:     GPLv3
 ///////////////////////////////////////////////////////////////////////////////
 
 #include "doublebyte.h"

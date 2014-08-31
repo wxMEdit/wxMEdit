@@ -3,7 +3,7 @@
 // Name:        xm/wxm_update.h
 // Description: Checking for update of wxMEdit
 // Author:      wxmedit@gmail.com
-// Licence:     GPL
+// Licence:     GPLv3
 ///////////////////////////////////////////////////////////////////////////////
 
 #ifndef _WXM_UPDATE_H_

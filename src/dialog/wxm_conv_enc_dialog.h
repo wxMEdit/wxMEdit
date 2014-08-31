@@ -2,7 +2,7 @@
 // Name:        wxm_conv_enc_dialog.h
 // Description:
 // Author:      wxmedit@gmail.com
-// Licence:     GPL
+// Licence:     GPLv3
 ///////////////////////////////////////////////////////////////////////////////
 
 #ifndef WXM_CONV_ENC_DIALOG_H

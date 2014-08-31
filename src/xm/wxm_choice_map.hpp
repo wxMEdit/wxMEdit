@@ -3,7 +3,7 @@
 // Name:        xm/wxm_choice_map.hpp
 // Description: Logical Data Structure for some Choice Items in Options Dialog
 // Author:      wxmedit@gmail.com
-// Licence:     GPL
+// Licence:     GPLv3
 ///////////////////////////////////////////////////////////////////////////////
 
 #ifndef _WXM_CHOICE_MAP_HPP_

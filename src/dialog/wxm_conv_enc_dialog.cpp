@@ -2,7 +2,7 @@
 // Name:        wxm_conv_enc_dialog.cpp
 // Description:
 // Author:      wxmedit@gmail.com
-// Licence:     GPL
+// Licence:     GPLv3
 ///////////////////////////////////////////////////////////////////////////////
 
 #include "wxm_conv_enc_dialog.h"

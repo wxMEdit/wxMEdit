@@ -3,7 +3,7 @@
 // Description: Traditional Chinese <==> Simplified Chinese
 // Author:      madedit@gmail.com  (creator)
 //              wxmedit@gmail.com  (current maintainer)
-// Licence:     GPL
+// Licence:     GPLv3
 ///////////////////////////////////////////////////////////////////////////////
 
 #include "trad_simp.h"

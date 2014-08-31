@@ -3,7 +3,7 @@
 // Name:        xm/wx_recent_list.h
 // Description: Recent List
 // Author:      wxmedit@gmail.com
-// Licence:     GPL
+// Licence:     GPLv3
 ///////////////////////////////////////////////////////////////////////////////
 
 #ifndef _WX_RECENT_LIST_H_

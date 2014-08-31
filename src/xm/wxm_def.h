@@ -3,7 +3,7 @@
 // Name:        xm/wxm_def.h
 // Description: wxMEdit common definitions
 // Author:      wxmedit@gmail.com
-// Licence:     GPL
+// Licence:     GPLv3
 ///////////////////////////////////////////////////////////////////////////////
 
 #ifndef _WXM_DEF_H_

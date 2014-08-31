@@ -3,7 +3,7 @@
 // Description: fixed GTK2 KeyPress event handler for CJK InputMethod
 // Author:      madedit@gmail.com  (creator)
 //              wxmedit@gmail.com  (current maintainer)
-// Licence:     GPL
+// Licence:     GPLv3
 ///////////////////////////////////////////////////////////////////////////////
 
 #ifdef __WXGTK__

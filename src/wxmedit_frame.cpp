@@ -4,7 +4,7 @@
 // Description: main frame of wxMEdit
 // Author:      madedit@gmail.com  (creator)
 //              wxmedit@gmail.com  (current maintainer)
-// Licence:     GPL
+// Licence:     GPLv3
 ///////////////////////////////////////////////////////////////////////////////
 
 #include "wxmedit/wxmedit.h"

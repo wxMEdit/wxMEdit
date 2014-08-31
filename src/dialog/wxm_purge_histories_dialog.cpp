@@ -1,3 +1,10 @@
+///////////////////////////////////////////////////////////////////////////////
+// Name:        wxm_sort_dialog.h
+// Description: Purge Histories Dialog
+// Author:      wxmedit@gmail.com
+// Licence:     GPLv3
+///////////////////////////////////////////////////////////////////////////////
+
 #include "wxm_purge_histories_dialog.h"
 #include "../wxmedit_frame.h"
 #include "wxm_find_in_files_dialog.h"

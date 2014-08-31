@@ -3,7 +3,7 @@
 // Description: Traditional Chinese <==> Simplified Chinese <==> Japanese Kanji
 // Author:      madedit@gmail.com  (creator)
 //              wxmedit@gmail.com  (current maintainer)
-// Licence:     GPL
+// Licence:     GPLv3
 ///////////////////////////////////////////////////////////////////////////////
 
 #ifndef _TRAD_SIMP_H_

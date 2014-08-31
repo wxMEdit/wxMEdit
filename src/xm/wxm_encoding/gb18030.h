@@ -3,7 +3,7 @@
 // Name:        xm/wxm_encoding/gb18030.h
 // Description: define the Multi-byte Encoding GB18030
 // Author:      wxmedit@gmail.com
-// Licence:     GPL
+// Licence:     GPLv3
 ///////////////////////////////////////////////////////////////////////////////
 
 #ifndef _WXM_ENCODING_GB18030_H_

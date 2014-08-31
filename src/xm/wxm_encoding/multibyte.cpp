@@ -3,7 +3,7 @@
 // Name:        xm/wxm_encoding/multibyte.h
 // Description: define the Multi-byte Encodings which are supported by wxMEdit
 // Author:      wxmedit@gmail.com
-// Licence:     GPL
+// Licence:     GPLv3
 ///////////////////////////////////////////////////////////////////////////////
 
 #include "multibyte.h"

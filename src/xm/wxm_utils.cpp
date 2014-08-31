@@ -3,7 +3,7 @@
 // Name:        wxm_utils.cpp
 // Description: Utilities
 // Author:      wxmedit@gmail.com
-// Licence:     GPL
+// Licence:     GPLv3
 ///////////////////////////////////////////////////////////////////////////////
 
 #include "wxm_utils.h"
