@@ -8,7 +8,7 @@
 
 #include "wx_recent_list.h"
 #include "wxm_case_conv.h"
-#include "../wxm_utils.h"
+#include "wxm_utils.h"
 #include <wx/menu.h>
 #include <wx/intl.h>
 

@@ -77,9 +77,9 @@ am_wxmedit_OBJECTS = $(am__objects_1) $(am__objects_2) \
 	src/dialog/wxmedit-wxm_sort_dialog.$(OBJEXT) \
 	src/dialog/wxmedit-wxm_word_count_dialog.$(OBJEXT) \
 	src/dialog/wxmedit-wxmedit_about_dialog.$(OBJEXT) \
+	src/wxmedit-mad_utils.$(OBJEXT) \
 	src/wxmedit-wxm_plugin.$(OBJEXT) \
 	src/wxmedit-wxm_printout.$(OBJEXT) \
-	src/wxmedit-wxm_utils.$(OBJEXT) \
 	src/wxmedit-wxmedit_app.$(OBJEXT) \
 	src/wxmedit-wxmedit_frame.$(OBJEXT) \
 	src/wxmedit/wxmedit-caret_new.$(OBJEXT) \
@@ -97,6 +97,7 @@ am_wxmedit_OBJECTS = $(am__objects_1) $(am__objects_2) \
 	src/xm/wxmedit-wxm_case_conv.$(OBJEXT) \
 	src/xm/wxmedit-wxm_line_enc_adapter.$(OBJEXT) \
 	src/xm/wxmedit-wxm_update.$(OBJEXT) \
+	src/xm/wxmedit-wxm_utils.$(OBJEXT) \
 	src/xm/wxmedit-wxm_wx_icu.$(OBJEXT) \
 	src/xm/wxmedit-xm_remote.$(OBJEXT) \
 	src/xm/wxmedit-xm_ublock_des.$(OBJEXT) \
@@ -365,13 +366,13 @@ wxmedit_SOURCES = $(enc_src) \
 	src/dialog/wxm_word_count_dialog.h \
 	src/dialog/wxmedit_about_dialog.cpp \
 	src/dialog/wxmedit_about_dialog.h \
+	src/mad_utils.cpp \
+	src/mad_utils.h \
 	src/plugin.h \
 	src/wxm_command.h \
 	src/wxm_plugin.cpp \
 	src/wxm_printout.cpp \
 	src/wxm_printout.h \
-	src/wxm_utils.cpp \
-	src/wxm_utils.h \
 	src/wxmedit_app.cpp \
 	src/wxmedit_app.h \
 	src/wxmedit_frame.cpp \
@@ -406,6 +407,8 @@ wxmedit_SOURCES = $(enc_src) \
 	src/xm/wxm_line_enc_adapter.h \
 	src/xm/wxm_update.cpp \
 	src/xm/wxm_update.h \
+	src/xm/wxm_utils.cpp \
+	src/xm/wxm_utils.h \
 	src/xm/wxm_wx_icu.cpp \
 	src/xm/wxm_wx_icu.h \
 	src/xm/xm_remote.cpp \
@@ -685,11 +688,11 @@ src/$(am__dirstamp):
 src/$(DEPDIR)/$(am__dirstamp):
 	@$(MKDIR_P) src/$(DEPDIR)
 	@: > src/$(DEPDIR)/$(am__dirstamp)
+src/wxmedit-mad_utils.$(OBJEXT): src/$(am__dirstamp) \
+	src/$(DEPDIR)/$(am__dirstamp)
 src/wxmedit-wxm_plugin.$(OBJEXT): src/$(am__dirstamp) \
 	src/$(DEPDIR)/$(am__dirstamp)
 src/wxmedit-wxm_printout.$(OBJEXT): src/$(am__dirstamp) \
-	src/$(DEPDIR)/$(am__dirstamp)
-src/wxmedit-wxm_utils.$(OBJEXT): src/$(am__dirstamp) \
 	src/$(DEPDIR)/$(am__dirstamp)
 src/wxmedit-wxmedit_app.$(OBJEXT): src/$(am__dirstamp) \
 	src/$(DEPDIR)/$(am__dirstamp)
@@ -730,6 +733,8 @@ src/xm/wxmedit-wxm_case_conv.$(OBJEXT): src/xm/$(am__dirstamp) \
 src/xm/wxmedit-wxm_line_enc_adapter.$(OBJEXT): src/xm/$(am__dirstamp) \
 	src/xm/$(DEPDIR)/$(am__dirstamp)
 src/xm/wxmedit-wxm_update.$(OBJEXT): src/xm/$(am__dirstamp) \
+	src/xm/$(DEPDIR)/$(am__dirstamp)
+src/xm/wxmedit-wxm_utils.$(OBJEXT): src/xm/$(am__dirstamp) \
 	src/xm/$(DEPDIR)/$(am__dirstamp)
 src/xm/wxmedit-wxm_wx_icu.$(OBJEXT): src/xm/$(am__dirstamp) \
 	src/xm/$(DEPDIR)/$(am__dirstamp)
@@ -858,9 +863,9 @@ mostlyclean-compile:
 	-rm -f src/dialog/wxmedit-wxm_sort_dialog.$(OBJEXT)
 	-rm -f src/dialog/wxmedit-wxm_word_count_dialog.$(OBJEXT)
 	-rm -f src/dialog/wxmedit-wxmedit_about_dialog.$(OBJEXT)
+	-rm -f src/wxmedit-mad_utils.$(OBJEXT)
 	-rm -f src/wxmedit-wxm_plugin.$(OBJEXT)
 	-rm -f src/wxmedit-wxm_printout.$(OBJEXT)
-	-rm -f src/wxmedit-wxm_utils.$(OBJEXT)
 	-rm -f src/wxmedit-wxmedit_app.$(OBJEXT)
 	-rm -f src/wxmedit-wxmedit_frame.$(OBJEXT)
 	-rm -f src/wxmedit/mad_encdet.$(OBJEXT)
@@ -897,6 +902,7 @@ mostlyclean-compile:
 	-rm -f src/xm/wxmedit-wxm_encdet.$(OBJEXT)
 	-rm -f src/xm/wxmedit-wxm_line_enc_adapter.$(OBJEXT)
 	-rm -f src/xm/wxmedit-wxm_update.$(OBJEXT)
+	-rm -f src/xm/wxmedit-wxm_utils.$(OBJEXT)
 	-rm -f src/xm/wxmedit-wxm_wx_icu.$(OBJEXT)
 	-rm -f src/xm/wxmedit-xm_remote.$(OBJEXT)
 	-rm -f src/xm/wxmedit-xm_ublock.$(OBJEXT)
@@ -926,9 +932,9 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
+@AMDEP_TRUE@@am__include@ @am__quote@src/$(DEPDIR)/wxmedit-mad_utils.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/$(DEPDIR)/wxmedit-wxm_plugin.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/$(DEPDIR)/wxmedit-wxm_printout.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@src/$(DEPDIR)/wxmedit-wxm_utils.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/$(DEPDIR)/wxmedit-wxmedit_app.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/$(DEPDIR)/wxmedit-wxmedit_frame.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/dialog/$(DEPDIR)/wxmedit-wxm_conv_enc_dialog.Po@am__quote@
@@ -960,6 +966,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/xm/$(DEPDIR)/wxmedit-wxm_encdet.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/xm/$(DEPDIR)/wxmedit-wxm_line_enc_adapter.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/xm/$(DEPDIR)/wxmedit-wxm_update.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/xm/$(DEPDIR)/wxmedit-wxm_utils.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/xm/$(DEPDIR)/wxmedit-wxm_wx_icu.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/xm/$(DEPDIR)/wxmedit-xm_remote.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/xm/$(DEPDIR)/wxmedit-xm_ublock.Po@am__quote@
@@ -1268,6 +1275,20 @@ src/dialog/wxmedit-wxmedit_about_dialog.obj: src/dialog/wxmedit_about_dialog.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -c -o src/dialog/wxmedit-wxmedit_about_dialog.obj `if test -f 'src/dialog/wxmedit_about_dialog.cpp'; then $(CYGPATH_W) 'src/dialog/wxmedit_about_dialog.cpp'; else $(CYGPATH_W) '$(srcdir)/src/dialog/wxmedit_about_dialog.cpp'; fi`
 
+src/wxmedit-mad_utils.o: src/mad_utils.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -MT src/wxmedit-mad_utils.o -MD -MP -MF src/$(DEPDIR)/wxmedit-mad_utils.Tpo -c -o src/wxmedit-mad_utils.o `test -f 'src/mad_utils.cpp' || echo '$(srcdir)/'`src/mad_utils.cpp
+@am__fastdepCXX_TRUE@	mv -f src/$(DEPDIR)/wxmedit-mad_utils.Tpo src/$(DEPDIR)/wxmedit-mad_utils.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/mad_utils.cpp' object='src/wxmedit-mad_utils.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -c -o src/wxmedit-mad_utils.o `test -f 'src/mad_utils.cpp' || echo '$(srcdir)/'`src/mad_utils.cpp
+
+src/wxmedit-mad_utils.obj: src/mad_utils.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -MT src/wxmedit-mad_utils.obj -MD -MP -MF src/$(DEPDIR)/wxmedit-mad_utils.Tpo -c -o src/wxmedit-mad_utils.obj `if test -f 'src/mad_utils.cpp'; then $(CYGPATH_W) 'src/mad_utils.cpp'; else $(CYGPATH_W) '$(srcdir)/src/mad_utils.cpp'; fi`
+@am__fastdepCXX_TRUE@	mv -f src/$(DEPDIR)/wxmedit-mad_utils.Tpo src/$(DEPDIR)/wxmedit-mad_utils.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/mad_utils.cpp' object='src/wxmedit-mad_utils.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -c -o src/wxmedit-mad_utils.obj `if test -f 'src/mad_utils.cpp'; then $(CYGPATH_W) 'src/mad_utils.cpp'; else $(CYGPATH_W) '$(srcdir)/src/mad_utils.cpp'; fi`
+
 src/wxmedit-wxm_plugin.o: src/wxm_plugin.cpp
 @am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -MT src/wxmedit-wxm_plugin.o -MD -MP -MF src/$(DEPDIR)/wxmedit-wxm_plugin.Tpo -c -o src/wxmedit-wxm_plugin.o `test -f 'src/wxm_plugin.cpp' || echo '$(srcdir)/'`src/wxm_plugin.cpp
 @am__fastdepCXX_TRUE@	mv -f src/$(DEPDIR)/wxmedit-wxm_plugin.Tpo src/$(DEPDIR)/wxmedit-wxm_plugin.Po
@@ -1295,20 +1316,6 @@ src/wxmedit-wxm_printout.obj: src/wxm_printout.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/wxm_printout.cpp' object='src/wxmedit-wxm_printout.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -c -o src/wxmedit-wxm_printout.obj `if test -f 'src/wxm_printout.cpp'; then $(CYGPATH_W) 'src/wxm_printout.cpp'; else $(CYGPATH_W) '$(srcdir)/src/wxm_printout.cpp'; fi`
-
-src/wxmedit-wxm_utils.o: src/wxm_utils.cpp
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -MT src/wxmedit-wxm_utils.o -MD -MP -MF src/$(DEPDIR)/wxmedit-wxm_utils.Tpo -c -o src/wxmedit-wxm_utils.o `test -f 'src/wxm_utils.cpp' || echo '$(srcdir)/'`src/wxm_utils.cpp
-@am__fastdepCXX_TRUE@	mv -f src/$(DEPDIR)/wxmedit-wxm_utils.Tpo src/$(DEPDIR)/wxmedit-wxm_utils.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/wxm_utils.cpp' object='src/wxmedit-wxm_utils.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -c -o src/wxmedit-wxm_utils.o `test -f 'src/wxm_utils.cpp' || echo '$(srcdir)/'`src/wxm_utils.cpp
-
-src/wxmedit-wxm_utils.obj: src/wxm_utils.cpp
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -MT src/wxmedit-wxm_utils.obj -MD -MP -MF src/$(DEPDIR)/wxmedit-wxm_utils.Tpo -c -o src/wxmedit-wxm_utils.obj `if test -f 'src/wxm_utils.cpp'; then $(CYGPATH_W) 'src/wxm_utils.cpp'; else $(CYGPATH_W) '$(srcdir)/src/wxm_utils.cpp'; fi`
-@am__fastdepCXX_TRUE@	mv -f src/$(DEPDIR)/wxmedit-wxm_utils.Tpo src/$(DEPDIR)/wxmedit-wxm_utils.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/wxm_utils.cpp' object='src/wxmedit-wxm_utils.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -c -o src/wxmedit-wxm_utils.obj `if test -f 'src/wxm_utils.cpp'; then $(CYGPATH_W) 'src/wxm_utils.cpp'; else $(CYGPATH_W) '$(srcdir)/src/wxm_utils.cpp'; fi`
 
 src/wxmedit-wxmedit_app.o: src/wxmedit_app.cpp
 @am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -MT src/wxmedit-wxmedit_app.o -MD -MP -MF src/$(DEPDIR)/wxmedit-wxmedit_app.Tpo -c -o src/wxmedit-wxmedit_app.o `test -f 'src/wxmedit_app.cpp' || echo '$(srcdir)/'`src/wxmedit_app.cpp
@@ -1547,6 +1554,20 @@ src/xm/wxmedit-wxm_update.obj: src/xm/wxm_update.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/xm/wxm_update.cpp' object='src/xm/wxmedit-wxm_update.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -c -o src/xm/wxmedit-wxm_update.obj `if test -f 'src/xm/wxm_update.cpp'; then $(CYGPATH_W) 'src/xm/wxm_update.cpp'; else $(CYGPATH_W) '$(srcdir)/src/xm/wxm_update.cpp'; fi`
+
+src/xm/wxmedit-wxm_utils.o: src/xm/wxm_utils.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -MT src/xm/wxmedit-wxm_utils.o -MD -MP -MF src/xm/$(DEPDIR)/wxmedit-wxm_utils.Tpo -c -o src/xm/wxmedit-wxm_utils.o `test -f 'src/xm/wxm_utils.cpp' || echo '$(srcdir)/'`src/xm/wxm_utils.cpp
+@am__fastdepCXX_TRUE@	mv -f src/xm/$(DEPDIR)/wxmedit-wxm_utils.Tpo src/xm/$(DEPDIR)/wxmedit-wxm_utils.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/xm/wxm_utils.cpp' object='src/xm/wxmedit-wxm_utils.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -c -o src/xm/wxmedit-wxm_utils.o `test -f 'src/xm/wxm_utils.cpp' || echo '$(srcdir)/'`src/xm/wxm_utils.cpp
+
+src/xm/wxmedit-wxm_utils.obj: src/xm/wxm_utils.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -MT src/xm/wxmedit-wxm_utils.obj -MD -MP -MF src/xm/$(DEPDIR)/wxmedit-wxm_utils.Tpo -c -o src/xm/wxmedit-wxm_utils.obj `if test -f 'src/xm/wxm_utils.cpp'; then $(CYGPATH_W) 'src/xm/wxm_utils.cpp'; else $(CYGPATH_W) '$(srcdir)/src/xm/wxm_utils.cpp'; fi`
+@am__fastdepCXX_TRUE@	mv -f src/xm/$(DEPDIR)/wxmedit-wxm_utils.Tpo src/xm/$(DEPDIR)/wxmedit-wxm_utils.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/xm/wxm_utils.cpp' object='src/xm/wxmedit-wxm_utils.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -c -o src/xm/wxmedit-wxm_utils.obj `if test -f 'src/xm/wxm_utils.cpp'; then $(CYGPATH_W) 'src/xm/wxm_utils.cpp'; else $(CYGPATH_W) '$(srcdir)/src/xm/wxm_utils.cpp'; fi`
 
 src/xm/wxmedit-wxm_wx_icu.o: src/xm/wxm_wx_icu.cpp
 @am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -MT src/xm/wxmedit-wxm_wx_icu.o -MD -MP -MF src/xm/$(DEPDIR)/wxmedit-wxm_wx_icu.Tpo -c -o src/xm/wxmedit-wxm_wx_icu.o `test -f 'src/xm/wxm_wx_icu.cpp' || echo '$(srcdir)/'`src/xm/wxm_wx_icu.cpp

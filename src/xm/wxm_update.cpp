@@ -10,7 +10,7 @@
 #include "xm_remote.h"
 #include "wxm_def.h"
 #include "../wxmedit_frame.h"
-#include "../wxm_utils.h"
+#include "../xm/wxm_utils.h"
 
 #include <wx/msgdlg.h>
 #include <wx/intl.h>

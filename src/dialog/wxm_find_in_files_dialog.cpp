@@ -11,7 +11,7 @@
 
 #include "../wxmedit_frame.h"
 #include "../wxmedit/wxmedit.h"
-#include "../wxm_utils.h"
+#include "../xm/wxm_utils.h"
 
 #include <wx/progdlg.h>
 #include <wx/dir.h>

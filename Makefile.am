@@ -46,13 +46,13 @@ wxmedit_SOURCES =	$(enc_src) \
 	src/dialog/wxm_word_count_dialog.h \
 	src/dialog/wxmedit_about_dialog.cpp \
 	src/dialog/wxmedit_about_dialog.h \
+	src/mad_utils.cpp \
+	src/mad_utils.h \
 	src/plugin.h \
 	src/wxm_command.h \
 	src/wxm_plugin.cpp \
 	src/wxm_printout.cpp \
 	src/wxm_printout.h \
-	src/wxm_utils.cpp \
-	src/wxm_utils.h \
 	src/wxmedit_app.cpp \
 	src/wxmedit_app.h \
 	src/wxmedit_frame.cpp \
@@ -87,6 +87,8 @@ wxmedit_SOURCES =	$(enc_src) \
 	src/xm/wxm_line_enc_adapter.h \
 	src/xm/wxm_update.cpp \
 	src/xm/wxm_update.h \
+	src/xm/wxm_utils.cpp \
+	src/xm/wxm_utils.h \
 	src/xm/wxm_wx_icu.cpp \
 	src/xm/wxm_wx_icu.h \
 	src/xm/xm_remote.cpp \

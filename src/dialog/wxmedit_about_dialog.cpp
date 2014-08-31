@@ -6,7 +6,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 #include "wxmedit_about_dialog.h"
-#include "../wxm_utils.h"
+#include "../xm/wxm_utils.h"
 
 //(*InternalHeaders(WXMAboutDialog)
 #include <wx/intl.h>

@@ -157,13 +157,13 @@
 		<sources>../src/dialog/wxm_word_count_dialog.cpp</sources>
 		<headers>../src/dialog/wxmedit_about_dialog.h</headers>
 		<sources>../src/dialog/wxmedit_about_dialog.cpp</sources>
+		<headers>../src/mad_utils.h</headers>
+		<sources>../src/mad_utils.cpp</sources>
 		<headers>../src/plugin.h</headers>
 		<headers>../src/wxm_command.h</headers>
 		<sources>../src/wxm_plugin.cpp</sources>
 		<headers>../src/wxm_printout.h</headers>
 		<sources>../src/wxm_printout.cpp</sources>
-		<headers>../src/wxm_utils.h</headers>
-		<sources>../src/wxm_utils.cpp</sources>
 		<headers>../src/wxmedit/caret_new.h</headers>
 		<headers>../src/wxmedit/clipbrd_gtk.h</headers>
 		<headers>../src/wxmedit/trad_simp.h</headers>
@@ -198,6 +198,8 @@
 		<sources>../src/xm/wxm_line_enc_adapter.cpp</sources>
 		<headers>../src/xm/wxm_update.h</headers>
 		<sources>../src/xm/wxm_update.cpp</sources>
+		<headers>../src/xm/wxm_utils.h</headers>
+		<sources>../src/xm/wxm_utils.cpp</sources>
 		<headers>../src/xm/wxm_wx_icu.h</headers>
 		<sources>../src/xm/wxm_wx_icu.cpp</sources>
 		<headers>../src/xm/xm_remote.h</headers>

@@ -8,7 +8,7 @@
 
 #include "wxm_highlighting_dialog.h"
 
-#include "../wxm_utils.h"
+#include "../mad_utils.h"
 #include "../wxmedit/wxm_syntax.h"
 
 

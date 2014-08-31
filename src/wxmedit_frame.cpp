@@ -25,8 +25,9 @@
 #include "dialog/wxm_sort_dialog.h"
 #include "dialog/wxmedit_about_dialog.h"
 #include "wxm_printout.h"
-#include "wxm_utils.h"
+#include "mad_utils.h"
 #include "wxm_command.h"
+#include "xm/wxm_utils.h"
 #include "xm/wxm_update.h"
 #include "xm/wx_recent_list.h"
 #include "xm/wxm_def.h"
@@ -4590,7 +4591,7 @@ void MadEditFrame::OnToolsOptions(wxCommandEvent& event)
 #ifdef __WXMSW__
         if(g_OptionsDialog->WxCheckBoxRightClickMenu->GetValue())
         {
-            wxRegKey *pRegKey = new wxRegKey(g_wxsRegkeyClasses + wxT("*\\shell\\wxMEdit\\command"));
+            wxRegKey *pRegKey = new wxRegKey(wxm::s_wxsRegkeyClasses + wxT("*\\shell\\wxMEdit\\command"));
             pRegKey->Create();
             wxString exepath=GetExecutablePath();
             pRegKey->SetValue(wxEmptyString, wxString(wxT('"'))+exepath+wxString(wxT("\" \"%1\"")));
@@ -4598,7 +4599,7 @@ void MadEditFrame::OnToolsOptions(wxCommandEvent& event)
         }
         else
         {
-            wxRegKey *pRegKey = new wxRegKey(g_wxsRegkeyClasses + wxT("*\\shell\\wxMEdit"));
+            wxRegKey *pRegKey = new wxRegKey(wxm::s_wxsRegkeyClasses + wxT("*\\shell\\wxMEdit"));
             pRegKey->DeleteSelf();
             delete pRegKey;
         }

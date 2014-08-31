@@ -8,13 +8,14 @@
 
 #include "wxm_options_dialog.h"
 
+#include "../mad_utils.h"
 #include "../wxmedit/wxmedit_command.h"
 #include "../wxmedit/wxmedit.h"
 #include "../wxmedit_frame.h"
 #include "../xm/wxm_encoding/encoding.h"
 #include "../xm/wxm_update.h"
 #include "../xm/wxm_def.h"
-#include "../wxm_utils.h"
+#include "../xm/wxm_utils.h"
 
 //(*InternalHeaders(WXMOptionsDialog)
 #include <wx/settings.h>
@@ -939,7 +940,7 @@ void WXMOptionsDialog::LoadOptions(void)
 	WxCheckBoxRestoreCaretPos->SetValue(bb);
 
 #ifdef __WXMSW__
-	wxRegKey *pRegKey = new wxRegKey(g_wxsRegkeyClasses + wxT("*\\shell\\wxMEdit\\command"));
+	wxRegKey *pRegKey = new wxRegKey(wxm::s_wxsRegkeyClasses + wxT("*\\shell\\wxMEdit\\command"));
 	if(pRegKey->Exists())
 	{
 		wxString str;

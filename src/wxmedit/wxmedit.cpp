@@ -13,7 +13,7 @@
 #include "../xm/wxm_encoding/unicode.h"
 #include "wxm_syntax.h"
 #include "wxm_undo.h"
-#include "../wxm_utils.h"
+#include "../xm/wxm_utils.h"
 
 #include <wx/fileconf.h>
 #include <wx/gdicmn.h>

@@ -1,0 +1,337 @@
+///////////////////////////////////////////////////////////////////////////////
+// vim:         ts=4 sw=4
+// Name:        wxm_utils.cpp
+// Description: Utilities
+// Author:      wxmedit@gmail.com  (current maintainer)
+// Licence:     GPL
+///////////////////////////////////////////////////////////////////////////////
+
+#include "wxm_utils.h"
+#include "wxm_encoding/encoding.h"
+#include "../mad_utils.h"
+#include "../wxmedit/wxmedit.h"
+
+#include <wx/string.h>
+#include <wx/intl.h>
+#include <wx/tokenzr.h>
+#include <wx/utils.h>
+#include <wx/font.h>
+#include <wx/window.h>
+#include <wx/hashmap.h>
+
+#include <unicode/uchar.h>
+#include <unicode/locid.h>
+
+#include <boost/foreach.hpp>
+#include <boost/format.hpp>
+#include <boost/algorithm/string/predicate.hpp>
+
+#include <locale.h>
+
+#ifdef __WXMAC__
+# include <wx/mac/private.h>
+# include <Processes.h>
+#endif
+
+#ifdef _DEBUG
+#include <crtdbg.h>
+#define new new(_NORMAL_BLOCK ,__FILE__, __LINE__)
+#endif
+
+namespace wxm
+{
+
+void SetL10nHtmlColors()
+{
+	wxColourDatabase *cdb=wxTheColourDatabase;
+	HtmlColor *hc=HtmlColorTable;
+	for(int i=0; i<HtmlColorTableCount; ++i, ++hc)
+	{
+		cdb->AddColour(hc->name, wxColor(hc->red, hc->green, hc->blue));
+		g_color_l10n_map[wxString(hc->name).Upper()] = wxGetTranslation(hc->name);
+	}
+}
+
+void FileList::Append(const wxString& file, const LineNumberList& bmklns)
+{
+	m_files += file + wxT("<");
+	BOOST_FOREACH (size_t ln, bmklns)
+		m_files << ln << wxT("<");
+	m_files += wxT("|");
+
+	m_filevec.push_back(FileDesc(file, bmklns));
+}
+
+void FileList::Init(const wxString& files)
+{
+	m_files = files;
+
+	wxStringTokenizer tkzfiledescs(files,  wxT("|"));
+	while (tkzfiledescs.HasMoreTokens())
+	{
+		wxStringTokenizer tkz(tkzfiledescs.GetNextToken(), wxT("<"));
+
+		wxString file = tkz.GetNextToken();
+
+		LineNumberList bmklns;
+		while (tkz.HasMoreTokens())
+		{
+			unsigned long ln = 0;
+			if (tkz.GetNextToken().ToULong(&ln))
+				bmklns.push_back((size_t)ln);
+		}
+
+		m_filevec.push_back(FileDesc(file, bmklns));
+	}
+}
+
+void OpenOriginalURL(const wxString& url)
+{
+#ifdef __WXGTK__
+	const wxChar *browsers[]=
+	{
+		wxT("/usr/bin/firefox"),
+		wxT("/usr/bin/mozilla"),
+		wxT("/usr/bin/chromium"),
+		wxT("/usr/bin/konqueror"),
+# if defined(__APPLE__) && defined(__MACH__)
+		wxT("/usr/bin/open"),
+# endif
+		wxT("/usr/kde/3.5/bin/konqueror"),
+		wxT("/usr/kde/3.4/bin/konqueror"),
+		wxT("/usr/kde/3.3/bin/konqueror"),
+		wxT("/usr/kde/3.2/bin/konqueror"),
+	};
+	int idx=0;
+	int count=sizeof(browsers)/sizeof(browsers[0]);
+	do
+	{
+		if(wxFileExists(wxString(browsers[idx])))
+			break;
+	}while(++idx < count);
+
+	if(idx < count)
+	{
+		wxExecute(wxString(browsers[idx]) +wxT(' ') +url);
+	}
+	else
+	{
+		wxLaunchDefaultBrowser(url);
+	}
+#else
+	wxLaunchDefaultBrowser(url);
+#endif
+}
+
+wxString WXMLanguageQuery()
+{
+	icu::Locale loc;
+	std::string lang = loc.getLanguage();
+	std::string ctry = loc.getCountry();
+
+	return wxString((boost::format("?%s_%s") % lang % ctry).str().c_str(), wxConvUTF8);
+}
+
+void OpenURL(const wxString& url)
+{
+	if (! boost::algorithm::istarts_with(url, "http://wxmedit.github.io/"))
+		return OpenOriginalURL(url);
+
+	static wxString lang_q = WXMLanguageQuery();
+
+	OpenOriginalURL(url + lang_q);
+}
+
+void SetDefaultMonoFont(wxWindow* win)
+{
+	const wxString fontname = wxm::WXMEncodingManager::Instance().GetSystemEncoding()->GetFontName();
+	int fontsize = win->GetFont().GetPointSize();
+	win->SetFont(wxFont(fontsize, wxDEFAULT, wxNORMAL, wxNORMAL, false, fontname));
+}
+
+wxString FilePathNormalCase(const wxString& name)
+{
+#ifndef __WXMSW__
+	return name;
+#else
+	// wxString::Upper is buggy under Windows
+	// and the filename insensitive of Windows is also buggy
+	// but they are different
+	wxString uppername;
+	BOOST_FOREACH(wxChar ch, name)
+		uppername.append(1, (wxChar)u_toupper((UChar32)(unsigned int)ch));
+
+	return uppername;
+#endif
+}
+
+bool FilePathEqual(const wxString& name1, const wxString& name2)
+{
+	return FilePathNormalCase(name1) == FilePathNormalCase(name2);
+}
+
+unsigned long FilePathHash(const wxString& name)
+{
+	return wxStringHash::wxCharStringHash(FilePathNormalCase(name));
+}
+
+struct HexAreaRawBytesCopier: public HexAreaClipboardCopier
+{
+	virtual void Copy(MadEdit* inst)
+	{
+		inst->CopyRawBytes();
+	}
+	virtual bool Hexadecimal()
+	{
+		return false;
+	}
+};
+
+struct HexAreaRegularTextCopier: public HexAreaClipboardCopier
+{
+	virtual void Copy(MadEdit* inst)
+	{
+		inst->CopyRegularText();
+	}
+	virtual bool Hexadecimal()
+	{
+		return false;
+	}
+};
+
+struct HexAreaHexStringCopier: public HexAreaClipboardCopier
+{
+	virtual void Copy(MadEdit* inst)
+	{
+		inst->CopyAsHexString(false);
+	}
+	virtual bool Hexadecimal()
+	{
+		return true;
+	}
+};
+
+struct HexAreaHexStringWithSpaceCopier: public HexAreaClipboardCopier
+{
+	virtual void Copy(MadEdit* inst)
+	{
+		inst->CopyAsHexString(true);
+	}
+	virtual bool Hexadecimal()
+	{
+		return true;
+	}
+};
+
+void HexAreaClipboardCopyProxy::DoInit()
+{
+	AddData(HACCI_RAWBYTES,           wxT("raw_bytes"),             _("Copy as Raw Bytes"),              SharedCopierPtr(new HexAreaRawBytesCopier));
+	AddData(HACCI_REGULARTEXT,        wxT("regular_text"),          _("Copy as Regular Text"),           SharedCopierPtr(new HexAreaRegularTextCopier));
+	AddData(HACCI_HEXSTRING,          wxT("hex_string"),            _("Copy as Hex String"),             SharedCopierPtr(new HexAreaHexStringCopier));
+	AddData(HACCI_HEXSTRINGWITHSPACE, wxT("hex_string_with_space"), _("Copy as Hex String with Spaces"), SharedCopierPtr(new HexAreaHexStringWithSpaceCopier));
+
+	SetDefault(HACCI_RAWBYTES, IndexToVal(HACCI_RAWBYTES));
+}
+
+bool GetRawBytesFromHexUnicodeText(std::vector<char>& cs, const std::vector<ucs4_t>& ucs)
+{
+	std::vector<int> tmp_hex;
+
+	BOOST_FOREACH(ucs4_t u, ucs)
+	{
+		if (u_isUWhiteSpace(u) && tmp_hex.size()%2==0)
+			continue;
+		if (!isxdigit(u))
+			return false;
+
+		int hex = (u > ucs4_t('9'))? (u | 0x20) - 'a' + 10: u - '0';
+		tmp_hex.push_back(hex);
+	}
+
+	if (tmp_hex.empty() || tmp_hex.size() % 2 != 0)
+		return false;
+
+	for (size_t i=0; i<tmp_hex.size(); i+=2)
+		cs.push_back(char((tmp_hex[i]<<4) | tmp_hex[i+1]));
+
+	return true;
+}
+
+struct HexAreaRawBytesHexPaster: public HexAreaClipboardPaster
+{
+	virtual bool GetRawBytesFromClipboardDirectly(MadEdit* inst, std::vector<char>& cs)
+	{
+		return inst->GetRawBytesFromClipboardDirectly(cs);
+	}
+
+	virtual void GetRawBytesFromUnicodeText(MadEdit* inst, std::vector<char>& cs, const std::vector<ucs4_t>& ucs) = 0;
+};
+
+struct HexAreaNerverHexPaster: public HexAreaRawBytesHexPaster
+{
+	virtual void GetRawBytesFromUnicodeText(MadEdit* inst, std::vector<char>& cs, const std::vector<ucs4_t>& ucs)
+	{
+		inst->ConvertToRawBytesFromUnicodeText(cs, ucs);
+	}
+};
+
+struct HexAreaIfPossibleHexPaster: public HexAreaRawBytesHexPaster
+{
+	virtual void GetRawBytesFromUnicodeText(MadEdit* inst, std::vector<char>& cs, const std::vector<ucs4_t>& ucs)
+	{
+		if (GetRawBytesFromHexUnicodeText(cs, ucs))
+			return;
+		inst->ConvertToRawBytesFromUnicodeText(cs, ucs);
+	}
+};
+
+struct HexAreaAccordingToCopierHexPaster: public HexAreaRawBytesHexPaster
+{
+	virtual void GetRawBytesFromUnicodeText(MadEdit* inst, std::vector<char>& cs, const std::vector<ucs4_t>& ucs)
+	{
+		HexAreaClipboardCopier& copier = HexAreaClipboardCopyProxy::Instance().GetSelectedCopier();
+		if (copier.Hexadecimal() && GetRawBytesFromHexUnicodeText(cs, ucs))
+			return;
+		inst->ConvertToRawBytesFromUnicodeText(cs, ucs);
+	}
+};
+
+struct HexAreaAlwaysHexPaster: public HexAreaClipboardPaster
+{
+	virtual bool GetRawBytesFromClipboardDirectly(MadEdit* inst, std::vector<char>& cs)
+	{
+		return false;
+	}
+
+	virtual void GetRawBytesFromUnicodeText(MadEdit* inst, std::vector<char>& cs, const std::vector<ucs4_t>& ucs)
+	{
+		GetRawBytesFromHexUnicodeText(cs, ucs);
+	}
+};
+
+void HexAreaClipboardPasteProxy::DoInit()
+{
+	AddData(HAPAHCI_NEVER,             wxT("never"),               _("Never"),                         SharedPasterPtr(new HexAreaNerverHexPaster));
+	AddData(HAPAHCI_ACCORDINGTOCOPIER, wxT("according_to_copier"), _("According To Copying Behavior"), SharedPasterPtr(new HexAreaAccordingToCopierHexPaster));
+	AddData(HAPAHCI_IFPOSSIBLE,        wxT("if_possible"),         _("If Possible"),                   SharedPasterPtr(new HexAreaIfPossibleHexPaster));
+	AddData(HAPAHCI_ALWAYS,            wxT("always"),              _("Always"),                        SharedPasterPtr(new HexAreaAlwaysHexPaster));
+
+	SetDefault(HAPAHCI_NEVER, IndexToVal(HAPAHCI_NEVER));
+}
+
+void MouseCapturer::Capture()
+{
+	m_edit.CaptureMouse();
+	m_captured = true;
+}
+
+void MouseCapturer::Release()
+{
+	if (!m_captured)
+		return;
+
+	m_edit.ReleaseMouse();
+	m_captured = false;
+}
+
+} // namespace wxm

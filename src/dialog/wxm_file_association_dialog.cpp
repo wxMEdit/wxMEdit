@@ -8,7 +8,9 @@
 
 #include "wxm_file_association_dialog.h"
 
-#include "../wxm_utils.h"
+#include "../xm/wxm_utils.h"
+#include "../mad_utils.h"
+
 #include <wx/config.h>
 #include <wx/log.h>
 
@@ -100,13 +102,13 @@ bool DetectType(wxString type)
 	wxLogNull nolog; // disable error log
 
 	wxString value;
-	wxRegKey *pRegKey = new wxRegKey(g_wxsRegkeyClasses + type);
+	wxRegKey *pRegKey = new wxRegKey(wxm::s_wxsRegkeyClasses + type);
 	if(pRegKey->Exists()) pRegKey->QueryValue(wxEmptyString, value);
 	delete pRegKey;
 
 	if(!value.IsEmpty())
 	{
-		pRegKey = new wxRegKey(g_wxsRegkeyClasses
+		pRegKey = new wxRegKey(wxm::s_wxsRegkeyClasses
 					+ value
 					+ wxString(wxT("\\shell\\open\\command")));
 		value.Empty();
@@ -128,7 +130,7 @@ void AddType(wxString type)
 	wxString value;
 	wxString madedit_type = wxString(wxT("wxMEdit")) + type;
 
-	wxRegKey *pRegKey = new wxRegKey(g_wxsRegkeyClasses + type);
+	wxRegKey *pRegKey = new wxRegKey(wxm::s_wxsRegkeyClasses + type);
 	if(!pRegKey->Exists()) pRegKey->Create();
 	else pRegKey->QueryValue(wxEmptyString, value);
 	if(value != madedit_type)
@@ -139,7 +141,7 @@ void AddType(wxString type)
 
 			//if(type == wxT(".txt"))
 			//{
-			//	wxRegKey *pRegKey1 = new wxRegKey(g_wxsRegkeyClasses + type);
+			//	wxRegKey *pRegKey1 = new wxRegKey(wxm::s_wxsRegkeyClasses + type);
 			//	pRegKey->QueryValue(wxEmptyString, txt_name);
 			//	delete pRegKey1;
 			//}
@@ -150,13 +152,13 @@ void AddType(wxString type)
 	}
 	delete pRegKey;
 
-	wxString name(g_wxsRegkeyClasses);
+	wxString name(wxm::s_wxsRegkeyClasses);
 	name += value;
 
 	if(type == wxT(".txt"))
 	{
 		wxString txt_name;
-		pRegKey = new wxRegKey(g_wxsRegkeyClasses + wxString(wxT("txtfile")));
+		pRegKey = new wxRegKey(wxm::s_wxsRegkeyClasses + wxString(wxT("txtfile")));
 		if(pRegKey->Exists()) pRegKey->QueryValue(wxEmptyString, txt_name);
 		delete pRegKey;
 
@@ -175,7 +177,7 @@ void AddType(wxString type)
 	pRegKey->SetValue(wxEmptyString, wxString(wxT('"'))+exepath+wxString(wxT("\" \"%1\"")));
 	delete pRegKey;
 
-	name = g_wxsRegkeyClasses;
+	name = wxm::s_wxsRegkeyClasses;
 	name += value;
 	name += wxT("\\DefaultIcon");
 	pRegKey = new wxRegKey(name);
@@ -191,7 +193,7 @@ void RemoveType(wxString type)
 	wxString value, old_default;
 	wxString madedit_type = wxString(wxT("wxMEdit")) + type;
 
-	wxRegKey *pRegKey = new wxRegKey(g_wxsRegkeyClasses + type);
+	wxRegKey *pRegKey = new wxRegKey(wxm::s_wxsRegkeyClasses + type);
 	if(pRegKey->Exists() && pRegKey->HasValue(wxT("Old_Default")))
 	{
 		pRegKey->QueryValue(wxT("Old_Default"), old_default);
@@ -213,7 +215,7 @@ void RemoveType(wxString type)
 
 	if(value == madedit_type)
 	{
-		pRegKey = new wxRegKey(g_wxsRegkeyClasses + value);
+		pRegKey = new wxRegKey(wxm::s_wxsRegkeyClasses + value);
 		if(pRegKey->Exists()) pRegKey->DeleteSelf();
 		delete pRegKey;
 	}
