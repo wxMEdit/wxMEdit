@@ -21,6 +21,7 @@
 #include <boost/static_assert.hpp>
 #include <boost/assign/list_inserter.hpp>
 #include <boost/assign/list_of.hpp>
+#include <boost/scoped_ptr.hpp>
 
 #ifdef _DEBUG
 #include <crtdbg.h>
@@ -34,24 +35,16 @@
 static void MSW_GetFontName(const wxString codepage, wxString &fontname)
 {
 	const wxString MIMEDB(wxm::s_wxsRegkeyClasses + wxT("MIME\\Database\\Codepage\\"));
-	wxRegKey *pRegKey = new wxRegKey(MIMEDB + codepage);
+	boost::scoped_ptr<wxRegKey> pRegKey( new wxRegKey(MIMEDB + codepage) );
 
 	if(!pRegKey->Exists())
-	{
-		delete pRegKey;
 		return;
-	}
 
 	long cp;
 	if(pRegKey->QueryValue(wxT("Family"), &cp))
-	{
-		delete pRegKey;
-		pRegKey = new wxRegKey(MIMEDB + wxString::Format(wxT("%d"), cp));
-	}
+		pRegKey.reset( new wxRegKey(MIMEDB + wxString::Format(wxT("%d"), cp)) );
 
 	pRegKey->QueryValue(wxT("FixedWidthFont"), fontname);
-
-	delete pRegKey;
 }
 
 #else

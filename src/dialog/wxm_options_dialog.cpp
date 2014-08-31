@@ -26,7 +26,10 @@
 #include <wx/aui/auibook.h>
 #include <wx/fileconf.h>
 #include <wx/config.h>
+
 #include <boost/foreach.hpp>
+#include <boost/scoped_ptr.hpp>
+
 #include <algorithm>
 
 #ifdef _DEBUG
@@ -940,7 +943,7 @@ void WXMOptionsDialog::LoadOptions(void)
 	WxCheckBoxRestoreCaretPos->SetValue(bb);
 
 #ifdef __WXMSW__
-	wxRegKey *pRegKey = new wxRegKey(wxm::s_wxsRegkeyClasses + wxT("*\\shell\\wxMEdit\\command"));
+	boost::scoped_ptr<wxRegKey> pRegKey( new wxRegKey(wxm::s_wxsRegkeyClasses + wxT("*\\shell\\wxMEdit\\command")) );
 	if(pRegKey->Exists())
 	{
 		wxString str;
@@ -950,7 +953,6 @@ void WXMOptionsDialog::LoadOptions(void)
 			WxCheckBoxRightClickMenu->SetValue( str.Upper().Find(exepath.Upper())>=0 );
 		}
 	}
-	delete pRegKey;
 #endif
 
 	// Edit page

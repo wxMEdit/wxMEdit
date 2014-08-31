@@ -21,6 +21,8 @@
 #include <wx/string.h>
 //*)
 
+#include <boost/scoped_ptr.hpp>
+
 #ifdef _DEBUG
 #include <crtdbg.h>
 #define new new(_NORMAL_BLOCK ,__FILE__, __LINE__)
@@ -102,38 +104,39 @@ bool DetectType(wxString type)
 	wxLogNull nolog; // disable error log
 
 	wxString value;
-	wxRegKey *pRegKey = new wxRegKey(wxm::s_wxsRegkeyClasses + type);
-	if(pRegKey->Exists()) pRegKey->QueryValue(wxEmptyString, value);
-	delete pRegKey;
+	boost::scoped_ptr<wxRegKey> pRegKey( new wxRegKey(wxm::s_wxsRegkeyClasses + type) );
+	if(pRegKey->Exists())
+		pRegKey->QueryValue(wxEmptyString, value);
 
-	if(!value.IsEmpty())
-	{
-		pRegKey = new wxRegKey(wxm::s_wxsRegkeyClasses
-					+ value
-					+ wxString(wxT("\\shell\\open\\command")));
-		value.Empty();
-		if(pRegKey->Exists()) pRegKey->QueryValue(wxEmptyString, value);
-		delete pRegKey;
+	if(value.IsEmpty())
+		return false;
 
-		wxString exepath = GetExecutablePath();
-		if(value.Upper().Find(exepath.Upper()) >= 0 )
-		{
-			return true;
-		}
-	}
+	pRegKey.reset( new wxRegKey(wxm::s_wxsRegkeyClasses
+				+ value
+				+ wxString(wxT("\\shell\\open\\command"))) );
+	value.Empty();
+	if(pRegKey->Exists())
+		pRegKey->QueryValue(wxEmptyString, value);
 
-	return false;
+	wxString exepath = GetExecutablePath();
+	if(value.Upper().Find(exepath.Upper()) < 0)
+		return false;
+
+	return true;
 }
 
 void AddType(wxString type)
 {
 	wxString value;
-	wxString madedit_type = wxString(wxT("wxMEdit")) + type;
+	wxString wxmedit_type = wxString(wxT("wxMEdit")) + type;
 
-	wxRegKey *pRegKey = new wxRegKey(wxm::s_wxsRegkeyClasses + type);
-	if(!pRegKey->Exists()) pRegKey->Create();
-	else pRegKey->QueryValue(wxEmptyString, value);
-	if(value != madedit_type)
+	boost::scoped_ptr<wxRegKey> pRegKey( new wxRegKey(wxm::s_wxsRegkeyClasses + type ));
+	if(!pRegKey->Exists())
+		pRegKey->Create();
+	else
+		pRegKey->QueryValue(wxEmptyString, value);
+
+	if(value != wxmedit_type)
 	{
 		if(!value.IsEmpty()) //save old default value
 		{
@@ -141,16 +144,14 @@ void AddType(wxString type)
 
 			//if(type == wxT(".txt"))
 			//{
-			//	wxRegKey *pRegKey1 = new wxRegKey(wxm::s_wxsRegkeyClasses + type);
+			//	boost::scoped_ptr<wxRegKey> pRegKey1( new wxRegKey(wxm::s_wxsRegkeyClasses + type) );
 			//	pRegKey->QueryValue(wxEmptyString, txt_name);
-			//	delete pRegKey1;
 			//}
 		}
 
-		value = madedit_type;
+		value = wxmedit_type;
 		pRegKey->SetValue(wxEmptyString, value);
 	}
-	delete pRegKey;
 
 	wxString name(wxm::s_wxsRegkeyClasses);
 	name += value;
@@ -158,32 +159,29 @@ void AddType(wxString type)
 	if(type == wxT(".txt"))
 	{
 		wxString txt_name;
-		pRegKey = new wxRegKey(wxm::s_wxsRegkeyClasses + wxString(wxT("txtfile")));
-		if(pRegKey->Exists()) pRegKey->QueryValue(wxEmptyString, txt_name);
-		delete pRegKey;
+		pRegKey.reset( new wxRegKey(wxm::s_wxsRegkeyClasses + wxString(wxT("txtfile"))) );
+		if(pRegKey->Exists())
+			pRegKey->QueryValue(wxEmptyString, txt_name);
 
 		if(txt_name.IsEmpty()) txt_name = wxT("Text file");
 
-		pRegKey = new wxRegKey(name);
+		pRegKey.reset( new wxRegKey(name) );
 		pRegKey->Create();
 		pRegKey->SetValue(wxEmptyString, txt_name);
-		delete pRegKey;
 	}
 
 	name += wxT("\\shell\\open\\command");
-	pRegKey = new wxRegKey(name);
+	pRegKey.reset( new wxRegKey(name) );
 	pRegKey->Create();
 	wxString exepath=GetExecutablePath();
 	pRegKey->SetValue(wxEmptyString, wxString(wxT('"'))+exepath+wxString(wxT("\" \"%1\"")));
-	delete pRegKey;
 
 	name = wxm::s_wxsRegkeyClasses;
 	name += value;
 	name += wxT("\\DefaultIcon");
-	pRegKey = new wxRegKey(name);
+	pRegKey.reset( new wxRegKey(name) );
 	pRegKey->Create();
 	pRegKey->SetValue(wxEmptyString, exepath + wxString(wxT(",1")));
-	delete pRegKey;
 }
 
 void RemoveType(wxString type)
@@ -191,9 +189,9 @@ void RemoveType(wxString type)
 	if(type.IsEmpty()) return;
 
 	wxString value, old_default;
-	wxString madedit_type = wxString(wxT("wxMEdit")) + type;
+	wxString wxmedit_type = wxString(wxT("wxMEdit")) + type;
 
-	wxRegKey *pRegKey = new wxRegKey(wxm::s_wxsRegkeyClasses + type);
+	boost::scoped_ptr<wxRegKey> pRegKey( new wxRegKey(wxm::s_wxsRegkeyClasses + type) );
 	if(pRegKey->Exists() && pRegKey->HasValue(wxT("Old_Default")))
 	{
 		pRegKey->QueryValue(wxT("Old_Default"), old_default);
@@ -206,18 +204,17 @@ void RemoveType(wxString type)
 	}
 	else if(!value.IsEmpty())
 	{
-		if(value == madedit_type)
+		if(value == wxmedit_type)
 		{
 			pRegKey->DeleteSelf();
 		}
 	}
-	delete pRegKey;
 
-	if(value == madedit_type)
+	if(value == wxmedit_type)
 	{
-		pRegKey = new wxRegKey(wxm::s_wxsRegkeyClasses + value);
-		if(pRegKey->Exists()) pRegKey->DeleteSelf();
-		delete pRegKey;
+		pRegKey.reset( new wxRegKey(wxm::s_wxsRegkeyClasses + value) );
+		if(pRegKey->Exists())
+			pRegKey->DeleteSelf();
 	}
 }
 
