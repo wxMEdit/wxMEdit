@@ -20,11 +20,15 @@
 #include <wx/hashmap.h>
 #include <wx/filename.h>
 #include <wx/stdpaths.h>
+#include <wx/file.h>
+#include <wx/wfstream.h>
+#include <wx/fileconf.h>
 
 #include <unicode/uchar.h>
 #include <unicode/locid.h>
 
 #include <boost/foreach.hpp>
+#include <boost/scoped_ptr.hpp>
 #include <boost/format.hpp>
 #include <boost/algorithm/string/predicate.hpp>
 
@@ -35,10 +39,16 @@
 # include <Processes.h>
 #endif
 
+#ifdef __WXMSW__
+# include <wx/msw/registry.h>
+#endif
+
 #ifdef _DEBUG
 #include <crtdbg.h>
 #define new new(_NORMAL_BLOCK ,__FILE__, __LINE__)
 #endif
+
+extern bool g_DoNotSaveSettings;
 
 namespace wxm
 {
@@ -337,6 +347,8 @@ void MouseCapturer::Release()
 }
 
 AppPath* AppPath::s_inst = NULL;
+wxString g_wxsRegKeyWxMEdit = wxT("HKEY_CURRENT_USER\\Software\\wxMEdit");
+wxString g_wxsRegValConfigInHome = wxT("ConfigInUserHome");
 
 // return application data directory in user home
 //     ~/.wxmedit/          under *NIX
@@ -346,11 +358,43 @@ wxString GetDataDirInUserHome()
 	wxString home_dir = wxStandardPaths::Get().GetUserDataDir() + wxFILE_SEP_PATH;
 	if(!wxDirExists(home_dir))
 	{
-		wxLogNull nolog; // no error message
+		wxLogNull nolog; // disable error message
 		wxMkdir(home_dir);
 	}
 	return home_dir;
 }
+
+#ifdef __WXMSW__
+bool FileWritable(const wxString& test_file)
+{
+	wxLogNull nolog;
+
+	wxFile ft(test_file.c_str(), wxFile::write);
+	if (!ft.IsOpened())
+		return false;
+
+	time_t t = time(NULL);
+	if (ft.Write(&t, sizeof(t)) != sizeof(t))
+		return false;
+
+	return true;
+}
+
+bool ConfigInUserHomeFromRegistry()
+{
+	wxLogNull nolog;
+
+	boost::scoped_ptr<wxRegKey> pRegKey( new wxRegKey(g_wxsRegKeyWxMEdit) );
+
+	if(!pRegKey->Exists())
+		return false;
+
+	long cfg_in_usrhome = 0;
+	pRegKey->QueryValue(g_wxsRegValConfigInHome, &cfg_in_usrhome);
+
+	return cfg_in_usrhome != 0;
+}
+#endif
 
 void AppPath::Init(const wxString& appname)
 {
@@ -360,12 +404,41 @@ void AppPath::Init(const wxString& appname)
 	filename.MakeAbsolute();
 	app_dir = filename.GetPath(wxPATH_GET_VOLUME | wxPATH_GET_SEPARATOR);
 
+	usr_dir = GetDataDirInUserHome();
+
 #ifdef __WXMSW__
-	home_dir = app_dir;
-#else
-	home_dir = GetDataDirInUserHome();
+	app_dir_writable = FileWritable(app_dir + wxT("portable"));
+	cfg_in_usrhome = !app_dir_writable || ConfigInUserHomeFromRegistry();
+	if (!cfg_in_usrhome)
+	{
+		home_dir = app_dir;
+		another_dir = usr_dir;
+		return;
+	}
 #endif
 
+	home_dir = usr_dir;
+	another_dir = app_dir;
+}
+
+void AppPath::SaveConfig()
+{
+#ifdef __WXMSW__
+	if (g_DoNotSaveSettings)
+		return;
+
+	bool curr_cfg_in_usrhome = !app_dir_writable || ConfigInUserHomeFromRegistry();
+	if (curr_cfg_in_usrhome == cfg_in_usrhome)
+		return;
+
+	wxFileConfig *cfg=reinterpret_cast<wxFileConfig *>(wxFileConfig::Get(false));
+	wxFileOutputStream another_cfg(another_dir + cfg_file);
+	if (!another_cfg.IsOk())
+		return;
+
+	cfg->Save(another_cfg);
+	g_DoNotSaveSettings = true;
+#endif
 }
 
 } // namespace wxm

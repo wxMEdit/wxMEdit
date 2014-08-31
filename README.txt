@@ -64,9 +64,10 @@ Syntax files, Locale files and Settings:
   Locale files: in the path $(wxMEditConfigPath)/locale/
   
   $(wxMEditConfigPath) are the one of below paths:
-    1. wxMEdit execution file directory : Windows and Linux
-    2. $(HOME)/.wxmedit/ : Linux
-    3. /usr/share/wxmedit/ : Linux
+    1. wxMEdit execution file directory under Windows and Unix-like OS.
+    2. $(HOME)/.wxmedit/ under Unix-like OS.
+    3. $(PREFIX)/share/wxmedit/ under Unix-like OS.
+    4. %APPDATA%\wxmedit\ under Windows accroding to settings.
   
   If wxMEdit does not find any files in those paths, 
   wxMEdit can also execute standalone by using default settings.
@@ -75,8 +76,8 @@ Syntax files, Locale files and Settings:
     http://www.microsoft.com/downloads/details.aspx?FamilyId=73BA7BD7-ED06-4F0D-80A4-2A7EEAEE17E2&displaylang=en
   
   When quit wxMEdit, wxMEdit will save the settings to:
-    1. $(HOME)/.wxmedit/wxmedit.cfg: Linux
-    2. $(wxMEdit execution file directory)/wxmedit.cfg: Windows
+    1. $(HOME)/.wxmedit/wxmedit.cfg under Unix-like OS.
+    2. %APPDATA%\wxmedit\ or $(wxMEdit execution file directory)/wxmedit.cfg under Windows accroding to settings.
   And FontWidth.dat will also be saved to the same path.
   FontWidth.dat is Cache of Font-Width-Data, it can speed-up wxMEdit a lot.
 

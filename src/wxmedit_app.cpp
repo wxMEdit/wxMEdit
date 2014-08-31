@@ -306,16 +306,18 @@ bool MadEditApp::OnInit()
         }
     }
 
+    wxm::AppPath& path = wxm::AppPath::Instance();
     g_Locale.Init(lang);
     g_Locale.AddCatalogLookupPathPrefix(wxT("./locale/"));
-	g_Locale.AddCatalogLookupPathPrefix(wxm::AppPath::Instance().AppDir() + wxT("locale/"));
+    g_Locale.AddCatalogLookupPathPrefix(path.AppDir() + wxT("locale/"));
+    if (path.AppDir() != path.HomeDir())
+        g_Locale.AddCatalogLookupPathPrefix(path.HomeDir() + wxT("locale/"));
 #ifndef __WXMSW__
-    g_Locale.AddCatalogLookupPathPrefix(wxm::AppPath::Instance().HomeDir() + wxT("locale/"));
-#   if defined (DATA_DIR)
+# ifdef DATA_DIR
     g_Locale.AddCatalogLookupPathPrefix(wxT(DATA_DIR"/locale/"));
-#   endif
-
+# endif
 #endif
+
     g_Locale.AddCatalog(wxT("wxmedit"));
 
     // set colors

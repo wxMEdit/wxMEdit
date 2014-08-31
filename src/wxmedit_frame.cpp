@@ -4601,6 +4601,11 @@ void MadEditFrame::OnToolsOptions(wxCommandEvent& event)
             boost::scoped_ptr<wxRegKey> pRegKey( new wxRegKey(wxm::s_wxsRegkeyClasses + wxT("*\\shell\\wxMEdit")) );
             pRegKey->DeleteSelf();
         }
+
+        bool cfg_in_usrhome = g_OptionsDialog->WxCheckBoxConfigInUserHome->GetValue();
+        boost::scoped_ptr<wxRegKey> pRegKey( new wxRegKey(wxm::g_wxsRegKeyWxMEdit) );
+        pRegKey->Create();
+        pRegKey->SetValue(wxm::g_wxsRegValConfigInHome, long(cfg_in_usrhome));
 #endif
 
         // Edit page

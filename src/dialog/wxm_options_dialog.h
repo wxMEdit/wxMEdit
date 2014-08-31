@@ -309,6 +309,7 @@ public:
 
 #ifdef __WXMSW__
 	wxCheckBox *WxCheckBoxRightClickMenu;
+	wxCheckBox *WxCheckBoxConfigInUserHome;
 #endif
 
 private:

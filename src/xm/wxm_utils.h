@@ -29,6 +29,9 @@ namespace wxm
 
 static wxString s_wxsRegkeyClasses = wxT("HKEY_CURRENT_USER\\Software\\Classes\\");
 
+extern wxString g_wxsRegKeyWxMEdit;
+extern wxString g_wxsRegValConfigInHome;
+
 void SetL10nHtmlColors();
 
 void OpenURL(const wxString& url);
@@ -182,17 +185,26 @@ private:
 
 struct AppPath: private boost::noncopyable
 {
-	const wxString& AppDir()
+	const wxString& AppDir() const
 	{
 		return app_dir;
 	}
-	const wxString& HomeDir()
+	const wxString& HomeDir() const
 	{
 		return home_dir;
 	}
-	const wxString ConfigPath()
+	const wxString ConfigPath() const
 	{
 		return home_dir + cfg_file;
+	}
+
+	bool ConfigInUserHome() const
+	{
+		return cfg_in_usrhome;
+	}
+	bool AppDirWritable() const
+	{
+		return app_dir_writable;
 	}
 
 	void Init(const wxString& appname);
@@ -205,17 +217,26 @@ struct AppPath: private boost::noncopyable
 	}
 	static void DestroyInstance()
 	{
+		s_inst->SaveConfig();
 		delete s_inst;
 		s_inst = NULL;
 	}
 private:
-	AppPath() {}
+	AppPath()
+		: cfg_in_usrhome(true), app_dir_writable(false)
+	{
+	}
+	void SaveConfig();
 
 	static AppPath* s_inst;
 
 	wxString cfg_file;
 	wxString app_dir;
+	wxString usr_dir;
 	wxString home_dir;
+	wxString another_dir;
+	bool cfg_in_usrhome;
+	bool app_dir_writable;
 };
 
 } //namespace wxm
