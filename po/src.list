@@ -48,8 +48,10 @@ wxstd.po.cpp
 ../src/dialog/wxmedit_about_dialog.cpp
 ../src/dialog/wxmedit_about_dialog.h
 ../src/wxm_plugin.cpp
-../src/wxm_utils.cpp
-../src/wxm_utils.h
+../src/xm/wxm_utils.cpp
+../src/xm/wxm_utils.h
+../src/mad_utils.cpp
+../src/mad_utils.h
 ../src/plugin.h
 ../src/wxm_printout.cpp
 ../src/wxm_printout.h

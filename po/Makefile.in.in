@@ -95,23 +95,23 @@ CATALOGS = @CATALOGS@ zh.gmo zh_HK.gmo zh_MO.gmo zh_SG.gmo
 	mv t-$@ $@
 
 
-$(srcdir)/zh.gmo: $(srcdir)/zh_CN.gmo
-	ln -s $< $@
-
-$(srcdir)/zh_HK.gmo: $(srcdir)/zh_TW.gmo
-	ln -s $< $@
-
-$(srcdir)/zh_MO.gmo: $(srcdir)/zh_TW.gmo
-	ln -s $< $@
-
-$(srcdir)/zh_SG.gmo: $(srcdir)/zh_CN.gmo
-	ln -s $< $@
-
-
 all: all-@USE_NLS@
 
 all-yes: stamp-po $(srcdir)/zh.gmo $(srcdir)/zh_HK.gmo $(srcdir)/zh_MO.gmo $(srcdir)/zh_SG.gmo
 all-no:
+
+
+$(srcdir)/zh.gmo: $(srcdir)/zh_CN.gmo
+	ln -s $< $@ || echo $@ exist
+
+$(srcdir)/zh_HK.gmo: $(srcdir)/zh_TW.gmo
+	ln -s $< $@ || echo $@ exist
+
+$(srcdir)/zh_MO.gmo: $(srcdir)/zh_TW.gmo
+	ln -s $< $@ || echo $@ exist
+
+$(srcdir)/zh_SG.gmo: $(srcdir)/zh_CN.gmo
+	ln -s $< $@ || echo $@ exist
 
 # $(srcdir)/$(DOMAIN).pot is only created when needed. When xgettext finds no
 # internationalized messages, no $(srcdir)/$(DOMAIN).pot is created (because
