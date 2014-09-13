@@ -198,14 +198,11 @@ struct AppPath: private boost::noncopyable
 		return home_dir + cfg_file;
 	}
 
-	bool ConfigInUserHome() const
-	{
-		return cfg_in_usrhome;
-	}
 	bool AppDirWritable() const
 	{
 		return app_dir_writable;
 	}
+	bool ConfigWillBeInUserHome() const;
 
 	void Init(const wxString& appname);
 
@@ -226,7 +223,7 @@ private:
 		: cfg_in_usrhome(true), app_dir_writable(false)
 	{
 	}
-	void SaveConfig();
+	void SaveConfig() const;
 
 	static AppPath* s_inst;
 

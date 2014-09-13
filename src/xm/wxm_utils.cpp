@@ -396,6 +396,15 @@ bool ConfigInUserHomeFromRegistry()
 }
 #endif
 
+bool AppPath::ConfigWillBeInUserHome() const
+{
+#ifdef __WXMSW__
+	return !app_dir_writable || ConfigInUserHomeFromRegistry();
+#else
+	return true;
+#endif
+}
+
 void AppPath::Init(const wxString& appname)
 {
 	cfg_file = appname + wxT(".cfg");
@@ -407,8 +416,8 @@ void AppPath::Init(const wxString& appname)
 	usr_dir = GetDataDirInUserHome();
 
 #ifdef __WXMSW__
-	app_dir_writable = FileWritable(app_dir + wxT("portable"));
-	cfg_in_usrhome = !app_dir_writable || ConfigInUserHomeFromRegistry();
+	app_dir_writable = FileWritable(app_dir + wxT("portable_test"));
+	cfg_in_usrhome = ConfigWillBeInUserHome();
 	if (!cfg_in_usrhome)
 	{
 		home_dir = app_dir;
@@ -421,14 +430,13 @@ void AppPath::Init(const wxString& appname)
 	another_dir = app_dir;
 }
 
-void AppPath::SaveConfig()
+void AppPath::SaveConfig() const
 {
 #ifdef __WXMSW__
 	if (g_DoNotSaveSettings)
 		return;
 
-	bool curr_cfg_in_usrhome = !app_dir_writable || ConfigInUserHomeFromRegistry();
-	if (curr_cfg_in_usrhome == cfg_in_usrhome)
+	if (ConfigWillBeInUserHome() == cfg_in_usrhome)
 		return;
 
 	wxFileConfig *cfg=reinterpret_cast<wxFileConfig *>(wxFileConfig::Get(false));
