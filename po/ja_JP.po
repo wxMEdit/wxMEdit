@@ -31,10 +31,10 @@
 #: ../src/dialog/wxm_options_dialog.cpp:715
 msgid ""
 msgstr ""
-"Project-Id-Version: wxMEdit 2.9.7\n"
+"Project-Id-Version: wxMEdit 2.9.8\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-09-13 15:42+0800\n"
-"PO-Revision-Date: 2014-02-21 05:41+0900\n"
+"PO-Revision-Date: 2014-09-14 00:33+0900\n"
 "Last-Translator: Tilt <<tiltstr@gmail.com>>\n"
 "Language-Team: Tilt <<tiltstr@gmail.com>>\n"
 "Language: ja_JP\n"
@@ -42,7 +42,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-Generator: Poedit 1.5.7\n"
+"X-Generator: Poedit 1.6.9\n"
 
 #: wxstd.po.cpp:3
 msgid "OK"
@@ -489,7 +489,7 @@ msgstr "CJK 互換性"
 
 #: wxstd.po.cpp:114
 msgid "CJK Unified Ideographs Extension A"
-msgstr "CJK 統合漢字-拡張A"
+msgstr "CJK 統合漢字拡張-A"
 
 #: wxstd.po.cpp:115
 msgid "CJK Unified Ideographs"
@@ -585,7 +585,7 @@ msgstr "数学用英数字記号"
 
 #: wxstd.po.cpp:138
 msgid "CJK Unified Ideographs Extension B"
-msgstr "CJK 統合漢字-拡張B"
+msgstr "CJK 統合漢字拡張-B"
 
 #: wxstd.po.cpp:139
 msgid "CJK Compatibility Ideographs Supplement"
@@ -2112,11 +2112,11 @@ msgstr "その他 "
 
 #: ../src/xm/wxm_encoding/encoding.cpp:220
 msgid "East Asian "
-msgstr ""
+msgstr "東アジア"
 
 #: ../src/xm/wxm_encoding/encoding.cpp:221
 msgid "Southeast Asian "
-msgstr ""
+msgstr "東南アジア"
 
 #: ../src/xm/wxm_encoding/encoding.cpp:222
 msgid "Unicode "
@@ -2124,15 +2124,15 @@ msgstr "Unicode "
 
 #: ../src/xm/wxm_encoding/encoding.cpp:223
 msgid "ISO-8859 "
-msgstr ""
+msgstr "ISO-8859 "
 
 #: ../src/xm/wxm_encoding/encoding.cpp:224
 msgid "Windows "
-msgstr ""
+msgstr "Windows "
 
 #: ../src/xm/wxm_encoding/encoding.cpp:225
 msgid "OEM "
-msgstr ""
+msgstr "OEM "
 
 #: ../src/wxmedit_frame.cpp:173
 msgid "Current maintainer of wxMEdit"
@@ -2170,7 +2170,7 @@ msgstr "AUR 版 wxmedit パッケージの作成者"
 
 #: ../src/wxmedit_frame.cpp:186
 msgid "Creator of Gentoo package wxmedit"
-msgstr ""
+msgstr "Wxmedit Gentoo パッケージのクリエータ"
 
 #: ../src/wxmedit_frame.cpp:775
 msgid "Ln:"
@@ -2354,11 +2354,11 @@ msgstr "クリップボードからデータを挿入"
 
 #: ../src/wxmedit_frame.cpp:1275
 msgid "Paste with Over&writing"
-msgstr ""
+msgstr "上書き貼り付け(&W)"
 
 #: ../src/wxmedit_frame.cpp:1275
 msgid "Overwrite data from the Clipboard"
-msgstr ""
+msgstr "クリップボードの内容を上書き貼り付け"
 
 #: ../src/wxmedit_frame.cpp:1276 ../src/dialog/wxm_highlighting_dialog.cpp:204
 msgid "&Delete"
@@ -2729,7 +2729,7 @@ msgstr "エンコーディング: "
 
 #: ../src/wxmedit_frame.cpp:1365
 msgid "All "
-msgstr ""
+msgstr "すべて"
 
 #: ../src/wxmedit_frame.cpp:1367 ../src/wxmedit_frame.cpp:3134
 #: ../src/wxmedit_frame.cpp:3139
@@ -3989,7 +3989,7 @@ msgstr "16 進編集領域へコピーした時の動作:"
 
 #: ../src/dialog/wxm_options_dialog.cpp:462
 msgid "Treat clipboard text as Hex String when pasting in hex area:"
-msgstr ""
+msgstr "16 進領域に貼り付ける時はテキストを 16 進文字列として扱う:"
 
 #: ../src/dialog/wxm_options_dialog.cpp:475
 msgid "Print Syntax Highlighter"
@@ -4298,6 +4298,8 @@ msgid ""
 "Place configuration files into application data directory of current user "
 "(%APPDATA%\\wxmedit) rather than wxMEdit executable directory"
 msgstr ""
+"現在のユーザ用のアプリケーション データディレクトリ (%APPDATA%\\wxmedit) では"
+"なく wxMEdit 実行ディレクトリに構成設定ファイルを配置"
 
 #: ../src/dialog/wxm_options_dialog.cpp:779
 msgid "Commands"
@@ -4484,19 +4486,19 @@ msgstr "空白を 16 進文字列としてコピー"
 
 #: ../src/xm/wxm_utils.cpp:326
 msgid "Never"
-msgstr ""
+msgstr "なし"
 
 #: ../src/xm/wxm_utils.cpp:327
 msgid "According To Copying Behavior"
-msgstr ""
+msgstr "コピー動作に従う"
 
 #: ../src/xm/wxm_utils.cpp:328
 msgid "If Possible"
-msgstr ""
+msgstr "可能な場合"
 
 #: ../src/xm/wxm_utils.cpp:329
 msgid "Always"
-msgstr ""
+msgstr "常時"
 
 #: ../src/wxm_printout.h:19
 msgid "wxMEdit Printout"
@@ -4504,7 +4506,7 @@ msgstr "wxMEdit プリントアウト"
 
 #: ../src/xm/wxm_update.cpp:90
 msgid "Cannot check for new version!"
-msgstr ""
+msgstr "新バージョンのチェックができません!"
 
 #: ../src/xm/wxm_update.cpp:97
 msgid "wxMEdit is already the newest version."
