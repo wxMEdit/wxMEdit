@@ -36,10 +36,10 @@
 #: ../src/dialog/wxm_options_dialog.cpp:715
 msgid ""
 msgstr ""
-"Project-Id-Version: wxMEdit 2.9.7\n"
+"Project-Id-Version: wxMEdit 2.9.8\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-09-13 15:42+0800\n"
-"PO-Revision-Date: 2014-02-24 13:40+0100\n"
+"PO-Revision-Date: 2014-09-14 16:11-0400\n"
 "Last-Translator: \n"
 "Language-Team:  <carlos1994sanchez@gmail.com>\n"
 "Language: Español\n"
@@ -2116,11 +2116,11 @@ msgstr "Otros "
 
 #: ../src/xm/wxm_encoding/encoding.cpp:220
 msgid "East Asian "
-msgstr ""
+msgstr "Asia oriental "
 
 #: ../src/xm/wxm_encoding/encoding.cpp:221
 msgid "Southeast Asian "
-msgstr ""
+msgstr "Sudeste Asiático "
 
 #: ../src/xm/wxm_encoding/encoding.cpp:222
 msgid "Unicode "
@@ -2128,15 +2128,15 @@ msgstr "Unicode "
 
 #: ../src/xm/wxm_encoding/encoding.cpp:223
 msgid "ISO-8859 "
-msgstr ""
+msgstr "ISO-8859 "
 
 #: ../src/xm/wxm_encoding/encoding.cpp:224
 msgid "Windows "
-msgstr ""
+msgstr "Windows "
 
 #: ../src/xm/wxm_encoding/encoding.cpp:225
 msgid "OEM "
-msgstr ""
+msgstr "OEM "
 
 #: ../src/wxmedit_frame.cpp:173
 msgid "Current maintainer of wxMEdit"
@@ -2174,7 +2174,7 @@ msgstr "Creador del paquete wxmedit en AUR"
 
 #: ../src/wxmedit_frame.cpp:186
 msgid "Creator of Gentoo package wxmedit"
-msgstr ""
+msgstr "Creador de paquete Gentoo wxmedit"
 
 #: ../src/wxmedit_frame.cpp:775
 msgid "Ln:"
@@ -2234,7 +2234,7 @@ msgstr "&Guardar archivo"
 
 #: ../src/wxmedit_frame.cpp:1242
 msgid "Save the file"
-msgstr "Guarde el archivo"
+msgstr "Guarda archivo"
 
 #: ../src/wxmedit_frame.cpp:1243
 msgid "Save &As..."
@@ -2242,7 +2242,7 @@ msgstr "G&uardar como..."
 
 #: ../src/wxmedit_frame.cpp:1243
 msgid "Save the file with a new name"
-msgstr "Guarda el archivo con un nuevo nombre"
+msgstr "Guarda archivo con otro nombre"
 
 #: ../src/wxmedit_frame.cpp:1244
 msgid "Sa&ve All"
@@ -2258,7 +2258,7 @@ msgstr "&Recargar archivo"
 
 #: ../src/wxmedit_frame.cpp:1246
 msgid "Reload the file"
-msgstr "Vuelva a cargar el archivo"
+msgstr "Vuelva a cargar archivo"
 
 #: ../src/wxmedit_frame.cpp:1248
 msgid "&Close File"
@@ -2266,7 +2266,7 @@ msgstr "&Cerrar archivo"
 
 #: ../src/wxmedit_frame.cpp:1248
 msgid "Close the file"
-msgstr "Cierra el archivo"
+msgstr "Cierra archivo"
 
 #: ../src/wxmedit_frame.cpp:1249
 msgid "C&lose All"
@@ -2282,7 +2282,7 @@ msgstr "C&onfigurar página..."
 
 #: ../src/wxmedit_frame.cpp:1251
 msgid "Setup the pages for printing"
-msgstr "Configura las páginas a imprimir"
+msgstr "Configura páginas a imprimir"
 
 #: ../src/wxmedit_frame.cpp:1252
 msgid "Print Previe&w..."
@@ -2290,7 +2290,7 @@ msgstr "Imprimir &vista previa..."
 
 #: ../src/wxmedit_frame.cpp:1252
 msgid "Preview the result of printing"
-msgstr "Muestra el resultado de la impresión"
+msgstr "Muestra resultado de impresión"
 
 #: ../src/wxmedit_frame.cpp:1253
 msgid "&Print..."
@@ -2298,7 +2298,7 @@ msgstr "&Imprimir..."
 
 #: ../src/wxmedit_frame.cpp:1253
 msgid "Print the file"
-msgstr "Imprime el archivo"
+msgstr "Imprime archivo"
 
 #: ../src/wxmedit_frame.cpp:1255
 msgid "Recent Files"
@@ -2322,7 +2322,7 @@ msgstr "&Deshacer"
 
 #: ../src/wxmedit_frame.cpp:1261
 msgid "Undo the last action"
-msgstr "Deshace la última acción"
+msgstr "Deshace última acción"
 
 #: ../src/wxmedit_frame.cpp:1263
 msgid "&Redo"
@@ -2330,7 +2330,7 @@ msgstr "&Rehacer"
 
 #: ../src/wxmedit_frame.cpp:1269
 msgid "Redo the previously undone action"
-msgstr "Rehace la acción deshecha anteriormente"
+msgstr "Rehace acción deshecha"
 
 #: ../src/wxmedit_frame.cpp:1272
 msgid "Cu&t"
@@ -2338,7 +2338,7 @@ msgstr "Cor&tar"
 
 #: ../src/wxmedit_frame.cpp:1272
 msgid "Cut the selection and put it on the Clipboard"
-msgstr "Corta la selección"
+msgstr "Corta selección"
 
 #: ../src/wxmedit_frame.cpp:1273
 msgid "&Copy"
@@ -2346,7 +2346,7 @@ msgstr "&Copiar"
 
 #: ../src/wxmedit_frame.cpp:1273
 msgid "Copy the selection and put it on the Clipboard"
-msgstr "Copia la selección"
+msgstr "Copia selección"
 
 #: ../src/wxmedit_frame.cpp:1274
 msgid "&Paste"
@@ -2354,15 +2354,15 @@ msgstr "&Pegar"
 
 #: ../src/wxmedit_frame.cpp:1274
 msgid "Insert data from the Clipboard"
-msgstr "Inserta los datos del portapapeles"
+msgstr "Inserta datos del portapapeles"
 
 #: ../src/wxmedit_frame.cpp:1275
 msgid "Paste with Over&writing"
-msgstr ""
+msgstr "Pegar con Sobreescritura"
 
 #: ../src/wxmedit_frame.cpp:1275
 msgid "Overwrite data from the Clipboard"
-msgstr ""
+msgstr "Sobrescribe desde Portapapeles"
 
 #: ../src/wxmedit_frame.cpp:1276 ../src/dialog/wxm_highlighting_dialog.cpp:204
 msgid "&Delete"
@@ -2370,7 +2370,7 @@ msgstr "&Eliminar"
 
 #: ../src/wxmedit_frame.cpp:1276
 msgid "Delete data"
-msgstr "Elimina los datos seleccionados"
+msgstr "Elimina selección"
 
 #: ../src/wxmedit_frame.cpp:1278
 msgid "Cut L&ine"
@@ -2378,7 +2378,7 @@ msgstr "Cortar &línea"
 
 #: ../src/wxmedit_frame.cpp:1278
 msgid "Cut the selected lines and put it on the Clipboard"
-msgstr "Corta las líneas seleccionadas"
+msgstr "Corta líneas seleccionadas"
 
 #: ../src/wxmedit_frame.cpp:1280
 msgid "Delete &Line"
@@ -2386,7 +2386,7 @@ msgstr "Eliminar lí&nea"
 
 #: ../src/wxmedit_frame.cpp:1286
 msgid "Delete the selected lines"
-msgstr "Elimina las líneas seleccionadas"
+msgstr "Elimina líneas seleccionadas"
 
 #: ../src/wxmedit_frame.cpp:1289
 msgid "Select &All"
@@ -2394,7 +2394,7 @@ msgstr "&Seleccionar todo"
 
 #: ../src/wxmedit_frame.cpp:1289
 msgid "Select all data"
-msgstr "Selecciona todos los datos"
+msgstr "Selecciona todo"
 
 #: ../src/wxmedit_frame.cpp:1292
 msgid "Insert Ta&b Char"
@@ -2418,7 +2418,7 @@ msgstr "Alternar Marcador"
 
 #: ../src/wxmedit_frame.cpp:1303
 msgid "Toggle Bookmark at current line"
-msgstr "Alternar marcador en la línea actual"
+msgstr "Cambia marcador en línea actual"
 
 #: ../src/wxmedit_frame.cpp:1304
 msgid "Go To &Next Bookmark"
@@ -2426,7 +2426,7 @@ msgstr "Ir al marcador siguiente"
 
 #: ../src/wxmedit_frame.cpp:1304
 msgid "Go to the next bookmark"
-msgstr "Ir al marcador siguiente"
+msgstr "Va al marcador siguiente"
 
 #: ../src/wxmedit_frame.cpp:1305
 msgid "Go To P&revious Bookmark"
@@ -2434,7 +2434,7 @@ msgstr "Ir al marcador anterior"
 
 #: ../src/wxmedit_frame.cpp:1305
 msgid "Go to the previous bookmark"
-msgstr "Ir al marcador anterior"
+msgstr "Va al marcador anterior"
 
 #: ../src/wxmedit_frame.cpp:1308
 msgid "Ad&vanced"
@@ -2734,7 +2734,7 @@ msgstr "C&odificación: "
 
 #: ../src/wxmedit_frame.cpp:1365
 msgid "All "
-msgstr ""
+msgstr "All "
 
 #: ../src/wxmedit_frame.cpp:1367 ../src/wxmedit_frame.cpp:3134
 #: ../src/wxmedit_frame.cpp:3139
@@ -3157,7 +3157,7 @@ msgstr "Comprobar actualizaciones..."
 
 #: ../src/wxmedit_frame.cpp:1570
 msgid "Check for new versions of wxMEdit"
-msgstr "Comprueba si hay nuevas versiones de wxMEdit"
+msgstr "Comprueba si hay actualizaciones de wxMEdit"
 
 #: ../src/wxmedit_frame.cpp:1571
 msgid "&About wxMEdit..."
@@ -3909,7 +3909,7 @@ msgstr "Comprobar ahora"
 
 #: ../src/dialog/wxm_options_dialog.cpp:369
 msgid "Check for new versions including &prereleases"
-msgstr "Comprobar si hay nuevas versiones incluyendo prereleases"
+msgstr "Comprobar si hay nuevas versiones incluyendo versiones preliminares"
 
 #: ../src/dialog/wxm_options_dialog.cpp:377
 msgid "Language of User Interface (must restart wxMEdit)"
@@ -3920,8 +3920,8 @@ msgid ""
 "Use this encoding to create new file or when wxMEdit cannot determine the "
 "encoding of old file"
 msgstr ""
-"Codificación de nuevo archivo o cuando wxMEdit no puede determinar "
-"codificación del archivo antiguo"
+"Codificación de nuevo archivo o cuando no se determina codificación de "
+"archivo viejo"
 
 #: ../src/dialog/wxm_options_dialog.cpp:388
 msgid "Single Instance (must restart wxMEdit)"
@@ -3996,7 +3996,7 @@ msgstr "Comportamiento de copia en el área de edición hexadecimal:"
 
 #: ../src/dialog/wxm_options_dialog.cpp:462
 msgid "Treat clipboard text as Hex String when pasting in hex area:"
-msgstr ""
+msgstr "Tratar texto del portapapeles como Hex al pegar en área hexadecimal:"
 
 #: ../src/dialog/wxm_options_dialog.cpp:475
 msgid "Print Syntax Highlighter"
@@ -4120,7 +4120,7 @@ msgstr "Formato de Fecha/Hora"
 
 #: ../src/dialog/wxm_options_dialog.cpp:635
 msgid "Use English instead of current locale"
-msgstr "Usar Inglés en lugar de la configuración regional actual"
+msgstr "Usar Inglés en lugar de ajuste regional actual"
 
 #: ../src/dialog/wxm_options_dialog.cpp:642
 msgid "General"
@@ -4305,14 +4305,17 @@ msgid ""
 "Add wxMEdit to the RightClickMenu of Explorer(Deselect to Remove the Entry "
 "from Windows Registry)"
 msgstr ""
-"Añadir wxMEdit al menú de clic derecho del Explorador (Anular la selección "
-"para eliminar la entrada del registro de Windows)"
+"Añadir wxMEdit al menú contextual del Explorador (Desmarque para eliminar "
+"del registro de Windows)"
 
 #: ../src/dialog/wxm_options_dialog.cpp:752
 msgid ""
 "Place configuration files into application data directory of current user "
 "(%APPDATA%\\wxmedit) rather than wxMEdit executable directory"
 msgstr ""
+"Colocar los archivos de configuración en el directorio de datos de "
+"aplicación del usuario actual (%APPDATA%\\wxmedit) en lugar de directorio "
+"deejecutable de wxMEdit"
 
 #: ../src/dialog/wxm_options_dialog.cpp:779
 msgid "Commands"
@@ -4333,7 +4336,7 @@ msgstr "Valor no válido de \"%s\""
 
 #: ../src/dialog/wxm_options_dialog.cpp:1191
 msgid "Cannot assign key to this item"
-msgstr "No se puede asignar a la clave a este objeto"
+msgstr "No se puede asignar clave a este objeto"
 
 #: ../src/dialog/wxm_options_dialog.cpp:1285
 msgid "This key is not assigned"
@@ -4491,27 +4494,27 @@ msgstr "Copiar como texto normal"
 
 #: ../src/xm/wxm_utils.cpp:242
 msgid "Copy as Hex String"
-msgstr "Copiar como cadena hexadecimal"
+msgstr "Copiar como hexadecimal"
 
 #: ../src/xm/wxm_utils.cpp:243
 msgid "Copy as Hex String with Spaces"
-msgstr "Copiar como cadena hexadecimal con espacios"
+msgstr "Copiar como hexadecimal con espacios"
 
 #: ../src/xm/wxm_utils.cpp:326
 msgid "Never"
-msgstr ""
+msgstr "Nunca"
 
 #: ../src/xm/wxm_utils.cpp:327
 msgid "According To Copying Behavior"
-msgstr ""
+msgstr "Según el comportamiento de copia"
 
 #: ../src/xm/wxm_utils.cpp:328
 msgid "If Possible"
-msgstr ""
+msgstr "Si es posible"
 
 #: ../src/xm/wxm_utils.cpp:329
 msgid "Always"
-msgstr ""
+msgstr "Siempre"
 
 #: ../src/wxm_printout.h:19
 msgid "wxMEdit Printout"
@@ -4519,7 +4522,7 @@ msgstr "wxMEdit Printout"
 
 #: ../src/xm/wxm_update.cpp:90
 msgid "Cannot check for new version!"
-msgstr ""
+msgstr "¡No se puede comprobar nueva versión!"
 
 #: ../src/xm/wxm_update.cpp:97
 msgid "wxMEdit is already the newest version."
@@ -4540,15 +4543,15 @@ msgstr ""
 
 #: ../src/xm/wxm_update.cpp:172
 msgid "every day"
-msgstr "cada día"
+msgstr "diario"
 
 #: ../src/xm/wxm_update.cpp:173
 msgid "every week"
-msgstr "cada semana"
+msgstr "semanal"
 
 #: ../src/xm/wxm_update.cpp:174
 msgid "every month"
-msgstr "cada mes"
+msgstr "mensual"
 
 #: ../src/xm/wxm_update.cpp:175
 msgid "never"
