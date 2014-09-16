@@ -1,8 +1,3 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
 #: ../src/dialog/wxm_options_dialog.cpp:681
 #: ../src/dialog/wxm_options_dialog.cpp:682
 #: ../src/dialog/wxm_options_dialog.cpp:684
@@ -36,10 +31,10 @@
 #: ../src/dialog/wxm_options_dialog.cpp:715
 msgid ""
 msgstr ""
-"Project-Id-Version: wxMEdit 2.9.7.2\n"
+"Project-Id-Version: wxMEdit 2.9.8\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-09-13 15:42+0800\n"
-"PO-Revision-Date: 2014-07-13 12:34+0800\n"
+"PO-Revision-Date: 2014-09-13 15:52+0800\n"
 "Last-Translator: Vincent_TW <wxmedit@gmail.com>\n"
 "Language-Team: wxMEdit <wxmedit@gmail.com>\n"
 "Language: zh_TW\n"
@@ -47,7 +42,7 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-SourceCharset: utf-8\n"
-"X-Generator: Poedit 1.6.3\n"
+"X-Generator: Poedit 1.6.4\n"
 
 #: wxstd.po.cpp:3
 msgid "OK"
@@ -1937,22 +1932,22 @@ msgstr "'%s' 的格式不正確。"
 #: ../src/xm/wxm_encoding/encoding.cpp:112
 #: ../src/xm/wxm_encoding/encoding.cpp:210
 msgid "Western European "
-msgstr "西歐語系 "
+msgstr "西歐文字 "
 
 #: ../src/xm/wxm_encoding/encoding.cpp:113
 #: ../src/xm/wxm_encoding/encoding.cpp:211
 msgid "Central European "
-msgstr "中歐語系 "
+msgstr "中歐文字 "
 
 #: ../src/xm/wxm_encoding/encoding.cpp:114
 #: ../src/xm/wxm_encoding/encoding.cpp:212
 msgid "South European "
-msgstr "南歐語系 "
+msgstr "南歐文字 "
 
 #: ../src/xm/wxm_encoding/encoding.cpp:115
 #: ../src/xm/wxm_encoding/encoding.cpp:213
 msgid "North European "
-msgstr "北歐語系 "
+msgstr "北歐文字 "
 
 #: ../src/xm/wxm_encoding/encoding.cpp:116
 #: ../src/xm/wxm_encoding/encoding.cpp:143
@@ -1983,7 +1978,7 @@ msgstr "土耳其文 "
 
 #: ../src/xm/wxm_encoding/encoding.cpp:121
 msgid "Nordic "
-msgstr "北歐語系 "
+msgstr "北歐文字 "
 
 #: ../src/xm/wxm_encoding/encoding.cpp:122
 msgid "Thai "
@@ -2000,11 +1995,11 @@ msgstr "凱爾特文 "
 
 #: ../src/xm/wxm_encoding/encoding.cpp:125
 msgid "Western European with Euro "
-msgstr "西歐語繫帶歐元 "
+msgstr "西歐文字帶歐元 "
 
 #: ../src/xm/wxm_encoding/encoding.cpp:126
 msgid "South-Eastern European "
-msgstr "東南歐語系 "
+msgstr "東南歐文字 "
 
 #: ../src/xm/wxm_encoding/encoding.cpp:127
 msgid "Windows Thai "
@@ -2012,7 +2007,7 @@ msgstr "Windows 泰文 "
 
 #: ../src/xm/wxm_encoding/encoding.cpp:128
 msgid "Windows Central European "
-msgstr "Windows 中歐語系 "
+msgstr "Windows 中歐文字 "
 
 #: ../src/xm/wxm_encoding/encoding.cpp:129
 msgid "Windows Cyrillic "
@@ -2020,7 +2015,7 @@ msgstr "Windows 斯拉夫文 "
 
 #: ../src/xm/wxm_encoding/encoding.cpp:130
 msgid "Windows Western European "
-msgstr "Windows 西歐語系 "
+msgstr "Windows 西歐文字 "
 
 #: ../src/xm/wxm_encoding/encoding.cpp:131
 msgid "Windows Greek "
@@ -2117,11 +2112,11 @@ msgstr "其它 "
 
 #: ../src/xm/wxm_encoding/encoding.cpp:220
 msgid "East Asian "
-msgstr "東亞 "
+msgstr "東亞文字 "
 
 #: ../src/xm/wxm_encoding/encoding.cpp:221
 msgid "Southeast Asian "
-msgstr "東南亞 "
+msgstr "東南亞文字 "
 
 #: ../src/xm/wxm_encoding/encoding.cpp:222
 msgid "Unicode "
@@ -2129,15 +2124,15 @@ msgstr "Unicode "
 
 #: ../src/xm/wxm_encoding/encoding.cpp:223
 msgid "ISO-8859 "
-msgstr ""
+msgstr "ISO-8859 "
 
 #: ../src/xm/wxm_encoding/encoding.cpp:224
 msgid "Windows "
-msgstr ""
+msgstr "Windows "
 
 #: ../src/xm/wxm_encoding/encoding.cpp:225
 msgid "OEM "
-msgstr ""
+msgstr "OEM "
 
 #: ../src/wxmedit_frame.cpp:173
 msgid "Current maintainer of wxMEdit"
@@ -2734,7 +2729,7 @@ msgstr "編碼: "
 
 #: ../src/wxmedit_frame.cpp:1365
 msgid "All "
-msgstr ""
+msgstr "全部 "
 
 #: ../src/wxmedit_frame.cpp:1367 ../src/wxmedit_frame.cpp:3134
 #: ../src/wxmedit_frame.cpp:3139
@@ -4299,6 +4294,8 @@ msgid ""
 "Place configuration files into application data directory of current user "
 "(%APPDATA%\\wxmedit) rather than wxMEdit executable directory"
 msgstr ""
+"將設定檔案放在目前使用者的應用程式資料目錄（%APPDATA%\\wxmedit）而不是 "
+"wxMEdit 可執行檔案目錄"
 
 #: ../src/dialog/wxm_options_dialog.cpp:779
 msgid "Commands"
@@ -4489,7 +4486,7 @@ msgstr "從不"
 
 #: ../src/xm/wxm_utils.cpp:327
 msgid "According To Copying Behavior"
-msgstr "依複製行為而定"
+msgstr "視複製行為而定"
 
 #: ../src/xm/wxm_utils.cpp:328
 msgid "If Possible"
@@ -4543,6 +4540,3 @@ msgstr "從不"
 #: ../src/xm/wx_recent_list.cpp:75
 msgid "[EMPTY]"
 msgstr "[空]"
-
-#~ msgid "All Encodings"
-#~ msgstr "所有的編碼"
