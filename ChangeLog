@@ -1,13 +1,24 @@
-2014-07-13 19:34:42 +0800 JiaYanwei <wxmedit@gmail.com>
+2014-09-17 22:36:39 +0800 JiaYanwei <wxmedit@gmail.com>
 
-	* wxMEdit v2.9.7.2:
-	 1. made manual update checking asynchronously as same as automatic update checking.
-	 2. made default window size bigger.
-	 3. added more choices for whether pasting as hex-string in hex-area when editing in hex-mode.
-	 4. added new feature: Paste with Overwriting in Hex Area.
-	 5. updated FreeBSD packaging that switched to pkgng via ports.
-	 6. updated Chinese translations.
-	 7. other minor changes and bug fixes.
+	* wxMEdit v2.9.8:
+	 1. added more choices for whether pasting as hex-string in hex-area when editing in hex-mode.
+	 2. added new feature: Paste with Overwriting in Hex Area.
+	 3. added more common used encoding aliases and show them in Encoding Conversion Dialog.
+	 4. added localization support when open homepage and downloads page.
+	 5. added Chinese translations support for zh_HK, zh_MO, zh_SG and zh.
+	 6. added an option to place configuration files into %APPDATA% directory under Windows.
+	 7. made default window size bigger.
+	 8. made manual update checking asynchronously as same as automatic update checking.
+	 9. improved encoding groups.
+	10. fixed bugs detected by clang-analyzer.
+	11. fixed memory leak warning when debugging finished under Windows.
+	12. updated FreeBSD packaging that switched to pkgng via ports.
+	13. updated Simplified Chinese translation.
+	14. updated Traditional Chinese translation by Vincent_TW.
+	15. updated Spanish translation by Carlos Sánchez <carlos1994sanchez@gmail.com>.
+	16. updated Japanese translation by Tilt <tiltstr@gmail.com>.
+	17. updated Russian translation by Shamil Bikineyev <shamilbi@gmail.com>.
+	18. other minor changes and bug fixes.
 
 
 2014-04-03 11:00:01 +0800 JiaYanwei <wxmedit@gmail.com>
@@ -25,8 +36,8 @@
 	10. added FreeBASIC syntax file.
 	11. added grouping of encodings.
 	12. added purging histories support.
-	13. added more choices for copying in hex-area in Options Dialog.
-	14. added Russian translation (by Shamil Bikineyev).
+	13. added more choices for copying in hex-area and added them into Options Dialog.
+	14. added Russian translation by Shamil Bikineyev <shamilbi@gmail.com>.
 	15. improved maximized behavior under Windows (by Gogo).
 	16. improved system integration under Windows.
 	17. improved display effect of the Word-Count information.
@@ -35,7 +46,7 @@
 	20. fixed always not wrap around when replacing.
 	21. fixed that the files "a b" and "aÀb" cannot be opened simultaneously under Windows Chinese Edition.
 	22. fixed assertion failed with debug version of MadEdit/wxMEdit when mouse capture lost.
-	23. fixed incorrect behavior when switch out from wxMEdit/MadEit on selecting text.
+	23. fixed incorrect behavior when switch out from wxMEdit/MadEdit on selecting text.
 	24. fixed incorrect behavior when update an opened file and then click the editing area.
 	25. updated Simplified Chinese, Japanese, Spanish translations.
 	26. other minor changes and bug fixes.
