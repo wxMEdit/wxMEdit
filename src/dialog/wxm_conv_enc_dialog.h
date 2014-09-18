@@ -35,6 +35,7 @@ class WXMConvEncDialog: public wxDialogWrapper
 		wxButton* WxButtonOK;
 		//*)
 
+		wxString GetEncoding() const;
 	protected:
 
 		//(*Identifiers(WXMConvEncDialog)

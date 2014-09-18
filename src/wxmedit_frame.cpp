@@ -4914,7 +4914,7 @@ void MadEditFrame::OnToolsConvertEncoding(wxCommandEvent& event)
 
     if(g_ConvEncDialog->ShowModal()==wxID_OK)
     {
-        g_ActiveMadEdit->ConvertEncoding(g_ConvEncDialog->WxComboBoxEncoding->GetValue(),
+        g_ActiveMadEdit->ConvertEncoding(g_ConvEncDialog->GetEncoding(),
                                          MadConvertEncodingFlag(g_ConvEncDialog->WxRadioBoxOption->GetSelection()));
         wxString oldpath=m_Config->GetPath();
         m_Config->SetPath(wxT("/wxMEdit"));

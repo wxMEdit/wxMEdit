@@ -117,3 +117,9 @@ void WXMConvEncDialog::WXMConvEncDialogClose(wxCloseEvent& event)
 	g_ConvEncDialog=NULL;
 	Destroy();
 }
+
+wxString WXMConvEncDialog::GetEncoding() const
+{
+	wxString wxs = WxComboBoxEncoding->GetValue();
+	return wxs.substr(0, wxs.find(wxT(' ')));
+}
