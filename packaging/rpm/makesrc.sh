@@ -9,6 +9,7 @@ export LC_ALL=C
 SRCBASEDIR="../.."
 
 ver=`sed -n '3s/^.*v//;3s/://p' "$SRCBASEDIR/ChangeLog"`
+ver=`echo $ver | sed 's/\([0-9]\+\.[0-9]\+\.[0-9]\+\)\./\1-/'`
 echo "$ver" | grep '-' > /dev/null
 [ $? -eq 0 ] || ver="$ver"-1
 
