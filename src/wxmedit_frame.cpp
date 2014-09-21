@@ -173,6 +173,7 @@ const static CreditsList s_wxMEdit_Credits = boost::assign::pair_list_of
         (s_("JiaYanwei"),                   _("Current maintainer of wxMEdit"))
         (s_("Alston Chen"),                 _("Creator of MadEdit"))
         (s_("Tilt"),                        _("Translator for Japanese"))
+        (s_("Angelo Contardi"),             _("Translator for Italian"))
         (s_("Carlos S\u00E1nchez"),         _("Translator for Spanish"))
         (s_("Denir Li"),                    _("Translator for Traditional Chinese"))
         (s_("Vincent_TW"),                  _("Translator for Traditional Chinese"))
