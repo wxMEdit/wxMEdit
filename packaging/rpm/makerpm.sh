@@ -25,7 +25,7 @@ mkdir -p "$SRCVERDIR"
 /bin/cp -Rf "$SRCBASEDIR/"* "$SRCVERDIR"
 
 #======================================================================
-## 2. generate .spec files
+# 2. generate .spec files
 #----------------------------------------------------------------------
 
 cd "$SRCVERDIR/packaging/rpm"
@@ -40,7 +40,7 @@ cat wxmedit.spec._ changelog | sed "$sedcmd_ver" > wxmedit.spec
 sed -f static_spec.sed wxmedit.spec > wxmedit-static.spec
 
 #======================================================================
-## 3. create .tar.gz
+# 3. create .tar.gz
 #----------------------------------------------------------------------
 
 cd "$NEW_SRCPARENTDIR"
@@ -49,3 +49,14 @@ SRCPACKDIR="wxmedit-$verbase"
 SRCPACK="$SRCPACKDIR.tar.gz"
 
 tar -czvf "$SRCPACK" "$SRCPACKDIR"
+
+#======================================================================
+# 4. build rpm
+#----------------------------------------------------------------------
+
+mv "$SRCPACK" ~/rpmbuild/SOURCES/
+
+RPMBUILDOPT=""
+uname -r | grep 'fc[0-9]\+\.i686' > /dev/null && RPMBUILDOPT="--target=i686"
+rpmbuild $RPMBUILDOPT -bb "$SRCPACKDIR/packaging/rpm/wxmedit.spec"
+
