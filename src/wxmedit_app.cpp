@@ -46,7 +46,7 @@ const wxChar *g_LanguageString[]=
     wxT("Italiano (Italian)"),
     wxT("\u65E5\u672C\u8A9E (Japanese)"),
     wxT("Espa\u00F1ol (Spanish)"),
-    wxT("\u0440\u0443\u0441\u0441\u043a\u0438\u0439 (Russian)"),
+    wxT("\u0420\u0443\u0441\u0441\u043a\u0438\u0439 (Russian)"),
 };
 int g_LanguageValue[]=
 {
