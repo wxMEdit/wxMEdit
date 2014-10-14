@@ -1,8 +1,10 @@
 [Desktop Entry]
 Name=wxMEdit
-Comment=Text/Hex Editor
-Comment[zh_CN]=文本及十六进制编辑器
-Comment[zh_TW]=文字及十六進位編輯器
+Comment=A Cross-platform Text/Hex Editor
+Comment[zh_CN]=跨平台的文本/十六进制编辑器
+Comment[zh_TW]=跨平台的文字/十六進位編輯器
+Comment[es]=Un Editor de Texto/Hexadecimal Multiplataforma
+Comment[ja_JP]=クロスプラットフォームのテキスト/Hex エディタ
 Exec=wxmedit %F
 Icon=@pixmapsdir@/wxmedit.png
 Terminal=false
