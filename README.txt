@@ -1,5 +1,5 @@
                       ==================================
-                                wxMEdit v2.9.8
+                                wxMEdit v2.9.8.2
                       ==================================
 About:
 -----
@@ -84,6 +84,11 @@ Syntax files, Locale files and Settings:
 
 ChangeLog:
 ----------
+wxMEdit v2.9.8.2:
+  1. fixed crash when saving a empty file.
+  2. updated Spanish translation.
+  3. updated translations of wxmedit.desktop.
+
 wxMEdit v2.9.8:
   1. added more choices for whether pasting as hex-string in hex-area when editing in hex-mode.
   2. added new feature: Paste with Overwriting in Hex Area.
@@ -131,22 +136,6 @@ wxMEdit v2.9.7:
  24. fixed incorrect behavior when update an opened file and then click the editing area.
  25. updated Simplified Chinese, Japanese, Spanish translations.
  26. other minor changes and bug fixes.
-
-wxMEdit v2.9.6
-  1. improved Mac OS X support.
-  2. redesigned all dialogs with wxSmith and fixed dialog size problems.
-  3. refactored Encoding Detector and fixed encoding detection problems.
-  4. fixed hex mode repaint problem under windows.
-  5. fixed crash under Unix like OS when open Find In Files Result panel if the caret was in top several lines of text editing area.
-  6. fixed wxWidgets error when remove file association.
-  7. updated RPM, debian and FreeBSD packaging files.
-  8. fixed crash on restart if "Max line length before Line-Wrap" was set too large.
-  9. improved build configurations.
- 10. updated Spanish translation by Carlos Sánchez <carlos1994sanchez@gmail.com>.
- 11. updated Japanese translation by Tilt <tiltstr@gmail.com>.
- 12. updated Simplified Chinese translation.
- 13. updated Traditional Chinese translation by Denir Li <denir.li@gmail.com>.
- 14. other minor changes.
 
 See file ChangeLog for more changes.
 
