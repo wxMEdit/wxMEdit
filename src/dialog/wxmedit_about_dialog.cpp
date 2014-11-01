@@ -128,15 +128,15 @@ void WXMAboutDialog::OnNotebook1PageChanged(wxNotebookEvent& event)
 {
 	if (event.GetSelection() == 0/* AboutTab */)
 	{
-		g_wxMEdit_About_URL = g_wxMEdit_Homepage_URL;
+		wxm::g_wxMEdit_About_URL = wxm::g_wxMEdit_Homepage_URL;
 		return;
 	}
 
 	if (event.GetSelection() == 1/* LicenseTab */)
 	{
-		g_wxMEdit_About_URL = g_wxMEdit_License_URL;
+		wxm::g_wxMEdit_About_URL = wxm::g_wxMEdit_License_URL;
 		return;
 	}
 
-	g_wxMEdit_About_URL.clear();
+	wxm::g_wxMEdit_About_URL.clear();
 }

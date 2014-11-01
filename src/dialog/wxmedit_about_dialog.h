@@ -18,9 +18,12 @@
 #include <wx/dialog.h>
 //*)
 
-extern const wxString g_wxMEdit_Homepage_URL;
-extern const wxString g_wxMEdit_License_URL;
-extern wxString g_wxMEdit_About_URL;
+namespace wxm
+{
+	extern const wxString g_wxMEdit_Homepage_URL;
+	extern const wxString g_wxMEdit_License_URL;
+	extern wxString g_wxMEdit_About_URL;
+} // namespace wxm
 
 class WXMAboutDialog: public wxDialog
 {

@@ -145,7 +145,8 @@
     #define GetAccelFromString(x) wxGetAccelFromString(x)
 #endif
 
-
+namespace wxm
+{
 const wxString g_wxMEdit_Homepage_URL(wxT("http://wxmedit.github.io/"));
 const wxString g_wxMEdit_License_URL(wxT("http://www.gnu.org/licenses/gpl-3.0.html"));
 wxString g_wxMEdit_About_URL = g_wxMEdit_Homepage_URL;
@@ -189,6 +190,7 @@ const static CreditsList s_wxMEdit_Credits = boost::assign::pair_list_of
 #undef s_
 #undef _
 #define _(s)    wxGetTranslation(_T(s))
+} // namespace wxm
 
 MadEditFrame *g_MainFrame=NULL;
 MadEdit *g_ActiveMadEdit=NULL;
@@ -1630,6 +1632,14 @@ CommandData CommandTable[]=
 void LoadDefaultSettings(wxConfigBase *m_Config)
 {
     m_Config->SetPath(wxT("/wxMEdit"));
+
+    wxString behav;
+    m_Config->Read(wxT("BehaviorCopyingInHexArea"), &behav);
+    wxm::HexAreaClipboardCopyProxy::Instance().SelectCopierByConfig(behav);
+
+    wxString cond;
+    m_Config->Read(wxT("ConditionPastingAsHexInHexArea"), &cond);
+    wxm::HexAreaClipboardPasteProxy::Instance().SelectConditionByConfig(cond);
 
     long templong, x,y;
     bool tempbool;
@@ -5084,7 +5094,7 @@ const wxString& GetCredits()
     static wxString credits;
     if (credits.empty())
     {
-        BOOST_FOREACH(const CreditsList::value_type& v, s_wxMEdit_Credits)
+        BOOST_FOREACH(const wxm::CreditsList::value_type& v, wxm::s_wxMEdit_Credits)
 			credits += wxString::Format(wxT("  %-18s %s\n"), v.first.c_str(), wxGetTranslation(v.second.c_str()));
     }
 
@@ -5093,23 +5103,23 @@ const wxString& GetCredits()
 
 void MadEditFrame::OnHelpAbout(wxCommandEvent& event)
 {
-    g_wxMEdit_About_URL = g_wxMEdit_Homepage_URL;
+    wxm::g_wxMEdit_About_URL = wxm::g_wxMEdit_Homepage_URL;
     WXMAboutDialog dlg(this);
     dlg.TxtAbout->AppendText(wxString(wxT("wxMEdit v")) + wxT(WXMEDIT_VERSION) + wxT("\n\n") +
-                            g_wxMEdit_Homepage_URL + wxT("\n\n") +
+                            wxm::g_wxMEdit_Homepage_URL + wxT("\n\n") +
                             _("Press OK to visit our HomePage."));
 
     dlg.TxtLicense->AppendText( wxString(_("wxMEdit, a cross-platform Text/Hex Editor")) + wxT("\n\n") +
-                            s_wxMEdit_License + wxT("\n\n") +
-                            g_wxMEdit_License_URL + wxT("\n\n") +
+                            wxm::s_wxMEdit_License + wxT("\n\n") +
+                            wxm::g_wxMEdit_License_URL + wxT("\n\n") +
                             _("Press OK to view the license online version.\n"));
     dlg.TxtLicense->SetInsertionPoint(0L);
 
     dlg.TxtCredits->AppendText(GetCredits());
     dlg.TxtCredits->SetInsertionPoint(0L);
 
-    if(dlg.ShowModal() == wxID_OK && !g_wxMEdit_About_URL.empty())
-        wxm::OpenURL(g_wxMEdit_About_URL);
+    if(dlg.ShowModal() == wxID_OK && !wxm::g_wxMEdit_About_URL.empty())
+        wxm::OpenURL(wxm::g_wxMEdit_About_URL);
 }
 
 void MadEditFrame::PurgeRecentFiles()
