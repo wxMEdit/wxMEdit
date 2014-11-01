@@ -155,6 +155,7 @@ public:
     void OnFileSaveAll(wxCommandEvent& event);
     void OnFileReload(wxCommandEvent& event);
     void OnFileClose(wxCommandEvent& event);
+    void OnFileCloseByPath(wxCommandEvent& event);
     void OnFileCloseAll(wxCommandEvent& event);
     void OnFilePageSetup(wxCommandEvent& event);
     void OnFilePrintPreview(wxCommandEvent& event);
@@ -354,6 +355,7 @@ enum { // menu id
 
     // file
     menuSaveAll = 1100,
+    menuCloseByPath,
     menuReload,
     menuRecentFiles,
 
