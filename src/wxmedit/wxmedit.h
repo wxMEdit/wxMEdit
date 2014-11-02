@@ -46,17 +46,19 @@ namespace wxm
 {
     struct WordCountData
     {
+        int bytes;
         int words;
         int chars;
         int spaces;
         int controls;
         int fullwidths;
+        int ambws;
         int lines;
         wxArrayString detail;
 
         WordCountData()
-            : words(0), chars(0), spaces(0)
-            , controls(0), fullwidths(0), lines(0)
+            : bytes(0), words(0), chars(0), spaces(0)
+            , controls(0), fullwidths(0), ambws(0), lines(0)
         {}
     };
 } // namespace wxm

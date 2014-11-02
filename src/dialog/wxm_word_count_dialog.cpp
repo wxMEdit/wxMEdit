@@ -20,18 +20,24 @@
 #endif
 
 //(*IdInit(WXMWordCountDialog)
+const long WXMWordCountDialog::ID_STATICTEXT8 = wxNewId();
+const long WXMWordCountDialog::ID_WXSTATICTEXTLINECOUNT = wxNewId();
 const long WXMWordCountDialog::ID_STATICTEXT1 = wxNewId();
 const long WXMWordCountDialog::ID_WXSTATICTEXTWORDCOUNT = wxNewId();
-const long WXMWordCountDialog::ID_STATICTEXT2 = wxNewId();
-const long WXMWordCountDialog::ID_WXSTATICTEXTCHARCOUNTNOSPNOCTRL = wxNewId();
+const long WXMWordCountDialog::ID_STATICTEXT9 = wxNewId();
+const long WXMWordCountDialog::ID_WXSTATICTEXTBYTECOUNT = wxNewId();
 const long WXMWordCountDialog::ID_STATICTEXT3 = wxNewId();
 const long WXMWordCountDialog::ID_WXSTATICTEXTCHARCOUNTALL = wxNewId();
+const long WXMWordCountDialog::ID_STATICTEXT2 = wxNewId();
+const long WXMWordCountDialog::ID_WXSTATICTEXTCHARCOUNTNOSPNOCTRL = wxNewId();
+const long WXMWordCountDialog::ID_STATICTEXT10 = wxNewId();
+const long WXMWordCountDialog::ID_WXSTATICTEXTSPACECOUNT = wxNewId();
 const long WXMWordCountDialog::ID_STATICTEXT4 = wxNewId();
 const long WXMWordCountDialog::ID_WXSTATICTEXTCONTROLCOUNT = wxNewId();
 const long WXMWordCountDialog::ID_STATICTEXT5 = wxNewId();
 const long WXMWordCountDialog::ID_WXSTATICTEXTFULLWIDTHCOUNT = wxNewId();
 const long WXMWordCountDialog::ID_STATICTEXT6 = wxNewId();
-const long WXMWordCountDialog::ID_WXSTATICTEXTLINECOUNT = wxNewId();
+const long WXMWordCountDialog::ID_WXSTATICTEXTPUREFULLWIDTHCOUNT = wxNewId();
 const long WXMWordCountDialog::ID_STATICLINE1 = wxNewId();
 const long WXMWordCountDialog::ID_STATICTEXT7 = wxNewId();
 const long WXMWordCountDialog::ID_WXMEMO1 = wxNewId();
@@ -50,31 +56,43 @@ WXMWordCountDialog::WXMWordCountDialog(wxWindow* parent,wxWindowID id,const wxPo
 
 	Create(parent, wxID_ANY, _("Word Count"), wxDefaultPosition, wxDefaultSize, wxCAPTION|wxSYSTEM_MENU|wxRESIZE_BORDER|wxCLOSE_BOX|wxDIALOG_NO_PARENT|wxMAXIMIZE_BOX, _T("wxID_ANY"));
 	BoxSizer1 = new wxBoxSizer(wxVERTICAL);
-	FlexGridSizer1 = new wxFlexGridSizer(0, 2, 0, 150);
+	FlexGridSizer1 = new wxFlexGridSizer(0, 2, 0, 60);
+	StaticText8 = new wxStaticText(this, ID_STATICTEXT8, _("Lines"), wxDefaultPosition, wxDefaultSize, 0, _T("ID_STATICTEXT8"));
+	FlexGridSizer1->Add(StaticText8, 0, wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL, 5);
+	WxStaticTextLineCount = new wxStaticText(this, ID_WXSTATICTEXTLINECOUNT, _("999999"), wxDefaultPosition, wxDefaultSize, 0, _T("ID_WXSTATICTEXTLINECOUNT"));
+	FlexGridSizer1->Add(WxStaticTextLineCount, 0, wxALL|wxALIGN_RIGHT|wxALIGN_CENTER_VERTICAL, 5);
 	StaticText1 = new wxStaticText(this, ID_STATICTEXT1, _("Words"), wxDefaultPosition, wxDefaultSize, 0, _T("ID_STATICTEXT1"));
 	FlexGridSizer1->Add(StaticText1, 0, wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL, 5);
 	WxStaticTextWordCount = new wxStaticText(this, ID_WXSTATICTEXTWORDCOUNT, _("999999"), wxDefaultPosition, wxDefaultSize, 0, _T("ID_WXSTATICTEXTWORDCOUNT"));
 	FlexGridSizer1->Add(WxStaticTextWordCount, 0, wxALL|wxALIGN_RIGHT|wxALIGN_CENTER_VERTICAL, 5);
-	StaticText2 = new wxStaticText(this, ID_STATICTEXT2, _("Characters (no controls/spaces)"), wxDefaultPosition, wxDefaultSize, 0, _T("ID_STATICTEXT2"));
-	FlexGridSizer1->Add(StaticText2, 0, wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL, 5);
-	WxStaticTextCharCountNoSPNoCtrl = new wxStaticText(this, ID_WXSTATICTEXTCHARCOUNTNOSPNOCTRL, _("999999"), wxDefaultPosition, wxDefaultSize, 0, _T("ID_WXSTATICTEXTCHARCOUNTNOSPNOCTRL"));
-	FlexGridSizer1->Add(WxStaticTextCharCountNoSPNoCtrl, 0, wxALL|wxALIGN_RIGHT|wxALIGN_CENTER_VERTICAL, 5);
+	StaticText9 = new wxStaticText(this, ID_STATICTEXT9, _("Bytes"), wxDefaultPosition, wxDefaultSize, 0, _T("ID_STATICTEXT9"));
+	FlexGridSizer1->Add(StaticText9, 0, wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL, 5);
+	WxStaticTextByteCount = new wxStaticText(this, ID_WXSTATICTEXTBYTECOUNT, _("999999"), wxDefaultPosition, wxDefaultSize, 0, _T("ID_WXSTATICTEXTBYTECOUNT"));
+	FlexGridSizer1->Add(WxStaticTextByteCount, 0, wxALL|wxALIGN_RIGHT|wxALIGN_CENTER_VERTICAL, 5);
 	StaticText3 = new wxStaticText(this, ID_STATICTEXT3, _("Characters (all)"), wxDefaultPosition, wxDefaultSize, 0, _T("ID_STATICTEXT3"));
 	FlexGridSizer1->Add(StaticText3, 0, wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL, 5);
 	WxStaticTextCharCountAll = new wxStaticText(this, ID_WXSTATICTEXTCHARCOUNTALL, _("999999"), wxDefaultPosition, wxDefaultSize, 0, _T("ID_WXSTATICTEXTCHARCOUNTALL"));
 	FlexGridSizer1->Add(WxStaticTextCharCountAll, 0, wxALL|wxALIGN_RIGHT|wxALIGN_CENTER_VERTICAL, 5);
+	StaticText2 = new wxStaticText(this, ID_STATICTEXT2, _("Characters (no controls/spaces)"), wxDefaultPosition, wxDefaultSize, 0, _T("ID_STATICTEXT2"));
+	FlexGridSizer1->Add(StaticText2, 0, wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL, 5);
+	WxStaticTextCharCountNoSPNoCtrl = new wxStaticText(this, ID_WXSTATICTEXTCHARCOUNTNOSPNOCTRL, _("999999"), wxDefaultPosition, wxDefaultSize, 0, _T("ID_WXSTATICTEXTCHARCOUNTNOSPNOCTRL"));
+	FlexGridSizer1->Add(WxStaticTextCharCountNoSPNoCtrl, 0, wxALL|wxALIGN_RIGHT|wxALIGN_CENTER_VERTICAL, 5);
+	StaticText10 = new wxStaticText(this, ID_STATICTEXT10, _("Space Characters"), wxDefaultPosition, wxDefaultSize, 0, _T("ID_STATICTEXT10"));
+	FlexGridSizer1->Add(StaticText10, 0, wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL, 5);
+	WxStaticTextSpaceCount = new wxStaticText(this, ID_WXSTATICTEXTSPACECOUNT, _("999999"), wxDefaultPosition, wxDefaultSize, 0, _T("ID_WXSTATICTEXTSPACECOUNT"));
+	FlexGridSizer1->Add(WxStaticTextSpaceCount, 0, wxALL|wxALIGN_RIGHT|wxALIGN_CENTER_VERTICAL, 5);
 	StaticText4 = new wxStaticText(this, ID_STATICTEXT4, _("Control Characters"), wxDefaultPosition, wxDefaultSize, 0, _T("ID_STATICTEXT4"));
 	FlexGridSizer1->Add(StaticText4, 0, wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL, 5);
 	WxStaticTextControlCount = new wxStaticText(this, ID_WXSTATICTEXTCONTROLCOUNT, _("999999"), wxDefaultPosition, wxDefaultSize, 0, _T("ID_WXSTATICTEXTCONTROLCOUNT"));
 	FlexGridSizer1->Add(WxStaticTextControlCount, 0, wxALL|wxALIGN_RIGHT|wxALIGN_CENTER_VERTICAL, 5);
-	StaticText5 = new wxStaticText(this, ID_STATICTEXT5, _("Fullwidth Characters"), wxDefaultPosition, wxDefaultSize, 0, _T("ID_STATICTEXT5"));
+	StaticText5 = new wxStaticText(this, ID_STATICTEXT5, _("Fullwidth Characters (with East Asian Ambiguous Width Characters)"), wxDefaultPosition, wxDefaultSize, 0, _T("ID_STATICTEXT5"));
 	FlexGridSizer1->Add(StaticText5, 0, wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL, 5);
 	WxStaticTextFullwidthCount = new wxStaticText(this, ID_WXSTATICTEXTFULLWIDTHCOUNT, _("999999"), wxDefaultPosition, wxDefaultSize, 0, _T("ID_WXSTATICTEXTFULLWIDTHCOUNT"));
 	FlexGridSizer1->Add(WxStaticTextFullwidthCount, 0, wxALL|wxALIGN_RIGHT|wxALIGN_CENTER_VERTICAL, 5);
-	StaticText6 = new wxStaticText(this, ID_STATICTEXT6, _("Lines"), wxDefaultPosition, wxDefaultSize, 0, _T("ID_STATICTEXT6"));
+	StaticText6 = new wxStaticText(this, ID_STATICTEXT6, _("Fullwidth Characters (without East Asian Ambiguous Width Characters)"), wxDefaultPosition, wxDefaultSize, 0, _T("ID_STATICTEXT6"));
 	FlexGridSizer1->Add(StaticText6, 0, wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL, 5);
-	WxStaticTextLineCount = new wxStaticText(this, ID_WXSTATICTEXTLINECOUNT, _("999999"), wxDefaultPosition, wxDefaultSize, 0, _T("ID_WXSTATICTEXTLINECOUNT"));
-	FlexGridSizer1->Add(WxStaticTextLineCount, 0, wxALL|wxALIGN_RIGHT|wxALIGN_CENTER_VERTICAL, 5);
+	WxStaticTextPureFullwidthCount = new wxStaticText(this, ID_WXSTATICTEXTPUREFULLWIDTHCOUNT, _("999999"), wxDefaultPosition, wxDefaultSize, 0, _T("ID_WXSTATICTEXTPUREFULLWIDTHCOUNT"));
+	FlexGridSizer1->Add(WxStaticTextPureFullwidthCount, 0, wxALL|wxALIGN_RIGHT|wxALIGN_CENTER_VERTICAL, 5);
 	BoxSizer1->Add(FlexGridSizer1, 0, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 4);
 	StaticLine1 = new wxStaticLine(this, ID_STATICLINE1, wxDefaultPosition, wxSize(10,-1), wxLI_HORIZONTAL, _T("ID_STATICLINE1"));
 	BoxSizer1->Add(StaticLine1, 0, wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 2);
@@ -95,20 +113,22 @@ WXMWordCountDialog::WXMWordCountDialog(wxWindow* parent,wxWindowID id,const wxPo
 	wxm::SetDefaultMonoFont(WxMemo1);
 
 	extern MadEdit *g_ActiveMadEdit;
+	bool selection = g_ActiveMadEdit->IsSelected();
+
 	wxm::WordCountData data;
-	g_ActiveMadEdit->WordCount(g_ActiveMadEdit->IsSelected(), data);
-
-	if(g_ActiveMadEdit->IsSelected())
-	{
+	g_ActiveMadEdit->WordCount(selection, data);
+	if (selection)
 		this->SetTitle(_("Word Count (Selected Text)"));
-	}
 
-	WxStaticTextWordCount->SetLabel(wxString() << data.words);
-	WxStaticTextCharCountNoSPNoCtrl->SetLabel(wxString() << (data.chars-data.spaces-data.controls));
-	WxStaticTextCharCountAll->SetLabel(wxString() << data.chars);
-	WxStaticTextControlCount->SetLabel(wxString() << data.controls);
-	WxStaticTextFullwidthCount->SetLabel(wxString() << data.fullwidths);
 	WxStaticTextLineCount->SetLabel(wxString() << data.lines);
+	WxStaticTextWordCount->SetLabel(wxString() << data.words);
+	WxStaticTextByteCount->SetLabel(wxString() << data.bytes);
+	WxStaticTextCharCountAll->SetLabel(wxString() << data.chars);
+	WxStaticTextCharCountNoSPNoCtrl->SetLabel(wxString() << (data.chars - data.spaces - data.controls));
+	WxStaticTextSpaceCount->SetLabel(wxString() << data.spaces);
+	WxStaticTextControlCount->SetLabel(wxString() << data.controls);
+	WxStaticTextFullwidthCount->SetLabel(wxString() << (data.fullwidths + data.ambws));
+	WxStaticTextPureFullwidthCount->SetLabel(wxString() << (data.fullwidths));
 	wxString str;
 	for(size_t i=0; i<data.detail.Count(); ++i)
 		str << data.detail[i] << wxT("\n");

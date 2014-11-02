@@ -1256,6 +1256,7 @@ void MadEdit::WordCount(bool selection, wxm::WordCountData& data)
         nowpos=0;
         endpos=m_Lines->m_Size;
     }
+    data.bytes = endpos - nowpos;
 
     // begin counting
     MadUCQueue ucqueue;
@@ -1291,8 +1292,10 @@ void MadEdit::WordCount(bool selection, wxm::WordCountData& data)
         else if (u_isspace(uc))
             ++data.spaces;
 
-        if (xm::IsWideWidthEastAsian(uc))
+        if (xm::IsWideWidthEverywhere(uc))
             ++data.fullwidths;
+        if (xm::IsAmbiguousWidth(uc))
+            ++data.ambws;
     }
     data.words = word_counter->GetWordCountNoCtrlNoSP();
 
