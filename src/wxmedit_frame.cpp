@@ -3690,9 +3690,7 @@ void MadEditFrame::OnFilePrint(wxCommandEvent& event)
 
 #if defined(__WXMSW__)
     // using a temp modal-dialog to avoid the user change the contents of Edit
-    TempPrintDialog *dlg=new TempPrintDialog(this);
-    dlg->ShowModal();
-    delete dlg;
+    boost::scoped_ptr<TempPrintDialog>(new TempPrintDialog(this))->ShowModal();
 #else
     PrintOut(this);
 #endif

@@ -23,6 +23,7 @@
 #include <wx/string.h>
 //*)
 
+#include <boost/scoped_ptr.hpp>
 
 #ifdef _DEBUG
 #include <crtdbg.h>
@@ -633,10 +634,10 @@ void WXMFindInFilesDialog::FindReplaceInFiles(bool bReplace)
 
 	if(g_Continue)
 	{
-		MadEdit *tempedit=NULL;
+		boost::scoped_ptr<MadEdit> tempedit;
 		if(WxRadioButtonDir->GetValue())
 		{
-			tempedit=new MadEdit(this, -1, wxPoint(-1024,-1024));
+			tempedit.reset( new MadEdit(this, -1, wxPoint(-1024,-1024)) );
 			tempedit->StopRepaint();
 			tempedit->SetStorePropertiesToGlobalConfig(false);
 			tempedit->SetFixedWidthMode(false);
@@ -663,7 +664,7 @@ void WXMFindInFilesDialog::FindReplaceInFiles(bool bReplace)
 
 				if(madedit==NULL)
 				{
-					madedit=tempedit;
+					madedit=tempedit.get();
 					wxString enc=WxComboBoxEncoding->GetValue();
 					if(enc==WxComboBoxEncoding->GetString(0))
 					{
@@ -794,8 +795,6 @@ void WXMFindInFilesDialog::FindReplaceInFiles(bool bReplace)
 				}
 			}
 		}
-		
-		if(tempedit) delete tempedit;
 	}
 
 	dialog.Update(max);
