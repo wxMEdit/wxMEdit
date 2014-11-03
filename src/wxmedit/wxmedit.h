@@ -278,7 +278,6 @@ private:
 
     wxUint16        *m_TextFontWidths[17], *m_HexFontWidths[17];
 
-    bool            m_SingleLineMode;
     bool            m_StorePropertiesToGlobalConfig;
 
     bool            m_FixedWidthMode;
@@ -337,7 +336,6 @@ private:
 
     bool            m_MouseLeftDown, m_MouseLeftDoubleClick;
     int             m_DoubleClickX, m_DoubleClickY;
-    int             m_LeftClickX, m_LeftClickY;     // for singleline & setfocus
     bool            m_MouseAtHexTextArea;
 
     MadMouseMotionTimer *m_MouseMotionTimer;
@@ -449,7 +447,8 @@ protected:
     void ReformatAll();
 
     void UpdateAppearance();
-    void UpdateScrollBarPos();
+    void ResetTextModeScrollBarPos();
+    virtual void UpdateScrollBarPos();
 
     void BeginUpdateSelection();
     void EndUpdateSelection(bool bSelection);
@@ -496,6 +495,9 @@ protected:
                                      /*OUT*/ int *lineid = NULL);
 
     void UCStoBlock(const ucs4_t *ucs, size_t count, MadBlock & block);
+
+    long MaxLineLength() { return m_MaxLineLength; }
+    virtual bool AdjustInsertCount(const ucs4_t *ucs, size_t& count) { return true; }
     void InsertString(const ucs4_t *ucs, size_t count, bool bColumnEditing, bool moveCaret, bool bSelText);
 
     wxFileOffset GetRowposXPos(int &xpos, MadLineIterator & lit,
@@ -558,6 +560,8 @@ protected:
     void OnKeyDown(wxKeyEvent &evt);
 
     void LogicMouseLeftUp(bool ctrl_down);
+    virtual void OnGetFocusByClickAsControl(const wxMouseEvent &evt) {}
+    virtual bool NeedNotProcessMouseLeftDown(wxMouseEvent &evt) { return false; }
 
     void OnMouseLeftDown(wxMouseEvent &evt);
     void OnMouseLeftUp(wxMouseEvent &evt);
@@ -568,13 +572,18 @@ protected:
 
     void OnMouseCaptureLost(wxMouseCaptureLostEvent &evt);
 
+    virtual void OnSetFocusAsControl() {}
+    virtual void OnWXMEditKillFocus();
+    void Deselect() { m_Selection = false; }
+    void SetRepaintAll(bool val) { m_RepaintAll = val; }
+
     void OnSetFocus(wxFocusEvent &evt);
     void OnKillFocus(wxFocusEvent &evt);
 
     void OnSize(wxSizeEvent &evt);
     void OnVScroll(wxScrollEvent &evt);
     void OnHScroll(wxScrollEvent &evt);
-    void OnMouseWheel(wxMouseEvent &evt);
+    virtual void OnMouseWheel(wxMouseEvent &evt);
     void OnMouseEnterWindow(wxMouseEvent &evt);
     void OnMouseLeaveWindow(wxMouseEvent &evt);
 
@@ -597,7 +606,7 @@ protected:
 
 public:
     MadEdit(wxWindow* parent, wxWindowID id = wxID_ANY, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxDefaultSize, long style = wxSIMPLE_BORDER|wxWANTS_CHARS);//|wxTAB_TRAVERSAL);
-    ~MadEdit();
+    virtual ~MadEdit();
 
     void SetStorePropertiesToGlobalConfig(bool value)
     {
@@ -610,6 +619,7 @@ public:
         m_LastPaintBitmap=-1;
     }
 
+    virtual void ProcessReturnCommand(MadEditCommand command);
     void ProcessCommand(MadEditCommand command);
 
 public: // basic functions
@@ -689,10 +699,8 @@ public: // basic functions
     void SetLineSpacing(int percent);
     long GetLineSpacing() { return m_LineSpacing; }
 
-    void SetEditMode(MadEditMode mode);
+    virtual void SetEditMode(MadEditMode mode);
     MadEditMode GetEditMode() {return m_EditMode; }
-
-    void SetSingleLineMode(bool mode);
 
     void SetTabColumns(long value);
     long GetTabColumns() { return m_TabColumns; }
@@ -709,7 +717,7 @@ public: // basic functions
     void SetWantTab(bool value) { m_WantTab=value; }
     bool GetWantTab() { return m_WantTab; }
 
-    void SetWordWrapMode(MadWordWrapMode mode);
+    virtual void SetWordWrapMode(MadWordWrapMode mode);
     MadWordWrapMode GetWordWrapMode() { return m_WordWrapMode; }
 
     void SetDisplayLineNumber(bool value);
@@ -815,6 +823,7 @@ public: // basic functions
     bool IsReadOnly() { return m_ReadOnly||m_Lines->m_ReadOnly; }
     bool IsTextFile() { return m_Lines->m_MaxLineWidth>=0; }
 
+    virtual void AdjustStringLength(const wxString ws, size_t& size) {}
     void GetSelText(wxString &ws);
     void GetText(wxString &ws, bool ignoreBOM = true);
     void SetText(const wxString &ws);
@@ -1002,11 +1011,16 @@ public:
         m_SearchWholeWord = bSearchWholeWord;
     }
 
+protected:
+    void SetClientAreaSize(int w, int h) { m_ClientWidth = w; m_ClientHeight = h; }
+    void HideScrollBars();
 private: // Printing functions
     int m_Printing;     // 0: no, <0: Text, >0: Hex
     bool TextPrinting() { return m_Printing<0; }
     bool HexPrinting()  { return m_Printing>0; }
     bool InPrinting()   { return m_Printing!=0; }
+
+    virtual void SetClientSizeData(int w, int h);
     void UpdateClientBitmap();
 
     int             m_old_ClientWidth;

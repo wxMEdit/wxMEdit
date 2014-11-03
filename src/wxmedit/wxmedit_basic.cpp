@@ -651,178 +651,161 @@ void MadEdit::HexModeToTextMode(MadEditMode mode)
 
 void MadEdit::SetEditMode(MadEditMode mode)
 {
-    if(m_EditMode != mode && !m_SingleLineMode)
+    if (m_EditMode == mode)
+        return;
+
+    bool selchange = false;
+
+    switch(mode)
     {
-        bool selchange = false;
-
-        switch(mode)
+    case emTextMode:
+        if(m_EditMode == emColumnMode)
         {
-        case emTextMode:
-            if(m_EditMode == emColumnMode)
+            if(m_CaretPos.extraspaces)
             {
-                if(m_CaretPos.extraspaces)
-                {
-                    m_CaretPos.xpos -= int(m_CaretPos.extraspaces * GetUCharWidth(0x20));
-                    m_CaretPos.extraspaces = 0;
-
-                    m_LastCaretXPos = m_CaretPos.xpos;
-
-                    AppearCaret();
-                    UpdateScrollBarPos();
-                    selchange = true;
-                }
-
-                if(m_Selection)
-                {
-                    if(m_SelectionPos1.extraspaces)
-                    {
-                        m_SelectionPos1.xpos -= int(m_SelectionPos1.extraspaces * GetUCharWidth(0x20));
-                        m_SelectionPos1.extraspaces = 0;
-                    }
-                    if(m_SelectionPos2.extraspaces)
-                    {
-                        m_SelectionPos2.xpos -= int(m_SelectionPos2.extraspaces * GetUCharWidth(0x20));
-                        m_SelectionPos2.extraspaces = 0;
-                    }
-
-                    m_RepaintSelection = true;
-                    selchange = true;
-                }
-
-                m_EditMode = emTextMode;
-
-                if(selchange == true)
-                    DoSelectionChanged();
-                DoStatusChanged();
-
-                SetInsertMode(m_InsertMode);
-            }
-            else                      //HexMode
-            {
-                HexModeToTextMode(mode);
-            }
-
-            break;
-
-        case emColumnMode:
-            if(m_EditMode == emTextMode)
-            {
-                UpdateScrollBarPos();//update m_MaxColumnModeWidth;
-
-                if(m_Selection)
-                {
-                    if(m_SelectionPos1.xpos < m_SelectionPos2.xpos)
-                    {
-                        m_SelLeftXPos = m_SelectionPos1.xpos;
-                        m_SelRightXPos = m_SelectionPos2.xpos;
-                    }
-                    else
-                    {
-                        m_SelLeftXPos = m_SelectionPos2.xpos;
-                        m_SelRightXPos = m_SelectionPos1.xpos;
-                    }
-
-                    m_RepaintSelection = true;
-                    selchange = true;
-                }
-
-                m_EditMode = emColumnMode;
-
-                if(selchange == true)
-                    DoSelectionChanged();
-                DoStatusChanged();
-
-                SetInsertMode(m_InsertMode);
-            }
-            else                      //HexMode
-            {
-                HexModeToTextMode(mode);
-            }
-
-            break;
-
-        case emHexMode:
-            GetSize(&m_OldWidth, &m_OldHeight);
-
-            m_EditMode = emHexMode;
-            m_TextTopRow = m_TopRow;
-            m_DrawingXPos = 0;
-
-            m_CaretAtHexArea = true;
-            m_CaretAtHalfByte = false;
-
-            SetHexFont(m_HexFont->GetFaceName(), m_HexFont->GetPointSize(), true);
-            UpdateAppearance();
-
-            m_RepaintAll = true;
-            SetCaretType(ctBlock);
-
-            if(m_LoadingFile == false)
-            {
-                m_TopRow = (m_CaretPos.pos >> 4);
-                if(m_TopRow >= (m_VisibleRowCount >> 1))
-                {
-                    m_TopRow -= (m_VisibleRowCount >> 1);
-                    int rows = (m_Lines->m_Size >> 4);
-
-                    if((((int)m_Lines->m_Size) & 0xF) != 0)
-                        ++rows;
-
-                    if(rows - m_TopRow < m_CompleteRowCount)
-                    {
-                        if(rows > m_CompleteRowCount)
-                            m_TopRow = rows - m_CompleteRowCount;
-                        else
-                            m_TopRow = 0;
-                    }
-                }
-                else
-                    m_TopRow = 0;
-
+                m_CaretPos.xpos -= int(m_CaretPos.extraspaces * GetUCharWidth(0x20));
                 m_CaretPos.extraspaces = 0;
-                if(m_Selection)
-                {
-                    m_SelectionPos1.extraspaces = 0;
-                    m_SelectionPos2.extraspaces = 0;
-                }
+
+                m_LastCaretXPos = m_CaretPos.xpos;
 
                 AppearCaret();
                 UpdateScrollBarPos();
-
-                DoSelectionChanged();
-                DoStatusChanged();
+                selchange = true;
             }
 
-            //if(Focused()) ShowCaret();
-            break;
+            if(m_Selection)
+            {
+                if(m_SelectionPos1.extraspaces)
+                {
+                    m_SelectionPos1.xpos -= int(m_SelectionPos1.extraspaces * GetUCharWidth(0x20));
+                    m_SelectionPos1.extraspaces = 0;
+                }
+                if(m_SelectionPos2.extraspaces)
+                {
+                    m_SelectionPos2.xpos -= int(m_SelectionPos2.extraspaces * GetUCharWidth(0x20));
+                    m_SelectionPos2.extraspaces = 0;
+                }
 
+                m_RepaintSelection = true;
+                selchange = true;
+            }
+
+            m_EditMode = emTextMode;
+
+            if(selchange == true)
+                DoSelectionChanged();
+            DoStatusChanged();
+
+            SetInsertMode(m_InsertMode);
+        }
+        else                      //HexMode
+        {
+            HexModeToTextMode(mode);
         }
 
-        Refresh(false);
+        break;
+
+    case emColumnMode:
+        if(m_EditMode == emTextMode)
+        {
+            UpdateScrollBarPos();//update m_MaxColumnModeWidth;
+
+            if(m_Selection)
+            {
+                if(m_SelectionPos1.xpos < m_SelectionPos2.xpos)
+                {
+                    m_SelLeftXPos = m_SelectionPos1.xpos;
+                    m_SelRightXPos = m_SelectionPos2.xpos;
+                }
+                else
+                {
+                    m_SelLeftXPos = m_SelectionPos2.xpos;
+                    m_SelRightXPos = m_SelectionPos1.xpos;
+                }
+
+                m_RepaintSelection = true;
+                selchange = true;
+            }
+
+            m_EditMode = emColumnMode;
+
+            if(selchange == true)
+                DoSelectionChanged();
+            DoStatusChanged();
+
+            SetInsertMode(m_InsertMode);
+        }
+        else                      //HexMode
+        {
+            HexModeToTextMode(mode);
+        }
+
+        break;
+
+    case emHexMode:
+        GetSize(&m_OldWidth, &m_OldHeight);
+
+        m_EditMode = emHexMode;
+        m_TextTopRow = m_TopRow;
+        m_DrawingXPos = 0;
+
+        m_CaretAtHexArea = true;
+        m_CaretAtHalfByte = false;
+
+        SetHexFont(m_HexFont->GetFaceName(), m_HexFont->GetPointSize(), true);
+        UpdateAppearance();
+
+        m_RepaintAll = true;
+        SetCaretType(ctBlock);
+
+        if(m_LoadingFile == false)
+        {
+            m_TopRow = (m_CaretPos.pos >> 4);
+            if(m_TopRow >= (m_VisibleRowCount >> 1))
+            {
+                m_TopRow -= (m_VisibleRowCount >> 1);
+                int rows = (m_Lines->m_Size >> 4);
+
+                if((((int)m_Lines->m_Size) & 0xF) != 0)
+                    ++rows;
+
+                if(rows - m_TopRow < m_CompleteRowCount)
+                {
+                    if(rows > m_CompleteRowCount)
+                        m_TopRow = rows - m_CompleteRowCount;
+                    else
+                        m_TopRow = 0;
+                }
+            }
+            else
+                m_TopRow = 0;
+
+            m_CaretPos.extraspaces = 0;
+            if(m_Selection)
+            {
+                m_SelectionPos1.extraspaces = 0;
+                m_SelectionPos2.extraspaces = 0;
+            }
+
+            AppearCaret();
+            UpdateScrollBarPos();
+
+            DoSelectionChanged();
+            DoStatusChanged();
+        }
+
+        //if(Focused()) ShowCaret();
+        break;
+
     }
+
+    Refresh(false);
 }
 
-void MadEdit::SetSingleLineMode(bool mode)
+void MadEdit::HideScrollBars()
 {
-    if(m_SingleLineMode != mode)
-    {
-        if(mode)
-        {
-            m_StorePropertiesToGlobalConfig = false;
-            SetDisplayLineNumber(false);
-            SetWordWrapMode(wwmNoWrap);
-            SetEditMode(emTextMode);
-            SetMarkActiveLine(false);
-
-            m_VScrollBar->Show(false);
-            m_HScrollBar->Show(false);
-        }
-
-        m_SingleLineMode = mode;
-
-        wxSizeEvent evt;
-        OnSize(evt);
-    }
+    m_VScrollBar->Show(false);
+    m_HScrollBar->Show(false);
 }
 
 void MadEdit::SetTabColumns(long value)
@@ -864,32 +847,32 @@ void MadEdit::SetInsertSpacesInsteadOfTab(bool value)
 
 void MadEdit::SetWordWrapMode(MadWordWrapMode mode)
 {
-    if(m_WordWrapMode != mode && !m_SingleLineMode)
+    if (m_WordWrapMode == mode)
+        return;
+
+    m_WordWrapMode = mode;
+    if(m_StorePropertiesToGlobalConfig)
     {
-        m_WordWrapMode = mode;
-        if(m_StorePropertiesToGlobalConfig)
-        {
-            wxString oldpath=m_Config->GetPath();
-            m_Config->Write(wxT("/wxMEdit/WordWrapMode"), (long)mode);
-            m_Config->SetPath(oldpath);
-        }
+        wxString oldpath=m_Config->GetPath();
+        m_Config->Write(wxT("/wxMEdit/WordWrapMode"), (long)mode);
+        m_Config->SetPath(oldpath);
+    }
 
-        if(m_EditMode != emHexMode)
-        {
-            if(mode==wwmWrapByWindow)
-                m_DrawingXPos=0;
+    if(m_EditMode != emHexMode)
+    {
+        if(mode==wwmWrapByWindow)
+            m_DrawingXPos=0;
 
-            UpdateAppearance();
-            RecountLineWidth(true);
-            UpdateScrollBarPos();
+        UpdateAppearance();
+        RecountLineWidth(true);
+        UpdateScrollBarPos();
 
-            m_RepaintAll = true;
-            Refresh(false);
-        }
-        else
-        {
-            m_DoRecountLineWidth = true;
-        }
+        m_RepaintAll = true;
+        Refresh(false);
+    }
+    else
+    {
+        m_DoRecountLineWidth = true;
     }
 }
 
@@ -1185,23 +1168,7 @@ void MadEdit::SetText(const wxString &ws)
     MadLineIterator lit;
     size_t size = ws.Len();
 
-    if(m_SingleLineMode)
-    {
-        const wxChar *wcs = ws.c_str();
-        size_t sss = 0;
-
-        while(sss < size && *wcs != 0x0D && *wcs != 0x0A)
-        {
-            ++sss;
-            ++wcs;
-        }
-
-        long maxlen = m_MaxLineLength - 100;
-        if(wxFileOffset(m_Lines->m_Size + sss) > maxlen)
-            sss = maxlen - long (m_Lines->m_Size);
-
-        size = sss;
-    }
+    AdjustStringLength(ws, size);
 
     MadUndo *undo=NULL;
 

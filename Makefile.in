@@ -93,6 +93,7 @@ am_wxmedit_OBJECTS = $(am__objects_1) $(am__objects_2) \
 	src/wxmedit/wxmedit-wxm_lines.$(OBJEXT) \
 	src/wxmedit/wxmedit-wxm_syntax.$(OBJEXT) \
 	src/wxmedit/wxmedit-wxm_undo.$(OBJEXT) \
+	src/xm/wxmedit-single_line_wxmedit.$(OBJEXT) \
 	src/xm/wxmedit-wx_recent_list.$(OBJEXT) \
 	src/xm/wxmedit-wxm_case_conv.$(OBJEXT) \
 	src/xm/wxmedit-wxm_line_enc_adapter.$(OBJEXT) \
@@ -396,6 +397,8 @@ wxmedit_SOURCES = $(enc_src) \
 	src/wxmedit/wxm_syntax.h \
 	src/wxmedit/wxm_undo.cpp \
 	src/wxmedit/wxm_undo.h \
+	src/xm/single_line_wxmedit.cpp \
+	src/xm/single_line_wxmedit.h \
 	src/xm/wx_avoid_wxmsw_bug4373.h \
 	src/xm/wx_recent_list.cpp \
 	src/xm/wx_recent_list.h \
@@ -726,6 +729,8 @@ src/wxmedit/wxmedit-wxm_syntax.$(OBJEXT): src/wxmedit/$(am__dirstamp) \
 	src/wxmedit/$(DEPDIR)/$(am__dirstamp)
 src/wxmedit/wxmedit-wxm_undo.$(OBJEXT): src/wxmedit/$(am__dirstamp) \
 	src/wxmedit/$(DEPDIR)/$(am__dirstamp)
+src/xm/wxmedit-single_line_wxmedit.$(OBJEXT): src/xm/$(am__dirstamp) \
+	src/xm/$(DEPDIR)/$(am__dirstamp)
 src/xm/wxmedit-wx_recent_list.$(OBJEXT): src/xm/$(am__dirstamp) \
 	src/xm/$(DEPDIR)/$(am__dirstamp)
 src/xm/wxmedit-wxm_case_conv.$(OBJEXT): src/xm/$(am__dirstamp) \
@@ -897,6 +902,7 @@ mostlyclean-compile:
 	-rm -f src/xm/wxm_encoding/wxmedit-multibyte.$(OBJEXT)
 	-rm -f src/xm/wxm_encoding/wxmedit-singlebyte.$(OBJEXT)
 	-rm -f src/xm/wxm_encoding/wxmedit-unicode.$(OBJEXT)
+	-rm -f src/xm/wxmedit-single_line_wxmedit.$(OBJEXT)
 	-rm -f src/xm/wxmedit-wx_recent_list.$(OBJEXT)
 	-rm -f src/xm/wxmedit-wxm_case_conv.$(OBJEXT)
 	-rm -f src/xm/wxmedit-wxm_encdet.$(OBJEXT)
@@ -961,6 +967,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/wxmedit/$(DEPDIR)/wxmedit-wxmedit_gtk.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/wxmedit/$(DEPDIR)/wxmedit-wxmedit_search.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/xm/$(DEPDIR)/wxm_encdet.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/xm/$(DEPDIR)/wxmedit-single_line_wxmedit.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/xm/$(DEPDIR)/wxmedit-wx_recent_list.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/xm/$(DEPDIR)/wxmedit-wxm_case_conv.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/xm/$(DEPDIR)/wxmedit-wxm_encdet.Po@am__quote@
@@ -1498,6 +1505,20 @@ src/wxmedit/wxmedit-wxm_undo.obj: src/wxmedit/wxm_undo.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/wxmedit/wxm_undo.cpp' object='src/wxmedit/wxmedit-wxm_undo.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -c -o src/wxmedit/wxmedit-wxm_undo.obj `if test -f 'src/wxmedit/wxm_undo.cpp'; then $(CYGPATH_W) 'src/wxmedit/wxm_undo.cpp'; else $(CYGPATH_W) '$(srcdir)/src/wxmedit/wxm_undo.cpp'; fi`
+
+src/xm/wxmedit-single_line_wxmedit.o: src/xm/single_line_wxmedit.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -MT src/xm/wxmedit-single_line_wxmedit.o -MD -MP -MF src/xm/$(DEPDIR)/wxmedit-single_line_wxmedit.Tpo -c -o src/xm/wxmedit-single_line_wxmedit.o `test -f 'src/xm/single_line_wxmedit.cpp' || echo '$(srcdir)/'`src/xm/single_line_wxmedit.cpp
+@am__fastdepCXX_TRUE@	mv -f src/xm/$(DEPDIR)/wxmedit-single_line_wxmedit.Tpo src/xm/$(DEPDIR)/wxmedit-single_line_wxmedit.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/xm/single_line_wxmedit.cpp' object='src/xm/wxmedit-single_line_wxmedit.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -c -o src/xm/wxmedit-single_line_wxmedit.o `test -f 'src/xm/single_line_wxmedit.cpp' || echo '$(srcdir)/'`src/xm/single_line_wxmedit.cpp
+
+src/xm/wxmedit-single_line_wxmedit.obj: src/xm/single_line_wxmedit.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -MT src/xm/wxmedit-single_line_wxmedit.obj -MD -MP -MF src/xm/$(DEPDIR)/wxmedit-single_line_wxmedit.Tpo -c -o src/xm/wxmedit-single_line_wxmedit.obj `if test -f 'src/xm/single_line_wxmedit.cpp'; then $(CYGPATH_W) 'src/xm/single_line_wxmedit.cpp'; else $(CYGPATH_W) '$(srcdir)/src/xm/single_line_wxmedit.cpp'; fi`
+@am__fastdepCXX_TRUE@	mv -f src/xm/$(DEPDIR)/wxmedit-single_line_wxmedit.Tpo src/xm/$(DEPDIR)/wxmedit-single_line_wxmedit.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/xm/single_line_wxmedit.cpp' object='src/xm/wxmedit-single_line_wxmedit.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -c -o src/xm/wxmedit-single_line_wxmedit.obj `if test -f 'src/xm/single_line_wxmedit.cpp'; then $(CYGPATH_W) 'src/xm/single_line_wxmedit.cpp'; else $(CYGPATH_W) '$(srcdir)/src/xm/single_line_wxmedit.cpp'; fi`
 
 src/xm/wxmedit-wx_recent_list.o: src/xm/wx_recent_list.cpp
 @am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -MT src/xm/wxmedit-wx_recent_list.o -MD -MP -MF src/xm/$(DEPDIR)/wxmedit-wx_recent_list.Tpo -c -o src/xm/wxmedit-wx_recent_list.o `test -f 'src/xm/wx_recent_list.cpp' || echo '$(srcdir)/'`src/xm/wx_recent_list.cpp

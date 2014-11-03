@@ -10,7 +10,7 @@
 #include "wxm_search_replace_dialog.h"
 
 #include "../wxmedit_frame.h"
-#include "../wxmedit/wxmedit.h"
+#include "../xm/single_line_wxmedit.h"
 #include "../xm/wxm_utils.h"
 
 #include <wx/progdlg.h>
@@ -188,14 +188,7 @@ WXMFindInFilesDialog::WXMFindInFilesDialog(wxWindow* parent,wxWindowID id,const 
 	// find
 	WxButtonFind->GetSize(&bw, &bh);
 
-	m_FindText=new MadEdit(this, ID_MADEDIT1, wxPoint(0, 0), wxSize(400, bh));
-	m_FindText->SetSingleLineMode(true);
-	m_FindText->SetEncoding(wxT("UTF-32LE"));
-	m_FindText->SetFixedWidthMode(false);
-	m_FindText->SetRecordCaretMovements(false);
-	m_FindText->SetInsertSpacesInsteadOfTab(false);
-	m_FindText->SetWantTab(false);
-	m_FindText->LoadDefaultSyntaxScheme();
+	m_FindText = new wxm::SingleLineWXMEdit(this, ID_MADEDIT1, wxPoint(0, 0), wxSize(400, bh));
 
 	BoxSizer6->Add(m_FindText,1,wxEXPAND|wxALIGN_LEFT | wxALL,2);
 	BoxSizer6->SetItemMinSize(m_FindText, 400, bh);
@@ -207,14 +200,7 @@ WXMFindInFilesDialog::WXMFindInFilesDialog(wxWindow* parent,wxWindowID id,const 
 	// replace
 	WxButtonReplace->GetSize(&bw, &bh);
 
-	m_ReplaceText=new MadEdit(this, ID_MADEDIT2, wxPoint(0, 0), wxSize(400, bh));
-	m_ReplaceText->SetSingleLineMode(true);
-	m_ReplaceText->SetEncoding(wxT("UTF-32LE"));
-	m_ReplaceText->SetFixedWidthMode(false);
-	m_ReplaceText->SetRecordCaretMovements(false);
-	m_ReplaceText->SetInsertSpacesInsteadOfTab(false);
-	m_ReplaceText->SetWantTab(false);
-	m_ReplaceText->LoadDefaultSyntaxScheme();
+	m_ReplaceText = new wxm::SingleLineWXMEdit(this, ID_MADEDIT2, wxPoint(0, 0), wxSize(400, bh));
 
 	BoxSizer7->Add(m_ReplaceText,1,wxEXPAND|wxALIGN_LEFT | wxALL,2);
 	BoxSizer7->SetItemMinSize(m_ReplaceText, 400, bh);
