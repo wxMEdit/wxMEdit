@@ -969,6 +969,7 @@ bool WXMSearchReplaceDialog::ShowOnlyFindFunc()
 
 bool WXMSearchReplaceDialog::ShowWithReplaceFunc()
 {
+	m_ReplaceText->SetFont(m_FindText->GetFont());
 	m_ReplaceText->Show(true);
 	WxBitmapButtonRecentReplaceText->Show(true);
 	WxButtonReplace->Show(true);
