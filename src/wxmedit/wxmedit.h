@@ -42,6 +42,25 @@ typedef void (*OnToggleWindowPtr)(MadEdit *madedit);
 typedef void (*OnMouseRightUpPtr)(MadEdit *madedit);
 typedef void (*OnActivatePtr)(MadEdit *madedit);
 
+namespace wxm
+{
+    struct WordCountData
+    {
+        int words;
+        int chars;
+        int spaces;
+        int controls;
+        int fullwidths;
+        int lines;
+        wxArrayString detail;
+
+        WordCountData()
+            : words(0), chars(0), spaces(0)
+            , controls(0), fullwidths(0), lines(0)
+        {}
+    };
+} // namespace wxm
+
 //==============================================================================
 // A Manager of FontWidth Buffer
 //==============================================================================
@@ -948,9 +967,7 @@ public: // advanced functions
     void CopyAsHexString(bool withSpace);
 
 
-    void WordCount(bool selection, int &wordCount, int &charCount, int &spaceCount,
-                   int &controlCount, int &fullWidthCount, int &lineCount,
-                   wxArrayString *detail);
+    void WordCount(bool selection, wxm::WordCountData& data);
 
     LineNumberList SaveBookmarkLineNumberList();
     void RestoreBookmarkByLineNumberList(const LineNumberList& linenums);

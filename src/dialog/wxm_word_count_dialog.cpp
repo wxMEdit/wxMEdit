@@ -95,26 +95,23 @@ WXMWordCountDialog::WXMWordCountDialog(wxWindow* parent,wxWindowID id,const wxPo
 	wxm::SetDefaultMonoFont(WxMemo1);
 
 	extern MadEdit *g_ActiveMadEdit;
-	int words, chars, spaces, lines, controls, fullwidths;
-	wxArrayString detail;
-	g_ActiveMadEdit->WordCount(g_ActiveMadEdit->IsSelected(), words, chars, spaces, controls, fullwidths, lines, &detail);
+	wxm::WordCountData data;
+	g_ActiveMadEdit->WordCount(g_ActiveMadEdit->IsSelected(), data);
 
 	if(g_ActiveMadEdit->IsSelected())
 	{
 		this->SetTitle(_("Word Count (Selected Text)"));
 	}
 
-	WxStaticTextWordCount->SetLabel(wxString()<<words);
-	WxStaticTextCharCountNoSPNoCtrl->SetLabel(wxString()<<chars-spaces-controls);
-	WxStaticTextCharCountAll->SetLabel(wxString()<<(chars));
-	WxStaticTextControlCount->SetLabel(wxString()<<controls);
-	WxStaticTextFullwidthCount->SetLabel(wxString()<<fullwidths);
-	WxStaticTextLineCount->SetLabel(wxString()<<lines);
+	WxStaticTextWordCount->SetLabel(wxString() << data.words);
+	WxStaticTextCharCountNoSPNoCtrl->SetLabel(wxString() << (data.chars-data.spaces-data.controls));
+	WxStaticTextCharCountAll->SetLabel(wxString() << data.chars);
+	WxStaticTextControlCount->SetLabel(wxString() << data.controls);
+	WxStaticTextFullwidthCount->SetLabel(wxString() << data.fullwidths);
+	WxStaticTextLineCount->SetLabel(wxString() << data.lines);
 	wxString str;
-	for(size_t i=0;i<detail.Count();i++)
-	{
-		str<<detail[i]<<wxT("\n");
-	}
+	for(size_t i=0; i<data.detail.Count(); ++i)
+		str << data.detail[i] << wxT("\n");
 	WxMemo1->SetValue(str);
 	Button1->SetFocus();
 }

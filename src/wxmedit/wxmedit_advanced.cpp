@@ -1233,20 +1233,16 @@ void MadEdit::ToFullWidth(bool ascii, bool japanese, bool korean, bool other)
 }
 
 
-void MadEdit::WordCount(bool selection, int &wordCount, int &charCount, int &spaceCount,
-                        int &controlCount, int &fullWidthCount, int &lineCount,
-                        wxArrayString *detail)
+void MadEdit::WordCount(bool selection, wxm::WordCountData& data)
 {
-    wordCount=charCount=spaceCount=controlCount=fullWidthCount=0;
-
     xm::UnicodeBlockSet& ublock_set = xm::UnicodeBlockSet::GetInstance();
     xm::UnicodeBlockCharCounter ublock_counter;
 
     MadLineIterator lit;
     wxFileOffset linepos, nowpos, endpos;
-    if(selection && m_Selection)
+    if (selection && m_Selection)
     {
-        lineCount=m_SelectionEnd->lineid - m_SelectionBegin->lineid +1;
+        data.lines=m_SelectionEnd->lineid - m_SelectionBegin->lineid +1;
         lit=m_SelectionBegin->iter;
         linepos=m_SelectionBegin->linepos;
         nowpos=m_SelectionBegin->pos;
@@ -1254,7 +1250,7 @@ void MadEdit::WordCount(bool selection, int &wordCount, int &charCount, int &spa
     }
     else
     {
-        lineCount=(int)m_Lines->m_LineCount;
+        data.lines=(int)m_Lines->m_LineCount;
         lit=m_Lines->m_LineList.begin();
         linepos=0;
         nowpos=0;
@@ -1267,15 +1263,15 @@ void MadEdit::WordCount(bool selection, int &wordCount, int &charCount, int &spa
     int idx=0, count=0;
     boost::scoped_ptr<xm::WordCounter> word_counter(new xm::AccumulativeWordCounter(0x4000));
 
-    while(nowpos < endpos)
+    while (nowpos < endpos)
     {
-        if(++count >= 1024)
+        if (++count >= 1024)
         {
             ucqueue.clear();
             count=0;
         }
 
-        if(!m_Lines->NextUChar(ucqueue))
+        if (!m_Lines->NextUChar(ucqueue))
         {
             ++lit;
             m_Lines->InitNextUChar(lit, 0);
@@ -1289,32 +1285,29 @@ void MadEdit::WordCount(bool selection, int &wordCount, int &charCount, int &spa
         ublock_counter.Count(idx);
         (*word_counter) += (UChar32)uc;
 
-        ++charCount;
-        if(u_iscntrl(uc))
-            ++controlCount;
-        else if(u_isspace(uc))
-            ++spaceCount;
+        ++data.chars;
+        if (u_iscntrl(uc))
+            ++data.controls;
+        else if (u_isspace(uc))
+            ++data.spaces;
 
-        if(xm::IsWideWidthEastAsian(uc))
-            ++fullWidthCount;
+        if (xm::IsWideWidthEastAsian(uc))
+            ++data.fullwidths;
     }
-    wordCount = word_counter->GetWordCountNoCtrlNoSP();
+    data.words = word_counter->GetWordCountNoCtrlNoSP();
 
-    if(detail==NULL)
-        return;
-
-    for(idx=ublock_counter.BlockIndexBegin(); ublock_counter.IsValidBlock(idx); idx=ublock_counter.NextBlock())
+    for (idx=ublock_counter.BlockIndexBegin(); ublock_counter.IsValidBlock(idx); idx=ublock_counter.NextBlock())
     {
         int cnt = ublock_counter.GetBlockCharCount(idx);
         wxString block_begin = wxString::Format(wxT("U+%04X"), ublock_set.Begin(idx));
         wxString block_end = wxString::Format(wxT("U+%04X"), ublock_set.End(idx));
-        detail->Add(wxString::Format(wxT("%10d    %8s - %8s: %s"), cnt,
+        data.detail.Add(wxString::Format(wxT("%10d    %8s - %8s: %s"), cnt,
             block_begin.c_str(), block_end.c_str(), wxGetTranslation(ublock_set.Description(idx))));
     }
-    if(ublock_counter.GetInvalidBlockCharCount()>0)
+    if (ublock_counter.GetInvalidBlockCharCount() > 0)
     {
         int cnt = ublock_counter.GetInvalidBlockCharCount();
-        detail->Add(wxString::Format(wxT("%10d    ? - ? %s"), cnt, _("Invalid Unicode Characters")));
+        data.detail.Add(wxString::Format(wxT("%10d           ? -        ? %s"), cnt, _("Invalid Unicode Characters")));
     }
 }
 
