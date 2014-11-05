@@ -201,6 +201,7 @@ int g_PrevPageID=-1;
 wxStatusBar *g_StatusBar=NULL;
 bool g_CheckModTimeForReload=true;
 
+wxMenu *g_Menu_Tab = NULL;
 wxMenu *g_Menu_File = NULL;
 wxMenu *g_Menu_Edit = NULL;
 wxMenu *g_Menu_Search = NULL;
@@ -1002,6 +1003,7 @@ BEGIN_EVENT_TABLE(MadEditFrame,wxFrame)
 	EVT_AUINOTEBOOK_PAGE_CHANGED(ID_NOTEBOOK, MadEditFrame::OnNotebookPageChanged)
 	EVT_AUINOTEBOOK_PAGE_CLOSE(ID_NOTEBOOK, MadEditFrame::OnNotebookPageClosing)
 	//EVT_AUINOTEBOOK_PAGE_CLOSE(ID_NOTEBOOK, MadEditFrame::OnNotebookPageClosed)
+	EVT_AUINOTEBOOK_TAB_RIGHT_UP(ID_NOTEBOOK, MadEditFrame::OnNotebookTabRightUp)
 	//EVT_CHAR(MadEditFrame::OnChar)
 	// file
 	EVT_ACTIVATE(MadEditFrame::OnActivate)
@@ -1910,6 +1912,7 @@ void MadEditFrame::CreateGUIControls()
 
 
     // add menuitems
+    g_Menu_Tab = new wxMenu(0);
     g_Menu_File = new wxMenu(0);
     g_Menu_Edit = new wxMenu(0);
     g_Menu_Search = new wxMenu(0);
@@ -1991,6 +1994,23 @@ void MadEditFrame::CreateGUIControls()
         ++cd;
     }
     while(cd->menu_level>=0);
+
+    // right click menu of tab
+    int FileMenuInTabIDs[] = { menuSave, menuReload, 0, menuClose, menuCloseAll, 0, menuPrintPreview, menuPrint };
+    BOOST_FOREACH(int itemid, FileMenuInTabIDs)
+    {
+        if (itemid == 0)
+        {
+            g_Menu_Tab->AppendSeparator();
+            continue;
+        }
+
+        wxMenuItem* item = g_Menu_File->FindChildItem(itemid);
+        const wxBitmap& bit = item->GetBitmap();
+        if (!bit.IsNull())
+            item->SetBitmap(bit);
+        g_Menu_Tab->Append(item);
+    }
 
     // set FindNext/FindPrev keys for search/replace dialog
     g_AccelFindNext.Set(0, 0, 0, 0);
@@ -2506,6 +2526,12 @@ void MadEditFrame::OnNotebookPageClosed(bool bZeroPage)
         }
         g_ActiveMadEdit->ReloadByModificationTime();
     }
+}
+
+void MadEditFrame::OnNotebookTabRightUp(wxAuiNotebookEvent& event)
+{
+    SetPageFocus(event.GetSelection());
+    PopupMenu(g_Menu_Tab);
 }
 
 void MadEditFrame::OnSize(wxSizeEvent &evt)
