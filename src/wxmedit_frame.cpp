@@ -209,6 +209,7 @@ wxMenu *g_Menu_View = NULL;
 wxMenu *g_Menu_Tools = NULL;
 wxMenu *g_Menu_Window = NULL;
 wxMenu *g_Menu_Help = NULL;
+wxMenu *g_Menu_File_More = NULL;
 wxMenu *g_Menu_File_RecentFiles = NULL;
 wxMenu *g_Menu_Edit_Sort = NULL;
 wxMenu *g_Menu_Edit_Advanced = NULL;
@@ -541,9 +542,10 @@ public:
     {
         int x, y, idx;
         MadEdit *madedit;
+        int pageid;
         PageData() {}
-        PageData(int xx, int yy, int ii, MadEdit *mm)
-            : x(xx), y(yy), idx(ii), madedit(mm)
+        PageData(int xx, int yy, int ii, MadEdit *mm, int pgid)
+            : x(xx), y(yy), idx(ii), madedit(mm), pageid(pgid)
         {}
     };
 
@@ -591,7 +593,7 @@ public:
                     }
                 }
 
-                pages_list.insert(it, PageData(pt.x, pt.y, idx, madedit));
+                pages_list.insert(it, PageData(pt.x, pt.y, idx, madedit, i));
             }
         }
 
@@ -1016,6 +1018,9 @@ BEGIN_EVENT_TABLE(MadEditFrame,wxFrame)
 	EVT_UPDATE_UI(menuClose, MadEditFrame::OnUpdateUI_MenuFile_CheckCount)
 	EVT_UPDATE_UI(menuCloseByPath, MadEditFrame::OnUpdateUI_MenuFile_CheckCount)
 	EVT_UPDATE_UI(menuCloseAll, MadEditFrame::OnUpdateUI_MenuFile_CheckCount)
+	EVT_UPDATE_UI(menuCloseAllButThis, MadEditFrame::OnUpdateUI_MenuFile_CheckCount)
+	EVT_UPDATE_UI(menuCloseAllToTheLeft, MadEditFrame::OnUpdateUI_MenuFile_CheckCount)
+	EVT_UPDATE_UI(menuCloseAllToTheRight, MadEditFrame::OnUpdateUI_MenuFile_CheckCount)
 	EVT_UPDATE_UI(menuPrintPreview, MadEditFrame::OnUpdateUI_MenuFile_CheckCount)
 	EVT_UPDATE_UI(menuPrint, MadEditFrame::OnUpdateUI_MenuFile_CheckCount)
 	EVT_UPDATE_UI(menuRecentFiles, MadEditFrame::OnUpdateUI_MenuFileRecentFiles)
@@ -1118,6 +1123,9 @@ BEGIN_EVENT_TABLE(MadEditFrame,wxFrame)
 	EVT_MENU(menuClose, MadEditFrame::OnFileClose)
 	EVT_MENU(menuCloseByPath, MadEditFrame::OnFileCloseByPath)
 	EVT_MENU(menuCloseAll, MadEditFrame::OnFileCloseAll)
+	EVT_MENU(menuCloseAllButThis, MadEditFrame::OnFileCloseAllButThis)
+	EVT_MENU(menuCloseAllToTheLeft, MadEditFrame::OnFileCloseAllToTheLeft)
+	EVT_MENU(menuCloseAllToTheRight, MadEditFrame::OnFileCloseAllToTheRight)
 	EVT_MENU(menuPageSetup, MadEditFrame::OnFilePageSetup)
 	EVT_MENU(menuPrintPreview, MadEditFrame::OnFilePrintPreview)
 	EVT_MENU(menuPrint, MadEditFrame::OnFilePrint)
@@ -1245,27 +1253,31 @@ END_EVENT_TABLE()
 CommandData CommandTable[]=
 {
     // file
-    { 0, 0, 0, 0, _("&File"), 0, wxITEM_NORMAL, 0, &g_Menu_File, 0},
-    { 0, 1, menuNew,          wxT("menuNew"),          _("&New File"),                    wxT("Ctrl-N"),       wxITEM_NORMAL,    new_xpm_idx,       0,                        _("Create a new file")},
-    { 0, 1, menuOpen,         wxT("menuOpen"),         _("&Open File..."),                wxT("Ctrl-O"),       wxITEM_NORMAL,    fileopen_xpm_idx,  0,                        _("Open an existing file")},
-    { 0, 1, 0,                0,                       0,                                 0,                   wxITEM_SEPARATOR, -1,                0,                        0},
-    { 0, 1, menuSave,         wxT("menuSave"),         _("&Save File"),                   wxT("Ctrl-S"),       wxITEM_NORMAL,    filesave_xpm_idx,  0,                        _("Save the file")},
-    { 0, 1, menuSaveAs,       wxT("menuSaveAs"),       _("Save &As..."),                  wxT(""),             wxITEM_NORMAL,    -1,                0,                        _("Save the file with a new name")},
-    { 0, 1, menuSaveAll,      wxT("menuSaveAll"),      _("Sa&ve All"),                    wxT("Ctrl-Shift-S"), wxITEM_NORMAL,    saveall_xpm_idx,   0,                        _("Save all files")},
-    { 0, 1, 0,                0,                       0,                                 0,                   wxITEM_SEPARATOR, -1,                0,                        0},
-    { 0, 1, menuReload,       wxT("menuReload"),       _("&Reload File"),                 wxT("Ctrl-R"),       wxITEM_NORMAL,    -1,                0,                        _("Reload the file")},
-    { 0, 1, 0,                0,                       0,                                 0,                   wxITEM_SEPARATOR, -1,                0,                        0},
-    { 0, 1, menuClose,        wxT("menuClose"),        _("&Close File"),                  wxT("Ctrl-F4"),      wxITEM_NORMAL,    fileclose_xpm_idx, 0,                        _("Close the file")},
-    { 0, 1, menuCloseByPath,  wxT("menuCloseByPath"),  _("Close Files under &Folder..."), wxT(""),             wxITEM_NORMAL,    -1,                0,                        _("Close all files in given folder and in all the subfolders")},
-    { 0, 1, menuCloseAll,     wxT("menuCloseAll"),     _("C&lose All"),                   wxT(""),             wxITEM_NORMAL,    closeall_xpm_idx,  0,                        _("Close all files")},
-    { 0, 1, 0,                0,                       0,                                 0,                   wxITEM_SEPARATOR, -1,                0,                        0},
-    { 0, 1, menuPageSetup,    wxT("menuPageSetup"),    _("Page Set&up..."),               wxT(""),             wxITEM_NORMAL,    -1,                0,                        _("Setup the pages for printing")},
-    { 0, 1, menuPrintPreview, wxT("menuPrintPreview"), _("Print Previe&w..."),            wxT(""),             wxITEM_NORMAL,    preview_xpm_idx,   0,                        _("Preview the result of printing")},
-    { 0, 1, menuPrint,        wxT("menuPrint"),        _("&Print..."),                    wxT("Ctrl-P"),       wxITEM_NORMAL,    print_xpm_idx,     0,                        _("Print the file")},
-    { 0, 1, 0,                0,                       0,                                 0,                   wxITEM_SEPARATOR, -1,                0,                        0},
-    { 0, 1, menuRecentFiles,  wxT("menuRecentFiles"),  _("Recent Files"),                 wxT(""),             wxITEM_NORMAL,    -1,                &g_Menu_File_RecentFiles, 0},
-    { 0, 1, 0,                0,                       0,                                 0,                   wxITEM_SEPARATOR, -1,                0,                        0},
-    { 0, 1, menuExit,         wxT("menuExit"),         _("E&xit"),                        wxT(""),             wxITEM_NORMAL,    quit_xpm_idx,      0,                        _("Quit wxMEdit")},
+    { 0, 0, 0, 0, _("&File"),       0, wxITEM_NORMAL, 0, &g_Menu_File, 0},
+    { 0, 1, menuNew,                wxT("menuNew"),                _("&New File"),                  wxT("Ctrl-N"),       wxITEM_NORMAL,    new_xpm_idx,       0,                        _("Create a new file")},
+    { 0, 1, menuOpen,               wxT("menuOpen"),               _("&Open File..."),              wxT("Ctrl-O"),       wxITEM_NORMAL,    fileopen_xpm_idx,  0,                        _("Open an existing file")},
+    { 0, 1, 0,                      0,                             0,                               0,                   wxITEM_SEPARATOR, -1,                0,                        0},
+    { 0, 1, menuSave,               wxT("menuSave"),               _("&Save File"),                 wxT("Ctrl-S"),       wxITEM_NORMAL,    filesave_xpm_idx,  0,                        _("Save the file")},
+    { 0, 1, menuSaveAs,             wxT("menuSaveAs"),             _("Save &As..."),                wxT(""),             wxITEM_NORMAL,    -1,                0,                        _("Save the file with a new name")},
+    { 0, 1, menuSaveAll,            wxT("menuSaveAll"),            _("Sa&ve All"),                  wxT("Ctrl-Shift-S"), wxITEM_NORMAL,    saveall_xpm_idx,   0,                        _("Save all files")},
+    { 0, 1, 0,                      0,                             0,                               0,                   wxITEM_SEPARATOR, -1,                0,                        0},
+    { 0, 1, menuReload,             wxT("menuReload"),             _("&Reload File"),               wxT("Ctrl-R"),       wxITEM_NORMAL,    -1,                0,                        _("Reload the file")},
+    { 0, 1, 0,                      0,                             0,                               0,                   wxITEM_SEPARATOR, -1,                0,                        0},
+    { 0, 1, menuClose,              wxT("menuClose"),              _("&Close File"),                wxT("Ctrl-F4"),      wxITEM_NORMAL,    fileclose_xpm_idx, 0,                        _("Close the file")},
+    { 0, 1, menuCloseByPath,        wxT("menuCloseByPath"),        _("Close All under &Folder..."), wxT(""),             wxITEM_NORMAL,    -1,                0,                        _("Close all files in given folder and in all the subfolders")},
+    { 0, 1, menuCloseAll,           wxT("menuCloseAll"),           _("C&lose All"),                 wxT(""),             wxITEM_NORMAL,    closeall_xpm_idx,  0,                        _("Close all files")},
+    { 0, 1, menuCloseMore,          wxT("menuCloseMore"),          _("Close &More"),                0,                   wxITEM_NORMAL,    -1,                &g_Menu_File_More,    0 },
+    { 0, 2, menuCloseAllButThis,    wxT("menuCloseAllButThis"),    _("Close All &BUT This"),        wxT(""),             wxITEM_NORMAL,    -1,                0,                        _("Close all files but this")},
+    { 0, 2, menuCloseAllToTheLeft,  wxT("menuCloseAllToTheLeft"),  _("Close All To The &Left"),     wxT(""),             wxITEM_NORMAL,    -1,                0,                        _("Close all files to the left")},
+    { 0, 2, menuCloseAllToTheRight, wxT("menuCloseAllToTheRight"), _("Close All To The &Right"),    wxT(""),             wxITEM_NORMAL,    -1,                0,                        _("Close all files to the right")},
+    { 0, 1, 0,                      0,                             0,                               0,                   wxITEM_SEPARATOR, -1,                0,                        0},
+    { 0, 1, menuPageSetup,          wxT("menuPageSetup"),          _("Page Set&up..."),             wxT(""),             wxITEM_NORMAL,    -1,                0,                        _("Setup the pages for printing")},
+    { 0, 1, menuPrintPreview,       wxT("menuPrintPreview"),       _("Print Previe&w..."),          wxT(""),             wxITEM_NORMAL,    preview_xpm_idx,   0,                        _("Preview the result of printing")},
+    { 0, 1, menuPrint,              wxT("menuPrint"),              _("&Print..."),                  wxT("Ctrl-P"),       wxITEM_NORMAL,    print_xpm_idx,     0,                        _("Print the file")},
+    { 0, 1, 0,                      0,                             0,                               0,                   wxITEM_SEPARATOR, -1,                0,                        0},
+    { 0, 1, menuRecentFiles,        wxT("menuRecentFiles"),        _("Recent Files"),               wxT(""),             wxITEM_NORMAL,    -1,                &g_Menu_File_RecentFiles, 0},
+    { 0, 1, 0,                      0,                             0,                               0,                   wxITEM_SEPARATOR, -1,                0,                        0},
+    { 0, 1, menuExit,               wxT("menuExit"),               _("E&xit"),                      wxT(""),             wxITEM_NORMAL,    quit_xpm_idx,      0,                        _("Quit wxMEdit")},
 
     // Edit
     { 0, 0, 0, 0, _("&Edit"), 0, wxITEM_NORMAL, 0, &g_Menu_Edit, 0},
@@ -1920,6 +1932,7 @@ void MadEditFrame::CreateGUIControls()
     g_Menu_Tools = new wxMenu(0);
     g_Menu_Window = new wxMenu(0);
     g_Menu_Help = new wxMenu(0);
+    g_Menu_File_More = new wxMenu(0);
     g_Menu_File_RecentFiles = new wxMenu(0);
     g_Menu_Edit_Sort = new wxMenu(0);
     g_Menu_Edit_Advanced = new wxMenu(0);
@@ -1996,7 +2009,8 @@ void MadEditFrame::CreateGUIControls()
     while(cd->menu_level>=0);
 
     // right click menu of tab
-    int FileMenuInTabIDs[] = { menuSave, menuReload, 0, menuClose, menuCloseAll, 0, menuPrintPreview, menuPrint };
+    int FileMenuInTabIDs[] = { menuSave, menuReload, 0, menuClose, menuCloseAll, menuCloseAllButThis,
+                               menuCloseAllToTheLeft, menuCloseAllToTheRight, 0, menuPrintPreview, menuPrint };
     BOOST_FOREACH(int itemid, FileMenuInTabIDs)
     {
         if (itemid == 0)
@@ -2005,7 +2019,7 @@ void MadEditFrame::CreateGUIControls()
             continue;
         }
 
-        wxMenuItem* item = g_Menu_File->FindChildItem(itemid);
+        wxMenuItem* item = g_Menu_File->FindItem(itemid);
         const wxBitmap& bit = item->GetBitmap();
         if (!bit.IsNull())
             item->SetBitmap(bit);
@@ -3555,15 +3569,18 @@ void MadEditFrame::OnFileCloseByPath(wxCommandEvent& event)
     m_Config->Write(wxT("/wxMEdit/LastPathClosingFiles"), dir);
 
     wxString nmldir = wxm::FilePathNormalCase(dir);
-    for (size_t i=0; i<m_Notebook->GetPageCount(); ++i)
+    std::list<wxMadAuiNotebook::PageData> pglist = m_Notebook->GetPagesList();
+    std::vector<wxMadAuiNotebook::PageData> pgvec(pglist.begin(), pglist.end());
+    for (size_t i=0; i<pgvec.size(); ++i)
     {
-        MadEdit *madedit = reinterpret_cast<MadEdit*>(m_Notebook->GetPage(i));
-        wxString file = wxm::FilePathNormalCase(madedit->GetFileName());
+        wxString file = wxm::FilePathNormalCase(pgvec[i].madedit->GetFileName());
         if (!file.StartsWith(nmldir.c_str()))
             continue;
 
-        CloseFile(i);
+        CloseFile(pgvec[i].pageid);
         --i;
+        pglist = m_Notebook->GetPagesList();
+        pgvec.assign(pglist.begin(), pglist.end());
     }
 }
 
@@ -3585,6 +3602,33 @@ void MadEditFrame::OnFileCloseAll(wxCommandEvent& event)
         OnEditStatusChanged(NULL);
     }
 }
+
+void MadEditFrame::OnFileCloseAllButThis(wxCommandEvent& event)
+{
+    OnFileCloseAllToTheLeft(event);
+    OnFileCloseAllToTheRight(event);
+}
+
+void MadEditFrame::OnFileCloseAllToTheLeft(wxCommandEvent& event)
+{
+    for (int pgid = m_Notebook->GetPagesList().begin()->pageid;
+         pgid != m_Notebook->GetSelection();
+         pgid = m_Notebook->GetPagesList().begin()->pageid)
+    {
+        CloseFile(pgid);
+    }
+}
+
+void MadEditFrame::OnFileCloseAllToTheRight(wxCommandEvent& event)
+{
+    for (int pgid = m_Notebook->GetPagesList().rbegin()->pageid;
+        pgid != m_Notebook->GetSelection();
+        pgid = m_Notebook->GetPagesList().rbegin()->pageid)
+    {
+        CloseFile(pgid);
+    }
+}
+
 
 void MadEditFrame::OnFilePageSetup(wxCommandEvent& event)
 {
