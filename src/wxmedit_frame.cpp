@@ -1333,12 +1333,6 @@ CommandData CommandTable[]=
 
     { ecInsertDateTime, 1, menuInsertDateTime,           wxT("menuInsertDateTime"),           _("Insert Dat&e and Time"),                   wxT("F7"),           wxITEM_NORMAL,    -1,                0,                     _("Insert date and time at current position")},
 
-    { 0,                1, 0,                            0,                                   0,                                            0,                   wxITEM_SEPARATOR, -1,                  0,                   0},
-    { 0,                1, menuToggleBookmark,           wxT("menuToggleBookmark"),           _("Toggle Bookmark"),                         wxT("Ctrl-F2"),      wxITEM_NORMAL,    bmktoggle_xpm_idx,   0,                   _("Toggle Bookmark at current line")},
-    { 0,                1, menuGotoNextBookmark,         wxT("menuGotoNextBookmark"),         _("Go To Next Bookmark"),                     wxT("F2"),           wxITEM_NORMAL,    bmknext_xpm_idx,     0,                   _("Go to the next bookmark")},
-    { 0,                1, menuGotoPreviousBookmark,     wxT("menuGotoPreviousBookmark"),     _("Go To Previous Bookmark"),                 wxT("Shift-F2"),     wxITEM_NORMAL,    bmkprev_xpm_idx,     0,                   _("Go to the previous bookmark")},
-    { 0,                1, menuClearAllBookmarks,        wxT("menuClearAllBookmarks"),        _("Clear All Bookmarks"),                     0,                   wxITEM_NORMAL,    bmkclearall_xpm_idx, 0,                   _("Clear all bookmarks")},
-
     { 0,                1, 0,                            0,                                   0,                                            0,                   wxITEM_SEPARATOR, -1,                0,                     0},
     { 0,                1, menuAdvanced,                 wxT("menuAdvanced"),                 _("Ad&vanced"),                               0,                   wxITEM_NORMAL,    -1,                &g_Menu_Edit_Advanced, 0},
     { 0,                2, menuCopyAsHexString,          wxT("menuCopyAsHexString"),          _("Copy As &Hex String"),                     wxT(""),             wxITEM_NORMAL,    -1,                0,                     _("Copy the selection as hex-string")},
@@ -1379,20 +1373,26 @@ CommandData CommandTable[]=
 
     // Search
     { 0, 0, 0, 0, _("&Search"), 0, wxITEM_NORMAL, 0, &g_Menu_Search, 0},
-    { 0,            1, menuFind,                   wxT("menuFind"),                   _("&Find..."),                                        wxT("Ctrl-F"),       wxITEM_NORMAL,    find_xpm_idx,     0, _("Find a string")},
-    { 0,            1, menuFindNext,               wxT("menuFindNext"),               _("Find &Next"),                                      wxT("F3"),           wxITEM_NORMAL,    findnext_xpm_idx, 0, _("Find next occurrence")},
-    { 0,            1, menuFindPrevious,           wxT("menuFindPrevious"),           _("Find &Previous"),                                  wxT("Ctrl-F3"),      wxITEM_NORMAL,    findprev_xpm_idx, 0, _("Find previous occurrence")},
-    { 0,            1, 0,                          0,                                 0,                                                    0,                   wxITEM_SEPARATOR, -1,               0, 0},
-    { 0,            1, menuReplace,                wxT("menuReplace"),                _("&Replace..."),                                     wxT("Ctrl-H"),       wxITEM_NORMAL,    replace_xpm_idx,  0, _("Replace a string")},
-    { 0,            1, 0,                          0,                                 0,                                                    0,                   wxITEM_SEPARATOR, -1,               0, 0},
-    { 0,            1, menuFindInFiles,            wxT("menuFindInFiles"),            _("Fin&d/Replace in Files..."),                       wxT("Ctrl-Shift-F"), wxITEM_NORMAL,    -1,               0, _("Find or replace a string in files")},
-    { 0,            1, menuShowFindInFilesResults, wxT("menuShowFindInFilesResults"), _("&Show/Hide the Results of Find/Replace in Files"), wxT("Ctrl-Shift-R"), wxITEM_NORMAL,    -1,               0, _("Show or hide the results of find or replace a string in files")},
-    { 0,            1, 0,                          0,                                 0,                                                    0,                   wxITEM_SEPARATOR, -1,               0, 0},
-    { 0,            1, menuGoToLine,               wxT("menuGoToLine"),               _("&Go To Line..."),                                  wxT("Ctrl-G"),       wxITEM_NORMAL,    -1,               0, _("Go to the specified line")},
-    { 0,            1, menuGoToPosition,           wxT("menuGoToPosition"),           _("G&o To Position..."),                              wxT("Ctrl-Shift-G"), wxITEM_NORMAL,    -1,               0, _("Go to the specified position")},
-    { 0,            1, 0,                          0,                                 0,                                                    0,                   wxITEM_SEPARATOR, -1,               0, 0},
-    { ecLeftBrace,  1, menuLeftBrace,              wxT("menuLeftBrace"),              _("Go To L&eft Brace"),                               wxT("Ctrl-["),       wxITEM_NORMAL,    -1,               0, _("Go to left brace")},
-    { ecRightBrace, 1, menuRightBrace,             wxT("menuRightBrace"),             _("Go To R&ight Brace"),                              wxT("Ctrl-]"),       wxITEM_NORMAL,    -1,               0, _("Go to right brace")},
+    { 0,            1, menuFind,                   wxT("menuFind"),                   _("&Find..."),                                        wxT("Ctrl-F"),       wxITEM_NORMAL,    find_xpm_idx,        0, _("Find a string")},
+    { 0,            1, menuFindNext,               wxT("menuFindNext"),               _("Find &Next"),                                      wxT("F3"),           wxITEM_NORMAL,    findnext_xpm_idx,    0, _("Find next occurrence")},
+    { 0,            1, menuFindPrevious,           wxT("menuFindPrevious"),           _("Find &Previous"),                                  wxT("Ctrl-F3"),      wxITEM_NORMAL,    findprev_xpm_idx,    0, _("Find previous occurrence")},
+    { 0,            1, 0,                          0,                                 0,                                                    0,                   wxITEM_SEPARATOR, -1,                  0, 0},
+    { 0,            1, menuReplace,                wxT("menuReplace"),                _("&Replace..."),                                     wxT("Ctrl-H"),       wxITEM_NORMAL,    replace_xpm_idx,     0, _("Replace a string")},
+    { 0,            1, 0,                          0,                                 0,                                                    0,                   wxITEM_SEPARATOR, -1,                  0, 0},
+    { 0,            1, menuFindInFiles,            wxT("menuFindInFiles"),            _("Fin&d/Replace in Files..."),                       wxT("Ctrl-Shift-F"), wxITEM_NORMAL,    -1,                  0, _("Find or replace a string in files")},
+    { 0,            1, menuShowFindInFilesResults, wxT("menuShowFindInFilesResults"), _("&Show/Hide the Results of Find/Replace in Files"), wxT("Ctrl-Shift-R"), wxITEM_NORMAL,    -1,                  0, _("Show or hide the results of find or replace a string in files")},
+    { 0,            1, 0,                          0,                                 0,                                                    0,                   wxITEM_SEPARATOR, -1,                  0, 0},
+    { 0,            1, menuGoToLine,               wxT("menuGoToLine"),               _("&Go To Line..."),                                  wxT("Ctrl-G"),       wxITEM_NORMAL,    -1,                  0, _("Go to the specified line")},
+    { 0,            1, menuGoToPosition,           wxT("menuGoToPosition"),           _("G&o To Position..."),                              wxT("Ctrl-Shift-G"), wxITEM_NORMAL,    -1,                  0, _("Go to the specified position")},
+    { 0,            1, 0,                          0,                                 0,                                                    0,                   wxITEM_SEPARATOR, -1,                  0, 0},
+    { ecLeftBrace,  1, menuLeftBrace,              wxT("menuLeftBrace"),              _("Go To L&eft Brace"),                               wxT("Ctrl-["),       wxITEM_NORMAL,    -1,                  0, _("Go to left brace")},
+    { ecRightBrace, 1, menuRightBrace,             wxT("menuRightBrace"),             _("Go To R&ight Brace"),                              wxT("Ctrl-]"),       wxITEM_NORMAL,    -1,                  0, _("Go to right brace")},
+
+    { 0,            1, 0,                          0,                                 0,                                                    0,                   wxITEM_SEPARATOR, -1,                  0, 0},
+    { 0,            1, menuToggleBookmark,         wxT("menuToggleBookmark"),         _("Toggle Bookmark"),                                 wxT("Ctrl-F2"),      wxITEM_NORMAL,    bmktoggle_xpm_idx,   0, _("Toggle Bookmark at current line")},
+    { 0,            1, menuGotoNextBookmark,       wxT("menuGotoNextBookmark"),       _("Go To Next Bookmark"),                             wxT("F2"),           wxITEM_NORMAL,    bmknext_xpm_idx,     0, _("Go to the next bookmark")},
+    { 0,            1, menuGotoPreviousBookmark,   wxT("menuGotoPreviousBookmark"),   _("Go To Previous Bookmark"),                         wxT("Shift-F2"),     wxITEM_NORMAL,    bmkprev_xpm_idx,     0, _("Go to the previous bookmark")},
+    { 0,            1, menuClearAllBookmarks,      wxT("menuClearAllBookmarks"),      _("Clear All Bookmarks"),                             0,                   wxITEM_NORMAL,    bmkclearall_xpm_idx, 0, _("Clear all bookmarks")},
 
     // View
     { 0, 0, 0, 0, _("&View"), 0, wxITEM_NORMAL, 0, &g_Menu_View, 0},
