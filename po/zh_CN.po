@@ -2414,24 +2414,24 @@ msgid "Insert date and time at current position"
 msgstr "插入日期、时间到当前位置"
 
 #: ../src/wxmedit_frame.cpp:1303
-msgid "T&oggle Bookmark "
-msgstr "设置/取消书签(&O)"
+msgid "Toggle Bookmark "
+msgstr "设置/取消书签"
 
 #: ../src/wxmedit_frame.cpp:1303
 msgid "Toggle Bookmark at current line"
 msgstr "在当前行设置/取消书签"
 
 #: ../src/wxmedit_frame.cpp:1304
-msgid "Go To &Next Bookmark"
-msgstr "转到下一书签(&N)"
+msgid "Go To Next Bookmark"
+msgstr "转到下一书签"
 
 #: ../src/wxmedit_frame.cpp:1304
 msgid "Go to the next bookmark"
 msgstr "转到下一书签处"
 
 #: ../src/wxmedit_frame.cpp:1305
-msgid "Go To P&revious Bookmark"
-msgstr "转到上一书签(&R)"
+msgid "Go To Previous Bookmark"
+msgstr "转到上一书签"
 
 #: ../src/wxmedit_frame.cpp:1305
 msgid "Go to the previous bookmark"

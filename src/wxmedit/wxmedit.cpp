@@ -2209,7 +2209,7 @@ void MadEdit::PaintTextLines(wxDC *dc, const wxRect &rect, int toprow, int rowco
                 {
                     int l=rect.GetLeft();
 
-                    if ( m_Lines->m_LineList.IsBookmarked(lineiter) )
+                    if ( m_Lines->m_LineList.Bookmarked(lineiter) )
                     {
                         dc->SetBrush( *wxTheBrushList->FindOrCreateBrush(m_Syntax->GetAttributes(aeBookmark)->color) );
                         wxRect rect(0, row_top, m_LineNumberAreaWidth, m_RowHeight);
@@ -10682,9 +10682,9 @@ int MadEdit::GetUCharType(ucs4_t uc)
     return 8;
 }
 
-void MadEdit::SetBookmark()
+void MadEdit::ToggleBookmark()
 {
-    m_Lines->m_LineList.SetBookmark( m_CaretPos.iter );
+    m_Lines->m_LineList.ToggleBookmark(m_CaretPos.iter);
     m_RepaintAll = true;
     Refresh( false );
 }
@@ -10701,6 +10701,13 @@ void MadEdit::GotoPreviousBookmark()
     int lineNum = m_Lines->m_LineList.GetPreviousBookmark( m_CaretPos.iter );
     if ( lineNum > 0 )
         GoToLine( int(m_Lines->m_LineCount + 1) - lineNum );
+}
+
+void MadEdit::ClearAllBookmarks()
+{
+    m_Lines->m_LineList.ClearAllBookmarks();
+    m_RepaintAll = true;
+    Refresh(false);
 }
 
 wxMilliClock_t MadEdit::GetTripleClickInterval()

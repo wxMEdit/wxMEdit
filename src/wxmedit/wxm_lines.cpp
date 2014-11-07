@@ -3259,9 +3259,9 @@ MadLineList::MadLineList()
 {
 }
 
-// Toggle or remove bookmark from given position.
+// Toggle bookmark from given position.
 // If there is a bookmark on the given position, remove it. If there is not, add it.
-void MadLineList::SetBookmark( MadLineIterator position )
+void MadLineList::ToggleBookmark(MadLineIterator position)
 {
     if ( m_BookmarkList.empty() )
     {
@@ -3299,6 +3299,10 @@ void MadLineList::SetBookmark( MadLineIterator position )
     m_BookmarkList.insert( bmkIter, position );
 }
 
+void MadLineList::ClearAllBookmarks()
+{
+    m_BookmarkList.clear();
+}
 
 // Return line number, or -1 if there are no bookmars.
 //
@@ -3393,7 +3397,7 @@ MadLineIterator MadLineList::erase( MadLineIterator position )
 }
 
 
-bool MadLineList::IsBookmarked( MadLineIterator position )
+bool MadLineList::Bookmarked( MadLineIterator position )
 {
     MadBookmarkIterator found = find( m_BookmarkList.begin(), m_BookmarkList.end(), position );
     return found != m_BookmarkList.end();

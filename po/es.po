@@ -42,7 +42,7 @@ msgstr ""
 "PO-Revision-Date: 2014-09-19 20:28-0400\n"
 "Last-Translator: \n"
 "Language-Team:  <carlos1994sanchez@gmail.com>\n"
-"Language: Español\n"
+"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -2413,7 +2413,7 @@ msgid "Insert date and time at current position"
 msgstr "Inserta fecha y hora"
 
 #: ../src/wxmedit_frame.cpp:1303
-msgid "T&oggle Bookmark "
+msgid "Toggle Bookmark "
 msgstr "Alternar Marcador"
 
 #: ../src/wxmedit_frame.cpp:1303
@@ -2421,7 +2421,7 @@ msgid "Toggle Bookmark at current line"
 msgstr "Cambia marcador en línea actual"
 
 #: ../src/wxmedit_frame.cpp:1304
-msgid "Go To &Next Bookmark"
+msgid "Go To Next Bookmark"
 msgstr "Ir al marcador siguiente"
 
 #: ../src/wxmedit_frame.cpp:1304
@@ -2429,7 +2429,7 @@ msgid "Go to the next bookmark"
 msgstr "Va al marcador siguiente"
 
 #: ../src/wxmedit_frame.cpp:1305
-msgid "Go To P&revious Bookmark"
+msgid "Go To Previous Bookmark"
 msgstr "Ir al marcador anterior"
 
 #: ../src/wxmedit_frame.cpp:1305

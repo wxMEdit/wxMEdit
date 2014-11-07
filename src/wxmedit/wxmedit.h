@@ -934,9 +934,11 @@ public: // basic functions
     // return wxID_YES(Saved), wxID_NO(Not Saved), or wxID_CANCEL
     int Save(bool ask, const wxString &title, bool saveas);
 
-    void SetBookmark();
+    void ToggleBookmark();
     void GotoNextBookmark();
     void GotoPreviousBookmark();
+    void ClearAllBookmarks();
+    bool BookmarkExist() { return m_Lines->m_LineList.BookmarkExist(); }
 public: // advanced functions
     void ConvertEncoding(const wxString &newenc, MadConvertEncodingFlag flag);
     void ConvertChinese(MadConvertEncodingFlag flag);

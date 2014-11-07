@@ -333,10 +333,12 @@ class MadLineList : public list <MadLine>
 public:
     MadLineList();
 
-    void SetBookmark( MadLineIterator position );     // toggle or remove bookmark from given position
-    int  GetNextBookmark( MadLineIterator position ); // return line number, or -1 if no bookmars
+    void ToggleBookmark( MadLineIterator position );      // toggle bookmark from given position
+    int  GetNextBookmark( MadLineIterator position );     // return line number, or -1 if no bookmars
     int  GetPreviousBookmark( MadLineIterator position ); // return line number from the end to the beginning, or -1
-    bool IsBookmarked( MadLineIterator position );
+    bool Bookmarked( MadLineIterator position );
+    void ClearAllBookmarks();
+    bool BookmarkExist() { return !m_BookmarkList.empty(); }
 
     LineNumberList SaveBookmarkLineNumberList() const;
     void RestoreBookmarkByLineNumberList(const LineNumberList& linenums);

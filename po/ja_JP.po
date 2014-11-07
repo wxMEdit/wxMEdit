@@ -2409,24 +2409,24 @@ msgid "Insert date and time at current position"
 msgstr "現在位置に日付と時間を挿入"
 
 #: ../src/wxmedit_frame.cpp:1303
-msgid "T&oggle Bookmark "
-msgstr "ブックマークの切り替え&"
+msgid "Toggle Bookmark "
+msgstr "ブックマークの切り替え"
 
 #: ../src/wxmedit_frame.cpp:1303
 msgid "Toggle Bookmark at current line"
 msgstr "現在の行でブックマークを切り替え"
 
 #: ../src/wxmedit_frame.cpp:1304
-msgid "Go To &Next Bookmark"
-msgstr "次のブックマークへ移動&"
+msgid "Go To Next Bookmark"
+msgstr "次のブックマークへ移動"
 
 #: ../src/wxmedit_frame.cpp:1304
 msgid "Go to the next bookmark"
 msgstr "次のブックマークへ移動します"
 
 #: ../src/wxmedit_frame.cpp:1305
-msgid "Go To P&revious Bookmark"
-msgstr "前のブックマークへ移動&"
+msgid "Go To Previous Bookmark"
+msgstr "前のブックマークへ移動"
 
 #: ../src/wxmedit_frame.cpp:1305
 msgid "Go to the previous bookmark"

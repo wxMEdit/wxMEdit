@@ -1038,8 +1038,9 @@ BEGIN_EVENT_TABLE(MadEditFrame,wxFrame)
 	EVT_UPDATE_UI(menuInsertTabChar, MadEditFrame::OnUpdateUI_MenuEditInsertTabChar)
 	EVT_UPDATE_UI(menuInsertDateTime, MadEditFrame::OnUpdateUI_MenuEditInsertDateTime)
 	EVT_UPDATE_UI(menuToggleBookmark, MadEditFrame::OnUpdateUI_MenuEditToggleBookmark)
-	EVT_UPDATE_UI(menuGotoNextBookmark, MadEditFrame::OnUpdateUI_MenuEditGotoNextBookmark)
-	EVT_UPDATE_UI(menuGotoPreviousBookmark, MadEditFrame::OnUpdateUI_MenuEditGotoPreviousBookmark)
+	EVT_UPDATE_UI(menuGotoNextBookmark, MadEditFrame::OnUpdateUI_MenuEditBookmarkExist)
+	EVT_UPDATE_UI(menuGotoPreviousBookmark, MadEditFrame::OnUpdateUI_MenuEditBookmarkExist)
+	EVT_UPDATE_UI(menuClearAllBookmarks, MadEditFrame::OnUpdateUI_MenuEditBookmarkExist)
 	EVT_UPDATE_UI(menuSortAscending, MadEditFrame::OnUpdateUI_Menu_CheckTextFile)
 	EVT_UPDATE_UI(menuSortDescending, MadEditFrame::OnUpdateUI_Menu_CheckTextFile)
 	EVT_UPDATE_UI(menuSortAscendingCase, MadEditFrame::OnUpdateUI_Menu_CheckTextFile)
@@ -1147,6 +1148,7 @@ BEGIN_EVENT_TABLE(MadEditFrame,wxFrame)
 	EVT_MENU(menuToggleBookmark, MadEditFrame::OnEditToggleBookmark)
 	EVT_MENU(menuGotoNextBookmark, MadEditFrame::OnEditGotoNextBookmark)
 	EVT_MENU(menuGotoPreviousBookmark, MadEditFrame::OnEditGotoPreviousBookmark)
+	EVT_MENU(menuClearAllBookmarks, MadEditFrame::OnEditClearAllBookmarks)
 	EVT_MENU(menuSortAscending, MadEditFrame::OnEditSortAscending)
 	EVT_MENU(menuSortDescending, MadEditFrame::OnEditSortDescending)
 	EVT_MENU(menuSortAscendingCase, MadEditFrame::OnEditSortAscendingCase)
@@ -1323,9 +1325,10 @@ CommandData CommandTable[]=
     { ecInsertDateTime, 1, menuInsertDateTime,           wxT("menuInsertDateTime"),           _("Insert Dat&e and Time"),                   wxT("F7"),           wxITEM_NORMAL,    -1,                0,                     _("Insert date and time at current position")},
 
     { 0,                1, 0,                            0,                                   0,                                            0,                   wxITEM_SEPARATOR, -1,                0,                     0},
-    { 0,                1, menuToggleBookmark,           wxT("menuToggleBookmark"),           _("T&oggle Bookmark "),                 wxT("Ctrl-F2"),      wxITEM_NORMAL,    -1,                0,                     _("Toggle Bookmark at current line")},
-    { 0,                1, menuGotoNextBookmark,         wxT("menuGotoNextBookmark"),         _("Go To &Next Bookmark"),                     wxT("F2"),           wxITEM_NORMAL,    -1,                0,                     _("Go to the next bookmark")},
-    { 0,                1, menuGotoPreviousBookmark,     wxT("menuGotoPreviousBookmark"),     _("Go To P&revious Bookmark"),                 wxT("Shift-F2"),     wxITEM_NORMAL,    -1,                0,                     _("Go to the previous bookmark")},
+    { 0,                1, menuToggleBookmark,           wxT("menuToggleBookmark"),           _("Toggle Bookmark "),                        wxT("Ctrl-F2"),      wxITEM_NORMAL,    -1,                0,                     _("Toggle Bookmark at current line")},
+    { 0,                1, menuGotoNextBookmark,         wxT("menuGotoNextBookmark"),         _("Go To Next Bookmark"),                     wxT("F2"),           wxITEM_NORMAL,    -1,                0,                     _("Go to the next bookmark")},
+    { 0,                1, menuGotoPreviousBookmark,     wxT("menuGotoPreviousBookmark"),     _("Go To Previous Bookmark"),                 wxT("Shift-F2"),     wxITEM_NORMAL,    -1,                0,                     _("Go to the previous bookmark")},
+    { 0,                1, menuClearAllBookmarks,        wxT("menuClearAllBookmarks"),        _("Clear All Bookmarks"),                     0,                   wxITEM_NORMAL,    -1,                0,                     _("Clear all bookmarks")},
 
     { 0,                1, 0,                            0,                                   0,                                            0,                   wxITEM_SEPARATOR, -1,                0,                     0},
     { 0,                1, menuAdvanced,                 wxT("menuAdvanced"),                 _("Ad&vanced"),                               0,                   wxITEM_NORMAL,    -1,                &g_Menu_Edit_Advanced, 0},
@@ -3121,17 +3124,12 @@ void MadEditFrame::OnUpdateUI_MenuEditInsertDateTime(wxUpdateUIEvent& event)
 
 void MadEditFrame::OnUpdateUI_MenuEditToggleBookmark(wxUpdateUIEvent& event)
 {
-    event.Enable( g_ActiveMadEdit != NULL );
+    event.Enable(g_ActiveMadEdit != NULL);
 }
 
-void MadEditFrame::OnUpdateUI_MenuEditGotoPreviousBookmark(wxUpdateUIEvent& event)
+void MadEditFrame::OnUpdateUI_MenuEditBookmarkExist(wxUpdateUIEvent& event)
 {
-    event.Enable( g_ActiveMadEdit != NULL );
-}
-
-void MadEditFrame::OnUpdateUI_MenuEditGotoNextBookmark(wxUpdateUIEvent& event)
-{
-    event.Enable( g_ActiveMadEdit != NULL );
+    event.Enable(g_ActiveMadEdit != NULL && g_ActiveMadEdit->BookmarkExist());
 }
 
 void MadEditFrame::OnUpdateUI_Menu_CheckTextFile(wxUpdateUIEvent& event)
@@ -3847,7 +3845,7 @@ void MadEditFrame::OnEditInsertDateTime(wxCommandEvent& event)
 void MadEditFrame::OnEditToggleBookmark(wxCommandEvent& event)
 {
     if ( g_ActiveMadEdit )
-        g_ActiveMadEdit->SetBookmark();
+        g_ActiveMadEdit->ToggleBookmark();
 }
 
 void MadEditFrame::OnEditGotoNextBookmark(wxCommandEvent& event)
@@ -3860,6 +3858,12 @@ void MadEditFrame::OnEditGotoPreviousBookmark(wxCommandEvent& event)
 {
     if ( g_ActiveMadEdit )
         g_ActiveMadEdit->GotoPreviousBookmark();
+}
+
+void MadEditFrame::OnEditClearAllBookmarks(wxCommandEvent& event)
+{
+    if ( g_ActiveMadEdit )
+        g_ActiveMadEdit->ClearAllBookmarks();
 }
 
 void MadEditFrame::OnEditSortAscending(wxCommandEvent& event)
