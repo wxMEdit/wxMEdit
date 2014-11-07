@@ -55,6 +55,8 @@ wxstd.po.cpp
 ../src/plugin.h
 ../src/wxm_printout.cpp
 ../src/wxm_printout.h
+../src/xm/single_line_wxmedit.cpp
+../src/xm/single_line_wxmedit.h
 ../src/xm/wx_avoid_wxmsw_bug4373.h
 ../src/xm/wxm_encoding/encoding_def.h
 ../src/xm/wxm_encoding/doublebyte.cpp
