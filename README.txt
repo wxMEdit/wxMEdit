@@ -1,5 +1,5 @@
                       ==================================
-                                wxMEdit v2.9.8.2
+                                wxMEdit v2.9.8.3
                       ==================================
 About:
 -----
@@ -84,10 +84,15 @@ Syntax files, Locale files and Settings:
 
 ChangeLog:
 ----------
-wxMEdit v2.9.8.2:
-  1. fixed crash when saving a empty file.
-  2. updated Spanish translation.
-  3. updated translations of wxmedit.desktop.
+wxMEdit v2.9.8.3:
+  1. added right-click context menu for each tab.
+  2. added more information for Word Count Dialog.
+  3. added new feature: close files under given folder.
+  4. added new features: close to the left/right, close all but this.
+  5. added bookmark buttons to toolbar.
+  6. fixed crash when saving a empty file.
+  7. updated translations of wxmedit.desktop.
+  8. other minor changes and bug fixes.
 
 wxMEdit v2.9.8:
   1. added more choices for whether pasting as hex-string in hex-area when editing in hex-mode.

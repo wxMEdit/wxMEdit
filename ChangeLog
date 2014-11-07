@@ -1,3 +1,14 @@
+2014-11-08 00:19:48 +0800 JiaYanwei <wxmedit@gmail.com>
+
+	* wxMEdit v2.9.8.3:
+	 1. added right-click context menu for each tab.
+	 2. added more information for Word Count Dialog.
+	 3. added new feature: close files under given folder.
+	 4. added new features: close to the left/right, close all but this.
+	 5. added bookmark buttons to toolbar.
+	 6. other minor changes and bug fixes.
+
+
 2014-10-16 12:10:09 +0800 JiaYanwei <wxmedit@gmail.com>
 
 	* wxMEdit v2.9.8.2:
