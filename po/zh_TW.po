@@ -2409,7 +2409,7 @@ msgid "Insert date and time at current position"
 msgstr "插入日期、時間到目前位置"
 
 #: ../src/wxmedit_frame.cpp:1303
-msgid "Toggle Bookmark "
+msgid "Toggle Bookmark"
 msgstr "設定/取消書籤"
 
 #: ../src/wxmedit_frame.cpp:1303

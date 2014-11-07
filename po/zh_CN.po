@@ -2414,7 +2414,7 @@ msgid "Insert date and time at current position"
 msgstr "插入日期、时间到当前位置"
 
 #: ../src/wxmedit_frame.cpp:1303
-msgid "Toggle Bookmark "
+msgid "Toggle Bookmark"
 msgstr "设置/取消书签"
 
 #: ../src/wxmedit_frame.cpp:1303

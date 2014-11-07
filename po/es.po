@@ -2413,7 +2413,7 @@ msgid "Insert date and time at current position"
 msgstr "Inserta fecha y hora"
 
 #: ../src/wxmedit_frame.cpp:1303
-msgid "Toggle Bookmark "
+msgid "Toggle Bookmark"
 msgstr "Alternar Marcador"
 
 #: ../src/wxmedit_frame.cpp:1303
