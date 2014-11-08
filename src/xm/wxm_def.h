@@ -22,6 +22,7 @@
 # define EVT_MOUSE_CAPTURE_LOST(x) 
 # include <wx/event.h>
   typedef wxMouseEvent wxMouseCaptureLostEvent;
+# define wxDD_DIR_MUST_EXIST 0x0200
 #endif
 
 typedef std::vector<size_t> LineNumberList;
