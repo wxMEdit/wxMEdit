@@ -38,7 +38,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: wxMEdit 2.9.8\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-11-07 23:47+0800\n"
+"POT-Creation-Date: 2014-11-08 19:02+0800\n"
 "PO-Revision-Date: 2014-11-08 00:10+0800\n"
 "Last-Translator: JiaYanwei <wxmedit@gmail.com>\n"
 "Language-Team: wxMEdit <wxmedit@gmail.com>\n"
@@ -2255,7 +2255,7 @@ msgstr "保存所有文件(&V)"
 
 #: ../src/wxmedit_frame.cpp:1273
 msgid "Save all files"
-msgstr "保存全部文件"
+msgstr "保存所有文件"
 
 #: ../src/wxmedit_frame.cpp:1275
 msgid "&Reload File"
@@ -2274,20 +2274,20 @@ msgid "Close the file"
 msgstr "关闭文件"
 
 #: ../src/wxmedit_frame.cpp:1278
-msgid "Close All under &Folder..."
-msgstr "关闭该文件夹下所有文件(&F)..."
-
-#: ../src/wxmedit_frame.cpp:1278
-msgid "Close all files in given folder and in all the subfolders"
-msgstr "关闭指定文件夹及其子文件夹中的所有文件"
-
-#: ../src/wxmedit_frame.cpp:1279
 msgid "C&lose All"
 msgstr "关闭所有文件(&L)"
 
-#: ../src/wxmedit_frame.cpp:1279
+#: ../src/wxmedit_frame.cpp:1278
 msgid "Close all files"
-msgstr "关闭全部文件"
+msgstr "关闭所有文件"
+
+#: ../src/wxmedit_frame.cpp:1279
+msgid "Close All under &Folder..."
+msgstr "关闭指定文件夹下所有文件(&F)..."
+
+#: ../src/wxmedit_frame.cpp:1279
+msgid "Close all files in given folder and in all the subfolders"
+msgstr "关闭指定文件夹及其子文件夹中的所有文件"
 
 #: ../src/wxmedit_frame.cpp:1280
 msgid "Close &More"
@@ -2298,24 +2298,24 @@ msgid "Close All &BUT This"
 msgstr "关闭所有其他文件"
 
 #: ../src/wxmedit_frame.cpp:1281
-msgid "Close all files but this"
-msgstr "关闭除当前标签外的所有文件"
+msgid "Close all files except the current one"
+msgstr "关闭除当前文件外的所有文件"
 
 #: ../src/wxmedit_frame.cpp:1282
 msgid "Close All To The &Left"
-msgstr "关闭标签左侧的所有文件"
+msgstr "关闭左侧的所有文件"
 
 #: ../src/wxmedit_frame.cpp:1282
-msgid "Close all files to the left"
-msgstr "关闭标签左侧的所有文件"
+msgid "Close all files at the left side of current one"
+msgstr "关闭当前文件左侧的所有文件"
 
 #: ../src/wxmedit_frame.cpp:1283
 msgid "Close All To The &Right"
-msgstr "关闭标签右侧的所有文件"
+msgstr "关闭右侧的所有文件"
 
 #: ../src/wxmedit_frame.cpp:1283
-msgid "Close all files to the right"
-msgstr "关闭标签右侧的所有文件"
+msgid "Close all files at the right side of current one"
+msgstr "关闭当前文件右侧的所有文件"
 
 #: ../src/wxmedit_frame.cpp:1285
 msgid "Page Set&up..."
@@ -2744,7 +2744,7 @@ msgid "Toggle Bookmark"
 msgstr "设置/取消书签"
 
 #: ../src/wxmedit_frame.cpp:1392
-msgid "Toggle Bookmark at current line"
+msgid "Toggle bookmark at current line"
 msgstr "在当前行设置/取消书签"
 
 #: ../src/wxmedit_frame.cpp:1393 ../src/wxmedit_frame.cpp:2211
@@ -2768,8 +2768,8 @@ msgid "Clear All Bookmarks"
 msgstr "清除所有书签"
 
 #: ../src/wxmedit_frame.cpp:1395
-msgid "Clear all bookmarks"
-msgstr "清除所有书签"
+msgid "Clear all bookmarks from current file"
+msgstr "清除当前文件中的所有书签"
 
 #: ../src/wxmedit_frame.cpp:1398
 msgid "&View"
@@ -3381,7 +3381,7 @@ msgstr "打开文件"
 
 #: ../src/wxmedit_frame.cpp:2182
 msgid "Save All Files"
-msgstr "保存全部的文件"
+msgstr "保存所有文件"
 
 #: ../src/wxmedit_frame.cpp:2183
 msgid "Close File"
@@ -3389,7 +3389,7 @@ msgstr "关闭文件"
 
 #: ../src/wxmedit_frame.cpp:2184
 msgid "Close All Files"
-msgstr "关闭全部的文件"
+msgstr "关闭所有文件"
 
 #: ../src/wxmedit_frame.cpp:2187
 msgid "Undo"
@@ -3508,7 +3508,7 @@ msgstr "没有 Unicode BOM (字节序标记)"
 
 #: ../src/wxmedit_frame.cpp:3588
 msgid "Close all files in this foler and in all the subfolers:"
-msgstr "关闭此文件夹下及其子文件夹中的所有文件："
+msgstr "关闭这个文件夹及其子文件夹中的所有文件："
 
 #: ../src/wxmedit_frame.cpp:3707
 msgid ""
@@ -4612,6 +4612,3 @@ msgstr "从不"
 #: ../src/xm/wx_recent_list.cpp:75
 msgid "[EMPTY]"
 msgstr "[空]"
-
-#~ msgid "Fullwidth Characters"
-#~ msgstr "全角字符数"

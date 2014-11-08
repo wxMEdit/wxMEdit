@@ -38,7 +38,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: wxMEdit 2.9.8\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-11-07 23:47+0800\n"
+"POT-Creation-Date: 2014-11-08 19:02+0800\n"
 "PO-Revision-Date: 2014-09-19 20:28-0400\n"
 "Last-Translator: \n"
 "Language-Team:  <carlos1994sanchez@gmail.com>\n"
@@ -2273,20 +2273,20 @@ msgid "Close the file"
 msgstr "Cierra archivo"
 
 #: ../src/wxmedit_frame.cpp:1278
-msgid "Close All under &Folder..."
-msgstr ""
-
-#: ../src/wxmedit_frame.cpp:1278
-msgid "Close all files in given folder and in all the subfolders"
-msgstr ""
-
-#: ../src/wxmedit_frame.cpp:1279
 msgid "C&lose All"
 msgstr "C&errar todo"
 
-#: ../src/wxmedit_frame.cpp:1279
+#: ../src/wxmedit_frame.cpp:1278
 msgid "Close all files"
 msgstr "Cierra todos los archivos"
+
+#: ../src/wxmedit_frame.cpp:1279
+msgid "Close All under &Folder..."
+msgstr ""
+
+#: ../src/wxmedit_frame.cpp:1279
+msgid "Close all files in given folder and in all the subfolders"
+msgstr ""
 
 #: ../src/wxmedit_frame.cpp:1280
 msgid "Close &More"
@@ -2297,7 +2297,7 @@ msgid "Close All &BUT This"
 msgstr ""
 
 #: ../src/wxmedit_frame.cpp:1281
-msgid "Close all files but this"
+msgid "Close all files except the current one"
 msgstr ""
 
 #: ../src/wxmedit_frame.cpp:1282
@@ -2305,7 +2305,7 @@ msgid "Close All To The &Left"
 msgstr ""
 
 #: ../src/wxmedit_frame.cpp:1282
-msgid "Close all files to the left"
+msgid "Close all files at the left side of current one"
 msgstr ""
 
 #: ../src/wxmedit_frame.cpp:1283
@@ -2313,7 +2313,7 @@ msgid "Close All To The &Right"
 msgstr ""
 
 #: ../src/wxmedit_frame.cpp:1283
-msgid "Close all files to the right"
+msgid "Close all files at the right side of current one"
 msgstr ""
 
 #: ../src/wxmedit_frame.cpp:1285
@@ -2744,7 +2744,7 @@ msgid "Toggle Bookmark"
 msgstr "Alternar Marcador"
 
 #: ../src/wxmedit_frame.cpp:1392
-msgid "Toggle Bookmark at current line"
+msgid "Toggle bookmark at current line"
 msgstr "Cambia marcador en línea actual"
 
 #: ../src/wxmedit_frame.cpp:1393 ../src/wxmedit_frame.cpp:2211
@@ -2768,7 +2768,7 @@ msgid "Clear All Bookmarks"
 msgstr ""
 
 #: ../src/wxmedit_frame.cpp:1395
-msgid "Clear all bookmarks"
+msgid "Clear all bookmarks from current file"
 msgstr ""
 
 #: ../src/wxmedit_frame.cpp:1398
@@ -2782,7 +2782,7 @@ msgstr "C&odificación: "
 
 #: ../src/wxmedit_frame.cpp:1400
 msgid "All "
-msgstr "All "
+msgstr ""
 
 #: ../src/wxmedit_frame.cpp:1402 ../src/wxmedit_frame.cpp:3218
 #: ../src/wxmedit_frame.cpp:3223
