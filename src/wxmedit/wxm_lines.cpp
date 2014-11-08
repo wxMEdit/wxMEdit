@@ -2882,8 +2882,8 @@ bool MadLines::SaveToFile(const wxString &filename, const wxString &tempdir)
     }
 
     boost::scoped_ptr<MadSyntax> tmp_Syntax(GetFileSyntax(filename, buf, (int)sz));
-    if(tmp_Syntax->m_Title != m_Syntax->m_Title)
-        m_MadEdit->SetSyntax(tmp_Syntax->m_Title);
+    if(tmp_Syntax->GetTitle() != m_Syntax->GetTitle())
+        m_MadEdit->SetSyntax(tmp_Syntax->GetTitle());
 
     if(m_FileData == NULL)
     {

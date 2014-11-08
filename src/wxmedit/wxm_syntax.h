@@ -9,6 +9,9 @@
 #ifndef _WXM_SYNTAX_H_
 #define _WXM_SYNTAX_H_
 
+#include "ucs4_t.h"
+#include "wxm_lines.h"
+
 #include <wx/wxprec.h>
 
 #ifdef __BORLANDC__
@@ -24,11 +27,9 @@
 #include <wx/colour.h>
 #include <wx/string.h>
 
+#include <map>
 #include <vector>
 using std::vector;
-
-#include "ucs4_t.h"
-#include "wxm_lines.h"
 
 
 WX_DECLARE_HASH_SET( wxString, wxStringHash, wxStringEqual, MadKeywordSet );
@@ -142,8 +143,9 @@ private:
     void  SetStyle(const wxString &value, MadFontStyles &fs);
     void  SetInRange(const wxString &value, vector < int > &ir);
 
-public:
     wxString            m_Title;
+public:
+    wxString            GetTitle() { return wxGetTranslation(m_Title); }
     bool                m_CaseSensitive;
     wxString            m_Delimiter;
     vector < wxString > m_LineComment;

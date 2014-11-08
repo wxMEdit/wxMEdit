@@ -295,10 +295,7 @@ WXMHighlightingDialog::WXMHighlightingDialog(wxWindow* parent,wxWindowID id,cons
         size_t cnt=MadSyntax::GetSyntaxCount();
         for(size_t i=0;i<cnt;i++)
         {
-            wxString title=MadSyntax::GetSyntaxTitle(i);
-			wxString l10n_title = wxGetTranslation(title);
-			m_l10n_syntitle_map[l10n_title] = title;
-            WxListBoxSyntax->Append(l10n_title);
+            WxListBoxSyntax->Append(MadSyntax::GetSyntaxTitle(i));
         }
     }
 
@@ -368,8 +365,7 @@ void WXMHighlightingDialog::WXMHighlightingDialogClose(wxCloseEvent& event)
 
 void WXMHighlightingDialog::WxListBoxSyntaxSelected(wxCommandEvent& event)
 {
-    wxString l10n_title=WxListBoxSyntax->GetString(event.GetSelection());
-	wxString title = m_l10n_syntitle_map[l10n_title];
+    wxString title = WxListBoxSyntax->GetString(event.GetSelection());
     g_Syntax=GetSyntax(title);
 
     // build keyword list
@@ -721,12 +717,12 @@ void WXMHighlightingDialog::WXMHighlightingDialogActivate(wxActivateEvent& event
 
 MadSyntax *WXMHighlightingDialog::GetSyntax(const wxString &title)
 {
-    if(m_Syntax && m_Syntax->m_Title.CmpNoCase(title)==0)
+    if (m_Syntax && m_Syntax->GetTitle().CmpNoCase(title)==0)
         return m_Syntax;
 
-    for(size_t i=0; i<m_ModifiedSyntax.size(); ++i)
+    for (size_t i=0; i<m_ModifiedSyntax.size(); ++i)
     {
-        if(m_ModifiedSyntax[i]->m_Title.CmpNoCase(title)==0)
+        if (m_ModifiedSyntax[i]->GetTitle().CmpNoCase(title) == 0)
             return m_ModifiedSyntax[i];
     }
 
@@ -840,30 +836,30 @@ void WXMHighlightingDialog::RepaintKeyword()
 
 void WXMHighlightingDialog::FreeSyntax(bool restore)
 {
-    if(restore) // restore the original syntax
+    if (restore) // restore the original syntax
     {
-        for(size_t i=0; i<m_ModifiedSyntax.size(); ++i)
+        for (size_t i=0; i<m_ModifiedSyntax.size(); ++i)
         {
-            MadSyntax *syn=MadSyntax::GetSyntaxByTitle(m_ModifiedSyntax[i]->m_Title);
+            MadSyntax *syn = MadSyntax::GetSyntaxByTitle(m_ModifiedSyntax[i]->GetTitle());
             ApplySyntaxAttributes(syn);
             delete syn;
         }
     }
     else // write the modified syntax back
     {
-        for(size_t i=0; i<m_ModifiedSyntax.size(); ++i)
+        for (size_t i=0; i<m_ModifiedSyntax.size(); ++i)
         {
             m_ModifiedSyntax[i]->SaveAttributes();
         }
     }
 
-    if(m_Syntax) 
+    if (m_Syntax) 
     {
         delete m_Syntax;
         m_Syntax=NULL;
     }
 
-    for(size_t i=0; i<m_ModifiedSyntax.size(); ++i)
+    for (size_t i=0; i<m_ModifiedSyntax.size(); ++i)
     {
         delete m_ModifiedSyntax[i];
     }

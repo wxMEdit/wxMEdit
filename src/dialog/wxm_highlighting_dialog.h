@@ -113,7 +113,6 @@ class WXMHighlightingDialog: public wxDialogWrapper
 		MadSyntax *m_Syntax;
 		vector<MadSyntax*> m_ModifiedSyntax;
 		wxColourDialog *m_ColourDialog;
-		std::map<wxString, wxString> m_l10n_syntitle_map;
 
 		wxColour GetColourFromUser(const wxColour& colInit, const wxString& caption);
 	private:

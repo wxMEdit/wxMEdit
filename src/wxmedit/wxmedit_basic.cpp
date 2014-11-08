@@ -132,7 +132,7 @@ const int CRLF_Points2[CRLF_Points2_Count+1][2]=
 
 void MadEdit::SetSyntax(const wxString &title)
 {
-    if(m_Syntax->m_Title != title)
+    if(m_Syntax->GetTitle() != title)
     {
         delete m_Syntax;
         m_Syntax = MadSyntax::GetSyntaxByTitle(title);
@@ -160,7 +160,7 @@ void MadEdit::SetSyntax(const wxString &title)
 
 void MadEdit::ApplySyntaxAttributes(MadSyntax *syn, bool matchTitle)
 {
-    if(!matchTitle || syn->m_Title==m_Syntax->m_Title)
+    if(!matchTitle || syn->GetTitle()==m_Syntax->GetTitle())
     {
         m_Syntax->AssignAttributes(syn);
         if(m_EditMode==emHexMode && m_HexDigitBitmap)

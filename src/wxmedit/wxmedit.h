@@ -625,7 +625,7 @@ public:
 public: // basic functions
     void SetSyntax(const wxString &title);
     MadSyntax* GetSyntax() { return m_Syntax; }
-    wxString GetSyntaxTitle() { return m_Syntax->m_Title; }
+    wxString GetSyntaxTitle() { return m_Syntax->GetTitle(); }
     void ApplySyntaxAttributes(MadSyntax *syn, bool matchTitle);
     void LoadDefaultSyntaxScheme() { MadSyntax::LoadScheme(wxT("Default"), m_Syntax); }
 

@@ -54,6 +54,7 @@ StringMap g_ExtSynfileMap;
 StringMap g_FirstlineSynfileMap;
 StringMap g_FilenameSynfileMap;
 
+std::map<wxString, wxString> g_l10n_syntitle_map;
 
 void LoadListFile(const wxString &listfile, StringMap &map, bool noCase)
 {
@@ -169,6 +170,9 @@ void MadSyntax::LoadSyntaxFiles()
 
                     }
 
+                    wxString l10n_title = wxGetTranslation(title);
+                    g_l10n_syntitle_map[l10n_title] = title;
+
                     break;
                 }
 
@@ -242,7 +246,7 @@ wxString MadSyntax::GetSyntaxTitle(size_t index)
 
     if(index<g_TitleSynfileTable.size())
     {
-        return g_TitleSynfileTable[index].first;
+        return wxGetTranslation(g_TitleSynfileTable[index].first);
     }
     return wxEmptyString;
 }
@@ -258,10 +262,11 @@ wxString MadSyntax::GetSyntaxFile(size_t index)
     return wxEmptyString;
 }
 
-wxString MadSyntax::GetSyntaxFileByTitle(const wxString &title)
+wxString MadSyntax::GetSyntaxFileByTitle(const wxString& l10n_title)
 {
     if(!s_Loaded) LoadSyntaxFiles();
 
+    wxString title = g_l10n_syntitle_map[l10n_title];
     for(size_t i=0;i<g_TitleSynfileTable.size();i++)
     {
         if(g_TitleSynfileTable[i].first==title)
