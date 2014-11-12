@@ -462,10 +462,6 @@ protected:
     void SelectWordFromCaretPos(wxString *ws);
     void SelectLineFromCaretPos(wxString *ws=NULL);
 
-    bool PutTextToClipboard(const wxString &ws);
-    bool PutColumnDataToClipboard(const wxString &ws, int linecount);
-    bool PutRawBytesToClipboard(const std::string& cs);
-
     // return linecount
     int TranslateText(const wxChar* pwcs, size_t count, vector<ucs4_t>& ucs, bool passNewLine);
     // return linecount
@@ -473,7 +469,12 @@ protected:
     // return linecount
     int GetColumnDataFromClipboard(vector<ucs4_t>& ucs);
 
+    static bool PutColumnDataToClipboard(const wxString &ws, int linecount);
+    static bool PutRawBytesToClipboard(const std::string& cs);
+
 public:
+    static bool PutTextToClipboard(const wxString &ws);
+
     bool GetRawBytesFromClipboardDirectly(vector<char>& cs);
     void ConvertToRawBytesFromUnicodeText(vector<char>& cs, const vector<ucs4_t>& ucs);
 

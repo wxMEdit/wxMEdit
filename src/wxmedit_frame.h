@@ -89,6 +89,7 @@ public:
     wxTreeCtrl *m_FindInFilesResults;
 
     void OnUpdateUI_MenuFile_CheckCount(wxUpdateUIEvent& event);
+    void OnUpdateUI_MenuFile_CheckNamed(wxUpdateUIEvent& event);
     void OnUpdateUI_MenuFileReload(wxUpdateUIEvent& event);
     void OnUpdateUI_MenuFileRecentFiles(wxUpdateUIEvent& event);
 
@@ -159,6 +160,9 @@ public:
     void OnFileCloseAllButThis(wxCommandEvent& event);
     void OnFileCloseAllToTheLeft(wxCommandEvent& event);
     void OnFileCloseAllToTheRight(wxCommandEvent& event);
+    void OnFileCopyFullPath(wxCommandEvent& event);
+    void OnFileCopyFilename(wxCommandEvent& event);
+    void OnFileCopyFileDir(wxCommandEvent& event);
     void OnFilePageSetup(wxCommandEvent& event);
     void OnFilePrintPreview(wxCommandEvent& event);
     void OnFilePrint(wxCommandEvent& event);
@@ -364,6 +368,10 @@ enum { // menu id
     menuCloseAllButThis,
     menuCloseAllToTheLeft,
     menuCloseAllToTheRight,
+    menuCopyFilePath,
+    menuCopyFullPath,
+    menuCopyFilename,
+    menuCopyFileDir,
     menuReload,
     menuRecentFiles,
 

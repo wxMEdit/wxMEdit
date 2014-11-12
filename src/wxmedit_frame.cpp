@@ -218,7 +218,8 @@ wxMenu *g_Menu_View = NULL;
 wxMenu *g_Menu_Tools = NULL;
 wxMenu *g_Menu_Window = NULL;
 wxMenu *g_Menu_Help = NULL;
-wxMenu *g_Menu_File_More = NULL;
+wxMenu *g_Menu_File_CloseMore = NULL;
+wxMenu *g_Menu_File_CopyPath = NULL;
 wxMenu *g_Menu_File_RecentFiles = NULL;
 wxMenu *g_Menu_Edit_Sort = NULL;
 wxMenu *g_Menu_Edit_Advanced = NULL;
@@ -1027,9 +1028,14 @@ BEGIN_EVENT_TABLE(MadEditFrame,wxFrame)
 	EVT_UPDATE_UI(menuClose, MadEditFrame::OnUpdateUI_MenuFile_CheckCount)
 	EVT_UPDATE_UI(menuCloseByPath, MadEditFrame::OnUpdateUI_MenuFile_CheckCount)
 	EVT_UPDATE_UI(menuCloseAll, MadEditFrame::OnUpdateUI_MenuFile_CheckCount)
+	EVT_UPDATE_UI(menuCloseMore, MadEditFrame::OnUpdateUI_MenuFile_CheckCount)
 	EVT_UPDATE_UI(menuCloseAllButThis, MadEditFrame::OnUpdateUI_MenuFile_CheckCount)
 	EVT_UPDATE_UI(menuCloseAllToTheLeft, MadEditFrame::OnUpdateUI_MenuFile_CheckCount)
 	EVT_UPDATE_UI(menuCloseAllToTheRight, MadEditFrame::OnUpdateUI_MenuFile_CheckCount)
+	EVT_UPDATE_UI(menuCopyFilePath, MadEditFrame::OnUpdateUI_MenuFile_CheckNamed)
+	EVT_UPDATE_UI(menuCopyFullPath, MadEditFrame::OnUpdateUI_MenuFile_CheckNamed)
+	EVT_UPDATE_UI(menuCopyFilename, MadEditFrame::OnUpdateUI_MenuFile_CheckNamed)
+	EVT_UPDATE_UI(menuCopyFileDir, MadEditFrame::OnUpdateUI_MenuFile_CheckNamed)
 	EVT_UPDATE_UI(menuPrintPreview, MadEditFrame::OnUpdateUI_MenuFile_CheckCount)
 	EVT_UPDATE_UI(menuPrint, MadEditFrame::OnUpdateUI_MenuFile_CheckCount)
 	EVT_UPDATE_UI(menuRecentFiles, MadEditFrame::OnUpdateUI_MenuFileRecentFiles)
@@ -1046,10 +1052,6 @@ BEGIN_EVENT_TABLE(MadEditFrame,wxFrame)
 	EVT_UPDATE_UI(menuSelectAll, MadEditFrame::OnUpdateUI_Menu_CheckSize)
 	EVT_UPDATE_UI(menuInsertTabChar, MadEditFrame::OnUpdateUI_MenuEditInsertTabChar)
 	EVT_UPDATE_UI(menuInsertDateTime, MadEditFrame::OnUpdateUI_MenuEditInsertDateTime)
-	EVT_UPDATE_UI(menuToggleBookmark, MadEditFrame::OnUpdateUI_MenuEditToggleBookmark)
-	EVT_UPDATE_UI(menuGotoNextBookmark, MadEditFrame::OnUpdateUI_MenuEditBookmarkExist)
-	EVT_UPDATE_UI(menuGotoPreviousBookmark, MadEditFrame::OnUpdateUI_MenuEditBookmarkExist)
-	EVT_UPDATE_UI(menuClearAllBookmarks, MadEditFrame::OnUpdateUI_MenuEditBookmarkExist)
 	EVT_UPDATE_UI(menuSortAscending, MadEditFrame::OnUpdateUI_Menu_CheckTextFile)
 	EVT_UPDATE_UI(menuSortDescending, MadEditFrame::OnUpdateUI_Menu_CheckTextFile)
 	EVT_UPDATE_UI(menuSortAscendingCase, MadEditFrame::OnUpdateUI_Menu_CheckTextFile)
@@ -1082,6 +1084,10 @@ BEGIN_EVENT_TABLE(MadEditFrame,wxFrame)
 	EVT_UPDATE_UI(menuGoToPosition, MadEditFrame::OnUpdateUI_MenuSearchGoTo)
 	EVT_UPDATE_UI(menuLeftBrace, MadEditFrame::OnUpdateUI_MenuSearchGoToBrace)
 	EVT_UPDATE_UI(menuRightBrace, MadEditFrame::OnUpdateUI_MenuSearchGoToBrace)
+	EVT_UPDATE_UI(menuToggleBookmark, MadEditFrame::OnUpdateUI_MenuEditToggleBookmark)
+	EVT_UPDATE_UI(menuGotoNextBookmark, MadEditFrame::OnUpdateUI_MenuEditBookmarkExist)
+	EVT_UPDATE_UI(menuGotoPreviousBookmark, MadEditFrame::OnUpdateUI_MenuEditBookmarkExist)
+	EVT_UPDATE_UI(menuClearAllBookmarks, MadEditFrame::OnUpdateUI_MenuEditBookmarkExist)
 	// view
 	EVT_UPDATE_UI(menuEncoding, MadEditFrame::OnUpdateUI_MenuViewEncoding)
 	EVT_UPDATE_UI(menuSyntax, MadEditFrame::OnUpdateUI_MenuViewSyntax)
@@ -1136,6 +1142,9 @@ BEGIN_EVENT_TABLE(MadEditFrame,wxFrame)
 	EVT_MENU(menuCloseAllButThis, MadEditFrame::OnFileCloseAllButThis)
 	EVT_MENU(menuCloseAllToTheLeft, MadEditFrame::OnFileCloseAllToTheLeft)
 	EVT_MENU(menuCloseAllToTheRight, MadEditFrame::OnFileCloseAllToTheRight)
+	EVT_MENU(menuCopyFullPath, MadEditFrame::OnFileCopyFullPath)
+	EVT_MENU(menuCopyFilename, MadEditFrame::OnFileCopyFilename)
+	EVT_MENU(menuCopyFileDir, MadEditFrame::OnFileCopyFileDir)
 	EVT_MENU(menuPageSetup, MadEditFrame::OnFilePageSetup)
 	EVT_MENU(menuPrintPreview, MadEditFrame::OnFilePrintPreview)
 	EVT_MENU(menuPrint, MadEditFrame::OnFilePrint)
@@ -1277,10 +1286,15 @@ CommandData CommandTable[]=
     { 0, 1, menuClose,              wxT("menuClose"),              _("&Close File"),                wxT("Ctrl-F4"),      wxITEM_NORMAL,    fileclose_xpm_idx, 0,                        _("Close the file")},
     { 0, 1, menuCloseAll,           wxT("menuCloseAll"),           _("C&lose All"),                 wxT(""),             wxITEM_NORMAL,    closeall_xpm_idx,  0,                        _("Close all files")},
     { 0, 1, menuCloseByPath,        wxT("menuCloseByPath"),        _("Close All under &Folder..."), wxT(""),             wxITEM_NORMAL,    -1,                0,                        _("Close all files in given folder and in all the subfolders")},
-    { 0, 1, menuCloseMore,          wxT("menuCloseMore"),          _("Close &More"),                0,                   wxITEM_NORMAL,    -1,                &g_Menu_File_More,    0 },
+    { 0, 1, menuCloseMore,          wxT("menuCloseMore"),          _("Close &More"),                0,                   wxITEM_NORMAL,    -1,                &g_Menu_File_CloseMore,    0 },
     { 0, 2, menuCloseAllButThis,    wxT("menuCloseAllButThis"),    _("Close All &BUT This"),        wxT(""),             wxITEM_NORMAL,    -1,                0,                        _("Close all files except the current one")},
     { 0, 2, menuCloseAllToTheLeft,  wxT("menuCloseAllToTheLeft"),  _("Close All To The &Left"),     wxT(""),             wxITEM_NORMAL,    -1,                0,                        _("Close all files at the left side of current one")},
     { 0, 2, menuCloseAllToTheRight, wxT("menuCloseAllToTheRight"), _("Close All To The &Right"),    wxT(""),             wxITEM_NORMAL,    -1,                0,                        _("Close all files at the right side of current one")},
+    { 0, 1, 0,                      0,                             0,                               0,                   wxITEM_SEPARATOR, -1,                0,                        0},
+    { 0, 1, menuCopyFilePath,       wxT("menuCopyFilePath"),       _("Copy File Pat&h"),             0,                   wxITEM_NORMAL,    -1,                &g_Menu_File_CopyPath,    0 },
+    { 0, 2, menuCopyFullPath,       wxT("menuCopyFullPath"),       _("Copy &Full Path"),            wxT(""),             wxITEM_NORMAL,    -1,                0,                        _("Copy full file path to clipboard")},
+    { 0, 2, menuCopyFilename,       wxT("menuCopyFilename"),       _("Copy File &Name"),            wxT(""),             wxITEM_NORMAL,    -1,                0,                        _("Copy file name to clipboard")},
+    { 0, 2, menuCopyFileDir,        wxT("menuCopyFileDir"),        _("Copy Containing &Directory"), wxT(""),             wxITEM_NORMAL,    -1,                0,                        _("Copy containing directory to clipboard")},
     { 0, 1, 0,                      0,                             0,                               0,                   wxITEM_SEPARATOR, -1,                0,                        0},
     { 0, 1, menuPageSetup,          wxT("menuPageSetup"),          _("Page Set&up..."),             wxT(""),             wxITEM_NORMAL,    -1,                0,                        _("Setup the pages for printing")},
     { 0, 1, menuPrintPreview,       wxT("menuPrintPreview"),       _("Print Previe&w..."),          wxT(""),             wxITEM_NORMAL,    preview_xpm_idx,   0,                        _("Preview the result of printing")},
@@ -1948,7 +1962,8 @@ void MadEditFrame::CreateGUIControls()
     g_Menu_Tools = new wxMenu(0);
     g_Menu_Window = new wxMenu(0);
     g_Menu_Help = new wxMenu(0);
-    g_Menu_File_More = new wxMenu(0);
+    g_Menu_File_CloseMore = new wxMenu(0);
+    g_Menu_File_CopyPath = new wxMenu(0);
     g_Menu_File_RecentFiles = new wxMenu(0);
     g_Menu_Edit_Sort = new wxMenu(0);
     g_Menu_Edit_Advanced = new wxMenu(0);
@@ -2026,7 +2041,8 @@ void MadEditFrame::CreateGUIControls()
 
     // right click menu of tab
     int FileMenuInTabIDs[] = { menuSave, menuReload, 0, menuClose, menuCloseAll, menuCloseAllButThis,
-                               menuCloseAllToTheLeft, menuCloseAllToTheRight, 0, menuPrintPreview, menuPrint };
+                               menuCloseAllToTheLeft, menuCloseAllToTheRight, 0, menuCopyFullPath,
+                               menuCopyFilename, menuCopyFileDir, 0, menuPrintPreview, menuPrint };
     BOOST_FOREACH(int itemid, FileMenuInTabIDs)
     {
         if (itemid == 0)
@@ -3082,6 +3098,11 @@ void MadEditFrame::OnUpdateUI_MenuFile_CheckCount(wxUpdateUIEvent& event)
     event.Enable(g_ActiveMadEdit!=NULL);
 }
 
+void MadEditFrame::OnUpdateUI_MenuFile_CheckNamed(wxUpdateUIEvent& event)
+{
+    event.Enable(g_ActiveMadEdit!=NULL && !g_ActiveMadEdit->GetFileName().empty());
+}
+
 void MadEditFrame::OnUpdateUI_MenuFileReload(wxUpdateUIEvent& event)
 {
     event.Enable(g_ActiveMadEdit!=NULL &&
@@ -3652,6 +3673,22 @@ void MadEditFrame::OnFileCloseAllToTheRight(wxCommandEvent& event)
     {
         CloseFile(pgid);
     }
+}
+
+
+void MadEditFrame::OnFileCopyFullPath(wxCommandEvent& event)
+{
+    MadEdit::PutTextToClipboard(g_ActiveMadEdit->GetFileName());
+}
+
+void MadEditFrame::OnFileCopyFilename(wxCommandEvent& event)
+{
+    MadEdit::PutTextToClipboard(wxFileName(g_ActiveMadEdit->GetFileName()).GetFullName());
+}
+
+void MadEditFrame::OnFileCopyFileDir(wxCommandEvent& event)
+{
+    MadEdit::PutTextToClipboard(wxFileName(g_ActiveMadEdit->GetFileName()).GetPath());
 }
 
 
