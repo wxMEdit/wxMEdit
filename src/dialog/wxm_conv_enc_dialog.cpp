@@ -80,9 +80,7 @@ WXMConvEncDialog::WXMConvEncDialog(wxWindow* parent,wxWindowID id,const wxPoint&
 	size_t cnt=wxm::WXMEncodingManager::Instance().GetEncodingsCount();
 	for(size_t i=0;i<cnt;i++)
 	{
-		wxString encname = wxm::WXMEncodingManager::Instance().GetEncodingName(i);
-		wxString aliases = wxm::WXMEncodingManager::Instance().GetEncodingAliases(i);
-		WxComboBoxEncoding->Append(encname + aliases);
+		WxComboBoxEncoding->Append(wxm::WXMEncodingManager::Instance().GetEncodingNameWithAliases(i));
 	}
 	BoxSizer1->Fit(this);
 	BoxSizer1->SetSizeHints(this);
@@ -120,6 +118,5 @@ void WXMConvEncDialog::WXMConvEncDialogClose(wxCloseEvent& event)
 
 wxString WXMConvEncDialog::GetEncoding() const
 {
-	wxString wxs = WxComboBoxEncoding->GetValue();
-	return wxs.substr(0, wxs.find(wxT(' ')));
+	return wxm::WXMEncodingManager::ExtractEncodingName(WxComboBoxEncoding->GetValue());
 }

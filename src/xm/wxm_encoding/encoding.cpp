@@ -98,7 +98,7 @@ void WXMEncodingManager::AddEncoding(const std::string& encname, WXMEncodingID e
 
 	wxString aliases_tmp = aliases.empty()? aliases: wxT("(") + aliases + wxT(")");
 	m_wxencdesc_map[encid] = desc + aliases_tmp;
-	m_wxencalias_map[encid] = wxT(" ") + aliases_tmp;
+	m_wxencaliases_map[encid] = wxT(" ") + aliases_tmp;
 
 	std::string icuname = GetEncodingICUName(innername.c_str());
 	if (exact && !icuname.empty())
@@ -119,7 +119,7 @@ void WXMEncodingManager::DoInit()
 	AddEncoding("ISO-8859-8", ENC_ISO_8859_8, _("Hebrew "),                       wxT("hebrew"));
 	AddEncoding("ISO-8859-9", ENC_ISO_8859_9, _("Turkish "),                      wxT("latin5"));
 	AddEncoding("ISO-8859-10", ENC_ISO_8859_10, _("Nordic "),                     wxT("latin6"));
-	AddEncoding("ISO-8859-11", ENC_ISO_8859_11, _("Thai "));
+	AddEncoding("ISO-8859-11", ENC_ISO_8859_11, _("Thai "),                       wxT("TIS-620*"));
 	AddEncoding("ISO-8859-13", ENC_ISO_8859_13, _("Baltic "),                     wxT("latin7"));
 	AddEncoding("ISO-8859-14", ENC_ISO_8859_14, _("Celtic "),                     wxT("latin8"));
 	AddEncoding("ISO-8859-15", ENC_ISO_8859_15, _("Western European with Euro "), wxT("latin9"));
@@ -341,7 +341,7 @@ wxString WXMEncodingManager::GetEncodingDescription(ssize_t idx)
 
 wxString WXMEncodingManager::GetEncodingAliases(ssize_t idx)
 {
-	return xm::wrap_map(m_wxencalias_map).get(IdxToEncoding(idx), wxString());
+	return xm::wrap_map(m_wxencaliases_map).get(IdxToEncoding(idx), wxString());
 }
 
 wxString WXMEncodingManager::GetEncodingFontName(ssize_t idx)
@@ -468,7 +468,7 @@ void WXMEncoding::Create(ssize_t idx)
 	m_enc = WXMEncodingManager::Instance().NameToEncoding(m_name);
 	m_innername = WXMEncodingManager::Instance().GetEncodingInnerName(idx);
 	m_desc = WXMEncodingManager::Instance().GetEncodingDescription(idx);
-	m_aliases = WXMEncodingManager::Instance().GetEncodingAliases(idx);
+	m_name_with_aliases = WXMEncodingManager::Instance().GetEncodingNameWithAliases(idx);
 	m_fontname = WXMEncodingManager::Instance().GetEncodingFontName(m_idx);
 	m_simp_unicode = WXMEncodingManager::IsSimpleUnicodeEncoding(m_enc);
 }

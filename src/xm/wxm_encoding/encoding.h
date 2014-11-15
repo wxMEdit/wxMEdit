@@ -60,6 +60,11 @@ struct WXMEncodingManager: private boost::noncopyable
 		return false;
 	}
 
+	static wxString ExtractEncodingName(const wxString& name_with_aliases)
+	{
+		return name_with_aliases.substr(0, name_with_aliases.find(wxT(' ')));
+	}
+
 	void InitEncodings()
 	{
 		if (!m_initialized)
@@ -83,7 +88,7 @@ public:
 	wxString GetEncodingName(ssize_t idx);
 	std::string GetEncodingInnerName(ssize_t idx);
 	wxString GetEncodingDescription(ssize_t idx);
-	wxString GetEncodingAliases(ssize_t idx);
+	wxString GetEncodingNameWithAliases(ssize_t idx) { return GetEncodingName(idx) + GetEncodingAliases(idx); }
 	wxString GetEncodingFontName(ssize_t idx);
 	wxString EncodingToName(WXMEncodingID enc);
 	WXMEncodingID NameToEncoding(const wxString &name);
@@ -95,6 +100,7 @@ public:
 	std::vector<WXMEncodingGroupID> GetEncodingGroups(ssize_t idx);
 	wxString EncodingGroupToName(WXMEncodingGroupID gid);
 private:
+	wxString GetEncodingAliases(ssize_t idx);
 
 	WXMEncodingID IdxToEncoding(ssize_t idx)
 	{
@@ -132,7 +138,7 @@ private:
 	typedef std::map<WXMEncodingID, WXMEncodingType> WXEncTypeMap;
 	typedef std::map<WXMEncodingID, wxString> WXEncFontMap;
 	typedef std::map<WXMEncodingID, wxString> WXEncDescMap;
-	typedef std::map<WXMEncodingID, wxString> WXEncAliasMap;
+	typedef std::map<WXMEncodingID, wxString> WXEncAliasesMap;
 	typedef std::map<WXMEncodingID, std::string> EncInnerNameMap;
 	typedef std::map<std::string, WXMEncodingID> ICUNameEncMap;
 	typedef std::map<WXMEncodingGroupID, wxString> WXEncGrpNameMap;
@@ -143,7 +149,7 @@ private:
 	WXEncTypeMap m_wxenctype_map;
 	WXEncFontMap m_wxencfont_map;
 	WXEncDescMap m_wxencdesc_map;
-	WXEncAliasMap m_wxencalias_map;
+	WXEncAliasesMap m_wxencaliases_map;
 	WXEncGrpNameMap m_wxencgrpname_map;
 	WXEncGrpsMap m_wxencgrps_map;
 	EncInnerNameMap m_encinnername_map;
@@ -187,7 +193,7 @@ protected:
 	wxString m_name;
 	std::string m_innername;
 	wxString m_desc;
-	wxString m_aliases;
+	wxString m_name_with_aliases;
 	wxString m_fontname;
 	WXMEncodingID m_enc;
 	ssize_t m_idx;
@@ -237,7 +243,7 @@ public:
 
 	wxString GetName() { return m_name; }
 	wxString GetDescription() { return m_desc; }
-	wxString GetAliases() { return m_aliases; }
+	wxString GetNameWithAliases() { return m_name_with_aliases; }
 	wxString GetFontName() { return m_fontname; }
 	WXMEncodingID GetEncoding() { return m_enc; }
 };
