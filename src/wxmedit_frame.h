@@ -90,7 +90,6 @@ public:
 
     void OnUpdateUI_MenuFile_CheckCount(wxUpdateUIEvent& event);
     void OnUpdateUI_MenuFile_CheckNamed(wxUpdateUIEvent& event);
-    void OnUpdateUI_MenuFileReload(wxUpdateUIEvent& event);
     void OnUpdateUI_MenuFileRecentFiles(wxUpdateUIEvent& event);
 
     void OnUpdateUI_MenuEditUndo(wxUpdateUIEvent& event);

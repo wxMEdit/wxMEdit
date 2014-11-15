@@ -1024,7 +1024,7 @@ BEGIN_EVENT_TABLE(MadEditFrame,wxFrame)
 	EVT_UPDATE_UI(menuSave, MadEditFrame::OnUpdateUI_MenuFile_CheckCount)
 	EVT_UPDATE_UI(menuSaveAs, MadEditFrame::OnUpdateUI_MenuFile_CheckCount)
 	EVT_UPDATE_UI(menuSaveAll, MadEditFrame::OnUpdateUI_MenuFile_CheckCount)
-	EVT_UPDATE_UI(menuReload, MadEditFrame::OnUpdateUI_MenuFileReload)
+	EVT_UPDATE_UI(menuReload, MadEditFrame::OnUpdateUI_MenuFile_CheckNamed)
 	EVT_UPDATE_UI(menuClose, MadEditFrame::OnUpdateUI_MenuFile_CheckCount)
 	EVT_UPDATE_UI(menuCloseByPath, MadEditFrame::OnUpdateUI_MenuFile_CheckCount)
 	EVT_UPDATE_UI(menuCloseAll, MadEditFrame::OnUpdateUI_MenuFile_CheckCount)
@@ -1844,6 +1844,37 @@ void MadEditFrame::InitEncodingMenus()
     }
 }
 
+#ifdef __WXMSW__
+ bool g_bHasMenuIcon = (wxGetOsVersion() != wxOS_WINDOWS_9X); // fixed win98 will crash if menuitem has icon
+#endif
+
+void CloneMenuItem(wxMenu* menu, const wxMenu* srcmenu, int itemid)
+{
+    if (itemid == 0)
+    {
+        menu->AppendSeparator();
+        return;
+    }
+
+    wxMenuItem* srcitem = srcmenu->FindItem(itemid);
+    wxString txt = srcitem->GetText();
+#ifdef __WXGTK__
+    txt.Replace(wxT("&"), wxT("&&"));
+    txt.Replace(wxT("_"), wxT("&"));
+#endif
+    wxMenuItem* item = new wxMenuItem(menu, itemid, txt, srcitem->GetHelp());
+
+#ifdef __WXMSW__
+    if (g_bHasMenuIcon)
+#endif
+    {
+        const wxBitmap& bit = srcitem->GetBitmap();
+        if (!bit.IsNull())
+            item->SetBitmap(bit);
+    }
+    menu->Append(item);
+}
+
 void MadEditFrame::CreateGUIControls()
 {
     WxStatusBar1 = new wxStatusBar(this, ID_WXSTATUSBAR1);
@@ -1989,9 +2020,6 @@ void MadEditFrame::CreateGUIControls()
 
     list<wxMenu*> menu_stack;
     CommandData *cd = &CommandTable[0];
-#ifdef __WXMSW__
-    bool bHasMenuIcon = (wxGetOsVersion()!=wxOS_WINDOWS_9X); // fixed win98 will crash if menuitem has icon
-#endif
     do
     {
         if(cd->menu_level==0)
@@ -2025,7 +2053,7 @@ void MadEditFrame::CreateGUIControls()
             wxMenuItem *mit=new wxMenuItem(menu_stack.back(), cd->menu_id, wxString(wxGetTranslation(cd->text)) + GetMenuKey(cd->menuid_name,cd->key), wxGetTranslation(cd->hint), cd->kind);
 
 #ifdef __WXMSW__
-            if(bHasMenuIcon)
+            if (g_bHasMenuIcon)
 #endif
             if(cd->image_idx >= 0 && cd->kind==wxITEM_NORMAL)
             {
@@ -2043,20 +2071,9 @@ void MadEditFrame::CreateGUIControls()
     int FileMenuInTabIDs[] = { menuSave, menuReload, 0, menuClose, menuCloseAll, menuCloseAllButThis,
                                menuCloseAllToTheLeft, menuCloseAllToTheRight, 0, menuCopyFullPath,
                                menuCopyFilename, menuCopyFileDir, 0, menuPrintPreview, menuPrint };
-    BOOST_FOREACH(int itemid, FileMenuInTabIDs)
-    {
-        if (itemid == 0)
-        {
-            g_Menu_Tab->AppendSeparator();
-            continue;
-        }
 
-        wxMenuItem* item = g_Menu_File->FindItem(itemid);
-        const wxBitmap& bit = item->GetBitmap();
-        if (!bit.IsNull())
-            item->SetBitmap(bit);
-        g_Menu_Tab->Append(item);
-    }
+    BOOST_FOREACH(int itemid, FileMenuInTabIDs)
+        CloneMenuItem(g_Menu_Tab, g_Menu_File, itemid);
 
     // set FindNext/FindPrev keys for search/replace dialog
     g_AccelFindNext.Set(0, 0, 0, 0);
@@ -3101,12 +3118,6 @@ void MadEditFrame::OnUpdateUI_MenuFile_CheckCount(wxUpdateUIEvent& event)
 void MadEditFrame::OnUpdateUI_MenuFile_CheckNamed(wxUpdateUIEvent& event)
 {
     event.Enable(g_ActiveMadEdit!=NULL && !g_ActiveMadEdit->GetFileName().empty());
-}
-
-void MadEditFrame::OnUpdateUI_MenuFileReload(wxUpdateUIEvent& event)
-{
-    event.Enable(g_ActiveMadEdit!=NULL &&
-                 !g_ActiveMadEdit->GetFileName().IsEmpty());
 }
 
 void MadEditFrame::OnUpdateUI_MenuFileRecentFiles(wxUpdateUIEvent& event)
@@ -4956,9 +4967,6 @@ void MadEditFrame::OnToolsOptions(wxCommandEvent& event)
             // change the menukey
             tidit=ChangedMenuList.begin();
             tiditend=ChangedMenuList.end();
-#ifdef __WXMSW__
-            bool bHasMenuIcon = (wxGetOsVersion()!=wxOS_WINDOWS_9X); // fixed win98 will crash if menuitem has icon
-#endif
             while(tidit!=tiditend)
             {
                 TreeItemData *tid = *tidit;
@@ -4975,7 +4983,7 @@ void MadEditFrame::OnToolsOptions(wxCommandEvent& event)
                 wxMenuItem *mit=WxMenuBar1->FindItem(cd->menu_id);
                 mit->SetText(mit->GetLabel()+ newkey);
 #ifdef __WXMSW__
-                if(bHasMenuIcon)
+                if (g_bHasMenuIcon)
 #endif
                 if(cd->image_idx >= 0 && cd->kind==wxITEM_NORMAL)
                 {
