@@ -9,6 +9,7 @@
 #include "wxm_search_replace_dialog.h"
 
 #include "../xm/single_line_wxmedit.h"
+#include "../xm/xm_utils.hpp"
 
 //(*InternalHeaders(WXMSearchReplaceDialog)
 #include <wx/intl.h>
@@ -989,11 +990,7 @@ bool WXMSearchReplaceDialog::ShowWithReplaceFunc()
 
 wxColor WXMSearchReplaceDialog::GetMessageColor(WXMSearchReplaceDialog::SearchMsgType type)
 {
-	std::map<int, wxColor>::const_iterator it = m_msgtypecolor_map.find(type);
-	if (it == m_msgtypecolor_map.end())
-		return wxColor();
-
-	return it->second;
+	return xm::wrap_map(m_msgtypecolor_map).get(type, wxColor());
 }
 
 void WXMSearchReplaceDialog::ResetMessage()

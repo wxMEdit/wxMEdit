@@ -1158,10 +1158,7 @@ void WXMOptionsDialog::InitButtonRelativeEdit()
 
 wxTextCtrl* WXMOptionsDialog::GetButtonRelativeEdit(long btnid)
 {
-	BtnIDEditMap::iterator it = m_btnid_edit_map.find(btnid);
-	if (it == m_btnid_edit_map.end())
-		return NULL;
-	return it->second;
+	return xm::wrap_map(m_btnid_edit_map).get(btnid, NULL);
 }
 
 void WXMOptionsDialog::PrintMarkClick(wxCommandEvent& event)

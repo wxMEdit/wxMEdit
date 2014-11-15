@@ -98,6 +98,7 @@ wxmedit_SOURCES =	$(enc_src) \
 	src/xm/xm_ublock_des.cpp \
 	src/xm/xm_ublock.cpp \
 	src/xm/xm_ublock.h \
+	src/xm/xm_utils.hpp \
 	src/xm/xm_uutils.cpp \
 	src/xm/xm_uutils.h \
 	src/wxmedit/trad_simp.cpp \
@@ -109,6 +110,7 @@ wxmedit_test_SOURCES =	$(enc_src) \
 	src/wxmedit/ucs4_t.h \
 	src/wxmedit/wxm_deque.hpp \
 	src/xm/wxm_line_enc_adapter.h \
+	src/xm/xm_utils.hpp \
 	test/encdet/data_from_icudet.cpp \
 	test/encdet/data_from_icudet.h \
 	test/encdet/data_from_mozdet.cpp \

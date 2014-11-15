@@ -40,10 +40,7 @@ void modify_cases(const std::string& tid, std::vector<std::string>& enclangs)
 
 static bool is_skiped_test(const std::string& tid, const std::string tenc)
 {
-	if(skiped_test_cases.find(std::make_pair(tid, tenc)) != skiped_test_cases.end())
-		return true;
-		
-	return false;
+	return skiped_test_cases.find(std::make_pair(tid, tenc)) != skiped_test_cases.end();
 }
 
 void test_icucase_encdet(const ICUEncDetTestCase& tcase)

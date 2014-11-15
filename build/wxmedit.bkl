@@ -209,6 +209,7 @@
 		<headers>../src/xm/xm_ublock.h</headers>
 		<sources>../src/xm/xm_ublock.cpp</sources>
 		<sources>../src/xm/xm_ublock_des.cpp</sources>
+		<headers>../src/xm/xm_utils.hpp</headers>
 		<headers>../src/xm/xm_uutils.h</headers>
 		<sources>../src/xm/xm_uutils.cpp</sources>
 	</exe>
@@ -216,6 +217,7 @@
 		<headers>../src/wxmedit/ucs4_t.h</headers>
 		<headers>../src/wxmedit/wxm_deque.hpp</headers>
 		<headers>../src/xm/wxm_line_enc_adapter.h</headers>
+		<headers>../src/xm/xm_utils.hpp</headers>
 		<headers>../test/encdet/data_from_icudet.h</headers>
 		<sources>../test/encdet/data_from_icudet.cpp</sources>
 		<headers>../test/encdet/data_from_mozdet.h</headers>

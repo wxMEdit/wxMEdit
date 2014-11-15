@@ -9,6 +9,8 @@
 #ifndef _WXM_CHOICE_MAP_HPP_
 #define _WXM_CHOICE_MAP_HPP_
 
+#include "xm_utils.hpp"
+
 #include <wx/string.h>
 #include <boost/foreach.hpp>
 #include <boost/noncopyable.hpp>
@@ -77,38 +79,22 @@ public:
 
 	wxString IndexToTitle(int idx) const
 	{
-		IdxTitleMap::const_iterator it = m_idx_title_map.find(idx);
-		if (it != m_idx_title_map.end())
-			return it->second;
-
-		return wxString();	
+		return xm::wrap_map(m_idx_title_map).get(idx, wxString());
 	}
 
 	_VAL IndexToVal(int idx) const
 	{
-		typename IdxValMap::const_iterator it = m_idx_val_map.find(idx);
-		if (it != m_idx_val_map.end())
-			return it->second;
-
-		return m_default_val;
+		return xm::wrap_map(m_idx_val_map).get(idx, m_default_val);
 	}
 
 	int ConfigToIndex(const wxString& cfg) const
 	{
-		CfgIdxMap::const_iterator it = m_cfg_idx_map.find(cfg);
-		if (it != m_cfg_idx_map.end())
-			return it->second;
-
-		return m_default_idx;
+		return xm::wrap_map(m_cfg_idx_map).get(cfg, m_default_idx);
 	}
 
 	wxString TitleToConfig(const wxString& title) const
 	{
-		TitleCfgMap::const_iterator it = m_title_cfg_map.find(title);
-		if (it != m_title_cfg_map.end())
-			return it->second;
-
-		return wxString();
+		return xm::wrap_map(m_title_cfg_map).get(title, wxString());
 	}
 
 	std::vector<wxString> GetTitles() const

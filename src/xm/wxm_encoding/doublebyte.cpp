@@ -7,6 +7,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 #include "doublebyte.h"
+#include "../xm_utils.hpp"
 
 #ifdef _DEBUG
 #include <crtdbg.h>
@@ -44,29 +45,17 @@ void DoubleByteEncodingTableFixer::ChangeU2MB(ucs4_t u, wxWord db)
 }
 int DoubleByteEncodingTableFixer::LeadByteInfo(wxByte b)
 {
-	std::map<wxByte, int>::const_iterator it = m_leadbyte_map.find(b);
-	if (it == m_leadbyte_map.end())
-		return WXMEncodingDoubleByte::lbUnset;
-
-	return it->second;
+	return xm::wrap_map(m_leadbyte_map).get(b, WXMEncodingDoubleByte::lbUnset);
 }
 
 ucs4_t DoubleByteEncodingTableFixer::MB2UInfo(wxWord db)
 {
-	std::map<wxWord, ucs4_t>::const_iterator it = m_mb2u_map.find(db);
-	if (it == m_mb2u_map.end())
-		return WXMEncoding::svtUCS4NotCached;
-
-	return it->second;
+	return xm::wrap_map(m_mb2u_map).get(db, WXMEncoding::svtUCS4NotCached);
 }
 
 wxWord DoubleByteEncodingTableFixer::U2MBInfo(ucs4_t u)
 {
-	std::map<ucs4_t, wxWord>::const_iterator it = m_u2mb_map.find(u);
-	if (it == m_u2mb_map.end())
-		return WXMEncoding::svtDByteNotCached;
-
-	return it->second;
+	return xm::wrap_map(m_u2mb_map).get(u, WXMEncoding::svtDByteNotCached);
 }
 
 void MS932TableFixer::fix()

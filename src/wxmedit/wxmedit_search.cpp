@@ -8,6 +8,7 @@
 
 #include "wxmedit.h"
 #include "../xm/wxm_case_conv.h"
+#include "../xm/xm_utils.hpp"
 
 #include <unicode/uchar.h>
 #include <iostream>
@@ -107,9 +108,7 @@ public:
             return m_UCS2_Table[(unsigned int)ch];
         }
 
-        UCS4_Map::const_iterator it = m_Table.find((unsigned int)ch);
-        if(it==m_Table.end()) return m_Len_1;
-        return it->second;
+        return xm::wrap_map(m_Table).get((unsigned int)ch, m_Len_1);
     }
 };
 

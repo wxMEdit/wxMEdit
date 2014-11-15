@@ -179,11 +179,10 @@ WXMEncodingID WXMEncodingManager::GetSystemEncodingID()
 	if (sysencid != ENC_DEFAULT)
 		return sysencid;
 
-	ICUNameEncMap::const_iterator it = m_icunameenc_map.find(GetEncodingICUName(NULL));
-	if (it == m_icunameenc_map.end() || it->second == ENC_ISO_646)
+	sysencid = xm::wrap_map(m_icunameenc_map).get(GetEncodingICUName(NULL), ENC_ISO_8859_1);
+
+	if (sysencid == ENC_ISO_646)
 		sysencid = ENC_ISO_8859_1;
-	else
-		sysencid = it->second;
 
 	return sysencid;
 }
@@ -295,11 +294,7 @@ std::vector<WXMEncodingGroupID> WXMEncodingManager::GetEncodingGroups(ssize_t id
 
 wxString WXMEncodingManager::EncodingGroupToName(WXMEncodingGroupID gid)
 {
-	WXEncGrpNameMap::const_iterator it = m_wxencgrpname_map.find(gid);
-	if (it == m_wxencgrpname_map.end())
-		return wxString();
-
-	return it->second;
+	return xm::wrap_map(m_wxencgrpname_map).get(gid, wxString());
 }
 
 void WXMEncodingManager::FreeEncodings()
@@ -336,56 +331,32 @@ wxString WXMEncodingManager::GetEncodingName(ssize_t idx)
 
 std::string WXMEncodingManager::GetEncodingInnerName(ssize_t idx)
 {
-	EncInnerNameMap::const_iterator it = m_encinnername_map.find(IdxToEncoding(idx));
-	if (it == m_encinnername_map.end())
-		return "unknown";
-
-	return it->second;
+	return xm::wrap_map(m_encinnername_map).get(IdxToEncoding(idx), "unknown");
 }
 
 wxString WXMEncodingManager::GetEncodingDescription(ssize_t idx)
 {
-	WXEncDescMap::const_iterator it = m_wxencdesc_map.find(IdxToEncoding(idx));
-	if (it == m_wxencdesc_map.end())
-		return GetEncodingName(idx);
-
-	return it->second;
+	return xm::wrap_map(m_wxencdesc_map).get(IdxToEncoding(idx), GetEncodingName(idx));
 }
 
 wxString WXMEncodingManager::GetEncodingAliases(ssize_t idx)
 {
-	WXEncAliasMap::const_iterator it = m_wxencalias_map.find(IdxToEncoding(idx));
-	if (it == m_wxencalias_map.end())
-		return wxString();
-
-	return it->second;
+	return xm::wrap_map(m_wxencalias_map).get(IdxToEncoding(idx), wxString());
 }
 
 wxString WXMEncodingManager::GetEncodingFontName(ssize_t idx)
 {
-	WXEncFontMap::const_iterator it = m_wxencfont_map.find(IdxToEncoding(idx));
-	if (it == m_wxencfont_map.end())
-		return GetMSCPFontName(wxString());
-
-	return it->second;
+	return xm::wrap_map(m_wxencfont_map).get(IdxToEncoding(idx), GetMSCPFontName(wxString()));
 }
 
 wxString WXMEncodingManager::EncodingToName(WXMEncodingID enc)
 {
-	WXEncNameMap::const_iterator it = m_wxencname_map.find(enc);
-	if (it == m_wxencname_map.end())
-		return wxT("Unknown Encoding");
-
-	return it->second;
+	return xm::wrap_map(m_wxencname_map).get(enc, wxT("Unknown Encoding"));
 }
 
 WXMEncodingID WXMEncodingManager::NameToEncoding(const wxString &name)
 {
-	WXNameEncMap::const_iterator it = m_wxnameenc_map.find(name);
-	if (it == m_wxnameenc_map.end())
-		return GetSystemEncodingID();
-
-	return it->second;
+	return xm::wrap_map(m_wxnameenc_map).get(name, GetSystemEncodingID());
 }
 
 WXMEncodingID WXMEncodingManager::ExtNameToEncoding(const std::string &name)
@@ -394,11 +365,7 @@ WXMEncodingID WXMEncodingManager::ExtNameToEncoding(const std::string &name)
 	if (itwx != m_wxnameenc_map.end())
 		return itwx->second;
 
-	ICUNameEncMap::const_iterator iticu = m_icunameenc_map.find(GetEncodingICUName(name.c_str()));
-	if (iticu != m_icunameenc_map.end())
-		return iticu->second;
-
-	return ENC_DEFAULT;
+	return xm::wrap_map(m_icunameenc_map).get(GetEncodingICUName(name.c_str()), ENC_DEFAULT);
 }
 
 WXMEncoding* WXMEncodingManager::GetSystemEncoding()
@@ -411,11 +378,7 @@ WXMEncoding* WXMEncodingManager::GetSystemEncoding()
 
 WXMEncodingManager::WXMEncodingType WXMEncodingManager::GetIdxEncType(ssize_t idx)
 {
-	WXEncTypeMap::const_iterator it = m_wxenctype_map.find(IdxToEncoding(idx));
-	if (it == m_wxenctype_map.end())
-		return etSingleByte; //FIXME later
-
-	return it->second;
+	return xm::wrap_map(m_wxenctype_map).get(IdxToEncoding(idx), etSingleByte/*FIXME later*/);
 }
 
 WXMEncoding* WXMEncodingManager::GetWxmEncoding(ssize_t idx)
