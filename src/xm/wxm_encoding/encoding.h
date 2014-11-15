@@ -37,8 +37,10 @@ namespace wxm
 struct WXMEncoding;
 struct WXMEncodingManager: private boost::noncopyable
 {
+	static void PreInit();
 	static WXMEncodingManager& Instance()
 	{
+		PreInit();
 		if (s_inst == NULL)
 			s_inst = new WXMEncodingManager();
 		return *s_inst;
@@ -82,6 +84,7 @@ private:
 	{ etSingleByte, etDoubleByte, etUTF8, etUTF16LE, etUTF16BE, etUTF32LE, etUTF32BE, etCP20932, etGB18030, etCP437ART };
 
 	static WXMEncodingManager* s_inst;
+	static std::string s_sysenc_icuname;
 
 public:
 	size_t GetEncodingsCount();

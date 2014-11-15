@@ -80,6 +80,12 @@ std::string GetEncodingICUName(const char* innername)
 	return std::string(icuname);
 }
 
+std::string WXMEncodingManager::s_sysenc_icuname;
+void WXMEncodingManager::PreInit()
+{
+	if (s_sysenc_icuname.empty())
+		s_sysenc_icuname = GetEncodingICUName(NULL);
+}
 void WXMEncodingManager::AddEncoding(const std::string& encname, WXMEncodingID encid, 
 		const wxString& desc, const wxString& aliases, WXMEncodingType entype, 
 		const std::string& innername0, bool exact)
@@ -179,7 +185,7 @@ WXMEncodingID WXMEncodingManager::GetSystemEncodingID()
 	if (sysencid != ENC_DEFAULT)
 		return sysencid;
 
-	sysencid = xm::wrap_map(m_icunameenc_map).get(GetEncodingICUName(NULL), ENC_ISO_8859_1);
+	sysencid = xm::wrap_map(m_icunameenc_map).get(s_sysenc_icuname, ENC_ISO_8859_1);
 
 	if (sysencid == ENC_ISO_646)
 		sysencid = ENC_ISO_8859_1;
