@@ -214,7 +214,7 @@ WXMFindInFilesDialog::WXMFindInFilesDialog(wxWindow* parent,wxWindowID id,const 
 	size_t cnt=wxm::WXMEncodingManager::Instance().GetEncodingsCount();
 	for(size_t i=0;i<cnt;i++)
 	{
-		WxComboBoxEncoding->Append(wxm::WXMEncodingManager::Instance().GetEncodingName(i));//enc+des);
+		WxComboBoxEncoding->Append(wxm::WXMEncodingManager::Instance().GetEncodingNameWithAliases(i));
 	}
 	WxComboBoxEncoding->SetValue(systemenc);
 
@@ -651,11 +651,9 @@ void WXMFindInFilesDialog::FindReplaceInFiles(bool bReplace)
 				if(madedit==NULL)
 				{
 					madedit=tempedit.get();
-					wxString enc=WxComboBoxEncoding->GetValue();
-					if(enc==WxComboBoxEncoding->GetString(0))
-					{
+					wxString enc = wxm::WXMEncodingManager::ExtractEncodingName(WxComboBoxEncoding->GetValue());
+					if(enc == wxm::WXMEncodingManager::ExtractEncodingName(WxComboBoxEncoding->GetString(0)))
 						enc.Clear();
-					}
 					madedit->LoadFromFile(*fnit, enc);
 				}
 				++fnit;

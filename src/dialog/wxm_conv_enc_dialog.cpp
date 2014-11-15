@@ -86,12 +86,13 @@ WXMConvEncDialog::WXMConvEncDialog(wxWindow* parent,wxWindowID id,const wxPoint&
 	BoxSizer1->SetSizeHints(this);
 	Center();
 
-	wxString convenc=wxm::WXMEncodingManager::Instance().GetEncodingName(0);
-	wxConfigBase *cfg=wxConfigBase::Get(false);
-	wxString oldpath=cfg->GetPath();
+	wxm::WXMEncodingManager& encmgr = wxm::WXMEncodingManager::Instance();
+	wxString convenc = encmgr.GetEncodingName(0);
+	wxConfigBase *cfg = wxConfigBase::Get(false);
+	wxString oldpath = cfg->GetPath();
 	cfg->Read(wxT("/wxMEdit/ConvertEncoding"), &convenc);
 	cfg->SetPath(oldpath);
-	WxComboBoxEncoding->SetValue(convenc);
+	WxComboBoxEncoding->SetValue(encmgr.ExpandEncodingAliases(convenc));
 
 	WxButtonCancel->SetFocus();
 }

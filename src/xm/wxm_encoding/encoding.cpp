@@ -354,18 +354,24 @@ wxString WXMEncodingManager::EncodingToName(WXMEncodingID enc)
 	return xm::wrap_map(m_wxencname_map).get(enc, wxT("Unknown Encoding"));
 }
 
-WXMEncodingID WXMEncodingManager::NameToEncoding(const wxString &name)
+WXMEncodingID WXMEncodingManager::NameToEncoding(const wxString& name)
 {
 	return xm::wrap_map(m_wxnameenc_map).get(name, GetSystemEncodingID());
 }
 
-WXMEncodingID WXMEncodingManager::ExtNameToEncoding(const std::string &name)
+WXMEncodingID WXMEncodingManager::ExtNameToEncoding(const std::string& name)
 {
 	WXNameEncMap::const_iterator itwx = m_wxnameenc_map.find(wxString(name.c_str(), wxConvUTF8));
 	if (itwx != m_wxnameenc_map.end())
 		return itwx->second;
 
 	return xm::wrap_map(m_icunameenc_map).get(GetEncodingICUName(name.c_str()), ENC_DEFAULT);
+}
+
+wxString WXMEncodingManager::ExpandEncodingAliases(const wxString& name)
+{
+	wxString aliases = xm::wrap_map(m_wxencaliases_map).get(NameToEncoding(name), wxString());
+	return name + aliases;
 }
 
 WXMEncoding* WXMEncodingManager::GetSystemEncoding()
@@ -447,7 +453,7 @@ WXMEncoding* WXMEncodingManager::GetWxmEncoding(WXMEncodingID enc)
 	return GetWxmEncoding(m_sysenc_idx);
 }
 
-WXMEncoding* WXMEncodingManager::GetWxmEncoding(const wxString &name)
+WXMEncoding* WXMEncodingManager::GetWxmEncoding(const wxString& name)
 {
 	size_t idx;
 	for(idx=0;idx<m_wxenc_list.size();idx++)

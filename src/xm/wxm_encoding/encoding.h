@@ -75,7 +75,7 @@ struct WXMEncodingManager: private boost::noncopyable
 
 	WXMEncoding* GetWxmEncoding(ssize_t idx);
 	WXMEncoding* GetWxmEncoding(WXMEncodingID enc);
-	WXMEncoding* GetWxmEncoding(const wxString &name);
+	WXMEncoding* GetWxmEncoding(const wxString& name);
 
 private:
 	enum WXMEncodingType
@@ -91,9 +91,10 @@ public:
 	wxString GetEncodingNameWithAliases(ssize_t idx) { return GetEncodingName(idx) + GetEncodingAliases(idx); }
 	wxString GetEncodingFontName(ssize_t idx);
 	wxString EncodingToName(WXMEncodingID enc);
-	WXMEncodingID NameToEncoding(const wxString &name);
-	WXMEncodingID ExtNameToEncoding(const std::string &name);
+	WXMEncodingID NameToEncoding(const wxString& name);
+	WXMEncodingID ExtNameToEncoding(const std::string& name);
 	WXMEncoding* GetSystemEncoding();
+	wxString ExpandEncodingAliases(const wxString& name);
 
 	WXMEncodingType GetIdxEncType(ssize_t idx);
 

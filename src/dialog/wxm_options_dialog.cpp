@@ -720,7 +720,7 @@ WXMOptionsDialog::WXMOptionsDialog(wxWindow* parent,wxWindowID id)
 	size_t i;
 	for(i=0; i<cnt; i++)
 	{
-		WxComboBoxEncoding->Append(wxm::WXMEncodingManager::Instance().GetEncodingName(i));//enc+des);
+		WxComboBoxEncoding->Append(wxm::WXMEncodingManager::Instance().GetEncodingNameWithAliases(i));
 	}
 	WxComboBoxEncoding->SetValue(systemenc);
 
@@ -861,7 +861,7 @@ wxString WXMOptionsDialog::GetSelectedEncoding()
 	wxString wxs = WxComboBoxEncoding->GetValue();
 	if (wxs == _("System Default"))
 		return wxString();
-	return wxs;
+	return wxm::WXMEncodingManager::ExtractEncodingName(wxs);
 }
 
 wxString WXMOptionsDialog::GetSelectedUpdatePeroid()
@@ -932,8 +932,7 @@ void WXMOptionsDialog::LoadOptions(void)
 
 	ss.Clear();
 	cfg->Read(wxT("DefaultEncoding"), &ss);
-	if (ss.IsEmpty())
-		ss=_("System Default");
+	ss = ss.IsEmpty()? wxString(_("System Default")): wxm::WXMEncodingManager::Instance().ExpandEncodingAliases(ss);
 	WxComboBoxEncoding->SetValue(ss);
 
 	cfg->Read(wxT("SingleInstance"), &bb);
