@@ -11565,6 +11565,9 @@ int ConvertChinese(const wxChar *in, wxChar *out, size_t count, MadConvertChines
     case ccfChinese2Kanji:
         BuildConvertTable(Chinese2KanjiTable, Chinese2Kanji_Table);
         table=Chinese2KanjiTable;
+        break;
+    default:
+        return 0;
     }
 
     for(size_t i=0; i<count; ++i, ++in, ++out)

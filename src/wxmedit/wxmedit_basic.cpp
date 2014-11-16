@@ -3368,7 +3368,7 @@ bool MadEdit::PrintPage(wxDC *dc, int pageNum)
         wxFileOffset pos;
         MadUCQueue ucqueue;
 
-        wxFileOffset hexrowpos = size_t(toprow)<<4;
+        wxFileOffset hexrowpos = wxFileOffset(toprow) << 4;
         wxString offset(wxT("12345678"));
         for(int rowidx=0;rowidx<rowcount;rowidx++, hexrowpos+=16)// for every hex-line
         {

@@ -6811,7 +6811,7 @@ void MadEdit::FindBracePairUnderCaretPos()
     vector <BracePairIndex>::iterator bitend = m_CaretPos.iter->m_BracePairIndices.end();
 
     wxFileOffset &linepos=m_CaretPos.linepos;
-    wxFileOffset rightpos;
+    wxFileOffset rightpos=0;
     while(bit!=bitend)
     {
         rightpos=bit->LinePos+bit->Length;
