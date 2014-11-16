@@ -1170,7 +1170,8 @@ void MadEdit::SetText(const wxString &ws)
     MadLineIterator lit;
     size_t size = ws.Len();
 
-    AdjustStringLength(ws, size);
+    if (!AdjustStringLength(ws, size))
+        return;
 
     MadUndo *undo=NULL;
 

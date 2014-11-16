@@ -16,45 +16,36 @@ void SingleLineWXMEdit::UpdateScrollBarPos()
 	ResetTextModeScrollBarPos();
 }
 
-bool SingleLineWXMEdit::AdjustInsertCount(const ucs4_t *ucs, size_t& count)
+template <typename _CHAR>
+bool AdjustCharCount(const _CHAR* cs, size_t& count, wxFileOffset filesize, long maxlen)
 {
-	const ucs4_t *ucs1 = ucs;
-	int sss = 0;
+	long cnt = 0;
+	const wxFileOffset CHAR_BYTES = 4;
 
-	while (sss < int(count) && *ucs1 != 0x0D && *ucs1 != 0x0A)
+	while (cnt < long(count) && *cs != 0x0D && *cs != 0x0A)
 	{
-		++sss;
-		++ucs1;
+		++cnt;
+		++cs;
 	}
 
-	int maxlen = MaxLineLength() - 100;
+	if (filesize + cnt*CHAR_BYTES > maxlen)
+		cnt = long( (maxlen - filesize) / CHAR_BYTES );
 
-	if (GetFileSize() + sss > maxlen)
-		sss = maxlen - int(GetFileSize());
-
-	if (sss <= 0)
+	if (cnt <= 0)
 		return false;
 
-	count = size_t(sss);
+	count = size_t(cnt);
 	return true;
 }
 
-void SingleLineWXMEdit::AdjustStringLength(const wxString ws, size_t& size)
+bool SingleLineWXMEdit::AdjustInsertCount(const ucs4_t *ucs, size_t& count)
 {
-	const wxChar *wcs = ws.c_str();
-	size_t sss = 0;
+	return AdjustCharCount(ucs, count, GetFileSize(), MaxLineLength());
+}
 
-	while (sss < size && *wcs != 0x0D && *wcs != 0x0A)
-	{
-		++sss;
-		++wcs;
-	}
-
-	long maxlen = MaxLineLength() - 100;
-	if (wxFileOffset(GetFileSize() + sss) > maxlen)
-		sss = maxlen - long(GetFileSize());
-
-	size = sss;
+bool SingleLineWXMEdit::AdjustStringLength(const wxString& ws, size_t& size)
+{
+	return AdjustCharCount(ws.c_str(), size, GetFileSize(), MaxLineLength());
 }
 
 bool SingleLineWXMEdit::NeedNotProcessMouseLeftDown(wxMouseEvent &evt)

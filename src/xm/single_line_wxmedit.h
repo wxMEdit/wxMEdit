@@ -17,8 +17,8 @@ namespace wxm
 class SingleLineWXMEdit : public MadEdit
 {
 	virtual void UpdateScrollBarPos();
-	virtual bool AdjustInsertCount(const ucs4_t *ucs, size_t& count);
-	virtual void AdjustStringLength(const wxString ws, size_t& size);
+	virtual bool AdjustInsertCount(const ucs4_t* ucs, size_t& count);
+	virtual bool AdjustStringLength(const wxString& ws, size_t& size);
 	virtual void ProcessReturnCommand(MadEditCommand command) {}
 	virtual void OnGetFocusByClickAsControl(const wxMouseEvent &evt);
 	virtual bool NeedNotProcessMouseLeftDown(wxMouseEvent &evt);

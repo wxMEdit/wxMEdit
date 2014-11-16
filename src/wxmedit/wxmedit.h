@@ -824,7 +824,7 @@ public: // basic functions
     bool IsReadOnly() { return m_ReadOnly||m_Lines->m_ReadOnly; }
     bool IsTextFile() { return m_Lines->m_MaxLineWidth>=0; }
 
-    virtual void AdjustStringLength(const wxString ws, size_t& size) {}
+    virtual bool AdjustStringLength(const wxString& ws, size_t& size) { return true; }
     void GetSelText(wxString &ws);
     void GetText(wxString &ws, bool ignoreBOM = true);
     void SetText(const wxString &ws);
