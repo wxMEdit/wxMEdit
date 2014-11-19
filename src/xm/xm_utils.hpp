@@ -11,31 +11,31 @@
 
 namespace xm
 {
-	template<typename _MAP>
+	template<typename MAP>
 	struct map_wrapper
 	{
-		typedef typename _MAP::key_type _K;
-		typedef typename _MAP::mapped_type _V;
-		typedef typename _MAP::const_iterator _CIT;
+		typedef typename MAP::key_type K;
+		typedef typename MAP::mapped_type V;
+		typedef typename MAP::const_iterator CIT;
 
-		map_wrapper(const _MAP& m) :m_map(m) {}
+		map_wrapper(const MAP& m) :m_map(m) {}
 
-		const _V& get(const _K& key, const _V& default_val) const
+		const V& get(const K& key, const V& default_val) const
 		{
-			_CIT it = m_map.find(key);
+			CIT it = m_map.find(key);
 			if (it == m_map.end())
 				return default_val;
 
 			return it->second;
 		}
 	private:
-		const _MAP& m_map;
+		const MAP& m_map;
 	};
 
-	template<typename _MAP>
-	map_wrapper<_MAP> wrap_map(const _MAP& m)
+	template<typename MAP>
+	map_wrapper<MAP> wrap_map(const MAP& m)
 	{
-		return map_wrapper<_MAP>(m);
+		return map_wrapper<MAP>(m);
 	}
 }; // namespace xm
 
