@@ -624,7 +624,7 @@ public:
     void ProcessCommand(MadEditCommand command);
 
 public: // basic functions
-    void SetSyntax(const wxString &title);
+    void SetSyntax(const wxString &title, bool manual=false);
     MadSyntax* GetSyntax() { return m_Syntax; }
     wxString GetSyntaxTitle() { return m_Syntax->GetTitle(); }
     void ApplySyntaxAttributes(MadSyntax *syn, bool matchTitle);

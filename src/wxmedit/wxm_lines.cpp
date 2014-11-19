@@ -630,6 +630,7 @@ bool MadLine::FirstUCharIs0x0A(wxm::WXMEncoding *encoding)
 //===========================================================================
 
 MadLines::MadLines(MadEdit *madedit)
+    : m_manual(false)
 {
     m_MadEdit = madedit;
     m_Syntax = madedit->m_Syntax;
@@ -2870,7 +2871,7 @@ wxFileOffset MadLines::GetMaxTempSize(const wxString &filename)
     return maxsize;
 }
 
-bool MadLines::SaveToFile(const wxString &filename, const wxString &tempdir)
+void MadLines::DetectSyntax(const wxString &filename)
 {
     size_t sz = 0;
     wxByte buf[wxm::FIRSTLINE_SYNTAXPATTEN_MAXLEN] = {'\0'};
@@ -2884,6 +2885,12 @@ bool MadLines::SaveToFile(const wxString &filename, const wxString &tempdir)
     boost::scoped_ptr<MadSyntax> tmp_Syntax(GetFileSyntax(filename, buf, (int)sz));
     if(tmp_Syntax->GetTitle() != m_Syntax->GetTitle())
         m_MadEdit->SetSyntax(tmp_Syntax->GetTitle());
+}
+
+bool MadLines::SaveToFile(const wxString &filename, const wxString &tempdir)
+{
+    if (!m_manual)
+        DetectSyntax(filename);
 
     if(m_FileData == NULL)
     {

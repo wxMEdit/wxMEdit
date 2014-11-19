@@ -4558,7 +4558,7 @@ void MadEditFrame::OnViewSyntax(wxCommandEvent& event)
 
     int idx=event.GetId()-menuSyntax1;
     wxString title=MadSyntax::GetSyntaxTitle(idx);
-    g_ActiveMadEdit->SetSyntax(title);
+    g_ActiveMadEdit->SetSyntax(title, true);
 }
 
 void MadEditFrame::OnViewFontName(wxCommandEvent& event)

@@ -130,32 +130,34 @@ const int CRLF_Points2[CRLF_Points2_Count+1][2]=
 };
 */
 
-void MadEdit::SetSyntax(const wxString &title)
+void MadEdit::SetSyntax(const wxString &title, bool manual)
 {
-    if(m_Syntax->GetTitle() != title)
-    {
-        delete m_Syntax;
-        m_Syntax = MadSyntax::GetSyntaxByTitle(title);
-        m_Syntax->SetEncoding(m_Encoding);
-        m_Syntax->InitNextWord1(m_Lines, m_WordBuffer, m_WidthBuffer,
-            m_TextFont->GetFaceName(), m_TextFont->GetPointSize(), m_TextFont->GetFamily());
+    if (m_Syntax->GetTitle() == title)
+        return;
 
-        m_Lines->m_Syntax=m_Syntax;
+    delete m_Syntax;
+    m_Syntax = MadSyntax::GetSyntaxByTitle(title);
+    m_Syntax->SetEncoding(m_Encoding);
+    m_Syntax->InitNextWord1(m_Lines, m_WordBuffer, m_WidthBuffer,
+        m_TextFont->GetFaceName(), m_TextFont->GetPointSize(), m_TextFont->GetFamily());
 
-        if(!m_LoadingFile)
-        {
-            if(IsTextFile())    // data is text
-            {
-                ReformatAll();
+    m_Lines->m_Syntax=m_Syntax;
+    m_Lines->SetManual(manual);
 
-                DoStatusChanged();
-                DoSelectionChanged();
+    if (m_LoadingFile)
+        return;
 
-                m_RepaintAll = true;
-                Refresh(false);
-            }
-        }
-    }
+    if (!IsTextFile())
+        return;
+
+    // data is text
+    ReformatAll();
+
+    DoStatusChanged();
+    DoSelectionChanged();
+
+    m_RepaintAll = true;
+    Refresh(false);
 }
 
 void MadEdit::ApplySyntaxAttributes(MadSyntax *syn, bool matchTitle)

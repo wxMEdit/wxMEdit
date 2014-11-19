@@ -429,10 +429,14 @@ private:  // NextUChar()
     wxFileOffset    m_NextUChar_LineSize;
     wxFileOffset    m_NextUChar_Pos;
 
+    bool m_manual;
+
     virtual void MoveUChar32Bytes(MadUCQueue &ucqueue, ucs4_t uc, size_t len);
     virtual wxByte* BufferLoadBytes(wxFileOffset& rest, size_t buf_len);
 
     bool NextUCharIs0x0A(void);
+
+    void DetectSyntax(const wxString &filename);
 
     bool PresetFileEncoding(const wxString& encoding, const wxByte* buf, size_t sz);
     void SetFileEncoding(const wxString& encoding, const wxString& defaultenc, 
@@ -451,6 +455,7 @@ private:  // NextUChar()
     FindStringPtr FindString;
 
 public:
+    void SetManual(bool manual) { m_manual = true; }
     void SetEncoding(wxm::WXMEncoding *encoding);
 
     // if no newline return 0 ; else return 0x0D or 0x0A or 0x0D+0x0A (=0x17)
