@@ -55,20 +55,7 @@ const long WXMSearchReplaceDialog::ID_MADEDIT2 = wxNewId();
 const long WXMSearchReplaceDialog::ID_WXBITMAPBUTTONRECENTFINDTEXT = wxNewId();
 const long WXMSearchReplaceDialog::ID_WXBITMAPBUTTONRECENTREPLACETEXT = wxNewId();
 
-static long WXMNewID(long begin, size_t count)
-{
-	for(size_t i=1; i<count; ++i)
-		wxRegisterId(begin + i);
-	return begin + count - 1;
-}
-
-static long fid1 = wxNewId();
-const long ID_RECENTFINDTEXT1 = fid1;
-const long ID_RECENTFINDTEXT20 = WXMNewID(fid1, 20-1);
-static long rid1 = wxNewId();
-const long ID_RECENTREPLACETEXT1 = rid1;
-const long ID_RECENTREPLACETEXT20 = WXMNewID(rid1, 20-1);
-
+static wxm::WXMControlIDReserver& s_idrsvr = wxm::WXMControlIDReserver::Instance();
 BEGIN_EVENT_TABLE(WXMSearchReplaceDialog,wxDialog)
 	//(*EventTable(WXMSearchReplaceDialog)
 	//*)
@@ -76,8 +63,8 @@ BEGIN_EVENT_TABLE(WXMSearchReplaceDialog,wxDialog)
 
 	EVT_BUTTON(ID_WXBITMAPBUTTONRECENTFINDTEXT, WXMSearchReplaceDialog::WxBitmapButtonRecentFindTextClick)
 	EVT_BUTTON(ID_WXBITMAPBUTTONRECENTREPLACETEXT, WXMSearchReplaceDialog::WxBitmapButtonRecentReplaceTextClick)
-	EVT_MENU_RANGE(ID_RECENTFINDTEXT1, ID_RECENTFINDTEXT20, WXMSearchReplaceDialog::OnRecentFindText)
-	EVT_MENU_RANGE(ID_RECENTREPLACETEXT1, ID_RECENTREPLACETEXT20, WXMSearchReplaceDialog::OnRecentReplaceText)
+	EVT_MENU_RANGE(s_idrsvr.RecentFindTextID1(), s_idrsvr.RecentFindTextID20(), WXMSearchReplaceDialog::OnRecentFindText)
+	EVT_MENU_RANGE(s_idrsvr.RecentReplaceTextID1(), s_idrsvr.RecentReplaceTextID20(), WXMSearchReplaceDialog::OnRecentReplaceText)
 END_EVENT_TABLE()
 
 WXMSearchReplaceDialog::WXMSearchReplaceDialog(wxWindow* parent,wxWindowID id,const wxPoint& pos,const wxSize& size)
@@ -222,9 +209,9 @@ WXMSearchReplaceDialog::WXMSearchReplaceDialog(wxWindow* parent,wxWindowID id,co
 	WxButtonClose->Connect(wxEVT_KEY_DOWN, wxKeyEventHandler(WXMSearchReplaceDialog::WXMSearchReplaceDialogKeyDown));
 
 
-	m_RecentFindText=new wxSimpleRecentList(20, ID_RECENTFINDTEXT1);
+	m_RecentFindText = new wxSimpleRecentList(20, s_idrsvr.RecentFindTextID1());
 	m_RecentFindText->UseMenu(&WxPopupMenuRecentFindText);
-	m_RecentReplaceText=new wxSimpleRecentList(20, ID_RECENTREPLACETEXT1);
+	m_RecentReplaceText = new wxSimpleRecentList(20, s_idrsvr.RecentReplaceTextID1());
 	m_RecentReplaceText->UseMenu(&WxPopupMenuRecentReplaceText);
 
 	wxConfigBase *m_Config=wxConfigBase::Get(false);
@@ -643,7 +630,7 @@ void WXMSearchReplaceDialog::WxBitmapButtonRecentReplaceTextClick(wxCommandEvent
 
 void WXMSearchReplaceDialog::OnRecentFindText(wxCommandEvent& event)
 {
-	int idx=event.GetId()-ID_RECENTFINDTEXT1;
+	int idx = event.GetId() - s_idrsvr.RecentFindTextID1();
 	wxString text=m_RecentFindText->GetHistoryFile(idx);
 	if(!text.IsEmpty())
 	{
@@ -654,7 +641,7 @@ void WXMSearchReplaceDialog::OnRecentFindText(wxCommandEvent& event)
 
 void WXMSearchReplaceDialog::OnRecentReplaceText(wxCommandEvent& event)
 {
-	int idx=event.GetId()-ID_RECENTREPLACETEXT1;
+	int idx = event.GetId() - s_idrsvr.RecentReplaceTextID1();
 	wxString text=m_RecentReplaceText->GetHistoryFile(idx);
 	if(!text.IsEmpty())
 	{

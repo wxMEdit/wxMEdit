@@ -69,6 +69,7 @@ const long WXMFindInFilesDialog::ID_MADEDIT2 = wxNewId();
 const long WXMFindInFilesDialog::ID_WXBITMAPBUTTONRECENTFINDTEXT = wxNewId();
 const long WXMFindInFilesDialog::ID_WXBITMAPBUTTONRECENTREPLACETEXT = wxNewId();
 
+static wxm::WXMControlIDReserver& s_idrsvr = wxm::WXMControlIDReserver::Instance();
 BEGIN_EVENT_TABLE(WXMFindInFilesDialog,wxDialog)
 	//(*EventTable(WXMFindInFilesDialog)
 	//*)
@@ -76,8 +77,8 @@ BEGIN_EVENT_TABLE(WXMFindInFilesDialog,wxDialog)
 
 	EVT_BUTTON(ID_WXBITMAPBUTTONRECENTFINDTEXT, WXMFindInFilesDialog::WxBitmapButtonRecentFindTextClick)
 	EVT_BUTTON(ID_WXBITMAPBUTTONRECENTREPLACETEXT, WXMFindInFilesDialog::WxBitmapButtonRecentReplaceTextClick)
-	EVT_MENU_RANGE(ID_RECENTFINDTEXT1, ID_RECENTFINDTEXT20, WXMFindInFilesDialog::OnRecentFindText)
-	EVT_MENU_RANGE(ID_RECENTREPLACETEXT1, ID_RECENTREPLACETEXT20, WXMFindInFilesDialog::OnRecentReplaceText)
+	EVT_MENU_RANGE(s_idrsvr.RecentFindTextID1(), s_idrsvr.RecentFindTextID20(), WXMFindInFilesDialog::OnRecentFindText)
+	EVT_MENU_RANGE(s_idrsvr.RecentReplaceTextID1(), s_idrsvr.RecentReplaceTextID20(), WXMFindInFilesDialog::OnRecentReplaceText)
 END_EVENT_TABLE()
 
 WXMFindInFilesDialog::WXMFindInFilesDialog(wxWindow* parent,wxWindowID id,const wxPoint& pos,const wxSize& size)
@@ -321,7 +322,7 @@ void WXMFindInFilesDialog::WxBitmapButtonRecentReplaceTextClick(wxCommandEvent& 
 
 void WXMFindInFilesDialog::OnRecentFindText(wxCommandEvent& event)
 {
-	int idx=event.GetId()-ID_RECENTFINDTEXT1;
+	int idx = event.GetId() - s_idrsvr.RecentFindTextID1();
 	wxString text=g_SearchReplaceDialog->m_RecentFindText->GetHistoryFile(idx);
 	if(!text.IsEmpty())
 	{
@@ -332,7 +333,7 @@ void WXMFindInFilesDialog::OnRecentFindText(wxCommandEvent& event)
 
 void WXMFindInFilesDialog::OnRecentReplaceText(wxCommandEvent& event)
 {
-	int idx=event.GetId()-ID_RECENTREPLACETEXT1;
+	int idx = event.GetId() - s_idrsvr.RecentReplaceTextID1();
 	wxString text=g_SearchReplaceDialog->m_RecentReplaceText->GetHistoryFile(idx);
 	if(!text.IsEmpty())
 	{

@@ -236,6 +236,26 @@ private:
 	bool app_dir_writable;
 };
 
+struct WXMControlIDReserver : public boost::noncopyable
+{
+	long RecentFindTextID1() { return fid1; }
+	long RecentFindTextID20() { return fid20; }
+	long RecentReplaceTextID1() { return rid1; }
+	long RecentReplaceTextID20(){ return rid20; }
+
+	static WXMControlIDReserver& Instance()
+	{
+		static WXMControlIDReserver inst;
+		return inst;
+	}
+private:
+	WXMControlIDReserver();
+	long fid1;
+	long fid20;
+	long rid1;
+	long rid20;
+};
+
 } //namespace wxm
 
 #endif //_WXM_UTILS_H_

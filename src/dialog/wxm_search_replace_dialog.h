@@ -10,6 +10,7 @@
 #define WXM_REPLACE_DIALOG_H
 
 #include "../xm/wx_recent_list.h"
+#include "../xm/wxm_utils.h"
 
 //(*Headers(WXMSearchReplaceDialog)
 #include <wx/sizer.h>
@@ -26,11 +27,6 @@
 #include <wx/bmpbuttn.h>
 
 #include <map>
-
-extern const long ID_RECENTFINDTEXT1;
-extern const long ID_RECENTFINDTEXT20;
-extern const long ID_RECENTREPLACETEXT1;
-extern const long ID_RECENTREPLACETEXT20;
 
 class MadEdit;
 
