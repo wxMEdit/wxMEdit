@@ -210,7 +210,7 @@ int g_PrevPageID=-1;
 wxStatusBar *g_StatusBar=NULL;
 bool g_CheckModTimeForReload=true;
 
-wxMenu *g_Menu_Tab = NULL;
+wxMenu *g_PopMenu_Tab = NULL;
 wxMenu *g_Menu_File = NULL;
 wxMenu *g_Menu_Edit = NULL;
 wxMenu *g_Menu_Search = NULL;
@@ -958,6 +958,7 @@ void OnEditMouseRightUp(MadEdit *madedit)
 
 void UpdateMenus()
 {
+    g_PopMenu_Tab->UpdateUI();
     g_Menu_File->UpdateUI();
     g_Menu_Edit->UpdateUI();
     g_Menu_Search->UpdateUI();
@@ -1985,7 +1986,7 @@ void MadEditFrame::CreateGUIControls()
 
 
     // add menuitems
-    g_Menu_Tab = new wxMenu(0);
+    g_PopMenu_Tab = new wxMenu(0);
     g_Menu_File = new wxMenu(0);
     g_Menu_Edit = new wxMenu(0);
     g_Menu_Search = new wxMenu(0);
@@ -2073,7 +2074,7 @@ void MadEditFrame::CreateGUIControls()
                                menuCopyFilename, menuCopyFileDir, 0, menuPrintPreview, menuPrint };
 
     BOOST_FOREACH(int itemid, FileMenuInTabIDs)
-        CloneMenuItem(g_Menu_Tab, g_Menu_File, itemid);
+        CloneMenuItem(g_PopMenu_Tab, g_Menu_File, itemid);
 
     // set FindNext/FindPrev keys for search/replace dialog
     g_AccelFindNext.Set(0, 0, 0, 0);
@@ -2388,6 +2389,9 @@ void MadEditFrame::MadEditFrameClose(wxCloseEvent& event)
     //delete g_PrintData;
     delete g_PageSetupData;
 
+    delete g_PopMenu_Tab;
+    g_PopMenu_Tab = NULL;
+
     extern void DeleteConfig();
     DeleteConfig();
 
@@ -2608,7 +2612,7 @@ void MadEditFrame::OnNotebookPageClosed(bool bZeroPage)
 void MadEditFrame::OnNotebookTabRightUp(wxAuiNotebookEvent& event)
 {
     SetPageFocus(event.GetSelection());
-    PopupMenu(g_Menu_Tab);
+    PopupMenu(g_PopMenu_Tab);
 }
 
 void MadEditFrame::OnSize(wxSizeEvent &evt)

@@ -252,6 +252,8 @@ WXMSearchReplaceDialog::~WXMSearchReplaceDialog()
 {
 	//(*Destroy(WXMSearchReplaceDialog)
 	//*)
+	delete m_RecentReplaceText;
+	delete m_RecentFindText;
 }
 
 

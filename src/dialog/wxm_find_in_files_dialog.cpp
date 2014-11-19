@@ -279,6 +279,9 @@ WXMFindInFilesDialog::~WXMFindInFilesDialog()
 {
 	//(*Destroy(WXMFindInFilesDialog)
 	//*)
+	delete m_RecentFindExclude;
+	delete m_RecentFindFilter;
+	delete m_RecentFindDir;
 }
 
 void WXMFindInFilesDialog::WXMFindInFilesDialogClose(wxCloseEvent& event)
