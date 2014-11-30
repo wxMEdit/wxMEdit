@@ -1011,7 +1011,7 @@ DEFINE_LOCAL_EVENT_TYPE( wxmEVT_RESULT_MANUALCHECKUPDATES )
 
    //Add Custom Events only in the appropriate Block.
 BEGIN_EVENT_TABLE(MadEditFrame,wxFrame)
-	//EVT_SIZE(MadEditFrame::OnSize)
+	EVT_SIZE(MadEditFrame::OnSize)
 	EVT_AUINOTEBOOK_PAGE_CHANGING(ID_NOTEBOOK, MadEditFrame::OnNotebookPageChanging)
 	EVT_AUINOTEBOOK_PAGE_CHANGED(ID_NOTEBOOK, MadEditFrame::OnNotebookPageChanged)
 	EVT_AUINOTEBOOK_PAGE_CLOSE(ID_NOTEBOOK, MadEditFrame::OnNotebookPageClosing)
@@ -2286,7 +2286,7 @@ void MadEditFrame::CreateGUIControls()
     m_AuiManager.Update();
 
     // fixed for using wxAUI
-    WxStatusBar1->Connect(wxEVT_SIZE, wxSizeEventHandler(MadEditFrame::OnSize));
+    WxStatusBar1->Connect(wxEVT_SIZE, wxSizeEventHandler(MadEditFrame::OnSizeStatusBar));
 }
 
 void MadEditFrame::MadEditFrameClose(wxCloseEvent& event)
@@ -2317,16 +2317,14 @@ void MadEditFrame::MadEditFrameClose(wxCloseEvent& event)
     m_Config->SetPath(wxT("/FileCaretPos"));
     g_FileCaretPosManager.Save(m_Config);
 
-#ifdef __WXMSW__
-    WINDOWPLACEMENT wp;
-    wp.length = sizeof(WINDOWPLACEMENT);
-    GetWindowPlacement( (HWND) GetHWND(), &wp );
-    m_Config->Write( wxT("/wxMEdit/WindowMaximize"), wp.showCmd == SW_SHOWMAXIMIZED );
+#if defined(__WXMSW__) || defined(__WXGTK__)
+    m_Config->Write(wxT("/wxMEdit/WindowMaximize"), IsMaximized());
 
-    m_Config->Write(wxT("/wxMEdit/WindowLeft"),   wp.rcNormalPosition.left );
-    m_Config->Write(wxT("/wxMEdit/WindowTop"),    wp.rcNormalPosition.top );
-    m_Config->Write(wxT("/wxMEdit/WindowWidth"),  wp.rcNormalPosition.right - wp.rcNormalPosition.left);
-    m_Config->Write(wxT("/wxMEdit/WindowHeight"), wp.rcNormalPosition.bottom - wp.rcNormalPosition.top);
+    wxRect rect = GetNormalRect();
+    m_Config->Write(wxT("/wxMEdit/WindowLeft"),   rect.x );
+    m_Config->Write(wxT("/wxMEdit/WindowTop"),    rect.y );
+    m_Config->Write(wxT("/wxMEdit/WindowWidth"),  rect.width);
+    m_Config->Write(wxT("/wxMEdit/WindowHeight"), rect.height);
 #else
     int x,y;
     GetPosition(&x,&y);
@@ -2615,7 +2613,7 @@ void MadEditFrame::OnNotebookTabRightUp(wxAuiNotebookEvent& event)
     PopupMenu(g_PopMenu_Tab);
 }
 
-void MadEditFrame::OnSize(wxSizeEvent &evt)
+void MadEditFrame::OnSizeStatusBar(wxSizeEvent &evt)
 {
     evt.Skip();
 
@@ -5320,4 +5318,18 @@ void MadEditFrame::PurgeRecentEncodings()
     int n = (int) m_RecentEncodings->GetCount();
     for(int i=n-1; i>=1; --i)
         m_RecentEncodings->RemoveFileFromHistory((size_t)i);
+}
+
+void MadEditFrame::OnSize(wxSizeEvent& event)
+{
+    if (!IsMaximized())
+        m_nml_rect = GetRect();
+    event.Skip(true);
+}
+
+wxRect MadEditFrame::GetNormalRect()
+{
+    if (IsMaximized())
+        return m_nml_rect;
+    return GetRect();
 }

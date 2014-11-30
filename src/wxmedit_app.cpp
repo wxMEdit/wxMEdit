@@ -327,7 +327,7 @@ bool MadEditApp::OnInit()
 
     wxm::UpdatePeriods::Instance().Initialize();
 
-#ifdef __WXMSW__
+#if defined(__WXMSW__) || defined(__WXGTK__)
     bool maximize=false;
     cfg->Read(wxT("/wxMEdit/WindowMaximize"), &maximize, false);
 #endif
@@ -364,12 +364,9 @@ bool MadEditApp::OnInit()
     MadEditFrame *myFrame = new MadEditFrame(NULL, 1 , wxEmptyString, pos, size);
     SetTopWindow(myFrame);
 
-#ifdef __WXMSW__
-    WINDOWPLACEMENT wp;
-    wp.length=sizeof(WINDOWPLACEMENT);
-    GetWindowPlacement((HWND)myFrame->GetHWND(), &wp);
-    wp.showCmd = maximize ? SW_SHOWMAXIMIZED : SW_SHOWNORMAL;
-    SetWindowPlacement((HWND)myFrame->GetHWND(), &wp);
+#if defined(__WXMSW__) || defined(__WXGTK__)
+    if (maximize)
+        myFrame->Maximize(true);
 #endif
 
     myFrame->Show(true);

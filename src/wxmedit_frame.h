@@ -52,6 +52,8 @@ class MadEditFrame : public wxFrame
 {
 private:
     DECLARE_EVENT_TABLE()
+
+    wxRect m_nml_rect;
 public:
     MadEditFrame( wxWindow *parent, wxWindowID id = 1, const wxString &title = wxT("wxMEdit"),
         const wxPoint& pos = wxDefaultPosition,
@@ -279,6 +281,7 @@ public:
     void OnHelpCheckUpdates(wxCommandEvent& event);
     void OnHelpAbout(wxCommandEvent& event);
 
+    void OnSize(wxSizeEvent& event);
 private:
     bool m_PageClosing; // prevent from reentry of CloseFile(), OnNotebookPageClosing()
 
@@ -309,7 +312,7 @@ protected:
     void OnNotebookPageClosed(bool bZeroPage=false);//wxAuiNotebookEvent& event); //wxAUI doesn't support this event
 	void OnNotebookTabRightUp(wxAuiNotebookEvent& event);
 
-    void OnSize(wxSizeEvent &evt);
+    void OnSizeStatusBar(wxSizeEvent &evt);
     //void OnChar(wxKeyEvent& evt);
     void OnActivate(wxActivateEvent &evt);
 
@@ -336,6 +339,7 @@ public:
     void PurgeRecentFiles();
     void PurgeRecentFonts();
     void PurgeRecentEncodings();
+    wxRect GetNormalRect();
 };
 
 enum { // menu id
