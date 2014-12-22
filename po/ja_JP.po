@@ -34,7 +34,7 @@ msgstr ""
 "Project-Id-Version: wxMEdit 2.9.9\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-12-13 15:29+0800\n"
-"PO-Revision-Date: 2014-09-14 00:33+0900\n"
+"PO-Revision-Date: 2014-12-22 02:29+0900\n"
 "Last-Translator: Tilt <<tiltstr@gmail.com>>\n"
 "Language-Team: Tilt <<tiltstr@gmail.com>>\n"
 "Language: ja_JP\n"
@@ -42,7 +42,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-Generator: Poedit 1.6.9\n"
+"X-Generator: Poedit 1.6.10\n"
 
 #: wxstd.po.cpp:3
 msgid "OK"
@@ -2148,7 +2148,7 @@ msgstr "日本語翻訳"
 
 #: ../src/wxmedit_frame.cpp:186
 msgid "Translator for Italian"
-msgstr ""
+msgstr "イタリア語翻訳"
 
 #: ../src/wxmedit_frame.cpp:187
 msgid "Translator for Spanish"
@@ -2278,67 +2278,67 @@ msgstr "すべてのファイルを閉じる"
 
 #: ../src/wxmedit_frame.cpp:1289
 msgid "Close All under &Folder..."
-msgstr ""
+msgstr "フォルダ以下をすべて閉じる(&F)"
 
 #: ../src/wxmedit_frame.cpp:1289
 msgid "Close all files in given folder and in all the subfolders"
-msgstr ""
+msgstr "指定したフォルダおよびサブフォルダ内すべてのファイルを閉じる"
 
 #: ../src/wxmedit_frame.cpp:1290
 msgid "Close &More"
-msgstr ""
+msgstr "更に閉じる(&M)"
 
 #: ../src/wxmedit_frame.cpp:1291
 msgid "Close All &BUT This"
-msgstr ""
+msgstr "これ以外すべて閉じる(&B)"
 
 #: ../src/wxmedit_frame.cpp:1291
 msgid "Close all files except the current one"
-msgstr ""
+msgstr "現在のものを除いたすべてを閉じる"
 
 #: ../src/wxmedit_frame.cpp:1292
 msgid "Close All To The &Left"
-msgstr ""
+msgstr "左側すべてを閉じる(&L)"
 
 #: ../src/wxmedit_frame.cpp:1292
 msgid "Close all files at the left side of current one"
-msgstr ""
+msgstr "現在のものより左にあるすべてのファイルを閉じる"
 
 #: ../src/wxmedit_frame.cpp:1293
 msgid "Close All To The &Right"
-msgstr ""
+msgstr "右側すべてを閉じる(&R)"
 
 #: ../src/wxmedit_frame.cpp:1293
 msgid "Close all files at the right side of current one"
-msgstr ""
+msgstr "現在のものより右にあるすべてのファイルを閉じる"
 
 #: ../src/wxmedit_frame.cpp:1295
 msgid "Copy File Pat&h"
-msgstr ""
+msgstr "ファイルのパスをコピー(&H)"
 
 #: ../src/wxmedit_frame.cpp:1296
 msgid "Copy &Full Path"
-msgstr ""
+msgstr "フルパスをコピー(&F)"
 
 #: ../src/wxmedit_frame.cpp:1296
 msgid "Copy full file path to clipboard"
-msgstr ""
+msgstr "ファイルのフルパスをクリップボードにコピー"
 
 #: ../src/wxmedit_frame.cpp:1297
 msgid "Copy File &Name"
-msgstr ""
+msgstr "ファイル名をコピー(&N)"
 
 #: ../src/wxmedit_frame.cpp:1297
 msgid "Copy file name to clipboard"
-msgstr ""
+msgstr "ファイル名をクリップボードにコピー"
 
 #: ../src/wxmedit_frame.cpp:1298
 msgid "Copy Containing &Directory"
-msgstr ""
+msgstr "含まれるディレクトリをコピー(&D)"
 
 #: ../src/wxmedit_frame.cpp:1298
 msgid "Copy containing directory to clipboard"
-msgstr ""
+msgstr "含まれるディレクトリをクリップボードにコピー"
 
 #: ../src/wxmedit_frame.cpp:1300
 msgid "Page Set&up..."
@@ -2788,11 +2788,11 @@ msgstr "前のブックマークへ移動します"
 
 #: ../src/wxmedit_frame.cpp:1410 ../src/wxmedit_frame.cpp:2247
 msgid "Clear All Bookmarks"
-msgstr ""
+msgstr "すべてのブックマークをクリア"
 
 #: ../src/wxmedit_frame.cpp:1410
 msgid "Clear all bookmarks from current file"
-msgstr ""
+msgstr "現在のファイルからすべてのブックマークをクリア"
 
 #: ../src/wxmedit_frame.cpp:1413
 msgid "&View"
@@ -3531,7 +3531,7 @@ msgstr "Unicode (BOMなし)"
 
 #: ../src/wxmedit_frame.cpp:3622
 msgid "Close all files in this foler and in all the subfolers:"
-msgstr ""
+msgstr "このフォルダおよびサブフォルダ内すべてのファイルを閉じる:"
 
 #: ../src/wxmedit_frame.cpp:3757
 msgid ""
@@ -4513,7 +4513,7 @@ msgstr "単語"
 
 #: ../src/dialog/wxm_word_count_dialog.cpp:68
 msgid "Bytes"
-msgstr ""
+msgstr "バイト"
 
 #: ../src/dialog/wxm_word_count_dialog.cpp:72
 msgid "Characters (all)"
@@ -4525,7 +4525,7 @@ msgstr "文字 (制御/空白以外)"
 
 #: ../src/dialog/wxm_word_count_dialog.cpp:80
 msgid "Space Characters"
-msgstr ""
+msgstr "空白文字"
 
 #: ../src/dialog/wxm_word_count_dialog.cpp:84
 msgid "Control Characters"
@@ -4533,11 +4533,11 @@ msgstr "制御文字"
 
 #: ../src/dialog/wxm_word_count_dialog.cpp:88
 msgid "Fullwidth Characters (with East Asian Ambiguous Width Characters)"
-msgstr ""
+msgstr "全角文字 (東アジア等、幅のあいまいな文字)"
 
 #: ../src/dialog/wxm_word_count_dialog.cpp:92
 msgid "Fullwidth Characters (without East Asian Ambiguous Width Characters)"
-msgstr ""
+msgstr "全角文字 (東アジア等、幅のあいまいな文字以外)"
 
 #: ../src/dialog/wxm_word_count_dialog.cpp:99
 msgid "Detail Information of Characters:"
