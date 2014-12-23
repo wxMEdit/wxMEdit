@@ -33,8 +33,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: wxMEdit 2.9.9\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-12-13 15:29+0800\n"
-"PO-Revision-Date: 2014-09-13 15:52+0800\n"
+"POT-Creation-Date: 2014-12-13 15:33+0800\n"
+"PO-Revision-Date: 2014-11-08 00:10+0800\n"
 "Last-Translator: Vincent_TW <wxmedit@gmail.com>\n"
 "Language-Team: wxMEdit <wxmedit@gmail.com>\n"
 "Language: zh_TW\n"
@@ -2148,7 +2148,7 @@ msgstr "日文翻譯"
 
 #: ../src/wxmedit_frame.cpp:186
 msgid "Translator for Italian"
-msgstr ""
+msgstr "意大利文翻譯"
 
 #: ../src/wxmedit_frame.cpp:187
 msgid "Translator for Spanish"
@@ -2250,7 +2250,7 @@ msgstr "儲存所有檔案(&V)"
 
 #: ../src/wxmedit_frame.cpp:1283
 msgid "Save all files"
-msgstr "儲存全部檔案"
+msgstr "儲存所有檔案"
 
 #: ../src/wxmedit_frame.cpp:1285
 msgid "&Reload File"
@@ -2274,71 +2274,71 @@ msgstr "關閉所有檔案(&L)"
 
 #: ../src/wxmedit_frame.cpp:1288
 msgid "Close all files"
-msgstr "關閉全部檔案"
+msgstr "關閉所有檔案"
 
 #: ../src/wxmedit_frame.cpp:1289
 msgid "Close All under &Folder..."
-msgstr ""
+msgstr "關閉指定資料夾下所有檔案(&F)..."
 
 #: ../src/wxmedit_frame.cpp:1289
 msgid "Close all files in given folder and in all the subfolders"
-msgstr ""
+msgstr "關閉指定資料夾及其子資料夾中的所有檔案"
 
 #: ../src/wxmedit_frame.cpp:1290
 msgid "Close &More"
-msgstr ""
+msgstr "關閉多個檔案(&M)"
 
 #: ../src/wxmedit_frame.cpp:1291
 msgid "Close All &BUT This"
-msgstr ""
+msgstr "關閉所有其它檔案(&B)"
 
 #: ../src/wxmedit_frame.cpp:1291
 msgid "Close all files except the current one"
-msgstr ""
+msgstr "關閉除目前檔案外的所有檔案"
 
 #: ../src/wxmedit_frame.cpp:1292
 msgid "Close All To The &Left"
-msgstr ""
+msgstr "關閉左側的所有檔案(&L)"
 
 #: ../src/wxmedit_frame.cpp:1292
 msgid "Close all files at the left side of current one"
-msgstr ""
+msgstr "關閉目前檔案左側的所有檔案"
 
 #: ../src/wxmedit_frame.cpp:1293
 msgid "Close All To The &Right"
-msgstr ""
+msgstr "關閉右側的所有檔案(&R)"
 
 #: ../src/wxmedit_frame.cpp:1293
 msgid "Close all files at the right side of current one"
-msgstr ""
+msgstr "關閉目前檔案右側的所有檔案"
 
 #: ../src/wxmedit_frame.cpp:1295
 msgid "Copy File Pat&h"
-msgstr ""
+msgstr "複製檔案路徑(&H)"
 
 #: ../src/wxmedit_frame.cpp:1296
 msgid "Copy &Full Path"
-msgstr ""
+msgstr "複製全路徑(&F)"
 
 #: ../src/wxmedit_frame.cpp:1296
 msgid "Copy full file path to clipboard"
-msgstr ""
+msgstr "複製檔案全路徑到剪貼簿中"
 
 #: ../src/wxmedit_frame.cpp:1297
 msgid "Copy File &Name"
-msgstr ""
+msgstr "複製檔案名(&N)"
 
 #: ../src/wxmedit_frame.cpp:1297
 msgid "Copy file name to clipboard"
-msgstr ""
+msgstr "複製檔案名到剪貼簿中"
 
 #: ../src/wxmedit_frame.cpp:1298
 msgid "Copy Containing &Directory"
-msgstr ""
+msgstr "複製所在目錄(&D)"
 
 #: ../src/wxmedit_frame.cpp:1298
 msgid "Copy containing directory to clipboard"
-msgstr ""
+msgstr "複製所在目錄到剪貼簿中"
 
 #: ../src/wxmedit_frame.cpp:1300
 msgid "Page Set&up..."
@@ -2788,11 +2788,11 @@ msgstr "跳到上一書籤處"
 
 #: ../src/wxmedit_frame.cpp:1410 ../src/wxmedit_frame.cpp:2247
 msgid "Clear All Bookmarks"
-msgstr ""
+msgstr "清除所有書籤"
 
 #: ../src/wxmedit_frame.cpp:1410
 msgid "Clear all bookmarks from current file"
-msgstr ""
+msgstr "清除目前檔案中的所有書籤"
 
 #: ../src/wxmedit_frame.cpp:1413
 msgid "&View"
@@ -3404,7 +3404,7 @@ msgstr "開啟檔案"
 
 #: ../src/wxmedit_frame.cpp:2216
 msgid "Save All Files"
-msgstr "儲存全部的檔案"
+msgstr "儲存所有檔案"
 
 #: ../src/wxmedit_frame.cpp:2217
 msgid "Close File"
@@ -3412,7 +3412,7 @@ msgstr "關閉檔案"
 
 #: ../src/wxmedit_frame.cpp:2218
 msgid "Close All Files"
-msgstr "關閉全部的檔案"
+msgstr "關閉所有檔案"
 
 #: ../src/wxmedit_frame.cpp:2221
 msgid "Undo"
@@ -3531,7 +3531,7 @@ msgstr "沒有 Unicode BOM (位元組順序標籤)"
 
 #: ../src/wxmedit_frame.cpp:3622
 msgid "Close all files in this foler and in all the subfolers:"
-msgstr ""
+msgstr "關閉這個資料夾及其子資料夾中的所有檔案："
 
 #: ../src/wxmedit_frame.cpp:3757
 msgid ""
@@ -4164,7 +4164,7 @@ msgstr "==> 刪除按鍵"
 
 #: ../src/dialog/wxm_options_dialog.cpp:591
 msgid "Show the Key in Menu"
-msgstr "在選單中顯示此按鍵"
+msgstr "在功能表中顯示此按鍵"
 
 #: ../src/dialog/wxm_options_dialog.cpp:597
 msgid "Reset all keys to default (must restart wxMEdit)"
@@ -4367,7 +4367,7 @@ msgid ""
 "Add wxMEdit to the RightClickMenu of Explorer(Deselect to Remove the Entry "
 "from Windows Registry)"
 msgstr ""
-"將 wxMEdit 增加到檔案總管的右鍵選單 (取消選取會把寫入註冊表中的資訊移除)"
+"將 wxMEdit 增加到檔案總管的右鍵功能表 (取消選取會把寫入註冊表中的資訊移除)"
 
 #: ../src/dialog/wxm_options_dialog.cpp:752
 msgid ""
@@ -4383,7 +4383,7 @@ msgstr "命令"
 
 #: ../src/dialog/wxm_options_dialog.cpp:781
 msgid "Menu"
-msgstr "選單"
+msgstr "功能表"
 
 #: ../src/dialog/wxm_options_dialog.cpp:782
 msgid "Editor"
@@ -4509,7 +4509,7 @@ msgstr "字數"
 
 #: ../src/dialog/wxm_word_count_dialog.cpp:68
 msgid "Bytes"
-msgstr ""
+msgstr "位元組數"
 
 #: ../src/dialog/wxm_word_count_dialog.cpp:72
 msgid "Characters (all)"
@@ -4521,7 +4521,7 @@ msgstr "字元數（不含控制符號/空白）"
 
 #: ../src/dialog/wxm_word_count_dialog.cpp:80
 msgid "Space Characters"
-msgstr ""
+msgstr "空白字元數"
 
 #: ../src/dialog/wxm_word_count_dialog.cpp:84
 msgid "Control Characters"
@@ -4529,11 +4529,11 @@ msgstr "控制字元數"
 
 #: ../src/dialog/wxm_word_count_dialog.cpp:88
 msgid "Fullwidth Characters (with East Asian Ambiguous Width Characters)"
-msgstr ""
+msgstr "全形字元數（含東亞模糊寬度字元）"
 
 #: ../src/dialog/wxm_word_count_dialog.cpp:92
 msgid "Fullwidth Characters (without East Asian Ambiguous Width Characters)"
-msgstr ""
+msgstr "全形字元數（不含東亞模糊寬度字元）"
 
 #: ../src/dialog/wxm_word_count_dialog.cpp:99
 msgid "Detail Information of Characters:"
@@ -4635,6 +4635,3 @@ msgstr "從不"
 #: ../src/xm/wx_recent_list.cpp:75
 msgid "[EMPTY]"
 msgstr "[空]"
-
-#~ msgid "Fullwidth Characters"
-#~ msgstr "全形字元數"
