@@ -1,5 +1,5 @@
                       ==================================
-                                wxMEdit v2.9.8.3
+                                wxMEdit v2.9.9
                       ==================================
 About:
 -----
@@ -84,15 +84,25 @@ Syntax files, Locale files and Settings:
 
 ChangeLog:
 ----------
-wxMEdit v2.9.8.3:
+wxMEdit v2.9.9:
   1. added right-click context menu for each tab.
   2. added more information for Word Count Dialog.
   3. added new feature: close files under given folder.
   4. added new features: close to the left/right, close all but this.
   5. added bookmark buttons to toolbar.
-  6. fixed crash when saving a empty file.
-  7. updated translations of wxmedit.desktop.
-  8. other minor changes and bug fixes.
+  6. added encoding aliases support for Find-in-Files Dialog and Options Dialog.
+  7. added always saving & restoring normalize window size support for UNIX like OS.
+  8. improved localization for syntax title.
+  9. fixed crash when saving a empty file.
+ 10. fixed crash when opening Find Dialog with max line length < 100 and find-text history not empty.
+ 11. fixed crash when purging find/replace-text history immediately after wxMEdit start.
+ 12. fixed that syntax type is always reset on saving even manually changed.
+ 13. updated translations of wxmedit.desktop.
+ 14. updated Simplified Chinese translation.
+ 15. updated Traditional Chinese translation by Vincent_TW.
+ 16. updated Spanish translation by Carlos Sánchez <carlos1994sanchez@gmail.com>.
+ 17. updated Japanese translation by Tilt <tiltstr@gmail.com>.
+ 18. other minor changes and bug fixes.
 
 wxMEdit v2.9.8:
   1. added more choices for whether pasting as hex-string in hex-area when editing in hex-mode.
@@ -111,8 +121,7 @@ wxMEdit v2.9.8:
  14. updated Traditional Chinese translation by Vincent_TW.
  15. updated Spanish translation by Carlos Sánchez <carlos1994sanchez@gmail.com>.
  16. updated Japanese translation by Tilt <tiltstr@gmail.com>.
- 17. updated Russian translation by Shamil Bikineyev <shamilbi@gmail.com>.
- 18. other minor changes and bug fixes.
+ 17. other minor changes and bug fixes.
 
 wxMEdit v2.9.7:
   1. added new encoding "CP437 Variant for ASCII Art" to support ASCII-Art better.

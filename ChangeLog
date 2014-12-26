@@ -1,20 +1,24 @@
-2014-11-08 00:19:48 +0800 JiaYanwei <wxmedit@gmail.com>
+2014-12-26 21:37:12 +0800 JiaYanwei <wxmedit@gmail.com>
 
-	* wxMEdit v2.9.8.3:
+	* wxMEdit v2.9.9:
 	 1. added right-click context menu for each tab.
 	 2. added more information for Word Count Dialog.
 	 3. added new feature: close files under given folder.
 	 4. added new features: close to the left/right, close all but this.
 	 5. added bookmark buttons to toolbar.
-	 6. other minor changes and bug fixes.
-
-
-2014-10-16 12:10:09 +0800 JiaYanwei <wxmedit@gmail.com>
-
-	* wxMEdit v2.9.8.2:
-	 1. fixed crash when saving a empty file.
-	 2. updated Spanish translation.
-	 3. updated translations of wxmedit.desktop.
+	 6. added encoding aliases support for Find-in-Files Dialog and Options Dialog.
+	 7. added always saving & restoring normalize window size support for UNIX like OS.
+	 8. improved localization for syntax title.
+	 9. fixed crash when saving a empty file.
+	10. fixed crash when opening Find Dialog with max line length < 100 and find-text history not empty.
+	11. fixed crash when purging find/replace-text history immediately after wxMEdit start.
+	12. fixed that syntax type is always reset on saving even manually changed.
+	13. updated translations of wxmedit.desktop.
+	14. updated Simplified Chinese translation.
+	15. updated Traditional Chinese translation by Vincent_TW.
+	16. updated Spanish translation by Carlos Sánchez <carlos1994sanchez@gmail.com>.
+	17. updated Japanese translation by Tilt <tiltstr@gmail.com>.
+	18. other minor changes and bug fixes.
 
 
 2014-09-18 13:01:42 +0800 JiaYanwei <wxmedit@gmail.com>
