@@ -3950,6 +3950,7 @@ namespace
 {
     struct wxTheClipboardCloser
     {
+        wxTheClipboardCloser() {}
         ~wxTheClipboardCloser()
         {
             wxTheClipboard->Close();
