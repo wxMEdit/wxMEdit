@@ -4117,7 +4117,6 @@ int MadEdit::GetTextFromClipboard(vector<ucs4_t>& ucs)
     if(!wxTheClipboard->Open())
         return 0;
 
-    int linecount=0;
     wxTheClipboardCloser clipbrd_closer;
     if(!wxTheClipboard->IsSupported(wxDF_UNICODETEXT))
         return 0;
