@@ -91,7 +91,6 @@ void SingleLineWXMEdit::SingleLineWXMEditInit()
 {
 	SetStorePropertiesToGlobalConfig(false);
 	SetDisplayLineNumber(false);
-	//SetWordWrapMode(wwmNoWrap);
 	//SetEditMode(emTextMode);
 	SetMarkActiveLine(false);
 

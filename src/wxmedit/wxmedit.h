@@ -719,7 +719,7 @@ public: // basic functions
     bool GetWantTab() { return m_WantTab; }
 
     virtual void SetWordWrapMode(MadWordWrapMode mode);
-    MadWordWrapMode GetWordWrapMode() { return m_WordWrapMode; }
+    virtual MadWordWrapMode GetWordWrapMode() { return m_WordWrapMode; }
 
     void SetDisplayLineNumber(bool value);
     void SetShowEndOfLine(bool value);

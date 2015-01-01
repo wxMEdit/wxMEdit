@@ -991,7 +991,7 @@ void MadEdit::SetMaxColumns(long cols)
             m_Config->SetPath(oldpath);
         }
 
-        if(m_WordWrapMode==wwmWrapByColumn)
+        if (GetWordWrapMode() == wwmWrapByColumn)
         {
             if(m_EditMode != emHexMode)
             {

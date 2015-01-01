@@ -27,6 +27,7 @@ class SingleLineWXMEdit : public MadEdit
 	virtual void OnMouseWheel(wxMouseEvent &evt) {}
 	virtual void SetEditMode(MadEditMode mode) {}
 	virtual void SetWordWrapMode(MadWordWrapMode mode) {}
+	virtual MadWordWrapMode GetWordWrapMode() { return wwmNoWrap; }
 	virtual void SetClientSizeData(int w, int h);
 
 	void SingleLineWXMEditInit();
