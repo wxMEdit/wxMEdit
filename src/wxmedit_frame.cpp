@@ -1,9 +1,9 @@
 ///////////////////////////////////////////////////////////////////////////////
 // vim:         ts=4 sw=4 expandtab
 // Name:        wxm_edit_frame.cpp
-// Description: main frame of wxMEdit
-// Author:      madedit@gmail.com  (creator)
-//              wxmedit@gmail.com  (current maintainer)
+// Description: Main Frame of wxMEdit
+// Copyright:   2013-2015  JiaYanwei   <wxmedit@gmail.com>
+//              2005-2010  Alston Chen <madedit@gmail.com>
 // Licence:     GPLv3
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -161,7 +161,7 @@ const wxString g_wxMEdit_License_URL(wxT("http://www.gnu.org/licenses/gpl-3.0.ht
 wxString g_wxMEdit_About_URL = g_wxMEdit_Homepage_URL;
 
 const static wxString s_wxMEdit_License(
-wxT("Copyright (C) 2013-2014  JiaYanwei <wxmedit@gmail.com>\n")
+wxT("Copyright (C) 2013-2015  JiaYanwei <wxmedit@gmail.com>\n")
 wxT("Copyright (C) 2005-2010  Alston Chen <madedit@gmail.com>\n")
 wxT("\n")
 wxT("This program is free software: you can redistribute it and/or modify ")

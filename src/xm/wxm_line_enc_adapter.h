@@ -2,7 +2,7 @@
 // vim:         ts=4 sw=4
 // Name:        xm/wxm_line_enc_adapter.h
 // Description: Adapters for MadLines and WXMEncoding
-// Author:      wxmedit@gmail.com
+// Copyright:   2013-2015  JiaYanwei   <wxmedit@gmail.com>
 // Licence:     GPLv3
 ///////////////////////////////////////////////////////////////////////////////
 

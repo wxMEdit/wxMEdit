@@ -1,9 +1,9 @@
 ///////////////////////////////////////////////////////////////////////////////
 // vim:         ts=4 sw=4 expandtab
 // Name:        wxmedit/wxmedit.cpp
-// Description: main Edit component of wxMEdit
-// Author:      madedit@gmail.com  (creator)
-//              wxmedit@gmail.com  (current maintainer)
+// Description: Main Edit Component of wxMEdit
+// Copyright:   2013-2015  JiaYanwei   <wxmedit@gmail.com>
+//              2005-2010  Alston Chen <madedit@gmail.com>
 // Licence:     GPLv3
 ///////////////////////////////////////////////////////////////////////////////
 

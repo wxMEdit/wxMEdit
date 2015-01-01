@@ -2,8 +2,8 @@
 // vim:         ts=4 sw=4 expandtab
 // Name:        wxmedit_app.cpp
 // Description:
-// Author:      madedit@gmail.com  (creator)
-//              wxmedit@gmail.com  (current maintainer)
+// Copyright:   2013-2015  JiaYanwei   <wxmedit@gmail.com>
+//              2005-2010  Alston Chen <madedit@gmail.com>
 // Licence:     GPLv3
 ///////////////////////////////////////////////////////////////////////////////
 

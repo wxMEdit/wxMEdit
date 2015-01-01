@@ -1,8 +1,8 @@
 ///////////////////////////////////////////////////////////////////////////////
 // vim:         ts=4 sw=4
 // Name:        xm/wxm_wx_icu.cpp
-// Description: Case conversion for wxWidgets string
-// Author:      wxmedit@gmail.com
+// Description: Case Conversion for wxWidgets String
+// Copyright:   2013-2015  JiaYanwei   <wxmedit@gmail.com>
 // Licence:     GPLv3
 ///////////////////////////////////////////////////////////////////////////////
 

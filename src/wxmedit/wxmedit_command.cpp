@@ -1,8 +1,8 @@
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        wxmedit/wxmedit_command.cpp
-// Description: define the Edit Commands and KeyBindings
-// Author:      madedit@gmail.com  (creator)
-//              wxmedit@gmail.com  (current maintainer)
+// Description: Define the Edit Commands and KeyBindings
+// Copyright:   2013-2015  JiaYanwei   <wxmedit@gmail.com>
+//              2005-2010  Alston Chen <madedit@gmail.com>
 // Licence:     GPLv3
 ///////////////////////////////////////////////////////////////////////////////
 

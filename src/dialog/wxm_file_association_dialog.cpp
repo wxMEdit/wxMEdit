@@ -1,8 +1,8 @@
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        wxm_file_association_dialog.cpp
 // Description: File Type Association Dialog for MSWindows
-// Author:      madedit@gmail.com  (creator)
-//              wxmedit@gmail.com  (current maintainer)
+// Copyright:   2013-2015  JiaYanwei   <wxmedit@gmail.com>
+//              2007-2010  Alston Chen <madedit@gmail.com>
 // Licence:     GPLv3
 ///////////////////////////////////////////////////////////////////////////////
 

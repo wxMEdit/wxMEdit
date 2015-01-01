@@ -1,8 +1,8 @@
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        wxmedit/wxm_syntax.cpp
-// Description: syntax parsing and syntax file management
-// Author:      madedit@gmail.com  (creator)
-//              wxmedit@gmail.com  (current maintainer)
+// Description: Syntax Parsing and Syntax File Management
+// Copyright:   2013-2015  JiaYanwei   <wxmedit@gmail.com>
+//              2005-2010  Alston Chen <madedit@gmail.com>
 // Licence:     GPLv3
 ///////////////////////////////////////////////////////////////////////////////
 

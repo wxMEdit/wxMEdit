@@ -2,7 +2,7 @@
 // vim:         ts=4 sw=4
 // Name:        xm/xm_ublock.cpp
 // Description: Unicode Blocks Information
-// Author:      wxmedit@gmail.com
+// Copyright:   2013-2015  JiaYanwei   <wxmedit@gmail.com>
 // Licence:     GPLv3
 ///////////////////////////////////////////////////////////////////////////////
 

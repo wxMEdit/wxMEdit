@@ -1,8 +1,8 @@
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        wxm_find_in_files_dialog.cpp
-// Description: find or replace in files dialog
-// Author:      madedit@gmail.com  (creator)
-//              wxmedit@gmail.com  (current maintainer)
+// Description: Find/Replace in Files Dialog
+// Copyright:   2013-2015  JiaYanwei   <wxmedit@gmail.com>
+//              2006-2010  Alston Chen <madedit@gmail.com>
 // Licence:     GPLv3
 ///////////////////////////////////////////////////////////////////////////////
 

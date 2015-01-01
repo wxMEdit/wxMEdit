@@ -1,8 +1,8 @@
 ///////////////////////////////////////////////////////////////////////////////
 // vim:         ts=4 sw=4
 // Name:        xm/wxm_encoding/doublebyte.h
-// Description: define the Double-byte Encodings which are supported by wxMEdit
-// Author:      wxmedit@gmail.com
+// Description: Define the Double-byte Encodings Supported by wxMEdit
+// Copyright:   2013-2015  JiaYanwei   <wxmedit@gmail.com>
 // Licence:     GPLv3
 ///////////////////////////////////////////////////////////////////////////////
 

@@ -2,7 +2,7 @@
 // vim:         ts=4 sw=4
 // Name:        xm/single_line_wxmedit.h
 // Description: Single Line wxMEdit Control
-// Author:      wxmedit@gmail.com
+// Copyright:   2014-2015  JiaYanwei   <wxmedit@gmail.com>
 // Licence:     GPLv3
 ///////////////////////////////////////////////////////////////////////////////
 

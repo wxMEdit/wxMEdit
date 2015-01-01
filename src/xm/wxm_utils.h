@@ -2,7 +2,7 @@
 // vim:         ts=4 sw=4
 // Name:        wxm_utils.h
 // Description: Utilities
-// Author:      wxmedit@gmail.com
+// Copyright:   2013-2015  JiaYanwei   <wxmedit@gmail.com>
 // Licence:     GPLv3
 ///////////////////////////////////////////////////////////////////////////////
 

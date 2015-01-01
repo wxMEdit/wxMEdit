@@ -1,9 +1,9 @@
 ///////////////////////////////////////////////////////////////////////////////
 // vim:         sw=4 ts=4 expandtab
 // Name:        wxmedit/wxmedit_advanced.cpp
-// Description: advanced functions of wxMEdit
-// Author:      madedit@gmail.com  (creator)
-//              wxmedit@gmail.com  (current maintainer)
+// Description: Advanced Functions of wxMEdit
+// Copyright:   2013-2015  JiaYanwei   <wxmedit@gmail.com>
+//              2006-2010  Alston Chen <madedit@gmail.com>
 // Licence:     GPLv3
 ///////////////////////////////////////////////////////////////////////////////
 

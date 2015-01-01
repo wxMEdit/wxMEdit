@@ -1,8 +1,8 @@
 ///////////////////////////////////////////////////////////////////////////////
 // vim:         ts=4 sw=4
 // Name:        xm/wxm_def.h
-// Description: wxMEdit common definitions
-// Author:      wxmedit@gmail.com
+// Description: wxMEdit Common Definitions
+// Copyright:   2013-2015  JiaYanwei   <wxmedit@gmail.com>
 // Licence:     GPLv3
 ///////////////////////////////////////////////////////////////////////////////
 

@@ -1,8 +1,8 @@
 ///////////////////////////////////////////////////////////////////////////////
 // vim:         ts=4 sw=4
 // Name:        xm/wxm_encoding/unicode.h
-// Description: define the Unicode Encodings which are supported by wxMEdit
-// Author:      wxmedit@gmail.com
+// Description: Define the Unicode Encodings Supported by wxMEdit
+// Copyright:   2013-2015  JiaYanwei   <wxmedit@gmail.com>
 // Licence:     GPLv3
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -32,9 +32,9 @@ size_t WXMEncodingUTF8::UCS4toMultiByte(ucs4_t ucs4, wxByte* buf)
 	  UTF8-1      = %x00-7F
 	  UTF8-2      = %xC2-DF UTF8-tail
 	  UTF8-3      = %xE0 %xA0-BF UTF8-tail / %xE1-EC 2( UTF8-tail ) /
-	  %xED %x80-9F UTF8-tail / %xEE-EF 2( UTF8-tail )
+	                %xED %x80-9F UTF8-tail / %xEE-EF 2( UTF8-tail )
 	  UTF8-4      = %xF0 %x90-BF 2( UTF8-tail ) / %xF1-F3 3( UTF8-tail ) /
-	  %xF4 %x80-8F 2( UTF8-tail )
+	                %xF4 %x80-8F 2( UTF8-tail )
 	  UTF8-tail   = %x80-BF
 	 ***/
 

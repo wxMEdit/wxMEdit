@@ -1,8 +1,8 @@
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        wxmedit/wxmedit_basic.cpp
-// Description: basic functions of wxMEdit
-// Author:      madedit@gmail.com  (creator)
-//              wxmedit@gmail.com  (current maintainer)
+// Description: Basic Functions of wxMEdit
+// Copyright:   2013-2015  JiaYanwei   <wxmedit@gmail.com>
+//              2007-2010  Alston Chen <madedit@gmail.com>
 // Licence:     GPLv3
 ///////////////////////////////////////////////////////////////////////////////
 

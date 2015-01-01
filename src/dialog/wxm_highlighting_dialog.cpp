@@ -1,8 +1,8 @@
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        wxm_highlighting_dialog.cpp
-// Description:
-// Author:      madedit@gmail.com  (creator)
-//              wxmedit@gmail.com  (current maintainer)
+// Description: Syntax Highlight Settings Dialog
+// Copyright:   2013-2015  JiaYanwei   <wxmedit@gmail.com>
+//              2006-2010  Alston Chen <madedit@gmail.com>
 // Licence:     GPLv3
 ///////////////////////////////////////////////////////////////////////////////
 

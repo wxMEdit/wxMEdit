@@ -2,7 +2,7 @@
 // vim:         ts=4 sw=4
 // Name:        xm/xm_utils.hpp
 // Description: Template Utilities
-// Author:      wxmedit@gmail.com
+// Copyright:   2014-2015  JiaYanwei   <wxmedit@gmail.com>
 // Licence:     GPLv3
 ///////////////////////////////////////////////////////////////////////////////
 

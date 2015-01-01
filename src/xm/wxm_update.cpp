@@ -1,8 +1,8 @@
 ///////////////////////////////////////////////////////////////////////////////
 // vim:         sw=4 ts=4
 // Name:        xm/wxm_update.cpp
-// Description: Checking for update of wxMEdit
-// Author:      wxmedit@gmail.com
+// Description: Checking for Update of wxMEdit
+// Copyright:   2014-2015  JiaYanwei   <wxmedit@gmail.com>
 // Licence:     GPLv3
 ///////////////////////////////////////////////////////////////////////////////
 

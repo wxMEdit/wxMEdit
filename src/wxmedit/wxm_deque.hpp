@@ -1,8 +1,8 @@
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        wxmedit/wxm_deque.hpp
-// Description: a simple but fast deque implementation
-// Author:      madedit@gmail.com  (creator)
-//              wxmedit@gmail.com  (current maintainer)
+// Description: A Simple but Fast Deque Implementation
+// Copyright:   2013-2015  JiaYanwei   <wxmedit@gmail.com>
+//              2007-2010  Alston Chen <madedit@gmail.com>
 // Licence:     GPLv3
 ///////////////////////////////////////////////////////////////////////////////
 

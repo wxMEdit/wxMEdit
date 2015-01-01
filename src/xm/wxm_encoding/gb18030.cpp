@@ -1,8 +1,8 @@
 ///////////////////////////////////////////////////////////////////////////////
 // vim:         ts=4 sw=4
 // Name:        xm/wxm_encoding/gb18030.h
-// Description: define the Multi-byte Encoding GB18030
-// Author:      wxmedit@gmail.com
+// Description: Define the Multi-byte Encoding GB18030
+// Copyright:   2013-2015  JiaYanwei   <wxmedit@gmail.com>
 // Licence:     GPLv3
 ///////////////////////////////////////////////////////////////////////////////
 

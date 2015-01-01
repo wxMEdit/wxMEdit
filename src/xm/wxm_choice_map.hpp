@@ -2,7 +2,7 @@
 // vim:         sw=4 ts=4
 // Name:        xm/wxm_choice_map.hpp
 // Description: Logical Data Structure for some Choice Items in Options Dialog
-// Author:      wxmedit@gmail.com
+// Copyright:   2014-2015  JiaYanwei   <wxmedit@gmail.com>
 // Licence:     GPLv3
 ///////////////////////////////////////////////////////////////////////////////
 

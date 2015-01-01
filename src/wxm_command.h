@@ -1,8 +1,8 @@
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        wxm_command.h
-// Description: for building MenuBar & ToolBar & KeyBinding
-// Author:      madedit@gmail.com  (creator)
-//              wxmedit@gmail.com  (current maintainer)
+// Description: for Building MenuBar & ToolBar & KeyBinding
+// Copyright:   2013-2015  JiaYanwei   <wxmedit@gmail.com>
+//              2007-2010  Alston Chen <madedit@gmail.com>
 // Licence:     GPLv3
 ///////////////////////////////////////////////////////////////////////////////
 
