@@ -39,7 +39,7 @@ msgstr ""
 "Project-Id-Version: wxMEdit 2.9.9\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-12-13 15:29+0800\n"
-"PO-Revision-Date: 2014-09-19 20:28-0400\n"
+"PO-Revision-Date: 2014-12-31 01:45-0400\n"
 "Last-Translator: \n"
 "Language-Team:  <carlos1994sanchez@gmail.com>\n"
 "Language: es\n"
@@ -2148,11 +2148,11 @@ msgstr "Creador de MadEdit"
 
 #: ../src/wxmedit_frame.cpp:185
 msgid "Translator for Japanese"
-msgstr "Traducción al japonés"
+msgstr "Traducción al Japonés"
 
 #: ../src/wxmedit_frame.cpp:186
 msgid "Translator for Italian"
-msgstr ""
+msgstr "Traducción al Italiano"
 
 #: ../src/wxmedit_frame.cpp:187
 msgid "Translator for Spanish"
@@ -2282,67 +2282,68 @@ msgstr "Cierra todos los archivos"
 
 #: ../src/wxmedit_frame.cpp:1289
 msgid "Close All under &Folder..."
-msgstr ""
+msgstr "Cerrar todo en la carpeta..."
 
 #: ../src/wxmedit_frame.cpp:1289
 msgid "Close all files in given folder and in all the subfolders"
 msgstr ""
+"Cerrar todos los archivos en la carpeta dada y en todas las subcarpetas"
 
 #: ../src/wxmedit_frame.cpp:1290
 msgid "Close &More"
-msgstr ""
+msgstr "Cerrar Más"
 
 #: ../src/wxmedit_frame.cpp:1291
 msgid "Close All &BUT This"
-msgstr ""
+msgstr "Cerrar todo PERO este"
 
 #: ../src/wxmedit_frame.cpp:1291
 msgid "Close all files except the current one"
-msgstr ""
+msgstr "Cierre todos los archivos excepto el actual"
 
 #: ../src/wxmedit_frame.cpp:1292
 msgid "Close All To The &Left"
-msgstr ""
+msgstr "Cerrar todo a la &Izquierda"
 
 #: ../src/wxmedit_frame.cpp:1292
 msgid "Close all files at the left side of current one"
-msgstr ""
+msgstr "Cerrar todos los archivos a la izquierda del actual"
 
 #: ../src/wxmedit_frame.cpp:1293
 msgid "Close All To The &Right"
-msgstr ""
+msgstr "Cerrar todo a la &Derecha"
 
 #: ../src/wxmedit_frame.cpp:1293
 msgid "Close all files at the right side of current one"
-msgstr ""
+msgstr "Cerrar todos los archivos a la derecha del actual"
 
 #: ../src/wxmedit_frame.cpp:1295
 msgid "Copy File Pat&h"
-msgstr ""
+msgstr "Copiar &ruta de archivo"
 
 #: ../src/wxmedit_frame.cpp:1296
 msgid "Copy &Full Path"
-msgstr ""
+msgstr "Copiar ruta completa"
 
 #: ../src/wxmedit_frame.cpp:1296
 msgid "Copy full file path to clipboard"
-msgstr ""
+msgstr "Copia ruta completa de archivo al portapapeles"
 
 #: ../src/wxmedit_frame.cpp:1297
 msgid "Copy File &Name"
-msgstr ""
+msgstr "Copiar &nombre de archivo"
 
 #: ../src/wxmedit_frame.cpp:1297
 msgid "Copy file name to clipboard"
-msgstr ""
+msgstr "Copia nombre de archivo al portapapeles"
 
 #: ../src/wxmedit_frame.cpp:1298
 msgid "Copy Containing &Directory"
-msgstr ""
+msgstr "Copiar directorio que contiene"
 
 #: ../src/wxmedit_frame.cpp:1298
 msgid "Copy containing directory to clipboard"
-msgstr ""
+msgstr "Copia directorio que contiene al portapapeles"
 
 #: ../src/wxmedit_frame.cpp:1300
 msgid "Page Set&up..."
@@ -2793,11 +2794,11 @@ msgstr "Va al marcador anterior"
 
 #: ../src/wxmedit_frame.cpp:1410 ../src/wxmedit_frame.cpp:2247
 msgid "Clear All Bookmarks"
-msgstr ""
+msgstr "Borrar todos los marcadores"
 
 #: ../src/wxmedit_frame.cpp:1410
 msgid "Clear all bookmarks from current file"
-msgstr ""
+msgstr "Borrar todos los marcadores de archivo actual"
 
 #: ../src/wxmedit_frame.cpp:1413
 msgid "&View"
@@ -2810,7 +2811,7 @@ msgstr "C&odificación: "
 
 #: ../src/wxmedit_frame.cpp:1415
 msgid "All "
-msgstr ""
+msgstr "Todo "
 
 #: ../src/wxmedit_frame.cpp:1417 ../src/wxmedit_frame.cpp:3252
 #: ../src/wxmedit_frame.cpp:3257
@@ -3536,7 +3537,7 @@ msgstr "Tiene BOM Unicoide (Marca de orden de Byte)"
 
 #: ../src/wxmedit_frame.cpp:3622
 msgid "Close all files in this foler and in all the subfolers:"
-msgstr ""
+msgstr "Cerrar todos los archivos en esta carpeta y todas las subcarpetas:"
 
 #: ../src/wxmedit_frame.cpp:3757
 msgid ""
@@ -4528,7 +4529,7 @@ msgstr "Palabras"
 
 #: ../src/dialog/wxm_word_count_dialog.cpp:68
 msgid "Bytes"
-msgstr ""
+msgstr "Bytes"
 
 #: ../src/dialog/wxm_word_count_dialog.cpp:72
 msgid "Characters (all)"
@@ -4540,7 +4541,7 @@ msgstr "Caracteres (sin controles/espacios)"
 
 #: ../src/dialog/wxm_word_count_dialog.cpp:80
 msgid "Space Characters"
-msgstr ""
+msgstr "Caracteres de espacio"
 
 #: ../src/dialog/wxm_word_count_dialog.cpp:84
 msgid "Control Characters"
@@ -4549,10 +4550,14 @@ msgstr "Caracteres de control"
 #: ../src/dialog/wxm_word_count_dialog.cpp:88
 msgid "Fullwidth Characters (with East Asian Ambiguous Width Characters)"
 msgstr ""
+"Caracteres de ancho completo (con Caracacteres de Ancho Ambiguo de Asia "
+"Oriental)"
 
 #: ../src/dialog/wxm_word_count_dialog.cpp:92
 msgid "Fullwidth Characters (without East Asian Ambiguous Width Characters)"
 msgstr ""
+"Caracteres de ancho completo (sin Caracacteres de Ancho Ambiguo de Asia "
+"Oriental)"
 
 #: ../src/dialog/wxm_word_count_dialog.cpp:99
 msgid "Detail Information of Characters:"
