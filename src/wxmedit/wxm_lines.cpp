@@ -469,7 +469,7 @@ void MadFileData::Get(const wxFileOffset &pos, wxByte * buffer, size_t size)
     if(m_Buf1Pos>=0)
     {
         idx = pos - m_Buf1Pos;
-        if(idx >= 0 && (idx+size)<=BUFFER_SIZE )        // wanted bytes in buffer1
+        if(idx >= 0 && wxFileOffset(idx+size)<=BUFFER_SIZE )        // wanted bytes in buffer1
         {
             memcpy(buffer, m_Buffer1+idx, size);
             return;
@@ -479,7 +479,7 @@ void MadFileData::Get(const wxFileOffset &pos, wxByte * buffer, size_t size)
     if(m_Buf2Pos>=0)
     {
         idx = pos - m_Buf2Pos;
-        if(idx >= 0 && (idx+size)<=BUFFER_SIZE )    // wanted bytes in buffer2
+        if(idx >= 0 && wxFileOffset(idx+size)<=BUFFER_SIZE )    // wanted bytes in buffer2
         {
             memcpy(buffer, m_Buffer2+idx, size);
             return;
