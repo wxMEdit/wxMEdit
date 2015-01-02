@@ -9,12 +9,12 @@
 #ifndef _SINGLE_LINE_WXMEDIT_H_
 #define _SINGLE_LINE_WXMEDIT_H_
 
-#include "../wxmedit/wxmedit.h"
+#include "simple_wxmedit.h"
 
 namespace wxm
 {
 
-class SingleLineWXMEdit : public MadEdit
+class SingleLineWXMEdit: public SimpleWXMEdit
 {
 	virtual void UpdateScrollBarPos();
 	virtual bool AdjustInsertCount(const ucs4_t* ucs, size_t& count);
@@ -35,7 +35,7 @@ class SingleLineWXMEdit : public MadEdit
 	int m_LeftClickX, m_LeftClickY;     // for singleline & setfocus
 public:
 	SingleLineWXMEdit(wxWindow* parent, wxWindowID id = wxID_ANY, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxDefaultSize, long style = wxSIMPLE_BORDER | wxWANTS_CHARS)
-		:MadEdit(parent, id, pos, size, style), m_LeftClickX(INT_MIN), m_LeftClickY(INT_MIN)
+		:SimpleWXMEdit(parent, id, pos, size, style), m_LeftClickX(INT_MIN), m_LeftClickY(INT_MIN)
 	{
 		SingleLineWXMEditInit();
 	}

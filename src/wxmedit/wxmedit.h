@@ -309,10 +309,12 @@ private:
     long            m_LineSpacing;
     long            m_MaxColumns;
 
+protected:
     int             m_LineNumberAreaWidth;
     int             m_LeftMarginWidth;
     int             m_RightMarginWidth;
 
+private:
     // for OnSize()
     int             m_MaxWidth, m_MaxHeight;
 
@@ -622,6 +624,12 @@ public:
 
     virtual void ProcessReturnCommand(MadEditCommand command);
     void ProcessCommand(MadEditCommand command);
+
+protected:
+    void BeginSyntaxPrint(bool printSyntax)
+    {
+        m_Syntax->BeginPrint(printSyntax);
+    }
 
 public: // basic functions
     void SetSyntax(const wxString &title, bool manual=false);
@@ -1017,6 +1025,10 @@ public:
 protected:
     void SetClientAreaSize(int w, int h) { m_ClientWidth = w; m_ClientHeight = h; }
     void HideScrollBars();
+
+    void SetHexPrinting() { m_Printing = 1; }
+    void SetTextPrinting() { m_Printing = -1; }
+    void SetNoPrinting() { m_Printing = 0; }
 private: // Printing functions
     int m_Printing;     // 0: no, <0: Text, >0: Hex
     bool TextPrinting() { return m_Printing<0; }
@@ -1047,7 +1059,7 @@ private: // Printing functions
     int m_RowCountPerHexLine;
     int m_HexLineCountPerPage;
     int m_PrintTotalHexLineCount;
-    MadEdit *m_PrintHexEdit;    // use a temporary MadEdit to print Hex-Data
+    MadEdit *m_HexPrintWXMEdit;    // use a temporary MadEdit to print Hex-Data
 
     static wxMilliClock_t GetTripleClickInterval();
 

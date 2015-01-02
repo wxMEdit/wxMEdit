@@ -89,7 +89,6 @@ void SingleLineWXMEdit::SetClientSizeData(int w, int h)
 
 void SingleLineWXMEdit::SingleLineWXMEditInit()
 {
-	SetStorePropertiesToGlobalConfig(false);
 	SetDisplayLineNumber(false);
 	//SetEditMode(emTextMode);
 	SetMarkActiveLine(false);

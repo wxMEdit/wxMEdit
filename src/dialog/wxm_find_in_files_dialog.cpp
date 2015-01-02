@@ -10,6 +10,7 @@
 #include "wxm_search_replace_dialog.h"
 
 #include "../wxmedit_frame.h"
+#include "../xm/simple_wxmedit.h"
 #include "../xm/single_line_wxmedit.h"
 #include "../xm/wxm_utils.h"
 
@@ -627,12 +628,7 @@ void WXMFindInFilesDialog::FindReplaceInFiles(bool bReplace)
 		boost::scoped_ptr<MadEdit> tempedit;
 		if(WxRadioButtonDir->GetValue())
 		{
-			tempedit.reset( new MadEdit(this, -1, wxPoint(-1024,-1024)) );
-			tempedit->StopRepaint();
-			tempedit->SetStorePropertiesToGlobalConfig(false);
-			tempedit->SetFixedWidthMode(false);
-			tempedit->SetWordWrapMode(wwmNoWrap);
-			tempedit->SetSearchOptions(true, WxCheckBoxWholeWord->GetValue());
+			tempedit.reset(new wxm::SearchingWXMEdit(this, WxCheckBoxWholeWord->GetValue()));
 		}
 
 		wxString fmt(_("Processing %d of %d files..."));

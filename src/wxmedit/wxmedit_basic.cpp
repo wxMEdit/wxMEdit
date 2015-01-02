@@ -7,6 +7,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 #include "wxmedit.h"
+#include "../xm/simple_wxmedit.h"
 #include "../xm/wxm_encoding/unicode.h"
 #include "../xm/wxm_utils.h"
 
@@ -3086,7 +3087,7 @@ void MadEdit::BeginPrint(const wxRect &printRect)
     // calc page count
     if(m_EditMode!=emHexMode) // Print Text
     {
-        m_Printing=-1;
+        SetTextPrinting();
         m_ClientWidth=m_PrintRect.width + m_RightMarginWidth;
         m_ClientHeight=m_PrintRect.height;
         m_WordWrapMode=wwmWrapByWindow;
@@ -3120,7 +3121,7 @@ void MadEdit::BeginPrint(const wxRect &printRect)
     }
     else // Print Hex
     {
-        m_Printing=1;
+        SetHexPrinting();
         m_old_CaretAtHexArea=m_CaretAtHexArea;
         m_CaretAtHexArea=true;
 
@@ -3130,31 +3131,11 @@ void MadEdit::BeginPrint(const wxRect &printRect)
         m_Config->SetPath(oldpath);
 
         // use a temporary MadEdit to print Hex-Data
-        m_PrintHexEdit=new MadEdit(this, -1, wxPoint(-999,-999));
-        m_PrintHexEdit->m_StorePropertiesToGlobalConfig = false;
-
-        // set properties of m_PrintHexEdit
-        m_PrintHexEdit->m_Printing=1;
-        m_PrintHexEdit->SetEncoding(wxT("UTF-32LE"));
-        m_PrintHexEdit->SetLineSpacing(100);
-        m_PrintHexEdit->SetDisplayLineNumber(false);
-        m_PrintHexEdit->SetShowEndOfLine(false);
-        m_PrintHexEdit->SetShowSpaceChar(false);
-        m_PrintHexEdit->SetShowTabChar(false);
-
-        m_PrintHexEdit->SetFixedWidthMode(true);
-        m_PrintHexEdit->SetTextFont(m_HexFont->GetFaceName(), m_HexFont->GetPointSize(), true);
-        m_PrintHexEdit->SetWordWrapMode(wwmWrapByColumn);
-
-        m_PrintHexEdit->m_Syntax->BeginPrint(false);
-
-        m_PrintHexEdit->m_LineNumberAreaWidth = 0;
-        m_PrintHexEdit->m_LeftMarginWidth = 0;
-        m_PrintHexEdit->m_RightMarginWidth = 0;
+        m_HexPrintWXMEdit = new wxm::HexPrintingWXMEdit(this, m_HexFont);
 
         // In Hex-Printing mode, every char is only one maxdigit width.
         // calc max columns of one line
-        int maxcols=printRect.width / m_PrintHexEdit->m_TextFontMaxDigitWidth;
+        int maxcols=printRect.width / m_HexPrintWXMEdit->m_TextFontMaxDigitWidth;
         if(maxcols==0) maxcols=1;
 
         const int MaxColumns=76;
@@ -3169,7 +3150,7 @@ void MadEdit::BeginPrint(const wxRect &printRect)
                 ++m_RowCountPerHexLine;
         }
 
-        m_PrintHexEdit->SetMaxColumns(maxcols);
+        m_HexPrintWXMEdit->SetMaxColumns(maxcols);
 
         // calc m_PrintPageCount
         m_RowCountPerPage = printRect.height / m_RowHeight;
@@ -3246,11 +3227,11 @@ void MadEdit::EndPrint()
     else //HexPrinting()
     {
         m_CaretAtHexArea=m_old_CaretAtHexArea;
-        delete m_PrintHexEdit;
-        m_PrintHexEdit=NULL;
+        delete m_HexPrintWXMEdit;
+        m_HexPrintWXMEdit=NULL;
     }
 
-    m_Printing=0;
+    SetNoPrinting();
     m_PrintPageCount=0;
 
     m_RepaintAll=true;
@@ -3488,12 +3469,12 @@ bool MadEdit::PrintPage(wxDC *dc, int pageNum)
             lines << wxT('\n');
         }
 
-        m_PrintHexEdit->SetText(lines);
+        m_HexPrintWXMEdit->SetText(lines);
 
-        m_PrintHexEdit->m_DrawingXPos=0;
+        m_HexPrintWXMEdit->m_DrawingXPos=0;
 
-        m_PrintHexEdit->PaintTextLines(dc, m_PrintRect,
-            0, int(m_PrintHexEdit->m_Lines->m_RowCount), *wxWHITE);
+        m_HexPrintWXMEdit->PaintTextLines(dc, m_PrintRect,
+            0, int(m_HexPrintWXMEdit->m_Lines->m_RowCount), *wxWHITE);
     }
 
     return true;
