@@ -9,9 +9,12 @@
 #include "inframe_wxmedit.h"
 #include "../wxmedit_frame.h"
 #include "../dialog/wxm_search_replace_dialog.h"
+#include "xm_utils.hpp"
 
 #include <wx/aui/auibook.h>
 #include <wx/filename.h>
+
+#include <boost/assign/list_of.hpp>
 
 extern MadEdit* g_ActiveMadEdit;
 extern wxMenu *g_Menu_Edit;
@@ -26,6 +29,35 @@ InFrameWXMEdit::InFrameWXMEdit(wxWindow* parent, wxWindowID id, const wxPoint& p
 	//SetDropTarget(new DnDFile());
 
 	Connect(wxEVT_KEY_DOWN, wxKeyEventHandler(MadEditFrame::MadEditFrameKeyDown));
+}
+
+wxString InserModeText(bool insertmode)
+{
+	static wxString insstr(_("INS"));
+	static wxString ovrstr(_("OVR"));
+	return insertmode? insstr: ovrstr;
+}
+
+wxString ReadOnlyText(bool readonly)
+{
+	static wxString rostr(_("ReadOnly"));
+	return readonly? rostr: wxEmptyString;
+}
+
+wxString BOMText(bool hasbom)
+{
+	static wxString bom(wxT(".BOM"));
+	return hasbom? bom: wxEmptyString;
+}
+
+wxString NewLineTypeText(MadNewLineType nlty)
+{
+	static std::map<int, wxString> nltytxts = boost::assign::map_list_of
+			(nltDOS,  wxString(wxT(".DOS")))
+			(nltUNIX, wxString(wxT(".UNIX")))
+			(nltMAC,  wxString(wxT(".MAC")))
+		;
+	return xm::wrap_map(nltytxts).get((int)nlty, wxEmptyString);
 }
 
 void InFrameWXMEdit::DoSelectionChanged()
@@ -125,61 +157,19 @@ void InFrameWXMEdit::DoStatusChanged()
 		filename = title;
 	g_MainFrame->SetTitle(wxString(wxT("wxMEdit - [")) + filename + wxString(wxT("] ")));
 
-	wxString enc = GetEncodingName();
-	if (HasBOM())
-	{
-		static wxString bom(wxT(".BOM"));
-		enc += bom;
-	}
+	wxString encfmt = GetEncodingName();
 
-	switch (GetNewLineType())
-	{
-	case nltDOS:
-	{
-		static wxString xdos(wxT(".DOS"));
-		enc += xdos;
-	}
-	break;
-	case nltUNIX:
-	{
-		static wxString xunix(wxT(".UNIX"));
-		enc += xunix;
-	}
-	break;
-	case nltMAC:
-	{
-		static wxString xmac(wxT(".MAC"));
-		enc += xmac;
-	}
-	break;
-	default:
-		break;
-	}
-	wxm::GetFrameStatusBar().SetField(wxm::STBF_ENCFMT, enc);
+	encfmt += BOMText(HasBOM());
 
-	if (IsReadOnly())
-	{
-		static wxString rostr(_("ReadOnly"));
-		wxm::GetFrameStatusBar().SetField(wxm::STBF_READONLY, rostr);
-	}
-	else
-	{
-		wxm::GetFrameStatusBar().SetField(wxm::STBF_READONLY, wxEmptyString);
-	}
+	encfmt += NewLineTypeText(GetNewLineType());
 
-	if (GetInsertMode())
-	{
-		static wxString insstr(_("INS"));
-		wxm::GetFrameStatusBar().SetField(wxm::STBF_INSOVR, insstr);
-	}
-	else
-	{
-		static wxString ovrstr(_("OVR"));
-		wxm::GetFrameStatusBar().SetField(wxm::STBF_INSOVR, ovrstr);
-	}
+	wxm::GetFrameStatusBar().SetField(wxm::STBF_ENCFMT, encfmt);
+
+	wxm::GetFrameStatusBar().SetField(wxm::STBF_READONLY, ReadOnlyText(IsReadOnly()));
+
+	wxm::GetFrameStatusBar().SetField(wxm::STBF_INSOVR, InserModeText(IsInsertMode()));
 
 	wxm::GetFrameStatusBar().Update(); // repaint immediately
-
 
 	if (g_SearchReplaceDialog != NULL)
 	{

@@ -749,7 +749,7 @@ public: // basic functions
     bool GetAutoCompletePair() { return m_AutoCompletePair; }
 
     void SetInsertMode(bool mode);  // true: insert, false: overwrite
-    bool GetInsertMode()
+    bool IsInsertMode()
     {
         if(m_EditMode==emHexMode)
             return false;
