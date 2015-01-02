@@ -27,12 +27,11 @@
 #include "wxm_printout.h"
 #include "mad_utils.h"
 #include "wxm_command.h"
-#include "xm/wxm_utils.h"
+#include "xm/inframe_wxmedit.h"
 #include "xm/wxm_update.h"
 #include "xm/wx_recent_list.h"
 #include "xm/wxm_def.h"
 #include "plugin.h"
-#include "wx/aui/auibook.h"
 
 #include <wx/app.h>
 //#include <wx/dynload.h>
@@ -523,170 +522,132 @@ public:
 
 //---------------------------------------------------------------------------
 
-class wxMadAuiNotebook : public wxAuiNotebook
+std::list<wxMadAuiNotebook::PageData> wxMadAuiNotebook::GetPagesList()
 {
-public:
-    wxMadAuiNotebook() : wxAuiNotebook() {}
+    wxAuiNotebookPageArray& pages = m_tabs.GetPages();
+    size_t i, page_count = pages.GetCount();
 
-    wxMadAuiNotebook(wxWindow* parent,
-                  wxWindowID id = wxID_ANY,
-                  const wxPoint& pos = wxDefaultPosition,
-                  const wxSize& size = wxDefaultSize,
-                  long style = wxAUI_NB_DEFAULT_STYLE)
-                  : wxAuiNotebook(parent, id, pos, size, style)
+    list<PageData> pages_list;
+    list<PageData>::iterator it;
+
+    for (i = 0; i < page_count; ++i)
     {
-    }
+        wxAuiNotebookPage& page = pages.Item(i);
+        MadEdit *madedit = (MadEdit*)page.window;
 
-    virtual ~wxMadAuiNotebook() {}
-
-    struct PageData
-    {
-        int x, y, idx;
-        MadEdit *madedit;
-        int pageid;
-        PageData() {}
-        PageData(int xx, int yy, int ii, MadEdit *mm, int pgid)
-            : x(xx), y(yy), idx(ii), madedit(mm), pageid(pgid)
-        {}
-    };
-
-    list<PageData> GetPagesList()
-    {
-        wxAuiNotebookPageArray& pages = m_tabs.GetPages();
-        size_t i, page_count = pages.GetCount();
-
-        list<PageData> pages_list;
-        list<PageData>::iterator it;
-
-        for (i = 0; i < page_count; ++i)
+        wxAuiTabCtrl *ctrl;
+        int idx;
+        if(FindTab(page.window, &ctrl, &idx))
         {
-            wxAuiNotebookPage& page = pages.Item(i);
-            MadEdit *madedit = (MadEdit*)page.window;
-
-            wxAuiTabCtrl *ctrl;
-            int idx;
-            if(FindTab(page.window, &ctrl, &idx))
+            wxPoint pt = ctrl->GetPosition();
+            pt = ctrl->ClientToScreen(pt);
+            it = pages_list.begin();
+            size_t j=0;
+            for(; j<pages_list.size(); ++j, ++it)
             {
-                wxPoint pt = ctrl->GetPosition();
-                pt = ctrl->ClientToScreen(pt);
-                it = pages_list.begin();
-                size_t j=0;
-                for(; j<pages_list.size(); ++j, ++it)
+                PageData &pd = *it;
+                if(pt.y < pd.y)
                 {
-                    PageData &pd = *it;
-                    if(pt.y < pd.y)
+                    break;
+                }
+                else if(pt.y==pd.y)
+                {
+                    if(pt.x<pd.x)
                     {
                         break;
                     }
-                    else if(pt.y==pd.y)
+                    else if(pt.x==pd.x)
                     {
-                        if(pt.x<pd.x)
+                        if(idx<pd.idx)
                         {
                             break;
                         }
-                        else if(pt.x==pd.x)
-                        {
-                            if(idx<pd.idx)
-                            {
-                                break;
-                            }
-                        }
                     }
                 }
-
-                pages_list.insert(it, PageData(pt.x, pt.y, idx, madedit, i));
             }
-        }
 
-        return pages_list;
-    }
-
-    size_t GetFilesListForReload(wxm::FileList& filelist)
-    {
-        size_t count = 0;
-        list<PageData> pages_list = GetPagesList();
-        size_t page_count = pages_list.size();
-        list<PageData>::iterator it = pages_list.begin();
-        for (size_t i = 0; i < page_count; ++i, ++it)
-        {
-            wxString name(it->madedit->GetFileName());
-            if(!name.IsEmpty())
-            {
-                LineNumberList bmklns = it->madedit->SaveBookmarkLineNumberList();
-                filelist.Append(name, bmklns);
-                ++count;
-            }
-        }
-
-        wxString selname = g_ActiveMadEdit->GetFileName();
-        if(count>1 && !selname.IsEmpty())
-            filelist.Append(selname); // append selname to activate it
-
-        return count;
-    }
-
-    struct FunctorA
-    {
-        MadEdit *madedit;
-        bool operator()(PageData &pd)
-        {
-            return madedit == pd.madedit;
-        }
-    };
-
-    void AdvanceSelection(bool bForward)
-    {
-        int count = (int)GetPageCount();
-        if(count <= 1) return;
-
-        list<PageData> pages_list = GetPagesList();
-        wxWindow* win = GetPage(GetSelection());
-
-        FunctorA fa;
-        fa.madedit = (MadEdit*)win;
-        list<PageData>::iterator it = std::find_if(pages_list.begin(), pages_list.end(), fa);
-
-        wxASSERT(it != pages_list.end());
-
-        if(bForward)
-        {
-            if(++it == pages_list.end()) it=pages_list.begin();
-        }
-        else
-        {
-            if(it==pages_list.begin()) it=pages_list.end();
-            --it;
-        }
-        SetSelection(GetPageIndex(it->madedit));
-    }
-
-    void ConnectMouseClick()
-    {
-        if(GetPageCount()!=0)
-        {
-            wxAuiTabCtrl *ctrl=GetActiveTabCtrl();
-            ctrl->Connect(wxEVT_LEFT_DCLICK, wxMouseEventHandler(wxMadAuiNotebook::OnMouseClick));
-            ctrl->Connect(wxEVT_MIDDLE_UP, wxMouseEventHandler(wxMadAuiNotebook::OnMouseClick));
+            pages_list.insert(it, PageData(pt.x, pt.y, idx, madedit, i));
         }
     }
 
-protected:
-    void OnMouseClick(wxMouseEvent &evt)
-    {
-        //wxString s;
-        //s.Printf(L"%d %d", evt.m_x, evt.m_y);
-        //((wxTopLevelWindow*)g_MainFrame)->SetLabel(s);
+    return pages_list;
+}
 
-        wxAuiTabCtrl *ctrl = (wxAuiTabCtrl*)evt.GetEventObject();
-        wxWindow *win;
-        if(ctrl->TabHitTest(evt.m_x, evt.m_y, &win))
+size_t wxMadAuiNotebook::GetFilesListForReload(wxm::FileList& filelist)
+{
+    size_t count = 0;
+    list<PageData> pages_list = GetPagesList();
+    size_t page_count = pages_list.size();
+    list<PageData>::iterator it = pages_list.begin();
+    for (size_t i = 0; i < page_count; ++i, ++it)
+    {
+        wxString name(it->madedit->GetFileName());
+        if(!name.IsEmpty())
         {
-            g_MainFrame->CloseFile(g_MainFrame->m_Notebook->GetPageIndex(win));
+            LineNumberList bmklns = it->madedit->SaveBookmarkLineNumberList();
+            filelist.Append(name, bmklns);
+            ++count;
         }
     }
 
-};
+    wxString selname = g_ActiveMadEdit->GetFileName();
+    if(count>1 && !selname.IsEmpty())
+        filelist.Append(selname); // append selname to activate it
 
+    return count;
+}
+
+void wxMadAuiNotebook::AdvanceSelection(bool bForward)
+{
+    int count = (int)GetPageCount();
+    if(count <= 1) return;
+
+    list<PageData> pages_list = GetPagesList();
+    wxWindow* win = GetPage(GetSelection());
+
+    FunctorA fa;
+    fa.madedit = (MadEdit*)win;
+    list<PageData>::iterator it = std::find_if(pages_list.begin(), pages_list.end(), fa);
+
+    wxASSERT(it != pages_list.end());
+
+    if(bForward)
+    {
+        if(++it == pages_list.end()) it=pages_list.begin();
+    }
+    else
+    {
+        if(it==pages_list.begin()) it=pages_list.end();
+        --it;
+    }
+    SetSelection(GetPageIndex(it->madedit));
+}
+
+void wxMadAuiNotebook::ConnectMouseClick()
+{
+    if(GetPageCount()!=0)
+    {
+        wxAuiTabCtrl *ctrl=GetActiveTabCtrl();
+        ctrl->Connect(wxEVT_LEFT_DCLICK, wxMouseEventHandler(wxMadAuiNotebook::OnMouseClick));
+        ctrl->Connect(wxEVT_MIDDLE_UP, wxMouseEventHandler(wxMadAuiNotebook::OnMouseClick));
+    }
+}
+
+void wxMadAuiNotebook::OnMouseClick(wxMouseEvent &evt)
+{
+    //wxString s;
+    //s.Printf(L"%d %d", evt.m_x, evt.m_y);
+    //((wxTopLevelWindow*)g_MainFrame)->SetLabel(s);
+
+    wxAuiTabCtrl *ctrl = (wxAuiTabCtrl*)evt.GetEventObject();
+    wxWindow *win;
+    if(ctrl->TabHitTest(evt.m_x, evt.m_y, &win))
+    {
+        g_MainFrame->CloseFile(g_MainFrame->m_Notebook->GetPageIndex(win));
+    }
+}
+
+//---------------------------------------------------------------------------
 
 void OnReceiveMessage(const wchar_t *msg, size_t size)
 {
@@ -724,12 +685,6 @@ void OnReceiveMessage(const wchar_t *msg, size_t size)
     }
 }
 
-
-int GetIdByEdit(MadEdit *edit)
-{
-    return g_MainFrame->m_Notebook->GetPageIndex(edit);
-}
-
 // return true for name; false for title
 bool GetActiveMadEditPathNameOrTitle(wxString &name)
 {
@@ -754,198 +709,18 @@ void ApplySyntaxAttributes(MadSyntax *syn)
     }
 }
 
-void OnEditSelectionChanged(MadEdit *madedit)
+void ResetStatusBar()
 {
     g_MainFrame->m_Notebook->ConnectMouseClick();
 
-    if(madedit==NULL)
-    {
-        wxm::GetFrameStatusBar().SetField(wxm::STBF_ROWCOL, wxEmptyString);
-        wxm::GetFrameStatusBar().SetField(wxm::STBF_CHARPOS, wxEmptyString);
-        wxm::GetFrameStatusBar().SetField(wxm::STBF_SELECTION, wxEmptyString);
-    }
-    else
-    {
-        if(madedit!=g_ActiveMadEdit)
-            return;
-
-        int line,subrow;
-        wxFileOffset col;
-        madedit->GetCaretPosition(line,subrow,col);
-        if(madedit->GetEditMode()!=emHexMode)
-        {
-            ++line;
-            ++col;
-        }
-
-        wxString s1=FormatThousands(wxString::Format(wxT("%d"), line));
-        wxString s2=FormatThousands(wxString::Format(wxT("%u"), madedit->GetLineCount()));
-        wxString s4=FormatThousands(wxLongLong(col).ToString());
-
-        static wxString lnstr(_("Ln:"));
-        static wxString sepstr(wxT(" /"));
-        static wxString sepstr1(wxT(" ("));
-        static wxString substr(_("Sub:"));
-        static wxString sepstr2(wxT(')'));
-        static wxString sepstr3(wxT(' '));
-        static wxString colstr(_("Col:"));
-        static wxString fpstr(_("CharPos:"));
-        static wxString ssstr(_("SelSize:"));
-
-        wxString text=lnstr+s1+ sepstr+s2;
-        if(subrow>0)
-        {
-            wxString s3=FormatThousands(wxString::Format(wxT("%d"), subrow+1));
-            text += (sepstr1+substr+s3+sepstr2);
-        }
-        text += (sepstr3+colstr+s4);
-        wxm::GetFrameStatusBar().SetField(wxm::STBF_ROWCOL, text);
-
-        s1=FormatThousands(wxLongLong(madedit->GetCaretPosition()).ToString());
-        s2=FormatThousands(wxLongLong(madedit->GetFileSize()).ToString());
-        wxm::GetFrameStatusBar().SetField(wxm::STBF_CHARPOS, fpstr + s1 + sepstr + s2);
-
-        s1=FormatThousands(wxLongLong(madedit->GetSelectionSize()).ToString());
-        wxm::GetFrameStatusBar().SetField(wxm::STBF_SELECTION, ssstr + s1);
-    }
-
+    wxm::GetFrameStatusBar().SetField(wxm::STBF_ROWCOL,    wxEmptyString);
+    wxm::GetFrameStatusBar().SetField(wxm::STBF_CHARPOS,   wxEmptyString);
+    wxm::GetFrameStatusBar().SetField(wxm::STBF_SELECTION, wxEmptyString);
+    wxm::GetFrameStatusBar().SetField(wxm::STBF_ENCFMT,    wxEmptyString);
+    wxm::GetFrameStatusBar().SetField(wxm::STBF_READONLY,  wxEmptyString);
+    wxm::GetFrameStatusBar().SetField(wxm::STBF_INSOVR,    wxEmptyString);
     wxm::GetFrameStatusBar().Update(); // repaint immediately
 }
-
-void OnEditStatusChanged(MadEdit *madedit)
-{
-    g_MainFrame->m_Notebook->ConnectMouseClick();
-
-    if(madedit==NULL)
-    {
-        wxm::GetFrameStatusBar().SetField(wxm::STBF_ENCFMT, wxEmptyString);
-        wxm::GetFrameStatusBar().SetField(wxm::STBF_READONLY, wxEmptyString);
-        wxm::GetFrameStatusBar().SetField(wxm::STBF_INSOVR, wxEmptyString);
-
-        wxm::GetFrameStatusBar().Update(); // repaint immediately
-    }
-    else
-    {
-        // check the title is changed or not
-        int selid=GetIdByEdit(madedit);
-
-        wxString oldtitle = g_MainFrame->m_Notebook->GetPageText(selid);
-
-        wxString filename=madedit->GetFileName(), title;
-        if(!filename.IsEmpty())
-        {
-            wxFileName fn(filename);
-            title=fn.GetFullName();
-        }
-        else
-        {
-            title=oldtitle;
-        }
-
-        if(madedit->IsModified())
-        {
-            if(title[title.Len()-1]!=wxT('*'))
-                title += wxT('*');
-
-            if(filename.IsEmpty())
-                filename=title;
-            else
-                filename+=wxT('*');
-        }
-        else
-        {
-            if(title[title.Len()-1]==wxT('*'))
-                title.Truncate(title.Len()-1);
-        }
-
-        if(title != oldtitle)
-        {
-            g_MainFrame->m_Notebook->SetPageText(selid, title);
-        }
-
-        if(madedit==g_ActiveMadEdit)
-        {
-            if(filename.IsEmpty())
-                filename=title;
-            g_MainFrame->SetTitle(wxString(wxT("wxMEdit - ["))+ filename +wxString(wxT("] ")));
-
-            wxString enc=madedit->GetEncodingName();
-            if(madedit->HasBOM())
-            {
-                static wxString bom(wxT(".BOM"));
-                enc += bom;
-            }
-
-            switch(madedit->GetNewLineType())
-            {
-            case nltDOS:
-                {
-                    static wxString xdos(wxT(".DOS"));
-                    enc += xdos;
-                }
-                break;
-            case nltUNIX:
-                {
-                    static wxString xunix(wxT(".UNIX"));
-                    enc += xunix;
-                }
-                break;
-            case nltMAC:
-                {
-                    static wxString xmac(wxT(".MAC"));
-                    enc += xmac;
-                }
-                break;
-            default:
-                break;
-            }
-            wxm::GetFrameStatusBar().SetField(wxm::STBF_ENCFMT, enc);
-
-            if(madedit->IsReadOnly())
-            {
-                static wxString rostr(_("ReadOnly"));
-                wxm::GetFrameStatusBar().SetField(wxm::STBF_READONLY, rostr);
-            }
-            else
-            {
-                wxm::GetFrameStatusBar().SetField(wxm::STBF_READONLY, wxEmptyString);
-            }
-
-            if(madedit->GetInsertMode())
-            {
-                static wxString insstr(_("INS"));
-                wxm::GetFrameStatusBar().SetField(wxm::STBF_INSOVR, insstr);
-            }
-            else
-            {
-                static wxString ovrstr(_("OVR"));
-                wxm::GetFrameStatusBar().SetField(wxm::STBF_INSOVR, ovrstr);
-            }
-
-            wxm::GetFrameStatusBar().Update(); // repaint immediately
-
-
-            if(g_SearchReplaceDialog!=NULL)
-            {
-                g_SearchReplaceDialog->UpdateCheckBoxByCBHex(g_SearchReplaceDialog->WxCheckBoxFindHex->GetValue());
-            }
-        }
-    }
-}
-
-void OnEditToggleWindow(MadEdit *madedit)
-{
-    wxCommandEvent e(0,0);
-    g_MainFrame->OnWindowToggleWindow(e);
-}
-
-void OnEditMouseRightUp(MadEdit *madedit)
-{
-    //wxPoint pt=wxGetMousePosition();
-    //pt=g_MainFrame->m_Notebook->ScreenToClient(pt);
-    g_MainFrame->PopupMenu(g_Menu_Edit);//, pt);
-}
-
 
 void UpdateMenus()
 {
@@ -2515,8 +2290,7 @@ void MadEditFrame::OnNotebookPageChanged(wxAuiNotebookEvent& event)
 
         SetTitle(wxString(wxT("wxMEdit - ["))+ title +wxString(wxT("] ")));
 
-        OnEditSelectionChanged(g_ActiveMadEdit);
-        OnEditStatusChanged(g_ActiveMadEdit);
+        g_ActiveMadEdit->OnSelectionAndStatusChanged();
 
         if(g_CheckModTimeForReload)
         {
@@ -2557,8 +2331,7 @@ void MadEditFrame::OnNotebookPageClosed(bool bZeroPage)
     {
         g_ActiveMadEdit=NULL;
         SetTitle(wxString(wxT("wxMEdit ")));
-        OnEditSelectionChanged(NULL);
-        OnEditStatusChanged(NULL);
+        ResetStatusBar();
     }
     else
     {
@@ -2566,8 +2339,7 @@ void MadEditFrame::OnNotebookPageClosed(bool bZeroPage)
         if(g_ActiveMadEdit != madedit)
         {
             g_ActiveMadEdit=madedit;
-            OnEditSelectionChanged(g_ActiveMadEdit);
-            OnEditStatusChanged(g_ActiveMadEdit);
+            g_ActiveMadEdit->OnSelectionAndStatusChanged();
 
             wxString title=g_ActiveMadEdit->GetFileName();
             if(title.IsEmpty())
@@ -2825,7 +2597,6 @@ void MadEditFrame::AddItemToFindInFilesResults(const wxString &text, size_t inde
     m_FindInFilesResults->AppendItem(fileid, text, -1, -1, new CaretPosData(filename, pageid, begpos, endpos));
 }
 
-
 //---------------------------------------------------------------------------
 
 int MadEditFrame::OpenedFileCount()
@@ -2916,15 +2687,7 @@ void MadEditFrame::OpenFile(const wxString &filename, bool mustExist, const Line
     else
     {
         // create a new MadEdit
-        madedit=new MadEdit(m_Notebook, wxID_ANY, wxDefaultPosition, wxDefaultSize, /*wxSIMPLE_BORDER|*/wxWANTS_CHARS);
-        madedit->SetWindowStyleFlag(madedit->GetWindowStyleFlag() & ~wxTAB_TRAVERSAL);
-        //madedit->SetDropTarget(new DnDFile());
-        madedit->SetOnSelectionChanged(&OnEditSelectionChanged);
-        madedit->SetOnStatusChanged(&OnEditStatusChanged);
-        madedit->SetOnToggleWindow(&OnEditToggleWindow);
-        madedit->SetOnMouseRightUp(&OnEditMouseRightUp);
-
-        madedit->Connect(wxEVT_KEY_DOWN, wxKeyEventHandler(MadEditFrame::MadEditFrameKeyDown));
+        madedit = new wxm::InFrameWXMEdit(m_Notebook, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxWANTS_CHARS);
 
         g_PrevPageID=m_Notebook->GetSelection();
 
@@ -2976,8 +2739,7 @@ void MadEditFrame::OpenFile(const wxString &filename, bool mustExist, const Line
     if(g_ActiveMadEdit != madedit)
     {
         g_ActiveMadEdit=madedit;
-        OnEditSelectionChanged(g_ActiveMadEdit);
-        OnEditStatusChanged(g_ActiveMadEdit);
+        g_ActiveMadEdit->OnSelectionAndStatusChanged();
     }
 
     title=g_ActiveMadEdit->GetFileName();
@@ -3628,8 +3390,7 @@ void MadEditFrame::OnFileCloseAll(wxCommandEvent& event)
 
         g_ActiveMadEdit=NULL;
         SetTitle(wxString(wxT("wxMEdit ")));
-        OnEditSelectionChanged(NULL);
-        OnEditStatusChanged(NULL);
+        ResetStatusBar();;
     }
 }
 

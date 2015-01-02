@@ -36,11 +36,6 @@ enum { ID_VSCROLLBAR=19876, ID_HSCROLLBAR };
 
 class MadEdit;
 
-typedef void (*OnSelectionChangedPtr)(MadEdit *madedit);
-typedef void (*OnStatusChangedPtr)(MadEdit *madedit);
-typedef void (*OnToggleWindowPtr)(MadEdit *madedit);
-typedef void (*OnMouseRightUpPtr)(MadEdit *madedit);
-
 namespace wxm
 {
     struct WordCountData
@@ -369,11 +364,6 @@ private:
     bool            m_UseDefaultSyntax;
     bool            m_SearchWholeWord;
 
-    OnSelectionChangedPtr m_OnSelectionChanged;
-    OnStatusChangedPtr    m_OnStatusChanged;
-    OnToggleWindowPtr     m_OnToggleWindow;
-    OnMouseRightUpPtr     m_OnMouseRightUp;
-
     wxMilliClock_t m_lastDoubleClick;
 
     wxm::MouseCapturer* m_mouse_capturer;
@@ -591,10 +581,18 @@ protected:
     void OnEraseBackground(wxEraseEvent &evt);
     void OnPaint(wxPaintEvent &evt);
 
-    void DoSelectionChanged();
-    void DoStatusChanged();
-    void DoToggleWindow();
-    void DoMouseRightUp();
+public:
+    void OnSelectionAndStatusChanged()
+    {
+        DoSelectionChanged();
+        DoStatusChanged();
+    }
+
+protected:
+    virtual void DoSelectionChanged() {}
+    virtual void DoStatusChanged() {}
+    virtual void DoToggleWindow() {}
+    virtual void DoMouseRightUp() {}
 
 #ifdef __WXMSW__
     WXLRESULT MSWWindowProc(WXUINT message, WXWPARAM wParam, WXLPARAM lParam);
@@ -605,7 +603,7 @@ protected:
 #endif
 
 public:
-    MadEdit(wxWindow* parent, wxWindowID id = wxID_ANY, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxDefaultSize, long style = wxSIMPLE_BORDER|wxWANTS_CHARS);//|wxTAB_TRAVERSAL);
+    MadEdit(wxWindow* parent, wxWindowID id = wxID_ANY, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxDefaultSize, long style = wxSIMPLE_BORDER|wxWANTS_CHARS);
     virtual ~MadEdit();
 
     void SetStorePropertiesToGlobalConfig(bool value)
@@ -992,23 +990,6 @@ public: // advanced functions
     void RestoreBookmarkByLineNumberList(const LineNumberList& linenums);
 
 public:
-    void SetOnSelectionChanged(OnSelectionChangedPtr func)
-    {
-        m_OnSelectionChanged=func;
-    }
-    void SetOnStatusChanged(OnStatusChangedPtr func)
-    {
-        m_OnStatusChanged=func;
-    }
-    void SetOnToggleWindow(OnToggleWindowPtr func)
-    {
-        m_OnToggleWindow=func;
-    }
-    void SetOnMouseRightUp(OnMouseRightUpPtr func)
-    {
-        m_OnMouseRightUp=func;
-    }
-
     void SetSearchOptions(bool bUseDefaultSyntax, bool bSearchWholeWord)
     {
         m_UseDefaultSyntax = bUseDefaultSyntax;

@@ -14,6 +14,7 @@
 #include "xm/wxm_def.h"
 #include "xm/wxm_encoding/encoding_def.h"
 #include "xm/wxm_statusbar.h"
+#include "xm/wxm_utils.h"
 
 #include <wx/wxprec.h>
 #ifdef __BORLANDC__
@@ -38,6 +39,7 @@
 #include <wx/aui/aui.h> // wxAUI
 
 #include <map>
+#include <list>
 
 #undef MadEditFrame_STYLE
 #define MadEditFrame_STYLE wxCAPTION | wxRESIZE_BORDER | wxSYSTEM_MENU | wxMINIMIZE_BOX | wxMAXIMIZE_BOX | wxCLOSE_BOX
@@ -526,7 +528,59 @@ enum { // menu id
     menuCheckUpdates,
 };
 
+class wxMadAuiNotebook : public wxAuiNotebook
+{
+public:
+    wxMadAuiNotebook() : wxAuiNotebook() {}
+
+    wxMadAuiNotebook(wxWindow* parent,
+        wxWindowID id = wxID_ANY,
+        const wxPoint& pos = wxDefaultPosition,
+        const wxSize& size = wxDefaultSize,
+        long style = wxAUI_NB_DEFAULT_STYLE)
+        : wxAuiNotebook(parent, id, pos, size, style)
+    {
+    }
+
+    virtual ~wxMadAuiNotebook() {}
+
+    struct PageData
+    {
+        int x, y, idx;
+        MadEdit *madedit;
+        int pageid;
+        PageData() {}
+        PageData(int xx, int yy, int ii, MadEdit *mm, int pgid)
+            : x(xx), y(yy), idx(ii), madedit(mm), pageid(pgid)
+        {}
+    };
+
+    std::list<PageData> GetPagesList();
+
+    size_t GetFilesListForReload(wxm::FileList& filelist);
+
+    struct FunctorA
+    {
+        MadEdit *madedit;
+        bool operator()(PageData &pd)
+        {
+            return madedit == pd.madedit;
+        }
+    };
+
+    void AdvanceSelection(bool bForward);
+    void ConnectMouseClick();
+
+protected:
+    void OnMouseClick(wxMouseEvent &evt);
+};
+
 extern MadEditFrame *g_MainFrame;
 extern void OnReceiveMessage(const wchar_t *msg, size_t size);
+
+inline int GetIdByEdit(wxWindow* edit)
+{
+    return g_MainFrame->m_Notebook->GetPageIndex(edit);
+}
 
 #endif // _WXMEDIT_FRAME_H_

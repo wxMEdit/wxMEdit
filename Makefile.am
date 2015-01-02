@@ -76,6 +76,8 @@ wxmedit_SOURCES =	$(enc_src) \
 	src/wxmedit/wxm_syntax.h \
 	src/wxmedit/wxm_undo.cpp \
 	src/wxmedit/wxm_undo.h \
+	src/xm/inframe_wxmedit.cpp \
+	src/xm/inframe_wxmedit.h \
 	src/xm/simple_wxmedit.cpp \
 	src/xm/simple_wxmedit.h \
 	src/xm/single_line_wxmedit.cpp \

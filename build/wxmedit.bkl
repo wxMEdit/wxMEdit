@@ -187,6 +187,8 @@
 		<sources>../src/wxmedit_app.cpp</sources>
 		<headers>../src/wxmedit_frame.h</headers>
 		<sources>../src/wxmedit_frame.cpp</sources>
+		<headers>../src/xm/inframe_wxmedit.h</headers>
+		<sources>../src/xm/inframe_wxmedit.cpp</sources>
 		<headers>../src/xm/simple_wxmedit.h</headers>
 		<sources>../src/xm/simple_wxmedit.cpp</sources>
 		<headers>../src/xm/single_line_wxmedit.h</headers>

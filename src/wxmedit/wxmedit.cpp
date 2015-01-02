@@ -860,11 +860,6 @@ MadEdit::MadEdit(wxWindow* parent, wxWindowID id, const wxPoint& pos, const wxSi
 
     m_LoadingFile=false;
 
-    m_OnSelectionChanged=NULL;
-    m_OnStatusChanged=NULL;
-    m_OnToggleWindow=NULL;
-    m_OnMouseRightUp=NULL;
-
     // set fonts
     memset(m_TextFontWidths, 0, sizeof(m_TextFontWidths));
     memset(m_HexFontWidths, 0, sizeof(m_HexFontWidths));
@@ -10105,30 +10100,6 @@ void MadEdit::OnPaint(wxPaintEvent &evt)
 #endif
 
     m_Painted=true;
-}
-
-void MadEdit::DoSelectionChanged()
-{
-    if(m_OnSelectionChanged)
-        m_OnSelectionChanged(this);
-}
-
-void MadEdit::DoStatusChanged()
-{
-    if(m_OnStatusChanged)
-        m_OnStatusChanged(this);
-}
-
-void MadEdit::DoToggleWindow()
-{
-    if(m_OnToggleWindow)
-        m_OnToggleWindow(this);
-}
-
-void MadEdit::DoMouseRightUp()
-{
-    if(m_OnMouseRightUp)
-        m_OnMouseRightUp(this);
 }
 
 #ifdef __WXMSW__
