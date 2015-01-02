@@ -864,7 +864,6 @@ MadEdit::MadEdit(wxWindow* parent, wxWindowID id, const wxPoint& pos, const wxSi
     m_OnStatusChanged=NULL;
     m_OnToggleWindow=NULL;
     m_OnMouseRightUp=NULL;
-    m_OnActivate=NULL;
 
     // set fonts
     memset(m_TextFontWidths, 0, sizeof(m_TextFontWidths));
@@ -9452,9 +9451,7 @@ void MadEdit::OnSetFocus(wxFocusEvent &evt)
     memset(m_TextFontWidths, 0, sizeof(m_TextFontWidths));
     memset(m_HexFontWidths, 0, sizeof(m_HexFontWidths));
 
-    OnSetFocusAsControl();
-
-    DoActivate();
+    OnWXMEditSetFocus();
 
     evt.Skip();
 }
@@ -10132,12 +10129,6 @@ void MadEdit::DoMouseRightUp()
 {
     if(m_OnMouseRightUp)
         m_OnMouseRightUp(this);
-}
-
-void MadEdit::DoActivate()
-{
-    if(m_OnActivate)
-        m_OnActivate(this);
 }
 
 #ifdef __WXMSW__

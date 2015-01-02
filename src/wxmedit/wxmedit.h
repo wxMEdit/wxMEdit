@@ -40,7 +40,6 @@ typedef void (*OnSelectionChangedPtr)(MadEdit *madedit);
 typedef void (*OnStatusChangedPtr)(MadEdit *madedit);
 typedef void (*OnToggleWindowPtr)(MadEdit *madedit);
 typedef void (*OnMouseRightUpPtr)(MadEdit *madedit);
-typedef void (*OnActivatePtr)(MadEdit *madedit);
 
 namespace wxm
 {
@@ -374,7 +373,6 @@ private:
     OnStatusChangedPtr    m_OnStatusChanged;
     OnToggleWindowPtr     m_OnToggleWindow;
     OnMouseRightUpPtr     m_OnMouseRightUp;
-    OnActivatePtr         m_OnActivate;
 
     wxMilliClock_t m_lastDoubleClick;
 
@@ -575,7 +573,7 @@ protected:
 
     void OnMouseCaptureLost(wxMouseCaptureLostEvent &evt);
 
-    virtual void OnSetFocusAsControl() {}
+    virtual void OnWXMEditSetFocus() {}
     virtual void OnWXMEditKillFocus();
     void Deselect() { m_Selection = false; }
     void SetRepaintAll(bool val) { m_RepaintAll = val; }
@@ -597,7 +595,6 @@ protected:
     void DoStatusChanged();
     void DoToggleWindow();
     void DoMouseRightUp();
-    void DoActivate();
 
 #ifdef __WXMSW__
     WXLRESULT MSWWindowProc(WXUINT message, WXWPARAM wParam, WXLPARAM lParam);
@@ -1010,10 +1007,6 @@ public:
     void SetOnMouseRightUp(OnMouseRightUpPtr func)
     {
         m_OnMouseRightUp=func;
-    }
-    void SetOnActivate(OnActivatePtr func)
-    {
-        m_OnActivate=func;
     }
 
     void SetSearchOptions(bool bUseDefaultSyntax, bool bSearchWholeWord)

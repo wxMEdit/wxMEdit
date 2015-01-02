@@ -67,7 +67,7 @@ void SingleLineWXMEdit::OnGetFocusByClickAsControl(const wxMouseEvent &evt)
 	m_LeftClickY = evt.m_y;
 }
 
-void SingleLineWXMEdit::OnSetFocusAsControl()
+void SingleLineWXMEdit::OnWXMEditSetFocus()
 {
 	SelectAll();
 }

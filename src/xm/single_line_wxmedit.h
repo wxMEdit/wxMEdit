@@ -22,7 +22,7 @@ class SingleLineWXMEdit: public SimpleWXMEdit
 	virtual void ProcessReturnCommand(MadEditCommand command) {}
 	virtual void OnGetFocusByClickAsControl(const wxMouseEvent &evt);
 	virtual bool NeedNotProcessMouseLeftDown(wxMouseEvent &evt);
-	virtual void OnSetFocusAsControl();
+	virtual void OnWXMEditSetFocus();
 	virtual void OnWXMEditKillFocus();
 	virtual void OnMouseWheel(wxMouseEvent &evt) {}
 	virtual void SetEditMode(MadEditMode mode) {}
