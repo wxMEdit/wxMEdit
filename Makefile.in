@@ -98,6 +98,7 @@ am_wxmedit_OBJECTS = $(am__objects_1) $(am__objects_2) \
 	src/xm/wxmedit-wx_recent_list.$(OBJEXT) \
 	src/xm/wxmedit-wxm_case_conv.$(OBJEXT) \
 	src/xm/wxmedit-wxm_line_enc_adapter.$(OBJEXT) \
+	src/xm/wxmedit-wxm_statusbar.$(OBJEXT) \
 	src/xm/wxmedit-wxm_update.$(OBJEXT) \
 	src/xm/wxmedit-wxm_utils.$(OBJEXT) \
 	src/xm/wxmedit-wxm_wx_icu.$(OBJEXT) \
@@ -411,6 +412,8 @@ wxmedit_SOURCES = $(enc_src) \
 	src/xm/wxm_def.h \
 	src/xm/wxm_line_enc_adapter.cpp \
 	src/xm/wxm_line_enc_adapter.h \
+	src/xm/wxm_statusbar.cpp \
+	src/xm/wxm_statusbar.h \
 	src/xm/wxm_update.cpp \
 	src/xm/wxm_update.h \
 	src/xm/wxm_utils.cpp \
@@ -744,6 +747,8 @@ src/xm/wxmedit-wxm_case_conv.$(OBJEXT): src/xm/$(am__dirstamp) \
 	src/xm/$(DEPDIR)/$(am__dirstamp)
 src/xm/wxmedit-wxm_line_enc_adapter.$(OBJEXT): src/xm/$(am__dirstamp) \
 	src/xm/$(DEPDIR)/$(am__dirstamp)
+src/xm/wxmedit-wxm_statusbar.$(OBJEXT): src/xm/$(am__dirstamp) \
+	src/xm/$(DEPDIR)/$(am__dirstamp)
 src/xm/wxmedit-wxm_update.$(OBJEXT): src/xm/$(am__dirstamp) \
 	src/xm/$(DEPDIR)/$(am__dirstamp)
 src/xm/wxmedit-wxm_utils.$(OBJEXT): src/xm/$(am__dirstamp) \
@@ -915,6 +920,7 @@ mostlyclean-compile:
 	-rm -f src/xm/wxmedit-wxm_case_conv.$(OBJEXT)
 	-rm -f src/xm/wxmedit-wxm_encdet.$(OBJEXT)
 	-rm -f src/xm/wxmedit-wxm_line_enc_adapter.$(OBJEXT)
+	-rm -f src/xm/wxmedit-wxm_statusbar.$(OBJEXT)
 	-rm -f src/xm/wxmedit-wxm_update.$(OBJEXT)
 	-rm -f src/xm/wxmedit-wxm_utils.$(OBJEXT)
 	-rm -f src/xm/wxmedit-wxm_wx_icu.$(OBJEXT)
@@ -981,6 +987,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/xm/$(DEPDIR)/wxmedit-wxm_case_conv.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/xm/$(DEPDIR)/wxmedit-wxm_encdet.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/xm/$(DEPDIR)/wxmedit-wxm_line_enc_adapter.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/xm/$(DEPDIR)/wxmedit-wxm_statusbar.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/xm/$(DEPDIR)/wxmedit-wxm_update.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/xm/$(DEPDIR)/wxmedit-wxm_utils.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/xm/$(DEPDIR)/wxmedit-wxm_wx_icu.Po@am__quote@
@@ -1584,6 +1591,20 @@ src/xm/wxmedit-wxm_line_enc_adapter.obj: src/xm/wxm_line_enc_adapter.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/xm/wxm_line_enc_adapter.cpp' object='src/xm/wxmedit-wxm_line_enc_adapter.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -c -o src/xm/wxmedit-wxm_line_enc_adapter.obj `if test -f 'src/xm/wxm_line_enc_adapter.cpp'; then $(CYGPATH_W) 'src/xm/wxm_line_enc_adapter.cpp'; else $(CYGPATH_W) '$(srcdir)/src/xm/wxm_line_enc_adapter.cpp'; fi`
+
+src/xm/wxmedit-wxm_statusbar.o: src/xm/wxm_statusbar.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -MT src/xm/wxmedit-wxm_statusbar.o -MD -MP -MF src/xm/$(DEPDIR)/wxmedit-wxm_statusbar.Tpo -c -o src/xm/wxmedit-wxm_statusbar.o `test -f 'src/xm/wxm_statusbar.cpp' || echo '$(srcdir)/'`src/xm/wxm_statusbar.cpp
+@am__fastdepCXX_TRUE@	mv -f src/xm/$(DEPDIR)/wxmedit-wxm_statusbar.Tpo src/xm/$(DEPDIR)/wxmedit-wxm_statusbar.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/xm/wxm_statusbar.cpp' object='src/xm/wxmedit-wxm_statusbar.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -c -o src/xm/wxmedit-wxm_statusbar.o `test -f 'src/xm/wxm_statusbar.cpp' || echo '$(srcdir)/'`src/xm/wxm_statusbar.cpp
+
+src/xm/wxmedit-wxm_statusbar.obj: src/xm/wxm_statusbar.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -MT src/xm/wxmedit-wxm_statusbar.obj -MD -MP -MF src/xm/$(DEPDIR)/wxmedit-wxm_statusbar.Tpo -c -o src/xm/wxmedit-wxm_statusbar.obj `if test -f 'src/xm/wxm_statusbar.cpp'; then $(CYGPATH_W) 'src/xm/wxm_statusbar.cpp'; else $(CYGPATH_W) '$(srcdir)/src/xm/wxm_statusbar.cpp'; fi`
+@am__fastdepCXX_TRUE@	mv -f src/xm/$(DEPDIR)/wxmedit-wxm_statusbar.Tpo src/xm/$(DEPDIR)/wxmedit-wxm_statusbar.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/xm/wxm_statusbar.cpp' object='src/xm/wxmedit-wxm_statusbar.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -c -o src/xm/wxmedit-wxm_statusbar.obj `if test -f 'src/xm/wxm_statusbar.cpp'; then $(CYGPATH_W) 'src/xm/wxm_statusbar.cpp'; else $(CYGPATH_W) '$(srcdir)/src/xm/wxm_statusbar.cpp'; fi`
 
 src/xm/wxmedit-wxm_update.o: src/xm/wxm_update.cpp
 @am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -MT src/xm/wxmedit-wxm_update.o -MD -MP -MF src/xm/$(DEPDIR)/wxmedit-wxm_update.Tpo -c -o src/xm/wxmedit-wxm_update.o `test -f 'src/xm/wxm_update.cpp' || echo '$(srcdir)/'`src/xm/wxm_update.cpp

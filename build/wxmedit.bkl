@@ -200,6 +200,8 @@
 		<headers>../src/xm/wxm_def.h</headers>
 		<headers>../src/xm/wxm_line_enc_adapter.h</headers>
 		<sources>../src/xm/wxm_line_enc_adapter.cpp</sources>
+		<headers>../src/xm/wxm_statusbar.h</headers>
+		<sources>../src/xm/wxm_statusbar.cpp</sources>
 		<headers>../src/xm/wxm_update.h</headers>
 		<sources>../src/xm/wxm_update.cpp</sources>
 		<headers>../src/xm/wxm_utils.h</headers>

@@ -89,6 +89,8 @@ wxmedit_SOURCES =	$(enc_src) \
 	src/xm/wxm_def.h \
 	src/xm/wxm_line_enc_adapter.cpp \
 	src/xm/wxm_line_enc_adapter.h \
+	src/xm/wxm_statusbar.cpp \
+	src/xm/wxm_statusbar.h \
 	src/xm/wxm_update.cpp \
 	src/xm/wxm_update.h \
 	src/xm/wxm_utils.cpp \

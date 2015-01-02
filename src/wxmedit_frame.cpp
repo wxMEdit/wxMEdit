@@ -207,8 +207,7 @@ wxString g_lastpath_closingfiles;
 MadEditFrame *g_MainFrame=NULL;
 MadEdit *g_ActiveMadEdit=NULL;
 int g_PrevPageID=-1;
-wxStatusBar *g_StatusBar=NULL;
-bool g_CheckModTimeForReload=true;
+bool g_CheckModTimeForReload = true;
 
 wxMenu *g_PopMenu_Tab = NULL;
 wxMenu *g_Menu_File = NULL;
@@ -243,14 +242,6 @@ wxMenu *g_Menu_Tools_InsertNewLineChar = NULL;
 wxMenu *g_Menu_Tools_ConvertChineseChar = NULL;
 
 wxArrayString g_FontNames;
-
-#ifdef __WXMSW__
-int g_StatusWidth_1_6=    (220+ 235+ 135+ 155+ 65+ (50 + 10));
-int g_StatusWidths[7]={ 0, 220, 235, 135, 155, 65, (50 + 10)};
-#else
-int g_StatusWidth_1_6=    (220+ 235+ 135+ 155+ 65+ (50 + 0));
-int g_StatusWidths[7]={ 0, 220, 235, 135, 155, 65, (50 + 0)};
-#endif
 
 wxAcceleratorEntry g_AccelFindNext, g_AccelFindPrev;
 
@@ -769,9 +760,9 @@ void OnEditSelectionChanged(MadEdit *madedit)
 
     if(madedit==NULL)
     {
-        g_StatusBar->SetStatusText(wxEmptyString, 1);
-        g_StatusBar->SetStatusText(wxEmptyString, 2);
-        g_StatusBar->SetStatusText(wxEmptyString, 3);
+        wxm::GetFrameStatusBar().SetField(wxm::STBF_ROWCOL, wxEmptyString);
+        wxm::GetFrameStatusBar().SetField(wxm::STBF_CHARPOS, wxEmptyString);
+        wxm::GetFrameStatusBar().SetField(wxm::STBF_SELECTION, wxEmptyString);
     }
     else
     {
@@ -808,17 +799,17 @@ void OnEditSelectionChanged(MadEdit *madedit)
             text += (sepstr1+substr+s3+sepstr2);
         }
         text += (sepstr3+colstr+s4);
-        g_StatusBar->SetStatusText(text, 1);
+        wxm::GetFrameStatusBar().SetField(wxm::STBF_ROWCOL, text);
 
         s1=FormatThousands(wxLongLong(madedit->GetCaretPosition()).ToString());
         s2=FormatThousands(wxLongLong(madedit->GetFileSize()).ToString());
-        g_StatusBar->SetStatusText(fpstr+s1+sepstr+s2, 2);
+        wxm::GetFrameStatusBar().SetField(wxm::STBF_CHARPOS, fpstr + s1 + sepstr + s2);
 
         s1=FormatThousands(wxLongLong(madedit->GetSelectionSize()).ToString());
-        g_StatusBar->SetStatusText(ssstr+s1, 3);
+        wxm::GetFrameStatusBar().SetField(wxm::STBF_SELECTION, ssstr + s1);
     }
 
-    g_StatusBar->Update(); // repaint immediately
+    wxm::GetFrameStatusBar().Update(); // repaint immediately
 }
 
 void OnEditStatusChanged(MadEdit *madedit)
@@ -827,11 +818,11 @@ void OnEditStatusChanged(MadEdit *madedit)
 
     if(madedit==NULL)
     {
-        g_StatusBar->SetStatusText(wxEmptyString, 4);
-        g_StatusBar->SetStatusText(wxEmptyString, 5);
-        g_StatusBar->SetStatusText(wxEmptyString, 6);
+        wxm::GetFrameStatusBar().SetField(wxm::STBF_ENCFMT, wxEmptyString);
+        wxm::GetFrameStatusBar().SetField(wxm::STBF_READONLY, wxEmptyString);
+        wxm::GetFrameStatusBar().SetField(wxm::STBF_INSOVR, wxEmptyString);
 
-        g_StatusBar->Update(); // repaint immediately
+        wxm::GetFrameStatusBar().Update(); // repaint immediately
     }
     else
     {
@@ -908,30 +899,30 @@ void OnEditStatusChanged(MadEdit *madedit)
             default:
                 break;
             }
-            g_StatusBar->SetStatusText(enc, 4);
+            wxm::GetFrameStatusBar().SetField(wxm::STBF_ENCFMT, enc);
 
             if(madedit->IsReadOnly())
             {
                 static wxString rostr(_("ReadOnly"));
-                g_StatusBar->SetStatusText(rostr, 5);
+                wxm::GetFrameStatusBar().SetField(wxm::STBF_READONLY, rostr);
             }
             else
             {
-                g_StatusBar->SetStatusText(wxEmptyString, 5);
+                wxm::GetFrameStatusBar().SetField(wxm::STBF_READONLY, wxEmptyString);
             }
 
             if(madedit->GetInsertMode())
             {
                 static wxString insstr(_("INS"));
-                g_StatusBar->SetStatusText(insstr, 6);
+                wxm::GetFrameStatusBar().SetField(wxm::STBF_INSOVR, insstr);
             }
             else
             {
                 static wxString ovrstr(_("OVR"));
-                g_StatusBar->SetStatusText(ovrstr, 6);
+                wxm::GetFrameStatusBar().SetField(wxm::STBF_INSOVR, ovrstr);
             }
 
-            g_StatusBar->Update(); // repaint immediately
+            wxm::GetFrameStatusBar().Update(); // repaint immediately
 
 
             if(g_SearchReplaceDialog!=NULL)
@@ -1878,12 +1869,7 @@ void CloneMenuItem(wxMenu* menu, const wxMenu* srcmenu, int itemid)
 
 void MadEditFrame::CreateGUIControls()
 {
-    WxStatusBar1 = new wxStatusBar(this, ID_WXSTATUSBAR1);
-    g_StatusBar = WxStatusBar1;
-
-#if defined(__WXGTK__)
-    WxStatusBar1->SetFont(wxFont(9, wxDEFAULT, wxNORMAL, wxNORMAL, false));
-#endif
+    m_wxmstatusbar.Init(this, ID_WXSTATUSBAR1);
 
     WxToolBar1 = new wxToolBar(this, ID_WXTOOLBAR1, wxPoint(0,0), wxSize(392,29));
 
@@ -1897,7 +1883,7 @@ void MadEditFrame::CreateGUIControls()
 
     WxToolBar1->Realize();
     this->SetToolBar(WxToolBar1);
-    this->SetStatusBar(WxStatusBar1);
+    m_wxmstatusbar.Attach();
     this->SetTitle(wxT("wxMEdit "));
 
 #if !defined(__WXMSW__) //&& !defined(__WXPM__)
@@ -2166,16 +2152,7 @@ void MadEditFrame::CreateGUIControls()
     m_Config->SetPath(wxT("/RecentFonts"));
     m_RecentFonts->Load(*m_Config);
 
-
-    // status bar field widths
-    int width0= GetClientSize().GetWidth() - g_StatusWidth_1_6;
-    if(width0<0) width0=0;
-    g_StatusWidths[0]= width0;
-    WxStatusBar1->SetFieldsCount(7, g_StatusWidths);
-    //int styles[6]={wxSB_RAISED, wxSB_RAISED, wxSB_RAISED, wxSB_RAISED, wxSB_RAISED, wxSB_RAISED, wxSB_RAISED};
-    //WxStatusBar1->SetStatusStyles(6, styles);
-
-
+    m_wxmstatusbar.Resize();
 
     /*
     // load plugins
@@ -2286,7 +2263,7 @@ void MadEditFrame::CreateGUIControls()
     m_AuiManager.Update();
 
     // fixed for using wxAUI
-    WxStatusBar1->Connect(wxEVT_SIZE, wxSizeEventHandler(MadEditFrame::OnSizeStatusBar));
+    m_wxmstatusbar.ConnectSizeEvent(wxSizeEventHandler(MadEditFrame::OnSizeStatusBar));
 }
 
 void MadEditFrame::MadEditFrameClose(wxCloseEvent& event)
@@ -2617,13 +2594,7 @@ void MadEditFrame::OnSizeStatusBar(wxSizeEvent &evt)
 {
     evt.Skip();
 
-    int width0= g_MainFrame->GetClientSize().GetWidth() - g_StatusWidth_1_6;
-    if(width0<0) width0=0;
-    g_StatusWidths[0]= width0;
-    g_MainFrame->WxStatusBar1->SetFieldsCount(7, g_StatusWidths);
-
-    //static int n=0;
-    //g_MainFrame->SetTitle(wxString::Format(wxT("%d %d %d"), n++, g_MainFrame->GetClientSize().GetWidth(), width0));
+    m_wxmstatusbar.Resize();
 }
 
 //void MadEditFrame::OnChar(wxKeyEvent& evt)

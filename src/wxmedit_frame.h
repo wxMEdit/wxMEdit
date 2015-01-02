@@ -13,6 +13,7 @@
 #include "xm/wx_recent_list.h"
 #include "xm/wxm_def.h"
 #include "xm/wxm_encoding/encoding_def.h"
+#include "xm/wxm_statusbar.h"
 
 #include <wx/wxprec.h>
 #ifdef __BORLANDC__
@@ -41,13 +42,12 @@
 #undef MadEditFrame_STYLE
 #define MadEditFrame_STYLE wxCAPTION | wxRESIZE_BORDER | wxSYSTEM_MENU | wxMINIMIZE_BOX | wxMAXIMIZE_BOX | wxCLOSE_BOX
 
-
 class wxMadAuiNotebook;
 class wxAuiNotebookEvent;
 class MadEdit;
 
 BEGIN_DECLARE_EVENT_TYPES()    DECLARE_LOCAL_EVENT_TYPE( wxmEVT_RESULT_AUTOCHECKUPDATES, wxNewEventType() )    DECLARE_LOCAL_EVENT_TYPE( wxmEVT_RESULT_MANUALCHECKUPDATES, wxNewEventType() )END_DECLARE_EVENT_TYPES()
-
+
 class MadEditFrame : public wxFrame
 {
 private:
@@ -63,7 +63,7 @@ public:
 public:
         wxMenuBar *WxMenuBar1;
         wxToolBar *WxToolBar1;
-        wxStatusBar *WxStatusBar1;
+        wxm::WXMStatusBar m_wxmstatusbar;
 
 public:
     enum {
@@ -529,5 +529,4 @@ enum { // menu id
 extern MadEditFrame *g_MainFrame;
 extern void OnReceiveMessage(const wchar_t *msg, size_t size);
 
-#endif
-
+#endif // _WXMEDIT_FRAME_H_
