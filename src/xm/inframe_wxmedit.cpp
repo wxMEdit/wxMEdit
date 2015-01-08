@@ -27,8 +27,42 @@ extern wxMenu *g_Menu_Edit;
 namespace wxm
 {
 
+struct GlobalConfigWriter: public ConfigWriter
+{
+	virtual void Record(const wxString& key, long val);
+	virtual void Record(const wxString& key, double val);
+	virtual void Record(const wxString& key, const wxString& val);
+
+	virtual void SetConfig(wxConfigBase* cfg) { m_cfg = cfg; }
+
+	GlobalConfigWriter(): m_cfg(NULL) {}
+private:
+	wxConfigBase* m_cfg;
+};
+
+void GlobalConfigWriter::Record(const wxString& key, long val)
+{
+	wxString oldpath = m_cfg->GetPath();
+	m_cfg->Write(key, val);
+	m_cfg->SetPath(oldpath);
+}
+
+void GlobalConfigWriter::Record(const wxString& key, double val)
+{
+	wxString oldpath = m_cfg->GetPath();
+	m_cfg->Write(key, val);
+	m_cfg->SetPath(oldpath);
+}
+
+void GlobalConfigWriter::Record(const wxString& key, const wxString& val)
+{
+	wxString oldpath = m_cfg->GetPath();
+	m_cfg->Write(key, val);
+	m_cfg->SetPath(oldpath);
+}
+
 InFrameWXMEdit::InFrameWXMEdit(wxWindow* parent, wxWindowID id, const wxPoint& pos, const wxSize& size, long style)
-	: MadEdit(parent, id, pos, size, style)
+	: MadEdit(new GlobalConfigWriter(), parent, id, pos, size, style)
 {
 	SetWindowStyleFlag(GetWindowStyleFlag() & ~wxTAB_TRAVERSAL);
 	//SetDropTarget(new DnDFile());

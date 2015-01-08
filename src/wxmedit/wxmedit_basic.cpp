@@ -227,12 +227,7 @@ void MadEdit::SetRecordCaretMovements(bool value)
     {
         m_RecordCaretMovements=value;
 
-        if(m_StorePropertiesToGlobalConfig)
-        {
-            wxString oldpath=m_Config->GetPath();
-            m_Config->Write(wxT("/wxMEdit/RecordCaretMovements"), value);
-            m_Config->SetPath(oldpath);
-        }
+        m_cfg_writer->Record(wxT("/wxMEdit/RecordCaretMovements"), value);
     }
 }
 
@@ -249,13 +244,8 @@ void MadEdit::SetTextFont(const wxString &name, int size, bool forceReset)
         memset(m_TextFontWidths, 0, sizeof(m_TextFontWidths));
         m_TextFontWidths[0] = FontWidthManager::GetFontWidths(0, name, size, this);
 
-        if(m_StorePropertiesToGlobalConfig)
-        {
-            wxString oldpath=m_Config->GetPath();
-            m_Config->Write(wxString(wxT("/Fonts/"))+m_Encoding->GetName(), name);
-            m_Config->Write(wxT("/wxMEdit/TextFontSize"), size);
-            m_Config->SetPath(oldpath);
-        }
+        m_cfg_writer->Record(wxString(wxT("/Fonts/"))+m_Encoding->GetName(), name);
+        m_cfg_writer->Record(wxT("/wxMEdit/TextFontSize"), size);
 
 
         if(m_EditMode==emHexMode)
@@ -467,13 +457,8 @@ void MadEdit::SetHexFont(const wxString &name, int size, bool forceReset)
         memset(m_HexFontWidths, 0, sizeof(m_HexFontWidths));
         m_HexFontWidths[0]=FontWidthManager::GetFontWidths(0, name, size, this);
 
-        if(m_StorePropertiesToGlobalConfig)
-        {
-            wxString oldpath=m_Config->GetPath();
-            m_Config->Write(wxString(wxT("/wxMEdit/HexFontName")), name);
-            m_Config->Write(wxT("/wxMEdit/HexFontSize"), size);
-            m_Config->SetPath(oldpath);
-        }
+        m_cfg_writer->Record(wxString(wxT("/wxMEdit/HexFontName")), name);
+        m_cfg_writer->Record(wxT("/wxMEdit/HexFontSize"), size);
 
         if(m_HexDigitBitmap)
         {
@@ -534,12 +519,7 @@ void MadEdit::SetFixedWidthMode(bool mode)
     if(mode!=m_FixedWidthMode)
     {
         m_FixedWidthMode=mode;
-        if(m_StorePropertiesToGlobalConfig)
-        {
-            wxString oldpath=m_Config->GetPath();
-            m_Config->Write(wxT("/wxMEdit/FixedWidthMode"), mode);
-            m_Config->SetPath(oldpath);
-        }
+        m_cfg_writer->Record(wxT("/wxMEdit/FixedWidthMode"), mode);
 
         SetTextFont(m_TextFont->GetFaceName(), m_TextFont->GetPointSize(), true);
     }
@@ -553,12 +533,7 @@ void MadEdit::SetLineSpacing(int percent)
     if(percent != m_LineSpacing)
     {
         m_LineSpacing=percent;
-        if(m_StorePropertiesToGlobalConfig)
-        {
-            wxString oldpath=m_Config->GetPath();
-            m_Config->Write(wxT("/wxMEdit/LineSpacing"), percent);
-            m_Config->SetPath(oldpath);
-        }
+        m_cfg_writer->Record(wxT("/wxMEdit/LineSpacing"), percent);
 
         if(m_EditMode!=emHexMode)
         {
@@ -816,12 +791,7 @@ void MadEdit::SetTabColumns(long value)
     if(m_TabColumns != value && value >= 1 && value <= 80)
     {
         m_TabColumns = value;
-        if(m_StorePropertiesToGlobalConfig)
-        {
-            wxString oldpath=m_Config->GetPath();
-            m_Config->Write(wxT("/wxMEdit/TabColumns"), value);
-            m_Config->SetPath(oldpath);
-        }
+        m_cfg_writer->Record(wxT("/wxMEdit/TabColumns"), value);
 
         if(m_HasTab)
         {
@@ -839,12 +809,7 @@ void MadEdit::SetInsertSpacesInsteadOfTab(bool value)
     if(value!=m_InsertSpacesInsteadOfTab)
     {
         m_InsertSpacesInsteadOfTab=value;
-        if(m_StorePropertiesToGlobalConfig)
-        {
-            wxString oldpath=m_Config->GetPath();
-            m_Config->Write(wxT("/wxMEdit/InsertSpacesInsteadOfTab"), value);
-            m_Config->SetPath(oldpath);
-        }
+        m_cfg_writer->Record(wxT("/wxMEdit/InsertSpacesInsteadOfTab"), value);
     }
 }
 
@@ -854,12 +819,7 @@ void MadEdit::SetWordWrapMode(MadWordWrapMode mode)
         return;
 
     m_WordWrapMode = mode;
-    if(m_StorePropertiesToGlobalConfig)
-    {
-        wxString oldpath=m_Config->GetPath();
-        m_Config->Write(wxT("/wxMEdit/WordWrapMode"), (long)mode);
-        m_Config->SetPath(oldpath);
-    }
+    m_cfg_writer->Record(wxT("/wxMEdit/WordWrapMode"), (long)mode);
 
     if(m_EditMode != emHexMode)
     {
@@ -884,12 +844,7 @@ void MadEdit::SetDisplayLineNumber(bool value)
     if(value!=m_DisplayLineNumber)
     {
         m_DisplayLineNumber=value;
-        if(m_StorePropertiesToGlobalConfig)
-        {
-            wxString oldpath=m_Config->GetPath();
-            m_Config->Write(wxT("/wxMEdit/DisplayLineNumber"), value);
-            m_Config->SetPath(oldpath);
-        }
+        m_cfg_writer->Record(wxT("/wxMEdit/DisplayLineNumber"), value);
 
         m_RepaintAll=true;
         Refresh(false);
@@ -900,12 +855,7 @@ void MadEdit::SetShowEndOfLine(bool value)
     if(value!=m_ShowEndOfLine)
     {
         m_ShowEndOfLine=value;
-        if(m_StorePropertiesToGlobalConfig)
-        {
-            wxString oldpath=m_Config->GetPath();
-            m_Config->Write(wxT("/wxMEdit/ShowEndOfLine"), value);
-            m_Config->SetPath(oldpath);
-        }
+        m_cfg_writer->Record(wxT("/wxMEdit/ShowEndOfLine"), value);
 
         m_RepaintAll=true;
         Refresh(false);
@@ -916,12 +866,7 @@ void MadEdit::SetShowTabChar(bool value)
     if(value!=m_ShowTabChar)
     {
         m_ShowTabChar=value;
-        if(m_StorePropertiesToGlobalConfig)
-        {
-            wxString oldpath=m_Config->GetPath();
-            m_Config->Write(wxT("/wxMEdit/ShowTabChar"), value);
-            m_Config->SetPath(oldpath);
-        }
+        m_cfg_writer->Record(wxT("/wxMEdit/ShowTabChar"), value);
 
         if(m_HasTab)
         {
@@ -935,12 +880,7 @@ void MadEdit::SetShowSpaceChar(bool value)
     if(value!=m_ShowSpaceChar)
     {
         m_ShowSpaceChar=value;
-        if(m_StorePropertiesToGlobalConfig)
-        {
-            wxString oldpath=m_Config->GetPath();
-            m_Config->Write(wxT("/wxMEdit/ShowSpaceChar"), value);
-            m_Config->SetPath(oldpath);
-        }
+        m_cfg_writer->Record(wxT("/wxMEdit/ShowSpaceChar"), value);
 
         m_RepaintAll=true;
         Refresh(false);
@@ -951,12 +891,7 @@ void MadEdit::SetMarkActiveLine(bool value)
     if(value!=m_MarkActiveLine)
     {
         m_MarkActiveLine=value;
-        if(m_StorePropertiesToGlobalConfig)
-        {
-            wxString oldpath=m_Config->GetPath();
-            m_Config->Write(wxT("/wxMEdit/MarkActiveLine"), value);
-            m_Config->SetPath(oldpath);
-        }
+        m_cfg_writer->Record(wxT("/wxMEdit/MarkActiveLine"), value);
 
         m_RepaintAll=true;
         Refresh(false);
@@ -968,12 +903,7 @@ void MadEdit::SetMarkBracePair(bool value)
     if(value!=m_MarkBracePair)
     {
         m_MarkBracePair=value;
-        if(m_StorePropertiesToGlobalConfig)
-        {
-            wxString oldpath=m_Config->GetPath();
-            m_Config->Write(wxT("/wxMEdit/MarkBracePair"), value);
-            m_Config->SetPath(oldpath);
-        }
+        m_cfg_writer->Record(wxT("/wxMEdit/MarkBracePair"), value);
 
         m_RepaintAll=true;
         Refresh(false);
@@ -985,12 +915,7 @@ void MadEdit::SetMaxColumns(long cols)
     if(m_MaxColumns!=cols)
     {
         m_MaxColumns = cols;
-        if(m_StorePropertiesToGlobalConfig)
-        {
-            wxString oldpath=m_Config->GetPath();
-            m_Config->Write(wxT("/wxMEdit/MaxColumns"), cols);
-            m_Config->SetPath(oldpath);
-        }
+        m_cfg_writer->Record(wxT("/wxMEdit/MaxColumns"), cols);
 
         if (GetWordWrapMode() == wwmWrapByColumn)
         {

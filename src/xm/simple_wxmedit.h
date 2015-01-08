@@ -14,12 +14,20 @@
 namespace wxm
 {
 
+struct DummyConfigWriter: public ConfigWriter
+{
+	virtual void Record(const wxString& key, long val) {}
+	virtual void Record(const wxString& key, double val) {}
+	virtual void Record(const wxString& key, const wxString& val) {}
+
+	virtual void SetConfig(wxConfigBase* cfg) {}
+};
+
 struct SimpleWXMEdit: public MadEdit
 {
 	SimpleWXMEdit(wxWindow* parent, wxWindowID id = wxID_ANY, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxDefaultSize, long style = wxSIMPLE_BORDER | wxWANTS_CHARS)
-		: MadEdit(parent, id, pos, size, style)
+		: MadEdit(new DummyConfigWriter(),  parent, id, pos, size, style)
 	{
-		SetStorePropertiesToGlobalConfig(false);
 	}
 };
 

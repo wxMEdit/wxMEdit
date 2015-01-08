@@ -198,6 +198,20 @@ enum MadReplaceResult
 namespace wxm
 {
     struct MouseCapturer;
+
+
+    struct ConfigWriter
+    {
+        void Record(const wxString& key, bool val) { return Record(key, (long)val); }
+        void Record(const wxString& key, int val) { return Record(key, (long)val); }
+
+        virtual void Record(const wxString& key, long val) = 0;
+        virtual void Record(const wxString& key, double val) = 0;
+        virtual void Record(const wxString& key, const wxString& val) = 0;
+
+        virtual void SetConfig(wxConfigBase* cfg) = 0;
+        virtual ~ConfigWriter() {}
+    };
 }
 
 class MadEdit: public MadEditSuperClass
@@ -272,7 +286,7 @@ private:
 
     wxUint16        *m_TextFontWidths[17], *m_HexFontWidths[17];
 
-    bool            m_StorePropertiesToGlobalConfig;
+    wxm::ConfigWriter* m_cfg_writer;
 
     bool            m_FixedWidthMode;
 
@@ -603,13 +617,9 @@ protected:
 #endif
 
 public:
-    MadEdit(wxWindow* parent, wxWindowID id = wxID_ANY, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxDefaultSize, long style = wxSIMPLE_BORDER|wxWANTS_CHARS);
+    MadEdit(wxm::ConfigWriter* cfg_writer, wxWindow* parent, wxWindowID id = wxID_ANY, const wxPoint& pos = wxDefaultPosition,
+        const wxSize& size = wxDefaultSize, long style = wxSIMPLE_BORDER|wxWANTS_CHARS);
     virtual ~MadEdit();
-
-    void SetStorePropertiesToGlobalConfig(bool value)
-    {
-        m_StorePropertiesToGlobalConfig=value;
-    }
 
     void StopRepaint()
     {

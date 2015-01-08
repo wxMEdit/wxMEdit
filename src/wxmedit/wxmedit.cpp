@@ -698,8 +698,8 @@ void FontWidthManager::FreeMem()
 
 int MadEdit::ms_Count = 0;
 
-MadEdit::MadEdit(wxWindow* parent, wxWindowID id, const wxPoint& pos, const wxSize& size, long style)
-    :MadEditSuperClass(parent,id,pos,size,style)//wxWANTS_CHARS|wxSIMPLE_BORDER)//|style|wxTAB_TRAVERSAL)
+MadEdit::MadEdit(wxm::ConfigWriter* cfg_writer, wxWindow* parent, wxWindowID id, const wxPoint& pos, const wxSize& size, long style)
+    : MadEditSuperClass(parent, id, pos, size, style), m_cfg_writer(cfg_writer)
 {
     ++ms_Count;
 
@@ -725,6 +725,7 @@ MadEdit::MadEdit(wxWindow* parent, wxWindowID id, const wxPoint& pos, const wxSi
     m_ClientWidth=m_ClientHeight=0;
 
     m_Config=wxConfigBase::Get(false);
+    m_cfg_writer->SetConfig(m_Config);
 
     m_Config->SetPath(wxT("/wxMEdit"));
 
@@ -775,8 +776,6 @@ MadEdit::MadEdit(wxWindow* parent, wxWindowID id, const wxPoint& pos, const wxSi
 
 
     m_ClientBitmap=m_MarkBitmap=NULL;     // alloc at OnSize()
-
-    m_StorePropertiesToGlobalConfig=true;
 
     m_CaretPos.Reset(m_Lines->m_LineList.begin());
 
@@ -929,6 +928,7 @@ MadEdit::~MadEdit()
     delete m_MouseMotionTimer;
 
     delete m_mouse_capturer;
+    delete m_cfg_writer;
 }
 
 //==================================================
