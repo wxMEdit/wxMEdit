@@ -33,6 +33,7 @@ struct WXMStatusBar
 		m_statusbar->SetStatusText(s, (int)field);
 	}
 
+	WXMStatusBar() : m_frame(NULL), m_statusbar(NULL) {}
 private:
 	MadEditFrame* m_frame;
 	wxStatusBar* m_statusbar;

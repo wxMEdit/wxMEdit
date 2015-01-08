@@ -2366,7 +2366,7 @@ void MadEditFrame::OnSizeStatusBar(wxSizeEvent &evt)
 {
     evt.Skip();
 
-    m_wxmstatusbar.Resize();
+    g_MainFrame->m_wxmstatusbar.Resize();
 }
 
 //void MadEditFrame::OnChar(wxKeyEvent& evt)

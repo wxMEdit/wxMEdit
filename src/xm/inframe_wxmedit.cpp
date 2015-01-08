@@ -16,6 +16,11 @@
 
 #include <boost/assign/list_of.hpp>
 
+#ifdef _DEBUG
+#include <crtdbg.h>
+#define new new(_NORMAL_BLOCK ,__FILE__, __LINE__)
+#endif
+
 extern MadEdit* g_ActiveMadEdit;
 extern wxMenu *g_Menu_Edit;
 
@@ -41,13 +46,13 @@ wxString InserModeText(bool insertmode)
 wxString ReadOnlyText(bool readonly)
 {
 	static wxString rostr(_("ReadOnly"));
-	return readonly? rostr: wxEmptyString;
+	return readonly ? rostr : wxString();
 }
 
 wxString BOMText(bool hasbom)
 {
 	static wxString bom(wxT(".BOM"));
-	return hasbom? bom: wxEmptyString;
+	return hasbom ? bom : wxString();
 }
 
 wxString NewLineTypeText(MadNewLineType nlty)
