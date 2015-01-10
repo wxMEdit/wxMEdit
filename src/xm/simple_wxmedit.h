@@ -31,17 +31,10 @@ struct SimpleWXMEdit: public MadEdit
 	}
 };
 
-struct InvisibleWXMEdit: public SimpleWXMEdit
-{
-	InvisibleWXMEdit(wxWindow* parent)
-		: SimpleWXMEdit(parent, wxID_ANY, wxPoint(-1024, -1024))
-	{}
-};
-
-struct SearchingWXMEdit: public InvisibleWXMEdit
+struct SearchingWXMEdit: public SimpleWXMEdit
 {
 	SearchingWXMEdit(wxWindow* parent, bool bSearchWholeWord)
-		: InvisibleWXMEdit(parent)
+		: SimpleWXMEdit(parent, wxID_ANY, wxPoint(-1024, -1024))
 	{
 		StopRepaint();
 		SetFixedWidthMode(false);
@@ -50,7 +43,7 @@ struct SearchingWXMEdit: public InvisibleWXMEdit
 	}
 };
 
-struct HexPrintingWXMEdit: public InvisibleWXMEdit
+struct HexPrintingWXMEdit: public SimpleWXMEdit
 {
 	HexPrintingWXMEdit(wxWindow* parent, const wxFont* font);
 };

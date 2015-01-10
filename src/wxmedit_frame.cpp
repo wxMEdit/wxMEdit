@@ -3081,7 +3081,7 @@ void MadEditFrame::OnUpdateUI_MenuViewWrapByColumn(wxUpdateUIEvent& event)
 void MadEditFrame::OnUpdateUI_MenuViewDisplayLineNumber(wxUpdateUIEvent& event)
 {
     event.Enable(g_ActiveMadEdit!=NULL);
-    event.Check(g_ActiveMadEdit && g_ActiveMadEdit->GetDisplayLineNumber());
+    event.Check(g_ActiveMadEdit && g_ActiveMadEdit->HasLineNumber());
 }
 void MadEditFrame::OnUpdateUI_MenuViewShowEndOfLine(wxUpdateUIEvent& event)
 {
@@ -4426,7 +4426,7 @@ void MadEditFrame::OnViewDisplayLineNumber(wxCommandEvent& event)
 {
     if(g_ActiveMadEdit==NULL) return;
 
-    g_ActiveMadEdit->SetDisplayLineNumber(event.IsChecked());
+    g_ActiveMadEdit->SetShowLineNumber(event.IsChecked());
 }
 void MadEditFrame::OnViewShowEndOfLine(wxCommandEvent& event)
 {

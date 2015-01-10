@@ -839,17 +839,18 @@ void MadEdit::SetWordWrapMode(MadWordWrapMode mode)
     }
 }
 
-void MadEdit::SetDisplayLineNumber(bool value)
+void MadEdit::SetShowLineNumber(bool value)
 {
-    if(value!=m_DisplayLineNumber)
-    {
-        m_DisplayLineNumber=value;
-        m_cfg_writer->Record(wxT("/wxMEdit/DisplayLineNumber"), value);
+    if (value == m_has_linenum)
+        return;
 
-        m_RepaintAll=true;
-        Refresh(false);
-    }
+    m_has_linenum=value;
+    m_cfg_writer->Record(wxT("/wxMEdit/DisplayLineNumber"), value);
+
+    m_RepaintAll=true;
+    Refresh(false);
 }
+
 void MadEdit::SetShowEndOfLine(bool value)
 {
     if(value!=m_ShowEndOfLine)
@@ -2999,7 +3000,7 @@ void MadEdit::BeginPrint(const wxRect &printRect)
     m_old_ClientHeight      = m_ClientHeight;
     m_old_WordWrapMode      = m_WordWrapMode;
     m_old_Selection         = m_Selection;
-    m_old_DisplayLineNumber = m_DisplayLineNumber;
+    m_old_has_linenum       = m_has_linenum;
     m_old_ShowEndOfLine     = m_ShowEndOfLine;
     m_old_ShowSpaceChar     = m_ShowSpaceChar;
     m_old_ShowTabChar       = m_ShowTabChar;
@@ -3023,14 +3024,14 @@ void MadEdit::BeginPrint(const wxRect &printRect)
         wxString oldpath=m_Config->GetPath();
         m_Config->SetPath(wxT("/wxMEdit"));
         m_Config->Read(wxT("PrintSyntax"), &m_PrintSyntax);
-        m_Config->Read(wxT("PrintLineNumber"), &m_DisplayLineNumber);
+        m_Config->Read(wxT("PrintLineNumber"), &m_has_linenum);
         m_Config->Read(wxT("PrintEndOfLine"), &m_ShowEndOfLine);
         m_Config->Read(wxT("PrintTabChar"), &m_ShowSpaceChar);
         m_Config->Read(wxT("PrintSpaceChar"), &m_ShowTabChar);
         m_Config->SetPath(oldpath);
 
         m_Syntax->BeginPrint(m_PrintSyntax);
-        if(!m_DisplayLineNumber) m_LeftMarginWidth=0;
+        if (!m_has_linenum) m_LeftMarginWidth = 0;
 
         ReformatAll();
 
@@ -3138,7 +3139,7 @@ void MadEdit::EndPrint()
 
     if(TextPrinting())
     {
-        m_DisplayLineNumber = m_old_DisplayLineNumber;
+        m_has_linenum       = m_old_has_linenum;
         m_ShowEndOfLine     = m_old_ShowEndOfLine;
         m_ShowSpaceChar     = m_old_ShowSpaceChar;
         m_ShowTabChar       = m_old_ShowTabChar;
@@ -3186,18 +3187,11 @@ bool MadEdit::PrintPage(wxDC *dc, int pageNum)
         int lineid=GetLineByRow(lit, tmppos, rowid);
 
         // update m_LineNumberAreaWidth
-        if(m_DisplayLineNumber)
-        {
-            m_LineNumberAreaWidth=CalcLineNumberAreaWidth(lit, lineid, rowid, toprow, rowcount);
-        }
-        else
-        {
-            m_LineNumberAreaWidth = 0;
-        }
+        m_LineNumberAreaWidth=CalcLineNumberAreaWidth(lit, lineid, rowid, toprow, rowcount);
 
         PaintTextLines(dc, m_PrintRect, toprow, rowcount, *wxWHITE);
 
-        if(m_DisplayLineNumber && !m_PrintSyntax)
+        if(m_has_linenum && !m_PrintSyntax)
         {
             // draw a line between LineNumberArea and Text
             dc->SetPen(*wxThePenList->FindOrCreatePen(*wxBLACK, 1, wxSOLID));

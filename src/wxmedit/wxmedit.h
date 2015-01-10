@@ -337,7 +337,7 @@ private:
 
     bool            m_AutoIndent;
 
-    bool            m_DisplayLineNumber;
+    bool            m_has_linenum;
     bool            m_ShowEndOfLine, m_ShowSpaceChar, m_ShowTabChar, m_MarkActiveLine;
     bool            m_MarkBracePair;
 
@@ -549,8 +549,8 @@ protected:
     // update mouse cursor by the mouse position
     void UpdateCursor(int mouse_x, int mouse_y);
 
-    int CalcLineNumberAreaWidth(MadLineIterator lit, int lineid, int rowid, int toprow, int rowcount);
-    int GetLineNumberAreaWidth(int number);
+    virtual int CalcLineNumberAreaWidth(MadLineIterator lit, int lineid, int rowid, int toprow, int rowcount);
+    virtual int GetLineNumberAreaWidth(int number);
 
     void PasteColumnText();
     void PasteRegularText();
@@ -734,13 +734,13 @@ public: // basic functions
     virtual void SetWordWrapMode(MadWordWrapMode mode);
     virtual MadWordWrapMode GetWordWrapMode() { return m_WordWrapMode; }
 
-    void SetDisplayLineNumber(bool value);
+    virtual void SetShowLineNumber(bool value);
     void SetShowEndOfLine(bool value);
     void SetShowTabChar(bool value);
     void SetShowSpaceChar(bool value);
     void SetMarkActiveLine(bool value);
 
-    bool GetDisplayLineNumber() { return m_DisplayLineNumber; }
+    virtual bool HasLineNumber() { return m_has_linenum; }
     bool GetShowEndOfLine() { return m_ShowEndOfLine; }
     bool GetShowTabChar() { return m_ShowTabChar; }
     bool GetShowSpaceChar() { return m_ShowSpaceChar; }
@@ -1026,7 +1026,7 @@ private: // Printing functions
     int             m_old_ClientHeight;
     MadWordWrapMode m_old_WordWrapMode;
     bool            m_old_Selection;
-    bool            m_old_DisplayLineNumber;
+    bool            m_old_has_linenum;
     bool            m_old_ShowEndOfLine, m_old_ShowSpaceChar, m_old_ShowTabChar;
     int             m_old_LeftMarginWidth;
     int             m_old_DrawingXPos;
@@ -1048,10 +1048,10 @@ private: // Printing functions
     static wxMilliClock_t GetTripleClickInterval();
 
 public: // printing functions
-    void BeginPrint(const wxRect &printRect);
+    virtual void BeginPrint(const wxRect &printRect);
     int  GetPageCount() { return m_PrintPageCount; }
-    bool PrintPage(wxDC *dc, int pageNum);
-    void EndPrint();
+    virtual bool PrintPage(wxDC *dc, int pageNum);
+    virtual void EndPrint();
 
 public: // fix wxDC.Blit(wxINVERT) not work on some old versions of VMWare
     typedef void (MadEdit::*InvertRectPtr)(wxDC *dc, int x, int y, int w, int h);

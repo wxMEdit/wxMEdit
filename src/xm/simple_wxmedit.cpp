@@ -17,12 +17,12 @@ namespace wxm
 {
 
 HexPrintingWXMEdit::HexPrintingWXMEdit(wxWindow* parent, const wxFont* font)
-	: InvisibleWXMEdit(parent)
+	: SimpleWXMEdit(parent, wxID_ANY, wxPoint(-1024, -1024))
 {
 	SetHexPrinting();
 	SetEncoding(wxT("UTF-32LE"));
 	SetLineSpacing(100);
-	SetDisplayLineNumber(false);
+	SetShowLineNumber(false);
 	SetShowEndOfLine(false);
 	SetShowSpaceChar(false);
 	SetShowTabChar(false);

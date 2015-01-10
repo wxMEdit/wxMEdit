@@ -824,7 +824,10 @@ MadEdit::MadEdit(wxm::ConfigWriter* cfg_writer, wxWindow* parent, wxWindowID id,
 
     m_Config->Read(wxT("AutoIndent"), &m_AutoIndent, true);
 
-    m_Config->Read(wxT("DisplayLineNumber"),   &m_DisplayLineNumber, true);
+    bool has_linenum = true;
+    m_Config->Read(wxT("DisplayLineNumber"), &has_linenum, true);
+    SetShowLineNumber(has_linenum);
+
     m_Config->Read(wxT("ShowEndOfLine"),   &m_ShowEndOfLine,   true);
     m_Config->Read(wxT("ShowSpaceChar"),   &m_ShowSpaceChar,   true);
     m_Config->Read(wxT("ShowTabChar"),     &m_ShowTabChar,     true);
@@ -1821,7 +1824,7 @@ void MadEdit::PaintTextLines(wxDC *dc, const wxRect &rect, int toprow, int rowco
     int lineid = GetLineByRow(lineiter, notused, subrowid) + 1;
     subrowid=toprow-subrowid;
 
-    bool displaylinenumber = true; // check first row for displayning line-number or not
+    bool is_trailing_subrow = false;
     int wordwidth, wordlength;
 
     if(m_Syntax->m_CheckState)
@@ -1829,7 +1832,7 @@ void MadEdit::PaintTextLines(wxDC *dc, const wxRect &rect, int toprow, int rowco
         m_Syntax->InitNextWord2(lineiter, 0);
         if(subrowid != 0)           // ignore rows above toprow
         {
-            displaylinenumber = false;
+            is_trailing_subrow = true;
             size_t hiderows = subrowid;
             do
             {
@@ -1847,9 +1850,7 @@ void MadEdit::PaintTextLines(wxDC *dc, const wxRect &rect, int toprow, int rowco
     {
         m_Syntax->InitNextWord2(lineiter, subrowid);
         if(subrowid != 0)           // ignore rows above toprow
-        {
-            displaylinenumber = false;
-        }
+            is_trailing_subrow = true;
     }
 
     const int minleft = rect.GetLeft() + m_LineNumberAreaWidth;
@@ -2187,7 +2188,7 @@ void MadEdit::PaintTextLines(wxDC *dc, const wxRect &rect, int toprow, int rowco
             }
 
 
-            if(m_DisplayLineNumber)
+            if (HasLineNumber())
             {
                 m_Syntax->SetAttributes(aeLineNumber);
 
@@ -2199,7 +2200,7 @@ void MadEdit::PaintTextLines(wxDC *dc, const wxRect &rect, int toprow, int rowco
                     dc->DrawRectangle(rect.GetLeft(), row_top, m_LineNumberAreaWidth+1, m_RowHeight);
                 }
 
-                if(displaylinenumber)
+                if (!is_trailing_subrow)
                 {
                     int l=rect.GetLeft();
 
@@ -2233,7 +2234,7 @@ void MadEdit::PaintTextLines(wxDC *dc, const wxRect &rect, int toprow, int rowco
             ++toprow;
 
             ++subrowid;
-            displaylinenumber = false;
+            is_trailing_subrow = true;
 
             text_top += m_RowHeight;
             row_top += m_RowHeight;
@@ -2248,7 +2249,7 @@ void MadEdit::PaintTextLines(wxDC *dc, const wxRect &rect, int toprow, int rowco
         ++lineiter;
         m_Syntax->InitNextWord2(lineiter, 0);
         subrowid = 0;
-        displaylinenumber = true;
+        is_trailing_subrow = false;
 
         ++lineid;
     }
@@ -9807,14 +9808,7 @@ void MadEdit::OnPaint(wxPaintEvent &evt)
                 m_UpdateValidPos=0;
 
                 // update m_LineNumberAreaWidth
-                if(m_DisplayLineNumber)
-                {
-                    m_LineNumberAreaWidth=CalcLineNumberAreaWidth(lit, lineid, rowid, m_TopRow, rowcount);
-                }
-                else
-                {
-                    m_LineNumberAreaWidth = 0;
-                }
+                m_LineNumberAreaWidth=CalcLineNumberAreaWidth(lit, lineid, rowid, m_TopRow, rowcount);
 
                 // clear client area
                 wxColor &bgcolor=m_Syntax->GetAttributes(aeText)->bgcolor;
@@ -10468,36 +10462,35 @@ void MadEdit::DisplayCaret(bool moveonly)
 
 int MadEdit::CalcLineNumberAreaWidth(MadLineIterator lit, int lineid, int rowid, int toprow, int rowcount)
 {
-    int LineNumberAreaWidth=GetLineNumberAreaWidth(lineid);
-    if(LineNumberAreaWidth!=GetLineNumberAreaWidth(lineid+rowcount))
-    {
-        // find last lineid
-        int count=rowcount+(toprow-rowid);
-        ++lineid;
-        while( (count-=int(lit->RowCount())) > 0 )
-        {
-            ++lit;
-            ++lineid;
-        }
+    int LineNumberAreaWidth = GetLineNumberAreaWidth(lineid);
+    if (LineNumberAreaWidth == GetLineNumberAreaWidth(lineid + rowcount))
+        return LineNumberAreaWidth;
 
-        LineNumberAreaWidth=GetLineNumberAreaWidth(lineid);
+    // find last lineid
+    int count=rowcount+(toprow-rowid);
+    ++lineid;
+    while( (count-=int(lit->RowCount())) > 0 )
+    {
+        ++lit;
+        ++lineid;
     }
-    return LineNumberAreaWidth;
+
+    return GetLineNumberAreaWidth(lineid);
 }
 
 int MadEdit::GetLineNumberAreaWidth(int number)
 {
-    if(m_DisplayLineNumber)
+    if (!m_has_linenum)
+        return 0;
+
+    int n = 2;
+    while(number >= 100)
     {
-        int n = 2;
-        while(number >= 100)
-        {
-            number /= 10;
-            ++n;
-        }
-        return (n * m_TextFontMaxDigitWidth) + (m_TextFontMaxDigitWidth >> 2);
+        number /= 10;
+        ++n;
     }
-    return 0;
+
+    return (n * m_TextFontMaxDigitWidth) + (m_TextFontMaxDigitWidth / 4);
 }
 
 int MadEdit::GetMaxWordWrapWidth()
