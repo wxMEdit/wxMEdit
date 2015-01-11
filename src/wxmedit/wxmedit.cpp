@@ -802,10 +802,6 @@ MadEdit::MadEdit(wxm::ConfigWriter* cfg_writer, wxWindow* parent, wxWindowID id,
     m_DoRecountLineWidth=false;
     m_OldWidth=m_OldHeight=0;
 
-    long mode;
-    m_Config->Read(wxT("WordWrapMode"), &mode, (long)wwmNoWrap);
-    m_WordWrapMode=(MadWordWrapMode)mode;
-
     m_TopRow =0;
     m_DrawingXPos=0;
     m_Config->Read(wxT("LineSpacing"), &m_LineSpacing, 100);
@@ -823,10 +819,6 @@ MadEdit::MadEdit(wxm::ConfigWriter* cfg_writer, wxWindow* parent, wxWindowID id,
     m_WantTab=true;
 
     m_Config->Read(wxT("AutoIndent"), &m_AutoIndent, true);
-
-    bool has_linenum = true;
-    m_Config->Read(wxT("DisplayLineNumber"), &has_linenum, true);
-    SetShowLineNumber(has_linenum);
 
     m_Config->Read(wxT("ShowEndOfLine"),   &m_ShowEndOfLine,   true);
     m_Config->Read(wxT("ShowSpaceChar"),   &m_ShowSpaceChar,   true);
@@ -866,25 +858,13 @@ MadEdit::MadEdit(wxm::ConfigWriter* cfg_writer, wxWindow* parent, wxWindowID id,
     memset(m_TextFontWidths, 0, sizeof(m_TextFontWidths));
     memset(m_HexFontWidths, 0, sizeof(m_HexFontWidths));
 
-    wxString fontname;
-    int fontsize;
-    m_Config->Read(wxString(wxT("/Fonts/"))+m_Encoding->GetName(), &fontname, m_Encoding->GetFontName());
-    m_Config->Read(wxT("TextFontSize"), &fontsize, 12);
-    SetTextFont(fontname, fontsize, true);
-
-    fontname = wxm::MonoFontName;
-
-    m_Config->Read(wxString(wxT("HexFontName")), &fontname, fontname);
-    m_Config->Read(wxT("HexFontSize"), &fontsize, 12);
-    SetHexFont(fontname, fontsize, true);
-
     m_Printing=0;
     m_PrintPageCount=0;
 
     InvertRect=NULL;
     m_Painted=false;
 
-    m_LineNumberAreaWidth=GetLineNumberAreaWidth(0);
+    m_LineNumberAreaWidth = 0;
 
     m_LastPaintBitmap=-1;
 
@@ -902,6 +882,24 @@ MadEdit::MadEdit(wxm::ConfigWriter* cfg_writer, wxWindow* parent, wxWindowID id,
 #ifdef __WXGTK__
     ConnectToFixedKeyPressHandler();
 #endif
+}
+
+void MadEdit::InitTextFont()
+{
+    wxString fontname;
+    int fontsize;
+    m_Config->Read(wxString(wxT("/Fonts/")) + m_Encoding->GetName(), &fontname, m_Encoding->GetFontName());
+    m_Config->Read(wxT("TextFontSize"), &fontsize, 12);
+    SetTextFont(fontname, fontsize, true);
+}
+
+void MadEdit::InitHexFont()
+{
+    wxString fontname = wxm::MonoFontName;
+    int fontsize;
+    m_Config->Read(wxString(wxT("HexFontName")), &fontname, fontname);
+    m_Config->Read(wxT("HexFontSize"), &fontsize, 12);
+    SetHexFont(fontname, fontsize, true);
 }
 
 MadEdit::~MadEdit()
@@ -9780,7 +9778,7 @@ void MadEdit::OnPaint(wxPaintEvent &evt)
             memdc.SelectObject(*m_MarkBitmap);
             break;
         }
-        dc.Blit(0,0,m_old_ClientWidth,m_old_ClientHeight, &memdc, 0, 0);
+        OnPaintInPrinting(dc, memdc);
     }
     else
     {
@@ -10458,39 +10456,6 @@ void MadEdit::DisplayCaret(bool moveonly)
             caret->Show(false);
         }
     }
-}
-
-int MadEdit::CalcLineNumberAreaWidth(MadLineIterator lit, int lineid, int rowid, int toprow, int rowcount)
-{
-    int LineNumberAreaWidth = GetLineNumberAreaWidth(lineid);
-    if (LineNumberAreaWidth == GetLineNumberAreaWidth(lineid + rowcount))
-        return LineNumberAreaWidth;
-
-    // find last lineid
-    int count=rowcount+(toprow-rowid);
-    ++lineid;
-    while( (count-=int(lit->RowCount())) > 0 )
-    {
-        ++lit;
-        ++lineid;
-    }
-
-    return GetLineNumberAreaWidth(lineid);
-}
-
-int MadEdit::GetLineNumberAreaWidth(int number)
-{
-    if (!m_has_linenum)
-        return 0;
-
-    int n = 2;
-    while(number >= 100)
-    {
-        number /= 10;
-        ++n;
-    }
-
-    return (n * m_TextFontMaxDigitWidth) + (m_TextFontMaxDigitWidth / 4);
 }
 
 int MadEdit::GetMaxWordWrapWidth()

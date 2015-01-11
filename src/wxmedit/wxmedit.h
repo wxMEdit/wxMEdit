@@ -230,11 +230,13 @@ private:
 
     wxScrollBar     *m_VScrollBar, *m_HScrollBar;
     int             m_VSBWidth, m_VSBHeight, m_HSBWidth, m_HSBHeight;
+protected:
     int             m_ClientWidth, m_ClientHeight; // client size exclude scrollbar
 
     wxConfigBase    *m_Config;
 
     MadLines        *m_Lines;
+private:
     MadSyntax       *m_Syntax;
     wxm::WXMEncoding     *m_Encoding;
 
@@ -268,7 +270,9 @@ private:
     wxFileOffset    m_ValidPos_pos;     // position of line in whole file
     int             m_UpdateValidPos;   // ==0: no update; <0 update always; >0 update if newpos<oldpos
 
+protected:
     bool            m_Selection;
+private:
     MadCaretPos     m_SelectionPos1, m_SelectionPos2;
     MadCaretPos     *m_SelectionBegin, *m_SelectionEnd;
 
@@ -278,42 +282,52 @@ private:
     wxFont          *m_TextFont; // readonly, set it at SetTextFont()
     int             m_TextFontHeight;
     int             m_TextFontAveCharWidth;
+protected:
     int             m_TextFontMaxDigitWidth;
 
     wxFont          *m_HexFont; // readonly, set it at SetHexFont()
+private:
     int             m_HexFontHeight;
     int             m_HexFontMaxDigitWidth;
 
     wxUint16        *m_TextFontWidths[17], *m_HexFontWidths[17];
 
+protected:
     wxm::ConfigWriter* m_cfg_writer;
+private:
 
     bool            m_FixedWidthMode;
 
+protected:
     bool            m_RepaintAll;
+private:
     bool            m_RepaintSelection;
 
 
     MadEditMode     m_EditMode;
     int             m_MaxColumnRowWidth;
 
+protected:
     bool            m_DoRecountLineWidth;
+private:
     int             m_OldWidth, m_OldHeight;
-
-    MadWordWrapMode m_WordWrapMode;
 
     bool            m_Modified;
     time_t          m_ModificationTime;
     bool            m_ReadOnly;
 
     int             m_TopRow, m_TextTopRow, m_HexTopRow;
+protected:
     int             m_DrawingXPos;
+private:
 
     int             m_CompleteRowCount;
     int             m_VisibleRowCount;
     int             m_PageRowCount;
 
+protected:
     int             m_RowHeight;
+private:
     long            m_LineSpacing;
     long            m_MaxColumns;
 
@@ -337,8 +351,10 @@ private:
 
     bool            m_AutoIndent;
 
-    bool            m_has_linenum;
-    bool            m_ShowEndOfLine, m_ShowSpaceChar, m_ShowTabChar, m_MarkActiveLine;
+protected:
+    bool            m_ShowEndOfLine, m_ShowSpaceChar, m_ShowTabChar;
+private:
+    bool            m_MarkActiveLine;
     bool            m_MarkBracePair;
 
     bool            m_InsertMode;
@@ -356,10 +372,14 @@ private:
 
     wxBitmap        *m_HexDigitBitmap;
     wxDC            *m_HexDigitDC;    // temp dc, must set it on OnPaint()
+protected:
     bool            m_CaretAtHexArea;
+private:
     bool            m_CaretAtHalfByte;
     int             m_HexRowCount;
+protected:
     vector<wxFileOffset> m_HexRowIndex;     // HexMode row index
+private:
     int             m_TextAreaXPos;         // in HexMode, the xpos of caret in TextArea
     int             m_LastTextAreaXPos;     // for Up,Down,PageUp,PageDown...
 
@@ -549,8 +569,8 @@ protected:
     // update mouse cursor by the mouse position
     void UpdateCursor(int mouse_x, int mouse_y);
 
-    virtual int CalcLineNumberAreaWidth(MadLineIterator lit, int lineid, int rowid, int toprow, int rowcount);
-    virtual int GetLineNumberAreaWidth(int number);
+    virtual int CalcLineNumberAreaWidth(MadLineIterator lit, int lineid, int rowid, int toprow, int rowcount) = 0;
+    virtual int GetLineNumberAreaWidth(int number) = 0;
 
     void PasteColumnText();
     void PasteRegularText();
@@ -595,6 +615,8 @@ protected:
     void OnEraseBackground(wxEraseEvent &evt);
     void OnPaint(wxPaintEvent &evt);
 
+    virtual void OnPaintInPrinting(wxPaintDC& dc, wxMemoryDC& memdc) = 0;
+
 public:
     void OnSelectionAndStatusChanged()
     {
@@ -635,6 +657,12 @@ protected:
     {
         m_Syntax->BeginPrint(printSyntax);
     }
+    void EndSyntaxPrint()
+    {
+        m_Syntax->EndPrint();
+    }
+	void InitTextFont();
+	void InitHexFont();
 
 public: // basic functions
     void SetSyntax(const wxString &title, bool manual=false);
@@ -731,16 +759,16 @@ public: // basic functions
     void SetWantTab(bool value) { m_WantTab=value; }
     bool GetWantTab() { return m_WantTab; }
 
-    virtual void SetWordWrapMode(MadWordWrapMode mode);
-    virtual MadWordWrapMode GetWordWrapMode() { return m_WordWrapMode; }
+    virtual void SetWordWrapMode(MadWordWrapMode mode) = 0;
+	virtual MadWordWrapMode GetWordWrapMode() = 0;
 
-    virtual void SetShowLineNumber(bool value);
+    virtual void SetShowLineNumber(bool value) = 0;
     void SetShowEndOfLine(bool value);
     void SetShowTabChar(bool value);
     void SetShowSpaceChar(bool value);
     void SetMarkActiveLine(bool value);
 
-    virtual bool HasLineNumber() { return m_has_linenum; }
+    virtual bool HasLineNumber() = 0;
     bool GetShowEndOfLine() { return m_ShowEndOfLine; }
     bool GetShowTabChar() { return m_ShowTabChar; }
     bool GetShowSpaceChar() { return m_ShowSpaceChar; }
@@ -1010,48 +1038,29 @@ protected:
     void SetClientAreaSize(int w, int h) { m_ClientWidth = w; m_ClientHeight = h; }
     void HideScrollBars();
 
+protected: // Printing functions
     void SetHexPrinting() { m_Printing = 1; }
     void SetTextPrinting() { m_Printing = -1; }
     void SetNoPrinting() { m_Printing = 0; }
-private: // Printing functions
     int m_Printing;     // 0: no, <0: Text, >0: Hex
     bool TextPrinting() { return m_Printing<0; }
     bool HexPrinting()  { return m_Printing>0; }
     bool InPrinting()   { return m_Printing!=0; }
 
+    int m_PrintPageCount;
+private:
+
     virtual void SetClientSizeData(int w, int h);
     void UpdateClientBitmap();
 
-    int             m_old_ClientWidth;
-    int             m_old_ClientHeight;
-    MadWordWrapMode m_old_WordWrapMode;
-    bool            m_old_Selection;
-    bool            m_old_has_linenum;
-    bool            m_old_ShowEndOfLine, m_old_ShowSpaceChar, m_old_ShowTabChar;
-    int             m_old_LeftMarginWidth;
-    int             m_old_DrawingXPos;
-
-    wxRect m_PrintRect;
-    int m_PrintPageCount;
-
-    int m_RowCountPerPage;
-    bool m_PrintSyntax;
-
-    bool m_old_CaretAtHexArea;
-
-    int m_PrintOffsetHeader;
-    int m_RowCountPerHexLine;
-    int m_HexLineCountPerPage;
-    int m_PrintTotalHexLineCount;
-    MadEdit *m_HexPrintWXMEdit;    // use a temporary MadEdit to print Hex-Data
 
     static wxMilliClock_t GetTripleClickInterval();
 
 public: // printing functions
-    virtual void BeginPrint(const wxRect &printRect);
+    virtual void BeginPrint(const wxRect &printRect) = 0;
     int  GetPageCount() { return m_PrintPageCount; }
-    virtual bool PrintPage(wxDC *dc, int pageNum);
-    virtual void EndPrint();
+    virtual bool PrintPage(wxDC *dc, int pageNum) = 0;
+    virtual void EndPrint() = 0;
 
 public: // fix wxDC.Blit(wxINVERT) not work on some old versions of VMWare
     typedef void (MadEdit::*InvertRectPtr)(wxDC *dc, int x, int y, int w, int h);

@@ -355,11 +355,16 @@ typedef list<MadLineIterator>::iterator  MadBookmarkIterator;
 
 class MadEdit;
 class MadSyntax;
+namespace wxm
+{
+    class InFrameWXMEdit;
+}
 
 class MadLines: public wxm::UChar32BytesMapper
 {
 private:
     friend class MadEdit;
+    friend class wxm::InFrameWXMEdit;
     friend class MadSyntax;
 
     MadEdit       *m_MadEdit;

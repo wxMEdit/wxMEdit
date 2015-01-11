@@ -14,7 +14,7 @@
 namespace wxm
 {
 
-class SingleLineWXMEdit: public SimpleWXMEdit
+class SingleLineWXMEdit: public SimpleTextWXMEdit
 {
 	virtual void UpdateScrollBarPos();
 	virtual bool AdjustInsertCount(const ucs4_t* ucs, size_t& count);
@@ -26,19 +26,11 @@ class SingleLineWXMEdit: public SimpleWXMEdit
 	virtual void OnWXMEditKillFocus();
 	virtual void OnMouseWheel(wxMouseEvent &evt) {}
 	virtual void SetEditMode(MadEditMode mode) {}
-	virtual void SetWordWrapMode(MadWordWrapMode mode) {}
-	virtual MadWordWrapMode GetWordWrapMode() { return wwmNoWrap; }
 	virtual void SetClientSizeData(int w, int h);
-
-	void SingleLineWXMEditInit();
 
 	int m_LeftClickX, m_LeftClickY;     // for singleline & setfocus
 public:
-	SingleLineWXMEdit(wxWindow* parent, wxWindowID id = wxID_ANY, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxDefaultSize, long style = wxSIMPLE_BORDER | wxWANTS_CHARS)
-		:SimpleWXMEdit(parent, id, pos, size, style), m_LeftClickX(INT_MIN), m_LeftClickY(INT_MIN)
-	{
-		SingleLineWXMEditInit();
-	}
+	SingleLineWXMEdit(wxWindow* parent, wxWindowID id = wxID_ANY, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxDefaultSize, long style = wxSIMPLE_BORDER | wxWANTS_CHARS);
 };
 
 } //namespace wxm

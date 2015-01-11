@@ -92,16 +92,14 @@ void SingleLineWXMEdit::SetClientSizeData(int w, int h)
 	SetClientAreaSize(w, h);
 }
 
-void SingleLineWXMEdit::SingleLineWXMEditInit()
+SingleLineWXMEdit::SingleLineWXMEdit(wxWindow* parent, wxWindowID id, const wxPoint& pos, const wxSize& size, long style)
+	: SimpleTextWXMEdit(parent, id, pos, size, style), m_LeftClickX(INT_MIN), m_LeftClickY(INT_MIN)
 {
-	SetShowLineNumber(false);
-	//SetEditMode(emTextMode);
 	SetMarkActiveLine(false);
 
 	HideScrollBars();
 
 	SetEncoding(wxT("UTF-32LE"));
-	SetFixedWidthMode(false);
 	SetRecordCaretMovements(false);
 	SetInsertSpacesInsteadOfTab(false);
 	SetWantTab(false);

@@ -20,16 +20,14 @@ HexPrintingWXMEdit::HexPrintingWXMEdit(wxWindow* parent, const wxFont* font)
 	: SimpleWXMEdit(parent, wxID_ANY, wxPoint(-1024, -1024))
 {
 	SetHexPrinting();
+	SetTextFont(font->GetFaceName(), font->GetPointSize(), true);
 	SetEncoding(wxT("UTF-32LE"));
 	SetLineSpacing(100);
-	SetShowLineNumber(false);
 	SetShowEndOfLine(false);
 	SetShowSpaceChar(false);
 	SetShowTabChar(false);
 
 	SetFixedWidthMode(true);
-	SetTextFont(font->GetFaceName(), font->GetPointSize(), true);
-	SetWordWrapMode(wwmWrapByColumn);
 
 	BeginSyntaxPrint(false);
 
