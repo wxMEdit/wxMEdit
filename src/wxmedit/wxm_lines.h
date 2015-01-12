@@ -357,14 +357,14 @@ class MadEdit;
 class MadSyntax;
 namespace wxm
 {
-    class InFrameWXMEdit;
+    struct InFrameWXMEdit;
 }
 
 class MadLines: public wxm::UChar32BytesMapper
 {
 private:
     friend class MadEdit;
-    friend class wxm::InFrameWXMEdit;
+    friend struct wxm::InFrameWXMEdit;
     friend class MadSyntax;
 
     MadEdit       *m_MadEdit;

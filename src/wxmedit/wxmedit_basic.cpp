@@ -2003,16 +2003,6 @@ bool MadEdit::ReloadByModificationTime()
     return Reload();
 }
 
-LineNumberList MadEdit::SaveBookmarkLineNumberList()
-{
-    return m_Lines->m_LineList.SaveBookmarkLineNumberList();
-}
-
-void MadEdit::RestoreBookmarkByLineNumberList(const LineNumberList& linenums)
-{
-    m_Lines->m_LineList.RestoreBookmarkByLineNumberList(linenums);
-}
-
 MadEdit::WXMLocations MadEdit::SaveLocations()
 {
     WXMLocations loc;

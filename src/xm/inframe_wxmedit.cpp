@@ -23,7 +23,7 @@
 #define new new(_NORMAL_BLOCK ,__FILE__, __LINE__)
 #endif
 
-extern MadEdit* g_ActiveMadEdit;
+extern wxm::InFrameWXMEdit* g_active_wxmedit;
 extern wxMenu *g_Menu_Edit;
 extern const ucs4_t HexHeader[];
 
@@ -119,7 +119,7 @@ void InFrameWXMEdit::DoSelectionChanged()
 {
 	g_MainFrame->m_Notebook->ConnectMouseClick();
 
-	if (this != g_ActiveMadEdit)
+	if (this != g_active_wxmedit)
 		return;
 
 	int line, subrow;
@@ -197,7 +197,7 @@ void InFrameWXMEdit::DoStatusChanged()
 		g_MainFrame->m_Notebook->SetPageText(selid, title);
 	}
 
-	if (this != g_ActiveMadEdit)
+	if (this != g_active_wxmedit)
 		return;
 
 	if (filename.IsEmpty())
@@ -733,6 +733,44 @@ void InFrameWXMEdit::PrintHexPage(wxDC *dc, int pageNum)
 void InFrameWXMEdit::OnPaintInPrinting(wxPaintDC& dc, wxMemoryDC& memdc)
 {
 	dc.Blit(0, 0, m_old_ClientWidth, m_old_ClientHeight, &memdc, 0, 0);
+}
+
+LineNumberList InFrameWXMEdit::SaveBookmarkLineNumberList()
+{
+	return m_Lines->m_LineList.SaveBookmarkLineNumberList();
+}
+
+void InFrameWXMEdit::RestoreBookmarkByLineNumberList(const LineNumberList& linenums)
+{
+	m_Lines->m_LineList.RestoreBookmarkByLineNumberList(linenums);
+}
+
+void InFrameWXMEdit::ToggleBookmark()
+{
+	m_Lines->m_LineList.ToggleBookmark(m_CaretPos.iter);
+	m_RepaintAll = true;
+	Refresh(false);
+}
+
+void InFrameWXMEdit::GotoNextBookmark()
+{
+	int lineNum = m_Lines->m_LineList.GetNextBookmark(m_CaretPos.iter);
+	if (lineNum > 0)
+		GoToLine(lineNum);
+}
+
+void InFrameWXMEdit::GotoPreviousBookmark()
+{
+	int lineNum = m_Lines->m_LineList.GetPreviousBookmark(m_CaretPos.iter);
+	if (lineNum > 0)
+		GoToLine(int(m_Lines->m_LineCount + 1) - lineNum);
+}
+
+void InFrameWXMEdit::ClearAllBookmarks()
+{
+	m_Lines->m_LineList.ClearAllBookmarks();
+	m_RepaintAll = true;
+	Refresh(false);
 }
 
 } //namespace wxm

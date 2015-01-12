@@ -15,6 +15,7 @@
 #include "xm/wxm_encoding/encoding_def.h"
 #include "xm/wxm_statusbar.h"
 #include "xm/wxm_utils.h"
+#include "xm/inframe_wxmedit.h"
 
 #include <wx/wxprec.h>
 #ifdef __BORLANDC__
@@ -298,7 +299,7 @@ public:
     void CloseAllFiles(bool force);
     void MadEditFrameKeyDown(wxKeyEvent& event);
     void SetPageFocus(int pageId);
-    MadEdit *GetEditByFileName(const wxString &filename, int &id);
+    wxm::InFrameWXMEdit* GetEditByFileName(const wxString &filename, int &id);
     void ResetAcceleratorTable();
 
 protected:
@@ -547,11 +548,11 @@ public:
     struct PageData
     {
         int x, y, idx;
-        MadEdit *madedit;
+        wxm::InFrameWXMEdit* wxmedit;
         int pageid;
         PageData() {}
-        PageData(int xx, int yy, int ii, MadEdit *mm, int pgid)
-            : x(xx), y(yy), idx(ii), madedit(mm), pageid(pgid)
+        PageData(int xx, int yy, int ii, wxm::InFrameWXMEdit* mm, int pgid)
+            : x(xx), y(yy), idx(ii), wxmedit(mm), pageid(pgid)
         {}
     };
 
@@ -561,10 +562,10 @@ public:
 
     struct FunctorA
     {
-        MadEdit *madedit;
+        wxm::InFrameWXMEdit* wxmedit;
         bool operator()(PageData &pd)
         {
-            return madedit == pd.madedit;
+            return wxmedit == pd.wxmedit;
         }
     };
 

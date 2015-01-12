@@ -10,6 +10,7 @@
 #include "wxm_search_replace_dialog.h"
 
 #include "../wxmedit_frame.h"
+#include "../xm/inframe_wxmedit.h"
 #include "../xm/simple_wxmedit.h"
 #include "../xm/single_line_wxmedit.h"
 #include "../xm/wxm_utils.h"
@@ -797,12 +798,12 @@ void WXMFindInFilesDialog::WxCheckBoxEnableReplaceClick(wxCommandEvent& event)
 	WxButtonReplace->Enable(event.IsChecked());
 }
 
+extern wxm::InFrameWXMEdit* g_active_wxmedit;
 void WXMFindInFilesDialog::WxButtonActiveDirClick(wxCommandEvent& event)
 {
-	extern MadEdit *g_ActiveMadEdit;
-	if(g_ActiveMadEdit!=NULL)
+	if (g_active_wxmedit != NULL)
 	{
-		wxString str=g_ActiveMadEdit->GetFileName();
+		wxString str = g_active_wxmedit->GetFileName();
 		if(!str.IsEmpty())
 		{
 			wxFileName fn(str);

@@ -38,12 +38,14 @@ private:
 	virtual bool PrintPage(wxDC *dc, int pageNum) { return false; }
 	virtual void EndPrint() {}
 	virtual void OnPaintInPrinting(wxPaintDC& dc, wxMemoryDC& memdc) {}
+	virtual LineNumberList SaveBookmarkLineNumberList() { return LineNumberList(); }
+	virtual void RestoreBookmarkByLineNumberList(const LineNumberList& linenums) {}
 };
 
-class InFrameWXMEdit;
+struct InFrameWXMEdit;
 struct HexPrintingWXMEdit : public SimpleWXMEdit
 {
-	friend class InFrameWXMEdit;
+	friend struct InFrameWXMEdit;
 	HexPrintingWXMEdit(wxWindow* parent, const wxFont* font);
 private:
 	virtual void SetWordWrapMode(MadWordWrapMode mode) {}

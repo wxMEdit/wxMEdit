@@ -9,6 +9,7 @@
 #include "wxm_search_replace_dialog.h"
 
 #include "../xm/single_line_wxmedit.h"
+#include "../xm/inframe_wxmedit.h"
 #include "../xm/xm_utils.hpp"
 
 //(*InternalHeaders(WXMSearchReplaceDialog)
@@ -24,6 +25,8 @@
 #define static static const
 #include "../../images/down.xpm"
 #undef static
+
+extern wxm::InFrameWXMEdit* g_active_wxmedit;
 
 WXMSearchReplaceDialog *g_SearchReplaceDialog=NULL;
 
@@ -279,9 +282,7 @@ void WXMSearchReplaceDialog::WxButtonFindNextClick(wxCommandEvent& event)
 {
 	ResetMessage();
 
-	extern MadEdit *g_ActiveMadEdit;
-
-	if(g_ActiveMadEdit==NULL)
+	if (g_active_wxmedit == NULL)
 		return;
 
 	wxString text;
@@ -295,8 +296,8 @@ void WXMSearchReplaceDialog::WxButtonFindNextClick(wxCommandEvent& event)
 		m_RecentFindText->AddItemToHistory(text);
 
 		MadSearchResult sr;
-		wxFileOffset selend = g_ActiveMadEdit->GetSelectionEndPos();
-		wxFileOffset caretpos = g_ActiveMadEdit->GetCaretPosition();
+		wxFileOffset selend = g_active_wxmedit->GetSelectionEndPos();
+		wxFileOffset caretpos = g_active_wxmedit->GetCaretPosition();
 
 		wxString msg_selection_end(_("End of selection reached, search from beginning."));
 		wxString msg_file_end(_("End of file reached, search from beginning."));
@@ -332,11 +333,11 @@ void WXMSearchReplaceDialog::WxButtonFindNextClick(wxCommandEvent& event)
 		{
 			if(WxCheckBoxFindHex->GetValue())
 			{
-				sr=g_ActiveMadEdit->FindHexNext(text, rangeFrom, rangeTo);
+				sr = g_active_wxmedit->FindHexNext(text, rangeFrom, rangeTo);
 			}
 			else
 			{
-				sr=g_ActiveMadEdit->FindTextNext(text,
+				sr = g_active_wxmedit->FindTextNext(text,
 					WxCheckBoxRegex->GetValue(),
 					WxCheckBoxCaseSensitive->GetValue(),
 					WxCheckBoxWholeWord->GetValue(),
@@ -345,7 +346,7 @@ void WXMSearchReplaceDialog::WxButtonFindNextClick(wxCommandEvent& event)
 
 			if(sr != SR_NO)
 			{
-				if(sr == SR_YES && g_ActiveMadEdit->GetCaretPosition() == selend)
+				if(sr == SR_YES && g_active_wxmedit->GetCaretPosition() == selend)
 				{
 					selend = -1;
 					continue;
@@ -373,7 +374,7 @@ void WXMSearchReplaceDialog::WxButtonFindNextClick(wxCommandEvent& event)
 	if(WxCheckBoxMoveFocus->GetValue())
 	{
 		((wxFrame*)wxTheApp->GetTopWindow())->Raise();
-		g_ActiveMadEdit->SetFocus();
+		g_active_wxmedit->SetFocus();
 	}
 }
 
@@ -381,9 +382,7 @@ void WXMSearchReplaceDialog::WxButtonFindPrevClick(wxCommandEvent& event)
 {
 	ResetMessage();
 
-	extern MadEdit *g_ActiveMadEdit;
-
-	if(g_ActiveMadEdit==NULL)
+	if (g_active_wxmedit == NULL)
 		return;
 
 	wxString text;
@@ -397,8 +396,8 @@ void WXMSearchReplaceDialog::WxButtonFindPrevClick(wxCommandEvent& event)
 		m_RecentFindText->AddItemToHistory(text);
 
 		MadSearchResult sr;
-		wxFileOffset selbeg = g_ActiveMadEdit->GetSelectionBeginPos();
-		wxFileOffset caretpos = g_ActiveMadEdit->GetCaretPosition();
+		wxFileOffset selbeg = g_active_wxmedit->GetSelectionBeginPos();
+		wxFileOffset caretpos = g_active_wxmedit->GetCaretPosition();
 
 		wxString msg_selection_begin(_("Beginning of selection reached, search from end."));
 		wxString msg_file_begin(_("Beginning of file reached, search from end."));
@@ -434,11 +433,11 @@ void WXMSearchReplaceDialog::WxButtonFindPrevClick(wxCommandEvent& event)
 		{
 			if(WxCheckBoxFindHex->GetValue())
 			{
-				sr=g_ActiveMadEdit->FindHexPrevious(text, rangeTo, rangeFrom);
+				sr = g_active_wxmedit->FindHexPrevious(text, rangeTo, rangeFrom);
 			}
 			else
 			{
-				sr=g_ActiveMadEdit->FindTextPrevious(text,
+				sr = g_active_wxmedit->FindTextPrevious(text,
 					WxCheckBoxRegex->GetValue(),
 					WxCheckBoxCaseSensitive->GetValue(),
 					WxCheckBoxWholeWord->GetValue(),
@@ -447,7 +446,7 @@ void WXMSearchReplaceDialog::WxButtonFindPrevClick(wxCommandEvent& event)
 
 			if(sr!=SR_NO)
 			{
-				if(sr == SR_YES && g_ActiveMadEdit->GetCaretPosition() == selbeg)
+				if(sr == SR_YES && g_active_wxmedit->GetCaretPosition() == selbeg)
 				{
 					selbeg = -1;
 					continue;
@@ -461,7 +460,7 @@ void WXMSearchReplaceDialog::WxButtonFindPrevClick(wxCommandEvent& event)
 
 				ShowMessage(in_selection? msg_selection_begin: msg_file_begin);
 
-				rangeTo = in_selection? to: g_ActiveMadEdit->GetFileSize();
+				rangeTo = in_selection? to: g_active_wxmedit->GetFileSize();
 				rangeFrom = caretpos;
 				continue;
 			}
@@ -475,7 +474,7 @@ void WXMSearchReplaceDialog::WxButtonFindPrevClick(wxCommandEvent& event)
 	if(WxCheckBoxMoveFocus->GetValue())
 	{
 		((wxFrame*)wxTheApp->GetTopWindow())->Raise();
-		g_ActiveMadEdit->SetFocus();
+		g_active_wxmedit->SetFocus();
 	}
 }
 
@@ -668,9 +667,7 @@ void WXMSearchReplaceDialog::WxButtonReplaceClick(wxCommandEvent& event)
 {
 	ResetMessage();
 
-	extern MadEdit *g_ActiveMadEdit;
-
-	if(g_ActiveMadEdit==NULL)
+	if (g_active_wxmedit == NULL)
 		return;
 
 	wxString text;
@@ -697,7 +694,7 @@ void WXMSearchReplaceDialog::WxButtonReplaceClick(wxCommandEvent& event)
 
 	wxInt64 from = 0, to = 0;
 	wxFileOffset rangeFrom = -1, rangeTo = -1;
-	wxFileOffset caretpos = g_ActiveMadEdit->GetCaretPosition();
+	wxFileOffset caretpos = g_active_wxmedit->GetCaretPosition();
 	if(WxCheckBoxSearchInSelection->IsChecked())
 	{
 		if(!StrToInt64(WxEditFrom->GetValue(), from))
@@ -729,11 +726,11 @@ void WXMSearchReplaceDialog::WxButtonReplaceClick(wxCommandEvent& event)
 	{
 		if(WxCheckBoxFindHex->GetValue())
 		{
-			ret=g_ActiveMadEdit->ReplaceHex(text, reptext, rangeFrom, rangeTo);
+			ret = g_active_wxmedit->ReplaceHex(text, reptext, rangeFrom, rangeTo);
 		}
 		else
 		{
-			ret=g_ActiveMadEdit->ReplaceText(text, reptext,
+			ret = g_active_wxmedit->ReplaceText(text, reptext,
 				WxCheckBoxRegex->GetValue(),
 				WxCheckBoxCaseSensitive->GetValue(),
 				WxCheckBoxWholeWord->GetValue(),
@@ -774,7 +771,7 @@ void WXMSearchReplaceDialog::WxButtonReplaceClick(wxCommandEvent& event)
 		if(WxCheckBoxMoveFocus->GetValue())
 		{
 			((wxFrame*)wxTheApp->GetTopWindow())->Raise();
-			g_ActiveMadEdit->SetFocus();
+			g_active_wxmedit->SetFocus();
 		}
 		break;
 	default:
@@ -786,9 +783,7 @@ void WXMSearchReplaceDialog::WxButtonCountClick(wxCommandEvent& event)
 {
 	ResetMessage();
 
-	extern MadEdit *g_ActiveMadEdit;
-
-	if(g_ActiveMadEdit==NULL)
+	if (g_active_wxmedit == NULL)
 		return;
 
 	int count = 0;
@@ -820,11 +815,11 @@ void WXMSearchReplaceDialog::WxButtonCountClick(wxCommandEvent& event)
 
 		if(WxCheckBoxFindHex->GetValue())
 		{
-			count=g_ActiveMadEdit->FindHexAll(text, false, NULL, NULL, rangeFrom, rangeTo);
+			count = g_active_wxmedit->FindHexAll(text, false, NULL, NULL, rangeFrom, rangeTo);
 		}
 		else
 		{
-			count=g_ActiveMadEdit->FindTextAll(text,
+			count = g_active_wxmedit->FindTextAll(text,
 				WxCheckBoxRegex->GetValue(),
 				WxCheckBoxCaseSensitive->GetValue(),
 				WxCheckBoxWholeWord->GetValue(),
@@ -846,9 +841,7 @@ void WXMSearchReplaceDialog::WxButtonReplaceAllClick(wxCommandEvent& event)
 {
 	ResetMessage();
 
-	extern MadEdit *g_ActiveMadEdit;
-
-	if(g_ActiveMadEdit==NULL)
+	if( g_active_wxmedit == NULL)
 		return;
 
 	wxString text;
@@ -891,11 +884,11 @@ void WXMSearchReplaceDialog::WxButtonReplaceAllClick(wxCommandEvent& event)
 		int count=0;
 		if(WxCheckBoxFindHex->GetValue())
 		{
-			count=g_ActiveMadEdit->ReplaceHexAll(text, reptext, NULL, NULL, rangeFrom, rangeTo);
+			count = g_active_wxmedit->ReplaceHexAll(text, reptext, NULL, NULL, rangeFrom, rangeTo);
 		}
 		else
 		{
-			count=g_ActiveMadEdit->ReplaceTextAll(text, reptext,
+			count = g_active_wxmedit->ReplaceTextAll(text, reptext,
 				WxCheckBoxRegex->GetValue(),
 				WxCheckBoxCaseSensitive->GetValue(),
 				WxCheckBoxWholeWord->GetValue(),
@@ -925,11 +918,10 @@ void WXMSearchReplaceDialog::UpdateSearchInSelection(bool check)
 	WxEditFrom->Enable(check);
 	WxEditTo->Enable(check);
 
-	extern MadEdit *g_ActiveMadEdit;
-	if(check && g_ActiveMadEdit!=NULL)
+	if (check && g_active_wxmedit!=NULL)
 	{
-		WxEditFrom->SetValue(wxLongLong(g_ActiveMadEdit->GetSelectionBeginPos()).ToString());
-		WxEditTo->SetValue(wxLongLong(g_ActiveMadEdit->GetSelectionEndPos()).ToString());
+		WxEditFrom->SetValue(wxLongLong(g_active_wxmedit->GetSelectionBeginPos()).ToString());
+		WxEditTo->SetValue(wxLongLong(g_active_wxmedit->GetSelectionEndPos()).ToString());
 	}
 }
 

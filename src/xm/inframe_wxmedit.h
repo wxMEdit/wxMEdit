@@ -14,8 +14,29 @@
 namespace wxm
 {
 
-class InFrameWXMEdit : public MadEdit
+struct InFrameWXMEdit : public MadEdit
 {
+	virtual void SetWordWrapMode(MadWordWrapMode mode);
+	virtual MadWordWrapMode GetWordWrapMode() { return m_WordWrapMode; }
+
+	virtual bool HasLineNumber() { return m_has_linenum; }
+	virtual void SetShowLineNumber(bool value);
+
+	virtual LineNumberList SaveBookmarkLineNumberList();
+	virtual void RestoreBookmarkByLineNumberList(const LineNumberList& linenums);
+
+	virtual void BeginPrint(const wxRect &printRect);
+	virtual bool PrintPage(wxDC *dc, int pageNum);
+	virtual void EndPrint();
+
+	void ToggleBookmark();
+	void GotoNextBookmark();
+	void GotoPreviousBookmark();
+	void ClearAllBookmarks();
+	bool BookmarkExist() { return m_Lines->m_LineList.BookmarkExist(); }
+
+	InFrameWXMEdit(wxWindow* parent, wxWindowID id, const wxPoint& pos, const wxSize& size, long style);
+private:
 	virtual void DoSelectionChanged();
 	virtual void DoStatusChanged();
 	virtual void DoToggleWindow();
@@ -24,17 +45,7 @@ class InFrameWXMEdit : public MadEdit
 	virtual int CalcLineNumberAreaWidth(MadLineIterator lit, int lineid, int rowid, int toprow, int rowcount);
 	virtual int GetLineNumberAreaWidth(int number);
 
-	virtual void SetShowLineNumber(bool value);
-	virtual bool HasLineNumber() { return m_has_linenum; }
-
-	virtual void SetWordWrapMode(MadWordWrapMode mode);
-	virtual MadWordWrapMode GetWordWrapMode() { return m_WordWrapMode; }
-
 	virtual void OnPaintInPrinting(wxPaintDC& dc, wxMemoryDC& memdc);
-
-	virtual void BeginPrint(const wxRect &printRect);
-	virtual bool PrintPage(wxDC *dc, int pageNum);
-	virtual void EndPrint();
 
 	void BeginTextPrinting();
 	void BeginHexPrinting();
@@ -43,9 +54,6 @@ class InFrameWXMEdit : public MadEdit
 	void EndTextPrinting();
 	void EndHexPrinting();
 
-public:
-	InFrameWXMEdit(wxWindow* parent, wxWindowID id, const wxPoint& pos, const wxSize& size, long style);
-private:
 	bool            m_has_linenum;
 	MadWordWrapMode m_WordWrapMode;
 

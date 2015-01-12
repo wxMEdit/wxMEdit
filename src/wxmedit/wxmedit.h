@@ -256,8 +256,9 @@ private:
     wxPoint         m_CR_Points[40], m_LF_Points[40], m_CRLF_Points[80];
     int             m_CR_Points_Count, m_LF_Points_Count, m_CRLF_Points_Count;
 
-
+protected:
     MadCaretPos     m_CaretPos;
+private:
     MadUCQueue      m_ActiveRowUChars;  // ucs4 char cache of active row
     vector<int>     m_ActiveRowWidths;  // width cache of active row
     int             m_CaretRowUCharPos; // ucs4 char pos of active row
@@ -976,11 +977,6 @@ public: // basic functions
     // return wxID_YES(Saved), wxID_NO(Not Saved), or wxID_CANCEL
     int Save(bool ask, const wxString &title, bool saveas);
 
-    void ToggleBookmark();
-    void GotoNextBookmark();
-    void GotoPreviousBookmark();
-    void ClearAllBookmarks();
-    bool BookmarkExist() { return m_Lines->m_LineList.BookmarkExist(); }
 public: // advanced functions
     void ConvertEncoding(const wxString &newenc, MadConvertEncodingFlag flag);
     void ConvertChinese(MadConvertEncodingFlag flag);
@@ -1024,8 +1020,8 @@ public: // advanced functions
 
     void WordCount(bool selection, wxm::WordCountData& data);
 
-    LineNumberList SaveBookmarkLineNumberList();
-    void RestoreBookmarkByLineNumberList(const LineNumberList& linenums);
+    virtual LineNumberList SaveBookmarkLineNumberList() = 0;
+    virtual void RestoreBookmarkByLineNumberList(const LineNumberList& linenums) = 0;
 
 public:
     void SetSearchOptions(bool bUseDefaultSyntax, bool bSearchWholeWord)

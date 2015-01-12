@@ -6,7 +6,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 #include "wxm_word_count_dialog.h"
-#include "../wxmedit/wxmedit.h"
+#include "../xm/inframe_wxmedit.h"
 #include "../xm/wxm_utils.h"
 
 //(*InternalHeaders(WXMWordCountDialog)
@@ -18,6 +18,8 @@
 #include <crtdbg.h>
 #define new new(_NORMAL_BLOCK ,__FILE__, __LINE__)
 #endif
+
+extern wxm::InFrameWXMEdit* g_active_wxmedit;
 
 //(*IdInit(WXMWordCountDialog)
 const long WXMWordCountDialog::ID_STATICTEXT8 = wxNewId();
@@ -112,11 +114,10 @@ WXMWordCountDialog::WXMWordCountDialog(wxWindow* parent,wxWindowID id,const wxPo
 
 	wxm::SetDefaultMonoFont(WxMemo1);
 
-	extern MadEdit *g_ActiveMadEdit;
-	bool selection = g_ActiveMadEdit->IsSelected();
+	bool selection = g_active_wxmedit->IsSelected();
 
 	wxm::WordCountData data;
-	g_ActiveMadEdit->WordCount(selection, data);
+	g_active_wxmedit->WordCount(selection, data);
 	if (selection)
 		this->SetTitle(_("Word Count (Selected Text)"));
 

@@ -10602,34 +10602,6 @@ int MadEdit::GetUCharType(ucs4_t uc)
     return 8;
 }
 
-void MadEdit::ToggleBookmark()
-{
-    m_Lines->m_LineList.ToggleBookmark(m_CaretPos.iter);
-    m_RepaintAll = true;
-    Refresh( false );
-}
-
-void MadEdit::GotoNextBookmark()
-{
-    int lineNum = m_Lines->m_LineList.GetNextBookmark( m_CaretPos.iter );
-    if ( lineNum > 0 )
-        GoToLine( lineNum );
-}
-
-void MadEdit::GotoPreviousBookmark()
-{
-    int lineNum = m_Lines->m_LineList.GetPreviousBookmark( m_CaretPos.iter );
-    if ( lineNum > 0 )
-        GoToLine( int(m_Lines->m_LineCount + 1) - lineNum );
-}
-
-void MadEdit::ClearAllBookmarks()
-{
-    m_Lines->m_LineList.ClearAllBookmarks();
-    m_RepaintAll = true;
-    Refresh(false);
-}
-
 wxMilliClock_t MadEdit::GetTripleClickInterval()
 {
     static wxMilliClock_t t = 0;

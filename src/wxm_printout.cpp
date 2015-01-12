@@ -7,7 +7,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 #include "wxm_printout.h"
-#include "wxmedit/wxmedit.h"
+#include "xm/inframe_wxmedit.h"
 #include <wx/dc.h>
 #include <wx/confbase.h>
 #include <wx/filename.h>
@@ -17,7 +17,8 @@
 #define new new(_NORMAL_BLOCK ,__FILE__, __LINE__)
 #endif
 
-extern MadEdit *g_ActiveMadEdit;
+extern wxm::InFrameWXMEdit* g_active_wxmedit;
+
 bool GetActiveMadEditPathNameOrTitle(wxString &name);
 
 // Global print data, to remember settings during the session
@@ -39,7 +40,7 @@ MadPrintout::~MadPrintout()
 {
     if(--s_PrintoutCount==0)
     {
-        g_ActiveMadEdit->EndPrint();
+        g_active_wxmedit->EndPrint();
     }
 }
 
@@ -67,7 +68,7 @@ void MadPrintout::OnPreparePrinting()
     
     cfg->SetPath(oldpath);
     
-    wxFont font=g_ActiveMadEdit->GetFont();
+    wxFont font = g_active_wxmedit->GetFont();
     font.SetPointSize(12);      // use 12 PointSize to print Header, Footer
     wxDC *dc=GetDC();
     dc->SetFont(font);
@@ -88,14 +89,14 @@ void MadPrintout::OnPreparePrinting()
         printRect.height -= m_FooterHeight;
     }
 
-    g_ActiveMadEdit->BeginPrint(printRect);
+    g_active_wxmedit->BeginPrint(printRect);
 }
 
 
 void MadPrintout::GetPageInfo(int *minPage, int *maxPage, int *pageFrom, int *pageTo)
 {
-    // get info from g_ActiveMadEdit
-    *maxPage = *pageTo = g_ActiveMadEdit->GetPageCount();
+    // get info from g_active_wxmedit
+    *maxPage = *pageTo = g_active_wxmedit->GetPageCount();
     if(*maxPage==0)
     {
         *minPage=*pageFrom=0;
@@ -108,8 +109,8 @@ void MadPrintout::GetPageInfo(int *minPage, int *maxPage, int *pageFrom, int *pa
 
 bool MadPrintout::HasPage(int page)
 {
-    // get info from g_ActiveMadEdit
-    int count=g_ActiveMadEdit->GetPageCount();
+    // get info from g_active_wxmedit
+    int count = g_active_wxmedit->GetPageCount();
     return (page>=1 && page<=count);
 }
 
@@ -152,7 +153,7 @@ wxString TranslatePrintMark(const wxString &text, int pageNum)
                 newtext << pageNum;
                 break;
             case wxT('s'):
-                newtext << g_ActiveMadEdit->GetPageCount();
+                newtext << g_active_wxmedit->GetPageCount();
                 break;
             case wxT('d'):
                 now = wxDateTime::Now();
@@ -192,10 +193,10 @@ bool MadPrintout::OnPrintPage(int page)
     dc->SetUserScale(xScale, yScale);
 
     // paint the contents
-    g_ActiveMadEdit->PrintPage(dc, page);
+    g_active_wxmedit->PrintPage(dc, page);
     
     // paint Header, Footer
-    wxFont font=g_ActiveMadEdit->GetFont();
+    wxFont font = g_active_wxmedit->GetFont();
     font.SetPointSize(12);      // use 12 PointSize to print Header, Footer
     dc->SetFont(font);
     dc->SetTextForeground(*wxBLACK);
