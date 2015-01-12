@@ -47,7 +47,7 @@ private:
 	virtual int CachedLineNumberAreaWidth() { return m_LineNumberAreaWidth; }
 	virtual void CacheLineNumberAreaWidth(int width) { m_LineNumberAreaWidth = width; }
 
-	virtual void PaintLineNumberArea(const wxColor & bgcolor, wxDC * dc, const wxRect &rect, int row_top, bool is_trailing_subrow, MadLineIterator lineiter, int lineid, int text_top);
+	virtual void PaintLineNumberArea(const wxColor & bgcolor, wxDC * dc, int left, int row_top, bool is_trailing_subrow, MadLineIterator lineiter, int lineid, int text_top);
 
 	virtual void OnPaintInPrinting(wxPaintDC& dc, wxMemoryDC& memdc);
 

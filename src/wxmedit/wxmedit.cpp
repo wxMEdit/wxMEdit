@@ -2183,7 +2183,7 @@ void MadEdit::PaintTextLines(wxDC *dc, const wxRect &rect, int toprow, int rowco
             }
 
 
-            PaintLineNumberArea(bgcolor, dc, rect, row_top, is_trailing_subrow, lineiter, lineid, text_top);
+            PaintLineNumberArea(bgcolor, dc, rect.GetLeft(), row_top, is_trailing_subrow, lineiter, lineid, text_top);
 
             ++toprow;
 

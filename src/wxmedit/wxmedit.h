@@ -458,7 +458,7 @@ protected:
 
     virtual int CachedLineNumberAreaWidth() = 0;
     virtual void CacheLineNumberAreaWidth(int width) = 0;
-    virtual void PaintLineNumberArea(const wxColor & bgcolor, wxDC * dc, const wxRect &rect, int row_top, bool is_trailing_subrow, MadLineIterator lineiter, int lineid, int text_top) = 0;
+    virtual void PaintLineNumberArea(const wxColor & bgcolor, wxDC * dc, int left, int row_top, bool is_trailing_subrow, MadLineIterator lineiter, int lineid, int text_top) = 0;
 
     void PaintHexDigit(wxDC *dc, int x, int y, const ucs4_t *hexdigit, const int *width, int count);
     void PaintHexOffset(wxDC *dc, int x, int y, const ucs4_t *hexdigit, const int *width, int count);

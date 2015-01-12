@@ -773,7 +773,7 @@ void InFrameWXMEdit::ClearAllBookmarks()
 	Refresh(false);
 }
 
-void InFrameWXMEdit::PaintLineNumberArea(const wxColor & bgcolor, wxDC * dc, const wxRect &rect, int row_top, bool is_trailing_subrow, MadLineIterator lineiter, int lineid, int text_top)
+void InFrameWXMEdit::PaintLineNumberArea(const wxColor & bgcolor, wxDC * dc, int left, int row_top, bool is_trailing_subrow, MadLineIterator lineiter, int lineid, int text_top)
 {
 	if (!HasLineNumber())
 		return;
@@ -785,7 +785,7 @@ void InFrameWXMEdit::PaintLineNumberArea(const wxColor & bgcolor, wxDC * dc, con
 	{
 		dc->SetPen(*wxThePenList->FindOrCreatePen(GetSyntax()->nw_BgColor, 1, wxSOLID));
 		dc->SetBrush(*wxTheBrushList->FindOrCreateBrush(GetSyntax()->nw_BgColor));
-		dc->DrawRectangle(rect.GetLeft(), row_top, CachedLineNumberAreaWidth() + 1, m_RowHeight);
+		dc->DrawRectangle(left, row_top, CachedLineNumberAreaWidth() + 1, m_RowHeight);
 	}
 
 	if (is_trailing_subrow)
@@ -794,7 +794,7 @@ void InFrameWXMEdit::PaintLineNumberArea(const wxColor & bgcolor, wxDC * dc, con
 	if (m_Lines->m_LineList.Bookmarked(lineiter))
 	{
 		dc->SetBrush(*wxTheBrushList->FindOrCreateBrush(GetSyntax()->GetAttributes(aeBookmark)->color));
-		wxRect rect(0, row_top, CachedLineNumberAreaWidth(), m_RowHeight);
+		wxRect rect(left, row_top, CachedLineNumberAreaWidth(), m_RowHeight);
 		double r = m_RowHeight < 18 ? 3.0 : m_RowHeight / 6.0;
 		dc->DrawRoundedRectangle(rect, r);
 	}
@@ -810,7 +810,7 @@ void InFrameWXMEdit::PaintLineNumberArea(const wxColor & bgcolor, wxDC * dc, con
 	dc->SetTextForeground(GetSyntax()->nw_Color);
 	dc->SetFont(*(GetSyntax()->nw_Font));
 
-	int l = rect.GetLeft();
+	int l = left;
 	for (int i = 0; i < ncount; i++, l += m_TextFontMaxDigitWidth)
 	{
 		if (wcstr[i] != 0x20)
