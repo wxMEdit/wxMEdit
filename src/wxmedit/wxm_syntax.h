@@ -93,7 +93,8 @@ class MadEdit;
 class wxFileConfig;
 namespace wxm
 {
-struct WXMEncoding;
+    struct WXMEncoding;
+    struct InFrameWXMEdit;
 }
 
 class MadSyntax
@@ -133,6 +134,7 @@ public:
 private:
     friend class MadEdit;
     friend class MadLines;
+    friend struct wxm::InFrameWXMEdit;
     MadAttributes m_SystemAttributes[aeNone];
 
     void  ParseSyntax(const wxString &filename);

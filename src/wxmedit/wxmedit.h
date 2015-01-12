@@ -333,7 +333,6 @@ private:
     long            m_MaxColumns;
 
 protected:
-    int             m_LineNumberAreaWidth;
     int             m_LeftMarginWidth;
     int             m_RightMarginWidth;
 
@@ -456,6 +455,10 @@ protected:
 
     void PaintText(wxDC *dc, int x, int y, const ucs4_t *text, const int *width, int count, int minleft, int maxright);
     void PaintTextLines(wxDC *dc, const wxRect &rect, int toprow, int rowcount, const wxColor &bgcolor);
+
+    virtual int CachedLineNumberAreaWidth() = 0;
+    virtual void CacheLineNumberAreaWidth(int width) = 0;
+    virtual void PaintLineNumberArea(const wxColor & bgcolor, wxDC * dc, const wxRect &rect, int row_top, bool is_trailing_subrow, MadLineIterator lineiter, int lineid, int text_top) = 0;
 
     void PaintHexDigit(wxDC *dc, int x, int y, const ucs4_t *hexdigit, const int *width, int count);
     void PaintHexOffset(wxDC *dc, int x, int y, const ucs4_t *hexdigit, const int *width, int count);

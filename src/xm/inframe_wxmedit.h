@@ -44,6 +44,10 @@ private:
 
 	virtual int CalcLineNumberAreaWidth(MadLineIterator lit, int lineid, int rowid, int toprow, int rowcount);
 	virtual int GetLineNumberAreaWidth(int number);
+	virtual int CachedLineNumberAreaWidth() { return m_LineNumberAreaWidth; }
+	virtual void CacheLineNumberAreaWidth(int width) { m_LineNumberAreaWidth = width; }
+
+	virtual void PaintLineNumberArea(const wxColor & bgcolor, wxDC * dc, const wxRect &rect, int row_top, bool is_trailing_subrow, MadLineIterator lineiter, int lineid, int text_top);
 
 	virtual void OnPaintInPrinting(wxPaintDC& dc, wxMemoryDC& memdc);
 
@@ -54,6 +58,7 @@ private:
 	void EndTextPrinting();
 	void EndHexPrinting();
 
+	int             m_LineNumberAreaWidth;
 	bool            m_has_linenum;
 	MadWordWrapMode m_WordWrapMode;
 

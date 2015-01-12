@@ -31,7 +31,6 @@ HexPrintingWXMEdit::HexPrintingWXMEdit(wxWindow* parent, const wxFont* font)
 
 	BeginSyntaxPrint(false);
 
-	m_LineNumberAreaWidth = 0;
 	m_LeftMarginWidth = 0;
 	m_RightMarginWidth = 0;
 }

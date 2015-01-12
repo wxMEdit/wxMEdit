@@ -521,8 +521,8 @@ void InFrameWXMEdit::PrintTextPage(wxDC *dc, int pageNum)
 	int rowid = toprow;
 	int lineid = GetLineByRow(lit, tmppos, rowid);
 
-	// update m_LineNumberAreaWidth
-	m_LineNumberAreaWidth = CalcLineNumberAreaWidth(lit, lineid, rowid, toprow, rowcount);
+	// update LineNumberAreaWidth cache
+	CacheLineNumberAreaWidth(CalcLineNumberAreaWidth(lit, lineid, rowid, toprow, rowcount));
 
 	PaintTextLines(dc, m_PrintRect, toprow, rowcount, *wxWHITE);
 
@@ -531,7 +531,7 @@ void InFrameWXMEdit::PrintTextPage(wxDC *dc, int pageNum)
 
 	// draw a line between LineNumberArea and Text
 	dc->SetPen(*wxThePenList->FindOrCreatePen(*wxBLACK, 1, wxSOLID));
-	int x1 = m_PrintRect.x + m_LineNumberAreaWidth;
+	int x1 = m_PrintRect.x + CachedLineNumberAreaWidth();
 	dc->DrawLine(x1, m_PrintRect.y, x1, m_PrintRect.y + (rowcount*m_RowHeight));
 }
 
@@ -771,6 +771,53 @@ void InFrameWXMEdit::ClearAllBookmarks()
 	m_Lines->m_LineList.ClearAllBookmarks();
 	m_RepaintAll = true;
 	Refresh(false);
+}
+
+void InFrameWXMEdit::PaintLineNumberArea(const wxColor & bgcolor, wxDC * dc, const wxRect &rect, int row_top, bool is_trailing_subrow, MadLineIterator lineiter, int lineid, int text_top)
+{
+	if (!HasLineNumber())
+		return;
+
+	GetSyntax()->SetAttributes(aeLineNumber);
+
+	// paint background
+	if (GetSyntax()->nw_BgColor != bgcolor)
+	{
+		dc->SetPen(*wxThePenList->FindOrCreatePen(GetSyntax()->nw_BgColor, 1, wxSOLID));
+		dc->SetBrush(*wxTheBrushList->FindOrCreateBrush(GetSyntax()->nw_BgColor));
+		dc->DrawRectangle(rect.GetLeft(), row_top, CachedLineNumberAreaWidth() + 1, m_RowHeight);
+	}
+
+	if (is_trailing_subrow)
+		return;
+
+	if (m_Lines->m_LineList.Bookmarked(lineiter))
+	{
+		dc->SetBrush(*wxTheBrushList->FindOrCreateBrush(GetSyntax()->GetAttributes(aeBookmark)->color));
+		wxRect rect(0, row_top, CachedLineNumberAreaWidth(), m_RowHeight);
+		double r = m_RowHeight < 18 ? 3.0 : m_RowHeight / 6.0;
+		dc->DrawRoundedRectangle(rect, r);
+	}
+
+	const int ncount = CachedLineNumberAreaWidth() / m_TextFontMaxDigitWidth;
+
+	wxString s(wxT('%'));
+	s += wxString::Format(wxT("%d"), ncount);
+	s += wxT('d');
+	s = wxString::Format(s, lineid);
+	const wxChar *wcstr = s.c_str();
+
+	dc->SetTextForeground(GetSyntax()->nw_Color);
+	dc->SetFont(*(GetSyntax()->nw_Font));
+
+	int l = rect.GetLeft();
+	for (int i = 0; i < ncount; i++, l += m_TextFontMaxDigitWidth)
+	{
+		if (wcstr[i] != 0x20)
+		{
+			dc->DrawText(wcstr[i], l, text_top);
+		}
+	}
 }
 
 } //namespace wxm
