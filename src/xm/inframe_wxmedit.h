@@ -19,15 +19,16 @@ struct InFrameWXMEdit : public MadEdit
 	virtual void SetWordWrapMode(MadWordWrapMode mode);
 	virtual MadWordWrapMode GetWordWrapMode() { return m_WordWrapMode; }
 
-	virtual bool HasLineNumber() { return m_has_linenum; }
-	virtual void SetShowLineNumber(bool value);
-
 	virtual LineNumberList SaveBookmarkLineNumberList();
 	virtual void RestoreBookmarkByLineNumberList(const LineNumberList& linenums);
 
-	virtual void BeginPrint(const wxRect &printRect);
-	virtual bool PrintPage(wxDC *dc, int pageNum);
-	virtual void EndPrint();
+	void BeginPrint(const wxRect &printRect);
+	bool PrintPage(wxDC *dc, int pageNum);
+	void EndPrint();
+	int  GetPrintPageCount() { return m_PrintPageCount; }
+
+	bool LineNumberVisible() { return m_linenum_visible; }
+	void SetLineNumberVisible(bool value);
 
 	void ToggleBookmark();
 	void GotoNextBookmark();
@@ -47,7 +48,7 @@ private:
 	virtual int CachedLineNumberAreaWidth() { return m_LineNumberAreaWidth; }
 	virtual void CacheLineNumberAreaWidth(int width) { m_LineNumberAreaWidth = width; }
 
-	virtual void PaintLineNumberArea(const wxColor & bgcolor, wxDC * dc, int left, int row_top, bool is_trailing_subrow, MadLineIterator lineiter, int lineid, int text_top);
+	virtual void PaintLineNumberArea(const wxColor & bgcolor, wxDC * dc, const wxRect& rect, bool is_trailing_subrow, MadLineIterator lineiter, int lineid, int text_top);
 
 	virtual void OnPaintInPrinting(wxPaintDC& dc, wxMemoryDC& memdc);
 
@@ -59,14 +60,14 @@ private:
 	void EndHexPrinting();
 
 	int             m_LineNumberAreaWidth;
-	bool            m_has_linenum;
+	bool            m_linenum_visible;
 	MadWordWrapMode m_WordWrapMode;
 
 	int             m_old_ClientWidth;
 	int             m_old_ClientHeight;
 	MadWordWrapMode m_old_WordWrapMode;
 	bool            m_old_Selection;
-	bool            m_old_has_linenum;
+	bool            m_old_linenum_visible;
 	bool            m_old_ShowEndOfLine, m_old_ShowSpaceChar, m_old_ShowTabChar;
 	int             m_old_LeftMarginWidth;
 	int             m_old_DrawingXPos;
@@ -75,6 +76,7 @@ private:
 	// temporary wxMEdit to print Hex-Data
 	HexPrintingWXMEdit* m_HexPrintWXMEdit;
 
+	int m_PrintPageCount;
 	wxRect m_PrintRect;
 	bool m_PrintSyntax;
 	int m_RowCountPerPage;

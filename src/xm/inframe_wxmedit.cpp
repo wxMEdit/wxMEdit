@@ -67,13 +67,15 @@ void GlobalConfigWriter::Record(const wxString& key, const wxString& val)
 InFrameWXMEdit::InFrameWXMEdit(wxWindow* parent, wxWindowID id, const wxPoint& pos, const wxSize& size, long style)
 	: MadEdit(new GlobalConfigWriter(), parent, id, pos, size, style)
 {
+	m_PrintPageCount = 0;
+
 	long mode;
 	m_Config->Read(wxT("WordWrapMode"), &mode, (long)wwmNoWrap);
 	m_WordWrapMode = (MadWordWrapMode)mode;
 
 	bool has_linenum = true;
 	m_Config->Read(wxT("DisplayLineNumber"), &has_linenum, true);
-	SetShowLineNumber(has_linenum);
+	SetLineNumberVisible(has_linenum);
 
 	InitTextFont();
 	InitHexFont();
@@ -281,7 +283,7 @@ int InFrameWXMEdit::CalcLineNumberAreaWidth(MadLineIterator lit, int lineid, int
 
 int InFrameWXMEdit::GetLineNumberAreaWidth(int number)
 {
-	if (!m_has_linenum)
+	if (!m_linenum_visible)
 		return 0;
 
 	int n = 2;
@@ -294,13 +296,13 @@ int InFrameWXMEdit::GetLineNumberAreaWidth(int number)
 	return (n * m_TextFontMaxDigitWidth) + (m_TextFontMaxDigitWidth / 4);
 }
 
-void InFrameWXMEdit::SetShowLineNumber(bool value)
+void InFrameWXMEdit::SetLineNumberVisible(bool visible)
 {
-	if (value == m_has_linenum)
+	if (visible == m_linenum_visible)
 		return;
 
-	m_has_linenum = value;
-	m_cfg_writer->Record(wxT("/wxMEdit/DisplayLineNumber"), value);
+	m_linenum_visible = visible;
+	m_cfg_writer->Record(wxT("/wxMEdit/DisplayLineNumber"), visible);
 
 	m_RepaintAll = true;
 	Refresh(false);
@@ -316,7 +318,7 @@ void InFrameWXMEdit::BeginPrint(const wxRect &printRect)
 	m_old_ClientHeight = m_ClientHeight;
 	m_old_WordWrapMode = m_WordWrapMode;
 	m_old_Selection = m_Selection;
-	m_old_has_linenum = m_has_linenum;
+	m_old_linenum_visible = m_linenum_visible;
 	m_old_ShowEndOfLine = m_ShowEndOfLine;
 	m_old_ShowSpaceChar = m_ShowSpaceChar;
 	m_old_ShowTabChar = m_ShowTabChar;
@@ -346,14 +348,14 @@ void InFrameWXMEdit::BeginTextPrinting()
 	wxString oldpath = m_Config->GetPath();
 	m_Config->SetPath(wxT("/wxMEdit"));
 	m_Config->Read(wxT("PrintSyntax"), &m_PrintSyntax);
-	m_Config->Read(wxT("PrintLineNumber"), &m_has_linenum);
+	m_Config->Read(wxT("PrintLineNumber"), &m_linenum_visible);
 	m_Config->Read(wxT("PrintEndOfLine"), &m_ShowEndOfLine);
 	m_Config->Read(wxT("PrintTabChar"), &m_ShowSpaceChar);
 	m_Config->Read(wxT("PrintSpaceChar"), &m_ShowTabChar);
 	m_Config->SetPath(oldpath);
 
 	BeginSyntaxPrint(m_PrintSyntax);
-	if (!m_has_linenum) m_LeftMarginWidth = 0;
+	if (!m_linenum_visible) m_LeftMarginWidth = 0;
 
 	ReformatAll();
 
@@ -474,7 +476,7 @@ void InFrameWXMEdit::EndPrint()
 
 void InFrameWXMEdit::EndTextPrinting()
 {
-	m_has_linenum = m_old_has_linenum;
+	m_linenum_visible = m_old_linenum_visible;
 	m_ShowEndOfLine = m_old_ShowEndOfLine;
 	m_ShowSpaceChar = m_old_ShowSpaceChar;
 	m_ShowTabChar = m_old_ShowTabChar;
@@ -526,7 +528,7 @@ void InFrameWXMEdit::PrintTextPage(wxDC *dc, int pageNum)
 
 	PaintTextLines(dc, m_PrintRect, toprow, rowcount, *wxWHITE);
 
-	if (!m_has_linenum || m_PrintSyntax)
+	if (!m_linenum_visible || m_PrintSyntax)
 		return;
 
 	// draw a line between LineNumberArea and Text
@@ -773,9 +775,9 @@ void InFrameWXMEdit::ClearAllBookmarks()
 	Refresh(false);
 }
 
-void InFrameWXMEdit::PaintLineNumberArea(const wxColor & bgcolor, wxDC * dc, int left, int row_top, bool is_trailing_subrow, MadLineIterator lineiter, int lineid, int text_top)
+void InFrameWXMEdit::PaintLineNumberArea(const wxColor & bgcolor, wxDC * dc, const wxRect& rect, bool is_trailing_subrow, MadLineIterator lineiter, int lineid, int text_top)
 {
-	if (!HasLineNumber())
+	if (!m_linenum_visible)
 		return;
 
 	GetSyntax()->SetAttributes(aeLineNumber);
@@ -785,7 +787,7 @@ void InFrameWXMEdit::PaintLineNumberArea(const wxColor & bgcolor, wxDC * dc, int
 	{
 		dc->SetPen(*wxThePenList->FindOrCreatePen(GetSyntax()->nw_BgColor, 1, wxSOLID));
 		dc->SetBrush(*wxTheBrushList->FindOrCreateBrush(GetSyntax()->nw_BgColor));
-		dc->DrawRectangle(left, row_top, CachedLineNumberAreaWidth() + 1, m_RowHeight);
+		dc->DrawRectangle(rect);
 	}
 
 	if (is_trailing_subrow)
@@ -794,28 +796,24 @@ void InFrameWXMEdit::PaintLineNumberArea(const wxColor & bgcolor, wxDC * dc, int
 	if (m_Lines->m_LineList.Bookmarked(lineiter))
 	{
 		dc->SetBrush(*wxTheBrushList->FindOrCreateBrush(GetSyntax()->GetAttributes(aeBookmark)->color));
-		wxRect rect(left, row_top, CachedLineNumberAreaWidth(), m_RowHeight);
 		double r = m_RowHeight < 18 ? 3.0 : m_RowHeight / 6.0;
 		dc->DrawRoundedRectangle(rect, r);
 	}
 
 	const int ncount = CachedLineNumberAreaWidth() / m_TextFontMaxDigitWidth;
 
-	wxString s(wxT('%'));
-	s += wxString::Format(wxT("%d"), ncount);
-	s += wxT('d');
-	s = wxString::Format(s, lineid);
-	const wxChar *wcstr = s.c_str();
+	wxString fmt(wxString::Format(wxT("%%%dd"), ncount));
+	wxString lnstr = wxString::Format(fmt, lineid);
 
 	dc->SetTextForeground(GetSyntax()->nw_Color);
 	dc->SetFont(*(GetSyntax()->nw_Font));
 
-	int l = left;
+	int l = rect.GetLeft();
 	for (int i = 0; i < ncount; i++, l += m_TextFontMaxDigitWidth)
 	{
-		if (wcstr[i] != 0x20)
+		if (lnstr[i] != 0x20)
 		{
-			dc->DrawText(wcstr[i], l, text_top);
+			dc->DrawText(lnstr[i], l, text_top);
 		}
 	}
 }

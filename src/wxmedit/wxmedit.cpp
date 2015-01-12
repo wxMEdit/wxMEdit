@@ -859,7 +859,6 @@ MadEdit::MadEdit(wxm::ConfigWriter* cfg_writer, wxWindow* parent, wxWindowID id,
     memset(m_HexFontWidths, 0, sizeof(m_HexFontWidths));
 
     m_Printing=0;
-    m_PrintPageCount=0;
 
     InvertRect=NULL;
     m_Painted=false;
@@ -2182,8 +2181,8 @@ void MadEdit::PaintTextLines(wxDC *dc, const wxRect &rect, int toprow, int rowco
                 }
             }
 
-
-            PaintLineNumberArea(bgcolor, dc, rect.GetLeft(), row_top, is_trailing_subrow, lineiter, lineid, text_top);
+            wxRect tmprect(rect.GetLeft(), row_top, CachedLineNumberAreaWidth() + 1, m_RowHeight);
+            PaintLineNumberArea(bgcolor, dc, tmprect, is_trailing_subrow, lineiter, lineid, text_top);
 
             ++toprow;
 

@@ -458,7 +458,7 @@ protected:
 
     virtual int CachedLineNumberAreaWidth() = 0;
     virtual void CacheLineNumberAreaWidth(int width) = 0;
-    virtual void PaintLineNumberArea(const wxColor & bgcolor, wxDC * dc, int left, int row_top, bool is_trailing_subrow, MadLineIterator lineiter, int lineid, int text_top) = 0;
+    virtual void PaintLineNumberArea(const wxColor & bgcolor, wxDC * dc, const wxRect& rect, bool is_trailing_subrow, MadLineIterator lineiter, int lineid, int text_top) = 0;
 
     void PaintHexDigit(wxDC *dc, int x, int y, const ucs4_t *hexdigit, const int *width, int count);
     void PaintHexOffset(wxDC *dc, int x, int y, const ucs4_t *hexdigit, const int *width, int count);
@@ -766,13 +766,11 @@ public: // basic functions
     virtual void SetWordWrapMode(MadWordWrapMode mode) = 0;
 	virtual MadWordWrapMode GetWordWrapMode() = 0;
 
-    virtual void SetShowLineNumber(bool value) = 0;
     void SetShowEndOfLine(bool value);
     void SetShowTabChar(bool value);
     void SetShowSpaceChar(bool value);
     void SetMarkActiveLine(bool value);
 
-    virtual bool HasLineNumber() = 0;
     bool GetShowEndOfLine() { return m_ShowEndOfLine; }
     bool GetShowTabChar() { return m_ShowTabChar; }
     bool GetShowSpaceChar() { return m_ShowSpaceChar; }
@@ -1046,7 +1044,6 @@ protected: // Printing functions
     bool HexPrinting()  { return m_Printing>0; }
     bool InPrinting()   { return m_Printing!=0; }
 
-    int m_PrintPageCount;
 private:
 
     virtual void SetClientSizeData(int w, int h);
@@ -1054,12 +1051,6 @@ private:
 
 
     static wxMilliClock_t GetTripleClickInterval();
-
-public: // printing functions
-    virtual void BeginPrint(const wxRect &printRect) = 0;
-    int  GetPageCount() { return m_PrintPageCount; }
-    virtual bool PrintPage(wxDC *dc, int pageNum) = 0;
-    virtual void EndPrint() = 0;
 
 public: // fix wxDC.Blit(wxINVERT) not work on some old versions of VMWare
     typedef void (MadEdit::*InvertRectPtr)(wxDC *dc, int x, int y, int w, int h);

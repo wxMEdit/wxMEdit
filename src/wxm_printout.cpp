@@ -96,7 +96,7 @@ void MadPrintout::OnPreparePrinting()
 void MadPrintout::GetPageInfo(int *minPage, int *maxPage, int *pageFrom, int *pageTo)
 {
     // get info from g_active_wxmedit
-    *maxPage = *pageTo = g_active_wxmedit->GetPageCount();
+    *maxPage = *pageTo = g_active_wxmedit->GetPrintPageCount();
     if(*maxPage==0)
     {
         *minPage=*pageFrom=0;
@@ -110,7 +110,7 @@ void MadPrintout::GetPageInfo(int *minPage, int *maxPage, int *pageFrom, int *pa
 bool MadPrintout::HasPage(int page)
 {
     // get info from g_active_wxmedit
-    int count = g_active_wxmedit->GetPageCount();
+    int count = g_active_wxmedit->GetPrintPageCount();
     return (page>=1 && page<=count);
 }
 
@@ -153,7 +153,7 @@ wxString TranslatePrintMark(const wxString &text, int pageNum)
                 newtext << pageNum;
                 break;
             case wxT('s'):
-                newtext << g_active_wxmedit->GetPageCount();
+                newtext << g_active_wxmedit->GetPrintPageCount();
                 break;
             case wxT('d'):
                 now = wxDateTime::Now();

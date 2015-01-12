@@ -32,17 +32,12 @@ struct SimpleWXMEdit: public MadEdit
 private:
 	virtual int CalcLineNumberAreaWidth(MadLineIterator lit, int lineid, int rowid, int toprow, int rowcount) { return 0; }
 	virtual int GetLineNumberAreaWidth(int number) { return 0; }
-	virtual void SetShowLineNumber(bool value) {}
-	virtual bool HasLineNumber() { return false; }
-	virtual void BeginPrint(const wxRect &printRect) {}
-	virtual bool PrintPage(wxDC *dc, int pageNum) { return false; }
-	virtual void EndPrint() {}
 	virtual void OnPaintInPrinting(wxPaintDC& dc, wxMemoryDC& memdc) {}
 	virtual LineNumberList SaveBookmarkLineNumberList() { return LineNumberList(); }
 	virtual void RestoreBookmarkByLineNumberList(const LineNumberList& linenums) {}
 	virtual int CachedLineNumberAreaWidth() { return 0; }
 	virtual void CacheLineNumberAreaWidth(int width) {}
-	virtual void PaintLineNumberArea(const wxColor & bgcolor, wxDC * dc, int left, int row_top, bool is_trailing_subrow, MadLineIterator lineiter, int lineid, int text_top) {}
+	virtual void PaintLineNumberArea(const wxColor & bgcolor, wxDC * dc, const wxRect& rect, bool is_trailing_subrow, MadLineIterator lineiter, int lineid, int text_top) {}
 };
 
 struct InFrameWXMEdit;
