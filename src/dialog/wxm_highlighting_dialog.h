@@ -11,6 +11,7 @@
 
 
 #include "../xm/wx_avoid_wxmsw_bug4373.h"
+#include "../wxmedit/wxm_syntax.h"
 
 //(*Headers(WXMHighlightingDialog)
 #include <wx/listctrl.h>
@@ -30,9 +31,40 @@
 #include <vector>
 #include <map>
 
-using std::vector;
-
 class MadSyntax;
+class WXMHighlightingDialog;
+
+namespace wxm
+{
+	struct HighlightingItem
+	{
+		enum
+		{
+			HINull, HICommKeyword, HIMoreKeyword, HIFGColorOnly/*aeActiveLine, aeBookmark*/, HIBGColorOnly
+		};
+
+		HighlightingItem() : m_dlg(NULL), m_itemidx(-1), m_type(HINull), m_attr(0), m_range_bgcolor(0)
+		{}
+		HighlightingItem(WXMHighlightingDialog* dlg, long itemidx, int type, MadAttributes* a, wxColor* bg)
+			: m_dlg(dlg), m_itemidx(itemidx), m_type(type), m_attr(a), m_range_bgcolor(bg)
+		{}
+
+		void InitDialogControls(wxColour& bgc);
+		void SetFGColor(const wxColor& color, const wxString& colorname);
+		void SetBGColor(const wxColor& color, const wxString& colorname);
+		void RepaintListItem(long itemidx, const wxColor& fc0, const wxColor& bc0);
+		void EnableFontStyle(const MadFontStyles& style, bool enable);
+		wxColor GetFGColor() { return m_attr->color; }
+		wxColor GetBGColor() { return (m_type == HIBGColorOnly) ? *m_range_bgcolor : m_attr->bgcolor; }
+	private:
+		WXMHighlightingDialog* m_dlg;
+		long m_itemidx;
+		int m_type;
+
+		MadAttributes *m_attr;    // for HICommKeyword, HIMoreKeyword, HIFGColorOnly
+		wxColor *m_range_bgcolor; // for HIBGColorOnly
+	};
+} // namespace wxm
 
 class WXMHighlightingDialog: public wxDialogWrapper
 {
@@ -103,15 +135,22 @@ class WXMHighlightingDialog: public wxDialogWrapper
 		wxString m_InitSetting; // the init title of madsyntax
 		MadSyntax *GetSyntax(const wxString &title);
 		void SetToModifiedSyntax(MadSyntax *syn);
-		void SetAttrFC(const wxColor &color, const wxString &colorname);
-		void SetAttrBC(const wxColor &color, const wxString &colorname);
+		void SetAttrFC(const wxColor& color, const wxString& colorname);
+		void SetAttrBC(const wxColor& color, const wxString& colorname);
 		void RepaintKeyword();
 		void FreeSyntax(bool restore);
-		void SetPanelFC(const wxColor &color);
-		void SetPanelBC(const wxColor &color);
+		void SetPanelFC(const wxColor& color);
+		void SetPanelBC(const wxColor& color);
+
+		void EnableFontConfig(const MadFontStyles& style);
+		void DisableFontConfig();
+		void EnableFGColorConfig(const wxColor& color);
+		void DisableFGColorConfig();
+		wxColor EnableBGColorConfig(const wxColor& bgcolor);
+		wxColor DisableBGColorConfig();
 	private:
 		MadSyntax *m_Syntax;
-		vector<MadSyntax*> m_ModifiedSyntax;
+		std::vector<MadSyntax*> m_ModifiedSyntax;
 		wxColourDialog *m_ColourDialog;
 
 		wxColour GetColourFromUser(const wxColour& colInit, const wxString& caption);
