@@ -36,6 +36,7 @@ class WXMHighlightingDialog;
 
 namespace wxm
 {
+	struct HighlightingItemManager;
 	struct HighlightingItem
 	{
 		enum
@@ -49,7 +50,7 @@ namespace wxm
 			: m_dlg(dlg), m_itemidx(itemidx), m_type(type), m_attr(a), m_range_bgcolor(bg)
 		{}
 
-		void InitDialogControls(wxColour& bgc);
+		wxColor InitDialogControls(const wxColor& bc0);
 		void SetFGColor(const wxColor& color, const wxString& colorname);
 		void SetBGColor(const wxColor& color, const wxString& colorname);
 		void RepaintListItem(long itemidx, const wxColor& fc0, const wxColor& bc0);
@@ -63,6 +64,33 @@ namespace wxm
 
 		MadAttributes *m_attr;    // for HICommKeyword, HIMoreKeyword, HIFGColorOnly
 		wxColor *m_range_bgcolor; // for HIBGColorOnly
+	};
+
+	struct HighlightingItemManager
+	{
+		void InitItems(MadSyntax* syn);
+
+		wxColor GetTextFGColor() { return m_table[0].GetFGColor(); }
+		wxColor GetTextBGColor() { return m_table[0].GetBGColor(); }
+
+		long GetIndex() { return m_index; }
+		void SetIndex(long idx) { m_index = idx; }
+		void ResetIndex() { SetIndex(-1); }
+
+		HighlightingItem& GetCurItem() { return m_table[m_index]; }
+
+		void PaintListItems();
+
+		void SetTextColor();
+		void SetCurItemFGColor(const wxColor& color, const wxString& colorname);
+		void SetCurItemBGColor(const wxColor& color, const wxString& colorname);
+
+		HighlightingItemManager(WXMHighlightingDialog* dlg) : m_dlg(dlg), m_index(-1) {}
+
+	private:
+		WXMHighlightingDialog* m_dlg;
+		long m_index;
+		std::vector<wxm::HighlightingItem> m_table;
 	};
 } // namespace wxm
 
@@ -134,7 +162,7 @@ class WXMHighlightingDialog: public wxDialogWrapper
 	public:
 		wxString m_InitSetting; // the init title of madsyntax
 		MadSyntax *GetSyntax(const wxString &title);
-		void SetToModifiedSyntax(MadSyntax *syn);
+		void SetToModifiedSyntax();
 		void SetAttrFC(const wxColor& color, const wxString& colorname);
 		void SetAttrBC(const wxColor& color, const wxString& colorname);
 		void RepaintKeyword();
@@ -149,10 +177,12 @@ class WXMHighlightingDialog: public wxDialogWrapper
 		wxColor EnableBGColorConfig(const wxColor& bgcolor);
 		wxColor DisableBGColorConfig();
 	private:
-		MadSyntax *m_Syntax;
+		MadSyntax* m_Syntax;
+		MadSyntax* m_cur_syn;
 		std::vector<MadSyntax*> m_ModifiedSyntax;
-		wxColourDialog *m_ColourDialog;
+		wxColourDialog* m_ColourDialog;
 
+		wxm::HighlightingItemManager m_himgr;
 		wxColour GetColourFromUser(const wxColour& colInit, const wxString& caption);
 	private:
 
