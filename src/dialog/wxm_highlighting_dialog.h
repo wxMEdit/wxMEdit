@@ -179,6 +179,8 @@ class WXMHighlightingDialog: public wxDialogWrapper
 	private:
 		wxColour GetColourFromUser(const wxColour& colInit, const wxString& caption);
 		void OnListCtrlKeywordResize();
+		void OnListCtrlFCResize();
+		void OnListCtrlBCResize();
 
 		MadSyntax* m_Syntax;
 		MadSyntax* m_cur_syn;
@@ -202,6 +204,7 @@ class WXMHighlightingDialog: public wxDialogWrapper
 		void WxListCtrlBCSelected(wxListEvent& event);
 		void WxButtonFCClick(wxCommandEvent& event);
 		void WxButtonBCClick(wxCommandEvent& event);
+		void WXMHighlightingDialogResize(wxSizeEvent& event);
 		//*)
 
 		void WXMHighlightingDialogActivate(wxActivateEvent& event);

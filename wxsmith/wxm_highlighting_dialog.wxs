@@ -6,6 +6,7 @@
 		<id_arg>0</id_arg>
 		<style>wxCAPTION|wxSYSTEM_MENU|wxRESIZE_BORDER|wxCLOSE_BOX|wxDIALOG_NO_PARENT|wxMAXIMIZE_BOX</style>
 		<handler function="WXMHighlightingDialogClose" entry="EVT_CLOSE" />
+		<handler function="WXMHighlightingDialogResize" entry="EVT_SIZE" />
 		<object class="wxBoxSizer" variable="BoxSizer1" member="no">
 			<object class="sizeritem">
 				<object class="wxListBox" name="ID_WXLISTBOXSYNTAX" variable="WxListBoxSyntax" member="yes">
@@ -93,7 +94,7 @@
 						<object class="wxBoxSizer" variable="BoxSizer5" member="no">
 							<object class="sizeritem">
 								<object class="wxListCtrl" name="ID_WXLISTCTRLKEYWORD" variable="WxListCtrlKeyword" member="yes">
-									<style>wxLC_REPORT|wxLC_NO_HEADER|wxLC_SINGLE_SEL</style>
+									<style>wxLC_REPORT|wxLC_NO_HEADER|wxLC_SINGLE_SEL|wxALWAYS_SHOW_SB</style>
 									<handler function="WxListCtrlKeywordSelected" entry="EVT_LIST_ITEM_SELECTED" />
 								</object>
 								<flag>wxALL|wxEXPAND|wxALIGN_LEFT|wxALIGN_TOP</flag>

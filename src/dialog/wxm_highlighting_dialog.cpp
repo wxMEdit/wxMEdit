@@ -427,7 +427,7 @@ WXMHighlightingDialog::WXMHighlightingDialog(wxWindow* parent,wxWindowID id,cons
 	StaticLine1 = new wxStaticLine(this, ID_STATICLINE1, wxDefaultPosition, wxSize(10,-1), wxLI_HORIZONTAL, _T("ID_STATICLINE1"));
 	BoxSizer2->Add(StaticLine1, 0, wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 1);
 	BoxSizer5 = new wxBoxSizer(wxHORIZONTAL);
-	WxListCtrlKeyword = new wxListCtrl(this, ID_WXLISTCTRLKEYWORD, wxDefaultPosition, wxDefaultSize, wxLC_REPORT|wxLC_NO_HEADER|wxLC_SINGLE_SEL, wxDefaultValidator, _T("ID_WXLISTCTRLKEYWORD"));
+	WxListCtrlKeyword = new wxListCtrl(this, ID_WXLISTCTRLKEYWORD, wxDefaultPosition, wxDefaultSize, wxLC_REPORT|wxLC_NO_HEADER|wxLC_SINGLE_SEL|wxALWAYS_SHOW_SB, wxDefaultValidator, _T("ID_WXLISTCTRLKEYWORD"));
 	BoxSizer5->Add(WxListCtrlKeyword, 1, wxALL|wxEXPAND|wxALIGN_LEFT|wxALIGN_TOP, 2);
 	BoxSizer8 = new wxBoxSizer(wxVERTICAL);
 	BoxSizer9 = new wxBoxSizer(wxVERTICAL);
@@ -498,7 +498,12 @@ WXMHighlightingDialog::WXMHighlightingDialog(wxWindow* parent,wxWindowID id,cons
 	Connect(ID_WXLISTCTRLBC,wxEVT_COMMAND_LIST_ITEM_SELECTED,(wxObjectEventFunction)&WXMHighlightingDialog::WxListCtrlBCSelected);
 	Connect(ID_WXBUTTONBC,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&WXMHighlightingDialog::WxButtonBCClick);
 	Connect(wxID_ANY,wxEVT_CLOSE_WINDOW,(wxObjectEventFunction)&WXMHighlightingDialog::WXMHighlightingDialogClose);
+	Connect(wxEVT_SIZE,(wxObjectEventFunction)&WXMHighlightingDialog::WXMHighlightingDialogResize);
 	//*)
+
+#ifdef __WXMSW__
+	WxListCtrlKeyword->SetWindowStyle(WxListCtrlKeyword->GetWindowStyle() & ~wxALWAYS_SHOW_SB);
+#endif
 
     {   // build scheme list
         size_t cnt=MadSyntax::GetSchemeCount();
@@ -595,6 +600,9 @@ void WXMHighlightingDialog::WxListBoxSyntaxSelected(wxCommandEvent& event)
 
     OnListCtrlKeywordResize();
     WxListCtrlKeyword->Thaw();
+
+    OnListCtrlFCResize();
+    OnListCtrlBCResize();
 
     m_himgr.ResetIndex();
     wxListEvent e;
@@ -703,9 +711,33 @@ wxColor WXMHighlightingDialog::DisableBGColorConfig()
 	return wxNullColour;
 }
 
+int GetListCtrlRealClientSize(const wxListCtrl* listctrl)
+{
+#ifdef __WXMSW__
+	return listctrl->GetClientSize().x - 4;
+#else
+	return listctrl->GetClientSize().x - wxSystemSettings::GetMetric(wxSYS_VSCROLL_X);
+#endif
+}
+
+void ListCtrlFitColumn(wxListCtrl* listctrl)
+{
+	listctrl->SetColumnWidth(0, GetListCtrlRealClientSize(listctrl));
+}
+
 void WXMHighlightingDialog::OnListCtrlKeywordResize()
 {
-	WxListCtrlKeyword->SetColumnWidth(0, WxListCtrlKeyword->GetClientSize().x - 4);
+	ListCtrlFitColumn(WxListCtrlKeyword);
+}
+
+void WXMHighlightingDialog::OnListCtrlFCResize()
+{
+	ListCtrlFitColumn(WxListCtrlFC);
+}
+
+void WXMHighlightingDialog::OnListCtrlBCResize()
+{
+	ListCtrlFitColumn(WxListCtrlBC);
 }
 
 void WXMHighlightingDialog::WxListCtrlKeywordSelected(wxListEvent& event)
@@ -722,7 +754,7 @@ void WXMHighlightingDialog::WxListCtrlKeywordSelected(wxListEvent& event)
         if(oldIndex>=0)
         {
             str = WxListCtrlKeyword->GetItemText(oldIndex);
-            if(str[0]==wxT('*')) 
+            if(str[0]==wxT('*'))
             {
                 WxListCtrlKeyword->SetItemText(oldIndex, str.Right(str.Len()-1));
             }
@@ -933,7 +965,7 @@ void WXMHighlightingDialog::FreeSyntax(bool restore)
         }
     }
 
-    if (m_Syntax) 
+    if (m_Syntax)
     {
         delete m_Syntax;
         m_Syntax=NULL;
@@ -955,7 +987,7 @@ void WXMHighlightingDialog::WxButtonLoadClick(wxCommandEvent& event)
         wxListEvent e;
 		e.m_itemIndex = m_himgr.GetIndex();
         WxListCtrlKeywordSelected(e);
-        
+
         SetToModifiedSyntax();
     }
     else
@@ -1001,4 +1033,12 @@ void WXMHighlightingDialog::WxButtonDeleteClick(wxCommandEvent& event)
     {
         wxMessageBox(_("Cannot delete this scheme."), wxT("wxMEdit"), wxICON_WARNING|wxOK);
     }
+}
+
+void WXMHighlightingDialog::WXMHighlightingDialogResize(wxSizeEvent& event)
+{
+	OnListCtrlKeywordResize();
+	OnListCtrlFCResize();
+	OnListCtrlBCResize();
+	event.Skip();
 }
