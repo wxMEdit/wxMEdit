@@ -867,6 +867,7 @@ BEGIN_EVENT_TABLE(MadEditFrame,wxFrame)
 	EVT_UPDATE_UI(menuNoWrap, MadEditFrame::OnUpdateUI_MenuViewNoWrap)
 	EVT_UPDATE_UI(menuWrapByWindow, MadEditFrame::OnUpdateUI_MenuViewWrapByWindow)
 	EVT_UPDATE_UI(menuWrapByColumn, MadEditFrame::OnUpdateUI_MenuViewWrapByColumn)
+	EVT_UPDATE_UI(menuDisplayBookmark, MadEditFrame::OnUpdateUI_MenuViewDisplayBookmark)
 	EVT_UPDATE_UI(menuDisplayLineNumber, MadEditFrame::OnUpdateUI_MenuViewDisplayLineNumber)
 	EVT_UPDATE_UI(menuShowEndOfLine, MadEditFrame::OnUpdateUI_MenuViewShowEndOfLine)
 	EVT_UPDATE_UI(menuShowTabChar, MadEditFrame::OnUpdateUI_MenuViewShowTabChar)
@@ -983,6 +984,7 @@ BEGIN_EVENT_TABLE(MadEditFrame,wxFrame)
 	EVT_MENU(menuNoWrap, MadEditFrame::OnViewNoWrap)
 	EVT_MENU(menuWrapByWindow, MadEditFrame::OnViewWrapByWindow)
 	EVT_MENU(menuWrapByColumn, MadEditFrame::OnViewWrapByColumn)
+	EVT_MENU(menuDisplayBookmark, MadEditFrame::OnViewDisplayBookmark)
 	EVT_MENU(menuDisplayLineNumber, MadEditFrame::OnViewDisplayLineNumber)
 	EVT_MENU(menuShowEndOfLine, MadEditFrame::OnViewShowEndOfLine)
 	EVT_MENU(menuShowTabChar, MadEditFrame::OnViewShowTabChar)
@@ -1326,6 +1328,7 @@ CommandData CommandTable[]=
     { ecWrapByWindow, 1, menuWrapByWindow,      wxT("menuWrapByWindow"),      _("Wrap By &Window"),      wxT("Ctrl-W"),       wxITEM_CHECK,     wrapbywin_xpm_idx,  0,                         _("Wrap the lines by the window width")},
     { ecWrapByColumn, 1, menuWrapByColumn,      wxT("menuWrapByColumn"),      _("Wrap By Column"),       wxT("Ctrl-E"),       wxITEM_CHECK,     wrapbycol_xpm_idx,  0,                         _("Wrap the lines by the specified Max Columns")},
     { 0,              1, 0,                     0,                            0,                         0,                   wxITEM_SEPARATOR, -1,                 0,                         0},
+    { 0,              1, menuDisplayBookmark,   wxT("menuDisplayBookmark"),   _("Display &Bookmark"),    wxT("Ctrl-Alt-B"),   wxITEM_CHECK,     -1,                 0,                         _("Display the Bookmarks")},
     { 0,              1, menuDisplayLineNumber, wxT("menuDisplayLineNumber"), _("&Display Line Number"), wxT("Ctrl-Alt-D"),   wxITEM_CHECK,     -1,                 0,                         _("Display the Line Numbers")},
     { 0,              1, menuShowEndOfLine,     wxT("menuShowEndOfLine"),     _("Show End Of Line"),     wxT("Ctrl-Alt-L"),   wxITEM_CHECK,     -1,                 0,                         _("Show the sign of EndOfLine")},
     { 0,              1, menuShowTabChar,       wxT("menuShowTabChar"),       _("Show Tab Char"),        wxT("Ctrl-Alt-T"),   wxITEM_CHECK,     -1,                 0,                         _("Show the sign of Tab char")},
@@ -3084,6 +3087,11 @@ void MadEditFrame::OnUpdateUI_MenuViewDisplayLineNumber(wxUpdateUIEvent& event)
     event.Enable(g_active_wxmedit!=NULL);
     event.Check(g_active_wxmedit!=NULL && g_active_wxmedit->LineNumberVisible());
 }
+void MadEditFrame::OnUpdateUI_MenuViewDisplayBookmark(wxUpdateUIEvent& event)
+{
+    event.Enable(g_active_wxmedit!=NULL);
+    event.Check(g_active_wxmedit && g_active_wxmedit->BookmarkVisible());
+}
 void MadEditFrame::OnUpdateUI_MenuViewShowEndOfLine(wxUpdateUIEvent& event)
 {
     event.Enable(g_active_wxmedit!=NULL);
@@ -4457,6 +4465,13 @@ void MadEditFrame::OnViewDisplayLineNumber(wxCommandEvent& event)
         return;
 
     g_active_wxmedit->SetLineNumberVisible(event.IsChecked());
+}
+void MadEditFrame::OnViewDisplayBookmark(wxCommandEvent& event)
+{
+    if (g_active_wxmedit == NULL)
+        return;
+
+    g_active_wxmedit->SetBookmarkVisible(event.IsChecked());
 }
 void MadEditFrame::OnViewShowEndOfLine(wxCommandEvent& event)
 {

@@ -77,6 +77,10 @@ InFrameWXMEdit::InFrameWXMEdit(wxWindow* parent, wxWindowID id, const wxPoint& p
 	m_Config->Read(wxT("DisplayLineNumber"), &has_linenum, true);
 	SetLineNumberVisible(has_linenum);
 
+	bool bookmark_visible = true;
+	m_Config->Read(wxT("DisplayBookmark"), &bookmark_visible, true);
+	SetBookmarkVisible(bookmark_visible);
+
 	InitTextFont();
 	InitHexFont();
 
@@ -283,8 +287,11 @@ int InFrameWXMEdit::CalcLineNumberAreaWidth(MadLineIterator lit, int lineid, int
 
 int InFrameWXMEdit::GetLineNumberAreaWidth(int number)
 {
-	if (!m_linenum_visible)
+	if (!m_linenum_visible && !m_bookmark_visible)
 		return 0;
+
+	if (!m_linenum_visible)
+		return m_TextFontMaxDigitWidth + m_TextFontMaxDigitWidth/4;
 
 	int n = 2;
 	while (number >= 100)
@@ -303,6 +310,18 @@ void InFrameWXMEdit::SetLineNumberVisible(bool visible)
 
 	m_linenum_visible = visible;
 	m_cfg_writer->Record(wxT("/wxMEdit/DisplayLineNumber"), visible);
+
+	m_RepaintAll = true;
+	Refresh(false);
+}
+
+void InFrameWXMEdit::SetBookmarkVisible(bool visible)
+{
+	if (visible == m_bookmark_visible)
+		return;
+
+	m_bookmark_visible = visible;
+	m_cfg_writer->Record(wxT("/wxMEdit/DisplayBookmark"), visible);
 
 	m_RepaintAll = true;
 	Refresh(false);
@@ -777,7 +796,7 @@ void InFrameWXMEdit::ClearAllBookmarks()
 
 void InFrameWXMEdit::PaintLineNumberArea(const wxColor & bgcolor, wxDC * dc, const wxRect& rect, bool is_trailing_subrow, MadLineIterator lineiter, int lineid, int text_top)
 {
-	if (!m_linenum_visible)
+	if (!m_linenum_visible && !m_bookmark_visible)
 		return;
 
 	GetSyntax()->SetAttributes(aeLineNumber);
@@ -793,12 +812,15 @@ void InFrameWXMEdit::PaintLineNumberArea(const wxColor & bgcolor, wxDC * dc, con
 	if (is_trailing_subrow)
 		return;
 
-	if (m_Lines->m_LineList.Bookmarked(lineiter))
+	if (m_bookmark_visible && m_Lines->m_LineList.Bookmarked(lineiter))
 	{
 		dc->SetBrush(*wxTheBrushList->FindOrCreateBrush(GetSyntax()->GetAttributes(aeBookmark)->color));
 		double r = m_RowHeight < 18 ? 3.0 : m_RowHeight / 6.0;
 		dc->DrawRoundedRectangle(rect, r);
 	}
+
+	if (!m_linenum_visible)
+		return;
 
 	const int ncount = CachedLineNumberAreaWidth() / m_TextFontMaxDigitWidth;
 

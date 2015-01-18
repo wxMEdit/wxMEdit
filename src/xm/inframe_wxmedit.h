@@ -19,6 +19,9 @@ struct InFrameWXMEdit : public MadEdit
 	virtual void SetWordWrapMode(MadWordWrapMode mode);
 	virtual MadWordWrapMode GetWordWrapMode() { return m_WordWrapMode; }
 
+	virtual bool BookmarkVisible() { return m_bookmark_visible; }
+	virtual void SetBookmarkVisible(bool visible);
+
 	virtual LineNumberList SaveBookmarkLineNumberList();
 	virtual void RestoreBookmarkByLineNumberList(const LineNumberList& linenums);
 
@@ -61,6 +64,7 @@ private:
 
 	int             m_LineNumberAreaWidth;
 	bool            m_linenum_visible;
+	bool            m_bookmark_visible;
 	MadWordWrapMode m_WordWrapMode;
 
 	int             m_old_ClientWidth;

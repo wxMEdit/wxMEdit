@@ -132,6 +132,7 @@ public:
     void OnUpdateUI_MenuViewNoWrap(wxUpdateUIEvent& event);
     void OnUpdateUI_MenuViewWrapByWindow(wxUpdateUIEvent& event);
     void OnUpdateUI_MenuViewWrapByColumn(wxUpdateUIEvent& event);
+    void OnUpdateUI_MenuViewDisplayBookmark(wxUpdateUIEvent& event);
     void OnUpdateUI_MenuViewDisplayLineNumber(wxUpdateUIEvent& event);
     void OnUpdateUI_MenuViewShowEndOfLine(wxUpdateUIEvent& event);
     void OnUpdateUI_MenuViewShowTabChar(wxUpdateUIEvent& event);
@@ -241,6 +242,7 @@ public:
     void OnViewNoWrap(wxCommandEvent& event);
     void OnViewWrapByWindow(wxCommandEvent& event);
     void OnViewWrapByColumn(wxCommandEvent& event);
+    void OnViewDisplayBookmark(wxCommandEvent& event);
     void OnViewDisplayLineNumber(wxCommandEvent& event);
     void OnViewShowEndOfLine(wxCommandEvent& event);
     void OnViewShowTabChar(wxCommandEvent& event);
@@ -478,6 +480,7 @@ enum { // menu id
     menuNoWrap,
     menuWrapByWindow,
     menuWrapByColumn,
+    menuDisplayBookmark,
     menuDisplayLineNumber,
     menuShowEndOfLine,
     menuShowTabChar,
