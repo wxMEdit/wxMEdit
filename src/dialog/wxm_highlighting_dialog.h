@@ -28,6 +28,9 @@
 
 #include <wx/colordlg.h>
 
+#include <boost/ptr_container/ptr_vector.hpp>
+#include <boost/noncopyable.hpp>
+
 #include <vector>
 #include <map>
 
@@ -37,36 +40,33 @@ class WXMHighlightingDialog;
 namespace wxm
 {
 	struct HighlightingItemManager;
-	struct HighlightingItem
+	struct HighlightingItem: private boost::noncopyable
 	{
-		enum
-		{
-			HINull, HICommKeyword, HIMoreKeyword, HIFGColorOnly/*aeActiveLine, aeBookmark*/, HIBGColorOnly
-		};
-
-		HighlightingItem() : m_dlg(NULL), m_itemidx(-1), m_type(HINull), m_attr(0), m_range_bgcolor(0)
-		{}
-		HighlightingItem(WXMHighlightingDialog* dlg, long itemidx, int type, MadAttributes* a, wxColor* bg)
-			: m_dlg(dlg), m_itemidx(itemidx), m_type(type), m_attr(a), m_range_bgcolor(bg)
+		HighlightingItem(WXMHighlightingDialog* dlg, long itemidx)
+			: m_dlg(dlg), m_itemidx(itemidx)
 		{}
 
 		wxColor InitDialogControls(const wxColor& bc0);
-		void SetFGColor(const wxColor& color, const wxString& colorname);
-		void SetBGColor(const wxColor& color, const wxString& colorname);
+
+		virtual wxColor DoInitDialogControls() = 0;
+
+		virtual void SetFGColor(const wxColor& color, const wxString& colorname) = 0;
+		virtual void SetBGColor(const wxColor& color, const wxString& colorname) = 0;
+
+		virtual wxColor GetFGColor() = 0;
+		virtual wxColor GetBGColor() = 0;
+
+		virtual void SetListItemFontStyle(long itemidx) = 0;
+		virtual void EnableFontStyle(const MadFontStyles& style, bool enable) = 0;
+
 		void RepaintListItem(long itemidx, const wxColor& fc0, const wxColor& bc0);
-		void EnableFontStyle(const MadFontStyles& style, bool enable);
-		wxColor GetFGColor() { return m_attr->color; }
-		wxColor GetBGColor() { return (m_type == HIBGColorOnly) ? *m_range_bgcolor : m_attr->bgcolor; }
-	private:
+
+	protected:
 		WXMHighlightingDialog* m_dlg;
 		long m_itemidx;
-		int m_type;
-
-		MadAttributes *m_attr;    // for HICommKeyword, HIMoreKeyword, HIFGColorOnly
-		wxColor *m_range_bgcolor; // for HIBGColorOnly
 	};
 
-	struct HighlightingItemManager
+	struct HighlightingItemManager: private boost::noncopyable
 	{
 		void InitItems(MadSyntax* syn);
 
@@ -90,7 +90,7 @@ namespace wxm
 	private:
 		WXMHighlightingDialog* m_dlg;
 		long m_index;
-		std::vector<wxm::HighlightingItem> m_table;
+		boost::ptr_vector<wxm::HighlightingItem> m_table;
 	};
 } // namespace wxm
 
@@ -177,13 +177,15 @@ class WXMHighlightingDialog: public wxDialogWrapper
 		wxColor EnableBGColorConfig(const wxColor& bgcolor);
 		wxColor DisableBGColorConfig();
 	private:
+		wxColour GetColourFromUser(const wxColour& colInit, const wxString& caption);
+		void OnListCtrlKeywordResize();
+
 		MadSyntax* m_Syntax;
 		MadSyntax* m_cur_syn;
 		std::vector<MadSyntax*> m_ModifiedSyntax;
 		wxColourDialog* m_ColourDialog;
 
 		wxm::HighlightingItemManager m_himgr;
-		wxColour GetColourFromUser(const wxColour& colInit, const wxString& caption);
 	private:
 
 		//(*Handlers(WXMHighlightingDialog)
