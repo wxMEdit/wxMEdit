@@ -814,9 +814,15 @@ void InFrameWXMEdit::PaintLineNumberArea(const wxColor & bgcolor, wxDC * dc, con
 
 	if (m_bookmark_visible && m_Lines->m_LineList.Bookmarked(lineiter))
 	{
-		dc->SetBrush(*wxTheBrushList->FindOrCreateBrush(GetSyntax()->GetAttributes(aeBookmark)->color));
+		int b = m_RowHeight < 24 ? 1 : m_RowHeight / 24;
+
+		MadAttributes* attr = GetSyntax()->GetAttributes(aeBookmark);
+		dc->SetPen(*wxThePenList->FindOrCreatePen(attr->color, b, wxSOLID));
+		dc->SetBrush(*wxTheBrushList->FindOrCreateBrush(attr->bgcolor));
+
+		wxRect rdrect(rect.x + b/2, rect.y + b, rect.width - b, rect.height - b*3/2);
 		double r = m_RowHeight < 18 ? 3.0 : m_RowHeight / 6.0;
-		dc->DrawRoundedRectangle(rect, r);
+		dc->DrawRoundedRectangle(rdrect, r);
 	}
 
 	if (!m_linenum_visible)

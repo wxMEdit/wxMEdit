@@ -102,6 +102,42 @@ private:
 	wxColor& m_fgcolor;
 };
 
+struct HighlightingColor : public HighlightingItem
+{
+	HighlightingColor(WXMHighlightingDialog* dlg, long itemidx, wxColor& fc, wxColor& bc)
+		: HighlightingItem(dlg, itemidx), m_fgcolor(fc), m_bgcolor(bc)
+	{}
+
+private:
+	virtual wxColor DoInitDialogControls()
+	{
+		m_dlg->DisableFontConfig();
+		m_dlg->EnableFGColorConfig(m_fgcolor);
+		return m_dlg->EnableBGColorConfig(m_bgcolor);
+	}
+	virtual void SetFGColor(const wxColor& color, const wxString& colorname)
+	{
+		m_fgcolor = NormalColor(color, colorname);
+	}
+	virtual void SetBGColor(const wxColor& color, const wxString& colorname)
+	{
+		m_bgcolor = NormalColor(color, colorname);
+	}
+	virtual wxColor GetFGColor()
+	{
+		return m_fgcolor;
+	}
+	virtual wxColor GetBGColor()
+	{
+		return m_bgcolor;
+	}
+	virtual void SetListItemFontStyle(long itemidx) {}
+	virtual void EnableFontStyle(const MadFontStyles& style, bool enable) {}
+
+	wxColor& m_fgcolor;
+	wxColor& m_bgcolor;
+};
+
 void SetItemFontStyle(wxListCtrl* listctrl, long item, const MadFontStyles& style);
 struct HighlightingKeyword : public HighlightingItem
 {
@@ -227,8 +263,10 @@ void HighlightingItemManager::InitItems(MadSyntax* syn)
 	{
 		long item = m_dlg->WxListCtrlKeyword->InsertItem(index++, MadSyntax::GetAttributeName((MadAttributeElement)ae));
 		MadAttributes* pattr = syn->GetAttributes((MadAttributeElement)ae);
-		if (ae == aeActiveLine || ae == aeBookmark)
+		if (ae == aeActiveLine)
 			m_table.push_back(new HighlightingFGOnly(m_dlg, item, pattr->color));
+		else if (ae == aeBookmark)
+			m_table.push_back(new HighlightingColor(m_dlg, item, pattr->color, pattr->bgcolor));
 		else
 			m_table.push_back(new HighlightingKeyword(m_dlg, item, *pattr));
 

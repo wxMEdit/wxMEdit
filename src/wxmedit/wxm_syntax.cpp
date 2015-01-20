@@ -28,10 +28,10 @@ const wxChar *SystemAttributesName[] = {
 };
 
 const wxChar *SystemAttributesColor[]= {
-    wxT("Black"), wxT("SaddleBrown"), wxT("Aqua"), wxT("Blue"), wxT("Red"), wxT("Teal"), wxT("Green"), wxT("Maroon"), wxT("White"), wxT("Fuchsia"), wxT("#\x00\x00\xC0")
+    wxT("Black"), wxT("SaddleBrown"), wxT("Aqua"), wxT("Blue"), wxT("Red"), wxT("Teal"), wxT("Green"), wxT("Maroon"), wxT("White"), wxT("Fuchsia"), wxT("DeepSkyBlue")
 };
 const wxChar *SystemAttributesBgColor[]= {
-    wxT("White"), wxT(""), wxT(""), wxT(""), wxT(""), wxT(""), wxT(""), wxT(""), wxT("#\xA0\xA0\xA0"), wxT(""), wxT("")
+    wxT("White"), wxT(""), wxT(""), wxT(""), wxT(""), wxT(""), wxT(""), wxT(""), wxT("#\xA0\xA0\xA0"), wxT(""), wxT("MediumBlue")
 };
 
 const wxString MadPlainTextTitle(wxT("Plain Text"));
@@ -2326,9 +2326,13 @@ void MadSyntax::SaveAttributes(const wxString &file)
     str.Printf(wxT("/%sColor"), SystemAttributesName[aeActiveLine]);
     value.Printf(wxT("%s"), GetColorName(m_SystemAttributes[aeActiveLine].color).c_str());
     syn.Write(str, value);
+
     str.Printf(wxT("/%sColor"), SystemAttributesName[aeBookmark]);
     value.Printf(wxT("%s"), GetColorName(m_SystemAttributes[aeBookmark].color).c_str());
     syn.Write(str, value);
+	str.Printf(wxT("/%sBgColor"), SystemAttributesName[aeBookmark]);
+	value.Printf(wxT("%s"), GetColorName(m_SystemAttributes[aeBookmark].bgcolor).c_str());
+	syn.Write(str, value);
 
     // write custom keywords
     for(i=0; i<m_CustomKeyword.size(); i++)

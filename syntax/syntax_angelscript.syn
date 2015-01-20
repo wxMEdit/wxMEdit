@@ -53,7 +53,9 @@ LineNumberBgColor=A0A0A0
 LineNumberStyle=
 
 ActiveLineColor=Fuchsia
-BookmarkColor=0000C0
+
+BookmarkColor=DeepSkyBlue
+BookmarkBgColor=MediumBlue
 
 # User Defined Keywords
 [1.Keywords]
@@ -62,6 +64,3 @@ BgColor=
 Style=Bold
 InRange=0
 Keyword=and any bool break case cast class const continue default do double else false float for from if import in inout int interface int8 int16 int32 int64 not null or out return switch this true uint uint8 uint16 uint32 uint64 void while xor
-
-
-
