@@ -218,9 +218,9 @@ void MadEdit::CalcTabMarkPoints(std::vector<wxPoint>& dest, const wxSize& charsz
         ( wxPoint(x, y) )
         ( wxPoint(x, y - ty) )
         ( wxPoint(x - tx, y) )
-        ( wxPoint(x + dx, y) )
-        ( wxPoint(x + dx - tx, y - ty) )
-        ( wxPoint(x + dx - tx, y) );
+        ( wxPoint(x + dx - tx, y) )
+        ( wxPoint(x + dx - tx * 2, y - ty) )
+        ( wxPoint(x + dx - tx * 2, y) );
 }
 
 void MadEdit::SetTextFont(const wxString &name, int size, bool forceReset)
