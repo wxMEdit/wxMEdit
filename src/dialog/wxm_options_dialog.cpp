@@ -669,6 +669,7 @@ WXMOptionsDialog::WXMOptionsDialog(wxWindow* parent,wxWindowID id)
 	Center();
 
 	Connect(ID_WXBUTTONCHECKNOW,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&WXMOptionsDialog::WxButtonCheckNowClick);
+	Connect(ID_WXCHECKBOXMOUSESELECTTOCOPY,wxEVT_COMMAND_CHECKBOX_CLICKED,(wxObjectEventFunction)&WXMOptionsDialog::WxCheckBoxMouseSelectToCopyClick);
 	Connect(ID_TREECTRL1,wxEVT_COMMAND_TREE_SEL_CHANGED,(wxObjectEventFunction)&WXMOptionsDialog::WxTreeCtrl1SelChanged);
 	Connect(ID_WXLISTBOXKEYS,wxEVT_COMMAND_LISTBOX_SELECTED,(wxObjectEventFunction)&WXMOptionsDialog::WxListBoxKeysSelected);
 	Connect(ID_WXBUTTONADDKEY,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&WXMOptionsDialog::WxButtonAddKeyClick);
@@ -749,11 +750,11 @@ WXMOptionsDialog::WXMOptionsDialog(wxWindow* parent,wxWindowID id)
 	WxComboBoxPasteAsHexString->SetValue(wxm::HexAreaClipboardPasteProxy::Instance().GetDefaultTitle());
 
 #ifdef __WXMSW__
-	WxCheckBoxRightClickMenu = new wxCheckBox(Panel1, -1, _("Add wxMEdit to the RightClickMenu of Explorer(Deselect to Remove the Entry from Windows Registry)"), 
+	WxCheckBoxRightClickMenu = new wxCheckBox(Panel1, -1, _("Add wxMEdit to the RightClickMenu of Explorer(Deselect to Remove the Entry from Windows Registry)"),
 	                                          wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("WxCheckBoxRightClickMenu"));
 	WxCheckBoxRightClickMenu->SetValue(false);
 
-	WxCheckBoxConfigInUserHome  = new wxCheckBox(Panel1, -1, _("Place configuration files into application data directory of current user (%APPDATA%\\wxmedit) rather than wxMEdit executable directory"), 
+	WxCheckBoxConfigInUserHome = new wxCheckBox(Panel1, -1, _("Place configuration files into application data directory of current user (%APPDATA%\\wxmedit) rather than wxMEdit executable directory"),
 	                                             wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("WxCheckBoxConfigInUserHome"));
 	WxCheckBoxConfigInUserHome->SetValue(false);
 	BoxSizer7->Add(WxCheckBoxRightClickMenu, 0, wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL, 2);
@@ -990,6 +991,7 @@ void WXMOptionsDialog::LoadOptions(void)
 
 	cfg->Read(wxT("MouseSelectToCopy"), &bb);
 	WxCheckBoxMouseSelectToCopy->SetValue(bb);
+	WxCheckBoxWhenPressCtrlKey->Enable(bb);
 
 	cfg->Read(wxT("MouseSelectToCopyWithCtrlKey"), &bb);
 	WxCheckBoxWhenPressCtrlKey->SetValue(bb);
@@ -1419,4 +1421,9 @@ void WXMOptionsDialog::WxButtonCheckNowClick(wxCommandEvent& event)
 void WXMOptionsDialog::OnUpdateUI_DialogOptions_CheckNow(wxUpdateUIEvent& event)
 {
 	event.Enable(!wxm::g_update_checking);
+}
+
+void WXMOptionsDialog::WxCheckBoxMouseSelectToCopyClick(wxCommandEvent& event)
+{
+	WxCheckBoxWhenPressCtrlKey->Enable(event.IsChecked());
 }

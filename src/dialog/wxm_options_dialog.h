@@ -280,6 +280,7 @@ class WXMOptionsDialog: public wxDialogWrapper
 		void WxListBoxKeysSelected(wxCommandEvent& event);
 		void WxTreeCtrl1SelChanged(wxTreeEvent& event);
 		void WxButtonCheckNowClick(wxCommandEvent& event);
+		void WxCheckBoxMouseSelectToCopyClick(wxCommandEvent& event);
 		//*)
 
 		void WXMOptionsDialogActivate(wxActivateEvent& event);

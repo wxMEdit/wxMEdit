@@ -588,7 +588,7 @@ protected:
     void OnChar(wxKeyEvent &evt);
     void OnKeyDown(wxKeyEvent &evt);
 
-    void LogicMouseLeftUp(bool ctrl_down);
+    void LogicMouseLeftUp();
     virtual void OnGetFocusByClickAsControl(const wxMouseEvent &evt) {}
     virtual bool NeedNotProcessMouseLeftDown(wxMouseEvent &evt) { return false; }
 

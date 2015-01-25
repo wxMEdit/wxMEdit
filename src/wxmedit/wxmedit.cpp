@@ -9172,7 +9172,7 @@ void MadEdit::OnMouseLeftDown(wxMouseEvent &evt)
     evt.Skip();
 }
 
-void MadEdit::LogicMouseLeftUp(bool ctrl_down)
+void MadEdit::LogicMouseLeftUp()
 {
     ProcessCommand(ecMouseNotify);
 
@@ -9193,10 +9193,16 @@ void MadEdit::LogicMouseLeftUp(bool ctrl_down)
         EndUpdateSelection(true);
         m_mouse_capturer->Release();
     }
+}
+
+void MadEdit::OnMouseLeftUp(wxMouseEvent &evt)
+{
+    //wxTheApp->GetTopWindow()->SetTitle(wxString::Format(wxT("LUp")));
+    LogicMouseLeftUp();
 
     if(m_MouseSelectToCopy)
     {
-        if( (ctrl_down && m_MouseSelectToCopyWithCtrlKey) ||
+        if ((evt.ControlDown() && m_MouseSelectToCopyWithCtrlKey) ||
             !m_MouseSelectToCopyWithCtrlKey )
         {
             wxTheClipboard->UsePrimarySelection(true);
@@ -9204,12 +9210,6 @@ void MadEdit::LogicMouseLeftUp(bool ctrl_down)
             wxTheClipboard->UsePrimarySelection(false);
         }
     }
-}
-
-void MadEdit::OnMouseLeftUp(wxMouseEvent &evt)
-{
-    //wxTheApp->GetTopWindow()->SetTitle(wxString::Format(wxT("LUp")));
-    LogicMouseLeftUp(evt.ControlDown());
 
     evt.Skip();
 }
@@ -9421,7 +9421,7 @@ void MadEdit::OnKillFocus(wxFocusEvent &evt)
     }
     else 
     {
-        LogicMouseLeftUp(wxGetKeyState(WXK_CONTROL));
+        LogicMouseLeftUp();
         OnWXMEditKillFocus();
     }
 

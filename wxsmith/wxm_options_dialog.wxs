@@ -273,6 +273,7 @@
 																<object class="sizeritem">
 																	<object class="wxCheckBox" name="ID_WXCHECKBOXMOUSESELECTTOCOPY" variable="WxCheckBoxMouseSelectToCopy" member="yes">
 																		<label>Auto copy the mouse-selected text to clipboard</label>
+																		<handler function="WxCheckBoxMouseSelectToCopyClick" entry="EVT_CHECKBOX" />
 																	</object>
 																	<flag>wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
 																	<border>2</border>
