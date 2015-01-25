@@ -1956,39 +1956,21 @@ void MadEdit::PaintTextLines(wxDC *dc, const wxRect &rect, int toprow, int rowco
                             int x0 = left;
                             do
                             {
-                                if(x0+m_WidthBuffer[idx] > minleft)
+                                if (x0 + m_WidthBuffer[idx] <= minleft)
+                                    continue;
+
+                                if(m_WordBuffer[idx] == 0x20 && m_ShowSpaceChar)
                                 {
-                                    if(m_WordBuffer[idx] == 0x20)
-                                    {
-                                        if(m_ShowSpaceChar)
-                                        {
-                                            dc->DrawLines(4, m_Space_Points, x0, text_top);
-                                        }
-                                    }
-                                    else            // 0x09 Tab
-                                    {
-                                        if(m_ShowTabChar)
-                                        {
-                                            const int t1 = m_TextFontHeight / 5;
-                                            const int y = text_top + 1 + m_TextFontHeight - t1;
-                                            const int t2 = t1 > (m_WidthBuffer[idx] >> 1) ? (m_WidthBuffer[idx] >> 1) : t1 + 1;
-                                            int x = x0 + 2 + t2;
-                                            int dx = m_WidthBuffer[idx] - 3;
+                                        dc->DrawLines(m_space_points.size(), &m_space_points[0], x0, text_top);
+                                }
+                                else if(m_ShowTabChar)
+                                {
+                                    const wxSize charsz(m_WidthBuffer[idx], m_TextFontHeight);
 
-                                            wxPoint pts[6]=
-                                            {
-                                                wxPoint(x, y),
-                                                wxPoint(x, y - t1),
-                                                wxPoint(x - t2, y),
-                                                wxPoint(x + dx, y),
-                                                wxPoint(x + dx - t2, y - t1),
-                                                wxPoint(x + dx - t2, y)
-                                            };
+                                    std::vector<wxPoint> pts;
+                                    CalcTabMarkPoints(pts, charsz);
 
-                                            dc->DrawLines(6, pts);
-
-                                        }
-                                    }
+                                    dc->DrawLines(pts.size(), &pts[0], x0, text_top);
                                 }
 
                                 x0 += m_WidthBuffer[idx];
@@ -2084,7 +2066,7 @@ void MadEdit::PaintTextLines(wxDC *dc, const wxRect &rect, int toprow, int rowco
                 switch(m_Lines->GetNewLine(lineiter))
                 {
                 case 0:
-                    dc->DrawLines(5, m_EOF_Points, left, text_top);
+                    dc->DrawLines(m_eof_points.size(), &m_eof_points[0], left, text_top);
                     break;
                 case 0x0D:
                     dc->DrawLines(m_cr_points.size(), &m_cr_points[0], left, text_top);

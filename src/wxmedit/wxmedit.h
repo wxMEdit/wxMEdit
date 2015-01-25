@@ -251,7 +251,7 @@ private:
     wxBitmap        *m_ClientBitmap, *m_MarkBitmap;
     int             m_LastPaintBitmap;// 0:client, 1:mark
 
-    wxPoint         m_Space_Points[4], m_EOF_Points[5];
+    std::vector<wxPoint> m_space_points, m_eof_points;
     std::vector<wxPoint> m_cr_points, m_lf_points, m_crlf_points;
 
 protected:
@@ -667,6 +667,9 @@ protected:
     void InitHexFont();
 
     void CalcEOLMarkPoints(std::vector<wxPoint>& dest, const std::vector<wxPoint>& src, const wxSize& charsz);
+    void CalcSpaceMarkPoints(const wxSize& charsz);
+    void CalcEOFMarkPoints(const wxSize& charsz);
+    void CalcTabMarkPoints(std::vector<wxPoint>& dest, const wxSize& charsz);
 
 public: // basic functions
     void SetSyntax(const wxString &title, bool manual=false);

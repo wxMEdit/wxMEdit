@@ -20,6 +20,7 @@
 #include <wx/filename.h>
 
 #include <boost/assign/list_of.hpp>
+#include <boost/assign/std/vector.hpp>
 
 #ifdef _DEBUG
 #include <crtdbg.h>
@@ -176,6 +177,52 @@ void MadEdit::CalcEOLMarkPoints(std::vector<wxPoint>& dest, const std::vector<wx
     }
 }
 
+void MadEdit::CalcSpaceMarkPoints(const wxSize& charsz)
+{
+    const int y = charsz.y * 4 / 5 + 1;
+    const int x = charsz.x / 4;
+    m_space_points.clear();
+    boost::assign::push_back(m_space_points)
+        ( wxPoint(x, y) )
+        ( wxPoint(3 * x, y) )
+        ( wxPoint(charsz.x / 2, y - charsz.y / 6) )
+        ( wxPoint(x, y) );
+}
+
+void MadEdit::CalcEOFMarkPoints(const wxSize& charsz)
+{
+    const int x = charsz.x - 1;
+    const int y = charsz.y / 5 + 1;
+    const int y1 = charsz.y * 4 / 5 + 1;
+    const int y2 = charsz.y * 19 / 30 + 1;
+    m_eof_points.clear();
+    boost::assign::push_back(m_eof_points)
+        ( wxPoint(x, y) )
+        ( wxPoint(x, y1) )
+        ( wxPoint(2, y1) )
+        ( wxPoint(charsz.x / 2, y2) )
+        ( wxPoint(charsz.x / 2, y1) );
+}
+
+void MadEdit::CalcTabMarkPoints(std::vector<wxPoint>& dest, const wxSize& charsz)
+{
+    const int ty = charsz.y / 5;
+    const int y = 1 + charsz.y * 4 / 5;
+
+    const int tx = (ty > charsz.x / 2) ? (charsz.x / 2) : ty + 1;
+    const int x = 2 + tx;
+    const int dx = charsz.x - 3;
+
+    dest.clear();
+    boost::assign::push_back(dest)
+        ( wxPoint(x, y) )
+        ( wxPoint(x, y - ty) )
+        ( wxPoint(x - tx, y) )
+        ( wxPoint(x + dx, y) )
+        ( wxPoint(x + dx - tx, y - ty) )
+        ( wxPoint(x + dx - tx, y) );
+}
+
 void MadEdit::SetTextFont(const wxString &name, int size, bool forceReset)
 {
     if(size < 1) size = 1;
@@ -255,39 +302,10 @@ void MadEdit::SetTextFont(const wxString &name, int size, bool forceReset)
                 name, size, m_TextFont->GetFamily());
 
 
-            // prepare m_Space_Points, m_EOF_Points
-            const int cw = GetUCharWidth(0x20);   //FFontAveCharWidth;
-            {
-                const int y = m_TextFontHeight*4/5 + 1;
-                const int x = cw / 4;
-                m_Space_Points[0].x = x;
-                m_Space_Points[0].y = y;
-                m_Space_Points[1].x = 3 * x;
-                m_Space_Points[1].y = y;
-                m_Space_Points[2].x = cw >> 1;
-                m_Space_Points[2].y = y - m_TextFontHeight/6;
-                m_Space_Points[3].x = x;
-                m_Space_Points[3].y = y;
-            }
-            {
-                const int x = cw - 1;
-                const int y = m_TextFontHeight/5 +1;
-                const int y1 = m_TextFontHeight*4/5 + 1;
-                const int y2 = m_TextFontHeight*19/30 + 1;
-                m_EOF_Points[0].x = x;
-                m_EOF_Points[0].y = y;
-                m_EOF_Points[1].x = x;
-                m_EOF_Points[1].y = y1;
-                m_EOF_Points[2].x = 2;
-                m_EOF_Points[2].y = y1;
-                m_EOF_Points[3].x = cw / 2;
-                m_EOF_Points[3].y = y2;
-                m_EOF_Points[4].x = cw / 2;
-                m_EOF_Points[4].y = y1;
-            }
+            const wxSize charsz(GetUCharWidth(0x20), m_TextFontHeight);
 
-            const wxSize charsz(cw, m_TextFontHeight);
-
+            CalcSpaceMarkPoints(charsz);
+            CalcEOFMarkPoints(charsz);
             CalcEOLMarkPoints(m_cr_points, CR_Points, charsz);
             CalcEOLMarkPoints(m_lf_points, LF_Points, charsz);
             CalcEOLMarkPoints(m_crlf_points, CRLF_Points, charsz);
