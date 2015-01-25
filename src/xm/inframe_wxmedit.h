@@ -62,6 +62,8 @@ private:
 	void EndTextPrinting();
 	void EndHexPrinting();
 
+	bool LineNumberAreaVisible() { return m_linenum_visible || m_bookmark_visible; }
+
 	int             m_LineNumberAreaWidth;
 	bool            m_linenum_visible;
 	bool            m_bookmark_visible;

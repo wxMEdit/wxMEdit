@@ -1488,7 +1488,8 @@ void LoadDefaultSettings(wxConfigBase *m_Config)
 
     m_Config->Read(wxT("PrintSyntax"), &tempbool, false);
     m_Config->Read(wxT("PrintLineNumber"), &tempbool, true);
-    m_Config->Read(wxT("PrintEndOfLine"), &tempbool, false);
+	m_Config->Read(wxT("PrintBookmark"), &tempbool, true);
+	m_Config->Read(wxT("PrintEndOfLine"), &tempbool, false);
     m_Config->Read(wxT("PrintTabChar"), &tempbool, false);
     m_Config->Read(wxT("PrintSpaceChar"), &tempbool, false);
 
@@ -4649,6 +4650,9 @@ void MadEditFrame::OnToolsOptions(wxCommandEvent& event)
 
         bb=g_OptionsDialog->WxCheckBoxPrintLineNumber->GetValue();
         m_Config->Write(wxT("PrintLineNumber"), bb);
+
+		bb = g_OptionsDialog->WxCheckBoxPrintBookmark->GetValue();
+		m_Config->Write(wxT("PrintBookmark"), bb);
 
         bb=g_OptionsDialog->WxCheckBoxPrintEndOfLine->GetValue();
         m_Config->Write(wxT("PrintEndOfLine"), bb);

@@ -164,6 +164,7 @@ const long WXMOptionsDialog::ID_COMBOBOXPASTEASHEXSTRING = wxNewId();
 const long WXMOptionsDialog::ID_PANEL2 = wxNewId();
 const long WXMOptionsDialog::ID_WXCHECKBOXPRINTSYNTAX = wxNewId();
 const long WXMOptionsDialog::ID_WXCHECKBOXPRINTLINENUMBER = wxNewId();
+const long WXMOptionsDialog::ID_CHECKBOXPRINTBOOKMARK = wxNewId();
 const long WXMOptionsDialog::ID_WXCHECKBOXPRINTENDOFLINE = wxNewId();
 const long WXMOptionsDialog::ID_WXCHECKBOXPRINTTABCHAR = wxNewId();
 const long WXMOptionsDialog::ID_WXCHECKBOXPRINTSPACECHAR = wxNewId();
@@ -478,6 +479,9 @@ WXMOptionsDialog::WXMOptionsDialog(wxWindow* parent,wxWindowID id)
 	WxCheckBoxPrintLineNumber = new wxCheckBox(Panel3, ID_WXCHECKBOXPRINTLINENUMBER, _("Print Line Number"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_WXCHECKBOXPRINTLINENUMBER"));
 	WxCheckBoxPrintLineNumber->SetValue(false);
 	StaticBoxSizer1->Add(WxCheckBoxPrintLineNumber, 0, wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL, 1);
+	WxCheckBoxPrintBookmark = new wxCheckBox(Panel3, ID_CHECKBOXPRINTBOOKMARK, _("Print Bookmark"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_CHECKBOXPRINTBOOKMARK"));
+	WxCheckBoxPrintBookmark->SetValue(false);
+	StaticBoxSizer1->Add(WxCheckBoxPrintBookmark, 0, wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL, 1);
 	WxCheckBoxPrintEndOfLine = new wxCheckBox(Panel3, ID_WXCHECKBOXPRINTENDOFLINE, _("Print End of Line"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_WXCHECKBOXPRINTENDOFLINE"));
 	WxCheckBoxPrintEndOfLine->SetValue(false);
 	StaticBoxSizer1->Add(WxCheckBoxPrintEndOfLine, 0, wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL, 1);
@@ -1005,6 +1009,9 @@ void WXMOptionsDialog::LoadOptions(void)
 
 	cfg->Read(wxT("PrintLineNumber"), &bb);
 	WxCheckBoxPrintLineNumber->SetValue(bb);
+
+	cfg->Read(wxT("PrintBookmark"), &bb);
+	WxCheckBoxPrintBookmark->SetValue(bb);
 
 	cfg->Read(wxT("PrintEndOfLine"), &bb);
 	WxCheckBoxPrintEndOfLine->SetValue(bb);

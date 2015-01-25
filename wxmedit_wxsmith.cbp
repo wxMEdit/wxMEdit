@@ -32,12 +32,12 @@
 		<Unit filename="src/dialog/wxm_word_count_dialog.h" />
 		<Unit filename="src/dialog/wxmedit_about_dialog.cpp" />
 		<Unit filename="src/dialog/wxmedit_about_dialog.h" />
-		<Unit filename="wxsmith/wxm_purge_histories_dialog.wxs" />
 		<Unit filename="wxsmith/wxm_conv_enc_dialog.wxs" />
 		<Unit filename="wxsmith/wxm_file_association_dialog.wxs" />
 		<Unit filename="wxsmith/wxm_find_in_files_dialog.wxs" />
 		<Unit filename="wxsmith/wxm_highlighting_dialog.wxs" />
 		<Unit filename="wxsmith/wxm_options_dialog.wxs" />
+		<Unit filename="wxsmith/wxm_purge_histories_dialog.wxs" />
 		<Unit filename="wxsmith/wxm_search_replace_dialog.wxs" />
 		<Unit filename="wxsmith/wxm_sort_dialog.wxs" />
 		<Unit filename="wxsmith/wxm_word_count_dialog.wxs" />

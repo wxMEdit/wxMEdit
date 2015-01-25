@@ -91,6 +91,7 @@ class WXMOptionsDialog: public wxDialogWrapper
 		wxButton* WxButtonShowInMenu;
 		wxStaticText* StaticText18;
 		wxPanel* Panel1;
+		wxCheckBox* WxCheckBoxPrintBookmark;
 		wxStaticText* StaticText1;
 		wxCheckBox* WxCheckBoxTabOrSpaces;
 		wxStaticText* StaticText3;
@@ -177,6 +178,7 @@ class WXMOptionsDialog: public wxDialogWrapper
 		static const long ID_PANEL2;
 		static const long ID_WXCHECKBOXPRINTSYNTAX;
 		static const long ID_WXCHECKBOXPRINTLINENUMBER;
+		static const long ID_CHECKBOXPRINTBOOKMARK;
 		static const long ID_WXCHECKBOXPRINTENDOFLINE;
 		static const long ID_WXCHECKBOXPRINTTABCHAR;
 		static const long ID_WXCHECKBOXPRINTSPACECHAR;

@@ -287,7 +287,7 @@ int InFrameWXMEdit::CalcLineNumberAreaWidth(MadLineIterator lit, int lineid, int
 
 int InFrameWXMEdit::GetLineNumberAreaWidth(int number)
 {
-	if (!m_linenum_visible && !m_bookmark_visible)
+	if (!LineNumberAreaVisible())
 		return 0;
 
 	if (!m_linenum_visible)
@@ -368,6 +368,7 @@ void InFrameWXMEdit::BeginTextPrinting()
 	m_Config->SetPath(wxT("/wxMEdit"));
 	m_Config->Read(wxT("PrintSyntax"), &m_PrintSyntax);
 	m_Config->Read(wxT("PrintLineNumber"), &m_linenum_visible);
+	m_Config->Read(wxT("PrintBookmark"), &m_bookmark_visible);
 	m_Config->Read(wxT("PrintEndOfLine"), &m_ShowEndOfLine);
 	m_Config->Read(wxT("PrintTabChar"), &m_ShowSpaceChar);
 	m_Config->Read(wxT("PrintSpaceChar"), &m_ShowTabChar);
@@ -547,7 +548,7 @@ void InFrameWXMEdit::PrintTextPage(wxDC *dc, int pageNum)
 
 	PaintTextLines(dc, m_PrintRect, toprow, rowcount, *wxWHITE);
 
-	if (!m_linenum_visible || m_PrintSyntax)
+	if (!LineNumberAreaVisible() || m_PrintSyntax)
 		return;
 
 	// draw a line between LineNumberArea and Text
@@ -796,7 +797,7 @@ void InFrameWXMEdit::ClearAllBookmarks()
 
 void InFrameWXMEdit::PaintLineNumberArea(const wxColor & bgcolor, wxDC * dc, const wxRect& rect, bool is_trailing_subrow, MadLineIterator lineiter, int lineid, int text_top)
 {
-	if (!m_linenum_visible && !m_bookmark_visible)
+	if (!LineNumberAreaVisible())
 		return;
 
 	GetSyntax()->SetAttributes(aeLineNumber);
