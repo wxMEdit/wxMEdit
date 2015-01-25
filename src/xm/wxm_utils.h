@@ -236,7 +236,7 @@ private:
 	bool app_dir_writable;
 };
 
-struct WXMControlIDReserver : public boost::noncopyable
+struct WXMControlIDReserver : private boost::noncopyable
 {
 	long RecentFindTextID1() { return fid1; }
 	long RecentFindTextID20() { return fid20; }
