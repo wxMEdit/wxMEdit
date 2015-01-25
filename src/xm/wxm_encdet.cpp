@@ -15,7 +15,9 @@
 #include <boost/foreach.hpp>
 #include <boost/shared_ptr.hpp>
 #include <boost/assign/list_inserter.hpp>
+#include <boost/assign/list_of.hpp>
 #include <boost/range/iterator_range.hpp>
+#include <boost/algorithm/string/predicate.hpp>
 #include <string>
 
 #ifdef _DEBUG
@@ -501,6 +503,36 @@ bool MatchEUCJPMoreThanGB18030(const wxByte *text, size_t len)
 	return (nonascii > 0) && (100*eucjp/nonascii > 50);
 }
 
+bool MatchMBMoreThanUTF16(const wxByte *text, size_t len)
+{
+	if (len < 2)
+		return true;
+
+	// for counting C0 bytes ( < 0x20)
+	size_t byte_cnt[0x20];
+	for (size_t i = 0; i < len; ++i)
+	{
+		if (text[i] >= 0x20)
+			continue;
+
+		++byte_cnt[i];
+	}
+
+	// counting effetive C0 bytes
+	const static std::vector<wxByte> exceptC0bytes( boost::assign::list_of('\t')('\r')('\n')('\v')('\f')('\x1B')
+		.convert_to_container<std::vector<wxByte> >() );
+
+	BOOST_FOREACH(wxByte b, exceptC0bytes)
+		byte_cnt[size_t(b)] = 0;
+
+	size_t eff_c0_cnt = 0;
+	for (size_t i = 0; i<0x20; ++i)
+		eff_c0_cnt += byte_cnt[i];
+
+	// whether effetive C0 bytes accounted more than 1/100
+	return eff_c0_cnt * 100 > len;
+}
+
 #if U_ICU_VERSION_MAJOR_NUM *10 + U_ICU_VERSION_MINOR_NUM < 44
 struct LocalUCharsetDetectorPointer
 {
@@ -532,6 +564,16 @@ void DetectEncoding(const wxByte *text, size_t len, wxm::WXMEncodingID &enc, boo
 	int32_t match_count = 0;
 	const UCharsetMatch **matches = ucsdet_detectAll(csd.getAlias(), &match_count, &status);
 	std::string enc_name(ucsdet_getName(matches[0], &status));
+
+#if U_ICU_VERSION_MAJOR_NUM >= 53
+	if (match_count > 2 && boost::algorithm::starts_with(enc_name, "UTF-16") &&
+		ucsdet_getConfidence(matches[0], &status) == ucsdet_getConfidence(matches[2], &status) &&
+		MatchMBMoreThanUTF16(text, len))
+	{
+		enc_name = ucsdet_getName(matches[2], &status);
+		matches += 2;
+	}
+#endif
 
 	if (match_count>1 && enc_name=="GB18030")
 	{
