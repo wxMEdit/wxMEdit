@@ -21,9 +21,6 @@
 #include <wx/wx.h>
 #endif
 
-#include <wx/confbase.h>
-#include <string>
-
 #include "wxm_lines.h"
 #include "wxmedit_command.h"
 #include "../xm/wxm_encoding/encoding.h"
@@ -31,6 +28,9 @@
 #include "wxm_undo.h"
 #include "ucs4_t.h"
 
+#include <wx/confbase.h>
+
+#include <string>
 
 enum { ID_VSCROLLBAR=19876, ID_HSCROLLBAR };
 
@@ -199,7 +199,6 @@ namespace wxm
 {
     struct MouseCapturer;
 
-
     struct ConfigWriter
     {
         void Record(const wxString& key, bool val) { return Record(key, (long)val); }
@@ -253,8 +252,7 @@ private:
     int             m_LastPaintBitmap;// 0:client, 1:mark
 
     wxPoint         m_Space_Points[4], m_EOF_Points[5];
-    wxPoint         m_CR_Points[40], m_LF_Points[40], m_CRLF_Points[80];
-    int             m_CR_Points_Count, m_LF_Points_Count, m_CRLF_Points_Count;
+    std::vector<wxPoint> m_cr_points, m_lf_points, m_crlf_points;
 
 protected:
     MadCaretPos     m_CaretPos;
@@ -665,8 +663,10 @@ protected:
     {
         m_Syntax->EndPrint();
     }
-	void InitTextFont();
-	void InitHexFont();
+    void InitTextFont();
+    void InitHexFont();
+
+    void CalcEOLMarkPoints(std::vector<wxPoint>& dest, const std::vector<wxPoint>& src, const wxSize& charsz);
 
 public: // basic functions
     void SetSyntax(const wxString &title, bool manual=false);
