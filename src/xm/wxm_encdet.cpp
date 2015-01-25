@@ -13,6 +13,7 @@
 #include <unicode/ucsdet.h>
 #include <unicode/uversion.h>
 #include <boost/foreach.hpp>
+#include <boost/shared_ptr.hpp>
 #include <boost/assign/list_inserter.hpp>
 #include <boost/range/iterator_range.hpp>
 #include <string>
@@ -202,7 +203,7 @@ struct UTF8BytesChecker
 	virtual ~UTF8BytesChecker() {}
 };
 
-struct SingleByteChecker: public UTF8BytesChecker
+struct UTF8SingleByteChecker: public UTF8BytesChecker
 {
 	virtual bool BytesMatch(const wxByte* bytes) const { return true; }
 	virtual bool NonASCII() const { return false; }
@@ -210,7 +211,7 @@ struct SingleByteChecker: public UTF8BytesChecker
 	virtual size_t TakenBytes() const { return 1; }
 };
 
-struct TwoBytesChecker: public UTF8BytesChecker
+struct UTF8TwoBytesChecker: public UTF8BytesChecker
 {
 	virtual bool BytesMatch(const wxByte* b) const
 	{
@@ -219,7 +220,7 @@ struct TwoBytesChecker: public UTF8BytesChecker
 	virtual size_t TakenBytes() const { return 2; }
 };
 
-struct ThreeBytesChecker: public UTF8BytesChecker
+struct UTF8ThreeBytesChecker: public UTF8BytesChecker
 {
 	virtual bool BytesMatch(const wxByte* b) const
 	{
@@ -230,7 +231,7 @@ struct ThreeBytesChecker: public UTF8BytesChecker
 };
 
 // first byte is 0xE0, second byte should >=0xA0
-struct ThreeBytesCheckerLB: public ThreeBytesChecker
+struct UTF8ThreeBytesCheckerLB: public UTF8ThreeBytesChecker
 {
 	virtual bool BytesMatch(const wxByte* b) const
 	{
@@ -241,7 +242,7 @@ struct ThreeBytesCheckerLB: public ThreeBytesChecker
 
 // first byte is 0xED, second byte should < 0xA0
 // skip surrogates
-struct ThreeBytesCheckerM: public ThreeBytesChecker
+struct UTF8ThreeBytesCheckerM: public UTF8ThreeBytesChecker
 {
 	virtual bool BytesMatch(const wxByte* b) const
 	{
@@ -249,7 +250,7 @@ struct ThreeBytesCheckerM: public ThreeBytesChecker
 	}
 };
 
-struct FourBytesChecker: public UTF8BytesChecker
+struct UTF8FourBytesChecker: public UTF8BytesChecker
 {
 	virtual bool BytesMatch(const wxByte* b) const
 	{
@@ -260,7 +261,7 @@ struct FourBytesChecker: public UTF8BytesChecker
 };
 
 // first byte is 0xF0, second byte should >=0x90
-struct FourBytesCheckerLB: public FourBytesChecker
+struct UTF8FourBytesCheckerLB: public UTF8FourBytesChecker
 {
 	virtual bool BytesMatch(const wxByte* b) const
 	{
@@ -270,7 +271,7 @@ struct FourBytesCheckerLB: public FourBytesChecker
 };
 
 // first byte is 0xF4, second byte should <=0x8F
-struct FourBytesCheckerUB: public FourBytesChecker
+struct UTF8FourBytesCheckerUB: public UTF8FourBytesChecker
 {
 	virtual bool BytesMatch(const wxByte* b) const
 	{
@@ -279,7 +280,7 @@ struct FourBytesCheckerUB: public FourBytesChecker
 
 };
 
-struct InvalidBytesChecker: public UTF8BytesChecker
+struct UTF8InvalidBytesChecker: public UTF8BytesChecker
 {
 	virtual bool BytesMatch(const wxByte* bytes) const { return false; }
 	virtual size_t TakenBytes() const { return 1; }
@@ -341,15 +342,15 @@ private:
 	typedef std::map<wxByte, UTF8BytesChecker*> CheckerMap;
 	CheckerMap m_decoders;
 
-	SingleByteChecker   m_dec1;
-	TwoBytesChecker     m_dec2;
-	ThreeBytesCheckerLB m_dec3lb;
-	ThreeBytesChecker   m_dec3;
-	ThreeBytesCheckerM  m_dec3m;
-	FourBytesCheckerLB  m_dec4lb;
-	FourBytesChecker    m_dec4;
-	FourBytesCheckerUB  m_dec4ub;
-	InvalidBytesChecker m_dec_invalid;
+	UTF8SingleByteChecker   m_dec1;
+	UTF8TwoBytesChecker     m_dec2;
+	UTF8ThreeBytesCheckerLB m_dec3lb;
+	UTF8ThreeBytesChecker   m_dec3;
+	UTF8ThreeBytesCheckerM  m_dec3m;
+	UTF8FourBytesCheckerLB  m_dec4lb;
+	UTF8FourBytesChecker    m_dec4;
+	UTF8FourBytesCheckerUB  m_dec4ub;
+	UTF8InvalidBytesChecker m_dec_invalid;
 };
 
 bool IsUTF8(const wxByte *text, size_t len)
@@ -425,7 +426,7 @@ struct WXMEncodingDetector
 				return bom_enc.second;
 		}
 
-		BOOST_FOREACH(const EncodingChecker* checker, m_checkers)
+		BOOST_FOREACH(const boost::shared_ptr<EncodingChecker> checker, m_checkers)
 		{
 			if (checker->MatchText(text, len))
 				return checker->EncodingName();
@@ -437,29 +438,23 @@ struct WXMEncodingDetector
 	WXMEncodingDetector()
 	{
 		boost::assign::push_back(m_checkers)
-			(new UTF16LEChecker)
-			(new UTF16BEChecker)
-			(new UTF8Checker)
-			(new UTF32LEChecker)
-			(new UTF32BEChecker)
-			(new GB18030Checker)
-			(new ISO646Checker)
+			(boost::shared_ptr<EncodingChecker>(new UTF16LEChecker))
+			(boost::shared_ptr<EncodingChecker>(new UTF16BEChecker))
+			(boost::shared_ptr<EncodingChecker>(new UTF8Checker))
+			(boost::shared_ptr<EncodingChecker>(new UTF32LEChecker))
+			(boost::shared_ptr<EncodingChecker>(new UTF32BEChecker))
+			(boost::shared_ptr<EncodingChecker>(new GB18030Checker))
+			(boost::shared_ptr<EncodingChecker>(new ISO646Checker))
 			;
 
-		BOOST_FOREACH(const EncodingChecker* checker, m_checkers)
+		BOOST_FOREACH(const boost::shared_ptr<EncodingChecker> checker, m_checkers)
 		{
 			m_bom_enc_map[checker->BOM()] = checker->EncodingName();
 		}
 	}
 
-	~WXMEncodingDetector()
-	{
-		BOOST_FOREACH(EncodingChecker* checker, m_checkers)
-			delete checker;
-	}
-
 private:
-	std::vector<EncodingChecker*> m_checkers;
+	std::vector<boost::shared_ptr<EncodingChecker> > m_checkers;
 
 	typedef std::map<std::string, std::string, BOMIterationPrior> BOMEncMap;
 	BOMEncMap m_bom_enc_map;
@@ -557,15 +552,15 @@ void DetectEncoding(const wxByte *text, size_t len, wxm::WXMEncodingID &enc, boo
 			enc_name.clear();
 	}
 
-	if(enc_name == "EUC-KR")
+	if (enc_name == "EUC-KR")
 		enc_name = "UHC";
-	else if(enc_name == "EUC-JP")
+	else if (enc_name == "EUC-JP")
 		enc_name = "CP20932";
 
 	wxm::WXMEncodingID init_enc = enc;
 	enc = wxm::WXMEncodingManager::Instance().ExtNameToEncoding(enc_name);
 
-	if(enc == wxm::ENC_Windows_1252 && (init_enc==wxm::ENC_MS950 || init_enc==wxm::ENC_MS936))
+	if (enc == wxm::ENC_Windows_1252 && (init_enc==wxm::ENC_MS950 || init_enc==wxm::ENC_MS936))
 	{
 		wxm::WXMEncodingID det=wxm::ENC_DEFAULT;
 		DetectChineseEncoding(text, len, det);
