@@ -177,18 +177,6 @@ void MadEdit::CalcEOLMarkPoints(std::vector<wxPoint>& dest, const std::vector<wx
     }
 }
 
-void MadEdit::CalcSpaceMarkPoints(const wxSize& charsz)
-{
-    const int y = charsz.y * 4 / 5 + 1;
-    const int x = charsz.x / 4;
-    m_space_points.clear();
-    boost::assign::push_back(m_space_points)
-        ( wxPoint(x, y) )
-        ( wxPoint(3 * x, y) )
-        ( wxPoint(charsz.x / 2, y - charsz.y / 6) )
-        ( wxPoint(x, y) );
-}
-
 void MadEdit::CalcEOFMarkPoints(const wxSize& charsz)
 {
     const int x = charsz.x - 1;
@@ -204,23 +192,38 @@ void MadEdit::CalcEOFMarkPoints(const wxSize& charsz)
         ( wxPoint(charsz.x / 2, y1) );
 }
 
+void MadEdit::CalcSpaceMarkPoints(const wxSize& charsz)
+{
+    const int ty = charsz.y / 7 + 1;
+    const int  y = charsz.y * 3 / 5 + 1;
+    const int  x = charsz.x / 4;
+    m_space_points.clear();
+    boost::assign::push_back(m_space_points)
+        ( wxPoint(x, y) )
+        ( wxPoint(3 * x, y) )
+        ( wxPoint(charsz.x / 2, y - ty) )
+        ( wxPoint(x, y) );
+}
+
 void MadEdit::CalcTabMarkPoints(std::vector<wxPoint>& dest, const wxSize& charsz)
 {
-    const int ty = charsz.y / 5;
-    const int y = 1 + charsz.y * 4 / 5;
+    const int ty = charsz.y / 7 + 1;
+    const int  y = charsz.y * 3 / 5 + 1;
 
-    const int tx = (ty > charsz.x / 2) ? (charsz.x / 2) : ty + 1;
-    const int x = 2 + tx;
+    const int tx = (ty > charsz.x / 2) ? (charsz.x / 2) : ty;
+    const int  x = 2;
     const int dx = charsz.x - 3;
 
     dest.clear();
     boost::assign::push_back(dest)
+        ( wxPoint(x, y - ty * 2 / 3) )
+        ( wxPoint(x, y + ty * 2 / 3) )
         ( wxPoint(x, y) )
-        ( wxPoint(x, y - ty) )
-        ( wxPoint(x - tx, y) )
-        ( wxPoint(x + dx - tx, y) )
-        ( wxPoint(x + dx - tx * 2, y - ty) )
-        ( wxPoint(x + dx - tx * 2, y) );
+        ( wxPoint(x + dx, y) )
+        ( wxPoint(x + dx - tx, y - ty) )
+        ( wxPoint(x + dx, y) )
+        ( wxPoint(x + dx - tx, y + ty) )
+        ( wxPoint(x + dx, y) );
 }
 
 void MadEdit::SetTextFont(const wxString &name, int size, bool forceReset)
