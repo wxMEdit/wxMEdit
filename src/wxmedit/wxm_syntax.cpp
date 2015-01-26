@@ -1766,7 +1766,7 @@ int MadSyntax::NextWord(int &wordwidth)
             width = nw_MadEdit->GetUCharWidth(uc);
             if(uc == 0x09)
             {
-                int tabwidth = nw_MadEdit->m_TabColumns * nw_MadEdit->GetUCharWidth(0x20);
+                int tabwidth = nw_MadEdit->m_TabColumns * nw_MadEdit->GetSpaceCharFontWidth();
                 width = nw_RowIndexIter->m_Width - nw_LineWidth;
                 tabwidth -= (nw_LineWidth % tabwidth);
                 if(tabwidth < width)

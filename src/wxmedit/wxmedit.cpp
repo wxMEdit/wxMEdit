@@ -1308,7 +1308,7 @@ void MadEdit::UpdateCaret(MadCaretPos &caretPos,
             int width = GetUCharWidth(uc);
             if(uc == 0x09)
             {
-                int tabwidth = m_TabColumns * GetUCharWidth(0x20);
+                int tabwidth = m_TabColumns * GetSpaceCharFontWidth();
                 width = rowwidth - xpos;
                 tabwidth -= (xpos % tabwidth);
                 if(tabwidth < width)
@@ -1412,7 +1412,7 @@ void MadEdit::UpdateCaretByXPos(int xPos, MadCaretPos &caretPos,
         int width = GetUCharWidth(uc);
         if(uc == 0x09)
         {
-            int tabwidth = m_TabColumns * GetUCharWidth(0x20);
+            int tabwidth = m_TabColumns * GetSpaceCharFontWidth();
             width = rowwidth - xpos;
             tabwidth -= (xpos % tabwidth);
             if(tabwidth < width)
@@ -1441,7 +1441,7 @@ void MadEdit::UpdateCaretByXPos(int xPos, MadCaretPos &caretPos,
 
     if(restxpos > 0 && m_EditMode == emColumnMode)
     {
-        int spacewidth = GetUCharWidth(0x20);
+        int spacewidth = GetSpaceCharFontWidth();
 
         caretPos.extraspaces = restxpos / spacewidth;
         restxpos -= int(caretPos.extraspaces * spacewidth);
@@ -1868,7 +1868,7 @@ void MadEdit::PaintTextLines(wxDC *dc, const wxRect &rect, int toprow, int rowco
             {
                 const int selleftxpos = leftpos + m_SelLeftXPos;
                 const int selrightxpos = leftpos + m_SelRightXPos;
-                const int ww = m_TextFontAveCharWidth << 1;
+                const int ww = m_TextFontSpaceCharWidth * 2;
                 if(selleftxpos > (maxright + ww) || selrightxpos < (minleft - ww))
                 {
                     bPaintSelection = false;
@@ -2049,7 +2049,7 @@ void MadEdit::PaintTextLines(wxDC *dc, const wxRect &rect, int toprow, int rowco
             {
                 m_Syntax->SetAttributes(aeSpace);
 
-                int w = GetUCharWidth(0x20);   //FFontAveCharWidth;
+                int w = m_TextFontAveCharWidth;
 
                 // clear background
                 if(m_Syntax->nw_BgColor != current_bgcolor)
@@ -2096,7 +2096,7 @@ void MadEdit::PaintTextLines(wxDC *dc, const wxRect &rect, int toprow, int rowco
             if(bPaintSelection)
             {
                 if(!m_ShowEndOfLine && m_Syntax->nw_EndOfLine)
-                    left += GetUCharWidth(0x20);
+                    left += m_TextFontAveCharWidth;
 
                 if(m_EditMode == emTextMode)
                 {
@@ -2127,7 +2127,7 @@ void MadEdit::PaintTextLines(wxDC *dc, const wxRect &rect, int toprow, int rowco
                     {
                         if(xpos1 > 0)
                         {
-                            const int w = GetUCharWidth(0x20);
+                            const int w = GetSpaceCharFontWidth();
                             int spaces = xpos1 / w;
                             xpos1 -= spaces * w;
                             if(xpos1 > (w >> 1))
@@ -2138,7 +2138,7 @@ void MadEdit::PaintTextLines(wxDC *dc, const wxRect &rect, int toprow, int rowco
                         }
                         if(xpos2 > 0)
                         {
-                            const int w = GetUCharWidth(0x20);
+                            const int w = GetSpaceCharFontWidth();
                             int spaces = xpos2 / w;
                             xpos2 -= spaces * w;
                             if(xpos2 > (w >> 1))
@@ -3266,7 +3266,7 @@ void MadEdit::UpdateScrollBarPos()
 
         if(m_EditMode==emColumnMode)
         {
-            m_MaxColumnRowWidth -= GetUCharWidth(0x20);
+            m_MaxColumnRowWidth -= GetSpaceCharFontWidth();
 
             int w = m_ClientWidth - (CachedLineNumberAreaWidth() + m_LeftMarginWidth + m_RightMarginWidth);
             if(m_MaxColumnRowWidth < w)
@@ -3544,7 +3544,7 @@ wxFileOffset MadEdit::GetColumnSelection(wxString *ws)
                 int ucwidth = GetUCharWidth(uc);
                 if(uc == 0x09)
                 {
-                    int tabwidth = m_TabColumns * GetUCharWidth(0x20);
+                    int tabwidth = m_TabColumns * GetSpaceCharFontWidth();
                     ucwidth = rowwidth - nowxpos;
                     tabwidth -= (nowxpos % tabwidth);
                     if(tabwidth < ucwidth)
@@ -4943,7 +4943,7 @@ wxFileOffset MadEdit::GetRowposXPos(int &xpos, MadLineIterator & lit,
             int ucwidth = GetUCharWidth(uc);
             if(uc == 0x09)
             {
-                int tabwidth = m_TabColumns * GetUCharWidth(0x20);
+                int tabwidth = m_TabColumns * GetSpaceCharFontWidth();
                 ucwidth = rowwidth - nowxpos;
                 tabwidth -= (nowxpos % tabwidth);
                 if(tabwidth < ucwidth)
@@ -5043,7 +5043,7 @@ void MadEdit::InsertColumnString(const ucs4_t *ucs, size_t count, int linecount,
         if(xpos > 0)
         {
             int spaces = 0;
-            int sw = GetUCharWidth(0x20);
+            int sw = GetSpaceCharFontWidth();
             spaces = xpos / sw;
             xpos -= spaces * sw;
             if(xpos > (sw >> 1))
@@ -5116,7 +5116,7 @@ void MadEdit::InsertColumnString(const ucs4_t *ucs, size_t count, int linecount,
             if(ulen>0 && xpos>0)
             {
                 int spaces;
-                int sw = GetUCharWidth(0x20);
+                int sw = GetSpaceCharFontWidth();
                 spaces = xpos / sw;
                 xpos -= spaces * sw;
                 if(xpos > (sw >> 1))
@@ -5197,7 +5197,7 @@ void MadEdit::InsertColumnString(const ucs4_t *ucs, size_t count, int linecount,
             }
             else if(bSelText && lines==1)
             {
-                int sw=GetUCharWidth(0x20);
+                int sw=GetSpaceCharFontWidth();
                 int xpos1=m_SelLeftXPos, xpos2=m_SelRightXPos;
                 int spaces1 = 0;
                 if(xpos1 > 0)
@@ -5454,7 +5454,7 @@ void MadEdit::InsertColumnString(const ucs4_t *ucs, size_t count, int linecount,
                     if(xpos > 0)
                     {
                         int spaces = 0;
-                        int sw = GetUCharWidth(0x20);
+                        int sw = GetSpaceCharFontWidth();
                         spaces = xpos / sw;
                         xpos -= spaces * sw;
                         if(xpos > (sw >> 1))
@@ -5706,7 +5706,7 @@ MadUndo *MadEdit::DeleteSelection(bool bCorrectCaretPos, vector <int> *rpos, boo
                     int ucwidth = GetUCharWidth(uc);
                     if(uc == 0x09)
                     {
-                        int tabwidth = m_TabColumns * GetUCharWidth(0x20);
+                        int tabwidth = m_TabColumns * GetSpaceCharFontWidth();
                         ucwidth = rowwidth - nowxpos;
                         tabwidth -= (nowxpos % tabwidth);
                         if(tabwidth < ucwidth)
@@ -7148,7 +7148,7 @@ void MadEdit::ProcessCommand(MadEditCommand command)
                     else if(m_CaretPos.extraspaces != 0)        // ColumnMode
                     {
                         --m_CaretPos.extraspaces;
-                        m_CaretPos.xpos -= GetUCharWidth(0x20);
+                        m_CaretPos.xpos -= GetSpaceCharFontWidth();
                     }
                     else
                     {
@@ -7234,7 +7234,7 @@ void MadEdit::ProcessCommand(MadEditCommand command)
                                 //if(m_CaretPos.subrowid == m_CaretPos.iter->RowCount() - 1)
                                 {
                                     ++m_CaretPos.extraspaces;
-                                    m_CaretPos.xpos += GetUCharWidth(0x20);
+                                    m_CaretPos.xpos += GetSpaceCharFontWidth();
                                 }
                             }
                         }
@@ -7428,7 +7428,7 @@ void MadEdit::ProcessCommand(MadEditCommand command)
                 case ecSelEndLine:
                     if(m_CaretPos.extraspaces != 0)
                     {
-                        m_CaretPos.xpos -= int(m_CaretPos.extraspaces * GetUCharWidth(0x20));
+                        m_CaretPos.xpos -= int(m_CaretPos.extraspaces * GetSpaceCharFontWidth());
                         m_CaretPos.extraspaces = 0;
                     }
                     else
@@ -7540,7 +7540,7 @@ void MadEdit::ProcessCommand(MadEditCommand command)
                 case ecSelPrevWord:
                     if(m_CaretPos.extraspaces != 0)
                     {
-                        m_CaretPos.xpos -= int(m_CaretPos.extraspaces * GetUCharWidth(0x20));
+                        m_CaretPos.xpos -= int(m_CaretPos.extraspaces * GetSpaceCharFontWidth());
                         m_CaretPos.extraspaces = 0;
                     }
                     else
@@ -7753,10 +7753,10 @@ void MadEdit::ProcessCommand(MadEditCommand command)
                         }
                         else if(m_InsertSpacesInsteadOfTab)
                         {
-                            int tabwidth = m_TabColumns * GetUCharWidth(0x20);
+                            int tabwidth = m_TabColumns * GetSpaceCharFontWidth();
                             if(m_Selection) tabwidth -= (m_SelectionBegin->xpos % tabwidth);
                             else tabwidth -= (m_CaretPos.xpos % tabwidth);
-                            int spaces=tabwidth/GetUCharWidth(0x20);
+                            int spaces=tabwidth/GetSpaceCharFontWidth();
                             if(spaces==0) spaces=m_TabColumns;
 
                             ucs4_t *sp = new ucs4_t[spaces];
@@ -7807,7 +7807,7 @@ void MadEdit::ProcessCommand(MadEditCommand command)
                                     if(m_CaretPos.xpos < m_MaxColumnRowWidth)
                                     {
                                         ++m_CaretPos.extraspaces;
-                                        m_CaretPos.xpos += GetUCharWidth(0x20);
+                                        m_CaretPos.xpos += GetSpaceCharFontWidth();
                                     }
                                 }
                                 else
@@ -8052,7 +8052,7 @@ void MadEdit::ProcessCommand(MadEditCommand command)
                                 if(m_CaretPos.extraspaces != 0)
                                 {
                                     --m_CaretPos.extraspaces;
-                                    m_CaretPos.xpos -= GetUCharWidth(0x20);
+                                    m_CaretPos.xpos -= GetSpaceCharFontWidth();
                                 }
                                 else
                                 {
@@ -8079,7 +8079,7 @@ void MadEdit::ProcessCommand(MadEditCommand command)
                                 if(m_CaretPos.extraspaces)
                                 {
                                     --m_CaretPos.extraspaces;
-                                    m_CaretPos.xpos -= GetUCharWidth(0x20);
+                                    m_CaretPos.xpos -= GetSpaceCharFontWidth();
 
                                     AppearCaret();
                                     UpdateScrollBarPos();
@@ -10176,13 +10176,13 @@ void MadEdit::SetCaretType(MadCaretType type)
         break;
     case ctHorizontalLine:
         if(m_EditMode != emHexMode)
-            GetCaret()->SetSize(m_TextFontAveCharWidth, 2);
+            GetCaret()->SetSize(m_TextFontSpaceCharWidth, 2);
         else
             GetCaret()->SetSize(m_HexFontMaxDigitWidth, 2);
         break;
     case ctBlock:
         if(m_EditMode != emHexMode)
-            GetCaret()->SetSize(m_TextFontAveCharWidth, m_TextFontHeight);
+            GetCaret()->SetSize(m_TextFontSpaceCharWidth, m_TextFontHeight);
         else
             GetCaret()->SetSize(m_HexFontMaxDigitWidth, m_HexFontHeight);
         break;

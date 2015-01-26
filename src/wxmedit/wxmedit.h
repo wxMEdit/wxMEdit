@@ -278,9 +278,16 @@ private:
     int             m_SelFirstRow, m_SelLastRow;        // for repaint
     int             m_SelLeftXPos, m_SelRightXPos;      // for ColumnMode
 
+public:
+    int GetSpaceCharFontWidth()
+    {
+        return m_TextFontSpaceCharWidth;
+    }
+private:
     wxFont          *m_TextFont; // readonly, set it at SetTextFont()
     int             m_TextFontHeight;
     int             m_TextFontAveCharWidth;
+    int             m_TextFontSpaceCharWidth;
 protected:
     int             m_TextFontMaxDigitWidth;
 

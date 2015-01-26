@@ -22,6 +22,8 @@
 #include <boost/assign/list_of.hpp>
 #include <boost/assign/std/vector.hpp>
 
+#include <algorithm>
+
 #ifdef _DEBUG
 #include <crtdbg.h>
 #define new new(_NORMAL_BLOCK ,__FILE__, __LINE__)
@@ -251,65 +253,52 @@ void MadEdit::SetTextFont(const wxString &name, int size, bool forceReset)
         else
         {
             MadEditSuperClass::SetFont(*m_TextFont);
-            m_TextFontHeight=GetCharHeight();
+            m_TextFontHeight = GetCharHeight();
 
-            bool ofwm=m_FixedWidthMode;
-            m_FixedWidthMode=false; // avoid effecting on GetUCharWidth();
+            bool ofwm = m_FixedWidthMode;
+            m_FixedWidthMode = false; // avoid effecting on GetUCharWidth();
 
-            m_TextFontAveCharWidth=GetUCharWidth(0x20);//GetCharWidth();
+            m_TextFontSpaceCharWidth=GetUCharWidth(0x20);
 
-            int w;
-            m_TextFontMaxDigitWidth=GetUCharWidth('0');
-            for(wxChar wc=wxT('1');wc<=wxT('9');wc++)
+            // DO NOT use GetCharWidth(), for it takes '0' under Windows indeed, 'g' under other OSes
+            m_TextFontAveCharWidth = std::max(GetUCharWidth('g'), m_TextFontSpaceCharWidth);
+
+            m_TextFontMaxDigitWidth = GetUCharWidth('0');
+            for (wxChar wc=wxT('1'); wc<=wxT('9'); ++wc)
+                m_TextFontMaxDigitWidth = std::max(m_TextFontMaxDigitWidth, GetUCharWidth(wc));
+
+            m_TextFontAveCharWidth = std::max(m_TextFontAveCharWidth, m_TextFontMaxDigitWidth);
+
+            if (ofwm) //(m_FixedWidthMode)
             {
-                w=GetUCharWidth(wc);
-                if(w>m_TextFontMaxDigitWidth)
+                if (!HexPrinting())
                 {
-                    m_TextFontMaxDigitWidth=w;
-                    m_TextFontAveCharWidth=w;
-                }
-            }
-
-            if(ofwm)//(m_FixedWidthMode)
-            {
-                m_TextFontAveCharWidth=m_TextFontMaxDigitWidth;
-
-                if(!HexPrinting())
-                {
-                    w=GetUCharWidth('W');
-                    if(w>m_TextFontMaxDigitWidth)
-                    {
-                        m_TextFontMaxDigitWidth=w;
-                        m_TextFontAveCharWidth=w;
-                    }
+                    m_TextFontAveCharWidth = std::max(m_TextFontAveCharWidth, GetUCharWidth('W'));
                 }
                 else
                 {
-                    for(wxChar wc=wxT('A');wc<=wxT('F');wc++)
-                    {
-                        w=GetUCharWidth(wc);
-                        if(w>m_TextFontMaxDigitWidth)
-                        {
-                            m_TextFontMaxDigitWidth=w;
-                            m_TextFontAveCharWidth=w;
-                        }
-                    }
+                    for (wxChar wc=wxT('A'); wc<=wxT('F'); ++wc)
+                        m_TextFontAveCharWidth = std::max(m_TextFontAveCharWidth, GetUCharWidth(wc));
                 }
+
+                m_TextFontMaxDigitWidth = m_TextFontAveCharWidth;
+                m_TextFontSpaceCharWidth = m_TextFontAveCharWidth;
             }
 
-            m_FixedWidthMode=ofwm;
+            m_FixedWidthMode = ofwm;
 
 
-            m_LeftMarginWidth = (m_TextFontAveCharWidth >> 1)-1;
-            m_RightMarginWidth = m_TextFontAveCharWidth << 1;
+            m_LeftMarginWidth = std::max(1, (m_TextFontAveCharWidth / 2) - 1);
+            m_RightMarginWidth = m_TextFontAveCharWidth * 2;
 
             m_Syntax->InitNextWord1(m_Lines, m_WordBuffer, m_WidthBuffer,
                 name, size, m_TextFont->GetFamily());
 
 
-            const wxSize charsz(GetUCharWidth(0x20), m_TextFontHeight);
+            const wxSize charsz(m_TextFontAveCharWidth, m_TextFontHeight);
+            const wxSize spacesz(m_TextFontSpaceCharWidth, m_TextFontHeight);
 
-            CalcSpaceMarkPoints(charsz);
+            CalcSpaceMarkPoints(spacesz);
             CalcEOFMarkPoints(charsz);
             CalcEOLMarkPoints(m_cr_points, CR_Points, charsz);
             CalcEOLMarkPoints(m_lf_points, LF_Points, charsz);
@@ -533,7 +522,7 @@ void MadEdit::SetEditMode(MadEditMode mode)
         {
             if(m_CaretPos.extraspaces)
             {
-                m_CaretPos.xpos -= int(m_CaretPos.extraspaces * GetUCharWidth(0x20));
+                m_CaretPos.xpos -= int(m_CaretPos.extraspaces * GetSpaceCharFontWidth());
                 m_CaretPos.extraspaces = 0;
 
                 m_LastCaretXPos = m_CaretPos.xpos;
@@ -547,12 +536,12 @@ void MadEdit::SetEditMode(MadEditMode mode)
             {
                 if(m_SelectionPos1.extraspaces)
                 {
-                    m_SelectionPos1.xpos -= int(m_SelectionPos1.extraspaces * GetUCharWidth(0x20));
+                    m_SelectionPos1.xpos -= int(m_SelectionPos1.extraspaces * GetSpaceCharFontWidth());
                     m_SelectionPos1.extraspaces = 0;
                 }
                 if(m_SelectionPos2.extraspaces)
                 {
-                    m_SelectionPos2.xpos -= int(m_SelectionPos2.extraspaces * GetUCharWidth(0x20));
+                    m_SelectionPos2.xpos -= int(m_SelectionPos2.extraspaces * GetSpaceCharFontWidth());
                     m_SelectionPos2.extraspaces = 0;
                 }
 
@@ -815,7 +804,7 @@ void MadEdit::GetCaretPosition(int &line, int &subrow, wxFileOffset &column)
     {
         column=m_CaretPos.linepos;
     }
-    else if(m_FixedWidthMode || GetUCharWidth('W')==GetUCharWidth('i'))//m_TextFontAveCharWidth)
+    else if(m_FixedWidthMode || GetUCharWidth('W')==GetUCharWidth('i'))
     {
         column=((m_CaretPos.xpos+m_TextFontAveCharWidth-1)/m_TextFontAveCharWidth);
     }

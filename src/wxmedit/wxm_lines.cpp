@@ -1565,7 +1565,7 @@ MadLineState MadLines::Reformat(MadLineIterator iter)
                 {
                     m_MadEdit->m_HasTab = true;
 
-                    int tabwidth = m_MadEdit->m_TabColumns * m_MadEdit->GetUCharWidth(0x20);
+                    int tabwidth = m_MadEdit->m_TabColumns * m_MadEdit->GetSpaceCharFontWidth();
 
                     ucwidth = maxwidth - rowidx.m_Width;
                     if(ucwidth == 0)            // Tab at line-end
@@ -2040,7 +2040,7 @@ void MadLines::RecountLineWidth(void)
                 {
                     //m_MadEdit->FHasTab = true;
 
-                    int tabwidth = m_MadEdit->m_TabColumns * m_MadEdit->GetUCharWidth(0x20);
+                    int tabwidth = m_MadEdit->m_TabColumns * m_MadEdit->GetSpaceCharFontWidth();
 
                     ucwidth = maxwidth - rowidx.m_Width;
                     if(ucwidth == 0)            // Tab at line-end
