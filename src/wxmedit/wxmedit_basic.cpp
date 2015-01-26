@@ -179,17 +179,19 @@ void MadEdit::CalcEOLMarkPoints(std::vector<wxPoint>& dest, const std::vector<wx
 
 void MadEdit::CalcEOFMarkPoints(const wxSize& charsz)
 {
-    const int x = charsz.x - 1;
-    const int y = charsz.y / 5 + 1;
-    const int y1 = charsz.y * 4 / 5 + 1;
-    const int y2 = charsz.y * 19 / 30 + 1;
+    const int x0 = charsz.x / 16 + 1;
+    const int x1 = charsz.x / 2;
+    const int x2 = charsz.x * 15 / 16 - 1;
+    const int y0 = charsz.y / 16 + 1;
+    const int y1 = charsz.y / 2;
+    const int y2 = charsz.y * 15 / 16 - 1;
     m_eof_points.clear();
     boost::assign::push_back(m_eof_points)
-        ( wxPoint(x, y) )
-        ( wxPoint(x, y1) )
-        ( wxPoint(2, y1) )
-        ( wxPoint(charsz.x / 2, y2) )
-        ( wxPoint(charsz.x / 2, y1) );
+        ( wxPoint(x2, y0) )
+        ( wxPoint(x0, y2) )
+        ( wxPoint(x2, y2) )
+        ( wxPoint(x2, y1) )
+        ( wxPoint(x1, y2) );
 }
 
 void MadEdit::CalcSpaceMarkPoints(const wxSize& charsz)
