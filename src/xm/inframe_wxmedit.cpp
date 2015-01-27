@@ -199,9 +199,7 @@ void InFrameWXMEdit::DoStatusChanged()
 	}
 
 	if (title != oldtitle)
-	{
 		g_MainFrame->m_Notebook->SetPageText(selid, title);
-	}
 
 	if (this != g_active_wxmedit)
 		return;
@@ -225,9 +223,7 @@ void InFrameWXMEdit::DoStatusChanged()
 	wxm::GetFrameStatusBar().Update(); // repaint immediately
 
 	if (g_SearchReplaceDialog != NULL)
-	{
 		g_SearchReplaceDialog->UpdateCheckBoxByCBHex(g_SearchReplaceDialog->WxCheckBoxFindHex->GetValue());
-	}
 }
 
 void InFrameWXMEdit::DoToggleWindow()
@@ -249,22 +245,21 @@ void InFrameWXMEdit::SetWordWrapMode(MadWordWrapMode mode)
 	m_WordWrapMode = mode;
 	m_cfg_writer->Record(wxT("/wxMEdit/WordWrapMode"), (long)mode);
 
-	if (GetEditMode() != emHexMode)
-	{
-		if (mode == wwmWrapByWindow)
-			m_DrawingXPos = 0;
-
-		UpdateAppearance();
-		RecountLineWidth(true);
-		UpdateScrollBarPos();
-
-		m_RepaintAll = true;
-		Refresh(false);
-	}
-	else
+	if (GetEditMode() == emHexMode)
 	{
 		m_DoRecountLineWidth = true;
+		return;
 	}
+
+	if (mode == wwmWrapByWindow)
+		m_DrawingXPos = 0;
+
+	UpdateAppearance();
+	RecountLineWidth(true);
+	UpdateScrollBarPos();
+
+	m_RepaintAll = true;
+	Refresh(false);
 }
 
 int InFrameWXMEdit::CalcLineNumberAreaWidth(MadLineIterator lit, int lineid, int rowid, int toprow, int rowcount)
@@ -439,7 +434,7 @@ void InFrameWXMEdit::BeginHexPrinting()
 		return;
 	}
 
-	m_PrintTotalHexLineCount = m_Lines->m_Size >> 4; // /16
+	m_PrintTotalHexLineCount = m_Lines->m_Size / 16;
 	if ((size_t(m_Lines->m_Size) & 0x0F) != 0)
 		++m_PrintTotalHexLineCount;
 
@@ -532,9 +527,7 @@ void InFrameWXMEdit::PrintTextPage(wxDC *dc, int pageNum)
 {
 	int rowcount = m_RowCountPerPage;
 	if (pageNum*rowcount > int(m_Lines->m_RowCount))
-	{
 		rowcount -= (pageNum*rowcount - int(m_Lines->m_RowCount));
-	}
 
 	int toprow = (pageNum - 1)*m_RowCountPerPage;
 
@@ -629,7 +622,7 @@ void InFrameWXMEdit::PrintHexPage(wxDC *dc, int pageNum)
 	wxFileOffset pos;
 	MadUCQueue ucqueue;
 
-	wxFileOffset hexrowpos = wxFileOffset(toprow) << 4;
+	wxFileOffset hexrowpos = wxFileOffset(toprow) * 16;
 	wxString offset(wxT("12345678"));
 	for (int rowidx = 0; rowidx<rowcount; rowidx++, hexrowpos += 16)// for every hex-line
 	{
@@ -841,9 +834,7 @@ void InFrameWXMEdit::PaintLineNumberArea(const wxColor & bgcolor, wxDC * dc, con
 	for (int i = 0; i < ncount; i++, l += m_TextFontMaxDigitWidth)
 	{
 		if (lnstr[i] != 0x20)
-		{
 			dc->DrawText(lnstr[i], l, text_top);
-		}
 	}
 }
 
