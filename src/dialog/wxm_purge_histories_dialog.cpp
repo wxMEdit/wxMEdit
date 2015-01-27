@@ -2,7 +2,7 @@
 // Name:        wxm_sort_dialog.h
 // Description: Purge Histories Dialog
 // Copyright:   2014-2015  JiaYanwei   <wxmedit@gmail.com>
-// Licence:     GPLv3
+// License:     GPLv3
 ///////////////////////////////////////////////////////////////////////////////
 
 #include "wxm_purge_histories_dialog.h"

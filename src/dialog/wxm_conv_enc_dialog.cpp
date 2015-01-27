@@ -2,7 +2,7 @@
 // Name:        wxm_conv_enc_dialog.cpp
 // Description: Encoding Conversion Dialog
 // Copyright:   2013-2015  JiaYanwei   <wxmedit@gmail.com>
-// Licence:     GPLv3
+// License:     GPLv3
 ///////////////////////////////////////////////////////////////////////////////
 
 #include "wxm_conv_enc_dialog.h"

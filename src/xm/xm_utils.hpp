@@ -3,7 +3,7 @@
 // Name:        xm/xm_utils.hpp
 // Description: Template Utilities
 // Copyright:   2014-2015  JiaYanwei   <wxmedit@gmail.com>
-// Licence:     GPLv3
+// License:     GPLv3
 ///////////////////////////////////////////////////////////////////////////////
 
 #ifndef _XM_UTILS_HPP_

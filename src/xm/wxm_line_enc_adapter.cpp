@@ -3,7 +3,7 @@
 // Name:        xm/wxm_line_enc_adapter.cpp
 // Description: Adapters for MadLines and WXMEncoding
 // Copyright:   2013-2015  JiaYanwei   <wxmedit@gmail.com>
-// Licence:     GPLv3
+// License:     GPLv3
 ///////////////////////////////////////////////////////////////////////////////
 
 #include "wxm_line_enc_adapter.h"

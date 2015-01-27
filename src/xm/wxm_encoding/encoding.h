@@ -3,7 +3,7 @@
 // Name:        xm/wxm_encoding/encoding.h
 // Description: Define the Encodings Supported by wxMEdit
 // Copyright:   2013-2015  JiaYanwei   <wxmedit@gmail.com>
-// Licence:     GPLv3
+// License:     GPLv3
 ///////////////////////////////////////////////////////////////////////////////
 
 #ifndef _WXM_ENCODING_H_

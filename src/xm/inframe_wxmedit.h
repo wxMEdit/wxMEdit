@@ -3,7 +3,7 @@
 // Name:        xm/inframe_wxmedit.h
 // Description: Embedded wxMEdit in Main Frame
 // Copyright:   2014-2015  JiaYanwei   <wxmedit@gmail.com>
-// Licence:     GPLv3
+// License:     GPLv3
 ///////////////////////////////////////////////////////////////////////////////
 
 #ifndef _INFRAME_WXMEDIT_H_

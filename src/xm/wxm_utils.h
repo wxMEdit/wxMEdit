@@ -3,7 +3,7 @@
 // Name:        wxm_utils.h
 // Description: Utilities
 // Copyright:   2013-2015  JiaYanwei   <wxmedit@gmail.com>
-// Licence:     GPLv3
+// License:     GPLv3
 ///////////////////////////////////////////////////////////////////////////////
 
 #ifndef _WXM_UTILS_H_

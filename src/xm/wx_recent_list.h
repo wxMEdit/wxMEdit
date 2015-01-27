@@ -3,7 +3,7 @@
 // Name:        xm/wx_recent_list.h
 // Description: Recent List
 // Copyright:   2013-2015  JiaYanwei   <wxmedit@gmail.com>
-// Licence:     GPLv3
+// License:     GPLv3
 ///////////////////////////////////////////////////////////////////////////////
 
 #ifndef _WX_RECENT_LIST_H_

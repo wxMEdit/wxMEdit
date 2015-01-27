@@ -2,7 +2,7 @@
 // Name:        wxm_word_count_dialog.h
 // Description: WordCount Dialog
 // Copyright:   2013-2015  JiaYanwei   <wxmedit@gmail.com>
-// Licence:     GPL
+// License:     GPL
 ///////////////////////////////////////////////////////////////////////////////
 
 #ifndef WXM_WORD_COUNT_DIALOG_H

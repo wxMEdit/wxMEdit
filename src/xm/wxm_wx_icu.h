@@ -3,7 +3,7 @@
 // Name:        xm/wxm_wx_icu.h
 // Description: wxWidgets/ICU Type Adapter
 // Copyright:   2013-2015  JiaYanwei   <wxmedit@gmail.com>
-// Licence:     GPLv3
+// License:     GPLv3
 ///////////////////////////////////////////////////////////////////////////////
 
 #ifndef _WXM_WX_ICU_H_

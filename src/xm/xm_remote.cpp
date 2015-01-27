@@ -3,7 +3,7 @@
 // Name:        xm/wxm_remote.h
 // Description: Remote File Access
 // Copyright:   2014-2015  JiaYanwei   <wxmedit@gmail.com>
-// Licence:     GPLv3
+// License:     GPLv3
 ///////////////////////////////////////////////////////////////////////////////
 
 #include "xm_remote.h"

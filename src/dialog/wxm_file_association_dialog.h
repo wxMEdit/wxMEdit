@@ -3,7 +3,7 @@
 // Description: Find/Replace in Files Dialog
 // Copyright:   2013-2015  JiaYanwei   <wxmedit@gmail.com>
 //              2007-2010  Alston Chen <madedit@gmail.com>
-// Licence:     GPLv3
+// License:     GPLv3
 ///////////////////////////////////////////////////////////////////////////////
 
 #ifndef WXM_FILE_ASSOCIATION_DIALOG_H

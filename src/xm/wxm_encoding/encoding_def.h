@@ -3,7 +3,7 @@
 // Name:        xm/wxm_encoding/encoding_def.h
 // Description: Encoding Relative Definitions of wxMEdit
 // Copyright:   2013-2015  JiaYanwei   <wxmedit@gmail.com>
-// Licence:     GPLv3
+// License:     GPLv3
 ///////////////////////////////////////////////////////////////////////////////
 #ifndef _WXM_ENCODING_DEF_H_
 #define _WXM_ENCODING_DEF_H_

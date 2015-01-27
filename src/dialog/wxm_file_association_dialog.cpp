@@ -3,7 +3,7 @@
 // Description: File Type Association Dialog for MSWindows
 // Copyright:   2013-2015  JiaYanwei   <wxmedit@gmail.com>
 //              2007-2010  Alston Chen <madedit@gmail.com>
-// Licence:     GPLv3
+// License:     GPLv3
 ///////////////////////////////////////////////////////////////////////////////
 
 #include "wxm_file_association_dialog.h"

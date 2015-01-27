@@ -3,7 +3,7 @@
 // Name:        xm/single_line_wxmedit.h
 // Description: Single Line wxMEdit Control
 // Copyright:   2014-2015  JiaYanwei   <wxmedit@gmail.com>
-// Licence:     GPLv3
+// License:     GPLv3
 ///////////////////////////////////////////////////////////////////////////////
 
 #ifndef _SINGLE_LINE_WXMEDIT_H_

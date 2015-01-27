@@ -3,7 +3,7 @@
 // Name:        xm/wxm_wx_icu.cpp
 // Description: Case Conversion for wxWidgets String
 // Copyright:   2013-2015  JiaYanwei   <wxmedit@gmail.com>
-// Licence:     GPLv3
+// License:     GPLv3
 ///////////////////////////////////////////////////////////////////////////////
 
 #include "wxm_case_conv.h"

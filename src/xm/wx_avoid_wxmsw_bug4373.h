@@ -3,7 +3,7 @@
 // Name:        xm/wx_avoid_wxmsw_bug4373.h
 // Description: To avoid the bug 4373 of wxMSW-2.8.12 or lower
 // Copyright:   2013-2015  JiaYanwei   <wxmedit@gmail.com>
-// Licence:     GPLv3
+// License:     GPLv3
 ///////////////////////////////////////////////////////////////////////////////
 
 #ifndef _WX_AVOID_WXMSW_BUG4373_H

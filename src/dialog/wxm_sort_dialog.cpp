@@ -2,7 +2,7 @@
 // Name:        wxm_sort_dialog.cpp
 // Description: Sort Options Dialog
 // Copyright:   2013-2015  JiaYanwei   <wxmedit@gmail.com>
-// Licence:     GPLv3
+// License:     GPLv3
 ///////////////////////////////////////////////////////////////////////////////
 
 #include "wxm_sort_dialog.h"

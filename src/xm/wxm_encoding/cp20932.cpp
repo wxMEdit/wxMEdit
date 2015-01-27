@@ -3,7 +3,7 @@
 // Name:        xm/wxm_encoding/cp20932.h
 // Description: Define the Double-byte Encoding CP20932
 // Copyright:   2013-2015  JiaYanwei   <wxmedit@gmail.com>
-// Licence:     GPLv3
+// License:     GPLv3
 ///////////////////////////////////////////////////////////////////////////////
 
 #include "cp20932.h"

@@ -2,7 +2,7 @@
 // Name:        wxmedit_about_dialog.h
 // Description: wxMEdit About Dialog
 // Copyright:   2013-2015  JiaYanwei   <wxmedit@gmail.com>
-// Licence:     GPLv3
+// License:     GPLv3
 ///////////////////////////////////////////////////////////////////////////////
 
 #ifndef WXMEDIT_ABOUT_DIALOG_H

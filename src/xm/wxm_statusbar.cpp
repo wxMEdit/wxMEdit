@@ -3,7 +3,7 @@
 // Name:        xm/wxm_statusbar.cpp
 // Description: Status Bar Functions
 // Copyright:   2015  JiaYanwei   <wxmedit@gmail.com>
-// Licence:     GPLv3
+// License:     GPLv3
 ///////////////////////////////////////////////////////////////////////////////
 
 #include "wxm_statusbar.h"

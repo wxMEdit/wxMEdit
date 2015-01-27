@@ -2,7 +2,7 @@
 // Name:        wxm_sort_dialog.h
 // Description: Sort Options Dialog
 // Copyright:   2013-2015  JiaYanwei   <wxmedit@gmail.com>
-// Licence:     GPLv3
+// License:     GPLv3
 ///////////////////////////////////////////////////////////////////////////////
 
 #ifndef WXM_SORT_DIALOG_H

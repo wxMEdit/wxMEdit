@@ -2,7 +2,7 @@
 // Name:        wxm_conv_enc_dialog.h
 // Description: Encoding Conversion Dialog
 // Copyright:   2013-2015  JiaYanwei   <wxmedit@gmail.com>
-// Licence:     GPLv3
+// License:     GPLv3
 ///////////////////////////////////////////////////////////////////////////////
 
 #ifndef WXM_CONV_ENC_DIALOG_H

@@ -3,7 +3,7 @@
 // Name:        xm/simple_wxmedit.cpp
 // Description: Simple wxMEdit Implementations
 // Copyright:   2015  JiaYanwei   <wxmedit@gmail.com>
-// Licence:     GPLv3
+// License:     GPLv3
 ///////////////////////////////////////////////////////////////////////////////
 
 #include "simple_wxmedit.h"

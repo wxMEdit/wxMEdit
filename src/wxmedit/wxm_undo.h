@@ -3,7 +3,7 @@
 // Description: Undo/Redo Buffer
 // Copyright:   2013-2015  JiaYanwei   <wxmedit@gmail.com>
 //              2005-2010  Alston Chen <madedit@gmail.com>
-// Licence:     GPLv3
+// License:     GPLv3
 ///////////////////////////////////////////////////////////////////////////////
 
 #ifndef _WXM_UNDO_H_

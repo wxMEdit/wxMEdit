@@ -3,7 +3,7 @@
 // Description: Declare UCS4/UCS2 Wide-char Type
 // Copyright:   2013-2015  JiaYanwei   <wxmedit@gmail.com>
 //              2005-2010  Alston Chen <madedit@gmail.com>
-// Licence:     GPLv3
+// License:     GPLv3
 ///////////////////////////////////////////////////////////////////////////////
 
 #ifndef _UCS4_T_H_

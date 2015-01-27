@@ -3,7 +3,7 @@
 // Name:        xm/xm_uutils.h
 // Description: Unicode Utilities
 // Copyright:   2013-2015  JiaYanwei   <wxmedit@gmail.com>
-// Licence:     GPLv3
+// License:     GPLv3
 ///////////////////////////////////////////////////////////////////////////////
 
 #ifndef _XM_UUTILS_H_
