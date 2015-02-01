@@ -1,5 +1,5 @@
 ///////////////////////////////////////////////////////////////////////////////
-// Name:        wxm_sort_dialog.h
+// Name:        dialog/wxm_sort_dialog.h
 // Description: Sort Options Dialog
 // Copyright:   2013-2015  JiaYanwei   <wxmedit@gmail.com>
 // License:     GPLv3

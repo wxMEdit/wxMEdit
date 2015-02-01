@@ -1,14 +1,14 @@
 ///////////////////////////////////////////////////////////////////////////////
-// Name:        wxmedit_about_dialog.cpp
+// Name:        dialog/wxmedit_about_dialog.cpp
 // Description: wxMEdit About Dialog
 // Copyright:   2013-2015  JiaYanwei   <wxmedit@gmail.com>
 // License:     GPLv3
 ///////////////////////////////////////////////////////////////////////////////
 
 #include "wxmedit_about_dialog.h"
-#include "../xm/wxm_utils.h"
+#include "../wxm/utils.h"
 
-//(*InternalHeaders(WXMAboutDialog)
+//(*InternalHeaders(WXMEditAboutDialog)
 #include <wx/intl.h>
 #include <wx/string.h>
 //*)
@@ -23,26 +23,26 @@
 #include "../../images/madedit.xpm"
 #undef static
 
-//(*IdInit(WXMAboutDialog)
-const long WXMAboutDialog::ID_STATICBITMAP1 = wxNewId();
-const long WXMAboutDialog::ID_STATICBITMAP2 = wxNewId();
-const long WXMAboutDialog::ID_TEXTCTRL1 = wxNewId();
-const long WXMAboutDialog::ID_PANEL1 = wxNewId();
-const long WXMAboutDialog::ID_TEXTCTRL2 = wxNewId();
-const long WXMAboutDialog::ID_PANEL2 = wxNewId();
-const long WXMAboutDialog::ID_TEXTCTRL3 = wxNewId();
-const long WXMAboutDialog::ID_PANEL3 = wxNewId();
-const long WXMAboutDialog::ID_NOTEBOOK1 = wxNewId();
+//(*IdInit(WXMEditAboutDialog)
+const long WXMEditAboutDialog::ID_STATICBITMAP1 = wxNewId();
+const long WXMEditAboutDialog::ID_STATICBITMAP2 = wxNewId();
+const long WXMEditAboutDialog::ID_TEXTCTRL1 = wxNewId();
+const long WXMEditAboutDialog::ID_PANEL1 = wxNewId();
+const long WXMEditAboutDialog::ID_TEXTCTRL2 = wxNewId();
+const long WXMEditAboutDialog::ID_PANEL2 = wxNewId();
+const long WXMEditAboutDialog::ID_TEXTCTRL3 = wxNewId();
+const long WXMEditAboutDialog::ID_PANEL3 = wxNewId();
+const long WXMEditAboutDialog::ID_NOTEBOOK1 = wxNewId();
 //*)
 
-BEGIN_EVENT_TABLE(WXMAboutDialog,wxDialog)
-	//(*EventTable(WXMAboutDialog)
+BEGIN_EVENT_TABLE(WXMEditAboutDialog,wxDialog)
+	//(*EventTable(WXMEditAboutDialog)
 	//*)
 END_EVENT_TABLE()
 
-WXMAboutDialog::WXMAboutDialog(wxWindow* parent,wxWindowID id,const wxPoint& pos,const wxSize& size)
+WXMEditAboutDialog::WXMEditAboutDialog(wxWindow* parent,wxWindowID id,const wxPoint& pos,const wxSize& size)
 {
-	//(*Initialize(WXMAboutDialog)
+	//(*Initialize(WXMEditAboutDialog)
 	wxBoxSizer* BoxSizer4;
 	wxBoxSizer* BoxSizer6;
 	wxBoxSizer* BoxSizer5;
@@ -99,8 +99,8 @@ WXMAboutDialog::WXMAboutDialog(wxWindow* parent,wxWindowID id,const wxPoint& pos
 	BoxSizer1->SetSizeHints(this);
 	Center();
 
-	Connect(ID_NOTEBOOK1,wxEVT_COMMAND_NOTEBOOK_PAGE_CHANGED,(wxObjectEventFunction)&WXMAboutDialog::OnNotebook1PageChanged);
-	Connect(wxID_ANY,wxEVT_CLOSE_WINDOW,(wxObjectEventFunction)&WXMAboutDialog::WXMAboutDialogClose);
+	Connect(ID_NOTEBOOK1,wxEVT_COMMAND_NOTEBOOK_PAGE_CHANGED,(wxObjectEventFunction)&WXMEditAboutDialog::OnNotebook1PageChanged);
+	Connect(wxID_ANY,wxEVT_CLOSE_WINDOW,(wxObjectEventFunction)&WXMEditAboutDialog::WXMEditAboutDialogClose);
 	//*)
 
 	wxm::SetDefaultMonoFont(TxtCredits);
@@ -113,18 +113,18 @@ WXMAboutDialog::WXMAboutDialog(wxWindow* parent,wxWindowID id,const wxPoint& pos
 	WxButtonCancel->SetFocus();
 }
 
-WXMAboutDialog::~WXMAboutDialog()
+WXMEditAboutDialog::~WXMEditAboutDialog()
 {
-	//(*Destroy(WXMAboutDialog)
+	//(*Destroy(WXMEditAboutDialog)
 	//*)
 }
 
-void WXMAboutDialog::WXMAboutDialogClose(wxCloseEvent& event)
+void WXMEditAboutDialog::WXMEditAboutDialogClose(wxCloseEvent& event)
 {
 	Destroy();
 }
 
-void WXMAboutDialog::OnNotebook1PageChanged(wxNotebookEvent& event)
+void WXMEditAboutDialog::OnNotebook1PageChanged(wxNotebookEvent& event)
 {
 	if (event.GetSelection() == 0/* AboutTab */)
 	{

@@ -1,5 +1,5 @@
 ///////////////////////////////////////////////////////////////////////////////
-// Name:        wxm_find_in_files_dialog.cpp
+// Name:        dialog/wxm_find_in_files_dialog.cpp
 // Description: Find/Replace in Files Dialog
 // Copyright:   2013-2015  JiaYanwei   <wxmedit@gmail.com>
 //              2006-2010  Alston Chen <madedit@gmail.com>
@@ -10,10 +10,9 @@
 #include "wxm_search_replace_dialog.h"
 
 #include "../wxmedit_frame.h"
-#include "../xm/inframe_wxmedit.h"
-#include "../xm/simple_wxmedit.h"
-#include "../xm/single_line_wxmedit.h"
-#include "../xm/wxm_utils.h"
+#include "../wxm/edit/inframe.h"
+#include "../wxm/edit/single_line.h"
+#include "../wxm/utils.h"
 
 #include <wx/progdlg.h>
 #include <wx/dir.h>

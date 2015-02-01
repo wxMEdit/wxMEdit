@@ -1,5 +1,5 @@
 ///////////////////////////////////////////////////////////////////////////////
-// Name:        wxm_search_replace_dialog.h
+// Name:        dialog/wxm_search_replace_dialog.h
 // Description: Search/Replace Dialog
 // Copyright:   2013-2015  JiaYanwei   <wxmedit@gmail.com>
 //              2005-2010  Alston Chen <madedit@gmail.com>
@@ -9,8 +9,8 @@
 #ifndef WXM_REPLACE_DIALOG_H
 #define WXM_REPLACE_DIALOG_H
 
-#include "../xm/wxm_recent_list.h"
-#include "../xm/wxm_utils.h"
+#include "../wxm/recent_list.h"
+#include "../wxm/utils.h"
 
 //(*Headers(WXMSearchReplaceDialog)
 #include <wx/sizer.h>

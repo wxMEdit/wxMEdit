@@ -6,7 +6,7 @@
 // License:     GPLv3
 ///////////////////////////////////////////////////////////////////////////////
 
-#include "plugin.h"
+#include "wxm_plugin.h"
 
 #ifdef _DEBUG
 #include <crtdbg.h>

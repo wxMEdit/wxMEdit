@@ -9,8 +9,8 @@
 #ifndef _WXM_LINES_H_
 #define _WXM_LINES_H_
 
-#include "../xm/wxm_line_enc_adapter.h"
-#include "../xm/wxm_def.h"
+#include "../wxm/line_enc_adapter.h"
+#include "../wxm/def.h"
 #include <wx/wxprec.h>
 
 #ifdef __BORLANDC__

@@ -10,10 +10,10 @@
 #include "wxmedit_app.h"
 #include "wxmedit_frame.h"
 #include "mad_utils.h"
-#include "xm/wxm_utils.h"
-#include "xm/wxm_update.h"
-#include "xm/xm_remote.h"
-#include "dialog/wxm_options_dialog.h"
+#include "wxm/utils.h"
+#include "wxm/update.h"
+#include "xm/remote.h"
+#include "dialog/wxmedit_options_dialog.h"
 
 #include "wxmedit/wxmedit.h"
 

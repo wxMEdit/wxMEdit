@@ -14,7 +14,6 @@
 #include "wxmedit_frame.h"
 #include "dialog/wxm_search_replace_dialog.h"
 #include "dialog/wxm_find_in_files_dialog.h"
-#include "dialog/wxm_options_dialog.h"
 #include "dialog/wxm_highlighting_dialog.h"
 #ifdef __WXMSW__
 #include "dialog/wxm_file_association_dialog.h"
@@ -24,14 +23,15 @@
 #include "dialog/wxm_word_count_dialog.h"
 #include "dialog/wxm_sort_dialog.h"
 #include "dialog/wxmedit_about_dialog.h"
+#include "dialog/wxmedit_options_dialog.h"
+#include "wxm_plugin.h"
 #include "wxm_printout.h"
 #include "mad_utils.h"
 #include "wxm_command.h"
-#include "xm/inframe_wxmedit.h"
-#include "xm/wxm_update.h"
-#include "xm/wxm_recent_list.h"
-#include "xm/wxm_def.h"
-#include "plugin.h"
+#include "wxm/edit/inframe.h"
+#include "wxm/update.h"
+#include "wxm/recent_list.h"
+#include "wxm/def.h"
 
 #include <wx/app.h>
 //#include <wx/dynload.h>
@@ -4535,7 +4535,7 @@ void MadEditFrame::OnViewHexMode(wxCommandEvent& event)
 
 void MadEditFrame::OnToolsOptions(wxCommandEvent& event)
 {
-    if(g_OptionsDialog==NULL) g_OptionsDialog=new WXMOptionsDialog(this);
+    if(g_OptionsDialog==NULL) g_OptionsDialog=new WXMEditOptionsDialog(this);
 
     g_OptionsDialog->LoadOptions();
     if(g_OptionsDialog->ShowModal()==wxID_OK)
@@ -5084,7 +5084,7 @@ const wxString& GetCredits()
 void MadEditFrame::OnHelpAbout(wxCommandEvent& event)
 {
     wxm::g_wxMEdit_About_URL = wxm::g_wxMEdit_Homepage_URL;
-    WXMAboutDialog dlg(this);
+    WXMEditAboutDialog dlg(this);
     dlg.TxtAbout->AppendText(wxString(wxT("wxMEdit v")) + wxT(WXMEDIT_VERSION) + wxT("\n\n") +
                             wxm::g_wxMEdit_Homepage_URL + wxT("\n\n") +
                             _("Press OK to visit our HomePage."));

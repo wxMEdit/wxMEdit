@@ -1,5 +1,5 @@
 ///////////////////////////////////////////////////////////////////////////////
-// Name:        wxm_search_replace_dialog.cpp
+// Name:        dialog/wxm_search_replace_dialog.cpp
 // Description: Search/Replace Dialog
 // Copyright:   2013-2015  JiaYanwei   <wxmedit@gmail.com>
 //              2005-2010  Alston Chen <madedit@gmail.com>
@@ -8,9 +8,9 @@
 
 #include "wxm_search_replace_dialog.h"
 
-#include "../xm/single_line_wxmedit.h"
-#include "../xm/inframe_wxmedit.h"
-#include "../xm/xm_utils.hpp"
+#include "../wxm/edit/single_line.h"
+#include "../wxm/edit/inframe.h"
+#include "../xm/utils.hpp"
 
 //(*InternalHeaders(WXMSearchReplaceDialog)
 #include <wx/intl.h>

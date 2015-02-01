@@ -1,5 +1,5 @@
 ///////////////////////////////////////////////////////////////////////////////
-// Name:        wxm_file_association_dialog.cpp
+// Name:        dialog/wxm_file_association_dialog.cpp
 // Description: File Type Association Dialog for MSWindows
 // Copyright:   2013-2015  JiaYanwei   <wxmedit@gmail.com>
 //              2007-2010  Alston Chen <madedit@gmail.com>
@@ -8,7 +8,7 @@
 
 #include "wxm_file_association_dialog.h"
 
-#include "../xm/wxm_utils.h"
+#include "../wxm/utils.h"
 #include "../mad_utils.h"
 
 #include <wx/config.h>

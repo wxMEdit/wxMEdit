@@ -9,9 +9,9 @@
 
 #include "wxmedit.h"
 #include "trad_simp.h"
-#include "../xm/wxm_case_conv.h"
-#include "../xm/xm_ublock.h"
-#include "../xm/xm_uutils.h"
+#include "../wxm/case_conv.h"
+#include "../xm/ublock.h"
+#include "../xm/uutils.h"
 
 #include <boost/scoped_ptr.hpp>
 #include <algorithm>

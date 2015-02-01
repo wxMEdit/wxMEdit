@@ -1,25 +1,25 @@
 SUBDIRS = syntax po
 
-enc_src =	src/xm/wxm_encoding/cp20932.cpp \
-	src/xm/wxm_encoding/cp20932.h \
-	src/xm/wxm_encoding/doublebyte.cpp \
-	src/xm/wxm_encoding/doublebyte.h \
-	src/xm/wxm_encoding/encoding.cpp \
-	src/xm/wxm_encoding/encoding.h \
-	src/xm/wxm_encoding/encoding_def.h \
-	src/xm/wxm_encoding/multibyte.cpp \
-	src/xm/wxm_encoding/multibyte.h \
-	src/xm/wxm_encoding/gb18030.cpp \
-	src/xm/wxm_encoding/gb18030.h \
-	src/xm/wxm_encoding/singlebyte.cpp \
-	src/xm/wxm_encoding/singlebyte.h \
-	src/xm/wxm_encoding/unicode.cpp \
-	src/xm/wxm_encoding/unicode.h
+enc_src =	src/wxm/encoding/cp20932.cpp \
+	src/wxm/encoding/cp20932.h \
+	src/wxm/encoding/doublebyte.cpp \
+	src/wxm/encoding/doublebyte.h \
+	src/wxm/encoding/encoding.cpp \
+	src/wxm/encoding/encoding.h \
+	src/wxm/encoding/encoding_def.h \
+	src/wxm/encoding/multibyte.cpp \
+	src/wxm/encoding/multibyte.h \
+	src/wxm/encoding/gb18030.cpp \
+	src/wxm/encoding/gb18030.h \
+	src/wxm/encoding/singlebyte.cpp \
+	src/wxm/encoding/singlebyte.h \
+	src/wxm/encoding/unicode.cpp \
+	src/wxm/encoding/unicode.h
 
-encdet_src =	src/wxmedit/mad_encdet.cpp \
-	src/wxmedit/mad_encdet.h \
-	src/xm/wxm_encdet.cpp \
-	src/xm/wxm_encdet.h
+encdet_src =	src/wxm/encdet.cpp \
+	src/wxm/encdet.h \
+	src/wxmedit/mad_encdet.cpp \
+	src/wxmedit/mad_encdet.h
 
 bin_PROGRAMS = wxmedit
 check_PROGRAMS = wxmedit_test
@@ -34,8 +34,6 @@ wxmedit_SOURCES =	$(enc_src) \
 	src/dialog/wxm_find_in_files_dialog.h \
 	src/dialog/wxm_highlighting_dialog.cpp \
 	src/dialog/wxm_highlighting_dialog.h \
-	src/dialog/wxm_options_dialog.cpp \
-	src/dialog/wxm_options_dialog.h \
 	src/dialog/wxm_purge_histories_dialog.cpp \
 	src/dialog/wxm_purge_histories_dialog.h \
 	src/dialog/wxm_search_replace_dialog.cpp \
@@ -46,77 +44,79 @@ wxmedit_SOURCES =	$(enc_src) \
 	src/dialog/wxm_word_count_dialog.h \
 	src/dialog/wxmedit_about_dialog.cpp \
 	src/dialog/wxmedit_about_dialog.h \
+	src/dialog/wxmedit_options_dialog.cpp \
+	src/dialog/wxmedit_options_dialog.h \
 	src/mad_utils.cpp \
 	src/mad_utils.h \
-	src/plugin.h \
+	src/wxm/case_conv.cpp \
+	src/wxm/case_conv.h \
+	src/wxm/choice_map.hpp \
+	src/wxm/def.h \
+	src/wxm/edit/inframe.cpp \
+	src/wxm/edit/inframe.h \
+	src/wxm/edit/simple.cpp \
+	src/wxm/edit/simple.h \
+	src/wxm/edit/single_line.cpp \
+	src/wxm/edit/single_line.h \
+	src/wxm/line_enc_adapter.cpp \
+	src/wxm/line_enc_adapter.h \
+	src/wxm/recent_list.cpp \
+	src/wxm/recent_list.h \
+	src/wxm/status_bar.cpp \
+	src/wxm/status_bar.h \
+	src/wxm/update.cpp \
+	src/wxm/update.h \
+	src/wxm/utils.cpp \
+	src/wxm/utils.h \
+	src/wxm/wx_avoid_wxmsw_bug4373.h \
+	src/wxm/wx_icu.cpp \
+	src/wxm/wx_icu.h \
 	src/wxm_command.h \
 	src/wxm_plugin.cpp \
+	src/wxm_plugin.h \
 	src/wxm_printout.cpp \
 	src/wxm_printout.h \
-	src/wxmedit_app.cpp \
-	src/wxmedit_app.h \
-	src/wxmedit_frame.cpp \
-	src/wxmedit_frame.h \
 	src/wxmedit/caret_new.cpp \
 	src/wxmedit/caret_new.h \
 	src/wxmedit/clipbrd_gtk.cpp \
 	src/wxmedit/clipbrd_gtk.h \
+	src/wxmedit/trad_simp.cpp \
+	src/wxmedit/trad_simp.h \
+	src/wxmedit/ucs4_t.h \
 	src/wxmedit/wxm_deque.hpp \
-	src/wxmedit/wxmedit.cpp \
-	src/wxmedit/wxmedit.h \
-	src/wxmedit/wxmedit_advanced.cpp \
-	src/wxmedit/wxmedit_basic.cpp \
-	src/wxmedit/wxmedit_command.cpp \
-	src/wxmedit/wxmedit_command.h \
-	src/wxmedit/wxmedit_search.cpp \
-	src/wxmedit/wxmedit_gtk.cpp \
 	src/wxmedit/wxm_lines.cpp \
 	src/wxmedit/wxm_lines.h \
 	src/wxmedit/wxm_syntax.cpp \
 	src/wxmedit/wxm_syntax.h \
 	src/wxmedit/wxm_undo.cpp \
 	src/wxmedit/wxm_undo.h \
-	src/xm/inframe_wxmedit.cpp \
-	src/xm/inframe_wxmedit.h \
-	src/xm/simple_wxmedit.cpp \
-	src/xm/simple_wxmedit.h \
-	src/xm/single_line_wxmedit.cpp \
-	src/xm/single_line_wxmedit.h \
-	src/xm/wx_avoid_wxmsw_bug4373.h \
-	src/xm/wxm_recent_list.cpp \
-	src/xm/wxm_recent_list.h \
-	src/xm/wxm_case_conv.cpp \
-	src/xm/wxm_case_conv.h \
-	src/xm/wxm_choice_map.hpp \
-	src/xm/wxm_def.h \
-	src/xm/wxm_line_enc_adapter.cpp \
-	src/xm/wxm_line_enc_adapter.h \
-	src/xm/wxm_statusbar.cpp \
-	src/xm/wxm_statusbar.h \
-	src/xm/wxm_update.cpp \
-	src/xm/wxm_update.h \
-	src/xm/wxm_utils.cpp \
-	src/xm/wxm_utils.h \
-	src/xm/wxm_wx_icu.cpp \
-	src/xm/wxm_wx_icu.h \
-	src/xm/xm_remote.cpp \
-	src/xm/xm_remote.h \
-	src/xm/xm_ublock_des.cpp \
-	src/xm/xm_ublock.cpp \
-	src/xm/xm_ublock.h \
-	src/xm/xm_utils.hpp \
-	src/xm/xm_uutils.cpp \
-	src/xm/xm_uutils.h \
-	src/wxmedit/trad_simp.cpp \
-	src/wxmedit/trad_simp.h \
-	src/wxmedit/ucs4_t.h
+	src/wxmedit/wxmedit.cpp \
+	src/wxmedit/wxmedit.h \
+	src/wxmedit/wxmedit_advanced.cpp \
+	src/wxmedit/wxmedit_basic.cpp \
+	src/wxmedit/wxmedit_command.cpp \
+	src/wxmedit/wxmedit_command.h \
+	src/wxmedit/wxmedit_gtk.cpp \
+	src/wxmedit/wxmedit_search.cpp \
+	src/wxmedit_app.cpp \
+	src/wxmedit_app.h \
+	src/wxmedit_frame.cpp \
+	src/wxmedit_frame.h \
+	src/xm/remote.cpp \
+	src/xm/remote.h \
+	src/xm/ublock.cpp \
+	src/xm/ublock.h \
+	src/xm/ublock_des.cpp \
+	src/xm/utils.hpp \
+	src/xm/uutils.cpp \
+	src/xm/uutils.h
 
 wxmedit_test_SOURCES =	$(enc_src) \
 	$(encdet_src) \
+	src/wxm/line_enc_adapter.h \
 	src/wxmedit/ucs4_t.h \
 	src/wxmedit/wxm_deque.hpp \
-	src/xm/wxm_line_enc_adapter.h \
-	src/xm/xm_utils.hpp \
+	src/xm/utils.hpp \
 	test/encdet/data_from_icudet.cpp \
 	test/encdet/data_from_icudet.h \
 	test/encdet/data_from_mozdet.cpp \

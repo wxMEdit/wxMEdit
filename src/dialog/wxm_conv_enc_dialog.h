@@ -1,5 +1,5 @@
 ///////////////////////////////////////////////////////////////////////////////
-// Name:        wxm_conv_enc_dialog.h
+// Name:        dialog/wxm_conv_enc_dialog.h
 // Description: Encoding Conversion Dialog
 // Copyright:   2013-2015  JiaYanwei   <wxmedit@gmail.com>
 // License:     GPLv3
@@ -8,7 +8,7 @@
 #ifndef WXM_CONV_ENC_DIALOG_H
 #define WXM_CONV_ENC_DIALOG_H
 
-#include "../xm/wx_avoid_wxmsw_bug4373.h"
+#include "../wxm/wx_avoid_wxmsw_bug4373.h"
 
 //(*Headers(WXMConvEncDialog)
 #include <wx/sizer.h>

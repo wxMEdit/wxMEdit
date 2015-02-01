@@ -1,5 +1,5 @@
 ///////////////////////////////////////////////////////////////////////////////
-// Name:        wxm_file_association_dialog.h
+// Name:        dialog/wxm_file_association_dialog.h
 // Description: Find/Replace in Files Dialog
 // Copyright:   2013-2015  JiaYanwei   <wxmedit@gmail.com>
 //              2007-2010  Alston Chen <madedit@gmail.com>

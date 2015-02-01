@@ -7,8 +7,8 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 #include "wxmedit.h"
-#include "../xm/wxm_case_conv.h"
-#include "../xm/xm_utils.hpp"
+#include "../wxm/case_conv.h"
+#include "../xm/utils.hpp"
 
 #include <unicode/uchar.h>
 #include <iostream>

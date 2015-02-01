@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <wxsmith>
-	<object class="wxDialog" name="WXMAboutDialog">
+	<object class="wxDialog" name="WXMEditAboutDialog">
 		<title>About wxMEdit</title>
 		<centered>1</centered>
 		<id_arg>0</id_arg>
 		<style>wxCAPTION|wxSYSTEM_MENU|wxCLOSE_BOX|wxDIALOG_NO_PARENT</style>
-		<handler function="WXMAboutDialogClose" entry="EVT_CLOSE" />
+		<handler function="WXMEditAboutDialogClose" entry="EVT_CLOSE" />
 		<object class="wxBoxSizer" variable="BoxSizer1" member="no">
 			<orient>wxVERTICAL</orient>
 			<object class="sizeritem">

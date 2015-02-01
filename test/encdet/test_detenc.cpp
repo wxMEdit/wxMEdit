@@ -1,6 +1,6 @@
 #include "test_detenc.h"
-#include "../../src/xm/wxm_encdet.h"
-#include "../../src/xm/wxm_encoding/encoding.h"
+#include "../../src/wxm/encdet.h"
+#include "../../src/wxm/encoding/encoding.h"
 
 #include <unicode/unistr.h>
 #include <wx/string.h>

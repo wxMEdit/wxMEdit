@@ -1,5 +1,5 @@
 ///////////////////////////////////////////////////////////////////////////////
-// Name:        wxm_highlighting_dialog.h
+// Name:        dialog/wxm_highlighting_dialog.h
 // Description: Syntax Highlight Settings Dialog
 // Copyright:   2013-2015  JiaYanwei   <wxmedit@gmail.com>
 //              2006-2010  Alston Chen <madedit@gmail.com>
@@ -10,7 +10,7 @@
 #define WXM_HIGHLIGHTING_DIALOG_H
 
 
-#include "../xm/wx_avoid_wxmsw_bug4373.h"
+#include "../wxm/wx_avoid_wxmsw_bug4373.h"
 #include "../wxmedit/wxm_syntax.h"
 
 //(*Headers(WXMHighlightingDialog)

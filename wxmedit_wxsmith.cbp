@@ -20,8 +20,6 @@
 		<Unit filename="src/dialog/wxm_find_in_files_dialog.h" />
 		<Unit filename="src/dialog/wxm_highlighting_dialog.cpp" />
 		<Unit filename="src/dialog/wxm_highlighting_dialog.h" />
-		<Unit filename="src/dialog/wxm_options_dialog.cpp" />
-		<Unit filename="src/dialog/wxm_options_dialog.h" />
 		<Unit filename="src/dialog/wxm_purge_histories_dialog.cpp" />
 		<Unit filename="src/dialog/wxm_purge_histories_dialog.h" />
 		<Unit filename="src/dialog/wxm_search_replace_dialog.cpp" />
@@ -32,16 +30,18 @@
 		<Unit filename="src/dialog/wxm_word_count_dialog.h" />
 		<Unit filename="src/dialog/wxmedit_about_dialog.cpp" />
 		<Unit filename="src/dialog/wxmedit_about_dialog.h" />
+		<Unit filename="src/dialog/wxmedit_options_dialog.cpp" />
+		<Unit filename="src/dialog/wxmedit_options_dialog.h" />
 		<Unit filename="wxsmith/wxm_conv_enc_dialog.wxs" />
 		<Unit filename="wxsmith/wxm_file_association_dialog.wxs" />
 		<Unit filename="wxsmith/wxm_find_in_files_dialog.wxs" />
 		<Unit filename="wxsmith/wxm_highlighting_dialog.wxs" />
-		<Unit filename="wxsmith/wxm_options_dialog.wxs" />
 		<Unit filename="wxsmith/wxm_purge_histories_dialog.wxs" />
 		<Unit filename="wxsmith/wxm_search_replace_dialog.wxs" />
 		<Unit filename="wxsmith/wxm_sort_dialog.wxs" />
 		<Unit filename="wxsmith/wxm_word_count_dialog.wxs" />
 		<Unit filename="wxsmith/wxmedit_about_dialog.wxs" />
+		<Unit filename="wxsmith/wxmedit_options_dialog.wxs" />
 		<Extensions>
 			<code_completion />
 			<envvars />
@@ -49,7 +49,6 @@
 			<lib_finder disable_auto="1" />
 			<wxsmith version="1">
 				<resources>
-					<wxDialog wxs="wxsmith/wxmedit_about_dialog.wxs" src="src/dialog/wxmedit_about_dialog.cpp" hdr="src/dialog/wxmedit_about_dialog.h" fwddecl="0" i18n="1" name="WXMAboutDialog" language="CPP" />
 					<wxDialog wxs="wxsmith/wxm_sort_dialog.wxs" src="src/dialog/wxm_sort_dialog.cpp" hdr="src/dialog/wxm_sort_dialog.h" fwddecl="0" i18n="1" name="WXMSortDialog" language="CPP" />
 					<wxDialog wxs="wxsmith/wxm_conv_enc_dialog.wxs" src="src/dialog/wxm_conv_enc_dialog.cpp" hdr="src/dialog/wxm_conv_enc_dialog.h" fwddecl="0" i18n="1" name="WXMConvEncDialog" language="CPP" />
 					<wxDialog wxs="wxsmith/wxm_word_count_dialog.wxs" src="src/dialog/wxm_word_count_dialog.cpp" hdr="src/dialog/wxm_word_count_dialog.h" fwddecl="0" i18n="1" name="WXMWordCountDialog" language="CPP" />
@@ -57,8 +56,9 @@
 					<wxDialog wxs="wxsmith/wxm_search_replace_dialog.wxs" src="src/dialog/wxm_search_replace_dialog.cpp" hdr="src/dialog/wxm_search_replace_dialog.h" fwddecl="0" i18n="1" name="WXMSearchReplaceDialog" language="CPP" />
 					<wxDialog wxs="wxsmith/wxm_find_in_files_dialog.wxs" src="src/dialog/wxm_find_in_files_dialog.cpp" hdr="src/dialog/wxm_find_in_files_dialog.h" fwddecl="0" i18n="1" name="WXMFindInFilesDialog" language="CPP" />
 					<wxDialog wxs="wxsmith/wxm_highlighting_dialog.wxs" src="src/dialog/wxm_highlighting_dialog.cpp" hdr="src/dialog/wxm_highlighting_dialog.h" fwddecl="0" i18n="1" name="WXMHighlightingDialog" language="CPP" />
-					<wxDialog wxs="wxsmith/wxm_options_dialog.wxs" src="src/dialog/wxm_options_dialog.cpp" hdr="src/dialog/wxm_options_dialog.h" fwddecl="0" i18n="1" name="WXMOptionsDialog" language="CPP" />
 					<wxDialog wxs="wxsmith/wxm_purge_histories_dialog.wxs" src="src/dialog/wxm_purge_histories_dialog.cpp" hdr="src/dialog/wxm_purge_histories_dialog.h" fwddecl="0" i18n="1" name="WXMPurgeHistoriesDialog" language="CPP" />
+					<wxDialog wxs="wxsmith/wxmedit_about_dialog.wxs" src="src/dialog/wxmedit_about_dialog.cpp" hdr="src/dialog/wxmedit_about_dialog.h" fwddecl="0" i18n="1" name="WXMEditAboutDialog" language="CPP" />
+					<wxDialog wxs="wxsmith/wxmedit_options_dialog.wxs" src="src/dialog/wxmedit_options_dialog.cpp" hdr="src/dialog/wxmedit_options_dialog.h" fwddecl="0" i18n="1" name="WXMEditOptionsDialog" language="CPP" />
 				</resources>
 			</wxsmith>
 		</Extensions>

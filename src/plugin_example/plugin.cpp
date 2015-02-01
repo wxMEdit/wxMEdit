@@ -1,5 +1,5 @@
 
-#include "../plugin.h"
+#include "../wxm_plugin.h"
 
 
 WIN32_DLL_ENTRY();

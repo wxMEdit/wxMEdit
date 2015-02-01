@@ -1,5 +1,5 @@
 ///////////////////////////////////////////////////////////////////////////////
-// Name:        wxmedit_about_dialog.h
+// Name:        dialog/wxmedit_about_dialog.h
 // Description: wxMEdit About Dialog
 // Copyright:   2013-2015  JiaYanwei   <wxmedit@gmail.com>
 // License:     GPLv3
@@ -8,7 +8,7 @@
 #ifndef WXMEDIT_ABOUT_DIALOG_H
 #define WXMEDIT_ABOUT_DIALOG_H
 
-//(*Headers(WXMAboutDialog)
+//(*Headers(WXMEditAboutDialog)
 #include <wx/notebook.h>
 #include <wx/sizer.h>
 #include <wx/textctrl.h>
@@ -25,14 +25,14 @@ namespace wxm
 	extern wxString g_wxMEdit_About_URL;
 } // namespace wxm
 
-class WXMAboutDialog: public wxDialog
+class WXMEditAboutDialog: public wxDialog
 {
 	public:
 
-		WXMAboutDialog(wxWindow* parent,wxWindowID id=wxID_ANY,const wxPoint& pos=wxDefaultPosition,const wxSize& size=wxDefaultSize);
-		virtual ~WXMAboutDialog();
+		WXMEditAboutDialog(wxWindow* parent,wxWindowID id=wxID_ANY,const wxPoint& pos=wxDefaultPosition,const wxSize& size=wxDefaultSize);
+		virtual ~WXMEditAboutDialog();
 
-		//(*Declarations(WXMAboutDialog)
+		//(*Declarations(WXMEditAboutDialog)
 		wxStaticBitmap* StaticBitmap2;
 		wxNotebook* Notebook1;
 		wxStaticBitmap* StaticBitmap1;
@@ -48,7 +48,7 @@ class WXMAboutDialog: public wxDialog
 
 	protected:
 
-		//(*Identifiers(WXMAboutDialog)
+		//(*Identifiers(WXMEditAboutDialog)
 		static const long ID_STATICBITMAP1;
 		static const long ID_STATICBITMAP2;
 		static const long ID_TEXTCTRL1;
@@ -62,8 +62,8 @@ class WXMAboutDialog: public wxDialog
 
 	private:
 
-		//(*Handlers(WXMAboutDialog)
-		void WXMAboutDialogClose(wxCloseEvent& event);
+		//(*Handlers(WXMEditAboutDialog)
+		void WXMEditAboutDialogClose(wxCloseEvent& event);
 		void OnNotebook1PageChanged(wxNotebookEvent& event);
 		//*)
 

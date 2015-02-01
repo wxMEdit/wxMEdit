@@ -1,13 +1,13 @@
 ///////////////////////////////////////////////////////////////////////////////
-// Name:        wxm_word_count_dialog.cpp
+// Name:        dialog/wxm_word_count_dialog.cpp
 // Description: WordCount Dialog
 // Copyright:   2013-2015  JiaYanwei   <wxmedit@gmail.com>
 // License:     GPLv3
 ///////////////////////////////////////////////////////////////////////////////
 
 #include "wxm_word_count_dialog.h"
-#include "../xm/inframe_wxmedit.h"
-#include "../xm/wxm_utils.h"
+#include "../wxm/edit/inframe.h"
+#include "../wxm/utils.h"
 
 //(*InternalHeaders(WXMWordCountDialog)
 #include <wx/intl.h>

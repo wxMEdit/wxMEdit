@@ -7,7 +7,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 #include "wxm_printout.h"
-#include "xm/inframe_wxmedit.h"
+#include "wxm/edit/inframe.h"
 #include <wx/dc.h>
 #include <wx/confbase.h>
 #include <wx/filename.h>

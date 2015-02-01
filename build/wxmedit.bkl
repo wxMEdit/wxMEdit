@@ -104,28 +104,28 @@
 	</template>
 
 	<template id="enc_src">
-		<headers>../src/xm/wxm_encoding/cp20932.h</headers>
-		<sources>../src/xm/wxm_encoding/cp20932.cpp</sources>
-		<headers>../src/xm/wxm_encoding/doublebyte.h</headers>
-		<sources>../src/xm/wxm_encoding/doublebyte.cpp</sources>
-		<headers>../src/xm/wxm_encoding/encoding.h</headers>
-		<sources>../src/xm/wxm_encoding/encoding.cpp</sources>
-		<headers>../src/xm/wxm_encoding/encoding_def.h</headers>
-		<headers>../src/xm/wxm_encoding/gb18030.h</headers>
-		<sources>../src/xm/wxm_encoding/gb18030.cpp</sources>
-		<headers>../src/xm/wxm_encoding/singlebyte.h</headers>
-		<sources>../src/xm/wxm_encoding/singlebyte.cpp</sources>
-		<headers>../src/xm/wxm_encoding/multibyte.h</headers>
-		<sources>../src/xm/wxm_encoding/multibyte.cpp</sources>
-		<headers>../src/xm/wxm_encoding/unicode.h</headers>
-		<sources>../src/xm/wxm_encoding/unicode.cpp</sources>
+		<headers>../src/wxm/encoding/cp20932.h</headers>
+		<sources>../src/wxm/encoding/cp20932.cpp</sources>
+		<headers>../src/wxm/encoding/doublebyte.h</headers>
+		<sources>../src/wxm/encoding/doublebyte.cpp</sources>
+		<headers>../src/wxm/encoding/encoding.h</headers>
+		<sources>../src/wxm/encoding/encoding.cpp</sources>
+		<headers>../src/wxm/encoding/encoding_def.h</headers>
+		<headers>../src/wxm/encoding/gb18030.h</headers>
+		<sources>../src/wxm/encoding/gb18030.cpp</sources>
+		<headers>../src/wxm/encoding/singlebyte.h</headers>
+		<sources>../src/wxm/encoding/singlebyte.cpp</sources>
+		<headers>../src/wxm/encoding/multibyte.h</headers>
+		<sources>../src/wxm/encoding/multibyte.cpp</sources>
+		<headers>../src/wxm/encoding/unicode.h</headers>
+		<sources>../src/wxm/encoding/unicode.cpp</sources>
 	</template>
 
 	<template id="encdet_src">
+		<headers>../src/wxm/encdet.h</headers>
+		<sources>../src/wxm/encdet.cpp</sources>
 		<headers>../src/wxmedit/mad_encdet.h</headers>
 		<sources>../src/wxmedit/mad_encdet.cpp</sources>
-		<headers>../src/xm/wxm_encdet.h</headers>
-		<sources>../src/xm/wxm_encdet.cpp</sources>
 	</template>
 
 	<exe id="wxmedit" template="win_cfg,enc_src,encdet_src">
@@ -145,8 +145,6 @@
 		<sources>../src/dialog/wxm_find_in_files_dialog.cpp</sources>
 		<headers>../src/dialog/wxm_highlighting_dialog.h</headers>
 		<sources>../src/dialog/wxm_highlighting_dialog.cpp</sources>
-		<headers>../src/dialog/wxm_options_dialog.h</headers>
-		<sources>../src/dialog/wxm_options_dialog.cpp</sources>
 		<headers>../src/dialog/wxm_purge_histories_dialog.h</headers>
 		<sources>../src/dialog/wxm_purge_histories_dialog.cpp</sources>
 		<headers>../src/dialog/wxm_search_replace_dialog.h</headers>
@@ -157,13 +155,38 @@
 		<sources>../src/dialog/wxm_word_count_dialog.cpp</sources>
 		<headers>../src/dialog/wxmedit_about_dialog.h</headers>
 		<sources>../src/dialog/wxmedit_about_dialog.cpp</sources>
+		<headers>../src/dialog/wxmedit_options_dialog.h</headers>
+		<sources>../src/dialog/wxmedit_options_dialog.cpp</sources>
 		<headers>../src/mad_utils.h</headers>
 		<sources>../src/mad_utils.cpp</sources>
-		<headers>../src/plugin.h</headers>
 		<headers>../src/wxm_command.h</headers>
+		<headers>../src/wxm_plugin.h</headers>
 		<sources>../src/wxm_plugin.cpp</sources>
 		<headers>../src/wxm_printout.h</headers>
 		<sources>../src/wxm_printout.cpp</sources>
+		<headers>../src/wxm/case_conv.h</headers>
+		<sources>../src/wxm/case_conv.cpp</sources>
+		<headers>../src/wxm/choice_map.hpp</headers>
+		<headers>../src/wxm/def.h</headers>
+		<headers>../src/wxm/edit/inframet.h</headers>
+		<sources>../src/wxm/edit/inframe.cpp</sources>
+		<headers>../src/wxm/edit/simple.h</headers>
+		<sources>../src/wxm/edit/simple.cpp</sources>
+		<headers>../src/wxm/edit/single_line.h</headers>
+		<sources>../src/wxm/edit/single_line.cpp</sources>
+		<headers>../src/wxm/line_enc_adapter.h</headers>
+		<sources>../src/wxm/line_enc_adapter.cpp</sources>
+		<headers>../src/wxm/recent_list.h</headers>
+		<sources>../src/wxm/recent_list.cpp</sources>
+		<headers>../src/wxm/status_bar.h</headers>
+		<sources>../src/wxm/status_bar.cpp</sources>
+		<headers>../src/wxm/update.h</headers>
+		<sources>../src/wxm/update.cpp</sources>
+		<headers>../src/wxm/utils.h</headers>
+		<sources>../src/wxm/utils.cpp</sources>
+		<headers>../src/wxm/wx_avoid_wxmsw_bug4373.h</headers>
+		<headers>../src/wxm/wx_icu.h</headers>
+		<sources>../src/wxm/wx_icu.cpp</sources>
 		<headers>../src/wxmedit/caret_new.h</headers>
 		<headers>../src/wxmedit/clipbrd_gtk.h</headers>
 		<headers>../src/wxmedit/trad_simp.h</headers>
@@ -187,43 +210,20 @@
 		<sources>../src/wxmedit_app.cpp</sources>
 		<headers>../src/wxmedit_frame.h</headers>
 		<sources>../src/wxmedit_frame.cpp</sources>
-		<headers>../src/xm/inframe_wxmedit.h</headers>
-		<sources>../src/xm/inframe_wxmedit.cpp</sources>
-		<headers>../src/xm/simple_wxmedit.h</headers>
-		<sources>../src/xm/simple_wxmedit.cpp</sources>
-		<headers>../src/xm/single_line_wxmedit.h</headers>
-		<sources>../src/xm/single_line_wxmedit.cpp</sources>
-		<headers>../src/xm/wx_avoid_wxmsw_bug4373.h</headers>
-		<headers>../src/xm/wxm_recent_list.h</headers>
-		<sources>../src/xm/wxm_recent_list.cpp</sources>
-		<headers>../src/xm/wxm_case_conv.h</headers>
-		<sources>../src/xm/wxm_case_conv.cpp</sources>
-		<headers>../src/xm/wxm_choice_map.hpp</headers>
-		<headers>../src/xm/wxm_def.h</headers>
-		<headers>../src/xm/wxm_line_enc_adapter.h</headers>
-		<sources>../src/xm/wxm_line_enc_adapter.cpp</sources>
-		<headers>../src/xm/wxm_statusbar.h</headers>
-		<sources>../src/xm/wxm_statusbar.cpp</sources>
-		<headers>../src/xm/wxm_update.h</headers>
-		<sources>../src/xm/wxm_update.cpp</sources>
-		<headers>../src/xm/wxm_utils.h</headers>
-		<sources>../src/xm/wxm_utils.cpp</sources>
-		<headers>../src/xm/wxm_wx_icu.h</headers>
-		<sources>../src/xm/wxm_wx_icu.cpp</sources>
-		<headers>../src/xm/xm_remote.h</headers>
-		<sources>../src/xm/xm_remote.cpp</sources>
-		<headers>../src/xm/xm_ublock.h</headers>
-		<sources>../src/xm/xm_ublock.cpp</sources>
-		<sources>../src/xm/xm_ublock_des.cpp</sources>
-		<headers>../src/xm/xm_utils.hpp</headers>
-		<headers>../src/xm/xm_uutils.h</headers>
-		<sources>../src/xm/xm_uutils.cpp</sources>
+		<headers>../src/xm/remote.h</headers>
+		<sources>../src/xm/remote.cpp</sources>
+		<headers>../src/xm/ublock.h</headers>
+		<sources>../src/xm/ublock.cpp</sources>
+		<sources>../src/xm/ublock_des.cpp</sources>
+		<headers>../src/xm/utils.hpp</headers>
+		<headers>../src/xm/uutils.h</headers>
+		<sources>../src/xm/uutils.cpp</sources>
 	</exe>
 	<exe id="wxmedit_test" template="win_cfg,enc_src,encdet_src">
+		<headers>../src/wxm/line_enc_adapter.h</headers>
 		<headers>../src/wxmedit/ucs4_t.h</headers>
 		<headers>../src/wxmedit/wxm_deque.hpp</headers>
-		<headers>../src/xm/wxm_line_enc_adapter.h</headers>
-		<headers>../src/xm/xm_utils.hpp</headers>
+		<headers>../src/xm/utils.hpp</headers>
 		<headers>../test/encdet/data_from_icudet.h</headers>
 		<sources>../test/encdet/data_from_icudet.cpp</sources>
 		<headers>../test/encdet/data_from_mozdet.h</headers>

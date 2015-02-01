@@ -1,5 +1,5 @@
 ///////////////////////////////////////////////////////////////////////////////
-// Name:        wxm_word_count_dialog.h
+// Name:        dialog/wxm_word_count_dialog.h
 // Description: WordCount Dialog
 // Copyright:   2013-2015  JiaYanwei   <wxmedit@gmail.com>
 // License:     GPL

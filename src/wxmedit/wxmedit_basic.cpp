@@ -7,9 +7,9 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 #include "wxmedit.h"
-#include "../xm/simple_wxmedit.h"
-#include "../xm/wxm_encoding/unicode.h"
-#include "../xm/wxm_utils.h"
+#include "../wxm/edit/simple.h"
+#include "../wxm/encoding/unicode.h"
+#include "../wxm/utils.h"
 
 #ifdef __WXGTK__
 #   include "clipbrd_gtk.h"

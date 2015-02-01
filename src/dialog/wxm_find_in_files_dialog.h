@@ -1,5 +1,5 @@
 ///////////////////////////////////////////////////////////////////////////////
-// Name:        wxm_find_in_files_dialog.h
+// Name:        dialog/wxm_find_in_files_dialog.h
 // Description: find or replace in files dialog
 // Copyright:   2013-2015  JiaYanwei   <wxmedit@gmail.com>
 //              2006-2010  Alston Chen <madedit@gmail.com>
@@ -9,7 +9,7 @@
 #ifndef WXM_FIND_IN_FILES_DIALOG_H
 #define WXM_FIND_IN_FILES_DIALOG_H
 
-#include "../xm/wxm_recent_list.h"
+#include "../wxm/recent_list.h"
 
 //(*Headers(WXMFindInFilesDialog)
 #include <wx/sizer.h>

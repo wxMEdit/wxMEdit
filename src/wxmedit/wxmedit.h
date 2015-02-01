@@ -23,7 +23,7 @@
 
 #include "wxm_lines.h"
 #include "wxmedit_command.h"
-#include "../xm/wxm_encoding/encoding.h"
+#include "../wxm/encoding/encoding.h"
 #include "wxm_syntax.h"
 #include "wxm_undo.h"
 #include "ucs4_t.h"

@@ -1,5 +1,5 @@
 ///////////////////////////////////////////////////////////////////////////////
-// Name:        wxm_highlighting_dialog.cpp
+// Name:        dialog/wxm_highlighting_dialog.cpp
 // Description: Syntax Highlight Settings Dialog
 // Copyright:   2013-2015  JiaYanwei   <wxmedit@gmail.com>
 //              2006-2010  Alston Chen <madedit@gmail.com>

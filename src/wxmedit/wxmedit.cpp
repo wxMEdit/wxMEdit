@@ -7,13 +7,13 @@
 // License:     GPLv3
 ///////////////////////////////////////////////////////////////////////////////
 
-#include "../xm/wxm_def.h"
 #include "wxmedit.h"
-#include "../xm/wxm_encdet.h"
-#include "../xm/wxm_encoding/unicode.h"
+#include "../wxm/def.h"
+#include "../wxm/encdet.h"
+#include "../wxm/encoding/unicode.h"
+#include "../wxm/utils.h"
 #include "wxm_syntax.h"
 #include "wxm_undo.h"
-#include "../xm/wxm_utils.h"
 
 #include <wx/fileconf.h>
 #include <wx/gdicmn.h>

@@ -10,12 +10,12 @@
 #ifndef _WXMEDIT_FRAME_H_
 #define _WXMEDIT_FRAME_H_
 
-#include "xm/wxm_recent_list.h"
-#include "xm/wxm_def.h"
-#include "xm/wxm_encoding/encoding_def.h"
-#include "xm/wxm_statusbar.h"
-#include "xm/wxm_utils.h"
-#include "xm/inframe_wxmedit.h"
+#include "wxm/def.h"
+#include "wxm/encoding/encoding_def.h"
+#include "wxm/recent_list.h"
+#include "wxm/status_bar.h"
+#include "wxm/utils.h"
+#include "wxm/edit/inframe.h"
 
 #include <wx/wxprec.h>
 #ifdef __BORLANDC__
