@@ -9,7 +9,7 @@
 #ifndef WXM_FIND_IN_FILES_DIALOG_H
 #define WXM_FIND_IN_FILES_DIALOG_H
 
-#include "../xm/wx_recent_list.h"
+#include "../xm/wxm_recent_list.h"
 
 //(*Headers(WXMFindInFilesDialog)
 #include <wx/sizer.h>
@@ -102,8 +102,8 @@ class WXMFindInFilesDialog: public wxDialog
 	public:
 		MadEdit *m_FindText, *m_ReplaceText;
 		wxBitmapButton *WxBitmapButtonRecentFindText, *WxBitmapButtonRecentReplaceText;
-		wxRecentList *m_RecentFindDir;
-		wxRecentList *m_RecentFindFilter, *m_RecentFindExclude;
+		wxm::wxRecentList *m_RecentFindDir;
+		wxm::wxRecentList *m_RecentFindFilter, *m_RecentFindExclude;
 		void UpdateCheckBoxByCBHex(bool check);
 		void FindReplaceInFiles(bool bReplace);//false: find; true: replace
 	//private:

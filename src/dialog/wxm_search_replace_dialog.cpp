@@ -212,9 +212,9 @@ WXMSearchReplaceDialog::WXMSearchReplaceDialog(wxWindow* parent,wxWindowID id,co
 	WxButtonClose->Connect(wxEVT_KEY_DOWN, wxKeyEventHandler(WXMSearchReplaceDialog::WXMSearchReplaceDialogKeyDown));
 
 
-	m_RecentFindText = new wxSimpleRecentList(20, s_idrsvr.RecentFindTextID1());
+	m_RecentFindText = new wxm::wxSimpleRecentList(20, s_idrsvr.RecentFindTextID1());
 	m_RecentFindText->UseMenu(&WxPopupMenuRecentFindText);
-	m_RecentReplaceText = new wxSimpleRecentList(20, s_idrsvr.RecentReplaceTextID1());
+	m_RecentReplaceText = new wxm::wxSimpleRecentList(20, s_idrsvr.RecentReplaceTextID1());
 	m_RecentReplaceText->UseMenu(&WxPopupMenuRecentReplaceText);
 
 	wxConfigBase *m_Config=wxConfigBase::Get(false);

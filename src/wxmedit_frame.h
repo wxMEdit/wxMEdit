@@ -10,7 +10,7 @@
 #ifndef _WXMEDIT_FRAME_H_
 #define _WXMEDIT_FRAME_H_
 
-#include "xm/wx_recent_list.h"
+#include "xm/wxm_recent_list.h"
 #include "xm/wxm_def.h"
 #include "xm/wxm_encoding/encoding_def.h"
 #include "xm/wxm_statusbar.h"
@@ -86,8 +86,8 @@ public:
     wxConfigBase  *m_Config;
     wxImageList   *m_ImageList;
     wxFileHistory *m_RecentFiles;
-    wxRecentList *m_RecentEncodings;
-    wxRecentList *m_RecentFonts;
+	wxm::wxRecentList *m_RecentEncodings;
+	wxm::wxRecentList *m_RecentFonts;
 
     wxAuiManager m_AuiManager; // wxAUI
     wxAuiNotebook *m_InfoNotebook; //

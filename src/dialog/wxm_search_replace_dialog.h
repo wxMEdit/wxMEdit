@@ -9,7 +9,7 @@
 #ifndef WXM_REPLACE_DIALOG_H
 #define WXM_REPLACE_DIALOG_H
 
-#include "../xm/wx_recent_list.h"
+#include "../xm/wxm_recent_list.h"
 #include "../xm/wxm_utils.h"
 
 //(*Headers(WXMSearchReplaceDialog)
@@ -95,8 +95,8 @@ class WXMSearchReplaceDialog: public wxDialog
 	public:
 		MadEdit *m_FindText, *m_ReplaceText;
 		wxBitmapButton *WxBitmapButtonRecentFindText, *WxBitmapButtonRecentReplaceText;
-		wxRecentList *m_RecentFindText;
-		wxRecentList *m_RecentReplaceText;
+		wxm::wxRecentList *m_RecentFindText;
+		wxm::wxRecentList *m_RecentReplaceText;
 
 		void ReadWriteSettings(bool bRead);
 		void UpdateCheckBoxByCBHex(bool check);

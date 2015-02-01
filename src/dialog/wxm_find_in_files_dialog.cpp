@@ -222,9 +222,9 @@ WXMFindInFilesDialog::WXMFindInFilesDialog(wxWindow* parent,wxWindowID id,const 
 	WxComboBoxEncoding->SetValue(systemenc);
 
 	//
-	m_RecentFindDir = new wxFilePathRecentList();
-	m_RecentFindFilter = new wxFilePathRecentList();
-	m_RecentFindExclude = new wxFilePathRecentList();
+	m_RecentFindDir = new wxm::wxFilePathRecentList();
+	m_RecentFindFilter = new wxm::wxFilePathRecentList();
+	m_RecentFindExclude = new wxm::wxFilePathRecentList();
 	wxConfigBase *m_Config=wxConfigBase::Get(false);
 	wxString oldpath=m_Config->GetPath();
 	m_Config->SetPath(wxT("/RecentFindDir"));

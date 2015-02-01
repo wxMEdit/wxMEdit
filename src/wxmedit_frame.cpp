@@ -29,7 +29,7 @@
 #include "wxm_command.h"
 #include "xm/inframe_wxmedit.h"
 #include "xm/wxm_update.h"
-#include "xm/wx_recent_list.h"
+#include "xm/wxm_recent_list.h"
 #include "xm/wxm_def.h"
 #include "plugin.h"
 
@@ -1921,12 +1921,12 @@ void MadEditFrame::CreateGUIControls()
     m_Config->SetPath(wxT("/RecentFiles"));
     m_RecentFiles->Load(*m_Config);
 
-    m_RecentEncodings=new wxCaseInsensitiveRecentList(9, menuRecentEncoding1);
+    m_RecentEncodings = new wxm::wxCaseInsensitiveRecentList(9, menuRecentEncoding1);
     m_RecentEncodings->UseMenu(g_Menu_View_Encoding);
     m_Config->SetPath(wxT("/RecentEncodings"));
     m_RecentEncodings->Load(*m_Config);
 
-    m_RecentFonts=new wxFilePathRecentList(9, menuRecentFont1);
+    m_RecentFonts = new wxm::wxFilePathRecentList(9, menuRecentFont1);
     m_RecentFonts->UseMenu(g_Menu_View_FontName);
     m_Config->SetPath(wxT("/RecentFonts"));
     m_RecentFonts->Load(*m_Config);

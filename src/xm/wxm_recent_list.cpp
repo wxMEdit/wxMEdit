@@ -6,7 +6,7 @@
 // License:     GPLv3
 ///////////////////////////////////////////////////////////////////////////////
 
-#include "wx_recent_list.h"
+#include "wxm_recent_list.h"
 #include "wxm_case_conv.h"
 #include "wxm_utils.h"
 #include <wx/menu.h>
@@ -16,6 +16,9 @@
 #include <crtdbg.h>
 #define new new(_NORMAL_BLOCK ,__FILE__, __LINE__)
 #endif
+
+namespace wxm
+{
 
 bool wxCaseInsensitiveRecentList::ItemEqual(const wxString& item1, const wxString& item2)
 {
@@ -105,3 +108,4 @@ void wxRecentList::AddFileToHistory(const wxString& item)
 	}
 }
 
+} // namespace wxm

@@ -83,8 +83,8 @@ wxmedit_SOURCES =	$(enc_src) \
 	src/xm/single_line_wxmedit.cpp \
 	src/xm/single_line_wxmedit.h \
 	src/xm/wx_avoid_wxmsw_bug4373.h \
-	src/xm/wx_recent_list.cpp \
-	src/xm/wx_recent_list.h \
+	src/xm/wxm_recent_list.cpp \
+	src/xm/wxm_recent_list.h \
 	src/xm/wxm_case_conv.cpp \
 	src/xm/wxm_case_conv.h \
 	src/xm/wxm_choice_map.hpp \

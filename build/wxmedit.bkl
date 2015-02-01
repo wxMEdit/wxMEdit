@@ -194,8 +194,8 @@
 		<headers>../src/xm/single_line_wxmedit.h</headers>
 		<sources>../src/xm/single_line_wxmedit.cpp</sources>
 		<headers>../src/xm/wx_avoid_wxmsw_bug4373.h</headers>
-		<headers>../src/xm/wx_recent_list.h</headers>
-		<sources>../src/xm/wx_recent_list.cpp</sources>
+		<headers>../src/xm/wxm_recent_list.h</headers>
+		<sources>../src/xm/wxm_recent_list.cpp</sources>
 		<headers>../src/xm/wxm_case_conv.h</headers>
 		<sources>../src/xm/wxm_case_conv.cpp</sources>
 		<headers>../src/xm/wxm_choice_map.hpp</headers>

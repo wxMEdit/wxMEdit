@@ -6,12 +6,15 @@
 // License:     GPLv3
 ///////////////////////////////////////////////////////////////////////////////
 
-#ifndef _WX_RECENT_LIST_H_
-#define _WX_RECENT_LIST_H_
+#ifndef _WXM_RECENT_LIST_H_
+#define _WXM_RECENT_LIST_H_
 
 #include <wx/docview.h>
 
-struct wxRecentList: public wxFileHistory
+namespace wxm
+{
+
+struct wxRecentList : public wxFileHistory
 {
 	wxRecentList(size_t maxFiles = 9, wxWindowID idBase = wxID_FILE1)
 		: wxFileHistory(maxFiles, idBase), m_idbase(idBase)
@@ -35,7 +38,7 @@ private:
 	}
 };
 
-struct wxSimpleRecentList: public wxRecentList
+struct wxSimpleRecentList : public wxRecentList
 {
 	wxSimpleRecentList(size_t maxFiles = 9, wxWindowID idBase = wxID_FILE1)
 		: wxRecentList(maxFiles, idBase)
@@ -47,7 +50,7 @@ private:
 	}
 };
 
-struct wxFilePathRecentList: public wxRecentList
+struct wxFilePathRecentList : public wxRecentList
 {
 	wxFilePathRecentList(size_t maxFiles = 9, wxWindowID idBase = wxID_FILE1)
 		: wxRecentList(maxFiles, idBase)
@@ -56,7 +59,7 @@ private:
 	virtual bool ItemEqual(const wxString& item1, const wxString& item2);
 };
 
-struct wxCaseInsensitiveRecentList: public wxRecentList
+struct wxCaseInsensitiveRecentList : public wxRecentList
 {
 	wxCaseInsensitiveRecentList(size_t maxFiles = 9, wxWindowID idBase = wxID_FILE1)
 		: wxRecentList(maxFiles, idBase)
@@ -65,4 +68,6 @@ private:
 	virtual bool ItemEqual(const wxString& item1, const wxString& item2);
 };
 
-#endif //_WX_RECENT_LIST_H_
+} // namespace wxm
+
+#endif //_WXM_RECENT_LIST_H_
