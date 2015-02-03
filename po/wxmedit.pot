@@ -39,7 +39,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-02-01 19:25+0800\n"
+"POT-Creation-Date: 2015-02-04 00:09+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1353,7 +1353,7 @@ msgstr ""
 msgid "wxMEdit Printout"
 msgstr ""
 
-#: ../src/wxmedit/wxmedit_advanced.cpp:1313 wxstd.po.cpp:265
+#: ../src/wxmedit/wxmedit_advanced.cpp:1313 ../src/xm/ublock_des.cpp:286
 msgid "Invalid Unicode Characters"
 msgstr ""
 
@@ -2688,7 +2688,7 @@ msgstr ""
 msgid "Decrease Indent"
 msgstr ""
 
-#: ../src/wxmedit_frame.cpp:1990 wxstd.po.cpp:272
+#: ../src/wxmedit_frame.cpp:1990 wxstd.po.cpp:49
 msgid "Comment"
 msgstr ""
 
@@ -2831,6 +2831,1018 @@ msgstr ""
 
 #: ../src/wxmedit_frame.cpp:5095
 msgid "Press OK to view the license online version.\n"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:25
+msgid "No_Block"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:26
+msgid "Basic Latin"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:27
+msgid "Latin-1 Supplement"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:28
+msgid "Latin Extended-A"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:29
+msgid "Latin Extended-B"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:30
+msgid "IPA Extensions"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:31
+msgid "Spacing Modifier Letters"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:32
+msgid "Combining Diacritical Marks"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:33
+msgid "Greek and Coptic"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:34
+msgid "Cyrillic"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:35
+msgid "Armenian"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:36
+msgid "Hebrew"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:37
+msgid "Arabic"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:38
+msgid "Syriac"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:39
+msgid "Thaana"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:40
+msgid "Devanagari"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:41
+msgid "Bengali"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:42
+msgid "Gurmukhi"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:43
+msgid "Gujarati"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:44
+msgid "Oriya"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:45
+msgid "Tamil"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:46
+msgid "Telugu"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:47
+msgid "Kannada"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:48
+msgid "Malayalam"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:49
+msgid "Sinhala"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:50
+msgid "Thai"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:51
+msgid "Lao"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:52
+msgid "Tibetan"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:53
+msgid "Myanmar"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:54
+msgid "Georgian"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:55
+msgid "Hangul Jamo"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:56
+msgid "Ethiopic"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:57
+msgid "Cherokee"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:58
+msgid "Unified Canadian Aboriginal Syllabics"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:59
+msgid "Ogham"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:60
+msgid "Runic"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:61
+msgid "Khmer"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:62
+msgid "Mongolian"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:63
+msgid "Latin Extended Additional"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:64
+msgid "Greek Extended"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:65
+msgid "General Punctuation"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:66
+msgid "Superscripts and Subscripts"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:67
+msgid "Currency Symbols"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:68
+msgid "Combining Diacritical Marks for Symbols"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:69
+msgid "Letterlike Symbols"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:70
+msgid "Number Forms"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:71
+msgid "Arrows"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:72
+msgid "Mathematical Operators"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:73
+msgid "Miscellaneous Technical"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:74
+msgid "Control Pictures"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:75
+msgid "Optical Character Recognition"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:76
+msgid "Enclosed Alphanumerics"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:77
+msgid "Box Drawing"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:78
+msgid "Block Elements"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:79
+msgid "Geometric Shapes"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:80
+msgid "Miscellaneous Symbols"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:81
+msgid "Dingbats"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:82
+msgid "Braille Patterns"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:83
+msgid "CJK Radicals Supplement"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:84
+msgid "Kangxi Radicals"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:85
+msgid "Ideographic Description Characters"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:86
+msgid "CJK Symbols and Punctuation"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:87
+msgid "Hiragana"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:88
+msgid "Katakana"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:89
+msgid "Bopomofo"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:90
+msgid "Hangul Compatibility Jamo"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:91
+msgid "Kanbun"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:92
+msgid "Bopomofo Extended"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:93
+msgid "Enclosed CJK Letters and Months"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:94
+msgid "CJK Compatibility"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:95
+msgid "CJK Unified Ideographs Extension A"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:96
+msgid "CJK Unified Ideographs"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:97
+msgid "Yi Syllables"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:98
+msgid "Yi Radicals"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:99
+msgid "Hangul Syllables"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:100
+msgid "High Surrogates"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:101
+msgid "High Private Use Surrogates"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:102
+msgid "Low Surrogates"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:103
+msgid "Private Use Area"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:104
+msgid "CJK Compatibility Ideographs"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:105
+msgid "Alphabetic Presentation Forms"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:106
+msgid "Arabic Presentation Forms-A"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:107
+msgid "Combining Half Marks"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:108
+msgid "CJK Compatibility Forms"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:109
+msgid "Small Form Variants"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:110
+msgid "Arabic Presentation Forms-B"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:111
+msgid "Specials"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:112
+msgid "Halfwidth and Fullwidth Forms"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:113
+msgid "Old Italic"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:114
+msgid "Gothic"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:115
+msgid "Deseret"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:116
+msgid "Byzantine Musical Symbols"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:117
+msgid "Musical Symbols"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:118
+msgid "Mathematical Alphanumeric Symbols"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:119
+msgid "CJK Unified Ideographs Extension B"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:120
+msgid "CJK Compatibility Ideographs Supplement"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:121
+msgid "Tags"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:122
+msgid "Cyrillic Supplement"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:123
+msgid "Tagalog"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:124
+msgid "Hanunoo"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:125
+msgid "Buhid"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:126
+msgid "Tagbanwa"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:127
+msgid "Miscellaneous Mathematical Symbols-A"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:128
+msgid "Supplemental Arrows-A"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:129
+msgid "Supplemental Arrows-B"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:130
+msgid "Miscellaneous Mathematical Symbols-B"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:131
+msgid "Supplemental Mathematical Operators"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:132
+msgid "Katakana Phonetic Extensions"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:133
+msgid "Variation Selectors"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:134
+msgid "Supplementary Private Use Area-A"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:135
+msgid "Supplementary Private Use Area-B"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:136
+msgid "Limbu"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:137
+msgid "Tai Le"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:138
+msgid "Khmer Symbols"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:139
+msgid "Phonetic Extensions"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:140
+msgid "Miscellaneous Symbols and Arrows"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:141
+msgid "Yijing Hexagram Symbols"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:142
+msgid "Linear B Syllabary"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:143
+msgid "Linear B Ideograms"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:144
+msgid "Aegean Numbers"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:145
+msgid "Ugaritic"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:146
+msgid "Shavian"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:147
+msgid "Osmanya"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:148
+msgid "Cypriot Syllabary"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:149
+msgid "Tai Xuan Jing Symbols"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:150
+msgid "Variation Selectors Supplement"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:151
+msgid "Ancient Greek Musical Notation"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:152
+msgid "Ancient Greek Numbers"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:153
+msgid "Arabic Supplement"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:154
+msgid "Buginese"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:155
+msgid "CJK Strokes"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:156
+msgid "Combining Diacritical Marks Supplement"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:157
+msgid "Coptic"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:158
+msgid "Ethiopic Extended"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:159
+msgid "Ethiopic Supplement"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:160
+msgid "Georgian Supplement"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:161
+msgid "Glagolitic"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:162
+msgid "Kharoshthi"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:163
+msgid "Modifier Tone Letters"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:164
+msgid "New Tai Lue"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:165
+msgid "Old Persian"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:166
+msgid "Phonetic Extensions Supplement"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:167
+msgid "Supplemental Punctuation"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:168
+msgid "Syloti Nagri"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:169
+msgid "Tifinagh"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:170
+msgid "Vertical Forms"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:171
+msgid "NKo"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:172
+msgid "Balinese"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:173
+msgid "Latin Extended-C"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:174
+msgid "Latin Extended-D"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:175
+msgid "Phags-pa"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:176
+msgid "Phoenician"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:177
+msgid "Cuneiform"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:178
+msgid "Cuneiform Numbers and Punctuation"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:179
+msgid "Counting Rod Numerals"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:180
+msgid "Sundanese"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:181
+msgid "Lepcha"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:182
+msgid "Ol Chiki"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:183
+msgid "Cyrillic Extended-A"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:184
+msgid "Vai"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:185
+msgid "Cyrillic Extended-B"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:186
+msgid "Saurashtra"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:187
+msgid "Kayah Li"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:188
+msgid "Rejang"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:189
+msgid "Cham"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:190
+msgid "Ancient Symbols"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:191
+msgid "Phaistos Disc"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:192
+msgid "Lycian"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:193
+msgid "Carian"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:194
+msgid "Lydian"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:195
+msgid "Mahjong Tiles"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:196
+msgid "Domino Tiles"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:198
+msgid "Samaritan"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:199
+msgid "Unified Canadian Aboriginal Syllabics Extended"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:200
+msgid "Tai Tham"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:201
+msgid "Vedic Extensions"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:202
+msgid "Lisu"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:203
+msgid "Bamum"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:204
+msgid "Common Indic Number Forms"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:205
+msgid "Devanagari Extended"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:206
+msgid "Hangul Jamo Extended-A"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:207
+msgid "Javanese"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:208
+msgid "Myanmar Extended-A"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:209
+msgid "Tai Viet"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:210
+msgid "Meetei Mayek"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:211
+msgid "Hangul Jamo Extended-B"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:212
+msgid "Imperial Aramaic"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:213
+msgid "Old South Arabian"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:214
+msgid "Avestan"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:215
+msgid "Inscriptional Parthian"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:216
+msgid "Inscriptional Pahlavi"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:217
+msgid "Old Turkic"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:218
+msgid "Rumi Numeral Symbols"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:219
+msgid "Kaithi"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:220
+msgid "Egyptian Hieroglyphs"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:221
+msgid "Enclosed Alphanumeric Supplement"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:222
+msgid "Enclosed Ideographic Supplement"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:223
+msgid "CJK Unified Ideographs Extension C"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:225
+msgid "Mandaic"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:226
+msgid "Batak"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:227
+msgid "Ethiopic Extended-A"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:228
+msgid "Brahmi"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:229
+msgid "Bamum Supplement"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:230
+msgid "Kana Supplement"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:231
+msgid "Playing Cards"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:232
+msgid "Miscellaneous Symbols And Pictographs"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:233
+msgid "Emoticons"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:234
+msgid "Transport And Map Symbols"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:235
+msgid "Alchemical Symbols"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:236
+msgid "CJK Unified Ideographs Extension D"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:238
+msgid "Arabic Extended-A"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:239
+msgid "Arabic Mathematical Alphabetic Symbols"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:240
+msgid "Chakma"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:241
+msgid "Meetei Mayek Extensions"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:242
+msgid "Meroitic Cursive"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:243
+msgid "Meroitic Hieroglyphs"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:244
+msgid "Miao"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:245
+msgid "Sharada"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:246
+msgid "Sora Sompeng"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:247
+msgid "Sundanese Supplement"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:248
+msgid "Takri"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:250
+msgid "Bassa Vah"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:251
+msgid "Caucasian Albanian"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:252
+msgid "Coptic Epact Numbers"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:253
+msgid "Combining Diacritical Marks Extended"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:254
+msgid "Duployan"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:255
+msgid "Elbasan"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:256
+msgid "Geometric Shapes Extended"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:257
+msgid "Grantha"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:258
+msgid "Khojki"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:259
+msgid "Khudawadi"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:260
+msgid "Latin Extended-E"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:261
+msgid "Linear A"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:262
+msgid "Mahajani"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:263
+msgid "Manichaean"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:264
+msgid "Mende Kikakui"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:265
+msgid "Modi"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:266
+msgid "Mro"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:267
+msgid "Myanmar Extended-B"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:268
+msgid "Nabataean"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:269
+msgid "Old North Arabian"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:270
+msgid "Old Permic"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:271
+msgid "Ornamental Dingbats"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:272
+msgid "Pahawh Hmong"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:273
+msgid "Palmyrene"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:274
+msgid "Pau Cin Hau"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:275
+msgid "Psalter Pahlavi"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:276
+msgid "Shorthand Format Controls"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:277
+msgid "Siddham"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:278
+msgid "Sinhala Archaic Numbers"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:279
+msgid "Supplemental Arrows-C"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:280
+msgid "Tirhuta"
+msgstr ""
+
+#: ../src/xm/ublock_des.cpp:281
+msgid "Warang Citi"
 msgstr ""
 
 #: wxstd.po.cpp:3
@@ -2981,1645 +3993,761 @@ msgid "Page %d of %d"
 msgstr ""
 
 #: wxstd.po.cpp:44
-msgid "No_Block"
-msgstr ""
-
-#: wxstd.po.cpp:45
-msgid "Basic Latin"
-msgstr ""
-
-#: wxstd.po.cpp:46
-msgid "Latin-1 Supplement"
-msgstr ""
-
-#: wxstd.po.cpp:47
-msgid "Latin Extended-A"
-msgstr ""
-
-#: wxstd.po.cpp:48
-msgid "Latin Extended-B"
-msgstr ""
-
-#: wxstd.po.cpp:49
-msgid "IPA Extensions"
-msgstr ""
-
-#: wxstd.po.cpp:50
-msgid "Spacing Modifier Letters"
-msgstr ""
-
-#: wxstd.po.cpp:51
-msgid "Combining Diacritical Marks"
-msgstr ""
-
-#: wxstd.po.cpp:52
-msgid "Greek and Coptic"
-msgstr ""
-
-#: wxstd.po.cpp:53
-msgid "Cyrillic"
-msgstr ""
-
-#: wxstd.po.cpp:54
-msgid "Armenian"
-msgstr ""
-
-#: wxstd.po.cpp:55
-msgid "Hebrew"
-msgstr ""
-
-#: wxstd.po.cpp:56
-msgid "Arabic"
-msgstr ""
-
-#: wxstd.po.cpp:57
-msgid "Syriac"
-msgstr ""
-
-#: wxstd.po.cpp:58
-msgid "Thaana"
-msgstr ""
-
-#: wxstd.po.cpp:59
-msgid "Devanagari"
-msgstr ""
-
-#: wxstd.po.cpp:60
-msgid "Bengali"
-msgstr ""
-
-#: wxstd.po.cpp:61
-msgid "Gurmukhi"
-msgstr ""
-
-#: wxstd.po.cpp:62
-msgid "Gujarati"
-msgstr ""
-
-#: wxstd.po.cpp:63
-msgid "Oriya"
-msgstr ""
-
-#: wxstd.po.cpp:64
-msgid "Tamil"
-msgstr ""
-
-#: wxstd.po.cpp:65
-msgid "Telugu"
-msgstr ""
-
-#: wxstd.po.cpp:66
-msgid "Kannada"
-msgstr ""
-
-#: wxstd.po.cpp:67
-msgid "Malayalam"
-msgstr ""
-
-#: wxstd.po.cpp:68
-msgid "Sinhala"
-msgstr ""
-
-#: wxstd.po.cpp:69
-msgid "Thai"
-msgstr ""
-
-#: wxstd.po.cpp:70
-msgid "Lao"
-msgstr ""
-
-#: wxstd.po.cpp:71
-msgid "Tibetan"
-msgstr ""
-
-#: wxstd.po.cpp:72
-msgid "Myanmar"
-msgstr ""
-
-#: wxstd.po.cpp:73
-msgid "Georgian"
-msgstr ""
-
-#: wxstd.po.cpp:74
-msgid "Hangul Jamo"
-msgstr ""
-
-#: wxstd.po.cpp:75
-msgid "Ethiopic"
-msgstr ""
-
-#: wxstd.po.cpp:76
-msgid "Cherokee"
-msgstr ""
-
-#: wxstd.po.cpp:77
-msgid "Unified Canadian Aboriginal Syllabics"
-msgstr ""
-
-#: wxstd.po.cpp:78
-msgid "Ogham"
-msgstr ""
-
-#: wxstd.po.cpp:79
-msgid "Runic"
-msgstr ""
-
-#: wxstd.po.cpp:80
-msgid "Khmer"
-msgstr ""
-
-#: wxstd.po.cpp:81
-msgid "Mongolian"
-msgstr ""
-
-#: wxstd.po.cpp:82
-msgid "Latin Extended Additional"
-msgstr ""
-
-#: wxstd.po.cpp:83
-msgid "Greek Extended"
-msgstr ""
-
-#: wxstd.po.cpp:84
-msgid "General Punctuation"
-msgstr ""
-
-#: wxstd.po.cpp:85
-msgid "Superscripts and Subscripts"
-msgstr ""
-
-#: wxstd.po.cpp:86
-msgid "Currency Symbols"
-msgstr ""
-
-#: wxstd.po.cpp:87
-msgid "Combining Diacritical Marks for Symbols"
-msgstr ""
-
-#: wxstd.po.cpp:88
-msgid "Letterlike Symbols"
-msgstr ""
-
-#: wxstd.po.cpp:89
-msgid "Number Forms"
-msgstr ""
-
-#: wxstd.po.cpp:90
-msgid "Arrows"
-msgstr ""
-
-#: wxstd.po.cpp:91
-msgid "Mathematical Operators"
-msgstr ""
-
-#: wxstd.po.cpp:92
-msgid "Miscellaneous Technical"
-msgstr ""
-
-#: wxstd.po.cpp:93
-msgid "Control Pictures"
-msgstr ""
-
-#: wxstd.po.cpp:94
-msgid "Optical Character Recognition"
-msgstr ""
-
-#: wxstd.po.cpp:95
-msgid "Enclosed Alphanumerics"
-msgstr ""
-
-#: wxstd.po.cpp:96
-msgid "Box Drawing"
-msgstr ""
-
-#: wxstd.po.cpp:97
-msgid "Block Elements"
-msgstr ""
-
-#: wxstd.po.cpp:98
-msgid "Geometric Shapes"
-msgstr ""
-
-#: wxstd.po.cpp:99
-msgid "Miscellaneous Symbols"
-msgstr ""
-
-#: wxstd.po.cpp:100
-msgid "Dingbats"
-msgstr ""
-
-#: wxstd.po.cpp:101
-msgid "Braille Patterns"
-msgstr ""
-
-#: wxstd.po.cpp:102
-msgid "CJK Radicals Supplement"
-msgstr ""
-
-#: wxstd.po.cpp:103
-msgid "Kangxi Radicals"
-msgstr ""
-
-#: wxstd.po.cpp:104
-msgid "Ideographic Description Characters"
-msgstr ""
-
-#: wxstd.po.cpp:105
-msgid "CJK Symbols and Punctuation"
-msgstr ""
-
-#: wxstd.po.cpp:106
-msgid "Hiragana"
-msgstr ""
-
-#: wxstd.po.cpp:107
-msgid "Katakana"
-msgstr ""
-
-#: wxstd.po.cpp:108
-msgid "Bopomofo"
-msgstr ""
-
-#: wxstd.po.cpp:109
-msgid "Hangul Compatibility Jamo"
-msgstr ""
-
-#: wxstd.po.cpp:110
-msgid "Kanbun"
-msgstr ""
-
-#: wxstd.po.cpp:111
-msgid "Bopomofo Extended"
-msgstr ""
-
-#: wxstd.po.cpp:112
-msgid "Enclosed CJK Letters and Months"
-msgstr ""
-
-#: wxstd.po.cpp:113
-msgid "CJK Compatibility"
-msgstr ""
-
-#: wxstd.po.cpp:114
-msgid "CJK Unified Ideographs Extension A"
-msgstr ""
-
-#: wxstd.po.cpp:115
-msgid "CJK Unified Ideographs"
-msgstr ""
-
-#: wxstd.po.cpp:116
-msgid "Yi Syllables"
-msgstr ""
-
-#: wxstd.po.cpp:117
-msgid "Yi Radicals"
-msgstr ""
-
-#: wxstd.po.cpp:118
-msgid "Hangul Syllables"
-msgstr ""
-
-#: wxstd.po.cpp:119
-msgid "High Surrogates"
-msgstr ""
-
-#: wxstd.po.cpp:120
-msgid "High Private Use Surrogates"
-msgstr ""
-
-#: wxstd.po.cpp:121
-msgid "Low Surrogates"
-msgstr ""
-
-#: wxstd.po.cpp:122
-msgid "Private Use Area"
-msgstr ""
-
-#: wxstd.po.cpp:123
-msgid "CJK Compatibility Ideographs"
-msgstr ""
-
-#: wxstd.po.cpp:124
-msgid "Alphabetic Presentation Forms"
-msgstr ""
-
-#: wxstd.po.cpp:125
-msgid "Arabic Presentation Forms-A"
-msgstr ""
-
-#: wxstd.po.cpp:126
-msgid "Combining Half Marks"
-msgstr ""
-
-#: wxstd.po.cpp:127
-msgid "CJK Compatibility Forms"
-msgstr ""
-
-#: wxstd.po.cpp:128
-msgid "Small Form Variants"
-msgstr ""
-
-#: wxstd.po.cpp:129
-msgid "Arabic Presentation Forms-B"
-msgstr ""
-
-#: wxstd.po.cpp:130
-msgid "Specials"
-msgstr ""
-
-#: wxstd.po.cpp:131
-msgid "Halfwidth and Fullwidth Forms"
-msgstr ""
-
-#: wxstd.po.cpp:132
-msgid "Old Italic"
-msgstr ""
-
-#: wxstd.po.cpp:133
-msgid "Gothic"
-msgstr ""
-
-#: wxstd.po.cpp:134
-msgid "Deseret"
-msgstr ""
-
-#: wxstd.po.cpp:135
-msgid "Byzantine Musical Symbols"
-msgstr ""
-
-#: wxstd.po.cpp:136
-msgid "Musical Symbols"
-msgstr ""
-
-#: wxstd.po.cpp:137
-msgid "Mathematical Alphanumeric Symbols"
-msgstr ""
-
-#: wxstd.po.cpp:138
-msgid "CJK Unified Ideographs Extension B"
-msgstr ""
-
-#: wxstd.po.cpp:139
-msgid "CJK Compatibility Ideographs Supplement"
-msgstr ""
-
-#: wxstd.po.cpp:140
-msgid "Tags"
-msgstr ""
-
-#: wxstd.po.cpp:141
-msgid "Cyrillic Supplement"
-msgstr ""
-
-#: wxstd.po.cpp:142
-msgid "Tagalog"
-msgstr ""
-
-#: wxstd.po.cpp:143
-msgid "Hanunoo"
-msgstr ""
-
-#: wxstd.po.cpp:144
-msgid "Buhid"
-msgstr ""
-
-#: wxstd.po.cpp:145
-msgid "Tagbanwa"
-msgstr ""
-
-#: wxstd.po.cpp:146
-msgid "Miscellaneous Mathematical Symbols-A"
-msgstr ""
-
-#: wxstd.po.cpp:147
-msgid "Supplemental Arrows-A"
-msgstr ""
-
-#: wxstd.po.cpp:148
-msgid "Supplemental Arrows-B"
-msgstr ""
-
-#: wxstd.po.cpp:149
-msgid "Miscellaneous Mathematical Symbols-B"
-msgstr ""
-
-#: wxstd.po.cpp:150
-msgid "Supplemental Mathematical Operators"
-msgstr ""
-
-#: wxstd.po.cpp:151
-msgid "Katakana Phonetic Extensions"
-msgstr ""
-
-#: wxstd.po.cpp:152
-msgid "Variation Selectors"
-msgstr ""
-
-#: wxstd.po.cpp:153
-msgid "Supplementary Private Use Area-A"
-msgstr ""
-
-#: wxstd.po.cpp:154
-msgid "Supplementary Private Use Area-B"
-msgstr ""
-
-#: wxstd.po.cpp:155
-msgid "Limbu"
-msgstr ""
-
-#: wxstd.po.cpp:156
-msgid "Tai Le"
-msgstr ""
-
-#: wxstd.po.cpp:157
-msgid "Khmer Symbols"
-msgstr ""
-
-#: wxstd.po.cpp:158
-msgid "Phonetic Extensions"
-msgstr ""
-
-#: wxstd.po.cpp:159
-msgid "Miscellaneous Symbols and Arrows"
-msgstr ""
-
-#: wxstd.po.cpp:160
-msgid "Yijing Hexagram Symbols"
-msgstr ""
-
-#: wxstd.po.cpp:161
-msgid "Linear B Syllabary"
-msgstr ""
-
-#: wxstd.po.cpp:162
-msgid "Linear B Ideograms"
-msgstr ""
-
-#: wxstd.po.cpp:163
-msgid "Aegean Numbers"
-msgstr ""
-
-#: wxstd.po.cpp:164
-msgid "Ugaritic"
-msgstr ""
-
-#: wxstd.po.cpp:165
-msgid "Shavian"
-msgstr ""
-
-#: wxstd.po.cpp:166
-msgid "Osmanya"
-msgstr ""
-
-#: wxstd.po.cpp:167
-msgid "Cypriot Syllabary"
-msgstr ""
-
-#: wxstd.po.cpp:168
-msgid "Tai Xuan Jing Symbols"
-msgstr ""
-
-#: wxstd.po.cpp:169
-msgid "Variation Selectors Supplement"
-msgstr ""
-
-#: wxstd.po.cpp:170
-msgid "Ancient Greek Musical Notation"
-msgstr ""
-
-#: wxstd.po.cpp:171
-msgid "Ancient Greek Numbers"
-msgstr ""
-
-#: wxstd.po.cpp:172
-msgid "Arabic Supplement"
-msgstr ""
-
-#: wxstd.po.cpp:173
-msgid "Buginese"
-msgstr ""
-
-#: wxstd.po.cpp:174
-msgid "CJK Strokes"
-msgstr ""
-
-#: wxstd.po.cpp:175
-msgid "Combining Diacritical Marks Supplement"
-msgstr ""
-
-#: wxstd.po.cpp:176
-msgid "Coptic"
-msgstr ""
-
-#: wxstd.po.cpp:177
-msgid "Ethiopic Extended"
-msgstr ""
-
-#: wxstd.po.cpp:178
-msgid "Ethiopic Supplement"
-msgstr ""
-
-#: wxstd.po.cpp:179
-msgid "Georgian Supplement"
-msgstr ""
-
-#: wxstd.po.cpp:180
-msgid "Glagolitic"
-msgstr ""
-
-#: wxstd.po.cpp:181
-msgid "Kharoshthi"
-msgstr ""
-
-#: wxstd.po.cpp:182
-msgid "Modifier Tone Letters"
-msgstr ""
-
-#: wxstd.po.cpp:183
-msgid "New Tai Lue"
-msgstr ""
-
-#: wxstd.po.cpp:184
-msgid "Old Persian"
-msgstr ""
-
-#: wxstd.po.cpp:185
-msgid "Phonetic Extensions Supplement"
-msgstr ""
-
-#: wxstd.po.cpp:186
-msgid "Supplemental Punctuation"
-msgstr ""
-
-#: wxstd.po.cpp:187
-msgid "Syloti Nagri"
-msgstr ""
-
-#: wxstd.po.cpp:188
-msgid "Tifinagh"
-msgstr ""
-
-#: wxstd.po.cpp:189
-msgid "Vertical Forms"
-msgstr ""
-
-#: wxstd.po.cpp:190
-msgid "NKo"
-msgstr ""
-
-#: wxstd.po.cpp:191
-msgid "Balinese"
-msgstr ""
-
-#: wxstd.po.cpp:192
-msgid "Latin Extended-C"
-msgstr ""
-
-#: wxstd.po.cpp:193
-msgid "Latin Extended-D"
-msgstr ""
-
-#: wxstd.po.cpp:194
-msgid "Phags-pa"
-msgstr ""
-
-#: wxstd.po.cpp:195
-msgid "Phoenician"
-msgstr ""
-
-#: wxstd.po.cpp:196
-msgid "Cuneiform"
-msgstr ""
-
-#: wxstd.po.cpp:197
-msgid "Cuneiform Numbers and Punctuation"
-msgstr ""
-
-#: wxstd.po.cpp:198
-msgid "Counting Rod Numerals"
-msgstr ""
-
-#: wxstd.po.cpp:199
-msgid "Sundanese"
-msgstr ""
-
-#: wxstd.po.cpp:200
-msgid "Lepcha"
-msgstr ""
-
-#: wxstd.po.cpp:201
-msgid "Ol Chiki"
-msgstr ""
-
-#: wxstd.po.cpp:202
-msgid "Cyrillic Extended-A"
-msgstr ""
-
-#: wxstd.po.cpp:203
-msgid "Vai"
-msgstr ""
-
-#: wxstd.po.cpp:204
-msgid "Cyrillic Extended-B"
-msgstr ""
-
-#: wxstd.po.cpp:205
-msgid "Saurashtra"
-msgstr ""
-
-#: wxstd.po.cpp:206
-msgid "Kayah Li"
-msgstr ""
-
-#: wxstd.po.cpp:207
-msgid "Rejang"
-msgstr ""
-
-#: wxstd.po.cpp:208
-msgid "Cham"
-msgstr ""
-
-#: wxstd.po.cpp:209
-msgid "Ancient Symbols"
-msgstr ""
-
-#: wxstd.po.cpp:210
-msgid "Phaistos Disc"
-msgstr ""
-
-#: wxstd.po.cpp:211
-msgid "Lycian"
-msgstr ""
-
-#: wxstd.po.cpp:212
-msgid "Carian"
-msgstr ""
-
-#: wxstd.po.cpp:213
-msgid "Lydian"
-msgstr ""
-
-#: wxstd.po.cpp:214
-msgid "Mahjong Tiles"
-msgstr ""
-
-#: wxstd.po.cpp:215
-msgid "Domino Tiles"
-msgstr ""
-
-#: wxstd.po.cpp:216
-msgid "Samaritan"
-msgstr ""
-
-#: wxstd.po.cpp:217
-msgid "Unified Canadian Aboriginal Syllabics Extended"
-msgstr ""
-
-#: wxstd.po.cpp:218
-msgid "Tai Tham"
-msgstr ""
-
-#: wxstd.po.cpp:219
-msgid "Vedic Extensions"
-msgstr ""
-
-#: wxstd.po.cpp:220
-msgid "Lisu"
-msgstr ""
-
-#: wxstd.po.cpp:221
-msgid "Bamum"
-msgstr ""
-
-#: wxstd.po.cpp:222
-msgid "Common Indic Number Forms"
-msgstr ""
-
-#: wxstd.po.cpp:223
-msgid "Devanagari Extended"
-msgstr ""
-
-#: wxstd.po.cpp:224
-msgid "Hangul Jamo Extended-A"
-msgstr ""
-
-#: wxstd.po.cpp:225
-msgid "Javanese"
-msgstr ""
-
-#: wxstd.po.cpp:226
-msgid "Myanmar Extended-A"
-msgstr ""
-
-#: wxstd.po.cpp:227
-msgid "Tai Viet"
-msgstr ""
-
-#: wxstd.po.cpp:228
-msgid "Meetei Mayek"
-msgstr ""
-
-#: wxstd.po.cpp:229
-msgid "Hangul Jamo Extended-B"
-msgstr ""
-
-#: wxstd.po.cpp:230
-msgid "Imperial Aramaic"
-msgstr ""
-
-#: wxstd.po.cpp:231
-msgid "Old South Arabian"
-msgstr ""
-
-#: wxstd.po.cpp:232
-msgid "Avestan"
-msgstr ""
-
-#: wxstd.po.cpp:233
-msgid "Inscriptional Parthian"
-msgstr ""
-
-#: wxstd.po.cpp:234
-msgid "Inscriptional Pahlavi"
-msgstr ""
-
-#: wxstd.po.cpp:235
-msgid "Old Turkic"
-msgstr ""
-
-#: wxstd.po.cpp:236
-msgid "Rumi Numeral Symbols"
-msgstr ""
-
-#: wxstd.po.cpp:237
-msgid "Kaithi"
-msgstr ""
-
-#: wxstd.po.cpp:238
-msgid "Egyptian Hieroglyphs"
-msgstr ""
-
-#: wxstd.po.cpp:239
-msgid "Enclosed Alphanumeric Supplement"
-msgstr ""
-
-#: wxstd.po.cpp:240
-msgid "Enclosed Ideographic Supplement"
-msgstr ""
-
-#: wxstd.po.cpp:241
-msgid "CJK Unified Ideographs Extension C"
-msgstr ""
-
-#: wxstd.po.cpp:242
-msgid "Mandaic"
-msgstr ""
-
-#: wxstd.po.cpp:243
-msgid "Batak"
-msgstr ""
-
-#: wxstd.po.cpp:244
-msgid "Ethiopic Extended-A"
-msgstr ""
-
-#: wxstd.po.cpp:245
-msgid "Brahmi"
-msgstr ""
-
-#: wxstd.po.cpp:246
-msgid "Bamum Supplement"
-msgstr ""
-
-#: wxstd.po.cpp:247
-msgid "Kana Supplement"
-msgstr ""
-
-#: wxstd.po.cpp:248
-msgid "Playing Cards"
-msgstr ""
-
-#: wxstd.po.cpp:249
-msgid "Miscellaneous Symbols And Pictographs"
-msgstr ""
-
-#: wxstd.po.cpp:250
-msgid "Emoticons"
-msgstr ""
-
-#: wxstd.po.cpp:251
-msgid "Transport And Map Symbols"
-msgstr ""
-
-#: wxstd.po.cpp:252
-msgid "Alchemical Symbols"
-msgstr ""
-
-#: wxstd.po.cpp:253
-msgid "CJK Unified Ideographs Extension D"
-msgstr ""
-
-#: wxstd.po.cpp:254
-msgid "Arabic Extended-A"
-msgstr ""
-
-#: wxstd.po.cpp:255
-msgid "Arabic Mathematical Alphabetic Symbols"
-msgstr ""
-
-#: wxstd.po.cpp:256
-msgid "Chakma"
-msgstr ""
-
-#: wxstd.po.cpp:257
-msgid "Meetei Mayek Extensions"
-msgstr ""
-
-#: wxstd.po.cpp:258
-msgid "Meroitic Cursive"
-msgstr ""
-
-#: wxstd.po.cpp:259
-msgid "Meroitic Hieroglyphs"
-msgstr ""
-
-#: wxstd.po.cpp:260
-msgid "Miao"
-msgstr ""
-
-#: wxstd.po.cpp:261
-msgid "Sharada"
-msgstr ""
-
-#: wxstd.po.cpp:262
-msgid "Sora Sompeng"
-msgstr ""
-
-#: wxstd.po.cpp:263
-msgid "Sundanese Supplement"
-msgstr ""
-
-#: wxstd.po.cpp:264
-msgid "Takri"
-msgstr ""
-
-#: wxstd.po.cpp:267
 msgid "Text"
 msgstr ""
 
-#: wxstd.po.cpp:268
+#: wxstd.po.cpp:45
 msgid "Delimiter"
 msgstr ""
 
-#: wxstd.po.cpp:269
+#: wxstd.po.cpp:46
 msgid "Space"
 msgstr ""
 
-#: wxstd.po.cpp:270
+#: wxstd.po.cpp:47
 msgid "Number"
 msgstr ""
 
-#: wxstd.po.cpp:271
+#: wxstd.po.cpp:48
 msgid "String"
 msgstr ""
 
-#: wxstd.po.cpp:273
+#: wxstd.po.cpp:50
 msgid "Directive"
 msgstr ""
 
-#: wxstd.po.cpp:274
+#: wxstd.po.cpp:51
 msgid "SpecialWord"
 msgstr ""
 
-#: wxstd.po.cpp:275
+#: wxstd.po.cpp:52
 msgid "LineNumber"
 msgstr ""
 
-#: wxstd.po.cpp:276
+#: wxstd.po.cpp:53
 msgid "ActiveLine"
 msgstr ""
 
-#: wxstd.po.cpp:277
+#: wxstd.po.cpp:54
 msgid "Bookmark"
 msgstr ""
 
-#: wxstd.po.cpp:279
+#: wxstd.po.cpp:56
 msgid "AliceBlue"
 msgstr ""
 
-#: wxstd.po.cpp:280
+#: wxstd.po.cpp:57
 msgid "AntiqueWhite"
 msgstr ""
 
-#: wxstd.po.cpp:281
+#: wxstd.po.cpp:58
 msgid "Aqua"
 msgstr ""
 
-#: wxstd.po.cpp:282
+#: wxstd.po.cpp:59
 msgid "Aquamarine"
 msgstr ""
 
-#: wxstd.po.cpp:283
+#: wxstd.po.cpp:60
 msgid "Azure"
 msgstr ""
 
-#: wxstd.po.cpp:284
+#: wxstd.po.cpp:61
 msgid "Beige"
 msgstr ""
 
-#: wxstd.po.cpp:285
+#: wxstd.po.cpp:62
 msgid "Bisque"
 msgstr ""
 
-#: wxstd.po.cpp:286
+#: wxstd.po.cpp:63
 msgid "Black"
 msgstr ""
 
-#: wxstd.po.cpp:287
+#: wxstd.po.cpp:64
 msgid "BlanchedAlmond"
 msgstr ""
 
-#: wxstd.po.cpp:288
+#: wxstd.po.cpp:65
 msgid "Blue"
 msgstr ""
 
-#: wxstd.po.cpp:289
+#: wxstd.po.cpp:66
 msgid "BlueViolet"
 msgstr ""
 
-#: wxstd.po.cpp:290
+#: wxstd.po.cpp:67
 msgid "Brown"
 msgstr ""
 
-#: wxstd.po.cpp:291
+#: wxstd.po.cpp:68
 msgid "BurlyWood"
 msgstr ""
 
-#: wxstd.po.cpp:292
+#: wxstd.po.cpp:69
 msgid "CadetBlue"
 msgstr ""
 
-#: wxstd.po.cpp:293
+#: wxstd.po.cpp:70
 msgid "Chartreuse"
 msgstr ""
 
-#: wxstd.po.cpp:294
+#: wxstd.po.cpp:71
 msgid "Chocolate"
 msgstr ""
 
-#: wxstd.po.cpp:295
+#: wxstd.po.cpp:72
 msgid "Coral"
 msgstr ""
 
-#: wxstd.po.cpp:296
+#: wxstd.po.cpp:73
 msgid "CornflowerBlue"
 msgstr ""
 
-#: wxstd.po.cpp:297
+#: wxstd.po.cpp:74
 msgid "Cornsilk"
 msgstr ""
 
-#: wxstd.po.cpp:298
+#: wxstd.po.cpp:75
 msgid "Crimson"
 msgstr ""
 
-#: wxstd.po.cpp:299
+#: wxstd.po.cpp:76
 msgid "Cyan"
 msgstr ""
 
-#: wxstd.po.cpp:300
+#: wxstd.po.cpp:77
 msgid "DarkBlue"
 msgstr ""
 
-#: wxstd.po.cpp:301
+#: wxstd.po.cpp:78
 msgid "DarkCyan"
 msgstr ""
 
-#: wxstd.po.cpp:302
+#: wxstd.po.cpp:79
 msgid "DarkGoldenRod"
 msgstr ""
 
-#: wxstd.po.cpp:303
+#: wxstd.po.cpp:80
 msgid "DarkGray"
 msgstr ""
 
-#: wxstd.po.cpp:304
+#: wxstd.po.cpp:81
 msgid "DarkGreen"
 msgstr ""
 
-#: wxstd.po.cpp:305
+#: wxstd.po.cpp:82
 msgid "DarkKhaki"
 msgstr ""
 
-#: wxstd.po.cpp:306
+#: wxstd.po.cpp:83
 msgid "DarkMagenta"
 msgstr ""
 
-#: wxstd.po.cpp:307
+#: wxstd.po.cpp:84
 msgid "DarkOliveGreen"
 msgstr ""
 
-#: wxstd.po.cpp:308
+#: wxstd.po.cpp:85
 msgid "DarkOrchid"
 msgstr ""
 
-#: wxstd.po.cpp:309
+#: wxstd.po.cpp:86
 msgid "DarkRed"
 msgstr ""
 
-#: wxstd.po.cpp:310
+#: wxstd.po.cpp:87
 msgid "DarkSalmon"
 msgstr ""
 
-#: wxstd.po.cpp:311
+#: wxstd.po.cpp:88
 msgid "DarkSeaGreen"
 msgstr ""
 
-#: wxstd.po.cpp:312
+#: wxstd.po.cpp:89
 msgid "DarkSlateBlue"
 msgstr ""
 
-#: wxstd.po.cpp:313
+#: wxstd.po.cpp:90
 msgid "DarkSlateGray"
 msgstr ""
 
-#: wxstd.po.cpp:314
+#: wxstd.po.cpp:91
 msgid "DarkTurquoise"
 msgstr ""
 
-#: wxstd.po.cpp:315
+#: wxstd.po.cpp:92
 msgid "DarkViolet"
 msgstr ""
 
-#: wxstd.po.cpp:316
+#: wxstd.po.cpp:93
 msgid "Darkorange"
 msgstr ""
 
-#: wxstd.po.cpp:317
+#: wxstd.po.cpp:94
 msgid "DeepPink"
 msgstr ""
 
-#: wxstd.po.cpp:318
+#: wxstd.po.cpp:95
 msgid "DeepSkyBlue"
 msgstr ""
 
-#: wxstd.po.cpp:319
+#: wxstd.po.cpp:96
 msgid "DimGray"
 msgstr ""
 
-#: wxstd.po.cpp:320
+#: wxstd.po.cpp:97
 msgid "DodgerBlue"
 msgstr ""
 
-#: wxstd.po.cpp:321
+#: wxstd.po.cpp:98
 msgid "Feldspar"
 msgstr ""
 
-#: wxstd.po.cpp:322
+#: wxstd.po.cpp:99
 msgid "FireBrick"
 msgstr ""
 
-#: wxstd.po.cpp:323
+#: wxstd.po.cpp:100
 msgid "FloralWhite"
 msgstr ""
 
-#: wxstd.po.cpp:324
+#: wxstd.po.cpp:101
 msgid "ForestGreen"
 msgstr ""
 
-#: wxstd.po.cpp:325
+#: wxstd.po.cpp:102
 msgid "Fuchsia"
 msgstr ""
 
-#: wxstd.po.cpp:326
+#: wxstd.po.cpp:103
 msgid "Gainsboro"
 msgstr ""
 
-#: wxstd.po.cpp:327
+#: wxstd.po.cpp:104
 msgid "GhostWhite"
 msgstr ""
 
-#: wxstd.po.cpp:328
+#: wxstd.po.cpp:105
 msgid "Gold"
 msgstr ""
 
-#: wxstd.po.cpp:329
+#: wxstd.po.cpp:106
 msgid "GoldenRod"
 msgstr ""
 
-#: wxstd.po.cpp:330
+#: wxstd.po.cpp:107
 msgid "Gray"
 msgstr ""
 
-#: wxstd.po.cpp:331
+#: wxstd.po.cpp:108
 msgid "Green"
 msgstr ""
 
-#: wxstd.po.cpp:332
+#: wxstd.po.cpp:109
 msgid "GreenYellow"
 msgstr ""
 
-#: wxstd.po.cpp:333
+#: wxstd.po.cpp:110
 msgid "HoneyDew"
 msgstr ""
 
-#: wxstd.po.cpp:334
+#: wxstd.po.cpp:111
 msgid "HotPink"
 msgstr ""
 
-#: wxstd.po.cpp:335
+#: wxstd.po.cpp:112
 msgid "IndianRed"
 msgstr ""
 
-#: wxstd.po.cpp:336
+#: wxstd.po.cpp:113
 msgid "Indigo"
 msgstr ""
 
-#: wxstd.po.cpp:337
+#: wxstd.po.cpp:114
 msgid "Ivory"
 msgstr ""
 
-#: wxstd.po.cpp:338
+#: wxstd.po.cpp:115
 msgid "Khaki"
 msgstr ""
 
-#: wxstd.po.cpp:339
+#: wxstd.po.cpp:116
 msgid "Lavender"
 msgstr ""
 
-#: wxstd.po.cpp:340
+#: wxstd.po.cpp:117
 msgid "LavenderBlush"
 msgstr ""
 
-#: wxstd.po.cpp:341
+#: wxstd.po.cpp:118
 msgid "LawnGreen"
 msgstr ""
 
-#: wxstd.po.cpp:342
+#: wxstd.po.cpp:119
 msgid "LemonChiffon"
 msgstr ""
 
-#: wxstd.po.cpp:343
+#: wxstd.po.cpp:120
 msgid "LightBlue"
 msgstr ""
 
-#: wxstd.po.cpp:344
+#: wxstd.po.cpp:121
 msgid "LightCoral"
 msgstr ""
 
-#: wxstd.po.cpp:345
+#: wxstd.po.cpp:122
 msgid "LightCyan"
 msgstr ""
 
-#: wxstd.po.cpp:346
+#: wxstd.po.cpp:123
 msgid "LightGoldenRodYellow"
 msgstr ""
 
-#: wxstd.po.cpp:347
+#: wxstd.po.cpp:124
 msgid "LightGreen"
 msgstr ""
 
-#: wxstd.po.cpp:348
+#: wxstd.po.cpp:125
 msgid "LightGrey"
 msgstr ""
 
-#: wxstd.po.cpp:349
+#: wxstd.po.cpp:126
 msgid "LightPink"
 msgstr ""
 
-#: wxstd.po.cpp:350
+#: wxstd.po.cpp:127
 msgid "LightSalmon"
 msgstr ""
 
-#: wxstd.po.cpp:351
+#: wxstd.po.cpp:128
 msgid "LightSeaGreen"
 msgstr ""
 
-#: wxstd.po.cpp:352
+#: wxstd.po.cpp:129
 msgid "LightSkyBlue"
 msgstr ""
 
-#: wxstd.po.cpp:353
+#: wxstd.po.cpp:130
 msgid "LightSlateBlue"
 msgstr ""
 
-#: wxstd.po.cpp:354
+#: wxstd.po.cpp:131
 msgid "LightSlateGray"
 msgstr ""
 
-#: wxstd.po.cpp:355
+#: wxstd.po.cpp:132
 msgid "LightSteelBlue"
 msgstr ""
 
-#: wxstd.po.cpp:356
+#: wxstd.po.cpp:133
 msgid "LightYellow"
 msgstr ""
 
-#: wxstd.po.cpp:357
+#: wxstd.po.cpp:134
 msgid "Lime"
 msgstr ""
 
-#: wxstd.po.cpp:358
+#: wxstd.po.cpp:135
 msgid "LimeGreen"
 msgstr ""
 
-#: wxstd.po.cpp:359
+#: wxstd.po.cpp:136
 msgid "Linen"
 msgstr ""
 
-#: wxstd.po.cpp:360
+#: wxstd.po.cpp:137
 msgid "Magenta"
 msgstr ""
 
-#: wxstd.po.cpp:361
+#: wxstd.po.cpp:138
 msgid "Maroon"
 msgstr ""
 
-#: wxstd.po.cpp:362
+#: wxstd.po.cpp:139
 msgid "MediumAquaMarine"
 msgstr ""
 
-#: wxstd.po.cpp:363
+#: wxstd.po.cpp:140
 msgid "MediumBlue"
 msgstr ""
 
-#: wxstd.po.cpp:364
+#: wxstd.po.cpp:141
 msgid "MediumOrchid"
 msgstr ""
 
-#: wxstd.po.cpp:365
+#: wxstd.po.cpp:142
 msgid "MediumPurple"
 msgstr ""
 
-#: wxstd.po.cpp:366
+#: wxstd.po.cpp:143
 msgid "MediumSeaGreen"
 msgstr ""
 
-#: wxstd.po.cpp:367
+#: wxstd.po.cpp:144
 msgid "MediumSlateBlue"
 msgstr ""
 
-#: wxstd.po.cpp:368
+#: wxstd.po.cpp:145
 msgid "MediumSpringGreen"
 msgstr ""
 
-#: wxstd.po.cpp:369
+#: wxstd.po.cpp:146
 msgid "MediumTurquoise"
 msgstr ""
 
-#: wxstd.po.cpp:370
+#: wxstd.po.cpp:147
 msgid "MediumVioletRed"
 msgstr ""
 
-#: wxstd.po.cpp:371
+#: wxstd.po.cpp:148
 msgid "MidnightBlue"
 msgstr ""
 
-#: wxstd.po.cpp:372
+#: wxstd.po.cpp:149
 msgid "MintCream"
 msgstr ""
 
-#: wxstd.po.cpp:373
+#: wxstd.po.cpp:150
 msgid "MistyRose"
 msgstr ""
 
-#: wxstd.po.cpp:374
+#: wxstd.po.cpp:151
 msgid "Moccasin"
 msgstr ""
 
-#: wxstd.po.cpp:375
+#: wxstd.po.cpp:152
 msgid "NavajoWhite"
 msgstr ""
 
-#: wxstd.po.cpp:376
+#: wxstd.po.cpp:153
 msgid "Navy"
 msgstr ""
 
-#: wxstd.po.cpp:377
+#: wxstd.po.cpp:154
 msgid "OldLace"
 msgstr ""
 
-#: wxstd.po.cpp:378
+#: wxstd.po.cpp:155
 msgid "Olive"
 msgstr ""
 
-#: wxstd.po.cpp:379
+#: wxstd.po.cpp:156
 msgid "OliveDrab"
 msgstr ""
 
-#: wxstd.po.cpp:380
+#: wxstd.po.cpp:157
 msgid "Orange"
 msgstr ""
 
-#: wxstd.po.cpp:381
+#: wxstd.po.cpp:158
 msgid "OrangeRed"
 msgstr ""
 
-#: wxstd.po.cpp:382
+#: wxstd.po.cpp:159
 msgid "Orchid"
 msgstr ""
 
-#: wxstd.po.cpp:383
+#: wxstd.po.cpp:160
 msgid "PaleGoldenRod"
 msgstr ""
 
-#: wxstd.po.cpp:384
+#: wxstd.po.cpp:161
 msgid "PaleGreen"
 msgstr ""
 
-#: wxstd.po.cpp:385
+#: wxstd.po.cpp:162
 msgid "PaleTurquoise"
 msgstr ""
 
-#: wxstd.po.cpp:386
+#: wxstd.po.cpp:163
 msgid "PaleVioletRed"
 msgstr ""
 
-#: wxstd.po.cpp:387
+#: wxstd.po.cpp:164
 msgid "PapayaWhip"
 msgstr ""
 
-#: wxstd.po.cpp:388
+#: wxstd.po.cpp:165
 msgid "PeachPuff"
 msgstr ""
 
-#: wxstd.po.cpp:389
+#: wxstd.po.cpp:166
 msgid "Peru"
 msgstr ""
 
-#: wxstd.po.cpp:390
+#: wxstd.po.cpp:167
 msgid "Pink"
 msgstr ""
 
-#: wxstd.po.cpp:391
+#: wxstd.po.cpp:168
 msgid "Plum"
 msgstr ""
 
-#: wxstd.po.cpp:392
+#: wxstd.po.cpp:169
 msgid "PowderBlue"
 msgstr ""
 
-#: wxstd.po.cpp:393
+#: wxstd.po.cpp:170
 msgid "Purple"
 msgstr ""
 
-#: wxstd.po.cpp:394
+#: wxstd.po.cpp:171
 msgid "Red"
 msgstr ""
 
-#: wxstd.po.cpp:395
+#: wxstd.po.cpp:172
 msgid "RosyBrown"
 msgstr ""
 
-#: wxstd.po.cpp:396
+#: wxstd.po.cpp:173
 msgid "RoyalBlue"
 msgstr ""
 
-#: wxstd.po.cpp:397
+#: wxstd.po.cpp:174
 msgid "SaddleBrown"
 msgstr ""
 
-#: wxstd.po.cpp:398
+#: wxstd.po.cpp:175
 msgid "Salmon"
 msgstr ""
 
-#: wxstd.po.cpp:399
+#: wxstd.po.cpp:176
 msgid "SandyBrown"
 msgstr ""
 
-#: wxstd.po.cpp:400
+#: wxstd.po.cpp:177
 msgid "SeaGreen"
 msgstr ""
 
-#: wxstd.po.cpp:401
+#: wxstd.po.cpp:178
 msgid "SeaShell"
 msgstr ""
 
-#: wxstd.po.cpp:402
+#: wxstd.po.cpp:179
 msgid "Sienna"
 msgstr ""
 
-#: wxstd.po.cpp:403
+#: wxstd.po.cpp:180
 msgid "Silver"
 msgstr ""
 
-#: wxstd.po.cpp:404
+#: wxstd.po.cpp:181
 msgid "SkyBlue"
 msgstr ""
 
-#: wxstd.po.cpp:405
+#: wxstd.po.cpp:182
 msgid "SlateBlue"
 msgstr ""
 
-#: wxstd.po.cpp:406
+#: wxstd.po.cpp:183
 msgid "SlateGray"
 msgstr ""
 
-#: wxstd.po.cpp:407
+#: wxstd.po.cpp:184
 msgid "Snow"
 msgstr ""
 
-#: wxstd.po.cpp:408
+#: wxstd.po.cpp:185
 msgid "SpringGreen"
 msgstr ""
 
-#: wxstd.po.cpp:409
+#: wxstd.po.cpp:186
 msgid "SteelBlue"
 msgstr ""
 
-#: wxstd.po.cpp:410
+#: wxstd.po.cpp:187
 msgid "Tan"
 msgstr ""
 
-#: wxstd.po.cpp:411
+#: wxstd.po.cpp:188
 msgid "Teal"
 msgstr ""
 
-#: wxstd.po.cpp:412
+#: wxstd.po.cpp:189
 msgid "Thistle"
 msgstr ""
 
-#: wxstd.po.cpp:413
+#: wxstd.po.cpp:190
 msgid "Tomato"
 msgstr ""
 
-#: wxstd.po.cpp:414
+#: wxstd.po.cpp:191
 msgid "Turquoise"
 msgstr ""
 
-#: wxstd.po.cpp:415
+#: wxstd.po.cpp:192
 msgid "Violet"
 msgstr ""
 
-#: wxstd.po.cpp:416
+#: wxstd.po.cpp:193
 msgid "VioletRed"
 msgstr ""
 
-#: wxstd.po.cpp:417
+#: wxstd.po.cpp:194
 msgid "Wheat"
 msgstr ""
 
-#: wxstd.po.cpp:418
+#: wxstd.po.cpp:195
 msgid "White"
 msgstr ""
 
-#: wxstd.po.cpp:419
+#: wxstd.po.cpp:196
 msgid "WhiteSmoke"
 msgstr ""
 
-#: wxstd.po.cpp:420
+#: wxstd.po.cpp:197
 msgid "Yellow"
 msgstr ""
 
-#: wxstd.po.cpp:421
+#: wxstd.po.cpp:198
 msgid "YellowGreen"
 msgstr ""
 
-#: wxstd.po.cpp:423
+#: wxstd.po.cpp:200
 msgid "Plain Text"
 msgstr ""
 
-#: wxstd.po.cpp:424
+#: wxstd.po.cpp:201
 msgid "AngelScript"
 msgstr ""
 
-#: wxstd.po.cpp:425
+#: wxstd.po.cpp:202
 msgid "ASCII Art"
 msgstr ""
 
-#: wxstd.po.cpp:426
+#: wxstd.po.cpp:203
 msgid "ASP(VBScript)"
 msgstr ""
 
-#: wxstd.po.cpp:427
+#: wxstd.po.cpp:204
 msgid "awk"
 msgstr ""
 
-#: wxstd.po.cpp:428
+#: wxstd.po.cpp:205
 msgid "C#"
 msgstr ""
 
-#: wxstd.po.cpp:429
+#: wxstd.po.cpp:206
 msgid "C/C++"
 msgstr ""
 
-#: wxstd.po.cpp:430
+#: wxstd.po.cpp:207
 msgid "CSS"
 msgstr ""
 
-#: wxstd.po.cpp:431
+#: wxstd.po.cpp:208
 msgid "D"
 msgstr ""
 
-#: wxstd.po.cpp:432
+#: wxstd.po.cpp:209
 msgid "diff/patch"
 msgstr ""
 
-#: wxstd.po.cpp:433
+#: wxstd.po.cpp:210
 msgid "DOS Batch"
 msgstr ""
 
-#: wxstd.po.cpp:434
+#: wxstd.po.cpp:211
 msgid "Flash ActionScript"
 msgstr ""
 
-#: wxstd.po.cpp:435
+#: wxstd.po.cpp:212
 msgid "Fortran 90"
 msgstr ""
 
-#: wxstd.po.cpp:436
+#: wxstd.po.cpp:213
 msgid "FreeBASIC"
 msgstr ""
 
-#: wxstd.po.cpp:437
+#: wxstd.po.cpp:214
 msgid "HTML"
 msgstr ""
 
-#: wxstd.po.cpp:438
+#: wxstd.po.cpp:215
 msgid "Java"
 msgstr ""
 
-#: wxstd.po.cpp:439
+#: wxstd.po.cpp:216
 msgid "JavaScript"
 msgstr ""
 
-#: wxstd.po.cpp:440
+#: wxstd.po.cpp:217
 msgid "JavaScript in HTML"
 msgstr ""
 
-#: wxstd.po.cpp:441
+#: wxstd.po.cpp:218
 msgid "JSP"
 msgstr ""
 
-#: wxstd.po.cpp:442
+#: wxstd.po.cpp:219
 msgid "Lua"
 msgstr ""
 
-#: wxstd.po.cpp:443
+#: wxstd.po.cpp:220
 msgid "Pascal/Delphi"
 msgstr ""
 
-#: wxstd.po.cpp:444
+#: wxstd.po.cpp:221
 msgid "Perl"
 msgstr ""
 
-#: wxstd.po.cpp:445
+#: wxstd.po.cpp:222
 msgid "PHP"
 msgstr ""
 
-#: wxstd.po.cpp:446
+#: wxstd.po.cpp:223
 msgid "Python"
 msgstr ""
 
-#: wxstd.po.cpp:447
+#: wxstd.po.cpp:224
 msgid "Ruby"
 msgstr ""
 
-#: wxstd.po.cpp:448
+#: wxstd.po.cpp:225
 msgid "SQL"
 msgstr ""
 
-#: wxstd.po.cpp:449
+#: wxstd.po.cpp:226
 msgid "Squirrel"
 msgstr ""
 
-#: wxstd.po.cpp:450
+#: wxstd.po.cpp:227
 msgid "TeX/LaTeX"
 msgstr ""
 
-#: wxstd.po.cpp:451
+#: wxstd.po.cpp:228
 msgid "UNIX Configuration"
 msgstr ""
 
-#: wxstd.po.cpp:452
+#: wxstd.po.cpp:229
 msgid "UNIX Shell Script"
 msgstr ""
 
-#: wxstd.po.cpp:453
+#: wxstd.po.cpp:230
 msgid "Verilog"
 msgstr ""
 
-#: wxstd.po.cpp:454
+#: wxstd.po.cpp:231
 msgid "VHDL"
 msgstr ""
 
-#: wxstd.po.cpp:455
+#: wxstd.po.cpp:232
 msgid "Visual Basic"
 msgstr ""
 
-#: wxstd.po.cpp:456
+#: wxstd.po.cpp:233
 msgid "Windows Registry File"
 msgstr ""
 
-#: wxstd.po.cpp:457
+#: wxstd.po.cpp:234
 msgid "wxMEdit Syntax"
 msgstr ""
 
-#: wxstd.po.cpp:458
+#: wxstd.po.cpp:235
 msgid "x86 Assembly"
 msgstr ""
 
-#: wxstd.po.cpp:459
+#: wxstd.po.cpp:236
 msgid "XML"
 msgstr ""

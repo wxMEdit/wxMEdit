@@ -84,3 +84,10 @@ src/wxmedit_app.cpp
 src/wxmedit_app.h
 src/wxmedit_frame.cpp
 src/wxmedit_frame.h
+src/xm/remote.cpp
+src/xm/remote.h
+src/xm/ublock.cpp
+src/xm/ublock.h
+src/xm/ublock_des.cpp
+src/xm/uutils.cpp
+src/xm/uutils.h
