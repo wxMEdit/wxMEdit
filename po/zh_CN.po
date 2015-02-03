@@ -39,7 +39,7 @@ msgstr ""
 "Project-Id-Version: wxMEdit 2.9.9\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-02-04 00:09+0800\n"
-"PO-Revision-Date: 2014-11-08 00:10+0800\n"
+"PO-Revision-Date: 2015-02-04 00:19+0800\n"
 "Last-Translator: JiaYanwei <wxmedit@gmail.com>\n"
 "Language-Team: wxMEdit <wxmedit@gmail.com>\n"
 "Language: zh_CN\n"
@@ -721,7 +721,7 @@ msgstr "打印行号"
 
 #: ../src/dialog/wxmedit_options_dialog.cpp:482
 msgid "Print Bookmark"
-msgstr ""
+msgstr "打印书签"
 
 #: ../src/dialog/wxmedit_options_dialog.cpp:485
 msgid "Print End of Line"
@@ -2163,11 +2163,11 @@ msgstr "按设置的最大列数来自动换行"
 
 #: ../src/wxmedit_frame.cpp:1331
 msgid "Display &Bookmark"
-msgstr ""
+msgstr "显示书签(&B)"
 
 #: ../src/wxmedit_frame.cpp:1331
 msgid "Display the Bookmarks"
-msgstr ""
+msgstr "显示书签"
 
 #: ../src/wxmedit_frame.cpp:1332
 msgid "&Display Line Number"
