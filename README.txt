@@ -1,5 +1,5 @@
                       ==================================
-                                wxMEdit v2.9.9
+                                wxMEdit v2.9.9.2
                       ==================================
 About:
 -----
@@ -84,6 +84,16 @@ Syntax files, Locale files and Settings:
 
 ChangeLog:
 ----------
+wxMEdit v2.9.9.2:
+  1. added new options to display/print bookmark independent of line number.
+  2. improved bookmark appearance for displaying and printing.
+  3. improved Tab and EOF mark pattern, make it easy to distinguish Tab mark from space mark.
+  4. fixed that there are too few characters limited in a line with certain word wrap settings.
+  5. fixed that width of list items in Syntax Highlighting Settings Dialog are not updated on resizing.
+  6. updated Unicode block descriptions for Unicode 7.0 (require ICU 54 or higher).
+  7. updated Simplified Chinese translation.
+  8. other minor changes and bug fixes.
+
 wxMEdit v2.9.9:
   1. added right-click context menu for each tab.
   2. added more information for Word Count Dialog.
@@ -122,34 +132,6 @@ wxMEdit v2.9.8:
  15. updated Spanish translation by Carlos Sánchez <carlos1994sanchez@gmail.com>.
  16. updated Japanese translation by Tilt <tiltstr@gmail.com>.
  17. other minor changes and bug fixes.
-
-wxMEdit v2.9.7:
-  1. added new encoding "CP437 Variant for ASCII Art" to support ASCII-Art better.
-  2. added automatically checking for updates.
-  3. added bookmark support [mainly by Gospodin Gyurov (aka Gogo) <ggurov@yahoo.com>].
-  4. added new commands: delete previous/next word (by Gogo).
-  5. added search option "Wrap around".
-  6. added Credits tab in About Dialog.
-  7. added Misc tab in Options Dialog.
-  8. added selecting a line by triple click (mainly by cfreeer <cfreeer@users.sf.net>).
-  9. added updating syntax highlighting on saving file (mainly by cfreeer).
- 10. added FreeBASIC syntax file.
- 11. added grouping of encodings.
- 12. added purging histories support.
- 13. added more choices for copying in hex-area and added them into Options Dialog.
- 14. added Russian translation by Shamil Bikineyev <shamilbi@gmail.com>.
- 15. improved maximized behavior under Windows (by Gogo).
- 16. improved system integration under Windows.
- 17. improved display effect of the Word-Count information.
- 18. changed behavior of selecting next word as other editors.
- 19. changed notification messages of Search/Replace Dialog showing in the bottom bar of the dialog.
- 20. fixed always not wrap around when replacing.
- 21. fixed that the files "a b" and "aÀb" cannot be opened simultaneously under Windows Chinese Edition.
- 22. fixed assertion failed with debug version of MadEdit/wxMEdit when mouse capture lost.
- 23. fixed incorrect behavior when switch out from wxMEdit/MadEdit on selecting text.
- 24. fixed incorrect behavior when update an opened file and then click the editing area.
- 25. updated Simplified Chinese, Japanese, Spanish translations.
- 26. other minor changes and bug fixes.
 
 See file ChangeLog for more changes.
 

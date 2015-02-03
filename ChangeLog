@@ -1,3 +1,16 @@
+2015-02-04 00:29:19 +0800 JiaYanwei <wxmedit@gmail.com>
+
+	* wxMEdit v2.9.9.2:
+	 1. added new options to display/print bookmark independent of line number.
+	 2. improved bookmark appearance for displaying and printing.
+	 3. improved Tab and EOF mark pattern, make it easy to distinguish Tab mark from space mark.
+	 4. fixed that there are too few characters limited in a line with certain word wrap settings.
+	 5. fixed that width of list items in Syntax Highlighting Settings Dialog are not updated on resizing.
+	 6. updated Unicode block descriptions for Unicode 7.0 (require ICU 54 or higher).
+	 7. updated Simplified Chinese translation.
+	 8. other minor changes and bug fixes.
+
+
 2014-12-26 21:37:12 +0800 JiaYanwei <wxmedit@gmail.com>
 
 	* wxMEdit v2.9.9:

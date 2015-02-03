@@ -13,7 +13,7 @@
 #include <wx/version.h>
 #include <vector>
 
-#define WXMEDIT_VERSION	"2.9.9"
+#define WXMEDIT_VERSION	"2.9.9.2"
 
 #if wxMAJOR_VERSION==2 && wxMINOR_VERSION==6
 # define wxOS_WINDOWS_9X wxWIN95
