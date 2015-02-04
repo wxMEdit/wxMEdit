@@ -31,10 +31,10 @@
 #: ../src/dialog/wxmedit_options_dialog.cpp:720
 msgid ""
 msgstr ""
-"Project-Id-Version: wxMEdit 2.9.9\n"
+"Project-Id-Version: wxMEdit 2.9.9.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-02-04 00:09+0800\n"
-"PO-Revision-Date: 2014-12-22 02:29+0900\n"
+"PO-Revision-Date: 2015-02-04 05:15+0900\n"
 "Last-Translator: Tilt <<tiltstr@gmail.com>>\n"
 "Language-Team: Tilt <<tiltstr@gmail.com>>\n"
 "Language: ja_JP\n"
@@ -42,7 +42,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-Generator: Poedit 1.6.10\n"
+"X-Generator: Poedit 1.7\n"
 
 #: ../src/dialog/wxm_conv_enc_dialog.cpp:43
 msgid "Convert Encoding"
@@ -569,11 +569,11 @@ msgstr "制御文字"
 
 #: ../src/dialog/wxm_word_count_dialog.cpp:90
 msgid "Fullwidth Characters (with East Asian Ambiguous Width Characters)"
-msgstr "全角文字 (東アジア等、幅のあいまいな文字)"
+msgstr "全角文字（幅のあいまいな東アジア文字を含む）"
 
 #: ../src/dialog/wxm_word_count_dialog.cpp:94
 msgid "Fullwidth Characters (without East Asian Ambiguous Width Characters)"
-msgstr "全角文字 (東アジア等、幅のあいまいな文字以外)"
+msgstr "全角文字（幅のあいまいな東アジア文字は除外）"
 
 #: ../src/dialog/wxm_word_count_dialog.cpp:101
 msgid "Detail Information of Characters:"
@@ -694,15 +694,15 @@ msgstr "Ctrl キーが押されている時のみ"
 
 #: ../src/dialog/wxmedit_options_dialog.cpp:453
 msgid "Paste text from clipboard when pressing middle mouse button"
-msgstr "マウス中ボタンクリックで、クリップボードのテキストを貼り付け"
+msgstr "マウス中ボタンクリックで、クリップボードのテキストを貼り付ける"
 
 #: ../src/dialog/wxmedit_options_dialog.cpp:457
 msgid "Behavior of copying in hex editing area:"
-msgstr "16 進編集領域へコピーした時の動作:"
+msgstr "16 進数編集領域へコピーした時の動作:"
 
 #: ../src/dialog/wxmedit_options_dialog.cpp:463
 msgid "Treat clipboard text as Hex String when pasting in hex area:"
-msgstr "16 進領域に貼り付ける時はテキストを 16 進文字列として扱う:"
+msgstr "16進数領域に貼り付ける際に16進数としてクリップボード文字を扱う："
 
 #: ../src/dialog/wxmedit_options_dialog.cpp:475 ../src/wxmedit_frame.cpp:2011
 msgid "Text Mode"
@@ -718,11 +718,11 @@ msgstr "行番号を印刷"
 
 #: ../src/dialog/wxmedit_options_dialog.cpp:482
 msgid "Print Bookmark"
-msgstr ""
+msgstr "ブックマークを印刷"
 
 #: ../src/dialog/wxmedit_options_dialog.cpp:485
 msgid "Print End of Line"
-msgstr "END 行を印刷"
+msgstr "EOFを印刷"
 
 #: ../src/dialog/wxmedit_options_dialog.cpp:488
 msgid "Print Tab Char"
@@ -734,7 +734,7 @@ msgstr "空白文字を印刷"
 
 #: ../src/dialog/wxmedit_options_dialog.cpp:495 ../src/wxmedit_frame.cpp:2013
 msgid "Hex Mode"
-msgstr "16 進モード"
+msgstr "16 進数モード"
 
 #: ../src/dialog/wxmedit_options_dialog.cpp:499
 msgid "First Page Only"
@@ -742,7 +742,7 @@ msgstr "最初のページのみ"
 
 #: ../src/dialog/wxmedit_options_dialog.cpp:500
 msgid "Every Page"
-msgstr "あらゆるページ"
+msgstr "すべてのページ"
 
 #: ../src/dialog/wxmedit_options_dialog.cpp:502
 msgid "Print Offset Header"
@@ -1023,8 +1023,8 @@ msgid ""
 "Place configuration files into application data directory of current user "
 "(%APPDATA%\\wxmedit) rather than wxMEdit executable directory"
 msgstr ""
-"現在のユーザ用のアプリケーション データディレクトリ (%APPDATA%\\wxmedit) では"
-"なく wxMEdit 実行ディレクトリに構成設定ファイルを配置"
+"現在のユーザ アプリケーション データ ディレクトリ（%APPDATA%\\wxmedit） に 構"
+"成ファイル を配置"
 
 #: ../src/dialog/wxmedit_options_dialog.cpp:784
 msgid "Commands"
@@ -1147,7 +1147,7 @@ msgstr "西ヨーロッパ言語 - ユーロ "
 
 #: ../src/wxm/encoding/encoding.cpp:132
 msgid "South-Eastern European "
-msgstr "南東ヨーロッパ "
+msgstr "東南ヨーロッパ "
 
 #: ../src/wxm/encoding/encoding.cpp:133
 msgid "Windows Thai "
@@ -1287,7 +1287,7 @@ msgstr "[ 空 ]"
 
 #: ../src/wxm/update.cpp:90
 msgid "Cannot check for new version!"
-msgstr "新バージョンのチェックができません!"
+msgstr "新バージョンのチェックに失敗!"
 
 #: ../src/wxm/update.cpp:97
 msgid "wxMEdit is already the newest version."
@@ -1332,23 +1332,23 @@ msgstr "通常のテキストとしてコピー"
 
 #: ../src/wxm/utils.cpp:242
 msgid "Copy as Hex String"
-msgstr "16 進文字列としてコピー"
+msgstr "16 進数文字列としてコピー"
 
 #: ../src/wxm/utils.cpp:243
 msgid "Copy as Hex String with Spaces"
-msgstr "空白を 16 進文字列としてコピー"
+msgstr "空白を 16 進数文字列としてコピー"
 
 #: ../src/wxm/utils.cpp:326
 msgid "Never"
-msgstr "なし"
+msgstr "扱わない"
 
 #: ../src/wxm/utils.cpp:327
 msgid "According To Copying Behavior"
-msgstr "コピー動作に従う"
+msgstr "コピー時の動作に従う"
 
 #: ../src/wxm/utils.cpp:328
 msgid "If Possible"
-msgstr "可能な場合"
+msgstr "可能であれば"
 
 #: ../src/wxm/utils.cpp:329
 msgid "Always"
@@ -1375,7 +1375,7 @@ msgstr ""
 
 #: ../src/wxmedit/wxmedit_basic.cpp:443
 msgid "Hex Mode to Text/Column Mode"
-msgstr "16 進モードから テキスト/列モード"
+msgstr "16 進数モードから テキスト/列モード"
 
 #: ../src/wxmedit/wxmedit_basic.cpp:1669 ../src/wxmedit/wxmedit_basic.cpp:1738
 #: ../src/wxmedit_frame.cpp:2672
@@ -1472,7 +1472,7 @@ msgstr "AUR 版 wxmedit パッケージの作成者"
 
 #: ../src/wxmedit_frame.cpp:196
 msgid "Creator of Gentoo package wxmedit"
-msgstr "Wxmedit Gentoo パッケージのクリエータ"
+msgstr "Gentoo 版 wxmedit パッケージの作成者"
 
 #: ../src/wxmedit_frame.cpp:1045
 msgid "&File"
@@ -1544,23 +1544,23 @@ msgstr "すべてのファイルを閉じる"
 
 #: ../src/wxmedit_frame.cpp:1057
 msgid "Close All under &Folder..."
-msgstr "フォルダ以下をすべて閉じる(&F)"
+msgstr "指定フォルダ内のファイルをすべて閉じる(&F)..."
 
 #: ../src/wxmedit_frame.cpp:1057
 msgid "Close all files in given folder and in all the subfolders"
-msgstr "指定したフォルダおよびサブフォルダ内すべてのファイルを閉じる"
+msgstr "指定したフォルダ、およびサブフォルダ内にある全ファイルを閉じる"
 
 #: ../src/wxmedit_frame.cpp:1058
 msgid "Close &More"
-msgstr "更に閉じる(&M)"
+msgstr "まとめて閉じる(&M)"
 
 #: ../src/wxmedit_frame.cpp:1059
 msgid "Close All &BUT This"
-msgstr "これ以外すべて閉じる(&B)"
+msgstr "他のすべてを閉じる(&B)"
 
 #: ../src/wxmedit_frame.cpp:1059
 msgid "Close all files except the current one"
-msgstr "現在のものを除いたすべてを閉じる"
+msgstr "現在のファイルを除くすべてのファイルを閉じる"
 
 #: ../src/wxmedit_frame.cpp:1060
 msgid "Close All To The &Left"
@@ -1568,7 +1568,7 @@ msgstr "左側すべてを閉じる(&L)"
 
 #: ../src/wxmedit_frame.cpp:1060
 msgid "Close all files at the left side of current one"
-msgstr "現在のものより左にあるすべてのファイルを閉じる"
+msgstr "現在のファイルより左をすべて閉じる"
 
 #: ../src/wxmedit_frame.cpp:1061
 msgid "Close All To The &Right"
@@ -1576,11 +1576,11 @@ msgstr "右側すべてを閉じる(&R)"
 
 #: ../src/wxmedit_frame.cpp:1061
 msgid "Close all files at the right side of current one"
-msgstr "現在のものより右にあるすべてのファイルを閉じる"
+msgstr "現在のファイルより右をすべて閉じる"
 
 #: ../src/wxmedit_frame.cpp:1063
 msgid "Copy File Pat&h"
-msgstr "ファイルのパスをコピー(&H)"
+msgstr "ファイル パスのコピー(&H)"
 
 #: ../src/wxmedit_frame.cpp:1064
 msgid "Copy &Full Path"
@@ -1588,7 +1588,7 @@ msgstr "フルパスをコピー(&F)"
 
 #: ../src/wxmedit_frame.cpp:1064
 msgid "Copy full file path to clipboard"
-msgstr "ファイルのフルパスをクリップボードにコピー"
+msgstr "フルパスをクリップボードにコピー"
 
 #: ../src/wxmedit_frame.cpp:1065
 msgid "Copy File &Name"
@@ -1600,11 +1600,11 @@ msgstr "ファイル名をクリップボードにコピー"
 
 #: ../src/wxmedit_frame.cpp:1066
 msgid "Copy Containing &Directory"
-msgstr "含まれるディレクトリをコピー(&D)"
+msgstr "含まれるディレクトリ パスをコピー(&D)"
 
 #: ../src/wxmedit_frame.cpp:1066
 msgid "Copy containing directory to clipboard"
-msgstr "含まれるディレクトリをクリップボードにコピー"
+msgstr "含まれるディレクトリ パスをクリップボードにコピー"
 
 #: ../src/wxmedit_frame.cpp:1068
 msgid "Page Set&up..."
@@ -1692,7 +1692,7 @@ msgstr "上書き貼り付け(&W)"
 
 #: ../src/wxmedit_frame.cpp:1092
 msgid "Overwrite data from the Clipboard"
-msgstr "クリップボードの内容を上書き貼り付け"
+msgstr "クリップボードからデータを上書き"
 
 #: ../src/wxmedit_frame.cpp:1093
 msgid "Delete data"
@@ -1748,15 +1748,15 @@ msgstr "16進文字列をコピー(&H)"
 
 #: ../src/wxmedit_frame.cpp:1121
 msgid "Copy the selection as hex-string"
-msgstr "選択された16 進文字列をコピー"
+msgstr "選択された16 進数文字列をコピー"
 
 #: ../src/wxmedit_frame.cpp:1122
 msgid "Copy As He&x String with Space"
-msgstr "16 進文字列を空白としてコピー(&X)"
+msgstr "16 進数文字列を空白としてコピー(&X)"
 
 #: ../src/wxmedit_frame.cpp:1122
 msgid "Copy the selection as hex-string with space"
-msgstr "選択された 16 進文字列を空白としてコピー"
+msgstr "選択された 16 進数文字列を空白としてコピー"
 
 #: ../src/wxmedit_frame.cpp:1124
 msgid "&Increase Indent"
@@ -2012,15 +2012,15 @@ msgstr "右括弧に移動"
 
 #: ../src/wxmedit_frame.cpp:1175 ../src/wxmedit_frame.cpp:2000
 msgid "Toggle Bookmark"
-msgstr "ブックマークの切り替え"
+msgstr "ブックマークの切替"
 
 #: ../src/wxmedit_frame.cpp:1175
 msgid "Toggle bookmark at current line"
-msgstr "現在の行でブックマークを切り替え"
+msgstr "現在の行でブックマークを切替"
 
 #: ../src/wxmedit_frame.cpp:1176 ../src/wxmedit_frame.cpp:2001
 msgid "Go To Next Bookmark"
-msgstr "次のブックマークへ移動"
+msgstr "次のブックマークへ移動&"
 
 #: ../src/wxmedit_frame.cpp:1176
 msgid "Go to the next bookmark"
@@ -2028,7 +2028,7 @@ msgstr "次のブックマークへ移動します"
 
 #: ../src/wxmedit_frame.cpp:1177 ../src/wxmedit_frame.cpp:2002
 msgid "Go To Previous Bookmark"
-msgstr "前のブックマークへ移動"
+msgstr "前のブックマークへ移動&"
 
 #: ../src/wxmedit_frame.cpp:1177
 msgid "Go to the previous bookmark"
@@ -2053,7 +2053,7 @@ msgstr "エンコーディング: "
 
 #: ../src/wxmedit_frame.cpp:1183
 msgid "All "
-msgstr "すべて"
+msgstr "すべて "
 
 #: ../src/wxmedit_frame.cpp:1185 ../src/wxmedit_frame.cpp:2990
 #: ../src/wxmedit_frame.cpp:2995
@@ -2112,7 +2112,7 @@ msgstr "フォント設定を変更"
 
 #: ../src/wxmedit_frame.cpp:1271
 msgid "&Fixed Width Mode"
-msgstr "幅固定モード&"
+msgstr "固定幅モード&"
 
 #: ../src/wxmedit_frame.cpp:1271
 msgid "Set/Unset the font with Fixed Width"
@@ -2162,11 +2162,11 @@ msgstr "最大列を指定して折り返す"
 
 #: ../src/wxmedit_frame.cpp:1331
 msgid "Display &Bookmark"
-msgstr ""
+msgstr "ブックマークを表示(&B)"
 
 #: ../src/wxmedit_frame.cpp:1331
 msgid "Display the Bookmarks"
-msgstr ""
+msgstr "このブックマークを表示"
 
 #: ../src/wxmedit_frame.cpp:1332
 msgid "&Display Line Number"
@@ -2234,11 +2234,11 @@ msgstr "編集モードを列モードに変更"
 
 #: ../src/wxmedit_frame.cpp:1341
 msgid "&Hex Mode"
-msgstr "16進モード&"
+msgstr "16数進モード&"
 
 #: ../src/wxmedit_frame.cpp:1341
 msgid "Change the editing mode to Hex-Mode"
-msgstr "編集モードを 16 進モードに変更"
+msgstr "編集モードを 16 進数モードに変更"
 
 #: ../src/wxmedit_frame.cpp:1344
 msgid "&Tools"
@@ -2769,7 +2769,7 @@ msgstr "Unicode (BOMなし)"
 
 #: ../src/wxmedit_frame.cpp:3365
 msgid "Close all files in this foler and in all the subfolers:"
-msgstr "このフォルダおよびサブフォルダ内すべてのファイルを閉じる:"
+msgstr "次のフォルダ内にある全ファイルを閉じる："
 
 #: ../src/wxmedit_frame.cpp:3500
 msgid ""
@@ -3899,7 +3899,7 @@ msgstr "下側余白 (mm):"
 
 #: wxstd.po.cpp:14
 msgid "Copies:"
-msgstr "コピー:"
+msgstr "コピー数::"
 
 #: wxstd.po.cpp:15
 msgid "Default printer"
@@ -4766,89 +4766,35 @@ msgstr "x86 アセンブリ"
 msgid "XML"
 msgstr "XML"
 
-#~ msgid "Fullwidth Characters"
-#~ msgstr "全角文字"
-
-#~ msgid "All Encodings"
-#~ msgstr "すべてのエンコード"
-
-#~ msgid "Western Europe"
-#~ msgstr "西ヨーロッパ"
+#~ msgid "CP437 Variant for ASCII Art"
+#~ msgstr "アスキーアート用 CP437 バリアント"
 
 #~ msgid "Central Europe"
 #~ msgstr "中央ヨーロッパ"
 
-#~ msgid "South Europe"
-#~ msgstr "南ヨーロッパ"
+#~ msgid "East Asia"
+#~ msgstr "東アジア"
+
+#~ msgid "Greek"
+#~ msgstr "ギリシャ語"
 
 #~ msgid "North Europe"
 #~ msgstr "北ヨーロッパ"
 
-#~ msgid "Baltic"
-#~ msgstr "バルト諸国"
+#~ msgid "Other"
+#~ msgstr "その他"
 
-#~ msgid "East Asia"
-#~ msgstr "東アジア"
+#~ msgid "South European"
+#~ msgstr "南ヨーロッパ"
 
 #~ msgid "Southeast Asia"
 #~ msgstr "東南アジア"
 
-#~ msgid "Unicode 16 bit (UTF-16)"
-#~ msgstr "Unicode 16 bit (UTF-16)"
+#~ msgid "Turkish"
+#~ msgstr "トルコ語"
 
-#~ msgid "Unicode 32 bit (UTF-32)"
-#~ msgstr "Unicode 32 bit (UTF-32)"
+#~ msgid "Unicode"
+#~ msgstr "Unicode"
 
-#~ msgid "Unicode 7 bit (UTF-7)"
-#~ msgstr "Unicode 7 bit (UTF-7)"
-
-#~ msgid "Indian (ISO-8859-12)"
-#~ msgstr "インド語 (ISO-8859-12)"
-
-#~ msgid "Press OK to visit the license online version.\n"
-#~ msgstr "OK を押してライセンス、バージョンの確認(オンライン)\n"
-
-#~ msgid "Auto copy the mouse-selected text to clipboard  ("
-#~ msgstr "マウスで選択したテキストをクリップボードに自動的にコピー  ("
-
-#~ msgid "Enable"
-#~ msgstr "有効"
-
-#~ msgid "Disable"
-#~ msgstr "無効"
-
-#~ msgid "when pressing Ctrl key)"
-#~ msgstr "Ctrl キーを押した時)"
-
-#~ msgid "Do you want to find from begin of selection?"
-#~ msgstr "選択範囲の先頭から検索しますか?"
-
-#~ msgid "Do you want to find from begin of file?"
-#~ msgstr "ファイルの先頭から検索しますか?"
-
-#~ msgid "Do you want to find from end of selection?"
-#~ msgstr "選択範囲の末尾から検索しますか?"
-
-#~ msgid "Do you want to find from end of file?"
-#~ msgstr "ファイルの終端から検索しますか?"
-
-#~ msgid "Esperanto (ISO-8859-3)"
-#~ msgstr "エスペラント語 (ISO-8859-3)"
-
-#~ msgid "Baltic (old) (ISO-8859-4)"
-#~ msgstr "バルト言語 (旧) (ISO-8859-4)"
-
-#~ msgid "Extended Unix Codepage for Japanese (EUC-JP)"
-#~ msgstr "日本語 (EUC-JP)"
-
-#~ msgid "Characters (no spaces)"
-#~ msgstr "キャラクタ (スペースなし)"
-
-#~ msgid "Characters (with spaces)"
-#~ msgstr "キャラクタ (スペースあり)"
-
-#~ msgid "Halfwidth Words"
-#~ msgstr "半角カナ"
-
-#~ msgid "Fullwidth Words"
-#~ msgstr "全角かな"
+#~ msgid "Wrap ar&ound"
+#~ msgstr "折り返す(&O)"
