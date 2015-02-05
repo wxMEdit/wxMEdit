@@ -141,7 +141,7 @@ wxString WXMLanguageQuery()
 	std::string lang = loc.getLanguage();
 	std::string ctry = loc.getCountry();
 
-	return wxString((boost::format("?%s_%s") % lang % ctry).str().c_str(), wxConvUTF8);
+	return wxString((boost::format("?hl=%s_%s") % lang % ctry).str().c_str(), wxConvUTF8);
 }
 
 void OpenURL(const wxString& url)
