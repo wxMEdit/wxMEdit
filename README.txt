@@ -19,7 +19,7 @@ A. Linux, FreeBSD, Mac OS X, and other Unix-like OS (__WXGTK__):
       1. autoconf 2.63 or higher
       2. automake 1.11.1 or higher
       3. wxWidgets 2.8 with Unicode enabled
-      4. Boost 1.33.0 or higher
+      4. Boost 1.34.0 or higher
       5. ICU4C 4.2 or higher
       6. libcurl 7.15.5 or higher
 
@@ -28,35 +28,19 @@ B. MS Windows (__WXMSW__):
       Required Tools and Libraries to compile:
       1. Bakefile 0.2.9
       2. wxWidgets 2.6/2.8 with Unicode enabled
-      3. Boost 1.33.0 or higher
-      4. libunicows: it's optional but required under Win98
-      5. ICU4C 4.2 or higher
-      6. libcurl 7.15.5 or higher
+      3. Boost 1.34.0 or higher
+      4. ICU4C 4.2 or higher
+      5. libcurl 7.15.5 or higher
    b. Visual C++ 2005/2008/2010~2013 (by upgrading from 2008 solution and project files):
       Required Tools and Libraries to compile:
       1. Bakefile 0.2.9
       2. wxWidgets 2.6/2.8 with Unicode enabled
-      3. Boost 1.33.0 or higher
-      4. libunicows: it's optional but required under Win98
-      5. ICU4C 4.2 or higher
-      6. libcurl 7.15.5 or higher
+      3. Boost 1.34.0 or higher
+      4. ICU4C 4.2 or higher
+      5. libcurl 7.15.5 or higher
 
-NOTE:
    You can download Bakefile at:
       http://www.bakefile.org/download.html
-
-   If you use Boost-1.33, you should get Boost.Xpressive and Boost.Foreach at:
-      http://wxmedit.googlecode.com/files/xpressive_foreach.tgz
-      http://wxmedit.googlecode.com/files/xpressive_foreach.zip
-
-   If you use wxWidgets-2.6, you should get wxAUI:
-      http://wxmedit.googlecode.com/files/wxAUI.tgz
-      http://wxmedit.googlecode.com/files/wxAUI.zip
-
-   The small tool image2xpm was removed. 
-   You can turn to GIMP, XnView, IrfanView, etc. or get image2xpm at:
-      http://wxmedit.googlecode.com/files/image2xpm.exe
-      http://wxmedit.googlecode.com/files/image2xpm_src.zip
 
 Syntax files, Locale files and Settings:
 ---------------------------------------
@@ -71,9 +55,6 @@ Syntax files, Locale files and Settings:
   
   If wxMEdit does not find any files in those paths, 
   wxMEdit can also execute standalone by using default settings.
-  
-  If you are under Win98, you must get unicows.dll from MS's website:
-    http://www.microsoft.com/downloads/details.aspx?FamilyId=73BA7BD7-ED06-4F0D-80A4-2A7EEAEE17E2&displaylang=en
   
   When quit wxMEdit, wxMEdit will save the settings to:
     1. $(HOME)/.wxmedit/wxmedit.cfg under Unix-like OS.
@@ -154,7 +135,6 @@ wxMEdit: http://wxmedit.github.io/
 MadEdit: http://sourceforge.net/projects/madedit/
 wxWidgets: http://www.wxwidgets.org/
 Boost: http://www.boost.org/
-libunicows: http://libunicows.sourceforge.net/
 Open Clip Art Library: http://www.openclipart.org/
 ICU: http://site.icu-project.org/
 Bakefile: http://www.bakefile.org/
