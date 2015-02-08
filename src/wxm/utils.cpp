@@ -29,7 +29,14 @@
 
 #include <boost/foreach.hpp>
 #include <boost/scoped_ptr.hpp>
+#ifdef _MSC_VER
+# pragma warning(push)
+# pragma warning(disable:4819)
+#endif
 #include <boost/format.hpp>
+#ifdef _MSC_VER
+# pragma warning(pop)
+#endif
 #include <boost/algorithm/string/predicate.hpp>
 
 #include <locale.h>
