@@ -327,7 +327,6 @@ protected:
     bool QueryCloseFile(int idx);
     bool QueryCloseAllFiles();
 
-    void LoadMenuKeys(wxConfigBase *config);
     wxString GetMenuKey(const wxString &menu, const wxString &defaultkey);
 
     void OnInfoNotebookSize(wxSizeEvent &evt);

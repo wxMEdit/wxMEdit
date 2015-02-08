@@ -1688,13 +1688,8 @@ void MadEditFrame::CreateGUIControls()
     if(m_Config->Exists(wxT("/KeyBindings")))
     {
         m_Config->SetPath(wxT("/KeyBindings"));
-        MadEdit::ms_KeyBindings.LoadFromConfig_New(m_Config);
+        MadEdit::ms_KeyBindings.LoadFromConfig(m_Config);
         MadEdit::ms_KeyBindings.AddDefaultBindings(false);
-    }
-    else if(m_Config->Exists(wxT("/MenuKeys")))
-    {
-        m_Config->SetPath(wxT("/MenuKeys"));
-        LoadMenuKeys(m_Config);
     }
 
     // add keybinding of ecToggleWindow
@@ -1902,15 +1897,7 @@ void MadEditFrame::CreateGUIControls()
 
     if(!m_Config->Exists(wxT("/KeyBindings")))
     {
-        if(m_Config->Exists(wxT("/EditKeys")))
-        {
-            m_Config->SetPath(wxT("/EditKeys"));
-            MadEdit::ms_KeyBindings.LoadFromConfig(m_Config);
-        }
-        else
-        {
-            MadEdit::ms_KeyBindings.AddDefaultBindings(true);
-        }
+        MadEdit::ms_KeyBindings.AddDefaultBindings(true);
     }
     ResetAcceleratorTable();
 
@@ -2408,26 +2395,6 @@ void MadEditFrame::OnResultManualCheckUpdates(wxEvent &evt)
 }
 
 //---------------------------------------------------------------------------
-
-void MadEditFrame::LoadMenuKeys(wxConfigBase *config)
-{
-    wxString key, menu;
-    long idx=0;
-    bool kcont=config->GetNextEntry(key, idx);
-    while(kcont)
-    {
-        config->Read(key, &menu);
-
-        int menuid=MadKeyBindings::TextToMenuId(menu);
-        MadEditShortCut sc=StringToShortCut(key);
-        if(menuid!=0 && sc!=0)
-        {
-            MadEdit::ms_KeyBindings.Add(sc, true, menuid, true);
-        }
-
-        kcont=config->GetNextEntry(key, idx);
-    }
-}
 
 wxString MadEditFrame::GetMenuKey(const wxString &menu, const wxString &defaultkey)
 {

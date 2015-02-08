@@ -960,30 +960,6 @@ void MadKeyBindings::BuildAccelEntries(bool includeFirstSC, vector<wxAccelerator
 void MadKeyBindings::LoadFromConfig(wxConfigBase *config)
 {
     MadEditShortCut sc;
-    MadTextCommandMap::iterator cmdit;
-
-    wxString key, text;
-    long idx=0;
-    bool kcont=config->GetNextEntry(key, idx);
-    while(kcont)
-    {
-        config->Read(key, &text);
-
-        if((sc=StringToShortCut(key))!=0)
-        {
-            if((cmdit=ms_TextCommandMap->find(text))!=ms_TextCommandMap->end())
-            {
-                Add(sc, cmdit->second, true);
-            }
-        }
-
-        kcont=config->GetNextEntry(key, idx);
-    }
-}
-
-void MadKeyBindings::LoadFromConfig_New(wxConfigBase *config)
-{
-    MadEditShortCut sc;
     MadTextCommandMap::iterator tcit;
 
     wxString key, text;
@@ -1028,7 +1004,7 @@ void MadKeyBindings::LoadFromConfig_New(wxConfigBase *config)
     }
 }
 
-void MadKeyBindings::SaveToConfig_New(wxConfigBase *config)
+void MadKeyBindings::SaveToConfig(wxConfigBase *config)
 {
     // record all keys in config
     wxArrayString keys;

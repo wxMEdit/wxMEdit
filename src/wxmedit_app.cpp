@@ -145,22 +145,20 @@ void send_message(Window madedit_win, const wxString &msg)
 
 void DeleteConfig()
 {
-    if(g_DoNotSaveSettings==false)
+    if(!g_DoNotSaveSettings)
     {
         wxFileConfig *cfg=(wxFileConfig *)wxFileConfig::Get(false);
 
-        if(g_ResetAllKeys==false)
-        {
-            // save MadEdit::KeyBindings
-            cfg->SetPath(wxT("/KeyBindings"));
-            MadEdit::ms_KeyBindings.SaveToConfig_New(cfg);
-        }
-        else
+        if(g_ResetAllKeys)
         {
             cfg->DeleteGroup(wxT("/KeyBindings"));
         }
-        cfg->DeleteGroup(wxT("/EditKeys"));
-        cfg->DeleteGroup(wxT("/MenuKeys"));
+        else
+        {
+            // save MadEdit::KeyBindings
+            cfg->SetPath(wxT("/KeyBindings"));
+            MadEdit::ms_KeyBindings.SaveToConfig(cfg);
+        }
 
         delete cfg;
     }

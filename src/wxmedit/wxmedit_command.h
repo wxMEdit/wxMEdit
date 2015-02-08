@@ -339,11 +339,9 @@ public:
         return ecNone;
     }
 
-    // must config->SetPath() before call those functions
+    // must config->SetPath() before call these functions
     void LoadFromConfig(wxConfigBase *config);
-
-    void LoadFromConfig_New(wxConfigBase *config);
-    void SaveToConfig_New(wxConfigBase *config);
+    void SaveToConfig(wxConfigBase *config);
 };
 
 #endif
