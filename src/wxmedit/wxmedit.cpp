@@ -33,11 +33,12 @@
 #endif
 
 #ifdef __WXGTK__
-#include <gdk/gdk.h>
-#include <gdk/gdkx.h>
-#include <gdk/gdkprivate.h>
-#include <gtk/gtk.h>
-#include <wx/gtk/win_gtk.h>
+# include <gdk/gdk.h>
+# include <gdk/gdkx.h>
+# include <gdk/gdkprivate.h>
+# include <gtk/gtk.h>
+# include <wx/gtk/win_gtk.h>
+# include <iostream>
 #endif
 
 #ifdef _MSC_VER
