@@ -102,16 +102,16 @@ all-no:
 
 
 $(srcdir)/zh.gmo: $(srcdir)/zh_CN.gmo
-	ln -s $(srcdir)/zh_CN.gmo $@ || echo $@ exist
+	cd $(srcdir) && ln -s zh_CN.gmo $@ || echo $@ exist
 
 $(srcdir)/zh_HK.gmo: $(srcdir)/zh_TW.gmo
-	ln -s $(srcdir)/zh_TW.gmo $@ || echo $@ exist
+	cd $(srcdir) && ln -s zh_TW.gmo $@ || echo $@ exist
 
 $(srcdir)/zh_MO.gmo: $(srcdir)/zh_TW.gmo
-	ln -s $(srcdir)/zh_TW.gmo $@ || echo $@ exist
+	cd $(srcdir) && ln -s zh_TW.gmo $@ || echo $@ exist
 
 $(srcdir)/zh_SG.gmo: $(srcdir)/zh_CN.gmo
-	ln -s $(srcdir)/zh_CN.gmo $@ || echo $@ exist
+	cd $(srcdir) && ln -s zh_CN.gmo $@ || echo $@ exist
 
 # $(srcdir)/$(DOMAIN).pot is only created when needed. When xgettext finds no
 # internationalized messages, no $(srcdir)/$(DOMAIN).pot is created (because
