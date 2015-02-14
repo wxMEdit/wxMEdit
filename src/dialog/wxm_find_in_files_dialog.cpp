@@ -264,14 +264,11 @@ WXMFindInFilesDialog::WXMFindInFilesDialog(wxWindow* parent,wxWindowID id,const 
 	Center();
 
 	//
-	if(g_SearchReplaceDialog->m_RecentFindText->GetCount()>0)
-	{
+	if (GetSearchReplaceDialog(parent).m_RecentFindText->GetCount() > 0)
 		m_FindText->SetText(g_SearchReplaceDialog->m_RecentFindText->GetHistoryFile(0));
-	}
-	if(g_SearchReplaceDialog->m_RecentReplaceText->GetCount()>0)
-	{
+
+	if (GetSearchReplaceDialog(parent).m_RecentReplaceText->GetCount() > 0)
 		m_ReplaceText->SetText(g_SearchReplaceDialog->m_RecentReplaceText->GetHistoryFile(0));
-	}
 
 	WxButtonClose->SetFocus();
 }
@@ -833,4 +830,11 @@ void WXMFindInFilesDialog::PurgeRecentFindExcludes()
 	for(int i=n-1; i>=0; --i)
 		m_RecentFindExclude->RemoveFileFromHistory((size_t)i);
 	WxComboBoxExclude->Clear();
+}
+
+WXMFindInFilesDialog& GetFindInFilesDialog(wxWindow* parent)
+{
+	if (g_FindInFilesDialog == NULL)
+		g_FindInFilesDialog = new WXMFindInFilesDialog(parent);
+	return *g_FindInFilesDialog;
 }

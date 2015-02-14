@@ -153,5 +153,6 @@ class WXMSearchReplaceDialog: public wxDialog
 };
 
 extern WXMSearchReplaceDialog *g_SearchReplaceDialog;
+WXMSearchReplaceDialog& GetSearchReplaceDialog(wxWindow* paren);
 
 #endif

@@ -133,5 +133,6 @@ class WXMFindInFilesDialog: public wxDialog
 };
 
 extern WXMFindInFilesDialog *g_FindInFilesDialog;
+WXMFindInFilesDialog& GetFindInFilesDialog(wxWindow* parent);
 
 #endif

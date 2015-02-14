@@ -101,20 +101,6 @@ void WXMPurgeHistoriesDialog::WXMPurgeHistoriesDialogClose(wxCloseEvent& event)
 	Destroy();
 }
 
-WXMSearchReplaceDialog* GetSearchReplaceDialog()
-{
-	if (g_SearchReplaceDialog == NULL)
-		g_SearchReplaceDialog = new WXMSearchReplaceDialog(g_MainFrame);
-	return g_SearchReplaceDialog;
-}
-
-WXMFindInFilesDialog* GetFindInFilesDialog()
-{
-	if (g_FindInFilesDialog == NULL)
-		g_FindInFilesDialog = new WXMFindInFilesDialog(g_MainFrame);
-	return g_FindInFilesDialog;
-}
-
 void WXMPurgeHistoriesDialog::WxButtonPurgeClick(wxCommandEvent& event)
 {
 	if (WxCheckBoxRecentFiles->IsChecked())
@@ -127,19 +113,19 @@ void WXMPurgeHistoriesDialog::WxButtonPurgeClick(wxCommandEvent& event)
 		g_MainFrame->PurgeRecentEncodings();
 
 	if (WxCheckBoxRecentFindTexts->IsChecked())
-		GetSearchReplaceDialog()->PurgeRecentFindTexts();
+		GetSearchReplaceDialog(g_MainFrame).PurgeRecentFindTexts();
 
 	if (WxCheckBoxRecentReplaceTexts->IsChecked())
-		GetSearchReplaceDialog()->PurgeRecentReplaceTexts();
+		GetSearchReplaceDialog(g_MainFrame).PurgeRecentReplaceTexts();
 
 	if (WxCheckBoxRecentFilesFindDirs->IsChecked())
-		GetFindInFilesDialog()->PurgeRecentFindDirs();
+		GetFindInFilesDialog(g_MainFrame).PurgeRecentFindDirs();
 
 	if (WxCheckBoxRecentFindFilters->IsChecked())
-		GetFindInFilesDialog()->PurgeRecentFindFilters();
+		GetFindInFilesDialog(g_MainFrame).PurgeRecentFindFilters();
 
 	if (WxCheckBoxRecentFindExcludes->IsChecked())
-		GetFindInFilesDialog()->PurgeRecentFindExcludes();
+		GetFindInFilesDialog(g_MainFrame).PurgeRecentFindExcludes();
 
 	Close();
 }

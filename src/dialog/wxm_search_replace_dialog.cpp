@@ -1000,3 +1000,10 @@ void WXMSearchReplaceDialog::PurgeRecentReplaceTexts()
 	for(int i=n-1; i>=0; --i)
 		m_RecentReplaceText->RemoveFileFromHistory((size_t)i);
 }
+
+WXMSearchReplaceDialog& GetSearchReplaceDialog(wxWindow* parent)
+{
+	if (g_SearchReplaceDialog == NULL)
+		g_SearchReplaceDialog = new WXMSearchReplaceDialog(parent);
+	return *g_SearchReplaceDialog;
+}
