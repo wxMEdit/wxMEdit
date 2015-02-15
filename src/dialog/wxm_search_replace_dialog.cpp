@@ -654,10 +654,8 @@ void WXMSearchReplaceDialog::OnRecentReplaceText(wxCommandEvent& event)
 void WXMSearchReplaceDialog::WxButtonReplaceExpandClick(wxCommandEvent& event)
 {
 	g_SearchReplaceDialog->ShowWithReplaceFunc();
-	g_SearchReplaceDialog->SetFocus();
-	g_SearchReplaceDialog->Raise();
 
-	g_SearchReplaceDialog->UpdateCheckBoxByCBHex(g_SearchReplaceDialog->WxCheckBoxFindHex->GetValue());
+	g_SearchReplaceDialog->UpdateCheckBoxByCBHex();
 
 	g_SearchReplaceDialog->m_FindText->SelectAll();
 	g_SearchReplaceDialog->m_FindText->SetFocus();
@@ -930,7 +928,7 @@ void WXMSearchReplaceDialog::WxCheckBoxSearchInSelectionClick(wxCommandEvent& ev
 	UpdateSearchInSelection(event.IsChecked());
 }
 
-bool WXMSearchReplaceDialog::ShowOnlyFindFunc()
+void WXMSearchReplaceDialog::ShowOnlyFindFunc()
 {
 	m_ReplaceText->Show(false);
 	WxBitmapButtonRecentReplaceText->Show(false);
@@ -946,10 +944,12 @@ bool WXMSearchReplaceDialog::ShowOnlyFindFunc()
 
 	SetTitle(_("Search"));
 
-	return Show(true);
+	Show(true);
+	SetFocus();
+	Raise();
 }
 
-bool WXMSearchReplaceDialog::ShowWithReplaceFunc()
+void WXMSearchReplaceDialog::ShowWithReplaceFunc()
 {
 	m_ReplaceText->SetFont(m_FindText->GetFont());
 	m_ReplaceText->Show(true);
@@ -966,7 +966,9 @@ bool WXMSearchReplaceDialog::ShowWithReplaceFunc()
 
 	SetTitle(_("Replace"));
 
-	return Show(true);
+	Show(true);
+	SetFocus();
+	Raise();
 }
 
 wxColor WXMSearchReplaceDialog::GetMessageColor(WXMSearchReplaceDialog::SearchMsgType type)

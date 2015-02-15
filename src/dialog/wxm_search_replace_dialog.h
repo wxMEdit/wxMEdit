@@ -100,10 +100,11 @@ class WXMSearchReplaceDialog: public wxDialog
 
 		void ReadWriteSettings(bool bRead);
 		void UpdateCheckBoxByCBHex(bool check);
+		void UpdateCheckBoxByCBHex() { UpdateCheckBoxByCBHex(WxCheckBoxFindHex->GetValue()); }
 		void UpdateSearchInSelection(bool check);
 
-		bool ShowOnlyFindFunc();
-		bool ShowWithReplaceFunc();
+		void ShowOnlyFindFunc();
+		void ShowWithReplaceFunc();
 
 		virtual bool Show(bool show)
 		{

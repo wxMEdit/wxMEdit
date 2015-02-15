@@ -222,7 +222,7 @@ void InFrameWXMEdit::DoStatusChanged()
 	wxm::GetFrameStatusBar().Update(); // repaint immediately
 
 	if (g_SearchReplaceDialog != NULL)
-		g_SearchReplaceDialog->UpdateCheckBoxByCBHex(g_SearchReplaceDialog->WxCheckBoxFindHex->GetValue());
+		g_SearchReplaceDialog->UpdateCheckBoxByCBHex();
 }
 
 void InFrameWXMEdit::DoToggleWindow()
