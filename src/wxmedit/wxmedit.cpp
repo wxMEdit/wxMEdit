@@ -8236,12 +8236,15 @@ void MadEdit::ProcessCommand(MadEditCommand command)
                         m_Config->Read(wxT("/wxMEdit/DateTimeFormat"), &fmt, wxT("%c"));
                         if(!fmt.IsEmpty())
                         {
-                            char oldlocale[256];
+                            std::string oldlocale;
                             bool inEnglish=false;
                             m_Config->Read(wxT("/wxMEdit/DateTimeInEnglish"), &inEnglish);
                             if(inEnglish)
                             {
-                                strcpy(oldlocale, setlocale( LC_TIME, NULL ));
+                                const char* p = setlocale( LC_TIME, NULL );
+                                if (p != NULL)
+                                    oldlocale = p;
+
                                 setlocale( LC_TIME, "C" );
                             }
 
@@ -8250,7 +8253,7 @@ void MadEdit::ProcessCommand(MadEditCommand command)
 
                             if(inEnglish)
                             {
-                                setlocale( LC_TIME, oldlocale );
+                                setlocale( LC_TIME, oldlocale.c_str() );
                             }
 
                             vector<ucs4_t> ucs;

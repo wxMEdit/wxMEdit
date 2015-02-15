@@ -34,8 +34,9 @@ static const wxChar *s_MRUEntryFormat = wxT("&%d %s");
 
 static inline wxChar* MYcopystring(const wxString& s)
 {
-	wxChar* copy = new wxChar[s.length() + 1];
-	return wxStrcpy(copy, s.c_str());
+	wxChar* copy = new wxChar[s.size() + 1];
+	copy[s.size()] = 0;
+	return (wxChar*)memcpy(copy, s.c_str(), s.size()*sizeof(wxChar));
 }
 
 // Recent List management
