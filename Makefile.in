@@ -572,9 +572,6 @@ noinst_HEADERS = README.txt \
 	images/wxmedit.ico \
 	images/wxmedit.xpm \
 	images/wxmedit_16x15.xpm \
-	libunicows/libunicows.a \
-	libunicows/README.txt \
-	libunicows/unicows.lib \
 	po/wxmedit.pot \
 	po/src.list \
 	po/wxstd.po.cpp \
