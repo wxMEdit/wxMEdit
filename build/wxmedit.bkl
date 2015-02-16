@@ -210,6 +210,7 @@
 		<sources>../src/wxmedit_app.cpp</sources>
 		<headers>../src/wxmedit_frame.h</headers>
 		<sources>../src/wxmedit_frame.cpp</sources>
+		<headers>../src/xm/cxx11.h</headers>
 		<headers>../src/xm/remote.h</headers>
 		<sources>../src/xm/remote.cpp</sources>
 		<headers>../src/xm/ublock.h</headers>
@@ -223,6 +224,7 @@
 		<headers>../src/wxm/line_enc_adapter.h</headers>
 		<headers>../src/wxmedit/ucs4_t.h</headers>
 		<headers>../src/wxmedit/wxm_deque.hpp</headers>
+		<headers>../src/xm/cxx11.h</headers>
 		<headers>../src/xm/utils.hpp</headers>
 		<headers>../test/encdet/data_from_icudet.h</headers>
 		<sources>../test/encdet/data_from_icudet.cpp</sources>

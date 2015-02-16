@@ -10,6 +10,7 @@
 #ifndef _WXMEDIT_H_
 #define _WXMEDIT_H_
 
+#include "../xm/cxx11.h"
 #include <wx/wxprec.h>
 
 #ifdef __BORLANDC__
@@ -490,10 +491,10 @@ protected:
 
     wxFileOffset GetColumnSelection(wxString *ws);
 
-    // if(ws==NULL) SelectWord only;
+    // if(ws==nullptr) SelectWord only;
     // else GetWord to ws;
     void SelectWordFromCaretPos(wxString *ws);
-    void SelectLineFromCaretPos(wxString *ws=NULL);
+    void SelectLineFromCaretPos(wxString *ws=nullptr);
 
     // return linecount
     int TranslateText(const wxChar* pwcs, size_t count, vector<ucs4_t>& ucs, bool passNewLine);
@@ -522,11 +523,11 @@ protected:
 
     void CopyFileDataToMem(MadBlockIterator begin, MadBlockIterator end);
 
-    // return the line-iterator and and lineid (if it is not NULL) by the pos
+    // return the line-iterator and and lineid (if it is not nullptr) by the pos
     MadLineIterator DeleteInsertData(wxFileOffset pos,
                                      wxFileOffset delsize, /*OUT*/ MadBlockVector *deldata,
                                      wxFileOffset inssize, /*IN*/  MadBlockVector *insdata,
-                                     /*OUT*/ int *lineid = NULL);
+                                     /*OUT*/ int *lineid = nullptr);
 
     void UCStoBlock(const ucs4_t *ucs, size_t count, MadBlock & block);
 
@@ -950,10 +951,10 @@ public: // basic functions
     // return the replaced count or SR_EXPR_ERROR
     int ReplaceTextAll(const wxString &expr, const wxString &fmt,
             bool bRegex, bool bCaseSensitive, bool bWholeWord,
-            vector<wxFileOffset> *pbegpos = NULL, vector<wxFileOffset> *pendpos = NULL,
+            vector<wxFileOffset> *pbegpos = nullptr, vector<wxFileOffset> *pendpos = nullptr,
             wxFileOffset rangeFrom = -1, wxFileOffset rangeTo = -1);
     int ReplaceHexAll(const wxString &expr, const wxString &fmt,
-            vector<wxFileOffset> *pbegpos = NULL, vector<wxFileOffset> *pendpos = NULL,
+            vector<wxFileOffset> *pbegpos = nullptr, vector<wxFileOffset> *pendpos = nullptr,
             wxFileOffset rangeFrom = -1, wxFileOffset rangeTo = -1);
 
     // list the matched data to pbegpos & pendpos

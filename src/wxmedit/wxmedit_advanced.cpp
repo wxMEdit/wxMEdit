@@ -8,6 +8,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 #include "wxmedit.h"
+#include "../xm/cxx11.h"
 #include "trad_simp.h"
 #include "../wxm/case_conv.h"
 #include "../xm/ublock.h"
@@ -39,7 +40,7 @@ void MadEdit::ToggleBOM()
         dudata->m_Pos = 0;
         dudata->m_Size = len;
 
-        MadLineIterator lit = DeleteInsertData(dudata->m_Pos, dudata->m_Size, &dudata->m_Data, 0, NULL);
+        MadLineIterator lit = DeleteInsertData(dudata->m_Pos, dudata->m_Size, &dudata->m_Data, 0, nullptr);
 
         MadUndo *undo = m_UndoBuffer->Add();
         undo->m_CaretPosBefore = m_CaretPos.pos;
@@ -78,7 +79,7 @@ void MadEdit::ToggleBOM()
         undo->m_CaretPosAfter = m_CaretPos.pos+blk.m_Size;
         undo->m_Undos.push_back(insud);
 
-        MadLineIterator lit = DeleteInsertData(insud->m_Pos, 0, NULL, insud->m_Size, &insud->m_Data);
+        MadLineIterator lit = DeleteInsertData(insud->m_Pos, 0, nullptr, insud->m_Size, &insud->m_Data);
 
         m_Lines->Reformat(lit, lit);
 
@@ -108,7 +109,7 @@ void MadEdit::ToggleBOM()
 
 wxString *ConvertTextToNewString(const wxString& text, MadConvertChineseFlag flag)
 {
-    wxString *ptext=NULL;
+    wxString *ptext=nullptr;
     if(text.Len()!=0)
     {
         wxChar *str=new wxChar[text.Len()];
@@ -159,7 +160,7 @@ void MadEdit::ConvertEncoding(const wxString &newenc, MadConvertEncodingFlag fla
         ignoreBOM=false;
     }
 
-    wxString text, *ptext=NULL;
+    wxString text, *ptext=nullptr;
     GetText(text, ignoreBOM);
 
     if(flag != cefNone)
@@ -202,7 +203,7 @@ void MadEdit::ConvertChinese(MadConvertEncodingFlag flag)
 
     WXMLocations loc = SaveLocations();
 
-    wxString text, *ptext=NULL;
+    wxString text, *ptext=nullptr;
     GetText(text, false);
 
     if(flag != cefNone)
@@ -221,7 +222,7 @@ void MadEdit::ConvertChinese(MadConvertEncodingFlag flag)
         }
     }
 
-    if(ptext!=NULL)
+    if(ptext!=nullptr)
     {
         SetText(*ptext);
         delete ptext;
@@ -263,7 +264,7 @@ void MadEdit::ConvertNewLineType(MadNewLineType type)
     m_Lines->m_MemData->Get(newline_blk.m_Pos, newlinedata, newlinesize);
 
     vector<wxByte> buffervector;
-    wxByte *buf=NULL;
+    wxByte *buf=nullptr;
 
     MadBlock blk(m_Lines->m_MemData, m_Lines->m_MemData->m_Size, 0);
 
@@ -1099,9 +1100,9 @@ void InitFullwidthTable(ucs2_t *Fullwidth_Table, ucs2_t *hftable)
 
 ucs2_t *GetHalfwidthTable(bool ascii, bool japanese, bool korean, bool other)
 {
-    static ucs2_t *Halfwidth_Table=NULL; // halfwidth-char to fullwidth-char table
+    static ucs2_t *Halfwidth_Table=nullptr; // halfwidth-char to fullwidth-char table
 
-    if(Halfwidth_Table==NULL)
+    if(Halfwidth_Table==nullptr)
     {
         Halfwidth_Table=new ucs2_t[65536];
     }
@@ -1117,9 +1118,9 @@ ucs2_t *GetHalfwidthTable(bool ascii, bool japanese, bool korean, bool other)
 
 ucs2_t *GetFullwidthTable(bool ascii, bool japanese, bool korean, bool other)
 {
-    static ucs2_t *Fullwidth_Table=NULL; // fullwidth-char to halfwidth-char table
+    static ucs2_t *Fullwidth_Table=nullptr; // fullwidth-char to halfwidth-char table
 
-    if(Fullwidth_Table==NULL)
+    if(Fullwidth_Table==nullptr)
     {
         Fullwidth_Table=new ucs2_t[65536];
     }
@@ -1343,7 +1344,7 @@ struct SortLineData
 };
 bool SortLineData::s_casesensitive=false;
 bool SortLineData::s_numeric=false;
-MadLines *SortLineData::s_lines=NULL;
+MadLines *SortLineData::s_lines=nullptr;
 
 SortLineData::SortLineData(const MadLineIterator& l, int id)
     : lit(l), lineid(id), ucdata(), int_begin(-1), frac_begin(-1), negative(false)
@@ -1516,7 +1517,7 @@ struct SortLineComp
     static bool s_numeric;
     SortLineData *data;
 
-    SortLineComp() :data(NULL) {}
+    SortLineComp() :data(nullptr) {}
     SortLineComp(SortLineData *d) :data(d) {}
 
     bool operator<(const SortLineComp& it) const
@@ -1687,16 +1688,16 @@ void MadEdit::SortLines(MadSortFlags flags, int beginline, int endline)
     MadBlock blk(m_Lines->m_MemData, m_Lines->m_MemData->m_Size, 0);
 
     vector<wxByte> buffervector;
-    wxByte *buf=NULL;
+    wxByte *buf=nullptr;
 
     std::vector<SortLineComp>::iterator slit = lines.begin();
     std::vector<SortLineComp>::iterator slitend = lines.end();
     std::vector<SortLineComp>::reverse_iterator slrit = lines.rbegin();
     //std::vector<SortLineComp>::reverse_iterator slritend = lines.rend();
-    SortLineData *dupdata=NULL;
+    SortLineData *dupdata=nullptr;
     do
     {
-        SortLineData *data=NULL;
+        SortLineData *data=nullptr;
         if(bDescending)
         {
             data = (*slrit).data;
@@ -1710,10 +1711,10 @@ void MadEdit::SortLines(MadSortFlags flags, int beginline, int endline)
 
         if(bRemoveDup)
         {
-            if(dupdata!=NULL && dupdata->Equal(data))
+            if(dupdata!=nullptr && dupdata->Equal(data))
             {
                 dupdata = data;
-                data = NULL;
+                data = nullptr;
                 if(slit == slitend)
                 {
                     delsize += lastNewLineSize; // delete last newner char
@@ -1725,7 +1726,7 @@ void MadEdit::SortLines(MadSortFlags flags, int beginline, int endline)
             }
         }
 
-        if(data != NULL)
+        if(data != nullptr)
         {
             lit = data->lit;
             wxFileOffset spos = lit->m_RowIndices[0].m_Start;
@@ -1926,11 +1927,11 @@ void MadEdit::ConvertWordWrapToNewLine()
     wxFileOffset size=del_pos.back() - del_pos.front();
     if((size <= 2*1024*1024) || (del_pos.size()>=40 && size<= 10*1024*1024))
     {
-        OverwriteDataSingle(del_pos, del_pos, NULL, &ins_data, ins_len);
+        OverwriteDataSingle(del_pos, del_pos, nullptr, &ins_data, ins_len);
     }
     else
     {
-        OverwriteDataMultiple(del_pos, del_pos, NULL, &ins_data, ins_len);
+        OverwriteDataMultiple(del_pos, del_pos, nullptr, &ins_data, ins_len);
     }
 }
 
@@ -1979,11 +1980,11 @@ void MadEdit::ConvertNewLineToWordWrap()
     wxFileOffset size=del_epos.back() - del_bpos.front();
     if((size <= 2*1024*1024) || (del_bpos.size()>=40 && size<= 10*1024*1024))
     {
-        OverwriteDataSingle(del_bpos, del_epos, NULL, &ins_data, ins_len);
+        OverwriteDataSingle(del_bpos, del_epos, nullptr, &ins_data, ins_len);
     }
     else
     {
-        OverwriteDataMultiple(del_bpos, del_epos, NULL, &ins_data, ins_len);
+        OverwriteDataMultiple(del_bpos, del_epos, nullptr, &ins_data, ins_len);
     }
 }
 

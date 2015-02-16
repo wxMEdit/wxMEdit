@@ -6,6 +6,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 #include "wxm_conv_enc_dialog.h"
+#include "../xm/cxx11.h"
 
 #include "../wxm/encoding/encoding.h"
 #include <wx/config.h>
@@ -20,7 +21,7 @@
 #define new new(_NORMAL_BLOCK ,__FILE__, __LINE__)
 #endif
 
-WXMConvEncDialog *g_ConvEncDialog=NULL;
+WXMConvEncDialog *g_ConvEncDialog=nullptr;
 //(*IdInit(WXMConvEncDialog)
 const long WXMConvEncDialog::ID_STATICTEXT1 = wxNewId();
 const long WXMConvEncDialog::ID_WXCOMBOBOXENCODING = wxNewId();
@@ -113,7 +114,7 @@ void WXMConvEncDialog::WXMConvEncDialogClose(wxCloseEvent& event)
 		return;
 	}
 
-	g_ConvEncDialog=NULL;
+	g_ConvEncDialog=nullptr;
 	Destroy();
 }
 

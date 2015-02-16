@@ -6,6 +6,7 @@
 // License:     GPLv3
 ///////////////////////////////////////////////////////////////////////////////
 
+#include "../../xm/cxx11.h"
 #include "../def.h"
 #include "unicode.h"
 #include "singlebyte.h"
@@ -64,17 +65,17 @@ static wxString GetMSCPFontName(const wxString mscp)
 
 namespace wxm
 {
-WXMEncodingManager* WXMEncodingManager::s_inst = NULL;
+WXMEncodingManager* WXMEncodingManager::s_inst = nullptr;
 
 std::string GetEncodingICUName(const char* innername)
 {
 	UErrorCode err=U_ZERO_ERROR;
 	UConverter* ucnv = ucnv_open(innername, &err);
-	if (ucnv == NULL || U_FAILURE(err))
+	if (ucnv == nullptr || U_FAILURE(err))
 		return std::string();
 
 	const char* icuname = ucnv_getName(ucnv, &err);
-	if (icuname == NULL || U_FAILURE(err))
+	if (icuname == nullptr || U_FAILURE(err))
 		return std::string();
 
 	return std::string(icuname);
@@ -84,7 +85,7 @@ std::string WXMEncodingManager::s_sysenc_icuname;
 void WXMEncodingManager::PreInit()
 {
 	if (s_sysenc_icuname.empty())
-		s_sysenc_icuname = GetEncodingICUName(NULL);
+		s_sysenc_icuname = GetEncodingICUName(nullptr);
 }
 void WXMEncodingManager::AddEncoding(const std::string& encname, WXMEncodingID encid, 
 		const wxString& desc, const wxString& aliases, WXMEncodingType entype, 
@@ -208,6 +209,12 @@ void WXMEncodingManager::InitSystemEncoding()
 	}
 }
 
+template <typename L, typename C>
+C cnv(const L& l, const C& c)
+{
+	return l.to_container(c);
+}
+
 void WXMEncodingManager::InitEncodingGroups()
 {
 	boost::assign::insert(m_wxencgrpname_map)
@@ -230,57 +237,58 @@ void WXMEncodingManager::InitEncodingGroups()
 		(ENCG_OEM,           _("OEM "))
 	;
 
-
+	std::set<WXMEncodingGroupID> t;
+	using boost::assign::list_of;
 	boost::assign::insert(m_wxencgrps_map)
 		// ISO-8859
-		(ENC_ISO_8859_1,  boost::assign::list_of(ENCG_ISO8859)(ENCG_WESTERNEUROPE))
-		(ENC_ISO_8859_2,  boost::assign::list_of(ENCG_ISO8859)(ENCG_CENTRALEUROPE))
-		(ENC_ISO_8859_3,  boost::assign::list_of(ENCG_ISO8859)(ENCG_SOUTHEUROPE))
-		(ENC_ISO_8859_4,  boost::assign::list_of(ENCG_ISO8859)(ENCG_NORTHEUROPE))
-		(ENC_ISO_8859_5,  boost::assign::list_of(ENCG_ISO8859)(ENCG_CYRILLIC))
-		(ENC_ISO_8859_6,  boost::assign::list_of(ENCG_ISO8859)(ENCG_ARABIC))
-		(ENC_ISO_8859_7,  boost::assign::list_of(ENCG_ISO8859)(ENCG_GREEK))
-		(ENC_ISO_8859_8,  boost::assign::list_of(ENCG_ISO8859)(ENCG_HEBREW))
-		(ENC_ISO_8859_9,  boost::assign::list_of(ENCG_ISO8859)(ENCG_TURKISH))
-		(ENC_ISO_8859_10, boost::assign::list_of(ENCG_ISO8859)(ENCG_NORTHEUROPE))
-		(ENC_ISO_8859_11, boost::assign::list_of(ENCG_ISO8859)(ENCG_SOUTHEASTASIA))
-		(ENC_ISO_8859_13, boost::assign::list_of(ENCG_ISO8859)(ENCG_BALTIC))
-		(ENC_ISO_8859_14, boost::assign::list_of(ENCG_ISO8859)(ENCG_NORTHEUROPE))
-		(ENC_ISO_8859_15, boost::assign::list_of(ENCG_ISO8859)(ENCG_WESTERNEUROPE))
-		(ENC_ISO_8859_16, boost::assign::list_of(ENCG_ISO8859)(ENCG_SOUTHEUROPE))
+		( ENC_ISO_8859_1,  cnv(list_of(ENCG_ISO8859)(ENCG_WESTERNEUROPE), t) )
+		( ENC_ISO_8859_2,  cnv(list_of(ENCG_ISO8859)(ENCG_CENTRALEUROPE), t) )
+		( ENC_ISO_8859_3,  cnv(list_of(ENCG_ISO8859)(ENCG_SOUTHEUROPE), t) )
+		( ENC_ISO_8859_4,  cnv(list_of(ENCG_ISO8859)(ENCG_NORTHEUROPE), t) )
+		( ENC_ISO_8859_5,  cnv(list_of(ENCG_ISO8859)(ENCG_CYRILLIC), t) )
+		( ENC_ISO_8859_6,  cnv(list_of(ENCG_ISO8859)(ENCG_ARABIC), t) )
+		( ENC_ISO_8859_7,  cnv(list_of(ENCG_ISO8859)(ENCG_GREEK), t) )
+		( ENC_ISO_8859_8,  cnv(list_of(ENCG_ISO8859)(ENCG_HEBREW), t) )
+		( ENC_ISO_8859_9,  cnv(list_of(ENCG_ISO8859)(ENCG_TURKISH), t) )
+		( ENC_ISO_8859_10, cnv(list_of(ENCG_ISO8859)(ENCG_NORTHEUROPE), t) )
+		( ENC_ISO_8859_11, cnv(list_of(ENCG_ISO8859)(ENCG_SOUTHEASTASIA), t) )
+		( ENC_ISO_8859_13, cnv(list_of(ENCG_ISO8859)(ENCG_BALTIC), t) )
+		( ENC_ISO_8859_14, cnv(list_of(ENCG_ISO8859)(ENCG_NORTHEUROPE), t) )
+		( ENC_ISO_8859_15, cnv(list_of(ENCG_ISO8859)(ENCG_WESTERNEUROPE), t) )
+		( ENC_ISO_8859_16, cnv(list_of(ENCG_ISO8859)(ENCG_SOUTHEUROPE), t) )
 		// Windows
-		(ENC_Windows_874,  boost::assign::list_of(ENCG_WINDOWS)(ENCG_SOUTHEASTASIA))
-		(ENC_Windows_1250, boost::assign::list_of(ENCG_WINDOWS)(ENCG_CENTRALEUROPE))
-		(ENC_Windows_1251, boost::assign::list_of(ENCG_WINDOWS)(ENCG_CYRILLIC))
-		(ENC_Windows_1252, boost::assign::list_of(ENCG_WINDOWS)(ENCG_WESTERNEUROPE))
-		(ENC_Windows_1253, boost::assign::list_of(ENCG_WINDOWS)(ENCG_GREEK))
-		(ENC_Windows_1254, boost::assign::list_of(ENCG_WINDOWS)(ENCG_TURKISH))
-		(ENC_Windows_1255, boost::assign::list_of(ENCG_WINDOWS)(ENCG_HEBREW))
-		(ENC_Windows_1256, boost::assign::list_of(ENCG_WINDOWS)(ENCG_ARABIC))
-		(ENC_Windows_1257, boost::assign::list_of(ENCG_WINDOWS)(ENCG_BALTIC))
-		(ENC_Windows_1258, boost::assign::list_of(ENCG_WINDOWS)(ENCG_SOUTHEASTASIA))
+		( ENC_Windows_874,  cnv(list_of(ENCG_WINDOWS)(ENCG_SOUTHEASTASIA), t) )
+		( ENC_Windows_1250, cnv(list_of(ENCG_WINDOWS)(ENCG_CENTRALEUROPE), t) )
+		( ENC_Windows_1251, cnv(list_of(ENCG_WINDOWS)(ENCG_CYRILLIC), t) )
+		( ENC_Windows_1252, cnv(list_of(ENCG_WINDOWS)(ENCG_WESTERNEUROPE), t) )
+		( ENC_Windows_1253, cnv(list_of(ENCG_WINDOWS)(ENCG_GREEK), t) )
+		( ENC_Windows_1254, cnv(list_of(ENCG_WINDOWS)(ENCG_TURKISH), t) )
+		( ENC_Windows_1255, cnv(list_of(ENCG_WINDOWS)(ENCG_HEBREW), t) )
+		( ENC_Windows_1256, cnv(list_of(ENCG_WINDOWS)(ENCG_ARABIC), t) )
+		( ENC_Windows_1257, cnv(list_of(ENCG_WINDOWS)(ENCG_BALTIC), t) )
+		( ENC_Windows_1258, cnv(list_of(ENCG_WINDOWS)(ENCG_SOUTHEASTASIA), t) )
 		// OEM
-		(ENC_CP437, boost::assign::list_of(ENCG_OEM))
-		(ENC_CP850, boost::assign::list_of(ENCG_OEM))
-		(ENC_CP852, boost::assign::list_of(ENCG_OEM))
-		(ENC_CP855, boost::assign::list_of(ENCG_OEM)(ENCG_CYRILLIC))
-		(ENC_CP866, boost::assign::list_of(ENCG_OEM)(ENCG_CYRILLIC))
+		( ENC_CP437, cnv(list_of(ENCG_OEM), t) )
+		( ENC_CP850, cnv(list_of(ENCG_OEM), t) )
+		( ENC_CP852, cnv(list_of(ENCG_OEM), t) )
+		( ENC_CP855, cnv(list_of(ENCG_OEM)(ENCG_CYRILLIC), t) )
+		( ENC_CP866, cnv(list_of(ENCG_OEM)(ENCG_CYRILLIC), t) )
 		// Cyrillic
-		(ENC_KOI8_R, boost::assign::list_of(ENCG_CYRILLIC))
-		(ENC_KOI8_U, boost::assign::list_of(ENCG_CYRILLIC))
+		( ENC_KOI8_R, cnv(list_of(ENCG_CYRILLIC), t) )
+		( ENC_KOI8_U, cnv(list_of(ENCG_CYRILLIC), t) )
 		// Windows & East Asia
-		(ENC_MS932,   boost::assign::list_of(ENCG_WINDOWS)(ENCG_EASTASIA))
-		(ENC_MS936,   boost::assign::list_of(ENCG_WINDOWS)(ENCG_EASTASIA))
-		(ENC_MS949,   boost::assign::list_of(ENCG_WINDOWS)(ENCG_EASTASIA))
-		(ENC_MS950,   boost::assign::list_of(ENCG_WINDOWS)(ENCG_EASTASIA))
-		(ENC_CP20932, boost::assign::list_of(ENCG_WINDOWS)(ENCG_EASTASIA))
+		( ENC_MS932,   cnv(list_of(ENCG_WINDOWS)(ENCG_EASTASIA), t) )
+		( ENC_MS936,   cnv(list_of(ENCG_WINDOWS)(ENCG_EASTASIA), t) )
+		( ENC_MS949,   cnv(list_of(ENCG_WINDOWS)(ENCG_EASTASIA), t) )
+		( ENC_MS950,   cnv(list_of(ENCG_WINDOWS)(ENCG_EASTASIA), t) )
+		( ENC_CP20932, cnv(list_of(ENCG_WINDOWS)(ENCG_EASTASIA), t) )
 		// Unicode
-		(ENC_GB18030,  boost::assign::list_of(ENCG_UNICODE)(ENCG_EASTASIA))
-		(ENC_UTF_8,    boost::assign::list_of(ENCG_UNICODE))
-		(ENC_UTF_16LE, boost::assign::list_of(ENCG_UNICODE))
-		(ENC_UTF_16BE, boost::assign::list_of(ENCG_UNICODE))
-		(ENC_UTF_32LE, boost::assign::list_of(ENCG_UNICODE))
-		(ENC_UTF_32BE, boost::assign::list_of(ENCG_UNICODE))
+		( ENC_GB18030,  cnv(list_of(ENCG_UNICODE)(ENCG_EASTASIA), t) )
+		( ENC_UTF_8,    cnv(list_of(ENCG_UNICODE), t) )
+		( ENC_UTF_16LE, cnv(list_of(ENCG_UNICODE), t) )
+		( ENC_UTF_16BE, cnv(list_of(ENCG_UNICODE), t) )
+		( ENC_UTF_32LE, cnv(list_of(ENCG_UNICODE), t) )
+		( ENC_UTF_32BE, cnv(list_of(ENCG_UNICODE), t) )
 	;
 }
 
@@ -308,15 +316,15 @@ void WXMEncodingManager::FreeEncodings()
 	BOOST_FOREACH(EncInstMap::value_type val, m_inst_map)
 	{
 		if (m_sysenc == val.second)
-			m_sysenc = NULL;
+			m_sysenc = nullptr;
 
 		delete val.second;
 	}
 	m_inst_map.clear();
 
-	if (m_sysenc != NULL)
+	if (m_sysenc != nullptr)
 		delete m_sysenc;
-	m_sysenc = NULL;
+	m_sysenc = nullptr;
 
 	m_initialized = false;
 	DestroyInstance();
@@ -382,7 +390,7 @@ wxString WXMEncodingManager::ExpandEncodingAliases(const wxString& name)
 
 WXMEncoding* WXMEncodingManager::GetSystemEncoding()
 {
-	if (m_sysenc == NULL)
+	if (m_sysenc == nullptr)
 		m_sysenc = GetWxmEncoding(m_sysenc_idx);
 
 	return m_sysenc;
@@ -398,10 +406,10 @@ WXMEncoding* WXMEncodingManager::GetWxmEncoding(ssize_t idx)
 	wxASSERT(idx<(ssize_t)m_wxenc_list.size() && idx>=0);
 
 	EncInstMap::iterator it = m_inst_map.find(idx);
-	if (it!=m_inst_map.end() && it->second!=NULL)
+	if (it!=m_inst_map.end() && it->second!=nullptr)
 		return it->second;
 
-	WXMEncoding* enc = NULL;
+	WXMEncoding* enc = nullptr;
 
 	WXMEncodingType t = GetIdxEncType(idx);
 

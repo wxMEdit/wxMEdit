@@ -30,9 +30,9 @@ void test_gb18030_conv()
 	MB2UDataMap::const_iterator mb2uend = mb2u[encname].end();
 	for (size_t i=0; i<256; ++i)
 	{
-		wxByte wxb[3] = {wxByte(i), 0, 0};
+		wxByte wxb[3] = { wxByte(i), 0, 0 };
 		{
-			char mbs_arr[2] = {i, 0};
+			char mbs_arr[2] = { char(i), 0 };
 			MB2UDataMap::const_iterator it = mb2u[encname].find(mbs_arr);
 			ucs4_t u = enc->MultiBytetoUCS4(wxb);
 			if (u != 0)
@@ -52,7 +52,7 @@ void test_gb18030_conv()
 
 		for(size_t j=1; j<256; ++j)
 		{
-			char mbs_arr[3] = {i, j, 0};
+			char mbs_arr[3] = { char(i), char(j), 0 };
 			MB2UDataMap::const_iterator it = mb2u[encname].find(mbs_arr);
 
 			wxb[1] = wxByte(j);
@@ -80,10 +80,10 @@ void test_gb18030_conv()
 			{
 				for (size_t l=0x30; l<=0x39; ++l)
 				{
-					wxByte wxb[4] = {wxByte(i), wxByte(j), wxByte(k), wxByte(l)};
+					wxByte wxb[4] = { wxByte(i), wxByte(j), wxByte(k), wxByte(l) };
 					ucs4_t u = enc->MultiBytetoUCS4(wxb);
 
-					char mbs_arr[5] = {i, j, k, l, 0};
+					char mbs_arr[5] = { char(i), char(j), char(k), char(l), 0 };
 					MB2UDataMap::const_iterator it = mb2u[encname].find(mbs_arr);
 					if (u != 0)
 					{
@@ -110,7 +110,7 @@ void test_gb18030_conv()
 			{
 				for (size_t l=0x30; l<=0x39; ++l)
 				{
-					wxByte wxb[4] = {wxByte(i), wxByte(j), wxByte(k), wxByte(l)};
+					wxByte wxb[4] = { wxByte(i), wxByte(j), wxByte(k), wxByte(l) };
 					ucs4_t u = enc->MultiBytetoUCS4(wxb);
 					ucs4_t t = (ucs4_t)((i-0x90)*12600 + (j-0x30)*1260 + (k-0x81)*10 + l-0x30 + 0x10000);
 					if (u != 0)

@@ -8,6 +8,7 @@
 
 #include "wxm_highlighting_dialog.h"
 
+#include "../xm/cxx11.h"
 #include "../mad_utils.h"
 #include "../wxmedit/wxm_syntax.h"
 
@@ -25,7 +26,7 @@
 
 extern void ApplySyntaxAttributes(MadSyntax *syn);
 
-WXMHighlightingDialog *g_HighlightingDialog=NULL;
+WXMHighlightingDialog *g_HighlightingDialog=nullptr;
 
 void SetItemColour(wxListCtrl* listctrl, long item, const wxColour& fc, const wxColour& bc);
 void SetItemTextColour(wxListCtrl* listctrl, long item, const wxColour& fc);
@@ -307,7 +308,7 @@ int g_DefaultFontSize;
 
 wxColour WXMHighlightingDialog::GetColourFromUser(const wxColour& colInit, const wxString& caption)
 {
-    if(m_ColourDialog==NULL)
+    if(m_ColourDialog==nullptr)
     {
         wxColourData *data=new wxColourData;
         data->SetChooseFull(true);
@@ -423,7 +424,7 @@ BEGIN_EVENT_TABLE(WXMHighlightingDialog,wxDialog)
 END_EVENT_TABLE()
 
 WXMHighlightingDialog::WXMHighlightingDialog(wxWindow* parent,wxWindowID id,const wxPoint& pos,const wxSize& size)
-	: m_Syntax(NULL), m_cur_syn(NULL), m_ColourDialog(NULL), m_himgr(this)
+	: m_Syntax(nullptr), m_cur_syn(nullptr), m_ColourDialog(nullptr), m_himgr(this)
 {
 	//(*Initialize(WXMHighlightingDialog)
 	wxBoxSizer* BoxSizer4;
@@ -620,7 +621,7 @@ void WXMHighlightingDialog::WXMHighlightingDialogClose(wxCloseEvent& event)
     }
 
     FreeSyntax(false);
-    g_HighlightingDialog=NULL;
+    g_HighlightingDialog=nullptr;
     if(m_ColourDialog) delete m_ColourDialog;
     Destroy();
 }
@@ -916,7 +917,7 @@ void WXMHighlightingDialog::WXMHighlightingDialogActivate(wxActivateEvent& event
 
     m_InitSetting.Empty();
 
-    if(FindFocus()==NULL)
+    if(FindFocus()==nullptr)
     {
         WxButtonCancel->SetFocus();
     }
@@ -943,7 +944,7 @@ void WXMHighlightingDialog::SetToModifiedSyntax()
     if (m_cur_syn == m_Syntax)
     {
         m_ModifiedSyntax.push_back(m_cur_syn);
-        m_Syntax = NULL;
+        m_Syntax = nullptr;
     }
 
     // apply syntax attributes to editor
@@ -1006,7 +1007,7 @@ void WXMHighlightingDialog::FreeSyntax(bool restore)
     if (m_Syntax)
     {
         delete m_Syntax;
-        m_Syntax=NULL;
+        m_Syntax=nullptr;
     }
 
     for (size_t i=0; i<m_ModifiedSyntax.size(); ++i)

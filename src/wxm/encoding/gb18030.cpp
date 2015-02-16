@@ -7,6 +7,8 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 #include "gb18030.h"
+#include "../../xm/cxx11.h"
+
 #include <unicode/uversion.h>
 
 #ifdef _DEBUG
@@ -205,8 +207,8 @@ void WXMEncodingGB18030::CacheMBofUCS4(wxDword& mb, ucs4_t u)
 bool WXMEncodingGB18030::NextUChar32(MadUCQueue &ucqueue, UChar32BytesMapper& mapper)
 {
 	wxFileOffset rest;
-	wxByte *buf=mapper.BufferLoadBytes(rest, 4);
-	if (buf == NULL)
+	wxByte *buf = mapper.BufferLoadBytes(rest, 4);
+	if (buf == nullptr)
 		return false;
 
 	ucs4_t uc = (ucs4_t)svtInvaliad;

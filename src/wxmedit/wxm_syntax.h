@@ -118,7 +118,7 @@ public:
     // if title was not found it will return a default MadSyntax obj
     static MadSyntax* GetSyntaxByTitle(const wxString &title);
 
-    // below functions will return NULL if not found
+    // below functions will return nullptr if not found
     static MadSyntax* GetSyntaxByExt(const wxString &ext);
     static MadSyntax* GetSyntaxByFirstLine(const wxByte* data, int size);
     static MadSyntax* GetSyntaxByFileName(const wxString &filename);

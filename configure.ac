@@ -20,6 +20,27 @@ AC_PROG_INSTALL
 AC_LANG(C++)
 
 #CXXFLAGS="-O2"
+my_cxxflags_bak="$CXXFLAGS"
+CXXFLAGS="$CXXFLAGS -std=c++11"
+AC_MSG_CHECKING([whether -std=c++11 is supported])
+AC_COMPILE_IFELSE([AC_LANG_PROGRAM([])],
+	[AC_MSG_RESULT([yes])]
+	[my_cxx11_suported="x"],
+	[AC_MSG_RESULT([no])]
+	[CXXFLAGS="$my_cxxflags_bak"]
+)
+
+if test "x$my_cxx11_suported" == "x"; then
+my_cxxflags_bak="$CXXFLAGS"
+CXXFLAGS="$CXXFLAGS -std=c++0x"
+AC_MSG_CHECKING([whether -std=c++0x is supported])
+AC_COMPILE_IFELSE([AC_LANG_PROGRAM([])],
+	[AC_MSG_RESULT([yes])],
+	[AC_MSG_RESULT([no])]
+	[CXXFLAGS="$my_cxxflags_bak"]
+)
+fi
+
 
 # Checks for MacOS
 IS_MACOS=

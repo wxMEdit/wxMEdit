@@ -7,6 +7,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 #include "wxmedit_command.h"
+#include "../xm/cxx11.h"
 
 #include <wx/confbase.h>
 #include <wx/tokenzr.h>
@@ -25,11 +26,11 @@
     #define WXK_NUMPAD_PAGEDOWN WXK_NUMPAD_NEXT
 #endif
 
-MadCommandTextMap *MadKeyBindings::ms_CommandTextMap=NULL;
-MadTextCommandMap *MadKeyBindings::ms_TextCommandMap=NULL;
-MadCommandTextMap *MadKeyBindings::ms_MenuIdTextMap=NULL;
-MadTextCommandMap *MadKeyBindings::ms_TextMenuIdMap=NULL;
-MadMenuCommandMap *MadKeyBindings::ms_MenuIdCommandMap=NULL;
+MadCommandTextMap *MadKeyBindings::ms_CommandTextMap=nullptr;
+MadTextCommandMap *MadKeyBindings::ms_TextCommandMap=nullptr;
+MadCommandTextMap *MadKeyBindings::ms_MenuIdTextMap=nullptr;
+MadTextCommandMap *MadKeyBindings::ms_TextMenuIdMap=nullptr;
+MadMenuCommandMap *MadKeyBindings::ms_MenuIdCommandMap=nullptr;
 
 #define INSERT_COMMANDTEXT(cmd) \
     ms_CommandTextMap->insert(MadCommandTextMap::value_type(cmd, wxT(#cmd)));\
@@ -636,7 +637,7 @@ wxString ShortCutToString(MadEditShortCut shortcut)
 
 MadKeyBindings::MadKeyBindings()
 {
-    if(ms_CommandTextMap==NULL)
+    if(ms_CommandTextMap==nullptr)
         InitCommandTextMap();
 
     m_KeyBindings=new MadKeyBindingList();
@@ -896,7 +897,7 @@ bool MadKeyBindings::KeyIsAssigned(const wxString &key)
 
 void MadKeyBindings::GetKeys(int menuid, MadEditCommand editcmd, wxArrayString &keys)
 {
-    MadKeyBinding *kb=NULL;
+    MadKeyBinding *kb=nullptr;
     if(menuid!=0)
     {
         MadKeyBindingMap::iterator mit = m_MenuIdMap->find(menuid);
@@ -913,7 +914,7 @@ void MadKeyBindings::GetKeys(int menuid, MadEditCommand editcmd, wxArrayString &
             kb = ecit->second;
         }
     }
-    if(kb!=NULL && kb->firstsc!=0)
+    if(kb!=nullptr && kb->firstsc!=0)
     {
         wxString key=ShortCutToString(kb->firstsc);
         if(!key.IsEmpty()) keys.Add(key);

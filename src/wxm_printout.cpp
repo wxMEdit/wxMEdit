@@ -7,6 +7,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 #include "wxm_printout.h"
+#include "xm/cxx11.h"
 #include "wxm/edit/inframe.h"
 #include <wx/dc.h>
 #include <wx/confbase.h>
@@ -22,10 +23,10 @@ extern wxm::InFrameWXMEdit* g_active_wxmedit;
 bool GetActiveMadEditPathNameOrTitle(wxString &name);
 
 // Global print data, to remember settings during the session
-//wxPrintData *g_PrintData = (wxPrintData*) NULL ;
+//wxPrintData *g_PrintData = (wxPrintData*) nullptr ;
 
 // Global page setup data
-wxPageSetupData *g_PageSetupData = (wxPageSetupData*) NULL;
+wxPageSetupData *g_PageSetupData = (wxPageSetupData*) nullptr;
 
 
 int MadPrintout::s_PrintoutCount=0;

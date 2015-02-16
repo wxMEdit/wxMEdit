@@ -9,6 +9,7 @@
 #ifndef _WXM_ENCODING_DOUBLEBYTE_H_
 #define _WXM_ENCODING_DOUBLEBYTE_H_
 
+#include "../../xm/cxx11.h"
 #include "multibyte.h"
 
 #include <boost/array.hpp>
@@ -83,13 +84,13 @@ protected:
 	{
 		m_mbcnv = new ICUConverter(m_innername);
 	}
-	WXMEncodingDoubleByte(): m_mbcnv(NULL), m_dbfix(NULL)
+	WXMEncodingDoubleByte(): m_mbcnv(nullptr), m_dbfix(nullptr)
 	{
 	}
 	~WXMEncodingDoubleByte()
 	{
-		delete m_mbcnv; m_mbcnv = NULL;
-		delete m_dbfix; m_dbfix = NULL;
+		delete m_mbcnv; m_mbcnv = nullptr;
+		delete m_dbfix; m_dbfix = nullptr;
 	}
 
 	MBConverter* m_mbcnv;

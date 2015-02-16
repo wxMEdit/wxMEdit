@@ -7,6 +7,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 #include "utils.h"
+#include "../xm/cxx11.h"
 #include "encoding/encoding.h"
 #include "../mad_utils.h"
 #include "../wxmedit/wxmedit.h"
@@ -353,7 +354,7 @@ void MouseCapturer::Release()
 	m_captured = false;
 }
 
-AppPath* AppPath::s_inst = NULL;
+AppPath* AppPath::s_inst = nullptr;
 wxString g_wxsRegKeyWxMEdit = wxT("HKEY_CURRENT_USER\\Software\\wxMEdit");
 wxString g_wxsRegValConfigInHome = wxT("ConfigInUserHome");
 
@@ -380,7 +381,7 @@ bool FileWritable(const wxString& test_file)
 	if (!ft.IsOpened())
 		return false;
 
-	time_t t = time(NULL);
+	time_t t = time(nullptr);
 	if (ft.Write(&t, sizeof(t)) != sizeof(t))
 		return false;
 

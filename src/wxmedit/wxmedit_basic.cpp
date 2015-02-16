@@ -7,6 +7,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 #include "wxmedit.h"
+#include "../xm/cxx11.h"
 #include "../wxm/edit/simple.h"
 #include "../wxm/encoding/unicode.h"
 #include "../wxm/utils.h"
@@ -99,7 +100,7 @@ void MadEdit::ApplySyntaxAttributes(MadSyntax *syn, bool matchTitle)
         if(m_EditMode==emHexMode && m_HexDigitBitmap)
         {
             delete m_HexDigitBitmap;
-            m_HexDigitBitmap=NULL;
+            m_HexDigitBitmap=nullptr;
         }
         m_RepaintAll = true;
         Refresh(false);
@@ -344,7 +345,7 @@ void MadEdit::SetHexFont(const wxString &name, int size, bool forceReset)
         if(m_HexDigitBitmap)
         {
             delete m_HexDigitBitmap;
-            m_HexDigitBitmap=NULL;
+            m_HexDigitBitmap=nullptr;
         }
 
         if(m_EditMode==emHexMode)
@@ -820,7 +821,7 @@ wxFileOffset MadEdit::GetSelectionSize()
 
     if(m_EditMode==emColumnMode)
     {
-        return GetColumnSelection(NULL);
+        return GetColumnSelection(nullptr);
     }
 
     return m_SelectionEnd->pos - m_SelectionBegin->pos;
@@ -943,7 +944,7 @@ void MadEdit::SetText(const wxString &ws)
     if (!AdjustStringLength(ws, size))
         return;
 
-    MadUndo *undo=NULL;
+    MadUndo *undo=nullptr;
 
     if(m_Lines->m_Size)
     {
@@ -954,7 +955,7 @@ void MadEdit::SetText(const wxString &ws)
             dudata->m_Pos = 0;
             dudata->m_Size = m_Lines->m_Size;
 
-            lit = DeleteInsertData(0, dudata->m_Size, &dudata->m_Data, 0, NULL);
+            lit = DeleteInsertData(0, dudata->m_Size, &dudata->m_Data, 0, nullptr);
 
             undo = m_UndoBuffer->Add();
             undo->m_Undos.push_back(dudata);
@@ -998,7 +999,7 @@ void MadEdit::SetText(const wxString &ws)
         insud->m_Size = blk.m_Size;
         insud->m_Data.push_back(blk);
 
-        lit = DeleteInsertData(0, 0, NULL, insud->m_Size, &insud->m_Data);
+        lit = DeleteInsertData(0, 0, nullptr, insud->m_Size, &insud->m_Data);
 
         undo = m_UndoBuffer->Add();
         undo->m_Undos.push_back(insud);
@@ -1185,7 +1186,7 @@ void MadEdit::CutToClipboard()
     if(m_Selection)
     {
         CopyToClipboard();
-        DeleteSelection(true, NULL, true);
+        DeleteSelection(true, nullptr, true);
     }
 }
 
@@ -1345,7 +1346,7 @@ void MadEdit::PasteFromClipboard(bool overwirte)
 void MadEdit::Undo()
 {
     MadUndo *undo = m_UndoBuffer->Undo(!m_RecordCaretMovements);
-    if(undo==NULL)
+    if(undo==nullptr)
         return;
 
     if(undo->m_Undos.size()==0) // caret movement undo
@@ -1369,7 +1370,7 @@ void MadEdit::Undo()
     do
     {
         wxFileOffset &pos = (*it)->m_Pos;
-        lit = DeleteInsertData(pos, (*it)->InsSize(), NULL, (*it)->DelSize(), (*it)->DelData(), &lineid);
+        lit = DeleteInsertData(pos, (*it)->InsSize(), nullptr, (*it)->DelSize(), (*it)->DelData(), &lineid);
 
         if(lineid < fid)
         {
@@ -1454,7 +1455,7 @@ void MadEdit::Undo()
 void MadEdit::Redo()
 {
     MadUndo *redo = m_UndoBuffer->Redo(!m_RecordCaretMovements);
-    if(redo==NULL)
+    if(redo==nullptr)
         return;
 
     if(redo->m_Undos.size()==0) // caret movement redo
@@ -1478,7 +1479,7 @@ void MadEdit::Redo()
     do
     {
         wxFileOffset & pos = (*it)->m_Pos;
-        lit = DeleteInsertData(pos, (*it)->DelSize(), NULL, (*it)->InsSize(), (*it)->InsData(), &lineid);
+        lit = DeleteInsertData(pos, (*it)->DelSize(), nullptr, (*it)->InsSize(), (*it)->InsData(), &lineid);
 
         if(lineid < fid)
         {
@@ -1674,7 +1675,7 @@ bool MadEdit::LoadFromFile(const wxString &filename, const wxString &encoding)
         return false;
 
     m_UndoBuffer->Clear();
-    m_SavePoint = NULL;
+    m_SavePoint = nullptr;
     m_Modified = false;
     m_ModificationTime = wxFileModificationTime(filename);
     m_ReadOnly = false; // use IsReadOnly() to check ReadOnly or not
@@ -2130,7 +2131,7 @@ bool MadEdit::StringToHex(wxString ws, vector<wxByte> &hex)
     {
         if(len<2)
         {
-            wxMessageDialog dlg(NULL, errmsg+wxT("\n\n")+ws,
+            wxMessageDialog dlg(nullptr, errmsg+wxT("\n\n")+ws,
                             wxT("wxMEdit"), wxOK|wxICON_ERROR );
             dlg.ShowModal();
             return false;
@@ -2142,7 +2143,7 @@ bool MadEdit::StringToHex(wxString ws, vector<wxByte> &hex)
 
         if(b0<0 || b1<0)
         {
-            wxMessageDialog dlg(NULL, errmsg+wxT("\n\n")+ws,
+            wxMessageDialog dlg(nullptr, errmsg+wxT("\n\n")+ws,
                             wxT("wxMEdit"), wxOK|wxICON_ERROR );
             dlg.ShowModal();
             return false;
@@ -2384,7 +2385,7 @@ MadReplaceResult MadEdit::ReplaceText(const wxString &expr, const wxString &fmt,
 
     if(out.length()==0)
     {
-        DeleteSelection(true, NULL, false);
+        DeleteSelection(true, nullptr, false);
     }
     else
     {
@@ -2444,7 +2445,7 @@ MadReplaceResult MadEdit::ReplaceHex(const wxString &expr, const wxString &fmt,
     }
 
     if(fmthex.size()==0)
-        DeleteSelection(true, NULL, false);
+        DeleteSelection(true, nullptr, false);
     else
         InsertRawBytes(&fmthex[0], fmthex.size(), false);
 
@@ -2549,11 +2550,11 @@ int MadEdit::ReplaceTextAll(const wxString &expr, const wxString &fmt,
         wxFileOffset size=del_epos.back() - del_bpos.front();
         if((size <= 2*1024*1024) || (multi>=40 && size<= 10*1024*1024))
         {
-            OverwriteDataSingle(del_bpos, del_epos, &ins_ucs, NULL, ins_len);
+            OverwriteDataSingle(del_bpos, del_epos, &ins_ucs, nullptr, ins_len);
         }
         else
         {
-            OverwriteDataMultiple(del_bpos, del_epos, &ins_ucs, NULL, ins_len);
+            OverwriteDataMultiple(del_bpos, del_epos, &ins_ucs, nullptr, ins_len);
         }
 
         if(pbegpos!=0 && pendpos!=0)
@@ -2638,7 +2639,7 @@ int MadEdit::ReplaceHexAll(const wxString &expr, const wxString &fmt,
     {
         del_bpos.push_back(bpos.pos);
         del_epos.push_back(epos.pos);
-        ins_data.push_back(fmthex.empty()? NULL: &fmthex[0]);
+        ins_data.push_back(fmthex.empty()? nullptr: &fmthex[0]);
         ins_len.push_back(fmthex.size());
 
         if(bpos.iter!=epos.iter)
@@ -2655,11 +2656,11 @@ int MadEdit::ReplaceHexAll(const wxString &expr, const wxString &fmt,
         wxFileOffset size=del_epos.back() - del_bpos.front();
         if(IsTextFile() && ((size <= 2*1024*1024) || (multi>=40 && size<= 10*1024*1024)))
         {
-            OverwriteDataSingle(del_bpos, del_epos, NULL, &ins_data, ins_len);
+            OverwriteDataSingle(del_bpos, del_epos, nullptr, &ins_data, ins_len);
         }
         else
         {
-            OverwriteDataMultiple(del_bpos, del_epos, NULL, &ins_data, ins_len);
+            OverwriteDataMultiple(del_bpos, del_epos, nullptr, &ins_data, ins_len);
         }
 
         if(pbegpos!=0 && pendpos!=0)

@@ -7,6 +7,8 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 #include "singlebyte.h"
+#include "../../xm/cxx11.h"
+
 #include <boost/scoped_ptr.hpp>
 
 #ifdef _DEBUG
@@ -281,8 +283,8 @@ size_t WXMEncodingSingleByte::UCS4toMultiByte(ucs4_t ucs4, wxByte* buf)
 bool WXMEncodingSingleByte::NextUChar32(MadUCQueue &ucqueue, UChar32BytesMapper& mapper)
 {
 	wxFileOffset rest;
-	wxByte *buf=mapper.BufferLoadBytes(rest, 4);
-	if (buf == NULL)
+	wxByte* buf = mapper.BufferLoadBytes(rest, 4);
+	if (buf == nullptr)
 		return false;
 
 	ucs4_t uc = MultiBytetoUCS4(buf);

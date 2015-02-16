@@ -7,6 +7,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 #include "doublebyte.h"
+#include "../../xm/cxx11.h"
 #include "../../xm/utils.hpp"
 
 #ifdef _DEBUG
@@ -218,8 +219,8 @@ size_t WXMEncodingDoubleByte::UCS4toMultiByte(ucs4_t ucs4, wxByte* buf)
 bool WXMEncodingDoubleByte::NextUChar32(MadUCQueue &ucqueue, UChar32BytesMapper& mapper)
 {
 	wxFileOffset rest;
-	wxByte *buf=mapper.BufferLoadBytes(rest, 2);
-	if (buf == NULL)
+	wxByte* buf = mapper.BufferLoadBytes(rest, 2);
+	if (buf == nullptr)
 		return false;
 
 	ucs4_t uc;

@@ -8,6 +8,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 #include "wxmedit.h"
+#include "../xm/cxx11.h"
 #include "../wxm/def.h"
 #include "../wxm/encdet.h"
 #include "../wxm/encoding/unicode.h"
@@ -282,7 +283,7 @@ void GTK2_DrawText(wxMemoryDC *dc, wxm::WXMEncoding *encoding, const int *widths
 
     PangoLayoutLine* ll = pango_layout_get_line(dc->m_layout, 0);
     run = ll->runs;
-    for (; run != NULL; run = g_slist_next (run))
+    for (; run != nullptr; run = g_slist_next (run))
     {
         gi = (PangoGlyphItem *)run->data;
         gs = gi->glyphs;
@@ -358,7 +359,7 @@ void GTK2_DrawText(wxMemoryDC *dc, wxm::WXMEncoding *encoding, const int *widths
     if (underlined)
     {
         // undo underline attributes setting:
-        pango_layout_set_attributes(dc->m_layout, NULL);
+        pango_layout_set_attributes(dc->m_layout, nullptr);
     }
 
     /*
@@ -437,7 +438,7 @@ bool FontWidthManager::VerifyFontWidths(wxUint16 *widths, const wxString &fontna
             for(wc=0x20; wc<=0x7E; wc++)
             {
                 text.SetChar(0, wc);
-                win->GetTextExtent(text, &w, &h, NULL, NULL, pf);
+                win->GetTextExtent(text, &w, &h, nullptr, nullptr, pf);
 
                 if(widths[wc] != 0)
                 {
@@ -458,7 +459,7 @@ bool FontWidthManager::VerifyFontWidths(wxUint16 *widths, const wxString &fontna
             {
                 wc=wcs[idx];
                 text.SetChar(0, wc);
-                win->GetTextExtent(text, &w, &h, NULL, NULL, pf);
+                win->GetTextExtent(text, &w, &h, nullptr, nullptr, pf);
 
                 if(widths[wc] != 0)
                 {
@@ -744,7 +745,7 @@ MadEdit::MadEdit(wxm::ConfigWriter* cfg_writer, wxWindow* parent, wxWindowID id,
 
 
     m_UndoBuffer = new MadUndoBuffer();
-    m_SavePoint = NULL;
+    m_SavePoint = nullptr;
     m_Config->Read(wxT("RecordCaretMovements"), &m_RecordCaretMovements, false);
 
     m_Modified=false;
@@ -770,13 +771,13 @@ MadEdit::MadEdit(wxm::ConfigWriter* cfg_writer, wxWindow* parent, wxWindowID id,
     m_WCWordBuffer=new wchar_t[(m_MaxLineLength+1)*2];
     m_WCWidthBuffer = new int[(m_MaxLineLength+1)*2];
 #else
-    m_WCWordBuffer=NULL;
-    m_WCWidthBuffer=NULL;
+    m_WCWordBuffer=nullptr;
+    m_WCWidthBuffer=nullptr;
 #endif
     m_WidthBuffer = new int[m_MaxLineLength+1];
 
 
-    m_ClientBitmap=m_MarkBitmap=NULL;     // alloc at OnSize()
+    m_ClientBitmap=m_MarkBitmap=nullptr;     // alloc at OnSize()
 
     m_CaretPos.Reset(m_Lines->m_LineList.begin());
 
@@ -851,7 +852,7 @@ MadEdit::MadEdit(wxm::ConfigWriter* cfg_writer, wxWindow* parent, wxWindowID id,
 
     m_HexTopRow = -1;
     m_HexRowCount = 0;
-    m_HexDigitBitmap=NULL;
+    m_HexDigitBitmap=nullptr;
 
     m_LoadingFile=false;
 
@@ -861,7 +862,7 @@ MadEdit::MadEdit(wxm::ConfigWriter* cfg_writer, wxWindow* parent, wxWindowID id,
 
     m_Printing=0;
 
-    InvertRect=NULL;
+    InvertRect=nullptr;
     m_Painted=false;
 
     m_LastPaintBitmap=-1;
@@ -1751,7 +1752,7 @@ void MadEdit::PaintText(wxDC *dc, int x, int y, const ucs4_t *text, const int *w
     {
         HDC hdc=(HDC)dc->GetHDC();
         SetTextColor(hdc, m_Syntax->nw_Color.GetPixel());
-        ::ExtTextOut(hdc, nowleft, y, 0, NULL, m_WCWordBuffer+wcstart, len, m_WCWidthBuffer+wcstart);
+        ::ExtTextOut(hdc, nowleft, y, 0, nullptr, m_WCWordBuffer+wcstart, len, m_WCWidthBuffer+wcstart);
     }
 
 #elif defined(__WXGTK20__)
@@ -3683,7 +3684,7 @@ void MadEdit::SelectWordFromCaretPos(wxString *ws)
                     type = GetUCharType(uc);
                     posidx = idx;
 
-                    if(ws != NULL
+                    if(ws != nullptr
                         && ((type <= 3 && prevtype > 3) || (type <= 2 && prevtype > 2)))
                     {
                         --posidx;
@@ -3693,7 +3694,7 @@ void MadEdit::SelectWordFromCaretPos(wxString *ws)
                         break;
                     }
                 }
-                else if(ws != NULL)
+                else if(ws != nullptr)
                 {
                     prevtype = GetUCharType(uc);
                 }
@@ -3734,7 +3735,7 @@ void MadEdit::SelectWordFromCaretPos(wxString *ws)
     {
         //wxASSERT(type != 0);
 
-        if(ws != NULL)              // get word
+        if(ws != nullptr)              // get word
         {
             size_t s = ucqueue.size();
             for(size_t i = 0; i < s; i++)
@@ -4180,14 +4181,14 @@ void MadEdit::CopyFileDataToMem(MadBlockIterator begin, MadBlockIterator end)
 
     // ToDo: if the size is too large, move data to a temporary file
 
-    if(m_Lines->m_FileData == NULL)
+    if(m_Lines->m_FileData == nullptr)
         return;
 
     const size_t BUFFER_SIZE = 128 * 1024;
     static vector<wxByte> TempBufferVector;
-    static wxByte *TempBuffer = NULL;
+    static wxByte *TempBuffer = nullptr;
 
-    if(TempBuffer == NULL)
+    if(TempBuffer == nullptr)
     {
         TempBufferVector.resize(BUFFER_SIZE);
         TempBuffer = &TempBufferVector[0];
@@ -4235,7 +4236,7 @@ MadLineIterator MadEdit::DeleteInsertData(wxFileOffset pos,
     m_UpdateValidPos = 1;   // update if pos < oldpos
 
     int lid = GetLineByPos(lit, bpos, tmp_rowid);
-    if(lineid != NULL) *lineid = lid;
+    if(lineid != nullptr) *lineid = lid;
 
     m_UpdateValidPos = 0;
 
@@ -4849,7 +4850,7 @@ void MadEdit::InsertString(const ucs4_t *ucs, size_t count, bool bColumnEditing,
             size_t oldrows = m_Lines->m_RowCount;
             size_t oldlines = m_Lines->m_LineCount;
 
-            MadLineIterator lit = DeleteInsertData(insud->m_Pos, 0, NULL, insud->m_Size, &insud->m_Data);
+            MadLineIterator lit = DeleteInsertData(insud->m_Pos, 0, nullptr, insud->m_Size, &insud->m_Data);
 
             if(IsTextFile())
             {
@@ -4978,7 +4979,7 @@ wxFileOffset MadEdit::GetRowposXPos(int &xpos, MadLineIterator & lit,
 
 void MadEdit::InsertColumnString(const ucs4_t *ucs, size_t count, int linecount, bool bColumnEditing, bool bSelText)
 {
-    MadUndo *undo = NULL;
+    MadUndo *undo = nullptr;
     vector < int >rpos;
 
     int xpos0;
@@ -5017,7 +5018,7 @@ void MadEdit::InsertColumnString(const ucs4_t *ucs, size_t count, int linecount,
         lineid = m_CaretPos.lineid;
     }
 
-    if(undo == NULL)
+    if(undo == nullptr)
     {
         undo = m_UndoBuffer->Add();
     }
@@ -5071,7 +5072,7 @@ void MadEdit::InsertColumnString(const ucs4_t *ucs, size_t count, int linecount,
 
         undo->m_Undos.push_back(insud);
 
-        DeleteInsertData(insud->m_Pos, 0, NULL, insud->m_Size, &insud->m_Data);
+        DeleteInsertData(insud->m_Pos, 0, nullptr, insud->m_Size, &insud->m_Data);
 
         m_Lines->Reformat(firstlit, lastlit);
 
@@ -5178,7 +5179,7 @@ void MadEdit::InsertColumnString(const ucs4_t *ucs, size_t count, int linecount,
 
                 undo->m_Undos.push_back(insud);
 
-                DeleteInsertData(insud->m_Pos, 0, NULL, insud->m_Size, &insud->m_Data);
+                DeleteInsertData(insud->m_Pos, 0, nullptr, insud->m_Size, &insud->m_Data);
 
                 if(bColumnEditing)
                 {
@@ -5277,7 +5278,7 @@ void MadEdit::InsertColumnString(const ucs4_t *ucs, size_t count, int linecount,
 
                     undo->m_Undos.push_back(insud);
 
-                    DeleteInsertData(insud->m_Pos, 0, NULL, insud->m_Size, &insud->m_Data);
+                    DeleteInsertData(insud->m_Pos, 0, nullptr, insud->m_Size, &insud->m_Data);
 
                     lit = m_Lines->m_LineList.end();
                 }
@@ -5661,13 +5662,13 @@ void MadEdit::DecreaseIndentSpaces(vector <ucs4_t> &spaces)
 MadUndo *MadEdit::DeleteSelection(bool bCorrectCaretPos, vector <int> *rpos, bool bColumnEditing)
 {
     if(!m_Selection || IsReadOnly())
-        return NULL;
+        return nullptr;
 
     bool oldModified=m_Modified;
 
     if(m_EditMode == emColumnMode)
     {
-        MadUndo *undo = NULL;
+        MadUndo *undo = nullptr;
 
         int firstrow = m_SelectionBegin->rowid;
         int lastrow = m_SelectionEnd->rowid;
@@ -5745,12 +5746,12 @@ MadUndo *MadEdit::DeleteSelection(bool bCorrectCaretPos, vector <int> *rpos, boo
                     dudata->m_Size = sellen;
 
 #ifdef _DEBUG
-                    wxASSERT(DeleteInsertData(dudata->m_Pos, dudata->m_Size, &dudata->m_Data, 0, NULL) == firstlit);
+                    wxASSERT(DeleteInsertData(dudata->m_Pos, dudata->m_Size, &dudata->m_Data, 0, nullptr) == firstlit);
 #else
-                    DeleteInsertData(dudata->m_Pos, dudata->m_Size, &dudata->m_Data, 0, NULL);
+                    DeleteInsertData(dudata->m_Pos, dudata->m_Size, &dudata->m_Data, 0, nullptr);
 #endif
 
-                    if(undo == NULL)
+                    if(undo == nullptr)
                     {
                         undo = m_UndoBuffer->Add();
                     }
@@ -5935,7 +5936,7 @@ MadUndo *MadEdit::DeleteSelection(bool bCorrectCaretPos, vector <int> *rpos, boo
     dudata->m_Pos = m_SelectionBegin->pos;
     dudata->m_Size = m_SelectionEnd->pos - m_SelectionBegin->pos;
 
-    MadLineIterator lit = DeleteInsertData(dudata->m_Pos, dudata->m_Size, &dudata->m_Data, 0, NULL);
+    MadLineIterator lit = DeleteInsertData(dudata->m_Pos, dudata->m_Size, &dudata->m_Data, 0, nullptr);
 
     MadUndo *undo = m_UndoBuffer->Add();
     undo->m_CaretPosBefore = m_CaretPos.pos;
@@ -6015,7 +6016,7 @@ void MadEdit::InsertHexChar(int hc) // handle input in hexarea
         undo->m_CaretPosBefore=undo->m_CaretPosAfter=m_CaretPos.pos;
         undo->m_Undos.push_back(insud);
 
-        MadLineIterator lit = DeleteInsertData(insud->m_Pos, 0, NULL, insud->m_Size, &insud->m_Data);
+        MadLineIterator lit = DeleteInsertData(insud->m_Pos, 0, nullptr, insud->m_Size, &insud->m_Data);
 
         m_CaretAtHalfByte = true;
         m_RepaintAll = true;
@@ -6109,7 +6110,7 @@ void MadEdit::InsertRawBytes(wxByte *bytes, size_t count, bool overwirte)
     MadBlock blk(m_Lines->m_MemData, 0, count);
     blk.m_Pos = m_Lines->m_MemData->Put(bytes, count);
 
-    MadUndoData* ud = NULL;
+    MadUndoData* ud = nullptr;
     if(m_Selection)
     {
         ud = new MadOverwriteUndoData();
@@ -7824,7 +7825,7 @@ void MadEdit::ProcessCommand(MadEditCommand command)
                                 EndUpdateSelection(true);
                             }
 
-                            DeleteSelection(true, NULL, true);
+                            DeleteSelection(true, nullptr, true);
                         }
                         else                // no Selection
                         {
@@ -7840,7 +7841,7 @@ void MadEdit::ProcessCommand(MadEditCommand command)
                                     dudata->m_Size = m_CaretPos.iter->m_NewLineSize;
 
                                     MadLineIterator lit =
-                                        DeleteInsertData(dudata->m_Pos, dudata->m_Size, &dudata->m_Data, 0, NULL);
+                                        DeleteInsertData(dudata->m_Pos, dudata->m_Size, &dudata->m_Data, 0, nullptr);
 
                                     MadUndo *undo = m_UndoBuffer->Add();
                                     undo->m_CaretPosBefore = m_CaretPos.pos;
@@ -7933,7 +7934,7 @@ void MadEdit::ProcessCommand(MadEditCommand command)
                                         size_t oldlines = m_Lines->m_LineCount;
 
                                         MadLineIterator lit =
-                                            DeleteInsertData(dudata->m_Pos, dudata->m_Size, &dudata->m_Data, 0, NULL);
+                                            DeleteInsertData(dudata->m_Pos, dudata->m_Size, &dudata->m_Data, 0, nullptr);
 
                                         MadUndo *undo = m_UndoBuffer->Add();
                                         undo->m_CaretPosBefore = m_CaretPos.pos;
@@ -8037,7 +8038,7 @@ void MadEdit::ProcessCommand(MadEditCommand command)
                             {
                                 CopyToClipboard();
                             }
-                            DeleteSelection(true, NULL, false);
+                            DeleteSelection(true, nullptr, false);
                             m_EditMode=em;
                         }
                     }
@@ -8071,7 +8072,7 @@ void MadEdit::ProcessCommand(MadEditCommand command)
                                 EndUpdateSelection(true);
                             }
 
-                            DeleteSelection(true, NULL, true);
+                            DeleteSelection(true, nullptr, true);
                         }
                         else                // no Selection
                         {
@@ -8105,7 +8106,7 @@ void MadEdit::ProcessCommand(MadEditCommand command)
                                             dudata->m_Pos = m_CaretPos.pos - len;
                                             dudata->m_Size = len;
 
-                                            MadLineIterator lit = DeleteInsertData(dudata->m_Pos, dudata->m_Size, &dudata->m_Data, 0, NULL);
+                                            MadLineIterator lit = DeleteInsertData(dudata->m_Pos, dudata->m_Size, &dudata->m_Data, 0, nullptr);
 
                                             MadUndo *undo = m_UndoBuffer->Add();
                                             undo->m_CaretPosBefore=m_CaretPos.pos;
@@ -8144,7 +8145,7 @@ void MadEdit::ProcessCommand(MadEditCommand command)
                                             dudata->m_Pos = m_CaretPos.pos - len;
                                             dudata->m_Size = len;
 
-                                            lit = DeleteInsertData(dudata->m_Pos, dudata->m_Size, &dudata->m_Data, 0, NULL);
+                                            lit = DeleteInsertData(dudata->m_Pos, dudata->m_Size, &dudata->m_Data, 0, nullptr);
 
                                             MadUndo *undo = m_UndoBuffer->Add();
                                             undo->m_CaretPosBefore=m_CaretPos.pos;
@@ -8183,7 +8184,7 @@ void MadEdit::ProcessCommand(MadEditCommand command)
                                         size_t oldrows = m_Lines->m_RowCount;
                                         size_t oldlines = m_Lines->m_LineCount;
 
-                                        MadLineIterator lit = DeleteInsertData(dudata->m_Pos, dudata->m_Size, &dudata->m_Data, 0, NULL);
+                                        MadLineIterator lit = DeleteInsertData(dudata->m_Pos, dudata->m_Size, &dudata->m_Data, 0, nullptr);
 
                                         MadUndo *undo = m_UndoBuffer->Add();
                                         undo->m_CaretPosBefore=m_CaretPos.pos;
@@ -8241,8 +8242,8 @@ void MadEdit::ProcessCommand(MadEditCommand command)
                             m_Config->Read(wxT("/wxMEdit/DateTimeInEnglish"), &inEnglish);
                             if(inEnglish)
                             {
-                                const char* p = setlocale( LC_TIME, NULL );
-                                if (p != NULL)
+                                const char* p = setlocale( LC_TIME, nullptr );
+                                if (p != nullptr)
                                     oldlocale = p;
 
                                 setlocale( LC_TIME, "C" );
@@ -8697,7 +8698,7 @@ void MadEdit::ProcessCommand(MadEditCommand command)
                 case ecDelete:
                     if(!IsReadOnly() && m_Selection)
                     {
-                        DeleteSelection(true, NULL, false);
+                        DeleteSelection(true, nullptr, false);
                     }
                     break;
 
@@ -8740,7 +8741,7 @@ void MadEdit::ProcessReturnCommand(MadEditCommand command)
 
     if (m_Selection && m_EditMode == emColumnMode)
     {
-        DeleteSelection(true, NULL, false);
+        DeleteSelection(true, nullptr, false);
     }
     else
     {
@@ -9207,7 +9208,7 @@ void MadEdit::OnMouseLeftDClick(wxMouseEvent &evt)
 
     m_MouseLeftDoubleClick=true;
     m_MouseLeftDown=true;
-    SelectWordFromCaretPos(NULL);
+    SelectWordFromCaretPos(nullptr);
 
     m_lastDoubleClick = wxGetLocalTimeMillis();
 
@@ -9434,7 +9435,7 @@ void MadEdit::UpdateClientBitmap()
     bool deletebitmap=false;
     bool newbitmap=false;
 
-    if(m_ClientBitmap==NULL)
+    if(m_ClientBitmap==nullptr)
     {
         newbitmap=true;
 
@@ -9478,7 +9479,7 @@ void MadEdit::UpdateClientBitmap()
         m_MarkBitmap=new wxBitmap(w,h);
 
 #if FIXINVERT != 0
-        if(InvertRect==NULL)
+        if(InvertRect==nullptr)
         {
             wxMemoryDC dc1, dc2;
             dc.SelectObject(*m_ClientBitmap);
@@ -9956,7 +9957,7 @@ void MadEdit::OnPaint(wxPaintEvent &evt)
                 memdc.SetPen(*wxThePenList->FindOrCreatePen(bgcolor, 1, wxSOLID));
                 memdc.DrawRectangle(0, 0, m_ClientWidth, m_ClientHeight);
 
-                if(m_HexDigitBitmap==NULL)
+                if(m_HexDigitBitmap==nullptr)
                 {
                     m_HexDigitBitmap=new wxBitmap(m_HexFontMaxDigitWidth*76, m_RowHeight*3);
                     memdc.SelectObject(*m_HexDigitBitmap);
@@ -9991,7 +9992,7 @@ void MadEdit::OnPaint(wxPaintEvent &evt)
                 wxRect rect(-m_DrawingXPos, 0, m_ClientWidth, m_ClientHeight);
                 PaintHexLines(&memdc, rect, m_TopRow, (int)count, true);
 
-                m_HexDigitDC=NULL;
+                m_HexDigitDC=nullptr;
 
                 m_RepaintAll = false;
                 m_RepaintSelection = false;
@@ -10089,7 +10090,7 @@ WXLRESULT MadEdit::MSWWindowProc(WXUINT message, WXWPARAM wParam, WXLPARAM lPara
 
                             PaintHexLines(&dc, rect, m_TopRow+row-1, 1, false);
 
-                            m_HexDigitDC=NULL;
+                            m_HexDigitDC=nullptr;
                         }
 
                         m_RepaintAll=false;
@@ -10103,11 +10104,11 @@ WXLRESULT MadEdit::MSWWindowProc(WXUINT message, WXWPARAM wParam, WXLPARAM lPara
         break;
     //case WM_NCPAINT:  
         //{
-            //DWORD dw = GetRegionData(*((HRGN*)&wParam), 0, NULL);
+            //DWORD dw = GetRegionData(*((HRGN*)&wParam), 0, nullptr);
             //if(dw)
             //{
                 //static DWORD rgnsize = 0;
-                //static RGNDATA *prgn = NULL;
+                //static RGNDATA *prgn = nullptr;
                 //if(dw > rgnsize)
                 //{
                     //rgnsize = dw;
@@ -10421,7 +10422,7 @@ int MadEdit::GetUCharWidth(ucs4_t uc)
 
     register int idx=uc>>16;
     wxUint16 *widths=m_TextFontWidths[idx];
-    if(widths==NULL)
+    if(widths==nullptr)
     {
         widths=m_TextFontWidths[idx]=FontWidthManager::GetFontWidths(idx, m_TextFont->GetFaceName(), m_TextFont->GetPointSize(), this);
     }
@@ -10450,7 +10451,7 @@ int MadEdit::GetUCharWidth(ucs4_t uc)
 #endif
 
         int h;
-        GetTextExtent(wcs, &w, &h, NULL, NULL, m_TextFont);
+        GetTextExtent(wcs, &w, &h, nullptr, nullptr, m_TextFont);
         if(w<=0)
         {
             w=m_TextFontWidths[0][0x20];
@@ -10479,7 +10480,7 @@ int MadEdit::GetHexUCharWidth(ucs4_t uc)
 
     register int idx=uc>>16;
     wxUint16 *widths=m_HexFontWidths[idx];
-    if(widths==NULL)
+    if(widths==nullptr)
     {
         widths=m_HexFontWidths[idx]=FontWidthManager::GetFontWidths(idx, m_HexFont->GetFaceName(), m_HexFont->GetPointSize(), this);
     }
@@ -10508,7 +10509,7 @@ int MadEdit::GetHexUCharWidth(ucs4_t uc)
 #endif
 
         int h;
-        GetTextExtent(wcs, &w, &h, NULL, NULL, m_HexFont);
+        GetTextExtent(wcs, &w, &h, nullptr, nullptr, m_HexFont);
         if(w<=0)
         {
             w=m_HexFontWidths[0][0x20];

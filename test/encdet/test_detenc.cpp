@@ -1,4 +1,5 @@
 #include "test_detenc.h"
+#include "../../src/xm/cxx11.h"
 #include "../../src/wxm/encdet.h"
 #include "../../src/wxm/encoding/encoding.h"
 
@@ -15,7 +16,7 @@ bool javaesc_to_enc(std::string& dest, const std::string& src, const std::string
 
 	int32_t uslen = us.length();
 
-	int32_t slen = us.extract(0, uslen, NULL, enc.c_str());
+	int32_t slen = us.extract(0, uslen, nullptr, enc.c_str());
 	if (slen <= 0)
 		return false;
 	boost::scoped_array<char> buf(new char[slen + 1]);

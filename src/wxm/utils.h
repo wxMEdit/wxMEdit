@@ -9,6 +9,7 @@
 #ifndef _WXM_UTILS_H_
 #define _WXM_UTILS_H_
 
+#include "../xm/cxx11.h"
 #include "choice_map.hpp"
 #include "def.h"
 #include "../wxmedit/ucs4_t.h"
@@ -208,7 +209,7 @@ struct AppPath: private boost::noncopyable
 
 	static AppPath& Instance()
 	{
-		if (s_inst == NULL)
+		if (s_inst == nullptr)
 			s_inst = new AppPath();
 		return *s_inst;
 	}
@@ -216,7 +217,7 @@ struct AppPath: private boost::noncopyable
 	{
 		s_inst->SaveConfig();
 		delete s_inst;
-		s_inst = NULL;
+		s_inst = nullptr;
 	}
 private:
 	AppPath()

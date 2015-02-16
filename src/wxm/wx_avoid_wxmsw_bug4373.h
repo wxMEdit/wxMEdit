@@ -19,6 +19,7 @@
 #ifndef __WXMSW__
 # define wxDialogWrapper wxDialog
 #else
+# include "../xm/cxx11.h"
 # include <wx/msw/private.h>
 class wxDialogWrapper: public wxDialog
 {
@@ -26,7 +27,7 @@ public:
 	virtual int ShowModal()
 	{
 		wxWindow* oldFocus = FindFocus();
-		HWND hwndOldFocus = oldFocus ? GetHwndOf(oldFocus) : NULL;
+		HWND hwndOldFocus = oldFocus ? GetHwndOf(oldFocus) : nullptr;
 
 		int ret = wxDialog::ShowModal();
 

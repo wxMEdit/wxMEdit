@@ -7,6 +7,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 #include "ublock.h"
+#include "cxx11.h"
 
 #ifdef _DEBUG
 #include <crtdbg.h>
@@ -76,7 +77,7 @@ const wchar_t* UnicodeBlockSet::Description(int index)
 {
 	std::map<int, std::wstring>::const_iterator it = m_des_map.find(index);
 	if (it == m_des_map.end())
-		return NULL;
+		return nullptr;
 
 	return it->second.c_str();
 }

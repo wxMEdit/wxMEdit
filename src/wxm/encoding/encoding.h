@@ -9,6 +9,7 @@
 #ifndef _WXM_ENCODING_H_
 #define _WXM_ENCODING_H_
 
+#include "../../xm/cxx11.h"
 #include "encoding_def.h"
 #include "../line_enc_adapter.h"
 #include "../../wxmedit/ucs4_t.h"
@@ -41,14 +42,14 @@ struct WXMEncodingManager: private boost::noncopyable
 	static WXMEncodingManager& Instance()
 	{
 		PreInit();
-		if (s_inst == NULL)
+		if (s_inst == nullptr)
 			s_inst = new WXMEncodingManager();
 		return *s_inst;
 	}
 	static void DestroyInstance()
 	{
 		delete s_inst;
-		s_inst = NULL;
+		s_inst = nullptr;
 	}
 
 	static bool IsSimpleUnicodeEncoding(WXMEncodingID enc)
@@ -122,7 +123,7 @@ private:
 		bool exact=true);
 
 	WXMEncodingManager()
-	: m_initialized(false), m_sysenc_idx(-1), m_sysenc(NULL)
+	: m_initialized(false), m_sysenc_idx(-1), m_sysenc(nullptr)
 	{
 		DoInit();
 		m_initialized = true;

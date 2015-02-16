@@ -7,6 +7,8 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 #include "multibyte.h"
+#include "../../xm/cxx11.h"
+
 #include <boost/scoped_array.hpp>
 
 #ifdef _DEBUG
@@ -25,20 +27,20 @@ extern "C"
 	}
 }
 
-ICUConverter::ICUConverter(const std::string& encname): m_ucnv(NULL)
+ICUConverter::ICUConverter(const std::string& encname): m_ucnv(nullptr)
 {
 	UErrorCode err = U_ZERO_ERROR;
 
 	m_ucnv = ucnv_open(encname.c_str(), &err);
 
 	ucnv_setFallback(m_ucnv, FALSE);
-	ucnv_setFromUCallBack(m_ucnv, error_callback, NULL, NULL, NULL, &err);
+	ucnv_setFromUCallBack(m_ucnv, error_callback, nullptr, nullptr, nullptr, &err);
 }
 
 ICUConverter::~ICUConverter()
 {
 	ucnv_close(m_ucnv);
-	m_ucnv = NULL;
+	m_ucnv = nullptr;
 }
 
 size_t ICUConverter::MB2WC(UChar32& ch, const char* src, size_t src_len)

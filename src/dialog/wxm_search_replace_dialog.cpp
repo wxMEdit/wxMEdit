@@ -8,6 +8,7 @@
 
 #include "wxm_search_replace_dialog.h"
 
+#include "../xm/cxx11.h"
 #include "../wxm/edit/single_line.h"
 #include "../wxm/edit/inframe.h"
 #include "../xm/utils.hpp"
@@ -28,7 +29,7 @@
 
 extern wxm::InFrameWXMEdit* g_active_wxmedit;
 
-WXMSearchReplaceDialog *g_SearchReplaceDialog=NULL;
+WXMSearchReplaceDialog *g_SearchReplaceDialog=nullptr;
 
 //(*IdInit(WXMSearchReplaceDialog)
 const long WXMSearchReplaceDialog::ID_WXCHECKBOXMOVEFOCUS = wxNewId();
@@ -269,7 +270,7 @@ void WXMSearchReplaceDialog::WXMSearchReplaceDialogClose(wxCloseEvent& event)
 		return;
 	}
 
-	g_SearchReplaceDialog=NULL;
+	g_SearchReplaceDialog=nullptr;
 	Destroy();
 }
 
@@ -282,7 +283,7 @@ void WXMSearchReplaceDialog::WxButtonFindNextClick(wxCommandEvent& event)
 {
 	ResetMessage();
 
-	if (g_active_wxmedit == NULL)
+	if (g_active_wxmedit == nullptr)
 		return;
 
 	wxString text;
@@ -382,7 +383,7 @@ void WXMSearchReplaceDialog::WxButtonFindPrevClick(wxCommandEvent& event)
 {
 	ResetMessage();
 
-	if (g_active_wxmedit == NULL)
+	if (g_active_wxmedit == nullptr)
 		return;
 
 	wxString text;
@@ -665,7 +666,7 @@ void WXMSearchReplaceDialog::WxButtonReplaceClick(wxCommandEvent& event)
 {
 	ResetMessage();
 
-	if (g_active_wxmedit == NULL)
+	if (g_active_wxmedit == nullptr)
 		return;
 
 	wxString text;
@@ -781,7 +782,7 @@ void WXMSearchReplaceDialog::WxButtonCountClick(wxCommandEvent& event)
 {
 	ResetMessage();
 
-	if (g_active_wxmedit == NULL)
+	if (g_active_wxmedit == nullptr)
 		return;
 
 	int count = 0;
@@ -813,7 +814,7 @@ void WXMSearchReplaceDialog::WxButtonCountClick(wxCommandEvent& event)
 
 		if(WxCheckBoxFindHex->GetValue())
 		{
-			count = g_active_wxmedit->FindHexAll(text, false, NULL, NULL, rangeFrom, rangeTo);
+			count = g_active_wxmedit->FindHexAll(text, false, nullptr, nullptr, rangeFrom, rangeTo);
 		}
 		else
 		{
@@ -822,7 +823,7 @@ void WXMSearchReplaceDialog::WxButtonCountClick(wxCommandEvent& event)
 				WxCheckBoxCaseSensitive->GetValue(),
 				WxCheckBoxWholeWord->GetValue(),
 				false,
-				NULL, NULL,
+				nullptr, nullptr,
 				rangeFrom, rangeTo);
 		}
 	}
@@ -839,7 +840,7 @@ void WXMSearchReplaceDialog::WxButtonReplaceAllClick(wxCommandEvent& event)
 {
 	ResetMessage();
 
-	if( g_active_wxmedit == NULL)
+	if( g_active_wxmedit == nullptr)
 		return;
 
 	wxString text;
@@ -882,7 +883,7 @@ void WXMSearchReplaceDialog::WxButtonReplaceAllClick(wxCommandEvent& event)
 		int count=0;
 		if(WxCheckBoxFindHex->GetValue())
 		{
-			count = g_active_wxmedit->ReplaceHexAll(text, reptext, NULL, NULL, rangeFrom, rangeTo);
+			count = g_active_wxmedit->ReplaceHexAll(text, reptext, nullptr, nullptr, rangeFrom, rangeTo);
 		}
 		else
 		{
@@ -890,7 +891,7 @@ void WXMSearchReplaceDialog::WxButtonReplaceAllClick(wxCommandEvent& event)
 				WxCheckBoxRegex->GetValue(),
 				WxCheckBoxCaseSensitive->GetValue(),
 				WxCheckBoxWholeWord->GetValue(),
-				NULL, NULL, rangeFrom, rangeTo);
+				nullptr, nullptr, rangeFrom, rangeTo);
 		}
 
 		if(count>=0)
@@ -916,7 +917,7 @@ void WXMSearchReplaceDialog::UpdateSearchInSelection(bool check)
 	WxEditFrom->Enable(check);
 	WxEditTo->Enable(check);
 
-	if (check && g_active_wxmedit!=NULL)
+	if (check && g_active_wxmedit!=nullptr)
 	{
 		WxEditFrom->SetValue(wxLongLong(g_active_wxmedit->GetSelectionBeginPos()).ToString());
 		WxEditTo->SetValue(wxLongLong(g_active_wxmedit->GetSelectionEndPos()).ToString());
@@ -1005,7 +1006,7 @@ void WXMSearchReplaceDialog::PurgeRecentReplaceTexts()
 
 WXMSearchReplaceDialog& GetSearchReplaceDialog(wxWindow* parent)
 {
-	if (g_SearchReplaceDialog == NULL)
+	if (g_SearchReplaceDialog == nullptr)
 		g_SearchReplaceDialog = new WXMSearchReplaceDialog(parent);
 	return *g_SearchReplaceDialog;
 }

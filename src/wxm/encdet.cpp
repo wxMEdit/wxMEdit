@@ -8,6 +8,7 @@
 
 #include "encdet.h"
 #include "encoding/encoding.h"
+#include "../xm/cxx11.h"
 #include "../wxmedit/mad_encdet.h"
 
 #include <unicode/ucsdet.h>
@@ -542,9 +543,9 @@ struct LocalUCharsetDetectorPointer
 	}
 	~LocalUCharsetDetectorPointer()
 	{
-		if (m_ptr!=NULL)
+		if (m_ptr != nullptr)
 			ucsdet_close(m_ptr);
-		m_ptr = NULL;
+		m_ptr = nullptr;
 	}
 	UCharsetDetector* getAlias()
 	{

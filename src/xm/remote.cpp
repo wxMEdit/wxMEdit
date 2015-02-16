@@ -7,6 +7,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 #include "remote.h"
+#include "cxx11.h"
 
 #include <curl/curl.h>
 
@@ -40,7 +41,7 @@ std::string GetRemoteText(const std::string& url)
 		return std::string();
 
 	CURL* h = curl_easy_init();
-	if (h == NULL)
+	if (h == nullptr)
 	{
 		curl_global_cleanup();
 		return std::string();

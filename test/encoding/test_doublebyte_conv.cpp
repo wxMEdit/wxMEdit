@@ -38,12 +38,12 @@ void test_a_doublebyte_conv(const std::string& encname)
 	MB2UDataMap::const_iterator mb2uend = mb2u[encname].end();
 	for (size_t i=0; i<256; ++i)
 	{
-		wxByte wxb[2] = {wxByte(i), 0};
+		wxByte wxb[2] = { wxByte(i), 0 };
 		if (enc->IsLeadByte(wxb[0]))
 		{
 			for(size_t j=0; j<256; ++j)
 			{
-				char mbs_arr[3] = {i, j, 0};
+				char mbs_arr[3] = { char(i), char(j), 0 };
 				MB2UDataMap::const_iterator it = mb2u[encname].find(mbs_arr);
 
 				wxb[1] = wxByte(j);
@@ -65,7 +65,7 @@ void test_a_doublebyte_conv(const std::string& encname)
 		}
 		else
 		{
-			char mbs_arr[2] = {i, 0};
+			char mbs_arr[2] = { char(i), 0 };
 			MB2UDataMap::const_iterator it = mb2u[encname].find(mbs_arr);
 			ucs4_t u = enc->MultiBytetoUCS4(wxb);
 			if (u != 0)

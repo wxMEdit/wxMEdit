@@ -8,6 +8,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 #include "mad_utils.h"
+#include "xm/cxx11.h"
 
 #include <wx/wxprec.h>
 #include <wx/app.h>
@@ -199,7 +200,7 @@ wxString GetExecutablePath()
         procno.highLongOfPSN = NULL ;
         procno.lowLongOfPSN = kCurrentProcess ;
         processinfo.processInfoLength = sizeof(ProcessInfoRec);
-        processinfo.processName = NULL;
+        processinfo.processName = nullptr;
         processinfo.processAppSpec = &fsSpec;
 
         GetProcessInformation( &procno , &processinfo ) ;

@@ -9,6 +9,7 @@
 #ifndef _WXM_STATUS_BAR_H_
 #define _WXM_STATUS_BAR_H_
 
+#include "../xm/cxx11.h"
 #include <wx/statusbr.h>
 
 class MadEditFrame;
@@ -33,7 +34,7 @@ struct WXMStatusBar
 		m_statusbar->SetStatusText(s, (int)field);
 	}
 
-	WXMStatusBar() : m_frame(NULL), m_statusbar(NULL) {}
+	WXMStatusBar() : m_frame(nullptr), m_statusbar(nullptr) {}
 private:
 	MadEditFrame* m_frame;
 	wxStatusBar* m_statusbar;

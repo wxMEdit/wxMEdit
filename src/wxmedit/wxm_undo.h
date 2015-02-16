@@ -9,6 +9,7 @@
 #ifndef _WXM_UNDO_H_
 #define _WXM_UNDO_H_
 
+#include "../xm/cxx11.h"
 #include <wx/wxprec.h>
 
 #ifdef __BORLANDC__
@@ -47,7 +48,7 @@ struct MadInsertUndoData:MadUndoData
 
     virtual wxFileOffset DelSize() {return 0;}
     virtual wxFileOffset InsSize() {return m_Size;}
-    virtual MadBlockVector* DelData() {return NULL;}
+    virtual MadBlockVector* DelData() {return nullptr;}
     virtual MadBlockVector* InsData() {return &m_Data;}
     virtual void SetDelSize(wxFileOffset size) {wxASSERT(size == 0);}
     virtual void SetInsBlock(const MadBlock& blk)
@@ -65,7 +66,7 @@ struct MadDeleteUndoData:MadUndoData
     virtual wxFileOffset DelSize() {return m_Size;}
     virtual wxFileOffset InsSize() {return 0;}
     virtual MadBlockVector* DelData() {return &m_Data;}
-    virtual MadBlockVector* InsData() {return NULL;}
+    virtual MadBlockVector* InsData() {return nullptr;}
     virtual void SetDelSize(wxFileOffset size) {m_Size = size;}
     virtual void SetInsBlock(const MadBlock& blk) {wxASSERT(blk.m_Size == 0);}
 };

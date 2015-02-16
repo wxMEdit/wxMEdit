@@ -7,6 +7,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 #include "update.h"
+#include "../xm/cxx11.h"
 #include "def.h"
 #include "utils.h"
 #include "../xm/remote.h"
@@ -195,7 +196,7 @@ struct UpdatesCheckingThread : public wxThread
 		wxCommandEvent evt(m_env_type);
 		wxPostEvent(g_MainFrame, evt);
 
-		return NULL;
+		return (ExitCode)0;
 	}
 
 private:
@@ -212,13 +213,14 @@ void AutoCheckUpdates(wxFileConfig* cfg)
 
 	long lasttime = 0;
 	wxString periodcfg;
-    cfg->Read(wxT("/wxMEdit/LastTimeAutoCheckUpdates"), &lasttime, 0);
-    cfg->Read(wxT("/wxMEdit/UpdatesCheckingPeriod"), &periodcfg);
+	cfg->Read(wxT("/wxMEdit/LastTimeAutoCheckUpdates"), &lasttime, 0);
+	cfg->Read(wxT("/wxMEdit/UpdatesCheckingPeriod"), &periodcfg);
 
-	if (time(NULL)-lasttime < UpdatePeriods::Instance().ConfigToPeroid(periodcfg))
+	time_t now = time(nullptr);
+	if (now-lasttime < UpdatePeriods::Instance().ConfigToPeroid(periodcfg))
 		return;
 
-	cfg->Write(wxT("/wxMEdit/LastTimeAutoCheckUpdates"), long(time(NULL)));
+	cfg->Write(wxT("/wxMEdit/LastTimeAutoCheckUpdates"), long(now));
 
 	g_update_checking = true;
 

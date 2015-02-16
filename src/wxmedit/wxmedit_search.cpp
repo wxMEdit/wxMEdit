@@ -7,6 +7,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 #include "wxmedit.h"
+#include "../xm/cxx11.h"
 #include "../wxm/case_conv.h"
 #include "../xm/utils.hpp"
 
@@ -593,7 +594,7 @@ struct UCIterator   // ucs4_t widechar iterator
 
 };
 
-MadLines *UCIterator::s_lines=NULL;
+MadLines *UCIterator::s_lines=nullptr;
 wxFileOffset UCIterator::s_endpos=0;
 list<UCQueueSet> UCIterator::s_ucqueues;
 
@@ -1039,7 +1040,7 @@ struct ByteIterator
 
 };
 
-MadLines *ByteIterator::s_lines=NULL;
+MadLines *ByteIterator::s_lines=nullptr;
 wxFileOffset ByteIterator::s_endpos=0;
 
 MadSearchResult MadEdit::SearchHex(/*IN_OUT*/MadCaretPos &beginpos, /*IN_OUT*/MadCaretPos &endpos,

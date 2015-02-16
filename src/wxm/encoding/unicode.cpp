@@ -7,6 +7,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 #include "unicode.h"
+#include "../../xm/cxx11.h"
 
 #ifdef _DEBUG
 #include <crtdbg.h>
@@ -74,8 +75,8 @@ size_t WXMEncodingUTF8::UCS4toMultiByte(ucs4_t ucs4, wxByte* buf)
 bool WXMEncodingUTF8::NextUChar32(MadUCQueue &ucqueue, UChar32BytesMapper& mapper)
 {
 	wxFileOffset rest;
-	wxByte *buf=mapper.BufferLoadBytes(rest, 4);
-	if (buf == NULL)
+	wxByte* buf = mapper.BufferLoadBytes(rest, 4);
+	if (buf == nullptr)
 		return false;
 
 	int cnt= (rest<4)? rest: 4;
@@ -171,8 +172,8 @@ ucs4_t WXMEncodingUTF16LE::PeekUChar32_Newline(WXMBlockDumper& dumper, size_t le
 bool WXMEncodingUTF16LE::NextUChar32(MadUCQueue &ucqueue, UChar32BytesMapper& mapper)
 {
 	wxFileOffset rest;
-	wxByte *buf=mapper.BufferLoadBytes(rest, 4);
-	if (buf == NULL)
+	wxByte* buf = mapper.BufferLoadBytes(rest, 4);
+	if (buf == nullptr)
 		return false;
 
 	if(rest >= 2)
@@ -259,8 +260,8 @@ ucs4_t WXMEncodingUTF16BE::PeekUChar32_Newline(WXMBlockDumper& dumper, size_t le
 bool WXMEncodingUTF16BE::NextUChar32(MadUCQueue &ucqueue, UChar32BytesMapper& mapper)
 {
 	wxFileOffset rest;
-	wxByte *buf=mapper.BufferLoadBytes(rest, 4);
-	if (buf == NULL)
+	wxByte* buf = mapper.BufferLoadBytes(rest, 4);
+	if (buf == nullptr)
 		return false;
 
 	if(rest >= 2)
@@ -329,8 +330,8 @@ ucs4_t WXMEncodingUTF32LE::PeekUChar32_Newline(WXMBlockDumper& dumper, size_t le
 bool WXMEncodingUTF32LE::NextUChar32(MadUCQueue &ucqueue, UChar32BytesMapper& mapper)
 {
 	wxFileOffset rest;
-	wxByte *buf=mapper.BufferLoadBytes(rest, 4);
-	if (buf == NULL)
+	wxByte* buf = mapper.BufferLoadBytes(rest, 4);
+	if (buf == nullptr)
 		return false;
 
 	if(rest>=4)
@@ -389,8 +390,8 @@ ucs4_t WXMEncodingUTF32BE::PeekUChar32_Newline(WXMBlockDumper& dumper, size_t le
 bool WXMEncodingUTF32BE::NextUChar32(MadUCQueue &ucqueue, UChar32BytesMapper& mapper)
 {
 	wxFileOffset rest;
-	wxByte *buf=mapper.BufferLoadBytes(rest, 4);
-	if (buf == NULL)
+	wxByte* buf = mapper.BufferLoadBytes(rest, 4);
+	if (buf == nullptr)
 		return false;
 
 	if(rest>=4)

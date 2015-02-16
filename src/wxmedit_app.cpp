@@ -8,6 +8,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 #include "wxmedit_app.h"
+#include "xm/cxx11.h"
 #include "wxmedit_frame.h"
 #include "mad_utils.h"
 #include "wxm/utils.h"
@@ -73,7 +74,7 @@ extern const size_t g_LanguageCount = sizeof(g_LanguageValue)/sizeof(int);
 #include <wx/gtk/win_gtk.h>
 
 Atom g_MadEdit_atom;
-Display *g_Display=NULL;
+Display *g_Display=nullptr;
 
 static GdkFilterReturn my_gdk_filter(GdkXEvent *xevent,
                                      GdkEvent *event,
@@ -168,7 +169,7 @@ void DeleteConfig()
     FontWidthManager::Save();
     FontWidthManager::FreeMem();
 
-    wxFileConfig::Set(NULL);
+    wxFileConfig::Set(nullptr);
 }
 
 bool OpenFilesInPrevInst(const wxString& flist)
@@ -180,7 +181,7 @@ bool OpenFilesInPrevInst(const wxString& flist)
 
     extern const wxChar *wxCanvasClassNameNR;    // class name of MadEditFrame
     wxChar title[256]={0};
-    HWND prevapp = ::FindWindowEx(NULL, NULL, wxCanvasClassNameNR, NULL);
+    HWND prevapp = ::FindWindowEx(NULL, NULL, wxCanvasClassNameNR, nullptr);
     for(;;)                // find wxCanvasClassNameNR
     {
         if(prevapp)
@@ -197,7 +198,7 @@ bool OpenFilesInPrevInst(const wxString& flist)
         {
             Sleep(50);
         }
-        prevapp =::FindWindowEx(NULL, prevapp, wxCanvasClassNameNR, NULL);
+        prevapp =::FindWindowEx(NULL, prevapp, wxCanvasClassNameNR, nullptr);
     }
 
     if(prevapp == NULL)
@@ -359,7 +360,7 @@ bool MadEditApp::OnInit()
 
 
     // create the main frame
-    MadEditFrame *myFrame = new MadEditFrame(NULL, 1 , wxEmptyString, pos, size);
+    MadEditFrame *myFrame = new MadEditFrame(nullptr, 1 , wxEmptyString, pos, size);
     SetTopWindow(myFrame);
 
 #if defined(__WXMSW__) || defined(__WXGTK__)
@@ -376,7 +377,7 @@ bool MadEditApp::OnInit()
         GtkPizza *pizza = GTK_PIZZA(myFrame->m_mainWidget);
         Window win=GDK_WINDOW_XWINDOW(pizza->bin_window);
         XSetSelectionOwner(g_Display, g_MadEdit_atom, win, CurrentTime);
-        gdk_window_add_filter(NULL, my_gdk_filter, NULL);
+        gdk_window_add_filter(nullptr, my_gdk_filter, nullptr);
     }
 #endif
 

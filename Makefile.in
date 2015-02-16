@@ -43,8 +43,8 @@ subdir = .
 DIST_COMMON = $(am__configure_deps) $(dist_doc_DATA) $(noinst_HEADERS) \
 	$(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 	$(srcdir)/config.h.in $(top_srcdir)/configure ChangeLog \
-	compile config.guess config.rpath config.sub depcomp \
-	install-sh missing mkinstalldirs
+	config.guess config.rpath config.sub depcomp install-sh \
+	missing mkinstalldirs
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/configure.ac
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
@@ -471,6 +471,7 @@ wxmedit_SOURCES = $(enc_src) \
 	src/wxmedit_app.h \
 	src/wxmedit_frame.cpp \
 	src/wxmedit_frame.h \
+	src/xm/cxx11.h \
 	src/xm/remote.cpp \
 	src/xm/remote.h \
 	src/xm/ublock.cpp \
@@ -485,6 +486,7 @@ wxmedit_test_SOURCES = $(enc_src) \
 	src/wxm/line_enc_adapter.h \
 	src/wxmedit/ucs4_t.h \
 	src/wxmedit/wxm_deque.hpp \
+	src/xm/cxx11.h \
 	src/xm/utils.hpp \
 	test/encdet/data_from_icudet.cpp \
 	test/encdet/data_from_icudet.h \

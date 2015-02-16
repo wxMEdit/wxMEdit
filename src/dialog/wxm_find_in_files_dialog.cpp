@@ -9,6 +9,7 @@
 #include "wxm_find_in_files_dialog.h"
 #include "wxm_search_replace_dialog.h"
 
+#include "../xm/cxx11.h"
 #include "../wxmedit_frame.h"
 #include "../wxm/edit/inframe.h"
 #include "../wxm/edit/single_line.h"
@@ -35,7 +36,7 @@
 #include "../../images/down.xpm"
 #undef static
 
-WXMFindInFilesDialog *g_FindInFilesDialog=NULL;
+WXMFindInFilesDialog *g_FindInFilesDialog=nullptr;
 
 //(*IdInit(WXMFindInFilesDialog)
 const long WXMFindInFilesDialog::ID_WXCHECKBOXCASESENSITIVE = wxNewId();
@@ -291,7 +292,7 @@ void WXMFindInFilesDialog::WXMFindInFilesDialogClose(wxCloseEvent& event)
 		return;
 	}
 
-	g_FindInFilesDialog=NULL;
+	g_FindInFilesDialog=nullptr;
 	Destroy();
 }
 
@@ -442,7 +443,7 @@ void WXMFindInFilesDialog::WXMFindInFilesDialogActivate(wxActivateEvent& event)
 
 //=========================================================
 
-wxProgressDialog *g_ProgressDialog=NULL;
+wxProgressDialog *g_ProgressDialog=nullptr;
 bool g_Continue;
 wxLongLong g_Time;
 
@@ -634,7 +635,7 @@ void WXMFindInFilesDialog::FindReplaceInFiles(bool bReplace)
 		bool cont = true;
 		for(size_t i = 0; i < totalfiles && cont; i++)
 		{
-			MadEdit *madedit = NULL;
+			MadEdit *madedit = nullptr;
 			// prepare madedit
 			if(WxRadioButtonOpenedFiles->GetValue())
 			{
@@ -645,7 +646,7 @@ void WXMFindInFilesDialog::FindReplaceInFiles(bool bReplace)
 				int id;
 				madedit=g_MainFrame->GetEditByFileName(*fnit, id);
 
-				if(madedit==NULL)
+				if(madedit==nullptr)
 				{
 					madedit=tempedit.get();
 					wxString enc = wxm::WXMEncodingManager::ExtractEncodingName(WxComboBoxEncoding->GetValue());
@@ -779,7 +780,7 @@ void WXMFindInFilesDialog::FindReplaceInFiles(bool bReplace)
 	}
 
 	dialog.Update(max);
-	g_ProgressDialog=NULL;
+	g_ProgressDialog=nullptr;
 	g_FileNameList.clear();
 
 #ifdef SHOW_RESULT_COUNT
@@ -797,7 +798,7 @@ void WXMFindInFilesDialog::WxCheckBoxEnableReplaceClick(wxCommandEvent& event)
 extern wxm::InFrameWXMEdit* g_active_wxmedit;
 void WXMFindInFilesDialog::WxButtonActiveDirClick(wxCommandEvent& event)
 {
-	if (g_active_wxmedit != NULL)
+	if (g_active_wxmedit != nullptr)
 	{
 		wxString str = g_active_wxmedit->GetFileName();
 		if(!str.IsEmpty())
@@ -834,7 +835,7 @@ void WXMFindInFilesDialog::PurgeRecentFindExcludes()
 
 WXMFindInFilesDialog& GetFindInFilesDialog(wxWindow* parent)
 {
-	if (g_FindInFilesDialog == NULL)
+	if (g_FindInFilesDialog == nullptr)
 		g_FindInFilesDialog = new WXMFindInFilesDialog(parent);
 	return *g_FindInFilesDialog;
 }

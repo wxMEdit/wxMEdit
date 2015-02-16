@@ -9,6 +9,7 @@
 #ifndef _WXM_ENCODING_SINGLEBYTE_H_
 #define _WXM_ENCODING_SINGLEBYTE_H_
 
+#include "../../xm/cxx11.h"
 #include "multibyte.h"
 
 #include <boost/array.hpp>
@@ -82,12 +83,12 @@ private:
 	UnicodeByteMap m_fromunicode;
 
 protected:
-	WXMEncodingSingleByte(): m_icucnv(NULL)
+	WXMEncodingSingleByte(): m_icucnv(nullptr)
 	{
 	}
 	~WXMEncodingSingleByte()
 	{
-		delete m_icucnv; m_icucnv = NULL;
+		delete m_icucnv; m_icucnv = nullptr;
 	}
 
 	virtual SingleByteEncodingTableFixer* CreateSingleByteEncodingTableFixer();

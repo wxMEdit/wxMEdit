@@ -7,6 +7,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 #include "inframe.h"
+#include "../../xm/cxx11.h"
 #include "../encoding/unicode.h"
 #include "../../wxmedit_frame.h"
 #include "../../dialog/wxm_search_replace_dialog.h"
@@ -37,7 +38,7 @@ struct GlobalConfigWriter: public ConfigWriter
 
 	virtual void SetConfig(wxConfigBase* cfg) { m_cfg = cfg; }
 
-	GlobalConfigWriter(): m_cfg(NULL) {}
+	GlobalConfigWriter(): m_cfg(nullptr) {}
 private:
 	wxConfigBase* m_cfg;
 };
@@ -221,7 +222,7 @@ void InFrameWXMEdit::DoStatusChanged()
 
 	wxm::GetFrameStatusBar().Update(); // repaint immediately
 
-	if (g_SearchReplaceDialog != NULL)
+	if (g_SearchReplaceDialog != nullptr)
 		g_SearchReplaceDialog->UpdateCheckBoxByCBHex();
 }
 
@@ -506,7 +507,7 @@ void InFrameWXMEdit::EndHexPrinting()
 {
 	m_CaretAtHexArea = m_old_CaretAtHexArea;
 	delete m_HexPrintWXMEdit;
-	m_HexPrintWXMEdit = NULL;
+	m_HexPrintWXMEdit = nullptr;
 }
 
 bool InFrameWXMEdit::PrintPage(wxDC *dc, int pageNum)

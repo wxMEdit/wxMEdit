@@ -8,6 +8,7 @@
 
 #include "wxmedit_options_dialog.h"
 
+#include "../xm/cxx11.h"
 #include "../mad_utils.h"
 #include "../wxmedit/wxmedit_command.h"
 #include "../wxmedit/wxmedit.h"
@@ -37,14 +38,14 @@
 #define new new(_NORMAL_BLOCK ,__FILE__, __LINE__)
 #endif
 
-WXMEditOptionsDialog *g_OptionsDialog=NULL;
+WXMEditOptionsDialog *g_OptionsDialog=nullptr;
 
 extern const wxChar *g_LanguageString[];
 extern const size_t g_LanguageCount;
 
-TreeItemData *g_SelectedCommandItem=NULL;
+TreeItemData *g_SelectedCommandItem=nullptr;
 int g_SelectedKeyId=-1;
-TreeItemData *g_CommandItemOfNewKey=NULL;
+TreeItemData *g_CommandItemOfNewKey=nullptr;
 
 
 class KeyTextCtrl : public wxTextCtrl
@@ -896,7 +897,7 @@ void WXMEditOptionsDialog::WXMEditOptionsDialogClose(wxCloseEvent& event)
 		return;
 	}
 
-	g_OptionsDialog=NULL;
+	g_OptionsDialog=nullptr;
 	Destroy();
 }
 
@@ -904,7 +905,7 @@ void WXMEditOptionsDialog::WXMOptionsDialogActivate(wxActivateEvent& event)
 {
 	if(event.GetActive())
 	{
-		if(FindFocus()==NULL)
+		if(FindFocus()==nullptr)
 		{
 			SetReturnCode(wxID_CANCEL);
 			WxButtonCancel->SetFocus();
@@ -1064,7 +1065,7 @@ void WXMEditOptionsDialog::LoadOptions(void)
 	}
 	while(++tidit != tiditend);
 
-	g_SelectedCommandItem=NULL;
+	g_SelectedCommandItem=nullptr;
 	g_SelectedKeyId=-1;
 	WxEditCommandHint->Clear();
 	WxListBoxKeys->Clear();
@@ -1166,7 +1167,7 @@ void WXMEditOptionsDialog::InitButtonRelativeEdit()
 
 wxTextCtrl* WXMEditOptionsDialog::GetButtonRelativeEdit(long btnid)
 {
-	return xm::wrap_map(m_btnid_edit_map).get(btnid, NULL);
+	return xm::wrap_map(m_btnid_edit_map).get(btnid, nullptr);
 }
 
 void WXMEditOptionsDialog::PrintMarkClick(wxCommandEvent& event)
@@ -1174,7 +1175,7 @@ void WXMEditOptionsDialog::PrintMarkClick(wxCommandEvent& event)
 	wxString str=WxPopupMenuPrintMark.GetLabel(event.GetId());
 	wxTextCtrl *edit = GetButtonRelativeEdit(ButtonID);
 
-	if(edit!=NULL && str[0]==wxT('[') && str[3]==wxT(']'))
+	if(edit!=nullptr && str[0]==wxT('[') && str[3]==wxT(']'))
 	{
 		wxString text=edit->GetValue();
 		edit->SetValue(text+ str.Mid(1, 2));
@@ -1190,7 +1191,7 @@ void WXMEditOptionsDialog::WxTreeCtrl1SelChanged(wxTreeEvent& event)
 	g_SelectedCommandItem=(TreeItemData*)TreeCtrl1->GetItemData(id);
 	g_SelectedKeyId=-1;
 
-	if(g_SelectedCommandItem==NULL)
+	if(g_SelectedCommandItem==nullptr)
 	{
 		WxListBoxKeys->Clear();
 		WxEditCommandHint->SetValue(_("Cannot assign key to this item"));
@@ -1253,7 +1254,7 @@ TreeItemData* WXMEditOptionsDialog::FindKeyInList(const wxString &key)
 
 		++tidit;
 	}
-	return NULL;
+	return nullptr;
 }
 
 bool WXMEditOptionsDialog::FindItemInList(TreeItemData* tid, const list<TreeItemData*> &tlist)
@@ -1275,7 +1276,7 @@ bool WXMEditOptionsDialog::FindItemInList(TreeItemData* tid, const list<TreeItem
 void WXMEditOptionsDialog::UpdateKeyHint()
 {
 	wxString scstr=WxEditKey->GetValue();
-	g_CommandItemOfNewKey=NULL;
+	g_CommandItemOfNewKey=nullptr;
 
 	if(scstr.IsEmpty())
 	{
@@ -1285,7 +1286,7 @@ void WXMEditOptionsDialog::UpdateKeyHint()
 	{
 		// find the key is assigned to which command
 		TreeItemData *tid = g_OptionsDialog->FindKeyInList(scstr);
-		if(tid==NULL)
+		if(tid==nullptr)
 		{
 			g_OptionsDialog->WxEditKeyHint->SetValue(_("This key is not assigned"));
 		}
@@ -1319,10 +1320,10 @@ void WXMEditOptionsDialog::UpdateKeyHint()
 
 void WXMEditOptionsDialog::WxButtonAddKeyClick(wxCommandEvent& event)
 {
-	if(g_SelectedCommandItem!=NULL && g_SelectedCommandItem!=g_CommandItemOfNewKey)
+	if(g_SelectedCommandItem!=nullptr && g_SelectedCommandItem!=g_CommandItemOfNewKey)
 	{
 		wxString key=WxEditKey->GetValue();
-		if(g_CommandItemOfNewKey!=NULL) // new key is assigned to another command
+		if(g_CommandItemOfNewKey!=nullptr) // new key is assigned to another command
 		{
 			/*
 			wxMessageDialog dlg(this, key +wxT(": ") +WxEditKeyHint->GetValue() +wxT("\n\n") + wxString(_("Do you want to reassign this key?")),
@@ -1359,7 +1360,7 @@ void WXMEditOptionsDialog::WxButtonAddKeyClick(wxCommandEvent& event)
 
 void WXMEditOptionsDialog::WxButtonDeleteKeyClick(wxCommandEvent& event)
 {
-	if(g_SelectedCommandItem!=NULL && g_SelectedKeyId >= 0)
+	if(g_SelectedCommandItem!=nullptr && g_SelectedKeyId >= 0)
 	{
 		g_SelectedCommandItem->keys.RemoveAt(g_SelectedKeyId);
 
@@ -1377,7 +1378,7 @@ void WXMEditOptionsDialog::WxButtonDeleteKeyClick(wxCommandEvent& event)
 void WXMEditOptionsDialog::WxButtonShowInMenuClick(wxCommandEvent& event)
 {
 	// move the selected key to first element of WxListBoxKeys
-	if(g_SelectedCommandItem!=NULL && g_SelectedCommandItem->cmddata->menu_id>0 && g_SelectedKeyId > 0)
+	if(g_SelectedCommandItem!=nullptr && g_SelectedCommandItem->cmddata->menu_id>0 && g_SelectedKeyId > 0)
 	{
 		wxString key=g_SelectedCommandItem->keys[g_SelectedKeyId];
 

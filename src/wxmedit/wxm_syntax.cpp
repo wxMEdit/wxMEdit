@@ -7,6 +7,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 #include "wxm_syntax.h"
+#include "../xm/cxx11.h"
 #include "wxmedit.h"
 
 #include <wx/fileconf.h>
@@ -328,13 +329,13 @@ MadSyntax* MadSyntax::GetSyntaxByExt(const wxString &ext)
         }
     }
 
-    return NULL;
+    return nullptr;
 }
 
 MadSyntax* MadSyntax::GetSyntaxByFirstLine(const wxByte* data, int size)
 {
-    if (data == NULL || size == 0)
-        return NULL;
+    if (data == nullptr || size == 0)
+        return nullptr;
 
     wxString line;
     wxChar ch=0;
@@ -380,7 +381,7 @@ MadSyntax* MadSyntax::GetSyntaxByFirstLine(const wxByte* data, int size)
         }
     }
 
-    return NULL;
+    return nullptr;
 }
 
 MadSyntax* MadSyntax::GetSyntaxByFileName(const wxString &filename)
@@ -406,7 +407,7 @@ MadSyntax* MadSyntax::GetSyntaxByFileName(const wxString &filename)
         }
     }
 
-    return NULL;
+    return nullptr;
 }
 
 size_t MadSyntax::GetSchemeCount()
@@ -480,7 +481,7 @@ bool MadSyntax::LoadScheme(const wxString &schname, MadSyntax *syn)
 
 bool MadSyntax::SaveScheme(const wxString &schname, MadSyntax *syn)
 {
-    wxASSERT(syn!=NULL);
+    wxASSERT(syn!=nullptr);
 
     wxString name=schname;
     if(name.Right(1)==wxT('*')) name=schname.Left(schname.Len()-1);
@@ -535,7 +536,7 @@ bool MadSyntax::SaveScheme(const wxString &schname, MadSyntax *syn)
 bool MadSyntax::DeleteScheme(const wxString &schname)
 {
     bool star;
-    wxString schfile=GetSchemeFileByName(schname, NULL, star);
+    wxString schfile=GetSchemeFileByName(schname, nullptr, star);
 
     if(star || schfile.IsEmpty()) return false;
 
@@ -1054,7 +1055,7 @@ MadAttributes *MadSyntax::GetAttributes(const wxString &name)
         if(name.CmpNoCase(SystemAttributesName[i])==0)
             return &m_SystemAttributes[i];
     }
-    return NULL;
+    return nullptr;
 }
 
 MadSyntaxKeyword *MadSyntax::GetCustomKeyword(const wxString &name)
@@ -1167,7 +1168,7 @@ MadSyntaxRange *MadSyntax::GetSyntaxRange(int rangeid)
         }
         while(it != m_CustomRange.end());
     }
-    return NULL;
+    return nullptr;
 }
 
 wxString MadSyntax::GetAttributeName(MadAttributeElement ae)
@@ -2351,7 +2352,7 @@ void MadSyntax::SaveAttributes(const wxString &file)
 
 void MadSyntax::AssignAttributes(MadSyntax *syn, bool add)
 {
-    if(this == syn || syn == NULL) return;
+    if(this == syn || syn == nullptr) return;
 
     size_t i;
     for(i=0; i<m_CustomRange.size() && i<syn->m_CustomRange.size(); i++)

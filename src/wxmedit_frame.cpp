@@ -7,11 +7,12 @@
 // License:     GPLv3
 ///////////////////////////////////////////////////////////////////////////////
 
+#include "wxmedit_frame.h"
+#include "xm/cxx11.h"
 #include "wxmedit/wxmedit.h"
 #include "wxmedit/wxmedit_command.h"
 #include "wxmedit/wxm_syntax.h"
 #include "wxmedit/trad_simp.h"
-#include "wxmedit_frame.h"
 #include "dialog/wxm_search_replace_dialog.h"
 #include "dialog/wxm_find_in_files_dialog.h"
 #include "dialog/wxm_highlighting_dialog.h"
@@ -203,42 +204,42 @@ wxString g_lastpath_closingfiles;
 } // namespace wxm
 
 
-MadEditFrame* g_MainFrame = NULL;
-wxm::InFrameWXMEdit* g_active_wxmedit = NULL;
+MadEditFrame* g_MainFrame = nullptr;
+wxm::InFrameWXMEdit* g_active_wxmedit = nullptr;
 int g_PrevPageID=-1;
 bool g_CheckModTimeForReload = true;
 
-wxMenu *g_PopMenu_Tab = NULL;
-wxMenu *g_Menu_File = NULL;
-wxMenu *g_Menu_Edit = NULL;
-wxMenu *g_Menu_Search = NULL;
-wxMenu *g_Menu_View = NULL;
-wxMenu *g_Menu_Tools = NULL;
-wxMenu *g_Menu_Window = NULL;
-wxMenu *g_Menu_Help = NULL;
-wxMenu *g_Menu_File_CloseMore = NULL;
-wxMenu *g_Menu_File_CopyPath = NULL;
-wxMenu *g_Menu_File_RecentFiles = NULL;
-wxMenu *g_Menu_Edit_Sort = NULL;
-wxMenu *g_Menu_Edit_Advanced = NULL;
-wxMenu *g_Menu_View_Encoding = NULL;
-wxMenu *g_Menu_View_AllEncodings = NULL;
-wxMenu *g_Menu_View_Syntax = NULL;
-wxMenu *g_Menu_View_FontName = NULL;
-wxMenu *g_Menu_View_Font0 = NULL;
-wxMenu *g_Menu_View_Font1 = NULL;
-wxMenu *g_Menu_View_Font2 = NULL;
-wxMenu *g_Menu_View_Font3 = NULL;
-wxMenu *g_Menu_View_Font4 = NULL;
-wxMenu *g_Menu_View_Font5 = NULL;
-wxMenu *g_Menu_View_Font6 = NULL;
-wxMenu *g_Menu_View_FontSize = NULL;
-wxMenu *g_Menu_View_TabColumn = NULL;
-wxMenu *g_Menu_View_LineSpacing = NULL;
-wxMenu *g_Menu_Tools_BOM = NULL;
-wxMenu *g_Menu_Tools_NewLineChar = NULL;
-wxMenu *g_Menu_Tools_InsertNewLineChar = NULL;
-wxMenu *g_Menu_Tools_ConvertChineseChar = NULL;
+wxMenu *g_PopMenu_Tab = nullptr;
+wxMenu *g_Menu_File = nullptr;
+wxMenu *g_Menu_Edit = nullptr;
+wxMenu *g_Menu_Search = nullptr;
+wxMenu *g_Menu_View = nullptr;
+wxMenu *g_Menu_Tools = nullptr;
+wxMenu *g_Menu_Window = nullptr;
+wxMenu *g_Menu_Help = nullptr;
+wxMenu *g_Menu_File_CloseMore = nullptr;
+wxMenu *g_Menu_File_CopyPath = nullptr;
+wxMenu *g_Menu_File_RecentFiles = nullptr;
+wxMenu *g_Menu_Edit_Sort = nullptr;
+wxMenu *g_Menu_Edit_Advanced = nullptr;
+wxMenu *g_Menu_View_Encoding = nullptr;
+wxMenu *g_Menu_View_AllEncodings = nullptr;
+wxMenu *g_Menu_View_Syntax = nullptr;
+wxMenu *g_Menu_View_FontName = nullptr;
+wxMenu *g_Menu_View_Font0 = nullptr;
+wxMenu *g_Menu_View_Font1 = nullptr;
+wxMenu *g_Menu_View_Font2 = nullptr;
+wxMenu *g_Menu_View_Font3 = nullptr;
+wxMenu *g_Menu_View_Font4 = nullptr;
+wxMenu *g_Menu_View_Font5 = nullptr;
+wxMenu *g_Menu_View_Font6 = nullptr;
+wxMenu *g_Menu_View_FontSize = nullptr;
+wxMenu *g_Menu_View_TabColumn = nullptr;
+wxMenu *g_Menu_View_LineSpacing = nullptr;
+wxMenu *g_Menu_Tools_BOM = nullptr;
+wxMenu *g_Menu_Tools_NewLineChar = nullptr;
+wxMenu *g_Menu_Tools_InsertNewLineChar = nullptr;
+wxMenu *g_Menu_Tools_ConvertChineseChar = nullptr;
 
 wxArrayString g_FontNames;
 
@@ -314,7 +315,7 @@ public:
     }
     void Add(wxm::InFrameWXMEdit* wxmedit)
     {
-        if (wxmedit == NULL) return;
+        if (wxmedit == nullptr) return;
 
         wxString name = wxmedit->GetFileName();
         if(!name.IsEmpty())
@@ -482,7 +483,7 @@ wxString FixFileNameEncoding(const wxString &filename)
 
     g_MB2WC_check_dir_filename=true;
 
-    size_t wcslen=MadConvFileNameObj.MB2WC(NULL, (const char*)bbuf, 0);
+    size_t wcslen=MadConvFileNameObj.MB2WC(nullptr, (const char*)bbuf, 0);
     if(wcslen==size_t(-1))
         return filename;
 
@@ -675,7 +676,7 @@ void OnReceiveMessage(const wchar_t *msg, size_t size)
     g_MainFrame->SetFocus();
 #endif
 
-    if (g_active_wxmedit != NULL) g_active_wxmedit->SetFocus();
+    if (g_active_wxmedit != nullptr) g_active_wxmedit->SetFocus();
 
     wxm::FileList filelist(msg);
 
@@ -1841,13 +1842,13 @@ void MadEditFrame::CreateGUIControls()
     g_AccelFindPrev.Set(0, 0, 0, 0);
 
     wxAcceleratorEntry *ent=GetAccelFromString(g_Menu_Search->GetLabel(menuFindNext));
-    if(ent!=NULL)
+    if(ent!=nullptr)
     {
         g_AccelFindNext=*ent;
         delete ent;
     }
     ent=GetAccelFromString(g_Menu_Search->GetLabel(menuFindPrevious));
-    if(ent!=NULL)
+    if(ent!=nullptr)
     {
         g_AccelFindPrev=*ent;
         delete ent;
@@ -2088,7 +2089,7 @@ void MadEditFrame::MadEditFrameClose(wxCloseEvent& event)
     m_Config->SetPath(wxT("/RecentFonts"));
     m_RecentFonts->Save(*m_Config);
 
-    if(g_SearchReplaceDialog!=NULL)
+    if(g_SearchReplaceDialog!=nullptr)
     {
         g_SearchReplaceDialog->Show(false);
         m_Config->SetPath(wxT("/RecentFindText"));
@@ -2096,7 +2097,7 @@ void MadEditFrame::MadEditFrameClose(wxCloseEvent& event)
         m_Config->SetPath(wxT("/RecentReplaceText"));
         g_SearchReplaceDialog->m_RecentReplaceText->Save(*m_Config);
     }
-    if(g_FindInFilesDialog!=NULL)
+    if(g_FindInFilesDialog!=nullptr)
     {
         g_FindInFilesDialog->Show(false);
         m_Config->SetPath(wxT("/RecentFindDir"));
@@ -2114,11 +2115,11 @@ void MadEditFrame::MadEditFrameClose(wxCloseEvent& event)
 
 
     delete m_RecentFiles;
-    m_RecentFiles=NULL;
+    m_RecentFiles=nullptr;
     delete m_RecentEncodings;
-    m_RecentEncodings=NULL;
+    m_RecentEncodings=nullptr;
     delete m_RecentFonts;
-    m_RecentFonts=NULL;
+    m_RecentFonts=nullptr;
 
     delete m_ImageList;
 
@@ -2131,7 +2132,7 @@ void MadEditFrame::MadEditFrameClose(wxCloseEvent& event)
     delete g_PageSetupData;
 
     delete g_PopMenu_Tab;
-    g_PopMenu_Tab = NULL;
+    g_PopMenu_Tab = nullptr;
 
     extern void DeleteConfig();
     DeleteConfig();
@@ -2210,7 +2211,7 @@ wxm::InFrameWXMEdit* MadEditFrame::GetEditByFileName(const wxString &filename, i
         }
     }
     id=-1;
-    return NULL;
+    return nullptr;
 }
 
 void MadEditFrame::ResetAcceleratorTable()
@@ -2266,7 +2267,7 @@ void MadEditFrame::OnNotebookPageChanged(wxAuiNotebookEvent& event)
     }
 
     //wxLogMessage( wxString()<<int(g_active_wxmedit));
-    if (g_active_wxmedit != NULL)
+    if (g_active_wxmedit != nullptr)
     {
         g_active_wxmedit->SetFocus();
 
@@ -2320,7 +2321,7 @@ void MadEditFrame::OnNotebookPageClosed(bool bZeroPage)
 {
     if(bZeroPage || m_Notebook->GetPageCount()==0)
     {
-        g_active_wxmedit = NULL;
+        g_active_wxmedit = nullptr;
         SetTitle(wxString(wxT("wxMEdit ")));
         ResetStatusBar();
     }
@@ -2439,7 +2440,7 @@ void MadEditFrame::OnInfoNotebookSize(wxSizeEvent &evt)
         }
         else
         {
-            if(pinfo.frame != NULL)
+            if(pinfo.frame != nullptr)
             {
                 size=pinfo.frame->GetSize();
             }
@@ -2479,7 +2480,7 @@ void MadEditFrame::OnInfoNotebookSize(wxSizeEvent &evt)
 
 void MadEditFrame::OnFindInFilesResultsDClick(wxMouseEvent& event)
 {
-    wxm::InFrameWXMEdit* wxmedit=NULL;
+    wxm::InFrameWXMEdit* wxmedit=nullptr;
     int flags;
     wxTreeItemId id = g_MainFrame->m_FindInFilesResults->HitTest(event.GetPosition(), flags);
     if(id.IsOk())
@@ -2500,7 +2501,7 @@ void MadEditFrame::OnFindInFilesResultsDClick(wxMouseEvent& event)
                 }
             }
 
-            if (wxmedit == NULL && wxFileExists(cpdata->filename))
+            if (wxmedit == nullptr && wxFileExists(cpdata->filename))
             {
                 g_MainFrame->OpenFile(cpdata->filename, true);
 
@@ -2518,7 +2519,7 @@ void MadEditFrame::OnFindInFilesResultsDClick(wxMouseEvent& event)
         }
     }
 
-    if (wxmedit == NULL) event.Skip();
+    if (wxmedit == nullptr) event.Skip();
 }
 
 void MadEditFrame::ResetFindInFilesResults()
@@ -2651,7 +2652,7 @@ void MadEditFrame::OpenFile(const wxString &filename, bool mustExist, const Line
 
     wxm::InFrameWXMEdit* wxmedit = g_active_wxmedit;
 
-    if (!filename.IsEmpty() && wxmedit != NULL
+    if (!filename.IsEmpty() && wxmedit != nullptr
         && !wxmedit->IsModified() && wxmedit->GetFileName().IsEmpty())
     {
         // load file in g_active_wxmedit
@@ -2742,7 +2743,7 @@ void MadEditFrame::CloseFile(int pageId)
 bool MadEditFrame::QueryCloseFile(int idx)
 {
     wxm::InFrameWXMEdit* wxmedit=(wxm::InFrameWXMEdit*)m_Notebook->GetPage(idx);
-    if (wxmedit == NULL)
+    if (wxmedit == nullptr)
         return false;
 
     wxString name=m_Notebook->GetPageText(idx);
@@ -2819,12 +2820,12 @@ bool MadEditFrame::QueryCloseAllFiles()
 
 void MadEditFrame::OnUpdateUI_MenuFile_CheckCount(wxUpdateUIEvent& event)
 {
-    event.Enable(g_active_wxmedit!=NULL);
+    event.Enable(g_active_wxmedit!=nullptr);
 }
 
 void MadEditFrame::OnUpdateUI_MenuFile_CheckNamed(wxUpdateUIEvent& event)
 {
-    event.Enable(g_active_wxmedit!=NULL && !g_active_wxmedit->GetFileName().empty());
+    event.Enable(g_active_wxmedit!=nullptr && !g_active_wxmedit->GetFileName().empty());
 }
 
 void MadEditFrame::OnUpdateUI_MenuFileRecentFiles(wxUpdateUIEvent& event)
@@ -2834,73 +2835,73 @@ void MadEditFrame::OnUpdateUI_MenuFileRecentFiles(wxUpdateUIEvent& event)
 
 void MadEditFrame::OnUpdateUI_MenuEditUndo(wxUpdateUIEvent& event)
 {
-    event.Enable(g_active_wxmedit!=NULL && g_active_wxmedit->CanUndo());
+    event.Enable(g_active_wxmedit!=nullptr && g_active_wxmedit->CanUndo());
 }
 void MadEditFrame::OnUpdateUI_MenuEditRedo(wxUpdateUIEvent& event)
 {
-    event.Enable(g_active_wxmedit!=NULL && g_active_wxmedit->CanRedo());
+    event.Enable(g_active_wxmedit!=nullptr && g_active_wxmedit->CanRedo());
 }
 
 void MadEditFrame::OnUpdateUI_MenuEdit_CheckSelection(wxUpdateUIEvent& event)
 {
-    event.Enable(g_active_wxmedit!=NULL && g_active_wxmedit->IsSelected());
+    event.Enable(g_active_wxmedit!=nullptr && g_active_wxmedit->IsSelected());
 }
 
 void MadEditFrame::OnUpdateUI_MenuEdit_CheckSelSize(wxUpdateUIEvent& event)
 {
-    event.Enable(g_active_wxmedit!=NULL && g_active_wxmedit->GetSelectionSize()>0);
+    event.Enable(g_active_wxmedit!=nullptr && g_active_wxmedit->GetSelectionSize()>0);
 }
 
 void MadEditFrame::OnUpdateUI_MenuEditPaste(wxUpdateUIEvent& event)
 {
 #ifdef __WXMSW__
-    event.Enable(g_active_wxmedit!=NULL && g_active_wxmedit->CanPaste());
+    event.Enable(g_active_wxmedit!=nullptr && g_active_wxmedit->CanPaste());
 #else
-    event.Enable(g_active_wxmedit!=NULL); // workaround for high CPU loading in Linux
+    event.Enable(g_active_wxmedit!=nullptr); // workaround for high CPU loading in Linux
 #endif
 }
 
 void MadEditFrame::OnUpdateUI_MenuEditPasteOvr(wxUpdateUIEvent& event)
 {
 #ifdef __WXMSW__
-    event.Enable(g_active_wxmedit!=NULL && g_active_wxmedit->EditingInHexAera() && g_active_wxmedit->CanPaste());
+    event.Enable(g_active_wxmedit!=nullptr && g_active_wxmedit->EditingInHexAera() && g_active_wxmedit->CanPaste());
 #else
-    event.Enable(g_active_wxmedit!=NULL && g_active_wxmedit->EditingInHexAera());
+    event.Enable(g_active_wxmedit!=nullptr && g_active_wxmedit->EditingInHexAera());
 #endif
 }
 
 void MadEditFrame::OnUpdateUI_Menu_CheckSize(wxUpdateUIEvent& event)
 {
-    event.Enable(g_active_wxmedit!=NULL && g_active_wxmedit->GetFileSize());
+    event.Enable(g_active_wxmedit!=nullptr && g_active_wxmedit->GetFileSize());
 }
 
 void MadEditFrame::OnUpdateUI_MenuEditDeleteLine(wxUpdateUIEvent& event)
 {
-    event.Enable(g_active_wxmedit!=NULL && g_active_wxmedit->GetEditMode()!=emHexMode);
+    event.Enable(g_active_wxmedit!=nullptr && g_active_wxmedit->GetEditMode()!=emHexMode);
 }
 
 void MadEditFrame::OnUpdateUI_MenuEditInsertTabChar(wxUpdateUIEvent& event)
 {
-    event.Enable(g_active_wxmedit!=NULL && g_active_wxmedit->GetEditMode()!=emHexMode);
+    event.Enable(g_active_wxmedit!=nullptr && g_active_wxmedit->GetEditMode()!=emHexMode);
 }
 void MadEditFrame::OnUpdateUI_MenuEditInsertDateTime(wxUpdateUIEvent& event)
 {
-    event.Enable(g_active_wxmedit!=NULL && g_active_wxmedit->GetEditMode()!=emHexMode);
+    event.Enable(g_active_wxmedit!=nullptr && g_active_wxmedit->GetEditMode()!=emHexMode);
 }
 
 void MadEditFrame::OnUpdateUI_MenuEditToggleBookmark(wxUpdateUIEvent& event)
 {
-    event.Enable(g_active_wxmedit != NULL);
+    event.Enable(g_active_wxmedit != nullptr);
 }
 
 void MadEditFrame::OnUpdateUI_MenuEditBookmarkExist(wxUpdateUIEvent& event)
 {
-    event.Enable(g_active_wxmedit != NULL && g_active_wxmedit->BookmarkExist());
+    event.Enable(g_active_wxmedit != nullptr && g_active_wxmedit->BookmarkExist());
 }
 
 void MadEditFrame::OnUpdateUI_Menu_CheckTextFile(wxUpdateUIEvent& event)
 {
-    event.Enable(g_active_wxmedit!=NULL && g_active_wxmedit->GetEditMode()!=emHexMode);
+    event.Enable(g_active_wxmedit!=nullptr && g_active_wxmedit->GetEditMode()!=emHexMode);
 }
 
 void MadEditFrame::OnUpdateUI_MenuEditCopyAsHexString(wxUpdateUIEvent& event)
@@ -2923,18 +2924,18 @@ void MadEditFrame::OnUpdateUI_MenuComment(wxUpdateUIEvent& event)
 
 void MadEditFrame::OnUpdateUI_MenuSearchGoTo(wxUpdateUIEvent& event)
 {
-    event.Enable(g_active_wxmedit!=NULL);
+    event.Enable(g_active_wxmedit!=nullptr);
 }
 
 void MadEditFrame::OnUpdateUI_MenuSearchGoToBrace(wxUpdateUIEvent& event)
 {
-    event.Enable(g_active_wxmedit!=NULL && g_active_wxmedit->HasBracePair() &&
+    event.Enable(g_active_wxmedit!=nullptr && g_active_wxmedit->HasBracePair() &&
         g_active_wxmedit->GetEditMode()!=emHexMode);
 }
 
 void MadEditFrame::OnUpdateUI_MenuViewEncoding(wxUpdateUIEvent& event)
 {
-    if (g_active_wxmedit != NULL)
+    if (g_active_wxmedit != nullptr)
     {
         event.Enable(true);
         wxString str=wxString(wxT('[')) + g_active_wxmedit->GetEncodingName() + wxT("] ") + wxGetTranslation(g_active_wxmedit->GetEncodingDescription().c_str());
@@ -2951,7 +2952,7 @@ void MadEditFrame::OnUpdateUI_MenuViewEncoding(wxUpdateUIEvent& event)
 
 void MadEditFrame::OnUpdateUI_MenuViewSyntax(wxUpdateUIEvent& event)
 {
-    if (g_active_wxmedit != NULL)
+    if (g_active_wxmedit != nullptr)
     {
         event.Enable(true);
         event.SetText(wxString(_("Syntax Type: ")) + g_active_wxmedit->GetSyntaxTitle());
@@ -2965,7 +2966,7 @@ void MadEditFrame::OnUpdateUI_MenuViewSyntax(wxUpdateUIEvent& event)
 
 void MadEditFrame::OnUpdateUI_MenuViewFontName(wxUpdateUIEvent& event)
 {
-    if (g_active_wxmedit != NULL)
+    if (g_active_wxmedit != nullptr)
     {
         event.Enable(true);
         wxString name;
@@ -2981,7 +2982,7 @@ void MadEditFrame::OnUpdateUI_MenuViewFontName(wxUpdateUIEvent& event)
 }
 void MadEditFrame::OnUpdateUI_MenuViewFontSize(wxUpdateUIEvent& event)
 {
-    if (g_active_wxmedit != NULL)
+    if (g_active_wxmedit != nullptr)
     {
         event.Enable(true);
         wxString name;
@@ -2997,18 +2998,18 @@ void MadEditFrame::OnUpdateUI_MenuViewFontSize(wxUpdateUIEvent& event)
 }
 void MadEditFrame::OnUpdateUI_MenuViewSetFont(wxUpdateUIEvent& event)
 {
-    event.Enable(g_active_wxmedit!=NULL);
+    event.Enable(g_active_wxmedit!=nullptr);
 }
 
 void MadEditFrame::OnUpdateUI_MenuViewFixedWidthMode(wxUpdateUIEvent& event)
 {
-    event.Enable(g_active_wxmedit!=NULL);
-    event.Check(g_active_wxmedit!=NULL && g_active_wxmedit->GetFixedWidthMode());
+    event.Enable(g_active_wxmedit!=nullptr);
+    event.Check(g_active_wxmedit!=nullptr && g_active_wxmedit->GetFixedWidthMode());
 }
 
 void MadEditFrame::OnUpdateUI_MenuViewTabColumn(wxUpdateUIEvent& event)
 {
-    if (g_active_wxmedit != NULL)
+    if (g_active_wxmedit != nullptr)
     {
         event.Enable(true);
         event.SetText(wxString(_("Tab Column: ")) << g_active_wxmedit->GetTabColumns());
@@ -3022,7 +3023,7 @@ void MadEditFrame::OnUpdateUI_MenuViewTabColumn(wxUpdateUIEvent& event)
 
 void MadEditFrame::OnUpdateUI_MenuViewLineSpacing(wxUpdateUIEvent& event)
 {
-    if (g_active_wxmedit != NULL)
+    if (g_active_wxmedit != nullptr)
     {
         event.Enable(true);
         event.SetText(wxString(_("Line Spacing: ")) << g_active_wxmedit->GetLineSpacing() << wxT('%'));
@@ -3036,75 +3037,75 @@ void MadEditFrame::OnUpdateUI_MenuViewLineSpacing(wxUpdateUIEvent& event)
 
 void MadEditFrame::OnUpdateUI_MenuViewNoWrap(wxUpdateUIEvent& event)
 {
-    event.Enable(g_active_wxmedit!=NULL);
-    event.Check(g_active_wxmedit!=NULL && g_active_wxmedit->GetWordWrapMode()==wwmNoWrap);
+    event.Enable(g_active_wxmedit!=nullptr);
+    event.Check(g_active_wxmedit!=nullptr && g_active_wxmedit->GetWordWrapMode()==wwmNoWrap);
 }
 void MadEditFrame::OnUpdateUI_MenuViewWrapByWindow(wxUpdateUIEvent& event)
 {
-    event.Enable(g_active_wxmedit!=NULL);
-    event.Check(g_active_wxmedit!=NULL && g_active_wxmedit->GetWordWrapMode()==wwmWrapByWindow);
+    event.Enable(g_active_wxmedit!=nullptr);
+    event.Check(g_active_wxmedit!=nullptr && g_active_wxmedit->GetWordWrapMode()==wwmWrapByWindow);
 }
 void MadEditFrame::OnUpdateUI_MenuViewWrapByColumn(wxUpdateUIEvent& event)
 {
-    event.Enable(g_active_wxmedit!=NULL);
-    event.Check(g_active_wxmedit!=NULL && g_active_wxmedit->GetWordWrapMode()==wwmWrapByColumn);
+    event.Enable(g_active_wxmedit!=nullptr);
+    event.Check(g_active_wxmedit!=nullptr && g_active_wxmedit->GetWordWrapMode()==wwmWrapByColumn);
 }
 
 void MadEditFrame::OnUpdateUI_MenuViewDisplayLineNumber(wxUpdateUIEvent& event)
 {
-    event.Enable(g_active_wxmedit!=NULL);
-    event.Check(g_active_wxmedit!=NULL && g_active_wxmedit->LineNumberVisible());
+    event.Enable(g_active_wxmedit!=nullptr);
+    event.Check(g_active_wxmedit!=nullptr && g_active_wxmedit->LineNumberVisible());
 }
 void MadEditFrame::OnUpdateUI_MenuViewDisplayBookmark(wxUpdateUIEvent& event)
 {
-    event.Enable(g_active_wxmedit!=NULL);
+    event.Enable(g_active_wxmedit!=nullptr);
     event.Check(g_active_wxmedit && g_active_wxmedit->BookmarkVisible());
 }
 void MadEditFrame::OnUpdateUI_MenuViewShowEndOfLine(wxUpdateUIEvent& event)
 {
-    event.Enable(g_active_wxmedit!=NULL);
-    event.Check(g_active_wxmedit!=NULL && g_active_wxmedit->GetShowEndOfLine());
+    event.Enable(g_active_wxmedit!=nullptr);
+    event.Check(g_active_wxmedit!=nullptr && g_active_wxmedit->GetShowEndOfLine());
 }
 void MadEditFrame::OnUpdateUI_MenuViewShowTabChar(wxUpdateUIEvent& event)
 {
-    event.Enable(g_active_wxmedit!=NULL);
-    event.Check(g_active_wxmedit!=NULL && g_active_wxmedit->GetShowTabChar());
+    event.Enable(g_active_wxmedit!=nullptr);
+    event.Check(g_active_wxmedit!=nullptr && g_active_wxmedit->GetShowTabChar());
 }
 void MadEditFrame::OnUpdateUI_MenuViewShowSpaceChar(wxUpdateUIEvent& event)
 {
-    event.Enable(g_active_wxmedit!=NULL);
-    event.Check(g_active_wxmedit!=NULL && g_active_wxmedit->GetShowSpaceChar());
+    event.Enable(g_active_wxmedit!=nullptr);
+    event.Check(g_active_wxmedit!=nullptr && g_active_wxmedit->GetShowSpaceChar());
 }
 void MadEditFrame::OnUpdateUI_MenuViewMarkActiveLine(wxUpdateUIEvent& event)
 {
-    event.Enable(g_active_wxmedit!=NULL);
-    event.Check(g_active_wxmedit!=NULL && g_active_wxmedit->GetMarkActiveLine());
+    event.Enable(g_active_wxmedit!=nullptr);
+    event.Check(g_active_wxmedit!=nullptr && g_active_wxmedit->GetMarkActiveLine());
 }
 void MadEditFrame::OnUpdateUI_MenuViewMarkBracePair(wxUpdateUIEvent& event)
 {
-    event.Enable(g_active_wxmedit!=NULL);
-    event.Check(g_active_wxmedit!=NULL && g_active_wxmedit->GetMarkBracePair());
+    event.Enable(g_active_wxmedit!=nullptr);
+    event.Check(g_active_wxmedit!=nullptr && g_active_wxmedit->GetMarkBracePair());
 }
 
 void MadEditFrame::OnUpdateUI_MenuViewTextMode(wxUpdateUIEvent& event)
 {
-    event.Enable(g_active_wxmedit!=NULL);
-    event.Check(g_active_wxmedit!=NULL && g_active_wxmedit->GetEditMode()==emTextMode);
+    event.Enable(g_active_wxmedit!=nullptr);
+    event.Check(g_active_wxmedit!=nullptr && g_active_wxmedit->GetEditMode()==emTextMode);
 }
 void MadEditFrame::OnUpdateUI_MenuViewColumnMode(wxUpdateUIEvent& event)
 {
-    event.Enable(g_active_wxmedit!=NULL);
-    event.Check(g_active_wxmedit!=NULL && g_active_wxmedit->GetEditMode()==emColumnMode);
+    event.Enable(g_active_wxmedit!=nullptr);
+    event.Check(g_active_wxmedit!=nullptr && g_active_wxmedit->GetEditMode()==emColumnMode);
 }
 void MadEditFrame::OnUpdateUI_MenuViewHexMode(wxUpdateUIEvent& event)
 {
-    event.Enable(g_active_wxmedit!=NULL);
-    event.Check(g_active_wxmedit!=NULL && g_active_wxmedit->GetEditMode()==emHexMode);
+    event.Enable(g_active_wxmedit!=nullptr);
+    event.Check(g_active_wxmedit!=nullptr && g_active_wxmedit->GetEditMode()==emHexMode);
 }
 
 void MadEditFrame::OnUpdateUI_MenuToolsByteOrderMark(wxUpdateUIEvent& event)
 {
-    if(g_active_wxmedit!=NULL && g_active_wxmedit->IsTextFile() &&
+    if(g_active_wxmedit!=nullptr && g_active_wxmedit->IsTextFile() &&
        g_active_wxmedit->IsUnicodeFile())      // unicode format
     {
         event.Enable(true);
@@ -3126,7 +3127,7 @@ void MadEditFrame::OnUpdateUI_MenuToolsByteOrderMark(wxUpdateUIEvent& event)
 void MadEditFrame::OnUpdateUI_MenuToolsNewLineChar(wxUpdateUIEvent& event)
 {
     wxString text(_("NewLine Char (File Format): "));
-    if (g_active_wxmedit!=NULL && g_active_wxmedit->IsTextFile())
+    if (g_active_wxmedit!=nullptr && g_active_wxmedit->IsTextFile())
     {
         event.Enable(true);
 
@@ -3148,7 +3149,7 @@ void MadEditFrame::OnUpdateUI_MenuToolsNewLineChar(wxUpdateUIEvent& event)
 void MadEditFrame::OnUpdateUI_MenuToolsInsertNewLineChar(wxUpdateUIEvent& event)
 {
     wxString text(_("Press Enter to Insert NewLine Char: "));
-    if (g_active_wxmedit!=NULL && g_active_wxmedit->IsTextFile())
+    if (g_active_wxmedit!=nullptr && g_active_wxmedit->IsTextFile())
     {
         event.Enable(true);
 
@@ -3170,12 +3171,12 @@ void MadEditFrame::OnUpdateUI_MenuToolsInsertNewLineChar(wxUpdateUIEvent& event)
 
 void MadEditFrame::OnUpdateUI_MenuToolsConvertNL(wxUpdateUIEvent& event)
 {
-    event.Enable(g_active_wxmedit!=NULL && !g_active_wxmedit->IsReadOnly());
+    event.Enable(g_active_wxmedit!=nullptr && !g_active_wxmedit->IsReadOnly());
 }
 
 void MadEditFrame::OnUpdateUI_MenuToolsConvertEncoding(wxUpdateUIEvent& event)
 {
-    event.Enable(g_active_wxmedit!=NULL &&
+    event.Enable(g_active_wxmedit!=nullptr &&
         !g_active_wxmedit->IsReadOnly() && g_active_wxmedit->IsTextFile());
 }
 
@@ -3230,7 +3231,7 @@ void MadEditFrame::OnFileOpen(wxCommandEvent& event)
 
 void MadEditFrame::OnFileSave(wxCommandEvent& event)
 {
-    if (g_active_wxmedit!=NULL)
+    if (g_active_wxmedit!=nullptr)
     {
         wxString name=m_Notebook->GetPageText(m_Notebook->GetSelection());
         if(name[name.Len()-1]==wxT('*'))
@@ -3245,7 +3246,7 @@ void MadEditFrame::OnFileSave(wxCommandEvent& event)
 
 void MadEditFrame::OnFileSaveAs(wxCommandEvent& event)
 {
-    if (g_active_wxmedit!=NULL)
+    if (g_active_wxmedit!=nullptr)
     {
         wxString name=m_Notebook->GetPageText(m_Notebook->GetSelection());
         if(name[name.Len()-1]==wxT('*'))
@@ -3315,7 +3316,7 @@ void MadEditFrame::OnFileSaveAll(wxCommandEvent& event)
 
 void MadEditFrame::OnFileReload(wxCommandEvent& event)
 {
-    if (g_active_wxmedit != NULL)
+    if (g_active_wxmedit != nullptr)
     {
         g_active_wxmedit->Reload();
     }
@@ -3365,7 +3366,7 @@ void MadEditFrame::OnFileCloseAll(wxCommandEvent& event)
         }
         m_PageClosing=false;
 
-        g_active_wxmedit = NULL;
+        g_active_wxmedit = nullptr;
         SetTitle(wxString(wxT("wxMEdit ")));
         ResetStatusBar();;
     }
@@ -3449,7 +3450,7 @@ void MadEditFrame::OnFilePageSetup(wxCommandEvent& event)
 
 void MadEditFrame::OnFilePrintPreview(wxCommandEvent& event)
 {
-    if (g_active_wxmedit == NULL)
+    if (g_active_wxmedit == nullptr)
         return;
 
     // Pass two printout objects: for preview, and possible printing.
@@ -3541,7 +3542,7 @@ void TempPrintDialog::OnPaint(wxPaintEvent &evt)
 
 void MadEditFrame::OnFilePrint(wxCommandEvent& event)
 {
-    if (g_active_wxmedit == NULL)
+    if (g_active_wxmedit == nullptr)
         return;
 
 #if defined(__WXMSW__)
@@ -3570,64 +3571,64 @@ void MadEditFrame::OnFileExit(wxCommandEvent& event)
 
 void MadEditFrame::OnEditUndo(wxCommandEvent& event)
 {
-    if (g_active_wxmedit != NULL) g_active_wxmedit->Undo();
+    if (g_active_wxmedit != nullptr) g_active_wxmedit->Undo();
 }
 
 void MadEditFrame::OnEditRedo(wxCommandEvent& event)
 {
-    if (g_active_wxmedit != NULL) g_active_wxmedit->Redo();
+    if (g_active_wxmedit != nullptr) g_active_wxmedit->Redo();
 }
 
 void MadEditFrame::OnEditCut(wxCommandEvent& event)
 {
-    if (g_active_wxmedit != NULL) g_active_wxmedit->CutToClipboard();
+    if (g_active_wxmedit != nullptr) g_active_wxmedit->CutToClipboard();
 }
 
 void MadEditFrame::OnEditCopy(wxCommandEvent& event)
 {
-    if (g_active_wxmedit != NULL) g_active_wxmedit->CopyToClipboard();
+    if (g_active_wxmedit != nullptr) g_active_wxmedit->CopyToClipboard();
 }
 
 void MadEditFrame::OnEditPaste(wxCommandEvent& event)
 {
-    if (g_active_wxmedit != NULL) g_active_wxmedit->PasteFromClipboard(false);
+    if (g_active_wxmedit != nullptr) g_active_wxmedit->PasteFromClipboard(false);
 }
 
 void MadEditFrame::OnEditPasteOvr(wxCommandEvent& event)
 {
-    if (g_active_wxmedit != NULL) g_active_wxmedit->PasteFromClipboard(true);
+    if (g_active_wxmedit != nullptr) g_active_wxmedit->PasteFromClipboard(true);
 }
 
 void MadEditFrame::OnEditDelete(wxCommandEvent& event)
 {
-    if (g_active_wxmedit != NULL) g_active_wxmedit->Delete();
+    if (g_active_wxmedit != nullptr) g_active_wxmedit->Delete();
 }
 
 void MadEditFrame::OnEditCutLine(wxCommandEvent& event)
 {
-    if (g_active_wxmedit != NULL) g_active_wxmedit->CutLine();
+    if (g_active_wxmedit != nullptr) g_active_wxmedit->CutLine();
 }
 
 void MadEditFrame::OnEditDeleteLine(wxCommandEvent& event)
 {
-    if (g_active_wxmedit != NULL) g_active_wxmedit->DeleteLine();
+    if (g_active_wxmedit != nullptr) g_active_wxmedit->DeleteLine();
 }
 
 void MadEditFrame::OnEditSelectAll(wxCommandEvent& event)
 {
-    if (g_active_wxmedit != NULL) g_active_wxmedit->SelectAll();
+    if (g_active_wxmedit != nullptr) g_active_wxmedit->SelectAll();
 }
 
 void MadEditFrame::OnEditInsertTabChar(wxCommandEvent& event)
 {
-    if (g_active_wxmedit == NULL)
+    if (g_active_wxmedit == nullptr)
         return;
     g_active_wxmedit->InsertTabChar();
 }
 
 void MadEditFrame::OnEditInsertDateTime(wxCommandEvent& event)
 {
-    if (g_active_wxmedit == NULL)
+    if (g_active_wxmedit == nullptr)
         return;
     g_active_wxmedit->InsertDateTime();
 }
@@ -3658,7 +3659,7 @@ void MadEditFrame::OnEditClearAllBookmarks(wxCommandEvent& event)
 
 void MadEditFrame::OnEditSortAscending(wxCommandEvent& event)
 {
-    if (g_active_wxmedit!=NULL && g_active_wxmedit->GetEditMode()!=emHexMode)
+    if (g_active_wxmedit!=nullptr && g_active_wxmedit->GetEditMode()!=emHexMode)
     {
         int begin, end;
         g_active_wxmedit->GetSelectionLineId(begin, end);
@@ -3668,7 +3669,7 @@ void MadEditFrame::OnEditSortAscending(wxCommandEvent& event)
 
 void MadEditFrame::OnEditSortDescending(wxCommandEvent& event)
 {
-    if (g_active_wxmedit!=NULL && g_active_wxmedit->GetEditMode()!=emHexMode)
+    if (g_active_wxmedit!=nullptr && g_active_wxmedit->GetEditMode()!=emHexMode)
     {
         int begin, end;
         g_active_wxmedit->GetSelectionLineId(begin, end);
@@ -3678,7 +3679,7 @@ void MadEditFrame::OnEditSortDescending(wxCommandEvent& event)
 
 void MadEditFrame::OnEditSortAscendingCase(wxCommandEvent& event)
 {
-    if (g_active_wxmedit!=NULL && g_active_wxmedit->GetEditMode()!=emHexMode)
+    if (g_active_wxmedit!=nullptr && g_active_wxmedit->GetEditMode()!=emHexMode)
     {
         int begin, end;
         g_active_wxmedit->GetSelectionLineId(begin, end);
@@ -3688,7 +3689,7 @@ void MadEditFrame::OnEditSortAscendingCase(wxCommandEvent& event)
 
 void MadEditFrame::OnEditSortDescendingCase(wxCommandEvent& event)
 {
-    if (g_active_wxmedit!=NULL && g_active_wxmedit->GetEditMode()!=emHexMode)
+    if (g_active_wxmedit!=nullptr && g_active_wxmedit->GetEditMode()!=emHexMode)
     {
         int begin, end;
         g_active_wxmedit->GetSelectionLineId(begin, end);
@@ -3698,7 +3699,7 @@ void MadEditFrame::OnEditSortDescendingCase(wxCommandEvent& event)
 
 void MadEditFrame::OnEditSortByOptions(wxCommandEvent& event)
 {
-    if (g_active_wxmedit!=NULL && g_active_wxmedit->GetEditMode()!=emHexMode)
+    if (g_active_wxmedit!=nullptr && g_active_wxmedit->GetEditMode()!=emHexMode)
     {
         wxString oldpath=m_Config->GetPath();
         m_Config->SetPath(wxT("/wxMEdit"));
@@ -3725,7 +3726,7 @@ void MadEditFrame::OnEditSortByOptions(wxCommandEvent& event)
 
 void MadEditFrame::OnEditSortOptions(wxCommandEvent& event)
 {
-    if (g_active_wxmedit==NULL || g_active_wxmedit->GetEditMode()==emHexMode)
+    if (g_active_wxmedit==nullptr || g_active_wxmedit->GetEditMode()==emHexMode)
         return;
 
     WXMSortDialog dialog(this);
@@ -3775,63 +3776,63 @@ void MadEditFrame::OnEditSortOptions(wxCommandEvent& event)
 
 void MadEditFrame::OnEditCopyAsHexString(wxCommandEvent& event)
 {
-    if (g_active_wxmedit != NULL) g_active_wxmedit->CopyAsHexString(false);
+    if (g_active_wxmedit != nullptr) g_active_wxmedit->CopyAsHexString(false);
 }
 void MadEditFrame::OnEditCopyAsHexStringWithSpace(wxCommandEvent& event)
 {
-    if (g_active_wxmedit != NULL) g_active_wxmedit->CopyAsHexString(true);
+    if (g_active_wxmedit != nullptr) g_active_wxmedit->CopyAsHexString(true);
 }
 
 void MadEditFrame::OnEditIncIndent(wxCommandEvent& event)
 {
-    if (g_active_wxmedit != NULL) g_active_wxmedit->IncreaseDecreaseIndent(true);
+    if (g_active_wxmedit != nullptr) g_active_wxmedit->IncreaseDecreaseIndent(true);
 }
 void MadEditFrame::OnEditDecIndent(wxCommandEvent& event)
 {
-    if (g_active_wxmedit != NULL) g_active_wxmedit->IncreaseDecreaseIndent(false);
+    if (g_active_wxmedit != nullptr) g_active_wxmedit->IncreaseDecreaseIndent(false);
 }
 
 void MadEditFrame::OnEditComment(wxCommandEvent& event)
 {
-    if (g_active_wxmedit != NULL) g_active_wxmedit->CommentUncomment(true);
+    if (g_active_wxmedit != nullptr) g_active_wxmedit->CommentUncomment(true);
 }
 void MadEditFrame::OnEditUncomment(wxCommandEvent& event)
 {
-    if (g_active_wxmedit != NULL) g_active_wxmedit->CommentUncomment(false);
+    if (g_active_wxmedit != nullptr) g_active_wxmedit->CommentUncomment(false);
 }
 
 void MadEditFrame::OnEditWordWrapToNewLine(wxCommandEvent& event)
 {
-    if (g_active_wxmedit != NULL) g_active_wxmedit->ConvertWordWrapToNewLine();
+    if (g_active_wxmedit != nullptr) g_active_wxmedit->ConvertWordWrapToNewLine();
 }
 void MadEditFrame::OnEditNewLineToWordWrap(wxCommandEvent& event)
 {
-    if (g_active_wxmedit != NULL) g_active_wxmedit->ConvertNewLineToWordWrap();
+    if (g_active_wxmedit != nullptr) g_active_wxmedit->ConvertNewLineToWordWrap();
 }
 
 void MadEditFrame::OnEditToUpperCase(wxCommandEvent& event)
 {
-    if (g_active_wxmedit != NULL) g_active_wxmedit->ToUpperCase();
+    if (g_active_wxmedit != nullptr) g_active_wxmedit->ToUpperCase();
 }
 
 void MadEditFrame::OnEditToLowerCase(wxCommandEvent& event)
 {
-    if (g_active_wxmedit != NULL) g_active_wxmedit->ToLowerCase();
+    if (g_active_wxmedit != nullptr) g_active_wxmedit->ToLowerCase();
 }
 
 void MadEditFrame::OnEditInvertCase(wxCommandEvent& event)
 {
-    if (g_active_wxmedit != NULL) g_active_wxmedit->InvertCase();
+    if (g_active_wxmedit != nullptr) g_active_wxmedit->InvertCase();
 }
 
 void MadEditFrame::OnEditToHalfWidth(wxCommandEvent& event)
 {
-    if (g_active_wxmedit != NULL) g_active_wxmedit->ToHalfWidth();
+    if (g_active_wxmedit != nullptr) g_active_wxmedit->ToHalfWidth();
 }
 
 void MadEditFrame::OnEditToHalfWidthByOptions(wxCommandEvent& event)
 {
-    if (g_active_wxmedit == NULL)
+    if (g_active_wxmedit == nullptr)
         return;
 
     static wxArrayInt selections;
@@ -3870,12 +3871,12 @@ void MadEditFrame::OnEditToHalfWidthByOptions(wxCommandEvent& event)
 
 void MadEditFrame::OnEditToFullWidth(wxCommandEvent& event)
 {
-    if (g_active_wxmedit != NULL) g_active_wxmedit->ToFullWidth();
+    if (g_active_wxmedit != nullptr) g_active_wxmedit->ToFullWidth();
 }
 
 void MadEditFrame::OnEditToFullWidthByOptions(wxCommandEvent& event)
 {
-    if(g_active_wxmedit == NULL) return;
+    if(g_active_wxmedit == nullptr) return;
 
     static wxArrayInt selections;
     static bool initialized = false;
@@ -3913,16 +3914,16 @@ void MadEditFrame::OnEditToFullWidthByOptions(wxCommandEvent& event)
 
 void MadEditFrame::OnEditTabToSpace(wxCommandEvent& event)
 {
-    if (g_active_wxmedit != NULL) g_active_wxmedit->ConvertTabToSpace();
+    if (g_active_wxmedit != nullptr) g_active_wxmedit->ConvertTabToSpace();
 }
 void MadEditFrame::OnEditSpaceToTab(wxCommandEvent& event)
 {
-    if (g_active_wxmedit != NULL) g_active_wxmedit->ConvertSpaceToTab();
+    if (g_active_wxmedit != nullptr) g_active_wxmedit->ConvertSpaceToTab();
 }
 
 void MadEditFrame::OnEditTrimTrailingSpaces(wxCommandEvent& event)
 {
-    if (g_active_wxmedit!=NULL && g_active_wxmedit->GetEditMode()!=emHexMode)
+    if (g_active_wxmedit!=nullptr && g_active_wxmedit->GetEditMode()!=emHexMode)
         g_active_wxmedit->TrimTrailingSpaces();
 }
 
@@ -3979,7 +3980,7 @@ private:
 
 void MadEditFrame::OnSearchFind(wxCommandEvent& event)
 {
-    if (g_active_wxmedit==NULL)
+    if (g_active_wxmedit==nullptr)
         return;
 
     GetSearchReplaceDialog(this).ShowOnlyFindFunc();
@@ -4002,7 +4003,7 @@ void MadEditFrame::OnSearchFind(wxCommandEvent& event)
 
 void MadEditFrame::OnSearchFindNext(wxCommandEvent& event)
 {
-    if (g_active_wxmedit == NULL)
+    if (g_active_wxmedit == nullptr)
         return;
 
     GetSearchReplaceDialog(this).UpdateCheckBoxByCBHex();
@@ -4016,7 +4017,7 @@ void MadEditFrame::OnSearchFindNext(wxCommandEvent& event)
 
 void MadEditFrame::OnSearchFindPrevious(wxCommandEvent& event)
 {
-    if (g_active_wxmedit == NULL)
+    if (g_active_wxmedit == nullptr)
         return;
 
     GetSearchReplaceDialog(this).UpdateCheckBoxByCBHex();
@@ -4030,7 +4031,7 @@ void MadEditFrame::OnSearchFindPrevious(wxCommandEvent& event)
 
 void MadEditFrame::OnSearchReplace(wxCommandEvent& event)
 {
-    if (g_active_wxmedit == NULL)
+    if (g_active_wxmedit == nullptr)
         return;
 
     GetSearchReplaceDialog(this).ShowWithReplaceFunc();
@@ -4060,7 +4061,7 @@ void MadEditFrame::OnSearchFindInFiles(wxCommandEvent& event)
 
     wxString fname;
     int fsize;
-    if (g_active_wxmedit != NULL)
+    if (g_active_wxmedit != nullptr)
         g_active_wxmedit->GetFont(fname, fsize);
     else
         GetFindInFilesDialog(this).m_FindText->GetFont(fname, fsize);
@@ -4068,7 +4069,7 @@ void MadEditFrame::OnSearchFindInFiles(wxCommandEvent& event)
     GetFindInFilesDialog(this).m_ReplaceText->SetFont(fname, 12);
 
     wxm::SearchingTextAssigner<WXMFindInFilesDialog> assigner(GetFindInFilesDialog(this));
-    if (g_active_wxmedit != NULL)
+    if (g_active_wxmedit != nullptr)
         assigner.AssignSelectedText();
 
     GetFindInFilesDialog(this).m_FindText->SelectAll();
@@ -4090,7 +4091,7 @@ void MadEditFrame::OnSearchShowFindInFilesResults(wxCommandEvent& event)
 
 void MadEditFrame::OnSearchGoToLine(wxCommandEvent& event)
 {
-    if (g_active_wxmedit == NULL)
+    if (g_active_wxmedit == nullptr)
         return;
 
     static wxString defstr;
@@ -4115,7 +4116,7 @@ void MadEditFrame::OnSearchGoToLine(wxCommandEvent& event)
 
 void MadEditFrame::OnSearchGoToPosition(wxCommandEvent& event)
 {
-    if (g_active_wxmedit == NULL)
+    if (g_active_wxmedit == nullptr)
         return;
 
     static wxString defstr;
@@ -4134,14 +4135,14 @@ void MadEditFrame::OnSearchGoToPosition(wxCommandEvent& event)
 
 void MadEditFrame::OnSearchGoToLeftBrace(wxCommandEvent& event)
 {
-    if (g_active_wxmedit == NULL)
+    if (g_active_wxmedit == nullptr)
         return;
 
     g_active_wxmedit->GoToLeftBrace();
 }
 void MadEditFrame::OnSearchGoToRightBrace(wxCommandEvent& event)
 {
-    if (g_active_wxmedit == NULL)
+    if (g_active_wxmedit == nullptr)
         return;
 
     g_active_wxmedit->GoToRightBrace();
@@ -4150,7 +4151,7 @@ void MadEditFrame::OnSearchGoToRightBrace(wxCommandEvent& event)
 
 void MadEditFrame::OnViewEncoding(wxCommandEvent& event)
 {
-    if (g_active_wxmedit == NULL)
+    if (g_active_wxmedit == nullptr)
         return;
 
     int idx=event.GetId()-menuEncoding1;
@@ -4167,7 +4168,7 @@ void MadEditFrame::OnViewEncoding(wxCommandEvent& event)
 
 void MadEditFrame::OnViewRecentEncoding(wxCommandEvent& event)
 {
-    if (g_active_wxmedit == NULL)
+    if (g_active_wxmedit == nullptr)
         return;
 
     int idx=event.GetId()-menuRecentEncoding1;
@@ -4194,7 +4195,7 @@ void MadEditFrame::OnViewRecentEncoding(wxCommandEvent& event)
 
 void MadEditFrame::OnViewSyntax(wxCommandEvent& event)
 {
-    if (g_active_wxmedit == NULL)
+    if (g_active_wxmedit == nullptr)
         return;
 
     int idx=event.GetId()-menuSyntax1;
@@ -4204,7 +4205,7 @@ void MadEditFrame::OnViewSyntax(wxCommandEvent& event)
 
 void MadEditFrame::OnViewFontName(wxCommandEvent& event)
 {
-    if (g_active_wxmedit == NULL)
+    if (g_active_wxmedit == nullptr)
         return;
 
     int idx=event.GetId()-menuFontName1;
@@ -4220,7 +4221,7 @@ void MadEditFrame::OnViewFontName(wxCommandEvent& event)
 
 void MadEditFrame::OnViewRecentFont(wxCommandEvent& event)
 {
-    if (g_active_wxmedit == NULL)
+    if (g_active_wxmedit == nullptr)
         return;
 
     int idx=event.GetId()-menuRecentFont1;
@@ -4238,7 +4239,7 @@ void MadEditFrame::OnViewRecentFont(wxCommandEvent& event)
 
 void MadEditFrame::OnViewFontSize(wxCommandEvent& event)
 {
-    if (g_active_wxmedit == NULL)
+    if (g_active_wxmedit == nullptr)
         return;
 
     wxString fn;
@@ -4252,7 +4253,7 @@ void MadEditFrame::OnViewFontSize(wxCommandEvent& event)
 
 void MadEditFrame::OnViewSetFont(wxCommandEvent& event)
 {
-    if (g_active_wxmedit == NULL)
+    if (g_active_wxmedit == nullptr)
         return;
 
     wxFontData data;
@@ -4297,7 +4298,7 @@ void MadEditFrame::OnViewSetFont(wxCommandEvent& event)
 
 void MadEditFrame::OnViewFixedWidthMode(wxCommandEvent& event)
 {
-    if (g_active_wxmedit == NULL)
+    if (g_active_wxmedit == nullptr)
         return;
 
     g_active_wxmedit->SetFixedWidthMode(event.IsChecked());
@@ -4305,7 +4306,7 @@ void MadEditFrame::OnViewFixedWidthMode(wxCommandEvent& event)
 
 void MadEditFrame::OnViewTabColumn(wxCommandEvent& event)
 {
-    if (g_active_wxmedit == NULL)
+    if (g_active_wxmedit == nullptr)
         return;
 
     int col=event.GetId()-menuTabColumn1 +1;
@@ -4314,7 +4315,7 @@ void MadEditFrame::OnViewTabColumn(wxCommandEvent& event)
 
 void MadEditFrame::OnViewLineSpacing(wxCommandEvent& event)
 {
-    if (g_active_wxmedit == NULL)
+    if (g_active_wxmedit == nullptr)
         return;
 
     int ls=(event.GetId()-menuLineSpacing100)*5 + 100;
@@ -4323,21 +4324,21 @@ void MadEditFrame::OnViewLineSpacing(wxCommandEvent& event)
 
 void MadEditFrame::OnViewNoWrap(wxCommandEvent& event)
 {
-    if (g_active_wxmedit == NULL)
+    if (g_active_wxmedit == nullptr)
         return;
 
     g_active_wxmedit->SetWordWrapMode(wwmNoWrap);
 }
 void MadEditFrame::OnViewWrapByWindow(wxCommandEvent& event)
 {
-    if (g_active_wxmedit == NULL)
+    if (g_active_wxmedit == nullptr)
         return;
 
     g_active_wxmedit->SetWordWrapMode(wwmWrapByWindow);
 }
 void MadEditFrame::OnViewWrapByColumn(wxCommandEvent& event)
 {
-    if (g_active_wxmedit == NULL)
+    if (g_active_wxmedit == nullptr)
         return;
 
     g_active_wxmedit->SetWordWrapMode(wwmWrapByColumn);
@@ -4345,49 +4346,49 @@ void MadEditFrame::OnViewWrapByColumn(wxCommandEvent& event)
 
 void MadEditFrame::OnViewDisplayLineNumber(wxCommandEvent& event)
 {
-    if (g_active_wxmedit == NULL)
+    if (g_active_wxmedit == nullptr)
         return;
 
     g_active_wxmedit->SetLineNumberVisible(event.IsChecked());
 }
 void MadEditFrame::OnViewDisplayBookmark(wxCommandEvent& event)
 {
-    if (g_active_wxmedit == NULL)
+    if (g_active_wxmedit == nullptr)
         return;
 
     g_active_wxmedit->SetBookmarkVisible(event.IsChecked());
 }
 void MadEditFrame::OnViewShowEndOfLine(wxCommandEvent& event)
 {
-    if (g_active_wxmedit == NULL)
+    if (g_active_wxmedit == nullptr)
         return;
 
     g_active_wxmedit->SetShowEndOfLine(event.IsChecked());
 }
 void MadEditFrame::OnViewShowTabChar(wxCommandEvent& event)
 {
-    if (g_active_wxmedit == NULL)
+    if (g_active_wxmedit == nullptr)
         return;
 
     g_active_wxmedit->SetShowTabChar(event.IsChecked());
 }
 void MadEditFrame::OnViewShowSpaceChar(wxCommandEvent& event)
 {
-    if (g_active_wxmedit == NULL)
+    if (g_active_wxmedit == nullptr)
         return;
 
     g_active_wxmedit->SetShowSpaceChar(event.IsChecked());
 }
 void MadEditFrame::OnViewMarkActiveLine(wxCommandEvent& event)
 {
-    if (g_active_wxmedit == NULL)
+    if (g_active_wxmedit == nullptr)
         return;
 
     g_active_wxmedit->SetMarkActiveLine(event.IsChecked());
 }
 void MadEditFrame::OnViewMarkBracePair(wxCommandEvent& event)
 {
-    if (g_active_wxmedit == NULL)
+    if (g_active_wxmedit == nullptr)
         return;
 
     g_active_wxmedit->SetMarkBracePair(event.IsChecked());
@@ -4395,21 +4396,21 @@ void MadEditFrame::OnViewMarkBracePair(wxCommandEvent& event)
 
 void MadEditFrame::OnViewTextMode(wxCommandEvent& event)
 {
-    if (g_active_wxmedit == NULL)
+    if (g_active_wxmedit == nullptr)
         return;
 
     g_active_wxmedit->SetEditMode(emTextMode);
 }
 void MadEditFrame::OnViewColumnMode(wxCommandEvent& event)
 {
-    if (g_active_wxmedit == NULL)
+    if (g_active_wxmedit == nullptr)
         return;
 
     g_active_wxmedit->SetEditMode(emColumnMode);
 }
 void MadEditFrame::OnViewHexMode(wxCommandEvent& event)
 {
-    if (g_active_wxmedit == NULL)
+    if (g_active_wxmedit == nullptr)
         return;
 
     g_active_wxmedit->SetEditMode(emHexMode);
@@ -4418,7 +4419,7 @@ void MadEditFrame::OnViewHexMode(wxCommandEvent& event)
 
 void MadEditFrame::OnToolsOptions(wxCommandEvent& event)
 {
-    if(g_OptionsDialog==NULL) g_OptionsDialog=new WXMEditOptionsDialog(this);
+    if(g_OptionsDialog==nullptr) g_OptionsDialog=new WXMEditOptionsDialog(this);
 
     g_OptionsDialog->LoadOptions();
     if(g_OptionsDialog->ShowModal()==wxID_OK)
@@ -4688,9 +4689,9 @@ void MadEditFrame::OnToolsOptions(wxCommandEvent& event)
 
 void MadEditFrame::OnToolsHighlighting(wxCommandEvent& event)
 {
-    if(g_HighlightingDialog==NULL) g_HighlightingDialog=new WXMHighlightingDialog(this);
+    if(g_HighlightingDialog==nullptr) g_HighlightingDialog=new WXMHighlightingDialog(this);
 
-    if (g_active_wxmedit != NULL)
+    if (g_active_wxmedit != nullptr)
     {
         g_HighlightingDialog->m_InitSetting=g_active_wxmedit->GetSyntaxTitle();
     }
@@ -4701,7 +4702,7 @@ void MadEditFrame::OnToolsHighlighting(wxCommandEvent& event)
     int id=g_HighlightingDialog->ShowModal();
     g_HighlightingDialog->FreeSyntax(id!=wxID_OK); // press cancel to restore the syntax
 
-    if (g_active_wxmedit != NULL)
+    if (g_active_wxmedit != nullptr)
     {
         g_active_wxmedit->SetFocus();
     }
@@ -4723,28 +4724,28 @@ void MadEditFrame::OnToolsPurgeHistories(wxCommandEvent& event)
 
 void MadEditFrame::OnToolsToggleBOM(wxCommandEvent& event)
 {
-    if (g_active_wxmedit == NULL)
+    if (g_active_wxmedit == nullptr)
         return;
 
     g_active_wxmedit->ToggleBOM();
 }
 void MadEditFrame::OnToolsConvertToDOS(wxCommandEvent& event)
 {
-    if (g_active_wxmedit == NULL)
+    if (g_active_wxmedit == nullptr)
         return;
 
     g_active_wxmedit->ConvertNewLineType(nltDOS);
 }
 void MadEditFrame::OnToolsConvertToMAC(wxCommandEvent& event)
 {
-    if (g_active_wxmedit == NULL)
+    if (g_active_wxmedit == nullptr)
         return;
 
     g_active_wxmedit->ConvertNewLineType(nltMAC);
 }
 void MadEditFrame::OnToolsConvertToUNIX(wxCommandEvent& event)
 {
-    if (g_active_wxmedit == NULL)
+    if (g_active_wxmedit == nullptr)
         return;
 
     g_active_wxmedit->ConvertNewLineType(nltUNIX);
@@ -4752,21 +4753,21 @@ void MadEditFrame::OnToolsConvertToUNIX(wxCommandEvent& event)
 
 void MadEditFrame::OnToolsInsertDOS(wxCommandEvent& event)
 {
-    if (g_active_wxmedit == NULL)
+    if (g_active_wxmedit == nullptr)
         return;
 
     g_active_wxmedit->SetInsertNewLineType(nltDOS);
 }
 void MadEditFrame::OnToolsInsertMAC(wxCommandEvent& event)
 {
-    if (g_active_wxmedit == NULL)
+    if (g_active_wxmedit == nullptr)
         return;
 
     g_active_wxmedit->SetInsertNewLineType(nltMAC);
 }
 void MadEditFrame::OnToolsInsertUNIX(wxCommandEvent& event)
 {
-    if (g_active_wxmedit == NULL)
+    if (g_active_wxmedit == nullptr)
         return;
 
     g_active_wxmedit->SetInsertNewLineType(nltUNIX);
@@ -4775,10 +4776,10 @@ void MadEditFrame::OnToolsInsertUNIX(wxCommandEvent& event)
 
 void MadEditFrame::OnToolsConvertEncoding(wxCommandEvent& event)
 {
-    if (g_active_wxmedit == NULL)
+    if (g_active_wxmedit == nullptr)
         return;
 
-    if(g_ConvEncDialog==NULL) g_ConvEncDialog=new WXMConvEncDialog(this);
+    if(g_ConvEncDialog==nullptr) g_ConvEncDialog=new WXMConvEncDialog(this);
 
     if(g_ConvEncDialog->ShowModal()==wxID_OK)
     {
@@ -4801,35 +4802,35 @@ void MadEditFrame::OnToolsConvertEncoding(wxCommandEvent& event)
 
 void MadEditFrame::OnToolsSimp2TradChinese(wxCommandEvent& event)
 {
-    if (g_active_wxmedit == NULL)
+    if (g_active_wxmedit == nullptr)
         return;
     g_active_wxmedit->ConvertChinese(cefSC2TC);
 }
 
 void MadEditFrame::OnToolsTrad2SimpChinese(wxCommandEvent& event)
 {
-    if (g_active_wxmedit == NULL)
+    if (g_active_wxmedit == nullptr)
         return;
     g_active_wxmedit->ConvertChinese(cefTC2SC);
 }
 
 void MadEditFrame::OnToolsKanji2TradChinese(wxCommandEvent& event)
 {
-    if (g_active_wxmedit == NULL)
+    if (g_active_wxmedit == nullptr)
         return;
     g_active_wxmedit->ConvertChinese(cefJK2TC);
 }
 
 void MadEditFrame::OnToolsKanji2SimpChinese(wxCommandEvent& event)
 {
-    if (g_active_wxmedit == NULL)
+    if (g_active_wxmedit == nullptr)
         return;
     g_active_wxmedit->ConvertChinese(cefJK2SC);
 }
 
 void MadEditFrame::OnToolsChinese2Kanji(wxCommandEvent& event)
 {
-    if (g_active_wxmedit == NULL)
+    if (g_active_wxmedit == nullptr)
         return;
     g_active_wxmedit->ConvertChinese(cefC2JK);
 }
@@ -4861,7 +4862,7 @@ void MadEditFrame::OnToolsChinese2KanjiClipboard(wxCommandEvent& event)
 
 void MadEditFrame::OnToolsWordCount(wxCommandEvent& event)
 {
-    if (g_active_wxmedit == NULL)
+    if (g_active_wxmedit == nullptr)
         return;
 
     WXMWordCountDialog dialog(this);
