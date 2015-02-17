@@ -16,6 +16,8 @@
 #ifndef _WX_GTK_CLIPBOARD_GTK_H_
 #define _WX_GTK_CLIPBOARD_GTK_H_
 
+#include "../xm/cxx11.h"
+
 #include <wx/object.h>
 #include <wx/list.h>
 #include <wx/dataobj.h>
@@ -34,33 +36,35 @@ public:
     virtual ~wxClipboardGtk();
 
     // open the clipboard before SetData() and GetData()
-    virtual bool Open();
+    virtual bool Open() override;
 
     // close the clipboard after SetData() and GetData()
-    virtual void Close();
+    virtual void Close() override;
 
     // query whether the clipboard is opened
-    virtual bool IsOpened() const;
+    virtual bool IsOpened() const override;
 
     // set the clipboard data. all other formats will be deleted.
-    virtual bool SetData( wxDataObject *data );
+    virtual bool SetData( wxDataObject *data ) override;
 
     // add to the clipboard data.
-    virtual bool AddData( wxDataObject *data );
+    virtual bool AddData( wxDataObject *data ) override;
 
     // ask if data in correct format is available
-    virtual bool IsSupported( const wxDataFormat& format );
+    virtual bool IsSupported( const wxDataFormat& format ) override;
 
     // fill data with data on the clipboard (if available)
-    virtual bool GetData( wxDataObject& data );
+    virtual bool GetData( wxDataObject& data ) override;
 
     // clears wxTheClipboard and the system's clipboard if possible
-    virtual void Clear();
+    virtual void Clear() override;
 
     // If primary == true, use primary selection in all further ops,
     // primary == false resets it.
-    virtual void UsePrimarySelection(bool primary = true)
-        { m_usePrimary = primary; }
+    virtual void UsePrimarySelection(bool primary = true) override
+    {
+        m_usePrimary = primary;
+    }
     
     // implementation from now on
     bool              m_open;

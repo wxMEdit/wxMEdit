@@ -9,6 +9,7 @@
 #ifndef _WXM_ENCODING_UNICODE_H_
 #define _WXM_ENCODING_UNICODE_H_
 
+#include "../../xm/cxx11.h"
 #include "encoding.h"
 
 #include <unicode/ucnv.h>
@@ -24,8 +25,8 @@ namespace wxm
 
 struct WXMEncodingUTF8: public WXMEncoding, WXMEncodingDecoderISO646
 {
-	virtual size_t UCS4toMultiByte(ucs4_t ucs4, wxByte* buf);
-	virtual bool NextUChar32(MadUCQueue &ucqueue, UChar32BytesMapper& mapper);
+	virtual size_t UCS4toMultiByte(ucs4_t ucs4, wxByte* buf) override;
+	virtual bool NextUChar32(MadUCQueue &ucqueue, UChar32BytesMapper& mapper) override;
 
 private:
 	friend WXMEncoding* WXMEncodingManager::GetWxmEncoding(ssize_t idx);
@@ -35,11 +36,11 @@ private:
 
 struct WXMEncodingUTF16LE: public WXMEncoding
 {
-	virtual size_t UCS4toMultiByte(ucs4_t ucs4, wxByte* buf);
-	virtual bool NextUChar32(MadUCQueue &ucqueue, UChar32BytesMapper& mapper);
-	virtual ucs4_t PeekUChar32_Newline(WXMBlockDumper& dumper, size_t len);
-	virtual bool IsUChar32_LineFeed(WXMBlockDumper& dumper, size_t len);
-	virtual bool IsUChar32_LineFeed(const wxByte* buf, size_t len)
+	virtual size_t UCS4toMultiByte(ucs4_t ucs4, wxByte* buf) override;
+	virtual bool NextUChar32(MadUCQueue &ucqueue, UChar32BytesMapper& mapper) override;
+	virtual ucs4_t PeekUChar32_Newline(WXMBlockDumper& dumper, size_t len) override;
+	virtual bool IsUChar32_LineFeed(WXMBlockDumper& dumper, size_t len) override;
+	virtual bool IsUChar32_LineFeed(const wxByte* buf, size_t len) override
 	{
 		return len>=2 && buf[0]==0x0A && buf[1]==0;
 	}
@@ -52,11 +53,11 @@ private:
 
 struct WXMEncodingUTF16BE: public WXMEncoding
 {
-	virtual size_t UCS4toMultiByte(ucs4_t ucs4, wxByte* buf);
-	virtual bool NextUChar32(MadUCQueue &ucqueue, UChar32BytesMapper& mapper);
-	virtual ucs4_t PeekUChar32_Newline(WXMBlockDumper& dumper, size_t len);
-	virtual bool IsUChar32_LineFeed(WXMBlockDumper& dumper, size_t len);
-	virtual bool IsUChar32_LineFeed(const wxByte* buf, size_t len)
+	virtual size_t UCS4toMultiByte(ucs4_t ucs4, wxByte* buf) override;
+	virtual bool NextUChar32(MadUCQueue &ucqueue, UChar32BytesMapper& mapper) override;
+	virtual ucs4_t PeekUChar32_Newline(WXMBlockDumper& dumper, size_t len) override;
+	virtual bool IsUChar32_LineFeed(WXMBlockDumper& dumper, size_t len) override;
+	virtual bool IsUChar32_LineFeed(const wxByte* buf, size_t len) override
 	{
 		return len>=2 && buf[1]==0x0A && buf[0]==0;
 	}
@@ -69,11 +70,11 @@ private:
 
 struct WXMEncodingUTF32LE: public WXMEncoding
 {
-	virtual size_t UCS4toMultiByte(ucs4_t ucs4, wxByte* buf);
-	virtual bool NextUChar32(MadUCQueue &ucqueue, UChar32BytesMapper& mapper);
-	virtual ucs4_t PeekUChar32_Newline(WXMBlockDumper& dumper, size_t len);
-	virtual bool IsUChar32_LineFeed(WXMBlockDumper& dumper, size_t len);
-	virtual bool IsUChar32_LineFeed(const wxByte* buf, size_t len)
+	virtual size_t UCS4toMultiByte(ucs4_t ucs4, wxByte* buf) override;
+	virtual bool NextUChar32(MadUCQueue &ucqueue, UChar32BytesMapper& mapper) override;
+	virtual ucs4_t PeekUChar32_Newline(WXMBlockDumper& dumper, size_t len) override;
+	virtual bool IsUChar32_LineFeed(WXMBlockDumper& dumper, size_t len) override;
+	virtual bool IsUChar32_LineFeed(const wxByte* buf, size_t len) override
 	{
 		return len>=4 && buf[0]==0x0A && buf[1]==0 && buf[2]==0 && buf[3]==0;
 	}
@@ -86,11 +87,11 @@ private:
 
 struct WXMEncodingUTF32BE: public WXMEncoding
 {
-	virtual size_t UCS4toMultiByte(ucs4_t ucs4, wxByte* buf);
-	virtual bool NextUChar32(MadUCQueue &ucqueue, UChar32BytesMapper& mapper);
-	virtual ucs4_t PeekUChar32_Newline(WXMBlockDumper& dumper, size_t len);
-	virtual bool IsUChar32_LineFeed(WXMBlockDumper& dumper, size_t len);
-	virtual bool IsUChar32_LineFeed(const wxByte* buf, size_t len)
+	virtual size_t UCS4toMultiByte(ucs4_t ucs4, wxByte* buf) override;
+	virtual bool NextUChar32(MadUCQueue &ucqueue, UChar32BytesMapper& mapper) override;
+	virtual ucs4_t PeekUChar32_Newline(WXMBlockDumper& dumper, size_t len) override;
+	virtual bool IsUChar32_LineFeed(WXMBlockDumper& dumper, size_t len) override;
+	virtual bool IsUChar32_LineFeed(const wxByte* buf, size_t len) override
 	{
 		return len>=4 && buf[3]==0x0A && buf[2]==0 && buf[1]==0 && buf[0]==0;
 	}

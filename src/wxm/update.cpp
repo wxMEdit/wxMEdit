@@ -189,7 +189,7 @@ struct UpdatesCheckingThread : public wxThread
 		: m_env_type(evt_type)
 	{}
 
-	virtual ExitCode Entry()
+	virtual ExitCode Entry() override
 	{
 		g_result_checkupdates = wxm::CheckUpdates();
 

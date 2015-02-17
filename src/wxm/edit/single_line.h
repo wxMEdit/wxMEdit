@@ -9,6 +9,7 @@
 #ifndef _WXMEDIT_SINGLE_LINE_H_
 #define _WXMEDIT_SINGLE_LINE_H_
 
+#include "../../xm/cxx11.h"
 #include "simple.h"
 
 namespace wxm
@@ -16,17 +17,17 @@ namespace wxm
 
 class SingleLineWXMEdit: public SimpleTextWXMEdit
 {
-	virtual void UpdateScrollBarPos();
-	virtual bool AdjustInsertCount(const ucs4_t* ucs, size_t& count);
-	virtual bool AdjustStringLength(const wxString& ws, size_t& size);
-	virtual void ProcessReturnCommand(MadEditCommand command) {}
-	virtual void OnGetFocusByClickAsControl(const wxMouseEvent &evt);
-	virtual bool NeedNotProcessMouseLeftDown(wxMouseEvent &evt);
-	virtual void OnWXMEditSetFocus();
-	virtual void OnWXMEditKillFocus();
-	virtual void OnMouseWheel(wxMouseEvent &evt) {}
-	virtual void SetEditMode(MadEditMode mode) {}
-	virtual void SetClientSizeData(int w, int h);
+	virtual void UpdateScrollBarPos() override;
+	virtual bool AdjustInsertCount(const ucs4_t* ucs, size_t& count) override;
+	virtual bool AdjustStringLength(const wxString& ws, size_t& size) override;
+	virtual void ProcessReturnCommand(MadEditCommand command) override {}
+	virtual void OnGetFocusByClickAsControl(const wxMouseEvent &evt) override;
+	virtual bool NeedNotProcessMouseLeftDown(wxMouseEvent &evt) override;
+	virtual void OnWXMEditSetFocus() override;
+	virtual void OnWXMEditKillFocus() override;
+	virtual void OnMouseWheel(wxMouseEvent &evt) override {}
+	virtual void SetEditMode(MadEditMode mode) override {}
+	virtual void SetClientSizeData(int w, int h) override;
 
 	int m_LeftClickX, m_LeftClickY;     // for singleline & setfocus
 public:

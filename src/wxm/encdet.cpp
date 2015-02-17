@@ -7,6 +7,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 #include "encdet.h"
+#include "../xm/cxx11.h"
 #include "encoding/encoding.h"
 #include "../xm/cxx11.h"
 #include "../wxmedit/mad_encdet.h"
@@ -40,7 +41,7 @@ struct EncodingChecker
 
 struct UTF32Checker: public EncodingChecker
 {
-	virtual bool MatchText(const wxByte *text, size_t len) const
+	virtual bool MatchText(const wxByte *text, size_t len) const override
 	{
 		if (len < 4)
 			return false;
@@ -66,17 +67,17 @@ private:
 
 class UTF32LEChecker: public UTF32Checker
 {
-	virtual ucs4_t QByteToInt(ucs4_t u) const
+	virtual ucs4_t QByteToInt(ucs4_t u) const override
 	{
 		return wxINT32_SWAP_ON_BE(u);
 	}
 
-	virtual std::string EncodingName() const
+	virtual std::string EncodingName() const override
 	{
 		return "UTF-32LE";
 	}
 
-	virtual std::string BOM() const
+	virtual std::string BOM() const override
 	{
 		static const char bom[] = {'\xFF', '\xFE', '\0', '\0'};
 		return std::string(bom, 4);
@@ -85,17 +86,17 @@ class UTF32LEChecker: public UTF32Checker
 
 class UTF32BEChecker: public UTF32Checker
 {
-	virtual ucs4_t QByteToInt(ucs4_t u) const
+	virtual ucs4_t QByteToInt(ucs4_t u) const override
 	{
 		return wxINT32_SWAP_ON_LE(u);
 	}
 
-	virtual std::string EncodingName() const
+	virtual std::string EncodingName() const override
 	{
 		return "UTF-32BE";
 	}
 
-	virtual std::string BOM() const
+	virtual std::string BOM() const override
 	{
 		static const char bom[] = {'\0', '\0', '\xFE', '\xFF'};
 		return std::string(bom, 4);
@@ -105,7 +106,7 @@ class UTF32BEChecker: public UTF32Checker
 
 struct UTF16Checker: public EncodingChecker
 {
-	virtual bool MatchText(const wxByte *text, size_t len) const
+	virtual bool MatchText(const wxByte *text, size_t len) const override
 	{
 		bool ok = false;
 		bool highsurrogate = false;
@@ -153,17 +154,17 @@ private:
 
 class UTF16LEChecker: public UTF16Checker
 {
-	virtual wxUint16 DByteToUInt(wxUint16 u) const
+	virtual wxUint16 DByteToUInt(wxUint16 u) const override
 	{
 		return wxINT16_SWAP_ON_BE(u);
 	}
 
-	virtual std::string EncodingName() const
+	virtual std::string EncodingName() const override
 	{
 		return "UTF-16LE";
 	}
 
-	virtual std::string BOM() const
+	virtual std::string BOM() const override
 	{
 		return "\xFF\xFE";
 	}
@@ -171,17 +172,17 @@ class UTF16LEChecker: public UTF16Checker
 
 class UTF16BEChecker: public UTF16Checker
 {
-	virtual wxUint16 DByteToUInt(wxUint16 u) const
+	virtual wxUint16 DByteToUInt(wxUint16 u) const override
 	{
 		return wxINT16_SWAP_ON_LE(u);
 	}
 
-	virtual std::string EncodingName() const
+	virtual std::string EncodingName() const override
 	{
 		return "UTF-16BE";
 	}
 
-	virtual std::string BOM() const
+	virtual std::string BOM() const override
 	{
 		return "\xFE\xFF";
 	}
@@ -208,35 +209,35 @@ struct UTF8BytesChecker
 
 struct UTF8SingleByteChecker: public UTF8BytesChecker
 {
-	virtual bool BytesMatch(const wxByte* bytes) const { return true; }
-	virtual bool NonASCII() const { return false; }
+	virtual bool BytesMatch(const wxByte* bytes) const override { return true; }
+	virtual bool NonASCII() const override { return false; }
 
-	virtual size_t TakenBytes() const { return 1; }
+	virtual size_t TakenBytes() const override { return 1; }
 };
 
 struct UTF8TwoBytesChecker: public UTF8BytesChecker
 {
-	virtual bool BytesMatch(const wxByte* b) const
+	virtual bool BytesMatch(const wxByte* b) const override
 	{
 		return (b[1] & 0xC0)==0x80;
 	}
-	virtual size_t TakenBytes() const { return 2; }
+	virtual size_t TakenBytes() const override { return 2; }
 };
 
 struct UTF8ThreeBytesChecker: public UTF8BytesChecker
 {
-	virtual bool BytesMatch(const wxByte* b) const
+	virtual bool BytesMatch(const wxByte* b) const override
 	{
 		return (b[1] & 0xC0)==0x80 && (b[2] & 0xC0)==0x80;
 	}
 
-	virtual size_t TakenBytes() const { return 3; }
+	virtual size_t TakenBytes() const override { return 3; }
 };
 
 // first byte is 0xE0, second byte should >=0xA0
 struct UTF8ThreeBytesCheckerLB: public UTF8ThreeBytesChecker
 {
-	virtual bool BytesMatch(const wxByte* b) const
+	virtual bool BytesMatch(const wxByte* b) const override
 	{
 		return (b[1] & 0xE0)==0xA0 && (b[2] & 0xC0)==0x80;
 	}
@@ -247,7 +248,7 @@ struct UTF8ThreeBytesCheckerLB: public UTF8ThreeBytesChecker
 // skip surrogates
 struct UTF8ThreeBytesCheckerM: public UTF8ThreeBytesChecker
 {
-	virtual bool BytesMatch(const wxByte* b) const
+	virtual bool BytesMatch(const wxByte* b) const override
 	{
 		return (b[1] & 0xA0)==0x80 && (b[2] & 0xC0)==0x80;
 	}
@@ -255,18 +256,18 @@ struct UTF8ThreeBytesCheckerM: public UTF8ThreeBytesChecker
 
 struct UTF8FourBytesChecker: public UTF8BytesChecker
 {
-	virtual bool BytesMatch(const wxByte* b) const
+	virtual bool BytesMatch(const wxByte* b) const override
 	{
 		return (b[1] & 0xC0)==0x80 && (b[2] & 0xC0)==0x80 && (b[3] & 0xC0)==0x80;
 	}
 
-	virtual size_t TakenBytes() const { return 4; }
+	virtual size_t TakenBytes() const override { return 4; }
 };
 
 // first byte is 0xF0, second byte should >=0x90
 struct UTF8FourBytesCheckerLB: public UTF8FourBytesChecker
 {
-	virtual bool BytesMatch(const wxByte* b) const
+	virtual bool BytesMatch(const wxByte* b) const override
 	{
 		return (b[1] & 0xF0)>=0x90 && (b[1] & 0xF0)<=0xb0 && (b[2] & 0xC0)==0x80 && (b[3] & 0xC0)==0x80;
 	}
@@ -276,7 +277,7 @@ struct UTF8FourBytesCheckerLB: public UTF8FourBytesChecker
 // first byte is 0xF4, second byte should <=0x8F
 struct UTF8FourBytesCheckerUB: public UTF8FourBytesChecker
 {
-	virtual bool BytesMatch(const wxByte* b) const
+	virtual bool BytesMatch(const wxByte* b) const override
 	{
 		return (b[1] & 0xF0)==0x80 && (b[2] & 0xC0)==0x80 && (b[3] & 0xC0)==0x80;
 	}
@@ -285,8 +286,8 @@ struct UTF8FourBytesCheckerUB: public UTF8FourBytesChecker
 
 struct UTF8InvalidBytesChecker: public UTF8BytesChecker
 {
-	virtual bool BytesMatch(const wxByte* bytes) const { return false; }
-	virtual size_t TakenBytes() const { return 1; }
+	virtual bool BytesMatch(const wxByte* bytes) const override { return false; }
+	virtual size_t TakenBytes() const override { return 1; }
 };
 
 struct UTF8Checker: public EncodingChecker
@@ -312,12 +313,12 @@ struct UTF8Checker: public EncodingChecker
 		m_decoders[0xFF] = &m_dec_invalid;
 	}
 
-	virtual std::string BOM() const
+	virtual std::string BOM() const override
 	{
 		return "\xEF\xBB\xBF";
 	}
 
-	virtual bool MatchText(const wxByte* str, size_t len) const
+	virtual bool MatchText(const wxByte* str, size_t len) const override
 	{
 		bool nonascii = false;
 		while(len > 0)
@@ -335,7 +336,7 @@ struct UTF8Checker: public EncodingChecker
 		return nonascii;
 	}
 
-	virtual std::string EncodingName() const
+	virtual std::string EncodingName() const override
 	{
 		return "UTF-8";
 	}
@@ -364,17 +365,17 @@ bool IsUTF8(const wxByte *text, size_t len)
 
 struct GB18030Checker: public EncodingChecker
 {
-	virtual std::string BOM() const
+	virtual std::string BOM() const override
 	{
 		return "\x84\x31\x95\x33";
 	}
 
-	virtual bool MatchText(const wxByte* text, size_t len) const
+	virtual bool MatchText(const wxByte* text, size_t len) const override
 	{
 		return false;
 	}
 
-	virtual std::string EncodingName() const
+	virtual std::string EncodingName() const override
 	{
 		return "GB18030";
 	}
@@ -382,12 +383,12 @@ struct GB18030Checker: public EncodingChecker
 
 struct ISO646Checker: public EncodingChecker
 {
-	virtual std::string BOM() const
+	virtual std::string BOM() const override
 	{
 		return "";
 	}
 
-	virtual bool MatchText(const wxByte* text, size_t len) const
+	virtual bool MatchText(const wxByte* text, size_t len) const override
 	{
 		BOOST_FOREACH(wxByte b, boost::make_iterator_range(text, text+len))
 		{
@@ -397,7 +398,7 @@ struct ISO646Checker: public EncodingChecker
 		return true;
 	}
 
-	virtual std::string EncodingName() const
+	virtual std::string EncodingName() const override
 	{
 		return "US-ASCII";
 	}

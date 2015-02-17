@@ -113,7 +113,7 @@ private:
 	friend class ChoiceMap<HexAreaClipboardCopyProxy, SharedCopierPtr>;
 	HexAreaClipboardCopyProxy(): m_selected_idx(HACCI_RAWBYTES) {}
 
-	virtual void DoInit();
+	virtual void DoInit() override;
 
 	enum HexAreaClipboardCopierIndex
 	{
@@ -171,7 +171,7 @@ private:
 	friend class ChoiceMap<HexAreaClipboardPasteProxy, SharedPasterPtr>;
 	HexAreaClipboardPasteProxy(): m_selected_idx(HAPAHCI_NEVER) {}
 
-	virtual void DoInit();
+	virtual void DoInit() override;
 
 	enum HexAreaPasteAsHexConditionIndex
 	{

@@ -9,6 +9,7 @@
 #ifndef WXM_REPLACE_DIALOG_H
 #define WXM_REPLACE_DIALOG_H
 
+#include "../xm/cxx11.h"
 #include "../wxm/recent_list.h"
 #include "../wxm/utils.h"
 
@@ -106,7 +107,7 @@ class WXMSearchReplaceDialog: public wxDialog
 		void ShowOnlyFindFunc();
 		void ShowWithReplaceFunc();
 
-		virtual bool Show(bool show)
+		virtual bool Show(bool show) override
 		{
 			if (!show)
 				ResetMessage();

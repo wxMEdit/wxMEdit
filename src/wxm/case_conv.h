@@ -9,6 +9,7 @@
 #ifndef _WXM_CASE_CONV_H_
 #define _WXM_CASE_CONV_H_
 
+#include "../xm/cxx11.h"
 #include "wx_icu.h"
 #include <unicode/uchar.h>
 
@@ -67,7 +68,7 @@ namespace wxm
 		{ }
 
 	protected:
-		virtual UChar32 ConvertCase(UChar32 ch)
+		virtual UChar32 ConvertCase(UChar32 ch) override
 		{
 			return u_tolower(ch);
 		}
@@ -79,7 +80,7 @@ namespace wxm
 		{ }
 
 	protected:
-		virtual UChar32 ConvertCase(UChar32 ch)
+		virtual UChar32 ConvertCase(UChar32 ch) override
 		{
 			return u_toupper(ch);
 		}
@@ -91,7 +92,7 @@ namespace wxm
 		{ }
 
 	protected:
-		virtual UChar32 ConvertCase(UChar32 ch)
+		virtual UChar32 ConvertCase(UChar32 ch) override
 		{
 			if (u_islower(ch))
 				return u_toupper(ch);

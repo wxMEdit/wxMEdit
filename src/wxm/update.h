@@ -15,6 +15,7 @@
 //     Prerelease: A.B.C.D / A.B.C-D
 ///////////////////////////////////////////////////////////////////////////////
 
+#include "../xm/cxx11.h"
 #include "choice_map.hpp"
 #include <ctime>
 
@@ -42,7 +43,7 @@ private:
 	friend class ChoiceMap<UpdatePeriods, time_t>;
 	UpdatePeriods() {}
 
-	virtual void DoInit();
+	virtual void DoInit() override;
 
 	enum Index
 	{

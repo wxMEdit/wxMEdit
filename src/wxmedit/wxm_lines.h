@@ -70,9 +70,9 @@ public:
 class MadConvFileName : public wxMBConv
 {
 public:
-    virtual size_t MB2WC(wchar_t *outputBuf, const char *psz, size_t outputSize) const;
-    virtual size_t WC2MB(char *outputBuf, const wchar_t *psz, size_t outputSize) const;
-    virtual wxMBConv *Clone() const { return new MadConvFileName; }
+    virtual size_t MB2WC(wchar_t *outputBuf, const char *psz, size_t outputSize) const override;
+    virtual size_t WC2MB(char *outputBuf, const wchar_t *psz, size_t outputSize) const override;
+    virtual wxMBConv *Clone() const override { return new MadConvFileName; }
 };
 #endif
 
@@ -109,9 +109,9 @@ public:
     MadMemData();
     virtual ~MadMemData();
 
-    virtual wxByte Get(const wxFileOffset &pos);
-    virtual void Get(const wxFileOffset &pos, wxByte *buffer, size_t size);
-    virtual wxFileOffset Put(wxByte *buffer, size_t size);
+    virtual wxByte Get(const wxFileOffset &pos) override;
+    virtual void Get(const wxFileOffset &pos, wxByte *buffer, size_t size) override;
+    virtual wxFileOffset Put(wxByte *buffer, size_t size) override;
 };
 
 class MadFileData : public MadInData, public MadOutData
@@ -135,10 +135,10 @@ private:
 public:
     MadFileData(const wxString &name);
     virtual ~MadFileData();
-    virtual wxByte Get(const wxFileOffset &pos);
-    virtual void Get(const wxFileOffset &pos, wxByte *buffer, size_t size);
+    virtual wxByte Get(const wxFileOffset &pos) override;
+    virtual void Get(const wxFileOffset &pos, wxByte *buffer, size_t size) override;
 
-    virtual wxFileOffset Put(wxByte *buffer, size_t size);
+    virtual wxFileOffset Put(wxByte *buffer, size_t size) override;
     void Read(const wxFileOffset &pos, wxByte *buffer, size_t size)
     {
         m_File.Seek(pos);
@@ -437,8 +437,8 @@ private:  // NextUChar()
 
     bool m_manual;
 
-    virtual void MoveUChar32Bytes(MadUCQueue &ucqueue, ucs4_t uc, size_t len);
-    virtual wxByte* BufferLoadBytes(wxFileOffset& rest, size_t buf_len);
+    virtual void MoveUChar32Bytes(MadUCQueue &ucqueue, ucs4_t uc, size_t len) override;
+    virtual wxByte* BufferLoadBytes(wxFileOffset& rest, size_t buf_len) override;
 
     bool NextUCharIs0x0A(void);
 

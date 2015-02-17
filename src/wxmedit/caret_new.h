@@ -17,7 +17,11 @@
 #ifndef _WX_CARET_NEW_H_
 #define _WX_CARET_NEW_H_
 
+#include "../xm/cxx11.h"
+
 #include <wx/timer.h>
+#include <wx/caret.h>
+#include <wx/bitmap.h>
 
 class wxCaretNew;
 
@@ -25,7 +29,7 @@ class wxCaretTimerNew : public wxTimer
 {
 public:
     wxCaretTimerNew(wxCaretNew *caret);
-    virtual void Notify();
+    virtual void Notify() override;
 
 private:
     wxCaretNew *m_caret;
@@ -51,17 +55,17 @@ public:
     // --------------
 
     // called by wxWindow (not using the event tables)
-    virtual void OnSetFocus();
-    virtual void OnKillFocus();
+    virtual void OnSetFocus() override;
+    virtual void OnKillFocus() override;
 
     // called by wxCaretTimerNew
     void OnTimer();
 
 protected:
-    virtual void DoShow();
-    virtual void DoHide();
-    virtual void DoMove();
-    virtual void DoSize();
+    virtual void DoShow() override;
+    virtual void DoHide() override;
+    virtual void DoMove() override;
+    virtual void DoSize() override;
 
     // blink the caret once
     void Blink();

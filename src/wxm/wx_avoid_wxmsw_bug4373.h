@@ -24,7 +24,7 @@
 class wxDialogWrapper: public wxDialog
 {
 public:
-	virtual int ShowModal()
+	virtual int ShowModal() override
 	{
 		wxWindow* oldFocus = FindFocus();
 		HWND hwndOldFocus = oldFocus ? GetHwndOf(oldFocus) : nullptr;

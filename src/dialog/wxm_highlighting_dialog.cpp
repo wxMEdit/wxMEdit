@@ -46,27 +46,27 @@ struct HighlightingBGOnly : public HighlightingItem
 	{}
 
 private:
-	virtual wxColor DoInitDialogControls()
+	virtual wxColor DoInitDialogControls() override
 	{
 		m_dlg->DisableFontConfig();
 		m_dlg->DisableFGColorConfig();
 		return m_dlg->EnableBGColorConfig(m_bgcolor);
 	}
-	virtual void SetFGColor(const wxColor& color, const wxString& colorname) {}
-	virtual void SetBGColor(const wxColor& color, const wxString& colorname)
+	virtual void SetFGColor(const wxColor& color, const wxString& colorname) override {}
+	virtual void SetBGColor(const wxColor& color, const wxString& colorname) override
 	{
 		m_bgcolor = NormalColor(color, colorname);
 	}
-	virtual wxColor GetFGColor()
+	virtual wxColor GetFGColor() override
 	{
 		return wxNullColour;
 	}
-	virtual wxColor GetBGColor()
+	virtual wxColor GetBGColor() override
 	{
 		return m_bgcolor;
 	}
-	virtual void SetListItemFontStyle(long itemidx) {}
-	virtual void EnableFontStyle(const MadFontStyles& style, bool enable) {}
+	virtual void SetListItemFontStyle(long itemidx) override {}
+	virtual void EnableFontStyle(const MadFontStyles& style, bool enable) override {}
 
 	wxColor& m_bgcolor;
 };
@@ -78,27 +78,27 @@ struct HighlightingFGOnly : public HighlightingItem
 	{}
 
 private:
-	virtual wxColor DoInitDialogControls()
+	virtual wxColor DoInitDialogControls() override
 	{
 		m_dlg->DisableFontConfig();
 		m_dlg->EnableFGColorConfig(m_fgcolor);
 		return m_dlg->DisableBGColorConfig();
 	}
-	virtual void SetFGColor(const wxColor& color, const wxString& colorname)
+	virtual void SetFGColor(const wxColor& color, const wxString& colorname) override
 	{
 		m_fgcolor = NormalColor(color, colorname);
 	}
-	virtual void SetBGColor(const wxColor& color, const wxString& colorname) {}
-	virtual wxColor GetFGColor()
+	virtual void SetBGColor(const wxColor& color, const wxString& colorname) override {}
+	virtual wxColor GetFGColor() override
 	{
 		return m_fgcolor;
 	}
-	virtual wxColor GetBGColor()
+	virtual wxColor GetBGColor() override
 	{
 		return wxNullColour;
 	}
-	virtual void SetListItemFontStyle(long itemidx) {}
-	virtual void EnableFontStyle(const MadFontStyles& style, bool enable) {}
+	virtual void SetListItemFontStyle(long itemidx) override {}
+	virtual void EnableFontStyle(const MadFontStyles& style, bool enable) override {}
 
 	wxColor& m_fgcolor;
 };
@@ -110,30 +110,30 @@ struct HighlightingColor : public HighlightingItem
 	{}
 
 private:
-	virtual wxColor DoInitDialogControls()
+	virtual wxColor DoInitDialogControls() override
 	{
 		m_dlg->DisableFontConfig();
 		m_dlg->EnableFGColorConfig(m_fgcolor);
 		return m_dlg->EnableBGColorConfig(m_bgcolor);
 	}
-	virtual void SetFGColor(const wxColor& color, const wxString& colorname)
+	virtual void SetFGColor(const wxColor& color, const wxString& colorname) override
 	{
 		m_fgcolor = NormalColor(color, colorname);
 	}
-	virtual void SetBGColor(const wxColor& color, const wxString& colorname)
+	virtual void SetBGColor(const wxColor& color, const wxString& colorname) override
 	{
 		m_bgcolor = NormalColor(color, colorname);
 	}
-	virtual wxColor GetFGColor()
+	virtual wxColor GetFGColor() override
 	{
 		return m_fgcolor;
 	}
-	virtual wxColor GetBGColor()
+	virtual wxColor GetBGColor() override
 	{
 		return m_bgcolor;
 	}
-	virtual void SetListItemFontStyle(long itemidx) {}
-	virtual void EnableFontStyle(const MadFontStyles& style, bool enable) {}
+	virtual void SetListItemFontStyle(long itemidx) override {}
+	virtual void EnableFontStyle(const MadFontStyles& style, bool enable) override {}
 
 	wxColor& m_fgcolor;
 	wxColor& m_bgcolor;
@@ -147,33 +147,33 @@ struct HighlightingKeyword : public HighlightingItem
 	{}
 
 private:
-	virtual wxColor DoInitDialogControls()
+	virtual wxColor DoInitDialogControls() override
 	{
 		m_dlg->EnableFontConfig(m_attr.style);
 		m_dlg->EnableFGColorConfig(m_attr.color);
 		return m_dlg->EnableBGColorConfig(m_attr.bgcolor);
 	}
-	virtual void SetFGColor(const wxColor& color, const wxString& colorname)
+	virtual void SetFGColor(const wxColor& color, const wxString& colorname) override
 	{
 		m_attr.color = NormalColor(color, colorname);
 	}
-	virtual void SetBGColor(const wxColor& color, const wxString& colorname)
+	virtual void SetBGColor(const wxColor& color, const wxString& colorname) override
 	{
 		m_attr.bgcolor = NormalColor(color, colorname);
 	}
-	virtual wxColor GetFGColor()
+	virtual wxColor GetFGColor() override
 	{
 		return m_attr.color;
 	}
-	virtual wxColor GetBGColor()
+	virtual wxColor GetBGColor() override
 	{
 		return m_attr.bgcolor;
 	}
-	virtual void SetListItemFontStyle(long itemidx)
+	virtual void SetListItemFontStyle(long itemidx) override
 	{
 		SetItemFontStyle(m_dlg->WxListCtrlKeyword, itemidx, m_attr.style);
 	}
-	virtual void EnableFontStyle(const MadFontStyles& style, bool enable);
+	virtual void EnableFontStyle(const MadFontStyles& style, bool enable) override;
 
 	MadAttributes& m_attr;
 };

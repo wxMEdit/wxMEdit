@@ -505,7 +505,7 @@ wxString FixFileNameEncoding(const wxString &filename)
 class DnDFile : public wxFileDropTarget
 {
 public:
-    virtual bool OnDropFiles(wxCoord x, wxCoord y, const wxArrayString& filenames)
+    virtual bool OnDropFiles(wxCoord x, wxCoord y, const wxArrayString& filenames) override
     {
         size_t count=filenames.GetCount();
         for(size_t i=0;i<count;i++)
@@ -744,7 +744,7 @@ class MadFontEnumerator : public wxFontEnumerator
     wxArrayString m_facenames_foldcase;
 public:
 
-    virtual bool OnFacename(const wxString& facename)
+    virtual bool OnFacename(const wxString& facename) override
     {
         size_t count = m_facenames_foldcase.Count();
         if(count == 0)

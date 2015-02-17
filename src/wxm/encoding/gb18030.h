@@ -9,6 +9,7 @@
 #ifndef _WXM_ENCODING_GB18030_H_
 #define _WXM_ENCODING_GB18030_H_
 
+#include "../../xm/cxx11.h"
 #include "multibyte.h"
 #include <boost/array.hpp>
 #include <map>
@@ -23,20 +24,20 @@ namespace wxm
 
 struct WXMEncodingGB18030: public WXMEncodingMultiByte, WXMEncodingDecoderISO646
 {
-	virtual void MultiByteInit();
-	virtual ucs4_t MultiBytetoUCS4(const wxByte* buf);
-	virtual size_t UCS4toMultiByte(ucs4_t ucs4, wxByte* buf);
-	virtual bool NextUChar32(MadUCQueue &ucqueue, UChar32BytesMapper& mapper);
+	virtual void MultiByteInit() override;
+	virtual ucs4_t MultiBytetoUCS4(const wxByte* buf) override;
+	virtual size_t UCS4toMultiByte(ucs4_t ucs4, wxByte* buf) override;
+	virtual bool NextUChar32(MadUCQueue &ucqueue, UChar32BytesMapper& mapper) override;
 
-	virtual bool IsSingleByteEncoding()
+	virtual bool IsSingleByteEncoding() override
 	{
 		return false;
 	}
-	virtual bool IsDoubleByteEncoding()
+	virtual bool IsDoubleByteEncoding() override
 	{
 		return false;
 	}
-	virtual bool IsUnicodeEncoding()
+	virtual bool IsUnicodeEncoding() override
 	{
 		return true;
 	}

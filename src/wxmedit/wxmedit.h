@@ -744,7 +744,7 @@ public: // basic functions
         }
     }
 
-    virtual bool SetFont(const wxFont& font)
+    virtual bool SetFont(const wxFont& font) override
     {
         SetFont(font.GetFaceName(), font.GetPointSize());
         return true;

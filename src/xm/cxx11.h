@@ -20,7 +20,7 @@
 # endif
 #endif
 
-#if defined(XM_NO_NULLPTR_)
+#ifdef XM_NO_NULLPTR_
 const
 class {
 public:
@@ -37,6 +37,29 @@ public:
 private:
 	void operator&() const;
 } nullptr = {};
+#endif
+
+#ifdef _MSC_VER
+# if _MSC_VER == 1600
+#  define final sealed
+# elif _MSC_VER < 1600
+#  define XM_NO_FINAL_OVERRIDE_
+# endif
+#elif defined(__clang__)
+# if __clang_major__ < 3
+#  define XM_NO_FINAL_OVERRIDE_
+# endif
+#elif defined(__GNUC__)
+# if __GNUC__ < 4 || __GNUC__ == 4 && __GNUC_MINOR__ < 7
+#  define XM_NO_FINAL_OVERRIDE_
+# endif
+#else
+# define XM_NO_FINAL_OVERRIDE_
+#endif
+
+#ifdef XM_NO_FINAL_OVERRIDE_
+# define final
+# define override
 #endif
 
 #endif //_XM_CXX11_H_

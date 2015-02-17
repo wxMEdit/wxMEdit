@@ -9,6 +9,7 @@
 #ifndef _WXM_ENCODING_CP20932_H_
 #define _WXM_ENCODING_CP20932_H_
 
+#include "../../xm/cxx11.h"
 #include "doublebyte.h"
 
 #ifdef _MSC_VER
@@ -26,13 +27,13 @@ struct CP20932Converter: public ICUConverter
 	{
 	}
 
-	virtual size_t MB2WC(UChar32& ch, const char* src, size_t src_len);
-	virtual size_t WC2MB(char* dest, size_t dest_len, const UChar32& ch);
+	virtual size_t MB2WC(UChar32& ch, const char* src, size_t src_len) override;
+	virtual size_t WC2MB(char* dest, size_t dest_len, const UChar32& ch) override;
 };
 
 struct CP20932TableFixer: public DoubleByteEncodingTableFixer
 {
-	virtual void fix();
+	virtual void fix() override;
 private:
 	void icu42fix();
 };
@@ -43,12 +44,12 @@ private:
 	friend WXMEncoding* WXMEncodingManager::GetWxmEncoding(ssize_t idx);
 	~WXMEncodingCP20932(){}
 
-	virtual void InitMBConverter()
+	virtual void InitMBConverter() override
 	{
 		m_mbcnv = new CP20932Converter(m_innername);
 	}
 
-	virtual DoubleByteEncodingTableFixer* CreateDoubleByteEncodingTableFixer()
+	virtual DoubleByteEncodingTableFixer* CreateDoubleByteEncodingTableFixer() override
 	{
 		return new CP20932TableFixer();
 	}

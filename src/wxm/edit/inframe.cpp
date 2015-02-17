@@ -32,11 +32,11 @@ namespace wxm
 
 struct GlobalConfigWriter: public ConfigWriter
 {
-	virtual void Record(const wxString& key, long val);
-	virtual void Record(const wxString& key, double val);
-	virtual void Record(const wxString& key, const wxString& val);
+	virtual void Record(const wxString& key, long val) override;
+	virtual void Record(const wxString& key, double val) override;
+	virtual void Record(const wxString& key, const wxString& val) override;
 
-	virtual void SetConfig(wxConfigBase* cfg) { m_cfg = cfg; }
+	virtual void SetConfig(wxConfigBase* cfg) override { m_cfg = cfg; }
 
 	GlobalConfigWriter(): m_cfg(nullptr) {}
 private:

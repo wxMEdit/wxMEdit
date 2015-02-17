@@ -9,6 +9,8 @@
 #ifndef _WXM_PRINTOUT_H_
 #define _WXM_PRINTOUT_H_
 
+#include "xm/cxx11.h"
+
 #include <wx/print.h>
 #include <wx/intl.h>
 
@@ -19,11 +21,11 @@ public:
     MadPrintout(const wxString& title = _("wxMEdit Printout"));
     virtual ~MadPrintout();
 
-    virtual void GetPageInfo(int *minPage, int *maxPage, int *pageFrom, int *pageTo);
-    virtual bool HasPage(int page);
-    virtual bool OnPrintPage(int page);
+    virtual void GetPageInfo(int *minPage, int *maxPage, int *pageFrom, int *pageTo) override;
+    virtual bool HasPage(int page) override;
+    virtual bool OnPrintPage(int page) override;
     
-    virtual void OnPreparePrinting();
+    virtual void OnPreparePrinting() override;
     
     void CalcPrintInfo(wxPageSetupData *pPageSetupData, double &xScale, double &yScale, wxRect &printRect);
     

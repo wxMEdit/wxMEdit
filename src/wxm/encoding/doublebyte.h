@@ -56,24 +56,24 @@ private:
 
 struct MS932TableFixer: public DoubleByteEncodingTableFixer
 {
-	virtual void fix();
+	virtual void fix() override;
 };
 
 struct WXMEncodingDoubleByte: public WXMEncodingMultiByte
 {
 	enum LeadByteType{ lbUnset=0, lbLeadByte, lbNotLeadByte=0xFF};
 
-	virtual void MultiByteInit();
-	virtual bool IsLeadByte(wxByte byte);
-	virtual ucs4_t MultiBytetoUCS4(const wxByte* buf);
-	virtual size_t UCS4toMultiByte(ucs4_t ucs4, wxByte* buf);
-	virtual bool NextUChar32(MadUCQueue &ucqueue, UChar32BytesMapper& mapper);
+	virtual void MultiByteInit() override;
+	virtual bool IsLeadByte(wxByte byte) override;
+	virtual ucs4_t MultiBytetoUCS4(const wxByte* buf) override;
+	virtual size_t UCS4toMultiByte(ucs4_t ucs4, wxByte* buf) override;
+	virtual bool NextUChar32(MadUCQueue &ucqueue, UChar32BytesMapper& mapper) override;
 
-	virtual bool IsSingleByteEncoding()
+	virtual bool IsSingleByteEncoding() override
 	{
 		return false;
 	}
-	virtual bool IsDoubleByteEncoding()
+	virtual bool IsDoubleByteEncoding() override
 	{
 		return true;
 	}

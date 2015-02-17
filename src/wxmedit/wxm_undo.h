@@ -46,12 +46,12 @@ struct MadInsertUndoData:MadUndoData
     wxFileOffset m_Size;
     MadBlockVector m_Data;
 
-    virtual wxFileOffset DelSize() {return 0;}
-    virtual wxFileOffset InsSize() {return m_Size;}
-    virtual MadBlockVector* DelData() {return nullptr;}
-    virtual MadBlockVector* InsData() {return &m_Data;}
-    virtual void SetDelSize(wxFileOffset size) {wxASSERT(size == 0);}
-    virtual void SetInsBlock(const MadBlock& blk)
+    virtual wxFileOffset DelSize() override { return 0; }
+    virtual wxFileOffset InsSize() override { return m_Size; }
+    virtual MadBlockVector* DelData() override { return nullptr; }
+    virtual MadBlockVector* InsData() override { return &m_Data; }
+    virtual void SetDelSize(wxFileOffset size) override { wxASSERT(size == 0); }
+    virtual void SetInsBlock(const MadBlock& blk) override
     {
         m_Size = blk.m_Size;
         m_Data.push_back(blk);
@@ -63,12 +63,12 @@ struct MadDeleteUndoData:MadUndoData
     wxFileOffset m_Size;
     MadBlockVector m_Data;
 
-    virtual wxFileOffset DelSize() {return m_Size;}
-    virtual wxFileOffset InsSize() {return 0;}
-    virtual MadBlockVector* DelData() {return &m_Data;}
-    virtual MadBlockVector* InsData() {return nullptr;}
-    virtual void SetDelSize(wxFileOffset size) {m_Size = size;}
-    virtual void SetInsBlock(const MadBlock& blk) {wxASSERT(blk.m_Size == 0);}
+    virtual wxFileOffset DelSize() override { return m_Size; }
+    virtual wxFileOffset InsSize() override { return 0; }
+    virtual MadBlockVector* DelData() override { return &m_Data; }
+    virtual MadBlockVector* InsData() override { return nullptr; }
+    virtual void SetDelSize(wxFileOffset size) override { m_Size = size; }
+    virtual void SetInsBlock(const MadBlock& blk) override { wxASSERT(blk.m_Size == 0); }
 };
 
 struct MadOverwriteUndoData:MadUndoData
@@ -76,12 +76,12 @@ struct MadOverwriteUndoData:MadUndoData
     wxFileOffset m_DelSize, m_InsSize;
     MadBlockVector m_DelData, m_InsData;
 
-    virtual wxFileOffset DelSize() {return m_DelSize;}
-    virtual wxFileOffset InsSize() {return m_InsSize;}
-    virtual MadBlockVector* DelData() {return &m_DelData;}
-    virtual MadBlockVector* InsData() {return &m_InsData;}
-    virtual void SetDelSize(wxFileOffset size) {m_DelSize = size;}
-    virtual void SetInsBlock(const MadBlock& blk)
+    virtual wxFileOffset DelSize() override { return m_DelSize; }
+    virtual wxFileOffset InsSize() override { return m_InsSize; }
+    virtual MadBlockVector* DelData() override { return &m_DelData; }
+    virtual MadBlockVector* InsData() override { return &m_InsData; }
+    virtual void SetDelSize(wxFileOffset size) override { m_DelSize = size; }
+    virtual void SetInsBlock(const MadBlock& blk) override
     {
         m_InsSize = blk.m_Size;
         m_InsData.push_back(blk);

@@ -9,6 +9,7 @@
 #ifndef _WXM_RECENT_LIST_H_
 #define _WXM_RECENT_LIST_H_
 
+#include "../xm/cxx11.h"
 #include <wx/docview.h>
 
 namespace wxm
@@ -28,7 +29,7 @@ struct wxRecentList : public wxFileHistory
 protected:
 	virtual bool ItemEqual(const wxString& item1, const wxString& item2) = 0;
 private:
-	virtual void AddFileToHistory(const wxString& file);
+	virtual void AddFileToHistory(const wxString& file) override;
 
 	wxWindowID m_idbase;
 
@@ -44,7 +45,7 @@ struct wxSimpleRecentList : public wxRecentList
 		: wxRecentList(maxFiles, idBase)
 	{}
 private:
-	virtual bool ItemEqual(const wxString& item1, const wxString& item2)
+	virtual bool ItemEqual(const wxString& item1, const wxString& item2) override
 	{
 		return item1 == item2;
 	}
@@ -56,7 +57,7 @@ struct wxFilePathRecentList : public wxRecentList
 		: wxRecentList(maxFiles, idBase)
 	{}
 private:
-	virtual bool ItemEqual(const wxString& item1, const wxString& item2);
+	virtual bool ItemEqual(const wxString& item1, const wxString& item2) override;
 };
 
 struct wxCaseInsensitiveRecentList : public wxRecentList
@@ -65,7 +66,7 @@ struct wxCaseInsensitiveRecentList : public wxRecentList
 		: wxRecentList(maxFiles, idBase)
 	{}
 private:
-	virtual bool ItemEqual(const wxString& item1, const wxString& item2);
+	virtual bool ItemEqual(const wxString& item1, const wxString& item2) override;
 };
 
 } // namespace wxm

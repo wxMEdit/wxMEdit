@@ -9,6 +9,8 @@
 #ifndef _XM_UUTILS_H_
 #define _XM_UUTILS_H_
 
+#include "cxx11.h"
+
 #include <unicode/unistr.h>
 #include <unicode/uchar.h>
 #include <stddef.h>
@@ -45,14 +47,14 @@ struct WordCounter
 
 struct SimpleWordCounter: public WordCounter
 {
-	virtual size_t GetWordCount();
-	virtual size_t GetWordCountNoCtrlNoSP();
+	virtual size_t GetWordCount() override;
+	virtual size_t GetWordCountNoCtrlNoSP() override;
 
-	virtual void operator+=(UChar32 ch)
+	virtual void operator+=(UChar32 ch) override
 	{
 		m_ustr += ch;
 	}
-	virtual void operator+=(const UnicodeString& ustr)
+	virtual void operator+=(const UnicodeString& ustr) override
 	{
 		m_ustr += ustr;
 	}
@@ -64,10 +66,10 @@ private:
 
 struct AccumulativeWordCounter: public WordCounter
 {
-	virtual void operator+=(UChar32 ch);
-	virtual void operator+=(const UnicodeString& ustr);
-	virtual size_t GetWordCount();
-	virtual size_t GetWordCountNoCtrlNoSP();
+	virtual void operator+=(UChar32 ch) override;
+	virtual void operator+=(const UnicodeString& ustr) override;
+	virtual size_t GetWordCount() override;
+	virtual size_t GetWordCountNoCtrlNoSP() override;
 
 	AccumulativeWordCounter(int32_t capacity)
 		: m_capacity(capacity), m_size(0)

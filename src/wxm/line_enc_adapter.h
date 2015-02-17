@@ -9,6 +9,7 @@
 #ifndef _WXM_LINE_ENC_ADAPTER_H_
 #define _WXM_LINE_ENC_ADAPTER_H_
 
+#include "../xm/cxx11.h"
 #include "../wxmedit/ucs4_t.h"
 #include "../wxmedit/wxm_deque.hpp"
 #include <wx/defs.h>
@@ -41,13 +42,13 @@ protected:
 struct WXMBackwardBlockDumper: public WXMBlockDumper
 {
 	WXMBackwardBlockDumper(MadBlockIterator& bit): WXMBlockDumper(bit) {}
-	virtual void Dump(wxByte* buf, size_t len);
+	virtual void Dump(wxByte* buf, size_t len) override;
 };
 
 struct WXMForwardBlockDumper: public WXMBlockDumper
 {
 	WXMForwardBlockDumper(MadBlockIterator& bit): WXMBlockDumper(bit) {}
-	virtual void Dump(wxByte* buf, size_t len);
+	virtual void Dump(wxByte* buf, size_t len) override;
 };
 
 struct UChar32BytesMapper

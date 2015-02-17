@@ -197,11 +197,11 @@ unsigned long FilePathHash(const wxString& name)
 
 struct HexAreaRawBytesCopier: public HexAreaClipboardCopier
 {
-	virtual void Copy(MadEdit* inst)
+	virtual void Copy(MadEdit* inst) override
 	{
 		inst->CopyRawBytes();
 	}
-	virtual bool Hexadecimal()
+	virtual bool Hexadecimal() override
 	{
 		return false;
 	}
@@ -209,11 +209,11 @@ struct HexAreaRawBytesCopier: public HexAreaClipboardCopier
 
 struct HexAreaRegularTextCopier: public HexAreaClipboardCopier
 {
-	virtual void Copy(MadEdit* inst)
+	virtual void Copy(MadEdit* inst) override
 	{
 		inst->CopyRegularText();
 	}
-	virtual bool Hexadecimal()
+	virtual bool Hexadecimal() override
 	{
 		return false;
 	}
@@ -221,11 +221,11 @@ struct HexAreaRegularTextCopier: public HexAreaClipboardCopier
 
 struct HexAreaHexStringCopier: public HexAreaClipboardCopier
 {
-	virtual void Copy(MadEdit* inst)
+	virtual void Copy(MadEdit* inst) override
 	{
 		inst->CopyAsHexString(false);
 	}
-	virtual bool Hexadecimal()
+	virtual bool Hexadecimal() override
 	{
 		return true;
 	}
@@ -233,11 +233,11 @@ struct HexAreaHexStringCopier: public HexAreaClipboardCopier
 
 struct HexAreaHexStringWithSpaceCopier: public HexAreaClipboardCopier
 {
-	virtual void Copy(MadEdit* inst)
+	virtual void Copy(MadEdit* inst) override
 	{
 		inst->CopyAsHexString(true);
 	}
-	virtual bool Hexadecimal()
+	virtual bool Hexadecimal() override
 	{
 		return true;
 	}
@@ -279,17 +279,17 @@ bool GetRawBytesFromHexUnicodeText(std::vector<char>& cs, const std::vector<ucs4
 
 struct HexAreaRawBytesHexPaster: public HexAreaClipboardPaster
 {
-	virtual bool GetRawBytesFromClipboardDirectly(MadEdit* inst, std::vector<char>& cs)
+	virtual bool GetRawBytesFromClipboardDirectly(MadEdit* inst, std::vector<char>& cs) override
 	{
 		return inst->GetRawBytesFromClipboardDirectly(cs);
 	}
 
-	virtual void GetRawBytesFromUnicodeText(MadEdit* inst, std::vector<char>& cs, const std::vector<ucs4_t>& ucs) = 0;
+	virtual void GetRawBytesFromUnicodeText(MadEdit* inst, std::vector<char>& cs, const std::vector<ucs4_t>& ucs) override = 0;
 };
 
 struct HexAreaNerverHexPaster: public HexAreaRawBytesHexPaster
 {
-	virtual void GetRawBytesFromUnicodeText(MadEdit* inst, std::vector<char>& cs, const std::vector<ucs4_t>& ucs)
+	virtual void GetRawBytesFromUnicodeText(MadEdit* inst, std::vector<char>& cs, const std::vector<ucs4_t>& ucs) override
 	{
 		inst->ConvertToRawBytesFromUnicodeText(cs, ucs);
 	}
@@ -297,7 +297,7 @@ struct HexAreaNerverHexPaster: public HexAreaRawBytesHexPaster
 
 struct HexAreaIfPossibleHexPaster: public HexAreaRawBytesHexPaster
 {
-	virtual void GetRawBytesFromUnicodeText(MadEdit* inst, std::vector<char>& cs, const std::vector<ucs4_t>& ucs)
+	virtual void GetRawBytesFromUnicodeText(MadEdit* inst, std::vector<char>& cs, const std::vector<ucs4_t>& ucs) override
 	{
 		if (GetRawBytesFromHexUnicodeText(cs, ucs))
 			return;
@@ -307,7 +307,7 @@ struct HexAreaIfPossibleHexPaster: public HexAreaRawBytesHexPaster
 
 struct HexAreaAccordingToCopierHexPaster: public HexAreaRawBytesHexPaster
 {
-	virtual void GetRawBytesFromUnicodeText(MadEdit* inst, std::vector<char>& cs, const std::vector<ucs4_t>& ucs)
+	virtual void GetRawBytesFromUnicodeText(MadEdit* inst, std::vector<char>& cs, const std::vector<ucs4_t>& ucs) override
 	{
 		HexAreaClipboardCopier& copier = HexAreaClipboardCopyProxy::Instance().GetSelectedCopier();
 		if (copier.Hexadecimal() && GetRawBytesFromHexUnicodeText(cs, ucs))
@@ -318,12 +318,12 @@ struct HexAreaAccordingToCopierHexPaster: public HexAreaRawBytesHexPaster
 
 struct HexAreaAlwaysHexPaster: public HexAreaClipboardPaster
 {
-	virtual bool GetRawBytesFromClipboardDirectly(MadEdit* inst, std::vector<char>& cs)
+	virtual bool GetRawBytesFromClipboardDirectly(MadEdit* inst, std::vector<char>& cs) override
 	{
 		return false;
 	}
 
-	virtual void GetRawBytesFromUnicodeText(MadEdit* inst, std::vector<char>& cs, const std::vector<ucs4_t>& ucs)
+	virtual void GetRawBytesFromUnicodeText(MadEdit* inst, std::vector<char>& cs, const std::vector<ucs4_t>& ucs) override
 	{
 		GetRawBytesFromHexUnicodeText(cs, ucs);
 	}

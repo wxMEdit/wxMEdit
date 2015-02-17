@@ -33,46 +33,46 @@ struct SingleByteEncodingTableFixer
 
 struct OEMTableFixer: public SingleByteEncodingTableFixer
 {
-	virtual void fix(ByteUnicodeArr& toutab, UnicodeByteMap& fromutab);
+	virtual void fix(ByteUnicodeArr& toutab, UnicodeByteMap& fromutab) override;
 };
 
 struct CP437TableFixer: public OEMTableFixer
 {
-	virtual void fix(ByteUnicodeArr& toutab, UnicodeByteMap& fromutab);
+	virtual void fix(ByteUnicodeArr& toutab, UnicodeByteMap& fromutab) override;
 };
 
 struct CP437ArtTableFixer: public CP437TableFixer
 {
-	virtual void fix(ByteUnicodeArr& toutab, UnicodeByteMap& fromutab);
+	virtual void fix(ByteUnicodeArr& toutab, UnicodeByteMap& fromutab) override;
 };
 
 struct CP852TableFixer: public OEMTableFixer
 {
-	virtual void fix(ByteUnicodeArr& toutab, UnicodeByteMap& fromutab);
+	virtual void fix(ByteUnicodeArr& toutab, UnicodeByteMap& fromutab) override;
 };
 
 struct Windows874TableFixer: public SingleByteEncodingTableFixer
 {
-	virtual void fix(ByteUnicodeArr& toutab, UnicodeByteMap& fromutab);
+	virtual void fix(ByteUnicodeArr& toutab, UnicodeByteMap& fromutab) override;
 };
 
 struct ISO8859_16TableFixer: public SingleByteEncodingTableFixer
 {
-	virtual void fix(ByteUnicodeArr& toutab, UnicodeByteMap& fromutab);
+	virtual void fix(ByteUnicodeArr& toutab, UnicodeByteMap& fromutab) override;
 };
 
 struct WXMEncodingSingleByte: public WXMEncodingMultiByte
 {
-	virtual void MultiByteInit();
-	virtual ucs4_t MultiBytetoUCS4(const wxByte* buf);
-	virtual size_t UCS4toMultiByte(ucs4_t ucs4, wxByte* buf);
-	virtual bool NextUChar32(MadUCQueue &ucqueue, UChar32BytesMapper& mapper);
+	virtual void MultiByteInit() override;
+	virtual ucs4_t MultiBytetoUCS4(const wxByte* buf) override;
+	virtual size_t UCS4toMultiByte(ucs4_t ucs4, wxByte* buf) override;
+	virtual bool NextUChar32(MadUCQueue &ucqueue, UChar32BytesMapper& mapper) override;
 
-	virtual bool IsSingleByteEncoding()
+	virtual bool IsSingleByteEncoding() override
 	{
 		return true;
 	}
-	virtual bool IsDoubleByteEncoding()
+	virtual bool IsDoubleByteEncoding() override
 	{
 		return false;
 	}
@@ -104,17 +104,17 @@ private:
 
 struct WXMEncodingSingleByteNonISO646Compatible: public WXMEncodingSingleByte
 {
-	virtual bool IsUChar32_LineFeed(const wxByte* buf, size_t len)
+	virtual bool IsUChar32_LineFeed(const wxByte* buf, size_t len) override
 	{
 		return MultiBytetoUCS4(buf) == (ucs4_t)0x00000A;
 	}
-	virtual bool IsUChar32_LineFeed(WXMBlockDumper& dumper, size_t len)
+	virtual bool IsUChar32_LineFeed(WXMBlockDumper& dumper, size_t len) override
 	{
 		wxByte b;
 		dumper.Dump(&b, 1);
 		return MultiBytetoUCS4(&b) == (ucs4_t)0x00000A;
 	}
-	virtual ucs4_t PeekUChar32_Newline(WXMBlockDumper& dumper, size_t len)
+	virtual ucs4_t PeekUChar32_Newline(WXMBlockDumper& dumper, size_t len) override
 	{
 		wxByte b;
 		dumper.Dump(&b, 1);
@@ -132,7 +132,7 @@ protected:
 
 struct WXMEncodingCP437Art: public WXMEncodingSingleByteNonISO646Compatible
 {
-	virtual SingleByteEncodingTableFixer* CreateSingleByteEncodingTableFixer()
+	virtual SingleByteEncodingTableFixer* CreateSingleByteEncodingTableFixer() override
 	{
 		return new CP437ArtTableFixer();
 	}

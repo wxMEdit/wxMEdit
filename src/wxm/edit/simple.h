@@ -9,6 +9,7 @@
 #ifndef _WXMEDIT_SIMPLE_H_
 #define _WXMEDIT_SIMPLE_H_
 
+#include "../../xm/cxx11.h"
 #include "../../wxmedit/wxmedit.h"
 
 namespace wxm
@@ -16,11 +17,11 @@ namespace wxm
 
 struct DummyConfigWriter: public ConfigWriter
 {
-	virtual void Record(const wxString& key, long val) {}
-	virtual void Record(const wxString& key, double val) {}
-	virtual void Record(const wxString& key, const wxString& val) {}
+	virtual void Record(const wxString& key, long val) override {}
+	virtual void Record(const wxString& key, double val) override {}
+	virtual void Record(const wxString& key, const wxString& val) override {}
 
-	virtual void SetConfig(wxConfigBase* cfg) {}
+	virtual void SetConfig(wxConfigBase* cfg) override {}
 };
 
 struct SimpleWXMEdit: public MadEdit
@@ -30,14 +31,15 @@ struct SimpleWXMEdit: public MadEdit
 	{
 	}
 private:
-	virtual int CalcLineNumberAreaWidth(MadLineIterator lit, int lineid, int rowid, int toprow, int rowcount) { return 0; }
-	virtual int GetLineNumberAreaWidth(int number) { return 0; }
-	virtual void OnPaintInPrinting(wxPaintDC& dc, wxMemoryDC& memdc) {}
-	virtual LineNumberList SaveBookmarkLineNumberList() { return LineNumberList(); }
-	virtual void RestoreBookmarkByLineNumberList(const LineNumberList& linenums) {}
-	virtual int CachedLineNumberAreaWidth() { return 0; }
-	virtual void CacheLineNumberAreaWidth(int width) {}
-	virtual void PaintLineNumberArea(const wxColor & bgcolor, wxDC * dc, const wxRect& rect, bool is_trailing_subrow, MadLineIterator lineiter, int lineid, int text_top) {}
+	virtual int CalcLineNumberAreaWidth(MadLineIterator lit, int lineid, int rowid, int toprow, int rowcount) override { return 0; }
+	virtual int GetLineNumberAreaWidth(int number) override { return 0; }
+	virtual void OnPaintInPrinting(wxPaintDC& dc, wxMemoryDC& memdc) override {}
+	virtual LineNumberList SaveBookmarkLineNumberList() override { return LineNumberList(); }
+	virtual void RestoreBookmarkByLineNumberList(const LineNumberList& linenums) override {}
+	virtual int CachedLineNumberAreaWidth() override { return 0; }
+	virtual void CacheLineNumberAreaWidth(int width) override {}
+	virtual void PaintLineNumberArea(const wxColor & bgcolor, wxDC * dc, const wxRect& rect, bool is_trailing_subrow,
+		MadLineIterator lineiter, int lineid, int text_top) override {}
 };
 
 struct InFrameWXMEdit;
@@ -46,8 +48,8 @@ struct HexPrintingWXMEdit : public SimpleWXMEdit
 	friend struct InFrameWXMEdit;
 	HexPrintingWXMEdit(wxWindow* parent, const wxFont* font);
 private:
-	virtual void SetWordWrapMode(MadWordWrapMode mode) {}
-	virtual MadWordWrapMode GetWordWrapMode() { return wwmWrapByColumn; }
+	virtual void SetWordWrapMode(MadWordWrapMode mode) override {}
+	virtual MadWordWrapMode GetWordWrapMode() override { return wwmWrapByColumn; }
 };
 
 struct SimpleTextWXMEdit: public SimpleWXMEdit
@@ -59,8 +61,8 @@ struct SimpleTextWXMEdit: public SimpleWXMEdit
 		SetFixedWidthMode(false);
 	}
 private:
-	virtual void SetWordWrapMode(MadWordWrapMode mode) {}
-	virtual MadWordWrapMode GetWordWrapMode() { return wwmNoWrap; }
+	virtual void SetWordWrapMode(MadWordWrapMode mode) override {}
+	virtual MadWordWrapMode GetWordWrapMode() override { return wwmNoWrap; }
 };
 
 struct SearchingWXMEdit : public SimpleTextWXMEdit
