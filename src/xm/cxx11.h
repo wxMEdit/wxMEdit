@@ -21,6 +21,9 @@
 #endif
 
 #ifdef XM_NO_NULLPTR_
+# if defined(__GNUC__) && __GNUC__ == 4 && __GNUC_MINOR__ == 5
+#  define nullptr __null
+# else
 const
 class {
 public:
@@ -37,6 +40,7 @@ public:
 private:
 	void operator&() const;
 } nullptr = {};
+# endif
 #endif
 
 #ifdef _MSC_VER
