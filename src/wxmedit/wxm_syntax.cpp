@@ -1321,7 +1321,7 @@ int MadSyntax::FindStringCase(MadUCQueue & ucqueue, size_t first,
     bool noNewLine = true;
     if(ucsize > 1)
     {
-        register ucs4_t uc = ucqueue.back().first;
+        ucs4_t uc = ucqueue.back().first;
         if(uc==0x0D || uc==0x0A)
         {
             noNewLine = false;
@@ -1342,7 +1342,7 @@ int MadSyntax::FindStringCase(MadUCQueue & ucqueue, size_t first,
             {
                 while( nw_MadLines->NextUChar(ucqueue) )
                 {
-                    register ucs4_t uc = ucqueue.back().first;
+                    ucs4_t uc = ucqueue.back().first;
                     if(uc==0x0D || uc==0x0A)
                     {
                         noNewLine = false;
@@ -1389,7 +1389,7 @@ int MadSyntax::FindStringNoCase(MadUCQueue & ucqueue, size_t first,
     bool noNewLine = true;
     if(ucsize > 1)
     {
-        register ucs4_t uc = ucqueue.back().first;
+        ucs4_t uc = ucqueue.back().first;
         if(uc==0x0D || uc==0x0A)
         {
             noNewLine = false;
@@ -1410,7 +1410,7 @@ int MadSyntax::FindStringNoCase(MadUCQueue & ucqueue, size_t first,
             {
                 while( nw_MadLines->NextUChar(ucqueue) )
                 {
-                    register ucs4_t uc = ucqueue.back().first;
+                    ucs4_t uc = ucqueue.back().first;
                     if(uc==0x0D || uc==0x0A)
                     {
                         noNewLine = false;
@@ -1426,7 +1426,7 @@ int MadSyntax::FindStringNoCase(MadUCQueue & ucqueue, size_t first,
                 std::advance(it, first + 1);
                 while(*(++cstr) != 0)
                 {
-                    register ucs4_t uc = it->first;
+                    ucs4_t uc = it->first;
                     if(uc>='A' && uc<='Z')
                     {
                         uc |= 0x20; // to lower case
