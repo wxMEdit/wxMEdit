@@ -70,6 +70,7 @@ struct SearchingWXMEdit : public SimpleTextWXMEdit
 	SearchingWXMEdit(wxWindow* parent, bool bSearchWholeWord)
 		: SimpleTextWXMEdit(parent, wxID_ANY, wxPoint(-1024, -1024))
 	{
+		InitHexFont();
 		StopRepaint();
 		SetSearchOptions(true, bSearchWholeWord);
 	}
