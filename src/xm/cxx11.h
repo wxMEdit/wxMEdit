@@ -21,7 +21,8 @@
 #endif
 
 #ifdef XM_NO_NULLPTR_
-# if defined(__GNUC__) && __GNUC__ == 4 && __GNUC_MINOR__ == 5
+# if defined(__GNUC__) && __GNUC__ == 4 && __GNUC_MINOR__ == 5 || \
+     defined(__clang__) && __clang_major__ < 3
 #  define nullptr __null
 # else
 const
