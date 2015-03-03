@@ -23,16 +23,17 @@
 #include <wx/wx.h>
 #endif
 
-#include <wx/hashset.h>
 #include <wx/colour.h>
 #include <wx/string.h>
+
+#include <boost/tr1/unordered_set.hpp>
 
 #include <map>
 #include <vector>
 using std::vector;
 
 
-WX_DECLARE_HASH_SET( wxString, wxStringHash, wxStringEqual, MadKeywordSet );
+typedef std::tr1::unordered_set<wxString, wxStringHash> MadKeywordSet;
 
 
 enum MadFontStyle { fsNone=0, fsBold=1, fsItalic=2, fsUnderline=4, fsStrikeOut=8 };

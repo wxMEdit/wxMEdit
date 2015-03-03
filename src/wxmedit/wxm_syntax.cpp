@@ -17,6 +17,8 @@
 #include <wx/filename.h>
 #include <wx/intl.h>
 
+#include <boost/tr1/unordered_map.hpp>
+
 #ifdef _DEBUG
 #include <crtdbg.h>
 #define new new(_NORMAL_BLOCK ,__FILE__, __LINE__)
@@ -48,7 +50,7 @@ StringPairTable g_TitleSynfileTable;
 // syntax scheme files table (filename[*], fullpath)
 StringPairTable g_NameSchfileTable;
 
-WX_DECLARE_HASH_MAP( wxString, wxString, wxStringHash, wxStringEqual, StringMap );
+typedef std::tr1::unordered_map<wxString, wxString, wxStringHash> StringMap;
 
 // synfile of below is filename only
 StringMap g_ExtSynfileMap;

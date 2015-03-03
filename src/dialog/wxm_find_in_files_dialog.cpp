@@ -26,6 +26,7 @@
 //*)
 
 #include <boost/scoped_ptr.hpp>
+#include <boost/tr1/unordered_set.hpp>
 
 #ifdef _DEBUG
 #include <crtdbg.h>
@@ -449,7 +450,8 @@ wxLongLong g_Time;
 
 wxString fmtmsg1;
 
-WX_DECLARE_HASH_SET( wxString, wxStringHash, wxStringEqual, MadFileNameList );
+typedef std::tr1::unordered_set<wxString, wxStringHash> MadFileNameList;
+
 MadFileNameList g_FileNameList; // the filenames matched the filename filter
 
 vector<wxString> g_ExcludeFilters;

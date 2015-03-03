@@ -19,6 +19,7 @@
 #include <boost/xpressive/xpressive_dynamic.hpp>
 #include <boost/xpressive/traits/null_regex_traits.hpp>
 #include <boost/xpressive/traits/cpp_regex_traits.hpp>
+#include <boost/tr1/unordered_map.hpp>
 
 using namespace std;
 using namespace boost::xpressive;
@@ -69,7 +70,8 @@ public:
     }
 };
 
-WX_DECLARE_HASH_MAP( unsigned int, int, wxIntegerHash, wxIntegerEqual, UCS4_Map );
+typedef std::tr1::unordered_map<unsigned int, int> UCS4_Map;
+
 class JumpTable_UCS4
 {
 private:

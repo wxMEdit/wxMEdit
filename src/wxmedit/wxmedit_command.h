@@ -22,8 +22,10 @@
 #endif
 
 #include <wx/accel.h>
-#include <wx/hashmap.h>
-#include <wx/hashset.h>
+
+#include <boost/tr1/unordered_map.hpp>
+#include <boost/tr1/unordered_set.hpp>
+
 #include <vector>
 #include <list>
 using std::vector;
@@ -108,28 +110,14 @@ enum //MadEditCommand
 typedef int MadEditShortCut;
 typedef int MadEditCommand;
 
+typedef std::tr1::unordered_map<MadEditShortCut, wxString> MadCommandTextMap;
+typedef std::tr1::unordered_map<wxString, MadEditShortCut, wxStringHash> MadTextCommandMap;
 
-WX_DECLARE_HASH_MAP( MadEditShortCut,
-                     wxString,
-                     wxIntegerHash,
-                     wxIntegerEqual,
-                     MadCommandTextMap );
-
-WX_DECLARE_HASH_MAP( wxString,
-                     MadEditShortCut,
-                     wxStringHash,
-                     wxStringEqual,
-                     MadTextCommandMap );
-
-WX_DECLARE_HASH_MAP( int,             // menuid
-                     MadEditShortCut,
-                     wxIntegerHash,
-                     wxIntegerEqual,
-                     MadMenuCommandMap );
+typedef std::tr1::unordered_map<int, MadEditShortCut> MadMenuCommandMap;
 
 //---------------------------------------------------------------------------
 
-WX_DECLARE_HASH_SET( MadEditShortCut, wxIntegerHash, wxIntegerEqual, MadShortCutSet );
+typedef std::tr1::unordered_set<MadEditShortCut> MadShortCutSet;
 
 struct MadKeyBinding
 {
@@ -191,11 +179,8 @@ struct MadKeyBinding
 
 typedef list<MadKeyBinding*> MadKeyBindingList;
 
-WX_DECLARE_HASH_MAP( int,               // menuid or editcmd or shortcut
-                     MadKeyBinding*,
-                     wxIntegerHash,
-                     wxIntegerEqual,
-                     MadKeyBindingMap );
+// menuid or editcmd or shortcut => MadKeyBinding*
+typedef std::tr1::unordered_map<int, MadKeyBinding*> MadKeyBindingMap;
 
 //---------------------------------------------------------------------------
 
