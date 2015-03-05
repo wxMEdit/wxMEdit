@@ -2200,7 +2200,7 @@ MadSearchResult MadEdit::FindHexNext(const wxString &hexstr,
         epos.linepos = rangeTo - epos.linepos;
     }
 
-    if(SR_YES==SearchHex(bpos, epos, &hex[0], hex.size()))
+    if(SR_YES==SearchHex(bpos, epos, hex))
     {
         SetSelection(bpos.pos, epos.pos);
         return SR_YES;
@@ -2271,7 +2271,7 @@ MadSearchResult MadEdit::FindHexPrevious(const wxString &hexstr,
         }
 
         MadCaretPos bpos1=bpos, epos1=epos;
-        if(SR_YES==SearchHex(bpos1, epos1, &hex[0], hex.size())) // found
+        if(SR_YES==SearchHex(bpos1, epos1, hex)) // found
         {
             MadCaretPos bp, ep;
             do
@@ -2290,7 +2290,7 @@ MadSearchResult MadEdit::FindHexPrevious(const wxString &hexstr,
 
                 epos1=epos;
             }
-            while(SearchHex(bpos1, epos1, &hex[0], hex.size()));
+            while(SearchHex(bpos1, epos1, hex));
 
             SetSelection(bp.pos, ep.pos, true);
             return SR_YES;
@@ -2418,7 +2418,7 @@ MadReplaceResult MadEdit::ReplaceHex(const wxString &expr, const wxString &fmt,
 
     if(m_Selection) // test the selection is wanted text
     {
-        int state=SearchHex(bpos, epos, &hex[0], hex.size());
+        int state=SearchHex(bpos, epos, hex);
 
         if(state==SR_EXPR_ERROR)
         {
@@ -2635,7 +2635,7 @@ int MadEdit::ReplaceHexAll(const wxString &expr, const wxString &fmt,
     endpos=epos;
     int multi=0;
 
-    while(SearchHex(bpos, epos, &hex[0], hex.size())==SR_YES)
+    while(SearchHex(bpos, epos, hex)==SR_YES)
     {
         del_bpos.push_back(bpos.pos);
         del_epos.push_back(epos.pos);
@@ -2802,7 +2802,7 @@ int MadEdit::FindHexAll(const wxString &expr, bool bFirstOnly,
     endpos=epos;
     int count=0;
 
-    while(SearchHex(bpos, epos, &hex[0], hex.size())==SR_YES)
+    while(SearchHex(bpos, epos, hex)==SR_YES)
     {
         if(pbegpos) pbegpos->push_back(bpos.pos);
         if(pendpos) pendpos->push_back(epos.pos);

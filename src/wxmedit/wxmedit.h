@@ -555,7 +555,7 @@ protected:
                            const wxString &text, bool bRegex, bool bCaseSensitive, bool bWholeWord);
 
     MadSearchResult SearchHex(/*IN_OUT*/MadCaretPos &beginpos, /*IN_OUT*/MadCaretPos &endpos,
-                              const wxByte *hex, size_t count);
+                              const std::vector<wxByte>& hex);
 
     MadSearchResult Replace(/*OUT*/ucs4string &out, const MadCaretPos &beginpos, const MadCaretPos &endpos,
                             const wxString &expr, const wxString &fmt,
