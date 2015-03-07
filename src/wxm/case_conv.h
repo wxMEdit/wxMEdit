@@ -17,6 +17,11 @@ namespace wxm
 {
 	wxString WxStrToLower(const wxString& wxs);
 	wxString WxStrToUpper(const wxString& wxs);
+	inline wxString WxStrToNormalCase(const wxString& wxs)
+	{
+		return WxStrToLower(wxs);
+	}
+
 	int WxCaseCompare(const wxString& wxs1, const wxString& wxs2);
 
 	inline void LowerWxStr(wxString& wxs)

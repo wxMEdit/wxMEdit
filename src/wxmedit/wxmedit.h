@@ -134,6 +134,8 @@ typedef std::basic_string<ucs4_t> ucs4string;
 
 class MadMouseMotionTimer;
 
+struct WXMCharIterator;
+
 struct MadCaretPos
 {
     wxFileOffset pos;     // position of whole file
@@ -162,20 +164,19 @@ struct MadCaretPos
         extraspaces = 0;
     }
 
-    /*
-    void operator=(const MadCaretPos &cp)
-    {
-        pos = cp.pos;
-        rowid = cp.rowid;
-        linepos = cp.linepos;
-        iter = cp.iter;
-        lineid = cp.lineid;
-        subrowid = cp.subrowid;
-        xpos = cp.xpos;
-        extraspaces = cp.extraspaces;
-    }
-    */
+    void AssignWith(const WXMCharIterator& cit);
+};
 
+struct WXMCharIterator
+{
+    wxFileOffset    pos;
+    MadLineIterator lit;
+    wxFileOffset    linepos;
+
+    WXMCharIterator() {}
+    WXMCharIterator(const MadCaretPos& cp)
+        :pos(cp.pos), lit(cp.iter), linepos(cp.linepos)
+    {}
 };
 
 struct UCIterator;

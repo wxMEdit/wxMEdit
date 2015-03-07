@@ -30,13 +30,13 @@ using namespace boost::xpressive;
 #endif
 
 template<typename char_type>
-inline char_type xtolower(char_type ch)
+inline char_type NormalCase(char_type ch, bool sensitive)
 {
-    return (char_type)u_tolower((UChar32)ch);
+    return sensitive? ch: (char_type)u_tolower((UChar32)ch);
 }
 
 template<>
-inline wxByte xtolower(wxByte ch)
+inline wxByte NormalCase(wxByte ch, bool sensitive)
 {
     return ch;
 }
@@ -108,7 +108,7 @@ public:
 template <typename CharIter, typename JumpTable, typename Seq>
 bool Search(CharIter &begin, CharIter &end, const Seq& pattern, 
     const JumpTable &jump_table, bool bCaseSensitive)
-    // if(bCaseSensitive==false) the content of 'pattern' must be lower case!!!
+    // if (!bCaseSensitive) the content of 'pattern' must be normal case.
 {
     size_t pat_len = pattern.size();
     wxASSERT(pat_len != 0);
@@ -122,18 +122,12 @@ bool Search(CharIter &begin, CharIter &end, const Seq& pattern,
 
     for(;;)
     {
-        c1 = *begin;
-        if(bCaseSensitive==false)
-        {
-            c1=xtolower(c1);
-        }
+        c1 = NormalCase(*begin, bCaseSensitive);
 
         if(c1 == *p)
         {
             if(idx==0)
-            {
                 beginpos = begin;
-            }
             ++idx;
             ++p;
 
@@ -148,49 +142,46 @@ bool Search(CharIter &begin, CharIter &end, const Seq& pattern,
             // compare next char
             if(++begin == end)
                 return false;
+
+            continue;
         }
-        else // c1 != *p
+
+        // c1 != *p
+        // jump by the jump_table
+        CharIter it = begin;
+        int i = (int)(pat_len - idx);
+        do
         {
-            // jump by the jump_table
-            CharIter it = begin;
-            int i = (int)(pat_len - idx);
+            if(++it == end)
+                return false;
+        }
+        while(--i > 0);
+
+        c1 = NormalCase(*it, bCaseSensitive);
+
+        int jv = jump_table.GetValue(c1);
+        if(jv >= (int)pat_len)
+        {
+            begin = it;
+            jv -= (int)pat_len;
+            idx = 0;
+            p = pattern.begin();
+        }
+        else if(idx != 0)
+        {
+            begin = beginpos;
+            idx = 0;
+            p = pattern.begin();
+        }
+
+        if(jv > 0)
+        {
             do
             {
-                if(++it == end)
+                if(++begin == end)
                     return false;
             }
-            while(--i > 0);
-
-            c1 = *it;
-            if(bCaseSensitive==false)
-            {
-                c1=xtolower(c1);
-            }
-
-            int jv = jump_table.GetValue(c1);
-            if(jv >= (int)pat_len)
-            {
-                begin = it;
-                jv -= (int)pat_len;
-                idx = 0;
-                p = pattern.begin();
-            }
-            else if(idx != 0)
-            {
-                begin = beginpos;
-                idx = 0;
-                p = pattern.begin();
-            }
-
-            if(jv > 0)
-            {
-                do
-                {
-                    if(++begin == end)
-                        return false;
-                }
-                while(--jv > 0);
-            }
+            while(--jv > 0);
         }
     }
 
@@ -339,7 +330,7 @@ struct UCQueueSet
     int          lock;
 };
 
-struct UCIterator   // ucs4_t widechar iterator
+struct UCIterator: public WXMCharIterator   // ucs4_t widechar iterator
 {
     typedef std::bidirectional_iterator_tag iterator_category;
     typedef ucs4_t value_type;
@@ -364,9 +355,6 @@ struct UCIterator   // ucs4_t widechar iterator
     #define UCQ_MAXSIZE (10 * 1024)
     #define BUF_MAXSIZE (5 * 1024)
 
-    wxFileOffset    pos;
-    MadLineIterator lit;
-    wxFileOffset    linepos;
     UCQIterator     ucqit;
     int             ucqidx;
 
@@ -387,8 +375,8 @@ struct UCIterator   // ucs4_t widechar iterator
         this->operator =( ucit );
     }
 
-    UCIterator(wxFileOffset pos0, const MadLineIterator &lit0, wxFileOffset linepos0)
-        :pos(pos0), lit(lit0), linepos(linepos0)
+    UCIterator(const MadCaretPos& cp)
+        :WXMCharIterator(cp)
     {
         if(linepos == lit->m_Size && pos<s_lines->GetSize())
         {
@@ -404,18 +392,18 @@ struct UCIterator   // ucs4_t widechar iterator
 
         ucqidx=0;
 
-        if(pos<s_lines->GetSize())
+        if (pos >= s_lines->GetSize())
+            return;
+
+        MadUCQueue &ucqueue=ucqit->ucq;
+        s_lines->InitNextUChar(lit, linepos);
+        int i = BUF_MAXSIZE;
+
+        if(pos>=s_endpos) i=10;
+
+        while(--i>0 && s_lines->NextUChar(ucqueue))
         {
-            MadUCQueue &ucqueue=ucqit->ucq;
-            s_lines->InitNextUChar(lit, linepos);
-            int i = BUF_MAXSIZE;
-
-            if(pos>=s_endpos) i=10;
-
-            while(--i>0 && s_lines->NextUChar(ucqueue))
-            {
-                //ucqit->size += ucqueue.back().second;
-            }
+            //ucqit->size += ucqueue.back().second;
         }
     }
 
@@ -590,6 +578,12 @@ MadLines *UCIterator::s_lines=nullptr;
 wxFileOffset UCIterator::s_endpos=0;
 list<UCQueueSet> UCIterator::s_ucqueues;
 
+void MadCaretPos::AssignWith(const WXMCharIterator& ucit)
+{
+    pos = ucit.pos;
+    iter = ucit.lit;
+    linepos = ucit.linepos;
+}
 
 MadSearchResult MadEdit::Search(/*IN_OUT*/MadCaretPos &beginpos, /*IN_OUT*/MadCaretPos &endpos,
     const wxString &text, bool bRegex, bool bCaseSensitive, bool bWholeWord)
@@ -598,17 +592,13 @@ MadSearchResult MadEdit::Search(/*IN_OUT*/MadCaretPos &beginpos, /*IN_OUT*/MadCa
         return SR_NO;
 
     regex_constants::syntax_option_type opt = regex_constants::ECMAScript;
-    if(bCaseSensitive == false)
+    const wxString *text_ptr = &text;
+    if (!bCaseSensitive)
     {
         opt = opt | regex_constants::icase;
-    }
-
-    const wxString *text_ptr = &text;
-    if(!bCaseSensitive)
-    {
-        static wxString text_lower;
-		text_lower = wxm::WxStrToLower(text);
-        text_ptr = &text_lower;
+        static wxString text_ncase;
+        text_ncase = wxm::WxStrToNormalCase(text);
+        text_ptr = &text_ncase;
     }
 
 #ifdef __WXMSW__
@@ -642,8 +632,8 @@ MadSearchResult MadEdit::Search(/*IN_OUT*/MadCaretPos &beginpos, /*IN_OUT*/MadCa
 
     UCIterator::Init(m_Lines, endpos.pos);
 
-    UCIterator start(beginpos.pos, beginpos.iter, beginpos.linepos);
-    UCIterator end(endpos.pos, endpos.iter, endpos.linepos);
+    UCIterator start(beginpos);
+    UCIterator end(endpos);
     UCIterator fbegin, fend;
     match_results < UCIterator > what;
     bool found;
@@ -724,21 +714,13 @@ MadSearchResult MadEdit::Search(/*IN_OUT*/MadCaretPos &beginpos, /*IN_OUT*/MadCa
             {
                 if(bRegex)
                 {
-                    beginpos.pos = what[0].first.pos;
-                    beginpos.iter= what[0].first.lit;
-                    beginpos.linepos=what[0].first.linepos;
-                    endpos.pos = what[0].second.pos;
-                    endpos.iter= what[0].second.lit;
-                    endpos.linepos=what[0].second.linepos;
+                    beginpos.AssignWith(what[0].first);
+                    endpos.AssignWith(what[0].second);
                 }
                 else
                 {
-                    beginpos.pos = fbegin.pos;
-                    beginpos.iter= fbegin.lit;
-                    beginpos.linepos=fbegin.linepos;
-                    endpos.pos = fend.pos;
-                    endpos.iter= fend.lit;
-                    endpos.linepos=fend.linepos;
+                    beginpos.AssignWith(fbegin);
+                    endpos.AssignWith(fend);
                 }
 
                 return SR_YES;
@@ -746,13 +728,9 @@ MadSearchResult MadEdit::Search(/*IN_OUT*/MadCaretPos &beginpos, /*IN_OUT*/MadCa
 
             // not found, repeat...
             if(bRegex)
-            {
                 start = what[0].second;
-            }
             else
-            {
                 start = fend;
-            }
         }
     }
     catch(regex_error)
@@ -779,24 +757,19 @@ ucs4string ConvertEscape(const ucs4string &str)
 
     while(begin!=end)
     {
-        if(*begin=='\\')
-        {
-            if(++begin == end)
-            {
-                //out.push_back('\\'); // last char is '\'
-                throw regex_error(regex_constants::error_escape);
-            }
-            else
-            {
-                esc = detail::parse_escape(begin, end, ucs4traits);
-                out += esc.ch_;
-            }
-        }
-        else
+        if (*begin != '\\')
         {
             out += *begin;
             ++begin;
+            continue;
         }
+
+        // last char is '\'
+        if (++begin == end)
+            throw regex_error(regex_constants::error_escape);
+
+        esc = detail::parse_escape(begin, end, ucs4traits);
+        out += esc.ch_;
     }
 
     return out;
@@ -806,27 +779,23 @@ MadSearchResult MadEdit::Replace(ucs4string &out, const MadCaretPos &beginpos, c
     const wxString &expr, const wxString &fmt,
     bool bRegex, bool bCaseSensitive, bool bWholeWord)
 {
-    if(expr.IsEmpty()) return SR_NO;
+    if (expr.empty())
+        return SR_NO;
 
-    if(bRegex == false)
+    if (!bRegex)
     {
         // fmt is the wanted string
         vector<ucs4_t> ucs;
         TranslateText(fmt.c_str(), fmt.Len(), ucs, true);
 
-        for(size_t i=0, size=ucs.size(); i<size; i++)
-        {
-            out += ucs[i] ;
-        }
+        out.append(ucs.begin(), ucs.end());
 
         return SR_YES;
     }
 
     regex_constants::syntax_option_type opt = regex_constants::ECMAScript;
-    if(bCaseSensitive == false)
-    {
+    if(!bCaseSensitive)
         opt = opt | regex_constants::icase;
-    }
 
 #ifdef __WXMSW__
     vector<ucs4_t> ucs;
@@ -862,18 +831,10 @@ MadSearchResult MadEdit::Replace(ucs4string &out, const MadCaretPos &beginpos, c
     ucs4string fmtstr(puc, puc+fmt.Len());
 #endif
 
-    UCIterator begin(beginpos.pos, beginpos.iter, beginpos.linepos);
-    UCIterator end(endpos.pos, endpos.iter, endpos.linepos);
+    UCIterator begin(beginpos);
+    UCIterator end(endpos);
 
-    ucs4string str;
-
-    //back_insert_iterator<ucs4string> oi(str);
-    //std::copy(first, last, oi);
-    while(begin!=end)
-    {
-        str += *begin;
-        ++begin;
-    }
+    ucs4string str(begin, end);
 
     try
     {
@@ -898,7 +859,7 @@ MadSearchResult MadEdit::Replace(ucs4string &out, const MadCaretPos &beginpos, c
 
 
 // Hex Search
-struct ByteIterator
+struct ByteIterator: public WXMCharIterator
 {
     typedef std::bidirectional_iterator_tag iterator_category;
     typedef wxByte value_type;
@@ -917,10 +878,6 @@ struct ByteIterator
         s_endpos=endpos;
     }
 
-    wxFileOffset    pos;
-    MadLineIterator lit;
-    wxFileOffset    linepos;
-
     ByteIterator() {}
 
     ByteIterator(const ByteIterator &it)
@@ -928,8 +885,8 @@ struct ByteIterator
         this->operator =( it );
     }
 
-    ByteIterator(wxFileOffset pos0, const MadLineIterator &lit0, wxFileOffset linepos0)
-        :pos(pos0), lit(lit0), linepos(linepos0)
+    ByteIterator(const MadCaretPos& cp)
+        :WXMCharIterator(cp)
     {
         if(linepos == lit->m_Size && pos<s_lines->GetSize())
         {
@@ -1038,25 +995,18 @@ MadSearchResult MadEdit::SearchHex(/*IN_OUT*/MadCaretPos &beginpos, /*IN_OUT*/Ma
         return SR_NO;
 
     ByteIterator::Init(m_Lines, endpos.pos);
-    ByteIterator start(beginpos.pos, beginpos.iter, beginpos.linepos);
-    ByteIterator end(endpos.pos, endpos.iter, endpos.linepos);
+    ByteIterator start(beginpos);
+    ByteIterator end(endpos);
 
     static JumpTable_Hex jtab;
     jtab.Build(hex);
 
-    if(::Search(start, end, hex, jtab, true))
-    {
-        beginpos.pos = start.pos;
-        beginpos.iter= start.lit;
-        beginpos.linepos=start.linepos;
+    if (!::Search(start, end, hex, jtab, true))
+        return SR_NO;
 
-        endpos.pos = end.pos;
-        endpos.iter= end.lit;
-        endpos.linepos=end.linepos;
+    beginpos.AssignWith(start);
+    endpos.AssignWith(end);
 
-        return SR_YES;
-    }
-
-    return SR_NO;
+    return SR_YES;
 }
 
