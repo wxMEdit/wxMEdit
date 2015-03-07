@@ -11,6 +11,7 @@
 
 #include "../../xm/cxx11.h"
 #include "../../wxmedit/wxmedit.h"
+#include "../searcher.h"
 
 namespace wxm
 {
@@ -40,6 +41,7 @@ private:
 	virtual void CacheLineNumberAreaWidth(int width) override {}
 	virtual void PaintLineNumberArea(const wxColor & bgcolor, wxDC * dc, const wxRect& rect, bool is_trailing_subrow,
 		MadLineIterator lineiter, int lineid, int text_top) override {}
+	virtual WXMSearcher* Searcher() override { return nullptr; }
 };
 
 struct InFrameWXMEdit;
@@ -68,12 +70,16 @@ private:
 struct SearchingWXMEdit : public SimpleTextWXMEdit
 {
 	SearchingWXMEdit(wxWindow* parent, bool bSearchWholeWord)
-		: SimpleTextWXMEdit(parent, wxID_ANY, wxPoint(-1024, -1024))
+		: SimpleTextWXMEdit(parent, wxID_ANY, wxPoint(-1024, -1024)), m_searcher(this)
 	{
 		InitHexFont();
 		StopRepaint();
 		SetSearchOptions(true, bSearchWholeWord);
 	}
+
+	virtual WXMSearcher* Searcher() override { return &m_searcher; }
+private:
+	WXMSearcher m_searcher;
 };
 
 } //namespace wxm

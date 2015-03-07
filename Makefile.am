@@ -62,6 +62,8 @@ wxmedit_SOURCES =	$(enc_src) \
 	src/wxm/line_enc_adapter.h \
 	src/wxm/recent_list.cpp \
 	src/wxm/recent_list.h \
+	src/wxm/searcher.cpp \
+	src/wxm/searcher.h \
 	src/wxm/status_bar.cpp \
 	src/wxm/status_bar.h \
 	src/wxm/update.cpp \
@@ -97,7 +99,6 @@ wxmedit_SOURCES =	$(enc_src) \
 	src/wxmedit/wxmedit_command.cpp \
 	src/wxmedit/wxmedit_command.h \
 	src/wxmedit/wxmedit_gtk.cpp \
-	src/wxmedit/wxmedit_search.cpp \
 	src/wxmedit_app.cpp \
 	src/wxmedit_app.h \
 	src/wxmedit_frame.cpp \

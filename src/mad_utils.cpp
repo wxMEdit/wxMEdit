@@ -17,6 +17,7 @@
 #include <wx/string.h>
 #include <wx/filefn.h>
 #include <wx/filename.h>
+#include <wx/msgdlg.h>
 
 #ifdef __WXMAC__
 # include <wx/mac/private.h>
@@ -225,4 +226,51 @@ wxString GetExecutablePath()
     }
 
     return path;
+}
+
+bool StringToHex(wxString ws, std::vector<wxByte> &hex)
+{
+    ws.Trim(false);
+
+    size_t len=ws.Len();
+    if(len==0)
+        return true;    // it's OK!!!
+
+    wxString errmsg(_("The input string is not a valid Hex-String:"));
+
+    const wxChar *pc=ws.c_str();
+
+    do
+    {
+        if(len<2)
+        {
+            wxMessageDialog dlg(nullptr, errmsg+wxT("\n\n")+ws,
+                            wxT("wxMEdit"), wxOK|wxICON_ERROR );
+            dlg.ShowModal();
+            return false;
+        }
+
+        int b0=FromHex(*pc++);
+        int b1=FromHex(*pc++);
+        len-=2;
+
+        if(b0<0 || b1<0)
+        {
+            wxMessageDialog dlg(nullptr, errmsg+wxT("\n\n")+ws,
+                            wxT("wxMEdit"), wxOK|wxICON_ERROR );
+            dlg.ShowModal();
+            return false;
+        }
+
+        hex.push_back( (b0<<4) | b1 );
+
+        while(len>0 && ((*pc)==0x20 || (*pc==0x09))) // ignore spaces
+        {
+            --len;
+            ++pc;
+        }
+    }
+    while(len>0);
+
+    return true;
 }

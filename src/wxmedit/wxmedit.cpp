@@ -15,6 +15,7 @@
 #include "../wxm/utils.h"
 #include "wxm_syntax.h"
 #include "wxm_undo.h"
+#include "../mad_utils.h"
 
 #include <wx/fileconf.h>
 #include <wx/gdicmn.h>

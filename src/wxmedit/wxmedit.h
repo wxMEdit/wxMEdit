@@ -130,7 +130,6 @@ enum
 { sfAscending=0, sfDescending=1, sfCaseSensitive=2, sfRemoveDuplicate=4, sfNumericSort=8 };
 
 //==================================================
-typedef std::basic_string<ucs4_t> ucs4string;
 
 class MadMouseMotionTimer;
 
@@ -181,19 +180,6 @@ struct WXMCharIterator
 
 struct UCIterator;
 
-// returned state of Search & Replace
-enum MadSearchResult
-{ SR_EXPR_ERROR=-2, SR_YES=-1, SR_NO=0 };
-
-enum MadReplaceResult
-{
-    RR_EXPR_ERROR=-1,
-    RR_NREP_NNEXT=0, // not replaced, not found next
-    RR_REP_NNEXT=1,  // replaced, not found next
-    RR_NREP_NEXT=2,  // not replaced, found next
-    RR_REP_NEXT=3    // replaced, found next
-};
-
 
 #define MadEditSuperClass wxWindow //wxScrolledWindow//wxPanel//wxControl//
 
@@ -226,6 +212,7 @@ private:
     friend struct wxm::WXMEncoding;
     friend class MadLines;
     friend class MadMouseMotionTimer;
+    friend struct wxm::WXMSearcher;
 
     static int      ms_Count; // the count of MadEdit
 
@@ -551,16 +538,6 @@ protected:
 
     void InsertHexChar(int hc);
     void InsertRawBytes(wxByte *bytes, size_t count, bool overwirte);
-
-    MadSearchResult Search(/*IN_OUT*/MadCaretPos &beginpos, /*IN_OUT*/MadCaretPos &endpos,
-                           const wxString &text, bool bRegex, bool bCaseSensitive, bool bWholeWord);
-
-    MadSearchResult SearchHex(/*IN_OUT*/MadCaretPos &beginpos, /*IN_OUT*/MadCaretPos &endpos,
-                              const std::vector<wxByte>& hex);
-
-    MadSearchResult Replace(/*OUT*/ucs4string &out, const MadCaretPos &beginpos, const MadCaretPos &endpos,
-                            const wxString &expr, const wxString &fmt,
-                            bool bRegex, bool bCaseSensitive, bool bWholeWord);
 
     void OverwriteDataSingle(vector<wxFileOffset> &del_bpos, vector<wxFileOffset> &del_epos,
                              vector<const ucs4_t*> *ins_ucs, vector<wxByte*> *ins_data,
@@ -924,49 +901,7 @@ public: // basic functions
     void GoToLeftBrace() { ProcessCommand(ecLeftBrace); }
     void GoToRightBrace() { ProcessCommand(ecRightBrace); }
 
-    // search in [rangeFrom, rangeTo], default in [CaretPos, EndOfDoc]
-    MadSearchResult FindTextNext(const wxString &text,
-                bool bRegex, bool bCaseSensitive, bool bWholeWord,
-                wxFileOffset rangeFrom = -1, wxFileOffset rangeTo = -1);
-    // search in [rangeFrom, rangeTo], rangeFrom > rangeTo, default in [CaretPos, BeginOfDoc]
-    MadSearchResult FindTextPrevious(const wxString &text,
-                bool bRegex, bool bCaseSensitive, bool bWholeWord,
-                wxFileOffset rangeFrom = -1, wxFileOffset rangeTo = -1);
-
-    // search in [rangeFrom, rangeTo], default in [CaretPos, EndOfDoc]
-    MadSearchResult FindHexNext(const wxString &hexstr,
-                                wxFileOffset rangeFrom = -1,
-                                wxFileOffset rangeTo = -1);
-    // search in [rangeFrom, rangeTo], rangeFrom > rangeTo, default in [CaretPos, BeginOfDoc]
-    MadSearchResult FindHexPrevious(const wxString &hexstr,
-                                wxFileOffset rangeFrom = -1,
-                                wxFileOffset rangeTo = -1);
-
-    // replace the selected text that must match expr
-    MadReplaceResult ReplaceText(const wxString &expr, const wxString &fmt,
-                                 bool bRegex, bool bCaseSensitive, bool bWholeWord,
-                                 wxFileOffset rangeFrom = -1, wxFileOffset rangeTo = -1);
-    MadReplaceResult ReplaceHex(const wxString &expr, const wxString &fmt,
-                                wxFileOffset rangeFrom = -1, wxFileOffset rangeTo = -1);
-
-    // return the replaced count or SR_EXPR_ERROR
-    int ReplaceTextAll(const wxString &expr, const wxString &fmt,
-            bool bRegex, bool bCaseSensitive, bool bWholeWord,
-            vector<wxFileOffset> *pbegpos = nullptr, vector<wxFileOffset> *pendpos = nullptr,
-            wxFileOffset rangeFrom = -1, wxFileOffset rangeTo = -1);
-    int ReplaceHexAll(const wxString &expr, const wxString &fmt,
-            vector<wxFileOffset> *pbegpos = nullptr, vector<wxFileOffset> *pendpos = nullptr,
-            wxFileOffset rangeFrom = -1, wxFileOffset rangeTo = -1);
-
-    // list the matched data to pbegpos & pendpos
-    // return the found count or SR_EXPR_ERROR
-    int FindTextAll(const wxString &expr,
-                    bool bRegex, bool bCaseSensitive, bool bWholeWord, bool bFirstOnly,
-                    vector<wxFileOffset> *pbegpos, vector<wxFileOffset> *pendpos,
-                    wxFileOffset rangeFrom = -1, wxFileOffset rangeTo = -1);
-    int FindHexAll(const wxString &expr, bool bFirstOnly,
-                   vector<wxFileOffset> *pbegpos, vector<wxFileOffset> *pendpos,
-                   wxFileOffset rangeFrom = -1, wxFileOffset rangeTo = -1);
+    virtual wxm::WXMSearcher* Searcher() = 0;
 
     bool LoadFromFile(const wxString &filename, const wxString &encoding = wxEmptyString);
     bool SaveToFile(const wxString &filename);
@@ -1069,25 +1004,6 @@ public: // fix wxDC.Blit(wxINVERT) not work on some old versions of VMWare
     InvertRectPtr InvertRect;
     void InvertRectNormal(wxDC *dc, int x, int y, int w, int h);
     void InvertRectManual(wxDC *dc, int x, int y, int w, int h);
-
-public: // utility functions
-
-    ucs4_t ToHex(int d)// 0 <= d <= 15
-    {
-        if(d < 10)
-            return '0' + d;
-        return 'A' + d - 10;
-    }
-
-    int FromHex(wxChar c)
-    {
-        if(c>='0' && c<='9') return c-'0';
-        if(c>='A' && c<='F') return c-'A'+10;
-        if(c>='a' && c<='f') return c-'a'+10;
-        return -1;
-    }
-
-    bool StringToHex(wxString ws, vector<wxByte> &hex);
 };
 
 wxString FixUTF8ToWCS(const wxString &str);

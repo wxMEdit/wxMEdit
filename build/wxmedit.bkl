@@ -178,6 +178,8 @@
 		<sources>../src/wxm/line_enc_adapter.cpp</sources>
 		<headers>../src/wxm/recent_list.h</headers>
 		<sources>../src/wxm/recent_list.cpp</sources>
+		<headers>../src/wxm/searcher.h</headers>
+		<sources>../src/wxm/searcher.cpp</sources>
 		<headers>../src/wxm/status_bar.h</headers>
 		<sources>../src/wxm/status_bar.cpp</sources>
 		<headers>../src/wxm/update.h</headers>
@@ -205,7 +207,6 @@
 		<sources>../src/wxmedit/wxmedit_basic.cpp</sources>
 		<headers>../src/wxmedit/wxmedit_command.h</headers>
 		<sources>../src/wxmedit/wxmedit_command.cpp</sources>
-		<sources>../src/wxmedit/wxmedit_search.cpp</sources>
 		<headers>../src/wxmedit_app.h</headers>
 		<sources>../src/wxmedit_app.cpp</sources>
 		<headers>../src/wxmedit_frame.h</headers>

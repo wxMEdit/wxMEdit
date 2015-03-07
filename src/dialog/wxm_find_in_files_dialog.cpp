@@ -658,6 +658,7 @@ void WXMFindInFilesDialog::FindReplaceInFiles(bool bReplace)
 				}
 				++fnit;
 			}
+			wxm::WXMSearcher& searcher = *(madedit->Searcher());
 
 			wxLongLong t=wxGetLocalTimeMillis();
 			wxLongLong delta=t-g_Time;
@@ -687,11 +688,11 @@ void WXMFindInFilesDialog::FindReplaceInFiles(bool bReplace)
 				m_ReplaceText->GetText(fmt);
 				if(WxCheckBoxFindHex->GetValue())
 				{
-					ok = madedit->ReplaceHexAll(expr, fmt, &begpos, &endpos);
+					ok = searcher.ReplaceHexAll(expr, fmt, &begpos, &endpos);
 				}
 				else
 				{
-					ok = madedit->ReplaceTextAll(expr, fmt, 
+					ok = searcher.ReplaceTextAll(expr, fmt,
 						WxCheckBoxRegex->GetValue(),
 						WxCheckBoxCaseSensitive->GetValue(),
 						WxCheckBoxWholeWord->GetValue(), 
@@ -712,12 +713,12 @@ void WXMFindInFilesDialog::FindReplaceInFiles(bool bReplace)
 				m_FindText->GetText(expr);
 				if(WxCheckBoxFindHex->GetValue())
 				{
-					ok = madedit->FindHexAll(expr, WxCheckBoxListFirstOnly->GetValue(),
+					ok = searcher.FindHexAll(expr, WxCheckBoxListFirstOnly->GetValue(),
 						&begpos, &endpos);
 				}
 				else
 				{
-					ok = madedit->FindTextAll(expr,
+					ok = searcher.FindTextAll(expr,
 						WxCheckBoxRegex->GetValue(),
 						WxCheckBoxCaseSensitive->GetValue(),
 						WxCheckBoxWholeWord->GetValue(),

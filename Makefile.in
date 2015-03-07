@@ -85,6 +85,7 @@ am_wxmedit_OBJECTS = $(am__objects_1) $(am__objects_2) \
 	src/wxm/edit/wxmedit-single_line.$(OBJEXT) \
 	src/wxm/wxmedit-line_enc_adapter.$(OBJEXT) \
 	src/wxm/wxmedit-recent_list.$(OBJEXT) \
+	src/wxm/wxmedit-searcher.$(OBJEXT) \
 	src/wxm/wxmedit-status_bar.$(OBJEXT) \
 	src/wxm/wxmedit-update.$(OBJEXT) \
 	src/wxm/wxmedit-utils.$(OBJEXT) \
@@ -102,7 +103,6 @@ am_wxmedit_OBJECTS = $(am__objects_1) $(am__objects_2) \
 	src/wxmedit/wxmedit-wxmedit_basic.$(OBJEXT) \
 	src/wxmedit/wxmedit-wxmedit_command.$(OBJEXT) \
 	src/wxmedit/wxmedit-wxmedit_gtk.$(OBJEXT) \
-	src/wxmedit/wxmedit-wxmedit_search.$(OBJEXT) \
 	src/wxmedit-wxmedit_app.$(OBJEXT) \
 	src/wxmedit-wxmedit_frame.$(OBJEXT) \
 	src/xm/wxmedit-remote.$(OBJEXT) \
@@ -431,6 +431,8 @@ wxmedit_SOURCES = $(enc_src) \
 	src/wxm/line_enc_adapter.h \
 	src/wxm/recent_list.cpp \
 	src/wxm/recent_list.h \
+	src/wxm/searcher.cpp \
+	src/wxm/searcher.h \
 	src/wxm/status_bar.cpp \
 	src/wxm/status_bar.h \
 	src/wxm/update.cpp \
@@ -466,7 +468,6 @@ wxmedit_SOURCES = $(enc_src) \
 	src/wxmedit/wxmedit_command.cpp \
 	src/wxmedit/wxmedit_command.h \
 	src/wxmedit/wxmedit_gtk.cpp \
-	src/wxmedit/wxmedit_search.cpp \
 	src/wxmedit_app.cpp \
 	src/wxmedit_app.h \
 	src/wxmedit_frame.cpp \
@@ -782,6 +783,8 @@ src/wxm/wxmedit-line_enc_adapter.$(OBJEXT): src/wxm/$(am__dirstamp) \
 	src/wxm/$(DEPDIR)/$(am__dirstamp)
 src/wxm/wxmedit-recent_list.$(OBJEXT): src/wxm/$(am__dirstamp) \
 	src/wxm/$(DEPDIR)/$(am__dirstamp)
+src/wxm/wxmedit-searcher.$(OBJEXT): src/wxm/$(am__dirstamp) \
+	src/wxm/$(DEPDIR)/$(am__dirstamp)
 src/wxm/wxmedit-status_bar.$(OBJEXT): src/wxm/$(am__dirstamp) \
 	src/wxm/$(DEPDIR)/$(am__dirstamp)
 src/wxm/wxmedit-update.$(OBJEXT): src/wxm/$(am__dirstamp) \
@@ -819,9 +822,6 @@ src/wxmedit/wxmedit-wxmedit_command.$(OBJEXT):  \
 	src/wxmedit/$(am__dirstamp) \
 	src/wxmedit/$(DEPDIR)/$(am__dirstamp)
 src/wxmedit/wxmedit-wxmedit_gtk.$(OBJEXT):  \
-	src/wxmedit/$(am__dirstamp) \
-	src/wxmedit/$(DEPDIR)/$(am__dirstamp)
-src/wxmedit/wxmedit-wxmedit_search.$(OBJEXT):  \
 	src/wxmedit/$(am__dirstamp) \
 	src/wxmedit/$(DEPDIR)/$(am__dirstamp)
 src/wxmedit-wxmedit_app.$(OBJEXT): src/$(am__dirstamp) \
@@ -975,6 +975,7 @@ mostlyclean-compile:
 	-rm -f src/wxm/wxmedit-encdet.$(OBJEXT)
 	-rm -f src/wxm/wxmedit-line_enc_adapter.$(OBJEXT)
 	-rm -f src/wxm/wxmedit-recent_list.$(OBJEXT)
+	-rm -f src/wxm/wxmedit-searcher.$(OBJEXT)
 	-rm -f src/wxm/wxmedit-status_bar.$(OBJEXT)
 	-rm -f src/wxm/wxmedit-update.$(OBJEXT)
 	-rm -f src/wxm/wxmedit-utils.$(OBJEXT)
@@ -997,7 +998,6 @@ mostlyclean-compile:
 	-rm -f src/wxmedit/wxmedit-wxmedit_basic.$(OBJEXT)
 	-rm -f src/wxmedit/wxmedit-wxmedit_command.$(OBJEXT)
 	-rm -f src/wxmedit/wxmedit-wxmedit_gtk.$(OBJEXT)
-	-rm -f src/wxmedit/wxmedit-wxmedit_search.$(OBJEXT)
 	-rm -f src/xm/wxmedit-remote.$(OBJEXT)
 	-rm -f src/xm/wxmedit-ublock.$(OBJEXT)
 	-rm -f src/xm/wxmedit-ublock_des.$(OBJEXT)
@@ -1045,6 +1045,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/wxm/$(DEPDIR)/wxmedit-encdet.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/wxm/$(DEPDIR)/wxmedit-line_enc_adapter.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/wxm/$(DEPDIR)/wxmedit-recent_list.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/wxm/$(DEPDIR)/wxmedit-searcher.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/wxm/$(DEPDIR)/wxmedit-status_bar.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/wxm/$(DEPDIR)/wxmedit-update.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/wxm/$(DEPDIR)/wxmedit-utils.Po@am__quote@
@@ -1079,7 +1080,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/wxmedit/$(DEPDIR)/wxmedit-wxmedit_basic.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/wxmedit/$(DEPDIR)/wxmedit-wxmedit_command.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/wxmedit/$(DEPDIR)/wxmedit-wxmedit_gtk.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@src/wxmedit/$(DEPDIR)/wxmedit-wxmedit_search.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/xm/$(DEPDIR)/wxmedit-remote.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/xm/$(DEPDIR)/wxmedit-ublock.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/xm/$(DEPDIR)/wxmedit-ublock_des.Po@am__quote@
@@ -1471,6 +1471,20 @@ src/wxm/wxmedit-recent_list.obj: src/wxm/recent_list.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -c -o src/wxm/wxmedit-recent_list.obj `if test -f 'src/wxm/recent_list.cpp'; then $(CYGPATH_W) 'src/wxm/recent_list.cpp'; else $(CYGPATH_W) '$(srcdir)/src/wxm/recent_list.cpp'; fi`
 
+src/wxm/wxmedit-searcher.o: src/wxm/searcher.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -MT src/wxm/wxmedit-searcher.o -MD -MP -MF src/wxm/$(DEPDIR)/wxmedit-searcher.Tpo -c -o src/wxm/wxmedit-searcher.o `test -f 'src/wxm/searcher.cpp' || echo '$(srcdir)/'`src/wxm/searcher.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) src/wxm/$(DEPDIR)/wxmedit-searcher.Tpo src/wxm/$(DEPDIR)/wxmedit-searcher.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/wxm/searcher.cpp' object='src/wxm/wxmedit-searcher.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -c -o src/wxm/wxmedit-searcher.o `test -f 'src/wxm/searcher.cpp' || echo '$(srcdir)/'`src/wxm/searcher.cpp
+
+src/wxm/wxmedit-searcher.obj: src/wxm/searcher.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -MT src/wxm/wxmedit-searcher.obj -MD -MP -MF src/wxm/$(DEPDIR)/wxmedit-searcher.Tpo -c -o src/wxm/wxmedit-searcher.obj `if test -f 'src/wxm/searcher.cpp'; then $(CYGPATH_W) 'src/wxm/searcher.cpp'; else $(CYGPATH_W) '$(srcdir)/src/wxm/searcher.cpp'; fi`
+@am__fastdepCXX_TRUE@	$(am__mv) src/wxm/$(DEPDIR)/wxmedit-searcher.Tpo src/wxm/$(DEPDIR)/wxmedit-searcher.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/wxm/searcher.cpp' object='src/wxm/wxmedit-searcher.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -c -o src/wxm/wxmedit-searcher.obj `if test -f 'src/wxm/searcher.cpp'; then $(CYGPATH_W) 'src/wxm/searcher.cpp'; else $(CYGPATH_W) '$(srcdir)/src/wxm/searcher.cpp'; fi`
+
 src/wxm/wxmedit-status_bar.o: src/wxm/status_bar.cpp
 @am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -MT src/wxm/wxmedit-status_bar.o -MD -MP -MF src/wxm/$(DEPDIR)/wxmedit-status_bar.Tpo -c -o src/wxm/wxmedit-status_bar.o `test -f 'src/wxm/status_bar.cpp' || echo '$(srcdir)/'`src/wxm/status_bar.cpp
 @am__fastdepCXX_TRUE@	$(am__mv) src/wxm/$(DEPDIR)/wxmedit-status_bar.Tpo src/wxm/$(DEPDIR)/wxmedit-status_bar.Po
@@ -1708,20 +1722,6 @@ src/wxmedit/wxmedit-wxmedit_gtk.obj: src/wxmedit/wxmedit_gtk.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/wxmedit/wxmedit_gtk.cpp' object='src/wxmedit/wxmedit-wxmedit_gtk.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -c -o src/wxmedit/wxmedit-wxmedit_gtk.obj `if test -f 'src/wxmedit/wxmedit_gtk.cpp'; then $(CYGPATH_W) 'src/wxmedit/wxmedit_gtk.cpp'; else $(CYGPATH_W) '$(srcdir)/src/wxmedit/wxmedit_gtk.cpp'; fi`
-
-src/wxmedit/wxmedit-wxmedit_search.o: src/wxmedit/wxmedit_search.cpp
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -MT src/wxmedit/wxmedit-wxmedit_search.o -MD -MP -MF src/wxmedit/$(DEPDIR)/wxmedit-wxmedit_search.Tpo -c -o src/wxmedit/wxmedit-wxmedit_search.o `test -f 'src/wxmedit/wxmedit_search.cpp' || echo '$(srcdir)/'`src/wxmedit/wxmedit_search.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) src/wxmedit/$(DEPDIR)/wxmedit-wxmedit_search.Tpo src/wxmedit/$(DEPDIR)/wxmedit-wxmedit_search.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/wxmedit/wxmedit_search.cpp' object='src/wxmedit/wxmedit-wxmedit_search.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -c -o src/wxmedit/wxmedit-wxmedit_search.o `test -f 'src/wxmedit/wxmedit_search.cpp' || echo '$(srcdir)/'`src/wxmedit/wxmedit_search.cpp
-
-src/wxmedit/wxmedit-wxmedit_search.obj: src/wxmedit/wxmedit_search.cpp
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -MT src/wxmedit/wxmedit-wxmedit_search.obj -MD -MP -MF src/wxmedit/$(DEPDIR)/wxmedit-wxmedit_search.Tpo -c -o src/wxmedit/wxmedit-wxmedit_search.obj `if test -f 'src/wxmedit/wxmedit_search.cpp'; then $(CYGPATH_W) 'src/wxmedit/wxmedit_search.cpp'; else $(CYGPATH_W) '$(srcdir)/src/wxmedit/wxmedit_search.cpp'; fi`
-@am__fastdepCXX_TRUE@	$(am__mv) src/wxmedit/$(DEPDIR)/wxmedit-wxmedit_search.Tpo src/wxmedit/$(DEPDIR)/wxmedit-wxmedit_search.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/wxmedit/wxmedit_search.cpp' object='src/wxmedit/wxmedit-wxmedit_search.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -c -o src/wxmedit/wxmedit-wxmedit_search.obj `if test -f 'src/wxmedit/wxmedit_search.cpp'; then $(CYGPATH_W) 'src/wxmedit/wxmedit_search.cpp'; else $(CYGPATH_W) '$(srcdir)/src/wxmedit/wxmedit_search.cpp'; fi`
 
 src/wxmedit-wxmedit_app.o: src/wxmedit_app.cpp
 @am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -MT src/wxmedit-wxmedit_app.o -MD -MP -MF src/$(DEPDIR)/wxmedit-wxmedit_app.Tpo -c -o src/wxmedit-wxmedit_app.o `test -f 'src/wxmedit_app.cpp' || echo '$(srcdir)/'`src/wxmedit_app.cpp

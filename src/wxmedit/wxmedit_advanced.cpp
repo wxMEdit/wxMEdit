@@ -13,6 +13,8 @@
 #include "../wxm/case_conv.h"
 #include "../xm/ublock.h"
 #include "../xm/uutils.h"
+#include "../mad_utils.h"
+#include "../wxm/searcher.h"
 
 #include <boost/scoped_ptr.hpp>
 #include <algorithm>
@@ -1321,7 +1323,7 @@ void MadEdit::TrimTrailingSpaces()
         return;
 
     // use Regular Expressions to trim all trailing spaces
-    ReplaceTextAll(wxT("[ \t]+(\r|\n|$)"), wxT("$1"), true, true, false);
+    Searcher()->ReplaceTextAll(wxT("[ \t]+(\r|\n|$)"), wxT("$1"), true, true, false);
 }
 
 

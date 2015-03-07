@@ -359,6 +359,7 @@ class MadSyntax;
 namespace wxm
 {
     struct InFrameWXMEdit;
+    struct WXMSearcher;
 }
 
 class MadLines: public wxm::UChar32BytesMapper
@@ -367,6 +368,7 @@ private:
     friend class MadEdit;
     friend struct wxm::InFrameWXMEdit;
     friend class MadSyntax;
+    friend struct wxm::WXMSearcher;
 
     MadEdit       *m_MadEdit;
     MadSyntax     *m_Syntax;
