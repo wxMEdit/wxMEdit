@@ -112,6 +112,8 @@ namespace wxm
 		bool IsWordBoundary(UCIterator& ucit);
 		bool IsWordBoundary(UCIterator& ucit1, UCIterator& ucit2);
 
+		bool NextRegexSearchingPos(MadCaretPos& cp, const wxString &expr);
+
 		MadEdit* m_edit;
 	};
 

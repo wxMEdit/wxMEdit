@@ -1420,6 +1420,9 @@ int WXMSearcher::ReplaceTextAll(const wxString &expr, const wxString &fmt,
 		if (bpos.iter != epos.iter)
 			++multi;
 
+		if (bpos.pos == epos.pos && !NextRegexSearchingPos(epos, expr))
+			break;
+
 		bpos = epos;
 		epos = endpos;
 	}
@@ -1706,6 +1709,9 @@ bool WXMSearcher::IsWordBoundary(UCIterator& ucit)
 
 bool WXMSearcher::IsWordBoundary(UCIterator& ucit1, UCIterator& ucit2)
 {
+	if (ucit1.pos >= ucit2.pos)
+		return true;
+
 	// check ucit2
 	if (ucit2.linepos > ucit2.lit->m_RowIndices[0].m_Start &&     // not at begin/end of line
 		ucit2.linepos < (ucit2.lit->m_Size - ucit2.lit->m_NewLineSize) &&
@@ -1722,6 +1728,23 @@ bool WXMSearcher::IsWordBoundary(UCIterator& ucit1, UCIterator& ucit2)
 		return false;
 	}
 
+	return true;
+}
+bool WXMSearcher::NextRegexSearchingPos(MadCaretPos& cp, const wxString &expr)
+{
+	if (expr.find_first_of(wxT('^')) != wxString::npos || expr.find_last_of(wxT('$')) != wxString::npos)
+	{
+		wxFileOffset len = cp.iter->m_Size - cp.linepos - 1;
+		cp.pos += len;
+		cp.linepos += len;
+	}
+
+	if (cp.pos == UCIterator::s_endpos)
+		return false;
+
+	UCIterator it(cp);
+	++it;
+	cp.AssignWith(it);
 	return true;
 }
 
