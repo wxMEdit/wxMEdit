@@ -1015,7 +1015,7 @@ MadSearchResult WXMSearcher::FindTextPrevious(const wxString &text,
 	if (rangeFrom < 0)
 		epos = m_edit->m_CaretPos;
 	else
-		UpdateWXMEditCaret(rangeTo, epos);
+		UpdateWXMEditCaret(rangeFrom, epos);
 
 	if (rangeTo < 0) rangeTo = 0;
 	else if (rangeTo > m_edit->GetFileSize()) rangeTo = m_edit->GetFileSize();
@@ -1163,7 +1163,7 @@ MadSearchResult WXMSearcher::FindHexPrevious(const wxString &hexstr,
 	if (rangeFrom < 0)
 		epos = m_edit->m_CaretPos;
 	else
-		AssignCaretPos(rangeFrom, bpos);
+		AssignCaretPos(rangeFrom, epos);
 
 	if (rangeTo < 0) rangeTo = 0;
 	else if (rangeTo > m_edit->GetFileSize()) rangeTo = m_edit->GetFileSize();
