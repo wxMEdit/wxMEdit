@@ -1581,6 +1581,9 @@ int WXMSearcher::FindTextAll(const wxString &expr,
 		if (bFirstOnly)
 			break;
 
+		if (bpos.pos == epos.pos && !NextRegexSearchingPos(epos, expr))
+			break;
+
 		bpos = epos;
 		epos = endpos;
 	}
