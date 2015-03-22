@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-02-04 00:09+0800\n"
-"PO-Revision-Date: 2015-03-22 13:54+0100\n"
+"PO-Revision-Date: 2015-03-22 16:04+0100\n"
 "Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -364,11 +364,11 @@ msgstr "&Auswahl durchsuchen"
 
 #: ../src/dialog/wxm_search_replace_dialog.cpp:118 wxstd.po.cpp:16
 msgid "From:"
-msgstr "Von:"
+msgstr "von:"
 
 #: ../src/dialog/wxm_search_replace_dialog.cpp:122 wxstd.po.cpp:40
 msgid "To:"
-msgstr "Bis:"
+msgstr "bis:"
 
 #: ../src/dialog/wxm_search_replace_dialog.cpp:130
 #: ../src/wxmedit_frame.cpp:1160
@@ -1801,215 +1801,221 @@ msgstr "Groß- in Klein- und Klein- in Großbuchstaben der Auswahl umwandeln"
 
 #: ../src/wxmedit_frame.cpp:1137
 msgid "To H&alfwidth"
-msgstr ""
+msgstr "In Halbbreite"
 
 #: ../src/wxmedit_frame.cpp:1137
 msgid "Convert the selection to halfwidth"
-msgstr ""
+msgstr "Auswahl in halbbreite Zeichen umwandeln"
 
 #: ../src/wxmedit_frame.cpp:1138 ../src/wxmedit_frame.cpp:3884
 msgid "To Halfwidth by Options..."
-msgstr ""
+msgstr "In Halbbreite mit Optionen..."
 
 #: ../src/wxmedit_frame.cpp:1138
 msgid "Convert the selection to halfwidth by options"
-msgstr ""
+msgstr "Auswahl in halbbreite Zeichen umwandeln (mit Optionen)"
 
 #: ../src/wxmedit_frame.cpp:1139
 msgid "To &Fullwidth"
-msgstr ""
+msgstr "In Vollbreite"
 
 #: ../src/wxmedit_frame.cpp:1139
 msgid "Convert the selection to fullwidth"
-msgstr ""
+msgstr "Auswahl in vollbreite Zeichen umwandeln"
 
 #: ../src/wxmedit_frame.cpp:1140 ../src/wxmedit_frame.cpp:3927
 msgid "To Fullwidth by Options..."
-msgstr ""
+msgstr "In Vollbreite mit Optionen..."
 
 #: ../src/wxmedit_frame.cpp:1140
 msgid "Convert the selection to fullwidth by options"
-msgstr ""
+msgstr "Auswahl in vollbreite Zeichen umwandeln (mit Optionen)"
 
 #: ../src/wxmedit_frame.cpp:1142
 msgid "Tab Chars To Space Chars"
-msgstr ""
+msgstr "Tabulator zu Leerzeichen"
 
 #: ../src/wxmedit_frame.cpp:1142
 msgid "Convert Tab chars to Space chars in the selection"
-msgstr ""
+msgstr "Tabulator-Zeichen der Auswahl in Leerzeichen umwandeln"
 
 #: ../src/wxmedit_frame.cpp:1143
 msgid "Space Chars To Tab Chars"
-msgstr ""
+msgstr "Leerzeichen zu Tabulator"
 
 #: ../src/wxmedit_frame.cpp:1143
 msgid "Convert Space chars to Tab chars in the selection"
-msgstr ""
+msgstr "Leerzeichen der Auswahl in Tabulator-Zeichen umwandeln"
 
 #: ../src/wxmedit_frame.cpp:1145
 msgid "Tri&m Trailing Spaces"
-msgstr ""
+msgstr "Leerzeichen am Ende entfernen"
 
 #: ../src/wxmedit_frame.cpp:1145
 msgid "Trim trailing spaces at the end of lines"
-msgstr ""
+msgstr "Leerzeichen am Ende der ausgewählten Zeile(n) entfernen"
 
 #: ../src/wxmedit_frame.cpp:1148
 msgid "Sort Lines (&Ascending)"
-msgstr ""
+msgstr "Zeilen sortieren (aufsteigend)"
 
 #: ../src/wxmedit_frame.cpp:1148
 msgid "Sort the selected or all lines in ascending order"
-msgstr ""
+msgstr "Ausgewählte oder alle Zeilen in aufsteigender Richtung sortieren"
 
 #: ../src/wxmedit_frame.cpp:1149
 msgid "Sort Lines (&Descending)"
-msgstr ""
+msgstr "Zeilen sortieren (absteigend)"
 
 #: ../src/wxmedit_frame.cpp:1149
 msgid "Sort the selected or all lines in descending order"
-msgstr ""
+msgstr "Ausgewählte oder alle Zeilen in absteigender Richtung sortieren"
 
 #: ../src/wxmedit_frame.cpp:1151
 msgid "Sort Lines (A&scending, CaseSensitive)"
-msgstr ""
+msgstr "Zeilen sortieren (aufsteigend, Groß-/Kleinschreibung)"
 
 #: ../src/wxmedit_frame.cpp:1151
 msgid "Sort lines in ascending order and with case-sensitive"
 msgstr ""
+"Ausgewählte oder alle Zeilen in aufsteigender Richtung und nach Groß- und "
+"Kleinschreibung sortieren"
 
 #: ../src/wxmedit_frame.cpp:1152
 msgid "Sort Lines (D&escending, CaseSensitive)"
-msgstr ""
+msgstr "Zeilen sortieren (absteigend, Groß-/Kleinschreibung)"
 
 #: ../src/wxmedit_frame.cpp:1152
 msgid "Sort lines in descending order and with case-sensitive"
 msgstr ""
+"Ausgewählte oder alle Zeilen in absteigender Richtung und nach Groß- und "
+"Kleinschreibung sortieren"
 
 #: ../src/wxmedit_frame.cpp:1154
 msgid "Sort Lines by &Current Options"
-msgstr ""
+msgstr "Sortieren mit aktuellen Optionen"
 
 #: ../src/wxmedit_frame.cpp:1154
 msgid "Sort the selected or all lines by using current options"
-msgstr ""
+msgstr "Ausgewählte oder alle Zeilen mit den aktuellen Optionen sortieren"
 
 #: ../src/wxmedit_frame.cpp:1155
 msgid "Sort &Options..."
-msgstr ""
+msgstr "Sortieroptionen..."
 
 #: ../src/wxmedit_frame.cpp:1155
 msgid "Set the sort options"
-msgstr ""
+msgstr "Einstellen der Sortieroptionen"
 
 #: ../src/wxmedit_frame.cpp:1158
 msgid "&Search"
-msgstr ""
+msgstr "&Suchen"
 
 #: ../src/wxmedit_frame.cpp:1159
 msgid "&Find..."
-msgstr ""
+msgstr "&Suchen..."
 
 #: ../src/wxmedit_frame.cpp:1159
 msgid "Find a string"
-msgstr ""
+msgstr "Suchen nach einer Zeichenkette"
 
 #: ../src/wxmedit_frame.cpp:1160
 msgid "Find next occurrence"
-msgstr ""
+msgstr "Nächstes Vorkommen finden"
 
 #: ../src/wxmedit_frame.cpp:1161
 msgid "Find previous occurrence"
-msgstr ""
+msgstr "Vorheriges Vorkommen finden"
 
 #: ../src/wxmedit_frame.cpp:1163
 msgid "&Replace..."
-msgstr ""
+msgstr "&Ersetzen"
 
 #: ../src/wxmedit_frame.cpp:1163
 msgid "Replace a string"
-msgstr ""
+msgstr "Zeichenkette durch eine andere ersetzen"
 
 #: ../src/wxmedit_frame.cpp:1165
 msgid "Fin&d/Replace in Files..."
-msgstr ""
+msgstr "S&uchen/Ersetzen in Dateien..."
 
 #: ../src/wxmedit_frame.cpp:1165
 msgid "Find or replace a string in files"
-msgstr ""
+msgstr "Zeichenkette in Dateien suchen oder ersetzen"
 
 #: ../src/wxmedit_frame.cpp:1166
 msgid "&Show/Hide the Results of Find/Replace in Files"
-msgstr ""
+msgstr "Er&gebnisse anzeigen/verstecken"
 
 #: ../src/wxmedit_frame.cpp:1166
 msgid "Show or hide the results of find or replace a string in files"
 msgstr ""
+"Schaltet die Anzeige der Ergebnisse von \"Suchen/Ersetzen in Dateien...\" "
+"an oder aus"
 
 #: ../src/wxmedit_frame.cpp:1168
 msgid "&Go To Line..."
-msgstr ""
+msgstr "S&pringe zu Zeile..."
 
 #: ../src/wxmedit_frame.cpp:1168
 msgid "Go to the specified line"
-msgstr ""
+msgstr "Kursor auf die angegebenen Zeilennummer positionieren"
 
 #: ../src/wxmedit_frame.cpp:1169
 msgid "G&o To Position..."
-msgstr ""
+msgstr "Spr&inge zu Position..."
 
 #: ../src/wxmedit_frame.cpp:1169
 msgid "Go to the specified position"
-msgstr ""
+msgstr "Kursor auf die angegebene Zeichenposition positionieren"
 
 #: ../src/wxmedit_frame.cpp:1171
 msgid "Go To L&eft Brace"
-msgstr ""
+msgstr "Springe zur &linken Klammer"
 
 #: ../src/wxmedit_frame.cpp:1171
 msgid "Go to left brace"
-msgstr ""
+msgstr "Kursor auf die linke Klammer positionieren"
 
 #: ../src/wxmedit_frame.cpp:1172
 msgid "Go To R&ight Brace"
-msgstr ""
+msgstr "Springe zur &rechten Klammer"
 
 #: ../src/wxmedit_frame.cpp:1172
 msgid "Go to right brace"
-msgstr ""
+msgstr "Kursor auf die rechte Klammer positionieren"
 
 #: ../src/wxmedit_frame.cpp:1175 ../src/wxmedit_frame.cpp:2000
 msgid "Toggle Bookmark"
-msgstr ""
+msgstr "Lesezeichen ein/aus"
 
 #: ../src/wxmedit_frame.cpp:1175
 msgid "Toggle bookmark at current line"
-msgstr ""
+msgstr "Lesezeichen an der aktuellen Zeile ein- oder ausschalten"
 
 #: ../src/wxmedit_frame.cpp:1176 ../src/wxmedit_frame.cpp:2001
 msgid "Go To Next Bookmark"
-msgstr ""
+msgstr "Springe zum nächsten Lesezeichen"
 
 #: ../src/wxmedit_frame.cpp:1176
 msgid "Go to the next bookmark"
-msgstr ""
+msgstr "Kursor auf das nächste Lesezeichen positionieren"
 
 #: ../src/wxmedit_frame.cpp:1177 ../src/wxmedit_frame.cpp:2002
 msgid "Go To Previous Bookmark"
-msgstr ""
+msgstr "Springe zum vorherigen Lesezeichen"
 
 #: ../src/wxmedit_frame.cpp:1177
 msgid "Go to the previous bookmark"
-msgstr ""
+msgstr "Kursor auf das vorherige Lesezeichen positionieren"
 
 #: ../src/wxmedit_frame.cpp:1178 ../src/wxmedit_frame.cpp:2003
 msgid "Clear All Bookmarks"
-msgstr ""
+msgstr "Alle Lesezeichen entfernen"
 
 #: ../src/wxmedit_frame.cpp:1178
 msgid "Clear all bookmarks from current file"
-msgstr ""
+msgstr "Löscht alle Lesezeichen der aktuellen Datei"
 
 #: ../src/wxmedit_frame.cpp:1181
 msgid "&View"
