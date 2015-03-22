@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-02-04 00:09+0800\n"
-"PO-Revision-Date: 2015-03-22 16:04+0100\n"
+"PO-Revision-Date: 2015-03-22 18:10+0100\n"
 "Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -638,7 +638,7 @@ msgstr ""
 
 #: ../src/dialog/wxmedit_options_dialog.cpp:418
 msgid "Columns of Wrap-By-Column"
-msgstr "Spaltenanzahl bei Umbruch-nach-Spalten"
+msgstr "Spaltenanzahl bei \"Zeilenumbruch nach Spalten\""
 
 #: ../src/dialog/wxmedit_options_dialog.cpp:425
 msgid "Columns of Tab"
@@ -1041,7 +1041,7 @@ msgstr "NurLesen"
 
 #: ../src/wxm/edit/inframe.cpp:143
 msgid "Ln:"
-msgstr ""
+msgstr "Z:"
 
 #: ../src/wxm/edit/inframe.cpp:146
 msgid "Sub:"
@@ -1049,224 +1049,224 @@ msgstr ""
 
 #: ../src/wxm/edit/inframe.cpp:149
 msgid "Col:"
-msgstr ""
+msgstr "Sp:"
 
 #: ../src/wxm/edit/inframe.cpp:150
 msgid "CharPos:"
-msgstr ""
+msgstr "ZeiPos:"
 
 #: ../src/wxm/edit/inframe.cpp:151
 msgid "SelSize:"
-msgstr ""
+msgstr "AuswGröße:"
 
 #: ../src/wxm/encoding/encoding.cpp:118 ../src/wxm/encoding/encoding.cpp:215
 msgid "Western European "
-msgstr "Westeuropäisch"
+msgstr "Westeuropäisch "
 
 #: ../src/wxm/encoding/encoding.cpp:119 ../src/wxm/encoding/encoding.cpp:216
 msgid "Central European "
-msgstr "Zentraleuropäisch"
+msgstr "Zentraleuropäisch "
 
 #: ../src/wxm/encoding/encoding.cpp:120 ../src/wxm/encoding/encoding.cpp:217
 msgid "South European "
-msgstr "Südeuropäisch"
+msgstr "Südeuropäisch "
 
 #: ../src/wxm/encoding/encoding.cpp:121 ../src/wxm/encoding/encoding.cpp:218
 msgid "North European "
-msgstr "Nordeuropäisch"
+msgstr "Nordeuropäisch "
 
 #: ../src/wxm/encoding/encoding.cpp:122 ../src/wxm/encoding/encoding.cpp:149
 #: ../src/wxm/encoding/encoding.cpp:150 ../src/wxm/encoding/encoding.cpp:219
 msgid "Cyrillic "
-msgstr "Kyrillisch"
+msgstr "Kyrillisch "
 
 #: ../src/wxm/encoding/encoding.cpp:123 ../src/wxm/encoding/encoding.cpp:220
 msgid "Arabic "
-msgstr "Arabisch"
+msgstr "Arabisch "
 
 #: ../src/wxm/encoding/encoding.cpp:124 ../src/wxm/encoding/encoding.cpp:221
 msgid "Greek "
-msgstr "Griechisch"
+msgstr "Griechisch "
 
 #: ../src/wxm/encoding/encoding.cpp:125 ../src/wxm/encoding/encoding.cpp:222
 msgid "Hebrew "
-msgstr ""
+msgstr "Hebräisch "
 
 #: ../src/wxm/encoding/encoding.cpp:126 ../src/wxm/encoding/encoding.cpp:223
 msgid "Turkish "
-msgstr ""
+msgstr "Türkisch "
 
 #: ../src/wxm/encoding/encoding.cpp:127
 msgid "Nordic "
-msgstr ""
+msgstr "Nordisch "
 
 #: ../src/wxm/encoding/encoding.cpp:128
 msgid "Thai "
-msgstr ""
+msgstr "Thai "
 
 #: ../src/wxm/encoding/encoding.cpp:129 ../src/wxm/encoding/encoding.cpp:224
 msgid "Baltic "
-msgstr ""
+msgstr "Baltisch "
 
 #: ../src/wxm/encoding/encoding.cpp:130
 msgid "Celtic "
-msgstr ""
+msgstr "Keltisch "
 
 #: ../src/wxm/encoding/encoding.cpp:131
 msgid "Western European with Euro "
-msgstr ""
+msgstr "Westeuropäisch mit Euro "
 
 #: ../src/wxm/encoding/encoding.cpp:132
 msgid "South-Eastern European "
-msgstr ""
+msgstr "Südosteuropäisch "
 
 #: ../src/wxm/encoding/encoding.cpp:133
 msgid "Windows Thai "
-msgstr ""
+msgstr "Windows Thai "
 
 #: ../src/wxm/encoding/encoding.cpp:134
 msgid "Windows Central European "
-msgstr ""
+msgstr "Windows Zentraleuropäisch "
 
 #: ../src/wxm/encoding/encoding.cpp:135
 msgid "Windows Cyrillic "
-msgstr ""
+msgstr "Windows Kyrillisch "
 
 #: ../src/wxm/encoding/encoding.cpp:136
 msgid "Windows Western European "
-msgstr ""
+msgstr "Windows Westeuropäisch "
 
 #: ../src/wxm/encoding/encoding.cpp:137
 msgid "Windows Greek "
-msgstr ""
+msgstr "Windows Griechisch "
 
 #: ../src/wxm/encoding/encoding.cpp:138
 msgid "Windows Turkish "
-msgstr ""
+msgstr "Windows Türkisch "
 
 #: ../src/wxm/encoding/encoding.cpp:139
 msgid "Windows Hebrew "
-msgstr ""
+msgstr "Windows Hebräisch "
 
 #: ../src/wxm/encoding/encoding.cpp:140
 msgid "Windows Arabic "
-msgstr ""
+msgstr "Windows Arabisch "
 
 #: ../src/wxm/encoding/encoding.cpp:141
 msgid "Windows Baltic "
-msgstr ""
+msgstr "Windows Baltisch "
 
 #: ../src/wxm/encoding/encoding.cpp:142
 msgid "Windows Vietnamese "
-msgstr ""
+msgstr "Windows Vietnamesisch "
 
 #: ../src/wxm/encoding/encoding.cpp:143
 msgid "CP437 Variant for ASCII Art "
-msgstr ""
+msgstr "CP437-Variante der ASCII-Kodierung "
 
 #: ../src/wxm/encoding/encoding.cpp:144
 msgid "Windows/DOS OEM "
-msgstr ""
+msgstr "Windows/DOS OEM "
 
 #: ../src/wxm/encoding/encoding.cpp:145
 msgid "Windows/DOS OEM - Latin 1 "
-msgstr ""
+msgstr "Windows/DOS OEM - Latin 1 "
 
 #: ../src/wxm/encoding/encoding.cpp:146
 msgid "Windows/DOS OEM - Latin 2 "
-msgstr ""
+msgstr "Windows/DOS OEM - Latin 2 "
 
 #: ../src/wxm/encoding/encoding.cpp:147 ../src/wxm/encoding/encoding.cpp:148
 msgid "Windows/DOS OEM - Cyrillic "
-msgstr ""
+msgstr "Windows/DOS OEM - Kyrillisch "
 
 #: ../src/wxm/encoding/encoding.cpp:152
 msgid "Windows Japanese "
-msgstr ""
+msgstr "Windows Japanisch "
 
 #: ../src/wxm/encoding/encoding.cpp:153
 msgid "Windows Chinese Simplified "
-msgstr ""
+msgstr "Windows Vereinfachtes Chinesisch "
 
 #: ../src/wxm/encoding/encoding.cpp:154
 msgid "Windows Korean "
-msgstr ""
+msgstr "Windows Koreanisch "
 
 #: ../src/wxm/encoding/encoding.cpp:155
 msgid "Windows Chinese Traditional "
-msgstr ""
+msgstr "Windows Traditionelles Chinesisch "
 
 #: ../src/wxm/encoding/encoding.cpp:156
 msgid "EUC-JP Double-Byte Edition of Windows "
-msgstr ""
+msgstr "EUC-JP 2-Byte-Variante von Windows "
 
 #: ../src/wxm/encoding/encoding.cpp:158
 msgid "Unicode/Chinese Simplified "
-msgstr ""
+msgstr "Unicode/Vereinfachtes Chinesisch "
 
 #: ../src/wxm/encoding/encoding.cpp:160
 msgid "Unicode 8 bit "
-msgstr ""
+msgstr "Unicode 8 Bit "
 
 #: ../src/wxm/encoding/encoding.cpp:161
 msgid "Unicode 16 bit Little Endian "
-msgstr ""
+msgstr "Unicode 16 Bit Little-Endian "
 
 #: ../src/wxm/encoding/encoding.cpp:162
 msgid "Unicode 16 bit Big Endian "
-msgstr ""
+msgstr "Unicode 16 bit Big Endian "
 
 #: ../src/wxm/encoding/encoding.cpp:163
 msgid "Unicode 32 bit Little Endian "
-msgstr ""
+msgstr "Unicode 32 Bit Little-Endian "
 
 #: ../src/wxm/encoding/encoding.cpp:164
 msgid "Unicode 32 bit Big Endian "
-msgstr ""
+msgstr "Unicode 32 Bit Big-Endian "
 
 #: ../src/wxm/encoding/encoding.cpp:214
 msgid "Other "
-msgstr ""
+msgstr "Andere "
 
 #: ../src/wxm/encoding/encoding.cpp:225
 msgid "East Asian "
-msgstr ""
+msgstr "Ostasiatisch "
 
 #: ../src/wxm/encoding/encoding.cpp:226
 msgid "Southeast Asian "
-msgstr ""
+msgstr "Südostasiatisch "
 
 #: ../src/wxm/encoding/encoding.cpp:227
 msgid "Unicode "
-msgstr ""
+msgstr "Unicode "
 
 #: ../src/wxm/encoding/encoding.cpp:228
 msgid "ISO-8859 "
-msgstr ""
+msgstr "ISO-8859 "
 
 #: ../src/wxm/encoding/encoding.cpp:229
 msgid "Windows "
-msgstr ""
+msgstr "Windows "
 
 #: ../src/wxm/encoding/encoding.cpp:230
 msgid "OEM "
-msgstr ""
+msgstr "OEM "
 
 #: ../src/wxm/recent_list.cpp:78
 msgid "[EMPTY]"
-msgstr ""
+msgstr "[Leer]"
 
 #: ../src/wxm/update.cpp:90
 msgid "Cannot check for new version!"
-msgstr ""
+msgstr "Suche nach neuer Version nicht möglich!"
 
 #: ../src/wxm/update.cpp:97
 msgid "wxMEdit is already the newest version."
-msgstr ""
+msgstr "Die neuste Version von wxMEdit ist bereits installiert."
 
 #: ../src/wxm/update.cpp:105
 msgid "wxMEdit - New version available"
-msgstr ""
+msgstr "Neue Version von wxMEdit verfügbar!"
 
 #: ../src/wxm/update.cpp:106
 #, c-format
@@ -1274,22 +1274,24 @@ msgid ""
 "wxMEdit %s is available. \n"
 "Click OK to open the download page."
 msgstr ""
+"Version %s von wxMEdit ist verfügbar. \n"
+"OK klicken, um zur Download-Seite zu gelangen."
 
 #: ../src/wxm/update.cpp:172
 msgid "every day"
-msgstr ""
+msgstr "jeden Tag"
 
 #: ../src/wxm/update.cpp:173
 msgid "every week"
-msgstr ""
+msgstr "jede Woche"
 
 #: ../src/wxm/update.cpp:174
 msgid "every month"
-msgstr ""
+msgstr "jeden Monat"
 
 #: ../src/wxm/update.cpp:175
 msgid "never"
-msgstr ""
+msgstr "niemals"
 
 #: ../src/wxm/utils.cpp:240
 msgid "Copy as Raw Bytes"
@@ -1399,45 +1401,45 @@ msgstr ""
 
 #: ../src/wxmedit_frame.cpp:182
 msgid "Current maintainer of wxMEdit"
-msgstr ""
+msgstr "Aktueller Maintainer von wxMEdit"
 
 #: ../src/wxmedit_frame.cpp:183
 msgid "Creator of MadEdit"
-msgstr ""
+msgstr "Urheber von MadEdit"
 
 #: ../src/wxmedit_frame.cpp:184
 msgid "Translator for Japanese"
-msgstr ""
+msgstr "Übersetzer für Japanisch"
 
 #: ../src/wxmedit_frame.cpp:185
 msgid "Translator for Italian"
-msgstr ""
+msgstr "Übersetzer für Italienisch"
 
 #: ../src/wxmedit_frame.cpp:186
 msgid "Translator for Spanish"
-msgstr ""
+msgstr "Übersetzer für Spanisch"
 
 #: ../src/wxmedit_frame.cpp:187 ../src/wxmedit_frame.cpp:188
 msgid "Translator for Traditional Chinese"
-msgstr ""
+msgstr "Übersetzer für Traditionelles Chinesisch"
 
 #: ../src/wxmedit_frame.cpp:189
 msgid "Translator for Russian"
-msgstr ""
+msgstr "Übersetzer für Russisch"
 
 #: ../src/wxmedit_frame.cpp:190 ../src/wxmedit_frame.cpp:191
 #: ../src/wxmedit_frame.cpp:192 ../src/wxmedit_frame.cpp:193
 #: ../src/wxmedit_frame.cpp:194
 msgid "Patch submitter for wxMEdit/MadEdit"
-msgstr ""
+msgstr "Mitwirkende zur Verbesserung von wxMEdit/MadEdit"
 
 #: ../src/wxmedit_frame.cpp:195
 msgid "Creator of wxmedit package in AUR"
-msgstr ""
+msgstr "Ersteller des AUR-Paketes von wxMEdit"
 
 #: ../src/wxmedit_frame.cpp:196
 msgid "Creator of Gentoo package wxmedit"
-msgstr ""
+msgstr "Ersteller des Gentoo-Paketes von wxMEdit"
 
 #: ../src/wxmedit_frame.cpp:1045
 msgid "&File"
@@ -2019,201 +2021,201 @@ msgstr "Löscht alle Lesezeichen der aktuellen Datei"
 
 #: ../src/wxmedit_frame.cpp:1181
 msgid "&View"
-msgstr ""
+msgstr "&Ansicht"
 
 #: ../src/wxmedit_frame.cpp:1182 ../src/wxmedit_frame.cpp:2974
 #: ../src/wxmedit_frame.cpp:2981
 msgid "Encoding: "
-msgstr ""
+msgstr "Kodierung: "
 
 #: ../src/wxmedit_frame.cpp:1183
 msgid "All "
-msgstr ""
+msgstr "Alle "
 
 #: ../src/wxmedit_frame.cpp:1185 ../src/wxmedit_frame.cpp:2990
 #: ../src/wxmedit_frame.cpp:2995
 msgid "Syntax Type: "
-msgstr ""
+msgstr "Syntax-Typ: "
 
 #: ../src/wxmedit_frame.cpp:1187 ../src/wxmedit_frame.cpp:3007
 #: ../src/wxmedit_frame.cpp:3012
 msgid "Font Name: "
-msgstr ""
+msgstr "Schriftart: "
 
 #: ../src/wxmedit_frame.cpp:1188
 msgid "[@]"
-msgstr ""
+msgstr "[@]"
 
 #: ../src/wxmedit_frame.cpp:1189
 msgid "[ABCDE]"
-msgstr ""
+msgstr "[ABCDE]"
 
 #: ../src/wxmedit_frame.cpp:1190
 msgid "[FGHIJ]"
-msgstr ""
+msgstr "[FGHIJ]"
 
 #: ../src/wxmedit_frame.cpp:1191
 msgid "[KLMNO]"
-msgstr ""
+msgstr "[KLMNO]"
 
 #: ../src/wxmedit_frame.cpp:1192
 msgid "[PQRST]"
-msgstr ""
+msgstr "[PQRST]"
 
 #: ../src/wxmedit_frame.cpp:1193
 msgid "[UVWXYZ]"
-msgstr ""
+msgstr "[UVWXYZ]"
 
 #: ../src/wxmedit_frame.cpp:1194
 msgid "[other]"
-msgstr ""
+msgstr "[Andere]"
 
 #: ../src/wxmedit_frame.cpp:1196 ../src/wxmedit_frame.cpp:3023
 #: ../src/wxmedit_frame.cpp:3028
 msgid "Font Size: "
-msgstr ""
+msgstr "Schriftgröße: "
 
 #: ../src/wxmedit_frame.cpp:1197
 msgid "Set font point-size"
-msgstr ""
+msgstr "Einstellen der Schriftgröße"
 
 #: ../src/wxmedit_frame.cpp:1270
 msgid "Set Font..."
-msgstr ""
+msgstr "Schrift..."
 
 #: ../src/wxmedit_frame.cpp:1270
 msgid "Change font settings"
-msgstr ""
+msgstr "Schriftart und -größe einstellen"
 
 #: ../src/wxmedit_frame.cpp:1271
 msgid "&Fixed Width Mode"
-msgstr ""
+msgstr "&Feste Breite"
 
 #: ../src/wxmedit_frame.cpp:1271
 msgid "Set/Unset the font with Fixed Width"
-msgstr ""
+msgstr "Feste Zeichenbreite ein-/ausschalten"
 
 #: ../src/wxmedit_frame.cpp:1274 ../src/wxmedit_frame.cpp:3047
 #: ../src/wxmedit_frame.cpp:3052
 msgid "Tab Column: "
-msgstr ""
+msgstr "Tabulatorbreite: "
 
 #: ../src/wxmedit_frame.cpp:1275
 msgid "Set column of Tab char"
-msgstr ""
+msgstr "Einstellen der Breite eines Tabulator-Zeichens"
 
 #: ../src/wxmedit_frame.cpp:1293 ../src/wxmedit_frame.cpp:3061
 #: ../src/wxmedit_frame.cpp:3066
 msgid "Line Spacing: "
-msgstr ""
+msgstr "Zeilenhöhe: "
 
 #: ../src/wxmedit_frame.cpp:1294
 msgid "Set line spacing"
-msgstr ""
+msgstr "Einstellen der Zeilenhöhe in Prozent"
 
 #: ../src/wxmedit_frame.cpp:1327
 msgid "&No Wrap"
-msgstr ""
+msgstr "&Keinen Zeilenumbruch"
 
 #: ../src/wxmedit_frame.cpp:1327
 msgid "Do not wrap lines"
-msgstr ""
+msgstr "Zeilen nicht umbrechen"
 
 #: ../src/wxmedit_frame.cpp:1328
 msgid "Wrap By &Window"
-msgstr ""
+msgstr "&Zeilenumbruch am Fensterrand"
 
 #: ../src/wxmedit_frame.cpp:1328
 msgid "Wrap the lines by the window width"
-msgstr ""
+msgstr "Zeilen entsprechend der Fensterbreite umbrechen"
 
 #: ../src/wxmedit_frame.cpp:1329
 msgid "Wrap By Column"
-msgstr ""
+msgstr "Zeilen&umbruch nach Spalten"
 
 #: ../src/wxmedit_frame.cpp:1329
 msgid "Wrap the lines by the specified Max Columns"
-msgstr ""
+msgstr "Zeilen entsprechend der Spaltenanzahl in den Optionen umbrechen"
 
 #: ../src/wxmedit_frame.cpp:1331
 msgid "Display &Bookmark"
-msgstr ""
+msgstr "&Lesezeichen anzeigen"
 
 #: ../src/wxmedit_frame.cpp:1331
 msgid "Display the Bookmarks"
-msgstr ""
+msgstr "Anzeige der Lesezeichen ein-/ausschalten"
 
 #: ../src/wxmedit_frame.cpp:1332
 msgid "&Display Line Number"
-msgstr ""
+msgstr "&Zeilennummer anzeigen"
 
 #: ../src/wxmedit_frame.cpp:1332
 msgid "Display the Line Numbers"
-msgstr ""
+msgstr "Anzeige der Zeilennummer ein-/ausschalten"
 
 #: ../src/wxmedit_frame.cpp:1333
 msgid "Show End Of Line"
-msgstr ""
+msgstr "Zeilenendezeichen anzeigen"
 
 #: ../src/wxmedit_frame.cpp:1333
 msgid "Show the sign of EndOfLine"
-msgstr ""
+msgstr "Anzeige des Zeilenvorschub-Zeichens ein-/ausschalten"
 
 #: ../src/wxmedit_frame.cpp:1334
 msgid "Show Tab Char"
-msgstr ""
+msgstr "Tabulatoren anzeigen"
 
 #: ../src/wxmedit_frame.cpp:1334
 msgid "Show the sign of Tab char"
-msgstr ""
+msgstr "Anzeige der Tabulator-Zeichen ein-/ausschalten"
 
 #: ../src/wxmedit_frame.cpp:1335
 msgid "Show Space Char"
-msgstr ""
+msgstr "Anzeige der Leerzeichen ein-/ausschalten"
 
 #: ../src/wxmedit_frame.cpp:1335
 msgid "Show the sign of Space char"
-msgstr ""
+msgstr "Anzeige der Leerzeichen ein-/ausschalten"
 
 #: ../src/wxmedit_frame.cpp:1336
 msgid "Mark Active Line"
-msgstr ""
+msgstr "Aktuelle Zeile markieren"
 
 #: ../src/wxmedit_frame.cpp:1336
 msgid "Mark the current line"
-msgstr ""
+msgstr "Markiert die aktuelle Zeile"
 
 #: ../src/wxmedit_frame.cpp:1337
 msgid "Mark Brace Pair"
-msgstr ""
+msgstr "Klammern markieren"
 
 #: ../src/wxmedit_frame.cpp:1337
 msgid "Mark the BracePair under the caret"
-msgstr ""
+msgstr "Markiert Klammernpaare am Kursor"
 
 #: ../src/wxmedit_frame.cpp:1339
 msgid "&Text Mode"
-msgstr ""
+msgstr "&Text-Modus"
 
 #: ../src/wxmedit_frame.cpp:1339
 msgid "Change the editing mode to Text-Mode"
-msgstr ""
+msgstr "Editiermodus auf Text-Modus stellen"
 
 #: ../src/wxmedit_frame.cpp:1340
 msgid "&Column Mode"
-msgstr ""
+msgstr "&Spalten-Modus"
 
 #: ../src/wxmedit_frame.cpp:1340
 msgid "Change the editing mode to Column-Mode"
-msgstr ""
+msgstr "Editiermodus auf Spalten-Modus stellen"
 
 #: ../src/wxmedit_frame.cpp:1341
 msgid "&Hex Mode"
-msgstr ""
+msgstr "He&x-Modus"
 
 #: ../src/wxmedit_frame.cpp:1341
 msgid "Change the editing mode to Hex-Mode"
-msgstr ""
+msgstr "Editiermodus auf Hexadezimal-Modus\" stellen"
 
 #: ../src/wxmedit_frame.cpp:1344
 msgid "&Tools"
@@ -2451,23 +2453,23 @@ msgstr ""
 
 #: ../src/wxmedit_frame.cpp:1388
 msgid "&Help"
-msgstr ""
+msgstr "&Hilfe"
 
 #: ../src/wxmedit_frame.cpp:1389
 msgid "&Check for updates..."
-msgstr ""
+msgstr "Nach &Updates suchen..."
 
 #: ../src/wxmedit_frame.cpp:1389
 msgid "Check for new versions of wxMEdit"
-msgstr ""
+msgstr "Nach neuen Versionen von wxMEdit suchen"
 
 #: ../src/wxmedit_frame.cpp:1390
 msgid "&About wxMEdit..."
-msgstr ""
+msgstr "Ü&ber wxMEdit..."
 
 #: ../src/wxmedit_frame.cpp:1390
 msgid "Show about dialog"
-msgstr ""
+msgstr "Details über wxMEdit anzeigen"
 
 #: ../src/wxmedit_frame.cpp:1394
 msgid "Move caret left one char"
@@ -2792,31 +2794,31 @@ msgstr ""
 
 #: ../src/wxmedit_frame.cpp:4214
 msgid "Line Number: (you can input HexNumber: 0xNNN)"
-msgstr ""
+msgstr "Zeilennummer: (Hex-Zahl in der Form 0xNNN möglich)"
 
 #: ../src/wxmedit_frame.cpp:4214
 msgid "Go To Line"
-msgstr ""
+msgstr "Springe zu Zeile"
 
 #: ../src/wxmedit_frame.cpp:4239
 msgid "Position: (you can input HexNumber: 0xNNN)"
-msgstr ""
+msgstr "Position: (Hex-Zahl in der Form 0xNNN möglich)"
 
 #: ../src/wxmedit_frame.cpp:4239
 msgid "Go To Position"
-msgstr ""
+msgstr "Springe zu Position"
 
 #: ../src/wxmedit_frame.cpp:5090
 msgid "Press OK to visit our HomePage."
-msgstr ""
+msgstr "Bitte OK klicken, um unsere Homepage zu besuchen."
 
 #: ../src/wxmedit_frame.cpp:5092
 msgid "wxMEdit, a cross-platform Text/Hex Editor"
-msgstr ""
+msgstr "wxMEdit, ein plattformunabhängiger Text-/Hex-Editor"
 
 #: ../src/wxmedit_frame.cpp:5095
 msgid "Press OK to view the license online version.\n"
-msgstr ""
+msgstr "Bitte OK klicken, um die Online-Version der Lizenz anzusehen.\n"
 
 #: ../src/xm/ublock_des.cpp:25
 msgid "No_Block"
