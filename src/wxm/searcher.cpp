@@ -753,238 +753,168 @@ wxFileOffset ByteIterator::s_endpos = 0;
 namespace wxm
 {
 
-MadSearchResult WXMSearcher::Search(/*IN_OUT*/MadCaretPos& beginpos, /*IN_OUT*/MadCaretPos& endpos,
-	const wxString &text, bool bRegex, bool bCaseSensitive, bool bWholeWord)
+ucs4string WXMSearcher::from_wxString(const wxString& wxs)
+{
+#ifdef __WXMSW__
+	vector<ucs4_t> ucs;
+	m_edit->TranslateText(wxs.c_str(), wxs.Len(), ucs, true);
+	return ucs4string(ucs.begin(), ucs.end());
+#else
+	const ucs4_t *puc = wxs.c_str();
+	size_t len = wxs.Len();
+	return ucs4string(puc, puc + len);
+#endif
+}
+
+void WXMSearcher::AssignTextFileBegin(MadCaretPos& cp)
+{
+	cp.iter = m_edit->m_Lines->m_LineList.begin();
+	cp.pos = cp.iter->m_RowIndices[0].m_Start;
+	if (m_edit->m_CaretPos.pos < cp.pos || m_edit->m_EditMode == emHexMode)
+		cp.pos = 0;
+	cp.linepos = cp.pos;
+}
+
+void WXMSearcher::AssignHexFileBegin(MadCaretPos& cp)
+{
+	cp.pos = 0;
+	cp.iter = m_edit->m_Lines->m_LineList.begin();
+	cp.linepos = 0;
+}
+
+void WXMSearcher::AssignFileEnd(MadCaretPos& cp)
+{
+	cp.pos = m_edit->m_Lines->m_Size;
+	cp.iter = m_edit->m_Lines->m_LineList.end();
+	--cp.iter;
+	cp.linepos = cp.iter->m_Size;
+}
+
+void WXMSearcher::AssignCaretPos(wxFileOffset& pos, MadCaretPos& cp)
+{
+	if (pos > m_edit->GetFileSize())
+		pos = m_edit->GetFileSize();
+	cp.pos = pos;
+	cp.linepos = pos;
+	m_edit->GetLineByPos(cp.iter, cp.linepos, cp.rowid);
+	cp.linepos = pos - cp.linepos;
+}
+
+bool TextSearcher::IsDelimiterChar(ucs4_t uc)
+{
+	return (uc <= 0x20 || m_edit->m_Syntax->IsDelimiter(uc) || uc == 0x3000);
+}
+
+bool TextSearcher::IsWordBoundary(UCIterator& ucit)
+{
+	ucs4_t uc = *ucit;
+	if (IsDelimiterChar(uc))
+		return true;
+
+	// check prev-uchar of ucit
+	--ucit;
+	uc = *ucit;
+	if (!IsDelimiterChar(uc))
+		return false;
+
+	return true;
+}
+
+bool TextSearcher::IsWordBoundary(UCIterator ucit1, UCIterator ucit2)
+{
+	if (ucit1.pos >= ucit2.pos)
+		return true;
+
+	// check ucit2
+	if (ucit2.linepos > ucit2.lit->m_RowIndices[0].m_Start &&     // not at begin/end of line
+		ucit2.linepos < (ucit2.lit->m_Size - ucit2.lit->m_NewLineSize) &&
+		!IsWordBoundary(ucit2))
+	{
+		return false;
+	}
+
+	// check ucit1
+	wxFileOffset lpos = ucit1.lit->m_RowIndices[0].m_Start;
+	if (ucit1.linepos > lpos &&        // not at begin of line
+		!IsWordBoundary(ucit1))
+	{
+		return false;
+	}
+
+	return true;
+}
+bool TextSearcher::NextRegexSearchingPos(MadCaretPos& cp, const wxString &expr)
+{
+	if (expr.find_first_of(wxT('^')) != wxString::npos || expr.find_last_of(wxT('$')) != wxString::npos)
+	{
+		wxFileOffset len = cp.iter->m_Size - cp.linepos - 1;
+		cp.pos += len;
+		cp.linepos += len;
+	}
+
+	if (cp.pos == UCIterator::s_endpos)
+		return false;
+
+	UCIterator it(cp);
+	++it;
+	cp.AssignWith(it);
+	return true;
+}
+
+MadSearchResult TextSearcher::Search(/*IN_OUT*/MadCaretPos& beginpos, /*IN_OUT*/MadCaretPos& endpos,
+	const wxString &text)
 {
 	if (beginpos.pos >= endpos.pos || text.IsEmpty())
 		return SR_NO;
 
-	regex_constants::syntax_option_type opt = regex_constants::ECMAScript;
 	const wxString *text_ptr = &text;
-	if (!bCaseSensitive)
+	if (!m_case_sensitive)
 	{
-		opt = opt | regex_constants::icase;
-
 		static wxString text_ncase;
 		text_ncase = wxm::WxStrToNormalCase(text);
 		text_ptr = &text_ncase;
 	}
 
-#ifdef __WXMSW__
-	vector<ucs4_t> ucs;
-	m_edit->TranslateText(text_ptr->c_str(), text_ptr->Len(), ucs, true);
-	ucs4string exprstr(ucs.begin(), ucs.end());
-#else
-	const ucs4_t *puc=text_ptr->c_str();
-	size_t len=text_ptr->Len();
-	ucs4string exprstr(puc, puc+len);
-#endif
-
-	regex_compiler<UCIterator, ucs4_regex_traits > ucs4comp;
-	basic_regex<UCIterator> expression;
-
-	if (bRegex)
-	{
-		try
-		{
-			expression = ucs4comp.compile(exprstr, opt);
-		}
-		catch (regex_error)
-		{
-			wxMessageDialog dlg(m_edit, wxString::Format(_("'%s' is not a valid regular expression."), text.c_str()),
-				wxT("wxMEdit"), wxOK | wxICON_ERROR);
-			dlg.ShowModal();
-			return SR_EXPR_ERROR;
-		}
-	}
-
+	ucs4string exprstr(from_wxString(*text_ptr));
 
 	UCIterator::Init(m_edit->m_Lines, endpos.pos);
 
 	UCIterator start(beginpos);
 	UCIterator end(endpos);
-	UCIterator fbegin, fend;
-	match_results < UCIterator > what;
 	bool found;
 
-	static JumpTable_UCS4 jtab;
-	jtab.Build(exprstr);
+	UCIterator fbegin, fend;
 
-	try
-	{
-		for (;;)
-		{
-			if (bRegex)
-			{
-				found = regex_search(start, end, what, expression);
-			}
-			else
-			{
-				fbegin = start;
-				fend = end;
-				found = ::Search(fbegin, fend, exprstr, jtab, bCaseSensitive);
-			}
-
-			if (!found)
-				break;
-
-			if (bWholeWord)              // check if is WholeWord
-			{
-				UCIterator cpos1, cpos2;
-				if (bRegex)
-				{
-					cpos1 = what[0].first;
-					cpos2 = what[0].second;
-				}
-				else
-				{
-					cpos1 = fbegin;
-					cpos2 = fend;
-				}
-
-				found = IsWordBoundary(cpos1, cpos2);
-			}
-
-			if (found)
-			{
-				if (bRegex)
-				{
-					beginpos.AssignWith(what[0].first);
-					endpos.AssignWith(what[0].second);
-				}
-				else
-				{
-					beginpos.AssignWith(fbegin);
-					endpos.AssignWith(fend);
-				}
-
-				return SR_YES;
-			}
-
-			// not found, repeat...
-			if (bRegex)
-				start = what[0].second;
-			else
-				start = fend;
-		}
-	}
-	catch (regex_error)
-	{
-		wxMessageDialog dlg(m_edit, _("Catched a exception of 'regex_error'.\nMaybe the regular expression is invalid."),
-			wxT("wxMEdit"), wxOK | wxICON_ERROR);
-		dlg.ShowModal();
+	if (!SearchingPrepare(exprstr, text))
 		return SR_EXPR_ERROR;
+
+	for (;;)
+	{
+		if (!DoSearch(found, fbegin, fend, start, end, exprstr))
+			return SR_EXPR_ERROR;
+
+
+		if (!found)
+			break;
+
+		if (m_whole_word)
+			found = IsWordBoundary(fbegin, fend);
+
+		if (found)
+		{
+			beginpos.AssignWith(fbegin);
+			endpos.AssignWith(fend);
+			return SR_YES;
+		}
+
+		// not found, repeat...
+		start = fend;
 	}
 
 	return SR_NO;
 }
 
-MadSearchResult WXMSearcher::Replace(ucs4string &out, const MadCaretPos& beginpos, const MadCaretPos& endpos,
-	const wxString &expr, const wxString &fmt,
-	bool bRegex, bool bCaseSensitive, bool bWholeWord)
-{
-	if (expr.empty())
-		return SR_NO;
-
-	if (!bRegex)
-	{
-		// fmt is the wanted string
-		vector<ucs4_t> ucs;
-		m_edit->TranslateText(fmt.c_str(), fmt.Len(), ucs, true);
-
-		out.append(ucs.begin(), ucs.end());
-
-		return SR_YES;
-	}
-
-	regex_constants::syntax_option_type opt = regex_constants::ECMAScript;
-	if (!bCaseSensitive)
-		opt = opt | regex_constants::icase;
-
-#ifdef __WXMSW__
-	vector<ucs4_t> ucs;
-	m_edit->TranslateText(expr.c_str(), expr.Len(), ucs, true);
-	ucs4string exprstr(ucs.begin(), ucs.end());
-#else
-	const ucs4_t *puc=expr.c_str();
-	ucs4string exprstr(puc, puc+expr.Len());
-#endif
-
-	typedef ucs4string::const_iterator ucs4iter;
-	regex_compiler<ucs4iter, ucs4_regex_traits > ucs4comp;
-	basic_regex<ucs4iter> expression;
-
-	try
-	{
-		expression = ucs4comp.compile(exprstr, opt);
-	}
-	catch (regex_error)
-	{
-		wxMessageDialog dlg(m_edit, wxString::Format(_("'%s' is not a valid regular expression."), expr.c_str()),
-			wxT("wxMEdit"), wxOK | wxICON_ERROR);
-		dlg.ShowModal();
-		return SR_EXPR_ERROR;
-	}
-
-#ifdef __WXMSW__
-	ucs.clear();
-	m_edit->TranslateText(fmt.c_str(), fmt.Len(), ucs, true);
-	ucs4string fmtstr(ucs.begin(), ucs.end());
-#else
-	puc=fmt.c_str();
-	ucs4string fmtstr(puc, puc+fmt.Len());
-#endif
-
-	UCIterator begin(beginpos);
-	UCIterator end(endpos);
-
-	ucs4string str(begin, end);
-
-	try
-	{
-		out = regex_replace(str, expression, fmtstr);
-		out = ConvertEscape(out);
-	}
-	catch (regex_error)
-	{
-		wxMessageDialog dlg(m_edit, wxString::Format(_("The format of '%s' is invalid."), fmt.c_str()),
-			wxT("wxMEdit"), wxOK | wxICON_ERROR);
-		dlg.ShowModal();
-		return SR_EXPR_ERROR;
-	}
-
-	return SR_YES;
-
-	/***
-	back_insert_iterator<ucs4string> oi(out);
-	regex_replace(oi, first, last, expression, puc);
-	***/
-}
-
-MadSearchResult WXMSearcher::SearchHex(/*IN_OUT*/MadCaretPos& beginpos, /*IN_OUT*/MadCaretPos& endpos,
-	const std::vector<wxByte>& hex)
-{
-	if (beginpos.pos >= endpos.pos || hex.empty())
-		return SR_NO;
-
-	ByteIterator::Init(m_edit->m_Lines, endpos.pos);
-	ByteIterator start(beginpos);
-	ByteIterator end(endpos);
-
-	static JumpTable_Hex jtab;
-	jtab.Build(hex);
-
-	if (!::Search(start, end, hex, jtab, true))
-		return SR_NO;
-
-	beginpos.AssignWith(start);
-	endpos.AssignWith(end);
-
-	return SR_YES;
-}
-
-MadSearchResult WXMSearcher::FindTextNext(const wxString &text,
-	bool bRegex, bool bCaseSensitive, bool bWholeWord,
+MadSearchResult TextSearcher::FindNext(const wxString &text,
 	wxFileOffset rangeFrom, wxFileOffset rangeTo)
 {
 	MadCaretPos bpos, epos;
@@ -999,15 +929,14 @@ MadSearchResult WXMSearcher::FindTextNext(const wxString &text,
 	else
 		UpdateWXMEditCaret(rangeTo, epos);
 
-	MadSearchResult state = Search(bpos, epos, text, bRegex, bCaseSensitive, bWholeWord);
+	MadSearchResult state = Search(bpos, epos, text);
 	if (state == SR_YES)
 		m_edit->SetSelection(bpos.pos, epos.pos);
 
 	return state;
 }
 
-MadSearchResult WXMSearcher::FindTextPrevious(const wxString &text,
-	bool bRegex, bool bCaseSensitive, bool bWholeWord,
+MadSearchResult TextSearcher::FindPrevious(const wxString &text,
 	wxFileOffset rangeFrom, wxFileOffset rangeTo)
 {
 	MadCaretPos bpos, epos;
@@ -1058,7 +987,7 @@ MadSearchResult WXMSearcher::FindTextPrevious(const wxString &text,
 		}
 
 		MadCaretPos bpos1 = bpos, epos1 = epos;
-		int state = Search(bpos1, epos1, text, bRegex, bCaseSensitive, bWholeWord);
+		int state = Search(bpos1, epos1, text);
 		if (state == SR_EXPR_ERROR)
 			return SR_EXPR_ERROR;
 
@@ -1085,7 +1014,7 @@ MadSearchResult WXMSearcher::FindTextPrevious(const wxString &text,
 				bpos1.linepos += ucq.back().second;
 
 				epos1 = epos;
-			} while (Search(bpos1, epos1, text, bRegex, bCaseSensitive, bWholeWord));
+			} while (Search(bpos1, epos1, text));
 
 			m_edit->SetSelection(bp.pos, ep.pos, true);
 			return SR_YES;
@@ -1125,7 +1054,341 @@ MadSearchResult WXMSearcher::FindTextPrevious(const wxString &text,
 	return SR_NO;
 }
 
-MadSearchResult WXMSearcher::FindHexNext(const wxString &hexstr,
+MadReplaceResult TextSearcher::ReplaceOnce(const wxString &expr, const wxString &fmt,
+	wxFileOffset rangeFrom, wxFileOffset rangeTo)
+{
+	if (expr.empty())
+		return RR_NREP_NNEXT;
+
+	bool selok = false;
+
+	MadCaretPos bpos = *m_edit->m_SelectionBegin;
+	MadCaretPos epos = *m_edit->m_SelectionEnd;
+
+	if (m_edit->m_Selection) // test the selection is wanted text
+	{
+		int state = Search(bpos, epos, expr);
+		if (state == SR_EXPR_ERROR)
+			return RR_EXPR_ERROR;
+
+		if (state == SR_YES && bpos.pos == m_edit->m_SelectionBegin->pos && epos.pos == m_edit->m_SelectionEnd->pos)
+			selok = true;
+	}
+
+	if (!selok)  // just find next
+	{
+		switch (FindNext(expr, rangeFrom, rangeTo))
+		{
+		case SR_EXPR_ERROR: return RR_EXPR_ERROR;
+		case SR_YES:        return RR_NREP_NEXT;
+		case SR_NO:         return RR_NREP_NNEXT;
+		}
+	}
+
+	ucs4string out;
+
+	// replace the selected text
+	int state = Replace(out, bpos, epos, expr, fmt);
+	if (state == SR_EXPR_ERROR)
+		return RR_EXPR_ERROR;
+
+	if (out.length() == 0)
+		m_edit->DeleteSelection(true, nullptr, false);
+	else
+		m_edit->InsertString(out.c_str(), out.length(), false, true, false);
+
+	if (SR_NO == FindNext(expr, -1, rangeTo))
+		return RR_REP_NNEXT;
+
+	return RR_REP_NEXT;
+}
+
+int TextSearcher::FindAll(const wxString &expr, bool bFirstOnly,
+	vector<wxFileOffset> *pbegpos, vector<wxFileOffset> *pendpos,
+	wxFileOffset rangeFrom, wxFileOffset rangeTo)
+{
+	if (expr.empty())
+		return 0;
+
+	MadCaretPos bpos, epos, endpos;
+
+	if (rangeFrom <= 0)
+		AssignTextFileBegin(bpos);
+	else
+		UpdateWXMEditCaret(rangeFrom, bpos);
+
+	if (rangeTo < 0)
+		AssignFileEnd(epos);
+	else
+		UpdateWXMEditCaret(rangeTo, epos);
+
+	if (bpos.pos >= epos.pos)
+		return 0;
+
+	endpos = epos;
+	int count = 0;
+	int state;
+
+	while ((state = Search(bpos, epos, expr)) == SR_YES)
+	{
+		if (pbegpos) pbegpos->push_back(bpos.pos);
+		if (pendpos) pendpos->push_back(epos.pos);
+		++count;
+		if (bFirstOnly)
+			break;
+
+		if (bpos.pos == epos.pos && !NextRegexSearchingPos(epos, expr))
+			break;
+
+		bpos = epos;
+		epos = endpos;
+	}
+
+	if (state == SR_EXPR_ERROR)
+		return SR_EXPR_ERROR;
+
+	return count;
+}
+
+int TextSearcher::ReplaceAll(const wxString &expr, const wxString &fmt,
+	vector<wxFileOffset> *pbegpos, vector<wxFileOffset> *pendpos,
+	wxFileOffset rangeFrom, wxFileOffset rangeTo)
+{
+	if (expr.empty())
+		return 0;
+
+	MadCaretPos bpos, epos, endpos;
+
+	if (rangeFrom <= 0)
+		AssignTextFileBegin(bpos);
+	else
+		UpdateWXMEditCaret(rangeFrom, bpos);
+
+	if (rangeTo < 0)
+		AssignFileEnd(epos);
+	else
+		UpdateWXMEditCaret(rangeTo, epos);
+
+	if (bpos.pos >= epos.pos)
+		return 0;
+
+	endpos = epos;
+	int multi = 0;
+
+	vector<wxFileOffset> del_bpos;
+	vector<wxFileOffset> del_epos;
+	vector<const ucs4_t*> ins_ucs;
+	vector<wxFileOffset> ins_len;
+
+	list<ucs4string> outs;
+
+	int state;
+	while ((state = Search(bpos, epos, expr)) == SR_YES)
+	{
+		ucs4string out;
+		int state = Replace(out, bpos, epos, expr, fmt);
+		if (state == SR_EXPR_ERROR)
+			return SR_EXPR_ERROR;
+
+		del_bpos.push_back(bpos.pos);
+		del_epos.push_back(epos.pos);
+
+		outs.push_back(out);
+		ucs4string &str = outs.back();
+		ins_ucs.push_back(str.c_str());
+		ins_len.push_back(str.length());
+
+		if (bpos.iter != epos.iter)
+			++multi;
+
+		if (bpos.pos == epos.pos && !NextRegexSearchingPos(epos, expr))
+			break;
+
+		bpos = epos;
+		epos = endpos;
+	}
+
+	if (state == SR_EXPR_ERROR)
+		return SR_EXPR_ERROR;
+
+	int count = int(del_bpos.size());
+
+	if (count>0)
+	{
+		wxFileOffset size = del_epos.back() - del_bpos.front();
+		if ((size <= 2 * 1024 * 1024) || (multi >= 40 && size <= 10 * 1024 * 1024))
+			m_edit->OverwriteDataSingle(del_bpos, del_epos, &ins_ucs, nullptr, ins_len);
+		else
+			m_edit->OverwriteDataMultiple(del_bpos, del_epos, &ins_ucs, nullptr, ins_len);
+
+		if (pbegpos != 0 && pendpos != 0)
+		{
+			pbegpos->resize(count);
+			pendpos->resize(count);
+
+			wxFileOffset diff = 0, b, e, l;
+			for (int i = 0; i<count; i++)
+			{
+				b = del_bpos[i];
+				e = del_epos[i];
+				l = ins_len[i];
+				size = b + diff;
+				(*pbegpos)[i] = size;
+				(*pendpos)[i] = size + l;
+				diff += (l - (e - b));
+			}
+		}
+	}
+
+	return count;
+}
+
+void TextSearcher::UpdateWXMEditCaret(MadCaretPos& cp)
+{
+	MadUCQueue dummyUCQueue;
+	vector<int> dummyWidthArray;
+	int dummyUCPos;
+
+	m_edit->UpdateCaretByPos(cp, dummyUCQueue, dummyWidthArray, dummyUCPos);
+}
+
+void TextSearcher::UpdateWXMEditCaret(wxFileOffset& pos, MadCaretPos& cp)
+{
+	if (pos > m_edit->GetFileSize())
+		pos = m_edit->GetFileSize();
+	cp.pos = pos;
+
+	UpdateWXMEditCaret(cp);
+}
+
+static JumpTable_UCS4 sg_jtab;
+bool StringSearcher::SearchingPrepare(const ucs4string& exprstr, const wxString& text)
+{
+	sg_jtab.Build(exprstr);
+	return true;
+}
+
+bool StringSearcher::DoSearch(bool& found, UCIterator& fbegin, UCIterator& fend,
+	const UCIterator& start, const UCIterator& end, const ucs4string& exprstr)
+{
+	fbegin = start;
+	fend = end;
+	found = ::Search(fbegin, fend, exprstr, sg_jtab, m_case_sensitive);
+	return true;
+}
+
+static basic_regex<UCIterator> sg_expression;
+bool RegexSearcher::SearchingPrepare(const ucs4string& exprstr, const wxString& text)
+{
+	try
+	{
+		regex_constants::syntax_option_type opt = regex_constants::ECMAScript;
+		if (!m_case_sensitive)
+			opt = opt | regex_constants::icase;
+		regex_compiler<UCIterator, ucs4_regex_traits > ucs4comp;
+		sg_expression = ucs4comp.compile(exprstr, opt);
+	}
+	catch (regex_error)
+	{
+		wxMessageDialog dlg(m_edit, wxString::Format(_("'%s' is not a valid regular expression."), text.c_str()),
+			wxT("wxMEdit"), wxOK | wxICON_ERROR);
+		dlg.ShowModal();
+		return false;
+	}
+
+	return true;
+}
+
+bool RegexSearcher::DoSearch(bool& found, UCIterator& fbegin, UCIterator& fend,
+	const UCIterator& start, const UCIterator& end, const ucs4string& exprstr)
+{
+	match_results<UCIterator> what;
+	try
+	{
+		found = regex_search(start, end, what, sg_expression);
+	}
+	catch (regex_error)
+	{
+		wxMessageDialog dlg(m_edit, _("Catched a exception of 'regex_error'.\nMaybe the regular expression is invalid."),
+			wxT("wxMEdit"), wxOK | wxICON_ERROR);
+		dlg.ShowModal();
+		return false;
+	}
+
+	if (found)
+	{
+		fbegin = what[0].first;
+		fend = what[0].second;
+	}
+
+	return true;
+}
+
+MadSearchResult StringSearcher::Replace(ucs4string &out, const MadCaretPos& beginpos, const MadCaretPos& endpos,
+	const wxString &expr, const wxString &fmt)
+{
+	if (expr.empty())
+		return SR_NO;
+
+	// fmt is the wanted string
+	out += from_wxString(fmt);
+
+	return SR_YES;
+}
+
+MadSearchResult RegexSearcher::Replace(ucs4string &out, const MadCaretPos& beginpos, const MadCaretPos& endpos,
+	const wxString &expr, const wxString &fmt)
+{
+	ucs4string exprstr(from_wxString(expr));
+
+	if (!SearchingPrepare(exprstr, expr))
+		return SR_EXPR_ERROR;
+
+	ucs4string fmtstr(from_wxString(fmt));
+
+	UCIterator begin(beginpos);
+	UCIterator end(endpos);
+
+	try
+	{
+		std::back_insert_iterator<ucs4string> oi(out);
+		regex_replace(oi, begin, end, sg_expression, fmtstr);
+		out = ConvertEscape(out);
+	}
+	catch (regex_error)
+	{
+		wxMessageDialog dlg(m_edit, wxString::Format(_("The format of '%s' is invalid."), fmt.c_str()),
+			wxT("wxMEdit"), wxOK | wxICON_ERROR);
+		dlg.ShowModal();
+		return SR_EXPR_ERROR;
+	}
+
+	return SR_YES;
+}
+
+MadSearchResult HexSearcher::SearchHex(/*IN_OUT*/MadCaretPos& beginpos, /*IN_OUT*/MadCaretPos& endpos,
+	const std::vector<wxByte>& hex)
+{
+	if (beginpos.pos >= endpos.pos || hex.empty())
+		return SR_NO;
+
+	ByteIterator::Init(m_edit->m_Lines, endpos.pos);
+	ByteIterator start(beginpos);
+	ByteIterator end(endpos);
+
+	static JumpTable_Hex jtab;
+	jtab.Build(hex);
+
+	if (!::Search(start, end, hex, jtab, true))
+		return SR_NO;
+
+	beginpos.AssignWith(start);
+	endpos.AssignWith(end);
+
+	return SR_YES;
+}
+
+MadSearchResult HexSearcher::FindNext(const wxString &hexstr,
 	wxFileOffset rangeFrom, wxFileOffset rangeTo)
 {
 	vector<wxByte> hex;
@@ -1151,7 +1414,7 @@ MadSearchResult WXMSearcher::FindHexNext(const wxString &hexstr,
 	return SR_YES;
 }
 
-MadSearchResult WXMSearcher::FindHexPrevious(const wxString &hexstr,
+MadSearchResult HexSearcher::FindPrevious(const wxString &hexstr,
 	wxFileOffset rangeFrom, wxFileOffset rangeTo)
 {
 	vector<wxByte> hex;
@@ -1264,57 +1527,7 @@ MadSearchResult WXMSearcher::FindHexPrevious(const wxString &hexstr,
 	return SR_NO;
 }
 
-MadReplaceResult WXMSearcher::ReplaceTextOnce(const wxString &expr, const wxString &fmt,
-	bool bRegex, bool bCaseSensitive, bool bWholeWord,
-	wxFileOffset rangeFrom, wxFileOffset rangeTo)
-{
-	if (expr.empty())
-		return RR_NREP_NNEXT;
-
-	bool selok = false;
-
-	MadCaretPos bpos = *m_edit->m_SelectionBegin;
-	MadCaretPos epos = *m_edit->m_SelectionEnd;
-
-	if (m_edit->m_Selection) // test the selection is wanted text
-	{
-		int state = Search(bpos, epos, expr, bRegex, bCaseSensitive, bWholeWord);
-		if (state == SR_EXPR_ERROR)
-			return RR_EXPR_ERROR;
-
-		if (state == SR_YES && bpos.pos == m_edit->m_SelectionBegin->pos && epos.pos == m_edit->m_SelectionEnd->pos)
-			selok = true;
-	}
-
-	if (!selok)  // just find next
-	{
-		switch (FindTextNext(expr, bRegex, bCaseSensitive, bWholeWord, rangeFrom, rangeTo))
-		{
-		case SR_EXPR_ERROR: return RR_EXPR_ERROR;
-		case SR_YES:        return RR_NREP_NEXT;
-		case SR_NO:         return RR_NREP_NNEXT;
-		}
-	}
-
-	ucs4string out;
-
-	// replace the selected text
-	int state = Replace(out, bpos, epos, expr, fmt, bRegex, bCaseSensitive, bWholeWord);
-	if (state == SR_EXPR_ERROR)
-		return RR_EXPR_ERROR;
-
-	if (out.length() == 0)
-		m_edit->DeleteSelection(true, nullptr, false);
-	else
-		m_edit->InsertString(out.c_str(), out.length(), false, true, false);
-
-	if (SR_NO == FindTextNext(expr, bRegex, bCaseSensitive, bWholeWord, -1, rangeTo))
-		return RR_REP_NNEXT;
-
-	return RR_REP_NEXT;
-}
-
-MadReplaceResult WXMSearcher::ReplaceHexOnce(const wxString &expr, const wxString &fmt,
+MadReplaceResult HexSearcher::ReplaceOnce(const wxString &expr, const wxString &fmt,
 	wxFileOffset rangeFrom, wxFileOffset rangeTo)
 {
 	if (expr.empty())
@@ -1348,7 +1561,7 @@ MadReplaceResult WXMSearcher::ReplaceHexOnce(const wxString &expr, const wxStrin
 
 	if (!selok)  // just find next
 	{
-		switch (FindHexNext(expr, rangeFrom, rangeTo))
+		switch (FindNext(expr, rangeFrom, rangeTo))
 		{
 		case SR_EXPR_ERROR: return RR_EXPR_ERROR;
 		case SR_YES:        return RR_NREP_NEXT;
@@ -1361,108 +1574,13 @@ MadReplaceResult WXMSearcher::ReplaceHexOnce(const wxString &expr, const wxStrin
 	else
 		m_edit->InsertRawBytes(&fmthex[0], fmthex.size(), false);
 
-	if (SR_NO == FindHexNext(expr, -1, rangeTo))
+	if (SR_NO == FindNext(expr, -1, rangeTo))
 		return RR_REP_NNEXT;
 
 	return RR_REP_NEXT;
 }
 
-
-int WXMSearcher::ReplaceTextAll(const wxString &expr, const wxString &fmt,
-	bool bRegex, bool bCaseSensitive, bool bWholeWord,
-	vector<wxFileOffset> *pbegpos, vector<wxFileOffset> *pendpos,
-	wxFileOffset rangeFrom, wxFileOffset rangeTo)
-{
-	if (expr.empty())
-		return 0;
-
-	MadCaretPos bpos, epos, endpos;
-
-	if (rangeFrom <= 0)
-		AssignTextFileBegin(bpos);
-	else
-		UpdateWXMEditCaret(rangeFrom, bpos);
-
-	if (rangeTo < 0)
-		AssignFileEnd(epos);
-	else
-		UpdateWXMEditCaret(rangeTo, epos);
-
-	if (bpos.pos >= epos.pos)
-		return 0;
-
-	endpos = epos;
-	int multi = 0;
-
-	vector<wxFileOffset> del_bpos;
-	vector<wxFileOffset> del_epos;
-	vector<const ucs4_t*> ins_ucs;
-	vector<wxFileOffset> ins_len;
-
-	list<ucs4string> outs;
-
-	int state;
-	while ((state = Search(bpos, epos, expr, bRegex, bCaseSensitive, bWholeWord)) == SR_YES)
-	{
-		ucs4string out;
-		int state = Replace(out, bpos, epos, expr, fmt, bRegex, bCaseSensitive, bWholeWord);
-		if (state == SR_EXPR_ERROR)
-			return SR_EXPR_ERROR;
-
-		del_bpos.push_back(bpos.pos);
-		del_epos.push_back(epos.pos);
-
-		outs.push_back(out);
-		ucs4string &str = outs.back();
-		ins_ucs.push_back(str.c_str());
-		ins_len.push_back(str.length());
-
-		if (bpos.iter != epos.iter)
-			++multi;
-
-		if (bpos.pos == epos.pos && !NextRegexSearchingPos(epos, expr))
-			break;
-
-		bpos = epos;
-		epos = endpos;
-	}
-
-	if (state == SR_EXPR_ERROR)
-		return SR_EXPR_ERROR;
-
-	int count = int(del_bpos.size());
-
-	if (count>0)
-	{
-		wxFileOffset size = del_epos.back() - del_bpos.front();
-		if ((size <= 2 * 1024 * 1024) || (multi >= 40 && size <= 10 * 1024 * 1024))
-			m_edit->OverwriteDataSingle(del_bpos, del_epos, &ins_ucs, nullptr, ins_len);
-		else
-			m_edit->OverwriteDataMultiple(del_bpos, del_epos, &ins_ucs, nullptr, ins_len);
-
-		if (pbegpos != 0 && pendpos != 0)
-		{
-			pbegpos->resize(count);
-			pendpos->resize(count);
-
-			wxFileOffset diff = 0, b, e, l;
-			for (int i = 0; i<count; i++)
-			{
-				b = del_bpos[i];
-				e = del_epos[i];
-				l = ins_len[i];
-				size = b + diff;
-				(*pbegpos)[i] = size;
-				(*pendpos)[i] = size + l;
-				diff += (l - (e - b));
-			}
-		}
-	}
-
-	return count;
-}
-
-int WXMSearcher::ReplaceHexAll(const wxString &expr, const wxString &fmt,
+int HexSearcher::ReplaceAll(const wxString &expr, const wxString &fmt,
 	vector<wxFileOffset> *pbegpos, vector<wxFileOffset> *pendpos,
 	wxFileOffset rangeFrom, wxFileOffset rangeTo)
 {
@@ -1546,55 +1664,7 @@ int WXMSearcher::ReplaceHexAll(const wxString &expr, const wxString &fmt,
 	return count;
 }
 
-int WXMSearcher::FindTextAll(const wxString &expr,
-	bool bRegex, bool bCaseSensitive, bool bWholeWord, bool bFirstOnly,
-	vector<wxFileOffset> *pbegpos, vector<wxFileOffset> *pendpos,
-	wxFileOffset rangeFrom, wxFileOffset rangeTo)
-{
-	if (expr.empty())
-		return 0;
-
-	MadCaretPos bpos, epos, endpos;
-
-	if (rangeFrom <= 0)
-		AssignTextFileBegin(bpos);
-	else
-		UpdateWXMEditCaret(rangeFrom, bpos);
-
-	if (rangeTo < 0)
-		AssignFileEnd(epos);
-	else
-		UpdateWXMEditCaret(rangeTo, epos);
-
-	if (bpos.pos >= epos.pos)
-		return 0;
-
-	endpos = epos;
-	int count = 0;
-	int state;
-
-	while ((state = Search(bpos, epos, expr, bRegex, bCaseSensitive, bWholeWord)) == SR_YES)
-	{
-		if (pbegpos) pbegpos->push_back(bpos.pos);
-		if (pendpos) pendpos->push_back(epos.pos);
-		++count;
-		if (bFirstOnly)
-			break;
-
-		if (bpos.pos == epos.pos && !NextRegexSearchingPos(epos, expr))
-			break;
-
-		bpos = epos;
-		epos = endpos;
-	}
-
-	if (state == SR_EXPR_ERROR)
-		return SR_EXPR_ERROR;
-
-	return count;
-}
-
-int WXMSearcher::FindHexAll(const wxString &expr, bool bFirstOnly,
+int HexSearcher::FindAll(const wxString &expr, bool bFirstOnly,
 	vector<wxFileOffset> *pbegpos, vector<wxFileOffset> *pendpos,
 	wxFileOffset rangeFrom, wxFileOffset rangeTo)
 {
@@ -1636,119 +1706,6 @@ int WXMSearcher::FindHexAll(const wxString &expr, bool bFirstOnly,
 	}
 
 	return count;
-}
-
-void WXMSearcher::UpdateWXMEditCaret(MadCaretPos& cp)
-{
-	MadUCQueue dummyUCQueue;
-	vector<int> dummyWidthArray;
-	int dummyUCPos;
-
-	m_edit->UpdateCaretByPos(cp, dummyUCQueue, dummyWidthArray, dummyUCPos);
-}
-
-void WXMSearcher::UpdateWXMEditCaret(wxFileOffset& pos, MadCaretPos& cp)
-{
-	if (pos > m_edit->GetFileSize())
-		pos = m_edit->GetFileSize();
-	cp.pos = pos;
-
-	UpdateWXMEditCaret(cp);
-}
-
-void WXMSearcher::AssignTextFileBegin(MadCaretPos& cp)
-{
-	cp.iter = m_edit->m_Lines->m_LineList.begin();
-	cp.pos = cp.iter->m_RowIndices[0].m_Start;
-	if (m_edit->m_CaretPos.pos < cp.pos || m_edit->m_EditMode == emHexMode)
-		cp.pos = 0;
-	cp.linepos = cp.pos;
-}
-
-void WXMSearcher::AssignHexFileBegin(MadCaretPos& cp)
-{
-	cp.pos = 0;
-	cp.iter = m_edit->m_Lines->m_LineList.begin();
-	cp.linepos = 0;
-}
-
-void WXMSearcher::AssignFileEnd(MadCaretPos& cp)
-{
-	cp.pos = m_edit->m_Lines->m_Size;
-	cp.iter = m_edit->m_Lines->m_LineList.end();
-	--cp.iter;
-	cp.linepos = cp.iter->m_Size;
-}
-
-void WXMSearcher::AssignCaretPos(wxFileOffset& pos, MadCaretPos& cp)
-{
-	if (pos > m_edit->GetFileSize())
-		pos = m_edit->GetFileSize();
-	cp.pos = pos;
-	cp.linepos = pos;
-	m_edit->GetLineByPos(cp.iter, cp.linepos, cp.rowid);
-	cp.linepos = pos - cp.linepos;
-}
-
-bool WXMSearcher::IsDelimiterChar(ucs4_t uc)
-{
-	return (uc <= 0x20 || m_edit->m_Syntax->IsDelimiter(uc) || uc == 0x3000);
-}
-
-bool WXMSearcher::IsWordBoundary(UCIterator& ucit)
-{
-	ucs4_t uc = *ucit;
-	if (IsDelimiterChar(uc))
-		return true;
-
-	// check prev-uchar of ucit
-	--ucit;
-	uc = *ucit;
-	if (!IsDelimiterChar(uc))
-		return false;
-
-	return true;
-}
-
-bool WXMSearcher::IsWordBoundary(UCIterator& ucit1, UCIterator& ucit2)
-{
-	if (ucit1.pos >= ucit2.pos)
-		return true;
-
-	// check ucit2
-	if (ucit2.linepos > ucit2.lit->m_RowIndices[0].m_Start &&     // not at begin/end of line
-		ucit2.linepos < (ucit2.lit->m_Size - ucit2.lit->m_NewLineSize) &&
-		!IsWordBoundary(ucit2))
-	{
-		return false;
-	}
-
-	// check ucit1
-	wxFileOffset lpos = ucit1.lit->m_RowIndices[0].m_Start;
-	if (ucit1.linepos > lpos &&        // not at begin of line
-		!IsWordBoundary(ucit1))
-	{
-		return false;
-	}
-
-	return true;
-}
-bool WXMSearcher::NextRegexSearchingPos(MadCaretPos& cp, const wxString &expr)
-{
-	if (expr.find_first_of(wxT('^')) != wxString::npos || expr.find_last_of(wxT('$')) != wxString::npos)
-	{
-		wxFileOffset len = cp.iter->m_Size - cp.linepos - 1;
-		cp.pos += len;
-		cp.linepos += len;
-	}
-
-	if (cp.pos == UCIterator::s_endpos)
-		return false;
-
-	UCIterator it(cp);
-	++it;
-	cp.AssignWith(it);
-	return true;
 }
 
 } // namespace wxm

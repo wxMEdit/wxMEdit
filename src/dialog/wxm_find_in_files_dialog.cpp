@@ -658,7 +658,10 @@ void WXMFindInFilesDialog::FindReplaceInFiles(bool bReplace)
 				}
 				++fnit;
 			}
-			wxm::WXMSearcher& searcher = *(madedit->Searcher());
+			bool use_regex = WxCheckBoxRegex->GetValue();
+			bool inhex = WxCheckBoxFindHex->GetValue();
+			wxm::WXMSearcher& searcher = *(madedit->Searcher(inhex, use_regex));
+			searcher.SetOption(WxCheckBoxCaseSensitive->GetValue(), WxCheckBoxWholeWord->GetValue());
 
 			wxLongLong t=wxGetLocalTimeMillis();
 			wxLongLong delta=t-g_Time;
@@ -686,18 +689,7 @@ void WXMFindInFilesDialog::FindReplaceInFiles(bool bReplace)
 			{
 				m_FindText->GetText(expr);
 				m_ReplaceText->GetText(fmt);
-				if(WxCheckBoxFindHex->GetValue())
-				{
-					ok = searcher.ReplaceHexAll(expr, fmt, &begpos, &endpos);
-				}
-				else
-				{
-					ok = searcher.ReplaceTextAll(expr, fmt,
-						WxCheckBoxRegex->GetValue(),
-						WxCheckBoxCaseSensitive->GetValue(),
-						WxCheckBoxWholeWord->GetValue(), 
-						&begpos, &endpos);
-				}
+				ok = searcher.ReplaceAll(expr, fmt, &begpos, &endpos);
 
 				if(ok<0) break;
 
@@ -711,20 +703,7 @@ void WXMFindInFilesDialog::FindReplaceInFiles(bool bReplace)
 			else
 			{
 				m_FindText->GetText(expr);
-				if(WxCheckBoxFindHex->GetValue())
-				{
-					ok = searcher.FindHexAll(expr, WxCheckBoxListFirstOnly->GetValue(),
-						&begpos, &endpos);
-				}
-				else
-				{
-					ok = searcher.FindTextAll(expr,
-						WxCheckBoxRegex->GetValue(),
-						WxCheckBoxCaseSensitive->GetValue(),
-						WxCheckBoxWholeWord->GetValue(),
-						WxCheckBoxListFirstOnly->GetValue(),
-						&begpos, &endpos);
-				}
+				ok = searcher.FindAll(expr, WxCheckBoxListFirstOnly->GetValue(), &begpos, &endpos);
 
 				if(ok<0) break;
 			}

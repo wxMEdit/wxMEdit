@@ -186,6 +186,8 @@ struct UCIterator;
 namespace wxm
 {
     struct MouseCapturer;
+    struct TextSearcher;
+    struct HexSearcher;
 
     struct ConfigWriter
     {
@@ -213,6 +215,8 @@ private:
     friend class MadLines;
     friend class MadMouseMotionTimer;
     friend struct wxm::WXMSearcher;
+    friend struct wxm::TextSearcher;
+    friend struct wxm::HexSearcher;
 
     static int      ms_Count; // the count of MadEdit
 
@@ -901,7 +905,7 @@ public: // basic functions
     void GoToLeftBrace() { ProcessCommand(ecLeftBrace); }
     void GoToRightBrace() { ProcessCommand(ecRightBrace); }
 
-    virtual wxm::WXMSearcher* Searcher() = 0;
+    virtual wxm::WXMSearcher* Searcher(bool inhex, bool use_regex) = 0;
 
     bool LoadFromFile(const wxString &filename, const wxString &encoding = wxEmptyString);
     bool SaveToFile(const wxString &filename);

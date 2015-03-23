@@ -1323,7 +1323,8 @@ void MadEdit::TrimTrailingSpaces()
         return;
 
     // use Regular Expressions to trim all trailing spaces
-    Searcher()->ReplaceTextAll(wxT("[ \t]+(\r|\n|$)"), wxT("$1"), true, true, false);
+    Searcher(false, true)->SetOption(true, false);
+    Searcher(false, true)->ReplaceAll(wxT("[ \t]+(\r|\n|$)"), wxT("$1"));
 }
 
 

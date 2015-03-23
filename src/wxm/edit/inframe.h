@@ -39,7 +39,10 @@ struct InFrameWXMEdit : public MadEdit
 	void ClearAllBookmarks();
 	bool BookmarkExist() { return m_Lines->m_LineList.BookmarkExist(); }
 
-	virtual WXMSearcher* Searcher() override { return &m_searcher; }
+	virtual WXMSearcher* Searcher(bool inhex, bool use_regex) override
+	{
+		return m_auto_searcher.Searcher(inhex, use_regex);
+	}
 
 	InFrameWXMEdit(wxWindow* parent, wxWindowID id, const wxPoint& pos, const wxSize& size, long style);
 private:
@@ -93,7 +96,7 @@ private:
 	int m_PrintOffsetHeader;
 	int m_PrintTotalHexLineCount;
 
-	WXMSearcher m_searcher;
+	AutoSearcher m_auto_searcher;
 };
 
 } //namespace wxm

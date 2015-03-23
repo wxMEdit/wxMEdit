@@ -330,20 +330,11 @@ void WXMSearchReplaceDialog::WxButtonFindNextClick(wxCommandEvent& event)
 			}
 		}
 
-		for(;;)
+		wxm::WXMSearcher* searcher = g_active_wxmedit->Searcher(WxCheckBoxFindHex->GetValue(), WxCheckBoxRegex->GetValue());
+		searcher->SetOption(WxCheckBoxCaseSensitive->GetValue(), WxCheckBoxWholeWord->GetValue());
+		for (;;)
 		{
-			if(WxCheckBoxFindHex->GetValue())
-			{
-				sr = g_active_wxmedit->Searcher()->FindHexNext(text, rangeFrom, rangeTo);
-			}
-			else
-			{
-				sr = g_active_wxmedit->Searcher()->FindTextNext(text,
-					WxCheckBoxRegex->GetValue(),
-					WxCheckBoxCaseSensitive->GetValue(),
-					WxCheckBoxWholeWord->GetValue(),
-					rangeFrom, rangeTo);
-			}
+			sr = searcher->FindNext(text, rangeFrom, rangeTo);
 
 			if(sr != SR_NO)
 			{
@@ -430,20 +421,11 @@ void WXMSearchReplaceDialog::WxButtonFindPrevClick(wxCommandEvent& event)
 			}
 		}
 
-		for(;;)
+		wxm::WXMSearcher* searcher = g_active_wxmedit->Searcher(WxCheckBoxFindHex->GetValue(), WxCheckBoxRegex->GetValue());
+		searcher->SetOption(WxCheckBoxCaseSensitive->GetValue(), WxCheckBoxWholeWord->GetValue());
+		for (;;)
 		{
-			if(WxCheckBoxFindHex->GetValue())
-			{
-				sr = g_active_wxmedit->Searcher()->FindHexPrevious(text, rangeTo, rangeFrom);
-			}
-			else
-			{
-				sr = g_active_wxmedit->Searcher()->FindTextPrevious(text,
-					WxCheckBoxRegex->GetValue(),
-					WxCheckBoxCaseSensitive->GetValue(),
-					WxCheckBoxWholeWord->GetValue(),
-					rangeTo, rangeFrom);
-			}
+			sr = searcher->FindPrevious(text, rangeTo, rangeFrom);
 
 			if(sr!=SR_NO)
 			{
@@ -721,20 +703,12 @@ void WXMSearchReplaceDialog::WxButtonReplaceClick(wxCommandEvent& event)
 
 	MadReplaceResult ret=RR_EXPR_ERROR;
 
-	for(;;)
+	bool inhex = WxCheckBoxFindHex->GetValue();
+	wxm::WXMSearcher* searcher = g_active_wxmedit->Searcher(WxCheckBoxFindHex->GetValue(), WxCheckBoxRegex->GetValue());
+	searcher->SetOption(WxCheckBoxCaseSensitive->GetValue(), WxCheckBoxWholeWord->GetValue());
+	for (;;)
 	{
-		if(WxCheckBoxFindHex->GetValue())
-		{
-			ret = g_active_wxmedit->Searcher()->ReplaceHexOnce(text, reptext, rangeFrom, rangeTo);
-		}
-		else
-		{
-			ret = g_active_wxmedit->Searcher()->ReplaceTextOnce(text, reptext,
-				WxCheckBoxRegex->GetValue(),
-				WxCheckBoxCaseSensitive->GetValue(),
-				WxCheckBoxWholeWord->GetValue(),
-				rangeFrom, rangeTo);
-		}
+		ret = searcher->ReplaceOnce(text, reptext, rangeFrom, rangeTo);
 
 		if ((ret==RR_REP_NNEXT || ret==RR_NREP_NNEXT) &&
 			WxCheckBoxWrapAround->IsChecked() && rangeTo != caretpos)
@@ -812,20 +786,10 @@ void WXMSearchReplaceDialog::WxButtonCountClick(wxCommandEvent& event)
 			rangeFrom = from;
 		}
 
-		if(WxCheckBoxFindHex->GetValue())
-		{
-			count = g_active_wxmedit->Searcher()->FindHexAll(text, false, nullptr, nullptr, rangeFrom, rangeTo);
-		}
-		else
-		{
-			count = g_active_wxmedit->Searcher()->FindTextAll(text,
-				WxCheckBoxRegex->GetValue(),
-				WxCheckBoxCaseSensitive->GetValue(),
-				WxCheckBoxWholeWord->GetValue(),
-				false,
-				nullptr, nullptr,
-				rangeFrom, rangeTo);
-		}
+		wxm::WXMSearcher* searcher = g_active_wxmedit->Searcher(WxCheckBoxFindHex->GetValue(), WxCheckBoxRegex->GetValue());
+		searcher->SetOption(WxCheckBoxCaseSensitive->GetValue(), WxCheckBoxWholeWord->GetValue());
+
+		count = searcher->FindAll(text, false, nullptr, nullptr, rangeFrom, rangeTo);
 	}
 
 	if(count >= 0)
@@ -881,18 +845,11 @@ void WXMSearchReplaceDialog::WxButtonReplaceAllClick(wxCommandEvent& event)
 		}
 
 		int count=0;
-		if(WxCheckBoxFindHex->GetValue())
-		{
-			count = g_active_wxmedit->Searcher()->ReplaceHexAll(text, reptext, nullptr, nullptr, rangeFrom, rangeTo);
-		}
-		else
-		{
-			count = g_active_wxmedit->Searcher()->ReplaceTextAll(text, reptext,
-				WxCheckBoxRegex->GetValue(),
-				WxCheckBoxCaseSensitive->GetValue(),
-				WxCheckBoxWholeWord->GetValue(),
-				nullptr, nullptr, rangeFrom, rangeTo);
-		}
+		bool inhex = WxCheckBoxFindHex->GetValue();
+		wxm::WXMSearcher* searcher = g_active_wxmedit->Searcher(WxCheckBoxFindHex->GetValue(), WxCheckBoxRegex->GetValue());
+		searcher->SetOption(WxCheckBoxCaseSensitive->GetValue(), WxCheckBoxWholeWord->GetValue());
+
+		count = searcher->ReplaceAll(text, reptext, nullptr, nullptr, rangeFrom, rangeTo);
 
 		if(count>=0)
 		{
