@@ -41,7 +41,7 @@ private:
 	virtual void CacheLineNumberAreaWidth(int width) override {}
 	virtual void PaintLineNumberArea(const wxColor & bgcolor, wxDC * dc, const wxRect& rect, bool is_trailing_subrow,
 		MadLineIterator lineiter, int lineid, int text_top) override {}
-	virtual WXMSearcher* Searcher() override { return nullptr; }
+	virtual WXMSearcher* Searcher(bool inhex, bool use_regex) override { return nullptr; }
 };
 
 struct InFrameWXMEdit;
@@ -70,16 +70,19 @@ private:
 struct SearchingWXMEdit : public SimpleTextWXMEdit
 {
 	SearchingWXMEdit(wxWindow* parent, bool bSearchWholeWord)
-		: SimpleTextWXMEdit(parent, wxID_ANY, wxPoint(-1024, -1024)), m_searcher(this)
+		: SimpleTextWXMEdit(parent, wxID_ANY, wxPoint(-1024, -1024)), m_auto_searcher(this)
 	{
 		InitHexFont();
 		StopRepaint();
 		SetSearchOptions(true, bSearchWholeWord);
 	}
 
-	virtual WXMSearcher* Searcher() override { return &m_searcher; }
+	virtual WXMSearcher* Searcher(bool inhex, bool use_regex) override
+	{
+		return m_auto_searcher.Searcher(inhex, use_regex);
+	}
 private:
-	WXMSearcher m_searcher;
+	AutoSearcher m_auto_searcher;
 };
 
 } //namespace wxm

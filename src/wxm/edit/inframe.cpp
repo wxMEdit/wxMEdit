@@ -66,7 +66,7 @@ void GlobalConfigWriter::Record(const wxString& key, const wxString& val)
 }
 
 InFrameWXMEdit::InFrameWXMEdit(wxWindow* parent, wxWindowID id, const wxPoint& pos, const wxSize& size, long style)
-	: MadEdit(new GlobalConfigWriter(), parent, id, pos, size, style), m_searcher(this)
+	: MadEdit(new GlobalConfigWriter(), parent, id, pos, size, style), m_auto_searcher(this)
 {
 	m_PrintPageCount = 0;
 

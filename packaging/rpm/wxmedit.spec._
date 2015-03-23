@@ -59,6 +59,7 @@ rm -rf $RPM_BUILD_DIR/%{name}-%{version}
 %{_datadir}/applications/*
 %{_datadir}/pixmaps/*
 %{_datadir}/wxmedit/*
+%{_datadir}/locale/de_DE/LC_MESSAGES/wxmedit.mo
 %{_datadir}/locale/es/LC_MESSAGES/wxmedit.mo
 %{_datadir}/locale/it_IT/LC_MESSAGES/wxmedit.mo
 %{_datadir}/locale/ja_JP/LC_MESSAGES/wxmedit.mo
