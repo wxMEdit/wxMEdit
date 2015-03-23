@@ -4441,7 +4441,7 @@ _ACEOF
 _ACEOF
 
 
-ALL_LINGUAS="es it_IT ja_JP ru_RU zh_CN zh_TW"
+ALL_LINGUAS="de_DE es it_IT ja_JP ru_RU zh_CN zh_TW"
 
   { $as_echo "$as_me:$LINENO: checking whether NLS is requested" >&5
 $as_echo_n "checking whether NLS is requested... " >&6; }

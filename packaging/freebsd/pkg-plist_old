@@ -1,5 +1,6 @@
 bin/wxmedit
 share/applications/wxmedit.desktop
+share/locale/de_DE/LC_MESSAGES/wxmedit.mo
 share/locale/es/LC_MESSAGES/wxmedit.mo
 share/locale/it_IT/LC_MESSAGES/wxmedit.mo
 share/locale/ja_JP/LC_MESSAGES/wxmedit.mo
