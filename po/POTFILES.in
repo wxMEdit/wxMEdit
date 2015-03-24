@@ -49,6 +49,8 @@ src/wxm/line_enc_adapter.cpp
 src/wxm/line_enc_adapter.h
 src/wxm/recent_list.cpp
 src/wxm/recent_list.h
+src/wxm/searcher.cpp
+src/wxm/searcher.h
 src/wxm/status_bar.cpp
 src/wxm/status_bar.h
 src/wxm/update.cpp
@@ -79,7 +81,6 @@ src/wxmedit/wxmedit_advanced.cpp
 src/wxmedit/wxmedit_basic.cpp
 src/wxmedit/wxmedit_command.cpp
 src/wxmedit/wxmedit_command.h
-src/wxmedit/wxmedit_search.cpp
 src/wxmedit_app.cpp
 src/wxmedit_app.h
 src/wxmedit_frame.cpp
