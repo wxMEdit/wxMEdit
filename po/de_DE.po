@@ -3,43 +3,12 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
-#: ../src/dialog/wxmedit_options_dialog.cpp:687
-#: ../src/dialog/wxmedit_options_dialog.cpp:688
-#: ../src/dialog/wxmedit_options_dialog.cpp:690
-#: ../src/dialog/wxmedit_options_dialog.cpp:691
-#: ../src/dialog/wxmedit_options_dialog.cpp:693
-#: ../src/dialog/wxmedit_options_dialog.cpp:694
-#: ../src/dialog/wxmedit_options_dialog.cpp:696
-#: ../src/dialog/wxmedit_options_dialog.cpp:697
-#: ../src/dialog/wxmedit_options_dialog.cpp:698
-#: ../src/dialog/wxmedit_options_dialog.cpp:700
-#: ../src/dialog/wxmedit_options_dialog.cpp:701
-#: ../src/dialog/wxmedit_options_dialog.cpp:702
-#: ../src/dialog/wxmedit_options_dialog.cpp:703
-#: ../src/dialog/wxmedit_options_dialog.cpp:704
-#: ../src/dialog/wxmedit_options_dialog.cpp:705
-#: ../src/dialog/wxmedit_options_dialog.cpp:706
-#: ../src/dialog/wxmedit_options_dialog.cpp:707
-#: ../src/dialog/wxmedit_options_dialog.cpp:708
-#: ../src/dialog/wxmedit_options_dialog.cpp:709
-#: ../src/dialog/wxmedit_options_dialog.cpp:710
-#: ../src/dialog/wxmedit_options_dialog.cpp:711
-#: ../src/dialog/wxmedit_options_dialog.cpp:712
-#: ../src/dialog/wxmedit_options_dialog.cpp:713
-#: ../src/dialog/wxmedit_options_dialog.cpp:714
-#: ../src/dialog/wxmedit_options_dialog.cpp:715
-#: ../src/dialog/wxmedit_options_dialog.cpp:716
-#: ../src/dialog/wxmedit_options_dialog.cpp:717
-#: ../src/dialog/wxmedit_options_dialog.cpp:718
-#: ../src/dialog/wxmedit_options_dialog.cpp:719
-#: ../src/dialog/wxmedit_options_dialog.cpp:720
-#: ../src/dialog/wxmedit_options_dialog.cpp:721
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-03-24 17:36+0800\n"
-"PO-Revision-Date: 2015-03-22 23:29+0100\n"
+"PO-Revision-Date: 2015-03-24 20:19+0100\n"
 "Last-Translator: Ronny Steiner <post@sirsteiner.de>\n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -1311,7 +1280,7 @@ msgstr ""
 #: ../src/wxm/searcher.cpp:1360
 #, c-format
 msgid "The format of '%s' is invalid."
-msgstr ""
+msgstr "Das Format von '%s' ist ungültig."
 
 #: ../src/wxm/update.cpp:91
 msgid "Cannot check for new version!"
@@ -1384,11 +1353,11 @@ msgstr "immer"
 
 #: ../src/wxm_printout.h:21
 msgid "wxMEdit Printout"
-msgstr ""
+msgstr "wxMEdit Ausdruck"
 
 #: ../src/wxmedit/wxmedit_advanced.cpp:1316 ../src/xm/ublock_des.cpp:286
 msgid "Invalid Unicode Characters"
-msgstr ""
+msgstr "Ungültige Unicode-Zeichen"
 
 #: ../src/wxmedit/wxmedit_basic.cpp:445
 #, c-format
@@ -1397,15 +1366,19 @@ msgid ""
 "The file size is %s bytes.\n"
 "It may take long time and large memories to convert to Text/Column Mode."
 msgstr ""
+"Die Dateigröße ist %s Bytes.\n"
+"Es könnte sehr lange dauern und viel Speicher verbrauchen beim Umwandeln in "
+"den Text-/Spalten-Modus.\n"
+"Wirklich fortfahren?"
 
 #: ../src/wxmedit/wxmedit_basic.cpp:445
 msgid "Hex Mode to Text/Column Mode"
-msgstr ""
+msgstr "Hexadezimal- zu Text-/Spalten-Modus"
 
 #: ../src/wxmedit/wxmedit_basic.cpp:1671 ../src/wxmedit/wxmedit_basic.cpp:1740
 #: ../src/wxmedit_frame.cpp:2641
 msgid "The Parent Directory of this file does not exist:"
-msgstr ""
+msgstr "Das Ursprungsverzeichnis dieser Datei existiert nicht:"
 
 #: ../src/wxmedit/wxmedit_basic.cpp:1760
 msgid "Cannot save this file:"
@@ -1641,7 +1614,7 @@ msgstr "Drucken der aktuellen Datei"
 
 #: ../src/wxmedit_frame.cpp:1074
 msgid "Recent Files"
-msgstr "Letzte Datei(en)"
+msgstr "Zuletzt geöffnet"
 
 #: ../src/wxmedit_frame.cpp:1076
 msgid "E&xit"
@@ -2632,55 +2605,55 @@ msgstr "Zur rechten Klammer springen und markieren"
 
 #: ../src/wxmedit_frame.cpp:1424
 msgid "Scroll text up one line"
-msgstr ""
+msgstr "Text eine Zeile hoch scrollen"
 
 #: ../src/wxmedit_frame.cpp:1425
 msgid "Scroll text down one line"
-msgstr ""
+msgstr "Text eine Zeile runter scrollen"
 
 #: ../src/wxmedit_frame.cpp:1426
 msgid "Scroll text up one page"
-msgstr ""
+msgstr "Text eine Seite hoch scrollen"
 
 #: ../src/wxmedit_frame.cpp:1427
 msgid "Scroll text down one page"
-msgstr ""
+msgstr "Text eine Seite runter scrollen"
 
 #: ../src/wxmedit_frame.cpp:1428
 msgid "Scroll text left"
-msgstr ""
+msgstr "Text nach links scrollen"
 
 #: ../src/wxmedit_frame.cpp:1429
 msgid "Scroll text right"
-msgstr ""
+msgstr "Text nach rechts scrollen"
 
 #: ../src/wxmedit_frame.cpp:1431
 msgid "Insert one NewLine char"
-msgstr ""
+msgstr "Zeilenumbruch einfügen"
 
 #: ../src/wxmedit_frame.cpp:1432
 msgid "Insert one NewLine char without indentation"
-msgstr ""
+msgstr "Zeilenumbruch ohne Einzug einfügen"
 
 #: ../src/wxmedit_frame.cpp:1433
 msgid "Insert one Tab char or indent lines"
-msgstr ""
+msgstr "Tabulator/Einzug einfügen"
 
 #: ../src/wxmedit_frame.cpp:1434
 msgid "Delete one char to the left of the caret"
-msgstr ""
+msgstr "Zeichen links vom Kursor löschen"
 
 #: ../src/wxmedit_frame.cpp:1436
 msgid "Delete a word left from the caret"
-msgstr ""
+msgstr "Wort links vom Kursor löschen"
 
 #: ../src/wxmedit_frame.cpp:1437
 msgid "Delete a word right from the caret"
-msgstr ""
+msgstr "Wort rechts vom Kursor löschen"
 
 #: ../src/wxmedit_frame.cpp:1439
 msgid "Toggle Insert/Overwrite Mode"
-msgstr ""
+msgstr "Einfügen/Überschreiben umschalten"
 
 #: ../src/wxmedit_frame.cpp:1958
 msgid "New File"
@@ -2809,6 +2782,8 @@ msgid ""
 "There was a problem previewing.\n"
 "Perhaps your current printer is not set correctly?"
 msgstr ""
+"Die Druckvorschau konnte nicht erstellt werden.\n"
+"Ist eventuell der Standarddrucker nicht richtig eingestellt?"
 
 #: ../src/wxmedit_frame.cpp:3469
 msgid "Previewing"
@@ -2823,6 +2798,8 @@ msgid ""
 "There was a problem printing.\n"
 "Perhaps your current printer is not set correctly?"
 msgstr ""
+"Es gab Probleme beim Drucken.\n"
+"Ist eventuell der Standarddrucker nicht richtig eingestellt?"
 
 #: ../src/wxmedit_frame.cpp:3498
 msgid "Printing"
@@ -2846,7 +2823,7 @@ msgstr "Andere Zeichen"
 
 #: ../src/wxmedit_frame.cpp:3853 ../src/wxmedit_frame.cpp:3896
 msgid "Choose the characters you want to convert:"
-msgstr ""
+msgstr "Bitte die Zeichen auswählen, die umgewandelt werden sollen:"
 
 #: ../src/wxmedit_frame.cpp:4099
 msgid "Line Number: (you can input HexNumber: 0xNNN)"
@@ -3895,161 +3872,161 @@ msgstr "OK"
 #: wxstd.po.cpp:5
 #, c-format
 msgid "File '%s' already exists, do you really want to overwrite it?"
-msgstr ""
+msgstr "Datei '%s' existiert bereits! Soll sie wirklich überschrieben werden?"
 
 #: wxstd.po.cpp:7
 msgid "&Goto..."
-msgstr ""
+msgstr "&Springe zu..."
 
 #: wxstd.po.cpp:8
 msgid "Goto Page"
-msgstr ""
+msgstr "Springe zu einer Seite"
 
 #: wxstd.po.cpp:9
 #, c-format
 msgid "Enter a page number between %d and %d:"
-msgstr ""
+msgstr "Bitte eine Seitenzahl zwischen %d und %d eingeben:"
 
 #: wxstd.po.cpp:10
 msgid "Please wait while printing\n"
-msgstr ""
+msgstr "Bitte warten während des Druckens\n"
 
 #: wxstd.po.cpp:11
 msgid "Printing "
-msgstr ""
+msgstr "Drucken "
 
 #: wxstd.po.cpp:12
 msgid "All"
-msgstr ""
+msgstr "Alle"
 
 #: wxstd.po.cpp:13
 msgid "Bottom margin (mm):"
-msgstr ""
+msgstr "Unterer Rand (mm):"
 
 #: wxstd.po.cpp:14
 msgid "Copies:"
-msgstr ""
+msgstr "Kopien:"
 
 #: wxstd.po.cpp:15
 msgid "Default printer"
-msgstr ""
+msgstr "Standarddrucker"
 
 #: wxstd.po.cpp:17
 msgid "Landscape"
-msgstr ""
+msgstr "Querformat"
 
 #: wxstd.po.cpp:18
 msgid "Left margin (mm):"
-msgstr ""
+msgstr "Linker Rand (mm):"
 
 #: wxstd.po.cpp:19
 msgid "Orientation"
-msgstr ""
+msgstr "Orientierung"
 
 #: wxstd.po.cpp:20
 msgid "Page Setup"
-msgstr ""
+msgstr "Seiteneinrichtung"
 
 #: wxstd.po.cpp:21
 msgid "Pages"
-msgstr ""
+msgstr "Seiten"
 
 #: wxstd.po.cpp:22
 msgid "Paper Size"
-msgstr ""
+msgstr "Papiergröße"
 
 #: wxstd.po.cpp:23
 msgid "Paper size"
-msgstr ""
+msgstr "Papiergröße"
 
 #: wxstd.po.cpp:24
 msgid "Portrait"
-msgstr ""
+msgstr "Hochformat"
 
 #: wxstd.po.cpp:25
 msgid "PostScript file"
-msgstr ""
+msgstr "PostScript-Datei"
 
 #: wxstd.po.cpp:26
 msgid "Print Range"
-msgstr ""
+msgstr "Druckbereich"
 
 #: wxstd.po.cpp:27
 msgid "Print Setup"
-msgstr ""
+msgstr "Druckeinstellung"
 
 #: wxstd.po.cpp:28
 msgid "Print in colour"
-msgstr ""
+msgstr "Farbdruck"
 
 #: wxstd.po.cpp:29
 msgid "Print spooling"
-msgstr ""
+msgstr "Druck-Spoolen"
 
 #: wxstd.po.cpp:30
 msgid "Print to File"
-msgstr ""
+msgstr "In Datei drucken"
 
 #: wxstd.po.cpp:31
 msgid "Printer"
-msgstr ""
+msgstr "Drucker"
 
 #: wxstd.po.cpp:32
 msgid "Printer command:"
-msgstr ""
+msgstr "Druck-Befehl:"
 
 #: wxstd.po.cpp:33
 msgid "Printer options"
-msgstr ""
+msgstr "Druckeroptionen"
 
 #: wxstd.po.cpp:34
 msgid "Printer options:"
-msgstr ""
+msgstr "Druckeroptionen:"
 
 #: wxstd.po.cpp:35
 msgid "Printer..."
-msgstr ""
+msgstr "Drucker..."
 
 #: wxstd.po.cpp:36
 msgid "Printer:"
-msgstr ""
+msgstr "Drucker:"
 
 #: wxstd.po.cpp:37
 msgid "Right margin (mm):"
-msgstr ""
+msgstr "Rechter Rand (mm):"
 
 #: wxstd.po.cpp:38
 msgid "Setup..."
-msgstr ""
+msgstr "Einstellung..."
 
 #: wxstd.po.cpp:39
 msgid "Status:"
-msgstr ""
+msgstr "Status:"
 
 #: wxstd.po.cpp:41
 msgid "Top margin (mm):"
-msgstr ""
+msgstr "Oberer Rand (mm):"
 
 #: wxstd.po.cpp:42
 #, c-format
 msgid "Page %d of %d"
-msgstr ""
+msgstr "Seite %d von %d"
 
 #: wxstd.po.cpp:44
 msgid "Text"
-msgstr ""
+msgstr "Text"
 
 #: wxstd.po.cpp:45
 msgid "Delimiter"
-msgstr ""
+msgstr "Begrenzung"
 
 #: wxstd.po.cpp:46
 msgid "Space"
-msgstr ""
+msgstr "Abstand"
 
 #: wxstd.po.cpp:47
 msgid "Number"
-msgstr ""
+msgstr "Nummer"
 
 #: wxstd.po.cpp:48
 msgid "String"
