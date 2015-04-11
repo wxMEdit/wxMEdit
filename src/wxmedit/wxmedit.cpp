@@ -1962,8 +1962,9 @@ void MadEdit::PaintTextLines(wxDC *dc, const wxRect &rect, int toprow, int rowco
                                 if (x0 + m_WidthBuffer[idx] <= minleft)
                                     continue;
 
-                                if(m_WordBuffer[idx] == 0x20 && m_ShowSpaceChar)
+                                if(m_WordBuffer[idx] == 0x20)
                                 {
+                                    if (m_ShowSpaceChar)
                                         dc->DrawLines(m_space_points.size(), &m_space_points[0], x0, text_top);
                                 }
                                 else if(m_ShowTabChar)
