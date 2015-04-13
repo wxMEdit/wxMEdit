@@ -35,8 +35,9 @@ HANDLE g_Mutex=NULL;
 
 wxLocale g_Locale;
 
-bool g_DoNotSaveSettings=false;
-bool g_ResetAllKeys=false;
+bool g_DoNotSaveSettings = false;
+bool g_regex_dot_match_newline = false;
+bool g_ResetAllKeys = false;
 
 const wxChar *g_LanguageString[]=
 {

@@ -1462,6 +1462,9 @@ void LoadDefaultSettings(wxConfigBase *m_Config)
 
     m_Config->Read(wxT("LastPathClosingFiles"), &wxm::g_lastpath_closingfiles);
 
+    extern bool g_regex_dot_match_newline;
+    m_Config->Read(wxT("RegexDotMatchNewline"), &g_regex_dot_match_newline, false);
+
     long templong, x,y;
     bool tempbool;
     wxString tempstr;
@@ -4684,6 +4687,9 @@ void MadEditFrame::OnToolsOptions(wxCommandEvent& event)
         m_Config->Write(wxT("DateTimeFormat"), g_OptionsDialog->WxEditDateTime->GetValue());
         m_Config->Write(wxT("DateTimeInEnglish"), g_OptionsDialog->WxCheckBoxDateTimeInEnglish->GetValue());
 
+        extern bool g_regex_dot_match_newline;
+        g_regex_dot_match_newline = g_OptionsDialog->WxCheckBoxDotMatchNewline->GetValue();
+        m_Config->Write(wxT("RegexDotMatchNewline"), g_regex_dot_match_newline);
 
         m_Config->SetPath(oldpath);
     }
