@@ -213,6 +213,7 @@ const long WXMEditOptionsDialog::ID_WXEDITDATETIME = wxNewId();
 const long WXMEditOptionsDialog::ID_WXSTATICTEXTDATETIME = wxNewId();
 const long WXMEditOptionsDialog::ID_WXBUTTONDATETIME = wxNewId();
 const long WXMEditOptionsDialog::ID_WXCHECKBOXDATETIMEINENGLISH = wxNewId();
+const long WXMEditOptionsDialog::ID_WXCHECKBOXDOTMATCHNEWLINE = wxNewId();
 const long WXMEditOptionsDialog::ID_PANEL5 = wxNewId();
 const long WXMEditOptionsDialog::ID_AUINOTEBOOK1 = wxNewId();
 const long WXMEditOptionsDialog::ID_WXBUTTONOK = wxNewId();
@@ -316,6 +317,7 @@ WXMEditOptionsDialog::WXMEditOptionsDialog(wxWindow* parent,wxWindowID id)
 	wxBoxSizer* BoxSizer5;
 	wxBoxSizer* BoxSizer10;
 	wxBoxSizer* BoxSizer7;
+	wxBoxSizer* BoxSizer39;
 	wxBoxSizer* BoxSizer8;
 	wxBoxSizer* BoxSizer21;
 	wxBoxSizer* BoxSizer13;
@@ -641,6 +643,11 @@ WXMEditOptionsDialog::WXMEditOptionsDialog(wxWindow* parent,wxWindowID id)
 	WxCheckBoxDateTimeInEnglish->SetValue(false);
 	BoxSizer5->Add(WxCheckBoxDateTimeInEnglish, 0, wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL, 2);
 	BoxSizer36->Add(BoxSizer5, 0, wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL, 2);
+	BoxSizer39 = new wxBoxSizer(wxHORIZONTAL);
+	WxCheckBoxDotMatchNewline = new wxCheckBox(Panel5, ID_WXCHECKBOXDOTMATCHNEWLINE, _("Enable dot matching new-line in regular expression"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_WXCHECKBOXDOTMATCHNEWLINE"));
+	WxCheckBoxDotMatchNewline->SetValue(false);
+	BoxSizer39->Add(WxCheckBoxDotMatchNewline, 0, wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL, 2);
+	BoxSizer36->Add(BoxSizer39, 0, wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL, 5);
 	Panel5->SetSizer(BoxSizer36);
 	BoxSizer36->Fit(Panel5);
 	BoxSizer36->SetSizeHints(Panel5);
@@ -1093,6 +1100,9 @@ void WXMEditOptionsDialog::LoadOptions(void)
 
 	cfg->Read(wxT("DateTimeInEnglish"), &bb, false);
 	WxCheckBoxDateTimeInEnglish->SetValue(bb);
+
+	extern bool g_regex_dot_match_newline;
+	WxCheckBoxDotMatchNewline->SetValue(g_regex_dot_match_newline);
 
 	cfg->SetPath(oldpath);
 

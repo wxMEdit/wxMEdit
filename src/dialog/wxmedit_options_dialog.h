@@ -129,6 +129,7 @@ class WXMEditOptionsDialog: public wxDialogWrapper
 		wxComboBox* WxComboBoxLanguage;
 		wxCheckBox* WxCheckBoxPrintEndOfLine;
 		wxPanel* Panel2;
+		wxCheckBox* WxCheckBoxDotMatchNewline;
 		wxCheckBox* WxCheckBoxMouseSelectToCopy;
 		wxStaticText* WxStaticTextDateTime;
 		wxCheckBox* WxCheckBoxPrintSyntax;
@@ -226,6 +227,7 @@ class WXMEditOptionsDialog: public wxDialogWrapper
 		static const long ID_WXSTATICTEXTDATETIME;
 		static const long ID_WXBUTTONDATETIME;
 		static const long ID_WXCHECKBOXDATETIMEINENGLISH;
+		static const long ID_WXCHECKBOXDOTMATCHNEWLINE;
 		static const long ID_PANEL5;
 		static const long ID_AUINOTEBOOK1;
 		static const long ID_WXBUTTONOK;

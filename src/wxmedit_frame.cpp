@@ -189,6 +189,7 @@ const static CreditsList s_wxMEdit_Credits = boost::assign::pair_list_of
         (s_("Vincent_TW"),                  _("Translator for Traditional Chinese"))
         (s_("Shamil Bikineyev"),            _("Translator for Russian"))
         (s_("Ronny Steiner"),               _("Translator for German"))
+        (s_("Adam Massalski"),              _("Translator for Polish"))
         (s_("hobbyscripter"),               _("Patch submitter for wxMEdit/MadEdit"))
         (s_("Huaren Zhong"),                _("Patch submitter for wxMEdit/MadEdit"))
         (s_("Gospodin Gyurov"),             _("Patch submitter for wxMEdit/MadEdit"))
@@ -1460,6 +1461,9 @@ void LoadDefaultSettings(wxConfigBase *m_Config)
     wxm::HexAreaClipboardPasteProxy::Instance().SelectConditionByConfig(cond);
 
     m_Config->Read(wxT("LastPathClosingFiles"), &wxm::g_lastpath_closingfiles);
+
+    extern bool g_regex_dot_match_newline;
+    m_Config->Read(wxT("RegexDotMatchNewline"), &g_regex_dot_match_newline, false);
 
     long templong, x,y;
     bool tempbool;
@@ -4683,6 +4687,9 @@ void MadEditFrame::OnToolsOptions(wxCommandEvent& event)
         m_Config->Write(wxT("DateTimeFormat"), g_OptionsDialog->WxEditDateTime->GetValue());
         m_Config->Write(wxT("DateTimeInEnglish"), g_OptionsDialog->WxCheckBoxDateTimeInEnglish->GetValue());
 
+        extern bool g_regex_dot_match_newline;
+        g_regex_dot_match_newline = g_OptionsDialog->WxCheckBoxDotMatchNewline->GetValue();
+        m_Config->Write(wxT("RegexDotMatchNewline"), g_regex_dot_match_newline);
 
         m_Config->SetPath(oldpath);
     }

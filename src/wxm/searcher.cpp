@@ -1282,9 +1282,12 @@ bool RegexSearcher::SearchingPrepare(const ucs4string& exprstr, const wxString& 
 {
 	try
 	{
+		extern bool g_regex_dot_match_newline;
 		regex_constants::syntax_option_type opt = regex_constants::ECMAScript;
 		if (!m_case_sensitive)
 			opt = opt | regex_constants::icase;
+		if (!g_regex_dot_match_newline)
+			opt = opt | regex_constants::not_dot_newline;
 		regex_compiler<UCIterator, ucs4_regex_traits > ucs4comp;
 		sg_expression = ucs4comp.compile(exprstr, opt);
 	}
