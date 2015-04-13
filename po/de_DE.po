@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-04-10 11:40+0800\n"
-"PO-Revision-Date: 2015-03-24 20:19+0100\n"
+"PO-Revision-Date: 2015-04-13 23:10+0100\n"
 "Last-Translator: Ronny Steiner <post@sirsteiner.de>\n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -222,7 +222,7 @@ msgstr "Offset (%s): "
 
 #: ../src/dialog/wxm_find_in_files_dialog.cpp:748
 msgid "Binary file matches"
-msgstr ""
+msgstr "Übereinstimmungen in Binärdatei"
 
 #: ../src/dialog/wxm_find_in_files_dialog.cpp:770
 #, c-format
@@ -996,6 +996,8 @@ msgid ""
 "Add wxMEdit to the RightClickMenu of Explorer(Deselect to Remove the Entry "
 "from Windows Registry)"
 msgstr ""
+"wxMEdit zum Rechts-Klick-Menü des Explorers hinzufügen (Deaktivieren, um den "
+"Registry-Eintrag zu entfernen)"
 
 #: ../src/dialog/wxmedit_options_dialog.cpp:758
 msgid ""
@@ -1018,7 +1020,7 @@ msgstr "Editor"
 #: ../src/dialog/wxmedit_options_dialog.cpp:1105
 #, c-format
 msgid "Invalid value of \"%s\""
-msgstr ""
+msgstr "Ungültiger Wert von \"%s\""
 
 #: ../src/dialog/wxmedit_options_dialog.cpp:1197
 msgid "Cannot assign key to this item"
@@ -1442,7 +1444,7 @@ msgstr "Übersetzer für Deutsch"
 
 #: ../src/wxmedit_frame.cpp:192
 msgid "Translator for Polish"
-msgstr ""
+msgstr "Übersetzer für Polnisch"
 
 #: ../src/wxmedit_frame.cpp:193 ../src/wxmedit_frame.cpp:194
 #: ../src/wxmedit_frame.cpp:195 ../src/wxmedit_frame.cpp:196
@@ -2859,1015 +2861,1015 @@ msgstr "Bitte OK klicken, um die Online-Version der Lizenz anzusehen.\n"
 
 #: ../src/xm/ublock_des.cpp:25
 msgid "No_Block"
-msgstr ""
+msgstr "Kein_Block"
 
 #: ../src/xm/ublock_des.cpp:26
 msgid "Basic Latin"
-msgstr ""
+msgstr "Basis-Lateinisch"
 
 #: ../src/xm/ublock_des.cpp:27
 msgid "Latin-1 Supplement"
-msgstr ""
+msgstr "Lateinisch-1, Ergänzung"
 
 #: ../src/xm/ublock_des.cpp:28
 msgid "Latin Extended-A"
-msgstr ""
+msgstr "Lateinisch, erweitert-A"
 
 #: ../src/xm/ublock_des.cpp:29
 msgid "Latin Extended-B"
-msgstr ""
+msgstr "Lateinisch, erweitert-B"
 
 #: ../src/xm/ublock_des.cpp:30
 msgid "IPA Extensions"
-msgstr ""
+msgstr "IPA-Erweiterungen"
 
 #: ../src/xm/ublock_des.cpp:31
 msgid "Spacing Modifier Letters"
-msgstr ""
+msgstr "Spacing Modifier Letters"
 
 #: ../src/xm/ublock_des.cpp:32
 msgid "Combining Diacritical Marks"
-msgstr ""
+msgstr "Kombinierende diakritische Zeichen"
 
 #: ../src/xm/ublock_des.cpp:33
 msgid "Greek and Coptic"
-msgstr ""
+msgstr "Griechisch und Koptisch"
 
 #: ../src/xm/ublock_des.cpp:34
 msgid "Cyrillic"
-msgstr ""
+msgstr "Kyrillisch"
 
 #: ../src/xm/ublock_des.cpp:35
 msgid "Armenian"
-msgstr ""
+msgstr "Armenisch"
 
 #: ../src/xm/ublock_des.cpp:36
 msgid "Hebrew"
-msgstr ""
+msgstr "Hebräisch"
 
 #: ../src/xm/ublock_des.cpp:37
 msgid "Arabic"
-msgstr ""
+msgstr "Arabisch"
 
 #: ../src/xm/ublock_des.cpp:38
 msgid "Syriac"
-msgstr ""
+msgstr "Syrisch"
 
 #: ../src/xm/ublock_des.cpp:39
 msgid "Thaana"
-msgstr ""
+msgstr "Thaana"
 
 #: ../src/xm/ublock_des.cpp:40
 msgid "Devanagari"
-msgstr ""
+msgstr "Devanagari"
 
 #: ../src/xm/ublock_des.cpp:41
 msgid "Bengali"
-msgstr ""
+msgstr "Bengalisch"
 
 #: ../src/xm/ublock_des.cpp:42
 msgid "Gurmukhi"
-msgstr ""
+msgstr "Gurmukhi"
 
 #: ../src/xm/ublock_des.cpp:43
 msgid "Gujarati"
-msgstr ""
+msgstr "Gujarati"
 
 #: ../src/xm/ublock_des.cpp:44
 msgid "Oriya"
-msgstr ""
+msgstr "Oriya"
 
 #: ../src/xm/ublock_des.cpp:45
 msgid "Tamil"
-msgstr ""
+msgstr "Tamilisch"
 
 #: ../src/xm/ublock_des.cpp:46
 msgid "Telugu"
-msgstr ""
+msgstr "Telugu"
 
 #: ../src/xm/ublock_des.cpp:47
 msgid "Kannada"
-msgstr ""
+msgstr "Kannada"
 
 #: ../src/xm/ublock_des.cpp:48
 msgid "Malayalam"
-msgstr ""
+msgstr "Malayalam"
 
 #: ../src/xm/ublock_des.cpp:49
 msgid "Sinhala"
-msgstr ""
+msgstr "Singhalesisch"
 
 #: ../src/xm/ublock_des.cpp:50
 msgid "Thai"
-msgstr ""
+msgstr "Thailändisch"
 
 #: ../src/xm/ublock_des.cpp:51
 msgid "Lao"
-msgstr ""
+msgstr "Laotisch"
 
 #: ../src/xm/ublock_des.cpp:52
 msgid "Tibetan"
-msgstr ""
+msgstr "Tibetisch"
 
 #: ../src/xm/ublock_des.cpp:53
 msgid "Myanmar"
-msgstr ""
+msgstr "Birmanisch"
 
 #: ../src/xm/ublock_des.cpp:54
 msgid "Georgian"
-msgstr ""
+msgstr "Georgisch"
 
 #: ../src/xm/ublock_des.cpp:55
 msgid "Hangul Jamo"
-msgstr ""
+msgstr "Hangeul-Jamo"
 
 #: ../src/xm/ublock_des.cpp:56
 msgid "Ethiopic"
-msgstr ""
+msgstr "Äthiopisch"
 
 #: ../src/xm/ublock_des.cpp:57
 msgid "Cherokee"
-msgstr ""
+msgstr "Cherokee"
 
 #: ../src/xm/ublock_des.cpp:58
 msgid "Unified Canadian Aboriginal Syllabics"
-msgstr ""
+msgstr "Vereinheitlichte Silbenzeichen kanadischer Ureinwohner"
 
 #: ../src/xm/ublock_des.cpp:59
 msgid "Ogham"
-msgstr ""
+msgstr "Ogam"
 
 #: ../src/xm/ublock_des.cpp:60
 msgid "Runic"
-msgstr ""
+msgstr "Runen"
 
 #: ../src/xm/ublock_des.cpp:61
 msgid "Khmer"
-msgstr ""
+msgstr "Khmer"
 
 #: ../src/xm/ublock_des.cpp:62
 msgid "Mongolian"
-msgstr ""
+msgstr "Mongolisch"
 
 #: ../src/xm/ublock_des.cpp:63
 msgid "Latin Extended Additional"
-msgstr ""
+msgstr "Lateinisch, weiterer Zusatz"
 
 #: ../src/xm/ublock_des.cpp:64
 msgid "Greek Extended"
-msgstr ""
+msgstr "Griechisch, Zusatz"
 
 #: ../src/xm/ublock_des.cpp:65
 msgid "General Punctuation"
-msgstr ""
+msgstr "Allgemeine Interpunktion"
 
 #: ../src/xm/ublock_des.cpp:66
 msgid "Superscripts and Subscripts"
-msgstr ""
+msgstr "Hoch- und tiefgestellte Zeichen"
 
 #: ../src/xm/ublock_des.cpp:67
 msgid "Currency Symbols"
-msgstr ""
+msgstr "Währungszeichen"
 
 #: ../src/xm/ublock_des.cpp:68
 msgid "Combining Diacritical Marks for Symbols"
-msgstr ""
+msgstr "Kombinierende diakritische Zeichen für Symbole"
 
 #: ../src/xm/ublock_des.cpp:69
 msgid "Letterlike Symbols"
-msgstr ""
+msgstr "Buchstabenähnliche Symbole"
 
 #: ../src/xm/ublock_des.cpp:70
 msgid "Number Forms"
-msgstr ""
+msgstr "Zahlzeichen"
 
 #: ../src/xm/ublock_des.cpp:71
 msgid "Arrows"
-msgstr ""
+msgstr "Pfeile"
 
 #: ../src/xm/ublock_des.cpp:72
 msgid "Mathematical Operators"
-msgstr ""
+msgstr "Mathematische Operatoren"
 
 #: ../src/xm/ublock_des.cpp:73
 msgid "Miscellaneous Technical"
-msgstr ""
+msgstr "Verschiedene technische Zeichen"
 
 #: ../src/xm/ublock_des.cpp:74
 msgid "Control Pictures"
-msgstr ""
+msgstr "Symbole für Steuerzeichen"
 
 #: ../src/xm/ublock_des.cpp:75
 msgid "Optical Character Recognition"
-msgstr ""
+msgstr "Optische Zeichenerkennung"
 
 #: ../src/xm/ublock_des.cpp:76
 msgid "Enclosed Alphanumerics"
-msgstr ""
+msgstr "Umschlossene alphanumerische Zeichen"
 
 #: ../src/xm/ublock_des.cpp:77
 msgid "Box Drawing"
-msgstr ""
+msgstr "Rahmenzeichnung"
 
 #: ../src/xm/ublock_des.cpp:78
 msgid "Block Elements"
-msgstr ""
+msgstr "Blockelemente"
 
 #: ../src/xm/ublock_des.cpp:79
 msgid "Geometric Shapes"
-msgstr ""
+msgstr "Geometrische Formen"
 
 #: ../src/xm/ublock_des.cpp:80
 msgid "Miscellaneous Symbols"
-msgstr ""
+msgstr "Verschiedene Symbole"
 
 #: ../src/xm/ublock_des.cpp:81
 msgid "Dingbats"
-msgstr ""
+msgstr "Dingbats"
 
 #: ../src/xm/ublock_des.cpp:82
 msgid "Braille Patterns"
-msgstr ""
+msgstr "Braille-Zeichen"
 
 #: ../src/xm/ublock_des.cpp:83
 msgid "CJK Radicals Supplement"
-msgstr ""
+msgstr "CJK-Radikale, Ergänzung"
 
 #: ../src/xm/ublock_des.cpp:84
 msgid "Kangxi Radicals"
-msgstr ""
+msgstr "Kangxi-Radikale"
 
 #: ../src/xm/ublock_des.cpp:85
 msgid "Ideographic Description Characters"
-msgstr ""
+msgstr "Ideographische Beschreibungszeichen"
 
 #: ../src/xm/ublock_des.cpp:86
 msgid "CJK Symbols and Punctuation"
-msgstr ""
+msgstr "CJK-Symbole und -Interpunktion"
 
 #: ../src/xm/ublock_des.cpp:87
 msgid "Hiragana"
-msgstr ""
+msgstr "Hiragana"
 
 #: ../src/xm/ublock_des.cpp:88
 msgid "Katakana"
-msgstr ""
+msgstr "Katakana"
 
 #: ../src/xm/ublock_des.cpp:89
 msgid "Bopomofo"
-msgstr ""
+msgstr "Bopomofo"
 
 #: ../src/xm/ublock_des.cpp:90
 msgid "Hangul Compatibility Jamo"
-msgstr ""
+msgstr "Hangeul-Jamo, Kompatibilität"
 
 #: ../src/xm/ublock_des.cpp:91
 msgid "Kanbun"
-msgstr ""
+msgstr "Kanbun"
 
 #: ../src/xm/ublock_des.cpp:92
 msgid "Bopomofo Extended"
-msgstr ""
+msgstr "Bopomofo, erweitert"
 
 #: ../src/xm/ublock_des.cpp:93
 msgid "Enclosed CJK Letters and Months"
-msgstr ""
+msgstr "Umschlossene CJK-Zeichen und -Monate"
 
 #: ../src/xm/ublock_des.cpp:94
 msgid "CJK Compatibility"
-msgstr ""
+msgstr "CJK-Kompatibilität"
 
 #: ../src/xm/ublock_des.cpp:95
 msgid "CJK Unified Ideographs Extension A"
-msgstr ""
+msgstr "Vereinheitlichte CJK-Ideogramme, Erweiterung A"
 
 #: ../src/xm/ublock_des.cpp:96
 msgid "CJK Unified Ideographs"
-msgstr ""
+msgstr "Vereinheitlichte CJK-Ideogramme"
 
 #: ../src/xm/ublock_des.cpp:97
 msgid "Yi Syllables"
-msgstr ""
+msgstr "Yi-Silbenzeichen"
 
 #: ../src/xm/ublock_des.cpp:98
 msgid "Yi Radicals"
-msgstr ""
+msgstr "Yi-Radikale"
 
 #: ../src/xm/ublock_des.cpp:99
 msgid "Hangul Syllables"
-msgstr ""
+msgstr "Hangeul-Silbenzeichen"
 
 #: ../src/xm/ublock_des.cpp:100
 msgid "High Surrogates"
-msgstr ""
+msgstr "High Surrogates"
 
 #: ../src/xm/ublock_des.cpp:101
 msgid "High Private Use Surrogates"
-msgstr ""
+msgstr "High Surrogates (privater Bereich)"
 
 #: ../src/xm/ublock_des.cpp:102
 msgid "Low Surrogates"
-msgstr ""
+msgstr "Low Surrogates"
 
 #: ../src/xm/ublock_des.cpp:103
 msgid "Private Use Area"
-msgstr ""
+msgstr "Private Use Zone"
 
 #: ../src/xm/ublock_des.cpp:104
 msgid "CJK Compatibility Ideographs"
-msgstr ""
+msgstr "CJK-Ideogramme, Kompatibilität"
 
 #: ../src/xm/ublock_des.cpp:105
 msgid "Alphabetic Presentation Forms"
-msgstr ""
+msgstr "Alphabetische Präsentationsformen"
 
 #: ../src/xm/ublock_des.cpp:106
 msgid "Arabic Presentation Forms-A"
-msgstr ""
+msgstr "Arabische Präsentationsformen-A"
 
 #: ../src/xm/ublock_des.cpp:107
 msgid "Combining Half Marks"
-msgstr ""
+msgstr "Kombinierende halbe diakritische Zeichen"
 
 #: ../src/xm/ublock_des.cpp:108
 msgid "CJK Compatibility Forms"
-msgstr ""
+msgstr "CJK-Kompatibilitätsformen"
 
 #: ../src/xm/ublock_des.cpp:109
 msgid "Small Form Variants"
-msgstr ""
+msgstr "Kleine Formvarianten"
 
 #: ../src/xm/ublock_des.cpp:110
 msgid "Arabic Presentation Forms-B"
-msgstr ""
+msgstr "Arabische Präsentationsformen-B"
 
 #: ../src/xm/ublock_des.cpp:111
 msgid "Specials"
-msgstr ""
+msgstr "Spezielles"
 
 #: ../src/xm/ublock_des.cpp:112
 msgid "Halfwidth and Fullwidth Forms"
-msgstr ""
+msgstr "Halbbreite und vollbreite Formen"
 
 #: ../src/xm/ublock_des.cpp:113
 msgid "Old Italic"
-msgstr ""
+msgstr "Altitalisch"
 
 #: ../src/xm/ublock_des.cpp:114
 msgid "Gothic"
-msgstr ""
+msgstr "Gotisch"
 
 #: ../src/xm/ublock_des.cpp:115
 msgid "Deseret"
-msgstr ""
+msgstr "Mormonenalphabet"
 
 #: ../src/xm/ublock_des.cpp:116
 msgid "Byzantine Musical Symbols"
-msgstr ""
+msgstr "Byzantinische Notenschriftzeichen"
 
 #: ../src/xm/ublock_des.cpp:117
 msgid "Musical Symbols"
-msgstr ""
+msgstr "Notenschriftzeichen"
 
 #: ../src/xm/ublock_des.cpp:118
 msgid "Mathematical Alphanumeric Symbols"
-msgstr ""
+msgstr "Mathematische alphanumerische Symbole"
 
 #: ../src/xm/ublock_des.cpp:119
 msgid "CJK Unified Ideographs Extension B"
-msgstr ""
+msgstr "Vereinheitlichte CJK-Ideogramme, Erweiterung B"
 
 #: ../src/xm/ublock_des.cpp:120
 msgid "CJK Compatibility Ideographs Supplement"
-msgstr ""
+msgstr "CJK-Ideogramme, Kompatibilität, Ergänzung"
 
 #: ../src/xm/ublock_des.cpp:121
 msgid "Tags"
-msgstr ""
+msgstr "Tags"
 
 #: ../src/xm/ublock_des.cpp:122
 msgid "Cyrillic Supplement"
-msgstr ""
+msgstr "Kyrillisch, Ergänzung"
 
 #: ../src/xm/ublock_des.cpp:123
 msgid "Tagalog"
-msgstr ""
+msgstr "Tagalog"
 
 #: ../src/xm/ublock_des.cpp:124
 msgid "Hanunoo"
-msgstr ""
+msgstr "Hanunóo"
 
 #: ../src/xm/ublock_des.cpp:125
 msgid "Buhid"
-msgstr ""
+msgstr "Buid"
 
 #: ../src/xm/ublock_des.cpp:126
 msgid "Tagbanwa"
-msgstr ""
+msgstr "Tagbanuwa"
 
 #: ../src/xm/ublock_des.cpp:127
 msgid "Miscellaneous Mathematical Symbols-A"
-msgstr ""
+msgstr "Verschiedene mathematische Symbole-A"
 
 #: ../src/xm/ublock_des.cpp:128
 msgid "Supplemental Arrows-A"
-msgstr ""
+msgstr "Zusätzliche Pfeile-A"
 
 #: ../src/xm/ublock_des.cpp:129
 msgid "Supplemental Arrows-B"
-msgstr ""
+msgstr "Zusätzliche Pfeile-B"
 
 #: ../src/xm/ublock_des.cpp:130
 msgid "Miscellaneous Mathematical Symbols-B"
-msgstr ""
+msgstr "Verschiedene mathematische Symbole-B"
 
 #: ../src/xm/ublock_des.cpp:131
 msgid "Supplemental Mathematical Operators"
-msgstr ""
+msgstr "Zusätzliche Mathematische Operatoren"
 
 #: ../src/xm/ublock_des.cpp:132
 msgid "Katakana Phonetic Extensions"
-msgstr ""
+msgstr "Katakana, Phonetische Erweiterungen"
 
 #: ../src/xm/ublock_des.cpp:133
 msgid "Variation Selectors"
-msgstr ""
+msgstr "Variantenselektoren"
 
 #: ../src/xm/ublock_des.cpp:134
 msgid "Supplementary Private Use Area-A"
-msgstr ""
+msgstr "Supplementary Private Use Area-A"
 
 #: ../src/xm/ublock_des.cpp:135
 msgid "Supplementary Private Use Area-B"
-msgstr ""
+msgstr "Supplementary Private Use Area-B"
 
 #: ../src/xm/ublock_des.cpp:136
 msgid "Limbu"
-msgstr ""
+msgstr "Limbu"
 
 #: ../src/xm/ublock_des.cpp:137
 msgid "Tai Le"
-msgstr ""
+msgstr "Tai Le"
 
 #: ../src/xm/ublock_des.cpp:138
 msgid "Khmer Symbols"
-msgstr ""
+msgstr "Khmer-Symbole"
 
 #: ../src/xm/ublock_des.cpp:139
 msgid "Phonetic Extensions"
-msgstr ""
+msgstr "Phonetische Erweiterungen"
 
 #: ../src/xm/ublock_des.cpp:140
 msgid "Miscellaneous Symbols and Arrows"
-msgstr ""
+msgstr "Verschiedene Symbole und Pfeile"
 
 #: ../src/xm/ublock_des.cpp:141
 msgid "Yijing Hexagram Symbols"
-msgstr ""
+msgstr "I-Ging-Hexagramme"
 
 #: ../src/xm/ublock_des.cpp:142
 msgid "Linear B Syllabary"
-msgstr ""
+msgstr "Linear-B-Silbenzeichen"
 
 #: ../src/xm/ublock_des.cpp:143
 msgid "Linear B Ideograms"
-msgstr ""
+msgstr "Linear-B-Ideogramme"
 
 #: ../src/xm/ublock_des.cpp:144
 msgid "Aegean Numbers"
-msgstr ""
+msgstr "Ägäische Zahlzeichen"
 
 #: ../src/xm/ublock_des.cpp:145
 msgid "Ugaritic"
-msgstr ""
+msgstr "Ugaritisch"
 
 #: ../src/xm/ublock_des.cpp:146
 msgid "Shavian"
-msgstr ""
+msgstr "Shaw-Alphabet"
 
 #: ../src/xm/ublock_des.cpp:147
 msgid "Osmanya"
-msgstr ""
+msgstr "Osmaniya"
 
 #: ../src/xm/ublock_des.cpp:148
 msgid "Cypriot Syllabary"
-msgstr ""
+msgstr "Kyprische Schrift"
 
 #: ../src/xm/ublock_des.cpp:149
 msgid "Tai Xuan Jing Symbols"
-msgstr ""
+msgstr "Tai-Xuan-Jing-Symbole"
 
 #: ../src/xm/ublock_des.cpp:150
 msgid "Variation Selectors Supplement"
-msgstr ""
+msgstr "Variantenselektoren, Ergänzung"
 
 #: ../src/xm/ublock_des.cpp:151
 msgid "Ancient Greek Musical Notation"
-msgstr ""
+msgstr "Altgriechische Notenschriftzeichen"
 
 #: ../src/xm/ublock_des.cpp:152
 msgid "Ancient Greek Numbers"
-msgstr ""
+msgstr "Altgriechische Zahlzeichen"
 
 #: ../src/xm/ublock_des.cpp:153
 msgid "Arabic Supplement"
-msgstr ""
+msgstr "Arabisch, Ergänzung"
 
 #: ../src/xm/ublock_des.cpp:154
 msgid "Buginese"
-msgstr ""
+msgstr "Buginesisch"
 
 #: ../src/xm/ublock_des.cpp:155
 msgid "CJK Strokes"
-msgstr ""
+msgstr "CJK-Striche"
 
 #: ../src/xm/ublock_des.cpp:156
 msgid "Combining Diacritical Marks Supplement"
-msgstr ""
+msgstr "Kombinierende diakritische Zeichen, Ergänzung"
 
 #: ../src/xm/ublock_des.cpp:157
 msgid "Coptic"
-msgstr ""
+msgstr "Koptisch"
 
 #: ../src/xm/ublock_des.cpp:158
 msgid "Ethiopic Extended"
-msgstr ""
+msgstr "Äthiopisch, erweitert"
 
 #: ../src/xm/ublock_des.cpp:159
 msgid "Ethiopic Supplement"
-msgstr ""
+msgstr "Äthiopisch, Zusatz"
 
 #: ../src/xm/ublock_des.cpp:160
 msgid "Georgian Supplement"
-msgstr ""
+msgstr "Georgisch, Ergänzung"
 
 #: ../src/xm/ublock_des.cpp:161
 msgid "Glagolitic"
-msgstr ""
+msgstr "Glagolitisch"
 
 #: ../src/xm/ublock_des.cpp:162
 msgid "Kharoshthi"
-msgstr ""
+msgstr "Kharoshthi"
 
 #: ../src/xm/ublock_des.cpp:163
 msgid "Modifier Tone Letters"
-msgstr ""
+msgstr "Modifizierende Tonzeichen"
 
 #: ../src/xm/ublock_des.cpp:164
 msgid "New Tai Lue"
-msgstr ""
+msgstr "Neu-Tai-Lue"
 
 #: ../src/xm/ublock_des.cpp:165
 msgid "Old Persian"
-msgstr ""
+msgstr "Altpersisch"
 
 #: ../src/xm/ublock_des.cpp:166
 msgid "Phonetic Extensions Supplement"
-msgstr ""
+msgstr "Phonetische Erweiterungen, Ergänzung"
 
 #: ../src/xm/ublock_des.cpp:167
 msgid "Supplemental Punctuation"
-msgstr ""
+msgstr "Zusätzliche Interpunktion"
 
 #: ../src/xm/ublock_des.cpp:168
 msgid "Syloti Nagri"
-msgstr ""
+msgstr "Syloti Nagri"
 
 #: ../src/xm/ublock_des.cpp:169
 msgid "Tifinagh"
-msgstr ""
+msgstr "Tifinagh"
 
 #: ../src/xm/ublock_des.cpp:170
 msgid "Vertical Forms"
-msgstr ""
+msgstr "Vertikale Formen"
 
 #: ../src/xm/ublock_des.cpp:171
 msgid "NKo"
-msgstr ""
+msgstr "N'Ko"
 
 #: ../src/xm/ublock_des.cpp:172
 msgid "Balinese"
-msgstr ""
+msgstr "Balinesisch"
 
 #: ../src/xm/ublock_des.cpp:173
 msgid "Latin Extended-C"
-msgstr ""
+msgstr "Lateinisch, erweitert-C"
 
 #: ../src/xm/ublock_des.cpp:174
 msgid "Latin Extended-D"
-msgstr ""
+msgstr "Lateinisch, erweitert-D"
 
 #: ../src/xm/ublock_des.cpp:175
 msgid "Phags-pa"
-msgstr ""
+msgstr "Phagspa"
 
 #: ../src/xm/ublock_des.cpp:176
 msgid "Phoenician"
-msgstr ""
+msgstr "Phönizisch"
 
 #: ../src/xm/ublock_des.cpp:177
 msgid "Cuneiform"
-msgstr ""
+msgstr "Keilschrift"
 
 #: ../src/xm/ublock_des.cpp:178
 msgid "Cuneiform Numbers and Punctuation"
-msgstr ""
+msgstr "Keilschrift-Zahlzeichen und -Interpunktion"
 
 #: ../src/xm/ublock_des.cpp:179
 msgid "Counting Rod Numerals"
-msgstr ""
+msgstr "Zählstabziffern"
 
 #: ../src/xm/ublock_des.cpp:180
 msgid "Sundanese"
-msgstr ""
+msgstr "Sundanesisch"
 
 #: ../src/xm/ublock_des.cpp:181
 msgid "Lepcha"
-msgstr ""
+msgstr "Lepcha"
 
 #: ../src/xm/ublock_des.cpp:182
 msgid "Ol Chiki"
-msgstr ""
+msgstr "Ol Chiki"
 
 #: ../src/xm/ublock_des.cpp:183
 msgid "Cyrillic Extended-A"
-msgstr ""
+msgstr "Kyrillisch, erweitert-A"
 
 #: ../src/xm/ublock_des.cpp:184
 msgid "Vai"
-msgstr ""
+msgstr "Vai"
 
 #: ../src/xm/ublock_des.cpp:185
 msgid "Cyrillic Extended-B"
-msgstr ""
+msgstr "Kyrillisch, erweitert-B"
 
 #: ../src/xm/ublock_des.cpp:186
 msgid "Saurashtra"
-msgstr ""
+msgstr "Saurashtra"
 
 #: ../src/xm/ublock_des.cpp:187
 msgid "Kayah Li"
-msgstr ""
+msgstr "Kayah Li"
 
 #: ../src/xm/ublock_des.cpp:188
 msgid "Rejang"
-msgstr ""
+msgstr "Rejang"
 
 #: ../src/xm/ublock_des.cpp:189
 msgid "Cham"
-msgstr ""
+msgstr "Cham"
 
 #: ../src/xm/ublock_des.cpp:190
 msgid "Ancient Symbols"
-msgstr ""
+msgstr "Alte Symbole"
 
 #: ../src/xm/ublock_des.cpp:191
 msgid "Phaistos Disc"
-msgstr ""
+msgstr "Diskos von Phaistos"
 
 #: ../src/xm/ublock_des.cpp:192
 msgid "Lycian"
-msgstr ""
+msgstr "Lykisch"
 
 #: ../src/xm/ublock_des.cpp:193
 msgid "Carian"
-msgstr ""
+msgstr "Karisch"
 
 #: ../src/xm/ublock_des.cpp:194
 msgid "Lydian"
-msgstr ""
+msgstr "Lydisch"
 
 #: ../src/xm/ublock_des.cpp:195
 msgid "Mahjong Tiles"
-msgstr ""
+msgstr "Mahjonggsteine"
 
 #: ../src/xm/ublock_des.cpp:196
 msgid "Domino Tiles"
-msgstr ""
+msgstr "Dominosteine"
 
 #: ../src/xm/ublock_des.cpp:198
 msgid "Samaritan"
-msgstr ""
+msgstr "Samaritanisch"
 
 #: ../src/xm/ublock_des.cpp:199
 msgid "Unified Canadian Aboriginal Syllabics Extended"
-msgstr ""
+msgstr "Vereinheitlichte Silbenzeichen kanadischer Ureinwohner, erweitert"
 
 #: ../src/xm/ublock_des.cpp:200
 msgid "Tai Tham"
-msgstr ""
+msgstr "Lanna"
 
 #: ../src/xm/ublock_des.cpp:201
 msgid "Vedic Extensions"
-msgstr ""
+msgstr "Vedische Erweiterungen"
 
 #: ../src/xm/ublock_des.cpp:202
 msgid "Lisu"
-msgstr ""
+msgstr "Lisu"
 
 #: ../src/xm/ublock_des.cpp:203
 msgid "Bamum"
-msgstr ""
+msgstr "Bamum"
 
 #: ../src/xm/ublock_des.cpp:204
 msgid "Common Indic Number Forms"
-msgstr ""
+msgstr "Allgemeine indische Ziffern"
 
 #: ../src/xm/ublock_des.cpp:205
 msgid "Devanagari Extended"
-msgstr ""
+msgstr "Devanagari, erweitert"
 
 #: ../src/xm/ublock_des.cpp:206
 msgid "Hangul Jamo Extended-A"
-msgstr ""
+msgstr "Hangeul-Jamo, erweitert-A"
 
 #: ../src/xm/ublock_des.cpp:207
 msgid "Javanese"
-msgstr ""
+msgstr "Javanisch"
 
 #: ../src/xm/ublock_des.cpp:208
 msgid "Myanmar Extended-A"
-msgstr ""
+msgstr "Birmanisch, erweitert-A"
 
 #: ../src/xm/ublock_des.cpp:209
 msgid "Tai Viet"
-msgstr ""
+msgstr "Tai Viet"
 
 #: ../src/xm/ublock_des.cpp:210
 msgid "Meetei Mayek"
-msgstr ""
+msgstr "Meitei-Mayek"
 
 #: ../src/xm/ublock_des.cpp:211
 msgid "Hangul Jamo Extended-B"
-msgstr ""
+msgstr "Hangeul-Jamo, erweitert-B"
 
 #: ../src/xm/ublock_des.cpp:212
 msgid "Imperial Aramaic"
-msgstr ""
+msgstr "Aramäisch"
 
 #: ../src/xm/ublock_des.cpp:213
 msgid "Old South Arabian"
-msgstr ""
+msgstr "Altsüdarabisch"
 
 #: ../src/xm/ublock_des.cpp:214
 msgid "Avestan"
-msgstr ""
+msgstr "Avestisch"
 
 #: ../src/xm/ublock_des.cpp:215
 msgid "Inscriptional Parthian"
-msgstr ""
+msgstr "Parthisch"
 
 #: ../src/xm/ublock_des.cpp:216
 msgid "Inscriptional Pahlavi"
-msgstr ""
+msgstr "Inschriften-Pahlavi"
 
 #: ../src/xm/ublock_des.cpp:217
 msgid "Old Turkic"
-msgstr ""
+msgstr "Alttürkisch (Orchon-Runen)"
 
 #: ../src/xm/ublock_des.cpp:218
 msgid "Rumi Numeral Symbols"
-msgstr ""
+msgstr "Rumi-Ziffern"
 
 #: ../src/xm/ublock_des.cpp:219
 msgid "Kaithi"
-msgstr ""
+msgstr "Kaithi"
 
 #: ../src/xm/ublock_des.cpp:220
 msgid "Egyptian Hieroglyphs"
-msgstr ""
+msgstr "Ägyptische Hieroglyphen"
 
 #: ../src/xm/ublock_des.cpp:221
 msgid "Enclosed Alphanumeric Supplement"
-msgstr ""
+msgstr "Zusätzliche umschlossene alphanumerische Zeichen"
 
 #: ../src/xm/ublock_des.cpp:222
 msgid "Enclosed Ideographic Supplement"
-msgstr ""
+msgstr "Zusätzliche umschlossene CJK-Zeichen"
 
 #: ../src/xm/ublock_des.cpp:223
 msgid "CJK Unified Ideographs Extension C"
-msgstr ""
+msgstr "Vereinheitlichte CJK-Ideogramme, Erweiterung C"
 
 #: ../src/xm/ublock_des.cpp:225
 msgid "Mandaic"
-msgstr ""
+msgstr "Mandäisch"
 
 #: ../src/xm/ublock_des.cpp:226
 msgid "Batak"
-msgstr ""
+msgstr "Batak"
 
 #: ../src/xm/ublock_des.cpp:227
 msgid "Ethiopic Extended-A"
-msgstr ""
+msgstr "Äthiopisch, erweitert-A"
 
 #: ../src/xm/ublock_des.cpp:228
 msgid "Brahmi"
-msgstr ""
+msgstr "Brahmi"
 
 #: ../src/xm/ublock_des.cpp:229
 msgid "Bamum Supplement"
-msgstr ""
+msgstr "Bamum, Ergänzung"
 
 #: ../src/xm/ublock_des.cpp:230
 msgid "Kana Supplement"
-msgstr ""
+msgstr "Kana, Ergänzung"
 
 #: ../src/xm/ublock_des.cpp:231
 msgid "Playing Cards"
-msgstr ""
+msgstr "Spielkarten"
 
 #: ../src/xm/ublock_des.cpp:232
 msgid "Miscellaneous Symbols And Pictographs"
-msgstr ""
+msgstr "Verschiedene piktografische Symbole"
 
 #: ../src/xm/ublock_des.cpp:233
 msgid "Emoticons"
-msgstr ""
+msgstr "Smileys"
 
 #: ../src/xm/ublock_des.cpp:234
 msgid "Transport And Map Symbols"
-msgstr ""
+msgstr "Verkehrs- und Kartensymbole"
 
 #: ../src/xm/ublock_des.cpp:235
 msgid "Alchemical Symbols"
-msgstr ""
+msgstr "Alchemistische Symbole"
 
 #: ../src/xm/ublock_des.cpp:236
 msgid "CJK Unified Ideographs Extension D"
-msgstr ""
+msgstr "Vereinheitlichte CJK-Ideogramme, Erweiterung D"
 
 #: ../src/xm/ublock_des.cpp:238
 msgid "Arabic Extended-A"
-msgstr ""
+msgstr "Arabisch, erweitert-A"
 
 #: ../src/xm/ublock_des.cpp:239
 msgid "Arabic Mathematical Alphabetic Symbols"
-msgstr ""
+msgstr "Arabische mathematische alphanumerische Symbole"
 
 #: ../src/xm/ublock_des.cpp:240
 msgid "Chakma"
-msgstr ""
+msgstr "Chakma"
 
 #: ../src/xm/ublock_des.cpp:241
 msgid "Meetei Mayek Extensions"
-msgstr ""
+msgstr "Meitei-Mayek, Erweiterungen"
 
 #: ../src/xm/ublock_des.cpp:242
 msgid "Meroitic Cursive"
-msgstr ""
+msgstr "Meroitisch-demotisch"
 
 #: ../src/xm/ublock_des.cpp:243
 msgid "Meroitic Hieroglyphs"
-msgstr ""
+msgstr "Meroitische Hieroglyphen"
 
 #: ../src/xm/ublock_des.cpp:244
 msgid "Miao"
-msgstr ""
+msgstr "Pollard-Schrift"
 
 #: ../src/xm/ublock_des.cpp:245
 msgid "Sharada"
-msgstr ""
+msgstr "Sharada"
 
 #: ../src/xm/ublock_des.cpp:246
 msgid "Sora Sompeng"
-msgstr ""
+msgstr "Sorang-Sompeng"
 
 #: ../src/xm/ublock_des.cpp:247
 msgid "Sundanese Supplement"
-msgstr ""
+msgstr "Sundanesisch, Ergänzung"
 
 #: ../src/xm/ublock_des.cpp:248
 msgid "Takri"
-msgstr ""
+msgstr "Takri"
 
 #: ../src/xm/ublock_des.cpp:250
 msgid "Bassa Vah"
-msgstr ""
+msgstr "Bassa Vah"
 
 #: ../src/xm/ublock_des.cpp:251
 msgid "Caucasian Albanian"
-msgstr ""
+msgstr "Alwanisch"
 
 #: ../src/xm/ublock_des.cpp:252
 msgid "Coptic Epact Numbers"
-msgstr ""
+msgstr "Koptische Zahlzeichen"
 
 #: ../src/xm/ublock_des.cpp:253
 msgid "Combining Diacritical Marks Extended"
-msgstr ""
+msgstr "Kombinierende diakritische Zeichen, erweitert"
 
 #: ../src/xm/ublock_des.cpp:254
 msgid "Duployan"
-msgstr ""
+msgstr "Duployé-Kurzschrift"
 
 #: ../src/xm/ublock_des.cpp:255
 msgid "Elbasan"
-msgstr ""
+msgstr "Albanisch"
 
 #: ../src/xm/ublock_des.cpp:256
 msgid "Geometric Shapes Extended"
-msgstr ""
+msgstr "Geometrische Formen, erweitert"
 
 #: ../src/xm/ublock_des.cpp:257
 msgid "Grantha"
-msgstr ""
+msgstr "Grantha"
 
 #: ../src/xm/ublock_des.cpp:258
 msgid "Khojki"
-msgstr ""
+msgstr "Khojki"
 
 #: ../src/xm/ublock_des.cpp:259
 msgid "Khudawadi"
-msgstr ""
+msgstr "Khudabadi"
 
 #: ../src/xm/ublock_des.cpp:260
 msgid "Latin Extended-E"
-msgstr ""
+msgstr "Lateinisch, erweitert-E"
 
 #: ../src/xm/ublock_des.cpp:261
 msgid "Linear A"
-msgstr ""
+msgstr "Linear A"
 
 #: ../src/xm/ublock_des.cpp:262
 msgid "Mahajani"
-msgstr ""
+msgstr "Mahajani"
 
 #: ../src/xm/ublock_des.cpp:263
 msgid "Manichaean"
-msgstr ""
+msgstr "Manichäisch"
 
 #: ../src/xm/ublock_des.cpp:264
 msgid "Mende Kikakui"
-msgstr ""
+msgstr "Mende-Schrift"
 
 #: ../src/xm/ublock_des.cpp:265
 msgid "Modi"
-msgstr ""
+msgstr "Modi"
 
 #: ../src/xm/ublock_des.cpp:266
 msgid "Mro"
-msgstr ""
+msgstr "Mro"
 
 #: ../src/xm/ublock_des.cpp:267
 msgid "Myanmar Extended-B"
-msgstr ""
+msgstr "Birmanisch, erweitert-B"
 
 #: ../src/xm/ublock_des.cpp:268
 msgid "Nabataean"
-msgstr ""
+msgstr "Nabatäisch"
 
 #: ../src/xm/ublock_des.cpp:269
 msgid "Old North Arabian"
-msgstr ""
+msgstr "Altnordarabisch"
 
 #: ../src/xm/ublock_des.cpp:270
 msgid "Old Permic"
-msgstr ""
+msgstr "Altpermisch"
 
 #: ../src/xm/ublock_des.cpp:271
 msgid "Ornamental Dingbats"
-msgstr ""
+msgstr "Ziersymbole"
 
 #: ../src/xm/ublock_des.cpp:272
 msgid "Pahawh Hmong"
-msgstr ""
+msgstr "Pahawh Hmong"
 
 #: ../src/xm/ublock_des.cpp:273
 msgid "Palmyrene"
-msgstr ""
+msgstr "Palmyrenisch"
 
 #: ../src/xm/ublock_des.cpp:274
 msgid "Pau Cin Hau"
-msgstr ""
+msgstr "Pau Cin Hau"
 
 #: ../src/xm/ublock_des.cpp:275
 msgid "Psalter Pahlavi"
-msgstr ""
+msgstr "Psalter-Pahlavi"
 
 #: ../src/xm/ublock_des.cpp:276
 msgid "Shorthand Format Controls"
-msgstr ""
+msgstr "Kurzschrift-Steuerzeichen"
 
 #: ../src/xm/ublock_des.cpp:277
 msgid "Siddham"
-msgstr ""
+msgstr "Siddham"
 
 #: ../src/xm/ublock_des.cpp:278
 msgid "Sinhala Archaic Numbers"
-msgstr ""
+msgstr "Singhalesische Zahlzeichen"
 
 #: ../src/xm/ublock_des.cpp:279
 msgid "Supplemental Arrows-C"
-msgstr ""
+msgstr "Zusätzliche Pfeile-C"
 
 #: ../src/xm/ublock_des.cpp:280
 msgid "Tirhuta"
-msgstr ""
+msgstr "Tirhuta"
 
 #: ../src/xm/ublock_des.cpp:281
 msgid "Warang Citi"
-msgstr ""
+msgstr "Varang Kshiti"
 
 #: wxstd.po.cpp:3
 msgid "OK"
@@ -4034,7 +4036,7 @@ msgstr "Nummer"
 
 #: wxstd.po.cpp:48
 msgid "String"
-msgstr ""
+msgstr "Zeichenkette"
 
 #: wxstd.po.cpp:50
 msgid "Directive"
@@ -4046,15 +4048,15 @@ msgstr ""
 
 #: wxstd.po.cpp:52
 msgid "LineNumber"
-msgstr ""
+msgstr "Zeilennummer"
 
 #: wxstd.po.cpp:53
 msgid "ActiveLine"
-msgstr ""
+msgstr "AktiveZeile"
 
 #: wxstd.po.cpp:54
 msgid "Bookmark"
-msgstr ""
+msgstr "Lesezeichen"
 
 #: wxstd.po.cpp:56
 msgid "AliceBlue"
