@@ -11,6 +11,7 @@
 #include "../xm/cxx11.h"
 #include "../wxm/edit/single_line.h"
 #include "../wxm/edit/inframe.h"
+#include "../wxm/status_bar.h"
 #include "../xm/utils.hpp"
 
 //(*InternalHeaders(WXMSearchReplaceDialog)
@@ -937,6 +938,8 @@ wxColor WXMSearchReplaceDialog::GetMessageColor(WXMSearchReplaceDialog::SearchMs
 void WXMSearchReplaceDialog::ResetMessage()
 {
 	StaticTextStatus->SetLabel(wxString());
+
+	wxm::GetFrameStatusBar().SetField(wxm::STBF_HELP, wxEmptyString);
 }
 
 void WXMSearchReplaceDialog::ShowMessage(const wxString &msg, WXMSearchReplaceDialog::SearchMsgType type)
@@ -945,6 +948,9 @@ void WXMSearchReplaceDialog::ShowMessage(const wxString &msg, WXMSearchReplaceDi
 		wxBell();
 	StaticTextStatus->SetForegroundColour(GetMessageColor(type));
 	StaticTextStatus->SetLabel(msg);
+
+	if (!this->IsShown())
+		wxm::GetFrameStatusBar().SetField(wxm::STBF_HELP, msg);
 }
 
 void WXMSearchReplaceDialog::PurgeRecentFindTexts()
