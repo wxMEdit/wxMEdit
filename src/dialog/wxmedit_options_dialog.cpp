@@ -644,7 +644,7 @@ WXMEditOptionsDialog::WXMEditOptionsDialog(wxWindow* parent,wxWindowID id)
 	BoxSizer5->Add(WxCheckBoxDateTimeInEnglish, 0, wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL, 2);
 	BoxSizer36->Add(BoxSizer5, 0, wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL, 2);
 	BoxSizer39 = new wxBoxSizer(wxHORIZONTAL);
-	WxCheckBoxDotMatchNewline = new wxCheckBox(Panel5, ID_WXCHECKBOXDOTMATCHNEWLINE, _("Enable dot matching new-line in regular expression"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_WXCHECKBOXDOTMATCHNEWLINE"));
+	WxCheckBoxDotMatchNewline = new wxCheckBox(Panel5, ID_WXCHECKBOXDOTMATCHNEWLINE, _("Enable dot matching newline in regular expression"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_WXCHECKBOXDOTMATCHNEWLINE"));
 	WxCheckBoxDotMatchNewline->SetValue(false);
 	BoxSizer39->Add(WxCheckBoxDotMatchNewline, 0, wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL, 2);
 	BoxSizer36->Add(BoxSizer39, 0, wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL, 5);
