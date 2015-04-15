@@ -843,7 +843,7 @@ msgstr "使用英语而非当前的地区设置"
 
 #: ../src/dialog/wxmedit_options_dialog.cpp:647
 msgid "Enable dot matching newline in regular expression"
-msgstr ""
+msgstr "在正则表达式中启用点匹配换行"
 
 #: ../src/dialog/wxmedit_options_dialog.cpp:654
 msgid "General"
