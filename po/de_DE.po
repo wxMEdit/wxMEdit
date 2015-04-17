@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: wxMEdit 2.9.9.3\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-04-15 10:14+0800\n"
-"PO-Revision-Date: 2015-04-13 23:10+0100\n"
+"PO-Revision-Date: 2015-04-18 00:14+0100\n"
 "Last-Translator: Ronny Steiner <post@sirsteiner.de>\n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -822,7 +822,7 @@ msgstr "Englisch statt aktuelle Lokalisierung verwenden"
 
 #: ../src/dialog/wxmedit_options_dialog.cpp:647
 msgid "Enable dot matching newline in regular expression"
-msgstr ""
+msgstr "Punkt-Platzhalter in regulären Ausdrücken berücksichtigt Zeilenumbruch"
 
 #: ../src/dialog/wxmedit_options_dialog.cpp:654
 msgid "General"
@@ -1008,6 +1008,8 @@ msgid ""
 "Place configuration files into application data directory of current user "
 "(%APPDATA%\\wxmedit) rather than wxMEdit executable directory"
 msgstr ""
+"Konfigurationsdateien im Anwendungsdaten-Ordner des aktuellen Benutzers "
+"speichern (%APPDATA%\\wxmedit) und nicht im wxMEdit-Programmverzeichnis"
 
 #: ../src/dialog/wxmedit_options_dialog.cpp:792
 msgid "Commands"
