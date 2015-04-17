@@ -886,7 +886,7 @@
 													<object class="wxBoxSizer" variable="BoxSizer39" member="no">
 														<object class="sizeritem">
 															<object class="wxCheckBox" name="ID_WXCHECKBOXDOTMATCHNEWLINE" variable="WxCheckBoxDotMatchNewline" member="yes">
-																<label>Enable dot matching new-line in regular expression</label>
+																<label>Enable dot matching newline in regular expression</label>
 															</object>
 															<flag>wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
 															<border>2</border>
