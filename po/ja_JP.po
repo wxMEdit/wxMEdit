@@ -1,40 +1,9 @@
-#: ../src/dialog/wxmedit_options_dialog.cpp:694
-#: ../src/dialog/wxmedit_options_dialog.cpp:695
-#: ../src/dialog/wxmedit_options_dialog.cpp:697
-#: ../src/dialog/wxmedit_options_dialog.cpp:698
-#: ../src/dialog/wxmedit_options_dialog.cpp:700
-#: ../src/dialog/wxmedit_options_dialog.cpp:701
-#: ../src/dialog/wxmedit_options_dialog.cpp:703
-#: ../src/dialog/wxmedit_options_dialog.cpp:704
-#: ../src/dialog/wxmedit_options_dialog.cpp:705
-#: ../src/dialog/wxmedit_options_dialog.cpp:707
-#: ../src/dialog/wxmedit_options_dialog.cpp:708
-#: ../src/dialog/wxmedit_options_dialog.cpp:709
-#: ../src/dialog/wxmedit_options_dialog.cpp:710
-#: ../src/dialog/wxmedit_options_dialog.cpp:711
-#: ../src/dialog/wxmedit_options_dialog.cpp:712
-#: ../src/dialog/wxmedit_options_dialog.cpp:713
-#: ../src/dialog/wxmedit_options_dialog.cpp:714
-#: ../src/dialog/wxmedit_options_dialog.cpp:715
-#: ../src/dialog/wxmedit_options_dialog.cpp:716
-#: ../src/dialog/wxmedit_options_dialog.cpp:717
-#: ../src/dialog/wxmedit_options_dialog.cpp:718
-#: ../src/dialog/wxmedit_options_dialog.cpp:719
-#: ../src/dialog/wxmedit_options_dialog.cpp:720
-#: ../src/dialog/wxmedit_options_dialog.cpp:721
-#: ../src/dialog/wxmedit_options_dialog.cpp:722
-#: ../src/dialog/wxmedit_options_dialog.cpp:723
-#: ../src/dialog/wxmedit_options_dialog.cpp:724
-#: ../src/dialog/wxmedit_options_dialog.cpp:725
-#: ../src/dialog/wxmedit_options_dialog.cpp:726
-#: ../src/dialog/wxmedit_options_dialog.cpp:727
-#: ../src/dialog/wxmedit_options_dialog.cpp:728
 msgid ""
 msgstr ""
 "Project-Id-Version: wxMEdit 2.9.9.3\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-04-15 10:14+0800\n"
-"PO-Revision-Date: 2015-02-04 05:15+0900\n"
+"PO-Revision-Date: 2015-04-17 23:37+0900\n"
 "Last-Translator: Tilt <<tiltstr@gmail.com>>\n"
 "Language-Team: Tilt <<tiltstr@gmail.com>>\n"
 "Language: ja_JP\n"
@@ -42,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-Generator: Poedit 1.7\n"
+"X-Generator: Poedit 1.7.5\n"
 
 #: ../src/dialog/wxm_conv_enc_dialog.cpp:44
 msgid "Convert Encoding"
@@ -283,7 +252,8 @@ msgstr "読み込み(&L)"
 msgid "&Save"
 msgstr "保存(&S)"
 
-#: ../src/dialog/wxm_highlighting_dialog.cpp:462 ../src/wxmedit_frame.cpp:1096
+#: ../src/dialog/wxm_highlighting_dialog.cpp:462
+#: ../src/wxmedit_frame.cpp:1096
 msgid "&Delete"
 msgstr "削除&"
 
@@ -841,7 +811,7 @@ msgstr "現在の locale の代わりに英語を使用"
 
 #: ../src/dialog/wxmedit_options_dialog.cpp:647
 msgid "Enable dot matching newline in regular expression"
-msgstr ""
+msgstr "正規表現で改行のドット一致を有効にする"
 
 #: ../src/dialog/wxmedit_options_dialog.cpp:654
 msgid "General"
@@ -1019,16 +989,16 @@ msgid ""
 "Add wxMEdit to the RightClickMenu of Explorer(Deselect to Remove the Entry "
 "from Windows Registry)"
 msgstr ""
-"wxMEdit のメニューをエクスプローラに追加(削除する時は、レジストリエントリを手"
-"動で除去する必要があります)"
+"wxMEdit のメニューをエクスプローラに追加(削除する時は、レジストリエントリを"
+"手動で除去する必要があります)"
 
 #: ../src/dialog/wxmedit_options_dialog.cpp:765
 msgid ""
 "Place configuration files into application data directory of current user "
 "(%APPDATA%\\wxmedit) rather than wxMEdit executable directory"
 msgstr ""
-"現在のユーザ アプリケーション データ ディレクトリ（%APPDATA%\\wxmedit） に 構"
-"成ファイル を配置"
+"現在のユーザ アプリケーション データ ディレクトリ（%APPDATA%\\wxmedit） に "
+"構成ファイル を配置"
 
 #: ../src/dialog/wxmedit_options_dialog.cpp:792
 msgid "Commands"
@@ -1403,8 +1373,8 @@ msgstr ""
 msgid "Hex Mode to Text/Column Mode"
 msgstr "16 進数モードから テキスト/列モード"
 
-#: ../src/wxmedit/wxmedit_basic.cpp:1671 ../src/wxmedit/wxmedit_basic.cpp:1740
-#: ../src/wxmedit_frame.cpp:2645
+#: ../src/wxmedit/wxmedit_basic.cpp:1671
+#: ../src/wxmedit/wxmedit_basic.cpp:1740 ../src/wxmedit_frame.cpp:2645
 msgid "The Parent Directory of this file does not exist:"
 msgstr "このファイルの親ディレクトリが存在しません:"
 
@@ -1466,11 +1436,11 @@ msgstr "ロシア語翻訳"
 
 #: ../src/wxmedit_frame.cpp:191
 msgid "Translator for German"
-msgstr ""
+msgstr "ドイツ語翻訳"
 
 #: ../src/wxmedit_frame.cpp:192
 msgid "Translator for Polish"
-msgstr ""
+msgstr "ポーランド語翻訳"
 
 #: ../src/wxmedit_frame.cpp:193 ../src/wxmedit_frame.cpp:194
 #: ../src/wxmedit_frame.cpp:195 ../src/wxmedit_frame.cpp:196
@@ -3745,131 +3715,131 @@ msgstr "タクリ文字"
 
 #: ../src/xm/ublock_des.cpp:250
 msgid "Bassa Vah"
-msgstr ""
+msgstr "バサ文字"
 
 #: ../src/xm/ublock_des.cpp:251
 msgid "Caucasian Albanian"
-msgstr ""
+msgstr "コーカサス アルバニア語"
 
 #: ../src/xm/ublock_des.cpp:252
 msgid "Coptic Epact Numbers"
-msgstr ""
+msgstr "コプト・エパクト数字"
 
 #: ../src/xm/ublock_des.cpp:253
 msgid "Combining Diacritical Marks Extended"
-msgstr ""
+msgstr "ダイアクリティカル・マーク（合成可能）"
 
 #: ../src/xm/ublock_des.cpp:254
 msgid "Duployan"
-msgstr ""
+msgstr "デュプロワエ式速記"
 
 #: ../src/xm/ublock_des.cpp:255
 msgid "Elbasan"
-msgstr ""
+msgstr "エルバサン文字"
 
 #: ../src/xm/ublock_des.cpp:256
 msgid "Geometric Shapes Extended"
-msgstr ""
+msgstr "幾何学模様拡張"
 
 #: ../src/xm/ublock_des.cpp:257
 msgid "Grantha"
-msgstr ""
+msgstr "グランタ文字"
 
 #: ../src/xm/ublock_des.cpp:258
 msgid "Khojki"
-msgstr ""
+msgstr "ホジャ文字"
 
 #: ../src/xm/ublock_des.cpp:259
 msgid "Khudawadi"
-msgstr ""
+msgstr "フダーワーディー文字"
 
 #: ../src/xm/ublock_des.cpp:260
 msgid "Latin Extended-E"
-msgstr ""
+msgstr "ラテン文字拡張-E"
 
 #: ../src/xm/ublock_des.cpp:261
 msgid "Linear A"
-msgstr ""
+msgstr "線文字-A"
 
 #: ../src/xm/ublock_des.cpp:262
 msgid "Mahajani"
-msgstr ""
+msgstr "マハージャニー文字"
 
 #: ../src/xm/ublock_des.cpp:263
 msgid "Manichaean"
-msgstr ""
+msgstr "マニ文字"
 
 #: ../src/xm/ublock_des.cpp:264
 msgid "Mende Kikakui"
-msgstr ""
+msgstr "メンデ文字"
 
 #: ../src/xm/ublock_des.cpp:265
 msgid "Modi"
-msgstr ""
+msgstr "モーディー文字"
 
 #: ../src/xm/ublock_des.cpp:266
 msgid "Mro"
-msgstr ""
+msgstr "ムロ文字"
 
 #: ../src/xm/ublock_des.cpp:267
 msgid "Myanmar Extended-B"
-msgstr ""
+msgstr "ミャンマー文字拡張-B"
 
 #: ../src/xm/ublock_des.cpp:268
 msgid "Nabataean"
-msgstr ""
+msgstr "ナバテア文字"
 
 #: ../src/xm/ublock_des.cpp:269
 msgid "Old North Arabian"
-msgstr ""
+msgstr "古代北アラビア文字"
 
 #: ../src/xm/ublock_des.cpp:270
 msgid "Old Permic"
-msgstr ""
+msgstr "古ペルム文字"
 
 #: ../src/xm/ublock_des.cpp:271
 msgid "Ornamental Dingbats"
-msgstr ""
+msgstr "装飾用絵記号"
 
 #: ../src/xm/ublock_des.cpp:272
 msgid "Pahawh Hmong"
-msgstr ""
+msgstr "パハウ・フモン文字"
 
 #: ../src/xm/ublock_des.cpp:273
 msgid "Palmyrene"
-msgstr ""
+msgstr "パルミラ文字"
 
 #: ../src/xm/ublock_des.cpp:274
 msgid "Pau Cin Hau"
-msgstr ""
+msgstr "パウ・チン・ハウ文字"
 
 #: ../src/xm/ublock_des.cpp:275
 msgid "Psalter Pahlavi"
-msgstr ""
+msgstr "詩編用パフラヴィー文字"
 
 #: ../src/xm/ublock_des.cpp:276
 msgid "Shorthand Format Controls"
-msgstr ""
+msgstr "速記書式制御記号"
 
 #: ../src/xm/ublock_des.cpp:277
 msgid "Siddham"
-msgstr ""
+msgstr "梵字"
 
 #: ../src/xm/ublock_des.cpp:278
 msgid "Sinhala Archaic Numbers"
-msgstr ""
+msgstr "旧シンハラ数字"
 
 #: ../src/xm/ublock_des.cpp:279
 msgid "Supplemental Arrows-C"
-msgstr ""
+msgstr "補助矢印-C"
 
 #: ../src/xm/ublock_des.cpp:280
 msgid "Tirhuta"
-msgstr ""
+msgstr "ティルフータ文字"
 
 #: ../src/xm/ublock_des.cpp:281
 msgid "Warang Citi"
-msgstr ""
+msgstr "ワラング・クシティ文字"
 
 #: wxstd.po.cpp:3
 msgid "OK"
