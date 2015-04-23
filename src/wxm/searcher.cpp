@@ -750,6 +750,8 @@ struct ByteIterator : public WXMCharIterator
 MadLines *ByteIterator::s_lines = nullptr;
 wxFileOffset ByteIterator::s_endpos = 0;
 
+extern bool g_regex_dot_match_newline;
+
 namespace wxm
 {
 
@@ -1282,7 +1284,6 @@ bool RegexSearcher::SearchingPrepare(const ucs4string& exprstr, const wxString& 
 {
 	try
 	{
-		extern bool g_regex_dot_match_newline;
 		regex_constants::syntax_option_type opt = regex_constants::ECMAScript;
 		if (!m_case_sensitive)
 			opt = opt | regex_constants::icase;
