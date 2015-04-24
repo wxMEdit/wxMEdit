@@ -517,7 +517,7 @@ bool MatchMBMoreThanUTF16(const wxByte *text, size_t len)
 		if (text[i] >= 0x20)
 			continue;
 
-		++byte_cnt[i];
+		++byte_cnt[text[i]];
 	}
 
 	// counting effetive C0 bytes
