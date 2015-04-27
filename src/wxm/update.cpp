@@ -13,10 +13,20 @@
 #include "../xm/remote.h"
 #include "../wxmedit_frame.h"
 
+#ifdef _MSC_VER
+# pragma warning( push )
+# pragma warning( disable : 4996 )
+#endif
+// disable 4996 {
 #include <wx/msgdlg.h>
 #include <wx/intl.h>
 #include <wx/thread.h>
 #include <wx/fileconf.h>
+// disable 4996 }
+#ifdef _MSC_VER
+# pragma warning( pop )
+#endif
+
 #include <boost/xpressive/xpressive_dynamic.hpp>
 #include <boost/algorithm/string/split.hpp>
 #include <boost/algorithm/string/find.hpp>

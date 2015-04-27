@@ -79,7 +79,7 @@ bool WXMEncodingUTF8::NextUChar32(MadUCQueue &ucqueue, UChar32BytesMapper& mappe
 	if (buf == nullptr)
 		return false;
 
-	int cnt= (rest<4)? rest: 4;
+	int cnt= (rest<4)? int(rest): 4;
 
 	if(buf[0]<=0x7F)
 	{
@@ -223,9 +223,9 @@ size_t WXMEncodingUTF16BE::UCS4toMultiByte(ucs4_t ucs4, wxByte* buf)
 		ucs2_t low=(ucs4&0x3FF)+0xDC00;    // low surrogate
 
 		buf[0]=high>>8;
-		buf[1]=high;
+		buf[1]=wxByte(high);
 		buf[2]=low>>8;
-		buf[3]=low;
+		buf[3]=wxByte(low);
 
 		return 4;
 	}
@@ -346,7 +346,7 @@ bool WXMEncodingUTF32LE::NextUChar32(MadUCQueue &ucqueue, UChar32BytesMapper& ma
 		return true;
 	}
 
-	mapper.MoveUChar32Bytes(ucqueue, (ucs4_t)'?', rest);
+	mapper.MoveUChar32Bytes(ucqueue, (ucs4_t)'?', size_t(rest));
 	return true;
 }
 
@@ -406,7 +406,7 @@ bool WXMEncodingUTF32BE::NextUChar32(MadUCQueue &ucqueue, UChar32BytesMapper& ma
 		return true;
 	}
 
-	mapper.MoveUChar32Bytes(ucqueue, (ucs4_t)'?', rest);
+	mapper.MoveUChar32Bytes(ucqueue, (ucs4_t)'?', size_t(rest));
 	return true;
 }
 
@@ -421,9 +421,9 @@ size_t UCS4toUTF16LE_U10000(ucs4_t ucs4, wxByte* buf)
 	ucs2_t high=(ucs4>>10)+0xD800;    // high surrogate
 	ucs2_t low=(ucs4&0x3FF)+0xDC00;    // low surrogate
 
-	buf[0]=high;
+	buf[0]=wxByte(high);
 	buf[1]=high>>8;
-	buf[2]=low;
+	buf[2]=wxByte(low);
 	buf[3]=low>>8;
 
 	return 4;

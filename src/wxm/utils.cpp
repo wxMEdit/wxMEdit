@@ -12,6 +12,11 @@
 #include "../mad_utils.h"
 #include "../wxmedit/wxmedit.h"
 
+#ifdef _MSC_VER
+# pragma warning( push )
+# pragma warning( disable : 4996 )
+#endif
+// disable 4996 {
 #include <wx/string.h>
 #include <wx/intl.h>
 #include <wx/tokenzr.h>
@@ -24,6 +29,10 @@
 #include <wx/file.h>
 #include <wx/wfstream.h>
 #include <wx/fileconf.h>
+// disable 4996 }
+#ifdef _MSC_VER
+# pragma warning( pop )
+#endif
 
 #include <unicode/uchar.h>
 #include <unicode/locid.h>

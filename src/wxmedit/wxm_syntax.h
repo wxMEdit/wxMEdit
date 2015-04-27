@@ -12,19 +12,27 @@
 #include "ucs4_t.h"
 #include "wxm_lines.h"
 
+#ifdef _MSC_VER
+# pragma warning( push )
+# pragma warning( disable : 4996 )
+#endif
+// disable 4996 {
 #include <wx/wxprec.h>
 
 #ifdef __BORLANDC__
-#pragma hdrstop
+# pragma hdrstop
 #endif
 
 #ifndef WX_PRECOMP
 // Include your minimal set of headers here, or wx.h
-#include <wx/wx.h>
+# include <wx/wx.h>
+# include <wx/colour.h>
+# include <wx/string.h>
 #endif
-
-#include <wx/colour.h>
-#include <wx/string.h>
+// disable 4996 }
+#ifdef _MSC_VER
+# pragma warning( pop )
+#endif
 
 #include <boost/tr1/unordered_set.hpp>
 

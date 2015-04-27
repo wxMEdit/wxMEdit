@@ -8,6 +8,11 @@
 #ifndef WXM_WORD_COUNT_DIALOG_H
 #define WXM_WORD_COUNT_DIALOG_H
 
+#ifdef _MSC_VER
+# pragma warning( push )
+# pragma warning( disable : 4996 )
+#endif
+// disable 4996 {
 //(*Headers(WXMWordCountDialog)
 #include <wx/sizer.h>
 #include <wx/stattext.h>
@@ -16,6 +21,10 @@
 #include <wx/button.h>
 #include <wx/dialog.h>
 //*)
+// disable 4996 }
+#ifdef _MSC_VER
+# pragma warning( pop )
+#endif
 
 class WXMWordCountDialog: public wxDialog
 {

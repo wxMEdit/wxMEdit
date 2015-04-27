@@ -17,27 +17,34 @@
 #include "wxm/utils.h"
 #include "wxm/edit/inframe.h"
 
-#include <wx/wxprec.h>
+#ifdef _MSC_VER
+# pragma warning( push )
+# pragma warning( disable : 4996 )
+#endif
+// disable 4996 {
+# include <wx/wxprec.h>
+
 #ifdef __BORLANDC__
-        #pragma hdrstop
+# pragma hdrstop
 #endif
 #ifndef WX_PRECOMP
-        #include <wx/wx.h>
+# include <wx/wx.h>
+# include <wx/menu.h>
+# include <wx/toolbar.h>
+# include <wx/statusbr.h>
+# include <wx/frame.h>
+# include <wx/fileconf.h>
+# include <wx/hashset.h>
+# include <wx/imaglist.h>
+# include <wx/event.h>
 #endif
-
-#include <wx/menu.h>
-#include <wx/toolbar.h>
-#include <wx/statusbr.h>
-
-#include <wx/frame.h>
 #include <wx/docview.h>
-#include <wx/fileconf.h>
-#include <wx/hashset.h>
-#include <wx/imaglist.h>
 #include <wx/treectrl.h>
-#include <wx/event.h>
-
-#include <wx/aui/aui.h> // wxAUI
+#include <wx/aui/aui.h>
+// disable 4996 }
+#ifdef _MSC_VER
+# pragma warning( pop )
+#endif
 
 #include <map>
 #include <list>

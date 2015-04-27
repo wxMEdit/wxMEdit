@@ -1049,7 +1049,7 @@ MadSearchResult TextSearcher::FindPrevious(const wxString &text,
 					epos.linepos = 0;
 					epos.iter++;
 				}
-			} while ((s -= len) > 0);
+			} while ((s -= size_t(len)) > 0);
 		}
 	}
 
@@ -1524,7 +1524,7 @@ MadSearchResult HexSearcher::FindPrevious(const wxString &hexstr,
 					epos.linepos = 0;
 					epos.iter++;
 				}
-			} while ((s -= len) > 0);
+			} while ((s -= size_t(len)) > 0);
 		}
 	}
 

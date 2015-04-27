@@ -8,18 +8,27 @@
 
 #include "wxm_file_association_dialog.h"
 
+#ifdef __WXMSW__
+
 #include "../wxm/utils.h"
 #include "../mad_utils.h"
 
+#ifdef _MSC_VER
+# pragma warning( push )
+# pragma warning( disable : 4996 )
+#endif
+// disable 4996 {
 #include <wx/config.h>
 #include <wx/log.h>
-
-#ifdef __WXMSW__
 
 //(*InternalHeaders(WXMFileAssociationDialog)
 #include <wx/intl.h>
 #include <wx/string.h>
 //*)
+// disable 4996 }
+#ifdef _MSC_VER
+# pragma warning( pop )
+#endif
 
 #include <boost/scoped_ptr.hpp>
 

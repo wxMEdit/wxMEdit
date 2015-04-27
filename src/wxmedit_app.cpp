@@ -18,8 +18,17 @@
 
 #include "wxmedit/wxmedit.h"
 
+#ifdef _MSC_VER
+# pragma warning( push )
+# pragma warning( disable : 4996 )
+#endif
+// disable 4996 {
 #include <wx/filename.h>
 #include <wx/fileconf.h>
+// disable 4996 }
+#ifdef _MSC_VER
+# pragma warning( pop )
+#endif
 
 IMPLEMENT_APP(MadEditApp)
 

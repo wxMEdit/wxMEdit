@@ -34,6 +34,11 @@
 #include "wxm/recent_list.h"
 #include "wxm/def.h"
 
+#ifdef _MSC_VER
+# pragma warning( push )
+# pragma warning( disable : 4996 )
+#endif
+// disable 4996 {
 #include <wx/app.h>
 //#include <wx/dynload.h>
 #include <wx/tokenzr.h>
@@ -45,6 +50,10 @@
 #include <wx/dnd.h>
 #include <wx/printdlg.h>
 #include <wx/config.h>
+// disable 4996 }
+#ifdef _MSC_VER
+# pragma warning( pop )
+#endif
 
 #include <boost/foreach.hpp>
 #include <boost/assign/list_of.hpp>

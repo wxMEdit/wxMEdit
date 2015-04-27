@@ -10,6 +10,11 @@
 
 #include "../wxm/wx_avoid_wxmsw_bug4373.h"
 
+#ifdef _MSC_VER
+# pragma warning( push )
+# pragma warning( disable : 4996 )
+#endif
+// disable 4996 {
 //(*Headers(WXMConvEncDialog)
 #include <wx/sizer.h>
 #include <wx/stattext.h>
@@ -18,6 +23,10 @@
 #include <wx/dialog.h>
 #include <wx/combobox.h>
 //*)
+// disable 4996 }
+#ifdef _MSC_VER
+# pragma warning( pop )
+#endif
 
 
 class WXMConvEncDialog: public wxDialogWrapper

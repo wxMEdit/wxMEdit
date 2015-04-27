@@ -14,8 +14,18 @@
 #include "../../xm/utils.hpp"
 #include "../../mad_utils.h"
 
+#ifdef _MSC_VER
+# pragma warning( push )
+# pragma warning( disable : 4996 )
+#endif
+// disable 4996 {
 #include <wx/aui/auibook.h>
 #include <wx/filename.h>
+//*)
+// disable 4996 }
+#ifdef _MSC_VER
+# pragma warning( pop )
+#endif
 
 #include <boost/assign/list_of.hpp>
 
@@ -435,7 +445,7 @@ void InFrameWXMEdit::BeginHexPrinting()
 		return;
 	}
 
-	m_PrintTotalHexLineCount = m_Lines->m_Size / 16;
+	m_PrintTotalHexLineCount = int(m_Lines->m_Size / 16);
 	if ((size_t(m_Lines->m_Size) & 0x0F) != 0)
 		++m_PrintTotalHexLineCount;
 
@@ -674,7 +684,7 @@ void InFrameWXMEdit::PrintHexPage(wxDC *dc, int pageNum)
 			wxFileOffset rowpos = m_HexRowIndex[rowidx];
 			if (rowpos>hexrowpos)
 			{
-				idx = rowpos - hexrowpos;
+				idx = int(rowpos - hexrowpos);
 				if (idx>0)
 				{
 					do

@@ -14,8 +14,17 @@
 #include "def.h"
 #include "../wxmedit/ucs4_t.h"
 
+#ifdef _MSC_VER
+# pragma warning( push )
+# pragma warning( disable : 4996 )
+#endif
+// disable 4996 {
 #include <wx/defs.h>
 #include <wx/string.h>
+// disable 4996 }
+#ifdef _MSC_VER
+# pragma warning( pop )
+#endif
 
 #include <boost/shared_ptr.hpp>
 #include <boost/noncopyable.hpp>

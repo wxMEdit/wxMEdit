@@ -10,9 +10,9 @@
 #include "../xm/cxx11.h"
 
 #ifdef __WXGTK__
-#   include "clipbrd_gtk.h"
+# include "clipbrd_gtk.h"
 #else
-#   include <wx/clipbrd.h>
+# include <wx/clipbrd.h>
 #endif
 
 #ifdef _DEBUG

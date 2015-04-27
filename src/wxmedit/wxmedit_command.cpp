@@ -9,8 +9,17 @@
 #include "wxmedit_command.h"
 #include "../xm/cxx11.h"
 
+#ifdef _MSC_VER
+# pragma warning( push )
+# pragma warning( disable : 4996 )
+#endif
+// disable 4996 {
 #include <wx/confbase.h>
 #include <wx/tokenzr.h>
+// disable 4996 }
+#ifdef _MSC_VER
+# pragma warning( pop )
+#endif
 
 #ifdef _DEBUG
 #include <crtdbg.h>

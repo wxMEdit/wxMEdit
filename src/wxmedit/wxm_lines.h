@@ -12,18 +12,28 @@
 #include "../xm/cxx11.h"
 #include "../wxm/line_enc_adapter.h"
 #include "../wxm/def.h"
+
+#ifdef _MSC_VER
+# pragma warning( push )
+# pragma warning( disable : 4996 )
+#endif
+// disable 4996 {
 #include <wx/wxprec.h>
 
 #ifdef __BORLANDC__
-#pragma hdrstop
+# pragma hdrstop
 #endif
 
 #ifndef WX_PRECOMP
 // Include your minimal set of headers here, or wx.h
-#include <wx/wx.h>
+# include <wx/wx.h>
 #endif
 
 #include <wx/file.h>
+// disable 4996 }
+#ifdef _MSC_VER
+# pragma warning( pop )
+#endif
 
 #include <vector>
 #include <list>

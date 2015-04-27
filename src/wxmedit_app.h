@@ -9,12 +9,23 @@
 #ifndef _WXMEDIT_APP_H_
 #define _WXMEDIT_APP_H_
 
-#include <wx/wxprec.h>
-#ifdef __BORLANDC__
-        #pragma hdrstop
+#ifdef _MSC_VER
+# pragma warning( push )
+# pragma warning( disable : 4996 )
 #endif
+// disable 4996 {
+#include <wx/wxprec.h>
+
+#ifdef __BORLANDC__
+# pragma hdrstop
+#endif
+
 #ifndef WX_PRECOMP
-        #include <wx/wx.h>
+# include <wx/wx.h>
+#endif
+// disable 4996 }
+#ifdef _MSC_VER
+# pragma warning( pop )
 #endif
 
 class MadEditApp:public wxApp

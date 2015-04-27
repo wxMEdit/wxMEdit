@@ -26,7 +26,7 @@ void WXMBackwardBlockDumper::Dump(wxByte* buf, size_t len)
 	{
 		n = count;
 		if (bsize < (wxFileOffset)n)
-			n = bsize;
+			n = size_t(bsize);
 		m_bit->Get(bsize-n, buf+(count-=n), n);
 		if (count == 0)
 			break;
@@ -44,7 +44,7 @@ void WXMForwardBlockDumper::Dump(wxByte* buf, size_t len)
 	{
 		n = len - idx;
 		if (bsize < (wxFileOffset)n)
-			n = bsize;
+			n = size_t(bsize);
 		m_bit->Get(0, buf+idx, n);
 		if ((idx+=n) == len)
 			break;

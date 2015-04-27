@@ -9,7 +9,17 @@
 #ifndef _WXM_WX_ICU_H_
 #define _WXM_WX_ICU_H_
 
+#ifdef _MSC_VER
+# pragma warning( push )
+# pragma warning( disable : 4996 )
+#endif
+// disable 4996 {
 #include <wx/string.h>
+// disable 4996 }
+#ifdef _MSC_VER
+# pragma warning( pop )
+#endif
+
 #include <unicode/unistr.h>
 
 namespace wxm

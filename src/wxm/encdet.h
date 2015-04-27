@@ -17,18 +17,18 @@
 #endif
 // disable 4996 {
 #include <wx/wxprec.h>
-// disable 4996 }
-#ifdef _MSC_VER
-# pragma warning( pop )
-#endif
 
 #ifdef __BORLANDC__
-#pragma hdrstop
+# pragma hdrstop
 #endif
 
 #ifndef WX_PRECOMP
-#include <wx/defs.h>
-#include <wx/string.h>
+# include <wx/defs.h>
+# include <wx/string.h>
+#endif
+// disable 4996 }
+#ifdef _MSC_VER
+# pragma warning( pop )
 #endif
 
 namespace wxm

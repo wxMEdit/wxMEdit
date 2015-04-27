@@ -15,9 +15,20 @@
 #include "gb18030.h"
 #include "../utils.h"
 
+#ifdef _MSC_VER
+# pragma warning( push )
+# pragma warning( disable : 4996 )
+#endif
+// disable 4996 {
 #include <wx/config.h>
 #include <wx/log.h>
 #include <wx/intl.h>
+//*)
+// disable 4996 }
+#ifdef _MSC_VER
+# pragma warning( pop )
+#endif
+
 #include <boost/foreach.hpp>
 #include <boost/static_assert.hpp>
 #include <boost/assign/list_inserter.hpp>

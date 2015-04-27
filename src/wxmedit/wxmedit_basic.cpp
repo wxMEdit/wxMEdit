@@ -19,7 +19,16 @@
 #   include <wx/clipbrd.h>
 #endif
 
+#ifdef _MSC_VER
+# pragma warning( push )
+# pragma warning( disable : 4996 )
+#endif
+// disable 4996 {
 #include <wx/filename.h>
+// disable 4996 }
+#ifdef _MSC_VER
+# pragma warning( pop )
+#endif
 
 #include <boost/assign/list_of.hpp>
 #include <boost/assign/std/vector.hpp>
@@ -382,7 +391,7 @@ void MadEdit::SetHexFont(const wxString &name, int size, bool forceReset)
 
                 if(!m_CaretAtHexArea)
                 {
-                    int crow = m_CaretPos.pos >> 4;
+                    int crow = int(m_CaretPos.pos >> 4);
                     if(crow >= m_TopRow && crow < m_TopRow + m_HexRowCount)
                     {
                         UpdateTextAreaXPos();
@@ -621,11 +630,11 @@ void MadEdit::SetEditMode(MadEditMode mode)
 
         if(m_LoadingFile == false)
         {
-            m_TopRow = (m_CaretPos.pos >> 4);
+            m_TopRow = int(m_CaretPos.pos >> 4);
             if(m_TopRow >= (m_VisibleRowCount >> 1))
             {
                 m_TopRow -= (m_VisibleRowCount >> 1);
-                int rows = (m_Lines->m_Size >> 4);
+                int rows = int(m_Lines->m_Size >> 4);
 
                 if((((int)m_Lines->m_Size) & 0xF) != 0)
                     ++rows;
@@ -1746,7 +1755,7 @@ bool MadEdit::SaveToFile(const wxString &filename)
 
     wxString tempdir;
 
-    if(memsize>=0 && memsize < (tempsize+ 20*1024*1024)) // use disk as tempdata
+    if(memsize>=0 && memsize < wxMemorySize(tempsize+ 20*1024*1024)) // use disk as tempdata
     {
         wxFileName fn(filename);
         tempdir=fn.GetPath(wxPATH_GET_VOLUME|wxPATH_GET_SEPARATOR);

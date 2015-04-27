@@ -13,6 +13,11 @@
 #include "../wxm/recent_list.h"
 #include "../wxm/utils.h"
 
+#ifdef _MSC_VER
+# pragma warning( push )
+# pragma warning( disable : 4996 )
+#endif
+// disable 4996 {
 //(*Headers(WXMSearchReplaceDialog)
 #include <wx/sizer.h>
 #include <wx/stattext.h>
@@ -23,6 +28,10 @@
 #include <wx/button.h>
 #include <wx/dialog.h>
 //*)
+// disable 4996 }
+#ifdef _MSC_VER
+# pragma warning( pop )
+#endif
 
 #include <wx/fileconf.h>
 #include <wx/bmpbuttn.h>

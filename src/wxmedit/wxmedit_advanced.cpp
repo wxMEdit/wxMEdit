@@ -33,7 +33,7 @@ void MadEdit::ToggleBOM()
     if(IsReadOnly() || !IsTextFile() || !IsUnicodeFile())
         return;
 
-    size_t len=m_Lines->m_LineList.begin()->m_RowIndices[0].m_Start;
+    size_t len = size_t(m_Lines->m_LineList.begin()->m_RowIndices[0].m_Start);
 
     if(len!=0)    // remove BOM
     {
@@ -262,7 +262,7 @@ void MadEdit::ConvertNewLineType(MadNewLineType type)
     }
 
     wxByte newlinedata[16];
-    size_t newlinesize=newline_blk.m_Size;
+    size_t newlinesize = size_t(newline_blk.m_Size);
     m_Lines->m_MemData->Get(newline_blk.m_Pos, newlinedata, newlinesize);
 
     vector<wxByte> buffervector;
@@ -278,7 +278,7 @@ void MadEdit::ConvertNewLineType(MadNewLineType type)
 
     do
     {
-        size_t size=lit->m_Size-lit->m_NewLineSize;
+        size_t size = size_t(lit->m_Size-lit->m_NewLineSize);
 
         if(size>0)
         {
@@ -486,7 +486,7 @@ void MadEdit::IncreaseDecreaseIndent(bool incIndent)
                 UCStoBlock(&spaces[0], spaces.size(), blk);
         }
 
-        size_t size = lit->m_Size - nonspacepos;
+        size_t size = size_t(lit->m_Size - nonspacepos);
         if(count==0 && !SelEndAtBOL)
         {
             // exclude NewLine chars
@@ -674,7 +674,7 @@ void MadEdit::CommentUncomment(bool comment)
         if(spaces.size()!=0)
             UCStoBlock(&spaces[0], spaces.size(), blk);
 
-        size_t size = lit->m_Size - nonspacepos;
+        size_t size = size_t(lit->m_Size - nonspacepos);
         if(count==0 && !SelEndAtBOL)
         {
             // exclude NewLine chars
@@ -1259,7 +1259,7 @@ void MadEdit::WordCount(bool selection, wxm::WordCountData& data)
         nowpos=0;
         endpos=m_Lines->m_Size;
     }
-    data.bytes = endpos - nowpos;
+    data.bytes = int(endpos - nowpos);
 
     // begin counting
     MadUCQueue ucqueue;
@@ -1733,7 +1733,7 @@ void MadEdit::SortLines(MadSortFlags flags, int beginline, int endline)
         {
             lit = data->lit;
             wxFileOffset spos = lit->m_RowIndices[0].m_Start;
-            size_t size= lit->m_Size - spos;
+            size_t size= size_t(lit->m_Size - spos);
 
             if(slit == slitend) // ignore newline char of last line
             {
@@ -1913,9 +1913,9 @@ void MadEdit::ConvertWordWrapToNewLine()
     }
 
     vector<wxByte> newlinedata;
-    newlinedata.resize(blk.m_Size);
+    newlinedata.resize(size_t(blk.m_Size));
     wxByte *buf = &newlinedata[0];
-    blk.Get(0, buf, blk.m_Size);
+    blk.Get(0, buf, size_t(blk.m_Size));
 
     vector<wxByte*> ins_data;
     vector<wxFileOffset> ins_len;

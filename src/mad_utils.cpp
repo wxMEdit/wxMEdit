@@ -10,6 +10,11 @@
 #include "mad_utils.h"
 #include "xm/cxx11.h"
 
+#ifdef _MSC_VER
+# pragma warning( push )
+# pragma warning( disable : 4996 )
+#endif
+// disable 4996 {
 #include <wx/wxprec.h>
 #include <wx/app.h>
 #include <wx/gdicmn.h>
@@ -18,6 +23,10 @@
 #include <wx/filefn.h>
 #include <wx/filename.h>
 #include <wx/msgdlg.h>
+// disable 4996 }
+#ifdef _MSC_VER
+# pragma warning( pop )
+#endif
 
 #ifdef __WXMAC__
 # include <wx/mac/private.h>

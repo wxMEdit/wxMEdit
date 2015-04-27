@@ -13,8 +13,18 @@
 #include "../wxmedit/ucs4_t.h"
 #include "../xm/cxx11.h"
 
+#ifdef _MSC_VER
+# pragma warning( push )
+# pragma warning( disable : 4996 )
+#endif
+// disable 4996 {
 #include <wx/string.h>
 #include <wx/filefn.h>
+// disable 4996 }
+#ifdef _MSC_VER
+# pragma warning( pop )
+#endif
+
 #include <vector>
 #include <string>
 

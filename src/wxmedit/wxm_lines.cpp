@@ -15,7 +15,17 @@
 #include "mad_encdet.h"
 #include "wxm_syntax.h"
 #include "wxmedit.h"
+
+#ifdef _MSC_VER
+# pragma warning( push )
+# pragma warning( disable : 4996 )
+#endif
+// disable 4996 {
 #include <wx/filename.h>
+// disable 4996 }
+#ifdef _MSC_VER
+# pragma warning( pop )
+#endif
 
 #include <boost/scoped_ptr.hpp>
 
@@ -200,8 +210,8 @@ wxByte MadMemData::Get(const wxFileOffset &pos)
 {
     wxASSERT((pos >= 0) && (pos < m_Size));
 
-    int buf = pos >> BUFFER_BITS;    //pos / BUFFER_SIZE;
-    int idx = pos & BUFFER_MASK;    //pos % BUFFER_SIZE;
+    int buf = int(pos >> BUFFER_BITS);    //pos / BUFFER_SIZE;
+    int idx = int(pos & BUFFER_MASK);    //pos % BUFFER_SIZE;
 
     return m_Buffers[buf][idx];
 }
@@ -210,8 +220,8 @@ void MadMemData::Get(const wxFileOffset &pos, wxByte *buffer, size_t size)
 {
     wxASSERT((pos >= 0) && (size > 0) && ((pos + size) <= m_Size));
 
-    int buf = pos >> BUFFER_BITS;    //pos / BUFFER_SIZE;
-    int idx = pos & BUFFER_MASK;    //pos % BUFFER_SIZE;
+    int buf = int(pos >> BUFFER_BITS);    //pos / BUFFER_SIZE;
+    int idx = int(pos & BUFFER_MASK);    //pos % BUFFER_SIZE;
 
     size_t buf_size = BUFFER_SIZE - idx;
 
@@ -327,8 +337,8 @@ wxFileOffset MadMemData::Put(wxByte * buffer, size_t size)
 {
     wxASSERT(size > 0);
 
-    size_t buf = m_Size >> BUFFER_BITS;        //m_Size / BUFFER_SIZE;
-    int idx = m_Size & BUFFER_MASK;            //m_Size % BUFFER_SIZE;
+    size_t buf = size_t(m_Size >> BUFFER_BITS);        //m_Size / BUFFER_SIZE;
+    int idx = int(m_Size & BUFFER_MASK);            //m_Size % BUFFER_SIZE;
     size_t buf_size = BUFFER_SIZE - idx;
     wxByte *tmp = idx!=0 ? m_Buffers[buf] : 0;
 
@@ -404,7 +414,7 @@ MadFileData::MadFileData(const wxString &name)
 
         // read first data-block to buffer1
         size_t size = BUFFER_SIZE;
-        if(BUFFER_SIZE > m_Size) size = m_Size;
+        if(BUFFER_SIZE > m_Size) size = size_t(m_Size);
         m_File.Read(m_Buffer1, size);
     }
 }
@@ -456,7 +466,7 @@ wxByte MadFileData::Get(const wxFileOffset &pos)
     wxFileOffset size = m_Size - m_Buf1Pos;
     if(size > BUFFER_SIZE)    size = BUFFER_SIZE;
 
-    m_File.Read(m_Buffer1, size);
+    m_File.Read(m_Buffer1, size_t(size));
 
     idx = pos - m_Buf1Pos;
     return m_Buffer1[(size_t)idx];
@@ -507,7 +517,7 @@ void MadFileData::Get(const wxFileOffset &pos, wxByte * buffer, size_t size)
         wxFileOffset bufsize = m_Size - m_Buf1Pos;
         if(bufsize > BUFFER_SIZE)    bufsize = BUFFER_SIZE;
 
-        m_File.Read(m_Buffer1, bufsize);
+        m_File.Read(m_Buffer1, size_t(bufsize));
 
         idx = pos - m_Buf1Pos;
         memcpy(buffer, m_Buffer1+idx, size);
@@ -611,7 +621,7 @@ ucs4_t MadLine::LastUCharIsNewLine(wxm::WXMEncoding *encoding)
 
     wxm::WXMBackwardBlockDumper dumper(bit);
 
-    return encoding->PeekUChar32_Newline(dumper, m_Size);
+    return encoding->PeekUChar32_Newline(dumper, size_t(m_Size));
 }
 
 bool MadLine::FirstUCharIs0x0A(wxm::WXMEncoding *encoding)
@@ -622,7 +632,7 @@ bool MadLine::FirstUCharIs0x0A(wxm::WXMEncoding *encoding)
 
     wxm::WXMForwardBlockDumper dumper(bit);
 
-    return encoding->IsUChar32_LineFeed(dumper, m_Size);
+    return encoding->IsUChar32_LineFeed(dumper, size_t(m_Size));
 }
 
 
@@ -784,10 +794,10 @@ void MadLines::LoadNewBuffer()
 
     m_NextUChar_LineIter->Get(m_NextUChar_BufferNextPos,
                               m_NextUChar_Buffer + m_NextUChar_BufferSize,
-                              size);
+                              size_t(size));
 
-    m_NextUChar_BufferSize+=size;
-    m_NextUChar_BufferNextPos+=size;
+    m_NextUChar_BufferSize += size_t(size);
+    m_NextUChar_BufferNextPos += size_t(size);
 }
 
 void MadLines::InitNextUChar(const MadLineIterator &iter, const wxFileOffset pos)
@@ -808,9 +818,9 @@ void MadLines::InitNextUChar(const MadLineIterator &iter, const wxFileOffset pos
 
         if(size>0)
         {
-            m_NextUChar_LineIter->Get(pos, m_NextUChar_Buffer, size);
+            m_NextUChar_LineIter->Get(pos, m_NextUChar_Buffer, size_t(size));
         }
-        m_NextUChar_BufferSize=size;
+        m_NextUChar_BufferSize = size_t(size);
     }
 
     m_NextUChar_BufferNextPos=pos+m_NextUChar_BufferSize;
@@ -851,7 +861,7 @@ bool MadLines::NextUCharIs0x0A(void)
     if (buf == nullptr)
         return false;
 
-    return m_Encoding->IsUChar32_LineFeed(buf, rest);
+    return m_Encoding->IsUChar32_LineFeed(buf, size_t(rest));
 }
 
 MadUCPair MadLines::PreviousUChar(/*IN_OUT*/MadLineIterator &lit, /*IN_OUT*/wxFileOffset &linepos)
@@ -1094,7 +1104,7 @@ MadLineState MadLines::Reformat(MadLineIterator iter)
         {
             // ignore BOM in first line
             rowidx.m_Start = ucqueue.front().second;
-            bomlen = rowidx.m_Start;
+            bomlen = size_t(rowidx.m_Start);
             ucqueue.pop_front();
             NextUChar(ucqueue);
         }
@@ -1481,7 +1491,7 @@ MadLineState MadLines::Reformat(MadLineIterator iter)
                                 if(index != 0)
                                 {
                                     eatUCharCount = length;
-                                    state.RangeId = m_Syntax->m_CustomRange[index - 1].id;
+                                    state.RangeId = wxByte(m_Syntax->m_CustomRange[index - 1].id);
                                     srange = m_Syntax->GetSyntaxRange(state.RangeId);
                                     //goto _NOCHECK_;
                                 }
@@ -2333,7 +2343,7 @@ bool MadLines::LoadFromFile(const wxString &filename, const wxString &encoding)
     if(m_FileData->m_Size > max_detecting_size)
         sz = max_detecting_size;
     else
-        sz = m_FileData->m_Size;
+        sz = size_t(m_FileData->m_Size);
 
     wxString defaultenc;
     if(encoding.IsEmpty())
@@ -2384,14 +2394,14 @@ bool MadLines::LoadFromFile(const wxString &filename, const wxString &encoding)
     wxMemorySize memsize=wxGetFreeMemory();
 
     wxByte *buf;
-    if(m_Size <= MaxSizeToLoad && memsize>0 && (m_Size*2 + 15*1024*1024)<memsize)    // load filedata to MemData
+    if(m_Size<=wxFileOffset(MaxSizeToLoad) && memsize>0 && wxMemorySize(m_Size * 2 + 15 * 1024 * 1024)<memsize)    // load filedata to MemData
     {
         buf = m_FileData->m_Buffer1;
         int ss = 0;
         int bs = BUFFER_SIZE;
         if(BUFFER_SIZE > m_Size)
         {
-            bs = m_Size;
+            bs = int(m_Size);
         }
         m_MemData->Put(buf, bs);
         ss += bs;
@@ -2401,7 +2411,7 @@ bool MadLines::LoadFromFile(const wxString &filename, const wxString &encoding)
         // now bs == BUFFER_SIZE;
         if(BUFFER_SIZE > (m_Size - ss))
         {
-            bs = (m_Size - ss);
+            bs = int(m_Size - ss);
         }
 
         m_FileData->Get(ss, buf, bs);
@@ -2598,7 +2608,7 @@ bool TruncateFile(const wxString &filename, wxFileOffset size)
 
         do
         {
-            if(len>s) len=s;
+            if(len>s) len = DWORD(s);
             WriteFile(handle, buf, len, &wlen, nullptr);
         }
         while((s-=len)>0);
@@ -2638,14 +2648,14 @@ void MadLines::WriteBlockToData(MadOutData *data, const MadBlockIterator &bit)
 {
     wxASSERT(data!=nullptr);
 
-    wxDword bs = BUFFER_SIZE;
+    size_t bs = BUFFER_SIZE;
     wxFileOffset size = bit->m_Size;
     wxFileOffset pos = bit->m_Pos;
 
     do
     {
         if(BUFFER_SIZE > size)
-            bs = size;
+            bs = size_t(size);
 
         bit->m_Data->Get(pos, m_WriteBuffer, bs);
         pos += bs;
@@ -2676,14 +2686,14 @@ void MadLines::WriteToFile(wxFile &file, MadFileData *oldfd, MadFileData *newfd)
                 size_t count=lit->m_Blocks.size();
                 do
                 {
-                    wxDword bs = BUFFER_SIZE;
+                    size_t bs = BUFFER_SIZE;
                     wxFileOffset size = bit->m_Size;
                     wxFileOffset pos = bit->m_Pos;
 
                     do
                     {
                         if(BUFFER_SIZE > size)
-                            bs = size;
+                            bs = size_t(size);
 
                         bit->m_Data->Get(pos, m_WriteBuffer, bs);
                         pos += bs;
