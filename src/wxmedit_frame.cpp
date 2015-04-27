@@ -394,7 +394,7 @@ public:
 
                                 if(StrToInt64(text, i64))
                                 {
-                                    fpdata.fontsize = i64;
+                                    fpdata.fontsize = (int)i64;
                                 }
                             }
                             else
@@ -1471,7 +1471,7 @@ void LoadDefaultSettings(wxConfigBase *m_Config)
 
     long orien;
     m_Config->Read(wxT("PageOrientation"), &orien, wxPORTRAIT);
-    g_PageSetupData->GetPrintData().SetOrientation(orien);
+	g_PageSetupData->GetPrintData().SetOrientation((wxPrintOrientation)orien);
 
     wxSize psize=g_PageSetupData->GetPaperSize();
     m_Config->Read(wxT("PagePaperSizeW"), &psize.x);
@@ -1634,7 +1634,7 @@ void CloneMenuItem(wxMenu* menu, const wxMenu* srcmenu, int itemid)
     }
 
     wxMenuItem* srcitem = srcmenu->FindItem(itemid);
-    wxString txt = srcitem->GetText();
+	wxString txt = srcitem->GetItemLabel();
 #ifdef __WXGTK__
     txt.Replace(wxT("&"), wxT("&&"));
     txt.Replace(wxT("_"), wxT("&"));
@@ -1752,37 +1752,37 @@ void MadEditFrame::CreateGUIControls()
 
 
     // add menuitems
-    g_PopMenu_Tab = new wxMenu(0);
-    g_Menu_File = new wxMenu(0);
-    g_Menu_Edit = new wxMenu(0);
-    g_Menu_Search = new wxMenu(0);
-    g_Menu_View = new wxMenu(0);
-    g_Menu_Tools = new wxMenu(0);
-    g_Menu_Window = new wxMenu(0);
-    g_Menu_Help = new wxMenu(0);
-    g_Menu_File_CloseMore = new wxMenu(0);
-    g_Menu_File_CopyPath = new wxMenu(0);
-    g_Menu_File_RecentFiles = new wxMenu(0);
-    g_Menu_Edit_Sort = new wxMenu(0);
-    g_Menu_Edit_Advanced = new wxMenu(0);
-    g_Menu_View_Encoding = new wxMenu(0);
-    g_Menu_View_AllEncodings = new wxMenu(0);
-    g_Menu_View_Syntax = new wxMenu(0);
-    g_Menu_View_FontName = new wxMenu(0);
-    g_Menu_View_FontSize = new wxMenu(0);
-    g_Menu_View_LineSpacing = new wxMenu(0);
-    g_Menu_View_TabColumn = new wxMenu(0);
-    g_Menu_Tools_BOM = new wxMenu(0);
-    g_Menu_Tools_NewLineChar = new wxMenu(0);
-    g_Menu_Tools_InsertNewLineChar = new wxMenu(0);
-    g_Menu_Tools_ConvertChineseChar = new wxMenu(0);
-    g_Menu_View_Font0 = new wxMenu(0);
-    g_Menu_View_Font1 = new wxMenu(0);
-    g_Menu_View_Font2 = new wxMenu(0);
-    g_Menu_View_Font3 = new wxMenu(0);
-    g_Menu_View_Font4 = new wxMenu(0);
-    g_Menu_View_Font5 = new wxMenu(0);
-    g_Menu_View_Font6 = new wxMenu(0);
+    g_PopMenu_Tab = new wxMenu(0L);
+    g_Menu_File = new wxMenu(0L);
+    g_Menu_Edit = new wxMenu(0L);
+    g_Menu_Search = new wxMenu(0L);
+    g_Menu_View = new wxMenu(0L);
+    g_Menu_Tools = new wxMenu(0L);
+    g_Menu_Window = new wxMenu(0L);
+    g_Menu_Help = new wxMenu(0L);
+    g_Menu_File_CloseMore = new wxMenu(0L);
+    g_Menu_File_CopyPath = new wxMenu(0L);
+    g_Menu_File_RecentFiles = new wxMenu(0L);
+    g_Menu_Edit_Sort = new wxMenu(0L);
+    g_Menu_Edit_Advanced = new wxMenu(0L);
+    g_Menu_View_Encoding = new wxMenu(0L);
+    g_Menu_View_AllEncodings = new wxMenu(0L);
+    g_Menu_View_Syntax = new wxMenu(0L);
+    g_Menu_View_FontName = new wxMenu(0L);
+    g_Menu_View_FontSize = new wxMenu(0L);
+    g_Menu_View_LineSpacing = new wxMenu(0L);
+    g_Menu_View_TabColumn = new wxMenu(0L);
+    g_Menu_Tools_BOM = new wxMenu(0L);
+    g_Menu_Tools_NewLineChar = new wxMenu(0L);
+    g_Menu_Tools_InsertNewLineChar = new wxMenu(0L);
+    g_Menu_Tools_ConvertChineseChar = new wxMenu(0L);
+    g_Menu_View_Font0 = new wxMenu(0L);
+    g_Menu_View_Font1 = new wxMenu(0L);
+    g_Menu_View_Font2 = new wxMenu(0L);
+    g_Menu_View_Font3 = new wxMenu(0L);
+    g_Menu_View_Font4 = new wxMenu(0L);
+    g_Menu_View_Font5 = new wxMenu(0L);
+    g_Menu_View_Font6 = new wxMenu(0L);
 
 
     list<wxMenu*> menu_stack;
@@ -3435,7 +3435,7 @@ void MadEditFrame::OnFilePageSetup(wxCommandEvent& event)
         wxString oldpath=m_Config->GetPath();
         m_Config->SetPath(wxT("/wxMEdit"));
 
-        m_Config->Write(wxT("PageOrientation"), g_PageSetupData->GetPrintData().GetOrientation());
+        m_Config->Write(wxT("PageOrientation"), (long)g_PageSetupData->GetPrintData().GetOrientation());
 
         //((wxFrame*)wxTheApp->GetTopWindow())->SetTitle(wxString::Format(wxT("%d"), g_PageSetupData->GetPaperId()));
         wxSize size=g_PageSetupData->GetPaperSize();
@@ -3853,7 +3853,7 @@ void MadEditFrame::OnEditToHalfWidthByOptions(wxCommandEvent& event)
 
     wxString choices[4] = { _("ASCII characters"), _("Japanese characters"),
                             _("Korean characters"), _("other characters") };
-    size_t sels = wxGetMultipleChoices(selections,
+	size_t sels = wxGetSelectedChoices(selections,
         _("Choose the characters you want to convert:"), _("To Halfwidth by Options..."),
         4, choices, this );
 
@@ -3896,7 +3896,7 @@ void MadEditFrame::OnEditToFullWidthByOptions(wxCommandEvent& event)
 
     wxString choices[4] = { _("ASCII characters"), _("Japanese characters"),
                             _("Korean characters"), _("other characters") };
-    size_t sels = wxGetMultipleChoices(selections,
+	size_t sels = wxGetSelectedChoices(selections,
         _("Choose the characters you want to convert:"), _("To Fullwidth by Options..."),
         4, choices, this );
 
@@ -4661,7 +4661,7 @@ void MadEditFrame::OnToolsOptions(wxCommandEvent& event)
 
                 // change the menu key
                 wxMenuItem *mit=WxMenuBar1->FindItem(cd->menu_id);
-                mit->SetText(mit->GetLabel()+ newkey);
+				mit->SetItemLabel(mit->GetItemLabelText() + newkey);
 #ifdef __WXMSW__
                 if (g_bHasMenuIcon)
 #endif

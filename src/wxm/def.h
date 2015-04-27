@@ -9,8 +9,18 @@
 #ifndef _WXM_DEF_H_
 #define _WXM_DEF_H_
 
+#ifdef _MSC_VER
+# pragma warning( push )
+# pragma warning( disable : 4996 )
+#endif
+// disable 4996 {
 #include <wx/string.h>
 #include <wx/version.h>
+// disable 4996 }
+#ifdef _MSC_VER
+# pragma warning( pop )
+#endif
+
 #include <vector>
 
 #define WXMEDIT_VERSION	"2.9.9.3"
@@ -23,6 +33,9 @@
 # include <wx/event.h>
   typedef wxMouseEvent wxMouseCaptureLostEvent;
 # define wxDD_DIR_MUST_EXIST 0x0200
+#elif wxMAJOR_VERSION==2 && wxMINOR_VERSION<=8
+  typedef int wxPrintOrientation;
+# define wxGetSelectedChoices wxGetMultipleChoices
 #endif
 
 typedef std::vector<size_t> LineNumberList;

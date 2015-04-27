@@ -10,7 +10,17 @@
 #define _WXM_ENCDET_H_
 
 #include "encoding/encoding_def.h"
+
+#ifdef _MSC_VER
+# pragma warning( push )
+# pragma warning( disable : 4996 )
+#endif
+// disable 4996 {
 #include <wx/wxprec.h>
+// disable 4996 }
+#ifdef _MSC_VER
+# pragma warning( pop )
+#endif
 
 #ifdef __BORLANDC__
 #pragma hdrstop

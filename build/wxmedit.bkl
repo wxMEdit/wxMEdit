@@ -79,6 +79,10 @@
 		<sys-lib>wxmsw$(WXVER)u$(LIB_POSTFIX)_aui</sys-lib>
 		<sys-lib>wxmsw$(WXVER)u$(LIB_POSTFIX)_core</sys-lib>
 		<sys-lib>wxbase$(WXVER)u$(LIB_POSTFIX)</sys-lib>
+		<if cond="WXVER >= '30'">
+			<sys-lib>wxpng$(LIB_POSTFIX)</sys-lib>
+			<sys-lib>wxzlib$(LIB_POSTFIX)</sys-lib>
+		</if>
 		<sys-lib>$(ICUDATA_LIB)</sys-lib>
 		<sys-lib>$(ICUI18N_LIB)$(ICULIB_POSTFIX)</sys-lib>
 		<sys-lib>icuuc$(ICULIB_POSTFIX)</sys-lib>

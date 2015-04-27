@@ -184,7 +184,7 @@ bool OpenFilesInPrevInst(const wxString& flist)
     if(GetLastError() != ERROR_ALREADY_EXISTS)
         return false;
 
-    extern const wxChar *wxCanvasClassNameNR;    // class name of MadEditFrame
+	const wxChar wxCanvasClassNameNR[] = wxT("wxWindowClassNR"); // class name of MadEditFrame
     wxChar title[256]={0};
     HWND prevapp = ::FindWindowEx(NULL, NULL, wxCanvasClassNameNR, nullptr);
     for(;;)                // find wxCanvasClassNameNR
