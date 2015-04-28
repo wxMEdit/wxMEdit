@@ -35,6 +35,12 @@
 				<if cond="DEBUG==1">-D__WXDEBUG__</if>
 			</set>
 
+			<set var="CPPFLAGS_ADD" make_var="1">
+				<if cond="MGW_VER &lt; '43'"></if>
+				<if cond="MGW_VER &gt;= '47'">-std=c++11</if>
+				<if cond="'43' &lt;= MGW_VER &lt; '47'">-std=c++0x</if>
+			</set>
+
 			<sys-lib>gmon</sys-lib>
 		</if>
 		<if cond="FORMAT in ('msvc', 'msvs2003prj', 'msvs2005prj', 'msvs2008prj')">
@@ -47,13 +53,14 @@
 			</if>
 
 			<set var="WXDEBUG_DEF" make_var="1" />
+			<set var="CPPFLAGS_ADD" make_var="1" />
 
 			<define>_SCL_SECURE_NO_WARNINGS</define>
 		</if>
 		<if cond="FORMAT in ('msvs2003prj', 'msvs2005prj', 'msvs2008prj')">
 			<define>wxUSE_NO_MANIFEST=1</define>
 		</if>
-		<cppflags>$(WXDEBUG_DEF)</cppflags>
+		<cppflags>$(WXDEBUG_DEF)$(CPPFLAGS_ADD)</cppflags>
 
 		<if cond="BOOST_ADD != ''">
 			<include>$(BOOST_ADD)</include>
