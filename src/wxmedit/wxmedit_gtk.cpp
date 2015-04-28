@@ -8,6 +8,7 @@
 
 #ifdef __WXGTK__
 
+#include "../xm/cxx11.h"
 #include "wxmedit.h"
 //#include <wx/gtk/private.h> // wxGTK-2.6.3 above
 #include <gdk/gdk.h>
@@ -31,8 +32,10 @@
 /////////////////////////////////////////////////////////////////////////////
 
 extern bool g_isIdle;
+#if wxMAJOR_VERSION == 2
 extern bool g_blockEventsOnDrag;
 extern bool g_mainThreadLocked;
+#endif
 
 //-----------------------------------------------------------------------------
 // debug
@@ -40,7 +43,7 @@ extern bool g_mainThreadLocked;
 
 #ifdef __WXDEBUG__
 
-#if wxUSE_THREADS
+#if wxUSE_THREADS && wxMAJOR_VERSION == 2
 #   define DEBUG_MAIN_THREAD if (wxThread::IsMain() && g_mainThreadLocked) printf("gui reentrance");
 #else
 #   define DEBUG_MAIN_THREAD
@@ -366,7 +369,9 @@ static void wxFillOtherKeyEventFields(wxKeyEvent& event,
     event.m_controlDown = (gdk_event->state & GDK_CONTROL_MASK) != 0;
     event.m_altDown = (gdk_event->state & GDK_MOD1_MASK) != 0;
     event.m_metaDown = (gdk_event->state & GDK_MOD2_MASK) != 0;
+#if wxMAJOR_VERSION == 2
     event.m_scanCode = gdk_event->keyval;
+#endif
     event.m_rawCode = (wxUint32) gdk_event->keyval;
     event.m_rawFlags = 0;
 #if wxUSE_UNICODE
@@ -497,13 +502,40 @@ struct wxGtkIMData
     wxGtkIMData()
     {
         context = gtk_im_multicontext_new();
-        lastKeyEvent = NULL;
+        lastKeyEvent = nullptr;
     }
     ~wxGtkIMData()
     {
         g_object_unref (context);
     }
 };
+
+GtkIMContext* IMContext(wxWindow* win)
+{
+#if wxMAJOR_VERSION == 2
+    return win->m_imData->context;
+#else
+    return win->m_imContext;
+#endif
+}
+
+void ResetIMKeyEvent(wxWindow* win)
+{
+#if wxMAJOR_VERSION == 2
+    win->m_imData->lastKeyEvent = nullptr;
+#else
+    win->m_imKeyEvent = nullptr;
+#endif
+}
+
+bool isIMDataNull(wxWindow* win)
+{
+#if wxMAJOR_VERSION == 2
+    return win->m_imData == nullptr;
+#else
+    return win->m_imKeyEvent == nullptr;
+#endif
+}
 
 extern "C" {
 static gboolean
@@ -514,11 +546,13 @@ gtk_window_key_press_callback( GtkWidget *widget,
     DEBUG_MAIN_THREAD
 
     // don't need to install idle handler, its done from "event" signal
-
+#if wxMAJOR_VERSION == 2
     if (!win->m_hasVMT)
         return FALSE;
+
     if (g_blockEventsOnDrag)
         return FALSE;
+#endif
 
 
     wxKeyEvent event( wxEVT_KEY_DOWN );
@@ -544,13 +578,13 @@ gtk_window_key_press_callback( GtkWidget *widget,
     // widgets has both IM context and input focus, the event should be filtered
     // by gtk_im_context_filter_keypress().
     // Then, we should, according to GTK+ 2.0 API doc, return whatever it returns.
-    if ((!ret) && (win->m_imData != NULL) && ( wxWindow::FindFocus() == win ))
+    if ((!ret) && isIMDataNull(win) && ( wxWindow::FindFocus() == win ))
     {
         // We should let GTK+ IM filter key event first. According to GTK+ 2.0 API
         // docs, if IM filter returns true, no further processing should be done.
         // we should send the key_down event anyway.
-        bool intercepted_by_IM = gtk_im_context_filter_keypress(win->m_imData->context, gdk_event);
-        win->m_imData->lastKeyEvent = NULL;
+        bool intercepted_by_IM = gtk_im_context_filter_keypress(IMContext(win), gdk_event);
+        ResetIMKeyEvent(win);
         if (intercepted_by_IM)
         {
             wxLogTrace(TRACE_KEYS, _T("Key event intercepted by IM"));
@@ -690,12 +724,13 @@ gtk_window_key_release_callback( GtkWidget *widget,
     DEBUG_MAIN_THREAD
 
     // don't need to install idle handler, its done from "event" signal
-
+#if wxMAJOR_VERSION == 2
     if (!win->m_hasVMT)
         return FALSE;
 
     if (g_blockEventsOnDrag)
         return FALSE;
+#endif
 
     wxKeyEvent event( wxEVT_KEY_UP );
     if ( !wxTranslateGTKKeyEventToWx(event, win, gdk_event) )
@@ -708,7 +743,6 @@ gtk_window_key_release_callback( GtkWidget *widget,
     return win->GetEventHandler()->ProcessEvent(event);
 }
 }
-
 
 
 void MadEdit::ConnectToFixedKeyPressHandler()
@@ -747,7 +781,7 @@ void MadEdit::ConnectToFixedKeyPressHandler()
 
 GtkIMContext *GetWindowIMContext(wxWindow *win)
 {
-    return win->m_imData->context;
+    return IMContext(win);
 }
 
 #endif // __WXGTK__

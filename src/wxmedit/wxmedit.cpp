@@ -48,7 +48,9 @@
 # include <gdk/gdkx.h>
 # include <gdk/gdkprivate.h>
 # include <gtk/gtk.h>
-# include <wx/gtk/win_gtk.h>
+# if wxMAJOR_VERSION == 2
+#  include <wx/gtk/win_gtk.h>
+# endif
 # include <iostream>
 #endif
 
@@ -251,7 +253,7 @@ END_EVENT_TABLE()
 
 
 
-#if defined(__WXGTK20__)
+#if defined(__WXGTK20__) && wxMAJOR_VERSION == 2
 void GTK2_DrawText(wxMemoryDC *dc, wxm::WXMEncoding *encoding, const int *widths,
               const wxString &text, wxCoord x, wxCoord y )
 {
@@ -1764,8 +1766,8 @@ void MadEdit::PaintText(wxDC *dc, int x, int y, const ucs4_t *text, const int *w
         SetTextColor(hdc, m_Syntax->nw_Color.GetPixel());
         ::ExtTextOut(hdc, nowleft, y, 0, nullptr, m_WCWordBuffer+wcstart, len, m_WCWidthBuffer+wcstart);
     }
-
-#elif defined(__WXGTK20__)
+#else // other platform or printing
+# if defined(__WXGTK20__) && wxMAJOR_VERSION == 2
     if(!InPrinting())
     {
         const ucs4_t *pu=text;
@@ -1802,10 +1804,7 @@ void MadEdit::PaintText(wxDC *dc, int x, int y, const ucs4_t *text, const int *w
         }
     }
     else
-#endif
-
-#ifndef __WXMSW__
-    //other platform or printing
+# endif //__WXGTK20__
     {
         wxString text1(wxT('1'));
         const ucs4_t  *pu=text;
@@ -1820,7 +1819,7 @@ void MadEdit::PaintText(wxDC *dc, int x, int y, const ucs4_t *text, const int *w
             }
         }
     }
-#endif
+#endif //__WXMSW__
 }
 
 void MadEdit::PaintTextLines(wxDC *dc, const wxRect &rect, int toprow, int rowcount, const wxColor &bgcolor)
@@ -8970,7 +8969,7 @@ void MadEdit::OnChar(wxKeyEvent& evt)
         m_ProcessWin98LeadByte=true;
     }
 #else
-    else if(ucs4>=0x100 || (!evt.HasModifiers() && ucs4 >= ecCharFirst))
+    else if(ucs4>=0x100 || (!evt.HasModifiers() && ucs4 >= (ucs4_t)ecCharFirst))
     {
         ProcessCommand(ucs4);
     }

@@ -85,7 +85,9 @@ extern const size_t g_LanguageCount = sizeof(g_LanguageValue)/sizeof(int);
 #include <X11/Xatom.h>
 #include <gtk/gtk.h>
 #include <gdk/gdkx.h>
-#include <wx/gtk/win_gtk.h>
+#if wxMAJOR_VERSION == 2
+# include <wx/gtk/win_gtk.h>
+#endif
 
 Atom g_MadEdit_atom;
 Display *g_Display=nullptr;
@@ -385,7 +387,7 @@ bool MadEditApp::OnInit()
     myFrame->Show(true);
 
 
-#if defined(__WXGTK__)
+#if defined(__WXGTK__) && wxMAJOR_VERSION == 2
     if(bSingleInstance)
     {
         GtkPizza *pizza = GTK_PIZZA(myFrame->m_mainWidget);
