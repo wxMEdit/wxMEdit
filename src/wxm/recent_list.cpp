@@ -27,7 +27,7 @@
 #define new new(_NORMAL_BLOCK ,__FILE__, __LINE__)
 #endif
 
-#if wxMAJOR_VERSION>2 || (wxMAJOR_VERSION==2 && wxMINOR_VERSION>8)
+#if wxMAJOR_VERSION > 2
 namespace
 {
 
@@ -71,7 +71,7 @@ static inline wxChar* MYcopystring(const wxString& s)
 // Recent List management
 void wxRecentList::AddFileToHistory(const wxString& item)
 {
-#if wxMAJOR_VERSION==2 && wxMINOR_VERSION<=8
+#if wxMAJOR_VERSION==2
 	size_t i;
 
 	// Check we don't already have this item

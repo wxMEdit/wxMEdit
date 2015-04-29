@@ -25,15 +25,7 @@
 
 #define WXMEDIT_VERSION	"2.9.9.3"
 
-#if wxMAJOR_VERSION==2 && wxMINOR_VERSION==6
-# define wxOS_WINDOWS_9X wxWIN95
-# include <wx/longlong.h>
-  typedef wxLongLong wxMilliClock_t;
-# define EVT_MOUSE_CAPTURE_LOST(x) 
-# include <wx/event.h>
-  typedef wxMouseEvent wxMouseCaptureLostEvent;
-# define wxDD_DIR_MUST_EXIST 0x0200
-#elif wxMAJOR_VERSION==2 && wxMINOR_VERSION<=8
+#if wxMAJOR_VERSION==2
   typedef int wxPrintOrientation;
 # define wxGetSelectedChoices wxGetMultipleChoices
 #endif
