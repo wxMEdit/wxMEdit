@@ -55,6 +55,8 @@ namespace wxm
 			: m_dlg(dlg), m_itemidx(itemidx)
 		{}
 
+		virtual ~HighlightingItem() {}
+
 		wxColor InitDialogControls(const wxColor& bc0);
 
 		virtual wxColor DoInitDialogControls() = 0;
