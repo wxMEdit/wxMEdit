@@ -884,12 +884,6 @@ MadEdit::MadEdit(wxm::ConfigWriter* cfg_writer, wxWindow* parent, wxWindowID id,
 
     m_lastDoubleClick = 0;
 
-#ifdef __WXMSW__
-    m_IsWin98 = (wxGetOsVersion()==wxOS_WINDOWS_9X);
-    m_Win98LeadByte=-1;
-    m_ProcessWin98LeadByte=true;
-#endif
-
 #ifdef __WXGTK__
     ConnectToFixedKeyPressHandler();
 #endif
@@ -6887,15 +6881,6 @@ void MadEdit::FindBracePairUnderCaretPos()
 
 void MadEdit::ProcessCommand(MadEditCommand command)
 {
-#ifdef __WXMSW__
-    if(m_Win98LeadByte>=0 && m_ProcessWin98LeadByte)
-    {
-        MadEditCommand ch=m_Win98LeadByte;
-        m_Win98LeadByte=-1;
-        ProcessCommand(ch);
-    }
-#endif
-
     ucs4_t NewAutoCompleteRightChar=0;
     if(command==m_AutoCompleteRightChar && m_CaretPos.pos==m_AutoCompletePos && m_EditMode==emTextMode)
     {
@@ -8919,54 +8904,7 @@ void MadEdit::OnChar(wxKeyEvent& evt)
 #ifdef __WXMSW__
     else if(ucs4==key && (ucs4>=0x100 || (!evt.HasModifiers() && ucs4 >= ecCharFirst)))
     {
-        m_ProcessWin98LeadByte=false;
-
-        bool processed=false;
-        if(m_IsWin98 && ucs4<0x100)
-        {
-            wxm::WXMEncoding *enc=wxm::WXMEncodingManager::Instance().GetSystemEncoding();
-            if(enc->IsDoubleByteEncoding())
-            {
-                if(m_Win98LeadByte>=0)
-                {
-                    wxByte db[2]={m_Win98LeadByte, ucs4};
-                    ucs4_t uc=enc->MultiBytetoUCS4(db);
-                    if(uc>0)
-                    {
-                        m_Win98LeadByte=-1;
-                        ProcessCommand(uc);
-                        processed=true;
-                    }
-                    else
-                    {
-                        ProcessCommand(m_Win98LeadByte);
-                        m_Win98LeadByte=-1;
-                    }
-                }
-                if(!processed)
-                {
-                    wxByte db[2]={ucs4, 0};
-                    ucs4_t uc=enc->MultiBytetoUCS4(db);
-                    if(uc != (ucs4_t)wxm::WXMEncoding::svtInvaliad) // is a valid single-byte char
-                    {
-                        ProcessCommand(uc);
-                        processed=true;
-                    }
-                    else if(enc->IsLeadByte(wxByte(ucs4)))
-                    {
-                        m_Win98LeadByte=ucs4;
-                        processed=true;
-                    }
-                }
-            }
-        }
-
-        if(!processed)
-        {
-            ProcessCommand(ucs4);
-        }
-
-        m_ProcessWin98LeadByte=true;
+        ProcessCommand(ucs4);
     }
 #else
     else if(ucs4>=0x100 || (!evt.HasModifiers() && ucs4 >= (ucs4_t)ecCharFirst))
