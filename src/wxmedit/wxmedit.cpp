@@ -8867,6 +8867,15 @@ void MadEdit::ProcessReturnCommand(MadEditCommand command)
 
 //==================================================
 
+bool IsByteInput(ucs4_t ucs4, int key)
+{
+#ifdef __WXMSW__
+    return ucs4 == key;
+#else
+    return true;
+#endif
+}
+
 void MadEdit::OnChar(wxKeyEvent& evt)
 {
     //std::cout<<"edit char\n";
@@ -8901,17 +8910,10 @@ void MadEdit::OnChar(wxKeyEvent& evt)
         wxLogDebug(wxT("edit toggle window"));
         DoToggleWindow();
     }
-#ifdef __WXMSW__
-    else if(ucs4==key && (ucs4>=0x100 || (!evt.HasModifiers() && ucs4 >= ecCharFirst)))
+    else if (ucs4 >= 0x100 || (IsByteInput(ucs4, key) && (!evt.HasModifiers() && ucs4 >= ecCharFirst)))
     {
         ProcessCommand(ucs4);
     }
-#else
-    else if(ucs4>=0x100 || (!evt.HasModifiers() && ucs4 >= (ucs4_t)ecCharFirst))
-    {
-        ProcessCommand(ucs4);
-    }
-#endif
     else
     {
         evt.Skip();
