@@ -8870,7 +8870,7 @@ void MadEdit::ProcessReturnCommand(MadEditCommand command)
 bool IsByteInput(ucs4_t ucs4, int key)
 {
 #ifdef __WXMSW__
-    return ucs4 == key;
+    return ucs4 == key || key == 0;
 #else
     return true;
 #endif
@@ -8910,7 +8910,7 @@ void MadEdit::OnChar(wxKeyEvent& evt)
         wxLogDebug(wxT("edit toggle window"));
         DoToggleWindow();
     }
-    else if (ucs4 >= 0x100 || (IsByteInput(ucs4, key) && (!evt.HasModifiers() && ucs4 >= ecCharFirst)))
+    else if (IsByteInput(ucs4, key) && (!evt.HasModifiers() && ucs4 >= ecCharFirst))
     {
         ProcessCommand(ucs4);
     }
