@@ -1165,24 +1165,15 @@ MadLineState MadLines::Reformat(MadLineIterator iter)
                         state.Directive = 0;
                     }
 
-                    //if(ucqueue.size()>1 && ucqueue[1].first==0x0A) // DOS newline chars
-                    //{
-                        //m_MadEdit->m_NewLineType = nltDOS;
-                        //iter->m_NewLineSize = ucqueue[1].second;
-                    //}
-                    //else 
                     if(NextUCharIs0x0A()) // DOS newline chars
                     {
                         NextUChar(ucqueue);
-                        m_MadEdit->m_NewLineType = nltDOS;
+                        m_MadEdit->m_newline = &wxm::g_nl_dos;
                         iter->m_NewLineSize = ucqueue.back().second;
                     }
-                    else
+                    else if (m_MadEdit->m_newline->IsDefault())
                     {
-                        if(m_MadEdit->m_NewLineType == nltDefault)
-                        {
-                            m_MadEdit->m_NewLineType = nltMAC;
-                        }
+                        m_MadEdit->m_newline = &wxm::g_nl_mac;
                     }
 
                     iter->m_NewLineSize += (wxByte)firstuclen;
@@ -1200,10 +1191,8 @@ MadLineState MadLines::Reformat(MadLineIterator iter)
                         state.Directive = 0;
                     }
 
-                    if(m_MadEdit->m_NewLineType == nltDefault)
-                    {
-                        m_MadEdit->m_NewLineType = nltUNIX;
-                    }
+                    if (m_MadEdit->m_newline->IsDefault())
+                        m_MadEdit->m_newline = &wxm::g_nl_unix;
 
                     iter->m_NewLineSize = (wxByte)firstuclen;
                     ucqueue.clear();
@@ -2331,7 +2320,7 @@ bool MadLines::LoadFromFile(const wxString &filename, const wxString &encoding)
     m_MaxLineWidth = 0;
 
     m_MadEdit->m_HasTab = false;
-    m_MadEdit->m_NewLineType = nltDefault;
+    m_MadEdit->m_newline = &wxm::g_nl_default;
 
     m_MadEdit->m_LoadingFile = true;
 

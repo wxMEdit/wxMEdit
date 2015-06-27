@@ -3145,13 +3145,7 @@ void MadEditFrame::OnUpdateUI_MenuToolsNewLineChar(wxUpdateUIEvent& event)
     {
         event.Enable(true);
 
-        switch (g_active_wxmedit->GetNewLineType())
-        {
-        case nltDOS:  text += wxT("CRLF/0D0A (DOS)"); break;
-        case nltUNIX: text += wxT("LF/0A (UNIX)"); break;
-        case nltMAC:  text += wxT("CR/0D (MAC)"); break;
-        default: break;
-        }
+        text += g_active_wxmedit->GetNewLine().Description();
         event.SetText(text);
     }
     else
@@ -3167,13 +3161,7 @@ void MadEditFrame::OnUpdateUI_MenuToolsInsertNewLineChar(wxUpdateUIEvent& event)
     {
         event.Enable(true);
 
-        switch (g_active_wxmedit->GetInsertNewLineType())
-        {
-        case nltDOS:  text += wxT("CRLF/0D0A (DOS)"); break;
-        case nltUNIX: text += wxT("LF/0A (UNIX)"); break;
-        case nltMAC:  text += wxT("CR/0D (MAC)"); break;
-        default: break;
-        }
+        text += g_active_wxmedit->GetNewLine4Insert().Description();
         event.SetText(text);
     }
     else
@@ -4751,21 +4739,21 @@ void MadEditFrame::OnToolsConvertToDOS(wxCommandEvent& event)
     if (g_active_wxmedit == nullptr)
         return;
 
-    g_active_wxmedit->ConvertNewLineType(nltDOS);
+    g_active_wxmedit->ConvertNewLine(wxm::g_nl_dos);
 }
 void MadEditFrame::OnToolsConvertToMAC(wxCommandEvent& event)
 {
     if (g_active_wxmedit == nullptr)
         return;
 
-    g_active_wxmedit->ConvertNewLineType(nltMAC);
+    g_active_wxmedit->ConvertNewLine(wxm::g_nl_mac);
 }
 void MadEditFrame::OnToolsConvertToUNIX(wxCommandEvent& event)
 {
     if (g_active_wxmedit == nullptr)
         return;
 
-    g_active_wxmedit->ConvertNewLineType(nltUNIX);
+    g_active_wxmedit->ConvertNewLine(wxm::g_nl_unix);
 }
 
 void MadEditFrame::OnToolsInsertDOS(wxCommandEvent& event)
@@ -4773,21 +4761,21 @@ void MadEditFrame::OnToolsInsertDOS(wxCommandEvent& event)
     if (g_active_wxmedit == nullptr)
         return;
 
-    g_active_wxmedit->SetInsertNewLineType(nltDOS);
+    g_active_wxmedit->SetInsertNewLine(wxm::g_nl_dos);
 }
 void MadEditFrame::OnToolsInsertMAC(wxCommandEvent& event)
 {
     if (g_active_wxmedit == nullptr)
         return;
 
-    g_active_wxmedit->SetInsertNewLineType(nltMAC);
+    g_active_wxmedit->SetInsertNewLine(wxm::g_nl_mac);
 }
 void MadEditFrame::OnToolsInsertUNIX(wxCommandEvent& event)
 {
     if (g_active_wxmedit == nullptr)
         return;
 
-    g_active_wxmedit->SetInsertNewLineType(nltUNIX);
+    g_active_wxmedit->SetInsertNewLine(wxm::g_nl_unix);
 }
 
 

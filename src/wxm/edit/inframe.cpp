@@ -11,7 +11,6 @@
 #include "../encoding/unicode.h"
 #include "../../wxmedit_frame.h"
 #include "../../dialog/wxm_search_replace_dialog.h"
-#include "../../xm/utils.hpp"
 #include "../../mad_utils.h"
 
 #ifdef _MSC_VER
@@ -26,8 +25,6 @@
 #ifdef _MSC_VER
 # pragma warning( pop )
 #endif
-
-#include <boost/assign/list_of.hpp>
 
 #ifdef _DEBUG
 #include <crtdbg.h>
@@ -122,16 +119,6 @@ wxString BOMText(bool hasbom)
 	return hasbom ? bom : wxString();
 }
 
-wxString NewLineTypeText(MadNewLineType nlty)
-{
-	static std::map<int, wxString> nltytxts = boost::assign::map_list_of
-			(nltDOS,  wxString(wxT(".DOS")))
-			(nltUNIX, wxString(wxT(".UNIX")))
-			(nltMAC,  wxString(wxT(".MAC")))
-		;
-	return xm::wrap_map(nltytxts).get((int)nlty, wxEmptyString);
-}
-
 void InFrameWXMEdit::DoSelectionChanged()
 {
 	g_MainFrame->m_Notebook->ConnectMouseClick();
@@ -223,7 +210,7 @@ void InFrameWXMEdit::DoStatusChanged()
 
 	encfmt += BOMText(HasBOM());
 
-	encfmt += NewLineTypeText(GetNewLineType());
+	encfmt += wxString(wxT(".")) + GetNewLine().Name();
 
 	wxm::GetFrameStatusBar().SetField(wxm::STBF_ENCFMT, encfmt);
 

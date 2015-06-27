@@ -714,6 +714,7 @@ int MadEdit::ms_Count = 0;
 
 MadEdit::MadEdit(wxm::ConfigWriter* cfg_writer, wxWindow* parent, wxWindowID id, const wxPoint& pos, const wxSize& size, long style)
     : MadEditSuperClass(parent, id, pos, size, style), m_cfg_writer(cfg_writer)
+    , m_newline(&wxm::g_nl_default), m_newline_for_insert(&wxm::g_nl_default)
 {
     ++ms_Count;
 
@@ -823,8 +824,6 @@ MadEdit::MadEdit(wxm::ConfigWriter* cfg_writer, wxWindow* parent, wxWindowID id,
 
 
     m_MaxWidth=m_MaxHeight=0;
-
-    m_NewLineType=m_InsertNewLineType=nltDefault;
 
     m_HasTab=false;
     m_Config->Read(wxT("TabColumns"), &m_TabColumns, 8);
@@ -3980,27 +3979,7 @@ int MadEdit::TranslateText(const wxChar* pwcs, size_t count, vector<ucs4_t>& ucs
 
             if(!passNewLine)
             {
-                switch(m_InsertNewLineType)
-                {
-                case nltDOS:
-#ifdef __WXMSW__
-                case nltDefault:
-#endif
-                    ucs.push_back(uc);
-                    uc=0x0A;
-                    break;
-
-                case nltMAC:
-                    // do nothing
-                    break;
-
-                case nltUNIX:
-#ifndef __WXMSW__
-                case nltDefault:
-#endif
-                    uc=0x0A;
-                    break;
-                }
+                m_newline_for_insert->Convert0x0D(uc, ucs);
 
                 if(i<count && *pwcs==0x0A)// ignore 0x0A
                 {
@@ -4014,28 +3993,7 @@ int MadEdit::TranslateText(const wxChar* pwcs, size_t count, vector<ucs4_t>& ucs
             ++linecount;
 
             if(!passNewLine)
-            {
-                switch(m_InsertNewLineType)
-                {
-                case nltDOS:
-#ifdef __WXMSW__
-                case nltDefault:
-#endif
-                    ucs.push_back(0x0D);
-                    break;
-
-                case nltMAC:
-                    uc=0x0D;
-                    break;
-
-                case nltUNIX:
-#ifndef __WXMSW__
-                case nltDefault:
-#endif
-                    // do nothing
-                    break;
-                }
-            }
+                m_newline_for_insert->Convert0x0A(uc, ucs);
         }
 
         ucs.push_back(uc);
@@ -4084,29 +4042,7 @@ int MadEdit::GetColumnDataFromClipboard(vector<ucs4_t>& ucs)
     {
         linecount=GetTextFromClipboard(ucs);
         if(linecount!=0)
-        {
-            switch(m_InsertNewLineType)
-            {
-            case nltDOS:
-#ifdef __WXMSW__
-            case nltDefault:
-#endif
-                ucs.push_back(0x0D);
-                ucs.push_back(0x0A);
-                break;
-
-            case nltMAC:
-                ucs.push_back(0x0D);
-                break;
-
-            case nltUNIX:
-#ifndef __WXMSW__
-            case nltDefault:
-#endif
-                ucs.push_back(0x0A);
-                break;
-            }
-        }
+            m_newline_for_insert->Value(ucs);
     }
 
     return linecount;
@@ -5146,33 +5082,7 @@ void MadEdit::InsertColumnString(const ucs4_t *ucs, size_t count, int linecount,
             }
 
             if(lines == 1 && lit == m_Lines->m_LineList.end())
-            {
-                // add newline
-                ucs4_t nl;
-                switch (m_InsertNewLineType)
-                {
-                case nltUNIX:
-            #ifndef __WXMSW__
-                case nltDefault:
-            #endif
-                    nl = 0x0A;
-                    UCStoBlock(&nl, 1, blk);
-                    break;
-                case nltMAC:
-                    nl = 0x0D;
-                    UCStoBlock(&nl, 1, blk);
-                    break;
-                case nltDOS:
-            #ifdef __WXMSW__
-                case nltDefault:
-            #endif
-                    nl = 0x0D;
-                    UCStoBlock(&nl, 1, blk);
-                    nl = 0x0A;
-                    UCStoBlock(&nl, 1, blk);
-                    break;
-                }
-            }
+                NewLineToBlock(blk);
 
             if(blk.m_Size != 0)
             {
@@ -5248,32 +5158,7 @@ void MadEdit::InsertColumnString(const ucs4_t *ucs, size_t count, int linecount,
 
                     blk.m_Pos = -1;
                     blk.m_Size = 0;
-                    ucs4_t nl;
-                    switch (m_InsertNewLineType)
-                    {
-                    case nltUNIX:
-            #ifndef __WXMSW__
-                    case nltDefault:
-            #endif
-                        nl = 0x0A;
-                        UCStoBlock(&nl, 1, blk);
-                        break;
-
-                    case nltMAC:
-                        nl = 0x0D;
-                        UCStoBlock(&nl, 1, blk);
-                        break;
-
-                    case nltDOS:
-            #ifdef __WXMSW__
-                    case nltDefault:
-            #endif
-                        nl = 0x0D;
-                        UCStoBlock(&nl, 1, blk);
-                        nl = 0x0A;
-                        UCStoBlock(&nl, 1, blk);
-                        break;
-                    }
+                    NewLineToBlock(blk);
 
                     MadInsertUndoData *insud = new MadInsertUndoData;
                     insud->m_Pos = m_Lines->m_Size;
@@ -5341,32 +5226,7 @@ void MadEdit::InsertColumnString(const ucs4_t *ucs, size_t count, int linecount,
                     rowpos = 0;
                     xpos = xpos0;
 
-                    // add newline
-                    ucs4_t nl;
-                    switch (m_InsertNewLineType)
-                    {
-                    case nltUNIX:
-            #ifndef __WXMSW__
-                    case nltDefault:
-            #endif
-                        nl = 0x0A;
-                        UCStoBlock(&nl, 1, blk);
-                        break;
-                    case nltMAC:
-                        nl = 0x0D;
-                        UCStoBlock(&nl, 1, blk);
-                        break;
-
-                    case nltDOS:
-            #ifdef __WXMSW__
-                    case nltDefault:
-            #endif
-                        nl = 0x0D;
-                        UCStoBlock(&nl, 1, blk);
-                        nl = 0x0A;
-                        UCStoBlock(&nl, 1, blk);
-                        break;
-                    }
+                    NewLineToBlock(blk);
                 }
                 else
                 {
@@ -8745,25 +8605,7 @@ void MadEdit::ProcessReturnCommand(MadEditCommand command)
 
         vector <ucs4_t> ucs;
 
-        switch (m_InsertNewLineType)
-        {
-        case nltUNIX:
-#ifndef __WXMSW__
-        case nltDefault:
-#endif
-            ucs.push_back(0x0A);
-            break;
-        case nltMAC:
-            ucs.push_back(0x0D);
-            break;
-        case nltDOS:
-#ifdef __WXMSW__
-        case nltDefault:
-#endif
-            ucs.push_back(0x0D);
-            ucs.push_back(0x0A);
-            break;
-        }
+        m_newline_for_insert->Value(ucs);
 
         if (m_AutoIndent && command == ecReturn)
         {
@@ -10505,4 +10347,20 @@ wxMilliClock_t MadEdit::GetTripleClickInterval()
     }
 
     return t;
+}
+
+namespace wxm
+{
+    const wxString NewLineChar::MACDescription(wxT("CR/0D (MAC)"));
+    const wxString NewLineChar::UNIXDescription(wxT("LF/0A (UNIX)"));
+    const wxString NewLineChar::DOSDescription(wxT("CRLF/0D0A (DOS)"));
+
+    const ucs4string NewLineChar::MACValue(1, ucs4_t(0x0D));
+    const ucs4string NewLineChar::UNIXValue(1, ucs4_t(0x0A));
+    const ucs4string NewLineChar::DOSValue = MACValue + UNIXValue;
+
+    const NewLineDefault g_nl_default;
+    const NewLineDOS     g_nl_dos;
+    const NewLineUNIX    g_nl_unix;
+    const NewLineMAC     g_nl_mac;
 }

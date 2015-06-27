@@ -9,6 +9,8 @@
 #ifndef _WXM_DEF_H_
 #define _WXM_DEF_H_
 
+#include "../wxmedit/ucs4_t.h"
+
 #ifdef _MSC_VER
 # pragma warning( push )
 # pragma warning( disable : 4996 )
@@ -22,8 +24,11 @@
 #endif
 
 #include <vector>
+#include <string>
 
 #define WXMEDIT_VERSION	"2.9.9.3"
+
+typedef std::basic_string<ucs4_t> ucs4string;
 
 #if wxMAJOR_VERSION==2
   typedef int wxPrintOrientation;

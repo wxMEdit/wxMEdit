@@ -66,6 +66,72 @@ namespace wxm
             , controls(0), fullwidths(0), ambws(0), lines(0)
         {}
     };
+
+    struct NewLineChar
+    {
+        virtual bool IsDefault() const { return false; }
+        virtual wxString Name() const = 0;
+        virtual const wxString& Description() const = 0;
+        virtual const ucs4string& Value() const = 0;
+        virtual void Value(std::vector<ucs4_t>& vec) const = 0;
+        virtual void Convert0x0D(ucs4_t& ch, std::vector<ucs4_t>& ucs) const = 0;
+        virtual void Convert0x0A(ucs4_t& ch, std::vector<ucs4_t>& ucs) const = 0;
+
+        virtual ~NewLineChar() {}
+    protected:
+        static const wxString MACDescription;
+        static const wxString UNIXDescription;
+        static const wxString DOSDescription;
+
+        static const ucs4string MACValue;
+        static const ucs4string UNIXValue;
+        static const ucs4string DOSValue;
+    };
+
+    class NewLineDOS : public NewLineChar
+    {
+        virtual wxString Name() const { return wxT("DOS"); }
+        virtual const wxString& Description() const { return DOSDescription; }
+        virtual const ucs4string& Value() const { return DOSValue; }
+        virtual void Value(std::vector<ucs4_t>& v) const { v.push_back(0x0D); v.push_back(0x0A); }
+        virtual void Convert0x0D(ucs4_t& ch, std::vector<ucs4_t>& ucs) const { ucs.push_back(ch); ch = 0x0A; }
+        virtual void Convert0x0A(ucs4_t& ch, std::vector<ucs4_t>& ucs) const { ucs.push_back(0x0D); }
+    };
+
+    class NewLineUNIX : public NewLineChar
+    {
+        virtual wxString Name() const { return wxT("UNIX"); }
+        virtual const wxString& Description() const { return UNIXDescription; }
+        virtual const ucs4string& Value() const { return UNIXValue; }
+        virtual void Value(std::vector<ucs4_t>& v) const { v.push_back(0x0A); }
+        virtual void Convert0x0D(ucs4_t& ch, std::vector<ucs4_t>& ucs) const { ch = 0x0A; }
+        virtual void Convert0x0A(ucs4_t& ch, std::vector<ucs4_t>& ucs) const {}
+    };
+
+    class NewLineDefault : public
+#ifdef __WXMSW__
+        NewLineDOS
+#else
+        NewLineUNIX
+#endif
+    {
+        virtual bool IsDefault() const { return true; }
+    };
+
+    class NewLineMAC : public NewLineChar
+    {
+        virtual wxString Name() const { return wxT("MAC"); }
+        virtual const wxString& Description() const { return MACDescription; }
+        virtual const ucs4string& Value() const { return MACValue; }
+        virtual void Value(std::vector<ucs4_t>& v) const { v.push_back(0x0D); }
+        virtual void Convert0x0D(ucs4_t& ch, std::vector<ucs4_t>& ucs) const {}
+        virtual void Convert0x0A(ucs4_t& ch, std::vector<ucs4_t>& ucs) const { ch = 0x0D; }
+    };
+
+    extern const NewLineDefault g_nl_default;
+    extern const NewLineDOS     g_nl_dos;
+    extern const NewLineUNIX    g_nl_unix;
+    extern const NewLineMAC     g_nl_mac;
 } // namespace wxm
 
 //==============================================================================
@@ -120,9 +186,6 @@ enum MadEditMode
 
 enum MadCaretType
 { ctVerticalLine, ctHorizontalLine, ctBlock };
-
-enum MadNewLineType
-{ nltDefault /*Depends on Platform*/, nltDOS /*0D0A*/ , nltUNIX /*0A*/ , nltMAC /*0D*/  };
 
 enum MadConvertEncodingFlag
 {
@@ -348,8 +411,9 @@ private:
     // for OnSize()
     int             m_MaxWidth, m_MaxHeight;
 
+    const wxm::NewLineChar* m_newline;
+    const wxm::NewLineChar* m_newline_for_insert;
 
-    MadNewLineType  m_NewLineType, m_InsertNewLineType;
     long            m_MaxLineLength;
     bool            m_HasTab;
     long            m_TabColumns;
@@ -526,6 +590,14 @@ protected:
                                      /*OUT*/ int *lineid = nullptr);
 
     void UCStoBlock(const ucs4_t *ucs, size_t count, MadBlock & block);
+    void NewLineToBlock(const wxm::NewLineChar& nl, MadBlock & block)
+    {
+        UCStoBlock(nl.Value().data(), nl.Value().size(), block);
+    }
+    void NewLineToBlock(MadBlock & block)
+    {
+        NewLineToBlock(*m_newline_for_insert, block);
+    }
 
     long MaxLineLength() { return m_MaxLineLength; }
     virtual bool AdjustInsertCount(const ucs4_t *ucs, size_t& count) { return true; }
@@ -825,36 +897,20 @@ public: // basic functions
 
     int GetLineCount() { return int(m_Lines->m_LineCount); }
 
-    void ConvertNewLineType(MadNewLineType type);
-    void SetInsertNewLineType(MadNewLineType type)
+    void ConvertNewLine(const wxm::NewLineChar& nl);
+    void SetInsertNewLine(const wxm::NewLineChar& nl)
     {
-        m_InsertNewLineType=type;
+        m_newline_for_insert = &nl;
     }
 
-    MadNewLineType GetNewLineType()
+    const wxm::NewLineChar& GetNewLine()
     {
-        if(m_NewLineType==nltDefault)
-        {
-#ifdef __WXMSW__
-            return nltDOS;
-#else
-            return nltUNIX;
-#endif
-        }
-        return m_NewLineType;
+        return *m_newline;
     }
 
-    MadNewLineType GetInsertNewLineType()
+    const wxm::NewLineChar& GetNewLine4Insert()
     {
-        if(m_InsertNewLineType==nltDefault)
-        {
-#ifdef __WXMSW__
-            return nltDOS;
-#else
-            return nltUNIX;
-#endif
-        }
-        return m_InsertNewLineType;
+        return *m_newline_for_insert;
     }
 
     bool IsModified() { return m_Modified; }

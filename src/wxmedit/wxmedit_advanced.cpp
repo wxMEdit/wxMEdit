@@ -233,33 +233,21 @@ void MadEdit::ConvertChinese(MadConvertEncodingFlag flag)
     RestoreLocations(loc);
 }
 
-void MadEdit::ConvertNewLineType(MadNewLineType type)
+void MadEdit::ConvertNewLine(const wxm::NewLineChar& nl)
 {
     if(IsReadOnly() || !IsTextFile())
         return;
 
     if(m_Lines->m_LineCount<2)
     {
-        m_NewLineType=m_InsertNewLineType=type;
+        m_newline = &nl;
+        m_newline_for_insert = &nl;
         DoStatusChanged();
         return;
     }
 
     MadBlock newline_blk(m_Lines->m_MemData, -1, 0);
-    ucs4_t newline[2]={ 0x0D, 0x0A };
-    switch(type)
-    {
-    case nltDOS:
-        UCStoBlock(newline, 2, newline_blk);
-        break;
-    case nltMAC:
-        UCStoBlock(newline, 1, newline_blk);
-        break;
-    case nltUNIX:
-        UCStoBlock(newline+1, 1, newline_blk);
-        break;
-    default: break;
-    }
+    NewLineToBlock(nl, newline_blk);
 
     wxByte newlinedata[16];
     size_t newlinesize = size_t(newline_blk.m_Size);
@@ -351,7 +339,8 @@ void MadEdit::ConvertNewLineType(MadNewLineType type)
 
     ReformatAll();
 
-    m_NewLineType=m_InsertNewLineType=type;
+    m_newline = &nl;
+    m_newline_for_insert = &nl;
     m_Modified=true;
 
     DoSelectionChanged();
@@ -1753,27 +1742,7 @@ void MadEdit::SortLines(MadSortFlags flags, int beginline, int endline)
             }
 
             if(lit->m_NewLineSize == 0 && slit != slitend) //append a newline char
-            {
-                ucs4_t newline[2]={ 0x0D, 0x0A };
-                switch(m_InsertNewLineType)
-                {
-                case nltDOS:
-#ifdef __WXMSW__
-                case nltDefault:
-#endif
-                    UCStoBlock(newline, 2, blk);
-                    break;
-                case nltMAC:
-                    UCStoBlock(newline, 1, blk);
-                    break;
-                case nltUNIX:
-#ifndef __WXMSW__
-                case nltDefault:
-#endif
-                    UCStoBlock(newline+1, 1, blk);
-                    break;
-                }
-            }
+                NewLineToBlock(blk);
         }
 
     }
@@ -1892,25 +1861,7 @@ void MadEdit::ConvertWordWrapToNewLine()
     if(del_pos.size()==0) return; // there is no wrapped-line
 
     MadBlock blk(m_Lines->m_MemData, -1, 0);
-    ucs4_t newline[2]={ 0x0D, 0x0A };
-    switch(m_InsertNewLineType)
-    {
-    case nltDOS:
-#ifdef __WXMSW__
-    case nltDefault:
-#endif
-        UCStoBlock(newline, 2, blk);
-        break;
-    case nltMAC:
-        UCStoBlock(newline, 1, blk);
-        break;
-    case nltUNIX:
-#ifndef __WXMSW__
-    case nltDefault:
-#endif
-        UCStoBlock(newline+1, 1, blk);
-        break;
-    }
+    NewLineToBlock(blk);
 
     vector<wxByte> newlinedata;
     newlinedata.resize(size_t(blk.m_Size));

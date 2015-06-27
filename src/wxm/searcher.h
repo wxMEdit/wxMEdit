@@ -12,6 +12,7 @@
 
 #include "../wxmedit/ucs4_t.h"
 #include "../xm/cxx11.h"
+#include "def.h"
 
 #ifdef _MSC_VER
 # pragma warning( push )
@@ -46,8 +47,6 @@ enum MadReplaceResult
 	RR_NREP_NEXT = 2,  // not replaced, found next
 	RR_REP_NEXT = 3    // replaced, found next
 };
-
-typedef std::basic_string<ucs4_t> ucs4string;
 
 namespace wxm
 {

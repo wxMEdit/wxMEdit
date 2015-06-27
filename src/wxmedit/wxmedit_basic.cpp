@@ -1690,7 +1690,7 @@ bool MadEdit::LoadFromFile(const wxString &filename, const wxString &encoding)
     m_ModificationTime = wxFileModificationTime(filename);
     m_ReadOnly = false; // use IsReadOnly() to check ReadOnly or not
 
-    m_InsertNewLineType=m_NewLineType;
+    m_newline_for_insert = m_newline;
 
     m_Selection = false;
     m_SelFirstRow=INT_MAX;
