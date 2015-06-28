@@ -1014,8 +1014,6 @@ public: // advanced functions
     void ToHalfWidth(bool ascii=true, bool japanese=true, bool korean=true, bool other=true);
     void ToFullWidth(bool ascii=true, bool japanese=true, bool korean=true, bool other=true);
 
-    void TrimTrailingSpaces();
-
     // startline<0 : sort all lines; otherwise sort [beginline, endline]
     void SortLines(MadSortFlags flags, int beginline, int endline);
 

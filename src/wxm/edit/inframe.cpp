@@ -836,4 +836,14 @@ void InFrameWXMEdit::PaintLineNumberArea(const wxColor & bgcolor, wxDC * dc, con
 	}
 }
 
+void InFrameWXMEdit::TrimTrailingSpaces()
+{
+	if (IsReadOnly() || GetEditMode() == emHexMode)
+		return;
+
+	// use Regular Expressions to trim all trailing spaces
+	Searcher(false, true)->SetOption(true, false);
+	Searcher(false, true)->ReplaceAll(wxT("[ \t]+(\r|\n|$)"), wxT("$1"));
+}
+
 } //namespace wxm

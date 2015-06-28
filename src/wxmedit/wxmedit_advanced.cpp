@@ -1306,16 +1306,6 @@ void MadEdit::WordCount(bool selection, wxm::WordCountData& data)
     }
 }
 
-void MadEdit::TrimTrailingSpaces()
-{
-    if(IsReadOnly() || m_EditMode==emHexMode)
-        return;
-
-    // use Regular Expressions to trim all trailing spaces
-    Searcher(false, true)->SetOption(true, false);
-    Searcher(false, true)->ReplaceAll(wxT("[ \t]+(\r|\n|$)"), wxT("$1"));
-}
-
 
 //==============================================================================
 struct SortLineData

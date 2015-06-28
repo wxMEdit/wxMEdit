@@ -197,11 +197,6 @@ public:
     void OnEditInsertTabChar(wxCommandEvent& event);
     void OnEditInsertDateTime(wxCommandEvent& event);
 
-    void OnEditToggleBookmark(wxCommandEvent& event);
-    void OnEditGotoNextBookmark(wxCommandEvent& event);
-    void OnEditGotoPreviousBookmark(wxCommandEvent& event);
-    void OnEditClearAllBookmarks(wxCommandEvent& event);
-
     void OnEditSortAscending(wxCommandEvent& event);
     void OnEditSortDescending(wxCommandEvent& event);
     void OnEditSortAscendingCase(wxCommandEvent& event);
@@ -238,6 +233,11 @@ public:
     void OnSearchGoToPosition(wxCommandEvent& event);
     void OnSearchGoToLeftBrace(wxCommandEvent& event);
     void OnSearchGoToRightBrace(wxCommandEvent& event);
+
+    void OnSearchToggleBookmark(wxCommandEvent& event);
+    void OnSearchGotoNextBookmark(wxCommandEvent& event);
+    void OnSearchGotoPreviousBookmark(wxCommandEvent& event);
+    void OnSearchClearAllBookmarks(wxCommandEvent& event);
 
     void OnViewEncoding(wxCommandEvent& event);
     void OnViewRecentEncoding(wxCommandEvent& event);

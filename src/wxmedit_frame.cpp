@@ -943,10 +943,6 @@ BEGIN_EVENT_TABLE(MadEditFrame,wxFrame)
 	EVT_MENU(menuSelectAll, MadEditFrame::OnEditSelectAll)
 	EVT_MENU(menuInsertTabChar, MadEditFrame::OnEditInsertTabChar)
 	EVT_MENU(menuInsertDateTime, MadEditFrame::OnEditInsertDateTime)
-	EVT_MENU(menuToggleBookmark, MadEditFrame::OnEditToggleBookmark)
-	EVT_MENU(menuGotoNextBookmark, MadEditFrame::OnEditGotoNextBookmark)
-	EVT_MENU(menuGotoPreviousBookmark, MadEditFrame::OnEditGotoPreviousBookmark)
-	EVT_MENU(menuClearAllBookmarks, MadEditFrame::OnEditClearAllBookmarks)
 	EVT_MENU(menuSortAscending, MadEditFrame::OnEditSortAscending)
 	EVT_MENU(menuSortDescending, MadEditFrame::OnEditSortDescending)
 	EVT_MENU(menuSortAscendingCase, MadEditFrame::OnEditSortAscendingCase)
@@ -982,6 +978,10 @@ BEGIN_EVENT_TABLE(MadEditFrame,wxFrame)
 	EVT_MENU(menuGoToPosition, MadEditFrame::OnSearchGoToPosition)
 	EVT_MENU(menuLeftBrace, MadEditFrame::OnSearchGoToLeftBrace)
 	EVT_MENU(menuRightBrace, MadEditFrame::OnSearchGoToRightBrace)
+	EVT_MENU(menuToggleBookmark, MadEditFrame::OnSearchToggleBookmark)
+	EVT_MENU(menuGotoNextBookmark, MadEditFrame::OnSearchGotoNextBookmark)
+	EVT_MENU(menuGotoPreviousBookmark, MadEditFrame::OnSearchGotoPreviousBookmark)
+	EVT_MENU(menuClearAllBookmarks, MadEditFrame::OnSearchClearAllBookmarks)
 	// view
 	EVT_MENU_RANGE(menuEncoding1, menuEncoding99, MadEditFrame::OnViewEncoding)
 	EVT_MENU_RANGE(menuRecentEncoding1, menuRecentEncoding9, MadEditFrame::OnViewRecentEncoding)
@@ -3635,30 +3635,6 @@ void MadEditFrame::OnEditInsertDateTime(wxCommandEvent& event)
     g_active_wxmedit->InsertDateTime();
 }
 
-void MadEditFrame::OnEditToggleBookmark(wxCommandEvent& event)
-{
-    if ( g_active_wxmedit )
-        g_active_wxmedit->ToggleBookmark();
-}
-
-void MadEditFrame::OnEditGotoNextBookmark(wxCommandEvent& event)
-{
-    if ( g_active_wxmedit )
-        g_active_wxmedit->GotoNextBookmark();
-}
-
-void MadEditFrame::OnEditGotoPreviousBookmark(wxCommandEvent& event)
-{
-    if ( g_active_wxmedit )
-        g_active_wxmedit->GotoPreviousBookmark();
-}
-
-void MadEditFrame::OnEditClearAllBookmarks(wxCommandEvent& event)
-{
-    if ( g_active_wxmedit )
-        g_active_wxmedit->ClearAllBookmarks();
-}
-
 void MadEditFrame::OnEditSortAscending(wxCommandEvent& event)
 {
     if (g_active_wxmedit!=nullptr && g_active_wxmedit->GetEditMode()!=emHexMode)
@@ -3925,8 +3901,7 @@ void MadEditFrame::OnEditSpaceToTab(wxCommandEvent& event)
 
 void MadEditFrame::OnEditTrimTrailingSpaces(wxCommandEvent& event)
 {
-    if (g_active_wxmedit!=nullptr && g_active_wxmedit->GetEditMode()!=emHexMode)
-        g_active_wxmedit->TrimTrailingSpaces();
+    if (g_active_wxmedit!=nullptr) g_active_wxmedit->TrimTrailingSpaces();
 }
 
 namespace wxm
@@ -4148,6 +4123,30 @@ void MadEditFrame::OnSearchGoToRightBrace(wxCommandEvent& event)
         return;
 
     g_active_wxmedit->GoToRightBrace();
+}
+
+void MadEditFrame::OnSearchToggleBookmark(wxCommandEvent& event)
+{
+    if ( g_active_wxmedit )
+        g_active_wxmedit->ToggleBookmark();
+}
+
+void MadEditFrame::OnSearchGotoNextBookmark(wxCommandEvent& event)
+{
+    if ( g_active_wxmedit )
+        g_active_wxmedit->GotoNextBookmark();
+}
+
+void MadEditFrame::OnSearchGotoPreviousBookmark(wxCommandEvent& event)
+{
+    if ( g_active_wxmedit )
+        g_active_wxmedit->GotoPreviousBookmark();
+}
+
+void MadEditFrame::OnSearchClearAllBookmarks(wxCommandEvent& event)
+{
+    if ( g_active_wxmedit )
+        g_active_wxmedit->ClearAllBookmarks();
 }
 
 
