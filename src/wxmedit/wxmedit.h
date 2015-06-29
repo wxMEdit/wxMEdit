@@ -72,8 +72,9 @@ namespace wxm
         virtual bool IsDefault() const { return false; }
         virtual wxString Name() const = 0;
         virtual const wxString& Description() const = 0;
+        virtual wxString wxValue() const = 0;
         virtual const ucs4string& Value() const = 0;
-        virtual void Value(std::vector<ucs4_t>& vec) const = 0;
+        virtual void ValueAppendTo(std::vector<ucs4_t>& vec) const = 0;
         virtual void Convert0x0D(ucs4_t& ch, std::vector<ucs4_t>& ucs) const = 0;
         virtual void Convert0x0A(ucs4_t& ch, std::vector<ucs4_t>& ucs) const = 0;
 
@@ -90,22 +91,26 @@ namespace wxm
 
     class NewLineDOS : public NewLineChar
     {
-        virtual wxString Name() const { return wxT("DOS"); }
-        virtual const wxString& Description() const { return DOSDescription; }
-        virtual const ucs4string& Value() const { return DOSValue; }
-        virtual void Value(std::vector<ucs4_t>& v) const { v.push_back(0x0D); v.push_back(0x0A); }
-        virtual void Convert0x0D(ucs4_t& ch, std::vector<ucs4_t>& ucs) const { ucs.push_back(ch); ch = 0x0A; }
-        virtual void Convert0x0A(ucs4_t& ch, std::vector<ucs4_t>& ucs) const { ucs.push_back(0x0D); }
+        virtual wxString Name() const override { return wxT("DOS"); }
+        virtual const wxString& Description() const override { return DOSDescription; }
+        virtual const ucs4string& Value() const override { return DOSValue; }
+        virtual void Convert0x0D(ucs4_t& ch, std::vector<ucs4_t>& ucs) const override { ucs.push_back(ch); ch = 0x0A; }
+        virtual void Convert0x0A(ucs4_t& ch, std::vector<ucs4_t>& ucs) const override { ucs.push_back(0x0D); }
+    public:
+        virtual wxString wxValue() const override { return wxT("\n"); }
+        virtual void ValueAppendTo(std::vector<ucs4_t>& v) const override { v.push_back(0x0D); v.push_back(0x0A); }
     };
 
     class NewLineUNIX : public NewLineChar
     {
-        virtual wxString Name() const { return wxT("UNIX"); }
-        virtual const wxString& Description() const { return UNIXDescription; }
-        virtual const ucs4string& Value() const { return UNIXValue; }
-        virtual void Value(std::vector<ucs4_t>& v) const { v.push_back(0x0A); }
-        virtual void Convert0x0D(ucs4_t& ch, std::vector<ucs4_t>& ucs) const { ch = 0x0A; }
-        virtual void Convert0x0A(ucs4_t& ch, std::vector<ucs4_t>& ucs) const {}
+        virtual wxString Name() const override { return wxT("UNIX"); }
+        virtual const wxString& Description() const override { return UNIXDescription; }
+        virtual const ucs4string& Value() const override { return UNIXValue; }
+        virtual void Convert0x0D(ucs4_t& ch, std::vector<ucs4_t>& ucs) const override { ch = 0x0A; }
+        virtual void Convert0x0A(ucs4_t& ch, std::vector<ucs4_t>& ucs) const override {}
+    public:
+        virtual wxString wxValue() const override { return wxT("\n"); }
+        virtual void ValueAppendTo(std::vector<ucs4_t>& v) const override { v.push_back(0x0A); }
     };
 
     class NewLineDefault : public
@@ -115,17 +120,19 @@ namespace wxm
         NewLineUNIX
 #endif
     {
-        virtual bool IsDefault() const { return true; }
+        virtual bool IsDefault() const override { return true; }
     };
 
     class NewLineMAC : public NewLineChar
     {
-        virtual wxString Name() const { return wxT("MAC"); }
-        virtual const wxString& Description() const { return MACDescription; }
-        virtual const ucs4string& Value() const { return MACValue; }
-        virtual void Value(std::vector<ucs4_t>& v) const { v.push_back(0x0D); }
-        virtual void Convert0x0D(ucs4_t& ch, std::vector<ucs4_t>& ucs) const {}
-        virtual void Convert0x0A(ucs4_t& ch, std::vector<ucs4_t>& ucs) const { ch = 0x0D; }
+        virtual wxString Name() const override { return wxT("MAC"); }
+        virtual const wxString& Description() const override { return MACDescription; }
+        virtual const ucs4string& Value() const override { return MACValue; }
+        virtual void Convert0x0D(ucs4_t& ch, std::vector<ucs4_t>& ucs) const override {}
+        virtual void Convert0x0A(ucs4_t& ch, std::vector<ucs4_t>& ucs) const override { ch = 0x0D; }
+    public:
+        virtual wxString wxValue() const override { return wxT("\n"); }
+        virtual void ValueAppendTo(std::vector<ucs4_t>& v) const override { v.push_back(0x0D); }
     };
 
     extern const NewLineDefault g_nl_default;

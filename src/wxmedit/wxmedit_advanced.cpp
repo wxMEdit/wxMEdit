@@ -2085,10 +2085,7 @@ void MadEdit::ConvertSpaceToTab()
         // add newline
         if(GetEditMode() == emColumnMode)
         {
-#ifdef __WXMSW__
-            newtext.push_back(0x0D);
-#endif
-            newtext.push_back(0x0A);
+            wxm::g_nl_default.ValueAppendTo(newtext);
         }
         else
         {
@@ -2260,10 +2257,7 @@ void MadEdit::ConvertTabToSpace()
         // add newline
         if(GetEditMode() == emColumnMode)
         {
-#ifdef __WXMSW__
-            newtext.push_back(0x0D);
-#endif
-            newtext.push_back(0x0A);
+            wxm::g_nl_default.ValueAppendTo(newtext);
         }
         else
         {

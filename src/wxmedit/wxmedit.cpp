@@ -3601,13 +3601,7 @@ wxFileOffset MadEdit::GetColumnSelection(wxString *ws)
         }
 
         if(ws)
-        {
-            // add newline
-#ifdef __WXMSW__
-            (*ws)<<wxChar(0x0D);
-#endif
-            (*ws)<<wxChar(0x0A);
-        }
+            (*ws) <<  wxm::g_nl_default.wxValue();
 
         if(firstrow == lastrow)
             break;
@@ -4042,7 +4036,7 @@ int MadEdit::GetColumnDataFromClipboard(vector<ucs4_t>& ucs)
     {
         linecount=GetTextFromClipboard(ucs);
         if(linecount!=0)
-            m_newline_for_insert->Value(ucs);
+            m_newline_for_insert->ValueAppendTo(ucs);
     }
 
     return linecount;
@@ -8605,7 +8599,7 @@ void MadEdit::ProcessReturnCommand(MadEditCommand command)
 
         vector <ucs4_t> ucs;
 
-        m_newline_for_insert->Value(ucs);
+        m_newline_for_insert->ValueAppendTo(ucs);
 
         if (m_AutoIndent && command == ecReturn)
         {

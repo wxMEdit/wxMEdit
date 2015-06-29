@@ -1223,10 +1223,7 @@ void MadEdit::CopyRegularText()
             ucs4_t &uc=ucqueue.front().first;
             if(uc==0x0D || uc==0x0A)
             {
-#ifdef __WXMSW__
-                ws<<wxChar(0x0D);
-#endif
-                ws<<wxChar(0x0A);
+                ws << wxm::g_nl_default.wxValue();
 
                 pos += ucqueue.front().second;
 
