@@ -120,6 +120,8 @@ wxmedit_test_SOURCES =	$(enc_src) \
 	src/wxmedit/wxm_deque.hpp \
 	src/xm/cxx11.h \
 	src/xm/utils.hpp \
+	src/xm/uutils.h \
+	src/xm/uutils.cpp \
 	test/encdet/data_from_icudet.cpp \
 	test/encdet/data_from_icudet.h \
 	test/encdet/data_from_mozdet.cpp \

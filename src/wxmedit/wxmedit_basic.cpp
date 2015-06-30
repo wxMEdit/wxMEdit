@@ -12,6 +12,7 @@
 #include "../wxm/encoding/unicode.h"
 #include "../wxm/utils.h"
 #include "../mad_utils.h"
+#include "../xm/uutils.h"
 
 #ifdef __WXGTK__
 #   include "clipbrd_gtk.h"
@@ -876,22 +877,7 @@ void MadEdit::GetSelText(wxString &ws)
                 m_Lines->NextUChar(ucqueue);
             }
 
-#ifdef __WXMSW__
-            ucs4_t uc=ucqueue.back().first;
-            if(uc>=0x10000)
-            {
-                wchar_t wbuf[2];
-                wxm::UCS4toUTF16LE_U10000(uc, (wxByte*)wbuf);
-                ws<<wbuf[0];
-                ws<<wbuf[1];
-            }
-            else
-            {
-                ws<<wxChar(uc);
-            }
-#else
-            ws<<wxChar(ucqueue.back().first);
-#endif
+            wxm::WxStrAppendUCS4(ws, ucqueue.back().first);
 
             pos += ucqueue.back().second;
         }
@@ -924,22 +910,7 @@ void MadEdit::GetText(wxString &ws, bool ignoreBOM)
             m_Lines->NextUChar(ucqueue);
         }
 
-#ifdef __WXMSW__
-        ucs4_t uc=ucqueue.back().first;
-        if(uc>=0x10000)
-        {
-            wchar_t wbuf[2];
-            wxm::UCS4toUTF16LE_U10000(uc, (wxByte*)wbuf);
-            ws<<wbuf[0];
-            ws<<wbuf[1];
-        }
-        else
-        {
-            ws<<wxChar(uc);
-        }
-#else
-        ws<<wxChar(ucqueue.back().first);
-#endif
+        wxm::WxStrAppendUCS4(ws, ucqueue.back().first);
 
         pos += ucqueue.back().second;
     }
@@ -1100,21 +1071,7 @@ bool MadEdit::GetLine(wxString &ws, int line, size_t maxlen, bool ignoreBOM)
         if(uc==0x0D || uc==0x0A)
             return true;
 
-#ifdef __WXMSW__
-        if(uc>=0x10000)
-        {
-            wchar_t wbuf[2];
-            wxm::UCS4toUTF16LE_U10000(uc, (wxByte*)wbuf);
-            ws<<wbuf[0];
-            ws<<wbuf[1];
-        }
-        else
-        {
-            ws<<wxChar(uc);
-        }
-#else
-        ws<<wxChar(uc);
-#endif
+        wxm::WxStrAppendUCS4(ws, uc);
     }
     while(ws.Len() < maxlen);
 
@@ -1234,26 +1191,11 @@ void MadEdit::CopyRegularText()
                 }
 
                 ucqueue.clear();
-
-            }
-#ifdef __WXMSW__
-            else if(uc>=0x10000)
-            {
-                wchar_t wcbuf[2];
-                wxm::UCS4toUTF16LE_U10000(uc, (wxByte*)wcbuf);
-                ws<<wxChar(wcbuf[0]);
-                ws<<wxChar(wcbuf[1]);
-                pos += ucqueue.front().second;
-                ucqueue.clear();
-            }
-#endif
-            else
-            {
-                ws<<wxChar(uc);
-                pos += ucqueue.front().second;
-                ucqueue.clear();
             }
 
+            wxm::WxStrAppendUCS4(ws, uc);
+            pos += ucqueue.front().second;
+            ucqueue.clear();
         }
         else
         {

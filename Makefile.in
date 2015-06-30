@@ -124,7 +124,7 @@ am__objects_3 = src/wxm/encoding/cp20932.$(OBJEXT) \
 am__objects_4 = src/wxm/encdet.$(OBJEXT) \
 	src/wxmedit/mad_encdet.$(OBJEXT)
 am_wxmedit_test_OBJECTS = $(am__objects_3) $(am__objects_4) \
-	test/encdet/data_from_icudet.$(OBJEXT) \
+	src/xm/uutils.$(OBJEXT) test/encdet/data_from_icudet.$(OBJEXT) \
 	test/encdet/data_from_mozdet.$(OBJEXT) \
 	test/encdet/test_detenc.$(OBJEXT) \
 	test/encdet/test_from_icudet.$(OBJEXT) \
@@ -313,9 +313,6 @@ WX_LIBS = @WX_LIBS@
 WX_LIBS_STATIC = @WX_LIBS_STATIC@
 WX_RESCOMP = @WX_RESCOMP@
 WX_VERSION = @WX_VERSION@
-WX_VERSION_MAJOR = @WX_VERSION_MAJOR@
-WX_VERSION_MICRO = @WX_VERSION_MICRO@
-WX_VERSION_MINOR = @WX_VERSION_MINOR@
 XGETTEXT = @XGETTEXT@
 XGETTEXT_015 = @XGETTEXT_015@
 XGETTEXT_EXTRA_OPTIONS = @XGETTEXT_EXTRA_OPTIONS@
@@ -492,6 +489,8 @@ wxmedit_test_SOURCES = $(enc_src) \
 	src/wxmedit/wxm_deque.hpp \
 	src/xm/cxx11.h \
 	src/xm/utils.hpp \
+	src/xm/uutils.h \
+	src/xm/uutils.cpp \
 	test/encdet/data_from_icudet.cpp \
 	test/encdet/data_from_icudet.h \
 	test/encdet/data_from_mozdet.cpp \
@@ -869,6 +868,8 @@ src/wxm/encdet.$(OBJEXT): src/wxm/$(am__dirstamp) \
 	src/wxm/$(DEPDIR)/$(am__dirstamp)
 src/wxmedit/mad_encdet.$(OBJEXT): src/wxmedit/$(am__dirstamp) \
 	src/wxmedit/$(DEPDIR)/$(am__dirstamp)
+src/xm/uutils.$(OBJEXT): src/xm/$(am__dirstamp) \
+	src/xm/$(DEPDIR)/$(am__dirstamp)
 test/encdet/$(am__dirstamp):
 	@$(MKDIR_P) test/encdet
 	@: > test/encdet/$(am__dirstamp)
@@ -1001,6 +1002,7 @@ mostlyclean-compile:
 	-rm -f src/wxmedit/wxmedit-wxmedit_basic.$(OBJEXT)
 	-rm -f src/wxmedit/wxmedit-wxmedit_command.$(OBJEXT)
 	-rm -f src/wxmedit/wxmedit-wxmedit_gtk.$(OBJEXT)
+	-rm -f src/xm/uutils.$(OBJEXT)
 	-rm -f src/xm/wxmedit-remote.$(OBJEXT)
 	-rm -f src/xm/wxmedit-ublock.$(OBJEXT)
 	-rm -f src/xm/wxmedit-ublock_des.$(OBJEXT)
@@ -1083,6 +1085,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/wxmedit/$(DEPDIR)/wxmedit-wxmedit_basic.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/wxmedit/$(DEPDIR)/wxmedit-wxmedit_command.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/wxmedit/$(DEPDIR)/wxmedit-wxmedit_gtk.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/xm/$(DEPDIR)/uutils.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/xm/$(DEPDIR)/wxmedit-remote.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/xm/$(DEPDIR)/wxmedit-ublock.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/xm/$(DEPDIR)/wxmedit-ublock_des.Po@am__quote@

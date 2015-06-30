@@ -8,6 +8,7 @@
 
 #include "unicode.h"
 #include "../../xm/cxx11.h"
+#include "../../xm/uutils.h"
 
 #ifdef _DEBUG
 #include <crtdbg.h>
@@ -139,7 +140,7 @@ size_t WXMEncodingUTF16LE::UCS4toMultiByte(ucs4_t ucs4, wxByte* buf)
 	if(ucs4>=0x10000)// to unicode surrogates
 	{
 		if(ucs4>0x10FFFF) return 0;
-		return UCS4toUTF16LE_U10000(ucs4, buf);
+		return xm::NonBMPtoUTF16LE(ucs4, buf);
 	}
 
 	buf[0]=ucs4;
@@ -408,25 +409,6 @@ bool WXMEncodingUTF32BE::NextUChar32(MadUCQueue &ucqueue, UChar32BytesMapper& ma
 
 	mapper.MoveUChar32Bytes(ucqueue, (ucs4_t)'?', size_t(rest));
 	return true;
-}
-
-size_t UCS4toUTF16LE_U10000(ucs4_t ucs4, wxByte* buf)
-{
-	//ucs4=(highChar -0xD800) * 0x400 + (lowChar -0xDC00) + 0x10000
-	//if(ucs4>0x10FFFF) return 0;
-
-	//wxASSERT(ucs4>=0x10000 && ucs4<=0x10FFFF);
-
-	ucs4-=0x10000;
-	ucs2_t high=(ucs4>>10)+0xD800;    // high surrogate
-	ucs2_t low=(ucs4&0x3FF)+0xDC00;    // low surrogate
-
-	buf[0]=wxByte(high);
-	buf[1]=high>>8;
-	buf[2]=wxByte(low);
-	buf[3]=low>>8;
-
-	return 4;
 }
 
 };// namespace wxm

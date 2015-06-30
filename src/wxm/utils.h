@@ -52,6 +52,8 @@ wxString FilePathNormalCase(const wxString& path);
 bool FilePathEqual(const wxString& path1, const wxString& path2);
 unsigned long FilePathHash(const wxString& path);
 
+wxString& WxStrAppendUCS4(wxString& ws, ucs4_t ch);
+
 struct FileList
 {
 	FileList(const wxString& files = wxString())

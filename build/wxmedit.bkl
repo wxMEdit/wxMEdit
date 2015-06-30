@@ -238,6 +238,8 @@
 		<headers>../src/wxmedit/wxm_deque.hpp</headers>
 		<headers>../src/xm/cxx11.h</headers>
 		<headers>../src/xm/utils.hpp</headers>
+		<headers>../src/xm/uutils.h</headers>
+		<sources>../src/xm/uutils.cpp</sources>
 		<headers>../test/encdet/data_from_icudet.h</headers>
 		<sources>../test/encdet/data_from_icudet.cpp</sources>
 		<headers>../test/encdet/data_from_mozdet.h</headers>

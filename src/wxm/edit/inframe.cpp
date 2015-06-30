@@ -12,6 +12,7 @@
 #include "../../wxmedit_frame.h"
 #include "../../dialog/wxm_search_replace_dialog.h"
 #include "../../mad_utils.h"
+#include "../../xm/uutils.h"
 
 #ifdef _MSC_VER
 # pragma warning( push )
@@ -700,27 +701,9 @@ void InFrameWXMEdit::PrintHexPage(wxDC *dc, int pageNum)
 				MadUCPair &ucp = ucqueue.back();
 				rowpos += ucp.second;
 				if (ucp.first <= 0x20)
-				{
 					lines << wxT('.');
-				}
 				else
-				{
-#ifdef __WXMSW__
-					if (ucp.first<0x10000)
-					{
-						lines << wxChar(ucp.first);
-					}
-					else
-					{
-						wchar_t wbuf[2];
-						wxm::UCS4toUTF16LE_U10000(ucp.first, (wxByte*)wbuf);
-						lines << wbuf[0];
-						lines << wbuf[1];
-					}
-#else
-					lines << wxChar(ucp.first);
-#endif
-				}
+					WxStrAppendUCS4(lines, ucp.first);
 
 				idx = ucp.second - 1;
 				if (idx>0 && rowpos<hexrowpos16)

@@ -16,6 +16,7 @@
 #include "wxm_syntax.h"
 #include "wxm_undo.h"
 #include "../mad_utils.h"
+#include "../xm/uutils.h"
 
 #ifdef _MSC_VER
 # pragma warning( push )
@@ -1658,32 +1659,21 @@ void MadEdit::InvertRectManual(wxDC *dc, int x, int y, int w, int h)
 #if 0
 void MadEdit::PaintText(wxDC *dc, int x, int y, const ucs4_t *text, const int *width, int count)
 {
-    wxString text1, text2;
+    wxString text1;
     text1.resize(1);
-    text2.resize(2);
-
-    wchar_t wcbuf2[3]={0,0,0};
 
     while(count>0)
     {
 #ifdef __WXMSW__
-        if(*text<0x10000)
+        if(*text > 0x10000)
         {
-            if(*text!=0x20)
-            {
-                text1.SetChar(0, *text);
-                dc->DrawText(text1, x, y);
-            }
-        }
-        else
-        {
-            wxm::UCS4toUTF16LE_U10000(*text, (wxByte*)wcbuf2);
-            text2.SetChar(0, wcbuf2[0]);
-            text2.SetChar(1, wcbuf2[1]);
+            wxString text2;
+            wxm::WxStrAppendUCS4(text2, *text);
             dc->DrawText(text2, x, y);
         }
+        else
 #else
-        if(*text!=0x20)
+            if(*text!=0x20)
         {
             text1.SetChar(0,*text);
             dc->DrawText(text1, x, y);
@@ -1731,7 +1721,7 @@ void MadEdit::PaintText(wxDC *dc, int x, int y, const ucs4_t *text, const int *w
         }
         else
         {
-            wxm::UCS4toUTF16LE_U10000(uc, (wxByte*)wcbuf2);
+            xm::NonBMPtoUTF16(uc, (UChar*)wcbuf2);
             *pwc++=wcbuf2[0];
             *pwc=wcbuf2[1];
             *pwcw++=ucw;
@@ -3570,24 +3560,8 @@ wxFileOffset MadEdit::GetColumnSelection(wxString *ws)
                     if(xpos2 > uchw)
                     {
                         selsize += ucqueue.back().second;
-                        if(ws)
-                        {
-#ifdef __WXMSW__
-                            if(uc<0x10000)
-                            {
-                                (*ws)<<wxChar(uc);
-                            }
-                            else
-                            {
-                                wchar_t wbuf[2];
-                                wxm::UCS4toUTF16LE_U10000(uc, (wxByte*)wbuf);
-                                (*ws)<<wbuf[0];
-                                (*ws)<<wbuf[1];
-                            }
-#else
-                            (*ws)<<wxChar(uc);
-#endif
-                        }
+                        if (ws != nullptr)
+                            wxm::WxStrAppendUCS4(*ws, uc);
 
                         xpos2 -= ucwidth;
                     }
@@ -3736,24 +3710,7 @@ void MadEdit::SelectWordFromCaretPos(wxString *ws)
         {
             size_t s = ucqueue.size();
             for(size_t i = 0; i < s; i++)
-            {
-#ifdef __WXMSW__
-                ucs4_t &uc=ucqueue[i].first;
-                if(uc<0x10000)
-                {
-                    (*ws)<<wxChar(uc);
-                }
-                else
-                {
-                    wchar_t wbuf[2];
-                    wxm::UCS4toUTF16LE_U10000(uc, (wxByte*)wbuf);
-                    (*ws)<<wbuf[0];
-                    (*ws)<<wbuf[1];
-                }
-#else
-                (*ws)<<ucqueue[i].first;
-#endif
-            }
+                wxm::WxStrAppendUCS4(*ws, ucqueue[i].first);
 
             return;
         }
@@ -10218,26 +10175,11 @@ int MadEdit::GetUCharWidth(ucs4_t uc)
     wxUint16 *pw16=widths+idx;
     if((w=*pw16) == 0)
     {
-        wxChar wcs[3];
-
-#ifdef __WXMSW__
-        if(uc<0x10000)
-        {
-            wcs[0] = wxChar(uc);
-            wcs[1] = 0;
-        }
-        else
-        {
-            wxm::UCS4toUTF16LE_U10000(uc, (wxByte*)wcs);
-            wcs[2] = 0;
-        }
-#else
-        wcs[0] = uc;
-        wcs[1] = 0;
-#endif
+        wxString ws;
+        wxm::WxStrAppendUCS4(ws, uc);
 
         int h;
-        GetTextExtent(wcs, &w, &h, nullptr, nullptr, m_TextFont);
+        GetTextExtent(ws.wc_str(), &w, &h, nullptr, nullptr, m_TextFont);
         if(w<=0)
         {
             w=m_TextFontWidths[0][0x20];
@@ -10276,26 +10218,11 @@ int MadEdit::GetHexUCharWidth(ucs4_t uc)
     wxUint16 *pw16=widths+idx;
     if((w=*pw16) == 0)
     {
-        wxChar wcs[3];
-
-#ifdef __WXMSW__
-        if(uc<0x10000)
-        {
-            wcs[0] = wxChar(uc);
-            wcs[1] = 0;
-        }
-        else
-        {
-            wxm::UCS4toUTF16LE_U10000(uc, (wxByte*)wcs);
-            wcs[2] = 0;
-        }
-#else
-        wcs[0] = uc;
-        wcs[1] = 0;
-#endif
+        wxString ws;
+        wxm::WxStrAppendUCS4(ws, uc);
 
         int h;
-        GetTextExtent(wcs, &w, &h, nullptr, nullptr, m_HexFont);
+        GetTextExtent(ws.wc_str(), &w, &h, nullptr, nullptr, m_HexFont);
         if(w<=0)
         {
             w=m_HexFontWidths[0][0x20];
