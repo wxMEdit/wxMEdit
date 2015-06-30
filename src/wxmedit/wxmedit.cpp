@@ -5516,9 +5516,7 @@ MadUndo *MadEdit::DeleteSelection(bool bCorrectCaretPos, vector <int> *rpos, boo
                         uc = ucqueue.back().first;
 
                     if(uc == 0x0D || uc == 0x0A)  // EOL
-                    {
                         break;
-                    }
 
                     int ucwidth = GetUCharWidth(uc);
                     if(uc == 0x09)
@@ -5531,7 +5529,7 @@ MadUndo *MadEdit::DeleteSelection(bool bCorrectCaretPos, vector <int> *rpos, boo
                     }
                     nowxpos += ucwidth;
 
-                    int wchw = ucwidth >> 1;
+                    int wchw = ucwidth / 2;
                     if(xpos1 > wchw)
                     {
                         rowpos += ucqueue.back().second;
@@ -5567,24 +5565,18 @@ MadUndo *MadEdit::DeleteSelection(bool bCorrectCaretPos, vector <int> *rpos, boo
 #endif
 
                     if(undo == nullptr)
-                    {
                         undo = m_UndoBuffer->Add();
-                    }
                     undo->m_Undos.push_back(dudata);
 
                     if(bColumnEditing)
                     {
                         if(lastrow < m_SelectionEnd->rowid)
-                        {
                             m_SelectionPos1.pos -= sellen;
-                        }
                     }
                     else if(bCorrectCaretPos)
                     {
                         if(lastrow < m_CaretPos.rowid)
-                        {
                             m_SelectionPos2.pos -= sellen;
-                        }
                     }
                 }
             }
@@ -5597,20 +5589,15 @@ MadUndo *MadEdit::DeleteSelection(bool bCorrectCaretPos, vector <int> *rpos, boo
             if(bColumnEditing)
             {
                 if(lastrow == firstrow)
-                {
                     m_SelectionPos2.pos=pos + rowpos;
-                }
+
                 if(lastrow == m_SelectionEnd->rowid)
-                {
                     m_SelectionPos1.pos=pos + rowpos;
-                }
             }
             else if(bCorrectCaretPos)
             {
                 if(lastrow == m_CaretPos.rowid)
-                {
                     m_SelectionPos2.pos=pos + rowpos;
-                }
             }
 
             if(rpos)
@@ -5619,9 +5606,7 @@ MadUndo *MadEdit::DeleteSelection(bool bCorrectCaretPos, vector <int> *rpos, boo
                 {
                     size_t idx = rpos->size() - 2;
                     for(int i = subrows; i > 0; --i, idx -= 2)
-                    {
                         (*rpos)[idx] -= int(sellen);
-                    }
                 }
                 rpos->push_back(int(rowpos));
                 rpos->push_back(xpos1);
@@ -5641,7 +5626,7 @@ MadUndo *MadEdit::DeleteSelection(bool bCorrectCaretPos, vector <int> *rpos, boo
                 subrows = 0;
             }
             else
-                // to prev row
+            // to prev row
             {
                 --subrowid;
                 ++subrows;
@@ -5649,9 +5634,7 @@ MadUndo *MadEdit::DeleteSelection(bool bCorrectCaretPos, vector <int> *rpos, boo
         }
 
         if(undo)
-        {
             m_Modified = true;
-        }
         m_Selection = false;
         m_RepaintAll = true;
         Refresh(false);
@@ -5774,13 +5757,10 @@ MadUndo *MadEdit::DeleteSelection(bool bCorrectCaretPos, vector <int> *rpos, boo
         AppearCaret();
         UpdateScrollBarPos();
 
-        if(m_EditMode == emHexMode)
+        if(m_EditMode == emHexMode && !m_CaretAtHexArea)
         {
-            if(!m_CaretAtHexArea)
-            {
-                UpdateTextAreaXPos();
-                m_LastTextAreaXPos = m_TextAreaXPos;
-            }
+            UpdateTextAreaXPos();
+            m_LastTextAreaXPos = m_TextAreaXPos;
         }
     }
     else
