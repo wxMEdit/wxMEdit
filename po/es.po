@@ -39,7 +39,7 @@ msgstr ""
 "Project-Id-Version: wxMEdit 2.9.9\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-04-15 10:14+0800\n"
-"PO-Revision-Date: 2014-12-31 01:45-0400\n"
+"PO-Revision-Date: 2015-07-09 15:58-0400\n"
 "Last-Translator: \n"
 "Language-Team:  <carlos1994sanchez@gmail.com>\n"
 "Language: es\n"
@@ -138,7 +138,7 @@ msgstr "Buscar/Reemplazar en archivos"
 #: ../src/dialog/wxm_search_replace_dialog.cpp:104
 #: ../src/dialog/wxm_sort_dialog.cpp:49
 msgid "&Case Sensitive"
-msgstr "Sensible a &MAYÚSCULAS/minúsculas"
+msgstr "Sensible al caso"
 
 #: ../src/dialog/wxm_find_in_files_dialog.cpp:112
 #: ../src/dialog/wxm_search_replace_dialog.cpp:107
@@ -436,7 +436,7 @@ msgstr "Fin de archivo alcanzado, buscando desde el principio."
 #: ../src/dialog/wxm_search_replace_dialog.cpp:777
 #: ../src/dialog/wxm_search_replace_dialog.cpp:835
 msgid "The value of 'From' is incorrect."
-msgstr "El valor de \"De\" es incorrecto."
+msgstr "El valor de 'De' es incorrecto."
 
 #: ../src/dialog/wxm_search_replace_dialog.cpp:318
 #: ../src/dialog/wxm_search_replace_dialog.cpp:409
@@ -444,7 +444,7 @@ msgstr "El valor de \"De\" es incorrecto."
 #: ../src/dialog/wxm_search_replace_dialog.cpp:782
 #: ../src/dialog/wxm_search_replace_dialog.cpp:840
 msgid "The value of 'To' is incorrect."
-msgstr "El valor de \"A\" es incorrecto."
+msgstr "El valor de 'A' es incorrecto."
 
 #: ../src/dialog/wxm_search_replace_dialog.cpp:361
 #: ../src/dialog/wxm_search_replace_dialog.cpp:452
@@ -636,12 +636,12 @@ msgid ""
 "Use this encoding to create new file or when wxMEdit cannot determine the "
 "encoding of old file"
 msgstr ""
-"Codificación de nuevo archivo o cuando no se determina codificación de "
-"archivo viejo"
+"Codificación de nuevo archivo o cuando no se determina codificación de viejo "
+"archivo"
 
 #: ../src/dialog/wxmedit_options_dialog.cpp:392
 msgid "Single Instance (must restart wxMEdit)"
-msgstr "Instancia sola (debe reiniciar wxMEdit)"
+msgstr "Instancia única (debe reiniciar wxMEdit)"
 
 #: ../src/dialog/wxmedit_options_dialog.cpp:395
 msgid "Reload files previously open on startup"
@@ -653,7 +653,7 @@ msgstr "Grabar movimientos de signo de intercalación en la lista deshacer"
 
 #: ../src/dialog/wxmedit_options_dialog.cpp:401
 msgid "Restore previous caret position when files are opened"
-msgstr "Restaurar la posición del símbolo anterior cuando se abren archivos"
+msgstr "Restaurar posición anterior del cursor al abrir archivos"
 
 #: ../src/dialog/wxmedit_options_dialog.cpp:412
 #: ../src/dialog/wxmedit_options_dialog.cpp:419
@@ -728,7 +728,7 @@ msgstr "Imprimir número de línea"
 
 #: ../src/dialog/wxmedit_options_dialog.cpp:485
 msgid "Print Bookmark"
-msgstr ""
+msgstr "Imprimir marcador"
 
 #: ../src/dialog/wxmedit_options_dialog.cpp:488
 msgid "Print End of Line"
@@ -801,31 +801,31 @@ msgstr "Imprimir pie de página"
 
 #: ../src/dialog/wxmedit_options_dialog.cpp:572
 msgid "Hint:"
-msgstr "Consejo:"
+msgstr "Nota:"
 
 #: ../src/dialog/wxmedit_options_dialog.cpp:580
 msgid "Assigned Keys:"
-msgstr "Clave asignadas:"
+msgstr "Atajos asignadas:"
 
 #: ../src/dialog/wxmedit_options_dialog.cpp:586
 msgid "New Key:"
-msgstr "Nueva clave:"
+msgstr "Nuevo atajo:"
 
 #: ../src/dialog/wxmedit_options_dialog.cpp:594
 msgid "<== Add Key"
-msgstr "<== Agregar clave"
+msgstr "<== Agregar atajo"
 
 #: ../src/dialog/wxmedit_options_dialog.cpp:596
 msgid "==> Delete Key"
-msgstr "==> Eliminar clave"
+msgstr "==> Eliminar atajo"
 
 #: ../src/dialog/wxmedit_options_dialog.cpp:598
 msgid "Show the Key in Menu"
-msgstr "Mostrar la clave en el menú"
+msgstr "Mostrar atajo en el menú"
 
 #: ../src/dialog/wxmedit_options_dialog.cpp:604
 msgid "Reset all keys to default (must restart wxMEdit)"
-msgstr "Restablecer todas las claves por defecto (debe reiniciar wxMEdit)"
+msgstr "Restaurar todos los atajos por defecto (debe reiniciar wxMEdit)"
 
 #: ../src/dialog/wxmedit_options_dialog.cpp:615
 msgid ""
@@ -852,7 +852,7 @@ msgstr "Usar Inglés en lugar de ajuste regional actual"
 
 #: ../src/dialog/wxmedit_options_dialog.cpp:647
 msgid "Enable dot matching newline in regular expression"
-msgstr ""
+msgstr "Hactivar punto de coincidencia de nueva línea en expresión regular"
 
 #: ../src/dialog/wxmedit_options_dialog.cpp:654
 msgid "General"
@@ -868,7 +868,7 @@ msgstr "Imprimir"
 
 #: ../src/dialog/wxmedit_options_dialog.cpp:657
 msgid "Keys"
-msgstr "Claves"
+msgstr "Atajos"
 
 #: ../src/dialog/wxmedit_options_dialog.cpp:658
 msgid "Misc"
@@ -1067,16 +1067,16 @@ msgstr "Valor no válido de \"%s\""
 
 #: ../src/dialog/wxmedit_options_dialog.cpp:1207
 msgid "Cannot assign key to this item"
-msgstr "No se puede asignar clave a este objeto"
+msgstr "No se puede asignar atajo a este elemento"
 
 #: ../src/dialog/wxmedit_options_dialog.cpp:1301
 msgid "This key is not assigned"
-msgstr "No es asignada esta clave"
+msgstr "Este atajo no se ha asignado"
 
 #: ../src/dialog/wxmedit_options_dialog.cpp:1325
 #, c-format
 msgid "This key is assigned to [%s]"
-msgstr "Esta clave se asigna a [%s]"
+msgstr "Este atajo está asignado a [%s]"
 
 #: ../src/mad_utils.cpp:239
 msgid "The input string is not a valid Hex-String:"
@@ -1456,7 +1456,7 @@ msgstr "¿Desea volver a cargarlo?"
 
 #: ../src/wxmedit_frame.cpp:183
 msgid "Current maintainer of wxMEdit"
-msgstr "Mantenedor actual de wxMEdit"
+msgstr "Actual responsable de wxMEdit"
 
 #: ../src/wxmedit_frame.cpp:184
 msgid "Creator of MadEdit"
@@ -1464,31 +1464,31 @@ msgstr "Creador de MadEdit"
 
 #: ../src/wxmedit_frame.cpp:185
 msgid "Translator for Japanese"
-msgstr "Traducción al Japonés"
+msgstr "Traductor de Japonés"
 
 #: ../src/wxmedit_frame.cpp:186
 msgid "Translator for Italian"
-msgstr "Traducción al Italiano"
+msgstr "Traductor de Italiano"
 
 #: ../src/wxmedit_frame.cpp:187
 msgid "Translator for Spanish"
-msgstr "Traducción al Español"
+msgstr "Traductor de Español"
 
 #: ../src/wxmedit_frame.cpp:188 ../src/wxmedit_frame.cpp:189
 msgid "Translator for Traditional Chinese"
-msgstr "Traducción al Chino Tradicional"
+msgstr "Traductor de Chino Tradicional"
 
 #: ../src/wxmedit_frame.cpp:190
 msgid "Translator for Russian"
-msgstr "Traducción al Ruso"
+msgstr "Traductor de Ruso"
 
 #: ../src/wxmedit_frame.cpp:191
 msgid "Translator for German"
-msgstr ""
+msgstr "Traductor de Alemán"
 
 #: ../src/wxmedit_frame.cpp:192
 msgid "Translator for Polish"
-msgstr ""
+msgstr "Traductor de Polaco"
 
 #: ../src/wxmedit_frame.cpp:193 ../src/wxmedit_frame.cpp:194
 #: ../src/wxmedit_frame.cpp:195 ../src/wxmedit_frame.cpp:196
@@ -1578,20 +1578,19 @@ msgstr "Cerrar todo en la carpeta..."
 
 #: ../src/wxmedit_frame.cpp:1060
 msgid "Close all files in given folder and in all the subfolders"
-msgstr ""
-"Cerrar todos los archivos en la carpeta dada y en todas las subcarpetas"
+msgstr "Cierra todos los archivos en la carpeta dada y sus subcarpetast"
 
 #: ../src/wxmedit_frame.cpp:1061
 msgid "Close &More"
-msgstr "Cerrar Más"
+msgstr "Cerrar (&Más opciones)"
 
 #: ../src/wxmedit_frame.cpp:1062
 msgid "Close All &BUT This"
-msgstr "Cerrar todo PERO este"
+msgstr "Cerrar todo EXCEPTO este"
 
 #: ../src/wxmedit_frame.cpp:1062
 msgid "Close all files except the current one"
-msgstr "Cierre todos los archivos excepto el actual"
+msgstr "Cierra todos los archivos excepto el actual"
 
 #: ../src/wxmedit_frame.cpp:1063
 msgid "Close All To The &Left"
@@ -1912,7 +1911,7 @@ msgstr "Convierte caracteres de espacio a tabuladores en la selección"
 
 #: ../src/wxmedit_frame.cpp:1148
 msgid "Tri&m Trailing Spaces"
-msgstr "Recortar final de espacios"
+msgstr "Recortar espacios finales"
 
 #: ../src/wxmedit_frame.cpp:1148
 msgid "Trim trailing spaces at the end of lines"
@@ -2004,7 +2003,7 @@ msgstr "Busca o reemplaza una cadena en archivos"
 
 #: ../src/wxmedit_frame.cpp:1169
 msgid "&Show/Hide the Results of Find/Replace in Files"
-msgstr "&Mostrar/Ocultar los resultados"
+msgstr "&Mostrar/Ocultar resultados"
 
 #: ../src/wxmedit_frame.cpp:1169
 msgid "Show or hide the results of find or replace a string in files"
@@ -2072,7 +2071,7 @@ msgstr "Borrar todos los marcadores"
 
 #: ../src/wxmedit_frame.cpp:1181
 msgid "Clear all bookmarks from current file"
-msgstr "Borrar todos los marcadores de archivo actual"
+msgstr "Borra todos los marcadores de archivo actual"
 
 #: ../src/wxmedit_frame.cpp:1184
 msgid "&View"
@@ -2194,11 +2193,11 @@ msgstr "Ajusta líneas por columnas especificadas"
 
 #: ../src/wxmedit_frame.cpp:1334
 msgid "Display &Bookmark"
-msgstr ""
+msgstr "Mostrar marcador"
 
 #: ../src/wxmedit_frame.cpp:1334
 msgid "Display the Bookmarks"
-msgstr ""
+msgstr "Muestra los marcadores"
 
 #: ../src/wxmedit_frame.cpp:1335
 msgid "&Display Line Number"
@@ -2768,7 +2767,7 @@ msgstr "Modo columna"
 
 #: ../src/wxmedit_frame.cpp:2025
 msgid "Find/Replace in Files Results"
-msgstr "Buscar/Reemplazar en resultados de archivos"
+msgstr "Resultados de Buscar/Reemplazar en archivos"
 
 #: ../src/wxmedit_frame.cpp:2033
 msgid "Information Window"
@@ -3765,131 +3764,131 @@ msgstr "Takri"
 
 #: ../src/xm/ublock_des.cpp:250
 msgid "Bassa Vah"
-msgstr ""
+msgstr "Alfabeto vah"
 
 #: ../src/xm/ublock_des.cpp:251
 msgid "Caucasian Albanian"
-msgstr ""
+msgstr "Albanés caucásico"
 
 #: ../src/xm/ublock_des.cpp:252
 msgid "Coptic Epact Numbers"
-msgstr ""
+msgstr "Números de Epact Copto"
 
 #: ../src/xm/ublock_des.cpp:253
 msgid "Combining Diacritical Marks Extended"
-msgstr ""
+msgstr "Marcas diacríticas combinables extendidas"
 
 #: ../src/xm/ublock_des.cpp:254
 msgid "Duployan"
-msgstr ""
+msgstr "Duployan"
 
 #: ../src/xm/ublock_des.cpp:255
 msgid "Elbasan"
-msgstr ""
+msgstr "Elbasan"
 
 #: ../src/xm/ublock_des.cpp:256
 msgid "Geometric Shapes Extended"
-msgstr ""
+msgstr "Formas geométricas extendidas"
 
 #: ../src/xm/ublock_des.cpp:257
 msgid "Grantha"
-msgstr ""
+msgstr "Grantha"
 
 #: ../src/xm/ublock_des.cpp:258
 msgid "Khojki"
-msgstr ""
+msgstr "Khojki"
 
 #: ../src/xm/ublock_des.cpp:259
 msgid "Khudawadi"
-msgstr ""
+msgstr "Khudawadi"
 
 #: ../src/xm/ublock_des.cpp:260
 msgid "Latin Extended-E"
-msgstr ""
+msgstr "Latín extendido-E"
 
 #: ../src/xm/ublock_des.cpp:261
 msgid "Linear A"
-msgstr ""
+msgstr "Lineal A"
 
 #: ../src/xm/ublock_des.cpp:262
 msgid "Mahajani"
-msgstr ""
+msgstr "Mahajani"
 
 #: ../src/xm/ublock_des.cpp:263
 msgid "Manichaean"
-msgstr ""
+msgstr "Maniqueo"
 
 #: ../src/xm/ublock_des.cpp:264
 msgid "Mende Kikakui"
-msgstr ""
+msgstr "Mende Kikakui"
 
 #: ../src/xm/ublock_des.cpp:265
 msgid "Modi"
-msgstr ""
+msgstr "Modi"
 
 #: ../src/xm/ublock_des.cpp:266
 msgid "Mro"
-msgstr ""
+msgstr "Mro"
 
 #: ../src/xm/ublock_des.cpp:267
 msgid "Myanmar Extended-B"
-msgstr ""
+msgstr "Myanmar extendido-B"
 
 #: ../src/xm/ublock_des.cpp:268
 msgid "Nabataean"
-msgstr ""
+msgstr "Nabateo"
 
 #: ../src/xm/ublock_des.cpp:269
 msgid "Old North Arabian"
-msgstr ""
+msgstr "Viejo Árabe del norte"
 
 #: ../src/xm/ublock_des.cpp:270
 msgid "Old Permic"
-msgstr ""
+msgstr "Viejo Pérmico"
 
 #: ../src/xm/ublock_des.cpp:271
 msgid "Ornamental Dingbats"
-msgstr ""
+msgstr "Fantasía ornamental"
 
 #: ../src/xm/ublock_des.cpp:272
 msgid "Pahawh Hmong"
-msgstr ""
+msgstr "Pahawh Hmong"
 
 #: ../src/xm/ublock_des.cpp:273
 msgid "Palmyrene"
-msgstr ""
+msgstr "Palmira"
 
 #: ../src/xm/ublock_des.cpp:274
 msgid "Pau Cin Hau"
-msgstr ""
+msgstr "Pau Cin Hau"
 
 #: ../src/xm/ublock_des.cpp:275
 msgid "Psalter Pahlavi"
-msgstr ""
+msgstr "Pahlavi salterio"
 
 #: ../src/xm/ublock_des.cpp:276
 msgid "Shorthand Format Controls"
-msgstr ""
+msgstr "Controles de formato de taquigrafía"
 
 #: ../src/xm/ublock_des.cpp:277
 msgid "Siddham"
-msgstr ""
+msgstr "Siddham"
 
 #: ../src/xm/ublock_des.cpp:278
 msgid "Sinhala Archaic Numbers"
-msgstr ""
+msgstr "Números arcaicos de Sinhala"
 
 #: ../src/xm/ublock_des.cpp:279
 msgid "Supplemental Arrows-C"
-msgstr ""
+msgstr "Flechas C suplementarias"
 
 #: ../src/xm/ublock_des.cpp:280
 msgid "Tirhuta"
-msgstr ""
+msgstr "Tirhuta"
 
 #: ../src/xm/ublock_des.cpp:281
 msgid "Warang Citi"
-msgstr ""
+msgstr "Warang Citi"
 
 #: wxstd.po.cpp:3
 msgid "OK"
