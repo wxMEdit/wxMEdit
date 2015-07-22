@@ -205,7 +205,7 @@ struct AppPath: private boost::noncopyable
 	{
 		return home_dir;
 	}
-	const wxString ConfigPath() const
+	wxString ConfigPath() const
 	{
 		return home_dir + cfg_file;
 	}
