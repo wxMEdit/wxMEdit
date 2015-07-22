@@ -39,7 +39,7 @@ msgstr ""
 "Project-Id-Version: wxMEdit 2.9.9.3\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-04-15 10:14+0800\n"
-"PO-Revision-Date: 2015-02-04 00:19+0800\n"
+"PO-Revision-Date: 2015-07-22 13:49+0800\n"
 "Last-Translator: JiaYanwei <wxmedit@gmail.com>\n"
 "Language-Team: wxMEdit <wxmedit@gmail.com>\n"
 "Language: zh_CN\n"
@@ -4029,7 +4029,7 @@ msgstr "分隔符"
 
 #: wxstd.po.cpp:46
 msgid "Space"
-msgstr "箜白符"
+msgstr "空白符"
 
 #: wxstd.po.cpp:47
 msgid "Number"
