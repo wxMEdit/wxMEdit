@@ -102,7 +102,7 @@ InFrameWXMEdit::InFrameWXMEdit(wxWindow* parent, wxWindowID id, const wxPoint& p
 	Connect(wxEVT_KEY_DOWN, wxKeyEventHandler(MadEditFrame::MadEditFrameKeyDown));
 }
 
-wxString InserModeText(bool insertmode)
+wxString InsertModeText(bool insertmode)
 {
 	static wxString insstr(_("INS"));
 	static wxString ovrstr(_("OVR"));
@@ -218,7 +218,7 @@ void InFrameWXMEdit::DoStatusChanged()
 
 	wxm::GetFrameStatusBar().SetField(wxm::STBF_READONLY, ReadOnlyText(IsReadOnly()));
 
-	wxm::GetFrameStatusBar().SetField(wxm::STBF_INSOVR, InserModeText(IsInsertMode()));
+	wxm::GetFrameStatusBar().SetField(wxm::STBF_INSOVR, InsertModeText(IsInsertMode()));
 
 	wxm::GetFrameStatusBar().Update(); // repaint immediately
 
