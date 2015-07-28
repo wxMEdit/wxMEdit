@@ -13,6 +13,7 @@
 #include "../../dialog/wxm_search_replace_dialog.h"
 #include "../../mad_utils.h"
 #include "../../xm/uutils.h"
+#include "../../dialog/wxm_enumeration_dialog.h"
 
 #ifdef _MSC_VER
 # pragma warning( push )
@@ -827,6 +828,26 @@ void InFrameWXMEdit::TrimTrailingSpaces()
 	// use Regular Expressions to trim all trailing spaces
 	Searcher(false, true)->SetOption(true, false);
 	Searcher(false, true)->ReplaceAll(wxT("[ \t]+(\r|\n|$)"), wxT("$1"));
+}
+
+void InFrameWXMEdit::InsertEnumeration()
+{
+	int selbeg, selend;
+	GetSelectionLineId(selbeg, selend);
+
+	wxString seq;
+	size_t rows;
+	WXMEnumerationDialog dlg(seq, rows, g_MainFrame);
+
+	if (selbeg != -1)
+		dlg.SetSelectedRows(size_t(selend - selbeg + 1));
+	int rc = dlg.ShowModal();
+
+	if (rc != wxID_OK || rows==0)
+		return;
+	
+	PutColumnDataToClipboard(seq, int(rows));
+	PasteFromClipboard(false);
 }
 
 } //namespace wxm

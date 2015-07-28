@@ -125,6 +125,8 @@ public:
     void OnUpdateUI_Menu_CheckTextFile(wxUpdateUIEvent& event);
 
     void OnUpdateUI_MenuEditCopyAsHexString(wxUpdateUIEvent& event);
+    void OnUpdateUI_MenuEdit_InsertEnumeration(wxUpdateUIEvent& event);
+
     void OnUpdateUI_MenuIndent(wxUpdateUIEvent& event);
     void OnUpdateUI_MenuComment(wxUpdateUIEvent& event);
 
@@ -222,6 +224,7 @@ public:
     void OnEditTabToSpace(wxCommandEvent& event);
     void OnEditSpaceToTab(wxCommandEvent& event);
     void OnEditTrimTrailingSpaces(wxCommandEvent& event);
+    void OnEditInsertEnumeration(wxCommandEvent& event);
 
     void OnSearchFind(wxCommandEvent& event);
     void OnSearchFindNext(wxCommandEvent& event);
@@ -428,6 +431,7 @@ enum { // menu id
     menuTabToSpace,
     menuSpaceToTab,
     menuTrimTrailingSpaces,
+    menuInsertEnumeration,
 
     // search
     menuFindNext,

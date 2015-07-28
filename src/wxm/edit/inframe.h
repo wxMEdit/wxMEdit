@@ -20,6 +20,7 @@ struct InFrameWXMEdit : public MadEdit
 	virtual MadWordWrapMode GetWordWrapMode() { return m_WordWrapMode; }
 
 	void TrimTrailingSpaces();
+	void InsertEnumeration();
 
 	virtual bool BookmarkVisible() { return m_bookmark_visible; }
 	virtual void SetBookmarkVisible(bool visible);

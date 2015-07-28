@@ -30,6 +30,8 @@ wxmedit_SOURCES =	$(enc_src) \
 	$(encdet_src) \
 	src/dialog/wxm_conv_enc_dialog.cpp \
 	src/dialog/wxm_conv_enc_dialog.h \
+	src/dialog/wxm_enumeration_dialog.cpp \
+	src/dialog/wxm_enumeration_dialog.h \
 	src/dialog/wxm_find_in_files_dialog.cpp \
 	src/dialog/wxm_find_in_files_dialog.h \
 	src/dialog/wxm_highlighting_dialog.cpp \

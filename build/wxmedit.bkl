@@ -150,6 +150,8 @@
 
 		<headers>../src/dialog/wxm_conv_enc_dialog.h</headers>
 		<sources>../src/dialog/wxm_conv_enc_dialog.cpp</sources>
+		<headers>../src/dialog/wxm_enumeration_dialog.h</headers>
+		<sources>../src/dialog/wxm_enumeration_dialog.cpp</sources>
 		<headers>../src/dialog/wxm_file_association_dialog.h</headers>
 		<sources>../src/dialog/wxm_file_association_dialog.cpp</sources>
 		<headers>../src/dialog/wxm_find_in_files_dialog.h</headers>

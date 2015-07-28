@@ -854,6 +854,7 @@ BEGIN_EVENT_TABLE(MadEditFrame,wxFrame)
 	EVT_UPDATE_UI(menuTabToSpace, MadEditFrame::OnUpdateUI_MenuEdit_CheckSelSize)
 	EVT_UPDATE_UI(menuSpaceToTab, MadEditFrame::OnUpdateUI_MenuEdit_CheckSelSize)
 	EVT_UPDATE_UI(menuTrimTrailingSpaces, MadEditFrame::OnUpdateUI_Menu_CheckTextFile)
+	EVT_UPDATE_UI(menuInsertEnumeration, MadEditFrame::OnUpdateUI_MenuFile_CheckCount)
 	// search
 	EVT_UPDATE_UI(menuFind, MadEditFrame::OnUpdateUI_MenuFile_CheckCount)
 	EVT_UPDATE_UI(menuFindNext, MadEditFrame::OnUpdateUI_MenuFile_CheckCount)
@@ -967,6 +968,7 @@ BEGIN_EVENT_TABLE(MadEditFrame,wxFrame)
 	EVT_MENU(menuTabToSpace, MadEditFrame::OnEditTabToSpace)
 	EVT_MENU(menuSpaceToTab, MadEditFrame::OnEditSpaceToTab)
 	EVT_MENU(menuTrimTrailingSpaces, MadEditFrame::OnEditTrimTrailingSpaces)
+	EVT_MENU(menuInsertEnumeration, MadEditFrame::OnEditInsertEnumeration)
 	// search
 	EVT_MENU(menuFind, MadEditFrame::OnSearchFind)
 	EVT_MENU(menuFindNext, MadEditFrame::OnSearchFindNext)
@@ -1127,6 +1129,7 @@ CommandData CommandTable[]=
                                                                                                                                                                  wxITEM_NORMAL,    -1,                0,                     _("Insert a Tab char at current position")},
 
     { ecInsertDateTime, 1, menuInsertDateTime,           wxT("menuInsertDateTime"),           _("Insert Dat&e and Time"),                   wxT("F7"),           wxITEM_NORMAL,    -1,                0,                     _("Insert date and time at current position")},
+    { 0,                1, menuInsertEnumeration,        wxT("menuInsertEnumeration"),        _("Insert &Ordered Sequence..."),             wxT(""),             wxITEM_NORMAL,    -1,                0,                     _("Insert ordered sequence with certain format in specified numbering system")},
 
     { 0,                1, 0,                            0,                                   0,                                            0,                   wxITEM_SEPARATOR, -1,                0,                     0},
     { 0,                1, menuAdvanced,                 wxT("menuAdvanced"),                 _("Ad&vanced"),                               0,                   wxITEM_NORMAL,    -1,                &g_Menu_Edit_Advanced, 0},
@@ -3902,6 +3905,11 @@ void MadEditFrame::OnEditSpaceToTab(wxCommandEvent& event)
 void MadEditFrame::OnEditTrimTrailingSpaces(wxCommandEvent& event)
 {
     if (g_active_wxmedit!=nullptr) g_active_wxmedit->TrimTrailingSpaces();
+}
+
+void MadEditFrame::OnEditInsertEnumeration(wxCommandEvent& event)
+{
+    if (g_active_wxmedit!=nullptr) g_active_wxmedit->InsertEnumeration();
 }
 
 namespace wxm
