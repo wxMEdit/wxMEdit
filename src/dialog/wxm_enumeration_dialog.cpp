@@ -6,8 +6,8 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 #include "wxm_enumeration_dialog.h"
-#include "../xm/utils.hpp"
 #include "../wxm/utils.h"
+#include "../wxm/wx_icu.h"
 
 //(*InternalHeaders(WXMEnumerationDialog)
 #include <wx/intl.h>
@@ -223,7 +223,8 @@ private:
 	virtual UnicodeString TenPetaAndRemainder(int64_t n) override
 	{
 		UnicodeString us = NumSysBase::DecFormat(n, false);
-		return UnicodeString(us.getBuffer()+1, us.length()-1);
+		us.retainBetween(1, us.length());
+		return us;
 	}
 };
 
@@ -304,7 +305,7 @@ BEGIN_EVENT_TABLE(WXMEnumerationDialog,wxDialog)
 	//*)
 END_EVENT_TABLE()
 
-WXMEnumerationDialog::WXMEnumerationDialog(wxString& seq, size_t& seqrows, wxWindow* parent, wxWindowID id,
+WXMEnumerationDialog::WXMEnumerationDialog(std::vector<ucs4_t>& seq, size_t& seqrows, wxWindow* parent, wxWindowID id,
 	const wxPoint& pos, const wxSize& size)
 	: m_sequence(seq), m_seqrows(seqrows), m_selrows(1), m_degressive(false), m_exponential(false)
 	, m_base('d')
@@ -631,7 +632,7 @@ bool WXMEnumerationDialog::NumValid(wxString& errmsg)
 			wxm::CheckTextNumMin(StaticTextFinalNum, TextCtrlFinalNum, 1, errmsg));
 }
 
-size_t WXMEnumerationDialog::Enumerate(wxString& text, bool preview)
+size_t WXMEnumerationDialog::Enumerate(UnicodeString& text, bool preview)
 {
 	m_numsys->SetBase(m_base);
 	m_numsys->SetLength(size_t(ChoiceLength->GetSelection()));
@@ -652,17 +653,15 @@ size_t WXMEnumerationDialog::Enumerate(wxString& text, bool preview)
 	size_t maxtimes = preview? 10000: sizemax;
 	size_t times = autofinal? m_selrows: maxtimes;
 
-	text.clear();
-
 	unsigned int cmpidx = ChoiceFinalCmp->GetSelection() == 0? 1: ChoiceFinalCmp->GetSelection();
 	CmpFunc cmp = m_cmps[ChoiceFinalCmp->GetString(cmpidx)];
 	OpFunc op = m_ops[wxm::GetSelectWXStr(ChoiceStepOp)];
 
-	wxString prefix = TextCtrlPrefix->GetValue();
-	wxString postfix = TextCtrlPostfix->GetValue();
+	UnicodeString prefix = wxm::WxStrToICU(TextCtrlPrefix->GetValue());
+	UnicodeString postfix = wxm::WxStrToICU(TextCtrlPostfix->GetValue());
 	size_t t = 0;
 	for (int64_t i = initalnum; cmp(i, finalnum) && t < times; i = op(i, step), ++t)
-		text << prefix << m_numsys->Format(i) << postfix << wxT('\n');
+		text += prefix + m_numsys->Format(i) + postfix + UChar32('\n');
 	return t;
 }
 
@@ -677,9 +676,9 @@ void WXMEnumerationDialog::Preview()
 		return;
 	}
 
-	wxString text;
+	UnicodeString text;
 	Enumerate(text, true);
-	TextCtrlPreview->SetValue(text);
+	TextCtrlPreview->SetValue(wxm::ICUStrToWx(text));
 }
 
 void WXMEnumerationDialog::OnButtonOKClick(wxCommandEvent& event)
@@ -695,7 +694,15 @@ void WXMEnumerationDialog::OnButtonOKClick(wxCommandEvent& event)
 	}
 
 	TextCtrlPreview->SetValue(wxEmptyString);
-	m_seqrows = Enumerate(m_sequence);
+
+	UnicodeString us;
+	m_seqrows = Enumerate(us);
+
+	m_sequence.clear();
+	int32_t ulen = us.countChar32();
+	for (int32_t i=0; i<ulen; i=us.moveIndex32(i, 1))
+		m_sequence.push_back(us.char32At(i));
+
 	event.Skip(true);
 }
 

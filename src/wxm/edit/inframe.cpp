@@ -835,7 +835,7 @@ void InFrameWXMEdit::InsertEnumeration()
 	int selbeg, selend;
 	GetSelectionLineId(selbeg, selend);
 
-	wxString seq;
+	std::vector<ucs4_t> seq;
 	size_t rows;
 	WXMEnumerationDialog dlg(seq, rows, g_MainFrame);
 
@@ -845,9 +845,11 @@ void InFrameWXMEdit::InsertEnumeration()
 
 	if (rc != wxID_OK || rows==0)
 		return;
-	
-	PutColumnDataToClipboard(seq, int(rows));
-	PasteFromClipboard(false);
+
+	if (GetEditMode() == emColumnMode)
+		InsertColumnText(seq, int(rows));
+	else
+		InsertRegularText(seq);
 }
 
 } //namespace wxm

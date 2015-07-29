@@ -10,7 +10,7 @@
 
 #include "../xm/cxx11.h"
 #include "../wxm/choice_map.hpp"
-#include "../wxm/wx_icu.h"
+#include "../wxmedit/ucs4_t.h"
 
 //(*Headers(WXMEnumerationDialog)
 #include <wx/sizer.h>
@@ -33,6 +33,7 @@
 #include <boost/function.hpp>
 
 #include <limits>
+#include <vector>
 
 namespace wxm
 {
@@ -83,13 +84,13 @@ namespace wxm
 		void SetFullWidth(bool fullwidth = true){ m_fullwidth = fullwidth; }
 		void SetAlignLeft(bool alignleft = true){ m_alignleft = alignleft; }
 		void SetPadZero(bool padzero = true){ m_padzero = padzero; }
-		wxString Format(int64_t n)
+		UnicodeString Format(int64_t n)
 		{
 			UnicodeString usnum = BaseFormat(n, m_base, m_grouping);
 			UnicodeString us = Pad(usnum, m_len, m_alignleft, m_padzero);
 			if (m_fullwidth)
 				ToFullWidth(us);
-			return wxm::ICUStrToWx(us);
+			return us;
 		}
 
 	protected:
@@ -129,7 +130,7 @@ class WXMEnumerationDialog: public wxDialog
 {
 	public:
 
-		WXMEnumerationDialog(wxString& seq, size_t& seqlines, wxWindow* parent,
+		WXMEnumerationDialog(std::vector<ucs4_t>& seq, size_t& seqlines, wxWindow* parent,
 			wxWindowID id = wxID_ANY, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxDefaultSize);
 		virtual ~WXMEnumerationDialog();
 
@@ -227,7 +228,7 @@ class WXMEnumerationDialog: public wxDialog
 		//*)
 
 		bool NumValid(wxString& errmsg);
-		size_t Enumerate(wxString& text, bool preview=false);
+		size_t Enumerate(UnicodeString& text, bool preview=false);
 		void Preview();
 		void AdjustChoicePadding(bool alignable);
 		void OnBaseSelect(char base);
@@ -237,7 +238,7 @@ class WXMEnumerationDialog: public wxDialog
 			return m_exponential ? 2 : 1;
 		}
 
-		wxString& m_sequence;
+		std::vector<ucs4_t>& m_sequence;
 		size_t m_seqrows;
 		size_t m_selrows;
 

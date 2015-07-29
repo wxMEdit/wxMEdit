@@ -1244,20 +1244,24 @@ void MadEdit::CopyToClipboard()
         CopyRegularText();
 }
 
+void MadEdit::InsertColumnText(vector<ucs4_t>& ucs, int lines)
+{
+    if (ucs.empty())
+        return;
+
+    InsertColumnString(&ucs[0], ucs.size(), lines, false, false);
+}
+
 void MadEdit::PasteColumnText()
 {
     vector<ucs4_t> ucs;
     int lines = GetColumnDataFromClipboard(ucs);
 
-    if(!ucs.empty())
-        InsertColumnString(&ucs[0], ucs.size(), lines, false, false);
+    InsertColumnText(ucs, lines);
 }
 
-void MadEdit::PasteRegularText()
+void MadEdit::InsertRegularText(vector<ucs4_t>& ucs)
 {
-    vector<ucs4_t> ucs;
-    GetTextFromClipboard(ucs);
-
     if(ucs.empty())
         return;
 
@@ -1267,6 +1271,14 @@ void MadEdit::PasteRegularText()
     InsertString(&ucs[0], ucs.size(), false, true, false);
 
     m_InsertMode = oldim;
+}
+
+void MadEdit::PasteRegularText()
+{
+    vector<ucs4_t> ucs;
+    GetTextFromClipboard(ucs);
+
+    InsertRegularText(ucs);
 }
 
 void MadEdit::PasteRawBytes(bool overwirte)

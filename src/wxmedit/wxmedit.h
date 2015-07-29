@@ -647,6 +647,8 @@ protected:
     virtual int CalcLineNumberAreaWidth(MadLineIterator lit, int lineid, int rowid, int toprow, int rowcount) = 0;
     virtual int GetLineNumberAreaWidth(int number) = 0;
 
+    void InsertColumnText(vector<ucs4_t>& ucs, int lines);
+    void InsertRegularText(vector<ucs4_t>& ucs);
     void PasteColumnText();
     void PasteRegularText();
     void PasteRawBytes(bool overwirte);
