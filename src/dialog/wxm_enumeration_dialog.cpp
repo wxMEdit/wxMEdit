@@ -791,7 +791,7 @@ void WXMEnumerationDialog::OnBaseSelect(char base)
 
 void WXMEnumerationDialog::AdjustChoicePadding(bool alignable)
 {
-	bool paddable = alignable && (ChoiceAlign->GetSelection() == 0);
+	bool paddable = alignable && m_numsys->ZeroPaddable() && (ChoiceAlign->GetSelection() == 0);
 	if (!paddable)
 		ChoicePadding->SetSelection(0);
 	ChoicePadding->Enable(paddable);
