@@ -224,18 +224,10 @@
 							<object class="sizeritem">
 								<object class="wxBoxSizer" variable="BoxSizer6" member="no">
 									<object class="sizeritem">
-										<object class="wxRadioButton" name="ID_RADIOBUTTONHEX" variable="RadioButtonUpperHex" member="yes">
-											<label>&amp;Upper Hex</label>
+										<object class="wxRadioButton" name="ID_RADIOBUTTONHEX" variable="RadioButtonHex" member="yes">
+											<label>He&amp;x</label>
 											<style>wxRB_GROUP</style>
-											<handler function="OnRadioButtonUpperHexSelect" entry="EVT_RADIOBUTTON" />
-										</object>
-										<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
-										<border>2</border>
-									</object>
-									<object class="sizeritem">
-										<object class="wxRadioButton" name="ID_RADIOBUTTONLOWERHEX" variable="RadioButtonLowerHex" member="yes">
-											<label>Lower He&amp;x</label>
-											<handler function="OnRadioButtonLowerHexSelect" entry="EVT_RADIOBUTTON" />
+											<handler function="OnRadioButtonHexSelect" entry="EVT_RADIOBUTTON" />
 										</object>
 										<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
 										<border>2</border>
@@ -267,6 +259,35 @@
 									</object>
 								</object>
 								<flag>wxALL|wxEXPAND|wxALIGN_TOP|wxALIGN_CENTER_HORIZONTAL</flag>
+								<border>2</border>
+								<option>1</option>
+							</object>
+							<object class="sizeritem">
+								<object class="wxBoxSizer" variable="BoxSizer22" member="no">
+									<object class="sizeritem">
+										<object class="wxRadioButton" name="ID_RADIOBUTTONUPPER" variable="RadioButtonUpper" member="yes">
+											<label>&amp;Uppercase</label>
+											<selected>1</selected>
+											<enabled>0</enabled>
+											<style>wxRB_GROUP</style>
+											<handler function="OnRadioButtonUpperSelect" entry="EVT_RADIOBUTTON" />
+										</object>
+										<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+										<border>2</border>
+										<option>1</option>
+									</object>
+									<object class="sizeritem">
+										<object class="wxRadioButton" name="ID_RADIOBUTTONLOWER" variable="RadioButtonLower" member="yes">
+											<label>Lowercas&amp;e</label>
+											<enabled>0</enabled>
+											<handler function="OnRadioButtonLowerSelect" entry="EVT_RADIOBUTTON" />
+										</object>
+										<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+										<border>2</border>
+										<option>1</option>
+									</object>
+								</object>
+								<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
 								<border>2</border>
 								<option>1</option>
 							</object>

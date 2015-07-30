@@ -45,6 +45,94 @@ struct NSII64Limit: public virtual NSILimit
 	virtual int64_t Max() override { return std::numeric_limits<int64_t>::max(); }
 };
 
+struct NSIDecNoCase: public virtual NSIBaseAndCase
+{
+	virtual bool DefaultLower() override { return false; }
+	virtual bool HasCase() override { return false; }
+	virtual void SetLowercase(bool lower = true) override {}
+
+	virtual void SetBase(char base) override {}
+	virtual bool OnlyDec() override { return true; }
+protected:
+	virtual bool NonDecFormat(UnicodeString& us, int64_t n) override { return false; }
+};
+
+struct NSILatinBaseAndCase: public virtual NSIBaseAndCase
+{
+	NSILatinBaseAndCase() : m_lower(false), m_base('d') {}
+
+	virtual bool DefaultLower() override { return false; }
+
+	virtual bool HasCase() override
+	{
+		return m_base == 'x' || m_base == 'X';
+	}
+
+	virtual void SetLowercase(bool lower = true) override
+	{
+		m_lower = lower;
+		m_base = char(lower ? tolower(m_base) : toupper(m_base));
+	}
+
+	virtual void SetBase(char base) override
+	{
+		if (m_lower && base == 'X')
+		{
+			m_base = 'x';
+			return;
+		}
+
+		m_base = base;
+	}
+
+	virtual bool OnlyDec() override { return false; }
+
+protected:
+	virtual bool NonDecFormat(UnicodeString& us, int64_t n) override
+	{
+		return HexOctFormat(us, n) || BinFormat(us, n);
+	}
+
+private:
+	bool HexOctFormat(UnicodeString& us, int64_t n)
+	{
+		if (m_base != 'X' && m_base != 'x' && m_base != 'o')
+			return false;
+		std::string fmt = "%";
+		fmt.push_back(m_base);
+		us = UnicodeString((boost::format(fmt) % n).str().c_str());
+		return true;
+	}
+
+	bool BinFormat(UnicodeString& us, int64_t n)
+	{
+		if (m_base != 'b')
+			return false;
+
+		if (n == 0)
+		{
+			us = UnicodeString("0");
+			return true;
+		}
+
+		int64_t i = 63;
+		for (; i >= 0; --i)
+		{
+			if ((n & (uint64_t(2) << i)) != 0)
+				break;
+		}
+		for (; i >= 0; --i)
+		{
+			unsigned char d = (n & (uint64_t(2) << i)) != 0 ? '1' : '0';
+			us += UChar32(d);
+		}
+		return true;
+	}
+
+	bool m_lower;
+	char m_base;
+};
+
 NSIWidth::NSIWidth()
 {
 	UErrorCode uerr;
@@ -82,7 +170,7 @@ protected:
 	virtual void ToFullWidth(UnicodeString& us) override { m_fwtr->transliterate(us); }
 };
 
-UnicodeString NSIFormat::PadWith(const UnicodeString& us, size_t len, bool alignleft, UChar32 ch)
+UnicodeString NSIPadding::PadWith(const UnicodeString& us, size_t len, bool alignleft, UChar32 ch)
 {
 	size_t ulen = size_t(us.countChar32());
 	if (ulen >= len)
@@ -98,70 +186,23 @@ UnicodeString NSIFormat::PadWith(const UnicodeString& us, size_t len, bool align
 	return padding + us;
 }
 
-struct NSILatinFormat: public virtual NSIFormat
+struct NSIZeroPaddable: public virtual NSIPadding
 {
-	virtual bool OnlyDec() override { return false; }
 	virtual bool ZeroPaddable() override { return true; }
 protected:
 	virtual UnicodeString Pad(const UnicodeString& us, size_t len, bool alignleft, bool padzero) override
 	{
 		return PadWith(us, len, alignleft, (padzero? L'0' : L' '));
 	}
-
-	bool HexOctFormat(UnicodeString& us, int64_t n, char base)
-	{
-		if (base != 'X' && base != 'x' && base != 'o')
-			return false;
-		std::string fmt = "%";
-		fmt.push_back(base);
-		us = UnicodeString((boost::format(fmt) % n).str().c_str());
-		return true;
-	}
-
-	bool BinFormat(UnicodeString& us, int64_t n, char base)
-	{
-		if (base != 'b')
-			return false;
-
-		if (n == 0)
-		{
-			us = UnicodeString("0");
-			return true;
-		}
-
-		int64_t i = 63;
-		for (; i >= 0; --i)
-		{
-			if ((n & (uint64_t(2) << i)) != 0)
-				break;
-		}
-		for (; i >= 0; --i)
-		{
-			unsigned char d = (n & (uint64_t(2) << i)) != 0 ? '1': '0';
-			us += UChar32(d);
-		}
-		return true;
-	}
-
-	virtual bool NonDecFormat(UnicodeString& us, int64_t n, char base) override
-	{
-		return HexOctFormat(us, n, base) || BinFormat(us, n, base);
-	}
 };
 
-struct NSINonLatinFormat: public virtual NSIFormat
+struct NSINonZeroPaddable: public virtual NSIPadding
 {
-	virtual bool OnlyDec() override { return true; }
 	virtual bool ZeroPaddable() override { return false; }
 protected:
 	virtual UnicodeString Pad(const UnicodeString& us, size_t len, bool alignleft, bool) override
 	{
 		return PadWith(us, len, alignleft, L' ');
-	}
-
-	virtual bool NonDecFormat(UnicodeString& us, int64_t n, char base) override
-	{
-		return false;
 	}
 };
 
@@ -176,13 +217,14 @@ struct NSINonGroupable: public virtual NSIGroupablity
 };
 
 struct NumSysLatin: public NumSysBase
-	, public NSII64Limit, public NSIDualWidthLatin, public NSILatinFormat, public NSIGroupable
+	, public NSII64Limit, public NSILatinBaseAndCase, public NSIDualWidthLatin
+	, public NSIZeroPaddable, public NSIGroupable
 {
 	NumSysLatin(const std::string& id): NumSysBase(id) {}
 };
 
 struct NumSysArabicLike : public NumSysBase
-	, public NSII64Limit, public NSINonLatinFormat, public NSIGroupable
+	, public NSII64Limit, public NSIDecNoCase, public NSINonZeroPaddable, public NSIGroupable
 {
 	NumSysArabicLike(const std::string& id) : NumSysBase(id) {}
 };
@@ -198,7 +240,7 @@ struct NumSysHaniDec: public NumSysArabicLike, public NSIDualWidthLatin
 };
 
 struct NumSys10000Based: public NumSysBase
-	, public NSII64Limit, public NSINonLatinFormat, public NSINonGroupable
+	, public NSII64Limit, public NSIDecNoCase, public NSINonZeroPaddable, public NSINonGroupable
 {
 	NumSys10000Based(const std::string& id) : NumSysBase(id) {}
 
@@ -239,7 +281,7 @@ private:
 };
 
 struct NumSysLimited: public NumSysBase
-	, public NSIHalfWidth, public NSINonLatinFormat, public NSINonGroupable
+	, public NSIHalfWidth, public NSIDecNoCase, public NSINonZeroPaddable, public NSINonGroupable
 {
 	NumSysLimited(const std::string& id, int64_t max) : NumSysBase(id), m_max(max) {}
 	virtual int64_t Max() override { return m_max; }
@@ -247,7 +289,7 @@ private:
 	int64_t m_max;
 };
 
-NumSysBase::NumSysBase(const std::string& id): m_len(0), m_base(10), m_grouping(false)
+NumSysBase::NumSysBase(const std::string& id): m_len(0), m_grouping(false)
 	, m_fullwidth(false), m_alignleft(false), m_padzero(false)
 {
 	UErrorCode uerr = U_ZERO_ERROR;
@@ -281,10 +323,11 @@ const long WXMEnumerationDialog::ID_TEXTCTRLPREVIEW = wxNewId();
 const long WXMEnumerationDialog::ID_STATICTEXT6 = wxNewId();
 const long WXMEnumerationDialog::ID_CHOICENUMSYS = wxNewId();
 const long WXMEnumerationDialog::ID_RADIOBUTTONHEX = wxNewId();
-const long WXMEnumerationDialog::ID_RADIOBUTTONLOWERHEX = wxNewId();
 const long WXMEnumerationDialog::ID_RADIOBUTTONDEC = wxNewId();
 const long WXMEnumerationDialog::ID_RADIOBUTTONOCT = wxNewId();
 const long WXMEnumerationDialog::ID_RADIOBUTTONBIN = wxNewId();
+const long WXMEnumerationDialog::ID_RADIOBUTTONUPPER = wxNewId();
+const long WXMEnumerationDialog::ID_RADIOBUTTONLOWER = wxNewId();
 const long WXMEnumerationDialog::ID_RADIOBUTTONHALFWIDTH = wxNewId();
 const long WXMEnumerationDialog::ID_RADIOBUTTONFULLWIDTH = wxNewId();
 const long WXMEnumerationDialog::ID_CHECKBOXGRPSEP = wxNewId();
@@ -308,7 +351,6 @@ END_EVENT_TABLE()
 WXMEnumerationDialog::WXMEnumerationDialog(std::vector<ucs4_t>& seq, size_t& seqrows, wxWindow* parent, wxWindowID id,
 	const wxPoint& pos, const wxSize& size)
 	: m_sequence(seq), m_seqrows(seqrows), m_selrows(1), m_degressive(false), m_exponential(false)
-	, m_base('d')
 {
 	//(*Initialize(WXMEnumerationDialog)
 	wxBoxSizer* BoxSizer4;
@@ -334,6 +376,7 @@ WXMEnumerationDialog::WXMEnumerationDialog(std::vector<ucs4_t>& seq, size_t& seq
 	wxBoxSizer* BoxSizer1;
 	wxBoxSizer* BoxSizer9;
 	wxStaticBoxSizer* StaticBoxSizer1;
+	wxBoxSizer* BoxSizer22;
 	wxBoxSizer* BoxSizer3;
 
 	Create(parent, wxID_ANY, _("Insert Ordered Sequence"), wxDefaultPosition, wxDefaultSize, wxCAPTION|wxSYSTEM_MENU|wxRESIZE_BORDER|wxCLOSE_BOX|wxDIALOG_NO_PARENT|wxMAXIMIZE_BOX, _T("wxID_ANY"));
@@ -405,10 +448,8 @@ WXMEnumerationDialog::WXMEnumerationDialog(std::vector<ucs4_t>& seq, size_t& seq
 	BoxSizer5->Add(ChoiceNumSys, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 2);
 	StaticBoxSizer2->Add(BoxSizer5, 1, wxALL|wxEXPAND|wxALIGN_TOP|wxALIGN_CENTER_HORIZONTAL, 2);
 	BoxSizer6 = new wxBoxSizer(wxHORIZONTAL);
-	RadioButtonUpperHex = new wxRadioButton(this, ID_RADIOBUTTONHEX, _("&Upper Hex"), wxDefaultPosition, wxDefaultSize, wxRB_GROUP, wxDefaultValidator, _T("ID_RADIOBUTTONHEX"));
-	BoxSizer6->Add(RadioButtonUpperHex, 0, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 2);
-	RadioButtonLowerHex = new wxRadioButton(this, ID_RADIOBUTTONLOWERHEX, _("Lower He&x"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_RADIOBUTTONLOWERHEX"));
-	BoxSizer6->Add(RadioButtonLowerHex, 0, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 2);
+	RadioButtonHex = new wxRadioButton(this, ID_RADIOBUTTONHEX, _("He&x"), wxDefaultPosition, wxDefaultSize, wxRB_GROUP, wxDefaultValidator, _T("ID_RADIOBUTTONHEX"));
+	BoxSizer6->Add(RadioButtonHex, 0, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 2);
 	RadioButtonDec = new wxRadioButton(this, ID_RADIOBUTTONDEC, _("&Dec"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_RADIOBUTTONDEC"));
 	RadioButtonDec->SetValue(true);
 	BoxSizer6->Add(RadioButtonDec, 0, wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 2);
@@ -417,6 +458,15 @@ WXMEnumerationDialog::WXMEnumerationDialog(std::vector<ucs4_t>& seq, size_t& seq
 	RadioButtonBin = new wxRadioButton(this, ID_RADIOBUTTONBIN, _("&Bin"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_RADIOBUTTONBIN"));
 	BoxSizer6->Add(RadioButtonBin, 0, wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 2);
 	StaticBoxSizer2->Add(BoxSizer6, 1, wxALL|wxEXPAND|wxALIGN_TOP|wxALIGN_CENTER_HORIZONTAL, 2);
+	BoxSizer22 = new wxBoxSizer(wxHORIZONTAL);
+	RadioButtonUpper = new wxRadioButton(this, ID_RADIOBUTTONUPPER, _("&Uppercase"), wxDefaultPosition, wxDefaultSize, wxRB_GROUP, wxDefaultValidator, _T("ID_RADIOBUTTONUPPER"));
+	RadioButtonUpper->SetValue(true);
+	RadioButtonUpper->Disable();
+	BoxSizer22->Add(RadioButtonUpper, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 2);
+	RadioButtonLower = new wxRadioButton(this, ID_RADIOBUTTONLOWER, _("Lowercas&e"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_RADIOBUTTONLOWER"));
+	RadioButtonLower->Disable();
+	BoxSizer22->Add(RadioButtonLower, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 2);
+	StaticBoxSizer2->Add(BoxSizer22, 1, wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 2);
 	BoxSizer20 = new wxBoxSizer(wxHORIZONTAL);
 	RadioButtonHalfWidth = new wxRadioButton(this, ID_RADIOBUTTONHALFWIDTH, _("&Halfwidth"), wxDefaultPosition, wxDefaultSize, wxRB_GROUP, wxDefaultValidator, _T("ID_RADIOBUTTONHALFWIDTH"));
 	RadioButtonHalfWidth->SetValue(true);
@@ -488,11 +538,12 @@ WXMEnumerationDialog::WXMEnumerationDialog(std::vector<ucs4_t>& seq, size_t& seq
 	Connect(ID_CHOICEFINALCMP,wxEVT_COMMAND_CHOICE_SELECTED,(wxObjectEventFunction)&WXMEnumerationDialog::OnChoiceFinalCmpSelect);
 	Connect(ID_TEXTCTRLFINALNUM,wxEVT_COMMAND_TEXT_UPDATED,(wxObjectEventFunction)&WXMEnumerationDialog::OnResultChange);
 	Connect(ID_CHOICENUMSYS,wxEVT_COMMAND_CHOICE_SELECTED,(wxObjectEventFunction)&WXMEnumerationDialog::OnChoiceNumSysSelect);
-	Connect(ID_RADIOBUTTONHEX,wxEVT_COMMAND_RADIOBUTTON_SELECTED,(wxObjectEventFunction)&WXMEnumerationDialog::OnRadioButtonUpperHexSelect);
-	Connect(ID_RADIOBUTTONLOWERHEX,wxEVT_COMMAND_RADIOBUTTON_SELECTED,(wxObjectEventFunction)&WXMEnumerationDialog::OnRadioButtonLowerHexSelect);
+	Connect(ID_RADIOBUTTONHEX,wxEVT_COMMAND_RADIOBUTTON_SELECTED,(wxObjectEventFunction)&WXMEnumerationDialog::OnRadioButtonHexSelect);
 	Connect(ID_RADIOBUTTONDEC,wxEVT_COMMAND_RADIOBUTTON_SELECTED,(wxObjectEventFunction)&WXMEnumerationDialog::OnRadioButtonDecSelect);
 	Connect(ID_RADIOBUTTONOCT,wxEVT_COMMAND_RADIOBUTTON_SELECTED,(wxObjectEventFunction)&WXMEnumerationDialog::OnRadioButtonOctSelect);
 	Connect(ID_RADIOBUTTONBIN,wxEVT_COMMAND_RADIOBUTTON_SELECTED,(wxObjectEventFunction)&WXMEnumerationDialog::OnRadioButtonBinSelect);
+	Connect(ID_RADIOBUTTONUPPER,wxEVT_COMMAND_RADIOBUTTON_SELECTED,(wxObjectEventFunction)&WXMEnumerationDialog::OnRadioButtonUpperSelect);
+	Connect(ID_RADIOBUTTONLOWER,wxEVT_COMMAND_RADIOBUTTON_SELECTED,(wxObjectEventFunction)&WXMEnumerationDialog::OnRadioButtonLowerSelect);
 	Connect(ID_RADIOBUTTONHALFWIDTH,wxEVT_COMMAND_RADIOBUTTON_SELECTED,(wxObjectEventFunction)&WXMEnumerationDialog::OnResultChange);
 	Connect(ID_RADIOBUTTONFULLWIDTH,wxEVT_COMMAND_RADIOBUTTON_SELECTED,(wxObjectEventFunction)&WXMEnumerationDialog::OnResultChange);
 	Connect(ID_CHECKBOXGRPSEP,wxEVT_COMMAND_CHECKBOX_CLICKED,(wxObjectEventFunction)&WXMEnumerationDialog::OnResultChange);
@@ -539,7 +590,7 @@ namespace wxm
 
 void NumberingSystemConfig::DoInit()
 {
-	
+
 #if U_ICU_VERSION_MAJOR_NUM > 50
 	const int64_t greekmax = 999999;
 #else
@@ -634,7 +685,6 @@ bool WXMEnumerationDialog::NumValid(wxString& errmsg)
 
 size_t WXMEnumerationDialog::Enumerate(UnicodeString& text, bool preview)
 {
-	m_numsys->SetBase(m_base);
 	m_numsys->SetLength(size_t(ChoiceLength->GetSelection()));
 	m_numsys->SetFullWidth(RadioButtonFullWidth->GetValue());
 	m_numsys->SetGrouping(CheckBoxGrpSep->GetValue());
@@ -714,11 +764,15 @@ void WXMEnumerationDialog::OnChoiceNumSysSelect(wxCommandEvent& event)
 	m_numsys = ns;
 
 	bool nondec_support = !ns->OnlyDec();
+	ns->SetBase('d');
 	RadioButtonDec->SetValue(true);
-	RadioButtonUpperHex->Enable(nondec_support);
-	RadioButtonLowerHex->Enable(nondec_support);
+	RadioButtonHex->Enable(nondec_support);
 	RadioButtonOct->Enable(nondec_support);
 	RadioButtonBin->Enable(nondec_support);
+
+	bool hascase = ns->HasCase();
+	RadioButtonUpper->Enable(hascase);
+	RadioButtonLower->Enable(hascase);
 
 	RadioButtonHalfWidth->SetValue(ns->DefaultHalfwidth());
 	RadioButtonFullWidth->SetValue(!ns->DefaultHalfwidth());
@@ -787,11 +841,15 @@ void WXMEnumerationDialog::OnResultChange(wxCommandEvent& event)
 
 void WXMEnumerationDialog::OnBaseSelect(char base)
 {
-	m_base = base;
+	m_numsys->SetBase(base);
 
 	if (base != 'd')
 		CheckBoxGrpSep->SetValue(false);
 	CheckBoxGrpSep->Enable(base == 'd');
+
+	bool hascase = m_numsys->HasCase();
+	RadioButtonUpper->Enable(hascase);
+	RadioButtonLower->Enable(hascase);
 
 	Preview();
 }
@@ -822,14 +880,9 @@ void WXMEnumerationDialog::OnChoiceAlignSelect(wxCommandEvent& event)
 	Preview();
 }
 
-void WXMEnumerationDialog::OnRadioButtonUpperHexSelect(wxCommandEvent& event)
+void WXMEnumerationDialog::OnRadioButtonHexSelect(wxCommandEvent& event)
 {
 	OnBaseSelect('X');
-}
-
-void WXMEnumerationDialog::OnRadioButtonLowerHexSelect(wxCommandEvent& event)
-{
-	OnBaseSelect('x');
 }
 
 void WXMEnumerationDialog::OnRadioButtonDecSelect(wxCommandEvent& event)
@@ -850,3 +903,17 @@ void WXMEnumerationDialog::OnRadioButtonBinSelect(wxCommandEvent& event)
 #ifdef _MSC_VER
 # pragma warning( pop )
 #endif
+
+void WXMEnumerationDialog::OnRadioButtonUpperSelect(wxCommandEvent& event)
+{
+	m_numsys->SetLowercase(false);
+
+	Preview();
+}
+
+void WXMEnumerationDialog::OnRadioButtonLowerSelect(wxCommandEvent& event)
+{
+	m_numsys->SetLowercase(true);
+
+	Preview();
+}
