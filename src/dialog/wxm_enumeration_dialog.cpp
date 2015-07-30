@@ -265,8 +265,7 @@ private:
 	virtual UnicodeString TenPetaAndRemainder(int64_t n) override
 	{
 		UnicodeString us = NumSysBase::DecFormat(n, false);
-		us.retainBetween(1, us.length());
-		return us;
+		return UnicodeString(us.getBuffer()+1, us.length()-1);
 	}
 };
 
@@ -644,7 +643,7 @@ bool CheckTextNumMin(const wxStaticText* label, const wxTextCtrl* txtctrl, int64
 	wxString name = label->GetLabelText();
 	wxString txtnum = txtctrl->GetValue();
 	int64_t n = -1;
-	if (!txtnum.ToLongLong(&n))
+	if (!txtnum.ToLongLong((wxLongLong_t*)&n, 10))
 	{
 		errmsg = wxString::Format(_("%s is Not a Number."), name.wc_str());
 		return false;
@@ -666,7 +665,7 @@ wxString GetSelectWXStr(wxChoice* choice)
 int64_t GetI64FromTextCtrl(const wxTextCtrl* txtctrl, int64_t defaultval=0)
 {
 	int64_t n = defaultval;
-	txtctrl->GetValue().ToLongLong(&n);
+	txtctrl->GetValue().ToLongLong((wxLongLong_t*)&n, 10);
 	return n;
 }
 
