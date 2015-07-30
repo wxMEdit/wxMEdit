@@ -854,7 +854,7 @@ BEGIN_EVENT_TABLE(MadEditFrame,wxFrame)
 	EVT_UPDATE_UI(menuTabToSpace, MadEditFrame::OnUpdateUI_MenuEdit_CheckSelSize)
 	EVT_UPDATE_UI(menuSpaceToTab, MadEditFrame::OnUpdateUI_MenuEdit_CheckSelSize)
 	EVT_UPDATE_UI(menuTrimTrailingSpaces, MadEditFrame::OnUpdateUI_Menu_CheckTextFile)
-	EVT_UPDATE_UI(menuInsertEnumeration, MadEditFrame::OnUpdateUI_MenuFile_CheckCount)
+	EVT_UPDATE_UI(menuInsertEnumeration, MadEditFrame::OnUpdateUI_Menu_CheckTextFile)
 	// search
 	EVT_UPDATE_UI(menuFind, MadEditFrame::OnUpdateUI_MenuFile_CheckCount)
 	EVT_UPDATE_UI(menuFindNext, MadEditFrame::OnUpdateUI_MenuFile_CheckCount)

@@ -250,7 +250,7 @@ class WXMEnumerationDialog: public wxDialog
 		}
 
 		std::vector<ucs4_t>& m_sequence;
-		size_t m_seqrows;
+		size_t& m_seqrows;
 		size_t m_selrows;
 
 		wxm::NumSysSharedPtr m_numsys;
