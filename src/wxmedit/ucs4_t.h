@@ -9,7 +9,16 @@
 #ifndef _UCS4_T_H_
 #define _UCS4_T_H_
 
+#ifdef _MSC_VER
+# pragma warning( push )
+# pragma warning( disable : 4996 )
+#endif
+// disable 4996 {
 #include <wx/defs.h>
+// disable 4996 }
+#ifdef _MSC_VER
+# pragma warning( pop )
+#endif
 
 // ucs4_t is Little-Endian under x86 Linux & MSWindows
 

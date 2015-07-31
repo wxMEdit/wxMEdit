@@ -1,5 +1,5 @@
                       ==================================
-                                wxMEdit v2.9.9.2
+                                wxMEdit v2.9.9.3
                       ==================================
 About:
 -----
@@ -13,12 +13,12 @@ In HexMode, wxMEdit can open large files which size is up to 32GB (INT_MAX*16).
 
 Supported Platforms:
 -------------------
-A. Linux, FreeBSD, Mac OS X, and other Unix-like OS (__WXGTK__):
+A. Linux, FreeBSD/OpenBSD/NetBSD, Mac OS X, OpenIndiana and other Unix-like OSes (__WXGTK__):
    a. GNU C++ 3.x/4.x OR clang++ 2.8 or higher:
       Required Tools and Libraries to compile:
       1. autoconf 2.63 or higher
       2. automake 1.11.1 or higher
-      3. wxWidgets 2.8 with Unicode enabled
+      3. wxWidgets 2.8/3.0 with Unicode enabled
       4. Boost 1.34.0 or higher
       5. ICU4C 4.2 or higher
       6. libcurl 7.15.5 or higher
@@ -27,7 +27,7 @@ B. MS Windows (__WXMSW__):
    a. MinGW32 GNU C++ 3.x/4.x:
       Required Tools and Libraries to compile:
       1. Bakefile 0.2.9
-      2. wxWidgets 2.6/2.8 with Unicode enabled
+      2. wxWidgets 2.8/3.0 with Unicode enabled
       3. Boost 1.34.0 or higher
       4. ICU4C 4.2 or higher
       5. libcurl 7.15.5 or higher
@@ -35,7 +35,7 @@ B. MS Windows (__WXMSW__):
    b. Visual C++ 2005/2008/2010~2013 (by upgrading from 2008 solution and project files):
       Required Tools and Libraries to compile:
       1. Bakefile 0.2.9
-      2. wxWidgets 2.6/2.8 with Unicode enabled
+      2. wxWidgets 2.8/3.0 with Unicode enabled
       3. Boost 1.34.0 or higher
       4. ICU4C 4.2 or higher
       5. libcurl 7.15.5 or higher
@@ -70,15 +70,21 @@ Syntax files, Locale files and Settings:
 
 ChangeLog:
 ----------
-wxMEdit v2.9.9.2:
+wxMEdit v2.9.9.3:
   1. added new options to display/print bookmark independent of line number.
-  2. improved bookmark appearance for displaying and printing.
-  3. improved Tab and EOF mark pattern, make it easy to distinguish Tab mark from space mark.
-  4. fixed that there are too few characters limited in a line with certain word wrap settings.
-  5. fixed that width of list items in Syntax Highlighting Settings Dialog are not updated on resizing.
-  6. updated Unicode block descriptions for Unicode 7.0 (require ICU 54 or higher).
-  7. updated Simplified Chinese translation.
-  8. other minor changes and bug fixes.
+  2. added a option whether enable dot matching new-line in regular expression.
+  3. added a feature that show searching message in status bar when Search/Replace Dialog is invisible.
+  4. improved bookmark appearance for displaying and printing.
+  5. improved Tab and EOF mark pattern, make it easy to distinguish Tab mark from space mark.
+  6. fixed that there are too few characters limited in a line with certain word wrap settings.
+  7. fixed that width of list items in Syntax Highlighting Settings Dialog are not updated on resizing.
+  8. fixed not responding when counting/replacing-all any zero-length assertions.
+  9. updated Unicode block descriptions for Unicode 7.0 (require ICU 54 or higher).
+ 10. added German translation by Ronny Steiner <post[at]sirsteiner.de>.
+ 11. added Polish translation by Adam Massalski <massaada[at]wp.pl>.
+ 12. updated Japanese translation by Tilt <tiltstr[at]gmail.com>.
+ 13. updated Simplified Chinese translation.
+ 14. other minor changes and bug fixes.
 
 wxMEdit v2.9.9:
   1. added right-click context menu for each tab.
@@ -96,8 +102,8 @@ wxMEdit v2.9.9:
  13. updated translations of wxmedit.desktop.
  14. updated Simplified Chinese translation.
  15. updated Traditional Chinese translation by Vincent_TW.
- 16. updated Spanish translation by Carlos Sánchez <carlos1994sanchez@gmail.com>.
- 17. updated Japanese translation by Tilt <tiltstr@gmail.com>.
+ 16. updated Spanish translation by Carlos Sánchez <carlos1994sanchez[at]gmail.com>.
+ 17. updated Japanese translation by Tilt <tiltstr[at]gmail.com>.
  18. other minor changes and bug fixes.
 
 wxMEdit v2.9.8:
@@ -115,8 +121,8 @@ wxMEdit v2.9.8:
  12. updated FreeBSD packaging that switched to pkgng via ports.
  13. updated Simplified Chinese translation.
  14. updated Traditional Chinese translation by Vincent_TW.
- 15. updated Spanish translation by Carlos Sánchez <carlos1994sanchez@gmail.com>.
- 16. updated Japanese translation by Tilt <tiltstr@gmail.com>.
+ 15. updated Spanish translation by Carlos Sánchez <carlos1994sanchez[at]gmail.com>.
+ 16. updated Japanese translation by Tilt <tiltstr[at]gmail.com>.
  17. other minor changes and bug fixes.
 
 See file ChangeLog for more changes.

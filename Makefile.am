@@ -30,6 +30,8 @@ wxmedit_SOURCES =	$(enc_src) \
 	$(encdet_src) \
 	src/dialog/wxm_conv_enc_dialog.cpp \
 	src/dialog/wxm_conv_enc_dialog.h \
+	src/dialog/wxm_enumeration_dialog.cpp \
+	src/dialog/wxm_enumeration_dialog.h \
 	src/dialog/wxm_find_in_files_dialog.cpp \
 	src/dialog/wxm_find_in_files_dialog.h \
 	src/dialog/wxm_highlighting_dialog.cpp \
@@ -120,6 +122,8 @@ wxmedit_test_SOURCES =	$(enc_src) \
 	src/wxmedit/wxm_deque.hpp \
 	src/xm/cxx11.h \
 	src/xm/utils.hpp \
+	src/xm/uutils.h \
+	src/xm/uutils.cpp \
 	test/encdet/data_from_icudet.cpp \
 	test/encdet/data_from_icudet.h \
 	test/encdet/data_from_mozdet.cpp \

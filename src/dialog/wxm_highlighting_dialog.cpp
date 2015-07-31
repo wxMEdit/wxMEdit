@@ -12,12 +12,19 @@
 #include "../mad_utils.h"
 #include "../wxmedit/wxm_syntax.h"
 
-
+#ifdef _MSC_VER
+# pragma warning( push )
+# pragma warning( disable : 4996 )
+#endif
+// disable 4996 {
 //(*InternalHeaders(WXMHighlightingDialog)
 #include <wx/intl.h>
 #include <wx/string.h>
 //*)
-
+// disable 4996 }
+#ifdef _MSC_VER
+# pragma warning( pop )
+#endif
 
 #ifdef _DEBUG
 #include <crtdbg.h>

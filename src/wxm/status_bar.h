@@ -10,7 +10,17 @@
 #define _WXM_STATUS_BAR_H_
 
 #include "../xm/cxx11.h"
+
+#ifdef _MSC_VER
+# pragma warning( push )
+# pragma warning( disable : 4996 )
+#endif
+// disable 4996 {
 #include <wx/statusbr.h>
+// disable 4996 }
+#ifdef _MSC_VER
+# pragma warning( pop )
+#endif
 
 class MadEditFrame;
 namespace wxm

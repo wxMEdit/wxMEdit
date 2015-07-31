@@ -11,7 +11,13 @@
 #include "encoding/encoding.h"
 #include "../mad_utils.h"
 #include "../wxmedit/wxmedit.h"
+#include "../xm/uutils.h"
 
+#ifdef _MSC_VER
+# pragma warning( push )
+# pragma warning( disable : 4996 )
+#endif
+// disable 4996 {
 #include <wx/string.h>
 #include <wx/intl.h>
 #include <wx/tokenzr.h>
@@ -24,6 +30,10 @@
 #include <wx/file.h>
 #include <wx/wfstream.h>
 #include <wx/fileconf.h>
+// disable 4996 }
+#ifdef _MSC_VER
+# pragma warning( pop )
+#endif
 
 #include <unicode/uchar.h>
 #include <unicode/locid.h>
@@ -193,6 +203,26 @@ bool FilePathEqual(const wxString& name1, const wxString& name2)
 unsigned long FilePathHash(const wxString& name)
 {
 	return wxStringHash::wxCharStringHash(FilePathNormalCase(name));
+}
+
+wxString& WxStrAppendUCS4(wxString& ws, ucs4_t ch)
+{
+#ifdef __WXMSW__
+	if (ch < 0x10000)
+	{
+		ws << wxChar(ch);
+	}
+	else
+	{
+		wxChar wbuf[2];
+		xm::NonBMPtoUTF16(ch, (UChar*)wbuf);
+		ws << wbuf[0];
+		ws << wbuf[1];
+	}
+#else
+	ws << wxChar(ch);
+#endif
+	return ws;
 }
 
 struct HexAreaRawBytesCopier: public HexAreaClipboardCopier

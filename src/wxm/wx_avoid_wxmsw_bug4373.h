@@ -9,11 +9,16 @@
 #ifndef _WX_AVOID_WXMSW_BUG4373_H
 #define _WX_AVOID_WXMSW_BUG4373_H
 
+#ifdef _MSC_VER
+# pragma warning( push )
+# pragma warning( disable : 4996 )
+#endif
+// disable 4996 {
 #ifndef WX_PRECOMP
-	#include <wx/wx.h>
-	#include <wx/dialog.h>
+# include <wx/wx.h>
+# include <wx/dialog.h>
 #else
-	#include <wx/wxprec.h>
+# include <wx/wxprec.h>
 #endif
 
 #ifndef __WXMSW__
@@ -21,6 +26,7 @@
 #else
 # include "../xm/cxx11.h"
 # include <wx/msw/private.h>
+
 class wxDialogWrapper: public wxDialog
 {
 public:
@@ -53,6 +59,10 @@ public:
 		: wxDialog(parent, id, title, pos, size, style, name)
 	{}
 };
+#endif //__WXMSW__
+// disable 4996 }
+#ifdef _MSC_VER
+# pragma warning( pop )
 #endif
 
 #endif //_WX_AVOID_WXMSW_BUG4373_H

@@ -12,8 +12,19 @@
 #include "../xm/cxx11.h"
 #include "../wxmedit/ucs4_t.h"
 #include "../wxmedit/wxm_deque.hpp"
+
+#ifdef _MSC_VER
+# pragma warning( push )
+# pragma warning( disable : 4996 )
+#endif
+// disable 4996 {
 #include <wx/defs.h>
 #include <wx/filefn.h>
+// disable 4996 }
+#ifdef _MSC_VER
+# pragma warning( pop )
+#endif
+
 #include <vector>
 #include <utility>
 

@@ -11,13 +11,22 @@
 #include "../encoding/unicode.h"
 #include "../../wxmedit_frame.h"
 #include "../../dialog/wxm_search_replace_dialog.h"
-#include "../../xm/utils.hpp"
 #include "../../mad_utils.h"
+#include "../../xm/uutils.h"
+#include "../../dialog/wxm_enumeration_dialog.h"
 
+#ifdef _MSC_VER
+# pragma warning( push )
+# pragma warning( disable : 4996 )
+#endif
+// disable 4996 {
 #include <wx/aui/auibook.h>
 #include <wx/filename.h>
-
-#include <boost/assign/list_of.hpp>
+//*)
+// disable 4996 }
+#ifdef _MSC_VER
+# pragma warning( pop )
+#endif
 
 #ifdef _DEBUG
 #include <crtdbg.h>
@@ -93,7 +102,7 @@ InFrameWXMEdit::InFrameWXMEdit(wxWindow* parent, wxWindowID id, const wxPoint& p
 	Connect(wxEVT_KEY_DOWN, wxKeyEventHandler(MadEditFrame::MadEditFrameKeyDown));
 }
 
-wxString InserModeText(bool insertmode)
+wxString InsertModeText(bool insertmode)
 {
 	static wxString insstr(_("INS"));
 	static wxString ovrstr(_("OVR"));
@@ -110,16 +119,6 @@ wxString BOMText(bool hasbom)
 {
 	static wxString bom(wxT(".BOM"));
 	return hasbom ? bom : wxString();
-}
-
-wxString NewLineTypeText(MadNewLineType nlty)
-{
-	static std::map<int, wxString> nltytxts = boost::assign::map_list_of
-			(nltDOS,  wxString(wxT(".DOS")))
-			(nltUNIX, wxString(wxT(".UNIX")))
-			(nltMAC,  wxString(wxT(".MAC")))
-		;
-	return xm::wrap_map(nltytxts).get((int)nlty, wxEmptyString);
 }
 
 void InFrameWXMEdit::DoSelectionChanged()
@@ -213,13 +212,13 @@ void InFrameWXMEdit::DoStatusChanged()
 
 	encfmt += BOMText(HasBOM());
 
-	encfmt += NewLineTypeText(GetNewLineType());
+	encfmt += wxString(wxT(".")) + GetNewLine().Name();
 
 	wxm::GetFrameStatusBar().SetField(wxm::STBF_ENCFMT, encfmt);
 
 	wxm::GetFrameStatusBar().SetField(wxm::STBF_READONLY, ReadOnlyText(IsReadOnly()));
 
-	wxm::GetFrameStatusBar().SetField(wxm::STBF_INSOVR, InserModeText(IsInsertMode()));
+	wxm::GetFrameStatusBar().SetField(wxm::STBF_INSOVR, InsertModeText(IsInsertMode()));
 
 	wxm::GetFrameStatusBar().Update(); // repaint immediately
 
@@ -435,7 +434,7 @@ void InFrameWXMEdit::BeginHexPrinting()
 		return;
 	}
 
-	m_PrintTotalHexLineCount = m_Lines->m_Size / 16;
+	m_PrintTotalHexLineCount = int(m_Lines->m_Size / 16);
 	if ((size_t(m_Lines->m_Size) & 0x0F) != 0)
 		++m_PrintTotalHexLineCount;
 
@@ -674,7 +673,7 @@ void InFrameWXMEdit::PrintHexPage(wxDC *dc, int pageNum)
 			wxFileOffset rowpos = m_HexRowIndex[rowidx];
 			if (rowpos>hexrowpos)
 			{
-				idx = rowpos - hexrowpos;
+				idx = int(rowpos - hexrowpos);
 				if (idx>0)
 				{
 					do
@@ -703,27 +702,9 @@ void InFrameWXMEdit::PrintHexPage(wxDC *dc, int pageNum)
 				MadUCPair &ucp = ucqueue.back();
 				rowpos += ucp.second;
 				if (ucp.first <= 0x20)
-				{
 					lines << wxT('.');
-				}
 				else
-				{
-#ifdef __WXMSW__
-					if (ucp.first<0x10000)
-					{
-						lines << wxChar(ucp.first);
-					}
-					else
-					{
-						wchar_t wbuf[2];
-						wxm::UCS4toUTF16LE_U10000(ucp.first, (wxByte*)wbuf);
-						lines << wbuf[0];
-						lines << wbuf[1];
-					}
-#else
-					lines << wxChar(ucp.first);
-#endif
-				}
+					WxStrAppendUCS4(lines, ucp.first);
 
 				idx = ucp.second - 1;
 				if (idx>0 && rowpos<hexrowpos16)
@@ -837,6 +818,38 @@ void InFrameWXMEdit::PaintLineNumberArea(const wxColor & bgcolor, wxDC * dc, con
 		if (lnstr[i] != 0x20)
 			dc->DrawText(lnstr[i], l, text_top);
 	}
+}
+
+void InFrameWXMEdit::TrimTrailingSpaces()
+{
+	if (IsReadOnly() || GetEditMode() == emHexMode)
+		return;
+
+	// use Regular Expressions to trim all trailing spaces
+	Searcher(false, true)->SetOption(true, false);
+	Searcher(false, true)->ReplaceAll(wxT("[ \t]+(\r|\n|$)"), wxT("$1"));
+}
+
+void InFrameWXMEdit::InsertEnumeration()
+{
+	int selbeg, selend;
+	GetSelectionLineId(selbeg, selend);
+
+	std::vector<ucs4_t> seq;
+	size_t rows;
+	WXMEnumerationDialog dlg(seq, rows, g_MainFrame);
+
+	if (selbeg != -1)
+		dlg.SetSelectedRows(size_t(selend - selbeg + 1));
+	int rc = dlg.ShowModal();
+
+	if (rc != wxID_OK || rows==0)
+		return;
+
+	if (GetEditMode() == emColumnMode)
+		InsertColumnText(seq, int(rows));
+	else
+		InsertRegularText(seq);
 }
 
 } //namespace wxm

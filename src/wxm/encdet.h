@@ -10,15 +10,25 @@
 #define _WXM_ENCDET_H_
 
 #include "encoding/encoding_def.h"
+
+#ifdef _MSC_VER
+# pragma warning( push )
+# pragma warning( disable : 4996 )
+#endif
+// disable 4996 {
 #include <wx/wxprec.h>
 
 #ifdef __BORLANDC__
-#pragma hdrstop
+# pragma hdrstop
 #endif
 
 #ifndef WX_PRECOMP
-#include <wx/defs.h>
-#include <wx/string.h>
+# include <wx/defs.h>
+# include <wx/string.h>
+#endif
+// disable 4996 }
+#ifdef _MSC_VER
+# pragma warning( pop )
 #endif
 
 namespace wxm

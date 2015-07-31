@@ -50,7 +50,7 @@ bool SingleLineWXMEdit::AdjustInsertCount(const ucs4_t *ucs, size_t& count)
 
 bool SingleLineWXMEdit::AdjustStringLength(const wxString& ws, size_t& size)
 {
-	return AdjustCharCount(ws.c_str(), size, GetFileSize(), MaxLineLength());
+	return AdjustCharCount(ws.wc_str(), size, GetFileSize(), MaxLineLength());
 }
 
 bool SingleLineWXMEdit::NeedNotProcessMouseLeftDown(wxMouseEvent &evt)

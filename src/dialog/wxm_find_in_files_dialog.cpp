@@ -15,6 +15,11 @@
 #include "../wxm/edit/single_line.h"
 #include "../wxm/utils.h"
 
+#ifdef _MSC_VER
+# pragma warning( push )
+# pragma warning( disable : 4996 )
+#endif
+// disable 4996 {
 #include <wx/progdlg.h>
 #include <wx/dir.h>
 #include <wx/tokenzr.h>
@@ -24,6 +29,10 @@
 #include <wx/intl.h>
 #include <wx/string.h>
 //*)
+// disable 4996 }
+#ifdef _MSC_VER
+# pragma warning( pop )
+#endif
 
 #include <boost/scoped_ptr.hpp>
 #include <boost/tr1/unordered_set.hpp>

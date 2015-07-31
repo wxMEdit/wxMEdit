@@ -8,6 +8,11 @@
 #ifndef WXM_SORT_DIALOG_H
 #define WXM_SORT_DIALOG_H
 
+#ifdef _MSC_VER
+# pragma warning( push )
+# pragma warning( disable : 4996 )
+#endif
+// disable 4996 {
 //(*Headers(WXMSortDialog)
 #include <wx/sizer.h>
 #include <wx/radiobox.h>
@@ -15,6 +20,10 @@
 #include <wx/button.h>
 #include <wx/dialog.h>
 //*)
+// disable 4996 }
+#ifdef _MSC_VER
+# pragma warning( pop )
+#endif
 
 class WXMSortDialog: public wxDialog
 {

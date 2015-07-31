@@ -9,20 +9,30 @@
 #ifndef _WXM_DEF_H_
 #define _WXM_DEF_H_
 
+#include "../wxmedit/ucs4_t.h"
+
+#ifdef _MSC_VER
+# pragma warning( push )
+# pragma warning( disable : 4996 )
+#endif
+// disable 4996 {
 #include <wx/string.h>
 #include <wx/version.h>
+// disable 4996 }
+#ifdef _MSC_VER
+# pragma warning( pop )
+#endif
+
 #include <vector>
+#include <string>
 
-#define WXMEDIT_VERSION	"2.9.9.2"
+#define WXMEDIT_VERSION	"2.9.9.3"
 
-#if wxMAJOR_VERSION==2 && wxMINOR_VERSION==6
-# define wxOS_WINDOWS_9X wxWIN95
-# include <wx/longlong.h>
-  typedef wxLongLong wxMilliClock_t;
-# define EVT_MOUSE_CAPTURE_LOST(x) 
-# include <wx/event.h>
-  typedef wxMouseEvent wxMouseCaptureLostEvent;
-# define wxDD_DIR_MUST_EXIST 0x0200
+typedef std::basic_string<ucs4_t> ucs4string;
+
+#if wxMAJOR_VERSION==2
+  typedef int wxPrintOrientation;
+# define wxGetSelectedChoices wxGetMultipleChoices
 #endif
 
 typedef std::vector<size_t> LineNumberList;

@@ -8,12 +8,21 @@
 #ifndef WXM_PURGE_HISTORIES_DIALOG_H
 #define WXM_PURGE_HISTORIES_DIALOG_H
 
+#ifdef _MSC_VER
+# pragma warning( push )
+# pragma warning( disable : 4996 )
+#endif
+// disable 4996 {
 //(*Headers(WXMPurgeHistoriesDialog)
 #include <wx/sizer.h>
 #include <wx/checkbox.h>
 #include <wx/button.h>
 #include <wx/dialog.h>
 //*)
+// disable 4996 }
+#ifdef _MSC_VER
+# pragma warning( pop )
+#endif
 
 class WXMPurgeHistoriesDialog: public wxDialog
 {

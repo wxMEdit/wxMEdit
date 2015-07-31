@@ -1,14 +1,20 @@
-2015-02-04 00:29:19 +0800 JiaYanwei <wxmedit@gmail.com>
+2015-04-21 12:08:36 +0800 JiaYanwei <wxmedit@gmail.com>
 
-	* wxMEdit v2.9.9.2:
+	* wxMEdit v2.9.9.3:
 	 1. added new options to display/print bookmark independent of line number.
-	 2. improved bookmark appearance for displaying and printing.
-	 3. improved Tab and EOF mark pattern, make it easy to distinguish Tab mark from space mark.
-	 4. fixed that there are too few characters limited in a line with certain word wrap settings.
-	 5. fixed that width of list items in Syntax Highlighting Settings Dialog are not updated on resizing.
-	 6. updated Unicode block descriptions for Unicode 7.0 (require ICU 54 or higher).
-	 7. updated Simplified Chinese translation.
-	 8. other minor changes and bug fixes.
+	 2. added a option whether enable dot matching new-line in regular expression.
+	 3. added a feature that show searching message in status bar when Search/Replace Dialog is invisible.
+	 4. improved bookmark appearance for displaying and printing.
+	 5. improved Tab and EOF mark pattern, make it easy to distinguish Tab mark from space mark.
+	 6. fixed that there are too few characters limited in a line with certain word wrap settings.
+	 7. fixed that width of list items in Syntax Highlighting Settings Dialog are not updated on resizing.
+	 8. fixed not responding when counting/replacing-all any zero-length assertions.
+	 9. updated Unicode block descriptions for Unicode 7.0 (require ICU 54 or higher).
+	10. added German translation by Ronny Steiner <post[at]sirsteiner.de>.
+	11. added Polish translation by Adam Massalski <massaada[at]wp.pl>.
+	12. updated Japanese translation by Tilt <tiltstr[at]gmail.com>.
+	13. updated Simplified Chinese translation.
+	14. other minor changes and bug fixes.
 
 
 2014-12-26 21:37:12 +0800 JiaYanwei <wxmedit@gmail.com>
@@ -29,8 +35,8 @@
 	13. updated translations of wxmedit.desktop.
 	14. updated Simplified Chinese translation.
 	15. updated Traditional Chinese translation by Vincent_TW.
-	16. updated Spanish translation by Carlos Sánchez <carlos1994sanchez@gmail.com>.
-	17. updated Japanese translation by Tilt <tiltstr@gmail.com>.
+	16. updated Spanish translation by Carlos Sánchez <carlos1994sanchez[at]gmail.com>.
+	17. updated Japanese translation by Tilt <tiltstr[at]gmail.com>.
 	18. other minor changes and bug fixes.
 
 
@@ -51,8 +57,8 @@
 	12. updated FreeBSD packaging that switched to pkgng via ports.
 	13. updated Simplified Chinese translation.
 	14. updated Traditional Chinese translation by Vincent_TW.
-	15. updated Spanish translation by Carlos Sánchez <carlos1994sanchez@gmail.com>.
-	16. updated Japanese translation by Tilt <tiltstr@gmail.com>.
+	15. updated Spanish translation by Carlos Sánchez <carlos1994sanchez[at]gmail.com>.
+	16. updated Japanese translation by Tilt <tiltstr[at]gmail.com>.
 	17. other minor changes and bug fixes.
 
 
@@ -61,18 +67,18 @@
 	* wxMEdit v2.9.7:
 	 1. added new encoding "CP437 Variant for ASCII Art" to support ASCII-Art better.
 	 2. added automatically checking for updates.
-	 3. added bookmark support [mainly by Gospodin Gyurov (aka Gogo) <ggurov@yahoo.com>].
+	 3. added bookmark support [mainly by Gospodin Gyurov (aka Gogo) <ggurov[at]yahoo.com>].
 	 4. added new commands: delete previous/next word (by Gogo).
 	 5. added search option "Wrap around".
 	 6. added Credits tab in About Dialog.
 	 7. added Misc tab in Options Dialog.
-	 8. added selecting a line by triple click (mainly by cfreeer <cfreeer@users.sf.net>).
+	 8. added selecting a line by triple click (mainly by cfreeer <cfreeer[at]users.sf.net>).
 	 9. added updating syntax highlighting on saving file (mainly by cfreeer).
 	10. added FreeBASIC syntax file.
 	11. added grouping of encodings.
 	12. added purging histories support.
 	13. added more choices for copying in hex-area and added them into Options Dialog.
-	14. added Russian translation by Shamil Bikineyev <shamilbi@gmail.com>.
+	14. added Russian translation by Shamil Bikineyev <shamilbi[at]gmail.com>.
 	15. improved maximized behavior under Windows (by Gogo).
 	16. improved system integration under Windows.
 	17. improved display effect of the Word-Count information.
@@ -99,10 +105,10 @@
 	 7. updated RPM, debian and FreeBSD packaging files.
 	 8. fixed crash on restart if "Max line length before Line-Wrap" was set too large.
 	 9. improved build configurations.
-	10. updated Spanish translation by Carlos Sánchez <carlos1994sanchez@gmail.com>.
-	11. updated Japanese translation by Tilt <tiltstr@gmail.com>.
+	10. updated Spanish translation by Carlos Sánchez <carlos1994sanchez[at]gmail.com>.
+	11. updated Japanese translation by Tilt <tiltstr[at]gmail.com>.
 	12. updated Simplified Chinese translation.
-	13. updated Traditional Chinese translation by Denir Li <denir.li@gmail.com>.
+	13. updated Traditional Chinese translation by Denir Li <denir.li[at]gmail.com>.
 	14. other minor changes.
 
 
@@ -118,14 +124,14 @@
 
 	* wxMEdit v2.9.5:
 	 1. fixed crash when delete a character in a line which contains two or more characters with MadEdit/wxMEdit built with vc2010.
-	 2. fixed Fedora build and packing by Huaren Zhong <huaren.zhong@gmail.com>.
+	 2. fixed Fedora build and packing by Huaren Zhong <huaren.zhong[at]gmail.com>.
 	 3. fixed recent lists case sensitive and truncated in menu bug.
 	 4. fixed Double-byte conversion bug.
 	 5. changed EUC-JP implementation to meet CP20932.
 	 6. added CP850, CP852, CP855, KOI8-U, ISO-8859-16, Windows-1258 and GB18030 support.
 	 7. made more system encodings(e.g. Windows-1258) detectable.
-	 8. added Spanish translation by Carlos Sánchez <carlos1994sanchez@gmail.com>.
-	 9. updated Japanese translation by Tilt <tiltstr@gmail.com>.
+	 8. added Spanish translation by Carlos Sánchez <carlos1994sanchez[at]gmail.com>.
+	 9. updated Japanese translation by Tilt <tiltstr[at]gmail.com>.
 	10. updated Chinese translations.
 
 

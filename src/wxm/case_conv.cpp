@@ -79,7 +79,7 @@ UChar32 WxCaseConverter::PeekChar()
 		return ch; // should'n t be here
 
 	m_in_surrogate = true;
-	return 0x10000 + ( ((ch & 0x3FF) << 10) | (m_txt[m_idx+1] & 0x3FF) );
+	return 0x10000 + ( ((ch & 0x3FF) << 10) | ((wchar_t)(m_txt[m_idx+1]) & 0x3FF) );
 #endif
 }
 

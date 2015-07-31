@@ -8,6 +8,11 @@
 #ifndef WXMEDIT_ABOUT_DIALOG_H
 #define WXMEDIT_ABOUT_DIALOG_H
 
+#ifdef _MSC_VER
+# pragma warning( push )
+# pragma warning( disable : 4996 )
+#endif
+// disable 4996 {
 //(*Headers(WXMEditAboutDialog)
 #include <wx/notebook.h>
 #include <wx/sizer.h>
@@ -17,6 +22,10 @@
 #include <wx/button.h>
 #include <wx/dialog.h>
 //*)
+// disable 4996 }
+#ifdef _MSC_VER
+# pragma warning( pop )
+#endif
 
 namespace wxm
 {

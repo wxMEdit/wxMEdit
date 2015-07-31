@@ -13,6 +13,7 @@
 
 #include <unicode/unistr.h>
 #include <unicode/uchar.h>
+#include <string>
 #include <stddef.h>
 
 namespace xm
@@ -89,6 +90,9 @@ private:
 	size_t m_sp_cnt;
 };
 
+
+void NonBMPtoUTF16(UChar32 ch, UChar* buf);
+size_t NonBMPtoUTF16LE(UChar32 ch, uint8_t* buf);
 
 }; // namespace xm
 #endif //_XM_UUTILS_H_

@@ -11,15 +11,25 @@
 #define _MAD_ENCDET_H_
 
 #include "../wxm/encoding/encoding_def.h"
+
+#ifdef _MSC_VER
+# pragma warning( push )
+# pragma warning( disable : 4996 )
+#endif
+// disable 4996 {
 #include <wx/wxprec.h>
 
 #ifdef __BORLANDC__
-#pragma hdrstop
+# pragma hdrstop
 #endif
 
 #ifndef WX_PRECOMP
 // Include your minimal set of headers here, or wx.h
-#include <wx/defs.h>
+# include <wx/defs.h>
+#endif
+// disable 4996 }
+#ifdef _MSC_VER
+# pragma warning( pop )
 #endif
 
 bool IsBinaryData(const wxByte *data, size_t len);

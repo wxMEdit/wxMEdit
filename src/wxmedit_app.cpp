@@ -18,8 +18,17 @@
 
 #include "wxmedit/wxmedit.h"
 
+#ifdef _MSC_VER
+# pragma warning( push )
+# pragma warning( disable : 4996 )
+#endif
+// disable 4996 {
 #include <wx/filename.h>
 #include <wx/fileconf.h>
+// disable 4996 }
+#ifdef _MSC_VER
+# pragma warning( pop )
+#endif
 
 IMPLEMENT_APP(MadEditApp)
 
@@ -48,9 +57,9 @@ const wxChar *g_LanguageString[]=
     wxT("Deutsch (German)"),
     wxT("Italiano (Italian)"),
     wxT("\u65E5\u672C\u8A9E (Japanese)"),
-    wxT("Espa\u00F1ol (Spanish)"),
     wxT("polski (Polish)"),
     wxT("\u0420\u0443\u0441\u0441\u043a\u0438\u0439 (Russian)"),
+    wxT("Espa\u00F1ol (Spanish)"),
 };
 int g_LanguageValue[]=
 {
@@ -61,9 +70,9 @@ int g_LanguageValue[]=
     wxLANGUAGE_GERMAN,
     wxLANGUAGE_ITALIAN,
     wxLANGUAGE_JAPANESE,
-    wxLANGUAGE_SPANISH,
     wxLANGUAGE_POLISH,
     wxLANGUAGE_RUSSIAN,
+    wxLANGUAGE_SPANISH,
 };
 extern const size_t g_LanguageCount = sizeof(g_LanguageValue)/sizeof(int);
 
@@ -76,7 +85,9 @@ extern const size_t g_LanguageCount = sizeof(g_LanguageValue)/sizeof(int);
 #include <X11/Xatom.h>
 #include <gtk/gtk.h>
 #include <gdk/gdkx.h>
-#include <wx/gtk/win_gtk.h>
+#if wxMAJOR_VERSION == 2
+# include <wx/gtk/win_gtk.h>
+#endif
 
 Atom g_MadEdit_atom;
 Display *g_Display=nullptr;
@@ -184,7 +195,7 @@ bool OpenFilesInPrevInst(const wxString& flist)
     if(GetLastError() != ERROR_ALREADY_EXISTS)
         return false;
 
-    extern const wxChar *wxCanvasClassNameNR;    // class name of MadEditFrame
+	const wxChar wxCanvasClassNameNR[] = wxT("wxWindowClassNR"); // class name of MadEditFrame
     wxChar title[256]={0};
     HWND prevapp = ::FindWindowEx(NULL, NULL, wxCanvasClassNameNR, nullptr);
     for(;;)                // find wxCanvasClassNameNR
@@ -376,7 +387,7 @@ bool MadEditApp::OnInit()
     myFrame->Show(true);
 
 
-#if defined(__WXGTK__)
+#if defined(__WXGTK__) && wxMAJOR_VERSION == 2
     if(bSingleInstance)
     {
         GtkPizza *pizza = GTK_PIZZA(myFrame->m_mainWidget);

@@ -750,6 +750,8 @@ struct ByteIterator : public WXMCharIterator
 MadLines *ByteIterator::s_lines = nullptr;
 wxFileOffset ByteIterator::s_endpos = 0;
 
+extern bool g_regex_dot_match_newline;
+
 namespace wxm
 {
 
@@ -1047,7 +1049,7 @@ MadSearchResult TextSearcher::FindPrevious(const wxString &text,
 					epos.linepos = 0;
 					epos.iter++;
 				}
-			} while ((s -= len) > 0);
+			} while ((s -= size_t(len)) > 0);
 		}
 	}
 
@@ -1282,7 +1284,6 @@ bool RegexSearcher::SearchingPrepare(const ucs4string& exprstr, const wxString& 
 {
 	try
 	{
-		extern bool g_regex_dot_match_newline;
 		regex_constants::syntax_option_type opt = regex_constants::ECMAScript;
 		if (!m_case_sensitive)
 			opt = opt | regex_constants::icase;
@@ -1523,7 +1524,7 @@ MadSearchResult HexSearcher::FindPrevious(const wxString &hexstr,
 					epos.linepos = 0;
 					epos.iter++;
 				}
-			} while ((s -= len) > 0);
+			} while ((s -= size_t(len)) > 0);
 		}
 	}
 

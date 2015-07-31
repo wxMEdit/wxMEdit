@@ -34,6 +34,11 @@
 #include "wxm/recent_list.h"
 #include "wxm/def.h"
 
+#ifdef _MSC_VER
+# pragma warning( push )
+# pragma warning( disable : 4996 )
+#endif
+// disable 4996 {
 #include <wx/app.h>
 //#include <wx/dynload.h>
 #include <wx/tokenzr.h>
@@ -45,6 +50,10 @@
 #include <wx/dnd.h>
 #include <wx/printdlg.h>
 #include <wx/config.h>
+// disable 4996 }
+#ifdef _MSC_VER
+# pragma warning( pop )
+#endif
 
 #include <boost/foreach.hpp>
 #include <boost/assign/list_of.hpp>
@@ -394,7 +403,7 @@ public:
 
                                 if(StrToInt64(text, i64))
                                 {
-                                    fpdata.fontsize = i64;
+                                    fpdata.fontsize = (int)i64;
                                 }
                             }
                             else
@@ -845,6 +854,7 @@ BEGIN_EVENT_TABLE(MadEditFrame,wxFrame)
 	EVT_UPDATE_UI(menuTabToSpace, MadEditFrame::OnUpdateUI_MenuEdit_CheckSelSize)
 	EVT_UPDATE_UI(menuSpaceToTab, MadEditFrame::OnUpdateUI_MenuEdit_CheckSelSize)
 	EVT_UPDATE_UI(menuTrimTrailingSpaces, MadEditFrame::OnUpdateUI_Menu_CheckTextFile)
+	EVT_UPDATE_UI(menuInsertEnumeration, MadEditFrame::OnUpdateUI_Menu_CheckTextFile)
 	// search
 	EVT_UPDATE_UI(menuFind, MadEditFrame::OnUpdateUI_MenuFile_CheckCount)
 	EVT_UPDATE_UI(menuFindNext, MadEditFrame::OnUpdateUI_MenuFile_CheckCount)
@@ -934,10 +944,6 @@ BEGIN_EVENT_TABLE(MadEditFrame,wxFrame)
 	EVT_MENU(menuSelectAll, MadEditFrame::OnEditSelectAll)
 	EVT_MENU(menuInsertTabChar, MadEditFrame::OnEditInsertTabChar)
 	EVT_MENU(menuInsertDateTime, MadEditFrame::OnEditInsertDateTime)
-	EVT_MENU(menuToggleBookmark, MadEditFrame::OnEditToggleBookmark)
-	EVT_MENU(menuGotoNextBookmark, MadEditFrame::OnEditGotoNextBookmark)
-	EVT_MENU(menuGotoPreviousBookmark, MadEditFrame::OnEditGotoPreviousBookmark)
-	EVT_MENU(menuClearAllBookmarks, MadEditFrame::OnEditClearAllBookmarks)
 	EVT_MENU(menuSortAscending, MadEditFrame::OnEditSortAscending)
 	EVT_MENU(menuSortDescending, MadEditFrame::OnEditSortDescending)
 	EVT_MENU(menuSortAscendingCase, MadEditFrame::OnEditSortAscendingCase)
@@ -962,6 +968,7 @@ BEGIN_EVENT_TABLE(MadEditFrame,wxFrame)
 	EVT_MENU(menuTabToSpace, MadEditFrame::OnEditTabToSpace)
 	EVT_MENU(menuSpaceToTab, MadEditFrame::OnEditSpaceToTab)
 	EVT_MENU(menuTrimTrailingSpaces, MadEditFrame::OnEditTrimTrailingSpaces)
+	EVT_MENU(menuInsertEnumeration, MadEditFrame::OnEditInsertEnumeration)
 	// search
 	EVT_MENU(menuFind, MadEditFrame::OnSearchFind)
 	EVT_MENU(menuFindNext, MadEditFrame::OnSearchFindNext)
@@ -973,6 +980,10 @@ BEGIN_EVENT_TABLE(MadEditFrame,wxFrame)
 	EVT_MENU(menuGoToPosition, MadEditFrame::OnSearchGoToPosition)
 	EVT_MENU(menuLeftBrace, MadEditFrame::OnSearchGoToLeftBrace)
 	EVT_MENU(menuRightBrace, MadEditFrame::OnSearchGoToRightBrace)
+	EVT_MENU(menuToggleBookmark, MadEditFrame::OnSearchToggleBookmark)
+	EVT_MENU(menuGotoNextBookmark, MadEditFrame::OnSearchGotoNextBookmark)
+	EVT_MENU(menuGotoPreviousBookmark, MadEditFrame::OnSearchGotoPreviousBookmark)
+	EVT_MENU(menuClearAllBookmarks, MadEditFrame::OnSearchClearAllBookmarks)
 	// view
 	EVT_MENU_RANGE(menuEncoding1, menuEncoding99, MadEditFrame::OnViewEncoding)
 	EVT_MENU_RANGE(menuRecentEncoding1, menuRecentEncoding9, MadEditFrame::OnViewRecentEncoding)
@@ -1118,6 +1129,7 @@ CommandData CommandTable[]=
                                                                                                                                                                  wxITEM_NORMAL,    -1,                0,                     _("Insert a Tab char at current position")},
 
     { ecInsertDateTime, 1, menuInsertDateTime,           wxT("menuInsertDateTime"),           _("Insert Dat&e and Time"),                   wxT("F7"),           wxITEM_NORMAL,    -1,                0,                     _("Insert date and time at current position")},
+    { 0,                1, menuInsertEnumeration,        wxT("menuInsertEnumeration"),        _("Insert &Ordered Sequence..."),             wxT(""),             wxITEM_NORMAL,    -1,                0,                     _("Insert ordered sequence with certain format in specified numbering system")},
 
     { 0,                1, 0,                            0,                                   0,                                            0,                   wxITEM_SEPARATOR, -1,                0,                     0},
     { 0,                1, menuAdvanced,                 wxT("menuAdvanced"),                 _("Ad&vanced"),                               0,                   wxITEM_NORMAL,    -1,                &g_Menu_Edit_Advanced, 0},
@@ -1471,7 +1483,7 @@ void LoadDefaultSettings(wxConfigBase *m_Config)
 
     long orien;
     m_Config->Read(wxT("PageOrientation"), &orien, wxPORTRAIT);
-    g_PageSetupData->GetPrintData().SetOrientation(orien);
+	g_PageSetupData->GetPrintData().SetOrientation((wxPrintOrientation)orien);
 
     wxSize psize=g_PageSetupData->GetPaperSize();
     m_Config->Read(wxT("PagePaperSizeW"), &psize.x);
@@ -1634,7 +1646,7 @@ void CloneMenuItem(wxMenu* menu, const wxMenu* srcmenu, int itemid)
     }
 
     wxMenuItem* srcitem = srcmenu->FindItem(itemid);
-    wxString txt = srcitem->GetText();
+	wxString txt = srcitem->GetItemLabel();
 #ifdef __WXGTK__
     txt.Replace(wxT("&"), wxT("&&"));
     txt.Replace(wxT("_"), wxT("&"));
@@ -1752,37 +1764,37 @@ void MadEditFrame::CreateGUIControls()
 
 
     // add menuitems
-    g_PopMenu_Tab = new wxMenu(0);
-    g_Menu_File = new wxMenu(0);
-    g_Menu_Edit = new wxMenu(0);
-    g_Menu_Search = new wxMenu(0);
-    g_Menu_View = new wxMenu(0);
-    g_Menu_Tools = new wxMenu(0);
-    g_Menu_Window = new wxMenu(0);
-    g_Menu_Help = new wxMenu(0);
-    g_Menu_File_CloseMore = new wxMenu(0);
-    g_Menu_File_CopyPath = new wxMenu(0);
-    g_Menu_File_RecentFiles = new wxMenu(0);
-    g_Menu_Edit_Sort = new wxMenu(0);
-    g_Menu_Edit_Advanced = new wxMenu(0);
-    g_Menu_View_Encoding = new wxMenu(0);
-    g_Menu_View_AllEncodings = new wxMenu(0);
-    g_Menu_View_Syntax = new wxMenu(0);
-    g_Menu_View_FontName = new wxMenu(0);
-    g_Menu_View_FontSize = new wxMenu(0);
-    g_Menu_View_LineSpacing = new wxMenu(0);
-    g_Menu_View_TabColumn = new wxMenu(0);
-    g_Menu_Tools_BOM = new wxMenu(0);
-    g_Menu_Tools_NewLineChar = new wxMenu(0);
-    g_Menu_Tools_InsertNewLineChar = new wxMenu(0);
-    g_Menu_Tools_ConvertChineseChar = new wxMenu(0);
-    g_Menu_View_Font0 = new wxMenu(0);
-    g_Menu_View_Font1 = new wxMenu(0);
-    g_Menu_View_Font2 = new wxMenu(0);
-    g_Menu_View_Font3 = new wxMenu(0);
-    g_Menu_View_Font4 = new wxMenu(0);
-    g_Menu_View_Font5 = new wxMenu(0);
-    g_Menu_View_Font6 = new wxMenu(0);
+    g_PopMenu_Tab = new wxMenu(0L);
+    g_Menu_File = new wxMenu(0L);
+    g_Menu_Edit = new wxMenu(0L);
+    g_Menu_Search = new wxMenu(0L);
+    g_Menu_View = new wxMenu(0L);
+    g_Menu_Tools = new wxMenu(0L);
+    g_Menu_Window = new wxMenu(0L);
+    g_Menu_Help = new wxMenu(0L);
+    g_Menu_File_CloseMore = new wxMenu(0L);
+    g_Menu_File_CopyPath = new wxMenu(0L);
+    g_Menu_File_RecentFiles = new wxMenu(0L);
+    g_Menu_Edit_Sort = new wxMenu(0L);
+    g_Menu_Edit_Advanced = new wxMenu(0L);
+    g_Menu_View_Encoding = new wxMenu(0L);
+    g_Menu_View_AllEncodings = new wxMenu(0L);
+    g_Menu_View_Syntax = new wxMenu(0L);
+    g_Menu_View_FontName = new wxMenu(0L);
+    g_Menu_View_FontSize = new wxMenu(0L);
+    g_Menu_View_LineSpacing = new wxMenu(0L);
+    g_Menu_View_TabColumn = new wxMenu(0L);
+    g_Menu_Tools_BOM = new wxMenu(0L);
+    g_Menu_Tools_NewLineChar = new wxMenu(0L);
+    g_Menu_Tools_InsertNewLineChar = new wxMenu(0L);
+    g_Menu_Tools_ConvertChineseChar = new wxMenu(0L);
+    g_Menu_View_Font0 = new wxMenu(0L);
+    g_Menu_View_Font1 = new wxMenu(0L);
+    g_Menu_View_Font2 = new wxMenu(0L);
+    g_Menu_View_Font3 = new wxMenu(0L);
+    g_Menu_View_Font4 = new wxMenu(0L);
+    g_Menu_View_Font5 = new wxMenu(0L);
+    g_Menu_View_Font6 = new wxMenu(0L);
 
 
     list<wxMenu*> menu_stack;
@@ -3136,13 +3148,7 @@ void MadEditFrame::OnUpdateUI_MenuToolsNewLineChar(wxUpdateUIEvent& event)
     {
         event.Enable(true);
 
-        switch (g_active_wxmedit->GetNewLineType())
-        {
-        case nltDOS:  text += wxT("CRLF/0D0A (DOS)"); break;
-        case nltUNIX: text += wxT("LF/0A (UNIX)"); break;
-        case nltMAC:  text += wxT("CR/0D (MAC)"); break;
-        default: break;
-        }
+        text += g_active_wxmedit->GetNewLine().Description();
         event.SetText(text);
     }
     else
@@ -3158,13 +3164,7 @@ void MadEditFrame::OnUpdateUI_MenuToolsInsertNewLineChar(wxUpdateUIEvent& event)
     {
         event.Enable(true);
 
-        switch (g_active_wxmedit->GetInsertNewLineType())
-        {
-        case nltDOS:  text += wxT("CRLF/0D0A (DOS)"); break;
-        case nltUNIX: text += wxT("LF/0A (UNIX)"); break;
-        case nltMAC:  text += wxT("CR/0D (MAC)"); break;
-        default: break;
-        }
+        text += g_active_wxmedit->GetNewLine4Insert().Description();
         event.SetText(text);
     }
     else
@@ -3435,7 +3435,7 @@ void MadEditFrame::OnFilePageSetup(wxCommandEvent& event)
         wxString oldpath=m_Config->GetPath();
         m_Config->SetPath(wxT("/wxMEdit"));
 
-        m_Config->Write(wxT("PageOrientation"), g_PageSetupData->GetPrintData().GetOrientation());
+        m_Config->Write(wxT("PageOrientation"), (long)g_PageSetupData->GetPrintData().GetOrientation());
 
         //((wxFrame*)wxTheApp->GetTopWindow())->SetTitle(wxString::Format(wxT("%d"), g_PageSetupData->GetPaperId()));
         wxSize size=g_PageSetupData->GetPaperSize();
@@ -3638,30 +3638,6 @@ void MadEditFrame::OnEditInsertDateTime(wxCommandEvent& event)
     g_active_wxmedit->InsertDateTime();
 }
 
-void MadEditFrame::OnEditToggleBookmark(wxCommandEvent& event)
-{
-    if ( g_active_wxmedit )
-        g_active_wxmedit->ToggleBookmark();
-}
-
-void MadEditFrame::OnEditGotoNextBookmark(wxCommandEvent& event)
-{
-    if ( g_active_wxmedit )
-        g_active_wxmedit->GotoNextBookmark();
-}
-
-void MadEditFrame::OnEditGotoPreviousBookmark(wxCommandEvent& event)
-{
-    if ( g_active_wxmedit )
-        g_active_wxmedit->GotoPreviousBookmark();
-}
-
-void MadEditFrame::OnEditClearAllBookmarks(wxCommandEvent& event)
-{
-    if ( g_active_wxmedit )
-        g_active_wxmedit->ClearAllBookmarks();
-}
-
 void MadEditFrame::OnEditSortAscending(wxCommandEvent& event)
 {
     if (g_active_wxmedit!=nullptr && g_active_wxmedit->GetEditMode()!=emHexMode)
@@ -3853,7 +3829,7 @@ void MadEditFrame::OnEditToHalfWidthByOptions(wxCommandEvent& event)
 
     wxString choices[4] = { _("ASCII characters"), _("Japanese characters"),
                             _("Korean characters"), _("other characters") };
-    size_t sels = wxGetMultipleChoices(selections,
+	size_t sels = wxGetSelectedChoices(selections,
         _("Choose the characters you want to convert:"), _("To Halfwidth by Options..."),
         4, choices, this );
 
@@ -3896,7 +3872,7 @@ void MadEditFrame::OnEditToFullWidthByOptions(wxCommandEvent& event)
 
     wxString choices[4] = { _("ASCII characters"), _("Japanese characters"),
                             _("Korean characters"), _("other characters") };
-    size_t sels = wxGetMultipleChoices(selections,
+	size_t sels = wxGetSelectedChoices(selections,
         _("Choose the characters you want to convert:"), _("To Fullwidth by Options..."),
         4, choices, this );
 
@@ -3928,8 +3904,12 @@ void MadEditFrame::OnEditSpaceToTab(wxCommandEvent& event)
 
 void MadEditFrame::OnEditTrimTrailingSpaces(wxCommandEvent& event)
 {
-    if (g_active_wxmedit!=nullptr && g_active_wxmedit->GetEditMode()!=emHexMode)
-        g_active_wxmedit->TrimTrailingSpaces();
+    if (g_active_wxmedit!=nullptr) g_active_wxmedit->TrimTrailingSpaces();
+}
+
+void MadEditFrame::OnEditInsertEnumeration(wxCommandEvent& event)
+{
+    if (g_active_wxmedit!=nullptr) g_active_wxmedit->InsertEnumeration();
 }
 
 namespace wxm
@@ -4151,6 +4131,30 @@ void MadEditFrame::OnSearchGoToRightBrace(wxCommandEvent& event)
         return;
 
     g_active_wxmedit->GoToRightBrace();
+}
+
+void MadEditFrame::OnSearchToggleBookmark(wxCommandEvent& event)
+{
+    if ( g_active_wxmedit )
+        g_active_wxmedit->ToggleBookmark();
+}
+
+void MadEditFrame::OnSearchGotoNextBookmark(wxCommandEvent& event)
+{
+    if ( g_active_wxmedit )
+        g_active_wxmedit->GotoNextBookmark();
+}
+
+void MadEditFrame::OnSearchGotoPreviousBookmark(wxCommandEvent& event)
+{
+    if ( g_active_wxmedit )
+        g_active_wxmedit->GotoPreviousBookmark();
+}
+
+void MadEditFrame::OnSearchClearAllBookmarks(wxCommandEvent& event)
+{
+    if ( g_active_wxmedit )
+        g_active_wxmedit->ClearAllBookmarks();
 }
 
 
@@ -4661,7 +4665,7 @@ void MadEditFrame::OnToolsOptions(wxCommandEvent& event)
 
                 // change the menu key
                 wxMenuItem *mit=WxMenuBar1->FindItem(cd->menu_id);
-                mit->SetText(mit->GetLabel()+ newkey);
+				mit->SetItemLabel(mit->GetItemLabelText() + newkey);
 #ifdef __WXMSW__
                 if (g_bHasMenuIcon)
 #endif
@@ -4742,21 +4746,21 @@ void MadEditFrame::OnToolsConvertToDOS(wxCommandEvent& event)
     if (g_active_wxmedit == nullptr)
         return;
 
-    g_active_wxmedit->ConvertNewLineType(nltDOS);
+    g_active_wxmedit->ConvertNewLine(wxm::g_nl_dos);
 }
 void MadEditFrame::OnToolsConvertToMAC(wxCommandEvent& event)
 {
     if (g_active_wxmedit == nullptr)
         return;
 
-    g_active_wxmedit->ConvertNewLineType(nltMAC);
+    g_active_wxmedit->ConvertNewLine(wxm::g_nl_mac);
 }
 void MadEditFrame::OnToolsConvertToUNIX(wxCommandEvent& event)
 {
     if (g_active_wxmedit == nullptr)
         return;
 
-    g_active_wxmedit->ConvertNewLineType(nltUNIX);
+    g_active_wxmedit->ConvertNewLine(wxm::g_nl_unix);
 }
 
 void MadEditFrame::OnToolsInsertDOS(wxCommandEvent& event)
@@ -4764,21 +4768,21 @@ void MadEditFrame::OnToolsInsertDOS(wxCommandEvent& event)
     if (g_active_wxmedit == nullptr)
         return;
 
-    g_active_wxmedit->SetInsertNewLineType(nltDOS);
+    g_active_wxmedit->SetInsertNewLine(wxm::g_nl_dos);
 }
 void MadEditFrame::OnToolsInsertMAC(wxCommandEvent& event)
 {
     if (g_active_wxmedit == nullptr)
         return;
 
-    g_active_wxmedit->SetInsertNewLineType(nltMAC);
+    g_active_wxmedit->SetInsertNewLine(wxm::g_nl_mac);
 }
 void MadEditFrame::OnToolsInsertUNIX(wxCommandEvent& event)
 {
     if (g_active_wxmedit == nullptr)
         return;
 
-    g_active_wxmedit->SetInsertNewLineType(nltUNIX);
+    g_active_wxmedit->SetInsertNewLine(wxm::g_nl_unix);
 }
 
 

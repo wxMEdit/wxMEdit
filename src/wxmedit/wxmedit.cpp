@@ -16,22 +16,32 @@
 #include "wxm_syntax.h"
 #include "wxm_undo.h"
 #include "../mad_utils.h"
+#include "../xm/uutils.h"
 
+#ifdef _MSC_VER
+# pragma warning( push )
+# pragma warning( disable : 4996 )
+#endif
+// disable 4996 {
 #include <wx/fileconf.h>
 #include <wx/gdicmn.h>
 #include <wx/image.h>
 #include <wx/dataobj.h>
 #include <wx/datetime.h>
+// disable 4996 }
+#ifdef _MSC_VER
+# pragma warning( pop )
+#endif
 
 #ifdef __WXGTK__
-#   include "clipbrd_gtk.h"
+# include "clipbrd_gtk.h"
 #else
-#   include <wx/clipbrd.h>
+# include <wx/clipbrd.h>
 #endif
 
 #include <wx/caret.h>
-#if !defined(__WXMSW__)
-#   include "caret_new.h"
+#ifndef __WXMSW__
+# include "caret_new.h"
 #endif
 
 #ifdef __WXGTK__
@@ -39,7 +49,9 @@
 # include <gdk/gdkx.h>
 # include <gdk/gdkprivate.h>
 # include <gtk/gtk.h>
-# include <wx/gtk/win_gtk.h>
+# if wxMAJOR_VERSION == 2
+#  include <wx/gtk/win_gtk.h>
+# endif
 # include <iostream>
 #endif
 
@@ -242,7 +254,7 @@ END_EVENT_TABLE()
 
 
 
-#if defined(__WXGTK20__)
+#if defined(__WXGTK20__) && wxMAJOR_VERSION == 2
 void GTK2_DrawText(wxMemoryDC *dc, wxm::WXMEncoding *encoding, const int *widths,
               const wxString &text, wxCoord x, wxCoord y )
 {
@@ -389,7 +401,7 @@ wxString FixUTF8ToWCS(const wxString &str)
             return str;
         }
 
-        *ps = *pwcs;
+        *ps = wxByte(*pwcs);
     }
     *ps = 0;
 
@@ -703,6 +715,7 @@ int MadEdit::ms_Count = 0;
 
 MadEdit::MadEdit(wxm::ConfigWriter* cfg_writer, wxWindow* parent, wxWindowID id, const wxPoint& pos, const wxSize& size, long style)
     : MadEditSuperClass(parent, id, pos, size, style), m_cfg_writer(cfg_writer)
+    , m_newline(&wxm::g_nl_default), m_newline_for_insert(&wxm::g_nl_default)
 {
     ++ms_Count;
 
@@ -813,8 +826,6 @@ MadEdit::MadEdit(wxm::ConfigWriter* cfg_writer, wxWindow* parent, wxWindowID id,
 
     m_MaxWidth=m_MaxHeight=0;
 
-    m_NewLineType=m_InsertNewLineType=nltDefault;
-
     m_HasTab=false;
     m_Config->Read(wxT("TabColumns"), &m_TabColumns, 8);
     m_Config->Read(wxT("IndentColumns"), &m_IndentColumns, 8);
@@ -872,12 +883,6 @@ MadEdit::MadEdit(wxm::ConfigWriter* cfg_writer, wxWindow* parent, wxWindowID id,
     m_SearchWholeWord=false;
 
     m_lastDoubleClick = 0;
-
-#ifdef __WXMSW__
-    m_IsWin98 = (wxGetOsVersion()==wxOS_WINDOWS_9X);
-    m_Win98LeadByte=-1;
-    m_ProcessWin98LeadByte=true;
-#endif
 
 #ifdef __WXGTK__
     ConnectToFixedKeyPressHandler();
@@ -1272,7 +1277,7 @@ void MadEdit::UpdateCaret(MadCaretPos &caretPos,
 
         wxASSERT(caretPos.subrowid==0);
 
-        int size=riter->m_Start-caretPos.linepos;
+        int size = int(riter->m_Start-caretPos.linepos);
         caretPos.linepos=riter->m_Start;
         caretPos.pos+=size;
     }
@@ -1654,32 +1659,21 @@ void MadEdit::InvertRectManual(wxDC *dc, int x, int y, int w, int h)
 #if 0
 void MadEdit::PaintText(wxDC *dc, int x, int y, const ucs4_t *text, const int *width, int count)
 {
-    wxString text1, text2;
+    wxString text1;
     text1.resize(1);
-    text2.resize(2);
-
-    wchar_t wcbuf2[3]={0,0,0};
 
     while(count>0)
     {
 #ifdef __WXMSW__
-        if(*text<0x10000)
+        if(*text > 0x10000)
         {
-            if(*text!=0x20)
-            {
-                text1.SetChar(0, *text);
-                dc->DrawText(text1, x, y);
-            }
-        }
-        else
-        {
-            wxm::UCS4toUTF16LE_U10000(*text, (wxByte*)wcbuf2);
-            text2.SetChar(0, wcbuf2[0]);
-            text2.SetChar(1, wcbuf2[1]);
+            wxString text2;
+            wxm::WxStrAppendUCS4(text2, *text);
             dc->DrawText(text2, x, y);
         }
+        else
 #else
-        if(*text!=0x20)
+            if(*text!=0x20)
         {
             text1.SetChar(0,*text);
             dc->DrawText(text1, x, y);
@@ -1727,7 +1721,7 @@ void MadEdit::PaintText(wxDC *dc, int x, int y, const ucs4_t *text, const int *w
         }
         else
         {
-            wxm::UCS4toUTF16LE_U10000(uc, (wxByte*)wcbuf2);
+            xm::NonBMPtoUTF16(uc, (UChar*)wcbuf2);
             *pwc++=wcbuf2[0];
             *pwc=wcbuf2[1];
             *pwcw++=ucw;
@@ -1755,8 +1749,8 @@ void MadEdit::PaintText(wxDC *dc, int x, int y, const ucs4_t *text, const int *w
         SetTextColor(hdc, m_Syntax->nw_Color.GetPixel());
         ::ExtTextOut(hdc, nowleft, y, 0, nullptr, m_WCWordBuffer+wcstart, len, m_WCWidthBuffer+wcstart);
     }
-
-#elif defined(__WXGTK20__)
+#else // other platform or printing
+# if defined(__WXGTK20__) && wxMAJOR_VERSION == 2
     if(!InPrinting())
     {
         const ucs4_t *pu=text;
@@ -1793,10 +1787,7 @@ void MadEdit::PaintText(wxDC *dc, int x, int y, const ucs4_t *text, const int *w
         }
     }
     else
-#endif
-
-#ifndef __WXMSW__
-    //other platform or printing
+# endif //__WXGTK20__
     {
         wxString text1(wxT('1'));
         const ucs4_t  *pu=text;
@@ -1811,7 +1802,7 @@ void MadEdit::PaintText(wxDC *dc, int x, int y, const ucs4_t *text, const int *w
             }
         }
     }
-#endif
+#endif //__WXMSW__
 }
 
 void MadEdit::PaintTextLines(wxDC *dc, const wxRect &rect, int toprow, int rowcount, const wxColor &bgcolor)
@@ -2309,7 +2300,7 @@ void MadEdit::PaintHexLines(wxDC *dc, wxRect &rect, int toprow, int rowcount, bo
         left = rect.x;
 
         // paint offset
-        size_t hex = hexrowpos;
+        size_t hex = size_t(hexrowpos);
         for(int i = 7; i >= 0; --i)
         {
             m_WordBuffer[i] = ToHex(int(hex & 0x0F));
@@ -2361,7 +2352,7 @@ void MadEdit::PaintHexLines(wxDC *dc, wxRect &rect, int toprow, int rowcount, bo
 
         if(hexrowpos < pos)         // show spaces
         {
-            int i = pos - hexrowpos;
+            int i = int(pos - hexrowpos);
 
             do
             {
@@ -2627,7 +2618,7 @@ void MadEdit::PaintHexLines(wxDC *dc, wxRect &rect, int toprow, int rowcount, bo
 
 int MadEdit::GetVisibleHexRowCount()
 {
-    int count = ((m_Lines->m_Size) >> 4) + 1;
+    int count = int((m_Lines->m_Size) >> 4) + 1;
     count -= m_TopRow;
     int vrows = m_VisibleRowCount - 1;
     if(count > vrows)
@@ -2758,7 +2749,7 @@ void MadEdit::PrepareHexRowIndex(int toprow, int count)
 
 void MadEdit::UpdateTextAreaXPos()
 {
-    int crow=m_CaretPos.pos>>4;
+    int crow = int(m_CaretPos.pos>>4);
 
     wxASSERT(crow >= m_TopRow && crow < m_TopRow + m_HexRowCount);
 
@@ -2822,7 +2813,7 @@ void MadEdit::ToggleHexTextArea()
 
     m_CaretAtHalfByte = false;
 
-    int crow = (m_CaretPos.pos >> 4);
+    int crow = int(m_CaretPos.pos >> 4);
     if(crow < m_TopRow)
     {
         m_RepaintAll = true;
@@ -2859,7 +2850,7 @@ void MadEdit::AppearHexRow(wxFileOffset pos)
 {
     wxASSERT(m_EditMode == emHexMode);
 
-    int crow = (pos >> 4);
+    int crow = int(pos >> 4);
     if(crow < m_TopRow)
     {
         if(pos == m_Lines->m_Size && (((int)pos) & 0x0F) == 0 && crow > 0)
@@ -2925,7 +2916,7 @@ void MadEdit::UpdateHexPosByXPos(int row, int xpos)
         int bytes;
         if(pos > m_Lines->m_Size)
         {
-            bytes = pos - m_Lines->m_Size;
+            bytes = int(pos - m_Lines->m_Size);
 
             --maxpos;
             if(bytes > 1)
@@ -3569,24 +3560,8 @@ wxFileOffset MadEdit::GetColumnSelection(wxString *ws)
                     if(xpos2 > uchw)
                     {
                         selsize += ucqueue.back().second;
-                        if(ws)
-                        {
-#ifdef __WXMSW__
-                            if(uc<0x10000)
-                            {
-                                (*ws)<<wxChar(uc);
-                            }
-                            else
-                            {
-                                wchar_t wbuf[2];
-                                wxm::UCS4toUTF16LE_U10000(uc, (wxByte*)wbuf);
-                                (*ws)<<wbuf[0];
-                                (*ws)<<wbuf[1];
-                            }
-#else
-                            (*ws)<<wxChar(uc);
-#endif
-                        }
+                        if (ws != nullptr)
+                            wxm::WxStrAppendUCS4(*ws, uc);
 
                         xpos2 -= ucwidth;
                     }
@@ -3600,13 +3575,7 @@ wxFileOffset MadEdit::GetColumnSelection(wxString *ws)
         }
 
         if(ws)
-        {
-            // add newline
-#ifdef __WXMSW__
-            (*ws)<<wxChar(0x0D);
-#endif
-            (*ws)<<wxChar(0x0A);
-        }
+            (*ws) <<  wxm::g_nl_default.wxValue();
 
         if(firstrow == lastrow)
             break;
@@ -3741,24 +3710,7 @@ void MadEdit::SelectWordFromCaretPos(wxString *ws)
         {
             size_t s = ucqueue.size();
             for(size_t i = 0; i < s; i++)
-            {
-#ifdef __WXMSW__
-                ucs4_t &uc=ucqueue[i].first;
-                if(uc<0x10000)
-                {
-                    (*ws)<<wxChar(uc);
-                }
-                else
-                {
-                    wchar_t wbuf[2];
-                    wxm::UCS4toUTF16LE_U10000(uc, (wxByte*)wbuf);
-                    (*ws)<<wbuf[0];
-                    (*ws)<<wbuf[1];
-                }
-#else
-                (*ws)<<ucqueue[i].first;
-#endif
-            }
+                wxm::WxStrAppendUCS4(*ws, ucqueue[i].first);
 
             return;
         }
@@ -3978,27 +3930,7 @@ int MadEdit::TranslateText(const wxChar* pwcs, size_t count, vector<ucs4_t>& ucs
 
             if(!passNewLine)
             {
-                switch(m_InsertNewLineType)
-                {
-                case nltDOS:
-#ifdef __WXMSW__
-                case nltDefault:
-#endif
-                    ucs.push_back(uc);
-                    uc=0x0A;
-                    break;
-
-                case nltMAC:
-                    // do nothing
-                    break;
-
-                case nltUNIX:
-#ifndef __WXMSW__
-                case nltDefault:
-#endif
-                    uc=0x0A;
-                    break;
-                }
+                m_newline_for_insert->Convert0x0D(uc, ucs);
 
                 if(i<count && *pwcs==0x0A)// ignore 0x0A
                 {
@@ -4012,28 +3944,7 @@ int MadEdit::TranslateText(const wxChar* pwcs, size_t count, vector<ucs4_t>& ucs
             ++linecount;
 
             if(!passNewLine)
-            {
-                switch(m_InsertNewLineType)
-                {
-                case nltDOS:
-#ifdef __WXMSW__
-                case nltDefault:
-#endif
-                    ucs.push_back(0x0D);
-                    break;
-
-                case nltMAC:
-                    uc=0x0D;
-                    break;
-
-                case nltUNIX:
-#ifndef __WXMSW__
-                case nltDefault:
-#endif
-                    // do nothing
-                    break;
-                }
-            }
+                m_newline_for_insert->Convert0x0A(uc, ucs);
         }
 
         ucs.push_back(uc);
@@ -4082,29 +3993,7 @@ int MadEdit::GetColumnDataFromClipboard(vector<ucs4_t>& ucs)
     {
         linecount=GetTextFromClipboard(ucs);
         if(linecount!=0)
-        {
-            switch(m_InsertNewLineType)
-            {
-            case nltDOS:
-#ifdef __WXMSW__
-            case nltDefault:
-#endif
-                ucs.push_back(0x0D);
-                ucs.push_back(0x0A);
-                break;
-
-            case nltMAC:
-                ucs.push_back(0x0D);
-                break;
-
-            case nltUNIX:
-#ifndef __WXMSW__
-            case nltDefault:
-#endif
-                ucs.push_back(0x0A);
-                break;
-            }
-        }
+            m_newline_for_insert->ValueAppendTo(ucs);
     }
 
     return linecount;
@@ -4150,7 +4039,7 @@ void MadEdit::ConvertToRawBytesFromUnicodeText(vector<char>& cs, const vector<uc
     MadBlock blk(&tempmem, -1, 0);
     UCStoBlock( &ucs[0], ucs.size(), blk);
 
-    size_t size=blk.m_Size;
+    size_t size = size_t(blk.m_Size);
     for(size_t i=0; i<size; ++i)
         cs.push_back(char(tempmem.Get(i)));
 }
@@ -4207,7 +4096,7 @@ void MadEdit::CopyFileDataToMem(MadBlockIterator begin, MadBlockIterator end)
             {
                 // now bs == BUFFER_SIZE;
                 if((wxFileOffset)BUFFER_SIZE > size)
-                    bs = size;
+                    bs = size_t(size);
 
                 begin->m_Data->Get(begin->m_Pos, TempBuffer, bs);
                 begin->m_Pos += bs;
@@ -5144,33 +5033,7 @@ void MadEdit::InsertColumnString(const ucs4_t *ucs, size_t count, int linecount,
             }
 
             if(lines == 1 && lit == m_Lines->m_LineList.end())
-            {
-                // add newline
-                ucs4_t nl;
-                switch (m_InsertNewLineType)
-                {
-                case nltUNIX:
-            #ifndef __WXMSW__
-                case nltDefault:
-            #endif
-                    nl = 0x0A;
-                    UCStoBlock(&nl, 1, blk);
-                    break;
-                case nltMAC:
-                    nl = 0x0D;
-                    UCStoBlock(&nl, 1, blk);
-                    break;
-                case nltDOS:
-            #ifdef __WXMSW__
-                case nltDefault:
-            #endif
-                    nl = 0x0D;
-                    UCStoBlock(&nl, 1, blk);
-                    nl = 0x0A;
-                    UCStoBlock(&nl, 1, blk);
-                    break;
-                }
-            }
+                NewLineToBlock(blk);
 
             if(blk.m_Size != 0)
             {
@@ -5246,32 +5109,7 @@ void MadEdit::InsertColumnString(const ucs4_t *ucs, size_t count, int linecount,
 
                     blk.m_Pos = -1;
                     blk.m_Size = 0;
-                    ucs4_t nl;
-                    switch (m_InsertNewLineType)
-                    {
-                    case nltUNIX:
-            #ifndef __WXMSW__
-                    case nltDefault:
-            #endif
-                        nl = 0x0A;
-                        UCStoBlock(&nl, 1, blk);
-                        break;
-
-                    case nltMAC:
-                        nl = 0x0D;
-                        UCStoBlock(&nl, 1, blk);
-                        break;
-
-                    case nltDOS:
-            #ifdef __WXMSW__
-                    case nltDefault:
-            #endif
-                        nl = 0x0D;
-                        UCStoBlock(&nl, 1, blk);
-                        nl = 0x0A;
-                        UCStoBlock(&nl, 1, blk);
-                        break;
-                    }
+                    NewLineToBlock(blk);
 
                     MadInsertUndoData *insud = new MadInsertUndoData;
                     insud->m_Pos = m_Lines->m_Size;
@@ -5339,32 +5177,7 @@ void MadEdit::InsertColumnString(const ucs4_t *ucs, size_t count, int linecount,
                     rowpos = 0;
                     xpos = xpos0;
 
-                    // add newline
-                    ucs4_t nl;
-                    switch (m_InsertNewLineType)
-                    {
-                    case nltUNIX:
-            #ifndef __WXMSW__
-                    case nltDefault:
-            #endif
-                        nl = 0x0A;
-                        UCStoBlock(&nl, 1, blk);
-                        break;
-                    case nltMAC:
-                        nl = 0x0D;
-                        UCStoBlock(&nl, 1, blk);
-                        break;
-
-                    case nltDOS:
-            #ifdef __WXMSW__
-                    case nltDefault:
-            #endif
-                        nl = 0x0D;
-                        UCStoBlock(&nl, 1, blk);
-                        nl = 0x0A;
-                        UCStoBlock(&nl, 1, blk);
-                        break;
-                    }
+                    NewLineToBlock(blk);
                 }
                 else
                 {
@@ -5703,9 +5516,7 @@ MadUndo *MadEdit::DeleteSelection(bool bCorrectCaretPos, vector <int> *rpos, boo
                         uc = ucqueue.back().first;
 
                     if(uc == 0x0D || uc == 0x0A)  // EOL
-                    {
                         break;
-                    }
 
                     int ucwidth = GetUCharWidth(uc);
                     if(uc == 0x09)
@@ -5718,7 +5529,7 @@ MadUndo *MadEdit::DeleteSelection(bool bCorrectCaretPos, vector <int> *rpos, boo
                     }
                     nowxpos += ucwidth;
 
-                    int wchw = ucwidth >> 1;
+                    int wchw = ucwidth / 2;
                     if(xpos1 > wchw)
                     {
                         rowpos += ucqueue.back().second;
@@ -5754,24 +5565,18 @@ MadUndo *MadEdit::DeleteSelection(bool bCorrectCaretPos, vector <int> *rpos, boo
 #endif
 
                     if(undo == nullptr)
-                    {
                         undo = m_UndoBuffer->Add();
-                    }
                     undo->m_Undos.push_back(dudata);
 
                     if(bColumnEditing)
                     {
                         if(lastrow < m_SelectionEnd->rowid)
-                        {
                             m_SelectionPos1.pos -= sellen;
-                        }
                     }
                     else if(bCorrectCaretPos)
                     {
                         if(lastrow < m_CaretPos.rowid)
-                        {
                             m_SelectionPos2.pos -= sellen;
-                        }
                     }
                 }
             }
@@ -5784,20 +5589,15 @@ MadUndo *MadEdit::DeleteSelection(bool bCorrectCaretPos, vector <int> *rpos, boo
             if(bColumnEditing)
             {
                 if(lastrow == firstrow)
-                {
                     m_SelectionPos2.pos=pos + rowpos;
-                }
+
                 if(lastrow == m_SelectionEnd->rowid)
-                {
                     m_SelectionPos1.pos=pos + rowpos;
-                }
             }
             else if(bCorrectCaretPos)
             {
                 if(lastrow == m_CaretPos.rowid)
-                {
                     m_SelectionPos2.pos=pos + rowpos;
-                }
             }
 
             if(rpos)
@@ -5806,11 +5606,9 @@ MadUndo *MadEdit::DeleteSelection(bool bCorrectCaretPos, vector <int> *rpos, boo
                 {
                     size_t idx = rpos->size() - 2;
                     for(int i = subrows; i > 0; --i, idx -= 2)
-                    {
-                        (*rpos)[idx] -= sellen;
-                    }
+                        (*rpos)[idx] -= int(sellen);
                 }
-                rpos->push_back(rowpos);
+                rpos->push_back(int(rowpos));
                 rpos->push_back(xpos1);
             }
 
@@ -5828,7 +5626,7 @@ MadUndo *MadEdit::DeleteSelection(bool bCorrectCaretPos, vector <int> *rpos, boo
                 subrows = 0;
             }
             else
-                // to prev row
+            // to prev row
             {
                 --subrowid;
                 ++subrows;
@@ -5836,9 +5634,7 @@ MadUndo *MadEdit::DeleteSelection(bool bCorrectCaretPos, vector <int> *rpos, boo
         }
 
         if(undo)
-        {
             m_Modified = true;
-        }
         m_Selection = false;
         m_RepaintAll = true;
         Refresh(false);
@@ -5961,13 +5757,10 @@ MadUndo *MadEdit::DeleteSelection(bool bCorrectCaretPos, vector <int> *rpos, boo
         AppearCaret();
         UpdateScrollBarPos();
 
-        if(m_EditMode == emHexMode)
+        if(m_EditMode == emHexMode && !m_CaretAtHexArea)
         {
-            if(!m_CaretAtHexArea)
-            {
-                UpdateTextAreaXPos();
-                m_LastTextAreaXPos = m_TextAreaXPos;
-            }
+            UpdateTextAreaXPos();
+            m_LastTextAreaXPos = m_TextAreaXPos;
         }
     }
     else
@@ -6213,10 +6006,10 @@ void MadEdit::OverwriteDataSingle(vector<wxFileOffset> &del_bpos, vector<wxFileO
                 for(;;)
                 {
                     size_t len=256*1024;
-                    if((wxFileOffset)len>size) len=size;
+                    if((wxFileOffset)len>size) len=size_t(size);
 
                     wxFileOffset ll=lit->m_Size- lpos;
-                    if((wxFileOffset)len>ll) len=ll;
+                    if((wxFileOffset)len>ll) len=size_t(ll);
 
                     if(len > buffer.size())
                     {
@@ -6248,7 +6041,7 @@ void MadEdit::OverwriteDataSingle(vector<wxFileOffset> &del_bpos, vector<wxFileO
         {
             if(*ins_len_it != 0)
             {
-                UCStoBlock(*ins_ucs_it, *ins_len_it, blk);
+                UCStoBlock(*ins_ucs_it, size_t(*ins_len_it), blk);
                 *ins_len_it = blk.m_Size-oldblksize; // get byte-length of ucs
             }
             ++ins_ucs_it;
@@ -6257,7 +6050,7 @@ void MadEdit::OverwriteDataSingle(vector<wxFileOffset> &del_bpos, vector<wxFileO
         {
             if(*ins_len_it != 0)
             {
-                md->Put(*ins_data_it, *ins_len_it);
+                md->Put(*ins_data_it, size_t(*ins_len_it));
                 blk.m_Size+=*ins_len_it;
             }
             ++ins_data_it;
@@ -6392,7 +6185,7 @@ void MadEdit::OverwriteDataMultiple(vector<wxFileOffset> &del_bpos, vector<wxFil
             --ins_ucs_it;
             if(*--ins_len_it != 0)
             {
-                UCStoBlock(*ins_ucs_it, *ins_len_it, blk);
+                UCStoBlock(*ins_ucs_it, size_t(*ins_len_it), blk);
                 *ins_len_it = blk.m_Size; // get byte-length of ucs
             }
         }
@@ -6401,7 +6194,7 @@ void MadEdit::OverwriteDataMultiple(vector<wxFileOffset> &del_bpos, vector<wxFil
             --ins_data_it;
             if( (blk.m_Size = *--ins_len_it) != 0)
             {
-                blk.m_Pos=md->Put(*ins_data_it, blk.m_Size);
+                blk.m_Pos=md->Put(*ins_data_it, size_t(blk.m_Size));
             }
         }
 
@@ -6879,15 +6672,6 @@ void MadEdit::FindBracePairUnderCaretPos()
 
 void MadEdit::ProcessCommand(MadEditCommand command)
 {
-#ifdef __WXMSW__
-    if(m_Win98LeadByte>=0 && m_ProcessWin98LeadByte)
-    {
-        MadEditCommand ch=m_Win98LeadByte;
-        m_Win98LeadByte=-1;
-        ProcessCommand(ch);
-    }
-#endif
-
     ucs4_t NewAutoCompleteRightChar=0;
     if(command==m_AutoCompleteRightChar && m_CaretPos.pos==m_AutoCompletePos && m_EditMode==emTextMode)
     {
@@ -8363,7 +8147,7 @@ void MadEdit::ProcessCommand(MadEditCommand command)
                             if(m_CaretPos.pos > 0)     // to prev char
                             {
                                 // confirm the caret is within m_HexRowIndex
-                                int row = (m_CaretPos.pos >> 4);
+                                int row = int(m_CaretPos.pos >> 4);
                                 bool bAtBegin = (size_t(m_CaretPos.pos) & 0x0F) == 0;
                                 if(row < m_TopRow)
                                 {
@@ -8515,7 +8299,7 @@ void MadEdit::ProcessCommand(MadEditCommand command)
                 case ecUp:
                 case ecSelUp:
                     {
-                        int row = (m_CaretPos.pos >> 4);
+                        int row = int(m_CaretPos.pos >> 4);
                         if(row)
                             --row;
                         AppearHexRow(wxFileOffset(row) << 4);
@@ -8544,8 +8328,8 @@ void MadEdit::ProcessCommand(MadEditCommand command)
                 case ecDown:
                 case ecSelDown:
                     {
-                        int row = (m_CaretPos.pos >> 4);
-                        int rows = (m_Lines->m_Size >> 4);
+                        int row = int(m_CaretPos.pos >> 4);
+                        int rows = int(m_Lines->m_Size >> 4);
 
                         if(row < rows)
                             ++row;
@@ -8575,7 +8359,7 @@ void MadEdit::ProcessCommand(MadEditCommand command)
                 case ecBeginLine:
                 case ecSelBeginLine:
                     AppearHexRow(m_CaretPos.pos);
-                    UpdateHexPosByXPos(m_CaretPos.pos >> 4, 0);
+                    UpdateHexPosByXPos(int(m_CaretPos.pos >> 4), 0);
                     m_RepaintAll = true;
                     AppearCaret();
                     UpdateScrollBarPos();
@@ -8585,7 +8369,7 @@ void MadEdit::ProcessCommand(MadEditCommand command)
                 case ecEndLine:
                 case ecSelEndLine:
                     AppearHexRow(m_CaretPos.pos);
-                    UpdateHexPosByXPos(m_CaretPos.pos >> 4,
+                    UpdateHexPosByXPos(int(m_CaretPos.pos >> 4),
                                         2 * HexModeMaxColumns * m_HexFontMaxDigitWidth);
                     m_RepaintAll = true;
                     AppearCaret();
@@ -8606,7 +8390,7 @@ void MadEdit::ProcessCommand(MadEditCommand command)
                 case ecEndDoc:
                 case ecSelEndDoc:
                     AppearHexRow(m_Lines->m_Size);
-                    UpdateHexPosByXPos(m_Lines->m_Size >> 4,
+                    UpdateHexPosByXPos(int(m_Lines->m_Size >> 4),
                                         2 * HexModeMaxColumns * m_HexFontMaxDigitWidth);
                     m_RepaintAll = true;
                     AppearCaret();
@@ -8617,7 +8401,7 @@ void MadEdit::ProcessCommand(MadEditCommand command)
                 case ecPrevPage:
                 case ecSelPrevPage:
                     {
-                        int row = m_CaretPos.pos >> 4;
+                        int row = int(m_CaretPos.pos >> 4);
                         int count = m_CompleteRowCount-1;
                         if(count>1) --count;
                         else if(count==0) ++count;
@@ -8656,8 +8440,8 @@ void MadEdit::ProcessCommand(MadEditCommand command)
                 case ecNextPage:
                 case ecSelNextPage:
                     {
-                        int row = m_CaretPos.pos >> 4;
-                        int rows = m_Lines->m_Size >> 4;
+                        int row = int(m_CaretPos.pos >> 4);
+                        int rows = int(m_Lines->m_Size >> 4);
 
                         int count=m_CompleteRowCount-1;
                         if(count>1)
@@ -8752,25 +8536,7 @@ void MadEdit::ProcessReturnCommand(MadEditCommand command)
 
         vector <ucs4_t> ucs;
 
-        switch (m_InsertNewLineType)
-        {
-        case nltUNIX:
-#ifndef __WXMSW__
-        case nltDefault:
-#endif
-            ucs.push_back(0x0A);
-            break;
-        case nltMAC:
-            ucs.push_back(0x0D);
-            break;
-        case nltDOS:
-#ifdef __WXMSW__
-        case nltDefault:
-#endif
-            ucs.push_back(0x0D);
-            ucs.push_back(0x0A);
-            break;
-        }
+        m_newline_for_insert->ValueAppendTo(ucs);
 
         if (m_AutoIndent && command == ecReturn)
         {
@@ -8874,6 +8640,15 @@ void MadEdit::ProcessReturnCommand(MadEditCommand command)
 
 //==================================================
 
+bool IsByteInput(ucs4_t ucs4, int key)
+{
+#ifdef __WXMSW__
+    return ucs4 == key || key == 0;
+#else
+    return true;
+#endif
+}
+
 void MadEdit::OnChar(wxKeyEvent& evt)
 {
     //std::cout<<"edit char\n";
@@ -8908,64 +8683,10 @@ void MadEdit::OnChar(wxKeyEvent& evt)
         wxLogDebug(wxT("edit toggle window"));
         DoToggleWindow();
     }
-#ifdef __WXMSW__
-    else if(ucs4==key && (ucs4>=0x100 || (!evt.HasModifiers() && ucs4 >= ecCharFirst)))
-    {
-        m_ProcessWin98LeadByte=false;
-
-        bool processed=false;
-        if(m_IsWin98 && ucs4<0x100)
-        {
-            wxm::WXMEncoding *enc=wxm::WXMEncodingManager::Instance().GetSystemEncoding();
-            if(enc->IsDoubleByteEncoding())
-            {
-                if(m_Win98LeadByte>=0)
-                {
-                    wxByte db[2]={m_Win98LeadByte, ucs4};
-                    ucs4_t uc=enc->MultiBytetoUCS4(db);
-                    if(uc>0)
-                    {
-                        m_Win98LeadByte=-1;
-                        ProcessCommand(uc);
-                        processed=true;
-                    }
-                    else
-                    {
-                        ProcessCommand(m_Win98LeadByte);
-                        m_Win98LeadByte=-1;
-                    }
-                }
-                if(!processed)
-                {
-                    wxByte db[2]={ucs4, 0};
-                    ucs4_t uc=enc->MultiBytetoUCS4(db);
-                    if(uc != (ucs4_t)wxm::WXMEncoding::svtInvaliad) // is a valid single-byte char
-                    {
-                        ProcessCommand(uc);
-                        processed=true;
-                    }
-                    else if(enc->IsLeadByte(wxByte(ucs4)))
-                    {
-                        m_Win98LeadByte=ucs4;
-                        processed=true;
-                    }
-                }
-            }
-        }
-
-        if(!processed)
-        {
-            ProcessCommand(ucs4);
-        }
-
-        m_ProcessWin98LeadByte=true;
-    }
-#else
-    else if(ucs4>=0x100 || (!evt.HasModifiers() && ucs4 >= ecCharFirst))
+    else if (IsByteInput(ucs4, key) && (!evt.HasModifiers() && ucs4 >= ecCharFirst))
     {
         ProcessCommand(ucs4);
     }
-#endif
     else
     {
         evt.Skip();
@@ -9315,7 +9036,7 @@ void MadEdit::OnMouseMotion(wxMouseEvent &evt)
                 row = (evt.m_y / m_RowHeight) - 1;
                 row += m_TopRow;
 
-                int rows = (m_Lines->m_Size >> 4) + 1;
+                int rows = int(m_Lines->m_Size >> 4) + 1;
 
                 if(row >= rows)
                 {
@@ -10359,7 +10080,7 @@ void MadEdit::DisplayCaret(bool moveonly)
     }
     else
     {
-        int row = (m_CaretPos.pos >> 4);
+        int row = int(m_CaretPos.pos >> 4);
         if(row >= m_TopRow)
         {
             int xpos;
@@ -10404,7 +10125,7 @@ int MadEdit::GetMaxWordWrapWidth()
     {
     case wwmWrapByWindow:
         {
-            maxwidth = m_ClientWidth - (GetLineNumberAreaWidth(m_Lines->m_Size >> 5) +
+            maxwidth = m_ClientWidth - (GetLineNumberAreaWidth(int(m_Lines->m_Size >> 5)) +
                        m_LeftMarginWidth + m_RightMarginWidth + m_TextFontAveCharWidth);
         }
         break;
@@ -10434,26 +10155,11 @@ int MadEdit::GetUCharWidth(ucs4_t uc)
     wxUint16 *pw16=widths+idx;
     if((w=*pw16) == 0)
     {
-        wxChar wcs[3];
-
-#ifdef __WXMSW__
-        if(uc<0x10000)
-        {
-            wcs[0] = wxChar(uc);
-            wcs[1] = 0;
-        }
-        else
-        {
-            wxm::UCS4toUTF16LE_U10000(uc, (wxByte*)wcs);
-            wcs[2] = 0;
-        }
-#else
-        wcs[0] = uc;
-        wcs[1] = 0;
-#endif
+        wxString ws;
+        wxm::WxStrAppendUCS4(ws, uc);
 
         int h;
-        GetTextExtent(wcs, &w, &h, nullptr, nullptr, m_TextFont);
+        GetTextExtent(ws.wc_str(), &w, &h, nullptr, nullptr, m_TextFont);
         if(w<=0)
         {
             w=m_TextFontWidths[0][0x20];
@@ -10492,26 +10198,11 @@ int MadEdit::GetHexUCharWidth(ucs4_t uc)
     wxUint16 *pw16=widths+idx;
     if((w=*pw16) == 0)
     {
-        wxChar wcs[3];
-
-#ifdef __WXMSW__
-        if(uc<0x10000)
-        {
-            wcs[0] = wxChar(uc);
-            wcs[1] = 0;
-        }
-        else
-        {
-            wxm::UCS4toUTF16LE_U10000(uc, (wxByte*)wcs);
-            wcs[2] = 0;
-        }
-#else
-        wcs[0] = uc;
-        wcs[1] = 0;
-#endif
+        wxString ws;
+        wxm::WxStrAppendUCS4(ws, uc);
 
         int h;
-        GetTextExtent(wcs, &w, &h, nullptr, nullptr, m_HexFont);
+        GetTextExtent(ws.wc_str(), &w, &h, nullptr, nullptr, m_HexFont);
         if(w<=0)
         {
             w=m_HexFontWidths[0][0x20];
@@ -10557,4 +10248,20 @@ wxMilliClock_t MadEdit::GetTripleClickInterval()
     }
 
     return t;
+}
+
+namespace wxm
+{
+    const wxString NewLineChar::MACDescription(wxT("CR/0D (MAC)"));
+    const wxString NewLineChar::UNIXDescription(wxT("LF/0A (UNIX)"));
+    const wxString NewLineChar::DOSDescription(wxT("CRLF/0D0A (DOS)"));
+
+    const ucs4string NewLineChar::MACValue(1, ucs4_t(0x0D));
+    const ucs4string NewLineChar::UNIXValue(1, ucs4_t(0x0A));
+    const ucs4string NewLineChar::DOSValue = MACValue + UNIXValue;
+
+    const NewLineDefault g_nl_default;
+    const NewLineDOS     g_nl_dos;
+    const NewLineUNIX    g_nl_unix;
+    const NewLineMAC     g_nl_mac;
 }

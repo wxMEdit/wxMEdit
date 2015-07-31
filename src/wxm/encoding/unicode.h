@@ -102,8 +102,6 @@ private:
 	~WXMEncodingUTF32BE(){}
 };
 
-size_t UCS4toUTF16LE_U10000(ucs4_t ucs4, wxByte* buf);
-
 };// namespace wxm
 
 #ifdef _MSC_VER

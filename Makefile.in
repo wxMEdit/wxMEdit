@@ -70,6 +70,7 @@ am__objects_2 = src/wxm/wxmedit-encdet.$(OBJEXT) \
 	src/wxmedit/wxmedit-mad_encdet.$(OBJEXT)
 am_wxmedit_OBJECTS = $(am__objects_1) $(am__objects_2) \
 	src/dialog/wxmedit-wxm_conv_enc_dialog.$(OBJEXT) \
+	src/dialog/wxmedit-wxm_enumeration_dialog.$(OBJEXT) \
 	src/dialog/wxmedit-wxm_find_in_files_dialog.$(OBJEXT) \
 	src/dialog/wxmedit-wxm_highlighting_dialog.$(OBJEXT) \
 	src/dialog/wxmedit-wxm_purge_histories_dialog.$(OBJEXT) \
@@ -124,7 +125,7 @@ am__objects_3 = src/wxm/encoding/cp20932.$(OBJEXT) \
 am__objects_4 = src/wxm/encdet.$(OBJEXT) \
 	src/wxmedit/mad_encdet.$(OBJEXT)
 am_wxmedit_test_OBJECTS = $(am__objects_3) $(am__objects_4) \
-	test/encdet/data_from_icudet.$(OBJEXT) \
+	src/xm/uutils.$(OBJEXT) test/encdet/data_from_icudet.$(OBJEXT) \
 	test/encdet/data_from_mozdet.$(OBJEXT) \
 	test/encdet/test_detenc.$(OBJEXT) \
 	test/encdet/test_from_icudet.$(OBJEXT) \
@@ -399,6 +400,8 @@ wxmedit_SOURCES = $(enc_src) \
 	$(encdet_src) \
 	src/dialog/wxm_conv_enc_dialog.cpp \
 	src/dialog/wxm_conv_enc_dialog.h \
+	src/dialog/wxm_enumeration_dialog.cpp \
+	src/dialog/wxm_enumeration_dialog.h \
 	src/dialog/wxm_find_in_files_dialog.cpp \
 	src/dialog/wxm_find_in_files_dialog.h \
 	src/dialog/wxm_highlighting_dialog.cpp \
@@ -489,6 +492,8 @@ wxmedit_test_SOURCES = $(enc_src) \
 	src/wxmedit/wxm_deque.hpp \
 	src/xm/cxx11.h \
 	src/xm/utils.hpp \
+	src/xm/uutils.h \
+	src/xm/uutils.cpp \
 	test/encdet/data_from_icudet.cpp \
 	test/encdet/data_from_icudet.h \
 	test/encdet/data_from_mozdet.cpp \
@@ -732,6 +737,9 @@ src/dialog/$(DEPDIR)/$(am__dirstamp):
 src/dialog/wxmedit-wxm_conv_enc_dialog.$(OBJEXT):  \
 	src/dialog/$(am__dirstamp) \
 	src/dialog/$(DEPDIR)/$(am__dirstamp)
+src/dialog/wxmedit-wxm_enumeration_dialog.$(OBJEXT):  \
+	src/dialog/$(am__dirstamp) \
+	src/dialog/$(DEPDIR)/$(am__dirstamp)
 src/dialog/wxmedit-wxm_find_in_files_dialog.$(OBJEXT):  \
 	src/dialog/$(am__dirstamp) \
 	src/dialog/$(DEPDIR)/$(am__dirstamp)
@@ -866,6 +874,8 @@ src/wxm/encdet.$(OBJEXT): src/wxm/$(am__dirstamp) \
 	src/wxm/$(DEPDIR)/$(am__dirstamp)
 src/wxmedit/mad_encdet.$(OBJEXT): src/wxmedit/$(am__dirstamp) \
 	src/wxmedit/$(DEPDIR)/$(am__dirstamp)
+src/xm/uutils.$(OBJEXT): src/xm/$(am__dirstamp) \
+	src/xm/$(DEPDIR)/$(am__dirstamp)
 test/encdet/$(am__dirstamp):
 	@$(MKDIR_P) test/encdet
 	@: > test/encdet/$(am__dirstamp)
@@ -945,6 +955,7 @@ wxmedit_test$(EXEEXT): $(wxmedit_test_OBJECTS) $(wxmedit_test_DEPENDENCIES)
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
 	-rm -f src/dialog/wxmedit-wxm_conv_enc_dialog.$(OBJEXT)
+	-rm -f src/dialog/wxmedit-wxm_enumeration_dialog.$(OBJEXT)
 	-rm -f src/dialog/wxmedit-wxm_find_in_files_dialog.$(OBJEXT)
 	-rm -f src/dialog/wxmedit-wxm_highlighting_dialog.$(OBJEXT)
 	-rm -f src/dialog/wxmedit-wxm_purge_histories_dialog.$(OBJEXT)
@@ -998,6 +1009,7 @@ mostlyclean-compile:
 	-rm -f src/wxmedit/wxmedit-wxmedit_basic.$(OBJEXT)
 	-rm -f src/wxmedit/wxmedit-wxmedit_command.$(OBJEXT)
 	-rm -f src/wxmedit/wxmedit-wxmedit_gtk.$(OBJEXT)
+	-rm -f src/xm/uutils.$(OBJEXT)
 	-rm -f src/xm/wxmedit-remote.$(OBJEXT)
 	-rm -f src/xm/wxmedit-ublock.$(OBJEXT)
 	-rm -f src/xm/wxmedit-ublock_des.$(OBJEXT)
@@ -1032,6 +1044,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/$(DEPDIR)/wxmedit-wxmedit_app.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/$(DEPDIR)/wxmedit-wxmedit_frame.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/dialog/$(DEPDIR)/wxmedit-wxm_conv_enc_dialog.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/dialog/$(DEPDIR)/wxmedit-wxm_enumeration_dialog.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/dialog/$(DEPDIR)/wxmedit-wxm_find_in_files_dialog.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/dialog/$(DEPDIR)/wxmedit-wxm_highlighting_dialog.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/dialog/$(DEPDIR)/wxmedit-wxm_purge_histories_dialog.Po@am__quote@
@@ -1080,6 +1093,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/wxmedit/$(DEPDIR)/wxmedit-wxmedit_basic.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/wxmedit/$(DEPDIR)/wxmedit-wxmedit_command.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/wxmedit/$(DEPDIR)/wxmedit-wxmedit_gtk.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/xm/$(DEPDIR)/uutils.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/xm/$(DEPDIR)/wxmedit-remote.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/xm/$(DEPDIR)/wxmedit-ublock.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/xm/$(DEPDIR)/wxmedit-ublock_des.Po@am__quote@
@@ -1260,6 +1274,20 @@ src/dialog/wxmedit-wxm_conv_enc_dialog.obj: src/dialog/wxm_conv_enc_dialog.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/dialog/wxm_conv_enc_dialog.cpp' object='src/dialog/wxmedit-wxm_conv_enc_dialog.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -c -o src/dialog/wxmedit-wxm_conv_enc_dialog.obj `if test -f 'src/dialog/wxm_conv_enc_dialog.cpp'; then $(CYGPATH_W) 'src/dialog/wxm_conv_enc_dialog.cpp'; else $(CYGPATH_W) '$(srcdir)/src/dialog/wxm_conv_enc_dialog.cpp'; fi`
+
+src/dialog/wxmedit-wxm_enumeration_dialog.o: src/dialog/wxm_enumeration_dialog.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -MT src/dialog/wxmedit-wxm_enumeration_dialog.o -MD -MP -MF src/dialog/$(DEPDIR)/wxmedit-wxm_enumeration_dialog.Tpo -c -o src/dialog/wxmedit-wxm_enumeration_dialog.o `test -f 'src/dialog/wxm_enumeration_dialog.cpp' || echo '$(srcdir)/'`src/dialog/wxm_enumeration_dialog.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) src/dialog/$(DEPDIR)/wxmedit-wxm_enumeration_dialog.Tpo src/dialog/$(DEPDIR)/wxmedit-wxm_enumeration_dialog.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/dialog/wxm_enumeration_dialog.cpp' object='src/dialog/wxmedit-wxm_enumeration_dialog.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -c -o src/dialog/wxmedit-wxm_enumeration_dialog.o `test -f 'src/dialog/wxm_enumeration_dialog.cpp' || echo '$(srcdir)/'`src/dialog/wxm_enumeration_dialog.cpp
+
+src/dialog/wxmedit-wxm_enumeration_dialog.obj: src/dialog/wxm_enumeration_dialog.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -MT src/dialog/wxmedit-wxm_enumeration_dialog.obj -MD -MP -MF src/dialog/$(DEPDIR)/wxmedit-wxm_enumeration_dialog.Tpo -c -o src/dialog/wxmedit-wxm_enumeration_dialog.obj `if test -f 'src/dialog/wxm_enumeration_dialog.cpp'; then $(CYGPATH_W) 'src/dialog/wxm_enumeration_dialog.cpp'; else $(CYGPATH_W) '$(srcdir)/src/dialog/wxm_enumeration_dialog.cpp'; fi`
+@am__fastdepCXX_TRUE@	$(am__mv) src/dialog/$(DEPDIR)/wxmedit-wxm_enumeration_dialog.Tpo src/dialog/$(DEPDIR)/wxmedit-wxm_enumeration_dialog.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/dialog/wxm_enumeration_dialog.cpp' object='src/dialog/wxmedit-wxm_enumeration_dialog.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -c -o src/dialog/wxmedit-wxm_enumeration_dialog.obj `if test -f 'src/dialog/wxm_enumeration_dialog.cpp'; then $(CYGPATH_W) 'src/dialog/wxm_enumeration_dialog.cpp'; else $(CYGPATH_W) '$(srcdir)/src/dialog/wxm_enumeration_dialog.cpp'; fi`
 
 src/dialog/wxmedit-wxm_find_in_files_dialog.o: src/dialog/wxm_find_in_files_dialog.cpp
 @am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(wxmedit_CXXFLAGS) $(CXXFLAGS) -MT src/dialog/wxmedit-wxm_find_in_files_dialog.o -MD -MP -MF src/dialog/$(DEPDIR)/wxmedit-wxm_find_in_files_dialog.Tpo -c -o src/dialog/wxmedit-wxm_find_in_files_dialog.o `test -f 'src/dialog/wxm_find_in_files_dialog.cpp' || echo '$(srcdir)/'`src/dialog/wxm_find_in_files_dialog.cpp

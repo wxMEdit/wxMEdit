@@ -10,12 +10,21 @@
 #include "../xm/cxx11.h"
 #include "wxmedit.h"
 
+#ifdef _MSC_VER
+# pragma warning( push )
+# pragma warning( disable : 4996 )
+#endif
+// disable 4996 {
 #include <wx/fileconf.h>
 #include <wx/tokenzr.h>
 #include <wx/dir.h>
 #include <wx/textfile.h>
 #include <wx/filename.h>
 #include <wx/intl.h>
+// disable 4996 }
+#ifdef _MSC_VER
+# pragma warning( pop )
+#endif
 
 #include <boost/tr1/unordered_map.hpp>
 
@@ -1034,14 +1043,14 @@ void MadSyntax::Reset()
         if(SystemAttributesColor[i][0]==0)
             pat->color = wxNullColour;
         else if(SystemAttributesColor[i][0]==wxT('#'))
-            pat->color.Set(SystemAttributesColor[i][1], SystemAttributesColor[i][2], SystemAttributesColor[i][3]);
+            pat->color.Set(wxByte(SystemAttributesColor[i][1]), wxByte(SystemAttributesColor[i][2]), wxByte(SystemAttributesColor[i][3]));
         else
             pat->color = wxColour(SystemAttributesColor[i]);
 
         if(SystemAttributesBgColor[i][0]==0)
             pat->bgcolor = wxNullColour;
         else if(SystemAttributesBgColor[i][0]==wxT('#'))
-            pat->bgcolor.Set(SystemAttributesBgColor[i][1], SystemAttributesBgColor[i][2], SystemAttributesBgColor[i][3]);
+            pat->bgcolor.Set(wxByte(SystemAttributesBgColor[i][1]), wxByte(SystemAttributesBgColor[i][2]), wxByte(SystemAttributesBgColor[i][3]));
         else
             pat->bgcolor = wxColour(SystemAttributesBgColor[i]);
 
@@ -1250,7 +1259,7 @@ void MadSyntax::InitNextWord2(MadLineIterator &lit, size_t row)
     nw_LineWidth = 0;
     nw_FirstIndex = 0;
     nw_RestCount = 0;
-    nw_MaxLength = lit->m_RowIndices[row+1].m_Start - nw_RowIndexIter->m_Start;
+    nw_MaxLength = size_t(lit->m_RowIndices[row+1].m_Start - nw_RowIndexIter->m_Start);
 
     if(m_CheckState)
     {
@@ -1680,7 +1689,7 @@ int MadSyntax::NextWord(int &wordwidth)
                                 m_RangeBeginString.begin(), m_RangeBeginString.end(), strlen);
                             if(idx != 0)
                             {
-                                nw_NextState.rangeid = m_CustomRange[idx - 1].id;
+                                nw_NextState.rangeid = wxByte(m_CustomRange[idx - 1].id);
                                 nw_SynRange = GetSyntaxRange(nw_NextState.rangeid);
 
                                 nw_FirstIndex += strlen;
@@ -2171,7 +2180,7 @@ int MadSyntax::NextWord(int &wordwidth)
         {
             MadRowIndexIterator nextit=nw_RowIndexIter;
             ++nextit;
-            nw_MaxLength = nextit->m_Start - nw_RowIndexIter->m_Start;
+            nw_MaxLength = size_t(nextit->m_Start - nw_RowIndexIter->m_Start);
         }
     }
 

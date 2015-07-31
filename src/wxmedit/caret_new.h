@@ -19,9 +19,19 @@
 
 #include "../xm/cxx11.h"
 
+
+#ifdef _MSC_VER
+# pragma warning( push )
+# pragma warning( disable : 4996 )
+#endif
+// disable 4996 {
 #include <wx/timer.h>
 #include <wx/caret.h>
 #include <wx/bitmap.h>
+// disable 4996 }
+#ifdef _MSC_VER
+# pragma warning( pop )
+#endif
 
 class wxCaretNew;
 

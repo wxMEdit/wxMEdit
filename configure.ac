@@ -2,7 +2,7 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.59)
-AC_INIT([wxmedit], [2.9.9.2], [wxmedit@gmail.com])
+AC_INIT([wxmedit], [2.9.9.3], [wxmedit@gmail.com])
 AC_CONFIG_SRCDIR([src/wxmedit_app.cpp])
 AC_CONFIG_HEADER([config.h])
 AC_PREFIX_DEFAULT([/usr])
@@ -114,7 +114,7 @@ if test "x$WX_LIBS" != "x"; then
 fi
 
 AM_OPTIONS_WXCONFIG
-AM_PATH_WXCONFIG(2.8.0, wxWin=1, base,core,aui)
+AM_PATH_WXCONFIG(2.8.0, wxWin=1, ,[core,aui])
 if test "$wxWin" != 1; then
    AC_MSG_ERROR([
            wxWidgets must be installed on your system

@@ -12,6 +12,7 @@
 #include "../wxm/encoding/unicode.h"
 #include "../wxm/utils.h"
 #include "../mad_utils.h"
+#include "../xm/uutils.h"
 
 #ifdef __WXGTK__
 #   include "clipbrd_gtk.h"
@@ -19,7 +20,16 @@
 #   include <wx/clipbrd.h>
 #endif
 
+#ifdef _MSC_VER
+# pragma warning( push )
+# pragma warning( disable : 4996 )
+#endif
+// disable 4996 {
 #include <wx/filename.h>
+// disable 4996 }
+#ifdef _MSC_VER
+# pragma warning( pop )
+#endif
 
 #include <boost/assign/list_of.hpp>
 #include <boost/assign/std/vector.hpp>
@@ -382,7 +392,7 @@ void MadEdit::SetHexFont(const wxString &name, int size, bool forceReset)
 
                 if(!m_CaretAtHexArea)
                 {
-                    int crow = m_CaretPos.pos >> 4;
+                    int crow = int(m_CaretPos.pos >> 4);
                     if(crow >= m_TopRow && crow < m_TopRow + m_HexRowCount)
                     {
                         UpdateTextAreaXPos();
@@ -621,11 +631,11 @@ void MadEdit::SetEditMode(MadEditMode mode)
 
         if(m_LoadingFile == false)
         {
-            m_TopRow = (m_CaretPos.pos >> 4);
+            m_TopRow = int(m_CaretPos.pos >> 4);
             if(m_TopRow >= (m_VisibleRowCount >> 1))
             {
                 m_TopRow -= (m_VisibleRowCount >> 1);
-                int rows = (m_Lines->m_Size >> 4);
+                int rows = int(m_Lines->m_Size >> 4);
 
                 if((((int)m_Lines->m_Size) & 0xF) != 0)
                     ++rows;
@@ -867,22 +877,7 @@ void MadEdit::GetSelText(wxString &ws)
                 m_Lines->NextUChar(ucqueue);
             }
 
-#ifdef __WXMSW__
-            ucs4_t uc=ucqueue.back().first;
-            if(uc>=0x10000)
-            {
-                wchar_t wbuf[2];
-                wxm::UCS4toUTF16LE_U10000(uc, (wxByte*)wbuf);
-                ws<<wbuf[0];
-                ws<<wbuf[1];
-            }
-            else
-            {
-                ws<<wxChar(uc);
-            }
-#else
-            ws<<wxChar(ucqueue.back().first);
-#endif
+            wxm::WxStrAppendUCS4(ws, ucqueue.back().first);
 
             pos += ucqueue.back().second;
         }
@@ -915,22 +910,7 @@ void MadEdit::GetText(wxString &ws, bool ignoreBOM)
             m_Lines->NextUChar(ucqueue);
         }
 
-#ifdef __WXMSW__
-        ucs4_t uc=ucqueue.back().first;
-        if(uc>=0x10000)
-        {
-            wchar_t wbuf[2];
-            wxm::UCS4toUTF16LE_U10000(uc, (wxByte*)wbuf);
-            ws<<wbuf[0];
-            ws<<wbuf[1];
-        }
-        else
-        {
-            ws<<wxChar(uc);
-        }
-#else
-        ws<<wxChar(ucqueue.back().first);
-#endif
+        wxm::WxStrAppendUCS4(ws, ucqueue.back().first);
 
         pos += ucqueue.back().second;
     }
@@ -1091,21 +1071,7 @@ bool MadEdit::GetLine(wxString &ws, int line, size_t maxlen, bool ignoreBOM)
         if(uc==0x0D || uc==0x0A)
             return true;
 
-#ifdef __WXMSW__
-        if(uc>=0x10000)
-        {
-            wchar_t wbuf[2];
-            wxm::UCS4toUTF16LE_U10000(uc, (wxByte*)wbuf);
-            ws<<wbuf[0];
-            ws<<wbuf[1];
-        }
-        else
-        {
-            ws<<wxChar(uc);
-        }
-#else
-        ws<<wxChar(uc);
-#endif
+        wxm::WxStrAppendUCS4(ws, uc);
     }
     while(ws.Len() < maxlen);
 
@@ -1214,10 +1180,7 @@ void MadEdit::CopyRegularText()
             ucs4_t &uc=ucqueue.front().first;
             if(uc==0x0D || uc==0x0A)
             {
-#ifdef __WXMSW__
-                ws<<wxChar(0x0D);
-#endif
-                ws<<wxChar(0x0A);
+                ws << wxm::g_nl_default.wxValue();
 
                 pos += ucqueue.front().second;
 
@@ -1228,26 +1191,11 @@ void MadEdit::CopyRegularText()
                 }
 
                 ucqueue.clear();
-
-            }
-#ifdef __WXMSW__
-            else if(uc>=0x10000)
-            {
-                wchar_t wcbuf[2];
-                wxm::UCS4toUTF16LE_U10000(uc, (wxByte*)wcbuf);
-                ws<<wxChar(wcbuf[0]);
-                ws<<wxChar(wcbuf[1]);
-                pos += ucqueue.front().second;
-                ucqueue.clear();
-            }
-#endif
-            else
-            {
-                ws<<wxChar(uc);
-                pos += ucqueue.front().second;
-                ucqueue.clear();
             }
 
+            wxm::WxStrAppendUCS4(ws, uc);
+            pos += ucqueue.front().second;
+            ucqueue.clear();
         }
         else
         {
@@ -1296,20 +1244,24 @@ void MadEdit::CopyToClipboard()
         CopyRegularText();
 }
 
+void MadEdit::InsertColumnText(vector<ucs4_t>& ucs, int lines)
+{
+    if (ucs.empty())
+        return;
+
+    InsertColumnString(&ucs[0], ucs.size(), lines, false, false);
+}
+
 void MadEdit::PasteColumnText()
 {
     vector<ucs4_t> ucs;
     int lines = GetColumnDataFromClipboard(ucs);
 
-    if(!ucs.empty())
-        InsertColumnString(&ucs[0], ucs.size(), lines, false, false);
+    InsertColumnText(ucs, lines);
 }
 
-void MadEdit::PasteRegularText()
+void MadEdit::InsertRegularText(vector<ucs4_t>& ucs)
 {
-    vector<ucs4_t> ucs;
-    GetTextFromClipboard(ucs);
-
     if(ucs.empty())
         return;
 
@@ -1319,6 +1271,14 @@ void MadEdit::PasteRegularText()
     InsertString(&ucs[0], ucs.size(), false, true, false);
 
     m_InsertMode = oldim;
+}
+
+void MadEdit::PasteRegularText()
+{
+    vector<ucs4_t> ucs;
+    GetTextFromClipboard(ucs);
+
+    InsertRegularText(ucs);
 }
 
 void MadEdit::PasteRawBytes(bool overwirte)
@@ -1681,7 +1641,7 @@ bool MadEdit::LoadFromFile(const wxString &filename, const wxString &encoding)
     m_ModificationTime = wxFileModificationTime(filename);
     m_ReadOnly = false; // use IsReadOnly() to check ReadOnly or not
 
-    m_InsertNewLineType=m_NewLineType;
+    m_newline_for_insert = m_newline;
 
     m_Selection = false;
     m_SelFirstRow=INT_MAX;
@@ -1746,7 +1706,7 @@ bool MadEdit::SaveToFile(const wxString &filename)
 
     wxString tempdir;
 
-    if(memsize>=0 && memsize < (tempsize+ 20*1024*1024)) // use disk as tempdata
+    if(memsize>=0 && memsize < wxMemorySize(tempsize+ 20*1024*1024)) // use disk as tempdata
     {
         wxFileName fn(filename);
         tempdir=fn.GetPath(wxPATH_GET_VOLUME|wxPATH_GET_SEPARATOR);

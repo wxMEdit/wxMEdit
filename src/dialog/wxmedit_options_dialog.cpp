@@ -18,11 +18,20 @@
 #include "../wxm/def.h"
 #include "../wxm/utils.h"
 
+#ifdef _MSC_VER
+# pragma warning( push )
+# pragma warning( disable : 4996 )
+#endif
+// disable 4996 {
 //(*InternalHeaders(WXMEditOptionsDialog)
 #include <wx/settings.h>
 #include <wx/intl.h>
 #include <wx/string.h>
 //*)
+// disable 4996 }
+#ifdef _MSC_VER
+# pragma warning( pop )
+#endif
 
 #include <wx/aui/auibook.h>
 #include <wx/fileconf.h>

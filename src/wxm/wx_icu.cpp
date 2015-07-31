@@ -28,9 +28,9 @@ namespace wxm
 UnicodeString WxStrToICU(const wxString& wxs)
 {
 #ifdef __WXMSW__
-	return UnicodeString(wxs.c_str(), wxs.Length());
+	return UnicodeString(wxs.wc_str(), wxs.Length());
 #else
-	return UnicodeString::fromUTF32((const UChar32*)wxs.c_str(), wxs.Length());
+	return UnicodeString::fromUTF32((const UChar32*)wxs.wc_str(), wxs.Length());
 #endif
 }
 

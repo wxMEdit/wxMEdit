@@ -33,7 +33,7 @@ void MadEdit::ToggleBOM()
     if(IsReadOnly() || !IsTextFile() || !IsUnicodeFile())
         return;
 
-    size_t len=m_Lines->m_LineList.begin()->m_RowIndices[0].m_Start;
+    size_t len = size_t(m_Lines->m_LineList.begin()->m_RowIndices[0].m_Start);
 
     if(len!=0)    // remove BOM
     {
@@ -233,36 +233,24 @@ void MadEdit::ConvertChinese(MadConvertEncodingFlag flag)
     RestoreLocations(loc);
 }
 
-void MadEdit::ConvertNewLineType(MadNewLineType type)
+void MadEdit::ConvertNewLine(const wxm::NewLineChar& nl)
 {
     if(IsReadOnly() || !IsTextFile())
         return;
 
     if(m_Lines->m_LineCount<2)
     {
-        m_NewLineType=m_InsertNewLineType=type;
+        m_newline = &nl;
+        m_newline_for_insert = &nl;
         DoStatusChanged();
         return;
     }
 
     MadBlock newline_blk(m_Lines->m_MemData, -1, 0);
-    ucs4_t newline[2]={ 0x0D, 0x0A };
-    switch(type)
-    {
-    case nltDOS:
-        UCStoBlock(newline, 2, newline_blk);
-        break;
-    case nltMAC:
-        UCStoBlock(newline, 1, newline_blk);
-        break;
-    case nltUNIX:
-        UCStoBlock(newline+1, 1, newline_blk);
-        break;
-    default: break;
-    }
+    NewLineToBlock(nl, newline_blk);
 
     wxByte newlinedata[16];
-    size_t newlinesize=newline_blk.m_Size;
+    size_t newlinesize = size_t(newline_blk.m_Size);
     m_Lines->m_MemData->Get(newline_blk.m_Pos, newlinedata, newlinesize);
 
     vector<wxByte> buffervector;
@@ -278,7 +266,7 @@ void MadEdit::ConvertNewLineType(MadNewLineType type)
 
     do
     {
-        size_t size=lit->m_Size-lit->m_NewLineSize;
+        size_t size = size_t(lit->m_Size-lit->m_NewLineSize);
 
         if(size>0)
         {
@@ -351,7 +339,8 @@ void MadEdit::ConvertNewLineType(MadNewLineType type)
 
     ReformatAll();
 
-    m_NewLineType=m_InsertNewLineType=type;
+    m_newline = &nl;
+    m_newline_for_insert = &nl;
     m_Modified=true;
 
     DoSelectionChanged();
@@ -486,7 +475,7 @@ void MadEdit::IncreaseDecreaseIndent(bool incIndent)
                 UCStoBlock(&spaces[0], spaces.size(), blk);
         }
 
-        size_t size = lit->m_Size - nonspacepos;
+        size_t size = size_t(lit->m_Size - nonspacepos);
         if(count==0 && !SelEndAtBOL)
         {
             // exclude NewLine chars
@@ -674,7 +663,7 @@ void MadEdit::CommentUncomment(bool comment)
         if(spaces.size()!=0)
             UCStoBlock(&spaces[0], spaces.size(), blk);
 
-        size_t size = lit->m_Size - nonspacepos;
+        size_t size = size_t(lit->m_Size - nonspacepos);
         if(count==0 && !SelEndAtBOL)
         {
             // exclude NewLine chars
@@ -1259,7 +1248,7 @@ void MadEdit::WordCount(bool selection, wxm::WordCountData& data)
         nowpos=0;
         endpos=m_Lines->m_Size;
     }
-    data.bytes = endpos - nowpos;
+    data.bytes = int(endpos - nowpos);
 
     // begin counting
     MadUCQueue ucqueue;
@@ -1315,16 +1304,6 @@ void MadEdit::WordCount(bool selection, wxm::WordCountData& data)
         int cnt = ublock_counter.GetInvalidBlockCharCount();
         data.detail.Add(wxString::Format(wxT("%10d           ? -        ? %s"), cnt, _("Invalid Unicode Characters")));
     }
-}
-
-void MadEdit::TrimTrailingSpaces()
-{
-    if(IsReadOnly() || m_EditMode==emHexMode)
-        return;
-
-    // use Regular Expressions to trim all trailing spaces
-    Searcher(false, true)->SetOption(true, false);
-    Searcher(false, true)->ReplaceAll(wxT("[ \t]+(\r|\n|$)"), wxT("$1"));
 }
 
 
@@ -1733,7 +1712,7 @@ void MadEdit::SortLines(MadSortFlags flags, int beginline, int endline)
         {
             lit = data->lit;
             wxFileOffset spos = lit->m_RowIndices[0].m_Start;
-            size_t size= lit->m_Size - spos;
+            size_t size= size_t(lit->m_Size - spos);
 
             if(slit == slitend) // ignore newline char of last line
             {
@@ -1753,27 +1732,7 @@ void MadEdit::SortLines(MadSortFlags flags, int beginline, int endline)
             }
 
             if(lit->m_NewLineSize == 0 && slit != slitend) //append a newline char
-            {
-                ucs4_t newline[2]={ 0x0D, 0x0A };
-                switch(m_InsertNewLineType)
-                {
-                case nltDOS:
-#ifdef __WXMSW__
-                case nltDefault:
-#endif
-                    UCStoBlock(newline, 2, blk);
-                    break;
-                case nltMAC:
-                    UCStoBlock(newline, 1, blk);
-                    break;
-                case nltUNIX:
-#ifndef __WXMSW__
-                case nltDefault:
-#endif
-                    UCStoBlock(newline+1, 1, blk);
-                    break;
-                }
-            }
+                NewLineToBlock(blk);
         }
 
     }
@@ -1892,30 +1851,12 @@ void MadEdit::ConvertWordWrapToNewLine()
     if(del_pos.size()==0) return; // there is no wrapped-line
 
     MadBlock blk(m_Lines->m_MemData, -1, 0);
-    ucs4_t newline[2]={ 0x0D, 0x0A };
-    switch(m_InsertNewLineType)
-    {
-    case nltDOS:
-#ifdef __WXMSW__
-    case nltDefault:
-#endif
-        UCStoBlock(newline, 2, blk);
-        break;
-    case nltMAC:
-        UCStoBlock(newline, 1, blk);
-        break;
-    case nltUNIX:
-#ifndef __WXMSW__
-    case nltDefault:
-#endif
-        UCStoBlock(newline+1, 1, blk);
-        break;
-    }
+    NewLineToBlock(blk);
 
     vector<wxByte> newlinedata;
-    newlinedata.resize(blk.m_Size);
+    newlinedata.resize(size_t(blk.m_Size));
     wxByte *buf = &newlinedata[0];
-    blk.Get(0, buf, blk.m_Size);
+    blk.Get(0, buf, size_t(blk.m_Size));
 
     vector<wxByte*> ins_data;
     vector<wxFileOffset> ins_len;
@@ -2144,10 +2085,7 @@ void MadEdit::ConvertSpaceToTab()
         // add newline
         if(GetEditMode() == emColumnMode)
         {
-#ifdef __WXMSW__
-            newtext.push_back(0x0D);
-#endif
-            newtext.push_back(0x0A);
+            wxm::g_nl_default.ValueAppendTo(newtext);
         }
         else
         {
@@ -2319,10 +2257,7 @@ void MadEdit::ConvertTabToSpace()
         // add newline
         if(GetEditMode() == emColumnMode)
         {
-#ifdef __WXMSW__
-            newtext.push_back(0x0D);
-#endif
-            newtext.push_back(0x0A);
+            wxm::g_nl_default.ValueAppendTo(newtext);
         }
         else
         {

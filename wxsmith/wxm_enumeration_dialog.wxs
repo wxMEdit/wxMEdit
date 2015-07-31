@@ -1,0 +1,504 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<wxsmith>
+	<object class="wxDialog" name="WXMEnumerationDialog">
+		<title>Insert Ordered Sequence</title>
+		<centered>1</centered>
+		<id_arg>0</id_arg>
+		<style>wxCAPTION|wxSYSTEM_MENU|wxRESIZE_BORDER|wxCLOSE_BOX|wxDIALOG_NO_PARENT|wxMAXIMIZE_BOX</style>
+		<object class="wxBoxSizer" variable="BoxSizer1" member="no">
+			<object class="sizeritem">
+				<object class="wxBoxSizer" variable="BoxSizer12" member="no">
+					<orient>wxVERTICAL</orient>
+					<object class="sizeritem">
+						<object class="wxStaticBoxSizer" variable="StaticBoxSizer1" member="no">
+							<label>Sequence</label>
+							<object class="sizeritem">
+								<object class="wxBoxSizer" variable="BoxSizer13" member="no">
+									<orient>wxVERTICAL</orient>
+									<object class="sizeritem">
+										<object class="wxBoxSizer" variable="BoxSizer15" member="no">
+											<object class="sizeritem">
+												<object class="wxStaticText" name="ID_STATICTEXT1" variable="StaticTextInitalNum" member="yes">
+													<label>&amp;Initial Number</label>
+												</object>
+												<flag>wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
+												<border>2</border>
+											</object>
+											<object class="sizeritem">
+												<object class="wxStaticText" name="ID_STATICTEXT3" variable="StaticText1" member="yes">
+													<label>:</label>
+												</object>
+												<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+											</object>
+										</object>
+										<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+										<border>2</border>
+										<option>1</option>
+									</object>
+									<object class="sizeritem">
+										<object class="wxBoxSizer" variable="BoxSizer16" member="no">
+											<object class="sizeritem">
+												<object class="wxStaticText" name="ID_STATICTEXT2" variable="StaticTextStep" member="yes">
+													<label>Step</label>
+												</object>
+												<flag>wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
+												<border>2</border>
+											</object>
+											<object class="sizeritem">
+												<object class="wxStaticText" name="ID_STATICTEXT10" variable="StaticText2" member="yes">
+													<label>:</label>
+												</object>
+												<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+											</object>
+										</object>
+										<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+										<border>2</border>
+										<option>1</option>
+									</object>
+									<object class="sizeritem">
+										<object class="wxBoxSizer" variable="BoxSizer17" member="no">
+											<object class="sizeritem">
+												<object class="wxStaticText" name="ID_STATICTEXTFINALNUM" variable="StaticTextFinalNum" member="yes">
+													<label>Final Number</label>
+												</object>
+												<flag>wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
+												<border>2</border>
+											</object>
+											<object class="sizeritem">
+												<object class="wxStaticText" name="ID_STATICTEXT11" variable="StaticText3" member="yes">
+													<label>:</label>
+												</object>
+												<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+											</object>
+										</object>
+										<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+										<border>2</border>
+										<option>1</option>
+									</object>
+								</object>
+								<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+								<border>2</border>
+							</object>
+							<object class="sizeritem">
+								<object class="wxBoxSizer" variable="BoxSizer14" member="no">
+									<orient>wxVERTICAL</orient>
+									<object class="sizeritem">
+										<object class="wxBoxSizer" variable="BoxSizer2" member="no">
+											<object class="sizeritem">
+												<object class="wxTextCtrl" name="ID_TEXTCTRLINITIALNUM" variable="TextCtrlInitialNum" member="yes">
+													<value>1</value>
+													<maxlength>66</maxlength>
+													<handler function="OnResultChange" entry="EVT_TEXT" />
+												</object>
+												<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+												<border>2</border>
+												<option>1</option>
+											</object>
+										</object>
+										<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+										<border>2</border>
+										<option>1</option>
+									</object>
+									<object class="sizeritem">
+										<object class="wxBoxSizer" variable="BoxSizer3" member="no">
+											<object class="sizeritem">
+												<object class="wxChoice" name="ID_CHOICESTEPOP" variable="ChoiceStepOp" member="yes">
+													<content>
+														<item>+</item>
+														<item>-</item>
+														<item>*</item>
+														<item>/</item>
+													</content>
+													<selection>0</selection>
+													<handler function="OnChoiceStepOpSelect" entry="EVT_CHOICE" />
+												</object>
+												<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+												<border>2</border>
+											</object>
+											<object class="sizeritem">
+												<object class="wxTextCtrl" name="ID_TEXTCTRLSTEPPARAM" variable="TextCtrlStepParam" member="yes">
+													<value>1</value>
+													<maxlength>66</maxlength>
+													<handler function="OnResultChange" entry="EVT_TEXT" />
+												</object>
+												<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+												<border>2</border>
+												<option>1</option>
+											</object>
+										</object>
+										<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+										<border>2</border>
+										<option>1</option>
+									</object>
+									<object class="sizeritem">
+										<object class="wxBoxSizer" variable="BoxSizer4" member="no">
+											<object class="sizeritem">
+												<object class="wxChoice" name="ID_CHOICEFINALCMP" variable="ChoiceFinalCmp" member="yes">
+													<content>
+														<item>(Automatic)</item>
+														<item>&lt;=</item>
+														<item>&lt;</item>
+													</content>
+													<selection>0</selection>
+													<handler function="OnChoiceFinalCmpSelect" entry="EVT_CHOICE" />
+												</object>
+												<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+												<border>2</border>
+											</object>
+											<object class="sizeritem">
+												<object class="wxTextCtrl" name="ID_TEXTCTRLFINALNUM" variable="TextCtrlFinalNum" member="yes">
+													<value>1</value>
+													<maxlength>66</maxlength>
+													<enabled>0</enabled>
+													<minsize>64,-1</minsize>
+													<handler function="OnResultChange" entry="EVT_TEXT" />
+												</object>
+												<flag>wxALL|wxEXPAND|wxFIXED_MINSIZE|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+												<border>2</border>
+												<option>1</option>
+											</object>
+										</object>
+										<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+										<border>2</border>
+										<option>1</option>
+									</object>
+								</object>
+								<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+								<border>2</border>
+								<option>1</option>
+							</object>
+						</object>
+						<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+						<border>5</border>
+					</object>
+					<object class="sizeritem">
+						<object class="wxStaticBoxSizer" variable="StaticBoxSizer3" member="no">
+							<label>Preview of First 10000 Lines</label>
+							<object class="sizeritem">
+								<object class="wxTextCtrl" name="ID_TEXTCTRLPREVIEW" variable="TextCtrlPreview" member="yes">
+									<style>wxTE_MULTILINE|wxTE_READONLY|wxVSCROLL</style>
+								</object>
+								<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+								<border>2</border>
+								<option>1</option>
+							</object>
+						</object>
+						<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+						<border>5</border>
+						<option>1</option>
+					</object>
+				</object>
+				<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+				<option>1</option>
+			</object>
+			<object class="sizeritem">
+				<object class="wxBoxSizer" variable="BoxSizer18" member="no">
+					<orient>wxVERTICAL</orient>
+					<object class="sizeritem">
+						<object class="wxStaticBoxSizer" variable="StaticBoxSizer2" member="no">
+							<label>Format</label>
+							<orient>wxVERTICAL</orient>
+							<object class="sizeritem">
+								<object class="wxBoxSizer" variable="BoxSizer5" member="no">
+									<object class="sizeritem">
+										<object class="wxStaticText" name="ID_STATICTEXT6" variable="StaticText6" member="yes">
+											<label>&amp;Numbering System:</label>
+										</object>
+										<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+										<border>2</border>
+									</object>
+									<object class="sizeritem">
+										<object class="wxChoice" name="ID_CHOICENUMSYS" variable="ChoiceNumSys" member="yes">
+											<selection>0</selection>
+											<handler function="OnChoiceNumSysSelect" entry="EVT_CHOICE" />
+										</object>
+										<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+										<border>2</border>
+										<option>1</option>
+									</object>
+								</object>
+								<flag>wxALL|wxEXPAND|wxALIGN_TOP|wxALIGN_CENTER_HORIZONTAL</flag>
+								<border>2</border>
+								<option>1</option>
+							</object>
+							<object class="sizeritem">
+								<object class="wxBoxSizer" variable="BoxSizer6" member="no">
+									<object class="sizeritem">
+										<object class="wxRadioButton" name="ID_RADIOBUTTONHEX" variable="RadioButtonHex" member="yes">
+											<label>He&amp;x</label>
+											<style>wxRB_GROUP</style>
+											<handler function="OnRadioButtonHexSelect" entry="EVT_RADIOBUTTON" />
+										</object>
+										<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+										<border>2</border>
+									</object>
+									<object class="sizeritem">
+										<object class="wxRadioButton" name="ID_RADIOBUTTONDEC" variable="RadioButtonDec" member="yes">
+											<label>&amp;Dec</label>
+											<selected>1</selected>
+											<handler function="OnRadioButtonDecSelect" entry="EVT_RADIOBUTTON" />
+										</object>
+										<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+										<border>2</border>
+									</object>
+									<object class="sizeritem">
+										<object class="wxRadioButton" name="ID_RADIOBUTTONOCT" variable="RadioButtonOct" member="yes">
+											<label>Oc&amp;t</label>
+											<handler function="OnRadioButtonOctSelect" entry="EVT_RADIOBUTTON" />
+										</object>
+										<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+										<border>2</border>
+									</object>
+									<object class="sizeritem">
+										<object class="wxRadioButton" name="ID_RADIOBUTTONBIN" variable="RadioButtonBin" member="yes">
+											<label>&amp;Bin</label>
+											<handler function="OnRadioButtonBinSelect" entry="EVT_RADIOBUTTON" />
+										</object>
+										<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+										<border>2</border>
+									</object>
+								</object>
+								<flag>wxALL|wxEXPAND|wxALIGN_TOP|wxALIGN_CENTER_HORIZONTAL</flag>
+								<border>2</border>
+								<option>1</option>
+							</object>
+							<object class="sizeritem">
+								<object class="wxBoxSizer" variable="BoxSizer22" member="no">
+									<object class="sizeritem">
+										<object class="wxRadioButton" name="ID_RADIOBUTTONUPPER" variable="RadioButtonUpper" member="yes">
+											<label>&amp;Uppercase</label>
+											<selected>1</selected>
+											<enabled>0</enabled>
+											<style>wxRB_GROUP</style>
+											<handler function="OnRadioButtonUpperSelect" entry="EVT_RADIOBUTTON" />
+										</object>
+										<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+										<border>2</border>
+										<option>1</option>
+									</object>
+									<object class="sizeritem">
+										<object class="wxRadioButton" name="ID_RADIOBUTTONLOWER" variable="RadioButtonLower" member="yes">
+											<label>Lowercas&amp;e</label>
+											<enabled>0</enabled>
+											<handler function="OnRadioButtonLowerSelect" entry="EVT_RADIOBUTTON" />
+										</object>
+										<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+										<border>2</border>
+										<option>1</option>
+									</object>
+								</object>
+								<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+								<border>2</border>
+								<option>1</option>
+							</object>
+							<object class="sizeritem">
+								<object class="wxBoxSizer" variable="BoxSizer20" member="no">
+									<object class="sizeritem">
+										<object class="wxRadioButton" name="ID_RADIOBUTTONHALFWIDTH" variable="RadioButtonHalfWidth" member="yes">
+											<label>&amp;Halfwidth</label>
+											<selected>1</selected>
+											<style>wxRB_GROUP</style>
+											<handler function="OnResultChange" entry="EVT_RADIOBUTTON" />
+										</object>
+										<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+										<border>2</border>
+										<option>1</option>
+									</object>
+									<object class="sizeritem">
+										<object class="wxRadioButton" name="ID_RADIOBUTTONFULLWIDTH" variable="RadioButtonFullWidth" member="yes">
+											<label>&amp;Fullwidth</label>
+											<handler function="OnResultChange" entry="EVT_RADIOBUTTON" />
+										</object>
+										<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+										<border>2</border>
+										<option>1</option>
+									</object>
+								</object>
+								<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+								<border>2</border>
+								<option>1</option>
+							</object>
+							<object class="sizeritem">
+								<object class="wxBoxSizer" variable="BoxSizer21" member="no">
+									<object class="sizeritem">
+										<object class="wxCheckBox" name="ID_CHECKBOXGRPSEP" variable="CheckBoxGrpSep" member="yes">
+											<label>Use &amp;Grouping Separator</label>
+											<handler function="OnResultChange" entry="EVT_CHECKBOX" />
+										</object>
+										<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+										<border>2</border>
+										<option>1</option>
+									</object>
+								</object>
+								<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+								<border>2</border>
+								<option>1</option>
+							</object>
+							<object class="sizeritem">
+								<object class="wxBoxSizer" variable="BoxSizer9" member="no">
+									<object class="sizeritem">
+										<object class="wxStaticText" name="ID_STATICTEXT7" variable="StaticText7" member="yes">
+											<label>&amp;Lenth (Characters):</label>
+										</object>
+										<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+										<border>2</border>
+										<option>1</option>
+									</object>
+									<object class="sizeritem">
+										<object class="wxChoice" name="ID_CHOICELENGTH" variable="ChoiceLength" member="yes">
+											<content>
+												<item>(Automatic)</item>
+											</content>
+											<selection>0</selection>
+											<handler function="OnChoiceLengthSelect" entry="EVT_CHOICE" />
+										</object>
+										<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+										<border>2</border>
+										<option>1</option>
+									</object>
+								</object>
+								<flag>wxALL|wxEXPAND|wxALIGN_TOP|wxALIGN_CENTER_HORIZONTAL</flag>
+								<border>2</border>
+								<option>1</option>
+							</object>
+							<object class="sizeritem">
+								<object class="wxBoxSizer" variable="BoxSizer10" member="no">
+									<object class="sizeritem">
+										<object class="wxStaticText" name="ID_STATICTEXT9" variable="StaticText9" member="yes">
+											<label>&amp;Alignment:</label>
+										</object>
+										<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+										<border>2</border>
+										<option>1</option>
+									</object>
+									<object class="sizeritem">
+										<object class="wxChoice" name="ID_CHOICEALIGN" variable="ChoiceAlign" member="yes">
+											<content>
+												<item>Right</item>
+												<item>Left</item>
+											</content>
+											<selection>0</selection>
+											<enabled>0</enabled>
+											<handler function="OnChoiceAlignSelect" entry="EVT_CHOICE" />
+										</object>
+										<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+										<border>2</border>
+										<option>1</option>
+									</object>
+								</object>
+								<flag>wxALL|wxEXPAND|wxALIGN_TOP|wxALIGN_CENTER_HORIZONTAL</flag>
+								<border>2</border>
+								<option>1</option>
+							</object>
+							<object class="sizeritem">
+								<object class="wxBoxSizer" variable="BoxSizer11" member="no">
+									<object class="sizeritem">
+										<object class="wxStaticText" name="ID_STATICTEXT8" variable="StaticText8" member="yes">
+											<label>&amp;Padding:</label>
+										</object>
+										<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+										<border>2</border>
+										<option>1</option>
+									</object>
+									<object class="sizeritem">
+										<object class="wxChoice" name="ID_CHOICEPADDING" variable="ChoicePadding" member="yes">
+											<content>
+												<item>Blank Space</item>
+												<item>0</item>
+											</content>
+											<selection>0</selection>
+											<enabled>0</enabled>
+											<handler function="OnResultChange" entry="EVT_CHOICE" />
+										</object>
+										<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+										<border>2</border>
+										<option>1</option>
+									</object>
+								</object>
+								<flag>wxALL|wxEXPAND|wxALIGN_TOP|wxALIGN_CENTER_HORIZONTAL</flag>
+								<border>2</border>
+								<option>1</option>
+							</object>
+							<object class="sizeritem">
+								<object class="wxBoxSizer" variable="BoxSizer7" member="no">
+									<object class="sizeritem">
+										<object class="wxStaticText" name="ID_STATICTEXT4" variable="StaticText4" member="yes">
+											<label>P&amp;refix:</label>
+										</object>
+										<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+										<border>2</border>
+										<option>1</option>
+									</object>
+									<object class="sizeritem">
+										<object class="wxTextCtrl" name="ID_TEXTCTRLPREFIX" variable="TextCtrlPrefix" member="yes">
+											<maxlength>32</maxlength>
+											<handler function="OnResultChange" entry="EVT_TEXT" />
+										</object>
+										<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+										<border>2</border>
+										<option>1</option>
+									</object>
+								</object>
+								<flag>wxALL|wxEXPAND|wxALIGN_TOP|wxALIGN_CENTER_HORIZONTAL</flag>
+								<border>2</border>
+								<option>1</option>
+							</object>
+							<object class="sizeritem">
+								<object class="wxBoxSizer" variable="BoxSizer8" member="no">
+									<object class="sizeritem">
+										<object class="wxStaticText" name="ID_STATICTEXT5" variable="StaticText5" member="yes">
+											<label>Po&amp;stfix:</label>
+										</object>
+										<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+										<border>2</border>
+										<option>1</option>
+									</object>
+									<object class="sizeritem">
+										<object class="wxTextCtrl" name="ID_TEXTCTRLPOSTFIX" variable="TextCtrlPostfix" member="yes">
+											<maxlength>32</maxlength>
+											<handler function="OnResultChange" entry="EVT_TEXT" />
+										</object>
+										<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+										<border>2</border>
+										<option>1</option>
+									</object>
+								</object>
+								<flag>wxALL|wxEXPAND|wxALIGN_TOP|wxALIGN_CENTER_HORIZONTAL</flag>
+								<border>2</border>
+								<option>1</option>
+							</object>
+						</object>
+						<flag>wxALL|wxALIGN_TOP|wxALIGN_CENTER_HORIZONTAL</flag>
+						<border>5</border>
+					</object>
+					<object class="sizeritem">
+						<object class="wxBoxSizer" variable="BoxSizer19" member="no">
+							<object class="sizeritem">
+								<object class="wxButton" name="wxID_OK" variable="ButtonOK" member="yes">
+									<label>&amp;OK</label>
+									<default>1</default>
+									<handler function="OnButtonOKClick" entry="EVT_BUTTON" />
+								</object>
+								<flag>wxALL|wxALIGN_BOTTOM|wxALIGN_CENTER_HORIZONTAL</flag>
+								<border>5</border>
+								<option>1</option>
+							</object>
+							<object class="sizeritem">
+								<object class="wxButton" name="wxID_CANCEL" variable="ButtonCancel" member="yes">
+									<label>&amp;Cancel</label>
+								</object>
+								<flag>wxALL|wxALIGN_BOTTOM|wxALIGN_CENTER_HORIZONTAL</flag>
+								<border>5</border>
+								<option>1</option>
+							</object>
+						</object>
+						<flag>wxALL|wxALIGN_BOTTOM|wxALIGN_CENTER_HORIZONTAL</flag>
+						<border>2</border>
+						<option>1</option>
+					</object>
+				</object>
+				<flag>wxALL|wxEXPAND|wxALIGN_LEFT|wxALIGN_TOP</flag>
+			</object>
+		</object>
+	</object>
+</wxsmith>

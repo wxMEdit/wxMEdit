@@ -11,15 +11,25 @@
 #define _WXMEDIT_H_
 
 #include "../xm/cxx11.h"
+
+#ifdef _MSC_VER
+# pragma warning( push )
+# pragma warning( disable : 4996 )
+#endif
+// disable 4996 {
 #include <wx/wxprec.h>
 
 #ifdef __BORLANDC__
-#pragma hdrstop
+# pragma hdrstop
 #endif
 
 #ifndef WX_PRECOMP
 // Include your minimal set of headers here, or wx.h
-#include <wx/wx.h>
+# include <wx/wx.h>
+#endif
+// disable 4996 }
+#ifdef _MSC_VER
+# pragma warning( pop )
 #endif
 
 #include "wxm_lines.h"
@@ -56,6 +66,79 @@ namespace wxm
             , controls(0), fullwidths(0), ambws(0), lines(0)
         {}
     };
+
+    struct NewLineChar
+    {
+        virtual bool IsDefault() const { return false; }
+        virtual wxString Name() const = 0;
+        virtual const wxString& Description() const = 0;
+        virtual wxString wxValue() const = 0;
+        virtual const ucs4string& Value() const = 0;
+        virtual void ValueAppendTo(std::vector<ucs4_t>& vec) const = 0;
+        virtual void Convert0x0D(ucs4_t& ch, std::vector<ucs4_t>& ucs) const = 0;
+        virtual void Convert0x0A(ucs4_t& ch, std::vector<ucs4_t>& ucs) const = 0;
+
+        virtual ~NewLineChar() {}
+    protected:
+        static const wxString MACDescription;
+        static const wxString UNIXDescription;
+        static const wxString DOSDescription;
+
+        static const ucs4string MACValue;
+        static const ucs4string UNIXValue;
+        static const ucs4string DOSValue;
+    };
+
+    class NewLineDOS : public NewLineChar
+    {
+        virtual wxString Name() const override { return wxT("DOS"); }
+        virtual const wxString& Description() const override { return DOSDescription; }
+        virtual const ucs4string& Value() const override { return DOSValue; }
+        virtual void Convert0x0D(ucs4_t& ch, std::vector<ucs4_t>& ucs) const override { ucs.push_back(ch); ch = 0x0A; }
+        virtual void Convert0x0A(ucs4_t& ch, std::vector<ucs4_t>& ucs) const override { ucs.push_back(0x0D); }
+    public:
+        virtual wxString wxValue() const override { return wxT("\n"); }
+        virtual void ValueAppendTo(std::vector<ucs4_t>& v) const override { v.push_back(0x0D); v.push_back(0x0A); }
+    };
+
+    class NewLineUNIX : public NewLineChar
+    {
+        virtual wxString Name() const override { return wxT("UNIX"); }
+        virtual const wxString& Description() const override { return UNIXDescription; }
+        virtual const ucs4string& Value() const override { return UNIXValue; }
+        virtual void Convert0x0D(ucs4_t& ch, std::vector<ucs4_t>& ucs) const override { ch = 0x0A; }
+        virtual void Convert0x0A(ucs4_t& ch, std::vector<ucs4_t>& ucs) const override {}
+    public:
+        virtual wxString wxValue() const override { return wxT("\n"); }
+        virtual void ValueAppendTo(std::vector<ucs4_t>& v) const override { v.push_back(0x0A); }
+    };
+
+    class NewLineDefault : public
+#ifdef __WXMSW__
+        NewLineDOS
+#else
+        NewLineUNIX
+#endif
+    {
+        virtual bool IsDefault() const override { return true; }
+    };
+
+    class NewLineMAC : public NewLineChar
+    {
+        virtual wxString Name() const override { return wxT("MAC"); }
+        virtual const wxString& Description() const override { return MACDescription; }
+        virtual const ucs4string& Value() const override { return MACValue; }
+        virtual void Convert0x0D(ucs4_t& ch, std::vector<ucs4_t>& ucs) const override {}
+        virtual void Convert0x0A(ucs4_t& ch, std::vector<ucs4_t>& ucs) const override { ch = 0x0D; }
+    public:
+        virtual wxString wxValue() const override { return wxT("\n"); }
+        virtual void ValueAppendTo(std::vector<ucs4_t>& v) const override { v.push_back(0x0D); }
+    };
+
+    extern const NewLineDefault g_nl_default;
+    extern const NewLineDOS     g_nl_dos;
+    extern const NewLineUNIX    g_nl_unix;
+    extern const NewLineMAC     g_nl_mac;
 } // namespace wxm
 
 //==============================================================================
@@ -110,9 +193,6 @@ enum MadEditMode
 
 enum MadCaretType
 { ctVerticalLine, ctHorizontalLine, ctBlock };
-
-enum MadNewLineType
-{ nltDefault /*Depends on Platform*/, nltDOS /*0D0A*/ , nltUNIX /*0A*/ , nltMAC /*0D*/  };
 
 enum MadConvertEncodingFlag
 {
@@ -338,8 +418,9 @@ private:
     // for OnSize()
     int             m_MaxWidth, m_MaxHeight;
 
+    const wxm::NewLineChar* m_newline;
+    const wxm::NewLineChar* m_newline_for_insert;
 
-    MadNewLineType  m_NewLineType, m_InsertNewLineType;
     long            m_MaxLineLength;
     bool            m_HasTab;
     long            m_TabColumns;
@@ -401,12 +482,6 @@ private:
     wxm::MouseCapturer* m_mouse_capturer;
 
     bool m_mouse_in_window;
-
-#ifdef __WXMSW__
-    bool m_IsWin98;
-    int  m_Win98LeadByte; // fixed that input DBCS char under win98
-    bool m_ProcessWin98LeadByte;
-#endif
 
 protected:
 
@@ -522,6 +597,14 @@ protected:
                                      /*OUT*/ int *lineid = nullptr);
 
     void UCStoBlock(const ucs4_t *ucs, size_t count, MadBlock & block);
+    void NewLineToBlock(const wxm::NewLineChar& nl, MadBlock & block)
+    {
+        UCStoBlock(nl.Value().data(), nl.Value().size(), block);
+    }
+    void NewLineToBlock(MadBlock & block)
+    {
+        NewLineToBlock(*m_newline_for_insert, block);
+    }
 
     long MaxLineLength() { return m_MaxLineLength; }
     virtual bool AdjustInsertCount(const ucs4_t *ucs, size_t& count) { return true; }
@@ -564,6 +647,8 @@ protected:
     virtual int CalcLineNumberAreaWidth(MadLineIterator lit, int lineid, int rowid, int toprow, int rowcount) = 0;
     virtual int GetLineNumberAreaWidth(int number) = 0;
 
+    void InsertColumnText(vector<ucs4_t>& ucs, int lines);
+    void InsertRegularText(vector<ucs4_t>& ucs);
     void PasteColumnText();
     void PasteRegularText();
     void PasteRawBytes(bool overwirte);
@@ -821,36 +906,20 @@ public: // basic functions
 
     int GetLineCount() { return int(m_Lines->m_LineCount); }
 
-    void ConvertNewLineType(MadNewLineType type);
-    void SetInsertNewLineType(MadNewLineType type)
+    void ConvertNewLine(const wxm::NewLineChar& nl);
+    void SetInsertNewLine(const wxm::NewLineChar& nl)
     {
-        m_InsertNewLineType=type;
+        m_newline_for_insert = &nl;
     }
 
-    MadNewLineType GetNewLineType()
+    const wxm::NewLineChar& GetNewLine()
     {
-        if(m_NewLineType==nltDefault)
-        {
-#ifdef __WXMSW__
-            return nltDOS;
-#else
-            return nltUNIX;
-#endif
-        }
-        return m_NewLineType;
+        return *m_newline;
     }
 
-    MadNewLineType GetInsertNewLineType()
+    const wxm::NewLineChar& GetNewLine4Insert()
     {
-        if(m_InsertNewLineType==nltDefault)
-        {
-#ifdef __WXMSW__
-            return nltDOS;
-#else
-            return nltUNIX;
-#endif
-        }
-        return m_InsertNewLineType;
+        return *m_newline_for_insert;
     }
 
     bool IsModified() { return m_Modified; }
@@ -953,8 +1022,6 @@ public: // advanced functions
     void InvertCase();
     void ToHalfWidth(bool ascii=true, bool japanese=true, bool korean=true, bool other=true);
     void ToFullWidth(bool ascii=true, bool japanese=true, bool korean=true, bool other=true);
-
-    void TrimTrailingSpaces();
 
     // startline<0 : sort all lines; otherwise sort [beginline, endline]
     void SortLines(MadSortFlags flags, int beginline, int endline);

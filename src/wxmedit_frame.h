@@ -17,27 +17,34 @@
 #include "wxm/utils.h"
 #include "wxm/edit/inframe.h"
 
-#include <wx/wxprec.h>
+#ifdef _MSC_VER
+# pragma warning( push )
+# pragma warning( disable : 4996 )
+#endif
+// disable 4996 {
+# include <wx/wxprec.h>
+
 #ifdef __BORLANDC__
-        #pragma hdrstop
+# pragma hdrstop
 #endif
 #ifndef WX_PRECOMP
-        #include <wx/wx.h>
+# include <wx/wx.h>
+# include <wx/menu.h>
+# include <wx/toolbar.h>
+# include <wx/statusbr.h>
+# include <wx/frame.h>
+# include <wx/fileconf.h>
+# include <wx/hashset.h>
+# include <wx/imaglist.h>
+# include <wx/event.h>
 #endif
-
-#include <wx/menu.h>
-#include <wx/toolbar.h>
-#include <wx/statusbr.h>
-
-#include <wx/frame.h>
 #include <wx/docview.h>
-#include <wx/fileconf.h>
-#include <wx/hashset.h>
-#include <wx/imaglist.h>
 #include <wx/treectrl.h>
-#include <wx/event.h>
-
-#include <wx/aui/aui.h> // wxAUI
+#include <wx/aui/aui.h>
+// disable 4996 }
+#ifdef _MSC_VER
+# pragma warning( pop )
+#endif
 
 #include <map>
 #include <list>
@@ -49,7 +56,10 @@ class wxMadAuiNotebook;
 class wxAuiNotebookEvent;
 class MadEdit;
 
-BEGIN_DECLARE_EVENT_TYPES()    DECLARE_LOCAL_EVENT_TYPE( wxmEVT_RESULT_AUTOCHECKUPDATES, wxNewEventType() )    DECLARE_LOCAL_EVENT_TYPE( wxmEVT_RESULT_MANUALCHECKUPDATES, wxNewEventType() )END_DECLARE_EVENT_TYPES()
+BEGIN_DECLARE_EVENT_TYPES()
+    DECLARE_LOCAL_EVENT_TYPE( wxmEVT_RESULT_AUTOCHECKUPDATES, wxNewEventType() )
+    DECLARE_LOCAL_EVENT_TYPE( wxmEVT_RESULT_MANUALCHECKUPDATES, wxNewEventType() )
+END_DECLARE_EVENT_TYPES()
 
 class MadEditFrame : public wxFrame
 {
@@ -115,6 +125,8 @@ public:
     void OnUpdateUI_Menu_CheckTextFile(wxUpdateUIEvent& event);
 
     void OnUpdateUI_MenuEditCopyAsHexString(wxUpdateUIEvent& event);
+    void OnUpdateUI_MenuEdit_InsertEnumeration(wxUpdateUIEvent& event);
+
     void OnUpdateUI_MenuIndent(wxUpdateUIEvent& event);
     void OnUpdateUI_MenuComment(wxUpdateUIEvent& event);
 
@@ -187,11 +199,6 @@ public:
     void OnEditInsertTabChar(wxCommandEvent& event);
     void OnEditInsertDateTime(wxCommandEvent& event);
 
-    void OnEditToggleBookmark(wxCommandEvent& event);
-    void OnEditGotoNextBookmark(wxCommandEvent& event);
-    void OnEditGotoPreviousBookmark(wxCommandEvent& event);
-    void OnEditClearAllBookmarks(wxCommandEvent& event);
-
     void OnEditSortAscending(wxCommandEvent& event);
     void OnEditSortDescending(wxCommandEvent& event);
     void OnEditSortAscendingCase(wxCommandEvent& event);
@@ -217,6 +224,7 @@ public:
     void OnEditTabToSpace(wxCommandEvent& event);
     void OnEditSpaceToTab(wxCommandEvent& event);
     void OnEditTrimTrailingSpaces(wxCommandEvent& event);
+    void OnEditInsertEnumeration(wxCommandEvent& event);
 
     void OnSearchFind(wxCommandEvent& event);
     void OnSearchFindNext(wxCommandEvent& event);
@@ -228,6 +236,11 @@ public:
     void OnSearchGoToPosition(wxCommandEvent& event);
     void OnSearchGoToLeftBrace(wxCommandEvent& event);
     void OnSearchGoToRightBrace(wxCommandEvent& event);
+
+    void OnSearchToggleBookmark(wxCommandEvent& event);
+    void OnSearchGotoNextBookmark(wxCommandEvent& event);
+    void OnSearchGotoPreviousBookmark(wxCommandEvent& event);
+    void OnSearchClearAllBookmarks(wxCommandEvent& event);
 
     void OnViewEncoding(wxCommandEvent& event);
     void OnViewRecentEncoding(wxCommandEvent& event);
@@ -418,6 +431,7 @@ enum { // menu id
     menuTabToSpace,
     menuSpaceToTab,
     menuTrimTrailingSpaces,
+    menuInsertEnumeration,
 
     // search
     menuFindNext,

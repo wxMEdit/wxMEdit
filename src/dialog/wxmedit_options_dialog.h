@@ -12,6 +12,11 @@
 
 #include "../wxm/wx_avoid_wxmsw_bug4373.h"
 
+#ifdef _MSC_VER
+# pragma warning( push )
+# pragma warning( disable : 4996 )
+#endif
+// disable 4996 {
 //(*Headers(WXMEditOptionsDialog)
 #include <wx/treectrl.h>
 #include <wx/sizer.h>
@@ -27,6 +32,10 @@
 #include <wx/dialog.h>
 #include <wx/combobox.h>
 //*)
+// disable 4996 }
+#ifdef _MSC_VER
+# pragma warning( pop )
+#endif
 
 #include "../wxm_command.h"
 #include <list>

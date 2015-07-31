@@ -11,6 +11,11 @@
 
 #include "../wxm/recent_list.h"
 
+#ifdef _MSC_VER
+# pragma warning( push )
+# pragma warning( disable : 4996 )
+#endif
+// disable 4996 {
 //(*Headers(WXMFindInFilesDialog)
 #include <wx/sizer.h>
 #include <wx/stattext.h>
@@ -21,6 +26,10 @@
 #include <wx/dialog.h>
 #include <wx/combobox.h>
 //*)
+// disable 4996 }
+#ifdef _MSC_VER
+# pragma warning( pop )
+#endif
 
 #include <wx/fileconf.h>
 #include <wx/bmpbuttn.h>

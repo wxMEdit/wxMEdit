@@ -9,9 +9,19 @@
 #include "wxm_printout.h"
 #include "xm/cxx11.h"
 #include "wxm/edit/inframe.h"
+
+#ifdef _MSC_VER
+# pragma warning( push )
+# pragma warning( disable : 4996 )
+#endif
+// disable 4996 {
 #include <wx/dc.h>
 #include <wx/confbase.h>
 #include <wx/filename.h>
+// disable 4996 }
+#ifdef _MSC_VER
+# pragma warning( pop )
+#endif
 
 #ifdef _DEBUG
 #include <crtdbg.h>

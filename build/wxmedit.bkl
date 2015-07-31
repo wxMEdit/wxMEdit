@@ -35,6 +35,12 @@
 				<if cond="DEBUG==1">-D__WXDEBUG__</if>
 			</set>
 
+			<set var="CPPFLAGS_ADD" make_var="1">
+				<if cond="MGW_VER &lt; '43'"></if>
+				<if cond="MGW_VER &gt;= '47'">-std=c++11</if>
+				<if cond="'43' &lt;= MGW_VER &lt; '47'">-std=c++0x</if>
+			</set>
+
 			<sys-lib>gmon</sys-lib>
 		</if>
 		<if cond="FORMAT in ('msvc', 'msvs2003prj', 'msvs2005prj', 'msvs2008prj')">
@@ -47,13 +53,14 @@
 			</if>
 
 			<set var="WXDEBUG_DEF" make_var="1" />
+			<set var="CPPFLAGS_ADD" make_var="1" />
 
 			<define>_SCL_SECURE_NO_WARNINGS</define>
 		</if>
 		<if cond="FORMAT in ('msvs2003prj', 'msvs2005prj', 'msvs2008prj')">
 			<define>wxUSE_NO_MANIFEST=1</define>
 		</if>
-		<cppflags>$(WXDEBUG_DEF)</cppflags>
+		<cppflags>$(WXDEBUG_DEF)$(CPPFLAGS_ADD)</cppflags>
 
 		<if cond="BOOST_ADD != ''">
 			<include>$(BOOST_ADD)</include>
@@ -79,6 +86,10 @@
 		<sys-lib>wxmsw$(WXVER)u$(LIB_POSTFIX)_aui</sys-lib>
 		<sys-lib>wxmsw$(WXVER)u$(LIB_POSTFIX)_core</sys-lib>
 		<sys-lib>wxbase$(WXVER)u$(LIB_POSTFIX)</sys-lib>
+		<if cond="WXVER >= '30'">
+			<sys-lib>wxpng$(LIB_POSTFIX)</sys-lib>
+			<sys-lib>wxzlib$(LIB_POSTFIX)</sys-lib>
+		</if>
 		<sys-lib>$(ICUDATA_LIB)</sys-lib>
 		<sys-lib>$(ICUI18N_LIB)$(ICULIB_POSTFIX)</sys-lib>
 		<sys-lib>icuuc$(ICULIB_POSTFIX)</sys-lib>
@@ -139,6 +150,8 @@
 
 		<headers>../src/dialog/wxm_conv_enc_dialog.h</headers>
 		<sources>../src/dialog/wxm_conv_enc_dialog.cpp</sources>
+		<headers>../src/dialog/wxm_enumeration_dialog.h</headers>
+		<sources>../src/dialog/wxm_enumeration_dialog.cpp</sources>
 		<headers>../src/dialog/wxm_file_association_dialog.h</headers>
 		<sources>../src/dialog/wxm_file_association_dialog.cpp</sources>
 		<headers>../src/dialog/wxm_find_in_files_dialog.h</headers>
@@ -227,6 +240,8 @@
 		<headers>../src/wxmedit/wxm_deque.hpp</headers>
 		<headers>../src/xm/cxx11.h</headers>
 		<headers>../src/xm/utils.hpp</headers>
+		<headers>../src/xm/uutils.h</headers>
+		<sources>../src/xm/uutils.cpp</sources>
 		<headers>../test/encdet/data_from_icudet.h</headers>
 		<sources>../test/encdet/data_from_icudet.cpp</sources>
 		<headers>../test/encdet/data_from_mozdet.h</headers>
