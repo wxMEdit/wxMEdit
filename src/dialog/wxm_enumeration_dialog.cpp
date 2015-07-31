@@ -559,6 +559,8 @@ WXMEnumerationDialog::WXMEnumerationDialog(std::vector<ucs4_t>& seq, size_t& seq
 		ChoiceNumSys->Append(nst);
 	ChoiceNumSys->SetSelection(0);
 	m_numsys = wxm::NumberingSystemConfig::Instance().IndexToVal(ChoiceNumSys->GetSelection());
+	m_numsys->SetLowercase(false);
+	m_numsys->SetBase('d');
 
 	for (size_t i = 1; i <= 64; ++i)
 		ChoiceLength->Append(wxString() << i);
