@@ -3,43 +3,12 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
-#: ../src/dialog/wxmedit_options_dialog.cpp:703
-#: ../src/dialog/wxmedit_options_dialog.cpp:704
-#: ../src/dialog/wxmedit_options_dialog.cpp:706
-#: ../src/dialog/wxmedit_options_dialog.cpp:707
-#: ../src/dialog/wxmedit_options_dialog.cpp:709
-#: ../src/dialog/wxmedit_options_dialog.cpp:710
-#: ../src/dialog/wxmedit_options_dialog.cpp:712
-#: ../src/dialog/wxmedit_options_dialog.cpp:713
-#: ../src/dialog/wxmedit_options_dialog.cpp:714
-#: ../src/dialog/wxmedit_options_dialog.cpp:716
-#: ../src/dialog/wxmedit_options_dialog.cpp:717
-#: ../src/dialog/wxmedit_options_dialog.cpp:718
-#: ../src/dialog/wxmedit_options_dialog.cpp:719
-#: ../src/dialog/wxmedit_options_dialog.cpp:720
-#: ../src/dialog/wxmedit_options_dialog.cpp:721
-#: ../src/dialog/wxmedit_options_dialog.cpp:722
-#: ../src/dialog/wxmedit_options_dialog.cpp:723
-#: ../src/dialog/wxmedit_options_dialog.cpp:724
-#: ../src/dialog/wxmedit_options_dialog.cpp:725
-#: ../src/dialog/wxmedit_options_dialog.cpp:726
-#: ../src/dialog/wxmedit_options_dialog.cpp:727
-#: ../src/dialog/wxmedit_options_dialog.cpp:728
-#: ../src/dialog/wxmedit_options_dialog.cpp:729
-#: ../src/dialog/wxmedit_options_dialog.cpp:730
-#: ../src/dialog/wxmedit_options_dialog.cpp:731
-#: ../src/dialog/wxmedit_options_dialog.cpp:732
-#: ../src/dialog/wxmedit_options_dialog.cpp:733
-#: ../src/dialog/wxmedit_options_dialog.cpp:734
-#: ../src/dialog/wxmedit_options_dialog.cpp:735
-#: ../src/dialog/wxmedit_options_dialog.cpp:736
-#: ../src/dialog/wxmedit_options_dialog.cpp:737
 msgid ""
 msgstr ""
 "Project-Id-Version: wxMEdit 3.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-30 12:40+0800\n"
-"PO-Revision-Date: 2015-07-09 15:58-0400\n"
+"PO-Revision-Date: 2015-07-31 22:53-0400\n"
 "Last-Translator: \n"
 "Language-Team:  <carlos1994sanchez@gmail.com>\n"
 "MIME-Version: 1.0\n"
@@ -110,55 +79,55 @@ msgstr "&Cancelar"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:382
 msgid "Insert Ordered Sequence"
-msgstr ""
+msgstr "Insertar secuencia ordenada"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:385
 msgid "Sequence"
-msgstr ""
+msgstr "Secuencia"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:388
 msgid "&Initial Number"
-msgstr ""
+msgstr "Número &inicial"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:390
 #: ../src/dialog/wxm_enumeration_dialog.cpp:396
 #: ../src/dialog/wxm_enumeration_dialog.cpp:402
 msgid ":"
-msgstr ""
+msgstr ":"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:394
 msgid "Step"
-msgstr ""
+msgstr "Paso"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:400
 msgid "Final Number"
-msgstr ""
+msgstr "Número final"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:408
 #: ../src/dialog/wxm_enumeration_dialog.cpp:419
 #: ../src/dialog/wxm_enumeration_dialog.cpp:429
 msgid "1"
-msgstr ""
+msgstr "1"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:414
 #: ../src/dialog/wxm_enumeration_dialog.cpp:572
 msgid "+"
-msgstr ""
+msgstr "+"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:415
 #: ../src/dialog/wxm_enumeration_dialog.cpp:573
 msgid "-"
-msgstr ""
+msgstr "-"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:416
 #: ../src/dialog/wxm_enumeration_dialog.cpp:574
 msgid "*"
-msgstr ""
+msgstr "*"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:417
 #: ../src/dialog/wxm_enumeration_dialog.cpp:575
 msgid "/"
-msgstr ""
+msgstr "/"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:425
 #: ../src/dialog/wxm_enumeration_dialog.cpp:486
@@ -173,85 +142,85 @@ msgstr "(Automático)"
 #: ../src/dialog/wxm_enumeration_dialog.cpp:567
 #: ../src/dialog/wxm_enumeration_dialog.cpp:828
 msgid "<="
-msgstr ""
+msgstr "<="
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:427
 #: ../src/dialog/wxm_enumeration_dialog.cpp:568
 #: ../src/dialog/wxm_enumeration_dialog.cpp:829
 msgid "<"
-msgstr ""
+msgstr "<"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:437
 msgid "Preview of First 10000 Lines"
-msgstr ""
+msgstr "Vista previa de las Primeras 10000 Líneas"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:443
 msgid "Format"
-msgstr ""
+msgstr "Formato"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:445
 msgid "&Numbering System:"
-msgstr ""
+msgstr "Sistema de numeración:"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:451
 msgid "He&x"
-msgstr ""
+msgstr "He&x"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:453
 msgid "&Dec"
-msgstr ""
+msgstr "&Dec"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:456
 msgid "Oc&t"
-msgstr ""
+msgstr "Oc&t"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:458
 msgid "&Bin"
-msgstr ""
+msgstr "&Bin"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:462
 msgid "&Uppercase"
-msgstr ""
+msgstr "Mayúsculas"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:466
 msgid "Lowercas&e"
-msgstr ""
+msgstr "Minúsculas"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:471
 msgid "&Halfwidth"
-msgstr ""
+msgstr "Ancho medio"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:474
 msgid "&Fullwidth"
-msgstr ""
+msgstr "Ancho completo"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:478
 msgid "Use &Grouping Separator"
-msgstr ""
+msgstr "Usar separador de agrupación"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:483
 msgid "&Lenth (Characters):"
-msgstr ""
+msgstr "&Longitud (caracteres):"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:490
 msgid "&Alignment:"
-msgstr ""
+msgstr "&Alineación:"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:493
 msgid "Right"
-msgstr ""
+msgstr "&Derecha"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:494
 msgid "Left"
-msgstr ""
+msgstr "&Izquierda"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:499
 msgid "&Padding:"
-msgstr ""
+msgstr "&Relleno:"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:502
 msgid "Blank Space"
-msgstr ""
+msgstr "Espacio en blanco"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:503
 #: ../src/dialog/wxmedit_options_dialog.cpp:421
@@ -265,25 +234,25 @@ msgstr "0"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:508
 msgid "P&refix:"
-msgstr ""
+msgstr "Prefijo:"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:515
 msgid "Po&stfix:"
-msgstr ""
+msgstr "Sufijo"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:569
 #: ../src/dialog/wxm_enumeration_dialog.cpp:823
 msgid ">="
-msgstr ""
+msgstr ">="
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:570
 #: ../src/dialog/wxm_enumeration_dialog.cpp:824
 msgid ">"
-msgstr ""
+msgstr ">"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:601
 msgid "Default (Latin)"
-msgstr ""
+msgstr "Por defecto (Latín)"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:602 ../src/xm/ublock_des.cpp:37
 msgid "Arabic"
@@ -299,23 +268,23 @@ msgstr "Bengalí"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:606
 msgid "Chinese Digits"
-msgstr ""
+msgstr "Dígitos Chinos"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:608
 msgid "Chinese Simplified"
-msgstr ""
+msgstr "Chino simplificado"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:609
 msgid "Chinese Simplified Financial"
-msgstr ""
+msgstr "Chino simplificado financiero"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:610
 msgid "Chinese Traditional"
-msgstr ""
+msgstr "Chino tradicional"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:611
 msgid "Chinese Traditional Financial"
-msgstr ""
+msgstr "Chino tradicional financiero"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:612 ../src/xm/ublock_des.cpp:40
 msgid "Devanagari"
@@ -331,7 +300,7 @@ msgstr "Georgiano"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:617
 msgid "Greek"
-msgstr ""
+msgstr "Griego"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:618 ../src/xm/ublock_des.cpp:43
 msgid "Gujarati"
@@ -347,11 +316,11 @@ msgstr "Hebreo"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:621
 msgid "Japanese"
-msgstr ""
+msgstr "Japonés"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:622
 msgid "Japanese Financial"
-msgstr ""
+msgstr "Japonesas financiero"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:623 ../src/xm/ublock_des.cpp:47
 msgid "Kannada"
@@ -379,7 +348,7 @@ msgstr "Oriya"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:629
 msgid "Perso-Arabic"
-msgstr ""
+msgstr "Perso-Árabe"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:630 ../src/xm/ublock_des.cpp:45
 msgid "Tamil"
@@ -387,7 +356,7 @@ msgstr "Tamil"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:632
 msgid "Tamil Digits"
-msgstr ""
+msgstr "Dígitos Tamil"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:634 ../src/xm/ublock_des.cpp:46
 msgid "Telugu"
@@ -408,27 +377,30 @@ msgstr "Vai"
 #: ../src/dialog/wxm_enumeration_dialog.cpp:649
 #, c-format
 msgid "%s is Not a Number."
-msgstr ""
+msgstr "%s no es un número."
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:655
 #, c-format
 msgid "%s should not less than %d."
-msgstr ""
+msgstr "%s no debe ser menos que %d."
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:741
 msgid "Wrong Input"
-msgstr ""
+msgstr "Entrada incorrecta"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:790
 #, c-format
 msgid "Note: This numbering system can only represent the range of 1-%d.\n"
 msgstr ""
+"Nota: Este sistema de numeración sólo puede representar el rango de 1-%d.\n"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:791
 msgid ""
 "Numbers out of range will be represent in Latin numbering system with "
 "grouping separator."
 msgstr ""
+"Los números fuera de rango serán representados en el sistema de numeración "
+"de América con separador de agrupación."
 
 #: ../src/dialog/wxm_file_association_dialog.cpp:324
 msgid "File Type Associations"
@@ -1350,8 +1322,8 @@ msgstr ""
 
 #: ../src/dialog/wxmedit_options_dialog.cpp:774
 msgid ""
-"Place configuration files into application data directory of current user (%"
-"APPDATA%\\wxmedit) rather than wxMEdit executable directory"
+"Place configuration files into application data directory of current user "
+"(%APPDATA%\\wxmedit) rather than wxMEdit executable directory"
 msgstr ""
 "Colocar configuración en el directorio de datos de aplicación de usuario "
 "actual (%APPDATA%\\wxmedit)"
@@ -2078,12 +2050,14 @@ msgstr "Inserta fecha y hora"
 
 #: ../src/wxmedit_frame.cpp:1132
 msgid "Insert &Ordered Sequence..."
-msgstr ""
+msgstr "Insertar secuencia ordenada..."
 
 #: ../src/wxmedit_frame.cpp:1132
 msgid ""
 "Insert ordered sequence with certain format in specified numbering system"
 msgstr ""
+"Insertar secuencia ordenada con formato determinado en el sistema de "
+"numeración especificado"
 
 #: ../src/wxmedit_frame.cpp:1135
 msgid "Ad&vanced"
