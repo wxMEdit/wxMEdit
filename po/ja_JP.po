@@ -34,15 +34,15 @@ msgstr ""
 "Project-Id-Version: wxMEdit 3.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-30 12:40+0800\n"
-"PO-Revision-Date: 2015-04-17 23:37+0900\n"
-"Last-Translator: Tilt <<tiltstr@gmail.com>>\n"
+"PO-Revision-Date: 2015-08-01 22:32+0900\n"
+"Last-Translator: Tilt <tiltstr@gmail.com>\n"
 "Language-Team: Tilt <<tiltstr@gmail.com>>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: ja_JP\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-Generator: Poedit 1.7.5\n"
+"X-Generator: Poedit 1.8.3\n"
 
 #: ../src/dialog/wxm_conv_enc_dialog.cpp:54
 msgid "Convert Encoding"
@@ -106,55 +106,55 @@ msgstr "キャンセル(&C)"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:382
 msgid "Insert Ordered Sequence"
-msgstr ""
+msgstr "順序付きシーケンスを挿入"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:385
 msgid "Sequence"
-msgstr ""
+msgstr "シーケンス"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:388
 msgid "&Initial Number"
-msgstr ""
+msgstr "初期数(&I)"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:390
 #: ../src/dialog/wxm_enumeration_dialog.cpp:396
 #: ../src/dialog/wxm_enumeration_dialog.cpp:402
 msgid ":"
-msgstr ""
+msgstr ":"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:394
 msgid "Step"
-msgstr ""
+msgstr "ステップ"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:400
 msgid "Final Number"
-msgstr ""
+msgstr "最終数"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:408
 #: ../src/dialog/wxm_enumeration_dialog.cpp:419
 #: ../src/dialog/wxm_enumeration_dialog.cpp:429
 msgid "1"
-msgstr ""
+msgstr "1"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:414
 #: ../src/dialog/wxm_enumeration_dialog.cpp:572
 msgid "+"
-msgstr ""
+msgstr "+"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:415
 #: ../src/dialog/wxm_enumeration_dialog.cpp:573
 msgid "-"
-msgstr ""
+msgstr "-"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:416
 #: ../src/dialog/wxm_enumeration_dialog.cpp:574
 msgid "*"
-msgstr ""
+msgstr "*"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:417
 #: ../src/dialog/wxm_enumeration_dialog.cpp:575
 msgid "/"
-msgstr ""
+msgstr "/"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:425
 #: ../src/dialog/wxm_enumeration_dialog.cpp:486
@@ -169,85 +169,85 @@ msgstr "(自動)"
 #: ../src/dialog/wxm_enumeration_dialog.cpp:567
 #: ../src/dialog/wxm_enumeration_dialog.cpp:828
 msgid "<="
-msgstr ""
+msgstr "<="
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:427
 #: ../src/dialog/wxm_enumeration_dialog.cpp:568
 #: ../src/dialog/wxm_enumeration_dialog.cpp:829
 msgid "<"
-msgstr ""
+msgstr "<"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:437
 msgid "Preview of First 10000 Lines"
-msgstr ""
+msgstr "最初の 10000 行をプレビュー"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:443
 msgid "Format"
-msgstr ""
+msgstr "書式"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:445
 msgid "&Numbering System:"
-msgstr ""
+msgstr "番号付け方法(&N):"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:451
 msgid "He&x"
-msgstr ""
+msgstr "16進(&X)"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:453
 msgid "&Dec"
-msgstr ""
+msgstr "10進(&D)"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:456
 msgid "Oc&t"
-msgstr ""
+msgstr "8 進(&T)"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:458
 msgid "&Bin"
-msgstr ""
+msgstr "バイナリ(&B)"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:462
 msgid "&Uppercase"
-msgstr ""
+msgstr "大文字(&U)"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:466
 msgid "Lowercas&e"
-msgstr ""
+msgstr "小文字(&E)"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:471
 msgid "&Halfwidth"
-msgstr ""
+msgstr "半角(&H)"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:474
 msgid "&Fullwidth"
-msgstr ""
+msgstr "全角(&F)"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:478
 msgid "Use &Grouping Separator"
-msgstr ""
+msgstr "グループ区切り記号を使用(&G)"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:483
 msgid "&Lenth (Characters):"
-msgstr ""
+msgstr "文字長さ(&L):"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:490
 msgid "&Alignment:"
-msgstr ""
+msgstr "位置調整(&A):"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:493
 msgid "Right"
-msgstr ""
+msgstr "右"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:494
 msgid "Left"
-msgstr ""
+msgstr "左"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:499
 msgid "&Padding:"
-msgstr ""
+msgstr "埋め文字(&P):"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:502
 msgid "Blank Space"
-msgstr ""
+msgstr "空白"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:503
 #: ../src/dialog/wxmedit_options_dialog.cpp:421
@@ -261,25 +261,25 @@ msgstr "0"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:508
 msgid "P&refix:"
-msgstr ""
+msgstr "接頭語(&R):"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:515
 msgid "Po&stfix:"
-msgstr ""
+msgstr "接尾語(&S):"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:569
 #: ../src/dialog/wxm_enumeration_dialog.cpp:823
 msgid ">="
-msgstr ""
+msgstr ">="
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:570
 #: ../src/dialog/wxm_enumeration_dialog.cpp:824
 msgid ">"
-msgstr ""
+msgstr ">"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:601
 msgid "Default (Latin)"
-msgstr ""
+msgstr "デフォルト (ラテン)"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:602 ../src/xm/ublock_des.cpp:37
 msgid "Arabic"
@@ -295,23 +295,23 @@ msgstr "ベンガル語"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:606
 msgid "Chinese Digits"
-msgstr ""
+msgstr "中国語数字"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:608
 msgid "Chinese Simplified"
-msgstr ""
+msgstr "簡体字中国語"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:609
 msgid "Chinese Simplified Financial"
-msgstr ""
+msgstr "簡体字中国語大字"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:610
 msgid "Chinese Traditional"
-msgstr ""
+msgstr "繁体字中国語"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:611
 msgid "Chinese Traditional Financial"
-msgstr ""
+msgstr "繁体字中国語大字"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:612 ../src/xm/ublock_des.cpp:40
 msgid "Devanagari"
@@ -343,11 +343,11 @@ msgstr "ヘブライ語"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:621
 msgid "Japanese"
-msgstr ""
+msgstr "日本語"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:622
 msgid "Japanese Financial"
-msgstr ""
+msgstr "日本語大字(数字)"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:623 ../src/xm/ublock_des.cpp:47
 msgid "Kannada"
@@ -375,7 +375,7 @@ msgstr "オリヤー文字 "
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:629
 msgid "Perso-Arabic"
-msgstr ""
+msgstr "Perso-アラビア語"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:630 ../src/xm/ublock_des.cpp:45
 msgid "Tamil"
@@ -383,7 +383,7 @@ msgstr "タミル語"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:632
 msgid "Tamil Digits"
-msgstr ""
+msgstr "タミル語数字"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:634 ../src/xm/ublock_des.cpp:46
 msgid "Telugu"
@@ -404,27 +404,28 @@ msgstr "ヴァイ文字"
 #: ../src/dialog/wxm_enumeration_dialog.cpp:649
 #, c-format
 msgid "%s is Not a Number."
-msgstr ""
+msgstr "%s は数字ではありません."
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:655
 #, c-format
 msgid "%s should not less than %d."
-msgstr ""
+msgstr "%s を %d より小さくすることはできません."
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:741
 msgid "Wrong Input"
-msgstr ""
+msgstr "入力の誤り"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:790
 #, c-format
 msgid "Note: This numbering system can only represent the range of 1-%d.\n"
-msgstr ""
+msgstr "備考: この番号付け方法は、1-%d の範囲内でのみ有効です.\n"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:791
 msgid ""
 "Numbers out of range will be represent in Latin numbering system with "
 "grouping separator."
 msgstr ""
+"範囲外の数字はグループ区切り記号で、ラテン番号付け方法により表現されます."
 
 #: ../src/dialog/wxm_file_association_dialog.cpp:324
 msgid "File Type Associations"
@@ -1327,16 +1328,16 @@ msgid ""
 "Add wxMEdit to the RightClickMenu of Explorer(Deselect to Remove the Entry "
 "from Windows Registry)"
 msgstr ""
-"wxMEdit のメニューをエクスプローラに追加(削除する時は、レジストリエントリを手"
-"動で除去する必要があります)"
+"wxMEdit のメニューをエクスプローラに追加(削除する時は、レジストリエントリを"
+"手動で除去する必要があります)"
 
 #: ../src/dialog/wxmedit_options_dialog.cpp:774
 msgid ""
-"Place configuration files into application data directory of current user (%"
-"APPDATA%\\wxmedit) rather than wxMEdit executable directory"
+"Place configuration files into application data directory of current user "
+"(%APPDATA%\\wxmedit) rather than wxMEdit executable directory"
 msgstr ""
-"現在のユーザ アプリケーション データ ディレクトリ（%APPDATA%\\wxmedit） に 構"
-"成ファイル を配置"
+"現在のユーザ アプリケーション データ ディレクトリ（%APPDATA%\\wxmedit） に "
+"構成ファイル を配置"
 
 #: ../src/dialog/wxmedit_options_dialog.cpp:801
 msgid "Commands"
@@ -2060,12 +2061,12 @@ msgstr "現在位置に日付と時間を挿入"
 
 #: ../src/wxmedit_frame.cpp:1132
 msgid "Insert &Ordered Sequence..."
-msgstr ""
+msgstr "順序付きシーケンスを挿入(&O)"
 
 #: ../src/wxmedit_frame.cpp:1132
 msgid ""
 "Insert ordered sequence with certain format in specified numbering system"
-msgstr ""
+msgstr "指定された番号付け方式の書式で順序付けられたシーケンスを挿入します"
 
 #: ../src/wxmedit_frame.cpp:1135
 msgid "Ad&vanced"
