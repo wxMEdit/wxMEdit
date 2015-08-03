@@ -1,20 +1,22 @@
-2015-04-21 12:08:36 +0800 JiaYanwei <wxmedit@gmail.com>
+2015-08-03 12:52:41 +0800 JiaYanwei <wxmedit@gmail.com>
 
-	* wxMEdit v2.9.9.3:
+	* wxMEdit v3.0:
 	 1. added new options to display/print bookmark independent of line number.
 	 2. added a option whether enable dot matching new-line in regular expression.
 	 3. added a feature that show searching message in status bar when Search/Replace Dialog is invisible.
-	 4. improved bookmark appearance for displaying and printing.
-	 5. improved Tab and EOF mark pattern, make it easy to distinguish Tab mark from space mark.
-	 6. fixed that there are too few characters limited in a line with certain word wrap settings.
-	 7. fixed that width of list items in Syntax Highlighting Settings Dialog are not updated on resizing.
-	 8. fixed not responding when counting/replacing-all any zero-length assertions.
-	 9. updated Unicode block descriptions for Unicode 7.0 (require ICU 54 or higher).
-	10. added German translation by Ronny Steiner <post[at]sirsteiner.de>.
-	11. added Polish translation by Adam Massalski <massaada[at]wp.pl>.
-	12. updated Japanese translation by Tilt <tiltstr[at]gmail.com>.
+	 4. added a feature: insert ordered sequence.
+	 5. improved bookmark appearance for displaying and printing.
+	 6. improved Tab and EOF mark pattern, make it easy to distinguish Tab mark from space mark.
+	 7. fixed that there are too few characters limited in a line with certain word wrap settings.
+	 8. fixed that width of list items in Syntax Highlighting Settings Dialog are not updated on resizing.
+	 9. fixed not responding when counting/replacing-all any zero-length assertions.
+	10. updated Unicode block descriptions for Unicode 7.0 (require ICU 54 or higher).
+	11. added German translation by Ronny Steiner <post[at]sirsteiner.de>.
+	12. added Polish translation by Adam Massalski <massaada[at]wp.pl>.
 	13. updated Simplified Chinese translation.
-	14. other minor changes and bug fixes.
+	14. updated Japanese translation by Tilt <tiltstr[at]gmail.com>.
+	15. updated Spanish translation by Carlos Sánchez <carlos1994sanchez[at]gmail.com>.
+	16. other minor changes and bug fixes.
 
 
 2014-12-26 21:37:12 +0800 JiaYanwei <wxmedit@gmail.com>
