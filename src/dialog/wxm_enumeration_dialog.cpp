@@ -479,7 +479,7 @@ WXMEnumerationDialog::WXMEnumerationDialog(std::vector<ucs4_t>& seq, size_t& seq
 	BoxSizer21->Add(CheckBoxGrpSep, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 2);
 	StaticBoxSizer2->Add(BoxSizer21, 1, wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 2);
 	BoxSizer9 = new wxBoxSizer(wxHORIZONTAL);
-	StaticText7 = new wxStaticText(this, ID_STATICTEXT7, _("&Lenth (Characters):"), wxDefaultPosition, wxDefaultSize, 0, _T("ID_STATICTEXT7"));
+	StaticText7 = new wxStaticText(this, ID_STATICTEXT7, _("&Length (Characters):"), wxDefaultPosition, wxDefaultSize, 0, _T("ID_STATICTEXT7"));
 	BoxSizer9->Add(StaticText7, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 2);
 	ChoiceLength = new wxChoice(this, ID_CHOICELENGTH, wxDefaultPosition, wxDefaultSize, 0, 0, 0, wxDefaultValidator, _T("ID_CHOICELENGTH"));
 	ChoiceLength->SetSelection( ChoiceLength->Append(_("(Automatic)")) );

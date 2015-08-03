@@ -38,7 +38,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: wxMEdit 3.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-07-30 12:40+0800\n"
+"POT-Creation-Date: 2015-08-03 12:42+0800\n"
 "PO-Revision-Date: 2015-03-31 14:56+0100\n"
 "Last-Translator: Adam Massalski <massaada@wp.pl>\n"
 "Language-Team: Adam Massalski <massaada@wp.pl>\n"
@@ -92,7 +92,7 @@ msgid "Addtional Option"
 msgstr "Dodatkowe opcje"
 
 #: ../src/dialog/wxm_conv_enc_dialog.cpp:78
-#: ../src/dialog/wxm_enumeration_dialog.cpp:523
+#: ../src/dialog/wxm_enumeration_dialog.cpp:522
 #: ../src/dialog/wxm_file_association_dialog.cpp:355
 #: ../src/dialog/wxm_highlighting_dialog.cpp:523
 #: ../src/dialog/wxmedit_about_dialog.cpp:100
@@ -101,7 +101,7 @@ msgid "&OK"
 msgstr "&OK"
 
 #: ../src/dialog/wxm_conv_enc_dialog.cpp:80
-#: ../src/dialog/wxm_enumeration_dialog.cpp:526
+#: ../src/dialog/wxm_enumeration_dialog.cpp:525
 #: ../src/dialog/wxm_file_association_dialog.cpp:357
 #: ../src/dialog/wxm_highlighting_dialog.cpp:525
 #: ../src/dialog/wxm_purge_histories_dialog.cpp:87
@@ -110,60 +110,60 @@ msgstr "&OK"
 msgid "&Cancel"
 msgstr "&Anuluj"
 
-#: ../src/dialog/wxm_enumeration_dialog.cpp:382
+#: ../src/dialog/wxm_enumeration_dialog.cpp:381
 msgid "Insert Ordered Sequence"
 msgstr ""
 
-#: ../src/dialog/wxm_enumeration_dialog.cpp:385
+#: ../src/dialog/wxm_enumeration_dialog.cpp:384
 msgid "Sequence"
 msgstr ""
 
-#: ../src/dialog/wxm_enumeration_dialog.cpp:388
+#: ../src/dialog/wxm_enumeration_dialog.cpp:387
 msgid "&Initial Number"
 msgstr ""
 
-#: ../src/dialog/wxm_enumeration_dialog.cpp:390
-#: ../src/dialog/wxm_enumeration_dialog.cpp:396
-#: ../src/dialog/wxm_enumeration_dialog.cpp:402
+#: ../src/dialog/wxm_enumeration_dialog.cpp:389
+#: ../src/dialog/wxm_enumeration_dialog.cpp:395
+#: ../src/dialog/wxm_enumeration_dialog.cpp:401
 msgid ":"
 msgstr ""
 
-#: ../src/dialog/wxm_enumeration_dialog.cpp:394
+#: ../src/dialog/wxm_enumeration_dialog.cpp:393
 msgid "Step"
 msgstr ""
 
-#: ../src/dialog/wxm_enumeration_dialog.cpp:400
+#: ../src/dialog/wxm_enumeration_dialog.cpp:399
 msgid "Final Number"
 msgstr ""
 
-#: ../src/dialog/wxm_enumeration_dialog.cpp:408
-#: ../src/dialog/wxm_enumeration_dialog.cpp:419
-#: ../src/dialog/wxm_enumeration_dialog.cpp:429
+#: ../src/dialog/wxm_enumeration_dialog.cpp:407
+#: ../src/dialog/wxm_enumeration_dialog.cpp:418
+#: ../src/dialog/wxm_enumeration_dialog.cpp:428
 msgid "1"
 msgstr ""
 
-#: ../src/dialog/wxm_enumeration_dialog.cpp:414
-#: ../src/dialog/wxm_enumeration_dialog.cpp:572
+#: ../src/dialog/wxm_enumeration_dialog.cpp:413
+#: ../src/dialog/wxm_enumeration_dialog.cpp:573
 msgid "+"
 msgstr ""
 
-#: ../src/dialog/wxm_enumeration_dialog.cpp:415
-#: ../src/dialog/wxm_enumeration_dialog.cpp:573
+#: ../src/dialog/wxm_enumeration_dialog.cpp:414
+#: ../src/dialog/wxm_enumeration_dialog.cpp:574
 msgid "-"
 msgstr ""
 
-#: ../src/dialog/wxm_enumeration_dialog.cpp:416
-#: ../src/dialog/wxm_enumeration_dialog.cpp:574
+#: ../src/dialog/wxm_enumeration_dialog.cpp:415
+#: ../src/dialog/wxm_enumeration_dialog.cpp:575
 msgid "*"
 msgstr ""
 
-#: ../src/dialog/wxm_enumeration_dialog.cpp:417
-#: ../src/dialog/wxm_enumeration_dialog.cpp:575
+#: ../src/dialog/wxm_enumeration_dialog.cpp:416
+#: ../src/dialog/wxm_enumeration_dialog.cpp:576
 msgid "/"
 msgstr ""
 
-#: ../src/dialog/wxm_enumeration_dialog.cpp:425
-#: ../src/dialog/wxm_enumeration_dialog.cpp:486
+#: ../src/dialog/wxm_enumeration_dialog.cpp:424
+#: ../src/dialog/wxm_enumeration_dialog.cpp:485
 #: ../src/dialog/wxm_highlighting_dialog.cpp:46
 #: ../src/dialog/wxm_highlighting_dialog.cpp:584
 #: ../src/dialog/wxm_highlighting_dialog.cpp:664
@@ -171,91 +171,91 @@ msgstr ""
 msgid "(Automatic)"
 msgstr "(Automatycznie)"
 
-#: ../src/dialog/wxm_enumeration_dialog.cpp:426
-#: ../src/dialog/wxm_enumeration_dialog.cpp:567
-#: ../src/dialog/wxm_enumeration_dialog.cpp:828
+#: ../src/dialog/wxm_enumeration_dialog.cpp:425
+#: ../src/dialog/wxm_enumeration_dialog.cpp:568
+#: ../src/dialog/wxm_enumeration_dialog.cpp:829
 msgid "<="
 msgstr ""
 
-#: ../src/dialog/wxm_enumeration_dialog.cpp:427
-#: ../src/dialog/wxm_enumeration_dialog.cpp:568
-#: ../src/dialog/wxm_enumeration_dialog.cpp:829
+#: ../src/dialog/wxm_enumeration_dialog.cpp:426
+#: ../src/dialog/wxm_enumeration_dialog.cpp:569
+#: ../src/dialog/wxm_enumeration_dialog.cpp:830
 msgid "<"
 msgstr ""
 
-#: ../src/dialog/wxm_enumeration_dialog.cpp:437
+#: ../src/dialog/wxm_enumeration_dialog.cpp:436
 msgid "Preview of First 10000 Lines"
 msgstr ""
 
-#: ../src/dialog/wxm_enumeration_dialog.cpp:443
+#: ../src/dialog/wxm_enumeration_dialog.cpp:442
 msgid "Format"
 msgstr ""
 
-#: ../src/dialog/wxm_enumeration_dialog.cpp:445
+#: ../src/dialog/wxm_enumeration_dialog.cpp:444
 msgid "&Numbering System:"
 msgstr ""
 
-#: ../src/dialog/wxm_enumeration_dialog.cpp:451
+#: ../src/dialog/wxm_enumeration_dialog.cpp:450
 msgid "He&x"
 msgstr ""
 
-#: ../src/dialog/wxm_enumeration_dialog.cpp:453
+#: ../src/dialog/wxm_enumeration_dialog.cpp:452
 msgid "&Dec"
 msgstr ""
 
-#: ../src/dialog/wxm_enumeration_dialog.cpp:456
+#: ../src/dialog/wxm_enumeration_dialog.cpp:455
 msgid "Oc&t"
 msgstr ""
 
-#: ../src/dialog/wxm_enumeration_dialog.cpp:458
+#: ../src/dialog/wxm_enumeration_dialog.cpp:457
 msgid "&Bin"
 msgstr ""
 
-#: ../src/dialog/wxm_enumeration_dialog.cpp:462
+#: ../src/dialog/wxm_enumeration_dialog.cpp:461
 msgid "&Uppercase"
 msgstr ""
 
-#: ../src/dialog/wxm_enumeration_dialog.cpp:466
+#: ../src/dialog/wxm_enumeration_dialog.cpp:465
 msgid "Lowercas&e"
 msgstr ""
 
-#: ../src/dialog/wxm_enumeration_dialog.cpp:471
+#: ../src/dialog/wxm_enumeration_dialog.cpp:470
 msgid "&Halfwidth"
 msgstr ""
 
-#: ../src/dialog/wxm_enumeration_dialog.cpp:474
+#: ../src/dialog/wxm_enumeration_dialog.cpp:473
 msgid "&Fullwidth"
 msgstr ""
 
-#: ../src/dialog/wxm_enumeration_dialog.cpp:478
+#: ../src/dialog/wxm_enumeration_dialog.cpp:477
 msgid "Use &Grouping Separator"
 msgstr ""
 
-#: ../src/dialog/wxm_enumeration_dialog.cpp:483
-msgid "&Lenth (Characters):"
+#: ../src/dialog/wxm_enumeration_dialog.cpp:482
+msgid "&Length (Characters):"
 msgstr ""
 
-#: ../src/dialog/wxm_enumeration_dialog.cpp:490
+#: ../src/dialog/wxm_enumeration_dialog.cpp:489
 msgid "&Alignment:"
 msgstr ""
 
-#: ../src/dialog/wxm_enumeration_dialog.cpp:493
+#: ../src/dialog/wxm_enumeration_dialog.cpp:492
 msgid "Right"
 msgstr ""
 
-#: ../src/dialog/wxm_enumeration_dialog.cpp:494
+#: ../src/dialog/wxm_enumeration_dialog.cpp:493
 msgid "Left"
 msgstr ""
 
-#: ../src/dialog/wxm_enumeration_dialog.cpp:499
+#: ../src/dialog/wxm_enumeration_dialog.cpp:498
 msgid "&Padding:"
 msgstr ""
 
-#: ../src/dialog/wxm_enumeration_dialog.cpp:502
+#: ../src/dialog/wxm_enumeration_dialog.cpp:501
 msgid "Blank Space"
 msgstr ""
 
-#: ../src/dialog/wxm_enumeration_dialog.cpp:503
+#: ../src/dialog/wxm_enumeration_dialog.cpp:502
 #: ../src/dialog/wxmedit_options_dialog.cpp:421
 #: ../src/dialog/wxmedit_options_dialog.cpp:428
 #: ../src/dialog/wxmedit_options_dialog.cpp:435
@@ -265,168 +265,168 @@ msgstr ""
 msgid "0"
 msgstr "0"
 
-#: ../src/dialog/wxm_enumeration_dialog.cpp:508
+#: ../src/dialog/wxm_enumeration_dialog.cpp:507
 msgid "P&refix:"
 msgstr ""
 
-#: ../src/dialog/wxm_enumeration_dialog.cpp:515
+#: ../src/dialog/wxm_enumeration_dialog.cpp:514
 msgid "Po&stfix:"
-msgstr ""
-
-#: ../src/dialog/wxm_enumeration_dialog.cpp:569
-#: ../src/dialog/wxm_enumeration_dialog.cpp:823
-msgid ">="
 msgstr ""
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:570
 #: ../src/dialog/wxm_enumeration_dialog.cpp:824
+msgid ">="
+msgstr ""
+
+#: ../src/dialog/wxm_enumeration_dialog.cpp:571
+#: ../src/dialog/wxm_enumeration_dialog.cpp:825
 msgid ">"
 msgstr ""
 
-#: ../src/dialog/wxm_enumeration_dialog.cpp:601
+#: ../src/dialog/wxm_enumeration_dialog.cpp:602
 msgid "Default (Latin)"
 msgstr ""
 
-#: ../src/dialog/wxm_enumeration_dialog.cpp:602 ../src/xm/ublock_des.cpp:37
+#: ../src/dialog/wxm_enumeration_dialog.cpp:603 ../src/xm/ublock_des.cpp:37
 msgid "Arabic"
 msgstr "Arabskie"
 
-#: ../src/dialog/wxm_enumeration_dialog.cpp:603 ../src/xm/ublock_des.cpp:35
+#: ../src/dialog/wxm_enumeration_dialog.cpp:604 ../src/xm/ublock_des.cpp:35
 msgid "Armenian"
 msgstr "Armeńskie"
 
-#: ../src/dialog/wxm_enumeration_dialog.cpp:604 ../src/xm/ublock_des.cpp:41
+#: ../src/dialog/wxm_enumeration_dialog.cpp:605 ../src/xm/ublock_des.cpp:41
 msgid "Bengali"
 msgstr "Bengalski"
 
-#: ../src/dialog/wxm_enumeration_dialog.cpp:606
+#: ../src/dialog/wxm_enumeration_dialog.cpp:607
 msgid "Chinese Digits"
 msgstr ""
 
-#: ../src/dialog/wxm_enumeration_dialog.cpp:608
+#: ../src/dialog/wxm_enumeration_dialog.cpp:609
 msgid "Chinese Simplified"
 msgstr ""
 
-#: ../src/dialog/wxm_enumeration_dialog.cpp:609
+#: ../src/dialog/wxm_enumeration_dialog.cpp:610
 msgid "Chinese Simplified Financial"
 msgstr ""
 
-#: ../src/dialog/wxm_enumeration_dialog.cpp:610
+#: ../src/dialog/wxm_enumeration_dialog.cpp:611
 msgid "Chinese Traditional"
 msgstr ""
 
-#: ../src/dialog/wxm_enumeration_dialog.cpp:611
+#: ../src/dialog/wxm_enumeration_dialog.cpp:612
 msgid "Chinese Traditional Financial"
 msgstr ""
 
-#: ../src/dialog/wxm_enumeration_dialog.cpp:612 ../src/xm/ublock_des.cpp:40
+#: ../src/dialog/wxm_enumeration_dialog.cpp:613 ../src/xm/ublock_des.cpp:40
 msgid "Devanagari"
 msgstr "Dewanagari"
 
-#: ../src/dialog/wxm_enumeration_dialog.cpp:614 ../src/xm/ublock_des.cpp:56
+#: ../src/dialog/wxm_enumeration_dialog.cpp:615 ../src/xm/ublock_des.cpp:56
 msgid "Ethiopic"
 msgstr "Etiopski"
 
-#: ../src/dialog/wxm_enumeration_dialog.cpp:616 ../src/xm/ublock_des.cpp:54
+#: ../src/dialog/wxm_enumeration_dialog.cpp:617 ../src/xm/ublock_des.cpp:54
 msgid "Georgian"
 msgstr "Gruzińskie"
 
-#: ../src/dialog/wxm_enumeration_dialog.cpp:617
+#: ../src/dialog/wxm_enumeration_dialog.cpp:618
 msgid "Greek"
 msgstr ""
 
-#: ../src/dialog/wxm_enumeration_dialog.cpp:618 ../src/xm/ublock_des.cpp:43
+#: ../src/dialog/wxm_enumeration_dialog.cpp:619 ../src/xm/ublock_des.cpp:43
 msgid "Gujarati"
 msgstr "Gudźarati"
 
-#: ../src/dialog/wxm_enumeration_dialog.cpp:619 ../src/xm/ublock_des.cpp:42
+#: ../src/dialog/wxm_enumeration_dialog.cpp:620 ../src/xm/ublock_des.cpp:42
 msgid "Gurmukhi"
 msgstr "Gurmukhi"
 
-#: ../src/dialog/wxm_enumeration_dialog.cpp:620 ../src/xm/ublock_des.cpp:36
+#: ../src/dialog/wxm_enumeration_dialog.cpp:621 ../src/xm/ublock_des.cpp:36
 msgid "Hebrew"
 msgstr "Hebrajskie"
 
-#: ../src/dialog/wxm_enumeration_dialog.cpp:621
+#: ../src/dialog/wxm_enumeration_dialog.cpp:622
 msgid "Japanese"
 msgstr ""
 
-#: ../src/dialog/wxm_enumeration_dialog.cpp:622
+#: ../src/dialog/wxm_enumeration_dialog.cpp:623
 msgid "Japanese Financial"
 msgstr ""
 
-#: ../src/dialog/wxm_enumeration_dialog.cpp:623 ../src/xm/ublock_des.cpp:47
+#: ../src/dialog/wxm_enumeration_dialog.cpp:624 ../src/xm/ublock_des.cpp:47
 msgid "Kannada"
 msgstr "Kannada"
 
-#: ../src/dialog/wxm_enumeration_dialog.cpp:624 ../src/xm/ublock_des.cpp:61
+#: ../src/dialog/wxm_enumeration_dialog.cpp:625 ../src/xm/ublock_des.cpp:61
 msgid "Khmer"
 msgstr "Kmerski"
 
-#: ../src/dialog/wxm_enumeration_dialog.cpp:625 ../src/xm/ublock_des.cpp:51
+#: ../src/dialog/wxm_enumeration_dialog.cpp:626 ../src/xm/ublock_des.cpp:51
 msgid "Lao"
 msgstr "Laotański"
 
-#: ../src/dialog/wxm_enumeration_dialog.cpp:626 ../src/xm/ublock_des.cpp:48
+#: ../src/dialog/wxm_enumeration_dialog.cpp:627 ../src/xm/ublock_des.cpp:48
 msgid "Malayalam"
 msgstr "Malajalam"
 
-#: ../src/dialog/wxm_enumeration_dialog.cpp:627 ../src/xm/ublock_des.cpp:53
+#: ../src/dialog/wxm_enumeration_dialog.cpp:628 ../src/xm/ublock_des.cpp:53
 msgid "Myanmar"
 msgstr "Birmański"
 
-#: ../src/dialog/wxm_enumeration_dialog.cpp:628 ../src/xm/ublock_des.cpp:44
+#: ../src/dialog/wxm_enumeration_dialog.cpp:629 ../src/xm/ublock_des.cpp:44
 msgid "Oriya"
 msgstr "Orija"
 
-#: ../src/dialog/wxm_enumeration_dialog.cpp:629
+#: ../src/dialog/wxm_enumeration_dialog.cpp:630
 msgid "Perso-Arabic"
 msgstr ""
 
-#: ../src/dialog/wxm_enumeration_dialog.cpp:630 ../src/xm/ublock_des.cpp:45
+#: ../src/dialog/wxm_enumeration_dialog.cpp:631 ../src/xm/ublock_des.cpp:45
 msgid "Tamil"
 msgstr "Tamilski"
 
-#: ../src/dialog/wxm_enumeration_dialog.cpp:632
+#: ../src/dialog/wxm_enumeration_dialog.cpp:633
 msgid "Tamil Digits"
 msgstr ""
 
-#: ../src/dialog/wxm_enumeration_dialog.cpp:634 ../src/xm/ublock_des.cpp:46
+#: ../src/dialog/wxm_enumeration_dialog.cpp:635 ../src/xm/ublock_des.cpp:46
 msgid "Telugu"
 msgstr "Telugu"
 
-#: ../src/dialog/wxm_enumeration_dialog.cpp:635 ../src/xm/ublock_des.cpp:52
+#: ../src/dialog/wxm_enumeration_dialog.cpp:636 ../src/xm/ublock_des.cpp:52
 msgid "Tibetan"
 msgstr "Tybetański"
 
-#: ../src/dialog/wxm_enumeration_dialog.cpp:636 ../src/xm/ublock_des.cpp:50
+#: ../src/dialog/wxm_enumeration_dialog.cpp:637 ../src/xm/ublock_des.cpp:50
 msgid "Thai"
 msgstr "Tajskie"
 
-#: ../src/dialog/wxm_enumeration_dialog.cpp:638 ../src/xm/ublock_des.cpp:184
+#: ../src/dialog/wxm_enumeration_dialog.cpp:639 ../src/xm/ublock_des.cpp:184
 msgid "Vai"
 msgstr "Wai"
 
-#: ../src/dialog/wxm_enumeration_dialog.cpp:649
+#: ../src/dialog/wxm_enumeration_dialog.cpp:650
 #, c-format
 msgid "%s is Not a Number."
 msgstr ""
 
-#: ../src/dialog/wxm_enumeration_dialog.cpp:655
+#: ../src/dialog/wxm_enumeration_dialog.cpp:656
 #, c-format
 msgid "%s should not less than %d."
 msgstr ""
 
-#: ../src/dialog/wxm_enumeration_dialog.cpp:741
+#: ../src/dialog/wxm_enumeration_dialog.cpp:742
 msgid "Wrong Input"
 msgstr ""
 
-#: ../src/dialog/wxm_enumeration_dialog.cpp:790
+#: ../src/dialog/wxm_enumeration_dialog.cpp:791
 #, c-format
 msgid "Note: This numbering system can only represent the range of 1-%d.\n"
 msgstr ""
 
-#: ../src/dialog/wxm_enumeration_dialog.cpp:791
+#: ../src/dialog/wxm_enumeration_dialog.cpp:792
 msgid ""
 "Numbers out of range will be represent in Latin numbering system with "
 "grouping separator."

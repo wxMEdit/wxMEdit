@@ -338,7 +338,7 @@
 								<object class="wxBoxSizer" variable="BoxSizer9" member="no">
 									<object class="sizeritem">
 										<object class="wxStaticText" name="ID_STATICTEXT7" variable="StaticText7" member="yes">
-											<label>&amp;Lenth (Characters):</label>
+											<label>&amp;Length (Characters):</label>
 										</object>
 										<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
 										<border>2</border>
