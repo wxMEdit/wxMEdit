@@ -135,7 +135,7 @@ private:
 
 NSIWidth::NSIWidth()
 {
-	UErrorCode uerr;
+	UErrorCode uerr = U_ZERO_ERROR;
 	UnicodeString wcv("halfwidth-fullwidth");
 	m_fwtr.reset(icu::Transliterator::createInstance(wcv, UTRANS_FORWARD, uerr));
 }
