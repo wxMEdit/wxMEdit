@@ -713,7 +713,6 @@ void WXMSearchReplaceDialog::WxButtonReplaceClick(wxCommandEvent& event)
 
 	MadReplaceResult ret=RR_EXPR_ERROR;
 
-	bool inhex = WxCheckBoxFindHex->GetValue();
 	wxm::WXMSearcher* searcher = g_active_wxmedit->Searcher(WxCheckBoxFindHex->GetValue(), WxCheckBoxRegex->GetValue());
 	searcher->SetOption(WxCheckBoxCaseSensitive->GetValue(), WxCheckBoxWholeWord->GetValue());
 	for (;;)
@@ -855,7 +854,6 @@ void WXMSearchReplaceDialog::WxButtonReplaceAllClick(wxCommandEvent& event)
 		}
 
 		int count=0;
-		bool inhex = WxCheckBoxFindHex->GetValue();
 		wxm::WXMSearcher* searcher = g_active_wxmedit->Searcher(WxCheckBoxFindHex->GetValue(), WxCheckBoxRegex->GetValue());
 		searcher->SetOption(WxCheckBoxCaseSensitive->GetValue(), WxCheckBoxWholeWord->GetValue());
 
