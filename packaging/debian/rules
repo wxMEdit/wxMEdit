@@ -21,7 +21,7 @@ CXXFLAGS = -Wall -g
 ifneq (,$(findstring noopt,$(DEB_BUILD_OPTIONS)))
 	CXXFLAGS += -O0
 else
-	CXXFLAGS += -O2
+	CXXFLAGS += -O2 -DNDEBUG
 endif
 
 config.status: configure
