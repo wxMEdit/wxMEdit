@@ -59,6 +59,7 @@ bool wxFilePathRecentList::ItemEqual(const wxString& item1, const wxString& item
 	return wxm::FilePathEqual(item1, item2);
 }
 
+#if wxMAJOR_VERSION==2
 static const wxChar *s_MRUEntryFormat = wxT("&%d %s");
 
 static inline wxChar* MYcopystring(const wxString& s)
@@ -67,6 +68,7 @@ static inline wxChar* MYcopystring(const wxString& s)
 	copy[s.size()] = 0;
 	return (wxChar*)memcpy(copy, s.c_str(), s.size()*sizeof(wxChar));
 }
+#endif
 
 // Recent List management
 void wxRecentList::AddFileToHistory(const wxString& item)

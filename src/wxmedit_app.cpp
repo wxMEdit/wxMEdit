@@ -92,6 +92,7 @@ extern const size_t g_LanguageCount = sizeof(g_LanguageValue)/sizeof(int);
 Atom g_MadEdit_atom;
 Display *g_Display=nullptr;
 
+#if wxMAJOR_VERSION == 2
 static GdkFilterReturn my_gdk_filter(GdkXEvent *xevent,
                                      GdkEvent *event,
                                      gpointer data)
@@ -132,6 +133,7 @@ static GdkFilterReturn my_gdk_filter(GdkXEvent *xevent,
 
     return GDK_FILTER_CONTINUE;
 }
+#endif
 
 void send_message(Window madedit_win, const wxString &msg)
 {
