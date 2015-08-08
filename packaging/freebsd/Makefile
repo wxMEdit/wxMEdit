@@ -24,8 +24,14 @@ LIB_DEPENDS+=	libboost_system.so:${PORTSDIR}/devel/boost-libs \
 
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS+=--with-wx-config=${WX_CONFIG}
-CONFIGURE_ENV+=	PKG_CONFIG="${PKG_CONFIG}" glib_gtk2_CFLAGS="${glib_gtk2_CFLAGS}" glib_gtk2_LIBS="${glib_gtk2_LIBS}"
-CXXFLAGS+=	${glib_gtk2_CFLAGS}
+CONFIGURE_ENV+=	PKG_CONFIG="${PKG_CONFIG}" \
+		glib_gtk2_CFLAGS="${glib_gtk2_CFLAGS}" \
+		glib_gtk2_LIBS="${glib_gtk2_LIBS}"
+
+CPPFLAGS+=	-I/usr/local/include
+CFLAGS+=	-I/usr/local/include
+CXXFLAGS+=	-I/usr/local/include
+LDFLAGS+=	-L/usr/local/lib
 
 PKG_CONFIG?=	${LOCALBASE}/bin/pkgconf
 glib_gtk2_CFLAGS=`${PKG_CONFIG} --cflags gtk+-2.0`
