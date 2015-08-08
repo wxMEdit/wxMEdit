@@ -69,6 +69,7 @@ namespace wxm
 
     struct NewLineChar
     {
+        NewLineChar() {}
         virtual bool IsDefault() const { return false; }
         virtual wxString Name() const = 0;
         virtual const wxString& Description() const = 0;
@@ -89,8 +90,10 @@ namespace wxm
         static const ucs4string DOSValue;
     };
 
-    class NewLineDOS : public NewLineChar
+    struct NewLineDOS : public NewLineChar
     {
+        NewLineDOS() {}
+    private:
         virtual wxString Name() const override { return wxT("DOS"); }
         virtual const wxString& Description() const override { return DOSDescription; }
         virtual const ucs4string& Value() const override { return DOSValue; }
@@ -101,8 +104,10 @@ namespace wxm
         virtual void ValueAppendTo(std::vector<ucs4_t>& v) const override { v.push_back(0x0D); v.push_back(0x0A); }
     };
 
-    class NewLineUNIX : public NewLineChar
+    struct NewLineUNIX : public NewLineChar
     {
+        NewLineUNIX() {}
+    private:
         virtual wxString Name() const override { return wxT("UNIX"); }
         virtual const wxString& Description() const override { return UNIXDescription; }
         virtual const ucs4string& Value() const override { return UNIXValue; }
@@ -113,18 +118,22 @@ namespace wxm
         virtual void ValueAppendTo(std::vector<ucs4_t>& v) const override { v.push_back(0x0A); }
     };
 
-    class NewLineDefault : public
+    struct NewLineDefault : public
 #ifdef __WXMSW__
         NewLineDOS
 #else
         NewLineUNIX
 #endif
     {
+        NewLineDefault() {}
+    private:
         virtual bool IsDefault() const override { return true; }
     };
 
-    class NewLineMAC : public NewLineChar
+    struct NewLineMAC : public NewLineChar
     {
+        NewLineMAC() {}
+    private:
         virtual wxString Name() const override { return wxT("MAC"); }
         virtual const wxString& Description() const override { return MACDescription; }
         virtual const ucs4string& Value() const override { return MACValue; }
