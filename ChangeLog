@@ -1,6 +1,6 @@
 2015-08-03 12:52:41 +0800 JiaYanwei <wxmedit@gmail.com>
 
-	* wxMEdit v3.0:
+	* wxMEdit v3.0.0:
 	 1. added new options to display/print bookmark independent of line number.
 	 2. added a option whether enable dot matching new-line in regular expression.
 	 3. added a feature that show searching message in status bar when Search/Replace Dialog is invisible.
