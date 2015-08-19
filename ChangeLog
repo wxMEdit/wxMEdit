@@ -1,6 +1,13 @@
+2015-08-19 12:33:02 +0800 JiaYanwei <wxmedit@gmail.com>
+
+	* wxMEdit v3.0.0_2LANGUpdate:
+	 1. updated Traditional Chinese translation.
+	 2. updated Russian translation by Будинов Станислав <stabud@yandex.ru>.
+
+
 2015-08-03 12:52:41 +0800 JiaYanwei <wxmedit@gmail.com>
 
-	* wxMEdit v3.0.0:
+	* wxMEdit v3.0:
 	 1. added new options to display/print bookmark independent of line number.
 	 2. added a option whether enable dot matching new-line in regular expression.
 	 3. added a feature that show searching message in status bar when Search/Replace Dialog is invisible.
