@@ -34,7 +34,7 @@ msgstr ""
 "Project-Id-Version: wxMEdit 3.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-08-03 12:42+0800\n"
-"PO-Revision-Date: 2014-11-08 00:10+0800\n"
+"PO-Revision-Date: 2015-07-30 12:53+0800\n"
 "Last-Translator: Vincent_TW <wxmedit@gmail.com>\n"
 "Language-Team: wxMEdit <wxmedit@gmail.com>\n"
 "MIME-Version: 1.0\n"
@@ -106,55 +106,55 @@ msgstr "取消(&C)"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:381
 msgid "Insert Ordered Sequence"
-msgstr ""
+msgstr "插入有序序列"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:384
 msgid "Sequence"
-msgstr ""
+msgstr "序列"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:387
 msgid "&Initial Number"
-msgstr ""
+msgstr "初始值(&I)"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:389
 #: ../src/dialog/wxm_enumeration_dialog.cpp:395
 #: ../src/dialog/wxm_enumeration_dialog.cpp:401
 msgid ":"
-msgstr ""
+msgstr "："
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:393
 msgid "Step"
-msgstr ""
+msgstr "步進"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:399
 msgid "Final Number"
-msgstr ""
+msgstr "終止值"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:407
 #: ../src/dialog/wxm_enumeration_dialog.cpp:418
 #: ../src/dialog/wxm_enumeration_dialog.cpp:428
 msgid "1"
-msgstr ""
+msgstr "1"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:413
 #: ../src/dialog/wxm_enumeration_dialog.cpp:573
 msgid "+"
-msgstr ""
+msgstr "＋"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:414
 #: ../src/dialog/wxm_enumeration_dialog.cpp:574
 msgid "-"
-msgstr ""
+msgstr "－"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:415
 #: ../src/dialog/wxm_enumeration_dialog.cpp:575
 msgid "*"
-msgstr ""
+msgstr "×"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:416
 #: ../src/dialog/wxm_enumeration_dialog.cpp:576
 msgid "/"
-msgstr ""
+msgstr "÷"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:424
 #: ../src/dialog/wxm_enumeration_dialog.cpp:485
@@ -169,85 +169,85 @@ msgstr "(自動)"
 #: ../src/dialog/wxm_enumeration_dialog.cpp:568
 #: ../src/dialog/wxm_enumeration_dialog.cpp:829
 msgid "<="
-msgstr ""
+msgstr "≦"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:426
 #: ../src/dialog/wxm_enumeration_dialog.cpp:569
 #: ../src/dialog/wxm_enumeration_dialog.cpp:830
 msgid "<"
-msgstr ""
+msgstr "＜"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:436
 msgid "Preview of First 10000 Lines"
-msgstr ""
+msgstr "前一萬行預覽"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:442
 msgid "Format"
-msgstr ""
+msgstr "格式"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:444
 msgid "&Numbering System:"
-msgstr ""
+msgstr "數字系統(&N)："
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:450
 msgid "He&x"
-msgstr ""
+msgstr "十六進位(&X)"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:452
 msgid "&Dec"
-msgstr ""
+msgstr "十進位(&D)"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:455
 msgid "Oc&t"
-msgstr ""
+msgstr "八進位(&T)"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:457
 msgid "&Bin"
-msgstr ""
+msgstr "二進位(&B)"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:461
 msgid "&Uppercase"
-msgstr ""
+msgstr "大寫字母(&U)"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:465
 msgid "Lowercas&e"
-msgstr ""
+msgstr "小寫字母(&E)"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:470
 msgid "&Halfwidth"
-msgstr ""
+msgstr "半形(&H)"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:473
 msgid "&Fullwidth"
-msgstr ""
+msgstr "全形(&F)"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:477
 msgid "Use &Grouping Separator"
-msgstr ""
+msgstr "使用數字分隔字元(G)"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:482
 msgid "&Length (Characters):"
-msgstr ""
+msgstr "長度（字元數）(&L)"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:489
 msgid "&Alignment:"
-msgstr ""
+msgstr "對齊(&A)"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:492
 msgid "Right"
-msgstr ""
+msgstr "向右"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:493
 msgid "Left"
-msgstr ""
+msgstr "向左"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:498
 msgid "&Padding:"
-msgstr ""
+msgstr "填滿(&P)"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:501
 msgid "Blank Space"
-msgstr ""
+msgstr "空格"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:502
 #: ../src/dialog/wxmedit_options_dialog.cpp:421
@@ -261,170 +261,170 @@ msgstr "0"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:507
 msgid "P&refix:"
-msgstr ""
+msgstr "前綴(&R)"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:514
 msgid "Po&stfix:"
-msgstr ""
+msgstr "後綴(&S)"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:570
 #: ../src/dialog/wxm_enumeration_dialog.cpp:824
 msgid ">="
-msgstr ""
+msgstr "≧"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:571
 #: ../src/dialog/wxm_enumeration_dialog.cpp:825
 msgid ">"
-msgstr ""
+msgstr "＞"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:602
 msgid "Default (Latin)"
-msgstr ""
+msgstr "預設（拉丁文）"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:603 ../src/xm/ublock_des.cpp:37
 msgid "Arabic"
-msgstr ""
+msgstr "阿拉伯文"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:604 ../src/xm/ublock_des.cpp:35
 msgid "Armenian"
-msgstr ""
+msgstr "亞美尼亞文"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:605 ../src/xm/ublock_des.cpp:41
 msgid "Bengali"
-msgstr ""
+msgstr "孟加拉文"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:607
 msgid "Chinese Digits"
-msgstr ""
+msgstr "中文數字"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:609
 msgid "Chinese Simplified"
-msgstr ""
+msgstr "簡體中文"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:610
 msgid "Chinese Simplified Financial"
-msgstr ""
+msgstr "簡體中文大寫"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:611
 msgid "Chinese Traditional"
-msgstr ""
+msgstr "繁體中文"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:612
 msgid "Chinese Traditional Financial"
-msgstr ""
+msgstr "繁體中文大寫"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:613 ../src/xm/ublock_des.cpp:40
 msgid "Devanagari"
-msgstr ""
+msgstr "天城文"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:615 ../src/xm/ublock_des.cpp:56
 msgid "Ethiopic"
-msgstr ""
+msgstr "埃塞俄比亞文"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:617 ../src/xm/ublock_des.cpp:54
 msgid "Georgian"
-msgstr ""
+msgstr "格魯吉亞文"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:618
 msgid "Greek"
-msgstr ""
+msgstr "希臘文"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:619 ../src/xm/ublock_des.cpp:43
 msgid "Gujarati"
-msgstr ""
+msgstr "古吉拉特文"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:620 ../src/xm/ublock_des.cpp:42
 msgid "Gurmukhi"
-msgstr ""
+msgstr "古木基文"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:621 ../src/xm/ublock_des.cpp:36
 msgid "Hebrew"
-msgstr ""
+msgstr "希伯來文"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:622
 msgid "Japanese"
-msgstr ""
+msgstr "日文"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:623
 msgid "Japanese Financial"
-msgstr ""
+msgstr "日文大寫"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:624 ../src/xm/ublock_des.cpp:47
 msgid "Kannada"
-msgstr ""
+msgstr "卡納達文"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:625 ../src/xm/ublock_des.cpp:61
 msgid "Khmer"
-msgstr ""
+msgstr "高棉文"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:626 ../src/xm/ublock_des.cpp:51
 msgid "Lao"
-msgstr ""
+msgstr "老撾文"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:627 ../src/xm/ublock_des.cpp:48
 msgid "Malayalam"
-msgstr ""
+msgstr "馬拉雅拉姆文"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:628 ../src/xm/ublock_des.cpp:53
 msgid "Myanmar"
-msgstr ""
+msgstr "緬甸文"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:629 ../src/xm/ublock_des.cpp:44
 msgid "Oriya"
-msgstr ""
+msgstr "奧利亞文"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:630
 msgid "Perso-Arabic"
-msgstr ""
+msgstr "波斯（東阿拉伯）文"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:631 ../src/xm/ublock_des.cpp:45
 msgid "Tamil"
-msgstr ""
+msgstr "泰米爾文"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:633
 msgid "Tamil Digits"
-msgstr ""
+msgstr "泰米爾文數字"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:635 ../src/xm/ublock_des.cpp:46
 msgid "Telugu"
-msgstr ""
+msgstr "泰盧固文"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:636 ../src/xm/ublock_des.cpp:52
 msgid "Tibetan"
-msgstr ""
+msgstr "藏文"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:637 ../src/xm/ublock_des.cpp:50
 msgid "Thai"
-msgstr ""
+msgstr "泰文"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:639 ../src/xm/ublock_des.cpp:184
 msgid "Vai"
-msgstr ""
+msgstr "瓦伊文"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:650
 #, c-format
 msgid "%s is Not a Number."
-msgstr ""
+msgstr "「%s」不是數字。"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:656
 #, c-format
 msgid "%s should not less than %d."
-msgstr ""
+msgstr "「%s」不能小於 %d。"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:742
 msgid "Wrong Input"
-msgstr ""
+msgstr "輸入有誤"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:791
 #, c-format
 msgid "Note: This numbering system can only represent the range of 1-%d.\n"
-msgstr ""
+msgstr "注意：這個數字系統只能表示 1～%d 範圍內的數字。\n"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:792
 msgid ""
 "Numbers out of range will be represent in Latin numbering system with "
 "grouping separator."
-msgstr ""
+msgstr "超出範圍的數字將會用帶分隔字元的拉丁數字表示。"
 
 #: ../src/dialog/wxm_file_association_dialog.cpp:324
 msgid "File Type Associations"
@@ -1024,7 +1024,7 @@ msgstr "列印行號"
 
 #: ../src/dialog/wxmedit_options_dialog.cpp:494
 msgid "Print Bookmark"
-msgstr ""
+msgstr "列印書籤"
 
 #: ../src/dialog/wxmedit_options_dialog.cpp:497
 msgid "Print End of Line"
@@ -1146,7 +1146,7 @@ msgstr "使用英語而非目前的地區設定"
 
 #: ../src/dialog/wxmedit_options_dialog.cpp:656
 msgid "Enable dot matching newline in regular expression"
-msgstr ""
+msgstr "在正規運算式中啟用點符合換行"
 
 #: ../src/dialog/wxmedit_options_dialog.cpp:663
 msgid "General"
@@ -1770,11 +1770,11 @@ msgstr "俄文翻譯"
 
 #: ../src/wxmedit_frame.cpp:200
 msgid "Translator for German"
-msgstr ""
+msgstr "德文翻譯"
 
 #: ../src/wxmedit_frame.cpp:201
 msgid "Translator for Polish"
-msgstr ""
+msgstr "波蘭文翻譯"
 
 #: ../src/wxmedit_frame.cpp:202 ../src/wxmedit_frame.cpp:203
 #: ../src/wxmedit_frame.cpp:204 ../src/wxmedit_frame.cpp:205
@@ -2056,12 +2056,12 @@ msgstr "插入日期、時間到目前位置"
 
 #: ../src/wxmedit_frame.cpp:1132
 msgid "Insert &Ordered Sequence..."
-msgstr ""
+msgstr "插入有序序列(&O)..."
 
 #: ../src/wxmedit_frame.cpp:1132
 msgid ""
 "Insert ordered sequence with certain format in specified numbering system"
-msgstr ""
+msgstr "在指定數字系統中按特定格式插入有序序列"
 
 #: ../src/wxmedit_frame.cpp:1135
 msgid "Ad&vanced"
@@ -2487,11 +2487,11 @@ msgstr "按設定的最大列數來自動換行"
 
 #: ../src/wxmedit_frame.cpp:1346
 msgid "Display &Bookmark"
-msgstr ""
+msgstr "顯示書籤(&B)"
 
 #: ../src/wxmedit_frame.cpp:1346
 msgid "Display the Bookmarks"
-msgstr ""
+msgstr "顯示書籤"
 
 #: ../src/wxmedit_frame.cpp:1347
 msgid "&Display Line Number"
@@ -4261,7 +4261,7 @@ msgstr "分隔字元"
 
 #: wxstd.po.cpp:46
 msgid "Space"
-msgstr "空格符號"
+msgstr "空白符號"
 
 #: wxstd.po.cpp:47
 msgid "Number"
