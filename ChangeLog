@@ -1,8 +1,9 @@
-2015-08-19 12:33:02 +0800 JiaYanwei <wxmedit@gmail.com>
+2015-08-30 18:02:14 +0800 JiaYanwei <wxmedit@gmail.com>
 
-	* wxMEdit v3.0.0_2LANGUpdate:
-	 1. updated Traditional Chinese translation.
-	 2. updated Russian translation by Будинов Станислав <stabud@yandex.ru>.
+	* wxMEdit v3.0.2:
+	 1. fixed newline redundance when copying in regular text mode.
+	 2. updated Traditional Chinese translation.
+	 3. updated Russian translation by Будинов Станислав <stabud[at]yandex.ru>.
 
 
 2015-08-03 12:52:41 +0800 JiaYanwei <wxmedit@gmail.com>

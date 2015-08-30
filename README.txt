@@ -1,5 +1,5 @@
                       ==================================
-                                wxMEdit v3.0
+                                wxMEdit v3.0.2
                       ==================================
 About:
 -----
@@ -70,6 +70,11 @@ Syntax files, Locale files and Settings:
 
 ChangeLog:
 ----------
+wxMEdit v3.0.2:
+  1. fixed newline redundance when copying in regular text mode.
+  2. updated Traditional Chinese translation.
+  3. updated Russian translation by Будинов Станислав <stabud[at]yandex.ru>.
+
 wxMEdit v3.0:
   1. added new options to display/print bookmark independent of line number.
   2. added a option whether enable dot matching new-line in regular expression.
