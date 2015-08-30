@@ -100,7 +100,7 @@ namespace wxm
         virtual void Convert0x0D(ucs4_t& ch, std::vector<ucs4_t>& ucs) const override { ucs.push_back(ch); ch = 0x0A; }
         virtual void Convert0x0A(ucs4_t& ch, std::vector<ucs4_t>& ucs) const override { ucs.push_back(0x0D); }
     public:
-        virtual wxString wxValue() const override { return wxT("\n"); }
+        virtual wxString wxValue() const override { return wxT("\r\n"); }
         virtual void ValueAppendTo(std::vector<ucs4_t>& v) const override { v.push_back(0x0D); v.push_back(0x0A); }
     };
 
@@ -140,7 +140,7 @@ namespace wxm
         virtual void Convert0x0D(ucs4_t& ch, std::vector<ucs4_t>& ucs) const override {}
         virtual void Convert0x0A(ucs4_t& ch, std::vector<ucs4_t>& ucs) const override { ch = 0x0D; }
     public:
-        virtual wxString wxValue() const override { return wxT("\n"); }
+        virtual wxString wxValue() const override { return wxT("\r"); }
         virtual void ValueAppendTo(std::vector<ucs4_t>& v) const override { v.push_back(0x0D); }
     };
 

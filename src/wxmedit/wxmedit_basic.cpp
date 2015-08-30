@@ -1175,34 +1175,30 @@ void MadEdit::CopyRegularText()
     m_Lines->InitNextUChar(lit, m_SelectionBegin->linepos);
     do
     {
-        if(ucqueue.size() || m_Lines->NextUChar(ucqueue))
-        {
-            ucs4_t &uc=ucqueue.front().first;
-            if(uc==0x0D || uc==0x0A)
-            {
-                ws << wxm::g_nl_default.wxValue();
-
-                pos += ucqueue.front().second;
-
-                if(uc==0x0D && m_Lines->NextUChar(ucqueue) &&
-                    ucqueue.back().first==0x0A)
-                {
-                    pos += ucqueue.back().second;
-                }
-
-                ucqueue.clear();
-            }
-
-            wxm::WxStrAppendUCS4(ws, uc);
-            pos += ucqueue.front().second;
-            ucqueue.clear();
-        }
-        else
+        if (ucqueue.empty() && !m_Lines->NextUChar(ucqueue))
         {
             m_Lines->InitNextUChar(++lit, 0);
+            continue;
         }
-    }
-    while(pos < m_SelectionEnd->pos);
+
+        ucs4_t &uc=ucqueue.front().first;
+        if(uc==0x0D || uc==0x0A)
+        {
+            ws << wxm::g_nl_default.wxValue();
+
+            pos += ucqueue.front().second;
+
+            if(uc==0x0D && m_Lines->NextUChar(ucqueue) && ucqueue.back().first==0x0A)
+                pos += ucqueue.back().second;
+
+            ucqueue.clear();
+            continue;
+        }
+
+        wxm::WxStrAppendUCS4(ws, uc);
+        pos += ucqueue.front().second;
+        ucqueue.clear();
+    } while(pos < m_SelectionEnd->pos);
 
     PutTextToClipboard(ws);
 }
