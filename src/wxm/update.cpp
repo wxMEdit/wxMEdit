@@ -64,7 +64,7 @@ inline bool IsFirstNewer(const std::string& v1, const std::string& v2, bool chec
 
 bool IsPrerelease(const std::string& ver)
 {
-	return !algo::find_nth(ver, ".", 2).empty();
+	return !algo::find_nth(ver, ".", 1).empty();
 }
 
 std::string AdjustVersion(const std::string& ver, bool with_prerelease)
@@ -72,9 +72,9 @@ std::string AdjustVersion(const std::string& ver, bool with_prerelease)
 	if (with_prerelease)
 		return ver;
 
-	std::string::const_iterator dot3rd = algo::find_nth(ver, ".", 2).begin();
+	std::string::const_iterator dot2nd = algo::find_nth(ver, ".", 1).begin();
 
-	return std::string(ver.begin(), dot3rd);
+	return std::string(ver.begin(), dot2nd);
 }
 
 std::string CheckUpdates(bool check_prerelease)
