@@ -32,7 +32,7 @@ B. MS Windows (__WXMSW__):
       4. ICU4C 4.2 or higher
       5. libcurl 7.15.5 or higher
 
-   b. Visual C++ 2005/2008/2010~2013 (by upgrading from 2008 solution and project files):
+   b. Visual C++ 2005/2008/2010~2015 (by upgrading from 2008 solution and project files):
       Required Tools and Libraries to compile:
       1. Bakefile 0.2.9
       2. wxWidgets 2.8/3.0 with Unicode enabled

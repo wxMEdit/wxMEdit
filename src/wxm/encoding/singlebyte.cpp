@@ -238,7 +238,7 @@ void WXMEncodingSingleByte::MultiByteInit()
 	UChar32 ch;
 	for (size_t i=0; i<256; ++i)
 	{
-		singlebyte[0] = i;
+		singlebyte[0] = (unsigned char)i;
 		if (m_icucnv->MB2WC(ch, singlebyte, 1) == 1)
 		{
 			m_tounicode[i] = ch;
@@ -246,7 +246,7 @@ void WXMEncodingSingleByte::MultiByteInit()
 		else
 		{
 			m_tounicode[i] = i;
-			m_fromunicode[i] = i;
+			m_fromunicode[i] = (unsigned char)i;
 		}
 	}
 
