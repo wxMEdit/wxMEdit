@@ -94,5 +94,29 @@ private:
 void NonBMPtoUTF16(UChar32 ch, UChar* buf);
 size_t NonBMPtoUTF16LE(UChar32 ch, uint8_t* buf);
 
+inline uint16_t UIntSwap(uint16_t val)
+{
+	return ((val & 0x00FFu) << 8) | ((val & 0xFF00u) >> 8);
+}
+inline uint32_t UIntSwap(uint32_t val)
+{
+	return ((val & 0x000000FFu) << 24) | ((val & 0x0000FF00u) <<  8) |
+		   ((val & 0x00FF0000u) >>  8) | ((val & 0xFF000000u) >> 24);
+}
+
+#if U_IS_BIG_ENDIAN == 0
+// little endian
+template <typename U>
+inline U ToLE(U u) { return u; }
+template <typename U>
+inline U ToBE(U u) { return UIntSwap(u); }
+#else
+// big endian
+template <typename U>
+inline U ToLE(U u) { return UIntSwap(u); }
+template <typename U>
+inline U ToBE(U u) { return u; }
+#endif
+
 }; // namespace xm
 #endif //_XM_UUTILS_H_

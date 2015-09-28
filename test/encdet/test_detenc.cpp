@@ -1,10 +1,9 @@
 #include "test_detenc.h"
 #include "../../src/xm/cxx11.h"
-#include "../../src/wxm/encdet.h"
-#include "../../src/wxm/encoding/encoding.h"
+#include "../../src/xm/encdet.h"
+#include "../../src/xm/encoding/encoding.h"
 
 #include <unicode/unistr.h>
-#include <wx/string.h>
 #include <boost/scoped_array.hpp>
 #include <boost/test/unit_test.hpp>
 #include <boost/algorithm/string/case_conv.hpp>
@@ -49,24 +48,24 @@ void test_detenc_javaescaped(const std::string& jesc_text, const std::string& en
 
 void test_detenc(const std::string& text, const std::string& enc)
 {
-	wxm::WXMEncodingManager& enccreator = wxm::WXMEncodingManager::Instance();
+	xm::EncodingManager& enccreator = xm::EncodingManager::Instance();
 
-	wxString wxdetenc;
-	wxm::WXMEncodingID detencid = wxm::ENC_DEFAULT;
-	const wxByte* wxtext = (const wxByte*)text.data();
+	std::string detenc;
+	xm::EncodingID detencid = xm::ENC_DEFAULT;
+	const ubyte* btext = (const ubyte*)text.data();
 
-	bool det_succ = wxm::MatchWXMEncoding(wxdetenc, wxtext, text.size());
+	bool det_succ = xm::MatchEncoding(detenc, btext, text.size());
 	if (det_succ)
 	{
-		detencid = enccreator.ExtNameToEncoding(wxdetenc.mb_str().data());
+		detencid = enccreator.ExtNameToEncoding(detenc);
 	}
 	else
 	{
-		wxm::DetectEncoding(wxtext, text.size(), detencid, true);
+		xm::DetectEncoding(btext, text.size(), detencid, true);
 
 		// use GB18030      instead of detected encoding MS936
-		if (detencid == wxm::ENC_MS936)
-			detencid = wxm::ENC_GB18030;
+		if (detencid == xm::ENC_MS936)
+			detencid = xm::ENC_GB18030;
 	}
 
 	// use UHC          instead of expected encoding EUC-KR
@@ -78,8 +77,8 @@ void test_detenc(const std::string& text, const std::string& enc)
 		eenc = "CP20932";
 
 	// skip not supported encoding
-	wxm::WXMEncodingID encid = enccreator.ExtNameToEncoding(eenc.c_str());
-	if (encid == wxm::ENC_DEFAULT)
+	xm::EncodingID encid = enccreator.ExtNameToEncoding(eenc.c_str());
+	if (encid == xm::ENC_DEFAULT)
 	{
 		std::cout << "\t\t" << "<Not supported yet>" << std::endl;
 		return;
@@ -90,20 +89,20 @@ void test_detenc(const std::string& text, const std::string& enc)
 
 void test_predetenc(const std::string& text, const std::string& enc, bool matched)
 {
-	wxm::WXMEncodingManager& enccreator = wxm::WXMEncodingManager::Instance();
+	xm::EncodingManager& enccreator = xm::EncodingManager::Instance();
 
-	wxString wxdetenc;
-	wxm::WXMEncodingID detencid = wxm::ENC_DEFAULT;
-	const wxByte* wxtext = (const wxByte*)text.data();
+	std::string detenc;
+	xm::EncodingID detencid = xm::ENC_DEFAULT;
+	const ubyte* btext = (const ubyte*)text.data();
 
-	bool det_succ = wxm::MatchWXMEncoding(wxdetenc, wxtext, text.size());
+	bool det_succ = xm::MatchEncoding(detenc, btext, text.size());
 
 	BOOST_CHECK(det_succ || !matched);
 	if (!det_succ)
 		return;
 
-	detencid = enccreator.ExtNameToEncoding(wxdetenc.mb_str().data());
-	wxm::WXMEncodingID encid = enccreator.ExtNameToEncoding(enc.c_str());
+	detencid = enccreator.ExtNameToEncoding(detenc);
+	xm::EncodingID encid = enccreator.ExtNameToEncoding(enc.c_str());
 
 	BOOST_CHECK((detencid==encid) == matched);
 }

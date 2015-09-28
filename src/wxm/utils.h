@@ -12,7 +12,6 @@
 #include "../xm/cxx11.h"
 #include "choice_map.hpp"
 #include "def.h"
-#include "../wxmedit/ucs4_t.h"
 
 #ifdef _MSC_VER
 # pragma warning( push )

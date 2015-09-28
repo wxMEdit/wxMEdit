@@ -17,6 +17,8 @@
 #include "../wxm/searcher.h"
 
 #include <boost/scoped_ptr.hpp>
+#include <boost/algorithm/string/predicate.hpp>
+
 #include <algorithm>
 #include <vector>
 using std::vector;
@@ -25,6 +27,8 @@ using std::vector;
 #include <crtdbg.h>
 #define new new(_NORMAL_BLOCK ,__FILE__, __LINE__)
 #endif
+
+namespace algo = boost::algorithm;
 
 //==============================================================================
 
@@ -125,13 +129,12 @@ wxString *ConvertTextToNewString(const wxString& text, MadConvertChineseFlag fla
     return ptext;
 }
 
-void MadEdit::ConvertEncoding(const wxString &newenc, MadConvertEncodingFlag flag)
+void MadEdit::ConvertEncoding(const std::wstring & newenc, MadConvertEncodingFlag flag)
 {
-    if(IsReadOnly() || !IsTextFile())
+    if (IsReadOnly() || !IsTextFile())
         return;
 
-    wxString lowerenc=newenc.Lower();
-    if(lowerenc == m_Encoding->GetName().Lower())
+    if (algo::iequals(newenc, m_Encoding->GetName()))
     {
         switch(flag)
         {
@@ -147,7 +150,7 @@ void MadEdit::ConvertEncoding(const wxString &newenc, MadConvertEncodingFlag fla
         return;
     }
 
-    if(m_Lines->m_Size == 0)
+    if (m_Lines->m_Size == 0)
     {
         SetEncoding(newenc);
         return;
@@ -156,8 +159,8 @@ void MadEdit::ConvertEncoding(const wxString &newenc, MadConvertEncodingFlag fla
     WXMLocations loc = SaveLocations();
 
     bool ignoreBOM=true;
-	wxm::WXMEncoding* enc = wxm::WXMEncodingManager::Instance().GetWxmEncoding(newenc);
-	if(enc->IsUnicodeEncoding())
+    xm::Encoding* enc = xm::EncodingManager::Instance().GetEncoding(newenc);
+    if (enc->IsUnicodeEncoding())
     {
         ignoreBOM=false;
     }
@@ -165,15 +168,13 @@ void MadEdit::ConvertEncoding(const wxString &newenc, MadConvertEncodingFlag fla
     wxString text, *ptext=nullptr;
     GetText(text, ignoreBOM);
 
-    if(flag != cefNone)
+    if (flag != cefNone)
     {
-        MadConvertEncodingFlag cefs[]=
-            { cefSC2TC, cefTC2SC, cefJK2TC, cefJK2SC, cefC2JK };
-        MadConvertChineseFlag ccfs[]=
-            { ccfSimp2Trad, ccfTrad2Simp, ccfKanji2Trad, ccfKanji2Simp, ccfChinese2Kanji };
-        for(size_t i=0; i<sizeof(cefs)/sizeof(cefs[0]); ++i)
+        MadConvertEncodingFlag cefs[]= { cefSC2TC, cefTC2SC, cefJK2TC, cefJK2SC, cefC2JK };
+        MadConvertChineseFlag ccfs[]= { ccfSimp2Trad, ccfTrad2Simp, ccfKanji2Trad, ccfKanji2Simp, ccfChinese2Kanji };
+        for (size_t i=0; i<sizeof(cefs)/sizeof(cefs[0]); ++i)
         {
-            if(flag==cefs[i])
+            if (flag==cefs[i])
             {
                 ptext=ConvertTextToNewString(text, ccfs[i]);
                 break;
@@ -185,7 +186,7 @@ void MadEdit::ConvertEncoding(const wxString &newenc, MadConvertEncodingFlag fla
     SetEncoding(newenc);
     m_LoadingFile=false;
 
-    if(ptext)
+    if (ptext)
     {
         SetText(*ptext);
         delete ptext;

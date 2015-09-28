@@ -1,25 +1,27 @@
 SUBDIRS = syntax po
 
-enc_src =	src/wxm/encoding/cp20932.cpp \
-	src/wxm/encoding/cp20932.h \
-	src/wxm/encoding/doublebyte.cpp \
-	src/wxm/encoding/doublebyte.h \
-	src/wxm/encoding/encoding.cpp \
-	src/wxm/encoding/encoding.h \
-	src/wxm/encoding/encoding_def.h \
-	src/wxm/encoding/multibyte.cpp \
-	src/wxm/encoding/multibyte.h \
-	src/wxm/encoding/gb18030.cpp \
-	src/wxm/encoding/gb18030.h \
-	src/wxm/encoding/singlebyte.cpp \
-	src/wxm/encoding/singlebyte.h \
-	src/wxm/encoding/unicode.cpp \
-	src/wxm/encoding/unicode.h
+enc_src =	src/xm/encoding/cp20932.cpp \
+	src/xm/encoding/cp20932.h \
+	src/xm/encoding/doublebyte.cpp \
+	src/xm/encoding/doublebyte.h \
+	src/xm/encoding/encoding.cpp \
+	src/xm/encoding/encoding.h \
+	src/xm/encoding/encoding_def.h \
+	src/xm/encoding/external.h \
+	src/xm/encoding/multibyte.cpp \
+	src/xm/encoding/multibyte.h \
+	src/xm/encoding/gb18030.cpp \
+	src/xm/encoding/gb18030.h \
+	src/xm/encoding/singlebyte.cpp \
+	src/xm/encoding/singlebyte.h \
+	src/xm/encoding/unicode.cpp \
+	src/xm/encoding/unicode.h \
+	src/xm/line_enc_adapter.h
 
-encdet_src =	src/wxm/encdet.cpp \
-	src/wxm/encdet.h \
-	src/wxmedit/mad_encdet.cpp \
-	src/wxmedit/mad_encdet.h
+encdet_src =	src/xm/encdet.cpp \
+	src/xm/encdet.h \
+	src/xm/mad_encdet.cpp \
+	src/xm/mad_encdet.h
 
 bin_PROGRAMS = wxmedit
 check_PROGRAMS = wxmedit_test
@@ -60,8 +62,6 @@ wxmedit_SOURCES =	$(enc_src) \
 	src/wxm/edit/simple.h \
 	src/wxm/edit/single_line.cpp \
 	src/wxm/edit/single_line.h \
-	src/wxm/line_enc_adapter.cpp \
-	src/wxm/line_enc_adapter.h \
 	src/wxm/recent_list.cpp \
 	src/wxm/recent_list.h \
 	src/wxm/searcher.cpp \
@@ -86,7 +86,6 @@ wxmedit_SOURCES =	$(enc_src) \
 	src/wxmedit/clipbrd_gtk.h \
 	src/wxmedit/trad_simp.cpp \
 	src/wxmedit/trad_simp.h \
-	src/wxmedit/ucs4_t.h \
 	src/wxmedit/wxm_deque.hpp \
 	src/wxmedit/wxm_lines.cpp \
 	src/wxmedit/wxm_lines.h \
@@ -117,8 +116,6 @@ wxmedit_SOURCES =	$(enc_src) \
 
 wxmedit_test_SOURCES =	$(enc_src) \
 	$(encdet_src) \
-	src/wxm/line_enc_adapter.h \
-	src/wxmedit/ucs4_t.h \
 	src/wxmedit/wxm_deque.hpp \
 	src/xm/cxx11.h \
 	src/xm/utils.hpp \

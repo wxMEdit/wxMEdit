@@ -8,6 +8,7 @@
 
 #include "trad_simp.h"
 #include "../xm/cxx11.h"
+#include "../xm/encoding/encoding_def.h"
 
 #ifdef __WXGTK__
 # include "clipbrd_gtk.h"

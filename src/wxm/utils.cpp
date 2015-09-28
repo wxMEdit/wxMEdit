@@ -7,11 +7,13 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 #include "utils.h"
+#include "../xm/encoding/external.h"
 #include "../xm/cxx11.h"
-#include "encoding/encoding.h"
+#include "../xm/encoding/encoding.h"
 #include "../mad_utils.h"
 #include "../wxmedit/wxmedit.h"
 #include "../xm/uutils.h"
+#include "../xm/line_enc_adapter.h"
 
 #ifdef _MSC_VER
 # pragma warning( push )
@@ -30,6 +32,7 @@
 #include <wx/file.h>
 #include <wx/wfstream.h>
 #include <wx/fileconf.h>
+#include <wx/log.h>
 // disable 4996 }
 #ifdef _MSC_VER
 # pragma warning( pop )
@@ -174,7 +177,7 @@ void OpenURL(const wxString& url)
 
 void SetDefaultMonoFont(wxWindow* win)
 {
-	const wxString fontname = wxm::WXMEncodingManager::Instance().GetSystemEncoding()->GetFontName();
+	const wxString fontname = xm::EncodingManager::Instance().GetSystemEncoding()->GetFontName();
 	int fontsize = win->GetFont().GetPointSize();
 	win->SetFont(wxFont(fontsize, wxDEFAULT, wxNORMAL, wxNORMAL, false, fontname));
 }
@@ -505,3 +508,87 @@ WXMControlIDReserver::WXMControlIDReserver()
 }
 
 } // namespace wxm
+
+// get fontname from registry mime database
+static inline void MSW_GetFontName(const std::wstring codepage, std::wstring &fontname)
+{
+#ifdef __WXMSW__
+	wxLogNull nolog;
+
+	const wxString MIMEDB(wxm::s_wxsRegkeyClasses + wxT("MIME\\Database\\Codepage\\"));
+	boost::scoped_ptr<wxRegKey> pRegKey(new wxRegKey(MIMEDB + codepage.c_str()));
+
+	if (!pRegKey->Exists())
+		return;
+
+	long cp;
+	if (pRegKey->QueryValue(wxT("Family"), &cp))
+		pRegKey.reset(new wxRegKey(MIMEDB + wxString::Format(wxT("%d"), cp)));
+
+	wxString wxsfontname = fontname.c_str();
+	pRegKey->QueryValue(wxT("FixedWidthFont"), wxsfontname);
+	fontname = wxsfontname.wc_str();
+#endif
+}
+
+std::wstring GetMSCPFontName(const std::wstring & mscp)
+{
+	std::wstring fontname = wxm::MonoFontName;
+
+	if (mscp.empty())
+		return fontname;
+
+	MSW_GetFontName(mscp, fontname);
+	return fontname;
+}
+
+std::wstring GetASCIIArtFontName()
+{
+	return wxm::ASCIIArtFontName;
+}
+
+const wchar_t * LocalizeText(const wchar_t* txt)
+{
+	return wxGetTranslation(txt);
+}
+
+namespace xm
+{
+
+void BackwardBlockDumper::Dump(ubyte* buf, size_t len)
+{
+	wxFileOffset bsize = m_bit->m_Size;
+	size_t count = len;
+	size_t n;
+	while (true)
+	{
+		n = count;
+		if (bsize < (wxFileOffset)n)
+			n = size_t(bsize);
+		m_bit->Get(bsize - n, buf + (count -= n), n);
+		if (count == 0)
+			break;
+
+		bsize = (--m_bit)->m_Size;
+	}
+}
+
+void ForwardBlockDumper::Dump(ubyte* buf, size_t len)
+{
+	wxFileOffset bsize = m_bit->m_Size;
+	size_t idx = 0;
+	size_t n;
+	while (true)
+	{
+		n = len - idx;
+		if (bsize < (wxFileOffset)n)
+			n = size_t(bsize);
+		m_bit->Get(0, buf + idx, n);
+		if ((idx += n) == len)
+			break;
+
+		bsize = (++m_bit)->m_Size;
+	}
+}
+
+} // namespace xm

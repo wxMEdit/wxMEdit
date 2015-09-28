@@ -10,7 +10,6 @@
 #ifndef _WXM_SEARCHER_H_
 #define _WXM_SEARCHER_H_
 
-#include "../wxmedit/ucs4_t.h"
 #include "../xm/cxx11.h"
 #include "def.h"
 

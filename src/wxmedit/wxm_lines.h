@@ -10,7 +10,8 @@
 #define _WXM_LINES_H_
 
 #include "../xm/cxx11.h"
-#include "../wxm/line_enc_adapter.h"
+#include "../xm/line_enc_adapter.h"
+#include "../xm/encoding/encoding.h"
 #include "../wxm/def.h"
 
 #ifdef _MSC_VER
@@ -45,7 +46,6 @@ using std::list;
 using std::deque;
 using std::pair;
 
-#include "ucs4_t.h"
 #include "wxm_deque.hpp"
 
 //===========================================================================
@@ -273,8 +273,8 @@ struct MadLine
     bool IsEmpty() { return m_Size == 0; }
 
     // if false return 0 ; else return 0x0D or 0x0A
-    ucs4_t LastUCharIsNewLine(wxm::WXMEncoding *encoding);
-    bool FirstUCharIs0x0A(wxm::WXMEncoding *encoding);
+    ucs4_t LastUCharIsNewLine(xm::Encoding *encoding);
+    bool FirstUCharIs0x0A(xm::Encoding *encoding);
 
     wxByte Get(wxFileOffset pos)                            // get 1 byte
     {
@@ -372,7 +372,7 @@ namespace wxm
     struct WXMSearcher;
 }
 
-class MadLines: public wxm::UChar32BytesMapper
+class MadLines: public xm::UChar32BytesMapper
 {
 private:
     friend class MadEdit;
@@ -382,7 +382,7 @@ private:
 
     MadEdit       *m_MadEdit;
     MadSyntax     *m_Syntax;
-    wxm::WXMEncoding   *m_Encoding;
+    xm::Encoding  *m_Encoding;
 
     MadLineList m_LineList;
     size_t m_LineCount, m_RowCount;         // line counts
@@ -430,8 +430,8 @@ public:
     MadLines(MadEdit *madedit);
     virtual ~MadLines();
 
-    bool LoadFromFile(const wxString &filename, const wxString &encoding = wxEmptyString);
-    bool SaveToFile(const wxString &filename, const wxString &tempdir);
+    bool LoadFromFile(const wxString& filename, const std::wstring& encoding = wxEmptyString);
+    bool SaveToFile(const wxString& filename, const wxString& tempdir);
     wxFileOffset GetSize() { return m_Size; }
 
 private:  // NextUChar()
@@ -450,14 +450,14 @@ private:  // NextUChar()
     bool m_manual;
 
     virtual void MoveUChar32Bytes(MadUCQueue &ucqueue, ucs4_t uc, size_t len) override;
-    virtual wxByte* BufferLoadBytes(wxFileOffset& rest, size_t buf_len) override;
+    virtual ubyte* BufferLoadBytes(int64_t& rest, size_t buf_len) override;
 
     bool NextUCharIs0x0A(void);
 
     void DetectSyntax(const wxString &filename);
 
-    bool PresetFileEncoding(const wxString& encoding, const wxByte* buf, size_t sz);
-    void SetFileEncoding(const wxString& encoding, const wxString& defaultenc, 
+    bool PresetFileEncoding(const std::wstring& encoding, const wxByte* buf, size_t sz);
+    void SetFileEncoding(const std::wstring& encoding, const std::wstring& defaultenc,
                          const wxByte* buf, size_t sz, bool skip_utf8);
 
     int FindStringCase(MadUCQueue &ucqueue, MadStringIterator begin,
@@ -474,7 +474,7 @@ private:  // NextUChar()
 
 public:
     void SetManual(bool manual) { m_manual = true; }
-    void SetEncoding(wxm::WXMEncoding *encoding);
+    void SetEncoding(xm::Encoding *encoding);
 
     // if no newline return 0 ; else return 0x0D or 0x0A or 0x0D+0x0A (=0x17)
     ucs4_t GetNewLine(const MadLineIterator &iter);

@@ -11,7 +11,7 @@
 #define _WXMEDIT_FRAME_H_
 
 #include "wxm/def.h"
-#include "wxm/encoding/encoding_def.h"
+#include "xm/encoding/encoding_def.h"
 #include "wxm/recent_list.h"
 #include "wxm/status_bar.h"
 #include "wxm/utils.h"
@@ -303,7 +303,7 @@ public:
 private:
     bool m_PageClosing; // prevent from reentry of CloseFile(), OnNotebookPageClosing()
 
-    typedef std::map<wxm::WXMEncodingGroupID, wxMenu*> EncGrps;
+    typedef std::map<xm::EncodingGroupID, wxMenu*> EncGrps;
     EncGrps m_encgrps;
 
 public:

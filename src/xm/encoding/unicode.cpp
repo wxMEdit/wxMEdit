@@ -1,24 +1,24 @@
 ///////////////////////////////////////////////////////////////////////////////
 // vim:         ts=4 sw=4
-// Name:        wxm/encoding/unicode.cpp
+// Name:        xm/encoding/unicode.cpp
 // Description: Define the Unicode Encodings Supported by wxMEdit
 // Copyright:   2013-2015  JiaYanwei   <wxmedit@gmail.com>
 // License:     GPLv3
 ///////////////////////////////////////////////////////////////////////////////
 
 #include "unicode.h"
-#include "../../xm/cxx11.h"
-#include "../../xm/uutils.h"
+#include "../cxx11.h"
+#include "../uutils.h"
 
 #ifdef _DEBUG
 #include <crtdbg.h>
 #define new new(_NORMAL_BLOCK ,__FILE__, __LINE__)
 #endif
 
-namespace wxm
+namespace xm
 {
 
-size_t WXMEncodingUTF8::UCS4toMultiByte(ucs4_t ucs4, wxByte* buf)
+size_t UTF8Encoding::UCS4toMultiByte(ucs4_t ucs4, ubyte* buf)
 {
 	/***  from rfc3629
 	  Char. number range  |        UTF-8 octet sequence
@@ -73,10 +73,10 @@ size_t WXMEncodingUTF8::UCS4toMultiByte(ucs4_t ucs4, wxByte* buf)
 	return 0;
 }
 
-bool WXMEncodingUTF8::NextUChar32(MadUCQueue &ucqueue, UChar32BytesMapper& mapper)
+bool UTF8Encoding::NextUChar32(MadUCQueue &ucqueue, UChar32BytesMapper& mapper)
 {
-	wxFileOffset rest;
-	wxByte* buf = mapper.BufferLoadBytes(rest, 4);
+	int64_t rest;
+	ubyte* buf = mapper.BufferLoadBytes(rest, 4);
 	if (buf == nullptr)
 		return false;
 
@@ -135,12 +135,12 @@ bool WXMEncodingUTF8::NextUChar32(MadUCQueue &ucqueue, UChar32BytesMapper& mappe
 	return true;
 }
 
-size_t WXMEncodingUTF16LE::UCS4toMultiByte(ucs4_t ucs4, wxByte* buf)
+size_t UTF16LE_Encoding::UCS4toMultiByte(ucs4_t ucs4, ubyte* buf)
 {
 	if(ucs4>=0x10000)// to unicode surrogates
 	{
 		if(ucs4>0x10FFFF) return 0;
-		return xm::NonBMPtoUTF16LE(ucs4, buf);
+		return NonBMPtoUTF16LE(ucs4, buf);
 	}
 
 	buf[0]=ucs4;
@@ -148,32 +148,32 @@ size_t WXMEncodingUTF16LE::UCS4toMultiByte(ucs4_t ucs4, wxByte* buf)
 
 	return 2;
 }
-bool WXMEncodingUTF16LE::IsUChar32_LineFeed(WXMBlockDumper& dumper, size_t len)
+bool UTF16LE_Encoding::IsUChar32_LineFeed(BlockDumper& dumper, size_t len)
 {
 	// odd m_Size is invalid
 	if((len & 1) != 0)
 		return false;
 
-	wxByte buf[2];
+	ubyte buf[2];
 	dumper.Dump(buf, 2);
 	return buf[0]==0x0A && buf[1]==0;
 }
-ucs4_t WXMEncodingUTF16LE::PeekUChar32_Newline(WXMBlockDumper& dumper, size_t len)
+ucs4_t UTF16LE_Encoding::PeekUChar32_Newline(BlockDumper& dumper, size_t len)
 {
 	// odd m_Size is invalid
 	if((len & 1) != 0)
 		return 0;
 
-	wxByte buf[2];
+	ubyte buf[2];
 	dumper.Dump(buf, 2);
 	if ( (buf[0]==0x0A || buf[0]==0x0D) && buf[1]==0)
 		return (ucs4_t)buf[0];
 	return 0;
 }
-bool WXMEncodingUTF16LE::NextUChar32(MadUCQueue &ucqueue, UChar32BytesMapper& mapper)
+bool UTF16LE_Encoding::NextUChar32(MadUCQueue &ucqueue, UChar32BytesMapper& mapper)
 {
-	wxFileOffset rest;
-	wxByte* buf = mapper.BufferLoadBytes(rest, 4);
+	int64_t rest;
+	ubyte* buf = mapper.BufferLoadBytes(rest, 4);
 	if (buf == nullptr)
 		return false;
 
@@ -204,7 +204,7 @@ bool WXMEncodingUTF16LE::NextUChar32(MadUCQueue &ucqueue, UChar32BytesMapper& ma
 	/***
 	ucs4_t uc;
 	if(m_MadEdit->editMode_!=emHexMode)
-		uc=wxT('?');
+		uc=L'?';
 	else
 		uc=m_NextUChar_LineIter->Get(m_NextUChar_Pos);
 	***/
@@ -213,55 +213,55 @@ bool WXMEncodingUTF16LE::NextUChar32(MadUCQueue &ucqueue, UChar32BytesMapper& ma
 	return true;
 }
 
-size_t WXMEncodingUTF16BE::UCS4toMultiByte(ucs4_t ucs4, wxByte* buf)
+size_t UTF16BE_Encoding::UCS4toMultiByte(ucs4_t ucs4, ubyte* buf)
 {
-	if(ucs4>=0x10000)// to unicode surrogates
+	if (ucs4 >= 0x10000)  // to unicode surrogates
 	{
 		if(ucs4>0x10FFFF) return 0;
 
-		ucs4-=0x10000;
-		ucs2_t high=(ucs4>>10)+0xD800;    // high surrogate
-		ucs2_t low=(ucs4&0x3FF)+0xDC00;    // low surrogate
+		ucs4 -= 0x10000;
+		ucs2_t high = (ucs4 >> 10) + 0xD800;    // high surrogate
+		ucs2_t low = (ucs4 & 0x3FF) + 0xDC00;    // low surrogate
 
-		buf[0]=high>>8;
-		buf[1]=wxByte(high);
-		buf[2]=low>>8;
-		buf[3]=wxByte(low);
+		buf[0] = high >> 8;
+		buf[1] = ubyte(high);
+		buf[2] = low >> 8;
+		buf[3] = ubyte(low);
 
 		return 4;
 	}
 
-	buf[0]=ucs4>>8;
-	buf[1]=ucs4;
+	buf[0] = ucs4 >> 8;
+	buf[1] = ucs4;
 
 	return 2;
 }
-bool WXMEncodingUTF16BE::IsUChar32_LineFeed(WXMBlockDumper& dumper, size_t len)
+bool UTF16BE_Encoding::IsUChar32_LineFeed(BlockDumper& dumper, size_t len)
 {
 	// odd m_Size is invalid
 	if((len & 1) != 0)
 		return false;
 
-	wxByte buf[2];
+	ubyte buf[2];
 	dumper.Dump(buf, 2);
 	return buf[1]==0x0A && buf[0]==0;
 }
-ucs4_t WXMEncodingUTF16BE::PeekUChar32_Newline(WXMBlockDumper& dumper, size_t len)
+ucs4_t UTF16BE_Encoding::PeekUChar32_Newline(BlockDumper& dumper, size_t len)
 {
 	// odd m_Size is invalid
 	if((len & 1) != 0)
 		return 0;
 
-	wxByte buf[2];
+	ubyte buf[2];
 	dumper.Dump(buf, 2);
 	if ((buf[1]==0x0A || buf[1]==0x0D) && buf[0]==0)
 		return (ucs4_t)buf[1];
 	return 0;
 }
-bool WXMEncodingUTF16BE::NextUChar32(MadUCQueue &ucqueue, UChar32BytesMapper& mapper)
+bool UTF16BE_Encoding::NextUChar32(MadUCQueue &ucqueue, UChar32BytesMapper& mapper)
 {
-	wxFileOffset rest;
-	wxByte* buf = mapper.BufferLoadBytes(rest, 4);
+	int64_t rest;
+	ubyte* buf = mapper.BufferLoadBytes(rest, 4);
 	if (buf == nullptr)
 		return false;
 
@@ -291,53 +291,45 @@ bool WXMEncodingUTF16BE::NextUChar32(MadUCQueue &ucqueue, UChar32BytesMapper& ma
 	return true;
 }
 
-size_t WXMEncodingUTF32LE::UCS4toMultiByte(ucs4_t ucs4, wxByte* buf)
+size_t UTF32LE_Encoding::UCS4toMultiByte(ucs4_t ucs4, ubyte* buf)
 {
-	wxASSERT(ucs4>=0 && ucs4<=0x10FFFF);
+	// wxASSERT(ucs4>=0 && ucs4<=0x10FFFF);
 
-#if wxBYTE_ORDER == wxBIG_ENDIAN
-	wxByte *p = (wxByte*)&ucs4;
-	buf[0]=p[3];
-	buf[1]=p[2];
-	buf[2]=p[1];
-	buf[3]=p[0];
-#else
-	*((ucs4_t*)buf) = ucs4;
-#endif
+	*((ucs4_t*)buf) = ToLE((uint32_t)ucs4);
 	return 4;
 }
-bool WXMEncodingUTF32LE::IsUChar32_LineFeed(WXMBlockDumper& dumper, size_t len)
+bool UTF32LE_Encoding::IsUChar32_LineFeed(BlockDumper& dumper, size_t len)
 {
 	// m_Size must be multiple of 4
 	if((len & 3) != 0)
 		return false;
 
-	wxByte buf[4];
+	ubyte buf[4];
 	dumper.Dump(buf, 4);
 	return buf[0]==0x0A && buf[1]==0 && buf[2]==0 && buf[3]==0;
 }
-ucs4_t WXMEncodingUTF32LE::PeekUChar32_Newline(WXMBlockDumper& dumper, size_t len)
+ucs4_t UTF32LE_Encoding::PeekUChar32_Newline(BlockDumper& dumper, size_t len)
 {
 	// m_Size must be multiple of 4
 	if((len & 3) != 0)
 		return 0;
 
-	wxByte buf[4];
+	ubyte buf[4];
 	dumper.Dump(buf, 4);
 	if ((buf[0]==0x0A || buf[0]==0x0D) && buf[1]==0 && buf[2]==0 && buf[3]==0)
 		return (ucs4_t)buf[0];
 	return 0;
 }
-bool WXMEncodingUTF32LE::NextUChar32(MadUCQueue &ucqueue, UChar32BytesMapper& mapper)
+bool UTF32LE_Encoding::NextUChar32(MadUCQueue &ucqueue, UChar32BytesMapper& mapper)
 {
-	wxFileOffset rest;
-	wxByte* buf = mapper.BufferLoadBytes(rest, 4);
+	int64_t rest;
+	ubyte* buf = mapper.BufferLoadBytes(rest, 4);
 	if (buf == nullptr)
 		return false;
 
 	if(rest>=4)
 	{
-		ucs4_t ucs4=wxUINT32_SWAP_ON_BE(*((ucs4_t*)buf));
+		ucs4_t ucs4 = ToLE(*((uint32_t*)buf));
 		if(ucs4>0x10FFFF || ucs4<0)
 		{
 			ucs4='?'; // not a valid ucs4 char
@@ -351,53 +343,45 @@ bool WXMEncodingUTF32LE::NextUChar32(MadUCQueue &ucqueue, UChar32BytesMapper& ma
 	return true;
 }
 
-size_t WXMEncodingUTF32BE::UCS4toMultiByte(ucs4_t ucs4, wxByte* buf)
+size_t UTF32BE_Encoding::UCS4toMultiByte(ucs4_t ucs4, ubyte* buf)
 {
-	wxASSERT(ucs4>=0 && ucs4<=0x10FFFF);
+	// wxASSERT(ucs4>=0 && ucs4<=0x10FFFF);
 
-#if wxBYTE_ORDER == wxBIG_ENDIAN
-	*((ucs4_t*)buf) = ucs4;
-#else
-	wxByte *p = (wxByte*)&ucs4;
-	buf[0]=p[3];
-	buf[1]=p[2];
-	buf[2]=p[1];
-	buf[3]=p[0];
-#endif
+	*((ucs4_t*)buf) = ToBE((uint32_t)ucs4);
 	return 4;
 }
-bool WXMEncodingUTF32BE::IsUChar32_LineFeed(WXMBlockDumper& dumper, size_t len)
+bool UTF32BE_Encoding::IsUChar32_LineFeed(BlockDumper& dumper, size_t len)
 {
 	// m_Size must be multiple of 4
 	if((len & 3) != 0)
 		return false;
 
-	wxByte buf[4];
+	ubyte buf[4];
 	dumper.Dump(buf, 4);
 	return buf[3]==0x0A && buf[2]==0 && buf[1]==0 && buf[0]==0;
 }
-ucs4_t WXMEncodingUTF32BE::PeekUChar32_Newline(WXMBlockDumper& dumper, size_t len)
+ucs4_t UTF32BE_Encoding::PeekUChar32_Newline(BlockDumper& dumper, size_t len)
 {
 	// m_Size must be multiple of 4
 	if((len & 3) != 0)
 		return 0;
 
-	wxByte buf[4];
+	ubyte buf[4];
 	dumper.Dump(buf, 4);
 	if ((buf[3]==0x0A || buf[3]==0x0D) && buf[2]==0 && buf[1]==0 && buf[0]==0)
 		return (ucs4_t)buf[3];
 	return 0;
 }
-bool WXMEncodingUTF32BE::NextUChar32(MadUCQueue &ucqueue, UChar32BytesMapper& mapper)
+bool UTF32BE_Encoding::NextUChar32(MadUCQueue &ucqueue, UChar32BytesMapper& mapper)
 {
-	wxFileOffset rest;
-	wxByte* buf = mapper.BufferLoadBytes(rest, 4);
+	int64_t rest;
+	ubyte* buf = mapper.BufferLoadBytes(rest, 4);
 	if (buf == nullptr)
 		return false;
 
 	if(rest>=4)
 	{
-		ucs4_t ucs4=wxUINT32_SWAP_ON_LE(*((ucs4_t*)buf));
+		ucs4_t ucs4 = ToBE(*((uint32_t*)buf));
 		if(ucs4>0x10FFFF || ucs4<0)
 		{
 			ucs4='?'; // not a valid ucs4 char
@@ -411,4 +395,4 @@ bool WXMEncodingUTF32BE::NextUChar32(MadUCQueue &ucqueue, UChar32BytesMapper& ma
 	return true;
 }
 
-};// namespace wxm
+};// namespace xm

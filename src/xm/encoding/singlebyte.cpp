@@ -1,13 +1,13 @@
 ///////////////////////////////////////////////////////////////////////////////
 // vim:         ts=4 sw=4
-// Name:        wxm/encoding/singlebyte.cpp
+// Name:        xm/encoding/singlebyte.cpp
 // Description: Define the Single-byte Encodings Supported by wxMEdit
 // Copyright:   2013-2015  JiaYanwei   <wxmedit@gmail.com>
 // License:     GPLv3
 ///////////////////////////////////////////////////////////////////////////////
 
 #include "singlebyte.h"
-#include "../../xm/cxx11.h"
+#include "../cxx11.h"
 
 #include <boost/scoped_ptr.hpp>
 
@@ -16,7 +16,7 @@
 #define new new(_NORMAL_BLOCK ,__FILE__, __LINE__)
 #endif
 
-namespace wxm
+namespace xm
 {
 
 void OEMTableFixer::fix(ByteUnicodeArr& toutab, UnicodeByteMap& fromutab)
@@ -213,22 +213,22 @@ void ISO8859_16TableFixer::fix(ByteUnicodeArr& toutab, UnicodeByteMap& fromutab)
 	toutab[0xFE] = 0x00021B; fromutab[0x00021B] = 0xFE; fromutab.erase(0x0000FE);
 }
 
-SingleByteEncodingTableFixer* WXMEncodingSingleByte::CreateSingleByteEncodingTableFixer()
+SingleByteEncodingTableFixer* SingleByteEncoding::CreateSingleByteEncodingTableFixer()
 {
-	if (m_name == wxT("CP437"))
+	if (m_name == L"CP437")
 		return new CP437TableFixer();
-	if (m_name == wxT("CP850") || m_name == wxT("CP855") || m_name == wxT("CP866"))
+	if (m_name == L"CP850" || m_name == L"CP855" || m_name == L"CP866")
 		return new OEMTableFixer();
-	if (m_name == wxT("CP852"))
+	if (m_name == L"CP852")
 		return new CP852TableFixer();
-	if (m_name == wxT("Windows-874"))
+	if (m_name == L"Windows-874")
 		return new Windows874TableFixer();
-	if (m_name == wxT("ISO-8859-16"))
+	if (m_name == L"ISO-8859-16")
 		return new ISO8859_16TableFixer();
 	return new SingleByteEncodingTableFixer();
 }
 
-void WXMEncodingSingleByte::MultiByteInit()
+void SingleByteEncoding::MultiByteInit()
 {
 	m_icucnv = new ICUConverter(m_innername);
 
@@ -265,12 +265,12 @@ void WXMEncodingSingleByte::MultiByteInit()
 	enc_fix->fix(m_tounicode, m_fromunicode);
 }
 
-ucs4_t WXMEncodingSingleByte::MultiBytetoUCS4(const wxByte* buf)
+ucs4_t SingleByteEncoding::MultiBytetoUCS4(const ubyte* buf)
 {
 	return m_tounicode[*buf];
 }
 
-size_t WXMEncodingSingleByte::UCS4toMultiByte(ucs4_t ucs4, wxByte* buf)
+size_t SingleByteEncoding::UCS4toMultiByte(ucs4_t ucs4, ubyte* buf)
 {
 	UnicodeByteMap::const_iterator it = m_fromunicode.find(ucs4);
 	if (it == m_fromunicode.end() || it->second == 0)
@@ -280,10 +280,10 @@ size_t WXMEncodingSingleByte::UCS4toMultiByte(ucs4_t ucs4, wxByte* buf)
 	return 1;
 }
 
-bool WXMEncodingSingleByte::NextUChar32(MadUCQueue &ucqueue, UChar32BytesMapper& mapper)
+bool SingleByteEncoding::NextUChar32(MadUCQueue &ucqueue, UChar32BytesMapper& mapper)
 {
-	wxFileOffset rest;
-	wxByte* buf = mapper.BufferLoadBytes(rest, 4);
+	int64_t rest;
+	ubyte* buf = mapper.BufferLoadBytes(rest, 4);
 	if (buf == nullptr)
 		return false;
 
@@ -293,4 +293,4 @@ bool WXMEncodingSingleByte::NextUChar32(MadUCQueue &ucqueue, UChar32BytesMapper&
 	return true;
 }
 
-};// namespace wxm
+};// namespace xm

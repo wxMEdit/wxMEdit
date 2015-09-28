@@ -9,7 +9,16 @@
 #ifndef _TRAD_SIMP_H_
 #define _TRAD_SIMP_H_
 
-#include "ucs4_t.h"
+#ifdef _MSC_VER
+# pragma warning( push )
+# pragma warning( disable : 4996 )
+#endif
+// disable 4996 {
+#include <wx/defs.h>
+// disable 4996 }
+#ifdef _MSC_VER
+# pragma warning( pop )
+#endif
 
 // Trad: Traditional Chinese characters
 // Simp: Simplified Chinese characters

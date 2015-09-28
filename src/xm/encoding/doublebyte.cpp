@@ -1,62 +1,64 @@
 ///////////////////////////////////////////////////////////////////////////////
 // vim:         ts=4 sw=4
-// Name:        wxm/encoding/doublebyte.cpp
+// Name:        xm/encoding/doublebyte.cpp
 // Description: Define the Double-byte Encodings Supported by wxMEdit
 // Copyright:   2013-2015  JiaYanwei   <wxmedit@gmail.com>
 // License:     GPLv3
 ///////////////////////////////////////////////////////////////////////////////
 
 #include "doublebyte.h"
-#include "../../xm/cxx11.h"
-#include "../../xm/utils.hpp"
+#include "../cxx11.h"
+#include "../utils.hpp"
+
+#include <cstring>
 
 #ifdef _DEBUG
 #include <crtdbg.h>
 #define new new(_NORMAL_BLOCK ,__FILE__, __LINE__)
 #endif
 
-namespace wxm
+namespace xm
 {
 
-void DoubleByteEncodingTableFixer::RemoveLeadByte(wxByte b)
+void DoubleByteEncodingTableFixer::RemoveLeadByte(ubyte b)
 {
-	m_leadbyte_map[b] = WXMEncodingDoubleByte::lbNotLeadByte;
+	m_leadbyte_map[b] = DoubleByteEncoding::lbNotLeadByte;
 }
-void DoubleByteEncodingTableFixer::AddLeadByte(wxByte b)
+void DoubleByteEncodingTableFixer::AddLeadByte(ubyte b)
 {
-	m_leadbyte_map[b] = WXMEncodingDoubleByte::lbLeadByte;
+	m_leadbyte_map[b] = DoubleByteEncoding::lbLeadByte;
 }
 
-void DoubleByteEncodingTableFixer::RemoveMB2U(wxWord db)
+void DoubleByteEncodingTableFixer::RemoveMB2U(uint16_t db)
 {
-	m_mb2u_map[db] = WXMEncoding::svtInvaliad;
+	m_mb2u_map[db] = Encoding::svtInvaliad;
 }
-void DoubleByteEncodingTableFixer::ChangeMB2U(wxWord db, ucs4_t u)
+void DoubleByteEncodingTableFixer::ChangeMB2U(uint16_t db, ucs4_t u)
 {
 	m_mb2u_map[db] = u;
 }
 
 void DoubleByteEncodingTableFixer::RemoveU2MB(ucs4_t u)
 {
-	m_u2mb_map[u] = WXMEncoding::svtInvaliad;
+	m_u2mb_map[u] = Encoding::svtInvaliad;
 }
-void DoubleByteEncodingTableFixer::ChangeU2MB(ucs4_t u, wxWord db)
+void DoubleByteEncodingTableFixer::ChangeU2MB(ucs4_t u, uint16_t db)
 {
 	m_u2mb_map[u] = db;
 }
-int DoubleByteEncodingTableFixer::LeadByteInfo(wxByte b)
+int DoubleByteEncodingTableFixer::LeadByteInfo(ubyte b)
 {
-	return xm::wrap_map(m_leadbyte_map).get(b, WXMEncodingDoubleByte::lbUnset);
+	return wrap_map(m_leadbyte_map).get(b, DoubleByteEncoding::lbUnset);
 }
 
-ucs4_t DoubleByteEncodingTableFixer::MB2UInfo(wxWord db)
+ucs4_t DoubleByteEncodingTableFixer::MB2UInfo(uint16_t db)
 {
-	return xm::wrap_map(m_mb2u_map).get(db, WXMEncoding::svtUCS4NotCached);
+	return wrap_map(m_mb2u_map).get(db, Encoding::svtUCS4NotCached);
 }
 
-wxWord DoubleByteEncodingTableFixer::U2MBInfo(ucs4_t u)
+uint16_t DoubleByteEncodingTableFixer::U2MBInfo(ucs4_t u)
 {
-	return xm::wrap_map(m_u2mb_map).get(u, WXMEncoding::svtDByteNotCached);
+	return wrap_map(m_u2mb_map).get(u, Encoding::svtDByteNotCached);
 }
 
 void MS932TableFixer::fix()
@@ -91,17 +93,17 @@ void MS932TableFixer::fix()
 	RemoveU2MB(0x00F86F);
 }
 
-DoubleByteEncodingTableFixer* WXMEncodingDoubleByte::CreateDoubleByteEncodingTableFixer()
+DoubleByteEncodingTableFixer* DoubleByteEncoding::CreateDoubleByteEncodingTableFixer()
 {
 	if (m_innername == "MS932")
 		return new MS932TableFixer();
 	return new DoubleByteEncodingTableFixer();
 }
 
-wxWord WXMEncodingDoubleByte::GetCachedMBofUCS4(ucs4_t u)
+uint16_t DoubleByteEncoding::GetCachedMBofUCS4(ucs4_t u)
 {
-	wxWord mb = m_dbfix->U2MBInfo(u);
-	if (mb != (wxWord)svtDByteNotCached)
+	uint16_t mb = m_dbfix->U2MBInfo(u);
+	if (mb != (uint16_t)svtDByteNotCached)
 		return mb;
 
 	if (u < 0x10000)
@@ -111,7 +113,7 @@ wxWord WXMEncodingDoubleByte::GetCachedMBofUCS4(ucs4_t u)
 	return svtInvaliad;
 }
 
-void WXMEncodingDoubleByte::CacheMBofUCS4(wxWord& mb, ucs4_t u)
+void DoubleByteEncoding::CacheMBofUCS4(uint16_t& mb, ucs4_t u)
 {
 	// use DoubleByteEncodingTableFixer to support non-BMP
 	if (u >= 0x10000)
@@ -120,20 +122,20 @@ void WXMEncodingDoubleByte::CacheMBofUCS4(wxWord& mb, ucs4_t u)
 		return;
 	}
 
-	wxByte mbs[3];
+	ubyte mbs[3];
 	size_t len = m_mbcnv->WC2MB((char*)mbs, 3, u);
 
-	wxASSERT( len<=2 );
+	// wxASSERT( len<=2 );
 	mbs[len] = '\0';
-	mb = (((wxWord)mbs[0]) << 8) | mbs[1];
+	mb = (((uint16_t)mbs[0]) << 8) | mbs[1];
 
 	if(len == 0)
-		mb = (wxWord)svtInvaliad;
+		mb = (uint16_t)svtInvaliad;
 
 	m_bmp2mb_tab[u] = mb;
 }
 
-void WXMEncodingDoubleByte::MultiByteInit()
+void DoubleByteEncoding::MultiByteInit()
 {
 	InitMBConverter();
 
@@ -142,15 +144,15 @@ void WXMEncodingDoubleByte::MultiByteInit()
 
 	memset(m_b2u_tab.c_array(), svtInvaliad, sizeof(ucs4_t)*256);
 
-	memset(m_bmp2mb_tab.c_array(), svtNotCached, sizeof(wxWord)*0x10000);
+	memset(m_bmp2mb_tab.c_array(), svtNotCached, sizeof(uint16_t)*0x10000);
 
 	memset(m_leadbyte_tab.c_array(), lbUnset, 256);
 	m_leadbyte_tab[0]=lbNotLeadByte;
 }
 
-ucs4_t WXMEncodingDoubleByte::MultiBytetoUCS4(const wxByte* buf)
+ucs4_t DoubleByteEncoding::MultiBytetoUCS4(const ubyte* buf)
 {
-	wxWord dbtmp = (buf[0] << 8) | buf[1];
+	uint16_t dbtmp = (buf[0] << 8) | buf[1];
 	ucs4_t uinfo = m_dbfix->MB2UInfo(dbtmp);
 	if (uinfo != (ucs4_t)svtUCS4NotCached)
 		return uinfo;
@@ -161,7 +163,7 @@ ucs4_t WXMEncodingDoubleByte::MultiBytetoUCS4(const wxByte* buf)
 	return (buf[1] == '\0')? m_b2u_tab[buf[0]]: (ucs4_t)svtInvaliad;
 }
 
-bool WXMEncodingDoubleByte::IsLeadByte(wxByte byte)
+bool DoubleByteEncoding::IsLeadByte(ubyte byte)
 {
 	int lbinfo = m_dbfix->LeadByteInfo(byte);
 	if (lbinfo != lbUnset)
@@ -169,7 +171,7 @@ bool WXMEncodingDoubleByte::IsLeadByte(wxByte byte)
 
 	if(m_leadbyte_tab[byte]==lbUnset)
 	{
-		wxByte dbs[3]={byte,0,0};
+		ubyte dbs[3]={byte,0,0};
 		UChar32 ch;
 
 		// check first byte
@@ -199,13 +201,13 @@ bool WXMEncodingDoubleByte::IsLeadByte(wxByte byte)
 	return m_leadbyte_tab[byte]==lbLeadByte;
 }
 
-size_t WXMEncodingDoubleByte::UCS4toMultiByte(ucs4_t ucs4, wxByte* buf)
+size_t DoubleByteEncoding::UCS4toMultiByte(ucs4_t ucs4, ubyte* buf)
 {
-	wxWord mb = GetCachedMBofUCS4(ucs4);
-	if (mb == (wxWord)svtDByteNotCached)
+	uint16_t mb = GetCachedMBofUCS4(ucs4);
+	if (mb == (uint16_t)svtDByteNotCached)
 		CacheMBofUCS4(mb, ucs4);
 
-	if(mb == (wxWord)svtInvaliad)
+	if(mb == (uint16_t)svtInvaliad)
 		return 0;
 
 	buf[0] = mb >> 8;
@@ -216,17 +218,17 @@ size_t WXMEncodingDoubleByte::UCS4toMultiByte(ucs4_t ucs4, wxByte* buf)
 	return 2;
 }
 
-bool WXMEncodingDoubleByte::NextUChar32(MadUCQueue &ucqueue, UChar32BytesMapper& mapper)
+bool DoubleByteEncoding::NextUChar32(MadUCQueue &ucqueue, UChar32BytesMapper& mapper)
 {
-	wxFileOffset rest;
-	wxByte* buf = mapper.BufferLoadBytes(rest, 2);
+	int64_t rest;
+	ubyte* buf = mapper.BufferLoadBytes(rest, 2);
 	if (buf == nullptr)
 		return false;
 
 	ucs4_t uc;
 	if(rest==1 || buf[1] == 0 || (uc=MultiBytetoUCS4(buf)) == (ucs4_t)svtInvaliad)
 	{
-		wxByte db[2] = {buf[0], 0}; // re-check by first byte
+		ubyte db[2] = {buf[0], 0}; // re-check by first byte
 		if((uc=MultiBytetoUCS4(db)) == (ucs4_t)svtInvaliad)
 			uc = buf[0];
 
@@ -238,4 +240,4 @@ bool WXMEncodingDoubleByte::NextUChar32(MadUCQueue &ucqueue, UChar32BytesMapper&
 	return true;
 }
 
-};// namespace wxm
+};// namespace xm

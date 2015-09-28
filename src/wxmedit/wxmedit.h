@@ -34,10 +34,9 @@
 
 #include "wxm_lines.h"
 #include "wxmedit_command.h"
-#include "../wxm/encoding/encoding.h"
+#include "../xm/encoding/encoding.h"
 #include "wxm_syntax.h"
 #include "wxm_undo.h"
-#include "ucs4_t.h"
 
 #include <wx/confbase.h>
 
@@ -300,7 +299,7 @@ public:
 
 private:
     friend class MadSyntax;
-    friend struct wxm::WXMEncoding;
+    friend struct xm::Encoding;
     friend class MadLines;
     friend class MadMouseMotionTimer;
     friend struct wxm::WXMSearcher;
@@ -319,7 +318,7 @@ protected:
     MadLines        *m_Lines;
 private:
     MadSyntax       *m_Syntax;
-    wxm::WXMEncoding     *m_Encoding;
+    xm::Encoding *m_Encoding;
 
     MadUndoBuffer   *m_UndoBuffer;
     MadUndo         *m_SavePoint;
@@ -762,7 +761,7 @@ public: // basic functions
     void ApplySyntaxAttributes(MadSyntax *syn, bool matchTitle);
     void LoadDefaultSyntaxScheme() { MadSyntax::LoadScheme(wxT("Default"), m_Syntax); }
 
-    void SetEncoding(const wxString &encname);
+    void SetEncoding(const std::wstring & encname);
     wxString GetEncodingName() { return m_Encoding->GetName(); }
     wxString GetEncodingDescription() { return m_Encoding->GetDescription(); }
     bool IsUnicodeFile() { return m_Encoding->IsUnicodeEncoding(); }
@@ -985,7 +984,7 @@ public: // basic functions
 
     virtual wxm::WXMSearcher* Searcher(bool inhex, bool use_regex) = 0;
 
-    bool LoadFromFile(const wxString &filename, const wxString &encoding = wxEmptyString);
+    bool LoadFromFile(const wxString &filename, const std::wstring & encoding = wxEmptyString);
     bool SaveToFile(const wxString &filename);
     bool Reload();
     // if the file is modified by another app, reload it.
@@ -1008,7 +1007,7 @@ public: // basic functions
     int Save(bool ask, const wxString &title, bool saveas);
 
 public: // advanced functions
-    void ConvertEncoding(const wxString &newenc, MadConvertEncodingFlag flag);
+    void ConvertEncoding(const std::wstring & newenc, MadConvertEncodingFlag flag);
     void ConvertChinese(MadConvertEncodingFlag flag);
 
     bool HasBOM()

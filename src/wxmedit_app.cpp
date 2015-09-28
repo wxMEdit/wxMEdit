@@ -264,7 +264,7 @@ bool OpenFilesInPrevInst(const wxString& flist)
 
 bool MadEditApp::OnInit()
 {
-    wxm::WXMEncodingManager::PreInit();
+    xm::EncodingManager::PreInit();
 
     xm::RemoteAccessInit();
 

@@ -1,15 +1,15 @@
 ///////////////////////////////////////////////////////////////////////////////
 // vim:         ts=4 sw=4
-// Name:        wxm/encoding/cp20932.h
+// Name:        xm/encoding/cp20932.h
 // Description: Define the Double-byte Encoding CP20932
 // Copyright:   2013-2015  JiaYanwei   <wxmedit@gmail.com>
 // License:     GPLv3
 ///////////////////////////////////////////////////////////////////////////////
 
-#ifndef _WXM_ENCODING_CP20932_H_
-#define _WXM_ENCODING_CP20932_H_
+#ifndef _XM_ENCODING_CP20932_H_
+#define _XM_ENCODING_CP20932_H_
 
-#include "../../xm/cxx11.h"
+#include "../cxx11.h"
 #include "doublebyte.h"
 
 #ifdef _MSC_VER
@@ -17,7 +17,7 @@
 # pragma warning( disable : 4250 )
 #endif
 
-namespace wxm
+namespace xm
 {
 
 struct CP20932Converter: public ICUConverter
@@ -38,11 +38,11 @@ private:
 	void icu42fix();
 };
 
-struct WXMEncodingCP20932: public WXMEncodingDoubleByteISO646Compatible
+struct CP20932Encoding: public DoubleByteEncodingISO646Compatible
 {
 private:
-	friend WXMEncoding* WXMEncodingManager::GetWxmEncoding(ssize_t idx);
-	~WXMEncodingCP20932(){}
+	friend Encoding* EncodingManager::GetEncoding(ssize_t idx);
+	~CP20932Encoding(){}
 
 	virtual void InitMBConverter() override
 	{
@@ -55,10 +55,10 @@ private:
 	}
 };
 
-};// namespace wxm
+};// namespace xm
 
 #ifdef _MSC_VER
 # pragma warning( pop )
 #endif
 
-#endif // _WXM_ENCODING_CP20932_H_
+#endif // _XM_ENCODING_CP20932_H_

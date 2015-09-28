@@ -10,7 +10,7 @@
 
 #include "../xm/cxx11.h"
 #include "../wxm/choice_map.hpp"
-#include "../wxmedit/ucs4_t.h"
+#include "../xm/encoding/encoding_def.h"
 
 //(*Headers(WXMEnumerationDialog)
 #include <wx/sizer.h>

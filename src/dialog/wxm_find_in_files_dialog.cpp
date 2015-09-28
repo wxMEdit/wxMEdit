@@ -224,10 +224,10 @@ WXMFindInFilesDialog::WXMFindInFilesDialog(wxWindow* parent,wxWindowID id,const 
 	// build encoding list
 	wxString systemenc(_("Automatic Detection"));
 	WxComboBoxEncoding->Append(systemenc);
-	size_t cnt=wxm::WXMEncodingManager::Instance().GetEncodingsCount();
+	size_t cnt=xm::EncodingManager::Instance().GetEncodingsCount();
 	for(size_t i=0;i<cnt;i++)
 	{
-		WxComboBoxEncoding->Append(wxm::WXMEncodingManager::Instance().GetEncodingNameWithAliases(i));
+		WxComboBoxEncoding->Append(xm::EncodingManager::Instance().GetEncodingNameWithAliases(i));
 	}
 	WxComboBoxEncoding->SetValue(systemenc);
 
@@ -660,9 +660,9 @@ void WXMFindInFilesDialog::FindReplaceInFiles(bool bReplace)
 				if(madedit==nullptr)
 				{
 					madedit=tempedit.get();
-					wxString enc = wxm::WXMEncodingManager::ExtractEncodingName(WxComboBoxEncoding->GetValue());
-					if(enc == wxm::WXMEncodingManager::ExtractEncodingName(WxComboBoxEncoding->GetString(0)))
-						enc.Clear();
+					std::wstring enc = xm::EncodingManager::ExtractEncodingName(WxComboBoxEncoding->GetValue().wc_str());
+					if(enc == xm::EncodingManager::ExtractEncodingName(WxComboBoxEncoding->GetString(0).wc_str()))
+						enc.clear();
 					madedit->LoadFromFile(*fnit, enc);
 				}
 				++fnit;

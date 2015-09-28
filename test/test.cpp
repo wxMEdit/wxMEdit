@@ -1,5 +1,6 @@
 #include "encoding_test.h"
 #include "encdet_test.h"
+#include "../src/xm/encoding/external.h"
 
 #include <boost/version.hpp>
 
@@ -10,6 +11,10 @@
 #endif
 
 #include <iostream>
+
+std::wstring GetMSCPFontName(const std::wstring & mscp) { return L"monospace"; }
+std::wstring GetASCIIArtFontName() { return L"monospace"; }
+const wchar_t * LocalizeText(const wchar_t* txt) { return txt; }
 
 boost::unit_test::test_suite* init_unit_test_suite(int argc, char* argv[])
 {

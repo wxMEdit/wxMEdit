@@ -1,15 +1,15 @@
 ///////////////////////////////////////////////////////////////////////////////
 // vim:         ts=4 sw=4
-// Name:        wxm/encoding/singlebyte.h
+// Name:        xm/encoding/singlebyte.h
 // Description: Define the Single-byte Encodings Supported by wxMEdit
 // Copyright:   2013-2015  JiaYanwei   <wxmedit@gmail.com>
 // License:     GPLv3
 ///////////////////////////////////////////////////////////////////////////////
 
-#ifndef _WXM_ENCODING_SINGLEBYTE_H_
-#define _WXM_ENCODING_SINGLEBYTE_H_
+#ifndef _XM_ENCODING_SINGLEBYTE_H_
+#define _XM_ENCODING_SINGLEBYTE_H_
 
-#include "../../xm/cxx11.h"
+#include "../cxx11.h"
 #include "multibyte.h"
 
 #include <boost/array.hpp>
@@ -19,11 +19,11 @@
 # pragma warning( disable : 4250 )
 #endif
 
-namespace wxm
+namespace xm
 {
 
 typedef boost::array<ucs4_t, 256> ByteUnicodeArr;
-typedef std::map<ucs4_t, wxByte> UnicodeByteMap;
+typedef std::map<ucs4_t, ubyte> UnicodeByteMap;
 
 struct SingleByteEncodingTableFixer
 {
@@ -61,11 +61,11 @@ struct ISO8859_16TableFixer: public SingleByteEncodingTableFixer
 	virtual void fix(ByteUnicodeArr& toutab, UnicodeByteMap& fromutab) override;
 };
 
-struct WXMEncodingSingleByte: public WXMEncodingMultiByte
+struct SingleByteEncoding: public MultiByteEncoding
 {
 	virtual void MultiByteInit() override;
-	virtual ucs4_t MultiBytetoUCS4(const wxByte* buf) override;
-	virtual size_t UCS4toMultiByte(ucs4_t ucs4, wxByte* buf) override;
+	virtual ucs4_t MultiBytetoUCS4(const ubyte* buf) override;
+	virtual size_t UCS4toMultiByte(ucs4_t ucs4, ubyte* buf) override;
 	virtual bool NextUChar32(MadUCQueue &ucqueue, UChar32BytesMapper& mapper) override;
 
 	virtual bool IsSingleByteEncoding() override
@@ -83,10 +83,10 @@ private:
 	UnicodeByteMap m_fromunicode;
 
 protected:
-	WXMEncodingSingleByte(): m_icucnv(nullptr)
+	SingleByteEncoding(): m_icucnv(nullptr)
 	{
 	}
-	~WXMEncodingSingleByte()
+	~SingleByteEncoding()
 	{
 		delete m_icucnv; m_icucnv = nullptr;
 	}
@@ -94,29 +94,29 @@ protected:
 	virtual SingleByteEncodingTableFixer* CreateSingleByteEncodingTableFixer();
 };
 
-struct WXMEncodingSingleByteISO646Compatible: public WXMEncodingSingleByte, public WXMEncodingDecoderISO646
+struct SingleByteEncodingISO646Compatible: public SingleByteEncoding, public EncodingDecoderISO646
 {
 private:
-	friend WXMEncoding* WXMEncodingManager::GetWxmEncoding(ssize_t idx);
-	WXMEncodingSingleByteISO646Compatible(): WXMEncodingSingleByte(), WXMEncodingDecoderISO646() {}
-	~WXMEncodingSingleByteISO646Compatible(){}
+	friend Encoding* EncodingManager::GetEncoding(ssize_t idx);
+	SingleByteEncodingISO646Compatible(): SingleByteEncoding(), EncodingDecoderISO646() {}
+	~SingleByteEncodingISO646Compatible(){}
 };
 
-struct WXMEncodingSingleByteNonISO646Compatible: public WXMEncodingSingleByte
+struct SingleByteEncodingNonISO646Compatible: public SingleByteEncoding
 {
-	virtual bool IsUChar32_LineFeed(const wxByte* buf, size_t len) override
+	virtual bool IsUChar32_LineFeed(const ubyte* buf, size_t len) override
 	{
 		return MultiBytetoUCS4(buf) == (ucs4_t)0x00000A;
 	}
-	virtual bool IsUChar32_LineFeed(WXMBlockDumper& dumper, size_t len) override
+	virtual bool IsUChar32_LineFeed(BlockDumper& dumper, size_t len) override
 	{
-		wxByte b;
+		ubyte b;
 		dumper.Dump(&b, 1);
 		return MultiBytetoUCS4(&b) == (ucs4_t)0x00000A;
 	}
-	virtual ucs4_t PeekUChar32_Newline(WXMBlockDumper& dumper, size_t len) override
+	virtual ucs4_t PeekUChar32_Newline(BlockDumper& dumper, size_t len) override
 	{
-		wxByte b;
+		ubyte b;
 		dumper.Dump(&b, 1);
 		ucs4_t u = MultiBytetoUCS4(&b);
 		if (u == (ucs4_t)0x00000A || u == (ucs4_t)0x00000D)
@@ -125,27 +125,27 @@ struct WXMEncodingSingleByteNonISO646Compatible: public WXMEncodingSingleByte
 	}
 
 protected:
-	friend WXMEncoding* WXMEncodingManager::GetWxmEncoding(ssize_t idx);
-	WXMEncodingSingleByteNonISO646Compatible(): WXMEncodingSingleByte() {}
-	~WXMEncodingSingleByteNonISO646Compatible() {}
+	friend Encoding* EncodingManager::GetEncoding(ssize_t idx);
+	SingleByteEncodingNonISO646Compatible(): SingleByteEncoding() {}
+	~SingleByteEncodingNonISO646Compatible() {}
 };
 
-struct WXMEncodingCP437Art: public WXMEncodingSingleByteNonISO646Compatible
+struct CP437ArtEncoding: public SingleByteEncodingNonISO646Compatible
 {
 	virtual SingleByteEncodingTableFixer* CreateSingleByteEncodingTableFixer() override
 	{
 		return new CP437ArtTableFixer();
 	}
 private:
-	friend WXMEncoding* WXMEncodingManager::GetWxmEncoding(ssize_t idx);
-	WXMEncodingCP437Art(): WXMEncodingSingleByteNonISO646Compatible() {}
-	~WXMEncodingCP437Art() {}
+	friend Encoding* EncodingManager::GetEncoding(ssize_t idx);
+	CP437ArtEncoding(): SingleByteEncodingNonISO646Compatible() {}
+	~CP437ArtEncoding() {}
 };
 
-};// namespace wxm
+};// namespace xm
 
 #ifdef _MSC_VER
 # pragma warning( pop )
 #endif
 
-#endif // _WXM_ENCODING_SINGLEBYTE_H_
+#endif // _XM_ENCODING_SINGLEBYTE_H_

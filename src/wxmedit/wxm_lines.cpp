@@ -9,10 +9,10 @@
 
 #include "wxm_lines.h"
 #include "../xm/cxx11.h"
-#include "../wxm/encoding/encoding.h"
-#include "../wxm/encdet.h"
+#include "../xm/encoding/encoding.h"
+#include "../xm/encdet.h"
 #include "../wxm/def.h"
-#include "mad_encdet.h"
+#include "../xm/mad_encdet.h"
 #include "wxm_syntax.h"
 #include "wxmedit.h"
 
@@ -109,7 +109,7 @@ size_t MadConvFileName::MB2WC(wchar_t *outputBuf, const char *psz, size_t output
 
     if(g_MB2WC_check_dir_filename==false)
     {
-        g_MB2WC_is_utf8=wxm::IsUTF8((wxByte *)psz, int(len));
+        g_MB2WC_is_utf8=xm::IsUTF8((ubyte *)psz, int(len));
 
         if(g_MB2WC_is_utf8)
         {
@@ -140,7 +140,7 @@ size_t MadConvFileName::MB2WC(wchar_t *outputBuf, const char *psz, size_t output
         memcpy(pbuf, psz, dirlen);
         cbuf[dirlen]=0;
 
-        bool is_utf8=wxm::IsUTF8((wxByte *)pbuf, int(dirlen));
+		bool is_utf8=xm::IsUTF8((ubyte *)pbuf, int(dirlen));
         if(is_utf8)
         {
             dirret=wxConvUTF8.MB2WC(outputBuf, pbuf, outputSize);
@@ -157,7 +157,7 @@ size_t MadConvFileName::MB2WC(wchar_t *outputBuf, const char *psz, size_t output
     size_t fnret=0;
     if(fnlen!=0)
     {
-        bool is_utf8=wxm::IsUTF8((wxByte *)psz+dirlen, int(fnlen));
+		bool is_utf8=xm::IsUTF8((ubyte *)psz+dirlen, int(fnlen));
         wchar_t *obuf=outputBuf;
         if(outputBuf!=nullptr)
             obuf+=dirret;
@@ -611,7 +611,7 @@ void MadLine::Empty(void)
     m_BracePairIndices.clear();
 }
 
-ucs4_t MadLine::LastUCharIsNewLine(wxm::WXMEncoding *encoding)
+ucs4_t MadLine::LastUCharIsNewLine(xm::Encoding *encoding)
 {
     if(m_Size == 0)
         return 0;
@@ -619,18 +619,18 @@ ucs4_t MadLine::LastUCharIsNewLine(wxm::WXMEncoding *encoding)
     MadBlockIterator bit = m_Blocks.end();
     --bit;
 
-    wxm::WXMBackwardBlockDumper dumper(bit);
+    xm::BackwardBlockDumper dumper(bit);
 
     return encoding->PeekUChar32_Newline(dumper, size_t(m_Size));
 }
 
-bool MadLine::FirstUCharIs0x0A(wxm::WXMEncoding *encoding)
+bool MadLine::FirstUCharIs0x0A(xm::Encoding *encoding)
 {
     if(m_Size == 0) return false;
 
     MadBlockIterator bit = m_Blocks.begin();
 
-    wxm::WXMForwardBlockDumper dumper(bit);
+    xm::ForwardBlockDumper dumper(bit);
 
     return encoding->IsUChar32_LineFeed(dumper, size_t(m_Size));
 }
@@ -751,7 +751,7 @@ void MadLines::Clear(bool freeAll)
     m_MemData->Reset();
 }
 
-void MadLines::SetEncoding(wxm::WXMEncoding *encoding)
+void MadLines::SetEncoding(xm::Encoding *encoding)
 {
     m_Encoding=encoding;
 }
@@ -834,7 +834,8 @@ void MadLines::MoveUChar32Bytes(MadUCQueue &ucqueue, ucs4_t uc, size_t len)
     m_NextUChar_BufferStart += len;
     m_NextUChar_BufferSize -= len;
 }
-wxByte* MadLines::BufferLoadBytes(wxFileOffset& rest, size_t buf_len)
+
+ubyte* MadLines::BufferLoadBytes(int64_t& rest, size_t buf_len)
 {
     rest = m_NextUChar_LineSize - m_NextUChar_Pos;
     if (rest <= 0)
@@ -856,8 +857,8 @@ bool MadLines::NextUChar(MadUCQueue &ucqueue)
 
 bool MadLines::NextUCharIs0x0A(void)
 {
-    wxFileOffset rest;
-    wxByte* buf = BufferLoadBytes(rest, 4);
+    int64_t rest;
+    ubyte* buf = BufferLoadBytes(rest, 4);
     if (buf == nullptr)
         return false;
 
@@ -2288,7 +2289,7 @@ void MadLines::InitFileSyntax()
     m_MadEdit->m_Syntax = m_Syntax;
 }
 
-bool MadLines::LoadFromFile(const wxString &filename, const wxString &encoding)
+bool MadLines::LoadFromFile(const wxString& filename, const std::wstring& encoding)
 {
     MadFileData *fd = new MadFileData(filename);
 
@@ -2335,7 +2336,7 @@ bool MadLines::LoadFromFile(const wxString &filename, const wxString &encoding)
         sz = size_t(m_FileData->m_Size);
 
     wxString defaultenc;
-    if(encoding.IsEmpty())
+    if(encoding.empty())
     {
         m_MadEdit->m_Config->Read(wxT("/wxMEdit/DefaultEncoding"), &defaultenc);
     }
@@ -2358,8 +2359,8 @@ bool MadLines::LoadFromFile(const wxString &filename, const wxString &encoding)
 
         m_MadEdit->m_LoadingFile = false;
 
-        if(m_Syntax->m_Encoding.IsEmpty())
-            m_MadEdit->SetEncoding(defaultenc);
+        if(m_Syntax->m_Encoding.empty())
+            m_MadEdit->SetEncoding(defaultenc.wc_str());
         else
             m_MadEdit->SetEncoding(m_Syntax->m_Encoding);
 
@@ -2462,7 +2463,7 @@ bool MadLines::LoadFromFile(const wxString &filename, const wxString &encoding)
 
     if(!preset)
     {
-        SetFileEncoding(encoding, defaultenc, buf, sz, skip_utf8);
+        SetFileEncoding(encoding, defaultenc.wc_str(), buf, sz, skip_utf8);
 
         if(!hexmode)
             hexmode = IsBinaryData(buf, sz);
@@ -2484,50 +2485,50 @@ bool MadLines::LoadFromFile(const wxString &filename, const wxString &encoding)
 }
 
 
-bool MadLines::PresetFileEncoding(const wxString& encoding, const wxByte* buf, size_t sz)
+bool MadLines::PresetFileEncoding(const std::wstring& encoding, const wxByte* buf, size_t sz)
 {
-    if(!encoding.IsEmpty())
+    if(!encoding.empty())
     {
         m_MadEdit->SetEncoding(encoding);
         return true;
     }
 
-    wxString wxmenc;
-    if(wxm::MatchWXMEncoding(wxmenc, buf, sz))
+    std::string enc;
+    if(xm::MatchEncoding(enc, buf, sz))
     {
-        m_MadEdit->SetEncoding(wxmenc);
+        m_MadEdit->SetEncoding(std::wstring(enc.begin(), enc.end()));
         return true;
     }
 
     return false;
 }
 
-void MadLines::SetFileEncoding(const wxString& encoding, const wxString& defaultenc, 
+void MadLines::SetFileEncoding(const std::wstring& encoding, const std::wstring& defaultenc,
                                const wxByte* buf, size_t sz, bool skip_utf8)
 {
-    if(!encoding.IsEmpty())
+    if (!encoding.empty())
     {
         m_MadEdit->SetEncoding(encoding);
         return;
     }
 
-    if(!m_Syntax->m_Encoding.IsEmpty())
+    if (!m_Syntax->m_Encoding.empty())
     {
         m_MadEdit->SetEncoding(m_Syntax->m_Encoding);
         return;
     }
 
-    wxm::WXMEncodingID enc=m_MadEdit->m_Encoding->GetEncoding();
-    if(wxm::WXMEncodingManager::IsSimpleUnicodeEncoding(enc))
+    xm::EncodingID enc=m_MadEdit->m_Encoding->GetEncoding();
+    if (xm::EncodingManager::IsSimpleUnicodeEncoding(enc))
     {
         // use default encoding
-        enc=wxm::WXMEncodingManager::Instance().NameToEncoding(defaultenc);
+        enc=xm::EncodingManager::Instance().NameToEncoding(defaultenc);
     }
 
     // use Encoding Detector
-    wxm::DetectEncoding(buf, sz, enc, skip_utf8);
+    xm::DetectEncoding(buf, sz, enc, skip_utf8);
 
-    m_MadEdit->SetEncoding(wxm::WXMEncodingManager::Instance().EncodingToName(enc));
+    m_MadEdit->SetEncoding(xm::EncodingManager::Instance().EncodingToName(enc));
 }
 
 //===========================================================================
@@ -2887,7 +2888,7 @@ void MadLines::DetectSyntax(const wxString &filename)
         m_MadEdit->SetSyntax(tmp_Syntax->GetTitle());
 }
 
-bool MadLines::SaveToFile(const wxString &filename, const wxString &tempdir)
+bool MadLines::SaveToFile(const wxString& filename, const wxString& tempdir)
 {
     if (!m_manual)
         DetectSyntax(filename);

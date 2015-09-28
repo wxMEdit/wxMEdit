@@ -1,6 +1,6 @@
 #include "data_multibyte_conv.h"
 #include "../encoding_test.h"
-#include "../../src/wxm/encoding/encoding.h"
+#include "../../src/xm/encoding/encoding.h"
 
 #include <boost/foreach.hpp>
 #include <boost/test/unit_test.hpp>
@@ -32,22 +32,22 @@ void data_doublebyte_conv_init()
 
 void test_a_doublebyte_conv(const std::string& encname)
 {
-	wxString wxencname(encname.c_str(), wxConvUTF8);
-	wxm::WXMEncoding* enc = wxm::WXMEncodingManager::Instance().GetWxmEncoding(wxencname);
+	std::wstring wencname(encname.begin(), encname.end());
+	xm::Encoding* enc = xm::EncodingManager::Instance().GetEncoding(wencname);
 
 	MB2UDataMap::const_iterator mb2uend = mb2u[encname].end();
 	for (size_t i=0; i<256; ++i)
 	{
-		wxByte wxb[2] = { wxByte(i), 0 };
-		if (enc->IsLeadByte(wxb[0]))
+		ubyte bs[2] = { ubyte(i), 0 };
+		if (enc->IsLeadByte(bs[0]))
 		{
 			for(size_t j=0; j<256; ++j)
 			{
 				char mbs_arr[3] = { char(i), char(j), 0 };
 				MB2UDataMap::const_iterator it = mb2u[encname].find(mbs_arr);
 
-				wxb[1] = wxByte(j);
-				ucs4_t u = enc->MultiBytetoUCS4(wxb);
+				bs[1] = ubyte(j);
+				ucs4_t u = enc->MultiBytetoUCS4(bs);
 				if (u != 0)
 				{
 					BOOST_CHECK(it != mb2uend);
@@ -67,7 +67,7 @@ void test_a_doublebyte_conv(const std::string& encname)
 		{
 			char mbs_arr[2] = { char(i), 0 };
 			MB2UDataMap::const_iterator it = mb2u[encname].find(mbs_arr);
-			ucs4_t u = enc->MultiBytetoUCS4(wxb);
+			ucs4_t u = enc->MultiBytetoUCS4(bs);
 			if (u != 0)
 			{
 				BOOST_CHECK(it != mb2uend);
@@ -87,7 +87,7 @@ void test_a_doublebyte_conv(const std::string& encname)
 	U2MBDataMap::const_iterator u2mbend = u2mb[encname].end();
 	for (ucs4_t i=0; i<=0x10FFFF; ++i)
 	{
-		wxByte buf[4];
+		ubyte buf[4];
 		size_t n = enc->UCS4toMultiByte(i, buf);
 		BOOST_CHECK(n <= 2);
 
@@ -114,7 +114,7 @@ void test_a_doublebyte_conv(const std::string& encname)
 
 void test_doublebyte_conv()
 {
-	wxm::WXMEncodingManager::Instance().InitEncodings();
+	xm::EncodingManager::Instance().InitEncodings();
 	data_doublebyte_conv_init();
 
 	std::cout << "wxMEdit-enc-doublebyte" << std::endl;
@@ -124,5 +124,5 @@ void test_doublebyte_conv()
 		test_a_doublebyte_conv(encname);
 	}
 
-	wxm::WXMEncodingManager::Instance().FreeEncodings();
+	xm::EncodingManager::Instance().FreeEncodings();
 }

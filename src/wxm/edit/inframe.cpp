@@ -8,11 +8,9 @@
 
 #include "inframe.h"
 #include "../../xm/cxx11.h"
-#include "../encoding/unicode.h"
 #include "../../wxmedit_frame.h"
 #include "../../dialog/wxm_search_replace_dialog.h"
 #include "../../mad_utils.h"
-#include "../../xm/uutils.h"
 #include "../../dialog/wxm_enumeration_dialog.h"
 
 #ifdef _MSC_VER

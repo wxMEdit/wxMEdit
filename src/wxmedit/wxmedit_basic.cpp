@@ -9,7 +9,7 @@
 #include "wxmedit.h"
 #include "../xm/cxx11.h"
 #include "../wxm/edit/simple.h"
-#include "../wxm/encoding/unicode.h"
+#include "../xm/encoding/unicode.h"
 #include "../wxm/utils.h"
 #include "../mad_utils.h"
 #include "../xm/uutils.h"
@@ -33,6 +33,7 @@
 
 #include <boost/assign/list_of.hpp>
 #include <boost/assign/std/vector.hpp>
+#include <boost/algorithm/string/predicate.hpp>
 
 #include <algorithm>
 
@@ -40,6 +41,8 @@
 #include <crtdbg.h>
 #define new new(_NORMAL_BLOCK ,__FILE__, __LINE__)
 #endif
+
+namespace algo = boost::algorithm;
 
 extern const ucs4_t HexHeader[];
 
@@ -118,48 +121,48 @@ void MadEdit::ApplySyntaxAttributes(MadSyntax *syn, bool matchTitle)
     }
 }
 
-void MadEdit::SetEncoding(const wxString &encname)
+void MadEdit::SetEncoding(const std::wstring & encname)
 {
-    if(encname.Lower() != m_Encoding->GetName().Lower())
+    if (algo::iequals(encname, m_Encoding->GetName()))
+        return;
+
+    //delete m_Encoding;
+    m_Encoding = xm::EncodingManager::Instance().GetEncoding(encname);
+    m_Lines->SetEncoding(m_Encoding);
+    m_Syntax->SetEncoding(m_Encoding);
+
+    wxString fontname;
+    m_Config->Read(wxString(wxT("/Fonts/"))+m_Encoding->GetName(), &fontname, m_Encoding->GetFontName());
+
+    bool oldlf=m_LoadingFile;
+    m_LoadingFile=true;
+    SetTextFont(fontname, m_TextFont->GetPointSize(), false);
+    m_LoadingFile=oldlf;
+
+    if (m_LoadingFile)
+        return;
+
+    if(IsTextFile())    // data is text
     {
-        //delete m_Encoding;
-        m_Encoding=wxm::WXMEncodingManager::Instance().GetWxmEncoding(encname);
-        m_Lines->SetEncoding(m_Encoding);
-        m_Syntax->SetEncoding(m_Encoding);
+        ReformatAll();
+    }
+    else // hex data
+    {
+        AppearCaret();
+        UpdateScrollBarPos();
 
-        wxString fontname;
-        m_Config->Read(wxString(wxT("/Fonts/"))+m_Encoding->GetName(), &fontname, m_Encoding->GetFontName());
-
-        bool oldlf=m_LoadingFile;
-        m_LoadingFile=true;
-        SetTextFont(fontname, m_TextFont->GetPointSize(), false);
-        m_LoadingFile=oldlf;
-
-        if(!m_LoadingFile)
+        if(!m_CaretAtHexArea)
         {
-            if(IsTextFile())    // data is text
-            {
-                ReformatAll();
-            }
-            else // hex data
-            {
-                AppearCaret();
-                UpdateScrollBarPos();
-
-                if(!m_CaretAtHexArea)
-                {
-                    UpdateTextAreaXPos();
-                    m_LastTextAreaXPos = m_TextAreaXPos;
-                }
-            }
-
-            DoStatusChanged();
-            DoSelectionChanged();
-
-            m_RepaintAll = true;
-            Refresh(false);
+            UpdateTextAreaXPos();
+            m_LastTextAreaXPos = m_TextAreaXPos;
         }
     }
+
+    DoStatusChanged();
+    DoSelectionChanged();
+
+    m_RepaintAll = true;
+    Refresh(false);
 }
 
 
@@ -1619,7 +1622,7 @@ void MadEdit::SetCaretPosition(wxFileOffset pos, wxFileOffset selbeg, wxFileOffs
 }
 
 
-bool MadEdit::LoadFromFile(const wxString &filename, const wxString &encoding)
+bool MadEdit::LoadFromFile(const wxString &filename, const std::wstring & encoding)
 {
     wxFileName fn(filename);
     if(MadDirExists(fn.GetPath(wxPATH_GET_VOLUME))==0)

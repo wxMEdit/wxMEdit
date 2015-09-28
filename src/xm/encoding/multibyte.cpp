@@ -1,13 +1,13 @@
 ///////////////////////////////////////////////////////////////////////////////
 // vim:         ts=4 sw=4
-// Name:        wxm/encoding/multibyte.cpp
+// Name:        xm/encoding/multibyte.cpp
 // Description: Define the Multi-byte Encodings Supported by wxMEdit
 // Copyright:   2013-2015  JiaYanwei   <wxmedit@gmail.com>
 // License:     GPLv3
 ///////////////////////////////////////////////////////////////////////////////
 
 #include "multibyte.h"
-#include "../../xm/cxx11.h"
+#include "../cxx11.h"
 
 #include <boost/scoped_array.hpp>
 
@@ -16,7 +16,7 @@
 #define new new(_NORMAL_BLOCK ,__FILE__, __LINE__)
 #endif
 
-namespace wxm
+namespace xm
 {
 
 extern "C"
@@ -90,11 +90,11 @@ size_t ICUConverter::WC2MB(char* dest, size_t dest_len, const UChar32& ch)
 	return ((size_t)n>dest_len)? dest_len: (size_t)n;
 }
 
-void WXMEncodingMultiByte::Create(ssize_t idx)
+void MultiByteEncoding::Create(ssize_t idx)
 {
-	WXMEncoding::Create(idx);
+	Encoding::Create(idx);
 
 	MultiByteInit();
 }
 
-};// namespace wxm
+};// namespace xm

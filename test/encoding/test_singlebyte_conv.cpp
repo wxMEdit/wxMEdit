@@ -1,6 +1,6 @@
 #include "data_singlebyte_conv.h"
 #include "../encoding_test.h"
-#include "../../src/wxm/encoding/encoding.h"
+#include "../../src/xm/encoding/encoding.h"
 
 #include <boost/foreach.hpp>
 #include <boost/test/unit_test.hpp>
@@ -9,13 +9,13 @@
 
 void test_a_singlebyte_conv(const std::string& encname)
 {
-	wxString wxencname(encname.c_str(), wxConvUTF8);
-	wxm::WXMEncoding* enc = wxm::WXMEncodingManager::Instance().GetWxmEncoding(wxencname);
+	std::wstring wencname(encname.begin(), encname.end());
+	xm::Encoding* enc = xm::EncodingManager::Instance().GetEncoding(wencname);
 
 	for (size_t i=0; i<256; ++i)
 	{
-		wxByte wxb = wxByte(i);
-		ucs4_t u = enc->MultiBytetoUCS4(&wxb);
+		ubyte bs = ubyte(i);
+		ucs4_t u = enc->MultiBytetoUCS4(&bs);
 		ucs4_t t = (*b2u[encname])[i];
 		BOOST_CHECK(u == t);
 	}
@@ -23,7 +23,7 @@ void test_a_singlebyte_conv(const std::string& encname)
 	U2BDataMap::const_iterator u2bend = u2b[encname]->end();
 	for (ucs4_t i=0; i<=0x10FFFF; ++i)
 	{
-		wxByte buf[4];
+		ubyte buf[4];
 		size_t n = enc->UCS4toMultiByte(i, buf);
 		BOOST_CHECK(n < 2);
 
@@ -45,7 +45,7 @@ void test_a_singlebyte_conv(const std::string& encname)
 
 void test_singlebyte_conv()
 {
-	wxm::WXMEncodingManager::Instance().InitEncodings();
+	xm::EncodingManager::Instance().InitEncodings();
 	data_singlebyte_conv_init();
 
 	std::cout << "wxMEdit-enc-singlebyte" << std::endl;
@@ -55,5 +55,5 @@ void test_singlebyte_conv()
 		test_a_singlebyte_conv(encname);
 	}
 
-	wxm::WXMEncodingManager::Instance().FreeEncodings();
+	xm::EncodingManager::Instance().FreeEncodings();
 }

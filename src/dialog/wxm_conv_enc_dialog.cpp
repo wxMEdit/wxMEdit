@@ -8,7 +8,7 @@
 #include "wxm_conv_enc_dialog.h"
 #include "../xm/cxx11.h"
 
-#include "../wxm/encoding/encoding.h"
+#include "../xm/encoding/encoding.h"
 
 #ifdef _MSC_VER
 # pragma warning( push )
@@ -88,22 +88,22 @@ WXMConvEncDialog::WXMConvEncDialog(wxWindow* parent,wxWindowID id,const wxPoint&
 	Connect(wxID_ANY,wxEVT_CLOSE_WINDOW,(wxObjectEventFunction)&WXMConvEncDialog::WXMConvEncDialogClose);
 	//*)
 
-	size_t cnt=wxm::WXMEncodingManager::Instance().GetEncodingsCount();
+	size_t cnt=xm::EncodingManager::Instance().GetEncodingsCount();
 	for(size_t i=0;i<cnt;i++)
 	{
-		WxComboBoxEncoding->Append(wxm::WXMEncodingManager::Instance().GetEncodingNameWithAliases(i));
+		WxComboBoxEncoding->Append(xm::EncodingManager::Instance().GetEncodingNameWithAliases(i));
 	}
 	BoxSizer1->Fit(this);
 	BoxSizer1->SetSizeHints(this);
 	Center();
 
-	wxm::WXMEncodingManager& encmgr = wxm::WXMEncodingManager::Instance();
+	xm::EncodingManager& encmgr = xm::EncodingManager::Instance();
 	wxString convenc = encmgr.GetEncodingName(0);
 	wxConfigBase *cfg = wxConfigBase::Get(false);
 	wxString oldpath = cfg->GetPath();
 	cfg->Read(wxT("/wxMEdit/ConvertEncoding"), &convenc);
 	cfg->SetPath(oldpath);
-	WxComboBoxEncoding->SetValue(encmgr.ExpandEncodingAliases(convenc));
+	WxComboBoxEncoding->SetValue(encmgr.ExpandEncodingAliases(convenc.wc_str()));
 
 	WxButtonCancel->SetFocus();
 }
@@ -128,7 +128,7 @@ void WXMConvEncDialog::WXMConvEncDialogClose(wxCloseEvent& event)
 	Destroy();
 }
 
-wxString WXMConvEncDialog::GetEncoding() const
+std::wstring WXMConvEncDialog::GetEncoding() const
 {
-	return wxm::WXMEncodingManager::ExtractEncodingName(WxComboBoxEncoding->GetValue());
+	return xm::EncodingManager::ExtractEncodingName(WxComboBoxEncoding->GetValue().wc_str());
 }

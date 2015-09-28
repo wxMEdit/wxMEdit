@@ -1,7 +1,8 @@
 #ifndef WXMEDIT_TEST_DATA_SINGLEBYTE_CONV_H
 #define WXMEDIT_TEST_DATA_SINGLEBYTE_CONV_H
 
-#include "../../src/wxmedit/ucs4_t.h"
+#include "../../src/xm/encoding/encoding_def.h"
+
 #include <string>
 #include <map>
 #include <vector>

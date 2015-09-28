@@ -9,7 +9,6 @@
 #ifndef _WXM_SYNTAX_H_
 #define _WXM_SYNTAX_H_
 
-#include "ucs4_t.h"
 #include "wxm_lines.h"
 
 #ifdef _MSC_VER
@@ -173,7 +172,7 @@ public:
     vector < wxString > m_RightBrace;
     wxString            m_AutoCompleteLeftChar;
     wxString            m_AutoCompleteRightChar;
-    wxString            m_Encoding;
+    std::wstring        m_Encoding;
 
     vector < int >      m_StringInRange;
     vector < int >      m_LineCommentInRange;
@@ -232,7 +231,7 @@ public:
 private: // for NextWord()
     MadLines    *nw_MadLines;
     MadEdit     *nw_MadEdit;
-    wxm::WXMEncoding *nw_Encoding;
+    xm::Encoding *nw_Encoding;
     ucs4_t      *nw_Word;
     int         *nw_Widths;
     wxString    nw_FontName;
@@ -280,7 +279,7 @@ private: // for NextWord()
 public:
     void InitNextWord1(MadLines *madlines, ucs4_t *word, int *widths, const wxString &fontname, int fontsize, int fontfamily);
     void InitNextWord2(MadLineIterator &lit, size_t row);
-    void SetEncoding(wxm::WXMEncoding *encoding);
+    void SetEncoding(xm::Encoding *encoding);
 
     // return wordlength
     int NextWord(int &wordwidth);

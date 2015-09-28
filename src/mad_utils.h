@@ -10,7 +10,7 @@
 #ifndef _MAD_UTILS_H_
 #define _MAD_UTILS_H_
 
-#include "wxmedit/ucs4_t.h"
+#include "xm/encoding/encoding_def.h"
 
 #ifdef _MSC_VER
 # pragma warning( push )

@@ -1,17 +1,32 @@
 ///////////////////////////////////////////////////////////////////////////////
 // vim:         ts=4 sw=4
-// Name:        wxm/encoding/encoding_def.h
+// Name:        xm/encoding/encoding_def.h
 // Description: Encoding Relative Definitions of wxMEdit
 // Copyright:   2013-2015  JiaYanwei   <wxmedit@gmail.com>
 // License:     GPLv3
 ///////////////////////////////////////////////////////////////////////////////
-#ifndef _WXM_ENCODING_DEF_H_
-#define _WXM_ENCODING_DEF_H_
+#ifndef _XM_ENCODING_DEF_H_
+#define _XM_ENCODING_DEF_H_
 
-namespace wxm
+#include <unicode/umachine.h>
+
+typedef uint8_t ubyte;
+typedef uint16_t ucs2_t;
+
+#if defined(U_WINDOWS) || defined(U_PF_WINDOWS) && U_PLATFORM == U_PF_WINDOWS || defined(__MINGW32__)
+	typedef int32_t ucs4_t;
+#else
+	typedef wchar_t ucs4_t;
+#endif
+
+#ifdef _MSC_VER
+	typedef ptrdiff_t ssize_t;
+#endif
+
+namespace xm
 {
 
-enum WXMEncodingID
+enum EncodingID
 {
 	ENC_DEFAULT = 0,
 	ENC_ISO_646,
@@ -63,7 +78,7 @@ enum WXMEncodingID
 	ENC_MAX
 };
 
-enum WXMEncodingGroupID
+enum EncodingGroupID
 {
 	ENCG_DEFAULT = 0,
 	ENCG_WESTERNEUROPE,
@@ -84,6 +99,6 @@ enum WXMEncodingGroupID
 	ENCG_OEM,
 };
 
-};// namespace wxm
+};// namespace xm
 
-#endif // _WXM_ENCODING_DEF_H_
+#endif // _XM_ENCODING_DEF_H_

@@ -10,8 +10,8 @@
 #include "wxmedit.h"
 #include "../xm/cxx11.h"
 #include "../wxm/def.h"
-#include "../wxm/encdet.h"
-#include "../wxm/encoding/unicode.h"
+#include "../xm/encdet.h"
+#include "../xm/encoding/unicode.h"
 #include "../wxm/utils.h"
 #include "wxm_syntax.h"
 #include "wxm_undo.h"
@@ -255,7 +255,7 @@ END_EVENT_TABLE()
 
 
 #if defined(__WXGTK20__) && wxMAJOR_VERSION == 2
-void GTK2_DrawText(wxMemoryDC *dc, wxm::WXMEncoding *encoding, const int *widths,
+void GTK2_DrawText(wxMemoryDC *dc, xm::Encoding *encoding, const int *widths,
               const wxString &text, wxCoord x, wxCoord y )
 {
     wxCHECK_RET( dc->Ok(), wxT("invalid window dc") );
@@ -407,7 +407,7 @@ wxString FixUTF8ToWCS(const wxString &str)
 
     wxString wcs;
 
-    if(wxm::IsUTF8(bbuf, (int)len))
+    if(xm::IsUTF8(bbuf, (int)len))
     {
         wxChar *wbuf=new wxChar[len+1];
         wxConvUTF8.MB2WC(wbuf, (const char*)bbuf, len+1);
@@ -749,7 +749,7 @@ MadEdit::MadEdit(wxm::ConfigWriter* cfg_writer, wxWindow* parent, wxWindowID id,
     m_Config->Read(wxT("DefaultEncoding"), &defaultenc);
 
     m_Syntax = MadSyntax::GetSyntaxByTitle(MadPlainTextTitle);
-    m_Encoding = wxm::WXMEncodingManager::Instance().GetWxmEncoding(defaultenc);
+    m_Encoding = xm::EncodingManager::Instance().GetEncoding(defaultenc.wc_str());
     m_Lines = new MadLines(this);
 
     // set default value
@@ -900,7 +900,7 @@ void MadEdit::InitTextFont()
 
 void MadEdit::InitHexFont()
 {
-    wxString fontname = wxm::MonoFontName;
+    wxString fontname = wxm::MonoFontName.c_str();
     int fontsize;
     m_Config->Read(wxString(wxT("HexFontName")), &fontname, fontname);
     m_Config->Read(wxT("HexFontSize"), &fontsize, 12);

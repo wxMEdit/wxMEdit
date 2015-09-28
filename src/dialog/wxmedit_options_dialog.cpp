@@ -13,7 +13,7 @@
 #include "../wxmedit/wxmedit_command.h"
 #include "../wxmedit/wxmedit.h"
 #include "../wxmedit_frame.h"
-#include "../wxm/encoding/encoding.h"
+#include "../xm/encoding/encoding.h"
 #include "../wxm/update.h"
 #include "../wxm/def.h"
 #include "../wxm/utils.h"
@@ -738,11 +738,11 @@ WXMEditOptionsDialog::WXMEditOptionsDialog(wxWindow* parent,wxWindowID id)
 
 	wxString systemenc(_("System Default"));
 	WxComboBoxEncoding->Append(systemenc);
-	size_t cnt=wxm::WXMEncodingManager::Instance().GetEncodingsCount();
+	size_t cnt=xm::EncodingManager::Instance().GetEncodingsCount();
 	size_t i;
 	for(i=0; i<cnt; i++)
 	{
-		WxComboBoxEncoding->Append(wxm::WXMEncodingManager::Instance().GetEncodingNameWithAliases(i));
+		WxComboBoxEncoding->Append(xm::EncodingManager::Instance().GetEncodingNameWithAliases(i));
 	}
 	WxComboBoxEncoding->SetValue(systemenc);
 
@@ -883,7 +883,7 @@ wxString WXMEditOptionsDialog::GetSelectedEncoding()
 	wxString wxs = WxComboBoxEncoding->GetValue();
 	if (wxs == _("System Default"))
 		return wxString();
-	return wxm::WXMEncodingManager::ExtractEncodingName(wxs);
+	return xm::EncodingManager::ExtractEncodingName(wxs.wc_str());
 }
 
 wxString WXMEditOptionsDialog::GetSelectedUpdatePeroid()
@@ -954,7 +954,7 @@ void WXMEditOptionsDialog::LoadOptions(void)
 
 	ss.Clear();
 	cfg->Read(wxT("DefaultEncoding"), &ss);
-	ss = ss.IsEmpty()? wxString(_("System Default")): wxm::WXMEncodingManager::Instance().ExpandEncodingAliases(ss);
+	ss = ss.IsEmpty()? wxString(_("System Default")): xm::EncodingManager::Instance().ExpandEncodingAliases(ss.wc_str());
 	WxComboBoxEncoding->SetValue(ss);
 
 	cfg->Read(wxT("SingleInstance"), &bb);

@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////
 // vim:         ts=4 sw=4
-// Name:        wxm/encoding/cp20932.cpp
+// Name:        xm/encoding/cp20932.cpp
 // Description: Define the Double-byte Encoding CP20932
 // Copyright:   2013-2015  JiaYanwei   <wxmedit@gmail.com>
 // License:     GPLv3
@@ -15,7 +15,7 @@
 #define new new(_NORMAL_BLOCK ,__FILE__, __LINE__)
 #endif
 
-namespace wxm
+namespace xm
 {
 
 size_t CP20932Converter::MB2WC(UChar32& ch, const char* src, size_t src_len)
@@ -15916,4 +15916,4 @@ void CP20932TableFixer::icu42fix()
 #endif
 }
 
-};// namespace wxm
+};// namespace xm

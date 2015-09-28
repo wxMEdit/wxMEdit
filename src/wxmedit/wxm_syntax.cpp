@@ -1315,7 +1315,7 @@ void MadSyntax::InitNextWord2(MadLineIterator &lit, size_t row)
     }
 }
 
-void MadSyntax::SetEncoding(wxm::WXMEncoding *encoding)
+void MadSyntax::SetEncoding(xm::Encoding *encoding)
 {
     nw_Encoding=encoding;
 }

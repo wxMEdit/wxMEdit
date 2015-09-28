@@ -1544,7 +1544,7 @@ MadEditFrame::MadEditFrame( wxWindow *parent, wxWindowID id, const wxString &tit
     m_NewFileCount=0;
     m_Config=wxConfigBase::Get(false);
 
-    wxm::WXMEncodingManager::Instance().InitEncodings();
+    xm::EncodingManager::Instance().InitEncodings();
 
     MadSyntax::SetAttributeFilePath(wxm::AppPath::Instance().HomeDir() + wxT("syntax/"));
 
@@ -1583,9 +1583,9 @@ void MadEditFrame::EncodingGroupMenuAppend(ssize_t idx, const wxString& text, si
     static int i = 0;
 
     int itemid = menuEncoding1 + int(idx);
-    wxm::WXMEncodingManager& encmgr = wxm::WXMEncodingManager::Instance();
-    std::vector<wxm::WXMEncodingGroupID> vec = encmgr.GetEncodingGroups(idx);
-    BOOST_FOREACH(wxm::WXMEncodingGroupID gid, vec)
+    xm::EncodingManager& encmgr = xm::EncodingManager::Instance();
+    std::vector<xm::EncodingGroupID> vec = encmgr.GetEncodingGroups(idx);
+    BOOST_FOREACH(xm::EncodingGroupID gid, vec)
     {
         EncGrps::iterator it = m_encgrps.find(gid);
         if (it == m_encgrps.end())
@@ -1604,13 +1604,13 @@ void MadEditFrame::EncodingGroupMenuAppend(ssize_t idx, const wxString& text, si
 
 size_t MadEditFrame::ReserveEncodingGrupMenus()
 {
-    wxm::WXMEncodingManager& encmgr = wxm::WXMEncodingManager::Instance();
+    xm::EncodingManager& encmgr = xm::EncodingManager::Instance();
 
-    std::vector<wxm::WXMEncodingGroupID> reserve_grps =
-        boost::assign::list_of(wxm::ENCG_ISO8859)(wxm::ENCG_WINDOWS)(wxm::ENCG_OEM)(wxm::ENCG_DEFAULT);
+    std::vector<xm::EncodingGroupID> reserve_grps =
+        boost::assign::list_of(xm::ENCG_ISO8859)(xm::ENCG_WINDOWS)(xm::ENCG_OEM)(xm::ENCG_DEFAULT);
 
     size_t i = 0;
-    BOOST_FOREACH(wxm::WXMEncodingGroupID gid, reserve_grps)
+    BOOST_FOREACH(xm::EncodingGroupID gid, reserve_grps)
     {
         wxMenu* menu = new wxMenu();
         g_Menu_View_Encoding->Insert(i, menuEncodingGroup1 + i, encmgr.EncodingGroupToName(gid), menu);
@@ -1623,11 +1623,11 @@ size_t MadEditFrame::ReserveEncodingGrupMenus()
 
 void MadEditFrame::InitEncodingMenus()
 {
-    wxm::WXMEncodingManager& encmgr = wxm::WXMEncodingManager::Instance();
+    xm::EncodingManager& encmgr = xm::EncodingManager::Instance();
 
     size_t rsv_cnt = ReserveEncodingGrupMenus();
 
-    size_t cnt=wxm::WXMEncodingManager::Instance().GetEncodingsCount();
+    size_t cnt=xm::EncodingManager::Instance().GetEncodingsCount();
     for(size_t i=0; i<cnt; ++i)
     {
         wxString enc=wxString(wxT('['))+ encmgr.GetEncodingName(i) + wxT("] ");
@@ -2144,7 +2144,7 @@ void MadEditFrame::MadEditFrameClose(wxCloseEvent& event)
 
     delete m_ImageList;
 
-    wxm::WXMEncodingManager::Instance().FreeEncodings();
+    xm::EncodingManager::Instance().FreeEncodings();
     wxm::AppPath::Instance().DestroyInstance();
 
     FreeConvertChineseTable();
@@ -2696,12 +2696,10 @@ void MadEditFrame::OpenFile(const wxString &filename, bool mustExist, const Line
         int fs;
         pos = g_FileCaretPosManager.GetRestoreData(filename, enc, fn, fs);
 
-        if(!fn.IsEmpty() && fs > 0)
-        {
+        if (!fn.IsEmpty() && fs > 0)
             wxmedit->SetTextFont(fn, fs, false);
-        }
 
-        if (!wxmedit->LoadFromFile(filename, enc) && mustExist)
+        if (!wxmedit->LoadFromFile(filename, enc.wx_str()) && mustExist)
         {
             wxLogError(wxString(_("Cannot load this file:")) + wxT("\n\n") + filename);
         }
@@ -2714,10 +2712,8 @@ void MadEditFrame::OpenFile(const wxString &filename, bool mustExist, const Line
 
             bool rcp;
             m_Config->Read(wxT("/wxMEdit/RestoreCaretPos"), &rcp, true);
-            if(rcp)
-            {
+            if (rcp)
                 wxmedit->SetCaretPosition(pos);
-            }
         }
     }
     wxString str;
@@ -4168,10 +4164,10 @@ void MadEditFrame::OnViewEncoding(wxCommandEvent& event)
         return;
 
     int idx=event.GetId()-menuEncoding1;
-    wxString enc=wxm::WXMEncodingManager::Instance().GetEncodingName(idx);
+    std::wstring enc=xm::EncodingManager::Instance().GetEncodingName(idx);
     g_active_wxmedit->SetEncoding(enc);
 
-    wxString str=wxString(wxT('['))+ enc + wxT("] ")+ wxGetTranslation(wxm::WXMEncodingManager::Instance().GetEncodingDescription(idx).c_str());
+    wxString str=wxString(wxT('['))+ enc + wxT("] ")+ wxGetTranslation(xm::EncodingManager::Instance().GetEncodingDescription(idx).c_str());
     m_RecentEncodings->AddItemToHistory(str);
 
     int size;
@@ -4193,7 +4189,7 @@ void MadEditFrame::OnViewRecentEncoding(wxCommandEvent& event)
         if( tkz.HasMoreTokens() )
         {
             wxString enc = tkz.GetNextToken();
-            g_active_wxmedit->SetEncoding(enc);
+            g_active_wxmedit->SetEncoding(enc.wx_str());
 
             m_RecentEncodings->AddItemToHistory(str);
 
@@ -4800,10 +4796,10 @@ void MadEditFrame::OnToolsConvertEncoding(wxCommandEvent& event)
     if(g_ConvEncDialog->ShowModal()==wxID_OK)
     {
         g_active_wxmedit->ConvertEncoding(g_ConvEncDialog->GetEncoding(),
-                                         MadConvertEncodingFlag(g_ConvEncDialog->WxRadioBoxOption->GetSelection()));
+                                          MadConvertEncodingFlag(g_ConvEncDialog->WxRadioBoxOption->GetSelection()));
         wxString oldpath=m_Config->GetPath();
         m_Config->SetPath(wxT("/wxMEdit"));
-        m_Config->Write(wxT("/wxMEdit/ConvertEncoding"), g_ConvEncDialog->GetEncoding());
+        m_Config->Write(wxT("/wxMEdit/ConvertEncoding"), g_ConvEncDialog->GetEncoding().c_str());
         m_Config->SetPath(oldpath);
 
         wxString str = wxString(wxT('[')) + g_active_wxmedit->GetEncodingName() + wxT("] ")+

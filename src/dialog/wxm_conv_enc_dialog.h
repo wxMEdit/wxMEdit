@@ -44,7 +44,7 @@ class WXMConvEncDialog: public wxDialogWrapper
 		wxButton* WxButtonOK;
 		//*)
 
-		wxString GetEncoding() const;
+		std::wstring GetEncoding() const;
 	protected:
 
 		//(*Identifiers(WXMConvEncDialog)

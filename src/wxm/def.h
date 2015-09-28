@@ -9,7 +9,7 @@
 #ifndef _WXM_DEF_H_
 #define _WXM_DEF_H_
 
-#include "../wxmedit/ucs4_t.h"
+#include "../xm/encoding/encoding_def.h"
 
 #ifdef _MSC_VER
 # pragma warning( push )
@@ -39,23 +39,23 @@ typedef std::vector<size_t> LineNumberList;
 
 namespace wxm
 {
-	static const wxString MonoFontName =
+	static const std::wstring MonoFontName =
 #ifdef __WXMSW__
-		wxT("Courier New")
+		L"Courier New"
 #elif defined(__APPLE__) && defined(__MACH__)
-		wxT("Monaco")
+		L"Monaco"
 #else
-		wxT("Monospace")
+		L"Monospace"
 #endif
 	;
 
-	static const wxString ASCIIArtFontName =
+	static const std::wstring ASCIIArtFontName =
 #ifdef __WXMSW__
-		wxT("Courier New")
+		L"Courier New"
 #elif defined(__APPLE__) && defined(__MACH__)
-		wxT("Andale Mono")
+		L"Andale Mono"
 #else
-		wxT("Monospace")
+		L"Monospace"
 #endif
 	;
 

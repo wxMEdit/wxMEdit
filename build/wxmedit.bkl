@@ -23,44 +23,24 @@
 
 		<set var="ICULIB_POSTFIX" make_var="1"></set>
 		<if cond="FORMAT in ('mingw')">
-			<set var="WXCOMP">gcc</set>
 			<set var="ICUDATA_LIB">icudata</set>
 			<set var="ICUI18N_LIB">icui18n</set>
-			<set var="LIBCURL">curldll</set>
-
-			<define>__WIN95__</define>
-
-			<set var="WXDEBUG_DEF" make_var="1">
-				<if cond="DEBUG==0"></if>
-				<if cond="DEBUG==1">-D__WXDEBUG__</if>
-			</set>
-
 			<set var="CPPFLAGS_ADD" make_var="1">
 				<if cond="MGW_VER &lt; '43'"></if>
 				<if cond="MGW_VER &gt;= '47'">-std=gnu++11 -Wno-literal-suffix</if>
 				<if cond="'43' &lt;= MGW_VER &lt; '47'">-std=gnu++0x</if>
 			</set>
-
-			<sys-lib>gmon</sys-lib>
 		</if>
 		<if cond="FORMAT in ('msvc', 'msvs2003prj', 'msvs2005prj', 'msvs2008prj')">
-			<set var="WXCOMP">vc</set>
 			<set var="ICUDATA_LIB">icudt</set>
 			<set var="ICUI18N_LIB">icuin</set>
-			<set var="LIBCURL">libcurl</set>
 			<if cond="ICUDEBUG == '1'">
 				<set var="ICULIB_POSTFIX" make_var="1">$(LIB_POSTFIX)</set>
 			</if>
-
-			<set var="WXDEBUG_DEF" make_var="1" />
 			<set var="CPPFLAGS_ADD" make_var="1" />
 
 			<define>_SCL_SECURE_NO_WARNINGS</define>
 		</if>
-		<if cond="FORMAT in ('msvs2003prj', 'msvs2005prj', 'msvs2008prj')">
-			<define>wxUSE_NO_MANIFEST=1</define>
-		</if>
-		<cppflags>$(WXDEBUG_DEF) $(CPPFLAGS_ADD)</cppflags>
 
 		<if cond="BOOST_ADD != ''">
 			<include>$(BOOST_ADD)</include>
@@ -68,6 +48,70 @@
 
 		<include>$(BOOST_DIR)</include>
 		<include>$(ICU_DIR)/include</include>
+	
+		<lib-path>$(ICU_DIR)/lib</lib-path>
+
+		<if cond="MSLU == '1'">
+			<lib-path>../libunicows</lib-path>
+		</if>
+
+		<sys-lib>$(ICUDATA_LIB)</sys-lib>
+		<sys-lib>$(ICUI18N_LIB)$(ICULIB_POSTFIX)</sys-lib>
+		<sys-lib>icuuc$(ICULIB_POSTFIX)</sys-lib>
+		<if cond="MSLU == '1'">
+			<sys-lib>unicows</sys-lib>
+		</if>
+	</template>
+
+	<template id="enc_src">
+		<headers>../src/xm/encoding/cp20932.h</headers>
+		<sources>../src/xm/encoding/cp20932.cpp</sources>
+		<headers>../src/xm/encoding/doublebyte.h</headers>
+		<sources>../src/xm/encoding/doublebyte.cpp</sources>
+		<headers>../src/xm/encoding/encoding.h</headers>
+		<sources>../src/xm/encoding/encoding.cpp</sources>
+		<headers>../src/xm/encoding/encoding_def.h</headers>
+		<headers>../src/xm/encoding/external.h</headers>
+		<headers>../src/xm/encoding/gb18030.h</headers>
+		<sources>../src/xm/encoding/gb18030.cpp</sources>
+		<headers>../src/xm/encoding/singlebyte.h</headers>
+		<sources>../src/xm/encoding/singlebyte.cpp</sources>
+		<headers>../src/xm/encoding/multibyte.h</headers>
+		<sources>../src/xm/encoding/multibyte.cpp</sources>
+		<headers>../src/xm/encoding/unicode.h</headers>
+		<sources>../src/xm/encoding/unicode.cpp</sources>
+		<headers>../src/xm/line_enc_adapter.h</headers>
+	</template>
+
+	<template id="encdet_src">
+		<headers>../src/xm/encdet.h</headers>
+		<sources>../src/xm/encdet.cpp</sources>
+		<headers>../src/xm/mad_encdet.h</headers>
+		<sources>../src/xm/mad_encdet.cpp</sources>
+	</template>
+
+	<template id="app_cfg" template="simple">
+		<if cond="FORMAT in ('mingw')">
+			<define>__WIN95__</define>
+
+			<set var="WXCOMP">gcc</set>
+			<set var="LIBCURL">curldll</set>
+			<set var="WXDEBUG_DEF" make_var="1">
+				<if cond="DEBUG==0"></if>
+				<if cond="DEBUG==1">-D__WXDEBUG__</if>
+			</set>
+
+			<sys-lib>gmon</sys-lib>
+		</if>
+		<if cond="FORMAT in ('msvc', 'msvs2003prj', 'msvs2005prj', 'msvs2008prj')">
+			<set var="WXCOMP">vc</set>
+			<set var="LIBCURL">libcurl</set>
+			<set var="WXDEBUG_DEF" make_var="1" />
+		</if>
+		<if cond="FORMAT in ('msvs2003prj', 'msvs2005prj', 'msvs2008prj')">
+			<define>wxUSE_NO_MANIFEST=1</define>
+		</if>
+		<cppflags>$(WXDEBUG_DEF) $(CPPFLAGS_ADD)</cppflags>
 		<include>$(WXWIN)/include</include>
 		<include>$(WXWIN)/lib/$(WXCOMP)_lib/mswu$(LIB_POSTFIX)</include>
 
@@ -76,12 +120,7 @@
 			<lib-path>$(WXAUI_DIR)/lib</lib-path>
 		</if>
 	
-		<lib-path>$(ICU_DIR)/lib</lib-path>
 		<lib-path>$(WXWIN)/lib/$(WXCOMP)_lib</lib-path>
-
-		<if cond="MSLU == '1'">
-			<lib-path>../libunicows</lib-path>
-		</if>
 
 		<sys-lib>wxmsw$(WXVER)u$(LIB_POSTFIX)_aui</sys-lib>
 		<sys-lib>wxmsw$(WXVER)u$(LIB_POSTFIX)_core</sys-lib>
@@ -89,12 +128,6 @@
 		<if cond="WXVER >= '30'">
 			<sys-lib>wxpng$(LIB_POSTFIX)</sys-lib>
 			<sys-lib>wxzlib$(LIB_POSTFIX)</sys-lib>
-		</if>
-		<sys-lib>$(ICUDATA_LIB)</sys-lib>
-		<sys-lib>$(ICUI18N_LIB)$(ICULIB_POSTFIX)</sys-lib>
-		<sys-lib>icuuc$(ICULIB_POSTFIX)</sys-lib>
-		<if cond="MSLU == '1'">
-			<sys-lib>unicows</sys-lib>
 		</if>
 		<sys-lib>kernel32</sys-lib>
 		<sys-lib>user32</sys-lib>
@@ -114,32 +147,7 @@
 		<sys-lib>opengl32</sys-lib>
 	</template>
 
-	<template id="enc_src">
-		<headers>../src/wxm/encoding/cp20932.h</headers>
-		<sources>../src/wxm/encoding/cp20932.cpp</sources>
-		<headers>../src/wxm/encoding/doublebyte.h</headers>
-		<sources>../src/wxm/encoding/doublebyte.cpp</sources>
-		<headers>../src/wxm/encoding/encoding.h</headers>
-		<sources>../src/wxm/encoding/encoding.cpp</sources>
-		<headers>../src/wxm/encoding/encoding_def.h</headers>
-		<headers>../src/wxm/encoding/gb18030.h</headers>
-		<sources>../src/wxm/encoding/gb18030.cpp</sources>
-		<headers>../src/wxm/encoding/singlebyte.h</headers>
-		<sources>../src/wxm/encoding/singlebyte.cpp</sources>
-		<headers>../src/wxm/encoding/multibyte.h</headers>
-		<sources>../src/wxm/encoding/multibyte.cpp</sources>
-		<headers>../src/wxm/encoding/unicode.h</headers>
-		<sources>../src/wxm/encoding/unicode.cpp</sources>
-	</template>
-
-	<template id="encdet_src">
-		<headers>../src/wxm/encdet.h</headers>
-		<sources>../src/wxm/encdet.cpp</sources>
-		<headers>../src/wxmedit/mad_encdet.h</headers>
-		<sources>../src/wxmedit/mad_encdet.cpp</sources>
-	</template>
-
-	<exe id="wxmedit" template="win_cfg,enc_src,encdet_src">
+	<exe id="wxmedit" template="win_cfg,app_cfg,enc_src,encdet_src">
 		<app-type>gui</app-type>
 
 		<include>$(CURL_DIR)/include</include>
@@ -187,8 +195,6 @@
 		<sources>../src/wxm/edit/simple.cpp</sources>
 		<headers>../src/wxm/edit/single_line.h</headers>
 		<sources>../src/wxm/edit/single_line.cpp</sources>
-		<headers>../src/wxm/line_enc_adapter.h</headers>
-		<sources>../src/wxm/line_enc_adapter.cpp</sources>
 		<headers>../src/wxm/recent_list.h</headers>
 		<sources>../src/wxm/recent_list.cpp</sources>
 		<headers>../src/wxm/searcher.h</headers>
@@ -206,7 +212,6 @@
 		<headers>../src/wxmedit/clipbrd_gtk.h</headers>
 		<headers>../src/wxmedit/trad_simp.h</headers>
 		<sources>../src/wxmedit/trad_simp.cpp</sources>
-		<headers>../src/wxmedit/ucs4_t.h</headers>
 		<headers>../src/wxmedit/wxm_deque.hpp</headers>
 		<headers>../src/wxmedit/wxm_lines.h</headers>
 		<sources>../src/wxmedit/wxm_lines.cpp</sources>
@@ -235,8 +240,16 @@
 		<sources>../src/xm/uutils.cpp</sources>
 	</exe>
 	<exe id="wxmedit_test" template="win_cfg,enc_src,encdet_src">
-		<headers>../src/wxm/line_enc_adapter.h</headers>
-		<headers>../src/wxmedit/ucs4_t.h</headers>
+		<lib-path>$(BOOST_DIR)/stage/lib</lib-path>
+		<if cond="FORMAT in ('mingw')">
+			<set var="BOOST_RT_OPT" make_var="1">
+				<if cond="DEBUG==0"></if>
+				<if cond="DEBUG==1">-d</if>
+			</set>
+			<sys-lib>boost_unit_test_framework-mgw$(MGW_VER)-mt$(BOOST_RT_OPT)-$(BOOST_VER)</sys-lib>
+		</if>
+		<cppflags>$(CPPFLAGS_ADD)</cppflags>
+
 		<headers>../src/wxmedit/wxm_deque.hpp</headers>
 		<headers>../src/xm/cxx11.h</headers>
 		<headers>../src/xm/utils.hpp</headers>
@@ -269,14 +282,5 @@
 		<headers>../test/encdet_test.h</headers>
 		<headers>../test/encoding_test.h</headers>
 		<sources>../test/test.cpp</sources>
-		
-		<lib-path>$(BOOST_DIR)/stage/lib</lib-path>
-		<if cond="FORMAT in ('mingw')">
-			<set var="BOOST_RT_OPT" make_var="1">
-				<if cond="DEBUG==0"></if>
-				<if cond="DEBUG==1">-d</if>
-			</set>
-			<sys-lib>boost_unit_test_framework-mgw$(MGW_VER)-mt$(BOOST_RT_OPT)-$(BOOST_VER)</sys-lib>
-		</if>
 	</exe>
 </makefile>
