@@ -9,11 +9,20 @@
 #include "../wxm/utils.h"
 #include "../wxm/wx_icu.h"
 
+#ifdef _MSC_VER
+# pragma warning( push )
+# pragma warning( disable : 4996 )
+#endif
+// disable 4996 {
 //(*InternalHeaders(WXMEnumerationDialog)
 #include <wx/intl.h>
 #include <wx/string.h>
 //*)
 #include <wx/msgdlg.h>
+// disable 4996 }
+#ifdef _MSC_VER
+# pragma warning( pop )
+#endif
 
 #include <unicode/locid.h>
 #include <unicode/uversion.h>
