@@ -801,7 +801,7 @@ void WXMEnumerationDialog::OnChoiceNumSysSelect(wxCommandEvent& event)
 	RadioButtonFullWidth->Enable(ns->HasFullwidth());
 
 	ChoicePadding->Select(0);
-	ChoicePadding->Enable(ns->ZeroPaddable());
+	AdjustChoicePadding(true);
 
 	CheckBoxGrpSep->SetValue(false);
 	CheckBoxGrpSep->Enable(ns->Groupable());
@@ -921,10 +921,6 @@ void WXMEnumerationDialog::OnRadioButtonBinSelect(wxCommandEvent& event)
 	OnBaseSelect('b');
 }
 
-#ifdef _MSC_VER
-# pragma warning( pop )
-#endif
-
 void WXMEnumerationDialog::OnRadioButtonUpperSelect(wxCommandEvent& event)
 {
 	m_numsys->SetLowercase(false);
@@ -938,3 +934,7 @@ void WXMEnumerationDialog::OnRadioButtonLowerSelect(wxCommandEvent& event)
 
 	Preview();
 }
+
+#ifdef _MSC_VER
+# pragma warning( pop )
+#endif
