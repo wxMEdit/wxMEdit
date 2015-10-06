@@ -39,6 +39,8 @@
 # pragma warning( pop )
 #endif
 
+#include <boost/lexical_cast.hpp>
+
 #include <limits>
 
 #ifdef _MSC_VER
@@ -654,7 +656,11 @@ bool CheckTextNumMin(const wxStaticText* label, const wxTextCtrl* txtctrl, int64
 	wxString name = label->GetLabelText();
 	wxString txtnum = txtctrl->GetValue();
 	int64_t n = -1;
-	if (!txtnum.ToLongLong((wxLongLong_t*)&n, 10))
+	try
+	{
+		n = boost::lexical_cast<int64_t>(std::wstring(txtnum.wc_str()));
+	}
+	catch (boost::bad_lexical_cast&)
 	{
 		errmsg = wxString::Format(_("%s is Not a Number."), name.wc_str());
 		return false;
@@ -675,9 +681,14 @@ wxString GetSelectWXStr(wxChoice* choice)
 
 int64_t GetI64FromTextCtrl(const wxTextCtrl* txtctrl, int64_t defaultval=0)
 {
-	int64_t n = defaultval;
-	txtctrl->GetValue().ToLongLong((wxLongLong_t*)&n, 10);
-	return n;
+	try
+	{
+		return boost::lexical_cast<int64_t>(std::wstring(txtctrl->GetValue().wc_str()));
+	}
+	catch (boost::bad_lexical_cast&)
+	{}
+
+	return defaultval;
 }
 
 }// namespace wxm
