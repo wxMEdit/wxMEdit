@@ -106,8 +106,10 @@
 #define copy_xpm_idx (cut_xpm_idx+1)
 #include "../images/paste.xpm"
 #define paste_xpm_idx (copy_xpm_idx+1)
+#include "../images/olist.xpm"
+#define olist_xpm_idx (paste_xpm_idx+1)
 #include "../images/indent.xpm"
-#define indent_xpm_idx (paste_xpm_idx+1)
+#define indent_xpm_idx (olist_xpm_idx+1)
 #include "../images/unindent.xpm"
 #define unindent_xpm_idx (indent_xpm_idx+1)
 #include "../images/comment.xpm"
@@ -1133,7 +1135,7 @@ CommandData CommandTable[]=
                                                                                                                                                                  wxITEM_NORMAL,    -1,                0,                     _("Insert a Tab char at current position")},
 
     { ecInsertDateTime, 1, menuInsertDateTime,           wxT("menuInsertDateTime"),           _("Insert Dat&e and Time"),                   wxT("F7"),           wxITEM_NORMAL,    -1,                0,                     _("Insert date and time at current position")},
-    { 0,                1, menuInsertEnumeration,        wxT("menuInsertEnumeration"),        _("Insert &Ordered Sequence..."),             wxT(""),             wxITEM_NORMAL,    -1,                0,                     _("Insert ordered sequence with certain format in specified numbering system")},
+    { 0,                1, menuInsertEnumeration,        wxT("menuInsertEnumeration"),        _("Insert &Ordered Sequence..."),             wxT("Ctrl-Alt-N"),   wxITEM_NORMAL,    olist_xpm_idx,     0,                     _("Insert ordered sequence with certain format in specified numbering system")},
 
     { 0,                1, 0,                            0,                                   0,                                            0,                   wxITEM_SEPARATOR, -1,                0,                     0},
     { 0,                1, menuAdvanced,                 wxT("menuAdvanced"),                 _("Ad&vanced"),                               0,                   wxITEM_NORMAL,    -1,                &g_Menu_Edit_Advanced, 0},
@@ -1743,6 +1745,7 @@ void MadEditFrame::CreateGUIControls()
     m_ImageList->Add(wxBitmap(cut_xpm));
     m_ImageList->Add(wxBitmap(copy_xpm));
     m_ImageList->Add(wxBitmap(paste_xpm));
+    m_ImageList->Add(wxBitmap(olist_xpm));
     m_ImageList->Add(wxBitmap(indent_xpm));
     m_ImageList->Add(wxBitmap(unindent_xpm));
     m_ImageList->Add(wxBitmap(comment_xpm));
@@ -1990,6 +1993,9 @@ void MadEditFrame::CreateGUIControls()
     WxToolBar1->AddTool(menuCut,   _T("Cut"),   m_ImageList->GetBitmap(cut_xpm_idx),   wxNullBitmap, wxITEM_NORMAL, _("Cut") );
     WxToolBar1->AddTool(menuCopy,  _T("Copy"),  m_ImageList->GetBitmap(copy_xpm_idx),  wxNullBitmap, wxITEM_NORMAL, _("Copy") );
     WxToolBar1->AddTool(menuPaste, _T("Paste"), m_ImageList->GetBitmap(paste_xpm_idx), wxNullBitmap, wxITEM_NORMAL, _("Paste") );
+
+    WxToolBar1->AddSeparator();
+    WxToolBar1->AddTool(menuInsertEnumeration, _T("InsertEnum"), m_ImageList->GetBitmap(olist_xpm_idx), wxNullBitmap, wxITEM_NORMAL, _("Insert Ordered Sequence"));
 
     WxToolBar1->AddSeparator();
     WxToolBar1->AddTool(menuIncreaseIndent, _T("IncIndent"), m_ImageList->GetBitmap(indent_xpm_idx),   wxNullBitmap, wxITEM_NORMAL, _("Increase Indent") );
