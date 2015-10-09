@@ -16,8 +16,8 @@ namespace wxm
 
 struct InFrameWXMEdit : public MadEdit
 {
-	virtual void SetWordWrapMode(MadWordWrapMode mode);
-	virtual MadWordWrapMode GetWordWrapMode() { return m_WordWrapMode; }
+	virtual void SetWordWrapMode(MadWordWrapMode mode) override;
+	virtual MadWordWrapMode GetWordWrapMode() override { return m_WordWrapMode; }
 
 	void TrimTrailingSpaces();
 	void InsertEnumeration();
@@ -25,8 +25,8 @@ struct InFrameWXMEdit : public MadEdit
 	virtual bool BookmarkVisible() { return m_bookmark_visible; }
 	virtual void SetBookmarkVisible(bool visible);
 
-	virtual LineNumberList SaveBookmarkLineNumberList();
-	virtual void RestoreBookmarkByLineNumberList(const LineNumberList& linenums);
+	virtual LineNumberList SaveBookmarkLineNumberList() override;
+	virtual void RestoreBookmarkByLineNumberList(const LineNumberList& linenums) override;
 
 	void BeginPrint(const wxRect &printRect);
 	bool PrintPage(wxDC *dc, int pageNum);
@@ -49,19 +49,19 @@ struct InFrameWXMEdit : public MadEdit
 
 	InFrameWXMEdit(wxWindow* parent, wxWindowID id, const wxPoint& pos, const wxSize& size, long style);
 private:
-	virtual void DoSelectionChanged();
-	virtual void DoStatusChanged();
-	virtual void DoToggleWindow();
-	virtual void DoMouseRightUp();
+	virtual void DoSelectionChanged() override;
+	virtual void DoStatusChanged() override;
+	virtual void DoToggleWindow() override;
+	virtual void DoMouseRightUp() override;
 
-	virtual int CalcLineNumberAreaWidth(MadLineIterator lit, int lineid, int rowid, int toprow, int rowcount);
-	virtual int GetLineNumberAreaWidth(int number);
-	virtual int CachedLineNumberAreaWidth() { return m_LineNumberAreaWidth; }
-	virtual void CacheLineNumberAreaWidth(int width) { m_LineNumberAreaWidth = width; }
+	virtual int CalcLineNumberAreaWidth(MadLineIterator lit, int lineid, int rowid, int toprow, int rowcount) override;
+	virtual int GetLineNumberAreaWidth(int number) override;
+	virtual int CachedLineNumberAreaWidth() override { return m_LineNumberAreaWidth; }
+	virtual void CacheLineNumberAreaWidth(int width) override { m_LineNumberAreaWidth = width; }
 
-	virtual void PaintLineNumberArea(const wxColor & bgcolor, wxDC * dc, const wxRect& rect, bool is_trailing_subrow, MadLineIterator lineiter, int lineid, int text_top);
+	virtual void PaintLineNumberArea(const wxColor & bgcolor, wxDC * dc, const wxRect& rect, bool is_trailing_subrow, MadLineIterator lineiter, int lineid, int text_top) override;
 
-	virtual void OnPaintInPrinting(wxPaintDC& dc, wxMemoryDC& memdc);
+	virtual void OnPaintInPrinting(wxPaintDC& dc, wxMemoryDC& memdc) override;
 
 	void BeginTextPrinting();
 	void BeginHexPrinting();
