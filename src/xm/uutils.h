@@ -93,6 +93,7 @@ private:
 
 void NonBMPtoUTF16(UChar32 ch, UChar* buf);
 size_t NonBMPtoUTF16LE(UChar32 ch, uint8_t* buf);
+size_t NonBMPtoUTF16BE(UChar32 ch, uint8_t* buf);
 
 inline uint16_t UIntSwap(uint16_t val)
 {

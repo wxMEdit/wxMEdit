@@ -131,20 +131,23 @@ void AccumulativeWordCounter::PiecewiseCount(UChar32 ch)
 
 void NonBMPtoUTF16(UChar32 ch, UChar* buf)
 {
-	//ucs4=(highChar -0xD800) * 0x400 + (lowChar -0xDC00) + 0x10000
-	//if(ucs4>0x10FFFF) return 0;
-
-	//wxASSERT(ucs4>=0x10000 && ucs4<=0x10FFFF);
-
 	ch -= 0x10000;
 	buf[0] = (ch >> 10) + 0xD800;    // high surrogate
 	buf[1] = (ch & 0x3FF) + 0xDC00;  // low surrogate
-
 }
 
 size_t NonBMPtoUTF16LE(UChar32 ch, uint8_t* buf)
 {
 	NonBMPtoUTF16(ch, (UChar*)buf);
+	return 4;
+}
+
+size_t NonBMPtoUTF16BE(UChar32 ch, uint8_t* buf)
+{
+	NonBMPtoUTF16(ch, (UChar*)buf);
+	uint16_t* ubuf = (uint16_t*)(buf);
+	ubuf[0] = UIntSwap(ubuf[0]);
+	ubuf[1] = UIntSwap(ubuf[1]);
 	return 4;
 }
 

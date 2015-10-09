@@ -137,14 +137,15 @@ bool UTF8Encoding::NextUChar32(UCQueue &ucqueue, UChar32BytesMapper& mapper)
 
 size_t UTF16LE_Encoding::UCS4toMultiByte(ucs4_t ucs4, ubyte* buf)
 {
-	if(ucs4>=0x10000)// to unicode surrogates
+	if (ucs4>=0x10000)
 	{
-		if(ucs4>0x10FFFF) return 0;
+		if(ucs4 > 0x10FFFF)
+			return 0;
 		return NonBMPtoUTF16LE(ucs4, buf);
 	}
 
-	buf[0]=ucs4;
-	buf[1]=ucs4>>8;
+	buf[0] = ucs4;
+	buf[1] = ucs4 >> 8;
 
 	return 2;
 }
@@ -215,20 +216,12 @@ bool UTF16LE_Encoding::NextUChar32(UCQueue &ucqueue, UChar32BytesMapper& mapper)
 
 size_t UTF16BE_Encoding::UCS4toMultiByte(ucs4_t ucs4, ubyte* buf)
 {
-	if (ucs4 >= 0x10000)  // to unicode surrogates
+	if (ucs4 >= 0x10000)
 	{
-		if(ucs4>0x10FFFF) return 0;
+		if (ucs4 > 0x10FFFF)
+			return 0;
 
-		ucs4 -= 0x10000;
-		ucs2_t high = (ucs4 >> 10) + 0xD800;    // high surrogate
-		ucs2_t low = (ucs4 & 0x3FF) + 0xDC00;    // low surrogate
-
-		buf[0] = high >> 8;
-		buf[1] = ubyte(high);
-		buf[2] = low >> 8;
-		buf[3] = ubyte(low);
-
-		return 4;
+		return NonBMPtoUTF16BE(ucs4, buf);
 	}
 
 	buf[0] = ucs4 >> 8;
