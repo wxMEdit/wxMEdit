@@ -218,7 +218,7 @@ size_t DoubleByteEncoding::UCS4toMultiByte(ucs4_t ucs4, ubyte* buf)
 	return 2;
 }
 
-bool DoubleByteEncoding::NextUChar32(MadUCQueue &ucqueue, UChar32BytesMapper& mapper)
+bool DoubleByteEncoding::NextUChar32(UCQueue &ucqueue, UChar32BytesMapper& mapper)
 {
 	int64_t rest;
 	ubyte* buf = mapper.BufferLoadBytes(rest, 2);

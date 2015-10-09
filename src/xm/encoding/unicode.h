@@ -26,7 +26,7 @@ namespace xm
 struct UTF8Encoding: public Encoding, EncodingDecoderISO646
 {
 	virtual size_t UCS4toMultiByte(ucs4_t ucs4, ubyte* buf) override;
-	virtual bool NextUChar32(MadUCQueue &ucqueue, UChar32BytesMapper& mapper) override;
+	virtual bool NextUChar32(UCQueue &ucqueue, UChar32BytesMapper& mapper) override;
 
 private:
 	friend Encoding* EncodingManager::GetEncoding(ssize_t idx);
@@ -37,7 +37,7 @@ private:
 struct UTF16LE_Encoding: public Encoding
 {
 	virtual size_t UCS4toMultiByte(ucs4_t ucs4, ubyte* buf) override;
-	virtual bool NextUChar32(MadUCQueue &ucqueue, UChar32BytesMapper& mapper) override;
+	virtual bool NextUChar32(UCQueue &ucqueue, UChar32BytesMapper& mapper) override;
 	virtual ucs4_t PeekUChar32_Newline(BlockDumper& dumper, size_t len) override;
 	virtual bool IsUChar32_LineFeed(BlockDumper& dumper, size_t len) override;
 	virtual bool IsUChar32_LineFeed(const ubyte* buf, size_t len) override
@@ -54,7 +54,7 @@ private:
 struct UTF16BE_Encoding: public Encoding
 {
 	virtual size_t UCS4toMultiByte(ucs4_t ucs4, ubyte* buf) override;
-	virtual bool NextUChar32(MadUCQueue &ucqueue, UChar32BytesMapper& mapper) override;
+	virtual bool NextUChar32(UCQueue &ucqueue, UChar32BytesMapper& mapper) override;
 	virtual ucs4_t PeekUChar32_Newline(BlockDumper& dumper, size_t len) override;
 	virtual bool IsUChar32_LineFeed(BlockDumper& dumper, size_t len) override;
 	virtual bool IsUChar32_LineFeed(const ubyte* buf, size_t len) override
@@ -71,7 +71,7 @@ private:
 struct UTF32LE_Encoding: public Encoding
 {
 	virtual size_t UCS4toMultiByte(ucs4_t ucs4, ubyte* buf) override;
-	virtual bool NextUChar32(MadUCQueue &ucqueue, UChar32BytesMapper& mapper) override;
+	virtual bool NextUChar32(UCQueue &ucqueue, UChar32BytesMapper& mapper) override;
 	virtual ucs4_t PeekUChar32_Newline(BlockDumper& dumper, size_t len) override;
 	virtual bool IsUChar32_LineFeed(BlockDumper& dumper, size_t len) override;
 	virtual bool IsUChar32_LineFeed(const ubyte* buf, size_t len) override
@@ -88,7 +88,7 @@ private:
 struct UTF32BE_Encoding: public Encoding
 {
 	virtual size_t UCS4toMultiByte(ucs4_t ucs4, ubyte* buf) override;
-	virtual bool NextUChar32(MadUCQueue &ucqueue, UChar32BytesMapper& mapper) override;
+	virtual bool NextUChar32(UCQueue &ucqueue, UChar32BytesMapper& mapper) override;
 	virtual ucs4_t PeekUChar32_Newline(BlockDumper& dumper, size_t len) override;
 	virtual bool IsUChar32_LineFeed(BlockDumper& dumper, size_t len) override;
 	virtual bool IsUChar32_LineFeed(const ubyte* buf, size_t len) override

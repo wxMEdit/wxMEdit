@@ -212,7 +212,6 @@
 		<headers>../src/wxmedit/clipbrd_gtk.h</headers>
 		<headers>../src/wxmedit/trad_simp.h</headers>
 		<sources>../src/wxmedit/trad_simp.cpp</sources>
-		<headers>../src/wxmedit/wxm_deque.hpp</headers>
 		<headers>../src/wxmedit/wxm_lines.h</headers>
 		<sources>../src/wxmedit/wxm_lines.cpp</sources>
 		<headers>../src/wxmedit/wxm_syntax.h</headers>
@@ -250,7 +249,6 @@
 		</if>
 		<cppflags>$(CPPFLAGS_ADD)</cppflags>
 
-		<headers>../src/wxmedit/wxm_deque.hpp</headers>
 		<headers>../src/xm/cxx11.h</headers>
 		<headers>../src/xm/utils.hpp</headers>
 		<headers>../src/xm/uutils.h</headers>

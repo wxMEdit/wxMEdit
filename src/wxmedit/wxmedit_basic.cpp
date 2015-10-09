@@ -867,7 +867,7 @@ void MadEdit::GetSelText(wxString &ws)
     else
     {
         wxFileOffset pos = m_SelectionBegin->pos;
-        MadUCQueue ucqueue;
+        xm::UCQueue ucqueue;
 
         MadLineIterator lit = m_SelectionBegin->iter;
         m_Lines->InitNextUChar(lit, m_SelectionBegin->linepos);
@@ -891,7 +891,7 @@ void MadEdit::GetSelText(wxString &ws)
 void MadEdit::GetText(wxString &ws, bool ignoreBOM)
 {
     wxFileOffset pos = 0;
-    MadUCQueue ucqueue;
+    xm::UCQueue ucqueue;
 
     MadLineIterator lit = m_Lines->m_LineList.begin();
 
@@ -1039,7 +1039,7 @@ void MadEdit::SetText(const wxString &ws)
 bool MadEdit::GetLine(wxString &ws, int line, size_t maxlen, bool ignoreBOM)
 {
     wxFileOffset pos = 0;
-    MadUCQueue ucqueue;
+    xm::UCQueue ucqueue;
 
     MadLineIterator lit = m_Lines->m_LineList.begin();
 
@@ -1115,7 +1115,7 @@ void MadEdit::SelectAll()
 
         if(m_SelectionPos2.linepos > 0)//update xpos
         {
-            MadUCQueue ucharQueue;
+            xm::UCQueue ucharQueue;
             vector<int> widthArray;
             int ucharPos;
             UpdateCaret(m_SelectionPos2, ucharQueue, widthArray ,ucharPos);
@@ -1171,7 +1171,7 @@ void MadEdit::CopyColumnText()
 void MadEdit::CopyRegularText()
 {
     wxString ws;
-    MadUCQueue ucqueue;
+    xm::UCQueue ucqueue;
 
     wxFileOffset pos = m_SelectionBegin->pos;
     MadLineIterator lit = m_SelectionBegin->iter;

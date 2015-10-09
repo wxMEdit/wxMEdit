@@ -280,7 +280,7 @@ size_t SingleByteEncoding::UCS4toMultiByte(ucs4_t ucs4, ubyte* buf)
 	return 1;
 }
 
-bool SingleByteEncoding::NextUChar32(MadUCQueue &ucqueue, UChar32BytesMapper& mapper)
+bool SingleByteEncoding::NextUChar32(UCQueue &ucqueue, UChar32BytesMapper& mapper)
 {
 	int64_t rest;
 	ubyte* buf = mapper.BufferLoadBytes(rest, 4);

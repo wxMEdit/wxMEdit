@@ -206,7 +206,7 @@ void EncodingGB18030::CacheMBofUCS4(uint32_t& mb, ucs4_t u)
 }
 
 
-bool EncodingGB18030::NextUChar32(MadUCQueue &ucqueue, UChar32BytesMapper& mapper)
+bool EncodingGB18030::NextUChar32(UCQueue &ucqueue, UChar32BytesMapper& mapper)
 {
 	int64_t rest;
 	ubyte *buf = mapper.BufferLoadBytes(rest, 4);

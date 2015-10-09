@@ -73,7 +73,7 @@ size_t UTF8Encoding::UCS4toMultiByte(ucs4_t ucs4, ubyte* buf)
 	return 0;
 }
 
-bool UTF8Encoding::NextUChar32(MadUCQueue &ucqueue, UChar32BytesMapper& mapper)
+bool UTF8Encoding::NextUChar32(UCQueue &ucqueue, UChar32BytesMapper& mapper)
 {
 	int64_t rest;
 	ubyte* buf = mapper.BufferLoadBytes(rest, 4);
@@ -170,7 +170,7 @@ ucs4_t UTF16LE_Encoding::PeekUChar32_Newline(BlockDumper& dumper, size_t len)
 		return (ucs4_t)buf[0];
 	return 0;
 }
-bool UTF16LE_Encoding::NextUChar32(MadUCQueue &ucqueue, UChar32BytesMapper& mapper)
+bool UTF16LE_Encoding::NextUChar32(UCQueue &ucqueue, UChar32BytesMapper& mapper)
 {
 	int64_t rest;
 	ubyte* buf = mapper.BufferLoadBytes(rest, 4);
@@ -258,7 +258,7 @@ ucs4_t UTF16BE_Encoding::PeekUChar32_Newline(BlockDumper& dumper, size_t len)
 		return (ucs4_t)buf[1];
 	return 0;
 }
-bool UTF16BE_Encoding::NextUChar32(MadUCQueue &ucqueue, UChar32BytesMapper& mapper)
+bool UTF16BE_Encoding::NextUChar32(UCQueue &ucqueue, UChar32BytesMapper& mapper)
 {
 	int64_t rest;
 	ubyte* buf = mapper.BufferLoadBytes(rest, 4);
@@ -320,7 +320,7 @@ ucs4_t UTF32LE_Encoding::PeekUChar32_Newline(BlockDumper& dumper, size_t len)
 		return (ucs4_t)buf[0];
 	return 0;
 }
-bool UTF32LE_Encoding::NextUChar32(MadUCQueue &ucqueue, UChar32BytesMapper& mapper)
+bool UTF32LE_Encoding::NextUChar32(UCQueue &ucqueue, UChar32BytesMapper& mapper)
 {
 	int64_t rest;
 	ubyte* buf = mapper.BufferLoadBytes(rest, 4);
@@ -372,7 +372,7 @@ ucs4_t UTF32BE_Encoding::PeekUChar32_Newline(BlockDumper& dumper, size_t len)
 		return (ucs4_t)buf[3];
 	return 0;
 }
-bool UTF32BE_Encoding::NextUChar32(MadUCQueue &ucqueue, UChar32BytesMapper& mapper)
+bool UTF32BE_Encoding::NextUChar32(UCQueue &ucqueue, UChar32BytesMapper& mapper)
 {
 	int64_t rest;
 	ubyte* buf = mapper.BufferLoadBytes(rest, 4);

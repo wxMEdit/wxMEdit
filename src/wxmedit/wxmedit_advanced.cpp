@@ -434,7 +434,7 @@ void MadEdit::IncreaseDecreaseIndent(bool incIndent)
     wxByte *buf=&buffervector[0];
 
     vector <ucs4_t> spaces;
-    MadUCQueue ucqueue;
+    xm::UCQueue ucqueue;
     wxFileOffset delsize=0;
     for(;;)  // for each line
     {
@@ -601,7 +601,7 @@ void MadEdit::CommentUncomment(bool comment)
     wxByte *buf=&buffervector[0];
 
     vector <ucs4_t> spaces;
-    MadUCQueue ucqueue;
+    xm::UCQueue ucqueue;
     wxFileOffset delsize=0;
     for(;;)  // for each line
     {
@@ -1252,7 +1252,7 @@ void MadEdit::WordCount(bool selection, wxm::WordCountData& data)
     data.bytes = int(endpos - nowpos);
 
     // begin counting
-    MadUCQueue ucqueue;
+    xm::UCQueue ucqueue;
     m_Lines->InitNextUChar(lit, linepos);
     int idx=0, count=0;
     boost::scoped_ptr<xm::WordCounter> word_counter(new xm::AccumulativeWordCounter(0x4000));
@@ -1271,7 +1271,7 @@ void MadEdit::WordCount(bool selection, wxm::WordCountData& data)
             m_Lines->InitNextUChar(lit, 0);
             m_Lines->NextUChar(ucqueue);
         }
-        MadUCPair &ucp=ucqueue.back();
+        xm::UCPair &ucp=ucqueue.back();
         nowpos+=ucp.second;
         ucs4_t uc=ucp.first;
 
@@ -1336,7 +1336,7 @@ SortLineData::SortLineData(const MadLineIterator& l, int id)
     int numstep=NUM_SIGN;
     int num_idx=0;
 
-    static MadUCQueue ucq;
+    static xm::UCQueue ucq;
     ucq.clear();
 
     s_lines->InitNextUChar(lit, lit->m_RowIndices[0].m_Start);
@@ -1949,7 +1949,7 @@ void MadEdit::ConvertSpaceToTab()
     const size_t lastrow = m_SelectionEnd->rowid;
     const int RowCount = int(lastrow - firstrow + 1);
 
-    MadUCQueue ucqueue;
+    xm::UCQueue ucqueue;
     for(;;)
     {
         int rowwidth = lit->m_RowIndices[subrowid].m_Width;
@@ -2148,7 +2148,7 @@ void MadEdit::ConvertTabToSpace()
     const size_t lastrow = m_SelectionEnd->rowid;
     const int RowCount = int(lastrow - firstrow + 1);
 
-    MadUCQueue ucqueue;
+    xm::UCQueue ucqueue;
     for(;;)
     {
         int rowwidth = lit->m_RowIndices[subrowid].m_Width;

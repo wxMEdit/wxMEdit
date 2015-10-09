@@ -338,7 +338,7 @@ private:
 protected:
     MadCaretPos     m_CaretPos;
 private:
-    MadUCQueue      m_ActiveRowUChars;  // ucs4 char cache of active row
+    xm::UCQueue      m_ActiveRowUChars;  // ucs4 char cache of active row
     vector<int>     m_ActiveRowWidths;  // width cache of active row
     int             m_CaretRowUCharPos; // ucs4 char pos of active row
     int             m_LastCaretXPos;    // when move caret up/down, use this to calc the nearest xpos
@@ -515,20 +515,20 @@ protected:
     // IN: caretPos.iter linepos subrowid ; not used: pos lineid rowid
     // UPDATE:caretPos.xpos extraspaces and ucharQueue widthArray ucharPos
     void UpdateCaret(MadCaretPos &caretPos,
-                     MadUCQueue &ucharQueue, vector<int> &widthArray,
+                     xm::UCQueue &ucharQueue, vector<int> &widthArray,
                      int &ucharPos);
 
     // IN: caretPos.pos
     // UPDATE: caretPos.all and ucharQueue widthArray ucharPos
     void UpdateCaretByPos(MadCaretPos &caretPos,
-                          MadUCQueue &ucharQueue, vector<int> &widthArray,
+                          xm::UCQueue &ucharQueue, vector<int> &widthArray,
                           int &ucharPos);
 
     // caretPos.pos linepos must be begin of row
     // IN: caretPos.iter subrowid ; not used: lineid rowid
     // UPDATE:caretPos.xpos pos linepos extraspaces and ucharQueue widthArray ucharPos
     void UpdateCaretByXPos(int xPos, MadCaretPos &caretPos,
-                           MadUCQueue &ucharQueue, vector<int> &widthArray,
+                           xm::UCQueue &ucharQueue, vector<int> &widthArray,
                            int &ucharPos);
 
     // update the two SelectionPos by their .pos
@@ -596,12 +596,12 @@ protected:
     void ShowCaret(bool show);
     void DisplayCaret(bool moveonly); // show caret immediately
 
-    void CopyFileDataToMem(MadBlockIterator begin, MadBlockIterator end);
+    void CopyFileDataToMem(xm::BlockIterator begin, xm::BlockIterator end);
 
     // return the line-iterator and and lineid (if it is not nullptr) by the pos
     MadLineIterator DeleteInsertData(wxFileOffset pos,
-                                     wxFileOffset delsize, /*OUT*/ MadBlockVector *deldata,
-                                     wxFileOffset inssize, /*IN*/  MadBlockVector *insdata,
+                                     wxFileOffset delsize, /*OUT*/ xm::BlockVector *deldata,
+                                     wxFileOffset inssize, /*IN*/  xm::BlockVector *insdata,
                                      /*OUT*/ int *lineid = nullptr);
 
     void UCStoBlock(const ucs4_t *ucs, size_t count, MadBlock & block);

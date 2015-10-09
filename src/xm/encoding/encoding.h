@@ -206,7 +206,7 @@ protected:
 public:
 	// return the converted length of buf
 	virtual size_t UCS4toMultiByte(ucs4_t ucs4, ubyte* buf) = 0;
-	virtual bool NextUChar32(MadUCQueue &ucqueue, UChar32BytesMapper& mapper) = 0;
+	virtual bool NextUChar32(UCQueue &ucqueue, UChar32BytesMapper& mapper) = 0;
 
 	virtual ucs4_t MultiBytetoUCS4(const ubyte* buf)
 	{

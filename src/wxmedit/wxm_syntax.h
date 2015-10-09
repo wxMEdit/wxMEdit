@@ -258,20 +258,20 @@ private: // for NextWord()
     size_t nw_FirstIndex;
     size_t nw_RestCount;
     size_t nw_MaxLength;
-    MadUCQueue nw_ucqueue;
+    xm::UCQueue nw_ucqueue;
 
     bool nw_EndOfLine;
     wxColor nw_Color, nw_BgColor, nw_CurrentBgColor;
     wxFont *nw_Font;
 
-    int FindStringCase(MadUCQueue & ucqueue, size_t first,
+    int FindStringCase(xm::UCQueue & ucqueue, size_t first,
                    MadStringIterator begin, const MadStringIterator & end,
                    size_t & len);
-    int FindStringNoCase(MadUCQueue & ucqueue, size_t first,
+    int FindStringNoCase(xm::UCQueue & ucqueue, size_t first,
                    MadStringIterator begin, const MadStringIterator & end,
                    size_t & len);
 
-    typedef int (MadSyntax::*FindStringPtr)(MadUCQueue & ucqueue, size_t first,
+    typedef int (MadSyntax::*FindStringPtr)(xm::UCQueue & ucqueue, size_t first,
                    MadStringIterator begin, const MadStringIterator & end,
                    size_t & len);
     FindStringPtr FindString;

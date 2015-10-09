@@ -11,23 +11,39 @@
 
 #include "../xm/cxx11.h"
 #include "../xm/encoding/encoding_def.h"
-#include "../wxmedit/wxm_deque.hpp"
+
+#include <deque>
+
+#ifdef _MSC_VER
+#include <boost/version.hpp>
+# if BOOST_VERSION >= 104800
+#  include <boost/container/deque.hpp>
+	namespace xm { using boost::container::deque; }
+# else
+#  include <deque>
+	namespace xm { using std::deque; }
+# endif
+#else
+#  include <deque>
+	namespace xm { using std::deque; }
+#endif
 
 #include <vector>
 #include <utility>
 
 struct MadBlock;
-typedef std::vector < MadBlock > MadBlockVector;
-typedef MadBlockVector::iterator MadBlockIterator;
-typedef std::pair<ucs4_t, int>   MadUCPair;  // ucs4char, uc_len
-typedef MadDeque<MadUCPair>      MadUCQueue;
 
 namespace xm
 {
 
+typedef std::vector < MadBlock > BlockVector;
+typedef BlockVector::iterator    BlockIterator;
+typedef std::pair<ucs4_t, int>   UCPair;  // ucs4char, uc_len
+typedef deque<UCPair>            UCQueue;
+
 struct BlockDumper
 {
-	BlockDumper(MadBlockIterator& bit)
+	BlockDumper(BlockIterator& bit)
 		:m_bit(bit)
 	{
 	}
@@ -35,24 +51,24 @@ struct BlockDumper
 
 	virtual ~BlockDumper() {}
 protected:
-	MadBlockIterator& m_bit;
+	BlockIterator& m_bit;
 };
 
 struct BackwardBlockDumper: public BlockDumper
 {
-	BackwardBlockDumper(MadBlockIterator& bit): BlockDumper(bit) {}
+	BackwardBlockDumper(BlockIterator& bit): BlockDumper(bit) {}
 	virtual void Dump(ubyte* buf, size_t len) override;
 };
 
 struct ForwardBlockDumper: public BlockDumper
 {
-	ForwardBlockDumper(MadBlockIterator& bit): BlockDumper(bit) {}
+	ForwardBlockDumper(BlockIterator& bit): BlockDumper(bit) {}
 	virtual void Dump(ubyte* buf, size_t len) override;
 };
 
 struct UChar32BytesMapper
 {
-	virtual void MoveUChar32Bytes(MadUCQueue &ucqueue, ucs4_t uc, size_t len) = 0;
+	virtual void MoveUChar32Bytes(UCQueue &ucqueue, ucs4_t uc, size_t len) = 0;
 	virtual ubyte* BufferLoadBytes(int64_t& rest, size_t buf_len) = 0;
 	
 	virtual ~UChar32BytesMapper() {}

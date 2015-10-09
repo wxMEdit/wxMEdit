@@ -618,7 +618,7 @@ void InFrameWXMEdit::PrintHexPage(wxDC *dc, int pageNum)
 	MadLineIterator lit, lineend = m_Lines->m_LineList.end();
 	int rn;
 	wxFileOffset pos;
-	MadUCQueue ucqueue;
+	xm::UCQueue ucqueue;
 
 	wxFileOffset hexrowpos = wxFileOffset(toprow) * 16;
 	wxString offset(wxT("12345678"));
@@ -697,7 +697,7 @@ void InFrameWXMEdit::PrintHexPage(wxDC *dc, int pageNum)
 					m_Lines->NextUChar(ucqueue);
 				}
 
-				MadUCPair &ucp = ucqueue.back();
+				xm::UCPair &ucp = ucqueue.back();
 				rowpos += ucp.second;
 				if (ucp.first <= 0x20)
 					lines << wxT('.');

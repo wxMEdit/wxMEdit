@@ -616,7 +616,7 @@ ucs4_t MadLine::LastUCharIsNewLine(xm::Encoding *encoding)
     if(m_Size == 0)
         return 0;
 
-    MadBlockIterator bit = m_Blocks.end();
+    xm::BlockIterator bit = m_Blocks.end();
     --bit;
 
     xm::BackwardBlockDumper dumper(bit);
@@ -628,7 +628,7 @@ bool MadLine::FirstUCharIs0x0A(xm::Encoding *encoding)
 {
     if(m_Size == 0) return false;
 
-    MadBlockIterator bit = m_Blocks.begin();
+    xm::BlockIterator bit = m_Blocks.begin();
 
     xm::ForwardBlockDumper dumper(bit);
 
@@ -761,7 +761,7 @@ ucs4_t MadLines::GetNewLine(const MadLineIterator &iter)
     if(iter->m_NewLineSize == 0) return 0;
 
     InitNextUChar(iter, iter->m_Size - iter->m_NewLineSize);
-    MadUCQueue ucq;
+    xm::UCQueue ucq;
     NextUChar(ucq);
     NextUChar(ucq);
 
@@ -827,9 +827,9 @@ void MadLines::InitNextUChar(const MadLineIterator &iter, const wxFileOffset pos
 
 }
 
-void MadLines::MoveUChar32Bytes(MadUCQueue &ucqueue, ucs4_t uc, size_t len)
+void MadLines::MoveUChar32Bytes(xm::UCQueue &ucqueue, ucs4_t uc, size_t len)
 {
-    ucqueue.push_back(MadUCPair(uc, len));
+    ucqueue.push_back(xm::UCPair(uc, len));
     m_NextUChar_Pos += len;
     m_NextUChar_BufferStart += len;
     m_NextUChar_BufferSize -= len;
@@ -850,7 +850,7 @@ ubyte* MadLines::BufferLoadBytes(int64_t& rest, size_t buf_len)
     return m_NextUChar_Buffer+m_NextUChar_BufferStart;
 }
 
-bool MadLines::NextUChar(MadUCQueue &ucqueue)
+bool MadLines::NextUChar(xm::UCQueue &ucqueue)
 {
     return m_Encoding->NextUChar32(ucqueue, *this);
 }
@@ -865,16 +865,16 @@ bool MadLines::NextUCharIs0x0A(void)
     return m_Encoding->IsUChar32_LineFeed(buf, size_t(rest));
 }
 
-MadUCPair MadLines::PreviousUChar(/*IN_OUT*/MadLineIterator &lit, /*IN_OUT*/wxFileOffset &linepos)
+xm::UCPair MadLines::PreviousUChar(/*IN_OUT*/MadLineIterator &lit, /*IN_OUT*/wxFileOffset &linepos)
 {
     wxASSERT(linepos>=0);
 
-    MadUCQueue ucq;
+    xm::UCQueue ucq;
 
     if(linepos==0)
     {
         if(lit==m_LineList.begin())
-            return MadUCPair(0, 0);
+            return xm::UCPair(0, 0);
 
         --lit;
         linepos=lit->m_Size-lit->m_NewLineSize;
@@ -908,7 +908,7 @@ MadUCPair MadLines::PreviousUChar(/*IN_OUT*/MadLineIterator &lit, /*IN_OUT*/wxFi
 
     if(lpos==linepos)
     {
-        return MadUCPair(0, 0);
+        return xm::UCPair(0, 0);
     }
 
     linepos=lpos;
@@ -917,7 +917,7 @@ MadUCPair MadLines::PreviousUChar(/*IN_OUT*/MadLineIterator &lit, /*IN_OUT*/wxFi
 }
 
 
-int MadLines::FindStringCase(MadUCQueue &ucqueue, MadStringIterator begin,
+int MadLines::FindStringCase(xm::UCQueue &ucqueue, MadStringIterator begin,
                             const MadStringIterator &end, size_t &len)
 // 0: none, 1: first, 2:...
 {
@@ -962,7 +962,7 @@ int MadLines::FindStringCase(MadUCQueue &ucqueue, MadStringIterator begin,
 
             if(ucsize >= len)
             {
-                MadUCQueueIterator it = ucqueue.begin();
+                UCQueueIterator it = ucqueue.begin();
                 ++it;
                 while(*(++cstr) != 0)
                 {
@@ -980,7 +980,7 @@ int MadLines::FindStringCase(MadUCQueue &ucqueue, MadStringIterator begin,
     return 0;
 }
 
-int MadLines::FindStringNoCase(MadUCQueue &ucqueue, MadStringIterator begin,
+int MadLines::FindStringNoCase(xm::UCQueue &ucqueue, MadStringIterator begin,
                             const MadStringIterator &end, size_t &len)
 // 0: none, 1: first, 2:...
 {
@@ -1031,7 +1031,7 @@ int MadLines::FindStringNoCase(MadUCQueue &ucqueue, MadStringIterator begin,
 
             if(ucsize >= len)
             {
-                MadUCQueueIterator it = ucqueue.begin();
+                UCQueueIterator it = ucqueue.begin();
                 ++it;
                 while(*(++cstr) != 0)
                 {
@@ -1085,7 +1085,7 @@ MadLineState MadLines::Reformat(MadLineIterator iter)
     MadRowIndex rowidx;
     int rowidx_idx = 0;
 
-    MadUCQueue ucqueue;
+    xm::UCQueue ucqueue;
     int ucwidth;
     size_t rowlen;                                     // byte-length
     size_t wordlength;
@@ -1153,7 +1153,7 @@ MadLineState MadLines::Reformat(MadLineIterator iter)
             {
                 prevuc = firstuc;
 
-                MadUCPair &ucp = ucqueue.front();
+                xm::UCPair &ucp = ucqueue.front();
                 firstuc = ucp.first;
                 firstuclen = ucp.second;
                 if(firstuc == 0x0D)
@@ -1743,7 +1743,7 @@ MadLineState MadLines::Reformat(MadLineIterator iter)
             ++ReformatCount;
 
             //*** get corresponding block ***//
-            MadBlockIterator blockiter = iter->m_Blocks.begin();
+            xm::BlockIterator blockiter = iter->m_Blocks.begin();
             wxFileOffset blockpos = m_NextUChar_Pos;
             if(blockpos >= blockiter->m_Size)
                 do
@@ -1896,7 +1896,7 @@ void MadLines::RecountLineWidth(void)
 
     size_t rowidx_idx;
     MadRowIndex rowidx;
-    MadUCQueue ucqueue;
+    xm::UCQueue ucqueue;
     int ucwidth;
     size_t rowlen;                                     // byte-length
     size_t wordlength;
@@ -1953,7 +1953,7 @@ void MadLines::RecountLineWidth(void)
 
             do
             {
-                MadUCPair &ucp = ucqueue.front();
+                xm::UCPair &ucp = ucqueue.front();
                 firstuc = ucp.first;
                 firstuclen = ucp.second;
                 if(firstuc == 0x0D)
@@ -2247,11 +2247,11 @@ void MadLines::Append(const MadLineIterator &lit1, const MadLineIterator &lit2)
 
     lit1->m_Size += lit2->m_Size;
 
-    MadBlockVector &blks1 = lit1->m_Blocks;
-    MadBlockVector &blks2 = lit2->m_Blocks;
+    xm::BlockVector &blks1 = lit1->m_Blocks;
+    xm::BlockVector &blks2 = lit2->m_Blocks;
 
     MadBlock &blk1 = blks1.back();
-    MadBlockIterator bit2 = blks2.begin();
+    xm::BlockIterator bit2 = blks2.begin();
 
     if(blk1.m_Data == bit2->m_Data && (blk1.m_Pos + blk1.m_Size) == bit2->m_Pos)
     {
@@ -2634,7 +2634,7 @@ bool TruncateFile(const wxString &filename, wxFileOffset size)
 #endif
 }
 
-void MadLines::WriteBlockToData(MadOutData *data, const MadBlockIterator &bit)
+void MadLines::WriteBlockToData(MadOutData *data, const xm::BlockIterator &bit)
 {
     wxASSERT(data!=nullptr);
 
@@ -2672,7 +2672,7 @@ void MadLines::WriteToFile(wxFile &file, MadFileData *oldfd, MadFileData *newfd)
         {
             if(lit->m_Size != 0)
             {
-                MadBlockIterator bit=lit->m_Blocks.begin();
+                xm::BlockIterator bit=lit->m_Blocks.begin();
                 size_t count=lit->m_Blocks.size();
                 do
                 {
@@ -2717,10 +2717,10 @@ wxFileOffset MadLines::GetMaxTempSize(const wxString &filename)
     wxFileOffset writable_size=0, writepos=0;
 
     MadLineIterator write_lit;
-    MadBlockIterator write_bit, write_bitend;
+    xm::BlockIterator write_bit, write_bitend;
 
     MadLineIterator file_lit;
-    MadBlockIterator file_bit, file_bitend;
+    xm::BlockIterator file_bit, file_bitend;
 
     bool file_lit_not_set=true, ignore_overlap=false;
 
@@ -3037,10 +3037,10 @@ bool MadLines::SaveToFile(const wxString& filename, const wxString& tempdir)
     wxFileOffset writable_size=0, writepos=0;
 
     MadLineIterator write_lit;
-    MadBlockIterator write_bit, write_bitend;
+    xm::BlockIterator write_bit, write_bitend;
 
     MadLineIterator file_lit;
-    MadBlockIterator file_bit, file_bitend;
+    xm::BlockIterator file_bit, file_bitend;
 
     bool file_lit_not_set=true, ignore_overlap=false;
 

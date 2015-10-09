@@ -1321,7 +1321,7 @@ void MadSyntax::SetEncoding(xm::Encoding *encoding)
 }
 
 // 0: none, 1: first, 2:...
-int MadSyntax::FindStringCase(MadUCQueue & ucqueue, size_t first,
+int MadSyntax::FindStringCase(xm::UCQueue & ucqueue, size_t first,
                         MadStringIterator begin, const MadStringIterator & end,
                         size_t & len)
 {
@@ -1365,7 +1365,7 @@ int MadSyntax::FindStringCase(MadUCQueue & ucqueue, size_t first,
 
             if(ucsize >= len)
             {
-                MadUCQueueIterator it = ucqueue.begin();
+                UCQueueIterator it = ucqueue.begin();
                 std::advance(it, first + 1);
                 while(*(++cstr) != 0)
                 {
@@ -1383,7 +1383,7 @@ int MadSyntax::FindStringCase(MadUCQueue & ucqueue, size_t first,
     return 0;
 }
 
-int MadSyntax::FindStringNoCase(MadUCQueue & ucqueue, size_t first,
+int MadSyntax::FindStringNoCase(xm::UCQueue & ucqueue, size_t first,
                    MadStringIterator begin, const MadStringIterator & end,
                    size_t & len)
 {
@@ -1433,7 +1433,7 @@ int MadSyntax::FindStringNoCase(MadUCQueue & ucqueue, size_t first,
 
             if(ucsize >= len)
             {
-                MadUCQueueIterator it = ucqueue.begin();
+                UCQueueIterator it = ucqueue.begin();
                 std::advance(it, first + 1);
                 while(*(++cstr) != 0)
                 {

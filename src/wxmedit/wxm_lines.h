@@ -46,8 +46,6 @@ using std::list;
 using std::deque;
 using std::pair;
 
-#include "wxm_deque.hpp"
-
 //===========================================================================
 // MadFileNameIsUTF8, MadDirExists, MadConvFileName_WC2MB_UseLibc
 // for Testing/Converting of FileName Encoding under Linux
@@ -256,7 +254,7 @@ struct WXMEncoding;
 
 struct MadLine
 {
-    MadBlockVector          m_Blocks;
+    xm::BlockVector          m_Blocks;
     vector <MadRowIndex>    m_RowIndices;
     wxFileOffset            m_Size;         // data size, include m_NewLineSize
     wxByte                  m_NewLineSize;  // ANSI: "0D,0A" , UNICODE: "0D,00,0A,00"
@@ -280,7 +278,7 @@ struct MadLine
     {
         wxASSERT(pos >= 0 && pos < m_Size);
 
-        MadBlockIterator biter = m_Blocks.begin();
+        xm::BlockIterator biter = m_Blocks.begin();
         if(pos >= biter->m_Size)
             do
             {
@@ -298,7 +296,7 @@ struct MadLine
         if (size == 0)
             return;
 
-        MadBlockIterator biter = m_Blocks.begin();
+        xm::BlockIterator biter = m_Blocks.begin();
         if(pos >= biter->m_Size)
         {
             do
@@ -331,11 +329,9 @@ struct MadLine
 
 //==================================================
 
-typedef list<MadLine>::iterator         MadLineIterator;
-//typedef deque<MadUCPair>             MadUCQueue;
-//typedef deque<MadUCPair>::iterator   MadUCQueueIterator;
-typedef MadDeque<MadUCPair>::iterator   MadUCQueueIterator;
-typedef vector<wxString>::iterator      MadStringIterator;
+typedef xm::UCQueue::iterator      UCQueueIterator;
+typedef list<MadLine>::iterator    MadLineIterator;
+typedef vector<wxString>::iterator MadStringIterator;
 
 class MadLineList : public list <MadLine>
 {
@@ -419,7 +415,7 @@ private:
     void Append(const MadLineIterator &lit1, const MadLineIterator &lit2);
 
     // write to fd or file if which one isn't Null
-    void WriteBlockToData(MadOutData *fd, const MadBlockIterator &bit);
+    void WriteBlockToData(MadOutData *fd, const xm::BlockIterator &bit);
     void WriteToFile(wxFile &file, MadFileData *oldfd, MadFileData *newfd);
 
     wxFileOffset GetMaxTempSize(const wxString &filename);
@@ -449,7 +445,7 @@ private:  // NextUChar()
 
     bool m_manual;
 
-    virtual void MoveUChar32Bytes(MadUCQueue &ucqueue, ucs4_t uc, size_t len) override;
+    virtual void MoveUChar32Bytes(xm::UCQueue &ucqueue, ucs4_t uc, size_t len) override;
     virtual ubyte* BufferLoadBytes(int64_t& rest, size_t buf_len) override;
 
     bool NextUCharIs0x0A(void);
@@ -460,14 +456,14 @@ private:  // NextUChar()
     void SetFileEncoding(const std::wstring& encoding, const std::wstring& defaultenc,
                          const wxByte* buf, size_t sz, bool skip_utf8);
 
-    int FindStringCase(MadUCQueue &ucqueue, MadStringIterator begin,
+    int FindStringCase(xm::UCQueue &ucqueue, MadStringIterator begin,
                    const MadStringIterator &end, size_t &len);
 
     // the [begin,end) iter must be lower case
-    int FindStringNoCase(MadUCQueue &ucqueue, MadStringIterator begin,
+    int FindStringNoCase(xm::UCQueue &ucqueue, MadStringIterator begin,
                    const MadStringIterator &end, size_t &len);
 
-    typedef int (MadLines::*FindStringPtr)(MadUCQueue &ucqueue,
+    typedef int (MadLines::*FindStringPtr)(xm::UCQueue &ucqueue,
                 MadStringIterator begin, const MadStringIterator &end, size_t &len);
 
     FindStringPtr FindString;
@@ -481,11 +477,11 @@ public:
 
     void InitNextUChar(const MadLineIterator &iter, const wxFileOffset pos);
 
-    bool NextUChar(MadUCQueue &ucqueue);
+    bool NextUChar(xm::UCQueue &ucqueue);
 
     // should not frequently use this, it's slowly
-    // if no, return MadUCPair(0, 0)
-    MadUCPair PreviousUChar(/*IN_OUT*/MadLineIterator &lit, /*IN_OUT*/wxFileOffset &linepos);
+    // if no, return xm::UCPair(0, 0)
+    xm::UCPair PreviousUChar(/*IN_OUT*/MadLineIterator &lit, /*IN_OUT*/wxFileOffset &linepos);
 };
 
 

@@ -327,7 +327,7 @@ typedef cpp_regex_traits<ucs4_t> ucs4_regex_traits;
 
 struct UCQueueSet
 {
-	MadUCQueue   ucq;
+	xm::UCQueue  ucq;
 	int          lock;
 };
 
@@ -396,7 +396,7 @@ struct UCIterator : public WXMCharIterator   // ucs4_t widechar iterator
 		if (pos >= s_lines->GetSize())
 			return;
 
-		MadUCQueue& ucqueue = ucqit->ucq;
+		xm::UCQueue& ucqueue = ucqit->ucq;
 		s_lines->InitNextUChar(lit, linepos);
 		int i = BUF_MAXSIZE;
 
@@ -446,7 +446,7 @@ struct UCIterator : public WXMCharIterator   // ucs4_t widechar iterator
 	{
 		wxASSERT(ucqidx >= 0 && ucqidx < int(ucqit->ucq.size()));
 
-		MadUCQueue *ucqueue = &(ucqit->ucq);
+		xm::UCQueue *ucqueue = &(ucqit->ucq);
 
 		int len = (*ucqueue)[ucqidx].second;
 		pos += len;
@@ -528,7 +528,7 @@ struct UCIterator : public WXMCharIterator   // ucs4_t widechar iterator
 
 			ucqidx = 0;
 
-			MadUCPair ucp = s_lines->PreviousUChar(lit, linepos);
+			xm::UCPair ucp = s_lines->PreviousUChar(lit, linepos);
 
 			wxASSERT(ucp.second != 0);
 
@@ -995,7 +995,7 @@ MadSearchResult TextSearcher::FindPrevious(const wxString &text,
 
 		if (state == SR_YES) // found
 		{
-			MadUCQueue ucq;
+			xm::UCQueue ucq;
 
 			MadCaretPos bp, ep;
 			do
@@ -1247,7 +1247,7 @@ int TextSearcher::ReplaceAll(const wxString &expr, const wxString &fmt,
 
 void TextSearcher::UpdateWXMEditCaret(MadCaretPos& cp)
 {
-	MadUCQueue dummyUCQueue;
+	xm::UCQueue dummyUCQueue;
 	vector<int> dummyWidthArray;
 	int dummyUCPos;
 

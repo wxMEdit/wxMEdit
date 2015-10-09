@@ -24,7 +24,7 @@ struct MultiByteEncoding: public Encoding
 	virtual size_t UCS4toMultiByte(ucs4_t ucs4, ubyte* buf) override = 0;
 	virtual bool IsSingleByteEncoding() override = 0;
 	virtual bool IsDoubleByteEncoding() override = 0;
-	virtual bool NextUChar32(MadUCQueue &ucqueue, UChar32BytesMapper& mapper) override = 0;
+	virtual bool NextUChar32(UCQueue &ucqueue, UChar32BytesMapper& mapper) override = 0;
 	virtual void Create(ssize_t idx) override;
 
 protected:

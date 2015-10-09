@@ -27,7 +27,7 @@ struct EncodingGB18030: public MultiByteEncoding, EncodingDecoderISO646
 	virtual void MultiByteInit() override;
 	virtual ucs4_t MultiBytetoUCS4(const ubyte* buf) override;
 	virtual size_t UCS4toMultiByte(ucs4_t ucs4, ubyte* buf) override;
-	virtual bool NextUChar32(MadUCQueue &ucqueue, UChar32BytesMapper& mapper) override;
+	virtual bool NextUChar32(UCQueue &ucqueue, UChar32BytesMapper& mapper) override;
 
 	virtual bool IsSingleByteEncoding() override
 	{

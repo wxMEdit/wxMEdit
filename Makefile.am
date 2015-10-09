@@ -86,7 +86,6 @@ wxmedit_SOURCES =	$(enc_src) \
 	src/wxmedit/clipbrd_gtk.h \
 	src/wxmedit/trad_simp.cpp \
 	src/wxmedit/trad_simp.h \
-	src/wxmedit/wxm_deque.hpp \
 	src/wxmedit/wxm_lines.cpp \
 	src/wxmedit/wxm_lines.h \
 	src/wxmedit/wxm_syntax.cpp \
@@ -116,7 +115,6 @@ wxmedit_SOURCES =	$(enc_src) \
 
 wxmedit_test_SOURCES =	$(enc_src) \
 	$(encdet_src) \
-	src/wxmedit/wxm_deque.hpp \
 	src/xm/cxx11.h \
 	src/xm/utils.hpp \
 	src/xm/uutils.h \
