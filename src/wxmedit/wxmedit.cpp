@@ -8640,12 +8640,20 @@ void MadEdit::ProcessReturnCommand(MadEditCommand command)
 
 //==================================================
 
-bool IsByteInput(ucs4_t ucs4, int key)
+inline bool IsCharInput(ucs4_t ucs4, int key)
 {
-#ifdef __WXMSW__
-    return ucs4 == key || key == 0;
+#if defined(__WXMSW__) && wxMAJOR_VERSION==2
+    return ucs4 >= ecCharFirst && (ucs4 == key || key == 0);
 #else
-    return true;
+    return ucs4 >= ecCharFirst && key < WXK_DELETE;
+#endif
+}
+
+inline void FixWx3GTKInput(ucs4_t& ucs4, int key)
+{
+#if defined(__WXGTK__) && wxMAJOR_VERSION==3
+    if (key < WXK_DELETE && key >= ecCharFirst)
+        ucs4 = (ucs4_t)key;
 #endif
 }
 
@@ -8683,8 +8691,9 @@ void MadEdit::OnChar(wxKeyEvent& evt)
         wxLogDebug(wxT("edit toggle window"));
         DoToggleWindow();
     }
-    else if (IsByteInput(ucs4, key) && (!evt.HasModifiers() && ucs4 >= ecCharFirst))
+    else if (IsCharInput(ucs4, key) && !evt.HasModifiers())
     {
+        FixWx3GTKInput(ucs4, key);
         ProcessCommand(ucs4);
     }
     else
