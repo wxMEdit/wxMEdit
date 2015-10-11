@@ -850,4 +850,112 @@ void InFrameWXMEdit::InsertEnumeration()
 		InsertRegularText(seq);
 }
 
+void InFrameWXMEdit::ColumnAlign()
+{
+	if (IsReadOnly() || GetEditMode() != emColumnMode)
+		return;
+
+	MadUndo *undo = nullptr;
+
+	MadLineIterator firstlit = m_SelectionBegin->iter;
+	MadLineIterator lastlit = m_SelectionEnd->iter;
+	wxFileOffset pos = m_SelectionEnd->pos - m_SelectionEnd->linepos;
+	int rxpos = m_SelRightXPos;
+	if (!m_Selection || m_SelectionBegin->pos == m_SelectionEnd->pos)
+	{
+		firstlit = lastlit = m_CaretPos.iter;
+		pos = m_CaretPos.pos - m_SelectionEnd->linepos;
+		rxpos = m_CaretPos.xpos;
+	}
+
+	xm::UCQueue ucqueue;
+	for (MadLineIterator lit = lastlit; ; --lit, pos -= lit->m_Size)
+	{
+		int rowwidth = lit->m_RowIndices[0].m_Width;
+		wxFileOffset rowpos = lit->m_RowIndices[0].m_Start;
+		wxFileOffset rowendpos = lit->m_RowIndices[1].m_Start;
+
+		if (rxpos > rowwidth)
+			continue;
+
+		m_Lines->InitNextUChar(lit, rowpos);
+
+		int nowxpos = 0;
+		do
+		{
+			ucs4_t uc = 0x0D;
+			if (m_Lines->NextUChar(ucqueue))
+				uc = ucqueue.back().first;
+
+			if (uc == 0x0D || uc == 0x0A)  // EOL
+				break;
+
+			int ucwidth = GetUCharWidth(uc);
+			if (uc == 0x09)
+			{
+				int tabwidth = m_TabColumns * GetSpaceCharFontWidth();
+				ucwidth = rowwidth - nowxpos;
+				tabwidth -= (nowxpos % tabwidth);
+				if (tabwidth < ucwidth)
+					ucwidth = tabwidth;
+			}
+			nowxpos += ucwidth;
+
+			if (nowxpos < rxpos + ucwidth / 2)
+				rowpos += ucqueue.back().second;
+
+		} while (rowpos < rowendpos && nowxpos < rxpos);
+
+		size_t dellen = 0;
+		ucqueue.clear();
+		for (wxFileOffset tmprowpos = rowpos; tmprowpos < rowendpos; )
+		{
+			ucs4_t uc = 0x0D;
+			if (m_Lines->NextUChar(ucqueue))
+				uc = ucqueue.back().first;
+
+			if (uc != 0x20 && uc != ucs4_t('\t'))
+				break;
+			++dellen;
+			tmprowpos += ucqueue.back().second;
+		}
+		if (dellen != 0)
+		{
+			MadDeleteUndoData *dudata = new MadDeleteUndoData;
+
+			dudata->m_Pos = pos + rowpos;
+			dudata->m_Size = dellen;
+
+#ifdef _DEBUG
+			wxASSERT(DeleteInsertData(dudata->m_Pos, dudata->m_Size, &dudata->m_Data, 0, nullptr) == lit);
+#else
+			DeleteInsertData(dudata->m_Pos, dudata->m_Size, &dudata->m_Data, 0, nullptr);
+#endif
+
+			if (undo == nullptr)
+				undo = m_UndoBuffer->Add();
+			undo->m_Undos.push_back(dudata);
+		}
+
+		if (lit == firstlit)
+			break;
+	}
+
+	if (undo)
+		m_Modified = true;
+	m_Selection = false;
+	m_RepaintAll = true;
+	Refresh(false);
+
+	if (undo)
+		m_Lines->Reformat(firstlit, lastlit);
+
+	AppearCaret();
+	UpdateScrollBarPos();
+
+	DoSelectionChanged();
+	if (undo)
+		DoStatusChanged();
+}
+
 } //namespace wxm

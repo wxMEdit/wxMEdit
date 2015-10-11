@@ -235,6 +235,7 @@ wxMenu *g_Menu_Help = nullptr;
 wxMenu *g_Menu_File_CloseMore = nullptr;
 wxMenu *g_Menu_File_CopyPath = nullptr;
 wxMenu *g_Menu_File_RecentFiles = nullptr;
+wxMenu *g_Menu_Edit_Column = nullptr;
 wxMenu *g_Menu_Edit_Sort = nullptr;
 wxMenu *g_Menu_Edit_Advanced = nullptr;
 wxMenu *g_Menu_View_Encoding = nullptr;
@@ -861,6 +862,7 @@ BEGIN_EVENT_TABLE(MadEditFrame,wxFrame)
 	EVT_UPDATE_UI(menuSpaceToTab, MadEditFrame::OnUpdateUI_MenuEdit_CheckSelSize)
 	EVT_UPDATE_UI(menuTrimTrailingSpaces, MadEditFrame::OnUpdateUI_Menu_CheckTextFile)
 	EVT_UPDATE_UI(menuInsertEnumeration, MadEditFrame::OnUpdateUI_Menu_CheckTextFile)
+	EVT_UPDATE_UI(menuColumn, MadEditFrame::OnUpdateUI_MenuEdit_Column)
 	// search
 	EVT_UPDATE_UI(menuFind, MadEditFrame::OnUpdateUI_MenuFile_CheckCount)
 	EVT_UPDATE_UI(menuFindNext, MadEditFrame::OnUpdateUI_MenuFile_CheckCount)
@@ -975,6 +977,7 @@ BEGIN_EVENT_TABLE(MadEditFrame,wxFrame)
 	EVT_MENU(menuSpaceToTab, MadEditFrame::OnEditSpaceToTab)
 	EVT_MENU(menuTrimTrailingSpaces, MadEditFrame::OnEditTrimTrailingSpaces)
 	EVT_MENU(menuInsertEnumeration, MadEditFrame::OnEditInsertEnumeration)
+	EVT_MENU(menuColumnAlign, MadEditFrame::OnEditColumnAlign)
 	// search
 	EVT_MENU(menuFind, MadEditFrame::OnSearchFind)
 	EVT_MENU(menuFindNext, MadEditFrame::OnSearchFindNext)
@@ -1164,6 +1167,9 @@ CommandData CommandTable[]=
     { 0,                2, menuSpaceToTab,               wxT("menuSpaceToTab"),               _("Space Chars To Tab Chars"),                wxT(""),             wxITEM_NORMAL,    -1,                0,                     _("Convert Space chars to Tab chars in the selection")},
     { 0,                2, 0,                            0,                                   0,                                            0,                   wxITEM_SEPARATOR, -1,                0,                     0},
     { 0,                2, menuTrimTrailingSpaces,       wxT("menuTrimTrailingSpaces"),       _("Tri&m Trailing Spaces"),                   wxT(""),             wxITEM_NORMAL,    -1,                0,                     _("Trim trailing spaces at the end of lines")},
+    { 0,                1, 0,                            0,                                   0,                                            0,                   wxITEM_SEPARATOR, -1,                0,                     0},
+    { 0,                1, menuColumn,                   wxT("menuColumn"),                   _("Column"),                                  0,                   wxITEM_NORMAL,    -1,                &g_Menu_Edit_Column,   0},
+    { 0,                2, menuColumnAlign,              wxT("menuColumnAlign"),              _("Column &Align"),                           wxT(""),             wxITEM_NORMAL,    -1,                0,                     _("Delete spaces at the right of column selection")},
     { 0,                1, 0,                            0,                                   0,                                            0,                   wxITEM_SEPARATOR, -1,                0,                     0},
     { 0,                1, menuSort,                     wxT("menuSort"),                     _("&Sort"),                                   0,                   wxITEM_NORMAL,    -1,                &g_Menu_Edit_Sort,     0},
     { 0,                2, menuSortAscending,            wxT("menuSortAscending"),            _("Sort Lines (&Ascending)"),                 wxT(""),             wxITEM_NORMAL,    -1,                0,                     _("Sort the selected or all lines in ascending order")},
@@ -1782,6 +1788,7 @@ void MadEditFrame::CreateGUIControls()
     g_Menu_File_CloseMore = new wxMenu(0L);
     g_Menu_File_CopyPath = new wxMenu(0L);
     g_Menu_File_RecentFiles = new wxMenu(0L);
+    g_Menu_Edit_Column = new wxMenu(0L);
     g_Menu_Edit_Sort = new wxMenu(0L);
     g_Menu_Edit_Advanced = new wxMenu(0L);
     g_Menu_View_Encoding = new wxMenu(0L);
@@ -2933,6 +2940,11 @@ void MadEditFrame::OnUpdateUI_MenuEditCopyAsHexString(wxUpdateUIEvent& event)
         g_active_wxmedit->IsSelected());
 }
 
+void MadEditFrame::OnUpdateUI_MenuEdit_Column(wxUpdateUIEvent& event)
+{
+    event.Enable(g_active_wxmedit != nullptr && g_active_wxmedit->GetEditMode() == emColumnMode);
+}
+
 void MadEditFrame::OnUpdateUI_MenuIndent(wxUpdateUIEvent& event)
 {
     event.Enable(g_active_wxmedit && !g_active_wxmedit->IsReadOnly() &&
@@ -3916,6 +3928,11 @@ void MadEditFrame::OnEditTrimTrailingSpaces(wxCommandEvent& event)
 void MadEditFrame::OnEditInsertEnumeration(wxCommandEvent& event)
 {
     if (g_active_wxmedit!=nullptr) g_active_wxmedit->InsertEnumeration();
+}
+
+void MadEditFrame::OnEditColumnAlign(wxCommandEvent& event)
+{
+    if (g_active_wxmedit!=nullptr) g_active_wxmedit->ColumnAlign();
 }
 
 namespace wxm

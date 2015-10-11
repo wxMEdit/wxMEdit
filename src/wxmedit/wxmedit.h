@@ -305,6 +305,7 @@ private:
     friend struct wxm::WXMSearcher;
     friend struct wxm::TextSearcher;
     friend struct wxm::HexSearcher;
+    friend struct wxm::InFrameWXMEdit;
 
     static int      ms_Count; // the count of MadEdit
 

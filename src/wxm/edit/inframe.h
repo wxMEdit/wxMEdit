@@ -21,6 +21,7 @@ struct InFrameWXMEdit : public MadEdit
 
 	void TrimTrailingSpaces();
 	void InsertEnumeration();
+	void ColumnAlign();
 
 	virtual bool BookmarkVisible() { return m_bookmark_visible; }
 	virtual void SetBookmarkVisible(bool visible);
