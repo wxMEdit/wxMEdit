@@ -4440,7 +4440,7 @@ msgid "DarkViolet"
 msgstr "深紫羅蘭"
 
 #: wxstd.po.cpp:93
-msgid "Darkorange"
+msgid "DarkOrange"
 msgstr "深橙"
 
 #: wxstd.po.cpp:94

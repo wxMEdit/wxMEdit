@@ -1,4 +1,6 @@
 # format: [filename][spaces][syn file]
 
 makefile	syntax_conf.syn
+Makefile	syntax_conf.syn
+GNUmakefile	syntax_conf.syn
 CMakeLists	syntax_conf.syn

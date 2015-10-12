@@ -15,7 +15,11 @@ cc	syntax_cpp.syn
 cpp	syntax_cpp.syn
 cxx	syntax_cpp.syn
 h	syntax_cpp.syn
+hh	syntax_cpp.syn
 hpp	syntax_cpp.syn
+hxx	syntax_cpp.syn
+icc	syntax_cpp.syn
+tcc	syntax_cpp.syn
 xpm	syntax_cpp.syn
 xbm	syntax_cpp.syn
 

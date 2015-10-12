@@ -66,7 +66,7 @@ BookmarkBgColor=MediumBlue
 
 # User Defined Keywords
 [1.PHP_Keywords]
-Color=Black
+Color=DarkOrange
 Style=Bold
 InRange=1
 Keyword=__CLASS__ __FILE__ __FUNCTION__ __LINE__ __METHOD__ and array as bool break case char class const continue declare default die do double echo else elseif empty enddeclare endfor endforeach endif endswitch endwhile eval exception exit extends float for foreach function global if include include_once int integer isset list long mixed new object old_function or php php_user_filter print real require require_once return static string switch unset use var void while xor

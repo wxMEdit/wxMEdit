@@ -59,7 +59,7 @@ BookmarkBgColor=MediumBlue
 
 # User Defined Keywords
 [1.Statements]
-Color=Black
+Color=DarkOrange
 BgColor=
 Style=Bold
 InRange=0

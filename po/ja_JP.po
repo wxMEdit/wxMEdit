@@ -4445,7 +4445,7 @@ msgid "DarkViolet"
 msgstr "ダーク・バイオレット"
 
 #: wxstd.po.cpp:93
-msgid "Darkorange"
+msgid "DarkOrange"
 msgstr "ダークオレンジ"
 
 #: wxstd.po.cpp:94

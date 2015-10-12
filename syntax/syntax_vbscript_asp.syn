@@ -66,7 +66,7 @@ BookmarkBgColor=MediumBlue
 
 # User Defined Keywords
 [1.VBScript_Statements]
-Color=Black
+Color=DarkOrange
 Style=Bold
 InRange=1
 Keyword=Call Case Class Const Dim Do Else ElseIf End Erase Error Execute Exit Explicit For ForEach Function Get If Let Loop Next On Option Private Property Public Set Randomize ReDim Rem Resume Select Set Sub Then Wend While With And Eqv Imp In Is Mod Not Or Xor

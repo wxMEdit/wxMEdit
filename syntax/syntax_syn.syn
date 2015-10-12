@@ -58,7 +58,7 @@ BookmarkBgColor=MediumBlue
 
 # User Defined Keywords
 [1.Commands]
-Color=Black
+Color=DarkOrange
 Style=Bold
 InRange=0
 Keyword=Title CaseSensitive Delimiter LineComment BlockComment EscapeChar StringChar DirectiveLeading KeywordPrefix SpecialWordPrefix IndentChar UnindentChar BracePair AutoCompletePair CustomRange Encoding Color BgColor Style InRange Keyword LineCommentAtBOL DirectiveLeadingAtBOL

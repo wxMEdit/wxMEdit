@@ -27,7 +27,8 @@ LineNumberColor=Linen
 LineNumberBgColor=LightSlateGray
 LineNumberStyle=
 ActiveLineColor=FUCHSIA
-BookmarkColor=C0FFFF
+BookmarkColor=DeepSkyBlue
+BookmarkBgColor=MediumBlue
 [1.Keyword]
 Color=CYAN
 BgColor=

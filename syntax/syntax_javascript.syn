@@ -59,7 +59,7 @@ BookmarkBgColor=MediumBlue
 
 # User Defined Keywords
 [1.Keywords]
-Color=Black
+Color=DarkOrange
 Style=Bold
 InRange=0
 Keyword=abstract boolean break byte case catch char class const continue default delete do double else extends false final finally float for function goto if implements import in instanceof int interface long native new null package private protected public return short static super switch synchronized this throw throws transient true try typeof var void while with

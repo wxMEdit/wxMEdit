@@ -77,7 +77,7 @@ HtmlColor HtmlColorTable[]=
     { wxT("DarkSlateGray"),        47,79,79 },
     { wxT("DarkTurquoise"),        0,206,209 },
     { wxT("DarkViolet"),           148,0,211 },
-    { wxT("Darkorange"),           255,140,0 },
+    { wxT("DarkOrange"),           255,140,0 },
     { wxT("DeepPink"),             255,20,147 },
     { wxT("DeepSkyBlue"),          0,191,255 },
     { wxT("DimGray"),              105,105,105 },

@@ -4377,7 +4377,7 @@ msgid "DarkViolet"
 msgstr "Темно-фиолетовый"
 
 #: wxstd.po.cpp:93
-msgid "Darkorange"
+msgid "DarkOrange"
 msgstr "Темно-оранжевый"
 
 #: wxstd.po.cpp:94

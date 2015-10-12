@@ -9,7 +9,7 @@ StringChar="'
 DirectiveLeading=
 KeywordPrefix=
 SpecialWordPrefix=
-IndentChar=
+IndentChar=:
 UnindentChar=
 BracePair=( ) { } [ ]
 AutoCompletePair=() [] {} "" ''
@@ -58,7 +58,7 @@ BookmarkBgColor=MediumBlue
 
 # User Defined Keywords
 [1.Keywords]
-Color=Black
+Color=DarkOrange
 BgColor=
 Style=Bold
 InRange=0
