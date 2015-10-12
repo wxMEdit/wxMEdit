@@ -448,7 +448,7 @@ wxString MadSyntax::GetSchemeFileByName(const wxString &schname, MadSyntax *defa
     if(name==wxT("Default"))
     {
         star=true;
-        if(default_syn) return GetSyntaxFileByTitle(default_syn->m_Title);
+        if(default_syn) return GetSyntaxFileByTitle(default_syn->GetTitle());
         return wxEmptyString;
     }
 
