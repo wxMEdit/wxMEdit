@@ -228,6 +228,7 @@ public:
     void OnEditTrimTrailingSpaces(wxCommandEvent& event);
     void OnEditInsertEnumeration(wxCommandEvent& event);
     void OnEditColumnAlign(wxCommandEvent& event);
+    void OnEditColumnPaste(wxCommandEvent& event);
 
     void OnSearchFind(wxCommandEvent& event);
     void OnSearchFindNext(wxCommandEvent& event);
@@ -410,6 +411,7 @@ enum { // menu id
     menuClearAllBookmarks,
     menuColumn,
     menuColumnAlign,
+    menuColumnPaste,
     menuSort,
     menuSortAscending,
     menuSortDescending,

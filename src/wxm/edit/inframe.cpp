@@ -958,4 +958,14 @@ void InFrameWXMEdit::ColumnAlign()
 		DoStatusChanged();
 }
 
+void InFrameWXMEdit::ColumnPaste()
+{
+	if (!CanPaste())
+		return;
+
+	std::vector<ucs4_t> ucs;
+	GetTextFromClipboard(ucs);
+	InsertString(&ucs[0], ucs.size(), true, true, false);
+}
+
 } //namespace wxm

@@ -978,6 +978,7 @@ BEGIN_EVENT_TABLE(MadEditFrame,wxFrame)
 	EVT_MENU(menuTrimTrailingSpaces, MadEditFrame::OnEditTrimTrailingSpaces)
 	EVT_MENU(menuInsertEnumeration, MadEditFrame::OnEditInsertEnumeration)
 	EVT_MENU(menuColumnAlign, MadEditFrame::OnEditColumnAlign)
+	EVT_MENU(menuColumnPaste, MadEditFrame::OnEditColumnPaste)
 	// search
 	EVT_MENU(menuFind, MadEditFrame::OnSearchFind)
 	EVT_MENU(menuFindNext, MadEditFrame::OnSearchFindNext)
@@ -1143,6 +1144,7 @@ CommandData CommandTable[]=
     { 0,                1, 0,                            0,                                   0,                                            0,                   wxITEM_SEPARATOR, -1,                0,                     0 },
     { 0,                1, menuColumn,                   wxT("menuColumn"),                   _("Column"),                                  0,                   wxITEM_NORMAL,    -1,                &g_Menu_Edit_Column,   0 },
     { 0,                2, menuColumnAlign,              wxT("menuColumnAlign"),              _("Column &Align"),                           wxT("Alt-DEL"),      wxITEM_NORMAL,    -1,                0,                     _("Delete spaces at the right of column selection") },
+    { 0,                2, menuColumnPaste,              wxT("menuColumnPaste"),              _("Column &Paste"),                           wxT("Alt-INS"),      wxITEM_NORMAL,    -1,                0,                     _("Paste in each line of column selection") },
 
     { 0,                1, 0,                            0,                                   0,                                            0,                   wxITEM_SEPARATOR, -1,                0,                     0},
     { 0,                1, menuAdvanced,                 wxT("menuAdvanced"),                 _("Ad&vanced"),                               0,                   wxITEM_NORMAL,    -1,                &g_Menu_Edit_Advanced, 0},
@@ -3934,6 +3936,11 @@ void MadEditFrame::OnEditInsertEnumeration(wxCommandEvent& event)
 void MadEditFrame::OnEditColumnAlign(wxCommandEvent& event)
 {
     if (g_active_wxmedit!=nullptr) g_active_wxmedit->ColumnAlign();
+}
+
+void MadEditFrame::OnEditColumnPaste(wxCommandEvent& event)
+{
+    if (g_active_wxmedit != nullptr) g_active_wxmedit->ColumnPaste();
 }
 
 namespace wxm
