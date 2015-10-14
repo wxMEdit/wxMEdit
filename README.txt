@@ -19,7 +19,7 @@ A. Linux, FreeBSD/OpenBSD/NetBSD, Mac OS X, OpenIndiana and other Unix-like OSes
       1. autoconf 2.63 or higher
       2. automake 1.11.1 or higher
       3. wxWidgets 2.8/3.0 with Unicode enabled
-      4. Boost 1.34.0 or higher
+      4. Boost 1.37.0 or higher
       5. ICU4C 4.2 or higher
       6. libcurl 7.15.5 or higher
 
@@ -28,7 +28,7 @@ B. MS Windows (__WXMSW__):
       Required Tools and Libraries to compile:
       1. Bakefile 0.2.9
       2. wxWidgets 2.8/3.0 with Unicode enabled
-      3. Boost 1.34.0 or higher
+      3. Boost 1.37.0 or higher
       4. ICU4C 4.2 or higher
       5. libcurl 7.15.5 or higher
 
@@ -36,7 +36,7 @@ B. MS Windows (__WXMSW__):
       Required Tools and Libraries to compile:
       1. Bakefile 0.2.9
       2. wxWidgets 2.8/3.0 with Unicode enabled
-      3. Boost 1.34.0 or higher
+      3. Boost 1.37.0 or higher
       4. ICU4C 4.2 or higher
       5. libcurl 7.15.5 or higher
 
