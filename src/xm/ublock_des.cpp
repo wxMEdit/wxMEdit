@@ -279,6 +279,18 @@ void UnicodeBlockSet::InitBlockDescriptions()
 	m_des_map[UBLOCK_SUPPLEMENTAL_ARROWS_C] = _("Supplemental Arrows-C");
 	m_des_map[UBLOCK_TIRHUTA] = _("Tirhuta");
 	m_des_map[UBLOCK_WARANG_CITI] = _("Warang Citi");
+#    if (U_ICU_VERSION_MAJOR_NUM >= 56) // ICU 56, Unicode 8.0
+	m_des_map[UBLOCK_AHOM] = _("Ahom");
+	m_des_map[UBLOCK_ANATOLIAN_HIEROGLYPHS] = _("Anatolian Hieroglyphs");
+	m_des_map[UBLOCK_CHEROKEE_SUPPLEMENT] = _("Cherokee Supplement");
+	m_des_map[UBLOCK_CJK_UNIFIED_IDEOGRAPHS_EXTENSION_E] = _("CJK Extension E");
+	m_des_map[UBLOCK_EARLY_DYNASTIC_CUNEIFORM] = _("Early Dynastic Cuneiform");
+	m_des_map[UBLOCK_HATRAN] = _("Hatran");
+	m_des_map[UBLOCK_MULTANI] = _("Multani");
+	m_des_map[UBLOCK_OLD_HUNGARIAN] = _("Old Hungarian");
+	m_des_map[UBLOCK_SUPPLEMENTAL_SYMBOLS_AND_PICTOGRAPHS] = _("Supplemental Symbols and Pictographs");
+	m_des_map[UBLOCK_SUTTON_SIGNWRITING] = _("Sutton SignWriting");
+#    endif // 56
 #   endif // 54
 #  endif // 49
 # endif // 4.6
