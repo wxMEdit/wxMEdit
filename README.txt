@@ -23,7 +23,7 @@ A. Linux, FreeBSD/OpenBSD/NetBSD, Mac OS X, OpenIndiana and other Unix-like OSes
       5. ICU4C 4.2 or higher
       6. libcurl 7.15.5 or higher
 
-B. MS Windows (__WXMSW__):
+B. Windows / ReactOS (__WXMSW__):
    a. MinGW32 GNU C++ 3.x/4.x:
       Required Tools and Libraries to compile:
       1. Bakefile 0.2.9
