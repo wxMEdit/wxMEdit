@@ -2058,21 +2058,8 @@ void MadEdit::PaintTextLines(wxDC *dc, const wxRect &rect, int toprow, int rowco
                 dc->SetPen(*wxThePenList->FindOrCreatePen(m_Syntax->nw_Color, 1, wxSOLID));
                 dc->SetBrush(*wxTheBrushList->FindOrCreateBrush(m_Syntax->nw_Color));
 
-                switch(m_Lines->GetNewLine(lineiter))
-                {
-                case 0:
-                    dc->DrawLines(m_eof_points.size(), &m_eof_points[0], left, text_top);
-                    break;
-                case 0x0D:
-                    dc->DrawLines(m_cr_points.size(), &m_cr_points[0], left, text_top);
-                    break;
-                case 0x0A:
-                    dc->DrawLines(m_lf_points.size(), &m_lf_points[0], left, text_top);
-                    break;
-                case 0x0D+0x0A:
-                    dc->DrawLines(m_crlf_points.size(), &m_crlf_points[0], left, text_top);
-                    break;
-                }
+                std::vector<wxPoint>& points = lineiter->m_nl->PatternPoints(this);
+                dc->DrawLines(points.size(), &points[0], left, text_top);
 
                 left += w;
             }
@@ -10257,20 +10244,4 @@ wxMilliClock_t MadEdit::GetTripleClickInterval()
     }
 
     return t;
-}
-
-namespace wxm
-{
-    const wxString NewLineChar::MACDescription(wxT("CR/0D (MAC)"));
-    const wxString NewLineChar::UNIXDescription(wxT("LF/0A (UNIX)"));
-    const wxString NewLineChar::DOSDescription(wxT("CRLF/0D0A (DOS)"));
-
-    const ucs4string NewLineChar::MACValue(1, ucs4_t(0x0D));
-    const ucs4string NewLineChar::UNIXValue(1, ucs4_t(0x0A));
-    const ucs4string NewLineChar::DOSValue = MACValue + UNIXValue;
-
-    const NewLineDefault g_nl_default;
-    const NewLineDOS     g_nl_dos;
-    const NewLineUNIX    g_nl_unix;
-    const NewLineMAC     g_nl_mac;
 }

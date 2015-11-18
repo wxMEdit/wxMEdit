@@ -36,6 +36,44 @@
 #define new new(_NORMAL_BLOCK ,__FILE__, __LINE__)
 #endif
 
+namespace wxm
+{
+	const wxString NewLineChar::MACDescription(wxT("CR/0D (MAC)"));
+	const wxString NewLineChar::UNIXDescription(wxT("LF/0A (UNIX)"));
+	const wxString NewLineChar::DOSDescription(wxT("CRLF/0D0A (DOS)"));
+	const wxString NewLineChar::NoneDescription(wxT("No EOL"));
+
+	const ucs4string NewLineChar::MACValue(1, ucs4_t(0x0D));
+	const ucs4string NewLineChar::UNIXValue(1, ucs4_t(0x0A));
+	const ucs4string NewLineChar::DOSValue = MACValue + UNIXValue;
+	const ucs4string NewLineChar::NoneValue;
+
+	const NewLineDefault g_nl_default;
+	const NewLineDOS     g_nl_dos;
+	const NewLineUNIX    g_nl_unix;
+	const NewLineMAC     g_nl_mac;
+	const NewLineNone    g_nl_none;
+
+	std::vector<wxPoint>& NewLineDOS::PatternPoints(MadEdit* edit) const
+	{
+		return edit->m_crlf_points;
+	}
+
+	std::vector<wxPoint>& NewLineUNIX::PatternPoints(MadEdit* edit) const
+	{
+		return edit->m_lf_points;
+	}
+
+	std::vector<wxPoint>& NewLineMAC::PatternPoints(MadEdit* edit) const
+	{
+		return edit->m_cr_points;
+	}
+
+	std::vector<wxPoint>& NewLineNone::PatternPoints(MadEdit* edit) const
+	{
+		return edit->m_eof_points;
+	}
+} // namespace wxm
 
 const int BUFFER_SIZE = 1024 * 256;     // 256KB
 const int BUFFER_BITS = 18;
@@ -603,6 +641,7 @@ void MadLine::Empty(void)
 {
     m_Size = 0;
     m_NewLineSize = 0;
+    m_nl = &wxm::g_nl_none;
     m_Blocks.resize(1);
     m_Blocks[0].Reset();
     m_RowIndices.resize(2);
@@ -754,19 +793,6 @@ void MadLines::Clear(bool freeAll)
 void MadLines::SetEncoding(xm::Encoding *encoding)
 {
     m_Encoding=encoding;
-}
-
-ucs4_t MadLines::GetNewLine(const MadLineIterator &iter)
-{
-    if(iter->m_NewLineSize == 0) return 0;
-
-    InitNextUChar(iter, iter->m_Size - iter->m_NewLineSize);
-    xm::UCQueue ucq;
-    NextUChar(ucq);
-    NextUChar(ucq);
-
-    if(ucq.size()==2) return 0x0D+0x0A;
-    return ucq.front().first;
 }
 
 void MadLines::LoadNewBuffer()
@@ -1077,6 +1103,7 @@ MadLineState MadLines::Reformat(MadLineIterator iter)
 
     InitNextUChar(iter, 0);
     iter->m_NewLineSize = 0;
+    iter->m_nl = &wxm::g_nl_none;
 
     // every line must be one row at first
     m_RowCount -= (iter->RowCount() - 1);
@@ -1171,10 +1198,14 @@ MadLineState MadLines::Reformat(MadLineIterator iter)
                         NextUChar(ucqueue);
                         m_MadEdit->m_newline = &wxm::g_nl_dos;
                         iter->m_NewLineSize = ucqueue.back().second;
+                        iter->m_nl = &wxm::g_nl_dos;
                     }
-                    else if (m_MadEdit->m_newline->IsDefault())
+                    else
                     {
-                        m_MadEdit->m_newline = &wxm::g_nl_mac;
+                        iter->m_nl = &wxm::g_nl_mac;
+
+                        if (m_MadEdit->m_newline->IsDefault())
+                            m_MadEdit->m_newline = &wxm::g_nl_mac;
                     }
 
                     iter->m_NewLineSize += (wxByte)firstuclen;
@@ -1196,6 +1227,7 @@ MadLineState MadLines::Reformat(MadLineIterator iter)
                         m_MadEdit->m_newline = &wxm::g_nl_unix;
 
                     iter->m_NewLineSize = (wxByte)firstuclen;
+                    iter->m_nl = &wxm::g_nl_unix;
                     ucqueue.clear();
 
                     break;

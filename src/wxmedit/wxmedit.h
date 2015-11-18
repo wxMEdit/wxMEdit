@@ -65,88 +65,6 @@ namespace wxm
             , controls(0), fullwidths(0), ambws(0), lines(0)
         {}
     };
-
-    struct NewLineChar
-    {
-        NewLineChar() {}
-        virtual bool IsDefault() const { return false; }
-        virtual wxString Name() const = 0;
-        virtual const wxString& Description() const = 0;
-        virtual wxString wxValue() const = 0;
-        virtual const ucs4string& Value() const = 0;
-        virtual void ValueAppendTo(std::vector<ucs4_t>& vec) const = 0;
-        virtual void Convert0x0D(ucs4_t& ch, std::vector<ucs4_t>& ucs) const = 0;
-        virtual void Convert0x0A(ucs4_t& ch, std::vector<ucs4_t>& ucs) const = 0;
-
-        virtual ~NewLineChar() {}
-    protected:
-        static const wxString MACDescription;
-        static const wxString UNIXDescription;
-        static const wxString DOSDescription;
-
-        static const ucs4string MACValue;
-        static const ucs4string UNIXValue;
-        static const ucs4string DOSValue;
-    };
-
-    struct NewLineDOS : public NewLineChar
-    {
-        NewLineDOS() {}
-    private:
-        virtual wxString Name() const override { return wxT("DOS"); }
-        virtual const wxString& Description() const override { return DOSDescription; }
-        virtual const ucs4string& Value() const override { return DOSValue; }
-        virtual void Convert0x0D(ucs4_t& ch, std::vector<ucs4_t>& ucs) const override { ucs.push_back(ch); ch = 0x0A; }
-        virtual void Convert0x0A(ucs4_t& ch, std::vector<ucs4_t>& ucs) const override { ucs.push_back(0x0D); }
-    public:
-        virtual wxString wxValue() const override { return wxT("\r\n"); }
-        virtual void ValueAppendTo(std::vector<ucs4_t>& v) const override { v.push_back(0x0D); v.push_back(0x0A); }
-    };
-
-    struct NewLineUNIX : public NewLineChar
-    {
-        NewLineUNIX() {}
-    private:
-        virtual wxString Name() const override { return wxT("UNIX"); }
-        virtual const wxString& Description() const override { return UNIXDescription; }
-        virtual const ucs4string& Value() const override { return UNIXValue; }
-        virtual void Convert0x0D(ucs4_t& ch, std::vector<ucs4_t>& ucs) const override { ch = 0x0A; }
-        virtual void Convert0x0A(ucs4_t& ch, std::vector<ucs4_t>& ucs) const override {}
-    public:
-        virtual wxString wxValue() const override { return wxT("\n"); }
-        virtual void ValueAppendTo(std::vector<ucs4_t>& v) const override { v.push_back(0x0A); }
-    };
-
-    struct NewLineDefault : public
-#ifdef __WXMSW__
-        NewLineDOS
-#else
-        NewLineUNIX
-#endif
-    {
-        NewLineDefault() {}
-    private:
-        virtual bool IsDefault() const override { return true; }
-    };
-
-    struct NewLineMAC : public NewLineChar
-    {
-        NewLineMAC() {}
-    private:
-        virtual wxString Name() const override { return wxT("MAC"); }
-        virtual const wxString& Description() const override { return MACDescription; }
-        virtual const ucs4string& Value() const override { return MACValue; }
-        virtual void Convert0x0D(ucs4_t& ch, std::vector<ucs4_t>& ucs) const override {}
-        virtual void Convert0x0A(ucs4_t& ch, std::vector<ucs4_t>& ucs) const override { ch = 0x0D; }
-    public:
-        virtual wxString wxValue() const override { return wxT("\r"); }
-        virtual void ValueAppendTo(std::vector<ucs4_t>& v) const override { v.push_back(0x0D); }
-    };
-
-    extern const NewLineDefault g_nl_default;
-    extern const NewLineDOS     g_nl_dos;
-    extern const NewLineUNIX    g_nl_unix;
-    extern const NewLineMAC     g_nl_mac;
 } // namespace wxm
 
 //==============================================================================
@@ -333,8 +251,9 @@ private:
     wxBitmap        *m_ClientBitmap, *m_MarkBitmap;
     int             m_LastPaintBitmap;// 0:client, 1:mark
 
-    std::vector<wxPoint> m_space_points, m_eof_points;
-    std::vector<wxPoint> m_cr_points, m_lf_points, m_crlf_points;
+    std::vector<wxPoint> m_space_points;
+public:
+    std::vector<wxPoint> m_cr_points, m_lf_points, m_crlf_points, m_eof_points;
 
 protected:
     MadCaretPos     m_CaretPos;
@@ -915,6 +834,7 @@ public: // basic functions
 
     int GetLineCount() { return int(m_Lines->m_LineCount); }
 
+    void AppendNewLine(vector<ucs4_t>& newtext, const MadLineIterator& lit, size_t firstrow, size_t lastrow, size_t subrowid);
     void ConvertNewLine(const wxm::NewLineChar& nl);
     void SetInsertNewLine(const wxm::NewLineChar& nl)
     {

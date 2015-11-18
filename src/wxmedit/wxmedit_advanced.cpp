@@ -1933,6 +1933,19 @@ void MadEdit::ConvertNewLineToWordWrap()
     }
 }
 
+void MadEdit::AppendNewLine(vector<ucs4_t>& newtext, const MadLineIterator& lit, size_t firstrow, size_t lastrow, size_t subrowid)
+{
+    if(GetEditMode() == emColumnMode)
+    {
+        wxm::g_nl_default.ValueAppendTo(newtext);
+    }
+    else
+    {
+        if((firstrow != lastrow) && (subrowid+1 == lit->RowCount()))
+            lit->m_nl->ValueAppendTo(newtext);
+    }
+}
+
 void MadEdit::ConvertSpaceToTab()
 {
     if(IsReadOnly() || GetEditMode()==emHexMode || !IsSelected())
@@ -2083,30 +2096,7 @@ void MadEdit::ConvertSpaceToTab()
             }
         }
 
-        // add newline
-        if(GetEditMode() == emColumnMode)
-        {
-            wxm::g_nl_default.ValueAppendTo(newtext);
-        }
-        else
-        {
-            if((firstrow != lastrow) && (subrowid+1 == lit->RowCount()))
-            {
-                switch(m_Lines->GetNewLine(lit))
-                {
-                case 0x0D:
-                    newtext.push_back(0x0D);
-                    break;
-                case 0x0A:
-                    newtext.push_back(0x0A);
-                    break;
-                case 0x0D+0x0A:
-                    newtext.push_back(0x0D);
-                    newtext.push_back(0x0A);
-                    break;
-                }
-            }
-        }
+        AppendNewLine(newtext, lit, firstrow, lastrow, subrowid);
 
         if(firstrow == lastrow)
             break;
@@ -2255,30 +2245,7 @@ void MadEdit::ConvertTabToSpace()
             while(xpos2 > 0 && rowpos < rowendpos);
         }
 
-        // add newline
-        if(GetEditMode() == emColumnMode)
-        {
-            wxm::g_nl_default.ValueAppendTo(newtext);
-        }
-        else
-        {
-            if((firstrow != lastrow) && (subrowid+1 == lit->RowCount()))
-            {
-                switch(m_Lines->GetNewLine(lit))
-                {
-                case 0x0D:
-                    newtext.push_back(0x0D);
-                    break;
-                case 0x0A:
-                    newtext.push_back(0x0A);
-                    break;
-                case 0x0D+0x0A:
-                    newtext.push_back(0x0D);
-                    newtext.push_back(0x0A);
-                    break;
-                }
-            }
-        }
+        AppendNewLine(newtext, lit, firstrow, lastrow, subrowid);
 
         if(firstrow == lastrow)
             break;

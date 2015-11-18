@@ -41,6 +41,116 @@
 #include <deque>
 #include <utility>
 
+class MadEdit;
+
+namespace wxm
+{
+	struct WXMEncoding;
+
+	struct NewLineChar
+	{
+		NewLineChar() {}
+		virtual bool IsDefault() const { return false; }
+		virtual wxString Name() const = 0;
+		virtual const wxString& Description() const = 0;
+		virtual wxString wxValue() const = 0;
+		virtual const ucs4string& Value() const = 0;
+		virtual void ValueAppendTo(std::vector<ucs4_t>& vec) const = 0;
+		virtual void Convert0x0D(ucs4_t& ch, std::vector<ucs4_t>& ucs) const = 0;
+		virtual void Convert0x0A(ucs4_t& ch, std::vector<ucs4_t>& ucs) const = 0;
+		virtual std::vector<wxPoint>& PatternPoints(MadEdit* edit) const = 0;
+
+		virtual ~NewLineChar() {}
+	protected:
+		static const wxString MACDescription;
+		static const wxString UNIXDescription;
+		static const wxString DOSDescription;
+		static const wxString NoneDescription;
+
+		static const ucs4string MACValue;
+		static const ucs4string UNIXValue;
+		static const ucs4string DOSValue;
+		static const ucs4string NoneValue;
+	};
+
+	struct NewLineDOS: public NewLineChar
+	{
+		NewLineDOS() {}
+	private:
+		virtual wxString Name() const override { return wxT("DOS"); }
+		virtual const wxString& Description() const override { return DOSDescription; }
+		virtual const ucs4string& Value() const override { return DOSValue; }
+		virtual void Convert0x0D(ucs4_t& ch, std::vector<ucs4_t>& ucs) const override { ucs.push_back(ch); ch = 0x0A; }
+		virtual void Convert0x0A(ucs4_t& ch, std::vector<ucs4_t>& ucs) const override { ucs.push_back(0x0D); }
+		virtual std::vector<wxPoint>& PatternPoints(MadEdit* edit) const override;
+	public:
+		virtual wxString wxValue() const override { return wxT("\r\n"); }
+		virtual void ValueAppendTo(std::vector<ucs4_t>& v) const override { v.push_back(0x0D); v.push_back(0x0A); }
+	};
+
+	struct NewLineUNIX: public NewLineChar
+	{
+		NewLineUNIX() {}
+	private:
+		virtual wxString Name() const override { return wxT("UNIX"); }
+		virtual const wxString& Description() const override { return UNIXDescription; }
+		virtual const ucs4string& Value() const override { return UNIXValue; }
+		virtual void Convert0x0D(ucs4_t& ch, std::vector<ucs4_t>& ucs) const override { ch = 0x0A; }
+		virtual void Convert0x0A(ucs4_t& ch, std::vector<ucs4_t>& ucs) const override {}
+		virtual std::vector<wxPoint>& PatternPoints(MadEdit* edit) const override;
+	public:
+		virtual wxString wxValue() const override { return wxT("\n"); }
+		virtual void ValueAppendTo(std::vector<ucs4_t>& v) const override { v.push_back(0x0A); }
+	};
+
+	struct NewLineDefault : public
+#ifdef __WXMSW__
+		NewLineDOS
+#else
+		NewLineUNIX
+#endif
+	{
+		NewLineDefault() {}
+	private:
+		virtual bool IsDefault() const override { return true; }
+	};
+
+	struct NewLineMAC: public NewLineChar
+	{
+		NewLineMAC() {}
+	private:
+		virtual wxString Name() const override { return wxT("MAC"); }
+		virtual const wxString& Description() const override { return MACDescription; }
+		virtual const ucs4string& Value() const override { return MACValue; }
+		virtual void Convert0x0D(ucs4_t& ch, std::vector<ucs4_t>& ucs) const override {}
+		virtual void Convert0x0A(ucs4_t& ch, std::vector<ucs4_t>& ucs) const override { ch = 0x0D; }
+		virtual std::vector<wxPoint>& PatternPoints(MadEdit* edit) const override;
+	public:
+		virtual wxString wxValue() const override { return wxT("\r"); }
+		virtual void ValueAppendTo(std::vector<ucs4_t>& v) const override { v.push_back(0x0D); }
+	};
+
+	struct NewLineNone: public NewLineChar
+	{
+		NewLineNone() {}
+	private:
+		virtual wxString Name() const override { return wxT("NoEOL"); }
+		virtual const wxString& Description() const override { return NoneDescription; }
+		virtual const ucs4string& Value() const override { return NoneValue; }
+		virtual void Convert0x0D(ucs4_t& ch, std::vector<ucs4_t>& ucs) const override {}
+		virtual void Convert0x0A(ucs4_t& ch, std::vector<ucs4_t>& ucs) const override { ch = 0; }
+		virtual wxString wxValue() const override { return wxT(""); }
+		virtual void ValueAppendTo(std::vector<ucs4_t>& v) const override {}
+		virtual std::vector<wxPoint>& PatternPoints(MadEdit* edit) const override;
+	};
+
+	extern const NewLineDefault g_nl_default;
+	extern const NewLineDOS     g_nl_dos;
+	extern const NewLineUNIX    g_nl_unix;
+	extern const NewLineMAC     g_nl_mac;
+	extern const NewLineNone    g_nl_none;
+} // namespace wxm
+
 using std::vector;
 using std::list;
 using std::deque;
@@ -247,23 +357,19 @@ struct BracePairIndex
 
 typedef vector < MadRowIndex >::iterator MadRowIndexIterator;
 
-namespace wxm
-{
-struct WXMEncoding;
-}
-
 struct MadLine
 {
-    xm::BlockVector          m_Blocks;
+    xm::BlockVector         m_Blocks;
     vector <MadRowIndex>    m_RowIndices;
     wxFileOffset            m_Size;         // data size, include m_NewLineSize
-    wxByte                  m_NewLineSize;  // ANSI: "0D,0A" , UNICODE: "0D,00,0A,00"
+    wxByte                  m_NewLineSize;
+    const wxm::NewLineChar* m_nl;
 
     MadLineState            m_State;
 
     vector <BracePairIndex> m_BracePairIndices;
 
-    MadLine():m_Size(0), m_NewLineSize(0)
+    MadLine():m_Size(0), m_NewLineSize(0), m_nl(&wxm::g_nl_none)
     {
     }
     void Reset();
@@ -471,9 +577,6 @@ private:  // NextUChar()
 public:
     void SetManual(bool manual) { m_manual = true; }
     void SetEncoding(xm::Encoding *encoding);
-
-    // if no newline return 0 ; else return 0x0D or 0x0A or 0x0D+0x0A (=0x17)
-    ucs4_t GetNewLine(const MadLineIterator &iter);
 
     void InitNextUChar(const MadLineIterator &iter, const wxFileOffset pos);
 
