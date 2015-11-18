@@ -49,32 +49,30 @@ extern const ucs4_t HexHeader[];
 //==============================================================================
 
 const std::vector<wxPoint> CR_Points = boost::assign::list_of
-    ( wxPoint(  0,   0) )
-    ( wxPoint(400,   0) )
-    ( wxPoint(400, 999) )
-    ( wxPoint(101, 700) )
-    ( wxPoint(400, 700) )
-    ( wxPoint(600, 999) ); // max value
+    ( wxPoint( 3,  5) )
+    ( wxPoint( 1,  9) )
+    ( wxPoint( 9,  9) )
+    ( wxPoint( 1,  9) )
+    ( wxPoint( 3, 13) )
+    ( wxPoint(10, 18) ); // max value
 
-const int LF_Points_Count = 5;
 const std::vector<wxPoint> LF_Points = boost::assign::list_of
-    ( wxPoint(578,   0) )
-    ( wxPoint(178,   0) )
-    ( wxPoint(178, 999) )
-    ( wxPoint(477, 700) )
-    ( wxPoint(178, 700) )
-    ( wxPoint(600, 999) ); // max value
+    ( wxPoint(1,  7) )
+    ( wxPoint(3,  9) )
+    ( wxPoint(3,  1) )
+    ( wxPoint(3,  9) )
+    ( wxPoint(5,  7) )
+    ( wxPoint(7, 12) ); // max value
 
 const std::vector<wxPoint> CRLF_Points = boost::assign::list_of
-    ( wxPoint(  0,   0) )
-    ( wxPoint(560,   0) )
-    ( wxPoint(300,   0) )
-    ( wxPoint(300, 700) )
-    ( wxPoint( 76, 700) )
-    ( wxPoint(300, 999) )
-    ( wxPoint(524, 700) )
-    ( wxPoint(300, 700) )
-    ( wxPoint(600, 999) ); // max value
+    ( wxPoint( 3,  5) )
+    ( wxPoint( 1,  9) )
+    ( wxPoint( 9,  9) )
+    ( wxPoint( 9,  1) )
+    ( wxPoint( 9,  9) )
+    ( wxPoint( 1,  9) )
+    ( wxPoint( 3, 13) )
+    ( wxPoint(10, 18) ); // max value
 
 void MadEdit::SetSyntax(const wxString &title, bool manual)
 {
@@ -179,17 +177,14 @@ void MadEdit::SetRecordCaretMovements(bool value)
 
 void MadEdit::CalcEOLMarkPoints(std::vector<wxPoint>& dest, const std::vector<wxPoint>& src, const wxSize& charsz)
 {
-    const int y0 = charsz.y / 5;
-    const int x0 = charsz.x / 5;
-
     const int maxX = src.rbegin()->x;
     const int maxY = src.rbegin()->y;
     dest.clear();
     const size_t cnt = src.size() - 1;
     for (size_t i = 0; i< cnt; ++i)
     {
-        int x = x0 + charsz.x * src[i].x / maxX * 5 / 7;
-        int y = y0 + charsz.y * src[i].y / maxY * 5 / 7;
+        int x = (int)round(1.0 * charsz.x * src[i].x / maxX);
+        int y = (int)round(1.0 * charsz.y * src[i].y / maxY);
         dest.push_back(wxPoint(x, y));
     }
 }
