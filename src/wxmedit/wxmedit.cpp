@@ -6656,6 +6656,141 @@ void MadEdit::FindBracePairUnderCaretPos()
 
 }
 
+void MadEdit::CaretPosUpdate()
+{
+    AppearCaret();
+    UpdateScrollBarPos();
+    m_LastCaretXPos = m_CaretPos.xpos;
+}
+
+void MadEdit::DoPrevWord()
+{
+    if (m_CaretPos.extraspaces != 0)
+    {
+        m_CaretPos.xpos -= int(m_CaretPos.extraspaces * GetSpaceCharFontWidth());
+        m_CaretPos.extraspaces = 0;
+        return;
+    }
+
+    if (m_CaretRowUCharPos == 0 && m_CaretPos.rowid == 0)
+        return;
+
+    int uctype0 = 0;
+    do
+    {
+        if (m_CaretRowUCharPos == 0)
+        {
+            if (m_CaretPos.subrowid != 0)   // to prev subrow
+            {
+                --m_CaretPos.rowid;
+                --m_CaretPos.subrowid;
+                UpdateCaret(m_CaretPos, m_ActiveRowUChars, m_ActiveRowWidths, m_CaretRowUCharPos);
+            }
+            else if (m_CaretPos.rowid != 0) // to prev line's last row
+            {
+                MadLineIterator & lit = m_CaretPos.iter;
+                --lit;
+
+                --m_CaretPos.lineid;
+                m_CaretPos.linepos = lit->m_Size - lit->m_NewLineSize;
+                m_CaretPos.pos -= lit->m_NewLineSize;
+
+                --m_CaretPos.rowid;
+                m_CaretPos.subrowid = int(lit->RowCount() - 1);
+                UpdateCaret(m_CaretPos, m_ActiveRowUChars, m_ActiveRowWidths, m_CaretRowUCharPos);
+
+                break;
+            }
+            else          // at begin of file
+            {
+                break;
+            }
+        }
+
+        wxASSERT(m_CaretRowUCharPos != 0);
+
+        if (uctype0 == 0)
+        {
+            uctype0 = GetUCharType(m_ActiveRowUChars[m_CaretRowUCharPos - 1].first);
+        }
+        else
+        {
+            int uctype = GetUCharType(m_ActiveRowUChars[m_CaretRowUCharPos - 1].first);
+            if (uctype != uctype0)// && uctype != 1 )
+                break;
+            uctype0 = uctype;
+        }
+
+        --m_CaretRowUCharPos;
+        xm::UCPair & ucp = m_ActiveRowUChars[m_CaretRowUCharPos];
+
+        m_CaretPos.pos -= ucp.second;
+        m_CaretPos.linepos -= ucp.second;
+
+        m_CaretPos.xpos -= m_ActiveRowWidths[m_CaretRowUCharPos];
+
+    } while (m_CaretRowUCharPos != 0 || m_CaretPos.subrowid != 0);
+}
+
+void MadEdit::DoNextWord()
+{
+    if (m_CaretPos.pos >= m_Lines->m_Size)
+        return;
+    MadLineIterator & lit = m_CaretPos.iter;
+    wxFileOffset lineendpos = lit->m_Size - lit->m_NewLineSize;
+    if (m_CaretPos.linepos < lineendpos)
+    {
+        m_Lines->InitNextUChar(lit, m_CaretPos.linepos);
+
+        int uctype0 = 0, uctype;
+        do
+        {
+            m_Lines->NextUChar(m_ActiveRowUChars);
+            xm::UCPair & ucp = m_ActiveRowUChars.back();
+
+            if(uctype0 == 0)
+            {
+                uctype0 = GetUCharType(ucp.first);
+            }
+            else
+            {
+                uctype = GetUCharType(ucp.first);
+                if(uctype == 1)
+                    uctype0 = 1;
+                if(uctype != uctype0)
+                    break;
+            }
+
+            m_CaretPos.pos += ucp.second;
+            m_CaretPos.linepos += ucp.second;
+
+            if(m_CaretPos.linepos <= lineendpos &&
+                m_CaretPos.subrowid < int(lit->RowCount()-1) &&
+                m_CaretPos.linepos >= lit->m_RowIndices[m_CaretPos.subrowid + 1].m_Start)
+            {
+                ++m_CaretPos.subrowid;
+                ++m_CaretPos.rowid;
+            }
+
+        }
+        while(m_CaretPos.linepos < lineendpos);
+    }
+    else
+    {
+        // to next line
+
+        m_CaretPos.pos += lit->m_NewLineSize;
+
+        ++lit;
+        ++m_CaretPos.lineid;
+        m_CaretPos.linepos = 0;
+
+        ++m_CaretPos.rowid;
+        m_CaretPos.subrowid = 0;
+    }
+
+    UpdateCaret(m_CaretPos, m_ActiveRowUChars, m_ActiveRowWidths, m_CaretRowUCharPos);
+}
 
 void MadEdit::ProcessCommand(MadEditCommand command)
 {
@@ -7313,147 +7448,14 @@ void MadEdit::ProcessCommand(MadEditCommand command)
 
                 case ecPrevWord:
                 case ecSelPrevWord:
-                    if(m_CaretPos.extraspaces != 0)
-                    {
-                        m_CaretPos.xpos -= int(m_CaretPos.extraspaces * GetSpaceCharFontWidth());
-                        m_CaretPos.extraspaces = 0;
-                    }
-                    else
-                    {
-                        if(m_CaretRowUCharPos != 0 || m_CaretPos.rowid != 0)
-                        {
-                            int uctype0 = 0;
-                            do
-                            {
-                                if(m_CaretRowUCharPos == 0)
-                                {
-                                    if(m_CaretPos.subrowid != 0)   // to prev subrow
-                                    {
-                                        --m_CaretPos.rowid;
-                                        --m_CaretPos.subrowid;
-                                        UpdateCaret(m_CaretPos, m_ActiveRowUChars, m_ActiveRowWidths, m_CaretRowUCharPos);
-                                    }
-                                    else if(m_CaretPos.rowid != 0) // to prev line's last row
-                                    {
-                                        MadLineIterator & lit = m_CaretPos.iter;
-                                        --lit;
-
-                                        --m_CaretPos.lineid;
-                                        m_CaretPos.linepos = lit->m_Size - lit->m_NewLineSize;
-                                        m_CaretPos.pos -= lit->m_NewLineSize;
-
-                                        --m_CaretPos.rowid;
-                                        m_CaretPos.subrowid = int(lit->RowCount() - 1);
-                                        UpdateCaret(m_CaretPos, m_ActiveRowUChars, m_ActiveRowWidths, m_CaretRowUCharPos);
-
-                                        break;
-                                    }
-                                    else          // at begin of file
-                                    {
-                                        break;
-                                    }
-                                }
-
-                                wxASSERT(m_CaretRowUCharPos != 0);
-
-                                if(uctype0 == 0)
-                                {
-                                    uctype0 = GetUCharType(m_ActiveRowUChars[m_CaretRowUCharPos - 1].first);
-                                    //if(uctype0 == 1)
-                                    //    uctype0 = 0;
-                                }
-                                else
-                                {
-                                    int uctype=GetUCharType(m_ActiveRowUChars[m_CaretRowUCharPos - 1].first);
-                                    if(uctype != uctype0)// && uctype != 1 )
-                                    {
-                                        break;
-                                    }
-                                    uctype0=uctype;
-                                }
-
-                                --m_CaretRowUCharPos;
-                                xm::UCPair & ucp = m_ActiveRowUChars[m_CaretRowUCharPos];
-
-                                m_CaretPos.pos -= ucp.second;
-                                m_CaretPos.linepos -= ucp.second;
-
-                                m_CaretPos.xpos -= m_ActiveRowWidths[m_CaretRowUCharPos];
-
-                            }
-                            while(m_CaretRowUCharPos != 0 || m_CaretPos.subrowid != 0);
-                        }
-                    }
-                    AppearCaret();
-                    UpdateScrollBarPos();
-                    m_LastCaretXPos = m_CaretPos.xpos;
+                    DoPrevWord();
+                    CaretPosUpdate();
                     break;
 
                 case ecNextWord:
                 case ecSelNextWord:
-                    if(m_CaretPos.pos < m_Lines->m_Size)
-                    {
-                        MadLineIterator & lit = m_CaretPos.iter;
-                        wxFileOffset lineendpos = lit->m_Size - lit->m_NewLineSize;
-                        if(m_CaretPos.linepos < lineendpos)
-                        {
-                            m_Lines->InitNextUChar(lit, m_CaretPos.linepos);
-
-                            int uctype0 = 0, uctype;
-                            do
-                            {
-                                m_Lines->NextUChar(m_ActiveRowUChars);
-                                xm::UCPair & ucp = m_ActiveRowUChars.back();
-
-                                if(uctype0 == 0)
-                                {
-                                    uctype0 = GetUCharType(ucp.first);
-                                }
-                                else
-                                {
-                                    uctype = GetUCharType(ucp.first);
-                                    if(uctype == 1)
-                                        uctype0 = 1;
-                                    if(uctype != uctype0)
-                                        break;
-                                }
-
-                                m_CaretPos.pos += ucp.second;
-                                m_CaretPos.linepos += ucp.second;
-
-                                if(m_CaretPos.linepos <= lineendpos &&
-                                    m_CaretPos.subrowid < int(lit->RowCount()-1) &&
-                                    m_CaretPos.linepos >= lit->m_RowIndices[m_CaretPos.subrowid + 1].m_Start)
-                                {
-                                    ++m_CaretPos.subrowid;
-                                    ++m_CaretPos.rowid;
-                                }
-
-                            }
-                            while(m_CaretPos.linepos < lineendpos);
-
-                            UpdateCaret(m_CaretPos, m_ActiveRowUChars, m_ActiveRowWidths, m_CaretRowUCharPos);
-                        }
-                        else                // to next line
-                        {
-                            //if(m_CaretPos.rowid < m_Lines->m_RowCount - 1)
-                            {
-                                m_CaretPos.pos += lit->m_NewLineSize;
-
-                                ++lit;
-                                ++m_CaretPos.lineid;
-                                m_CaretPos.linepos = 0;
-
-                                ++m_CaretPos.rowid;
-                                m_CaretPos.subrowid = 0;
-
-                                UpdateCaret(m_CaretPos, m_ActiveRowUChars, m_ActiveRowWidths, m_CaretRowUCharPos);
-                            }
-                        }
-                    }
-                    AppearCaret();
-                    UpdateScrollBarPos();
-                    m_LastCaretXPos = m_CaretPos.xpos;
+	                DoNextWord();
+                    CaretPosUpdate();
                     break;
 
                 case ecLeftBrace:
