@@ -6674,64 +6674,57 @@ void MadEdit::DoPrevWord()
         return;
     }
 
-    if (m_CaretRowUCharPos == 0 && m_CaretPos.rowid == 0)
-        return;
-
-    int uctype0 = 0;
-    do
+    if (m_CaretRowUCharPos == 0)
     {
-        if (m_CaretRowUCharPos == 0)
+        if (m_CaretPos.rowid == 0)
+            return;
+
+        if (m_CaretPos.subrowid == 0)
         {
-            if (m_CaretPos.subrowid != 0)   // to prev subrow
-            {
-                --m_CaretPos.rowid;
-                --m_CaretPos.subrowid;
-                UpdateCaret(m_CaretPos, m_ActiveRowUChars, m_ActiveRowWidths, m_CaretRowUCharPos);
-            }
-            else if (m_CaretPos.rowid != 0) // to prev line's last row
-            {
-                MadLineIterator & lit = m_CaretPos.iter;
-                --lit;
+            // to prev line's last row
 
-                --m_CaretPos.lineid;
-                m_CaretPos.linepos = lit->m_Size - lit->m_NewLineSize;
-                m_CaretPos.pos -= lit->m_NewLineSize;
+            MadLineIterator & lit = m_CaretPos.iter;
+            --lit;
 
-                --m_CaretPos.rowid;
-                m_CaretPos.subrowid = int(lit->RowCount() - 1);
-                UpdateCaret(m_CaretPos, m_ActiveRowUChars, m_ActiveRowWidths, m_CaretRowUCharPos);
+            --m_CaretPos.lineid;
+            m_CaretPos.linepos = lit->m_Size - lit->m_NewLineSize;
+            m_CaretPos.pos -= lit->m_NewLineSize;
 
-                break;
-            }
-            else          // at begin of file
-            {
-                break;
-            }
+            --m_CaretPos.rowid;
+            m_CaretPos.subrowid = int(lit->RowCount() - 1);
+
+            UpdateCaret(m_CaretPos, m_ActiveRowUChars, m_ActiveRowWidths, m_CaretRowUCharPos);
+            return;
         }
+    }
 
-        wxASSERT(m_CaretRowUCharPos != 0);
+    MadLineIterator& lit = m_CaretPos.iter;
 
-        if (uctype0 == 0)
-        {
-            uctype0 = GetUCharType(m_ActiveRowUChars[m_CaretRowUCharPos - 1].first);
-        }
-        else
-        {
-            int uctype = GetUCharType(m_ActiveRowUChars[m_CaretRowUCharPos - 1].first);
-            if (uctype != uctype0)// && uctype != 1 )
-                break;
-            uctype0 = uctype;
-        }
+    UnicodeString ustr;
+    xm::UCQueue ucq;
+    wxFileOffset tpos = m_CaretPos.pos - m_CaretPos.linepos;
+    m_Lines->InitNextUChar(lit, 0);
+    for (; tpos < m_CaretPos.pos && m_Lines->NextUChar(ucq); tpos+=ucq.back().second)
+        ustr += (UChar32)ucq.back().first;
 
-        --m_CaretRowUCharPos;
-        xm::UCPair & ucp = m_ActiveRowUChars[m_CaretRowUCharPos];
+    UErrorCode status = U_ZERO_ERROR;
+    boost::scoped_ptr<BreakIterator> bi(BreakIterator::createWordInstance(Locale::getDefault(), status));
+    bi->setText(ustr);
+    int32_t n = bi->last();
+    for (n = bi->previous(); n>=0; n=bi->previous())
+    {
+        if (!u_isspace(ustr.char32At(n)))
+            break;
+    }
 
-        m_CaretPos.pos -= ucp.second;
-        m_CaretPos.linepos -= ucp.second;
+    m_ActiveRowUChars.clear();
+    m_CaretPos.pos -= m_CaretPos.linepos;
+    m_CaretPos.linepos = 0;
+    m_CaretPos.rowid -= m_CaretPos.subrowid;
+    m_CaretPos.subrowid = 0;
 
-        m_CaretPos.xpos -= m_ActiveRowWidths[m_CaretRowUCharPos];
-
-    } while (m_CaretRowUCharPos != 0 || m_CaretPos.subrowid != 0);
+    m_Lines->InitNextUChar(lit, 0);
+    ForwardNthUChars(lit, n, lit->m_Size - lit->m_NewLineSize);;
 }
 
 void MadEdit::DoNextWord()
@@ -6775,30 +6768,33 @@ void MadEdit::DoNextWord()
     }
 
     m_Lines->InitNextUChar(lit, m_CaretPos.linepos);
+    ForwardNthUChars(lit, n, lineendpos);
+}
 
+void MadEdit::ForwardNthUChars(MadLineIterator& lit, int32_t n, wxFileOffset lineendpos)
+{
     int32_t i = 0;
     do
     {
         m_Lines->NextUChar(m_ActiveRowUChars);
         xm::UCPair & ucp = m_ActiveRowUChars.back();
 
-        i += (ucp.first > 0x10000)? 2: 1;
+        i += (ucp.first > 0x10000) ? 2 : 1;
         if (i > n)
             break;
 
         m_CaretPos.pos += ucp.second;
         m_CaretPos.linepos += ucp.second;
 
-        if(m_CaretPos.linepos <= lineendpos &&
-            m_CaretPos.subrowid < int(lit->RowCount()-1) &&
+        if (m_CaretPos.linepos <= lineendpos &&
+            m_CaretPos.subrowid < int(lit->RowCount() - 1) &&
             m_CaretPos.linepos >= lit->m_RowIndices[m_CaretPos.subrowid + 1].m_Start)
         {
             ++m_CaretPos.subrowid;
             ++m_CaretPos.rowid;
         }
 
-    }
-    while(m_CaretPos.linepos < lineendpos);
+    } while (m_CaretPos.linepos < lineendpos);
 
     UpdateCaret(m_CaretPos, m_ActiveRowUChars, m_ActiveRowWidths, m_CaretRowUCharPos);
 }

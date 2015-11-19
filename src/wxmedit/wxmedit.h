@@ -568,10 +568,13 @@ protected:
     void FindLeftBrace(/*IN_OUT*/int &rowid, MadLineIterator lit, wxFileOffset linepos, BracePairIndex &bpi);
     void FindRightBrace(/*IN_OUT*/int &rowid, MadLineIterator lit, wxFileOffset linepos, BracePairIndex &bpi);
     void FindBracePairUnderCaretPos();
-	void CaretPosUpdate();
-	void DoPrevWord();
-	void DoNextWord();
-	// update mouse cursor by the mouse position
+
+    void CaretPosUpdate();
+    void ForwardNthUChars(MadLineIterator& lit, int32_t n, wxFileOffset lineendpos);
+    void DoPrevWord();
+    void DoNextWord();
+
+    // update mouse cursor by the mouse position
     void UpdateCursor(int mouse_x, int mouse_y);
 
     virtual int CalcLineNumberAreaWidth(MadLineIterator lit, int lineid, int rowid, int toprow, int rowcount) = 0;
