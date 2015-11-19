@@ -64,7 +64,9 @@
 # pragma warning(pop)
 #endif
 
+#include <unicode/brkiter.h>
 #include <boost/static_assert.hpp>
+#include <boost/scoped_ptr.hpp>
 #include <locale.h>
 
 using std::vector;
@@ -6736,46 +6738,10 @@ void MadEdit::DoNextWord()
 {
     if (m_CaretPos.pos >= m_Lines->m_Size)
         return;
+
     MadLineIterator & lit = m_CaretPos.iter;
     wxFileOffset lineendpos = lit->m_Size - lit->m_NewLineSize;
-    if (m_CaretPos.linepos < lineendpos)
-    {
-        m_Lines->InitNextUChar(lit, m_CaretPos.linepos);
-
-        int uctype0 = 0, uctype;
-        do
-        {
-            m_Lines->NextUChar(m_ActiveRowUChars);
-            xm::UCPair & ucp = m_ActiveRowUChars.back();
-
-            if(uctype0 == 0)
-            {
-                uctype0 = GetUCharType(ucp.first);
-            }
-            else
-            {
-                uctype = GetUCharType(ucp.first);
-                if(uctype == 1)
-                    uctype0 = 1;
-                if(uctype != uctype0)
-                    break;
-            }
-
-            m_CaretPos.pos += ucp.second;
-            m_CaretPos.linepos += ucp.second;
-
-            if(m_CaretPos.linepos <= lineendpos &&
-                m_CaretPos.subrowid < int(lit->RowCount()-1) &&
-                m_CaretPos.linepos >= lit->m_RowIndices[m_CaretPos.subrowid + 1].m_Start)
-            {
-                ++m_CaretPos.subrowid;
-                ++m_CaretPos.rowid;
-            }
-
-        }
-        while(m_CaretPos.linepos < lineendpos);
-    }
-    else
+    if (m_CaretPos.linepos >= lineendpos)
     {
         // to next line
 
@@ -6787,7 +6753,52 @@ void MadEdit::DoNextWord()
 
         ++m_CaretPos.rowid;
         m_CaretPos.subrowid = 0;
+
+        UpdateCaret(m_CaretPos, m_ActiveRowUChars, m_ActiveRowWidths, m_CaretRowUCharPos);
+        return;
     }
+
+    UnicodeString ustr;
+    xm::UCQueue ucq;
+    m_Lines->InitNextUChar(lit, m_CaretPos.linepos);
+    while (m_Lines->NextUChar(ucq))
+        ustr += (UChar32)ucq.back().first;
+
+    UErrorCode status = U_ZERO_ERROR;
+    boost::scoped_ptr<BreakIterator> bi(BreakIterator::createWordInstance(Locale::getDefault(), status));
+    bi->setText(ustr);
+    int32_t n = bi->first();
+    for (n=bi->next(); n>0; n=bi->next())
+    {
+        if (!u_isspace(ustr.char32At(n)))
+            break;
+    }
+
+    m_Lines->InitNextUChar(lit, m_CaretPos.linepos);
+
+    int32_t i = 0;
+    do
+    {
+        m_Lines->NextUChar(m_ActiveRowUChars);
+        xm::UCPair & ucp = m_ActiveRowUChars.back();
+
+        i += (ucp.first > 0x10000)? 2: 1;
+        if (i > n)
+            break;
+
+        m_CaretPos.pos += ucp.second;
+        m_CaretPos.linepos += ucp.second;
+
+        if(m_CaretPos.linepos <= lineendpos &&
+            m_CaretPos.subrowid < int(lit->RowCount()-1) &&
+            m_CaretPos.linepos >= lit->m_RowIndices[m_CaretPos.subrowid + 1].m_Start)
+        {
+            ++m_CaretPos.subrowid;
+            ++m_CaretPos.rowid;
+        }
+
+    }
+    while(m_CaretPos.linepos < lineendpos);
 
     UpdateCaret(m_CaretPos, m_ActiveRowUChars, m_ActiveRowWidths, m_CaretRowUCharPos);
 }
