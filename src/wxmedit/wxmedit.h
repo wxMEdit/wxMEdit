@@ -825,7 +825,6 @@ public: // basic functions
     int GetMaxWordWrapWidth();
     int GetUCharWidth(ucs4_t uc);
     int GetHexUCharWidth(ucs4_t uc);
-    int GetUCharType(ucs4_t uc);
 
     // all are zero-based
     void GetCaretPosition(int &line, int &subrow, wxFileOffset &column);

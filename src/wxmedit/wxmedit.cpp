@@ -10175,25 +10175,6 @@ int MadEdit::GetHexUCharWidth(ucs4_t uc)
     return w;
 }
 
-int MadEdit::GetUCharType(ucs4_t uc)
-{
-    if(uc == 0x20 || uc == 0x09)
-        return 1;
-    if(uc < 0x20)
-        return 2;
-    if(m_Syntax->IsDelimiter(uc))
-        return 3;
-    if(uc < 0x100)
-        return 4;
-    if(uc == 0x3000)              // full-width white-space char
-        return 5;
-    if(uc < 0x4E00)
-        return 6;
-    if(uc < 0xFB00)
-        return 7;
-    return 8;
-}
-
 wxMilliClock_t MadEdit::GetTripleClickInterval()
 {
     static wxMilliClock_t t = 0;
