@@ -40,6 +40,8 @@
 
 #include <wx/confbase.h>
 
+#include <unicode/brkiter.h>
+#include <boost/smart_ptr/shared_ptr.hpp>
 #include <string>
 
 enum { ID_VSCROLLBAR=19876, ID_HSCROLLBAR };
@@ -410,6 +412,9 @@ private:
     wxm::MouseCapturer* m_mouse_capturer;
 
     bool m_mouse_in_window;
+
+    UErrorCode m_word_bi_status;
+    boost::shared_ptr<BreakIterator> m_word_bi;
 
 protected:
 

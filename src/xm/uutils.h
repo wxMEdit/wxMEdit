@@ -13,6 +13,7 @@
 
 #include <unicode/unistr.h>
 #include <unicode/uchar.h>
+#include <boost/shared_ptr.hpp>
 #include <string>
 #include <stddef.h>
 
@@ -43,7 +44,11 @@ struct WordCounter
 	virtual size_t GetWordCount() = 0;
 	virtual size_t GetWordCountNoCtrlNoSP() = 0;
 
+	WordCounter(boost::shared_ptr<BreakIterator>& bi): m_bi(bi) {}
 	virtual ~WordCounter(){}
+protected:
+	void CountWords(const UnicodeString& ustr, size_t& cnt, size_t& ctrl_cnt, size_t& sp_cnt);
+	boost::shared_ptr<BreakIterator> m_bi;
 };
 
 struct SimpleWordCounter: public WordCounter
@@ -60,6 +65,7 @@ struct SimpleWordCounter: public WordCounter
 		m_ustr += ustr;
 	}
 
+	SimpleWordCounter(boost::shared_ptr<BreakIterator>& bi) : WordCounter(bi) {}
 	virtual ~SimpleWordCounter(){}
 private:
 	UnicodeString m_ustr;
@@ -72,8 +78,8 @@ struct AccumulativeWordCounter: public WordCounter
 	virtual size_t GetWordCount() override;
 	virtual size_t GetWordCountNoCtrlNoSP() override;
 
-	AccumulativeWordCounter(int32_t capacity)
-		: m_capacity(capacity), m_size(0)
+	AccumulativeWordCounter(boost::shared_ptr<BreakIterator>& bi, int32_t capacity)
+		: WordCounter(bi), m_capacity(capacity), m_size(0)
 		, m_cnt(0), m_ctrl_cnt(0), m_sp_cnt(0)
 	{
 	}

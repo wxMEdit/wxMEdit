@@ -718,6 +718,7 @@ int MadEdit::ms_Count = 0;
 MadEdit::MadEdit(wxm::ConfigWriter* cfg_writer, wxWindow* parent, wxWindowID id, const wxPoint& pos, const wxSize& size, long style)
     : MadEditSuperClass(parent, id, pos, size, style), m_cfg_writer(cfg_writer)
     , m_newline(&wxm::g_nl_default), m_newline_for_insert(&wxm::g_nl_default)
+    , m_word_bi_status(U_ZERO_ERROR)
 {
     ++ms_Count;
 
@@ -741,6 +742,9 @@ MadEdit::MadEdit(wxm::ConfigWriter* cfg_writer, wxWindow* parent, wxWindowID id,
 
 
     m_ClientWidth=m_ClientHeight=0;
+
+    m_word_bi.reset(BreakIterator::createWordInstance(Locale::getDefault(), m_word_bi_status));
+
 
     m_Config=wxConfigBase::Get(false);
     m_cfg_writer->SetConfig(m_Config);
@@ -6707,11 +6711,9 @@ void MadEdit::DoPrevWord()
     for (; tpos < m_CaretPos.pos && m_Lines->NextUChar(ucq); tpos+=ucq.back().second)
         ustr += (UChar32)ucq.back().first;
 
-    UErrorCode status = U_ZERO_ERROR;
-    boost::scoped_ptr<BreakIterator> bi(BreakIterator::createWordInstance(Locale::getDefault(), status));
-    bi->setText(ustr);
-    int32_t n = bi->last();
-    for (n = bi->previous(); n>=0; n=bi->previous())
+    m_word_bi->setText(ustr);
+    int32_t n = m_word_bi->last();
+    for (n = m_word_bi->previous(); n>=0; n= m_word_bi->previous())
     {
         if (!u_isspace(ustr.char32At(n)))
             break;
@@ -6757,11 +6759,9 @@ void MadEdit::DoNextWord()
     while (m_Lines->NextUChar(ucq))
         ustr += (UChar32)ucq.back().first;
 
-    UErrorCode status = U_ZERO_ERROR;
-    boost::scoped_ptr<BreakIterator> bi(BreakIterator::createWordInstance(Locale::getDefault(), status));
-    bi->setText(ustr);
-    int32_t n = bi->first();
-    for (n=bi->next(); n>0; n=bi->next())
+    m_word_bi->setText(ustr);
+    int32_t n = m_word_bi->first();
+    for (n= m_word_bi->next(); n>0; n= m_word_bi->next())
     {
         if (!u_isspace(ustr.char32At(n)))
             break;

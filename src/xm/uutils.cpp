@@ -9,7 +9,6 @@
 #include "uutils.h"
 #include <unicode/brkiter.h>
 #include <unicode/locid.h>
-#include <boost/scoped_ptr.hpp>
 
 #ifdef _DEBUG
 #include <crtdbg.h>
@@ -19,14 +18,10 @@
 namespace xm
 {
 
-void CountWords(const UnicodeString& ustr, size_t& cnt, size_t& ctrl_cnt, size_t& sp_cnt)
+void WordCounter::CountWords(const UnicodeString& ustr, size_t& cnt, size_t& ctrl_cnt, size_t& sp_cnt)
 {
-	UErrorCode status = U_ZERO_ERROR;
-	boost::scoped_ptr<BreakIterator> bi (
-			BreakIterator::createWordInstance(Locale::getDefault(), status)
-			);
-	bi->setText(ustr);
-	int32_t i = bi->first();
+	m_bi->setText(ustr);
+	int32_t i = m_bi->first();
 	while (i < ustr.length())
 	{
 		++cnt;
@@ -38,7 +33,7 @@ void CountWords(const UnicodeString& ustr, size_t& cnt, size_t& ctrl_cnt, size_t
 		else if(u_isspace(ch))
 			++sp_cnt;
 
-		i = bi->next();
+		i = m_bi->next();
 	}
 }
 
