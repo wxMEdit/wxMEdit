@@ -3604,11 +3604,9 @@ void MadEdit::SelectWordFromCaretPos(wxString *ws)
         endpos = m_HexRowIndex[count-1]+16;
 
         if(endpos > m_Lines->m_Size)
-        {
             endpos = m_Lines->m_Size;
-        }
     }
-    else                          //TextMode
+    else //TextMode
     {
         //may select whole line
         //startpos = m_CaretPos.pos - m_CaretPos.linepos +
@@ -3622,132 +3620,91 @@ void MadEdit::SelectWordFromCaretPos(wxString *ws)
                  m_CaretPos.iter->m_RowIndices[m_CaretPos.subrowid+1].m_Start;
     }
 
+    if (m_CaretPos.pos == endpos)
+        return;
+
     // now startpos is the begin of line
     // check the word between startpos and endpos
 
+    UnicodeString ustr;
+    xm::UCQueue ucq;
+    int32_t idx = 0;
     MadLineIterator & lit = m_CaretPos.iter;
     wxFileOffset pos = m_CaretPos.linepos - (m_CaretPos.pos - startpos);
     m_Lines->InitNextUChar(lit, pos);
-
-    xm::UCQueue ucqueue;
-    int type = 0, prevtype = 0;
-    int idx = 0, posidx = 0;
-
-    pos = startpos;
-
-    if(m_Lines->NextUChar(ucqueue))
+    for (wxFileOffset t = startpos; t<endpos; t+=ucq.back().second)
     {
-        do
-        {
-            xm::UCPair & ucp = ucqueue.back();
-            int uc = ucp.first;
-            if(type == 0)
-            {
-                if(pos >= m_CaretPos.pos)
-                {
-                    type = GetUCharType(uc);
-                    posidx = idx;
+        if (t == m_CaretPos.pos)
+            idx = ustr.length();
 
-                    if(ws != nullptr
-                        && ((type <= 3 && prevtype > 3) || (type <= 2 && prevtype > 2)))
-                    {
-                        --posidx;
-                        type = prevtype;
-
-                        ucqueue.pop_back();
-                        break;
-                    }
-                }
-                else if(ws != nullptr)
-                {
-                    prevtype = GetUCharType(uc);
-                }
-            }
-            else
-            {
-                if(GetUCharType(uc) != type)
-                {
-                    ucqueue.pop_back();
-                    break;
-                }
-            }
-
-            ++idx;
-            pos += ucp.second;
-        }
-        while(pos < endpos && m_Lines->NextUChar(ucqueue));
+        m_Lines->NextUChar(ucq);
+        ustr += (UChar32)ucq.back().first;
     }
 
-
-    idx = posidx - 1;
-    while(idx >= 0 && GetUCharType(ucqueue[idx].first) == type)
+    m_word_bi->setText(ustr);
+    int32_t b = m_word_bi->isBoundary(idx)? idx: m_word_bi->preceding(idx);
+    int32_t e = m_word_bi->next();
+    if (u_isspace(ustr.char32At(b)))
     {
-        --idx;
+        for (int32_t p = m_word_bi->previous(); p >= 0 && u_isspace(ustr.char32At(p)); p = m_word_bi->previous())
+            b = p;
+        while (e < ustr.length() && u_isspace(ustr.char32At(e)))
+            e = m_word_bi->next();
     }
 
-    if(idx >= 0)
+    if (ws != nullptr)
     {
-        do
-        {
-            startpos += ucqueue.front().second;
-            ucqueue.pop_front();
-        }
-        while(--idx >= 0);
+        *ws = ustr.tempSubStringBetween(b, e).getTerminatedBuffer();
+        return;
     }
 
-    if(!ucqueue.empty() && type != 0)
+    m_Selection=true;
+
+    wxFileOffset lineendpos = pos + endpos - startpos;
+    m_CaretPos.pos = startpos;
+    m_CaretPos.linepos = pos;
+    m_ActiveRowUChars.clear();
+
+    m_Lines->InitNextUChar(lit, pos);
+    ForwardNthUChars(lit, b, lineendpos);
+    m_SelectionPos1.pos = m_CaretPos.pos;
+
+    m_Lines->InitNextUChar(lit, m_CaretPos.linepos);
+    ForwardNthUChars(lit, e-b, lineendpos);
+    m_SelectionPos2.pos = m_CaretPos.pos;
+
+    UpdateSelectionPos();
+
+    m_CaretPos = m_SelectionPos2;
+
+    m_SelectionBegin = &m_SelectionPos1;
+    m_SelectionEnd = &m_SelectionPos2;
+
+    m_SelFirstRow = m_SelectionBegin->rowid;
+    m_SelLastRow = m_SelectionEnd->rowid;
+
+    UpdateCaret(m_CaretPos, m_ActiveRowUChars, m_ActiveRowWidths, m_CaretRowUCharPos);
+
+    if(m_EditMode==emHexMode)
     {
-        //wxASSERT(type != 0);
+        AppearHexRow(m_CaretPos.pos);
 
-        if(ws != nullptr)              // get word
-        {
-            size_t s = ucqueue.size();
-            for(size_t i = 0; i < s; i++)
-                wxm::WxStrAppendUCS4(*ws, ucqueue[i].first);
+        m_CaretAtHalfByte=false;
 
-            return;
-        }
-
-        m_Selection=true;
-        m_SelectionPos1.pos = startpos;
-        m_SelectionPos2.pos = pos;
-
-        UpdateSelectionPos();
-
-        m_CaretPos = m_SelectionPos2;
-
-        m_SelectionBegin = &m_SelectionPos1;
-        m_SelectionEnd = &m_SelectionPos2;
-
-        m_SelFirstRow = m_SelectionBegin->rowid;
-        m_SelLastRow = m_SelectionEnd->rowid;
-
-        UpdateCaret(m_CaretPos, m_ActiveRowUChars, m_ActiveRowWidths, m_CaretRowUCharPos);
-
-        if(m_EditMode==emHexMode)
-        {
-            AppearHexRow(m_CaretPos.pos);
-
-            m_CaretAtHalfByte=false;
-
-            if(!m_CaretAtHexArea)
-            {
-                UpdateTextAreaXPos();
-            }
-        }
-
-        AppearCaret();
-        UpdateScrollBarPos();
-
-        m_LastTextAreaXPos=m_TextAreaXPos;
-        m_LastCaretXPos= m_CaretPos.xpos;
-
-        m_RepaintAll=true;
-        Refresh(false);
-
-        DoSelectionChanged();
+        if(!m_CaretAtHexArea)
+            UpdateTextAreaXPos();
     }
 
+    AppearCaret();
+    UpdateScrollBarPos();
+
+    m_LastTextAreaXPos=m_TextAreaXPos;
+    m_LastCaretXPos= m_CaretPos.xpos;
+
+    m_RepaintAll=true;
+    Refresh(false);
+
+    DoSelectionChanged();
 }
 
 void MadEdit::SelectLineFromCaretPos(wxString *ws)

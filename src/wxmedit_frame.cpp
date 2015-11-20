@@ -3978,7 +3978,7 @@ struct SearchingTextAssigner
 
 		wxString ws;
 		g_active_wxmedit->GetWordFromCaretPos(ws);
-		if (!ws.IsEmpty() && ws[0]>wxChar(0x20))
+		if (!ws.IsEmpty() && !u_isspace(ws[0]))
 			SetSearchingText(ws);
 	}
 
