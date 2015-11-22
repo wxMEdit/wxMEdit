@@ -1,7 +1,7 @@
 # FreeBASIC
 Title=FreeBASIC
 CaseSensitive=No
-Delimiter=~`!@%^&*()-+|\{}[]:;"',.<>/?
+Delimiter=~`@^*()-+=|\{}[]:;"',.<>/?
 LineComment='
 BlockComment=/' '/
 EscapeChar=
