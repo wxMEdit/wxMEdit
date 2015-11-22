@@ -14,7 +14,7 @@ In HexMode, wxMEdit can open large files which size is up to 32GB (INT_MAX*16).
 Supported Platforms:
 -------------------
 A. Linux, FreeBSD/OpenBSD/NetBSD, Mac OS X, OpenIndiana and other Unix-like OSes (__WXGTK__):
-   a. GNU C++ 3.x/4.x OR clang++ 2.8 or higher:
+   a. GNU C++ 3.x~5.x OR clang++ 2.8 or higher:
       Required Tools and Libraries to compile:
       1. autoconf 2.63 or higher
       2. automake 1.11.1 or higher
@@ -24,7 +24,7 @@ A. Linux, FreeBSD/OpenBSD/NetBSD, Mac OS X, OpenIndiana and other Unix-like OSes
       6. libcurl 7.15.5 or higher
 
 B. Windows / ReactOS (__WXMSW__):
-   a. MinGW32 GNU C++ 3.x/4.x:
+   a. MinGW32 GNU C++ 3.x~5.x:
       Required Tools and Libraries to compile:
       1. Bakefile 0.2.9
       2. wxWidgets 2.8/3.0 with Unicode enabled
