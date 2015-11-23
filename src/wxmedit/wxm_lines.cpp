@@ -1385,21 +1385,13 @@ void BraceXPosAdjustor4RecountLineWidth::OnWordwrap(const MadRowIndex& rowidx)
 
 } // namespace wxm
 
-void MadLines::DoWordWrap(MadLineIterator iter, wxm::BraceXPosAdjustor& brxpos_adj, bool word_canmove, ucs4_t firstuc, MadRowIndex& rowidx, size_t& rowlen, size_t& rowidx_idx, int& wordwidth, size_t& wordbytes, int wordisdelimiter)
+void MadLines::DoWordWrap(MadLineIterator iter, wxm::BraceXPosAdjustor& brxpos_adj, bool word_canmove, ucs4_t firstuc, MadRowIndex& rowidx, size_t& rowlen, size_t& rowidx_idx, int& wordwidth, size_t& wordbytes, bool inword)
 {
     bool move_word_to_next_line = false;
-    if (word_canmove)
+    if (word_canmove && inword)
     {
-        if (wordisdelimiter > 0)
-        {
-             if (m_Syntax->IsDelimiter(firstuc))
-                move_word_to_next_line = true;
-        }
-        else if (wordisdelimiter<0)
-        {
-             if (m_Syntax->IsNotDelimiter(firstuc))
-                move_word_to_next_line = true;
-        }
+        if (m_Syntax->IsNotDelimiter(firstuc))
+            move_word_to_next_line = true;
     }
 
     if (move_word_to_next_line)
@@ -1434,71 +1426,26 @@ void MadLines::DoWordWrap(MadLineIterator iter, wxm::BraceXPosAdjustor& brxpos_a
     }
 }
 
-void MadLines::WordAcc(int& wordisdelimiter, size_t& wordbytes, int& wordwidth, int ucwidth, ucs4_t firstuc, size_t firstuclen)
+void MadLines::WordAcc(bool& inword, size_t& wordbytes, int& wordwidth, int ucwidth, ucs4_t firstuc, size_t firstuclen)
 {
-    if(wordbytes == 0)
+    if(wordbytes == 0 && m_Syntax->IsNotDelimiter(firstuc))
     {
-        if(m_Syntax->IsDelimiter(firstuc))
-        {
-            wordisdelimiter = 1;
-            wordbytes = firstuclen;
-            wordwidth = ucwidth;
-        }
-        else if(m_Syntax->IsNotDelimiter(firstuc))
-        {
-            wordisdelimiter = -1;
-            wordbytes = firstuclen;
-            wordwidth = ucwidth;
-        }
+        inword = true;
+        wordbytes = firstuclen;
+        wordwidth = ucwidth;
         return;
     }
 
-    if(wordisdelimiter<0)
+    if(inword && m_Syntax->IsNotDelimiter(firstuc))
     {
-        if(m_Syntax->IsNotDelimiter(firstuc))
-        {
-            wordbytes += firstuclen;
-            wordwidth += ucwidth;
-        }
-        else if(m_Syntax->IsDelimiter(firstuc))
-        {
-            wordisdelimiter = 1;
-            wordbytes = firstuclen;
-            wordwidth = ucwidth;
-        }
-        else
-        {
-            wordisdelimiter=0;
-            wordbytes = 0;
-            wordwidth = 0;
-        }
+        wordbytes += firstuclen;
+        wordwidth += ucwidth;
+        return;
     }
-    else if(wordisdelimiter>0)
-    {
-        if(m_Syntax->IsDelimiter(firstuc))
-        {
-            wordbytes += firstuclen;
-            wordwidth += ucwidth;
-        }
-        else if(m_Syntax->IsNotDelimiter(firstuc))
-        {
-            wordisdelimiter = -1;
-            wordbytes = firstuclen;
-            wordwidth = ucwidth;
-        }
-        else
-        {
-            wordisdelimiter=0;
-            wordbytes = 0;
-            wordwidth = 0;
-        }
-    }
-    else
-    {
-        //wordisdelimiter=0;
-        wordbytes = 0;
-        wordwidth = 0;
-    }
+
+    inword = false;
+    wordbytes = 0;
+    wordwidth = 0;
 }
 
 MadLineState MadLines::Reformat(MadLineIterator iter)
@@ -1560,7 +1507,7 @@ MadLineState MadLines::Reformat(MadLineIterator iter)
         size_t rowlen; // byte-length
         size_t wordbytes;
         int wordwidth;
-        int wordisdelimiter = 0; //1:is delimiter, -1:not delimiter, 0:other
+        bool inword = false;
 
         const size_t maxlinelength = m_MadEdit->m_MaxLineLength;
         int maxwidth = m_MadEdit->GetMaxWordWrapWidth();
@@ -1675,7 +1622,7 @@ MadLineState MadLines::Reformat(MadLineIterator iter)
 
                 bool word_canmove = (wordbytes != maxlinelength);
                 if(rowlen + int (firstuclen) > maxlinelength)     // wordwrap by line length
-                    DoWordWrap(iter, brxpos_adj, word_canmove, firstuc, rowidx, rowlen, rowidx_idx, wordwidth, wordbytes, wordisdelimiter);
+                    DoWordWrap(iter, brxpos_adj, word_canmove, firstuc, rowidx, rowlen, rowidx_idx, wordwidth, wordbytes, inword);
 
                 ucwidth = m_MadEdit->GetUCharWidth(firstuc);
                 if(firstuc == 0x09)         // Tab char
@@ -1699,9 +1646,9 @@ MadLineState MadLines::Reformat(MadLineIterator iter)
 
                 word_canmove = (wordwidth!=rowidx.m_Width && !m_MadEdit->HexPrinting());
                 if(rowidx.m_Width + ucwidth > maxwidth)    // wordwrap by width
-                    DoWordWrap(iter, brxpos_adj, word_canmove, firstuc, rowidx, rowlen, rowidx_idx, wordwidth, wordbytes, wordisdelimiter);
+                    DoWordWrap(iter, brxpos_adj, word_canmove, firstuc, rowidx, rowlen, rowidx_idx, wordwidth, wordbytes, inword);
 
-                WordAcc(wordisdelimiter, wordbytes, wordwidth, ucwidth, firstuc, firstuclen);
+                WordAcc(inword, wordbytes, wordwidth, ucwidth, firstuc, firstuclen);
 
                 if(bracexpos!=nullptr)
                 {
@@ -1893,7 +1840,7 @@ void MadLines::RecountLineWidth(void)
     size_t rowlen;                                     // byte-length
     size_t wordbytes;
     int wordwidth;
-    int wordisdelimiter=0;//1:is delimiter, -1:not delimiter, 0:other
+    bool inword = false;
 
     ucs4_t firstuc;
     size_t firstuclen;
@@ -1973,7 +1920,7 @@ void MadLines::RecountLineWidth(void)
 
                 bool word_canmove = (wordbytes != maxlinelength);
                 if(rowlen + int (firstuclen) > maxlinelength)     // wordwrap by line length
-                    DoWordWrap(iter, brxpos_adj, word_canmove, firstuc, rowidx, rowlen, rowidx_idx, wordwidth, wordbytes, wordisdelimiter);
+                    DoWordWrap(iter, brxpos_adj, word_canmove, firstuc, rowidx, rowlen, rowidx_idx, wordwidth, wordbytes, inword);
 
                 ucwidth = m_MadEdit->GetUCharWidth(firstuc);
                 if(firstuc == 0x09)         // Tab char
@@ -1997,9 +1944,9 @@ void MadLines::RecountLineWidth(void)
 
                 word_canmove = (wordwidth != rowidx.m_Width);
                 if(rowidx.m_Width + ucwidth > maxwidth)    // wordwrap by width
-                    DoWordWrap(iter, brxpos_adj, word_canmove, firstuc, rowidx, rowlen, rowidx_idx, wordwidth, wordbytes, wordisdelimiter);
+                    DoWordWrap(iter, brxpos_adj, word_canmove, firstuc, rowidx, rowlen, rowidx_idx, wordwidth, wordbytes, inword);
 
-                WordAcc(wordisdelimiter, wordbytes, wordwidth, ucwidth, firstuc, firstuclen);
+                WordAcc(inword, wordbytes, wordwidth, ucwidth, firstuc, firstuclen);
 
                 if(bpi!=nullptr)
                 {

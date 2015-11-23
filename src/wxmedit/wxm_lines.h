@@ -520,8 +520,8 @@ private:
     // Recount all lines' width
     void RecountLineWidth(void);
 
-    void DoWordWrap(MadLineIterator iter, wxm::BraceXPosAdjustor& brxpos_adj, bool word_canmove, ucs4_t firstuc, MadRowIndex& rowidx, size_t& rowlen, size_t& rowidx_idx, int& wordwidth, size_t& wordbytes, int wordisdelimiter);
-    void WordAcc(int& wordisdelimiter, size_t& wordbytes, int& wordwidth, int ucwidth, ucs4_t firstuc, size_t firstuclen);
+    void DoWordWrap(MadLineIterator iter, wxm::BraceXPosAdjustor& brxpos_adj, bool word_canmove, ucs4_t firstuc, MadRowIndex& rowidx, size_t& rowlen, size_t& rowidx_idx, int& wordwidth, size_t& wordbytes, bool inword);
+    void WordAcc(bool& inword, size_t& wordbytes, int& wordwidth, int ucwidth, ucs4_t firstuc, size_t firstuclen);
     // append lit2 after lit1
     void Append(const MadLineIterator &lit1, const MadLineIterator &lit2);
 
