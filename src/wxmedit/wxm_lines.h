@@ -40,12 +40,16 @@
 #include <list>
 #include <deque>
 #include <utility>
+#include <exception>
 
 class MadEdit;
 
 namespace wxm
 {
 	struct WXMEncoding;
+	struct InFrameWXMEdit;
+	struct WXMSearcher;
+	struct BraceXPosAdjustor;
 
 	struct NewLineChar
 	{
@@ -468,11 +472,7 @@ typedef list<MadLineIterator>::iterator  MadBookmarkIterator;
 
 class MadEdit;
 class MadSyntax;
-namespace wxm
-{
-    struct InFrameWXMEdit;
-    struct WXMSearcher;
-}
+struct MadSyntaxRange;
 
 class MadLines: public xm::UChar32BytesMapper
 {
@@ -514,9 +514,14 @@ private:
     MadLineState Reformat(MadLineIterator iter);
     // reformat lines in [first,last]
     size_t Reformat(MadLineIterator first, MadLineIterator last);
+
+    void DoCheckState(MadLineIterator iter, xm::UCQueue& ucqueue, ucs4_t firstuc, size_t firstuclen, ucs4_t prevuc, ucs4_t& lastuc, int& notSpaceCount, size_t& eatUCharCount, int& index, size_t& length, size_t bracepos, int*& bracexpos, int& bracexpos_count, MadLineState& state, MadStringIterator& sit, MadStringIterator& sitend, bool BeginOfLine, MadSyntaxRange* srange);
+
     // Recount all lines' width
     void RecountLineWidth(void);
 
+    void DoWordWrap(MadLineIterator iter, wxm::BraceXPosAdjustor& brxpos_adj, bool word_canmove, ucs4_t firstuc, MadRowIndex& rowidx, size_t& rowlen, size_t& rowidx_idx, int& wordwidth, size_t& wordbytes, int wordisdelimiter);
+    void WordAcc(int& wordisdelimiter, size_t& wordbytes, int& wordwidth, int ucwidth, ucs4_t firstuc, size_t firstuclen);
     // append lit2 after lit1
     void Append(const MadLineIterator &lit1, const MadLineIterator &lit2);
 
