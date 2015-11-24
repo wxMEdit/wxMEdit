@@ -178,7 +178,7 @@ size_t MadConvFileName::MB2WC(wchar_t *outputBuf, const char *psz, size_t output
         memcpy(pbuf, psz, dirlen);
         cbuf[dirlen]=0;
 
-		bool is_utf8=xm::IsUTF8((ubyte *)pbuf, int(dirlen));
+        bool is_utf8=xm::IsUTF8((ubyte *)pbuf, int(dirlen));
         if(is_utf8)
         {
             dirret=wxConvUTF8.MB2WC(outputBuf, pbuf, outputSize);
@@ -195,7 +195,7 @@ size_t MadConvFileName::MB2WC(wchar_t *outputBuf, const char *psz, size_t output
     size_t fnret=0;
     if(fnlen!=0)
     {
-		bool is_utf8=xm::IsUTF8((ubyte *)psz+dirlen, int(fnlen));
+        bool is_utf8=xm::IsUTF8((ubyte *)psz+dirlen, int(fnlen));
         wchar_t *obuf=outputBuf;
         if(outputBuf!=nullptr)
             obuf+=dirret;
@@ -680,7 +680,7 @@ bool MadLine::FirstUCharIs0x0A(xm::Encoding *encoding)
 //===========================================================================
 
 MadLines::MadLines(MadEdit *madedit)
-    : m_manual(false)
+    : m_manual(false), m_line_bi_status(U_ZERO_ERROR)
 {
     m_MadEdit = madedit;
     m_Syntax = madedit->m_Syntax;
@@ -704,6 +704,8 @@ MadLines::MadLines(MadEdit *madedit)
     m_NextUChar_BufferLoadNew=true;
     m_NextUChar_BufferStart=0;
     m_NextUChar_BufferSize=0;
+
+    m_line_bi.reset(BreakIterator::createLineInstance(Locale::getDefault(), m_line_bi_status));
 }
 
 MadLines::~MadLines(void)
@@ -1386,23 +1388,17 @@ void BraceXPosAdjustor4RecountLineWidth::OnWordwrap(const MadRowIndex& rowidx)
 
 struct NoWrapData
 {
-	bool nowrap;
 	size_t nbytes;
 	int width;
 
-	NoWrapData(): nowrap(false), nbytes(0), width(0) {}
+	NoWrapData(): nbytes(0), width(0) {}
 };
 
 } // namespace wxm
 
-void MadLines::DoWordWrap(MadLineIterator iter, wxm::BraceXPosAdjustor& brxpos_adj, bool text_canmove, ucs4_t firstuc, MadRowIndex& rowidx, size_t& rowlen, size_t& rowidx_idx, wxm::NoWrapData& nowrap)
+void MadLines::DoWordWrap(MadLineIterator iter, wxm::BraceXPosAdjustor& brxpos_adj, bool text_canmove, bool canbreak, MadRowIndex& rowidx, size_t& rowlen, size_t& rowidx_idx, wxm::NoWrapData& nowrap)
 {
-    bool move_text_to_next_line = false;
-    if (text_canmove && nowrap.nowrap)
-    {
-        if (m_Syntax->IsNotDelimiter(firstuc))
-            move_text_to_next_line = true;
-    }
+    bool move_text_to_next_line = (text_canmove && !canbreak);
 
     if (move_text_to_next_line)
     {
@@ -1436,28 +1432,32 @@ void MadLines::DoWordWrap(MadLineIterator iter, wxm::BraceXPosAdjustor& brxpos_a
     }
 }
 
-void MadLines::WordAcc(wxm::NoWrapData& nowrap, int ucwidth, const xm::UCPair& ucp)
+void MadLines::NoWrapAccumulate(wxm::NoWrapData& nowrap, int ucwidth, size_t uclen, bool canbreak)
 {
-    ucs4_t uc = ucp.first;
-    size_t uclen = ucp.second;
-    if(nowrap.nbytes == 0 && m_Syntax->IsNotDelimiter(uc))
+    if (canbreak)
     {
-        nowrap.nowrap = true;
         nowrap.nbytes = uclen;
         nowrap.width = ucwidth;
         return;
     }
 
-    if(nowrap.nowrap && m_Syntax->IsNotDelimiter(uc))
-    {
-        nowrap.nbytes += uclen;
-        nowrap.width += ucwidth;
-        return;
-    }
+    nowrap.nbytes += uclen;
+    nowrap.width += ucwidth;
+}
 
-    nowrap.nowrap = false;
-    nowrap.nbytes = 0;
-    nowrap.width = 0;
+UnicodeString MadLines::DumpUTF16String(MadLineIterator iter)
+{
+    wxFileOffset pos_bak = m_NextUChar_Pos;
+
+    xm::UCQueue ucq;
+    InitNextUChar(iter, 0);
+    UnicodeString ustr;
+    while (NextUChar(ucq))
+        ustr += (UChar32)ucq.back().first;
+
+    m_NextUChar_BufferLoadNew = true;
+    InitNextUChar(iter, pos_bak);
+    return ustr;
 }
 
 MadLineState MadLines::Reformat(MadLineIterator iter)
@@ -1553,6 +1553,12 @@ MadLineState MadLines::Reformat(MadLineIterator iter)
 
             bool BeginOfLine=true;
 
+            m_NextUChar_BufferStart = 0;
+            UnicodeString ustr = DumpUTF16String(iter);
+            m_NextUChar_BufferLoadNew = false;
+
+            m_line_bi->setText(ustr);
+
             do
             {
                 prevuc = firstuc;
@@ -1625,9 +1631,10 @@ MadLineState MadLines::Reformat(MadLineIterator iter)
 
                 bracepos+=firstuclen;
 
+                bool canbreak = (m_line_bi->isBoundary(ucqueue.U16Index()-1) == TRUE);
                 bool text_canmove = (nowrap.nbytes != maxlinelength);
                 if(rowlen + int (firstuclen) > maxlinelength)     // wordwrap by line length
-                    DoWordWrap(iter, brxpos_adj, text_canmove, firstuc, rowidx, rowlen, rowidx_idx, nowrap);
+                    DoWordWrap(iter, brxpos_adj, text_canmove, canbreak, rowidx, rowlen, rowidx_idx, nowrap);
 
                 ucwidth = m_MadEdit->GetUCharWidth(firstuc);
                 if(firstuc == 0x09)         // Tab char
@@ -1639,9 +1646,9 @@ MadLineState MadLines::Reformat(MadLineIterator iter)
 
                 text_canmove = (nowrap.width!=rowidx.m_Width && !m_MadEdit->HexPrinting());
                 if(rowidx.m_Width + ucwidth > maxwidth)    // wordwrap by width
-                    DoWordWrap(iter, brxpos_adj, text_canmove, firstuc, rowidx, rowlen, rowidx_idx, nowrap);
+                    DoWordWrap(iter, brxpos_adj, text_canmove, canbreak, rowidx, rowlen, rowidx_idx, nowrap);
 
-                WordAcc(nowrap, ucwidth, ucp);
+                NoWrapAccumulate(nowrap, ucwidth, firstuclen, canbreak);
 
                 if(bracexpos!=nullptr)
                 {
@@ -1881,6 +1888,10 @@ void MadLines::RecountLineWidth(void)
         else
         {
             wxm::NoWrapData nowrap;
+
+            UnicodeString ustr = DumpUTF16String(iter);
+            m_line_bi->setText(ustr);
+
             rowlen = 0;
             bracepos=0;
 
@@ -1911,9 +1922,10 @@ void MadLines::RecountLineWidth(void)
 
                 ucqueue.pop_front();
 
+                bool canbreak = (m_line_bi->isBoundary(ucqueue.U16Index()-1) == TRUE);
                 bool text_canmove = (nowrap.nbytes != maxlinelength);
                 if(rowlen + int (firstuclen) > maxlinelength)     // wordwrap by line length
-                    DoWordWrap(iter, brxpos_adj, text_canmove, firstuc, rowidx, rowlen, rowidx_idx, nowrap);
+                    DoWordWrap(iter, brxpos_adj, text_canmove, canbreak, rowidx, rowlen, rowidx_idx, nowrap);
 
                 ucwidth = m_MadEdit->GetUCharWidth(firstuc);
                 if(firstuc == 0x09)
@@ -1921,9 +1933,9 @@ void MadLines::RecountLineWidth(void)
 
                 text_canmove = (nowrap.width != rowidx.m_Width);
                 if(rowidx.m_Width + ucwidth > maxwidth)    // wordwrap by width
-                    DoWordWrap(iter, brxpos_adj, text_canmove, firstuc, rowidx, rowlen, rowidx_idx, nowrap);
+                    DoWordWrap(iter, brxpos_adj, text_canmove, canbreak, rowidx, rowlen, rowidx_idx, nowrap);
 
-                WordAcc(nowrap, ucwidth, ucp);
+                NoWrapAccumulate(nowrap, ucwidth, firstuclen, canbreak);
 
                 if(bpi!=nullptr)
                 {
@@ -2017,7 +2029,7 @@ MadSyntax* GetFileSyntax(const wxString& filename, const wxByte* buf, int sz)
     if (syntax != nullptr)
         return syntax;
 
-	syntax = MadSyntax::GetSyntaxByFileName(fn.GetName());
+    syntax = MadSyntax::GetSyntaxByFileName(fn.GetName());
     if (syntax != nullptr)
         return syntax;
 
@@ -2097,7 +2109,7 @@ bool MadLines::LoadFromFile(const wxString& filename, const std::wstring& encodi
 
         m_Syntax = GetFileSyntax(filename, nullptr, 0);
 
-		InitFileSyntax();
+        InitFileSyntax();
 
         m_MadEdit->m_LoadingFile = false;
 
@@ -2182,7 +2194,7 @@ bool MadLines::LoadFromFile(const wxString& filename, const std::wstring& encodi
         m_Syntax = GetFileSyntax(filename, buf, sz);
     }
 
-	InitFileSyntax();
+    InitFileSyntax();
 
     long maxtextfilesize;
     wxString oldpath=m_MadEdit->m_Config->GetPath();

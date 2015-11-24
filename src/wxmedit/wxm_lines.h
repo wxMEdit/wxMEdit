@@ -36,6 +36,10 @@
 # pragma warning( pop )
 #endif
 
+#include <unicode/unistr.h>
+
+#include <boost/scoped_ptr.hpp>
+
 #include <vector>
 #include <list>
 #include <deque>
@@ -547,8 +551,10 @@ private:
     // Recount all lines' width
     void RecountLineWidth(void);
 
-    void DoWordWrap(MadLineIterator iter, wxm::BraceXPosAdjustor& brxpos_adj, bool word_canmove, ucs4_t firstuc, MadRowIndex& rowidx, size_t& rowlen, size_t& rowidx_idx, wxm::NoWrapData& nowrap);
-    void WordAcc(wxm::NoWrapData& nowrap, int ucwidth, const xm::UCPair& ucp);
+    void DoWordWrap(MadLineIterator iter, wxm::BraceXPosAdjustor& brxpos_adj, bool word_canmove, bool canbreak, MadRowIndex& rowidx, size_t& rowlen, size_t& rowidx_idx, wxm::NoWrapData& nowrap);
+    void NoWrapAccumulate(wxm::NoWrapData& nowrap, int ucwidth, size_t uclen, bool canbreak);
+    UnicodeString DumpUTF16String(MadLineIterator iter);
+
     // append lit2 after lit1
     void Append(const MadLineIterator &lit1, const MadLineIterator &lit2);
 
@@ -582,6 +588,9 @@ private:  // NextUChar()
     wxFileOffset    m_NextUChar_Pos;
 
     bool m_manual;
+
+    UErrorCode m_line_bi_status;
+    boost::scoped_ptr<BreakIterator> m_line_bi;
 
     virtual void MoveUChar32Bytes(xm::UCQueue &ucqueue, ucs4_t uc, size_t len) override;
     virtual ubyte* BufferLoadBytes(int64_t& rest, size_t buf_len) override;
