@@ -1494,17 +1494,14 @@ MadLineState MadLines::Reformat(MadLineIterator iter)
 
     NextUChar(ucqueue);
 
-    if (m_Encoding->IsUnicodeEncoding())
+    // ignore BOM in first line
+    if (m_Encoding->IsUnicodeEncoding() &&
+        ucqueue.front().first == 0xFEFF && iter == m_LineList.begin())
     {
-        // Byte-Order Mark
-        if(ucqueue.front().first == 0xFEFF && iter == m_LineList.begin())
-        {
-            // ignore BOM in first line
-            rowidx.m_Start = ucqueue.front().second;
-            bomlen = size_t(rowidx.m_Start);
-            ucqueue.pop_front();
-            NextUChar(ucqueue);
-        }
+        rowidx.m_Start = ucqueue.front().second;
+        bomlen = size_t(rowidx.m_Start);
+        ucqueue.pop_front();
+        NextUChar(ucqueue);
     }
 
     if(ucqueue.empty())
