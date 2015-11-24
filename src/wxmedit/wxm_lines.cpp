@@ -943,7 +943,7 @@ xm::UCPair MadLines::PreviousUChar(/*IN_OUT*/MadLineIterator &lit, /*IN_OUT*/wxF
 }
 
 
-int MadLines::FindStringCase(xm::UCQueue &ucqueue, MadStringIterator begin,
+int MadLines::FindStringCase(wxm::ExtUCQueue &ucqueue, MadStringIterator begin,
                             const MadStringIterator &end, size_t &len)
 // 0: none, 1: first, 2:...
 {
@@ -1006,7 +1006,7 @@ int MadLines::FindStringCase(xm::UCQueue &ucqueue, MadStringIterator begin,
     return 0;
 }
 
-int MadLines::FindStringNoCase(xm::UCQueue &ucqueue, MadStringIterator begin,
+int MadLines::FindStringNoCase(wxm::ExtUCQueue &ucqueue, MadStringIterator begin,
                             const MadStringIterator &end, size_t &len)
 // 0: none, 1: first, 2:...
 {
@@ -1081,7 +1081,7 @@ int MadLines::FindStringNoCase(xm::UCQueue &ucqueue, MadStringIterator begin,
     return 0;
 }
 
-void MadLines::DoCheckState(MadLineIterator iter, xm::UCQueue& ucqueue, xm::UCPair& ucp, ucs4_t prevuc, ucs4_t& lastuc, int& notSpaceCount, size_t& eatUCharCount, int& index, size_t& length, size_t bracepos, int*& bracexpos, int& bracexpos_count, MadLineState& state, MadStringIterator& sit, MadStringIterator& sitend, bool BeginOfLine, MadSyntaxRange* srange)
+void MadLines::DoCheckState(MadLineIterator iter, wxm::ExtUCQueue& ucqueue, xm::UCPair& ucp, ucs4_t prevuc, ucs4_t& lastuc, int& notSpaceCount, size_t& eatUCharCount, int& index, size_t& length, size_t bracepos, int*& bracexpos, int& bracexpos_count, MadLineState& state, MadStringIterator& sit, MadStringIterator& sitend, bool BeginOfLine, MadSyntaxRange* srange)
 {
     ucs4_t uc = ucp.first;
     if (uc >= 0x100 || uc == 0x20 || uc == 0x09)
@@ -1489,7 +1489,7 @@ MadLineState MadLines::Reformat(MadLineIterator iter)
 
     MadRowIndex rowidx;
 
-    xm::UCQueue ucqueue;
+    wxm::ExtUCQueue ucqueue;
     size_t bomlen=0;
 
     NextUChar(ucqueue);
@@ -1828,7 +1828,7 @@ void MadLines::RecountLineWidth(void)
 
     size_t rowidx_idx;
     MadRowIndex rowidx;
-    xm::UCQueue ucqueue;
+    wxm::ExtUCQueue ucqueue;
     int ucwidth;
     size_t rowlen;                                     // byte-length
 

@@ -154,6 +154,32 @@ namespace wxm
 	extern const NewLineUNIX    g_nl_unix;
 	extern const NewLineMAC     g_nl_mac;
 	extern const NewLineNone    g_nl_none;
+
+	struct ExtUCQueue
+	{
+		xm::UCQueue q;
+
+		ExtUCQueue() : u16idx(0) {}
+		void IncIndex()
+		{
+			u16idx += (q.back().first > 0x10000)? 2: 1;
+		}
+		int32_t U16Index() { return u16idx; }
+		void pop_front() { q.pop_front(); }
+		xm::UCPair& back() { return q.back(); }
+		xm::UCPair& front() { return q.front(); }
+		xm::UCPair& operator[] (size_t idx) { return q[idx]; }
+		bool empty() { return q.empty(); }
+		size_t size() { return q.size(); }
+		xm::UCQueue::iterator begin() { return q.begin(); }
+		void clear()
+		{
+			u16idx = 0;
+			q.clear();
+		}
+	private:
+		int32_t u16idx;
+	};
 } // namespace wxm
 
 using std::vector;
@@ -516,7 +542,7 @@ private:
     // reformat lines in [first,last]
     size_t Reformat(MadLineIterator first, MadLineIterator last);
 
-    void DoCheckState(MadLineIterator iter, xm::UCQueue& ucqueue, xm::UCPair& ucp, ucs4_t prevuc, ucs4_t& lastuc, int& notSpaceCount, size_t& eatUCharCount, int& index, size_t& length, size_t bracepos, int*& bracexpos, int& bracexpos_count, MadLineState& state, MadStringIterator& sit, MadStringIterator& sitend, bool BeginOfLine, MadSyntaxRange* srange);
+    void DoCheckState(MadLineIterator iter, wxm::ExtUCQueue& ucqueue, xm::UCPair& ucp, ucs4_t prevuc, ucs4_t& lastuc, int& notSpaceCount, size_t& eatUCharCount, int& index, size_t& length, size_t bracepos, int*& bracexpos, int& bracexpos_count, MadLineState& state, MadStringIterator& sit, MadStringIterator& sitend, bool BeginOfLine, MadSyntaxRange* srange);
 
     // Recount all lines' width
     void RecountLineWidth(void);
@@ -568,14 +594,14 @@ private:  // NextUChar()
     void SetFileEncoding(const std::wstring& encoding, const std::wstring& defaultenc,
                          const wxByte* buf, size_t sz, bool skip_utf8);
 
-    int FindStringCase(xm::UCQueue &ucqueue, MadStringIterator begin,
+    int FindStringCase(wxm::ExtUCQueue &ucqueue, MadStringIterator begin,
                    const MadStringIterator &end, size_t &len);
 
     // the [begin,end) iter must be lower case
-    int FindStringNoCase(xm::UCQueue &ucqueue, MadStringIterator begin,
+    int FindStringNoCase(wxm::ExtUCQueue &ucqueue, MadStringIterator begin,
                    const MadStringIterator &end, size_t &len);
 
-    typedef int (MadLines::*FindStringPtr)(xm::UCQueue &ucqueue,
+    typedef int (MadLines::*FindStringPtr)(wxm::ExtUCQueue &ucqueue,
                 MadStringIterator begin, const MadStringIterator &end, size_t &len);
 
     FindStringPtr FindString;
@@ -587,6 +613,13 @@ public:
     void InitNextUChar(const MadLineIterator &iter, const wxFileOffset pos);
 
     bool NextUChar(xm::UCQueue &ucqueue);
+    bool NextUChar(wxm::ExtUCQueue &ucq)
+    {
+        bool r = NextUChar(ucq.q);
+        if (r)
+            ucq.IncIndex();
+        return r;
+    }
 
     // should not frequently use this, it's slowly
     // if no, return xm::UCPair(0, 0)
