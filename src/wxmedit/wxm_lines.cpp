@@ -1081,9 +1081,10 @@ int MadLines::FindStringNoCase(xm::UCQueue &ucqueue, MadStringIterator begin,
     return 0;
 }
 
-void MadLines::DoCheckState(MadLineIterator iter, xm::UCQueue& ucqueue, ucs4_t firstuc, size_t firstuclen, ucs4_t prevuc, ucs4_t& lastuc, int& notSpaceCount, size_t& eatUCharCount, int& index, size_t& length, size_t bracepos, int*& bracexpos, int& bracexpos_count, MadLineState& state, MadStringIterator& sit, MadStringIterator& sitend, bool BeginOfLine, MadSyntaxRange* srange)
+void MadLines::DoCheckState(MadLineIterator iter, xm::UCQueue& ucqueue, xm::UCPair& ucp, ucs4_t prevuc, ucs4_t& lastuc, int& notSpaceCount, size_t& eatUCharCount, int& index, size_t& length, size_t bracepos, int*& bracexpos, int& bracexpos_count, MadLineState& state, MadStringIterator& sit, MadStringIterator& sitend, bool BeginOfLine, MadSyntaxRange* srange)
 {
-    if (firstuc >= 0x100 || firstuc == 0x20 || firstuc == 0x09)
+    ucs4_t uc = ucp.first;
+    if (uc >= 0x100 || uc == 0x20 || uc == 0x09)
         return;
 
     notSpaceCount++;
@@ -1106,7 +1107,7 @@ void MadLines::DoCheckState(MadLineIterator iter, xm::UCQueue& ucqueue, ucs4_t f
                     ok = false;
             }
             if (ok && // check first char for wholeword
-                !m_Syntax->IsDelimiter(firstuc) && firstuc > 0x20 &&
+                !m_Syntax->IsDelimiter(uc) && uc > 0x20 &&
                 !m_Syntax->IsDelimiter(prevuc) && prevuc > 0x20)
             {
                 ok = false;
@@ -1116,8 +1117,8 @@ void MadLines::DoCheckState(MadLineIterator iter, xm::UCQueue& ucqueue, ucs4_t f
         if (ok)
         {
             //eatUCharCount = length;
-            wxUint16 len = wxUint16(firstuclen);
-            wxUint16 width = m_MadEdit->GetUCharWidth(firstuc);
+            wxUint16 len = wxUint16(ucp.second);
+            wxUint16 width = m_MadEdit->GetUCharWidth(uc);
             if (length > 1)
             {
                 size_t idx = 1;
@@ -1144,7 +1145,7 @@ void MadLines::DoCheckState(MadLineIterator iter, xm::UCQueue& ucqueue, ucs4_t f
                     ok = false;
             }
             if (ok && // check first char for wholeword
-                !m_Syntax->IsDelimiter(firstuc) && firstuc > 0x20 && 
+                !m_Syntax->IsDelimiter(uc) && uc > 0x20 && 
                 !m_Syntax->IsDelimiter(prevuc) && prevuc > 0x20)
             {
                 ok = false;
@@ -1153,8 +1154,8 @@ void MadLines::DoCheckState(MadLineIterator iter, xm::UCQueue& ucqueue, ucs4_t f
             if (ok)
             {
                 //eatUCharCount = length;
-                wxUint16 len = wxUint16(firstuclen);
-                wxUint16 width = m_MadEdit->GetUCharWidth(firstuc);
+                wxUint16 len = wxUint16(ucp.second);
+                wxUint16 width = m_MadEdit->GetUCharWidth(uc);
                 if (length > 1)
                 {
                     size_t idx = 1;
@@ -1174,7 +1175,7 @@ void MadLines::DoCheckState(MadLineIterator iter, xm::UCQueue& ucqueue, ucs4_t f
     if (state.LineComment == 0)
     {
         // check EscapeChar
-        if (firstuc == m_Syntax->nw_EscapeChar)
+        if (uc == m_Syntax->nw_EscapeChar)
         {
             if (ucqueue.size() == 1)
                 NextUChar(ucqueue);
@@ -1227,7 +1228,7 @@ void MadLines::DoCheckState(MadLineIterator iter, xm::UCQueue& ucqueue, ucs4_t f
             //    return;
             //}
 
-            if (m_Syntax->m_StringChar.Find(wxChar(firstuc)) + 1 == state.StringId)
+            if (m_Syntax->m_StringChar.Find(wxChar(uc)) + 1 == state.StringId)
             {
                 state.StringId = 0;
                 //eatUCharCount=1;
@@ -1237,7 +1238,7 @@ void MadLines::DoCheckState(MadLineIterator iter, xm::UCQueue& ucqueue, ucs4_t f
 
         // check string on
         if (!m_Syntax->m_StringChar.IsEmpty() && m_Syntax->IsInRange(state.RangeId, m_Syntax->m_StringInRange) &&
-            (index = m_Syntax->m_StringChar.Find(wxChar(firstuc)) + 1) != 0)
+            (index = m_Syntax->m_StringChar.Find(wxChar(uc)) + 1) != 0)
         {
             state.StringId = index;
             //eatUCharCount=1;
@@ -1247,7 +1248,7 @@ void MadLines::DoCheckState(MadLineIterator iter, xm::UCQueue& ucqueue, ucs4_t f
         // check directive on
         if ((!m_Syntax->m_DirectiveLeadingAtBOL || BeginOfLine) &&
             notSpaceCount == 1 && !m_Syntax->m_DirectiveLeading.IsEmpty() &&
-            (index = m_Syntax->m_DirectiveLeading.Find(wxChar(firstuc)) + 1) != 0)
+            (index = m_Syntax->m_DirectiveLeading.Find(wxChar(uc)) + 1) != 0)
         {
             state.Directive = index;
             //eatUCharCount=1;
@@ -1383,20 +1384,29 @@ void BraceXPosAdjustor4RecountLineWidth::OnWordwrap(const MadRowIndex& rowidx)
 	} while (++it != m_bracexpos_thisrow.end());
 }
 
+struct NoWrapData
+{
+	bool nowrap;
+	size_t nbytes;
+	int width;
+
+	NoWrapData(): nowrap(false), nbytes(0), width(0) {}
+};
+
 } // namespace wxm
 
-void MadLines::DoWordWrap(MadLineIterator iter, wxm::BraceXPosAdjustor& brxpos_adj, bool word_canmove, ucs4_t firstuc, MadRowIndex& rowidx, size_t& rowlen, size_t& rowidx_idx, int& wordwidth, size_t& wordbytes, bool inword)
+void MadLines::DoWordWrap(MadLineIterator iter, wxm::BraceXPosAdjustor& brxpos_adj, bool text_canmove, ucs4_t firstuc, MadRowIndex& rowidx, size_t& rowlen, size_t& rowidx_idx, wxm::NoWrapData& nowrap)
 {
-    bool move_word_to_next_line = false;
-    if (word_canmove && inword)
+    bool move_text_to_next_line = false;
+    if (text_canmove && nowrap.nowrap)
     {
         if (m_Syntax->IsNotDelimiter(firstuc))
-            move_word_to_next_line = true;
+            move_text_to_next_line = true;
     }
 
-    if (move_word_to_next_line)
+    if (move_text_to_next_line)
     {
-        rowidx.m_Width -= wordwidth;
+        rowidx.m_Width -= nowrap.width;
 
         brxpos_adj.OnWordwrap(rowidx);
     }
@@ -1409,11 +1419,11 @@ void MadLines::DoWordWrap(MadLineIterator iter, wxm::BraceXPosAdjustor& brxpos_a
     if (rowidx.m_Width > m_MaxLineWidth)
         m_MaxLineWidth = rowidx.m_Width;
 
-    if (move_word_to_next_line)
+    if (move_text_to_next_line)
     {
-        rowidx.m_Start += rowlen - wordbytes;
-        rowidx.m_Width = wordwidth;
-        rowlen = wordbytes;
+        rowidx.m_Start += rowlen - nowrap.nbytes;
+        rowidx.m_Width = nowrap.width;
+        rowlen = nowrap.nbytes;
     }
     else
     {
@@ -1421,31 +1431,33 @@ void MadLines::DoWordWrap(MadLineIterator iter, wxm::BraceXPosAdjustor& brxpos_a
         rowidx.m_Width = 0;
         rowlen = 0;
 
-        wordbytes = 0;
-        wordwidth = 0;
+        nowrap.nbytes = 0;
+        nowrap.width = 0;
     }
 }
 
-void MadLines::WordAcc(bool& inword, size_t& wordbytes, int& wordwidth, int ucwidth, ucs4_t firstuc, size_t firstuclen)
+void MadLines::WordAcc(wxm::NoWrapData& nowrap, int ucwidth, const xm::UCPair& ucp)
 {
-    if(wordbytes == 0 && m_Syntax->IsNotDelimiter(firstuc))
+    ucs4_t uc = ucp.first;
+    size_t uclen = ucp.second;
+    if(nowrap.nbytes == 0 && m_Syntax->IsNotDelimiter(uc))
     {
-        inword = true;
-        wordbytes = firstuclen;
-        wordwidth = ucwidth;
+        nowrap.nowrap = true;
+        nowrap.nbytes = uclen;
+        nowrap.width = ucwidth;
         return;
     }
 
-    if(inword && m_Syntax->IsNotDelimiter(firstuc))
+    if(nowrap.nowrap && m_Syntax->IsNotDelimiter(uc))
     {
-        wordbytes += firstuclen;
-        wordwidth += ucwidth;
+        nowrap.nbytes += uclen;
+        nowrap.width += ucwidth;
         return;
     }
 
-    inword = false;
-    wordbytes = 0;
-    wordwidth = 0;
+    nowrap.nowrap = false;
+    nowrap.nbytes = 0;
+    nowrap.width = 0;
 }
 
 MadLineState MadLines::Reformat(MadLineIterator iter)
@@ -1505,9 +1517,6 @@ MadLineState MadLines::Reformat(MadLineIterator iter)
         size_t rowidx_idx = 0;
         int ucwidth;
         size_t rowlen; // byte-length
-        size_t wordbytes;
-        int wordwidth;
-        bool inword = false;
 
         const size_t maxlinelength = m_MadEdit->m_MaxLineLength;
         int maxwidth = m_MadEdit->GetMaxWordWrapWidth();
@@ -1535,8 +1544,7 @@ MadLineState MadLines::Reformat(MadLineIterator iter)
         while(true)
         {
             firstuc = 0;
-            wordbytes = 0;
-            wordwidth = 0;
+            wxm::NoWrapData nowrap;
             rowlen = 0;
             eatUCharCount = 0;
 
@@ -1610,7 +1618,7 @@ MadLineState MadLines::Reformat(MadLineIterator iter)
                     ++eatUCharCount; // = 1;
 
                     if(CheckState)
-                        DoCheckState(iter, ucqueue, firstuc, firstuclen, prevuc, lastuc, notSpaceCount, eatUCharCount, index, length, bracepos, bracexpos, bracexpos_count, state, sit, sitend, BeginOfLine, srange);
+                        DoCheckState(iter, ucqueue, ucp, prevuc, lastuc, notSpaceCount, eatUCharCount, index, length, bracepos, bracexpos, bracexpos_count, state, sit, sitend, BeginOfLine, srange);
                 }
 
                 // eat one front uchar
@@ -1620,9 +1628,9 @@ MadLineState MadLines::Reformat(MadLineIterator iter)
 
                 bracepos+=firstuclen;
 
-                bool word_canmove = (wordbytes != maxlinelength);
+                bool text_canmove = (nowrap.nbytes != maxlinelength);
                 if(rowlen + int (firstuclen) > maxlinelength)     // wordwrap by line length
-                    DoWordWrap(iter, brxpos_adj, word_canmove, firstuc, rowidx, rowlen, rowidx_idx, wordwidth, wordbytes, inword);
+                    DoWordWrap(iter, brxpos_adj, text_canmove, firstuc, rowidx, rowlen, rowidx_idx, nowrap);
 
                 ucwidth = m_MadEdit->GetUCharWidth(firstuc);
                 if(firstuc == 0x09)         // Tab char
@@ -1644,11 +1652,11 @@ MadLineState MadLines::Reformat(MadLineIterator iter)
                     }
                 }
 
-                word_canmove = (wordwidth!=rowidx.m_Width && !m_MadEdit->HexPrinting());
+                text_canmove = (nowrap.width!=rowidx.m_Width && !m_MadEdit->HexPrinting());
                 if(rowidx.m_Width + ucwidth > maxwidth)    // wordwrap by width
-                    DoWordWrap(iter, brxpos_adj, word_canmove, firstuc, rowidx, rowlen, rowidx_idx, wordwidth, wordbytes, inword);
+                    DoWordWrap(iter, brxpos_adj, text_canmove, firstuc, rowidx, rowlen, rowidx_idx, nowrap);
 
-                WordAcc(inword, wordbytes, wordwidth, ucwidth, firstuc, firstuclen);
+                WordAcc(nowrap, ucwidth, ucp);
 
                 if(bracexpos!=nullptr)
                 {
@@ -1838,9 +1846,6 @@ void MadLines::RecountLineWidth(void)
     xm::UCQueue ucqueue;
     int ucwidth;
     size_t rowlen;                                     // byte-length
-    size_t wordbytes;
-    int wordwidth;
-    bool inword = false;
 
     ucs4_t firstuc;
     size_t firstuclen;
@@ -1884,10 +1889,13 @@ void MadLines::RecountLineWidth(void)
         ++m_RowCount;
 
         NextUChar(ucqueue);
-        if(!ucqueue.empty())
+        if(ucqueue.empty())
         {
-            wordbytes = 0;
-            wordwidth = 0;
+            iter->m_RowIndices.back() = rowidx;
+        }
+        else
+        {
+            wxm::NoWrapData nowrap;
             rowlen = 0;
             bracepos=0;
 
@@ -1918,9 +1926,9 @@ void MadLines::RecountLineWidth(void)
 
                 ucqueue.pop_front();
 
-                bool word_canmove = (wordbytes != maxlinelength);
+                bool text_canmove = (nowrap.nbytes != maxlinelength);
                 if(rowlen + int (firstuclen) > maxlinelength)     // wordwrap by line length
-                    DoWordWrap(iter, brxpos_adj, word_canmove, firstuc, rowidx, rowlen, rowidx_idx, wordwidth, wordbytes, inword);
+                    DoWordWrap(iter, brxpos_adj, text_canmove, firstuc, rowidx, rowlen, rowidx_idx, nowrap);
 
                 ucwidth = m_MadEdit->GetUCharWidth(firstuc);
                 if(firstuc == 0x09)         // Tab char
@@ -1942,11 +1950,11 @@ void MadLines::RecountLineWidth(void)
                     }
                 }
 
-                word_canmove = (wordwidth != rowidx.m_Width);
+                text_canmove = (nowrap.width != rowidx.m_Width);
                 if(rowidx.m_Width + ucwidth > maxwidth)    // wordwrap by width
-                    DoWordWrap(iter, brxpos_adj, word_canmove, firstuc, rowidx, rowlen, rowidx_idx, wordwidth, wordbytes, inword);
+                    DoWordWrap(iter, brxpos_adj, text_canmove, firstuc, rowidx, rowlen, rowidx_idx, nowrap);
 
-                WordAcc(inword, wordbytes, wordwidth, ucwidth, firstuc, firstuclen);
+                WordAcc(nowrap, ucwidth, ucp);
 
                 if(bpi!=nullptr)
                 {
@@ -1997,10 +2005,6 @@ void MadLines::RecountLineWidth(void)
             rowidx.m_Start += rowlen;
             rowidx.m_Width = 0;
             iter->m_RowIndices[++rowidx_idx] = rowidx;
-        }
-        else
-        {
-            iter->m_RowIndices.back() = rowidx;
         }
 
         wxASSERT(bpi==nullptr);

@@ -50,6 +50,7 @@ namespace wxm
 	struct InFrameWXMEdit;
 	struct WXMSearcher;
 	struct BraceXPosAdjustor;
+	struct NoWrapData;
 
 	struct NewLineChar
 	{
@@ -515,13 +516,13 @@ private:
     // reformat lines in [first,last]
     size_t Reformat(MadLineIterator first, MadLineIterator last);
 
-    void DoCheckState(MadLineIterator iter, xm::UCQueue& ucqueue, ucs4_t firstuc, size_t firstuclen, ucs4_t prevuc, ucs4_t& lastuc, int& notSpaceCount, size_t& eatUCharCount, int& index, size_t& length, size_t bracepos, int*& bracexpos, int& bracexpos_count, MadLineState& state, MadStringIterator& sit, MadStringIterator& sitend, bool BeginOfLine, MadSyntaxRange* srange);
+    void DoCheckState(MadLineIterator iter, xm::UCQueue& ucqueue, xm::UCPair& ucp, ucs4_t prevuc, ucs4_t& lastuc, int& notSpaceCount, size_t& eatUCharCount, int& index, size_t& length, size_t bracepos, int*& bracexpos, int& bracexpos_count, MadLineState& state, MadStringIterator& sit, MadStringIterator& sitend, bool BeginOfLine, MadSyntaxRange* srange);
 
     // Recount all lines' width
     void RecountLineWidth(void);
 
-    void DoWordWrap(MadLineIterator iter, wxm::BraceXPosAdjustor& brxpos_adj, bool word_canmove, ucs4_t firstuc, MadRowIndex& rowidx, size_t& rowlen, size_t& rowidx_idx, int& wordwidth, size_t& wordbytes, bool inword);
-    void WordAcc(bool& inword, size_t& wordbytes, int& wordwidth, int ucwidth, ucs4_t firstuc, size_t firstuclen);
+    void DoWordWrap(MadLineIterator iter, wxm::BraceXPosAdjustor& brxpos_adj, bool word_canmove, ucs4_t firstuc, MadRowIndex& rowidx, size_t& rowlen, size_t& rowidx_idx, wxm::NoWrapData& nowrap);
+    void WordAcc(wxm::NoWrapData& nowrap, int ucwidth, const xm::UCPair& ucp);
     // append lit2 after lit1
     void Append(const MadLineIterator &lit1, const MadLineIterator &lit2);
 
