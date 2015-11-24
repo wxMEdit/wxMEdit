@@ -41,8 +41,9 @@
 #include <wx/confbase.h>
 
 #include <unicode/brkiter.h>
-#include <boost/smart_ptr/shared_ptr.hpp>
+#include <boost/shared_ptr.hpp>
 #include <string>
+#include <algorithm>
 
 enum { ID_VSCROLLBAR=19876, ID_HSCROLLBAR };
 
@@ -274,6 +275,7 @@ private:
 
 protected:
     bool            m_Selection;
+
 private:
     MadCaretPos     m_SelectionPos1, m_SelectionPos2;
     MadCaretPos     *m_SelectionBegin, *m_SelectionEnd;
@@ -286,6 +288,28 @@ public:
     {
         return m_TextFontSpaceCharWidth;
     }
+
+    int GetTabMaxCharFontWidth()
+    {
+        return m_TabColumns * GetSpaceCharFontWidth();
+    }
+
+    int CalcTabWidth(int rowwidth, int xpos)
+    {
+        int tabwidth = GetTabMaxCharFontWidth();
+        return std::min(tabwidth - (xpos % tabwidth), rowwidth - xpos);
+    }
+
+    int GetUCharTextFontWidth(ucs4_t uc, int rowwidth, int nowxpos)
+    {
+        return (uc == 0x09)? CalcTabWidth(rowwidth, nowxpos) : GetUCharWidth(uc);
+    }
+
+    int CalcTabWidthWithCheck(int rowwidth, int xpos)
+    {
+        return (rowwidth == xpos)? GetTabMaxCharFontWidth() : CalcTabWidth(rowwidth, xpos);
+    }
+
 private:
     wxFont          *m_TextFont; // readonly, set it at SetTextFont()
     int             m_TextFontHeight;

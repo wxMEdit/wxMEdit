@@ -1775,15 +1775,7 @@ int MadSyntax::NextWord(int &wordwidth)
             nw_Word[idx] = uc;
             nw_ucqueue.pop_front();
 
-            width = nw_MadEdit->GetUCharWidth(uc);
-            if(uc == 0x09)
-            {
-                int tabwidth = nw_MadEdit->m_TabColumns * nw_MadEdit->GetSpaceCharFontWidth();
-                width = nw_RowIndexIter->m_Width - nw_LineWidth;
-                tabwidth -= (nw_LineWidth % tabwidth);
-                if(tabwidth < width)
-                    width = tabwidth;
-            }
+            width = nw_MadEdit->GetUCharTextFontWidth(uc, nw_RowIndexIter->m_Width, nw_LineWidth);
             nw_Widths[idx] = width;
 
             nw_LineWidth += width;

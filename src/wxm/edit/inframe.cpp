@@ -890,15 +890,7 @@ void InFrameWXMEdit::ColumnAlign()
 			if (uc == 0x0D || uc == 0x0A)  // EOL
 				break;
 
-			int ucwidth = GetUCharWidth(uc);
-			if (uc == 0x09)
-			{
-				int tabwidth = m_TabColumns * GetSpaceCharFontWidth();
-				ucwidth = rowwidth - nowxpos;
-				tabwidth -= (nowxpos % tabwidth);
-				if (tabwidth < ucwidth)
-					ucwidth = tabwidth;
-			}
+			int ucwidth = GetUCharTextFontWidth(uc, rowwidth, nowxpos);
 			nowxpos += ucwidth;
 
 			if (nowxpos < rxpos + ucwidth / 2)

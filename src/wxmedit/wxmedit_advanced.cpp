@@ -2019,15 +2019,7 @@ void MadEdit::ConvertSpaceToTab()
                     break;
                 }
 
-                int ucwidth = GetUCharWidth(uc);
-                if(uc == 0x09)
-                {
-                    int tabwidth = m_TabColumns * GetSpaceCharFontWidth();
-                    ucwidth = rowwidth - nowxpos;
-                    tabwidth -= (nowxpos % tabwidth);
-                    if(tabwidth < ucwidth)
-                        ucwidth = tabwidth;
-                }
+                int ucwidth = GetUCharTextFontWidth(uc, rowwidth, nowxpos);
                 nowxpos += ucwidth;
 
                 int uchw = ucwidth >> 1;
@@ -2194,15 +2186,7 @@ void MadEdit::ConvertTabToSpace()
                     break;
                 }
 
-                int ucwidth = GetUCharWidth(uc);
-                if(uc == 0x09)
-                {
-                    int tabwidth = m_TabColumns * GetSpaceCharFontWidth();
-                    ucwidth = rowwidth - nowxpos;
-                    tabwidth -= (nowxpos % tabwidth);
-                    if(tabwidth < ucwidth)
-                        ucwidth = tabwidth;
-                }
+                int ucwidth = GetUCharTextFontWidth(uc, rowwidth, nowxpos);
                 nowxpos += ucwidth;
 
                 int uchw = ucwidth >> 1;

@@ -1319,15 +1319,7 @@ void MadEdit::UpdateCaret(MadCaretPos &caretPos,
                 break;
             }
 
-            int width = GetUCharWidth(uc);
-            if(uc == 0x09)
-            {
-                int tabwidth = m_TabColumns * GetSpaceCharFontWidth();
-                width = rowwidth - xpos;
-                tabwidth -= (xpos % tabwidth);
-                if(tabwidth < width)
-                    width = tabwidth;
-            }
+            int width = GetUCharTextFontWidth(uc, rowwidth, xpos);
             widthArray.push_back(width);
             xpos += width;
 
@@ -1423,15 +1415,7 @@ void MadEdit::UpdateCaretByXPos(int xPos, MadCaretPos &caretPos,
             break;
         }
 
-        int width = GetUCharWidth(uc);
-        if(uc == 0x09)
-        {
-            int tabwidth = m_TabColumns * GetSpaceCharFontWidth();
-            width = rowwidth - xpos;
-            tabwidth -= (xpos % tabwidth);
-            if(tabwidth < width)
-                width = tabwidth;
-        }
+        int width = GetUCharTextFontWidth(uc, rowwidth, xpos);
         widthArray.push_back(width);
         xpos += width;
 
@@ -3529,15 +3513,7 @@ wxFileOffset MadEdit::GetColumnSelection(wxString *ws)
                     break;
                 }
 
-                int ucwidth = GetUCharWidth(uc);
-                if(uc == 0x09)
-                {
-                    int tabwidth = m_TabColumns * GetSpaceCharFontWidth();
-                    ucwidth = rowwidth - nowxpos;
-                    tabwidth -= (nowxpos % tabwidth);
-                    if(tabwidth < ucwidth)
-                        ucwidth = tabwidth;
-                }
+                int ucwidth = GetUCharTextFontWidth(uc, rowwidth, nowxpos);
                 nowxpos += ucwidth;
 
                 int uchw = ucwidth >> 1;
@@ -4783,15 +4759,7 @@ wxFileOffset MadEdit::GetRowposXPos(int &xpos, MadLineIterator & lit,
                 break;
             }
 
-            int ucwidth = GetUCharWidth(uc);
-            if(uc == 0x09)
-            {
-                int tabwidth = m_TabColumns * GetSpaceCharFontWidth();
-                ucwidth = rowwidth - nowxpos;
-                tabwidth -= (nowxpos % tabwidth);
-                if(tabwidth < ucwidth)
-                ucwidth = tabwidth;
-            }
+            int ucwidth = GetUCharTextFontWidth(uc, rowwidth, nowxpos);
             nowxpos += ucwidth;
 
             int uchw = ucwidth >> 1;
@@ -5468,15 +5436,7 @@ MadUndo *MadEdit::DeleteSelection(bool bCorrectCaretPos, vector <int> *rpos, boo
                     if(uc == 0x0D || uc == 0x0A)  // EOL
                         break;
 
-                    int ucwidth = GetUCharWidth(uc);
-                    if(uc == 0x09)
-                    {
-                        int tabwidth = m_TabColumns * GetSpaceCharFontWidth();
-                        ucwidth = rowwidth - nowxpos;
-                        tabwidth -= (nowxpos % tabwidth);
-                        if(tabwidth < ucwidth)
-                            ucwidth = tabwidth;
-                    }
+                    int ucwidth = GetUCharTextFontWidth(uc, rowwidth, nowxpos);
                     nowxpos += ucwidth;
 
                     int wchw = ucwidth / 2;
@@ -7494,9 +7454,8 @@ void MadEdit::ProcessCommand(MadEditCommand command)
                         }
                         else if(m_InsertSpacesInsteadOfTab)
                         {
-                            int tabwidth = m_TabColumns * GetSpaceCharFontWidth();
-                            if(m_Selection) tabwidth -= (m_SelectionBegin->xpos % tabwidth);
-                            else tabwidth -= (m_CaretPos.xpos % tabwidth);
+                            int tabwidth = GetTabMaxCharFontWidth();
+                            tabwidth -= ((m_Selection? m_SelectionBegin->xpos: m_CaretPos.xpos) % tabwidth);
                             int spaces=tabwidth/GetSpaceCharFontWidth();
                             if(spaces==0) spaces=m_TabColumns;
 

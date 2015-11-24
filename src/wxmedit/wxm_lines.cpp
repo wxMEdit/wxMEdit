@@ -1637,19 +1637,7 @@ MadLineState MadLines::Reformat(MadLineIterator iter)
                 {
                     m_MadEdit->m_HasTab = true;
 
-                    int tabwidth = m_MadEdit->m_TabColumns * m_MadEdit->GetSpaceCharFontWidth();
-
-                    ucwidth = maxwidth - rowidx.m_Width;
-                    if(ucwidth == 0)            // Tab at line-end
-                    {
-                        ucwidth = tabwidth;
-                    }
-                    else                                    // ucwidth >0
-                    {
-                        tabwidth = tabwidth - (rowidx.m_Width % tabwidth);
-                        if(tabwidth < ucwidth)
-                            ucwidth = tabwidth;
-                    }
+                    ucwidth = m_MadEdit->CalcTabWidthWithCheck(maxwidth, rowidx.m_Width);
                 }
 
                 text_canmove = (nowrap.width!=rowidx.m_Width && !m_MadEdit->HexPrinting());
@@ -1931,24 +1919,8 @@ void MadLines::RecountLineWidth(void)
                     DoWordWrap(iter, brxpos_adj, text_canmove, firstuc, rowidx, rowlen, rowidx_idx, nowrap);
 
                 ucwidth = m_MadEdit->GetUCharWidth(firstuc);
-                if(firstuc == 0x09)         // Tab char
-                {
-                    //m_MadEdit->FHasTab = true;
-
-                    int tabwidth = m_MadEdit->m_TabColumns * m_MadEdit->GetSpaceCharFontWidth();
-
-                    ucwidth = maxwidth - rowidx.m_Width;
-                    if(ucwidth == 0)            // Tab at line-end
-                    {
-                        ucwidth = tabwidth;
-                    }
-                    else                                    // ucwidth >0
-                    {
-                        tabwidth = tabwidth - (rowidx.m_Width % tabwidth);
-                        if(tabwidth < ucwidth)
-                            ucwidth = tabwidth;
-                    }
-                }
+                if(firstuc == 0x09)
+                    ucwidth = m_MadEdit->CalcTabWidthWithCheck(maxwidth, rowidx.m_Width);
 
                 text_canmove = (nowrap.width != rowidx.m_Width);
                 if(rowidx.m_Width + ucwidth > maxwidth)    // wordwrap by width
