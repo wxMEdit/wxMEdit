@@ -8657,9 +8657,10 @@ void MadEdit::OnKeyDown(wxKeyEvent& evt)
 
             // fallback to general delete if there's selection
             if (!m_Selection)
-                ProcessCommand(cmd == ecDelPrevWord ? ecSelPrevWord : ecSelNextWord);
+                ProcessCommand(cmd == ecDelPrevWord? ecSelPrevWord: ecSelNextWord);
 
-            ProcessCommand(ecDelete);
+            if (m_Selection)
+                ProcessCommand(cmd == ecDelPrevWord? ecBackSpace: ecDelete);
 
             Thaw();
         }
