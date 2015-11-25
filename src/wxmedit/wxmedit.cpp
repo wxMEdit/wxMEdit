@@ -4129,7 +4129,7 @@ MadLineIterator MadEdit::DeleteInsertData(wxFileOffset pos,
                 if(dist>0) bit+=dist;
             }
 
-            wxASSERT(bpos==delsize);
+            //wxASSERT(bpos==delsize);
 
             if(deldata)
             {
