@@ -13,6 +13,7 @@
 #include "../xm/encdet.h"
 #include "../xm/encoding/unicode.h"
 #include "../wxm/utils.h"
+#include "../wxm/wx_icu.h"
 #include "wxm_syntax.h"
 #include "wxm_undo.h"
 #include "../mad_utils.h"
@@ -67,6 +68,7 @@
 #include <unicode/brkiter.h>
 #include <boost/static_assert.hpp>
 #include <boost/scoped_ptr.hpp>
+#include <algorithm>
 #include <locale.h>
 
 using std::vector;
@@ -3630,7 +3632,8 @@ void MadEdit::SelectWordFromCaretPos(wxString *ws)
 
     if (ws != nullptr)
     {
-        *ws = ustr.tempSubStringBetween(b, e).getTerminatedBuffer();
+        size_t len = std::min(MaxLineLength(), long(e - b));
+        *ws = wxm::ICUStrToWx(UnicodeString(ustr, b, len));
         return;
     }
 
