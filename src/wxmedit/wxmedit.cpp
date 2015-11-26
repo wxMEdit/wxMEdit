@@ -3584,18 +3584,11 @@ void MadEdit::SelectWordFromCaretPos(wxString *ws)
         if(endpos > m_Lines->m_Size)
             endpos = m_Lines->m_Size;
     }
-    else //TextMode
+    else
     {
-        //may select whole line
-        //startpos = m_CaretPos.pos - m_CaretPos.linepos +
-                   //m_CaretPos.iter->m_RowIndices[0].m_Start; // exclude BOM
-        //endpos = m_Lines->m_Size;
-        
-        //select wrapped-line only
         startpos = m_CaretPos.pos - m_CaretPos.linepos +
-                   m_CaretPos.iter->m_RowIndices[m_CaretPos.subrowid].m_Start; // exclude BOM
-        endpos = m_CaretPos.pos - m_CaretPos.linepos +
-                 m_CaretPos.iter->m_RowIndices[m_CaretPos.subrowid+1].m_Start;
+                   m_CaretPos.iter->m_RowIndices[0].m_Start; // exclude BOM
+        endpos = m_Lines->m_Size;
     }
 
     if (m_CaretPos.pos == endpos)
@@ -3642,6 +3635,8 @@ void MadEdit::SelectWordFromCaretPos(wxString *ws)
     wxFileOffset lineendpos = pos + endpos - startpos;
     m_CaretPos.pos = startpos;
     m_CaretPos.linepos = pos;
+    m_CaretPos.rowid -= m_CaretPos.subrowid;
+    m_CaretPos.subrowid = 0;
     m_ActiveRowUChars.clear();
 
     m_Lines->InitNextUChar(lit, pos);
