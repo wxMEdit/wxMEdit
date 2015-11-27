@@ -55,6 +55,8 @@
 # pragma warning( pop )
 #endif
 
+#include <unicode/uchar.h>
+
 #include <boost/foreach.hpp>
 #include <boost/assign/list_of.hpp>
 #include <boost/scoped_ptr.hpp>
