@@ -8555,7 +8555,7 @@ inline bool IsCharInput(ucs4_t ucs4, int key)
 #if defined(__WXMSW__) && wxMAJOR_VERSION==2
     return ucs4 >= ecCharFirst && (ucs4 == key || key == 0);
 #else
-    return ucs4 >= ecCharFirst && key < WXK_DELETE;
+    return ucs4 >= (ucs4_t)ecCharFirst && key < WXK_DELETE;
 #endif
 }
 
