@@ -3617,7 +3617,7 @@ void MadEdit::SelectWordFromCaretPos(wxString *ws)
     int32_t e = m_word_bi->next();
     if (u_isspace(ustr.char32At(b)))
     {
-        for (int32_t p = m_word_bi->previous(); p >= 0 && u_isspace(ustr.char32At(p)); p = m_word_bi->previous())
+        for (int32_t p=m_word_bi->previous(); p!=BreakIterator::DONE && u_isspace(ustr.char32At(p)); p=m_word_bi->previous())
             b = p;
         while (e < ustr.length() && u_isspace(ustr.char32At(e)))
             e = m_word_bi->next();
@@ -6628,7 +6628,7 @@ void MadEdit::DoPrevWord()
 
     m_word_bi->setText(ustr);
     int32_t n = m_word_bi->last();
-    for (n = m_word_bi->previous(); n>=0; n= m_word_bi->previous())
+    for (n=m_word_bi->previous(); n!=BreakIterator::DONE; n=m_word_bi->previous())
     {
         if (!u_isspace(ustr.char32At(n)))
             break;
@@ -6676,7 +6676,7 @@ void MadEdit::DoNextWord()
 
     m_word_bi->setText(ustr);
     int32_t n = m_word_bi->first();
-    for (n= m_word_bi->next(); n>0; n= m_word_bi->next())
+    for (n=m_word_bi->next(); n!=BreakIterator::DONE; n=m_word_bi->next())
     {
         if (!u_isspace(ustr.char32At(n)))
             break;
