@@ -3701,14 +3701,11 @@ void MadEdit::SelectLineFromCaretPos(wxString *ws)
             endpos = m_Lines->m_Size;
         }
     }
-    else                          //TextMode
+    else
     {
-        //may select whole line
         startpos = m_CaretPos.pos - m_CaretPos.linepos +
             m_CaretPos.iter->m_RowIndices[0].m_Start; // exclude BOM
-        endpos = m_CaretPos.pos - m_CaretPos.linepos +
-            m_CaretPos.iter->m_RowIndices[1].m_Start; ;
-       
+        endpos = m_Lines->m_Size;
     }
 
     m_Selection = true;
