@@ -1,3 +1,9 @@
+///////////////////////////////////////////////////////////////////////////////
+// vim:         sw=4 ts=4
+// Description: Encoding Detection Cases from ICU
+// Copyright:   2013-2016  JiaYanwei   <wxmedit@gmail.com>
+// License:     GPLv3
+///////////////////////////////////////////////////////////////////////////////
 #ifndef WXMEDIT_TEST_DATA_FROM_ICUDET_H
 #define WXMEDIT_TEST_DATA_FROM_ICUDET_H
 

@@ -2,7 +2,7 @@
 // vim:         ts=4 sw=4
 // Name:        xm/encoding/cp20932.cpp
 // Description: Define the Double-byte Encoding CP20932
-// Copyright:   2013-2015  JiaYanwei   <wxmedit@gmail.com>
+// Copyright:   2013-2016  JiaYanwei   <wxmedit@gmail.com>
 // License:     GPLv3
 ///////////////////////////////////////////////////////////////////////////////
 

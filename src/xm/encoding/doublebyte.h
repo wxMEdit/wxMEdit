@@ -2,7 +2,7 @@
 // vim:         ts=4 sw=4
 // Name:        xm/encoding/doublebyte.h
 // Description: Define the Double-byte Encodings Supported by wxMEdit
-// Copyright:   2013-2015  JiaYanwei   <wxmedit@gmail.com>
+// Copyright:   2013-2016  JiaYanwei   <wxmedit@gmail.com>
 // License:     GPLv3
 ///////////////////////////////////////////////////////////////////////////////
 

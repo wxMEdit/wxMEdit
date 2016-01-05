@@ -1,3 +1,9 @@
+///////////////////////////////////////////////////////////////////////////////
+// vim:         sw=4 ts=4
+// Description: Encoding Detection Cases from Mozilla
+// Copyright:   2013-2016  JiaYanwei   <wxmedit@gmail.com>
+// License:     GPLv3
+///////////////////////////////////////////////////////////////////////////////
 #include "data_from_mozdet.h"
 #include <boost/assign/list_of.hpp>
 

@@ -1,3 +1,9 @@
+///////////////////////////////////////////////////////////////////////////////
+// vim:         sw=4 ts=4
+// Description: Encoding Test Cases for GB18030
+// Copyright:   2013-2016  JiaYanwei   <wxmedit@gmail.com>
+// License:     GPLv3
+///////////////////////////////////////////////////////////////////////////////
 #include "data_multibyte_conv.h"
 
 static const std::string enc_gb18030("GB18030");

@@ -1,3 +1,9 @@
+///////////////////////////////////////////////////////////////////////////////
+// vim:         sw=4 ts=4
+// Description: Encoding Test Cases for SingleByte Encodings
+// Copyright:   2013-2016  JiaYanwei   <wxmedit@gmail.com>
+// License:     GPLv3
+///////////////////////////////////////////////////////////////////////////////
 #ifndef WXMEDIT_TEST_DATA_SINGLEBYTE_CONV_H
 #define WXMEDIT_TEST_DATA_SINGLEBYTE_CONV_H
 

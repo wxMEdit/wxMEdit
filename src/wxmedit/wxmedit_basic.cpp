@@ -1,7 +1,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        wxmedit/wxmedit_basic.cpp
 // Description: Basic Functions of wxMEdit
-// Copyright:   2013-2015  JiaYanwei   <wxmedit@gmail.com>
+// Copyright:   2013-2016  JiaYanwei   <wxmedit@gmail.com>
 //              2007-2010  Alston Chen <madedit@gmail.com>
 // License:     GPLv3
 ///////////////////////////////////////////////////////////////////////////////

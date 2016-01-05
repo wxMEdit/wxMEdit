@@ -2,7 +2,7 @@
 // vim:         sw=4 ts=4
 // Name:        wxm/update.h
 // Description: Checking for Update of wxMEdit
-// Copyright:   2014-2015  JiaYanwei   <wxmedit@gmail.com>
+// Copyright:   2014-2016  JiaYanwei   <wxmedit@gmail.com>
 // License:     GPLv3
 ///////////////////////////////////////////////////////////////////////////////
 

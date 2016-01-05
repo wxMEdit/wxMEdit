@@ -1,7 +1,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        dialog/wxm_enumeration_dialog.h
 // Description: Insert Ordered Sequence Dialog
-// Copyright:   2015  JiaYanwei   <wxmedit@gmail.com>
+// Copyright:   2015-2016  JiaYanwei   <wxmedit@gmail.com>
 // License:     GPLv3
 ///////////////////////////////////////////////////////////////////////////////
 

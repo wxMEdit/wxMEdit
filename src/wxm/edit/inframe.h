@@ -2,7 +2,7 @@
 // vim:         ts=4 sw=4
 // Name:        wxm/edit/inframe.h
 // Description: Embedded wxMEdit in Main Frame
-// Copyright:   2014-2015  JiaYanwei   <wxmedit@gmail.com>
+// Copyright:   2014-2016  JiaYanwei   <wxmedit@gmail.com>
 // License:     GPLv3
 ///////////////////////////////////////////////////////////////////////////////
 

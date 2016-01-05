@@ -2,7 +2,7 @@
 // vim:         ts=4 sw=4
 // Name:        xm/mad_encdet.cpp
 // Description: MadEdit Encoding Detector
-// Copyright:   2013-2015  JiaYanwei   <wxmedit@gmail.com>
+// Copyright:   2013-2016  JiaYanwei   <wxmedit@gmail.com>
 //              2005-2010  Alston Chen <madedit@gmail.com>
 // License:     GPLv3
 ///////////////////////////////////////////////////////////////////////////////

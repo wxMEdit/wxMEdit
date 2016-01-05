@@ -1,7 +1,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        dialog/wxm_conv_enc_dialog.cpp
 // Description: Encoding Conversion Dialog
-// Copyright:   2013-2015  JiaYanwei   <wxmedit@gmail.com>
+// Copyright:   2013-2016  JiaYanwei   <wxmedit@gmail.com>
 // License:     GPLv3
 ///////////////////////////////////////////////////////////////////////////////
 
