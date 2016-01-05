@@ -1452,8 +1452,15 @@ UnicodeString MadLines::DumpUTF16String(MadLineIterator iter)
     xm::UCQueue ucq;
     InitNextUChar(iter, 0);
     UnicodeString ustr;
+    int ulen = 0;
     while (NextUChar(ucq))
-        ustr += (UChar32)ucq.back().first;
+    {
+        UChar32 ch = (UChar32)ucq.back().first;
+        ustr += ch;
+        ++ulen;
+        if (ch==0x0D || ch==0x0A || ulen>m_MadEdit->MaxLineLength())
+            break;
+    }
 
     m_NextUChar_BufferLoadNew = true;
     InitNextUChar(iter, pos_bak);
