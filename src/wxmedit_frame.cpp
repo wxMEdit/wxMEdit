@@ -331,20 +331,23 @@ public:
             files.pop_back();
         }
     }
+
     void Add(wxm::InFrameWXMEdit* wxmedit)
     {
-        if (wxmedit == nullptr) return;
+        if (wxmedit == nullptr)
+            return;
 
         wxString name = wxmedit->GetFileName();
-        if(!name.IsEmpty())
-        {
-            wxString fontname;
-            int fontsize;
-            wxmedit->GetTextFont(fontname, fontsize);
-            wxFileOffset pos = wxmedit->GetCaretPosition();
-            Add(name, pos, wxmedit->GetEncodingName(), fontname, fontsize);
-        }
+        if (name.IsEmpty())
+            return;
+
+        wxString fontname;
+        int fontsize;
+        wxmedit->GetTextFont(fontname, fontsize);
+        wxFileOffset pos = wxmedit->GetCaretPosition();
+        Add(name, pos, wxmedit->GetEncodingName(), fontname, fontsize);
     }
+
     void Save(wxConfigBase *cfg)
     {
         cfg->Write(wxT("MaxCount"), max_count);
@@ -368,95 +371,74 @@ public:
             ++it;
         }
     }
+
     void Load(wxConfigBase *cfg)
     {
         cfg->Read(wxT("MaxCount"), &max_count);
 
         FilePosData fpdata;
-        wxString entry(wxT("file")), text;
-        int idx=1;
-        while(idx<=max_count && cfg->Read(entry + (wxString()<<idx), &text))
+        wxString entry(wxT("file"));
+
+        for (int idx = 1; idx<=max_count; ++idx)
         {
-            int p = text.Find(wxT("|"));
-            if(p != wxNOT_FOUND)
-            {
-                fpdata.pos = 0;
-                fpdata.fontsize = 0;
-                fpdata.encoding.Empty();
+            wxString text;
+            if (!cfg->Read(entry + (wxString() << idx), &text))
+                break;
 
-                wxInt64 i64;
-                if(StrToInt64(text.Left(p), i64))
-                {
-                    fpdata.pos = i64;
-                    text = text.Right(text.Len() - (p+1));
+            if (text.Find(wxT("|")) == wxNOT_FOUND)
+                continue;
 
-                    p = text.Find(wxT("|"));
-                    if(p != wxNOT_FOUND)
-                    {
-                        fpdata.name = text.Left(p);
-                        text = text.Right(text.Len() - (p+1));
+            fpdata.pos = 0;
+            fpdata.fontsize = 0;
+            fpdata.encoding.Empty();
 
-                        p = text.Find(wxT("|"));
-                        if(p != wxNOT_FOUND)
-                        {
-                            fpdata.encoding = text.Left(p);
-                            text = text.Right(text.Len() - (p+1));
+            wxStringTokenizer tkz(text, wxT("|"));
 
-                            p = text.Find(wxT("|"));
-                            if(p != wxNOT_FOUND)
-                            {
-                                fpdata.fontname = text.Left(p);
-                                text = text.Right(text.Len() - (p+1));
+            wxInt64 i64 = 0;
+            if (StrToInt64(tkz.GetNextToken(), i64))
+                fpdata.pos = i64;
 
-                                if(StrToInt64(text, i64))
-                                {
-                                    fpdata.fontsize = (int)i64;
-                                }
-                            }
-                            else
-                            {
-                                fpdata.fontname = text;
-                            }
-                        }
-                        else
-                        {
-                            fpdata.encoding = text;
-                        }
-                    }
-                    else // old format
-                    {
-                        fpdata.name = text;
-                    }
+            if (tkz.HasMoreTokens())
+                fpdata.name = tkz.GetNextToken();
 
-                    fpdata.hash = wxm::FilePathHash(fpdata.name);
-                    files.push_back(fpdata);
-                }
-            }
-            ++idx;
+            if (tkz.HasMoreTokens())
+                fpdata.encoding = tkz.GetNextToken();
+
+            if (tkz.HasMoreTokens())
+                fpdata.fontname = tkz.GetNextToken();
+
+            if (tkz.HasMoreTokens() && StrToInt64(tkz.GetNextToken(), i64))
+                fpdata.fontsize = int(i64);
+
+            fpdata.hash = wxm::FilePathHash(fpdata.name);
+            files.push_back(fpdata);
         }
     }
-    wxFileOffset GetRestoreData(const wxString &name, wxString &encoding, wxString &fontname, int &fontsize)
+
+    wxFileOffset GetRestoreData(const wxString& name, wxString& encoding, wxString& fontname, int& fontsize)
     {
+        if (files.size() == 0)
+            return 0;
+
         unsigned long hash = wxm::FilePathHash(name);
         wxFileOffset pos = 0;
         fontsize = 0;
-        if(files.size() != 0)
+
+        std::list<FilePosData>::iterator it = files.begin();
+        std::list<FilePosData>::iterator itend = files.end();
+        do
         {
-            std::list<FilePosData>::iterator it = files.begin();
-            std::list<FilePosData>::iterator itend = files.end();
-            do
-            {
-                if(it->hash == hash && wxm::FilePathEqual(it->name, name))
-                {
-                    pos = it->pos;
-                    encoding = it->encoding;
-                    fontname = it->fontname;
-                    fontsize = it->fontsize;
-                    break;
-                }
-            }
-            while(++it != itend);
+            if (it->hash != hash || !wxm::FilePathEqual(it->name, name))
+                continue;
+
+            pos = it->pos;
+            encoding = it->encoding;
+            fontname = it->fontname;
+            fontsize = it->fontsize;
+            break;
         }
+        while(++it != itend);
+
         return pos;
     }
 };
@@ -701,9 +683,7 @@ void OnReceiveMessage(const wchar_t *msg, size_t size)
     wxm::FileList filelist(msg);
 
     BOOST_FOREACH (const wxm::FileList::FileDesc& fdesc, filelist.List())
-    {
         g_MainFrame->OpenFile(fdesc.file, false, fdesc.bmklinenums);
-    }
 }
 
 // return true for name; false for title
@@ -2752,9 +2732,7 @@ void MadEditFrame::OpenFile(const wxString &filename, bool mustExist, const Line
 
     title = g_active_wxmedit->GetFileName();
     if (title.IsEmpty())
-    {
         title = m_Notebook->GetPageText( GetIdByEdit(g_active_wxmedit) );
-    }
 
     if (g_active_wxmedit->IsModified() && title[title.Len()-1]!=wxT('*'))
         title += wxT('*');
@@ -2764,15 +2742,15 @@ void MadEditFrame::OpenFile(const wxString &filename, bool mustExist, const Line
 
 void MadEditFrame::CloseFile(int pageId)
 {
-    if(QueryCloseFile(pageId))
-    {
-        m_PageClosing=true;
-        g_CheckModTimeForReload=false;
-        m_Notebook->DeletePage(pageId);
-        if(m_Notebook->GetPageCount()==0) OnNotebookPageClosed();
-        g_CheckModTimeForReload=true;
-        m_PageClosing=false;
-    }
+    if (!QueryCloseFile(pageId))
+        return;
+
+    m_PageClosing=true;
+    g_CheckModTimeForReload=false;
+    m_Notebook->DeletePage(pageId);
+    if(m_Notebook->GetPageCount()==0) OnNotebookPageClosed();
+    g_CheckModTimeForReload=true;
+    m_PageClosing=false;
 }
 
 bool MadEditFrame::QueryCloseFile(int idx)

@@ -1656,14 +1656,8 @@ bool MadEdit::LoadFromFile(const wxString &filename, const std::wstring & encodi
     m_LastCaretXPos = 0;
     m_DoRecountLineWidth = false;
 
-    if(m_EditMode == emHexMode)
-    {
-
-    }
-    else
-    {
+    if(m_EditMode != emHexMode)
         UpdateCaret(m_CaretPos, m_ActiveRowUChars, m_ActiveRowWidths, m_CaretRowUCharPos);
-    }
 
     m_Selection = false;
     m_SelFirstRow=INT_MAX;
