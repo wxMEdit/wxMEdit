@@ -570,7 +570,7 @@ public:
     MadLines(MadEdit *madedit);
     virtual ~MadLines();
 
-    bool LoadFromFile(const wxString& filename, const std::wstring& encoding = wxEmptyString);
+    bool LoadFromFile(const wxString& filename, const std::wstring& encoding=wxEmptyString, bool hexmode=false);
     bool SaveToFile(const wxString& filename, const wxString& tempdir);
     wxFileOffset GetSize() { return m_Size; }
 

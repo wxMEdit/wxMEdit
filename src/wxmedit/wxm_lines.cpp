@@ -2050,7 +2050,7 @@ void MadLines::InitFileSyntax()
     m_MadEdit->m_Syntax = m_Syntax;
 }
 
-bool MadLines::LoadFromFile(const wxString& filename, const std::wstring& encoding)
+bool MadLines::LoadFromFile(const wxString& filename, const std::wstring& encoding, bool hexmode)
 {
     MadFileData *fd = new MadFileData(filename);
 
@@ -2208,9 +2208,8 @@ bool MadLines::LoadFromFile(const wxString& filename, const std::wstring& encodi
     m_MadEdit->m_Config->Read(wxT("/wxMEdit/MaxTextFileSize"), &maxtextfilesize, 10*1000*1000);
     m_MadEdit->m_Config->SetPath(oldpath);
 
-    bool preset=false;
-    bool hexmode=false;
-    bool skip_utf8=false;
+    bool preset = false;
+    bool skip_utf8 = false;
 
     if(m_Size>=maxtextfilesize)
     {

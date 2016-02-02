@@ -938,8 +938,8 @@ public: // basic functions
 
     virtual wxm::WXMSearcher* Searcher(bool inhex, bool use_regex) = 0;
 
-    bool LoadFromFile(const wxString &filename, const std::wstring & encoding = wxEmptyString);
-    bool SaveToFile(const wxString &filename);
+    bool LoadFromFile(const wxString& filename, const std::wstring& encoding=wxEmptyString, bool hexmode=false);
+    bool SaveToFile(const wxString& filename);
     bool Reload();
     // if the file is modified by another app, reload it.
     bool ReloadByModificationTime();

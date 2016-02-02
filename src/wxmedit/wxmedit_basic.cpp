@@ -1617,7 +1617,7 @@ void MadEdit::SetCaretPosition(wxFileOffset pos, wxFileOffset selbeg, wxFileOffs
 }
 
 
-bool MadEdit::LoadFromFile(const wxString &filename, const std::wstring & encoding)
+bool MadEdit::LoadFromFile(const wxString& filename, const std::wstring& encoding, bool hexmode)
 {
     wxFileName fn(filename);
     if(MadDirExists(fn.GetPath(wxPATH_GET_VOLUME))==0)
@@ -1626,7 +1626,7 @@ bool MadEdit::LoadFromFile(const wxString &filename, const std::wstring & encodi
         return false;
     }
 
-    if(m_Lines->LoadFromFile(filename, encoding)==false)
+    if(m_Lines->LoadFromFile(filename, encoding, hexmode)==false)
         return false;
 
     m_UndoBuffer->Clear();
@@ -1656,7 +1656,7 @@ bool MadEdit::LoadFromFile(const wxString &filename, const std::wstring & encodi
     m_LastCaretXPos = 0;
     m_DoRecountLineWidth = false;
 
-    if(m_EditMode != emHexMode)
+    if (m_EditMode != emHexMode)
         UpdateCaret(m_CaretPos, m_ActiveRowUChars, m_ActiveRowWidths, m_CaretRowUCharPos);
 
     m_Selection = false;
@@ -1798,7 +1798,7 @@ bool MadEdit::Reload()
     WXMLocations loc = SaveLocations();
     MadEditMode editmode=m_EditMode;
 
-    LoadFromFile(m_Lines->m_Name, m_Lines->m_Encoding->GetName());
+    LoadFromFile(m_Lines->m_Name, m_Lines->m_Encoding->GetName(), m_EditMode==emHexMode);
     SetEditMode(editmode);
     RestoreLocations(loc);
     return true;

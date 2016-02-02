@@ -266,37 +266,47 @@ wxAcceleratorEntry g_AccelFindNext, g_AccelFindPrev;
 //---------------------------------------------------------------------------
 
 // for RestoreCaretPos
-class FileCaretPosManager
+struct FileCaretPosManager
 {
+    struct PosData
+    {
+        wxFileOffset pos;
+        wxString encoding;
+        wxString fontname;
+        int fontsize;
+        wxString hex_fontname;
+        int hex_fontsize;
+        bool hexmode;
+
+        PosData() : pos(0), fontsize(0), hex_fontsize(0), hexmode(false) {}
+    };
+
+private:
     int max_count;
 
     struct FilePosData
     {
         wxString name;
-        wxFileOffset pos;
         unsigned long hash; // hash value of filename
-        wxString encoding;
-        wxString fontname;
-        int fontsize;
+        PosData data;
 
-        FilePosData(const wxString &n, const wxLongLong_t &p, unsigned long h, const wxString &e, const wxString &fn, int fs)
-            : name(n), pos(p), hash(h), encoding(e), fontname(fn), fontsize(fs)
+        FilePosData(const wxString& n, unsigned long h, const PosData& d)
+            : name(n), hash(h), data(d)
         {}
-        FilePosData()
-            : pos(0), fontsize(0)
-        {}
+
+        FilePosData(): hash(0) {}
     };
     std::list<FilePosData> files;
 
 public:
     FileCaretPosManager() : max_count(40) {}
 
-    void Add(const wxString &name, const wxFileOffset &pos, const wxString &encoding, const wxString &fontname, int fontsize)
+    void Add(const wxString &name, const PosData& data)
     {
         unsigned long hash = wxm::FilePathHash(name);
         if(files.size()==0)
         {
-            files.push_back(FilePosData(name, pos, hash, encoding, fontname, fontsize));
+            files.push_back(FilePosData(name, hash, data));
         }
         else
         {
@@ -313,14 +323,11 @@ public:
 
             if(it == itend)
             {
-                files.push_front(FilePosData(name, pos, hash, encoding, fontname, fontsize));
+                files.push_front(FilePosData(name, hash, data));
             }
             else
             {
-                it->pos = pos;
-                it->encoding = encoding;
-                it->fontname = fontname;
-                it->fontsize = fontsize;
+                it->data = data;
 
                 files.push_front(*it);
                 files.erase(it);
@@ -341,11 +348,12 @@ public:
         if (name.IsEmpty())
             return;
 
-        wxString fontname;
-        int fontsize;
-        wxmedit->GetTextFont(fontname, fontsize);
-        wxFileOffset pos = wxmedit->GetCaretPosition();
-        Add(name, pos, wxmedit->GetEncodingName(), fontname, fontsize);
+        PosData data;
+        wxmedit->GetTextFont(data.fontname, data.fontsize);
+        wxmedit->GetHexFont(data.hex_fontname, data.hex_fontsize);
+        data.pos = wxmedit->GetCaretPosition();
+        data.hexmode = (wxmedit->GetEditMode() == emHexMode);
+        Add(name, data);
     }
 
     void Save(wxConfigBase *cfg)
@@ -357,15 +365,21 @@ public:
         int idx=0, count=int(files.size());
         while(idx < count)
         {
-            text = wxLongLong(it->pos).ToString();
+            text = wxLongLong(it->data.pos).ToString();
             text += wxT("|");
             text += it->name;
             text += wxT("|");
-            text += it->encoding;
+            text += it->data.encoding;
             text += wxT("|");
-            text += it->fontname;
+            text += it->data.fontname;
             text += wxT("|");
-            text += wxLongLong(it->fontsize).ToString();
+            text += wxLongLong(it->data.fontsize).ToString();
+            text += wxT("|");
+            text += wxLongLong(int(it->data.hexmode)).ToString();
+            text += wxT("|");
+            text += it->data.hex_fontname;
+            text += wxT("|");
+            text += wxLongLong(it->data.hex_fontsize).ToString();
             cfg->Write(entry + (wxString()<<(idx+1)), text);
             ++idx;
             ++it;
@@ -376,7 +390,6 @@ public:
     {
         cfg->Read(wxT("MaxCount"), &max_count);
 
-        FilePosData fpdata;
         wxString entry(wxT("file"));
 
         for (int idx = 1; idx<=max_count; ++idx)
@@ -388,41 +401,46 @@ public:
             if (text.Find(wxT("|")) == wxNOT_FOUND)
                 continue;
 
-            fpdata.pos = 0;
-            fpdata.fontsize = 0;
-            fpdata.encoding.Empty();
+            FilePosData fpdata;
 
             wxStringTokenizer tkz(text, wxT("|"));
 
             wxInt64 i64 = 0;
             if (StrToInt64(tkz.GetNextToken(), i64))
-                fpdata.pos = i64;
+                fpdata.data.pos = i64;
 
             if (tkz.HasMoreTokens())
                 fpdata.name = tkz.GetNextToken();
 
             if (tkz.HasMoreTokens())
-                fpdata.encoding = tkz.GetNextToken();
+                fpdata.data.encoding = tkz.GetNextToken();
 
             if (tkz.HasMoreTokens())
-                fpdata.fontname = tkz.GetNextToken();
+                fpdata.data.fontname = tkz.GetNextToken();
 
             if (tkz.HasMoreTokens() && StrToInt64(tkz.GetNextToken(), i64))
-                fpdata.fontsize = int(i64);
+                fpdata.data.fontsize = int(i64);
+
+            if (tkz.HasMoreTokens() && StrToInt64(tkz.GetNextToken(), i64))
+                fpdata.data.hexmode = (i64!=0);
+
+            if (tkz.HasMoreTokens())
+                fpdata.data.hex_fontname = tkz.GetNextToken();
+
+            if (tkz.HasMoreTokens() && StrToInt64(tkz.GetNextToken(), i64))
+                fpdata.data.hex_fontsize = int(i64);
 
             fpdata.hash = wxm::FilePathHash(fpdata.name);
             files.push_back(fpdata);
         }
     }
 
-    wxFileOffset GetRestoreData(const wxString& name, wxString& encoding, wxString& fontname, int& fontsize)
+    void GetRestoreData(const wxString& name, PosData& data)
     {
         if (files.size() == 0)
-            return 0;
+            return;
 
         unsigned long hash = wxm::FilePathHash(name);
-        wxFileOffset pos = 0;
-        fontsize = 0;
 
         std::list<FilePosData>::iterator it = files.begin();
         std::list<FilePosData>::iterator itend = files.end();
@@ -431,15 +449,10 @@ public:
             if (it->hash != hash || !wxm::FilePathEqual(it->name, name))
                 continue;
 
-            pos = it->pos;
-            encoding = it->encoding;
-            fontname = it->fontname;
-            fontsize = it->fontsize;
+            data = it->data;
             break;
         }
         while(++it != itend);
-
-        return pos;
     }
 };
 FileCaretPosManager g_FileCaretPosManager;
@@ -2689,15 +2702,16 @@ void MadEditFrame::OpenFile(const wxString &filename, bool mustExist, const Line
 
     if(!filename.IsEmpty())
     {
-        wxString enc, fn;
-        wxFileOffset pos;
-        int fs;
-        pos = g_FileCaretPosManager.GetRestoreData(filename, enc, fn, fs);
+        FileCaretPosManager::PosData data;
+        g_FileCaretPosManager.GetRestoreData(filename, data);
 
-        if (!fn.IsEmpty() && fs > 0)
-            wxmedit->SetTextFont(fn, fs, false);
+        if (!data.fontname.IsEmpty() && data.fontsize > 0)
+            wxmedit->SetTextFont(data.fontname, data.fontsize, false);
 
-        if (!wxmedit->LoadFromFile(filename, enc.wx_str()) && mustExist)
+        if (!data.hex_fontname.IsEmpty() && data.hex_fontsize > 0)
+            wxmedit->SetTextFont(data.hex_fontname, data.hex_fontsize, false);
+
+        if (!wxmedit->LoadFromFile(filename, data.encoding.wx_str(), data.hexmode) && mustExist)
         {
             wxLogError(wxString(_("Cannot load this file:")) + wxT("\n\n") + filename);
         }
@@ -2711,7 +2725,7 @@ void MadEditFrame::OpenFile(const wxString &filename, bool mustExist, const Line
             bool rcp;
             m_Config->Read(wxT("/wxMEdit/RestoreCaretPos"), &rcp, true);
             if (rcp)
-                wxmedit->SetCaretPosition(pos);
+                wxmedit->SetCaretPosition(data.pos);
         }
     }
     wxString str;
