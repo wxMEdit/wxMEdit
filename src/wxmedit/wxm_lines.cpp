@@ -1562,7 +1562,6 @@ MadLineState MadLines::Reformat(MadLineIterator iter)
 
             m_NextUChar_BufferStart = 0;
             UnicodeString ustr = DumpUTF16String(iter);
-            m_NextUChar_BufferLoadNew = false;
 
             m_line_bi->setText(ustr);
 
