@@ -39,7 +39,7 @@ msgstr ""
 "Project-Id-Version: wxMEdit 3.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-02-06 09:47+0800\n"
-"PO-Revision-Date: 2015-07-30 12:53+0800\n"
+"PO-Revision-Date: 2016-02-06 09:52+0800\n"
 "Last-Translator: JiaYanwei <wxmedit@gmail.com>\n"
 "Language-Team: wxMEdit <wxmedit@gmail.com>\n"
 "MIME-Version: 1.0\n"
@@ -1877,23 +1877,23 @@ msgstr "在指定数字系统中按特定格式插入有序序列"
 
 #: ../src/wxmedit_frame.cpp:1140
 msgid "Colum&n"
-msgstr ""
+msgstr "列编辑(&N)"
 
 #: ../src/wxmedit_frame.cpp:1141
 msgid "Column &Align"
-msgstr ""
+msgstr "列对齐(&A)"
 
 #: ../src/wxmedit_frame.cpp:1141
 msgid "Delete spaces at the right of column selection"
-msgstr ""
+msgstr "删除已选列块右侧的空白符"
 
 #: ../src/wxmedit_frame.cpp:1142
 msgid "Column &Paste"
-msgstr ""
+msgstr "列粘贴(&P)"
 
 #: ../src/wxmedit_frame.cpp:1142
 msgid "Paste in each line of column selection"
-msgstr ""
+msgstr "在已选列块的每一行粘贴"
 
 #: ../src/wxmedit_frame.cpp:1145
 msgid "Ad&vanced"
