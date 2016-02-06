@@ -1137,7 +1137,7 @@ CommandData CommandTable[]=
     { 0,                1, menuInsertEnumeration,        wxT("menuInsertEnumeration"),        _("Insert &Ordered Sequence..."),             wxT("Ctrl-Alt-N"),   wxITEM_NORMAL,    olist_xpm_idx,     0,                     _("Insert ordered sequence with certain format in specified numbering system")},
 
     { 0,                1, 0,                            0,                                   0,                                            0,                   wxITEM_SEPARATOR, -1,                0,                     0 },
-    { 0,                1, menuColumn,                   wxT("menuColumn"),                   _("Column"),                                  0,                   wxITEM_NORMAL,    -1,                &g_Menu_Edit_Column,   0 },
+    { 0,                1, menuColumn,                   wxT("menuColumn"),                   _("Colum&n"),                                  0,                   wxITEM_NORMAL,    -1,                &g_Menu_Edit_Column,   0 },
     { 0,                2, menuColumnAlign,              wxT("menuColumnAlign"),              _("Column &Align"),                           wxT("Alt-DEL"),      wxITEM_NORMAL,    -1,                0,                     _("Delete spaces at the right of column selection") },
     { 0,                2, menuColumnPaste,              wxT("menuColumnPaste"),              _("Column &Paste"),                           wxT("Alt-INS"),      wxITEM_NORMAL,    -1,                0,                     _("Paste in each line of column selection") },
 

@@ -90,7 +90,7 @@ _("DarkSlateBlue");
 _("DarkSlateGray");
 _("DarkTurquoise");
 _("DarkViolet");
-_("Darkorange");
+_("DarkOrange");
 _("DeepPink");
 _("DeepSkyBlue");
 _("DimGray");
