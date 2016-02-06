@@ -9,10 +9,10 @@
 2015-08-03 12:52:41 +0800 JiaYanwei <wxmedit@gmail.com>
 
 	* wxMEdit v3.0:
-	 1. added new options to display/print bookmark independent of line number.
-	 2. added a option whether enable dot matching new-line in regular expression.
-	 3. added a feature that show searching message in status bar when Search/Replace Dialog is invisible.
-	 4. added a feature: insert ordered sequence.
+	 1. added a killer feature: Insert Ordered Sequence.
+	 2. added new options to display/print bookmark independent of line number.
+	 3. added a option whether enable dot matching new-line in regular expression.
+	 4. added a feature that show searching message in status bar when Search/Replace Dialog is invisible.
 	 5. improved bookmark appearance for displaying and printing.
 	 6. improved Tab and EOF mark pattern, make it easy to distinguish Tab mark from space mark.
 	 7. fixed that there are too few characters limited in a line with certain word wrap settings.
@@ -133,16 +133,17 @@
 2013-09-05 13:47:34 +0800 JiaYanwei <wxmedit@gmail.com>
 
 	* wxMEdit v2.9.5:
-	 1. fixed crash when delete a character in a line which contains two or more characters with MadEdit/wxMEdit built with vc2010.
-	 2. fixed Fedora build and packing by Huaren Zhong <huaren.zhong[at]gmail.com>.
-	 3. fixed recent lists case sensitive and truncated in menu bug.
-	 4. fixed Double-byte conversion bug.
-	 5. changed EUC-JP implementation to meet CP20932.
-	 6. added CP850, CP852, CP855, KOI8-U, ISO-8859-16, Windows-1258 and GB18030 support.
-	 7. made more system encodings(e.g. Windows-1258) detectable.
-	 8. added Spanish translation by Carlos Sánchez <carlos1994sanchez[at]gmail.com>.
-	 9. updated Japanese translation by Tilt <tiltstr[at]gmail.com>.
-	10. updated Chinese translations.
+	 1. added a killer feature: GB18030 BOM support.
+	 2. added CP850, CP852, CP855, KOI8-U, ISO-8859-16, Windows-1258 and GB18030 support.
+	 3. made more system encodings(e.g. Windows-1258) detectable.
+	 4. changed EUC-JP implementation to meet CP20932.
+	 5. fixed crash when delete a character in a line which contains two or more characters with MadEdit/wxMEdit built with vc2010.
+	 6. fixed Fedora build and packing by Huaren Zhong <huaren.zhong[at]gmail.com>.
+	 7. fixed recent lists case sensitive and truncated in menu bug.
+	 8. fixed Double-byte conversion bug.
+	 9. added Spanish translation by Carlos Sánchez <carlos1994sanchez[at]gmail.com>.
+	10. updated Japanese translation by Tilt <tiltstr[at]gmail.com>.
+	11. updated Chinese translations.
 
 
 2013-07-31 22:55:43 +0800 JiaYanwei <wxmedit@gmail.com>

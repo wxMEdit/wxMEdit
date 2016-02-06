@@ -1,5 +1,5 @@
                       ==================================
-                                wxMEdit v3.0.2
+                                wxMEdit v3.1
                       ==================================
 About:
 -----
@@ -70,16 +70,31 @@ Syntax files, Locale files and Settings:
 
 ChangeLog:
 ----------
-wxMEdit v3.0.2:
-  1. fixed newline redundance when copying in regular text mode.
-  2. updated Traditional Chinese translation.
-  3. updated Russian translation by Будинов Станислав <stabud[at]yandex.ru>.
+wxMEdit v3.1:
+  1. added a killer feature: word boundary with Chinese/Japanese/Thai/Lao/Khmer and Burmese characters etc.
+  2. added a killer feature: word-wrap meet the Unicode® Standard Annex `#14`: Unicode Line Breaking Algorithm.
+  3. added new feature: column align.
+  4. added toolbar icon & shortcut for Inserting Ordered Sequence.
+  5. changed End-of-Line mark patterns.
+  6. updated Unicode block descriptions for Unicode 8.0 (require ICU 56 or higher).
+  7. fixed incorrect word boundary with non-English characters when selecting word.
+  8. fixed incorrect word-wrap with non-English letters.
+  9. fixed broken characters input with numpad in wxMEdit that built with wxWidgets-3.0 GTK2.
+ 10. fixed incorrect behavior of when Ctrl-Backspace pressed at beginning of a text file OR at zero-width selection in column mode.
+ 11. fixed that cannot select the whole word wraped in different lines by double-click.
+ 12. fixed that triple-click cannot select a whole wrapped line.
+ 13. fixed that files are not keep in hex mode after restart & restore.
+ 14. fixed newline redundance when copying in regular text mode.
+ 15. updated Simplified Chinese translation.
+ 16. updated Traditional Chinese translation by Vincent_TW.
+ 17. updated Russian translation by Будинов Станислав <stabud[at]yandex.ru>.
+ 18. other minor changes and bug fixes.
 
 wxMEdit v3.0:
-  1. added new options to display/print bookmark independent of line number.
-  2. added a option whether enable dot matching new-line in regular expression.
-  3. added a feature that show searching message in status bar when Search/Replace Dialog is invisible.
-  3. added a feature that show searching message in status bar when Search/Replace Dialog is invisible.
+  1. added a killer feature: Inserting Ordered Sequence.
+  2. added new options to display/print bookmark independent of line number.
+  3. added a option whether enable dot matching new-line in regular expression.
+  4. added a feature that show searching message in status bar when Search/Replace Dialog is invisible.
   5. improved bookmark appearance for displaying and printing.
   6. improved Tab and EOF mark pattern, make it easy to distinguish Tab mark from space mark.
   7. fixed that there are too few characters limited in a line with certain word wrap settings.
@@ -112,25 +127,6 @@ wxMEdit v2.9.9:
  16. updated Spanish translation by Carlos Sánchez <carlos1994sanchez[at]gmail.com>.
  17. updated Japanese translation by Tilt <tiltstr[at]gmail.com>.
  18. other minor changes and bug fixes.
-
-wxMEdit v2.9.8:
-  1. added more choices for whether pasting as hex-string in hex-area when editing in hex-mode.
-  2. added new feature: Paste with Overwriting in Hex Area.
-  3. added more common used encoding aliases and show them in Encoding Conversion Dialog.
-  4. added localization support when open homepage and downloads page.
-  5. added Chinese translations support for zh_HK, zh_MO, zh_SG and zh.
-  6. added an option to place configuration files into %APPDATA% directory under Windows.
-  7. made default window size bigger.
-  8. made manual update checking asynchronously as same as automatic update checking.
-  9. improved encoding groups.
- 10. fixed bugs detected by clang-analyzer.
- 11. fixed memory leak warning when debugging finished under Windows.
- 12. updated FreeBSD packaging that switched to pkgng via ports.
- 13. updated Simplified Chinese translation.
- 14. updated Traditional Chinese translation by Vincent_TW.
- 15. updated Spanish translation by Carlos Sánchez <carlos1994sanchez[at]gmail.com>.
- 16. updated Japanese translation by Tilt <tiltstr[at]gmail.com>.
- 17. other minor changes and bug fixes.
 
 See file ChangeLog for more changes.
 
