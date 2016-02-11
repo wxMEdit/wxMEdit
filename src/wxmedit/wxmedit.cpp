@@ -8549,17 +8549,17 @@ void MadEdit::ProcessReturnCommand(MadEditCommand command)
 
 inline bool IsCharInput(ucs4_t ucs4, int key)
 {
-#if defined(__WXMSW__) && wxMAJOR_VERSION==2
+#if defined(__WXMSW__)
     return ucs4 >= ecCharFirst && (ucs4 == key || key == 0);
 #else
-    return ucs4 >= (ucs4_t)ecCharFirst && key < WXK_DELETE;
+    return ucs4 >= (ucs4_t)ecCharFirst && key != WXK_DELETE && key < 0x100;
 #endif
 }
 
 inline void FixWx3GTKInput(ucs4_t& ucs4, int key)
 {
 #if defined(__WXGTK__) && wxMAJOR_VERSION==3
-    if (key < WXK_DELETE && key >= ecCharFirst)
+    if (key < 0x100 && key >= ecCharFirst)
         ucs4 = (ucs4_t)key;
 #endif
 }
