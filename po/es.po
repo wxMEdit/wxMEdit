@@ -39,7 +39,7 @@ msgstr ""
 "Project-Id-Version: wxMEdit 3.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-02-06 09:47+0800\n"
-"PO-Revision-Date: 2015-07-31 22:53-0400\n"
+"PO-Revision-Date: 2016-03-04 15:45-0400\n"
 "Last-Translator: \n"
 "Language-Team:  <carlos1994sanchez@gmail.com>\n"
 "MIME-Version: 1.0\n"
@@ -1353,8 +1353,8 @@ msgstr ""
 
 #: ../src/dialog/wxmedit_options_dialog.cpp:774
 msgid ""
-"Place configuration files into application data directory of current user (%"
-"APPDATA%\\wxmedit) rather than wxMEdit executable directory"
+"Place configuration files into application data directory of current user "
+"(%APPDATA%\\wxmedit) rather than wxMEdit executable directory"
 msgstr ""
 "Colocar configuración en el directorio de datos de aplicación de usuario "
 "actual (%APPDATA%\\wxmedit)"
@@ -1899,23 +1899,23 @@ msgstr ""
 
 #: ../src/wxmedit_frame.cpp:1140
 msgid "Colum&n"
-msgstr ""
+msgstr "Colum&na"
 
 #: ../src/wxmedit_frame.cpp:1141
 msgid "Column &Align"
-msgstr ""
+msgstr "&Alinear columna"
 
 #: ../src/wxmedit_frame.cpp:1141
 msgid "Delete spaces at the right of column selection"
-msgstr ""
+msgstr "Elimina espacios a la derecha de la selección de la columna"
 
 #: ../src/wxmedit_frame.cpp:1142
 msgid "Column &Paste"
-msgstr ""
+msgstr "&Pegar columna"
 
 #: ../src/wxmedit_frame.cpp:1142
 msgid "Paste in each line of column selection"
-msgstr ""
+msgstr "Pegar en cada línea de selección de columna"
 
 #: ../src/wxmedit_frame.cpp:1145
 msgid "Ad&vanced"
@@ -4154,43 +4154,43 @@ msgstr "Warang Citi"
 
 #: ../src/xm/ublock_des.cpp:283
 msgid "Ahom"
-msgstr ""
+msgstr "Ahom"
 
 #: ../src/xm/ublock_des.cpp:284
 msgid "Anatolian Hieroglyphs"
-msgstr ""
+msgstr "Jeroglíficos Anatolios"
 
 #: ../src/xm/ublock_des.cpp:285
 msgid "Cherokee Supplement"
-msgstr ""
+msgstr "Suplemento de Cherokee"
 
 #: ../src/xm/ublock_des.cpp:286
 msgid "CJK Extension E"
-msgstr ""
+msgstr "Extensión E de CJK"
 
 #: ../src/xm/ublock_des.cpp:287
 msgid "Early Dynastic Cuneiform"
-msgstr ""
+msgstr "Escritura temprana cuneiforme dinástica"
 
 #: ../src/xm/ublock_des.cpp:288
 msgid "Hatran"
-msgstr ""
+msgstr "Hatran"
 
 #: ../src/xm/ublock_des.cpp:289
 msgid "Multani"
-msgstr ""
+msgstr "Multani"
 
 #: ../src/xm/ublock_des.cpp:290
 msgid "Old Hungarian"
-msgstr ""
+msgstr "Húngaro antiguo"
 
 #: ../src/xm/ublock_des.cpp:291
 msgid "Supplemental Symbols and Pictographs"
-msgstr ""
+msgstr "Pictogramas y Símbolos suplementarios"
 
 #: ../src/xm/ublock_des.cpp:292
 msgid "Sutton SignWriting"
-msgstr ""
+msgstr "Escritura del signo de Sutton"
 
 #: wxstd.po.cpp:3
 msgid "OK"
