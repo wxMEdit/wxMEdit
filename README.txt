@@ -85,10 +85,12 @@ wxMEdit v3.1:
  12. fixed that triple-click cannot select a whole wrapped line.
  13. fixed that files are not keep in hex mode after restart & restore.
  14. fixed newline redundance when copying in regular text mode.
- 15. updated Simplified Chinese translation.
- 16. updated Traditional Chinese translation by Vincent_TW.
- 17. updated Russian translation by Будинов Станислав <stabud[at]yandex.ru>.
- 18. other minor changes and bug fixes.
+ 15. updated Spanish translation by Carlos Sánchez <carlos1994sanchez[at]gmail.com>.
+ 16. updated Japanese translation by Tilt <tiltstr[at]gmail.com>.
+ 17. updated Simplified Chinese translation.
+ 18. updated Traditional Chinese translation by Vincent_TW.
+ 19. updated Russian translation by Будинов Станислав <stabud[at]yandex.ru>.
+ 20. other minor changes and bug fixes.
 
 wxMEdit v3.0:
   1. added a killer feature: Inserting Ordered Sequence.
