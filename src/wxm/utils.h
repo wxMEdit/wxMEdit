@@ -235,6 +235,7 @@ private:
 	{
 	}
 	void SaveConfig() const;
+	void CreateConfigDirInUserHome() const;
 
 	static AppPath* s_inst;
 

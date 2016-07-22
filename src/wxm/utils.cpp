@@ -391,20 +391,6 @@ AppPath* AppPath::s_inst = nullptr;
 wxString g_wxsRegKeyWxMEdit = wxT("HKEY_CURRENT_USER\\Software\\wxMEdit");
 wxString g_wxsRegValConfigInHome = wxT("ConfigInUserHome");
 
-// return application data directory in user home
-//     ~/.wxmedit/          under *NIX
-//     %APPDATA%\\wxmedit\\ under Windows
-wxString GetDataDirInUserHome()
-{
-	wxString home_dir = wxStandardPaths::Get().GetUserDataDir() + wxFILE_SEP_PATH;
-	if(!wxDirExists(home_dir))
-	{
-		wxLogNull nolog; // disable error message
-		wxMkdir(home_dir);
-	}
-	return home_dir;
-}
-
 #ifdef __WXMSW__
 bool FileWritable(const wxString& test_file)
 {
@@ -446,6 +432,14 @@ bool AppPath::ConfigWillBeInUserHome() const
 #endif
 }
 
+void AppPath::CreateConfigDirInUserHome() const
+{
+	if (wxDirExists(usr_dir))
+		return;
+	wxLogNull nolog; // disable error message
+	wxMkdir(usr_dir);
+}
+
 void AppPath::Init(const wxString& appname)
 {
 	cfg_file = appname + wxT(".cfg");
@@ -454,7 +448,7 @@ void AppPath::Init(const wxString& appname)
 	filename.MakeAbsolute();
 	app_dir = filename.GetPath(wxPATH_GET_VOLUME | wxPATH_GET_SEPARATOR);
 
-	usr_dir = GetDataDirInUserHome();
+	usr_dir = wxStandardPaths::Get().GetUserDataDir() + wxFILE_SEP_PATH;
 
 #ifdef __WXMSW__
 	app_dir_writable = FileWritable(app_dir + wxT("portable_test"));
@@ -466,6 +460,9 @@ void AppPath::Init(const wxString& appname)
 		return;
 	}
 #endif
+
+	if (cfg_in_usrhome)
+		CreateConfigDirInUserHome();
 
 	home_dir = usr_dir;
 	another_dir = app_dir;
@@ -479,6 +476,9 @@ void AppPath::SaveConfig() const
 
 	if (ConfigWillBeInUserHome() == cfg_in_usrhome)
 		return;
+
+	if (ConfigWillBeInUserHome())
+		CreateConfigDirInUserHome();
 
 	wxFileConfig *cfg=reinterpret_cast<wxFileConfig *>(wxFileConfig::Get(false));
 	wxFileOutputStream another_cfg(another_dir + cfg_file);
