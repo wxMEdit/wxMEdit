@@ -130,7 +130,7 @@ void MadEdit::SetEncoding(const std::wstring & encname)
     m_Syntax->SetEncoding(m_Encoding);
 
     wxString fontname;
-    m_Config->Read(wxString(wxT("/Fonts/"))+m_Encoding->GetName(), &fontname, m_Encoding->GetFontName());
+    m_Config->Read(wxString(wxT("/Fonts/"))+m_Encoding->GetName().c_str(), &fontname, m_Encoding->GetFontName().c_str());
 
     bool oldlf=m_LoadingFile;
     m_LoadingFile=true;
@@ -252,7 +252,7 @@ void MadEdit::SetTextFont(const wxString &name, int size, bool forceReset)
         memset(m_TextFontWidths, 0, sizeof(m_TextFontWidths));
         m_TextFontWidths[0] = FontWidthManager::GetFontWidths(0, name, size, this);
 
-        m_cfg_writer->Record(wxString(wxT("/Fonts/"))+m_Encoding->GetName(), name);
+        m_cfg_writer->Record(wxString(wxT("/Fonts/"))+m_Encoding->GetName().c_str(), name);
         m_cfg_writer->Record(wxT("/wxMEdit/TextFontSize"), size);
 
 

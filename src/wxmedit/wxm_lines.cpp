@@ -2102,7 +2102,7 @@ bool MadLines::LoadFromFile(const wxString& filename, const std::wstring& encodi
     }
     else
     {
-        defaultenc = encoding;
+        defaultenc = encoding.c_str();
     }
 
     if(sz == 0)

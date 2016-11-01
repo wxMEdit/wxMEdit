@@ -28,6 +28,7 @@
 # pragma warning( pop )
 #endif
 
+#include <string>
 
 class WXMConvEncDialog: public wxDialogWrapper
 {

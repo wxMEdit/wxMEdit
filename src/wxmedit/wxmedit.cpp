@@ -901,7 +901,7 @@ void MadEdit::InitTextFont()
 {
     wxString fontname;
     int fontsize;
-    m_Config->Read(wxString(wxT("/Fonts/")) + m_Encoding->GetName(), &fontname, m_Encoding->GetFontName());
+    m_Config->Read(wxString(wxT("/Fonts/")) + m_Encoding->GetName().c_str(), &fontname, m_Encoding->GetFontName().c_str());
     m_Config->Read(wxT("TextFontSize"), &fontsize, 12);
     SetTextFont(fontname, fontsize, true);
 }

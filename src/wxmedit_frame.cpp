@@ -1599,7 +1599,7 @@ void MadEditFrame::EncodingGroupMenuAppend(ssize_t idx, const wxString& text, si
             wxMenu* menu = new wxMenu();
             it = m_encgrps.insert(std::make_pair(gid, menu)).first;
             size_t pos = g_Menu_View_Encoding->GetMenuItemCount() - rsv_cnt - 1;
-            g_Menu_View_Encoding->Insert(pos, menuEncodingGroup1 + i + rsv_cnt, encmgr.EncodingGroupToName(gid), menu);
+            g_Menu_View_Encoding->Insert(pos, menuEncodingGroup1 + i + rsv_cnt, encmgr.EncodingGroupToName(gid).c_str(), menu);
         }
 
         ++i;
@@ -1619,7 +1619,7 @@ size_t MadEditFrame::ReserveEncodingGrupMenus()
     BOOST_FOREACH(xm::EncodingGroupID gid, reserve_grps)
     {
         wxMenu* menu = new wxMenu();
-        g_Menu_View_Encoding->Insert(i, menuEncodingGroup1 + i, encmgr.EncodingGroupToName(gid), menu);
+        g_Menu_View_Encoding->Insert(i, menuEncodingGroup1 + i, encmgr.EncodingGroupToName(gid).c_str(), menu);
         m_encgrps[gid] = menu;
         ++i;
     }
@@ -1636,7 +1636,7 @@ void MadEditFrame::InitEncodingMenus()
     size_t cnt=xm::EncodingManager::Instance().GetEncodingsCount();
     for(size_t i=0; i<cnt; ++i)
     {
-        wxString enc=wxString(wxT('['))+ encmgr.GetEncodingName(i) + wxT("] ");
+        wxString enc=wxString(wxT('['))+ encmgr.GetEncodingName(i).c_str() + wxT("] ");
         wxString des=wxGetTranslation(encmgr.GetEncodingDescription(i).c_str());
 
         EncodingGroupMenuAppend(i, enc+des, rsv_cnt);
@@ -4192,7 +4192,7 @@ void MadEditFrame::OnViewEncoding(wxCommandEvent& event)
     std::wstring enc=xm::EncodingManager::Instance().GetEncodingName(idx);
     g_active_wxmedit->SetEncoding(enc);
 
-    wxString str=wxString(wxT('['))+ enc + wxT("] ")+ wxGetTranslation(xm::EncodingManager::Instance().GetEncodingDescription(idx).c_str());
+    wxString str=wxString(wxT('['))+ enc.c_str() + wxT("] ")+ wxGetTranslation(xm::EncodingManager::Instance().GetEncodingDescription(idx).c_str());
     m_RecentEncodings->AddItemToHistory(str);
 
     int size;

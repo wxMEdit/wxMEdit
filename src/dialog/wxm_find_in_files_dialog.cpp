@@ -227,7 +227,7 @@ WXMFindInFilesDialog::WXMFindInFilesDialog(wxWindow* parent,wxWindowID id,const 
 	size_t cnt=xm::EncodingManager::Instance().GetEncodingsCount();
 	for(size_t i=0;i<cnt;i++)
 	{
-		WxComboBoxEncoding->Append(xm::EncodingManager::Instance().GetEncodingNameWithAliases(i));
+		WxComboBoxEncoding->Append(xm::EncodingManager::Instance().GetEncodingNameWithAliases(i).c_str());
 	}
 	WxComboBoxEncoding->SetValue(systemenc);
 

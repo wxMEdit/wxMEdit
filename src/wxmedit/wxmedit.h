@@ -716,8 +716,8 @@ public: // basic functions
     void LoadDefaultSyntaxScheme() { MadSyntax::LoadScheme(wxT("Default"), m_Syntax); }
 
     void SetEncoding(const std::wstring & encname);
-    wxString GetEncodingName() { return m_Encoding->GetName(); }
-    wxString GetEncodingDescription() { return m_Encoding->GetDescription(); }
+    wxString GetEncodingName() { return m_Encoding->GetName().c_str(); }
+    wxString GetEncodingDescription() { return m_Encoding->GetDescription().c_str(); }
     bool IsUnicodeFile() { return m_Encoding->IsUnicodeEncoding(); }
 
     bool GetRecordCaretMovements() { return m_RecordCaretMovements; }
