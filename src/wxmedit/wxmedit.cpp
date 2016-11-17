@@ -172,7 +172,7 @@ public:
         char *buf=&data[0];
         *((int*)buf)=linecount;
         buf+=sizeof(int);
-        memcpy(buf, ws.c_str(), size-sizeof(int));
+        memcpy(buf, (const char*)(const wchar_t*)ws.c_str(), size-sizeof(int));
 
         return true;
     }
@@ -4909,13 +4909,14 @@ void MadEdit::InsertColumnString(const ucs4_t *ucs, size_t count, int linecount,
     {
         MadLineIterator lit = firstlit;
         wxFileOffset inssize = 0, selcaretpos=0/*?*/;
-        const ucs4_t *ucs1 = ucs;
+        const ucs4_t* ucs1 = ucs;
         for(;;)
         {
-            int ulen = 0;
-            while(*ucs1 != 0x0D && *ucs1 != 0x0A)
+            size_t ulen = 0;
+            for ( ; ulen < count; ++ulen)
             {
-                ++ulen;
+                if (*ucs1 == 0x0D || *ucs1 == 0x0A)
+                    break;
                 ++ucs1;
             }
 
