@@ -42,7 +42,7 @@ B. Windows / ReactOS (__WXMSW__):
 
 NOTE:
    wxMEdit can be built with clang and libstdc++ under FreeBSD and some Linux 
-distrobutions, but it may be failed under other Linux distrobutions.
+distributions, but it may fail under other Linux distributions.
 
    You can download Bakefile at:
       http://www.bakefile.org/download.html
