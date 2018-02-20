@@ -2,7 +2,7 @@
 // vim:         ts=4 sw=4
 // Name:        wxm/status_bar.cpp
 // Description: Status Bar Functions
-// Copyright:   2016  JiaYanwei   <wxmedit@gmail.com>
+// Copyright:   2016-2018  JiaYanwei   <wxmedit@gmail.com>
 // License:     GPLv3
 ///////////////////////////////////////////////////////////////////////////////
 

@@ -2,7 +2,7 @@
 // vim:         ts=4 sw=4
 // Name:        xm/encoding/unicode.cpp
 // Description: Define the Unicode Encodings Supported by wxMEdit
-// Copyright:   2013-2016  JiaYanwei   <wxmedit@gmail.com>
+// Copyright:   2013-2018  JiaYanwei   <wxmedit@gmail.com>
 // License:     GPLv3
 ///////////////////////////////////////////////////////////////////////////////
 

@@ -1,7 +1,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 // vim:         sw=4 ts=4
 // Description: Encoding Detection Cases from ICU
-// Copyright:   2013-2016  JiaYanwei   <wxmedit@gmail.com>
+// Copyright:   2013-2018  JiaYanwei   <wxmedit@gmail.com>
 // License:     GPLv3
 ///////////////////////////////////////////////////////////////////////////////
 #include "data_from_icudet.h"

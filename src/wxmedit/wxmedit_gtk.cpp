@@ -1,7 +1,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        wxmedit/wxmedit_gtk.cpp
 // Description: Fixed GTK2 KeyPress Event Handler for CJK InputMethod
-// Copyright:   2013-2016  JiaYanwei   <wxmedit@gmail.com>
+// Copyright:   2013-2018  JiaYanwei   <wxmedit@gmail.com>
 //              2006-2010  Alston Chen <madedit@gmail.com>
 // License:     GPLv3
 ///////////////////////////////////////////////////////////////////////////////

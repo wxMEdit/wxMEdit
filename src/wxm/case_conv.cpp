@@ -2,7 +2,7 @@
 // vim:         ts=4 sw=4
 // Name:        wxm/case_conv.cpp
 // Description: Case Conversion for wxWidgets String
-// Copyright:   2013-2016  JiaYanwei   <wxmedit@gmail.com>
+// Copyright:   2013-2018  JiaYanwei   <wxmedit@gmail.com>
 // License:     GPLv3
 ///////////////////////////////////////////////////////////////////////////////
 

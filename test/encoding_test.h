@@ -1,7 +1,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 // vim:         sw=4 ts=4
 // Description: Encoding Test Utils
-// Copyright:   2013-2016  JiaYanwei   <wxmedit@gmail.com>
+// Copyright:   2013-2018  JiaYanwei   <wxmedit@gmail.com>
 // License:     GPLv3
 ///////////////////////////////////////////////////////////////////////////////
 #ifndef WXMEDIT_ENCODING_TEST_H

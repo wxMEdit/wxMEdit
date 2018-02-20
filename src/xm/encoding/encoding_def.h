@@ -2,7 +2,7 @@
 // vim:         ts=4 sw=4
 // Name:        xm/encoding/encoding_def.h
 // Description: Encoding Relative Definitions of wxMEdit
-// Copyright:   2013-2016  JiaYanwei   <wxmedit@gmail.com>
+// Copyright:   2013-2018  JiaYanwei   <wxmedit@gmail.com>
 // License:     GPLv3
 ///////////////////////////////////////////////////////////////////////////////
 #ifndef _XM_ENCODING_DEF_H_

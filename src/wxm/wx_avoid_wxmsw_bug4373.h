@@ -2,7 +2,7 @@
 // vim:         ts=4 sw=4
 // Name:        xm/wx_avoid_wxmsw_bug4373.h
 // Description: To avoid the bug 4373 of wxMSW-2.8.12 or lower
-// Copyright:   2013-2016  JiaYanwei   <wxmedit@gmail.com>
+// Copyright:   2013-2018  JiaYanwei   <wxmedit@gmail.com>
 // License:     GPLv3
 ///////////////////////////////////////////////////////////////////////////////
 

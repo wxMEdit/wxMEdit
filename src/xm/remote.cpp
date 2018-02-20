@@ -2,7 +2,7 @@
 // vim:         sw=4 ts=4
 // Name:        xm/wxm_remote.h
 // Description: Remote File Access
-// Copyright:   2014-2016  JiaYanwei   <wxmedit@gmail.com>
+// Copyright:   2014-2018  JiaYanwei   <wxmedit@gmail.com>
 // License:     GPLv3
 ///////////////////////////////////////////////////////////////////////////////
 

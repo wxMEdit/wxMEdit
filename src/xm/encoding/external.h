@@ -2,7 +2,7 @@
 // vim:         ts=4 sw=4
 // Name:        xm/encoding/external.h
 // Description: Declaration of External Dependencies
-// Copyright:   2015-2016  JiaYanwei   <wxmedit@gmail.com>
+// Copyright:   2015-2018  JiaYanwei   <wxmedit@gmail.com>
 // License:     GPLv3
 ///////////////////////////////////////////////////////////////////////////////
 #ifndef _XM_ENCODING_EXTERNAL_H_

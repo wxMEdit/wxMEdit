@@ -2,7 +2,7 @@
 // vim:         sw=4 ts=4
 // Name:        wxm/searcher.cpp
 // Description: wxMEdit Searching and Replacing Functions
-// Copyright:   2013-2016  JiaYanwei   <wxmedit@gmail.com>
+// Copyright:   2013-2018  JiaYanwei   <wxmedit@gmail.com>
 //              2005-2010  Alston Chen <madedit@gmail.com>
 // License:     GPLv3
 ///////////////////////////////////////////////////////////////////////////////

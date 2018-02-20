@@ -1,7 +1,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        dialog/wxm_file_association_dialog.cpp
 // Description: File Type Association Dialog for MSWindows
-// Copyright:   2013-2016  JiaYanwei   <wxmedit@gmail.com>
+// Copyright:   2013-2018  JiaYanwei   <wxmedit@gmail.com>
 //              2007-2010  Alston Chen <madedit@gmail.com>
 // License:     GPLv3
 ///////////////////////////////////////////////////////////////////////////////
