@@ -1326,13 +1326,13 @@ int MadSyntax::FindStringCase(xm::UCQueue & ucqueue, size_t first,
                         size_t & len)
 {
     int idx = 1;
-    ucs4_t firstuc = ucqueue[first].first;
+    ucs4_t firstuc = ucqueue[first].ucs4();
     size_t ucsize = ucqueue.size() - first;
     wxASSERT(ucsize > 0);
     bool noNewLine = true;
     if(ucsize > 1)
     {
-        ucs4_t uc = ucqueue.back().first;
+		ucs4_t uc = ucqueue.back().ucs4();
         if(uc==0x0D || uc==0x0A)
         {
             noNewLine = false;
@@ -1353,7 +1353,7 @@ int MadSyntax::FindStringCase(xm::UCQueue & ucqueue, size_t first,
             {
                 while( nw_MadLines->NextUChar(ucqueue) )
                 {
-                    ucs4_t uc = ucqueue.back().first;
+					ucs4_t uc = ucqueue.back().ucs4();
                     if(uc==0x0D || uc==0x0A)
                     {
                         noNewLine = false;
@@ -1369,7 +1369,7 @@ int MadSyntax::FindStringCase(xm::UCQueue & ucqueue, size_t first,
                 std::advance(it, first + 1);
                 while(*(++cstr) != 0)
                 {
-                    if((ucs4_t)*cstr != it->first) break;
+					if ((ucs4_t)*cstr != it->ucs4()) break;
                     ++it;
                 }
                 if(*cstr == 0) return idx;
@@ -1388,7 +1388,7 @@ int MadSyntax::FindStringNoCase(xm::UCQueue & ucqueue, size_t first,
                    size_t & len)
 {
     int idx = 1;
-    ucs4_t firstuc = ucqueue[first].first;
+	ucs4_t firstuc = ucqueue[first].ucs4();
 
     if(firstuc>='A' && firstuc<='Z')
     {
@@ -1400,7 +1400,7 @@ int MadSyntax::FindStringNoCase(xm::UCQueue & ucqueue, size_t first,
     bool noNewLine = true;
     if(ucsize > 1)
     {
-        ucs4_t uc = ucqueue.back().first;
+		ucs4_t uc = ucqueue.back().ucs4();
         if(uc==0x0D || uc==0x0A)
         {
             noNewLine = false;
@@ -1421,7 +1421,7 @@ int MadSyntax::FindStringNoCase(xm::UCQueue & ucqueue, size_t first,
             {
                 while( nw_MadLines->NextUChar(ucqueue) )
                 {
-                    ucs4_t uc = ucqueue.back().first;
+					ucs4_t uc = ucqueue.back().ucs4();
                     if(uc==0x0D || uc==0x0A)
                     {
                         noNewLine = false;
@@ -1437,7 +1437,7 @@ int MadSyntax::FindStringNoCase(xm::UCQueue & ucqueue, size_t first,
                 std::advance(it, first + 1);
                 while(*(++cstr) != 0)
                 {
-                    ucs4_t uc = it->first;
+                    ucs4_t uc = it->ucs4();
                     if(uc>='A' && uc<='Z')
                     {
                         uc |= 0x20; // to lower case
@@ -1483,7 +1483,7 @@ int MadSyntax::NextWord(int &wordwidth)
             size_t ucsize = nw_ucqueue.size();
             if(ucsize)
             {
-                ucs4_t lastuc = nw_ucqueue.back().first;
+                ucs4_t lastuc = nw_ucqueue.back().ucs4();
                 if(lastuc == 0x0D || lastuc == 0x0A)
                 {
                     nw_ucqueue.pop_back();
@@ -1503,7 +1503,7 @@ int MadSyntax::NextWord(int &wordwidth)
 
             if(!nw_CommentUntilEOL)
             {
-                ucs4_t firstuc = nw_ucqueue[nw_FirstIndex].first;
+				ucs4_t firstuc = nw_ucqueue[nw_FirstIndex].ucs4();
 
                 if( /*firstuc < 0x100 && */ !IsSpace(firstuc))
                 {
@@ -1518,7 +1518,7 @@ int MadSyntax::NextWord(int &wordwidth)
                             idx = (int)nw_FirstIndex + 1;
                             if(nw_ucqueue.size() > (size_t) idx)
                             {
-                                ucs4_t c = nw_ucqueue[idx].first;
+								ucs4_t c = nw_ucqueue[idx].ucs4();
                                 if(c!=0x0D && c!=0x0A)
                                 {
                                     ++nw_FirstIndex;
@@ -1765,7 +1765,7 @@ int MadSyntax::NextWord(int &wordwidth)
     int old_line_width = nw_LineWidth;
 
     int width;
-    ucs4_t uc = nw_ucqueue.front().first;
+    ucs4_t uc = nw_ucqueue.front().ucs4();
     if(IsSpace(uc))
     {
         SetAttributes(aeSpace);
@@ -1783,7 +1783,7 @@ int MadSyntax::NextWord(int &wordwidth)
             --nw_FirstIndex;
         }
         while(--nw_RestCount && nw_LineWidth < nw_RowIndexIter->m_Width
-                    && IsSpace(uc = nw_ucqueue.front().first));
+                    && IsSpace(uc = nw_ucqueue.front().ucs4()));
 
         nw_Word[idx] = 0;
 
@@ -1804,7 +1804,7 @@ int MadSyntax::NextWord(int &wordwidth)
             --nw_FirstIndex;
         }
         while(--nw_RestCount && nw_LineWidth < nw_RowIndexIter->m_Width
-                    && !IsSpace(uc = nw_ucqueue.front().first));
+                    && !IsSpace(uc = nw_ucqueue.front().ucs4()));
 
         nw_Word[idx] = 0;
 
@@ -1825,7 +1825,7 @@ int MadSyntax::NextWord(int &wordwidth)
             --nw_FirstIndex;
         }
         while(--nw_RestCount && nw_LineWidth < nw_RowIndexIter->m_Width
-                    && !IsSpace(uc = nw_ucqueue.front().first));
+                    && !IsSpace(uc = nw_ucqueue.front().ucs4()));
 
         nw_Word[idx] = 0;
 
@@ -1846,7 +1846,7 @@ int MadSyntax::NextWord(int &wordwidth)
             --nw_FirstIndex;
         }
         while(--nw_RestCount && nw_LineWidth < nw_RowIndexIter->m_Width
-                    && !IsSpace(uc = nw_ucqueue.front().first));
+                    && !IsSpace(uc = nw_ucqueue.front().ucs4()));
 
         nw_Word[idx] = 0;
 
@@ -1870,7 +1870,7 @@ int MadSyntax::NextWord(int &wordwidth)
                 --nw_FirstIndex;
             }
             while(--nw_RestCount && nw_LineWidth < nw_RowIndexIter->m_Width
-                        && IsNotDelimiter(uc = nw_ucqueue.front().first));
+                        && IsNotDelimiter(uc = nw_ucqueue.front().ucs4()));
 
             nw_Word[idx] = 0;
 
@@ -1891,7 +1891,7 @@ int MadSyntax::NextWord(int &wordwidth)
                 --nw_FirstIndex;
             }
             while(--nw_RestCount && nw_LineWidth < nw_RowIndexIter->m_Width
-                        && IsNotDelimiter(uc = nw_ucqueue.front().first));
+                        && IsNotDelimiter(uc = nw_ucqueue.front().ucs4()));
 
             nw_Word[idx] = 0;
 
@@ -1914,7 +1914,7 @@ int MadSyntax::NextWord(int &wordwidth)
                 --nw_FirstIndex;
             }
             while(--nw_RestCount && nw_LineWidth < nw_RowIndexIter->m_Width
-                        && (uc = nw_ucqueue[idx].first) < 0x100 && IsNotDelimiter(uc));
+                        && (uc = nw_ucqueue[idx].ucs4()) < 0x100 && IsNotDelimiter(uc));
 
             nw_Word[idx] = 0;
 
@@ -2006,7 +2006,7 @@ int MadSyntax::NextWord(int &wordwidth)
                 --nw_FirstIndex;
             }
             while(--nw_RestCount && nw_LineWidth < nw_RowIndexIter->m_Width
-                        && IsDelimiter(uc = nw_ucqueue.front().first)
+                        && IsDelimiter(uc = nw_ucqueue.front().ucs4())
                         && m_KeywordPrefix.Find(wxChar(uc)) < 0
                         && m_SpecialWordPrefix.Find(wxChar(uc)) < 0);
 
@@ -2028,7 +2028,7 @@ int MadSyntax::NextWord(int &wordwidth)
                 --nw_FirstIndex;
             }
             while(--nw_RestCount && nw_LineWidth < nw_RowIndexIter->m_Width
-                        && IsNotDelimiter(uc = nw_ucqueue.front().first));
+                        && IsNotDelimiter(uc = nw_ucqueue.front().ucs4()));
 
             nw_Word[idx] = 0;
 
@@ -2109,7 +2109,7 @@ int MadSyntax::NextWord(int &wordwidth)
             --nw_FirstIndex;
         }
         while(--nw_RestCount && nw_LineWidth < nw_RowIndexIter->m_Width
-                    && (uc = nw_ucqueue.front().first) >= 0x100);
+                    && (uc = nw_ucqueue.front().ucs4()) >= 0x100);
 
         nw_Word[idx] = 0;
 

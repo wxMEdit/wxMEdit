@@ -697,14 +697,14 @@ void InFrameWXMEdit::PrintHexPage(wxDC *dc, int pageNum)
 					m_Lines->NextUChar(ucqueue);
 				}
 
-				xm::UCPair &ucp = ucqueue.back();
-				rowpos += ucp.second;
-				if (ucp.first <= 0x20)
+				xm::CharUnit& cu = ucqueue.back();
+				rowpos += cu.nbytes();
+				if (cu.ucs4() <= 0x20)
 					lines << wxT('.');
 				else
-					WxStrAppendUCS4(lines, ucp.first);
+					WxStrAppendUCS4(lines, cu.ucs4());
 
-				idx = ucp.second - 1;
+				idx = cu.nbytes() - 1;
 				if (idx>0 && rowpos<hexrowpos16)
 				{
 					do
@@ -885,7 +885,7 @@ void InFrameWXMEdit::ColumnAlign()
 		{
 			ucs4_t uc = 0x0D;
 			if (m_Lines->NextUChar(ucqueue))
-				uc = ucqueue.back().first;
+				uc = ucqueue.back().ucs4();
 
 			if (uc == 0x0D || uc == 0x0A)  // EOL
 				break;
@@ -894,7 +894,7 @@ void InFrameWXMEdit::ColumnAlign()
 			nowxpos += ucwidth;
 
 			if (nowxpos < rxpos + ucwidth / 2)
-				rowpos += ucqueue.back().second;
+				rowpos += ucqueue.back().nbytes();
 
 		} while (rowpos < rowendpos && nowxpos < rxpos);
 
@@ -904,12 +904,12 @@ void InFrameWXMEdit::ColumnAlign()
 		{
 			ucs4_t uc = 0x0D;
 			if (m_Lines->NextUChar(ucqueue))
-				uc = ucqueue.back().first;
+				uc = ucqueue.back().ucs4();
 
 			if (uc != 0x20 && uc != ucs4_t('\t'))
 				break;
 			++dellen;
-			tmprowpos += ucqueue.back().second;
+			tmprowpos += ucqueue.back().nbytes();
 		}
 		if (dellen != 0)
 		{

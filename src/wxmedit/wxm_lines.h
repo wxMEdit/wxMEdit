@@ -166,13 +166,13 @@ namespace wxm
 		ExtUCQueue() : u16idx(0) {}
 		void IncIndex()
 		{
-			u16idx += (q.back().first > 0x10000)? 2: 1;
+			u16idx += (q.back().ucs4() > 0x10000) ? 2 : 1;
 		}
 		int32_t U16Index() { return u16idx; }
 		void pop_front() { q.pop_front(); }
-		xm::UCPair& back() { return q.back(); }
-		xm::UCPair& front() { return q.front(); }
-		xm::UCPair& operator[] (size_t idx) { return q[idx]; }
+		xm::CharUnit& back() { return q.back(); }
+		xm::CharUnit& front() { return q.front(); }
+		xm::CharUnit& operator[] (size_t idx) { return q[idx]; }
 		bool empty() { return q.empty(); }
 		size_t size() { return q.size(); }
 		xm::UCQueue::iterator begin() { return q.begin(); }
@@ -546,7 +546,7 @@ private:
     // reformat lines in [first,last]
     size_t Reformat(MadLineIterator first, MadLineIterator last);
 
-    void DoCheckState(MadLineIterator iter, wxm::ExtUCQueue& ucqueue, xm::UCPair& ucp, ucs4_t prevuc, ucs4_t& lastuc, int& notSpaceCount, size_t& eatUCharCount, int& index, size_t& length, size_t bracepos, int*& bracexpos, int& bracexpos_count, MadLineState& state, MadStringIterator& sit, MadStringIterator& sitend, bool BeginOfLine, MadSyntaxRange* srange);
+    void DoCheckState(MadLineIterator iter, wxm::ExtUCQueue& ucqueue, xm::CharUnit& cu, ucs4_t prevuc, ucs4_t& lastuc, int& notSpaceCount, size_t& eatUCharCount, int& index, size_t& length, size_t bracepos, int*& bracexpos, int& bracexpos_count, MadLineState& state, MadStringIterator& sit, MadStringIterator& sitend, bool BeginOfLine, MadSyntaxRange* srange);
 
     // Recount all lines' width
     void RecountLineWidth(void);
@@ -631,8 +631,8 @@ public:
     }
 
     // should not frequently use this, it's slowly
-    // if no, return xm::UCPair(0, 0)
-    xm::UCPair PreviousUChar(/*IN_OUT*/MadLineIterator &lit, /*IN_OUT*/wxFileOffset &linepos);
+    // if no, return xm::CharUnit(0, 0)
+    xm::CharUnit PreviousUChar(/*IN_OUT*/MadLineIterator &lit, /*IN_OUT*/wxFileOffset &linepos);
 };
 
 

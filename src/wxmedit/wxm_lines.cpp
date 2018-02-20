@@ -857,7 +857,7 @@ void MadLines::InitNextUChar(const MadLineIterator &iter, const wxFileOffset pos
 
 void MadLines::MoveUChar32Bytes(xm::UCQueue &ucqueue, ucs4_t uc, size_t len)
 {
-    ucqueue.push_back(xm::UCPair(uc, len));
+    ucqueue.push_back(xm::CharUnit(uc, len));
     m_NextUChar_Pos += len;
     m_NextUChar_BufferStart += len;
     m_NextUChar_BufferSize -= len;
@@ -893,7 +893,7 @@ bool MadLines::NextUCharIs0x0A(void)
     return m_Encoding->IsUChar32_LineFeed(buf, size_t(rest));
 }
 
-xm::UCPair MadLines::PreviousUChar(/*IN_OUT*/MadLineIterator &lit, /*IN_OUT*/wxFileOffset &linepos)
+xm::CharUnit MadLines::PreviousUChar(/*IN_OUT*/MadLineIterator &lit, /*IN_OUT*/wxFileOffset &linepos)
 {
     wxASSERT(linepos>=0);
 
@@ -902,7 +902,7 @@ xm::UCPair MadLines::PreviousUChar(/*IN_OUT*/MadLineIterator &lit, /*IN_OUT*/wxF
     if(linepos==0)
     {
         if(lit==m_LineList.begin())
-            return xm::UCPair(0, 0);
+            return xm::CharUnit(0, 0);
 
         --lit;
         linepos=lit->m_Size-lit->m_NewLineSize;
@@ -913,7 +913,7 @@ xm::UCPair MadLines::PreviousUChar(/*IN_OUT*/MadLineIterator &lit, /*IN_OUT*/wxF
 
         if(NextUChar(ucq))  // 0D -> 0A
         {
-            linepos+=ucq.front().second;
+            linepos+=ucq.front().nbytes();
         }
 
         return ucq.back();
@@ -927,7 +927,7 @@ xm::UCPair MadLines::PreviousUChar(/*IN_OUT*/MadLineIterator &lit, /*IN_OUT*/wxF
         InitNextUChar(lit, lpos);
         NextUChar(ucq);
 
-        if(lpos+ucq.back().second == linepos)
+        if(lpos+ucq.back().nbytes() == linepos)
         {
             break; //found
         }
@@ -936,7 +936,7 @@ xm::UCPair MadLines::PreviousUChar(/*IN_OUT*/MadLineIterator &lit, /*IN_OUT*/wxF
 
     if(lpos==linepos)
     {
-        return xm::UCPair(0, 0);
+        return xm::CharUnit(0, 0);
     }
 
     linepos=lpos;
@@ -952,12 +952,12 @@ int MadLines::FindStringCase(wxm::ExtUCQueue &ucqueue, MadStringIterator begin,
     wxASSERT(!ucqueue.empty());
 
     int idx = 1;
-    ucs4_t firstuc = ucqueue.front().first;
+    ucs4_t firstuc = ucqueue.front().ucs4();
     size_t ucsize = ucqueue.size();
     bool noNewLine = true;
     if(ucsize > 1)
     {
-        ucs4_t uc = ucqueue.back().first;
+        ucs4_t uc = ucqueue.back().ucs4();
         if(uc==0x0D || uc==0x0A)
         {
             noNewLine = false;
@@ -978,7 +978,7 @@ int MadLines::FindStringCase(wxm::ExtUCQueue &ucqueue, MadStringIterator begin,
             {
                 while( NextUChar(ucqueue) )
                 {
-                    ucs4_t uc = ucqueue.back().first;
+                    ucs4_t uc = ucqueue.back().ucs4();
                     if(uc==0x0D || uc==0x0A)
                     {
                         noNewLine = false;
@@ -994,7 +994,7 @@ int MadLines::FindStringCase(wxm::ExtUCQueue &ucqueue, MadStringIterator begin,
                 ++it;
                 while(*(++cstr) != 0)
                 {
-                    if((ucs4_t)*cstr != it->first) break;
+                    if((ucs4_t)*cstr != it->ucs4()) break;
                     ++it;
                 }
                 if(*cstr == 0) return idx;
@@ -1015,7 +1015,7 @@ int MadLines::FindStringNoCase(wxm::ExtUCQueue &ucqueue, MadStringIterator begin
     wxASSERT(!ucqueue.empty());
 
     int idx = 1;
-    ucs4_t uc, firstuc = ucqueue.front().first;
+    ucs4_t uc, firstuc = ucqueue.front().ucs4();
 
     if(firstuc>='A' && firstuc<='Z')
     {
@@ -1026,7 +1026,7 @@ int MadLines::FindStringNoCase(wxm::ExtUCQueue &ucqueue, MadStringIterator begin
     bool noNewLine = true;
     if(ucsize > 1)
     {
-        ucs4_t uc = ucqueue.back().first;
+        ucs4_t uc = ucqueue.back().ucs4();
         if(uc==0x0D || uc==0x0A)
         {
             noNewLine = false;
@@ -1047,7 +1047,7 @@ int MadLines::FindStringNoCase(wxm::ExtUCQueue &ucqueue, MadStringIterator begin
             {
                 while( NextUChar(ucqueue) )
                 {
-                    ucs4_t uc = ucqueue.back().first;
+                    ucs4_t uc = ucqueue.back().ucs4();
                     if(uc==0x0D || uc==0x0A)
                     {
                         noNewLine = false;
@@ -1063,7 +1063,7 @@ int MadLines::FindStringNoCase(wxm::ExtUCQueue &ucqueue, MadStringIterator begin
                 ++it;
                 while(*(++cstr) != 0)
                 {
-                    uc=it->first;
+                    uc=it->ucs4();
                     if(uc>='A' && uc<='Z')
                     {
                         uc |= 0x20; // to lower case
@@ -1083,9 +1083,9 @@ int MadLines::FindStringNoCase(wxm::ExtUCQueue &ucqueue, MadStringIterator begin
     return 0;
 }
 
-void MadLines::DoCheckState(MadLineIterator iter, wxm::ExtUCQueue& ucqueue, xm::UCPair& ucp, ucs4_t prevuc, ucs4_t& lastuc, int& notSpaceCount, size_t& eatUCharCount, int& index, size_t& length, size_t bracepos, int*& bracexpos, int& bracexpos_count, MadLineState& state, MadStringIterator& sit, MadStringIterator& sitend, bool BeginOfLine, MadSyntaxRange* srange)
+void MadLines::DoCheckState(MadLineIterator iter, wxm::ExtUCQueue& ucqueue, xm::CharUnit& cu, ucs4_t prevuc, ucs4_t& lastuc, int& notSpaceCount, size_t& eatUCharCount, int& index, size_t& length, size_t bracepos, int*& bracexpos, int& bracexpos_count, MadLineState& state, MadStringIterator& sit, MadStringIterator& sitend, bool BeginOfLine, MadSyntaxRange* srange)
 {
-    ucs4_t uc = ucp.first;
+    ucs4_t uc = cu.ucs4();
     if (uc >= 0x100 || uc == 0x20 || uc == 0x09)
         return;
 
@@ -1100,11 +1100,11 @@ void MadLines::DoCheckState(MadLineIterator iter, wxm::ExtUCQueue& ucqueue, xm::
         if (index != 0)
         {
             ok = true;
-            ucs4_t uc = ucqueue[length - 1].first;
+            ucs4_t uc = ucqueue[length - 1].ucs4();
             if (!m_Syntax->IsDelimiter(uc) && uc>0x20 && // check last char for wholeword
                 (ucqueue.size() > length || NextUChar(ucqueue)) )
             {
-                uc = ucqueue[length].first;
+                uc = ucqueue[length].ucs4();
                 if (!m_Syntax->IsDelimiter(uc) && uc > 0x20)
                     ok = false;
             }
@@ -1119,15 +1119,15 @@ void MadLines::DoCheckState(MadLineIterator iter, wxm::ExtUCQueue& ucqueue, xm::
         if (ok)
         {
             //eatUCharCount = length;
-            wxUint16 len = wxUint16(ucp.second);
+            wxUint16 len = wxUint16(cu.nbytes());
             wxUint16 width = m_MadEdit->GetUCharWidth(uc);
             if (length > 1)
             {
                 size_t idx = 1;
                 do
                 {
-                    len += ucqueue[idx].second;
-                    width += m_MadEdit->GetUCharWidth(ucqueue[idx].first);
+                    len += ucqueue[idx].nbytes();
+                    width += m_MadEdit->GetUCharWidth(ucqueue[idx].ucs4());
                 } while (++idx < length);
             }
             iter->m_BracePairIndices.push_back(BracePairIndex(0, width, bracepos, len, 1, index - 1));
@@ -1138,11 +1138,11 @@ void MadLines::DoCheckState(MadLineIterator iter, wxm::ExtUCQueue& ucqueue, xm::
         if ((index = (this->*FindString)(ucqueue, m_Syntax->m_RightBrace.begin(), m_Syntax->m_RightBrace.end(), length)) != 0)
         {
             ok = true;
-            ucs4_t uc = ucqueue[length - 1].first;
+            ucs4_t uc = ucqueue[length - 1].ucs4();
             if (!m_Syntax->IsDelimiter(uc) && uc>0x20 && // check last char for wholeword
                 (ucqueue.size() > length || NextUChar(ucqueue)))
             {
-                uc = ucqueue[length].first;
+                uc = ucqueue[length].ucs4();
                 if (!m_Syntax->IsDelimiter(uc) && uc > 0x20)
                     ok = false;
             }
@@ -1156,15 +1156,15 @@ void MadLines::DoCheckState(MadLineIterator iter, wxm::ExtUCQueue& ucqueue, xm::
             if (ok)
             {
                 //eatUCharCount = length;
-                wxUint16 len = wxUint16(ucp.second);
+                wxUint16 len = wxUint16(cu.nbytes());
                 wxUint16 width = m_MadEdit->GetUCharWidth(uc);
                 if (length > 1)
                 {
                     size_t idx = 1;
                     do
                     {
-                        len += ucqueue[idx].second;
-                        width += m_MadEdit->GetUCharWidth(ucqueue[idx].first);
+                        len += ucqueue[idx].nbytes();
+                        width += m_MadEdit->GetUCharWidth(ucqueue[idx].ucs4());
                     } while (++idx < length);
                 }
                 iter->m_BracePairIndices.push_back(BracePairIndex(0, width, bracepos, len, 0, index - 1));
@@ -1184,7 +1184,7 @@ void MadLines::DoCheckState(MadLineIterator iter, wxm::ExtUCQueue& ucqueue, xm::
 
             if (ucqueue.size() != 1)
             {
-                lastuc = ucqueue[1].first;
+                lastuc = ucqueue[1].ucs4();
                 if (lastuc != 0x0D && lastuc != 0x0A)
                     ++eatUCharCount;//=2
             }
@@ -1455,7 +1455,7 @@ UnicodeString MadLines::DumpUTF16String(MadLineIterator iter)
     int ulen = 0;
     while (NextUChar(ucq))
     {
-        UChar32 ch = (UChar32)ucq.back().first;
+        UChar32 ch = (UChar32)ucq.back().ucs4();
         ustr += ch;
         ++ulen;
         if (ch==0x0D || ch==0x0A || ulen>m_MadEdit->MaxLineLength())
@@ -1503,9 +1503,9 @@ MadLineState MadLines::Reformat(MadLineIterator iter)
 
     // ignore BOM in first line
     if (m_Encoding->IsUnicodeEncoding() &&
-        ucqueue.front().first == 0xFEFF && iter == m_LineList.begin())
+        ucqueue.front().ucs4() == 0xFEFF && iter == m_LineList.begin())
     {
-        rowidx.m_Start = ucqueue.front().second;
+        rowidx.m_Start = ucqueue.front().nbytes();
         bomlen = size_t(rowidx.m_Start);
         ucqueue.pop_front();
         NextUChar(ucqueue);
@@ -1569,9 +1569,9 @@ MadLineState MadLines::Reformat(MadLineIterator iter)
             {
                 prevuc = firstuc;
 
-                xm::UCPair &ucp = ucqueue.front();
-                firstuc = ucp.first;
-                firstuclen = ucp.second;
+                xm::CharUnit& cu = ucqueue.front();
+                firstuc = cu.ucs4();
+                firstuclen = cu.nbytes();
                 if(firstuc == 0x0D)
                 {
                     wxASSERT(ucqueue.size() == 1);
@@ -1586,7 +1586,7 @@ MadLineState MadLines::Reformat(MadLineIterator iter)
                     {
                         NextUChar(ucqueue);
                         m_MadEdit->m_newline = &wxm::g_nl_dos;
-                        iter->m_NewLineSize = ucqueue.back().second;
+                        iter->m_NewLineSize = ucqueue.back().nbytes();
                         iter->m_nl = &wxm::g_nl_dos;
                     }
                     else
@@ -1627,7 +1627,7 @@ MadLineState MadLines::Reformat(MadLineIterator iter)
                     ++eatUCharCount; // = 1;
 
                     if(CheckState)
-                        DoCheckState(iter, ucqueue, ucp, prevuc, lastuc, notSpaceCount, eatUCharCount, index, length, bracepos, bracexpos, bracexpos_count, state, sit, sitend, BeginOfLine, srange);
+                        DoCheckState(iter, ucqueue, cu, prevuc, lastuc, notSpaceCount, eatUCharCount, index, length, bracepos, bracexpos, bracexpos_count, state, sit, sitend, BeginOfLine, srange);
                 }
 
                 // eat one front uchar
@@ -1903,9 +1903,9 @@ void MadLines::RecountLineWidth(void)
 
             do
             {
-                xm::UCPair &ucp = ucqueue.front();
-                firstuc = ucp.first;
-                firstuclen = ucp.second;
+                xm::CharUnit& cu = ucqueue.front();
+                firstuc = cu.ucs4();
+                firstuclen = cu.nbytes();
                 if(firstuc == 0x0D)
                 {
                     wxASSERT(ucqueue.size() == 1);

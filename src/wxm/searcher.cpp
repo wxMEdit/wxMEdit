@@ -431,7 +431,7 @@ struct UCIterator : public WXMCharIterator   // ucs4_t widechar iterator
 	{
 		wxASSERT(ucqidx >= 0 && ucqidx < int(ucqit->ucq.size()));
 
-		return ucqit->ucq[ucqidx].first;
+		return ucqit->ucq[ucqidx].ucs4();
 	}
 
 	/***
@@ -448,7 +448,7 @@ struct UCIterator : public WXMCharIterator   // ucs4_t widechar iterator
 
 		xm::UCQueue *ucqueue = &(ucqit->ucq);
 
-		int len = (*ucqueue)[ucqidx].second;
+		int len = (*ucqueue)[ucqidx].nbytes();
 		pos += len;
 		linepos += len;
 
@@ -528,18 +528,18 @@ struct UCIterator : public WXMCharIterator   // ucs4_t widechar iterator
 
 			ucqidx = 0;
 
-			xm::UCPair ucp = s_lines->PreviousUChar(lit, linepos);
+			xm::CharUnit cu = s_lines->PreviousUChar(lit, linepos);
 
-			wxASSERT(ucp.second != 0);
+			wxASSERT(cu.nbytes() != 0);
 
-			pos -= ucp.second;
-			ucqit->ucq.push_back(ucp);
+			pos -= cu.nbytes();
+			ucqit->ucq.push_back(cu);
 
 			return *this;
 		}
 
 		--ucqidx;
-		int len = ucqit->ucq[ucqidx].second;
+		int len = ucqit->ucq[ucqidx].nbytes();
 		pos -= len;
 
 		if (linepos == 0)
@@ -1012,8 +1012,8 @@ MadSearchResult TextSearcher::FindPrevious(const wxString &text,
 					m_edit->m_Lines->InitNextUChar(bpos1.iter, 0);
 					m_edit->m_Lines->NextUChar(ucq);
 				}
-				bpos1.pos += ucq.back().second;
-				bpos1.linepos += ucq.back().second;
+				bpos1.pos += ucq.back().nbytes();
+				bpos1.linepos += ucq.back().nbytes();
 
 				epos1 = epos;
 			} while (Search(bpos1, epos1, text));

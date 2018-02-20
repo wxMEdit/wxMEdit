@@ -37,9 +37,18 @@ namespace xm
 {
 
 typedef std::vector < MadBlock > BlockVector;
-typedef BlockVector::iterator    BlockIterator;
-typedef std::pair<ucs4_t, int>   UCPair;  // ucs4char, uc_len
-typedef deque<UCPair>            UCQueue;
+typedef BlockVector::iterator BlockIterator;
+
+struct CharUnit {
+	ucs4_t ucs4() const { return u.first; }
+	int nbytes() const { return u.second; }
+
+	CharUnit(ucs4_t ucs4, int nbytes) : u(ucs4, nbytes) {}
+private:
+	std::pair<ucs4_t, int> u;
+};
+
+typedef deque<CharUnit> UCQueue;
 
 struct BlockDumper
 {

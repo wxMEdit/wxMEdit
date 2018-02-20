@@ -452,11 +452,11 @@ void MadEdit::IncreaseDecreaseIndent(bool incIndent)
         // get spaces at begin of line
         while(m_Lines->NextUChar(ucqueue))
         {
-            uc=ucqueue.back().first;
+            uc=ucqueue.back().ucs4();
             if(uc==0x20 || uc==0x09)
             {
                 spaces.push_back(uc);
-                nonspacepos+=ucqueue.back().second;
+                nonspacepos+=ucqueue.back().nbytes();
             }
             else
             {
@@ -619,11 +619,11 @@ void MadEdit::CommentUncomment(bool comment)
         // get spaces at begin of line
         while(m_Lines->NextUChar(ucqueue))
         {
-            uc=ucqueue.back().first;
+            uc=ucqueue.back().ucs4();
             if(uc==0x20 || uc==0x09)
             {
                 spaces.push_back(uc);
-                nonspacepos+=ucqueue.back().second;
+                nonspacepos+=ucqueue.back().nbytes();
             }
             else
             {
@@ -639,8 +639,8 @@ void MadEdit::CommentUncomment(bool comment)
             size_t cmtsize=0;
             do
             {
-                cmt.push_back(ucqueue.back().first);
-                cmtsize+=ucqueue.back().second;
+                cmt.push_back(ucqueue.back().ucs4());
+                cmtsize+=ucqueue.back().nbytes();
             }
             while(cmt.size()<commentlen && m_Lines->NextUChar(ucqueue));
 
@@ -1271,9 +1271,9 @@ void MadEdit::WordCount(bool selection, wxm::WordCountData& data)
             m_Lines->InitNextUChar(lit, 0);
             m_Lines->NextUChar(ucqueue);
         }
-        xm::UCPair &ucp=ucqueue.back();
-        nowpos+=ucp.second;
-        ucs4_t uc=ucp.first;
+        xm::CharUnit& cu=ucqueue.back();
+        nowpos+=cu.nbytes();
+        ucs4_t uc=cu.ucs4();
 
         idx = ublock_set.FindBlockIndex(uc);
         ublock_counter.Count(idx);
@@ -1343,7 +1343,7 @@ SortLineData::SortLineData(const MadLineIterator& l, int id)
     ucs4_t uc;
     while(s_lines->NextUChar(ucq)) // get line content
     {
-        if( (uc=ucq.back().first)==0x0D || uc==0x0A)
+        if( (uc=ucq.back().ucs4())==0x0D || uc==0x0A)
         {
             ucq.pop_back();
             break;
@@ -1451,7 +1451,7 @@ SortLineData::SortLineData(const MadLineIterator& l, int id)
         {
             do
             {
-                if(ucq[int_begin].first!='0')
+                if(ucq[int_begin].ucs4()!='0')
                 {
                     break;
                 }
@@ -1463,7 +1463,7 @@ SortLineData::SortLineData(const MadLineIterator& l, int id)
         {
             do
             {
-                if(ucq[frac_begin+frac_len-1].first!='0')
+                if(ucq[frac_begin+frac_len-1].ucs4()!='0')
                 {
                     break;
                 }
@@ -2012,7 +2012,7 @@ void MadEdit::ConvertSpaceToTab()
             {
                 int uc = 0x0D;
                 if(m_Lines->NextUChar(ucqueue))
-                    uc = ucqueue.back().first;
+                    uc = ucqueue.back().ucs4();
 
                 if(uc == 0x0D || uc == 0x0A)    // EOL
                 {
@@ -2025,7 +2025,7 @@ void MadEdit::ConvertSpaceToTab()
                 int uchw = ucwidth >> 1;
                 if(xpos1 > uchw)
                 {
-                    rowpos += ucqueue.back().second;
+                    rowpos += ucqueue.back().nbytes();
                     xpos1 -= ucwidth;
                     xpos2 -= ucwidth;
                 }
@@ -2179,7 +2179,7 @@ void MadEdit::ConvertTabToSpace()
             {
                 int uc = 0x0D;
                 if(m_Lines->NextUChar(ucqueue))
-                    uc = ucqueue.back().first;
+                    uc = ucqueue.back().ucs4();
 
                 if(uc == 0x0D || uc == 0x0A)    // EOL
                 {
@@ -2192,7 +2192,7 @@ void MadEdit::ConvertTabToSpace()
                 int uchw = ucwidth >> 1;
                 if(xpos1 > uchw)
                 {
-                    rowpos += ucqueue.back().second;
+                    rowpos += ucqueue.back().nbytes();
                     xpos1 -= ucwidth;
                     xpos2 -= ucwidth;
                 }

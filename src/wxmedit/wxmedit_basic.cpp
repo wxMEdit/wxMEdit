@@ -875,9 +875,9 @@ void MadEdit::GetSelText(wxString &ws)
                 m_Lines->NextUChar(ucqueue);
             }
 
-            wxm::WxStrAppendUCS4(ws, ucqueue.back().first);
+            wxm::WxStrAppendUCS4(ws, ucqueue.back().ucs4());
 
-            pos += ucqueue.back().second;
+            pos += ucqueue.back().nbytes();
         }
         while(pos < m_SelectionEnd->pos);
     }
@@ -908,9 +908,9 @@ void MadEdit::GetText(wxString &ws, bool ignoreBOM)
             m_Lines->NextUChar(ucqueue);
         }
 
-        wxm::WxStrAppendUCS4(ws, ucqueue.back().first);
+        wxm::WxStrAppendUCS4(ws, ucqueue.back().ucs4());
 
-        pos += ucqueue.back().second;
+        pos += ucqueue.back().nbytes();
     }
     while(pos < m_Lines->m_Size);
 }
@@ -1065,7 +1065,7 @@ bool MadEdit::GetLine(wxString &ws, int line, size_t maxlen, bool ignoreBOM)
             return true;
         }
 
-        ucs4_t uc=ucqueue.back().first;
+        ucs4_t uc=ucqueue.back().ucs4();
         if(uc==0x0D || uc==0x0A)
             return true;
 
@@ -1179,22 +1179,22 @@ void MadEdit::CopyRegularText()
             continue;
         }
 
-        ucs4_t &uc=ucqueue.front().first;
+        const ucs4_t &uc=ucqueue.front().ucs4();
         if(uc==0x0D || uc==0x0A)
         {
             ws << wxm::g_nl_default.wxValue();
 
-            pos += ucqueue.front().second;
+            pos += ucqueue.front().nbytes();
 
-            if(uc==0x0D && m_Lines->NextUChar(ucqueue) && ucqueue.back().first==0x0A)
-                pos += ucqueue.back().second;
+            if(uc==0x0D && m_Lines->NextUChar(ucqueue) && ucqueue.back().ucs4()==0x0A)
+                pos += ucqueue.back().nbytes();
 
             ucqueue.clear();
             continue;
         }
 
         wxm::WxStrAppendUCS4(ws, uc);
-        pos += ucqueue.front().second;
+        pos += ucqueue.front().nbytes();
         ucqueue.clear();
     } while(pos < m_SelectionEnd->pos);
 
