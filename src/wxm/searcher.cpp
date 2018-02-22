@@ -22,7 +22,7 @@
 #include <boost/xpressive/xpressive_dynamic.hpp>
 #include <boost/xpressive/traits/null_regex_traits.hpp>
 #include <boost/xpressive/traits/cpp_regex_traits.hpp>
-#include <boost/tr1/unordered_map.hpp>
+#include <boost/unordered_map.hpp>
 
 using namespace std;
 using namespace boost::xpressive;
@@ -66,7 +66,7 @@ public:
 	}
 };
 
-typedef std::tr1::unordered_map<unsigned int, int> UCS4_Map;
+typedef boost::unordered_map<unsigned int, int> UCS4_Map;
 
 class JumpTable_UCS4
 {

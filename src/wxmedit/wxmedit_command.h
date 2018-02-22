@@ -32,8 +32,10 @@
 # pragma warning( pop )
 #endif
 
-#include <boost/tr1/unordered_map.hpp>
-#include <boost/tr1/unordered_set.hpp>
+#include <boost/unordered_map.hpp>
+#include <boost/unordered_set.hpp>
+using boost::unordered_map;
+using boost::unordered_set;
 
 #include <vector>
 #include <list>
@@ -119,14 +121,14 @@ enum //MadEditCommand
 typedef int MadEditShortCut;
 typedef int MadEditCommand;
 
-typedef std::tr1::unordered_map<MadEditShortCut, wxString> MadCommandTextMap;
-typedef std::tr1::unordered_map<wxString, MadEditShortCut, wxStringHash> MadTextCommandMap;
+typedef unordered_map<MadEditShortCut, wxString> MadCommandTextMap;
+typedef unordered_map<wxString, MadEditShortCut, wxStringHash> MadTextCommandMap;
 
-typedef std::tr1::unordered_map<int, MadEditShortCut> MadMenuCommandMap;
+typedef unordered_map<int, MadEditShortCut> MadMenuCommandMap;
 
 //---------------------------------------------------------------------------
 
-typedef std::tr1::unordered_set<MadEditShortCut> MadShortCutSet;
+typedef unordered_set<MadEditShortCut> MadShortCutSet;
 
 struct MadKeyBinding
 {
@@ -189,7 +191,7 @@ struct MadKeyBinding
 typedef list<MadKeyBinding*> MadKeyBindingList;
 
 // menuid or editcmd or shortcut => MadKeyBinding*
-typedef std::tr1::unordered_map<int, MadKeyBinding*> MadKeyBindingMap;
+typedef unordered_map<int, MadKeyBinding*> MadKeyBindingMap;
 
 //---------------------------------------------------------------------------
 

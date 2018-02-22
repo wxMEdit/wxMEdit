@@ -33,14 +33,15 @@
 # pragma warning( pop )
 #endif
 
-#include <boost/tr1/unordered_set.hpp>
+#include <boost/unordered_set.hpp>
+using boost::unordered_set;
 
 #include <map>
 #include <vector>
 using std::vector;
 
 
-typedef std::tr1::unordered_set<wxString, wxStringHash> MadKeywordSet;
+typedef unordered_set<wxString, wxStringHash> MadKeywordSet;
 
 
 enum MadFontStyle { fsNone=0, fsBold=1, fsItalic=2, fsUnderline=4, fsStrikeOut=8 };
