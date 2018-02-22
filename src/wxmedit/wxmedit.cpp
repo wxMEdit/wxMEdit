@@ -2367,7 +2367,7 @@ void MadEdit::PaintHexLines(wxDC *dc, wxRect &rect, int toprow, int rowcount, bo
             xm::CharUnit& cu = m_ActiveRowUChars.back();
             if(cu.ucs4() == 0xFEFF || cu.ucs4() == 0x9 || cu.ucs4() == 0
 #ifdef __WXGTK__
-                || cu.first == 0x0A || cu.first == 0x0D
+				|| cu.ucs4() == 0x0A || cu.ucs4() == 0x0D
 #endif
                 )
                 m_WordBuffer[idx++] = ' ';
