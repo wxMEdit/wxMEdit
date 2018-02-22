@@ -1640,7 +1640,7 @@ MadLineState MadLines::Reformat(MadLineIterator iter)
                 bool canbreak = (m_line_bi->isBoundary(ucqueue.U16Index()-1) == TRUE);
                 bool text_canmove = (nowrap.nbytes != maxlinelength);
                 if(rowlen + int (firstuclen) > maxlinelength)     // wordwrap by line length
-                    DoWordWrap(iter, brxpos_adj, text_canmove, canbreak, rowidx, rowlen, rowidx_idx, nowrap);
+                    DoWordWrap(iter, brxpos_adj, text_canmove, !m_Syntax->IsNotDelimiter(firstuc), rowidx, rowlen, rowidx_idx, nowrap);
 
                 ucwidth = m_MadEdit->GetUCharWidth(firstuc);
                 if(firstuc == 0x09)         // Tab char
@@ -1931,7 +1931,7 @@ void MadLines::RecountLineWidth(void)
                 bool canbreak = (m_line_bi->isBoundary(ucqueue.U16Index()-1) == TRUE);
                 bool text_canmove = (nowrap.nbytes != maxlinelength);
                 if(rowlen + int (firstuclen) > maxlinelength)     // wordwrap by line length
-                    DoWordWrap(iter, brxpos_adj, text_canmove, canbreak, rowidx, rowlen, rowidx_idx, nowrap);
+                    DoWordWrap(iter, brxpos_adj, text_canmove, !m_Syntax->IsNotDelimiter(firstuc), rowidx, rowlen, rowidx_idx, nowrap);
 
                 ucwidth = m_MadEdit->GetUCharWidth(firstuc);
                 if(firstuc == 0x09)
