@@ -2469,6 +2469,9 @@ void MadEditFrame::OnInfoNotebookSize(wxSizeEvent &evt)
         if(pinfo.IsDocked())
         {
             size=g_MainFrame->m_InfoNotebook->GetSize();
+#if defined(__WXMSW__) && wxMAJOR_VERSION==2
+            size.IncBy(g_MainFrame->m_InfoNotebook->GetWindowBorderSize());
+#endif
         }
         else
         {
