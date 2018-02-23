@@ -167,7 +167,7 @@ wxString WXMLanguageQuery()
 
 void OpenURL(const wxString& url)
 {
-	if (! boost::algorithm::istarts_with(url, "http://wxmedit.github.io/"))
+	if (! boost::algorithm::istarts_with(url.wc_str(), "http://wxmedit.github.io/"))
 		return OpenOriginalURL(url);
 
 	static wxString lang_q = WXMLanguageQuery();
