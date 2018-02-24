@@ -2712,7 +2712,7 @@ void MadEditFrame::OpenFile(const wxString &filename, bool mustExist, const Line
             wxmedit->SetTextFont(data.fontname, data.fontsize, false);
 
         if (!data.hex_fontname.IsEmpty() && data.hex_fontsize > 0)
-            wxmedit->SetTextFont(data.hex_fontname, data.hex_fontsize, false);
+            wxmedit->SetHexFont(data.hex_fontname, data.hex_fontsize, false);
 
         if (!wxmedit->LoadFromFile(filename, data.encoding.wx_str(), data.hexmode) && mustExist)
         {
