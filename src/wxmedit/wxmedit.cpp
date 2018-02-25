@@ -8555,11 +8555,20 @@ void MadEdit::ProcessReturnCommand(MadEditCommand command)
 
 inline bool IsCharInput(ucs4_t ucs4, int key)
 {
-#if defined(__WXMSW__)
-    return ucs4 >= ecCharFirst && (ucs4 == key || key == 0);
+#ifdef __WXMSW__
+    return ucs4 >= ecCharFirst && (ucs4 == key || key == 0 || key == 0x80);
 #else
     return ucs4 >= (ucs4_t)ecCharFirst && key != WXK_DELETE && key < 0x100;
 #endif
+}
+
+inline bool IsCharFlags(int flags)
+{
+    return flags == wxACCEL_NORMAL
+#ifdef __WXMSW__
+        || (flags & (wxACCEL_CTRL | wxACCEL_ALT)) != 0
+#endif
+        ;
 }
 
 inline void FixWx3GTKInput(ucs4_t& ucs4, int key)
@@ -8578,9 +8587,9 @@ void MadEdit::OnChar(wxKeyEvent& evt)
     int key=evt.GetKeyCode();
     ucs4_t ucs4=evt.GetUnicodeKey();
 
-    if(evt.ControlDown()) flags|=wxACCEL_CTRL;
-    if(evt.AltDown())     flags|=wxACCEL_ALT;
-    if(evt.ShiftDown())   flags|=wxACCEL_SHIFT;
+    if (evt.AltDown())     flags |= wxACCEL_ALT;
+    if (evt.ControlDown()) flags |= wxACCEL_CTRL;
+    if (evt.ShiftDown())   flags |= wxACCEL_SHIFT;
 
     //wxLogDebug(wxT("edit OnChar: %X %X"),key, ucs4);
 
@@ -8604,7 +8613,7 @@ void MadEdit::OnChar(wxKeyEvent& evt)
         wxLogDebug(wxT("edit toggle window"));
         DoToggleWindow();
     }
-    else if (IsCharInput(ucs4, key) && !evt.HasModifiers())
+    else if (IsCharInput(ucs4, key) && IsCharFlags(flags))
     {
         FixWx3GTKInput(ucs4, key);
         ProcessCommand(ucs4);
@@ -8623,9 +8632,9 @@ void MadEdit::OnKeyDown(wxKeyEvent& evt)
     int flags=wxACCEL_NORMAL;
     int key=evt.GetKeyCode();
 
-    if(evt.ControlDown()) flags|=wxACCEL_CTRL;
-    if(evt.AltDown())     flags|=wxACCEL_ALT;
-    if(evt.ShiftDown())   flags|=wxACCEL_SHIFT;
+    if (evt.AltDown())     flags |= wxACCEL_ALT;
+    if (evt.ControlDown()) flags |= wxACCEL_CTRL;
+    if (evt.ShiftDown())   flags |= wxACCEL_SHIFT;
 
     if(key==WXK_TAB && m_WantTab==false)
     {
