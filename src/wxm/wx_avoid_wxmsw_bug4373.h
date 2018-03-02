@@ -21,7 +21,7 @@
 # include <wx/wxprec.h>
 #endif
 
-#ifndef __WXMSW__
+#if !defined(__WXMSW__) || wxMAJOR_VERSION == 3
 # define wxDialogWrapper wxDialog
 #else
 # include "../xm/cxx11.h"
