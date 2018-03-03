@@ -511,7 +511,7 @@ bool MatchMBMoreThanUTF16(const ubyte * text, size_t len)
 		return true;
 
 	// for counting C0 bytes ( < 0x20)
-	size_t byte_cnt[0x20];
+	size_t byte_cnt[0x20] = { 0 };
 	for (size_t i = 0; i < len; ++i)
 	{
 		if (text[i] >= 0x20)
@@ -531,8 +531,8 @@ bool MatchMBMoreThanUTF16(const ubyte * text, size_t len)
 	for (size_t i = 0; i<0x20; ++i)
 		eff_c0_cnt += byte_cnt[i];
 
-	// whether effetive C0 bytes accounted more than 1/100
-	return eff_c0_cnt * 100 > len;
+	// whether effetive C0 bytes accounted less than 1/100
+	return eff_c0_cnt * 100 < len;
 }
 
 #if U_ICU_VERSION_MAJOR_NUM *10 + U_ICU_VERSION_MINOR_NUM < 44
