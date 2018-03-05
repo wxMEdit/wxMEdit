@@ -673,7 +673,7 @@ protected:
     WXLRESULT MSWWindowProc(WXUINT message, WXWPARAM wParam, WXLPARAM lParam);
 #endif
 
-#ifdef __WXGTK__
+#if defined(__WXGTK__) && wxMAJOR_VERSION == 2
     void ConnectToFixedKeyPressHandler();
 #endif
 

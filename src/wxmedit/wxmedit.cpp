@@ -892,7 +892,7 @@ MadEdit::MadEdit(wxm::ConfigWriter* cfg_writer, wxWindow* parent, wxWindowID id,
 
     m_lastDoubleClick = 0;
 
-#ifdef __WXGTK__
+#if defined(__WXGTK__) && wxMAJOR_VERSION == 2
     ConnectToFixedKeyPressHandler();
 #endif
 }
@@ -9757,63 +9757,6 @@ WXLRESULT MadEdit::MSWWindowProc(WXUINT message, WXWPARAM wParam, WXLPARAM lPara
             }
         }
         break;
-    //case WM_NCPAINT:  
-        //{
-            //DWORD dw = GetRegionData(*((HRGN*)&wParam), 0, nullptr);
-            //if(dw)
-            //{
-                //static DWORD rgnsize = 0;
-                //static RGNDATA *prgn = nullptr;
-                //if(dw > rgnsize)
-                //{
-                    //rgnsize = dw;
-                    //if(prgn) delete prgn;
-                    //prgn = (RGNDATA *) new wxByte[dw];
-                //}
-                //GetRegionData(*((HRGN*)&wParam), dw, prgn);
-                //RECT rc=prgn->rdh.rcBound;
-                //((wxFrame*)wxTheApp->GetTopWindow())->SetTitle(wxString::Format(wxT("%d %d %d %d"), rc.left, rc.top, rc.right, rc.bottom));
-                //int x=rc.left;
-                //int y=rc.top;
-                //int h=rc.bottom-y, w=rc.right-x;
-                //ScreenToClient(&x, &y);
-                
-                //if(x>=0 && y>=0 && h>0 && h<16 && w>0 && w<16)
-                //{
-                    //bool paint=false;
-                    //int row = y / m_RowHeight;
-                    //if(m_EditMode != emHexMode)
-                    //{
-                        //if(row <= m_VisibleRowCount && (m_TopRow + row) < int(m_Lines->m_RowCount))
-                            //paint = true;
-                    //}
-                    //else
-                    //{
-                        //if(row > 0 && row-1 <= GetVisibleHexRowCount())
-                            //paint = true;
-                    //}
-                    
-                    //if(paint)
-                    //{
-                        //wxClientDC dc(this);
-                        //wxRect rect(0,row * m_RowHeight, m_ClientWidth,m_RowHeight);
-                        //if(m_EditMode != emHexMode)
-                        //{
-                            //PaintTextLines(&dc, rect, m_TopRow+row, 1, m_Syntax->GetAttributes(aeText)->bgcolor);
-                        //}
-                        //else
-                        //{
-                            //PaintHexLines(&dc, rect, m_TopRow+row-1, 1, false);
-                        //}
-                        //m_RepaintAll=true;
-                        //Refresh(false);
-
-                        //return TRUE;
-                    //}
-                //}
-            //}
-        //}
-        //break;
     }
 
     return MadEditSuperClass::MSWWindowProc(message, wParam, lParam);
