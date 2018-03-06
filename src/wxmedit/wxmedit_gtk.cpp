@@ -6,19 +6,27 @@
 // License:     GPLv3
 ///////////////////////////////////////////////////////////////////////////////
 
-#if defined(__WXGTK__) && wxMAJOR_VERSION == 2
+#ifdef __WXGTK__
 
 #include "../xm/cxx11.h"
 #include "wxmedit.h"
+#include <gtk/gtk.h>
+
+#if wxMAJOR_VERSION == 3
+
+GtkIMContext* GetWindowIMContext(wxWindow *win)
+{
+    return win->m_imContext;
+}
+
+#else // wxMAJOR_VERSION == 2
 #include <gdk/gdk.h>
 #include <gdk/gdkx.h>
 #include <gdk/gdkprivate.h>
-#include <gtk/gtk.h>
 #include <gdk/gdkkeysyms.h>
 #include <glib-object.h>
 #include <X11/XKBlib.h>
 #include <iostream>
-
 
 // source code from:
 /////////////////////////////////////////////////////////////////////////////
@@ -429,7 +437,7 @@ wxTranslateGTKKeyEventToWx(wxKeyEvent& event,
 
             wxLogTrace(TRACE_KEYS, _T("\t-> keycode %d"), keycode);
 
-            KeySym keysymNormalized = XKeycodeToKeysym(dpy, keycode, 0);
+            KeySym keysymNormalized = XkbKeycodeToKeysym(dpy, keycode, 0, 0);
 
             // use the normalized, i.e. lower register, keysym if we've
             // got one
@@ -754,10 +762,11 @@ void MadEdit::ConnectToFixedKeyPressHandler()
     g_signal_connect (connect_widget, "key_release_event", G_CALLBACK (gtk_window_key_release_callback), this);
 }
 
-
-GtkIMContext *GetWindowIMContext(wxWindow *win)
+GtkIMContext* GetWindowIMContext(wxWindow *win)
 {
-    return IMContext(win);
+    return win->m_imData->context;
 }
 
-#endif // defined(__WXGTK__) && wxMAJOR_VERSION == 2
+#endif // wxMAJOR_VERSION
+
+#endif // __WXGTK__
