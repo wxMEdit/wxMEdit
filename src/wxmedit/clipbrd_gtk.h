@@ -11,10 +11,8 @@
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////
 
-#ifdef __WXGTK__
-
-#ifndef _WX_GTK_CLIPBOARD_GTK_H_
-#define _WX_GTK_CLIPBOARD_GTK_H_
+#ifndef _WXMEDIT_CLIPBOARD_GTK_H_
+#define _WXMEDIT_CLIPBOARD_GTK_H_
 
 #include "../xm/cxx11.h"
 
@@ -24,6 +22,8 @@
 #include <wx/control.h>
 #include <wx/module.h>
 #include <wx/clipbrd.h>
+
+#if wxMAJOR_VERSION == 2
 
 // ----------------------------------------------------------------------------
 // wxClipboardGtk
@@ -87,14 +87,12 @@ private:
     DECLARE_DYNAMIC_CLASS(wxClipboardGtk)
 };
 
-
 extern wxClipboardGtk *GetClipboardGtk();
 #ifdef wxTheClipboard
 #undef wxTheClipboard
 #endif
 #define wxTheClipboard GetClipboardGtk()
 
+#endif // wxMAJOR_VERSION == 2
 
-#endif // _WX_GTK_CLIPBOARD_GTK_H_
-
-#endif // __WXGTK__
+#endif // _WXMEDIT_CLIPBOARD_GTK_H_

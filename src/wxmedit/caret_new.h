@@ -1,37 +1,21 @@
-
-// madedit: changed DoDraw() function (2005/08/17)
-
 ///////////////////////////////////////////////////////////////////////////////
-// Name:        generic/caret.h
+// Name:        wx/generic/caret.h
 // Purpose:     generic wxCaret class
 // Author:      Vadim Zeitlin (original code by Robert Roebling)
-// Modified by:
+// Modified by: madedit 2005-08-17, changed DoDraw() function
+//              JiaYanwei 2018-03-03, synchronized with wxWidgets 3.0
 // Created:     25.05.99
-// RCS-ID:      $Id: caret.h,v 1.13 2005/09/23 12:49:03 MR Exp $
 // Copyright:   (c) wxWidgets team
 // Licence:     wxWindows licence
 ///////////////////////////////////////////////////////////////////////////////
 
-#ifndef __WXMSW__
-
-#ifndef _WX_CARET_NEW_H_
-#define _WX_CARET_NEW_H_
+#ifndef _WXMEDIT_CARET_NEW_H_
+#define _WXMEDIT_CARET_NEW_H_
 
 #include "../xm/cxx11.h"
 
-
-#ifdef _MSC_VER
-# pragma warning( push )
-# pragma warning( disable : 4996 )
-#endif
-// disable 4996 {
 #include <wx/timer.h>
 #include <wx/caret.h>
-#include <wx/bitmap.h>
-// disable 4996 }
-#ifdef _MSC_VER
-# pragma warning( pop )
-#endif
 
 class wxCaretNew;
 
@@ -45,7 +29,7 @@ private:
     wxCaretNew *m_caret;
 };
 
-class wxCaretNew : public wxCaret//Base
+class wxCaretNew : public wxCaret
 {
     friend class MadEdit;       // for DoDraw()
 public:
@@ -101,6 +85,4 @@ private:
                   m_hasFocus;       // true => our window has focus
 };
 
-#endif // _WX_CARET_NEW_H_
-
-#endif // !__WXMSW__
+#endif // _WXMEDIT_CARET_NEW_H_

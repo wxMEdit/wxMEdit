@@ -245,7 +245,7 @@ bool OpenFilesInPrevInst(const wxString& flist)
 
 	return true;
 #elif defined(__WXGTK__)
-    g_Display=GDK_DISPLAY();
+    g_Display= gdk_x11_get_default_xdisplay();
     g_MadEdit_atom = XInternAtom(g_Display, "g_wxMEdit_atom", False);
     Window madedit_win;
 

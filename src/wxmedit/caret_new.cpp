@@ -1,13 +1,10 @@
-
-// madedit: changed DoDraw() function (2005/08/17)
-
 ///////////////////////////////////////////////////////////////////////////////
-// Name:        generic/caret.cpp
+// Name:        src/generic/caret.cpp
 // Purpose:     generic wxCaret class implementation
 // Author:      Vadim Zeitlin (original code by Robert Roebling)
-// Modified by:
+// Modified by: madedit 2005-08-17, changed DoDraw() function
+//              JiaYanwei 2018-03-03, synchronized with wxWidgets 3.0
 // Created:     25.05.99
-// RCS-ID:      $Id: caret.cpp,v 1.15 2005/09/23 12:53:25 MR Exp $
 // Copyright:   (c) wxWidgets team
 // Licence:     wxWindows licence
 ///////////////////////////////////////////////////////////////////////////////
@@ -23,28 +20,17 @@
 // For compilers that support precompilation, includes "wx.h".
 #include <wx/wxprec.h>
 
-#ifdef __BORLANDC__
-    #pragma hdrstop
-#endif
-
-#if wxUSE_CARET
-
 #ifndef WX_PRECOMP
     #include <wx/window.h>
     #include <wx/dcclient.h>
     #include <wx/dcmemory.h>
 #endif //WX_PRECOMP
 
-#include <wx/caret.h>
-
 #include "caret_new.h"
 
 // ----------------------------------------------------------------------------
 // global variables for this module
 // ----------------------------------------------------------------------------
-
-// the blink time (common to all carets for MSW compatibility)
-//static int gs_blinkTime = 500;  // in milliseconds
 
 // ============================================================================
 // implementation
@@ -71,20 +57,7 @@ void wxCaretNew::OnTimer()
         Blink();
 }
 
-// ----------------------------------------------------------------------------
-// wxCaretNew static functions and data
-// ----------------------------------------------------------------------------
-/***
-int wxCaretBase::GetBlinkTime()
-{
-    return gs_blinkTime;
-}
 
-void wxCaretBase::SetBlinkTime(int milliseconds)
-{
-    gs_blinkTime = milliseconds;
-}
-***/
 // ----------------------------------------------------------------------------
 // initialization and destruction
 // ----------------------------------------------------------------------------
@@ -264,21 +237,17 @@ void wxCaretNew::Refresh()
 void wxCaretNew::DoDraw(wxDC *dc)
 {
 
-    if(m_hasFocus)
-    {
+    if(!m_hasFocus)
+        return;
 
 #if   FIXINVERT == 0
-        dc->Blit(m_x, m_y, m_width, m_height, dc, m_x, m_y, wxINVERT);
+    dc->Blit(m_x, m_y, m_width, m_height, dc, m_x, m_y, wxINVERT);
 #elif FIXINVERT == 1
-        MadEdit *me=(MadEdit*)GetWindow();
-        (me->*(me->InvertRect))(dc, m_x, m_y, m_width, m_height);
+    MadEdit *me=(MadEdit*)GetWindow();
+    (me->*(me->InvertRect))(dc, m_x, m_y, m_width, m_height);
 #elif FIXINVERT == 2
-        ((MadEdit*)GetWindow())->InvertRectManual(dc, m_x, m_y, m_width, m_height);
+    ((MadEdit*)GetWindow())->InvertRectManual(dc, m_x, m_y, m_width, m_height);
 #else
-#     error FIXINVERT not defined
+#   error FIXINVERT not defined
 #endif
-
-    }
 }
-
-#endif // wxUSE_CARET

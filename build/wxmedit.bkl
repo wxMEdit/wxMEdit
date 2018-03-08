@@ -207,8 +207,6 @@
 		<headers>../src/wxm/wx_avoid_wxmsw_bug4373.h</headers>
 		<headers>../src/wxm/wx_icu.h</headers>
 		<sources>../src/wxm/wx_icu.cpp</sources>
-		<headers>../src/wxmedit/caret_new.h</headers>
-		<headers>../src/wxmedit/clipbrd_gtk.h</headers>
 		<headers>../src/wxmedit/trad_simp.h</headers>
 		<sources>../src/wxmedit/trad_simp.cpp</sources>
 		<headers>../src/wxmedit/wxm_lines.h</headers>

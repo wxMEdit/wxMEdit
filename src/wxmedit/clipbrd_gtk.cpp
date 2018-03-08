@@ -11,15 +11,13 @@
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////
 
-#ifdef __WXGTK__
-
 #include "../xm/cxx11.h"
 #include "clipbrd_gtk.h"
 
+#if wxMAJOR_VERSION == 2
+
 // For compilers that support precompilation, includes "wx.h".
 #include <wx/wxprec.h>
-
-#if wxUSE_CLIPBOARD
 
 #ifndef WX_PRECOMP
 # include <wx/log.h>
@@ -757,7 +755,6 @@ bool wxClipboardGtk::GetData( wxDataObject& data )
     return false;
 }
 
-
 wxClipboardGtk *g_ClipboardGtk=nullptr;
 wxClipboardGtk *GetClipboardGtk()
 {
@@ -768,9 +765,4 @@ wxClipboardGtk *GetClipboardGtk()
     return g_ClipboardGtk;
 }
 
-
-#endif
-  // wxUSE_CLIPBOARD
-
-#endif
-  // __WXGTK__
+#endif // wxMAJOR_VERSION == 2

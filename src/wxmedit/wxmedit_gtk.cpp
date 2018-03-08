@@ -6,8 +6,6 @@
 // License:     GPLv3
 ///////////////////////////////////////////////////////////////////////////////
 
-#ifdef __WXGTK__
-
 #include "../xm/cxx11.h"
 #include "wxmedit.h"
 #include <gtk/gtk.h>
@@ -768,5 +766,3 @@ GtkIMContext* GetWindowIMContext(wxWindow *win)
 }
 
 #endif // wxMAJOR_VERSION
-
-#endif // __WXGTK__
