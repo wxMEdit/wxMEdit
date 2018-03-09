@@ -227,11 +227,11 @@ void wxCaretNew::Refresh()
 #include "wxmedit.h"
 
 #ifndef FIXINVERT
-//#   ifdef __WXMSW__
-#       define FIXINVERT 0
-//#   else 
-//#       define FIXINVERT 1
-//#   endif
+# ifdef __WXMSW__
+#  define FIXINVERT 0
+# else 
+#  define FIXINVERT 1
+# endif
 #endif
 
 void wxCaretNew::DoDraw(wxDC *dc)
