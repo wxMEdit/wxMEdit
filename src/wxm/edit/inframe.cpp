@@ -73,6 +73,10 @@ void GlobalConfigWriter::Record(const wxString& key, const wxString& val)
 	m_cfg->SetPath(oldpath);
 }
 
+#ifdef _DEBUG
+void test_HumanReadableFilesize();
+#endif
+
 InFrameWXMEdit::InFrameWXMEdit(wxWindow* parent, wxWindowID id, const wxPoint& pos, const wxSize& size, long style)
 	: MadEdit(new GlobalConfigWriter(), parent, id, pos, size, style), m_auto_searcher(this)
 {
@@ -102,6 +106,10 @@ InFrameWXMEdit::InFrameWXMEdit(wxWindow* parent, wxWindowID id, const wxPoint& p
 
 	UErrorCode uerr = U_ZERO_ERROR;
 	m_numfmt.reset(icu::NumberFormat::createInstance(icu::Locale::getDefault(), uerr));
+
+#ifdef _DEBUG
+	test_HumanReadableFilesize();
+#endif
 }
 
 wxString InsertModeText(bool insertmode)
@@ -123,10 +131,11 @@ wxString BOMText(bool hasbom)
 	return hasbom ? bom : wxString();
 }
 
+std::wstring HumanReadableFilesize(uint64_t size);
+
 void InFrameWXMEdit::DoSelectionChanged()
 {
 	g_MainFrame->m_Notebook->ConnectMouseClick();
-
 	if (this != g_active_wxmedit)
 		return;
 
@@ -144,8 +153,10 @@ void InFrameWXMEdit::DoSelectionChanged()
 	wxString colInfo = wxString::Format(_(" Col: %s"), FormattedNumber(col));
 	wxm::GetFrameStatusBar().SetField(wxm::STBF_ROWCOL, lineInfo + subrowInfo + colInfo);
 
-	wxString charpos = wxString::Format(_("CharPos: %s/%s"), FormattedNumber(GetCaretPosition()), FormattedNumber(GetFileSize()));
-	wxm::GetFrameStatusBar().SetField(wxm::STBF_CHARPOS, charpos);
+	wxFileOffset filesize = GetFileSize();
+	wxString charpos = wxString::Format(_("CharPos: %s/%s"), FormattedNumber(GetCaretPosition()), FormattedNumber(filesize));
+	wxString readableSize = (filesize < 1024)? wxString(): wxString::Format(_(" (%s)"), HumanReadableFilesize(filesize).c_str());
+	wxm::GetFrameStatusBar().SetField(wxm::STBF_CHARPOS, charpos + readableSize);
 
 	wxString selsize = wxString::Format(_("SelSize: %s"), FormattedNumber(GetSelectionSize()));
 	wxm::GetFrameStatusBar().SetField(wxm::STBF_SELECTION, selsize);
@@ -1023,5 +1034,58 @@ wxString InFrameWXMEdit::FormattedNumber(int64_t num)
 	m_numfmt->format(num, us);
 	return ICUStrToWx(us);
 }
+
+std::wstring HumanReadableFilesize(uint64_t size)
+{
+	return L"";
+}
+
+#ifdef _DEBUG
+void test_HumanReadableFilesize()
+{
+	wxASSERT(HumanReadableFilesize(1) == L"1");
+	wxASSERT(HumanReadableFilesize(1023) == L"1023");
+	wxASSERT(HumanReadableFilesize(1024) == L"1.00KiB");
+	wxASSERT(HumanReadableFilesize(1025) == L"1.00KiB");
+	wxASSERT(HumanReadableFilesize(1034) == L"1.00KiB");
+	wxASSERT(HumanReadableFilesize(1035) == L"1.01KiB");
+	wxASSERT(HumanReadableFilesize(1044) == L"1.01KiB");
+	wxASSERT(HumanReadableFilesize(1045) == L"1.02KiB");
+	wxASSERT(HumanReadableFilesize(1126) == L"1.09KiB");
+	wxASSERT(HumanReadableFilesize(1127) == L"1.10KiB");
+	wxASSERT(HumanReadableFilesize(2047) == L"1.99KiB");
+	wxASSERT(HumanReadableFilesize(2048) == L"2.00KiB");
+	wxASSERT(HumanReadableFilesize(10239) == L"9.99KiB");
+	wxASSERT(HumanReadableFilesize(10240) == L"10.0KiB");
+	wxASSERT(HumanReadableFilesize(10342) == L"10.0KiB");
+	wxASSERT(HumanReadableFilesize(10343) == L"10.1KiB");
+	wxASSERT(HumanReadableFilesize(102399) == L"99.9KiB");
+	wxASSERT(HumanReadableFilesize(102400) == L"100KiB");
+	wxASSERT(HumanReadableFilesize(1023999) == L"999KiB");
+	wxASSERT(HumanReadableFilesize(1024000) == L"0.97MiB");
+	wxASSERT(HumanReadableFilesize(1048575) == L"0.99MiB");
+	wxASSERT(HumanReadableFilesize(1048576) == L"1.00MiB");
+	wxASSERT(HumanReadableFilesize(1059061) == L"1.00MiB");
+	wxASSERT(HumanReadableFilesize(1059062) == L"1.01MiB");
+	wxASSERT(HumanReadableFilesize(1153433) == L"1.09MiB");
+	wxASSERT(HumanReadableFilesize(1153434) == L"1.10MiB");
+	wxASSERT(HumanReadableFilesize(10485759) == L"9.99MiB");
+	wxASSERT(HumanReadableFilesize(10485760) == L"10.0MiB");
+	wxASSERT(HumanReadableFilesize(104857599) == L"99.9MiB");
+	wxASSERT(HumanReadableFilesize(104857600) == L"100MiB");
+	wxASSERT(HumanReadableFilesize(1048575999) == L"999MiB");
+	wxASSERT(HumanReadableFilesize(1048576000) == L"0.97GiB");
+	wxASSERT(HumanReadableFilesize(1073741823) == L"0.99GiB");
+	wxASSERT(HumanReadableFilesize(1073741824) == L"1.00GiB");
+	wxASSERT(HumanReadableFilesize(1084479242) == L"1.00GiB");
+	wxASSERT(HumanReadableFilesize(1084479243) == L"1.01GiB");
+	wxASSERT(HumanReadableFilesize(1181116006) == L"1.09GiB");
+	wxASSERT(HumanReadableFilesize(1181116007) == L"1.10GiB");
+	wxASSERT(HumanReadableFilesize(10737418239) == L"9.99GiB");
+	wxASSERT(HumanReadableFilesize(10737418240) == L"10.0GiB");
+	wxASSERT(HumanReadableFilesize(107374182399) == L"99.9GiB");
+	wxASSERT(HumanReadableFilesize(107374182400) == L"100GiB");
+}
+#endif
 
 } //namespace wxm

@@ -30,11 +30,11 @@ void WXMStatusBar::Init(MadEditFrame* frame, wxWindowID id)
 void WXMStatusBar::Resize()
 {
 #ifdef __WXMSW__
-	static int status_width_1_6 =     (220+ 235+ 135+ 155+ 65+ (50 + 10));
-	static int status_widths[7] = { 0, 220, 235, 135, 155, 65, (50 + 10) };
+	static int status_width_1_6 =     (220+ 305+ 135+ 155+ 65+ (50 + 10));
+	static int status_widths[7] = { 0, 220, 305, 135, 155, 65, (50 + 10) };
 #else
-	static int status_width_1_6 =     (220+ 235+ 135+ 155+ 65+ (50 + 0));
-	static int status_widths[7] = { 0, 220, 235, 135, 155, 65, (50 + 0) };
+	static int status_width_1_6 =     (220+ 305+ 135+ 155+ 65+ (50 + 0));
+	static int status_widths[7] = { 0, 220, 305, 135, 155, 65, (50 + 0) };
 #endif
 
 	// status bar field widths
