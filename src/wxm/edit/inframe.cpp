@@ -139,35 +139,16 @@ void InFrameWXMEdit::DoSelectionChanged()
 		++col;
 	}
 
-	wxString s1 = FormattedNumber(line);
-	wxString s2 = FormattedNumber(GetLineCount());
-	wxString s4 = FormattedNumber(col);
+	wxString lineInfo = wxString::Format(_("Ln: %s/%s"), FormattedNumber(line), FormattedNumber(GetLineCount()));
+	wxString subrowInfo = (subrow <= 0)? wxString(): wxString::Format(_(" (Sub: %s)"), FormattedNumber(subrow + 1));
+	wxString colInfo = wxString::Format(_(" Col: %s"), FormattedNumber(col));
+	wxm::GetFrameStatusBar().SetField(wxm::STBF_ROWCOL, lineInfo + subrowInfo + colInfo);
 
-	static wxString lnstr(_("Ln:"));
-	static wxString sepstr(wxT(" /"));
-	static wxString sepstr1(wxT(" ("));
-	static wxString substr(_("Sub:"));
-	static wxString sepstr2(wxT(')'));
-	static wxString sepstr3(wxT(' '));
-	static wxString colstr(_("Col:"));
-	static wxString fpstr(_("CharPos:"));
-	static wxString ssstr(_("SelSize:"));
+	wxString charpos = wxString::Format(_("CharPos: %s/%s"), FormattedNumber(GetCaretPosition()), FormattedNumber(GetFileSize()));
+	wxm::GetFrameStatusBar().SetField(wxm::STBF_CHARPOS, charpos);
 
-	wxString text = lnstr + s1 + sepstr + s2;
-	if (subrow>0)
-	{
-		wxString s3 = FormattedNumber(subrow + 1);
-		text += (sepstr1 + substr + s3 + sepstr2);
-	}
-	text += (sepstr3 + colstr + s4);
-	wxm::GetFrameStatusBar().SetField(wxm::STBF_ROWCOL, text);
-
-	s1 = FormattedNumber(GetCaretPosition());
-	s2 = FormattedNumber(GetFileSize());
-	wxm::GetFrameStatusBar().SetField(wxm::STBF_CHARPOS, fpstr + s1 + sepstr + s2);
-
-	s1 = FormattedNumber(GetSelectionSize());
-	wxm::GetFrameStatusBar().SetField(wxm::STBF_SELECTION, ssstr + s1);
+	wxString selsize = wxString::Format(_("SelSize: %s"), FormattedNumber(GetSelectionSize()));
+	wxm::GetFrameStatusBar().SetField(wxm::STBF_SELECTION, selsize);
 
 	wxm::GetFrameStatusBar().Update(); // repaint immediately
 }

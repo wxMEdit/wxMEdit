@@ -38,14 +38,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: wxMEdit 3.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-02-06 09:47+0800\n"
+"POT-Creation-Date: 2018-03-13 16:16+0800\n"
 "PO-Revision-Date: 2016-02-06 09:52+0800\n"
 "Last-Translator: JiaYanwei <wxmedit@gmail.com>\n"
 "Language-Team: wxMEdit <wxmedit@gmail.com>\n"
+"Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: zh_CN\n"
 "X-Poedit-SourceCharset: utf-8\n"
 "X-Generator: Poedit 1.6.4\n"
 
@@ -58,11 +58,11 @@ msgid "New Encoding:"
 msgstr "新的编码："
 
 #: ../src/dialog/wxm_conv_enc_dialog.cpp:67
-#: ../src/dialog/wxmedit_options_dialog.cpp:510 ../src/wxmedit_frame.cpp:2981
-#: ../src/wxmedit_frame.cpp:2995 ../src/wxmedit_frame.cpp:3012
-#: ../src/wxmedit_frame.cpp:3028 ../src/wxmedit_frame.cpp:3052
-#: ../src/wxmedit_frame.cpp:3066 ../src/wxmedit_frame.cpp:3172
-#: ../src/wxmedit_frame.cpp:3188
+#: ../src/dialog/wxmedit_options_dialog.cpp:510 ../src/wxmedit_frame.cpp:2984
+#: ../src/wxmedit_frame.cpp:2998 ../src/wxmedit_frame.cpp:3015
+#: ../src/wxmedit_frame.cpp:3031 ../src/wxmedit_frame.cpp:3055
+#: ../src/wxmedit_frame.cpp:3069 ../src/wxmedit_frame.cpp:3175
+#: ../src/wxmedit_frame.cpp:3191
 msgid "None"
 msgstr "无"
 
@@ -455,132 +455,132 @@ msgstr "预先定义的类型"
 msgid "<- Add Custom File Type"
 msgstr "<- 添加自定义文件类型"
 
-#: ../src/dialog/wxm_find_in_files_dialog.cpp:109
+#: ../src/dialog/wxm_find_in_files_dialog.cpp:108
 msgid "Find/Replace In Files"
 msgstr "多文件查找/替换"
 
-#: ../src/dialog/wxm_find_in_files_dialog.cpp:118
+#: ../src/dialog/wxm_find_in_files_dialog.cpp:117
 #: ../src/dialog/wxm_search_replace_dialog.cpp:113
 #: ../src/dialog/wxm_sort_dialog.cpp:58
 msgid "&Case Sensitive"
 msgstr "区分大小写(&C)"
 
-#: ../src/dialog/wxm_find_in_files_dialog.cpp:121
+#: ../src/dialog/wxm_find_in_files_dialog.cpp:120
 #: ../src/dialog/wxm_search_replace_dialog.cpp:116
 msgid "&Whole Word Only"
 msgstr "全字匹配(&W)"
 
-#: ../src/dialog/wxm_find_in_files_dialog.cpp:124
+#: ../src/dialog/wxm_find_in_files_dialog.cpp:123
 #: ../src/dialog/wxm_search_replace_dialog.cpp:119
 msgid "Use Regular E&xpressions"
 msgstr "使用正则表达式(&X)"
 
-#: ../src/dialog/wxm_find_in_files_dialog.cpp:127
+#: ../src/dialog/wxm_find_in_files_dialog.cpp:126
 #: ../src/dialog/wxm_search_replace_dialog.cpp:122
 msgid "Find &Hex String (Example: BE 00 3A or BE003A)"
 msgstr "查找十六进制字符串 (例如: BE 00 3A 或 BE003A)(&H)"
 
-#: ../src/dialog/wxm_find_in_files_dialog.cpp:130
+#: ../src/dialog/wxm_find_in_files_dialog.cpp:129
 msgid "&List the First Found Item Only"
 msgstr "只列出第一个找到的条目(&L)"
 
-#: ../src/dialog/wxm_find_in_files_dialog.cpp:136
+#: ../src/dialog/wxm_find_in_files_dialog.cpp:135
 msgid "&Find"
 msgstr "查找(&F)"
 
-#: ../src/dialog/wxm_find_in_files_dialog.cpp:138
+#: ../src/dialog/wxm_find_in_files_dialog.cpp:137
 #: ../src/dialog/wxm_search_replace_dialog.cpp:148
 msgid "&Replace"
 msgstr "替换(&R)"
 
-#: ../src/dialog/wxm_find_in_files_dialog.cpp:140
+#: ../src/dialog/wxm_find_in_files_dialog.cpp:139
 msgid "&Enable Replace"
 msgstr "启用“替换”(&E)"
 
-#: ../src/dialog/wxm_find_in_files_dialog.cpp:143
+#: ../src/dialog/wxm_find_in_files_dialog.cpp:142
 #: ../src/dialog/wxm_search_replace_dialog.cpp:154
 msgid "Close"
 msgstr "关闭"
 
-#: ../src/dialog/wxm_find_in_files_dialog.cpp:150
+#: ../src/dialog/wxm_find_in_files_dialog.cpp:149
 msgid "Opened Files in Editor"
 msgstr "在编辑器中打开的文件"
 
-#: ../src/dialog/wxm_find_in_files_dialog.cpp:153
+#: ../src/dialog/wxm_find_in_files_dialog.cpp:152
 msgid "Selected Directory:"
 msgstr "选择的目录:"
 
-#: ../src/dialog/wxm_find_in_files_dialog.cpp:157
+#: ../src/dialog/wxm_find_in_files_dialog.cpp:156
 msgid "..."
 msgstr "..."
 
-#: ../src/dialog/wxm_find_in_files_dialog.cpp:159
+#: ../src/dialog/wxm_find_in_files_dialog.cpp:158
 msgid "<<"
 msgstr "<<"
 
-#: ../src/dialog/wxm_find_in_files_dialog.cpp:161
+#: ../src/dialog/wxm_find_in_files_dialog.cpp:160
 msgid "File Filters:"
 msgstr "文件筛选条件:"
 
-#: ../src/dialog/wxm_find_in_files_dialog.cpp:169
+#: ../src/dialog/wxm_find_in_files_dialog.cpp:168
 msgid "Exclude Filters:"
 msgstr "文件排除条件:"
 
-#: ../src/dialog/wxm_find_in_files_dialog.cpp:177
+#: ../src/dialog/wxm_find_in_files_dialog.cpp:176
 msgid "File Encoding:"
 msgstr "文件编码："
 
-#: ../src/dialog/wxm_find_in_files_dialog.cpp:182
+#: ../src/dialog/wxm_find_in_files_dialog.cpp:181
 msgid "Include Subdirectories"
 msgstr "包含子目录"
 
-#: ../src/dialog/wxm_find_in_files_dialog.cpp:210
+#: ../src/dialog/wxm_find_in_files_dialog.cpp:209
 #: ../src/dialog/wxm_search_replace_dialog.cpp:190
 msgid "WxBitmapButtonRecentFindText"
 msgstr "WxBitmapButtonRecentFindText"
 
-#: ../src/dialog/wxm_find_in_files_dialog.cpp:221
+#: ../src/dialog/wxm_find_in_files_dialog.cpp:220
 #: ../src/dialog/wxm_search_replace_dialog.cpp:201
 msgid "WxBitmapButtonRecentReplaceText"
 msgstr "WxBitmapButtonRecentReplaceText"
 
-#: ../src/dialog/wxm_find_in_files_dialog.cpp:225
+#: ../src/dialog/wxm_find_in_files_dialog.cpp:224
 msgid "Automatic Detection"
 msgstr "自动检测"
 
-#: ../src/dialog/wxm_find_in_files_dialog.cpp:393
+#: ../src/dialog/wxm_find_in_files_dialog.cpp:392
 msgid "Choose a directory"
 msgstr "选择目录"
 
-#: ../src/dialog/wxm_find_in_files_dialog.cpp:531
+#: ../src/dialog/wxm_find_in_files_dialog.cpp:530
 #, c-format
 msgid "Found %d file(s) matched the filters..."
 msgstr "找到 %d 个符合筛选条件的文件..."
 
-#: ../src/dialog/wxm_find_in_files_dialog.cpp:561
+#: ../src/dialog/wxm_find_in_files_dialog.cpp:560
 msgid "The selected directory does not exist."
 msgstr "选择的目录不存在。"
 
-#: ../src/dialog/wxm_find_in_files_dialog.cpp:643
+#: ../src/dialog/wxm_find_in_files_dialog.cpp:642
 #, c-format
 msgid "Processing %d of %d files..."
 msgstr "第 %d 个文件处理中(共有 %d 个)... "
 
-#: ../src/dialog/wxm_find_in_files_dialog.cpp:752
+#: ../src/dialog/wxm_find_in_files_dialog.cpp:751
 #, c-format
 msgid "Line(%d): "
 msgstr "行(%d)： "
 
-#: ../src/dialog/wxm_find_in_files_dialog.cpp:756
+#: ../src/dialog/wxm_find_in_files_dialog.cpp:755
 #, c-format
 msgid "Offset(%s): "
 msgstr "位置(%s)： "
 
-#: ../src/dialog/wxm_find_in_files_dialog.cpp:757
+#: ../src/dialog/wxm_find_in_files_dialog.cpp:756
 msgid "Binary file matches"
 msgstr "匹配二进制文件"
 
-#: ../src/dialog/wxm_find_in_files_dialog.cpp:779
+#: ../src/dialog/wxm_find_in_files_dialog.cpp:778
 #, c-format
 msgid "%d results"
 msgstr "%d 个结果"
@@ -1333,8 +1333,8 @@ msgstr ""
 
 #: ../src/dialog/wxmedit_options_dialog.cpp:774
 msgid ""
-"Place configuration files into application data directory of current user (%"
-"APPDATA%\\wxmedit) rather than wxMEdit executable directory"
+"Place configuration files into application data directory of current user "
+"(%APPDATA%\\wxmedit) rather than wxMEdit executable directory"
 msgstr ""
 "将配置文件放在当前用户的应用程序数据目录（%APPDATA%\\wxmedit）而不是 wxMEdit "
 "可执行文件目录"
@@ -1373,37 +1373,69 @@ msgstr "这个按键已指定给 [%s]"
 msgid "The input string is not a valid Hex-String:"
 msgstr "这不是正确的十六进制字符串："
 
-#: ../src/wxm/edit/inframe.cpp:105
+#: ../src/wxm/edit/inframe.cpp:109
 msgid "INS"
 msgstr "插入"
 
-#: ../src/wxm/edit/inframe.cpp:106
+#: ../src/wxm/edit/inframe.cpp:110
 msgid "OVR"
 msgstr "覆盖"
 
-#: ../src/wxm/edit/inframe.cpp:112
+#: ../src/wxm/edit/inframe.cpp:116
 msgid "ReadOnly"
 msgstr "只读"
 
 #: ../src/wxm/edit/inframe.cpp:142
-msgid "Ln:"
-msgstr "行："
+#, c-format
+msgid "Ln: %s/%s"
+msgstr "行：%s/%s"
 
-#: ../src/wxm/edit/inframe.cpp:145
-msgid "Sub:"
-msgstr "次行："
+#: ../src/wxm/edit/inframe.cpp:143
+#, c-format
+msgid " (Sub: %s)"
+msgstr "（次行：%s）"
 
-#: ../src/wxm/edit/inframe.cpp:148
-msgid "Col:"
-msgstr "列："
+#: ../src/wxm/edit/inframe.cpp:144
+#, c-format
+msgid " Col: %s"
+msgstr " 列：%s"
 
-#: ../src/wxm/edit/inframe.cpp:149
-msgid "CharPos:"
-msgstr "字符位置："
+#: ../src/wxm/edit/inframe.cpp:147
+#, c-format
+msgid "CharPos: %s/%s"
+msgstr "字符位置：%s/%s"
 
 #: ../src/wxm/edit/inframe.cpp:150
-msgid "SelSize:"
-msgstr "选中长度："
+#, c-format
+msgid "SelSize: %s"
+msgstr "选中长度：%s"
+
+#: ../src/wxm/edit/inframe.cpp:955
+msgid "Do you want to discard changes?"
+msgstr "要放弃所做的修改吗？"
+
+#: ../src/wxm/edit/inframe.cpp:989
+msgid "This file has been changed by another application."
+msgstr "这个文件被其它程序修改过了。"
+
+#: ../src/wxm/edit/inframe.cpp:990
+msgid "Do you want to reload it?"
+msgstr "要重新加载这个文件吗？"
+
+#: ../src/wxm/edit/inframe.cpp:1012
+#, c-format
+msgid ""
+"Do you want to continue?\n"
+"The file size is %s bytes.\n"
+"It may take long time and large memories to convert to Text/Column Mode."
+msgstr ""
+"要继续吗？\n"
+"这个文件的长度是 %s 字节，\n"
+"转换到文本/列块模式可能会花很多时间和内存。"
+
+#: ../src/wxm/edit/inframe.cpp:1012
+msgid "Hex Mode to Text/Column Mode"
+msgstr "十六进制模式转换到文本/列块模式"
 
 #: ../src/wxm/recent_list.cpp:111
 msgid "[EMPTY]"
@@ -1504,53 +1536,26 @@ msgstr "wxMEdit 打印"
 msgid "Invalid Unicode Characters"
 msgstr "不正确的 Unicode 字符"
 
-#: ../src/wxmedit/wxmedit_basic.cpp:453
-#, c-format
-msgid ""
-"Do you want to continue?\n"
-"The file size is %s bytes.\n"
-"It may take long time and large memories to convert to Text/Column Mode."
-msgstr ""
-"要继续吗？\n"
-"这个文件的长度是 %s 字节，\n"
-"转换到文本/列块模式可能会花很多时间和内存。"
-
-#: ../src/wxmedit/wxmedit_basic.cpp:453
-msgid "Hex Mode to Text/Column Mode"
-msgstr "十六进制模式转换到文本/列块模式"
-
-#: ../src/wxmedit/wxmedit_basic.cpp:1625 ../src/wxmedit/wxmedit_basic.cpp:1688
-#: ../src/wxmedit_frame.cpp:2672
+#: ../src/wxmedit/wxmedit_basic.cpp:1614 ../src/wxmedit/wxmedit_basic.cpp:1677
+#: ../src/wxmedit_frame.cpp:2675
 msgid "The Parent Directory of this file does not exist:"
 msgstr "这个文件所在目录不存在："
 
-#: ../src/wxmedit/wxmedit_basic.cpp:1708
+#: ../src/wxmedit/wxmedit_basic.cpp:1697
 msgid "Cannot save this file:"
 msgstr "无法保存这个文件："
 
-#: ../src/wxmedit/wxmedit_basic.cpp:1736
+#: ../src/wxmedit/wxmedit_basic.cpp:1725
 msgid "Do you want to save this file?"
 msgstr "要保存这个文件吗？"
 
-#: ../src/wxmedit/wxmedit_basic.cpp:1747
+#: ../src/wxmedit/wxmedit_basic.cpp:1736
 msgid "Save File As"
 msgstr "另存为"
 
-#: ../src/wxmedit/wxmedit_basic.cpp:1751 ../src/wxmedit_frame.cpp:1988
+#: ../src/wxmedit/wxmedit_basic.cpp:1740 ../src/wxmedit_frame.cpp:1988
 msgid "Save File"
 msgstr "保存文件"
-
-#: ../src/wxmedit/wxmedit_basic.cpp:1791
-msgid "Do you want to discard changes?"
-msgstr "要放弃所做的修改吗？"
-
-#: ../src/wxmedit/wxmedit_basic.cpp:1825
-msgid "This file has been changed by another application."
-msgstr "这个文件被其它程序修改过了。"
-
-#: ../src/wxmedit/wxmedit_basic.cpp:1826
-msgid "Do you want to reload it?"
-msgstr "要重新加载这个文件吗？"
 
 #: ../src/wxmedit_frame.cpp:196
 msgid "Current maintainer of wxMEdit"
@@ -1995,7 +2000,7 @@ msgstr "转为半角"
 msgid "Convert the selection to halfwidth"
 msgstr "将选中的文本转为半角"
 
-#: ../src/wxmedit_frame.cpp:1163 ../src/wxmedit_frame.cpp:3848
+#: ../src/wxmedit_frame.cpp:1163 ../src/wxmedit_frame.cpp:3851
 msgid "To Halfwidth by Options..."
 msgstr "转为半角(使用选项)..."
 
@@ -2011,7 +2016,7 @@ msgstr "转为全角"
 msgid "Convert the selection to fullwidth"
 msgstr "将选中的文本转为全角"
 
-#: ../src/wxmedit_frame.cpp:1165 ../src/wxmedit_frame.cpp:3891
+#: ../src/wxmedit_frame.cpp:1165 ../src/wxmedit_frame.cpp:3894
 msgid "To Fullwidth by Options..."
 msgstr "转为全角(使用选项)..."
 
@@ -2203,8 +2208,8 @@ msgstr "清除当前文件中的所有书签"
 msgid "&View"
 msgstr "查看(&V)"
 
-#: ../src/wxmedit_frame.cpp:1207 ../src/wxmedit_frame.cpp:2974
-#: ../src/wxmedit_frame.cpp:2981
+#: ../src/wxmedit_frame.cpp:1207 ../src/wxmedit_frame.cpp:2977
+#: ../src/wxmedit_frame.cpp:2984
 msgid "Encoding: "
 msgstr "编码: "
 
@@ -2212,13 +2217,13 @@ msgstr "编码: "
 msgid "All "
 msgstr "全部 "
 
-#: ../src/wxmedit_frame.cpp:1210 ../src/wxmedit_frame.cpp:2990
-#: ../src/wxmedit_frame.cpp:2995
+#: ../src/wxmedit_frame.cpp:1210 ../src/wxmedit_frame.cpp:2993
+#: ../src/wxmedit_frame.cpp:2998
 msgid "Syntax Type: "
 msgstr "语法类型: "
 
-#: ../src/wxmedit_frame.cpp:1212 ../src/wxmedit_frame.cpp:3007
-#: ../src/wxmedit_frame.cpp:3012
+#: ../src/wxmedit_frame.cpp:1212 ../src/wxmedit_frame.cpp:3010
+#: ../src/wxmedit_frame.cpp:3015
 msgid "Font Name: "
 msgstr "字体名称: "
 
@@ -2250,8 +2255,8 @@ msgstr "[UVWXYZ]"
 msgid "[other]"
 msgstr "[其他]"
 
-#: ../src/wxmedit_frame.cpp:1221 ../src/wxmedit_frame.cpp:3023
-#: ../src/wxmedit_frame.cpp:3028
+#: ../src/wxmedit_frame.cpp:1221 ../src/wxmedit_frame.cpp:3026
+#: ../src/wxmedit_frame.cpp:3031
 msgid "Font Size: "
 msgstr "字号: "
 
@@ -2275,8 +2280,8 @@ msgstr "固定宽度模式(&F)"
 msgid "Set/Unset the font with Fixed Width"
 msgstr "设置或取消字体为固定的宽度"
 
-#: ../src/wxmedit_frame.cpp:1299 ../src/wxmedit_frame.cpp:3047
-#: ../src/wxmedit_frame.cpp:3052
+#: ../src/wxmedit_frame.cpp:1299 ../src/wxmedit_frame.cpp:3050
+#: ../src/wxmedit_frame.cpp:3055
 msgid "Tab Column: "
 msgstr "制表符(Tab)的宽度: "
 
@@ -2284,8 +2289,8 @@ msgstr "制表符(Tab)的宽度: "
 msgid "Set column of Tab char"
 msgstr "设置制表符(Tab)的宽度"
 
-#: ../src/wxmedit_frame.cpp:1318 ../src/wxmedit_frame.cpp:3061
-#: ../src/wxmedit_frame.cpp:3066
+#: ../src/wxmedit_frame.cpp:1318 ../src/wxmedit_frame.cpp:3064
+#: ../src/wxmedit_frame.cpp:3069
 msgid "Line Spacing: "
 msgstr "行间距: "
 
@@ -2429,7 +2434,7 @@ msgstr "修改文件关联设置"
 msgid "&Purge Histories..."
 msgstr "清除历史记录(&P)"
 
-#: ../src/wxmedit_frame.cpp:1377 ../src/wxmedit_frame.cpp:3146
+#: ../src/wxmedit_frame.cpp:1377 ../src/wxmedit_frame.cpp:3149
 msgid "Has Unicode BOM (Byte-Order Mark)"
 msgstr "有 Unicode BOM (字节序标记)"
 
@@ -2441,7 +2446,7 @@ msgstr "插入/删除 BOM"
 msgid "Add/Remove Unicode BOM"
 msgstr "插入/删除 Unicode BOM"
 
-#: ../src/wxmedit_frame.cpp:1380 ../src/wxmedit_frame.cpp:3161
+#: ../src/wxmedit_frame.cpp:1380 ../src/wxmedit_frame.cpp:3164
 msgid "NewLine Char (File Format): "
 msgstr "换行字符(文件格式): "
 
@@ -2469,7 +2474,7 @@ msgstr "转换为 LF/0A (&UNIX)"
 msgid "Convert the file format to UNIX format"
 msgstr "转换文件格式为 UNIX 的格式"
 
-#: ../src/wxmedit_frame.cpp:1384 ../src/wxmedit_frame.cpp:3177
+#: ../src/wxmedit_frame.cpp:1384 ../src/wxmedit_frame.cpp:3180
 msgid "Press Enter to Insert NewLine Char: "
 msgstr "按回车插入的换行字符: "
 
@@ -2811,7 +2816,7 @@ msgstr "切换插入/覆盖模式"
 msgid "New File"
 msgstr "新建文件"
 
-#: ../src/wxmedit_frame.cpp:1987 ../src/wxmedit_frame.cpp:3229
+#: ../src/wxmedit_frame.cpp:1987 ../src/wxmedit_frame.cpp:3232
 msgid "Open File"
 msgstr "打开文件"
 
@@ -2899,36 +2904,36 @@ msgstr "多文件查找/替换的结果"
 msgid "Information Window"
 msgstr "信息窗口"
 
-#: ../src/wxmedit_frame.cpp:2616
+#: ../src/wxmedit_frame.cpp:2619
 #, c-format
 msgid "NoName%d"
 msgstr "未命名%d"
 
-#: ../src/wxmedit_frame.cpp:2653
+#: ../src/wxmedit_frame.cpp:2656
 msgid "This is a Directory:"
 msgstr "这是个目录："
 
-#: ../src/wxmedit_frame.cpp:2662
+#: ../src/wxmedit_frame.cpp:2665
 msgid "This file does not exist:"
 msgstr "这个文件不存在："
 
-#: ../src/wxmedit_frame.cpp:2680
+#: ../src/wxmedit_frame.cpp:2683
 msgid "Cannot access this file:"
 msgstr "无法访问这个文件："
 
-#: ../src/wxmedit_frame.cpp:2716
+#: ../src/wxmedit_frame.cpp:2719
 msgid "Cannot load this file:"
 msgstr "无法加载这个文件："
 
-#: ../src/wxmedit_frame.cpp:3150 ../src/wxmedit_frame.cpp:3156
+#: ../src/wxmedit_frame.cpp:3153 ../src/wxmedit_frame.cpp:3159
 msgid "Has No Unicode BOM (Byte-Order Mark)"
 msgstr "没有 Unicode BOM (字节序标记)"
 
-#: ../src/wxmedit_frame.cpp:3353
+#: ../src/wxmedit_frame.cpp:3356
 msgid "Close all files in this foler and in all the subfolers:"
 msgstr "关闭这个文件夹及其子文件夹中的所有文件："
 
-#: ../src/wxmedit_frame.cpp:3488
+#: ../src/wxmedit_frame.cpp:3491
 msgid ""
 "There was a problem previewing.\n"
 "Perhaps your current printer is not set correctly?"
@@ -2936,15 +2941,15 @@ msgstr ""
 "在打印预览时发生问题。\n"
 "或许是打印机没有设置正确？"
 
-#: ../src/wxmedit_frame.cpp:3488
+#: ../src/wxmedit_frame.cpp:3491
 msgid "Previewing"
 msgstr "打印预览"
 
-#: ../src/wxmedit_frame.cpp:3492
+#: ../src/wxmedit_frame.cpp:3495
 msgid "wxMEdit Print Preview"
 msgstr "wxMEdit 打印预览"
 
-#: ../src/wxmedit_frame.cpp:3517
+#: ../src/wxmedit_frame.cpp:3520
 msgid ""
 "There was a problem printing.\n"
 "Perhaps your current printer is not set correctly?"
@@ -2952,55 +2957,55 @@ msgstr ""
 "在打印时发生问题。\n"
 "或许是打印机没有设置正确？"
 
-#: ../src/wxmedit_frame.cpp:3517
+#: ../src/wxmedit_frame.cpp:3520
 msgid "Printing"
 msgstr "打印"
 
-#: ../src/wxmedit_frame.cpp:3845 ../src/wxmedit_frame.cpp:3888
+#: ../src/wxmedit_frame.cpp:3848 ../src/wxmedit_frame.cpp:3891
 msgid "ASCII characters"
 msgstr "ASCII 字符"
 
-#: ../src/wxmedit_frame.cpp:3845 ../src/wxmedit_frame.cpp:3888
+#: ../src/wxmedit_frame.cpp:3848 ../src/wxmedit_frame.cpp:3891
 msgid "Japanese characters"
 msgstr "日文"
 
-#: ../src/wxmedit_frame.cpp:3846 ../src/wxmedit_frame.cpp:3889
+#: ../src/wxmedit_frame.cpp:3849 ../src/wxmedit_frame.cpp:3892
 msgid "Korean characters"
 msgstr "韩文"
 
-#: ../src/wxmedit_frame.cpp:3846 ../src/wxmedit_frame.cpp:3889
+#: ../src/wxmedit_frame.cpp:3849 ../src/wxmedit_frame.cpp:3892
 msgid "other characters"
 msgstr "其他字符"
 
-#: ../src/wxmedit_frame.cpp:3848 ../src/wxmedit_frame.cpp:3891
+#: ../src/wxmedit_frame.cpp:3851 ../src/wxmedit_frame.cpp:3894
 msgid "Choose the characters you want to convert:"
 msgstr "选择要转换的字符："
 
-#: ../src/wxmedit_frame.cpp:4108
+#: ../src/wxmedit_frame.cpp:4111
 msgid "Line Number: (you can input HexNumber: 0xNNN)"
 msgstr "行号：(可以输入16进位数字: 0xNNN)"
 
-#: ../src/wxmedit_frame.cpp:4108
+#: ../src/wxmedit_frame.cpp:4111
 msgid "Go To Line"
 msgstr "转到此行"
 
-#: ../src/wxmedit_frame.cpp:4133
+#: ../src/wxmedit_frame.cpp:4136
 msgid "Position: (you can input HexNumber: 0xNNN)"
 msgstr "文件位置：(可以输入16进位数字: 0xNNN)"
 
-#: ../src/wxmedit_frame.cpp:4133
+#: ../src/wxmedit_frame.cpp:4136
 msgid "Go To Position"
 msgstr "转到文件位置"
 
-#: ../src/wxmedit_frame.cpp:5011
+#: ../src/wxmedit_frame.cpp:5014
 msgid "Press OK to visit our HomePage."
 msgstr "按“确定”访问 wxMEdit 主页。"
 
-#: ../src/wxmedit_frame.cpp:5013
+#: ../src/wxmedit_frame.cpp:5016
 msgid "wxMEdit, a cross-platform Text/Hex Editor"
 msgstr "wxMEdit：跨平台的文本/十六进制编辑器"
 
-#: ../src/wxmedit_frame.cpp:5016
+#: ../src/wxmedit_frame.cpp:5019
 msgid "Press OK to view the license online version.\n"
 msgstr "按“确定”查看在线版授权许可。\n"
 

@@ -38,14 +38,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: wxMEdit 3.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-02-06 09:47+0800\n"
+"POT-Creation-Date: 2018-03-13 16:16+0800\n"
 "PO-Revision-Date: 2015-07-31 18:44+0200\n"
 "Last-Translator: Ronny Steiner <post@sirsteiner.de>\n"
 "Language-Team: \n"
+"Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: de_DE\n"
 "X-Generator: Poedit 1.8.2\n"
 
 #: ../src/dialog/wxm_conv_enc_dialog.cpp:54
@@ -57,11 +57,11 @@ msgid "New Encoding:"
 msgstr "Neue Codierung:"
 
 #: ../src/dialog/wxm_conv_enc_dialog.cpp:67
-#: ../src/dialog/wxmedit_options_dialog.cpp:510 ../src/wxmedit_frame.cpp:2981
-#: ../src/wxmedit_frame.cpp:2995 ../src/wxmedit_frame.cpp:3012
-#: ../src/wxmedit_frame.cpp:3028 ../src/wxmedit_frame.cpp:3052
-#: ../src/wxmedit_frame.cpp:3066 ../src/wxmedit_frame.cpp:3172
-#: ../src/wxmedit_frame.cpp:3188
+#: ../src/dialog/wxmedit_options_dialog.cpp:510 ../src/wxmedit_frame.cpp:2984
+#: ../src/wxmedit_frame.cpp:2998 ../src/wxmedit_frame.cpp:3015
+#: ../src/wxmedit_frame.cpp:3031 ../src/wxmedit_frame.cpp:3055
+#: ../src/wxmedit_frame.cpp:3069 ../src/wxmedit_frame.cpp:3175
+#: ../src/wxmedit_frame.cpp:3191
 msgid "None"
 msgstr "nicht drucken"
 
@@ -456,132 +456,132 @@ msgstr "Vordefinierte Dateitypen:"
 msgid "<- Add Custom File Type"
 msgstr "<- Eigene Dateitypen hinzufügen"
 
-#: ../src/dialog/wxm_find_in_files_dialog.cpp:109
+#: ../src/dialog/wxm_find_in_files_dialog.cpp:108
 msgid "Find/Replace In Files"
 msgstr "Suchen/Ersetzen in Dateien"
 
-#: ../src/dialog/wxm_find_in_files_dialog.cpp:118
+#: ../src/dialog/wxm_find_in_files_dialog.cpp:117
 #: ../src/dialog/wxm_search_replace_dialog.cpp:113
 #: ../src/dialog/wxm_sort_dialog.cpp:58
 msgid "&Case Sensitive"
 msgstr "&Groß-/Kleinschreibung unterscheiden"
 
-#: ../src/dialog/wxm_find_in_files_dialog.cpp:121
+#: ../src/dialog/wxm_find_in_files_dialog.cpp:120
 #: ../src/dialog/wxm_search_replace_dialog.cpp:116
 msgid "&Whole Word Only"
 msgstr "Nur &ganze Wörter"
 
-#: ../src/dialog/wxm_find_in_files_dialog.cpp:124
+#: ../src/dialog/wxm_find_in_files_dialog.cpp:123
 #: ../src/dialog/wxm_search_replace_dialog.cpp:119
 msgid "Use Regular E&xpressions"
 msgstr "&Reguläre Ausdrücke verwenden"
 
-#: ../src/dialog/wxm_find_in_files_dialog.cpp:127
+#: ../src/dialog/wxm_find_in_files_dialog.cpp:126
 #: ../src/dialog/wxm_search_replace_dialog.cpp:122
 msgid "Find &Hex String (Example: BE 00 3A or BE003A)"
 msgstr "Finde &Hexadezimal-Zeichen (Beispiel: BE 00 3A oder BE003A)"
 
-#: ../src/dialog/wxm_find_in_files_dialog.cpp:130
+#: ../src/dialog/wxm_find_in_files_dialog.cpp:129
 msgid "&List the First Found Item Only"
 msgstr "Nur den &ersten Fund anzeigen"
 
-#: ../src/dialog/wxm_find_in_files_dialog.cpp:136
+#: ../src/dialog/wxm_find_in_files_dialog.cpp:135
 msgid "&Find"
 msgstr "&Suchen"
 
-#: ../src/dialog/wxm_find_in_files_dialog.cpp:138
+#: ../src/dialog/wxm_find_in_files_dialog.cpp:137
 #: ../src/dialog/wxm_search_replace_dialog.cpp:148
 msgid "&Replace"
 msgstr "&Ersetzen"
 
-#: ../src/dialog/wxm_find_in_files_dialog.cpp:140
+#: ../src/dialog/wxm_find_in_files_dialog.cpp:139
 msgid "&Enable Replace"
 msgstr "Ersetzen &aktivieren"
 
-#: ../src/dialog/wxm_find_in_files_dialog.cpp:143
+#: ../src/dialog/wxm_find_in_files_dialog.cpp:142
 #: ../src/dialog/wxm_search_replace_dialog.cpp:154
 msgid "Close"
 msgstr "Schließen"
 
-#: ../src/dialog/wxm_find_in_files_dialog.cpp:150
+#: ../src/dialog/wxm_find_in_files_dialog.cpp:149
 msgid "Opened Files in Editor"
 msgstr "Geöffnete Dateien im Editor"
 
-#: ../src/dialog/wxm_find_in_files_dialog.cpp:153
+#: ../src/dialog/wxm_find_in_files_dialog.cpp:152
 msgid "Selected Directory:"
 msgstr "Ausgewähltes Verzeichnis:"
 
-#: ../src/dialog/wxm_find_in_files_dialog.cpp:157
+#: ../src/dialog/wxm_find_in_files_dialog.cpp:156
 msgid "..."
 msgstr "..."
 
-#: ../src/dialog/wxm_find_in_files_dialog.cpp:159
+#: ../src/dialog/wxm_find_in_files_dialog.cpp:158
 msgid "<<"
 msgstr "<<"
 
-#: ../src/dialog/wxm_find_in_files_dialog.cpp:161
+#: ../src/dialog/wxm_find_in_files_dialog.cpp:160
 msgid "File Filters:"
 msgstr "Datei-Filter:"
 
-#: ../src/dialog/wxm_find_in_files_dialog.cpp:169
+#: ../src/dialog/wxm_find_in_files_dialog.cpp:168
 msgid "Exclude Filters:"
 msgstr "Ausgeschlossene Filter:"
 
-#: ../src/dialog/wxm_find_in_files_dialog.cpp:177
+#: ../src/dialog/wxm_find_in_files_dialog.cpp:176
 msgid "File Encoding:"
 msgstr "Datei-Codierung:"
 
-#: ../src/dialog/wxm_find_in_files_dialog.cpp:182
+#: ../src/dialog/wxm_find_in_files_dialog.cpp:181
 msgid "Include Subdirectories"
 msgstr "Unterverzeichnisse einschließen"
 
-#: ../src/dialog/wxm_find_in_files_dialog.cpp:210
+#: ../src/dialog/wxm_find_in_files_dialog.cpp:209
 #: ../src/dialog/wxm_search_replace_dialog.cpp:190
 msgid "WxBitmapButtonRecentFindText"
 msgstr "WxBitmapButtonRecentFindText"
 
-#: ../src/dialog/wxm_find_in_files_dialog.cpp:221
+#: ../src/dialog/wxm_find_in_files_dialog.cpp:220
 #: ../src/dialog/wxm_search_replace_dialog.cpp:201
 msgid "WxBitmapButtonRecentReplaceText"
 msgstr "WxBitmapButtonRecentReplaceText"
 
-#: ../src/dialog/wxm_find_in_files_dialog.cpp:225
+#: ../src/dialog/wxm_find_in_files_dialog.cpp:224
 msgid "Automatic Detection"
 msgstr "Automatische Erkennung"
 
-#: ../src/dialog/wxm_find_in_files_dialog.cpp:393
+#: ../src/dialog/wxm_find_in_files_dialog.cpp:392
 msgid "Choose a directory"
 msgstr "Verzeichnis auswählen"
 
-#: ../src/dialog/wxm_find_in_files_dialog.cpp:531
+#: ../src/dialog/wxm_find_in_files_dialog.cpp:530
 #, c-format
 msgid "Found %d file(s) matched the filters..."
 msgstr "%d Datei(en) entsprechend der Filter gefunden..."
 
-#: ../src/dialog/wxm_find_in_files_dialog.cpp:561
+#: ../src/dialog/wxm_find_in_files_dialog.cpp:560
 msgid "The selected directory does not exist."
 msgstr "Das gewählte Verzeichnis existiert nicht."
 
-#: ../src/dialog/wxm_find_in_files_dialog.cpp:643
+#: ../src/dialog/wxm_find_in_files_dialog.cpp:642
 #, c-format
 msgid "Processing %d of %d files..."
 msgstr "Verarbeite %d von %d Dateien..."
 
-#: ../src/dialog/wxm_find_in_files_dialog.cpp:752
+#: ../src/dialog/wxm_find_in_files_dialog.cpp:751
 #, c-format
 msgid "Line(%d): "
 msgstr "Zeile (%d): "
 
-#: ../src/dialog/wxm_find_in_files_dialog.cpp:756
+#: ../src/dialog/wxm_find_in_files_dialog.cpp:755
 #, c-format
 msgid "Offset(%s): "
 msgstr "Offset (%s): "
 
-#: ../src/dialog/wxm_find_in_files_dialog.cpp:757
+#: ../src/dialog/wxm_find_in_files_dialog.cpp:756
 msgid "Binary file matches"
 msgstr "Übereinstimmungen in Binärdatei"
 
-#: ../src/dialog/wxm_find_in_files_dialog.cpp:779
+#: ../src/dialog/wxm_find_in_files_dialog.cpp:778
 #, c-format
 msgid "%d results"
 msgstr "%d Ergebnisse"
@@ -1346,8 +1346,8 @@ msgstr ""
 
 #: ../src/dialog/wxmedit_options_dialog.cpp:774
 msgid ""
-"Place configuration files into application data directory of current user (%"
-"APPDATA%\\wxmedit) rather than wxMEdit executable directory"
+"Place configuration files into application data directory of current user "
+"(%APPDATA%\\wxmedit) rather than wxMEdit executable directory"
 msgstr ""
 "Konfigurationsdateien im Anwendungsdaten-Ordner des aktuellen Benutzers "
 "speichern (%APPDATA%\\wxmedit) und nicht im wxMEdit-Programmverzeichnis"
@@ -1386,37 +1386,70 @@ msgstr "Diese Taste ist zugeordnet an [%s]"
 msgid "The input string is not a valid Hex-String:"
 msgstr "Die eingegebene Zeichenkette ist kein gültiger Hex-String:"
 
-#: ../src/wxm/edit/inframe.cpp:105
+#: ../src/wxm/edit/inframe.cpp:109
 msgid "INS"
 msgstr "EINF"
 
-#: ../src/wxm/edit/inframe.cpp:106
+#: ../src/wxm/edit/inframe.cpp:110
 msgid "OVR"
 msgstr "ÜBER"
 
-#: ../src/wxm/edit/inframe.cpp:112
+#: ../src/wxm/edit/inframe.cpp:116
 msgid "ReadOnly"
 msgstr "NurLesen"
 
 #: ../src/wxm/edit/inframe.cpp:142
-msgid "Ln:"
-msgstr "Z:"
+#, c-format
+msgid "Ln: %s/%s"
+msgstr "Z: %s/%s"
 
-#: ../src/wxm/edit/inframe.cpp:145
-msgid "Sub:"
+#: ../src/wxm/edit/inframe.cpp:143
+#, c-format
+msgid " (Sub: %s)"
 msgstr ""
 
-#: ../src/wxm/edit/inframe.cpp:148
-msgid "Col:"
-msgstr "Sp:"
+#: ../src/wxm/edit/inframe.cpp:144
+#, c-format
+msgid " Col: %s"
+msgstr " Sp: %s"
 
-#: ../src/wxm/edit/inframe.cpp:149
-msgid "CharPos:"
-msgstr "ZeiPos:"
+#: ../src/wxm/edit/inframe.cpp:147
+#, c-format
+msgid "CharPos: %s/%s"
+msgstr "ZeiPos: %s/%s"
 
 #: ../src/wxm/edit/inframe.cpp:150
-msgid "SelSize:"
-msgstr "AuswGröße:"
+#, c-format
+msgid "SelSize: %s"
+msgstr "AuswGröße: %s"
+
+#: ../src/wxm/edit/inframe.cpp:955
+msgid "Do you want to discard changes?"
+msgstr "Sollen die Änderungen verworfen werden?"
+
+#: ../src/wxm/edit/inframe.cpp:989
+msgid "This file has been changed by another application."
+msgstr "Diese Datei wurde von einer anderen Anwendung geändert."
+
+#: ../src/wxm/edit/inframe.cpp:990
+msgid "Do you want to reload it?"
+msgstr "Soll sie neu geladen werden?"
+
+#: ../src/wxm/edit/inframe.cpp:1012
+#, c-format
+msgid ""
+"Do you want to continue?\n"
+"The file size is %s bytes.\n"
+"It may take long time and large memories to convert to Text/Column Mode."
+msgstr ""
+"Die Dateigröße ist %s Bytes.\n"
+"Es könnte sehr lange dauern und viel Speicher verbrauchen beim Umwandeln in "
+"den Text-/Spalten-Modus.\n"
+"Wirklich fortfahren?"
+
+#: ../src/wxm/edit/inframe.cpp:1012
+msgid "Hex Mode to Text/Column Mode"
+msgstr "Hexadezimal- zu Text-/Spalten-Modus"
 
 #: ../src/wxm/recent_list.cpp:111
 msgid "[EMPTY]"
@@ -1515,54 +1548,26 @@ msgstr "wxMEdit Ausdruck"
 msgid "Invalid Unicode Characters"
 msgstr "Ungültige Unicode-Zeichen"
 
-#: ../src/wxmedit/wxmedit_basic.cpp:453
-#, c-format
-msgid ""
-"Do you want to continue?\n"
-"The file size is %s bytes.\n"
-"It may take long time and large memories to convert to Text/Column Mode."
-msgstr ""
-"Die Dateigröße ist %s Bytes.\n"
-"Es könnte sehr lange dauern und viel Speicher verbrauchen beim Umwandeln in "
-"den Text-/Spalten-Modus.\n"
-"Wirklich fortfahren?"
-
-#: ../src/wxmedit/wxmedit_basic.cpp:453
-msgid "Hex Mode to Text/Column Mode"
-msgstr "Hexadezimal- zu Text-/Spalten-Modus"
-
-#: ../src/wxmedit/wxmedit_basic.cpp:1625 ../src/wxmedit/wxmedit_basic.cpp:1688
-#: ../src/wxmedit_frame.cpp:2672
+#: ../src/wxmedit/wxmedit_basic.cpp:1614 ../src/wxmedit/wxmedit_basic.cpp:1677
+#: ../src/wxmedit_frame.cpp:2675
 msgid "The Parent Directory of this file does not exist:"
 msgstr "Das Ursprungsverzeichnis dieser Datei existiert nicht:"
 
-#: ../src/wxmedit/wxmedit_basic.cpp:1708
+#: ../src/wxmedit/wxmedit_basic.cpp:1697
 msgid "Cannot save this file:"
 msgstr "Diese Datei kann nicht gespeichert werden:"
 
-#: ../src/wxmedit/wxmedit_basic.cpp:1736
+#: ../src/wxmedit/wxmedit_basic.cpp:1725
 msgid "Do you want to save this file?"
 msgstr "Soll diese Datei gespeichert werden?"
 
-#: ../src/wxmedit/wxmedit_basic.cpp:1747
+#: ../src/wxmedit/wxmedit_basic.cpp:1736
 msgid "Save File As"
 msgstr "Datei speichern unter"
 
-#: ../src/wxmedit/wxmedit_basic.cpp:1751 ../src/wxmedit_frame.cpp:1988
+#: ../src/wxmedit/wxmedit_basic.cpp:1740 ../src/wxmedit_frame.cpp:1988
 msgid "Save File"
 msgstr "Datei speichern"
-
-#: ../src/wxmedit/wxmedit_basic.cpp:1791
-msgid "Do you want to discard changes?"
-msgstr "Sollen die Änderungen verworfen werden?"
-
-#: ../src/wxmedit/wxmedit_basic.cpp:1825
-msgid "This file has been changed by another application."
-msgstr "Diese Datei wurde von einer anderen Anwendung geändert."
-
-#: ../src/wxmedit/wxmedit_basic.cpp:1826
-msgid "Do you want to reload it?"
-msgstr "Soll sie neu geladen werden?"
 
 #: ../src/wxmedit_frame.cpp:196
 msgid "Current maintainer of wxMEdit"
@@ -2011,7 +2016,7 @@ msgstr "In Halbbreite"
 msgid "Convert the selection to halfwidth"
 msgstr "Auswahl in halbbreite Zeichen umwandeln"
 
-#: ../src/wxmedit_frame.cpp:1163 ../src/wxmedit_frame.cpp:3848
+#: ../src/wxmedit_frame.cpp:1163 ../src/wxmedit_frame.cpp:3851
 msgid "To Halfwidth by Options..."
 msgstr "In Halbbreite mit Optionen..."
 
@@ -2027,7 +2032,7 @@ msgstr "In Vollbreite"
 msgid "Convert the selection to fullwidth"
 msgstr "Auswahl in vollbreite Zeichen umwandeln"
 
-#: ../src/wxmedit_frame.cpp:1165 ../src/wxmedit_frame.cpp:3891
+#: ../src/wxmedit_frame.cpp:1165 ../src/wxmedit_frame.cpp:3894
 msgid "To Fullwidth by Options..."
 msgstr "In Vollbreite mit Optionen..."
 
@@ -2225,8 +2230,8 @@ msgstr "Löscht alle Lesezeichen der aktuellen Datei"
 msgid "&View"
 msgstr "&Ansicht"
 
-#: ../src/wxmedit_frame.cpp:1207 ../src/wxmedit_frame.cpp:2974
-#: ../src/wxmedit_frame.cpp:2981
+#: ../src/wxmedit_frame.cpp:1207 ../src/wxmedit_frame.cpp:2977
+#: ../src/wxmedit_frame.cpp:2984
 msgid "Encoding: "
 msgstr "Kodierung: "
 
@@ -2234,13 +2239,13 @@ msgstr "Kodierung: "
 msgid "All "
 msgstr "Alle "
 
-#: ../src/wxmedit_frame.cpp:1210 ../src/wxmedit_frame.cpp:2990
-#: ../src/wxmedit_frame.cpp:2995
+#: ../src/wxmedit_frame.cpp:1210 ../src/wxmedit_frame.cpp:2993
+#: ../src/wxmedit_frame.cpp:2998
 msgid "Syntax Type: "
 msgstr "Syntax-Typ: "
 
-#: ../src/wxmedit_frame.cpp:1212 ../src/wxmedit_frame.cpp:3007
-#: ../src/wxmedit_frame.cpp:3012
+#: ../src/wxmedit_frame.cpp:1212 ../src/wxmedit_frame.cpp:3010
+#: ../src/wxmedit_frame.cpp:3015
 msgid "Font Name: "
 msgstr "Schriftart: "
 
@@ -2272,8 +2277,8 @@ msgstr "[UVWXYZ]"
 msgid "[other]"
 msgstr "[Andere]"
 
-#: ../src/wxmedit_frame.cpp:1221 ../src/wxmedit_frame.cpp:3023
-#: ../src/wxmedit_frame.cpp:3028
+#: ../src/wxmedit_frame.cpp:1221 ../src/wxmedit_frame.cpp:3026
+#: ../src/wxmedit_frame.cpp:3031
 msgid "Font Size: "
 msgstr "Schriftgröße: "
 
@@ -2297,8 +2302,8 @@ msgstr "&Feste Breite"
 msgid "Set/Unset the font with Fixed Width"
 msgstr "Feste Zeichenbreite ein-/ausschalten"
 
-#: ../src/wxmedit_frame.cpp:1299 ../src/wxmedit_frame.cpp:3047
-#: ../src/wxmedit_frame.cpp:3052
+#: ../src/wxmedit_frame.cpp:1299 ../src/wxmedit_frame.cpp:3050
+#: ../src/wxmedit_frame.cpp:3055
 msgid "Tab Column: "
 msgstr "Tabulatorbreite: "
 
@@ -2306,8 +2311,8 @@ msgstr "Tabulatorbreite: "
 msgid "Set column of Tab char"
 msgstr "Einstellen der Breite eines Tabulator-Zeichens"
 
-#: ../src/wxmedit_frame.cpp:1318 ../src/wxmedit_frame.cpp:3061
-#: ../src/wxmedit_frame.cpp:3066
+#: ../src/wxmedit_frame.cpp:1318 ../src/wxmedit_frame.cpp:3064
+#: ../src/wxmedit_frame.cpp:3069
 msgid "Line Spacing: "
 msgstr "Zeilenhöhe: "
 
@@ -2451,7 +2456,7 @@ msgstr "Dateitypen zuordnen"
 msgid "&Purge Histories..."
 msgstr "&Verläufe löschen..."
 
-#: ../src/wxmedit_frame.cpp:1377 ../src/wxmedit_frame.cpp:3146
+#: ../src/wxmedit_frame.cpp:1377 ../src/wxmedit_frame.cpp:3149
 msgid "Has Unicode BOM (Byte-Order Mark)"
 msgstr "Unicode BOM (Byte Order Mark) vorhanden"
 
@@ -2463,7 +2468,7 @@ msgstr "BOM hinzufügen/entfernen"
 msgid "Add/Remove Unicode BOM"
 msgstr "Unicode BOM (Byte Order Mark) hinzufügen/entfernen"
 
-#: ../src/wxmedit_frame.cpp:1380 ../src/wxmedit_frame.cpp:3161
+#: ../src/wxmedit_frame.cpp:1380 ../src/wxmedit_frame.cpp:3164
 msgid "NewLine Char (File Format): "
 msgstr "Zeilenumbruch: "
 
@@ -2491,7 +2496,7 @@ msgstr "&UNIX-Format: LF (0A)"
 msgid "Convert the file format to UNIX format"
 msgstr "Dateiformat in das UNIX-Format umwandeln"
 
-#: ../src/wxmedit_frame.cpp:1384 ../src/wxmedit_frame.cpp:3177
+#: ../src/wxmedit_frame.cpp:1384 ../src/wxmedit_frame.cpp:3180
 msgid "Press Enter to Insert NewLine Char: "
 msgstr "Enter erzeugt Zeilenumbruch: "
 
@@ -2848,7 +2853,7 @@ msgstr "Einfügen/Überschreiben umschalten"
 msgid "New File"
 msgstr "Neue Datei"
 
-#: ../src/wxmedit_frame.cpp:1987 ../src/wxmedit_frame.cpp:3229
+#: ../src/wxmedit_frame.cpp:1987 ../src/wxmedit_frame.cpp:3232
 msgid "Open File"
 msgstr "Datei öffnen"
 
@@ -2936,37 +2941,37 @@ msgstr "Ergebnisse von Suchen/Ersetzen in Dateien"
 msgid "Information Window"
 msgstr "Informationsfenster"
 
-#: ../src/wxmedit_frame.cpp:2616
+#: ../src/wxmedit_frame.cpp:2619
 #, c-format
 msgid "NoName%d"
 msgstr "Unbenannt_%d"
 
-#: ../src/wxmedit_frame.cpp:2653
+#: ../src/wxmedit_frame.cpp:2656
 msgid "This is a Directory:"
 msgstr "Das ist ein Verzeichnis:"
 
-#: ../src/wxmedit_frame.cpp:2662
+#: ../src/wxmedit_frame.cpp:2665
 msgid "This file does not exist:"
 msgstr "Diese Datei existiert nicht:"
 
-#: ../src/wxmedit_frame.cpp:2680
+#: ../src/wxmedit_frame.cpp:2683
 msgid "Cannot access this file:"
 msgstr "Kein Zugriff auf die Datei:"
 
-#: ../src/wxmedit_frame.cpp:2716
+#: ../src/wxmedit_frame.cpp:2719
 msgid "Cannot load this file:"
 msgstr "Laden der Datei nicht möglich:"
 
-#: ../src/wxmedit_frame.cpp:3150 ../src/wxmedit_frame.cpp:3156
+#: ../src/wxmedit_frame.cpp:3153 ../src/wxmedit_frame.cpp:3159
 msgid "Has No Unicode BOM (Byte-Order Mark)"
 msgstr "Unicode BOM (Byte Order Mark) nicht vorhanden"
 
-#: ../src/wxmedit_frame.cpp:3353
+#: ../src/wxmedit_frame.cpp:3356
 msgid "Close all files in this foler and in all the subfolers:"
 msgstr ""
 "Alle Dateien in diesem Verzeichnis inkl. Unterverzeichnissen schließen:"
 
-#: ../src/wxmedit_frame.cpp:3488
+#: ../src/wxmedit_frame.cpp:3491
 msgid ""
 "There was a problem previewing.\n"
 "Perhaps your current printer is not set correctly?"
@@ -2974,15 +2979,15 @@ msgstr ""
 "Die Druckvorschau konnte nicht erstellt werden.\n"
 "Ist eventuell der Standarddrucker nicht richtig eingestellt?"
 
-#: ../src/wxmedit_frame.cpp:3488
+#: ../src/wxmedit_frame.cpp:3491
 msgid "Previewing"
 msgstr "Vorschau"
 
-#: ../src/wxmedit_frame.cpp:3492
+#: ../src/wxmedit_frame.cpp:3495
 msgid "wxMEdit Print Preview"
 msgstr "wxMEdit Druckvorschau"
 
-#: ../src/wxmedit_frame.cpp:3517
+#: ../src/wxmedit_frame.cpp:3520
 msgid ""
 "There was a problem printing.\n"
 "Perhaps your current printer is not set correctly?"
@@ -2990,55 +2995,55 @@ msgstr ""
 "Es gab Probleme beim Drucken.\n"
 "Ist eventuell der Standarddrucker nicht richtig eingestellt?"
 
-#: ../src/wxmedit_frame.cpp:3517
+#: ../src/wxmedit_frame.cpp:3520
 msgid "Printing"
 msgstr "Drucken"
 
-#: ../src/wxmedit_frame.cpp:3845 ../src/wxmedit_frame.cpp:3888
+#: ../src/wxmedit_frame.cpp:3848 ../src/wxmedit_frame.cpp:3891
 msgid "ASCII characters"
 msgstr "ASCII-Zeichen"
 
-#: ../src/wxmedit_frame.cpp:3845 ../src/wxmedit_frame.cpp:3888
+#: ../src/wxmedit_frame.cpp:3848 ../src/wxmedit_frame.cpp:3891
 msgid "Japanese characters"
 msgstr "Japanische Zeichen"
 
-#: ../src/wxmedit_frame.cpp:3846 ../src/wxmedit_frame.cpp:3889
+#: ../src/wxmedit_frame.cpp:3849 ../src/wxmedit_frame.cpp:3892
 msgid "Korean characters"
 msgstr "Koreanische Zeichen"
 
-#: ../src/wxmedit_frame.cpp:3846 ../src/wxmedit_frame.cpp:3889
+#: ../src/wxmedit_frame.cpp:3849 ../src/wxmedit_frame.cpp:3892
 msgid "other characters"
 msgstr "Andere Zeichen"
 
-#: ../src/wxmedit_frame.cpp:3848 ../src/wxmedit_frame.cpp:3891
+#: ../src/wxmedit_frame.cpp:3851 ../src/wxmedit_frame.cpp:3894
 msgid "Choose the characters you want to convert:"
 msgstr "Bitte die Zeichen auswählen, die umgewandelt werden sollen:"
 
-#: ../src/wxmedit_frame.cpp:4108
+#: ../src/wxmedit_frame.cpp:4111
 msgid "Line Number: (you can input HexNumber: 0xNNN)"
 msgstr "Zeilennummer: (Hex-Zahl in der Form 0xNNN möglich)"
 
-#: ../src/wxmedit_frame.cpp:4108
+#: ../src/wxmedit_frame.cpp:4111
 msgid "Go To Line"
 msgstr "Springe zu Zeile"
 
-#: ../src/wxmedit_frame.cpp:4133
+#: ../src/wxmedit_frame.cpp:4136
 msgid "Position: (you can input HexNumber: 0xNNN)"
 msgstr "Position: (Hex-Zahl in der Form 0xNNN möglich)"
 
-#: ../src/wxmedit_frame.cpp:4133
+#: ../src/wxmedit_frame.cpp:4136
 msgid "Go To Position"
 msgstr "Springe zu Position"
 
-#: ../src/wxmedit_frame.cpp:5011
+#: ../src/wxmedit_frame.cpp:5014
 msgid "Press OK to visit our HomePage."
 msgstr "Bitte OK klicken, um unsere Homepage zu besuchen."
 
-#: ../src/wxmedit_frame.cpp:5013
+#: ../src/wxmedit_frame.cpp:5016
 msgid "wxMEdit, a cross-platform Text/Hex Editor"
 msgstr "wxMEdit, ein plattformunabhängiger Text-/Hex-Editor"
 
-#: ../src/wxmedit_frame.cpp:5016
+#: ../src/wxmedit_frame.cpp:5019
 msgid "Press OK to view the license online version.\n"
 msgstr "Bitte OK klicken, um die Online-Version der Lizenz anzusehen.\n"
 
