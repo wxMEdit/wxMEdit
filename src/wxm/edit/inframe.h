@@ -49,6 +49,11 @@ struct InFrameWXMEdit : public MadEdit
 		return m_auto_searcher.Searcher(inhex, use_regex);
 	}
 
+
+	bool Reload();
+	// if the file is modified by another app, reload it.
+	bool ReloadByModificationTime();
+
 	InFrameWXMEdit(wxWindow* parent, wxWindowID id, const wxPoint& pos, const wxSize& size, long style);
 private:
 	virtual void DoSelectionChanged() override;
@@ -64,6 +69,7 @@ private:
 	virtual void PaintLineNumberArea(const wxColor & bgcolor, wxDC * dc, const wxRect& rect, bool is_trailing_subrow, MadLineIterator lineiter, int lineid, int text_top) override;
 
 	virtual void OnPaintInPrinting(wxPaintDC& dc, wxMemoryDC& memdc) override;
+	virtual bool ManuallyCancelHexToText() override;
 
 	void BeginTextPrinting();
 	void BeginHexPrinting();

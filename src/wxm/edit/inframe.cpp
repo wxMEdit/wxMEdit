@@ -119,6 +119,8 @@ wxString BOMText(bool hasbom)
 	return hasbom ? bom : wxString();
 }
 
+wxString FormatThousands(const wxString& s);
+
 void InFrameWXMEdit::DoSelectionChanged()
 {
 	g_MainFrame->m_Notebook->ConnectMouseClick();
@@ -958,6 +960,112 @@ void InFrameWXMEdit::ColumnPaste()
 	std::vector<ucs4_t> ucs;
 	GetTextFromClipboard(ucs);
 	InsertString(&ucs[0], ucs.size(), true, true, false);
+}
+
+bool InFrameWXMEdit::Reload()
+{
+	if (m_Lines->m_Name.IsEmpty())
+		return false;
+
+	if (m_Modified)
+	{
+		wxMessageDialog dlg(this, _("Do you want to discard changes?"), wxT("wxMEdit"), wxYES_NO | wxICON_QUESTION);
+		if (dlg.ShowModal() != wxID_YES)
+			return false;
+	}
+
+	WXMLocations loc = SaveLocations();
+	MadEditMode editmode = m_EditMode;
+
+	LoadFromFile(m_Lines->m_Name, m_Lines->m_Encoding->GetName(), m_EditMode == emHexMode);
+	SetEditMode(editmode);
+	RestoreLocations(loc);
+	return true;
+}
+
+bool InFrameWXMEdit::ReloadByModificationTime()
+{
+	if (m_Lines->m_Name.IsEmpty())
+		return false;
+
+	wxLogNull nolog;
+	time_t modtime = wxFileModificationTime(m_Lines->m_Name);
+
+	if (modtime == 0) // the file has been deleted
+	{
+		m_ModificationTime = 0;
+		return false;
+	}
+
+	if (modtime == m_ModificationTime)
+		return false; // the file doesn't change.
+
+	m_ModificationTime = modtime;
+
+	wxMessageDialog dlg(this,
+		wxString(_("This file has been changed by another application.")) + wxT("\n") +
+		wxString(_("Do you want to reload it?")) + wxT("\n\n") + m_Lines->m_Name,
+		wxT("wxMEdit"), wxYES_NO | wxICON_QUESTION);
+	if (dlg.ShowModal() != wxID_YES)
+	{
+		return false;
+	}
+
+	// YES, reload it.
+	return Reload();
+}
+
+bool InFrameWXMEdit::ManuallyCancelHexToText()
+{
+	long maxtextfilesize;
+	wxString oldpath = m_Config->GetPath();
+	m_Config->Read(wxT("/wxMEdit/MaxTextFileSize"), &maxtextfilesize, 1024 * 1024 * 10 /* 10MiB */);
+	m_Config->SetPath(oldpath);
+
+	if (m_Lines->m_Size < maxtextfilesize)
+		return false;
+
+	wxString size = FormatThousands(wxLongLong(m_Lines->m_Size).ToString());
+	if (wxNO == wxMessageBox(wxString::Format(_("Do you want to continue?\nThe file size is %s bytes.\nIt may take long time and large memories to convert to Text/Column Mode."), size.c_str()), _("Hex Mode to Text/Column Mode"), wxYES_NO))
+	{
+		return true;
+	}
+
+	return false;
+}
+
+wxString FormatThousands(const wxString& s)
+{
+	/*
+	// example:
+	int mynumber = 12345678;
+	wxString s = wxString::Format("%d", mynumber); // format the integer to string
+	s = FormatThousands(s); // add separators
+	// s now contains "12,345,678" or "12.345.678" according to locale.
+	*/
+
+	static wxString thousandssep = wxT(",");
+	static struct lconv *loc = 0;
+	if (!loc) {
+		loc = localeconv();
+		if (loc && loc->thousands_sep && loc->thousands_sep[0])
+		{
+#if wxUSE_UNICODE
+			thousandssep = wxString(loc->thousands_sep, wxConvLibc);
+#else
+			thousandssep = loc->thousands_sep;
+#endif
+		}
+	}
+
+	wxString in = s, out;
+	while (in.Length() > 3) {
+		out.Prepend(thousandssep + in.Right(3));
+		in.RemoveLast(3);
+	}
+	if (!in.IsEmpty())
+		out.Prepend(in);
+	return out;
 }
 
 } //namespace wxm

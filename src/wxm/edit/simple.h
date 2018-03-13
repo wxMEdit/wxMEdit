@@ -42,6 +42,7 @@ private:
 	virtual void PaintLineNumberArea(const wxColor & bgcolor, wxDC * dc, const wxRect& rect, bool is_trailing_subrow,
 		MadLineIterator lineiter, int lineid, int text_top) override {}
 	virtual WXMSearcher* Searcher(bool inhex, bool use_regex) override { return nullptr; }
+	virtual bool ManuallyCancelHexToText() override { return false; }
 };
 
 struct InFrameWXMEdit;

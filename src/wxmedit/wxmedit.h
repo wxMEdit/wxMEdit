@@ -540,6 +540,7 @@ protected:
     void GetRawBytesFromClipboard(vector<char>& cs);
 
     void HexModeToTextMode(MadEditMode mode);
+    virtual bool ManuallyCancelHexToText() = 0;
 
     void AppearCaret(bool middle = false); // make the caret showing within the client area
     void ShowCaret(bool show);
@@ -940,9 +941,6 @@ public: // basic functions
 
     bool LoadFromFile(const wxString& filename, const std::wstring& encoding=wxEmptyString, bool hexmode=false);
     bool SaveToFile(const wxString& filename);
-    bool Reload();
-    // if the file is modified by another app, reload it.
-    bool ReloadByModificationTime();
 
     struct WXMLocations
     {
@@ -1040,7 +1038,6 @@ public: // fix wxDC.Blit(wxINVERT) not work on some old versions of VMWare
 };
 
 wxString FixUTF8ToWCS(const wxString &str);
-wxString FormatThousands(const wxString& s);
 bool StrToInt64(wxString str, wxInt64 &i64);
 
 #endif
