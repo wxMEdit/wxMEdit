@@ -8,6 +8,7 @@
 
 #include "inframe.h"
 #include "../../xm/cxx11.h"
+#include "../wx_icu.h"
 #include "../../wxmedit_frame.h"
 #include "../../dialog/wxm_search_replace_dialog.h"
 #include "../../mad_utils.h"
@@ -98,6 +99,9 @@ InFrameWXMEdit::InFrameWXMEdit(wxWindow* parent, wxWindowID id, const wxPoint& p
 	//SetDropTarget(new DnDFile());
 
 	Connect(wxEVT_KEY_DOWN, wxKeyEventHandler(MadEditFrame::MadEditFrameKeyDown));
+
+	UErrorCode uerr = U_ZERO_ERROR;
+	m_numfmt.reset(icu::NumberFormat::createInstance(icu::Locale::getDefault(), uerr));
 }
 
 wxString InsertModeText(bool insertmode)
@@ -119,8 +123,6 @@ wxString BOMText(bool hasbom)
 	return hasbom ? bom : wxString();
 }
 
-wxString FormatThousands(const wxString& s);
-
 void InFrameWXMEdit::DoSelectionChanged()
 {
 	g_MainFrame->m_Notebook->ConnectMouseClick();
@@ -137,9 +139,9 @@ void InFrameWXMEdit::DoSelectionChanged()
 		++col;
 	}
 
-	wxString s1 = FormatThousands(wxString::Format(wxT("%d"), line));
-	wxString s2 = FormatThousands(wxString::Format(wxT("%u"), GetLineCount()));
-	wxString s4 = FormatThousands(wxLongLong(col).ToString());
+	wxString s1 = FormattedNumber(line);
+	wxString s2 = FormattedNumber(GetLineCount());
+	wxString s4 = FormattedNumber(col);
 
 	static wxString lnstr(_("Ln:"));
 	static wxString sepstr(wxT(" /"));
@@ -154,17 +156,17 @@ void InFrameWXMEdit::DoSelectionChanged()
 	wxString text = lnstr + s1 + sepstr + s2;
 	if (subrow>0)
 	{
-		wxString s3 = FormatThousands(wxString::Format(wxT("%d"), subrow + 1));
+		wxString s3 = FormattedNumber(subrow + 1);
 		text += (sepstr1 + substr + s3 + sepstr2);
 	}
 	text += (sepstr3 + colstr + s4);
 	wxm::GetFrameStatusBar().SetField(wxm::STBF_ROWCOL, text);
 
-	s1 = FormatThousands(wxLongLong(GetCaretPosition()).ToString());
-	s2 = FormatThousands(wxLongLong(GetFileSize()).ToString());
+	s1 = FormattedNumber(GetCaretPosition());
+	s2 = FormattedNumber(GetFileSize());
 	wxm::GetFrameStatusBar().SetField(wxm::STBF_CHARPOS, fpstr + s1 + sepstr + s2);
 
-	s1 = FormatThousands(wxLongLong(GetSelectionSize()).ToString());
+	s1 = FormattedNumber(GetSelectionSize());
 	wxm::GetFrameStatusBar().SetField(wxm::STBF_SELECTION, ssstr + s1);
 
 	wxm::GetFrameStatusBar().Update(); // repaint immediately
@@ -1025,7 +1027,7 @@ bool InFrameWXMEdit::ManuallyCancelHexToText()
 	if (m_Lines->m_Size < maxtextfilesize)
 		return false;
 
-	wxString size = FormatThousands(wxLongLong(m_Lines->m_Size).ToString());
+	wxString size = FormattedNumber(m_Lines->m_Size);
 	if (wxNO == wxMessageBox(wxString::Format(_("Do you want to continue?\nThe file size is %s bytes.\nIt may take long time and large memories to convert to Text/Column Mode."), size.c_str()), _("Hex Mode to Text/Column Mode"), wxYES_NO))
 	{
 		return true;
@@ -1034,38 +1036,11 @@ bool InFrameWXMEdit::ManuallyCancelHexToText()
 	return false;
 }
 
-wxString FormatThousands(const wxString& s)
+wxString InFrameWXMEdit::FormattedNumber(int64_t num)
 {
-	/*
-	// example:
-	int mynumber = 12345678;
-	wxString s = wxString::Format("%d", mynumber); // format the integer to string
-	s = FormatThousands(s); // add separators
-	// s now contains "12,345,678" or "12.345.678" according to locale.
-	*/
-
-	static wxString thousandssep = wxT(",");
-	static struct lconv *loc = 0;
-	if (!loc) {
-		loc = localeconv();
-		if (loc && loc->thousands_sep && loc->thousands_sep[0])
-		{
-#if wxUSE_UNICODE
-			thousandssep = wxString(loc->thousands_sep, wxConvLibc);
-#else
-			thousandssep = loc->thousands_sep;
-#endif
-		}
-	}
-
-	wxString in = s, out;
-	while (in.Length() > 3) {
-		out.Prepend(thousandssep + in.Right(3));
-		in.RemoveLast(3);
-	}
-	if (!in.IsEmpty())
-		out.Prepend(in);
-	return out;
+	UnicodeString us;
+	m_numfmt->format(num, us);
+	return ICUStrToWx(us);
 }
 
 } //namespace wxm

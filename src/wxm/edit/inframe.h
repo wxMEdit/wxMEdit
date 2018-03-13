@@ -11,6 +11,9 @@
 
 #include "simple.h"
 
+#include <unicode/numfmt.h>
+#include <boost/scoped_ptr.hpp>
+
 namespace wxm
 {
 
@@ -80,6 +83,8 @@ private:
 
 	bool LineNumberAreaVisible() { return m_linenum_visible || m_bookmark_visible; }
 
+	wxString FormattedNumber(int64_t num);
+
 	int             m_LineNumberAreaWidth;
 	bool            m_linenum_visible;
 	bool            m_bookmark_visible;
@@ -108,6 +113,7 @@ private:
 	int m_PrintTotalHexLineCount;
 
 	AutoSearcher m_auto_searcher;
+	boost::scoped_ptr <icu::NumberFormat> m_numfmt;
 };
 
 } //namespace wxm
