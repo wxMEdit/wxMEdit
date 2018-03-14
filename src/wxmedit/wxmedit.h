@@ -1027,7 +1027,6 @@ private:
     virtual void SetClientSizeData(int w, int h);
     void UpdateClientBitmap();
 
-
     static wxMilliClock_t GetTripleClickInterval();
 
 public: // fix wxDC.Blit(wxINVERT) not work on some old versions of VMWare

@@ -50,17 +50,17 @@
 																	<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
 																</object>
 															</object>
-															<flag>wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
+															<flag>wxALL|wxALIGN_LEFT</flag>
 														</object>
 														<object class="sizeritem">
 															<object class="wxCheckBox" name="ID_WXCHECKBOXCHECKPRERELEASE" variable="WxCheckBoxCheckPrerelease" member="yes">
 																<label>Check for new versions including &amp;prereleases</label>
 															</object>
-															<flag>wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
+															<flag>wxALL|wxALIGN_LEFT</flag>
 															<border>2</border>
 														</object>
 													</object>
-													<flag>wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
+													<flag>wxALL|wxALIGN_LEFT</flag>
 													<border>5</border>
 												</object>
 												<object class="sizeritem">
@@ -83,7 +83,32 @@
 															<border>5</border>
 														</object>
 													</object>
-													<flag>wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
+													<flag>wxALL|wxALIGN_LEFT</flag>
+													<border>2</border>
+												</object>
+												<object class="sizeritem">
+													<object class="wxBoxSizer" variable="BoxSizer40" member="no">
+														<object class="spacer">
+															<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+															<size>3,0</size>
+														</object>
+														<object class="sizeritem">
+															<object class="wxComboBox" name="ID_WXCOMBOBOXFORCEENCODING" variable="WxComboBoxForceEncoding" member="yes">
+																<enabled>0</enabled>
+																<style>wxCB_READONLY|wxCB_DROPDOWN</style>
+															</object>
+															<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+														</object>
+														<object class="sizeritem">
+															<object class="wxCheckBox" name="ID_WXCHECKBOXFORCEENCODING" variable="WxCheckBoxForceEncoding" member="yes">
+																<label>Always use this encoding to open file (without encoding detection)</label>
+																<handler function="WxCheckBoxForceEncodingClick" entry="EVT_CHECKBOX" />
+															</object>
+															<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+															<border>2</border>
+														</object>
+													</object>
+													<flag>wxALL|wxALIGN_LEFT</flag>
 													<border>2</border>
 												</object>
 												<object class="sizeritem">
@@ -106,7 +131,7 @@
 															<border>5</border>
 														</object>
 													</object>
-													<flag>wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
+													<flag>wxALL|wxALIGN_LEFT</flag>
 													<border>2</border>
 												</object>
 												<object class="sizeritem">
@@ -116,32 +141,32 @@
 															<object class="wxCheckBox" name="ID_WXCHECKBOXSINGLEINSTANCE" variable="WxCheckBoxSingleInstance" member="yes">
 																<label>Single Instance (must restart wxMEdit)</label>
 															</object>
-															<flag>wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
+															<flag>wxALL|wxALIGN_LEFT</flag>
 															<border>2</border>
 														</object>
 														<object class="sizeritem">
 															<object class="wxCheckBox" name="ID_WXCHECKBOXRELOADFILES" variable="WxCheckBoxReloadFiles" member="yes">
 																<label>Reload files previously open on startup</label>
 															</object>
-															<flag>wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
+															<flag>wxALL|wxALIGN_LEFT</flag>
 															<border>2</border>
 														</object>
 														<object class="sizeritem">
 															<object class="wxCheckBox" name="ID_WXCHECKBOXRECORDCARETMOVEMENTS" variable="WxCheckBoxRecordCaretMovements" member="yes">
 																<label>Record caret movements in undo list</label>
 															</object>
-															<flag>wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
+															<flag>wxALL|wxALIGN_LEFT</flag>
 															<border>2</border>
 														</object>
 														<object class="sizeritem">
 															<object class="wxCheckBox" name="ID_WXCHECKBOXRESTORECARETPOS" variable="WxCheckBoxRestoreCaretPos" member="yes">
 																<label>Restore previous caret position when files are opened</label>
 															</object>
-															<flag>wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
+															<flag>wxALL|wxALIGN_LEFT</flag>
 															<border>2</border>
 														</object>
 													</object>
-													<flag>wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
+													<flag>wxALL|wxALIGN_LEFT</flag>
 													<border>5</border>
 												</object>
 											</object>
@@ -162,7 +187,7 @@
 															<object class="wxTextCtrl" name="ID_WXEDITMAXLINELENGTH" variable="WxEditMaxLineLength" member="yes">
 																<value>0</value>
 															</object>
-															<flag>wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
+															<flag>wxALL|wxALIGN_CENTER_VERTICAL</flag>
 														</object>
 														<object class="sizeritem">
 															<object class="wxStaticText" name="ID_STATICTEXT3" variable="StaticText3" member="yes">
@@ -172,7 +197,7 @@
 															<border>5</border>
 														</object>
 													</object>
-													<flag>wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
+													<flag>wxALL|wxALIGN_LEFT</flag>
 													<border>2</border>
 												</object>
 												<object class="sizeritem">
@@ -185,7 +210,7 @@
 															<object class="wxTextCtrl" name="ID_WXEDITMAXCOLUMNS" variable="WxEditMaxColumns" member="yes">
 																<value>0</value>
 															</object>
-															<flag>wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
+															<flag>wxALL|wxALIGN_CENTER_VERTICAL</flag>
 														</object>
 														<object class="sizeritem">
 															<object class="wxStaticText" name="ID_STATICTEXT4" variable="StaticText4" member="yes">
@@ -195,7 +220,7 @@
 															<border>5</border>
 														</object>
 													</object>
-													<flag>wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
+													<flag>wxALL|wxALIGN_LEFT</flag>
 													<border>2</border>
 												</object>
 												<object class="sizeritem">
@@ -208,7 +233,7 @@
 															<object class="wxTextCtrl" name="ID_WXEDITTABCOLUMNS" variable="WxEditTabColumns" member="yes">
 																<value>0</value>
 															</object>
-															<flag>wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
+															<flag>wxALL|wxALIGN_CENTER_VERTICAL</flag>
 														</object>
 														<object class="sizeritem">
 															<object class="wxStaticText" name="ID_STATICTEXT5" variable="StaticText5" member="yes">
@@ -218,7 +243,7 @@
 															<border>5</border>
 														</object>
 													</object>
-													<flag>wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
+													<flag>wxALL|wxALIGN_LEFT</flag>
 													<border>2</border>
 												</object>
 												<object class="sizeritem">
@@ -231,7 +256,7 @@
 															<object class="wxTextCtrl" name="IID_WXEDITINDENTCOLUMNS" variable="WxEditIndentColumns" member="yes">
 																<value>0</value>
 															</object>
-															<flag>wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
+															<flag>wxALL|wxALIGN_CENTER_VERTICAL</flag>
 														</object>
 														<object class="sizeritem">
 															<object class="wxStaticText" name="ID_STATICTEXT6" variable="StaticText6" member="yes">
@@ -241,7 +266,7 @@
 															<border>5</border>
 														</object>
 													</object>
-													<flag>wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
+													<flag>wxALL|wxALIGN_LEFT</flag>
 													<border>2</border>
 												</object>
 												<object class="sizeritem">
@@ -251,21 +276,21 @@
 															<object class="wxCheckBox" name="ID_WXCHECKBOXTABORSPACES" variable="WxCheckBoxTabOrSpaces" member="yes">
 																<label>Insert Space char instead of Tab char</label>
 															</object>
-															<flag>wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
+															<flag>wxALL|wxALIGN_LEFT</flag>
 															<border>2</border>
 														</object>
 														<object class="sizeritem">
 															<object class="wxCheckBox" name="ID_WXCHECKBOXAUTOINDENT" variable="WxCheckBoxAutoIndent" member="yes">
 																<label>Auto Indent</label>
 															</object>
-															<flag>wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
+															<flag>wxALL|wxALIGN_LEFT</flag>
 															<border>2</border>
 														</object>
 														<object class="sizeritem">
 															<object class="wxCheckBox" name="ID_WXCHECKBOXAUTOCOMPLETEPAIR" variable="WxCheckBoxAutoCompletePair" member="yes">
 																<label>Auto complete character pair</label>
 															</object>
-															<flag>wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
+															<flag>wxALL|wxALIGN_LEFT</flag>
 															<border>2</border>
 														</object>
 														<object class="sizeritem">
@@ -275,24 +300,24 @@
 																		<label>Auto copy the mouse-selected text to clipboard</label>
 																		<handler function="WxCheckBoxMouseSelectToCopyClick" entry="EVT_CHECKBOX" />
 																	</object>
-																	<flag>wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
+																	<flag>wxALL|wxALIGN_CENTER_VERTICAL</flag>
 																	<border>2</border>
 																</object>
 																<object class="sizeritem">
 																	<object class="wxCheckBox" name="ID_WXCHECKBOXWHENPRESSCTRLKEY" variable="WxCheckBoxWhenPressCtrlKey" member="yes">
 																		<label>when pressing Ctrl key</label>
 																	</object>
-																	<flag>wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
+																	<flag>wxALL|wxALIGN_CENTER_VERTICAL</flag>
 																	<border>2</border>
 																</object>
 															</object>
-															<flag>wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
+															<flag>wxALL|wxALIGN_LEFT</flag>
 														</object>
 														<object class="sizeritem">
 															<object class="wxCheckBox" name="ID_WXCHECKBOXMIDDLEMOUSETOPASTE" variable="WxCheckBoxMiddleMouseToPaste" member="yes">
 																<label>Paste text from clipboard when pressing middle mouse button</label>
 															</object>
-															<flag>wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
+															<flag>wxALL|wxALIGN_LEFT</flag>
 															<border>2</border>
 														</object>
 														<object class="sizeritem">
@@ -311,7 +336,7 @@
 																	<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
 																</object>
 															</object>
-															<flag>wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
+															<flag>wxALL|wxALIGN_LEFT</flag>
 														</object>
 														<object class="sizeritem">
 															<object class="wxBoxSizer" variable="BoxSizer23" member="no">
@@ -329,10 +354,10 @@
 																	<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
 																</object>
 															</object>
-															<flag>wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
+															<flag>wxALL|wxALIGN_LEFT</flag>
 														</object>
 													</object>
-													<flag>wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
+													<flag>wxALL|wxALIGN_LEFT</flag>
 													<border>5</border>
 												</object>
 											</object>
@@ -353,46 +378,46 @@
 																	<object class="wxCheckBox" name="ID_WXCHECKBOXPRINTSYNTAX" variable="WxCheckBoxPrintSyntax" member="yes">
 																		<label>Print Syntax Highlighter</label>
 																	</object>
-																	<flag>wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
+																	<flag>wxALL|wxALIGN_LEFT</flag>
 																	<border>1</border>
 																</object>
 																<object class="sizeritem">
 																	<object class="wxCheckBox" name="ID_WXCHECKBOXPRINTLINENUMBER" variable="WxCheckBoxPrintLineNumber" member="yes">
 																		<label>Print Line Number</label>
 																	</object>
-																	<flag>wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
+																	<flag>wxALL|wxALIGN_LEFT</flag>
 																	<border>1</border>
 																</object>
 																<object class="sizeritem">
 																	<object class="wxCheckBox" name="ID_CHECKBOXPRINTBOOKMARK" variable="WxCheckBoxPrintBookmark" member="yes">
 																		<label>Print Bookmark</label>
 																	</object>
-																	<flag>wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
+																	<flag>wxALL|wxALIGN_LEFT</flag>
 																	<border>1</border>
 																</object>
 																<object class="sizeritem">
 																	<object class="wxCheckBox" name="ID_WXCHECKBOXPRINTENDOFLINE" variable="WxCheckBoxPrintEndOfLine" member="yes">
 																		<label>Print End of Line</label>
 																	</object>
-																	<flag>wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
+																	<flag>wxALL|wxALIGN_LEFT</flag>
 																	<border>1</border>
 																</object>
 																<object class="sizeritem">
 																	<object class="wxCheckBox" name="ID_WXCHECKBOXPRINTTABCHAR" variable="WxCheckBoxPrintTabChar" member="yes">
 																		<label>Print Tab Char</label>
 																	</object>
-																	<flag>wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
+																	<flag>wxALL|wxALIGN_LEFT</flag>
 																	<border>1</border>
 																</object>
 																<object class="sizeritem">
 																	<object class="wxCheckBox" name="ID_WXCHECKBOXPRINTSPACECHAR" variable="WxCheckBoxPrintSpaceChar" member="yes">
 																		<label>Print Space Char</label>
 																	</object>
-																	<flag>wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
+																	<flag>wxALL|wxALIGN_LEFT</flag>
 																	<border>1</border>
 																</object>
 															</object>
-															<flag>wxALL|wxEXPAND|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
+															<flag>wxALL|wxEXPAND</flag>
 															<border>4</border>
 														</object>
 														<object class="sizeritem">
@@ -410,15 +435,15 @@
 																		<default>-1</default>
 																		<style>wxRA_SPECIFY_COLS</style>
 																	</object>
-																	<flag>wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
+																	<flag>wxALL|wxALIGN_LEFT</flag>
 																	<border>1</border>
 																</object>
 															</object>
-															<flag>wxALL|wxEXPAND|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
+															<flag>wxALL|wxEXPAND</flag>
 															<border>4</border>
 														</object>
 													</object>
-													<flag>wxALL|wxALIGN_TOP|wxALIGN_CENTER_HORIZONTAL</flag>
+													<flag>wxALL|wxALIGN_TOP</flag>
 													<border>5</border>
 												</object>
 												<object class="sizeritem">
@@ -432,7 +457,7 @@
 																	<object class="wxCheckBox" name="ID_WXCHECKBOXPRINTPAGEHEADER" variable="WxCheckBoxPrintPageHeader" member="yes">
 																		<label>Print Page Header</label>
 																	</object>
-																	<flag>wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
+																	<flag>wxALL|wxALIGN_LEFT</flag>
 																	<border>1</border>
 																</object>
 																<object class="sizeritem">
@@ -506,11 +531,11 @@
 																			<border>1</border>
 																		</object>
 																	</object>
-																	<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+																	<flag>wxALL|wxEXPAND</flag>
 																	<border>2</border>
 																</object>
 															</object>
-															<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+															<flag>wxALL|wxEXPAND</flag>
 															<border>4</border>
 														</object>
 														<object class="sizeritem">
@@ -521,7 +546,7 @@
 																	<object class="wxCheckBox" name="ID_WXCHECKBOXPRINTPAGEFOOTER" variable="WxCheckBoxPrintPageFooter" member="yes">
 																		<label>Print Page Footer</label>
 																	</object>
-																	<flag>wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
+																	<flag>wxALL|wxALIGN_LEFT</flag>
 																	<border>1</border>
 																</object>
 																<object class="sizeritem">
@@ -594,15 +619,15 @@
 																			<border>1</border>
 																		</object>
 																	</object>
-																	<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+																	<flag>wxALL|wxEXPAND</flag>
 																	<border>2</border>
 																</object>
 															</object>
-															<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+															<flag>wxALL|wxEXPAND</flag>
 															<border>4</border>
 														</object>
 													</object>
-													<flag>wxALL|wxALIGN_TOP|wxALIGN_CENTER_HORIZONTAL</flag>
+													<flag>wxALL|wxALIGN_TOP</flag>
 													<border>2</border>
 												</object>
 											</object>
@@ -628,12 +653,12 @@
 																<style>wxTR_HAS_BUTTONS|wxTR_DEFAULT_STYLE</style>
 																<handler function="WxTreeCtrl1SelChanged" entry="EVT_TREE_SEL_CHANGED" />
 															</object>
-															<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+															<flag>wxALL|wxEXPAND</flag>
 															<border>3</border>
 															<option>1</option>
 														</object>
 													</object>
-													<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+													<flag>wxALL|wxEXPAND</flag>
 													<border>4</border>
 													<option>2</option>
 												</object>
@@ -646,7 +671,7 @@
 																	<object class="wxStaticText" name="ID_WXSTATICTEXTCOMMANDHINT" variable="WxStaticTextCommandHint" member="yes">
 																		<label>Hint:</label>
 																	</object>
-																	<flag>wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
+																	<flag>wxALL|wxALIGN_CENTER_VERTICAL</flag>
 																	<border>5</border>
 																</object>
 																<object class="sizeritem">
@@ -654,12 +679,12 @@
 																		<bg>wxSYS_COLOUR_BTNFACE</bg>
 																		<style>wxTE_READONLY</style>
 																	</object>
-																	<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+																	<flag>wxALL|wxEXPAND</flag>
 																	<border>5</border>
 																	<option>1</option>
 																</object>
 															</object>
-															<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+															<flag>wxALL|wxEXPAND</flag>
 															<border>2</border>
 														</object>
 														<object class="sizeritem">
@@ -671,7 +696,7 @@
 																			<object class="wxStaticText" name="ID_STATICTEXT14" variable="StaticText14" member="yes">
 																				<label>Assigned Keys:</label>
 																			</object>
-																			<flag>wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
+																			<flag>wxALL|wxALIGN_LEFT</flag>
 																			<border>5</border>
 																		</object>
 																		<object class="sizeritem">
@@ -680,12 +705,12 @@
 																				<style>wxLB_SINGLE</style>
 																				<handler function="WxListBoxKeysSelected" entry="EVT_LISTBOX" />
 																			</object>
-																			<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+																			<flag>wxALL|wxEXPAND</flag>
 																			<border>2</border>
 																			<option>1</option>
 																		</object>
 																	</object>
-																	<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+																	<flag>wxALL|wxEXPAND</flag>
 																	<border>2</border>
 																</object>
 																<object class="sizeritem">
@@ -695,14 +720,14 @@
 																			<object class="wxStaticText" name="ID_STATICTEXT15" variable="StaticText15" member="yes">
 																				<label>New Key:</label>
 																			</object>
-																			<flag>wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
+																			<flag>wxALL|wxALIGN_LEFT</flag>
 																			<border>5</border>
 																		</object>
 																		<object class="sizeritem">
 																			<object class="wxTextCtrl" name="ID_WXEDITKEY" subclass="KeyTextCtrl" variable="WxEditKey" member="yes">
 																				<style>wxTE_PROCESS_TAB|wxWANTS_CHARS</style>
 																			</object>
-																			<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+																			<flag>wxALL|wxEXPAND</flag>
 																			<border>5</border>
 																		</object>
 																		<object class="sizeritem">
@@ -710,7 +735,7 @@
 																				<bg>wxSYS_COLOUR_BTNFACE</bg>
 																				<style>wxTE_READONLY</style>
 																			</object>
-																			<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+																			<flag>wxALL|wxEXPAND</flag>
 																			<border>5</border>
 																			<option>1</option>
 																		</object>
@@ -722,7 +747,7 @@
 																						<label>&lt;== Add Key</label>
 																						<handler function="WxButtonAddKeyClick" entry="EVT_BUTTON" />
 																					</object>
-																					<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+																					<flag>wxALL|wxEXPAND</flag>
 																					<border>5</border>
 																				</object>
 																				<object class="sizeritem">
@@ -730,7 +755,7 @@
 																						<label>==&gt; Delete Key</label>
 																						<handler function="WxButtonDeleteKeyClick" entry="EVT_BUTTON" />
 																					</object>
-																					<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+																					<flag>wxALL|wxEXPAND</flag>
 																					<border>5</border>
 																				</object>
 																				<object class="sizeritem">
@@ -738,19 +763,19 @@
 																						<label>Show the Key in Menu</label>
 																						<handler function="WxButtonShowInMenuClick" entry="EVT_BUTTON" />
 																					</object>
-																					<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+																					<flag>wxALL|wxEXPAND</flag>
 																					<border>5</border>
 																				</object>
 																			</object>
-																			<flag>wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
+																			<flag>wxALL|wxALIGN_LEFT</flag>
 																		</object>
 																	</object>
-																	<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+																	<flag>wxALL|wxEXPAND</flag>
 																	<border>1</border>
 																	<option>5</option>
 																</object>
 															</object>
-															<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+															<flag>wxALL|wxEXPAND</flag>
 															<border>2</border>
 															<option>1</option>
 														</object>
@@ -760,15 +785,15 @@
 																	<object class="wxCheckBox" name="ID_WXCHECKBOXRESETALLKEYS" variable="WxCheckBoxResetAllKeys" member="yes">
 																		<label>Reset all keys to default (must restart wxMEdit)</label>
 																	</object>
-																	<flag>wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
+																	<flag>wxALL|wxALIGN_CENTER_VERTICAL</flag>
 																	<border>5</border>
 																</object>
 															</object>
-															<flag>wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
+															<flag>wxALL|wxALIGN_LEFT</flag>
 															<border>2</border>
 														</object>
 													</object>
-													<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+													<flag>wxALL|wxEXPAND</flag>
 													<border>2</border>
 													<option>3</option>
 												</object>
@@ -786,11 +811,11 @@
 															<object class="wxCheckBox" name="ID_WXCHECKBOXDONOTSAVESETTINGS" variable="WxCheckBoxDoNotSaveSettings" member="yes">
 																<label>Do not save settings to wxmedit.cfg when wxMEdit closed (this session only)</label>
 															</object>
-															<flag>wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
+															<flag>wxALL|wxALIGN_CENTER_VERTICAL</flag>
 															<border>2</border>
 														</object>
 													</object>
-													<flag>wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
+													<flag>wxALL|wxALIGN_LEFT</flag>
 													<border>5</border>
 												</object>
 												<object class="sizeritem">
@@ -814,7 +839,7 @@
 															<option>1</option>
 														</object>
 													</object>
-													<flag>wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
+													<flag>wxALL|wxALIGN_LEFT</flag>
 													<border>2</border>
 												</object>
 												<object class="sizeritem">
@@ -827,17 +852,17 @@
 															<object class="wxTextCtrl" name="ID_WXEDITMAXSIZETOLOAD" variable="WxEditMaxSizeToLoad" member="yes">
 																<value>0</value>
 															</object>
-															<flag>wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
+															<flag>wxALL|wxALIGN_CENTER_VERTICAL</flag>
 														</object>
 														<object class="sizeritem">
 															<object class="wxStaticText" name="ID_STATICTEXT1" variable="StaticText1" member="yes">
 																<label>Max file size to load whole file into memory</label>
 															</object>
-															<flag>wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
+															<flag>wxALL|wxALIGN_CENTER_VERTICAL</flag>
 															<border>5</border>
 														</object>
 													</object>
-													<flag>wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
+													<flag>wxALL|wxALIGN_LEFT</flag>
 													<border>2</border>
 												</object>
 												<object class="sizeritem">
@@ -856,7 +881,7 @@
 															<object class="wxStaticText" name="ID_WXSTATICTEXTDATETIME" variable="WxStaticTextDateTime" member="yes">
 																<label>Format of Date/Time</label>
 															</object>
-															<flag>wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
+															<flag>wxALL|wxALIGN_CENTER_VERTICAL</flag>
 															<border>5</border>
 														</object>
 														<object class="spacer">
@@ -869,17 +894,17 @@
 																<size>40,-1</size>
 																<handler function="WxButtonDateTimeClick" entry="EVT_BUTTON" />
 															</object>
-															<flag>wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
+															<flag>wxALL|wxALIGN_CENTER_VERTICAL</flag>
 														</object>
 														<object class="sizeritem">
 															<object class="wxCheckBox" name="ID_WXCHECKBOXDATETIMEINENGLISH" variable="WxCheckBoxDateTimeInEnglish" member="yes">
 																<label>Use English instead of current locale</label>
 															</object>
-															<flag>wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
+															<flag>wxALL|wxALIGN_CENTER_VERTICAL</flag>
 															<border>2</border>
 														</object>
 													</object>
-													<flag>wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
+													<flag>wxALL|wxALIGN_LEFT</flag>
 													<border>2</border>
 												</object>
 												<object class="sizeritem">
@@ -888,11 +913,11 @@
 															<object class="wxCheckBox" name="ID_WXCHECKBOXDOTMATCHNEWLINE" variable="WxCheckBoxDotMatchNewline" member="yes">
 																<label>Enable dot matching newline in regular expression</label>
 															</object>
-															<flag>wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
+															<flag>wxALL|wxALIGN_CENTER_VERTICAL</flag>
 															<border>2</border>
 														</object>
 													</object>
-													<flag>wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
+													<flag>wxALL|wxALIGN_LEFT</flag>
 													<border>5</border>
 												</object>
 											</object>
@@ -900,7 +925,7 @@
 										<label>Misc</label>
 									</object>
 								</object>
-								<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+								<flag>wxALL|wxEXPAND</flag>
 								<option>1</option>
 							</object>
 							<object class="sizeritem">
@@ -911,10 +936,10 @@
 										<size>450,0</size>
 									</object>
 								</object>
-								<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+								<flag>wxALL|wxEXPAND</flag>
 							</object>
 						</object>
-						<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+						<flag>wxALL|wxEXPAND</flag>
 						<option>1</option>
 					</object>
 					<object class="sizeritem">
@@ -927,7 +952,7 @@
 						<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
 					</object>
 				</object>
-				<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+				<flag>wxALL|wxEXPAND</flag>
 				<option>1</option>
 			</object>
 			<object class="sizeritem">

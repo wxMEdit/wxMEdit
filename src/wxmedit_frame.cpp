@@ -2714,7 +2714,9 @@ void MadEditFrame::OpenFile(const wxString &filename, bool mustExist, const Line
         if (!data.hex_fontname.IsEmpty() && data.hex_fontsize > 0)
             wxmedit->SetHexFont(data.hex_fontname, data.hex_fontsize, false);
 
-        if (!wxmedit->LoadFromFile(filename, data.encoding.wx_str(), data.hexmode) && mustExist)
+        wxString encoding = (wxm::UseForceEncoding(m_Config))? wxm::GetForceEncoding(m_Config): data.encoding;
+
+        if (!wxmedit->LoadFromFile(filename, encoding.wc_str(), data.hexmode) && mustExist)
         {
             wxLogError(wxString(_("Cannot load this file:")) + wxT("\n\n") + filename);
         }
@@ -4456,7 +4458,8 @@ void MadEditFrame::OnViewHexMode(wxCommandEvent& event)
 
 void MadEditFrame::OnToolsOptions(wxCommandEvent& event)
 {
-    if(g_OptionsDialog==nullptr) g_OptionsDialog=new WXMEditOptionsDialog(this);
+    if(g_OptionsDialog==nullptr)
+        g_OptionsDialog=new WXMEditOptionsDialog(this);
 
     g_OptionsDialog->LoadOptions();
     if(g_OptionsDialog->ShowModal()==wxID_OK)
@@ -4475,6 +4478,9 @@ void MadEditFrame::OnToolsOptions(wxCommandEvent& event)
         m_Config->Write(wxT("CheckPrereleaseUpdates"), wxm::g_check_prerelease);
 
         m_Config->Write(wxT("Language"), g_OptionsDialog->GetSelectedLanguage());
+
+        m_Config->Write(wxT("UseForceEncoding"), g_OptionsDialog->UseForceEncoding());
+        m_Config->Write(wxT("ForceEncoding"), g_OptionsDialog->GetSelectedForceEncoding());
         m_Config->Write(wxT("DefaultEncoding"), g_OptionsDialog->GetSelectedEncoding());
 
         m_Config->Write(wxT("SingleInstance"), g_OptionsDialog->WxCheckBoxSingleInstance->GetValue());

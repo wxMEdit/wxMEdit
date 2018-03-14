@@ -751,14 +751,11 @@ MadEdit::MadEdit(wxm::ConfigWriter* cfg_writer, wxWindow* parent, wxWindowID id,
     m_Config=wxConfigBase::Get(false);
     m_cfg_writer->SetConfig(m_Config);
 
-    m_Config->SetPath(wxT("/wxMEdit"));
-
-    wxString defaultenc;
-    m_Config->Read(wxT("DefaultEncoding"), &defaultenc);
-
     m_Syntax = MadSyntax::GetSyntaxByTitle(MadPlainTextTitle);
-    m_Encoding = xm::EncodingManager::Instance().GetEncoding(defaultenc.wc_str());
+    m_Encoding = xm::EncodingManager::Instance().GetEncoding(wxm::GetDefaultOrForceEncoding(m_Config).wc_str());
     m_Lines = new MadLines(this);
+
+    m_Config->SetPath(wxT("/wxMEdit"));
 
     // set default value
     long templong;

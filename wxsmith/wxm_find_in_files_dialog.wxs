@@ -15,12 +15,12 @@
 							<orient>wxVERTICAL</orient>
 							<object class="sizeritem">
 								<object class="wxBoxSizer" variable="BoxSizer6" member="no" />
-								<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+								<flag>wxALL|wxEXPAND</flag>
 								<option>1</option>
 							</object>
 							<object class="sizeritem">
 								<object class="wxBoxSizer" variable="BoxSizer7" member="no" />
-								<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+								<flag>wxALL|wxEXPAND</flag>
 								<option>1</option>
 							</object>
 							<object class="sizeritem">
@@ -30,21 +30,21 @@
 										<object class="wxCheckBox" name="ID_WXCHECKBOXCASESENSITIVE" variable="WxCheckBoxCaseSensitive" member="yes">
 											<label>&amp;Case Sensitive</label>
 										</object>
-										<flag>wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
+										<flag>wxALL|wxALIGN_LEFT</flag>
 										<border>2</border>
 									</object>
 									<object class="sizeritem">
 										<object class="wxCheckBox" name="ID_WXCHECKBOXWHOLEWORD" variable="WxCheckBoxWholeWord" member="yes">
 											<label>&amp;Whole Word Only</label>
 										</object>
-										<flag>wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
+										<flag>wxALL|wxALIGN_LEFT</flag>
 										<border>2</border>
 									</object>
 									<object class="sizeritem">
 										<object class="wxCheckBox" name="ID_WXCHECKBOXREGEX" variable="WxCheckBoxRegex" member="yes">
 											<label>Use Regular E&amp;xpressions</label>
 										</object>
-										<flag>wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
+										<flag>wxALL|wxALIGN_LEFT</flag>
 										<border>2</border>
 									</object>
 									<object class="sizeritem">
@@ -52,21 +52,21 @@
 											<label>Find &amp;Hex String (Example: BE 00 3A or BE003A)</label>
 											<handler function="WxCheckBoxFindHexClick" entry="EVT_CHECKBOX" />
 										</object>
-										<flag>wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
+										<flag>wxALL|wxALIGN_LEFT</flag>
 										<border>2</border>
 									</object>
 									<object class="sizeritem">
 										<object class="wxCheckBox" name="ID_WXCHECKBOXLISTFIRSTONLY" variable="WxCheckBoxListFirstOnly" member="yes">
 											<label>&amp;List the First Found Item Only</label>
 										</object>
-										<flag>wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
+										<flag>wxALL|wxALIGN_LEFT</flag>
 										<border>2</border>
 									</object>
 								</object>
-								<flag>wxALL|wxALIGN_LEFT|wxALIGN_TOP</flag>
+								<flag>wxALL|wxALIGN_LEFT</flag>
 							</object>
 						</object>
-						<flag>wxALL|wxALIGN_TOP|wxALIGN_CENTER_HORIZONTAL</flag>
+						<flag>wxALL|wxALIGN_TOP</flag>
 						<option>1</option>
 					</object>
 					<object class="sizeritem">
@@ -77,7 +77,7 @@
 									<label>&amp;Find</label>
 									<handler function="WxButtonFindClick" entry="EVT_BUTTON" />
 								</object>
-								<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+								<flag>wxALL|wxEXPAND</flag>
 								<border>2</border>
 							</object>
 							<object class="sizeritem">
@@ -85,7 +85,7 @@
 									<label>&amp;Replace</label>
 									<handler function="WxButtonReplaceClick" entry="EVT_BUTTON" />
 								</object>
-								<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+								<flag>wxALL|wxEXPAND</flag>
 								<border>2</border>
 							</object>
 							<object class="sizeritem">
@@ -93,27 +93,27 @@
 									<label>&amp;Enable Replace</label>
 									<handler function="WxCheckBoxEnableReplaceClick" entry="EVT_CHECKBOX" />
 								</object>
-								<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+								<flag>wxALL|wxEXPAND</flag>
 								<border>2</border>
 							</object>
 							<object class="sizeritem">
 								<object class="wxButton" name="wxID_CANCEL" variable="WxButtonClose" member="yes">
 									<label>Close</label>
 								</object>
-								<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+								<flag>wxALL|wxEXPAND</flag>
 								<border>2</border>
 							</object>
 						</object>
-						<flag>wxALL|wxALIGN_TOP|wxALIGN_CENTER_HORIZONTAL</flag>
+						<flag>wxALL|wxALIGN_TOP</flag>
 					</object>
 				</object>
-				<flag>wxALL|wxEXPAND|wxALIGN_LEFT|wxALIGN_TOP</flag>
+				<flag>wxALL|wxEXPAND</flag>
 			</object>
 			<object class="sizeritem">
 				<object class="wxStaticLine" name="ID_STATICLINE1" variable="StaticLine1" member="yes">
 					<size>10,-1</size>
 				</object>
-				<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+				<flag>wxALL|wxEXPAND</flag>
 				<border>2</border>
 			</object>
 			<object class="sizeritem">
@@ -123,7 +123,7 @@
 						<object class="wxRadioButton" name="ID_WXRADIOBUTTONOPENEDFILES" variable="WxRadioButtonOpenedFiles" member="yes">
 							<label>Opened Files in Editor</label>
 						</object>
-						<flag>wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
+						<flag>wxALL|wxALIGN_LEFT</flag>
 						<border>2</border>
 					</object>
 					<object class="sizeritem">
@@ -133,7 +133,7 @@
 								<object class="wxRadioButton" name="ID_WXRADIOBUTTONDIR" variable="WxRadioButtonDir" member="yes">
 									<label>Selected Directory:</label>
 								</object>
-								<flag>wxALL|wxEXPAND|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
+								<flag>wxALL|wxEXPAND</flag>
 								<border>2</border>
 							</object>
 							<object class="sizeritem">
@@ -232,23 +232,25 @@
 								<border>2</border>
 							</object>
 							<object class="sizeritem">
-								<object class="wxComboBox" name="ID_WXCOMBOBOXENCODING" variable="WxComboBoxEncoding" member="yes" />
+								<object class="wxComboBox" name="ID_WXCOMBOBOXENCODING" variable="WxComboBoxEncoding" member="yes">
+									<style>wxCB_READONLY|wxCB_DROPDOWN</style>
+								</object>
 								<flag>wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
 								<border>2</border>
 								<option>1</option>
 							</object>
 						</object>
-						<flag>wxALL|wxEXPAND|wxALIGN_LEFT|wxALIGN_TOP</flag>
+						<flag>wxALL|wxEXPAND</flag>
 					</object>
 					<object class="sizeritem">
 						<object class="wxCheckBox" name="ID_WXCHECKBOXSUBDIR" variable="WxCheckBoxSubDir" member="yes">
 							<label>Include Subdirectories</label>
 						</object>
-						<flag>wxALL|wxALIGN_LEFT|wxALIGN_TOP</flag>
+						<flag>wxALL|wxALIGN_LEFT</flag>
 						<border>2</border>
 					</object>
 				</object>
-				<flag>wxALL|wxEXPAND|wxALIGN_LEFT|wxALIGN_TOP</flag>
+				<flag>wxALL|wxEXPAND</flag>
 				<option>1</option>
 			</object>
 		</object>

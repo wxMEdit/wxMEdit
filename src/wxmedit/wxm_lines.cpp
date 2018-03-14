@@ -13,6 +13,7 @@
 #include "../xm/encdet.h"
 #include "../wxm/def.h"
 #include "../xm/mad_encdet.h"
+#include "../wxm/utils.h"
 #include "wxm_syntax.h"
 #include "wxmedit.h"
 
@@ -2095,15 +2096,7 @@ bool MadLines::LoadFromFile(const wxString& filename, const std::wstring& encodi
     else
         sz = size_t(m_FileData->m_Size);
 
-    wxString defaultenc;
-    if(encoding.empty())
-    {
-        m_MadEdit->m_Config->Read(wxT("/wxMEdit/DefaultEncoding"), &defaultenc);
-    }
-    else
-    {
-        defaultenc = encoding.c_str();
-    }
+    wxString defaultenc = (encoding.empty())? wxm::GetDefaultOrForceEncoding(m_MadEdit->m_Config): wxString(encoding.c_str());
 
     if(sz == 0)
     {

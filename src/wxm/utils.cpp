@@ -507,6 +507,21 @@ WXMControlIDReserver::WXMControlIDReserver()
 	rid20 = WXMNewID(rid1, 20);
 }
 
+bool UseForceEncoding(wxConfigBase *cfg)
+{
+	bool force = false;
+	cfg->Read(wxT("/wxMEdit/UseForceEncoding"), &force, false);
+	return force;
+}
+
+wxString GetDefaultOrForceEncoding(wxConfigBase *cfg)
+{
+	if (UseForceEncoding(cfg))
+		return GetForceEncoding(cfg);
+
+	return cfg->Read(wxT("/wxMEdit/DefaultEncoding"));
+}
+
 } // namespace wxm
 
 // get fontname from registry mime database

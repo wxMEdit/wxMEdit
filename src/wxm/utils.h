@@ -20,6 +20,7 @@
 // disable 4996 {
 #include <wx/defs.h>
 #include <wx/string.h>
+#include <wx/confbase.h>
 // disable 4996 }
 #ifdef _MSC_VER
 # pragma warning( pop )
@@ -267,6 +268,13 @@ private:
 	long rid1;
 	long rid20;
 };
+
+bool UseForceEncoding(wxConfigBase *cfg);
+wxString GetDefaultOrForceEncoding(wxConfigBase *cfg);
+inline wxString GetForceEncoding(wxConfigBase *cfg)
+{
+	return cfg->Read(wxT("/wxMEdit/ForceEncoding"));
+}
 
 } //namespace wxm
 

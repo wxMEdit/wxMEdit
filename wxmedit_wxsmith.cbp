@@ -51,6 +51,7 @@
 			<debugger />
 			<lib_finder disable_auto="1" />
 			<wxsmith version="1">
+				<gui name="wxWidgets" src="" main="" init_handlers="necessary" language="CPP" />
 				<resources>
 					<wxDialog wxs="wxsmith/wxm_sort_dialog.wxs" src="src/dialog/wxm_sort_dialog.cpp" hdr="src/dialog/wxm_sort_dialog.h" fwddecl="0" i18n="1" name="WXMSortDialog" language="CPP" />
 					<wxDialog wxs="wxsmith/wxm_conv_enc_dialog.wxs" src="src/dialog/wxm_conv_enc_dialog.cpp" hdr="src/dialog/wxm_conv_enc_dialog.h" fwddecl="0" i18n="1" name="WXMConvEncDialog" language="CPP" />
