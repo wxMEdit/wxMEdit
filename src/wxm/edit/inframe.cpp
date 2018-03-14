@@ -17,12 +17,13 @@
 #ifdef _MSC_VER
 # pragma warning( push )
 # pragma warning( disable : 4996 )
+# pragma warning( disable : 4819 )
 #endif
-// disable 4996 {
+// disable 4996,4819 {
 #include <wx/aui/auibook.h>
 #include <wx/filename.h>
-//*)
-// disable 4996 }
+#include <boost/format.hpp>
+// disable 4996,4819 }
 #ifdef _MSC_VER
 # pragma warning( pop )
 #endif
@@ -1035,9 +1036,33 @@ wxString InFrameWXMEdit::FormattedNumber(int64_t num)
 	return ICUStrToWx(us);
 }
 
+std::wstring WindowsStyleFilesize(double size, const std::wstring& unit)
+{
+	if (size >= 100)
+		return (boost::wformat(L"%.0f%s") % floor(size) % unit).str();
+
+	if (size >= 10)
+		return (boost::wformat(L"%.1f%s") % (floor(size*10)/10) % unit).str();
+
+	return (boost::wformat(L"%.2f%s") % (floor(size*100)/100) % unit).str();
+}
+
 std::wstring HumanReadableFilesize(uint64_t size)
 {
-	return L"";
+	const size_t KiB = 1024;
+	const size_t MiB = 1024 * KiB;
+	const size_t GiB = 1024 * MiB;
+
+	if (size >= 1000 * MiB)
+		return WindowsStyleFilesize(double(size / GiB) + double(size % GiB) / GiB, L"GiB");
+
+	if (size >= 1000 * KiB)
+		return WindowsStyleFilesize(double(size) / MiB, L"MiB");
+
+	if (size >= KiB)
+		return WindowsStyleFilesize(double(size) / KiB, L"KiB");
+
+	return (boost::wformat(L"%u") % size).str();
 }
 
 #ifdef _DEBUG
