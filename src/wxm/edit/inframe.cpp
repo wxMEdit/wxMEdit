@@ -149,17 +149,17 @@ void InFrameWXMEdit::DoSelectionChanged()
 		++col;
 	}
 
-	wxString lineInfo = wxString::Format(_("Ln: %s/%s"), FormattedNumber(line), FormattedNumber(GetLineCount()));
-	wxString subrowInfo = (subrow <= 0)? wxString(): wxString::Format(_(" (Sub: %s)"), FormattedNumber(subrow + 1));
-	wxString colInfo = wxString::Format(_(" Col: %s"), FormattedNumber(col));
+	wxString lineInfo = wxString::Format(_("Ln: %s/%s"), FormattedNumber(line).c_str(), FormattedNumber(GetLineCount()).c_str());
+	wxString subrowInfo = (subrow <= 0)? wxString(): wxString::Format(_(" (Sub: %s)"), FormattedNumber(subrow + 1).c_str());
+	wxString colInfo = wxString::Format(_(" Col: %s"), FormattedNumber(col).c_str());
 	wxm::GetFrameStatusBar().SetField(wxm::STBF_ROWCOL, lineInfo + subrowInfo + colInfo);
 
 	wxFileOffset filesize = GetFileSize();
-	wxString charpos = wxString::Format(_("CharPos: %s/%s"), FormattedNumber(GetCaretPosition()), FormattedNumber(filesize));
+	wxString charpos = wxString::Format(_("CharPos: %s/%s"), FormattedNumber(GetCaretPosition()).c_str(), FormattedNumber(filesize).c_str());
 	wxString readableSize = (filesize < 1024)? wxString(): wxString::Format(_(" (%s)"), HumanReadableFilesize(filesize).c_str());
 	wxm::GetFrameStatusBar().SetField(wxm::STBF_CHARPOS, charpos + readableSize);
 
-	wxString selsize = wxString::Format(_("SelSize: %s"), FormattedNumber(GetSelectionSize()));
+	wxString selsize = wxString::Format(_("SelSize: %s"), FormattedNumber(GetSelectionSize()).c_str());
 	wxm::GetFrameStatusBar().SetField(wxm::STBF_SELECTION, selsize);
 
 	wxm::GetFrameStatusBar().Update(); // repaint immediately
