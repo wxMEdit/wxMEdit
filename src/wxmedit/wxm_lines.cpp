@@ -2236,17 +2236,21 @@ bool MadLines::LoadFromFile(const wxString& filename, const std::wstring& encodi
     return true;
 }
 
+inline bool EncodingAssigned(const std::wstring& encoding, const wxConfigBase* cfg)
+{
+    return !encoding.empty() || wxm::UseForceSystemEncoding(cfg);
+}
 
 bool MadLines::PresetFileEncoding(const std::wstring& encoding, const wxByte* buf, size_t sz)
 {
-    if(!encoding.empty())
+    if (EncodingAssigned(encoding, m_MadEdit->m_Config))
     {
         m_MadEdit->SetEncoding(encoding);
         return true;
     }
 
     std::string enc;
-    if(xm::MatchEncoding(enc, buf, sz))
+    if (xm::MatchEncoding(enc, buf, sz))
     {
         m_MadEdit->SetEncoding(std::wstring(enc.begin(), enc.end()));
         return true;
@@ -2258,7 +2262,7 @@ bool MadLines::PresetFileEncoding(const std::wstring& encoding, const wxByte* bu
 void MadLines::SetFileEncoding(const std::wstring& encoding, const std::wstring& defaultenc,
                                const wxByte* buf, size_t sz, bool skip_utf8)
 {
-    if (!encoding.empty())
+    if (EncodingAssigned(encoding, m_MadEdit->m_Config))
     {
         m_MadEdit->SetEncoding(encoding);
         return;

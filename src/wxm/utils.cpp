@@ -507,14 +507,14 @@ WXMControlIDReserver::WXMControlIDReserver()
 	rid20 = WXMNewID(rid1, 20);
 }
 
-bool UseForceEncoding(wxConfigBase *cfg)
+bool UseForceEncoding(const wxConfigBase *cfg)
 {
 	bool force = false;
 	cfg->Read(wxT("/wxMEdit/UseForceEncoding"), &force, false);
 	return force;
 }
 
-wxString GetDefaultOrForceEncoding(wxConfigBase *cfg)
+wxString GetDefaultOrForceEncoding(const wxConfigBase *cfg)
 {
 	if (UseForceEncoding(cfg))
 		return GetForceEncoding(cfg);

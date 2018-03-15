@@ -269,11 +269,17 @@ private:
 	long rid20;
 };
 
-bool UseForceEncoding(wxConfigBase *cfg);
-wxString GetDefaultOrForceEncoding(wxConfigBase *cfg);
-inline wxString GetForceEncoding(wxConfigBase *cfg)
+bool UseForceEncoding(const wxConfigBase *cfg);
+wxString GetDefaultOrForceEncoding(const wxConfigBase *cfg);
+
+inline wxString GetForceEncoding(const wxConfigBase *cfg)
 {
 	return cfg->Read(wxT("/wxMEdit/ForceEncoding"));
+}
+
+inline bool UseForceSystemEncoding(const wxConfigBase *cfg)
+{
+	return UseForceEncoding(cfg) && GetForceEncoding(cfg).empty();
 }
 
 } //namespace wxm
