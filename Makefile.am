@@ -155,7 +155,11 @@ pixmapsdir = $(datadir)/pixmaps
 pixmaps_DATA = wxmedit.png
 
 wxmedit.desktop: $(top_srcdir)/wxmedit.desktop._ Makefile
-	sed "s#@pixmapsdir@#$(pixmapsdir)#" $(top_srcdir)/wxmedit.desktop._ > $@
+	if [ x"$$XDG_DATA_DIRS" == x"" ]; then \
+	  sed "s#@pixmapsdir@#$(pixmapsdir)#" $(top_srcdir)/wxmedit.desktop._ > $@; \
+	else \
+	  cmp $(top_srcdir)/wxmedit.desktop $@ >/dev/null 2>&1 || cp $(top_srcdir)/wxmedit.desktop $@; \
+	fi
 
 CLEANFILES = wxmedit.desktop
 
