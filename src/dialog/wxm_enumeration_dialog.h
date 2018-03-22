@@ -12,6 +12,11 @@
 #include "../wxm/choice_map.hpp"
 #include "../xm/encoding/encoding_def.h"
 
+#ifdef _MSC_VER
+# pragma warning( push )
+# pragma warning( disable : 4996 )
+#endif
+// disable 4996 {
 //(*Headers(WXMEnumerationDialog)
 #include <wx/sizer.h>
 #include <wx/stattext.h>
@@ -22,6 +27,10 @@
 #include <wx/button.h>
 #include <wx/dialog.h>
 //*)
+// disable 4996 }
+#ifdef _MSC_VER
+# pragma warning( pop )
+#endif
 
 #include <unicode/utypes.h>
 #include <unicode/unistr.h>
