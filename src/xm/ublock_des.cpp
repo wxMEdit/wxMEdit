@@ -290,6 +290,28 @@ void UnicodeBlockSet::InitBlockDescriptions()
 	m_des_map[UBLOCK_OLD_HUNGARIAN] = _("Old Hungarian");
 	m_des_map[UBLOCK_SUPPLEMENTAL_SYMBOLS_AND_PICTOGRAPHS] = _("Supplemental Symbols and Pictographs");
 	m_des_map[UBLOCK_SUTTON_SIGNWRITING] = _("Sutton SignWriting");
+#     if (U_ICU_VERSION_MAJOR_NUM >= 58) // ICU 58, Unicode 9.0
+	m_des_map[UBLOCK_ADLAM] = _("Adlam");
+	m_des_map[UBLOCK_BHAIKSUKI] = _("Bhaiksuki");
+	m_des_map[UBLOCK_CYRILLIC_EXTENDED_C] = _("Cyrillic Extended-C");
+	m_des_map[UBLOCK_GLAGOLITIC_SUPPLEMENT] = _("	Glagolitic Supplement");
+	m_des_map[UBLOCK_IDEOGRAPHIC_SYMBOLS_AND_PUNCTUATION] = _("Ideographic Symbols and Punctuation");
+	m_des_map[UBLOCK_MARCHEN] = _("Marchen");
+	m_des_map[UBLOCK_MONGOLIAN_SUPPLEMENT] = _("Mongolian Supplement");
+	m_des_map[UBLOCK_NEWA] = _("Newa");
+	m_des_map[UBLOCK_OSAGE] = _("Osage");
+	m_des_map[UBLOCK_TANGUT] = _("Tangut");
+	m_des_map[UBLOCK_TANGUT_COMPONENTS] = _("Tangut Components");
+#      if (U_ICU_VERSION_MAJOR_NUM >= 60) // ICU 60, Unicode 10.0
+	m_des_map[UBLOCK_CJK_UNIFIED_IDEOGRAPHS_EXTENSION_F] = _("CJK Unified Ideographs Extension F");
+	m_des_map[UBLOCK_KANA_EXTENDED_A] = _("Kana Extended-A");
+	m_des_map[UBLOCK_MASARAM_GONDI] = _("Masaram Gondi");
+	m_des_map[UBLOCK_NUSHU] = _("Nushu");
+	m_des_map[UBLOCK_SOYOMBO] = _("Soyombo");
+	m_des_map[UBLOCK_SYRIAC_SUPPLEMENT] = _("Syriac Supplement");
+	m_des_map[UBLOCK_ZANABAZAR_SQUARE] = _("Zanabazar Square");
+#      endif // 60
+#     endif // 58
 #    endif // 56
 #   endif // 54
 #  endif // 49
