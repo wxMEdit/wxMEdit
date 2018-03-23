@@ -535,29 +535,6 @@ bool MatchMBMoreThanUTF16(const ubyte * text, size_t len)
 	return eff_c0_cnt * 100 < len;
 }
 
-#if U_ICU_VERSION_MAJOR_NUM *10 + U_ICU_VERSION_MINOR_NUM < 44
-struct LocalUCharsetDetectorPointer
-{
-	LocalUCharsetDetectorPointer(UCharsetDetector* ptr)
-		: m_ptr(ptr)
-	{
-	}
-	~LocalUCharsetDetectorPointer()
-	{
-		if (m_ptr != nullptr)
-			ucsdet_close(m_ptr);
-		m_ptr = nullptr;
-	}
-	UCharsetDetector* getAlias()
-	{
-		return m_ptr;
-	}
-
-private:
-	UCharsetDetector* m_ptr;
-};
-#endif
-
 void DetectEncoding(const ubyte* text, size_t len, EncodingID& enc, bool skip_utf8)
 {
 	UErrorCode status = U_ZERO_ERROR;

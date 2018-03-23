@@ -614,17 +614,13 @@ void NumberingSystemConfig::DoInit()
 	AddData(i++,    wxT("arab"),    _("Arabic"),                        NumSysSharedPtr(new NumSysArabic("arab")));
 	AddData(i++,    wxT("armn"),    _("Armenian"),                      NumSysSharedPtr(new NumSysLimited("armn", 9999)));
 	AddData(i++,    wxT("beng"),    _("Bengali"),                       NumSysSharedPtr(new NumSysArabic("beng")));
-#if U_ICU_VERSION_MAJOR_NUM*10 + U_ICU_VERSION_MINOR_NUM > 44
 	AddData(i++,    wxT("hanidec"), _("Chinese Digits"),                NumSysSharedPtr(new NumSysHaniDec("hanidec")));
-#endif
 	AddData(i++,    wxT("hans"),    _("Chinese Simplified"),            NumSysSharedPtr(new NumSysChinese("hans")));
 	AddData(i++,    wxT("hansfin"), _("Chinese Simplified Financial"),  NumSysSharedPtr(new NumSysChinese("hansfin")));
 	AddData(i++,    wxT("hant"),    _("Chinese Traditional"),           NumSysSharedPtr(new NumSysChinese("hant")));
 	AddData(i++,    wxT("hantfin"), _("Chinese Traditional Financial"), NumSysSharedPtr(new NumSysChinese("hantfin")));
 	AddData(i++,    wxT("deva"),    _("Devanagari"),                    NumSysSharedPtr(new NumSysArabic("deva")));
-#if U_ICU_VERSION_MAJOR_NUM > 49
 	AddData(i++,    wxT("ethi"),    _("Ethiopic"),                      NumSysSharedPtr(new NumSysEthiopic("ethi")));
-#endif
 	AddData(i++,    wxT("geor"),    _("Georgian"),                      NumSysSharedPtr(new NumSysLimited("geor", 19999)));
 	AddData(i++,    wxT("grek"),    _("Greek"),                         NumSysSharedPtr(new NumSysLimited("grek", greekmax)));
 	AddData(i++,    wxT("gujr"),    _("Gujarati"),                      NumSysSharedPtr(new NumSysArabic("gujr")));
@@ -640,15 +636,11 @@ void NumberingSystemConfig::DoInit()
 	AddData(i++,    wxT("orya"),    _("Oriya"),                         NumSysSharedPtr(new NumSysArabic("orya")));
 	AddData(i++,    wxT("arabext"), _("Perso-Arabic"),                  NumSysSharedPtr(new NumSysArabic("arabext")));
 	AddData(i++,    wxT("taml"),    _("Tamil"),                         NumSysSharedPtr(new NumSysLimited("taml", 99999999)));
-#if U_ICU_VERSION_MAJOR_NUM*10 + U_ICU_VERSION_MINOR_NUM > 46
 	AddData(i++,    wxT("tamldec"), _("Tamil Digits"),                  NumSysSharedPtr(new NumSysArabic("tamldec")));
-#endif
 	AddData(i++,    wxT("telu"),    _("Telugu"),                        NumSysSharedPtr(new NumSysArabic("telu")));
 	AddData(i++,    wxT("tibt"),    _("Tibetan"),                       NumSysSharedPtr(new NumSysArabic("tibt")));
 	AddData(i++,    wxT("thai"),    _("Thai"),                          NumSysSharedPtr(new NumSysArabic("thai")));
-#if U_ICU_VERSION_MAJOR_NUM*10 + U_ICU_VERSION_MINOR_NUM > 48
 	AddData(i++,    wxT("vaii"),    _("Vai"),                           NumSysSharedPtr(new NumSysArabic("vaii")));
-#endif
 }
 
 bool CheckTextNumMin(const wxStaticText* label, const wxTextCtrl* txtctrl, int64_t minval, wxString& errmsg)

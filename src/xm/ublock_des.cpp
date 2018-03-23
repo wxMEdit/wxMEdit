@@ -194,7 +194,6 @@ void UnicodeBlockSet::InitBlockDescriptions()
 	m_des_map[UBLOCK_LYDIAN] = _("Lydian");
 	m_des_map[UBLOCK_MAHJONG_TILES] = _("Mahjong Tiles");
 	m_des_map[UBLOCK_DOMINO_TILES] = _("Domino Tiles");
-#if ((U_ICU_VERSION_MAJOR_NUM << 8) + U_ICU_VERSION_MINOR_NUM >= 0x0404) // ICU 4.4, Unicode 5.2
 	m_des_map[UBLOCK_SAMARITAN] = _("Samaritan");
 	m_des_map[UBLOCK_UNIFIED_CANADIAN_ABORIGINAL_SYLLABICS_EXTENDED] = _("Unified Canadian Aboriginal Syllabics Extended");
 	m_des_map[UBLOCK_TAI_THAM] = _("Tai Tham");
@@ -221,7 +220,6 @@ void UnicodeBlockSet::InitBlockDescriptions()
 	m_des_map[UBLOCK_ENCLOSED_ALPHANUMERIC_SUPPLEMENT] = _("Enclosed Alphanumeric Supplement");
 	m_des_map[UBLOCK_ENCLOSED_IDEOGRAPHIC_SUPPLEMENT] = _("Enclosed Ideographic Supplement");
 	m_des_map[UBLOCK_CJK_UNIFIED_IDEOGRAPHS_EXTENSION_C] = _("CJK Unified Ideographs Extension C");
-# if ((U_ICU_VERSION_MAJOR_NUM << 8) + U_ICU_VERSION_MINOR_NUM >= 0x0406) // ICU 4.6, Unicode 6.0
 	m_des_map[UBLOCK_MANDAIC] = _("Mandaic");
 	m_des_map[UBLOCK_BATAK] = _("Batak");
 	m_des_map[UBLOCK_ETHIOPIC_EXTENDED_A] = _("Ethiopic Extended-A");
@@ -234,7 +232,6 @@ void UnicodeBlockSet::InitBlockDescriptions()
 	m_des_map[UBLOCK_TRANSPORT_AND_MAP_SYMBOLS] = _("Transport And Map Symbols");
 	m_des_map[UBLOCK_ALCHEMICAL_SYMBOLS] = _("Alchemical Symbols");
 	m_des_map[UBLOCK_CJK_UNIFIED_IDEOGRAPHS_EXTENSION_D] = _("CJK Unified Ideographs Extension D");
-#  if (U_ICU_VERSION_MAJOR_NUM >= 49) // ICU 49, Unicode 6.1
 	m_des_map[UBLOCK_ARABIC_EXTENDED_A] = _("Arabic Extended-A");
 	m_des_map[UBLOCK_ARABIC_MATHEMATICAL_ALPHABETIC_SYMBOLS] = _("Arabic Mathematical Alphabetic Symbols");
 	m_des_map[UBLOCK_CHAKMA] = _("Chakma");
@@ -246,7 +243,7 @@ void UnicodeBlockSet::InitBlockDescriptions()
 	m_des_map[UBLOCK_SORA_SOMPENG] = _("Sora Sompeng");
 	m_des_map[UBLOCK_SUNDANESE_SUPPLEMENT] = _("Sundanese Supplement");
 	m_des_map[UBLOCK_TAKRI] = _("Takri");
-#   if (U_ICU_VERSION_MAJOR_NUM >= 54) // ICU 54, Unicode 7.0
+#if (U_ICU_VERSION_MAJOR_NUM >= 54) // ICU 54, Unicode 7.0
 	m_des_map[UBLOCK_BASSA_VAH] = _("Bassa Vah");
 	m_des_map[UBLOCK_CAUCASIAN_ALBANIAN] = _("Caucasian Albanian");
 	m_des_map[UBLOCK_COPTIC_EPACT_NUMBERS] = _("Coptic Epact Numbers");
@@ -279,7 +276,7 @@ void UnicodeBlockSet::InitBlockDescriptions()
 	m_des_map[UBLOCK_SUPPLEMENTAL_ARROWS_C] = _("Supplemental Arrows-C");
 	m_des_map[UBLOCK_TIRHUTA] = _("Tirhuta");
 	m_des_map[UBLOCK_WARANG_CITI] = _("Warang Citi");
-#    if (U_ICU_VERSION_MAJOR_NUM >= 56) // ICU 56, Unicode 8.0
+# if (U_ICU_VERSION_MAJOR_NUM >= 56) // ICU 56, Unicode 8.0
 	m_des_map[UBLOCK_AHOM] = _("Ahom");
 	m_des_map[UBLOCK_ANATOLIAN_HIEROGLYPHS] = _("Anatolian Hieroglyphs");
 	m_des_map[UBLOCK_CHEROKEE_SUPPLEMENT] = _("Cherokee Supplement");
@@ -290,7 +287,7 @@ void UnicodeBlockSet::InitBlockDescriptions()
 	m_des_map[UBLOCK_OLD_HUNGARIAN] = _("Old Hungarian");
 	m_des_map[UBLOCK_SUPPLEMENTAL_SYMBOLS_AND_PICTOGRAPHS] = _("Supplemental Symbols and Pictographs");
 	m_des_map[UBLOCK_SUTTON_SIGNWRITING] = _("Sutton SignWriting");
-#     if (U_ICU_VERSION_MAJOR_NUM >= 58) // ICU 58, Unicode 9.0
+#  if (U_ICU_VERSION_MAJOR_NUM >= 58) // ICU 58, Unicode 9.0
 	m_des_map[UBLOCK_ADLAM] = _("Adlam");
 	m_des_map[UBLOCK_BHAIKSUKI] = _("Bhaiksuki");
 	m_des_map[UBLOCK_CYRILLIC_EXTENDED_C] = _("Cyrillic Extended-C");
@@ -302,7 +299,7 @@ void UnicodeBlockSet::InitBlockDescriptions()
 	m_des_map[UBLOCK_OSAGE] = _("Osage");
 	m_des_map[UBLOCK_TANGUT] = _("Tangut");
 	m_des_map[UBLOCK_TANGUT_COMPONENTS] = _("Tangut Components");
-#      if (U_ICU_VERSION_MAJOR_NUM >= 60) // ICU 60, Unicode 10.0
+#   if (U_ICU_VERSION_MAJOR_NUM >= 60) // ICU 60, Unicode 10.0
 	m_des_map[UBLOCK_CJK_UNIFIED_IDEOGRAPHS_EXTENSION_F] = _("CJK Unified Ideographs Extension F");
 	m_des_map[UBLOCK_KANA_EXTENDED_A] = _("Kana Extended-A");
 	m_des_map[UBLOCK_MASARAM_GONDI] = _("Masaram Gondi");
@@ -310,13 +307,10 @@ void UnicodeBlockSet::InitBlockDescriptions()
 	m_des_map[UBLOCK_SOYOMBO] = _("Soyombo");
 	m_des_map[UBLOCK_SYRIAC_SUPPLEMENT] = _("Syriac Supplement");
 	m_des_map[UBLOCK_ZANABAZAR_SQUARE] = _("Zanabazar Square");
-#      endif // 60
-#     endif // 58
-#    endif // 56
-#   endif // 54
-#  endif // 49
-# endif // 4.6
-#endif // 4.4
+#   endif // 60
+#  endif // 58
+# endif // 56
+#endif // 54
 	m_des_map[UBLOCK_INVALID_CODE] = _("Invalid Unicode Characters");
 }
 
