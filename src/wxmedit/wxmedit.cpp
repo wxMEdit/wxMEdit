@@ -8564,15 +8564,13 @@ inline bool IsCharFlags(int flags)
 {
     return flags == wxACCEL_NORMAL
 #if defined(__WXMSW__) || wxMAJOR_VERSION == 3
-        || (flags & (wxACCEL_CTRL | wxACCEL_ALT)) != 0
+        || (flags & (wxACCEL_CTRL | wxACCEL_ALT)) != 0 || (flags & wxACCEL_SHIFT) != 0
 #endif
         ;
 }
 
 void MadEdit::OnChar(wxKeyEvent& evt)
 {
-    //std::cout<<"edit char\n";
-
     int flags=wxACCEL_NORMAL;
     int key=evt.GetKeyCode();
     ucs4_t ucs4=evt.GetUnicodeKey();
@@ -8581,7 +8579,7 @@ void MadEdit::OnChar(wxKeyEvent& evt)
     if (evt.ControlDown()) flags |= wxACCEL_CTRL;
     if (evt.ShiftDown())   flags |= wxACCEL_SHIFT;
 
-    //wxLogDebug(wxT("edit OnChar: %X %X"),key, ucs4);
+    // wprintf(L"edit-char %06X, %04X, %d\n", ucs4, key, flags);
 
     if(key==WXK_TAB && m_WantTab==false)
     {
@@ -8616,8 +8614,6 @@ void MadEdit::OnChar(wxKeyEvent& evt)
 
 void MadEdit::OnKeyDown(wxKeyEvent& evt)
 {
-    //std::cout<<"edit Key down\n";
-
     int flags=wxACCEL_NORMAL;
     int key=evt.GetKeyCode();
 
@@ -8674,7 +8670,7 @@ void MadEdit::OnKeyDown(wxKeyEvent& evt)
             return;
     }
 
-    //wxLogDebug(wxT("edit OnKeyDown: %X %X"), key, evt.GetUnicodeKey());
+    // wprintf(L"edit-char %06X, %04X, %d\n", evt.GetUnicodeKey(), key, flags);
 
     evt.Skip();
 }
