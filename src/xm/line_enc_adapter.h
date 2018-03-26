@@ -15,16 +15,10 @@
 #include <deque>
 
 #ifdef _MSC_VER
-#include <boost/version.hpp>
-# if BOOST_VERSION >= 104800
-#  include <boost/container/deque.hpp>
+# include <boost/container/deque.hpp>
 	namespace xm { using boost::container::deque; }
-# else
-#  include <deque>
-	namespace xm { using std::deque; }
-# endif
 #else
-#  include <deque>
+# include <deque>
 	namespace xm { using std::deque; }
 #endif
 

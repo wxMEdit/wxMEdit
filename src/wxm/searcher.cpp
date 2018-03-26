@@ -194,29 +194,11 @@ bool Search(CharIter &begin, CharIter &end, const Seq& pattern,
 #ifdef __WXMSW__
 namespace boost { namespace xpressive { namespace detail
 {
-
-#if BOOST_VERSION >= 103500
-
 	template<>
 	struct string_type<ucs4_t>  // defined in xpressive/detail/detail_fwd.hpp
 	{
 		typedef ucs4string type;
 	};
-
-#else
-
-	template<char Ch, wchar_t Wch>
-	struct char_literal<ucs4_t, Ch, Wch>
-	{
-		BOOST_STATIC_CONSTANT(ucs4_t, value = Wch);
-	};
-
-#ifndef BOOST_NO_INCLASS_MEMBER_INITIALIZATION
-	template<char Ch, wchar_t Wch>
-	ucs4_t const char_literal<ucs4_t, Ch, Wch>::value;
-#endif
-
-#endif
 
 	template<>
 	struct string_literal<ucs4_t>

@@ -8,13 +8,7 @@
 #include "encdet_test.h"
 #include "../src/xm/encoding/external.h"
 
-#include <boost/version.hpp>
-
-#if BOOST_VERSION >= 103400
 # include <boost/test/included/unit_test.hpp>
-#else
-# include <boost/test/included/unit_test_framework.hpp>
-#endif
 
 #include <iostream>
 
