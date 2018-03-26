@@ -330,9 +330,8 @@ public:
 
 	void LoadOptions(void);
 
-	TreeItemData* FindKeyInList(const wxString &key); // find key in TreeItemDataList
-	bool FindItemInList(TreeItemData* tid, const list<TreeItemData*> &tlist);
-	void UpdateKeyHint();
+	void EnableTabTraversal();
+	void DisableTabTraversal();
 
 	int ButtonID;
 	list<TreeItemData*> TreeItemDataList; // list of all TreeItemData
@@ -346,6 +345,9 @@ public:
 private:
 	void InitButtonRelativeEdit();
 	wxTextCtrl* GetButtonRelativeEdit(long btnid);
+	TreeItemData* FindKeyInList(const wxString &key); // find key in TreeItemDataList
+	bool FindItemInList(TreeItemData* tid, const list<TreeItemData*> &tlist);
+	void UpdateKeyHint();
 
 	typedef std::map<long, wxTextCtrl*> BtnIDEditMap;
 	BtnIDEditMap m_btnid_edit_map;

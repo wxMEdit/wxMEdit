@@ -97,19 +97,13 @@ public:
 		//evt.Skip();
 	}
 	void OnSetFocus(wxFocusEvent &evt)
-	{   // for getting Ctrl-Tab
-		g_OptionsDialog->SetWindowStyleFlag(g_OptionsDialog->GetWindowStyleFlag() & ~wxTAB_TRAVERSAL);
-		g_OptionsDialog->AuiNotebook1->wxControl::SetWindowStyleFlag(g_OptionsDialog->AuiNotebook1->wxControl::GetWindowStyleFlag() & ~wxTAB_TRAVERSAL);
-		g_OptionsDialog->Panel4->SetWindowStyleFlag(g_OptionsDialog->Panel4->GetWindowStyleFlag() & ~wxTAB_TRAVERSAL);
-		g_OptionsDialog->WxButtonCancel->SetId(WXMEditOptionsDialog::ID_WXBUTTONCANCEL);
+	{
+		g_OptionsDialog->DisableTabTraversal();
 		evt.Skip();
 	}
 	void OnKillFocus(wxFocusEvent &evt)
-	{   // restore wxTAB_TRAVERSAL
-		g_OptionsDialog->SetWindowStyleFlag(g_OptionsDialog->GetWindowStyleFlag() | wxTAB_TRAVERSAL);
-		g_OptionsDialog->AuiNotebook1->wxControl::SetWindowStyleFlag(g_OptionsDialog->AuiNotebook1->wxControl::GetWindowStyleFlag() | wxTAB_TRAVERSAL);
-		g_OptionsDialog->Panel4->SetWindowStyleFlag(g_OptionsDialog->Panel4->GetWindowStyleFlag() | wxTAB_TRAVERSAL);
-		g_OptionsDialog->WxButtonCancel->SetId(wxID_CANCEL);
+	{
+		g_OptionsDialog->EnableTabTraversal();
 		evt.Skip();
 	}
 };
@@ -944,9 +938,11 @@ void WXMEditOptionsDialog::WXMEditOptionsDialogClose(wxCloseEvent& event)
 
 void WXMEditOptionsDialog::WXMOptionsDialogActivate(wxActivateEvent& event)
 {
-	if(event.GetActive())
+	if (event.GetActive())
 	{
-		if(FindFocus()==nullptr)
+		EnableTabTraversal();
+
+		if (FindFocus() == nullptr)
 		{
 			SetReturnCode(wxID_CANCEL);
 			WxButtonCancel->SetFocus();
@@ -1149,6 +1145,22 @@ void WXMEditOptionsDialog::LoadOptions(void)
 
 	cfg->SetPath(oldpath);
 
+}
+
+void WXMEditOptionsDialog::EnableTabTraversal()
+{
+	SetWindowStyleFlag(g_OptionsDialog->GetWindowStyleFlag() | wxTAB_TRAVERSAL);
+	AuiNotebook1->wxControl::SetWindowStyleFlag(g_OptionsDialog->AuiNotebook1->wxControl::GetWindowStyleFlag() | wxTAB_TRAVERSAL);
+	Panel4->SetWindowStyleFlag(g_OptionsDialog->Panel4->GetWindowStyleFlag() | wxTAB_TRAVERSAL);
+	WxButtonCancel->SetId(wxID_CANCEL);
+}
+
+void WXMEditOptionsDialog::DisableTabTraversal()
+{
+	SetWindowStyleFlag(g_OptionsDialog->GetWindowStyleFlag() & ~wxTAB_TRAVERSAL);
+	AuiNotebook1->wxControl::SetWindowStyleFlag(g_OptionsDialog->AuiNotebook1->wxControl::GetWindowStyleFlag() & ~wxTAB_TRAVERSAL);
+	Panel4->SetWindowStyleFlag(g_OptionsDialog->Panel4->GetWindowStyleFlag() & ~wxTAB_TRAVERSAL);
+	WxButtonCancel->SetId(WXMEditOptionsDialog::ID_WXBUTTONCANCEL);
 }
 
 void WXMEditOptionsDialog::WxButtonOKClick(wxCommandEvent& event)
