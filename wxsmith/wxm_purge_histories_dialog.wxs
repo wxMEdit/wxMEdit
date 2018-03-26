@@ -4,7 +4,7 @@
 		<title>Purge Histories</title>
 		<centered>1</centered>
 		<id_arg>0</id_arg>
-		<style>wxCAPTION|wxSYSTEM_MENU|wxRESIZE_BORDER|wxCLOSE_BOX|wxDIALOG_NO_PARENT|wxMAXIMIZE_BOX</style>
+		<style>wxCAPTION|wxSYSTEM_MENU|wxRESIZE_BORDER|wxCLOSE_BOX|wxMAXIMIZE_BOX</style>
 		<handler function="WXMPurgeHistoriesDialogClose" entry="EVT_CLOSE" />
 		<object class="wxBoxSizer" variable="BoxSizer1" member="no">
 			<orient>wxVERTICAL</orient>
@@ -16,60 +16,60 @@
 						<object class="wxCheckBox" name="ID_CHECKBOXRECENTFILES" variable="WxCheckBoxRecentFiles" member="yes">
 							<label>Recent &amp;Files</label>
 						</object>
-						<flag>wxALL|wxALIGN_LEFT|wxALIGN_TOP</flag>
+						<flag>wxALL|wxALIGN_LEFT</flag>
 						<border>2</border>
 					</object>
 					<object class="sizeritem">
 						<object class="wxCheckBox" name="ID_CHECKBOXRECENTFONTS" variable="WxCheckBoxRecentFonts" member="yes">
 							<label>Recent Fon&amp;ts</label>
 						</object>
-						<flag>wxALL|wxALIGN_LEFT|wxALIGN_TOP</flag>
+						<flag>wxALL|wxALIGN_LEFT</flag>
 						<border>2</border>
 					</object>
 					<object class="sizeritem">
 						<object class="wxCheckBox" name="ID_CHECKBOXRECENTENCODINGS" variable="WxCheckBoxRecentEncodings" member="yes">
 							<label>Recent &amp;Encodings</label>
 						</object>
-						<flag>wxALL|wxALIGN_LEFT|wxALIGN_TOP</flag>
+						<flag>wxALL|wxALIGN_LEFT</flag>
 						<border>2</border>
 					</object>
 					<object class="sizeritem">
 						<object class="wxCheckBox" name="ID_CHECKBOXRECENTFINDTEXTS" variable="WxCheckBoxRecentFindTexts" member="yes">
 							<label>Recent &amp;Searched Texts</label>
 						</object>
-						<flag>wxALL|wxALIGN_LEFT|wxALIGN_TOP</flag>
+						<flag>wxALL|wxALIGN_LEFT</flag>
 						<border>2</border>
 					</object>
 					<object class="sizeritem">
 						<object class="wxCheckBox" name="ID_CHECKBOXRECENTREPLACETEXTS" variable="WxCheckBoxRecentReplaceTexts" member="yes">
 							<label>Recent &amp;Replaced Texts</label>
 						</object>
-						<flag>wxALL|wxALIGN_LEFT|wxALIGN_TOP</flag>
+						<flag>wxALL|wxALIGN_LEFT</flag>
 						<border>2</border>
 					</object>
 					<object class="sizeritem">
 						<object class="wxCheckBox" name="ID_CHECKBOXRECENTFINDDIRS" variable="WxCheckBoxRecentFilesFindDirs" member="yes">
 							<label>Recent Searched &amp;Directories</label>
 						</object>
-						<flag>wxALL|wxALIGN_LEFT|wxALIGN_TOP</flag>
+						<flag>wxALL|wxALIGN_LEFT</flag>
 						<border>2</border>
 					</object>
 					<object class="sizeritem">
 						<object class="wxCheckBox" name="ID_CHECKBOXRECENTFINDFILTERS" variable="WxCheckBoxRecentFindFilters" member="yes">
 							<label>Recent Searched File Fi&amp;lters</label>
 						</object>
-						<flag>wxALL|wxALIGN_LEFT|wxALIGN_TOP</flag>
+						<flag>wxALL|wxALIGN_LEFT</flag>
 						<border>2</border>
 					</object>
 					<object class="sizeritem">
 						<object class="wxCheckBox" name="ID_CHECKBOXRECENTFINDEXCLUDES" variable="WxCheckBoxRecentFindExcludes" member="yes">
 							<label>Recent Searched E&amp;xclude Filters</label>
 						</object>
-						<flag>wxALL|wxALIGN_LEFT|wxALIGN_TOP</flag>
+						<flag>wxALL|wxALIGN_LEFT</flag>
 						<border>2</border>
 					</object>
 				</object>
-				<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+				<flag>wxALL|wxEXPAND</flag>
 				<border>5</border>
 				<option>1</option>
 			</object>

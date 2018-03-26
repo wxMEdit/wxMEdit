@@ -52,15 +52,15 @@ END_EVENT_TABLE()
 WXMEditAboutDialog::WXMEditAboutDialog(wxWindow* parent,wxWindowID id,const wxPoint& pos,const wxSize& size)
 {
 	//(*Initialize(WXMEditAboutDialog)
-	wxBoxSizer* BoxSizer4;
-	wxBoxSizer* BoxSizer6;
-	wxBoxSizer* BoxSizer5;
-	wxBoxSizer* BoxSizer7;
-	wxBoxSizer* BoxSizer2;
 	wxBoxSizer* BoxSizer1;
+	wxBoxSizer* BoxSizer2;
 	wxBoxSizer* BoxSizer3;
+	wxBoxSizer* BoxSizer4;
+	wxBoxSizer* BoxSizer5;
+	wxBoxSizer* BoxSizer6;
+	wxBoxSizer* BoxSizer7;
 
-	Create(parent, wxID_ANY, _("About wxMEdit"), wxDefaultPosition, wxDefaultSize, wxCAPTION|wxSYSTEM_MENU|wxCLOSE_BOX|wxDIALOG_NO_PARENT, _T("wxID_ANY"));
+	Create(parent, wxID_ANY, _("About wxMEdit"), wxDefaultPosition, wxDefaultSize, wxCAPTION|wxSYSTEM_MENU|wxCLOSE_BOX, _T("wxID_ANY"));
 	BoxSizer1 = new wxBoxSizer(wxVERTICAL);
 	BoxSizer2 = new wxBoxSizer(wxHORIZONTAL);
 	BoxSizer4 = new wxBoxSizer(wxVERTICAL);
@@ -68,26 +68,26 @@ WXMEditAboutDialog::WXMEditAboutDialog(wxWindow* parent,wxWindowID id,const wxPo
 	BoxSizer4->Add(StaticBitmap1, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
 	StaticBitmap2 = new wxStaticBitmap(this, ID_STATICBITMAP2, wxNullBitmap, wxDefaultPosition, wxSize(48,48), 0, _T("ID_STATICBITMAP2"));
 	BoxSizer4->Add(StaticBitmap2, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
-	BoxSizer2->Add(BoxSizer4, 0, wxALL|wxALIGN_TOP|wxALIGN_CENTER_HORIZONTAL, 5);
+	BoxSizer2->Add(BoxSizer4, 0, wxALL|wxALIGN_TOP, 5);
 	Notebook1 = new wxNotebook(this, ID_NOTEBOOK1, wxDefaultPosition, wxDefaultSize, 0, _T("ID_NOTEBOOK1"));
 	AoubtTab = new wxPanel(Notebook1, ID_PANEL1, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL, _T("ID_PANEL1"));
 	BoxSizer5 = new wxBoxSizer(wxHORIZONTAL);
 	TxtAbout = new wxTextCtrl(AoubtTab, ID_TEXTCTRL1, wxEmptyString, wxDefaultPosition, wxSize(472,240), wxTE_AUTO_SCROLL|wxTE_MULTILINE|wxTE_READONLY|wxTE_AUTO_URL|wxSTATIC_BORDER, wxDefaultValidator, _T("ID_TEXTCTRL1"));
-	BoxSizer5->Add(TxtAbout, 1, wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 0);
+	BoxSizer5->Add(TxtAbout, 1, wxALL|wxEXPAND, 0);
 	AoubtTab->SetSizer(BoxSizer5);
 	BoxSizer5->Fit(AoubtTab);
 	BoxSizer5->SetSizeHints(AoubtTab);
 	LicenseTab = new wxPanel(Notebook1, ID_PANEL2, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL, _T("ID_PANEL2"));
 	BoxSizer6 = new wxBoxSizer(wxHORIZONTAL);
 	TxtLicense = new wxTextCtrl(LicenseTab, ID_TEXTCTRL2, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_AUTO_SCROLL|wxTE_MULTILINE|wxTE_READONLY|wxTE_AUTO_URL|wxTE_WORDWRAP|wxSTATIC_BORDER, wxDefaultValidator, _T("ID_TEXTCTRL2"));
-	BoxSizer6->Add(TxtLicense, 1, wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 0);
+	BoxSizer6->Add(TxtLicense, 1, wxALL|wxEXPAND, 0);
 	LicenseTab->SetSizer(BoxSizer6);
 	BoxSizer6->Fit(LicenseTab);
 	BoxSizer6->SetSizeHints(LicenseTab);
 	CreditsTab = new wxPanel(Notebook1, ID_PANEL3, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL, _T("ID_PANEL3"));
 	BoxSizer7 = new wxBoxSizer(wxHORIZONTAL);
 	TxtCredits = new wxTextCtrl(CreditsTab, ID_TEXTCTRL3, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_AUTO_SCROLL|wxTE_MULTILINE|wxTE_READONLY|wxTE_WORDWRAP|wxSTATIC_BORDER, wxDefaultValidator, _T("ID_TEXTCTRL3"));
-	BoxSizer7->Add(TxtCredits, 1, wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 0);
+	BoxSizer7->Add(TxtCredits, 1, wxALL|wxEXPAND, 0);
 	CreditsTab->SetSizer(BoxSizer7);
 	BoxSizer7->Fit(CreditsTab);
 	BoxSizer7->SetSizeHints(CreditsTab);

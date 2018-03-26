@@ -14,12 +14,12 @@
 #endif
 // disable 4996 {
 //(*Headers(WXMWordCountDialog)
-#include <wx/sizer.h>
-#include <wx/stattext.h>
-#include <wx/textctrl.h>
-#include <wx/statline.h>
 #include <wx/button.h>
 #include <wx/dialog.h>
+#include <wx/sizer.h>
+#include <wx/statline.h>
+#include <wx/stattext.h>
+#include <wx/textctrl.h>
 //*)
 // disable 4996 }
 #ifdef _MSC_VER
@@ -34,28 +34,28 @@ class WXMWordCountDialog: public wxDialog
 		virtual ~WXMWordCountDialog();
 
 		//(*Declarations(WXMWordCountDialog)
-		wxStaticText* StaticText10;
-		wxStaticText* StaticText9;
-		wxStaticText* WxStaticTextCharCountNoSPNoCtrl;
-		wxStaticText* WxStaticTextPureFullwidthCount;
-		wxStaticText* StaticText2;
 		wxButton* Button1;
-		wxStaticText* StaticText6;
-		wxStaticText* WxStaticTextByteCount;
-		wxStaticText* StaticText8;
-		wxStaticText* WxStaticTextCharCountAll;
-		wxStaticText* StaticText1;
-		wxStaticText* StaticText3;
-		wxStaticText* WxStaticTextWordCount;
-		wxStaticText* WxStaticTextLineCount;
-		wxStaticText* WxStaticTextFullwidthCount;
-		wxStaticText* StaticText5;
-		wxStaticText* StaticText7;
-		wxStaticText* WxStaticTextControlCount;
 		wxStaticLine* StaticLine1;
-		wxTextCtrl* WxMemo1;
-		wxStaticText* WxStaticTextSpaceCount;
+		wxStaticText* StaticText10;
+		wxStaticText* StaticText1;
+		wxStaticText* StaticText2;
+		wxStaticText* StaticText3;
 		wxStaticText* StaticText4;
+		wxStaticText* StaticText5;
+		wxStaticText* StaticText6;
+		wxStaticText* StaticText7;
+		wxStaticText* StaticText8;
+		wxStaticText* StaticText9;
+		wxStaticText* WxStaticTextByteCount;
+		wxStaticText* WxStaticTextCharCountAll;
+		wxStaticText* WxStaticTextCharCountNoSPNoCtrl;
+		wxStaticText* WxStaticTextControlCount;
+		wxStaticText* WxStaticTextFullwidthCount;
+		wxStaticText* WxStaticTextLineCount;
+		wxStaticText* WxStaticTextPureFullwidthCount;
+		wxStaticText* WxStaticTextSpaceCount;
+		wxStaticText* WxStaticTextWordCount;
+		wxTextCtrl* WxMemo1;
 		//*)
 
 	protected:

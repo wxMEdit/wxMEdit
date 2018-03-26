@@ -4,7 +4,7 @@
 		<title>Syntax Highlighting Settings</title>
 		<centered>1</centered>
 		<id_arg>0</id_arg>
-		<style>wxCAPTION|wxSYSTEM_MENU|wxRESIZE_BORDER|wxCLOSE_BOX|wxDIALOG_NO_PARENT|wxMAXIMIZE_BOX</style>
+		<style>wxCAPTION|wxSYSTEM_MENU|wxRESIZE_BORDER|wxCLOSE_BOX|wxMAXIMIZE_BOX</style>
 		<handler function="WXMHighlightingDialogClose" entry="EVT_CLOSE" />
 		<handler function="WXMHighlightingDialogResize" entry="EVT_SIZE" />
 		<object class="wxBoxSizer" variable="BoxSizer1" member="no">
@@ -14,7 +14,7 @@
 					<style>wxLB_SINGLE|wxLB_HSCROLL</style>
 					<handler function="WxListBoxSyntaxSelected" entry="EVT_LISTBOX" />
 				</object>
-				<flag>wxALL|wxEXPAND|wxALIGN_LEFT|wxALIGN_TOP</flag>
+				<flag>wxALL|wxEXPAND</flag>
 				<border>4</border>
 				<option>1</option>
 			</object>
@@ -81,13 +81,13 @@
 								<border>2</border>
 							</object>
 						</object>
-						<flag>wxALL|wxALIGN_TOP|wxALIGN_CENTER_HORIZONTAL</flag>
+						<flag>wxALL|wxALIGN_CENTER_HORIZONTAL</flag>
 					</object>
 					<object class="sizeritem">
 						<object class="wxStaticLine" name="ID_STATICLINE1" variable="StaticLine1" member="yes">
 							<size>10,-1</size>
 						</object>
-						<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+						<flag>wxALL|wxEXPAND</flag>
 						<border>1</border>
 					</object>
 					<object class="sizeritem">
@@ -97,7 +97,7 @@
 									<style>wxLC_REPORT|wxLC_NO_HEADER|wxLC_SINGLE_SEL|wxALWAYS_SHOW_SB</style>
 									<handler function="WxListCtrlKeywordSelected" entry="EVT_LIST_ITEM_SELECTED" />
 								</object>
-								<flag>wxALL|wxEXPAND|wxALIGN_LEFT|wxALIGN_TOP</flag>
+								<flag>wxALL|wxEXPAND</flag>
 								<border>2</border>
 								<option>1</option>
 							</object>
@@ -112,7 +112,7 @@
 													<label>Bold</label>
 													<handler function="WxCheckBoxBoldClick" entry="EVT_CHECKBOX" />
 												</object>
-												<flag>wxALL|wxEXPAND|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
+												<flag>wxALL|wxEXPAND</flag>
 												<border>2</border>
 											</object>
 											<object class="sizeritem">
@@ -120,7 +120,7 @@
 													<label>Italic</label>
 													<handler function="WxCheckBoxItalicClick" entry="EVT_CHECKBOX" />
 												</object>
-												<flag>wxALL|wxEXPAND|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
+												<flag>wxALL|wxEXPAND</flag>
 												<border>2</border>
 											</object>
 											<object class="sizeritem">
@@ -128,18 +128,18 @@
 													<label>Underline</label>
 													<handler function="WxCheckBoxUnderlineClick" entry="EVT_CHECKBOX" />
 												</object>
-												<flag>wxALL|wxEXPAND|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
+												<flag>wxALL|wxEXPAND</flag>
 												<border>2</border>
 											</object>
 										</object>
-										<flag>wxALL|wxALIGN_LEFT|wxALIGN_TOP</flag>
+										<flag>wxALL|wxALIGN_LEFT</flag>
 										<border>2</border>
 									</object>
 									<object class="sizeritem">
 										<object class="wxStaticLine" name="ID_STATICLINE3" variable="StaticLine3" member="yes">
 											<size>10,-1</size>
 										</object>
-										<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+										<flag>wxALL|wxEXPAND</flag>
 										<border>1</border>
 									</object>
 									<object class="sizeritem">
@@ -175,7 +175,7 @@
 															<style>wxLC_REPORT|wxLC_NO_HEADER|wxLC_SINGLE_SEL</style>
 															<handler function="WxListCtrlFCSelected" entry="EVT_LIST_ITEM_SELECTED" />
 														</object>
-														<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+														<flag>wxALL|wxEXPAND</flag>
 														<border>2</border>
 														<option>1</option>
 													</object>
@@ -188,7 +188,7 @@
 														<border>2</border>
 													</object>
 												</object>
-												<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+												<flag>wxALL|wxEXPAND</flag>
 												<border>2</border>
 												<option>1</option>
 											</object>
@@ -197,7 +197,7 @@
 													<size>-1,-1</size>
 													<style>wxLI_VERTICAL</style>
 												</object>
-												<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+												<flag>wxALL|wxEXPAND</flag>
 												<border>1</border>
 											</object>
 											<object class="sizeritem">
@@ -231,7 +231,7 @@
 															<style>wxLC_REPORT|wxLC_NO_HEADER|wxLC_SINGLE_SEL</style>
 															<handler function="WxListCtrlBCSelected" entry="EVT_LIST_ITEM_SELECTED" />
 														</object>
-														<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+														<flag>wxALL|wxEXPAND</flag>
 														<border>2</border>
 														<option>1</option>
 													</object>
@@ -244,21 +244,21 @@
 														<border>2</border>
 													</object>
 												</object>
-												<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+												<flag>wxALL|wxEXPAND</flag>
 												<border>2</border>
 												<option>1</option>
 											</object>
 										</object>
-										<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+										<flag>wxALL|wxEXPAND</flag>
 										<border>2</border>
 										<option>1</option>
 									</object>
 								</object>
-								<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+								<flag>wxALL|wxEXPAND</flag>
 								<option>2</option>
 							</object>
 						</object>
-						<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+						<flag>wxALL|wxEXPAND</flag>
 						<option>1</option>
 					</object>
 					<object class="sizeritem">
@@ -282,7 +282,7 @@
 						<border>2</border>
 					</object>
 				</object>
-				<flag>wxALL|wxEXPAND|wxALIGN_TOP|wxALIGN_CENTER_HORIZONTAL</flag>
+				<flag>wxALL|wxEXPAND</flag>
 				<option>3</option>
 			</object>
 		</object>

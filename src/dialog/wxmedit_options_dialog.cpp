@@ -365,7 +365,7 @@ WXMEditOptionsDialog::WXMEditOptionsDialog(wxWindow* parent,wxWindowID id)
 	wxStaticBoxSizer* StaticBoxSizer3;
 	wxStaticBoxSizer* StaticBoxSizer4;
 
-	Create(parent, wxID_ANY, _("Options"), wxDefaultPosition, wxDefaultSize, wxCAPTION|wxSYSTEM_MENU|wxRESIZE_BORDER|wxCLOSE_BOX|wxDIALOG_NO_PARENT|wxMAXIMIZE_BOX, _T("wxID_ANY"));
+	Create(parent, wxID_ANY, _("Options"), wxDefaultPosition, wxDefaultSize, wxCAPTION|wxSYSTEM_MENU|wxRESIZE_BORDER|wxCLOSE_BOX|wxMAXIMIZE_BOX, _T("wxID_ANY"));
 	BoxSizer1 = new wxBoxSizer(wxVERTICAL);
 	BoxSizer30 = new wxBoxSizer(wxHORIZONTAL);
 	BoxSizer31 = new wxBoxSizer(wxVERTICAL);

@@ -19,14 +19,14 @@
 #endif
 // disable 4996 {
 //(*Headers(WXMSearchReplaceDialog)
-#include <wx/sizer.h>
-#include <wx/stattext.h>
-#include <wx/menu.h>
-#include <wx/textctrl.h>
-#include <wx/checkbox.h>
-#include <wx/statline.h>
 #include <wx/button.h>
+#include <wx/checkbox.h>
 #include <wx/dialog.h>
+#include <wx/menu.h>
+#include <wx/sizer.h>
+#include <wx/statline.h>
+#include <wx/stattext.h>
+#include <wx/textctrl.h>
 //*)
 // disable 4996 }
 #ifdef _MSC_VER
@@ -48,28 +48,28 @@ class WXMSearchReplaceDialog: public wxDialog
 		virtual ~WXMSearchReplaceDialog();
 
 		//(*Declarations(WXMSearchReplaceDialog)
-		wxButton* WxButtonReplace;
-		wxButton* WxButtonFindPrev;
-		wxButton* WxButtonFindNext;
-		wxButton* WxButtonReplaceAll;
-		wxCheckBox* WxCheckBoxMoveFocus;
-		wxStaticText* WxStaticTextTo;
-		wxCheckBox* WxCheckBoxCaseSensitive;
-		wxCheckBox* WxCheckBoxSearchInSelection;
-		wxMenu WxPopupMenuRecentFindText;
-		wxStaticText* StaticTextStatus;
-		wxTextCtrl* WxEditTo;
 		wxButton* WxButtonClose;
-		wxTextCtrl* WxEditFrom;
-		wxMenu WxPopupMenuRecentReplaceText;
-		wxCheckBox* WxCheckBoxFindHex;
-		wxStaticText* WxStaticTextFrom;
-		wxStaticLine* StaticLine1;
-		wxCheckBox* WxCheckBoxWholeWord;
 		wxButton* WxButtonCount;
-		wxCheckBox* WxCheckBoxRegex;
-		wxCheckBox* WxCheckBoxWrapAround;
+		wxButton* WxButtonFindNext;
+		wxButton* WxButtonFindPrev;
+		wxButton* WxButtonReplace;
+		wxButton* WxButtonReplaceAll;
 		wxButton* WxButtonReplaceExpand;
+		wxCheckBox* WxCheckBoxCaseSensitive;
+		wxCheckBox* WxCheckBoxFindHex;
+		wxCheckBox* WxCheckBoxMoveFocus;
+		wxCheckBox* WxCheckBoxRegex;
+		wxCheckBox* WxCheckBoxSearchInSelection;
+		wxCheckBox* WxCheckBoxWholeWord;
+		wxCheckBox* WxCheckBoxWrapAround;
+		wxMenu WxPopupMenuRecentFindText;
+		wxMenu WxPopupMenuRecentReplaceText;
+		wxStaticLine* StaticLine1;
+		wxStaticText* StaticTextStatus;
+		wxStaticText* WxStaticTextFrom;
+		wxStaticText* WxStaticTextTo;
+		wxTextCtrl* WxEditFrom;
+		wxTextCtrl* WxEditTo;
 		//*)
 
 	protected:

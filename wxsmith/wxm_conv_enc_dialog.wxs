@@ -5,7 +5,7 @@
 		<centered>1</centered>
 		<pos_arg>1</pos_arg>
 		<size_arg>1</size_arg>
-		<style>wxCAPTION|wxSYSTEM_MENU|wxRESIZE_BORDER|wxCLOSE_BOX|wxDIALOG_NO_PARENT</style>
+		<style>wxCAPTION|wxSYSTEM_MENU|wxRESIZE_BORDER|wxCLOSE_BOX</style>
 		<handler function="WXMConvEncDialogClose" entry="EVT_CLOSE" />
 		<object class="wxBoxSizer" variable="BoxSizer1" member="no">
 			<orient>wxVERTICAL</orient>

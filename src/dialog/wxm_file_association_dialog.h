@@ -18,12 +18,12 @@
 #endif
 // disable 4996 {
 //(*Headers(WXMFileAssociationDialog)
+#include <wx/button.h>
+#include <wx/dialog.h>
+#include <wx/listbox.h>
 #include <wx/sizer.h>
 #include <wx/stattext.h>
 #include <wx/textctrl.h>
-#include <wx/listbox.h>
-#include <wx/button.h>
-#include <wx/dialog.h>
 //*)
 // disable 4996 }
 #ifdef _MSC_VER
@@ -38,16 +38,16 @@ class WXMFileAssociationDialog: public wxDialog
 		virtual ~WXMFileAssociationDialog();
 
 		//(*Declarations(WXMFileAssociationDialog)
-		wxButton* WxButtonAddCustom;
 		wxButton* WxButtonAdd;
-		wxTextCtrl* WxEditCustomType;
-		wxListBox* WxListBoxPredefined;
-		wxStaticText* StaticText2;
-		wxButton* WxButtonRemove;
-		wxListBox* WxListBoxAssociated;
-		wxStaticText* StaticText1;
+		wxButton* WxButtonAddCustom;
 		wxButton* WxButtonCancel;
 		wxButton* WxButtonOK;
+		wxButton* WxButtonRemove;
+		wxListBox* WxListBoxAssociated;
+		wxListBox* WxListBoxPredefined;
+		wxStaticText* StaticText1;
+		wxStaticText* StaticText2;
+		wxTextCtrl* WxEditCustomType;
 		//*)
 
 	protected:

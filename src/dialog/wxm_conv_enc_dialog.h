@@ -16,12 +16,12 @@
 #endif
 // disable 4996 {
 //(*Headers(WXMConvEncDialog)
+#include <wx/button.h>
+#include <wx/combobox.h>
+#include <wx/dialog.h>
+#include <wx/radiobox.h>
 #include <wx/sizer.h>
 #include <wx/stattext.h>
-#include <wx/radiobox.h>
-#include <wx/button.h>
-#include <wx/dialog.h>
-#include <wx/combobox.h>
 //*)
 // disable 4996 }
 #ifdef _MSC_VER
@@ -38,11 +38,11 @@ class WXMConvEncDialog: public wxDialogWrapper
 		virtual ~WXMConvEncDialog();
 
 		//(*Declarations(WXMConvEncDialog)
-		wxRadioBox* WxRadioBoxOption;
-		wxStaticText* StaticText1;
-		wxComboBox* WxComboBoxEncoding;
 		wxButton* WxButtonCancel;
 		wxButton* WxButtonOK;
+		wxComboBox* WxComboBoxEncoding;
+		wxRadioBox* WxRadioBoxOption;
+		wxStaticText* StaticText1;
 		//*)
 
 		std::wstring GetEncoding() const;

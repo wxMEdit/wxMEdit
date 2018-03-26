@@ -312,16 +312,16 @@ END_EVENT_TABLE()
 WXMFileAssociationDialog::WXMFileAssociationDialog(wxWindow* parent,wxWindowID id,const wxPoint& pos,const wxSize& size)
 {
 	//(*Initialize(WXMFileAssociationDialog)
+	wxBoxSizer* BoxSizer1;
+	wxBoxSizer* BoxSizer2;
+	wxBoxSizer* BoxSizer3;
 	wxBoxSizer* BoxSizer4;
-	wxBoxSizer* BoxSizer6;
 	wxBoxSizer* BoxSizer5;
+	wxBoxSizer* BoxSizer6;
 	wxBoxSizer* BoxSizer7;
 	wxBoxSizer* BoxSizer8;
-	wxBoxSizer* BoxSizer2;
-	wxBoxSizer* BoxSizer1;
-	wxBoxSizer* BoxSizer3;
 
-	Create(parent, wxID_ANY, _("File Type Associations"), wxDefaultPosition, wxDefaultSize, wxCAPTION|wxSYSTEM_MENU|wxRESIZE_BORDER|wxCLOSE_BOX|wxDIALOG_NO_PARENT|wxMAXIMIZE_BOX, _T("wxID_ANY"));
+	Create(parent, wxID_ANY, _("File Type Associations"), wxDefaultPosition, wxDefaultSize, wxCAPTION|wxSYSTEM_MENU|wxRESIZE_BORDER|wxCLOSE_BOX|wxMAXIMIZE_BOX, _T("wxID_ANY"));
 	BoxSizer1 = new wxBoxSizer(wxVERTICAL);
 	BoxSizer2 = new wxBoxSizer(wxVERTICAL);
 	BoxSizer4 = new wxBoxSizer(wxHORIZONTAL);
@@ -329,8 +329,8 @@ WXMFileAssociationDialog::WXMFileAssociationDialog(wxWindow* parent,wxWindowID i
 	StaticText1 = new wxStaticText(this, ID_STATICTEXT1, _("Associated File Types:"), wxDefaultPosition, wxDefaultSize, 0, _T("ID_STATICTEXT1"));
 	BoxSizer6->Add(StaticText1, 0, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
 	WxListBoxAssociated = new wxListBox(this, ID_WXLISTBOXASSOCIATED, wxDefaultPosition, wxSize(121,200), 0, 0, wxLB_EXTENDED, wxDefaultValidator, _T("ID_WXLISTBOXASSOCIATED"));
-	BoxSizer6->Add(WxListBoxAssociated, 1, wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
-	BoxSizer4->Add(BoxSizer6, 1, wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+	BoxSizer6->Add(WxListBoxAssociated, 1, wxALL|wxEXPAND, 5);
+	BoxSizer4->Add(BoxSizer6, 1, wxALL|wxEXPAND, 5);
 	BoxSizer7 = new wxBoxSizer(wxVERTICAL);
 	WxButtonAdd = new wxButton(this, ID_WXBUTTONADD, _("<- Add"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_WXBUTTONADD"));
 	BoxSizer7->Add(WxButtonAdd, 0, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
@@ -341,14 +341,14 @@ WXMFileAssociationDialog::WXMFileAssociationDialog(wxWindow* parent,wxWindowID i
 	StaticText2 = new wxStaticText(this, ID_STATICTEXT2, _("Predefined File Types:"), wxDefaultPosition, wxDefaultSize, 0, _T("ID_STATICTEXT2"));
 	BoxSizer8->Add(StaticText2, 0, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
 	WxListBoxPredefined = new wxListBox(this, ID_WXLISTBOXPREDEFINED, wxDefaultPosition, wxSize(121,200), 0, 0, wxLB_EXTENDED, wxDefaultValidator, _T("ID_WXLISTBOXPREDEFINED"));
-	BoxSizer8->Add(WxListBoxPredefined, 1, wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
-	BoxSizer4->Add(BoxSizer8, 1, wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+	BoxSizer8->Add(WxListBoxPredefined, 1, wxALL|wxEXPAND, 5);
+	BoxSizer4->Add(BoxSizer8, 1, wxALL|wxEXPAND, 5);
 	BoxSizer2->Add(BoxSizer4, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 0);
 	BoxSizer5 = new wxBoxSizer(wxHORIZONTAL);
 	WxEditCustomType = new wxTextCtrl(this, ID_WXEDITCUSTOMTYPE, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_WXEDITCUSTOMTYPE"));
-	BoxSizer5->Add(WxEditCustomType, 0, wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL, 5);
+	BoxSizer5->Add(WxEditCustomType, 0, wxALL|wxALIGN_CENTER_VERTICAL, 5);
 	WxButtonAddCustom = new wxButton(this, ID_WXBUTTONADDCUSTOM, _("<- Add Custom File Type"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_WXBUTTONADDCUSTOM"));
-	BoxSizer5->Add(WxButtonAddCustom, 0, wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL, 5);
+	BoxSizer5->Add(WxButtonAddCustom, 0, wxALL|wxALIGN_CENTER_VERTICAL, 5);
 	BoxSizer2->Add(BoxSizer5, 0, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
 	BoxSizer1->Add(BoxSizer2, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
 	BoxSizer3 = new wxBoxSizer(wxHORIZONTAL);

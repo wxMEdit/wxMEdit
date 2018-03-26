@@ -19,16 +19,16 @@
 #endif
 // disable 4996 {
 //(*Headers(WXMHighlightingDialog)
-#include <wx/listctrl.h>
-#include <wx/sizer.h>
-#include <wx/stattext.h>
-#include <wx/checkbox.h>
-#include <wx/listbox.h>
-#include <wx/statline.h>
-#include <wx/panel.h>
 #include <wx/button.h>
-#include <wx/dialog.h>
+#include <wx/checkbox.h>
 #include <wx/combobox.h>
+#include <wx/dialog.h>
+#include <wx/listbox.h>
+#include <wx/listctrl.h>
+#include <wx/panel.h>
+#include <wx/sizer.h>
+#include <wx/statline.h>
+#include <wx/stattext.h>
 //*)
 // disable 4996 }
 #ifdef _MSC_VER
@@ -113,32 +113,32 @@ class WXMHighlightingDialog: public wxDialogWrapper
 		virtual ~WXMHighlightingDialog();
 
 		//(*Declarations(WXMHighlightingDialog)
-		wxListCtrl* WxListCtrlKeyword;
-		wxListBox* WxListBoxSyntax;
-		wxComboBox* WxComboBoxScheme;
-		wxListCtrl* WxListCtrlFC;
-		wxStaticText* StaticText2;
-		wxListCtrl* WxListCtrlBC;
-		wxPanel* WxPanelFC;
-		wxStaticText* WxStaticTextBCName;
-		wxButton* WxButtonSave;
-		wxPanel* WxPanelBC;
-		wxStaticText* StaticText1;
-		wxStaticText* StaticText3;
-		wxButton* WxButtonClose;
-		wxStaticLine* StaticLine2;
-		wxStaticText* WxStaticTextFCName;
-		wxCheckBox* WxCheckBoxBold;
-		wxCheckBox* WxCheckBoxUnderline;
-		wxButton* WxButtonCancel;
-		wxButton* WxButtonLoad;
 		wxButton* WxButtonBC;
-		wxStaticLine* StaticLine3;
-		wxStaticLine* StaticLine1;
+		wxButton* WxButtonCancel;
+		wxButton* WxButtonClose;
 		wxButton* WxButtonDelete;
 		wxButton* WxButtonFC;
-		wxStaticText* StaticText4;
+		wxButton* WxButtonLoad;
+		wxButton* WxButtonSave;
+		wxCheckBox* WxCheckBoxBold;
 		wxCheckBox* WxCheckBoxItalic;
+		wxCheckBox* WxCheckBoxUnderline;
+		wxComboBox* WxComboBoxScheme;
+		wxListBox* WxListBoxSyntax;
+		wxListCtrl* WxListCtrlBC;
+		wxListCtrl* WxListCtrlFC;
+		wxListCtrl* WxListCtrlKeyword;
+		wxPanel* WxPanelBC;
+		wxPanel* WxPanelFC;
+		wxStaticLine* StaticLine1;
+		wxStaticLine* StaticLine2;
+		wxStaticLine* StaticLine3;
+		wxStaticText* StaticText1;
+		wxStaticText* StaticText2;
+		wxStaticText* StaticText3;
+		wxStaticText* StaticText4;
+		wxStaticText* WxStaticTextBCName;
+		wxStaticText* WxStaticTextFCName;
 		//*)
 
 	protected:

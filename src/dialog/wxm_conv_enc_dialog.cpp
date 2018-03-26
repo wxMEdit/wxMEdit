@@ -46,12 +46,12 @@ END_EVENT_TABLE()
 WXMConvEncDialog::WXMConvEncDialog(wxWindow* parent,wxWindowID id,const wxPoint& pos,const wxSize& size)
 {
 	//(*Initialize(WXMConvEncDialog)
-	wxBoxSizer* BoxSizer4;
-	wxBoxSizer* BoxSizer2;
 	wxBoxSizer* BoxSizer1;
+	wxBoxSizer* BoxSizer2;
 	wxBoxSizer* BoxSizer3;
+	wxBoxSizer* BoxSizer4;
 
-	Create(parent, id, _("Convert Encoding"), wxDefaultPosition, wxDefaultSize, wxCAPTION|wxSYSTEM_MENU|wxRESIZE_BORDER|wxCLOSE_BOX|wxDIALOG_NO_PARENT, _T("id"));
+	Create(parent, id, _("Convert Encoding"), wxDefaultPosition, wxDefaultSize, wxCAPTION|wxSYSTEM_MENU|wxRESIZE_BORDER|wxCLOSE_BOX, _T("id"));
 	SetClientSize(wxDefaultSize);
 	Move(wxDefaultPosition);
 	BoxSizer1 = new wxBoxSizer(wxVERTICAL);

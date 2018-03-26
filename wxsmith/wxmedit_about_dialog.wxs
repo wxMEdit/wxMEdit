@@ -4,7 +4,7 @@
 		<title>About wxMEdit</title>
 		<centered>1</centered>
 		<id_arg>0</id_arg>
-		<style>wxCAPTION|wxSYSTEM_MENU|wxCLOSE_BOX|wxDIALOG_NO_PARENT</style>
+		<style>wxCAPTION|wxSYSTEM_MENU|wxCLOSE_BOX</style>
 		<handler function="WXMEditAboutDialogClose" entry="EVT_CLOSE" />
 		<object class="wxBoxSizer" variable="BoxSizer1" member="no">
 			<orient>wxVERTICAL</orient>
@@ -32,7 +32,7 @@
 								<option>1</option>
 							</object>
 						</object>
-						<flag>wxALL|wxALIGN_TOP|wxALIGN_CENTER_HORIZONTAL</flag>
+						<flag>wxALL|wxALIGN_TOP</flag>
 						<border>5</border>
 					</object>
 					<object class="sizeritem">
@@ -46,7 +46,7 @@
 												<size>472,240</size>
 												<style>wxTE_AUTO_SCROLL|wxTE_MULTILINE|wxTE_READONLY|wxTE_AUTO_URL|wxSTATIC_BORDER</style>
 											</object>
-											<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+											<flag>wxALL|wxEXPAND</flag>
 											<option>1</option>
 										</object>
 									</object>
@@ -60,7 +60,7 @@
 											<object class="wxTextCtrl" name="ID_TEXTCTRL2" variable="TxtLicense" member="yes">
 												<style>wxTE_AUTO_SCROLL|wxTE_MULTILINE|wxTE_READONLY|wxTE_AUTO_URL|wxTE_WORDWRAP|wxSTATIC_BORDER</style>
 											</object>
-											<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+											<flag>wxALL|wxEXPAND</flag>
 											<option>1</option>
 										</object>
 									</object>
@@ -74,7 +74,7 @@
 											<object class="wxTextCtrl" name="ID_TEXTCTRL3" variable="TxtCredits" member="yes">
 												<style>wxTE_AUTO_SCROLL|wxTE_MULTILINE|wxTE_READONLY|wxTE_WORDWRAP|wxSTATIC_BORDER</style>
 											</object>
-											<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+											<flag>wxALL|wxEXPAND</flag>
 											<option>1</option>
 										</object>
 									</object>

@@ -14,10 +14,10 @@
 #endif
 // disable 4996 {
 //(*Headers(WXMPurgeHistoriesDialog)
-#include <wx/sizer.h>
-#include <wx/checkbox.h>
 #include <wx/button.h>
+#include <wx/checkbox.h>
 #include <wx/dialog.h>
+#include <wx/sizer.h>
 //*)
 // disable 4996 }
 #ifdef _MSC_VER
@@ -32,16 +32,16 @@ class WXMPurgeHistoriesDialog: public wxDialog
 		virtual ~WXMPurgeHistoriesDialog();
 
 		//(*Declarations(WXMPurgeHistoriesDialog)
-		wxButton* WxButtonPurge;
-		wxCheckBox* WxCheckBoxRecentFindFilters;
-		wxCheckBox* WxCheckBoxRecentFilesFindDirs;
-		wxCheckBox* WxCheckBoxRecentFonts;
 		wxButton* WxButtonCancel;
-		wxCheckBox* WxCheckBoxRecentFindTexts;
-		wxCheckBox* WxCheckBoxRecentReplaceTexts;
-		wxCheckBox* WxCheckBoxRecentFindExcludes;
+		wxButton* WxButtonPurge;
 		wxCheckBox* WxCheckBoxRecentEncodings;
 		wxCheckBox* WxCheckBoxRecentFiles;
+		wxCheckBox* WxCheckBoxRecentFilesFindDirs;
+		wxCheckBox* WxCheckBoxRecentFindExcludes;
+		wxCheckBox* WxCheckBoxRecentFindFilters;
+		wxCheckBox* WxCheckBoxRecentFindTexts;
+		wxCheckBox* WxCheckBoxRecentFonts;
+		wxCheckBox* WxCheckBoxRecentReplaceTexts;
 		//*)
 
 	protected:

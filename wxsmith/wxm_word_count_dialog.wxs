@@ -4,7 +4,7 @@
 		<title>Word Count</title>
 		<centered>1</centered>
 		<id_arg>0</id_arg>
-		<style>wxCAPTION|wxSYSTEM_MENU|wxRESIZE_BORDER|wxCLOSE_BOX|wxDIALOG_NO_PARENT|wxMAXIMIZE_BOX</style>
+		<style>wxCAPTION|wxSYSTEM_MENU|wxRESIZE_BORDER|wxCLOSE_BOX|wxMAXIMIZE_BOX</style>
 		<handler function="WXMWordCountDialogClose" entry="EVT_CLOSE" />
 		<object class="wxBoxSizer" variable="BoxSizer1" member="no">
 			<orient>wxVERTICAL</orient>
@@ -146,7 +146,7 @@
 				<object class="wxStaticLine" name="ID_STATICLINE1" variable="StaticLine1" member="yes">
 					<size>10,-1</size>
 				</object>
-				<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+				<flag>wxALL|wxEXPAND</flag>
 				<border>2</border>
 			</object>
 			<object class="sizeritem">
@@ -161,7 +161,7 @@
 					<size>440,160</size>
 					<style>wxTE_MULTILINE|wxTE_DONTWRAP</style>
 				</object>
-				<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+				<flag>wxALL|wxEXPAND</flag>
 				<border>4</border>
 				<option>1</option>
 			</object>

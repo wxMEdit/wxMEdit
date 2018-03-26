@@ -4,7 +4,7 @@
 		<title>File Type Associations</title>
 		<centered>1</centered>
 		<id_arg>0</id_arg>
-		<style>wxCAPTION|wxSYSTEM_MENU|wxRESIZE_BORDER|wxCLOSE_BOX|wxDIALOG_NO_PARENT|wxMAXIMIZE_BOX</style>
+		<style>wxCAPTION|wxSYSTEM_MENU|wxRESIZE_BORDER|wxCLOSE_BOX|wxMAXIMIZE_BOX</style>
 		<object class="wxBoxSizer" variable="BoxSizer1" member="no">
 			<orient>wxVERTICAL</orient>
 			<object class="sizeritem">
@@ -29,12 +29,12 @@
 											<style>wxLB_EXTENDED</style>
 											<handler function="WxListBoxAssociatedDoubleClicked" entry="EVT_LISTBOX_DCLICK" />
 										</object>
-										<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+										<flag>wxALL|wxEXPAND</flag>
 										<border>5</border>
 										<option>1</option>
 									</object>
 								</object>
-								<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+								<flag>wxALL|wxEXPAND</flag>
 								<border>5</border>
 								<option>1</option>
 							</object>
@@ -78,12 +78,12 @@
 											<style>wxLB_EXTENDED</style>
 											<handler function="WxListBoxPredefinedDoubleClicked" entry="EVT_LISTBOX_DCLICK" />
 										</object>
-										<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+										<flag>wxALL|wxEXPAND</flag>
 										<border>5</border>
 										<option>1</option>
 									</object>
 								</object>
-								<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+								<flag>wxALL|wxEXPAND</flag>
 								<border>5</border>
 								<option>1</option>
 							</object>
@@ -95,7 +95,7 @@
 						<object class="wxBoxSizer" variable="BoxSizer5" member="no">
 							<object class="sizeritem">
 								<object class="wxTextCtrl" name="ID_WXEDITCUSTOMTYPE" variable="WxEditCustomType" member="yes" />
-								<flag>wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
+								<flag>wxALL|wxALIGN_CENTER_VERTICAL</flag>
 								<border>5</border>
 							</object>
 							<object class="sizeritem">
@@ -103,7 +103,7 @@
 									<label>&lt;- Add Custom File Type</label>
 									<handler function="WxButtonAddCustomClick" entry="EVT_BUTTON" />
 								</object>
-								<flag>wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
+								<flag>wxALL|wxALIGN_CENTER_VERTICAL</flag>
 								<border>5</border>
 							</object>
 						</object>

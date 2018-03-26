@@ -18,14 +18,14 @@
 #endif
 // disable 4996 {
 //(*Headers(WXMEnumerationDialog)
+#include <wx/button.h>
+#include <wx/checkbox.h>
+#include <wx/choice.h>
+#include <wx/dialog.h>
+#include <wx/radiobut.h>
 #include <wx/sizer.h>
 #include <wx/stattext.h>
 #include <wx/textctrl.h>
-#include <wx/checkbox.h>
-#include <wx/radiobut.h>
-#include <wx/choice.h>
-#include <wx/button.h>
-#include <wx/dialog.h>
 //*)
 // disable 4996 }
 #ifdef _MSC_VER
@@ -152,41 +152,41 @@ class WXMEnumerationDialog: public wxDialog
 		virtual ~WXMEnumerationDialog();
 
 		//(*Declarations(WXMEnumerationDialog)
-		wxRadioButton* RadioButtonHalfWidth;
-		wxStaticText* StaticText9;
-		wxRadioButton* RadioButtonHex;
-		wxRadioButton* RadioButtonBin;
-		wxTextCtrl* TextCtrlFinalNum;
-		wxStaticText* StaticText2;
-		wxStaticText* StaticTextInitalNum;
-		wxStaticText* StaticText6;
-		wxButton* ButtonOK;
-		wxChoice* ChoiceFinalCmp;
-		wxChoice* ChoiceStepOp;
-		wxStaticText* StaticText8;
-		wxTextCtrl* TextCtrlPreview;
-		wxStaticText* StaticText1;
-		wxStaticText* StaticText3;
-		wxRadioButton* RadioButtonUpper;
 		wxButton* ButtonCancel;
-		wxChoice* ChoicePadding;
-		wxStaticText* StaticText5;
-		wxStaticText* StaticText7;
-		wxRadioButton* RadioButtonOct;
-		wxStaticText* StaticTextStep;
-		wxRadioButton* RadioButtonLower;
-		wxRadioButton* RadioButtonDec;
-		wxChoice* ChoiceAlign;
-		wxTextCtrl* TextCtrlStepParam;
-		wxStaticText* StaticTextFinalNum;
-		wxChoice* ChoiceLength;
-		wxTextCtrl* TextCtrlPostfix;
-		wxStaticText* StaticText4;
-		wxRadioButton* RadioButtonFullWidth;
-		wxChoice* ChoiceNumSys;
-		wxTextCtrl* TextCtrlPrefix;
+		wxButton* ButtonOK;
 		wxCheckBox* CheckBoxGrpSep;
+		wxChoice* ChoiceAlign;
+		wxChoice* ChoiceFinalCmp;
+		wxChoice* ChoiceLength;
+		wxChoice* ChoiceNumSys;
+		wxChoice* ChoicePadding;
+		wxChoice* ChoiceStepOp;
+		wxRadioButton* RadioButtonBin;
+		wxRadioButton* RadioButtonDec;
+		wxRadioButton* RadioButtonFullWidth;
+		wxRadioButton* RadioButtonHalfWidth;
+		wxRadioButton* RadioButtonHex;
+		wxRadioButton* RadioButtonLower;
+		wxRadioButton* RadioButtonOct;
+		wxRadioButton* RadioButtonUpper;
+		wxStaticText* StaticText1;
+		wxStaticText* StaticText2;
+		wxStaticText* StaticText3;
+		wxStaticText* StaticText4;
+		wxStaticText* StaticText5;
+		wxStaticText* StaticText6;
+		wxStaticText* StaticText7;
+		wxStaticText* StaticText8;
+		wxStaticText* StaticText9;
+		wxStaticText* StaticTextFinalNum;
+		wxStaticText* StaticTextInitalNum;
+		wxStaticText* StaticTextStep;
+		wxTextCtrl* TextCtrlFinalNum;
 		wxTextCtrl* TextCtrlInitialNum;
+		wxTextCtrl* TextCtrlPostfix;
+		wxTextCtrl* TextCtrlPrefix;
+		wxTextCtrl* TextCtrlPreview;
+		wxTextCtrl* TextCtrlStepParam;
 		//*)
 
 		void SetSelectedRows(size_t n) { m_selrows = n; Preview(); }

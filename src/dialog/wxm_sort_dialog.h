@@ -14,11 +14,11 @@
 #endif
 // disable 4996 {
 //(*Headers(WXMSortDialog)
-#include <wx/sizer.h>
-#include <wx/radiobox.h>
-#include <wx/checkbox.h>
 #include <wx/button.h>
+#include <wx/checkbox.h>
 #include <wx/dialog.h>
+#include <wx/radiobox.h>
+#include <wx/sizer.h>
 //*)
 // disable 4996 }
 #ifdef _MSC_VER
@@ -33,11 +33,11 @@ class WXMSortDialog: public wxDialog
 		virtual ~WXMSortDialog();
 
 		//(*Declarations(WXMSortDialog)
-		wxCheckBox* WxCheckBoxNumeric;
+		wxButton* WxButtonCancel;
 		wxButton* WxButtonSort;
 		wxCheckBox* WxCheckBoxCase;
+		wxCheckBox* WxCheckBoxNumeric;
 		wxCheckBox* WxCheckBoxRemoveDup;
-		wxButton* WxButtonCancel;
 		wxRadioBox* WxRadioBoxOrder;
 		//*)
 

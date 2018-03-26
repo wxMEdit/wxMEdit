@@ -5,7 +5,7 @@
 		<centered>1</centered>
 		<pos_arg>1</pos_arg>
 		<size_arg>1</size_arg>
-		<style>wxCAPTION|wxSYSTEM_MENU|wxRESIZE_BORDER|wxCLOSE_BOX|wxDIALOG_NO_PARENT</style>
+		<style>wxCAPTION|wxSYSTEM_MENU|wxRESIZE_BORDER|wxCLOSE_BOX</style>
 		<handler function="WXMSortDialogClose" entry="EVT_CLOSE" />
 		<object class="wxBoxSizer" variable="BoxSizer1" member="no">
 			<orient>wxVERTICAL</orient>
@@ -19,28 +19,28 @@
 					<default>-1</default>
 					<style>wxRA_SPECIFY_COLS</style>
 				</object>
-				<flag>wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
+				<flag>wxALL|wxALIGN_LEFT</flag>
 				<border>5</border>
 			</object>
 			<object class="sizeritem">
 				<object class="wxCheckBox" name="ID_WXCHECKBOXCASE" variable="WxCheckBoxCase" member="yes">
 					<label>&amp;Case Sensitive</label>
 				</object>
-				<flag>wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
+				<flag>wxALL|wxALIGN_LEFT</flag>
 				<border>5</border>
 			</object>
 			<object class="sizeritem">
 				<object class="wxCheckBox" name="ID_WXCHECKBOXNUMERIC" variable="WxCheckBoxNumeric" member="yes">
 					<label>&amp;Numeric Sort</label>
 				</object>
-				<flag>wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
+				<flag>wxALL|wxALIGN_LEFT</flag>
 				<border>5</border>
 			</object>
 			<object class="sizeritem">
 				<object class="wxCheckBox" name="ID_WXCHECKBOXREMOVEDUP" variable="WxCheckBoxRemoveDup" member="yes">
 					<label>&amp;Remove Duplicates</label>
 				</object>
-				<flag>wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
+				<flag>wxALL|wxALIGN_LEFT</flag>
 				<border>5</border>
 			</object>
 			<object class="sizeritem">
@@ -60,7 +60,7 @@
 						<border>5</border>
 					</object>
 				</object>
-				<flag>wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
+				<flag>wxALL|wxALIGN_LEFT</flag>
 				<border>5</border>
 			</object>
 		</object>

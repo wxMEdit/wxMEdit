@@ -65,7 +65,7 @@ WXMWordCountDialog::WXMWordCountDialog(wxWindow* parent,wxWindowID id,const wxPo
 	wxBoxSizer* BoxSizer1;
 	wxFlexGridSizer* FlexGridSizer1;
 
-	Create(parent, wxID_ANY, _("Word Count"), wxDefaultPosition, wxDefaultSize, wxCAPTION|wxSYSTEM_MENU|wxRESIZE_BORDER|wxCLOSE_BOX|wxDIALOG_NO_PARENT|wxMAXIMIZE_BOX, _T("wxID_ANY"));
+	Create(parent, wxID_ANY, _("Word Count"), wxDefaultPosition, wxDefaultSize, wxCAPTION|wxSYSTEM_MENU|wxRESIZE_BORDER|wxCLOSE_BOX|wxMAXIMIZE_BOX, _T("wxID_ANY"));
 	BoxSizer1 = new wxBoxSizer(wxVERTICAL);
 	FlexGridSizer1 = new wxFlexGridSizer(0, 2, 0, 60);
 	StaticText8 = new wxStaticText(this, ID_STATICTEXT8, _("Lines"), wxDefaultPosition, wxDefaultSize, 0, _T("ID_STATICTEXT8"));
@@ -106,11 +106,11 @@ WXMWordCountDialog::WXMWordCountDialog(wxWindow* parent,wxWindowID id,const wxPo
 	FlexGridSizer1->Add(WxStaticTextPureFullwidthCount, 0, wxALL|wxALIGN_RIGHT|wxALIGN_CENTER_VERTICAL, 5);
 	BoxSizer1->Add(FlexGridSizer1, 0, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 4);
 	StaticLine1 = new wxStaticLine(this, ID_STATICLINE1, wxDefaultPosition, wxSize(10,-1), wxLI_HORIZONTAL, _T("ID_STATICLINE1"));
-	BoxSizer1->Add(StaticLine1, 0, wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 2);
+	BoxSizer1->Add(StaticLine1, 0, wxALL|wxEXPAND, 2);
 	StaticText7 = new wxStaticText(this, ID_STATICTEXT7, _("Detail Information of Characters:"), wxDefaultPosition, wxDefaultSize, 0, _T("ID_STATICTEXT7"));
 	BoxSizer1->Add(StaticText7, 0, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 2);
 	WxMemo1 = new wxTextCtrl(this, ID_WXMEMO1, wxEmptyString, wxDefaultPosition, wxSize(440,160), wxTE_MULTILINE|wxTE_DONTWRAP, wxDefaultValidator, _T("ID_WXMEMO1"));
-	BoxSizer1->Add(WxMemo1, 1, wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 4);
+	BoxSizer1->Add(WxMemo1, 1, wxALL|wxEXPAND, 4);
 	Button1 = new wxButton(this, wxID_CANCEL, _("&Close"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("wxID_CANCEL"));
 	BoxSizer1->Add(Button1, 0, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
 	SetSizer(BoxSizer1);
