@@ -236,9 +236,9 @@ void SingleByteEncoding::MultiByteInit()
 
 	char singlebyte[1];
 	UChar32 ch;
-	for (size_t i=0; i<256; ++i)
+	for (ucs4_t i=0; i<256; ++i)
 	{
-		singlebyte[0] = (unsigned char)i;
+		singlebyte[0] = (ubyte)i;
 		if (m_icucnv->MB2WC(ch, singlebyte, 1) == 1)
 		{
 			m_tounicode[i] = ch;
@@ -246,7 +246,7 @@ void SingleByteEncoding::MultiByteInit()
 		else
 		{
 			m_tounicode[i] = i;
-			m_fromunicode[i] = (unsigned char)i;
+			m_fromunicode[i] = (ubyte)i;
 		}
 	}
 

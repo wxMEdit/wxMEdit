@@ -47,7 +47,7 @@ size_t ICUConverter::MB2WC(UChar32& ch, const char* src, size_t src_len)
 {
 	UChar dest[2];
 	UErrorCode err = U_ZERO_ERROR;
-	int32_t n = ucnv_toUChars(m_ucnv, dest, 2, src, src_len, &err);
+	int32_t n = ucnv_toUChars(m_ucnv, dest, 2, src, (int32_t)src_len, &err);
 
 	if (n == 1)
 	{
@@ -82,7 +82,7 @@ size_t ICUConverter::WC2MB(char* dest, size_t dest_len, const UChar32& ch)
 	}
 
 	UErrorCode err = U_ZERO_ERROR;
-	int32_t n = ucnv_fromUChars(m_ucnv, dest, dest_len, src, src_len, &err);
+	int32_t n = ucnv_fromUChars(m_ucnv, dest, (int32_t)dest_len, src, (int32_t)src_len, &err);
 
 	if (n<=0)
 		return 0;

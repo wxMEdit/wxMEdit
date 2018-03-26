@@ -539,7 +539,7 @@ void DetectEncoding(const ubyte* text, size_t len, EncodingID& enc, bool skip_ut
 {
 	UErrorCode status = U_ZERO_ERROR;
 	LocalUCharsetDetectorPointer csd(ucsdet_open(&status));
-	ucsdet_setText(csd.getAlias(), (const char*)text, len, &status);
+	ucsdet_setText(csd.getAlias(), (const char*)text, (int32_t)len, &status);
 	int32_t match_count = 0;
 	const UCharsetMatch **matches = ucsdet_detectAll(csd.getAlias(), &match_count, &status);
 	std::string enc_name(ucsdet_getName(matches[0], &status));

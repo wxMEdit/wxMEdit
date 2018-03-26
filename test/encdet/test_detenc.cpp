@@ -17,7 +17,7 @@
 
 bool javaesc_to_enc(std::string& dest, const std::string& src, const std::string& enc)
 {
-	UnicodeString us = UnicodeString(src.data(), src.size()).unescape();
+	UnicodeString us = UnicodeString(src.data(), (int32_t)src.size()).unescape();
 
 	int32_t uslen = us.length();
 
