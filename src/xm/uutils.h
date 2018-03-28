@@ -16,6 +16,7 @@
 #include <boost/shared_ptr.hpp>
 #include <string>
 #include <stddef.h>
+using namespace U_ICU_NAMESPACE;
 
 namespace xm
 {

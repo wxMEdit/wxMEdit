@@ -36,6 +36,7 @@
 #include <unicode/unistr.h>
 #include <unicode/translit.h>
 #include <unicode/numfmt.h>
+using namespace U_ICU_NAMESPACE;
 
 #include <boost/shared_ptr.hpp>
 #include <boost/scoped_ptr.hpp>

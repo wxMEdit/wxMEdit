@@ -21,6 +21,7 @@
 #endif
 
 #include <unicode/unistr.h>
+using U_ICU_NAMESPACE::UnicodeString;
 
 namespace wxm
 {

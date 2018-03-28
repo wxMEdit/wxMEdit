@@ -41,6 +41,8 @@
 #include <wx/confbase.h>
 
 #include <unicode/brkiter.h>
+using U_ICU_NAMESPACE::BreakIterator;
+
 #include <boost/shared_ptr.hpp>
 #include <string>
 #include <algorithm>

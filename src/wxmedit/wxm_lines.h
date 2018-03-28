@@ -37,6 +37,7 @@
 #endif
 
 #include <unicode/unistr.h>
+using namespace U_ICU_NAMESPACE;
 
 #include <boost/scoped_ptr.hpp>
 

@@ -10,6 +10,8 @@
 #include "../../src/xm/encoding/encoding.h"
 
 #include <unicode/unistr.h>
+using U_ICU_NAMESPACE::UnicodeString;
+
 #include <boost/scoped_array.hpp>
 #include <boost/test/unit_test.hpp>
 #include <boost/algorithm/string/case_conv.hpp>
