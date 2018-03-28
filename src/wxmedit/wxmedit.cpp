@@ -1945,7 +1945,7 @@ void MadEdit::PaintTextLines(wxDC *dc, const wxRect &rect, int toprow, int rowco
                                 if(m_WordBuffer[idx] == 0x20)
                                 {
                                     if (m_ShowSpaceChar)
-                                        dc->DrawLines(m_space_points.size(), &m_space_points[0], x0, text_top);
+                                        dc->DrawLines((int)m_space_points.size(), &m_space_points[0], x0, text_top);
                                 }
                                 else if(m_ShowTabChar)
                                 {
@@ -1954,7 +1954,7 @@ void MadEdit::PaintTextLines(wxDC *dc, const wxRect &rect, int toprow, int rowco
                                     std::vector<wxPoint> pts;
                                     CalcTabMarkPoints(pts, charsz);
 
-                                    dc->DrawLines(pts.size(), &pts[0], x0, text_top);
+                                    dc->DrawLines((int)pts.size(), &pts[0], x0, text_top);
                                 }
 
                                 x0 += m_WidthBuffer[idx];
@@ -2048,7 +2048,7 @@ void MadEdit::PaintTextLines(wxDC *dc, const wxRect &rect, int toprow, int rowco
                 dc->SetBrush(*wxTheBrushList->FindOrCreateBrush(m_Syntax->nw_Color));
 
                 std::vector<wxPoint>& points = lineiter->m_nl->PatternPoints(this);
-                dc->DrawLines(points.size(), &points[0], left, text_top);
+                dc->DrawLines((int)points.size(), &points[0], left, text_top);
 
                 left += w;
             }
@@ -3623,7 +3623,7 @@ void MadEdit::SelectWordFromCaretPos(wxString *ws)
     if (ws != nullptr)
     {
         size_t len = std::min(MaxLineLength(), long(e - b));
-        *ws = wxm::ICUStrToWx(UnicodeString(ustr, b, len));
+        *ws = wxm::ICUStrToWx(UnicodeString(ustr, b, (int32_t)len));
         return;
     }
 

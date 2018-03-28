@@ -251,10 +251,10 @@ private:
 
 struct WXMControlIDReserver : private boost::noncopyable
 {
-	long RecentFindTextID1() { return fid1; }
-	long RecentFindTextID20() { return fid20; }
-	long RecentReplaceTextID1() { return rid1; }
-	long RecentReplaceTextID20(){ return rid20; }
+	int RecentFindTextID1() { return fid1; }
+	int RecentFindTextID20() { return fid20; }
+	int RecentReplaceTextID1() { return rid1; }
+	int RecentReplaceTextID20(){ return rid20; }
 
 	static WXMControlIDReserver& Instance()
 	{
@@ -263,10 +263,10 @@ struct WXMControlIDReserver : private boost::noncopyable
 	}
 private:
 	WXMControlIDReserver();
-	long fid1;
-	long fid20;
-	long rid1;
-	long rid20;
+	int fid1;
+	int fid20;
+	int rid1;
+	int rid20;
 };
 
 bool UseForceEncoding(const wxConfigBase *cfg);

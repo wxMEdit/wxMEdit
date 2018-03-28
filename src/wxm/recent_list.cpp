@@ -166,12 +166,12 @@ void wxRecentList::AddFileToHistory(const wxString& item)
 	{
 		wxMenu * const menu = (wxMenu *)node->GetData();
 
-		if (!numItems && menu->GetMenuItemCount())
+		if (numItems == 0 && menu->GetMenuItemCount() != 0)
 			menu->AppendSeparator();
 
 		// label doesn't matter, it will be set below anyhow, but it can't
 		// be empty (this is supposed to indicate a stock item)
-		menu->Append(GetBaseId() + numItems, " ");
+		menu->Append(GetBaseId() + (int)numItems, " ");
 	}
 
 	// insert the new item in the beginning of the item history
@@ -190,7 +190,7 @@ void wxRecentList::AddFileToHistory(const wxString& item)
 		{
 			wxMenu * const menu = (wxMenu *)node->GetData();
 
-			menu->SetLabel(GetBaseId() + i, GetMRUEntryLabel(i, itemInMenu));
+			menu->SetLabel(GetBaseId() + (int)i, GetMRUEntryLabel((int)i, itemInMenu));
 		}
 	}
 #endif

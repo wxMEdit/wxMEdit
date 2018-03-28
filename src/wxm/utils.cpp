@@ -490,11 +490,11 @@ void AppPath::SaveConfig() const
 #endif
 }
 
-static long WXMNewID(long begin, size_t count)
+static int WXMNewID(int begin, size_t count)
 {
-	for (size_t i = 1; i<count; ++i)
-		wxRegisterId(begin + i);
-	return begin + count - 1;
+	for (size_t i=1; i<count; ++i)
+		wxRegisterId(int(begin + i));
+	return int(begin + count - 1);
 }
 
 WXMControlIDReserver::WXMControlIDReserver()

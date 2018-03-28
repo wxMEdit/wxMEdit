@@ -257,7 +257,7 @@ wxByte MadMemData::Get(const wxFileOffset &pos)
 
 void MadMemData::Get(const wxFileOffset &pos, wxByte *buffer, size_t size)
 {
-    wxASSERT((pos >= 0) && (size > 0) && ((pos + size) <= m_Size));
+    wxASSERT((pos >= 0) && (size > 0) && ((wxFileOffset)(pos + size) <= m_Size));
 
     int buf = int(pos >> BUFFER_BITS);    //pos / BUFFER_SIZE;
     int idx = int(pos & BUFFER_MASK);    //pos % BUFFER_SIZE;
@@ -513,7 +513,7 @@ wxByte MadFileData::Get(const wxFileOffset &pos)
 
 void MadFileData::Get(const wxFileOffset &pos, wxByte * buffer, size_t size)
 {
-    wxASSERT((pos >= 0) && (size > 0) && ((pos + size) <= m_Size));
+    wxASSERT((pos >= 0) && (size > 0) && ((wxFileOffset)(pos + size) <= m_Size));
 
     wxFileOffset idx;
     if(m_Buf1Pos>=0)
@@ -858,7 +858,7 @@ void MadLines::InitNextUChar(const MadLineIterator &iter, const wxFileOffset pos
 
 void MadLines::MoveUChar32Bytes(xm::UCQueue &ucqueue, ucs4_t uc, size_t len)
 {
-    ucqueue.push_back(xm::CharUnit(uc, len));
+    ucqueue.push_back(xm::CharUnit(uc, (int)len));
     m_NextUChar_Pos += len;
     m_NextUChar_BufferStart += len;
     m_NextUChar_BufferSize -= len;
@@ -1946,7 +1946,7 @@ void MadLines::RecountLineWidth(void)
 
                 if(bpi!=nullptr)
                 {
-                    wxASSERT(bracepos<=bpi->LinePos);
+                    wxASSERT((wxFileOffset)bracepos<=bpi->LinePos);
 
                     if(bpi->LinePos==(wxFileOffset)bracepos)
                     {
@@ -2089,9 +2089,9 @@ bool MadLines::LoadFromFile(const wxString& filename, const std::wstring& encodi
     if(m_MadEdit->m_EditMode == emHexMode)
         m_MadEdit->SetEditMode(emTextMode);
 
-    const int max_detecting_size = 4096;
-    int sz;
-    if(m_FileData->m_Size > max_detecting_size)
+    const size_t max_detecting_size = 4096;
+	size_t sz;
+    if(m_FileData->m_Size > (wxFileOffset)max_detecting_size)
         sz = max_detecting_size;
     else
         sz = size_t(m_FileData->m_Size);
@@ -2190,7 +2190,7 @@ bool MadLines::LoadFromFile(const wxString& filename, const std::wstring& encodi
     }
     else
     {
-        m_Syntax = GetFileSyntax(filename, buf, sz);
+        m_Syntax = GetFileSyntax(filename, buf, (int)sz);
     }
 
     InitFileSyntax();
@@ -2888,7 +2888,7 @@ bool MadLines::SaveToFile(const wxString& filename, const wxString& tempdir)
                     }
                     else
                     {
-                        wxASSERT(pos0 <= tempmemdata->m_Buffers.size()*BUFFER_SIZE);
+                        wxASSERT(pos0 <= wxFileOffset(tempmemdata->m_Buffers.size() * BUFFER_SIZE));
                         tempmemdata->m_Size=pos0;
                     }
                     WriteBlockToData(tempoutdata, file_bit);

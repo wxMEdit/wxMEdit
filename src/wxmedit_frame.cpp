@@ -580,7 +580,7 @@ std::list<wxMadAuiNotebook::PageData> wxMadAuiNotebook::GetPagesList()
                 }
             }
 
-            pages_list.insert(it, PageData(pt.x, pt.y, idx, wxmedit, i));
+            pages_list.insert(it, PageData(pt.x, pt.y, idx, wxmedit, (int)i));
         }
     }
 
@@ -1599,7 +1599,7 @@ void MadEditFrame::EncodingGroupMenuAppend(ssize_t idx, const wxString& text, si
             wxMenu* menu = new wxMenu();
             it = m_encgrps.insert(std::make_pair(gid, menu)).first;
             size_t pos = g_Menu_View_Encoding->GetMenuItemCount() - rsv_cnt - 1;
-            g_Menu_View_Encoding->Insert(pos, menuEncodingGroup1 + i + rsv_cnt, encmgr.EncodingGroupToName(gid).c_str(), menu);
+            g_Menu_View_Encoding->Insert(pos, menuEncodingGroup1 + i + (int)rsv_cnt, encmgr.EncodingGroupToName(gid).c_str(), menu);
         }
 
         ++i;
@@ -1619,7 +1619,7 @@ size_t MadEditFrame::ReserveEncodingGrupMenus()
     BOOST_FOREACH(xm::EncodingGroupID gid, reserve_grps)
     {
         wxMenu* menu = new wxMenu();
-        g_Menu_View_Encoding->Insert(i, menuEncodingGroup1 + i, encmgr.EncodingGroupToName(gid).c_str(), menu);
+        g_Menu_View_Encoding->Insert(i, menuEncodingGroup1 + (int)i, encmgr.EncodingGroupToName(gid).c_str(), menu);
         m_encgrps[gid] = menu;
         ++i;
     }
