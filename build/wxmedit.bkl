@@ -236,14 +236,6 @@
 		<sources>../src/xm/uutils.cpp</sources>
 	</exe>
 	<exe id="wxmedit_test" template="win_cfg,enc_src,encdet_src">
-		<lib-path>$(BOOST_DIR)/stage/lib</lib-path>
-		<if cond="FORMAT in ('mingw')">
-			<set var="BOOST_RT_OPT" make_var="1">
-				<if cond="DEBUG==0"></if>
-				<if cond="DEBUG==1">-d</if>
-			</set>
-			<sys-lib>boost_unit_test_framework-mgw$(MGW_VER)-mt$(BOOST_RT_OPT)-$(BOOST_VER)</sys-lib>
-		</if>
 		<cppflags>$(CPPFLAGS_ADD)</cppflags>
 
 		<headers>../src/xm/cxx11.h</headers>

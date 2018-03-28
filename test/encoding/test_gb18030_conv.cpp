@@ -8,6 +8,7 @@
 #include "../encoding_test.h"
 #include "../../src/xm/encoding/encoding.h"
 
+#define BOOST_TEST_INCLUDED
 #include <boost/test/unit_test.hpp>
 
 #include <iostream>

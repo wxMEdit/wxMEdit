@@ -189,8 +189,6 @@ am_wxmedit_test_OBJECTS = $(am__objects_3) $(am__objects_4) \
 	test/test.$(OBJEXT)
 wxmedit_test_OBJECTS = $(am_wxmedit_test_OBJECTS)
 wxmedit_test_LDADD = $(LDADD)
-wxmedit_test_LINK = $(CXXLD) $(AM_CXXFLAGS) $(CXXFLAGS) \
-	$(wxmedit_test_LDFLAGS) $(LDFLAGS) -o $@
 AM_V_P = $(am__v_P_@AM_V@)
 am__v_P_ = $(am__v_P_@AM_DEFAULT_V@)
 am__v_P_0 = false
@@ -593,7 +591,6 @@ POSUB = @POSUB@
 SET_MAKE = @SET_MAKE@
 SHELL = @SHELL@
 STRIP = @STRIP@
-TESTLIBS = @TESTLIBS@
 USE_NLS = @USE_NLS@
 VERSION = @VERSION@
 WX_CFLAGS = @WX_CFLAGS@
@@ -812,7 +809,6 @@ wxmedit_test_SOURCES = $(enc_src) \
 	test/encoding_test.h \
 	test/test.cpp
 
-wxmedit_test_LDFLAGS = @TESTLIBS@
 dist_doc_DATA = ChangeLog LICENSE README.txt
 pixmapsdir = $(datadir)/pixmaps
 pixmaps_DATA = wxmedit.png
@@ -1240,7 +1236,7 @@ test/test.$(OBJEXT): test/$(am__dirstamp) \
 
 wxmedit_test$(EXEEXT): $(wxmedit_test_OBJECTS) $(wxmedit_test_DEPENDENCIES) $(EXTRA_wxmedit_test_DEPENDENCIES) 
 	@rm -f wxmedit_test$(EXEEXT)
-	$(AM_V_CXXLD)$(wxmedit_test_LINK) $(wxmedit_test_OBJECTS) $(wxmedit_test_LDADD) $(LIBS)
+	$(AM_V_CXXLD)$(CXXLINK) $(wxmedit_test_OBJECTS) $(wxmedit_test_LDADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)

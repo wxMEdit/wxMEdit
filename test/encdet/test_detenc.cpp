@@ -12,6 +12,7 @@
 #include <unicode/unistr.h>
 using U_ICU_NAMESPACE::UnicodeString;
 
+#define BOOST_TEST_INCLUDED
 #include <boost/scoped_array.hpp>
 #include <boost/test/unit_test.hpp>
 #include <boost/algorithm/string/case_conv.hpp>

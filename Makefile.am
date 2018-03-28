@@ -147,8 +147,6 @@ wxmedit_test_SOURCES =	$(enc_src) \
 	test/encoding_test.h \
 	test/test.cpp
 
-wxmedit_test_LDFLAGS = @TESTLIBS@
-
 dist_doc_DATA = ChangeLog LICENSE README.txt
 
 pixmapsdir = $(datadir)/pixmaps
