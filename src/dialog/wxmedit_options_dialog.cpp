@@ -1265,11 +1265,11 @@ void WXMEditOptionsDialog::WxTreeCtrl1SelChanged(wxTreeEvent& event)
 	{
 		WxListBoxKeys->Set(g_SelectedCommandItem->keys);
 		wxString hint=wxT('[');
-		if(g_SelectedCommandItem->cmddata->menuid_name > 0)
+		if (g_SelectedCommandItem->cmddata->menuid_name != nullptr)
 		{
 			hint+= wxString(g_SelectedCommandItem->cmddata->menuid_name);
 		}
-		if(g_SelectedCommandItem->cmddata->command > 0)
+		if (g_SelectedCommandItem->cmddata->command > 0)
 		{
 			wxString text=MadKeyBindings::CommandToText(g_SelectedCommandItem->cmddata->command);
 			if(!text.IsEmpty())
@@ -1360,11 +1360,11 @@ void WXMEditOptionsDialog::UpdateKeyHint()
 			g_CommandItemOfNewKey=tid;
 			wxString cmd;
 
-			if(tid->cmddata->menuid_name > 0)
+			if (tid->cmddata->menuid_name != nullptr)
 			{
 				cmd+= wxString(tid->cmddata->menuid_name);
 			}
-			if(tid->cmddata->command > 0)
+			if (tid->cmddata->command > 0)
 			{
 				wxString text=MadKeyBindings::CommandToText(tid->cmddata->command);
 				if(!text.IsEmpty())
