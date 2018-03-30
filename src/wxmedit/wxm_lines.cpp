@@ -1315,7 +1315,7 @@ void MadLines::DoCheckState(MadLineIterator iter, wxm::ExtUCQueue& ucqueue, xm::
         {
             eatUCharCount = length;
             state.RangeId = wxByte(m_Syntax->m_CustomRange[index - 1].id);
-            srange = m_Syntax->GetSyntaxRange(state.RangeId);
+            /*srange = */m_Syntax->GetSyntaxRange(state.RangeId);
             //return;
         }
     }

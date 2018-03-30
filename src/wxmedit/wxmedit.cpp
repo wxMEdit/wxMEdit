@@ -6627,8 +6627,9 @@ void MadEdit::DoPrevWord()
         ustr += (UChar32)ucq.back().ucs4();
 
     m_word_bi->setText(ustr);
-    int32_t n = m_word_bi->last();
-    for (n=m_word_bi->previous(); n!=BreakIterator::DONE; n=m_word_bi->previous())
+    m_word_bi->last();
+    int32_t n = m_word_bi->previous();
+    for (; n!=BreakIterator::DONE; n=m_word_bi->previous())
     {
         if (!u_isspace(ustr.char32At(n)))
             break;
@@ -6675,8 +6676,9 @@ void MadEdit::DoNextWord()
         ustr += (UChar32)ucq.back().ucs4();
 
     m_word_bi->setText(ustr);
-    int32_t n = m_word_bi->first();
-    for (n=m_word_bi->next(); n!=BreakIterator::DONE; n=m_word_bi->next())
+    m_word_bi->first();
+    int32_t n = m_word_bi->next();
+    for (; n!=BreakIterator::DONE; n=m_word_bi->next())
     {
         if (!u_isspace(ustr.char32At(n)))
             break;
