@@ -86,7 +86,7 @@ TESTS = wxmedit_test$(EXEEXT)
 subdir = .
 DIST_COMMON = $(srcdir)/Makefile.in $(srcdir)/Makefile.am \
 	$(top_srcdir)/configure $(am__configure_deps) \
-	$(srcdir)/config.h.in mkinstalldirs depcomp $(dist_doc_DATA) \
+	$(srcdir)/config.h.in depcomp $(dist_doc_DATA) \
 	$(noinst_HEADERS) test-driver ChangeLog config.guess \
 	config.rpath config.sub install-sh missing
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
@@ -95,7 +95,7 @@ am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
 am__CONFIG_DISTCLEAN_FILES = config.status config.cache config.log \
  configure.lineno config.status.lineno
-mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
+mkinstalldirs = $(install_sh) -d
 CONFIG_HEADER = config.h
 CONFIG_CLEAN_FILES =
 CONFIG_CLEAN_VPATH_FILES =
