@@ -812,7 +812,6 @@ wxmedit_test_SOURCES = $(enc_src) \
 dist_doc_DATA = ChangeLog LICENSE README.txt
 pixmapsdir = $(datadir)/pixmaps
 pixmaps_DATA = wxmedit.png
-CLEANFILES = wxmedit.desktop
 appdir = $(datadir)/applications
 app_DATA = wxmedit.desktop
 EXTRA_DIST = $(pixmaps_DATA) $(app_DATA)
@@ -2584,7 +2583,6 @@ mostlyclean-generic:
 	-test -z "$(TEST_SUITE_LOG)" || rm -f $(TEST_SUITE_LOG)
 
 clean-generic:
-	-test -z "$(CLEANFILES)" || rm -f $(CLEANFILES)
 
 distclean-generic:
 	-test -z "$(CONFIG_CLEAN_FILES)" || rm -f $(CONFIG_CLEAN_FILES)

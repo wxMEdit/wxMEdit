@@ -159,8 +159,6 @@ wxmedit.desktop: $(top_srcdir)/wxmedit.desktop._ Makefile
 	  cmp $(top_srcdir)/wxmedit.desktop $@ >/dev/null 2>&1 || cp $(top_srcdir)/wxmedit.desktop $@; \
 	fi
 
-CLEANFILES = wxmedit.desktop
-
 appdir = $(datadir)/applications
 app_DATA = wxmedit.desktop
 
