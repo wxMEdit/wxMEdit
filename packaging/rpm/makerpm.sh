@@ -24,7 +24,7 @@ mkdir -p "$SRCVERDIR"
 /bin/cp -Rf "$SRCBASEDIR/"* "$SRCVERDIR"
 
 #======================================================================
-# 2. generate .spec files
+# 2. generate .spec file
 #----------------------------------------------------------------------
 
 cd "$SRCVERDIR/packaging/rpm"
@@ -35,8 +35,6 @@ NEW_SRCPARENTDIR="$NEW_SRCBASEDIR/.."
 gawk -f changelog_rpm.awk "$NEW_SRCBASEDIR/ChangeLog" > changelog
 
 cat wxmedit.spec._ changelog | sed "$sedcmd_ver" > wxmedit.spec
-
-sed -f static_spec.sed wxmedit.spec > wxmedit-static.spec
 
 #======================================================================
 # 3. create .tar.gz

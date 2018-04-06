@@ -13,7 +13,7 @@ COMMENT=	wxMEdit: Cross-platform Text/Hex Editor, Improved Version of MadEdit
 LICENSE=	GPLv3
 
 USES=		gettext pkgconfig desktop-file-utils
-USE_WX=		2.8+
+USE_WX=		3.0+
 WANT_UNICODE=	yes
 
 LIB_DEPENDS+=	libboost_system.so:${PORTSDIR}/devel/boost-libs \

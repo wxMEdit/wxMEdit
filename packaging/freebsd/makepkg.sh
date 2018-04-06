@@ -7,12 +7,7 @@
   sudo mkdir wxmedit
 )
 
-sudo cp -f Makefile pkg-descr /usr/ports/editors/wxmedit/
-
-sudo sh -c "sed -e 's#share/doc/wxmedit#%%DOCSDIR%%#' \
-                -e 's#share/wxmedit#%%DATADIR%%#' \
-                -e 's/@dirrm /@dirrmtry /' pkg-plist_old > \
-                /usr/ports/editors/wxmedit/pkg-plist"
+sudo cp -f Makefile pkg-descr pkg-plist /usr/ports/editors/wxmedit/
 
 cd /usr/ports/editors/wxmedit
 sudo make makesum
