@@ -156,7 +156,7 @@ wxmedit.desktop: $(top_srcdir)/wxmedit.desktop._ Makefile
 	if [ x"$$XDG_DATA_DIRS" == x"" ]; then \
 	  sed "s#@pixmapsdir@#$(pixmapsdir)#" $(top_srcdir)/wxmedit.desktop._ > $@; \
 	else \
-	  cmp $(top_srcdir)/wxmedit.desktop $@ >/dev/null 2>&1 || cp $(top_srcdir)/wxmedit.desktop $@; \
+	  cmp $(top_srcdir)/wxmedit.desktop $@ >/dev/null 2>&1 || cp $(top_srcdir)/wxmedit.desktop $@ || echo ""; \
 	fi
 
 appdir = $(datadir)/applications
