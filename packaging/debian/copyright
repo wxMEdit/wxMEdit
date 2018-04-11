@@ -4,15 +4,16 @@ wxMEdit is a cross-platform Text/Hex Editor.
 wxMEdit is an improved version of MadEdit which has been discontinued.
 
 wxMEdit supports many useful functions, e.g. Bookmark, 
-SyntaxHighlightings, WordWrap, Encodings, Column/Hex Modes.
+Syntax Highlightings, Word Wrap, Encodings, Column/Hex Modes, 
+WordCount and Updates Checking.
 
 wxMEdit is a continually maintained text/hex editor with bug fixes, 
 improvements and refactor.
 
 The original source code for this package can be downloaded from
-wxMEdit homepage or https://github.com/hltj/wxMEdit/ .
+wxMEdit website or https://github.com/hltj/wxMEdit/ .
 
-Homepage: http://wxmedit.github.io/
+Website: http://wxmedit.github.io/ .
 
 Copyright (C) 2013-2018 JiaYanwei <wxmedit@gmail.com>
 Copyright (C) 2006-2010 Alston Chen <madedit@gmail.com>

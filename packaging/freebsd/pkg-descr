@@ -1,9 +1,8 @@
 wxMEdit is a cross-platform Text/Hex Editor written in C++ & wxWidgets.
-
 wxMEdit is an improved version of MadEdit which has been discontinued.
 
-wxMEdit supports many useful functions, e.g. Bookmark, SyntaxHighlightings, 
-WordWrap, Encodings, Column/Hex Modes.
+wxMEdit supports many useful functions, e.g. Bookmark, Syntax Highlightings, 
+Word Wrap, Encodings, Column/Hex Modes, Word Count and Updates Checking.
 
 wxMEdit is a continually maintained text/hex editor with bug fixes, 
 improvements and refactor.
