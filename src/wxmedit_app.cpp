@@ -197,7 +197,7 @@ bool OpenFilesInPrevInst(const wxString& flist)
     if(GetLastError() != ERROR_ALREADY_EXISTS)
         return false;
 
-	const wxChar wxCanvasClassNameNR[] = wxT("wxWindowClassNR"); // class name of MadEditFrame
+    const wxChar wxCanvasClassNameNR[] = wxT("wxWindowClassNR"); // class name of MadEditFrame
     wxChar title[256]={0};
     HWND prevapp = ::FindWindowEx(NULL, NULL, wxCanvasClassNameNR, nullptr);
     for(;;)                // find wxCanvasClassNameNR
@@ -243,7 +243,7 @@ bool OpenFilesInPrevInst(const wxString& flist)
     g_DoNotSaveSettings = true;
     DeleteConfig();
 
-	return true;
+    return true;
 #elif defined(__WXGTK__)
     g_Display= gdk_x11_get_default_xdisplay();
     g_MadEdit_atom = XInternAtom(g_Display, "g_wxMEdit_atom", False);
@@ -252,7 +252,7 @@ bool OpenFilesInPrevInst(const wxString& flist)
     if ((madedit_win=XGetSelectionOwner(g_Display, g_MadEdit_atom)) == None)
         return false;
 
-	send_message(madedit_win, flist);
+    send_message(madedit_win, flist);
 
     g_DoNotSaveSettings = true;
     DeleteConfig();
@@ -268,7 +268,7 @@ bool MadEditApp::OnInit()
 
     xm::RemoteAccessInit();
 
-	wxm::AppPath::Instance().Init(GetAppName());
+    wxm::AppPath::Instance().Init(GetAppName());
 
     // parse commandline to filelist
     wxm::FileList filelist;
@@ -280,8 +280,8 @@ bool MadEditApp::OnInit()
     }
 
     // init wxConfig
-	wxFileConfig *cfg=new wxFileConfig(wxEmptyString, wxEmptyString, wxm::AppPath::Instance().ConfigPath(), 
-	                                   wxEmptyString, wxCONFIG_USE_RELATIVE_PATH|wxCONFIG_USE_NO_ESCAPE_CHARACTERS);
+    wxFileConfig *cfg=new wxFileConfig(wxEmptyString, wxEmptyString, wxm::AppPath::Instance().ConfigPath(), 
+                                       wxEmptyString, wxCONFIG_USE_RELATIVE_PATH|wxCONFIG_USE_NO_ESCAPE_CHARACTERS);
     cfg->SetExpandEnvVars(false);
     cfg->SetRecordDefaults(true);
     wxFileConfig::Set(cfg);

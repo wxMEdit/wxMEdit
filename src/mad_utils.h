@@ -45,7 +45,7 @@ inline ucs4_t ToHex(int d)// 0 <= d <= 15
 {
     if (d < 10)
         return '0' + d;
-	return 'A' + d - 10;
+    return 'A' + d - 10;
 }
 
 inline int FromHex(wxChar c)

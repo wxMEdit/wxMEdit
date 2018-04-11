@@ -664,57 +664,57 @@ void InFrameWXMEdit::PrintHexPage(wxDC *dc, int pageNum)
 				lines << wxChar(0x20);
 			} while (++idx < 16 * 3);
 
-			lines << wxT("| ");
+		lines << wxT("| ");
 
-			// paint Text Data
-			ucqueue.clear();
-			wxFileOffset rowpos = m_HexRowIndex[rowidx];
-			if (rowpos>hexrowpos)
+		// paint Text Data
+		ucqueue.clear();
+		wxFileOffset rowpos = m_HexRowIndex[rowidx];
+		if (rowpos>hexrowpos)
+		{
+			idx = int(rowpos - hexrowpos);
+			if (idx>0)
 			{
-				idx = int(rowpos - hexrowpos);
-				if (idx>0)
+				do
 				{
-					do
-					{
-						lines << wxChar(0x20);  // append space
-					} while (--idx>0);
-				}
+					lines << wxChar(0x20);  // append space
+				} while (--idx>0);
 			}
-			pos = rowpos;
-			GetLineByPos(lit, pos, rn);
-			pos = rowpos - pos;
-			const wxFileOffset hexrowpos16 = hexrowpos + 16;
-			m_Lines->InitNextUChar(lit, pos);
-			do
+		}
+		pos = rowpos;
+		GetLineByPos(lit, pos, rn);
+		pos = rowpos - pos;
+		const wxFileOffset hexrowpos16 = hexrowpos + 16;
+		m_Lines->InitNextUChar(lit, pos);
+		do
+		{
+			if (!m_Lines->NextUChar(ucqueue))
 			{
-				if (!m_Lines->NextUChar(ucqueue))
+				if (++lit == lineend || lit->m_Size == 0)
 				{
-					if (++lit == lineend || lit->m_Size == 0)
-					{
-						break;
-					}
-					m_Lines->InitNextUChar(lit, 0);
-					m_Lines->NextUChar(ucqueue);
+					break;
 				}
+				m_Lines->InitNextUChar(lit, 0);
+				m_Lines->NextUChar(ucqueue);
+			}
 
-				xm::CharUnit& cu = ucqueue.back();
-				rowpos += cu.nbytes();
-				if (cu.ucs4() <= 0x20)
-					lines << wxT('.');
-				else
-					WxStrAppendUCS4(lines, cu.ucs4());
+			xm::CharUnit& cu = ucqueue.back();
+			rowpos += cu.nbytes();
+			if (cu.ucs4() <= 0x20)
+				lines << wxT('.');
+			else
+				WxStrAppendUCS4(lines, cu.ucs4());
 
-				idx = cu.nbytes() - 1;
-				if (idx>0 && rowpos<hexrowpos16)
+			idx = cu.nbytes() - 1;
+			if (idx>0 && rowpos<hexrowpos16)
+			{
+				do
 				{
-					do
-					{
-						lines << wxChar(0x20);  // append space
-					} while (--idx>0);
-				}
-			} while (rowpos<hexrowpos16);
+					lines << wxChar(0x20);  // append space
+				} while (--idx>0);
+			}
+		} while (rowpos<hexrowpos16);
 
-			lines << wxT('\n');
+		lines << wxT('\n');
 	}
 
 	m_HexPrintWXMEdit->SetText(lines);
