@@ -94,7 +94,6 @@ extern const size_t g_LanguageCount = sizeof(g_LanguageValue)/sizeof(int);
 Atom g_MadEdit_atom;
 Display *g_Display=nullptr;
 
-#if wxMAJOR_VERSION == 2
 static GdkFilterReturn my_gdk_filter(GdkXEvent *xevent,
                                      GdkEvent *event,
                                      gpointer data)
@@ -135,7 +134,6 @@ static GdkFilterReturn my_gdk_filter(GdkXEvent *xevent,
 
     return GDK_FILTER_CONTINUE;
 }
-#endif
 
 void send_message(Window madedit_win, const wxString &msg)
 {
@@ -391,11 +389,18 @@ bool MadEditApp::OnInit()
     myFrame->Show(true);
 
 
-#if defined(__WXGTK__) && wxMAJOR_VERSION == 2
+#if defined(__WXGTK__)
     if(bSingleInstance)
     {
-        GtkPizza *pizza = GTK_PIZZA(myFrame->m_mainWidget);
-        Window win=GDK_WINDOW_XWINDOW(pizza->bin_window);
+# if wxMAJOR_VERSION == 2
+
+        GtkPizza* pizza = GTK_PIZZA(myFrame->m_mainWidget);
+        GdkWindow* gwin = pizza->bin_window;
+# else
+        GtkWidget* widget = myFrame->GetHandle();
+        GdkWindow* gwin = gtk_widget_get_window(widget);
+# endif
+        Window win = GDK_WINDOW_XID(gwin);
         XSetSelectionOwner(g_Display, g_MadEdit_atom, win, CurrentTime);
         gdk_window_add_filter(nullptr, my_gdk_filter, nullptr);
     }
