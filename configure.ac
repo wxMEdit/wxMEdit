@@ -10,7 +10,7 @@ AC_PREFIX_DEFAULT([/usr])
 AM_INIT_AUTOMAKE([subdir-objects])
 
 AC_USE_SYSTEM_EXTENSIONS
-ALL_LINGUAS="de_DE es it_IT ja_JP pl_PL ru_RU zh_CN zh_TW"
+ALL_LINGUAS="de_DE es fr_FR it_IT ja_JP pl_PL ru_RU zh_CN zh_TW"
 AM_GNU_GETTEXT([external])
 AC_SUBST(ALL_LINGUAS)
 

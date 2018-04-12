@@ -62,6 +62,7 @@ rm -rf $RPM_BUILD_DIR/%{name}-%{version}
 %{_datadir}/wxmedit/*
 %{_datadir}/locale/de_DE/LC_MESSAGES/wxmedit.mo
 %{_datadir}/locale/es/LC_MESSAGES/wxmedit.mo
+%{_datadir}/locale/fr_FR/LC_MESSAGES/wxmedit.mo
 %{_datadir}/locale/it_IT/LC_MESSAGES/wxmedit.mo
 %{_datadir}/locale/ja_JP/LC_MESSAGES/wxmedit.mo
 %{_datadir}/locale/pl_PL/LC_MESSAGES/wxmedit.mo
