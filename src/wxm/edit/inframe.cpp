@@ -22,7 +22,9 @@
 // disable 4996,4819 {
 #include <wx/aui/auibook.h>
 #include <wx/filename.h>
+# if wxMAJOR_VERSION == 3
 #include <wx/debug.h>
+# endif
 #include <boost/format.hpp>
 // disable 4996,4819 }
 #ifdef _MSC_VER
@@ -230,9 +232,13 @@ void InFrameWXMEdit::DoToggleWindow()
 
 void InFrameWXMEdit::DoMouseRightUp()
 {
+#if wxMAJOR_VERSION == 3
 	wxAssertHandler_t oldHandler = wxSetAssertHandler(nullptr);
+#endif
 	g_MainFrame->PopupMenu(g_Menu_Edit);
+#if wxMAJOR_VERSION == 3
 	wxSetAssertHandler(oldHandler);
+#endif
 }
 
 void InFrameWXMEdit::SetWordWrapMode(MadWordWrapMode mode)
