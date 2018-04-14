@@ -144,6 +144,7 @@
 		<sys-lib>wsock32</sys-lib>
 		<sys-lib>odbc32</sys-lib>
 		<sys-lib>opengl32</sys-lib>
+		<sys-lib>imm32</sys-lib>
 	</template>
 
 	<exe id="wxmedit" template="win_cfg,app_cfg,enc_src,encdet_src">
