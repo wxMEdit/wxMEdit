@@ -123,7 +123,7 @@ void ConfirmUpdate(bool notify_all)
 
 std::string GetVersionFromRemoteChangeLog()
 {
-	std::string str(xm::GetRemoteText("https://raw.github.com/hltj/wxMEdit/master/ChangeLog"));
+	std::string str(xm::GetRemoteText("https://raw.github.com/wxMEdit/wxMEdit/master/ChangeLog"));
 
 	size_t poslf1 = str.find_first_of('\n', 0);
 	size_t poslf2 = str.find_first_of('\n', poslf1+1);
