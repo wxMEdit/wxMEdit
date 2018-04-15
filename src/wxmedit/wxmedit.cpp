@@ -9707,6 +9707,8 @@ struct IMEAdjuster
 
     ~IMEAdjuster()
     {
+        if (m_hImc == (HIMC)0)
+            return;
         ImmReleaseContext(m_hWnd, m_hImc);
     }
 private:
