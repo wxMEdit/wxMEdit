@@ -1,5 +1,5 @@
                       ==================================
-                                wxMEdit v3.1
+                                wxMEdit v3.1+
                       ==================================
 About:
 -----
@@ -141,8 +141,9 @@ or (at your option) any later version.
 
 Authors:
 ------
-JiaYanwei <wxmedit@gmail.com>        (current maintainer of wxMEdit)
-Alston Chen <madedit@gmail.com>      (creator of MadEdit)
+JiaYanwei <wxmedit[at]gmail.com>          (current maintainer of wxMEdit)
+jerome KASPER <neon.king.fr[at]gmail.com> (current maintainer of wxMEdit)
+Alston Chen <madedit[at]gmail.com>        (creator of MadEdit)
 
 
 Links:
