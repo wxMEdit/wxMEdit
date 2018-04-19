@@ -148,7 +148,7 @@ NSIWidth::NSIWidth()
 {
 	UErrorCode uerr = U_ZERO_ERROR;
 	UnicodeString wcv("halfwidth-fullwidth");
-	m_fwtr.reset(icu::Transliterator::createInstance(wcv, UTRANS_FORWARD, uerr));
+	m_fwtr.reset(Transliterator::createInstance(wcv, UTRANS_FORWARD, uerr));
 }
 
 struct NSIHalfWidth: public virtual NSIWidth
@@ -303,8 +303,8 @@ NumSysBase::NumSysBase(const std::string& id): m_len(0), m_grouping(false)
 	, m_fullwidth(false), m_alignleft(false), m_padzero(false)
 {
 	UErrorCode uerr = U_ZERO_ERROR;
-	icu::Locale loc = icu::Locale(("C@numbers=" + id).c_str());
-	m_icufmt.reset(icu::NumberFormat::createInstance(loc, uerr));
+	Locale loc = Locale(("C@numbers=" + id).c_str());
+	m_icufmt.reset(NumberFormat::createInstance(loc, uerr));
 }
 
 UnicodeString NumSysBase::DecFormat(int64_t n, bool groupping)

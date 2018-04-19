@@ -109,7 +109,7 @@ InFrameWXMEdit::InFrameWXMEdit(wxWindow* parent, wxWindowID id, const wxPoint& p
 	Connect(wxEVT_KEY_DOWN, wxKeyEventHandler(MadEditFrame::MadEditFrameKeyDown));
 
 	UErrorCode uerr = U_ZERO_ERROR;
-	m_numfmt.reset(icu::NumberFormat::createInstance(icu::Locale::getDefault(), uerr));
+	m_numfmt.reset(U_ICU_NAMESPACE::NumberFormat::createInstance(U_ICU_NAMESPACE::Locale::getDefault(), uerr));
 
 #ifdef _DEBUG
 	test_HumanReadableFilesize();

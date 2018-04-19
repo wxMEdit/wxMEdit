@@ -75,7 +75,7 @@ namespace wxm
 	protected:
 		virtual void ToHalfWidth(UnicodeString& us) = 0;
 		virtual void ToFullWidth(UnicodeString& us) = 0;
-		boost::scoped_ptr<icu::Transliterator> m_fwtr;
+		boost::scoped_ptr<Transliterator> m_fwtr;
 	};
 
 	struct NSIPadding
@@ -124,7 +124,7 @@ namespace wxm
 			return DecFormat(n, groupping);
 		}
 
-		boost::scoped_ptr <icu::NumberFormat> m_icufmt;
+		boost::scoped_ptr <NumberFormat> m_icufmt;
 		size_t m_len;
 		bool m_grouping;
 		bool m_fullwidth;

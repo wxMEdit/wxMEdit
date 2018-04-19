@@ -158,7 +158,7 @@ void OpenOriginalURL(const wxString& url)
 
 wxString WXMLanguageQuery()
 {
-	icu::Locale loc;
+	U_ICU_NAMESPACE::Locale loc;
 	std::string lang = loc.getLanguage();
 	std::string ctry = loc.getCountry();
 
