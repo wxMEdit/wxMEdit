@@ -298,18 +298,15 @@ public:
 
     int CalcTabWidth(int rowwidth, int xpos)
     {
-        int tabwidth = GetTabMaxCharFontWidth();
-        return std::min(tabwidth - (xpos % tabwidth), rowwidth - xpos);
+        const int tabwidth = GetTabMaxCharFontWidth();
+        const int normalwidth = tabwidth - (xpos % tabwidth);
+        const int fitwidth = std::max(rowwidth - xpos, GetSpaceCharFontWidth());
+        return std::min(normalwidth, fitwidth);
     }
 
     int GetUCharTextFontWidth(ucs4_t uc, int rowwidth, int nowxpos)
     {
         return (uc == 0x09)? CalcTabWidth(rowwidth, nowxpos) : GetUCharWidth(uc);
-    }
-
-    int CalcTabWidthWithCheck(int rowwidth, int xpos)
-    {
-        return (rowwidth == xpos)? GetTabMaxCharFontWidth() : CalcTabWidth(rowwidth, xpos);
     }
 
 private:

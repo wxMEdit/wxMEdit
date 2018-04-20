@@ -1644,16 +1644,21 @@ MadLineState MadLines::Reformat(MadLineIterator iter)
                     DoWordWrap(iter, brxpos_adj, text_canmove, !m_Syntax->IsNotDelimiter(firstuc), rowidx, rowlen, rowidx_idx, nowrap);
 
                 ucwidth = m_MadEdit->GetUCharWidth(firstuc);
-                if(firstuc == 0x09)         // Tab char
+                if (firstuc == 0x09)         // Tab char
                 {
                     m_MadEdit->m_HasTab = true;
 
-                    ucwidth = m_MadEdit->CalcTabWidthWithCheck(maxwidth, rowidx.m_Width);
+                    ucwidth = m_MadEdit->CalcTabWidth(maxwidth, rowidx.m_Width);
                 }
 
                 text_canmove = (nowrap.width!=rowidx.m_Width && !m_MadEdit->HexPrinting());
-                if(rowidx.m_Width + ucwidth > maxwidth)    // wordwrap by width
+                // wordwrap by width
+                if (rowidx.m_Width + ucwidth > maxwidth)
+                {
                     DoWordWrap(iter, brxpos_adj, text_canmove, canbreak, rowidx, rowlen, rowidx_idx, nowrap);
+                    if (firstuc == 0x09)
+                        ucwidth = m_MadEdit->CalcTabWidth(maxwidth, rowidx.m_Width);
+                }
 
                 NoWrapAccumulate(nowrap, ucwidth, firstuclen, canbreak);
 
@@ -1936,11 +1941,16 @@ void MadLines::RecountLineWidth(void)
 
                 ucwidth = m_MadEdit->GetUCharWidth(firstuc);
                 if(firstuc == 0x09)
-                    ucwidth = m_MadEdit->CalcTabWidthWithCheck(maxwidth, rowidx.m_Width);
+                    ucwidth = m_MadEdit->CalcTabWidth(maxwidth, rowidx.m_Width);
 
                 text_canmove = (nowrap.width != rowidx.m_Width);
-                if(rowidx.m_Width + ucwidth > maxwidth)    // wordwrap by width
+                // wordwrap by width
+                if (rowidx.m_Width + ucwidth > maxwidth)
+                {
                     DoWordWrap(iter, brxpos_adj, text_canmove, canbreak, rowidx, rowlen, rowidx_idx, nowrap);
+                    if (firstuc == 0x09)
+                        ucwidth = m_MadEdit->CalcTabWidth(maxwidth, rowidx.m_Width);
+                }
 
                 NoWrapAccumulate(nowrap, ucwidth, firstuclen, canbreak);
 

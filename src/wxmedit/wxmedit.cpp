@@ -2029,7 +2029,7 @@ void MadEdit::PaintTextLines(wxDC *dc, const wxRect &rect, int toprow, int rowco
                     /***/
                 }
             }
-            while(m_Syntax->nw_LineWidth != 0);
+            while(m_Syntax->nw_LineWidth != 0 && wordwidth != 0);
 
             // show end of line
             if(m_Syntax->nw_EndOfLine && left < maxright && m_ShowEndOfLine)
