@@ -1,5 +1,5 @@
 /* XPM */
-static char *dummy[]={
+static char *unindent_xpm[] = {
 "24 24 123 2",
 "Qt c None",
 "#N c #000000",

@@ -1,5 +1,5 @@
 /* XPM */
-static char *dummy[]={
+static char *columnmode_xpm[] = {
 "24 24 101 2",
 "Qt c None",
 "#I c #333333",

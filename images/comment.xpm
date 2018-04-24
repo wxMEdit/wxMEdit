@@ -1,5 +1,5 @@
 /* XPM */
-static char *dummy[]={
+static char *comment_xpm[] = {
 "24 24 156 2",
 "Qt c None",
 "#U c #000000",

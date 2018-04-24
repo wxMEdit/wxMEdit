@@ -108,8 +108,10 @@
 #define copy_xpm_idx (cut_xpm_idx+1)
 #include "../images/paste.xpm"
 #define paste_xpm_idx (copy_xpm_idx+1)
+#include "../images/delete.xpm"
+#define delete_xpm_idx (paste_xpm_idx+1)
 #include "../images/olist.xpm"
-#define olist_xpm_idx (paste_xpm_idx+1)
+#define olist_xpm_idx (delete_xpm_idx+1)
 #include "../images/indent.xpm"
 #define indent_xpm_idx (olist_xpm_idx+1)
 #include "../images/unindent.xpm"
@@ -156,8 +158,11 @@
 #include "../images/hexmode.xpm"
 #define hexmode_xpm_idx (columnmode_xpm_idx+1)
 
-#include "../images/wxmedit_16x15.xpm"
-#define wxmedit_16x15_xpm_idx (hexmode_xpm_idx+1)
+#include "../images/options.xpm"
+#define options_xpm_idx (hexmode_xpm_idx+1)
+
+#include "../images/wxmedit0_24x24.xpm"
+#define wxmedit0_24x24_xpm_idx (options_xpm_idx+1)
 
 #undef static
 
@@ -1111,8 +1116,8 @@ CommandData CommandTable[]=
     { ecCut,            1, menuCut,                      wxT("menuCut"),                      _("Cu&t"),                                    wxT("Ctrl-X"),       wxITEM_NORMAL,    cut_xpm_idx,       0,                     _("Cut the selection and put it on the Clipboard")},
     { ecCopy,           1, menuCopy,                     wxT("menuCopy"),                     _("&Copy"),                                   wxT("Ctrl-C"),       wxITEM_NORMAL,    copy_xpm_idx,      0,                     _("Copy the selection and put it on the Clipboard")},
     { ecPaste,          1, menuPaste,                    wxT("menuPaste"),                    _("&Paste"),                                  wxT("Ctrl-V"),       wxITEM_NORMAL,    paste_xpm_idx,     0,                     _("Insert data from the Clipboard")},
-    { ecPasteOvr,       1, menuPasteOvr,                 wxT("menuPasteOvr"),                 _("Paste with Over&writing"),                wxT(""),             wxITEM_NORMAL,    -1,                0,                     _("Overwrite data from the Clipboard")},
-    { ecDelete,         1, menuDelete,                   wxT("menuDelete"),                   _("&Delete"),                                 wxT("DEL"),          wxITEM_NORMAL,    -1,                0,                     _("Delete data")},
+    { ecPasteOvr,       1, menuPasteOvr,                 wxT("menuPasteOvr"),                 _("Paste with Over&writing"),                 wxT(""),             wxITEM_NORMAL,    -1,                0,                     _("Overwrite data from the Clipboard")},
+    { ecDelete,         1, menuDelete,                   wxT("menuDelete"),                   _("&Delete"),                                 wxT("DEL"),          wxITEM_NORMAL,    delete_xpm_idx,   0,                     _("Delete data")},
     { 0,                1, 0,                            0,                                   0,                                            0,                   wxITEM_SEPARATOR, -1,                0,                     0},
     { ecCutLine,        1, menuCutLine,                  wxT("menuCutLine"),                  _("Cut L&ine"),                               wxT("Ctrl-Shift-L"), wxITEM_NORMAL,    -1,                0,                     _("Cut the selected lines and put it on the Clipboard")},
 
@@ -1370,7 +1375,7 @@ CommandData CommandTable[]=
 
     // Tools
     { 0, 0, 0, 0, _("&Tools"), 0, wxITEM_NORMAL, 0, &g_Menu_Tools, 0},
-    { 0,               1, menuOptions,            wxT("menuOptions"),            _("&Options..."),                                   wxT(""),       wxITEM_NORMAL,    -1, 0,                                _("Change the configuration")},
+    { 0,               1, menuOptions,            wxT("menuOptions"),            _("&Options..."),                                   wxT(""),       wxITEM_NORMAL,    options_xpm_idx, 0,                   _("Change the configuration")},
     { 0,               1, menuHighlighting,       wxT("menuHighlighting"),       _("&Syntax Highlighting Settings..."),              wxT(""),       wxITEM_NORMAL,    -1, 0,                                _("Change syntax highlighting settings")},
 #ifdef __WXMSW__
     { 0,               1, menuFileAssociation,    wxT("menuFileAssociation"),    _("&File Type Associations..."),                    wxT(""),       wxITEM_NORMAL,    -1, 0,                                _("Change file type associations")},
@@ -1415,7 +1420,7 @@ CommandData CommandTable[]=
     // Help
     { 0, 0, 0, 0, _("&Help"), 0, wxITEM_NORMAL, 0, &g_Menu_Help, 0},
     { 0, 1, menuCheckUpdates, wxT("menuCheckUpdates"), _("&Check for updates..."), wxT(""),       wxITEM_NORMAL, -1,                    0, _("Check for new versions of wxMEdit")},
-    { 0, 1, menuAbout,       wxT("menuAbout"),       _("&About wxMEdit..."),          wxT(""),       wxITEM_NORMAL, wxmedit_16x15_xpm_idx, 0, _("Show about dialog")},
+    { 0, 1, menuAbout,       wxT("menuAbout"),       _("&About wxMEdit..."),          wxT(""),       wxITEM_NORMAL, wxmedit0_24x24_xpm_idx, 0, _("Show about dialog")},
     // end menu
 
     // begin editor
@@ -1681,9 +1686,10 @@ void MadEditFrame::CreateGUIControls()
 {
     m_wxmstatusbar.Init(this, ID_WXSTATUSBAR1);
 
-    WxToolBar1 = new wxToolBar(this, ID_WXTOOLBAR1, wxPoint(0,0), wxSize(392,29));
+    WxToolBar1 = new wxToolBar(this, ID_WXTOOLBAR1, wxPoint(0, 0), wxSize(392, 38));
+    WxToolBar1->SetToolBitmapSize(wxSize(24, 24));
 
-    m_Notebook = new wxMadAuiNotebook(this, ID_NOTEBOOK, wxPoint(0,29),wxSize(392,320), wxWANTS_CHARS |wxAUI_NB_TOP|wxAUI_NB_TAB_SPLIT|wxAUI_NB_TAB_MOVE|wxAUI_NB_SCROLL_BUTTONS|wxAUI_NB_WINDOWLIST_BUTTON|wxAUI_NB_CLOSE_ON_ACTIVE_TAB);
+    m_Notebook = new wxMadAuiNotebook(this, ID_NOTEBOOK, wxPoint(0, 38),wxSize(392, 320), wxWANTS_CHARS |wxAUI_NB_TOP|wxAUI_NB_TAB_SPLIT|wxAUI_NB_TAB_MOVE|wxAUI_NB_SCROLL_BUTTONS|wxAUI_NB_WINDOWLIST_BUTTON|wxAUI_NB_CLOSE_ON_ACTIVE_TAB);
     m_Notebook->wxControl::SetWindowStyleFlag(m_Notebook->wxControl::GetWindowStyleFlag() & ~wxTAB_TRAVERSAL);
     m_Notebook->SetDropTarget(new DnDFile());
     m_Notebook->SetArtProvider(new wxAuiSimpleTabArt);
@@ -1736,7 +1742,7 @@ void MadEditFrame::CreateGUIControls()
 
 
     //m_ImageList
-    m_ImageList=new wxImageList(16,15);
+    m_ImageList=new wxImageList(24, 24);
     m_ImageList->Add(wxBitmap(null_xpm));
     m_ImageList->Add(wxBitmap(new_xpm));
     m_ImageList->Add(wxBitmap(fileopen_xpm));
@@ -1752,6 +1758,7 @@ void MadEditFrame::CreateGUIControls()
     m_ImageList->Add(wxBitmap(cut_xpm));
     m_ImageList->Add(wxBitmap(copy_xpm));
     m_ImageList->Add(wxBitmap(paste_xpm));
+    m_ImageList->Add(wxBitmap(delete_xpm));
     m_ImageList->Add(wxBitmap(olist_xpm));
     m_ImageList->Add(wxBitmap(indent_xpm));
     m_ImageList->Add(wxBitmap(unindent_xpm));
@@ -1774,7 +1781,8 @@ void MadEditFrame::CreateGUIControls()
     m_ImageList->Add(wxBitmap(textmode_xpm));
     m_ImageList->Add(wxBitmap(columnmode_xpm));
     m_ImageList->Add(wxBitmap(hexmode_xpm));
-    m_ImageList->Add(wxBitmap(wxmedit_16x15_xpm));
+    m_ImageList->Add(wxBitmap(options_xpm));
+    m_ImageList->Add(wxBitmap(wxmedit0_24x24_xpm));
 
 
     // add menuitems

@@ -1,5 +1,5 @@
 /* XPM */
-static char *dummy[]={
+static char *textmode_xpm[] = {
 "24 24 130 2",
 "Qt c None",
 "#Y c #000000",

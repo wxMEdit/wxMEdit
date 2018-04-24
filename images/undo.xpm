@@ -1,5 +1,5 @@
 /* XPM */
-static char *dummy[]={
+static char *undo_xpm[] = {
 "24 24 161 2",
 "Qt c None",
 ".t c #000000",

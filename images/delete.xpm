@@ -1,5 +1,5 @@
 /* XPM */
-static char *dummy[]={
+static char * delete_xpm[]={
 "24 24 158 2",
 "Qt c None",
 "aw c #000000",

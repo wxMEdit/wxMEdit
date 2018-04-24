@@ -1,5 +1,5 @@
 /* XPM */
-static char *dummy[]={
+static char *redo_xpm[] = {
 "24 24 168 2",
 "Qt c None",
 ".8 c #000000",

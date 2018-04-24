@@ -1,5 +1,5 @@
 /* XPM */
-static char *dummy[]={
+static char *fileopen_xpm[] = {
 "24 24 158 2",
 "Qt c None",
 ".u c #000000",

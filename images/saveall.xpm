@@ -1,5 +1,5 @@
 /* XPM */
-static char *dummy[]={
+static char *saveall_xpm[] = {
 "24 24 129 2",
 "Qt c None",
 ".# c #404040",

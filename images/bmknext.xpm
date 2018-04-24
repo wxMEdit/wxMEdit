@@ -1,5 +1,5 @@
 /* XPM */
-static char *dummy[]={
+static char * bmknext_xpm[] = {
 "24 24 144 2",
 "Qt c None",
 ".d c #000000",

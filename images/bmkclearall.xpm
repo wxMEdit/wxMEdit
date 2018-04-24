@@ -1,5 +1,5 @@
 /* XPM */
-static char *dummy[]={
+static char * bmkclearall_xpm[] = {
 "24 24 267 2",
 "Qt c None",
 "ae c #000000",

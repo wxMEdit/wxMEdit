@@ -1,5 +1,5 @@
 /* XPM */
-static char *dummy[]={
+static char *findprev_xpm[] = {
 "24 24 169 2",
 "Qt c None",
 "as c #000000",

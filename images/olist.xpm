@@ -1,5 +1,5 @@
 /* XPM */
-static char *dummy[]={
+static char * olist_xpm[] = {
 "24 24 117 2",
 "Qt c None",
 ".O c #000000",

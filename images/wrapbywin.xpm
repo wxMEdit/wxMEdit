@@ -1,5 +1,5 @@
 /* XPM */
-static char *dummy[]={
+static char *wrapbywin_xpm[] = {
 "24 24 71 2",
 "Qt c None",
 "#d c #242424",

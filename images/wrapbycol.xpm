@@ -1,5 +1,5 @@
 /* XPM */
-static char *dummy[]={
+static char *wrapbycol_xpm[] = {
 "24 24 60 1",
 ". c None",
 "5 c #333333",

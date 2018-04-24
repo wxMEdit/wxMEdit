@@ -29,7 +29,7 @@
 
 #define static static const
 #include "../../images/wxmedit.xpm"
-#include "../../images/madedit.xpm"
+#include "../../images/wxmedit0.xpm"
 #undef static
 
 //(*IdInit(WXMEditAboutDialog)
@@ -116,7 +116,7 @@ WXMEditAboutDialog::WXMEditAboutDialog(wxWindow* parent,wxWindowID id,const wxPo
 
 	StaticBitmap1->SetBitmap(wxBitmap(wxmedit_xpm));
 	StaticBitmap1->Enable(true);
-	StaticBitmap2->SetBitmap(wxBitmap(madedit_xpm));
+	StaticBitmap2->SetBitmap(wxBitmap(wxmedit0_xpm));
 	StaticBitmap2->Enable(true);
 
 	WxButtonCancel->SetFocus();

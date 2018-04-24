@@ -1,5 +1,5 @@
 /* XPM */
-static char *dummy[]={
+static char *filesave_xpm[] = {
 "24 24 82 2",
 "Qt c None",
 ".f c #000000",

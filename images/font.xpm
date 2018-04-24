@@ -1,5 +1,5 @@
 /* XPM */
-static char *dummy[]={
+static char *font_xpm[] = {
 "24 24 116 2",
 "Qt c None",
 ".e c #000000",

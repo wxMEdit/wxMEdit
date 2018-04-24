@@ -1,5 +1,5 @@
 /* XPM */
-static char *dummy[]={
+static char *replace_xpm[] = {
 "24 24 167 2",
 "Qt c None",
 "ak c #000000",
