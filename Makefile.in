@@ -826,29 +826,40 @@ noinst_HEADERS = README.txt \
 	src/plugin_example/plugin.cpp \
 	src/plugin_example/vc_cl.bat \
 	src/plugin_example/wxwin16x16.xpm \
+	images/bmkclearall.xpm \
+	images/bmknext.xpm \
+	images/bmkprev.xpm \
+	images/bmktoggle.xpm \
 	images/closeall.xpm \
 	images/columnmode.xpm \
 	images/comment.xpm \
 	images/copy.xpm \
 	images/cut.xpm \
+	images/delete.xpm \
+	images/diffmode.xpm \
 	images/down.xpm \
 	images/fileclose.xpm \
 	images/fileopen.xpm \
-	images/filesave.xpm \
 	images/filesaveas.xpm \
-	images/find.xpm \
+	images/filesave.xpm \
 	images/findnext.xpm \
 	images/findprev.xpm \
-	images/font.xpm \
+	images/find.xpm \
 	images/fontname.xpm \
 	images/fontsize.xpm \
+	images/font.xpm \
+	images/glslmode.xpm \
 	images/hexmode.xpm \
+	images/icons.png \
+	images/icons.svg \
 	images/indent.xpm \
-	images/madedit.ico \
-	images/madedit.xpm \
+	images/mainicon.png \
+	images/mainicon.svg \
 	images/new.xpm \
 	images/nowrap.xpm \
 	images/null.xpm \
+	images/olist.xpm \
+	images/options.xpm \
 	images/paste.xpm \
 	images/preview.xpm \
 	images/print.xpm \
@@ -856,15 +867,18 @@ noinst_HEADERS = README.txt \
 	images/redo.xpm \
 	images/replace.xpm \
 	images/saveall.xpm \
+	images/texmode.xpm \
 	images/textmode.xpm \
 	images/uncomment.xpm \
 	images/undo.xpm \
 	images/unindent.xpm \
 	images/wrapbycol.xpm \
 	images/wrapbywin.xpm \
+	images/wxmedit0_24x24.xpm \
+	images/wxmedit0.xpm \
+	images/wxmedit1.ico \
 	images/wxmedit.ico \
 	images/wxmedit.xpm \
-	images/wxmedit_16x15.xpm \
 	po/wxmedit.pot \
 	po/src.list \
 	po/wxstd.po.cpp \
