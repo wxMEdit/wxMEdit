@@ -205,7 +205,7 @@ bool FilePathEqual(const wxString& name1, const wxString& name2)
 
 unsigned long FilePathHash(const wxString& name)
 {
-	return wxStringHash::wxCharStringHash(FilePathNormalCase(name));
+	return wxStringHash::stringHash(FilePathNormalCase(name).wc_str());
 }
 
 wxString& WxStrAppendUCS4(wxString& ws, ucs4_t ch)
@@ -564,7 +564,7 @@ std::wstring GetASCIIArtFontName()
 
 const wchar_t * LocalizeText(const wchar_t* txt)
 {
-	return wxGetTranslation(txt);
+	return wxGetTranslation(txt).wc_str();
 }
 
 namespace xm
