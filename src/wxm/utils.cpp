@@ -205,7 +205,12 @@ bool FilePathEqual(const wxString& name1, const wxString& name2)
 
 unsigned long FilePathHash(const wxString& name)
 {
-	return wxStringHash::stringHash(FilePathNormalCase(name).wc_str());
+	const wchar_t* s = FilePathNormalCase(name).wc_str();
+#if wxMAJOR_VERSION == 2
+	return wxStringHash::stringHash(s);
+#else
+	return wxStringHash::wxCharStringHash(s);
+#endif
 }
 
 wxString& WxStrAppendUCS4(wxString& ws, ucs4_t ch)
