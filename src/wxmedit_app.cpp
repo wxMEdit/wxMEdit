@@ -140,7 +140,7 @@ void send_message(Window madedit_win, const wxString &msg)
     Window mwin = XCreateSimpleWindow(g_Display, DefaultRootWindow(g_Display),
                     0,0,90,90,1,0,0);
 
-    const wxCharBuffer data_utf8 = wxConvUTF8.cWX2MB( msg );
+    const wxCharBuffer data_utf8 = wxConvUTF8.cWX2MB( msg.wc_str() );
     size_t datalen_utf8 = strlen(data_utf8);
 
     XChangeProperty(g_Display, mwin , g_MadEdit_atom, XA_STRING, 8,
