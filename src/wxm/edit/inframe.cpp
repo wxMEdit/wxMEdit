@@ -549,7 +549,7 @@ void InFrameWXMEdit::PrintTextPage(wxDC *dc, int pageNum)
 		return;
 
 	// draw a line between LineNumberArea and Text
-	dc->SetPen(*wxThePenList->FindOrCreatePen(*wxBLACK, 1, wxSOLID));
+	dc->SetPen(*wxThePenList->FindOrCreatePen(*wxBLACK, 1, wxPENSTYLE_SOLID));
 	int x1 = m_PrintRect.x + CachedLineNumberAreaWidth();
 	dc->DrawLine(x1, m_PrintRect.y, x1, m_PrintRect.y + (rowcount*m_RowHeight));
 }
@@ -784,7 +784,7 @@ void InFrameWXMEdit::PaintLineNumberArea(const wxColor & bgcolor, wxDC * dc, con
 	// paint background
 	if (GetSyntax()->nw_BgColor != bgcolor)
 	{
-		dc->SetPen(*wxThePenList->FindOrCreatePen(GetSyntax()->nw_BgColor, 1, wxSOLID));
+		dc->SetPen(*wxThePenList->FindOrCreatePen(GetSyntax()->nw_BgColor, 1, wxPENSTYLE_SOLID));
 		dc->SetBrush(*wxTheBrushList->FindOrCreateBrush(GetSyntax()->nw_BgColor));
 		dc->DrawRectangle(rect);
 	}
@@ -797,7 +797,7 @@ void InFrameWXMEdit::PaintLineNumberArea(const wxColor & bgcolor, wxDC * dc, con
 		int b = m_RowHeight < 24 ? 1 : m_RowHeight / 24;
 
 		MadAttributes* attr = GetSyntax()->GetAttributes(aeBookmark);
-		dc->SetPen(*wxThePenList->FindOrCreatePen(attr->color, b, wxSOLID));
+		dc->SetPen(*wxThePenList->FindOrCreatePen(attr->color, b, wxPENSTYLE_SOLID));
 		dc->SetBrush(*wxTheBrushList->FindOrCreateBrush(attr->bgcolor));
 
 		wxRect rdrect(rect.x + b/2, rect.y + b, rect.width - b, rect.height - b*3/2);

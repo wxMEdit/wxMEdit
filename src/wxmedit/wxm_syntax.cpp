@@ -1211,7 +1211,7 @@ void MadSyntax::SetAttributes(MadAttributes *attr)
         attr != &m_SystemAttributes[aeActiveLine] &&
         attr != &m_SystemAttributes[aeBookmark] )
     {
-        nw_Font=wxTheFontList->FindOrCreateFont(nw_FontSize, nw_FontFamily,
+        nw_Font=wxTheFontList->FindOrCreateFont(nw_FontSize, (wxFontFamily)nw_FontFamily,
             (attr->style&fsItalic) == 0 ? wxFONTSTYLE_NORMAL : wxFONTSTYLE_ITALIC, 
             (attr->style&fsBold) == 0 ? wxFONTWEIGHT_NORMAL : wxFONTWEIGHT_BOLD,
             (attr->style&fsUnderline) != 0,
@@ -1230,7 +1230,7 @@ void MadSyntax::InitNextWord1(MadLines *madlines, ucs4_t *word, int *widths, con
     nw_FontName=fontname;
     nw_FontSize=fontsize;
     nw_FontFamily=fontfamily;
-    nw_Font=wxTheFontList->FindOrCreateFont(nw_FontSize, nw_FontFamily,
+    nw_Font=wxTheFontList->FindOrCreateFont(nw_FontSize, (wxFontFamily)nw_FontFamily,
         wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL, false, nw_FontName);
 
     if(m_CaseSensitive)

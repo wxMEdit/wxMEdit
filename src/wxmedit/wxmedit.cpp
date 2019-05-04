@@ -1888,7 +1888,7 @@ void MadEdit::PaintTextLines(wxDC *dc, const wxRect &rect, int toprow, int rowco
                 if(c != current_bgcolor)
                 {
                     current_bgcolor = c;
-                    dc->SetPen(*wxThePenList->FindOrCreatePen(c, 1, wxSOLID));
+                    dc->SetPen(*wxThePenList->FindOrCreatePen(c, 1, wxPENSTYLE_SOLID));
                     dc->SetBrush(*wxTheBrushList->FindOrCreateBrush(c));
                     dc->DrawRectangle(minleft, row_top, rectright-minleft, m_RowHeight);
                 }
@@ -1931,12 +1931,12 @@ void MadEdit::PaintTextLines(wxDC *dc, const wxRect &rect, int toprow, int rowco
                             if(m_Syntax->nw_BgColor != current_bgcolor)
                             {
                                 current_bgcolor = m_Syntax->nw_BgColor;
-                                dc->SetPen(*wxThePenList->FindOrCreatePen(m_Syntax->nw_BgColor, 1, wxSOLID));
+                                dc->SetPen(*wxThePenList->FindOrCreatePen(m_Syntax->nw_BgColor, 1, wxPENSTYLE_SOLID));
                                 dc->SetBrush(*wxTheBrushList->FindOrCreateBrush(m_Syntax->nw_BgColor));
                                 dc->DrawRectangle(left, row_top, rectright-left, m_RowHeight);
                             }
 
-                            dc->SetPen(*wxThePenList->FindOrCreatePen(m_Syntax->nw_Color, 1, wxSOLID));
+                            dc->SetPen(*wxThePenList->FindOrCreatePen(m_Syntax->nw_Color, 1, wxPENSTYLE_SOLID));
 
                             int idx = 0;
                             int x0 = left;
@@ -1970,7 +1970,7 @@ void MadEdit::PaintTextLines(wxDC *dc, const wxRect &rect, int toprow, int rowco
                             if(m_Syntax->nw_BgColor != current_bgcolor)
                             {
                                 current_bgcolor = m_Syntax->nw_BgColor;
-                                dc->SetPen(*wxThePenList->FindOrCreatePen(m_Syntax->nw_BgColor, 1, wxSOLID));
+                                dc->SetPen(*wxThePenList->FindOrCreatePen(m_Syntax->nw_BgColor, 1, wxPENSTYLE_SOLID));
                                 dc->SetBrush(*wxTheBrushList->FindOrCreateBrush(m_Syntax->nw_BgColor));
                                 dc->DrawRectangle(left, row_top, rectright-left, m_RowHeight);
                             }
@@ -2042,12 +2042,12 @@ void MadEdit::PaintTextLines(wxDC *dc, const wxRect &rect, int toprow, int rowco
                 if(m_Syntax->nw_BgColor != current_bgcolor)
                 {
                     current_bgcolor = m_Syntax->nw_BgColor;
-                    dc->SetPen(*wxThePenList->FindOrCreatePen(m_Syntax->nw_BgColor, 1, wxSOLID));
+                    dc->SetPen(*wxThePenList->FindOrCreatePen(m_Syntax->nw_BgColor, 1, wxPENSTYLE_SOLID));
                     dc->SetBrush(*wxTheBrushList->FindOrCreateBrush(m_Syntax->nw_BgColor));
                     dc->DrawRectangle(left, row_top, rectright-left, m_RowHeight);
                 }
 
-                dc->SetPen(*wxThePenList->FindOrCreatePen(m_Syntax->nw_Color, 1, wxSOLID));
+                dc->SetPen(*wxThePenList->FindOrCreatePen(m_Syntax->nw_Color, 1, wxPENSTYLE_SOLID));
                 dc->SetBrush(*wxTheBrushList->FindOrCreateBrush(m_Syntax->nw_Color));
 
                 std::vector<wxPoint>& points = lineiter->m_nl->PatternPoints(this);
@@ -2062,7 +2062,7 @@ void MadEdit::PaintTextLines(wxDC *dc, const wxRect &rect, int toprow, int rowco
                 if(c != current_bgcolor)
                 {
                     dc->SetBrush(*wxTheBrushList->FindOrCreateBrush(c));
-                    dc->SetPen(*wxThePenList->FindOrCreatePen(c, 1, wxSOLID));
+                    dc->SetPen(*wxThePenList->FindOrCreatePen(c, 1, wxPENSTYLE_SOLID));
                     dc->DrawRectangle(left, row_top, rectright-left, m_RowHeight);
                 }
             }
@@ -2215,7 +2215,7 @@ void MadEdit::PaintHexLines(wxDC *dc, wxRect &rect, int toprow, int rowcount, bo
     dc->SetFont(*m_HexFont);
 
     wxColor &markcolor=m_Syntax->GetAttributes(aeActiveLine)->color;
-    dc->SetPen(*wxThePenList->FindOrCreatePen(markcolor, 1, wxSOLID));
+    dc->SetPen(*wxThePenList->FindOrCreatePen(markcolor, 1, wxPENSTYLE_SOLID));
 
 
     if(painthead)
@@ -9129,7 +9129,7 @@ void MadEdit::UpdateClientBitmap()
             wxMemoryDC dc1, dc2;
             dc1.SelectObject(*m_ClientBitmap);
             dc1.SetBrush(*wxTheBrushList->FindOrCreateBrush(*wxWHITE));
-            dc1.SetPen(*wxThePenList->FindOrCreatePen(*wxWHITE, 1, wxSOLID));
+            dc1.SetPen(*wxThePenList->FindOrCreatePen(*wxWHITE, 1, wxPENSTYLE_SOLID));
 
             dc1.DrawRectangle(0, 0, 10, 10);
             dc1.Blit(0,0,10,10,&dc1, 0,0,wxINVERT);
@@ -9393,7 +9393,7 @@ void MadEdit::OnPaint(wxPaintEvent &evt)
                 // clear client area
                 wxColor &bgcolor=m_Syntax->GetAttributes(aeText)->bgcolor;
                 memdc.SetBrush(*wxTheBrushList->FindOrCreateBrush(bgcolor));
-                memdc.SetPen(*wxThePenList->FindOrCreatePen(bgcolor, 1, wxSOLID));
+                memdc.SetPen(*wxThePenList->FindOrCreatePen(bgcolor, 1, wxPENSTYLE_SOLID));
                 memdc.DrawRectangle(0, 0, m_ClientWidth, m_ClientHeight);
 
                 // paint rows
@@ -9428,7 +9428,7 @@ void MadEdit::OnPaint(wxPaintEvent &evt)
 
                     wxColor &bgcolor=m_Syntax->GetAttributes(aeText)->bgcolor;
                     memdc.SetBrush(*wxTheBrushList->FindOrCreateBrush(bgcolor));
-                    memdc.SetPen(*wxThePenList->FindOrCreatePen(bgcolor, 1, wxSOLID));
+                    memdc.SetPen(*wxThePenList->FindOrCreatePen(bgcolor, 1, wxPENSTYLE_SOLID));
                     memdc.DrawRectangle(rect.x, rect.y, rect.width, rect.height);
 
                     PaintTextLines(&memdc, rect, firstrow, rows, bgcolor);
@@ -9543,7 +9543,7 @@ void MadEdit::OnPaint(wxPaintEvent &evt)
                 }
 
                 wxColor &c=m_Syntax->GetAttributes(aeActiveLine)->color;
-                markdc.SetPen(*wxThePenList->FindOrCreatePen(c, 1, wxSOLID));
+                markdc.SetPen(*wxThePenList->FindOrCreatePen(c, 1, wxPENSTYLE_SOLID));
                 markdc.SetBrush(*wxTRANSPARENT_BRUSH);
 
                 markdc.DrawRectangle(x, y, w, h);
@@ -9599,7 +9599,7 @@ void MadEdit::OnPaint(wxPaintEvent &evt)
                 // clear client area
                 wxColor &bgcolor=m_Syntax->GetAttributes(aeText)->bgcolor;
                 memdc.SetBrush(*wxTheBrushList->FindOrCreateBrush(bgcolor));
-                memdc.SetPen(*wxThePenList->FindOrCreatePen(bgcolor, 1, wxSOLID));
+                memdc.SetPen(*wxThePenList->FindOrCreatePen(bgcolor, 1, wxPENSTYLE_SOLID));
                 memdc.DrawRectangle(0, 0, m_ClientWidth, m_ClientHeight);
 
                 if(m_HexDigitBitmap==nullptr)
@@ -9619,7 +9619,7 @@ void MadEdit::OnPaint(wxPaintEvent &evt)
 
                     // second line: aeLineNumberArea hexdigit
                     m_Syntax->SetAttributes(aeLineNumber);
-                    memdc.SetPen(*wxThePenList->FindOrCreatePen(m_Syntax->nw_BgColor, 1, wxSOLID));
+                    memdc.SetPen(*wxThePenList->FindOrCreatePen(m_Syntax->nw_BgColor, 1, wxPENSTYLE_SOLID));
                     memdc.SetBrush(*wxTheBrushList->FindOrCreateBrush(m_Syntax->nw_BgColor));
                     memdc.DrawRectangle(0, m_RowHeight, m_HexFontMaxDigitWidth*76, m_RowHeight*2);
                     memdc.SetTextForeground(m_Syntax->nw_Color);

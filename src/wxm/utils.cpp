@@ -179,7 +179,7 @@ void SetDefaultMonoFont(wxWindow* win)
 {
 	const wxString fontname = xm::EncodingManager::Instance().GetSystemEncoding()->GetFontName().c_str();
 	int fontsize = win->GetFont().GetPointSize();
-	win->SetFont(wxFont(fontsize, wxDEFAULT, wxNORMAL, wxNORMAL, false, fontname));
+	win->SetFont(wxFont(fontsize, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL, false, fontname));
 }
 
 wxString FilePathNormalCase(const wxString& name)
@@ -206,7 +206,7 @@ bool FilePathEqual(const wxString& name1, const wxString& name2)
 unsigned long FilePathHash(const wxString& name)
 {
 	const wchar_t* s = FilePathNormalCase(name).wc_str();
-#if wxMAJOR_VERSION == 2
+#if wxMAJOR_VERSION == 3
 	return wxStringHash::stringHash(s);
 #else
 	return wxStringHash::wxCharStringHash(s);
