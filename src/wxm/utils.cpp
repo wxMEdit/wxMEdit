@@ -179,7 +179,7 @@ void SetDefaultMonoFont(wxWindow* win)
 {
 	const wxString fontname = xm::EncodingManager::Instance().GetSystemEncoding()->GetFontName().c_str();
 	int fontsize = win->GetFont().GetPointSize();
-	win->SetFont(wxFont(fontsize, wxDEFAULT, wxNORMAL, wxNORMAL, false, fontname));
+	win->SetFont(wxFont(fontsize, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL, false, fontname));
 }
 
 wxString FilePathNormalCase(const wxString& name)

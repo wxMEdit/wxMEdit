@@ -23,7 +23,7 @@ void WXMStatusBar::Init(MadEditFrame* frame, wxWindowID id)
 	m_statusbar = new wxStatusBar(m_frame, id);
 
 #if defined(__WXGTK__)
-	m_statusbar->SetFont(wxFont(9, wxDEFAULT, wxNORMAL, wxNORMAL, false));
+	m_statusbar->SetFont(wxFont(9, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL, false));
 #endif
 }
 
