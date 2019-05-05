@@ -206,10 +206,10 @@ bool FilePathEqual(const wxString& name1, const wxString& name2)
 unsigned long FilePathHash(const wxString& name)
 {
 	const wchar_t* s = FilePathNormalCase(name).wc_str();
-#if wxMAJOR_VERSION == 3
-	return wxStringHash::stringHash(s);
-#else
+#if wxMAJOR_VERSION == 2
 	return wxStringHash::wxCharStringHash(s);
+#else
+	return wxStringHash::stringHash(s);
 #endif
 }
 
