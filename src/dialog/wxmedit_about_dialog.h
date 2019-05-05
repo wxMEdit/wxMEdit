@@ -8,10 +8,6 @@
 #ifndef WXMEDIT_ABOUT_DIALOG_H
 #define WXMEDIT_ABOUT_DIALOG_H
 
-#ifndef wxTE_AUTO_SCROLL
-#define wxTE_AUTO_SCROLL 0
-#endif
-
 #ifdef _MSC_VER
 # pragma warning( push )
 # pragma warning( disable : 4996 )
@@ -29,6 +25,10 @@
 // disable 4996 }
 #ifdef _MSC_VER
 # pragma warning( pop )
+#endif
+
+#ifndef wxTE_AUTO_SCROLL
+#define wxTE_AUTO_SCROLL 0
 #endif
 
 namespace wxm

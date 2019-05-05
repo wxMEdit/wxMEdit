@@ -47,6 +47,8 @@
 #define new new(_NORMAL_BLOCK ,__FILE__, __LINE__)
 #endif
 
+const wchar_t * LocalizeText(const wchar_t* txt);
+
 WXMEditOptionsDialog *g_OptionsDialog=nullptr;
 
 extern const wxChar *g_LanguageString[];
@@ -823,7 +825,7 @@ WXMEditOptionsDialog::WXMEditOptionsDialog(wxWindow* parent,wxWindowID id)
 	{
 		if(cd->menu_level==0)
 		{
-			tid=TreeCtrl1->AppendItem(menuRoot, FilterChar(wxGetTranslation(cd->text).wc_str()));
+			tid=TreeCtrl1->AppendItem(menuRoot, FilterChar(LocalizeText(cd->text)));
 			tree_stack.clear();
 			tree_stack.push_back(tid);
 			++cd;
@@ -840,7 +842,7 @@ WXMEditOptionsDialog::WXMEditOptionsDialog(wxWindow* parent,wxWindowID id)
 
 		if(cd->menu_ptr != 0)
 		{
-			tid=TreeCtrl1->AppendItem(tree_stack.back(), FilterChar(wxGetTranslation(cd->text).wc_str()));
+			tid=TreeCtrl1->AppendItem(tree_stack.back(), FilterChar(LocalizeText(cd->text)));
 			tree_stack.push_back(tid);
 		}
 		else if(cd->kind != wxITEM_SEPARATOR)
@@ -849,7 +851,7 @@ WXMEditOptionsDialog::WXMEditOptionsDialog(wxWindow* parent,wxWindowID id)
 			data->cmddata=cd;
 			TreeItemDataList.push_back(data);
 
-			tid=TreeCtrl1->AppendItem(tree_stack.back(), FilterChar(wxGetTranslation(cd->text).wc_str()), cd->image_idx, cd->image_idx, data);
+			tid=TreeCtrl1->AppendItem(tree_stack.back(), FilterChar(LocalizeText(cd->text)), cd->image_idx, cd->image_idx, data);
 			TreeCtrl1->SetItemBold(tid, true);
 		}
 

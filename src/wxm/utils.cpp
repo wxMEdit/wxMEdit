@@ -569,7 +569,11 @@ std::wstring GetASCIIArtFontName()
 
 const wchar_t * LocalizeText(const wchar_t* txt)
 {
+#if wxMAJOR_VERSION == 2
+	return wxGetTranslation(txt);
+#else
 	return wxGetTranslation(txt).wc_str();
+#endif
 }
 
 namespace xm
