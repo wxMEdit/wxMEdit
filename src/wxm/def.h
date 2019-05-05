@@ -33,6 +33,7 @@ typedef std::basic_string<ucs4_t> ucs4string;
 #if wxMAJOR_VERSION==2
   typedef int wxPrintOrientation;
 # define wxGetSelectedChoices wxGetMultipleChoices
+# define wxPENSTYLE_SOLID wxSOLID
 #endif
 
 typedef std::vector<size_t> LineNumberList;
