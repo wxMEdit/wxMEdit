@@ -16,8 +16,8 @@ Source0: %{name}-%{version}.tar.gz
 Packager: JiaYanwei <wxmedit@gmail.com>
 BuildRoot: %{_builddir}/%{name}-%{version}-root
 
-BuildRequires: gtk2-devel >= 2.6.0, boost-devel >= 1.53, compat-wxGTK3-gtk2-devel >= 3.0.0, compat-wxGTK3-gtk2-devel < 3.1.0, libicu-devel >= 4.2.1, curl-devel, automake >= 1.13.0, gettext-devel
-Requires: gtk2 >= 2.6.0, compat-wxGTK3-gtk2 >= 3.0.0, compat-wxGTK3-gtk2 < 3.1.0, libicu >= 4.2.1, curl
+BuildRequires: gtk2-devel >= 2.6.0, boost-devel >= 1.53, compat-wxGTK3-gtk2-devel >= 3.0.0, compat-wxGTK3-gtk2-devel < 3.1.0, libicu-devel >= 50, curl-devel, automake >= 1.13.0, gettext-devel
+Requires: gtk2 >= 2.6.0, compat-wxGTK3-gtk2 >= 3.0.0, compat-wxGTK3-gtk2 < 3.1.0, libicu >= 50, curl
 
 Docdir: %{prefix}/share/doc
 
