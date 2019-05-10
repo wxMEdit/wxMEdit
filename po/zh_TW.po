@@ -1,14 +1,12 @@
-#: ../src/dialog/wxmedit_options_dialog.cpp:710
-#: ../src/dialog/wxmedit_options_dialog.cpp:711
+#: ../src/dialog/wxmedit_options_dialog.cpp:712
 #: ../src/dialog/wxmedit_options_dialog.cpp:713
-#: ../src/dialog/wxmedit_options_dialog.cpp:714
+#: ../src/dialog/wxmedit_options_dialog.cpp:715
 #: ../src/dialog/wxmedit_options_dialog.cpp:716
-#: ../src/dialog/wxmedit_options_dialog.cpp:717
+#: ../src/dialog/wxmedit_options_dialog.cpp:718
 #: ../src/dialog/wxmedit_options_dialog.cpp:719
-#: ../src/dialog/wxmedit_options_dialog.cpp:720
 #: ../src/dialog/wxmedit_options_dialog.cpp:721
+#: ../src/dialog/wxmedit_options_dialog.cpp:722
 #: ../src/dialog/wxmedit_options_dialog.cpp:723
-#: ../src/dialog/wxmedit_options_dialog.cpp:724
 #: ../src/dialog/wxmedit_options_dialog.cpp:725
 #: ../src/dialog/wxmedit_options_dialog.cpp:726
 #: ../src/dialog/wxmedit_options_dialog.cpp:727
@@ -29,11 +27,13 @@
 #: ../src/dialog/wxmedit_options_dialog.cpp:742
 #: ../src/dialog/wxmedit_options_dialog.cpp:743
 #: ../src/dialog/wxmedit_options_dialog.cpp:744
+#: ../src/dialog/wxmedit_options_dialog.cpp:745
+#: ../src/dialog/wxmedit_options_dialog.cpp:746
 msgid ""
 msgstr ""
 "Project-Id-Version: wxMEdit 3.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-04-12 11:36+0800\n"
+"POT-Creation-Date: 2019-05-10 18:50+0800\n"
 "PO-Revision-Date: 2016-02-06 09:52+0800\n"
 "Last-Translator: Vincent_TW <wxmedit@gmail.com>\n"
 "Language-Team: wxMEdit <wxmedit@gmail.com>\n"
@@ -53,11 +53,11 @@ msgid "New Encoding:"
 msgstr "新的編碼："
 
 #: ../src/dialog/wxm_conv_enc_dialog.cpp:67
-#: ../src/dialog/wxmedit_options_dialog.cpp:516 ../src/wxmedit_frame.cpp:2988
-#: ../src/wxmedit_frame.cpp:3002 ../src/wxmedit_frame.cpp:3019
-#: ../src/wxmedit_frame.cpp:3035 ../src/wxmedit_frame.cpp:3059
-#: ../src/wxmedit_frame.cpp:3073 ../src/wxmedit_frame.cpp:3179
-#: ../src/wxmedit_frame.cpp:3195
+#: ../src/dialog/wxmedit_options_dialog.cpp:518 ../src/wxmedit_frame.cpp:2998
+#: ../src/wxmedit_frame.cpp:3012 ../src/wxmedit_frame.cpp:3029
+#: ../src/wxmedit_frame.cpp:3045 ../src/wxmedit_frame.cpp:3069
+#: ../src/wxmedit_frame.cpp:3083 ../src/wxmedit_frame.cpp:3189
+#: ../src/wxmedit_frame.cpp:3205
 msgid "None"
 msgstr "無"
 
@@ -90,7 +90,7 @@ msgstr "額外的選項"
 #: ../src/dialog/wxm_file_association_dialog.cpp:355
 #: ../src/dialog/wxm_highlighting_dialog.cpp:523
 #: ../src/dialog/wxmedit_about_dialog.cpp:100
-#: ../src/dialog/wxmedit_options_dialog.cpp:684
+#: ../src/dialog/wxmedit_options_dialog.cpp:686
 msgid "&OK"
 msgstr "確定(&O)"
 
@@ -100,11 +100,11 @@ msgstr "確定(&O)"
 #: ../src/dialog/wxm_highlighting_dialog.cpp:525
 #: ../src/dialog/wxm_purge_histories_dialog.cpp:87
 #: ../src/dialog/wxmedit_about_dialog.cpp:102
-#: ../src/dialog/wxmedit_options_dialog.cpp:686
+#: ../src/dialog/wxmedit_options_dialog.cpp:688
 msgid "&Cancel"
 msgstr "取消(&C)"
 
-#: ../src/dialog/wxm_enumeration_dialog.cpp:392 ../src/wxmedit_frame.cpp:2005
+#: ../src/dialog/wxm_enumeration_dialog.cpp:392 ../src/wxmedit_frame.cpp:2015
 msgid "Insert Ordered Sequence"
 msgstr "插入有序序列"
 
@@ -250,12 +250,12 @@ msgid "Blank Space"
 msgstr "空格"
 
 #: ../src/dialog/wxm_enumeration_dialog.cpp:513
-#: ../src/dialog/wxmedit_options_dialog.cpp:427
-#: ../src/dialog/wxmedit_options_dialog.cpp:434
-#: ../src/dialog/wxmedit_options_dialog.cpp:441
-#: ../src/dialog/wxmedit_options_dialog.cpp:448
-#: ../src/dialog/wxmedit_options_dialog.cpp:636
-#: ../src/dialog/wxmedit_options_dialog.cpp:643
+#: ../src/dialog/wxmedit_options_dialog.cpp:429
+#: ../src/dialog/wxmedit_options_dialog.cpp:436
+#: ../src/dialog/wxmedit_options_dialog.cpp:443
+#: ../src/dialog/wxmedit_options_dialog.cpp:450
+#: ../src/dialog/wxmedit_options_dialog.cpp:638
+#: ../src/dialog/wxmedit_options_dialog.cpp:645
 msgid "0"
 msgstr "0"
 
@@ -600,7 +600,7 @@ msgstr "載入(&L)"
 msgid "&Save"
 msgstr "儲存(&S)"
 
-#: ../src/dialog/wxm_highlighting_dialog.cpp:469 ../src/wxmedit_frame.cpp:1114
+#: ../src/dialog/wxm_highlighting_dialog.cpp:469 ../src/wxmedit_frame.cpp:1121
 msgid "&Delete"
 msgstr "刪除(&D)"
 
@@ -714,12 +714,12 @@ msgid "To:"
 msgstr "到："
 
 #: ../src/dialog/wxm_search_replace_dialog.cpp:141
-#: ../src/wxmedit_frame.cpp:1187
+#: ../src/wxmedit_frame.cpp:1194
 msgid "Find &Next"
 msgstr "尋找下一個(&N)"
 
 #: ../src/dialog/wxm_search_replace_dialog.cpp:144
-#: ../src/wxmedit_frame.cpp:1188
+#: ../src/wxmedit_frame.cpp:1195
 msgid "Find &Previous"
 msgstr "尋找上一個(&P)"
 
@@ -804,7 +804,7 @@ msgid "Search"
 msgstr "尋找"
 
 #: ../src/dialog/wxm_search_replace_dialog.cpp:933
-#: ../src/wxmedit_frame.cpp:2019
+#: ../src/wxmedit_frame.cpp:2029
 msgid "Replace"
 msgstr "取代"
 
@@ -832,7 +832,7 @@ msgstr "以數值方式排序(&S)"
 msgid "&Remove Duplicates"
 msgstr "刪除重複的(&R)"
 
-#: ../src/dialog/wxm_sort_dialog.cpp:68 ../src/wxmedit_frame.cpp:1174
+#: ../src/dialog/wxm_sort_dialog.cpp:68 ../src/wxmedit_frame.cpp:1181
 msgid "&Sort"
 msgstr "排序(&S)"
 
@@ -920,419 +920,419 @@ msgstr "授權許可"
 msgid "Credits"
 msgstr "致謝"
 
-#: ../src/dialog/wxmedit_options_dialog.cpp:362
+#: ../src/dialog/wxmedit_options_dialog.cpp:364
 msgid "Options"
 msgstr "選項"
 
-#: ../src/dialog/wxmedit_options_dialog.cpp:371
+#: ../src/dialog/wxmedit_options_dialog.cpp:373
 msgid "Automatically check for new versions: "
 msgstr "自動檢查新版本："
 
-#: ../src/dialog/wxmedit_options_dialog.cpp:376
+#: ../src/dialog/wxmedit_options_dialog.cpp:378
 msgid "Check &now"
 msgstr "立即檢查(&N)"
 
-#: ../src/dialog/wxmedit_options_dialog.cpp:379
+#: ../src/dialog/wxmedit_options_dialog.cpp:381
 msgid "Check for new versions including &prereleases"
 msgstr "檢查新版本包括預發佈版(&P)"
 
-#: ../src/dialog/wxmedit_options_dialog.cpp:387
+#: ../src/dialog/wxmedit_options_dialog.cpp:389
 msgid "Language of User Interface (must restart wxMEdit)"
 msgstr "介面語言（需要重啟 wxMEdit）"
 
-#: ../src/dialog/wxmedit_options_dialog.cpp:395
+#: ../src/dialog/wxmedit_options_dialog.cpp:397
 msgid "Always use this encoding to open file (without encoding detection)"
 msgstr ""
 
-#: ../src/dialog/wxmedit_options_dialog.cpp:403
+#: ../src/dialog/wxmedit_options_dialog.cpp:405
 msgid ""
 "Use this encoding to create new file or when wxMEdit cannot determine the "
 "encoding of old file"
 msgstr "開啟新檔案或無法判斷檔案的編碼時，使用此編碼"
 
-#: ../src/dialog/wxmedit_options_dialog.cpp:407
+#: ../src/dialog/wxmedit_options_dialog.cpp:409
 msgid "Single Instance (must restart wxMEdit)"
 msgstr "只執行一個執行個體 (需要重啟 wxMEdit)"
 
-#: ../src/dialog/wxmedit_options_dialog.cpp:410
+#: ../src/dialog/wxmedit_options_dialog.cpp:412
 msgid "Reload files previously open on startup"
 msgstr "啟動時重新載入上次編輯的檔案"
 
-#: ../src/dialog/wxmedit_options_dialog.cpp:413
+#: ../src/dialog/wxmedit_options_dialog.cpp:415
 msgid "Record caret movements in undo list"
 msgstr "將游標位置記錄到「還原」清單中"
 
-#: ../src/dialog/wxmedit_options_dialog.cpp:416
+#: ../src/dialog/wxmedit_options_dialog.cpp:418
 msgid "Restore previous caret position when files are opened"
 msgstr "載入檔案時恢復到上次編輯的位置"
 
-#: ../src/dialog/wxmedit_options_dialog.cpp:429
+#: ../src/dialog/wxmedit_options_dialog.cpp:431
 msgid "Max line length before Line-Wrap (must restart wxMEdit)"
 msgstr "每行最大長度，超過會自動換行 (需要重新啟動)"
 
-#: ../src/dialog/wxmedit_options_dialog.cpp:436
+#: ../src/dialog/wxmedit_options_dialog.cpp:438
 msgid "Columns of Wrap-By-Column"
 msgstr "「按指定列數自動換行」的列數"
 
-#: ../src/dialog/wxmedit_options_dialog.cpp:443
+#: ../src/dialog/wxmedit_options_dialog.cpp:445
 msgid "Columns of Tab"
 msgstr "定位符號(Tab) 的寬度"
 
-#: ../src/dialog/wxmedit_options_dialog.cpp:450
+#: ../src/dialog/wxmedit_options_dialog.cpp:452
 msgid "Columns of Indent"
 msgstr "縮排寬度"
 
-#: ../src/dialog/wxmedit_options_dialog.cpp:454
+#: ../src/dialog/wxmedit_options_dialog.cpp:456
 msgid "Insert Space char instead of Tab char"
 msgstr "以空格取代定位符號(Tab)"
 
-#: ../src/dialog/wxmedit_options_dialog.cpp:457
+#: ../src/dialog/wxmedit_options_dialog.cpp:459
 msgid "Auto Indent"
 msgstr "自動縮排"
 
-#: ../src/dialog/wxmedit_options_dialog.cpp:460
+#: ../src/dialog/wxmedit_options_dialog.cpp:462
 msgid "Auto complete character pair"
 msgstr "自動完成字元配對"
 
-#: ../src/dialog/wxmedit_options_dialog.cpp:464
+#: ../src/dialog/wxmedit_options_dialog.cpp:466
 msgid "Auto copy the mouse-selected text to clipboard"
 msgstr "自動將滑鼠選取的文字複製到剪貼簿中"
 
-#: ../src/dialog/wxmedit_options_dialog.cpp:467
+#: ../src/dialog/wxmedit_options_dialog.cpp:469
 msgid "when pressing Ctrl key"
 msgstr "當按著 Ctrl 鍵時"
 
-#: ../src/dialog/wxmedit_options_dialog.cpp:471
+#: ../src/dialog/wxmedit_options_dialog.cpp:473
 msgid "Paste text from clipboard when pressing middle mouse button"
 msgstr "按滑鼠中鍵貼上剪貼簿中的文字"
 
-#: ../src/dialog/wxmedit_options_dialog.cpp:475
+#: ../src/dialog/wxmedit_options_dialog.cpp:477
 msgid "Behavior of copying in hex editing area:"
 msgstr "十六進位編輯區複製行為："
 
-#: ../src/dialog/wxmedit_options_dialog.cpp:481
+#: ../src/dialog/wxmedit_options_dialog.cpp:483
 msgid "Treat clipboard text as Hex String when pasting in hex area:"
 msgstr "在十六進位編輯區域貼上時把剪貼簿內的資料當作十六進位字串："
 
-#: ../src/dialog/wxmedit_options_dialog.cpp:493 ../src/wxmedit_frame.cpp:2033
+#: ../src/dialog/wxmedit_options_dialog.cpp:495 ../src/wxmedit_frame.cpp:2043
 msgid "Text Mode"
 msgstr "文字模式"
 
-#: ../src/dialog/wxmedit_options_dialog.cpp:494
+#: ../src/dialog/wxmedit_options_dialog.cpp:496
 msgid "Print Syntax Highlighter"
 msgstr "列印語法高亮度"
 
-#: ../src/dialog/wxmedit_options_dialog.cpp:497
+#: ../src/dialog/wxmedit_options_dialog.cpp:499
 msgid "Print Line Number"
 msgstr "列印行號"
 
-#: ../src/dialog/wxmedit_options_dialog.cpp:500
+#: ../src/dialog/wxmedit_options_dialog.cpp:502
 msgid "Print Bookmark"
 msgstr "列印書籤"
 
-#: ../src/dialog/wxmedit_options_dialog.cpp:503
+#: ../src/dialog/wxmedit_options_dialog.cpp:505
 msgid "Print End of Line"
 msgstr "列印行尾符號號"
 
-#: ../src/dialog/wxmedit_options_dialog.cpp:506
+#: ../src/dialog/wxmedit_options_dialog.cpp:508
 msgid "Print Tab Char"
 msgstr "列印定位符號(Tab)"
 
-#: ../src/dialog/wxmedit_options_dialog.cpp:509
+#: ../src/dialog/wxmedit_options_dialog.cpp:511
 msgid "Print Space Char"
 msgstr "列印空格"
 
-#: ../src/dialog/wxmedit_options_dialog.cpp:513 ../src/wxmedit_frame.cpp:2035
+#: ../src/dialog/wxmedit_options_dialog.cpp:515 ../src/wxmedit_frame.cpp:2045
 msgid "Hex Mode"
 msgstr "十六進位模式"
 
-#: ../src/dialog/wxmedit_options_dialog.cpp:517
+#: ../src/dialog/wxmedit_options_dialog.cpp:519
 msgid "First Page Only"
 msgstr "只列印在第一頁"
 
-#: ../src/dialog/wxmedit_options_dialog.cpp:518
+#: ../src/dialog/wxmedit_options_dialog.cpp:520
 msgid "Every Page"
 msgstr "列印在每一頁"
 
-#: ../src/dialog/wxmedit_options_dialog.cpp:520
+#: ../src/dialog/wxmedit_options_dialog.cpp:522
 msgid "Print Offset Header"
 msgstr "列印 Offset 標頭"
 
-#: ../src/dialog/wxmedit_options_dialog.cpp:525
+#: ../src/dialog/wxmedit_options_dialog.cpp:527
 msgid "Page Header"
 msgstr "頁首"
 
-#: ../src/dialog/wxmedit_options_dialog.cpp:526
+#: ../src/dialog/wxmedit_options_dialog.cpp:528
 msgid "Print Page Header"
 msgstr "列印頁首"
 
-#: ../src/dialog/wxmedit_options_dialog.cpp:530
-#: ../src/dialog/wxmedit_options_dialog.cpp:555
+#: ../src/dialog/wxmedit_options_dialog.cpp:532
+#: ../src/dialog/wxmedit_options_dialog.cpp:557
 msgid "Left:"
 msgstr "左邊："
 
-#: ../src/dialog/wxmedit_options_dialog.cpp:534
-#: ../src/dialog/wxmedit_options_dialog.cpp:540
-#: ../src/dialog/wxmedit_options_dialog.cpp:546
-#: ../src/dialog/wxmedit_options_dialog.cpp:559
-#: ../src/dialog/wxmedit_options_dialog.cpp:565
-#: ../src/dialog/wxmedit_options_dialog.cpp:571
-#: ../src/dialog/wxmedit_options_dialog.cpp:655
+#: ../src/dialog/wxmedit_options_dialog.cpp:536
+#: ../src/dialog/wxmedit_options_dialog.cpp:542
+#: ../src/dialog/wxmedit_options_dialog.cpp:548
+#: ../src/dialog/wxmedit_options_dialog.cpp:561
+#: ../src/dialog/wxmedit_options_dialog.cpp:567
+#: ../src/dialog/wxmedit_options_dialog.cpp:573
+#: ../src/dialog/wxmedit_options_dialog.cpp:657
 msgid ">>"
 msgstr ">>"
 
-#: ../src/dialog/wxmedit_options_dialog.cpp:536
-#: ../src/dialog/wxmedit_options_dialog.cpp:561
+#: ../src/dialog/wxmedit_options_dialog.cpp:538
+#: ../src/dialog/wxmedit_options_dialog.cpp:563
 msgid "Center:"
 msgstr "中間："
 
-#: ../src/dialog/wxmedit_options_dialog.cpp:542
-#: ../src/dialog/wxmedit_options_dialog.cpp:567
+#: ../src/dialog/wxmedit_options_dialog.cpp:544
+#: ../src/dialog/wxmedit_options_dialog.cpp:569
 msgid "Right:"
 msgstr "右邊："
 
-#: ../src/dialog/wxmedit_options_dialog.cpp:550
+#: ../src/dialog/wxmedit_options_dialog.cpp:552
 msgid "Page Footer"
 msgstr "頁尾"
 
-#: ../src/dialog/wxmedit_options_dialog.cpp:551
+#: ../src/dialog/wxmedit_options_dialog.cpp:553
 msgid "Print Page Footer"
 msgstr "列印頁尾"
 
-#: ../src/dialog/wxmedit_options_dialog.cpp:587
+#: ../src/dialog/wxmedit_options_dialog.cpp:589
 msgid "Hint:"
 msgstr "提示："
 
-#: ../src/dialog/wxmedit_options_dialog.cpp:595
+#: ../src/dialog/wxmedit_options_dialog.cpp:597
 msgid "Assigned Keys:"
 msgstr "指定的按鍵："
 
-#: ../src/dialog/wxmedit_options_dialog.cpp:601
+#: ../src/dialog/wxmedit_options_dialog.cpp:603
 msgid "New Key:"
 msgstr "新按鍵："
 
-#: ../src/dialog/wxmedit_options_dialog.cpp:609
+#: ../src/dialog/wxmedit_options_dialog.cpp:611
 msgid "<== Add Key"
 msgstr "<== 增加按鍵"
 
-#: ../src/dialog/wxmedit_options_dialog.cpp:611
+#: ../src/dialog/wxmedit_options_dialog.cpp:613
 msgid "==> Delete Key"
 msgstr "==> 刪除按鍵"
 
-#: ../src/dialog/wxmedit_options_dialog.cpp:613
+#: ../src/dialog/wxmedit_options_dialog.cpp:615
 msgid "Show the Key in Menu"
 msgstr "在功能表中顯示此按鍵"
 
-#: ../src/dialog/wxmedit_options_dialog.cpp:619
+#: ../src/dialog/wxmedit_options_dialog.cpp:621
 msgid "Reset all keys to default (must restart wxMEdit)"
 msgstr "還原所有按鍵為原始設定 (需要重啟 wxMEdit)"
 
-#: ../src/dialog/wxmedit_options_dialog.cpp:630
+#: ../src/dialog/wxmedit_options_dialog.cpp:632
 msgid ""
 "Do not save settings to wxmedit.cfg when wxMEdit closed (this session only)"
 msgstr "結束時不要把選項寫回到 wxmedit.cfg (只對本次執行有效)"
 
-#: ../src/dialog/wxmedit_options_dialog.cpp:638
+#: ../src/dialog/wxmedit_options_dialog.cpp:640
 msgid "Max file size to load as a text file"
 msgstr "以文字檔案方式開啟的最大檔案長度，超過時以十六進位模式開啟"
 
-#: ../src/dialog/wxmedit_options_dialog.cpp:645
+#: ../src/dialog/wxmedit_options_dialog.cpp:647
 msgid "Max file size to load whole file into memory"
 msgstr "將整個檔案載入到記憶體的最大檔案長度，超過時只會載入一部份的資料"
 
-#: ../src/dialog/wxmedit_options_dialog.cpp:652
+#: ../src/dialog/wxmedit_options_dialog.cpp:654
 msgid "Format of Date/Time"
 msgstr "日期、時間的格式"
 
-#: ../src/dialog/wxmedit_options_dialog.cpp:657
+#: ../src/dialog/wxmedit_options_dialog.cpp:659
 msgid "Use English instead of current locale"
 msgstr "使用英語而非目前的地區設定"
 
-#: ../src/dialog/wxmedit_options_dialog.cpp:662
+#: ../src/dialog/wxmedit_options_dialog.cpp:664
 msgid "Enable dot matching newline in regular expression"
 msgstr "在正規運算式中啟用點符合換行"
 
-#: ../src/dialog/wxmedit_options_dialog.cpp:669
+#: ../src/dialog/wxmedit_options_dialog.cpp:671
 msgid "General"
 msgstr "一般"
 
-#: ../src/dialog/wxmedit_options_dialog.cpp:670
+#: ../src/dialog/wxmedit_options_dialog.cpp:672
 msgid "Edit"
 msgstr "編輯"
 
-#: ../src/dialog/wxmedit_options_dialog.cpp:671
+#: ../src/dialog/wxmedit_options_dialog.cpp:673
 msgid "Print"
 msgstr "列印"
 
-#: ../src/dialog/wxmedit_options_dialog.cpp:672
+#: ../src/dialog/wxmedit_options_dialog.cpp:674
 msgid "Keys"
 msgstr "按鍵"
 
-#: ../src/dialog/wxmedit_options_dialog.cpp:673
+#: ../src/dialog/wxmedit_options_dialog.cpp:675
 msgid "Misc"
 msgstr "雜項"
 
-#: ../src/dialog/wxmedit_options_dialog.cpp:710
+#: ../src/dialog/wxmedit_options_dialog.cpp:712
 #, c-format
 msgid "[%f] &File Name"
 msgstr "[%f] 檔案名(&F)"
 
-#: ../src/dialog/wxmedit_options_dialog.cpp:711
+#: ../src/dialog/wxmedit_options_dialog.cpp:713
 #, c-format
 msgid "[%p] &Path Name"
 msgstr "[%p] 完整路徑名(&P)"
 
-#: ../src/dialog/wxmedit_options_dialog.cpp:713
+#: ../src/dialog/wxmedit_options_dialog.cpp:715
 #, c-format
 msgid "[%n] Page &Number"
 msgstr "[%n] 頁號(&N)"
 
-#: ../src/dialog/wxmedit_options_dialog.cpp:714
+#: ../src/dialog/wxmedit_options_dialog.cpp:716
 #, c-format
 msgid "[%s] Total Page&s"
 msgstr "[%s] 總頁數(&S)"
 
-#: ../src/dialog/wxmedit_options_dialog.cpp:716
+#: ../src/dialog/wxmedit_options_dialog.cpp:718
 #, c-format
 msgid "[%d] &Date"
 msgstr "[%d] 日期(&D)"
 
-#: ../src/dialog/wxmedit_options_dialog.cpp:717
+#: ../src/dialog/wxmedit_options_dialog.cpp:719
 msgid "[%t] &Time"
 msgstr "[%t] 時間(&T)"
 
-#: ../src/dialog/wxmedit_options_dialog.cpp:719
+#: ../src/dialog/wxmedit_options_dialog.cpp:721
 msgid "[%Y/%m/%d %I:%M:%S %p] 2007/02/24 08:30:55 AM"
 msgstr "[%Y/%m/%d %I:%M:%S %p] 2007/02/24 08:30:55 上午"
 
-#: ../src/dialog/wxmedit_options_dialog.cpp:720
+#: ../src/dialog/wxmedit_options_dialog.cpp:722
 msgid "[%d/%m/%Y] 24/02/2007"
 msgstr "[%d/%m/%Y] 24/02/2007"
 
-#: ../src/dialog/wxmedit_options_dialog.cpp:721
+#: ../src/dialog/wxmedit_options_dialog.cpp:723
 msgid "[%a, %d %b %Y %H:%M:%S %z] RFC822 timestamp"
 msgstr "[%a, %d %b %Y %H:%M:%S %z] RFC822 標準時間格式"
 
-#: ../src/dialog/wxmedit_options_dialog.cpp:723
+#: ../src/dialog/wxmedit_options_dialog.cpp:725
 #, c-format
 msgid "[%a] Abbreviated weekday name"
 msgstr "[%a] 星期幾的縮寫"
 
-#: ../src/dialog/wxmedit_options_dialog.cpp:724
+#: ../src/dialog/wxmedit_options_dialog.cpp:726
 #, c-format
 msgid "[%A] Full weekday name"
 msgstr "[%A] 星期幾的全寫"
 
-#: ../src/dialog/wxmedit_options_dialog.cpp:725
+#: ../src/dialog/wxmedit_options_dialog.cpp:727
 msgid "[%b] Abbreviated month name"
 msgstr "[%b] 幾月的縮寫"
 
-#: ../src/dialog/wxmedit_options_dialog.cpp:726
+#: ../src/dialog/wxmedit_options_dialog.cpp:728
 msgid "[%B] Full month name"
 msgstr "[%B] 幾月的全寫"
 
-#: ../src/dialog/wxmedit_options_dialog.cpp:727
+#: ../src/dialog/wxmedit_options_dialog.cpp:729
 #, c-format
 msgid "[%c] Date and time representation appropriate for locale"
 msgstr "[%c] 目前地區設定的日期、時間格式"
 
-#: ../src/dialog/wxmedit_options_dialog.cpp:728
+#: ../src/dialog/wxmedit_options_dialog.cpp:730
 #, c-format
 msgid "[%d] Day of month as decimal number (01 - 31)"
 msgstr "[%d] 十進位的月份的天數 (從 01 到 31)"
 
-#: ../src/dialog/wxmedit_options_dialog.cpp:729
+#: ../src/dialog/wxmedit_options_dialog.cpp:731
 msgid "[%H] Hour in 24-hour format (00 - 23)"
 msgstr "[%H] 使用24小時制表示小時數 (從 00 到 23)"
 
-#: ../src/dialog/wxmedit_options_dialog.cpp:730
+#: ../src/dialog/wxmedit_options_dialog.cpp:732
 msgid "[%I] Hour in 12-hour format (01 - 12)"
 msgstr "[%I] 使用12小時制表示小時數 (從 01 到 12)"
 
-#: ../src/dialog/wxmedit_options_dialog.cpp:731
+#: ../src/dialog/wxmedit_options_dialog.cpp:733
 msgid "[%j] Day of year as decimal number (001 - 366)"
 msgstr "[%j] 十進位的年的天數 (從 001 到 366)"
 
-#: ../src/dialog/wxmedit_options_dialog.cpp:732
+#: ../src/dialog/wxmedit_options_dialog.cpp:734
 #, c-format
 msgid "[%m] Month as decimal number (01 - 12)"
 msgstr "[%m] 十進位的月份 (從 1 到 12)"
 
-#: ../src/dialog/wxmedit_options_dialog.cpp:733
+#: ../src/dialog/wxmedit_options_dialog.cpp:735
 msgid "[%M] Minute as decimal number (00 - 59)"
 msgstr "[%M] 十進位的分鐘 (從 00 到 59)"
 
-#: ../src/dialog/wxmedit_options_dialog.cpp:734
+#: ../src/dialog/wxmedit_options_dialog.cpp:736
 #, c-format
 msgid "[%p] Current locale's A.M./P.M. indicator for 12-hour clock"
 msgstr "[%p] 根據地區設定顯示上/下午"
 
-#: ../src/dialog/wxmedit_options_dialog.cpp:735
+#: ../src/dialog/wxmedit_options_dialog.cpp:737
 #, c-format
 msgid "[%S] Second as decimal number (00 - 59)"
 msgstr "[%S] 十進位的秒數 (從 00 到 59)"
 
-#: ../src/dialog/wxmedit_options_dialog.cpp:736
+#: ../src/dialog/wxmedit_options_dialog.cpp:738
 msgid ""
 "[%U] Week of year as decimal number, with Sunday as first day of week (00 - "
 "53)"
 msgstr "[%U] 十進位的當年第幾個星期，從第一個星期的星期日算起 (從 00 到 53)"
 
-#: ../src/dialog/wxmedit_options_dialog.cpp:737
+#: ../src/dialog/wxmedit_options_dialog.cpp:739
 msgid "[%w] Weekday as decimal number (0 - 6; Sunday is 0)"
 msgstr "[%w] 十進位的星期幾 (從 0 到 6, 星期日為 0)"
 
-#: ../src/dialog/wxmedit_options_dialog.cpp:738
+#: ../src/dialog/wxmedit_options_dialog.cpp:740
 msgid ""
 "[%W] Week of year as decimal number, with Monday as first day of week (00 - "
 "53)"
 msgstr "[%W] 十進位的當年第幾個星期，從第一個星期的星期一算起 (從 00 到 53)"
 
-#: ../src/dialog/wxmedit_options_dialog.cpp:739
+#: ../src/dialog/wxmedit_options_dialog.cpp:741
 #, c-format
 msgid "[%x] Date representation for current locale"
 msgstr "[%x] 根據地區設定的日期格式"
 
-#: ../src/dialog/wxmedit_options_dialog.cpp:740
+#: ../src/dialog/wxmedit_options_dialog.cpp:742
 #, c-format
 msgid "[%X] Time representation for current locale"
 msgstr "[%X] 根據地區設定的時間格式"
 
-#: ../src/dialog/wxmedit_options_dialog.cpp:741
+#: ../src/dialog/wxmedit_options_dialog.cpp:743
 msgid "[%y] Year without century, as decimal number (00 - 99)"
 msgstr "[%y] 十進位的年份 (從 00 到 99)"
 
-#: ../src/dialog/wxmedit_options_dialog.cpp:742
+#: ../src/dialog/wxmedit_options_dialog.cpp:744
 msgid "[%Y] Year with century, as decimal number"
 msgstr "[%Y] 十進位的年份 (四位數)"
 
-#: ../src/dialog/wxmedit_options_dialog.cpp:743
+#: ../src/dialog/wxmedit_options_dialog.cpp:745
 msgid "[%z] Time-zone name"
 msgstr "[%z] 時區全稱"
 
-#: ../src/dialog/wxmedit_options_dialog.cpp:744
+#: ../src/dialog/wxmedit_options_dialog.cpp:746
 msgid "[%Z] Time-zone abbreviation"
 msgstr "[%Z] 時區名稱縮寫"
 
-#: ../src/dialog/wxmedit_options_dialog.cpp:746
-#: ../src/dialog/wxmedit_options_dialog.cpp:760
-#: ../src/dialog/wxmedit_options_dialog.cpp:887
-#: ../src/dialog/wxmedit_options_dialog.cpp:895
-#: ../src/dialog/wxmedit_options_dialog.cpp:903
-#: ../src/dialog/wxmedit_options_dialog.cpp:973
-#: ../src/dialog/wxmedit_options_dialog.cpp:982
-#: ../src/dialog/wxmedit_options_dialog.cpp:987
+#: ../src/dialog/wxmedit_options_dialog.cpp:748
+#: ../src/dialog/wxmedit_options_dialog.cpp:762
+#: ../src/dialog/wxmedit_options_dialog.cpp:889
+#: ../src/dialog/wxmedit_options_dialog.cpp:897
+#: ../src/dialog/wxmedit_options_dialog.cpp:905
+#: ../src/dialog/wxmedit_options_dialog.cpp:975
+#: ../src/dialog/wxmedit_options_dialog.cpp:984
+#: ../src/dialog/wxmedit_options_dialog.cpp:989
 msgid "System Default"
 msgstr "系統預設"
 
-#: ../src/dialog/wxmedit_options_dialog.cpp:781
+#: ../src/dialog/wxmedit_options_dialog.cpp:783
 msgid ""
 "Add wxMEdit to the RightClickMenu of Explorer(Deselect to Remove the Entry "
 "from Windows Registry)"
 msgstr ""
 "將 wxMEdit 增加到檔案總管的右鍵功能表 (取消選取會把寫入註冊表中的資訊移除)"
 
-#: ../src/dialog/wxmedit_options_dialog.cpp:785
+#: ../src/dialog/wxmedit_options_dialog.cpp:787
 msgid ""
 "Place configuration files into application data directory of current user "
 "(%APPDATA%\\wxmedit) rather than wxMEdit executable directory"
@@ -1340,32 +1340,32 @@ msgstr ""
 "將設定檔案放在目前使用者的應用程式資料目錄（%APPDATA%\\wxmedit）而不是 "
 "wxMEdit 可執行檔案目錄"
 
-#: ../src/dialog/wxmedit_options_dialog.cpp:812
+#: ../src/dialog/wxmedit_options_dialog.cpp:814
 msgid "Commands"
 msgstr "命令"
 
-#: ../src/dialog/wxmedit_options_dialog.cpp:814
+#: ../src/dialog/wxmedit_options_dialog.cpp:816
 msgid "Menu"
 msgstr "功能表"
 
-#: ../src/dialog/wxmedit_options_dialog.cpp:815
+#: ../src/dialog/wxmedit_options_dialog.cpp:817
 msgid "Editor"
 msgstr "編輯器"
 
-#: ../src/dialog/wxmedit_options_dialog.cpp:1170
+#: ../src/dialog/wxmedit_options_dialog.cpp:1172
 #, c-format
 msgid "Invalid value of \"%s\""
 msgstr "\"%s\" 的設定不正確"
 
-#: ../src/dialog/wxmedit_options_dialog.cpp:1262
+#: ../src/dialog/wxmedit_options_dialog.cpp:1264
 msgid "Cannot assign key to this item"
 msgstr "無法指定按鍵到此項目"
 
-#: ../src/dialog/wxmedit_options_dialog.cpp:1356
+#: ../src/dialog/wxmedit_options_dialog.cpp:1358
 msgid "This key is not assigned"
 msgstr "這個按鍵尚未指定"
 
-#: ../src/dialog/wxmedit_options_dialog.cpp:1380
+#: ../src/dialog/wxmedit_options_dialog.cpp:1382
 #, c-format
 msgid "This key is assigned to [%s]"
 msgstr "這個按鍵已指定給 [%s]"
@@ -1374,61 +1374,61 @@ msgstr "這個按鍵已指定給 [%s]"
 msgid "The input string is not a valid Hex-String:"
 msgstr "這不是正確的十六進位字串："
 
-#: ../src/wxm/edit/inframe.cpp:119
+#: ../src/wxm/edit/inframe.cpp:121
 msgid "INS"
 msgstr "插入"
 
-#: ../src/wxm/edit/inframe.cpp:120
+#: ../src/wxm/edit/inframe.cpp:122
 msgid "OVR"
 msgstr "覆蓋"
 
-#: ../src/wxm/edit/inframe.cpp:126
+#: ../src/wxm/edit/inframe.cpp:128
 msgid "ReadOnly"
 msgstr "唯讀"
 
-#: ../src/wxm/edit/inframe.cpp:153
+#: ../src/wxm/edit/inframe.cpp:155
 #, c-format
 msgid "Ln: %s/%s"
 msgstr "行：%s/%s"
 
-#: ../src/wxm/edit/inframe.cpp:154
+#: ../src/wxm/edit/inframe.cpp:156
 #, c-format
 msgid " (Sub: %s)"
 msgstr "（次行：%s）"
 
-#: ../src/wxm/edit/inframe.cpp:155
+#: ../src/wxm/edit/inframe.cpp:157
 #, c-format
 msgid " Col: %s"
 msgstr " 列：%s"
 
-#: ../src/wxm/edit/inframe.cpp:159
+#: ../src/wxm/edit/inframe.cpp:161
 #, c-format
 msgid "CharPos: %s/%s"
 msgstr "字元位置：%s/%s"
 
-#: ../src/wxm/edit/inframe.cpp:160
+#: ../src/wxm/edit/inframe.cpp:162
 #, c-format
 msgid " (%s)"
 msgstr ""
 
-#: ../src/wxm/edit/inframe.cpp:163
+#: ../src/wxm/edit/inframe.cpp:165
 #, c-format
 msgid "SelSize: %s"
 msgstr "選取長度：%s"
 
-#: ../src/wxm/edit/inframe.cpp:970
+#: ../src/wxm/edit/inframe.cpp:976
 msgid "Do you want to discard changes?"
 msgstr "要放棄所做的修改嗎？"
 
-#: ../src/wxm/edit/inframe.cpp:1004
+#: ../src/wxm/edit/inframe.cpp:1010
 msgid "This file has been changed by another application."
 msgstr "這個檔案被其它程式修改過了。"
 
-#: ../src/wxm/edit/inframe.cpp:1005
+#: ../src/wxm/edit/inframe.cpp:1011
 msgid "Do you want to reload it?"
 msgstr "要重新載入這個檔案嗎？"
 
-#: ../src/wxm/edit/inframe.cpp:1027
+#: ../src/wxm/edit/inframe.cpp:1033
 #, c-format
 msgid ""
 "Do you want to continue?\n"
@@ -1439,7 +1439,7 @@ msgstr ""
 "這個檔案的長度是 %s 位元組，\n"
 "轉換到文字/區塊模式可能會花很多時間和記憶體。"
 
-#: ../src/wxm/edit/inframe.cpp:1027
+#: ../src/wxm/edit/inframe.cpp:1033
 msgid "Hex Mode to Text/Column Mode"
 msgstr "十六進位模式轉換到文字/區塊模式"
 
@@ -1502,35 +1502,35 @@ msgstr "每月"
 msgid "never"
 msgstr "從不"
 
-#: ../src/wxm/utils.cpp:281
+#: ../src/wxm/utils.cpp:286
 msgid "Copy as Raw Bytes"
 msgstr "複製原始位元組"
 
-#: ../src/wxm/utils.cpp:282
+#: ../src/wxm/utils.cpp:287
 msgid "Copy as Regular Text"
 msgstr "複製一般文字"
 
-#: ../src/wxm/utils.cpp:283
+#: ../src/wxm/utils.cpp:288
 msgid "Copy as Hex String"
 msgstr "複製十六進位字串"
 
-#: ../src/wxm/utils.cpp:284
+#: ../src/wxm/utils.cpp:289
 msgid "Copy as Hex String with Spaces"
 msgstr "複製空格分隔的十六進位字串"
 
-#: ../src/wxm/utils.cpp:367
+#: ../src/wxm/utils.cpp:372
 msgid "Never"
 msgstr "從不"
 
-#: ../src/wxm/utils.cpp:368
+#: ../src/wxm/utils.cpp:373
 msgid "According To Copying Behavior"
 msgstr "視複製行為而定"
 
-#: ../src/wxm/utils.cpp:369
+#: ../src/wxm/utils.cpp:374
 msgid "If Possible"
 msgstr "盡可能"
 
-#: ../src/wxm/utils.cpp:370
+#: ../src/wxm/utils.cpp:375
 msgid "Always"
 msgstr "總是"
 
@@ -1538,12 +1538,28 @@ msgstr "總是"
 msgid "wxMEdit Printout"
 msgstr "wxMEdit 列印"
 
+#: ../src/wxmedit/wxm_lines.cpp:42
+msgid "CR/0D (Classic Mac OS)"
+msgstr ""
+
+#: ../src/wxmedit/wxm_lines.cpp:43
+msgid "LF/0A (UNIX/macOS)"
+msgstr ""
+
+#: ../src/wxmedit/wxm_lines.cpp:44
+msgid "CRLF/0D0A (Windows/DOS)"
+msgstr ""
+
+#: ../src/wxmedit/wxm_lines.cpp:45
+msgid "No EOL"
+msgstr ""
+
 #: ../src/wxmedit/wxmedit_advanced.cpp:1306 ../src/xm/ublock_des.cpp:314
 msgid "Invalid Unicode Characters"
 msgstr "不正確的 Unicode 字元"
 
 #: ../src/wxmedit/wxmedit_basic.cpp:1614 ../src/wxmedit/wxmedit_basic.cpp:1677
-#: ../src/wxmedit_frame.cpp:2677
+#: ../src/wxmedit_frame.cpp:2687
 msgid "The Parent Directory of this file does not exist:"
 msgstr "這個檔案所在目錄不存在："
 
@@ -1559,1395 +1575,1395 @@ msgstr "要儲存這個檔案嗎？"
 msgid "Save File As"
 msgstr "另存為"
 
-#: ../src/wxmedit/wxmedit_basic.cpp:1740 ../src/wxmedit_frame.cpp:1990
+#: ../src/wxmedit/wxmedit_basic.cpp:1740 ../src/wxmedit_frame.cpp:2000
 msgid "Save File"
 msgstr "儲存檔案"
 
-#: ../src/wxmedit_frame.cpp:196
+#: ../src/wxmedit_frame.cpp:201 ../src/wxmedit_frame.cpp:202
 msgid "Current maintainer of wxMEdit"
 msgstr "wxMEdit 目前維護人"
 
-#: ../src/wxmedit_frame.cpp:197
+#: ../src/wxmedit_frame.cpp:203
 msgid "Creator of MadEdit"
 msgstr "MadEdit 創始人"
 
-#: ../src/wxmedit_frame.cpp:198
+#: ../src/wxmedit_frame.cpp:204
 msgid "Translator for Japanese"
 msgstr "日文翻譯"
 
-#: ../src/wxmedit_frame.cpp:199
+#: ../src/wxmedit_frame.cpp:205
 msgid "Translator for Italian"
 msgstr "意大利文翻譯"
 
-#: ../src/wxmedit_frame.cpp:200
+#: ../src/wxmedit_frame.cpp:206
 msgid "Translator for Spanish"
 msgstr "西班牙文翻譯"
 
-#: ../src/wxmedit_frame.cpp:201 ../src/wxmedit_frame.cpp:202
+#: ../src/wxmedit_frame.cpp:207 ../src/wxmedit_frame.cpp:208
 msgid "Translator for Traditional Chinese"
 msgstr "繁體中文翻譯"
 
-#: ../src/wxmedit_frame.cpp:203 ../src/wxmedit_frame.cpp:205
+#: ../src/wxmedit_frame.cpp:209 ../src/wxmedit_frame.cpp:211
 msgid "Translator for Russian"
 msgstr "俄文翻譯"
 
-#: ../src/wxmedit_frame.cpp:206
+#: ../src/wxmedit_frame.cpp:212
 msgid "Translator for German"
 msgstr "德文翻譯"
 
-#: ../src/wxmedit_frame.cpp:207
+#: ../src/wxmedit_frame.cpp:213
 msgid "Translator for Polish"
 msgstr "波蘭文翻譯"
 
-#: ../src/wxmedit_frame.cpp:208
+#: ../src/wxmedit_frame.cpp:214
 msgid "Translator for French"
 msgstr ""
 
-#: ../src/wxmedit_frame.cpp:209 ../src/wxmedit_frame.cpp:210
-#: ../src/wxmedit_frame.cpp:211 ../src/wxmedit_frame.cpp:212
-#: ../src/wxmedit_frame.cpp:213
+#: ../src/wxmedit_frame.cpp:215 ../src/wxmedit_frame.cpp:216
+#: ../src/wxmedit_frame.cpp:217 ../src/wxmedit_frame.cpp:218
+#: ../src/wxmedit_frame.cpp:219 ../src/wxmedit_frame.cpp:220
 msgid "Patch submitter for wxMEdit/MadEdit"
 msgstr "wxMEdit/MadEdit 補綴送出者"
 
-#: ../src/wxmedit_frame.cpp:214
+#: ../src/wxmedit_frame.cpp:221
 msgid "Creator of wxmedit package in AUR"
 msgstr "AUR 套件 wxmedit 建立者"
 
-#: ../src/wxmedit_frame.cpp:215
+#: ../src/wxmedit_frame.cpp:222
 msgid "Maintainer of wxmedit package in AUR"
-msgstr ""
+msgstr "AUR 套件 wxmedit 維護人"
 
-#: ../src/wxmedit_frame.cpp:216
+#: ../src/wxmedit_frame.cpp:223
 msgid "Creator of Gentoo package wxmedit"
 msgstr "Gentoo 套件 wxmedit 建立者"
 
-#: ../src/wxmedit_frame.cpp:1066
+#: ../src/wxmedit_frame.cpp:1073
 msgid "&File"
 msgstr "檔案(&F)"
 
-#: ../src/wxmedit_frame.cpp:1067
+#: ../src/wxmedit_frame.cpp:1074
 msgid "&New File"
 msgstr "新增檔案(&N)"
 
-#: ../src/wxmedit_frame.cpp:1067
+#: ../src/wxmedit_frame.cpp:1074
 msgid "Create a new file"
 msgstr "建立新檔案"
 
-#: ../src/wxmedit_frame.cpp:1068
+#: ../src/wxmedit_frame.cpp:1075
 msgid "&Open File..."
 msgstr "開啟檔案(&O)..."
 
-#: ../src/wxmedit_frame.cpp:1068
+#: ../src/wxmedit_frame.cpp:1075
 msgid "Open an existing file"
 msgstr "開啟已存在的檔案"
 
-#: ../src/wxmedit_frame.cpp:1070
+#: ../src/wxmedit_frame.cpp:1077
 msgid "&Save File"
 msgstr "儲存(&S)"
 
-#: ../src/wxmedit_frame.cpp:1070
+#: ../src/wxmedit_frame.cpp:1077
 msgid "Save the file"
 msgstr "儲存檔案"
 
-#: ../src/wxmedit_frame.cpp:1071
+#: ../src/wxmedit_frame.cpp:1078
 msgid "Save &As..."
 msgstr "另存為(&A)..."
 
-#: ../src/wxmedit_frame.cpp:1071
+#: ../src/wxmedit_frame.cpp:1078
 msgid "Save the file with a new name"
 msgstr "以新檔案名儲存"
 
-#: ../src/wxmedit_frame.cpp:1072
+#: ../src/wxmedit_frame.cpp:1079
 msgid "Sa&ve All"
 msgstr "儲存所有檔案(&V)"
 
-#: ../src/wxmedit_frame.cpp:1072
+#: ../src/wxmedit_frame.cpp:1079
 msgid "Save all files"
 msgstr "儲存所有檔案"
 
-#: ../src/wxmedit_frame.cpp:1074
+#: ../src/wxmedit_frame.cpp:1081
 msgid "&Reload File"
 msgstr "重新載入檔案(&R)"
 
-#: ../src/wxmedit_frame.cpp:1074
+#: ../src/wxmedit_frame.cpp:1081
 msgid "Reload the file"
 msgstr "重新載入檔案"
 
-#: ../src/wxmedit_frame.cpp:1076
+#: ../src/wxmedit_frame.cpp:1083
 msgid "&Close File"
 msgstr "關閉檔案(&C)"
 
-#: ../src/wxmedit_frame.cpp:1076
+#: ../src/wxmedit_frame.cpp:1083
 msgid "Close the file"
 msgstr "關閉檔案"
 
-#: ../src/wxmedit_frame.cpp:1077
+#: ../src/wxmedit_frame.cpp:1084
 msgid "C&lose All"
 msgstr "關閉所有檔案(&L)"
 
-#: ../src/wxmedit_frame.cpp:1077
+#: ../src/wxmedit_frame.cpp:1084
 msgid "Close all files"
 msgstr "關閉所有檔案"
 
-#: ../src/wxmedit_frame.cpp:1078
+#: ../src/wxmedit_frame.cpp:1085
 msgid "Close All under &Folder..."
 msgstr "關閉指定資料夾下所有檔案(&F)..."
 
-#: ../src/wxmedit_frame.cpp:1078
+#: ../src/wxmedit_frame.cpp:1085
 msgid "Close all files in given folder and in all the subfolders"
 msgstr "關閉指定資料夾及其子資料夾中的所有檔案"
 
-#: ../src/wxmedit_frame.cpp:1079
+#: ../src/wxmedit_frame.cpp:1086
 msgid "Close &More"
 msgstr "關閉多個檔案(&M)"
 
-#: ../src/wxmedit_frame.cpp:1080
+#: ../src/wxmedit_frame.cpp:1087
 msgid "Close All &BUT This"
 msgstr "關閉所有其它檔案(&B)"
 
-#: ../src/wxmedit_frame.cpp:1080
+#: ../src/wxmedit_frame.cpp:1087
 msgid "Close all files except the current one"
 msgstr "關閉除目前檔案外的所有檔案"
 
-#: ../src/wxmedit_frame.cpp:1081
+#: ../src/wxmedit_frame.cpp:1088
 msgid "Close All To The &Left"
 msgstr "關閉左側的所有檔案(&L)"
 
-#: ../src/wxmedit_frame.cpp:1081
+#: ../src/wxmedit_frame.cpp:1088
 msgid "Close all files at the left side of current one"
 msgstr "關閉目前檔案左側的所有檔案"
 
-#: ../src/wxmedit_frame.cpp:1082
+#: ../src/wxmedit_frame.cpp:1089
 msgid "Close All To The &Right"
 msgstr "關閉右側的所有檔案(&R)"
 
-#: ../src/wxmedit_frame.cpp:1082
+#: ../src/wxmedit_frame.cpp:1089
 msgid "Close all files at the right side of current one"
 msgstr "關閉目前檔案右側的所有檔案"
 
-#: ../src/wxmedit_frame.cpp:1084
+#: ../src/wxmedit_frame.cpp:1091
 msgid "Copy File Pat&h"
 msgstr "複製檔案路徑(&H)"
 
-#: ../src/wxmedit_frame.cpp:1085
+#: ../src/wxmedit_frame.cpp:1092
 msgid "Copy &Full Path"
 msgstr "複製全路徑(&F)"
 
-#: ../src/wxmedit_frame.cpp:1085
+#: ../src/wxmedit_frame.cpp:1092
 msgid "Copy full file path to clipboard"
 msgstr "複製檔案全路徑到剪貼簿中"
 
-#: ../src/wxmedit_frame.cpp:1086
+#: ../src/wxmedit_frame.cpp:1093
 msgid "Copy File &Name"
 msgstr "複製檔案名(&N)"
 
-#: ../src/wxmedit_frame.cpp:1086
+#: ../src/wxmedit_frame.cpp:1093
 msgid "Copy file name to clipboard"
 msgstr "複製檔案名到剪貼簿中"
 
-#: ../src/wxmedit_frame.cpp:1087
+#: ../src/wxmedit_frame.cpp:1094
 msgid "Copy Containing &Directory"
 msgstr "複製所在目錄(&D)"
 
-#: ../src/wxmedit_frame.cpp:1087
+#: ../src/wxmedit_frame.cpp:1094
 msgid "Copy containing directory to clipboard"
 msgstr "複製所在目錄到剪貼簿中"
 
-#: ../src/wxmedit_frame.cpp:1089
+#: ../src/wxmedit_frame.cpp:1096
 msgid "Page Set&up..."
 msgstr "版面設定(&U)..."
 
-#: ../src/wxmedit_frame.cpp:1089
+#: ../src/wxmedit_frame.cpp:1096
 msgid "Setup the pages for printing"
 msgstr "設定列印時的版面格式"
 
-#: ../src/wxmedit_frame.cpp:1090
+#: ../src/wxmedit_frame.cpp:1097
 msgid "Print Previe&w..."
 msgstr "列印預覽(&W)..."
 
-#: ../src/wxmedit_frame.cpp:1090
+#: ../src/wxmedit_frame.cpp:1097
 msgid "Preview the result of printing"
 msgstr "預覽列印的結果"
 
-#: ../src/wxmedit_frame.cpp:1091
+#: ../src/wxmedit_frame.cpp:1098
 msgid "&Print..."
 msgstr "列印(&P)..."
 
-#: ../src/wxmedit_frame.cpp:1091
+#: ../src/wxmedit_frame.cpp:1098
 msgid "Print the file"
 msgstr "列印檔案"
 
-#: ../src/wxmedit_frame.cpp:1093
+#: ../src/wxmedit_frame.cpp:1100
 msgid "Recent Files"
 msgstr "最近開啟的檔案"
 
-#: ../src/wxmedit_frame.cpp:1095
+#: ../src/wxmedit_frame.cpp:1102
 msgid "E&xit"
 msgstr "結束(&X)"
 
-#: ../src/wxmedit_frame.cpp:1095
+#: ../src/wxmedit_frame.cpp:1102
 msgid "Quit wxMEdit"
 msgstr "結束 wxMEdit"
 
-#: ../src/wxmedit_frame.cpp:1098
+#: ../src/wxmedit_frame.cpp:1105
 msgid "&Edit"
 msgstr "編輯(&E)"
 
-#: ../src/wxmedit_frame.cpp:1099
+#: ../src/wxmedit_frame.cpp:1106
 msgid "&Undo"
 msgstr "還原(&U)"
 
-#: ../src/wxmedit_frame.cpp:1099
+#: ../src/wxmedit_frame.cpp:1106
 msgid "Undo the last action"
 msgstr "還原上一個動作"
 
-#: ../src/wxmedit_frame.cpp:1101
+#: ../src/wxmedit_frame.cpp:1108
 msgid "&Redo"
 msgstr "重做(&R)"
 
-#: ../src/wxmedit_frame.cpp:1107
+#: ../src/wxmedit_frame.cpp:1114
 msgid "Redo the previously undone action"
 msgstr "重做之前還原的動作"
 
-#: ../src/wxmedit_frame.cpp:1110
+#: ../src/wxmedit_frame.cpp:1117
 msgid "Cu&t"
 msgstr "剪下(&T)"
 
-#: ../src/wxmedit_frame.cpp:1110
+#: ../src/wxmedit_frame.cpp:1117
 msgid "Cut the selection and put it on the Clipboard"
 msgstr "剪下選取的資料到剪貼簿中"
 
-#: ../src/wxmedit_frame.cpp:1111
+#: ../src/wxmedit_frame.cpp:1118
 msgid "&Copy"
 msgstr "複製(&C)"
 
-#: ../src/wxmedit_frame.cpp:1111
+#: ../src/wxmedit_frame.cpp:1118
 msgid "Copy the selection and put it on the Clipboard"
 msgstr "複製選取的資料到剪貼簿中"
 
-#: ../src/wxmedit_frame.cpp:1112
+#: ../src/wxmedit_frame.cpp:1119
 msgid "&Paste"
 msgstr "貼上(&P)"
 
-#: ../src/wxmedit_frame.cpp:1112
+#: ../src/wxmedit_frame.cpp:1119
 msgid "Insert data from the Clipboard"
 msgstr "將剪貼簿中的資料插入到檔案中"
 
-#: ../src/wxmedit_frame.cpp:1113
+#: ../src/wxmedit_frame.cpp:1120
 msgid "Paste with Over&writing"
 msgstr "覆蓋貼上(&W)"
 
-#: ../src/wxmedit_frame.cpp:1113
+#: ../src/wxmedit_frame.cpp:1120
 msgid "Overwrite data from the Clipboard"
 msgstr "將剪貼簿的資料覆蓋到檔案中"
 
-#: ../src/wxmedit_frame.cpp:1114
+#: ../src/wxmedit_frame.cpp:1121
 msgid "Delete data"
 msgstr "刪除資料"
 
-#: ../src/wxmedit_frame.cpp:1116
+#: ../src/wxmedit_frame.cpp:1123
 msgid "Cut L&ine"
 msgstr "剪下整行(&I)"
 
-#: ../src/wxmedit_frame.cpp:1116
+#: ../src/wxmedit_frame.cpp:1123
 msgid "Cut the selected lines and put it on the Clipboard"
 msgstr "剪下選取行到剪貼簿中"
 
-#: ../src/wxmedit_frame.cpp:1118
+#: ../src/wxmedit_frame.cpp:1125
 msgid "Delete &Line"
 msgstr "刪除整行(&L)"
 
-#: ../src/wxmedit_frame.cpp:1124
+#: ../src/wxmedit_frame.cpp:1131
 msgid "Delete the selected lines"
 msgstr "刪除選取行"
 
-#: ../src/wxmedit_frame.cpp:1127
+#: ../src/wxmedit_frame.cpp:1134
 msgid "Select &All"
 msgstr "選取全部(&A)"
 
-#: ../src/wxmedit_frame.cpp:1127
+#: ../src/wxmedit_frame.cpp:1134
 msgid "Select all data"
 msgstr "選取全部的資料"
 
-#: ../src/wxmedit_frame.cpp:1130
+#: ../src/wxmedit_frame.cpp:1137
 msgid "Insert Ta&b Char"
 msgstr "插入定位符號(Ta&b)"
 
-#: ../src/wxmedit_frame.cpp:1136
+#: ../src/wxmedit_frame.cpp:1143
 msgid "Insert a Tab char at current position"
 msgstr "插入定位符號(Tab)到目前位置"
 
-#: ../src/wxmedit_frame.cpp:1138
+#: ../src/wxmedit_frame.cpp:1145
 msgid "Insert Dat&e and Time"
 msgstr "插入日期、時間(&E)"
 
-#: ../src/wxmedit_frame.cpp:1138
+#: ../src/wxmedit_frame.cpp:1145
 msgid "Insert date and time at current position"
 msgstr "插入日期、時間到目前位置"
 
-#: ../src/wxmedit_frame.cpp:1139
+#: ../src/wxmedit_frame.cpp:1146
 msgid "Insert &Ordered Sequence..."
 msgstr "插入有序序列(&O)..."
 
-#: ../src/wxmedit_frame.cpp:1139
+#: ../src/wxmedit_frame.cpp:1146
 msgid ""
 "Insert ordered sequence with certain format in specified numbering system"
 msgstr "在指定數字系統中按特定格式插入有序序列"
 
-#: ../src/wxmedit_frame.cpp:1142
+#: ../src/wxmedit_frame.cpp:1149
 msgid "Colum&n"
 msgstr "列編輯(&N)"
 
-#: ../src/wxmedit_frame.cpp:1143
+#: ../src/wxmedit_frame.cpp:1150
 msgid "Column &Align"
 msgstr "列對齊(&A)"
 
-#: ../src/wxmedit_frame.cpp:1143
+#: ../src/wxmedit_frame.cpp:1150
 msgid "Delete spaces at the right of column selection"
 msgstr "刪除已選區塊右側的空白符號"
 
-#: ../src/wxmedit_frame.cpp:1144
+#: ../src/wxmedit_frame.cpp:1151
 msgid "Column &Paste"
 msgstr "列貼上(&P)"
 
-#: ../src/wxmedit_frame.cpp:1144
+#: ../src/wxmedit_frame.cpp:1151
 msgid "Paste in each line of column selection"
 msgstr "在已選區塊的每一行貼上"
 
-#: ../src/wxmedit_frame.cpp:1147
+#: ../src/wxmedit_frame.cpp:1154
 msgid "Ad&vanced"
 msgstr "進階(&V)"
 
-#: ../src/wxmedit_frame.cpp:1148
+#: ../src/wxmedit_frame.cpp:1155
 msgid "Copy As &Hex String"
 msgstr "複製為十六進位字串(&H)"
 
-#: ../src/wxmedit_frame.cpp:1148
+#: ../src/wxmedit_frame.cpp:1155
 msgid "Copy the selection as hex-string"
 msgstr "將選取資料複製為十六進位字串"
 
-#: ../src/wxmedit_frame.cpp:1149
+#: ../src/wxmedit_frame.cpp:1156
 msgid "Copy As He&x String with Space"
 msgstr "複製為十六進位字串(含空格)(&X)"
 
-#: ../src/wxmedit_frame.cpp:1149
+#: ../src/wxmedit_frame.cpp:1156
 msgid "Copy the selection as hex-string with space"
 msgstr "將選取資料複製為含空格的十六進位字串"
 
-#: ../src/wxmedit_frame.cpp:1151
+#: ../src/wxmedit_frame.cpp:1158
 msgid "&Increase Indent"
 msgstr "增加縮排(&I)"
 
-#: ../src/wxmedit_frame.cpp:1151
+#: ../src/wxmedit_frame.cpp:1158
 msgid "Increase the indent of seleted lines"
 msgstr "增加選取行的縮排"
 
-#: ../src/wxmedit_frame.cpp:1152
+#: ../src/wxmedit_frame.cpp:1159
 msgid "&Decrease Indent"
 msgstr "減少縮排(&D)"
 
-#: ../src/wxmedit_frame.cpp:1152
+#: ../src/wxmedit_frame.cpp:1159
 msgid "Decrease the indent of seleted lines"
 msgstr "減少選取行的縮排"
 
-#: ../src/wxmedit_frame.cpp:1154
+#: ../src/wxmedit_frame.cpp:1161
 msgid "&Comment"
 msgstr "註解(&C)"
 
-#: ../src/wxmedit_frame.cpp:1154
+#: ../src/wxmedit_frame.cpp:1161
 msgid "Comment out the selected lines"
 msgstr "註解選取行"
 
-#: ../src/wxmedit_frame.cpp:1155
+#: ../src/wxmedit_frame.cpp:1162
 msgid "&Uncomment"
 msgstr "取消註解(&U)"
 
-#: ../src/wxmedit_frame.cpp:1155
+#: ../src/wxmedit_frame.cpp:1162
 msgid "Uncomment the selected lines"
 msgstr "將選取行的註解取消"
 
-#: ../src/wxmedit_frame.cpp:1157
+#: ../src/wxmedit_frame.cpp:1164
 msgid "WordWraps To NewLine Chars"
 msgstr "自動換行轉為換行字元"
 
-#: ../src/wxmedit_frame.cpp:1157
+#: ../src/wxmedit_frame.cpp:1164
 msgid "Convert WordWraps to NewLine chars in the file or selection"
 msgstr "將檔案或選取文字的自動換行轉為換行字元"
 
-#: ../src/wxmedit_frame.cpp:1158
+#: ../src/wxmedit_frame.cpp:1165
 msgid "NewLine Chars To WordWraps"
 msgstr "換行字元轉為自動換行"
 
-#: ../src/wxmedit_frame.cpp:1158
+#: ../src/wxmedit_frame.cpp:1165
 msgid "Convert NewLine chars to WordWraps in the selection"
 msgstr "將選取文字中的換行字元轉為自動換行"
 
-#: ../src/wxmedit_frame.cpp:1160
+#: ../src/wxmedit_frame.cpp:1167
 msgid "To U&pperCase"
 msgstr "轉為大寫(&U)"
 
-#: ../src/wxmedit_frame.cpp:1160
+#: ../src/wxmedit_frame.cpp:1167
 msgid "Convert the selection to uppercase"
 msgstr "將選取的文字轉為大寫"
 
-#: ../src/wxmedit_frame.cpp:1161
+#: ../src/wxmedit_frame.cpp:1168
 msgid "To L&owerCase"
 msgstr "轉為小寫(&O)"
 
-#: ../src/wxmedit_frame.cpp:1161
+#: ../src/wxmedit_frame.cpp:1168
 msgid "Convert the selection to lowercase"
 msgstr "將選取的文字轉為小寫"
 
-#: ../src/wxmedit_frame.cpp:1162
+#: ../src/wxmedit_frame.cpp:1169
 msgid "Inver&t Case"
 msgstr "大小寫互換(&T)"
 
-#: ../src/wxmedit_frame.cpp:1162
+#: ../src/wxmedit_frame.cpp:1169
 msgid "Invert the case of the selection"
 msgstr "將選取文字的大小寫互換"
 
-#: ../src/wxmedit_frame.cpp:1164
+#: ../src/wxmedit_frame.cpp:1171
 msgid "To H&alfwidth"
 msgstr "轉為半形"
 
-#: ../src/wxmedit_frame.cpp:1164
+#: ../src/wxmedit_frame.cpp:1171
 msgid "Convert the selection to halfwidth"
 msgstr "將選取的文字轉為半形"
 
-#: ../src/wxmedit_frame.cpp:1165 ../src/wxmedit_frame.cpp:3855
+#: ../src/wxmedit_frame.cpp:1172 ../src/wxmedit_frame.cpp:3865
 msgid "To Halfwidth by Options..."
 msgstr "轉為半形(使用選項)..."
 
-#: ../src/wxmedit_frame.cpp:1165
+#: ../src/wxmedit_frame.cpp:1172
 msgid "Convert the selection to halfwidth by options"
 msgstr "將選取的文字轉為半形(使用選項)"
 
-#: ../src/wxmedit_frame.cpp:1166
+#: ../src/wxmedit_frame.cpp:1173
 msgid "To &Fullwidth"
 msgstr "轉為全形"
 
-#: ../src/wxmedit_frame.cpp:1166
+#: ../src/wxmedit_frame.cpp:1173
 msgid "Convert the selection to fullwidth"
 msgstr "將選取的文字轉為全形"
 
-#: ../src/wxmedit_frame.cpp:1167 ../src/wxmedit_frame.cpp:3898
+#: ../src/wxmedit_frame.cpp:1174 ../src/wxmedit_frame.cpp:3908
 msgid "To Fullwidth by Options..."
 msgstr "轉為全形(使用選項)..."
 
-#: ../src/wxmedit_frame.cpp:1167
+#: ../src/wxmedit_frame.cpp:1174
 msgid "Convert the selection to fullwidth by options"
 msgstr "將選取的文字轉為全形(使用選項)"
 
-#: ../src/wxmedit_frame.cpp:1169
+#: ../src/wxmedit_frame.cpp:1176
 msgid "Tab Chars To Space Chars"
 msgstr "定位符號(Tab)轉為空格"
 
-#: ../src/wxmedit_frame.cpp:1169
+#: ../src/wxmedit_frame.cpp:1176
 msgid "Convert Tab chars to Space chars in the selection"
 msgstr "將選取文字中的定位符號(Tab)轉為空格"
 
-#: ../src/wxmedit_frame.cpp:1170
+#: ../src/wxmedit_frame.cpp:1177
 msgid "Space Chars To Tab Chars"
 msgstr "空格轉為定位符號(Tab)"
 
-#: ../src/wxmedit_frame.cpp:1170
+#: ../src/wxmedit_frame.cpp:1177
 msgid "Convert Space chars to Tab chars in the selection"
 msgstr "將選取文字中的空格轉為定位符號(Tab)"
 
-#: ../src/wxmedit_frame.cpp:1172
+#: ../src/wxmedit_frame.cpp:1179
 msgid "Tri&m Trailing Spaces"
 msgstr "刪除行尾空格(&M)"
 
-#: ../src/wxmedit_frame.cpp:1172
+#: ../src/wxmedit_frame.cpp:1179
 msgid "Trim trailing spaces at the end of lines"
 msgstr "刪除每行最後的空格"
 
-#: ../src/wxmedit_frame.cpp:1175
+#: ../src/wxmedit_frame.cpp:1182
 msgid "Sort Lines (&Ascending)"
 msgstr "排序文字行(遞增)(&A)"
 
-#: ../src/wxmedit_frame.cpp:1175
+#: ../src/wxmedit_frame.cpp:1182
 msgid "Sort the selected or all lines in ascending order"
 msgstr "將選取的或全部文字行按遞增方式排序"
 
-#: ../src/wxmedit_frame.cpp:1176
+#: ../src/wxmedit_frame.cpp:1183
 msgid "Sort Lines (&Descending)"
 msgstr "排序文字行(遞減)(&D)"
 
-#: ../src/wxmedit_frame.cpp:1176
+#: ../src/wxmedit_frame.cpp:1183
 msgid "Sort the selected or all lines in descending order"
 msgstr "將選取的或全部文字行按遞減方式排序"
 
-#: ../src/wxmedit_frame.cpp:1178
+#: ../src/wxmedit_frame.cpp:1185
 msgid "Sort Lines (A&scending, CaseSensitive)"
 msgstr "排序文字行(遞增，區分大小寫)(&S)"
 
-#: ../src/wxmedit_frame.cpp:1178
+#: ../src/wxmedit_frame.cpp:1185
 msgid "Sort lines in ascending order and with case-sensitive"
 msgstr "將文字行按遞增及區分大小寫方式排序"
 
-#: ../src/wxmedit_frame.cpp:1179
+#: ../src/wxmedit_frame.cpp:1186
 msgid "Sort Lines (D&escending, CaseSensitive)"
 msgstr "排序文字行(遞減，區分大小寫)(&E)"
 
-#: ../src/wxmedit_frame.cpp:1179
+#: ../src/wxmedit_frame.cpp:1186
 msgid "Sort lines in descending order and with case-sensitive"
 msgstr "將文字行按遞減及區分大小寫方式排序"
 
-#: ../src/wxmedit_frame.cpp:1181
+#: ../src/wxmedit_frame.cpp:1188
 msgid "Sort Lines by &Current Options"
 msgstr "使用目前設定的選項排序(&C)"
 
-#: ../src/wxmedit_frame.cpp:1181
+#: ../src/wxmedit_frame.cpp:1188
 msgid "Sort the selected or all lines by using current options"
 msgstr "使用目前設定的選項來排序文字行"
 
-#: ../src/wxmedit_frame.cpp:1182
+#: ../src/wxmedit_frame.cpp:1189
 msgid "Sort &Options..."
 msgstr "排序選項(&O)..."
 
-#: ../src/wxmedit_frame.cpp:1182
+#: ../src/wxmedit_frame.cpp:1189
 msgid "Set the sort options"
 msgstr "設定排序選項"
 
-#: ../src/wxmedit_frame.cpp:1185
+#: ../src/wxmedit_frame.cpp:1192
 msgid "&Search"
 msgstr "尋找(&S)"
 
-#: ../src/wxmedit_frame.cpp:1186
+#: ../src/wxmedit_frame.cpp:1193
 msgid "&Find..."
 msgstr "尋找(&F)..."
 
-#: ../src/wxmedit_frame.cpp:1186
+#: ../src/wxmedit_frame.cpp:1193
 msgid "Find a string"
 msgstr "尋找字串"
 
-#: ../src/wxmedit_frame.cpp:1187
+#: ../src/wxmedit_frame.cpp:1194
 msgid "Find next occurrence"
 msgstr "到字串下一次出現的位置"
 
-#: ../src/wxmedit_frame.cpp:1188
+#: ../src/wxmedit_frame.cpp:1195
 msgid "Find previous occurrence"
 msgstr "到字串上一次出現的位置"
 
-#: ../src/wxmedit_frame.cpp:1190
+#: ../src/wxmedit_frame.cpp:1197
 msgid "&Replace..."
 msgstr "取代(&R)..."
 
-#: ../src/wxmedit_frame.cpp:1190
+#: ../src/wxmedit_frame.cpp:1197
 msgid "Replace a string"
 msgstr "取代字串"
 
-#: ../src/wxmedit_frame.cpp:1192
+#: ../src/wxmedit_frame.cpp:1199
 msgid "Fin&d/Replace in Files..."
 msgstr "多檔案尋找/取代(&D)..."
 
-#: ../src/wxmedit_frame.cpp:1192
+#: ../src/wxmedit_frame.cpp:1199
 msgid "Find or replace a string in files"
 msgstr "在多個檔案中尋找或取代資料"
 
-#: ../src/wxmedit_frame.cpp:1193
+#: ../src/wxmedit_frame.cpp:1200
 msgid "&Show/Hide the Results of Find/Replace in Files"
 msgstr "顯示或隱藏多檔案尋找/取代的結果(&S)"
 
-#: ../src/wxmedit_frame.cpp:1193
+#: ../src/wxmedit_frame.cpp:1200
 msgid "Show or hide the results of find or replace a string in files"
 msgstr "顯示或隱藏多檔案尋找/取代的結果"
 
-#: ../src/wxmedit_frame.cpp:1195
+#: ../src/wxmedit_frame.cpp:1202
 msgid "&Go To Line..."
 msgstr "跳到某行(&G)..."
 
-#: ../src/wxmedit_frame.cpp:1195
+#: ../src/wxmedit_frame.cpp:1202
 msgid "Go to the specified line"
 msgstr "跳到指定行"
 
-#: ../src/wxmedit_frame.cpp:1196
+#: ../src/wxmedit_frame.cpp:1203
 msgid "G&o To Position..."
 msgstr "跳到檔案位置(&O)..."
 
-#: ../src/wxmedit_frame.cpp:1196
+#: ../src/wxmedit_frame.cpp:1203
 msgid "Go to the specified position"
 msgstr "跳到指定的位置"
 
-#: ../src/wxmedit_frame.cpp:1198
+#: ../src/wxmedit_frame.cpp:1205
 msgid "Go To L&eft Brace"
 msgstr "跳到左括號(&E)"
 
-#: ../src/wxmedit_frame.cpp:1198
+#: ../src/wxmedit_frame.cpp:1205
 msgid "Go to left brace"
 msgstr "跳到左括號"
 
-#: ../src/wxmedit_frame.cpp:1199
+#: ../src/wxmedit_frame.cpp:1206
 msgid "Go To R&ight Brace"
 msgstr "跳到右括號(&I)"
 
-#: ../src/wxmedit_frame.cpp:1199
+#: ../src/wxmedit_frame.cpp:1206
 msgid "Go to right brace"
 msgstr "跳到右括號"
 
-#: ../src/wxmedit_frame.cpp:1202 ../src/wxmedit_frame.cpp:2022
+#: ../src/wxmedit_frame.cpp:1209 ../src/wxmedit_frame.cpp:2032
 msgid "Toggle Bookmark"
 msgstr "設定/取消書籤"
 
-#: ../src/wxmedit_frame.cpp:1202
+#: ../src/wxmedit_frame.cpp:1209
 msgid "Toggle bookmark at current line"
 msgstr "在目前行設定/取消書籤"
 
-#: ../src/wxmedit_frame.cpp:1203 ../src/wxmedit_frame.cpp:2023
+#: ../src/wxmedit_frame.cpp:1210 ../src/wxmedit_frame.cpp:2033
 msgid "Go To Next Bookmark"
 msgstr "跳到下一書籤"
 
-#: ../src/wxmedit_frame.cpp:1203
+#: ../src/wxmedit_frame.cpp:1210
 msgid "Go to the next bookmark"
 msgstr "跳到下一書籤處"
 
-#: ../src/wxmedit_frame.cpp:1204 ../src/wxmedit_frame.cpp:2024
+#: ../src/wxmedit_frame.cpp:1211 ../src/wxmedit_frame.cpp:2034
 msgid "Go To Previous Bookmark"
 msgstr "跳到上一書籤"
 
-#: ../src/wxmedit_frame.cpp:1204
+#: ../src/wxmedit_frame.cpp:1211
 msgid "Go to the previous bookmark"
 msgstr "跳到上一書籤處"
 
-#: ../src/wxmedit_frame.cpp:1205 ../src/wxmedit_frame.cpp:2025
+#: ../src/wxmedit_frame.cpp:1212 ../src/wxmedit_frame.cpp:2035
 msgid "Clear All Bookmarks"
 msgstr "清除所有書籤"
 
-#: ../src/wxmedit_frame.cpp:1205
+#: ../src/wxmedit_frame.cpp:1212
 msgid "Clear all bookmarks from current file"
 msgstr "清除目前檔案中的所有書籤"
 
-#: ../src/wxmedit_frame.cpp:1208
+#: ../src/wxmedit_frame.cpp:1215
 msgid "&View"
 msgstr "檢視(&V)"
 
-#: ../src/wxmedit_frame.cpp:1209 ../src/wxmedit_frame.cpp:2981
-#: ../src/wxmedit_frame.cpp:2988
+#: ../src/wxmedit_frame.cpp:1216 ../src/wxmedit_frame.cpp:2991
+#: ../src/wxmedit_frame.cpp:2998
 msgid "Encoding: "
 msgstr "編碼: "
 
-#: ../src/wxmedit_frame.cpp:1210
+#: ../src/wxmedit_frame.cpp:1217
 msgid "All "
 msgstr "全部 "
 
-#: ../src/wxmedit_frame.cpp:1212 ../src/wxmedit_frame.cpp:2997
-#: ../src/wxmedit_frame.cpp:3002
+#: ../src/wxmedit_frame.cpp:1219 ../src/wxmedit_frame.cpp:3007
+#: ../src/wxmedit_frame.cpp:3012
 msgid "Syntax Type: "
 msgstr "語法類型: "
 
-#: ../src/wxmedit_frame.cpp:1214 ../src/wxmedit_frame.cpp:3014
-#: ../src/wxmedit_frame.cpp:3019
+#: ../src/wxmedit_frame.cpp:1221 ../src/wxmedit_frame.cpp:3024
+#: ../src/wxmedit_frame.cpp:3029
 msgid "Font Name: "
 msgstr "字型名稱: "
 
-#: ../src/wxmedit_frame.cpp:1215
+#: ../src/wxmedit_frame.cpp:1222
 msgid "[@]"
 msgstr "[@]"
 
-#: ../src/wxmedit_frame.cpp:1216
+#: ../src/wxmedit_frame.cpp:1223
 msgid "[ABCDE]"
 msgstr "[ABCDE]"
 
-#: ../src/wxmedit_frame.cpp:1217
+#: ../src/wxmedit_frame.cpp:1224
 msgid "[FGHIJ]"
 msgstr "[FGHIJ]"
 
-#: ../src/wxmedit_frame.cpp:1218
+#: ../src/wxmedit_frame.cpp:1225
 msgid "[KLMNO]"
 msgstr "[KLMNO]"
 
-#: ../src/wxmedit_frame.cpp:1219
+#: ../src/wxmedit_frame.cpp:1226
 msgid "[PQRST]"
 msgstr "[PQRST]"
 
-#: ../src/wxmedit_frame.cpp:1220
+#: ../src/wxmedit_frame.cpp:1227
 msgid "[UVWXYZ]"
 msgstr "[UVWXYZ]"
 
-#: ../src/wxmedit_frame.cpp:1221
+#: ../src/wxmedit_frame.cpp:1228
 msgid "[other]"
 msgstr "[其它]"
 
-#: ../src/wxmedit_frame.cpp:1223 ../src/wxmedit_frame.cpp:3030
-#: ../src/wxmedit_frame.cpp:3035
+#: ../src/wxmedit_frame.cpp:1230 ../src/wxmedit_frame.cpp:3040
+#: ../src/wxmedit_frame.cpp:3045
 msgid "Font Size: "
 msgstr "字型大小: "
 
-#: ../src/wxmedit_frame.cpp:1224
+#: ../src/wxmedit_frame.cpp:1231
 msgid "Set font point-size"
 msgstr "設定字型大小"
 
-#: ../src/wxmedit_frame.cpp:1297
+#: ../src/wxmedit_frame.cpp:1304
 msgid "Set Font..."
 msgstr "設定字型..."
 
-#: ../src/wxmedit_frame.cpp:1297
+#: ../src/wxmedit_frame.cpp:1304
 msgid "Change font settings"
 msgstr "變更字型設定"
 
-#: ../src/wxmedit_frame.cpp:1298
+#: ../src/wxmedit_frame.cpp:1305
 msgid "&Fixed Width Mode"
 msgstr "固定寬度模式(&F)"
 
-#: ../src/wxmedit_frame.cpp:1298
+#: ../src/wxmedit_frame.cpp:1305
 msgid "Set/Unset the font with Fixed Width"
 msgstr "設定或取消字型為固定的寬度"
 
-#: ../src/wxmedit_frame.cpp:1301 ../src/wxmedit_frame.cpp:3054
-#: ../src/wxmedit_frame.cpp:3059
+#: ../src/wxmedit_frame.cpp:1308 ../src/wxmedit_frame.cpp:3064
+#: ../src/wxmedit_frame.cpp:3069
 msgid "Tab Column: "
 msgstr "定位符號(Tab)的寬度: "
 
-#: ../src/wxmedit_frame.cpp:1302
+#: ../src/wxmedit_frame.cpp:1309
 msgid "Set column of Tab char"
 msgstr "設定定位符號(Tab)的寬度"
 
-#: ../src/wxmedit_frame.cpp:1320 ../src/wxmedit_frame.cpp:3068
-#: ../src/wxmedit_frame.cpp:3073
+#: ../src/wxmedit_frame.cpp:1327 ../src/wxmedit_frame.cpp:3078
+#: ../src/wxmedit_frame.cpp:3083
 msgid "Line Spacing: "
 msgstr "行間距: "
 
-#: ../src/wxmedit_frame.cpp:1321
+#: ../src/wxmedit_frame.cpp:1328
 msgid "Set line spacing"
 msgstr "設定行間距"
 
-#: ../src/wxmedit_frame.cpp:1354
+#: ../src/wxmedit_frame.cpp:1361
 msgid "&No Wrap"
 msgstr "不自動換行(&N)"
 
-#: ../src/wxmedit_frame.cpp:1354
+#: ../src/wxmedit_frame.cpp:1361
 msgid "Do not wrap lines"
 msgstr "取消自動換行"
 
-#: ../src/wxmedit_frame.cpp:1355
+#: ../src/wxmedit_frame.cpp:1362
 msgid "Wrap By &Window"
 msgstr "按視窗寬度自動換行(&W)"
 
-#: ../src/wxmedit_frame.cpp:1355
+#: ../src/wxmedit_frame.cpp:1362
 msgid "Wrap the lines by the window width"
 msgstr "按視窗的寬度來自動換行"
 
-#: ../src/wxmedit_frame.cpp:1356
+#: ../src/wxmedit_frame.cpp:1363
 msgid "Wrap By Column"
 msgstr "按指定列數自動換行"
 
-#: ../src/wxmedit_frame.cpp:1356
+#: ../src/wxmedit_frame.cpp:1363
 msgid "Wrap the lines by the specified Max Columns"
 msgstr "按設定的最大列數來自動換行"
 
-#: ../src/wxmedit_frame.cpp:1358
+#: ../src/wxmedit_frame.cpp:1365
 msgid "Display &Bookmark"
 msgstr "顯示書籤(&B)"
 
-#: ../src/wxmedit_frame.cpp:1358
+#: ../src/wxmedit_frame.cpp:1365
 msgid "Display the Bookmarks"
 msgstr "顯示書籤"
 
-#: ../src/wxmedit_frame.cpp:1359
+#: ../src/wxmedit_frame.cpp:1366
 msgid "&Display Line Number"
 msgstr "顯示行號(&D)"
 
-#: ../src/wxmedit_frame.cpp:1359
+#: ../src/wxmedit_frame.cpp:1366
 msgid "Display the Line Numbers"
 msgstr "顯示行號"
 
-#: ../src/wxmedit_frame.cpp:1360
+#: ../src/wxmedit_frame.cpp:1367
 msgid "Show End Of Line"
 msgstr "顯示行尾符號號"
 
-#: ../src/wxmedit_frame.cpp:1360
+#: ../src/wxmedit_frame.cpp:1367
 msgid "Show the sign of EndOfLine"
 msgstr "顯示每行結尾符號"
 
-#: ../src/wxmedit_frame.cpp:1361
+#: ../src/wxmedit_frame.cpp:1368
 msgid "Show Tab Char"
 msgstr "顯示定位符號(Tab)"
 
-#: ../src/wxmedit_frame.cpp:1361
+#: ../src/wxmedit_frame.cpp:1368
 msgid "Show the sign of Tab char"
 msgstr "顯示定位符號(Tab)"
 
-#: ../src/wxmedit_frame.cpp:1362
+#: ../src/wxmedit_frame.cpp:1369
 msgid "Show Space Char"
 msgstr "顯示空格字元"
 
-#: ../src/wxmedit_frame.cpp:1362
+#: ../src/wxmedit_frame.cpp:1369
 msgid "Show the sign of Space char"
 msgstr "顯示空格符號"
 
-#: ../src/wxmedit_frame.cpp:1363
+#: ../src/wxmedit_frame.cpp:1370
 msgid "Mark Active Line"
 msgstr "標示目前行"
 
-#: ../src/wxmedit_frame.cpp:1363
+#: ../src/wxmedit_frame.cpp:1370
 msgid "Mark the current line"
 msgstr "標示目前行"
 
-#: ../src/wxmedit_frame.cpp:1364
+#: ../src/wxmedit_frame.cpp:1371
 msgid "Mark Brace Pair"
 msgstr "標示括號"
 
-#: ../src/wxmedit_frame.cpp:1364
+#: ../src/wxmedit_frame.cpp:1371
 msgid "Mark the BracePair under the caret"
 msgstr "標示游標所在處的括號"
 
-#: ../src/wxmedit_frame.cpp:1366
+#: ../src/wxmedit_frame.cpp:1373
 msgid "&Text Mode"
 msgstr "一般文字模式(&T)"
 
-#: ../src/wxmedit_frame.cpp:1366
+#: ../src/wxmedit_frame.cpp:1373
 msgid "Change the editing mode to Text-Mode"
 msgstr "變更編輯模式為一般文字模式"
 
-#: ../src/wxmedit_frame.cpp:1367
+#: ../src/wxmedit_frame.cpp:1374
 msgid "&Column Mode"
 msgstr "區塊模式(&C)"
 
-#: ../src/wxmedit_frame.cpp:1367
+#: ../src/wxmedit_frame.cpp:1374
 msgid "Change the editing mode to Column-Mode"
 msgstr "變更編輯模式為區塊模式"
 
-#: ../src/wxmedit_frame.cpp:1368
+#: ../src/wxmedit_frame.cpp:1375
 msgid "&Hex Mode"
 msgstr "十六進位模式(&H)"
 
-#: ../src/wxmedit_frame.cpp:1368
+#: ../src/wxmedit_frame.cpp:1375
 msgid "Change the editing mode to Hex-Mode"
 msgstr "變更編輯模式為十六進位模式"
 
-#: ../src/wxmedit_frame.cpp:1371
+#: ../src/wxmedit_frame.cpp:1378
 msgid "&Tools"
 msgstr "工具(&T)"
 
-#: ../src/wxmedit_frame.cpp:1372
+#: ../src/wxmedit_frame.cpp:1379
 msgid "&Options..."
 msgstr "選項(&O)..."
 
-#: ../src/wxmedit_frame.cpp:1372
+#: ../src/wxmedit_frame.cpp:1379
 msgid "Change the configuration"
 msgstr "修改設定"
 
-#: ../src/wxmedit_frame.cpp:1373
+#: ../src/wxmedit_frame.cpp:1380
 msgid "&Syntax Highlighting Settings..."
 msgstr "語法高亮度設定(&S)..."
 
-#: ../src/wxmedit_frame.cpp:1373
+#: ../src/wxmedit_frame.cpp:1380
 msgid "Change syntax highlighting settings"
 msgstr "修改語法高亮度設定"
 
-#: ../src/wxmedit_frame.cpp:1375
+#: ../src/wxmedit_frame.cpp:1382
 msgid "&File Type Associations..."
 msgstr "檔案關聯(&F)..."
 
-#: ../src/wxmedit_frame.cpp:1375 ../src/wxmedit_frame.cpp:1377
+#: ../src/wxmedit_frame.cpp:1382 ../src/wxmedit_frame.cpp:1384
 msgid "Change file type associations"
 msgstr "修改檔案關聯設定"
 
-#: ../src/wxmedit_frame.cpp:1377
+#: ../src/wxmedit_frame.cpp:1384
 msgid "&Purge Histories..."
 msgstr "清除歷史記錄(&P)"
 
-#: ../src/wxmedit_frame.cpp:1379 ../src/wxmedit_frame.cpp:3153
+#: ../src/wxmedit_frame.cpp:1386 ../src/wxmedit_frame.cpp:3163
 msgid "Has Unicode BOM (Byte-Order Mark)"
 msgstr "有 Unicode BOM (位元組順序標籤)"
 
-#: ../src/wxmedit_frame.cpp:1380
+#: ../src/wxmedit_frame.cpp:1387
 msgid "Add/Remove BOM"
 msgstr "插入/刪除 BOM"
 
-#: ../src/wxmedit_frame.cpp:1380
+#: ../src/wxmedit_frame.cpp:1387
 msgid "Add/Remove Unicode BOM"
 msgstr "插入/刪除 Unicode BOM"
 
-#: ../src/wxmedit_frame.cpp:1382 ../src/wxmedit_frame.cpp:3168
+#: ../src/wxmedit_frame.cpp:1389 ../src/wxmedit_frame.cpp:3178
 msgid "NewLine Char (File Format): "
 msgstr "換行字元(檔案格式): "
 
-#: ../src/wxmedit_frame.cpp:1383
-msgid "Convert To CRLF/0D0A (&DOS)"
-msgstr "轉換為 CRLF/0D0A (&DOS)"
+#: ../src/wxmedit_frame.cpp:1390
+msgid "Convert To CRLF/0D0A (Windows/&DOS)"
+msgstr "轉換為 CRLF/0D0A (Windows/&DOS)"
 
-#: ../src/wxmedit_frame.cpp:1383
-msgid "Convert the file format to DOS format"
-msgstr "轉換檔案格式為 DOS 的格式"
+#: ../src/wxmedit_frame.cpp:1390
+msgid "Convert the file format to Windows/DOS format"
+msgstr "轉換檔案格式為 Windows/DOS 的格式"
 
-#: ../src/wxmedit_frame.cpp:1384
-msgid "Convert To CR/0D (&MAC)"
-msgstr "轉換為 CR/0D (&MAC)"
+#: ../src/wxmedit_frame.cpp:1391
+msgid "Convert To CR/0D (Classic &Mac OS)"
+msgstr ""
 
-#: ../src/wxmedit_frame.cpp:1384
-msgid "Convert the file format to MAC format"
-msgstr "轉換檔案格式為 MAC 的格式"
+#: ../src/wxmedit_frame.cpp:1391
+msgid "Convert the file format to classic Mac OS format"
+msgstr ""
 
-#: ../src/wxmedit_frame.cpp:1385
-msgid "Convert To LF/0A (&UNIX)"
-msgstr "轉換為 LF/0A (&UNIX)"
+#: ../src/wxmedit_frame.cpp:1392
+msgid "Convert To LF/0A (&UNIX/macOS)"
+msgstr "轉換為 LF/0A (&UNIX/macOS)"
 
-#: ../src/wxmedit_frame.cpp:1385
-msgid "Convert the file format to UNIX format"
-msgstr "轉換檔案格式為 UNIX 的格式"
+#: ../src/wxmedit_frame.cpp:1392
+msgid "Convert the file format to UNIX/macOS format"
+msgstr "轉換檔案格式為 UNIX/macOS 的格式"
 
-#: ../src/wxmedit_frame.cpp:1386 ../src/wxmedit_frame.cpp:3184
+#: ../src/wxmedit_frame.cpp:1393 ../src/wxmedit_frame.cpp:3194
 msgid "Press Enter to Insert NewLine Char: "
 msgstr "按Enter插入的換行字元: "
 
-#: ../src/wxmedit_frame.cpp:1387
-msgid "Insert CRLF/0D0A (&DOS)"
-msgstr "插入 CRLF/0D0A (&DOS)"
+#: ../src/wxmedit_frame.cpp:1394
+msgid "Insert CRLF/0D0A (Windows/&DOS)"
+msgstr "插入 CRLF/0D0A (Windows/&DOS)"
 
-#: ../src/wxmedit_frame.cpp:1387
+#: ../src/wxmedit_frame.cpp:1394
 msgid "Insert CR&LF chars when pressing Enter key"
 msgstr "按Enter鍵時插入 CR&LF 字元"
 
-#: ../src/wxmedit_frame.cpp:1388
-msgid "Insert CR/0D (&MAC)"
-msgstr "插入 CR/0D (&MAC)"
+#: ../src/wxmedit_frame.cpp:1395
+msgid "Insert CR/0D (Classic &Mac OS)"
+msgstr ""
 
-#: ../src/wxmedit_frame.cpp:1388
+#: ../src/wxmedit_frame.cpp:1395
 msgid "Insert CR char when pressing Enter key"
 msgstr "按Enter鍵時插入 CR 字元"
 
-#: ../src/wxmedit_frame.cpp:1389
-msgid "Insert LF/0A (&UNIX)"
-msgstr "插入 LF/0A (&UNIX)"
+#: ../src/wxmedit_frame.cpp:1396
+msgid "Insert LF/0A (&UNIX/macOS)"
+msgstr "插入 LF/0A (&UNIX/macOS)"
 
-#: ../src/wxmedit_frame.cpp:1389
+#: ../src/wxmedit_frame.cpp:1396
 msgid "Insert LF char when pressing Enter key"
 msgstr "按Enter鍵時插入 LF 字元"
 
-#: ../src/wxmedit_frame.cpp:1391
+#: ../src/wxmedit_frame.cpp:1398
 msgid "Convert File &Encoding..."
 msgstr "轉換檔案編碼(&E)..."
 
-#: ../src/wxmedit_frame.cpp:1391
+#: ../src/wxmedit_frame.cpp:1398
 msgid "Convert to the specified encoding"
 msgstr "轉換為指定的編碼"
 
-#: ../src/wxmedit_frame.cpp:1393
+#: ../src/wxmedit_frame.cpp:1400
 msgid "Convert &Chinese Char"
 msgstr "轉換漢字字元(&C)"
 
-#: ../src/wxmedit_frame.cpp:1394
+#: ../src/wxmedit_frame.cpp:1401
 msgid "File: Simplified Chinese to &Traditional Chinese"
 msgstr "檔案：簡體中文 => 繁體中文(&T)"
 
-#: ../src/wxmedit_frame.cpp:1394
+#: ../src/wxmedit_frame.cpp:1401
 msgid ""
 "Convert simplified Chinese chars to traditional Chinese chars in the file"
 msgstr "把檔案中的簡體字轉換成繁體字"
 
-#: ../src/wxmedit_frame.cpp:1395
+#: ../src/wxmedit_frame.cpp:1402
 msgid "File: Traditional Chinese to &Simplified Chinese"
 msgstr "檔案：繁體中文 => 簡體中文(&S)"
 
-#: ../src/wxmedit_frame.cpp:1395
+#: ../src/wxmedit_frame.cpp:1402
 msgid ""
 "Convert traditional Chinese chars to simplified Chinese chars in the file"
 msgstr "把檔案中的繁體字轉換成簡體字"
 
-#: ../src/wxmedit_frame.cpp:1396
+#: ../src/wxmedit_frame.cpp:1403
 msgid "File: Japanese Kanji to Tr&aditional Chinese"
 msgstr "檔案：日文漢字 => 繁體中文(&A)"
 
-#: ../src/wxmedit_frame.cpp:1396
+#: ../src/wxmedit_frame.cpp:1403
 msgid "Convert Japanese Kanji to traditional Chinese chars in the file"
 msgstr "把檔案中的日文漢字轉換成繁體字"
 
-#: ../src/wxmedit_frame.cpp:1397
+#: ../src/wxmedit_frame.cpp:1404
 msgid "File: Japanese Kanji to Si&mplified Chinese"
 msgstr "檔案：日文漢字 => 簡體中文(&M)"
 
-#: ../src/wxmedit_frame.cpp:1397
+#: ../src/wxmedit_frame.cpp:1404
 msgid "Convert Japanese Kanji to simplified Chinese chars in the file"
 msgstr "把檔案中的日文漢字轉換成簡體字"
 
-#: ../src/wxmedit_frame.cpp:1398
+#: ../src/wxmedit_frame.cpp:1405
 msgid "File: Chinese to &Japanese Kanji"
 msgstr "檔案：中文漢字 => 日文漢字(&J)"
 
-#: ../src/wxmedit_frame.cpp:1398
+#: ../src/wxmedit_frame.cpp:1405
 msgid "Convert Chinese chars to Japanese Kanji in the file"
 msgstr "把檔案中的中文漢字轉換成日文漢字"
 
-#: ../src/wxmedit_frame.cpp:1400
+#: ../src/wxmedit_frame.cpp:1407
 msgid "Clipboard: Simplified Chinese to T&raditional Chinese"
 msgstr "剪貼簿：簡體中文 => 繁體中文(&R)"
 
-#: ../src/wxmedit_frame.cpp:1400
+#: ../src/wxmedit_frame.cpp:1407
 msgid ""
 "Convert simplified Chinese chars to traditional Chinese chars in the "
 "clipboard"
 msgstr "把剪貼簿中的簡體字轉換成繁體字"
 
-#: ../src/wxmedit_frame.cpp:1401
+#: ../src/wxmedit_frame.cpp:1408
 msgid "Clipboard: Traditional Chinese to S&implified Chinese"
 msgstr "剪貼簿：繁體中文 => 簡體中文(&I)"
 
-#: ../src/wxmedit_frame.cpp:1401
+#: ../src/wxmedit_frame.cpp:1408
 msgid ""
 "Convert traditional Chinese chars to simplified Chinese chars in the "
 "clipboard"
 msgstr "把剪貼簿中的繁體字轉換成簡體字"
 
-#: ../src/wxmedit_frame.cpp:1402
+#: ../src/wxmedit_frame.cpp:1409
 msgid "Clipboard: Japanese Kanji to Tra&ditional Chinese"
 msgstr "剪貼簿：日文漢字 => 繁體中文(&D)"
 
-#: ../src/wxmedit_frame.cpp:1402
+#: ../src/wxmedit_frame.cpp:1409
 msgid "Convert Japanese Kanji to traditional Chinese chars in the clipboard"
 msgstr "把剪貼簿中的日文漢字轉換成繁體字"
 
-#: ../src/wxmedit_frame.cpp:1403
+#: ../src/wxmedit_frame.cpp:1410
 msgid "Clipboard: Japanese Kanji to Sim&plified Chinese"
 msgstr "剪貼簿：日文漢字 => 簡體中文(&P)"
 
-#: ../src/wxmedit_frame.cpp:1403
+#: ../src/wxmedit_frame.cpp:1410
 msgid "Convert Japanese Kanji to simplified Chinese chars in the clipboard"
 msgstr "把剪貼簿中的日文漢字轉換成簡體字"
 
-#: ../src/wxmedit_frame.cpp:1404
+#: ../src/wxmedit_frame.cpp:1411
 msgid "Clipboard: Chinese to Japanese &Kanji"
 msgstr "剪貼簿：中文漢字 => 日文漢字(&K)"
 
-#: ../src/wxmedit_frame.cpp:1404
+#: ../src/wxmedit_frame.cpp:1411
 msgid "Convert Chinese chars to Japanese Kanji in the clipboard"
 msgstr "把剪貼簿中的中文漢字轉換成日文漢字"
 
-#: ../src/wxmedit_frame.cpp:1406
+#: ../src/wxmedit_frame.cpp:1413
 msgid "&Word Count"
 msgstr "字數統計(&W)"
 
-#: ../src/wxmedit_frame.cpp:1406
+#: ../src/wxmedit_frame.cpp:1413
 msgid "Count the words and chars of the file or selection"
 msgstr "統計檔案或選取文字的字數"
 
-#: ../src/wxmedit_frame.cpp:1409
+#: ../src/wxmedit_frame.cpp:1416
 msgid "&Window"
 msgstr "視窗(&W)"
 
-#: ../src/wxmedit_frame.cpp:1410
+#: ../src/wxmedit_frame.cpp:1417
 msgid "&Toggle Window"
 msgstr "切換視窗(&T)"
 
-#: ../src/wxmedit_frame.cpp:1410
+#: ../src/wxmedit_frame.cpp:1417
 msgid "Switch to the previous active window"
 msgstr "切換到前一次開啟的視窗"
 
-#: ../src/wxmedit_frame.cpp:1411
+#: ../src/wxmedit_frame.cpp:1418
 msgid "&Previous Window"
 msgstr "前一個視窗(&P)"
 
-#: ../src/wxmedit_frame.cpp:1411
+#: ../src/wxmedit_frame.cpp:1418
 msgid "Activate the previous window"
 msgstr "切換到前一個視窗"
 
-#: ../src/wxmedit_frame.cpp:1412
+#: ../src/wxmedit_frame.cpp:1419
 msgid "&Next Window"
 msgstr "後一個視窗(&T)"
 
-#: ../src/wxmedit_frame.cpp:1412
+#: ../src/wxmedit_frame.cpp:1419
 msgid "Activate the next window"
 msgstr "切換到後一個視窗"
 
-#: ../src/wxmedit_frame.cpp:1415
+#: ../src/wxmedit_frame.cpp:1422
 msgid "&Help"
 msgstr "說明(&H)"
 
-#: ../src/wxmedit_frame.cpp:1416
+#: ../src/wxmedit_frame.cpp:1423
 msgid "&Check for updates..."
 msgstr "檢查更新(&C)..."
 
-#: ../src/wxmedit_frame.cpp:1416
+#: ../src/wxmedit_frame.cpp:1423
 msgid "Check for new versions of wxMEdit"
 msgstr "檢查新版本的 wxMEdit"
 
-#: ../src/wxmedit_frame.cpp:1417
+#: ../src/wxmedit_frame.cpp:1424
 msgid "&About wxMEdit..."
 msgstr "關於 wxMEdit (&A)..."
 
-#: ../src/wxmedit_frame.cpp:1417
+#: ../src/wxmedit_frame.cpp:1424
 msgid "Show about dialog"
 msgstr "顯示關於對話框"
 
-#: ../src/wxmedit_frame.cpp:1421
+#: ../src/wxmedit_frame.cpp:1428
 msgid "Move caret left one char"
 msgstr "游標向左移動一字元"
 
-#: ../src/wxmedit_frame.cpp:1422
+#: ../src/wxmedit_frame.cpp:1429
 msgid "Move caret right one char"
 msgstr "游標向右移動一字元"
 
-#: ../src/wxmedit_frame.cpp:1423
+#: ../src/wxmedit_frame.cpp:1430
 msgid "Move caret up one line"
 msgstr "游標向上移動一行"
 
-#: ../src/wxmedit_frame.cpp:1424
+#: ../src/wxmedit_frame.cpp:1431
 msgid "Move caret down one line"
 msgstr "游標向下移動一行"
 
-#: ../src/wxmedit_frame.cpp:1425
+#: ../src/wxmedit_frame.cpp:1432
 msgid "Go to begin of line"
 msgstr "跳到行首"
 
-#: ../src/wxmedit_frame.cpp:1426
+#: ../src/wxmedit_frame.cpp:1433
 msgid "Go to end of line"
 msgstr "跳到行尾"
 
-#: ../src/wxmedit_frame.cpp:1427
+#: ../src/wxmedit_frame.cpp:1434
 msgid "Go to begin of document"
 msgstr "跳到檔案的開頭"
 
-#: ../src/wxmedit_frame.cpp:1428
+#: ../src/wxmedit_frame.cpp:1435
 msgid "Go to end of document"
 msgstr "跳到檔案的結尾"
 
-#: ../src/wxmedit_frame.cpp:1429
+#: ../src/wxmedit_frame.cpp:1436
 msgid "Go to previous page"
 msgstr "跳到上一頁"
 
-#: ../src/wxmedit_frame.cpp:1430
+#: ../src/wxmedit_frame.cpp:1437
 msgid "Go to next page"
 msgstr "跳到下一頁"
 
-#: ../src/wxmedit_frame.cpp:1431
+#: ../src/wxmedit_frame.cpp:1438
 msgid "Go to previous word"
 msgstr "跳到上一個字"
 
-#: ../src/wxmedit_frame.cpp:1432
+#: ../src/wxmedit_frame.cpp:1439
 msgid "Go to next word"
 msgstr "跳到下一個字"
 
-#: ../src/wxmedit_frame.cpp:1434
+#: ../src/wxmedit_frame.cpp:1441
 msgid "Move caret left one char and select"
 msgstr "游標向左移動一字元並選取"
 
-#: ../src/wxmedit_frame.cpp:1435
+#: ../src/wxmedit_frame.cpp:1442
 msgid "Move caret right one char and select"
 msgstr "游標向右移動一字元並選取"
 
-#: ../src/wxmedit_frame.cpp:1436
+#: ../src/wxmedit_frame.cpp:1443
 msgid "Move caret up one line and select"
 msgstr "游標向上移動一行並選取"
 
-#: ../src/wxmedit_frame.cpp:1437
+#: ../src/wxmedit_frame.cpp:1444
 msgid "Move caret down one line and select"
 msgstr "游標向下移動一行並選取"
 
-#: ../src/wxmedit_frame.cpp:1438
+#: ../src/wxmedit_frame.cpp:1445
 msgid "Go to begin of line and select"
 msgstr "跳到行首並選取"
 
-#: ../src/wxmedit_frame.cpp:1439
+#: ../src/wxmedit_frame.cpp:1446
 msgid "Go to end of line and select"
 msgstr "跳到行尾並選取"
 
-#: ../src/wxmedit_frame.cpp:1440
+#: ../src/wxmedit_frame.cpp:1447
 msgid "Go to begin of document and select"
 msgstr "跳到檔案的開頭並選取"
 
-#: ../src/wxmedit_frame.cpp:1441
+#: ../src/wxmedit_frame.cpp:1448
 msgid "Go to end of document and select"
 msgstr "跳到檔案的結尾並選取"
 
-#: ../src/wxmedit_frame.cpp:1442
+#: ../src/wxmedit_frame.cpp:1449
 msgid "Go to previous page and select"
 msgstr "跳到上一頁並選取"
 
-#: ../src/wxmedit_frame.cpp:1443
+#: ../src/wxmedit_frame.cpp:1450
 msgid "Go to next page and select"
 msgstr "跳到下一頁並選取"
 
-#: ../src/wxmedit_frame.cpp:1444
+#: ../src/wxmedit_frame.cpp:1451
 msgid "Go to previous word and select"
 msgstr "跳到上一個字並選取"
 
-#: ../src/wxmedit_frame.cpp:1445
+#: ../src/wxmedit_frame.cpp:1452
 msgid "Go to next word and select"
 msgstr "跳到下一個字並選取"
 
-#: ../src/wxmedit_frame.cpp:1446
+#: ../src/wxmedit_frame.cpp:1453
 msgid "Go to left brace and select"
 msgstr "跳到左括號並選取"
 
-#: ../src/wxmedit_frame.cpp:1447
+#: ../src/wxmedit_frame.cpp:1454
 msgid "Go to right brace and select"
 msgstr "跳到右括號並選取"
 
-#: ../src/wxmedit_frame.cpp:1449
+#: ../src/wxmedit_frame.cpp:1456
 msgid "Scroll text up one line"
 msgstr "向上捲動一行"
 
-#: ../src/wxmedit_frame.cpp:1450
+#: ../src/wxmedit_frame.cpp:1457
 msgid "Scroll text down one line"
 msgstr "向下捲動一行"
 
-#: ../src/wxmedit_frame.cpp:1451
+#: ../src/wxmedit_frame.cpp:1458
 msgid "Scroll text up one page"
 msgstr "向上捲動一頁"
 
-#: ../src/wxmedit_frame.cpp:1452
+#: ../src/wxmedit_frame.cpp:1459
 msgid "Scroll text down one page"
 msgstr "向下捲動一頁"
 
-#: ../src/wxmedit_frame.cpp:1453
+#: ../src/wxmedit_frame.cpp:1460
 msgid "Scroll text left"
 msgstr "向左捲動"
 
-#: ../src/wxmedit_frame.cpp:1454
+#: ../src/wxmedit_frame.cpp:1461
 msgid "Scroll text right"
 msgstr "向右捲動"
 
-#: ../src/wxmedit_frame.cpp:1456
+#: ../src/wxmedit_frame.cpp:1463
 msgid "Insert one NewLine char"
 msgstr "插入換行字元"
 
-#: ../src/wxmedit_frame.cpp:1457
+#: ../src/wxmedit_frame.cpp:1464
 msgid "Insert one NewLine char without indentation"
 msgstr "插入換行字元但不自動縮排"
 
-#: ../src/wxmedit_frame.cpp:1458
+#: ../src/wxmedit_frame.cpp:1465
 msgid "Insert one Tab char or indent lines"
 msgstr "插入定位符號或增加縮排"
 
-#: ../src/wxmedit_frame.cpp:1459
+#: ../src/wxmedit_frame.cpp:1466
 msgid "Delete one char to the left of the caret"
 msgstr "刪除游標左邊的字元"
 
-#: ../src/wxmedit_frame.cpp:1461
+#: ../src/wxmedit_frame.cpp:1468
 msgid "Delete a word left from the caret"
 msgstr "刪除游標左邊的一個單字"
 
-#: ../src/wxmedit_frame.cpp:1462
+#: ../src/wxmedit_frame.cpp:1469
 msgid "Delete a word right from the caret"
 msgstr "刪除游標右邊的一個單字"
 
-#: ../src/wxmedit_frame.cpp:1464
+#: ../src/wxmedit_frame.cpp:1471
 msgid "Toggle Insert/Overwrite Mode"
 msgstr "切換插入/覆蓋模式"
 
-#: ../src/wxmedit_frame.cpp:1988
+#: ../src/wxmedit_frame.cpp:1998
 msgid "New File"
 msgstr "新增檔案"
 
-#: ../src/wxmedit_frame.cpp:1989 ../src/wxmedit_frame.cpp:3236
+#: ../src/wxmedit_frame.cpp:1999 ../src/wxmedit_frame.cpp:3246
 msgid "Open File"
 msgstr "開啟檔案"
 
-#: ../src/wxmedit_frame.cpp:1991
+#: ../src/wxmedit_frame.cpp:2001
 msgid "Save All Files"
 msgstr "儲存所有檔案"
 
-#: ../src/wxmedit_frame.cpp:1992
+#: ../src/wxmedit_frame.cpp:2002
 msgid "Close File"
 msgstr "關閉檔案"
 
-#: ../src/wxmedit_frame.cpp:1993
+#: ../src/wxmedit_frame.cpp:2003
 msgid "Close All Files"
 msgstr "關閉所有檔案"
 
-#: ../src/wxmedit_frame.cpp:1996
+#: ../src/wxmedit_frame.cpp:2006
 msgid "Undo"
 msgstr "還原"
 
-#: ../src/wxmedit_frame.cpp:1997
+#: ../src/wxmedit_frame.cpp:2007
 msgid "Redo"
 msgstr "重做"
 
-#: ../src/wxmedit_frame.cpp:2000
+#: ../src/wxmedit_frame.cpp:2010
 msgid "Cut"
 msgstr "剪下"
 
-#: ../src/wxmedit_frame.cpp:2001
+#: ../src/wxmedit_frame.cpp:2011
 msgid "Copy"
 msgstr "複製"
 
-#: ../src/wxmedit_frame.cpp:2002
+#: ../src/wxmedit_frame.cpp:2012
 msgid "Paste"
 msgstr "貼上"
 
-#: ../src/wxmedit_frame.cpp:2008
+#: ../src/wxmedit_frame.cpp:2018
 msgid "Increase Indent"
 msgstr "增加縮排"
 
-#: ../src/wxmedit_frame.cpp:2009
+#: ../src/wxmedit_frame.cpp:2019
 msgid "Decrease Indent"
 msgstr "減少縮排"
 
-#: ../src/wxmedit_frame.cpp:2012 wxstd.po.cpp:49
+#: ../src/wxmedit_frame.cpp:2022 wxstd.po.cpp:49
 msgid "Comment"
 msgstr "註解"
 
-#: ../src/wxmedit_frame.cpp:2013
+#: ../src/wxmedit_frame.cpp:2023
 msgid "Uncomment"
 msgstr "取消註解"
 
-#: ../src/wxmedit_frame.cpp:2016
+#: ../src/wxmedit_frame.cpp:2026
 msgid "Find"
 msgstr "尋找"
 
-#: ../src/wxmedit_frame.cpp:2017
+#: ../src/wxmedit_frame.cpp:2027
 msgid "Find Next"
 msgstr "尋找下一個"
 
-#: ../src/wxmedit_frame.cpp:2018
+#: ../src/wxmedit_frame.cpp:2028
 msgid "Find Previous"
 msgstr "尋找上一個"
 
-#: ../src/wxmedit_frame.cpp:2028
+#: ../src/wxmedit_frame.cpp:2038
 msgid "No Line Wrap"
 msgstr "取消自動換行"
 
-#: ../src/wxmedit_frame.cpp:2029
+#: ../src/wxmedit_frame.cpp:2039
 msgid "Wrap Lines by Window"
 msgstr "按視窗自動換行"
 
-#: ../src/wxmedit_frame.cpp:2030
+#: ../src/wxmedit_frame.cpp:2040
 msgid "Wrap Lines by Max Columns"
 msgstr "按指定列數自動換行"
 
-#: ../src/wxmedit_frame.cpp:2034
+#: ../src/wxmedit_frame.cpp:2044
 msgid "Column Mode"
 msgstr "區塊模式"
 
-#: ../src/wxmedit_frame.cpp:2054
+#: ../src/wxmedit_frame.cpp:2064
 msgid "Find/Replace in Files Results"
 msgstr "多檔案尋找/取代的結果"
 
-#: ../src/wxmedit_frame.cpp:2062
+#: ../src/wxmedit_frame.cpp:2072
 msgid "Information Window"
 msgstr "資訊視窗"
 
-#: ../src/wxmedit_frame.cpp:2621
+#: ../src/wxmedit_frame.cpp:2631
 #, c-format
 msgid "NoName%d"
 msgstr "未命名%d"
 
-#: ../src/wxmedit_frame.cpp:2658
+#: ../src/wxmedit_frame.cpp:2668
 msgid "This is a Directory:"
 msgstr "這是個目錄："
 
-#: ../src/wxmedit_frame.cpp:2667
+#: ../src/wxmedit_frame.cpp:2677
 msgid "This file does not exist:"
 msgstr "這個檔案不存在："
 
-#: ../src/wxmedit_frame.cpp:2685
+#: ../src/wxmedit_frame.cpp:2695
 msgid "Cannot access this file:"
 msgstr "無法存取這個檔案："
 
-#: ../src/wxmedit_frame.cpp:2723
+#: ../src/wxmedit_frame.cpp:2733
 msgid "Cannot load this file:"
 msgstr "無法載入這個檔案："
 
-#: ../src/wxmedit_frame.cpp:3157 ../src/wxmedit_frame.cpp:3163
+#: ../src/wxmedit_frame.cpp:3167 ../src/wxmedit_frame.cpp:3173
 msgid "Has No Unicode BOM (Byte-Order Mark)"
 msgstr "沒有 Unicode BOM (位元組順序標籤)"
 
-#: ../src/wxmedit_frame.cpp:3360
+#: ../src/wxmedit_frame.cpp:3370
 msgid "Close all files in this foler and in all the subfolers:"
 msgstr "關閉這個資料夾及其子資料夾中的所有檔案："
 
-#: ../src/wxmedit_frame.cpp:3495
+#: ../src/wxmedit_frame.cpp:3505
 msgid ""
 "There was a problem previewing.\n"
 "Perhaps your current printer is not set correctly?"
@@ -2955,15 +2971,15 @@ msgstr ""
 "在列印預覽時發生問題。\n"
 "或許是印表機沒有設定正確？"
 
-#: ../src/wxmedit_frame.cpp:3495
+#: ../src/wxmedit_frame.cpp:3505
 msgid "Previewing"
 msgstr "列印預覽"
 
-#: ../src/wxmedit_frame.cpp:3499
+#: ../src/wxmedit_frame.cpp:3509
 msgid "wxMEdit Print Preview"
 msgstr "wxMEdit 列印預覽"
 
-#: ../src/wxmedit_frame.cpp:3524
+#: ../src/wxmedit_frame.cpp:3534
 msgid ""
 "There was a problem printing.\n"
 "Perhaps your current printer is not set correctly?"
@@ -2971,55 +2987,55 @@ msgstr ""
 "在列印時發生問題。\n"
 "或許是印表機沒有設定正確？"
 
-#: ../src/wxmedit_frame.cpp:3524
+#: ../src/wxmedit_frame.cpp:3534
 msgid "Printing"
 msgstr "列印"
 
-#: ../src/wxmedit_frame.cpp:3852 ../src/wxmedit_frame.cpp:3895
+#: ../src/wxmedit_frame.cpp:3862 ../src/wxmedit_frame.cpp:3905
 msgid "ASCII characters"
 msgstr "ASCII 字元"
 
-#: ../src/wxmedit_frame.cpp:3852 ../src/wxmedit_frame.cpp:3895
+#: ../src/wxmedit_frame.cpp:3862 ../src/wxmedit_frame.cpp:3905
 msgid "Japanese characters"
 msgstr "日文"
 
-#: ../src/wxmedit_frame.cpp:3853 ../src/wxmedit_frame.cpp:3896
+#: ../src/wxmedit_frame.cpp:3863 ../src/wxmedit_frame.cpp:3906
 msgid "Korean characters"
 msgstr "韓文"
 
-#: ../src/wxmedit_frame.cpp:3853 ../src/wxmedit_frame.cpp:3896
+#: ../src/wxmedit_frame.cpp:3863 ../src/wxmedit_frame.cpp:3906
 msgid "other characters"
 msgstr "其它字元"
 
-#: ../src/wxmedit_frame.cpp:3855 ../src/wxmedit_frame.cpp:3898
+#: ../src/wxmedit_frame.cpp:3865 ../src/wxmedit_frame.cpp:3908
 msgid "Choose the characters you want to convert:"
 msgstr "選擇要轉換的字元："
 
-#: ../src/wxmedit_frame.cpp:4115
+#: ../src/wxmedit_frame.cpp:4125
 msgid "Line Number: (you can input HexNumber: 0xNNN)"
 msgstr "行號：(可以輸入十六進位數字: 0xNNN)"
 
-#: ../src/wxmedit_frame.cpp:4115
+#: ../src/wxmedit_frame.cpp:4125
 msgid "Go To Line"
 msgstr "跳到此行"
 
-#: ../src/wxmedit_frame.cpp:4140
+#: ../src/wxmedit_frame.cpp:4150
 msgid "Position: (you can input HexNumber: 0xNNN)"
 msgstr "檔案位置：(可以輸入十六進位數字: 0xNNN)"
 
-#: ../src/wxmedit_frame.cpp:4140
+#: ../src/wxmedit_frame.cpp:4150
 msgid "Go To Position"
 msgstr "跳到檔案位置"
 
-#: ../src/wxmedit_frame.cpp:5022
+#: ../src/wxmedit_frame.cpp:5032
 msgid "Press OK to visit our HomePage."
 msgstr "按「確定」瀏覽 wxMEdit 首頁。"
 
-#: ../src/wxmedit_frame.cpp:5024
+#: ../src/wxmedit_frame.cpp:5034
 msgid "wxMEdit, a cross-platform Text/Hex Editor"
 msgstr "wxMEdit：跨平台的文字/十六進位編輯器"
 
-#: ../src/wxmedit_frame.cpp:5027
+#: ../src/wxmedit_frame.cpp:5037
 msgid "Press OK to view the license online version.\n"
 msgstr "按「確定」檢視線上版授權許可。\n"
 
