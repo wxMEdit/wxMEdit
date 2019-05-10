@@ -39,10 +39,10 @@
 
 namespace wxm
 {
-	const wxString NewLineChar::MACDescription(wxT("CR/0D (MAC)"));
-	const wxString NewLineChar::UNIXDescription(wxT("LF/0A (UNIX)"));
-	const wxString NewLineChar::DOSDescription(wxT("CRLF/0D0A (DOS)"));
-	const wxString NewLineChar::NoneDescription(wxT("No EOL"));
+	const wxString NewLineChar::MACDescription(_("CR/0D (Classic Mac OS)"));
+	const wxString NewLineChar::UNIXDescription(wxT("LF/0A (UNIX/macOS)"));
+	const wxString NewLineChar::DOSDescription(wxT("CRLF/0D0A (Windows/DOS)"));
+	const wxString NewLineChar::NoneDescription(_("No EOL"));
 
 	const ucs4string NewLineChar::MACValue(1, ucs4_t(0x0D));
 	const ucs4string NewLineChar::UNIXValue(1, ucs4_t(0x0A));
