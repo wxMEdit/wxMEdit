@@ -2,7 +2,7 @@
 // vim:         sw=4 ts=4
 // Name:        xm/encdet.h
 // Description: wxMEdit Encoding Detector
-// Copyright:   2013-2018  JiaYanwei   <wxmedit@gmail.com>
+// Copyright:   2013-2019  JiaYanwei   <wxmedit@gmail.com>
 // License:     GPLv3
 ///////////////////////////////////////////////////////////////////////////////
 

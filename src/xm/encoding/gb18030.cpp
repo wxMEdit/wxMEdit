@@ -2,7 +2,7 @@
 // vim:         ts=4 sw=4
 // Name:        xm/encoding/gb18030.cpp
 // Description: Define the Multi-byte Encoding GB18030
-// Copyright:   2013-2018  JiaYanwei   <wxmedit@gmail.com>
+// Copyright:   2013-2019  JiaYanwei   <wxmedit@gmail.com>
 // License:     GPLv3
 ///////////////////////////////////////////////////////////////////////////////
 
