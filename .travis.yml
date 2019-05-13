@@ -1,0 +1,73 @@
+matrix:
+  include:
+    - name: ubuntu 16.04 gcc
+      compiler: gcc
+      dist: xenial
+      language: cpp
+      addons:
+        apt:
+          update: true
+          packages:
+            - libgtk2.0-dev
+            - libwxgtk3.0-dev
+            - libboost-dev
+            - libicu-dev
+            - libcurl4-gnutls-dev
+      before_script:
+        - touch *
+      script:
+        - ./configure && make -j2 && make -j2 check
+
+    - name: ubuntu 16.04 clang
+      compiler: clang
+      dist: xenial
+      language: cpp
+      addons:
+        apt:
+          update: true
+          packages:
+            - libgtk2.0-dev
+            - libwxgtk3.0-dev
+            - libboost-dev
+            - libicu-dev
+            - libcurl4-gnutls-dev
+      before_script:
+        - touch *
+      script:
+        - ./configure && make -j2 && make -j2 check
+
+    - name: ubuntu 14.04 gcc
+      compiler: gcc
+      dist: trusty
+      language: cpp
+      addons:
+        apt:
+          update: true
+          packages:
+            - libgtk2.0-dev
+            - libwxgtk2.8-dev
+            - libboost-dev
+            - libicu-dev
+            - libcurl4-gnutls-dev
+      before_script:
+        - touch *
+      script:
+        - ./configure && make -j2 && make -j2 check
+
+    - name: ubuntu 14.04 clang
+      compiler: clang
+      dist: trusty
+      language: cpp
+      addons:
+        apt:
+          update: true
+          packages:
+            - libgtk2.0-dev
+            - libwxgtk2.8-dev
+            - libboost-dev
+            - libicu-dev
+            - libcurl4-gnutls-dev
+      before_script:
+        - touch *
+      script:
+        - ./configure && make -j2 && make -j2 check
