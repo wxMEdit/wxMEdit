@@ -307,6 +307,30 @@ void UnicodeBlockSet::InitBlockDescriptions()
 	m_des_map[UBLOCK_SOYOMBO] = _("Soyombo");
 	m_des_map[UBLOCK_SYRIAC_SUPPLEMENT] = _("Syriac Supplement");
 	m_des_map[UBLOCK_ZANABAZAR_SQUARE] = _("Zanabazar Square");
+#    if (U_ICU_VERSION_MAJOR_NUM >= 62) // ICU 62, Unicode 11.0
+	m_des_map[UBLOCK_CHESS_SYMBOLS] = _("Chess Symbols");
+	m_des_map[UBLOCK_DOGRA] = _("Dogra");
+	m_des_map[UBLOCK_GEORGIAN_EXTENDED] = _("Georgian Extended");
+	m_des_map[UBLOCK_GUNJALA_GONDI] = _("Gunjala Gondi");
+	m_des_map[UBLOCK_HANIFI_ROHINGYA] = _("Hanifi Rohingya");
+	m_des_map[UBLOCK_INDIC_SIYAQ_NUMBERS] = _("Indic Siyaq Numbers");
+	m_des_map[UBLOCK_MAKASAR] = _("Makasar");
+	m_des_map[UBLOCK_MAYAN_NUMERALS] = _("Mayan Numerals");
+	m_des_map[UBLOCK_MEDEFAIDRIN] = _("Medefaidrin");
+	m_des_map[UBLOCK_OLD_SOGDIAN] = _("Old Sogdian");
+	m_des_map[UBLOCK_SOGDIAN] = _("Sogdian");
+#     if (U_ICU_VERSION_MAJOR_NUM >= 64) // ICU 64, Unicode 12.0
+	m_des_map[UBLOCK_EGYPTIAN_HIEROGLYPH_FORMAT_CONTROLS] = _("Egyptian Hieroglyph Format Controls");
+	m_des_map[UBLOCK_ELYMAIC] = _("Elymaic");
+	m_des_map[UBLOCK_NANDINAGARI] = _("Nandinagari");
+	m_des_map[UBLOCK_NYIAKENG_PUACHUE_HMONG] = _("Nyiakeng Puachue Hmong");
+	m_des_map[UBLOCK_OTTOMAN_SIYAQ_NUMBERS] = _("Ottoman Siyaq Numbers");
+	m_des_map[UBLOCK_SMALL_KANA_EXTENSION] = _("Small Kana Extension");
+	m_des_map[UBLOCK_SYMBOLS_AND_PICTOGRAPHS_EXTENDED_A] = _("Symbols and Pictographs Extended-A");
+	m_des_map[UBLOCK_TAMIL_SUPPLEMENT] = _("Tamil Supplement");
+	m_des_map[UBLOCK_WANCHO] = _("Wancho");
+#     endif // 64
+#    endif // 62
 #   endif // 60
 #  endif // 58
 # endif // 56
