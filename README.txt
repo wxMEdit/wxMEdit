@@ -41,9 +41,6 @@ B. Windows / ReactOS (__WXMSW__):
       5. libcurl 7.15.5 or higher
 
 NOTE:
-   wxMEdit can be built with clang and libstdc++ under FreeBSD and some Linux 
-distributions, but it may fail under other Linux distributions.
-
    You can download Bakefile at:
       http://www.bakefile.org/download.html
 
@@ -152,7 +149,6 @@ wxMEdit: http://wxmedit.github.io/
 MadEdit: http://sourceforge.net/projects/madedit/
 wxWidgets: http://www.wxwidgets.org/
 Boost: http://www.boost.org/
-Open Clip Art Library: http://www.openclipart.org/
 ICU: http://site.icu-project.org/
 Bakefile: http://www.bakefile.org/
 Code::Blocks: http://www.codeblocks.org/
