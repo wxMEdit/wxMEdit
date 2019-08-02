@@ -1,5 +1,27 @@
 matrix:
   include:
+    - name: ubuntu 18.04 gcc
+      compiler: gcc
+      dist: bionic
+      language: cpp
+      before_script:
+        - sudo apt-get install -y --no-install-suggests --no-install-recommends
+            libgtk2.0-dev libwxgtk3.0-dev libboost-dev
+        - touch *
+      script:
+        - ./configure && make -j2 && make -j2 check
+
+    - name: ubuntu 18.04 clang
+      compiler: clang
+      dist: bionic
+      language: cpp
+      before_script:
+        - sudo apt-get install -y --no-install-suggests --no-install-recommends
+            libgtk2.0-dev libwxgtk3.0-dev libboost-dev
+        - touch *
+      script:
+        - ./configure && make -j2 && make -j2 check
+
     - name: ubuntu 16.04 gcc
       compiler: gcc
       dist: xenial
@@ -11,8 +33,6 @@ matrix:
             - libgtk2.0-dev
             - libwxgtk3.0-dev
             - libboost-dev
-            - libicu-dev
-            - libcurl4-gnutls-dev
       before_script:
         - touch *
       script:
@@ -29,8 +49,6 @@ matrix:
             - libgtk2.0-dev
             - libwxgtk3.0-dev
             - libboost-dev
-            - libicu-dev
-            - libcurl4-gnutls-dev
       before_script:
         - touch *
       script:
@@ -47,8 +65,6 @@ matrix:
             - libgtk2.0-dev
             - libwxgtk2.8-dev
             - libboost-dev
-            - libicu-dev
-            - libcurl4-gnutls-dev
       before_script:
         - touch *
       script:
@@ -65,8 +81,6 @@ matrix:
             - libgtk2.0-dev
             - libwxgtk2.8-dev
             - libboost-dev
-            - libicu-dev
-            - libcurl4-gnutls-dev
       before_script:
         - touch *
       script:
