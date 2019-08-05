@@ -1,87 +1,47 @@
+language: cpp
+
+addons:
+  apt:
+    update: true
+    packages:
+      - libgtk2.0-dev
+      - libwxgtk3.0-dev
+      - libboost-dev
+
+before_script:
+  - touch * && ./configure
+
+script:
+  - make -j2 && make -j2 check
+
 matrix:
   include:
-    - name: ubuntu 18.04 gcc
+    - name: Ubuntu 18.04 GCC
       compiler: gcc
       dist: bionic
-      language: cpp
-      before_script:
+      install:
         - sudo apt-get install -y --no-install-suggests --no-install-recommends
             libgtk2.0-dev libwxgtk3.0-dev libboost-dev
-        - touch *
-      script:
-        - ./configure && make -j2 && make -j2 check
 
-    - name: ubuntu 18.04 clang
+    - name: Ubuntu 18.04 Clang
       compiler: clang
       dist: bionic
-      language: cpp
-      before_script:
+      install:
         - sudo apt-get install -y --no-install-suggests --no-install-recommends
             libgtk2.0-dev libwxgtk3.0-dev libboost-dev
-        - touch *
-      script:
-        - ./configure && make -j2 && make -j2 check
 
-    - name: ubuntu 16.04 gcc
+    - name: Ubuntu 16.04 GCC
       compiler: gcc
       dist: xenial
-      language: cpp
-      addons:
-        apt:
-          update: true
-          packages:
-            - libgtk2.0-dev
-            - libwxgtk3.0-dev
-            - libboost-dev
-      before_script:
-        - touch *
-      script:
-        - ./configure && make -j2 && make -j2 check
 
-    - name: ubuntu 16.04 clang
+    - name: Ubuntu 16.04 Clang
       compiler: clang
       dist: xenial
-      language: cpp
-      addons:
-        apt:
-          update: true
-          packages:
-            - libgtk2.0-dev
-            - libwxgtk3.0-dev
-            - libboost-dev
-      before_script:
-        - touch *
-      script:
-        - ./configure && make -j2 && make -j2 check
 
-    - name: ubuntu 14.04 gcc
+    - name: Ubuntu 14.04 GCC
       compiler: gcc
       dist: trusty
-      language: cpp
-      addons:
-        apt:
-          update: true
-          packages:
-            - libgtk2.0-dev
-            - libwxgtk2.8-dev
-            - libboost-dev
-      before_script:
-        - touch *
-      script:
-        - ./configure && make -j2 && make -j2 check
 
-    - name: ubuntu 14.04 clang
+    - name: Ubuntu 14.04 Clang
       compiler: clang
       dist: trusty
-      language: cpp
-      addons:
-        apt:
-          update: true
-          packages:
-            - libgtk2.0-dev
-            - libwxgtk2.8-dev
-            - libboost-dev
-      before_script:
-        - touch *
-      script:
-        - ./configure && make -j2 && make -j2 check
