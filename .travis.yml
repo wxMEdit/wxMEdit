@@ -1,5 +1,92 @@
 language: cpp
 
+matrix:
+  include:
+    - name: Ubuntu 18.04 GCC wx 3.0
+      compiler: gcc
+      dist: bionic
+
+    - name: Ubuntu 18.04 Clang wx 3.0
+      dist: bionic
+      compiler: clang
+
+    - name: macOS 10.14 Xcode 11.0 wx 3.0 GTK+ 3.0
+      os: osx
+      osx_image: xcode11
+      env:
+        - WXVER=3.0
+        - NOCHECK=1
+
+    - name: macOS 10.14 Xcode 11.0 wx 2.8
+      os: osx
+      osx_image: xcode11
+      env:
+        - WXVER=2.8
+
+    - name: Ubuntu 16.04 GCC wx 3.0
+      dist: xenial
+      compiler: gcc
+      env:
+        - NOCHECK=1
+
+    - name: Ubuntu 16.04 Clang wx 3.0
+      dist: xenial
+      compiler: clang
+
+    - name: Ubuntu 14.04 GCC wx 2.8
+      dist: trusty
+      compiler: gcc
+
+    - name: Ubuntu 14.04 Clang wx 2.8
+      dist: trusty
+      compiler: clang
+
+    - name: macOS 10.14 Xcode 10.2.1 wx 3.0 GTK+ 3.0
+      os: osx
+      osx_image: xcode10.2
+      env:
+        - WXVER=3.0
+        - NOCHECK=1
+
+    - name: macOS 10.14 Xcode 10.2.1 wx 2.8
+      os: osx
+      osx_image: xcode10.2
+      env:
+        - WXVER=2.8
+        - NOCHECK=1
+
+    - name: macOS 10.13 Xcode 9.4.1 wx 3.0 GTK+ 3.0
+      os: osx
+      osx_image: xcode9.4
+      env:
+        - WXVER=3.0
+        - NOCHECK=1
+
+    - name: macOS 10.13 Xcode 9.4.1 wx 2.8
+      os: osx
+      osx_image: xcode9.4
+      env:
+        - WXVER=2.8
+
+    - name: macOS 10.12 Xcode 9.0 wx 3.0 GTK+ 3.0
+      os: osx
+      osx_image: xcode9
+      env:
+        - WXVER=3.0
+        - NOCHECK=1
+
+    - name: macOS 10.12 Xcode 8.3.3 wx 2.8
+      os: osx
+      osx_image: xcode8.3
+      env:
+        - WXVER=2.8
+
+    - name: macOS 10.11 Xcode 7.3.1 wx 2.8
+      os: osx
+      osx_image: xcode7.3
+      env:
+        - WXVER=2.8
+
 addons:
   apt:
     update: true
@@ -8,40 +95,37 @@ addons:
       - libwxgtk3.0-dev
       - libboost-dev
 
+install:
+  - |
+    if [ "$TRAVIS_DIST" == "bionic" ]
+    then
+      sudo apt-get update
+      sudo apt-get install -y --no-install-suggests --no-install-recommends \
+        libgtk2.0-dev libwxgtk3.0-dev libboost-dev
+    elif [ "$TRAVIS_OS_NAME" == "osx" ]
+    then
+      curl -LO https://raw.githubusercontent.com/GiovanniBussi/macports-ci/master/macports-ci
+      source ./macports-ci install
+      sudo port -kN install gsed wxgtk-$WXVER pkgconfig curl
+    fi
+
 before_script:
-  - touch * && ./configure
+  - |
+    if [ "$TRAVIS_OS_NAME" == "osx" ]
+    then
+      cd $HOME
+      curl -LO https://dl.bintray.com/boostorg/release/1.70.0/source/boost_1_70_0.tar.gz
+      tar xf boost_1_70_0.tar.gz
+      cd $OLDPWD
+      CFG_ARGS="--prefix=/opt/local --with-boost=$HOME/boost_1_70_0
+                --with-wx-config=/opt/local/Library/Frameworks/wxWidgets.framework/Versions/wxGTK/$WXVER/bin/wx-config"
+      if [ "$WXVER" == 3.0 ]
+      then
+        gsed -i 's/gtk+-2.0/gtk+-3.0/g' configure*
+      fi
+    fi
+  - touch * && ./configure $CFG_ARGS
 
 script:
-  - make -j2 && make -j2 check
-
-matrix:
-  include:
-    - name: Ubuntu 18.04 GCC
-      compiler: gcc
-      dist: bionic
-      install:
-        - sudo apt-get install -y --no-install-suggests --no-install-recommends
-            libgtk2.0-dev libwxgtk3.0-dev libboost-dev
-
-    - name: Ubuntu 18.04 Clang
-      compiler: clang
-      dist: bionic
-      install:
-        - sudo apt-get install -y --no-install-suggests --no-install-recommends
-            libgtk2.0-dev libwxgtk3.0-dev libboost-dev
-
-    - name: Ubuntu 16.04 GCC
-      compiler: gcc
-      dist: xenial
-
-    - name: Ubuntu 16.04 Clang
-      compiler: clang
-      dist: xenial
-
-    - name: Ubuntu 14.04 GCC
-      compiler: gcc
-      dist: trusty
-
-    - name: Ubuntu 14.04 Clang
-      compiler: clang
-      dist: trusty
+  - make -j3
+  - if [ -z "$NOCHECK" ]; then make -j3 check; fi
