@@ -59,7 +59,7 @@ esac
 
 GTK_MAJOR=3
 AC_ARG_WITH(gtk,
-    [  --with-gtk=VERSIOM      major version number [default=3]],
+    [  --with-gtk=VERSIOM      use GTK major version number [[default=3]]],
     [GTK_MAJOR=$withval])
 
 PKG_CHECK_MODULES(glib_gtk, [gtk+-$GTK_MAJOR.0 >= $GTK_MAJOR.0.0 glib-2.0 >= 2.6.0])
