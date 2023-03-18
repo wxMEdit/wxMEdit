@@ -33,7 +33,7 @@ ICUConverter::ICUConverter(const std::string& encname): m_ucnv(nullptr)
 
 	m_ucnv = ucnv_open(encname.c_str(), &err);
 
-	ucnv_setFallback(m_ucnv, FALSE);
+	ucnv_setFallback(m_ucnv, false);
 	ucnv_setFromUCallBack(m_ucnv, error_callback, nullptr, nullptr, nullptr, &err);
 }
 
