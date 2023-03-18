@@ -329,6 +329,39 @@ void UnicodeBlockSet::InitBlockDescriptions()
 	m_des_map[UBLOCK_SYMBOLS_AND_PICTOGRAPHS_EXTENDED_A] = _("Symbols and Pictographs Extended-A");
 	m_des_map[UBLOCK_TAMIL_SUPPLEMENT] = _("Tamil Supplement");
 	m_des_map[UBLOCK_WANCHO] = _("Wancho");
+#      if (U_ICU_VERSION_MAJOR_NUM >= 66) // ICU 66, Unicode 13.0
+	m_des_map[UBLOCK_CHORASMIAN] = _("Chorasmian");
+	m_des_map[UBLOCK_CJK_UNIFIED_IDEOGRAPHS_EXTENSION_G] = _("CJK Unified Ideographs Extension G");
+	m_des_map[UBLOCK_DIVES_AKURU] = _("Dives Akuru");
+	m_des_map[UBLOCK_KHITAN_SMALL_SCRIPT] = _("Khitan Small Script");
+	m_des_map[UBLOCK_LISU_SUPPLEMENT] = _("Lisu Supplement");
+	m_des_map[UBLOCK_SYMBOLS_FOR_LEGACY_COMPUTING] = _("Symbols for Legacy Computing");
+	m_des_map[UBLOCK_TANGUT_SUPPLEMENT] = _("Tangut Supplement");
+	m_des_map[UBLOCK_YEZIDI] = _("Yezidi");
+#       if (U_ICU_VERSION_MAJOR_NUM >= 70) // ICU 70, Unicode 14.0
+	m_des_map[UBLOCK_ARABIC_EXTENDED_B] = _("Arabic Extended-B");
+	m_des_map[UBLOCK_CYPRO_MINOAN] = _("Cypro-Minoan");
+	m_des_map[UBLOCK_ETHIOPIC_EXTENDED_B] = _("Ethiopic Extended-B");
+	m_des_map[UBLOCK_KANA_EXTENDED_B] = _("Kana Extended-B");
+	m_des_map[UBLOCK_LATIN_EXTENDED_F] = _("Latin Extended-F");
+	m_des_map[UBLOCK_LATIN_EXTENDED_G] = _("LATIN_EXTENDED_G");
+	m_des_map[UBLOCK_OLD_UYGHUR] = _("Old Uyghur");
+	m_des_map[UBLOCK_TANGSA] = _("Tangsa");
+	m_des_map[UBLOCK_TOTO] = _("Toto");
+	m_des_map[UBLOCK_UNIFIED_CANADIAN_ABORIGINAL_SYLLABICS_EXTENDED_A] = _("Unified Canadian Aboriginal Syllabics Extended-A");
+	m_des_map[UBLOCK_VITHKUQI] = _("Vithkuqi");
+	m_des_map[UBLOCK_ZNAMENNY_MUSICAL_NOTATION] = _("Znamenny Musical Notation");
+#        if (U_ICU_VERSION_MAJOR_NUM >= 72) // ICU 72, Unicode 15.0
+	m_des_map[UBLOCK_ARABIC_EXTENDED_C] = _("Arabic Extended-C");
+	m_des_map[UBLOCK_CJK_UNIFIED_IDEOGRAPHS_EXTENSION_H] = _("CJK Unified Ideographs Extension H");
+	m_des_map[UBLOCK_CYRILLIC_EXTENDED_D] = _("Cyrillic Extended-D");
+	m_des_map[UBLOCK_DEVANAGARI_EXTENDED_A] = _("Devanagari Extended-A");
+	m_des_map[UBLOCK_KAKTOVIK_NUMERALS] = _("Kaktovik Numerals");
+	m_des_map[UBLOCK_KAWI] = _("Kawi");
+	m_des_map[UBLOCK_NAG_MUNDARI] = _("Nag Mundari");
+#        endif // 72
+#       endif // 70
+#      endif // 66
 #     endif // 64
 #    endif // 62
 #   endif // 60
