@@ -218,9 +218,10 @@ const static CreditsList s_wxMEdit_Credits = boost::assign::pair_list_of
         (s_("cfreeer"),                     _("Patch submitter for wxMEdit/MadEdit"))
         (s_("Nagy Gabor"),                  _("Patch submitter for wxMEdit/MadEdit"))
         (s_("LinXiaoHui"),                  _("Patch submitter for wxMEdit/MadEdit"))
+        (s_("Micha\u0142 Zi\u0105bkowski"), _("Creator of Gentoo package wxmedit"))
         (s_("codestation"),                 _("Creator of wxmedit package in AUR"))
         (s_("Jingbei Li"),                  _("Maintainer of wxmedit package in AUR"))
-        (s_("Micha\u0142 Zi\u0105bkowski"), _("Creator of Gentoo package wxmedit"))
+        (s_("petronny"),                    _("Maintainer of wxmedit package in AUR"))
     ;
 #undef s_
 #undef _
