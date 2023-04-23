@@ -8682,11 +8682,13 @@ void MadEdit::OnKeyDown(wxKeyEvent& evt)
 
 void MadEdit::OnMouseLeftDown(wxMouseEvent &evt)
 {
+#ifdef __WXMSW__
     if (!m_mouse_in_window)
     {
         evt.Skip();
         return;
     }
+#endif
 
     //wxTheApp->GetTopWindow()->SetTitle(wxString::Format(wxT("LDown")));
 
