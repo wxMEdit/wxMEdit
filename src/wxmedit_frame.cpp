@@ -161,8 +161,8 @@
 #include "../images/options.xpm"
 #define options_xpm_idx (hexmode_xpm_idx+1)
 
-#include "../images/wxmedit0_24x24.xpm"
-#define wxmedit0_24x24_xpm_idx (options_xpm_idx+1)
+#include "../images/wxmedit_24x24.xpm"
+#define wxmedit_24x24_xpm_idx (options_xpm_idx+1)
 
 #undef static
 
@@ -1422,7 +1422,7 @@ CommandData CommandTable[]=
     // Help
     { 0, 0, 0, 0, _("&Help"), 0, wxITEM_NORMAL, 0, &g_Menu_Help, 0},
     { 0, 1, menuCheckUpdates, wxT("menuCheckUpdates"), _("&Check for updates..."), wxT(""),       wxITEM_NORMAL, -1,                    0, _("Check for new versions of wxMEdit")},
-    { 0, 1, menuAbout,       wxT("menuAbout"),       _("&About wxMEdit..."),          wxT(""),       wxITEM_NORMAL, wxmedit0_24x24_xpm_idx, 0, _("Show about dialog")},
+    { 0, 1, menuAbout,        wxT("menuAbout"),        _("&About wxMEdit..."),     wxT(""),       wxITEM_NORMAL, wxmedit_24x24_xpm_idx, 0, _("Show about dialog")},
     // end menu
 
     // begin editor
@@ -1784,7 +1784,7 @@ void MadEditFrame::CreateGUIControls()
     m_ImageList->Add(wxBitmap(columnmode_xpm));
     m_ImageList->Add(wxBitmap(hexmode_xpm));
     m_ImageList->Add(wxBitmap(options_xpm));
-    m_ImageList->Add(wxBitmap(wxmedit0_24x24_xpm));
+    m_ImageList->Add(wxBitmap(wxmedit_24x24_xpm));
 
 
     // add menuitems
