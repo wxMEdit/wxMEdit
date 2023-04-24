@@ -1,7 +1,7 @@
 #                                               -*- Autoconf -*-
 # Process this file with autoconf to produce a configure script.
 
-AC_PREREQ(2.59)
+AC_PREREQ(2.63)
 AC_INIT([wxmedit], [3.1], [wxmedit@gmail.com])
 AC_CONFIG_SRCDIR([src/wxmedit_app.cpp])
 AC_CONFIG_HEADER([config.h])
@@ -50,51 +50,18 @@ case "${host}" in
     ;;
 esac
 
-# Checks for glib2, gtk2 libraries
-#AM_PATH_GLIB_2_0(2.6.0)
-#AM_PATH_GTK_2_0(2.6.0)
+PKG_CHECK_MODULES(curl, [libcurl])
 
-#if test "x$IS_MACOS" == "x"; then
-#fi
-PKG_CHECK_MODULES(glib_gtk2, [
-        glib-2.0 >= 2.6.0
-        gtk+-2.0 >= 2.6.0
-])
-CXXFLAGS="$CXXFLAGS $glib_gtk2_CFLAGS"
-LIBS="$LIBS $glib_gtk2_LIBS -lX11"
+PKG_CHECK_MODULES(icu, [icu-i18n >= 50])
+CPPFLAGS="$CPPFLAGS $icu_CFLAGS"
+LIBS="$LIBS $icu_LIBS"
 
-PKG_CHECK_MODULES([curl], [libcurl])
-
-# option for additional wxAUI lib
-AC_ARG_WITH(aui, 
-    [  --with-aui=PATH         use additional wxAUI library path],
-    [WXAUI="$withval"])
-if test "w$WXAUI" != "x"; then
-    CPPFLAGS="$CXXFLAGS -I$WXAUI/include"
-    LIBS="$LIBS -L$WXAUI/lib"
-fi
-
-
-# option for additional Boost.Xpressive and Boost.Foreach lib
-AC_ARG_WITH(boost-add, 
-    [  --with-boost-add=PATH   use additional Boost.Xpressive and Boost.Foreach library path],
-    [CXXFLAGS="$CXXFLAGS -I$withval"])
 
 # option for additional Boost lib
 AC_ARG_WITH(boost, 
     [  --with-boost=PATH       use additional Boost library path,
                           otherwise use system include path],
     [CXXFLAGS="$CXXFLAGS -I$withval"])
-
-# option for additional ICU lib
-ICUCONFIG=icu-config
-AC_ARG_WITH(icu, 
-    [  --with-icu=PATH         use additional ICU library path,
-                          otherwise use system include/library path],
-    [ICUCONFIG="$withval/bin/icu-config"])
-CPPFLAGS="$CPPFLAGS `$ICUCONFIG --cppflags`"
-#CXXFLAGS="$CXXFLAGS `$ICUCONFIG --cxxflags`"
-LIBS="$LIBS `$ICUCONFIG --ldflags`"
 
 
 # Checks for wxWidgets library
@@ -104,17 +71,17 @@ if test "x$WX_LIBS" != "x"; then
 fi
 
 AM_OPTIONS_WXCONFIG
-AM_PATH_WXCONFIG(2.8.0, wxWin=1, ,[core,aui])
+WX_CONFIG_CHECK(2.8.0, wxWin=1, ,[core,aui])
 if test "$wxWin" != 1; then
-   AC_MSG_ERROR([
-           wxWidgets must be installed on your system
-           but wx-config script couldn''t be found.
+    AC_MSG_ERROR([
+            wxWidgets must be installed on your system
+            but wx-config script couldn''t be found.
 
-           Please check that wx-config is in path, the directory
-           where wxWidgets libraries are installed (returned by
-           'wx-config --libs' command) is in LD_LIBRARY_PATH or
-           equivalent variable and wxWidgets version is 2.8.0.
-   ])
+            Please check that wx-config is in path, the directory
+            where wxWidgets libraries are installed (returned by
+            'wx-config --libs' command) is in LD_LIBRARY_PATH or
+            equivalent variable and wxWidgets version is 2.8.0.
+    ])
 fi
 CPPFLAGS="$CPPFLAGS $WX_CPPFLAGS"
 CXXFLAGS="$CXXFLAGS $WX_CXXFLAGS_ONLY"
@@ -123,7 +90,7 @@ if test "$WX_LIBS_set" != 1; then
     LIBS="$LIBS $WX_LIBS"
 fi
 
-UNICODE_FLAG=$(test ! $($WX_CONFIG_WITH_ARGS - -unicode >/dev/null 2>&1))
+UNICODE_FLAG=$(test ! $($WX_CONFIG_WITH_ARGS --unicode=yes >/dev/null 2>&1))
 
 AC_MSG_CHECKING([if wxWidgets was built with UNICODE enabled])
 if test "$UNICODE_FLAG" != "0"; then
@@ -133,6 +100,26 @@ else
     AC_MSG_ERROR([wxWidgets must be built with UNICODE enabled.])
 fi
 
+
+# Checks for glib2, gtk2/3 libraries
+WX_BASENAME=$($WX_CONFIG_WITH_ARGS --basename)
+if test "$WX_BASENAME" = "wx_gtk2u"; then
+    PKG_CHECK_MODULES(glib_gtk, [
+            glib-2.0 >= 2.6.0
+            gtk+-2.0 >= 2.6.0
+    ], [
+        AC_MSG_RESULT([... GTK+ 2.x])
+    ])
+else
+    PKG_CHECK_MODULES(glib_gtk, [
+            glib-2.0 >= 2.6.0
+            gtk+-3.0 >= 3.0.0
+    ], [
+        AC_MSG_RESULT([... GTK+ 3.x])
+    ])
+fi
+CPPFLAGS="$CPPFLAGS $glib_gtk_CFLAGS"
+LIBS="$LIBS $glib_gtk_LIBS -lX11"
 
 
 # Checks for header files.
