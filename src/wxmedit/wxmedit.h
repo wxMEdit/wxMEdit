@@ -32,6 +32,16 @@
 # pragma warning( pop )
 #endif
 
+#ifndef FIXINVERT
+# ifdef __WXMSW__
+#  define FIXINVERT 0
+# elif defined(__WXGTK3__) && wxMAJOR_VERSION == 3 && wxMINOR_VERSION == 2
+#  define FIXINVERT 2
+# else
+#  define FIXINVERT 1
+# endif
+#endif
+
 #include "wxm_lines.h"
 #include "wxmedit_command.h"
 #include "../xm/encoding/encoding.h"

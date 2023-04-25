@@ -77,14 +77,6 @@
 using std::vector;
 using std::list;
 
-#ifndef FIXINVERT
-# ifdef __WXMSW__
-#  define FIXINVERT 0
-# else
-#  define FIXINVERT 1
-# endif
-#endif
-
 #ifdef _DEBUG
 #include <crtdbg.h>
 #define new new(_NORMAL_BLOCK ,__FILE__, __LINE__)
