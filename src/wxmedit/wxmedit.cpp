@@ -31,6 +31,7 @@
 #include <wx/datetime.h>
 #ifdef __WXMSW__
 # include <wx/msw/private.h>
+# include <wx/fontutil.h>
 #endif
 // disable 4996 }
 #ifdef _MSC_VER
@@ -9680,9 +9681,9 @@ struct IMEAdjuster
         if (m_hImc == (HIMC)0 || ImmGetOpenStatus(m_hImc) != TRUE)
             return;
 
-        LOGFONT lf;
-        wxFillLogFont(&lf, &font);
-        ImmSetCompositionFont(m_hImc, &lf);
+        wxNativeFontInfo nf = wxNativeFontInfo();
+        nf.InitFromFont(font);
+        ImmSetCompositionFont(m_hImc, &nf.lf);
 
         UpdatePosition();
     }
