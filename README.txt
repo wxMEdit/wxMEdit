@@ -6,19 +6,18 @@ About:
 wxMEdit is a cross-platform Text/Hex Editor written in C++ & wxWidgets.
 wxMEdit is an improved version of MadEdit which has been discontinued.
 wxMEdit supports many useful functions, e.g. Bookmark, Syntax Highlightings, 
-Word Wraps, Encodings, Column/Hex Modes, Updates checking, and a 
-Plugin system(not work yet).
+Word Wraps, Encodings, Column/Hex Modes, Updates checking.
 In HexMode, wxMEdit can open large files which size is up to 32GB (INT_MAX*16).
 
 
 Supported Platforms:
 -------------------
-A. Linux, FreeBSD/OpenBSD/NetBSD, Mac OS X, OpenIndiana and other Unix-like OSes (__WXGTK__):
+A. Linux, FreeBSD/OpenBSD/NetBSD, macOS, OpenIndiana and other Unix-like OSes (__WXGTK__):
    a. GNU C++ 3.x~9.x OR clang++ 2.8 or higher:
       Required Tools and Libraries to compile:
       1. autoconf 2.63 or higher
       2. automake 1.11.1 or higher
-      3. wxWidgets 2.8/3.0 with Unicode enabled
+      3. wxWidgets 2.8/3.0/3.2 with Unicode enabled
       4. Boost 1.53.0 or higher
       5. ICU4C 50 or higher
       6. libcurl 7.15.5 or higher
@@ -27,7 +26,7 @@ B. Windows / ReactOS (__WXMSW__):
    a. MinGW32 GNU C++ 3.x~9.x:
       Required Tools and Libraries to compile:
       1. Bakefile 0.2.9~0.2.11
-      2. wxWidgets 2.8/3.0 with Unicode enabled
+      2. wxWidgets 2.8/3.0/3.2 with Unicode enabled
       3. Boost 1.53.0 or higher
       4. ICU4C 50 or higher
       5. libcurl 7.15.5 or higher
@@ -35,14 +34,14 @@ B. Windows / ReactOS (__WXMSW__):
    b. Visual C++ 2005/2008/2010~2019 (by upgrading from 2008 solution and project files):
       Required Tools and Libraries to compile:
       1. Bakefile 0.2.9~0.2.11
-      2. wxWidgets 2.8/3.0 with Unicode enabled
+      2. wxWidgets 2.8/3.0/3.2 with Unicode enabled
       3. Boost 1.53.0 or higher
       4. ICU4C 50 or higher
       5. libcurl 7.15.5 or higher
 
 NOTE:
    You can download Bakefile at:
-      http://www.bakefile.org/download.html
+      https://bakefile.org/#old-version
 
 Syntax files, Locale files and Settings:
 ---------------------------------------
@@ -145,12 +144,12 @@ Alston Chen <madedit[at]gmail.com>        (creator of MadEdit)
 
 Links:
 -----
-wxMEdit: http://wxmedit.github.io/
-MadEdit: http://sourceforge.net/projects/madedit/
-wxWidgets: http://www.wxwidgets.org/
-Boost: http://www.boost.org/
-ICU: http://site.icu-project.org/
-Bakefile: http://www.bakefile.org/
-Code::Blocks: http://www.codeblocks.org/
-wxSmith: http://wiki.codeblocks.org/index.php?title=WxSmith_plugin
-cURL: http://curl.haxx.se/
+wxMEdit: https://wxmedit.github.io/
+MadEdit: https://sourceforge.net/projects/madedit/
+wxWidgets: https://www.wxwidgets.org/
+Boost: https://www.boost.org/
+ICU: https://icu.unicode.org/
+Bakefile: https://bakefile.org/#old-version
+Code::Blocks: https://www.codeblocks.org/
+wxSmith: https://wiki.codeblocks.org/index.php?title=WxSmith_plugin
+cURL: https://curl.haxx.se/
