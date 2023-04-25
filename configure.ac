@@ -50,7 +50,7 @@ case "${host}" in
     ;;
 esac
 
-PKG_CHECK_MODULES(curl, [libcurl])
+PKG_CHECK_MODULES(curl, [libcurl >= 7.15.5])
 
 PKG_CHECK_MODULES(icu, [icu-i18n >= 50])
 CPPFLAGS="$CPPFLAGS $icu_CFLAGS"
