@@ -361,6 +361,7 @@ public:
         PosData data;
         wxmedit->GetTextFont(data.fontname, data.fontsize);
         wxmedit->GetHexFont(data.hex_fontname, data.hex_fontsize);
+        data.encoding = wxmedit->GetEncodingName();
         data.pos = wxmedit->GetCaretPosition();
         data.hexmode = (wxmedit->GetEditMode() == emHexMode);
         Add(name, data);
