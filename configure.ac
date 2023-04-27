@@ -119,7 +119,7 @@ else
     ])
 fi
 CPPFLAGS="$CPPFLAGS $glib_gtk_CFLAGS"
-LIBS="$LIBS $glib_gtk_LIBS -lX11"
+LIBS="$LIBS $glib_gtk_LIBS"
 
 
 # Checks for header files.

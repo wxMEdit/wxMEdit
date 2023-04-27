@@ -91,29 +91,28 @@ extern const size_t g_LanguageCount = sizeof(g_LanguageValue)/sizeof(int);
 # include <wx/gtk/win_gtk.h>
 #endif
 
-Atom g_MadEdit_atom;
-Display *g_Display=nullptr;
+GdkAtom g_MadEdit_atom;
+GdkDisplay *g_Display=nullptr;
 
 static GdkFilterReturn my_gdk_filter(GdkXEvent *xevent,
                                      GdkEvent *event,
                                      gpointer data)
 {
-    XEvent *xeve = (XEvent *)xevent;
 
-    if (xeve->type == PropertyNotify)
+    if (event->type == GDK_PROPERTY_NOTIFY)
     {
-        XPropertyEvent *xprop = &xeve->xproperty;
+        GdkEventProperty *pevent = (GdkEventProperty*)event;
 
-        if (xprop->atom == g_MadEdit_atom)
+        if (pevent->atom == g_MadEdit_atom)
         {
-            Atom actual_type;
+            GdkAtom actual_type;
             int actual_format;
-            u_long nitems,bytes_after;
+            gint nitems;
             char *message;
 
-            if (XGetWindowProperty(g_Display, xprop->window, g_MadEdit_atom, 0, 1024*16,
-                False, AnyPropertyType, &actual_type, &actual_format,
-                &nitems,&bytes_after,(unsigned char**)&message) != Success)
+            if( gdk_property_get(pevent->window, g_MadEdit_atom, GDK_NONE, 0, 1024 * 16,
+                FALSE, &actual_type, &actual_format,
+                &nitems,(unsigned char**)&message) != TRUE)
             {
                 //dbg("err prop");
                 return GDK_FILTER_REMOVE;
@@ -124,7 +123,7 @@ static GdkFilterReturn my_gdk_filter(GdkXEvent *xevent,
 
             OnReceiveMessage((const wchar_t *)wcstr, datalen*sizeof(wchar_t));
 
-            XFree(message);
+            g_free(message);
             return GDK_FILTER_REMOVE;
         }
     }
@@ -135,28 +134,46 @@ static GdkFilterReturn my_gdk_filter(GdkXEvent *xevent,
     return GDK_FILTER_CONTINUE;
 }
 
-void send_message(Window madedit_win, const wxString &msg)
+void send_message(GdkWindow *madedit_win, const wxString &msg)
 {
-    Window mwin = XCreateSimpleWindow(g_Display, DefaultRootWindow(g_Display),
-                    0,0,90,90,1,0,0);
+    GdkScreen *defscreen = gdk_screen_get_default();
+    GdkWindow *rootwin = gdk_screen_get_root_window(defscreen);
+    GdkWindowAttr wattr;
+
+    memset(&wattr, 0, sizeof(GdkWindowAttr));
+    wattr.x = 0;
+    wattr.y=0;
+    wattr.width=90;
+    wattr.height=90;
+    wattr.event_mask=0;
+    wattr.wclass = GDK_INPUT_OUTPUT;
+    wattr.visual = gdk_screen_get_system_visual(defscreen);
+    wattr.window_type = GDK_WINDOW_TOPLEVEL;
+    wattr.cursor = NULL;
+    wattr.type_hint = GDK_WINDOW_TYPE_HINT_NORMAL;
+
+    GdkWindow *mwin = gdk_window_new(rootwin, &wattr,GDK_WA_X | GDK_WA_Y | GDK_WA_TYPE_HINT);
 
     const wxCharBuffer data_utf8 = wxConvUTF8.cWX2MB( msg.wc_str() );
     size_t datalen_utf8 = strlen(data_utf8);
 
-    XChangeProperty(g_Display, mwin , g_MadEdit_atom, XA_STRING, 8,
-        PropModeReplace, (unsigned char*)(const char*)data_utf8, datalen_utf8 + 1);
+    gdk_property_change(mwin, g_MadEdit_atom, GDK_NONE, 8,
+        GDK_PROP_MODE_REPLACE,(unsigned char*)(const char*)data_utf8, datalen_utf8 + 1);
 
-    XPropertyEvent eve;
+    GdkEventProperty eve;
 
-    eve.type=PropertyNotify;
+    eve.type=GDK_PROPERTY_NOTIFY;
     eve.window=mwin;
-    eve.state=PropertyNewValue;
+    eve.send_event=FALSE;
+    eve.state=GDK_PROPERTY_NEW_VALUE;
     eve.atom=g_MadEdit_atom;
-    XSendEvent(g_Display, madedit_win, False, 0, (XEvent *)&eve);
-    XSync(g_Display,0);
+    eve.time = 0;
+
+    gdk_display_put_event(g_Display, (GdkEvent *)&eve);
+    gdk_display_sync(g_Display);
     sleep(1);
 
-    XDestroyWindow(g_Display, mwin);
+    gdk_window_destroy(mwin);
 }
 
 #endif
@@ -245,11 +262,11 @@ bool OpenFilesInPrevInst(const wxString& flist)
 
     return true;
 #elif defined(__WXGTK__)
-    g_Display= gdk_x11_get_default_xdisplay();
-    g_MadEdit_atom = XInternAtom(g_Display, "g_wxMEdit_atom", False);
-    Window madedit_win;
+    g_Display= gdk_display_get_default();
+    g_MadEdit_atom = gdk_atom_intern("g_wxMEdit_atom", False);
+    GdkWindow* madedit_win;
 
-    if ((madedit_win=XGetSelectionOwner(g_Display, g_MadEdit_atom)) == None)
+    if ((madedit_win = gdk_selection_owner_get_for_display(g_Display, g_MadEdit_atom)) == nullptr)
         return false;
 
     send_message(madedit_win, flist);
@@ -400,8 +417,7 @@ bool MadEditApp::OnInit()
         GtkWidget* widget = myFrame->GetHandle();
         GdkWindow* gwin = gtk_widget_get_window(widget);
 # endif
-        Window win = GDK_WINDOW_XID(gwin);
-        XSetSelectionOwner(g_Display, g_MadEdit_atom, win, CurrentTime);
+        gdk_selection_owner_set_for_display(g_Display, gwin, g_MadEdit_atom, CurrentTime, FALSE);
         gdk_window_add_filter(nullptr, my_gdk_filter, nullptr);
     }
 #endif
