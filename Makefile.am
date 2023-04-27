@@ -223,9 +223,9 @@ noinst_HEADERS =	README.txt \
 	images/unindent.xpm \
 	images/wrapbycol.xpm \
 	images/wrapbywin.xpm \
-	images/wxmedit0_24x24.xpm \
+	images/wxmedit_24x24.xpm \
 	images/wxmedit0.xpm \
-	images/wxmedit1.ico \
+	images/wxmedit0.ico \
 	images/wxmedit.ico \
 	images/wxmedit.xpm \
 	po/wxmedit.pot \
