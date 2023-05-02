@@ -2,7 +2,7 @@
 // vim:         ts=4 sw=4
 // Name:        wxm/edit/simple.h
 // Description: Simple wxMEdit Implementations
-// Copyright:   2015-2019  JiaYanwei   <wxmedit@gmail.com>
+// Copyright:   2015-2023  JiaYanwei   <wxmedit@gmail.com>
 // License:     GPLv3
 ///////////////////////////////////////////////////////////////////////////////
 

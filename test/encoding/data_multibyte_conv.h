@@ -1,7 +1,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 // vim:         sw=4 ts=4
 // Description: Encoding Test Utils for MultiByte Encodings
-// Copyright:   2013-2019  JiaYanwei   <wxmedit@gmail.com>
+// Copyright:   2013-2023  JiaYanwei   <wxmedit@gmail.com>
 // License:     GPLv3
 ///////////////////////////////////////////////////////////////////////////////
 #ifndef WXMEDIT_TEST_MULTIBYTE_CONV_DATA_H

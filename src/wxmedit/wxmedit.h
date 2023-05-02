@@ -2,7 +2,7 @@
 // vim:         ts=4 sw=4 expandtab
 // Name:        wxmedit/wxmedit.h
 // Description: Main Edit Component of wxMEdit
-// Copyright:   2013-2019  JiaYanwei   <wxmedit@gmail.com>
+// Copyright:   2013-2023  JiaYanwei   <wxmedit@gmail.com>
 //              2005-2010  Alston Chen <madedit@gmail.com>
 // License:     GPLv3
 ///////////////////////////////////////////////////////////////////////////////

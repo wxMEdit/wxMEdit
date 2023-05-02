@@ -1,7 +1,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 // Name:        dialog/wxm_find_in_files_dialog.cpp
 // Description: Find/Replace in Files Dialog
-// Copyright:   2013-2019  JiaYanwei   <wxmedit@gmail.com>
+// Copyright:   2013-2023  JiaYanwei   <wxmedit@gmail.com>
 //              2006-2010  Alston Chen <madedit@gmail.com>
 // License:     GPLv3
 ///////////////////////////////////////////////////////////////////////////////

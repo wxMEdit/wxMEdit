@@ -2,7 +2,7 @@
 // vim:         sw=4 ts=4
 // Name:        xm/cxx11.h
 // Description: C++ 11 adaptor
-// Copyright:   2015-2019  JiaYanwei   <wxmedit@gmail.com>
+// Copyright:   2015-2023  JiaYanwei   <wxmedit@gmail.com>
 // License:     GPLv3
 ///////////////////////////////////////////////////////////////////////////////
 
