@@ -51,7 +51,6 @@
 
 #ifdef __WXGTK__
 # include <gdk/gdk.h>
-# include <gdk/gdkx.h>
 # include <gdk/gdkprivate.h>
 # include <gtk/gtk.h>
 # if wxMAJOR_VERSION == 2
