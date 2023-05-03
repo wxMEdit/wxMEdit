@@ -183,23 +183,23 @@ WXMSearchReplaceDialog::WXMSearchReplaceDialog(wxWindow* parent,wxWindowID id,co
 
 	m_FindText = new wxm::SingleLineWXMEdit(this, ID_MADEDIT1, wxPoint(0, 0), wxSize(400, bh));
 
-	BoxSizer4->Add(m_FindText,1,wxEXPAND|wxALIGN_LEFT | wxALL,2);
+	BoxSizer4->Add(m_FindText, 1, wxEXPAND | wxALIGN_LEFT | wxALL, 2);
 	BoxSizer4->SetItemMinSize(m_FindText, 400, bh);
 
 	wxBitmap WxBitmapButtonRecentFindText_BITMAP (down_xpm);
 	WxBitmapButtonRecentFindText = new wxBitmapButton(this, ID_WXBITMAPBUTTONRECENTFINDTEXT, WxBitmapButtonRecentFindText_BITMAP, wxPoint(0,0), wxSize(bh,bh), wxBU_AUTODRAW, wxDefaultValidator, _("WxBitmapButtonRecentFindText"));
-	BoxSizer4->Add(WxBitmapButtonRecentFindText,0,wxALIGN_CENTER_HORIZONTAL | wxALL,2);
+	BoxSizer4->Add(WxBitmapButtonRecentFindText, 0, wxALL, 2);
 
 	// replace
 	WxButtonReplace->GetSize(&bw, &bh);
 
 	m_ReplaceText = new wxm::SingleLineWXMEdit(this, ID_MADEDIT2, wxPoint(0, 0), wxSize(400, bh));
 
-	BoxSizer5->Add(m_ReplaceText,1,wxEXPAND|wxALIGN_LEFT | wxALL,2);
+	BoxSizer5->Add(m_ReplaceText, 1, wxEXPAND | wxALIGN_LEFT | wxALL, 2);
 	BoxSizer5->SetItemMinSize(m_ReplaceText, 400, bh);
 
 	WxBitmapButtonRecentReplaceText = new wxBitmapButton(this, ID_WXBITMAPBUTTONRECENTREPLACETEXT, WxBitmapButtonRecentFindText_BITMAP, wxPoint(0,0), wxSize(bh,bh), wxBU_AUTODRAW, wxDefaultValidator, _("WxBitmapButtonRecentReplaceText"));
-	BoxSizer5->Add(WxBitmapButtonRecentReplaceText,0,wxALIGN_CENTER_HORIZONTAL | wxALL,2);
+	BoxSizer5->Add(WxBitmapButtonRecentReplaceText, 0, wxALL, 2);
 
 	BoxSizer1->Fit(this);
 	BoxSizer1->SetSizeHints(this);
