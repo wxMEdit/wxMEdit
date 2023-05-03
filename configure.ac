@@ -121,6 +121,11 @@ fi
 CPPFLAGS="$CPPFLAGS $glib_gtk_CFLAGS"
 LIBS="$LIBS $glib_gtk_LIBS"
 
+WX_RELEASE=$($WX_CONFIG_WITH_ARGS --release)
+if test "$WX_RELEASE" = "2.8"; then
+    LIBS="$LIBS -lX11"
+fi
+
 
 # Checks for header files.
 AC_CHECK_HEADERS([boost/config.hpp], [], AC_MSG_ERROR([cannot find required header boost/config.hpp]))
