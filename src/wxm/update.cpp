@@ -34,6 +34,7 @@
 #include <boost/lexical_cast.hpp>
 #include <boost/assign/list_of.hpp>
 #include <boost/foreach.hpp>
+#include <boost/bind/bind.hpp>
 #include <algorithm>
 #include <functional>
 #include <limits>
@@ -141,8 +142,9 @@ std::string GetVersionFromRemoteChangeLog()
 
 std::vector<unsigned int> ParseVersion(const std::string& ver)
 {
+	using boost::placeholders::_1;
 	std::vector<std::string> svec;
-	algo::split(svec, ver, std::bind1st(std::equal_to<char>(),'.') );
+	algo::split(svec, ver, boost::bind(std::equal_to<char>(), '.', _1) );
 
 	std::vector<unsigned int> uvec = boost::assign::list_of(0u)(0u)(0u)(0u);
 

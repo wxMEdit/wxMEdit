@@ -228,7 +228,7 @@ wxString GetExecutablePath()
         }
 
         wxFileName filename(path);
-        filename.Normalize();
+        filename.Normalize(wxPATH_NORM_DOTS | wxPATH_NORM_TILDE | wxPATH_NORM_ABSOLUTE | wxPATH_NORM_SHORTCUT);
         path = filename.GetFullPath();
 #endif
         found = true;
