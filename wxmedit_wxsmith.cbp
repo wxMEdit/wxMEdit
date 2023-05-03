@@ -12,8 +12,6 @@
 				<Option compiler="gcc" />
 			</Target>
 		</Build>
-		<Unit filename="WXMNumbering.cpp" />
-		<Unit filename="WXMNumbering.h" />
 		<Unit filename="src/dialog/wxm_conv_enc_dialog.cpp" />
 		<Unit filename="src/dialog/wxm_conv_enc_dialog.h" />
 		<Unit filename="src/dialog/wxm_file_association_dialog.cpp" />
@@ -46,9 +44,6 @@
 		<Unit filename="wxsmith/wxmedit_about_dialog.wxs" />
 		<Unit filename="wxsmith/wxmedit_options_dialog.wxs" />
 		<Extensions>
-			<code_completion />
-			<envvars />
-			<debugger />
 			<lib_finder disable_auto="1" />
 			<wxsmith version="1">
 				<gui name="wxWidgets" src="" main="" init_handlers="necessary" language="CPP" />
