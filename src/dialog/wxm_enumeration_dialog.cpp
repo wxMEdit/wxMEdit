@@ -660,7 +660,7 @@ bool CheckTextNumMin(const wxStaticText* label, const wxTextCtrl* txtctrl, int64
 
 	if (n < minval)
 	{
-		errmsg = wxString::Format(_("%s should not less than %d."), name.wc_str(), minval);
+		errmsg = wxString::Format(_("%s should not less than %lld."), name.wc_str(), minval);
 		return false;
 	}
 	return true;
