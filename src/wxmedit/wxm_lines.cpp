@@ -79,8 +79,7 @@ namespace wxm
 const int BUFFER_SIZE = 1024 * 256;     // 256KB
 const int BUFFER_BITS = 18;
 const int BUFFER_MASK = BUFFER_SIZE - 1;
-const wxFileOffset BUFFER_BASE_MASK = wxFileOffset(-1) << BUFFER_BITS;
-                                    //wxFileOffset(-1) -  BUFFER_MASK;
+const wxFileOffset BUFFER_BASE_MASK = wxFileOffset(-1) - BUFFER_MASK;
 
 #define NEXTUCHAR_BUFFER_SIZE (1024 * 10)
 

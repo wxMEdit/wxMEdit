@@ -6904,7 +6904,7 @@ void MadEdit::ProcessCommand(MadEditCommand command)
                     bool inserted=false;
 
                     // check for m_UnindentChar
-                    if(m_EditMode==emTextMode && (idx=m_Syntax->m_UnindentChar.Find(wxChar(uc)))>=0)
+                    if(m_EditMode==emTextMode && m_Syntax->m_UnindentChar.Find(wxChar(uc))>=0)
                     {
                         // check if the chars before uc are all spaces
                         MadCaretPos *sbeg;
