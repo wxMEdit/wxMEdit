@@ -344,7 +344,7 @@ void UnicodeBlockSet::InitBlockDescriptions()
 	m_des_map[UBLOCK_ETHIOPIC_EXTENDED_B] = _("Ethiopic Extended-B");
 	m_des_map[UBLOCK_KANA_EXTENDED_B] = _("Kana Extended-B");
 	m_des_map[UBLOCK_LATIN_EXTENDED_F] = _("Latin Extended-F");
-	m_des_map[UBLOCK_LATIN_EXTENDED_G] = _("LATIN_EXTENDED_G");
+	m_des_map[UBLOCK_LATIN_EXTENDED_G] = _("Latin Extended-G");
 	m_des_map[UBLOCK_OLD_UYGHUR] = _("Old Uyghur");
 	m_des_map[UBLOCK_TANGSA] = _("Tangsa");
 	m_des_map[UBLOCK_TOTO] = _("Toto");

@@ -125,7 +125,7 @@
 														</object>
 														<object class="sizeritem">
 															<object class="wxStaticText" name="ID_STATICTEXT13" variable="StaticText13" member="yes">
-																<label>Use this encoding to create new file or when wxMEdit cannot determine the encoding of old file</label>
+																<label>Use this encoding to create new file or when wxMEdit cannot determine the encoding of existing file</label>
 															</object>
 															<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
 															<border>5</border>
