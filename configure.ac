@@ -119,7 +119,7 @@ else
     ])
 fi
 CPPFLAGS="$CPPFLAGS $glib_gtk_CFLAGS"
-LIBS="$LIBS $glib_gtk_LIBS"
+LIBS="$LIBS $glib_gtk_LIBS -lX11"
 
 WX_RELEASE=$($WX_CONFIG_WITH_ARGS --release)
 if test "$WX_RELEASE" = "2.8"; then
