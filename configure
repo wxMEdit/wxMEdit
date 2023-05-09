@@ -7989,19 +7989,19 @@ if test -n "$glib_gtk_CFLAGS"; then
  elif test -n "$PKG_CONFIG"; then
     if test -n "$PKG_CONFIG" && \
     { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"
-            glib-2.0 >= 2.6.0
-            gtk+-2.0 >= 2.6.0
+            glib-2.0 >= 2.28.0
+            gtk+-2.0 >= 2.24.0
     \""; } >&5
   ($PKG_CONFIG --exists --print-errors "
-            glib-2.0 >= 2.6.0
-            gtk+-2.0 >= 2.6.0
+            glib-2.0 >= 2.28.0
+            gtk+-2.0 >= 2.24.0
     ") 2>&5
   ac_status=$?
   $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
   test $ac_status = 0; }; then
   pkg_cv_glib_gtk_CFLAGS=`$PKG_CONFIG --cflags "
-            glib-2.0 >= 2.6.0
-            gtk+-2.0 >= 2.6.0
+            glib-2.0 >= 2.28.0
+            gtk+-2.0 >= 2.24.0
     " 2>/dev/null`
 		      test "x$?" != "x0" && pkg_failed=yes
 else
@@ -8015,19 +8015,19 @@ if test -n "$glib_gtk_LIBS"; then
  elif test -n "$PKG_CONFIG"; then
     if test -n "$PKG_CONFIG" && \
     { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"
-            glib-2.0 >= 2.6.0
-            gtk+-2.0 >= 2.6.0
+            glib-2.0 >= 2.28.0
+            gtk+-2.0 >= 2.24.0
     \""; } >&5
   ($PKG_CONFIG --exists --print-errors "
-            glib-2.0 >= 2.6.0
-            gtk+-2.0 >= 2.6.0
+            glib-2.0 >= 2.28.0
+            gtk+-2.0 >= 2.24.0
     ") 2>&5
   ac_status=$?
   $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
   test $ac_status = 0; }; then
   pkg_cv_glib_gtk_LIBS=`$PKG_CONFIG --libs "
-            glib-2.0 >= 2.6.0
-            gtk+-2.0 >= 2.6.0
+            glib-2.0 >= 2.28.0
+            gtk+-2.0 >= 2.24.0
     " 2>/dev/null`
 		      test "x$?" != "x0" && pkg_failed=yes
 else
@@ -8050,21 +8050,21 @@ else
 fi
         if test $_pkg_short_errors_supported = yes; then
 	        glib_gtk_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors --cflags --libs "
-            glib-2.0 >= 2.6.0
-            gtk+-2.0 >= 2.6.0
+            glib-2.0 >= 2.28.0
+            gtk+-2.0 >= 2.24.0
     " 2>&1`
         else
 	        glib_gtk_PKG_ERRORS=`$PKG_CONFIG --print-errors --cflags --libs "
-            glib-2.0 >= 2.6.0
-            gtk+-2.0 >= 2.6.0
+            glib-2.0 >= 2.28.0
+            gtk+-2.0 >= 2.24.0
     " 2>&1`
         fi
 	# Put the nasty error message in config.log where it belongs
 	echo "$glib_gtk_PKG_ERRORS" >&5
 
 	as_fn_error $? "Package requirements (
-            glib-2.0 >= 2.6.0
-            gtk+-2.0 >= 2.6.0
+            glib-2.0 >= 2.28.0
+            gtk+-2.0 >= 2.24.0
     ) were not met:
 
 $glib_gtk_PKG_ERRORS
@@ -8111,18 +8111,18 @@ if test -n "$glib_gtk_CFLAGS"; then
  elif test -n "$PKG_CONFIG"; then
     if test -n "$PKG_CONFIG" && \
     { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"
-            glib-2.0 >= 2.6.0
+            glib-2.0 >= 2.28.0
             gtk+-3.0 >= 3.0.0
     \""; } >&5
   ($PKG_CONFIG --exists --print-errors "
-            glib-2.0 >= 2.6.0
+            glib-2.0 >= 2.28.0
             gtk+-3.0 >= 3.0.0
     ") 2>&5
   ac_status=$?
   $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
   test $ac_status = 0; }; then
   pkg_cv_glib_gtk_CFLAGS=`$PKG_CONFIG --cflags "
-            glib-2.0 >= 2.6.0
+            glib-2.0 >= 2.28.0
             gtk+-3.0 >= 3.0.0
     " 2>/dev/null`
 		      test "x$?" != "x0" && pkg_failed=yes
@@ -8137,18 +8137,18 @@ if test -n "$glib_gtk_LIBS"; then
  elif test -n "$PKG_CONFIG"; then
     if test -n "$PKG_CONFIG" && \
     { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"
-            glib-2.0 >= 2.6.0
+            glib-2.0 >= 2.28.0
             gtk+-3.0 >= 3.0.0
     \""; } >&5
   ($PKG_CONFIG --exists --print-errors "
-            glib-2.0 >= 2.6.0
+            glib-2.0 >= 2.28.0
             gtk+-3.0 >= 3.0.0
     ") 2>&5
   ac_status=$?
   $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
   test $ac_status = 0; }; then
   pkg_cv_glib_gtk_LIBS=`$PKG_CONFIG --libs "
-            glib-2.0 >= 2.6.0
+            glib-2.0 >= 2.28.0
             gtk+-3.0 >= 3.0.0
     " 2>/dev/null`
 		      test "x$?" != "x0" && pkg_failed=yes
@@ -8172,12 +8172,12 @@ else
 fi
         if test $_pkg_short_errors_supported = yes; then
 	        glib_gtk_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors --cflags --libs "
-            glib-2.0 >= 2.6.0
+            glib-2.0 >= 2.28.0
             gtk+-3.0 >= 3.0.0
     " 2>&1`
         else
 	        glib_gtk_PKG_ERRORS=`$PKG_CONFIG --print-errors --cflags --libs "
-            glib-2.0 >= 2.6.0
+            glib-2.0 >= 2.28.0
             gtk+-3.0 >= 3.0.0
     " 2>&1`
         fi
@@ -8185,7 +8185,7 @@ fi
 	echo "$glib_gtk_PKG_ERRORS" >&5
 
 	as_fn_error $? "Package requirements (
-            glib-2.0 >= 2.6.0
+            glib-2.0 >= 2.28.0
             gtk+-3.0 >= 3.0.0
     ) were not met:
 
@@ -8224,7 +8224,7 @@ $as_echo "... GTK+ 3.x" >&6; }
 fi
 fi
 CPPFLAGS="$CPPFLAGS $glib_gtk_CFLAGS"
-LIBS="$LIBS $glib_gtk_LIBS -lX11"
+LIBS="$LIBS $glib_gtk_LIBS"
 
 WX_RELEASE=$($WX_CONFIG_WITH_ARGS --release)
 if test "$WX_RELEASE" = "2.8"; then

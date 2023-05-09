@@ -30,6 +30,12 @@
 # pragma warning( pop )
 #endif
 
+#ifdef __WXGTK__
+# include <wx/log.h>
+# include <gio/gio.h>
+#endif // __WXGTK__
+
+
 IMPLEMENT_APP(MadEditApp)
 
 
@@ -80,86 +86,29 @@ extern const size_t g_LanguageCount = sizeof(g_LanguageValue)/sizeof(int);
 
 #ifdef __WXGTK__
 
-// the codes of SingleInstance checking and
-// SendMessage to previous instance under GTK+
-// are from gcin (http://www.csie.nctu.edu.tw/~cp76/gcin/)
+GApplication *g_app;
 
-#include <X11/Xatom.h>
-#include <gtk/gtk.h>
-#include <gdk/gdkx.h>
-#if wxMAJOR_VERSION == 2
-# include <wx/gtk/win_gtk.h>
-#endif
-
-Atom g_MadEdit_atom;
-Display *g_Display=nullptr;
-
-static GdkFilterReturn my_gdk_filter(GdkXEvent *xevent,
-                                     GdkEvent *event,
-                                     gpointer data)
+void on_activate(GApplication* application)
 {
-    XEvent *xeve = (XEvent *)xevent;
+    wxLogTrace(wxT("wxMEdit activated%s\n"), wxT(""));
+}
 
-    if (xeve->type == PropertyNotify)
+void on_files_open(GApplication* application, GFile** files, gint n_files, const gchar *hint)
+{
+    wxString wxs;
+    for (gint i = 0; i < n_files; i++)
     {
-        XPropertyEvent *xprop = &xeve->xproperty;
-
-        if (xprop->atom == g_MadEdit_atom)
-        {
-            Atom actual_type;
-            int actual_format;
-            u_long nitems,bytes_after;
-            char *message;
-
-            if (XGetWindowProperty(g_Display, xprop->window, g_MadEdit_atom, 0, 1024*16,
-                False, AnyPropertyType, &actual_type, &actual_format,
-                &nitems,&bytes_after,(unsigned char**)&message) != Success)
-            {
-                //dbg("err prop");
-                return GDK_FILTER_REMOVE;
-            }
-
-            const wxWCharBuffer wcstr = wxConvUTF8.cMB2WX(message);
-            size_t datalen = wcslen((const wchar_t *)wcstr);
-
-            OnReceiveMessage((const wchar_t *)wcstr, datalen*sizeof(wchar_t));
-
-            XFree(message);
-            return GDK_FILTER_REMOVE;
-        }
+        gchar *path = g_file_get_path(files[i]);
+        wxs += (const wxChar*) wxConvUTF8.cMB2WX(path);
+        wxs += wxT('|');
+        g_free (path);
     }
 
-    //if (XFilterEvent(xeve, None) == True)
-    //    return GDK_FILTER_REMOVE;
-
-    return GDK_FILTER_CONTINUE;
+    wxLogTrace(wxT("wxMEdit receive open files: %s\n"), wxs);
+    OnReceiveMessage(wxs.data(), wxs.length());
 }
 
-void send_message(Window madedit_win, const wxString &msg)
-{
-    Window mwin = XCreateSimpleWindow(g_Display, DefaultRootWindow(g_Display),
-                    0,0,90,90,1,0,0);
-
-    const wxCharBuffer data_utf8 = wxConvUTF8.cWX2MB( msg.wc_str() );
-    size_t datalen_utf8 = strlen(data_utf8);
-
-    XChangeProperty(g_Display, mwin , g_MadEdit_atom, XA_STRING, 8,
-        PropModeReplace, (unsigned char*)(const char*)data_utf8, datalen_utf8 + 1);
-
-    XPropertyEvent eve;
-
-    eve.type=PropertyNotify;
-    eve.window=mwin;
-    eve.state=PropertyNewValue;
-    eve.atom=g_MadEdit_atom;
-    XSendEvent(g_Display, madedit_win, False, 0, (XEvent *)&eve);
-    XSync(g_Display,0);
-    sleep(1);
-
-    XDestroyWindow(g_Display, mwin);
-}
-
-#endif
+#endif // __WXGTK__
 
 
 void DeleteConfig()
@@ -190,7 +139,7 @@ void DeleteConfig()
     wxFileConfig::Set(nullptr);
 }
 
-bool OpenFilesInPrevInst(const wxString& flist)
+bool OpenFilesInPrevInst(const wxString& flist, int argc, wxChar** argv)
 {
 #ifdef __WXMSW__
     g_Mutex = CreateMutex(NULL, true, wxT("wxMEdit_App"));
@@ -245,14 +194,28 @@ bool OpenFilesInPrevInst(const wxString& flist)
 
     return true;
 #elif defined(__WXGTK__)
-    g_Display= gdk_x11_get_default_xdisplay();
-    g_MadEdit_atom = XInternAtom(g_Display, "g_wxMEdit_atom", False);
-    Window madedit_win;
+    g_app = g_application_new("io.github.wxmedit", G_APPLICATION_HANDLES_OPEN);
+    g_signal_connect(g_app, "activate", G_CALLBACK (on_activate), nullptr);
+    g_signal_connect(g_app, "open", G_CALLBACK (on_files_open), nullptr);
 
-    if ((madedit_win=XGetSelectionOwner(g_Display, g_MadEdit_atom)) == None)
+    GError* error = nullptr;
+    gboolean r0 = g_application_register(g_app, nullptr, &error);
+    if (error != nullptr)
+        g_printerr("g_application_register error: %s\n", error->message);
+    gboolean r1 = g_application_get_is_remote(g_app);
+
+    if (error == nullptr && r1 == FALSE) {
         return false;
+    }
 
-    send_message(madedit_win, flist);
+    std::vector<wxCharBuffer> buffers;
+    std::vector<const char*> mb_argv;
+    for (int i=0; i<argc; ++i)
+    {
+        buffers.push_back(wxConvUTF8.cWX2MB(argv[i]));
+        mb_argv.push_back((const char*) buffers[i]);
+    }
+    g_application_run(g_app, argc, const_cast<char**>(mb_argv.data()));
 
     g_DoNotSaveSettings = true;
     DeleteConfig();
@@ -290,7 +253,7 @@ bool MadEditApp::OnInit()
     cfg->Read(wxT("/wxMEdit/SingleInstance"), &bSingleInstance, true);
 
     // check SingleInstance and send filelist to previous instance
-    if(bSingleInstance && OpenFilesInPrevInst(filelist.String()))
+    if(bSingleInstance && OpenFilesInPrevInst(filelist.String(), argc, argv))
         return false;
 
 #ifdef __WXGTK__
@@ -387,24 +350,6 @@ bool MadEditApp::OnInit()
 #endif
 
     myFrame->Show(true);
-
-
-#if defined(__WXGTK__)
-    if(bSingleInstance)
-    {
-# if wxMAJOR_VERSION == 2
-
-        GtkPizza* pizza = GTK_PIZZA(myFrame->m_mainWidget);
-        GdkWindow* gwin = pizza->bin_window;
-# else
-        GtkWidget* widget = myFrame->GetHandle();
-        GdkWindow* gwin = gtk_widget_get_window(widget);
-# endif
-        Window win = GDK_WINDOW_XID(gwin);
-        XSetSelectionOwner(g_Display, g_MadEdit_atom, win, CurrentTime);
-        gdk_window_add_filter(nullptr, my_gdk_filter, nullptr);
-    }
-#endif
 
     wxm::AutoCheckUpdates(cfg);
 

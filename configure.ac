@@ -105,21 +105,21 @@ fi
 WX_BASENAME=$($WX_CONFIG_WITH_ARGS --basename)
 if test "$WX_BASENAME" = "wx_gtk2u"; then
     PKG_CHECK_MODULES(glib_gtk, [
-            glib-2.0 >= 2.6.0
-            gtk+-2.0 >= 2.6.0
+            glib-2.0 >= 2.28.0
+            gtk+-2.0 >= 2.24.0
     ], [
         AC_MSG_RESULT([... GTK+ 2.x])
     ])
 else
     PKG_CHECK_MODULES(glib_gtk, [
-            glib-2.0 >= 2.6.0
+            glib-2.0 >= 2.28.0
             gtk+-3.0 >= 3.0.0
     ], [
         AC_MSG_RESULT([... GTK+ 3.x])
     ])
 fi
 CPPFLAGS="$CPPFLAGS $glib_gtk_CFLAGS"
-LIBS="$LIBS $glib_gtk_LIBS -lX11"
+LIBS="$LIBS $glib_gtk_LIBS"
 
 WX_RELEASE=$($WX_CONFIG_WITH_ARGS --release)
 if test "$WX_RELEASE" = "2.8"; then
