@@ -84,7 +84,9 @@ extern const size_t g_LanguageCount = sizeof(g_LanguageValue)/sizeof(int);
 // SendMessage to previous instance under GTK+
 // are from gcin (http://www.csie.nctu.edu.tw/~cp76/gcin/)
 
+#include <X11/Xatom.h>
 #include <gtk/gtk.h>
+#include <gdk/gdkx.h>
 #if wxMAJOR_VERSION == 2
 # include <wx/gtk/win_gtk.h>
 #endif
@@ -261,7 +263,7 @@ bool OpenFilesInPrevInst(const wxString& flist)
     return true;
 #elif defined(__WXGTK__)
     g_Display= gdk_display_get_default();
-    g_MadEdit_atom = gdk_atom_intern("g_wxMEdit_atom", FALSE);
+    g_MadEdit_atom = gdk_atom_intern("g_wxMEdit_atom", False);
     GdkWindow* madedit_win;
 
     if ((madedit_win = gdk_selection_owner_get_for_display(g_Display, g_MadEdit_atom)) == nullptr)
@@ -407,9 +409,15 @@ bool MadEditApp::OnInit()
 #if defined(__WXGTK__)
     if(bSingleInstance)
     {
+# if wxMAJOR_VERSION == 2
+
+        GtkPizza* pizza = GTK_PIZZA(myFrame->m_mainWidget);
+        GdkWindow* gwin = pizza->bin_window;
+# else
         GtkWidget* widget = myFrame->GetHandle();
         GdkWindow* gwin = gtk_widget_get_window(widget);
-        gdk_selection_owner_set_for_display(g_Display, gwin, g_MadEdit_atom, GDK_CURRENT_TIME, FALSE);
+# endif
+        gdk_selection_owner_set_for_display(g_Display, gwin, g_MadEdit_atom, CurrentTime, FALSE);
         gdk_window_add_filter(nullptr, my_gdk_filter, nullptr);
     }
 #endif
