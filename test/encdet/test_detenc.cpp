@@ -59,18 +59,19 @@ void test_detenc(const std::string& text, const std::string& enc)
 {
 	xm::EncodingManager& enccreator = xm::EncodingManager::Instance();
 
-	std::string detenc;
 	xm::EncodingID detencid = xm::ENC_DEFAULT;
 	const ubyte* btext = (const ubyte*)text.data();
 
-	bool det_succ = xm::MatchEncoding(detenc, btext, text.size());
+	bool det_succ;
+	std::string detenc;
+	boost::tie(det_succ, detenc) = xm::MatchEncoding(btext, text.size());
 	if (det_succ)
 	{
 		detencid = enccreator.ExtNameToEncoding(detenc);
 	}
 	else
 	{
-		xm::DetectEncoding(btext, text.size(), detencid, true);
+		detencid = xm::DetectEncoding(btext, text.size(), detencid, true);
 
 		// use GB18030      instead of detected encoding MS936
 		if (detencid == xm::ENC_MS936)
@@ -100,11 +101,12 @@ void test_predetenc(const std::string& text, const std::string& enc, bool matche
 {
 	xm::EncodingManager& enccreator = xm::EncodingManager::Instance();
 
-	std::string detenc;
 	xm::EncodingID detencid = xm::ENC_DEFAULT;
 	const ubyte* btext = (const ubyte*)text.data();
 
-	bool det_succ = xm::MatchEncoding(detenc, btext, text.size());
+	bool det_succ;
+	std::string detenc;
+	boost::tie(det_succ, detenc) = xm::MatchEncoding(btext, text.size());
 
 	BOOST_CHECK(det_succ || !matched);
 	if (!det_succ)

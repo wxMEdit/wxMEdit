@@ -2105,7 +2105,7 @@ bool MadLines::LoadFromFile(const wxString& filename, const std::wstring& encodi
     else
         sz = size_t(m_FileData->m_Size);
 
-    wxString defaultenc = (encoding.empty())? wxm::GetDefaultOrForceEncoding(m_MadEdit->m_Config): wxString(encoding.c_str());
+    wxString defaultenc = encoding.empty()? wxm::GetDefaultOrForceEncoding(m_MadEdit->m_Config): wxString(encoding.c_str());
 
     if(sz == 0)
     {
@@ -2258,8 +2258,10 @@ bool MadLines::PresetFileEncoding(const std::wstring& encoding, const wxByte* bu
         return true;
     }
 
+    bool succ;
     std::string enc;
-    if (xm::MatchEncoding(enc, buf, sz))
+    boost::tie(succ, enc) = xm::MatchEncoding(buf, sz);
+    if (succ)
     {
         m_MadEdit->SetEncoding(std::wstring(enc.begin(), enc.end()));
         return true;
@@ -2291,7 +2293,7 @@ void MadLines::SetFileEncoding(const std::wstring& encoding, const std::wstring&
     }
 
     // use Encoding Detector
-    xm::DetectEncoding(buf, sz, enc, skip_utf8);
+    enc = xm::DetectEncoding(buf, sz, enc, skip_utf8);
 
     m_MadEdit->SetEncoding(xm::EncodingManager::Instance().EncodingToName(enc));
 }

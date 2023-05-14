@@ -2724,13 +2724,14 @@ void MadEditFrame::OpenFile(const wxString &filename, bool mustExist, const Line
         FileCaretPosManager::PosData data;
         g_FileCaretPosManager.GetRestoreData(filename, data);
 
+        wxString encoding = (wxm::UseForceEncoding(m_Config)) ? wxm::GetForceEncoding(m_Config) : data.encoding;
+        wxmedit->SetEncoding(encoding.wc_str());
+
         if (!data.fontname.IsEmpty() && data.fontsize > 0)
             wxmedit->SetTextFont(data.fontname, data.fontsize, false);
 
         if (!data.hex_fontname.IsEmpty() && data.hex_fontsize > 0)
             wxmedit->SetHexFont(data.hex_fontname, data.hex_fontsize, false);
-
-        wxString encoding = (wxm::UseForceEncoding(m_Config))? wxm::GetForceEncoding(m_Config): data.encoding;
 
         if (!wxmedit->LoadFromFile(filename, encoding.wc_str(), data.hexmode) && mustExist)
         {

@@ -1609,13 +1609,13 @@ void MadEdit::SetCaretPosition(wxFileOffset pos, wxFileOffset selbeg, wxFileOffs
 bool MadEdit::LoadFromFile(const wxString& filename, const std::wstring& encoding, bool hexmode)
 {
     wxFileName fn(filename);
-    if(MadDirExists(fn.GetPath(wxPATH_GET_VOLUME))==0)
+    if (MadDirExists(fn.GetPath(wxPATH_GET_VOLUME)) == 0)
     {
         wxLogError(wxString(_("The Parent Directory of this file does not exist:"))+ wxT("\n\n") + filename);
         return false;
     }
 
-    if(m_Lines->LoadFromFile(filename, encoding, hexmode)==false)
+    if (!m_Lines->LoadFromFile(filename, encoding, hexmode))
         return false;
 
     m_UndoBuffer->Clear();

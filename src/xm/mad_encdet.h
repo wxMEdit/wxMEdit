@@ -13,7 +13,6 @@
 #include "encoding/encoding_def.h"
 
 bool IsBinaryData(const ubyte* data, size_t len);
-void DetectChineseEncoding(const ubyte * text, size_t len, xm::EncodingID &enc);
-void DetectJapaneseEncoding(const ubyte * text, size_t len, xm::EncodingID &enc);
+xm::EncodingID DetectChineseEncoding(const ubyte * text, size_t len);
 
 #endif //_MAD_ENCDET_H_

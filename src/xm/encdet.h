@@ -13,11 +13,13 @@
 
 #include <string>
 
+#include <boost/tuple/tuple.hpp>
+
 namespace xm
 {
 	bool IsUTF8(const ubyte* text, size_t len);
-	bool MatchEncoding(std::string& enc, const ubyte* text, size_t len);
-	void DetectEncoding(const ubyte* text, size_t len, EncodingID& enc, bool skip_utf8);
+	boost::tuple<bool, std::string> MatchEncoding(const ubyte* text, size_t len);
+	EncodingID DetectEncoding(const ubyte* text, size_t len, EncodingID init_enc, bool skip_utf8);
 } //namespace xm
 
 #endif //_XM_ENCDET_H_

@@ -28,7 +28,7 @@ bool IsBinaryData(const ubyte* data, size_t len)
 	return false;
 }
 
-void DetectChineseEncoding(const ubyte * text, size_t len, xm::EncodingID &enc)
+xm::EncodingID DetectChineseEncoding(const ubyte * text, size_t len)
 {
 	// detect by punctuation marks
 	size_t i=0;
@@ -118,8 +118,7 @@ void DetectChineseEncoding(const ubyte * text, size_t len, xm::EncodingID &enc)
 			{
 				if(b0>=0x81 && b0<=0xFE)
 				{
-					enc = xm::ENC_MS936; // [0x81~0xFE][0x80~0xA0] are invalid in big5
-					return;
+					return xm::ENC_MS936; // [0x81~0xFE][0x80~0xA0] are invalid in big5
 				}
 			}
 			else
@@ -147,66 +146,6 @@ void DetectChineseEncoding(const ubyte * text, size_t len, xm::EncodingID &enc)
 		}
 	}
 
-	if(cp950>cp936) enc = xm::ENC_MS950;
-	else if(cp936>cp950) enc = xm::ENC_MS936;
-}
-
-void DetectJapaneseEncoding(const ubyte * text, size_t len, xm::EncodingID &enc)
-{
-	ubyte c;
-	size_t i=0;
-	xm::EncodingID xenc= xm::ENC_DEFAULT;
-
-	while (xenc == 0 && i++ < len) {
-
-		c = *text++;
-
-		if (c >= 0x81 && c <= 0x9F) {
-			if (c == 0x8E) /* SS2 */ {
-
-				if(i++ >= len) break;
-
-				c = *text++;
-				if ((c >= 0x40 && c <= 0xA0) || (c >= 0xE0 && c <= 0xFC))
-					xenc = xm::ENC_MS932;
-			}
-			else if (c == 0x8F) /* SS3 */ {
-
-				if(i++ >= len) break;
-
-				c = *text++;
-				if (c >= 0x40 && c <= 0xA0)
-					xenc = xm::ENC_MS932;
-				else if (c >= 0xFD)
-					break;
-			}
-			else
-				xenc = xm::ENC_MS932;
-		}
-		else if (c >= 0xA1 && c <= 0xDF) {
-
-			if(i++ >= len) break;
-
-			c = *text++;
-			if (c <= 0x9F)
-				xenc = xm::ENC_MS932;
-			else if (c >= 0xFD)
-				break;
-		}
-		else if (c >= 0xE0 && c <= 0xEF) {
-
-			if(i++ >= len) break;
-
-			c = *text++;
-			if (c >= 0x40 && c <= 0xA0)
-				xenc = xm::ENC_MS932;
-			else if (c >= 0xFD)
-				break;
-		}
-		else if (c >= 0xF0)
-			break;
-	}
-
-	if (xenc != 0)
-		enc = xenc;
+	return cp950 > cp936 ? xm::ENC_MS950 :
+		   cp936 > cp950 ? xm::ENC_MS936 : xm::ENC_DEFAULT;
 }

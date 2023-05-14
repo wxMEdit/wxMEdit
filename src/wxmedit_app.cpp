@@ -204,9 +204,8 @@ bool OpenFilesInPrevInst(const wxString& flist, int argc, wxChar** argv)
         g_printerr("g_application_register error: %s\n", error->message);
     gboolean r1 = g_application_get_is_remote(g_app);
 
-    if (error == nullptr && r1 == FALSE) {
+    if (error == nullptr && r1 == FALSE)
         return false;
-    }
 
     std::vector<wxCharBuffer> buffers;
     std::vector<const char*> mb_argv;

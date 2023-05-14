@@ -464,16 +464,14 @@ private:
 	BOMEncMap m_bom_enc_map;
 };
 
-bool MatchEncoding(std::string& enc, const ubyte* text, size_t len)
+boost::tuple<bool, std::string> MatchEncoding(const ubyte* text, size_t len)
 {
 	static const EncodingDetector det;
 
 	std::string detenc = det.DetectEncoding(text, len);
-	if (detenc.empty())
-		return false;
-
-	enc = detenc;
-	return true;
+	return detenc.empty()?
+		boost::make_tuple(false, std::string()):
+		boost::make_tuple(true, detenc);
 }
 
 bool MatchEUCJPMoreThanGB18030(const ubyte* text, size_t len)
@@ -535,7 +533,7 @@ bool MatchMBMoreThanUTF16(const ubyte * text, size_t len)
 	return eff_c0_cnt * 100 < len;
 }
 
-void DetectEncoding(const ubyte* text, size_t len, EncodingID& enc, bool skip_utf8)
+EncodingID DetectEncoding(const ubyte* text, size_t len, EncodingID init_enc, bool skip_utf8)
 {
 	UErrorCode status = U_ZERO_ERROR;
 	LocalUCharsetDetectorPointer csd(ucsdet_open(&status));
@@ -578,16 +576,12 @@ void DetectEncoding(const ubyte* text, size_t len, EncodingID& enc, bool skip_ut
 	else if (enc_name == "EUC-JP")
 		enc_name = "CP20932";
 
-	EncodingID init_enc = enc;
-	enc = EncodingManager::Instance().ExtNameToEncoding(enc_name);
+	EncodingID enc = EncodingManager::Instance().ExtNameToEncoding(enc_name);
+	if (enc != ENC_Windows_1252 || (init_enc != ENC_MS950 && init_enc != ENC_MS936))
+		return enc;
 
-	if (enc == ENC_Windows_1252 && (init_enc==ENC_MS950 || init_enc==ENC_MS936))
-	{
-		EncodingID det=ENC_DEFAULT;
-		DetectChineseEncoding(text, len, det);
-		if(det != ENC_DEFAULT)
-			enc = det;
-	}
+	EncodingID det = DetectChineseEncoding(text, len);
+	return det != ENC_DEFAULT ? det : enc;
 }
 
 } // namespace xm
