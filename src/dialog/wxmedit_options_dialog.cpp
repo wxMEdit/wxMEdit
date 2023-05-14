@@ -787,8 +787,8 @@ WXMEditOptionsDialog::WXMEditOptionsDialog(wxWindow* parent,wxWindowID id)
 	WxCheckBoxConfigInUserHome = new wxCheckBox(Panel1, -1, _("Place configuration files into application data directory of current user (%APPDATA%\\wxmedit) rather than wxMEdit executable directory"),
 	                                             wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("WxCheckBoxConfigInUserHome"));
 	WxCheckBoxConfigInUserHome->SetValue(false);
-	BoxSizer7->Add(WxCheckBoxRightClickMenu, 0, wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL, 2);
-	BoxSizer7->Add(WxCheckBoxConfigInUserHome, 0, wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL, 2);
+	BoxSizer7->Add(WxCheckBoxRightClickMenu, 0, wxALL|wxALIGN_LEFT, 2);
+	BoxSizer7->Add(WxCheckBoxConfigInUserHome, 0, wxALL|wxALIGN_LEFT, 2);
 
 	BoxSizer3->Fit(Panel1);
 	BoxSizer3->SetSizeHints(Panel1);
