@@ -110,9 +110,9 @@ void ConfirmUpdate(bool notify_all)
 		return;
 	}
 
-	wxString download_page = wxT("http://wxmedit.github.io/downloads.html");
+	wxString download_page = wxT("https://wxmedit.github.io/downloads.html");
 	if (IsPrerelease(g_result_checkupdates))
-		download_page = wxT("http://wxmedit.github.io/prerelease.html");
+		download_page = wxT("https://wxmedit.github.io/prerelease.html");
 
 	wxString title(_("wxMEdit - New version available"));
 	wxString msg( wxString::Format( _("wxMEdit %s is available. \nClick OK to open the download page."), 

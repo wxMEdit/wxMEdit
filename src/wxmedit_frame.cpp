@@ -174,8 +174,8 @@
 
 namespace wxm
 {
-const wxString g_wxMEdit_Homepage_URL(wxT("http://wxmedit.github.io/"));
-const wxString g_wxMEdit_License_URL(wxT("http://www.gnu.org/licenses/gpl-3.0.html"));
+const wxString g_wxMEdit_Homepage_URL(wxT("https://wxmedit.github.io/"));
+const wxString g_wxMEdit_License_URL(wxT("https://www.gnu.org/licenses/gpl-3.0.html"));
 wxString g_wxMEdit_About_URL = g_wxMEdit_Homepage_URL;
 
 const static wxString s_wxMEdit_License(

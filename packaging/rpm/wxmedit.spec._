@@ -10,7 +10,7 @@ Version: %{version}
 Release: %{release}
 License: GPLv3+
 Vendor: JiaYanwei
-URL: http://wxmedit.github.io/
+URL: https://wxmedit.github.io/
 Group: Applications/Editors
 Source0: %{name}-%{version}.tar.gz
 Packager: JiaYanwei <wxmedit@gmail.com>

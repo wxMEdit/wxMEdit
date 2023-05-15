@@ -9,7 +9,7 @@ Standards-Version: 3.6.2
 Package: wxmedit
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
-HomePage: http://wxmedit.github.io/
+HomePage: https://wxmedit.github.io/
 Description: Cross-platform Text/Hex Editor
  .
  wxMEdit is a cross-platform Text/Hex Editor written in C++ & wxWidgets.
