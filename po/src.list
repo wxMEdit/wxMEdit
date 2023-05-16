@@ -39,8 +39,6 @@
 ../src/wxm/utils.cpp
 ../src/wxm/utils.h
 ../src/wxm/wx_avoid_wxmsw_bug4373.h
-../src/wxm_plugin.cpp
-../src/wxm_plugin.h
 ../src/wxm_printout.cpp
 ../src/wxm_printout.h
 ../src/wxmedit/caret_new.cpp

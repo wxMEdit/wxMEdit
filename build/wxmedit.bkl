@@ -181,8 +181,6 @@
 		<headers>../src/mad_utils.h</headers>
 		<sources>../src/mad_utils.cpp</sources>
 		<headers>../src/wxm_command.h</headers>
-		<headers>../src/wxm_plugin.h</headers>
-		<sources>../src/wxm_plugin.cpp</sources>
 		<headers>../src/wxm_printout.h</headers>
 		<sources>../src/wxm_printout.cpp</sources>
 		<headers>../src/wxm/case_conv.h</headers>

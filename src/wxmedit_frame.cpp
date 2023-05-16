@@ -25,7 +25,6 @@
 #include "dialog/wxm_sort_dialog.h"
 #include "dialog/wxmedit_about_dialog.h"
 #include "dialog/wxmedit_options_dialog.h"
-#include "wxm_plugin.h"
 #include "wxm_printout.h"
 #include "mad_utils.h"
 #include "wxm_command.h"

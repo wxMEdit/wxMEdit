@@ -76,8 +76,6 @@ wxmedit_SOURCES =	$(enc_src) \
 	src/wxm/wx_icu.cpp \
 	src/wxm/wx_icu.h \
 	src/wxm_command.h \
-	src/wxm_plugin.cpp \
-	src/wxm_plugin.h \
 	src/wxm_printout.cpp \
 	src/wxm_printout.h \
 	src/wxmedit/caret_new.cpp \
