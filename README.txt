@@ -31,7 +31,7 @@ B. Windows / ReactOS (__WXMSW__):
       4. ICU4C 50 or higher
       5. libcurl 7.15.5 or higher
 
-   b. Visual C++ 2005/2008/2010~2019 (by upgrading from 2008 solution and project files):
+   b. Visual C++ 2005/2008/2010~2022 (by upgrading from 2008 solution and project files):
       Required Tools and Libraries to compile:
       1. Bakefile 0.2.9~0.2.11
       2. wxWidgets 2.8/3.0/3.2 with Unicode enabled
