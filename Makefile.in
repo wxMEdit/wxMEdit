@@ -908,12 +908,6 @@ noinst_HEADERS = README.txt \
 	src/wxmedit_app.rc \
 	src/dialog/wxm_file_association_dialog.cpp \
 	src/dialog/wxm_file_association_dialog.h \
-	src/plugin_example/makefile.linux \
-	src/plugin_example/makefile.mingw32 \
-	src/plugin_example/makefile.vc \
-	src/plugin_example/plugin.cpp \
-	src/plugin_example/vc_cl.bat \
-	src/plugin_example/wxwin16x16.xpm \
 	images/bmkclearall.xpm \
 	images/bmknext.xpm \
 	images/bmkprev.xpm \
