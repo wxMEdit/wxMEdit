@@ -1274,7 +1274,7 @@ bool RegexSearcher::SearchingPrepare(const ucs4string& exprstr, const wxString& 
 		regex_compiler<UCIterator, ucs4_regex_traits > ucs4comp;
 		sg_expression = ucs4comp.compile(exprstr, opt);
 	}
-	catch (regex_error)
+	catch (const regex_error&)
 	{
 		wxMessageDialog dlg(m_edit, wxString::Format(_("'%s' is not a valid regular expression."), text.c_str()),
 			wxT("wxMEdit"), wxOK | wxICON_ERROR);
@@ -1293,7 +1293,7 @@ bool RegexSearcher::DoSearch(bool& found, UCIterator& fbegin, UCIterator& fend,
 	{
 		found = regex_search(start, end, what, sg_expression);
 	}
-	catch (regex_error)
+	catch (const regex_error&)
 	{
 		wxMessageDialog dlg(m_edit, _("Catched a exception of 'regex_error'.\nMaybe the regular expression is invalid."),
 			wxT("wxMEdit"), wxOK | wxICON_ERROR);
@@ -1341,7 +1341,7 @@ MadSearchResult RegexSearcher::Replace(ucs4string &out, const MadCaretPos& begin
 		regex_replace(oi, begin, end, sg_expression, fmtstr);
 		out = ConvertEscape(out);
 	}
-	catch (regex_error)
+	catch (const regex_error&)
 	{
 		wxMessageDialog dlg(m_edit, wxString::Format(_("The format of '%s' is invalid."), fmt.c_str()),
 			wxT("wxMEdit"), wxOK | wxICON_ERROR);

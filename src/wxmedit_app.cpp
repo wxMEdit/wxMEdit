@@ -199,7 +199,7 @@ bool OpenFilesInPrevInst(const wxString& flist, int argc, wxChar** argv)
     g_signal_connect(g_app, "open", G_CALLBACK (on_files_open), nullptr);
 
     GError* error = nullptr;
-    gboolean r0 = g_application_register(g_app, nullptr, &error);
+    g_application_register(g_app, nullptr, &error);
     if (error != nullptr)
         g_printerr("g_application_register error: %s\n", error->message);
     gboolean r1 = g_application_get_is_remote(g_app);
