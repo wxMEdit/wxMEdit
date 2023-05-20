@@ -33,6 +33,7 @@
 #ifdef __WXGTK__
 # include <wx/log.h>
 # include <gio/gio.h>
+# include <gtk/gtk.h>
 #endif // __WXGTK__
 
 
@@ -256,6 +257,10 @@ bool MadEditApp::OnInit()
         return false;
 
 #ifdef __WXGTK__
+    GtkSettings* gtk_settings = gtk_settings_get_default();
+    g_object_set(gtk_settings, "gtk-menu-images", TRUE, nullptr);
+    g_object_set(gtk_settings, "gtk-button-images", TRUE, nullptr);
+
     bool bDisableWarningMessage = true;
     cfg->Read(wxT("/wxMEdit/DisableWarningMessage"), &bDisableWarningMessage, true);
     if(bDisableWarningMessage)
