@@ -60,6 +60,6 @@ share/pixmaps/wxmedit.png
 %%DATADIR%%/syntax/syntax_visualbasic.syn
 %%DATADIR%%/syntax/syntax_x86asm.syn
 %%DATADIR%%/syntax/syntax_xml.syn
-@dirrmtry %%DOCSDIR%%
-@dirrmtry %%DATADIR%%/syntax
-@dirrmtry %%DATADIR%%
+@rmtry %%DOCSDIR%%
+@rmtry %%DATADIR%%/syntax
+@rmtry %%DATADIR%%

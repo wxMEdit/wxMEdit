@@ -11,13 +11,8 @@ BEGIN{
 	usrmail=substr($1, 33)
 
 	ver=""
-	match($3, /[0-9\.]+-[0-9]+/);
+	match($3, /[0-9\.]+/);
 	ver=substr($3,RSTART, RLENGTH);
-	if (RLENGTH <= 0)
-	{
-		match($3, /[0-9\.]+/);
-		ver=substr($3,RSTART, RLENGTH) "-1";
-	}
 
 	app="wxmedit"
 	match($3, /MadEdit/);

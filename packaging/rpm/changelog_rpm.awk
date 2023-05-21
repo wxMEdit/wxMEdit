@@ -9,16 +9,8 @@ BEGIN{
 	sub(/^........../, "* " strftime("%a %b %d %Y", tm), $1);
 	title=substr($1, 0, 17) substr($1, 33)
 
-	match($3, /[0-9\.]+-[0-9]+/);
-	if (RLENGTH > 0)
-	{
-		print title " - " substr($3,RSTART, RLENGTH);
-	}
-	else
-	{
-		match($3, /[0-9\.]+/);
-		print title " - " substr($3,RSTART, RLENGTH) "-1";
-	}
+	match($3, /[0-9\.]+/);
+	print title " - " substr($3,RSTART, RLENGTH) "-1";
 
 	for(i=4; i<=NF; ++i)
 	{
