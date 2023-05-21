@@ -1,5 +1,5 @@
                       ==================================
-                                wxMEdit v3.1+
+                                wxMEdit v3.2RC
                       ==================================
 About:
 -----
@@ -66,6 +66,26 @@ Syntax files, Locale files and Settings:
 
 ChangeLog:
 ----------
+wxMEdit v3.2RC (v3.1.0.90):
+  1. added new feature: show file size in human readable format.
+  2. added a option that always use certain encoding to open files.
+  3. added GTK+ 3 and Wayland support.
+  4. added High DPI supoport under Windows.
+  5. redisigned the icons by jerome KASPER <neon.king.fr[at]gmail.com>.
+  6. updated Unicode block descriptions for Unicode 15.0 (require ICU 72 or higher).
+  7. fixed crash in text mode when a line exceed the limit of line length.
+  8. fixed crash when pressing OK button in "About wxMEdit" window.
+  9. fixed not responding when warping by window with text containing some tab characters.
+ 10. fixed broken triple click behavior in wxMEdit 3.1.
+ 11. fixed that the height of Information Window in MadEdit/wxMEdit (built with wxMSW-2.8) always reduce by 4.
+ 12. fixed fonts and encodings not restored after restart.
+ 13. fixed that cannot type characters via AltGr key.
+ 14. fixed cursor and selection rendering under Linux.
+ 15. fixed that IME candidate window doesn't follow the caret under Windows 10.
+ 16. added French translation by jerome KASPER <neon.king.fr[at]gmail.com>.
+ 17. updated Simplified Chinese translation.
+ 18. other minor changes and bug fixes.
+
 wxMEdit v3.1:
   1. added a killer feature: word boundary with Chinese/Japanese/Thai/Lao/Khmer and Burmese characters etc.
   2. added a killer feature: word-wrap meet the Unicode® Standard Annex `#14`: Unicode Line Breaking Algorithm.
@@ -105,26 +125,6 @@ wxMEdit v3.0:
  14. updated Spanish translation by Carlos Sánchez <carlos1994sanchez[at]gmail.com>.
  15. updated Japanese translation by Tilt <tiltstr[at]gmail.com>.
  16. other minor changes and bug fixes.
-
-wxMEdit v2.9.9:
-  1. added right-click context menu for each tab.
-  2. added more information for Word Count Dialog.
-  3. added new feature: close files under given folder.
-  4. added new features: close to the left/right, close all but this.
-  5. added bookmark buttons to toolbar.
-  6. added encoding aliases support for Find-in-Files Dialog and Options Dialog.
-  7. added always saving & restoring normalize window size support for UNIX like OS.
-  8. improved localization for syntax title.
-  9. fixed crash when saving a empty file.
- 10. fixed crash when opening Find Dialog with max line length < 100 and find-text history not empty.
- 11. fixed crash when purging find/replace-text history immediately after wxMEdit start.
- 12. fixed that syntax type is always reset on saving even manually changed.
- 13. updated translations of wxmedit.desktop.
- 14. updated Simplified Chinese translation.
- 15. updated Traditional Chinese translation by Vincent_TW.
- 16. updated Spanish translation by Carlos Sánchez <carlos1994sanchez[at]gmail.com>.
- 17. updated Japanese translation by Tilt <tiltstr[at]gmail.com>.
- 18. other minor changes and bug fixes.
 
 See file ChangeLog for more changes.
 

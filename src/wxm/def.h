@@ -26,7 +26,7 @@
 #include <vector>
 #include <string>
 
-#define WXMEDIT_VERSION	"3.1"
+#define WXMEDIT_VERSION	"3.1.0.90"
 
 typedef std::basic_string<ucs4_t> ucs4string;
 
