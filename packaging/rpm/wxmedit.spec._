@@ -16,10 +16,8 @@ Source0: %{name}-%{version}.tar.gz
 Packager: JiaYanwei <wxmedit@gmail.com>
 BuildRoot: %{_builddir}/%{name}-%{version}-root
 
-BuildRequires: gtk3-devel, boost-devel >= 1.53, wxGTK3-devel >= 3.0.3, wxGTK3-devel < 3.3.0, libicu-devel >= 50, libcurl-devel, automake >= 1.13.0, gettext-devel
-Requires: gtk3, wxGTK3 >= 3.0.3, wxGTK3 < 3.3.0, libicu >= 50, libcurl
-
-Docdir: %{prefix}/share/doc
+BuildRequires: gtk3-devel, libicu-devel >= 50, gettext-devel, libcurl-devel, boost-devel >= 1.53, (wxGTK3-devel >= 3.0.3 and wxGTK3-devel < 3.3.0)
+Requires: gtk3, libicu >= 50, libcurl, (wxGTK3 >= 3.0.3 and wxGTK3 < 3.3.0)
 
 
 %description
@@ -34,9 +32,6 @@ wxMEdit is a continually maintained text/hex editor with bug fixes, improvements
 %prep
 %setup
 
-sed -i 's/^dist_doc_DATA/#dist_doc_DATA/' \
- $RPM_BUILD_DIR/%{name}-%{version}/Makefile.am
-
 %build
 touch aclocal.m4 configure Makefile.in config.h.in
 %configure
@@ -45,6 +40,7 @@ make
 %install
 [ "$RPM_BUILD_ROOT" != "/" ] && rm -rf "$RPM_BUILD_ROOT"
 %make_install
+rm -rf %{buildroot}%{_datadir}/doc/wxmedit/
 
 %clean
 [ "$RPM_BUILD_ROOT" != "/" ] && rm -rf "$RPM_BUILD_ROOT"
@@ -52,6 +48,7 @@ rm -rf $RPM_BUILD_DIR/%{name}-%{version}
 
 %files
 %defattr(-,root,root,0755)
+%license LICENSE
 %doc ChangeLog
 %doc LICENSE
 %doc README.txt

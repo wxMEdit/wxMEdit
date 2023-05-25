@@ -2,7 +2,7 @@ Source: wxmedit
 Section: editors
 Priority: optional
 Maintainer: JiaYanwei <wxmedit@gmail.com>
-Build-Depends: debhelper (>= 4.0.0), libgtk-3-dev, libwxgtk3.0-gtk3-dev (>= 3.0.3),
+Build-Depends: debhelper (>= 4.0.0), libgtk-3-dev, libwxgtk3.2-dev | libwxgtk3.0-gtk3-dev (>= 3.0.3),
  libboost-dev (>= 1.53), libicu-dev (>= 50), libcurl-dev
 Standards-Version: 3.6.2
 

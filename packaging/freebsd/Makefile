@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	wxmedit
-PORTVERSION=	3.1
+PORTVERSION=	@VER
 CATEGORIES=	editors
 MASTER_SITES=	SF/${PORTNAME}/${PORTVERSION}
 DISTNAME=	wxMEdit-${PORTVERSION}
@@ -16,11 +16,11 @@ USES=		gettext pkgconfig desktop-file-utils
 USE_WX=		3.2+
 WANT_UNICODE=	yes
 
-LIB_DEPENDS+=	libboost_system.so:${PORTSDIR}/devel/boost-libs \
-		libcurl.so:${PORTSDIR}/ftp/curl \
-		libicudata.so:${PORTSDIR}/devel/icu \
-		libicui18n.so:${PORTSDIR}/devel/icu \
-		libicuuc.so:${PORTSDIR}/devel/icu
+LIB_DEPENDS+=	libboost_system.so:devel/boost-libs \
+		libcurl.so:ftp/curl \
+		libicudata.so:devel/icu \
+		libicui18n.so:devel/icu \
+		libicuuc.so:devel/icu
 
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS+=--with-wx-config=${WX_CONFIG}

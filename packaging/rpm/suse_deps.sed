@@ -1,0 +1,2 @@
+/^BuildRequires:/s/^.*$/BuildRequires: gtk3-devel, libicu-devel >= 50, gettext-devel, libcurl-devel, libboost_headers1_75_0-devel,  wxGTK3-3_2-devel/
+/^Requires:/s/^.*$/Requires: gtk3, libicu >= 50, libcurl4, (libwx_baseu-suse5_0_0 >= 3.0.3 and libwx_baseu-suse5_0_0 < 3.3.0 and libwx_gtk3u_aui-suse5_0_0 >= 3.0.3 and libwx_gtk3u_aui-suse5_0_0 < 3.3.0 and libwx_gtk3u_core-suse5_0_0 >= 3.0.3 and libwx_gtk3u_core-suse5_0_0 < 3.3.0)/

@@ -30,7 +30,9 @@ NEW_SRCPARENTDIR="$NEW_SRCBASEDIR/.."
 
 gawk -f changelog_rpm.awk "$NEW_SRCBASEDIR/ChangeLog" > changelog
 
-cat wxmedit.spec._ changelog | sed "$SEDCMD_VER" > wxmedit.spec
+SEDCMD_FILE=/dev/null
+grep -wE "SUSE|openSUSE" /etc/os-release > /dev/null && SEDCMD_FILE=suse_deps.sed
+cat wxmedit.spec._ changelog | sed -e "$SEDCMD_VER" -f "$SEDCMD_FILE" > wxmedit.spec
 
 #======================================================================
 # 3. create .tar.gz
@@ -51,4 +53,4 @@ mv "$SRCPACK" ~/rpmbuild/SOURCES/
 
 RPMBUILDOPT=""
 uname -r | grep 'fc[0-9]\+\.i686' > /dev/null && RPMBUILDOPT="--target=i686"
-rpmbuild $RPMBUILDOPT -bb "$SRCPACKDIR/packaging/rpm/wxmedit.spec"
+rpmbuild $RPMBUILDOPT --define "_topdir $HOME/rpmbuild" -bb "$SRCPACKDIR/packaging/rpm/wxmedit.spec"
