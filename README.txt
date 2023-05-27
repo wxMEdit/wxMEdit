@@ -22,7 +22,7 @@ A. Linux, BSDes, macOS, OpenIndiana, other Unix-like OSes and Haiku OS (__WXGTK_
       5. ICU4C 50 or higher
       6. libcurl 7.15.5 or higher
 
-B. Windows / ReactOS (__WXMSW__):
+B. Windows / ReactOS / Wine (__WXMSW__):
    a. MinGW/MinGW-w64 GNU C++ 3.x~9.x:
       Required Tools and Libraries for building:
       1. Bakefile 0.2.9~0.2.11
