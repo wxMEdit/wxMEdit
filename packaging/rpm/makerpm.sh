@@ -31,7 +31,7 @@ NEW_SRCPARENTDIR="$NEW_SRCBASEDIR/.."
 gawk -f changelog_rpm.awk "$NEW_SRCBASEDIR/ChangeLog" > changelog
 
 SEDCMD_FILE=/dev/null
-grep -wE "SUSE|openSUSE" /etc/os-release > /dev/null && SEDCMD_FILE=suse_deps.sed
+grep -wE "^ID.*(suse|opensuse)" /etc/os-release > /dev/null && SEDCMD_FILE=suse_deps.sed
 cat wxmedit.spec._ changelog | sed -e "$SEDCMD_VER" -f "$SEDCMD_FILE" > wxmedit.spec
 
 #======================================================================
@@ -49,6 +49,7 @@ tar -czvf "$SRCPACK" "$SRCPACKDIR"
 # 4. build rpm
 #----------------------------------------------------------------------
 
+mkdir -p ~/rpmbuild/SOURCES
 mv "$SRCPACK" ~/rpmbuild/SOURCES/
 
 RPMBUILDOPT=""
