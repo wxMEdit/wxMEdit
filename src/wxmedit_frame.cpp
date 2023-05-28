@@ -1654,10 +1654,6 @@ void MadEditFrame::InitEncodingMenus()
     }
 }
 
-#ifdef __WXMSW__
- bool g_bHasMenuIcon = (wxGetOsVersion() != wxOS_WINDOWS_9X); // fixed win98 will crash if menuitem has icon
-#endif
-
 void CloneMenuItem(wxMenu* menu, const wxMenu* srcmenu, int itemid)
 {
     if (itemid == 0)
@@ -1674,14 +1670,9 @@ void CloneMenuItem(wxMenu* menu, const wxMenu* srcmenu, int itemid)
 #endif
     wxMenuItem* item = new wxMenuItem(menu, itemid, txt, srcitem->GetHelp());
 
-#ifdef __WXMSW__
-    if (g_bHasMenuIcon)
-#endif
-    {
-        const wxBitmap& bit = srcitem->GetBitmap();
-        if (!bit.IsNull())
-            item->SetBitmap(bit);
-    }
+    const wxBitmap& bit = srcitem->GetBitmap();
+    if (!bit.IsNull())
+        item->SetBitmap(bit);
     menu->Append(item);
 }
 
@@ -1857,9 +1848,6 @@ void MadEditFrame::CreateGUIControls()
         {
             wxMenuItem *mit=new wxMenuItem(menu_stack.back(), cd->menu_id, wxString(wxGetTranslation(cd->text)) + GetMenuKey(cd->menuid_name,cd->key), wxGetTranslation(cd->hint), cd->kind);
 
-#ifdef __WXMSW__
-            if (g_bHasMenuIcon)
-#endif
             if(cd->image_idx >= 0 && cd->kind==wxITEM_NORMAL)
             {
                 mit->SetBitmap(m_ImageList->GetBitmap(cd->image_idx));
@@ -1964,39 +1952,8 @@ void MadEditFrame::CreateGUIControls()
 
     m_wxmstatusbar.Resize();
 
-    /*
-    // load plugins
-    wxPluginLibrary *lib = wxPluginManager::LoadLibrary(wxT("./plugin"));
-    if(lib)
-    {
-        wxLogWarning(wxString::Format(wxT("Loaded [ %s ]\n"), wxT("plugin")));
-                          //wxString(path + filename).c_str()));
-
-        if(lib->HasSymbol(wxT("PluginProc")))
-        {
-            //typedef const wchar_t* (*GetNameProc)();
-            typedef int (*PluginProc_Proc)(int PluginID, int nMsg, void* pParam);
-            PluginProc_Proc PluginProc=(PluginProc_Proc)lib->GetSymbol(wxT("PluginProc"));
-
-            if(PluginProc)
-            {
-                wchar_t *name;
-
-                PluginProc(0, PL_GET_NAME, (void*)&name);
-                wxLogWarning(wxString::Format(wxT("GetName: [%s]\n"), name));
-
-                char **xpm;
-                PluginProc(0, PL_GET_XPM, (void*)&xpm);
-                m_ImageList->Add(wxBitmap(xpm));
-
-            }
-        }
-    }
-    */
-
 
     //WxToolBar1
-    //WxToolBar1->AddSeparator();
     WxToolBar1->AddTool(menuNew,      _T("New"),      m_ImageList->GetBitmap(new_xpm_idx),       wxNullBitmap, wxITEM_NORMAL, _("New File") );
     WxToolBar1->AddTool(menuOpen,     _T("Open"),     m_ImageList->GetBitmap(fileopen_xpm_idx),  wxNullBitmap, wxITEM_NORMAL, _("Open File") );
     WxToolBar1->AddTool(menuSave,     _T("Save"),     m_ImageList->GetBitmap(filesave_xpm_idx),  wxNullBitmap, wxITEM_NORMAL, _("Save File") );
@@ -4716,9 +4673,7 @@ void MadEditFrame::OnToolsOptions(wxCommandEvent& event)
                 // change the menu key
                 wxMenuItem *mit=WxMenuBar1->FindItem(cd->menu_id);
 				mit->SetItemLabel(mit->GetItemLabelText() + newkey);
-#ifdef __WXMSW__
-                if (g_bHasMenuIcon)
-#endif
+
                 if(cd->image_idx >= 0 && cd->kind==wxITEM_NORMAL)
                 {
                     mit->SetBitmap(m_ImageList->GetBitmap(cd->image_idx));
