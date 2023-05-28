@@ -1069,6 +1069,12 @@ END_EVENT_TABLE()
 #undef _
 #define _(s)    wxT(s)
 
+#if defined(__WXGTK__) && wxMAJOR_VERSION == 2
+# define MOD_ALT_ "Ctrl-Alt-"
+#else
+# define MOD_ALT_ "Shift-Alt-"
+#endif
+
 CommandData CommandTable[]=
 {
     // file
@@ -1145,7 +1151,7 @@ CommandData CommandTable[]=
                                                                                                                                                                  wxITEM_NORMAL,    -1,                0,                     _("Insert a Tab char at current position")},
 
     { ecInsertDateTime, 1, menuInsertDateTime,           wxT("menuInsertDateTime"),           _("Insert Dat&e and Time"),                   wxT("F7"),           wxITEM_NORMAL,    -1,                0,                     _("Insert date and time at current position")},
-    { 0,                1, menuInsertEnumeration,        wxT("menuInsertEnumeration"),        _("Insert &Ordered Sequence..."),             wxT("Ctrl-Alt-N"),   wxITEM_NORMAL,    olist_xpm_idx,     0,                     _("Insert ordered sequence with certain format in specified numbering system")},
+    { 0,                1, menuInsertEnumeration,        wxT("menuInsertEnumeration"),        _("Insert &Ordered Sequence..."),             wxT(MOD_ALT_ "N"),   wxITEM_NORMAL,    olist_xpm_idx,     0,                     _("Insert ordered sequence with certain format in specified numbering system")},
 
     { 0,                1, 0,                            0,                                   0,                                            0,                   wxITEM_SEPARATOR, -1,                0,                     0 },
     { 0,                1, menuColumn,                   wxT("menuColumn"),                   _("Colum&n"),                                  0,                   wxITEM_NORMAL,    -1,                &g_Menu_Edit_Column,   0 },
@@ -1168,7 +1174,7 @@ CommandData CommandTable[]=
     { 0,                2, 0,                            0,                                   0,                                            0,                   wxITEM_SEPARATOR, -1,                0,                     0},
     { ecToUpperCase,    2, menuToUpperCase,              wxT("menuToUpperCase"),              _("To U&pperCase"),                           wxT("Ctrl-U"),       wxITEM_NORMAL,    -1,                0,                     _("Convert the selection to uppercase")},
     { ecToLowerCase,    2, menuToLowerCase,              wxT("menuToLowerCase"),              _("To L&owerCase"),                           wxT("Ctrl-Shift-U"), wxITEM_NORMAL,    -1,                0,                     _("Convert the selection to lowercase")},
-    { ecInvertCase ,    2, menuInvertCase ,              wxT("menuInvertCase") ,              _("Inver&t Case"),                            wxT("Ctrl-Alt-U"),   wxITEM_NORMAL,    -1,                0,                     _("Invert the case of the selection")},
+    { ecInvertCase ,    2, menuInvertCase ,              wxT("menuInvertCase") ,              _("Inver&t Case"),                            wxT(MOD_ALT_ "U"),   wxITEM_NORMAL,    -1,                0,                     _("Invert the case of the selection")},
     { 0,                2, 0,                            0,                                   0,                                            0,                   wxITEM_SEPARATOR, -1,                0,                     0},
     { ecToHalfWidth,    2, menuToHalfWidth,              wxT("menuToHalfWidth"),              _("To H&alfwidth"),                           wxT(""),             wxITEM_NORMAL,    -1,                0,                     _("Convert the selection to halfwidth")},
     { 0,                2, menuToHalfWidthByOptions,     wxT("menuToHalfWidthByOptions"),     _("To Halfwidth by Options..."),              wxT(""),             wxITEM_NORMAL,    -1,                0,                     _("Convert the selection to halfwidth by options")},
@@ -1304,7 +1310,7 @@ CommandData CommandTable[]=
     { 0,            2, menuFontSize1+71,      wxT("menuFontSize72"),        wxT(" 72 "),               0,                   wxITEM_NORMAL,    -1,                 0,                         wxT("Set font point-size")},
 
     { 0,            1, menuSetFont,           wxT("menuSetFont"),           _("Set Font..."),          wxT(""),             wxITEM_NORMAL,    font_xpm_idx,       0,                         _("Change font settings")},
-    { 0,            1, menuFixedWidthMode,    wxT("menuFixedWidthMode"),    _("&Fixed Width Mode"),    wxT("Ctrl-Alt-F"),   wxITEM_CHECK,     -1,                 0,                         _("Set/Unset the font with Fixed Width")},
+    { 0,            1, menuFixedWidthMode,    wxT("menuFixedWidthMode"),    _("&Fixed Width Mode"),    wxT(MOD_ALT_ "F"),  wxITEM_CHECK,     -1,                 0,                         _("Set/Unset the font with Fixed Width")},
 
     { 0,            1, 0,                     0,                            0,                         0,                   wxITEM_SEPARATOR, -1,                 0,                         0},
     { 0,            1, menuTabColumn,         wxT("menuTabColumn"),         _("Tab Column: "),         0,                   wxITEM_NORMAL,    -1,                 &g_Menu_View_TabColumn,    0},
@@ -1364,11 +1370,11 @@ CommandData CommandTable[]=
     { ecWrapByWindow, 1, menuWrapByWindow,      wxT("menuWrapByWindow"),      _("Wrap By &Window"),      wxT("Ctrl-W"),       wxITEM_CHECK,     wrapbywin_xpm_idx,  0,                         _("Wrap the lines by the window width")},
     { ecWrapByColumn, 1, menuWrapByColumn,      wxT("menuWrapByColumn"),      _("Wrap By Column"),       wxT("Ctrl-E"),       wxITEM_CHECK,     wrapbycol_xpm_idx,  0,                         _("Wrap the lines by the specified Max Columns")},
     { 0,              1, 0,                     0,                            0,                         0,                   wxITEM_SEPARATOR, -1,                 0,                         0},
-    { 0,              1, menuDisplayBookmark,   wxT("menuDisplayBookmark"),   _("Display &Bookmark"),    wxT("Ctrl-Alt-B"),   wxITEM_CHECK,     -1,                 0,                         _("Display the Bookmarks")},
-    { 0,              1, menuDisplayLineNumber, wxT("menuDisplayLineNumber"), _("&Display Line Number"), wxT("Ctrl-Alt-D"),   wxITEM_CHECK,     -1,                 0,                         _("Display the Line Numbers")},
-    { 0,              1, menuShowEndOfLine,     wxT("menuShowEndOfLine"),     _("Show End Of Line"),     wxT("Ctrl-Alt-L"),   wxITEM_CHECK,     -1,                 0,                         _("Show the sign of EndOfLine")},
-    { 0,              1, menuShowTabChar,       wxT("menuShowTabChar"),       _("Show Tab Char"),        wxT("Ctrl-Alt-T"),   wxITEM_CHECK,     -1,                 0,                         _("Show the sign of Tab char")},
-    { 0,              1, menuShowSpaceChar,     wxT("menuShowSpaceChar"),     _("Show Space Char"),      wxT("Ctrl-Alt-S"),   wxITEM_CHECK,     -1,                 0,                         _("Show the sign of Space char")},
+    { 0,              1, menuDisplayBookmark,   wxT("menuDisplayBookmark"),   _("Display &Bookmark"),    wxT(MOD_ALT_ "B"),   wxITEM_CHECK,     -1,                 0,                         _("Display the Bookmarks")},
+    { 0,              1, menuDisplayLineNumber, wxT("menuDisplayLineNumber"), _("&Display Line Number"), wxT(MOD_ALT_ "D"),   wxITEM_CHECK,     -1,                 0,                         _("Display the Line Numbers")},
+    { 0,              1, menuShowEndOfLine,     wxT("menuShowEndOfLine"),     _("Show End Of Line"),     wxT(MOD_ALT_ "L"),   wxITEM_CHECK,     -1,                 0,                         _("Show the sign of EndOfLine")},
+    { 0,              1, menuShowTabChar,       wxT("menuShowTabChar"),       _("Show Tab Char"),        wxT(MOD_ALT_ "T"),   wxITEM_CHECK,     -1,                 0,                         _("Show the sign of Tab char")},
+    { 0,              1, menuShowSpaceChar,     wxT("menuShowSpaceChar"),     _("Show Space Char"),      wxT(MOD_ALT_ "S"),   wxITEM_CHECK,     -1,                 0,                         _("Show the sign of Space char")},
     { 0,              1, menuMarkActiveLine,    wxT("menuMarkActiveLine"),    _("Mark Active Line"),     wxT(""),             wxITEM_CHECK,     -1,                 0,                         _("Mark the current line")},
     { 0,              1, menuMarkBracePair,     wxT("menuMarkBracePair"),     _("Mark Brace Pair"),      wxT(""),             wxITEM_CHECK,     -1,                 0,                         _("Mark the BracePair under the caret")},
     { 0,              1, 0,                     0,                            0,                         0,                   wxITEM_SEPARATOR, -1,                 0,                         0},

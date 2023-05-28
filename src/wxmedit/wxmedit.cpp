@@ -8561,7 +8561,7 @@ inline bool IsCharFlags(int flags)
 {
     return flags == wxACCEL_NORMAL
 #if defined(__WXMSW__) || wxMAJOR_VERSION == 3
-        || (flags & (wxACCEL_CTRL | wxACCEL_ALT)) != 0 || (flags & wxACCEL_SHIFT) != 0
+        || (flags & (wxACCEL_CTRL | wxACCEL_ALT)) == (wxACCEL_CTRL | wxACCEL_ALT) || (flags & wxACCEL_SHIFT) != 0
 #endif
         ;
 }
@@ -8592,6 +8592,14 @@ void MadEdit::OnChar(wxKeyEvent& evt)
     }
 
     MadEditCommand cmd=ms_KeyBindings.FindCommand(flags, key);
+
+#if defined(__WXGTK__) && wxMAJOR_VERSION == 2
+    if (key >= 0x80 && ucs4 >= ecCharFirst && ucs4 < 0x80) {
+        int tmp = (int) ucs4;
+        ucs4 = (ucs4_t) key;
+        key = tmp;
+    }
+#endif
 
     if(cmd == ecToggleWindow)
     {
