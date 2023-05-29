@@ -195,6 +195,8 @@ typedef unordered_map<int, MadKeyBinding*> MadKeyBindingMap;
 
 //---------------------------------------------------------------------------
 
+MadEditShortCut AdjustedShortCut(int flags, int keyCode);
+
 inline MadEditShortCut ShortCut(int flags, int keyCode)
 {
     return (flags<<16) | keyCode;

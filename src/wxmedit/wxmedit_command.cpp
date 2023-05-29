@@ -407,11 +407,21 @@ MadEditShortCut StringToShortCut(const wxString &text)
 
         if ( keyCode ) {
             // we do have something
-            return ShortCut(accelFlags, keyCode);
+            return AdjustedShortCut(accelFlags, keyCode);
         }
     //}
 
     return 0;
+}
+
+MadEditShortCut AdjustedShortCut(int flags, int keyCode)
+{
+    // adjust flags to avoid conflict between AltGr typing and accelerators
+    int adjustedFlags = (flags & (wxACCEL_CTRL | wxACCEL_ALT)) == (wxACCEL_CTRL | wxACCEL_ALT)
+        && keyCode >= WXK_SPACE && keyCode < WXK_DELETE ?
+            (flags & ~wxACCEL_CTRL | wxACCEL_SHIFT) :
+            flags;
+    return ShortCut(adjustedFlags, keyCode);
 }
 
 wxString ShortCutToString(MadEditShortCut shortcut)
@@ -708,8 +718,8 @@ void MadKeyBindings::AddDefaultBindings(bool overwrite)
     Add(ShortCut(wxACCEL_CTRL | wxACCEL_SHIFT, WXK_DOWN),   ecScrollLineDown, overwrite);
     Add(ShortCut(wxACCEL_ALT, WXK_UP),                      ecScrollLineUp, overwrite);
     Add(ShortCut(wxACCEL_ALT, WXK_DOWN),                    ecScrollLineDown, overwrite);
-    Add(ShortCut(wxACCEL_ALT | wxACCEL_SHIFT, WXK_UP),      ecScrollLineUp, overwrite);
-    Add(ShortCut(wxACCEL_ALT | wxACCEL_SHIFT, WXK_DOWN),    ecScrollLineDown, overwrite);
+    Add(ShortCut(wxACCEL_SHIFT | wxACCEL_ALT, WXK_UP),      ecScrollLineUp, overwrite);
+    Add(ShortCut(wxACCEL_SHIFT | wxACCEL_ALT, WXK_DOWN),    ecScrollLineDown, overwrite);
     Add(ShortCut(wxACCEL_CTRL | wxACCEL_ALT, WXK_UP),       ecScrollLineUp, overwrite);
     Add(ShortCut(wxACCEL_CTRL | wxACCEL_ALT, WXK_DOWN),     ecScrollLineDown, overwrite);
 
@@ -719,13 +729,13 @@ void MadKeyBindings::AddDefaultBindings(bool overwrite)
     Add(ShortCut(wxACCEL_CTRL | wxACCEL_SHIFT, WXK_PAGEDOWN), ecScrollPageDown, overwrite);
     Add(ShortCut(wxACCEL_ALT, WXK_PAGEUP),                    ecScrollPageUp, overwrite);
     Add(ShortCut(wxACCEL_ALT, WXK_PAGEDOWN),                  ecScrollPageDown, overwrite);
-    Add(ShortCut(wxACCEL_ALT | wxACCEL_SHIFT, WXK_PAGEUP),    ecScrollPageUp, overwrite);
-    Add(ShortCut(wxACCEL_ALT | wxACCEL_SHIFT, WXK_PAGEDOWN),  ecScrollPageDown, overwrite);
+    Add(ShortCut(wxACCEL_SHIFT | wxACCEL_ALT, WXK_PAGEUP),    ecScrollPageUp, overwrite);
+    Add(ShortCut(wxACCEL_SHIFT | wxACCEL_ALT, WXK_PAGEDOWN),  ecScrollPageDown, overwrite);
     Add(ShortCut(wxACCEL_CTRL | wxACCEL_ALT, WXK_PAGEUP),     ecScrollPageUp, overwrite);
     Add(ShortCut(wxACCEL_CTRL | wxACCEL_ALT, WXK_PAGEDOWN),   ecScrollPageDown, overwrite);
 
-    Add(ShortCut(wxACCEL_ALT | wxACCEL_SHIFT, WXK_LEFT),    ecScrollLeft, overwrite);
-    Add(ShortCut(wxACCEL_ALT | wxACCEL_SHIFT, WXK_RIGHT),   ecScrollRight, overwrite);
+    Add(ShortCut(wxACCEL_SHIFT | wxACCEL_ALT, WXK_LEFT),    ecScrollLeft, overwrite);
+    Add(ShortCut(wxACCEL_SHIFT | wxACCEL_ALT, WXK_RIGHT),   ecScrollRight, overwrite);
 
 
     Add(ShortCut(wxACCEL_CTRL, 'A'),            ecSelectAll, overwrite);
@@ -790,7 +800,7 @@ void MadKeyBindings::AddDefaultBindings(bool overwrite)
 
     Add(ShortCut(wxACCEL_CTRL, 'U'), ecToUpperCase, overwrite);
     Add(ShortCut(wxACCEL_CTRL | wxACCEL_SHIFT, 'U'), ecToLowerCase, overwrite);
-    Add(ShortCut(wxACCEL_CTRL | wxACCEL_ALT  , 'U'), ecInvertCase, overwrite);
+    Add(ShortCut(wxACCEL_SHIFT | wxACCEL_ALT , 'U'), ecInvertCase, overwrite);
 
     Add(ShortCut(wxACCEL_NORMAL, WXK_F7), ecInsertDateTime, overwrite);
 
