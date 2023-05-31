@@ -147,10 +147,17 @@ bool OpenFilesInPrevInst(const wxString& flist, int argc, wxChar** argv)
     if(GetLastError() != ERROR_ALREADY_EXISTS)
         return false;
 
-    const wxChar wxCanvasClassNameNR[] = wxT("wxWindowClassNR"); // class name of MadEditFrame
+// class name of MadEditFrame
+#if wxMAJOR_VERSION == 2
+# define WX_CANVAS_CLASS_NAME_NR wxT("wxWindowClassNR")
+#else
+# define WX_CANVAS_CLASS_NAME_NR wxT("wxWindowNR")
+#endif
+
     wxChar title[256]={0};
-    HWND prevapp = ::FindWindowEx(NULL, NULL, wxCanvasClassNameNR, nullptr);
-    for(;;)                // find wxCanvasClassNameNR
+    HWND prevapp = ::FindWindowEx(NULL, NULL, WX_CANVAS_CLASS_NAME_NR, nullptr);
+    // find WX_CANVAS_CLASS_NAME_NR
+    for(;;)
     {
         if(prevapp)
         {
@@ -166,7 +173,7 @@ bool OpenFilesInPrevInst(const wxString& flist, int argc, wxChar** argv)
         {
             Sleep(50);
         }
-        prevapp =::FindWindowEx(NULL, prevapp, wxCanvasClassNameNR, nullptr);
+        prevapp =::FindWindowEx(NULL, prevapp, WX_CANVAS_CLASS_NAME_NR, nullptr);
     }
 
     if(prevapp == NULL)
