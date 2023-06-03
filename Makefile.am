@@ -194,7 +194,6 @@ noinst_HEADERS =	README.txt \
 	images/icons.png \
 	images/icons.svg \
 	images/indent.xpm \
-	images/mainicon.png \
 	images/mainicon.svg \
 	images/new.xpm \
 	images/nowrap.xpm \
