@@ -385,7 +385,7 @@ wxFont GetItemFont(wxListCtrl *listctrl, long item)
     wxListItem it;
     it.SetId(item);
     listctrl->GetItem(it);
-    return it.GetFont();
+    return it.GetFont().IsOk()? it.GetFont() : listctrl->GetFont();
 }
 void SetItemFont(wxListCtrl *listctrl, long item, wxFont &font)
 {
