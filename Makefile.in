@@ -108,7 +108,10 @@ CONFIG_HEADER = config.h
 CONFIG_CLEAN_FILES =
 CONFIG_CLEAN_VPATH_FILES =
 am__installdirs = "$(DESTDIR)$(bindir)" "$(DESTDIR)$(appdir)" \
-	"$(DESTDIR)$(docdir)" "$(DESTDIR)$(pixmapsdir)"
+	"$(DESTDIR)$(docdir)" "$(DESTDIR)$(icons16dir)" \
+	"$(DESTDIR)$(icons24dir)" "$(DESTDIR)$(icons32dir)" \
+	"$(DESTDIR)$(icons48dir)" "$(DESTDIR)$(iconssvgdir)" \
+	"$(DESTDIR)$(pixmapsdir)"
 PROGRAMS = $(bin_PROGRAMS)
 am__dirstamp = $(am__leading_dot)dirstamp
 am__objects_1 = src/xm/encoding/wxmedit-cp20932.$(OBJEXT) \
@@ -359,7 +362,9 @@ am__uninstall_files_from_dir = { \
     || { echo " ( cd '$$dir' && rm -f" $$files ")"; \
          $(am__cd) "$$dir" && rm -f $$files; }; \
   }
-DATA = $(app_DATA) $(dist_doc_DATA) $(pixmaps_DATA)
+DATA = $(app_DATA) $(dist_doc_DATA) $(icons16_DATA) $(icons24_DATA) \
+	$(icons32_DATA) $(icons48_DATA) $(iconssvg_DATA) \
+	$(pixmaps_DATA)
 HEADERS = $(noinst_HEADERS)
 RECURSIVE_CLEAN_TARGETS = mostlyclean-recursive clean-recursive	\
   distclean-recursive maintainer-clean-recursive
@@ -898,11 +903,23 @@ wxmedit_test_SOURCES = $(enc_src) \
 	test/test.cpp
 
 dist_doc_DATA = ChangeLog LICENSE README.txt
-pixmapsdir = $(datadir)/pixmaps
-pixmaps_DATA = wxmedit.png
 appdir = $(datadir)/applications
 app_DATA = wxmedit.desktop
-EXTRA_DIST = $(pixmaps_DATA) $(app_DATA)
+pixmapsdir = $(datadir)/pixmaps
+pixmaps_DATA = images/48x48/wxmedit.png
+icons16dir = $(datadir)/icons/hicolor/16x16/apps
+icons16_DATA = images/16x16/wxmedit.png
+icons24dir = $(datadir)/icons/hicolor/24x24/apps
+icons24_DATA = images/24x24/wxmedit.png
+icons32dir = $(datadir)/icons/hicolor/32x32/apps
+icons32_DATA = images/32x32/wxmedit.png
+icons48dir = $(datadir)/icons/hicolor/48x48/apps
+icons48_DATA = images/48x48/wxmedit.png
+iconssvgdir = $(datadir)/icons/hicolor/scalable/apps
+iconssvg_DATA = images/scalable/wxmedit.svg
+EXTRA_DIST = $(app_DATA) $(pixmaps_DATA) \
+	$(icons16_DATA) $(icons24_DATA) $(icons32_DATA) $(icons48_DATA) $(iconssvg_DATA)
+
 noinst_HEADERS = README.txt \
 	autogen.sh \
 	src/wxmedit_app.rc \
@@ -2159,6 +2176,111 @@ uninstall-dist_docDATA:
 	@list='$(dist_doc_DATA)'; test -n "$(docdir)" || list=; \
 	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
 	dir='$(DESTDIR)$(docdir)'; $(am__uninstall_files_from_dir)
+install-icons16DATA: $(icons16_DATA)
+	@$(NORMAL_INSTALL)
+	@list='$(icons16_DATA)'; test -n "$(icons16dir)" || list=; \
+	if test -n "$$list"; then \
+	  echo " $(MKDIR_P) '$(DESTDIR)$(icons16dir)'"; \
+	  $(MKDIR_P) "$(DESTDIR)$(icons16dir)" || exit 1; \
+	fi; \
+	for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  echo "$$d$$p"; \
+	done | $(am__base_list) | \
+	while read files; do \
+	  echo " $(INSTALL_DATA) $$files '$(DESTDIR)$(icons16dir)'"; \
+	  $(INSTALL_DATA) $$files "$(DESTDIR)$(icons16dir)" || exit $$?; \
+	done
+
+uninstall-icons16DATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(icons16_DATA)'; test -n "$(icons16dir)" || list=; \
+	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
+	dir='$(DESTDIR)$(icons16dir)'; $(am__uninstall_files_from_dir)
+install-icons24DATA: $(icons24_DATA)
+	@$(NORMAL_INSTALL)
+	@list='$(icons24_DATA)'; test -n "$(icons24dir)" || list=; \
+	if test -n "$$list"; then \
+	  echo " $(MKDIR_P) '$(DESTDIR)$(icons24dir)'"; \
+	  $(MKDIR_P) "$(DESTDIR)$(icons24dir)" || exit 1; \
+	fi; \
+	for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  echo "$$d$$p"; \
+	done | $(am__base_list) | \
+	while read files; do \
+	  echo " $(INSTALL_DATA) $$files '$(DESTDIR)$(icons24dir)'"; \
+	  $(INSTALL_DATA) $$files "$(DESTDIR)$(icons24dir)" || exit $$?; \
+	done
+
+uninstall-icons24DATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(icons24_DATA)'; test -n "$(icons24dir)" || list=; \
+	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
+	dir='$(DESTDIR)$(icons24dir)'; $(am__uninstall_files_from_dir)
+install-icons32DATA: $(icons32_DATA)
+	@$(NORMAL_INSTALL)
+	@list='$(icons32_DATA)'; test -n "$(icons32dir)" || list=; \
+	if test -n "$$list"; then \
+	  echo " $(MKDIR_P) '$(DESTDIR)$(icons32dir)'"; \
+	  $(MKDIR_P) "$(DESTDIR)$(icons32dir)" || exit 1; \
+	fi; \
+	for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  echo "$$d$$p"; \
+	done | $(am__base_list) | \
+	while read files; do \
+	  echo " $(INSTALL_DATA) $$files '$(DESTDIR)$(icons32dir)'"; \
+	  $(INSTALL_DATA) $$files "$(DESTDIR)$(icons32dir)" || exit $$?; \
+	done
+
+uninstall-icons32DATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(icons32_DATA)'; test -n "$(icons32dir)" || list=; \
+	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
+	dir='$(DESTDIR)$(icons32dir)'; $(am__uninstall_files_from_dir)
+install-icons48DATA: $(icons48_DATA)
+	@$(NORMAL_INSTALL)
+	@list='$(icons48_DATA)'; test -n "$(icons48dir)" || list=; \
+	if test -n "$$list"; then \
+	  echo " $(MKDIR_P) '$(DESTDIR)$(icons48dir)'"; \
+	  $(MKDIR_P) "$(DESTDIR)$(icons48dir)" || exit 1; \
+	fi; \
+	for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  echo "$$d$$p"; \
+	done | $(am__base_list) | \
+	while read files; do \
+	  echo " $(INSTALL_DATA) $$files '$(DESTDIR)$(icons48dir)'"; \
+	  $(INSTALL_DATA) $$files "$(DESTDIR)$(icons48dir)" || exit $$?; \
+	done
+
+uninstall-icons48DATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(icons48_DATA)'; test -n "$(icons48dir)" || list=; \
+	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
+	dir='$(DESTDIR)$(icons48dir)'; $(am__uninstall_files_from_dir)
+install-iconssvgDATA: $(iconssvg_DATA)
+	@$(NORMAL_INSTALL)
+	@list='$(iconssvg_DATA)'; test -n "$(iconssvgdir)" || list=; \
+	if test -n "$$list"; then \
+	  echo " $(MKDIR_P) '$(DESTDIR)$(iconssvgdir)'"; \
+	  $(MKDIR_P) "$(DESTDIR)$(iconssvgdir)" || exit 1; \
+	fi; \
+	for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  echo "$$d$$p"; \
+	done | $(am__base_list) | \
+	while read files; do \
+	  echo " $(INSTALL_DATA) $$files '$(DESTDIR)$(iconssvgdir)'"; \
+	  $(INSTALL_DATA) $$files "$(DESTDIR)$(iconssvgdir)" || exit $$?; \
+	done
+
+uninstall-iconssvgDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(iconssvg_DATA)'; test -n "$(iconssvgdir)" || list=; \
+	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
+	dir='$(DESTDIR)$(iconssvgdir)'; $(am__uninstall_files_from_dir)
 install-pixmapsDATA: $(pixmaps_DATA)
 	@$(NORMAL_INSTALL)
 	@list='$(pixmaps_DATA)'; test -n "$(pixmapsdir)" || list=; \
@@ -2648,7 +2770,7 @@ check: check-recursive
 all-am: Makefile $(PROGRAMS) $(DATA) $(HEADERS) config.h
 installdirs: installdirs-recursive
 installdirs-am:
-	for dir in "$(DESTDIR)$(bindir)" "$(DESTDIR)$(appdir)" "$(DESTDIR)$(docdir)" "$(DESTDIR)$(pixmapsdir)"; do \
+	for dir in "$(DESTDIR)$(bindir)" "$(DESTDIR)$(appdir)" "$(DESTDIR)$(docdir)" "$(DESTDIR)$(icons16dir)" "$(DESTDIR)$(icons24dir)" "$(DESTDIR)$(icons32dir)" "$(DESTDIR)$(icons48dir)" "$(DESTDIR)$(iconssvgdir)" "$(DESTDIR)$(pixmapsdir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-recursive
@@ -2806,8 +2928,10 @@ info: info-recursive
 info-am:
 
 install-data-am: install-appDATA install-dist_docDATA \
-	install-pixmapsDATA
-
+	install-icons16DATA install-icons24DATA install-icons32DATA \
+	install-icons48DATA install-iconssvgDATA install-pixmapsDATA
+	@$(NORMAL_INSTALL)
+	$(MAKE) $(AM_MAKEFLAGS) install-data-hook
 install-dvi: install-dvi-recursive
 
 install-dvi-am:
@@ -2931,9 +3055,13 @@ ps: ps-recursive
 ps-am:
 
 uninstall-am: uninstall-appDATA uninstall-binPROGRAMS \
-	uninstall-dist_docDATA uninstall-pixmapsDATA
+	uninstall-dist_docDATA uninstall-icons16DATA \
+	uninstall-icons24DATA uninstall-icons32DATA \
+	uninstall-icons48DATA uninstall-iconssvgDATA \
+	uninstall-pixmapsDATA
 
-.MAKE: $(am__recursive_targets) all check-am install-am install-strip
+.MAKE: $(am__recursive_targets) all check-am install-am \
+	install-data-am install-strip
 
 .PHONY: $(am__recursive_targets) CTAGS GTAGS TAGS all all-am \
 	am--depfiles am--refresh check check-TESTS check-am clean \
@@ -2944,26 +3072,27 @@ uninstall-am: uninstall-appDATA uninstall-binPROGRAMS \
 	distclean-generic distclean-hdr distclean-tags distcleancheck \
 	distdir distuninstallcheck dvi dvi-am html html-am info \
 	info-am install install-am install-appDATA install-binPROGRAMS \
-	install-data install-data-am install-dist_docDATA install-dvi \
-	install-dvi-am install-exec install-exec-am install-html \
-	install-html-am install-info install-info-am install-man \
-	install-pdf install-pdf-am install-pixmapsDATA install-ps \
-	install-ps-am install-strip installcheck installcheck-am \
-	installdirs installdirs-am maintainer-clean \
-	maintainer-clean-generic mostlyclean mostlyclean-compile \
-	mostlyclean-generic pdf pdf-am ps ps-am recheck tags tags-am \
-	uninstall uninstall-am uninstall-appDATA uninstall-binPROGRAMS \
-	uninstall-dist_docDATA uninstall-pixmapsDATA
+	install-data install-data-am install-data-hook \
+	install-dist_docDATA install-dvi install-dvi-am install-exec \
+	install-exec-am install-html install-html-am \
+	install-icons16DATA install-icons24DATA install-icons32DATA \
+	install-icons48DATA install-iconssvgDATA install-info \
+	install-info-am install-man install-pdf install-pdf-am \
+	install-pixmapsDATA install-ps install-ps-am install-strip \
+	installcheck installcheck-am installdirs installdirs-am \
+	maintainer-clean maintainer-clean-generic mostlyclean \
+	mostlyclean-compile mostlyclean-generic pdf pdf-am ps ps-am \
+	recheck tags tags-am uninstall uninstall-am uninstall-appDATA \
+	uninstall-binPROGRAMS uninstall-dist_docDATA \
+	uninstall-icons16DATA uninstall-icons24DATA \
+	uninstall-icons32DATA uninstall-icons48DATA \
+	uninstall-iconssvgDATA uninstall-pixmapsDATA
 
 .PRECIOUS: Makefile
 
 
-wxmedit.desktop: $(top_srcdir)/wxmedit.desktop._ Makefile
-	if [ x"$$XDG_DATA_DIRS" == x"" ]; then \
-	  sed "s#@pixmapsdir@#$(pixmapsdir)#" $(top_srcdir)/wxmedit.desktop._ > $@; \
-	else \
-	  cmp $(top_srcdir)/wxmedit.desktop $@ >/dev/null 2>&1 || cp $(top_srcdir)/wxmedit.desktop $@ || echo ""; \
-	fi
+install-data-hook:
+	touch $(datadir)/icons/hicolor
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.

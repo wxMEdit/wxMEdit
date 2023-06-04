@@ -147,20 +147,32 @@ wxmedit_test_SOURCES =	$(enc_src) \
 
 dist_doc_DATA = ChangeLog LICENSE README.txt
 
-pixmapsdir = $(datadir)/pixmaps
-pixmaps_DATA = wxmedit.png
-
-wxmedit.desktop: $(top_srcdir)/wxmedit.desktop._ Makefile
-	if [ x"$$XDG_DATA_DIRS" == x"" ]; then \
-	  sed "s#@pixmapsdir@#$(pixmapsdir)#" $(top_srcdir)/wxmedit.desktop._ > $@; \
-	else \
-	  cmp $(top_srcdir)/wxmedit.desktop $@ >/dev/null 2>&1 || cp $(top_srcdir)/wxmedit.desktop $@ || echo ""; \
-	fi
-
 appdir = $(datadir)/applications
 app_DATA = wxmedit.desktop
 
-EXTRA_DIST = $(pixmaps_DATA) $(app_DATA)
+pixmapsdir = $(datadir)/pixmaps
+pixmaps_DATA = images/48x48/wxmedit.png
+
+icons16dir = $(datadir)/icons/hicolor/16x16/apps
+icons16_DATA = images/16x16/wxmedit.png
+
+icons24dir = $(datadir)/icons/hicolor/24x24/apps
+icons24_DATA = images/24x24/wxmedit.png
+
+icons32dir = $(datadir)/icons/hicolor/32x32/apps
+icons32_DATA = images/32x32/wxmedit.png
+
+icons48dir = $(datadir)/icons/hicolor/48x48/apps
+icons48_DATA = images/48x48/wxmedit.png
+
+iconssvgdir = $(datadir)/icons/hicolor/scalable/apps
+iconssvg_DATA = images/scalable/wxmedit.svg
+
+install-data-hook:
+	touch $(datadir)/icons/hicolor
+
+EXTRA_DIST = $(app_DATA) $(pixmaps_DATA) \
+	$(icons16_DATA) $(icons24_DATA) $(icons32_DATA) $(icons48_DATA) $(iconssvg_DATA)
 
 noinst_HEADERS =	README.txt \
 	autogen.sh \
