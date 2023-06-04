@@ -7,8 +7,9 @@ CATEGORIES=	editors
 MASTER_SITES=	SF/${PORTNAME}/${PORTVERSION}
 DISTNAME=	wxMEdit-${PORTVERSION}
 
-MAINTAINER=	JiaYanwei <wxmedit@gmail.com>
+MAINTAINER=	wxmedit@gmail.com
 COMMENT=	wxMEdit: Cross-platform Text/Hex Editor, Improved Version of MadEdit
+WWW=		https://wxmedit.github.io/
 
 LICENSE=	GPLv3
 
