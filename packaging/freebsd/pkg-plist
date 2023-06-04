@@ -1,5 +1,10 @@
 bin/wxmedit
 share/applications/wxmedit.desktop
+share/icons/hicolor/16x16/apps/wxmedit.png
+share/icons/hicolor/24x24/apps/wxmedit.png
+share/icons/hicolor/32x32/apps/wxmedit.png
+share/icons/hicolor/48x48/apps/wxmedit.png
+share/icons/hicolor/scalable/apps/wxmedit.svg
 share/locale/de_DE/LC_MESSAGES/wxmedit.mo
 share/locale/es/LC_MESSAGES/wxmedit.mo
 share/locale/fr_FR/LC_MESSAGES/wxmedit.mo
