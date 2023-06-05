@@ -59,6 +59,7 @@
 #include <boost/foreach.hpp>
 #include <boost/assign/list_of.hpp>
 #include <boost/scoped_ptr.hpp>
+#include <boost/function.hpp>
 
 #include <vector>
 #include <utility>
@@ -4309,12 +4310,21 @@ void MadEditFrame::OnViewSetFont(wxCommandEvent& event)
     }
 }
 
+bool IsEventChecked(wxCommandEvent& event, boost::function<bool(InFrameWXMEdit& wxmedit)> getOldState)
+{
+#if defined(__WXGTK__) && wxMAJOR_VERSION == 3
+    return event.GetEventObject() != nullptr ? event.IsChecked() : !getOldState(*g_active_wxmedit);
+#else
+    return event.IsChecked();
+#endif
+}
+
 void MadEditFrame::OnViewFixedWidthMode(wxCommandEvent& event)
 {
     if (g_active_wxmedit == nullptr)
         return;
 
-    g_active_wxmedit->SetFixedWidthMode(event.IsChecked());
+    g_active_wxmedit->SetFixedWidthMode(IsEventChecked(event, &InFrameWXMEdit::GetFixedWidthMode));
 }
 
 void MadEditFrame::OnViewTabColumn(wxCommandEvent& event)
@@ -4362,49 +4372,49 @@ void MadEditFrame::OnViewDisplayLineNumber(wxCommandEvent& event)
     if (g_active_wxmedit == nullptr)
         return;
 
-    g_active_wxmedit->SetLineNumberVisible(event.IsChecked());
+    g_active_wxmedit->SetLineNumberVisible(IsEventChecked(event, &InFrameWXMEdit::LineNumberVisible));
 }
 void MadEditFrame::OnViewDisplayBookmark(wxCommandEvent& event)
 {
     if (g_active_wxmedit == nullptr)
         return;
 
-    g_active_wxmedit->SetBookmarkVisible(event.IsChecked());
+    g_active_wxmedit->SetBookmarkVisible(IsEventChecked(event, &InFrameWXMEdit::BookmarkVisible));
 }
 void MadEditFrame::OnViewShowEndOfLine(wxCommandEvent& event)
 {
     if (g_active_wxmedit == nullptr)
         return;
 
-    g_active_wxmedit->SetShowEndOfLine(event.IsChecked());
+    g_active_wxmedit->SetShowEndOfLine(IsEventChecked(event, &InFrameWXMEdit::GetShowEndOfLine));
 }
 void MadEditFrame::OnViewShowTabChar(wxCommandEvent& event)
 {
     if (g_active_wxmedit == nullptr)
         return;
 
-    g_active_wxmedit->SetShowTabChar(event.IsChecked());
+    g_active_wxmedit->SetShowTabChar(IsEventChecked(event, &InFrameWXMEdit::GetShowTabChar));
 }
 void MadEditFrame::OnViewShowSpaceChar(wxCommandEvent& event)
 {
     if (g_active_wxmedit == nullptr)
         return;
 
-    g_active_wxmedit->SetShowSpaceChar(event.IsChecked());
+    g_active_wxmedit->SetShowSpaceChar(IsEventChecked(event, &InFrameWXMEdit::GetShowSpaceChar));
 }
 void MadEditFrame::OnViewMarkActiveLine(wxCommandEvent& event)
 {
     if (g_active_wxmedit == nullptr)
         return;
 
-    g_active_wxmedit->SetMarkActiveLine(event.IsChecked());
+    g_active_wxmedit->SetMarkActiveLine(IsEventChecked(event, &InFrameWXMEdit::GetMarkActiveLine));
 }
 void MadEditFrame::OnViewMarkBracePair(wxCommandEvent& event)
 {
     if (g_active_wxmedit == nullptr)
         return;
 
-    g_active_wxmedit->SetMarkBracePair(event.IsChecked());
+    g_active_wxmedit->SetMarkBracePair(IsEventChecked(event, &InFrameWXMEdit::GetMarkBracePair));
 }
 
 void MadEditFrame::OnViewTextMode(wxCommandEvent& event)
