@@ -230,9 +230,10 @@ const static CreditsList s_wxMEdit_Credits = boost::assign::pair_list_of
 wxString g_lastpath_closingfiles;
 } // namespace wxm
 
+using wxm::InFrameWXMEdit;
 
 MadEditFrame* g_MainFrame = nullptr;
-wxm::InFrameWXMEdit* g_active_wxmedit = nullptr;
+InFrameWXMEdit* g_active_wxmedit = nullptr;
 int g_PrevPageID=-1;
 bool g_CheckModTimeForReload = true;
 
@@ -349,7 +350,7 @@ public:
         }
     }
 
-    void Add(wxm::InFrameWXMEdit* wxmedit)
+    void Add(InFrameWXMEdit* wxmedit)
     {
         if (wxmedit == nullptr)
             return;
@@ -558,7 +559,7 @@ std::list<wxMadAuiNotebook::PageData> wxMadAuiNotebook::GetPagesList()
     for (i = 0; i < page_count; ++i)
     {
         wxAuiNotebookPage& page = pages.Item(i);
-        wxm::InFrameWXMEdit* wxmedit = (wxm::InFrameWXMEdit*)page.window;
+        InFrameWXMEdit* wxmedit = (InFrameWXMEdit*)page.window;
 
         wxAuiTabCtrl *ctrl;
         int idx;
@@ -631,7 +632,7 @@ void wxMadAuiNotebook::AdvanceSelection(bool bForward)
     wxWindow* win = GetPage(GetSelection());
 
     FunctorA fa;
-    fa.wxmedit = (wxm::InFrameWXMEdit*)win;
+    fa.wxmedit = (InFrameWXMEdit*)win;
     list<PageData>::iterator it = std::find_if(pages_list.begin(), pages_list.end(), fa);
 
     wxASSERT(it != pages_list.end());
@@ -729,7 +730,7 @@ void ApplySyntaxAttributes(MadSyntax *syn)
     int count=int(g_MainFrame->m_Notebook->GetPageCount());
     for(int id=0;id<count;id++)
     {
-        wxm::InFrameWXMEdit *wxmedit = (wxm::InFrameWXMEdit*)g_MainFrame->m_Notebook->GetPage(id);
+        InFrameWXMEdit *wxmedit = (InFrameWXMEdit*)g_MainFrame->m_Notebook->GetPage(id);
         wxmedit->ApplySyntaxAttributes(syn, true);
     }
 }
@@ -2190,7 +2191,7 @@ void MadEditFrame::SetPageFocus(int pageId)
 
     m_Notebook->SetSelection(pageId);
 
-    wxm::InFrameWXMEdit* sel = (wxm::InFrameWXMEdit*)m_Notebook->GetPage(m_Notebook->GetSelection());
+    InFrameWXMEdit* sel = (InFrameWXMEdit*)m_Notebook->GetPage(m_Notebook->GetSelection());
     if (sel == g_active_wxmedit)
         return;
 
@@ -2201,13 +2202,13 @@ void MadEditFrame::SetPageFocus(int pageId)
     OnNotebookPageChanged(event);
 }
 
-wxm::InFrameWXMEdit* MadEditFrame::GetEditByFileName(const wxString &filename, int &id)
+InFrameWXMEdit* MadEditFrame::GetEditByFileName(const wxString &filename, int &id)
 {
     int count=int(m_Notebook->GetPageCount());
     wxString fn;
     for(id=0; id<count; id++)
     {
-        wxm::InFrameWXMEdit* wxmedit = (wxm::InFrameWXMEdit*)m_Notebook->GetPage(id);
+        InFrameWXMEdit* wxmedit = (InFrameWXMEdit*)m_Notebook->GetPage(id);
         fn = wxmedit->GetFileName();
         if(wxm::FilePathEqual(fn, filename))
         {
@@ -2254,7 +2255,7 @@ void MadEditFrame::OnNotebookPageChanging(wxAuiNotebookEvent& event)
 
 void MadEditFrame::OnNotebookPageChanged(wxAuiNotebookEvent& event)
 {
-    g_active_wxmedit = (wxm::InFrameWXMEdit*)m_Notebook->GetPage(m_Notebook->GetSelection());
+    g_active_wxmedit = (InFrameWXMEdit*)m_Notebook->GetPage(m_Notebook->GetSelection());
 
     int now=event.GetSelection();
     int old=event.GetOldSelection();
@@ -2331,7 +2332,7 @@ void MadEditFrame::OnNotebookPageClosed(bool bZeroPage)
     }
     else
     {
-        wxm::InFrameWXMEdit* wxmedit = (wxm::InFrameWXMEdit*)m_Notebook->GetPage(m_Notebook->GetSelection());
+        InFrameWXMEdit* wxmedit = (InFrameWXMEdit*)m_Notebook->GetPage(m_Notebook->GetSelection());
         if (g_active_wxmedit != wxmedit)
         {
             g_active_wxmedit = wxmedit;
@@ -2487,7 +2488,7 @@ void MadEditFrame::OnInfoNotebookSize(wxSizeEvent &evt)
 
 void MadEditFrame::OnFindInFilesResultsDClick(wxMouseEvent& event)
 {
-    wxm::InFrameWXMEdit* wxmedit=nullptr;
+    InFrameWXMEdit* wxmedit=nullptr;
     int flags;
     wxTreeItemId id = g_MainFrame->m_FindInFilesResults->HitTest(event.GetPosition(), flags);
     if(id.IsOk())
@@ -2598,7 +2599,7 @@ void MadEditFrame::OpenFile(const wxString &filename, bool mustExist, const Line
         int count=int(m_Notebook->GetPageCount());
         for(int id=0;id<count;id++)
         {
-            wxm::InFrameWXMEdit* wxmedit = (wxm::InFrameWXMEdit*)m_Notebook->GetPage(id);
+            InFrameWXMEdit* wxmedit = (InFrameWXMEdit*)m_Notebook->GetPage(id);
             if (!wxm::FilePathEqual(wxmedit->GetFileName(), filename))
                 continue;
 
@@ -2606,7 +2607,7 @@ void MadEditFrame::OpenFile(const wxString &filename, bool mustExist, const Line
             g_CheckModTimeForReload=false;
             m_Notebook->SetSelection(id);
 
-            wxm::InFrameWXMEdit* sel = (wxm::InFrameWXMEdit*)m_Notebook->GetPage(m_Notebook->GetSelection());
+            InFrameWXMEdit* sel = (InFrameWXMEdit*)m_Notebook->GetPage(m_Notebook->GetSelection());
             if (sel != g_active_wxmedit)
             {
                 wxAuiNotebookEvent event(wxEVT_COMMAND_AUINOTEBOOK_PAGE_CHANGED, m_Notebook->GetId());
@@ -2657,7 +2658,7 @@ void MadEditFrame::OpenFile(const wxString &filename, bool mustExist, const Line
         }
     }
 
-    wxm::InFrameWXMEdit* wxmedit = g_active_wxmedit;
+    InFrameWXMEdit* wxmedit = g_active_wxmedit;
 
     if (!filename.IsEmpty() && wxmedit != nullptr
         && !wxmedit->IsModified() && wxmedit->GetFileName().IsEmpty())
@@ -2667,7 +2668,7 @@ void MadEditFrame::OpenFile(const wxString &filename, bool mustExist, const Line
     else
     {
         // create a new MadEdit
-        wxmedit = new wxm::InFrameWXMEdit(m_Notebook, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxWANTS_CHARS);
+        wxmedit = new InFrameWXMEdit(m_Notebook, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxWANTS_CHARS);
 
         g_PrevPageID=m_Notebook->GetSelection();
 
@@ -2747,7 +2748,7 @@ void MadEditFrame::CloseFile(int pageId)
 
 bool MadEditFrame::QueryCloseFile(int idx)
 {
-    wxm::InFrameWXMEdit* wxmedit=(wxm::InFrameWXMEdit*)m_Notebook->GetPage(idx);
+    InFrameWXMEdit* wxmedit=(InFrameWXMEdit*)m_Notebook->GetPage(idx);
     if (wxmedit == nullptr)
         return false;
 
@@ -2770,7 +2771,7 @@ bool MadEditFrame::QueryCloseAllFiles()
     int selid=m_Notebook->GetSelection();
     if(selid==-1) return true;
 
-    wxm::InFrameWXMEdit* wxmedit = (wxm::InFrameWXMEdit*)m_Notebook->GetPage(selid);
+    InFrameWXMEdit* wxmedit = (InFrameWXMEdit*)m_Notebook->GetPage(selid);
     wxString name;
     if (wxmedit->IsModified())
     {
@@ -2790,12 +2791,12 @@ bool MadEditFrame::QueryCloseAllFiles()
         if (id == selid)
             continue;
 
-        wxmedit = (wxm::InFrameWXMEdit*)m_Notebook->GetPage(id);
+        wxmedit = (InFrameWXMEdit*)m_Notebook->GetPage(id);
         if (wxmedit->IsModified())
         {
             m_Notebook->SetSelection(id);
 
-            wxm::InFrameWXMEdit* sel = (wxm::InFrameWXMEdit*)m_Notebook->GetPage(m_Notebook->GetSelection());
+            InFrameWXMEdit* sel = (InFrameWXMEdit*)m_Notebook->GetPage(m_Notebook->GetSelection());
             if(sel != g_active_wxmedit)
             {
                 wxAuiNotebookEvent event(wxEVT_COMMAND_AUINOTEBOOK_PAGE_CHANGED, m_Notebook->GetId());
@@ -3262,7 +3263,7 @@ void MadEditFrame::OnFileSaveAll(wxCommandEvent& event)
     int selid=m_Notebook->GetSelection();
     if(selid==-1) return; // no file was opened
 
-    wxm::InFrameWXMEdit* wxmedit = (wxm::InFrameWXMEdit*)m_Notebook->GetPage(selid);
+    InFrameWXMEdit* wxmedit = (InFrameWXMEdit*)m_Notebook->GetPage(selid);
     wxString name;
     if (wxmedit->IsModified())
     {
@@ -3281,7 +3282,7 @@ void MadEditFrame::OnFileSaveAll(wxCommandEvent& event)
         if (id == selid)
             continue;
 
-        wxmedit = (wxm::InFrameWXMEdit*)m_Notebook->GetPage(id);
+        wxmedit = (InFrameWXMEdit*)m_Notebook->GetPage(id);
         if (!wxmedit->IsModified())
             continue;
 
@@ -3289,7 +3290,7 @@ void MadEditFrame::OnFileSaveAll(wxCommandEvent& event)
         {
             m_Notebook->SetSelection(id);
 
-            wxm::InFrameWXMEdit* sel = (wxm::InFrameWXMEdit*)m_Notebook->GetPage(m_Notebook->GetSelection());
+            InFrameWXMEdit* sel = (InFrameWXMEdit*)m_Notebook->GetPage(m_Notebook->GetSelection());
             if (sel != g_active_wxmedit)
             {
                 wxAuiNotebookEvent event(wxEVT_COMMAND_AUINOTEBOOK_PAGE_CHANGED, m_Notebook->GetId());
@@ -4526,7 +4527,7 @@ void MadEditFrame::OnToolsOptions(wxCommandEvent& event)
         int count = int(m_Notebook->GetPageCount());
         for(int i=0; i<count; i++)
         {
-            wxm::InFrameWXMEdit* wxmedit = (wxm::InFrameWXMEdit*)m_Notebook->GetPage(i);
+            InFrameWXMEdit* wxmedit = (InFrameWXMEdit*)m_Notebook->GetPage(i);
 
             wxmedit->SetRecordCaretMovements(rcm);
             wxmedit->SetInsertSpacesInsteadOfTab(isiot);
@@ -4908,7 +4909,7 @@ void MadEditFrame::OnWindowToggleWindow(wxCommandEvent& event)
         m_Notebook->AdvanceSelection(true);
     }
 
-    wxm::InFrameWXMEdit* sel = (wxm::InFrameWXMEdit*)m_Notebook->GetPage(m_Notebook->GetSelection());
+    InFrameWXMEdit* sel = (InFrameWXMEdit*)m_Notebook->GetPage(m_Notebook->GetSelection());
     if (sel != g_active_wxmedit)
     {
         wxAuiNotebookEvent event(wxEVT_COMMAND_AUINOTEBOOK_PAGE_CHANGED, m_Notebook->GetId());
@@ -4930,7 +4931,7 @@ void MadEditFrame::OnWindowPreviousWindow(wxCommandEvent& event)
     g_CheckModTimeForReload=false;
     m_Notebook->AdvanceSelection(false);
 
-    wxm::InFrameWXMEdit* sel = (wxm::InFrameWXMEdit*)m_Notebook->GetPage(m_Notebook->GetSelection());
+    InFrameWXMEdit* sel = (InFrameWXMEdit*)m_Notebook->GetPage(m_Notebook->GetSelection());
     if (sel != g_active_wxmedit)
     {
         wxAuiNotebookEvent event(wxEVT_COMMAND_AUINOTEBOOK_PAGE_CHANGED, m_Notebook->GetId());
@@ -4951,7 +4952,7 @@ void MadEditFrame::OnWindowNextWindow(wxCommandEvent& event)
     g_CheckModTimeForReload=false;
     m_Notebook->AdvanceSelection(true);
 
-    wxm::InFrameWXMEdit* sel = (wxm::InFrameWXMEdit*)m_Notebook->GetPage(m_Notebook->GetSelection());
+    InFrameWXMEdit* sel = (InFrameWXMEdit*)m_Notebook->GetPage(m_Notebook->GetSelection());
     if (sel != g_active_wxmedit)
     {
         wxAuiNotebookEvent event(wxEVT_COMMAND_AUINOTEBOOK_PAGE_CHANGED, m_Notebook->GetId());
