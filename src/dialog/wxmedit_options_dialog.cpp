@@ -222,7 +222,7 @@ const long WXMEditOptionsDialog::ID_WXBUTTONDATETIME = wxNewId();
 const long WXMEditOptionsDialog::ID_WXCHECKBOXDATETIMEINENGLISH = wxNewId();
 const long WXMEditOptionsDialog::ID_WXCHECKBOXDOTMATCHNEWLINE = wxNewId();
 const long WXMEditOptionsDialog::ID_PANEL5 = wxNewId();
-const long WXMEditOptionsDialog::ID_AUINOTEBOOK1 = wxNewId();
+const long WXMEditOptionsDialog::ID_NOTEBOOK1 = wxNewId();
 const long WXMEditOptionsDialog::ID_WXBUTTONOK = wxNewId();
 const long WXMEditOptionsDialog::ID_WXBUTTONCANCEL = wxNewId();
 //*)
@@ -365,8 +365,8 @@ WXMEditOptionsDialog::WXMEditOptionsDialog(wxWindow* parent,wxWindowID id)
 	BoxSizer1 = new wxBoxSizer(wxVERTICAL);
 	BoxSizer30 = new wxBoxSizer(wxHORIZONTAL);
 	BoxSizer31 = new wxBoxSizer(wxVERTICAL);
-	AuiNotebook1 = new wxAuiNotebook(this, ID_AUINOTEBOOK1, wxDefaultPosition, wxDefaultSize, wxAUI_NB_DEFAULT_STYLE);
-	Panel1 = new wxPanel(AuiNotebook1, ID_PANEL1, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL, _T("ID_PANEL1"));
+	Notebook1 = new wxNotebook(this, ID_NOTEBOOK1, wxDefaultPosition, wxDefaultSize, 0, _T("ID_NOTEBOOK1"));
+	Panel1 = new wxPanel(Notebook1, ID_PANEL1, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL, _T("ID_PANEL1"));
 	BoxSizer3 = new wxBoxSizer(wxVERTICAL);
 	BoxSizer35 = new wxBoxSizer(wxVERTICAL);
 	BoxSizer34 = new wxBoxSizer(wxHORIZONTAL);
@@ -422,7 +422,7 @@ WXMEditOptionsDialog::WXMEditOptionsDialog(wxWindow* parent,wxWindowID id)
 	Panel1->SetSizer(BoxSizer3);
 	BoxSizer3->Fit(Panel1);
 	BoxSizer3->SetSizeHints(Panel1);
-	Panel2 = new wxPanel(AuiNotebook1, ID_PANEL2, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL, _T("ID_PANEL2"));
+	Panel2 = new wxPanel(Notebook1, ID_PANEL2, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL, _T("ID_PANEL2"));
 	BoxSizer8 = new wxBoxSizer(wxVERTICAL);
 	BoxSizer9 = new wxBoxSizer(wxHORIZONTAL);
 	BoxSizer9->Add(3,0,0, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 0);
@@ -489,7 +489,7 @@ WXMEditOptionsDialog::WXMEditOptionsDialog(wxWindow* parent,wxWindowID id)
 	Panel2->SetSizer(BoxSizer8);
 	BoxSizer8->Fit(Panel2);
 	BoxSizer8->SetSizeHints(Panel2);
-	Panel3 = new wxPanel(AuiNotebook1, ID_PANEL3, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL, _T("ID_PANEL3"));
+	Panel3 = new wxPanel(Notebook1, ID_PANEL3, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL, _T("ID_PANEL3"));
 	BoxSizer14 = new wxBoxSizer(wxHORIZONTAL);
 	BoxSizer15 = new wxBoxSizer(wxVERTICAL);
 	StaticBoxSizer1 = new wxStaticBoxSizer(wxVERTICAL, Panel3, _("Text Mode"));
@@ -515,9 +515,9 @@ WXMEditOptionsDialog::WXMEditOptionsDialog(wxWindow* parent,wxWindowID id)
 	StaticBoxSizer2 = new wxStaticBoxSizer(wxVERTICAL, Panel3, _("Hex Mode"));
 	wxString __wxRadioBoxChoices_1[3] =
 	{
-	_("None"),
-	_("First Page Only"),
-	_("Every Page")
+		_("None"),
+		_("First Page Only"),
+		_("Every Page")
 	};
 	WxRadioBoxPrintOffset = new wxRadioBox(Panel3, ID_WXRADIOBOXPRINTOFFSET, _("Print Offset Header"), wxDefaultPosition, wxDefaultSize, 3, __wxRadioBoxChoices_1, 1, wxRA_SPECIFY_COLS, wxDefaultValidator, _T("ID_WXRADIOBOXPRINTOFFSET"));
 	StaticBoxSizer2->Add(WxRadioBoxPrintOffset, 0, wxALL|wxALIGN_LEFT, 1);
@@ -578,7 +578,7 @@ WXMEditOptionsDialog::WXMEditOptionsDialog(wxWindow* parent,wxWindowID id)
 	Panel3->SetSizer(BoxSizer14);
 	BoxSizer14->Fit(Panel3);
 	BoxSizer14->SetSizeHints(Panel3);
-	Panel4 = new wxPanel(AuiNotebook1, ID_PANEL4, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL, _T("ID_PANEL4"));
+	Panel4 = new wxPanel(Notebook1, ID_PANEL4, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL, _T("ID_PANEL4"));
 	BoxSizer18 = new wxBoxSizer(wxHORIZONTAL);
 	BoxSizer19 = new wxBoxSizer(wxHORIZONTAL);
 	TreeCtrl1 = new wxTreeCtrl(Panel4, ID_TREECTRL1, wxDefaultPosition, wxDefaultSize, wxTR_HAS_BUTTONS|wxTR_DEFAULT_STYLE, wxDefaultValidator, _T("ID_TREECTRL1"));
@@ -626,7 +626,7 @@ WXMEditOptionsDialog::WXMEditOptionsDialog(wxWindow* parent,wxWindowID id)
 	Panel4->SetSizer(BoxSizer18);
 	BoxSizer18->Fit(Panel4);
 	BoxSizer18->SetSizeHints(Panel4);
-	Panel5 = new wxPanel(AuiNotebook1, ID_PANEL5, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL, _T("ID_PANEL5"));
+	Panel5 = new wxPanel(Notebook1, ID_PANEL5, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL, _T("ID_PANEL5"));
 	BoxSizer36 = new wxBoxSizer(wxVERTICAL);
 	BoxSizer37 = new wxBoxSizer(wxHORIZONTAL);
 	WxCheckBoxDoNotSaveSettings = new wxCheckBox(Panel5, ID_WXCHECKBOXDONOTSAVESETTINGS, _("Do not save settings to wxmedit.cfg when wxMEdit closed (this session only)"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_WXCHECKBOXDONOTSAVESETTINGS"));
@@ -668,12 +668,12 @@ WXMEditOptionsDialog::WXMEditOptionsDialog(wxWindow* parent,wxWindowID id)
 	Panel5->SetSizer(BoxSizer36);
 	BoxSizer36->Fit(Panel5);
 	BoxSizer36->SetSizeHints(Panel5);
-	AuiNotebook1->AddPage(Panel1, _("General"));
-	AuiNotebook1->AddPage(Panel2, _("Edit"));
-	AuiNotebook1->AddPage(Panel3, _("Print"));
-	AuiNotebook1->AddPage(Panel4, _("Keys"));
-	AuiNotebook1->AddPage(Panel5, _("Misc"));
-	BoxSizer31->Add(AuiNotebook1, 1, wxALL|wxEXPAND, 0);
+	Notebook1->AddPage(Panel1, _("General"), false);
+	Notebook1->AddPage(Panel2, _("Edit"), false);
+	Notebook1->AddPage(Panel3, _("Print"), false);
+	Notebook1->AddPage(Panel4, _("Keys"), false);
+	Notebook1->AddPage(Panel5, _("Misc"), false);
+	BoxSizer31->Add(Notebook1, 1, wxALL|wxEXPAND, 0);
 	BoxSizer32 = new wxBoxSizer(wxVERTICAL);
 	BoxSizer32->Add(450,0,0, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 0);
 	BoxSizer31->Add(BoxSizer32, 0, wxALL|wxEXPAND, 0);
@@ -802,7 +802,7 @@ WXMEditOptionsDialog::WXMEditOptionsDialog(wxWindow* parent,wxWindowID id)
 	int ww = std::max(std::max(sz1.x, sz2.x), std::max(sz3.x, sz4.x));
 	int hh = std::max(std::max(sz1.y, sz2.y), std::max(sz3.y, sz4.y));
 
-	BoxSizer33->Add(0, hh + AuiNotebook1->GetTabCtrlHeight() + 2, 0, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 0);
+	BoxSizer33->Add(0, hh + Notebook1->GetMinSize().GetHeight() + 2, 0, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 0);
 	BoxSizer32->Add(ww + 2, 0, 0, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 0);
 
 	BoxSizer1->Fit(this);
@@ -871,8 +871,6 @@ WXMEditOptionsDialog::WXMEditOptionsDialog(wxWindow* parent,wxWindowID id)
 		cd++;
 	}
 	while(cd->command > 0);
-
-	AuiNotebook1->SetWindowStyleFlag(wxAUI_NB_TOP|wxAUI_NB_TAB_MOVE|wxAUI_NB_SCROLL_BUTTONS);
 
 	WxButtonCancel->SetId(wxID_CANCEL);
 }
@@ -1152,7 +1150,7 @@ void WXMEditOptionsDialog::LoadOptions(void)
 void WXMEditOptionsDialog::EnableTabTraversal()
 {
 	SetWindowStyleFlag(g_OptionsDialog->GetWindowStyleFlag() | wxTAB_TRAVERSAL);
-	AuiNotebook1->wxControl::SetWindowStyleFlag(g_OptionsDialog->AuiNotebook1->wxControl::GetWindowStyleFlag() | wxTAB_TRAVERSAL);
+	Notebook1->wxControl::SetWindowStyleFlag(g_OptionsDialog->Notebook1->wxControl::GetWindowStyleFlag() | wxTAB_TRAVERSAL);
 	Panel4->SetWindowStyleFlag(g_OptionsDialog->Panel4->GetWindowStyleFlag() | wxTAB_TRAVERSAL);
 	WxButtonCancel->SetId(wxID_CANCEL);
 }
@@ -1160,7 +1158,7 @@ void WXMEditOptionsDialog::EnableTabTraversal()
 void WXMEditOptionsDialog::DisableTabTraversal()
 {
 	SetWindowStyleFlag(g_OptionsDialog->GetWindowStyleFlag() & ~wxTAB_TRAVERSAL);
-	AuiNotebook1->wxControl::SetWindowStyleFlag(g_OptionsDialog->AuiNotebook1->wxControl::GetWindowStyleFlag() & ~wxTAB_TRAVERSAL);
+	Notebook1->wxControl::SetWindowStyleFlag(g_OptionsDialog->Notebook1->wxControl::GetWindowStyleFlag() & ~wxTAB_TRAVERSAL);
 	Panel4->SetWindowStyleFlag(g_OptionsDialog->Panel4->GetWindowStyleFlag() & ~wxTAB_TRAVERSAL);
 	WxButtonCancel->SetId(WXMEditOptionsDialog::ID_WXBUTTONCANCEL);
 }

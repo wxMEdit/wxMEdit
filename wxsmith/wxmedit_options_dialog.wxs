@@ -14,8 +14,8 @@
 						<object class="wxBoxSizer" variable="BoxSizer31" member="no">
 							<orient>wxVERTICAL</orient>
 							<object class="sizeritem">
-								<object class="wxAuiNotebook" name="ID_AUINOTEBOOK1" variable="AuiNotebook1" member="yes">
-									<object class="AuiNotebookPage">
+								<object class="wxNotebook" name="ID_NOTEBOOK1" variable="Notebook1" member="yes">
+									<object class="notebookpage">
 										<object class="wxPanel" name="ID_PANEL1" variable="Panel1" member="yes">
 											<object class="wxBoxSizer" variable="BoxSizer3" member="no">
 												<orient>wxVERTICAL</orient>
@@ -173,7 +173,7 @@
 										</object>
 										<label>General</label>
 									</object>
-									<object class="AuiNotebookPage">
+									<object class="notebookpage">
 										<object class="wxPanel" name="ID_PANEL2" variable="Panel2" member="yes">
 											<object class="wxBoxSizer" variable="BoxSizer8" member="no">
 												<orient>wxVERTICAL</orient>
@@ -364,7 +364,7 @@
 										</object>
 										<label>Edit</label>
 									</object>
-									<object class="AuiNotebookPage">
+									<object class="notebookpage">
 										<object class="wxPanel" name="ID_PANEL3" variable="Panel3" member="yes">
 											<object class="wxBoxSizer" variable="BoxSizer14" member="no">
 												<object class="sizeritem">
@@ -634,7 +634,7 @@
 										</object>
 										<label>Print</label>
 									</object>
-									<object class="AuiNotebookPage">
+									<object class="notebookpage">
 										<object class="wxPanel" name="ID_PANEL4" variable="Panel4" member="yes">
 											<object class="wxBoxSizer" variable="BoxSizer18" member="no">
 												<object class="sizeritem">
@@ -801,7 +801,7 @@
 										</object>
 										<label>Keys</label>
 									</object>
-									<object class="AuiNotebookPage">
+									<object class="notebookpage">
 										<object class="wxPanel" name="ID_PANEL5" variable="Panel5" member="yes">
 											<object class="wxBoxSizer" variable="BoxSizer36" member="no">
 												<orient>wxVERTICAL</orient>

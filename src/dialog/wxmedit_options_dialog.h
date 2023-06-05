@@ -18,13 +18,13 @@
 #endif
 // disable 4996 {
 //(*Headers(WXMEditOptionsDialog)
-#include <wx/aui/aui.h>
 #include <wx/button.h>
 #include <wx/checkbox.h>
 #include <wx/combobox.h>
 #include <wx/dialog.h>
 #include <wx/listbox.h>
 #include <wx/menu.h>
+#include <wx/notebook.h>
 #include <wx/panel.h>
 #include <wx/radiobox.h>
 #include <wx/sizer.h>
@@ -61,7 +61,6 @@ class WXMEditOptionsDialog: public wxDialogWrapper
 
 		//(*Declarations(WXMEditOptionsDialog)
 		KeyTextCtrl* WxEditKey;
-		wxAuiNotebook* AuiNotebook1;
 		wxButton* Button1;
 		wxButton* Button2;
 		wxButton* Button3;
@@ -108,6 +107,7 @@ class WXMEditOptionsDialog: public wxDialogWrapper
 		wxListBox* WxListBoxKeys;
 		wxMenu WxPopupMenuDateTimeMark;
 		wxMenu WxPopupMenuPrintMark;
+		wxNotebook* Notebook1;
 		wxPanel* Panel1;
 		wxPanel* Panel2;
 		wxPanel* Panel3;
@@ -242,7 +242,7 @@ class WXMEditOptionsDialog: public wxDialogWrapper
 		static const long ID_WXCHECKBOXDATETIMEINENGLISH;
 		static const long ID_WXCHECKBOXDOTMATCHNEWLINE;
 		static const long ID_PANEL5;
-		static const long ID_AUINOTEBOOK1;
+		static const long ID_NOTEBOOK1;
 		static const long ID_WXBUTTONOK;
 		static const long ID_WXBUTTONCANCEL;
 		//*)
