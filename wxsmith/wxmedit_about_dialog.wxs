@@ -4,7 +4,7 @@
 		<title>About wxMEdit</title>
 		<centered>1</centered>
 		<id_arg>0</id_arg>
-		<style>wxCAPTION|wxSYSTEM_MENU|wxCLOSE_BOX</style>
+		<style>wxCAPTION|wxSYSTEM_MENU|wxRESIZE_BORDER|wxCLOSE_BOX</style>
 		<handler function="WXMEditAboutDialogClose" entry="EVT_CLOSE" />
 		<object class="wxBoxSizer" variable="BoxSizer1" member="no">
 			<orient>wxVERTICAL</orient>
@@ -16,24 +16,22 @@
 							<object class="sizeritem">
 								<object class="wxStaticBitmap" name="ID_STATICBITMAP1" variable="StaticBitmap1" member="yes">
 									<size>48,48</size>
-									<style>0</style>
 								</object>
-								<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+								<flag>wxBOTTOM|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
 								<border>5</border>
 								<option>1</option>
 							</object>
 							<object class="sizeritem">
 								<object class="wxStaticBitmap" name="ID_STATICBITMAP2" variable="StaticBitmap2" member="yes">
 									<size>48,48</size>
-									<style>0</style>
 								</object>
-								<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+								<flag>wxTOP|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
 								<border>5</border>
 								<option>1</option>
 							</object>
 						</object>
-						<flag>wxALL|wxALIGN_TOP</flag>
-						<border>5</border>
+						<flag>wxRIGHT|wxALIGN_TOP</flag>
+						<border>10</border>
 					</object>
 					<object class="sizeritem">
 						<object class="wxNotebook" name="ID_NOTEBOOK1" variable="Notebook1" member="yes">
@@ -43,10 +41,11 @@
 									<object class="wxBoxSizer" variable="BoxSizer5" member="no">
 										<object class="sizeritem">
 											<object class="wxTextCtrl" name="ID_TEXTCTRL1" variable="TxtAbout" member="yes">
-												<size>472,240</size>
-												<style>wxTE_AUTO_SCROLL|wxTE_MULTILINE|wxTE_READONLY|wxTE_AUTO_URL|wxSTATIC_BORDER</style>
+												<size>540,240</size>
+												<style>wxTE_MULTILINE|wxTE_READONLY|wxTE_AUTO_URL|wxBORDER_STATIC</style>
 											</object>
 											<flag>wxALL|wxEXPAND</flag>
+											<border>10</border>
 											<option>1</option>
 										</object>
 									</object>
@@ -58,9 +57,10 @@
 									<object class="wxBoxSizer" variable="BoxSizer6" member="no">
 										<object class="sizeritem">
 											<object class="wxTextCtrl" name="ID_TEXTCTRL2" variable="TxtLicense" member="yes">
-												<style>wxTE_AUTO_SCROLL|wxTE_MULTILINE|wxTE_READONLY|wxTE_AUTO_URL|wxTE_WORDWRAP|wxSTATIC_BORDER</style>
+												<style>wxTE_MULTILINE|wxTE_READONLY|wxTE_AUTO_URL|wxTE_WORDWRAP|wxBORDER_STATIC</style>
 											</object>
 											<flag>wxALL|wxEXPAND</flag>
+											<border>10</border>
 											<option>1</option>
 										</object>
 									</object>
@@ -72,9 +72,10 @@
 									<object class="wxBoxSizer" variable="BoxSizer7" member="no">
 										<object class="sizeritem">
 											<object class="wxTextCtrl" name="ID_TEXTCTRL3" variable="TxtCredits" member="yes">
-												<style>wxTE_AUTO_SCROLL|wxTE_MULTILINE|wxTE_READONLY|wxTE_WORDWRAP|wxSTATIC_BORDER</style>
+												<style>wxTE_MULTILINE|wxTE_READONLY|wxTE_WORDWRAP|wxBORDER_STATIC</style>
 											</object>
 											<flag>wxALL|wxEXPAND</flag>
+											<border>10</border>
 											<option>1</option>
 										</object>
 									</object>
@@ -82,13 +83,13 @@
 								<label>Credits</label>
 							</object>
 						</object>
-						<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
-						<border>5</border>
+						<flag>wxEXPAND</flag>
 						<option>1</option>
 					</object>
 				</object>
-				<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
-				<border>5</border>
+				<flag>wxALL|wxEXPAND</flag>
+				<border>10</border>
+				<option>1</option>
 			</object>
 			<object class="sizeritem">
 				<object class="wxBoxSizer" variable="BoxSizer3" member="no">
@@ -96,8 +97,8 @@
 						<object class="wxButton" name="wxID_OK" variable="WxButtonOK" member="yes">
 							<label>&amp;OK</label>
 						</object>
-						<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
-						<border>4</border>
+						<flag>wxRIGHT|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+						<border>5</border>
 						<option>1</option>
 					</object>
 					<object class="sizeritem">
@@ -105,13 +106,13 @@
 							<label>&amp;Cancel</label>
 							<default>1</default>
 						</object>
-						<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+						<flag>wxLEFT|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
 						<border>5</border>
 						<option>1</option>
 					</object>
 				</object>
-				<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
-				<border>3</border>
+				<flag>wxBOTTOM|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+				<border>10</border>
 			</object>
 		</object>
 	</object>
