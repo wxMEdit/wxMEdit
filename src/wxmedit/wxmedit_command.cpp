@@ -28,13 +28,6 @@
 
 //---------------------------------------------------------------------------
 
-#if !wxCHECK_VERSION(2,7,0)
-    #define WXK_PAGEUP          WXK_PRIOR
-    #define WXK_PAGEDOWN        WXK_NEXT
-    #define WXK_NUMPAD_PAGEUP   WXK_NUMPAD_PRIOR
-    #define WXK_NUMPAD_PAGEDOWN WXK_NUMPAD_NEXT
-#endif
-
 MadCommandTextMap *MadKeyBindings::ms_CommandTextMap=nullptr;
 MadTextCommandMap *MadKeyBindings::ms_TextCommandMap=nullptr;
 MadCommandTextMap *MadKeyBindings::ms_MenuIdTextMap=nullptr;
@@ -205,11 +198,6 @@ MadEditCommand MadKeyBindings::GetCommandFromMenuId(int menuid)
 
 MadEditShortCut StringToShortCut(const wxString &text)
 {
-    // wxPrintf( wxT("text %s\n"), text.c_str() );
-
-    // check for accelerators: they are given after '\t'
-    //int posTab = text.Find(wxT('\t'));
-    //if ( posTab != wxNOT_FOUND ) {
         // parse the accelerator string
         int keyCode = 0;
         int accelFlags = wxACCEL_NORMAL;
