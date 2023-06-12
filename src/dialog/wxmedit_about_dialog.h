@@ -49,7 +49,7 @@ class WXMEditAboutDialog: public wxDialog
 		wxButton* WxButtonCancel;
 		wxButton* WxButtonOK;
 		wxNotebook* Notebook1;
-		wxPanel* AoubtTab;
+		wxPanel* AboutTab;
 		wxPanel* CreditsTab;
 		wxPanel* LicenseTab;
 		wxStaticBitmap* StaticBitmap1;

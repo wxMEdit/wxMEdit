@@ -4998,6 +4998,7 @@ void MadEditFrame::OnHelpAbout(wxCommandEvent& event)
     wxm::g_wxMEdit_About_URL = wxm::g_wxMEdit_Homepage_URL;
     WXMEditAboutDialog dlg(this);
     dlg.TxtAbout->AppendText(wxString(wxT("wxMEdit v")) + wxT(WXMEDIT_VERSION) + wxT("\n\n") +
+                            _("A Cross-platform Text/Hex Editor") + wxT("\n\n") +
                             wxm::g_wxMEdit_Homepage_URL + wxT("\n\n") +
                             _("Press OK to visit our HomePage."));
 

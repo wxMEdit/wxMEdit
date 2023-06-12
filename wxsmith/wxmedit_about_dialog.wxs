@@ -37,11 +37,11 @@
 						<object class="wxNotebook" name="ID_NOTEBOOK1" variable="Notebook1" member="yes">
 							<handler function="OnNotebook1PageChanged" entry="EVT_NOTEBOOK_PAGE_CHANGED" />
 							<object class="notebookpage">
-								<object class="wxPanel" name="ID_PANEL1" variable="AoubtTab" member="yes">
+								<object class="wxPanel" name="ID_PANEL1" variable="AboutTab" member="yes">
 									<object class="wxBoxSizer" variable="BoxSizer5" member="no">
 										<object class="sizeritem">
 											<object class="wxTextCtrl" name="ID_TEXTCTRL1" variable="TxtAbout" member="yes">
-												<size>540,240</size>
+												<size>240,100d</size>
 												<style>wxTE_MULTILINE|wxTE_READONLY|wxTE_AUTO_URL|wxBORDER_STATIC</style>
 											</object>
 											<flag>wxALL|wxEXPAND</flag>

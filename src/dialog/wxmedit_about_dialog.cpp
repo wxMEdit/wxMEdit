@@ -70,13 +70,13 @@ WXMEditAboutDialog::WXMEditAboutDialog(wxWindow* parent,wxWindowID id,const wxPo
 	BoxSizer4->Add(StaticBitmap2, 1, wxTOP|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
 	BoxSizer2->Add(BoxSizer4, 0, wxRIGHT|wxALIGN_TOP, 10);
 	Notebook1 = new wxNotebook(this, ID_NOTEBOOK1, wxDefaultPosition, wxDefaultSize, 0, _T("ID_NOTEBOOK1"));
-	AoubtTab = new wxPanel(Notebook1, ID_PANEL1, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL, _T("ID_PANEL1"));
+	AboutTab = new wxPanel(Notebook1, ID_PANEL1, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL, _T("ID_PANEL1"));
 	BoxSizer5 = new wxBoxSizer(wxHORIZONTAL);
-	TxtAbout = new wxTextCtrl(AoubtTab, ID_TEXTCTRL1, wxEmptyString, wxDefaultPosition, wxSize(540,240), wxTE_MULTILINE|wxTE_READONLY|wxTE_AUTO_URL|wxBORDER_STATIC, wxDefaultValidator, _T("ID_TEXTCTRL1"));
+	TxtAbout = new wxTextCtrl(AboutTab, ID_TEXTCTRL1, wxEmptyString, wxDefaultPosition, wxDLG_UNIT(AboutTab,wxSize(240,100)), wxTE_MULTILINE|wxTE_READONLY|wxTE_AUTO_URL|wxBORDER_STATIC, wxDefaultValidator, _T("ID_TEXTCTRL1"));
 	BoxSizer5->Add(TxtAbout, 1, wxALL|wxEXPAND, 10);
-	AoubtTab->SetSizer(BoxSizer5);
-	BoxSizer5->Fit(AoubtTab);
-	BoxSizer5->SetSizeHints(AoubtTab);
+	AboutTab->SetSizer(BoxSizer5);
+	BoxSizer5->Fit(AboutTab);
+	BoxSizer5->SetSizeHints(AboutTab);
 	LicenseTab = new wxPanel(Notebook1, ID_PANEL2, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL, _T("ID_PANEL2"));
 	BoxSizer6 = new wxBoxSizer(wxHORIZONTAL);
 	TxtLicense = new wxTextCtrl(LicenseTab, ID_TEXTCTRL2, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_MULTILINE|wxTE_READONLY|wxTE_AUTO_URL|wxTE_WORDWRAP|wxBORDER_STATIC, wxDefaultValidator, _T("ID_TEXTCTRL2"));
@@ -91,7 +91,7 @@ WXMEditAboutDialog::WXMEditAboutDialog(wxWindow* parent,wxWindowID id,const wxPo
 	CreditsTab->SetSizer(BoxSizer7);
 	BoxSizer7->Fit(CreditsTab);
 	BoxSizer7->SetSizeHints(CreditsTab);
-	Notebook1->AddPage(AoubtTab, _("About"), false);
+	Notebook1->AddPage(AboutTab, _("About"), false);
 	Notebook1->AddPage(LicenseTab, _("License"), false);
 	Notebook1->AddPage(CreditsTab, _("Credits"), false);
 	BoxSizer2->Add(Notebook1, 1, wxEXPAND, 0);
