@@ -3092,7 +3092,7 @@ uninstall-am: uninstall-appDATA uninstall-binPROGRAMS \
 
 
 install-data-hook:
-	touch $(datadir)/icons/hicolor
+	touch $(DESTDIR)$(datadir)/icons/hicolor
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.
