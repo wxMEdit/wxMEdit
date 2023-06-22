@@ -407,7 +407,7 @@ MadEditShortCut AdjustedShortCut(int flags, int keyCode)
     // adjust flags to avoid conflict between AltGr typing and accelerators
     int adjustedFlags = (flags & (wxACCEL_CTRL | wxACCEL_ALT)) == (wxACCEL_CTRL | wxACCEL_ALT)
         && keyCode >= WXK_SPACE && keyCode < WXK_DELETE ?
-            (flags & ~wxACCEL_CTRL | wxACCEL_SHIFT) :
+            ((flags & ~wxACCEL_CTRL) | wxACCEL_SHIFT) :
             flags;
     return ShortCut(adjustedFlags, keyCode);
 }
