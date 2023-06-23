@@ -1561,7 +1561,6 @@ MadEditFrame::MadEditFrame( wxWindow *parent, wxWindowID id, const wxString &tit
     this->SetWindowStyleFlag(this->GetWindowStyleFlag() & ~wxTAB_TRAVERSAL);
 
     m_NewFileCount=0;
-    m_Config=wxConfigBase::Get(false);
 
     xm::EncodingManager::Instance().InitEncodings();
 
@@ -1569,7 +1568,7 @@ MadEditFrame::MadEditFrame( wxWindow *parent, wxWindowID id, const wxString &tit
 
 #if defined(__WXMSW__)
     MadSyntax::AddSyntaxFilesPath(wxm::AppPath::Instance().AppDir() + wxT("syntax/"));
-#elif defined(__WXGTK__) // linux
+#elif defined(__WXGTK__)
     MadSyntax::AddSyntaxFilesPath(wxm::AppPath::Instance().AppDir() + wxT("syntax/"));
     MadSyntax::AddSyntaxFilesPath(wxm::AppPath::Instance().HomeDir() + wxT("syntax/"));
     #if defined (DATA_DIR)
@@ -1581,12 +1580,13 @@ MadEditFrame::MadEditFrame( wxWindow *parent, wxWindowID id, const wxString &tit
     MadSyntax::AddSyntaxFilesPath(wxm::AppPath::Instance().AppDir() + wxT("syntax/"));
 #endif
 
-    CreateGUIControls();
-
     //g_PrintData = new wxPrintData;
     g_PageSetupData = new wxPageSetupDialogData;
 
+    m_Config = wxConfigBase::Get(false);
     LoadDefaultSettings(m_Config);
+
+    CreateGUIControls();
 
     SetDropTarget(new DnDFile());
 
@@ -1698,10 +1698,10 @@ void MadEditFrame::CreateGUIControls()
     m_wxmstatusbar.Attach();
     this->SetTitle(wxT("wxMEdit "));
 
-#if !defined(__WXMSW__) //&& !defined(__WXPM__)
-    SetIcon(wxIcon(wxmedit_xpm));
-#else // __MSW__
+#ifdef __WXMSW__
     SetIcon(wxIcon(wxT("appicon")));
+#else
+    SetIcon(wxIcon(wxmedit_xpm));
 #endif
 
     // load MenuText
