@@ -978,10 +978,7 @@ noinst_HEADERS = README.txt \
 	images/wxmedit.ico \
 	images/wxmedit.xpm \
 	po/wxmedit.pot \
-	po/src.list \
-	po/wxstd.po.cpp \
-	po/xgettext.bat \
-	po/xgettext_join.bat
+	po/wxstd.po.cpp
 
 DOMAIN = wxmedit
 podir = $(top_srcdir)/po

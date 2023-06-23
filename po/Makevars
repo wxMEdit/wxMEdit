@@ -8,7 +8,7 @@ subdir = po
 top_builddir = ..
 
 # These options get passed to xgettext.
-XGETTEXT_OPTIONS = --keyword=_
+XGETTEXT_OPTIONS = --keyword=_ --package-name=wxMEdit --package-version=$(VERSION)
 
 # This is the copyright holder that gets inserted into the header of the
 # $(DOMAIN).pot file.  Set this to the copyright holder of the surrounding
@@ -18,7 +18,7 @@ XGETTEXT_OPTIONS = --keyword=_
 # or entity, or to disclaim their copyright.  The empty string stands for
 # the public domain; in this case the translators are expected to disclaim
 # their copyright.
-COPYRIGHT_HOLDER =
+COPYRIGHT_HOLDER = JiaYanwei <wxmedit@gmail.com>
 
 # This is the email address or URL to which the translators shall report
 # bugs in the untranslated strings:

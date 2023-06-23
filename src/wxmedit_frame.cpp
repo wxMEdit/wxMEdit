@@ -5002,7 +5002,7 @@ void MadEditFrame::OnHelpAbout(wxCommandEvent& event)
                             wxm::g_wxMEdit_Homepage_URL + wxT("\n\n") +
                             _("Press OK to visit our HomePage."));
 
-    dlg.TxtLicense->AppendText( wxString(_("wxMEdit, a cross-platform Text/Hex Editor")) + wxT("\n\n") +
+    dlg.TxtLicense->AppendText( wxString(_("wxMEdit, a Cross-platform Text/Hex Editor")) + wxT("\n\n") +
                             wxm::s_wxMEdit_License + wxT("\n\n") +
                             wxm::g_wxMEdit_License_URL + wxT("\n\n") +
                             _("Press OK to view the license online version.\n"));
