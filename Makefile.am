@@ -169,7 +169,7 @@ iconssvgdir = $(datadir)/icons/hicolor/scalable/apps
 iconssvg_DATA = images/scalable/wxmedit.svg
 
 install-data-hook:
-	touch $(datadir)/icons/hicolor
+	touch $(DESTDIR)$(datadir)/icons/hicolor
 
 EXTRA_DIST = $(app_DATA) $(pixmaps_DATA) \
 	$(icons16_DATA) $(icons24_DATA) $(icons32_DATA) $(icons48_DATA) $(iconssvg_DATA)
