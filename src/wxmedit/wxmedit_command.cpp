@@ -780,8 +780,6 @@ void MadKeyBindings::AddDefaultBindings(bool overwrite)
     Add(ShiftAlt( WXK_RIGHT),   ecScrollRight, overwrite);
 
 
-    Add(Ctrl( 'A'), ecSelectAll, overwrite);
-
     Add(Normal( WXK_RETURN),       ecReturn, overwrite);
     Add(Normal( WXK_NUMPAD_ENTER), ecReturn, overwrite);
 
@@ -789,6 +787,7 @@ void MadKeyBindings::AddDefaultBindings(bool overwrite)
     Add(Shift( WXK_NUMPAD_ENTER),  ecReturnNoIndent, overwrite);
 
     Add(Normal(    WXK_TAB),       ecTab, overwrite);
+    Add(Shift(     WXK_TAB),       ecDecreaseIndent, overwrite);
     Add(Ctrl(      WXK_TAB),       ecToggleWindow, overwrite);
     Add(CtrlShift( WXK_TAB),       ecToggleWindow, overwrite);
 
@@ -811,6 +810,7 @@ void MadKeyBindings::AddDefaultBindings(bool overwrite)
     Add(Ctrl(      'Y'),  ecDeleteLine, overwrite);
 #endif
 
+    Add(Ctrl( 'A'),            ecSelectAll, overwrite);
     Add(Ctrl( 'X'),            ecCut, overwrite);
     Add(Shift( WXK_DELETE),    ecCut, overwrite);
     Add(Ctrl( 'C'),            ecCopy, overwrite);
@@ -834,8 +834,6 @@ void MadKeyBindings::AddDefaultBindings(bool overwrite)
 #ifdef __WXMSW__
     Add(Ctrl(      'Y'),  ecRedo, overwrite);
 #endif
-
-    Add(Shift( WXK_TAB),  ecDecreaseIndent, overwrite);
 
     Add(Ctrl(      'M'),  ecComment, overwrite);
     Add(CtrlShift( 'M'),  ecUncomment, overwrite);
