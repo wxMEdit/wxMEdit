@@ -122,9 +122,9 @@ typedef int MadEditShortCut;
 typedef int MadEditCommand;
 
 typedef unordered_map<MadEditShortCut, wxString> MadCommandTextMap;
-typedef unordered_map<wxString, MadEditShortCut, wxStringHash> MadTextCommandMap;
+typedef unordered_map<wxString, MadEditCommand, wxStringHash> MadTextCommandMap;
 
-typedef unordered_map<int, MadEditShortCut> MadMenuCommandMap;
+typedef unordered_map<int, MadEditCommand> MadMenuCommandMap;
 
 //---------------------------------------------------------------------------
 
