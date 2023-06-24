@@ -86,13 +86,13 @@ public:
 		if(evt.AltDown())     flags|=wxACCEL_ALT;
 		if(evt.ShiftDown())   flags|=wxACCEL_SHIFT;
 
-		MadEditShortCut sc=ShortCut(flags, key);
-		static MadEditShortCut prevsc=0;
+		MadEditShortcut sc=Shortcut(flags, key);
+		static MadEditShortcut prevsc=0;
 
 		if(sc==prevsc) return;
 		prevsc=sc;
 
-		wxString scstr=ShortCutToString(sc);
+		wxString scstr=ShortcutToString(sc);
 		SetValue(scstr);
 
 		g_OptionsDialog->UpdateKeyHint();

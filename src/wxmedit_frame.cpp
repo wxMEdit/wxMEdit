@@ -1735,7 +1735,7 @@ void MadEditFrame::CreateGUIControls()
         {
             str=str.Right(str.Len()-1);
         }
-        MadEdit::ms_KeyBindings.Add(StringToShortCut(str), ecToggleWindow, true);
+        MadEdit::ms_KeyBindings.Add(StringToShortcut(str), ecToggleWindow, true);
     }
 
 
@@ -2427,7 +2427,7 @@ wxString MadEditFrame::GetMenuKey(const wxString &menu, const wxString &defaultk
 
     // the defaultkey doesn't apply yet, add it
     int menuid=MadKeyBindings::TextToMenuId(menu);
-    MadEditShortCut sc=StringToShortCut(defaultkey);
+    MadEditShortcut sc=StringToShortcut(defaultkey);
     if(menuid!=0 && sc!=0)
     {
         MadEdit::ms_KeyBindings.Add(sc, true, menuid, true);
@@ -4654,7 +4654,7 @@ void MadEditFrame::OnToolsOptions(wxCommandEvent& event)
                     size_t idx=0, count=tid->keys.GetCount();
                     for(;idx<count;idx++)
                     {
-                        MadEdit::ms_KeyBindings.Add(StringToShortCut(tid->keys[idx]), idx==0, cd->menu_id, true);
+                        MadEdit::ms_KeyBindings.Add(StringToShortcut(tid->keys[idx]), idx==0, cd->menu_id, true);
                     }
                 }
                 else if(cd->command > 0)
@@ -4662,7 +4662,7 @@ void MadEditFrame::OnToolsOptions(wxCommandEvent& event)
                     size_t idx=0, count=tid->keys.GetCount();
                     for(;idx<count;idx++)
                     {
-                        MadEdit::ms_KeyBindings.Add(StringToShortCut(tid->keys[idx]), cd->command, true);
+                        MadEdit::ms_KeyBindings.Add(StringToShortcut(tid->keys[idx]), cd->command, true);
                     }
                 }
                 ++tidit;

@@ -304,41 +304,41 @@ enum { // menu id
 
 //---------------------------------------------------------------------------
 
-// MadEditShortCut:
+// MadEditShortcut:
 // high word: wxACCEL_ALT | wxACCEL_CTRL | wxACCEL_SHIFT
 // low  word: wxKeyCode
-typedef int MadEditShortCut;
+typedef int MadEditShortcut;
 typedef int MadEditCommand;
 
-typedef unordered_map<MadEditShortCut, wxString> MadCommandTextMap;
+typedef unordered_map<MadEditShortcut, wxString> MadCommandTextMap;
 typedef unordered_map<wxString, MadEditCommand, wxStringHash> MadTextCommandMap;
 
 typedef unordered_map<int, MadEditCommand> MadMenuCommandMap;
 
-typedef unordered_map<std::pair<MadEditShortCut, MadEditCommand>, std::pair<std::string, MadEditShortCut>> WXMChangedShortcutMap;
+typedef unordered_map<std::pair<MadEditShortcut, MadEditCommand>, std::pair<std::string, MadEditShortcut>> WXMChangedShortcutMap;
 
 //---------------------------------------------------------------------------
 
-typedef unordered_set<MadEditShortCut> MadShortCutSet;
+typedef unordered_set<MadEditShortcut> MadShortcutSet;
 
 struct MadKeyBinding
 {
     int             menuid;
     MadEditCommand  editcmd;
 
-    MadEditShortCut firstsc;
-    MadShortCutSet  shortcuts; // the rest shortcuts
+    MadEditShortcut firstsc;
+    MadShortcutSet  shortcuts; // the rest shortcuts
 
     MadKeyBinding(): menuid(0), editcmd(0), firstsc(0) {}
 
-    void Add(int mid, MadEditCommand cmd, MadEditShortCut sc)
+    void Add(int mid, MadEditCommand cmd, MadEditShortcut sc)
     {
         if(mid!=0) menuid=mid;
         if(cmd!=0) editcmd=cmd;
         if(firstsc==0) firstsc=sc;
         else shortcuts.insert(sc);
     }
-    void AddFirst(int mid, MadEditCommand cmd, MadEditShortCut sc)
+    void AddFirst(int mid, MadEditCommand cmd, MadEditShortcut sc)
     {
         if(mid!=0) menuid=mid;
         if(cmd!=0) editcmd=cmd;
@@ -350,7 +350,7 @@ struct MadKeyBinding
         }
     }
 
-    void RemoveShortCut(MadEditShortCut sc)
+    void RemoveShortcut(MadEditShortcut sc)
     {
         if(firstsc!=0)
         {
@@ -373,7 +373,7 @@ struct MadKeyBinding
         }
     }
 
-    bool HasShortCut(MadEditShortCut sc)
+    bool HasShortcut(MadEditShortcut sc)
     {
         return (sc==firstsc) || (shortcuts.find(sc)!=shortcuts.end()) ;
     }
@@ -386,15 +386,15 @@ typedef unordered_map<int, MadKeyBinding*> MadKeyBindingMap;
 
 //---------------------------------------------------------------------------
 
-MadEditShortCut AdjustedShortCut(int flags, int keyCode);
+MadEditShortcut AdjustedShortcut(int flags, int keyCode);
 
-inline MadEditShortCut ShortCut(int flags, int keyCode)
+inline MadEditShortcut Shortcut(int flags, int keyCode)
 {
     return (flags<<16) | keyCode;
 }
 
-MadEditShortCut StringToShortCut(const wxString &text);
-wxString ShortCutToString(MadEditShortCut shortcut);
+MadEditShortcut StringToShortcut(const wxString &text);
+wxString ShortcutToString(MadEditShortcut shortcut);
 
 //---------------------------------------------------------------------------
 
@@ -417,7 +417,7 @@ private:
     MadKeyBindingList* m_KeyBindings;
     MadKeyBindingMap* m_MenuIdMap;
     MadKeyBindingMap* m_EditCommandMap;
-    MadKeyBindingMap* m_ShortCutMap;
+    MadKeyBindingMap* m_ShortcutMap;
 
 public:
     static void InitCommandTextMap();
@@ -435,17 +435,17 @@ public:
     ~MadKeyBindings();
 
     void AddDefaultBindings(bool overwrite);
-    void Add(MadEditShortCut shortcut, bool first, int menuid, bool overwrite)
+    void Add(MadEditShortcut shortcut, bool first, int menuid, bool overwrite)
     {
-        MadKeyBindingMap::iterator scit = m_ShortCutMap->find(shortcut);
-        if(scit == m_ShortCutMap->end())
+        MadKeyBindingMap::iterator scit = m_ShortcutMap->find(shortcut);
+        if(scit == m_ShortcutMap->end())
         {
             overwrite=true;
         }
         else if(overwrite)
         {
             //remove old corelation
-            scit->second->RemoveShortCut(shortcut);
+            scit->second->RemoveShortcut(shortcut);
         }
         if(overwrite)
         {
@@ -467,20 +467,20 @@ public:
 
             m_MenuIdMap->insert(MadKeyBindingMap::value_type(menuid, kb));
             if(cmd!=0) m_EditCommandMap->insert(MadKeyBindingMap::value_type(cmd, kb));
-            m_ShortCutMap->insert(MadKeyBindingMap::value_type(shortcut, kb));
+            m_ShortcutMap->insert(MadKeyBindingMap::value_type(shortcut, kb));
         }
     }
-    void Add(MadEditShortCut shortcut, MadEditCommand cmd, bool overwrite, bool first = false)
+    void Add(MadEditShortcut shortcut, MadEditCommand cmd, bool overwrite, bool first = false)
     {
-        MadKeyBindingMap::iterator scit = m_ShortCutMap->find(shortcut);
-        if(scit == m_ShortCutMap->end())
+        MadKeyBindingMap::iterator scit = m_ShortcutMap->find(shortcut);
+        if(scit == m_ShortcutMap->end())
         {
             overwrite=true;
         }
         else if(overwrite)
         {
             //remove old corelation
-            scit->second->RemoveShortCut(shortcut);
+            scit->second->RemoveShortcut(shortcut);
         }
         if(overwrite)
         {
@@ -499,7 +499,7 @@ public:
             if(first) kb->AddFirst(0, cmd, shortcut);
             else      kb->Add(0, cmd, shortcut);
             m_EditCommandMap->insert(MadKeyBindingMap::value_type(cmd, kb));
-            m_ShortCutMap->insert(MadKeyBindingMap::value_type(shortcut, kb));
+            m_ShortcutMap->insert(MadKeyBindingMap::value_type(shortcut, kb));
         }
     }
 
@@ -520,12 +520,12 @@ public:
 
     MadEditCommand FindCommand(int flags, int keyCode)
     {
-        return FindCommand(ShortCut(flags, keyCode));
+        return FindCommand(Shortcut(flags, keyCode));
     }
-    MadEditCommand FindCommand(MadEditShortCut shortcut)
+    MadEditCommand FindCommand(MadEditShortcut shortcut)
     {
-        MadKeyBindingMap::iterator scit = m_ShortCutMap->find(shortcut);
-        if(scit != m_ShortCutMap->end())
+        MadKeyBindingMap::iterator scit = m_ShortcutMap->find(shortcut);
+        if(scit != m_ShortcutMap->end())
         {
             return scit->second->editcmd;
         }
