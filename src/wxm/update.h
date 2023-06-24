@@ -28,6 +28,14 @@ extern std::string g_result_checkupdates;
 extern bool g_check_prerelease;
 extern bool g_update_checking;
 
+std::vector<unsigned int> ParseVersion(const std::string& ver);
+bool IsFirstNewer(const std::vector<unsigned int>& v1, const std::vector<unsigned int>& v2, bool check_prerelease);
+
+inline bool IsFirstNewer(const std::string& v1, const std::string& v2, bool check_prerelease)
+{
+	return IsFirstNewer(ParseVersion(v1), ParseVersion(v2), check_prerelease);
+}
+
 std::string CheckUpdates(bool check_prerelease=g_check_prerelease);
 
 void ConfirmUpdate(bool notify_all=true);

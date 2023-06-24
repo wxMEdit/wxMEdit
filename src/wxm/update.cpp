@@ -55,13 +55,6 @@ bool g_update_checking = false;
 const std::string NO_NEW_VERSION("no-new-ver");
 
 static std::string GetVersionFromRemoteChangeLog();
-static std::vector<unsigned int> ParseVersion(const std::string& ver);
-static bool IsFirstNewer(const std::vector<unsigned int>& v1, const std::vector<unsigned int>& v2, bool check_prerelease);
-
-inline bool IsFirstNewer(const std::string& v1, const std::string& v2, bool check_prerelease)
-{
-	return IsFirstNewer(ParseVersion(v1), ParseVersion(v2), check_prerelease);
-}
 
 bool IsPrerelease(const std::string& ver)
 {
