@@ -989,18 +989,16 @@ void MadKeyBindings::LoadFromConfig(wxConfigBase *config)
             else if (ch == wxT('m')) // menuXXX
             {
                 MadTextCommandMap::iterator tcit = ms_TextMenuIdMap->find(text);
-                if (tcit != ms_TextMenuIdMap->end())
-                {
-                    Add(sc, first, tcit->second, true);
-                }
+                if (tcit == ms_TextMenuIdMap->end())
+                    continue;
+                Add(sc, first, tcit->second, true);
             }
             else if (ch == wxT('e')) // ecXXX
             {
                 MadTextCommandMap::iterator tcit = ms_TextCommandMap->find(text);
-                if (tcit != ms_TextCommandMap->end())
-                {
-                    Add(sc, tcit->second, true, first);
-                }
+                if (tcit == ms_TextCommandMap->end())
+                    continue;
+                Add(sc, tcit->second, true, first);
             }
         }
     }
