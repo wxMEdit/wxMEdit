@@ -7,6 +7,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 #include "wxmedit_command.h"
+#include "../wxm/update.h"
 #include "../xm/cxx11.h"
 
 #ifdef _MSC_VER
@@ -28,15 +29,27 @@
 
 //---------------------------------------------------------------------------
 
-MadCommandTextMap *MadKeyBindings::ms_CommandTextMap=nullptr;
-MadTextCommandMap *MadKeyBindings::ms_TextCommandMap=nullptr;
-MadCommandTextMap *MadKeyBindings::ms_MenuIdTextMap=nullptr;
-MadTextCommandMap *MadKeyBindings::ms_TextMenuIdMap=nullptr;
-MadMenuCommandMap *MadKeyBindings::ms_MenuIdCommandMap=nullptr;
+MadCommandTextMap* MadKeyBindings::ms_CommandTextMap = nullptr;
+MadTextCommandMap* MadKeyBindings::ms_TextCommandMap = nullptr;
+MadCommandTextMap* MadKeyBindings::ms_MenuIdTextMap = nullptr;
+MadTextCommandMap* MadKeyBindings::ms_TextMenuIdMap = nullptr;
+MadMenuCommandMap* MadKeyBindings::ms_MenuIdCommandMap = nullptr;
+WXMChangedShortcutMap* MadKeyBindings::ms_ChangedShortcuts = nullptr;
+WXMChangedShortcutMap* MadKeyBindings::ms_ChangedMenuAccels = nullptr;
 
 #define INSERT_COMMANDTEXT(cmd) \
     ms_CommandTextMap->insert(MadCommandTextMap::value_type(cmd, wxT(#cmd)));\
     ms_TextCommandMap->insert(MadTextCommandMap::value_type(wxT(#cmd), cmd))
+
+inline MadEditShortCut Ctrl(int keyCode)
+{
+    return ShortCut(wxACCEL_CTRL, keyCode);
+}
+
+inline MadEditShortCut ShiftAlt(int keyCode)
+{
+    return ShortCut(wxACCEL_SHIFT | wxACCEL_ALT, keyCode);
+}
 
 void MadKeyBindings::InitCommandTextMap()
 {
@@ -45,6 +58,18 @@ void MadKeyBindings::InitCommandTextMap()
     ms_MenuIdTextMap = new MadCommandTextMap();
     ms_TextMenuIdMap = new MadTextCommandMap();
     ms_MenuIdCommandMap = new MadMenuCommandMap();
+    ms_ChangedShortcuts = new WXMChangedShortcutMap();
+    ms_ChangedMenuAccels = new WXMChangedShortcutMap();
+
+    static const std::string VER_3_2_RC = "3.1.0.90";
+
+    using std::make_pair;
+    (*ms_ChangedShortcuts)[make_pair(Ctrl('Q'), ecNoWrap)] = make_pair(VER_3_2_RC, ShiftAlt('Q'));
+    (*ms_ChangedShortcuts)[make_pair(Ctrl('W'), ecWrapByWindow)] = make_pair(VER_3_2_RC, ShiftAlt('W'));
+    (*ms_ChangedShortcuts)[make_pair(Ctrl('E'), ecWrapByColumn)] = make_pair(VER_3_2_RC, ShiftAlt('E'));
+    (*ms_ChangedMenuAccels)[make_pair(Ctrl('Q'), menuNoWrap)] = make_pair(VER_3_2_RC, ShiftAlt('Q'));
+    (*ms_ChangedMenuAccels)[make_pair(Ctrl('W'), menuWrapByWindow)] = make_pair(VER_3_2_RC, ShiftAlt('W'));
+    (*ms_ChangedMenuAccels)[make_pair(Ctrl('E'), menuWrapByColumn)] = make_pair(VER_3_2_RC, ShiftAlt('E'));
 
     INSERT_COMMANDTEXT(ecLeft);
     INSERT_COMMANDTEXT(ecUp);
@@ -140,11 +165,16 @@ void MadKeyBindings::FreeCommandTextMap()
     ms_MenuIdTextMap->clear();
     ms_TextMenuIdMap->clear();
     ms_MenuIdCommandMap->clear();
+    ms_ChangedShortcuts->clear();
+    ms_ChangedMenuAccels->clear();
+
     delete ms_CommandTextMap;
     delete ms_TextCommandMap;
     delete ms_MenuIdTextMap;
     delete ms_TextMenuIdMap;
     delete ms_MenuIdCommandMap;
+    delete ms_ChangedShortcuts;
+    delete ms_ChangedMenuAccels;
 }
 
 wxString MadKeyBindings::CommandToText(MadEditCommand cmd)
@@ -769,9 +799,9 @@ void MadKeyBindings::AddDefaultBindings(bool overwrite)
     Add(ShortCut(wxACCEL_ALT, '2'), ecColumnMode,   overwrite);
     Add(ShortCut(wxACCEL_ALT, '3'), ecHexMode,      overwrite);
 
-    Add(ShortCut(wxACCEL_CTRL, 'Q'), ecNoWrap,       overwrite);
-    Add(ShortCut(wxACCEL_CTRL, 'W'), ecWrapByWindow, overwrite);
-    Add(ShortCut(wxACCEL_CTRL, 'E'), ecWrapByColumn, overwrite);
+    Add(ShortCut(wxACCEL_SHIFT | wxACCEL_ALT, 'Q'), ecNoWrap, overwrite);
+    Add(ShortCut(wxACCEL_SHIFT | wxACCEL_ALT, 'W'), ecWrapByWindow, overwrite);
+    Add(ShortCut(wxACCEL_SHIFT | wxACCEL_ALT, 'E'), ecWrapByColumn, overwrite);
 
     Add(ShortCut(wxACCEL_CTRL, 'Z'),                 ecUndo, overwrite);
     Add(ShortCut(wxACCEL_ALT, WXK_BACK),             ecUndo, overwrite);
@@ -964,8 +994,20 @@ void MadKeyBindings::BuildAccelEntries(bool includeFirstSC, vector<wxAccelerator
     }
 }
 
-void MadKeyBindings::LoadFromConfig(wxConfigBase *config)
+inline std::string VerOf(const std::pair<std::string, MadEditShortCut>& pair)
 {
+    return pair.first;
+}
+
+inline MadEditShortCut ShortcutOf(const std::pair<std::string, MadEditShortCut>& pair)
+{
+    return pair.second;
+}
+
+void MadKeyBindings::LoadFromConfig(wxConfigBase* config, const wxString& prevVersion)
+{
+    std::string prevVerStr = (const char*)prevVersion.ToAscii();
+
     wxString key;
     long idx = 0;
      for (bool kcont = config->GetNextEntry(key, idx); kcont; kcont = config->GetNextEntry(key, idx))
@@ -991,6 +1033,9 @@ void MadKeyBindings::LoadFromConfig(wxConfigBase *config)
                 MadTextCommandMap::iterator tcit = ms_TextMenuIdMap->find(text);
                 if (tcit == ms_TextMenuIdMap->end())
                     continue;
+                WXMChangedShortcutMap::iterator cit = ms_ChangedMenuAccels->find(std::make_pair(sc, tcit->second));
+                if (cit != ms_ChangedMenuAccels->end() && wxm::IsFirstNewer(VerOf(cit->second), prevVerStr, true))
+                    sc = ShortcutOf(cit->second);
                 Add(sc, first, tcit->second, true);
             }
             else if (ch == wxT('e')) // ecXXX
@@ -998,13 +1043,16 @@ void MadKeyBindings::LoadFromConfig(wxConfigBase *config)
                 MadTextCommandMap::iterator tcit = ms_TextCommandMap->find(text);
                 if (tcit == ms_TextCommandMap->end())
                     continue;
+                WXMChangedShortcutMap::iterator cit = ms_ChangedShortcuts->find(std::make_pair(sc, tcit->second));
+                if (cit != ms_ChangedShortcuts->end() && wxm::IsFirstNewer(VerOf(cit->second), prevVerStr, true))
+                    sc = ShortcutOf(cit->second);
                 Add(sc, tcit->second, true, first);
             }
         }
     }
 }
 
-void MadKeyBindings::SaveToConfig(wxConfigBase *config)
+void MadKeyBindings::SaveToConfig(wxConfigBase* config)
 {
     // record all keys in config
     wxArrayString keys;

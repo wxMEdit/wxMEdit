@@ -1362,9 +1362,9 @@ CommandData CommandTable[]=
     { 0,            2, menuLineSpacing100+30, wxT("menuLineSpacing250"),    wxT("250%"),               0,                   wxITEM_NORMAL,    -1,                 0,                         wxT("Set line spacing")},
 
     { 0,              1, 0,                     0,                            0,                         0,                   wxITEM_SEPARATOR, -1,                 0,                         0},
-    { ecNoWrap,       1, menuNoWrap,            wxT("menuNoWrap"),            _("&No Wrap"),             wxT("Ctrl-Q"),       wxITEM_CHECK,     nowrap_xpm_idx,     0,                         _("Do not wrap lines")},
-    { ecWrapByWindow, 1, menuWrapByWindow,      wxT("menuWrapByWindow"),      _("Wrap By &Window"),      wxT("Ctrl-W"),       wxITEM_CHECK,     wrapbywin_xpm_idx,  0,                         _("Wrap the lines by the window width")},
-    { ecWrapByColumn, 1, menuWrapByColumn,      wxT("menuWrapByColumn"),      _("Wrap By Column"),       wxT("Ctrl-E"),       wxITEM_CHECK,     wrapbycol_xpm_idx,  0,                         _("Wrap the lines by the specified Max Columns")},
+    { ecNoWrap,       1, menuNoWrap,            wxT("menuNoWrap"),            _("&No Wrap"),             wxT("Shift-Alt-Q"),  wxITEM_CHECK,     nowrap_xpm_idx,     0,                         _("Do not wrap lines")},
+    { ecWrapByWindow, 1, menuWrapByWindow,      wxT("menuWrapByWindow"),      _("Wrap By &Window"),      wxT("Shift-Alt-W"),  wxITEM_CHECK,     wrapbywin_xpm_idx,  0,                         _("Wrap the lines by the window width")},
+    { ecWrapByColumn, 1, menuWrapByColumn,      wxT("menuWrapByColumn"),      _("Wrap By Column"),       wxT("Shift-Alt-E"),  wxITEM_CHECK,     wrapbycol_xpm_idx,  0,                         _("Wrap the lines by the specified Max Columns")},
     { 0,              1, 0,                     0,                            0,                         0,                   wxITEM_SEPARATOR, -1,                 0,                         0},
     { 0,              1, menuDisplayBookmark,   wxT("menuDisplayBookmark"),   _("Display &Bookmark"),    wxT("Shift-Alt-B"),  wxITEM_CHECK,     -1,                 0,                         _("Display the Bookmarks")},
     { 0,              1, menuDisplayLineNumber, wxT("menuDisplayLineNumber"), _("&Display Line Number"), wxT("Shift-Alt-D"),  wxITEM_CHECK,     -1,                 0,                         _("Display the Line Numbers")},
@@ -1720,8 +1720,10 @@ void MadEditFrame::CreateGUIControls()
     // load keybindings
     if(m_Config->Exists(wxT("/KeyBindings")))
     {
+        wxString prevVersion;
+        m_Config->Read(wxT("/wxMEdit/LastRunVersion"), &prevVersion);
         m_Config->SetPath(wxT("/KeyBindings"));
-        MadEdit::ms_KeyBindings.LoadFromConfig(m_Config);
+        MadEdit::ms_KeyBindings.LoadFromConfig(m_Config, prevVersion);
         MadEdit::ms_KeyBindings.AddDefaultBindings(false);
     }
 

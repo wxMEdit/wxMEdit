@@ -113,6 +113,195 @@ enum //MadEditCommand
     ecMouseNotify // just a notification for MouseEvent
 };
 
+enum { // menu id
+    menuNew = wxID_NEW,
+    menuOpen = wxID_OPEN,
+    menuSave = wxID_SAVE,
+    menuSaveAs = wxID_SAVEAS,
+    menuClose = wxID_CLOSE,
+    menuCloseAll = wxID_CLOSE_ALL,
+    menuPageSetup = wxID_PRINT_SETUP,
+    menuPrintPreview = wxID_PREVIEW,
+    menuPrint = wxID_PRINT,
+    menuExit = wxID_EXIT,
+    menuUndo = wxID_UNDO,
+    menuRedo = wxID_REDO,
+    menuCut = wxID_CUT,
+    menuCopy = wxID_COPY,
+    menuPaste = wxID_PASTE,
+    menuDelete = wxID_DELETE,
+    menuSelectAll = wxID_SELECTALL,
+    menuFind = wxID_FIND,
+    menuReplace = wxID_REPLACE,
+    menuAbout = wxID_ABOUT,
+
+    // file
+    menuSaveAll = 1100,
+    menuCloseByPath,
+    menuCloseMore,
+    menuCloseAllButThis,
+    menuCloseAllToTheLeft,
+    menuCloseAllToTheRight,
+    menuCopyFilePath,
+    menuCopyFullPath,
+    menuCopyFilename,
+    menuCopyFileDir,
+    menuReload,
+    menuRecentFiles,
+
+    // edit
+    menuPasteOvr,
+    menuCutLine,
+    menuDeleteLine,
+    menuInsertTabChar,
+    menuInsertDateTime,
+    menuToggleBookmark,
+    menuGotoNextBookmark,
+    menuGotoPreviousBookmark,
+    menuClearAllBookmarks,
+    menuColumn,
+    menuColumnAlign,
+    menuColumnPaste,
+    menuSort,
+    menuSortAscending,
+    menuSortDescending,
+    menuSortAscendingCase,
+    menuSortDescendingCase,
+    menuSortByOptions,
+    menuSortOptions,
+    menuAdvanced,
+    menuCopyAsHexString,
+    menuCopyAsHexStringWithSpace,
+    menuIncreaseIndent,
+    menuDecreaseIndent,
+    menuComment,
+    menuUncomment,
+    menuWordWrapToNewLine,
+    menuNewLineToWordWrap,
+    menuToUpperCase,
+    menuToLowerCase,
+    menuInvertCase,
+    menuToHalfWidth,
+    menuToHalfWidthByOptions,
+    menuToFullWidth,
+    menuToFullWidthByOptions,
+    menuTabToSpace,
+    menuSpaceToTab,
+    menuTrimTrailingSpaces,
+    menuInsertEnumeration,
+
+    // search
+    menuFindNext,
+    menuFindPrevious,
+    menuFindInFiles,
+    menuShowFindInFilesResults,
+    menuGoToLine,
+    menuGoToPosition,
+    menuLeftBrace,
+    menuRightBrace,
+
+    // view
+    menuEncoding,
+    menuAllEncodings,
+    menuEncodingGroup1,
+    menuEncodingGroup99 = menuEncodingGroup1 + 98,
+
+    menuEncoding1,
+    menuEncoding99 = menuEncoding1 + 98,
+
+    menuRecentEncoding1,
+    menuRecentEncoding9 = menuRecentEncoding1 + 8,
+
+    menuSyntax,
+    menuSyntax1,
+    menuSyntax199 = menuSyntax1 + 198,
+
+    menuFontName,
+    menuFontName1,
+    menuFontName999 = menuFontName1 + 998,
+
+    menuFont0, //[@]
+    menuFont1, //[ABCDE]
+    menuFont2, //[FGHIJ]
+    menuFont3, //[KLMNO]
+    menuFont4, //[PQRST]
+    menuFont5, //[UVWXYZ]
+    menuFont6, //[Other]
+
+    menuRecentFonts,
+    menuRecentFont1,
+    menuRecentFont9 = menuRecentFont1 + 8,
+
+    menuFontSize,
+    menuFontSize1,
+    menuFontSize99 = menuFontSize1 + 98,
+
+    menuSetFont,
+    menuFixedWidthMode,
+
+    menuTabColumn,
+    menuTabColumn1,
+    menuTabColumn16 = menuTabColumn1 + 15,
+
+    menuLineSpacing,
+    menuLineSpacing100,
+    menuLineSpacing250 = menuLineSpacing100 + 30,
+
+    menuNoWrap,
+    menuWrapByWindow,
+    menuWrapByColumn,
+    menuDisplayBookmark,
+    menuDisplayLineNumber,
+    menuShowEndOfLine,
+    menuShowTabChar,
+    menuShowSpaceChar,
+    menuMarkActiveLine,
+    menuMarkBracePair,
+    menuTextMode,
+    menuColumnMode,
+    menuHexMode,
+
+    // tools
+    menuOptions,
+    menuHighlighting,
+#ifdef __WXMSW__
+    menuFileAssociation,
+#endif
+    menuPurgeHistories,
+    menuPlugins,
+    menuByteOrderMark,
+    menuToggleBOM,
+    menuNewLineChar,
+    menuConvertToDOS,
+    menuConvertToMAC,
+    menuConvertToUNIX,
+    menuInsertNewLineChar,
+    menuInsertDOS,
+    menuInsertMAC,
+    menuInsertUNIX,
+    menuConvertEncoding,
+    menuConvertChineseChar,
+    menuSimp2TradChinese,
+    menuTrad2SimpChinese,
+    menuKanji2TradChinese,
+    menuKanji2SimpChinese,
+    menuChinese2Kanji,
+    menuSimp2TradClipboard,
+    menuTrad2SimpClipboard,
+    menuKanji2TradClipboard,
+    menuKanji2SimpClipboard,
+    menuChinese2KanjiClipboard,
+    menuWordCount,
+
+    // window
+    menuToggleWindow,
+    menuPreviousWindow,
+    menuNextWindow,
+
+    // help
+    menuCheckUpdates,
+};
+
 //---------------------------------------------------------------------------
 
 // MadEditShortCut:
@@ -125,6 +314,8 @@ typedef unordered_map<MadEditShortCut, wxString> MadCommandTextMap;
 typedef unordered_map<wxString, MadEditCommand, wxStringHash> MadTextCommandMap;
 
 typedef unordered_map<int, MadEditCommand> MadMenuCommandMap;
+
+typedef unordered_map<std::pair<MadEditShortCut, MadEditCommand>, std::pair<std::string, MadEditShortCut>> WXMChangedShortcutMap;
 
 //---------------------------------------------------------------------------
 
@@ -213,17 +404,20 @@ class MadKeyBindings
 {
 private:
     // editcommand
-    static MadCommandTextMap *ms_CommandTextMap;
-    static MadTextCommandMap *ms_TextCommandMap;
+    static MadCommandTextMap* ms_CommandTextMap;
+    static MadTextCommandMap* ms_TextCommandMap;
     // menuid
-    static MadCommandTextMap *ms_MenuIdTextMap;
-    static MadTextCommandMap *ms_TextMenuIdMap;
-    static MadMenuCommandMap *ms_MenuIdCommandMap;
+    static MadCommandTextMap* ms_MenuIdTextMap;
+    static MadTextCommandMap* ms_TextMenuIdMap;
+    static MadMenuCommandMap* ms_MenuIdCommandMap;
 
-    MadKeyBindingList *m_KeyBindings;
-    MadKeyBindingMap *m_MenuIdMap;
-    MadKeyBindingMap *m_EditCommandMap;
-    MadKeyBindingMap *m_ShortCutMap;
+    static WXMChangedShortcutMap* ms_ChangedShortcuts;
+    static WXMChangedShortcutMap* ms_ChangedMenuAccels;
+
+    MadKeyBindingList* m_KeyBindings;
+    MadKeyBindingMap* m_MenuIdMap;
+    MadKeyBindingMap* m_EditCommandMap;
+    MadKeyBindingMap* m_ShortCutMap;
 
 public:
     static void InitCommandTextMap();
@@ -339,8 +533,8 @@ public:
     }
 
     // must config->SetPath() before call these functions
-    void LoadFromConfig(wxConfigBase *config);
-    void SaveToConfig(wxConfigBase *config);
+    void LoadFromConfig(wxConfigBase* config, const wxString& prevVersion);
+    void SaveToConfig(wxConfigBase* config);
 };
 
 #endif
