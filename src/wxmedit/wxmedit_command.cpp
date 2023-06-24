@@ -966,48 +966,43 @@ void MadKeyBindings::BuildAccelEntries(bool includeFirstSC, vector<wxAccelerator
 
 void MadKeyBindings::LoadFromConfig(wxConfigBase *config)
 {
-    MadEditShortCut sc;
-    MadTextCommandMap::iterator tcit;
-
-    wxString key, text;
-    long idx=0;
-    bool first;
-    bool kcont=config->GetNextEntry(key, idx);
-    while(kcont)
+    wxString key;
+    long idx = 0;
+     for (bool kcont = config->GetNextEntry(key, idx); kcont; kcont = config->GetNextEntry(key, idx))
     {
-        config->Read(key, &text);
+        MadEditShortCut sc = StringToShortCut(key);
+        if (sc == 0)
+            continue;
 
-        if((sc=StringToShortCut(key))!=0)
+        wxString text;
+        config->Read(key, &text);
+        
+        bool first = false;
+        wxStringTokenizer tkz(text);
+        for (text = tkz.GetNextToken(); !text.IsEmpty(); text = tkz.GetNextToken())
         {
-            first=false;
-            wxStringTokenizer tkz(text);
-            text=tkz.GetNextToken();
-            while(!text.IsEmpty())
+            const wxChar ch = text[0];
+            if (ch == wxT('*'))
             {
-                const wxChar ch = text[0];
-                if(ch == wxT('*'))
+                first=true;
+            }
+            else if (ch == wxT('m')) // menuXXX
+            {
+                MadTextCommandMap::iterator tcit = ms_TextMenuIdMap->find(text);
+                if (tcit != ms_TextMenuIdMap->end())
                 {
-                    first=true;
+                    Add(sc, first, tcit->second, true);
                 }
-                else if(ch == wxT('m'))// menuXXX
+            }
+            else if (ch == wxT('e')) // ecXXX
+            {
+                MadTextCommandMap::iterator tcit = ms_TextCommandMap->find(text);
+                if (tcit != ms_TextCommandMap->end())
                 {
-                    if((tcit=ms_TextMenuIdMap->find(text))!=ms_TextMenuIdMap->end())
-                    {
-                        Add(sc, first, tcit->second, true);
-                    }
+                    Add(sc, tcit->second, true, first);
                 }
-                else if(ch == wxT('e'))// ecXXX
-                {
-                    if((tcit=ms_TextCommandMap->find(text))!=ms_TextCommandMap->end())
-                    {
-                        Add(sc, tcit->second, true, first);
-                    }
-                }
-                text=tkz.GetNextToken();
             }
         }
-
-        kcont=config->GetNextEntry(key, idx);
     }
 }
 
