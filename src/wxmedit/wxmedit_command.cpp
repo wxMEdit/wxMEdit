@@ -41,9 +41,34 @@ WXMChangedShortcutMap* MadKeyBindings::ms_ChangedMenuAccels = nullptr;
     ms_CommandTextMap->insert(MadCommandTextMap::value_type(cmd, wxT(#cmd)));\
     ms_TextCommandMap->insert(MadTextCommandMap::value_type(wxT(#cmd), cmd))
 
+inline MadEditShortcut Normal(int keyCode)
+{
+    return Shortcut(wxACCEL_NORMAL, keyCode);
+}
+
 inline MadEditShortcut Ctrl(int keyCode)
 {
     return Shortcut(wxACCEL_CTRL, keyCode);
+}
+
+inline MadEditShortcut Shift(int keyCode)
+{
+    return Shortcut(wxACCEL_SHIFT, keyCode);
+}
+
+inline MadEditShortcut Alt(int keyCode)
+{
+    return Shortcut(wxACCEL_ALT, keyCode);
+}
+
+inline MadEditShortcut CtrlShift(int keyCode)
+{
+    return Shortcut(wxACCEL_CTRL | wxACCEL_SHIFT, keyCode);
+}
+
+inline MadEditShortcut CtrlAlt(int keyCode)
+{
+    return Shortcut(wxACCEL_CTRL | wxACCEL_ALT, keyCode);
 }
 
 inline MadEditShortcut ShiftAlt(int keyCode)
@@ -699,127 +724,127 @@ MadKeyBindings::~MadKeyBindings()
 
 void MadKeyBindings::AddDefaultBindings(bool overwrite)
 {
-    Add(Shortcut(wxACCEL_NORMAL, WXK_LEFT),     ecLeft, overwrite);
-    Add(Shortcut(wxACCEL_NORMAL, WXK_RIGHT),    ecRight, overwrite);
-    Add(Shortcut(wxACCEL_NORMAL, WXK_UP),       ecUp, overwrite);
-    Add(Shortcut(wxACCEL_NORMAL, WXK_DOWN),     ecDown, overwrite);
-    Add(Shortcut(wxACCEL_NORMAL, WXK_HOME),     ecBeginLine, overwrite);
-    Add(Shortcut(wxACCEL_NORMAL, WXK_END),      ecEndLine, overwrite);
-    Add(Shortcut(wxACCEL_CTRL,   WXK_HOME),     ecBeginDoc, overwrite);
-    Add(Shortcut(wxACCEL_CTRL,   WXK_END),      ecEndDoc, overwrite);
-    Add(Shortcut(wxACCEL_NORMAL, WXK_PAGEUP),   ecPrevPage, overwrite);
-    Add(Shortcut(wxACCEL_NORMAL, WXK_PAGEDOWN), ecNextPage, overwrite);
-    Add(Shortcut(wxACCEL_CTRL,   WXK_LEFT),     ecPrevWord, overwrite);
-    Add(Shortcut(wxACCEL_CTRL,   WXK_RIGHT),    ecNextWord, overwrite);
-    Add(Shortcut(wxACCEL_CTRL,   '['),          ecLeftBrace, overwrite);
-    Add(Shortcut(wxACCEL_CTRL,   ']'),          ecRightBrace, overwrite);
+    Add(Normal( WXK_LEFT),     ecLeft, overwrite);
+    Add(Normal( WXK_RIGHT),    ecRight, overwrite);
+    Add(Normal( WXK_UP),       ecUp, overwrite);
+    Add(Normal( WXK_DOWN),     ecDown, overwrite);
+    Add(Normal( WXK_HOME),     ecBeginLine, overwrite);
+    Add(Normal( WXK_END),      ecEndLine, overwrite);
+    Add(Ctrl(   WXK_HOME),     ecBeginDoc, overwrite);
+    Add(Ctrl(   WXK_END),      ecEndDoc, overwrite);
+    Add(Normal( WXK_PAGEUP),   ecPrevPage, overwrite);
+    Add(Normal( WXK_PAGEDOWN), ecNextPage, overwrite);
+    Add(Ctrl(   WXK_LEFT),     ecPrevWord, overwrite);
+    Add(Ctrl(   WXK_RIGHT),    ecNextWord, overwrite);
+    Add(Ctrl(   '['),          ecLeftBrace, overwrite);
+    Add(Ctrl(   ']'),          ecRightBrace, overwrite);
 
-    Add(Shortcut(wxACCEL_SHIFT, WXK_LEFT),  ecSelLeft, overwrite);
-    Add(Shortcut(wxACCEL_SHIFT, WXK_RIGHT), ecSelRight, overwrite);
-    Add(Shortcut(wxACCEL_SHIFT, WXK_UP),    ecSelUp, overwrite);
-    Add(Shortcut(wxACCEL_SHIFT, WXK_DOWN),  ecSelDown, overwrite);
-    Add(Shortcut(wxACCEL_SHIFT, WXK_HOME),  ecSelBeginLine, overwrite);
-    Add(Shortcut(wxACCEL_SHIFT, WXK_END),   ecSelEndLine, overwrite);
-    Add(Shortcut(wxACCEL_CTRL | wxACCEL_SHIFT, WXK_HOME),   ecSelBeginDoc, overwrite);
-    Add(Shortcut(wxACCEL_CTRL | wxACCEL_SHIFT, WXK_END),    ecSelEndDoc, overwrite);
-    Add(Shortcut(wxACCEL_SHIFT, WXK_PAGEUP),                ecSelPrevPage, overwrite);
-    Add(Shortcut(wxACCEL_SHIFT, WXK_PAGEDOWN),              ecSelNextPage, overwrite);
-    Add(Shortcut(wxACCEL_CTRL | wxACCEL_SHIFT, WXK_LEFT),   ecSelPrevWord, overwrite);
-    Add(Shortcut(wxACCEL_CTRL | wxACCEL_SHIFT, WXK_RIGHT),  ecSelNextWord, overwrite);
-    Add(Shortcut(wxACCEL_CTRL | wxACCEL_SHIFT, '['),        ecSelLeftBrace, overwrite);
-    Add(Shortcut(wxACCEL_CTRL | wxACCEL_SHIFT, ']'),        ecSelRightBrace, overwrite);
+    Add(Shift( WXK_LEFT),       ecSelLeft, overwrite);
+    Add(Shift( WXK_RIGHT),      ecSelRight, overwrite);
+    Add(Shift( WXK_UP),         ecSelUp, overwrite);
+    Add(Shift( WXK_DOWN),       ecSelDown, overwrite);
+    Add(Shift( WXK_HOME),       ecSelBeginLine, overwrite);
+    Add(Shift( WXK_END),        ecSelEndLine, overwrite);
+    Add(CtrlShift( WXK_HOME),   ecSelBeginDoc, overwrite);
+    Add(CtrlShift( WXK_END),    ecSelEndDoc, overwrite);
+    Add(Shift( WXK_PAGEUP),     ecSelPrevPage, overwrite);
+    Add(Shift( WXK_PAGEDOWN),   ecSelNextPage, overwrite);
+    Add(CtrlShift( WXK_LEFT),   ecSelPrevWord, overwrite);
+    Add(CtrlShift( WXK_RIGHT),  ecSelNextWord, overwrite);
+    Add(CtrlShift( '['),        ecSelLeftBrace, overwrite);
+    Add(CtrlShift( ']'),        ecSelRightBrace, overwrite);
 
-    Add(Shortcut(wxACCEL_CTRL, WXK_UP),                     ecScrollLineUp, overwrite);
-    Add(Shortcut(wxACCEL_CTRL, WXK_DOWN),                   ecScrollLineDown, overwrite);
-    Add(Shortcut(wxACCEL_CTRL | wxACCEL_SHIFT, WXK_UP),     ecScrollLineUp, overwrite);
-    Add(Shortcut(wxACCEL_CTRL | wxACCEL_SHIFT, WXK_DOWN),   ecScrollLineDown, overwrite);
-    Add(Shortcut(wxACCEL_ALT, WXK_UP),                      ecScrollLineUp, overwrite);
-    Add(Shortcut(wxACCEL_ALT, WXK_DOWN),                    ecScrollLineDown, overwrite);
-    Add(Shortcut(wxACCEL_SHIFT | wxACCEL_ALT, WXK_UP),      ecScrollLineUp, overwrite);
-    Add(Shortcut(wxACCEL_SHIFT | wxACCEL_ALT, WXK_DOWN),    ecScrollLineDown, overwrite);
-    Add(Shortcut(wxACCEL_CTRL | wxACCEL_ALT, WXK_UP),       ecScrollLineUp, overwrite);
-    Add(Shortcut(wxACCEL_CTRL | wxACCEL_ALT, WXK_DOWN),     ecScrollLineDown, overwrite);
+    Add(Ctrl( WXK_UP),          ecScrollLineUp, overwrite);
+    Add(Ctrl( WXK_DOWN),        ecScrollLineDown, overwrite);
+    Add(CtrlShift( WXK_UP),     ecScrollLineUp, overwrite);
+    Add(CtrlShift( WXK_DOWN),   ecScrollLineDown, overwrite);
+    Add(Alt( WXK_UP),           ecScrollLineUp, overwrite);
+    Add(Alt( WXK_DOWN),         ecScrollLineDown, overwrite);
+    Add(ShiftAlt( WXK_UP),      ecScrollLineUp, overwrite);
+    Add(ShiftAlt( WXK_DOWN),    ecScrollLineDown, overwrite);
+    Add(CtrlAlt( WXK_UP),       ecScrollLineUp, overwrite);
+    Add(CtrlAlt( WXK_DOWN),     ecScrollLineDown, overwrite);
 
-    Add(Shortcut(wxACCEL_CTRL, WXK_PAGEUP),                   ecScrollPageUp, overwrite);
-    Add(Shortcut(wxACCEL_CTRL, WXK_PAGEDOWN),                 ecScrollPageDown, overwrite);
-    Add(Shortcut(wxACCEL_CTRL | wxACCEL_SHIFT, WXK_PAGEUP),   ecScrollPageUp, overwrite);
-    Add(Shortcut(wxACCEL_CTRL | wxACCEL_SHIFT, WXK_PAGEDOWN), ecScrollPageDown, overwrite);
-    Add(Shortcut(wxACCEL_ALT, WXK_PAGEUP),                    ecScrollPageUp, overwrite);
-    Add(Shortcut(wxACCEL_ALT, WXK_PAGEDOWN),                  ecScrollPageDown, overwrite);
-    Add(Shortcut(wxACCEL_SHIFT | wxACCEL_ALT, WXK_PAGEUP),    ecScrollPageUp, overwrite);
-    Add(Shortcut(wxACCEL_SHIFT | wxACCEL_ALT, WXK_PAGEDOWN),  ecScrollPageDown, overwrite);
-    Add(Shortcut(wxACCEL_CTRL | wxACCEL_ALT, WXK_PAGEUP),     ecScrollPageUp, overwrite);
-    Add(Shortcut(wxACCEL_CTRL | wxACCEL_ALT, WXK_PAGEDOWN),   ecScrollPageDown, overwrite);
+    Add(Ctrl( WXK_PAGEUP),        ecScrollPageUp, overwrite);
+    Add(Ctrl( WXK_PAGEDOWN),      ecScrollPageDown, overwrite);
+    Add(CtrlShift( WXK_PAGEUP),   ecScrollPageUp, overwrite);
+    Add(CtrlShift( WXK_PAGEDOWN), ecScrollPageDown, overwrite);
+    Add(Alt( WXK_PAGEUP),         ecScrollPageUp, overwrite);
+    Add(Alt( WXK_PAGEDOWN),       ecScrollPageDown, overwrite);
+    Add(ShiftAlt( WXK_PAGEUP),    ecScrollPageUp, overwrite);
+    Add(ShiftAlt( WXK_PAGEDOWN),  ecScrollPageDown, overwrite);
+    Add(CtrlAlt( WXK_PAGEUP),     ecScrollPageUp, overwrite);
+    Add(CtrlAlt( WXK_PAGEDOWN),   ecScrollPageDown, overwrite);
 
-    Add(Shortcut(wxACCEL_SHIFT | wxACCEL_ALT, WXK_LEFT),    ecScrollLeft, overwrite);
-    Add(Shortcut(wxACCEL_SHIFT | wxACCEL_ALT, WXK_RIGHT),   ecScrollRight, overwrite);
+    Add(ShiftAlt( WXK_LEFT),    ecScrollLeft, overwrite);
+    Add(ShiftAlt( WXK_RIGHT),   ecScrollRight, overwrite);
 
 
-    Add(Shortcut(wxACCEL_CTRL, 'A'),            ecSelectAll, overwrite);
+    Add(Ctrl( 'A'), ecSelectAll, overwrite);
 
-    Add(Shortcut(wxACCEL_NORMAL, WXK_RETURN),       ecReturn, overwrite);
-    Add(Shortcut(wxACCEL_NORMAL, WXK_NUMPAD_ENTER), ecReturn, overwrite);
+    Add(Normal( WXK_RETURN),       ecReturn, overwrite);
+    Add(Normal( WXK_NUMPAD_ENTER), ecReturn, overwrite);
 
-    Add(Shortcut(wxACCEL_SHIFT, WXK_RETURN),       ecReturnNoIndent, overwrite);
-    Add(Shortcut(wxACCEL_SHIFT, WXK_NUMPAD_ENTER), ecReturnNoIndent, overwrite);
+    Add(Shift( WXK_RETURN),        ecReturnNoIndent, overwrite);
+    Add(Shift( WXK_NUMPAD_ENTER),  ecReturnNoIndent, overwrite);
 
-    Add(Shortcut(wxACCEL_NORMAL, WXK_TAB),          ecTab, overwrite);
-    Add(Shortcut(wxACCEL_CTRL, WXK_TAB),            ecToggleWindow, overwrite);
-    Add(Shortcut(wxACCEL_CTRL | wxACCEL_SHIFT, WXK_TAB),            ecToggleWindow, overwrite);
+    Add(Normal(    WXK_TAB),       ecTab, overwrite);
+    Add(Ctrl(      WXK_TAB),       ecToggleWindow, overwrite);
+    Add(CtrlShift( WXK_TAB),       ecToggleWindow, overwrite);
 
 #ifdef __WXMSW__
-    Add(Shortcut(wxACCEL_CTRL, '~'),            ecInsertTabChar, overwrite);
+    Add(Ctrl( '~'),            ecInsertTabChar, overwrite);
 #else
-    Add(Shortcut(wxACCEL_CTRL, '`'),            ecInsertTabChar, overwrite);
+    Add(Ctrl( '`'),            ecInsertTabChar, overwrite);
 #endif
 
-    Add(Shortcut(wxACCEL_NORMAL, WXK_DELETE),   ecDelete, overwrite);
-    Add(Shortcut(wxACCEL_NORMAL, WXK_BACK),     ecBackSpace, overwrite);
+    Add(Normal( WXK_DELETE),   ecDelete, overwrite);
+    Add(Normal( WXK_BACK),     ecBackSpace, overwrite);
 
-    Add(Shortcut(wxACCEL_CTRL, WXK_BACK),          ecDelPrevWord, overwrite);
-    Add(Shortcut(wxACCEL_CTRL, WXK_DELETE),        ecDelNextWord, overwrite);
-    Add(Shortcut(wxACCEL_CTRL, WXK_NUMPAD_DELETE), ecDelNextWord, overwrite);
+    Add(Ctrl( WXK_BACK),          ecDelPrevWord, overwrite);
+    Add(Ctrl( WXK_DELETE),        ecDelNextWord, overwrite);
+    Add(Ctrl( WXK_NUMPAD_DELETE), ecDelNextWord, overwrite);
 
-    Add(Shortcut(wxACCEL_CTRL | wxACCEL_SHIFT, 'L'),  ecCutLine, overwrite);
-    Add(Shortcut(wxACCEL_CTRL, 'L'),  ecDeleteLine, overwrite);
+    Add(CtrlShift( 'L'),  ecCutLine, overwrite);
+    Add(Ctrl(      'L'),  ecDeleteLine, overwrite);
 #ifndef __WXMSW__
-    Add(Shortcut(wxACCEL_CTRL, 'Y'),  ecDeleteLine, overwrite);
+    Add(Ctrl(      'Y'),  ecDeleteLine, overwrite);
 #endif
 
-    Add(Shortcut(wxACCEL_CTRL, 'X'),            ecCut, overwrite);
-    Add(Shortcut(wxACCEL_SHIFT, WXK_DELETE),    ecCut, overwrite);
-    Add(Shortcut(wxACCEL_CTRL, 'C'),            ecCopy, overwrite);
-    Add(Shortcut(wxACCEL_CTRL, WXK_INSERT),     ecCopy, overwrite);
-    Add(Shortcut(wxACCEL_CTRL, 'V'),            ecPaste, overwrite);
-    Add(Shortcut(wxACCEL_SHIFT, WXK_INSERT),    ecPaste, overwrite);
+    Add(Ctrl( 'X'),            ecCut, overwrite);
+    Add(Shift( WXK_DELETE),    ecCut, overwrite);
+    Add(Ctrl( 'C'),            ecCopy, overwrite);
+    Add(Ctrl( WXK_INSERT),     ecCopy, overwrite);
+    Add(Ctrl( 'V'),            ecPaste, overwrite);
+    Add(Shift( WXK_INSERT),    ecPaste, overwrite);
 
-    Add(Shortcut(wxACCEL_NORMAL, WXK_INSERT),   ecToggleInsertMode, overwrite);
+    Add(Normal( WXK_INSERT),   ecToggleInsertMode, overwrite);
 
-    Add(Shortcut(wxACCEL_ALT, '1'), ecTextMode,     overwrite);
-    Add(Shortcut(wxACCEL_ALT, '2'), ecColumnMode,   overwrite);
-    Add(Shortcut(wxACCEL_ALT, '3'), ecHexMode,      overwrite);
+    Add(Alt( '1'), ecTextMode,     overwrite);
+    Add(Alt( '2'), ecColumnMode,   overwrite);
+    Add(Alt( '3'), ecHexMode,      overwrite);
 
-    Add(Shortcut(wxACCEL_SHIFT | wxACCEL_ALT, 'Q'), ecNoWrap, overwrite);
-    Add(Shortcut(wxACCEL_SHIFT | wxACCEL_ALT, 'W'), ecWrapByWindow, overwrite);
-    Add(Shortcut(wxACCEL_SHIFT | wxACCEL_ALT, 'E'), ecWrapByColumn, overwrite);
+    Add(ShiftAlt( 'Q'), ecNoWrap, overwrite);
+    Add(ShiftAlt( 'W'), ecWrapByWindow, overwrite);
+    Add(ShiftAlt( 'E'), ecWrapByColumn, overwrite);
 
-    Add(Shortcut(wxACCEL_CTRL, 'Z'),                 ecUndo, overwrite);
-    Add(Shortcut(wxACCEL_ALT, WXK_BACK),             ecUndo, overwrite);
-    Add(Shortcut(wxACCEL_CTRL | wxACCEL_SHIFT, 'Z'), ecRedo, overwrite);
+    Add(Ctrl(      'Z'),  ecUndo, overwrite);
+    Add(Alt( WXK_BACK),   ecUndo, overwrite);
+    Add(CtrlShift( 'Z'),  ecRedo, overwrite);
 #ifdef __WXMSW__
-    Add(Shortcut(wxACCEL_CTRL, 'Y'),                 ecRedo, overwrite);
+    Add(Ctrl(      'Y'),  ecRedo, overwrite);
 #endif
 
-    Add(Shortcut(wxACCEL_SHIFT, WXK_TAB),       ecDecreaseIndent, overwrite);
+    Add(Shift( WXK_TAB),  ecDecreaseIndent, overwrite);
 
-    Add(Shortcut(wxACCEL_CTRL, 'M'),                    ecComment, overwrite);
-    Add(Shortcut(wxACCEL_CTRL | wxACCEL_SHIFT, 'M'),    ecUncomment, overwrite);
+    Add(Ctrl(      'M'),  ecComment, overwrite);
+    Add(CtrlShift( 'M'),  ecUncomment, overwrite);
 
-    Add(Shortcut(wxACCEL_CTRL, 'U'), ecToUpperCase, overwrite);
-    Add(Shortcut(wxACCEL_CTRL | wxACCEL_SHIFT, 'U'), ecToLowerCase, overwrite);
-    Add(Shortcut(wxACCEL_SHIFT | wxACCEL_ALT , 'U'), ecInvertCase, overwrite);
+    Add(Ctrl(      'U'), ecToUpperCase, overwrite);
+    Add(CtrlShift( 'U'), ecToLowerCase, overwrite);
+    Add(ShiftAlt(  'U'), ecInvertCase, overwrite);
 
-    Add(Shortcut(wxACCEL_NORMAL, WXK_F7), ecInsertDateTime, overwrite);
+    Add(Normal( WXK_F7), ecInsertDateTime, overwrite);
 
     //ecToHalfWidth
     //ecToFullWidth
