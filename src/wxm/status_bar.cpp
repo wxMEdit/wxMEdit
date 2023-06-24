@@ -21,14 +21,17 @@ void WXMStatusBar::Init(MadEditFrame* frame, wxWindowID id)
 {
 	m_frame = frame;
 	m_statusbar = new wxStatusBar(m_frame, id);
+
+#if defined(__WXGTK__) || wxMAJOR_VERSION == 2
 	m_statusbar->SetFont(wxFont(9, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL, false));
+#endif
 }
 
 void WXMStatusBar::Resize()
 {
 	// width-height ratios for fields
 #ifdef __WXMSW__
-	static const float W_H_RATIOS[7] = { 0.0f, 8.6f, 13.5f, 6.6f, 5.5f, 2.7f, 2.0f };
+	static const float W_H_RATIOS[7] = { 0.0f, 8.6f, 13.5f, 6.6f, 5.5f, 2.8f, 2.0f };
 #else
 	static const float W_H_RATIOS[7] = { 0.0f, 9.8f, 15.6f, 7.8f, 6.7f, 3.0f, 2.5f };
 #endif
