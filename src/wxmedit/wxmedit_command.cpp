@@ -198,206 +198,205 @@ MadEditCommand MadKeyBindings::GetCommandFromMenuId(int menuid)
 
 MadEditShortCut StringToShortCut(const wxString &text)
 {
-        // parse the accelerator string
-        int keyCode = 0;
-        int accelFlags = wxACCEL_NORMAL;
-        wxString current;
-        for ( size_t n = 0; n < text.Len(); n++ ) {
-            if ( (text[n] == '+') || (text[n] == '-') ) {
-                if ( current == wxT("ctrl") )
-                    accelFlags |= wxACCEL_CTRL;
-                else if ( current == wxT("alt") )
-                    accelFlags |= wxACCEL_ALT;
-                else if ( current == wxT("shift") )
-                    accelFlags |= wxACCEL_SHIFT;
-                else {
-                    // we may have "Ctrl-+", for example, but we still want to
-                    // catch typos like "Crtl-A" so only give the warning if we
-                    // have something before the current '+' or '-', else take
-                    // it as a literal symbol
-                    if ( current.empty() )
-                    {
-                        current += text[n];
-
-                        // skip clearing it below
-                        continue;
-                    }
-                    else
-                    {
-                        wxLogDebug(wxT("Unknown accel modifier: '%s'"),
-                                   current.c_str());
-                        //wxASSERT(false);
-                    }
-                }
-
-                current.clear();
-            }
+    // parse the accelerator string
+    int keyCode = 0;
+    int accelFlags = wxACCEL_NORMAL;
+    wxString current;
+    for ( size_t n = 0; n < text.Len(); n++ ) {
+        if ( (text[n] == '+') || (text[n] == '-') ) {
+            if ( current == wxT("ctrl") )
+                accelFlags |= wxACCEL_CTRL;
+            else if ( current == wxT("alt") )
+                accelFlags |= wxACCEL_ALT;
+            else if ( current == wxT("shift") )
+                accelFlags |= wxACCEL_SHIFT;
             else {
-                current += (wxChar) wxTolower(text[n]);
-            }
-        }
+                // we may have "Ctrl-+", for example, but we still want to
+                // catch typos like "Crtl-A" so only give the warning if we
+                // have something before the current '+' or '-', else take
+                // it as a literal symbol
+                if ( current.empty() )
+                {
+                    current += text[n];
 
-        if ( current.empty() ) {
-            wxLogDebug(wxT("No accel key found, accel string ignored."));
+                    // skip clearing it below
+                    continue;
+                }
+                else
+                {
+                    wxLogDebug(wxT("Unknown accel modifier: '%s'"),
+                                current.c_str());
+                    //wxASSERT(false);
+                }
+            }
+
+            current.clear();
         }
         else {
-            if ( current.Len() == 1 ) {
-                // it's a letter
-                keyCode = current[0U];
+            current += (wxChar) wxTolower(text[n]);
+        }
+    }
 
-                // Only call wxToupper if control, alt, or shift is held down,
-                // otherwise lower case accelerators won't work.
-                if (accelFlags != wxACCEL_NORMAL) {
-                    keyCode = wxToupper(keyCode);
-                }
+    if ( current.empty() ) {
+        wxLogDebug(wxT("No accel key found, accel string ignored."));
+    }
+    else {
+        if ( current.Len() == 1 ) {
+            // it's a letter
+            keyCode = current[0U];
+
+            // Only call wxToupper if control, alt, or shift is held down,
+            // otherwise lower case accelerators won't work.
+            if (accelFlags != wxACCEL_NORMAL) {
+                keyCode = wxToupper(keyCode);
+            }
+        }
+        else {
+            // is it a function key?
+            if ( current[0U] == 'f' && wxIsdigit(current[1U]) &&
+                    (current.Len() == 2 ||
+                    (current.Len() == 3 && wxIsdigit(current[2U]))) ) {
+                keyCode = WXK_F1 + wxAtoi(current.c_str() + 1) - 1;
             }
             else {
-                // is it a function key?
-                if ( current[0U] == 'f' && wxIsdigit(current[1U]) &&
-                     (current.Len() == 2 ||
-                     (current.Len() == 3 && wxIsdigit(current[2U]))) ) {
-                    keyCode = WXK_F1 + wxAtoi(current.c_str() + 1) - 1;
-                }
-                else {
-                    // several special cases
-                    current.MakeUpper();
-                    if ( current == wxT("DEL") )
-                        keyCode = WXK_DELETE;
-                    else if ( current == wxT("DELETE") )
-                        keyCode = WXK_DELETE;
-                    else if ( current == wxT("BACK") )
-                        keyCode = WXK_BACK;
-                    else if ( current == wxT("INS") )
-                        keyCode = WXK_INSERT;
-                    else if ( current == wxT("INSERT") )
-                        keyCode = WXK_INSERT;
-                    else if ( current == wxT("ENTER") || current == wxT("RETURN") )
-                        keyCode = WXK_RETURN;
-                    else if ( current == wxT("LEFT") )
-                        keyCode = WXK_LEFT;
-                    else if ( current == wxT("RIGHT") )
-                        keyCode = WXK_RIGHT;
-                    else if ( current == wxT("UP") )
-                        keyCode = WXK_UP;
-                    else if ( current == wxT("DOWN") )
-                        keyCode = WXK_DOWN;
-                    else if ( current == wxT("HOME") )
-                        keyCode = WXK_HOME;
-                    else if ( current == wxT("END") )
-                        keyCode = WXK_END;
-                    else if ( current == wxT("SPACE") )
-                        keyCode = WXK_SPACE;
-                    else if ( current == wxT("TAB") )
-                        keyCode = WXK_TAB;
-                    else if ( current == wxT("ESC") || current == wxT("ESCAPE") )
-                        keyCode = WXK_ESCAPE;
-                    else if ( current == wxT("CANCEL") )
-                        keyCode = WXK_CANCEL;
-                    else if ( current == wxT("CLEAR") )
-                        keyCode = WXK_CLEAR;
-                    else if ( current == wxT("MENU") )
-                        keyCode = WXK_MENU;
-                    else if ( current == wxT("PAUSE") )
-                        keyCode = WXK_PAUSE;
-                    else if ( current == wxT("CAPITAL") )
-                        keyCode = WXK_CAPITAL;
-                    else if ( current == wxT("SELECT") )
-                        keyCode = WXK_SELECT;
-                    else if ( current == wxT("PRINT") )
-                        keyCode = WXK_PRINT;
-                    else if ( current == wxT("EXECUTE") )
-                        keyCode = WXK_EXECUTE;
-                    else if ( current == wxT("SNAPSHOT") )
-                        keyCode = WXK_SNAPSHOT;
-                    else if ( current == wxT("HELP") )
-                        keyCode = WXK_HELP;
-                    else if ( current == wxT("ADD") )
-                        keyCode = WXK_ADD;
-                    else if ( current == wxT("SEPARATOR") )
-                        keyCode = WXK_SEPARATOR;
-                    else if ( current == wxT("SUBTRACT") )
-                        keyCode = WXK_SUBTRACT;
-                    else if ( current == wxT("DECIMAL") )
-                        keyCode = WXK_DECIMAL;
-                    else if ( current == wxT("DIVIDE") )
-                        keyCode = WXK_DIVIDE;
-                    else if ( current == wxT("NUM_LOCK") )
-                        keyCode = WXK_NUMLOCK;
-                    else if ( current == wxT("SCROLL_LOCK") )
-                        keyCode = WXK_SCROLL;
-                    else if ( current == wxT("PGUP") )
-                        keyCode = WXK_PAGEUP;
-                    else if ( current == wxT("PGDN") )
-                        keyCode = WXK_PAGEDOWN;
-                    else if ( current == wxT("KP_SPACE") )
-                        keyCode = WXK_NUMPAD_SPACE;
-                    else if ( current == wxT("KP_TAB") )
-                        keyCode = WXK_NUMPAD_TAB;
-                    else if ( current == wxT("KP_ENTER") )
-                        keyCode = WXK_NUMPAD_ENTER;
-                    else if ( current == wxT("KP_HOME") )
-                        keyCode = WXK_NUMPAD_HOME;
-                    else if ( current == wxT("KP_LEFT") )
-                        keyCode = WXK_NUMPAD_LEFT;
-                    else if ( current == wxT("KP_UP") )
-                        keyCode = WXK_NUMPAD_UP;
-                    else if ( current == wxT("KP_RIGHT") )
-                        keyCode = WXK_NUMPAD_RIGHT;
-                    else if ( current == wxT("KP_DOWN") )
-                        keyCode = WXK_NUMPAD_DOWN;
-                    else if ( current == wxT("KP_PGUP") )
-                        keyCode = WXK_NUMPAD_PAGEUP;
-                    else if ( current == wxT("KP_PGDN") )
-                        keyCode = WXK_NUMPAD_PAGEDOWN;
-                    else if ( current == wxT("KP_END") )
-                        keyCode = WXK_NUMPAD_END;
-                    else if ( current == wxT("KP_BEGIN") )
-                        keyCode = WXK_NUMPAD_BEGIN;
-                    else if ( current == wxT("KP_INSERT") )
-                        keyCode = WXK_NUMPAD_INSERT;
-                    else if ( current == wxT("KP_DELETE") )
-                        keyCode = WXK_NUMPAD_DELETE;
-                    else if ( current == wxT("KP_EQUAL") )
-                        keyCode = WXK_NUMPAD_EQUAL;
-                    else if ( current == wxT("KP_MULTIPLY") )
-                        keyCode = WXK_NUMPAD_MULTIPLY;
-                    else if ( current == wxT("KP_ADD") )
-                        keyCode = WXK_NUMPAD_ADD;
-                    else if ( current == wxT("KP_SEPARATOR") )
-                        keyCode = WXK_NUMPAD_SEPARATOR;
-                    else if ( current == wxT("KP_SUBTRACT") )
-                        keyCode = WXK_NUMPAD_SUBTRACT;
-                    else if ( current == wxT("KP_DECIMAL") )
-                        keyCode = WXK_NUMPAD_DECIMAL;
-                    else if ( current == wxT("KP_DIVIDE") )
-                        keyCode = WXK_NUMPAD_DIVIDE;
-                    else if ( current == wxT("WINDOWS_LEFT") )
-                        keyCode = WXK_WINDOWS_LEFT;
-                    else if ( current == wxT("WINDOWS_RIGHT") )
-                        keyCode = WXK_WINDOWS_RIGHT;
-                    else if ( current == wxT("WINDOWS_MENU") )
-                        keyCode = WXK_WINDOWS_MENU;
-                    else if ( current == wxT("COMMAND") )
-                        keyCode = WXK_COMMAND;
-                    else if ( current.Left(3) == wxT("KP_") && wxIsdigit(current[3U]) )
-                        keyCode = WXK_NUMPAD0 + wxAtoi(current.c_str() + 3);
-                    else if ( current.Left(7) == wxT("SPECIAL") && wxIsdigit(current[7U]) )
-                        keyCode = WXK_SPECIAL1 + wxAtoi(current.c_str() + 7) - 1;
-                    else
-                    {
-                        wxLogDebug(wxT("Unrecognized accel key '%s', accel string ignored."),
-                                   current.c_str());
-                        return 0;
-                    }
+                // several special cases
+                current.MakeUpper();
+                if ( current == wxT("DEL") )
+                    keyCode = WXK_DELETE;
+                else if ( current == wxT("DELETE") )
+                    keyCode = WXK_DELETE;
+                else if ( current == wxT("BACK") )
+                    keyCode = WXK_BACK;
+                else if ( current == wxT("INS") )
+                    keyCode = WXK_INSERT;
+                else if ( current == wxT("INSERT") )
+                    keyCode = WXK_INSERT;
+                else if ( current == wxT("ENTER") || current == wxT("RETURN") )
+                    keyCode = WXK_RETURN;
+                else if ( current == wxT("LEFT") )
+                    keyCode = WXK_LEFT;
+                else if ( current == wxT("RIGHT") )
+                    keyCode = WXK_RIGHT;
+                else if ( current == wxT("UP") )
+                    keyCode = WXK_UP;
+                else if ( current == wxT("DOWN") )
+                    keyCode = WXK_DOWN;
+                else if ( current == wxT("HOME") )
+                    keyCode = WXK_HOME;
+                else if ( current == wxT("END") )
+                    keyCode = WXK_END;
+                else if ( current == wxT("SPACE") )
+                    keyCode = WXK_SPACE;
+                else if ( current == wxT("TAB") )
+                    keyCode = WXK_TAB;
+                else if ( current == wxT("ESC") || current == wxT("ESCAPE") )
+                    keyCode = WXK_ESCAPE;
+                else if ( current == wxT("CANCEL") )
+                    keyCode = WXK_CANCEL;
+                else if ( current == wxT("CLEAR") )
+                    keyCode = WXK_CLEAR;
+                else if ( current == wxT("MENU") )
+                    keyCode = WXK_MENU;
+                else if ( current == wxT("PAUSE") )
+                    keyCode = WXK_PAUSE;
+                else if ( current == wxT("CAPITAL") )
+                    keyCode = WXK_CAPITAL;
+                else if ( current == wxT("SELECT") )
+                    keyCode = WXK_SELECT;
+                else if ( current == wxT("PRINT") )
+                    keyCode = WXK_PRINT;
+                else if ( current == wxT("EXECUTE") )
+                    keyCode = WXK_EXECUTE;
+                else if ( current == wxT("SNAPSHOT") )
+                    keyCode = WXK_SNAPSHOT;
+                else if ( current == wxT("HELP") )
+                    keyCode = WXK_HELP;
+                else if ( current == wxT("ADD") )
+                    keyCode = WXK_ADD;
+                else if ( current == wxT("SEPARATOR") )
+                    keyCode = WXK_SEPARATOR;
+                else if ( current == wxT("SUBTRACT") )
+                    keyCode = WXK_SUBTRACT;
+                else if ( current == wxT("DECIMAL") )
+                    keyCode = WXK_DECIMAL;
+                else if ( current == wxT("DIVIDE") )
+                    keyCode = WXK_DIVIDE;
+                else if ( current == wxT("NUM_LOCK") )
+                    keyCode = WXK_NUMLOCK;
+                else if ( current == wxT("SCROLL_LOCK") )
+                    keyCode = WXK_SCROLL;
+                else if ( current == wxT("PGUP") )
+                    keyCode = WXK_PAGEUP;
+                else if ( current == wxT("PGDN") )
+                    keyCode = WXK_PAGEDOWN;
+                else if ( current == wxT("KP_SPACE") )
+                    keyCode = WXK_NUMPAD_SPACE;
+                else if ( current == wxT("KP_TAB") )
+                    keyCode = WXK_NUMPAD_TAB;
+                else if ( current == wxT("KP_ENTER") )
+                    keyCode = WXK_NUMPAD_ENTER;
+                else if ( current == wxT("KP_HOME") )
+                    keyCode = WXK_NUMPAD_HOME;
+                else if ( current == wxT("KP_LEFT") )
+                    keyCode = WXK_NUMPAD_LEFT;
+                else if ( current == wxT("KP_UP") )
+                    keyCode = WXK_NUMPAD_UP;
+                else if ( current == wxT("KP_RIGHT") )
+                    keyCode = WXK_NUMPAD_RIGHT;
+                else if ( current == wxT("KP_DOWN") )
+                    keyCode = WXK_NUMPAD_DOWN;
+                else if ( current == wxT("KP_PGUP") )
+                    keyCode = WXK_NUMPAD_PAGEUP;
+                else if ( current == wxT("KP_PGDN") )
+                    keyCode = WXK_NUMPAD_PAGEDOWN;
+                else if ( current == wxT("KP_END") )
+                    keyCode = WXK_NUMPAD_END;
+                else if ( current == wxT("KP_BEGIN") )
+                    keyCode = WXK_NUMPAD_BEGIN;
+                else if ( current == wxT("KP_INSERT") )
+                    keyCode = WXK_NUMPAD_INSERT;
+                else if ( current == wxT("KP_DELETE") )
+                    keyCode = WXK_NUMPAD_DELETE;
+                else if ( current == wxT("KP_EQUAL") )
+                    keyCode = WXK_NUMPAD_EQUAL;
+                else if ( current == wxT("KP_MULTIPLY") )
+                    keyCode = WXK_NUMPAD_MULTIPLY;
+                else if ( current == wxT("KP_ADD") )
+                    keyCode = WXK_NUMPAD_ADD;
+                else if ( current == wxT("KP_SEPARATOR") )
+                    keyCode = WXK_NUMPAD_SEPARATOR;
+                else if ( current == wxT("KP_SUBTRACT") )
+                    keyCode = WXK_NUMPAD_SUBTRACT;
+                else if ( current == wxT("KP_DECIMAL") )
+                    keyCode = WXK_NUMPAD_DECIMAL;
+                else if ( current == wxT("KP_DIVIDE") )
+                    keyCode = WXK_NUMPAD_DIVIDE;
+                else if ( current == wxT("WINDOWS_LEFT") )
+                    keyCode = WXK_WINDOWS_LEFT;
+                else if ( current == wxT("WINDOWS_RIGHT") )
+                    keyCode = WXK_WINDOWS_RIGHT;
+                else if ( current == wxT("WINDOWS_MENU") )
+                    keyCode = WXK_WINDOWS_MENU;
+                else if ( current == wxT("COMMAND") )
+                    keyCode = WXK_COMMAND;
+                else if ( current.Left(3) == wxT("KP_") && wxIsdigit(current[3U]) )
+                    keyCode = WXK_NUMPAD0 + wxAtoi(current.c_str() + 3);
+                else if ( current.Left(7) == wxT("SPECIAL") && wxIsdigit(current[7U]) )
+                    keyCode = WXK_SPECIAL1 + wxAtoi(current.c_str() + 7) - 1;
+                else
+                {
+                    wxLogDebug(wxT("Unrecognized accel key '%s', accel string ignored."),
+                                current.c_str());
+                    return 0;
                 }
             }
         }
+    }
 
-        if ( keyCode ) {
-            // we do have something
-            return AdjustedShortCut(accelFlags, keyCode);
-        }
-    //}
+    if ( keyCode ) {
+        // we do have something
+        return AdjustedShortCut(accelFlags, keyCode);
+    }
 
     return 0;
 }
