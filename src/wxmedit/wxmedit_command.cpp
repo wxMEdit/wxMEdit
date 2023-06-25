@@ -96,6 +96,24 @@ void MadKeyBindings::InitCommandTextMap()
     (*ms_ChangedMenuAccels)[make_pair(Ctrl('W'), menuWrapByWindow)] = make_pair(VER_3_2_RC, ShiftAlt('W'));
     (*ms_ChangedMenuAccels)[make_pair(Ctrl('E'), menuWrapByColumn)] = make_pair(VER_3_2_RC, ShiftAlt('E'));
 
+    (*ms_ChangedShortcuts)[make_pair(Ctrl('Y'), ecDeleteLine)] = make_pair(VER_3_2_RC, 0);
+
+    (*ms_ChangedShortcuts)[make_pair(Alt(WXK_UP), ecScrollLineUp)] = make_pair(VER_3_2_RC, 0);
+    (*ms_ChangedShortcuts)[make_pair(Alt(WXK_DOWN), ecScrollLineDown)] = make_pair(VER_3_2_RC, 0);
+    (*ms_ChangedShortcuts)[make_pair(Alt(WXK_PAGEUP), ecScrollPageUp)] = make_pair(VER_3_2_RC, 0);
+    (*ms_ChangedShortcuts)[make_pair(Alt(WXK_PAGEDOWN), ecScrollPageDown)] = make_pair(VER_3_2_RC, 0);
+    (*ms_ChangedShortcuts)[make_pair(ShiftAlt(WXK_UP), ecScrollLineUp)] = make_pair(VER_3_2_RC, 0);
+    (*ms_ChangedShortcuts)[make_pair(ShiftAlt(WXK_DOWN), ecScrollLineDown)] = make_pair(VER_3_2_RC, 0);
+    (*ms_ChangedShortcuts)[make_pair(ShiftAlt(WXK_PAGEUP), ecScrollPageUp)] = make_pair(VER_3_2_RC, 0);
+    (*ms_ChangedShortcuts)[make_pair(ShiftAlt(WXK_PAGEDOWN), ecScrollPageDown)] = make_pair(VER_3_2_RC, 0);
+    (*ms_ChangedShortcuts)[make_pair(CtrlShift(WXK_UP), ecScrollLineUp)] = make_pair(VER_3_2_RC, 0);
+    (*ms_ChangedShortcuts)[make_pair(CtrlShift(WXK_DOWN), ecScrollLineDown)] = make_pair(VER_3_2_RC, 0);
+    (*ms_ChangedShortcuts)[make_pair(CtrlShift(WXK_PAGEUP), ecScrollPageUp)] = make_pair(VER_3_2_RC, 0);
+    (*ms_ChangedShortcuts)[make_pair(CtrlShift(WXK_PAGEDOWN), ecScrollPageDown)] = make_pair(VER_3_2_RC, 0);
+
+    (*ms_ChangedShortcuts)[make_pair(ShiftAlt(WXK_LEFT), ecScrollLeft)] = make_pair(VER_3_2_RC, CtrlAlt(WXK_LEFT));
+    (*ms_ChangedShortcuts)[make_pair(ShiftAlt(WXK_RIGHT), ecScrollRight)] = make_pair(VER_3_2_RC, CtrlAlt(WXK_RIGHT));
+
     INSERT_COMMANDTEXT(ecLeft);
     INSERT_COMMANDTEXT(ecUp);
     INSERT_COMMANDTEXT(ecRight);
@@ -756,28 +774,16 @@ void MadKeyBindings::AddDefaultBindings(bool overwrite)
 
     Add(Ctrl( WXK_UP),          ecScrollLineUp, overwrite);
     Add(Ctrl( WXK_DOWN),        ecScrollLineDown, overwrite);
-    Add(CtrlShift( WXK_UP),     ecScrollLineUp, overwrite);
-    Add(CtrlShift( WXK_DOWN),   ecScrollLineDown, overwrite);
-    Add(Alt( WXK_UP),           ecScrollLineUp, overwrite);
-    Add(Alt( WXK_DOWN),         ecScrollLineDown, overwrite);
-    Add(ShiftAlt( WXK_UP),      ecScrollLineUp, overwrite);
-    Add(ShiftAlt( WXK_DOWN),    ecScrollLineDown, overwrite);
     Add(CtrlAlt( WXK_UP),       ecScrollLineUp, overwrite);
     Add(CtrlAlt( WXK_DOWN),     ecScrollLineDown, overwrite);
 
     Add(Ctrl( WXK_PAGEUP),        ecScrollPageUp, overwrite);
     Add(Ctrl( WXK_PAGEDOWN),      ecScrollPageDown, overwrite);
-    Add(CtrlShift( WXK_PAGEUP),   ecScrollPageUp, overwrite);
-    Add(CtrlShift( WXK_PAGEDOWN), ecScrollPageDown, overwrite);
-    Add(Alt( WXK_PAGEUP),         ecScrollPageUp, overwrite);
-    Add(Alt( WXK_PAGEDOWN),       ecScrollPageDown, overwrite);
-    Add(ShiftAlt( WXK_PAGEUP),    ecScrollPageUp, overwrite);
-    Add(ShiftAlt( WXK_PAGEDOWN),  ecScrollPageDown, overwrite);
     Add(CtrlAlt( WXK_PAGEUP),     ecScrollPageUp, overwrite);
     Add(CtrlAlt( WXK_PAGEDOWN),   ecScrollPageDown, overwrite);
 
-    Add(ShiftAlt( WXK_LEFT),    ecScrollLeft, overwrite);
-    Add(ShiftAlt( WXK_RIGHT),   ecScrollRight, overwrite);
+    Add(CtrlAlt( WXK_LEFT), ecScrollLeft, overwrite);
+    Add(CtrlAlt( WXK_RIGHT), ecScrollRight, overwrite);
 
 
     Add(Normal( WXK_RETURN),       ecReturn, overwrite);
@@ -806,9 +812,6 @@ void MadKeyBindings::AddDefaultBindings(bool overwrite)
 
     Add(CtrlShift( 'L'),  ecCutLine, overwrite);
     Add(Ctrl(      'L'),  ecDeleteLine, overwrite);
-#ifndef __WXMSW__
-    Add(Ctrl(      'Y'),  ecDeleteLine, overwrite);
-#endif
 
     Add(Ctrl( 'A'),            ecSelectAll, overwrite);
     Add(Ctrl( 'X'),            ecCut, overwrite);
@@ -1059,6 +1062,8 @@ void MadKeyBindings::LoadFromConfig(wxConfigBase* config, const wxString& prevVe
                 WXMChangedShortcutMap::iterator cit = ms_ChangedMenuAccels->find(std::make_pair(sc, tcit->second));
                 if (cit != ms_ChangedMenuAccels->end() && wxm::IsFirstNewer(VerOf(cit->second), prevVerStr, true))
                     sc = ShortcutOf(cit->second);
+                if (sc == 0)
+                    continue;
                 Add(sc, first, tcit->second, true);
             }
             else if (ch == wxT('e')) // ecXXX
@@ -1069,6 +1074,8 @@ void MadKeyBindings::LoadFromConfig(wxConfigBase* config, const wxString& prevVe
                 WXMChangedShortcutMap::iterator cit = ms_ChangedShortcuts->find(std::make_pair(sc, tcit->second));
                 if (cit != ms_ChangedShortcuts->end() && wxm::IsFirstNewer(VerOf(cit->second), prevVerStr, true))
                     sc = ShortcutOf(cit->second);
+                if (sc == 0)
+                    continue;
                 Add(sc, tcit->second, true, first);
             }
         }
