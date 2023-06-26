@@ -97,6 +97,7 @@ void MadKeyBindings::InitCommandTextMap()
     (*ms_ChangedMenuAccels)[make_pair(Ctrl('E'), menuWrapByColumn)] = make_pair(VER_3_2_RC, ShiftAlt('E'));
 
     (*ms_ChangedShortcuts)[make_pair(Ctrl('Y'), ecDeleteLine)] = make_pair(VER_3_2_RC, 0);
+    (*ms_ChangedMenuAccels)[make_pair(Ctrl('Y'), menuDeleteLine)] = make_pair(VER_3_2_RC, 0);
 
     (*ms_ChangedShortcuts)[make_pair(Alt(WXK_UP), ecScrollLineUp)] = make_pair(VER_3_2_RC, 0);
     (*ms_ChangedShortcuts)[make_pair(Alt(WXK_DOWN), ecScrollLineDown)] = make_pair(VER_3_2_RC, 0);

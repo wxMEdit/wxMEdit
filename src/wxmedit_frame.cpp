@@ -1108,15 +1108,7 @@ CommandData CommandTable[]=
     // Edit
     { 0, 0, 0, 0, _("&Edit"), 0, wxITEM_NORMAL, 0, &g_Menu_Edit, 0},
     { ecUndo,           1, menuUndo,                     wxT("menuUndo"),                     _("&Undo"),                                   wxT("Ctrl-Z"),       wxITEM_NORMAL,    undo_xpm_idx,      0,                     _("Undo the last action")},
-
-    { ecRedo,           1, menuRedo,                     wxT("menuRedo"),                     _("&Redo"),
-#ifdef __WXMSW__
-                                                                                                                                            wxT("Ctrl-Y"),
-#else
-                                                                                                                                            wxT("Ctrl-Shift-Z"),
-#endif
-                                                                                                                                                                 wxITEM_NORMAL,    redo_xpm_idx,      0,                     _("Redo the previously undone action")},
-
+    { ecRedo,           1, menuRedo,                     wxT("menuRedo"),                     _("&Redo"),                                   wxT("Ctrl-Shift-Z"), wxITEM_NORMAL,    redo_xpm_idx,      0,                     _("Redo the previously undone action")},
     { 0,                1, 0,                            0,                                   0,                                            0,                   wxITEM_SEPARATOR, -1,                0,                     0},
     { ecCut,            1, menuCut,                      wxT("menuCut"),                      _("Cu&t"),                                    wxT("Ctrl-X"),       wxITEM_NORMAL,    cut_xpm_idx,       0,                     _("Cut the selection and put it on the Clipboard")},
     { ecCopy,           1, menuCopy,                     wxT("menuCopy"),                     _("&Copy"),                                   wxT("Ctrl-C"),       wxITEM_NORMAL,    copy_xpm_idx,      0,                     _("Copy the selection and put it on the Clipboard")},
@@ -1125,15 +1117,7 @@ CommandData CommandTable[]=
     { ecDelete,         1, menuDelete,                   wxT("menuDelete"),                   _("&Delete"),                                 wxT("DEL"),          wxITEM_NORMAL,    delete_xpm_idx,   0,                     _("Delete data")},
     { 0,                1, 0,                            0,                                   0,                                            0,                   wxITEM_SEPARATOR, -1,                0,                     0},
     { ecCutLine,        1, menuCutLine,                  wxT("menuCutLine"),                  _("Cut L&ine"),                               wxT("Ctrl-Shift-L"), wxITEM_NORMAL,    -1,                0,                     _("Cut the selected lines and put it on the Clipboard")},
-
-    { ecDeleteLine,     1, menuDeleteLine,               wxT("menuDeleteLine"),               _("Delete &Line"),
-#ifdef __WXMSW__
-                                                                                                                                            wxT("Ctrl-L"),
-#else
-                                                                                                                                            wxT("Ctrl-Y"),
-#endif
-                                                                                                                                                                 wxITEM_NORMAL,    -1,                0,                     _("Delete the selected lines")},
-
+    { ecDeleteLine,     1, menuDeleteLine,               wxT("menuDeleteLine"),               _("Delete &Line"),                            wxT("Ctrl-L"),       wxITEM_NORMAL,    -1,                0,                     _("Delete the selected lines")},
     { 0,                1, 0,                            0,                                   0,                                            0,                   wxITEM_SEPARATOR, -1,                0,                     0},
     { ecSelectAll,      1, menuSelectAll,                wxT("menuSelectAll"),                _("Select &All"),                             wxT("Ctrl-A"),       wxITEM_NORMAL,    -1,                0,                     _("Select all data")},
     { 0,                1, 0,                            0,                                   0,                                            0,                   wxITEM_SEPARATOR, -1,                0,                     0},
