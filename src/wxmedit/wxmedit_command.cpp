@@ -743,113 +743,178 @@ MadKeyBindings::~MadKeyBindings()
 
 void MadKeyBindings::AddDefaultBindings(bool overwrite)
 {
-    Add(Normal( WXK_LEFT),     ecLeft, overwrite);
-    Add(Normal( WXK_RIGHT),    ecRight, overwrite);
-    Add(Normal( WXK_UP),       ecUp, overwrite);
-    Add(Normal( WXK_DOWN),     ecDown, overwrite);
-    Add(Normal( WXK_HOME),     ecBeginLine, overwrite);
-    Add(Normal( WXK_END),      ecEndLine, overwrite);
-    Add(Ctrl(   WXK_HOME),     ecBeginDoc, overwrite);
-    Add(Ctrl(   WXK_END),      ecEndDoc, overwrite);
-    Add(Normal( WXK_PAGEUP),   ecPrevPage, overwrite);
-    Add(Normal( WXK_PAGEDOWN), ecNextPage, overwrite);
-    Add(Ctrl(   WXK_LEFT),     ecPrevWord, overwrite);
-    Add(Ctrl(   WXK_RIGHT),    ecNextWord, overwrite);
-    Add(Ctrl(   '['),          ecLeftBrace, overwrite);
-    Add(Ctrl(   ']'),          ecRightBrace, overwrite);
+    Add(Normal(WXK_LEFT),            ecLeft, overwrite);
+    Add(Normal(WXK_NUMPAD_LEFT),     ecLeft, overwrite);
+    Add(Normal(WXK_RIGHT),           ecRight, overwrite);
+    Add(Normal(WXK_NUMPAD_RIGHT),    ecRight, overwrite);
 
-    Add(Shift( WXK_LEFT),       ecSelLeft, overwrite);
-    Add(Shift( WXK_RIGHT),      ecSelRight, overwrite);
-    Add(Shift( WXK_UP),         ecSelUp, overwrite);
-    Add(Shift( WXK_DOWN),       ecSelDown, overwrite);
-    Add(Shift( WXK_HOME),       ecSelBeginLine, overwrite);
-    Add(Shift( WXK_END),        ecSelEndLine, overwrite);
-    Add(CtrlShift( WXK_HOME),   ecSelBeginDoc, overwrite);
-    Add(CtrlShift( WXK_END),    ecSelEndDoc, overwrite);
-    Add(Shift( WXK_PAGEUP),     ecSelPrevPage, overwrite);
-    Add(Shift( WXK_PAGEDOWN),   ecSelNextPage, overwrite);
-    Add(CtrlShift( WXK_LEFT),   ecSelPrevWord, overwrite);
-    Add(CtrlShift( WXK_RIGHT),  ecSelNextWord, overwrite);
-    Add(CtrlShift( '['),        ecSelLeftBrace, overwrite);
-    Add(CtrlShift( ']'),        ecSelRightBrace, overwrite);
+    Add(Normal(WXK_UP),              ecUp, overwrite);
+    Add(Normal(WXK_NUMPAD_UP),       ecUp, overwrite);
+    Add(Normal(WXK_DOWN),            ecDown, overwrite);
+    Add(Normal(WXK_NUMPAD_DOWN),     ecDown, overwrite);
 
-    Add(Ctrl( WXK_UP),          ecScrollLineUp, overwrite);
-    Add(Ctrl( WXK_DOWN),        ecScrollLineDown, overwrite);
-    Add(CtrlAlt( WXK_UP),       ecScrollLineUp, overwrite);
-    Add(CtrlAlt( WXK_DOWN),     ecScrollLineDown, overwrite);
+    Add(Normal(WXK_HOME),            ecBeginLine, overwrite);
+    Add(Normal(WXK_NUMPAD_HOME),     ecBeginLine, overwrite);
+    Add(Normal(WXK_END),             ecEndLine, overwrite);
+    Add(Normal(WXK_NUMPAD_END),      ecEndLine, overwrite);
 
-    Add(Ctrl( WXK_PAGEUP),        ecScrollPageUp, overwrite);
-    Add(Ctrl( WXK_PAGEDOWN),      ecScrollPageDown, overwrite);
-    Add(CtrlAlt( WXK_PAGEUP),     ecScrollPageUp, overwrite);
-    Add(CtrlAlt( WXK_PAGEDOWN),   ecScrollPageDown, overwrite);
+    Add(Ctrl(  WXK_HOME),            ecBeginDoc, overwrite);
+    Add(Ctrl(  WXK_NUMPAD_HOME),     ecBeginDoc, overwrite);
+    Add(Ctrl(  WXK_END),             ecEndDoc, overwrite);
+    Add(Ctrl(  WXK_NUMPAD_END),      ecEndDoc, overwrite);
 
-    Add(CtrlAlt( WXK_LEFT), ecScrollLeft, overwrite);
-    Add(CtrlAlt( WXK_RIGHT), ecScrollRight, overwrite);
+    Add(Normal(WXK_PAGEUP),          ecPrevPage, overwrite);
+    Add(Normal(WXK_NUMPAD_PAGEUP),   ecPrevPage, overwrite);
+    Add(Normal(WXK_PAGEDOWN),        ecNextPage, overwrite);
+    Add(Normal(WXK_NUMPAD_PAGEDOWN), ecNextPage, overwrite);
+
+    Add(Ctrl(  WXK_LEFT),            ecPrevWord, overwrite);
+    Add(Ctrl(  WXK_NUMPAD_LEFT),     ecPrevWord, overwrite);
+    Add(Ctrl(  WXK_RIGHT),           ecNextWord, overwrite);
+    Add(Ctrl(  WXK_NUMPAD_RIGHT),    ecNextWord, overwrite);
+
+    Add(Ctrl('['), ecLeftBrace, overwrite);
+    Add(Ctrl(']'), ecRightBrace, overwrite);
+
+    Add(Shift(    WXK_LEFT),            ecSelLeft, overwrite);
+    Add(Shift(    WXK_NUMPAD_LEFT),     ecSelLeft, overwrite);
+    Add(Shift(    WXK_RIGHT),           ecSelRight, overwrite);
+    Add(Shift(    WXK_NUMPAD_RIGHT),    ecSelRight, overwrite);
+
+    Add(Shift(    WXK_UP),              ecSelUp, overwrite);
+    Add(Shift(    WXK_NUMPAD_UP),       ecSelUp, overwrite);
+    Add(Shift(    WXK_DOWN),            ecSelDown, overwrite);
+    Add(Shift(    WXK_NUMPAD_DOWN),     ecSelDown, overwrite);
+
+    Add(Shift(    WXK_HOME),            ecSelBeginLine, overwrite);
+    Add(Shift(    WXK_NUMPAD_HOME),     ecSelBeginLine, overwrite);
+    Add(Shift(    WXK_END),             ecSelEndLine, overwrite);
+    Add(Shift(    WXK_NUMPAD_END),      ecSelEndLine, overwrite);
+
+    Add(CtrlShift(WXK_HOME),            ecSelBeginDoc, overwrite);
+    Add(CtrlShift(WXK_NUMPAD_HOME),     ecSelBeginDoc, overwrite);
+    Add(CtrlShift(WXK_END),             ecSelEndDoc, overwrite);
+    Add(CtrlShift(WXK_NUMPAD_END),      ecSelEndDoc, overwrite);
+
+    Add(Shift(    WXK_PAGEUP),          ecSelPrevPage, overwrite);
+    Add(Shift(    WXK_NUMPAD_PAGEUP),   ecSelPrevPage, overwrite);
+    Add(Shift(    WXK_PAGEDOWN),        ecSelNextPage, overwrite);
+    Add(Shift(    WXK_NUMPAD_PAGEDOWN), ecSelNextPage, overwrite);
+
+    Add(CtrlShift(WXK_LEFT),            ecSelPrevWord, overwrite);
+    Add(CtrlShift(WXK_NUMPAD_LEFT),     ecSelPrevWord, overwrite);
+    Add(CtrlShift(WXK_RIGHT),           ecSelNextWord, overwrite);
+    Add(CtrlShift(WXK_NUMPAD_RIGHT),    ecSelNextWord, overwrite);
+
+    Add(CtrlShift('['),  ecSelLeftBrace, overwrite);
+    Add(CtrlShift(']'),  ecSelRightBrace, overwrite);
+
+    Add(Ctrl(   WXK_UP),              ecScrollLineUp, overwrite);
+    Add(Ctrl(   WXK_NUMPAD_UP),       ecScrollLineUp, overwrite);
+    Add(Ctrl(   WXK_DOWN),            ecScrollLineDown, overwrite);
+    Add(Ctrl(   WXK_NUMPAD_DOWN),     ecScrollLineDown, overwrite);
+
+    Add(CtrlAlt(WXK_UP),              ecScrollLineUp, overwrite);
+    Add(CtrlAlt(WXK_NUMPAD_UP),       ecScrollLineUp, overwrite);
+    Add(CtrlAlt(WXK_DOWN),            ecScrollLineDown, overwrite);
+    Add(CtrlAlt(WXK_NUMPAD_DOWN),     ecScrollLineDown, overwrite);
+
+    Add(Ctrl(   WXK_PAGEUP),          ecScrollPageUp, overwrite);
+    Add(Ctrl(   WXK_NUMPAD_PAGEUP),   ecScrollPageUp, overwrite);
+    Add(Ctrl(   WXK_PAGEDOWN),        ecScrollPageDown, overwrite);
+    Add(Ctrl(   WXK_NUMPAD_PAGEDOWN), ecScrollPageDown, overwrite);
+
+    Add(CtrlAlt(WXK_PAGEUP),          ecScrollPageUp, overwrite);
+    Add(CtrlAlt(WXK_NUMPAD_PAGEUP),   ecScrollPageUp, overwrite);
+    Add(CtrlAlt(WXK_PAGEDOWN),        ecScrollPageDown, overwrite);
+    Add(CtrlAlt(WXK_NUMPAD_PAGEDOWN), ecScrollPageDown, overwrite);
+
+    Add(CtrlAlt(WXK_LEFT),            ecScrollLeft, overwrite);
+    Add(CtrlAlt(WXK_NUMPAD_LEFT),     ecScrollLeft, overwrite);
+    Add(CtrlAlt(WXK_RIGHT),           ecScrollRight, overwrite);
+    Add(CtrlAlt(WXK_NUMPAD_RIGHT),    ecScrollRight, overwrite);
 
 
-    Add(Normal( WXK_RETURN),       ecReturn, overwrite);
-    Add(Normal( WXK_NUMPAD_ENTER), ecReturn, overwrite);
+    Add(Normal(WXK_RETURN),       ecReturn, overwrite);
+    Add(Normal(WXK_NUMPAD_ENTER), ecReturn, overwrite);
 
-    Add(Shift( WXK_RETURN),        ecReturnNoIndent, overwrite);
-    Add(Shift( WXK_NUMPAD_ENTER),  ecReturnNoIndent, overwrite);
+    Add(Shift( WXK_RETURN),       ecReturnNoIndent, overwrite);
+    Add(Shift( WXK_NUMPAD_ENTER), ecReturnNoIndent, overwrite);
 
-    Add(Normal(    WXK_TAB),       ecTab, overwrite);
-    Add(Shift(     WXK_TAB),       ecDecreaseIndent, overwrite);
-    Add(Ctrl(      WXK_TAB),       ecToggleWindow, overwrite);
-    Add(CtrlShift( WXK_TAB),       ecToggleWindow, overwrite);
+    Add(Normal(   WXK_TAB),        ecTab, overwrite);
+    Add(Normal(   WXK_NUMPAD_TAB), ecTab, overwrite);
+    Add(Shift(    WXK_TAB),        ecDecreaseIndent, overwrite);
+    Add(Shift(    WXK_NUMPAD_TAB), ecDecreaseIndent, overwrite);
+
+    Add(Ctrl(     WXK_TAB),        ecToggleWindow, overwrite);
+    Add(Ctrl(     WXK_NUMPAD_TAB), ecToggleWindow, overwrite);
+    Add(CtrlShift(WXK_TAB),        ecToggleWindow, overwrite);
+    Add(CtrlShift(WXK_NUMPAD_TAB), ecToggleWindow, overwrite);
 
 #ifdef __WXMSW__
-    Add(Ctrl( '~'),            ecInsertTabChar, overwrite);
+    Add(Ctrl('~'), ecInsertTabChar, overwrite);
 #else
-    Add(Ctrl( '`'),            ecInsertTabChar, overwrite);
+    Add(Ctrl('`'), ecInsertTabChar, overwrite);
 #endif
 
-    Add(Normal( WXK_DELETE),   ecDelete, overwrite);
-    Add(Normal( WXK_BACK),     ecBackSpace, overwrite);
+    Add(Normal(WXK_BACK),          ecBackSpace, overwrite);
+    Add(Normal(WXK_DELETE),        ecDelete, overwrite);
+    Add(Normal(WXK_NUMPAD_DELETE), ecDelete, overwrite);
 
-    Add(Ctrl( WXK_BACK),          ecDelPrevWord, overwrite);
-    Add(Ctrl( WXK_DELETE),        ecDelNextWord, overwrite);
-    Add(Ctrl( WXK_NUMPAD_DELETE), ecDelNextWord, overwrite);
+    Add(Ctrl(WXK_BACK),          ecDelPrevWord, overwrite);
+    Add(Ctrl(WXK_DELETE),        ecDelNextWord, overwrite);
+    Add(Ctrl(WXK_NUMPAD_DELETE), ecDelNextWord, overwrite);
 
-    Add(CtrlShift( 'L'),  ecCutLine, overwrite);
-    Add(Ctrl(      'L'),  ecDeleteLine, overwrite);
+    Add(CtrlShift('L'),  ecCutLine, overwrite);
+    Add(Ctrl(     'L'),  ecDeleteLine, overwrite);
 
-    Add(Ctrl( 'A'),            ecSelectAll, overwrite);
-    Add(Ctrl( 'X'),            ecCut, overwrite);
-    Add(Shift( WXK_DELETE),    ecCut, overwrite);
-    Add(Ctrl( 'C'),            ecCopy, overwrite);
-    Add(Ctrl( WXK_INSERT),     ecCopy, overwrite);
-    Add(Ctrl( 'V'),            ecPaste, overwrite);
-    Add(Shift( WXK_INSERT),    ecPaste, overwrite);
+    Add(Ctrl( 'A'),               ecSelectAll, overwrite);
 
-    Add(Normal( WXK_INSERT),   ecToggleInsertMode, overwrite);
+    Add(Ctrl( 'X'),               ecCut, overwrite);
+    Add(Shift(WXK_DELETE),        ecCut, overwrite);
+    Add(Shift(WXK_NUMPAD_DELETE), ecCut, overwrite);
 
-    Add(Alt( '1'), ecTextMode,     overwrite);
-    Add(Alt( '2'), ecColumnMode,   overwrite);
-    Add(Alt( '3'), ecHexMode,      overwrite);
+    Add(Ctrl( 'C'),               ecCopy, overwrite);
+    Add(Ctrl( WXK_INSERT),        ecCopy, overwrite);
+    Add(Ctrl( WXK_NUMPAD_INSERT), ecCopy, overwrite);
 
-    Add(ShiftAlt( 'Q'), ecNoWrap, overwrite);
-    Add(ShiftAlt( 'W'), ecWrapByWindow, overwrite);
-    Add(ShiftAlt( 'E'), ecWrapByColumn, overwrite);
+    Add(Ctrl( 'V'),               ecPaste, overwrite);
+    Add(Shift(WXK_INSERT),        ecPaste, overwrite);
+    Add(Shift(WXK_NUMPAD_INSERT), ecPaste, overwrite);
 
-    Add(Ctrl(      'Z'),  ecUndo, overwrite);
-    Add(Alt( WXK_BACK),   ecUndo, overwrite);
-    Add(CtrlShift( 'Z'),  ecRedo, overwrite);
+    Add(Normal(WXK_INSERT),        ecToggleInsertMode, overwrite);
+    Add(Normal(WXK_NUMPAD_INSERT), ecToggleInsertMode, overwrite);
+
+    Add(Alt('1'),         ecTextMode, overwrite);
+    Add(Alt(WXK_NUMPAD1), ecTextMode, overwrite);
+    Add(Alt('2'),         ecColumnMode, overwrite);
+    Add(Alt(WXK_NUMPAD2), ecColumnMode, overwrite);
+    Add(Alt('3'),         ecHexMode, overwrite);
+    Add(Alt(WXK_NUMPAD3), ecHexMode, overwrite);
+
+    Add(ShiftAlt('Q'), ecNoWrap, overwrite);
+    Add(ShiftAlt('W'), ecWrapByWindow, overwrite);
+    Add(ShiftAlt('E'), ecWrapByColumn, overwrite);
+
+    Add(Ctrl(     'Z'),      ecUndo, overwrite);
+    Add(Alt(      WXK_BACK), ecUndo, overwrite);
+    Add(CtrlShift('Z'),      ecRedo, overwrite);
 #ifdef __WXMSW__
-    Add(Ctrl(      'Y'),  ecRedo, overwrite);
+    Add(Ctrl(     'Y'),      ecRedo, overwrite);
 #endif
 
-    Add(Ctrl(      'M'),  ecComment, overwrite);
-    Add(CtrlShift( 'M'),  ecUncomment, overwrite);
+    Add(Ctrl(     'M'),  ecComment, overwrite);
+    Add(CtrlShift('M'),  ecUncomment, overwrite);
 
-    Add(Ctrl(      'U'), ecToUpperCase, overwrite);
-    Add(CtrlShift( 'U'), ecToLowerCase, overwrite);
-    Add(ShiftAlt(  'U'), ecInvertCase, overwrite);
+    Add(Ctrl(     'U'), ecToUpperCase, overwrite);
+    Add(CtrlShift('U'), ecToLowerCase, overwrite);
+    Add(ShiftAlt( 'U'), ecInvertCase, overwrite);
 
-    Add(Normal( WXK_F7), ecInsertDateTime, overwrite);
+    Add(Normal(WXK_F7), ecInsertDateTime, overwrite);
 
-    //ecToHalfWidth
-    //ecToFullWidth
+    // alternative accelerators for menu items
+    Add(Alt(WXK_NUMPAD_DELETE), false, menuColumnAlign, overwrite);
+    Add(Alt(WXK_NUMPAD_INSERT), false, menuColumnPaste, overwrite);
 }
 
 void MadKeyBindings::RemoveByCommand(MadEditCommand cmd)
