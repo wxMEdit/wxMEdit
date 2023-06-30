@@ -277,7 +277,7 @@ MadEditShortcut StringToShortcut(const wxString &text)
     int accelFlags = wxACCEL_NORMAL;
     wxString current;
     for ( size_t n = 0; n < text.Len(); n++ ) {
-        if ( (text[n] == '+') || (text[n] == '-') ) {
+        if ( current != wxT("kp_") && (text[n] == '+' || text[n] == '-') ) {
             if ( current == wxT("ctrl") )
                 accelFlags |= wxACCEL_CTRL;
             else if ( current == wxT("alt") )
@@ -427,29 +427,29 @@ MadEditShortcut StringToShortcut(const wxString &text)
                     keyCode = WXK_NUMPAD_END;
                 else if ( current == wxT("KP_BEGIN") )
                     keyCode = WXK_NUMPAD_BEGIN;
-                else if ( current == wxT("KP_INSERT") )
+                else if ( current == wxT("KP_INSERT") || current == wxT("KP_INS") )
                     keyCode = WXK_NUMPAD_INSERT;
-                else if ( current == wxT("KP_DELETE") )
+                else if ( current == wxT("KP_DELETE") || current == wxT("KP_DEL") )
                     keyCode = WXK_NUMPAD_DELETE;
-                else if ( current == wxT("KP_EQUAL") )
+                else if ( current == wxT("KP_EQUAL") || current == wxT("KP_=") )
                     keyCode = WXK_NUMPAD_EQUAL;
-                else if ( current == wxT("KP_MULTIPLY") )
+                else if ( current == wxT("KP_MULTIPLY") || current == wxT("KP_*") )
                     keyCode = WXK_NUMPAD_MULTIPLY;
-                else if ( current == wxT("KP_ADD") )
+                else if ( current == wxT("KP_ADD") || current == wxT("KP_+") )
                     keyCode = WXK_NUMPAD_ADD;
-                else if ( current == wxT("KP_SEPARATOR") )
+                else if ( current == wxT("KP_SEPARATOR") || current == wxT("KP_,") )
                     keyCode = WXK_NUMPAD_SEPARATOR;
-                else if ( current == wxT("KP_SUBTRACT") )
+                else if ( current == wxT("KP_SUBTRACT") || current == wxT("KP_-") )
                     keyCode = WXK_NUMPAD_SUBTRACT;
-                else if ( current == wxT("KP_DECIMAL") )
+                else if ( current == wxT("KP_DECIMAL") || current == wxT("KP_.") )
                     keyCode = WXK_NUMPAD_DECIMAL;
-                else if ( current == wxT("KP_DIVIDE") )
+                else if ( current == wxT("KP_DIVIDE") || current == wxT("KP_/") )
                     keyCode = WXK_NUMPAD_DIVIDE;
-                else if ( current == wxT("WINDOWS_LEFT") )
+                else if ( current == wxT("WINDOWS_LEFT") || current == wxT("SUPER_L") )
                     keyCode = WXK_WINDOWS_LEFT;
-                else if ( current == wxT("WINDOWS_RIGHT") )
+                else if ( current == wxT("WINDOWS_RIGHT") || current == wxT("SUPER_R") )
                     keyCode = WXK_WINDOWS_RIGHT;
-                else if ( current == wxT("WINDOWS_MENU") )
+                else if ( current == wxT("WINDOWS_MENU") || current == wxT("APPS") )
                     keyCode = WXK_WINDOWS_MENU;
                 else if ( current == wxT("COMMAND") )
                     keyCode = WXK_COMMAND;
@@ -650,40 +650,40 @@ wxString ShortcutToString(MadEditShortcut shortcut)
             text << wxT("KP_BEGIN");
             break;
         case WXK_NUMPAD_INSERT:
-            text << wxT("KP_INSERT");
+            text << wxT("KP_INS");
             break;
         case WXK_NUMPAD_DELETE:
-            text << wxT("KP_DELETE");
+            text << wxT("KP_DEL");
             break;
         case WXK_NUMPAD_EQUAL:
-            text << wxT("KP_EQUAL");
+            text << wxT("KP_=");
             break;
         case WXK_NUMPAD_MULTIPLY:
-            text << wxT("KP_MULTIPLY");
+            text << wxT("KP_*");
             break;
         case WXK_NUMPAD_ADD:
-            text << wxT("KP_ADD");
+            text << wxT("KP_+");
             break;
         case WXK_NUMPAD_SEPARATOR:
-            text << wxT("KP_SEPARATOR");
+            text << wxT("KP_,");
             break;
         case WXK_NUMPAD_SUBTRACT:
-            text << wxT("KP_SUBTRACT");
+            text << wxT("KP_-");
             break;
         case WXK_NUMPAD_DECIMAL:
-            text << wxT("KP_DECIMAL");
+            text << wxT("KP_.");
             break;
         case WXK_NUMPAD_DIVIDE:
-            text << wxT("KP_DIVIDE");
+            text << wxT("KP_/");
             break;
         case WXK_WINDOWS_LEFT:
-            text << wxT("WINDOWS_LEFT");
+            text << wxT("SUPER_L");
             break;
         case WXK_WINDOWS_RIGHT:
-            text << wxT("WINDOWS_RIGHT");
+            text << wxT("SUPER_R");
             break;
         case WXK_WINDOWS_MENU:
-            text << wxT("WINDOWS_MENU");
+            text << wxT("APPS");
             break;
         case WXK_COMMAND:
             text << wxT("COMMAND");
