@@ -375,6 +375,25 @@ bool MadEditApp::OnInit()
         OnReceiveMessage(files.c_str(), (files.size()+1)*sizeof(wxChar));
     }
 
+#ifdef __WXGTK__
+# ifdef DATA_DIR
+    wxString readmeFile = wxT(DATA_DIR "/doc/wxmedit/README.txt");
+# else
+    wxString readmeFile = wxT("/usr/share/doc/wxmedit/README.txt");
+# endif
+#else
+    wxString readmeFile = wxm::AppPath::Instance().AppDir() + "README.txt";
+#endif
+
+    wxString prevVersion;
+    cfg->Read(wxT("/wxMEdit/LastRunVersion"), &prevVersion);
+    std::string prevVerStr = (const char*)prevVersion.ToAscii();
+
+    if (wxm::IsFirstNewer(WXMEDIT_VERSION, prevVerStr, true) && MadDirExists(readmeFile) == 0 && wxFileExists(readmeFile))
+    {
+        myFrame->OpenFile(readmeFile, true);
+    }
+
     if(myFrame->OpenedFileCount()==0)
     {
         myFrame->OpenFile(wxEmptyString, false);
