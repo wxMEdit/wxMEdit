@@ -36,7 +36,7 @@
 #: src/dialog/wxmedit_options_dialog.cpp:739
 msgid ""
 msgstr ""
-"Project-Id-Version: wxMEdit 3.1\n"
+"Project-Id-Version: wxMEdit 3.2\n"
 "Report-Msgid-Bugs-To: wxmedit@gmail.com\n"
 "POT-Creation-Date: 2023-06-23 18:25+0800\n"
 "PO-Revision-Date: 2018-04-11 HO:MI+GMT+1\n"
