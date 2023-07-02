@@ -160,3 +160,5 @@ Code::Blocks: https://www.codeblocks.org/
 wxSmith: https://wiki.codeblocks.org/index.php?title=WxSmith_plugin
 cURL: https://curl.se/
 JLH fonts: https://jlhfonts.blogspot.com/
+VC-LTL: https://github.com/Chuyu-Team/VC-LTL5
+YY-Thunks: https://github.com/Chuyu-Team/YY-Thunks
