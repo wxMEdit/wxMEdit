@@ -9,7 +9,9 @@ wxMEdit supports many useful functions, e.g. Bookmark, Syntax Highlightings,
 Word Wraps, Encodings, Column/Hex Modes, Updates checking.
 In HexMode, wxMEdit can open large files which size is up to 32GB (INT_MAX*16).
 
-IMPORTANT NOTE: wxMEdit 3.2 changed some keyboard shortcuts,
+Important Note:
+--------------
+wxMEdit 3.2 changed some keyboard shortcuts,
 see https://github.com/wxMEdit/wxMEdit/wiki/Keyboard-shortcuts-change-in-wxMEdit-3.2 . 
 
 Supported Platforms:
