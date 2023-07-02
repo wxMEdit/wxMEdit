@@ -9,6 +9,8 @@ wxMEdit supports many useful functions, e.g. Bookmark, Syntax Highlightings,
 Word Wraps, Encodings, Column/Hex Modes, Updates checking.
 In HexMode, wxMEdit can open large files which size is up to 32GB (INT_MAX*16).
 
+IMPORTANT NOTE: wxMEdit 3.2 changed some keyboard shortcuts,
+see https://github.com/wxMEdit/wxMEdit/wiki/Keyboard-shortcuts-change-in-wxMEdit-3.2 . 
 
 Supported Platforms:
 -------------------
@@ -72,19 +74,21 @@ wxMEdit v3.2RC (v3.1.0.90):
   3. added GTK+ 3 and Wayland support.
   4. added High DPI supoport under Windows.
   5. redisigned the icons by jerome KASPER <neon.king.fr[at]gmail.com>.
-  6. updated Unicode block descriptions for Unicode 15.0 (require ICU 72 or higher).
-  7. fixed crash in text mode when a line exceed the limit of line length.
-  8. fixed crash when pressing OK button in "About wxMEdit" window.
-  9. fixed not responding when warping by window with text containing some tab characters.
- 10. fixed broken triple click behavior in wxMEdit 3.1.
- 11. fixed that the height of Information Window in MadEdit/wxMEdit (built with wxMSW-2.8) always reduce by 4.
- 12. fixed fonts and encodings not restored after restart.
- 13. fixed that cannot type characters via AltGr key.
- 14. fixed cursor and selection rendering under Linux.
- 15. fixed that IME candidate window doesn't follow the caret under Windows 10.
- 16. added French translation by jerome KASPER <neon.king.fr[at]gmail.com>.
- 17. updated Simplified Chinese translation.
- 18. other minor changes and bug fixes.
+  6. changed some keyboard shortcuts, see https://github.com/wxMEdit/wxMEdit/wiki/Keyboard-shortcuts-change-in-wxMEdit-3.2 .
+  7. updated GB18030 support to GB18030-2022 standard.
+  8. updated Unicode block descriptions for Unicode 15.0 (require ICU 72 or higher).
+  9. fixed crash in text mode when a line exceed the limit of line length.
+ 10. fixed crash when pressing OK button in "About wxMEdit" window.
+ 11. fixed not responding when warping by window with text containing some tab characters.
+ 12. fixed broken triple click behavior in wxMEdit 3.1.
+ 13. fixed that the height of Information Window in MadEdit/wxMEdit (built with wxMSW-2.8) always reduce by 4.
+ 14. fixed fonts and encodings not restored after restart.
+ 15. fixed that cannot type characters via AltGr key.
+ 16. fixed cursor and selection rendering under Linux.
+ 17. fixed that IME candidate window doesn't follow the caret under Windows 10.
+ 18. added French translation by jerome KASPER <neon.king.fr[at]gmail.com>.
+ 19. updated Simplified Chinese translation.
+ 20. other minor changes and bug fixes.
 
 wxMEdit v3.1:
   1. added a killer feature: word boundary with Chinese/Japanese/Thai/Lao/Khmer and Burmese characters etc.
