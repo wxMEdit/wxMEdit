@@ -70,7 +70,7 @@ void test_gb18030_conv()
 				if (it != mb2uend)
 				{
 					ucs4_t t = it->second;
-					BOOST_CHECK(u == t);
+					BOOST_CHECK(t == u);
 				}
 			}
 			else
