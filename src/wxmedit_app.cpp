@@ -129,6 +129,8 @@ void DeleteConfig()
             MadEdit::ms_KeyBindings.SaveToConfig(cfg);
         }
 
+        cfg->Write(wxT("/wxMEdit/LastRunVersion"), wxT(WXMEDIT_VERSION));
+
         delete cfg;
     }
 
