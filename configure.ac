@@ -2,7 +2,7 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.63)
-AC_INIT([wxmedit], [3.1], [wxmedit@gmail.com])
+AC_INIT([wxmedit], [3.2], [wxmedit@gmail.com])
 AC_CONFIG_SRCDIR([src/wxmedit_app.cpp])
 AC_CONFIG_HEADER([config.h])
 AC_PREFIX_DEFAULT([/usr])

@@ -1,5 +1,5 @@
                       ==================================
-                                wxMEdit v3.2RC
+                                wxMEdit v3.2
                       ==================================
 About:
 -----
@@ -70,7 +70,7 @@ Syntax files, Locale files and Settings:
 
 ChangeLog:
 ----------
-wxMEdit v3.2RC (v3.1.0.90):
+wxMEdit v3.2:
   1. added new feature: show file size in human readable format.
   2. added a option that always use certain encoding to open files.
   3. added GTK+ 3 and Wayland support.

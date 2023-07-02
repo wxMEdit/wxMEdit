@@ -86,34 +86,34 @@ void MadKeyBindings::InitCommandTextMap()
     ms_ChangedShortcuts = new WXMChangedShortcutMap();
     ms_ChangedMenuAccels = new WXMChangedShortcutMap();
 
-    static const std::string VER_3_2_RC = "3.1.0.90";
+    static const std::string VER_3_2 = "3.2";
 
     using std::make_pair;
-    (*ms_ChangedShortcuts)[make_pair(Ctrl('Q'), ecNoWrap)] = make_pair(VER_3_2_RC, ShiftAlt('Q'));
-    (*ms_ChangedShortcuts)[make_pair(Ctrl('W'), ecWrapByWindow)] = make_pair(VER_3_2_RC, ShiftAlt('W'));
-    (*ms_ChangedShortcuts)[make_pair(Ctrl('E'), ecWrapByColumn)] = make_pair(VER_3_2_RC, ShiftAlt('E'));
-    (*ms_ChangedMenuAccels)[make_pair(Ctrl('Q'), menuNoWrap)] = make_pair(VER_3_2_RC, ShiftAlt('Q'));
-    (*ms_ChangedMenuAccels)[make_pair(Ctrl('W'), menuWrapByWindow)] = make_pair(VER_3_2_RC, ShiftAlt('W'));
-    (*ms_ChangedMenuAccels)[make_pair(Ctrl('E'), menuWrapByColumn)] = make_pair(VER_3_2_RC, ShiftAlt('E'));
+    (*ms_ChangedShortcuts)[make_pair(Ctrl('Q'), ecNoWrap)] = make_pair(VER_3_2, ShiftAlt('Q'));
+    (*ms_ChangedShortcuts)[make_pair(Ctrl('W'), ecWrapByWindow)] = make_pair(VER_3_2, ShiftAlt('W'));
+    (*ms_ChangedShortcuts)[make_pair(Ctrl('E'), ecWrapByColumn)] = make_pair(VER_3_2, ShiftAlt('E'));
+    (*ms_ChangedMenuAccels)[make_pair(Ctrl('Q'), menuNoWrap)] = make_pair(VER_3_2, ShiftAlt('Q'));
+    (*ms_ChangedMenuAccels)[make_pair(Ctrl('W'), menuWrapByWindow)] = make_pair(VER_3_2, ShiftAlt('W'));
+    (*ms_ChangedMenuAccels)[make_pair(Ctrl('E'), menuWrapByColumn)] = make_pair(VER_3_2, ShiftAlt('E'));
 
-    (*ms_ChangedShortcuts)[make_pair(Ctrl('Y'), ecDeleteLine)] = make_pair(VER_3_2_RC, 0);
-    (*ms_ChangedMenuAccels)[make_pair(Ctrl('Y'), menuDeleteLine)] = make_pair(VER_3_2_RC, 0);
+    (*ms_ChangedShortcuts)[make_pair(Ctrl('Y'), ecDeleteLine)] = make_pair(VER_3_2, 0);
+    (*ms_ChangedMenuAccels)[make_pair(Ctrl('Y'), menuDeleteLine)] = make_pair(VER_3_2, 0);
 
-    (*ms_ChangedShortcuts)[make_pair(Alt(WXK_UP), ecScrollLineUp)] = make_pair(VER_3_2_RC, 0);
-    (*ms_ChangedShortcuts)[make_pair(Alt(WXK_DOWN), ecScrollLineDown)] = make_pair(VER_3_2_RC, 0);
-    (*ms_ChangedShortcuts)[make_pair(Alt(WXK_PAGEUP), ecScrollPageUp)] = make_pair(VER_3_2_RC, 0);
-    (*ms_ChangedShortcuts)[make_pair(Alt(WXK_PAGEDOWN), ecScrollPageDown)] = make_pair(VER_3_2_RC, 0);
-    (*ms_ChangedShortcuts)[make_pair(ShiftAlt(WXK_UP), ecScrollLineUp)] = make_pair(VER_3_2_RC, 0);
-    (*ms_ChangedShortcuts)[make_pair(ShiftAlt(WXK_DOWN), ecScrollLineDown)] = make_pair(VER_3_2_RC, 0);
-    (*ms_ChangedShortcuts)[make_pair(ShiftAlt(WXK_PAGEUP), ecScrollPageUp)] = make_pair(VER_3_2_RC, 0);
-    (*ms_ChangedShortcuts)[make_pair(ShiftAlt(WXK_PAGEDOWN), ecScrollPageDown)] = make_pair(VER_3_2_RC, 0);
-    (*ms_ChangedShortcuts)[make_pair(CtrlShift(WXK_UP), ecScrollLineUp)] = make_pair(VER_3_2_RC, 0);
-    (*ms_ChangedShortcuts)[make_pair(CtrlShift(WXK_DOWN), ecScrollLineDown)] = make_pair(VER_3_2_RC, 0);
-    (*ms_ChangedShortcuts)[make_pair(CtrlShift(WXK_PAGEUP), ecScrollPageUp)] = make_pair(VER_3_2_RC, 0);
-    (*ms_ChangedShortcuts)[make_pair(CtrlShift(WXK_PAGEDOWN), ecScrollPageDown)] = make_pair(VER_3_2_RC, 0);
+    (*ms_ChangedShortcuts)[make_pair(Alt(WXK_UP), ecScrollLineUp)] = make_pair(VER_3_2, 0);
+    (*ms_ChangedShortcuts)[make_pair(Alt(WXK_DOWN), ecScrollLineDown)] = make_pair(VER_3_2, 0);
+    (*ms_ChangedShortcuts)[make_pair(Alt(WXK_PAGEUP), ecScrollPageUp)] = make_pair(VER_3_2, 0);
+    (*ms_ChangedShortcuts)[make_pair(Alt(WXK_PAGEDOWN), ecScrollPageDown)] = make_pair(VER_3_2, 0);
+    (*ms_ChangedShortcuts)[make_pair(ShiftAlt(WXK_UP), ecScrollLineUp)] = make_pair(VER_3_2, 0);
+    (*ms_ChangedShortcuts)[make_pair(ShiftAlt(WXK_DOWN), ecScrollLineDown)] = make_pair(VER_3_2, 0);
+    (*ms_ChangedShortcuts)[make_pair(ShiftAlt(WXK_PAGEUP), ecScrollPageUp)] = make_pair(VER_3_2, 0);
+    (*ms_ChangedShortcuts)[make_pair(ShiftAlt(WXK_PAGEDOWN), ecScrollPageDown)] = make_pair(VER_3_2, 0);
+    (*ms_ChangedShortcuts)[make_pair(CtrlShift(WXK_UP), ecScrollLineUp)] = make_pair(VER_3_2, 0);
+    (*ms_ChangedShortcuts)[make_pair(CtrlShift(WXK_DOWN), ecScrollLineDown)] = make_pair(VER_3_2, 0);
+    (*ms_ChangedShortcuts)[make_pair(CtrlShift(WXK_PAGEUP), ecScrollPageUp)] = make_pair(VER_3_2, 0);
+    (*ms_ChangedShortcuts)[make_pair(CtrlShift(WXK_PAGEDOWN), ecScrollPageDown)] = make_pair(VER_3_2, 0);
 
-    (*ms_ChangedShortcuts)[make_pair(ShiftAlt(WXK_LEFT), ecScrollLeft)] = make_pair(VER_3_2_RC, CtrlAlt(WXK_LEFT));
-    (*ms_ChangedShortcuts)[make_pair(ShiftAlt(WXK_RIGHT), ecScrollRight)] = make_pair(VER_3_2_RC, CtrlAlt(WXK_RIGHT));
+    (*ms_ChangedShortcuts)[make_pair(ShiftAlt(WXK_LEFT), ecScrollLeft)] = make_pair(VER_3_2, CtrlAlt(WXK_LEFT));
+    (*ms_ChangedShortcuts)[make_pair(ShiftAlt(WXK_RIGHT), ecScrollRight)] = make_pair(VER_3_2, CtrlAlt(WXK_RIGHT));
 
     INSERT_COMMANDTEXT(ecLeft);
     INSERT_COMMANDTEXT(ecUp);
