@@ -384,7 +384,7 @@ bool MadEditApp::OnInit()
     wxString readmeFile = wxT("/usr/share/doc/wxmedit/README.txt");
 # endif
 #else
-    wxString readmeFile = wxm::AppPath::Instance().AppDir() + "README.txt";
+    wxString readmeFile = wxm::AppPath::Instance().AppDir() + wxT("README.txt");
 #endif
 
     wxString prevVersion;
