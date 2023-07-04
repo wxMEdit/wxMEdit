@@ -715,7 +715,7 @@ int MadEdit::ms_Count = 0;
 MadEdit::MadEdit(wxm::ConfigWriter* cfg_writer, wxWindow* parent, wxWindowID id, const wxPoint& pos, const wxSize& size, long style)
     : MadEditSuperClass(parent, id, pos, size, style), m_cfg_writer(cfg_writer)
     , m_newline(&wxm::g_nl_default), m_newline_for_insert(&wxm::g_nl_default)
-    , m_word_bi_status(U_ZERO_ERROR)
+    , m_word_bi_status(U_ZERO_ERROR), m_TextFont(nullptr), m_HexFont(nullptr)
 {
     ++ms_Count;
 
@@ -894,7 +894,7 @@ void MadEdit::InitTextFont()
     wxString fontname;
     int fontsize;
     m_Config->Read(wxString(wxT("/Fonts/")) + m_Encoding->GetName().c_str(), &fontname, m_Encoding->GetFontName().c_str());
-    m_Config->Read(wxT("TextFontSize"), &fontsize, 12);
+    m_Config->Read(wxT("/wxMEdit/TextFontSize"), &fontsize, 12);
     SetTextFont(fontname, fontsize, true);
 }
 
@@ -902,8 +902,8 @@ void MadEdit::InitHexFont()
 {
     wxString fontname = wxm::MonoFontName.c_str();
     int fontsize;
-    m_Config->Read(wxString(wxT("HexFontName")), &fontname, fontname);
-    m_Config->Read(wxT("HexFontSize"), &fontsize, 12);
+    m_Config->Read(wxString(wxT("/wxMEdit/HexFontName")), &fontname, fontname);
+    m_Config->Read(wxT("/wxMEdit/HexFontSize"), &fontsize, 12);
     SetHexFont(fontname, fontsize, true);
 }
 
