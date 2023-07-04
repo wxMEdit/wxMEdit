@@ -100,7 +100,7 @@ public:
         {
             size_t count=fn.Length();
             if(count>127) count=127;
-            memcpy(fontname, fn.c_str(), count*sizeof(wchar_t));
+            memcpy(fontname, fn.wc_str(), count*sizeof(wchar_t));
             memset(fontname+count, 0, (128-count)*sizeof(wchar_t));
         }
     };
