@@ -54,6 +54,7 @@ rm -rf $RPM_BUILD_DIR/%{name}-%{version}
 %doc README.txt
 %{_bindir}/*
 %{_datadir}/applications/*
+%{_datadir}/icons/*
 %{_datadir}/pixmaps/*
 %{_datadir}/wxmedit/*
 %{_datadir}/locale/de_DE/LC_MESSAGES/wxmedit.mo
