@@ -713,9 +713,10 @@ void FontWidthManager::FreeMem()
 int MadEdit::ms_Count = 0;
 
 MadEdit::MadEdit(wxm::ConfigWriter* cfg_writer, wxWindow* parent, wxWindowID id, const wxPoint& pos, const wxSize& size, long style)
-    : MadEditSuperClass(parent, id, pos, size, style), m_cfg_writer(cfg_writer)
+    : MadEditSuperClass(parent, id, pos, size, style)
+    , m_TextFont(nullptr), m_HexFont(nullptr), m_cfg_writer(cfg_writer)
     , m_newline(&wxm::g_nl_default), m_newline_for_insert(&wxm::g_nl_default)
-    , m_word_bi_status(U_ZERO_ERROR), m_TextFont(nullptr), m_HexFont(nullptr)
+    , m_word_bi_status(U_ZERO_ERROR)
 {
     ++ms_Count;
 
