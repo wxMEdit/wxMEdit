@@ -906,7 +906,7 @@ dist_doc_DATA = ChangeLog LICENSE README.txt
 appdir = $(datadir)/applications
 app_DATA = wxmedit.desktop
 pixmapsdir = $(datadir)/pixmaps
-pixmaps_DATA = images/48x48/wxmedit.png
+pixmaps_DATA = images/wxmedit_16x16.xpm images/wxmedit_32x32.xpm
 icons16dir = $(datadir)/icons/hicolor/16x16/apps
 icons16_DATA = images/16x16/wxmedit.png
 icons24dir = $(datadir)/icons/hicolor/24x24/apps
@@ -972,7 +972,9 @@ noinst_HEADERS = README.txt \
 	images/unindent.xpm \
 	images/wrapbycol.xpm \
 	images/wrapbywin.xpm \
+	images/wxmedit_16x16.xpm \
 	images/wxmedit_24x24.xpm \
+	images/wxmedit_32x32.xpm \
 	images/wxmedit0.xpm \
 	images/wxmedit0.ico \
 	images/wxmedit.ico \

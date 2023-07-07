@@ -18,10 +18,11 @@ share/locale/zh_HK/LC_MESSAGES/wxmedit.mo
 share/locale/zh_MO/LC_MESSAGES/wxmedit.mo
 share/locale/zh_SG/LC_MESSAGES/wxmedit.mo
 share/locale/zh_TW/LC_MESSAGES/wxmedit.mo
+share/pixmaps/wxmedit_16x16.xpm
+share/pixmaps/wxmedit_32x32.xpm
 %%DOCSDIR%%/ChangeLog
 %%DOCSDIR%%/LICENSE
 %%DOCSDIR%%/README.txt
-share/pixmaps/wxmedit.png
 %%DATADIR%%/syntax/Dark.sch
 %%DATADIR%%/syntax/DarkBlue.sch
 %%DATADIR%%/syntax/Gray.sch
