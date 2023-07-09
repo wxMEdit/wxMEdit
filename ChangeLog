@@ -1,6 +1,6 @@
 2023-07-02 23:01:21 +0800 JiaYanwei <wxmedit@gmail.com>
 
-	* wxMEdit v3.1.0.90:
+	* wxMEdit v3.2:
 	 1. added new feature: show file size in human readable format.
 	 2. added a option that always use certain encoding to open files.
 	 3. added GTK+ 3 and Wayland support.
