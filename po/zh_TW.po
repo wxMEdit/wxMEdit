@@ -2525,7 +2525,7 @@ msgstr "波蘭文翻譯"
 
 #: src/wxmedit_frame.cpp:214
 msgid "Translator for French"
-msgstr ""
+msgstr "法文翻譯"
 
 #: src/wxmedit_frame.cpp:215 src/wxmedit_frame.cpp:216
 #: src/wxmedit_frame.cpp:217 src/wxmedit_frame.cpp:218

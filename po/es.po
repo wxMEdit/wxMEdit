@@ -2550,7 +2550,7 @@ msgstr "Traductor de Polaco"
 
 #: src/wxmedit_frame.cpp:214
 msgid "Translator for French"
-msgstr ""
+msgstr "Traductor de Francés"
 
 #: src/wxmedit_frame.cpp:215 src/wxmedit_frame.cpp:216
 #: src/wxmedit_frame.cpp:217 src/wxmedit_frame.cpp:218
@@ -2569,7 +2569,7 @@ msgstr "Creador del paquete wxmedit en AUR"
 
 #: src/wxmedit_frame.cpp:224 src/wxmedit_frame.cpp:225
 msgid "Maintainer of wxmedit package in AUR"
-msgstr ""
+msgstr "Mantenedor del paquete wxmedit en AUR"
 
 #: src/wxmedit_frame.cpp:1077
 msgid "&File"
