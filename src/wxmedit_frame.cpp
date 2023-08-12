@@ -667,9 +667,13 @@ void wxMadAuiNotebook::OnMouseClick(wxMouseEvent &evt)
 
     wxAuiTabCtrl *ctrl = (wxAuiTabCtrl*)evt.GetEventObject();
     wxWindow *win;
-    if(ctrl->TabHitTest(evt.m_x, evt.m_y, &win))
+    if (ctrl->TabHitTest(evt.m_x, evt.m_y, &win))
     {
         g_MainFrame->CloseFile(g_MainFrame->m_Notebook->GetPageIndex(win));
+    }
+    else
+    {
+        g_MainFrame->OpenFile(wxEmptyString, false);
     }
 }
 
