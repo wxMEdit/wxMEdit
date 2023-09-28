@@ -67,7 +67,6 @@ namespace wxm
 
 	struct NSIWidth
 	{
-		NSIWidth();
 		virtual bool DefaultHalfwidth() = 0;
 		virtual bool HasFullwidth() = 0;
 		virtual bool HasHalfwidth() = 0;
@@ -75,7 +74,8 @@ namespace wxm
 	protected:
 		virtual void ToHalfWidth(UnicodeString& us) = 0;
 		virtual void ToFullWidth(UnicodeString& us) = 0;
-		boost::scoped_ptr<Transliterator> m_fwtr;
+
+		static boost::scoped_ptr<Transliterator> s_fwtr;
 	};
 
 	struct NSIPadding

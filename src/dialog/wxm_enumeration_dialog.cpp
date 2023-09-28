@@ -144,12 +144,9 @@ private:
 	char m_base;
 };
 
-NSIWidth::NSIWidth()
-{
-	UErrorCode uerr = U_ZERO_ERROR;
-	UnicodeString wcv("halfwidth-fullwidth");
-	m_fwtr.reset(Transliterator::createInstance(wcv, UTRANS_FORWARD, uerr));
-}
+UErrorCode uerr = U_ZERO_ERROR;
+boost::scoped_ptr<Transliterator> NSIWidth::s_fwtr(
+	Transliterator::createInstance(UnicodeString("halfwidth-fullwidth"), UTRANS_FORWARD, uerr));
 
 struct NSIHalfWidth: public virtual NSIWidth
 {
@@ -168,7 +165,7 @@ struct NSIFullWidth: public virtual NSIWidth
 	virtual bool HasHalfwidth() override { return false; }
 protected:
 	virtual void ToHalfWidth(UnicodeString& us) override {}
-	virtual void ToFullWidth(UnicodeString& us) override { m_fwtr->transliterate(us); }
+	virtual void ToFullWidth(UnicodeString& us) override { s_fwtr->transliterate(us); }
 };
 
 struct NSIDualWidthLatin: public virtual NSIWidth
@@ -178,7 +175,7 @@ struct NSIDualWidthLatin: public virtual NSIWidth
 	virtual bool HasHalfwidth() override { return true; }
 protected:
 	virtual void ToHalfWidth(UnicodeString& us) override {}
-	virtual void ToFullWidth(UnicodeString& us) override { m_fwtr->transliterate(us); }
+	virtual void ToFullWidth(UnicodeString& us) override { s_fwtr->transliterate(us); }
 };
 
 UnicodeString NSIPadding::PadWith(const UnicodeString& us, size_t len, bool alignleft, UChar32 ch)
