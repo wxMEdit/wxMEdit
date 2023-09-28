@@ -1349,8 +1349,8 @@ msgstr "输入有误"
 
 #: src/dialog/wxm_enumeration_dialog.cpp:803
 #, c-format
-msgid "Note: This numbering system can only represent the range of 1-%d.\n"
-msgstr "注意：这个数字系统只能表示 1～%d 范围内的数字。\n"
+msgid "Note: This numbering system can only represent the range of 1-%lld.\n"
+msgstr "注意：这个数字系统只能表示 1～%lld 范围内的数字。\n"
 
 #: src/dialog/wxm_enumeration_dialog.cpp:804
 msgid ""

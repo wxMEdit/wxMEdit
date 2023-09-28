@@ -1347,8 +1347,8 @@ msgstr "Entrée Incorrecte"
 
 #: src/dialog/wxm_enumeration_dialog.cpp:803
 #, c-format
-msgid "Note: This numbering system can only represent the range of 1-%d.\n"
-msgstr "Note: Ce Système de Numération est limité de 1 à %d.\n"
+msgid "Note: This numbering system can only represent the range of 1-%lld.\n"
+msgstr "Note: Ce Système de Numération est limité de 1 à %lld.\n"
 
 #: src/dialog/wxm_enumeration_dialog.cpp:804
 msgid ""

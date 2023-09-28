@@ -1344,8 +1344,8 @@ msgstr "入力の誤り"
 
 #: src/dialog/wxm_enumeration_dialog.cpp:803
 #, c-format
-msgid "Note: This numbering system can only represent the range of 1-%d.\n"
-msgstr "備考: この番号付け方法は、1-%d の範囲内でのみ有効です.\n"
+msgid "Note: This numbering system can only represent the range of 1-%lld.\n"
+msgstr "備考: この番号付け方法は、1-%lld の範囲内でのみ有効です.\n"
 
 #: src/dialog/wxm_enumeration_dialog.cpp:804
 msgid ""

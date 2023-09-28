@@ -797,7 +797,7 @@ void WXMEnumerationDialog::OnChoiceNumSysSelect(wxCommandEvent& event)
 
 	if (ns->Max() < std::numeric_limits<int64_t>::max())
 	{
-		wxString note0 = wxString::Format(_("Note: This numbering system can only represent the range of 1-%d.\n"), ns->Max());
+		wxString note0 = wxString::Format(_("Note: This numbering system can only represent the range of 1-%lld.\n"), ns->Max());
 		wxString note1 = _("Numbers out of range will be represent in Latin numbering system with grouping separator.");
 		wxMessageBox(note0 + note1, wxT("wxMEdit"), wxICON_INFORMATION);
 	}
