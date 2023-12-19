@@ -1304,12 +1304,12 @@ msgstr "வை"
 #: src/dialog/wxm_enumeration_dialog.cpp:657
 #, c-format
 msgid "%s is Not a Number."
-msgstr "%கள் ஒரு எண் அல்ல."
+msgstr "%s ஒரு எண் அல்ல."
 
 #: src/dialog/wxm_enumeration_dialog.cpp:663
 #, c-format
 msgid "%s should not less than %lld."
-msgstr "%கள் %எல்.எல்.டி.க்கு குறைவாக இருக்கக்கூடாது."
+msgstr "%s %lld.க்கு குறைவாக இருக்கக்கூடாது."
 
 #: src/dialog/wxm_enumeration_dialog.cpp:754
 msgid "Wrong Input"
@@ -1318,7 +1318,7 @@ msgstr "தவறான உள்ளீடு"
 #: src/dialog/wxm_enumeration_dialog.cpp:803
 #, c-format
 msgid "Note: This numbering system can only represent the range of 1-%lld.\n"
-msgstr "குறிப்பு: இந்த எண் அமைப்பு 1-%எல்.எல்.டி வரம்பை மட்டுமே குறிக்கும்."
+msgstr "குறிப்பு: இந்த எண் அமைப்பு 1-%lld வரம்பை மட்டுமே குறிக்கும்."
 
 #: src/dialog/wxm_enumeration_dialog.cpp:804
 msgid ""
@@ -1466,12 +1466,12 @@ msgstr "%D கோப்புகளின் %d ஐ செயலாக்கு�
 #: src/dialog/wxm_find_in_files_dialog.cpp:764
 #, c-format
 msgid "Line(%d): "
-msgstr "வரி (%ஈ):"
+msgstr "வரி (%d):"
 
 #: src/dialog/wxm_find_in_files_dialog.cpp:768
 #, c-format
 msgid "Offset(%s): "
-msgstr "ஆஃப்செட் (%கள்):"
+msgstr "ஆஃப்செட் (%s):"
 
 #: src/dialog/wxm_find_in_files_dialog.cpp:769
 msgid "Binary file matches"
@@ -2075,7 +2075,7 @@ msgstr "[%f] & கோப்பு பெயர்"
 #: src/dialog/wxmedit_options_dialog.cpp:706
 #, c-format
 msgid "[%p] &Path Name"
-msgstr "[%ப] & பாதை பெயர்"
+msgstr "[%p] & பாதை பெயர்"
 
 #: src/dialog/wxmedit_options_dialog.cpp:708
 #, c-format
@@ -2085,7 +2085,7 @@ msgstr "[%n] பக்கம் & எண்"
 #: src/dialog/wxmedit_options_dialog.cpp:709
 #, c-format
 msgid "[%s] Total Page&s"
-msgstr "[%கள்] மொத்த பக்கம் & கள்"
+msgstr "[%s] மொத்த பக்கம் & கள்"
 
 #: src/dialog/wxmedit_options_dialog.cpp:711
 #, c-format
@@ -2151,11 +2151,11 @@ msgstr "[%j] ஆண்டின் நாள் தசம எண்ணாக (00
 #: src/dialog/wxmedit_options_dialog.cpp:727
 #, c-format
 msgid "[%m] Month as decimal number (01 - 12)"
-msgstr "[%மீ] தசம எண்ணாக மாதம் (01 - 12)"
+msgstr "[%m] தசம எண்ணாக மாதம் (01 - 12)"
 
 #: src/dialog/wxmedit_options_dialog.cpp:728
 msgid "[%M] Minute as decimal number (00 - 59)"
-msgstr "[%மீ] நிமிடமாக தசம எண்ணாக (00 - 59)"
+msgstr "[%M] நிமிடமாக தசம எண்ணாக (00 - 59)"
 
 #: src/dialog/wxmedit_options_dialog.cpp:729
 #, c-format
@@ -2165,7 +2165,7 @@ msgstr "[%p] தற்போதைய லோகேலின் a.m./p.m. 12 ம�
 #: src/dialog/wxmedit_options_dialog.cpp:730
 #, c-format
 msgid "[%S] Second as decimal number (00 - 59)"
-msgstr "[%கள்] தசம எண்ணாக இரண்டாவது (00 - 59)"
+msgstr "[%S] தசம எண்ணாக இரண்டாவது (00 - 59)"
 
 #: src/dialog/wxmedit_options_dialog.cpp:731
 msgid ""
@@ -2253,7 +2253,7 @@ msgstr "ஆசிரியர்"
 #: src/dialog/wxmedit_options_dialog.cpp:1152
 #, c-format
 msgid "Invalid value of \"%s\""
-msgstr "\"%கள்\" இன் தவறான மதிப்பு"
+msgstr "\"%s\" இன் தவறான மதிப்பு"
 
 #: src/dialog/wxmedit_options_dialog.cpp:1244
 msgid "Cannot assign key to this item"
@@ -2266,7 +2266,7 @@ msgstr "இந்த விசை ஒதுக்கப்படவில்ல�
 #: src/dialog/wxmedit_options_dialog.cpp:1362
 #, c-format
 msgid "This key is assigned to [%s]"
-msgstr "இந்த விசை [%கள்] க்கு ஒதுக்கப்பட்டுள்ளது"
+msgstr "இந்த விசை [%s] க்கு ஒதுக்கப்பட்டுள்ளது"
 
 #: src/mad_utils.cpp:248
 msgid "The input string is not a valid Hex-String:"
@@ -2292,12 +2292,12 @@ msgstr "Ln: %s/ %s"
 #: src/wxm/edit/inframe.cpp:156
 #, c-format
 msgid " (Sub: %s)"
-msgstr "(துணை: %கள்)"
+msgstr "(துணை: %s)"
 
 #: src/wxm/edit/inframe.cpp:157
 #, c-format
 msgid " Col: %s"
-msgstr "கோல்: %கள்"
+msgstr "கோல்: %s"
 
 #: src/wxm/edit/inframe.cpp:161
 #, c-format
@@ -2307,7 +2307,7 @@ msgstr "குற்றச்சாட்டு: %s/ %s"
 #: src/wxm/edit/inframe.cpp:162
 #, c-format
 msgid " (%s)"
-msgstr "(%கள்)"
+msgstr "(%s)"
 
 #: src/wxm/edit/inframe.cpp:165
 #, c-format
@@ -2348,7 +2348,7 @@ msgstr "[காலியாக]"
 #: src/wxm/searcher.cpp:1279
 #, c-format
 msgid "'%s' is not a valid regular expression."
-msgstr "'%எஸ்' என்பது சரியான வழக்கமான வெளிப்பாடு அல்ல."
+msgstr "'%s' என்பது சரியான வழக்கமான வெளிப்பாடு அல்ல."
 
 #: src/wxm/searcher.cpp:1298
 msgid ""
