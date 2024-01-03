@@ -4638,7 +4638,7 @@ $as_echo "$ac_cv_safe_to_define___extensions__" >&6; }
   $as_echo "#define _TANDEM_SOURCE 1" >>confdefs.h
 
 
-ALL_LINGUAS="de_DE es fr_FR it_IT ja_JP pl_PL ru_RU zh_CN zh_TW"
+ALL_LINGUAS="de_DE es fr_FR it_IT ja_JP pl_PL ru_RU ta zh_CN zh_TW"
 { $as_echo "$as_me:${as_lineno-$LINENO}: checking for a sed that does not truncate output" >&5
 $as_echo_n "checking for a sed that does not truncate output... " >&6; }
 if ${ac_cv_path_SED+:} false; then :
