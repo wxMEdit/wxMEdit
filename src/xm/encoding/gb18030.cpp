@@ -44,6 +44,9 @@ void EncodingGB18030::MultiByteInit()
 
 	m_qb2u[BMP_QBYTE_IDX_FFFD] = 0x00FFFD;
 
+	// for ICU 74.1 or upper
+	m_db2u[DByteIndexOf("\xA3\xA0")] = 0x00E5E5;
+
 	// for ICU lower than 73.2
 	m_db2u[DByteIndexOf("\xA6\xD9")] = 0x00FE10;
 	m_db2u[DByteIndexOf("\xA6\xDA")] = 0x00FE12;
