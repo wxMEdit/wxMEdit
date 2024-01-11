@@ -132,6 +132,20 @@ void EncodingManager::DoInit()
 	AddEncoding("UTF-32LE", ENC_UTF_32LE, _("Unicode 32 bit Little Endian "), L"", etUTF32LE);
 	AddEncoding("UTF-32BE", ENC_UTF_32BE, _("Unicode 32 bit Big Endian "), L"", etUTF32BE);
 
+    AddEncoding("CP1140", ENC_CP1140, _("EBCDIC - US/Canada "), L"CP037", etSingleByte, "ibm-1140_P100-1997");
+    AddEncoding("CP1141", ENC_CP1141, _("EBCDIC - Germany/Austria "), L"CP273", etSingleByte, "ibm-1141_P100-1997");
+    AddEncoding("CP1142", ENC_CP1142, _("EBCDIC - Denmark/Norway "), L"CP277", etSingleByte, "ibm-1142_P100-1997");
+    AddEncoding("CP1143", ENC_CP1143, _("EBCDIC - Sweden/Finland "), L"CP278", etSingleByte, "ibm-1143_P100-1997");
+    AddEncoding("CP1144", ENC_CP1144, _("EBCDIC - Italy "), L"CP280", etSingleByte, "ibm-1144_P100-1997");
+    AddEncoding("CP1145", ENC_CP1145, _("EBCDIC - Spain/Latin America "), L"CP284", etSingleByte, "ibm-1145_P100-1997");
+    AddEncoding("CP1146", ENC_CP1146, _("EBCDIC - UK/Ireland "), L"CP285", etSingleByte, "ibm-1146_P100-1997");
+    AddEncoding("CP1147", ENC_CP1147, _("EBCDIC - France "), L"CP297", etSingleByte, "ibm-1147_P100-1997");
+    AddEncoding("CP1148", ENC_CP1148, _("EBCDIC - International "), L"CP500", etSingleByte, "ibm-1148_P100-1997");
+    AddEncoding("CP1149", ENC_CP1149, _("EBCDIC - Iceland "), L"CP871", etSingleByte, "ibm-1149_P100-1997");
+    AddEncoding("CP1047", ENC_CP1047, _("EBCDIC - Latin 1 "), L"", etSingleByte, "ibm-1047_P100-1995");
+
+
+
 	// only for encoding detection not for editing
 	m_icunameenc_map[GetEncodingICUName("US-ASCII")] = ENC_ISO_646;
 
@@ -202,6 +216,7 @@ void EncodingManager::InitEncodingGroups()
 		(ENCG_UNICODE,       _("Unicode "))
 		(ENCG_ISO8859,       _("ISO-8859 "))
 		(ENCG_WINDOWS,       _("Windows "))
+        (ENCG_EBCDIC,        _("EBCDIC (IBM) "))
 		(ENCG_OEM,           _("OEM "))
 	;
 
@@ -257,6 +272,18 @@ void EncodingManager::InitEncodingGroups()
 		( ENC_UTF_16BE, cnv(list_of(ENCG_UNICODE), t) )
 		( ENC_UTF_32LE, cnv(list_of(ENCG_UNICODE), t) )
 		( ENC_UTF_32BE, cnv(list_of(ENCG_UNICODE), t) )
+        // EBCDIC
+        ( ENC_CP1140, cnv(list_of(ENCG_EBCDIC), t) )
+        ( ENC_CP1141, cnv(list_of(ENCG_EBCDIC)(ENCG_NORTHEUROPE), t) )
+        ( ENC_CP1142, cnv(list_of(ENCG_EBCDIC)(ENCG_NORTHEUROPE), t) )
+        ( ENC_CP1143, cnv(list_of(ENCG_EBCDIC)(ENCG_NORTHEUROPE), t) )
+        ( ENC_CP1144, cnv(list_of(ENCG_EBCDIC)(ENCG_WESTERNEUROPE), t) )
+        ( ENC_CP1145, cnv(list_of(ENCG_EBCDIC)(ENCG_WESTERNEUROPE), t) )
+        ( ENC_CP1146, cnv(list_of(ENCG_EBCDIC)(ENCG_WESTERNEUROPE), t) )
+        ( ENC_CP1147, cnv(list_of(ENCG_EBCDIC)(ENCG_WESTERNEUROPE), t) )
+        ( ENC_CP1148, cnv(list_of(ENCG_EBCDIC), t) )
+        ( ENC_CP1149, cnv(list_of(ENCG_EBCDIC)(ENCG_NORTHEUROPE), t) )
+        ( ENC_CP1047, cnv(list_of(ENCG_EBCDIC), t) )
 	;
 }
 
