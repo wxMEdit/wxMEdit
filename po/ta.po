@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: wxMEdit 3.2\n"
 "Report-Msgid-Bugs-To: wxmedit@gmail.com\n"
 "POT-Creation-Date: 2023-06-23 18:25+0800\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"PO-Revision-Date: 2024-01-10 16:22+0530\n"
 "Last-Translator: தமிழ்நேரம் <https://TamilNeram.github.io>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ta\n"
@@ -19,7 +19,7 @@ msgstr ""
 
 #: po/wxstd.po.cpp:10
 msgid "Please wait while printing\n"
-msgstr "அச்சிடும் போது காத்திருங்கள்"
+msgstr "அச்சிடும் போது காத்திருங்கள்\n"
 
 #: po/wxstd.po.cpp:100
 msgid "FloralWhite"
@@ -71,7 +71,7 @@ msgstr "அனிட்யூ"
 
 #: po/wxstd.po.cpp:111
 msgid "HotPink"
-msgstr "சூடான இளஞ்சிவப்பு"
+msgstr "சூடானஇளஞ்சிவப்பு"
 
 #: po/wxstd.po.cpp:112
 msgid "IndianRed"
@@ -95,7 +95,7 @@ msgstr "லாவெண்டர்"
 
 #: po/wxstd.po.cpp:117
 msgid "LavenderBlush"
-msgstr "லாவெண்டர் பிளச்"
+msgstr "லாவெண்டர்பிளச்"
 
 #: po/wxstd.po.cpp:118
 msgid "LawnGreen"
@@ -127,11 +127,11 @@ msgstr "மெல்லியதங்கரோட்மஞ்சள்"
 
 #: po/wxstd.po.cpp:124
 msgid "LightGreen"
-msgstr "மெல்லிய பச்சை"
+msgstr "மெல்லியபச்சை"
 
 #: po/wxstd.po.cpp:125
 msgid "LightGrey"
-msgstr "மெல்லிய சாம்பல் நிறம்"
+msgstr "மெல்லியசாம்பல்"
 
 #: po/wxstd.po.cpp:126
 msgid "LightPink"
@@ -155,7 +155,7 @@ msgstr "கீழ் விளிம்பு (மிமீ):"
 
 #: po/wxstd.po.cpp:130
 msgid "LightSlateBlue"
-msgstr "மெல்லியபலகை நீலம்"
+msgstr "மெல்லியபலகைநீலம்"
 
 #: po/wxstd.po.cpp:131
 msgid "LightSlateGray"
@@ -195,19 +195,19 @@ msgstr "நடுத்தரஅக்வாமரைன்"
 
 #: po/wxstd.po.cpp:14
 msgid "Copies:"
-msgstr "பிரதிகள்:"
+msgstr "நகல்கள்:"
 
 #: po/wxstd.po.cpp:140
 msgid "MediumBlue"
-msgstr "நடுத்தர நீலம்"
+msgstr "நடுத்தரநீலம்"
 
 #: po/wxstd.po.cpp:141
 msgid "MediumOrchid"
-msgstr "நடுத்தர ஆர்கிட்"
+msgstr "நடுத்தரஆர்கிட்"
 
 #: po/wxstd.po.cpp:142
 msgid "MediumPurple"
-msgstr "நடுத்தர கத்தரி"
+msgstr "நடுத்தரகத்தரி"
 
 #: po/wxstd.po.cpp:143
 msgid "MediumSeaGreen"
@@ -223,7 +223,7 @@ msgstr "நடுத்தரஇலை பச்சை"
 
 #: po/wxstd.po.cpp:146
 msgid "MediumTurquoise"
-msgstr "நடுத்தர டுர்கோயிச்"
+msgstr "நடுத்தரடர்க்கைச்"
 
 #: po/wxstd.po.cpp:147
 msgid "MediumVioletRed"
@@ -235,7 +235,7 @@ msgstr "யாமநீலம்"
 
 #: po/wxstd.po.cpp:149
 msgid "MintCream"
-msgstr "புதினா கிரீம்"
+msgstr "புதினாகிரீம்"
 
 #: po/wxstd.po.cpp:15
 msgid "Default printer"
@@ -259,7 +259,7 @@ msgstr "கடற்படை"
 
 #: po/wxstd.po.cpp:154
 msgid "OldLace"
-msgstr "ஓல்ட்லேச்"
+msgstr "பழையலேச்"
 
 #: po/wxstd.po.cpp:155
 msgid "Olive"
@@ -299,7 +299,7 @@ msgstr "வெளுத்தடர்க்கைச்"
 
 #: po/wxstd.po.cpp:163
 msgid "PaleVioletRed"
-msgstr "பேலேவியோலெட்ரட்"
+msgstr "வெளுத்தகத்தரிசிவப்பு"
 
 #: po/wxstd.po.cpp:164
 msgid "PapayaWhip"
@@ -323,7 +323,7 @@ msgstr "பிளம்"
 
 #: po/wxstd.po.cpp:169
 msgid "PowderBlue"
-msgstr "பவுடர் நீலம்"
+msgstr "தூள்நீலம்"
 
 #: po/wxstd.po.cpp:17
 msgid "Landscape"
@@ -343,11 +343,11 @@ msgstr "ரோசிபழுப்பு"
 
 #: po/wxstd.po.cpp:173
 msgid "RoyalBlue"
-msgstr "ராயல் நீலம்"
+msgstr "ராயல்நீலம்"
 
 #: po/wxstd.po.cpp:174
 msgid "SaddleBrown"
-msgstr "சாடில் பழுப்பு"
+msgstr "சாடில்பழுப்பு"
 
 #: po/wxstd.po.cpp:175
 msgid "Salmon"
@@ -383,7 +383,7 @@ msgstr "வான்நீலம்"
 
 #: po/wxstd.po.cpp:182
 msgid "SlateBlue"
-msgstr "பலகை நீலம்"
+msgstr "பலகைநீலம்"
 
 #: po/wxstd.po.cpp:183
 msgid "SlateGray"
@@ -507,7 +507,7 @@ msgstr "வஇமு தொகுதி"
 
 #: po/wxstd.po.cpp:211
 msgid "Flash ActionScript"
-msgstr "ஃபிளாச் ஆக்சன்கைஉரை"
+msgstr "ஒளிரும் ஆக்சன்கைஉரை"
 
 #: po/wxstd.po.cpp:212
 msgid "Fortran 90"
@@ -615,7 +615,7 @@ msgstr "எஃசு86 சட்டசபை"
 
 #: po/wxstd.po.cpp:236
 msgid "XML"
-msgstr "எக்ச்எம்எல்"
+msgstr "நீகுமொ"
 
 #: po/wxstd.po.cpp:24
 msgid "Portrait"
@@ -635,7 +635,7 @@ msgstr "அச்சு அமைப்பு"
 
 #: po/wxstd.po.cpp:28
 msgid "Print in colour"
-msgstr "நிறத்தில் அச்சிடுக"
+msgstr "நிறத்தில் அச்சிடு"
 
 #: po/wxstd.po.cpp:29
 msgid "Print spooling"
@@ -647,7 +647,7 @@ msgstr "சரி"
 
 #: po/wxstd.po.cpp:30
 msgid "Print to File"
-msgstr "கோப்பில் அச்சிடுக"
+msgstr "கோப்பில் அச்சிடு"
 
 #: po/wxstd.po.cpp:31
 msgid "Printer"
@@ -712,7 +712,7 @@ msgstr "பிரிப்பான்"
 
 #: po/wxstd.po.cpp:46
 msgid "Space"
-msgstr "இடம்"
+msgstr "இடைவெளி"
 
 #: po/wxstd.po.cpp:47
 msgid "Number"
@@ -769,7 +769,7 @@ msgstr "அக்வாமரைன்"
 
 #: po/wxstd.po.cpp:6 src/dialog/wxm_word_count_dialog.cpp:114
 msgid "&Close"
-msgstr "&மூடு"
+msgstr "மூடு (&C)"
 
 #: po/wxstd.po.cpp:60
 msgid "Azure"
@@ -813,7 +813,7 @@ msgstr "கேடட்நீலம்"
 
 #: po/wxstd.po.cpp:7
 msgid "&Goto..."
-msgstr "&இங்கேசெல்..."
+msgstr "இங்கேசெல்... (&G)"
 
 #: po/wxstd.po.cpp:70
 msgid "Chartreuse"
@@ -910,7 +910,7 @@ msgstr "கரும்பலகைசாம்பல்"
 
 #: po/wxstd.po.cpp:91
 msgid "DarkTurquoise"
-msgstr "இருண்டது"
+msgstr "இருண்டடர்க்கைச்"
 
 #: po/wxstd.po.cpp:92
 msgid "DarkViolet"
@@ -946,7 +946,7 @@ msgstr "தீகல்"
 
 #: src/dialog/wxm_conv_enc_dialog.cpp:54
 msgid "Convert Encoding"
-msgstr "குறியாக்கத்தை மாற்றவும்"
+msgstr "குறியாக்கத்தை மாற்று"
 
 #: src/dialog/wxm_conv_enc_dialog.cpp:59
 msgid "New Encoding:"
@@ -992,7 +992,7 @@ msgstr "கூடுதல் விருப்பங்கள்"
 #: src/dialog/wxmedit_about_dialog.cpp:100
 #: src/dialog/wxmedit_options_dialog.cpp:675
 msgid "&OK"
-msgstr "&சரி"
+msgstr "சரி (&O)"
 
 #: src/dialog/wxm_conv_enc_dialog.cpp:80
 #: src/dialog/wxm_enumeration_dialog.cpp:536
@@ -1002,11 +1002,11 @@ msgstr "&சரி"
 #: src/dialog/wxmedit_about_dialog.cpp:102
 #: src/dialog/wxmedit_options_dialog.cpp:677
 msgid "&Cancel"
-msgstr "&ரத்துசெய்"
+msgstr "ரத்துசெய் (&C)"
 
 #: src/dialog/wxm_enumeration_dialog.cpp:392 src/wxmedit_frame.cpp:1976
 msgid "Insert Ordered Sequence"
-msgstr "ஒழுங்கு செய்யப்பட்ட வரிசையைச் செருகவும்"
+msgstr "ஒழுங்கான வரிசையைச் செருகு"
 
 #: src/dialog/wxm_enumeration_dialog.cpp:395
 msgid "Sequence"
@@ -1014,7 +1014,7 @@ msgstr "வரிசை"
 
 #: src/dialog/wxm_enumeration_dialog.cpp:398
 msgid "&Initial Number"
-msgstr "&ஆரம்ப எண்"
+msgstr "ஆரம்ப எண் (&I)"
 
 #: src/dialog/wxm_enumeration_dialog.cpp:400
 #: src/dialog/wxm_enumeration_dialog.cpp:406
@@ -1087,55 +1087,55 @@ msgstr "வடிவம்"
 
 #: src/dialog/wxm_enumeration_dialog.cpp:455
 msgid "&Numbering System:"
-msgstr "&எண் முறை:"
+msgstr "எண் முறை: (&N)"
 
 #: src/dialog/wxm_enumeration_dialog.cpp:461
 msgid "He&x"
-msgstr "பதின்ம"
+msgstr "பதின்ம (&x)"
 
 #: src/dialog/wxm_enumeration_dialog.cpp:463
 msgid "&Dec"
-msgstr "&பத்து"
+msgstr "பத்து (&D)"
 
 #: src/dialog/wxm_enumeration_dialog.cpp:466
 msgid "Oc&t"
-msgstr "எண்ம"
+msgstr "எண்ம (&t)"
 
 #: src/dialog/wxm_enumeration_dialog.cpp:468
 msgid "&Bin"
-msgstr "&தொட்டி"
+msgstr "தொட்டி (&B)"
 
 #: src/dialog/wxm_enumeration_dialog.cpp:472
 msgid "&Uppercase"
-msgstr "மேல்வழக்கு"
+msgstr "மேல்வழக்கு (&U)"
 
 #: src/dialog/wxm_enumeration_dialog.cpp:476
 msgid "Lowercas&e"
-msgstr "கீழ்வழக்கு"
+msgstr "கீழ்வழக்கு (&e)"
 
 #: src/dialog/wxm_enumeration_dialog.cpp:481
 msgid "&Halfwidth"
-msgstr "&பாதி அகலம்"
+msgstr "பாதி அகலம் (&H)"
 
 #: src/dialog/wxm_enumeration_dialog.cpp:484
 msgid "&Fullwidth"
-msgstr "&முழு அகலம்"
+msgstr "முழு அகலம் (&F)"
 
 #: src/dialog/wxm_enumeration_dialog.cpp:488
 msgid "Use &Grouping Separator"
-msgstr "குழு பிரிப்பான் பயன்படுத்தவும்"
+msgstr "குழு பிரிப்பான் பயன்படுத்தவும் (&G)"
 
 #: src/dialog/wxm_enumeration_dialog.cpp:493
 msgid "&Length (Characters):"
-msgstr "&நீளம் (எழுத்துக்கள்):"
+msgstr "நீளம் (எழுத்துக்கள்): (&L)"
 
 #: src/dialog/wxm_enumeration_dialog.cpp:500
 msgid "&Alignment:"
-msgstr "&சீரமைப்பு:"
+msgstr "சீரமைப்பு: (&A)"
 
 #: src/dialog/wxm_enumeration_dialog.cpp:503
 msgid "Right"
-msgstr "சரி"
+msgstr "வலது"
 
 #: src/dialog/wxm_enumeration_dialog.cpp:504
 msgid "Left"
@@ -1143,7 +1143,7 @@ msgstr "இடது"
 
 #: src/dialog/wxm_enumeration_dialog.cpp:509
 msgid "&Padding:"
-msgstr "&திணிப்பு:"
+msgstr "திணிப்பு: (&P)"
 
 #: src/dialog/wxm_enumeration_dialog.cpp:512
 msgid "Blank Space"
@@ -1161,11 +1161,11 @@ msgstr "0"
 
 #: src/dialog/wxm_enumeration_dialog.cpp:518
 msgid "P&refix:"
-msgstr "முன்னொட்டு:"
+msgstr "முன்னொட்டு: (&r)"
 
 #: src/dialog/wxm_enumeration_dialog.cpp:525
 msgid "Po&stfix:"
-msgstr "பின்னொட்டு:"
+msgstr "பின்னொட்டு: (&s)"
 
 #: src/dialog/wxm_enumeration_dialog.cpp:581
 #: src/dialog/wxm_enumeration_dialog.cpp:836
@@ -1299,7 +1299,7 @@ msgstr "தாய்"
 
 #: src/dialog/wxm_enumeration_dialog.cpp:643 src/xm/ublock_des.cpp:184
 msgid "Vai"
-msgstr "வை"
+msgstr "வாய்"
 
 #: src/dialog/wxm_enumeration_dialog.cpp:657
 #, c-format
@@ -1318,15 +1318,15 @@ msgstr "தவறான உள்ளீடு"
 #: src/dialog/wxm_enumeration_dialog.cpp:803
 #, c-format
 msgid "Note: This numbering system can only represent the range of 1-%lld.\n"
-msgstr "குறிப்பு: இந்த எண் அமைப்பு 1-%lld வரம்பை மட்டுமே குறிக்கும்."
+msgstr "குறிப்பு: இந்த எண் அமைப்பு 1-%lld வரம்பை மட்டுமே குறிக்கும்.\n"
 
 #: src/dialog/wxm_enumeration_dialog.cpp:804
 msgid ""
 "Numbers out of range will be represent in Latin numbering system with "
 "grouping separator."
 msgstr ""
-"குழு பிரிப்பான் மூலம் லத்தீன் எண் அமைப்பில் வரம்பிற்கு வெளியே எண்கள் "
-"பிரதிநிதித்துவப்படுத்தப்படும்."
+"வரம்பிற்கு வெளியே உள்ள எண்கள் குழு பிரிப்பான் மூலம் லத்தீன் எண் அமைப்பில் "
+"வடிவமைக்கப்படும்."
 
 #: src/dialog/wxm_file_association_dialog.cpp:324
 msgid "File Type Associations"
@@ -1350,49 +1350,49 @@ msgstr "முன் வரையறுக்கப்பட்ட கோப்�
 
 #: src/dialog/wxm_file_association_dialog.cpp:350
 msgid "<- Add Custom File Type"
-msgstr "<- தனிப்பயன் கோப்பு வகையைச் சேர்க்கவும்"
+msgstr "<- தனிப்பயன் கோப்பு வகையைச் சேர்"
 
 #: src/dialog/wxm_find_in_files_dialog.cpp:109
 msgid "Find/Replace In Files"
-msgstr "கோப்புகளில் கண்டுபிடி/மாற்று"
+msgstr "கோப்புகளில் தேடு/மாற்று"
 
 #: src/dialog/wxm_find_in_files_dialog.cpp:118
 #: src/dialog/wxm_search_replace_dialog.cpp:113
 #: src/dialog/wxm_sort_dialog.cpp:58
 msgid "&Case Sensitive"
-msgstr "வழக்கு உணர்திறன்"
+msgstr "வழக்கு உணர்திறன் (&C)"
 
 #: src/dialog/wxm_find_in_files_dialog.cpp:121
 #: src/dialog/wxm_search_replace_dialog.cpp:116
 msgid "&Whole Word Only"
-msgstr "&முழு சொல் மட்டுமே"
+msgstr "முழு சொல் மட்டுமே (&W)"
 
 #: src/dialog/wxm_find_in_files_dialog.cpp:124
 #: src/dialog/wxm_search_replace_dialog.cpp:119
 msgid "Use Regular E&xpressions"
-msgstr "வழக்கமான வெளிப்பாடுகளைப் பயன்படுத்துங்கள்"
+msgstr "வழக்கமான வெளிப்பாடுகளைப் பயன்படுத்துங்கள் (&x)"
 
 #: src/dialog/wxm_find_in_files_dialog.cpp:127
 #: src/dialog/wxm_search_replace_dialog.cpp:122
 msgid "Find &Hex String (Example: BE 00 3A or BE003A)"
-msgstr "கண்டுபிடி &பதின்ம சரம் (எடுத்துக்காட்டு: BE 00 3A அல்லது BE003A)"
+msgstr "பதின்ம சரம் தேடு (எடுத்துக்காட்டு: BE 00 3A அல்லது BE003A) (&H)"
 
 #: src/dialog/wxm_find_in_files_dialog.cpp:130
 msgid "&List the First Found Item Only"
-msgstr "&முதலில் கண்டுபிடிக்கப்பட்ட உருப்படியை மட்டும் பட்டியலிடுங்கள்"
+msgstr "முதலில் கண்டுபிடிக்கப்பட்ட உருப்படியை மட்டும் பட்டியலிடுங்கள் (&L)"
 
 #: src/dialog/wxm_find_in_files_dialog.cpp:136
 msgid "&Find"
-msgstr "&கண்டுபிடி"
+msgstr "தேடு (&F)"
 
 #: src/dialog/wxm_find_in_files_dialog.cpp:138
 #: src/dialog/wxm_search_replace_dialog.cpp:148
 msgid "&Replace"
-msgstr "&மாற்று"
+msgstr "மாற்று (&R)"
 
 #: src/dialog/wxm_find_in_files_dialog.cpp:140
 msgid "&Enable Replace"
-msgstr "&மாற்றம் இயக்கு"
+msgstr "மாற்றம் இயக்கு (&E)"
 
 #: src/dialog/wxm_find_in_files_dialog.cpp:143
 #: src/dialog/wxm_search_replace_dialog.cpp:154
@@ -1429,17 +1429,17 @@ msgstr "கோப்பு குறியாக்கம்:"
 
 #: src/dialog/wxm_find_in_files_dialog.cpp:182
 msgid "Include Subdirectories"
-msgstr "துணை அடைவுகளைச் சேர்க்கவும்"
+msgstr "துணை அடைவுகளைச் சேர்"
 
 #: src/dialog/wxm_find_in_files_dialog.cpp:210
 #: src/dialog/wxm_search_replace_dialog.cpp:190
 msgid "WxBitmapButtonRecentFindText"
-msgstr "சாஃஇருமவரைபடபட்டன்அண்மைகாலகண்டுபிடிப்புஉரை"
+msgstr "சாஃஇருமவரைபடபட்டன்அண்மைகாலதேடுஉரை"
 
 #: src/dialog/wxm_find_in_files_dialog.cpp:221
 #: src/dialog/wxm_search_replace_dialog.cpp:201
 msgid "WxBitmapButtonRecentReplaceText"
-msgstr "சாஃஇருமவரைபடபட்டன்அண்மைகாலஉரையைமாற்றவும்"
+msgstr "சாஃஇருமவரைபடபட்டன்அண்மைகாலஉரையைமாற்று"
 
 #: src/dialog/wxm_find_in_files_dialog.cpp:392
 msgid "Choose a directory"
@@ -1457,7 +1457,7 @@ msgstr "தேர்ந்தெடுக்கப்பட்ட அடைவ�
 #: src/dialog/wxm_find_in_files_dialog.cpp:655
 #, c-format
 msgid "Processing %d of %d files..."
-msgstr "%d கோப்புகளின் %d இல் செயலாக்குகிறது ..."
+msgstr "%d கோப்புகளின் %d இல் செயலாக்குகிறது..."
 
 #: src/dialog/wxm_find_in_files_dialog.cpp:764
 #, c-format
@@ -1508,19 +1508,19 @@ msgstr "* அடையாளத்துடன் நீங்கள் தி�
 
 #: src/dialog/wxm_highlighting_dialog.cpp:465
 msgid "&Load"
-msgstr "& ஏற்றவும்"
+msgstr "ஏற்றவும் (&L)"
 
 #: src/dialog/wxm_highlighting_dialog.cpp:467
 msgid "&Save"
-msgstr "& சேமிக்கவும்"
+msgstr "சேமி (&S)"
 
 #: src/dialog/wxm_highlighting_dialog.cpp:469 src/wxmedit_frame.cpp:1125
 msgid "&Delete"
-msgstr "&அழி"
+msgstr "அழி (&D)"
 
 #: src/dialog/wxm_highlighting_dialog.cpp:480
 msgid "Bold"
-msgstr "தைரியமான"
+msgstr "தடித்த"
 
 #: src/dialog/wxm_highlighting_dialog.cpp:483
 msgid "Italic"
@@ -1536,7 +1536,7 @@ msgstr "முன்புறம்/உரை நிறம்"
 
 #: src/dialog/wxm_highlighting_dialog.cpp:496
 msgid "WxStaticTextFCName"
-msgstr "Wxstatictext cname"
+msgstr "சாஃநிலையானஉரைமுநிபெயர்"
 
 #: src/dialog/wxm_highlighting_dialog.cpp:502
 #: src/dialog/wxm_highlighting_dialog.cpp:516
@@ -1549,91 +1549,91 @@ msgstr "பின்னணி நிறம்"
 
 #: src/dialog/wxm_highlighting_dialog.cpp:510
 msgid "WxStaticTextBCName"
-msgstr "Wxstatictext cname"
+msgstr "சாஃநிலையானஉரைபிநிபெயர்"
 
 #: src/dialog/wxm_purge_histories_dialog.cpp:56
 msgid "Purge Histories"
-msgstr "வரலாறுகளை சுத்திகரிக்கவும்"
+msgstr "வரலாறுகளை சுத்திகரி"
 
 #: src/dialog/wxm_purge_histories_dialog.cpp:58
 msgid "Select histories to purge"
-msgstr "தூய்மைப்படுத்த வரலாறுகளைத் தேர்ந்தெடுக்கவும்"
+msgstr "தூய்மைப்படுத்த வரலாறுகளைத் தேர்ந்தெடு"
 
 #: src/dialog/wxm_purge_histories_dialog.cpp:59
 msgid "Recent &Files"
-msgstr "சமீபத்திய & கோப்புகள்"
+msgstr "அண்மைக்கால கோப்புகள் (&F)"
 
 #: src/dialog/wxm_purge_histories_dialog.cpp:62
 msgid "Recent Fon&ts"
-msgstr "சமீபத்திய ஃபோன் & டி.எச்"
+msgstr "அண்மைக்கால எழுத்துருக்கள் (&t)"
 
 #: src/dialog/wxm_purge_histories_dialog.cpp:65
 msgid "Recent &Encodings"
-msgstr "சமீபத்திய & குறியாக்கங்கள்"
+msgstr "அண்மைக்கால குறியாக்கங்கள் (&E)"
 
 #: src/dialog/wxm_purge_histories_dialog.cpp:68
 msgid "Recent &Searched Texts"
-msgstr "சமீபத்தில் தேடப்பட்ட உரை"
+msgstr "அண்மைக்காலத்தில் தேடப்பட்ட உரைகள் (&S)"
 
 #: src/dialog/wxm_purge_histories_dialog.cpp:71
 msgid "Recent &Replaced Texts"
-msgstr "சமீபத்தில் மாற்றப்பட் உரை"
+msgstr "அண்மைக்காலத்தில் மாற்றப்பட்ட உரைகள் (&R)"
 
 #: src/dialog/wxm_purge_histories_dialog.cpp:74
 msgid "Recent Searched &Directories"
-msgstr "சமீபத்திய தேடல் & கோப்பகங்கள்"
+msgstr "அண்மைக்கால தேடல் கோப்பகங்கள் (&D)"
 
 #: src/dialog/wxm_purge_histories_dialog.cpp:77
 msgid "Recent Searched File Fi&lters"
-msgstr "சமீபத்திய கோப்பு தேடல் வடிப்பான்கள்"
+msgstr "அண்மைக்கால கோப்பு தேடல் வடிப்பான்கள் (&l)"
 
 #: src/dialog/wxm_purge_histories_dialog.cpp:80
 msgid "Recent Searched E&xclude Filters"
-msgstr "சமீபத்திய தேடல் வடிப்பான்களை விலக்குகிறது"
+msgstr "அண்மைக்கால தேடல் வடிப்பான்களை விலக்குகிறது (&x)"
 
 #: src/dialog/wxm_purge_histories_dialog.cpp:85
 msgid "&Purge"
-msgstr "&களையெடுப்பு"
+msgstr "களையெடுப்பு (&P)"
 
 #: src/dialog/wxm_search_replace_dialog.cpp:107
 msgid "&Move Focus to Editor Window"
-msgstr "திருத்தி சாளரத்தில் கவனம் செலுத்தவும்"
+msgstr "திருத்தி சாளரத்தில் கவனம் செலுத்தவும் (&M)"
 
 #: src/dialog/wxm_search_replace_dialog.cpp:110
 msgid "Wrap aroun&d"
-msgstr "சுற்றி மடக்கு"
+msgstr "சுற்றி மடி (&d)"
 
 #: src/dialog/wxm_search_replace_dialog.cpp:126
 msgid "Search In &Selection"
-msgstr "தேடு & தேர்வு"
+msgstr "தேர்வில் தேடு  (&S)"
 
 #: src/dialog/wxm_search_replace_dialog.cpp:141 src/wxmedit_frame.cpp:1198
 msgid "Find &Next"
-msgstr "அடுத்ததை தேடு"
+msgstr "அடுத்ததை தேடு (&N)"
 
 #: src/dialog/wxm_search_replace_dialog.cpp:144 src/wxmedit_frame.cpp:1199
 msgid "Find &Previous"
-msgstr "கண்டுபிடி & முந்தைய"
+msgstr "முந்தையது தேடு (&P)"
 
 #: src/dialog/wxm_search_replace_dialog.cpp:146
 msgid "C&ount"
-msgstr "சி & ount"
+msgstr "எண்ணிக்கை (&o)"
 
 #: src/dialog/wxm_search_replace_dialog.cpp:150
 msgid "Replace &All"
-msgstr "அனைத்தையும் மாற்று"
+msgstr "அனைத்தையும் மாற்று (&A)"
 
 #: src/dialog/wxm_search_replace_dialog.cpp:152
 msgid "&Replace >>"
-msgstr "& மாற்றவும் >>"
+msgstr "மாற்று >> (&R)"
 
 #: src/dialog/wxm_search_replace_dialog.cpp:313
 msgid "End of selection reached, search from beginning."
-msgstr "தேர்வு முடிவடைந்தது, ஆரம்பத்திலிருந்து தேடுங்கள்."
+msgstr "தேர்வு முடிவடைந்தது, ஆரம்பத்திலிருந்து தேடு."
 
 #: src/dialog/wxm_search_replace_dialog.cpp:314
 msgid "End of file reached, search from beginning."
-msgstr "கோப்பின் முடிவை அடைந்தது, ஆரம்பத்தில் இருந்து தேடுங்கள்."
+msgstr "கோப்பின் முடிவை அடைந்தது, ஆரம்பத்தில் இருந்து தேடு."
 
 #: src/dialog/wxm_search_replace_dialog.cpp:322
 #: src/dialog/wxm_search_replace_dialog.cpp:413
@@ -1659,19 +1659,19 @@ msgstr "பொருந்திய சரத்தை கண்டுபிட�
 
 #: src/dialog/wxm_search_replace_dialog.cpp:404
 msgid "Beginning of selection reached, search from end."
-msgstr "தேர்வின் ஆரம்பம், முடிவில் இருந்து தேடுங்கள்."
+msgstr "தேர்வின் ஆரம்பம், முடிவில் இருந்து தேடு."
 
 #: src/dialog/wxm_search_replace_dialog.cpp:405
 msgid "Beginning of file reached, search from end."
-msgstr "கோப்பின் ஆரம்பம், முடிவில் இருந்து தேடுங்கள்."
+msgstr "கோப்பின் ஆரம்பம், முடிவில் இருந்து தேடு."
 
 #: src/dialog/wxm_search_replace_dialog.cpp:683
 msgid "End of selection reached, replace from beginning."
-msgstr "தேர்வின் முடிவு எட்டப்பட்டது, ஆரம்பத்தில் இருந்து மாற்றவும்."
+msgstr "தேர்வின் முடிவு எட்டப்பட்டது, ஆரம்பத்தில் இருந்து மாற்று."
 
 #: src/dialog/wxm_search_replace_dialog.cpp:684
 msgid "End of file reached, replace from beginning."
-msgstr "கோப்பின் முடிவு, தொடக்கத்திலிருந்து மாற்றவும்."
+msgstr "கோப்பின் முடிவு, தொடக்கத்திலிருந்து மாற்று."
 
 #: src/dialog/wxm_search_replace_dialog.cpp:741
 msgid "Cannot find the matched string. Replace is finished."
@@ -1680,7 +1680,7 @@ msgstr "பொருந்திய சரத்தை கண்டுபிட�
 #: src/dialog/wxm_search_replace_dialog.cpp:807
 #, c-format
 msgid "'%s' was found %d times."
-msgstr "' %s' %d முறை காணப்பட்டது."
+msgstr "'%s' %d முறை காணப்பட்டது."
 
 #: src/dialog/wxm_search_replace_dialog.cpp:866
 msgid "Cannot find any matched string."
@@ -1689,7 +1689,7 @@ msgstr "பொருந்திய எந்த சரத்தையும் 
 #: src/dialog/wxm_search_replace_dialog.cpp:868
 #, c-format
 msgid "%d string(s) were replaced."
-msgstr "%d சரம் (கள்) மாற்றப்பட்டன."
+msgstr "%d சரம்(கள்) மாற்றப்பட்டன."
 
 #: src/dialog/wxm_search_replace_dialog.cpp:911
 msgid "Search"
@@ -1697,35 +1697,35 @@ msgstr "தேடல்"
 
 #: src/dialog/wxm_search_replace_dialog.cpp:933 src/wxmedit_frame.cpp:1990
 msgid "Replace"
-msgstr "மாற்றவும்"
+msgstr "மாற்று"
 
 #: src/dialog/wxm_sort_dialog.cpp:47
 msgid "Sort Options"
-msgstr "விருப்பங்களை வரிசைப்படுத்துங்கள்"
+msgstr "வரிசைப்படுத்து விருப்பங்கள்"
 
 #: src/dialog/wxm_sort_dialog.cpp:53
 msgid "&Ascending"
-msgstr "& ஏறுதல்"
+msgstr "ஏறுதல் (&A)"
 
 #: src/dialog/wxm_sort_dialog.cpp:54
 msgid "&Descending"
-msgstr "இறங்கு"
+msgstr "இறங்கு (&D)"
 
 #: src/dialog/wxm_sort_dialog.cpp:56
 msgid "Sort Order"
-msgstr "வரிசையை வரிசைப்படுத்துங்கள்"
+msgstr "வரிசைப்படுத்தும் முறை"
 
 #: src/dialog/wxm_sort_dialog.cpp:61
 msgid "&Numeric Sort"
-msgstr "& எண் வரிசை"
+msgstr "எண் வரிசை (&N)"
 
 #: src/dialog/wxm_sort_dialog.cpp:64
 msgid "&Remove Duplicates"
-msgstr "நகல்களை அகற்று"
+msgstr "நகல்களை அகற்று (&R)"
 
 #: src/dialog/wxm_sort_dialog.cpp:68 src/wxmedit_frame.cpp:1185
 msgid "&Sort"
-msgstr "&வகைபடுத்து"
+msgstr "வரிசைப்படுத்து (&S)"
 
 #: src/dialog/wxm_word_count_dialog.cpp:73
 #: src/dialog/wxm_word_count_dialog.cpp:77
@@ -1758,7 +1758,7 @@ msgstr "சொல் எண்ணிக்கை"
 
 #: src/dialog/wxm_word_count_dialog.cpp:71
 msgid "Lines"
-msgstr "கோடுகள்"
+msgstr "வரிகள்"
 
 #: src/dialog/wxm_word_count_dialog.cpp:75
 msgid "Words"
@@ -1774,15 +1774,15 @@ msgstr "எழுத்துக்கள் (அனைத்தும்)"
 
 #: src/dialog/wxm_word_count_dialog.cpp:87
 msgid "Characters (no controls/spaces)"
-msgstr "எழுத்துக்கள் (கட்டுப்பாடுகள்/இடங்கள் இல்லை)"
+msgstr "எழுத்துக்கள் (கட்டுப்பாடுகள்/இடைவெளிகள் இல்லை)"
 
 #: src/dialog/wxm_word_count_dialog.cpp:91
 msgid "Space Characters"
-msgstr "விண்வெளி எழுத்துக்கள்"
+msgstr "இடைவெளி எழுத்துக்கள்"
 
 #: src/dialog/wxm_word_count_dialog.cpp:95
 msgid "Control Characters"
-msgstr "எழுத்துக்களைக் கட்டுப்படுத்துங்கள்"
+msgstr "கட்டுப்படுத்தும் எழுத்துக்கள்"
 
 #: src/dialog/wxm_word_count_dialog.cpp:99
 msgid "Fullwidth Characters (with East Asian Ambiguous Width Characters)"
@@ -1828,15 +1828,15 @@ msgstr "விருப்பங்கள்"
 
 #: src/dialog/wxmedit_options_dialog.cpp:374
 msgid "Automatically check for new versions: "
-msgstr "புதிய பதிப்புகளை தானாக சரிபார்க்கவும்:"
+msgstr "புதிய பதிப்புகளை தானாக சரிபார்:"
 
 #: src/dialog/wxmedit_options_dialog.cpp:378
 msgid "Check &now"
-msgstr "இப்போது சரிபார்க்க"
+msgstr "இப்போது சரிபார்க்க (&n)"
 
 #: src/dialog/wxmedit_options_dialog.cpp:381
 msgid "Check for new versions including &prereleases"
-msgstr "& Prearelases உள்ளிட்ட புதிய பதிப்புகளைச் சரிபார்க்கவும்"
+msgstr "முன்வெளியீடு உள்ளிட்ட புதிய பதிப்புகளைச் சரிபார் (&p)"
 
 #: src/dialog/wxmedit_options_dialog.cpp:388
 msgid "Language of User Interface (must restart wxMEdit)"
@@ -1854,7 +1854,7 @@ msgid ""
 "encoding of existing file"
 msgstr ""
 "புதிய கோப்பை உருவாக்க இந்த குறியாக்கத்தைப் பயன்படுத்தவும் அல்லது சாஃபிதிருத்தி இல்"
-" இருக்கும் கோப்பின் குறியாக்கத்தை தீர்மானிக்க முடியாது"
+"இருக்கும் கோப்பின் குறியாக்கத்தை தீர்மானிக்க முடியாது"
 
 #: src/dialog/wxmedit_options_dialog.cpp:406
 msgid "Single Instance (must restart wxMEdit)"
@@ -1866,20 +1866,20 @@ msgstr "தொடக்கத்தில் முன்பு திறக்�
 
 #: src/dialog/wxmedit_options_dialog.cpp:412
 msgid "Record caret movements in undo list"
-msgstr "செயல்தவிர் பட்டியலில் செங்குத்து கோடு அசைவுகளை பதிவு செய்யவும்"
+msgstr "செயல்தவிர் பட்டியலில் செங்குத்து கோடு அசைவுகளை பதிவு செய்"
 
 #: src/dialog/wxmedit_options_dialog.cpp:415
 msgid "Restore previous caret position when files are opened"
-msgstr "கோப்புகள் திறக்கப்படும் போது முந்தைய செங்குத்து கோடு நிலையை மீட்டெடுக்கவும்"
+msgstr "கோப்புகள் திறக்கப்படும் போது முந்தைய செங்குத்து கோடு நிலையை மீட்டெடு"
 
 #: src/dialog/wxmedit_options_dialog.cpp:429
 msgid "Max line length before Line-Wrap (must restart wxMEdit)"
 msgstr ""
-"வரி மடக்கு முன் அதிகபட்ச வரி நீளம் (சாஃபிதிருத்தி மறுதொடக்கம் செய்ய வேண்டும்)"
+"வரி மடிப்புக்கு முன் அதிகபட்ச வரி நீளம் (சாஃபிதிருத்தி மறுதொடக்கம் செய்ய வேண்டும்)"
 
 #: src/dialog/wxmedit_options_dialog.cpp:435
 msgid "Columns of Wrap-By-Column"
-msgstr "நெடுவரிசை மூலம் மடக்கு நெடுவரிசைகள்"
+msgstr "நெடுவரிசை மூலம் மடிப்பு நெடுவரிசைகள்"
 
 #: src/dialog/wxmedit_options_dialog.cpp:441
 msgid "Columns of Tab"
@@ -1891,7 +1891,7 @@ msgstr "உள்தள்ளலின் நெடுவரிசைகள்"
 
 #: src/dialog/wxmedit_options_dialog.cpp:450
 msgid "Insert Space char instead of Tab char"
-msgstr "உள்தள்ளலுக்குப் பதிலாக இடைவெளியைச் செருகவும்"
+msgstr "உள்தள்ளலுக்குப் பதிலாக இடைவெளியைச் செருகு"
 
 #: src/dialog/wxmedit_options_dialog.cpp:453
 msgid "Auto Indent"
@@ -1903,16 +1903,16 @@ msgstr "தானாக முழுமை எழுத்து இணை"
 
 #: src/dialog/wxmedit_options_dialog.cpp:460
 msgid "Auto copy the mouse-selected text to clipboard"
-msgstr "சுட்டி தேர்ந்தெடுக்கப்பட்ட உரையை கிளிப்போர்டுக்கு தானாக நகலெடுக்கவும்"
+msgstr "சுட்டி தேர்ந்தெடுக்கப்பட்ட உரையை இடைநிலைப் பலகைக்கு தானாக நகலெடு"
 
 #: src/dialog/wxmedit_options_dialog.cpp:463
 msgid "when pressing Ctrl key"
-msgstr "CTRL விசையை அழுத்தும்போது"
+msgstr "கட்டுப்பாடு விசையை அழுத்தும்போது"
 
 #: src/dialog/wxmedit_options_dialog.cpp:467
 msgid "Paste text from clipboard when pressing middle mouse button"
 msgstr ""
-"நடுத்தர சுட்டி பொத்தானை அழுத்தும்போது கிளிப்போர்டிலிருந்து உரையை ஒட்டவும்"
+"நடுத்தர சுட்டி பொத்தானை அழுத்தும்போது இடைநிலைப் பலகையிலிருந்து உரையை ஒட்டவும்"
 
 #: src/dialog/wxmedit_options_dialog.cpp:471
 msgid "Behavior of copying in hex editing area:"
@@ -1929,27 +1929,27 @@ msgstr "உரை பயன்முறை"
 
 #: src/dialog/wxmedit_options_dialog.cpp:491
 msgid "Print Syntax Highlighter"
-msgstr "தொடரியல் ஐமெல்லியடரை அச்சிடுக"
+msgstr "தொடரியல் முன்னிலைப்படுத்தியை அச்சிடு"
 
 #: src/dialog/wxmedit_options_dialog.cpp:494
 msgid "Print Line Number"
-msgstr "வரி எண் அச்சிடுக"
+msgstr "வரி எண் அச்சிடு"
 
 #: src/dialog/wxmedit_options_dialog.cpp:497
 msgid "Print Bookmark"
-msgstr "புக்மார்க்கை அச்சிடுக"
+msgstr "புத்தக்குறியை அச்சிடு"
 
 #: src/dialog/wxmedit_options_dialog.cpp:500
 msgid "Print End of Line"
-msgstr "வரியின் முடிவை அச்சிடுங்கள்"
+msgstr "வரிமுடிவை அச்சிடு"
 
 #: src/dialog/wxmedit_options_dialog.cpp:503
 msgid "Print Tab Char"
-msgstr "அச்சு தாவல் எழுத்து"
+msgstr "தாவல் எழுத்து அச்சிடு"
 
 #: src/dialog/wxmedit_options_dialog.cpp:506
 msgid "Print Space Char"
-msgstr "இடைவெளி எழுத்து அச்சு"
+msgstr "இடைவெளி எழுத்து அச்சிடு"
 
 #: src/dialog/wxmedit_options_dialog.cpp:510 src/wxmedit_frame.cpp:2006
 msgid "Hex Mode"
@@ -1965,7 +1965,7 @@ msgstr "ஒவ்வொரு பக்கமும்"
 
 #: src/dialog/wxmedit_options_dialog.cpp:517
 msgid "Print Offset Header"
-msgstr "ஆஃப்செட் தலைப்பு அச்சிடுக"
+msgstr "ஈடுசெய்த தலைப்பு அச்சிடு"
 
 #: src/dialog/wxmedit_options_dialog.cpp:522
 msgid "Page Header"
@@ -1973,7 +1973,7 @@ msgstr "பக்க தலைப்பு"
 
 #: src/dialog/wxmedit_options_dialog.cpp:523
 msgid "Print Page Header"
-msgstr "பக்க தலைப்பு அச்சிடுக"
+msgstr "பக்க தலைப்பு அச்சிடு"
 
 #: src/dialog/wxmedit_options_dialog.cpp:527
 #: src/dialog/wxmedit_options_dialog.cpp:552
@@ -1998,7 +1998,7 @@ msgstr "மையம்:"
 #: src/dialog/wxmedit_options_dialog.cpp:539
 #: src/dialog/wxmedit_options_dialog.cpp:564
 msgid "Right:"
-msgstr "சரி:"
+msgstr "வலது:"
 
 #: src/dialog/wxmedit_options_dialog.cpp:547
 msgid "Page Footer"
@@ -2006,7 +2006,7 @@ msgstr "பக்க அடிக்குறிப்பு"
 
 #: src/dialog/wxmedit_options_dialog.cpp:548
 msgid "Print Page Footer"
-msgstr "பக்கத்தை அச்சிடுக"
+msgstr "பக்கத்தை அச்சிடு"
 
 #: src/dialog/wxmedit_options_dialog.cpp:586
 msgid "Hint:"
@@ -2022,7 +2022,7 @@ msgstr "புதிய விசை:"
 
 #: src/dialog/wxmedit_options_dialog.cpp:608
 msgid "<== Add Key"
-msgstr "<== விசையைச் சேர்க்கவும்"
+msgstr "<== விசையைச் சேர்"
 
 #: src/dialog/wxmedit_options_dialog.cpp:610
 msgid "==> Delete Key"
@@ -2030,12 +2030,12 @@ msgstr "==> விசையை நீக்கு"
 
 #: src/dialog/wxmedit_options_dialog.cpp:612
 msgid "Show the Key in Menu"
-msgstr "மெனுவில் விசையைக் காட்டு"
+msgstr "பட்டியலில் விசையைக் காட்டு"
 
 #: src/dialog/wxmedit_options_dialog.cpp:618
 msgid "Reset all keys to default (must restart wxMEdit)"
 msgstr ""
-"அனைத்து விசைகளையும் இயல்புநிலைக்கு மீட்டமைக்கவும் (Wxmedit ஐ மறுதொடக்கம் "
+"அனைத்து விசைகளையும் இயல்புநிலைக்கு மீட்டமை (சாஃபிதிருத்தியை மறுதொடக்கம் "
 "செய்ய வேண்டும்)"
 
 #: src/dialog/wxmedit_options_dialog.cpp:631
@@ -2043,7 +2043,7 @@ msgid ""
 "Do not save settings to wxmedit.cfg when wxMEdit closed (this session only)"
 msgstr ""
 "சாஃபிதிருத்தி மூடும்போது அமைப்புகளை சாஃபிதிருத்தி.cfg க்கு சேமிக்க வேண்டாம் (இந்த அமர்வு"
-" மட்டும்)"
+"மட்டும்)"
 
 #: src/dialog/wxmedit_options_dialog.cpp:638
 msgid "Max file size to load as a text file"
@@ -2063,7 +2063,7 @@ msgstr "தற்போதைய இடத்திற்கு பதிலா�
 
 #: src/dialog/wxmedit_options_dialog.cpp:659
 msgid "Enable dot matching newline in regular expression"
-msgstr "வழக்கமான வெளிப்பாட்டில் புதிய இடத்தைப் பொருத்த DOT ஐ இயக்கவும்"
+msgstr "வழக்கமான வெளிப்பாட்டில் புதியவரியைப் பொருத்த புள்ளியை இயக்கு"
 
 #: src/dialog/wxmedit_options_dialog.cpp:667
 msgid "General"
@@ -2071,11 +2071,11 @@ msgstr "பொது"
 
 #: src/dialog/wxmedit_options_dialog.cpp:668
 msgid "Edit"
-msgstr "தொகு"
+msgstr "திருத்து"
 
 #: src/dialog/wxmedit_options_dialog.cpp:669
 msgid "Print"
-msgstr "அச்சிடுக"
+msgstr "அச்சிடு"
 
 #: src/dialog/wxmedit_options_dialog.cpp:670
 msgid "Keys"
@@ -2083,48 +2083,48 @@ msgstr "விசைகள்"
 
 #: src/dialog/wxmedit_options_dialog.cpp:671
 msgid "Misc"
-msgstr "தவறான"
+msgstr "இதர"
 
 #: src/dialog/wxmedit_options_dialog.cpp:705
 #, c-format
 msgid "[%f] &File Name"
-msgstr "[%f] & கோப்பு பெயர்"
+msgstr "[%f] கோப்பு பெயர் (&F)"
 
 #: src/dialog/wxmedit_options_dialog.cpp:706
 #, c-format
 msgid "[%p] &Path Name"
-msgstr "[%ப] & பாதை பெயர்"
+msgstr "[%p] பாதை பெயர் (&P)"
 
 #: src/dialog/wxmedit_options_dialog.cpp:708
 #, c-format
 msgid "[%n] Page &Number"
-msgstr "[%n] பக்கம் & எண்"
+msgstr "[%n] பக்கம் எண் (&N)"
 
 #: src/dialog/wxmedit_options_dialog.cpp:709
 #, c-format
 msgid "[%s] Total Page&s"
-msgstr "[%s] மொத்த பக்கம் & கள்"
+msgstr "[%s] மொத்த பக்கங்கள் (&s)"
 
 #: src/dialog/wxmedit_options_dialog.cpp:711
 #, c-format
 msgid "[%d] &Date"
-msgstr "[%d] & தேதி"
+msgstr "[%d] தேதி (&D)"
 
 #: src/dialog/wxmedit_options_dialog.cpp:712
 msgid "[%t] &Time"
-msgstr "[%t] & நேரம்"
+msgstr "[%t] நேரம் (&T)"
 
 #: src/dialog/wxmedit_options_dialog.cpp:714
 msgid "[%Y/%m/%d %I:%M:%s %p] 2007/02/24 08:30:55 AM"
-msgstr "[%Y/%m/%d%i:%m:%s%p] 2007/02/24 08:30:55 AM"
+msgstr "[%Y/%m/%d %I:%M:%s %p] 2007/02/24 08:30:55 AM"
 
 #: src/dialog/wxmedit_options_dialog.cpp:715
 msgid "[%d/%m/%Y] 24/02/2007"
-msgstr "[%d/%m/%y] 24/02/2007"
+msgstr "[%d/%m/%Y] 24/02/2007"
 
 #: src/dialog/wxmedit_options_dialog.cpp:716
 msgid "[%a, %d %b %Y %H:%M:%s %z] RFC822 timestamp"
-msgstr "[ %a, %d %b %y %h: %m: %s %z] rfc822 நேர முத்திரை"
+msgstr "[%a, %d %b %Y %H:%M:%s %z] ஆர்எஃப்சி822 நேர முத்திரை"
 
 #: src/dialog/wxmedit_options_dialog.cpp:718
 #, c-format
@@ -2138,21 +2138,21 @@ msgstr "[%A] முழு வார நாள் பெயர்"
 
 #: src/dialog/wxmedit_options_dialog.cpp:720
 msgid "[%b] Abbreviated month name"
-msgstr "[%b] சுருக்கமான மாத பெயர்"
+msgstr "[%b] சுருக்கமான திங்கள் பெயர்"
 
 #: src/dialog/wxmedit_options_dialog.cpp:721
 msgid "[%B] Full month name"
-msgstr "[%B] முழு மாத பெயர்"
+msgstr "[%B] முழு திங்கள் பெயர்"
 
 #: src/dialog/wxmedit_options_dialog.cpp:722
 #, c-format
 msgid "[%c] Date and time representation appropriate for locale"
-msgstr "[%c] இருப்பிடத்திற்கு பொருத்தமான தேதி மற்றும் நேர பிரதிநிதித்துவம்"
+msgstr "[%c] இருப்பிடத்திற்கு பொருத்தமான தேதி மற்றும் நேர வடிவம்"
 
 #: src/dialog/wxmedit_options_dialog.cpp:723
 #, c-format
 msgid "[%d] Day of month as decimal number (01 - 31)"
-msgstr "[%d] தசம எண்ணாக மாதத்தின் நாள் (01 - 31)"
+msgstr "[%d] பத்து எண்ணாக திங்களின் நாள் (01 - 31)"
 
 #: src/dialog/wxmedit_options_dialog.cpp:724
 msgid "[%H] Hour in 24-hour format (00 - 23)"
@@ -2164,62 +2164,62 @@ msgstr "[%I] மணிநேரம் 12 மணி நேர வடிவத்�
 
 #: src/dialog/wxmedit_options_dialog.cpp:726
 msgid "[%j] Day of year as decimal number (001 - 366)"
-msgstr "[%j] ஆண்டின் நாள் தசம எண்ணாக (001 - 366)"
+msgstr "[%j] ஆண்டின் நாள் பத்து எண்ணாக (001 - 366)"
 
 #: src/dialog/wxmedit_options_dialog.cpp:727
 #, c-format
 msgid "[%m] Month as decimal number (01 - 12)"
-msgstr "[%மீ] தசம எண்ணாக மாதம் (01 - 12)"
+msgstr "[%m] திங்கள் பத்து எண்ணாக (01 - 12)"
 
 #: src/dialog/wxmedit_options_dialog.cpp:728
 msgid "[%M] Minute as decimal number (00 - 59)"
-msgstr "[%மீ] நிமிடமாக தசம எண்ணாக (00 - 59)"
+msgstr "[%M] மணிதுளி பத்து எண்ணாக (00 - 59)"
 
 #: src/dialog/wxmedit_options_dialog.cpp:729
 #, c-format
 msgid "[%p] Current locale's A.M./P.M. indicator for 12-hour clock"
-msgstr "[%p] தற்போதைய லோகேலின் a.m./p.m. 12 மணி நேர கடிகாரத்திற்கான காட்டி"
+msgstr "[%p] தற்போதைய வட்டாரத்தின் வை.கா./எ.மா. 12 மணி நேர கடிகாரத்திற்கான காட்டி"
 
 #: src/dialog/wxmedit_options_dialog.cpp:730
 #, c-format
 msgid "[%s] Second as decimal number (00 - 59)"
-msgstr "[%s] தசம எண்ணாக இரண்டாவது (00 - 59)"
+msgstr "[%s] நொடிகள் பத்து எண்ணாக (00 - 59)"
 
 #: src/dialog/wxmedit_options_dialog.cpp:731
 msgid ""
 "[%U] Week of year as decimal number, with Sunday as first day of week (00 - "
 "53)"
 msgstr ""
-"[%U] ஆண்டின் வாரத்தின் தசம எண்ணாக, ஞாயிற்றுக்கிழமை வாரத்தின் முதல் நாளாக (00"
-" - 53)"
+"[%U] ஆண்டின் வாரம் பத்து எண்ணாக, ஞாயிற்றுக்கிழமை வாரத்தின் முதல் நாளாக (00"
+"- 53)"
 
 #: src/dialog/wxmedit_options_dialog.cpp:732
 msgid "[%w] Weekday as decimal number (0 - 6; Sunday is 0)"
-msgstr "[%w] வார நாள் தசம எண்ணாக (0 - 6; ஞாயிறு 0)"
+msgstr "[%w] வார நாள் பத்து எண்ணாக (0 - 6; ஞாயிறு 0)"
 
 #: src/dialog/wxmedit_options_dialog.cpp:733
 msgid ""
 "[%W] Week of year as decimal number, with Monday as first day of week (00 - "
 "53)"
-msgstr "[%W] ஆண்டின் வாரம் தசம எண்ணாக, வாரத்தின் முதல் நாளாக (00 - 53)"
+msgstr "[%W] ஆண்டின் வாரம் பத்து எண்ணாக, வாரத்தின் முதல் நாளாக (00 - 53)"
 
 #: src/dialog/wxmedit_options_dialog.cpp:734
 #, c-format
 msgid "[%x] Date representation for current locale"
-msgstr "[%x] தற்போதைய இடத்திற்கான தேதி பிரதிநிதித்துவம்"
+msgstr "[%x] தற்போதைய இடத்திற்கான தேதி வடிவம்"
 
 #: src/dialog/wxmedit_options_dialog.cpp:735
 #, c-format
 msgid "[%X] Time representation for current locale"
-msgstr "[%X] தற்போதைய இடத்திற்கான நேர பிரதிநிதித்துவம்"
+msgstr "[%X] தற்போதைய இடத்திற்கான நேர வடிவம்"
 
 #: src/dialog/wxmedit_options_dialog.cpp:736
 msgid "[%y] Year without century, as decimal number (00 - 99)"
-msgstr "[%y] ஆண்டு இல்லாத ஆண்டு, தசம எண்ணாக (00 - 99)"
+msgstr "[%y] ஆண்டு இல்லாத ஆண்டு, பத்து எண்ணாக (00 - 99)"
 
 #: src/dialog/wxmedit_options_dialog.cpp:737
 msgid "[%Y] Year with century, as decimal number"
-msgstr "[%Y] நூற்றாண்டுடன், தசம எண்ணிக்கையாக"
+msgstr "[%Y] நூற்றாண்டுடன், பத்து எண்ணிக்கையாக"
 
 #: src/dialog/wxmedit_options_dialog.cpp:738
 msgid "[%z] Time-zone name"
@@ -2245,7 +2245,7 @@ msgid ""
 "Add wxMEdit to the RightClickMenu of Explorer(Deselect to Remove the Entry "
 "from Windows Registry)"
 msgstr ""
-"எக்ச்ப்ளோரரின் வலது கிளிக்மெனுவில் சாஃபிதிருத்தி ஐச் சேர்க்கவும் (சாளரங்கள் "
+"உலாவியின் வலது சொடுக்கபட்டியலில் சாஃபிதிருத்தி ஐச் சேர் (சாளரங்கள் "
 "பதிவேட்டில் இருந்து உள்ளீட்டை அகற்ற தேர்வு செய்யுங்கள்)"
 
 #: src/dialog/wxmedit_options_dialog.cpp:780
@@ -2287,9 +2287,9 @@ msgid ""
 "The file size is %s bytes.\n"
 "It may take long time and large memories to convert to Text/Column Mode."
 msgstr ""
-"நீங்கள் தொடர விரும்புகிறீர்களா? \n"
-" கோப்பு அளவு %s பைட்டுகள். \n"
-" உரை/நெடுவரிசை பயன்முறைக்கு மாற்ற நீண்ட நேரம் மற்றும் பெரிய நினைவுகள் ஆகலாம்."
+"நீங்கள் தொடர விரும்புகிறீர்களா?\n"
+"கோப்பு அளவு %s பைட்டுகள்.\n"
+"உரை/நெடுவரிசை பயன்முறைக்கு மாற்ற நீண்ட நேரம் மற்றும் பெரிய நினைவுகள் ஆகலாம்."
 
 #: src/wxm/edit/inframe.cpp:1033
 msgid "Hex Mode to Text/Column Mode"
@@ -2297,45 +2297,45 @@ msgstr "உரை/நெடுவரிசை பயன்முறைக்க�
 
 #: src/wxm/edit/inframe.cpp:121
 msgid "INS"
-msgstr "இன்ச்"
+msgstr "சொருக"
 
 #: src/wxm/edit/inframe.cpp:122
 msgid "OVR"
-msgstr "Ovr"
+msgstr "மேல்எழுத"
 
 #: src/wxm/edit/inframe.cpp:128
 msgid "ReadOnly"
-msgstr "படிக்க"
+msgstr "படிக்கமட்டும்"
 
 #: src/wxm/edit/inframe.cpp:155
 #, c-format
 msgid "Ln: %s/%s"
-msgstr "Ln: %s/ %s"
+msgstr "வரி: %s/ %s"
 
 #: src/wxm/edit/inframe.cpp:156
 #, c-format
-msgid " (Sub: %s)"
+msgid "(Sub: %s)"
 msgstr "(துணை: %s)"
 
 #: src/wxm/edit/inframe.cpp:157
 #, c-format
-msgid " Col: %s"
-msgstr "கோல்: %s"
+msgid "Col: %s"
+msgstr "நெடு: %s"
 
 #: src/wxm/edit/inframe.cpp:161
 #, c-format
 msgid "CharPos: %s/%s"
-msgstr "குற்றச்சாட்டு: %s/ %s"
+msgstr "எழுத்துநிலை: %s/ %s"
 
 #: src/wxm/edit/inframe.cpp:162
 #, c-format
-msgid " (%s)"
+msgid "(%s)"
 msgstr "(%s)"
 
 #: src/wxm/edit/inframe.cpp:165
 #, c-format
 msgid "SelSize: %s"
-msgstr "Selsize: %s"
+msgstr "தேர்வுஅளவு: %s"
 
 #: src/wxm/edit/inframe.cpp:976
 msgid "Do you want to discard changes?"
@@ -2343,20 +2343,20 @@ msgstr "மாற்றங்களை நிராகரிக்க விர�
 
 #: src/wxm/recent_list.cpp:111
 msgid "[EMPTY]"
-msgstr "[காலியாக]"
+msgstr "[வெறுமை]"
 
 #: src/wxm/searcher.cpp:1279
 #, c-format
 msgid "'%s' is not a valid regular expression."
-msgstr "'%எச்' என்பது சரியான வழக்கமான வெளிப்பாடு அல்ல."
+msgstr "'%s' என்பது சரியான வழக்கமான வெளிப்பாடு அல்ல."
 
 #: src/wxm/searcher.cpp:1298
 msgid ""
 "Catched a exception of 'regex_error'.\n"
 "Maybe the regular expression is invalid."
 msgstr ""
-"'Regex_error' ஐத் தவிர. \n"
-" வழக்கமான வெளிப்பாடு தவறானது."
+"'வழக்கவெளி_பிழை' ஐத் தவிர.\n"
+"வழக்கமான வெளிப்பாடு தவறானது."
 
 #: src/wxm/searcher.cpp:1346
 #, c-format
@@ -2381,8 +2381,8 @@ msgid ""
 "wxMEdit %s is available. \n"
 "Click OK to open the download page."
 msgstr ""
-"சாஃபிதிருத்தி %s கிடைக்கிறது. \n"
-" பதிவிறக்க பக்கத்தைத் திறக்க சரி என்பதைக் கிளிக் செய்க."
+"சாஃபிதிருத்தி %s கிடைக்கிறது.\n"
+"பதிவிறக்க பக்கத்தைத் திறக்க சரி என்பதைக் சொடுக்கவும்."
 
 #: src/wxm/update.cpp:183
 msgid "every day"
@@ -2394,7 +2394,7 @@ msgstr "ஒவ்வொரு வாரமும்"
 
 #: src/wxm/update.cpp:185
 msgid "every month"
-msgstr "ஒவ்வொரு மாதமும்"
+msgstr "ஒவ்வொரு திங்களும்"
 
 #: src/wxm/update.cpp:186
 msgid "never"
@@ -2402,19 +2402,19 @@ msgstr "ஒருபோதும்"
 
 #: src/wxm/utils.cpp:287
 msgid "Copy as Raw Bytes"
-msgstr "மூல பைட்டுகளாக நகலெடுக்கவும்"
+msgstr "மூல பைட்டுகளாக நகலெடு"
 
 #: src/wxm/utils.cpp:288
 msgid "Copy as Regular Text"
-msgstr "வழக்கமான உரையாக நகலெடுக்கவும்"
+msgstr "வழக்கமான உரையாக நகலெடு"
 
 #: src/wxm/utils.cpp:289
 msgid "Copy as Hex String"
-msgstr "பதின்ம சரமாக நகலெடுக்கவும்"
+msgstr "பதின்ம சரமாக நகலெடு"
 
 #: src/wxm/utils.cpp:290
 msgid "Copy as Hex String with Spaces"
-msgstr "இடைவெளிகளுடன் பதின்ம சரமாக நகலெடுக்கவும்"
+msgstr "இடைவெளிகளுடன் பதின்ம சரமாக நகலெடு"
 
 #: src/wxm/utils.cpp:373
 msgid "Never"
@@ -2434,7 +2434,7 @@ msgstr "எப்போதும்"
 
 #: src/wxm_printout.h:30
 msgid "wxMEdit Printout"
-msgstr "சாஃபிதிருத்தி printout"
+msgstr "சாஃபிதிருத்தி அச்சிடு"
 
 #: src/wxmedit/wxm_lines.cpp:42
 msgid "CR/0D (Classic Mac OS)"
@@ -2442,15 +2442,15 @@ msgstr "வதி/0D (பாரம்பரிய மேக்)"
 
 #: src/wxmedit/wxm_lines.cpp:43
 msgid "LF/0A (UNIX/macOS)"
-msgstr "வஉ/0A (யுனிக்சு/macos)"
+msgstr "வஉ/0A (யுனிக்சு/மேக்)"
 
 #: src/wxmedit/wxm_lines.cpp:44
 msgid "CRLF/0D0A (Windows/DOS)"
-msgstr "Crlf/0d0a (சாளரங்கள்/வமுஇ)"
+msgstr "வதிவஉ/0d0a (சாளரங்கள்/வமுஇ)"
 
 #: src/wxmedit/wxm_lines.cpp:45
 msgid "No EOL"
-msgstr "இல்லை EOL"
+msgstr "வரிமுடிவு இல்லை"
 
 #: src/wxmedit/wxmedit_advanced.cpp:1306 src/xm/ublock_des.cpp:371
 msgid "Invalid Unicode Characters"
@@ -2471,7 +2471,7 @@ msgstr "இந்த கோப்பை சேமிக்க விரும்
 
 #: src/wxmedit/wxmedit_basic.cpp:1736
 msgid "Save File As"
-msgstr "கோப்பை சேமிக்கவும்"
+msgstr "கோப்பை சேமி"
 
 #: src/wxmedit/wxmedit_basic.cpp:1740 src/wxmedit_frame.cpp:1961
 msgid "Save File"
@@ -2479,11 +2479,11 @@ msgstr "கோப்பை சேமி"
 
 #: src/wxmedit_frame.cpp:1077
 msgid "&File"
-msgstr "&கோப்பு"
+msgstr "கோப்பு (&F)"
 
 #: src/wxmedit_frame.cpp:1078
 msgid "&New File"
-msgstr "& புதிய கோப்பு"
+msgstr "புதிய கோப்பு (&N)"
 
 #: src/wxmedit_frame.cpp:1078
 msgid "Create a new file"
@@ -2491,39 +2491,39 @@ msgstr "புதிய கோப்பை உருவாக்கவும்"
 
 #: src/wxmedit_frame.cpp:1079
 msgid "&Open File..."
-msgstr "& திறந்த கோப்பு ..."
+msgstr "கோப்பு திற... (&O)"
 
 #: src/wxmedit_frame.cpp:1079
 msgid "Open an existing file"
-msgstr "ஏற்கனவே உள்ள கோப்பைத் திறக்கவும்"
+msgstr "ஏற்கனவே உள்ள கோப்பைத் திற"
 
 #: src/wxmedit_frame.cpp:1081
 msgid "&Save File"
-msgstr "&கோப்பை சேமி"
+msgstr "கோப்பை சேமி (&S)"
 
 #: src/wxmedit_frame.cpp:1081
 msgid "Save the file"
-msgstr "கோப்பைச் சேமிக்கவும்"
+msgstr "கோப்பைச் சேமி"
 
 #: src/wxmedit_frame.cpp:1082
 msgid "Save &As..."
-msgstr "சேமி ..."
+msgstr "என சேமி... (&A)"
 
 #: src/wxmedit_frame.cpp:1082
 msgid "Save the file with a new name"
-msgstr "புதிய பெயருடன் கோப்பை சேமிக்கவும்"
+msgstr "புதிய பெயருடன் கோப்பை சேமி"
 
 #: src/wxmedit_frame.cpp:1083
 msgid "Sa&ve All"
-msgstr "அனைத்தையும் சேமிக்கவும்"
+msgstr "அனைத்தையும் சேமி (&v)"
 
 #: src/wxmedit_frame.cpp:1083
 msgid "Save all files"
-msgstr "எல்லா கோப்புகளையும் சேமிக்கவும்"
+msgstr "எல்லா கோப்புகளையும் சேமி"
 
 #: src/wxmedit_frame.cpp:1085
 msgid "&Reload File"
-msgstr "& மீண்டும் ஏற்றவும்"
+msgstr "மீண்டும் ஏற்றவும் (&R)"
 
 #: src/wxmedit_frame.cpp:1085
 msgid "Reload the file"
@@ -2531,7 +2531,7 @@ msgstr "கோப்பை மீண்டும் ஏற்றவும்"
 
 #: src/wxmedit_frame.cpp:1087
 msgid "&Close File"
-msgstr "& கோப்பை மூடு"
+msgstr "கோப்பை மூடு (&C)"
 
 #: src/wxmedit_frame.cpp:1087
 msgid "Close the file"
@@ -2539,7 +2539,7 @@ msgstr "கோப்பை மூடு"
 
 #: src/wxmedit_frame.cpp:1088
 msgid "C&lose All"
-msgstr "சி & அனைத்தையும் இழக்க"
+msgstr "அனைத்தையும் மூடு (&l)"
 
 #: src/wxmedit_frame.cpp:1088
 msgid "Close all files"
@@ -2547,7 +2547,7 @@ msgstr "எல்லா கோப்புகளையும் மூடு"
 
 #: src/wxmedit_frame.cpp:1089
 msgid "Close All under &Folder..."
-msgstr "அண்டர் அண்டர் & கோப்புறையை மூடு ..."
+msgstr "கோப்புறையின் கீழ் அனைத்தையும் மூடு... (&F)"
 
 #: src/wxmedit_frame.cpp:1089
 msgid "Close all files in given folder and in all the subfolders"
@@ -2557,11 +2557,11 @@ msgstr ""
 
 #: src/wxmedit_frame.cpp:1090
 msgid "Close &More"
-msgstr "மூடு & மேலும்"
+msgstr "மேலும் மூடு (&M)"
 
 #: src/wxmedit_frame.cpp:1091
 msgid "Close All &BUT This"
-msgstr "அனைத்தையும் மூடு & ஆனால் இது"
+msgstr "அனைத்தையும் மூடு ஆனால் இது (&B)"
 
 #: src/wxmedit_frame.cpp:1091
 msgid "Close all files except the current one"
@@ -2569,7 +2569,7 @@ msgstr "தற்போதைய ஒன்றைத் தவிர அனைத
 
 #: src/wxmedit_frame.cpp:1092
 msgid "Close All To The &Left"
-msgstr "அனைத்தையும் இடதுபுறம் மூடு"
+msgstr "அனைத்தையும் இடதுபுறம் மூடு (&L)"
 
 #: src/wxmedit_frame.cpp:1092
 msgid "Close all files at the left side of current one"
@@ -2577,7 +2577,7 @@ msgstr "தற்போதைய ஒன்றின் இடது பக்க
 
 #: src/wxmedit_frame.cpp:1093
 msgid "Close All To The &Right"
-msgstr "அனைத்தையும் வலதுபுறம் மூடு"
+msgstr "அனைத்தையும் வலதுபுறம் மூடு (&R)"
 
 #: src/wxmedit_frame.cpp:1093
 msgid "Close all files at the right side of current one"
@@ -2585,63 +2585,63 @@ msgstr "தற்போதைய ஒன்றின் வலது பக்க
 
 #: src/wxmedit_frame.cpp:1095
 msgid "Copy File Pat&h"
-msgstr "கோப்பு பாதையை நகலெடுக்கவும்"
+msgstr "கோப்பு பாதையை நகலெடு (&h)"
 
 #: src/wxmedit_frame.cpp:1096
 msgid "Copy &Full Path"
-msgstr "நகல் & முழு பாதை"
+msgstr "நகல் முழு பாதை (&F)"
 
 #: src/wxmedit_frame.cpp:1096
 msgid "Copy full file path to clipboard"
-msgstr "கிளிப்போர்டுக்கு முழு கோப்பு பாதையை நகலெடுக்கவும்"
+msgstr "இடைநிலைப் பலகைக்கு முழு கோப்பு பாதையை நகலெடு"
 
 #: src/wxmedit_frame.cpp:1097
 msgid "Copy File &Name"
-msgstr "கோப்பு பெயரை நகலெடுக்கவும்"
+msgstr "கோப்பு பெயரை நகலெடு (&N)"
 
 #: src/wxmedit_frame.cpp:1097
 msgid "Copy file name to clipboard"
-msgstr "கோப்பு பெயரை கிளிப்போர்டுக்கு நகலெடுக்கவும்"
+msgstr "கோப்பு பெயரை இடைநிலைப் பலகைக்கு நகலெடு"
 
 #: src/wxmedit_frame.cpp:1098
 msgid "Copy Containing &Directory"
-msgstr "கொள்கலன் கோப்பகத்தை நகலெடுக்கவும்"
+msgstr "கொள்கலன் கோப்பகத்தை நகலெடு (&D)"
 
 #: src/wxmedit_frame.cpp:1098
 msgid "Copy containing directory to clipboard"
-msgstr "கிளிப்போர்டுக்கு கோப்பகத்தைக் கொண்ட நகல்"
+msgstr "இடைநிலைப் பலகைக்கு கோப்பகத்தைக் கொண்ட நகல்"
 
 #: src/wxmedit_frame.cpp:1100
 msgid "Page Set&up..."
-msgstr "பக்கம் அமைப்பு..."
+msgstr "பக்கம் அமைப்பு... (&u)"
 
 #: src/wxmedit_frame.cpp:1100
 msgid "Setup the pages for printing"
-msgstr "அச்சிடுவதற்கான பக்கங்களை அமைக்கவும்"
+msgstr "அச்சிடுவதற்கான பக்கங்களை அமை"
 
 #: src/wxmedit_frame.cpp:1101
 msgid "Preview the result of printing"
-msgstr "அச்சிடும் முடிவை முன்னோட்டமிடுங்கள்"
+msgstr "அச்சிடும் முடிவை முன்னோட்டமிடு"
 
 #: src/wxmedit_frame.cpp:1101
 msgid "Print Previe&w..."
-msgstr "அச்சு முன்னோட்டம்..."
+msgstr "அச்சு முன்னோட்டம்... (&w)"
 
 #: src/wxmedit_frame.cpp:1102
 msgid "&Print..."
-msgstr "& அச்சிடுக ..."
+msgstr "அச்சிடு... (&P)"
 
 #: src/wxmedit_frame.cpp:1102
 msgid "Print the file"
-msgstr "கோப்பை அச்சிடுக"
+msgstr "கோப்பை அச்சிடு"
 
 #: src/wxmedit_frame.cpp:1104
 msgid "Recent Files"
-msgstr "சமீபத்திய கோப்புகள்"
+msgstr "அண்மைக்கால கோப்புகள்"
 
 #: src/wxmedit_frame.cpp:1106
 msgid "E&xit"
-msgstr "மின் & xit"
+msgstr "வெளியேறு (&x)"
 
 #: src/wxmedit_frame.cpp:1106
 msgid "Quit wxMEdit"
@@ -2649,27 +2649,27 @@ msgstr "சாஃபிதிருத்தியை விட்டு வெ�
 
 #: src/wxmedit_frame.cpp:1109
 msgid "&Edit"
-msgstr "&தொகு"
+msgstr "திருத்து (&E)"
 
 #: src/wxmedit_frame.cpp:1110
 msgid "&Undo"
-msgstr "& செயல்தவிர்க்கவும்"
+msgstr "செயல்தவிர் (&U)"
 
 #: src/wxmedit_frame.cpp:1110
 msgid "Undo the last action"
-msgstr "கடைசி நடவடிக்கையை செயல்தவிர்க்கவும்"
+msgstr "கடைசி நடவடிக்கையை செயல்தவிர்"
 
 #: src/wxmedit_frame.cpp:1112
 msgid "&Redo"
-msgstr "& மீண்டும்"
+msgstr "மீண்டும்செய் (&R)"
 
 #: src/wxmedit_frame.cpp:1118
 msgid "Redo the previously undone action"
-msgstr "முன்னர் செயல்தவிர்க்காத செயலை மீண்டும் செய்யவும்"
+msgstr "முன்னர் செயல்தவிர்க்காத செயலை மீண்டும் செய்"
 
 #: src/wxmedit_frame.cpp:1121
 msgid "Cu&t"
-msgstr "Cu & T."
+msgstr "வெட்டு (&t)"
 
 #: src/wxmedit_frame.cpp:1121
 msgid "Cut the selection and put it on the Clipboard"
@@ -2677,7 +2677,7 @@ msgstr "தேர்வை வெட்டி இடைநிலைப் பல
 
 #: src/wxmedit_frame.cpp:1122
 msgid "&Copy"
-msgstr "& நகலெடு"
+msgstr "நகலெடு (&C)"
 
 #: src/wxmedit_frame.cpp:1122
 msgid "Copy the selection and put it on the Clipboard"
@@ -2685,19 +2685,19 @@ msgstr "தேர்வை நகலெடுத்து இடைநிலை�
 
 #: src/wxmedit_frame.cpp:1123
 msgid "&Paste"
-msgstr "& பேச்ட்"
+msgstr "ஒட்டு (&P)"
 
 #: src/wxmedit_frame.cpp:1123
 msgid "Insert data from the Clipboard"
-msgstr "கிளிப்போர்டிலிருந்து தரவைச் செருகவும்"
+msgstr "இடைநிலைப் பலகையிலிருந்து தரவைச் செருகு"
 
 #: src/wxmedit_frame.cpp:1124
 msgid "Overwrite data from the Clipboard"
-msgstr "கிளிப்போர்டிலிருந்து தரவை மேலெழுதவும்"
+msgstr "இடைநிலைப் பலகையிலிருந்து தரவை மேலெழுதவும்"
 
 #: src/wxmedit_frame.cpp:1124
 msgid "Paste with Over&writing"
-msgstr "ஓவர் & ரைட்டிங் மூலம் ஒட்டவும்"
+msgstr "மேலெழுதுதல் மூலம் ஒட்டவும் (&w)"
 
 #: src/wxmedit_frame.cpp:1125
 msgid "Delete data"
@@ -2705,7 +2705,7 @@ msgstr "தரவை நீக்கு"
 
 #: src/wxmedit_frame.cpp:1127
 msgid "Cut L&ine"
-msgstr "வெட்டு எல் & இன்"
+msgstr "வரியை வெட்டு (&i)"
 
 #: src/wxmedit_frame.cpp:1127
 msgid "Cut the selected lines and put it on the Clipboard"
@@ -2713,7 +2713,7 @@ msgstr "தேர்ந்தெடுக்கப்பட்ட வரிக�
 
 #: src/wxmedit_frame.cpp:1129
 msgid "Delete &Line"
-msgstr "வரியை நீக்கு"
+msgstr "வரியை நீக்கு (&L)"
 
 #: src/wxmedit_frame.cpp:1135
 msgid "Delete the selected lines"
@@ -2721,54 +2721,54 @@ msgstr "தேர்ந்தெடுக்கப்பட்ட வரிக�
 
 #: src/wxmedit_frame.cpp:1138
 msgid "Select &All"
-msgstr "அனைத்தையும் தெரிவுசெய்"
+msgstr "அனைத்தையும் தேர்ந்தெடு (&A)"
 
 #: src/wxmedit_frame.cpp:1138
 msgid "Select all data"
-msgstr "எல்லா தரவையும் தேர்ந்தெடுக்கவும்"
+msgstr "எல்லா தரவையும் தேர்ந்தெடு"
 
 #: src/wxmedit_frame.cpp:1141
 msgid "Insert Ta&b Char"
-msgstr "தாவல் விளக்கப்படத்தை செருகவும்"
+msgstr "தாவல் எழுத்தை செருகு (&b)"
 
 #: src/wxmedit_frame.cpp:1147
 msgid "Insert a Tab char at current position"
-msgstr "தற்போதைய நிலையில் ஒரு தாவல் எழுத்தை செருகவும்"
+msgstr "தற்போதைய நிலையில் ஒரு தாவல் எழுத்தை செருகு"
 
 #: src/wxmedit_frame.cpp:1149
 msgid "Insert Dat&e and Time"
-msgstr "தேதி மற்றும் நேரத்தை செருகவும்"
+msgstr "தேதி மற்றும் நேரத்தை செருகு (&e)"
 
 #: src/wxmedit_frame.cpp:1149
 msgid "Insert date and time at current position"
-msgstr "தற்போதைய நிலையில் தேதி மற்றும் நேரத்தை செருகவும்"
+msgstr "தற்போதைய நிலையில் தேதி மற்றும் நேரத்தை செருகு"
 
 #: src/wxmedit_frame.cpp:1150
 msgid "Insert &Ordered Sequence..."
-msgstr "செருக & ஆர்டர் செய்யப்பட்ட வரிசை ..."
+msgstr "வரிசைப்படுத்தப்பட்ட வரிசை செருகு... (&O)"
 
 #: src/wxmedit_frame.cpp:1150
 msgid ""
 "Insert ordered sequence with certain format in specified numbering system"
 msgstr ""
 "குறிப்பிட்ட எண் அமைப்பில் சில வடிவத்துடன் வரிசைப்படுத்தப்பட்ட வரிசையை "
-"செருகவும்"
+"செருகு"
 
 #: src/wxmedit_frame.cpp:1153
 msgid "Colum&n"
-msgstr "கோலம் & என்"
+msgstr "நெடுவரிசை (&n)"
 
 #: src/wxmedit_frame.cpp:1154
 msgid "Column &Align"
-msgstr "நெடுவரிசை & சீரமை"
+msgstr "நெடுவரிசை சீரமை (&A)"
 
 #: src/wxmedit_frame.cpp:1154
 msgid "Delete spaces at the right of column selection"
-msgstr "நெடுவரிசை தேர்வின் வலதுபுறத்தில் இடங்களை நீக்கு"
+msgstr "நெடுவரிசை தேர்வின் வலதுபுறத்தில் இடைவெளிகளை நீக்கு"
 
 #: src/wxmedit_frame.cpp:1155
 msgid "Column &Paste"
-msgstr "நெடுவரிசை & பேச்ட்"
+msgstr "நெடுவரிசை ஒட்டு (&P)"
 
 #: src/wxmedit_frame.cpp:1155
 msgid "Paste in each line of column selection"
@@ -2776,322 +2776,322 @@ msgstr "நெடுவரிசை தேர்வின் ஒவ்வொர�
 
 #: src/wxmedit_frame.cpp:1158
 msgid "Ad&vanced"
-msgstr "மேம்படுத்தபட்ட"
+msgstr "மேம்படுத்தபட்ட (&v)"
 
 #: src/wxmedit_frame.cpp:1159
 msgid "Copy As &Hex String"
-msgstr "&பதின்ம சரம் என நகலெடுக்கவும்"
+msgstr "பதின்ம சரம் என நகலெடு (&H)"
 
 #: src/wxmedit_frame.cpp:1159
 msgid "Copy the selection as hex-string"
-msgstr "தேர்வை பதின்ம-சரம் என நகலெடுக்கவும்"
+msgstr "தேர்வை பதின்ம-சரம் என நகலெடு"
 
 #: src/wxmedit_frame.cpp:1160
 msgid "Copy As He&x String with Space"
-msgstr "பதின்ம சரம் இடத்துடன் நகலெடுக்கவும்"
+msgstr "பதின்ம சரம் இடைவெளியுடன் நகலெடு (&x)"
 
 #: src/wxmedit_frame.cpp:1160
 msgid "Copy the selection as hex-string with space"
-msgstr "தேர்வை இடத்துடன் பதின்ம-சரம் என நகலெடுக்கவும்"
+msgstr "தேர்வை இடைவெளியுடன் பதின்ம-சரம் என நகலெடு"
 
 #: src/wxmedit_frame.cpp:1162
 msgid "&Increase Indent"
-msgstr "&உள்தள்ளலை அதிகரிக்கவும்"
+msgstr "உள்தள்ளலை அதிகரி (&I)"
 
 #: src/wxmedit_frame.cpp:1162
 msgid "Increase the indent of seleted lines"
-msgstr "தேர்ந்தெடுக்கப்பட்ட வரிகளின் உள்தள்ளலை அதிகரிக்கவும்"
+msgstr "தேர்ந்தெடுக்கப்பட்ட வரிகளின் உள்தள்ளலை அதிகரி"
 
 #: src/wxmedit_frame.cpp:1163
 msgid "&Decrease Indent"
-msgstr "&உள்தள்ளல் குறைவு"
+msgstr "உள்தள்ளல் குறைவு (&D)"
 
 #: src/wxmedit_frame.cpp:1163
 msgid "Decrease the indent of seleted lines"
-msgstr "தேர்ந்தெடுக்கப்பட்ட கோடுகளின் உள்தள்ளலைக் குறைக்கவும்"
+msgstr "தேர்ந்தெடுக்கப்பட்ட வரிகளின் உள்தள்ளலைக் குறை"
 
 #: src/wxmedit_frame.cpp:1165
 msgid "&Comment"
-msgstr "&கருத்து"
+msgstr "கருத்து (&C)"
 
 #: src/wxmedit_frame.cpp:1165
 msgid "Comment out the selected lines"
-msgstr "தேர்ந்தெடுக்கப்பட்ட வரிகளை கருத்துத் தெரிவிக்கவும்"
+msgstr "தேர்ந்தெடுக்கப்பட்ட வரிகளை கருத்தாக்கு"
 
 #: src/wxmedit_frame.cpp:1166
 msgid "&Uncomment"
-msgstr "&கருத்துநீக்கு"
+msgstr "கருத்துநீக்கு (&U)"
 
 #: src/wxmedit_frame.cpp:1166
 msgid "Uncomment the selected lines"
-msgstr "தேர்ந்தெடுக்கப்பட்ட வரிகளை அவிழ்த்து விடுங்கள்"
+msgstr "தேர்ந்தெடுக்கப்பட்ட வரிகளை கருத்துநீக்குங்கள்"
 
 #: src/wxmedit_frame.cpp:1168
 msgid "Convert WordWraps to NewLine chars in the file or selection"
 msgstr ""
-"கோப்பு அல்லது தேர்வில் வேர்ட் வ்ராப்களை புதியவரி எழுத்துகளுக்கு மாற்றவும்"
+"கோப்பு அல்லது தேர்வில் வரிமடிப்புகளை புதியவரி எழுத்துகளுக்கு மாற்று"
 
 #: src/wxmedit_frame.cpp:1168
 msgid "WordWraps To NewLine Chars"
-msgstr "புதியவரி எழுத்துகளுக்கு வேர்ட் வ்ராப்ச்"
+msgstr "புதியவரி எழுத்துகளுக்கு வரிமடிப்புகள்"
 
 #: src/wxmedit_frame.cpp:1169
 msgid "Convert NewLine chars to WordWraps in the selection"
-msgstr "தேர்வில் புதியவரி எழுத்துக்களை வேர்ட் வ்ராப்களாக மாற்றவும்"
+msgstr "தேர்வில் புதியவரி எழுத்துக்களை வரிமடிப்புகளாக மாற்று"
 
 #: src/wxmedit_frame.cpp:1169
 msgid "NewLine Chars To WordWraps"
-msgstr "வேர்ட் வ்ராப்களுக்கு புதியவரி எழுத்துக்கள்"
+msgstr "வரிமடிப்புகளுக்கு புதியவரி எழுத்துக்கள்"
 
 #: src/wxmedit_frame.cpp:1171
 msgid "Convert the selection to uppercase"
-msgstr "தேர்வை பெரிய எழுத்துக்கு மாற்றவும்"
+msgstr "தேர்வை பெரிய எழுத்துக்கு மாற்று"
 
 #: src/wxmedit_frame.cpp:1171
 msgid "To U&pperCase"
-msgstr "பெரிய எழுத்துக்கு"
+msgstr "பெரிய எழுத்துக்கு (&p)"
 
 #: src/wxmedit_frame.cpp:1172
 msgid "Convert the selection to lowercase"
-msgstr "தேர்வை சிறிய எழுத்துக்கு மாற்றவும்"
+msgstr "தேர்வை சிறிய எழுத்துக்கு மாற்று"
 
 #: src/wxmedit_frame.cpp:1172
 msgid "To L&owerCase"
-msgstr "சிறிய எழுத்துக்கு"
+msgstr "சிறிய எழுத்துக்கு (&o)"
 
 #: src/wxmedit_frame.cpp:1173
 msgid "Inver&t Case"
-msgstr "இன்வர் & டி வழக்கு"
+msgstr "தலைகீழ் வழக்கு (&t)"
 
 #: src/wxmedit_frame.cpp:1173
 msgid "Invert the case of the selection"
-msgstr "தேர்வின் வழக்கை தலைகீழாக மாற்றவும்"
+msgstr "தேர்வின் வழக்கை தலைகீழாக மாற்று"
 
 #: src/wxmedit_frame.cpp:1175
 msgid "Convert the selection to halfwidth"
-msgstr "தேர்வை அரைவாசி என மாற்றவும்"
+msgstr "தேர்வை பாதி அகலமாக மாற்று"
 
 #: src/wxmedit_frame.cpp:1175
 msgid "To H&alfwidth"
-msgstr "எச் & ஆல்ஃப்விட்"
+msgstr "பாதி அகலமாக (&a)"
 
 #: src/wxmedit_frame.cpp:1176
 msgid "Convert the selection to halfwidth by options"
-msgstr "விருப்பங்கள் மூலம் தேர்வை பாதி விடியதாக மாற்றவும்"
+msgstr "விருப்பங்கள் மூலம் தேர்வை பாதி அகலமாக மாற்று"
 
 #: src/wxmedit_frame.cpp:1176 src/wxmedit_frame.cpp:3828
 msgid "To Halfwidth by Options..."
-msgstr "விருப்பங்களால் அரைவாசி ..."
+msgstr "விருப்பங்களால் பாதி அகலம்..."
 
 #: src/wxmedit_frame.cpp:1177
 msgid "Convert the selection to fullwidth"
-msgstr "தேர்வை ஃபுல் அக்டுக்கு மாற்றவும்"
+msgstr "தேர்வை முழு அகலத்துக்கு மாற்று"
 
 #: src/wxmedit_frame.cpp:1177
 msgid "To &Fullwidth"
-msgstr "முதல் & ஃபுல் அகலம்"
+msgstr "முழு அகலமாக (&F)"
 
 #: src/wxmedit_frame.cpp:1178
 msgid "Convert the selection to fullwidth by options"
-msgstr "விருப்பங்களால் தேர்வை ஃபுல் அக்டுக்கு மாற்றவும்"
+msgstr "விருப்பங்களால் தேர்வை முழு அகலத்துக்கு மாற்று"
 
 #: src/wxmedit_frame.cpp:1178 src/wxmedit_frame.cpp:3871
 msgid "To Fullwidth by Options..."
-msgstr "விருப்பங்களால் ஃபுல் அகலத்திற்கு ..."
+msgstr "விருப்பங்களால் முழு அகலத்திற்கு..."
 
 #: src/wxmedit_frame.cpp:1180
 msgid "Convert Tab chars to Space chars in the selection"
-msgstr "தாவல் எழுத்தை தேர்வில் விண்வெளி எழுத்துகளுக்கு மாற்றவும்"
+msgstr "தாவல் எழுத்தை தேர்வில் இடைவெளி எழுத்துகளுக்கு மாற்று"
 
 #: src/wxmedit_frame.cpp:1180
 msgid "Tab Chars To Space Chars"
-msgstr "தாவல் எழுத்துக்கள் விண்வெளி எழுத்துக்கள்"
+msgstr "தாவல் எழுத்துக்களை இடைவெளி எழுத்துக்களாக"
 
 #: src/wxmedit_frame.cpp:1181
 msgid "Convert Space chars to Tab chars in the selection"
-msgstr "தேர்வில் விண்வெளி எழுத்துக்களை TAB எழுத்துகளுக்கு மாற்றவும்"
+msgstr "தேர்வில் இடைவெளி எழுத்துக்களை தாவல் எழுத்துகளுக்கு மாற்று"
 
 #: src/wxmedit_frame.cpp:1181
 msgid "Space Chars To Tab Chars"
-msgstr "விண்வெளி எழுத்துக்கள் தாவல் எழுத்துக்கள்"
+msgstr "இடைவெளி எழுத்துக்களை தாவல் எழுத்துக்களாக"
 
 #: src/wxmedit_frame.cpp:1183
 msgid "Tri&m Trailing Spaces"
-msgstr "ட்ரை & எம் பின்தங்கிய இடங்கள்"
+msgstr "ஒழுங்கமை பின்தங்கிய இடைவெளிகள் (&m)"
 
 #: src/wxmedit_frame.cpp:1183
 msgid "Trim trailing spaces at the end of lines"
-msgstr "வரிகளின் முடிவில் பின்தங்கிய இடங்களை ஒழுங்கமைக்கவும்"
+msgstr "வரிமுடிவுகளில் பின்தங்கிய இடைவெளிகளை ஒழுங்கமை"
 
 #: src/wxmedit_frame.cpp:1186
 msgid "Sort Lines (&Ascending)"
-msgstr "வரிசைகளை வரிசைப்படுத்துதல் (ஏறுதல்)"
+msgstr "வரிகளை வரிசைப்படுத்து (ஏறுதல்) (&A)"
 
 #: src/wxmedit_frame.cpp:1186
 msgid "Sort the selected or all lines in ascending order"
 msgstr ""
 "தேர்ந்தெடுக்கப்பட்ட அல்லது அனைத்து வரிகளையும் ஏறுவரிசை வரிசையில் "
-"வரிசைப்படுத்தவும்"
+"வரிசைப்படுத்து"
 
 #: src/wxmedit_frame.cpp:1187
 msgid "Sort Lines (&Descending)"
-msgstr "வரிசைகளை வரிசைப்படுத்துங்கள் (& இறங்கு)"
+msgstr "வரிகளை வரிசைப்படுத்து (இறங்கு) (&D)"
 
 #: src/wxmedit_frame.cpp:1187
 msgid "Sort the selected or all lines in descending order"
 msgstr ""
 "தேர்ந்தெடுக்கப்பட்ட அல்லது அனைத்து வரிகளையும் இறங்கு வரிசையில் "
-"வரிசைப்படுத்தவும்"
+"வரிசைப்படுத்து"
 
 #: src/wxmedit_frame.cpp:1189
 msgid "Sort Lines (A&scending, CaseSensitive)"
-msgstr "வரிசைகளை வரிசைப்படுத்துதல் (ஏறுதல், வழக்கு உணர்திறன்)"
+msgstr "வரிகளை வரிசைப்படுத்து (ஏறுதல், வழக்கு உணர்திறன்) (&s)"
 
 #: src/wxmedit_frame.cpp:1189
 msgid "Sort lines in ascending order and with case-sensitive"
 msgstr ""
-"ஏறும் வரிசையில் மற்றும் வழக்கு-உணர்திறன் கொண்ட கோடுகளை வரிசைப்படுத்தவும்"
+"ஏறும் வரிசையில் மற்றும் வழக்கு-உணர்திறன் கொண்ட வரிகளை வரிசைப்படுத்து"
 
 #: src/wxmedit_frame.cpp:1190
 msgid "Sort Lines (D&escending, CaseSensitive)"
-msgstr "வரிசைகளை வரிசைப்படுத்துதல் (ஏறுதல், வழக்கு உணர்திறன்)"
+msgstr "வரிகளை வரிசைப்படுத்து (இறங்கு, வழக்கு உணர்திறன்) (&e)"
 
 #: src/wxmedit_frame.cpp:1190
 msgid "Sort lines in descending order and with case-sensitive"
 msgstr ""
-"இறங்கு வரிசையில் மற்றும் வழக்கு-உணர்திறன் கொண்ட கோடுகளை வரிசைப்படுத்தவும்"
+"இறங்கு வரிசையில் மற்றும் வழக்கு-உணர்திறன் கொண்ட வரிகளை வரிசைப்படுத்து"
 
 #: src/wxmedit_frame.cpp:1192
 msgid "Sort Lines by &Current Options"
-msgstr "வரிகளை வரிசைப்படுத்தவும் தற்போதைய விருப்பங்கள்"
+msgstr "தற்போதைய விருப்பங்களின்படி வரிகளை வரிசைப்படுத்து (&C)"
 
 #: src/wxmedit_frame.cpp:1192
 msgid "Sort the selected or all lines by using current options"
 msgstr ""
 "தற்போதைய விருப்பங்களைப் பயன்படுத்தி தேர்ந்தெடுக்கப்பட்ட அல்லது அனைத்து "
-"வரிகளையும் வரிசைப்படுத்தவும்"
+"வரிகளையும் வரிசைப்படுத்து"
 
 #: src/wxmedit_frame.cpp:1193
 msgid "Set the sort options"
-msgstr "வரிசை விருப்பங்களை அமைக்கவும்"
+msgstr "வரிசை விருப்பங்களை அமை"
 
 #: src/wxmedit_frame.cpp:1193
 msgid "Sort &Options..."
-msgstr "வரிசை & விருப்பங்கள் ..."
+msgstr "வரிசை விருப்பங்கள்... (&O)"
 
 #: src/wxmedit_frame.cpp:1196
 msgid "&Search"
-msgstr "& தேடுங்கள்"
+msgstr "தேடு (&S)"
 
 #: src/wxmedit_frame.cpp:1197
 msgid "&Find..."
-msgstr "& கண்டுபிடி ..."
+msgstr "தேடு... (&F)"
 
 #: src/wxmedit_frame.cpp:1197
 msgid "Find a string"
-msgstr "ஒரு சரம் கண்டுபிடிக்கவும்"
+msgstr "ஒரு சரம் தேடு"
 
 #: src/wxmedit_frame.cpp:1198
 msgid "Find next occurrence"
-msgstr "அடுத்த நிகழ்வைக் கண்டறியவும்"
+msgstr "அடுத்த நிகழ்வைக் கண்டறி"
 
 #: src/wxmedit_frame.cpp:1199
 msgid "Find previous occurrence"
-msgstr "முந்தைய நிகழ்வைக் கண்டறியவும்"
+msgstr "முந்தைய நிகழ்வைக் கண்டறி"
 
 #: src/wxmedit_frame.cpp:1201
 msgid "&Replace..."
-msgstr "& மாற்றவும் ..."
+msgstr "மாற்று... (&R)"
 
 #: src/wxmedit_frame.cpp:1201
 msgid "Replace a string"
-msgstr "ஒரு சரத்தை மாற்றவும்"
+msgstr "ஒரு சரத்தை மாற்று"
 
 #: src/wxmedit_frame.cpp:1203
 msgid "Fin&d/Replace in Files..."
-msgstr "FIN & D/கோப்புகளில் மாற்றவும் ..."
+msgstr "கோப்புகளில் தேடு/மாற்று... (&d)"
 
 #: src/wxmedit_frame.cpp:1203
 msgid "Find or replace a string in files"
-msgstr "கோப்புகளில் ஒரு சரத்தை கண்டுபிடிக்கவும் அல்லது மாற்றவும்"
+msgstr "கோப்புகளில் ஒரு சரத்தை தேடு அல்லது மாற்று"
 
 #: src/wxmedit_frame.cpp:1204
 msgid "&Show/Hide the Results of Find/Replace in Files"
-msgstr "கோப்புகளில் கண்டுபிடி/மாற்றுவதற்கான முடிவுகளைக் காண்பி/மறைக்கவும்"
+msgstr "கோப்புகளில் தேடு/மாற்றுவதற்கான முடிவுகளைக் காட்டு/மறை (&S)"
 
 #: src/wxmedit_frame.cpp:1204
 msgid "Show or hide the results of find or replace a string in files"
 msgstr ""
-"கோப்புகளில் ஒரு சரத்தை கண்டுபிடிப்பது அல்லது மாற்றுவதற்கான முடிவுகளைக் "
-"காட்டவும் அல்லது மறைக்கவும்"
+"கோப்புகளில் ஒரு சரத்தை தேடுவது அல்லது மாற்றுவதற்கான முடிவுகளைக் "
+"காட்டு அல்லது மறை"
 
 #: src/wxmedit_frame.cpp:1206
 msgid "&Go To Line..."
-msgstr "வரிக்குச் செல்லுங்கள் ..."
+msgstr "வரிக்குச் செல்... (&G)"
 
 #: src/wxmedit_frame.cpp:1206
 msgid "Go to the specified line"
-msgstr "குறிப்பிட்ட வரிக்குச் செல்லவும்"
+msgstr "குறிப்பிட்ட வரிக்குச் செல்"
 
 #: src/wxmedit_frame.cpp:1207
 msgid "G&o To Position..."
-msgstr "நிலைக்கு சி & ஓ ..."
+msgstr "நிலைக்கு செல்... (&o)"
 
 #: src/wxmedit_frame.cpp:1207
 msgid "Go to the specified position"
-msgstr "குறிப்பிட்ட நிலைக்குச் செல்லுங்கள்"
+msgstr "குறிப்பிட்ட நிலைக்குச் செல்"
 
 #: src/wxmedit_frame.cpp:1209
 msgid "Go To L&eft Brace"
-msgstr "எல் & எஃப்ட் வளைவுக்குச் செல்லுங்கள்"
+msgstr "இடது அடைப்புக்குறிப்புக்குச் செல் (&e)"
 
 #: src/wxmedit_frame.cpp:1209
 msgid "Go to left brace"
-msgstr "இடது வளைவுக்குச் செல்லுங்கள்"
+msgstr "இடது அடைப்புக்குறிப்புக்குச் செல்"
 
 #: src/wxmedit_frame.cpp:1210
 msgid "Go To R&ight Brace"
-msgstr "ஆர் & ஐட் வளைவுக்குச் செல்லுங்கள்"
+msgstr "வலது அடைப்புக்குறிப்புக்குச் செல் (&i)"
 
 #: src/wxmedit_frame.cpp:1210
 msgid "Go to right brace"
-msgstr "வலது வளைவுக்குச் செல்லுங்கள்"
+msgstr "வலது அடைப்புக்குறிப்புக்குச் செல்"
 
 #: src/wxmedit_frame.cpp:1213
 msgid "Toggle bookmark at current line"
-msgstr "தற்போதைய வரியில் புக்மார்க்கை மாற்றவும்"
+msgstr "தற்போதைய வரியில் புத்தக்குறியை மாற்று"
 
 #: src/wxmedit_frame.cpp:1213 src/wxmedit_frame.cpp:1993
 msgid "Toggle Bookmark"
-msgstr "புக்மார்க்கை மாற்று"
+msgstr "புத்தக்குறியை மாற்று"
 
 #: src/wxmedit_frame.cpp:1214
 msgid "Go to the next bookmark"
-msgstr "அடுத்த புக்மார்க்குக்குச் செல்லுங்கள்"
+msgstr "அடுத்த புத்தக்குறிக்குச் செல்"
 
 #: src/wxmedit_frame.cpp:1214 src/wxmedit_frame.cpp:1994
 msgid "Go To Next Bookmark"
-msgstr "அடுத்த புக்மார்க்குக்குச் செல்லுங்கள்"
+msgstr "அடுத்த புத்தக்குறிக்குச் செல்"
 
 #: src/wxmedit_frame.cpp:1215
 msgid "Go to the previous bookmark"
-msgstr "முந்தைய புக்மார்க்குக்குச் செல்லுங்கள்"
+msgstr "முந்தைய புத்தக்குறிக்குச் செல்"
 
 #: src/wxmedit_frame.cpp:1215 src/wxmedit_frame.cpp:1995
 msgid "Go To Previous Bookmark"
-msgstr "முந்தைய புக்மார்க்குக்குச் செல்லுங்கள்"
+msgstr "முந்தைய புத்தக்குறிக்குச் செல்"
 
 #: src/wxmedit_frame.cpp:1216
 msgid "Clear all bookmarks from current file"
-msgstr "தற்போதைய கோப்பிலிருந்து அனைத்து புக்மார்க்குகளையும் அழிக்கவும்"
+msgstr "தற்போதைய கோப்பிலிருந்து அனைத்து புத்தக்குறிகளையும் அழி"
 
 #: src/wxmedit_frame.cpp:1216 src/wxmedit_frame.cpp:1996
 msgid "Clear All Bookmarks"
-msgstr "அனைத்து புக்மார்க்குகளையும் அழிக்கவும்"
+msgstr "அனைத்து புத்தக்குறிகளையும் அழி"
 
 #: src/wxmedit_frame.cpp:1219
 msgid "&View"
-msgstr "& காண்க"
+msgstr "காண்க (&V)"
 
 #: src/wxmedit_frame.cpp:1220 src/wxmedit_frame.cpp:2954
 #: src/wxmedit_frame.cpp:2961
@@ -3118,15 +3118,15 @@ msgstr "[@]"
 
 #: src/wxmedit_frame.cpp:1227
 msgid "[ABCDE]"
-msgstr "[ஏ பி சி டி இ]"
+msgstr "[ABCDE]"
 
 #: src/wxmedit_frame.cpp:1228
 msgid "[FGHIJ]"
-msgstr "[Fghij]"
+msgstr "[FGHIJ]"
 
 #: src/wxmedit_frame.cpp:1229
 msgid "[KLMNO]"
-msgstr "[Klmno]"
+msgstr "[KLMNO]"
 
 #: src/wxmedit_frame.cpp:1230
 msgid "[PQRST]"
@@ -3134,7 +3134,7 @@ msgstr "[PQRST]"
 
 #: src/wxmedit_frame.cpp:1231
 msgid "[UVWXYZ]"
-msgstr "[Uvwxyz]"
+msgstr "[UVWXYZ]"
 
 #: src/wxmedit_frame.cpp:1232
 msgid "[other]"
@@ -3147,23 +3147,23 @@ msgstr "எழுத்துரு அளவு:"
 
 #: src/wxmedit_frame.cpp:1235
 msgid "Set font point-size"
-msgstr "எழுத்துரு புள்ளி-அளவை அமைக்கவும்"
+msgstr "எழுத்துரு புள்ளி-அளவை அமை"
 
 #: src/wxmedit_frame.cpp:1308
 msgid "Change font settings"
-msgstr "எழுத்துரு அமைப்புகளை மாற்றவும்"
+msgstr "எழுத்துரு அமைப்புகளை மாற்று"
 
 #: src/wxmedit_frame.cpp:1308
 msgid "Set Font..."
-msgstr "எழுத்துரு அமைக்கவும் ..."
+msgstr "எழுத்துரு அமை..."
 
 #: src/wxmedit_frame.cpp:1309
 msgid "&Fixed Width Mode"
-msgstr "& நிலையான அகல பயன்முறை"
+msgstr "நிலையான அகல பயன்முறை (&F)"
 
 #: src/wxmedit_frame.cpp:1309
 msgid "Set/Unset the font with Fixed Width"
-msgstr "நிலையான அகலத்துடன் எழுத்துருவை அமைக்கவும்/அமைக்கவும்"
+msgstr "நிலையான அகலத்துடன் எழுத்துருவை அமை/நீக்கு"
 
 #: src/wxmedit_frame.cpp:1312 src/wxmedit_frame.cpp:3027
 #: src/wxmedit_frame.cpp:3032
@@ -3172,7 +3172,7 @@ msgstr "தாவல் நெடுவரிசை:"
 
 #: src/wxmedit_frame.cpp:1313
 msgid "Set column of Tab char"
-msgstr "தாவல் எழுத்தின் நெடுவரிசையை அமைக்கவும்"
+msgstr "தாவல் எழுத்தின் நெடுவரிசையை அமை"
 
 #: src/wxmedit_frame.cpp:1331 src/wxmedit_frame.cpp:3041
 #: src/wxmedit_frame.cpp:3046
@@ -3181,43 +3181,43 @@ msgstr "வரி இடைவெளி:"
 
 #: src/wxmedit_frame.cpp:1332
 msgid "Set line spacing"
-msgstr "வரி இடைவெளியை அமைக்கவும்"
+msgstr "வரி இடைவெளியை அமை"
 
 #: src/wxmedit_frame.cpp:1365
 msgid "&No Wrap"
-msgstr "& மடக்கு இல்லை"
+msgstr "மடிப்பு இல்லை (&N)"
 
 #: src/wxmedit_frame.cpp:1365
 msgid "Do not wrap lines"
-msgstr "கோடுகளை மடிக்க வேண்டாம்"
+msgstr "வரிகளை மடிக்க வேண்டாம்"
 
 #: src/wxmedit_frame.cpp:1366
 msgid "Wrap By &Window"
-msgstr "& சாளரத்தை மடக்கு"
+msgstr "சாளரத்தால் மடி (&W)"
 
 #: src/wxmedit_frame.cpp:1366
 msgid "Wrap the lines by the window width"
-msgstr "சாளர அகலத்தால் கோடுகளை மடிக்கவும்"
+msgstr "சாளர அகலத்தால் வரிகளை மடி"
 
 #: src/wxmedit_frame.cpp:1367
 msgid "Wrap By Column"
-msgstr "நெடுவரிசை மூலம் மடக்கு"
+msgstr "நெடுவரிசை மூலம் மடி"
 
 #: src/wxmedit_frame.cpp:1367
 msgid "Wrap the lines by the specified Max Columns"
-msgstr "குறிப்பிட்ட அதிகபட்ச நெடுவரிசைகளால் கோடுகளை மடிக்கவும்"
+msgstr "குறிப்பிட்ட அதிகபட்ச நெடுவரிசைகளால் வரிகளை மடி"
 
 #: src/wxmedit_frame.cpp:1369
 msgid "Display &Bookmark"
-msgstr "காட்சி & புக்மார்க்கு"
+msgstr "புத்தக்குறி காண்பி (&B)"
 
 #: src/wxmedit_frame.cpp:1369
 msgid "Display the Bookmarks"
-msgstr "புக்மார்க்குகளைக் காண்பி"
+msgstr "புத்தக்குறிகளைக் காண்பி"
 
 #: src/wxmedit_frame.cpp:1370
 msgid "&Display Line Number"
-msgstr "& காட்சி வரி எண்"
+msgstr "வரி எண் காண்பி (&D)"
 
 #: src/wxmedit_frame.cpp:1370
 msgid "Display the Line Numbers"
@@ -3225,11 +3225,11 @@ msgstr "வரி எண்களைக் காண்பி"
 
 #: src/wxmedit_frame.cpp:1371
 msgid "Show End Of Line"
-msgstr "வரியின் முடிவைக் காட்டு"
+msgstr "வரிமுடிவைக் காட்டு"
 
 #: src/wxmedit_frame.cpp:1371
 msgid "Show the sign of EndOfLine"
-msgstr "எண்டோஃப்லைனின் அடையாளத்தைக் காட்டு"
+msgstr "வரிமுடிவின் அடையாளத்தைக் காட்டு"
 
 #: src/wxmedit_frame.cpp:1372
 msgid "Show Tab Char"
@@ -3257,67 +3257,67 @@ msgstr "தற்போதைய வரியைக் குறி"
 
 #: src/wxmedit_frame.cpp:1375
 msgid "Mark Brace Pair"
-msgstr "வளைவு இணைக் குறி"
+msgstr "அடைப்புக்குறிப்பு இணைக் குறி"
 
 #: src/wxmedit_frame.cpp:1375
 msgid "Mark the BracePair under the caret"
-msgstr "செங்குத்து கோட்டின் கீழ் வளைவுஇணைக் குறி"
+msgstr "செங்குத்து கோட்டின் கீழ் அடைப்புக்குறிப்புஇணைக் குறி"
 
 #: src/wxmedit_frame.cpp:1377
 msgid "&Text Mode"
-msgstr "உரை பயன்முறை"
+msgstr "உரை பயன்முறை (&T)"
 
 #: src/wxmedit_frame.cpp:1377
 msgid "Change the editing mode to Text-Mode"
-msgstr "திருத்தி பயன்முறையை உரை-பயன்முறையாக மாற்றவும்"
+msgstr "திருத்தி பயன்முறையை உரை-பயன்முறையாக மாற்று"
 
 #: src/wxmedit_frame.cpp:1378
 msgid "&Column Mode"
-msgstr "&நெடுவரிசை பயன்முறை"
+msgstr "நெடுவரிசை பயன்முறை (&C)"
 
 #: src/wxmedit_frame.cpp:1378
 msgid "Change the editing mode to Column-Mode"
-msgstr "திருத்தி பயன்முறையை நெடுவரிசை-பயன்முறையாக மாற்றவும்"
+msgstr "திருத்தி பயன்முறையை நெடுவரிசை-பயன்முறையாக மாற்று"
 
 #: src/wxmedit_frame.cpp:1379
 msgid "&Hex Mode"
-msgstr "&பதின்ம பயன்முறை"
+msgstr "பதின்ம பயன்முறை (&H)"
 
 #: src/wxmedit_frame.cpp:1379
 msgid "Change the editing mode to Hex-Mode"
-msgstr "திருத்தி பயன்முறையை பதின்ம-பயன்முறையில் மாற்றவும்"
+msgstr "திருத்தி பயன்முறையை பதின்ம-பயன்முறையில் மாற்று"
 
 #: src/wxmedit_frame.cpp:1382
 msgid "&Tools"
-msgstr "&கருவிகள்"
+msgstr "கருவிகள் (&T)"
 
 #: src/wxmedit_frame.cpp:1383
 msgid "&Options..."
-msgstr "&விருப்பங்கள்..."
+msgstr "விருப்பங்கள்... (&O)"
 
 #: src/wxmedit_frame.cpp:1383
 msgid "Change the configuration"
-msgstr "உள்ளமைவை மாற்றவும்"
+msgstr "உள்ளமைவை மாற்று"
 
 #: src/wxmedit_frame.cpp:1384
 msgid "&Syntax Highlighting Settings..."
-msgstr "&தொடரியல் முன்னிலைப்படுத்தும் அமைப்புகள் ..."
+msgstr "தொடரியல் முன்னிலைப்படுத்தும் அமைப்புகள்... (&S)"
 
 #: src/wxmedit_frame.cpp:1384
 msgid "Change syntax highlighting settings"
-msgstr "தொடரியல் முன்னிலைப்படுத்தும் அமைப்புகளை மாற்றவும்"
+msgstr "தொடரியல் முன்னிலைப்படுத்தும் அமைப்புகளை மாற்று"
 
 #: src/wxmedit_frame.cpp:1386
 msgid "&File Type Associations..."
-msgstr "கோப்பு வகை பதிவுகள்..."
+msgstr "கோப்பு வகை பதிவுகள்... (&F)"
 
 #: src/wxmedit_frame.cpp:1386 src/wxmedit_frame.cpp:1388
 msgid "Change file type associations"
-msgstr "கோப்பு வகை பதிவுகளை மாற்றவும்"
+msgstr "கோப்பு வகை பதிவுகளை மாற்று"
 
 #: src/wxmedit_frame.cpp:1388
 msgid "&Purge Histories..."
-msgstr "வரலாற்றை தூய்மைப்படுத்துங்கள்..."
+msgstr "வரலாற்றை தூய்மைப்படுத்துங்கள்... (&P)"
 
 #: src/wxmedit_frame.cpp:1390 src/wxmedit_frame.cpp:3126
 msgid "Has Unicode BOM (Byte-Order Mark)"
@@ -3325,11 +3325,11 @@ msgstr "ஒருங்குறி பைமுகு (பைட்-முற�
 
 #: src/wxmedit_frame.cpp:1391
 msgid "Add/Remove BOM"
-msgstr "பைமுகு ஐச் சேர்க்கவும்/அகற்றவும்"
+msgstr "பைமுகு ஐச் சேர்/அகற்று"
 
 #: src/wxmedit_frame.cpp:1391
 msgid "Add/Remove Unicode BOM"
-msgstr "ஒருங்குறி பைமுகு சேர்க்கவும்/அகற்றவும்"
+msgstr "ஒருங்குறி பைமுகு சேர்/அகற்று"
 
 #: src/wxmedit_frame.cpp:1393 src/wxmedit_frame.cpp:3141
 msgid "NewLine Char (File Format): "
@@ -3337,27 +3337,27 @@ msgstr "புதியவரி எழுத்து (கோப்பு வ�
 
 #: src/wxmedit_frame.cpp:1394
 msgid "Convert To CRLF/0D0A (Windows/&DOS)"
-msgstr "வதிவஉ/0D0A (சாளரங்கள்/&வமுஇ)ஆக மாற்றவும்"
+msgstr "வதிவஉ/0D0A (சாளரங்கள்/வமுஇ)ஆக மாற்று (&D)"
 
 #: src/wxmedit_frame.cpp:1394
 msgid "Convert the file format to Windows/DOS format"
-msgstr "கோப்பு வடிவமைப்பை சாளரங்கள்/வமுஇ வடிவத்திற்கு மாற்றவும்"
+msgstr "கோப்பு வடிவமைப்பை சாளரங்கள்/வமுஇ வடிவத்திற்கு மாற்று"
 
 #: src/wxmedit_frame.cpp:1395
 msgid "Convert To CR/0D (Classic &Mac OS)"
-msgstr "வதி/0D க்கு மாற்றவும் (பாரம்பரிய &மேக்)"
+msgstr "வதி/0D க்கு மாற்று (பாரம்பரிய மேக்) (&M)"
 
 #: src/wxmedit_frame.cpp:1395
 msgid "Convert the file format to classic Mac OS format"
-msgstr "கோப்பு வடிவமைப்பை பாரம்பரிய மேக் இயக்க வடிவத்திற்கு மாற்றவும்"
+msgstr "கோப்பு வடிவமைப்பை பாரம்பரிய மேக் இயக்க வடிவத்திற்கு மாற்று"
 
 #: src/wxmedit_frame.cpp:1396
 msgid "Convert To LF/0A (&UNIX/macOS)"
-msgstr "வஉ/0A (&யுனிக்சு/மேக்) ஆக மாற்றவும்"
+msgstr "வஉ/0A (&யுனிக்சு/மேக்) ஆக மாற்று"
 
 #: src/wxmedit_frame.cpp:1396
 msgid "Convert the file format to UNIX/macOS format"
-msgstr "கோப்பு வடிவமைப்பை யுனிக்சு/மேக் வடிவத்திற்கு மாற்றவும்"
+msgstr "கோப்பு வடிவமைப்பை யுனிக்சு/மேக் வடிவத்திற்கு மாற்று"
 
 #: src/wxmedit_frame.cpp:1397 src/wxmedit_frame.cpp:3157
 msgid "Press Enter to Insert NewLine Char: "
@@ -3365,90 +3365,90 @@ msgstr "புதியவரி எழுத்தைச் செருக உ
 
 #: src/wxmedit_frame.cpp:1398
 msgid "Insert CR&LF chars when pressing Enter key"
-msgstr "உள்ளிடு விசையை அழுத்தும்போது வதி&வஉ எழுத்துக்களைச் செருகவும்"
+msgstr "உள்ளிடு விசையை அழுத்தும்போது வதிவஉ எழுத்துக்களைச் செருகு (&L)"
 
 #: src/wxmedit_frame.cpp:1398
 msgid "Insert CRLF/0D0A (Windows/&DOS)"
-msgstr "வதிவஉ/0D 0A (சாளரங்கள்/& வமுஇ) செருகவும்"
+msgstr "வதிவஉ/0D0A (சாளரங்கள்/வமுஇ) செருகு (&D)"
 
 #: src/wxmedit_frame.cpp:1399
 msgid "Insert CR char when pressing Enter key"
-msgstr "உள்ளிடு விசையை அழுத்தும்போது வதி எழுத்தைச் செருகவும்"
+msgstr "உள்ளிடு விசையை அழுத்தும்போது வதி எழுத்தைச் செருகு"
 
 #: src/wxmedit_frame.cpp:1399
 msgid "Insert CR/0D (Classic &Mac OS)"
-msgstr "வதி/0D ஐ செருகவும் (பாரம்பரிய& மேக்)"
+msgstr "வதி/0D ஐ செருகு (பாரம்பரிய மேக்) (&M)"
 
 #: src/wxmedit_frame.cpp:1400
 msgid "Insert LF char when pressing Enter key"
-msgstr "உள்ளிடு விசையை அழுத்தும்போது வஉ எழுத்து ஐச் செருகவும்"
+msgstr "உள்ளிடு விசையை அழுத்தும்போது வஉ எழுத்து ஐச் செருகு"
 
 #: src/wxmedit_frame.cpp:1400
 msgid "Insert LF/0A (&UNIX/macOS)"
-msgstr "வஉ/0A (&யுனிக்சு/மேக்) செருகவும்"
+msgstr "வஉ/0A (யுனிக்சு/மேக்) செருகு (&U)"
 
 #: src/wxmedit_frame.cpp:1402
 msgid "Convert File &Encoding..."
-msgstr "கோப்பு குறியாக்கத்தை மாற்றவும்..."
+msgstr "கோப்பு குறியாக்கத்தை மாற்று... (&E)"
 
 #: src/wxmedit_frame.cpp:1402
 msgid "Convert to the specified encoding"
-msgstr "குறிப்பிட்ட குறியாக்கத்திற்கு மாற்றவும்"
+msgstr "குறிப்பிட்ட குறியாக்கத்திற்கு மாற்று"
 
 #: src/wxmedit_frame.cpp:1404
 msgid "Convert &Chinese Char"
-msgstr "சீன எழுத்துக்களை மாற்றவும்"
+msgstr "சீன எழுத்துக்களை மாற்று (&C)"
 
 #: src/wxmedit_frame.cpp:1405
 msgid ""
 "Convert simplified Chinese chars to traditional Chinese chars in the file"
 msgstr ""
 "எளிமைப்படுத்தப்பட்ட சீன எழுத்துக்களை கோப்பில் உள்ள பாரம்பரிய சீன "
-"எழுத்துக்களாக மாற்றவும்"
+"எழுத்துக்களாக மாற்று"
 
 #: src/wxmedit_frame.cpp:1405
 msgid "File: Simplified Chinese to &Traditional Chinese"
-msgstr "கோப்பு: பாரம்பரிய சீன முதல் எளிமைப்படுத்தப்பட்ட சீன"
+msgstr "கோப்பு: பாரம்பரிய சீன முதல் எளிமைப்படுத்தப்பட்ட சீன (&T)"
 
 #: src/wxmedit_frame.cpp:1406
 msgid ""
 "Convert traditional Chinese chars to simplified Chinese chars in the file"
 msgstr ""
 "பாரம்பரிய சீன எழுத்துக்களை கோப்பில் எளிமைப்படுத்தப்பட்ட சீன எழுத்துக்களை "
-"மாற்றவும்"
+"மாற்று"
 
 #: src/wxmedit_frame.cpp:1406
 msgid "File: Traditional Chinese to &Simplified Chinese"
-msgstr "கோப்பு: எளிமைப்படுத்தப்பட்ட சீன மொழிக்கு பாரம்பரிய சீன"
+msgstr "கோப்பு: எளிமைப்படுத்தப்பட்ட சீன மொழிக்கு பாரம்பரிய சீன (&S)"
 
 #: src/wxmedit_frame.cpp:1407
 msgid "Convert Japanese Kanji to traditional Chinese chars in the file"
-msgstr "சப்பானிய காஞ்சியை கோப்பில் பாரம்பரிய சீன எழுத்துக்களாக மாற்றவும்"
+msgstr "சப்பானிய காஞ்சியை கோப்பில் பாரம்பரிய சீன எழுத்துக்களாக மாற்று"
 
 #: src/wxmedit_frame.cpp:1407
 msgid "File: Japanese Kanji to Tr&aditional Chinese"
-msgstr "கோப்பு: சப்பானிய காஞ்சி முதல் பாரம்பரிய சீனாவாக"
+msgstr "கோப்பு: சப்பானிய காஞ்சி முதல் பாரம்பரிய சீனாவாக (&a)"
 
 #: src/wxmedit_frame.cpp:1408
 msgid "Convert Japanese Kanji to simplified Chinese chars in the file"
 msgstr ""
-"கோப்பில் உள்ள சீன எழுத்துக்களை எளிமைப்படுத்திய சப்பானிய காஞ்சியை மாற்றவும்"
+"கோப்பில் உள்ள சீன எழுத்துக்களை எளிமைப்படுத்திய சப்பானிய காஞ்சியை மாற்று"
 
 #: src/wxmedit_frame.cpp:1408
 msgid "File: Japanese Kanji to Si&mplified Chinese"
-msgstr "கோப்பு: சப்பானிய காஞ்சி முதல் எளிமைப்படுத்தப்பட்ட சீனாவாக"
+msgstr "கோப்பு: சப்பானிய காஞ்சி முதல் எளிமைப்படுத்தப்பட்ட சீனாவாக (&m)"
 
 #: src/wxmedit_frame.cpp:1409
 msgid "Convert Chinese chars to Japanese Kanji in the file"
-msgstr "சீன எழுத்துக்களை கோப்பில் சப்பானிய காஞ்சிக்கு மாற்றவும்"
+msgstr "சீன எழுத்துக்களை கோப்பில் சப்பானிய காஞ்சிக்கு மாற்று"
 
 #: src/wxmedit_frame.cpp:1409
 msgid "File: Chinese to &Japanese Kanji"
-msgstr "கோப்பு: சீன முதல் சப்பானிய காஞ்சிக்கு"
+msgstr "கோப்பு: சீன முதல் சப்பானிய காஞ்சிக்கு (&J)"
 
 #: src/wxmedit_frame.cpp:1411
 msgid "Clipboard: Simplified Chinese to T&raditional Chinese"
-msgstr "இடைநிலைப் பலகை: பாரம்பரிய சீனர்களுக்கு எளிமைப்படுத்தப்பட்ட சீன"
+msgstr "இடைநிலைப் பலகை: பாரம்பரிய சீனர்களுக்கு எளிமைப்படுத்தப்பட்ட சீன (&r)"
 
 #: src/wxmedit_frame.cpp:1411
 msgid ""
@@ -3456,11 +3456,11 @@ msgid ""
 "clipboard"
 msgstr ""
 "எளிமைப்படுத்தப்பட்ட சீன எழுத்துக்களை இடைநிலைப் பலகையில் பாரம்பரிய சீன "
-"எழுத்துக்களாக மாற்றவும்"
+"எழுத்துக்களாக மாற்று"
 
 #: src/wxmedit_frame.cpp:1412
 msgid "Clipboard: Traditional Chinese to S&implified Chinese"
-msgstr "இடைநிலைப் பலகை: பாரம்பரிய சீனா முதல் எளிமைப்படுத்தப்பட்ட சீனாவாக"
+msgstr "இடைநிலைப் பலகை: பாரம்பரிய சீனா முதல் எளிமைப்படுத்தப்பட்ட சீனாவாக (&i)"
 
 #: src/wxmedit_frame.cpp:1412
 msgid ""
@@ -3468,37 +3468,37 @@ msgid ""
 "clipboard"
 msgstr ""
 "இடைநிலைப் பலகையில் பாரம்பரிய சீன எழுத்துக்களை எளிமைப்படுத்தப்பட்ட சீன "
-"எழுத்துக்களை மாற்றவும்"
+"எழுத்துக்களை மாற்று"
 
 #: src/wxmedit_frame.cpp:1413
 msgid "Clipboard: Japanese Kanji to Tra&ditional Chinese"
-msgstr "இடைநிலைப் பலகை: சப்பானிய காஞ்சி முதல் பாரம்பரிய சீனாவாக"
+msgstr "இடைநிலைப் பலகை: சப்பானிய காஞ்சி முதல் பாரம்பரிய சீனாவாக (&d)"
 
 #: src/wxmedit_frame.cpp:1413
 msgid "Convert Japanese Kanji to traditional Chinese chars in the clipboard"
 msgstr ""
-"இடைநிலைப் பலகையில் சப்பானிய காஞ்சியை பாரம்பரிய சீன எழுத்துக்களாக மாற்றவும்"
+"இடைநிலைப் பலகையில் சப்பானிய காஞ்சியை பாரம்பரிய சீன எழுத்துக்களாக மாற்று"
 
 #: src/wxmedit_frame.cpp:1414
 msgid "Clipboard: Japanese Kanji to Sim&plified Chinese"
-msgstr "இடைநிலைப் பலகை: சப்பானிய காஞ்சி முதல் எளிமைப்படுத்திய சீனாவாக"
+msgstr "இடைநிலைப் பலகை: சப்பானிய காஞ்சி முதல் எளிமைப்படுத்திய சீனாவாக  (&p)"
 
 #: src/wxmedit_frame.cpp:1414
 msgid "Convert Japanese Kanji to simplified Chinese chars in the clipboard"
 msgstr ""
-"இடைநிலைப் பலகையில் சீன எழுத்துக்களை எளிமைப்படுத்திய சப்பானிய காஞ்சியை மாற்றவும்"
+"இடைநிலைப் பலகையில் சீன எழுத்துக்களை எளிமைப்படுத்திய சப்பானிய காஞ்சியை மாற்று"
 
 #: src/wxmedit_frame.cpp:1415
 msgid "Clipboard: Chinese to Japanese &Kanji"
-msgstr "இடைநிலைப் பலகை: சப்பானிய மற்றும் கஞ்சிக்கு சீன"
+msgstr "இடைநிலைப் பலகை: சப்பானிய மற்றும் கஞ்சிக்கு சீன (&K)"
 
 #: src/wxmedit_frame.cpp:1415
 msgid "Convert Chinese chars to Japanese Kanji in the clipboard"
-msgstr "இடைநிலைப் பலகையில் சீன எழுத்துக்களை சப்பானிய காஞ்சிக்கு மாற்றவும்"
+msgstr "இடைநிலைப் பலகையில் சீன எழுத்துக்களை சப்பானிய காஞ்சிக்கு மாற்று"
 
 #: src/wxmedit_frame.cpp:1417
 msgid "&Word Count..."
-msgstr "சொல் எண்ணிக்கை..."
+msgstr "சொல் எண்ணிக்கை... (&W)"
 
 #: src/wxmedit_frame.cpp:1417
 msgid "Count the words and chars of the file or selection"
@@ -3506,47 +3506,47 @@ msgstr "கோப்பு அல்லது தேர்வின் சொற
 
 #: src/wxmedit_frame.cpp:1420
 msgid "&Window"
-msgstr "&சாளரம்"
+msgstr "சாளரம் (&W)"
 
 #: src/wxmedit_frame.cpp:1421
 msgid "&Toggle Window"
-msgstr "&சாளரத்தை மாற்றவும்"
+msgstr "சாளரத்தை மாற்று (&T)"
 
 #: src/wxmedit_frame.cpp:1421
 msgid "Switch to the previous active window"
-msgstr "முந்தைய செயலில் உள்ள சாளரத்திற்கு மாறவும்"
+msgstr "முந்தைய செயலில் உள்ள சாளரத்திற்கு மாறு"
 
 #: src/wxmedit_frame.cpp:1422
 msgid "&Previous Window"
-msgstr "&முந்தைய சாளரம்"
+msgstr "முந்தைய சாளரம் (&P)"
 
 #: src/wxmedit_frame.cpp:1422
 msgid "Activate the previous window"
-msgstr "முந்தைய சாளரத்தை செயல்படுத்தவும்"
+msgstr "முந்தைய சாளரத்தை செயல்படுத்து"
 
 #: src/wxmedit_frame.cpp:1423
 msgid "&Next Window"
-msgstr "&அடுத்த சாளரம்"
+msgstr "அடுத்த சாளரம் (&N)"
 
 #: src/wxmedit_frame.cpp:1423
 msgid "Activate the next window"
-msgstr "அடுத்த சாளரத்தை செயல்படுத்தவும்"
+msgstr "அடுத்த சாளரத்தை செயல்படுத்து"
 
 #: src/wxmedit_frame.cpp:1426
 msgid "&Help"
-msgstr "&உதவி"
+msgstr "உதவி (&H)"
 
 #: src/wxmedit_frame.cpp:1427
 msgid "&Check for updates..."
-msgstr "புதுப்பிப்புகளைச் சரிபார்க்கவும் ..."
+msgstr "புதுப்பிப்புகளைச் சரிபார்... (&C)"
 
 #: src/wxmedit_frame.cpp:1427
 msgid "Check for new versions of wxMEdit"
-msgstr "சாஃபிதிருத்தி இன் புதிய பதிப்புகளைச் சரிபார்க்கவும்"
+msgstr "சாஃபிதிருத்தி இன் புதிய பதிப்புகளைச் சரிபார்"
 
 #: src/wxmedit_frame.cpp:1428
 msgid "&About wxMEdit..."
-msgstr "&சாஃபிதிருத்தி பற்றி ..."
+msgstr "சாஃபிதிருத்தி பற்றி... (&A)"
 
 #: src/wxmedit_frame.cpp:1428
 msgid "Show about dialog"
@@ -3554,107 +3554,107 @@ msgstr "பற்றி உரையாடலை காட்டு"
 
 #: src/wxmedit_frame.cpp:1432
 msgid "Move caret left one char"
-msgstr "செங்குத்து கோட்டை இடது ஒரு எழுத்து நகர்த்தவும்"
+msgstr "செங்குத்து கோட்டை இடது ஒரு எழுத்து நகர்த்து"
 
 #: src/wxmedit_frame.cpp:1433
 msgid "Move caret right one char"
-msgstr "செங்குத்து கோட்டை வலது ஒரு எழுத்து நகர்த்தவும்"
+msgstr "செங்குத்து கோட்டை வலது ஒரு எழுத்து நகர்த்து"
 
 #: src/wxmedit_frame.cpp:1434
 msgid "Move caret up one line"
-msgstr "செங்குத்து கோட்டை ஒரு வரி மேலே நகர்த்தவும்"
+msgstr "செங்குத்து கோட்டை ஒரு வரி மேலே நகர்த்து"
 
 #: src/wxmedit_frame.cpp:1435
 msgid "Move caret down one line"
-msgstr "செங்குத்து கோட்டை ஒரு வரி கீழே நகர்த்தவும்"
+msgstr "செங்குத்து கோட்டை ஒரு வரி கீழே நகர்த்து"
 
 #: src/wxmedit_frame.cpp:1436
 msgid "Go to begin of line"
-msgstr "வரியின் தொடக்கத்திற்குச் செல்லுங்கள்"
+msgstr "வரியின் தொடக்கத்திற்குச் செல்"
 
 #: src/wxmedit_frame.cpp:1437
 msgid "Go to end of line"
-msgstr "வரியின் முடிவுக்குச் செல்லுங்கள்"
+msgstr "வரிமுடிவுக்குச் செல்"
 
 #: src/wxmedit_frame.cpp:1438
 msgid "Go to begin of document"
-msgstr "ஆவணத்தின் தொடங்கத்திற்குச் செல்லுங்கள்"
+msgstr "ஆவணத்தின் தொடங்கத்திற்குச் செல்"
 
 #: src/wxmedit_frame.cpp:1439
 msgid "Go to end of document"
-msgstr "ஆவணத்தின் முடிவுக்குச் செல்லுங்கள்"
+msgstr "ஆவணத்தின் முடிவுக்குச் செல்"
 
 #: src/wxmedit_frame.cpp:1440
 msgid "Go to previous page"
-msgstr "முந்தைய பக்கத்திற்குச் செல்லவும்"
+msgstr "முந்தைய பக்கத்திற்குச் செல்"
 
 #: src/wxmedit_frame.cpp:1441
 msgid "Go to next page"
-msgstr "அடுத்த பக்கத்திற்குச் செல்லவும்"
+msgstr "அடுத்த பக்கத்திற்குச் செல்"
 
 #: src/wxmedit_frame.cpp:1442
 msgid "Go to previous word"
-msgstr "முந்தைய சொல்லுக்குச் செல்லுங்கள்"
+msgstr "முந்தைய சொல்லுக்குச் செல்"
 
 #: src/wxmedit_frame.cpp:1443
 msgid "Go to next word"
-msgstr "அடுத்த சொல்லூக்குச் செல்லுங்கள்"
+msgstr "அடுத்த சொல்லூக்குச் செல்"
 
 #: src/wxmedit_frame.cpp:1445
 msgid "Move caret left one char and select"
-msgstr "செங்குத்து கோட்டை இடதுபுறமாக நகர்த்தி தேர்ந்தெடுக்கவும்"
+msgstr "செங்குத்து கோட்டை இடதுபுறமாக நகர்த்தி தேர்ந்தெடு"
 
 #: src/wxmedit_frame.cpp:1446
 msgid "Move caret right one char and select"
-msgstr "செங்குத்து கோட்டை வலதுபுறமாக நகர்த்தி தேர்ந்தெடுக்கவும்"
+msgstr "செங்குத்து கோட்டை வலதுபுறமாக நகர்த்தி தேர்ந்தெடு"
 
 #: src/wxmedit_frame.cpp:1447
 msgid "Move caret up one line and select"
-msgstr "செங்குத்து கோட்டை ஒரு வரி மேலே நகர்த்தி தேர்ந்தெடுக்கவும்"
+msgstr "செங்குத்து கோட்டை ஒரு வரி மேலே நகர்த்தி தேர்ந்தெடு"
 
 #: src/wxmedit_frame.cpp:1448
 msgid "Move caret down one line and select"
-msgstr "செங்குத்து கோட்டை ஒரு வரி கீழே நகர்த்தி தேர்ந்தெடுக்கவும்"
+msgstr "செங்குத்து கோட்டை ஒரு வரி கீழே நகர்த்தி தேர்ந்தெடு"
 
 #: src/wxmedit_frame.cpp:1449
 msgid "Go to begin of line and select"
-msgstr "வரியின் தொடக்கதிற்கு சென்று தேர்ந்தெடுக்கவும்"
+msgstr "வரியின் தொடக்கதிற்கு சென்று தேர்ந்தெடு"
 
 #: src/wxmedit_frame.cpp:1450
 msgid "Go to end of line and select"
-msgstr "வரியின் முடிவுக்குச் சென்று தேர்ந்தெடுக்கவும்"
+msgstr "வரிமுடிவுக்குச் சென்று தேர்ந்தெடு"
 
 #: src/wxmedit_frame.cpp:1451
 msgid "Go to begin of document and select"
-msgstr "ஆவணத்தைத் தொடங்கி தேர்ந்தெடுக்கவும்"
+msgstr "ஆவணத்தைத் தொடங்கி தேர்ந்தெடு"
 
 #: src/wxmedit_frame.cpp:1452
 msgid "Go to end of document and select"
-msgstr "ஆவணத்தின் முடிவுக்குச் சென்று தேர்ந்தெடுக்கவும்"
+msgstr "ஆவணத்தின் முடிவுக்குச் சென்று தேர்ந்தெடு"
 
 #: src/wxmedit_frame.cpp:1453
 msgid "Go to previous page and select"
-msgstr "முந்தைய பக்கத்திற்குச் சென்று தேர்ந்தெடுக்கவும்"
+msgstr "முந்தைய பக்கத்திற்குச் சென்று தேர்ந்தெடு"
 
 #: src/wxmedit_frame.cpp:1454
 msgid "Go to next page and select"
-msgstr "அடுத்த பக்கத்திற்குச் சென்று தேர்ந்தெடுக்கவும்"
+msgstr "அடுத்த பக்கத்திற்குச் சென்று தேர்ந்தெடு"
 
 #: src/wxmedit_frame.cpp:1455
 msgid "Go to previous word and select"
-msgstr "முந்தைய சொல்லுக்குச் சென்று தேர்ந்தெடுக்கவும்"
+msgstr "முந்தைய சொல்லுக்குச் சென்று தேர்ந்தெடு"
 
 #: src/wxmedit_frame.cpp:1456
 msgid "Go to next word and select"
-msgstr "அடுத்த சொல்லுக்குச் சென்று தேர்ந்தெடுக்கவும்"
+msgstr "அடுத்த சொல்லுக்குச் சென்று தேர்ந்தெடு"
 
 #: src/wxmedit_frame.cpp:1457
 msgid "Go to left brace and select"
-msgstr "இடது வளைவுக்குச் சென்று தேர்ந்தெடுக்கவும்"
+msgstr "இடது அடைப்புக்குறிப்புக்குச் சென்று தேர்ந்தெடு"
 
 #: src/wxmedit_frame.cpp:1458
 msgid "Go to right brace and select"
-msgstr "வலது வளைவுக்குச் சென்று தேர்ந்தெடுக்கவும்"
+msgstr "வலது அடைப்புக்குறிப்புக்குச் சென்று தேர்ந்தெடு"
 
 #: src/wxmedit_frame.cpp:1460
 msgid "Scroll text up one line"
@@ -3682,15 +3682,15 @@ msgstr "உரையை உருட்டவும் வலது"
 
 #: src/wxmedit_frame.cpp:1467
 msgid "Insert one NewLine char"
-msgstr "ஒரு புதியவரி எழுத்து செருகவும்"
+msgstr "ஒரு புதியவரி எழுத்து செருகு"
 
 #: src/wxmedit_frame.cpp:1468
 msgid "Insert one NewLine char without indentation"
-msgstr "உள்தள்ளல் இல்லாமல் ஒரு புதியவரி எழுத்து செருகவும்"
+msgstr "உள்தள்ளல் இல்லாமல் ஒரு புதியவரி எழுத்து செருகு"
 
 #: src/wxmedit_frame.cpp:1469
 msgid "Insert one Tab char or indent lines"
-msgstr "ஒரு தாவல் எழுத்து அல்லது உள்தள்ளல் கோடுகளைச் செருகவும்"
+msgstr "ஒரு தாவல் எழுத்து அல்லது உள்தள்ளல் வரிகளைச் செருகு"
 
 #: src/wxmedit_frame.cpp:1470
 msgid "Delete one char to the left of the caret"
@@ -3706,7 +3706,7 @@ msgstr "செங்குத்து கோட்டிலிருந்த�
 
 #: src/wxmedit_frame.cpp:1475
 msgid "Toggle Insert/Overwrite Mode"
-msgstr "செருகவும்/மேலெழுதும் பயன்முறையை மாற்றவும்"
+msgstr "செருகு/மேலெழுதும் பயன்முறையை மாற்று"
 
 #: src/wxmedit_frame.cpp:1959
 msgid "New File"
@@ -3750,11 +3750,11 @@ msgstr "ஒட்டு"
 
 #: src/wxmedit_frame.cpp:1979
 msgid "Increase Indent"
-msgstr "உள்தள்ளலை அதிகரிக்கவும்"
+msgstr "உள்தள்ளலை அதிகரி"
 
 #: src/wxmedit_frame.cpp:1980
 msgid "Decrease Indent"
-msgstr "உள்தள்ளல் குறைவு"
+msgstr "உள்தள்ளல் குறை"
 
 #: src/wxmedit_frame.cpp:1984
 msgid "Uncomment"
@@ -3774,15 +3774,15 @@ msgstr "முந்தையதைக் தேடு"
 
 #: src/wxmedit_frame.cpp:1999
 msgid "No Line Wrap"
-msgstr "வரி மடக்கு இல்லை"
+msgstr "வரி மடிப்பு இல்லை"
 
 #: src/wxmedit_frame.cpp:2000
 msgid "Wrap Lines by Window"
-msgstr "சாளரத்தின் மூலம் கோடுகளை மடிக்கவும்"
+msgstr "சாளரத்தின் மூலம் வரிகளை மடி"
 
 #: src/wxmedit_frame.cpp:2001
 msgid "Wrap Lines by Max Columns"
-msgstr "அதிகபட்ச நெடுவரிசைகளால் கோடுகளை மடிக்கவும்"
+msgstr "அதிகபட்ச நெடுவரிசைகளால் வரிகளை மடி"
 
 #: src/wxmedit_frame.cpp:2005
 msgid "Column Mode"
@@ -3794,7 +3794,7 @@ msgstr "சாஃபிதிருத்தியின் தற்போத�
 
 #: src/wxmedit_frame.cpp:2025
 msgid "Find/Replace in Files Results"
-msgstr "கோப்புகளின் முடிவுகளில் கண்டுபிடி/மாற்றவும்"
+msgstr "கோப்புகளின் முடிவுகளில் தேடு/மாற்று"
 
 #: src/wxmedit_frame.cpp:203
 msgid "Creator of MadEdit"
@@ -3818,7 +3818,7 @@ msgstr "ச்பானிச் மொழிபெயர்ப்பாளர�
 
 #: src/wxmedit_frame.cpp:207 src/wxmedit_frame.cpp:208
 msgid "Translator for Traditional Chinese"
-msgstr "பாரம்பரிய சீனர்களுக்கான மொழிபெயர்ப்பாளர்"
+msgstr "பாரம்பரிய சீன மொழிபெயர்ப்பாளர்"
 
 #: src/wxmedit_frame.cpp:209 src/wxmedit_frame.cpp:211
 msgid "Translator for Russian"
@@ -3841,11 +3841,11 @@ msgstr "பிரஞ்சு மொழிபெயர்ப்பாளர்"
 #: src/wxmedit_frame.cpp:219 src/wxmedit_frame.cpp:220
 #: src/wxmedit_frame.cpp:221
 msgid "Patch submitter for wxMEdit/MadEdit"
-msgstr "சாஃபிதிருத்தி/பித்துதிருத்தி க்கான இணைப்பு சமர்ப்பிப்பாளர்"
+msgstr "சாஃபிதிருத்தி/பித்துதிருத்திக்கான ஒட்டு சமர்ப்பிப்பாளர்"
 
 #: src/wxmedit_frame.cpp:222
 msgid "Creator of Gentoo package wxmedit"
-msgstr "சென்டூ தொகுப்பின் உருவாக்கியவர் சாஃபிதிருத்தி"
+msgstr "சென்டூ சாஃபிதிருத்தி தொகுப்பை உருவாக்கியவர்"
 
 #: src/wxmedit_frame.cpp:223
 msgid "Creator of wxmedit package in AUR"
@@ -3857,7 +3857,7 @@ msgstr "அவுரில் சாஃபிதிருத்தி தொக�
 
 #: src/wxmedit_frame.cpp:2593
 #, c-format
-msgid "பெயரில்லா%d"
+msgid "NoName%d"
 msgstr "பெயரில்லா%d"
 
 #: src/wxmedit_frame.cpp:2630
@@ -3895,8 +3895,8 @@ msgid ""
 "There was a problem previewing.\n"
 "Perhaps your current printer is not set correctly?"
 msgstr ""
-"முன்னோட்டமிடுவதில் சிக்கல் இருந்தது. \n"
-" உங்கள் தற்போதைய அச்சுப்பொறி சரியாக அமைக்கப்படவில்லை?"
+"முன்னோட்டமிடுவதில் சிக்கல் இருந்தது.\n"
+"உங்கள் தற்போதைய அச்சுப்பொறி சரியாக அமைக்கப்படவில்லை?"
 
 #: src/wxmedit_frame.cpp:3472
 msgid "wxMEdit Print Preview"
@@ -3911,8 +3911,8 @@ msgid ""
 "There was a problem printing.\n"
 "Perhaps your current printer is not set correctly?"
 msgstr ""
-"அச்சிடுவதில் சிக்கல் இருந்தது. \n"
-" உங்கள் தற்போதைய அச்சுப்பொறி சரியாக அமைக்கப்படவில்லை?"
+"அச்சிடுவதில் சிக்கல் இருந்தது.\n"
+"உங்கள் தற்போதைய அச்சுப்பொறி சரியாக அமைக்கப்படவில்லை?"
 
 #: src/wxmedit_frame.cpp:3825 src/wxmedit_frame.cpp:3868
 msgid "ASCII characters"
@@ -3936,23 +3936,23 @@ msgstr "நீங்கள் மாற்ற விரும்பும் எ
 
 #: src/wxmedit_frame.cpp:4088
 msgid "Go To Line"
-msgstr "வரிக்குச் செல்லுங்கள்"
+msgstr "வரிக்குச் செல்"
 
 #: src/wxmedit_frame.cpp:4088
 msgid "Line Number: (you can input HexNumber: 0xNNN)"
-msgstr "வரி எண்: (நீங்கள் பதின்மஎண் உள்ளிடலாம்: 0x௷௷௷)"
+msgstr "வரி எண்: (நீங்கள் பதின்மஎண்ணை உள்ளிடலாம்: 0x௷௷௷)"
 
 #: src/wxmedit_frame.cpp:4113
 msgid "Go To Position"
-msgstr "நிலைக்குச் செல்லுங்கள்"
+msgstr "நிலைக்குச் செல்"
 
 #: src/wxmedit_frame.cpp:4113
 msgid "Position: (you can input HexNumber: 0xNNN)"
-msgstr "நிலை: (நீங்கள் பதின்மஎண் உள்ளிடலாம்: 0x௷௷௷)"
+msgstr "நிலை: (நீங்கள் பதின்மஎண்ணை உள்ளிடலாம்: 0x௷௷௷)"
 
 #: src/wxmedit_frame.cpp:5001
 msgid "A Cross-platform Text/Hex Editor"
-msgstr "ஒரு குறுக்கு-தளம் உரை/பதின்ம திருத்தி"
+msgstr "ஒரு குறுக்கு-மேடை உரை/பதின்ம திருத்தி"
 
 #: src/wxmedit_frame.cpp:5003
 msgid "Press OK to visit our HomePage."
@@ -3960,11 +3960,11 @@ msgstr "எங்கள் முகப்புப்பக்கத்தை�
 
 #: src/wxmedit_frame.cpp:5005
 msgid "wxMEdit, a Cross-platform Text/Hex Editor"
-msgstr "சாஃபிதிருத்தி, ஒரு குறுக்கு-தளம் உரை/பதின்ம திருத்தி"
+msgstr "சாஃபிதிருத்தி, ஒரு குறுக்கு-மேடை உரை/பதின்ம திருத்தி"
 
 #: src/wxmedit_frame.cpp:5008
 msgid "Press OK to view the license online version.\n"
-msgstr "உரிமம் இணைய பதிப்பைக் காண சரி என்பதை அழுத்தவும்."
+msgstr "உரிமம் இணைய பதிப்பைக் காண சரி என்பதை அழுத்தவும்.\n"
 
 #: src/xm/encoding/encoding.cpp:100
 msgid "Western European with Euro "
@@ -4085,7 +4085,7 @@ msgstr "ஒருங்குறி 32 இரும பெரிய முடி
 
 #: src/xm/encoding/encoding.cpp:189
 msgid "Other "
-msgstr "மற்றொன்று"
+msgstr "மற்றொன்று "
 
 #: src/xm/encoding/encoding.cpp:87 src/xm/encoding/encoding.cpp:190
 msgid "Western European "
@@ -4137,7 +4137,7 @@ msgstr "ஒருங்குறி"
 
 #: src/xm/encoding/encoding.cpp:203
 msgid "ISO-8859 "
-msgstr "ஐஎச்ஓ -8859"
+msgstr "ஐஎச்ஓ-8859"
 
 #: src/xm/encoding/encoding.cpp:204
 msgid "Windows "
@@ -4185,7 +4185,7 @@ msgstr "அகரவரிசை விளக்கக்காட்சி வ�
 
 #: src/xm/ublock_des.cpp:106
 msgid "Arabic Presentation Forms-A"
-msgstr "அரபு விளக்கக்காட்சி படிவங்கள்-ஏ"
+msgstr "அரபு விளக்கக்காட்சி படிவங்கள்-எ"
 
 #: src/xm/ublock_des.cpp:107
 msgid "Combining Half Marks"
@@ -4209,7 +4209,7 @@ msgstr "சிறப்பு"
 
 #: src/xm/ublock_des.cpp:112
 msgid "Halfwidth and Fullwidth Forms"
-msgstr "அரைவாசி மற்றும் முழு அகல வடிவங்கள்"
+msgstr "பாதி அகல மற்றும் முழு அகல வடிவங்கள்"
 
 #: src/xm/ublock_des.cpp:113
 msgid "Old Italic"
@@ -4237,7 +4237,7 @@ msgstr "கணித எண்ணெழுத்து சின்னங்க�
 
 #: src/xm/ublock_des.cpp:119
 msgid "CJK Unified Ideographs Extension B"
-msgstr "சிசேகே ஒருங்கிணைந்த ஐடியோவரைபடம்கள் நீட்டிப்பு ஆ"
+msgstr "சிசேகே ஒருங்கிணைந்த ஐடியோவரைபடம்கள் நீட்டிப்பு பி"
 
 #: src/xm/ublock_des.cpp:120
 msgid "CJK Compatibility Ideographs Supplement"
@@ -4269,11 +4269,11 @@ msgstr "தாக்பன்வா"
 
 #: src/xm/ublock_des.cpp:127
 msgid "Miscellaneous Mathematical Symbols-A"
-msgstr "இதர கணித சின்னங்கள்-ஏ"
+msgstr "இதர கணித சின்னங்கள்-எ"
 
 #: src/xm/ublock_des.cpp:128
 msgid "Supplemental Arrows-A"
-msgstr "துணை அம்புகள்-ஏ"
+msgstr "துணை அம்புகள்-எ"
 
 #: src/xm/ublock_des.cpp:129
 msgid "Supplemental Arrows-B"
@@ -4297,7 +4297,7 @@ msgstr "மாறுபாடு தேர்வாளர்கள்"
 
 #: src/xm/ublock_des.cpp:134
 msgid "Supplementary Private Use Area-A"
-msgstr "துணை தனியார் பயன்பாட்டு பகுதி-ஏ"
+msgstr "துணை தனியார் பயன்பாட்டு பகுதி-எ"
 
 #: src/xm/ublock_des.cpp:135
 msgid "Supplementary Private Use Area-B"
@@ -4477,7 +4477,7 @@ msgstr "கியூனிஃபார்ம் எண்கள் மற்ற�
 
 #: src/xm/ublock_des.cpp:179
 msgid "Counting Rod Numerals"
-msgstr "ராட் எண்களை எண்ணும்"
+msgstr "எண்ணும் ராட் எண்கள்"
 
 #: src/xm/ublock_des.cpp:180
 msgid "Sundanese"
@@ -4493,7 +4493,7 @@ msgstr "ஓல் சிகி"
 
 #: src/xm/ublock_des.cpp:183
 msgid "Cyrillic Extended-A"
-msgstr "சிரிலிக் விரிவாக்கப்பட்ட-ஏ"
+msgstr "சிரிலிக் விரிவாக்கப்பட்ட-எ"
 
 #: src/xm/ublock_des.cpp:185
 msgid "Cyrillic Extended-B"
@@ -4569,7 +4569,7 @@ msgstr "பாமம்"
 
 #: src/xm/ublock_des.cpp:203
 msgid "Common Indic Number Forms"
-msgstr "பொதுவான அறிகுறி எண் படிவங்கள்"
+msgstr "பொதுவான இந்திக் எண் படிவங்கள்"
 
 #: src/xm/ublock_des.cpp:204
 msgid "Devanagari Extended"
@@ -4577,7 +4577,7 @@ msgstr "தேவநாகரி நீட்டிக்கப்பட்ட�
 
 #: src/xm/ublock_des.cpp:205
 msgid "Hangul Jamo Extended-A"
-msgstr "அங்குல் சமோ நீட்டிக்கப்பட்ட-ஏ"
+msgstr "அங்குல் சமோ நீட்டிக்கப்பட்ட-எ"
 
 #: src/xm/ublock_des.cpp:206
 msgid "Javanese"
@@ -4585,7 +4585,7 @@ msgstr "சாவானீச்"
 
 #: src/xm/ublock_des.cpp:207
 msgid "Myanmar Extended-A"
-msgstr "மியான்மர் விரிவாக்கப்பட்ட-ஏ"
+msgstr "மியான்மர் விரிவாக்கப்பட்ட-எ"
 
 #: src/xm/ublock_des.cpp:208
 msgid "Tai Viet"
@@ -4657,7 +4657,7 @@ msgstr "படக்"
 
 #: src/xm/ublock_des.cpp:225
 msgid "Ethiopic Extended-A"
-msgstr "எத்தியோபிக் விரிவாக்கப்பட்ட-அ"
+msgstr "எத்தியோபிக் விரிவாக்கப்பட்ட-எ"
 
 #: src/xm/ublock_des.cpp:226
 msgid "Brahmi"
@@ -4673,7 +4673,7 @@ msgstr "கானா துணை"
 
 #: src/xm/ublock_des.cpp:229
 msgid "Playing Cards"
-msgstr "சீட்டு விளையாடி"
+msgstr "விளையாட்டு சீட்டுகள்"
 
 #: src/xm/ublock_des.cpp:230
 msgid "Miscellaneous Symbols And Pictographs"
@@ -4689,7 +4689,7 @@ msgstr "போக்குவரத்து மற்றும் வரைப�
 
 #: src/xm/ublock_des.cpp:233
 msgid "Alchemical Symbols"
-msgstr "ரசவாத சின்னங்கள்"
+msgstr "வேதியல் சின்னங்கள்"
 
 #: src/xm/ublock_des.cpp:234
 msgid "CJK Unified Ideographs Extension D"
@@ -4697,7 +4697,7 @@ msgstr "சிசேகே ஒருங்கிணைந்த ஐடியோ�
 
 #: src/xm/ublock_des.cpp:235
 msgid "Arabic Extended-A"
-msgstr "அரபு நீட்டிக்கப்பட்ட-ஏ"
+msgstr "அரபு நீட்டிக்கப்பட்ட-எ"
 
 #: src/xm/ublock_des.cpp:236
 msgid "Arabic Mathematical Alphabetic Symbols"
@@ -4753,7 +4753,7 @@ msgstr "காப்டிக் எபாக்ட் எண்கள்"
 
 #: src/xm/ublock_des.cpp:25
 msgid "No_Block"
-msgstr "இல்_தொகுப்பு"
+msgstr "இல்லை_தொகுப்பு"
 
 #: src/xm/ublock_des.cpp:250
 msgid "Combining Diacritical Marks Extended"
@@ -4789,7 +4789,7 @@ msgstr "லத்தீன் நீட்டிக்கப்பட்ட-இ"
 
 #: src/xm/ublock_des.cpp:258
 msgid "Linear A"
-msgstr "நேரியல் அ"
+msgstr "நேரியல் எ"
 
 #: src/xm/ublock_des.cpp:259
 msgid "Mahajani"
@@ -4881,7 +4881,7 @@ msgstr "வார்ங் சிட்டி"
 
 #: src/xm/ublock_des.cpp:28
 msgid "Latin Extended-A"
-msgstr "லத்தீன் விரிவாக்கப்பட்ட-ஏ"
+msgstr "லத்தீன் விரிவாக்கப்பட்ட-எ"
 
 #: src/xm/ublock_des.cpp:280
 msgid "Ahom"
@@ -4941,7 +4941,7 @@ msgstr "சிரிலிக் நீட்டிக்கப்பட்ட-�
 
 #: src/xm/ublock_des.cpp:294
 msgid "\tGlagolitic Supplement"
-msgstr "கிளாகோலிடிக் துணை"
+msgstr "\tகிளாகோலிடிக் துணை"
 
 #: src/xm/ublock_des.cpp:295
 msgid "Ideographic Symbols and Punctuation"
@@ -4981,7 +4981,7 @@ msgstr "சிசேகே ஒருங்கிணைந்த ஐடியோ�
 
 #: src/xm/ublock_des.cpp:304
 msgid "Kana Extended-A"
-msgstr "கானா நீட்டிக்கப்பட்ட-ஏ"
+msgstr "கானா நீட்டிக்கப்பட்ட-எ"
 
 #: src/xm/ublock_des.cpp:305
 msgid "Masaram Gondi"
@@ -5001,7 +5001,7 @@ msgstr "சிரியாக் துணை"
 
 #: src/xm/ublock_des.cpp:309
 msgid "Zanabazar Square"
-msgstr "சனபசார் சதுக்கம்"
+msgstr "சனபசார் நாற்கரம்"
 
 #: src/xm/ublock_des.cpp:31
 msgid "Spacing Modifier Letters"
@@ -5009,7 +5009,7 @@ msgstr "இடைவெளி மாற்றியமைக்கும் எ�
 
 #: src/xm/ublock_des.cpp:311
 msgid "Chess Symbols"
-msgstr "சதுரங்க சின்னங்கள்"
+msgstr "நாற்கரங்கம் சின்னங்கள்"
 
 #: src/xm/ublock_des.cpp:312
 msgid "Dogra"
@@ -5081,7 +5081,7 @@ msgstr "சிறிய கானா நீட்டிப்பு"
 
 #: src/xm/ublock_des.cpp:329
 msgid "Symbols and Pictographs Extended-A"
-msgstr "சின்னங்கள் மற்றும் பிகோவரைபடம்கள் விரிவாக்கப்பட்டவை-ஏ"
+msgstr "சின்னங்கள் மற்றும் பிகோவரைபடம்கள் விரிவாக்கப்பட்டவை-எ"
 
 #: src/xm/ublock_des.cpp:33
 msgid "Greek and Coptic"
@@ -5101,7 +5101,7 @@ msgstr "கோராச்மியன்"
 
 #: src/xm/ublock_des.cpp:334
 msgid "CJK Unified Ideographs Extension G"
-msgstr "சிசேகே ஒருங்கிணைந்த ஐடியோவரைபடம்கள் நீட்டிப்பு சி"
+msgstr "சிசேகே ஒருங்கிணைந்த ஐடியோவரைபடம்கள் நீட்டிப்பு ஃசி"
 
 #: src/xm/ublock_des.cpp:335
 msgid "Dives Akuru"
@@ -5153,7 +5153,7 @@ msgstr "லத்தீன் விரிவாக்கப்பட்ட-எ�
 
 #: src/xm/ublock_des.cpp:347
 msgid "Latin Extended-G"
-msgstr "லத்தீன் நீட்டிக்கப்பட்ட-சி"
+msgstr "லத்தீன் நீட்டிக்கப்பட்ட-ஃசி"
 
 #: src/xm/ublock_des.cpp:348
 msgid "Old Uyghur"
@@ -5169,7 +5169,7 @@ msgstr "டோடோ"
 
 #: src/xm/ublock_des.cpp:351
 msgid "Unified Canadian Aboriginal Syllabics Extended-A"
-msgstr "ஒருங்கிணைந்த கனேடிய பழங்குடி பாடத்திட்டங்கள் விரிவாக்கப்பட்டவை"
+msgstr "ஒருங்கிணைந்த கனேடிய பழங்குடி பாடத்திட்டங்கள் விரிவாக்கப்பட்ட-எ"
 
 #: src/xm/ublock_des.cpp:352
 msgid "Vithkuqi"
@@ -5185,7 +5185,7 @@ msgstr "அரபு நீட்டிக்கப்பட்ட-சி"
 
 #: src/xm/ublock_des.cpp:356
 msgid "CJK Unified Ideographs Extension H"
-msgstr "சிசேகே ஒருங்கிணைந்த ஐடியோவரைபடம்கள் நீட்டிப்பு ம"
+msgstr "சிசேகே ஒருங்கிணைந்த ஐடியோவரைபடம்கள் நீட்டிப்பு எச்"
 
 #: src/xm/ublock_des.cpp:357
 msgid "Cyrillic Extended-D"
@@ -5193,7 +5193,7 @@ msgstr "சிரிலிக் விரிவாக்கப்பட்ட-�
 
 #: src/xm/ublock_des.cpp:358
 msgid "Devanagari Extended-A"
-msgstr "தேவநாகரி விரிவாக்கப்பட்ட-ஏ"
+msgstr "தேவநாகரி விரிவாக்கப்பட்ட-எ"
 
 #: src/xm/ublock_des.cpp:359
 msgid "Kaktovik Numerals"
@@ -5285,11 +5285,11 @@ msgstr "கணித இயக்கிகள்"
 
 #: src/xm/ublock_des.cpp:73
 msgid "Miscellaneous Technical"
-msgstr "இதர தொழில்நுட்ப"
+msgstr "இதர தொழில்நுட்பம்"
 
 #: src/xm/ublock_des.cpp:74
 msgid "Control Pictures"
-msgstr "படங்களை கட்டுப்படுத்தவும்"
+msgstr "படங்களை கட்டுப்படுத்து"
 
 #: src/xm/ublock_des.cpp:75
 msgid "Optical Character Recognition"
@@ -5321,7 +5321,7 @@ msgstr "டிங்பாட்ச்"
 
 #: src/xm/ublock_des.cpp:82
 msgid "Braille Patterns"
-msgstr "பிரெய்ல் வடிவங்கள்"
+msgstr "பிரெய்லி வடிவங்கள்"
 
 #: src/xm/ublock_des.cpp:83
 msgid "CJK Radicals Supplement"
@@ -5365,7 +5365,7 @@ msgstr "போபோமோஃபோ நீட்டிக்கப்பட்�
 
 #: src/xm/ublock_des.cpp:93
 msgid "Enclosed CJK Letters and Months"
-msgstr "மூடப்பட்ட சிசேகே எழுத்துக்கள் மற்றும் மாதங்கள்"
+msgstr "மூடப்பட்ட சிசேகே எழுத்துக்கள் மற்றும் திங்கள்கள்"
 
 #: src/xm/ublock_des.cpp:94
 msgid "CJK Compatibility"
