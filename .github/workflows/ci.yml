@@ -1,0 +1,26 @@
+name: Build
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  Fedora:
+    name: Fedora
+    runs-on: ubuntu-22.04
+    container: fedora:rawhide
+
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install build dependencies
+        run: |
+          dnf install -y gcc-c++ make autoconf automake \
+            boost-devel libicu-devel wxGTK-devel libcurl-devel
+      - name: build
+        run: |
+          ./configure && make -j$(nproc)
+      - name: test
+        run: |
+          make check || (cat ./test-suite.log && exit 1)
